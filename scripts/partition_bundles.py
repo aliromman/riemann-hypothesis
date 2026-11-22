@@ -12,17 +12,38 @@ import os
 import re
 import subprocess
 import tempfile
+from typing import NamedTuple
 
 
 HEADER = re.compile(r"^([ \t]*(?:(?:public|private|meta)[ \t]+)*import[ \t]+(?:all[ \t]+)?)([^\s/]+)([ \t]*(?:(?:--|/-)[^\n]*)?\n?)$")
 MEMBER = re.compile(r"^-- bundled from (\S+)\n", re.M)
 GIT_HEADER = r"^[[:space:]]*((public|private|meta)[[:space:]]+)*import[[:space:]]+|^-- bundled from "
 
+PUBLIC = 1
+ALL = 2
+META = 4
+
+
+def import_mode(prefix):
+    words = prefix.split()
+    return ((PUBLIC if "public" in words else 0) | (ALL if "all" in words else 0) |
+            (META if "meta" in words else 0))
+
+
+def with_mode(prefix, mode):
+    if import_mode(prefix) == mode:
+        return prefix
+    indent = prefix[:len(prefix) - len(prefix.lstrip())]
+    return (indent + ("public " if mode & PUBLIC else "") + ("meta " if mode & META else "") +
+            "import " + ("all " if mode & ALL else ""))
+
 
 @dataclass
 class Source:
     imports: list = field(default_factory=list)
     members: list = field(default_factory=list)
+    # Store exceptions to the project's usual public import.
+    modes: dict = field(default_factory=dict)
 
 
 def path_of(name):
@@ -54,19 +75,45 @@ def read_graph(repo, revision):
                 match = HEADER.fullmatch(command)
                 if not match:
                     raise ValueError(f"Unsupported import line in {path}: {command!r}")
-                source.imports.append(match[2])
+                target = match[2]
+                mode = import_mode(match[1])
+                if target in source.imports:
+                    mode |= source.modes.get(target, PUBLIC)
+                source.imports.append(target)
+                if mode == PUBLIC:
+                    source.modes.pop(target, None)
+                else:
+                    source.modes[target] = mode
         if proc.wait() != 0:
             raise RuntimeError(f"Cannot read the imports at {revision}")
     return modules
 
 
-def visibility(imports, provider_bits):
+class Access(NamedTuple):
+    reachable: int
+    exported: int
+    available: int
+    private_data: int
+
+
+def visibility(imports, modes, provider_bits):
     masks = {}
     for module in TopologicalSorter(imports).static_order():
-        mask = provider_bits.get(module, 0)
+        reachable = exported = available = private_data = provider_bits.get(module, 0)
         for dependency in imports[module]:
-            mask |= masks[dependency]
-        masks[module] = mask
+            other = masks[dependency]
+            mode = modes[module].get(dependency, PUBLIC)
+            reachable |= other.reachable
+            if mode & PUBLIC:
+                exported |= other.exported
+            # A regular import exposes the dependency's public imports. An all import also
+            # exposes its private imports and can follow further all imports for private data.
+            if mode & ALL:
+                available |= other.available
+                private_data |= other.private_data
+            else:
+                available |= other.exported
+        masks[module] = Access(reachable, exported, available, private_data)
     return masks
 
 
@@ -87,7 +134,7 @@ class Partition:
             raise ValueError("Each provider must be a distinct, retained original module")
 
         bits = {n: 1 << i for i, n in enumerate(providers)}
-        original_mask = visibility(internal(original), bits)
+        original_mask = visibility(internal(original), {n: s.modes for n, s in original.items()}, bits)
         self.members = {}
         self.location = {}
         self.previous = {}
@@ -105,29 +152,43 @@ class Partition:
                 self.location.update((member, destination) for member in group)
 
         @cache
-        def expand(name):
+        def expand(name, mode):
             if name in self.owner or name not in original:
-                return (name,)
-            return tuple(dict.fromkeys(leaf for d in original[name].imports for leaf in expand(d)))
+                return ((name, mode),)
+            leaves = []
+            for d in original[name].imports:
+                child = original[name].modes.get(d, PUBLIC)
+                if not (mode & ALL or child & PUBLIC):
+                    raise ValueError(f"Direct imports cannot express the private edge {name} -> {d} "
+                                     "through a removed wrapper")
+                combined = (mode & child & (PUBLIC | ALL)) | ((mode | child) & META)
+                leaves.extend(expand(d, combined))
+            return tuple(dict.fromkeys(leaves))
 
         self.replacements = {}
         self.imports = {}
+        self.modes = {}
         prior_edges = defaultdict(set)
         for destination, group in self.members.items():
             parent = self.previous[destination]
             replacements = defaultdict(list)
+            modes = {}
             for member in group:
                 for dependency in original[member].imports:
-                    for leaf in expand(dependency):
+                    mode = original[member].modes.get(dependency, PUBLIC)
+                    for leaf, leaf_mode in expand(dependency, mode):
                         before = self.owner.get(leaf, leaf)
                         after = self.location.get(leaf, leaf)
                         if before == parent and after != destination:
                             raise ValueError(f"Dependent members in the original bundle {parent}")
                         if before != parent:
                             prior_edges[parent].add(before)
-                        if after != destination and after not in replacements[before]:
-                            replacements[before].append(after)
+                        if after != destination:
+                            modes[after] = modes.get(after, 0) | leaf_mode
+                            if after not in replacements[before]:
+                                replacements[before].append(after)
             self.replacements[destination] = replacements
+            self.modes[destination] = {d: mode for d, mode in modes.items() if mode != PUBLIC}
             # Keep the submitted order for every dependency that stays in the import list.
             self.imports[destination] = [d for old in bundled[parent].imports for d in replacements[old]]
         for parent, source in bundled.items():
@@ -140,18 +201,22 @@ class Partition:
                 masks[mapping[provider]] |= bit
             return masks
 
-        before = visibility(internal(bundled), relocated(self.owner))
+        before = visibility(internal(bundled), {n: s.modes for n, s in bundled.items()}, relocated(self.owner))
         self.graph = {n: [d for d in deps if d in self.members] for n, deps in self.imports.items()}
-        after = visibility(self.graph, relocated(self.location))
-        self.differences = {m: (original_mask[m], before[parent]) for m, parent in self.owner.items()
-                            if original_mask[m] != before[parent]}
-        if any(after[target] != original_mask[m] for m, target in self.location.items()):
-            raise ValueError("The partition changed which original modules can reach a provider")
+        after = visibility(self.graph, self.modes, relocated(self.location))
+        self.differences = {m: (original_mask[m].reachable, before[parent].reachable)
+                            for m, parent in self.owner.items() if original_mask[m].reachable != before[parent].reachable}
+        self.scope_counts = Access(*(sum(original_mask[m][i] != before[parent][i]
+                                         for m, parent in self.owner.items()) for i in range(len(Access._fields))))
+        for member, target in self.location.items():
+            if after[target] != original_mask[member]:
+                raise ValueError(f"The partition changed provider access for {member} in {target}")
 
     def changed(self, n):
         parent = self.previous[n]
         old = self.bundled[parent]
-        return n != parent or self.members[n] != (old.members or [parent]) or self.imports[n] != old.imports
+        return (n != parent or self.members[n] != (old.members or [parent]) or
+                self.imports[n] != old.imports or self.modes[n] != old.modes)
 
     def render(self, n, raw):
         if not self.changed(n):
@@ -163,7 +228,7 @@ class Partition:
             match = HEADER.fullmatch(line)
             if match:
                 for dep in self.replacements[n][match[2]]:
-                    lines.append(match[1] + dep + match[3])
+                    lines.append(with_mode(match[1], self.modes[n].get(dep, PUBLIC)) + dep + match[3])
             else:
                 lines.append(line)
         if markers:
@@ -227,17 +292,30 @@ def atomic_output(path):
         Path(tmp.name).unlink(missing_ok=True)
 
 
+def changed_providers(mask, providers):
+    while mask:
+        bit = mask & -mask
+        yield providers[bit.bit_length() - 1]
+        mask ^= bit
+
+
 def main():
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument("--repo", type=Path, default=Path("."))
     cli.add_argument("--base", required=True, help="revision before the wrapper and bundle passes")
     cli.add_argument("--consolidated", required=True, help="revision containing the submitted bundles")
-    cli.add_argument("--provider", action="append", required=True, help="original module to protect")
+    cli.add_argument("--provider", action="append", default=[], help="original module to protect")
+    cli.add_argument("--provider-list", type=Path, help="file with one original provider module per line")
     cli.add_argument("--patch", type=Path, help="write the complete source patch")
     cli.add_argument("--affected", type=Path, help="write one TSV row per original module with a changed provider set")
     cli.add_argument("--target", action="append", default=[], help="retained original module to inspect")
     cli.add_argument("--materialize", type=Path, help="write the source closure of the selected targets here")
     args = cli.parse_args()
+    providers = args.provider.copy()
+    if args.provider_list:
+        providers.extend(s for line in args.provider_list.read_text().splitlines() if (s := line.strip()))
+    if not providers:
+        cli.error("specify at least one provider with --provider or --provider-list")
     if args.materialize and not args.target:
         cli.error("--materialize requires --target")
     base, consolidated = (subprocess.check_output(
@@ -245,9 +323,11 @@ def main():
         for rev in (args.base, args.consolidated))
     original = read_graph(args.repo, base)
     bundled = read_graph(args.repo, consolidated)
-    plan = Partition(original, bundled, args.provider)
+    plan = Partition(original, bundled, providers)
     print(f"Source modules: {len(bundled)} -> {len(plan.members)}")
     print(f"Provider reachability differences across {len(plan.location)} retained origins: {len(plan.differences)} -> 0")
+    print(f"Provider access differences by scope: public exports {plan.scope_counts.exported} -> 0, "
+          f"module bodies {plan.scope_counts.available} -> 0, private data {plan.scope_counts.private_data} -> 0")
     print(f"New or changed source files: {sum(plan.changed(n) for n in plan.members)}")
     destinations = []
     for target in args.target:
@@ -261,8 +341,8 @@ def main():
             print("origin", "submitted_module", "corrected_module", "added_in_submitted", "missing_in_submitted",
                   sep="\t", file=report)
             for n, (prior, submitted) in sorted(plan.differences.items()):
-                added = [p for i, p in enumerate(args.provider) if submitted & ~prior & (1 << i)]
-                missing = [p for i, p in enumerate(args.provider) if prior & ~submitted & (1 << i)]
+                added = changed_providers(submitted & ~prior, providers)
+                missing = changed_providers(prior & ~submitted, providers)
                 print(n, plan.owner[n], plan.location[n], ",".join(added), ",".join(missing), sep="\t", file=report)
     if args.patch:
         with atomic_output(args.patch) as patch:
