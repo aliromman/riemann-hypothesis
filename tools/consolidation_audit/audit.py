@@ -240,6 +240,7 @@ def main():
     (output / 'pending-targets.txt').write_text(''.join(name + '\n' for name in pending))
     summary = {'requested': len(targets), 'pending': len(pending), 'compared': len(modules),
                'alignedDeclarations': sum(m['aligned'] for m in modules.values()),
+               'comparedAxiomSets': sum(m['comparedAxiomSets'] for m in modules.values()),
                'withFindings': sum(m['findings'] > 0 for m in modules.values()), 'fields': dict(fields),
                'removedModules': len(deleted), 'unverifiedSubstitutions': unresolved,
                'otherRemovedPublicNames': sum(len(part['selected']) for group in extras.values() for part in group),

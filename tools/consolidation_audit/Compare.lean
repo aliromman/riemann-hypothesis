@@ -1,4 +1,6 @@
+module
 import Lean
+import all Lean.Util.CollectAxioms
 import Lake.Build.Trace
 
 open Lean
@@ -20,9 +22,16 @@ structure Comparison where
 structure Declarations where
   full : NameMap ConstantInfo := {}
   visible : NameSet := {}
+  axioms : NameMap (Array Name) := {}
   regions : Array CompactedRegion := #[]
 
-private def loadArtifact (artifact : Artifact) : IO Declarations := do
+-- This extension stores an array of (declaration name, axiom names) in the public part.
+private unsafe def readAxioms (data : ModuleData) : NameMap (Array Name) := Id.run do
+  let some (_, entries) := data.entries.find? (·.1 == exportedAxiomsExt.name) | return {}
+  let rows : Array (Name × Array Name) := unsafeCast entries
+  return rows.foldl (fun result (n, axioms) => result.insert n axioms) {}
+
+private unsafe def loadArtifact (artifact : Artifact) : IO Declarations := do
   if let some source := artifact.source then
     let some expected := artifact.sourceHash | throw <| IO.userError "source hash missing"
     unless (← Lake.computeTextFileHash source).toString == expected do
@@ -46,7 +55,7 @@ private def loadArtifact (artifact : Artifact) : IO Declarations := do
       let some info := byName.find? name.toName | throw <| IO.userError s!"missing original export {name}"
       subset := subset.insert info.name info
     byName := subset
-  return { full := byName, visible := .ofList publicData.constNames.toList, regions := parts.map (·.2) }
+  return { full := byName, visible := .ofList publicData.constNames.toList, axioms := readAxioms publicData, regions := parts.map (·.2) }
 
 private def kind : ConstantInfo → String
   | .axiomInfo _ => "axiom" | .defnInfo _ => "definition" | .thmInfo _ => "theorem"
@@ -152,7 +161,7 @@ private def compareRefs (renames : NameMap Name) (target : String) (n : Name)
     output "difference" target n.toString field (oldOnly.map toString) (newOnly.map toString)
     return 1
 
-@[noinline] private def inspect (aliases : NameMap Name) (comparison : Comparison) : IO (Array CompactedRegion) := do
+@[noinline] private unsafe def inspect (aliases : NameMap Name) (comparison : Comparison) : IO (Array CompactedRegion) := do
   let current := comparison.current.name
   let target := current.toName
   let new ← loadArtifact comparison.current
@@ -170,6 +179,7 @@ private def compareRefs (renames : NameMap Name) (target : String) (n : Name)
       let k := newName entry.name.toName target n new.full
       if n != k && owners.find? k == some 1 && new.full.contains k then renames := renames.insert n k
   let mut count := 0
+  let mut axiomSets := 0
   let mut flagged := 0
   for (part, entry) in old.zip comparison.originals do
     for (n, original) in part.full do
@@ -186,6 +196,19 @@ private def compareRefs (renames : NameMap Name) (target : String) (n : Name)
       if kind original != kind updated || original.isUnsafe != updated.isUnsafe || !declarationFlagsMatch renames original updated || part.visible.contains n != new.visible.contains k then
         output "difference" current n.toString "declaration-flags-or-visibility"
         flagged := flagged + 1
+      if part.visible.contains n && new.visible.contains k then
+        match part.axioms.find? n, new.axioms.find? k with
+        | some oldAxioms, some newAxioms =>
+          axiomSets := axiomSets + 1
+          let before := oldAxioms.map (fun ax => (renames.find? ax).getD ax)
+          let lost := before.filter (!newAxioms.contains ·)
+          let gained := newAxioms.filter (!before.contains ·)
+          unless lost.isEmpty && gained.isEmpty do
+            output "difference" current n.toString "axiom-dependencies" (lost.toList.map toString) (gained.toList.map toString)
+            flagged := flagged + 1
+        | _, _ =>
+          output "difference" current n.toString "axiom-table-entry-unavailable"
+          flagged := flagged + 1
       if part.visible.contains n && !isPrivateName n && !n.isInternal && binderNames original.type != binderNames updated.type then
         output "difference" current n.toString "binder-names" ((binderNames original.type).map toString) ((binderNames updated.type).map toString)
         flagged := flagged + 1
@@ -209,7 +232,7 @@ private def compareRefs (renames : NameMap Name) (target : String) (n : Name)
       output "difference" current n.toString "additional-declaration"
       flagged := flagged + 1
   IO.println <| Json.compress <| Json.mkObj [("event", toJson "module"),("module", toJson current),
-    ("aligned", toJson count), ("findings", toJson flagged)]
+    ("aligned", toJson count), ("comparedAxiomSets", toJson axiomSets), ("findings", toJson flagged)]
   return regions
 
 structure AliasCase where
@@ -220,7 +243,7 @@ structure AliasCase where
   indexHash : String
   deriving FromJson
 
-@[noinline] private def certifyAlias (spec : AliasCase) : IO (Array CompactedRegion) := do
+@[noinline] private unsafe def certifyAlias (spec : AliasCase) : IO (Array CompactedRegion) := do
   let checkedIndex := (System.FilePath.mk spec.wrapper.path).withExtension "ilean"
   unless (← Lake.computeBinFileHash checkedIndex).toString == spec.indexHash do
     throw <| IO.userError "old compiler reference index hash differs"
@@ -250,7 +273,7 @@ structure AliasCase where
     ("otherPublicNames", toJson <| extra.map toString)]
   return wrapper.regions ++ provider.regions
 
-unsafe def main (args : List String) : IO Unit := do
+public unsafe def main (args : List String) : IO Unit := do
   match args with
   | ["certify", manifest] =>
     for line in ← IO.FS.lines manifest do

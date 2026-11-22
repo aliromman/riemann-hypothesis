@@ -26,6 +26,7 @@ class ConsolidationAuditTest(unittest.TestCase):
 @[expose] public section
 namespace AuditExample
 
+axiom fixtureAxiom : True
 theorem left : True := True.intro
 theorem right : True := True.intro
 abbrev IsTrue := True
@@ -53,6 +54,7 @@ theorem _root_.AuditExample.middle : AuditExample.IsTrue := by
 private theorem secret : True := left
 theorem usesPrivate : True := secret
 theorem usesAlias : True := middle
+theorem axiomChange : True := left
 theorem switched : True := left
 theorem sameReferenceSet : True := chooseProof left right
 def value : Nat := one
@@ -83,6 +85,7 @@ end AuditExample
             changes = body.replace(':= middle', ':= left').replace('switched : True := left', 'switched : True := right')
             changes = changes.replace('chooseProof left right', 'chooseProof right left').replace(':= one', ':= two')
             changes = changes.replace('argument (x : Nat)', 'argument {x : Nat}')
+            changes = changes.replace('axiomChange : True := left', 'axiomChange : True := fixtureAxiom')
             (current / 'Bundle.lean').write_text('module\npublic import Fixture.Base\n@[expose] public section\n-- bundled from Fixture.Member\nsection\n' + changes + 'end\n')
             run(after, 'git', 'add', '-A')
             head = commit(after)
@@ -107,7 +110,7 @@ end AuditExample
             self.assertTrue((report / 'conversions/ConsolidationWitness0.olean').is_file())
             differences = [(row['declaration'], row['field']) for row in map(json.loads, (report / 'comparisons.jsonl').read_text().splitlines()) if row['event'] == 'difference']
             for pair in [('switched', 'body-references'), ('sameReferenceSet', 'proof-term'),
-                         ('value', 'body'), ('argument', 'type'), ('otherExport', 'missing-declaration'),
+                         ('value', 'body'), ('argument', 'type'), ('axiomChange', 'axiom-dependencies'), ('otherExport', 'missing-declaration'),
                          ('chainExport', 'missing-declaration')]:
                 self.assertIn(('AuditExample.' + pair[0], pair[1]), differences)
             self.assertNotIn(('AuditExample.sameReferenceSet', 'body-references'), differences)
@@ -130,6 +133,7 @@ end AuditExample
             result = run(after, *command, '--out', str(clean))
             final = json.loads((clean / 'summary.json').read_text())
             self.assertEqual((final['compared'], final['pending'], final['withFindings']), (2, 0, 0))
+            self.assertGreater(final['comparedAxiomSets'], 0)
 
 
 if __name__ == '__main__':
