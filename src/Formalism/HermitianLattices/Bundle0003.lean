@@ -57,7 +57,7 @@ def IsOrthoLattice {K V : Type*} [Field K] [NumberField K] [StarRing K] [AddComm
 def fDeg (K : Type*) [Field K] [NumberField K] : ℕ := Fintype.card (InfinitePlace K)
 
 def vInv (K : Type*) [Field K] [NumberField K] : ℝ :=
-  |(discr K : ℝ)| ^ ((1 : ℝ) / (2 * fDeg K)) / 2
+  |(NumberField.discr K : ℝ)| ^ ((1 : ℝ) / (2 * fDeg K)) / 2
 
 def eulerFac (K : Type*) [Field K] [NumberField K] [StarRing K] (M : ℕ)
     (P : Ideal (RingOfIntegers K)) : ℝ :=
