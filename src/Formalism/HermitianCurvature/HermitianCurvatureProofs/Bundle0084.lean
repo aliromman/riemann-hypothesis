@@ -117,12 +117,6 @@ section hs
 variable {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
   [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wq]
 
-theorem hsVec_smul (c : ℂ) (A : Wq →L[ℂ] Wp) : B.hsVec (c • A) = c • B.hsVec A := by
-  first
-  | rfl
-  | (simp [B.hsVec]; done)
-  | (unfold B.hsVec; rw [← WithLp.toLp_smul]; rfl)
-
 theorem hsVec_ne_zero {A : Wq →L[ℂ] Wp} (hA : A ≠ 0) : B.hsVec A ≠ 0 := by
   intro h
   apply hA

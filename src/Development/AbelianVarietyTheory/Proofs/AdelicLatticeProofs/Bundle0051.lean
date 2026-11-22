@@ -27,14 +27,6 @@ open scoped Kronecker ComplexOrder TensorProduct
 
 namespace GlobalTheory.ClassFin
 
-theorem adjugate_entry_mem_subring {ι : Type} [Fintype ι] [DecidableEq ι] {R : Type} [CommRing R]
-    (S : Subring R) (k : Matrix ι ι R) (hk : ∀ i j, k i j ∈ S) : ∀ i j, k.adjugate i j ∈ S := by
-  intro i j
-  let k' : Matrix ι ι S := Matrix.of fun i j => ⟨k i j, hk i j⟩
-  have h1 : k = S.subtype.mapMatrix k' := by ext i j; rfl
-  rw [h1, ← RingHom.map_adjugate]
-  exact (k'.adjugate i j).2
-
 theorem mul_entry_mem_subring {ι : Type} [Fintype ι] {R : Type} [CommRing R]
     (S : Subring R) (k l : Matrix ι ι R) (hk : ∀ i j, k i j ∈ S) (hl : ∀ i j, l i j ∈ S) :
     ∀ i j, (k * l) i j ∈ S := by

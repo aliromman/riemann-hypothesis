@@ -80,27 +80,6 @@ theorem repGam_subrep {V : Type} [AddCommGroup V] [Module ℂ V] (ψ₀ : AddCha
     | rfl
     | simp
 
-theorem gam_one_real (ψ₀ : AddChar F ℂ) :
-    gam ψ₀ (1 : GL (Fin k) F) = (((Fintype.card (GL (Fin k) F) : ℝ) / (cardU F k : ℝ) : ℝ) : ℂ) := by
-  have hsd : superdiag k (1 : Matrix (Fin k) (Fin k) F) = 0 := by
-    unfold superdiag
-    refine Finset.sum_eq_zero fun i _ => Finset.sum_eq_zero fun j _ => ?_
-    split_ifs with h
-    · rw [Matrix.one_apply_ne]
-      intro hij
-      subst hij
-      omega
-    · rfl
-  have hpsi : psiNat ψ₀ (1 : GL (Fin k) F) = 1 := by
-    unfold psiNat psiU
-    rw [if_pos isUni_one, Units.val_one, hsd, AddChar.map_zero_eq_one]
-  unfold gam
-  have h1 : ∀ y : GL (Fin k) F, y * 1 * y⁻¹ = 1 := fun y => by group
-  have h2 : ∀ y : GL (Fin k) F, y * y⁻¹ = 1 := fun y => by group
-  simp only [h1, h2, hpsi, Finset.sum_const, Finset.card_univ, nsmul_eq_mul, mul_one]
-  push_cast
-  ring
-
 theorem gam_one_re_pos (ψ₀ : AddChar F ℂ) : 0 < (gam ψ₀ (1 : GL (Fin k) F)).re := by
   rw [gam_one_real, Complex.ofReal_re]
   have hU : 0 < cardU F k := by
