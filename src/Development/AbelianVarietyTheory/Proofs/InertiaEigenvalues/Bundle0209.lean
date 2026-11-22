@@ -141,7 +141,7 @@ theorem map_H2_subtype_injective_of_union : ∀ {O : Type} [CommRing O] [Topolog
     rw [e]
     rfl
   have hnat := Θ.nat (N n) (N m) (hfg n) (hfg m) (Submodule.inclusion hnm) hincl (Submodule.Quotient.mk f)
-  rw [hzero, map_zero] at hnat
+  rw [hzero, (Θ.θ (N m) (hfg m)).map_zero] at hnat
   have h0 : Θ.θ (N n) (hfg n) (Submodule.Quotient.mk f) = 0 := by
     have := hnat.symm
     rw [← (Submodule.inclusion hnm).map_zero] at this
