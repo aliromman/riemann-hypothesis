@@ -78,7 +78,7 @@ section
 namespace GlobalTheory
 
 theorem arcClause_closed : ReciprocityTheory.ChartRestriction.G.Geo.Tor.ToroidalArchimedeanCondition :=
-  _root_.GlobalTheory.HolomorphicArc.main GlobalTheory.T.abelianScheme_laws_unconditional.1 GlobalTheory.T.abelianScheme_laws_unconditional.2 _root_.GlobalTheory.thetaUnifAV_all
+  _root_.GlobalTheory.HolomorphicArc.main _root_.GlobalTheory.abelianSchemeLaws_all.1 _root_.GlobalTheory.abelianSchemeLaws_all.2 _root_.GlobalTheory.thetaUnifAV_all
 
 end GlobalTheory
 end
@@ -277,7 +277,7 @@ attribute [local instance] Over.cartesianMonoidalCategory
 namespace GlobalTheory.ZH
 
 theorem uTors_closed : GlobalTheory.ZH.UTorsSt :=
-  _root_.GlobalTheory.ZH.uTors_of_laws GlobalTheory.T.all_six_abelian_scheme_laws_hold.1 GlobalTheory.T.all_six_abelian_scheme_laws_hold.2.1 GlobalTheory.T.all_six_abelian_scheme_laws_hold.2.2.1 GlobalTheory.T.all_six_abelian_scheme_laws_hold.2.2.2.1 GlobalTheory.T.all_six_abelian_scheme_laws_hold.2.2.2.2.1
+  _root_.GlobalTheory.ZH.uTors_of_laws _root_.GlobalTheory.allSixLaws.1 _root_.GlobalTheory.allSixLaws.2.1 _root_.GlobalTheory.allSixLaws.2.2.1 _root_.GlobalTheory.allSixLaws.2.2.2.1 _root_.GlobalTheory.allSixLaws.2.2.2.2.1
 
 end GlobalTheory.ZH
 end
