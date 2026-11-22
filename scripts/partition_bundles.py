@@ -143,7 +143,8 @@ class Partition:
         before = visibility(internal(bundled), relocated(self.owner))
         self.graph = {n: [d for d in deps if d in self.members] for n, deps in self.imports.items()}
         after = visibility(self.graph, relocated(self.location))
-        self.drift_before = sum(before[prior] != original_mask[member] for member, prior in self.owner.items())
+        self.differences = {m: (original_mask[m], before[parent]) for m, parent in self.owner.items()
+                            if original_mask[m] != before[parent]}
         if any(after[target] != original_mask[m] for m, target in self.location.items()):
             raise ValueError("The partition changed which original modules can reach a provider")
 
@@ -215,8 +216,8 @@ def write_outputs(plan, repo, ref, targets, patchfile, output):
 
 
 @contextmanager
-def patch_output(path):
-    # Publish the patch only after every source blob was read and rendered.
+def atomic_output(path):
+    # Replace the output only after all its records are ready.
     tmp = tempfile.NamedTemporaryFile(mode="w", dir=path.parent, delete=False)
     try:
         with tmp:
@@ -233,6 +234,7 @@ def main():
     cli.add_argument("--consolidated", required=True, help="revision containing the submitted bundles")
     cli.add_argument("--provider", action="append", required=True, help="original module to protect")
     cli.add_argument("--patch", type=Path, help="write the complete source patch")
+    cli.add_argument("--affected", type=Path, help="write one TSV row per original module with a changed provider set")
     cli.add_argument("--target", action="append", default=[], help="retained original module to inspect")
     cli.add_argument("--materialize", type=Path, help="write the source closure of the selected targets here")
     args = cli.parse_args()
@@ -245,7 +247,7 @@ def main():
     bundled = read_graph(args.repo, consolidated)
     plan = Partition(original, bundled, args.provider)
     print(f"Source modules: {len(bundled)} -> {len(plan.members)}")
-    print(f"Provider reachability differences across {len(plan.location)} retained origins: {plan.drift_before} -> 0")
+    print(f"Provider reachability differences across {len(plan.location)} retained origins: {len(plan.differences)} -> 0")
     print(f"New or changed source files: {sum(plan.changed(n) for n in plan.members)}")
     destinations = []
     for target in args.target:
@@ -254,8 +256,16 @@ def main():
         destination = plan.location[target]
         destinations.append(destination)
         print(f"{target} -> {destination} ({len(plan.cone([destination]))} project modules)")
+    if args.affected:
+        with atomic_output(args.affected) as report:
+            print("origin", "submitted_module", "corrected_module", "added_in_submitted", "missing_in_submitted",
+                  sep="\t", file=report)
+            for n, (prior, submitted) in sorted(plan.differences.items()):
+                added = [p for i, p in enumerate(args.provider) if submitted & ~prior & (1 << i)]
+                missing = [p for i, p in enumerate(args.provider) if prior & ~submitted & (1 << i)]
+                print(n, plan.owner[n], plan.location[n], ",".join(added), ",".join(missing), sep="\t", file=report)
     if args.patch:
-        with patch_output(args.patch) as patch:
+        with atomic_output(args.patch) as patch:
             write_outputs(plan, args.repo, consolidated, destinations, patch, args.materialize)
     elif args.materialize:
         write_outputs(plan, args.repo, consolidated, destinations, None, args.materialize)
