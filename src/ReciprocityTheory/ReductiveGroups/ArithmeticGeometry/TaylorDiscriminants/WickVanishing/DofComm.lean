@@ -72,7 +72,7 @@ private theorem cc_ev_lemma {m n : ℕ} {a : Fin m → Pt k n d} (ha : CZ a) (f 
   have h0 : CZ (fun _ _ => (0 : PS k n d) : Fin n → Pt k n d) := by
     intro j i
     simp
-  have h1 := ev_ev (a := (fun _ _ => (0 : PS k n d) : Fin n → Pt k n d)) h0 ha f
+  have h1 := _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_ev (a := (fun _ _ => (0 : PS k n d) : Fin n → Pt k n d)) h0 ha f
   rw [ev_zeroFam] at h1
   have h2 : (fun j i => ev (fun _ _ => (0 : PS k n d)) (a j i)) = fun _ _ => (0 : PS k n d) := by
     funext j i
@@ -92,21 +92,21 @@ private theorem pderiv_fin_one_ev (g : PS k 2 d) (b : Fin d) :
   simp [pt_apply, MvPowerSeries.pderiv_X, Pi.single_apply]
 
 theorem ezF (h : PS k 1 d) : ev (n := 1) ![pt k d 0, 0] (ev (n := 2) ![G.F] h) = h := by
-  rw [ev_ev cz1 (czFF (G := G))]
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_ev cz1 (czFF (G := G))]
   have e : (fun j i => ev (n := 1) ![pt k d 0, 0] ((![G.F] : Fin 1 → Pt k 2 d) j i)) =
       fun j => pt k (n := 1) d j := by
     funext j i
     fin_cases j
     simp [formalGroupLaw_ev_x_zero, pt_apply]
-  rw [e, ev_pt]
+  rw [e, _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_pt]
 
 theorem ez_y (h : PS k 1 d) : ev (n := 1) ![pt k d 0, 0] (ev (n := 2) ![pt k d 1] h) = C (constantCoeff h) := by
-  rw [ev_ev cz1 czY]
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_ev cz1 czY]
   have e : (fun j i => ev (n := 1) ![pt k d 0, 0] ((![pt k d 1] : Fin 1 → Pt k 2 d) j i)) =
       fun _ _ => (0 : PS k 1 d) := by
     funext j i
     fin_cases j
-    simp [pt_apply, ev_X cz1]
+    simp [pt_apply, _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_X cz1]
   rw [e, ev_zeroFam]
 
 theorem d_y (h : PS k 1 d) (b : Fin d) :
@@ -124,7 +124,7 @@ theorem ez_Ar (j c : Fin d) : ev (n := 1) ![pt k d 0, 0] (Ar G j c) = Jac G j c 
 theorem ez_dF (c b : Fin d) : ev (n := 1) ![pt k d 0, 0] (pderiv (R := k) ((1 : Fin 2), b) (G.F c)) = Jac G c b := rfl
 
 theorem coeff_F_y (c i : Fin d) : coeff (Finsupp.single ((1 : Fin 2), i) 1) (G.F c) = if c = i then 1 else 0 := by
-  have ha : CZ (![0, pt k d 0] : Fin 2 → Pt k 1 d) := CZ.cons cc_zero (CZ.cons (cc_pt 0) CZ.nil)
+  have ha : CZ (![0, pt k d 0] : Fin 2 → Pt k 1 d) := CZ.cons cc_zero (CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) CZ.nil)
   have h := congrArg (pderiv (R := k) ((0 : Fin 1), i)) (G.unit c)
   rw [pderiv_ev ha, Fintype.sum_prod_type, Fin.sum_univ_two] at h
   simp [pt_apply, MvPowerSeries.pderiv_X, Pi.single_apply] at h
@@ -155,13 +155,13 @@ private theorem coeff_single_add_single_eq_constantCoeff_pderiv_pderiv (F : PS k
 private theorem pderiv_zero_ev_swap (g : PS k 2 d) (b : Fin d) :
     pderiv (R := k) ((0 : Fin 2), b) (ev (n := 2) ![pt k d 1, pt k d 0] g) =
       ev (n := 2) ![pt k d 1, pt k d 0] (pderiv (R := k) ((1 : Fin 2), b) g) := by
-  rw [pderiv_ev (CZ.cons (cc_pt 1) (CZ.cons (cc_pt 0) CZ.nil)), Fintype.sum_prod_type, Fin.sum_univ_two]
+  rw [pderiv_ev (CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 1) (CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) CZ.nil)), Fintype.sum_prod_type, Fin.sum_univ_two]
   simp [pt_apply, MvPowerSeries.pderiv_X, Pi.single_apply]
 
 private theorem pderiv_one_ev_swap (g : PS k 2 d) (b : Fin d) :
     pderiv (R := k) ((1 : Fin 2), b) (ev (n := 2) ![pt k d 1, pt k d 0] g) =
       ev (n := 2) ![pt k d 1, pt k d 0] (pderiv (R := k) ((0 : Fin 2), b) g) := by
-  rw [pderiv_ev (CZ.cons (cc_pt 1) (CZ.cons (cc_pt 0) CZ.nil)), Fintype.sum_prod_type, Fin.sum_univ_two]
+  rw [pderiv_ev (CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 1) (CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) CZ.nil)), Fintype.sum_prod_type, Fin.sum_univ_two]
   simp [pt_apply, MvPowerSeries.pderiv_X, Pi.single_apply]
 
 theorem kappa_symm (b i c : Fin d) :
@@ -169,7 +169,7 @@ theorem kappa_symm (b i c : Fin d) :
       coeff (Finsupp.single ((0 : Fin 2), i) 1 + Finsupp.single ((1 : Fin 2), b) 1) (G.F c) := by
   rw [coeff_single_add_single_eq_constantCoeff_pderiv_pderiv, coeff_single_add_single_eq_constantCoeff_pderiv_pderiv]
   conv_lhs => rw [← G.comm c]
-  rw [pderiv_one_ev_swap, pderiv_zero_ev_swap, cc_ev_lemma (CZ.cons (cc_pt 1) (CZ.cons (cc_pt 0) CZ.nil)), pderiv_comm]
+  rw [pderiv_one_ev_swap, pderiv_zero_ev_swap, cc_ev_lemma (CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 1) (CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) CZ.nil)), pderiv_comm]
 
 theorem T_eq (b i j : Fin d) :
     ∑ c, Jac G c b * pderiv (R := k) ((0 : Fin 1), c) (Jac G j i) =
@@ -260,7 +260,7 @@ def lawK (B : FB R d O) : FGLaw k d where
     simp [FB.FK, FGLaw.mapF, B.G.const i]
   unit i := by
     have h := congrArg (MvPowerSeries.map (algebraMap R k)) (B.G.unit i)
-    rw [map_ev _ (CZ.cons cc_zero (CZ.cons (cc_pt 0) CZ.nil)), map_X] at h
+    rw [map_ev _ (CZ.cons cc_zero (CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) CZ.nil)), map_X] at h
     have e : (fun j c => MvPowerSeries.map (algebraMap R k) ((![0, pt R d 0] : Fin 2 → Pt R 1 d) j c)) =
         (![0, pt k d 0] : Fin 2 → Pt k 1 d) := by
       funext j c
@@ -269,7 +269,7 @@ def lawK (B : FB R d O) : FGLaw k d where
     exact h
   comm i := by
     have h := congrArg (MvPowerSeries.map (algebraMap R k)) (B.G.comm i)
-    rw [map_ev _ (CZ.cons (cc_pt 1) (CZ.cons (cc_pt 0) CZ.nil))] at h
+    rw [map_ev _ (CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 1) (CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) CZ.nil))] at h
     have e : (fun j c => MvPowerSeries.map (algebraMap R k) ((![pt R d 1, pt R d 0] : Fin 2 → Pt R 2 d) j c)) =
         (![pt k d 1, pt k d 0] : Fin 2 → Pt k 2 d) := by
       funext j c
@@ -278,9 +278,9 @@ def lawK (B : FB R d O) : FGLaw k d where
     exact h
   assoc i := by
     have hL : CZ (![fun l => ev (n := 3) ![pt R d 0, pt R d 1] (B.G.F l), pt R d 2] : Fin 2 → Pt R 3 d) :=
-      CZ.cons (fun l => constantCoeff_ev cz01 (B.G.const l)) (CZ.cons (cc_pt 2) CZ.nil)
+      CZ.cons (fun l => constantCoeff_ev cz01 (B.G.const l)) (CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 2) CZ.nil)
     have hR : CZ (![pt R d 0, fun l => ev (n := 3) ![pt R d 1, pt R d 2] (B.G.F l)] : Fin 2 → Pt R 3 d) :=
-      CZ.cons (cc_pt 0) (CZ.cons (fun l => constantCoeff_ev cz12 (B.G.const l)) CZ.nil)
+      CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) (CZ.cons (fun l => constantCoeff_ev cz12 (B.G.const l)) CZ.nil)
     have h := congrArg (MvPowerSeries.map (algebraMap R k)) (B.G.assoc i)
     rw [map_ev _ hL, map_ev _ hR] at h
     have eL : (fun j c => MvPowerSeries.map (algebraMap R k)

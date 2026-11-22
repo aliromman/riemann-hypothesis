@@ -24,18 +24,18 @@ theorem d2 {n : ℕ} {p q : Pt k n d} (hpq : CZ (![p, q] : Fin 2 → Pt k n d)) 
 
 theorem cz0z : CZ (![pt k (n := 2) d 0, 0, pt k d 1] : Fin 3 → Pt k 2 d) := by
   intro j i
-  fin_cases j <;> simp [cc_pt, cc_zero]
+  fin_cases j <;> simp [_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt, cc_zero]
 
 theorem zero_constant_zero_second : CZ (![0, pt k (n := 2) d 1] : Fin 2 → Pt k 2 d) := by
   intro j i
-  fin_cases j <;> simp [cc_pt, cc_zero]
+  fin_cases j <;> simp [_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt, cc_zero]
 
 theorem eval_first_axis_restrict (g : PS k 2 d) :
     ev (n := 2) ![pt k d 0] (ev (n := 1) ![pt k d 0, 0] g) = ev (n := 2) ![pt k d 0, 0] g := by
-  rw [ev_ev zero_constant_first_point cz1]
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_ev zero_constant_first_point cz1]
   congr 1
   funext j i
-  fin_cases j <;> simp [pt_apply, ev_X zero_constant_first_point, ev_zero' zero_constant_first_point]
+  fin_cases j <;> simp [pt_apply, _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_X zero_constant_first_point, ev_zero' zero_constant_first_point]
 
 end Gen
 
@@ -58,15 +58,15 @@ variable {k : Type} [CommRing k] [Algebra ℚ k] [Algebra R k]
 
 theorem constantCoeff_second_factor (B : FB R d O) : constantCoeff B.ph2 = 1 := by
   have h := congrArg constantCoeff B.cocycleRight_zero_fst
-  rwa [cc_ev' (by intro j i; fin_cases j <;> simp [cc_pt, cc_zero]), map_one] at h
+  rwa [cc_ev' (by intro j i; fin_cases j <;> simp [_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt, cc_zero]), map_one] at h
 
 theorem cc_sy (B : FB R d O) : constantCoeff B.sy = 1 := by
   have h := congrArg constantCoeff B.symmetry_zero_fst
-  rwa [cc_ev' (by intro j i; fin_cases j <;> simp [cc_pt, cc_zero]), map_one] at h
+  rwa [cc_ev' (by intro j i; fin_cases j <;> simp [_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt, cc_zero]), map_one] at h
 
 theorem cc_ad (B : FB R d O) (a : O) : constantCoeff (B.ad a) = 1 := by
   have h := congrArg constantCoeff (B.adjoint_zero_fst a)
-  rwa [cc_ev' (by intro j i; fin_cases j <;> simp [cc_pt, cc_zero]), map_one] at h
+  rwa [cc_ev' (by intro j i; fin_cases j <;> simp [_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt, cc_zero]), map_one] at h
 
 theorem constantCoeff_add_second_third (B : FB R d O) (l : Fin d) :
     constantCoeff (addOf (B.FK k) (pt k (n := 3) d 1) (pt k d 2) l) = 0 := constantCoeff_ev cz12 ((lawK k B).const l)
@@ -76,9 +76,9 @@ theorem second_derivative_shift_integral {B : FB R d O} {h : PS k 2 d} (hc : B.I
       ev (n := 2) ![pt k d 0] (sgOf k h b) ∈ Ig R k (Fin 2 × Fin d) := by
   set A : Pt k 3 d := addOf (B.FK k) (pt k (n := 3) d 1) (pt k d 2) with hA
   have c02 : CZ (![pt k (n := 3) d 0, pt k d 2] : Fin 2 → Pt k 3 d) :=
-    CZ.cons (cc_pt 0) (CZ.cons (cc_pt 2) CZ.nil)
+    CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) (CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 2) CZ.nil)
   have c0A : CZ (![pt k (n := 3) d 0, A] : Fin 2 → Pt k 3 d) :=
-    CZ.cons (cc_pt 0) (CZ.cons (constantCoeff_add_second_third B) CZ.nil)
+    CZ.cons (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) (CZ.cons (constantCoeff_add_second_third B) CZ.nil)
   have hh : constantCoeff h = 0 := by
     have := congrArg constantCoeff hc.ax1
     rwa [cc_ev' cz1, map_zero] at this
@@ -111,20 +111,20 @@ theorem second_derivative_shift_integral {B : FB R d O} {h : PS k 2 d} (hc : B.I
   have e02 : (fun j i => ev (n := 2) ![pt k d 0, pt k d 1, 0]
       ((![pt k (n := 3) d 0, pt k d 2] : Fin 2 → Pt k 3 d) j i)) = ![pt k (n := 2) d 0, 0] := by
     funext j i
-    fin_cases j <;> simp [pt_apply, ev_X czZ, ev_zero' czZ]
+    fin_cases j <;> simp [pt_apply, _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_X czZ, ev_zero' czZ]
   have e12 : (fun j i => ev (n := 2) ![pt k d 0, pt k d 1, 0]
       ((![pt k (n := 3) d 1, pt k d 2] : Fin 2 → Pt k 3 d) j i)) = ![pt k (n := 2) d 1, 0] := by
     funext j i
-    fin_cases j <;> simp [pt_apply, ev_X czZ, ev_zero' czZ]
+    fin_cases j <;> simp [pt_apply, _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_X czZ, ev_zero' czZ]
   have e0A : (fun j i => ev (n := 2) ![pt k d 0, pt k d 1, 0]
       ((![pt k (n := 3) d 0, A] : Fin 2 → Pt k 3 d) j i)) = ![pt k (n := 2) d 0, pt k d 1] := by
     funext j i
     fin_cases j
-    · simp [pt_apply, ev_X czZ]
+    · simp [pt_apply, _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_X czZ]
     · show ev (n := 2) ![pt k d 0, pt k d 1, 0] (ev (n := 3) ![pt k d 1, pt k d 2] (B.FK k i)) = pt k d 1 i
-      rw [ev_ev czZ cz12, e12, ← formal_ev_second_point_of_x_zero,
+      rw [_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_ev czZ cz12, e12, ← formal_ev_second_point_of_x_zero,
         show ev (n := 1) ![pt k d 0, 0] (B.FK k i) = (X ((0 : Fin 1), i) : PS k 1 d) from
-          formalGroupLaw_ev_x_zero (G := lawK k B) i, ev_X czY]
+          formalGroupLaw_ev_x_zero (G := lawK k B) i, _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_X czY]
       rfl
   have e01 : (![pt k (n := 2) d 0, pt k d 1] : Fin 2 → Pt k 2 d) = fun j => pt k d j := by
     funext j
@@ -132,10 +132,10 @@ theorem second_derivative_shift_integral {B : FB R d O} {h : PS k 2 d} (hc : B.I
   have key : ev (n := 2) ![pt k d 0, pt k d 1, 0] (pderiv (R := k) ((2 : Fin 3), b) H) =
       ev (n := 2) ![pt k d 0, 0] (pderiv (R := k) ((1 : Fin 2), b) h) -
         ∑ c, pderiv (R := k) ((1 : Fin 2), c) h * ev (n := 2) ![pt k d 1] (Jac (lawK k B) c b) := by
-    rw [step1, ev_sub czZ, ev_ev czZ c02, e02, ev_sum czZ]
+    rw [step1, ev_sub czZ, _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_ev czZ c02, e02, ev_sum czZ]
     congr 1
     refine Finset.sum_congr rfl fun c _ => ?_
-    rw [ev_mul czZ, ev_ev czZ c0A, e0A, e01, ev_pt, ev_ev czZ cz12, e12, ← formal_ev_second_point_of_x_zero]
+    rw [ev_mul czZ, _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_ev czZ c0A, e0A, e01, _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_pt, _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.ev_ev czZ cz12, e12, ← formal_ev_second_point_of_x_zero]
     rfl
   have tgt : ∑ c, pderiv (R := k) ((1 : Fin 2), c) h * ev (n := 2) ![pt k d 1] (Jac (lawK k B) c b) +
       ev (n := 2) ![pt k d 0] (sgOf k h b) =
