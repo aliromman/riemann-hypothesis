@@ -74,11 +74,11 @@ theorem trace_dual_min {n : ℕ} (Λ : Submodule (𝓞 E) (Fin n → E))
   have h1 : ∀ y ∈ Λ, herm 1 u y ∈ D⁻¹ := by
     intro y hy
     refine mem_inv_different fun a => ?_
-    obtain ⟨k, hk⟩ := htr _ (Λ.smul_mem (⟨cc (a : E), isIntegral_cc a.isIntegral_coe⟩ : 𝓞 E) hy)
+    obtain ⟨k, hk⟩ := htr _ (Λ.smul_mem (⟨cc (a : E), _root_.GlobalTheory.TraceDualMin.isIntegral_cc a.isIntegral_coe⟩ : 𝓞 E) hy)
     refine ⟨k, ?_⟩
     rw [← hk]
     change _ = Algebra.trace ℚ E (herm 1 u (cc (a : E) • y))
-    rw [herm_smul_right, cc_cc, mul_comm]
+    rw [herm_smul_right, _root_.GlobalTheory.TraceDualMin.cc_cc, mul_comm]
   have h2 : ∀ δ ∈ D, δ • u ∈ Λ := by
     intro δ hδ
     refine hdual _ fun y hy => ?_

@@ -127,7 +127,7 @@ lemma exists_sec_pow (p : X ⟶ Sp ℂ) [LocallyOfFiniteType p] [IsReduced X]
   have hf : ∀ (x : Sp ℂ ⟶ X) (j : PUnit → L.ι), ⊤ ≤ x ⁻¹ᵁ L.wchart (fun _ : PUnit => 𝟙 X) j →
       valAt' x _ (f j) = valAt' (x ≫ σ) (L.wchart (fun _ : Fin N => κ) (fun _ => j PUnit.unit))
         (s.f fun _ => j PUnit.unit) := fun x j hj => val_appLE x σ _ _ _ _ hj
-  refine ⟨⟨f, fun i j => eq_of_valAt'_eq p _ _ _ fun x _ hx => ?_⟩, hf⟩
+  refine ⟨⟨f, fun i j => _root_.GlobalTheory.ComplexPoints.eq_of_valAt'_eq p _ _ _ fun x _ hx => ?_⟩, hf⟩
   obtain ⟨hi, hj⟩ := (le_preimage_inf x _ _).1 hx
   have hi' : ⊤ ≤ (x ≫ σ) ⁻¹ᵁ L.wchart (fun _ : Fin N => κ) (fun _ => i PUnit.unit) :=
     le_preimage_mono x (chart_le L κ σ e N i) hi

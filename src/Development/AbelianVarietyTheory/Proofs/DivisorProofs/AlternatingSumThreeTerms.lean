@@ -267,7 +267,7 @@ theorem val_cech_map_first_level (R : Type) [CommRing R] (F : Shv R) {B' : Type}
   rfl
 
 theorem cechMap_aug {Y Y' X : Scheme.{0}} (f : Y ⟶ X) (f' : Y' ⟶ X) (g : Y' ⟶ Y) (hg : g ≫ f = f') :
-    cechMap f f' g hg ≫ cechAug f = cechAug f' := by
+    cechMap f f' g hg ≫ _root_.GlobalTheory.EtC.cechAug f = _root_.GlobalTheory.EtC.cechAug f' := by
   ext n : 1
   exact (WidePullback.lift_base _ _ _ _).trans (by first | rfl | simp [cechAug, Arrow.augmentedCechNerve])
 
