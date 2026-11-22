@@ -9,7 +9,7 @@ public import GroundTheory.GlobalFields.IdeleGroups.SIdeleGroups.IntegerUnits
 namespace GroundTheory.Global
 
 open NumberField IsDedekindDomain IsDedekindDomain.HeightOneSpectrum AdeleBaseChange SemiLocal
-open scoped NumberField.AdeleRing RestrictedProduct
+open scoped NumberField.AdeleRing _root_.RestrictedProduct
 
 noncomputable section
 
