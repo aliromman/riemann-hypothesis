@@ -32,10 +32,10 @@ theorem eigDir_int (T : CDVR) (io : c.F →+* T.Fr) (y : IntFr Xo c T io) (C : I
   obtain ⟨n, x, hx⟩ := ReciprocityTheory.ChartRestriction.G.Chart.univChartLoc (R := T.V) C.I.G.G
 
   let D : Fin (chD C.ch) → (Sp (DualNumber T.V) ⟶ C.I.G.G.left) := fun j =>
-    (homAt (𝟙 (Sp T.V)) (jetTan ((0 : Fin 1), j) : Jet T.V (Fin 1 × Fin (chD C.ch)) (0 + 1) →ₐ[T.V] DualNumber T.V) ≫
+    (_root_.Formalism.L2.Pj.homAt (𝟙 (Sp T.V)) (jetTan ((0 : Fin 1), j) : Jet T.V (Fin 1 × Fin (chD C.ch)) (0 + 1) →ₐ[T.V] DualNumber T.V) ≫
       C.xT 1).left
   have hDo : ∀ j, D j ≫ C.I.G.G.hom = spMap (algebraMap T.V (DualNumber T.V)) := fun j =>
-    (Over.w (homAt (𝟙 (Sp T.V)) (jetTan ((0 : Fin 1), j) :
+    (Over.w (_root_.Formalism.L2.Pj.homAt (𝟙 (Sp T.V)) (jetTan ((0 : Fin 1), j) :
       Jet T.V (Fin 1 × Fin (chD C.ch)) (0 + 1) →ₐ[T.V] DualNumber T.V) ≫ C.xT 1)).trans (Category.comp_id _)
   have hz0 : spMap ((jetAug : Jet T.V (Fin 1 × Fin (chD C.ch)) (0 + 1) →ₐ[T.V] T.V) :
       Jet T.V (Fin 1 × Fin (chD C.ch)) (0 + 1) →+* T.V) ≫ (C.xT 1).left = (1 : overAt (𝟙 (Sp T.V)) T.V ⟶ C.I.G.G).left :=
@@ -129,11 +129,11 @@ theorem eigDir_int (T : CDVR) (io : c.F →+* T.Fr) (y : IntFr Xo c T io) (C : I
     apply Over.OverMorphism.ext
     have hact := congrArg CommaMorphism.left (C.chartT.act 1 a)
     simp only [Over.comp_left] at hact
-    show (homAt (𝟙 (Sp T.V)) (jetTan ((0 : Fin 1), j) : Jet T.V (Fin 1 × Fin (chD C.ch)) (0 + 1) →ₐ[T.V] DualNumber T.V) ≫
+    show (_root_.Formalism.L2.Pj.homAt (𝟙 (Sp T.V)) (jetTan ((0 : Fin 1), j) : Jet T.V (Fin 1 × Fin (chD C.ch)) (0 + 1) →ₐ[T.V] DualNumber T.V) ≫
       C.xT 1).left ≫ (C.I.G.act.act a).left = Spec.map (CommRingCat.ofHom (φ j).toRingHom) ≫ (C.xT 1).left
     rw [Over.comp_left, Category.assoc, hact, ← Category.assoc]
     congr 1
-    simp only [homAt, Over.homMk_left, spMap]
+    simp only [_root_.Formalism.L2.Pj.homAt, Over.homMk_left, spMap]
     rw [← Spec.map_comp]
     rfl
   have hAt : ∀ j, ReciprocityTheory.ChartRestriction.G.Chart.IsTan (toT C.I.G (D j) (hDo j) ≫ C.I.G.act.act a) := fun j =>
