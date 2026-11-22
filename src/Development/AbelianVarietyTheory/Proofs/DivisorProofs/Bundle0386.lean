@@ -98,7 +98,9 @@ theorem integrable_fibre_integrand : ∀ (k : Type) [Field k] [ValuativeRel k] [
     refine HasCompactSupport.intro hS fun g hg => ?_
     have : Φ (g.val * X0) = 0 := not_not.1 hg
     simp [this]
-  exact hcont.integrable_of_hasCompactSupport hcs
+  letI : MeasurableSpace (GL (Fin a) k) := Units.instMeasurableSpace
+  haveI : BorelSpace (GL (Fin a) k) := GlobalTheory.SplitFlip.borel_GL
+  exact hcont.integrable_of_hasCompactSupport (μ := GlobalTheory.SplitFlip.haarVol (GlobalTheory.SplitWeil.KO k (Fin a))) hcs
 
 end GlobalTheory.RankFibre
 end
