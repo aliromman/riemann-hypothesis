@@ -298,7 +298,7 @@ theorem projZ : ProjZ := by
         rw [smul_monomial, smul_eq_mul, mul_one]
       rw [this, LinearMap.map_smul, Tmap_monomial]
       exact Submodule.smul_mem _ _ (prod_mem_span nu _ fun s => hπmem s _)
-  · rw [nablaX_eq, Tmap_prod]
+  · rw [SatP.nablaX_eq, Tmap_prod]
     refine Finset.prod_congr rfl fun s _ => ?_
     rw [hπfix]
     exact Submodule.subset_span ⟨J s, rfl⟩
