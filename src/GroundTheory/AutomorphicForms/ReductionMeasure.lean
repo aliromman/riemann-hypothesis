@@ -63,18 +63,18 @@ instance secondCountableTopology_matrix {R : Type*} [TopologicalSpace R] [Second
     {n : ℕ} : SecondCountableTopology (Matrix (Fin n) (Fin n) R) :=
   inferInstanceAs (SecondCountableTopology (Fin n → Fin n → R))
 
-instance measurableSpace_adelicGL {n : ℕ} : MeasurableSpace (AdelicGLn.AdelicGL K n) := borel _
+instance measurableSpace_adelicGL {n : ℕ} : MeasurableSpace (AdelicGLn.AdelicGL K n) := _root_.borel _
 
 instance borelSpace_adelicGL {n : ℕ} : BorelSpace (AdelicGLn.AdelicGL K n) := ⟨rfl⟩
 
 instance measurableSpace_finiteAdelicGL {n : ℕ} : MeasurableSpace (AdelicGLn.FiniteAdelicGL K n) :=
-  borel _
+  _root_.borel _
 
 instance borelSpace_finiteAdelicGL {n : ℕ} : BorelSpace (AdelicGLn.FiniteAdelicGL K n) := ⟨rfl⟩
 
 instance measurableSpace_GL_infinitePlace {n : ℕ} (w : InfinitePlace K) :
     MeasurableSpace (GL (Fin n) w.Completion) :=
-  borel _
+  _root_.borel _
 
 instance borelSpace_GL_infinitePlace {n : ℕ} (w : InfinitePlace K) :
     BorelSpace (GL (Fin n) w.Completion) := ⟨rfl⟩
@@ -100,6 +100,7 @@ theorem measure_lt_top_of_forall_mem {n : ℕ} (μ : Measure (AdelicGLn.AdelicGL
       (Measure.haar : Measure (AdelicGLn.FiniteAdelicGL K n)) with hρ
   have hν : (Measure.map e μ).IsHaarMeasure :=
     MulEquiv.isHaarMeasure_map μ e.toMulEquiv e.continuous e.symm.continuous
+  have : ρ.IsHaarMeasure := Measure.prod.instIsHaarMeasure _ _
   have heq := Measure.isMulLeftInvariant_eq_smul (Measure.map e μ) ρ
   set T := (Set.univ.pi S) ×ˢ F with hT
   have hET : E ⊆ e ⁻¹' T := fun g hg => ⟨fun w _ => (hE g hg).1 w, (hE g hg).2⟩
