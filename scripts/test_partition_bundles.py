@@ -23,7 +23,7 @@ class PartitionTests(unittest.TestCase):
 
     def test_split_after_wrapper_expansion(self):
         plan = Partition(self.old, self.bundled, ["Provider"])
-        self.assertEqual(plan.drift_before, 2)
+        self.assertEqual(plan.differences, {"Plain": (0, 1), "Caller": (0, 1)})
         self.assertEqual(plan.location["Plain"], "Mixed")
         self.assertEqual(plan.location["Uses"], "Uses")
         self.assertEqual(plan.cone(["Caller"]), {"Caller", "Mixed"})
@@ -38,7 +38,7 @@ class PartitionTests(unittest.TestCase):
         plan = Partition({"P": Source(), "Q": Source()},
                          {"Both": Source([], ["P", "Q"])}, ["P", "Q"])
         self.assertEqual(len(plan.members), 2)
-        self.assertEqual(plan.drift_before, 2)
+        self.assertEqual(plan.differences, {"P": (1, 3), "Q": (2, 3)})
 
     def test_rejects_unexplained_import(self):
         self.bundled["Caller"].imports.append("Provider")
