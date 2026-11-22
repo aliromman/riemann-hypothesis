@@ -33,6 +33,16 @@ The worker reads the public, server and private parts of each module. It discard
 
 The comparison does not certify environment extensions such as notation and tactic attributes. Use the repository's complete build and protected theorem checks for release verification. James Shore's `routeb` tool and PR #173 describe the private-level constant dependency method. This tool reads each available bundle independently while the complete build is in progress. [routeb](https://github.com/james-shore/rh-proof-dependencies/tree/70fbb2fc21fed8de3c02d9f6df0b6067bf22e879/tools/routeb) · [PR #173](https://github.com/leanprover-community/riemann-hypothesis/pull/173)
 
+## Check a reported conversion
+
+To compare two expressions in one kernel environment, copy the module's row from `pairs.jsonl` to a JSON file. Add `setup` with the absolute path of its new Lake `.setup.json` file, and `declarations` with the original names to check. If the compiler reused or removed a helper name, add its original artifact record to `helpers` and set that record's `selected` field to the exact helper names. Run the following command from the new checkout with the absolute paths of the worker, substitutions and case file.
+
+```sh
+lake env "$WORKER" recheck "$REPORT/substitutions.tsv" "$CASE"
+```
+
+For each listed helper, the worker adds its actual original declaration to the new environment under a fresh name. The kernel checks each declaration. The worker then type-checks the original and new expressions in that environment and checks their types and their values for definitional equality. It can also find a declaration that moved to an imported module. Verify the defining modules of other dependencies before using the result to establish preservation of a public definition. Proof irrelevance can make two proofs of one proposition definitionally equal even when they use different lemmas. The strict report retains their direct dependency sets.
+
 ## Run the controls
 
 ```sh

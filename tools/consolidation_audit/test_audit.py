@@ -57,6 +57,8 @@ theorem usesAlias : True := middle
 theorem axiomChange : True := left
 theorem switched : True := left
 theorem sameReferenceSet : True := chooseProof left right
+def marker : Nat := one
+def usesMarker : Nat := marker
 def value : Nat := one
 def argument (x : Nat) : Nat := x
 end AuditExample
@@ -84,6 +86,7 @@ end AuditExample
             (current / 'Member.lean').unlink()
             changes = body.replace(':= middle', ':= left').replace('switched : True := left', 'switched : True := right')
             changes = changes.replace('chooseProof left right', 'chooseProof right left').replace(':= one', ':= two')
+            changes = changes.replace('usesMarker : Nat := marker', 'usesMarker : Nat := one')
             changes = changes.replace('argument (x : Nat)', 'argument {x : Nat}')
             changes = changes.replace('axiomChange : True := left', 'axiomChange : True := fixtureAxiom')
             (current / 'Bundle.lean').write_text('module\npublic import Fixture.Base\n@[expose] public section\n-- bundled from Fixture.Member\nsection\n' + changes + 'end\n')
@@ -115,6 +118,20 @@ end AuditExample
                 self.assertIn(('AuditExample.' + pair[0], pair[1]), differences)
             self.assertNotIn(('AuditExample.sameReferenceSet', 'body-references'), differences)
             self.assertFalse(any(name.endswith(('usesAlias', 'usesPrivate', 'secret')) for name, _ in differences))
+
+            bundle = next(row for row in map(json.loads, (report / 'pairs.jsonl').read_text().splitlines())
+                          if row['current']['name'] == 'Fixture.Bundle')
+            case = dict(bundle, declarations=['AuditExample.switched', 'AuditExample.value', 'AuditExample.usesMarker'],
+                        setup=str(after / '.lake/build/ir/Fixture/Bundle.setup.json'),
+                        helpers=[dict(bundle['originals'][0], selected=['AuditExample.marker'])])
+            request = root / 'recheck.json'
+            request.write_text(json.dumps(case))
+            driver = [worker] if worker else ['lean', '--run', str(HERE / 'Compare.lean')]
+            checked = run(after, 'lake', 'env', *driver, 'recheck', str(report / 'substitutions.tsv'), str(request))
+            results = {(r['declaration'], r['field']): r['result'] for r in map(json.loads, checked.stdout.splitlines())}
+            self.assertEqual(results['AuditExample.switched', 'body'], 'equal')
+            self.assertEqual(results['AuditExample.value', 'body'], 'different')
+            self.assertEqual(results['AuditExample.usesMarker', 'body'], 'equal')
 
             (after / '.lake/build/lib/lean/Fixture/Bundle.olean.private').write_bytes(b'invalid artifact')
             damaged = root / 'damaged'
