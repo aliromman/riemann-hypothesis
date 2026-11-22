@@ -8,9 +8,4 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbsNormEqPro
 
 @[expose] public section
 
-open NumberField Complex
-open scoped nonZeroDivisors
-open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization GlobalTheory.HeckeTwo
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.summable_hilbertEisensteinWeightTwoQSeries : ∀ (F : Type) [Field F] [NumberField F] [NumberField.IsTotallyReal F] (𝔞 𝔟 : GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.Frac F), ∀ z ∈ GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.upperHalf F, Summable (GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.qClass 𝔞 𝔟 2 z) := by
-  first | exact @GlobalTheory.HeckeTwoSum.summable_qClass | exact GlobalTheory.HeckeTwoSum.summable_qClass | (intros; apply GlobalTheory.HeckeTwoSum.summable_qClass <;> assumption)
+alias GlobalTheory.T.summable_hilbertEisensteinWeightTwoQSeries := GlobalTheory.HeckeTwoSum.summable_qClass

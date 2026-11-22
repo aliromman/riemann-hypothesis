@@ -6,6 +6,4 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.Tor
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.toroidalCompactificationFan_logKodairaSpencer_iso : GlobalTheory.Published.ToroidalForFanKS := by
-  first | exact @GlobalTheory.TorKSField.toroidalForFanKS | exact GlobalTheory.TorKSField.toroidalForFanKS | (intros; apply GlobalTheory.TorKSField.toroidalForFanKS <;> assumption)
+alias GlobalTheory.T.toroidalCompactificationFan_logKodairaSpencer_iso := GlobalTheory.TorKSField.toroidalForFanKS

@@ -9,11 +9,4 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLocalizati
 
 @[expose] public section
 
-open CategoryTheory AlgebraicGeometry TopologicalSpace
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy GlobalTheory.FieldPair
-open scoped TensorProduct
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.essFiniteType_of_localRingOfVarietyPoint : ∀ {K : Type} [Field K] [Algebra ℂ K] (R : Subring K),
-  IsLocModel (algebraMap ℂ K) R → Algebra.EssFiniteType ℂ K := by
-  first | exact @GlobalTheory.essFiniteType_of_isLocModel | exact GlobalTheory.essFiniteType_of_isLocModel | (intros; apply GlobalTheory.essFiniteType_of_isLocModel <;> assumption)
+alias GlobalTheory.T.essFiniteType_of_localRingOfVarietyPoint := GlobalTheory.essFiniteType_of_isLocModel

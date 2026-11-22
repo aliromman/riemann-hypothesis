@@ -9,6 +9,4 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.Abe
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.crystallineDeRham_abelianStructure_of_statements : GlobalTheory.Published.CrystallineSmoothLift → GlobalTheory.Published.AbelianHodgeDeRham → GlobalTheory.Published.AbelianDeRhamStructure ∧ GlobalTheory.Published.CrystallineDeRham := by
-  first | exact @GlobalTheory.Published.abelianDeRhamStructure_crystallineDeRham_of_hypotheses | exact GlobalTheory.Published.abelianDeRhamStructure_crystallineDeRham_of_hypotheses | (intros; apply GlobalTheory.Published.abelianDeRhamStructure_crystallineDeRham_of_hypotheses <;> assumption)
+alias GlobalTheory.T.crystallineDeRham_abelianStructure_of_statements := GlobalTheory.Published.abelianDeRhamStructure_crystallineDeRham_of_hypotheses

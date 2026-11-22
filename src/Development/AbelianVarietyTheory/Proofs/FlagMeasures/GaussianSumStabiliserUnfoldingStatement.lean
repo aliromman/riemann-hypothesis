@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Gauge
 
 @[expose] public section
 
-open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas GlobalTheory.GaussMean
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.gaussianSum_stabiliserUnfolding : GaugeUnfold := by
-  first | exact @GlobalTheory.StabUnfold.gaugeUnfold | exact GlobalTheory.StabUnfold.gaugeUnfold | (intros; apply GlobalTheory.StabUnfold.gaugeUnfold <;> assumption)
+alias GlobalTheory.T.gaussianSum_stabiliserUnfolding := GlobalTheory.StabUnfold.gaugeUnfold

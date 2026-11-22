@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.In
 
 @[expose] public section
 
-open Polynomial GlobalTheory.CuspGL
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.isPrimitiveEndClassFunction_invariantSubspaceMobiusInverse : ∀ (F : Type) [Field F] [Finite F] (V : Type) [AddCommGroup V] [Module F V] [FiniteDimensional F V] (s : F[X] → ℂ), IsAdditive s → IsPrimitive (psi s V) := by
-  first | exact @GlobalTheory.CuspGL.isPrimitive_psi | exact GlobalTheory.CuspGL.isPrimitive_psi | (intros; apply GlobalTheory.CuspGL.isPrimitive_psi <;> assumption)
+alias GlobalTheory.T.isPrimitiveEndClassFunction_invariantSubspaceMobiusInverse := GlobalTheory.CuspGL.isPrimitive_psi

@@ -8,7 +8,4 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Conv
 
 @[expose] public section
 
-open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct GlobalTheory.HWL
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.wachLatticesExistAllLayers_of_bhattScholze : GlobalTheory.Published.BhattScholzeCrystallineLattices → ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), LocTied l P AI → WachEx AI := by
-  first | exact @GlobalTheory.WachLattice.main | exact GlobalTheory.WachLattice.main | (intros; apply GlobalTheory.WachLattice.main <;> assumption)
+alias GlobalTheory.T.wachLatticesExistAllLayers_of_bhattScholze := GlobalTheory.WachLattice.main

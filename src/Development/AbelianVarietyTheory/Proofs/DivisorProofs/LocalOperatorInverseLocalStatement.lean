@@ -8,12 +8,4 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjLinApply
 
 @[expose] public section
 
-open scoped TensorProduct NNReal Matrix ENNReal
-open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
-open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK GlobalTheory.DblEval
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.local_operator_inverse_local : ∀ {F : Type} [Field F] [NumberField F] {κ : Type} [Fintype κ]
-    (e : ((κ → AF F) → ℂ) →ₗ[ℂ] ((κ → AF F) → ℂ)), IsLocOp e →
-    Set.BijOn e (schA F κ : Set ((κ → AF F) → ℂ)) (schA F κ : Set ((κ → AF F) → ℂ)) →
-    ∃ e' : ((κ → AF F) → ℂ) →ₗ[ℂ] ((κ → AF F) → ℂ), IsLocOp e' ∧ ∀ Φ ∈ schA F κ, e' (e Φ) = Φ := by
-  first | exact @GlobalTheory.LocOpInv.isLocOp_inv | exact GlobalTheory.LocOpInv.isLocOp_inv | (intros; apply GlobalTheory.LocOpInv.isLocOp_inv <;> assumption)
+alias GlobalTheory.T.local_operator_inverse_local := GlobalTheory.LocOpInv.isLocOp_inv

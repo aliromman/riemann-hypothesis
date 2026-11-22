@@ -13,13 +13,4 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NadelVanishi
 
 @[expose] public section
 
-open CategoryTheory AlgebraicGeometry TopologicalSpace
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
-open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep
-open GlobalTheory.Discrepancy GlobalTheory.EtaleKlt
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.exists_centre_of_valuationSubring_proper_dominant : ∀ {X Y : Scheme.{0}} [IsIntegral X] [IsIntegral Y] (s : Y ⟶ X) [IsDominant s] [IsProper s]
-    (V : ValuationSubring Y.functionField) (x : X), (∀ f, RegAt x f → functionFieldMap s f ∈ V) →
-    ∃ y : Y, s y ⤳ x ∧ ∀ f, RegAt y f → f ∈ V := by
-  first | exact @GlobalTheory.ProperCentre.exists_regAt_centre | exact GlobalTheory.ProperCentre.exists_regAt_centre | (intros; apply GlobalTheory.ProperCentre.exists_regAt_centre <;> assumption)
+alias GlobalTheory.T.exists_centre_of_valuationSubring_proper_dominant := GlobalTheory.ProperCentre.exists_regAt_centre

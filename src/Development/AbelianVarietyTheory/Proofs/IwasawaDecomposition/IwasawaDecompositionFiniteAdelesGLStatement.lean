@@ -11,9 +11,4 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdeleClassFinite
 
 @[expose] public section
 
-open NumberField IsDedekindDomain Matrix MeasureTheory Topology
-open GlobalTheory.AutomorphicL2Unitary GlobalTheory.UnitaryBC GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL
-
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.iwasawaDecomposition_finiteAdeles_GL : PIW.ClassFinD.IwasawaAf := by
-  first | exact @GlobalTheory.IwasawaFinAd.iwasawaAf | exact GlobalTheory.IwasawaFinAd.iwasawaAf | (intros; apply GlobalTheory.IwasawaFinAd.iwasawaAf <;> assumption)
+alias GlobalTheory.T.iwasawaDecomposition_finiteAdeles_GL := GlobalTheory.IwasawaFinAd.iwasawaAf

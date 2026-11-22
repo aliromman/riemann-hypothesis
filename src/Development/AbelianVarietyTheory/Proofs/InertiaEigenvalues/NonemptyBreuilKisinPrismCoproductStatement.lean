@@ -7,8 +7,4 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomolog
 
 @[expose] public section
 
-open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BKReal GlobalTheory.Per GlobalTheory.BSP
-open scoped Formalism.Per NNReal
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.nonempty_breuilKisinPrismCoproduct : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (B : Obj l ↥(OL K)) (d p : B.A), IsFrame bk B d p → Nonempty (Env bk B d p) := by
-  first | exact @GlobalTheory.BSP.nonempty_env | exact GlobalTheory.BSP.nonempty_env | (intros; apply GlobalTheory.BSP.nonempty_env <;> assumption)
+alias GlobalTheory.T.nonempty_breuilKisinPrismCoproduct := GlobalTheory.BSP.nonempty_env

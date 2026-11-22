@@ -8,7 +8,4 @@ public import Formalism.FrobeniusOrbits.HostCorollaries
 
 @[expose] public section
 
-open GlobalTheory.HTW Formalism.BasicNotions Formalism.FrobeniusOrbits
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.cyclicWord_noThreeMarked_of_atMostOne : ∀ {n : ℕ} (th : ZMod n → Prop), 2 ≤ n → (∀ a b, th a → th b → a = b) → NoThree th ∧ ∃ i, ¬ th i := by
-  first | exact @GlobalTheory.noThree_of_atMostOne | exact GlobalTheory.noThree_of_atMostOne | (intros; apply GlobalTheory.noThree_of_atMostOne <;> assumption)
+alias GlobalTheory.T.cyclicWord_noThreeMarked_of_atMostOne := GlobalTheory.noThree_of_atMostOne

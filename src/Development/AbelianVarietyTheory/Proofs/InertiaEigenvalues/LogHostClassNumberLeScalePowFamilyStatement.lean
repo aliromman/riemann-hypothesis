@@ -13,7 +13,4 @@ public import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.BaseSi
 
 @[expose] public section
 
-open NumberField IsDedekindDomain Formalism Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations GlobalTheory.NLink
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.log_hostClassNumber_le_scale_pow_family : ∀ {eps : ℝ} (Fm : FamP eps), ∃ C x0 : ℝ, ∀ x ≥ x0, Fm.x1 < x → ∀ i : Fm.Ix x, Real.log (Formalism.MainNotions.N.hE (Fm.D x i).host : ℝ) ≤ C * x ^ C := by
-  first | exact @GlobalTheory.log_hE_le_pow | exact GlobalTheory.log_hE_le_pow | (intros; apply GlobalTheory.log_hE_le_pow <;> assumption)
+alias GlobalTheory.T.log_hostClassNumber_le_scale_pow_family := GlobalTheory.log_hE_le_pow

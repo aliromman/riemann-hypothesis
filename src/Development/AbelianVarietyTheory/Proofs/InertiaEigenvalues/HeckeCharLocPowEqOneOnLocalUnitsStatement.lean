@@ -7,7 +7,4 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Hecke
 
 @[expose] public section
 
-open NumberField IsDedekindDomain
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.heckeChar_loc_pow_eq_one_on_localUnits : ∀ (L : Type) [Field L] [NumberField L] (χ : Formalism.L2.Host.HChar L) (v : HeightOneSpectrum (𝓞 L)) (x : (v.adicCompletion L)ˣ), Formalism.L2.Host.IsUnitAt v x → ∃ m : ℕ, 0 < m ∧ χ.loc v x ^ m = 1 := by
-  first | exact @GlobalTheory.LocUnitPow.loc_pow_eq_one | exact GlobalTheory.LocUnitPow.loc_pow_eq_one | (intros; apply GlobalTheory.LocUnitPow.loc_pow_eq_one <;> assumption)
+alias GlobalTheory.T.heckeChar_loc_pow_eq_one_on_localUnits := GlobalTheory.LocUnitPow.loc_pow_eq_one

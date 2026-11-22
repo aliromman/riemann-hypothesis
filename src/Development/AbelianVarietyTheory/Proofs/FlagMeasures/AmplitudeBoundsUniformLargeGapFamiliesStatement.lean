@@ -16,7 +16,4 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForm
 
 @[expose] public section
 
-open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.amplitude_bounds_uniform_large_gap_families : Formalism.HermitianLatticesTheory.SiegelMassRatio → GlobalTheory.GapIn.Hyp → BpJoin.ThmBpDS → ∀ Cg cb Cu cT CT C0 A C1 : ℝ, ∃ C C2 Ch thr : ℝ, 0 ≤ C ∧ 0 ≤ Ch ∧ ∀ (eps : ℝ) (Fm : FamP eps), thr ≤ sC' Fm → thr ≤ sCl Fm → PX.RanksF Fm C0 Cg cb Cu cT CT → ∀ Cpr : ℝ, ∀ δ > 0, (OwnEv Fm fun C' Cl x i => VanishingOnXAndXPlus.AmplitudeBoundsConjunction (Fm.D x i) (Fm.L x i) C' Cl Cg cb Cu cT CT C0 A C1 Cpr C C2 Ch δ) := by
-  first | exact @GlobalTheory.GapAmpUniform.amplitude_bounds_uniform_gap | exact GlobalTheory.GapAmpUniform.amplitude_bounds_uniform_gap | (intros; apply GlobalTheory.GapAmpUniform.amplitude_bounds_uniform_gap <;> assumption)
+alias GlobalTheory.T.amplitude_bounds_uniform_large_gap_families := GlobalTheory.GapAmpUniform.amplitude_bounds_uniform_gap

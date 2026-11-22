@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.SameK
 
 @[expose] public section
 
-open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.isotropicFlag_unfolding_bound : UnfoldBound := by
-  first | exact @GlobalTheory.FlagUnfold.unfoldBound | exact GlobalTheory.FlagUnfold.unfoldBound | (intros; apply GlobalTheory.FlagUnfold.unfoldBound <;> assumption)
+alias GlobalTheory.T.isotropicFlag_unfolding_bound := GlobalTheory.FlagUnfold.unfoldBound

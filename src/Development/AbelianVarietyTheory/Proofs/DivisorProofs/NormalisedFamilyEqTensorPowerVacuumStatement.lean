@@ -7,6 +7,4 @@ public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TopPlaceL
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.normalisedFamily_eq_tensorPower_vacuum : GlobalTheory.ColNorms.FamilyTie := by
-  first | exact @GlobalTheory.FamilyTieProof.familyTie | exact GlobalTheory.FamilyTieProof.familyTie | (intros; apply GlobalTheory.FamilyTieProof.familyTie <;> assumption)
+alias GlobalTheory.T.normalisedFamily_eq_tensorPower_vacuum := GlobalTheory.FamilyTieProof.familyTie

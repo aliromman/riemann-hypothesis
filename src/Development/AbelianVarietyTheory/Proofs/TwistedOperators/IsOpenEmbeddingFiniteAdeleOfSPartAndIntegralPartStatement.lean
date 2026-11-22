@@ -7,8 +7,4 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.T2SpaceTe
 
 @[expose] public section
 
-open MeasureTheory Topology Matrix NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.GaugeEx GlobalTheory.ModuLR
-open scoped NNReal ENNReal TensorProduct
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.isOpenEmbedding_finiteAdeleOfSPartAndIntegralPart : ∀ (F : Type) [Field F] [NumberField F] (S : Finset (HeightOneSpectrum (𝓞 F))), IsOpenEmbedding (jS F S) := by
-  first | exact @GlobalTheory.ModuLR.isOpenEmbedding_jS | exact GlobalTheory.ModuLR.isOpenEmbedding_jS | (intros; apply GlobalTheory.ModuLR.isOpenEmbedding_jS <;> assumption)
+alias GlobalTheory.T.isOpenEmbedding_finiteAdeleOfSPartAndIntegralPart := GlobalTheory.ModuLR.isOpenEmbedding_jS

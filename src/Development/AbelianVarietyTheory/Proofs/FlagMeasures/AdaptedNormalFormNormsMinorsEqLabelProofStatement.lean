@@ -6,6 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.PerRo
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.adaptedNormalForm_normsMinors_eq_label : GlobalTheory.TypeAsm.LabC := by
-  first | exact @GlobalTheory.TypeAsm.labC | exact GlobalTheory.TypeAsm.labC | (intros; apply GlobalTheory.TypeAsm.labC <;> assumption)
+alias GlobalTheory.T.adaptedNormalForm_normsMinors_eq_label := GlobalTheory.TypeAsm.labC

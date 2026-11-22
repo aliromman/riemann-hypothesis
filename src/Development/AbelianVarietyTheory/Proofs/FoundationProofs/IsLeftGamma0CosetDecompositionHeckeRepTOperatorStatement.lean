@@ -8,8 +8,4 @@ public import CompanionTheory.EightfoldTheory.VariationTheory.AutomorphicForms.N
 
 @[expose] public section
 
-open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM UpperTheory.V.Af Filter Topology
-open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.isLeftGamma0CosetDecomposition_heckeRepTOperator : ∀ L q : ℕ, q.Prime → ¬ q ∣ L → LRep L (DT L q) (repT q) := by
-  first | exact @GlobalTheory.EisM.lRep_DT_repT | exact GlobalTheory.EisM.lRep_DT_repT | (intros; apply GlobalTheory.EisM.lRep_DT_repT <;> assumption)
+alias GlobalTheory.T.isLeftGamma0CosetDecomposition_heckeRepTOperator := GlobalTheory.EisM.lRep_DT_repT

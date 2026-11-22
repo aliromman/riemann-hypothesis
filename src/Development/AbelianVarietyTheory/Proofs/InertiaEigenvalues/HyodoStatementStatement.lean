@@ -6,8 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Twis
 
 @[expose] public section
 
-open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations GlobalTheory.Pst GlobalTheory.PMon TensorProduct
-open scoped Formalism.Per
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.hyodo_statement : Hyodo := by
-  first | exact @GlobalTheory.PMon.hyodo | exact GlobalTheory.PMon.hyodo | (intros; apply GlobalTheory.PMon.hyodo <;> assumption)
+alias GlobalTheory.T.hyodo_statement := GlobalTheory.PMon.hyodo

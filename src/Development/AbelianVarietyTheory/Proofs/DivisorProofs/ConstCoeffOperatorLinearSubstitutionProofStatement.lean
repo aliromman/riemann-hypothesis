@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MvIsIntMapMa
 
 @[expose] public section
 
-open GlobalTheory.IsoTriv
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.constCoeffOperatorLinearSubstitution_proof : LinSt := by
-  first | exact @GlobalTheory.IsoTriv.linSt_holds | exact GlobalTheory.IsoTriv.linSt_holds | (intros; apply GlobalTheory.IsoTriv.linSt_holds <;> assumption)
+alias GlobalTheory.T.constCoeffOperatorLinearSubstitution_proof := GlobalTheory.IsoTriv.linSt_holds

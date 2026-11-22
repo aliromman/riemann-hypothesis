@@ -13,8 +13,4 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalGl
 
 @[expose] public section
 
-open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX NumberField IsDedekindDomain GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3 GlobalTheory.Mem.R3.Rw GlobalTheory.HeightCounting GlobalTheory.HeightCounting.Up
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.TypeRec.factG
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.eventually_two_mul_rank_le_levelPrime : EvLgG fun K B f _ => KPx B f → ∀ (T : TwDat B) (w : ColW B f T) (Z : w.Lt), ∀ k, 2 * (w.D Z).R.r ≤ (w.D Z).host.g k := by
-  first | exact @GlobalTheory.Mem.Top.Bl.two_mul_r_le_g_level | exact GlobalTheory.Mem.Top.Bl.two_mul_r_le_g_level | (intros; apply GlobalTheory.Mem.Top.Bl.two_mul_r_le_g_level <;> assumption)
+alias GlobalTheory.T.eventually_two_mul_rank_le_levelPrime := GlobalTheory.Mem.Top.Bl.two_mul_r_le_g_level

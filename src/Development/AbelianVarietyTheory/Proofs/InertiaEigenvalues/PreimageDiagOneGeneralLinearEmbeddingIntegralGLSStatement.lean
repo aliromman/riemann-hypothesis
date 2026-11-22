@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NormMul
 
 @[expose] public section
 
-open GlobalTheory.JR Matrix MeasureTheory Filter Topology
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.preimage_diagOneGeneralLinearEmbedding_integralGLSet : ∀ (F : Type) [NormedField F] (r : ℕ), ⇑(GlobalTheory.JR.Step.emb r F) ⁻¹' glO (r + 1) F = glO r F := by
-  first | exact @GlobalTheory.JR.GLift.emb_preimage_glO | exact GlobalTheory.JR.GLift.emb_preimage_glO | (intros; apply GlobalTheory.JR.GLift.emb_preimage_glO <;> assumption)
+alias GlobalTheory.T.preimage_diagOneGeneralLinearEmbedding_integralGLSet := GlobalTheory.JR.GLift.emb_preimage_glO

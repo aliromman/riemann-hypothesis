@@ -6,8 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Twis
 
 @[expose] public section
 
-open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations GlobalTheory.Pst GlobalTheory.PMon TensorProduct
-open scoped Formalism.Per
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.deRham_blockTriangular_diagonal_blocks : SubQuot := by
-  first | exact @GlobalTheory.PMon.subQuot | exact GlobalTheory.PMon.subQuot | (intros; apply GlobalTheory.PMon.subQuot <;> assumption)
+alias GlobalTheory.T.deRham_blockTriangular_diagonal_blocks := GlobalTheory.PMon.subQuot

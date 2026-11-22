@@ -7,7 +7,4 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Line
 
 @[expose] public section
 
-open GlobalTheory.UnitLemma Polynomial
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.linearLatticeCountDescent_proof : LinearDescent := by
-  first | exact @GlobalTheory.UnitLemma.Desc.linearDescent | exact GlobalTheory.UnitLemma.Desc.linearDescent | (intros; apply GlobalTheory.UnitLemma.Desc.linearDescent <;> assumption)
+alias GlobalTheory.T.linearLatticeCountDescent_proof := GlobalTheory.UnitLemma.Desc.linearDescent

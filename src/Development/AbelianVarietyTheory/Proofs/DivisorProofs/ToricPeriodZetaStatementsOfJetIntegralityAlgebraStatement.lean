@@ -13,6 +13,4 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.HypothesisBu
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.toricPeriodZetaStatements_of_jetIntegrality_algebraicity : GlobalTheory.Published.EllipticMainTheoremCM → GlobalTheory.Published.HilbertClassFieldJ → GlobalTheory.Published.SiegelKlingenDeligneRibet → GlobalTheory.Published.PartialZetaFunctionalEquation → GlobalTheory.Published.HeckeTateFunctionalEquation → GlobalTheory.LatJet.JetInt → GlobalTheory.LatVal.LatAlg → GlobalTheory.LatVal.LatConj → GlobalTheory.Mem.LiteralAutomorphy.JoinOut := by
-  first | exact @GlobalTheory.JoinFun.joinOut_of_jetInt | exact GlobalTheory.JoinFun.joinOut_of_jetInt | (intros; apply GlobalTheory.JoinFun.joinOut_of_jetInt <;> assumption)
+alias GlobalTheory.T.toricPeriodZetaStatements_of_jetIntegrality_algebraicity := GlobalTheory.JoinFun.joinOut_of_jetInt

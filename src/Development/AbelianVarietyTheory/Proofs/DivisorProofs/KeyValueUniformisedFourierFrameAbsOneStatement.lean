@@ -9,10 +9,4 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoeffTopMonE
 
 @[expose] public section
 
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField MeasureTheory
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
-open GlobalTheory GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto GlobalTheory.KeyCl GlobalTheory.Ex GlobalTheory.MBLow GlobalTheory.SecJet
-open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
-theorem _root_.GlobalTheory.T.key_value_uniformised_fourier_frame_abs_one : ∀ κ : Rule, Rule4 κ → KapF κ := by
-  first | exact @GlobalTheory.MBLow.KapFPf.kapF_of_rule4 | exact GlobalTheory.MBLow.KapFPf.kapF_of_rule4 | (intros; apply GlobalTheory.MBLow.KapFPf.kapF_of_rule4 <;> assumption) | exact @GlobalTheory.MBLow.KapFPf.deform_of_series | exact GlobalTheory.MBLow.KapFPf.deform_of_series | (intros; apply GlobalTheory.MBLow.KapFPf.deform_of_series <;> assumption)
+alias GlobalTheory.T.key_value_uniformised_fourier_frame_abs_one := GlobalTheory.MBLow.KapFPf.kapF_of_rule4

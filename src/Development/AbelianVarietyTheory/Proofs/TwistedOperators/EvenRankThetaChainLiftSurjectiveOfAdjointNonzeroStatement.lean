@@ -21,11 +21,4 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForm
 
 @[expose] public section
 
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
-open Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
-open scoped TensorProduct InnerProductSpace ComplexConjugate
-open GlobalTheory.EvenOnto
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.evenRankThetaChainLift_surjective_of_adjoint_nonzero : ∀ D : D7, FinDim D → MetEx D → EigSpan D → ParIndep D → ParBound D → StepUp D → OntoAll D := by
-  first | exact @GlobalTheory.EvenOnto.ontoAll_of | exact GlobalTheory.EvenOnto.ontoAll_of | (intros; apply GlobalTheory.EvenOnto.ontoAll_of <;> assumption)
+alias GlobalTheory.T.evenRankThetaChainLift_surjective_of_adjoint_nonzero := GlobalTheory.EvenOnto.ontoAll_of

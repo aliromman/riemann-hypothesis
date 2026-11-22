@@ -14,9 +14,4 @@ public import Development.AbelianVarietyTheory.Statements.HyperbolicHypotheses.H
 
 @[expose] public section
 
-open NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj Formalism.L2.PjFree
-open AlgebraicGeometry CategoryTheory Limits ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.Frames GlobalTheory.FrameUnif
-open scoped Matrix nonZeroDivisors
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.skew_matrix_multiple_in_lattice : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r ρ : ℕ) (X : Data E r) (cu : FJ.CuspFD X ρ) (β : Matrix (Fin ρ) (Fin ρ) E), FJ.IsSkew β → ∃ n : ℕ, 0 < n ∧ n • β ∈ FJ.zGam X cu := by
-  first | exact @GlobalTheory.CuspCentre.exists_nsmul_mem_zGam | exact GlobalTheory.CuspCentre.exists_nsmul_mem_zGam | (intros; apply GlobalTheory.CuspCentre.exists_nsmul_mem_zGam <;> assumption)
+alias GlobalTheory.T.skew_matrix_multiple_in_lattice := GlobalTheory.CuspCentre.exists_nsmul_mem_zGam

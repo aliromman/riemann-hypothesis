@@ -7,8 +7,4 @@ public import Formalism.PairingDivisors.StatementH
 
 @[expose] public section
 
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum
-open scoped BigOperators
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.admissible_characters_exist : ∀ D : D7, GaussSumTripleConstant D := by
-  first | exact @GlobalTheory.TripleIntertwiner.triple_constant | exact GlobalTheory.TripleIntertwiner.triple_constant | (intros; apply GlobalTheory.TripleIntertwiner.triple_constant <;> assumption)
+alias GlobalTheory.T.admissible_characters_exist := GlobalTheory.TripleIntertwiner.triple_constant

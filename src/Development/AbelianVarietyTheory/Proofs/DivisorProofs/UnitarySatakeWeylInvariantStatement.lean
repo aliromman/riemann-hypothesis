@@ -6,6 +6,4 @@ public import Formalism.SatakeDualWeyl.KpqSubgroupCompact
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.unitarySatake_weylInvariant : Formalism.UG.SatWeyl := by
-  first | exact @GlobalTheory.SatakeWeyl.satWeyl | exact GlobalTheory.SatakeWeyl.satWeyl | (intros; apply GlobalTheory.SatakeWeyl.satWeyl <;> assumption)
+alias GlobalTheory.T.unitarySatake_weylInvariant := GlobalTheory.SatakeWeyl.satWeyl

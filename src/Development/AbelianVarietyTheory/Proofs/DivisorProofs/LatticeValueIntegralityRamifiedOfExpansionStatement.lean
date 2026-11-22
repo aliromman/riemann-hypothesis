@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.TorsTranspor
 
 @[expose] public section
 
-open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.LatVal
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.latticeValueIntegrality_ramified_of_expansion : GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates.Statement → Expansion → LatIntRam := by
-  first | exact @GlobalTheory.LatValRam.latIntRam | exact GlobalTheory.LatValRam.latIntRam | (intros; apply GlobalTheory.LatValRam.latIntRam <;> assumption)
+alias GlobalTheory.T.latticeValueIntegrality_ramified_of_expansion := GlobalTheory.LatValRam.latIntRam

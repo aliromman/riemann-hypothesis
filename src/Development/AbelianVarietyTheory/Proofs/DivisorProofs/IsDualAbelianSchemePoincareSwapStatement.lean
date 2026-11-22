@@ -7,10 +7,4 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.Exi
 
 @[expose] public section
 
-open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.AbDual GlobalTheory.DualCon
-open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.isDualAbelianSchemePoincare_swap : ∀ (S : Scheme.{0}) (A B : Over S) [GrpObj A] [GrpObj B] (P : LB (A ⊗ B).left), IsAbelianScheme A → IsAbelianScheme B → DimLe A B → IsDual A B P → IsDual B A (swap P) := by
-  first | exact @GlobalTheory.BidualAbelian.isDual_swap | exact GlobalTheory.BidualAbelian.isDual_swap | (intros; apply GlobalTheory.BidualAbelian.isDual_swap <;> assumption)
+alias GlobalTheory.T.isDualAbelianSchemePoincare_swap := GlobalTheory.BidualAbelian.isDual_swap

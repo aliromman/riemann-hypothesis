@@ -6,6 +6,4 @@ public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.FibreFram
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.thetaKeyScalar_isUnit_on_integralModels : GlobalTheory.IndefiniteRowSideFullHecke.FibreFramesOnModels.KeyUnitOnModels := by
-  first | exact @GlobalTheory.KeyUnitModels.keyUnitOnModels | exact GlobalTheory.KeyUnitModels.keyUnitOnModels | (intros; apply GlobalTheory.KeyUnitModels.keyUnitOnModels <;> assumption)
+alias GlobalTheory.T.thetaKeyScalar_isUnit_on_integralModels := GlobalTheory.KeyUnitModels.keyUnitOnModels

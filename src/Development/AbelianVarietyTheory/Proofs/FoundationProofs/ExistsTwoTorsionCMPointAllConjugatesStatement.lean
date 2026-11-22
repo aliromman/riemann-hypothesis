@@ -7,8 +7,4 @@ public import Formalism.PairingDivisors.StatementH
 
 @[expose] public section
 
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum
-open scoped BigOperators
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.exists_twoTorsionCMPoint_all_conjugates : ∀ D : D7, t0Ex D := by
-  first | exact @GlobalTheory.TwoTorsionPt.exists_point | exact GlobalTheory.TwoTorsionPt.exists_point | (intros; apply GlobalTheory.TwoTorsionPt.exists_point <;> assumption)
+alias GlobalTheory.T.exists_twoTorsionCMPoint_all_conjugates := GlobalTheory.TwoTorsionPt.exists_point

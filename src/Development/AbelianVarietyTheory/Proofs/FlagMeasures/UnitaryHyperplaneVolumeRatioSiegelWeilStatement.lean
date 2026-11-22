@@ -7,6 +7,4 @@ public import Formalism.SharpRestriction.GlobalSchurBounds.MassRatioUnfoldedOfTh
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.unitary_hyperplane_volumeRatio_siegelWeil : HeckeCharacterZeroLocus.SiegelWeilU.SiegelWeilUnitaryConvergent → ∀ D : Formalism.BasicNotions.D7, Formalism.MainNotions.RT.MassRatioUnderVolume D := by
-  first | exact @GlobalTheory.VolRatioFromSiegelWeil.volumeRatio | exact GlobalTheory.VolRatioFromSiegelWeil.volumeRatio | (intros; apply GlobalTheory.VolRatioFromSiegelWeil.volumeRatio <;> assumption)
+alias GlobalTheory.T.unitary_hyperplane_volumeRatio_siegelWeil := GlobalTheory.VolRatioFromSiegelWeil.volumeRatio

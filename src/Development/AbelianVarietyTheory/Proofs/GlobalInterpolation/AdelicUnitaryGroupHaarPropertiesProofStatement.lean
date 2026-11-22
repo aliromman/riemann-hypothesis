@@ -6,6 +6,4 @@ public import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.Adeli
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.adelicUnitaryGroupHaarProperties_proof : GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryHaarMeasure.AdelicUnitaryHaar := by
-  first | exact @GlobalTheory.adelicUnitaryHaar_holds | exact GlobalTheory.adelicUnitaryHaar_holds | (intros; apply GlobalTheory.adelicUnitaryHaar_holds <;> assumption)
+alias GlobalTheory.T.adelicUnitaryGroupHaarProperties_proof := GlobalTheory.adelicUnitaryHaar_holds

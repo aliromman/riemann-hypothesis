@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.VacOfSh
 
 @[expose] public section
 
-open Formalism.BasicNotions
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.seeSawUnfoldedVacuaOfShape_proof : ∀ D : D7, GlobalTheory.SeeSaw.VacOfShape D := by
-  first | exact @GlobalTheory.SeeSaw.VacShape.vacOfShape | exact GlobalTheory.SeeSaw.VacShape.vacOfShape | (intros; apply GlobalTheory.SeeSaw.VacShape.vacOfShape <;> assumption)
+alias GlobalTheory.T.seeSawUnfoldedVacuaOfShape_proof := GlobalTheory.SeeSaw.VacShape.vacOfShape

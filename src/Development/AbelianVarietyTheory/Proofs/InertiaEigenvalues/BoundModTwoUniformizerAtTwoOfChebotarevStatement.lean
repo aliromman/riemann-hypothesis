@@ -9,7 +9,4 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomolog
 
 @[expose] public section
 
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen GlobalTheory.TwSys GlobalTheory.SelFun GlobalTheory.Published
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.boundModTwoUniformizerAtTwo_of_chebotarev : Cheb → PoitouTateTotallyComplex → CohDimTwo → TameLocal → LocalFiniteness → LocalTateDuality → LocalEulerChar → GlobalFiniteness → GlobalEulerChar → UnramifiedOrthogonality → Gen.ArchimedeanSignatureMatching → ∀ (D : Formalism.BasicNotions.D7) (N : NData D.R D.host D.what₂) (X : NTw D.R D.host D.what₂ D.LL0 N) (bkP : BKPh X), ThmC bkP := by
-  first | exact @GlobalTheory.StepTwo.Dyadic.bound_mod_two_of_hypothesis | exact GlobalTheory.StepTwo.Dyadic.bound_mod_two_of_hypothesis | (intros; apply GlobalTheory.StepTwo.Dyadic.bound_mod_two_of_hypothesis <;> assumption)
+alias GlobalTheory.T.boundModTwoUniformizerAtTwo_of_chebotarev := GlobalTheory.StepTwo.Dyadic.bound_mod_two_of_hypothesis

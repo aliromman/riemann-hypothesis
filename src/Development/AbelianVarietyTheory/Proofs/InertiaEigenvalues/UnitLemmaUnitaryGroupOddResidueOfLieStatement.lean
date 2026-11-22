@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Unit
 
 @[expose] public section
 
-open GlobalTheory.UnitLemma Polynomial
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.unitLemma_unitary_group_odd_residue_of_lie : UnitLemmaLie → UnitLemmaGroup := by
-  first | exact @GlobalTheory.UnitLemma.Orbit.unitLemmaGroup_of_lie | exact GlobalTheory.UnitLemma.Orbit.unitLemmaGroup_of_lie | (intros; apply GlobalTheory.UnitLemma.Orbit.unitLemmaGroup_of_lie <;> assumption)
+alias GlobalTheory.T.unitLemma_unitary_group_odd_residue_of_lie := GlobalTheory.UnitLemma.Orbit.unitLemmaGroup_of_lie

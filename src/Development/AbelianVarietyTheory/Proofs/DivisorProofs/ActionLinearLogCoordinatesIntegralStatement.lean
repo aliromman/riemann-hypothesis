@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MvIsIntMapMa
 
 @[expose] public section
 
-open GlobalTheory.IsoTriv
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.action_linear_logCoordinates_integral : ActSt := by
-  first | exact @GlobalTheory.IsoTriv.actSt | exact GlobalTheory.IsoTriv.actSt | (intros; apply GlobalTheory.IsoTriv.actSt <;> assumption)
+alias GlobalTheory.T.action_linear_logCoordinates_integral := GlobalTheory.IsoTriv.actSt

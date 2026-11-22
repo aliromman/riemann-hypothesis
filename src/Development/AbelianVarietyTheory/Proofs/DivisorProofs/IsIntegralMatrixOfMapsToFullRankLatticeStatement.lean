@@ -7,8 +7,4 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemMatLat
 
 @[expose] public section
 
-open Polynomial Matrix GlobalTheory.LatOrb
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.isIntegral_matrix_of_mapsTo_fullRankLattice : ∀ {O K : Type} [CommRing O] [Field K] [Algebra O K] (n : ℕ) (M : Submodule O (Fin n → K)),
-    IsLatV O M → ∀ c : Matrix (Fin n) (Fin n) K, (∀ v ∈ M, c *ᵥ v ∈ M) → IsIntegral O c := by
-  first | exact @GlobalTheory.LatOrb.isIntegral_of_mapsTo_lattice | exact GlobalTheory.LatOrb.isIntegral_of_mapsTo_lattice | (intros; apply GlobalTheory.LatOrb.isIntegral_of_mapsTo_lattice <;> assumption)
+alias GlobalTheory.T.isIntegral_matrix_of_mapsTo_fullRankLattice := GlobalTheory.LatOrb.isIntegral_of_mapsTo_lattice

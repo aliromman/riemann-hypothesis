@@ -6,6 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.RowsM
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.integralStabiliser_covolume_le_indexWeight : GlobalTheory.TypeAsm.CovTC := by
-  first | exact @GlobalTheory.TypeAsm.covTC_holds | exact GlobalTheory.TypeAsm.covTC_holds | (intros; apply GlobalTheory.TypeAsm.covTC_holds <;> assumption)
+alias GlobalTheory.T.integralStabiliser_covolume_le_indexWeight := GlobalTheory.TypeAsm.covTC_holds

@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Unit
 
 @[expose] public section
 
-open GlobalTheory.UnitLemma Polynomial
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.isReduced_of_separable_markedCharpoly : ∀ (K : UQ) (B : InvAlg K), B.P.Separable → IsReduced B.A := by
-  first | exact @GlobalTheory.UnitLemma.InvAlg.isReduced_of_separable_P | exact GlobalTheory.UnitLemma.InvAlg.isReduced_of_separable_P | (intros; apply GlobalTheory.UnitLemma.InvAlg.isReduced_of_separable_P <;> assumption)
+alias GlobalTheory.T.isReduced_of_separable_markedCharpoly := GlobalTheory.UnitLemma.InvAlg.isReduced_of_separable_P

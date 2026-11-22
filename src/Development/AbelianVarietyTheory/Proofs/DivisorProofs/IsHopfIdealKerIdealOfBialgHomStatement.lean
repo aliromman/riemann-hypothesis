@@ -7,7 +7,4 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.WittOnFalse
 
 @[expose] public section
 
-open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.isHopfIdeal_kerIdeal_of_bialgHom' : ∀ (k A B : Type) [CommRing k] [CommRing A] [CommRing B] [HopfAlgebra k A] [HopfAlgebra k B] (f : B →ₐc[k] A), (kerIdeal f).IsHopfIdeal k := by
-  first | exact @GlobalTheory.PDiv.isHopfIdeal_kerIdeal_of_bialgHom | exact GlobalTheory.PDiv.isHopfIdeal_kerIdeal_of_bialgHom | (intros; apply GlobalTheory.PDiv.isHopfIdeal_kerIdeal_of_bialgHom <;> assumption)
+alias GlobalTheory.T.isHopfIdeal_kerIdeal_of_bialgHom' := GlobalTheory.PDiv.isHopfIdeal_kerIdeal_of_bialgHom

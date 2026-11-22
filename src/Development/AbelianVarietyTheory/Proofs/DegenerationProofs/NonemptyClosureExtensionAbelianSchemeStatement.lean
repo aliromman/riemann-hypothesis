@@ -9,12 +9,4 @@ public import Development.AbelianVarietyTheory.Statements.SemistableTorsion.UTor
 
 @[expose] public section
 
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open scoped CategoryTheory.Obj
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-attribute [local instance] Over.cartesianMonoidalCategory
-open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.ZH Classical
-attribute [local instance] SplitExt.free SplitExt.finite MvPolynomial.gradedAlgebra
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.nonempty_closureExtension_abelianScheme : GlobalTheory.UT.LL → ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [ArithBase o Ω] (S : ThetaSys o Ω) (ρ : S.Real) (M : RatModel o Ω) (U₀ : M.Z.Opens) (EE : M.Lat S.J), BaseFacts S M U₀ EE → ∀ (Q : Clos ρ M U₀ EE), Nonempty Q.Ext := by
-  first | exact @GlobalTheory.ZH.ClosureLifting.nonempty_ext | exact GlobalTheory.ZH.ClosureLifting.nonempty_ext | (intros; apply GlobalTheory.ZH.ClosureLifting.nonempty_ext <;> assumption)
+alias GlobalTheory.T.nonempty_closureExtension_abelianScheme := GlobalTheory.ZH.ClosureLifting.nonempty_ext

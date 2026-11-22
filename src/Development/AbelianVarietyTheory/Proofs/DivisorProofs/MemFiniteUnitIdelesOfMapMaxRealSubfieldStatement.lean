@@ -11,10 +11,4 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CommGroupDiv
 
 @[expose] public section
 
-open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT
-open scoped Classical TensorProduct
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.mem_finiteUnitIdeles_of_map_maxRealSubfield : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (b : Neutral.B1.Ideles (maximalRealSubfield E)),
-    GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHeckeCharacterIdele.ideleMap (maximalRealSubfield E) E b ∈ GlobalTheory.Mem.Chr.unitIdl E → b ∈ GlobalTheory.Mem.Chr.unitIdl (maximalRealSubfield E) := by
-  first | exact @GlobalTheory.UnitDown.unit_down | exact GlobalTheory.UnitDown.unit_down | (intros; apply GlobalTheory.UnitDown.unit_down <;> assumption)
+alias GlobalTheory.T.mem_finiteUnitIdeles_of_map_maxRealSubfield := GlobalTheory.UnitDown.unit_down

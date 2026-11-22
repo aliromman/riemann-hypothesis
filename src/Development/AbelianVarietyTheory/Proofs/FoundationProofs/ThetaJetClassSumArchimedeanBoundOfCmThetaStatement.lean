@@ -8,8 +8,4 @@ public import Development.AbelianVarietyTheory.Statements.CuspidalUnitaryTwists.
 
 @[expose] public section
 
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum
-open scoped BigOperators
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.thetaJetClassSum_archimedeanBound_of_cmTheta : (∀ D, Inp D) → ArchSt := by
-  first | exact @GlobalTheory.ArchTop.archSt_of_inp | exact GlobalTheory.ArchTop.archSt_of_inp | (intros; apply GlobalTheory.ArchTop.archSt_of_inp <;> assumption)
+alias GlobalTheory.T.thetaJetClassSum_archimedeanBound_of_cmTheta := GlobalTheory.ArchTop.archSt_of_inp

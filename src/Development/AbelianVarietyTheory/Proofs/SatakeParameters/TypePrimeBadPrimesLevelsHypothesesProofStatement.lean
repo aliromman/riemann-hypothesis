@@ -6,6 +6,4 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.TypePrime
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.datumJets_typePrimeBadPrimesLevelsHypotheses : GlobalTheory.DatumJets.TypePrimeBadPrimesLevelsHypotheses := by
-  first | exact @GlobalTheory.DatumJets.HidaSetting.typePrimeBadPrimesLevelsHypotheses_proof | exact GlobalTheory.DatumJets.HidaSetting.typePrimeBadPrimesLevelsHypotheses_proof | (intros; apply GlobalTheory.DatumJets.HidaSetting.typePrimeBadPrimesLevelsHypotheses_proof <;> assumption)
+alias GlobalTheory.T.datumJets_typePrimeBadPrimesLevelsHypotheses := GlobalTheory.DatumJets.HidaSetting.typePrimeBadPrimesLevelsHypotheses_proof

@@ -7,8 +7,4 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.T2SpaceTe
 
 @[expose] public section
 
-open MeasureTheory Topology Matrix NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.GaugeEx GlobalTheory.ModuLR
-open scoped NNReal ENNReal TensorProduct
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.isOpenEmbedding_pairOfTuplesToTupleOfPairs : ∀ (κ X Y : Type) [Fintype κ] [AddCommGroup X] [TopologicalSpace X] [AddCommGroup Y] [TopologicalSpace Y], IsOpenEmbedding (zipHom κ X Y) := by
-  first | exact @GlobalTheory.ModuLR.zipHom_isOpenEmbedding | exact GlobalTheory.ModuLR.zipHom_isOpenEmbedding | (intros; apply GlobalTheory.ModuLR.zipHom_isOpenEmbedding <;> assumption)
+alias GlobalTheory.T.isOpenEmbedding_pairOfTuplesToTupleOfPairs := GlobalTheory.ModuLR.zipHom_isOpenEmbedding

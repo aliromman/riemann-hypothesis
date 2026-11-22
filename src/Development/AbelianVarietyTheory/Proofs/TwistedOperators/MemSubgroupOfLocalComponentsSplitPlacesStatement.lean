@@ -18,11 +18,4 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagonalBloc
 
 @[expose] public section
 
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
-open IsDedekindDomain NumberField MeasureTheory Matrix GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.StdFrames GlobalTheory.RowClaim
-open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.RowUnf GlobalTheory.RowChain GlobalTheory.SeeSaw GlobalTheory.RowVal GlobalTheory.RowReal
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.mem_subgroup_of_localComponents_splitPlaces : ∀ {D : D7} (V : HSp D) (P : Finset (Pl D.host.E)) (e : AE D), IsIdemSum e P → ∀ (H : Subgroup (GA D V)) (r : GA D V), SuppAt e V r → (∀ w ∈ P, ∀ ew : AE D, Formalism.L2.NTheta.IsIdemAt ew w → ∃ h ∈ H, SuppAt ew V h ∧ GlobalTheory.StdFrames.loc w (Lev.finE V h) = GlobalTheory.StdFrames.loc w (Lev.finE V r)) → r ∈ H := by
-  first | exact @GlobalTheory.RowAssemble.mem_of_loc | exact GlobalTheory.RowAssemble.mem_of_loc | (intros; apply GlobalTheory.RowAssemble.mem_of_loc <;> assumption)
+alias GlobalTheory.T.mem_subgroup_of_localComponents_splitPlaces := GlobalTheory.RowAssemble.mem_of_loc

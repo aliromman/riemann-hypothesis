@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.PointSide
 
 @[expose] public section
 
-open GlobalTheory.LKCount
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.twistedCentralizerMass_map_conj : ∀ {G : Type} [Group G] (Γ' T C : Subgroup G) (t : G), t ∈ T → C ≤ T → massC Γ' T (C.map (MulAut.conj t).toMonoidHom) = massC Γ' T C := by
-  first | exact @GlobalTheory.LKCount.massC_map_conj | exact GlobalTheory.LKCount.massC_map_conj | (intros; apply GlobalTheory.LKCount.massC_map_conj <;> assumption)
+alias GlobalTheory.T.twistedCentralizerMass_map_conj := GlobalTheory.LKCount.massC_map_conj

@@ -12,11 +12,4 @@ public import Development.AbelianVarietyTheory.Definitions.Uniformization.TXFram
 
 @[expose] public section
 
-open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry IsLocalRing
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.DVR
-open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UT
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.all_uniformization_laws_hold : LL := by
-  first | exact @GlobalTheory.firstFiveLaws | exact GlobalTheory.firstFiveLaws | (intros; apply GlobalTheory.firstFiveLaws <;> assumption)
+alias GlobalTheory.T.all_uniformization_laws_hold := GlobalTheory.firstFiveLaws

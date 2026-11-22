@@ -7,7 +7,4 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NotCompac
 
 @[expose] public section
 
-open GlobalTheory.RegSS
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.split_subtorus_laurentPolynomial_points : GlobalTheory.RegSS.SubtorusLaurent := by
-  first | exact @GlobalTheory.RegSS.subtorusLaurent | exact GlobalTheory.RegSS.subtorusLaurent | (intros; apply GlobalTheory.RegSS.subtorusLaurent <;> assumption)
+alias GlobalTheory.T.split_subtorus_laurentPolynomial_points := GlobalTheory.RegSS.subtorusLaurent

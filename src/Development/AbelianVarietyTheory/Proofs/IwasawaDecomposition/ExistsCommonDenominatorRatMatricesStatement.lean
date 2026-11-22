@@ -12,14 +12,4 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CombM
 
 @[expose] public section
 
-open AlgebraicGeometry CategoryTheory MvPolynomial NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.Toroidal GlobalTheory.ShFam GlobalTheory.ProjVar GlobalTheory.FlagBundle GlobalTheory.GoodMetric GlobalTheory.LieBase
-open Classical
-open Matrix
-open scoped ComplexOrder Topology
-open GlobalTheory.ShFam.Hor GlobalTheory.CxPts
-open MonoidalCategory CartesianMonoidalCategory MonObj GlobalTheory.ShFam.Hor.LogCh
-attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.exists_common_denominator_rat_matrices : ∀ (a g : ℕ) (b : Fin a → Matrix (Fin g) (Fin g) ℚ), ∃ (D : ℕ) (B : Fin a → Matrix (Fin g) (Fin g) ℤ), 0 < D ∧ ∀ k i j, (B k i j : ℚ) = D * b k i j := by
-  first | exact @GlobalTheory.rat_matrix_common_denom | exact GlobalTheory.rat_matrix_common_denom | (intros; apply GlobalTheory.rat_matrix_common_denom <;> assumption)
+alias GlobalTheory.T.exists_common_denominator_rat_matrices := GlobalTheory.rat_matrix_common_denom

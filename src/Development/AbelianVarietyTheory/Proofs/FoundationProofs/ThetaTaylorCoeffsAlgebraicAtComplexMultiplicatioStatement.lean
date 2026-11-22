@@ -7,8 +7,4 @@ public import Formalism.PairingDivisors.StatementH
 
 @[expose] public section
 
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum
-open scoped BigOperators
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.thetaTaylorCoeffs_algebraic_at_complexMultiplication : ∀ D : D7, useAlg D := by
-  first | exact @GlobalTheory.ThetaAlgebraic.taylor_algebraic | exact GlobalTheory.ThetaAlgebraic.taylor_algebraic | (intros; apply GlobalTheory.ThetaAlgebraic.taylor_algebraic <;> assumption)
+alias GlobalTheory.T.thetaTaylorCoeffs_algebraic_at_complexMultiplication := GlobalTheory.ThetaAlgebraic.taylor_algebraic

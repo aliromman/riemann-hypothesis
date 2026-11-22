@@ -11,9 +11,4 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdeleClassFinite
 
 @[expose] public section
 
-open NumberField IsDedekindDomain Matrix MeasureTheory Topology
-open GlobalTheory.AutomorphicL2Unitary GlobalTheory.UnitaryBC GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL
-
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.exists_adelicGL_homeomorph_infinite_finite : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ), ∃ e : GA E a ≃ₜ* GL (Fin a) (Cinf E) × GL (Fin a) (Af E), ∀ g, e g = (GeneralLinearGroup.map (pInf E) g, GeneralLinearGroup.map (pFin E) g) := by
-  first | exact @GlobalTheory.CuspRep.GASplit.exists_split | exact GlobalTheory.CuspRep.GASplit.exists_split | (intros; apply GlobalTheory.CuspRep.GASplit.exists_split <;> assumption)
+alias GlobalTheory.T.exists_adelicGL_homeomorph_infinite_finite := GlobalTheory.CuspRep.GASplit.exists_split

@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Statements.ShortVectorBound.Scale
 
 @[expose] public section
 
-open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.DIV.Cons Formalism.L2.Pj GlobalTheory.PtTie GlobalTheory.PlaceTop
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.scaledRunLattices_in_supLattices : ScaledLatticesInSupLattices := by
-  first | exact @GlobalTheory.PlaceTop.scaledRunLatticesInSupLattices_proof | exact GlobalTheory.PlaceTop.scaledRunLatticesInSupLattices_proof | (intros; apply GlobalTheory.PlaceTop.scaledRunLatticesInSupLattices_proof <;> assumption)
+alias GlobalTheory.T.scaledRunLattices_in_supLattices := GlobalTheory.PlaceTop.scaledRunLatticesInSupLattices_proof

@@ -7,10 +7,4 @@ public import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.Unita
 
 @[expose] public section
 
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.IndefR.Mult Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.AutomorphicEvaluation Formalism.L2.DIV Formalism.L2.SG.RowDict Formalism.L2.SG.RowsJoinPinned Formalism.L2.SG.RowLevelMatch Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.ConcreteSettingExists MeasureTheory NumberField IsDedekindDomain GlobalTheory.Mem GlobalTheory.Mem.SRe
-open scoped TensorProduct Matrix
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.hermitian_z0_symmetric_frame : ∀ (D : D7) (X : HidaSetting D) (kv : Σ k : Fin 2, D.nd.PlG k), ((D.host.g kv.1 : ℕ) : 𝓞 D.host.E) ∈ (D.naut.plGw kv.1 kv.2).asIdeal → ∀ (j : Fin D.R.r), hA X.B.I X.z0 (GlobalTheory.Mem.SymFrame.symVec X (D.naut.plGw kv.1 kv.2) j) - (if j.val = D.R.rS + D.R.k then -1 else 0) ∈ GlobalTheory.Mem.SymChar.wInt X (D.naut.plGw kv.1 kv.2) := by
-  first | exact @GlobalTheory.Mem.SymChar.ZPair.hA_z0_symVec | exact GlobalTheory.Mem.SymChar.ZPair.hA_z0_symVec | (intros; apply GlobalTheory.Mem.SymChar.ZPair.hA_z0_symVec <;> assumption)
+alias GlobalTheory.T.hermitian_z0_symmetric_frame := GlobalTheory.Mem.SymChar.ZPair.hA_z0_symVec

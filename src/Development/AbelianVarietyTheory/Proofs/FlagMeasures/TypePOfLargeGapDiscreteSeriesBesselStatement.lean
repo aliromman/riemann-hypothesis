@@ -7,6 +7,4 @@ public import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.typeBound_of_largeGap_discreteSeries_bessel : GlobalTheory.GapIn.Hyp → Formalism.L2.SG.LocWSOf.BesselOfW → Formalism.L2.SG.RowsPos.TypeP := by
-  first | exact @GlobalTheory.TypeAsm.TopGap.typeBound_of_gap | exact GlobalTheory.TypeAsm.TopGap.typeBound_of_gap | (intros; apply GlobalTheory.TypeAsm.TopGap.typeBound_of_gap <;> assumption)
+alias GlobalTheory.T.typeBound_of_largeGap_discreteSeries_bessel := GlobalTheory.TypeAsm.TopGap.typeBound_of_gap

@@ -7,7 +7,4 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NotCompac
 
 @[expose] public section
 
-open GlobalTheory.RegSS
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.regularSemisimple_selfAdjointPart_etale : GlobalTheory.RegSS.PlusEtale := by
-  first | exact @GlobalTheory.RegSS.plusEtale | exact GlobalTheory.RegSS.plusEtale | (intros; apply GlobalTheory.RegSS.plusEtale <;> assumption)
+alias GlobalTheory.T.regularSemisimple_selfAdjointPart_etale := GlobalTheory.RegSS.plusEtale

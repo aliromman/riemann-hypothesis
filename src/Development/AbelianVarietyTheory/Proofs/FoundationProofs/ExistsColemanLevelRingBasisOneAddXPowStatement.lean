@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.Cyclotomi
 
 @[expose] public section
 
-open GlobalTheory.Col PowerSeries
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.exists_colemanLevelRing_basis_one_add_X_pow : ∀ (R : Type) [CommRing R] (p m : ℕ) [hp : Fact p.Prime], IsAdicComplete (Ideal.span {(p : R)}) R → ∃ b : Module.Basis (Fin (Nat.totient (p ^ m))) R (lev R p m), ∀ i, b i = ev R p m ((1 + X) ^ (i : ℕ)) := by
-  first | exact @GlobalTheory.Col.lev_basis | exact GlobalTheory.Col.lev_basis | (intros; apply GlobalTheory.Col.lev_basis <;> assumption)
+alias GlobalTheory.T.exists_colemanLevelRing_basis_one_add_X_pow := GlobalTheory.Col.lev_basis

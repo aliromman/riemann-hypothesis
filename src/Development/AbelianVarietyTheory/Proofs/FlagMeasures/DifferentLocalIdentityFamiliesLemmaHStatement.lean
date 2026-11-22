@@ -6,6 +6,4 @@ public import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankP
 
 @[expose] public section
 
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.differentLocalIdentity_familiesLemmaH : Formalism.L2.SG.FamDefs.HTie := by
-  first | exact @GlobalTheory.HTieLeaf.main | exact GlobalTheory.HTieLeaf.main | (intros; apply GlobalTheory.HTieLeaf.main <;> assumption)
+alias GlobalTheory.T.differentLocalIdentity_familiesLemmaH := GlobalTheory.HTieLeaf.main

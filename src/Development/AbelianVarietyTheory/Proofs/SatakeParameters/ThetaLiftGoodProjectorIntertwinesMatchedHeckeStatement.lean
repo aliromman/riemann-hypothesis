@@ -9,12 +9,4 @@ public import Formalism.SatakeDualWeyl.KpqSubgroupCompact
 
 @[expose] public section
 
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
-open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues Polynomial
-open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx
-open scoped TensorProduct InnerProductSpace
-open GlobalTheory.Hk3
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.thetaLiftGoodProjector_intertwines_matchedHecke : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Core R F → SchurAll R → ∀ i t P, Good R t P → VacFix R.ψ (R.ωP i t) P → ∀ cV cW, Match R.ψ (R.ωP i t) P (dualC cV) cW → MatchW R i t P cV cW := by
-  first | exact @GlobalTheory.DefLiftHecke.matchW_of_match | exact GlobalTheory.DefLiftHecke.matchW_of_match | (intros; apply GlobalTheory.DefLiftHecke.matchW_of_match <;> assumption)
+alias GlobalTheory.T.thetaLiftGoodProjector_intertwines_matchedHecke := GlobalTheory.DefLiftHecke.matchW_of_match

@@ -7,7 +7,4 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NotCompac
 
 @[expose] public section
 
-open GlobalTheory.RegSS
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.regularSemisimple_tensor_involution_adjoint : GlobalTheory.RegSS.PointsAdjoint := by
-  first | exact @GlobalTheory.RegSS.pointsAdjoint | exact GlobalTheory.RegSS.pointsAdjoint | (intros; apply GlobalTheory.RegSS.pointsAdjoint <;> assumption)
+alias GlobalTheory.T.regularSemisimple_tensor_involution_adjoint := GlobalTheory.RegSS.pointsAdjoint

@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasLenOfL
 
 @[expose] public section
 
-open GlobalTheory.InertZeta
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.integral_right_invariant_eq_sum_open_subgroup_cosets : CosetIntegral := by
-  first | exact @GlobalTheory.InertZeta.cosetIntegral_holds | exact GlobalTheory.InertZeta.cosetIntegral_holds | (intros; apply GlobalTheory.InertZeta.cosetIntegral_holds <;> assumption)
+alias GlobalTheory.T.integral_right_invariant_eq_sum_open_subgroup_cosets := GlobalTheory.InertZeta.cosetIntegral_holds

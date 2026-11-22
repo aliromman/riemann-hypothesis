@@ -7,7 +7,4 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NotCompac
 
 @[expose] public section
 
-open GlobalTheory.RegSS
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.centraliser_points_bounded_of_normOne_bounded : GlobalTheory.RegSS.MatOfNormBounded := by
-  first | exact @GlobalTheory.RegSS.MatBd.matOfNormBounded | exact GlobalTheory.RegSS.MatBd.matOfNormBounded | (intros; apply GlobalTheory.RegSS.MatBd.matOfNormBounded <;> assumption)
+alias GlobalTheory.T.centraliser_points_bounded_of_normOne_bounded := GlobalTheory.RegSS.MatBd.matOfNormBounded

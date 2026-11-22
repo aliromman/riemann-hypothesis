@@ -7,11 +7,4 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.DiscreteSeri
 
 @[expose] public section
 
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.L2.DIV
-open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.Grow
-open GlobalTheory.IndefiniteRowSideFullHecke.LevelPlusSubgroup (coefPlus Cols SizeRows)
-open GlobalTheory.SepRows
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.goodRows_principalLevel_are_rows : GoodRows := by
-  first | exact @GlobalTheory.SepRows.goodRows | exact GlobalTheory.SepRows.goodRows | (intros; apply GlobalTheory.SepRows.goodRows <;> assumption)
+alias GlobalTheory.T.goodRows_principalLevel_are_rows := GlobalTheory.SepRows.goodRows

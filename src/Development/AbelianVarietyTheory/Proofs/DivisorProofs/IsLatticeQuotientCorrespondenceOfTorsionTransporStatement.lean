@@ -9,10 +9,4 @@ public import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModDefs
 
 @[expose] public section
 
-open scoped UpperHalfPlane MatrixGroups Matrix ModularForm ComplexConjugate
-open NumberField GlobalTheory.QFam GlobalTheory.WpFam GlobalTheory.LatVal ReciprocityTheory.ChartRestriction.L1 Formalism.L2.Th1.F
-open GlobalTheory.CMVal GlobalTheory.HeckeGal
-open ModularForm (E₄ E₆)
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.isLatticeQuotientCorrespondence_of_torsionTransport : ∀ (K : Type) [Field K] [NumberField K] (ι : K →+* ℂ) (g : ℂ ≃+* ℂ) (t : (Af K)ˣ) (Λ₀ Λ₁ : PeriodPair) (Ω₀ Ω₁ : ℂ), TorsTransport ι g t Λ₀ Λ₁ Ω₀ Ω₁ → IsTr ι Λ₀ Λ₁ (Tr t) := by
-  first | exact @GlobalTheory.WpFam.TrIs.main | exact GlobalTheory.WpFam.TrIs.main | (intros; apply GlobalTheory.WpFam.TrIs.main <;> assumption)
+alias GlobalTheory.T.isLatticeQuotientCorrespondence_of_torsionTransport := GlobalTheory.WpFam.TrIs.main

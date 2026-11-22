@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Orbit
 
 @[expose] public section
 
-open NumberField Complex ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.CuspFrom
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.flowOrbitFirstMinimum_of_isotropicFlowMajorant : FlowMajSt → OrbitThickSt := by
-  first | exact @GlobalTheory.CuspFrom.OrbitThick.orbitThick_of_flowMaj | exact GlobalTheory.CuspFrom.OrbitThick.orbitThick_of_flowMaj | (intros; apply GlobalTheory.CuspFrom.OrbitThick.orbitThick_of_flowMaj <;> assumption)
+alias GlobalTheory.T.flowOrbitFirstMinimum_of_isotropicFlowMajorant := GlobalTheory.CuspFrom.OrbitThick.orbitThick_of_flowMaj

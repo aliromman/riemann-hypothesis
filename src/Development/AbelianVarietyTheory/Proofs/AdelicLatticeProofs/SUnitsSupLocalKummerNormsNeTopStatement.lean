@@ -6,8 +6,4 @@ public import Development.AbelianVarietyTheory.Definitions.AdelicHermitianForms.
 
 @[expose] public section
 
-open NumberField IsDedekindDomain Polynomial GlobalTheory.QNorm GlobalTheory.CNorm
-open scoped WithZero TensorProduct
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.sUnits_sup_localKummerNorms_ne_top : ∀ (p : ℕ) (F : Type) [Field F] [NumberField F] [_root_.NumberField.IsTotallyComplex F] (ζ : F) (δ : Fˣ) (S : Finset (HeightOneSpectrum (𝓞 F))), p.Prime → IsPrimitiveRoot ζ p → AdmP p F S → δ ∈ sUnits F S → (∀ r : F, r ^ p ≠ (δ : F)) → sUnits F S ⊔ finNorm p F δ S ≠ ⊤ := by
-  first | exact @GlobalTheory.CNorm.sUnits_sup_finNorm_ne_top | exact GlobalTheory.CNorm.sUnits_sup_finNorm_ne_top | (intros; apply GlobalTheory.CNorm.sUnits_sup_finNorm_ne_top <;> assumption)
+alias GlobalTheory.T.sUnits_sup_localKummerNorms_ne_top := GlobalTheory.CNorm.sUnits_sup_finNorm_ne_top

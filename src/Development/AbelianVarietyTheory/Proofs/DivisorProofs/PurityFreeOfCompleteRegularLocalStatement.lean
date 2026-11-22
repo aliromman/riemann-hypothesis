@@ -7,7 +7,4 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PurityFree
 
 @[expose] public section
 
-open IsLocalRing
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.purityFree_of_complete_regularLocal : ∀ (R : Type) [CommRing R] [IsRegularLocalRing R], (∀ (S : Type) [CommRing S] [IsRegularLocalRing S], IsAdicComplete (maximalIdeal S) S → ringKrullDim S = ringKrullDim R → GlobalTheory.PurityFree S) → GlobalTheory.PurityFree R := by
-  first | exact @GlobalTheory.PurityStep.purityFree_of_complete | exact GlobalTheory.PurityStep.purityFree_of_complete | (intros; apply GlobalTheory.PurityStep.purityFree_of_complete <;> assumption)
+alias GlobalTheory.T.purityFree_of_complete_regularLocal := GlobalTheory.PurityStep.purityFree_of_complete

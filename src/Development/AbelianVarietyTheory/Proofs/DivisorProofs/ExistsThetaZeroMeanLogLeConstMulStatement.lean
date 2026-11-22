@@ -6,7 +6,4 @@ public import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.Signe
 
 @[expose] public section
 
-open Formalism.BasicNotions
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.exists_thetaZeroMeanLogLeConstMul : ∃ C : ℝ, 0 ≤ C ∧ ∀ D : Formalism.BasicNotions.D7, GlobalTheory.IndefiniteRowSideFullHecke.SignedLogMeans.MeanLeC C D := by
-  first | exact @GlobalTheory.Theta0MeanLeC.theta0MeanLeC | exact GlobalTheory.Theta0MeanLeC.theta0MeanLeC | (intros; apply GlobalTheory.Theta0MeanLeC.theta0MeanLeC <;> assumption)
+alias GlobalTheory.T.exists_thetaZeroMeanLogLeConstMul := GlobalTheory.Theta0MeanLeC.theta0MeanLeC

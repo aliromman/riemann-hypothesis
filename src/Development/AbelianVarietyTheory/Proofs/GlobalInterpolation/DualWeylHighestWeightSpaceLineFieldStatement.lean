@@ -7,7 +7,4 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GlobalTheta.Wey
 
 @[expose] public section
 
-open MvPolynomial Formalism.GradedWeylDivisibility Formalism.BasicNotions GlobalTheory.Alc
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.dualWeyl_highestWeight_space_line_field : ∀ (k : Type) [Field k] (N : ℕ) (ν : Fin N → ℕ), Antitone ν → ∀ f ∈ dualWeyl k N N ν, IsWeightedHomogeneous (rowW N N) f ν → ∃ c : k, f = c • hw k le_rfl ν := by
-  first | exact @GlobalTheory.Alc.hw_line_field | exact GlobalTheory.Alc.hw_line_field | (intros; apply GlobalTheory.Alc.hw_line_field <;> assumption)
+alias GlobalTheory.T.dualWeyl_highestWeight_space_line_field := GlobalTheory.Alc.hw_line_field

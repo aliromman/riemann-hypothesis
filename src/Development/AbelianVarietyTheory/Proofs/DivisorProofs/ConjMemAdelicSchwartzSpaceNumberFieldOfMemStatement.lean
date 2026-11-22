@@ -8,8 +8,4 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AntiCols
 
 @[expose] public section
 
-open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-open scoped TensorProduct Matrix
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.conj_mem_adelicSchwartzSpaceNumberField_of_mem : ∀ {F : Type} [Field F] [NumberField F] (κ : Type) [Fintype κ], ∀ Φ ∈ schA F κ, (fun x => star (Φ x)) ∈ schA F κ := by
-  first | exact @GlobalTheory.star_mem_schA_main | exact GlobalTheory.star_mem_schA_main | (intros; apply GlobalTheory.star_mem_schA_main <;> assumption)
+alias GlobalTheory.T.conj_mem_adelicSchwartzSpaceNumberField_of_mem := GlobalTheory.star_mem_schA_main
