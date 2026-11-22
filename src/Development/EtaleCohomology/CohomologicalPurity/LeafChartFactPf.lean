@@ -124,7 +124,7 @@ theorem LeafChartFact_of (hG : LeafGeo) (hC : LeafWCov) (hR : LeafWEqvR) (hL : L
   let β : P ⟶ pr d R := Arrow.homMk (pullback.snd _ _) (wb d R) pullback.condition.symm
   let α : opn (off (MvPolynomial (Fin d) R) I) ⟶ P :=
     Arrow.homMk (pullback.lift _ _ hw) (wa d R) (pullback.lift_fst _ _ _)
-  refine ⟨P, α, β, ?_, opn_mono _, (IsPullback.of_hasPullback (wb d R) (pr d R).hom).mono_fst_of_mono this,
+  refine ⟨P, α, β, ?_, _root_.LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.opn_mono _, (IsPullback.of_hasPullback (wb d R) (pr d R).hom).mono_fst_of_mono this,
     hL hH q d R I hI hq _ (pullback.lift_fst _ _ _), hR hH q d R hq, IsPullback.of_hasPullback _ _, hC hH q d R hq⟩
   exact hom_ext (hG.1 d R) (by rw [Arrow.comp_right]; exact hab)
 
