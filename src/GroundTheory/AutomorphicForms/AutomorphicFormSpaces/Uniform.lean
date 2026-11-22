@@ -99,7 +99,7 @@ theorem IsSmooth.eventually_mul_finEmb_mul {φ : AdelicGLn.AdelicGL K n → ℂ}
       (𝓝 1) (𝓝 1) := by
     have : Continuous fun y : AdelicGLn.FiniteAdelicGL K n => (finPart k)⁻¹ * y * finPart k :=
       (continuous_const.mul continuous_id).mul continuous_const
-    simpa using this.tendsto 1
+    simpa only [mul_one, inv_mul_cancel] using this.tendsto 1
   refine (hc.eventually (hφ.2 (g * k))).mono fun y hy => ?_
   rw [← hy, ← inv_mul_finEmb_mul]
   congr 1
