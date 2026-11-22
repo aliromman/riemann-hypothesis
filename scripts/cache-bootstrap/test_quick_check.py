@@ -43,6 +43,8 @@ class QuickChecks(unittest.TestCase):
   mapping={'0000000000000001':'000000000000000b.ltar','0000000000000002':'000000000000000c.ltar'}
   data=gzip.compress((json.dumps({'schema':1,'toolchain':q.ci.TOOLCHAIN,'modules':2})+'\n'+json.dumps(['A','0000000000000001',mapping['0000000000000001'],'a'*64])+'\n'+json.dumps(['B','0000000000000002',mapping['0000000000000002'],'b'*64])+'\n').encode())
   self.assertEqual(q.prep.select_module_entries(data,mapping,{'A'}),{'0000000000000001':'000000000000000b.ltar'})
+ def test_job_environment_uses_allowed_github_context(self):
+  text=(ROOT.parent/'.github/workflows/build-pr.yml').read_text();self.assertNotIn('QUICK_OUTPUT: ${{ runner.',text);self.assertIn('QUICK_OUTPUT: ${{ github.workspace }}/.quick-results/',text)
  def test_full_mode_excluded_and_outputs_unique(self):
   text=(ROOT.parent/'.github/workflows/build-pr.yml').read_text();self.assertIn("inputs.mode != 'quick-check'",text);self.assertIn("format('rh-quick-{0}', inputs.quick_runner)",text);self.assertIn('rh-quick-${{ github.run_id }}-${{ github.run_attempt }}',text)
  def test_timeout_stops_owned_process(self):

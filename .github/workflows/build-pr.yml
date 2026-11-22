@@ -380,7 +380,7 @@ jobs:
       labels: ${{ needs.quick_resolve.outputs.runner_label }}
     timeout-minutes: 40
     env:
-      QUICK_OUTPUT: ${{ runner.temp }}/rh-quick-${{ github.run_id }}-${{ github.run_attempt }}
+      QUICK_OUTPUT: ${{ github.workspace }}/.quick-results/rh-quick-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
