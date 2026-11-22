@@ -169,7 +169,7 @@ theorem UpperTheory.Esk.pf_Osg : UpperTheory.Esk.Osg := by
       simp [Φ]
     · have h' : e i ≠ j := fun h' => h (by rw [← h']; simp)
       simp [Φ, h, h']
-  have hg : SepHol g V := by
+  have hg : UpperTheory.Esk.OrbitalSingularIntegrals.SepHol g V := by
     refine ⟨hf.comp hΦ.continuousOn (fun w hw => hw), fun w hw j => ?_⟩
     have h1 := hsep (Φ w) hw (e.symm j)
     have e1 : (fun t => g (Function.update w j t)) = fun t => f (Function.update (Φ w) (e.symm j) t) := by

@@ -413,7 +413,7 @@ theorem exists_sqrt (h5 : 5 ≤ l) (t : ℤ_[l]) (s : ZMod l) (hs : s ≠ 0) (ht
   have hz2 : z ^ 2 = t := by
     have : z ^ 2 - t = 0 := by simpa [hF] using hz
     exact sub_eq_zero.1 this
-  exact ⟨z, by rw [← sq]; exact hz2⟩
+  exact ⟨z, by rw [← _root_.sq]; exact hz2⟩
 
 theorem exists_norm (h5 : 5 ≤ l) (dK : ℕ) (hld : ¬ l ∣ dK) (a : ℤ_[l]) (ha : ‖a‖ = 1) :
     ∃ x y : ℤ_[l], x * x + dK * (y * y) = a := by

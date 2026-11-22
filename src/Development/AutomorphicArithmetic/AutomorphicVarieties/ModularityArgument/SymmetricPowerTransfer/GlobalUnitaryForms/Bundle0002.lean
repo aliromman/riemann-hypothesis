@@ -79,7 +79,7 @@ private theorem box_relIndex_ne_zero_of_local {T : Type} [Group T] {Tv : I → T
       obtain ⟨D, hD, hDF⟩ := ih
       refine ⟨D ⊓ (A a).comap (Q.p a), Subgroup.relIndex_inf_ne_zero hD ?_, ?_⟩
       · rw [Subgroup.relIndex_comap]
-        refine mt (Subgroup.relIndex_eq_zero_of_le_right ?_) (hA a)
+        refine _root_.mt (Subgroup.relIndex_eq_zero_of_le_right ?_) (hA a)
         rw [Subgroup.map_le_iff_le_comap]
         intro t ht
         exact (mem_box Q B t).1 ht a
@@ -88,7 +88,7 @@ private theorem box_relIndex_ne_zero_of_local {T : Type} [Group T] {Tv : I → T
         · exact ht.2
         · exact hDF t ht.1 v hv
   obtain ⟨D, hD, hDF⟩ := key (Filter.eventually_cofinite.1 hfin).toFinset
-  refine mt (Subgroup.relIndex_eq_zero_of_le_left (K := Q.box A) ?_)
+  refine _root_.mt (Subgroup.relIndex_eq_zero_of_le_left (K := Q.box A) ?_)
     (Subgroup.relIndex_inf_ne_zero hD (by simp : (Q.box B).relIndex (Q.box B) ≠ 0))
   intro t ht
   rw [mem_box]
