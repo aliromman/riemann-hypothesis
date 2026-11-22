@@ -162,8 +162,9 @@ private theorem isAdicComplete_maximalIdeal_of_free_finite_zpadic {p : ℕ} [Fac
           toIsPrecomplete := isPrecomplete_of_isPrecomplete_pow _ e he0 hprec }
 
 theorem integers_completeDVR : ∀ (l : ℕ) [Fact l.Prime], ∀ LL : FinExt l,
-    ∃ _ : IsDiscreteValuationRing ↥(OL LL),
-      IsAdicComplete (IsLocalRing.maximalIdeal ↥(OL LL)) ↥(OL LL) ∧ ((l : ℕ) : ↥(OL LL)) ≠ 0 ∧
+    ∃ dvr : IsDiscreteValuationRing ↥(OL LL),
+      IsAdicComplete (@IsLocalRing.maximalIdeal ↥(OL LL) _ dvr.toIsLocalRing) ↥(OL LL) ∧
+      ((l : ℕ) : ↥(OL LL)) ≠ 0 ∧
       ¬ IsUnit ((l : ℕ) : ↥(OL LL)) ∧ Module.Free ℤ_[l] ↥(OL LL) ∧ Module.Finite ℤ_[l] ↥(OL LL) ∧
       IsFractionRing ↥(OL LL) ↥LL.1 := by
   intro l _ LL
