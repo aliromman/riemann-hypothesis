@@ -287,7 +287,7 @@ private def readAliases (file : String) : IO (NameMap Name) := do
 structure Recheck extends Comparison where
   setup : String
   declarations : Array String
-  helpers : Array Artifact := #[]
+  helpers : Option (Array Artifact) := none
   deriving FromJson
 
 private def conversion (env : Environment) (a b : Expr) : String := Id.run do
@@ -323,7 +323,7 @@ private unsafe def recheck (aliases : NameMap Name) (spec : Recheck) : IO Unit :
   let mut env ← importModules #[{module := target, importAll := true}] {} (level := .exported) (arts := arts)
   let mut renames := initialRenames
   let mut originalHelpers := #[]
-  for artifact in spec.helpers do
+  for artifact in spec.helpers.getD #[] do
     if artifact.selected.isNone then throw <| IO.userError "list each original helper in selected"
     for (n,c) in (← loadArtifact artifact).full do
       let key := `ConsolidationAuditOriginal ++ n

@@ -133,6 +133,13 @@ end AuditExample
             self.assertEqual(results['AuditExample.value', 'body'], 'different')
             self.assertEqual(results['AuditExample.usesMarker', 'body'], 'equal')
 
+            del case['helpers']
+            case['declarations'] = ['AuditExample.value']
+            request.write_text(json.dumps(case))
+            checked = run(after, 'lake', 'env', *driver, 'recheck', str(report / 'substitutions.tsv'), str(request))
+            results = {r['field']: r['result'] for r in map(json.loads, checked.stdout.splitlines())}
+            self.assertEqual(results, {'type': 'equal', 'body': 'different'})
+
             (after / '.lake/build/lib/lean/Fixture/Bundle.olean.private').write_bytes(b'invalid artifact')
             damaged = root / 'damaged'
             result = run(after, *command, '--out', str(damaged), check=False)
