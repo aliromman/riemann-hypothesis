@@ -15,7 +15,7 @@ open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.
 
 namespace GlobalTheory.TameSurj
 
-open Ideal in
+open _root_.Ideal _root_.NumberField.Ideal in
 theorem ram_le : ∀ {E L : Type} [Field E] [NumberField E] [Field L] [NumberField L] [Algebra E L] (P : HeightOneSpectrum (𝓞 E)) (Q : Ideal (𝓞 L)) [Q.IsPrime] [Q.LiesOver P.asIdeal] (m : ℕ) (ϖ : 𝓞 E), ϖ ∉ P.asIdeal ^ 2 → ∀ π : 𝓞 L, π ∈ Q → π ^ m = algebraMap (𝓞 E) (𝓞 L) ϖ → m ≤ Q.ramificationIdx (𝓞 E) := by
   intro E L _ _ _ _ _ P Q _ _ m ϖ hϖ2 π hπQ hπm
   rcases Nat.eq_zero_or_pos m with rfl | hm
