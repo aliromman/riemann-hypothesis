@@ -40,7 +40,7 @@ theorem exists_normal_proj_hasDiv_family (o Ω : Type) [CommRing o] [Field Ω] [
       (Subfield.closure (Set.range (algebraMap o Ω) ∪ {x | ∃ i j, x = t j / t i})) Ω)
     (B : Type) [Finite B] (JJ : B → Type) [∀ b, Finite (JJ b)] (tt : ∀ b, JJ b → Ω)
     (htt : ∀ b, ∃ k, tt b k ≠ 0) :
-    ∃ M : RatModel o Ω, IsNormalScheme M.Z ∧ IsProjOver M.s ∧ M.HasDiv t ∧ ∀ b, M.HasDiv (tt b) := by
+    ∃ M : RatModel o Ω, ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme M.Z ∧ IsProjOver M.s ∧ M.HasDiv t ∧ ∀ b, M.HasDiv (tt b) := by
   haveI := ArithBase.ded (o := o) (Ω := Ω)
   haveI := ArithBase.char (o := o) (Ω := Ω)
   letI : Fintype B := Fintype.ofFinite B

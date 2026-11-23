@@ -247,7 +247,7 @@ def letterDir {n : ℕ} (l : Harm.Var X.Ψ q0 X.p0 (Fin n)) : Fin n → Fin g �
 def thFr (n : ℕ) (a b : Fin n → Fin g → ℝ) (P : Harm.Poly ℂ X.Ψ q0 X.p0 (Fin n))
     (x : Frame X.Ψ r) : ℂ :=
   (hMat X bas idx x).det ^ (n / 2) *
-    polyDeriv P (letterDir X hr idx) (fun z => ∏ k, canFn X bas idx (a k) (b k) x (z k)) 0
+    ReciprocityTheory.ChartRestriction.G.I2.polyDeriv P (letterDir X hr idx) (fun z => ∏ k, canFn X bas idx (a k) (b k) x (z k)) 0
 
 variable (n : ℕ) (a b : Fin n → Fin g → ℝ)
 
@@ -306,8 +306,8 @@ omit hd in
 theorem polyDeriv_smul_letter {σ W : Type*} [NormedAddCommGroup W] [NormedSpace ℂ W]
     (P : MvPolynomial σ ℂ) (s : σ → ℂ) (t : ℂ) (h : ∀ m ∈ P.support, (m.prod fun l e => s l ^ e) = t)
     (u : σ → W) (F : W → ℂ) (w : W) :
-    polyDeriv P (fun l => s l • u l) F w = t * polyDeriv P u F w := by
-  unfold polyDeriv
+    ReciprocityTheory.ChartRestriction.G.I2.polyDeriv P (fun l => s l • u l) F w = t * ReciprocityTheory.ChartRestriction.G.I2.polyDeriv P u F w := by
+  unfold ReciprocityTheory.ChartRestriction.G.I2.polyDeriv
   rw [Finset.mul_sum]
   refine Finset.sum_congr rfl fun m hm => ?_
   rw [ContinuousMultilinearMap.map_smul_univ, smul_eq_mul, ← h m hm, mul_left_comm]

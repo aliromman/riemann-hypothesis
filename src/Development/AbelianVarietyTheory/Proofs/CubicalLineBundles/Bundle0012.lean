@@ -73,7 +73,7 @@ lemma exists_of_local_quotient (p : X ⟶ Sp ℂ) [LocallyOfFiniteType p] [IsRed
       (((valueRules X (e z)).2.2.2.2.1 W (b i)).2 hi hy)
   obtain ⟨c, hc', -⟩ := X.sheaf.existsUnique_gluing' (fun i => X.basicOpen (b i)) W
     (fun i => homOfLE (X.basicOpen_le (b i))) hc q (fun i j => by
-      refine eq_of_valAt'_eq p (X.basicOpen (b i) ⊓ X.basicOpen (b j)) _ _ fun x hx hij => ?_
+      refine GlobalTheory.eq_of_valAt'_eq p (X.basicOpen (b i) ⊓ X.basicOpen (b j)) _ _ fun x hx hij => ?_
       obtain ⟨z, rfl⟩ := he x hx
       obtain ⟨hi, hj⟩ := (le_preimage_inf _ _ _).1 hij
       exact ((val_resG _ inf_le_left hij (q i)).trans (hq i z hi)).trans
@@ -125,7 +125,7 @@ lemma lbIso_of_frames (p : X ⟶ Sp ℂ) [LocallyOfFiniteType p] [IsReduced X]
     rw [hc i j z hij]
     exact div_ne_zero (hα i z hi) (hβ j z hj)
   refine ⟨⟨fun q => (hu q.1 q.2).unit⟩, fun q r => Units.ext ?_⟩
-  refine eq_of_valAt'_eq p (M.U q.1 ⊓ N.U q.2 ⊓ (M.U r.1 ⊓ N.U r.2)) _ _ fun x hx hqr => ?_
+  refine GlobalTheory.eq_of_valAt'_eq p (M.U q.1 ⊓ N.U q.2 ⊓ (M.U r.1 ⊓ N.U r.2)) _ _ fun x hx hqr => ?_
   obtain ⟨z, rfl⟩ := he x hx
   obtain ⟨hq, hr⟩ := (le_preimage_inf _ _ _).1 hqr
   obtain ⟨hq1, hq2⟩ := (le_preimage_inf _ _ _).1 hq

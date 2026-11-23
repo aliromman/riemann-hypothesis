@@ -246,7 +246,7 @@ theorem _root_.GlobalTheory.zm_val_ne_zero : ∀ (e N l : ℕ) (χ θ : Dirichle
   set K0 : ℂ := (N : ℂ) ^ e / (N : ℂ) ^ 2 * (ch ψ d * ch θ d) with hK0
   have hF1W : slz e W (qs F1) = (κ1⁻¹ * K0) • qs E1 := by
     have h : qs F1 = κ1⁻¹ • slz e W (qs E1) := by rw [hW1, smul_smul, inv_mul_cancel₀ hκ1, one_smul]
-    rw [h, slz_smul', hWW, smul_smul]
+    rw [h, GlobalTheory.ZMVal.slz_smul', hWW, smul_smul]
 
   have hmul := (GlobalTheory.EisM.mul_main).1
   have hmf := GlobalTheory.EisM.mul_main.2

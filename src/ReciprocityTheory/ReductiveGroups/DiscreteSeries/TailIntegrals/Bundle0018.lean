@@ -96,26 +96,26 @@ theorem bStepSucc_of (hB2 : InductiveHeisenbergInputs) (hIW : IW) (hF : FormulaF
     change Continuous fun m : Mt k r' => ιLev k 1 r' (Matrix.of m) p q
     unfold ιLev
     split_ifs <;> first | exact (continuous_apply _).comp (continuous_apply _) | exact continuous_const
-  have hheis : Measurable (fun X : HPar k r' => (heis0 k r' X : Mt k (1 + r'))) := by
+  have hheis : Measurable (fun X : Formalism.FourierDecayAlt.B2.HPar k r' => (heis0 k r' X : Mt k (1 + r'))) := by
     apply Continuous.measurable
     have hherm {ι : Type} [Fintype ι] (H : Matrix ι ι ℂ) :
         Continuous (fun p : (ι → ℂ) × (ι → ℂ) => herm H p.1 p.2) := by
       unfold herm
       exact continuous_snd.star.dotProduct (continuous_const.matrix_mulVec continuous_fst)
-    have hlift : Continuous (fun X : HPar k r' => liftVec k 1 r' X.1) := by
+    have hlift : Continuous (fun X : Formalism.FourierDecayAlt.B2.HPar k r' => liftVec k 1 r' X.1) := by
       refine continuous_pi fun p => ?_
-      change Continuous fun X : HPar k r' => liftVec k 1 r' X.1 p
+      change Continuous fun X : Formalism.FourierDecayAlt.B2.HPar k r' => liftVec k 1 r' X.1 p
       unfold liftVec
       split_ifs
       · exact (continuous_apply _).comp continuous_fst
       · exact continuous_const
-    have hself : Continuous (fun X : HPar k r' => herm (Hpk k r') X.1 X.1) :=
+    have hself : Continuous (fun X : Formalism.FourierDecayAlt.B2.HPar k r' => herm (Hpk k r') X.1 X.1) :=
       (hherm _).comp (continuous_fst.prodMk continuous_fst)
-    have hhb : Continuous (fun X : HPar k r' => hb k r' X.1 X.2) := by
+    have hhb : Continuous (fun X : Formalism.FourierDecayAlt.B2.HPar k r' => hb k r' X.1 X.2) := by
       unfold hb
       exact (Complex.continuous_ofReal.comp ((Complex.continuous_re.comp hself).neg.div_const 2)).add
         ((Complex.continuous_ofReal.comp continuous_snd).mul continuous_const)
-    have hrow : Continuous (fun X : HPar k r' =>
+    have hrow : Continuous (fun X : Formalism.FourierDecayAlt.B2.HPar k r' =>
         fun j => herm (Hpk k (1 + r')) (bvec j) (liftVec k 1 r' X.1)) :=
       continuous_pi fun j => (hherm _).comp (continuous_const.prodMk hlift)
     unfold heis0 heisG

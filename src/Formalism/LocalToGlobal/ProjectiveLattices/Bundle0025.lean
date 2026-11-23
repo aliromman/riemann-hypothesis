@@ -296,13 +296,13 @@ structure SecPt (ζ : PtsG G la) (y : E.Pt' la) where
   hv : ∀ (w : WeightFamilies.Wt D j) (F : B.Cusp j w), E.vAt' la y (X.inc w F) =
     nval T.V (ep (unifO (xplus X E hM) la G.N) ζ) (ev (emb (xplus X E hM) la G.N (X.inc w F)))
 
-  onS : ∀ i : Fin (WeightFamilies.dimY D j), ev (sec (xplus X E hM) la G.w i.succ) = 0
+  onS : ∀ i : Fin (WeightFamilies.dimY D j), ev (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w i.succ) = 0
 
-  s0 : IsUnit (ev (sec (xplus X E hM) la G.w 0))
+  s0 : IsUnit (ev (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0))
 
   ord : ∀ x : ↥(Frac0 (xplus X E hM) la G.w),
     toE (ord (unifO (xplus X E hM) la G.N) ζ (toOsK (xplus X E hM) la G.w x)) =
-      nval T.V 1 (IsLocalization.Away.lift (sec (xplus X E hM) la G.w 0) s0 (x : Lw (xplus X E hM) la G.w))
+      nval T.V 1 (IsLocalization.Away.lift (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0) s0 (x : Lw (xplus X E hM) la G.w))
 
 structure FromW (ζ : PtsG G la) (y : E.Pt' la) extends SecPt ζ y where
 
@@ -313,7 +313,7 @@ structure FromW (ζ : PtsG G la) (y : E.Pt' la) extends SecPt ζ y where
 
   evW : ∀ (x : ↥(Frac0 (xplus X E hM) la G.w)) (a : ↥(As (Op (xplus X E hM) la G.N) (OsK (xplus X E hM) la G.w))),
     toOsK (xplus X E hM) la G.w x = (a : OsK (xplus X E hM) la G.w) →
-    IsLocalization.Away.lift (sec (xplus X E hM) la G.w 0) toSecPt.s0 (x : Lw (xplus X E hM) la G.w) =
+    IsLocalization.Away.lift (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0) toSecPt.s0 (x : Lw (xplus X E hM) la G.w) =
       algebraMap T.V T.Fr (ι (algebraMap _ (Loc ζ) a))
 
 def secQ (y : PtsG G la → E.Pt' la) (hs : ∀ ζ, SecPt ζ (y ζ)) (g0 : B.Cusp j wF) : LocalPointData G la where
@@ -326,7 +326,7 @@ def InTieSecSt : Prop :=
     (ka wL wF : WeightFamilies.Wt D j) (G : GlobalFamilyData (xplus X E hM) ka wL wF) (la : HeightOneSpectrum (𝓞 B.KO)) (S : Scal B)
     (y : PtsG G la → E.Pt' la) (hs : ∀ ζ, SecPt ζ (y ζ)) (g0 : B.Cusp j wF),
     (∀ ζ, (xplus X E hM).depth S.sW wL la (.inr (y ζ)) =
-      nval (hs ζ).T.V (ep (unifO (xplus X E hM) la G.N) ζ) ((hs ζ).ev (sec (xplus X E hM) la G.w 0))) →
+      nval (hs ζ).T.V (ep (unifO (xplus X E hM) la G.N) ζ) ((hs ζ).ev (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0))) →
     (j < D.R.m → ∀ ζ, (hs ζ).ev (emb (xplus X E hM) la G.N (X.inc _ G.et)) ≠ 0) →
     (∀ ζ, (hs ζ).ev (emb (xplus X E hM) la G.N (X.inc wF g0)) ≠ 0) →
     IsGen (OsK (xplus X E hM) la G.w) (resF G la g0) →
@@ -396,18 +396,18 @@ section Lift
 variable {ζ : PtsG G la} {y₀ : E.Pt' la} (h : SecPt ζ y₀)
 
 abbrev SecPt.lift : Lw (xplus X E hM) la G.w →+* h.T.Fr :=
-  IsLocalization.Away.lift (sec (xplus X E hM) la G.w 0) h.s0
+  IsLocalization.Away.lift (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0) h.s0
 
 lemma SecPt.lift_alg (r : Rp (xplus X E hM) la G.N) : h.lift (algebraMap _ _ r) = h.ev r :=
   IsLocalization.lift_eq _ r
 
-lemma SecPt.lift_w0inv : h.lift (w0inv (xplus X E hM) la G.w) = (h.ev (sec (xplus X E hM) la G.w 0))⁻¹ := by
+lemma SecPt.lift_w0inv : h.lift (w0inv (xplus X E hM) la G.w) = (h.ev (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0))⁻¹ := by
   have := congrArg h.lift (section_mul_inverse_eq_one (xplus X E hM) la G.w)
   rw [map_mul, h.lift_alg, map_one] at this
   exact eq_inv_of_mul_eq_one_right this
 
 lemma SecPt.lift_frac (k : ℕ) (g : Rp (xplus X E hM) la G.N) :
-    h.lift (frac (xplus X E hM) la G.w k g) = h.ev g * (h.ev (sec (xplus X E hM) la G.w 0))⁻¹ ^ k := by
+    h.lift (frac (xplus X E hM) la G.w k g) = h.ev g * (h.ev (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0))⁻¹ ^ k := by
   rw [frac_apply, map_mul, map_pow, h.lift_alg, h.lift_w0inv]
 
 lemma SecPt.lift_Jid {r : ↥(Frac0 (xplus X E hM) la G.w)} (hr : r ∈ Jid (xplus X E hM) la G.w) :
@@ -440,7 +440,7 @@ theorem inTieSec : InTieSecSt := by
   have hg0' := hg0 ζ
   have het' : j < D.R.m → (hs ζ).ev (emb (xplus X E hM) la G.N (X.inc _ G.et)) ≠ 0 := fun hj => het hj ζ
   set h := hs ζ with hh
-  have hb : h.ev (sec (xplus X E hM) la G.w 0) ≠ 0 := h.s0.ne_zero
+  have hb : h.ev (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0) ≠ 0 := h.s0.ne_zero
   have he := h.ep_pos
   have hvat : ∀ (w : WeightFamilies.Wt D j) (F : B.Cusp j w), (xplus X E hM).vAt la (.inr (y ζ)) ((xplus X E hM).inc w F) =
       nval h.T.V (ep (unifO (xplus X E hM) la G.N) ζ) (h.ev (emb (xplus X E hM) la G.N (X.inc w F))) :=
@@ -451,7 +451,7 @@ theorem inTieSec : InTieSecSt := by
   · rw [hQy, hd, nval_of_ne hb]; exact EReal.coe_ne_bot _
   · intro hj
     rw [hQy, hvat, nval_of_ne (het' hj)]; exact EReal.coe_ne_top _
-  · refine ⟨vV h.T.V (h.ev (sec (xplus X E hM) la G.w 0)), ?_⟩
+  · refine ⟨vV h.T.V (h.ev (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0)), ?_⟩
     simp only [LocalPointData.nu, hQy, hd]
     exact normalized_valuation_mul he _ (hs ζ).s0.ne_zero
   · change (((vV h.T.V (h.ev (emb (xplus X E hM) la G.N (X.inc wF g0))) : ℤ) : ℝ) : EReal) =

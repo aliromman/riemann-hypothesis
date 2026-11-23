@@ -315,7 +315,7 @@ theorem rawR_smul (c : ℂ) (Φ : Q.RadSp P.k P.r Bs.z Bs.z' Bs.π Bs.π') (ρ :
 
 theorem toSm_smul' {u : MA.Qp P.r P.TT → ℂ} (c : ℂ) (hu : u ∈ MA.smSub P.r P.TT) :
     MA.toSm P (c • u) = c • MA.toSm P u := by
-  rw [toSm_of_mem P hu, toSm_of_mem P (Subalgebra.smul_mem _ hu c)]
+  rw [Formalism.FourierDecayAlt.P.CutMP.Gauge.toSm_of_mem P hu, Formalism.FourierDecayAlt.P.CutMP.Gauge.toSm_of_mem P (Subalgebra.smul_mem _ hu c)]
   rfl
 
 end intw

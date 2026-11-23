@@ -73,7 +73,7 @@ theorem rll_int_of_loc (x : E ⊗[F] Formalism.L2.Herm.Af F)
     have e3 : ((1 : E) ⊗ₜ[F] (w' : Formalism.L2.Herm.Af F)) * (levelafC E D * x) =
         ((1 : E) ⊗ₜ[F] (1 - ∑ v ∈ S, (afsplitI v 1 : Formalism.L2.Herm.Af F))) * x := by
       rw [← mul_assoc, levelafC, Algebra.TensorProduct.tmul_mul_tmul, one_mul, mul_comm (w' : Formalism.L2.Herm.Af F), key]
-    rw [e3, TensorProduct.tmul_sub, TensorProduct.tmul_sum, sub_mul, Finset.sum_mul, ← Algebra.TensorProduct.one_def,
+    rw [e3, TensorProduct.tmul_sub, TensorProduct.tmul_sum, _root_.sub_mul, Finset.sum_mul, ← Algebra.TensorProduct.one_def,
       one_mul]
     have e4 : ∀ v ∈ S, afsplitIE v (prV (E := E) v x) = ((1 : E) ⊗ₜ[F] (afsplitI v 1 : Formalism.L2.Herm.Af F)) * x :=
       fun v _ => by rw [afsplit_decomp, rll_eps_eq]

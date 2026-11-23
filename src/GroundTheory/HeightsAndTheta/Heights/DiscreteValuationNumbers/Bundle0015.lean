@@ -415,7 +415,7 @@ set_option maxSynthPendingDepth 1
 namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial
-open GroundTheory.Heights₂.Heights.NumbersDVR.Bundles (joinCoord fnField)
+open IndefiniteRowSideFullHecke.NumbersDVR.Bundles (joinCoord fnField)
 
 def BirationalJoin.Statement : Prop :=
   ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] (Ω : Type) [Field Ω]
