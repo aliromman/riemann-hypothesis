@@ -352,7 +352,8 @@ theorem one_add_pow_sub_one_mem {R : Type*} [CommRing R] (I : Ideal R) {n e k : 
     exact Ideal.mul_mem_mul hy hy
 
 theorem natCast_mem_maximalIdeal_pow_of_ordIs {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
-    [IsNonarchimedeanLocalField F] {p e : ℕ} (h : OrdIs F p e) : (p : 𝒪[F]) ∈ 𝓂[F] ^ e := by
+    [IsNonarchimedeanLocalField F] {p e : ℕ} (h : OrdIs F p e) :
+    (p : 𝒪[F]) ∈ (@IsLocalRing.maximalIdeal ↥𝒪[F] _ (ValuationRing.isLocalRing _)) ^ e := by
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible 𝒪[F]
   rw [hϖ.maximalIdeal_eq, Ideal.span_singleton_pow, Ideal.mem_span_singleton,
     ← IsDiscreteValuationRing.addVal_le_iff_dvd, IsDiscreteValuationRing.addVal_pow,

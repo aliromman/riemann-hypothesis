@@ -395,7 +395,10 @@ open PowerSeries Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Fo
 
 namespace GlobalTheory.FinExtIntegers
 
-theorem dvr_complete : ∀ {l : ℕ} [Fact l.Prime] (LL : FinExt l), ∃ _ : IsDiscreteValuationRing ↥(OL LL), IsAdicComplete (IsLocalRing.maximalIdeal ↥(OL LL)) ↥(OL LL) ∧ ¬ IsUnit ((l : ℕ) : ↥(OL LL)) := by
+theorem dvr_complete : ∀ {l : ℕ} [Fact l.Prime] (LL : FinExt l),
+    ∃ dvr : IsDiscreteValuationRing ↥(OL LL),
+      IsAdicComplete (@IsLocalRing.maximalIdeal ↥(OL LL) _ dvr.toIsLocalRing) ↥(OL LL) ∧
+      ¬ IsUnit ((l : ℕ) : ↥(OL LL)) := by
   intro l _ LL
   unfold OL
   have hfd : FiniteDimensional ℚ_[l] ↥LL.1 := LL.2
