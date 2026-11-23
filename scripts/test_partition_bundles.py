@@ -131,6 +131,81 @@ class PartitionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Wrapper expansion"):
             Partition(self.old, self.bundled, ["Provider"])
 
+    def test_reordering_keeps_repeated_import_modes_and_comments(self):
+        modes = {"A": PUBLIC | ALL}
+        old = {"A": Source(), "B": Source(), "Client": Source(["B", "A", "A"], modes=modes)}
+        bundled = dict(old, Client=Source(["A", "A", "B"], modes=modes))
+        plan = Partition(old, bundled, ["A", "B"], [["A", "B"]])
+        text = "public import A -- export\nimport all A -- private data\npublic import B\n"
+        self.assertEqual(plan.render("Client", text), "public import B\npublic import A -- export\nimport all A -- private data\n")
+
+    def test_order_is_specific_to_each_interface(self):
+        old = {name: Source() for name in "ABCD"}
+        old["Left"] = Source(["A", "C", "B", "D"])
+        old["Right"] = Source(["C", "A", "D", "B"])
+        bundled = {name: old[name] for name in "ABCD"}
+        bundled["Merged"] = Source(["A", "B", "C", "D"], ["Left", "Right"])
+        whole = Partition(old, bundled, list("ABCD"), [list("ABCD")])
+        self.assertNotEqual(whole.location["Left"], whole.location["Right"])
+        related = Partition(old, bundled, list("ABCD"), [["A", "B"], ["C", "D"]])
+        self.assertEqual(related.location["Left"], related.location["Right"])
+        old["Right"] = Source(["C", "B", "D", "A"])
+        reversed_pair = Partition(old, bundled, list("ABCD"), [["A", "B"], ["C", "D"]])
+        self.assertNotEqual(reversed_pair.location["Left"], reversed_pair.location["Right"])
+
+    @unittest.skipUnless(shutil.which("lean"), "Lean is required for the provider-order fixture")
+    def test_lean_observes_the_original_named_argument_and_equal_priority_instance(self):
+        old = {"Key": Source(), "A": Source(["Key"]), "B": Source(["Key"]),
+               "Left": Source(["A", "B"]), "Right": Source(["B", "A"]),
+               "UseLeft": Source(["Left"]), "UseRight": Source(["Right"])}
+        bundled = {k: old[k] for k in ("Key", "A", "B")}
+        bundled.update(Merged=Source(["A", "B"], ["Left", "Right"]),
+                       UseLeft=Source(["Merged"]), UseRight=Source(["Merged"]))
+
+        def provider(binder, value):
+            return ("module\npublic import Key\n"
+                    f"public theorem sameTheorem ({binder} : Nat) : True := trivial\n"
+                    f"public instance instance{value} : Marker Bool := ⟨{value}⟩\n")
+
+        def consumer(dependency, binder, value):
+            return (f"module\npublic import {dependency}\n"
+                    f"example : True := sameTheorem ({binder} := 0)\n"
+                    f"example : (inferInstance : Marker Bool).tag = {value} := rfl\n")
+
+        original = {"Key": "module\npublic class Marker (α : Type) where\n  tag : Nat\n",
+                    "A": provider("left", 1), "B": provider("right", 2),
+                    "Left": "module\npublic import A\npublic import B\n",
+                    "Right": "module\npublic import B\npublic import A\n",
+                    "UseLeft": consumer("Left", "right", 2), "UseRight": consumer("Right", "left", 1)}
+        submitted = {n: original[n] for n in ("Key", "A", "B")}
+        submitted["Merged"] = ("module\npublic import A -- from A\npublic import B -- from B\n"
+                               "-- bundled from Left\nsection\nend\n-- bundled from Right\nsection\nend\n")
+        submitted.update(UseLeft=consumer("Merged", "right", 2), UseRight=consumer("Merged", "left", 1))
+        sets = Partition(old, bundled, ["A", "B"])
+        ordered = Partition(old, bundled, ["A", "B"], [["A", "B"]])
+        cases = [("original", original, set())]
+        for label, plan, bad in [("sets", sets, {"UseRight"}), ("ordered", ordered, set())]:
+            sources = {n: plan.render(n, submitted[plan.previous[n]]) for n in plan.members}
+            cases.append((label, sources, bad))
+        self.assertIn("public import B -- from B\npublic import A -- from A", cases[2][1]["Right"])
+        with TemporaryDirectory() as directory:
+            for label, sources, expected in cases:
+                root = Path(directory) / label
+                root.mkdir()
+                env = dict(os.environ, LEAN_PATH=str(root))
+                middle = [n for n in sources if n not in {"Key", "A", "B", "UseLeft", "UseRight"}]
+                failed = set()
+                for n in ["Key", "A", "B", *middle, "UseLeft", "UseRight"]:
+                    file = root / (n + ".lean")
+                    file.write_text(sources[n])
+                    result = subprocess.run(["lean", "-j1", "-R", str(root), "-o", str(file.with_suffix(".olean")), str(file)],
+                                            cwd=root, env=env, text=True, capture_output=True)
+                    if result.returncode:
+                        self.assertIn("Invalid argument name", result.stdout + result.stderr)
+                        self.assertIn("rfl", result.stdout + result.stderr)
+                        failed.add(n)
+                self.assertEqual(failed, expected, label)
+
     def test_rejects_cyclic_input(self):
         self.old["Provider"].imports.append("User")
         with self.assertRaises(CycleError):

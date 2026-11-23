@@ -1,7 +1,7 @@
 """Partition existing consolidation bundles by their original access to selected modules."""
 
 import argparse
-from collections import defaultdict
+from collections import Counter, defaultdict, deque
 from contextlib import contextmanager
 from dataclasses import dataclass, field
 from difflib import unified_diff
@@ -121,8 +121,74 @@ def internal(graph):
     return {name: [d for d in source.imports if d in graph] for name, source in graph.items()}
 
 
+def ordered_profiles(imports, modes, provider_ids, groups, preferred=None):
+    """Project dependency-first visits onto each group of competing providers.
+
+    With candidate headers, choose the submitted order if it gives the required
+    group profiles. Return the names of the modules that can keep this order.
+    """
+    all_selected = len(groups) == 1 and len(groups[0]) == len(provider_ids)
+    groups_by_id = defaultdict(list)
+    for group_id, group in enumerate(groups):
+        for provider in group:
+            groups_by_id[provider_ids[provider]].append(group_id)
+
+    @cache
+    def project(order):
+        if all_selected:
+            return order
+        by_group = defaultdict(list)
+        for provider in order:
+            for group_id in groups_by_id[provider]:
+                by_group[group_id].append(provider)
+        # The access mask already records all single providers.
+        return tuple((g, tuple(values)) for g, values in sorted(by_group.items()) if len(values) > 1)
+
+    @cache
+    def join(chunks, provider):
+        seen = dict.fromkeys(item for chunk in chunks for item in chunk)
+        if provider is not None:
+            seen[provider] = None
+        return tuple(seen)
+
+    orders = {}
+    profiles = {}
+    kept = set()
+
+    def read(name, dependencies):
+        reachable, exported, available, private_data = [], [], [], []
+        for dependency in dependencies:
+            child = orders[dependency]
+            mode = modes[name].get(dependency, PUBLIC)
+            reachable.append(child[0])
+            if mode & PUBLIC:
+                exported.append(child[1])
+            if mode & ALL:
+                available.append(child[2])
+                private_data.append(child[3])
+            else:
+                available.append(child[1])
+        provider = provider_ids.get(name)
+        return tuple(join(tuple(part for part in scope if part), provider)
+                     for scope in (reachable, exported, available, private_data))
+
+    for name in TopologicalSorter(imports).static_order():
+        if preferred is not None:
+            dependencies, required = preferred[name]
+            candidate = read(name, dependencies)
+            profile = tuple(map(project, candidate))
+            if profile == required:
+                orders[name], profiles[name] = candidate, profile
+                kept.add(name)
+                continue
+        orders[name] = read(name, imports[name])
+        profiles[name] = tuple(map(project, orders[name]))
+    return profiles, kept
+
+
 class Partition:
-    def __init__(self, original, bundled, providers):
+    def __init__(self, original, bundled, providers, order_groups=()):
+        self.order_groups = order_groups
         self.bundled = bundled
         self.owner = {}
         for bundle, source in bundled.items():
@@ -134,14 +200,20 @@ class Partition:
             raise ValueError("Each provider must be a distinct, retained original module")
 
         bits = {n: 1 << i for i, n in enumerate(providers)}
-        original_mask = visibility(internal(original), {n: s.modes for n, s in original.items()}, bits)
+        dependencies = internal(original)
+        modes = {n: source.modes for n, source in original.items()}
+        original_mask = visibility(dependencies, modes, bits)
+        ids = {name: i for i, name in enumerate(providers)}
+        prior_order = {}
+        if order_groups:
+            prior_order, _ = ordered_profiles(dependencies, modes, ids, order_groups)
         self.members = {}
         self.location = {}
         self.previous = {}
         for bundle, source in bundled.items():
             partitions = defaultdict(list)
             for member in source.members or [bundle]:
-                partitions[original_mask[member]].append(member)
+                partitions[(original_mask[member], prior_order.get(member))].append(member)
             largest = max(partitions, key=lambda mask: len(partitions[mask]))
             for mask, group in partitions.items():
                 destination = bundle if mask == largest else group[0]
@@ -168,6 +240,7 @@ class Partition:
         self.replacements = {}
         self.imports = {}
         self.modes = {}
+        submitted_headers = {}
         prior_edges = defaultdict(set)
         for destination, group in self.members.items():
             parent = self.previous[destination]
@@ -189,8 +262,14 @@ class Partition:
                                 replacements[before].append(after)
             self.replacements[destination] = replacements
             self.modes[destination] = {d: mode for d, mode in modes.items() if mode != PUBLIC}
-            # Keep the submitted order for every dependency that stays in the import list.
-            self.imports[destination] = [d for old in bundled[parent].imports for d in replacements[old]]
+            submitted = [d for old in bundled[parent].imports for d in replacements[old]]
+            if order_groups:
+                submitted_headers[destination] = submitted
+                # modes has the first-seen order of the original, expanded dependencies.
+                multiplicity = Counter(submitted)
+                self.imports[destination] = [d for d in modes for _ in range(multiplicity[d])]
+            else:
+                self.imports[destination] = submitted
         for parent, source in bundled.items():
             if prior_edges[parent] != set(source.imports):
                 raise ValueError(f"Wrapper expansion does not reproduce the submitted imports of {parent}")
@@ -212,6 +291,22 @@ class Partition:
             if after[target] != original_mask[member]:
                 raise ValueError(f"The partition changed provider access for {member} in {target}")
 
+        if order_groups:
+            relocated_ids = {self.location[name]: i for name, i in ids.items()}
+            if len(relocated_ids) != len(ids):
+                raise ValueError("Ordered providers must have distinct output modules")
+            preferred = {n: ([d for d in deps if d in self.members], prior_order[self.members[n][0]])
+                         for n, deps in submitted_headers.items()}
+            actual_order, kept = ordered_profiles(self.graph, self.modes, relocated_ids,
+                                                  [[self.location[n] for n in group] for group in order_groups],
+                                                  preferred)
+            for target in kept:
+                self.graph[target] = preferred[target][0]
+                self.imports[target] = submitted_headers[target]
+            for member, target in self.location.items():
+                if actual_order[target] != prior_order[member]:
+                    raise ValueError(f"The partition changed provider order for {member} in {target}")
+
     def changed(self, n):
         parent = self.previous[n]
         old = self.bundled[parent]
@@ -228,9 +323,22 @@ class Partition:
             match = HEADER.fullmatch(line)
             if match:
                 for dep in self.replacements[n][match[2]]:
-                    lines.append(with_mode(match[1], self.modes[n].get(dep, PUBLIC)) + dep + match[3])
+                    mode = self.modes[n].get(dep, PUBLIC)
+                    same_mode = self.bundled[self.previous[n]].modes.get(match[2], PUBLIC) == mode
+                    # Keep separate public and import-all lines when their joint access stays the same.
+                    prefix = match[1] if self.order_groups and same_mode else with_mode(match[1], mode)
+                    lines.append(prefix + dep + match[3])
             else:
                 lines.append(line)
+        if self.order_groups:
+            slots = [i for i, line in enumerate(lines) if HEADER.fullmatch(line)]
+            by_target = defaultdict(deque)
+            for i in slots:
+                by_target[HEADER.fullmatch(lines[i])[2]].append(lines[i])
+            if {dep: len(items) for dep, items in by_target.items()} != Counter(self.imports[n]):
+                raise ValueError(f"Cannot reproduce the ordered import header of {n}")
+            for i, target in zip(slots, self.imports[n]):
+                lines[i] = by_target[target].popleft()
         if markers:
             keep = set(self.members[n])
             for j, marker in enumerate(markers):
@@ -299,12 +407,31 @@ def changed_providers(mask, providers):
         mask ^= bit
 
 
+def read_order_groups(path):
+    groups = {}
+    for line in path.read_text().splitlines():
+        if not line.strip():
+            continue
+        label, *names = line.split("\t")
+        if not label or label in groups or len(set(names)) != len(names) or len(names) < 2 or "" in names:
+            raise ValueError(f"Expected a unique label and at least two distinct providers in {line!r}")
+        groups[label] = names
+    if not groups:
+        raise ValueError("The order group file is empty")
+    return list(groups.values())
+
+
 def main():
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument("--repo", type=Path, default=Path("."))
     cli.add_argument("--base", required=True, help="revision before the wrapper and bundle passes")
     cli.add_argument("--consolidated", required=True, help="revision containing the submitted bundles")
     cli.add_argument("--provider", action="append", default=[], help="original module to protect")
+    order = cli.add_mutually_exclusive_group()
+    order.add_argument("--preserve-order", action="store_true",
+                       help="preserve the relative visit order of all selected providers")
+    order.add_argument("--order-groups", type=Path,
+                       help="select providers and preserve order within each labeled tab-separated group")
     cli.add_argument("--provider-list", type=Path, help="file with one original provider module per line")
     cli.add_argument("--patch", type=Path, help="write the complete source patch")
     cli.add_argument("--affected", type=Path, help="write one TSV row per original module with a changed provider set")
@@ -314,6 +441,16 @@ def main():
     providers = args.provider.copy()
     if args.provider_list:
         providers.extend(s for line in args.provider_list.read_text().splitlines() if (s := line.strip()))
+    groups = read_order_groups(args.order_groups) if args.order_groups else []
+    if groups:
+        known = set(providers)
+        for group in groups:
+            for name in group:
+                if name not in known:
+                    providers.append(name)
+                    known.add(name)
+    elif args.preserve_order:
+        groups = [providers]
     if not providers:
         cli.error("specify at least one provider with --provider or --provider-list")
     if args.materialize and not args.target:
@@ -323,11 +460,13 @@ def main():
         for rev in (args.base, args.consolidated))
     original = read_graph(args.repo, base)
     bundled = read_graph(args.repo, consolidated)
-    plan = Partition(original, bundled, providers)
+    plan = Partition(original, bundled, providers, groups)
     print(f"Source modules: {len(bundled)} -> {len(plan.members)}")
     print(f"Provider reachability differences across {len(plan.location)} retained origins: {len(plan.differences)} -> 0")
     print(f"Provider access differences by scope: public exports {plan.scope_counts.exported} -> 0, "
           f"module bodies {plan.scope_counts.available} -> 0, private data {plan.scope_counts.private_data} -> 0")
+    if groups:
+        print(f"Verified provider order in {len(groups)} groups across {len(plan.location)} retained origins")
     print(f"New or changed source files: {sum(plan.changed(n) for n in plan.members)}")
     destinations = []
     for target in args.target:
