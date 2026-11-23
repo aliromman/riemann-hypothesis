@@ -1,7 +1,6 @@
 module
 
 public import Mathlib
-public import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ComplexPhaseCalculusRootOfUnityStatement
 public import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IntMIffInt
 public import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.Bundle0002
 public import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.Bundle0006
