@@ -6,7 +6,7 @@ from graphlib import TopologicalSorter
 import re
 import subprocess
 
-from partition_bundles import ALL, MEMBER, PUBLIC, git, internal, path_of
+from partition_bundles import ALL, MEMBER, PUBLIC, git, internal, path_of, stage_sources
 
 
 # The original compiler ranges refer to these Git blobs.
@@ -47,12 +47,49 @@ def member_bounds(source, member):
     raise ValueError(f"Missing member {member}")
 
 
-def declared(source, token):
-    command = r"\b(?:theorem|lemma|def|abbrev|opaque|axiom|inductive|structure|class|instance)\s+"
-    matches = re.findall(command + re.escape(token) + r"(?![\w'.])", source)
+# Lean block comments can nest. Ignore quoted text when looking for a comment opener.
+TRIVIA = re.compile(r'/-|--[^\n]*|(?<![\w\'])r(?P<hashes>#+)"|"(?:[^"\\]|\\[\s\S])*"|«[^»]*»')
+COMMENT = re.compile(r"/-|-/")
+COMMAND = (r"^[ \t]*(?:@\[[^\]\n]+\][ \t]*)*"
+           r"(?P<modifiers>(?:(?:public|private|protected|noncomputable|unsafe|partial)\s+)*)"
+           r"(?:theorem|lemma|def|abbrev|opaque|axiom|inductive|structure|class|instance)\s+")
+
+
+def source_commands(text):
+    pieces = []
+    offset = 0
+    while match := TRIVIA.search(text, offset):
+        pieces.append(text[offset:match.start()])
+        end = match.end()
+        if match[0] == "/-":
+            depth = 1
+            for mark in COMMENT.finditer(text, end):
+                depth += 1 if mark[0] == "/-" else -1
+                if not depth:
+                    end = mark.end()
+                    break
+            else:
+                raise ValueError("Unclosed Lean block comment")
+        elif match["hashes"]:
+            closing = '"' + match["hashes"]
+            stop = text.find(closing, end)
+            if stop < 0:
+                raise ValueError("Unclosed Lean raw string")
+            end = stop + len(closing)
+        pieces.append(" " + "\n" * text.count("\n", match.start(), end))
+        offset = end
+    return "".join(pieces) + text[offset:]
+
+
+def declaration_visibility(source, token):
+    matches = list(re.finditer(COMMAND + re.escape(token) + r"(?![\w'.])", source_commands(source), re.M))
     if len(matches) > 1:
         raise ValueError(f"Ambiguous source declaration {token}")
-    return bool(matches)
+    return "private" not in matches[0]["modifiers"].split() if matches else None
+
+
+def declared(source, token):
+    return declaration_visibility(source, token) is not None
 
 
 def inherited(dependencies, modes, known):
@@ -96,7 +133,7 @@ def restore_providers(repo, stage, original, plan, origins, work):
         source = read(DECLARATION_SOURCE, member)
         for entry in entries:
             command = command_at(source, entry.bounds)
-            if not declared(command, entry.token):
+            if declaration_visibility(command, entry.token) != entry.public:
                 raise ValueError(f"Original compiler range does not contain {entry.name} in {member}")
 
     changes = defaultdict(list)
@@ -113,7 +150,10 @@ def restore_providers(repo, stage, original, plan, origins, work):
                 bit = bits[entry.name]
                 if entry.rename and declared(text, entry.rename):
                     continue
-                present = declared(text, entry.token)
+                local_visibility = declaration_visibility(text, entry.token)
+                if local_visibility is not None and local_visibility != entry.public:
+                    raise ValueError(f"Declaration visibility changed for {entry.name} in {member}")
+                present = local_visibility is not None
                 if present and entry.public and public & bit:
                     raise ValueError(f"Duplicate declaration {entry.name} in {target}")
                 available = public if entry.public else body
@@ -162,10 +202,5 @@ def restore_providers(repo, stage, original, plan, origins, work):
                 raise ValueError(f"The merged source lacks {entry.name}")
         edited[target] = current[:lo] + merged.stdout + current[hi:]
 
-    index = []
-    for target, text in sorted(edited.items()):
-        oid = subprocess.check_output(git(repo, "hash-object", "-w", "--stdin"), input=text, text=True).strip()
-        index.append("100644 " + oid + "\t" + path_of(target) + "\n")
-    if index:
-        subprocess.run(git(repo, "update-index", "--index-info"), input="".join(index), text=True, check=True)
+    stage_sources(repo, edited)
     return [entry for entries in changes.values() for entry in entries]

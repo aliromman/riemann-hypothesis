@@ -58,6 +58,15 @@ def git(repo, *args):
     return ["git", "-C", str(repo), *args]
 
 
+def stage_sources(repo, changed):
+    index = []
+    for module, text in sorted(changed.items()):
+        oid = subprocess.check_output(git(repo, "hash-object", "-w", "--stdin"), input=text, text=True).strip()
+        index.append("100644 " + oid + "\t" + path_of(module) + "\n")
+    if index:
+        subprocess.run(git(repo, "update-index", "--index-info"), input="".join(index), text=True, check=True)
+
+
 def read_graph(repo, revision):
     paths = subprocess.check_output(git(repo, "ls-tree", "-rz", "--name-only", revision, "--", "src"))
     modules = {module_of(p): Source() for p in paths.decode().split("\0") if p.endswith(".lean")}

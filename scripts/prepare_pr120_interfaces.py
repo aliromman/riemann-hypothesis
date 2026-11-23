@@ -8,6 +8,7 @@ from pathlib import Path
 import subprocess
 from tempfile import TemporaryDirectory
 
+from route_author_imports import AUTHOR_REVISION, check_original_routes, read_routes, restore_imports, take_imports
 from required_duplicate_providers import read_origins, restore_providers
 from partition_bundles import Partition, atomic_output, git, read_graph, read_order_groups, write_outputs
 
@@ -30,6 +31,8 @@ def main():
     cli.add_argument("--integration", default=INTEGRATION, help="integration revision with the reviewed 4.36 fixes")
     cli.add_argument("--with-instance-providers", action="store_true",
                      help="also preserve access to the seven confirmed instance providers")
+    cli.add_argument("--with-all-confirmed-providers", action="store_true",
+                     help="also preserve the seven prior providers, both measure providers and the duality provider")
     cli.add_argument("--patch", type=Path, required=True, help="write a single patch against the integration revision")
     cli.add_argument("--locations", type=Path, help="write the destination of each retained original module")
     args = cli.parse_args()
@@ -38,9 +41,16 @@ def main():
     objects = output(args.repo, "rev-parse", "--path-format=absolute", "--git-path", "objects")
     groups = read_order_groups(HERE / "pr120_conflicting_interfaces.tsv")
     names = [name for group in groups for name in group]
-    if args.with_instance_providers:
+    if args.with_instance_providers or args.with_all_confirmed_providers:
         names.extend((DATA / "confirmed_instance_providers.txt").read_text().splitlines())
+    if args.with_all_confirmed_providers:
+        names.extend((DATA / "measure_and_duality_providers.txt").read_text().splitlines())
     providers = list(dict.fromkeys(names))
+    known_author = subprocess.run(git(args.repo, "rev-parse", "--verify", "--quiet", AUTHOR_REVISION + "^{commit}"),
+                                  stdout=subprocess.DEVNULL).returncode == 0
+    includes_author = known_author and subprocess.run(
+        git(args.repo, "merge-base", "--is-ancestor", AUTHOR_REVISION, revision)).returncode == 0
+    routes = read_routes(DATA / "author_imports.tsv") if includes_author else {}
 
     with TemporaryDirectory() as directory:
         work = Path(directory)
@@ -50,19 +60,30 @@ def main():
         subprocess.run(git(repo, "read-tree", revision), check=True)
         # Restore the original declarations and caller arguments before computing their import scopes.
         subprocess.run(git(repo, "apply", "--cached", str(DATA / "restore_interfaces.patch")), check=True)
+        if routes:
+            take_imports(repo, output(repo, "write-tree"), routes)
         source = output(repo, "write-tree")
         original = read_graph(repo, ORIGINAL)
+        if routes:
+            check_original_routes(original, routes)
         plan = Partition(original, read_graph(repo, source), providers, groups)
         generated = work / "partition.patch"
         with generated.open("w") as file:
             write_outputs(plan, repo, source, [], file, None)
         subprocess.run(git(repo, "apply", "--cached", "--whitespace=nowarn", str(generated)), check=True)
         staged = output(repo, "write-tree")
+        if routes:
+            restore_imports(repo, staged, routes, plan, providers, groups)
+            staged = output(repo, "write-tree")
         origins = read_origins(DATA / "duplicate_origins.tsv")
         restored = restore_providers(repo, staged, original, plan, origins, work)
         tree = output(repo, "write-tree")
-        if revision == INTEGRATION and tree != EXPECTED[args.with_instance_providers]:
+        if revision == INTEGRATION and not args.with_all_confirmed_providers and tree != EXPECTED[args.with_instance_providers]:
             raise ValueError(f"Unexpected source tree {tree}")
+
+        if (revision == "95b530edbcf4c5132f8c51c27fa1264c99449fa1" and args.with_all_confirmed_providers and
+                tree != "f3a15c310e9e97111f686408170178edb3462721"):
+            raise ValueError(f"Unexpected current integration source tree {tree}")
 
         with atomic_output(args.patch) as patch:
             subprocess.run(git(repo, "diff", "--binary", "--no-renames", "--full-index", revision, tree, "--", "src"),

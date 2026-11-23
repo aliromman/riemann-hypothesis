@@ -70,6 +70,14 @@ class RestoredProviderTests(unittest.TestCase):
         self.assertEqual(self.restore(tree, plan), [])
         self.assertEqual(self.run_git("write-tree"), tree)
 
+    def test_commented_and_quoted_declarations_are_absent(self):
+        fake = ("-- [dedup] theorem oldPublic : True := trivial\n"
+                "/- nested /- comment -/\ntheorem oldPublic : True := trivial\n-/\n"
+                'def documentation := r#"\ntheorem oldPublic : True := trivial\n"#\n')
+        self.assertFalse(duplicates.declared(fake, "oldPublic"))
+        self.assertTrue(duplicates.declared(fake + "@[simp] theorem oldPublic : True := trivial", "oldPublic"))
+        self.assertFalse(duplicates.declaration_visibility("private theorem oldPublic : True := trivial", "oldPublic"))
+
     def test_private_import_cannot_supply_a_public_interface(self):
         tree, plan = self.prepare(0)
         with self.assertRaisesRegex(ValueError, "Only a private import supplies oldPublic"):

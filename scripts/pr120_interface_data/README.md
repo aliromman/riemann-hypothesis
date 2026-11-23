@@ -29,3 +29,17 @@ To test the public calling conventions, run the next command after a stock Lake 
 ```sh
 python3 scripts/check_pr120_interfaces.py --locations /tmp/locations.tsv --project . --emit-clients /tmp/pr120-clients
 ```
+
+## Current author and main revisions
+
+To include Rohan Arun’s two follow-up commits and the ten confirmed instance and duality providers, use the merged input below. The first parent includes current community main `51d9b1a28026d458aef9c9af3df8b083276e3d2d`. The second parent is Rohan's `b4f6cadcb41210ca3480d16021fd981cdca551a0`. [Author changes](https://github.com/leanprover-community/riemann-hypothesis/compare/f94106583626ad6b48ac6e239e0b2e5ffc879555...b4f6cadcb41210ca3480d16021fd981cdca551a0)
+
+```sh
+python3 scripts/prepare_pr120_interfaces.py --integration 95b530edbcf4c5132f8c51c27fa1264c99449fa1 --with-all-confirmed-providers --patch /tmp/current.patch --locations /tmp/current-locations.tsv
+```
+
+The output has 64,934 source modules. Its Git tree is `f3a15c310e9e97111f686408170178edb3462721`. Relative to the 149,397 original source modules on this main, it removes 84,463. The ten selected providers include the seven in `confirmed_instance_providers.txt`, the two double-coset measure modules, and the neutral local fields duality module.
+
+Rohan added eight public import lines in seven source files. Four repeat an existing destination. Three refer to statement wrappers removed by PR 120. `author_imports.tsv` records the original member and surviving supplier for each use. The three recovered supplier declarations are `GlobalTheory.FN.germ_main`, `GlobalTheory.Phase.Calc.calculus`, and `GlobalTheory.gramDet_closed_forms`. The addition to `IsKummerCharacterAtLevelAddZeroCongr` is a shortcut to an original transitive import. Of the eight original members of its destination bundle, only `GlTwoPosRatMobiusBasicLaws` was reachable from that consumer. The generator keeps each new occurrence at its original header position on the relevant output, then checks all protected access modes and orders.
+
+Of the 107 member bodies that Rohan changed in this update, 102 retain exactly the text in the integration merge. The other five regain the separate public helpers that the update deleted or commented out to avoid bundle collisions. None of these five other changes affects the surrounding proofs.
