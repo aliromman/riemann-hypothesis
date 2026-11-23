@@ -199,7 +199,8 @@ theorem coeff_tf (x : WK K) (h : (l : WK K) * x = 0) : x = 0 := by
   exact (mul_eq_zero.1 h).resolve_left l0
 
 theorem coeff_complete (K : FinExt l) : IsAdicComplete (Ideal.span {(l : WK K)}) (WK K) := by
-  obtain ⟨_, hc, -, lu, -⟩ := GlobalTheory.Per.integers_completeDVR l (unr K)
+  obtain ⟨dvr, hc, -, lu, -⟩ := GlobalTheory.Per.integers_completeDVR l (unr K)
+  have : IsLocalRing (WK K) := dvr.toIsLocalRing
   have h : IsLocalRing.maximalIdeal (WK K) = Ideal.span {(l : WK K)} :=
     le_antisymm (fun w hw => Ideal.mem_span_singleton.2 (dvd_of_not_isUnit K w hw))
       ((Ideal.span_singleton_le_iff_mem _).2 lu)
