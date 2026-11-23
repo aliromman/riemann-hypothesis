@@ -18,6 +18,9 @@ class IsCO (O R : Type) [CommRing O] [IsLocalRing O] [CommRing R] [Algebra O R] 
 
 attribute [instance] IsCO.complete IsCO.isLocalHom
 
+-- The local ring does not determine the coefficient ring O.
+attribute [instance low] IsCO.toIsLocalRing
+
 instance IsCO.self (O : Type) [CommRing O] [IsLocalRing O] [IsNoetherianRing O]
     [IsAdicComplete (maximalIdeal O) O] : IsCO O O where
   complete := inferInstance
