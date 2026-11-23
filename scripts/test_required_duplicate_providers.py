@@ -1,0 +1,80 @@
+import shutil
+import subprocess
+import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from types import SimpleNamespace
+from unittest.mock import patch
+
+import required_duplicate_providers as duplicates
+from partition_bundles import PUBLIC, Source, git
+
+
+class RestoredProviderTests(unittest.TestCase):
+    def setUp(self):
+        directory = TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        self.work = Path(directory.name)
+        self.repo = self.work / "repo"
+        subprocess.run(["git", "init", "--quiet", str(self.repo)], check=True)
+        (self.repo / "src").mkdir()
+        self.original = {"First": Source(), "Second": Source()}
+        self.statement = "theorem oldPublic : True := True.intro"
+        self.code = "module\n\n@[expose] public section\n\n"
+        self.caller = "\nexample : True := oldPublic\n"
+        self.origins = {}
+        for member in self.original:
+            (self.repo / "src" / (member + ".lean")).write_text(self.code + self.statement + "\n" + self.caller)
+            origin = duplicates.Origin("oldPublic", member, member, "oldPublic", True, "", (4, 0, 4, len(self.statement)))
+            self.origins[member] = [origin]
+        self.run_git("add", "src")
+        self.historical = self.run_git("write-tree")
+
+    def run_git(self, *args):
+        return subprocess.check_output(git(self.repo, *args), text=True).strip()
+
+    def prepare(self, mode=None):
+        code = self.code
+        if mode is not None:
+            edge = "public import First" if mode == PUBLIC else "import First"
+            code = code.replace("module\n", "module\n" + edge + "\n")
+        (self.repo / "src/Second.lean").write_text(code + self.caller.lstrip("\n"))
+        self.run_git("add", "src/Second.lean")
+        staged = self.run_git("write-tree")
+        members = {n: [n] for n in self.original}
+        graph = {"First": [], "Second": [] if mode is None else ["First"]}
+        modes = {"First": {}, "Second": {} if mode is None else {"First": mode}}
+        return staged, SimpleNamespace(members=members, graph=graph, modes=modes,
+                                       location={n: n for n in members})
+
+    def restore(self, tree, plan):
+        with patch.object(duplicates, "DECLARATION_SOURCE", self.historical), \
+                patch.object(duplicates, "BEFORE_DUPLICATE_CLEANUP", self.historical):
+            return duplicates.restore_providers(self.repo, tree, self.original, plan, self.origins, self.work)
+
+    def test_lost_public_theorem_is_restored(self):
+        tree, plan = self.prepare()
+        self.assertEqual([x.member for x in self.restore(tree, plan)], ["Second"])
+        self.assertEqual(self.run_git("write-tree"), self.historical)
+        if shutil.which("lean"):
+            for ref, succeeds in [(tree, False), (self.historical, True)]:
+                check = self.work / "Sample.lean"
+                check.write_text(self.run_git("show", ref + ":src/Second.lean") + "\n#check @oldPublic\n")
+                result = subprocess.run(["lean", "-j1", check.name], cwd=self.work, capture_output=True, text=True)
+                self.assertEqual(result.returncode == 0, succeeds, result.stdout + result.stderr)
+                if not succeeds:
+                    self.assertIn("Unknown identifier `oldPublic`", result.stdout)
+
+    def test_existing_public_provider_is_sufficient(self):
+        tree, plan = self.prepare(PUBLIC)
+        self.assertEqual(self.restore(tree, plan), [])
+        self.assertEqual(self.run_git("write-tree"), tree)
+
+    def test_private_import_cannot_supply_a_public_interface(self):
+        tree, plan = self.prepare(0)
+        with self.assertRaisesRegex(ValueError, "Only a private import supplies oldPublic"):
+            self.restore(tree, plan)
+
+
+if __name__ == "__main__":
+    unittest.main()
