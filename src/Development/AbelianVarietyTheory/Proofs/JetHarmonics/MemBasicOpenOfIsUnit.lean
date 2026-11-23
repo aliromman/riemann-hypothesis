@@ -280,10 +280,10 @@ theorem subalgebra_eq_top (hx : IsUnivChart G g x) (n : ℕ) (B : Subalgebra R (
     exact Ideal.mem_bot.2 (Subtype.ext h2)
   have h0 : spMap (jetAug R (Fin g) n) ≫ x n = 1 := spMap_jetAug_alt hx n
   have h1 : spMap aug ≫ y' = 1 := by
-    rw [← h0, ← hy', ← Category.assoc, spMap_comp]
+    rw [← h0, ← hy', ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp]
   obtain ⟨ψ, ⟨hψ1, hψ2⟩, -⟩ := hx.2.2 B aug n hker y' h1
   obtain ⟨ψ₀, -, hu⟩ := hx.2.2 (ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin g) n) (jetAug R (Fin g) n) n (ker_jetAug_pow _ _) (x n) h0
-  have e1 : B.val.comp ψ = ψ₀ := hu _ ⟨hψ1, by rw [← spMap_comp, Category.assoc, ← hψ2, hy']⟩
+  have e1 : B.val.comp ψ = ψ₀ := hu _ ⟨hψ1, by rw [← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, ← hψ2, hy']⟩
   have e2 : AlgHom.id R _ = ψ₀ := hu _ ⟨rfl, by
     apply Over.OverMorphism.ext
     rw [Over.comp_left, spMap_left]

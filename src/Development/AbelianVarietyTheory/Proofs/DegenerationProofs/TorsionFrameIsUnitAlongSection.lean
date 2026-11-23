@@ -89,7 +89,7 @@ theorem valF_comp_mem {W : M.Z.Opens} {X : Scheme.{0}} (h : W.toScheme ⟶ X) (x
     Scheme.Hom.appIso_inv_appLE]
   exact valR_res x le_rfl hy _
 
-theorem mem_O_of_pow (hn : IsNormalScheme M.Z) {z : M.Z} {e : Ω} {m : ℕ} (hm : 0 < m) (h : e ^ m ∈ M.O z) :
+theorem mem_O_of_pow (hn : ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme M.Z) {z : M.Z} {e : Ω} {m : ℕ} (hm : 0 < m) (h : e ^ m ∈ M.O z) :
     e ∈ M.O z := by
   have := RatModel.isIntegrallyClosed_O hn z
   have h1 : IsIntegral (M.O z) (e ^ m) := isIntegral_algebraMap (R := M.O z) (x := ⟨_, h⟩)

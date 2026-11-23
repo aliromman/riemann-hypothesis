@@ -265,18 +265,18 @@ noncomputable abbrev lst (m : σ →₀ ℕ) : List σ := (Finsupp.toMultiset m)
 
 theorem polyDeriv_eq_sum_list (P : MvPolynomial σ ℂ) (u : σ → W) {F : W → ℂ} {x : W}
     (hF : AnalyticAt ℂ F x) :
-    polyDeriv P u F x = ∑ m ∈ P.support, P.coeff m * lineDerivList ℂ ((lst m).map u) F x := by
+    ReciprocityTheory.ChartRestriction.G.I2.polyDeriv P u F x = ∑ m ∈ P.support, P.coeff m * lineDerivList ℂ ((lst m).map u) F x := by
   rw [dirPolyDeriv_eq_sum]
   refine Finset.sum_congr rfl fun m _ => ?_
   rw [dirPolyDeriv_monomial_eq_lineDerivList (Multiset.coe_toList _) u hF]
 
 theorem polyDeriv_polyDeriv (P Q : MvPolynomial σ ℂ) (u : σ → W) {F : W × W → ℂ}
     (hF : ∀ p, AnalyticAt ℂ F p) :
-    polyDeriv P u (fun z => polyDeriv Q u (fun w => F (z, w)) 0) 0 =
+    ReciprocityTheory.ChartRestriction.G.I2.polyDeriv P u (fun z => ReciprocityTheory.ChartRestriction.G.I2.polyDeriv Q u (fun w => F (z, w)) 0) 0 =
       ∑ m ∈ P.support, ∑ m' ∈ Q.support, P.coeff m * Q.coeff m' *
         lineDerivList ℂ ((lst m).map (fun s => (u s, 0)) ++ (lst m').map (fun s => (0, u s)))
           F 0 := by
-  have h1 (z : W) : polyDeriv Q u (fun w => F (z, w)) 0 = ∑ m' ∈ Q.support, Q.coeff m' •
+  have h1 (z : W) : ReciprocityTheory.ChartRestriction.G.I2.polyDeriv Q u (fun w => F (z, w)) 0 = ∑ m' ∈ Q.support, Q.coeff m' •
       lineDerivList ℂ ((lst m').map (fun s => (0, u s))) F (LinearMap.inl ℂ W W z) := by
     have ha : AnalyticAt ℂ (fun w => F (z, w)) 0 := (hF _).comp₂ analyticAt_const analyticAt_id
     rw [polyDeriv_eq_sum_list _ _ ha]
@@ -319,8 +319,8 @@ theorem polyDeriv_barP_symm [StarAddMonoid W] [StarModule ℂ W] (P : MvPolynomi
     (hF : ∀ p, AnalyticAt ℂ (fun p : W × W => F p.1 p.2) p)
     (hG : ∀ p, AnalyticAt ℂ (fun p : W × W => G p.1 p.2) p)
     (h : ∀ z w, G z w = conj (F (star w) (star z))) :
-    polyDeriv P u (fun z => polyDeriv (barP P) u (G z) 0) 0 =
-      conj (polyDeriv P u (fun z => polyDeriv (barP P) u (F z) 0) 0) := by
+    ReciprocityTheory.ChartRestriction.G.I2.polyDeriv P u (fun z => ReciprocityTheory.ChartRestriction.G.I2.polyDeriv (barP P) u (G z) 0) 0 =
+      conj (ReciprocityTheory.ChartRestriction.G.I2.polyDeriv P u (fun z => ReciprocityTheory.ChartRestriction.G.I2.polyDeriv (barP P) u (F z) 0) 0) := by
   have hs : (barP P).support = P.support :=
     MvPolynomial.support_map_of_injective _ (starRingEnd ℂ).injective
   have hc (m : σ →₀ ℕ) : (barP P).coeff m = conj (P.coeff m) := MvPolynomial.coeff_map _ _ _
@@ -360,7 +360,7 @@ theorem lineDerivList_exp (ℓ : W →L[ℂ] ℂ) (C : ℂ) (l : List W) :
     ring
 
 theorem polyDeriv_exp (Q : MvPolynomial σ ℂ) (u : σ → W) (ℓ : W →L[ℂ] ℂ) (C : ℂ) :
-    polyDeriv Q u (fun w => C * Complex.exp (ℓ w)) 0 =
+    ReciprocityTheory.ChartRestriction.G.I2.polyDeriv Q u (fun w => C * Complex.exp (ℓ w)) 0 =
       C * MvPolynomial.eval (fun s => ℓ (u s)) Q := by
   have ha : AnalyticAt ℂ (fun w => C * Complex.exp (ℓ w)) 0 :=
     analyticAt_const.mul (ℓ.analyticAt 0).cexp
@@ -398,11 +398,11 @@ theorem coeff_aeval_smul_X [Fintype σ] (t : σ → ℂ) (Q : MvPolynomial σ �
 
 theorem polyDeriv_barP_exp [Fintype σ] [DecidableEq σ] (P : MvPolynomial σ ℂ) (u : σ → W)
     (π : σ → W →L[ℂ] ℂ) (hπ : ∀ s s', π s (u s') = if s = s' then 1 else 0) (t : σ → ℝ) (C : ℝ) :
-    polyDeriv P u (fun z => polyDeriv (barP P) u
+    ReciprocityTheory.ChartRestriction.G.I2.polyDeriv P u (fun z => ReciprocityTheory.ChartRestriction.G.I2.polyDeriv (barP P) u
       (fun w => C * Complex.exp (∑ s, t s * π s z * π s w)) 0) 0 =
       ((C * ∑ m ∈ P.support, (∏ s, (m s).factorial : ℕ) * (∏ s, t s ^ m s) *
         Complex.normSq (P.coeff m) : ℝ) : ℂ) := by
-  have h1 (z : W) : polyDeriv (barP P) u
+  have h1 (z : W) : ReciprocityTheory.ChartRestriction.G.I2.polyDeriv (barP P) u
       (fun w => C * Complex.exp (∑ s, t s * π s z * π s w)) 0 =
       C * MvPolynomial.eval (fun s => ((t s : ℂ) • π s) z) (barP P) := by
     have h := polyDeriv_exp (barP P) u (∑ s, (t s * π s z) • π s) C

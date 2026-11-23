@@ -302,7 +302,7 @@ open Formalism.HermitianLatticeCounting.P
 namespace GlobalTheory.DegCnt.WnLat
 
 variable {K V : Type} [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V]
-  {H : HermSpace K V} {r : ℕ} (N : NF H r)
+  {H : Formalism.HermitianLatticeCounting.S6.HermSpace K V} {r : ℕ} (N : NF H r)
 
 def pr : V →ₗ[K] V := LinearMap.id - NFGeom.proj N
 
@@ -376,7 +376,7 @@ theorem finrank_Wn [FiniteDimensional K V] : Module.finrank K N.Wn + 2 * r = Mod
   rw [hermFramePair_middleSpace_inf_span_z_eq_bot, finrank_bot, finrank_span_singleton (z_ne N), ← NFGeom.Wn_eq N] at h2
   omega
 
-def hW [FiniteDimensional K V] : HermSpace K N.Wn where
+def hW [FiniteDimensional K V] : Formalism.HermitianLatticeCounting.S6.HermSpace K N.Wn where
   B := H.B.domRestrict₁₂ N.Wn N.Wn
   herm x y := H.herm x y
   nondeg x hx := Submodule.coe_eq_zero.1 (nondeg_Wn N x x.2 fun y hy => hx ⟨y, hy⟩)

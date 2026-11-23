@@ -26,22 +26,22 @@ theorem hasse_frac_succ_mem {u : WeightFamilies.Wt D j} {m : ℕ} {g : Rp X la N
     (β : Idx D j N →₀ ℕ) : hasseW X la w β (frac X la w (m + 1) g) ∈ Hfr X la w u := by
   induction hn : Finsupp.degree β using Nat.strong_induction_on generalizing β with
   | _ n ih =>
-  have hs0 : sec X la w 0 ^ (m + 1) ∈ Vw X la N (addL (wt0 D j) wL (m + 1)) := by
-    have h1 : sec X la w 0 ∈ Vw X la N (addL (wt0 D j) wL 1) := by
+  have hs0 : Formalism.MainNotions.Gaps.EtaleWeightGaps.sec X la w 0 ^ (m + 1) ∈ Vw X la N (addL (wt0 D j) wL (m + 1)) := by
+    have h1 : Formalism.MainNotions.Gaps.EtaleWeightGaps.sec X la w 0 ∈ Vw X la N (addL (wt0 D j) wL 1) := by
       rw [add_zero_weight_one_eq]; exact sec_mem_Vw X la w 0
     have := sec_pow_mul_mem X la w 0 (wt0 D j) 1 m h1
     rwa [← pow_succ, add_comm 1 m] at this
-  have hs : algebraMap (Rp X la N) (Lw X la w) (sec X la w 0 ^ (m + 1)) * frac X la w (m + 1) g =
+  have hs : algebraMap (Rp X la N) (Lw X la w) (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec X la w 0 ^ (m + 1)) * frac X la w (m + 1) g =
       algebraMap (Rp X la N) (Lw X la w) g := by
     rw [frac_apply, mul_comm (algebraMap _ _ g), ← mul_assoc, map_pow, ← mul_pow, section_mul_inverse_eq_one, one_pow, one_mul]
   have hq := hasseW_of_mul_eq X la w β hs
   have hmem : ((0 : Idx D j N →₀ ℕ), β) ∈ antidiagonal β := mem_antidiagonal.2 (zero_add β)
   rw [← add_sum_erase _ _ hmem, hasseRp_zero] at hq
-  have hinv : w0inv X la w ^ (m + 1) * algebraMap (Rp X la N) (Lw X la w) (sec X la w 0 ^ (m + 1)) = 1 := by
+  have hinv : w0inv X la w ^ (m + 1) * algebraMap (Rp X la N) (Lw X la w) (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec X la w 0 ^ (m + 1)) = 1 := by
     rw [map_pow, ← mul_pow, mul_comm, section_mul_inverse_eq_one, one_pow]
   have key : hasseW X la w β (frac X la w (m + 1) g) = w0inv X la w ^ (m + 1) *
       (algebraMap (Rp X la N) (Lw X la w) (hasseRp X la N β g) -
-        ∑ q ∈ (antidiagonal β).erase (0, β), algebraMap (Rp X la N) (Lw X la w) (hasseRp X la N q.1 (sec X la w 0 ^ (m + 1))) *
+        ∑ q ∈ (antidiagonal β).erase (0, β), algebraMap (Rp X la N) (Lw X la w) (hasseRp X la N q.1 (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec X la w 0 ^ (m + 1))) *
           hasseW X la w q.2 (frac X la w (m + 1) g)) := by
     rw [← hq, add_sub_cancel_right, ← mul_assoc, hinv, one_mul]
   rw [key, mul_sub, mul_sum]

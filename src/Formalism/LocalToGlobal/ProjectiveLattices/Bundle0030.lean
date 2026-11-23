@@ -337,20 +337,20 @@ variable {D : D7} {B : WeightFamilies.Prov D} {P : ModuliIntegralCharts.Prov D} 
 section Ev
 
 variable (Xr : PJ D B P j) (la : HeightOneSpectrum (𝓞 B.KO)) {N : ℕ} {wL : WeightFamilies.Wt D j} (w : Fin N → B.Cusp j wL)
-  {K2 : Type} [Field K2] (ev : Rp Xr la N →+* K2) (hu : IsUnit (ev (sec Xr la w 0)))
+  {K2 : Type} [Field K2] (ev : Rp Xr la N →+* K2) (hu : IsUnit (ev (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec Xr la w 0)))
 
 lemma liftEv_alg (r : Rp Xr la N) :
-    IsLocalization.Away.lift (sec Xr la w 0) hu (algebraMap (Rp Xr la N) (Lw Xr la w) r) = ev r :=
+    IsLocalization.Away.lift (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec Xr la w 0) hu (algebraMap (Rp Xr la N) (Lw Xr la w) r) = ev r :=
   IsLocalization.lift_eq _ r
 
 lemma liftEv_w0inv :
-    IsLocalization.Away.lift (sec Xr la w 0) hu (w0inv Xr la w) = (ev (sec Xr la w 0))⁻¹ := by
-  have := congrArg (IsLocalization.Away.lift (sec Xr la w 0) hu) (section_mul_inverse_eq_one Xr la w)
+    IsLocalization.Away.lift (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec Xr la w 0) hu (w0inv Xr la w) = (ev (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec Xr la w 0))⁻¹ := by
+  have := congrArg (IsLocalization.Away.lift (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec Xr la w 0) hu) (section_mul_inverse_eq_one Xr la w)
   rw [map_mul, liftEv_alg, map_one] at this
   exact eq_inv_of_mul_eq_one_right this
 
 lemma liftEv_frac (k : ℕ) (g : Rp Xr la N) :
-    IsLocalization.Away.lift (sec Xr la w 0) hu (frac Xr la w k g) = ev g * (ev (sec Xr la w 0))⁻¹ ^ k := by
+    IsLocalization.Away.lift (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec Xr la w 0) hu (frac Xr la w k g) = ev g * (ev (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec Xr la w 0))⁻¹ ^ k := by
   rw [frac_apply, map_mul, map_pow, liftEv_alg, liftEv_w0inv]
 
 end Ev
@@ -410,22 +410,22 @@ theorem addVal_map_of_unr {W V : Type} [CommRing W] [IsDomain W] [IsDiscreteValu
 theorem fromW_of {ζ : PtsG G la} [IsDVRAt ζ] {y : E.Pt' la}
     (h : IsUnif (OsK (xplus X E hM) la G.w) (unifO (xplus X E hM) la G.N))
     (T : CDVR) (ι : Loc ζ →+* T.V) (hloc : IsLocalHom ι) (hunr : ∃ ϖ : Loc ζ, Irreducible ϖ ∧ Irreducible (ι ϖ))
-    (ev : Rp (xplus X E hM) la G.N →+* T.Fr) (hu : IsUnit (ev (sec (xplus X E hM) la G.w 0)))
+    (ev : Rp (xplus X E hM) la G.N →+* T.Fr) (hu : IsUnit (ev (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0)))
     (hv : ∀ (w : WeightFamilies.Wt D j) (F : B.Cusp j w), E.vAt' la y (X.inc w F) =
       nval T.V (ep (unifO (xplus X E hM) la G.N) ζ) (ev (emb (xplus X E hM) la G.N (X.inc w F))))
     (hdeg : ∀ x : ↥(Frac0 (xplus X E hM) la G.w),
-      IsLocalization.Away.lift (sec (xplus X E hM) la G.w 0) hu (x : Lw (xplus X E hM) la G.w) =
+      IsLocalization.Away.lift (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0) hu (x : Lw (xplus X E hM) la G.w) =
         phiAt ζ T.Fr ι h (addVal_map_of_unr ι hunr) (toOsK (xplus X E hM) la G.w x)) :
     Nonempty (FromW ζ y) := by
   have hι : AddValPres ζ ι := addVal_map_of_unr ι hunr
-  have honS : ∀ i : Fin (WeightFamilies.dimY D j), ev (sec (xplus X E hM) la G.w i.succ) = 0 := by
+  have honS : ∀ i : Fin (WeightFamilies.dimY D j), ev (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w i.succ) = 0 := by
     intro i
     have h1 := hdeg (sfr (xplus X E hM) la G.w i.succ)
     rw [(toOsK_eq_zero_iff _ _ _ _).2 (sfr_succ_mem_Jid _ _ _ i), map_zero, coe_sfr, liftEv_frac] at h1
     exact (mul_eq_zero.1 h1).resolve_right (pow_ne_zero _ (inv_ne_zero hu.ne_zero))
   have hord : ∀ x : ↥(Frac0 (xplus X E hM) la G.w),
       toE (ord (unifO (xplus X E hM) la G.N) ζ (toOsK (xplus X E hM) la G.w x)) =
-        nval T.V 1 (IsLocalization.Away.lift (sec (xplus X E hM) la G.w 0) hu (x : Lw (xplus X E hM) la G.w)) := by
+        nval T.V 1 (IsLocalization.Away.lift (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0) hu (x : Lw (xplus X E hM) la G.w)) := by
     intro x
     rw [hdeg x]
     exact toE_ord_eq T.Fr h hι _
@@ -434,7 +434,7 @@ theorem fromW_of {ζ : PtsG G la} [IsDVRAt ζ] {y : E.Pt' la}
   have hevW : ∀ (x : ↥(Frac0 (xplus X E hM) la G.w))
       (a : ↥(As (Op (xplus X E hM) la G.N) (OsK (xplus X E hM) la G.w))),
       toOsK (xplus X E hM) la G.w x = (a : OsK (xplus X E hM) la G.w) →
-      IsLocalization.Away.lift (sec (xplus X E hM) la G.w 0) hu (x : Lw (xplus X E hM) la G.w) =
+      IsLocalization.Away.lift (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec (xplus X E hM) la G.w 0) hu (x : Lw (xplus X E hM) la G.w) =
         algebraMap T.V T.Fr (ι (algebraMap _ (Loc ζ) a)) := by
     intro x a hxa
     rw [hdeg x, hxa]

@@ -455,7 +455,7 @@ theorem PtsAddFirst.proof (hInt : PtsIntegrableStatement) : PtsAddFirst.Statemen
   have hMN : IsSmoothHerm (M.tensor N) := hM.mul hN
   by_cases hΨ : ∃ Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e + 1 + 1) → ℂ), IsGoodProj Q Ψ
   · simp only [ptsIntegral, dif_pos hΨ, ptsIntegralAt]
-    have hI : ∀ A : HermLine ι, IsSmoothHerm A → Integrable (fun y => ∑ᶠ w ∈ fibre Q hΨ.choose y,
+    have hI : ∀ A : HermLine ι, IsSmoothHerm A → Integrable (fun y => ∑ᶠ w ∈ ReciprocityTheory.ChartRestriction.G.Geo.fibre Q hΨ.choose y,
         sheetDensity Q hΨ.choose (Fin.cons (fun z => Real.log (A.h z)) (pot L)) (logNorm E t) y w) := by
       intro A hA
       have h := hInt K ι Q (e + 1) hΨ.choose (Fin.cons A L) E t hQ hΨ.choose_spec (hL' A hA) hE ht

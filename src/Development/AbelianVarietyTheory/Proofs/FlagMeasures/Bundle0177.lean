@@ -25,7 +25,7 @@ namespace GlobalTheory.IsoCount
 section
 variable {K V : Type} [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V]
 
-theorem isTraceDef_of_pd (H : HermSpace K V) (hp : GlobalTheory.Mass.PD H.B.flip) : IsTraceDef H := by
+theorem isTraceDef_of_pd (H : Formalism.HermitianLatticeCounting.S6.HermSpace K V) (hp : GlobalTheory.Mass.PD H.B.flip) : IsTraceDef H := by
   intro x hx
   have h1 := trace_eq_sum_embeddings ℂ (K := ℚ) (L := K) (x := H.B x x)
   have h2 : (0 : ℝ) < (algebraMap ℚ ℂ (Algebra.trace ℚ K (H.B x x))).re := by
@@ -39,7 +39,7 @@ theorem isTraceDef_of_pd (H : HermSpace K V) (hp : GlobalTheory.Mass.PD H.B.flip
 
 variable [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V]
 
-def fixAut (H : HermSpace K V) (U : Submodule K V) (L : Submodule (𝓞 K) V) : Subgroup (V ≃ₗ[K] V) where
+def fixAut (H : Formalism.HermitianLatticeCounting.S6.HermSpace K V) (U : Submodule K V) (L : Submodule (𝓞 K) V) : Subgroup (V ≃ₗ[K] V) where
   carrier := {η | η ∈ isomGrp H ∧ imLat η L = L ∧ ∀ y ∈ U, η y = y}
   one_mem' := ⟨(isomGrp H).one_mem, Formalism.HermitianLatticesTheory.genusBasic_gmap_one L, fun _ _ => rfl⟩
   mul_mem' := by
@@ -70,7 +70,7 @@ theorem map_eq_of_fix {U : Submodule K V} {g : V ≃ₗ[K] V} (h : ∀ y ∈ U, 
   · intro hy
     exact ⟨y, hy, h y hy⟩
 
-def toQuot (H : HermSpace K V) (U : Submodule K V) (L : Submodule (𝓞 K) V) :
+def toQuot (H : Formalism.HermitianLatticeCounting.S6.HermSpace K V) (U : Submodule K V) (L : Submodule (𝓞 K) V) :
     fixAut H U L →* ((V ⧸ U) ≃ₗ[K] (V ⧸ U)) :=
   MonoidHom.mk' (fun g => Submodule.Quotient.equiv U U g.1 (map_eq_of_fix g.2.2.2)) (by
     intro a b
@@ -78,10 +78,10 @@ def toQuot (H : HermSpace K V) (U : Submodule K V) (L : Submodule (𝓞 K) V) :
     induction x using Submodule.Quotient.induction_on
     rfl)
 
-theorem toQuot_mk (H : HermSpace K V) (U : Submodule K V) (L : Submodule (𝓞 K) V) (g : fixAut H U L)
+theorem toQuot_mk (H : Formalism.HermitianLatticeCounting.S6.HermSpace K V) (U : Submodule K V) (L : Submodule (𝓞 K) V) (g : fixAut H U L)
     (x : V) : toQuot H U L g (Submodule.Quotient.mk x) = Submodule.Quotient.mk (g.1 x) := rfl
 
-theorem toQuot_injective {H : HermSpace K V} (hH : IsTraceDef H) (U : Submodule K V)
+theorem toQuot_injective {H : Formalism.HermitianLatticeCounting.S6.HermSpace K V} (hH : IsTraceDef H) (U : Submodule K V)
     (L : Submodule (𝓞 K) V) : Function.Injective (toQuot H U L) := by
   rw [injective_iff_map_eq_one]
   intro g hg
@@ -101,11 +101,11 @@ theorem toQuot_injective {H : HermSpace K V} (hH : IsTraceDef H) (U : Submodule 
 
 variable [FiniteDimensional K V]
 
-theorem fixAut_finite {H : HermSpace K V} (hH : IsTraceDef H) (U : Submodule K V)
+theorem fixAut_finite {H : Formalism.HermitianLatticeCounting.S6.HermSpace K V} (hH : IsTraceDef H) (U : Submodule K V)
     {L : Submodule (𝓞 K) V} (hL : Submodule.IsFullLattice K L) : (fixAut H U L : Set (V ≃ₗ[K] V)).Finite :=
   (autCard_eq_natCard hH hL).1.subset fun _ hg => ⟨hg.1, hg.2.1⟩
 
-theorem card_fixAut_dvd (hM : MinkowskiBound) {H : HermSpace K V} (hH : IsTraceDef H) (U : Submodule K V)
+theorem card_fixAut_dvd (hM : MinkowskiBound) {H : Formalism.HermitianLatticeCounting.S6.HermSpace K V} (hH : IsTraceDef H) (U : Submodule K V)
     {L : Submodule (𝓞 K) V} (hL : Submodule.IsFullLattice K L) :
     Nat.card (fixAut H U L) ∣ minkowskiM (Module.finrank ℚ K * Module.finrank K (V ⧸ U)) := by
   have hfin : Finite (fixAut H U L) := (fixAut_finite hH U hL).to_subtype
@@ -124,7 +124,7 @@ theorem card_fixAut_dvd (hM : MinkowskiBound) {H : HermSpace K V} (hH : IsTraceD
 
 end
 
-theorem isoCnt : MinkowskiBound → ∀ (K V : Type) [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V] [FiniteDimensional K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] (H : HermSpace K V), Formalism.HermitianLatticesTheory.IsCMUnram K → GlobalTheory.Mass.PD H.B.flip → ∀ (U : Submodule K V) (L L' : Submodule (𝓞 K) V), Submodule.IsFullLattice K L → Submodule.IsFullLattice K L' → ((({η : V ≃ₗ[K] V | η ∈ isomGrp H ∧ imLat η L = L' ∧ ∀ y ∈ U, η y = y}).encard : ℕ∞) : ℝ≥0∞) ≤ ((4 * ((Module.finrank K V) - Module.finrank K U) * (Formalism.HermitianLatticesTheory.fDeg K) : ℕ) : ℝ≥0∞) ^ (4 * ((Module.finrank K V) - Module.finrank K U) * (Formalism.HermitianLatticesTheory.fDeg K)) := by
+theorem isoCnt : MinkowskiBound → ∀ (K V : Type) [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V] [FiniteDimensional K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] (H : Formalism.HermitianLatticeCounting.S6.HermSpace K V), Formalism.HermitianLatticesTheory.IsCMUnram K → GlobalTheory.Mass.PD H.B.flip → ∀ (U : Submodule K V) (L L' : Submodule (𝓞 K) V), Submodule.IsFullLattice K L → Submodule.IsFullLattice K L' → ((({η : V ≃ₗ[K] V | η ∈ isomGrp H ∧ imLat η L = L' ∧ ∀ y ∈ U, η y = y}).encard : ℕ∞) : ℝ≥0∞) ≤ ((4 * ((Module.finrank K V) - Module.finrank K U) * (Formalism.HermitianLatticesTheory.fDeg K) : ℕ) : ℝ≥0∞) ^ (4 * ((Module.finrank K V) - Module.finrank K U) * (Formalism.HermitianLatticesTheory.fDeg K)) := by
   intro hM K V _ _ _ _ _ _ _ _ H hK hp U L L' hL _
   have hH := isTraceDef_of_pd H hp
   set S := {η : V ≃ₗ[K] V | η ∈ isomGrp H ∧ imLat η L = L' ∧ ∀ y ∈ U, η y = y} with hS

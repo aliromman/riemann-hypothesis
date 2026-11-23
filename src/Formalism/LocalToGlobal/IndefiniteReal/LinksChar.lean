@@ -344,10 +344,10 @@ structure IsThP : Prop where
 def lamN (t : T) (j : ℕ) (p : A.fam.base.Ix) : ℝ := if h : j - 1 < D.R.m then R.lam ⟨j - 1, h⟩ t p A.v0 else 1
 
 def NonzeroIndexPlace (w : HeightOneSpectrum (𝓞 D.what₂.LL)) : Prop :=
-  ∃ w', (w' = w ∨ w' = conjPl w) ∧ ∃ i : Fin D.R.m,
-    ((R.toCx F).data F.cr false).Iw i A.μ0 w' ≠ 0 ∨ ((R.toCx F).data F.cr false).Iw i A.μ0 (conjPl w') ≠ 0 ∨
+  ∃ w', (w' = w ∨ w' = Formalism.DivisionValues.conjPl w) ∧ ∃ i : Fin D.R.m,
+    ((R.toCx F).data F.cr false).Iw i A.μ0 w' ≠ 0 ∨ ((R.toCx F).data F.cr false).Iw i A.μ0 (Formalism.DivisionValues.conjPl w') ≠ 0 ∨
     jw ((lv (F.fc (R.toCx F).zs) false).HT i A.μ0) w' ((lv (F.fc (R.toCx F).zs) false).Tl i A.μ0) ≠ 0 ∨
-    (F.Zsc (R.toCx F).zs).F0 w' i ≠ 0 ∨ (F.Zsc (R.toCx F).zs).F0 (conjPl w') i ≠ 0
+    (F.Zsc (R.toCx F).zs).F0 w' i ≠ 0 ∨ (F.Zsc (R.toCx F).zs).F0 (Formalism.DivisionValues.conjPl w') i ≠ 0
 
 def PartAt (b : Bool) (i : Fin D.R.m) (p : A.fam.base.Ix) (v : InfinitePlace D.what₂.LL) : Prop :=
   ∃ x, (R.toCx F).tC F.cr b i A.μ0 (cpt A.v0.embedding x) ∈ (R.toCx F).Wp i p ∧
@@ -399,7 +399,7 @@ abbrev tup_mu_ne : Prop :=
   ∀ w ∈ R.twPl, R.mu w ≠ A.μ0
 
 abbrev tup_mu_conj : Prop :=
-  ∀ w, R.mu (conjPl w) = R.mu w
+  ∀ w, R.mu (Formalism.DivisionValues.conjPl w) = R.mu w
 
 abbrev tup_mu_on : Prop :=
   ∀ w ∈ R.twPl, ∃ (ψw : Formalism.L2.Host.HChar D.host.E) (Qw : Finset (Pl D.host.E)),

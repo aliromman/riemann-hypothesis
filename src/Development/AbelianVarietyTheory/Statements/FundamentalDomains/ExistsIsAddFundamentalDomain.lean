@@ -29,7 +29,7 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding spMap spMap_comp
 theorem algChart_of_etale {R : Type} [CommRing R] {B : Type} [CommRing B] [Algebra R B] {n : ℕ}
     (g : MvPolynomial (Fin n) R →ₐ[R] B) (hg : g.toRingHom.Etale) (ε' : B →ₐ[R] R) :
     ∃ π : ∀ m : ℕ, B →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m,
-      (∀ m, (jetTruncR R (Fin n) m).comp (π (m + 1)) = π m) ∧
+      (∀ m, (ReciprocityTheory.ChartRestriction.G.Chart.jetTruncR R (Fin n) m).comp (π (m + 1)) = π m) ∧
       (∀ m, (jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp ε') ∧
       ∀ (A : Type) [CommRing A] [Algebra R A] (aug : A →ₐ[R] R) (m : ℕ), (RingHom.ker aug) ^ (m + 1) = ⊥ →
         ∀ φ : B →ₐ[R] A, aug.comp φ = ε' →

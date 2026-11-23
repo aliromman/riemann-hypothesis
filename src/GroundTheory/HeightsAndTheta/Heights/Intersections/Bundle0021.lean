@@ -73,7 +73,7 @@ def PtsAbsMeasurable.Statement : Prop :=
     (s : MRing ι),
     IsArithVar P (e + 1) → IsGoodProj P Ψ → (∀ j, IsSmoothHerm (L j)) → IsSmoothHerm A →
     IsSectionOn P A s →
-    AEStronglyMeasurable (fun y => ∑ᶠ w ∈ fibre P Ψ y, |sheetDensity P Ψ (pot L) (logNorm A s) y w|)
+    AEStronglyMeasurable (fun y => ∑ᶠ w ∈ ReciprocityTheory.ChartRestriction.G.Geo.fibre P Ψ y, |sheetDensity P Ψ (pot L) (logNorm A s) y w|)
 
 end GroundTheory.Heights₂.Heights.Inter
 end

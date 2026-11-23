@@ -22,8 +22,8 @@ def glueM (e : A) (M : Matrix m m A) : Matrix m m A := e • M + (1 - e) • (1 
 theorem glueM_mul {e : A} (he : e * e = e) (X Y : Matrix m m A) :
     glueM e X * glueM e Y = glueM e (X * Y) := by
   have h1 : e * (1 - e) = 0 := by rw [mul_sub, mul_one, he, sub_self]
-  have h2 : (1 - e) * e = 0 := by rw [sub_mul, one_mul, he, sub_self]
-  have h3 : (1 - e) * (1 - e) = 1 - e := by rw [sub_mul, one_mul, h1, sub_zero]
+  have h2 : (1 - e) * e = 0 := by rw [Formalism.L2.Col.sub_mul, one_mul, he, sub_self]
+  have h3 : (1 - e) * (1 - e) = 1 - e := by rw [Formalism.L2.Col.sub_mul, one_mul, h1, sub_zero]
   simp only [glueM, add_mul, mul_add, Matrix.smul_mul, Matrix.mul_smul, smul_smul, Matrix.mul_one,
     Matrix.one_mul, h1, h2, h3, he, zero_smul, add_zero, zero_add]
 

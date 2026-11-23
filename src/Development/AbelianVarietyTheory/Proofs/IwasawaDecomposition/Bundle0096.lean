@@ -186,14 +186,14 @@ theorem isOpen_val_le (v : HeightOneSpectrum (𝓞 L)) (m : ℤ) :
   rfl
 
 theorem continuous_comp (v : HeightOneSpectrum (𝓞 L)) :
-    Continuous fun a : Ideles L => (a : AdeleRing (𝓞 L) L).2 v :=
+    Continuous fun a : Neutral.B1.Ideles L => (a : AdeleRing (𝓞 L) L).2 v :=
   (RestrictedProduct.continuous_eval v).comp (continuous_snd.comp Units.continuous_val)
 
-theorem isOpen_unitIdl : IsOpen (unitIdl L : Set (Ideles L)) := by
+theorem isOpen_unitIdl : IsOpen (unitIdl L : Set (Neutral.B1.Ideles L)) := by
   have hV : IsOpen {a : FiniteAdeleRing (𝓞 L) L | ∀ v, a v ∈ v.adicCompletionIntegers L} :=
     RestrictedProduct.isOpen_forall_mem (fun v => Valued.isOpen_valuationSubring _)
-  have c1 : Continuous fun a : Ideles L => (a : AdeleRing (𝓞 L) L).2 := continuous_snd.comp Units.continuous_val
-  have c2 : Continuous fun a : Ideles L => ((a⁻¹ : Ideles L) : AdeleRing (𝓞 L) L).2 :=
+  have c1 : Continuous fun a : Neutral.B1.Ideles L => (a : AdeleRing (𝓞 L) L).2 := continuous_snd.comp Units.continuous_val
+  have c2 : Continuous fun a : Neutral.B1.Ideles L => ((a⁻¹ : Neutral.B1.Ideles L) : AdeleRing (𝓞 L) L).2 :=
     continuous_snd.comp Units.continuous_coe_inv
   convert (hV.preimage c1).inter (hV.preimage c2) using 1
   ext a
@@ -201,22 +201,22 @@ theorem isOpen_unitIdl : IsOpen (unitIdl L : Set (Ideles L)) := by
   · intro ha
     exact ⟨fun v => (ha v).le, fun v => ((unitIdl L).inv_mem ha v).le⟩
   · rintro ⟨h1, h2⟩ v
-    have h : (a : AdeleRing (𝓞 L) L).2 v * ((a⁻¹ : Ideles L) : AdeleRing (𝓞 L) L).2 v = 1 :=
+    have h : (a : AdeleRing (𝓞 L) L).2 v * ((a⁻¹ : Neutral.B1.Ideles L) : AdeleRing (𝓞 L) L).2 v = 1 :=
       congrArg (fun z : AdeleRing (𝓞 L) L => z.2 v) a.mul_inv
     have h3 := congrArg (Valued.v : Valuation (v.adicCompletion L) _) h
     rw [map_mul, map_one] at h3
     have k1 : Valued.v ((a : AdeleRing (𝓞 L) L).2 v) ≤ 1 := h1 v
-    have k2 : Valued.v (((a⁻¹ : Ideles L) : AdeleRing (𝓞 L) L).2 v) ≤ 1 := h2 v
+    have k2 : Valued.v (((a⁻¹ : Neutral.B1.Ideles L) : AdeleRing (𝓞 L) L).2 v) ≤ 1 := h2 v
     refine le_antisymm k1 ?_
     rw [← h3]
     exact mul_le_of_le_one_right' k2
 
 
 open Classical in
-theorem unit_open_and_congr_open : ∀ (L : Type) [Field L] [NumberField L], IsOpen (unitIdl L : Set (Ideles L)) ∧ ∀ (S : Finset (HeightOneSpectrum (𝓞 L))) (n : ℕ), IsOpen {a : Ideles L | a ∈ unitIdl L ∧ ∀ v ∈ S, Valued.v ((a : AdeleRing (𝓞 L) L).2 v - 1) ≤ WithZero.exp (-(n : ℤ))} := by
+theorem unit_open_and_congr_open : ∀ (L : Type) [Field L] [NumberField L], IsOpen (unitIdl L : Set (Neutral.B1.Ideles L)) ∧ ∀ (S : Finset (HeightOneSpectrum (𝓞 L))) (n : ℕ), IsOpen {a : Neutral.B1.Ideles L | a ∈ unitIdl L ∧ ∀ v ∈ S, Valued.v ((a : AdeleRing (𝓞 L) L).2 v - 1) ≤ WithZero.exp (-(n : ℤ))} := by
   intro L _ _
   refine ⟨isOpen_unitIdl, fun S n => ?_⟩
-  have h : IsOpen (⋂ v ∈ S, {a : Ideles L | Valued.v ((a : AdeleRing (𝓞 L) L).2 v - 1) ≤ WithZero.exp (-(n : ℤ))}) :=
+  have h : IsOpen (⋂ v ∈ S, {a : Neutral.B1.Ideles L | Valued.v ((a : AdeleRing (𝓞 L) L).2 v - 1) ≤ WithZero.exp (-(n : ℤ))}) :=
     isOpen_biInter_finset fun v _ => (isOpen_val_le v _).preimage ((continuous_comp v).sub continuous_const)
   convert isOpen_unitIdl.inter h using 1
   ext a

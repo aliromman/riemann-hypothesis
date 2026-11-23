@@ -21,7 +21,7 @@ open scoped CategoryTheory.Obj
 theorem algChart_of_isStandardSmooth {R : Type} [CommRing R] (B : Type) [CommRing B] [Algebra R B]
     (hB : (algebraMap R B).IsStandardSmooth) (ε' : B →ₐ[R] R) :
     ∃ (n : ℕ) (π : ∀ m : ℕ, B →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m),
-      (∀ m, (jetTruncR R (Fin n) m).comp (π (m + 1)) = π m) ∧
+      (∀ m, (ReciprocityTheory.ChartRestriction.G.Chart.jetTruncR R (Fin n) m).comp (π (m + 1)) = π m) ∧
       (∀ m, (jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp ε') ∧
       ∀ (A : Type) [CommRing A] [Algebra R A] (aug : A →ₐ[R] R) (m : ℕ), (RingHom.ker aug) ^ (m + 1) = ⊥ →
         ∀ φ : B →ₐ[R] A, aug.comp φ = ε' →
@@ -119,7 +119,7 @@ theorem univChart_baseChange_of_chart {R R' : Type} [CommRing R] [CommRing R'] [
     rw [← hoe]
     apply pt_injective C
     rw [← spMap_pt, ← hπ, spMap_jetAug_alt hx, pt_eps]
-  have hπtr : ∀ m, (jetTruncR R (Fin n) m).comp (π (m + 1)) = π m := fun m =>
+  have hπtr : ∀ m, (ReciprocityTheory.ChartRestriction.G.Chart.jetTruncR R (Fin n) m).comp (π (m + 1)) = π m := fun m =>
     pt_injective C (by rw [← spMap_pt, ← hπ, ← hπ, hx.1 m])
   have hπ0 : ∀ m, (jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp (eps C) := fun m =>
     pt_injective C (by rw [← spMap_pt, ← hπ, hx.2.1 m, pt_eps])
@@ -135,7 +135,7 @@ theorem univChart_baseChange_of_chart {R R' : Type} [CommRing R] [CommRing R'] [
     congr 2
     apply jet_ext
     intro j
-    show jetTruncR R' (Fin n) m (jetMapA n (m + 1) (zR (m + 1) j)) = jetMapA n m (zR m j)
+    show ReciprocityTheory.ChartRestriction.G.Chart.jetTruncR R' (Fin n) m (jetMapA n (m + 1) (zR (m + 1) j)) = jetMapA n m (zR m j)
     rw [jetMapA_zR, jetMapA_zR]
     rfl
   · apply pushR_inj G
