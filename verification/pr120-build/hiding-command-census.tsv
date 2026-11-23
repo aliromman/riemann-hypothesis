@@ -1,0 +1,93 @@
+command	f941	current
+open ArcTransport hiding IsTransport exists_transport	1	1
+open ArithmeticFunction hiding log id	1	1
+open CompanionTheory.D.DSIC hiding KRel	0	1
+open Formalism.DworkPowerSeriesWeights hiding mfact	0	1
+open Formalism.FourierDecayAlt.M hiding A sc kap pA pbA cA ciA cbA cbiA zA ziA zbA zbiA ggA ggiA nabA nabsA IsModelLevel SS l0A m0A xA weightedSumBis S12 S4 t22 t21 t12 t11 QQr eeA startM siteA FrameConcl Pr Op mulOp fnP mk cP ciP cbP cbiP zP ziP zbP zbiP ggP ggiP pP pbP dzP dzbP gg coord euler lA mA fnsA zfnsA sitesFrom QQlev LevFns LevP LevPb LevPP LevNab LevNabs StarGens SSScalar SSShift SSNorm SSComm SSMixed NabSS Curvature QQNormal QQHerm QQRTTEntries QQRTT QQRTTOfEntries QQDet T21Commute QQLeading QQZeta StartIsStart StartOK LevelExists LevelStar SitesOKM ChainM LowerCommutes LowerStart StartIsStartAssemble StartAssemble LevelAssemble ModelFrame ModelAssemble CutAdm	19	19
+open Formalism.IncomingBounds hiding mvExp	0	1
+open Formalism.IrreducibleCountingLemmas.TYPES hiding zIdem IsCuspidal	8	8
+open Formalism.IrreducibleCountingLemmas.TYPES hiding zIdem IsCuspidal rootsBar	1	1
+open Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity hiding CMConjEmb CMTransitive DedekindFactor LinkChi LinkPer LinkThIndep LinkThU LinkThUFam ThetaNormIndependent theta_norm_independent_of_bounds th22U theta_norm_unitary_invariant_of_bounds	45	45
+open Formalism.L2.Ker.KS hiding La_le La_stable aaX emV emV_smulE emV_smulO embC_injective embH_iff embV_eq flatV_vecE frame_std gen_eq imS imS_stable inMul_std lamTie mat mat_mem_hom mat_mulVec mat_unmat opM opM_smul phi phi_eq phi_mem_La phi_per phi_smulE phi_smulO thF_eq unitM unitM_mulVec unmat unmat_mem_hom	1	1
+open Formalism.L2.Ker.KS hiding La_left La_nsmul La_right YYl_nsmul al_flat alpha_flat fixed_pb fnPow_eq form_flat hPow_hOne herm_pb homL_nsmul inter_pb lamM' latPow_eq locNorm_ambOf_of locNorm_thF_of not_dvd_relIdx opU_pb pb relIdx_pb reps_pb selfDual_pb semi_pb thF_ambOf thM' th_pb	1	1
+open Formalism.L2.Ker.KS.Lat hiding La_theta al_eq_La alphaQ_isom delta_ne eNat_laF form_flat herm_hSc img_comap isLat_La isLat_comap isLat_laF isom_flat matH_hSc odd_of_cmOK posDef_hSc relIdx_comap relIdx_laF relIdx_laF_eq sc_pos selfDual_comap selfDual_laF thHalf_laF thMoved_laF thZero_laF th_comap th_laF theta_laF	1	1
+open Formalism.L2.Pj hiding Unf GoodEmb IsUnf rdU laU	2	2
+open Formalism.L2.Pj hiding Unf GoodEmb IsUnf rdU laU perFr	1	1
+open Formalism.L2.Pj hiding kap	3	3
+open Formalism.MainNotions.TaylorLogMetric hiding admitted AdmittedStatements AllSplit CoefIn DataIn DualB EqAt EqAway FamE Hf IdE InProd Iop IsChi IsComb IsCurveIdeal IsDiscriminantTwelfthRootOfIdealLattice IsFrobC IsIdem JetsInt La LocBasis LocBasisW Mono N1 NNBasis OrthoBasisW Orthonormal Pos Qd QdB Stmt TVar TVarB Th ThSp Tor TorsPrime U VC Wop XiF YYl adm1 al atLog chK chg chgB coordV der detId logDerivativeAtOne ellT embT embV eq22 fF fnConj hYY hh homL int22 jet kap lamOf letterOf liftY logOmVal meanLogNormSq meanLogOm mmM mom22 LargerSupportMomentCondition mono normSq pSer pairN per22 posEmb posG aux₃ pull qH sE sgm str22 tauEmb tauSg taylor th22 tor0 torConj vec22 vecN wPh zB	43	43
+open Formalism.Per6 hiding σB aB	6	6
+open Formalism.REAL hiding KRel	0	4
+open Formalism.REAL hiding volU	1	1
+open Formalism.UG hiding sigR	1	1
+open Formalism.UG hiding sigR evalV	1	1
+open GlobalTheory.CompHt hiding rhoB	2	2
+open GlobalTheory.CompanionTheory.Ar.BT hiding genPt	3	3
+open GlobalTheory.ConjSplit hiding exists_lin exists_conj_lattice_map	1	1
+open GlobalTheory.ConjSplit hiding exists_lin in	2	2
+open GlobalTheory.Doubling hiding npow norm_npow npow_ne_zero	2	2
+open GlobalTheory.EtC hiding cechAug	0	1
+open GlobalTheory.ExportSeries hiding Base	2	2
+open GlobalTheory.FinPl hiding Pl	2	2
+open GlobalTheory.FlipMatch.ChartOpp hiding isHalf_of_mulG in	1	1
+open GlobalTheory.IndefiniteRowSideFullHecke.LevelSpanSeparation hiding zetaM	3	3
+open GlobalTheory.IndefiniteRowSideFullHecke.PeriodMapPresentation hiding IsTypeFn IsThetaFrame	2	2
+open GlobalTheory.IndefiniteRowSideFullHecke.RamifiedCoverPairIsomorphism hiding IsShortRule shortGen ShortInCusp	1	1
+open GlobalTheory.IndefiniteRowSideFullHecke.SublevelSplitting hiding levJ	1	1
+open GlobalTheory.IndefiniteRowSideFullHecke.ThetaSourceAction hiding Mat	33	33
+open GlobalTheory.IndefiniteRowSideFullHecke.UniformityLowerBounds hiding fn PsiNorm	1	1
+open GlobalTheory.InvFieldBasis hiding existsUnique_coeff_alg existsUnique_coeff_affine existsUnique_coeff	1	1
+open GlobalTheory.JacStages hiding jac	0	1
+open GlobalTheory.Mem.Chr hiding HChar	10	10
+open GlobalTheory.PrimitiveOverLocalRing hiding exists_section_translate	1	1
+open GlobalTheory.PrimitiveOverValuationRing hiding exists_geometric_point exists_section_translate	1	1
+open GlobalTheory.SW hiding Level	391	391
+open GlobalTheory.SW hiding Level IsSB	346	346
+open GlobalTheory.SmGL hiding iwahori	17	17
+open GlobalTheory.SmGL hiding iwahori in	1	1
+open GlobalTheory.SplitWeil hiding SB	2	2
+open GlobalTheory.StdFrames hiding OA	5	5
+open GroundTheory.Heights₂.Heights.FieldNumbers hiding IsMultiHomog	0	1
+open GroundTheory.Heights₂.Heights.Regular hiding le_tmax tmax_le	1	1
+open IsDiscreteValuationRing hiding maximalIdeal	3	3
+open IsDiscreteValuationRing hiding maximalIdeal in	1	1
+open Matrix hiding col gram	2	2
+open Matrix hiding gram	2	2
+open Matrix hiding vec	1	1
+open MeasureTheory PositivityTheory.Rg.Tf.Loc hiding twCent	0	2
+open MeasureTheory Topology PositivityTheory.Rg.Tf.Loc hiding twCent	0	2
+open MeasureTheory ValuativeRel PositivityTheory.Rg.Tf.Loc hiding twCent	0	1
+open Neutral.B1 hiding G IsPlaceOver	1	1
+open PI hiding UJ	0	1
+open PositivityTheory.Rg.Fx hiding Fam	1	1
+open ReciprocityTheory.AnForm.Osgood hiding SepHol	0	1
+open ReciprocityTheory.ChartRestriction.G.Chart hiding spMap spMap_comp	2	2
+open ReciprocityTheory.ChartRestriction.G.DVR hiding gw	1	1
+open ReciprocityTheory.ChartRestriction.G.FD hiding cc_cc cc_sub cc_mul cc_one cc_zero cc_eq_zero	1	1
+open ReciprocityTheory.ChartRestriction.G.Geo hiding IsMultiHomog	0	2
+open ReciprocityTheory.ChartRestriction.G.Geo hiding IsRelevant	0	1
+open ReciprocityTheory.ChartRestriction.G.Geo hiding fibre	0	3
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding IsTan	1	1
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding IsTan JetR	0	1
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding IsTypeFn IsThetaFrame	2	2
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding JetR	0	4
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding Level	141	141
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding Level Host	331	331
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding epsScale	3	3
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding pw pw_trans	1	1
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding pw pw_trans in	1	1
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding spMap spMap_comp	4	4
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding spMap spMap_comp IsTan	1	1
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding spMap spMap_comp JetR IsTan	2	2
+open ReciprocityTheory.ChartRestriction.G.I2 hiding Hf_conj	0	1
+open ReciprocityTheory.GeometryOfNumbersTheory hiding gram	0	1
+open TrivSqZeroExt hiding map lift	5	5
+open TrivSqZeroExt hiding map lift in	1	1
+open UnifCompare hiding trans_comp_q gw_trans in	1	1
+open UpperHalfPlane hiding I	59	59
+open UpperHalfPlane hiding I I_re I_im	6	6
+open UpperHalfPlane hiding I in	20	20
+open UpperTheory.GalN.V hiding autCsd_iso	1	1
+open UpperTheory.V.Af.Smo hiding psiR conv Cen SameSat ArchStep LinChange ArchKir PsiInf EmbY FinKir ChartCont ConvCont ConvFub ConvNice SeedConv EigMap KillP SphAll Vanish OrthStep EigOfSat Seed SetUp Pair CenSame	3	3
+open UpperTheory.V.Af.Smo hiding psiR conv Cen SameSat ArchStep LinChange ArchKir PsiInf EmbY FinKir ChartCont ConvCont ConvFub ConvNice SeedConv EigMap KillP SphAll Vanish OrthStep OrthConv EigOfSat Seed SetUp Pair CenSame	25	25
+open UpperTheory.V.U3 hiding emb_apply	0	3
+open UpperTheory.V.ZK hiding cone	0	3

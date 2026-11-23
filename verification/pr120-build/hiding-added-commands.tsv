@@ -1,0 +1,36 @@
+src/CompanionTheory/HarishChandraModules/LowKTypeMultiplicity/EigenspaceCyclicDensity/CreationOperators/Bundle0002.lean	open Formalism.REAL hiding KRel
+src/CompanionTheory/HarishChandraModules/LowKTypeMultiplicity/EigenspaceCyclicDensity/CreationOperators/Bundle0002.lean	open Formalism.REAL hiding KRel
+src/CompanionTheory/HarishChandraModules/LowKTypeMultiplicity/EigenspaceCyclicDensity/CreationOperators/GeneralizedVermaModulePolynomial.lean	open Formalism.REAL hiding KRel
+src/CompanionTheory/HarishChandraModules/LowKTypeMultiplicity/EigenspaceCyclicDensity/CreationOperators/KoszulDifferentialAnticommutator.lean	open Formalism.REAL hiding KRel
+src/CompanionTheory/SpectralGeometry/LocalGlobalProofs/StableLattices/Bundle0014.lean	open CompanionTheory.D.DSIC hiding KRel
+src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/Bundle0305.lean	open GlobalTheory.EtC hiding cechAug
+src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/RelativeJacquetPiExteriorTensorEquivNormalized.lean	open GlobalTheory.JacStages hiding jac
+src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/Bundle0021.lean	open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding IsTan JetR
+src/Development/AbelianVarietyTheory/Proofs/TorusSplitting/Bundle0004.lean	open ReciprocityTheory.ChartRestriction.G.I2 hiding Hf_conj
+src/Development/AutomorphicArithmetic/AutomorphicVarieties/GeneratorCountTuples/Bundle0001.lean	open UpperTheory.V.ZK hiding cone
+src/Development/AutomorphicArithmetic/AutomorphicVarieties/GeneratorCountTuples/Bundle0001.lean	open UpperTheory.V.ZK hiding cone
+src/Development/AutomorphicArithmetic/AutomorphicVarieties/GeneratorCountTuples/Bundle0001.lean	open UpperTheory.V.ZK hiding cone
+src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/TraceFormula/OrbitalIntegrals/TwistedOrbitalIntegrals/Bundle0002.lean	open MeasureTheory PositivityTheory.Rg.Tf.Loc hiding twCent
+src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/TraceFormula/OrbitalIntegrals/TwistedOrbitalIntegrals/Bundle0002.lean	open MeasureTheory Topology PositivityTheory.Rg.Tf.Loc hiding twCent
+src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/TraceFormula/OrbitalIntegrals/TwistedOrbitalIntegrals/Bundle0002.lean	open MeasureTheory Topology PositivityTheory.Rg.Tf.Loc hiding twCent
+src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/TraceFormula/OrbitalIntegrals/TwistedOrbitalIntegrals/Bundle0002.lean	open MeasureTheory PositivityTheory.Rg.Tf.Loc hiding twCent
+src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/TraceFormula/OrbitalIntegrals/TwistedOrbitalIntegrals/Bundle0002.lean	open MeasureTheory ValuativeRel PositivityTheory.Rg.Tf.Loc hiding twCent
+src/Development/AutomorphicArithmetic/AutomorphicVarieties/UnitaryThreeGroups/Bundle0009.lean	open UpperTheory.V.U3 hiding emb_apply
+src/Development/AutomorphicArithmetic/AutomorphicVarieties/UnitaryThreeGroups/Bundle0009.lean	open UpperTheory.V.U3 hiding emb_apply
+src/Development/AutomorphicArithmetic/AutomorphicVarieties/UnitaryThreeGroups/Bundle0009.lean	open UpperTheory.V.U3 hiding emb_apply
+src/Development/AutomorphicArithmetic/OrbitLabellings/NormMfactMulCoeffLeOfB0S.lean	open Formalism.DworkPowerSeriesWeights hiding mfact
+src/Formalism/LocalToGlobal/ProjectiveLattices/Bundle0018.lean	open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding JetR
+src/Formalism/LocalToGlobal/ProjectiveLattices/GenFrPfV.lean	open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding JetR
+src/Formalism/LocalToGlobal/ProjectiveLattices/GenSpecV.lean	open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding JetR
+src/Formalism/LocalToGlobal/ProjectiveLattices/LieRel.lean	open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding JetR
+src/Formalism/LocalToGlobal/TorsionIntegrality/GaussSumParity/StatementB.lean	open Formalism.IncomingBounds hiding mvExp
+src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/LocalUnimodularLattice/Transf.lean	open PI hiding UJ
+src/GroundTheory/HeightsAndTheta/Heights/HeightKernels/Bundle0020.lean	open ReciprocityTheory.ChartRestriction.G.Geo hiding fibre
+src/GroundTheory/HeightsAndTheta/Heights/HeightKernels/PCoordConeArithVar.lean	open ReciprocityTheory.ChartRestriction.G.Geo hiding IsRelevant
+src/GroundTheory/HeightsAndTheta/Heights/HeightsOfSets/IsSmoothHermConstLine.lean	open ReciprocityTheory.ChartRestriction.G.Geo hiding fibre
+src/GroundTheory/HeightsAndTheta/Heights/HilbertSamuel/Bundle0033.lean	open ReciprocityTheory.GeometryOfNumbersTheory hiding gram
+src/GroundTheory/HeightsAndTheta/Heights/HodgeLowerBound/Bundle0003.lean	open ReciprocityTheory.ChartRestriction.G.Geo hiding fibre
+src/GroundTheory/HeightsAndTheta/Heights/HodgeLowerBound/Bundle0005.lean	open ReciprocityTheory.ChartRestriction.G.Geo hiding IsMultiHomog
+src/GroundTheory/HeightsAndTheta/Heights/OrbitLimits/Bundle0007.lean	open ReciprocityTheory.ChartRestriction.G.Geo hiding IsMultiHomog
+src/GroundTheory/HeightsAndTheta/Heights/OrbitLimits/PFnDegRelDeg.lean	open GroundTheory.Heights₂.Heights.FieldNumbers hiding IsMultiHomog
+src/PositivityTheory/AutomorphicForms/PublishedInputs/JacquetLanglands/TorusKernels/Bundle0008.lean	open ReciprocityTheory.AnForm.Osgood hiding SepHol

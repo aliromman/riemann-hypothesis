@@ -1,0 +1,6 @@
+module	author_errors	integration_errors	fixed_errors	stock_dep_hash	stock_kernel
+Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RelativeJacquetPiExteriorTensorEquivNormalized	20	19	0	15ec4ea2ac45e9e5	pass
+Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.OrbitalIntegrals.TwistedOrbitalIntegrals.Bundle0002	9	5	0	d66236fbcefab997	pass
+GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.Bundle0033	2	1	0	cf4d61dc8d6f88bc	pass
+GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PFnDegRelDeg	15	13	0	61384b03e2700a61	pass
+PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.Bundle0008	19	17	0	b1e0a5d6f62fe012	pass

@@ -1,0 +1,23 @@
+{
+  "author_base": "cd96616f341d433568ee612a642dfe3ca4dead4d",
+  "author_fixed": "261652ac902a260cc0b8bc62f19587499e6c5643",
+  "integration": "ef6497945211cc40ab322f5f7b728680a989b108",
+  "main": "51d9b1a28026d458aef9c9af3df8b083276e3d2d",
+  "original_root": "f94106583626ad6b48ac6e239e0b2e5ffc879555",
+  "new_hiding_commands": 36,
+  "new_hiding_files": 27,
+  "raw_five_errors": 65,
+  "raw_five_remaining": 0,
+  "raw_source_modules": 184,
+  "raw_stock_jobs": 18617,
+  "raw_manifest_sha256": "1981ae854dac8837f66c094e3a1c70f627bf3471021f1fb71b241fdb0e5c9dbd",
+  "raw_kernels_checked": 5,
+  "merged_five_errors_before": 55,
+  "all_27_remaining": 0,
+  "all_27_stock_jobs": 21877,
+  "all_27_source_modules": 1814,
+  "all_27_source_sha256": "a2539dd5902088037c351604282ec7c70182cd50ec56d2b6b513ca35645b0f89",
+  "sources_main": 149397,
+  "sources_joined": 47882,
+  "comparator": "pending"
+}
