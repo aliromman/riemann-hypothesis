@@ -33,7 +33,7 @@ private theorem constantCoeff_rename_embedding (e : σ ↪ τ) (F : MvPowerSerie
 theorem good_rename (e : σ ↪ τ) {D : MvPowerSeries σ ℂ_[p]} (hD : Good D) : Good (rename e D) := by
   obtain ⟨h0, hI⟩ := hD
   have h0' : constantCoeff (rename e D) = 0 := by rw [constantCoeff_rename_embedding]; exact h0
-  show constantCoeff (rename e D) = 0 ∧ IntegralMv (expMv (rename e D))
+  show constantCoeff (rename e D) = 0 ∧ PI.FglGram.IntegralMv (PI.FglGram.expMv (rename e D))
   refine ⟨h0', ?_⟩
   intro β
   by_cases hβ : ∃ α : σ →₀ ℕ, α.embDomain e = β
@@ -51,7 +51,7 @@ theorem good_rename (e : σ ↪ τ) {D : MvPowerSeries σ ℂ_[p]} (hD : Good D)
     have hz : ∀ n, coeff β (rename e D ^ n) = 0 := fun n => by
       rw [← map_pow]; exact coeff_rename_eq_zero_of_not_mem_range_embDomain_cube_formal_identities e _ hβ
     simp only [hz, zero_div, Finset.sum_const_zero]
-    simp [IsIntP]
+    simp [PI.FglGram.IsIntP]
 
 private theorem coeff_subst_eq_sum_range_of_degree_le {a : MvPowerSeries τ ℂ_[p]} (ha : constantCoeff a = 0)
     (g : PowerSeries ℂ_[p]) (β : τ →₀ ℕ) (N : ℕ) (hN : β.degree ≤ N) :

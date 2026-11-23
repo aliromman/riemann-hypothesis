@@ -22,11 +22,11 @@ variable {p : ℕ} [Fact p.Prime]
 
 theorem good_X {σ : Type*} (i : σ) : Good (Xv (p := p) i) := by
   unfold Good
-  refine ⟨by simp [Xv], ?_⟩
-  unfold IntegralMv
+  refine ⟨by simp [PI.FglGram.Xv], ?_⟩
+  unfold PI.FglGram.IntegralMv
   intro n
-  unfold IsIntP
-  unfold Xv
+  unfold PI.FglGram.IsIntP
+  unfold PI.FglGram.Xv
   rw [MvPowerSeries.coeff_X]
   split_ifs <;> simp
 
