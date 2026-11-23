@@ -29,7 +29,7 @@ def registered (env : Environment) (names : Array String) : Environment :=
   names.foldl (fun e n => e.registerNamespace n.toName) env
 
 def resolve (env : Environment) (ns : String) (opened : List OpenDecl) (name : String) : List Name :=
-  (ResolveName.resolveNamespace env ns.toName opened name.toName).eraseDups
+  ResolveName.resolveNamespace env ns.toName opened name.toName
 
 def verify (empty : Environment) (r : Case) : Bool := Id.run do
   let source := registered empty r.oldNamespaces

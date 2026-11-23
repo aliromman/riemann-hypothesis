@@ -97,23 +97,23 @@ def verify_native(lean, folder, rows):
     require(proc.stdout.strip() == "verified " + str(len(rows)), proc.stdout)
 
 
-def put(lines, row, offset=0):
+def put(lines, row):
     i = row["line"]
-    start, end = row["start"] + offset, row["end"] + offset
+    start, end = row["start"], row["end"]
     require(lines[i][start:end] == row["token"], "Incorrect selector in " + row["bundle"])
     lines[i] = lines[i][:start] + row["correction"] + lines[i][end:]
 
 
-def make_patch(repo, evidence, incremental):
+def make_patch(repo, evidence, variant):
     rows = evidence["rows"]
     original = evidence["original"]
     submitted = evidence["submitted"]
-    parent = evidence["author16"] if incremental else submitted
+    parent = {"cumulative": submitted, "incremental": evidence["author16"], "followup": evidence["published16"]}[variant]
     requests = {original + ":" + filename(n): x["source"] for n, x in evidence["members"].items()}
     for n, oid in evidence["submittedBlobs"].items():
         name = filename(n)
         requests[submitted + ":" + name] = oid
-        if incremental:
+        if variant != "cumulative":
             requests[parent + ":" + name] = None
     for name, oid in evidence["protected"].items():
         requests[submitted + ":" + name] = oid
@@ -131,25 +131,29 @@ def make_patch(repo, evidence, incremental):
         original_lines = blobs[submitted + ":" + name]
         base = blobs[parent + ":" + name]
         sort_key = lambda r: (r["line"], r["start"])
-        prior = [r for r in entries if incremental and r["credit"] == 16]
-        expected_base = original_lines.copy()
-        for row in sorted(prior, key=sort_key, reverse=True):
-            put(expected_base, row)
-        require(expected_base == base, "Unrecorded parent change in " + name)
-        edits = [r for r in entries if not incremental or r["credit"] is None]
-        if not edits:
-            continue
-        result = base.copy()
-        for row in sorted(edits, key=sort_key, reverse=True):
-            shift = sum(len(r["correction"]) - len(r["token"]) for r in prior
-                        if r["line"] == row["line"] and r["end"] <= row["start"])
-            put(result, row, shift)
-        patch.extend(difflib.unified_diff([s + "\n" for s in base], [s + "\n" for s in result],
-                                          "a/" + name, "b/" + name))
-        changed += len(edits)
-        files += 1
+        initial = original_lines.copy()
+        result = original_lines.copy()
+        count = 0
+        for row in sorted(entries, key=sort_key, reverse=True):
+            before = None
+            if variant == "incremental" and row["credit"] == 16:
+                before = row["correction"]
+            if variant == "followup":
+                before = row["publishedCorrection"]
+            after = row["correction"] if variant == "cumulative" or row["credit"] not in (3, 7) else None
+            if before:
+                put(initial, dict(row, correction=before))
+            if after:
+                put(result, dict(row, correction=after))
+            count += before != after
+        require(initial == base, "Unrecorded parent change in " + name)
+        if count:
+            patch.extend(difflib.unified_diff([s + "\n" for s in base], [s + "\n" for s in result],
+                                              "a/" + name, "b/" + name))
+            changed += count
+            files += 1
     data = "".join(patch).encode()
-    digest = evidence["incrementalPatchSha256" if incremental else "cumulativePatchSha256"]
+    digest = evidence[variant + "PatchSha256"]
     require(sha256(data) == digest, "The regenerated patch digest does not match the evidence")
     return data, changed, files
 
@@ -157,7 +161,7 @@ def make_patch(repo, evidence, incremental):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", type=Path, required=True)
-    parser.add_argument("--variant", choices=["cumulative", "incremental"], required=True)
+    parser.add_argument("--variant", choices=["cumulative", "incremental", "followup"], required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--verify-lean", metavar="LEAN")
     parser.add_argument("--archive-manifest", type=Path)
@@ -165,7 +169,7 @@ def main():
     args = parser.parse_args()
     folder = Path(__file__).resolve().parent
     evidence = json.loads(gzip.decompress((folder / "evidence.json.gz").read_bytes()))
-    require(evidence["schema"] == 1, "Unsupported evidence format")
+    require(evidence["schema"] == 2, "Unsupported evidence format")
     if args.archive_manifest:
         check_archive(args.archive_manifest, evidence)
     if args.original_library:
@@ -173,7 +177,7 @@ def main():
     if args.verify_lean:
         verify_native(args.verify_lean, folder, evidence["rows"])
         print("Verified native Lean namespace resolutions", len(evidence["rows"]))
-    data, changed, files = make_patch(args.repo, evidence, args.variant == "incremental")
+    data, changed, files = make_patch(args.repo, evidence, args.variant)
     args.output.write_bytes(data)
     print("Generated", changed, "selector corrections in", files, "files")
     print("SHA-256", sha256(data))
