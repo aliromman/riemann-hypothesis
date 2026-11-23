@@ -20,17 +20,17 @@ open scoped CategoryTheory.Obj
 
 theorem algChart_of_isStandardSmooth {R : Type} [CommRing R] (B : Type) [CommRing B] [Algebra R B]
     (hB : (algebraMap R B).IsStandardSmooth) (ε' : B →ₐ[R] R) :
-    ∃ (n : ℕ) (π : ∀ m : ℕ, B →ₐ[R] JetR R (Fin n) m),
+    ∃ (n : ℕ) (π : ∀ m : ℕ, B →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m),
       (∀ m, (jetTruncR R (Fin n) m).comp (π (m + 1)) = π m) ∧
       (∀ m, (jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp ε') ∧
       ∀ (A : Type) [CommRing A] [Algebra R A] (aug : A →ₐ[R] R) (m : ℕ), (RingHom.ker aug) ^ (m + 1) = ⊥ →
         ∀ φ : B →ₐ[R] A, aug.comp φ = ε' →
-          ∃! ψ : JetR R (Fin n) m →ₐ[R] A, aug.comp ψ = jetAug R (Fin n) m ∧ ψ.comp (π m) = φ := by
+          ∃! ψ : ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m →ₐ[R] A, aug.comp ψ = jetAug R (Fin n) m ∧ ψ.comp (π m) = φ := by
   obtain ⟨n, g, hgC, hg⟩ := hB.exists_etale_mvPolynomial
   letI : Algebra (MvPolynomial (Fin n) R) B := g.toAlgebra
   haveI : IsScalarTower R (MvPolynomial (Fin n) R) B := IsScalarTower.of_algebraMap_eq' hgC.symm
   haveI : Algebra.Etale (MvPolynomial (Fin n) R) B := hg
-  have hπ : ∀ m : ℕ, ∃ π : B →ₐ[R] JetR R (Fin n) m, (jetAug R (Fin n) m).comp π = ε' ∧
+  have hπ : ∀ m : ℕ, ∃ π : B →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m, (jetAug R (Fin n) m).comp π = ε' ∧
       ∀ j, π (sX (R := R) j) = algebraMap R _ (ε' (sX (R := R) j)) + zR m j := fun m =>
     etale_exists (n := n) ε' (jetAug R (Fin n) m) (ker_jetAug_nil (Fin n) m) _ (fun j => by
       rw [map_add (f := _), AlgHom.commutes, Algebra.algebraMap_self, RingHom.id_apply, jetAug_zR, add_zero])
@@ -82,7 +82,7 @@ theorem algChart_of_isStandardSmooth {R : Type} [CommRing R] (B : Type) [CommRin
 
 theorem univChart_of_chart {R : Type} [CommRing R] (G : Over (Spec (CommRingCat.of R))) [GrpObj G] (C : Chart G)
     (hC : (alg0 C).IsStandardSmooth) :
-    ∃ (d : ℕ) (x : ∀ m : ℕ, sp (R₀ := R) (JetR R (Fin d) m) ⟶ G), IsUnivChart G d x := by
+    ∃ (d : ℕ) (x : ∀ m : ℕ, sp (R₀ := R) (ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin d) m) ⟶ G), IsUnivChart G d x := by
   obtain ⟨n, π, htr, hze, huniv⟩ := algChart_of_isStandardSmooth Γ(G.left, C.U) hC (eps C)
   refine ⟨n, fun m => pt C (π m), fun m => ?_, fun m => ?_, ?_⟩
   · rw [spMap_pt, htr]
@@ -103,13 +103,13 @@ theorem univChart_of_chart {R : Type} [CommRing R] (G : Over (Spec (CommRingCat.
     exact hψu ψ₂ ⟨h1, (pt_injective C h2).symm⟩
 
 theorem univChart_baseChange_of_chart {R R' : Type} [CommRing R] [CommRing R'] [Algebra R R']
-    (G : Over (Spec (CommRingCat.of R))) [GrpObj G] (C : Chart G) (n : ℕ) (x : ∀ m : ℕ, sp (R₀ := R) (JetR R (Fin n) m) ⟶ G)
+    (G : Over (Spec (CommRingCat.of R))) [GrpObj G] (C : Chart G) (n : ℕ) (x : ∀ m : ℕ, sp (R₀ := R) (ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m) ⟶ G)
     (hx : IsUnivChart G n x) :
-    ∃ x' : ∀ m : ℕ, sp (R₀ := R') (JetR R' (Fin n) m) ⟶ (Over.pullback (fB R R')).obj G,
+    ∃ x' : ∀ m : ℕ, sp (R₀ := R') (ReciprocityTheory.ChartRestriction.G.Chart.JetR R' (Fin n) m) ⟶ (Over.pullback (fB R R')).obj G,
       IsUnivChart _ n x' ∧ ∀ c : Fin n → R,
         (tvec (x := x') (algebraMap R R' ∘ c)).left ≫ pullback.fst G.hom (fB R R') =
           Spec.map (CommRingCat.ofHom (dualMapR (algebraMap R R'))) ≫ (tvec (x := x) c).left := by
-  have hin : ∀ m, ∃ π : Γ(G.left, C.U) →ₐ[R] JetR R (Fin n) m, x m = pt C π := fun m =>
+  have hin : ∀ m, ∃ π : Γ(G.left, C.U) →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m, x m = pt C π := fun m =>
     exists_pt C (x m) (le_preimage_of_nil C (jetAug R (Fin n) m) (aug_surj _)
       (elt_nil _ (ker_jetAug_nil (Fin n) m)) (x m) ((Algebra.ofId R R).comp (eps C))
       ((spMap_jetAug_alt hx m).trans (pt_eps C R).symm))
@@ -139,7 +139,7 @@ theorem univChart_baseChange_of_chart {R R' : Type} [CommRing R] [CommRing R'] [
     rw [jetMapA_zR, jetMapA_zR]
     rfl
   · apply pushR_inj G
-    rw [pushR_spMap, pushR_pullR, spMap_pt, pushR_one, ← pt_eps C (JetR R' (Fin n) 0)]
+    rw [pushR_spMap, pushR_pullR, spMap_pt, pushR_one, ← pt_eps C (ReciprocityTheory.ChartRestriction.G.Chart.JetR R' (Fin n) 0)]
     congr 1
     have e : ((jetZeroR R' (Fin n) m).restrictScalars R).comp (jetMapA n m) = (jetMapA n 0).comp (jetZeroR R (Fin n) m) := by
       apply jet_ext
@@ -160,7 +160,7 @@ theorem univChart_baseChange_of_chart {R R' : Type} [CommRing R] [CommRing R'] [
     have hha : (aug.restrictScalars R).comp h = (Algebra.ofId R R').comp (eps C) :=
       pt_injective C (by rw [← spMap_pt, ← hh, hz])
     obtain ⟨ψ, ⟨h1, h2⟩, hu⟩ := isUnivRing_bc (eps := eps C) m (π m) (huniv m) (hπa m) A aug hJ h hha
-    have key : ∀ ψ' : JetR R' (Fin n) m →ₐ[R'] A,
+    have key : ∀ ψ' : ReciprocityTheory.ChartRestriction.G.Chart.JetR R' (Fin n) m →ₐ[R'] A,
         y = spMap ψ' ≫ pullR G (pt C ((jetMapA n m).comp (π m))) ↔
           h = (ψ'.restrictScalars R).comp ((jetMapA n m).comp (π m)) := by
       intro ψ'

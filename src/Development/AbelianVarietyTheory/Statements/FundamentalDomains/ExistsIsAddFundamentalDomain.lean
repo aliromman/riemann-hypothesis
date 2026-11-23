@@ -28,16 +28,16 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding spMap spMap_comp
 
 theorem algChart_of_etale {R : Type} [CommRing R] {B : Type} [CommRing B] [Algebra R B] {n : ℕ}
     (g : MvPolynomial (Fin n) R →ₐ[R] B) (hg : g.toRingHom.Etale) (ε' : B →ₐ[R] R) :
-    ∃ π : ∀ m : ℕ, B →ₐ[R] JetR R (Fin n) m,
+    ∃ π : ∀ m : ℕ, B →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m,
       (∀ m, (jetTruncR R (Fin n) m).comp (π (m + 1)) = π m) ∧
       (∀ m, (jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp ε') ∧
       ∀ (A : Type) [CommRing A] [Algebra R A] (aug : A →ₐ[R] R) (m : ℕ), (RingHom.ker aug) ^ (m + 1) = ⊥ →
         ∀ φ : B →ₐ[R] A, aug.comp φ = ε' →
-          ∃! ψ : JetR R (Fin n) m →ₐ[R] A, aug.comp ψ = jetAug R (Fin n) m ∧ ψ.comp (π m) = φ := by
+          ∃! ψ : ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m →ₐ[R] A, aug.comp ψ = jetAug R (Fin n) m ∧ ψ.comp (π m) = φ := by
   letI : Algebra (MvPolynomial (Fin n) R) B := g.toRingHom.toAlgebra
   haveI : IsScalarTower R (MvPolynomial (Fin n) R) B := IsScalarTower.of_algebraMap_eq fun r => (g.commutes r).symm
   haveI : Algebra.Etale (MvPolynomial (Fin n) R) B := hg
-  have hπ : ∀ m : ℕ, ∃ π : B →ₐ[R] JetR R (Fin n) m, (jetAug R (Fin n) m).comp π = ε' ∧
+  have hπ : ∀ m : ℕ, ∃ π : B →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m, (jetAug R (Fin n) m).comp π = ε' ∧
       ∀ j, π (sX R j) = algebraMap R _ (ε' (sX R j)) + zR m j := fun m =>
     etale_exists (n := n) ε' (jetAug R (Fin n) m) (ker_jetAug_nil (Fin n) m) _ (fun j => by
       rw [map_add (f := _), AlgHom.commutes, Algebra.algebraMap_self, RingHom.id_apply, jetAug_zR, add_zero])
@@ -89,7 +89,7 @@ theorem algChart_of_etale {R : Type} [CommRing R] {B : Type} [CommRing B] [Algeb
 
 theorem exists_isUnivChart {R : Type} [CommRing R] [IsLocalRing R] (G : Over (Spec (CommRingCat.of R))) [GrpObj G] {n : ℕ}
     (hG : SmoothOfRelativeDimension n G.hom) :
-    ∃ x : ∀ m : ℕ, sp (R₀ := R) (JetR R (Fin n) m) ⟶ G, IsUnivChart G n x := by
+    ∃ x : ∀ m : ℕ, sp (R₀ := R) (ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m) ⟶ G, IsUnivChart G n x := by
   obtain ⟨C, g, hg⟩ := NilCoord.exists_etale_chart G n hG
   obtain ⟨π, htr, hze, huniv⟩ := algChart_of_etale g hg (eps C)
   refine ⟨fun m => pt C (π m), fun m => ?_, fun m => ?_, ?_⟩

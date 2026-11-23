@@ -2002,7 +2002,7 @@ theorem main_field (φ : K →+* ℂ) (h : Dw.p + Dw.q ≤ n) (a : (E →+* ℂ)
     ∀ g : Ix → GL (Fin n) K, ∀ P ∈ HHa Dw.mult n K ComplexEmbedding.conjugate (InPsi H) fun τ i => a (τ, i),
       ∀ F ∈ VV K lam, cof Dw pl K n P = detFac Dw pl K a s lam * F →
         cof Dw pl K n (letAct Dw pl K g P) =
-          (∏ t : Ix, Matrix.det (Units.val (g t)) ^ (-s t)) • (detFac Dw pl K a s lam * actP lam g F) := by
+          (∏ t : Ix, Matrix.det (Units.val (g t)) ^ (-s t)) • (detFac Dw pl K a s lam * Formalism.L2.DIV.actP lam g F) := by
   haveI : CharZero K := φ.charZero
   have hsurj : Function.Surjective (rename (R := K) (fw (n := n) Dw he)) := rename_surjective _ (fw_surj Dw he)
   have hmem : ∀ P : MvPolynomial (Lt Ix Dw.p Dw.q n) K,
@@ -2047,7 +2047,7 @@ theorem main_field (φ : K →+* ℂ) (h : Dw.p + Dw.q ≤ n) (a : (E →+* ℂ)
           detFac Dw pl K a s lam := by
       simp only [detFac, ← emb_dd, map_prod, map_pow, trAct, (blockActTensor K K Ix n n _).1, rowAct_dd, map_mul,
         Matrix.det_transpose, smul_eq_C_mul, mul_pow, Finset.prod_mul_distrib, algHom_C, algebraMap_eq]
-    rw [e1, actP, LinearMap.smul_apply, AlgHom.toLinearMap_apply, smul_mul_assoc, mul_smul_comm, smul_smul, smul_smul]
+    rw [e1, Formalism.L2.DIV.actP, LinearMap.smul_apply, AlgHom.toLinearMap_apply, smul_mul_assoc, mul_smul_comm, smul_smul, smul_smul]
     congr 1
     rw [detTwK, ← Finset.prod_mul_distrib, ← Finset.prod_mul_distrib]
     refine Finset.prod_congr rfl fun t _ => ?_

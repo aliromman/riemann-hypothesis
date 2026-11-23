@@ -460,7 +460,7 @@ structure Is (μ0 : T) : Prop where
     ∀ u : D.what₂.Word, (((D.mem u).A.T : ℕ) : 𝓞 D.host.E) ∉ PP.asIdeal
   Q_de : ∀ p ∈ ({D.host.pde, D.host.pde'} : Set ℕ), ∃ 𝔭 : HeightOneSpectrum (𝓞 D.host.K),
     ∀ t, ∀ PP ∈ L.Q t, ((p : ℕ) : 𝓞 D.host.E) ∈ PP.asIdeal → PP.under (𝓞 D.host.K) = 𝔭
-  Q_ram : ∀ t PP, ¬ (L.xiH t).UnrAt PP ↔ PP ∈ L.Q t ∨ ∃ PP' ∈ L.Q t, IsConjPl PP' PP
+  Q_ram : ∀ t PP, ¬ (L.xiH t).UnrAt PP ↔ PP ∈ L.Q t ∨ ∃ PP' ∈ L.Q t, Formalism.IndefR.Lev.IsConjPl PP' PP
   chi : ∀ (j : Fin D.R.m), ∀ PP ∈ L.Pg, IsRes (L.C.mu0 j) PP (L.chi ((j : ℕ) + 1) PP)⁻¹
   xiR : ∀ t, ∀ PP ∈ L.Q t, IsRes (L.xiH t) PP (L.xiR t PP)
   βY : ∀ j, j < D.R.m → IsSDFrame (Yc D j) (L.βY j) (L.ΛY j) (D.host.g 0 * D.host.g 1)

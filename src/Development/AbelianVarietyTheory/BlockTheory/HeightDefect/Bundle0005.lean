@@ -219,7 +219,7 @@ structure IsSplitting (A B : HSp D) (χA χB : (AE D)ˣ →* Circle) : Prop wher
 abbrev Rep (ψ : AddChar (AF D.host.F) ℂ) (A B : HSp D) : Type := GA D A × GA D B →* Module.End ℂ (Theta ψ A B)
 
 def kern {ψ : AddChar (AF D.host.F) ℂ} {A B : HSp D} (om : Rep ψ A B) (f : Theta ψ A B) (g : GA D A) (h : GA D B) : ℂ :=
-  thetaFun A B ((om (g, h) f : Theta ψ A B) : WA A B → ℂ)
+  thetaFun A B ((om (g, h) f : Theta ψ A B) : GlobalTheory.IndefiniteRowSideFullHecke.HeisenbergWeilMatrices.WA A B → ℂ)
 
 def IsQuotInt (V : HSp D) (c : ℝ) (φ : GA D V → ℂ) (z : ℂ) : Prop :=
   AllSome (fun m : Measure (GA D V) × Set (GA D V) => IsVolPair D V m.1 m.2) fun m =>

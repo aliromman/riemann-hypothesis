@@ -59,7 +59,7 @@ structure Ext where
   lft : LocallyOfFiniteType π
   qc : QuasiCompact π
   sep : IsSeparated π
-  normal : IsNormalScheme M.Z
+  normal : ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme M.Z
   ne : (U₀ : Set M.Z).Nonempty
   ab : IsAbelianScheme ((Over.pullback Q.u₀).obj ρ.P.A)
   dim : SmoothOfRelativeDimension S.g ((Over.pullback Q.u₀).obj ρ.P.A).hom
