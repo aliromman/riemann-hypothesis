@@ -163,7 +163,7 @@ set_option autoImplicit false
 noncomputable section
 
 open CategoryTheory Opposite Matrix GlobalTheory GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
-open WittVector
+open _root_.WittVector
 
 namespace GlobalTheory.PDivLat
 
