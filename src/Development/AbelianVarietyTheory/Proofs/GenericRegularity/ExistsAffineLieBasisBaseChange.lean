@@ -22,7 +22,7 @@ theorem algChart_of_isStandardSmooth {R : Type} [CommRing R] (B : Type) [CommRin
     (hB : (algebraMap R B).IsStandardSmooth) (ε' : B →ₐ[R] R) :
     ∃ (n : ℕ) (π : ∀ m : ℕ, B →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m),
       (∀ m, (ReciprocityTheory.ChartRestriction.G.Chart.jetTruncR R (Fin n) m).comp (π (m + 1)) = π m) ∧
-      (∀ m, (jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp ε') ∧
+      (∀ m, (_root_.ReciprocityTheory.ChartRestriction.G.Chart.jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp ε') ∧
       ∀ (A : Type) [CommRing A] [Algebra R A] (aug : A →ₐ[R] R) (m : ℕ), (RingHom.ker aug) ^ (m + 1) = ⊥ →
         ∀ φ : B →ₐ[R] A, aug.comp φ = ε' →
           ∃! ψ : ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m →ₐ[R] A, aug.comp ψ = jetAug R (Fin n) m ∧ ψ.comp (π m) = φ := by
@@ -31,7 +31,7 @@ theorem algChart_of_isStandardSmooth {R : Type} [CommRing R] (B : Type) [CommRin
   haveI : IsScalarTower R (MvPolynomial (Fin n) R) B := IsScalarTower.of_algebraMap_eq' hgC.symm
   haveI : Algebra.Etale (MvPolynomial (Fin n) R) B := hg
   have hπ : ∀ m : ℕ, ∃ π : B →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n) m, (jetAug R (Fin n) m).comp π = ε' ∧
-      ∀ j, π (sX (R := R) j) = algebraMap R _ (ε' (sX (R := R) j)) + zR m j := fun m =>
+      ∀ j, π (sX (R := R) j) = algebraMap R _ (ε' (sX (R := R) j)) + _root_.ReciprocityTheory.ChartRestriction.G.Chart.zR m j := fun m =>
     etale_exists (n := n) ε' (jetAug R (Fin n) m) (ker_jetAug_nil (Fin n) m) _ (fun j => by
       rw [map_add (f := _), AlgHom.commutes, Algebra.algebraMap_self, RingHom.id_apply, jetAug_zR, add_zero])
   choose π hπaug hπX using hπ
@@ -121,7 +121,7 @@ theorem univChart_baseChange_of_chart {R R' : Type} [CommRing R] [CommRing R'] [
     rw [← spMap_pt, ← hπ, spMap_jetAug_alt hx, pt_eps]
   have hπtr : ∀ m, (ReciprocityTheory.ChartRestriction.G.Chart.jetTruncR R (Fin n) m).comp (π (m + 1)) = π m := fun m =>
     pt_injective C (by rw [← spMap_pt, ← hπ, ← hπ, hx.1 m])
-  have hπ0 : ∀ m, (jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp (eps C) := fun m =>
+  have hπ0 : ∀ m, (_root_.ReciprocityTheory.ChartRestriction.G.Chart.jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp (eps C) := fun m =>
     pt_injective C (by rw [← spMap_pt, ← hπ, hx.2.1 m, pt_eps])
   have huniv : ∀ m, IsUnivRing (eps C) m (π m) := by
     intro m A _ _ aug hJ h hh
@@ -135,16 +135,16 @@ theorem univChart_baseChange_of_chart {R R' : Type} [CommRing R] [CommRing R'] [
     congr 2
     apply jet_ext
     intro j
-    show ReciprocityTheory.ChartRestriction.G.Chart.jetTruncR R' (Fin n) m (jetMapA n (m + 1) (zR (m + 1) j)) = jetMapA n m (zR m j)
+    show ReciprocityTheory.ChartRestriction.G.Chart.jetTruncR R' (Fin n) m (jetMapA n (m + 1) (_root_.ReciprocityTheory.ChartRestriction.G.Chart.zR (m + 1) j)) = jetMapA n m (_root_.ReciprocityTheory.ChartRestriction.G.Chart.zR m j)
     rw [jetMapA_zR, jetMapA_zR]
     rfl
   · apply pushR_inj G
     rw [pushR_spMap, pushR_pullR, spMap_pt, pushR_one, ← pt_eps C (ReciprocityTheory.ChartRestriction.G.Chart.JetR R' (Fin n) 0)]
     congr 1
-    have e : ((jetZeroR R' (Fin n) m).restrictScalars R).comp (jetMapA n m) = (jetMapA n 0).comp (jetZeroR R (Fin n) m) := by
+    have e : ((_root_.ReciprocityTheory.ChartRestriction.G.Chart.jetZeroR R' (Fin n) m).restrictScalars R).comp (jetMapA n m) = (jetMapA n 0).comp (_root_.ReciprocityTheory.ChartRestriction.G.Chart.jetZeroR R (Fin n) m) := by
       apply jet_ext
       intro j
-      show jetZeroR R' (Fin n) m (jetMapA n m (zR m j)) = jetMapA n 0 (zR 0 j)
+      show _root_.ReciprocityTheory.ChartRestriction.G.Chart.jetZeroR R' (Fin n) m (jetMapA n m (_root_.ReciprocityTheory.ChartRestriction.G.Chart.zR m j)) = jetMapA n 0 (_root_.ReciprocityTheory.ChartRestriction.G.Chart.zR 0 j)
       rw [jetMapA_zR, jetMapA_zR]
       rfl
     rw [← AlgHom.comp_assoc, e, AlgHom.comp_assoc, hπ0, ← AlgHom.comp_assoc]
@@ -185,7 +185,7 @@ theorem univChart_baseChange_of_chart {R R' : Type} [CommRing R] [CommRing R'] [
       congr 1
       apply jet_ext
       intro j
-      show dualMapA (R := R) (R' := R') (dualLift c (zR 1 j)) = dualLift (algebraMap R R' ∘ c) (jetMapA n 1 (zR 1 j))
+      show dualMapA (R := R) (R' := R') (dualLift c (_root_.ReciprocityTheory.ChartRestriction.G.Chart.zR 1 j)) = dualLift (algebraMap R R' ∘ c) (jetMapA n 1 (_root_.ReciprocityTheory.ChartRestriction.G.Chart.zR 1 j))
       rw [jetMapA_zR, dualLift_zR, dualLift_zR, dualMapA_inr]
       rfl
     rw [← pushR_left, e1, ← e3, ← e2]
