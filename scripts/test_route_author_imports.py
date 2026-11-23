@@ -27,7 +27,13 @@ class AuthorImportTests(unittest.TestCase):
         stage_sources(self.repo, self.input)
         self.routes = {"Caller": {"Items": [("Uses", "Supplier")]}}
         self.pinned = self.run_git("write-tree")
-        with patch.object(routing, "AUTHOR_REVISION", self.pinned):
+        self.baseline = dict(self.input)
+        self.baseline["Caller"] = self.baseline["Caller"].replace("public import Items\n", "", 1)
+        stage_sources(self.repo, self.baseline)
+        self.before = self.run_git("write-tree")
+        stage_sources(self.repo, self.input)
+        with patch.object(routing, "AUTHOR_REVISION", self.pinned), \
+                patch.object(routing, "BASE_AUTHOR_REVISION", self.before):
             routing.take_imports(self.repo, self.pinned, self.routes)
         self.stripped = self.run_git("write-tree")
         self.plan = Partition(self.original, read_graph(self.repo, self.stripped), ["Supplier"], [["Supplier"]])
@@ -49,6 +55,25 @@ class AuthorImportTests(unittest.TestCase):
         final = read_graph(self.repo, self.run_git("write-tree"))
         self.assertEqual(final[uses].imports.count(supplier), 2)
         self.assertNotIn(supplier, final[self.plan.location["Plain"]].imports)
+
+    def test_removed_author_import_stays_removed(self):
+        self.run_git("read-tree", self.before)
+        with patch.object(routing, "AUTHOR_REVISION", self.pinned), \
+                patch.object(routing, "BASE_AUTHOR_REVISION", self.before):
+            self.assertEqual(routing.take_imports(self.repo, self.before, self.routes), {})
+        self.assertEqual(self.run_git("write-tree"), self.before)
+
+    def test_translated_removed_wrapper_follows_its_original_owner(self):
+        with_alias = dict(self.input)
+        with_alias["Caller"] = with_alias["Caller"].replace("public import Items\n", "public import GoneStatement\n", 1)
+        stage_sources(self.repo, with_alias)
+        author = self.run_git("write-tree")
+        self.run_git("read-tree", self.pinned)
+        routes = {"Caller": {"GoneStatement": [("Uses", "Supplier")]}}
+        with patch.object(routing, "AUTHOR_REVISION", author), \
+                patch.object(routing, "BASE_AUTHOR_REVISION", self.before):
+            self.assertEqual(routing.take_imports(self.repo, self.pinned, routes, {"GoneStatement": "Items"}), routes)
+        self.assertEqual(self.run_git("write-tree"), self.before)
 
     def test_wrong_original_consumer_cannot_gain_the_protected_provider(self):
         bad = {"Caller": {"Items": [("Plain", "Supplier")]}}

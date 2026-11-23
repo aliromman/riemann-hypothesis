@@ -111,6 +111,59 @@ def command_at(source, bounds):
     return source[offset(*bounds[:2]):offset(*bounds[2:])]
 
 
+def retain_calling_conventions(repo, stage, file):
+    """Use the author's full argument list with either original binder convention."""
+    edited = {}
+    for line in file.read_text().splitlines():
+        physical, member, original_call, full_call = line.split("\t")
+        current = edited.get(physical)
+        if current is None:
+            current = subprocess.check_output(git(repo, "show", stage + ":" + path_of(physical)), text=True)
+        start, end = member_bounds(current, member)
+        body = current[start:end]
+        explicit = "@" + full_call
+        original_count, full_count = body.count(original_call), body.count(full_call)
+        if (original_count, full_count) == (1, 0):
+            continue
+        if (original_count, full_count) != (0, 1):
+            raise ValueError(f"Cannot identify the reviewed application of {full_call} in {member}")
+        if explicit in body:
+            continue
+        edited[physical] = current[:start] + body.replace(full_call, explicit, 1) + current[end:]
+    stage_sources(repo, edited)
+
+
+def retain_author_qualifications(repo, stage, author, origins, table, location=None):
+    """Use the author's complete qualified command when restoring a removed helper."""
+    edited = {}
+    for line in table.read_text().splitlines():
+        member, name, short, qualified = line.split("\t")
+        entries = [o for o in origins[member] if o.name == name]
+        if len(entries) != 1:
+            raise ValueError(f"Cannot identify the original declaration {name} in {member}")
+        origin = entries[0]
+        old = subprocess.check_output(git(repo, "show", DECLARATION_SOURCE + ":" + path_of(member)), text=True)
+        original = command_at(old, origin.bounds)
+        token = r"(?<![\w'.])" + re.escape(short) + r"(?![\w'.])"
+        updated = re.sub(token, qualified, original)
+        author_body = subprocess.check_output(git(repo, "show", author + ":" + path_of(origin.bundle)), text=True)
+        a, b = member_bounds(author_body, member)
+        if updated == original or author_body[a:b].count(updated) != 1:
+            raise ValueError(f"The author command for {name} no longer matches the reviewed qualification")
+        target = location[member] if location else origin.bundle
+        raw = edited.get(target)
+        if raw is None:
+            raw = subprocess.check_output(git(repo, "show", stage + ":" + path_of(target)), text=True)
+        a, b = member_bounds(raw, member)
+        body = raw[a:b]
+        if updated in body:
+            continue
+        if body.count(original) != 1:
+            raise ValueError(f"Cannot locate the restored original command for {name} in {target}")
+        edited[target] = raw[:a] + body.replace(original, updated, 1) + raw[b:]
+    stage_sources(repo, edited)
+
+
 def restore_providers(repo, stage, original, plan, origins, work):
     """Restore a declaration when the resulting public scope has no supplier for it."""
     @cache

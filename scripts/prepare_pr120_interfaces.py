@@ -9,7 +9,7 @@ import subprocess
 from tempfile import TemporaryDirectory
 
 from route_author_imports import AUTHOR_REVISION, check_original_routes, read_routes, restore_imports, take_imports
-from required_duplicate_providers import read_origins, restore_providers
+from required_duplicate_providers import read_origins, restore_providers, retain_author_qualifications, retain_calling_conventions
 from partition_bundles import Partition, atomic_output, git, read_graph, read_order_groups, write_outputs
 
 
@@ -52,6 +52,11 @@ def main():
         git(args.repo, "merge-base", "--is-ancestor", AUTHOR_REVISION, revision)).returncode == 0
     routes = read_routes(DATA / "author_imports.tsv") if includes_author else {}
 
+    qualified_author = "3a0aee48cdd75aa5c839d279c32b3673841232df"
+    has_qualifications = subprocess.run(git(args.repo, "rev-parse", "--verify", "--quiet", qualified_author + "^{commit}"),
+                                         stdout=subprocess.DEVNULL).returncode == 0 and subprocess.run(
+        git(args.repo, "merge-base", "--is-ancestor", qualified_author, revision)).returncode == 0
+
     with TemporaryDirectory() as directory:
         work = Path(directory)
         repo = work / "objects.git"
@@ -59,9 +64,15 @@ def main():
         (repo / "objects/info/alternates").write_text(objects + "\n")
         subprocess.run(git(repo, "read-tree", revision), check=True)
         # Restore the original declarations and caller arguments before computing their import scopes.
-        subprocess.run(git(repo, "apply", "--cached", str(DATA / "restore_interfaces.patch")), check=True)
+        subprocess.run(git(repo, "apply", "--cached", "--3way", str(DATA / "restore_interfaces.patch")), check=True)
+        origins = read_origins(DATA / "duplicate_origins.tsv")
+        if has_qualifications:
+            retain_author_qualifications(repo, output(repo, "write-tree"), qualified_author, origins,
+                                         DATA / "restored_qualifications.tsv")
+        retain_calling_conventions(repo, output(repo, "write-tree"), DATA / "full_argument_calls.tsv")
         if routes:
-            take_imports(repo, output(repo, "write-tree"), routes)
+            replacements = dict(line.split("\t") for line in (DATA / "removed_author_imports.tsv").read_text().splitlines())
+            routes = take_imports(repo, output(repo, "write-tree"), routes, replacements)
         source = output(repo, "write-tree")
         original = read_graph(repo, ORIGINAL)
         if routes:
@@ -75,14 +86,16 @@ def main():
         if routes:
             restore_imports(repo, staged, routes, plan, providers, groups)
             staged = output(repo, "write-tree")
-        origins = read_origins(DATA / "duplicate_origins.tsv")
         restored = restore_providers(repo, staged, original, plan, origins, work)
         tree = output(repo, "write-tree")
         if revision == INTEGRATION and not args.with_all_confirmed_providers and tree != EXPECTED[args.with_instance_providers]:
             raise ValueError(f"Unexpected source tree {tree}")
 
-        if (revision == "95b530edbcf4c5132f8c51c27fa1264c99449fa1" and args.with_all_confirmed_providers and
-                tree != "f3a15c310e9e97111f686408170178edb3462721"):
+        current_profiles = {
+            "95b530edbcf4c5132f8c51c27fa1264c99449fa1": "60839da7b582fbf6ea2ef7e8de2f051d345942e6",
+            "6c06c6a7d99d500e16e88fb9597eef80fdf7bfbe": "faef8e5bbf9b68d7d9f56aacf6bd6cb48497136b",
+        }
+        if args.with_all_confirmed_providers and revision in current_profiles and tree != current_profiles[revision]:
             raise ValueError(f"Unexpected current integration source tree {tree}")
 
         with atomic_output(args.patch) as patch:

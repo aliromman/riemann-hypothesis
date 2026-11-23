@@ -70,6 +70,34 @@ class RestoredProviderTests(unittest.TestCase):
         self.assertEqual(self.restore(tree, plan), [])
         self.assertEqual(self.run_git("write-tree"), tree)
 
+    def test_full_arguments_work_with_either_original_plicity(self):
+        path = self.work / "uses.tsv"
+        path.write_text("First\tFirst\toldPublic trivial\toldPublic True trivial\n")
+        current = self.code + "theorem myProof : True := oldPublic True trivial\n"
+        (self.repo / "src/First.lean").write_text(current)
+        self.run_git("add", "src/First.lean")
+        stage = self.run_git("write-tree")
+        duplicates.retain_calling_conventions(self.repo, stage, path)
+        corrected = self.run_git("write-tree")
+        self.assertIn("@oldPublic True trivial", self.run_git("show", corrected + ":src/First.lean"))
+        duplicates.retain_calling_conventions(self.repo, corrected, path)
+        self.assertEqual(self.run_git("write-tree"), corrected)
+
+    def test_restored_declaration_keeps_the_verified_author_qualification(self):
+        data = self.work / "qualifications.tsv"
+        data.write_text("First\toldPublic\tTrue\t_root_.True\n")
+        file = self.repo / "src/First.lean"
+        qualified = file.read_text().replace(": True := True.intro", ": _root_.True := True.intro")
+        file.write_text(qualified)
+        self.run_git("add", "src/First.lean")
+        author = self.run_git("write-tree")
+        self.run_git("read-tree", self.historical)
+        with patch.object(duplicates, "DECLARATION_SOURCE", self.historical):
+            duplicates.retain_author_qualifications(self.repo, self.historical, author, self.origins, data)
+            self.assertEqual(self.run_git("write-tree"), author)
+            with self.assertRaisesRegex(ValueError, "no longer matches"):
+                duplicates.retain_author_qualifications(self.repo, self.historical, self.historical, self.origins, data)
+
     def test_commented_and_quoted_declarations_are_absent(self):
         fake = ("-- [dedup] theorem oldPublic : True := trivial\n"
                 "/- nested /- comment -/\ntheorem oldPublic : True := trivial\n-/\n"

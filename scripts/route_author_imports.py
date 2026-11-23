@@ -6,6 +6,7 @@ import subprocess
 from partition_bundles import HEADER, PUBLIC, git, internal, import_mode, ordered_profiles, path_of, stage_sources, visibility
 
 
+BASE_AUTHOR_REVISION = "f94106583626ad6b48ac6e239e0b2e5ffc879555"
 AUTHOR_REVISION = "b4f6cadcb41210ca3480d16021fd981cdca551a0"
 
 
@@ -33,19 +34,45 @@ def check_original_routes(original, routes):
                     raise ValueError(f"{provider} was not a public dependency of the original {member}")
 
 
-def take_imports(repo, stage, routes):
-    """Take the reviewed lines out of the submitted headers before partitioning."""
+def take_imports(repo, stage, routes, replacements=None):
+    """Take only surviving author additions out of their submitted headers."""
     changed = {}
+    active = {}
     for module, additions in routes.items():
         raw = source(repo, stage, module)
+        before = source(repo, BASE_AUTHOR_REVISION, module)
         pinned = source(repo, AUTHOR_REVISION, module)
         first = "public import Mathlib\n"
-        lines = "".join("public import " + dep + "\n" for dep in additions)
-        header = first + lines
-        if raw.count(header) != 1 or pinned.count(header) != 1:
-            raise ValueError(f"The reviewed author imports have changed in {module}")
-        changed[module] = raw.replace(header, first, 1)
+        actual = []
+        selected = {}
+        for dep, original_uses in additions.items():
+            line = "public import " + dep + "\n"
+            if pinned.splitlines(keepends=True).count(line) != before.splitlines(keepends=True).count(line) + 1:
+                raise ValueError(f"Cannot identify the original author addition of {dep} in {module}")
+            candidates = [dep]
+            if replacements and dep in replacements:
+                candidates.append(replacements[dep])
+            retained = []
+            for name in candidates:
+                command = "public import " + name + "\n"
+                difference = raw.splitlines(keepends=True).count(command) - before.splitlines(keepends=True).count(command)
+                if difference == 1:
+                    retained.append(command)
+                elif difference != 0:
+                    raise ValueError(f"The number of imports of {name} in {module} changed unexpectedly")
+            if len(retained) > 1:
+                raise ValueError(f"Both spellings of the author import of {dep} occur in {module}")
+            if retained:
+                actual.extend(retained)
+                selected[dep] = original_uses
+        if actual:
+            header = first + "".join(actual)
+            if raw.count(header) != 1:
+                raise ValueError(f"The reviewed author import positions have changed in {module}")
+            changed[module] = raw.replace(header, first, 1)
+            active[module] = selected
     stage_sources(repo, changed)
+    return active
 
 
 def restore_imports(repo, stage, routes, plan, providers, groups):
