@@ -13,7 +13,8 @@ noncomputable section
 
 namespace CompanionTheory.D.LK
 
-open Car Formalism.REAL
+open Car
+open Formalism.REAL hiding KRel
 open GlobalTheory.CompanionTheory.DSICKoszul (homotopy_ring filt mem_filt_succ euler_filt)
 open CompanionTheory.D.DSIC (KRel)
 
@@ -186,7 +187,8 @@ noncomputable section
 
 namespace CompanionTheory.D.LK
 
-open Car Formalism.REAL
+open Car
+open Formalism.REAL hiding KRel
 open CompanionTheory.D.DSIC (KRel)
 
 variable {n : ℕ} {V W : Type} [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]

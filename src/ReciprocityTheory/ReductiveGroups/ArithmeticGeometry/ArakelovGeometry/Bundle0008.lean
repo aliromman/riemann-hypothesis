@@ -290,7 +290,7 @@ theorem card_mPiece_step {J : Ideal (MRing ι)} (hJ : IsMultiHomogIdeal J) {f : 
   have hac : a - c + c = a := funext fun k => Nat.sub_add_cancel (hca k)
   have hmul : ∀ g : mHom ι (a - c), (g : MRing ι) * f ∈ mHom ι a := fun g => by
     rw [mem_mHom_iff]
-    have := isMultiHomog_mul ((mem_mHom_iff _ _).mp g.2) hf
+    have := isMultiHomog_mul ((mem_mHom_iff_via_grL _ _).mp g.2) hf
     rwa [hac] at this
   let χ' : mHom ι (a - c) →ₗ[ℤ] B :=
     { toFun := fun g => ⟨⟨(g : MRing ι) * f, hmul g⟩, by

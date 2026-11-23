@@ -429,7 +429,7 @@ theorem rhGradF_holds {E : Type} [Field E] [NumberField E] [IsCMField E] : RhGra
       ∑ a, wd _ a (fun w => ((rh w : ℝ) : ℂ)) (Zmap X z) *
         fderiv ℂ (Zmap X) z (WithLp.toLp 2 ξ) a := by
     rw [← gc_sum_wd_comp _ _ _ _ _ z (hg.differentiableAt (by norm_num)) hZd ξ]
-    exact Finset.sum_congr rfl fun j _ => by rw [wd_congr (j := j) hev]
+    exact Finset.sum_congr rfl fun j _ => by rw [wd_congr (nd X) j _ _ z hev]
   have h2 : leviV (nd X) (fun w => ((rhF X x0 w : ℝ) : ℂ)) z ξ =
       leviV _ (fun w => ((rh w : ℝ) : ℂ)) (Zmap X z) (fun b => fderiv ℂ (Zmap X) z (WithLp.toLp 2 ξ) b) := by
     rw [Y.fc_leviV_congr (nd X) _ _ z hev]

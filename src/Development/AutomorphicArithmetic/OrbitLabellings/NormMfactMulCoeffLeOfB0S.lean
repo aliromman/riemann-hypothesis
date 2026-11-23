@@ -8,7 +8,8 @@ public import Development.AutomorphicArithmetic.OrbitLabellings.BeSConstantCoeff
 @[expose] public section
 
 open scoped BigOperators
-open Formalism.DworkPowerSeriesWeights Formalism.IncomingBounds UpperTheory.G2
+open Formalism.IncomingBounds UpperTheory.G2
+open Formalism.DworkPowerSeriesWeights hiding mfact
 
 private theorem factA {K : Type} [NormedField K] [IsUltrametricDist K] [CharZero K] {l : ℕ} (hl : l.Prime)
     (hlt : ‖(l : K)‖ < 1) {ι : Type} [Fintype ι] (κ : ι →₀ ℕ) (A : ℝ) (hA : 1 ≤ A) (hκ : ∀ v, (κ v : ℝ) ≤ A) :

@@ -68,7 +68,6 @@ theorem ramificationIndex_mul_lowerIndex_restrictNormalHom [Normal K M] (σ : L 
 
 
 
-omit [IsGalois K L] in
 theorem exists_lowerIndex_mul_eq_min (σ : L ≃ₐ[K] L) :
     ∃ τ₀ : L ≃ₐ[M] L,
       (∀ τ : L ≃ₐ[M] L, lowerIndex K L (σ * τ.restrictScalars K) ≤

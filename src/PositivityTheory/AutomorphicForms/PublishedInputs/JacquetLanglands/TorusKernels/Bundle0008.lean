@@ -12,7 +12,8 @@ noncomputable section
 
 namespace UpperTheory.Esk.OrbitalSingularIntegrals
 
-open Complex Metric MeasureTheory Set Filter Topology ReciprocityTheory.AnForm.Osgood
+open Complex Metric MeasureTheory Set Filter Topology
+open ReciprocityTheory.AnForm.Osgood hiding SepHol
 
 open scoped Real
 

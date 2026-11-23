@@ -5,6 +5,7 @@ public import GroundTheory.GlobalFields.IdeleGroups.SIdeleGroups.Galois
 public import GroundTheory.GlobalFields.IdeleGroups.Bundle0001
 
 @[expose] public section
+open scoped RestrictedProduct
 
 namespace GroundTheory.Global
 

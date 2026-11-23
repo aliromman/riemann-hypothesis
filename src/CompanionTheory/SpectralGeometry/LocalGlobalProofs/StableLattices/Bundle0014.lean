@@ -280,7 +280,8 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.ZetaHighest
 
-open CompanionTheory.D.DSIC Formalism.REAL
+open Formalism.REAL
+open CompanionTheory.D.DSIC hiding KRel
 
 variable {n : ℕ}
 

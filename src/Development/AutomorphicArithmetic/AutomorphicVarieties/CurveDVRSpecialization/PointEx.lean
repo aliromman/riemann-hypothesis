@@ -11,6 +11,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.Commutative
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.Bundle0014
 
 @[expose] public section
+set_option synthInstance.maxHeartbeats 200000
 
 set_option linter.overlappingInstances false
 

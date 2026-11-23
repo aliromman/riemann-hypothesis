@@ -7,7 +7,8 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.GeneratorCountTuples.ConeHomotopyBoundaryFormula
 section
-open UpperTheory.V.ZK UpperTheory.V.ZK.PM
+open UpperTheory.V.ZK.PM
+open UpperTheory.V.ZK hiding cone
 
 private theorem hp_eq (A : Type) [CommRing A] (G : Type) [Group G] (k : G) :
     ∀ (m : ℕ) (z : Ch A G m), hp A k m z = hprism A (· * k) m z
@@ -27,7 +28,8 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.GeneratorCountTuples.LeftMulChainChainHomotopic
 section
-open UpperTheory.V.ZK UpperTheory.V.ZK.PM
+open UpperTheory.V.ZK.PM
+open UpperTheory.V.ZK hiding cone
 
 section
 variable (A : Type) [CommRing A] {G : Type} [Group G]
@@ -94,7 +96,8 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.GeneratorCountTuples.TupleChainBoundaryFormula
 section
-open UpperTheory.V.ZK UpperTheory.V.ZK.PM
+open UpperTheory.V.ZK.PM
+open UpperTheory.V.ZK hiding cone
 
 private theorem hbd_eq (A : Type) [CommRing A] (G : Type) [Group G] :
     ∀ (m : ℕ) (z : Ch A G (m + 1)), PM.hbd A G m z = UpperTheory.V.ZK.hbd A G m z

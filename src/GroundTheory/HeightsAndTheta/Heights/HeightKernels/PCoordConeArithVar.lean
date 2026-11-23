@@ -12,7 +12,8 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights
 
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo
+open MvPolynomial
+open ReciprocityTheory.ChartRestriction.G.Geo hiding IsRelevant
 
 noncomputable section
 

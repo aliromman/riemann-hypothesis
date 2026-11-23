@@ -10,7 +10,8 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThre
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ExistsSpanEntMonApproxOfMemWtPart
 section
-open Matrix IsLocalRing UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.U3.Mop
+open Matrix IsLocalRing UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.U3.Mop
+open UpperTheory.V.U3 hiding emb_apply
 
 private theorem one_mem_entMon {G R : Type} [Group G] [CommRing R] (r : G →* GG (m := 3) (R := R)) :
     (1 : R) ∈ entMon r 0 :=
@@ -71,7 +72,8 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ExistsSurjectionUnivNormCondKerSpanNEq
 section
-open Matrix IsLocalRing UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.U3.Mop
+open Matrix IsLocalRing UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.U3.Mop
+open UpperTheory.V.U3 hiding emb_apply
 
 private theorem mat_symm {R : Type} [CommRing R] (x : GG (m := 3) (R := R))
     (h2 : x * x = 1) (hx : x.right = -1) :
@@ -216,7 +218,8 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ExistsTorusTwistEqLocalPointOfWeightedPres
 section
-open Matrix IsLocalRing UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.U3.Mop
+open Matrix IsLocalRing UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.U3.Mop
+open UpperTheory.V.U3 hiding emb_apply
 
 open Polynomial in
 private theorem pts_int {l : ℕ} [Fact l.Prime] (x : PadicAlgCl l) : IsIntegral ℤ_[l] x ↔ ‖x‖ ≤ 1 := by

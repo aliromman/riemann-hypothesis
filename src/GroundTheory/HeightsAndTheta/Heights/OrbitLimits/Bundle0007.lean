@@ -393,7 +393,8 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Targets
 
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1
+open MvPolynomial ReciprocityTheory.ChartRestriction.G.AI.I1
+open ReciprocityTheory.ChartRestriction.G.Geo hiding IsMultiHomog
 
 universe u v w
 

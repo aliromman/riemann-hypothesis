@@ -20,7 +20,7 @@ section HermMod
 variable {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] [Algebra F R]
 
 theorem sigR_algebraMap (σ : E →ₐ[F] E) (t : R) :
-    sigR R σ (algebraMap R (R ⊗[F] E) t) = algebraMap R (R ⊗[F] E) t := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (algebraMap R (R ⊗[F] E) t) = algebraMap R (R ⊗[F] E) t := by
   show (Algebra.TensorProduct.map (AlgHom.id F R) σ) (algebraMap R (R ⊗[F] E) t) =
     algebraMap R (R ⊗[F] E) t
   rw [Algebra.TensorProduct.algebraMap_apply, Algebra.TensorProduct.map_tmul, AlgHom.id_apply,

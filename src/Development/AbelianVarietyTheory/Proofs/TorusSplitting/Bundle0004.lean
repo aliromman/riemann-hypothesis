@@ -15,7 +15,8 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegra
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TorusSplitting.CoeffEqZeroOfOrthonormal
 section
-open NumberField Complex ReciprocityTheory.ChartRestriction.G.I2 ReciprocityTheory.ChartRestriction.G.I2.FPw
+open NumberField Complex ReciprocityTheory.ChartRestriction.G.I2.FPw
+open ReciprocityTheory.ChartRestriction.G.I2 hiding Hf_conj
 
 noncomputable section
 

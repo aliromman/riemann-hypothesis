@@ -13,7 +13,8 @@ noncomputable section
 
 namespace CompanionTheory.D.LK
 
-open Formalism.REAL GlobalTheory.CompanionTheory.DSVerma GlobalTheory.CompanionTheory.DSCover
+open GlobalTheory.CompanionTheory.DSVerma GlobalTheory.CompanionTheory.DSCover
+open Formalism.REAL hiding KRel
 open CompanionTheory.D.DSIC (KRel NC)
 
 theorem deg_pderiv {σ : Type} (i : σ) (f : MvPolynomial σ ℂ) (k : ℕ) (h : f.totalDegree ≤ k + 1) :

@@ -10,7 +10,8 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Targets
 
-open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR GroundTheory.Heights₂.Heights.FieldNumbers
+open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR
+open GroundTheory.Heights₂.Heights.FieldNumbers hiding IsMultiHomog
 
 noncomputable section
 

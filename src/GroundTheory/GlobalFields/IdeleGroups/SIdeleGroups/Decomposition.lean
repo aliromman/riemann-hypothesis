@@ -153,12 +153,12 @@ theorem assembleFinite_inv_eventually (hS : S.Finite) (p : SIdelesProduct L S) :
 def assemble (hS : S.Finite) (p : SIdelesProduct L S) : IdeleGroup L where
   val := ((fun u ↦ (assembleInfinite p u : u.Completion) : (u : InfinitePlace L) → u.Completion),
     (⟨fun u ↦ (assembleFinite p u : u.adicCompletion L), assembleFinite_eventually hS p⟩ :
-      Πʳ u : HeightOneSpectrum (𝓞 L), [u.adicCompletion L, u.adicCompletionIntegers L]))
+      Πʳ (u : HeightOneSpectrum (𝓞 L)), [u.adicCompletion L, u.adicCompletionIntegers L]))
   inv := ((fun u ↦ ((assembleInfinite p u)⁻¹ : (u.Completion)ˣ).val :
       (u : InfinitePlace L) → u.Completion),
     (⟨fun u ↦ ((assembleFinite p u)⁻¹ : (u.adicCompletion L)ˣ).val,
         assembleFinite_inv_eventually hS p⟩ :
-      Πʳ u : HeightOneSpectrum (𝓞 L), [u.adicCompletion L, u.adicCompletionIntegers L]))
+      Πʳ (u : HeightOneSpectrum (𝓞 L)), [u.adicCompletion L, u.adicCompletionIntegers L]))
   val_inv := adele_ext (funext fun u ↦ (assembleInfinite p u).mul_inv)
     fun u ↦ (assembleFinite p u).mul_inv
   inv_val := adele_ext (funext fun u ↦ (assembleInfinite p u).inv_mul)

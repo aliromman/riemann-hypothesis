@@ -241,7 +241,7 @@ theorem pushInvertible_of_densePart : ∀ (X U : Scheme.{0}) [IsLocallyNoetheria
   intro X U _ j hX _ _ _ _ G G₀ φ L L₀ _ _ sq hL hL₀ hw h₀ H x
   obtain ⟨V, hx, θ, hθ, hne⟩ := H x
   refine ⟨V, hx, θ, hθ, fun W hW s hs => ?_, hne⟩
-  have hG := forall_isDomain_and_isIntegrallyClosed_stalk_of_smooth G.hom hX
+  have hG := forall_isDomain_and_isIntegrallyClosed_stalk_of_smooth G.hom ((GlobalTheory.isNormalScheme_iff _).1 hX)
   have : IsReduced G.left := by
     have : ∀ g : G.left, _root_.IsReduced (G.left.presheaf.stalk g) := fun g =>
       have := (hG g).1

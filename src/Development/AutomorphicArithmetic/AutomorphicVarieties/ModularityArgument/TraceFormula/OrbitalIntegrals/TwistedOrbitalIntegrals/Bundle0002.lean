@@ -7,7 +7,7 @@ public import Mathlib
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.OrbitalIntegrals.TwistedOrbitalIntegrals.QuotFubini
 section
-open MeasureTheory PositivityTheory.Rg.Tf.Loc
+open MeasureTheory PositivityTheory.Rg.Tf.Loc hiding twCent
 
 theorem UpperTheory.V.Z.Tf.Orb.quotFubini :
     UpperTheory.V.Z.Tf.Orb.QuotMass → UpperTheory.V.Z.Tf.Orb.QuotFubini := by
@@ -62,7 +62,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.OrbitalIntegrals.TwistedOrbitalIntegrals.QuotIndep
 section
-open MeasureTheory Topology PositivityTheory.Rg.Tf.Loc
+open MeasureTheory Topology PositivityTheory.Rg.Tf.Loc hiding twCent
 open scoped ENNReal
 
 section Core
@@ -147,7 +147,7 @@ end
 section
 noncomputable section
 
-open MeasureTheory Topology PositivityTheory.Rg.Tf.Loc
+open MeasureTheory Topology PositivityTheory.Rg.Tf.Loc hiding twCent
 open scoped ENNReal Pointwise
 
 namespace UpperTheory.V.Z.Tf.Orb
@@ -252,7 +252,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.OrbitalIntegrals.TwistedOrbitalIntegrals.QuotPos
 section
-open MeasureTheory PositivityTheory.Rg.Tf.Loc
+open MeasureTheory PositivityTheory.Rg.Tf.Loc hiding twCent
 open scoped ENNReal
 
 theorem UpperTheory.V.Z.Tf.Orb.quotPos :
@@ -329,7 +329,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.OrbitalIntegrals.TwistedOrbitalIntegrals.TwCent
 section
-open MeasureTheory ValuativeRel PositivityTheory.Rg.Tf.Loc
+open MeasureTheory ValuativeRel PositivityTheory.Rg.Tf.Loc hiding twCent
 
 theorem UpperTheory.V.Z.Tf.Orb.twCent :
     UpperTheory.V.Z.Tf.Orb.ExtCont → UpperTheory.V.Z.Tf.Orb.GLTop → UpperTheory.V.Z.Tf.Orb.CentComm → UpperTheory.V.Z.Tf.Orb.TwCent := by

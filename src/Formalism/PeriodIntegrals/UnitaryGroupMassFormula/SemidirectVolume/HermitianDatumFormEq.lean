@@ -23,8 +23,8 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E] {A : Type} [CommRing A] 
 def Bf (u v : Fin M → A ⊗[F] E) : A := Algebra.trace A (A ⊗[F] E) (hR A σ J u v)
 
 theorem sigR_algebraMap (c : A) :
-    sigR A σ (algebraMap A (A ⊗[F] E) c) = algebraMap A (A ⊗[F] E) c := by
-  simp [sigR, Algebra.TensorProduct.algebraMap_apply, Algebra.TensorProduct.map_tmul]
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR A σ (algebraMap A (A ⊗[F] E) c) = algebraMap A (A ⊗[F] E) c := by
+  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.algebraMap_apply, Algebra.TensorProduct.map_tmul]
 
 theorem trace_algebraMap_mul (c : A) (y : A ⊗[F] E) :
     Algebra.trace A (A ⊗[F] E) (algebraMap A (A ⊗[F] E) c * y) =
@@ -83,13 +83,13 @@ theorem Bf_expand {k : ℕ} (b : Fin k → Fin M → A ⊗[F] E) (x y : Fin k �
 theorem Bf_lin (g : HA A σ J) (u v : Fin M → A ⊗[F] E) :
     Bf σ J (lin A σ J g u) (lin A σ J g v) = Bf σ J u v := by
   have hf : ∀ x y : Fin M → A ⊗[F] E, hR A σ J x y =
-      dotProduct (Matrix.vecMul (fun i => sigR A σ (x i)) (JR A J)) y := by
+      dotProduct (Matrix.vecMul (fun i => Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR A σ (x i)) (JR A J)) y := by
     intro x y
     simp only [hR, Formalism.UG.hform, dotProduct, Matrix.vecMul, Finset.sum_mul]
     exact Finset.sum_comm
   have hs : ∀ (P : Matrix (Fin M) (Fin M) (A ⊗[F] E)) (x : Fin M → A ⊗[F] E),
-      (fun i => sigR A σ (P.mulVec x i)) =
-        Matrix.vecMul (fun i => sigR A σ (x i)) (Formalism.UG.cT (sigR A σ) P) := by
+      (fun i => Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR A σ (P.mulVec x i)) =
+        Matrix.vecMul (fun i => Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR A σ (x i)) (Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR A σ) P) := by
     intro P x
     funext j
     set_option synthInstance.maxHeartbeats 100000 in
@@ -97,7 +97,7 @@ theorem Bf_lin (g : HA A σ J) (u v : Fin M → A ⊗[F] E) :
       Matrix.map_apply, _root_.map_sum, map_mul]
     exact Finset.sum_congr rfl fun i _ => mul_comm _ _
   have hg : (HA.mat A σ J g) ∈ HR A σ J := (show ↥(HR A σ J) from g).2
-  have hg' : Formalism.UG.cT (sigR A σ) ((HA.mat A σ J g : GL (Fin M) (A ⊗[F] E)) : Matrix _ _ _) * JR A J *
+  have hg' : Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR A σ) ((HA.mat A σ J g : GL (Fin M) (A ⊗[F] E)) : Matrix _ _ _) * JR A J *
       ((HA.mat A σ J g : GL (Fin M) (A ⊗[F] E)) : Matrix _ _ _) = JR A J := hg
   unfold Bf lin
   congr 1

@@ -222,11 +222,11 @@ theorem card_places : Fintype.card (InfinitePlace D.host.E) = Fintype.card D.wha
 theorem blockEnds_prod (F : ℕ → ℝ) (bs : List (D.host.E × ℕ)) : ∀ acc : ℕ,
     ((blockEnds D acc bs).map F).prod = ∏ a : Fin bs.length, F (acc + pS bs ((a : ℕ) + 1)) := by
   induction bs with
-  | nil => intro acc; simp [blockEnds]
+  | nil => intro acc; simp [ThB.blockEnds]
   | cons b bs ih =>
     obtain ⟨t, s⟩ := b
     intro acc
-    simp only [blockEnds, List.map_cons, List.prod_cons, List.length_cons]
+    simp only [ThB.blockEnds, List.map_cons, List.prod_cons, List.length_cons]
     rw [Fin.prod_univ_succ, ih]
     have e0 : F (acc + s) = F (acc + pS ((t, s) :: bs) (((0 : Fin (bs.length + 1)) : ℕ) + 1)) := by simp [pS]
     rw [e0]

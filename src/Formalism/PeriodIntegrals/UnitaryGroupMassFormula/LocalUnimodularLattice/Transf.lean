@@ -10,7 +10,8 @@ noncomputable section
 
 namespace PI.NUnimodLoc.UnitaryGroupMassFormula.TR
 
-open PI Formalism.REAL
+open Formalism.REAL
+open PI hiding UJ
 
 variable {m : ℕ}
 

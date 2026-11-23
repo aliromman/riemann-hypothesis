@@ -1,6 +1,8 @@
 module
 
 public import Mathlib
+public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0100
+public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.UpperHalfPlaneCodiscreteGermIdentityAndUnitsStatement
 public import Development.AbelianVarietyTheory.Definitions.Foundations.Bundle0008
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0116
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0112

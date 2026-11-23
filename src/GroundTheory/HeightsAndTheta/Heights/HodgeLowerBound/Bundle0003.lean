@@ -40,7 +40,8 @@ noncomputable section
 
 namespace GroundTheory.Heights₂.Heights.LowerBoundFree
 
-open MvPolynomial MeasureTheory Filter Topology ReciprocityTheory.ChartRestriction.G.Geo
+open MvPolynomial MeasureTheory Filter Topology
+open ReciprocityTheory.ChartRestriction.G.Geo hiding fibre
 
 namespace PtsPencil
 

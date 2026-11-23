@@ -189,7 +189,7 @@ theorem act_mem {hU : IntOn μ U} (M : SlopeTestRemainingChoices S (Pr (RadSp k 
 theorem mul_mem_entries {hU : IntOn μ U} (M N : SlopeTestRemainingChoices S (Pr (RadSp k r z z' π π'))) (hM : ∀ a b, M a b ∈ adjAlg μ U hU)
     (hN : ∀ a b, N a b ∈ adjAlg μ U hU) (a b : Ix S) : (M * N) a b ∈ adjAlg μ U hU := by
   rw [Matrix.mul_apply]
-  exact sum_mem fun e _ => mul_mem (hM a e) (hN e b)
+  exact sum_mem fun e _ => Subalgebra.mul_mem _ (hM a e) (hN e b)
 
 theorem sum_pairAt_star_mul {hU : IntOn μ U} (M N : SlopeTestRemainingChoices S (Pr (RadSp k r z z' π π')))
     (hM : ∀ a b, M a b ∈ adjAlg μ U hU) (hN : ∀ a b, N a b ∈ adjAlg μ U hU)

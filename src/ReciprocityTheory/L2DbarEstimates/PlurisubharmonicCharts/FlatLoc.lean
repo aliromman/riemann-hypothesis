@@ -395,7 +395,7 @@ theorem dbar_flat_loc {n : ℕ} {Y : Type u} [TopologicalSpace Y] [T2Space Y] [S
       ∑ b, wdb n b (u ∘ (A.chart i).symm) (A.chart i x) * (starRingEnd ℂ)
         ((fderiv ℂ (fun v' => A.chart i (E.symm v' : Y)) (E x) (bas n j)).ofLp b) := by
     intro j
-    rw [db_eq_wdb_comp_chart_symm' hE hxE, hzx, wdb_congr hcomp, flA_wdb_comp (U := u ∘ (A.chart i).symm)
+    rw [db_eq_wdb_comp_chart_symm' hE hxE, hzx, wdb_congr n j _ _ _ hcomp, flA_wdb_comp (U := u ∘ (A.chart i).symm)
       (G := fun v' => A.chart i (E.symm v' : Y)) (y := E x) hU1 hG1]
     simp only [hEx]
   have hJ' : fderiv ℂ (fun v' => A.chart i (E.symm v' : Y)) (E x)

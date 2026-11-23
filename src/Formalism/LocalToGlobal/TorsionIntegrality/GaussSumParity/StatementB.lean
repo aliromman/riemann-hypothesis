@@ -11,7 +11,7 @@ open scoped BigOperators
 
 namespace Formalism.L2.Th1.D
 
-open Formalism.IncomingBounds
+open Formalism.IncomingBounds hiding mvExp
 open Formalism.DworkPowerSeriesWeights (Integral mvExp torus BHyp Unram entLog oneLog thetaZ thetaOne frameJet frameJetOne
   nablaO)
 open Formalism.InvariantFactorPaths.G7 (lgF at1 Simeq DivAB d1 swap2 UnrOK IsLawOfLog BetaHyp OmOK)

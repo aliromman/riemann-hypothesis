@@ -12,6 +12,7 @@ public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.Bundle0
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Bundle0019
 
 @[expose] public section
+set_option synthInstance.maxHeartbeats 200000
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SmulGluedLatticeFirstPositionCases
 section

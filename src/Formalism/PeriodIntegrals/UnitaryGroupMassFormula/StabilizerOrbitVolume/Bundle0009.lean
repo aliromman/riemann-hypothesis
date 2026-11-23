@@ -247,23 +247,23 @@ theorem exists_leftInv_of_linIndep {K : Type} [CommRing K] [IsSemisimpleRing K] 
 theorem secGram_holds : SecGram := by
   intro F E _ _ _ _ _ σ hσ M J hJ hdet R _ _ hss a x hx
   classical
-  have hs2 : ∀ z : R ⊗[F] E, sigR R σ (sigR R σ z) = z := by
+  have hs2 : ∀ z : R ⊗[F] E, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ z) = z := by
     intro z
     induction z using TensorProduct.induction_on with
     | zero => simp
-    | tmul r e => simp [sigR, hσ]
+    | tmul r e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hσ]
     | add z w hz hw => rw [map_add (f := _), map_add (f := _), hz, hw]
-  have hsF : ∀ c : F, sigR R σ (algebraMap F (R ⊗[F] E) c) = algebraMap F (R ⊗[F] E) c := by
+  have hsF : ∀ c : F, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (algebraMap F (R ⊗[F] E) c) = algebraMap F (R ⊗[F] E) c := by
     intro c
-    simp [sigR]
-  have hJR : ∀ k l, sigR R σ (JR (F := F) R J l k) = JR (F := F) R J k l := by
+    simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
+  have hJR : ∀ k l, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (JR (F := F) R J l k) = JR (F := F) R J k l := by
     intro k l
-    simp [JR, inclR, sigR, hJ]
+    simp [JR, inclR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hJ]
   have hJunit : IsUnit (JR (F := F) R J).det := by
     have hd : (JR (F := F) R J).det = inclR (F := F) R J.det := (RingHom.map_det (inclR (F := F) R) J).symm
     rw [hd]
     exact (isUnit_iff_ne_zero.2 hdet).map _
-  set s := sigR R σ with hs
+  set s := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ with hs
   let w : Fin a → Fin M → R ⊗[F] E := fun i l => ∑ k, s (x i k) * JR (F := F) R J k l
   have hw : LinearIndependent (R ⊗[F] E) w := by
     rw [Fintype.linearIndependent_iff]

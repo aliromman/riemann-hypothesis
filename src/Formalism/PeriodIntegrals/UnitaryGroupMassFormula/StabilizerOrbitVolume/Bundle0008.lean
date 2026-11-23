@@ -76,11 +76,11 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E] {R S : Type} [CommRing R
   [CommRing S] [Algebra F S] (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E)
 
 theorem tmap_sigR (φ : R →ₐ[F] S) (x : R ⊗[F] E) :
-    Algebra.TensorProduct.map φ (AlgHom.id F E) (sigR R σ x) =
-      sigR S σ (Algebra.TensorProduct.map φ (AlgHom.id F E) x) := by
+    Algebra.TensorProduct.map φ (AlgHom.id F E) (PI.UJClassFin.sigR R σ x) =
+      PI.UJClassFin.sigR S σ (Algebra.TensorProduct.map φ (AlgHom.id F E) x) := by
   induction x using TensorProduct.induction_on with
   | zero => simp
-  | tmul r e => simp [sigR]
+  | tmul r e => simp [PI.UJClassFin.sigR]
   | add x y hx hy => simp only [map_add (f := _), hx, hy]
 
 theorem tmap_inclR (φ : R →ₐ[F] S) (e : E) :

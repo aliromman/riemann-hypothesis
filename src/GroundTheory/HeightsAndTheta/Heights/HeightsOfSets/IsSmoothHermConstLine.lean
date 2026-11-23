@@ -14,7 +14,8 @@ set_option linter.unusedSectionVars false
 
 namespace GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.HeightsSet
 
-open MvPolynomial MeasureTheory ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo
+open MvPolynomial MeasureTheory ReciprocityTheory.ChartRestriction.G
+open ReciprocityTheory.ChartRestriction.G.Geo hiding fibre
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 

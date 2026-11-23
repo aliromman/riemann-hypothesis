@@ -16,6 +16,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle005
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle0056
 
 @[expose] public section
+set_option synthInstance.maxHeartbeats 200000
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContraAdmissibleTrace
 section

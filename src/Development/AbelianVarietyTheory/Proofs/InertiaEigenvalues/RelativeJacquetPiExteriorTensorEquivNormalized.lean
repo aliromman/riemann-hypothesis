@@ -5,7 +5,8 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.Bundle0
 
 @[expose] public section
 
-open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.JacStages
+open GlobalTheory.PRep GlobalTheory.SmGL
+open GlobalTheory.JacStages hiding jac
 
 noncomputable section
 

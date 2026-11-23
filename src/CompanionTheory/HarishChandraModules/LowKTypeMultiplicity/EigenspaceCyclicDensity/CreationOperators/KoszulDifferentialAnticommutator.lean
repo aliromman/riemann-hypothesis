@@ -10,7 +10,8 @@ noncomputable section
 
 namespace CompanionTheory.D.LK
 
-open Car Formalism.REAL
+open Car
+open Formalism.REAL hiding KRel
 open CompanionTheory.D.DSIC (KRel)
 
 variable {n : ℕ} {ε : Fin n → Bool}

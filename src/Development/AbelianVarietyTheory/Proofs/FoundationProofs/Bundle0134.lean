@@ -1,6 +1,7 @@
 module
 
 public import Mathlib
+public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0100
 public import Development.AbelianVarietyTheory.Definitions.Foundations.SamePartIffOfNeZero
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0130
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0071

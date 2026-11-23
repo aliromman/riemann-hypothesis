@@ -17,7 +17,8 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0134
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleCechNerveBaseChangeIsPullback
 section
-open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex TensorProduct GlobalTheory.EtC
+open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex TensorProduct
+open GlobalTheory.EtC hiding cechAug
 
 namespace GlobalTheory.CechBC
 

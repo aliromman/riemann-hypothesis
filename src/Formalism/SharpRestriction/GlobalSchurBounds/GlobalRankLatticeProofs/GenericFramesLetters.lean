@@ -313,7 +313,7 @@ theorem coprime_two {l : ℕ} (hl : l.Prime) (h2 : l ≠ 2) : Nat.Coprime l 2 :=
 private theorem orderOf_iotaH_eq_addOrderOf (e : ℕ) (x : ZMod (2 ^ e)) : orderOf (iotaH e x) = addOrderOf x := by
   let f : Multiplicative (ZMod (2 ^ e)) →* HGrp e :=
     MonoidHom.mk' (fun a => iotaH e (Multiplicative.toAdd a))
-      (fun a b => iotaH_add e (Multiplicative.toAdd a) (Multiplicative.toAdd b))
+      (fun a b => SlopeTestRemainingChoices.iotaH_add e (Multiplicative.toAdd a) (Multiplicative.toAdd b))
   have hf : Function.Injective f := fun a b h => Multiplicative.toAdd.injective (iotaH_injective e h)
   have h := orderOf_injective f hf (Multiplicative.ofAdd x)
   rw [orderOf_ofAdd_eq_addOrderOf] at h
@@ -325,7 +325,7 @@ theorem hOf_ord (e l : ℕ) (hl : Nat.Coprime l 2) :
   unfold hOf
   rw [dite_eq_left hl]
   unfold ordH
-  rw [← orderOf_iotaH_eq_addOrderOf, iotaH_iotaHInv]
+  rw [← orderOf_iotaH_eq_addOrderOf, SlopeTestRemainingChoices.iotaH_iotaHInv]
 
 private theorem two_pow_dvd_sq_pm_one_iff_of_odd (x : ℤ) (hx : Odd x) (N : ℕ) :
     ((2 : ℤ) ^ N ∣ x ^ 2 - 1 ∨ (2 : ℤ) ^ N ∣ x ^ 2 + 1) ↔

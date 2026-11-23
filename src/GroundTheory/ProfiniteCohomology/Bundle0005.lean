@@ -152,7 +152,7 @@ open CategoryTheory Limits
 
 universe u
 
-variable {k G : Type u} [CommRing k] [Group G]
+variable {k G : Type u} [CommRing k] [Group G] [TopologicalSpace G]
 
 section Union
 

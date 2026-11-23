@@ -24,6 +24,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameMatrixC
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0024
 
 @[expose] public section
+set_option maxHeartbeats 8000000
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GeometryProofs.ChartFrameMatrixRegular
 section

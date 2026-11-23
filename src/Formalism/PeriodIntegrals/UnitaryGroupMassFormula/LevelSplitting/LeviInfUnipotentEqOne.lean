@@ -144,7 +144,7 @@ def levG (hσσ : ∀ x, σ (σ x) = x) (hJ : IsHermND σ J) (hP : P.IsStd σ J 
 variable (R σ J P)
 
 def Asub : Subgroup (HA R σ J) where
-  carrier := {g | g ∈ Nsub R σ J P ∧ (∀ w ∈ Wp R σ J P, lin R σ J g w = w) ∧
+  carrier := {g | g ∈ Nsub R σ J P ∧ (∀ w ∈ PI.LevelKSplit.W.NC.Wp R σ J P, lin R σ J g w = w) ∧
     (∀ b, lin R σ J g (ratV (F := F) R (P.f b)) ∈ spanR (F := F) R P.f Set.univ) ∧
     (∀ b, lin R σ J g⁻¹ (ratV (F := F) R (P.f b)) ∈ spanR (F := F) R P.f Set.univ)}
   one_mem' := by
@@ -218,7 +218,7 @@ theorem pXv_mem (x : Fin M → R ⊗[F] E) :
   pXv_mem_span (T := T) x
 
 theorem pV_mem_Wp (H : (datR R σ J P T).Hyp) (x : Fin M → R ⊗[F] E) :
-    pV (datR R σ J P T) x ∈ Wp R σ J P :=
+    pV (datR R σ J P T) x ∈ PI.LevelKSplit.W.NC.Wp R σ J P :=
   ⟨fun a => h_e_pV H a x, fun a => h_f_pV H a x⟩
 
 section Hyp3
@@ -368,7 +368,7 @@ theorem H_comm_A (H : (datR R σ J P T).Hyp) (h u : HA R σ J) (hh : h ∈ Hsub 
   have hhf := PI.LevelKSplit.W.Glob.lin_fix_span h P.f (PI.LevelKSplit.W.Glob.H_fix_f P h hh)
   apply PI.LevelKSplit.W.SemiA.ext_lin
   intro x
-  have hWx : lin R σ J h (pV (datR R σ J P T) x) ∈ Wp R σ J P := by
+  have hWx : lin R σ J h (pV (datR R σ J P T) x) ∈ PI.LevelKSplit.W.NC.Wp R σ J P := by
     refine ⟨fun a => ?_, fun a => ?_⟩
     · rw [← PI.LevelKSplit.W.Glob.H_fix_e P h hh a, hR_lin]; exact h_e_pV H a x
     · rw [← PI.LevelKSplit.W.Glob.H_fix_f P h hh a, hR_lin]; exact h_f_pV H a x

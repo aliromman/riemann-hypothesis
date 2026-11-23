@@ -1,6 +1,7 @@
 module
 
 public import Mathlib
+public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0149
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ZetaActRefl
 public import Development.AbelianVarietyTheory.Definitions.Foundations.MemRingOfInR
 public import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.Bundle0009

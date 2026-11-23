@@ -128,7 +128,7 @@ theorem main : ∀ (K V : Type) [Field K] [NumberField K] [StarRing K] [AddCommG
   obtain ⟨-, hsW, hpW, -⟩ := (Witt.witt_definite K V h hK hs hpd).2 (perp h U)
   have hd0 : discN (hRes h U) A ≠ 0 :=
     (DiscOrder.main K U (hRes h U) hK hsU (nondeg_of_pd _ hpU) A hA).1
-  have dl := dualLattice (𝓞 K) K (perp h U) (hRes h (perp h U)) hsW (nondeg_of_pd _ hpW)
+  have dl := Formalism.HermitianLatticesTheory.dualLattice (𝓞 K) K (perp h U) (hRes h (perp h U)) hsW (nondeg_of_pd _ hpW)
     star_algebraMap_ringOfIntegers_mem_range
   have horth : ∀ (u : U) (w : perp h U), h (u : V) (w : V) = 0 :=
     fun u w => (Witt.mem_perp h U w).1 w.2 u u.2

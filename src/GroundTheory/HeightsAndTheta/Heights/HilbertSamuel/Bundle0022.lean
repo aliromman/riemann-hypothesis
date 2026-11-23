@@ -56,6 +56,7 @@ set_option maxSynthPendingDepth 1
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel
 
 open ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.ArakelovGeometry MvPolynomial
+open ReciprocityTheory.ChartRestriction.G.Geo (HermLine)
 
 noncomputable section
 

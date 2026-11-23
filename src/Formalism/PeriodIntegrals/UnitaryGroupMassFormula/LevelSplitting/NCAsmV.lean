@@ -205,7 +205,7 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E] {R : Type} [CommRing R] 
   {σ : E →ₐ[F] E} {M : ℕ} {J : Matrix (Fin M) (Fin M) E} {r : ℕ} {P : Frame E M r} {T : F}
 
 theorem mem_Wp_iff (H : (datR R σ J P T).Hyp) (v : Fin M → R ⊗[F] E) :
-    v ∈ Wp R σ J P ↔ DatL.pL (datR R σ J P T) v = v := by
+    v ∈ PI.LevelKSplit.W.NC.Wp R σ J P ↔ DatL.pL (datR R σ J P T) v = v := by
   constructor
   · rintro ⟨he, hf⟩
     exact DatL.pL_of (fun a => he a) (fun a => hf a)
@@ -220,7 +220,7 @@ theorem mem_Wp_iff (H : (datR R σ J P T).Hyp) (v : Fin M → R ⊗[F] E) :
       exact h1
 
 theorem lin_mem_Wp {h : HA R σ J} (hh : h ∈ Hsub R σ J P) {w : Fin M → R ⊗[F] E}
-    (hw : w ∈ Wp R σ J P) : lin R σ J h w ∈ Wp R σ J P := by
+    (hw : w ∈ PI.LevelKSplit.W.NC.Wp R σ J P) : lin R σ J h w ∈ PI.LevelKSplit.W.NC.Wp R σ J P := by
   obtain ⟨he, hf⟩ := hw
   have hfix : ∀ i, lin R σ J h (ratV (F := F) R (tupH P i)) = ratV (F := F) R (tupH P i) :=
     fun i => congrFun (MulAction.mem_stabilizer_iff.mp hh) i
@@ -235,7 +235,7 @@ theorem lin_mem_Wp {h : HA R σ J} (hh : h ∈ Hsub R σ J P) {w : Fin M → R �
     rw [← h1, hR_lin]
     exact hf a
 
-def linWp {h : HA R σ J} (hh : h ∈ Hsub R σ J P) (w : Wp R σ J P) : Wp R σ J P :=
+def linWp {h : HA R σ J} (hh : h ∈ Hsub R σ J P) (w : PI.LevelKSplit.W.NC.Wp R σ J P) : PI.LevelKSplit.W.NC.Wp R σ J P :=
   ⟨lin R σ J h w, lin_mem_Wp hh w.2⟩
 
 end Wp
@@ -251,7 +251,7 @@ theorem sc_tens : SecondCountableTopology (Af F ⊗[F] E) := by
 
 theorem wp_map (hσσ : ∀ x, σ (σ x) = x) (hJ : IsHermND σ J) (hP : P.IsStd σ J T)
     (hV : PI.LevelKSplit.W.CD.ModV F E σ M J) {h : HA (Af F) σ J} (hh : h ∈ Hsub (Af F) σ J P)
-    (μ : Measure (Wp (Af F) σ J P)) (hμ : μ.IsAddHaarMeasure) : μ.map (linWp hh) = μ := by
+    (μ : Measure (PI.LevelKSplit.W.NC.Wp (Af F) σ J P)) (hμ : μ.IsAddHaarMeasure) : μ.map (linWp hh) = μ := by
   haveI := sc_tens (F := F) (E := E)
   have H := datR_hyp (R := Af F) hσσ hJ hP
   have hfix : ∀ i, lin (Af F) σ J h (ratV (F := F) (Af F) (tupH P i)) = ratV (F := F) (Af F) (tupH P i) :=
@@ -267,7 +267,7 @@ theorem wp_map (hσσ : ∀ x, σ (σ x) = x) (hJ : IsHermND σ J) (hP : P.IsStd
     simp only [tupH, Fin.append_right] at h1
     exact h1
   refine map_eq_of_split (DatL.pL (datR (Af F) σ J P T)).toAddMonoidHom ?_
-    (fun v => DatL.pL_pL H v) (Wp (Af F) σ J P) (fun v => mem_Wp_iff H v)
+    (fun v => DatL.pL_pL H v) (PI.LevelKSplit.W.NC.Wp (Af F) σ J P) (fun v => mem_Wp_iff H v)
     (lin (Af F) σ J h).toAddMonoidHom ?_ (fun u hu => DatL.fix_of_pL_zero hSe hSf hu)
     (fun ν hν => hV hJ hσσ h ν hν) (linWp hh) (fun w => rfl) μ hμ
   · exact LinearMap.continuous_on_pi _

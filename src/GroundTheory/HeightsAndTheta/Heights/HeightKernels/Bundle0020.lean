@@ -14,7 +14,8 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights
 
-open ReciprocityTheory.ChartRestriction.G.Geo Filter Topology Matrix
+open Filter Topology Matrix
+open ReciprocityTheory.ChartRestriction.G.Geo hiding fibre
 
 noncomputable section
 

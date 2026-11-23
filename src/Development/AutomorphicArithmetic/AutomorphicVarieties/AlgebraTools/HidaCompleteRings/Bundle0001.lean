@@ -3,6 +3,7 @@ module
 public import Mathlib
 
 @[expose] public section
+set_option maxHeartbeats 8000000
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HidaCompleteRings.CofinalCompl
 section

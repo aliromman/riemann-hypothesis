@@ -21,8 +21,8 @@ section HermMod
 variable {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] [Algebra F R]
   (σ : E →ₐ[F] E) (a : ℕ)
 
-theorem sigR_algebraMap (c : R) : sigR R σ (algebraMap R (R ⊗[F] E) c) = algebraMap R _ c := by
-  simp [sigR, Algebra.TensorProduct.algebraMap_apply]
+theorem sigR_algebraMap (c : R) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (algebraMap R (R ⊗[F] E) c) = algebraMap R _ c := by
+  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.algebraMap_apply]
 
 theorem smul_mem_HermR (c : R) (S : Matrix (Fin a) (Fin a) (R ⊗[F] E)) (hS : S ∈ HermR R σ a) :
     c • S ∈ HermR R σ a := by

@@ -63,6 +63,7 @@ theorem mem_inv_different {x : E} (hx : ∀ a : 𝓞 E, ∃ k : ℤ, Algebra.tra
 end TraceDualMin
 
 
+open ReciprocityTheory.ChartRestriction.G.FD hiding isIntegral_cc cc_cc
 open TraceDualMin in
 theorem trace_dual_min {n : ℕ} (Λ : Submodule (𝓞 E) (Fin n → E))
     (hint : ∀ x ∈ Λ, ∀ y ∈ Λ, IsIntegral ℤ (herm 1 x y)) (hdual : ∀ x, (∀ y ∈ Λ, IsIntegral ℤ (herm 1 x y)) → x ∈ Λ)

@@ -102,14 +102,14 @@ section PieceB4
 
 theorem blockEnds_prod_le (D : D7) (F G : ℕ → ℝ) (hF0 : ∀ l, 0 ≤ F l) (hFG : ∀ l, F l ≤ G l) (hG1 : ∀ l, 1 ≤ G l)
     (R : ℕ) : ∀ (bs : List (D.host.E × ℕ)) (acc : ℕ), (∀ b ∈ bs, 1 ≤ b.2) → acc + (bs.map Prod.snd).sum = R →
-      ((blockEnds D acc bs).map F).prod ≤ ∏ i ∈ Finset.Ico acc R, G (i + 1) := by
+      ((Formalism.MainNotions.S.ThB.blockEnds D acc bs).map F).prod ≤ ∏ i ∈ Finset.Ico acc R, G (i + 1) := by
   intro bs
   induction bs with
   | nil =>
     intro acc _ hsum
     simp only [List.map_nil, List.sum_nil, add_zero] at hsum
     subst hsum
-    simp [blockEnds]
+    simp [Formalism.MainNotions.S.ThB.blockEnds]
   | cons hd bs ih =>
     intro acc hb hsum
     obtain ⟨e, s⟩ := hd
@@ -120,7 +120,7 @@ theorem blockEnds_prod_le (D : D7) (F G : ℕ → ℝ) (hF0 : ∀ l, 0 ≤ F l) 
     have IH := ih (acc + s) hb' hsum'
     have hR : acc + s ≤ R := by omega
     rw [← Finset.prod_Ico_consecutive _ (by omega : acc ≤ acc + s) hR]
-    simp only [blockEnds, List.map_cons, List.prod_cons]
+    simp only [Formalism.MainNotions.S.ThB.blockEnds, List.map_cons, List.prod_cons]
     have hP1 : G (acc + s) ≤ ∏ i ∈ Finset.Ico acc (acc + s), G (i + 1) := by
       obtain ⟨t, ht⟩ : ∃ t, acc + s = t + 1 := ⟨acc + s - 1, by omega⟩
       rw [ht, Finset.prod_Ico_succ_top (by omega : acc ≤ t)]
@@ -129,7 +129,7 @@ theorem blockEnds_prod_le (D : D7) (F G : ℕ → ℝ) (hF0 : ∀ l, 0 ≤ F l) 
           _ ≤ _ := Finset.prod_le_prod₀ (fun _ _ => zero_le_one) (fun i _ => hG1 _)
       have h2 : 0 ≤ G (t + 1) := le_trans zero_le_one (hG1 _)
       nlinarith
-    have hrest0 : 0 ≤ ((blockEnds D (acc + s) bs).map F).prod := by
+    have hrest0 : 0 ≤ ((Formalism.MainNotions.S.ThB.blockEnds D (acc + s) bs).map F).prod := by
       apply List.prod_nonneg
       intro a ha
       obtain ⟨l, -, rfl⟩ := List.mem_map.mp ha

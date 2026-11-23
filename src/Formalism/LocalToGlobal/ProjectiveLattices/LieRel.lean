@@ -12,7 +12,7 @@ noncomputable section
 namespace Formalism.L2.Pj.LieRel
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding JetR
 open ReciprocityTheory.ChartRestriction.G.Chart (tvec tcoord tmap IsUnivChart tvec_tmap tcoord_spec tvec_inj tcoord_scale
   tcoord_tvec isTan_tvec isTan_scale tvec_eig_iff scaleD fB Rel liftT viaT rel_exists_w rel_exists_v rel_eq_iff
   rel_prod rel_pre tan_iff eig_iff one_left' sp JetR)
