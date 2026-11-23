@@ -241,7 +241,7 @@ def linForm (ℓ : Ψ × Fin N → ℤ) : RootPoly Ψ N := ∑ p, (ℓ p : ℚ) 
 
 def linDeg (ℓ : Ψ × Fin N → ℤ) : FlBlock Ψ N → ℤ := fun q => ∑ p, ℓ p * xDeg Ψ N p q
 
-def linLine (ℓ : Ψ × Fin N → ℤ) : HermLine (FlIdx Ψ N) := fsHerm (ι := FlIdx Ψ N) (linDeg Ψ N ℓ)
+def linLine (ℓ : Ψ × Fin N → ℤ) : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine (FlIdx Ψ N) := fsHerm (ι := FlIdx Ψ N) (linDeg Ψ N ℓ)
 
 variable (j : ℕ)
 
@@ -255,7 +255,7 @@ def vandForm (t : VandPair Ψ N j) : Ψ × Fin N → ℤ := fun p =>
 
 def vandCount : ℕ := Fintype.card (VandPair Ψ N j)
 
-def vandLine (i : Fin (vandCount Ψ N j)) : HermLine (FlIdx Ψ N) :=
+def vandLine (i : Fin (vandCount Ψ N j)) : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine (FlIdx Ψ N) :=
   linLine Ψ N (vandForm Ψ N j ((Fintype.equivFin (VandPair Ψ N j)).symm i))
 
 end Lines

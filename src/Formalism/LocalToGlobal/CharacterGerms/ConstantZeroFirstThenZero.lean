@@ -113,7 +113,7 @@ theorem E_D_cobd (G : FGLaw C dd) (A : PS C 1 dd) (j : Fin dd) :
   rw [ev_sub constant_zero_first_then_zero, ev_sum constant_zero_first_then_zero]
   congr 1
   refine Finset.sum_congr rfl fun r _ => ?_
-  rw [ev_mul constant_zero_first_then_zero, ev_ev (z0_1 _ G.const) constant_zero_first_then_zero]
+  rw [_root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_mul constant_zero_first_then_zero, ev_ev (z0_1 _ G.const) constant_zero_first_then_zero]
   have e2 : (fun k i => ev (n := 1) (![pt C dd 0, 0] : Fin 2 → Pt C 1 dd) ((![G.F] : Fin 1 → Pt C 2 dd) k i)) =
       ![pt C dd 0] := by
     funext k i

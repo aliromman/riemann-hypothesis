@@ -392,8 +392,8 @@ theorem exists_gMat {k : ℕ} {g : GL (Fin n) F} (hg : g ∈ minusculeSet F n k)
     QuotientGroup.eq.2 (by
       rw [hY, _root_.mul_inv_rev, inv_inv, mul_assoc, inv_mul_cancel, mul_one]
       exact hMgK)
-  have hYB : Y ∈ borel F n := (borel F n).mul_mem
-    ((borel F n).mul_mem hu.1 (torusPow_mem_borel F n l)) ((borel F n).inv_mem
+  have hYB : Y ∈ _root_.GroundTheory.Automorphic.Iwasawa.borel F n := (_root_.GroundTheory.Automorphic.Iwasawa.borel F n).mul_mem
+    ((_root_.GroundTheory.Automorphic.Iwasawa.borel F n).mul_mem hu.1 (torusPow_mem_borel F n l)) ((_root_.GroundTheory.Automorphic.Iwasawa.borel F n).inv_mem
       ((mem_unipotent_inf_integralGL_iff F n).2 ⟨⟨fun i j hij => by
         show (Mg : Matrix (Fin n) (Fin n) F) i j = 0
         rw [hMg]

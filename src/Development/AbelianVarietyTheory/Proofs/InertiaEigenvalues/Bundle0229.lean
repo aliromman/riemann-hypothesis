@@ -366,12 +366,12 @@ theorem finrank_DdRK [FiniteDimensional Qp LL] [FiniteDimensional LL V] (h : IsD
   have : FiniteDimensional Qp V := Module.Finite.trans LL V
   have : FiniteDimensional Qp (DdR PD ρ) := Module.Finite.trans LL _
   let ε : DdR PD ρ ≃ₗ[Qp] DdRK PD ρ :=
-    { toFun := fun x => toK PD ρ x x.2
+    { toFun := fun x => _root_.GlobalTheory.DeRhamCompare.toK PD ρ x x.2
       invFun := fun y => ⟨(TensorProduct.comm Qp V BdR).symm y, y.2⟩
-      map_add' := fun x y => Subtype.ext (by simp [toK])
-      map_smul' := fun a x => Subtype.ext (by simp [toK])
-      left_inv := fun x => Subtype.ext (by simp [toK])
-      right_inv := fun x => Subtype.ext (by simp [toK]) }
+      map_add' := fun x y => Subtype.ext (by simp [_root_.GlobalTheory.DeRhamCompare.toK])
+      map_smul' := fun a x => Subtype.ext (by simp [_root_.GlobalTheory.DeRhamCompare.toK])
+      left_inv := fun x => Subtype.ext (by simp [_root_.GlobalTheory.DeRhamCompare.toK])
+      right_inv := fun x => Subtype.ext (by simp [_root_.GlobalTheory.DeRhamCompare.toK]) }
   have : FiniteDimensional Qp (DdRK PD ρ) := ε.finiteDimensional
   refine ⟨Module.Finite.of_restrictScalars_finite Qp K _, ?_⟩
   have h1 := Module.finrank_mul_finrank Qp K (DdRK PD ρ)

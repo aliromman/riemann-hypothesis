@@ -260,7 +260,7 @@ theorem φRW_teichmuller {l : ℕ} [Fact l.Prime] (LL : FinExt l) (e : OCb l) :
     φRW LL (inclR LL (1 + (1 : ↥(OL LL)) ⊗ₜ[ℤ_[l]] (WittVector.teichmuller l e - 1))) =
       inclR LL (1 + (1 : ↥(OL LL)) ⊗ₜ[ℤ_[l]] (WittVector.teichmuller l e - 1)) ^ l := by
   have h : (1 : RA LL) + (1 : ↥(OL LL)) ⊗ₜ[ℤ_[l]] (WittVector.teichmuller l e - 1) =
-      (1 : ↥(OL LL)) ⊗ₜ[ℤ_[l]] (WittVector.teichmuller l e : Ainf l) := by
+      (1 : ↥(OL LL)) ⊗ₜ[ℤ_[l]] (WittVector.teichmuller l e : _root_.Formalism.BasicNotions.Loc.Ainf l) := by
     rw [TensorProduct.tmul_sub, Algebra.TensorProduct.one_def]; abel
   rw [h]
   simp only [inclR, φRW, Algebra.TensorProduct.map_tmul, map_one, Algebra.TensorProduct.tmul_pow,

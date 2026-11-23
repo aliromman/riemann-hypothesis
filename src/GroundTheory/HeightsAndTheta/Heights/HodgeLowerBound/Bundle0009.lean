@@ -148,12 +148,12 @@ def genMatFr (F : Type) [Field F] (Ψ : Type) (n : ℕ) (τ : Ψ) : Matrix (Fin 
 
 def flagMinorRatio (F : Type) [Field F] (Ψ : Type) (n : ℕ) (q : Ψ × Σ j : Fin (n - 1), PluckerBlocks n n j) :
     GenFrac F Ψ n :=
-  flagMinor (genMatFr F Ψ n q.1) q.2.1 q.2.2 / leadMinor (genMatFr F Ψ n q.1) q.2.1
+  flagMinor (genMatFr F Ψ n q.1) q.2.1 q.2.2 / _root_.GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.Inter.leadMinor (genMatFr F Ψ n q.1) q.2.1
 
 abbrev PivotIdx (Ψ : Type) (n : ℕ) : Type := Ψ × Σ a : Fin (n - 1), {b : Fin n // (a : ℕ) < b}
 
 def pivotRatio (F : Type) [Field F] (Ψ : Type) (n : ℕ) (q : PivotIdx Ψ n) : GenFrac F Ψ n :=
-  pivotMinor (genMatFr F Ψ n q.1) q.2.1 q.2.2.1 / leadMinor (genMatFr F Ψ n q.1) q.2.1
+  pivotMinor (genMatFr F Ψ n q.1) q.2.1 q.2.2.1 / _root_.GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.Inter.leadMinor (genMatFr F Ψ n q.1) q.2.1
 
 theorem PlueckerData.ofΩ_eq {II : IntersectionSystem} {Ψ : Type} [Fintype Ψ] [DecidableEq Ψ] {K : Type}
     [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {Ω : Type} [Field Ω] [Algebra ℚ Ω] {E : Ψ → Type}

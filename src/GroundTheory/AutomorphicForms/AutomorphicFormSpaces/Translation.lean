@@ -31,8 +31,8 @@ theorem infEmb_archPart_mul_finEmb_finPart (g : AdelicGLn.AdelicGL K n) :
     infEmb K n (archPart g) * finEmb K n (finPart g) = g :=
   infEmb_mul_finEmb g
 
-theorem infEmb_archPart_mem_maxCompact {k : AdelicGLn.AdelicGL K n} (hk : k ∈ maxCompact) :
-    infEmb K n (archPart k) ∈ maxCompact := by
+theorem infEmb_archPart_mem_maxCompact {k : AdelicGLn.AdelicGL K n} (hk : k ∈ _root_.GroundTheory.Automorphic.Reduction.maxCompact) :
+    infEmb K n (archPart k) ∈ _root_.GroundTheory.Automorphic.Reduction.maxCompact := by
   refine ⟨fun w => ?_, fun v => ?_⟩
   · have : infAt w (infEmb K n (archPart k)) = infAt w k := by
       show (AdelicGLn.infiniteEquiv K n (AdelicGLn.prodEquiv K n (infEmb K n (archPart k))).1) w =
@@ -48,11 +48,11 @@ theorem infEmb_archPart_mem_maxCompact {k : AdelicGLn.AdelicGL K n} (hk : k ∈ 
     rw [this]
     exact one_mem _
 
-theorem archPart_mem_archCompact {k : AdelicGLn.AdelicGL K n} (hk : k ∈ maxCompact) :
+theorem archPart_mem_archCompact {k : AdelicGLn.AdelicGL K n} (hk : k ∈ _root_.GroundTheory.Automorphic.Reduction.maxCompact) :
     archPart k ∈ archCompact K n :=
   infEmb_archPart_mem_maxCompact hk
 
-theorem finPart_mem_integralFiniteGL {k : AdelicGLn.AdelicGL K n} (hk : k ∈ maxCompact) :
+theorem finPart_mem_integralFiniteGL {k : AdelicGLn.AdelicGL K n} (hk : k ∈ _root_.GroundTheory.Automorphic.Reduction.maxCompact) :
     finPart k ∈ AdelicGLn.integralFiniteGL K n :=
   (AdelicGLn.mem_integralFiniteGL_iff_forall K n).2 fun v => hk.2 v
 
@@ -168,13 +168,13 @@ theorem HasModerateGrowth.translate {φ : AdelicGLn.AdelicGL K n → ℂ} (hφ :
     _ = |C| * (heightConst K n * height a) ^ N * height g ^ N := by ring
 
 theorem IsKFinite.rightTranslate_of_mem_maxCompact {φ : AdelicGLn.AdelicGL K n → ℂ}
-    (hφ : IsKFinite φ) {k : AdelicGLn.AdelicGL K n} (hk : k ∈ maxCompact) :
+    (hφ : IsKFinite φ) {k : AdelicGLn.AdelicGL K n} (hk : k ∈ _root_.GroundTheory.Automorphic.Reduction.maxCompact) :
     IsKFinite (rightTranslate k φ) := by
   unfold IsKFinite at *
   have hle : Submodule.span ℂ
-      (range fun k' : (maxCompact : Subgroup (AdelicGLn.AdelicGL K n)) =>
+      (range fun k' : (_root_.GroundTheory.Automorphic.Reduction.maxCompact : Subgroup (AdelicGLn.AdelicGL K n)) =>
         rightTranslate (k' : AdelicGLn.AdelicGL K n) (rightTranslate k φ)) ≤
-      Submodule.span ℂ (range fun k' : (maxCompact : Subgroup (AdelicGLn.AdelicGL K n)) =>
+      Submodule.span ℂ (range fun k' : (_root_.GroundTheory.Automorphic.Reduction.maxCompact : Subgroup (AdelicGLn.AdelicGL K n)) =>
         rightTranslate (k' : AdelicGLn.AdelicGL K n) φ) := by
     refine Submodule.span_le.2 ?_
     rintro _ ⟨k', rfl⟩
@@ -223,12 +223,12 @@ theorem IsKFinite.rightTranslate_finEmb {φ : AdelicGLn.AdelicGL K n → ℂ} (h
     rw [← this]
     congr 1
     simp only [map_mul, map_inv, mul_assoc, mul_inv_cancel_left]
-  set W := Submodule.span ℂ (range fun k : (maxCompact : Subgroup (AdelicGLn.AdelicGL K n)) =>
+  set W := Submodule.span ℂ (range fun k : (_root_.GroundTheory.Automorphic.Reduction.maxCompact : Subgroup (AdelicGLn.AdelicGL K n)) =>
     rightTranslate (k : AdelicGLn.AdelicGL K n) φ)
   haveI : FiniteDimensional ℂ W := hk
   unfold IsKFinite
   have hle : Submodule.span ℂ
-      (range fun k : (maxCompact : Subgroup (AdelicGLn.AdelicGL K n)) =>
+      (range fun k : (_root_.GroundTheory.Automorphic.Reduction.maxCompact : Subgroup (AdelicGLn.AdelicGL K n)) =>
         rightTranslate (k : AdelicGLn.AdelicGL K n) (rightTranslate (finEmb K n h) φ)) ≤
       ⨆ q : Kf ⧸ V, W.map (rightTranslateL (finEmb K n ((q.out : AdelicGLn.FiniteAdelicGL K n) * h))) := by
     refine Submodule.span_le.2 ?_
@@ -271,7 +271,7 @@ theorem IsAutomorphicForm.rightTranslate_infEmb {φ : AdelicGLn.AdelicGL K n →
     hφ.hasModerateGrowth.translate _⟩
 
 theorem IsAutomorphicForm.rightTranslate_of_mem_maxCompact {φ : AdelicGLn.AdelicGL K n → ℂ}
-    (hφ : IsAutomorphicForm φ) {k : AdelicGLn.AdelicGL K n} (hk : k ∈ maxCompact) :
+    (hφ : IsAutomorphicForm φ) {k : AdelicGLn.AdelicGL K n} (hk : k ∈ _root_.GroundTheory.Automorphic.Reduction.maxCompact) :
     IsAutomorphicForm (rightTranslate k φ) := by
   rw [← infEmb_archPart_mul_finEmb_finPart k, rightTranslate_mul']
   exact (hφ.rightTranslate_finEmb _).rightTranslate_infEmb (archPart_mem_archCompact hk)
