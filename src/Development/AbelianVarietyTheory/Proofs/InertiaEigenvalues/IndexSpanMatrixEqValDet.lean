@@ -309,7 +309,7 @@ theorem sIdx_le_of_coords {O O' : Type} [CommRing O] [IsDomain O] [IsDiscreteVal
       · simp only [Matrix.smul_apply, Matrix.one_apply_eq, smul_eq_mul, mul_one]
       · intro c _ hc
         simp only [Matrix.smul_apply, Matrix.one_apply_ne hc, smul_zero, zero_smul]
-      · simp)
+      · exact fun ha => (ha (Finset.mem_univ a)).elim)
     (by rw [hxd']; exact pow_ne_zero _ hx')
   have n1 : nval O l (1 ^ n) = 0 := by simp [nval]
   have n2 : nval O' l (1 ^ n) = 0 := by simp [nval]
