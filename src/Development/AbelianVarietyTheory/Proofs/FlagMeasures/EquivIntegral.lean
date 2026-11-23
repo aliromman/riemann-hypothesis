@@ -191,20 +191,20 @@ theorem QQ_le (Z : GramM D) {b C Y : ℝ} (hH : 1 ≤ b ^ (C * (D.R.m : ℝ) ^ 2
         ring
 
 theorem G_le (Z : GramM D) {T T' : ℝ} (hT : 0 ≤ T) (hT' : 0 ≤ T') :
-    ∏ τ, max 1 (Gz D T T' Z τ) ≤ QQ D Z ^ 2 := by
+    ∏ τ, max 1 (Formalism.MainNotions.S.Cnt.Gz D T T' Z τ) ≤ QQ D Z ^ 2 := by
   have hrd : 1 ≤ D.host.rdE := GlobalTheory.RealPlaces.one_le_rdE D
-  have key : ∀ τ, max 1 (Gz D T T' Z τ) ≤ (max 1 ‖embS D τ (leadMinorE Z (D.R.rS + 1))‖) ^ 2 := by
+  have key : ∀ τ, max 1 (Formalism.MainNotions.S.Cnt.Gz D T T' Z τ) ≤ (max 1 ‖embS D τ (leadMinorE Z (D.R.rS + 1))‖) ^ 2 := by
     intro τ
     have hp : 1 ≤ D.host.rdE ^ (2 * frameExp D.R.rS (D.R.rS + 1)) := one_le_pow₀ hrd
     have habs : absDl D Z (D.R.rS + 1) τ ≤ ‖embS D τ (leadMinorE Z (D.R.rS + 1))‖ := by
       rw [absDl_eq]
       exact mul_le_of_le_one_right (norm_nonneg _) (inv_le_one_of_one_le₀ hp)
     have h0 : 0 ≤ absDl D Z (D.R.rS + 1) τ := by rw [absDl_eq]; positivity
-    have hG : Gz D T T' Z τ ≤ absDl D Z (D.R.rS + 1) τ ^ 2 := by
-      simp only [Gz]; nlinarith [sq_nonneg (absDl D Z D.R.rS τ), mul_nonneg hT hT']
+    have hG : Formalism.MainNotions.S.Cnt.Gz D T T' Z τ ≤ absDl D Z (D.R.rS + 1) τ ^ 2 := by
+      simp only [Formalism.MainNotions.S.Cnt.Gz]; nlinarith [sq_nonneg (absDl D Z D.R.rS τ), mul_nonneg hT hT']
     have hm := le_max_right 1 ‖embS D τ (leadMinorE Z (D.R.rS + 1))‖
     refine max_le (one_le_pow₀ (le_max_left _ _)) ?_
-    calc Gz D T T' Z τ ≤ absDl D Z (D.R.rS + 1) τ ^ 2 := hG
+    calc Formalism.MainNotions.S.Cnt.Gz D T T' Z τ ≤ absDl D Z (D.R.rS + 1) τ ^ 2 := hG
       _ ≤ _ := pow_le_pow_left₀ h0 (habs.trans hm) 2
   have h1 : PP D (leadMinorE Z (D.R.rS + 1)) ≤ QQ D Z := by
     have := prod_subset_le (s := {D.R.rS + 1}) (t := Finset.Icc 1 (D.R.rS + 1))
@@ -212,14 +212,14 @@ theorem G_le (Z : GramM D) {T T' : ℝ} (hT : 0 ≤ T) (hT' : 0 ≤ T') :
       (fun l => PP D (leadMinorE Z l)) (fun l => one_le_PP D _)
     rw [Finset.prod_singleton] at this
     exact this
-  calc ∏ τ, max 1 (Gz D T T' Z τ) ≤ ∏ τ, (max 1 ‖embS D τ (leadMinorE Z (D.R.rS + 1))‖) ^ 2 :=
+  calc ∏ τ, max 1 (Formalism.MainNotions.S.Cnt.Gz D T T' Z τ) ≤ ∏ τ, (max 1 ‖embS D τ (leadMinorE Z (D.R.rS + 1))‖) ^ 2 :=
         Finset.prod_le_prod₀ (fun τ _ => le_trans zero_le_one (le_max_left _ _)) (fun τ _ => key τ)
     _ = PP D (leadMinorE Z (D.R.rS + 1)) ^ 2 := by rw [Finset.prod_pow]; rfl
     _ ≤ QQ D Z ^ 2 := pow_le_pow_left₀ (le_trans zero_le_one (one_le_PP D _)) h1 2
 
 theorem G_inv_le (Z : GramM D) (h : ∀ a b, IsIntegral ℤ (Z a b)) (hr : 1 ≤ D.R.rS) {T T' : ℕ} (hT : 1 ≤ T)
     (hT' : 1 ≤ T') {Y : ℝ} (hY : D.host.rdE ^ (2 * (D.R.rS + 1) ^ 2) ≤ Y) :
-    ∏ τ, max 1 (Gz D T T' Z τ)⁻¹ ≤ (Y ^ 2 * (2 * T * T')) ^ D.R.f * QQ D Z ^ 2 := by
+    ∏ τ, max 1 (Formalism.MainNotions.S.Cnt.Gz D T T' Z τ)⁻¹ ≤ (Y ^ 2 * (2 * T * T')) ^ D.R.f * QQ D Z ^ 2 := by
   have hrd : 1 ≤ D.host.rdE := GlobalTheory.RealPlaces.one_le_rdE D
   have hcard : Fintype.card D.what₂.Tau = D.R.f := (GlobalTheory.real_places_facts D).1
   have hstar : ∀ τ (a : D.host.E), embS D τ (star a) = starRingEnd ℂ (embS D τ a) :=
@@ -244,10 +244,10 @@ theorem G_inv_le (Z : GramM D) (h : ∀ a b, IsIntegral ℤ (Z a b)) (hr : 1 ≤
     have := frameExp_le D.R.rS D.R.rS (by omega)
     omega
   have hρ1 : 1 ≤ D.host.rdE ^ (2 * frameExp D.R.rS D.R.rS) := one_le_pow₀ hrd
-  have key : ∀ τ, max 1 (Gz D T T' Z τ)⁻¹ ≤ Y ^ 2 * max 1 ‖embS D τ (leadMinorE Z (D.R.rS + 1) * star (leadMinorE Z (D.R.rS + 1)) - ((T : D.host.E) * (T' : D.host.E)) * (leadMinorE Z D.R.rS * star (leadMinorE Z D.R.rS)))‖⁻¹ := by
+  have key : ∀ τ, max 1 (Formalism.MainNotions.S.Cnt.Gz D T T' Z τ)⁻¹ ≤ Y ^ 2 * max 1 ‖embS D τ (leadMinorE Z (D.R.rS + 1) * star (leadMinorE Z (D.R.rS + 1)) - ((T : D.host.E) * (T' : D.host.E)) * (leadMinorE Z D.R.rS * star (leadMinorE Z D.R.rS)))‖⁻¹ := by
     intro τ
-    have hGz : Gz D T T' Z τ = (‖embS D τ (leadMinorE Z (D.R.rS + 1))‖ ^ 2 - (T : ℝ) * (T' : ℝ) * ‖embS D τ (leadMinorE Z D.R.rS)‖ ^ 2) * ((D.host.rdE ^ (2 * frameExp D.R.rS D.R.rS)) ^ 2)⁻¹ := by
-      simp only [Gz, absDl_eq, frameExp_succ]
+    have hGz : Formalism.MainNotions.S.Cnt.Gz D T T' Z τ = (‖embS D τ (leadMinorE Z (D.R.rS + 1))‖ ^ 2 - (T : ℝ) * (T' : ℝ) * ‖embS D τ (leadMinorE Z D.R.rS)‖ ^ 2) * ((D.host.rdE ^ (2 * frameExp D.R.rS D.R.rS)) ^ 2)⁻¹ := by
+      simp only [Formalism.MainNotions.S.Cnt.Gz, absDl_eq, frameExp_succ]
       ring
     rw [hGz, hτG τ]
     have hρ0 : 0 < D.host.rdE ^ (2 * frameExp D.R.rS D.R.rS) := by linarith
@@ -304,7 +304,7 @@ theorem G_inv_le (Z : GramM D) (h : ∀ a b, IsIntegral ℤ (Z a b)) (hr : 1 ≤
           mul_le_mul_of_nonneg_left
             (pow_le_pow_left₀ (mul_nonneg (le_trans zero_le_one (one_le_PP D _)) (le_trans zero_le_one (one_le_PP D _))) hsub 2)
             (by positivity)
-  calc ∏ τ, max 1 (Gz D T T' Z τ)⁻¹ ≤ ∏ τ, (Y ^ 2 * max 1 ‖embS D τ (leadMinorE Z (D.R.rS + 1) * star (leadMinorE Z (D.R.rS + 1)) - ((T : D.host.E) * (T' : D.host.E)) * (leadMinorE Z D.R.rS * star (leadMinorE Z D.R.rS)))‖⁻¹) :=
+  calc ∏ τ, max 1 (Formalism.MainNotions.S.Cnt.Gz D T T' Z τ)⁻¹ ≤ ∏ τ, (Y ^ 2 * max 1 ‖embS D τ (leadMinorE Z (D.R.rS + 1) * star (leadMinorE Z (D.R.rS + 1)) - ((T : D.host.E) * (T' : D.host.E)) * (leadMinorE Z D.R.rS * star (leadMinorE Z D.R.rS)))‖⁻¹) :=
         Finset.prod_le_prod₀ (fun τ _ => le_trans zero_le_one (le_max_left _ _)) (fun τ _ => key τ)
     _ = (Y ^ 2) ^ D.R.f * ∏ τ, max 1 ‖embS D τ (leadMinorE Z (D.R.rS + 1) * star (leadMinorE Z (D.R.rS + 1)) - ((T : D.host.E) * (T' : D.host.E)) * (leadMinorE Z D.R.rS * star (leadMinorE Z D.R.rS)))‖⁻¹ := by
         rw [Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ, hcard]

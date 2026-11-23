@@ -19,14 +19,14 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] 
   (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) {r : ℕ} (P : Frame E M r) (T : F)
 
 def datR : PG.Dat (R ⊗[F] E) (Fin M) r where
-  σA := sigR R σ
+  σA := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ
   JA := JR R J
   e a := ratV (F := F) R (P.e a)
   f a := ratV (F := F) R (P.f a)
   z := ratV (F := F) R P.z
   tz := inclR (F := F) R ((algebraMap F E (-T))⁻¹)
 
-theorem sigR_inclR (x : E) : sigR R σ (inclR (F := F) R x) = inclR (F := F) R (σ x) :=
+theorem sigR_inclR (x : E) : _root_.Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (inclR (F := F) R x) = inclR (F := F) R (σ x) :=
   DFunLike.congr_fun (Algebra.TensorProduct.map_comp_includeRight (AlgHom.id F R) σ) x
 
 theorem hR_ratV (x y : Fin M → E) :
@@ -50,7 +50,7 @@ theorem datR_hyp (hσσ : ∀ x, σ (σ x) = x) (hJ : IsHermND σ J) (hP : P.IsS
     exact neg_ne_zero.mpr ((map_ne_zero _).mpr hP.2.2.2.2.2.2)
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro x
-    show sigR R σ (sigR R σ x) = x
+    show Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ x) = x
     induction x using TensorProduct.induction_on with
     | zero => simp
     | tmul a b =>
@@ -60,7 +60,7 @@ theorem datR_hyp (hσσ : ∀ x, σ (σ x) = x) (hJ : IsHermND σ J) (hP : P.IsS
         AlgHom.id_apply, hσσ]
     | add a b ha hb => rw [map_add (f := _), map_add (f := _), ha, hb]
   · intro i j
-    show sigR R σ (inclR R (J j i)) = inclR R (J i j)
+    show Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (inclR R (J j i)) = inclR R (J i j)
     rw [sigR_inclR, hJ.1]
   · intro a b
     show hR R σ J (ratV (F := F) R (P.e a)) (ratV (F := F) R (P.e b)) = 0
@@ -129,14 +129,14 @@ private theorem hform_single_single_semidirect_volume {A : Type} [CommRing A] {n
 
 theorem uni_lin (g : HA R σ J) : (datR R σ J P T).Uni (lin R σ J g) := by
   intro x y
-  have hg : Formalism.UG.cT (sigR R σ) ((HA.mat R σ J g : GL (Fin M) (R ⊗[F] E)) :
+  have hg : Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) ((HA.mat R σ J g : GL (Fin M) (R ⊗[F] E)) :
       Matrix (Fin M) (Fin M) (R ⊗[F] E)) * JR R J *
       ((HA.mat R σ J g : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) (R ⊗[F] E)) = JR R J :=
     g.2
-  show Formalism.UG.hform (sigR R σ) (JR R J)
+  show Formalism.UG.hform (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (JR R J)
       (Matrix.mulVec ((HA.mat R σ J g : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) (R ⊗[F] E)) x)
       (Matrix.mulVec ((HA.mat R σ J g : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) (R ⊗[F] E)) y) =
-    Formalism.UG.hform (sigR R σ) (JR R J) x y
+    Formalism.UG.hform (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (JR R J) x y
   rw [hform_mulVec_mulVec_eq_hform_cT_mul_mul, hg]
 
 theorem uj_of_uni {A : Type} [CommRing A] {n : Type} [Fintype n] [DecidableEq n] (σA : A →+* A)
@@ -194,7 +194,7 @@ def piU (g : HA R σ J) (hg : g ∈ S0 R σ J P) : GL (Fin M) (R ⊗[F] E) where
 
 theorem piU_mem (g : HA R σ J) (hg : g ∈ S0 R σ J P) : piU hσσ hJ hP g hg ∈ HR R σ J := by
   have H := datR_hyp (R := R) (T := T) hσσ hJ hP
-  show Formalism.UG.cT (sigR R σ) (piMat (P := P) (T := T) g) * JR R J * piMat (P := P) (T := T) g = JR R J
+  show Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (piMat (P := P) (T := T) g) * JR R J * piMat (P := P) (T := T) g = JR R J
   apply uj_of_uni
   intro x y
   rw [piMat_mulVec, piMat_mulVec]

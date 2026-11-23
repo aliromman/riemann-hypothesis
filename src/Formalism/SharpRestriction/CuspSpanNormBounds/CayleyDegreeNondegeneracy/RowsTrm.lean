@@ -158,8 +158,8 @@ theorem rows_absDl_inv {Z Z₂ : GramM D} (h : ZEquiv Z Z₂) (l : ℕ) (τ : D.
   simp only [absDl, rows_leadMinor_inv h]
 
 theorem rows_Gz_inv {Z Z₂ : GramM D} (h : ZEquiv Z Z₂) (T T' : ℝ) (τ : D.what₂.Tau) :
-    Gz D T T' Z₂ τ = Gz D T T' Z τ := by
-  simp only [Gz, rows_absDl_inv h]
+    Formalism.MainNotions.S.Cnt.Gz D T T' Z₂ τ = Formalism.MainNotions.S.Cnt.Gz D T T' Z τ := by
+  simp only [Formalism.MainNotions.S.Cnt.Gz, rows_absDl_inv h]
 
 theorem rows_sizeZ_inv {Z Z₂ : GramM D} (h : ZEquiv Z Z₂) (b C : ℝ) : sizeZ D b C Z₂ = sizeZ D b C Z := by
   simp only [sizeZ, rows_absDl_inv h]
@@ -738,7 +738,7 @@ variable {D : D7} {large₂ : SizeData₂ D} {X : TermTie D} {u u' : D.what₂.W
 include Y
 
 theorem rowsT_Gz_pos (hrd : 0 < D.host.rdE) (t : D.s.Term u u') (hG : D.s.Gterm t ≠ 0) (hrel : D.s.relevant t)
-    (τ : D.what₂.Tau) : 0 < Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ := by
+    (τ : D.what₂.Tau) : 0 < Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ := by
   rw [← d_Gf_eq Y hrd t τ]
   obtain ⟨r1, _, _⟩ := Y.rel t hG hrel τ
   obtain ⟨_, _, hz, hz', hT, hT', _⟩ := Y.goodW τ
@@ -755,8 +755,8 @@ theorem rowsT_HH_term {C' Cl Cg cb Cu cT CT C0 A CH : ℝ} (hH : Cnt.Hyp D large
     (hHH : VanishingOnXAndXPlus.HerrCocycleExtensionClass D large₂ u u' C' Cl Cg cb Cu cT CT C0 A CH) (t : D.s.Term u u') (hG : D.s.Gterm t ≠ 0)
     (hrel : D.s.relevant t) :
     NT D u ≤ HHZ D large₂.sc.b CH (termGramMatrix X t) ∧
-    ∏ τ, max 1 (Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ) ≤ HHZ D large₂.sc.b CH (termGramMatrix X t) ∧
-    ∏ τ, max 1 (Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ)⁻¹ ≤ HHZ D large₂.sc.b CH (termGramMatrix X t) ∧
+    ∏ τ, max 1 (Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ) ≤ HHZ D large₂.sc.b CH (termGramMatrix X t) ∧
+    ∏ τ, max 1 (Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ)⁻¹ ≤ HHZ D large₂.sc.b CH (termGramMatrix X t) ∧
     ∃ Z : GramM D, ZEquiv (termGramMatrix X t) Z ∧
       ∀ (j : ℕ) (I J : Fin j ↪o Fin (D.R.rS + 1)), (Z.submatrix I J).det ≠ 0 →
         ∏ τ, max 1 (UnitaryVolumeMass.absMinor D Z I J τ) ≤ HHZ D large₂.sc.b CH (termGramMatrix X t) ∧
@@ -783,7 +783,7 @@ theorem rowsT_shV_pos (hrd : 0 < D.host.rdE) (t : D.s.Term u u') (hG : D.s.Gterm
   unfold chV Formalism.QuantumDeterminants.zeta
   rw [norm_div, h1', h2, div_pow, div_pow, Real.sq_sqrt (mul_pos hT hT').le, sub_pos, lt_div_iff₀ (mul_pos hT hT'),
     lt_div_iff₀ (by positivity), one_mul]
-  unfold Gz at hGp
+  unfold Formalism.MainNotions.S.Cnt.Gz at hGp
   have e1 : ((Tu D u : ℕ) : ℝ) = Tr D u := rfl
   have e2 : ((Tu D u' : ℕ) : ℝ) = Tr D u' := rfl
   rw [e1, e2] at hGp
@@ -938,7 +938,7 @@ theorem rowsT_nu_eq (hrd : 0 < D.host.rdE) (t : D.s.Term u u') (hG : D.s.Gterm t
       absDl D (ZhatL (X.fl t) (X.fl' t)) (D.R.rS + 1) τ := h1
   have hT := rowsT_Tr_pos D u
   have hT' := rowsT_Tr_pos D u'
-  unfold chV Formalism.QuantumDeterminants.zeta Gz
+  unfold chV Formalism.QuantumDeterminants.zeta Formalism.MainNotions.S.Cnt.Gz
   rw [norm_div, h1', h2, div_pow, div_pow, Real.sq_sqrt (mul_pos hT hT').le]
   have e1 : ((Tu D u : ℕ) : ℝ) = Tr D u := rfl
   have e2 : ((Tu D u' : ℕ) : ℝ) = Tr D u' := rfl

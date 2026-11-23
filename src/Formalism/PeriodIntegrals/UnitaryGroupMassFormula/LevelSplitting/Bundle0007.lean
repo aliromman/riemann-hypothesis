@@ -225,7 +225,7 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E] {R : Type} [CommRing R] 
   {σ : E →ₐ[F] E} {M : ℕ} {J : Matrix (Fin M) (Fin M) E} {r : ℕ} {P : Frame E M r}
 
 theorem mem_Asub {g : HA R σ J} : g ∈ Asub R σ J P ↔ (g ∈ Nsub R σ J P ∧
-    (∀ w ∈ Wp R σ J P, lin R σ J g w = w) ∧
+    (∀ w ∈ PI.LevelKSplit.W.NC.Wp R σ J P, lin R σ J g w = w) ∧
     (∀ b, lin R σ J g (ratV (F := F) R (P.f b)) ∈ spanR (F := F) R P.f Set.univ) ∧
     (∀ b, lin R σ J g⁻¹ (ratV (F := F) R (P.f b)) ∈ spanR (F := F) R P.f Set.univ)) := Iff.rfl
 
@@ -249,7 +249,7 @@ theorem isClosed_Asub (hJ : IsHermND σ J) (hinv : ∀ x, σ (σ x) = x) (P : Fr
     PI.LevelKSplit.W.ExC.isClosed_spanR P.f P.e hD Set.univ
   have e : (Asub (Af F) σ J P : Set (HA (Af F) σ J)) =
       (Nsub (Af F) σ J P : Set (HA (Af F) σ J)) ∩
-        ((⋂ w ∈ Wp (Af F) σ J P, {g : HA (Af F) σ J | lin (Af F) σ J g w = w}) ∩
+        ((⋂ w ∈ PI.LevelKSplit.W.NC.Wp (Af F) σ J P, {g : HA (Af F) σ J | lin (Af F) σ J g w = w}) ∩
         ((⋂ b, {g : HA (Af F) σ J | lin (Af F) σ J g (ratV (F := F) (Af F) (P.f b)) ∈
             spanR (F := F) (Af F) P.f Set.univ}) ∩
           (⋂ b, {g : HA (Af F) σ J | lin (Af F) σ J g⁻¹ (ratV (F := F) (Af F) (P.f b)) ∈
@@ -320,51 +320,51 @@ theorem conjNH_of (hC : NCoord F E σ M J) (hV : PI.LevelKSplit.W.CD.ModV F E σ
   have : BorelSpace (Af F ⊗[F] E) := ⟨rfl⟩
   have : BorelSpace (Fin M → Af F ⊗[F] E) := Pi.borelSpace
   have H := SemiA.datR_hyp (R := Af F) hσσ hJ hP
-  have cW : IsClosed ((Wp (Af F) σ J P : AddSubgroup (Fin M → Af F ⊗[F] E)) :
+  have cW : IsClosed ((PI.LevelKSplit.W.NC.Wp (Af F) σ J P : AddSubgroup (Fin M → Af F ⊗[F] E)) :
       Set (Fin M → Af F ⊗[F] E)) := by
-    have e1 : ((Wp (Af F) σ J P : AddSubgroup (Fin M → Af F ⊗[F] E)) : Set (Fin M → Af F ⊗[F] E)) =
+    have e1 : ((PI.LevelKSplit.W.NC.Wp (Af F) σ J P : AddSubgroup (Fin M → Af F ⊗[F] E)) : Set (Fin M → Af F ⊗[F] E)) =
         {v | PI.LevelKSplit.W.NCA.DatL.pL (SemiA.datR (Af F) σ J P T) v = v} := by
       ext v
       exact mem_Wp_iff H v
     rw [e1]
     exact isClosed_eq (LinearMap.continuous_on_pi _) continuous_id
-  have : LocallyCompactSpace (Wp (Af F) σ J P) := cW.isClosedEmbedding_subtypeVal.locallyCompactSpace
-  have : SecondCountableTopology (Wp (Af F) σ J P) :=
+  have : LocallyCompactSpace (PI.LevelKSplit.W.NC.Wp (Af F) σ J P) := cW.isClosedEmbedding_subtypeVal.locallyCompactSpace
+  have : SecondCountableTopology (PI.LevelKSplit.W.NC.Wp (Af F) σ J P) :=
     TopologicalSpace.secondCountableTopology_induced _ _ Subtype.val
-  have : BorelSpace (Wp (Af F) σ J P) := Subtype.borelSpace _
-  have : BorelSpace (Fin r → Wp (Af F) σ J P) := Pi.borelSpace
-  have : BorelSpace ((Fin r → Wp (Af F) σ J P) × Z) := Prod.borelSpace
-  have : BorelSpace (A × ((Fin r → Wp (Af F) σ J P) × Z)) := Prod.borelSpace
+  have : BorelSpace (PI.LevelKSplit.W.NC.Wp (Af F) σ J P) := Subtype.borelSpace _
+  have : BorelSpace (Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) := Pi.borelSpace
+  have : BorelSpace ((Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) × Z) := Prod.borelSpace
+  have : BorelSpace (A × ((Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) × Z)) := Prod.borelSpace
   let μA : Measure A := Measure.haar
   let μZ : Measure Z := Measure.haar
-  let μW : Measure (Wp (Af F) σ J P) := Measure.addHaar
-  let μQ : Measure (Fin r → Wp (Af F) σ J P) := Measure.pi fun _ => μW
-  let ρ : Measure (A × ((Fin r → Wp (Af F) σ J P) × Z)) := μA.prod (μQ.prod μZ)
+  let μW : Measure (PI.LevelKSplit.W.NC.Wp (Af F) σ J P) := Measure.addHaar
+  let μQ : Measure (Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) := Measure.pi fun _ => μW
+  let ρ : Measure (A × ((Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) × Z)) := μA.prod (μQ.prod μZ)
   have hΨm : Measurable Ψ := Ψ.continuous.measurable
   refine ⟨ρ.map Ψ, ?_, ?_⟩
   · have hli : (ρ.map Ψ).IsMulLeftInvariant := by
       refine ⟨fun n0 => ?_⟩
       obtain ⟨a0, t, c, ht, hc, hform⟩ := hleft n0
-      have hcomm : (fun n => n0 * n) ∘ Ψ = Ψ ∘ (fun p : A × ((Fin r → Wp (Af F) σ J P) × Z) =>
+      have hcomm : (fun n => n0 * n) ∘ Ψ = Ψ ∘ (fun p : A × ((Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) × Z) =>
           (a0 * p.1, (p.2.1 + t p.1, c (p.1, p.2.1) * p.2.2))) := by
         funext ⟨u, y, z⟩
         exact hform u y z
       have hinner : ∀ u : A, MeasurePreserving
-          (fun q : (Fin r → Wp (Af F) σ J P) × Z => (q.1 + t u, c (u, q.1) * q.2))
+          (fun q : (Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) × Z => (q.1 + t u, c (u, q.1) * q.2))
           (μQ.prod μZ) (μQ.prod μZ) := by
         intro u
         refine (measurePreserving_add_right μQ (t u)).skew_product (g := fun y z => c (u, y) * z)
           ?_ (Filter.Eventually.of_forall fun y => map_mul_left_eq_self μZ (c (u, y)))
-        exact (show Continuous fun q : (Fin r → Wp (Af F) σ J P) × Z => c (u, q.1) * q.2 from
+        exact (show Continuous fun q : (Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) × Z => c (u, q.1) * q.2 from
           (hc.comp (continuous_const.prodMk continuous_fst)).mul continuous_snd).measurable
-      have hgm : Continuous fun p : A × ((Fin r → Wp (Af F) σ J P) × Z) =>
+      have hgm : Continuous fun p : A × ((Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) × Z) =>
           (p.2.1 + t p.1, c (p.1, p.2.1) * p.2.2) :=
         (continuous_snd.fst.add (ht.comp continuous_fst)).prodMk
           ((hc.comp (continuous_fst.prodMk continuous_snd.fst)).mul continuous_snd.snd)
-      have hT : MeasurePreserving (fun p : A × ((Fin r → Wp (Af F) σ J P) × Z) =>
+      have hT : MeasurePreserving (fun p : A × ((Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) × Z) =>
           (a0 * p.1, (p.2.1 + t p.1, c (p.1, p.2.1) * p.2.2))) ρ ρ :=
         (measurePreserving_mul_left μA a0).skew_product
-          (g := fun (u : A) (q : (Fin r → Wp (Af F) σ J P) × Z) => (q.1 + t u, c (u, q.1) * q.2)) hgm.measurable
+          (g := fun (u : A) (q : (Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) × Z) => (q.1 + t u, c (u, q.1) * q.2)) hgm.measurable
           (Filter.Eventually.of_forall fun u => (hinner u).map_eq)
       rw [Measure.map_map (measurable_const_mul n0) hΨm, hcomm, ← Measure.map_map hΨm hT.measurable,
         hT.map_eq]
@@ -382,7 +382,7 @@ theorem conjNH_of (hC : NCoord F E σ M J) (hV : PI.LevelKSplit.W.CD.ModV F E σ
     have hlinm : Measurable (linWp hh) :=
       (((LinearMap.continuous_on_pi (lin (Af F) σ J h)).comp continuous_subtype_val).subtype_mk
         _).measurable
-    let Lq : (Fin r → Wp (Af F) σ J P) → (Fin r → Wp (Af F) σ J P) := fun y a => linWp hh (y a)
+    let Lq : (Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) → (Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) := fun y a => linWp hh (y a)
     have hLq : MeasurePreserving Lq μQ μQ :=
       measurePreserving_pi (fun _ => μW) (fun _ => μW)
         (fun _ => ⟨hlinm, wp_map hσσ hJ hP hV hh μW inferInstance⟩)

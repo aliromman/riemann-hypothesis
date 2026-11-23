@@ -26,17 +26,17 @@ def sigE (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) : E ≃ₐ[F] E :=
   AlgEquiv.ofAlgHom σ σ (AlgHom.ext hσ) (AlgHom.ext hσ)
 
 theorem trace_sigR (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) (t : R ⊗[F] E) :
-    Algebra.trace R (R ⊗[F] E) (sigR R σ t) = Algebra.trace R (R ⊗[F] E) t := by
-  have h : sigR R σ t = Algebra.TensorProduct.congr (AlgEquiv.refl : R ≃ₐ[R] R) (sigE σ hσ) t := by
+    Algebra.trace R (R ⊗[F] E) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ t) = Algebra.trace R (R ⊗[F] E) t := by
+  have h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ t = Algebra.TensorProduct.congr (AlgEquiv.refl : R ≃ₐ[R] R) (sigE σ hσ) t := by
     induction t using TensorProduct.induction_on with
     | zero => simp
-    | tmul r e => simp [sigR, sigE]
+    | tmul r e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, sigE]
     | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
   rw [h, Algebra.trace_eq_of_algEquiv]
 
 theorem hR_swap (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) {M : ℕ} (J : Matrix (Fin M) (Fin M) E)
     (hJ : ∀ i j, σ (J j i) = J i j) (x y : Fin M → R ⊗[F] E) :
-    hR R σ J y x = sigR R σ (hR R σ J x y) := by
+    hR R σ J y x = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (hR R σ J x y) := by
   have h := gramR_memP R σ hσ J hJ ![x, y] 0 1
   simp only [gramR, Matrix.cons_val_zero, Matrix.cons_val_one] at h
   rw [← h, sigR_invP R σ hσ]

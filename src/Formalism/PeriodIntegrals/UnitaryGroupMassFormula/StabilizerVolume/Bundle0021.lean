@@ -203,8 +203,8 @@ theorem gramR_ratTup {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [
     [Algebra F R] (σ : E →ₐ[F] E) {M n : ℕ} (J : Matrix (Fin M) (Fin M) E)
     (X0 : Fin n → Fin M → E) :
     gramR R σ J (ratTup R X0) = (gramE σ J X0).map (inclR R) := by
-  have hs : ∀ e : E, sigR R σ (inclR R e) = inclR R (σ e) := fun e => by
-    simp [sigR, inclR, Algebra.TensorProduct.map_tmul]
+  have hs : ∀ e : E, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (inclR R e) = inclR R (σ e) := fun e => by
+    simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, inclR, Algebra.TensorProduct.map_tmul]
   ext p q
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [gramR, hR, gramE, hE, Formalism.UG.hform, Matrix.map_apply, ratTup, JR, map_sum, map_mul, hs]
@@ -444,7 +444,7 @@ open scoped TensorProduct
 
 theorem gramPres_holds : GramPres := by
   intro F E _ _ _ _ _ σ hCM M J hJ ha hc a ha1 ha2 X0 hT hdet g X
-  have hg : Formalism.UG.cT (sigR (AF F) σ) ((HA.mat (AF F) σ J g : GL (Fin M) (AF F ⊗[F] E)) :
+  have hg : Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF F) σ) ((HA.mat (AF F) σ J g : GL (Fin M) (AF F ⊗[F] E)) :
       Matrix (Fin M) (Fin M) _) * JR (AF F) J *
       ((HA.mat (AF F) σ J g : GL (Fin M) (AF F ⊗[F] E)) : Matrix (Fin M) (Fin M) _) =
       JR (AF F) J := g.2

@@ -56,7 +56,7 @@ theorem rows_Zr_spec {C' Cl Cg cb Cu cT CT C0 A c : ℝ} (hH : Cnt.Hyp D large�
   exact ⟨h.1, t, hG, hrel, h.1, h.2⟩
 
 theorem rows_Gz_pos (hT : TermPtsTie X Y) (hrd : 0 < D.host.rdE) (t : D.s.Term u u') (hG : D.s.Gterm t ≠ 0)
-    (hrel : D.s.relevant t) (τ : D.what₂.Tau) : 0 < Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ := by
+    (hrel : D.s.relevant t) (τ : D.what₂.Tau) : 0 < Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ := by
   obtain ⟨h1, _, _, _⟩ := hT t hG hrel
   obtain ⟨hz, hz', hTz, hTz', hR⟩ := h1 τ
   rw [← d_Gf_eq Y hrd t τ]
@@ -108,13 +108,13 @@ theorem gramProductG0_le_height {C' Cl Cg cb Cu cT CT C0 A c : ℝ} (hH : Cnt.Hy
   rw [← Y.fl_eq t] at h2
   have hg := two_le_gg_of_count_hypotheses hH.1
   rw [rows_gg_eq] at hg
-  have hp : ∀ τ, 0 < Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ := fun τ => rows_Gz_pos Y hT (d_rdE_pos hH.1) t hG hrel τ
-  have h3 : ∏ τ, Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ ≤ HHZ D large₂.sc.b c (termGramMatrix X t) :=
+  have hp : ∀ τ, 0 < Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ := fun τ => rows_Gz_pos Y hT (d_rdE_pos hH.1) t hG hrel τ
+  have h3 : ∏ τ, Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ ≤ HHZ D large₂.sc.b c (termGramMatrix X t) :=
     le_trans (Finset.prod_le_prod₀ (fun τ _ => (hp τ).le) fun τ _ => le_max_right _ _) h2
   unfold wordPairGramProduct
   have h4 : ((gS D : ℝ)⁻¹) ^ (D.R.m * D.R.f) ≤ 1 := pow_le_one₀ (by positivity) (inv_le_one_of_one_le₀ (by linarith))
-  calc (∏ τ, Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ) * ((gS D : ℝ)⁻¹) ^ (D.R.m * D.R.f)
-      ≤ (∏ τ, Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ) * 1 :=
+  calc (∏ τ, Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ) * ((gS D : ℝ)⁻¹) ^ (D.R.m * D.R.f)
+      ≤ (∏ τ, Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ) * 1 :=
         mul_le_mul_of_nonneg_left h4 (Finset.prod_nonneg fun τ _ => (hp τ).le)
     _ ≤ _ := by rw [mul_one]; exact h3
 

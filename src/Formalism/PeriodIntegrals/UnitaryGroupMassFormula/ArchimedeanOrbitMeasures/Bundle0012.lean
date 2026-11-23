@@ -54,7 +54,7 @@ variable (R : Type) [CommRing R] [Algebra F R] [TopologicalSpace R] [IsTopologic
 theorem isClosed_HermRP (σ : E →ₐ[F] E) (n : ℕ) :
     IsClosed (HermR R σ n : Set (Matrix (Fin n) (Fin n) (R ⊗[F] E))) := by
   have : (HermR R σ n : Set (Matrix (Fin n) (Fin n) (R ⊗[F] E))) =
-      ⋂ a, ⋂ b, {S | sigR R σ (S b a) = S a b} := by
+      ⋂ a, ⋂ b, {S | Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (S b a) = S a b} := by
     ext S; simp only [Set.mem_iInter, Set.mem_ofPred_eq, SetLike.mem_coe]; exact Iff.rfl
   rw [this]
   exact isClosed_iInter fun a => isClosed_iInter fun b =>
@@ -68,17 +68,17 @@ section Gram
 variable {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] [Algebra F R]
 
 theorem sigR_invP (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) (x : R ⊗[F] E) :
-    sigR R σ (sigR R σ x) = x := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ x) = x := by
   induction x using TensorProduct.inductionOn with
-  | tmul r e => simp [sigR, hσ]
+  | tmul r e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hσ]
   | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
 
 theorem gramR_memP (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) {M n : ℕ}
     (J : Matrix (Fin M) (Fin M) E) (hJ : ∀ i j, σ (J j i) = J i j)
     (X : Fin n → Fin M → R ⊗[F] E) : gramR R σ J X ∈ HermR R σ n := by
   intro a b
-  have hJR : ∀ i j, sigR R σ (JR R J i j) = JR R J j i := by
-    intro i j; simp [JR, inclR, sigR, hJ]
+  have hJR : ∀ i j, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (JR R J i j) = JR R J j i := by
+    intro i j; simp [JR, inclR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hJ]
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [gramR, hR, Formalism.UG.hform, map_sum, map_mul, sigR_invP R σ hσ, hJR]
   rw [Finset.sum_comm]
@@ -242,21 +242,21 @@ section Gen
 variable {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] [Algebra F R]
   (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E)
 
-theorem sq_sig_inv (hσ : ∀ x, σ (σ x) = x) (x : R ⊗[F] E) : sigR R σ (sigR R σ x) = x := by
+theorem sq_sig_inv (hσ : ∀ x, σ (σ x) = x) (x : R ⊗[F] E) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ x) = x := by
   induction x using TensorProduct.induction_on with
   | zero => simp
-  | tmul r e => simp [sigR, hσ]
+  | tmul r e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hσ]
   | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
 
 theorem sq_gramR_mat {m : ℕ} (Y : Matrix (Fin m) (Fin M) (R ⊗[F] E)) (K : Matrix (Fin M) (Fin M) (R ⊗[F] E))
-    (hK : K = JR R J) : gramR R σ J Y = Y.map (sigR R σ) * K * Yᵀ := by
+    (hK : K = JR R J) : gramR R σ J Y = Y.map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) * K * Yᵀ := by
   subst hK
   ext b d
   simp only [gramR, hR, Formalism.UG.hform, Matrix.mul_apply, Matrix.map_apply, Matrix.transpose_apply, Finset.sum_mul]
   rw [Finset.sum_comm]
 
 theorem sq_gramR_rmul {m : ℕ} (a : Matrix (Fin m) (Fin m) (R ⊗[F] E)) (Y : Matrix (Fin m) (Fin M) (R ⊗[F] E)) :
-    gramR R σ J (fun b i => ∑ c, a c b * Y c i) = Formalism.UG.cT (sigR R σ) a * gramR R σ J Y * a := by
+    gramR R σ J (fun b i => ∑ c, a c b * Y c i) = Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) a * gramR R σ J Y * a := by
   have hY : (fun b i => ∑ c, a c b * Y c i) = aᵀ * Y := by
     ext b i; simp [Matrix.mul_apply]
   rw [hY, sq_gramR_mat R σ J _ (JR R J) rfl, sq_gramR_mat R σ J Y (JR R J) rfl]
@@ -283,7 +283,7 @@ theorem sq_chart_core {F E : Type} [Field F] [NumberField F] [Field E] [NumberFi
   have hTiT : Ti * Tm = 1 := by
     rw [hTm, hTi, ← Matrix.map_mul, Matrix.nonsing_inv_mul G hu, Matrix.map_one _ (map_zero _) (map_one _)]
   set c : Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) → Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) :=
-    Formalism.UG.cT (sigR (Ainf F) σ) with hc
+    Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf F) σ) with hc
   have hsig := sq_sig_inv (Ainf F) σ hσ
   have hcc : ∀ P, c (c P) = P := by intro P; ext i j; simp [hc, Formalism.UG.cT, hsig]
   have hcadd : ∀ P Q, c (P + Q) = c P + c Q := by intro P Q; ext i j; simp [hc, Formalism.UG.cT]
@@ -294,13 +294,13 @@ theorem sq_chart_core {F E : Type} [Field F] [NumberField F] [Field E] [NumberFi
     ext i j
     simp only [hc, Formalism.UG.cT, hTm, Matrix.transpose_apply, Matrix.map_apply]
     rw [← hT i j]
-    simp [sigR, inclR]
+    simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, inclR]
   have hcTi : c Ti * Tm = 1 := by
     calc c Ti * Tm = c Ti * c Tm := by rw [hcT]
       _ = c (Tm * Ti) := (hcmul Tm Ti).symm
       _ = 1 := by rw [hTTi, hc1]
   have hcont_c : Continuous c := by
-    show Continuous fun P : Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) => (P.map (sigR (Ainf F) σ))ᵀ
+    show Continuous fun P : Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) => (P.map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf F) σ))ᵀ
     exact (continuous_id.matrix_map (continuous_sigRP (Ainf F) σ)).matrix_transpose
   set Bq : Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) → Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) →
       Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) := fun h k => c (Ti * h) * Tm * (Ti * k) with hBq

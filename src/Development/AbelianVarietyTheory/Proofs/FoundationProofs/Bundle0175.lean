@@ -124,7 +124,7 @@ theorem act_zero (x : Fin 2 → ℚ) (γ : SL(2, ℤ)) : act x γ 0 = x 0 * (γ 
 theorem act_one' (x : Fin 2 → ℚ) (γ : SL(2, ℤ)) : act x γ 1 = x 0 * (γ 0 1 : ℚ) + x 1 * (γ 1 1 : ℚ) := by
   simp [act, Fin.sum_univ_two]
 
-theorem admissible_act_SL2 {c : ℕ} {x : Fin 2 → ℚ} (hx : admitted c x) (γ : SL(2, ℤ)) : admitted c (act x γ) := by
+theorem admissible_act_SL2 {c : ℕ} {x : Fin 2 → ℚ} (hx : GlobalTheory.Sieg.admitted c x) (γ : SL(2, ℤ)) : GlobalTheory.Sieg.admitted c (act x γ) := by
   refine ⟨hx.1, hx.2.1, fun ⟨⟨m0, hm0⟩, ⟨m1, hm1⟩⟩ => hx.2.2 ⟨⟨m0 * γ 1 1 - m1 * γ 1 0, ?_⟩, ⟨m1 * γ 0 0 - m0 * γ 0 1, ?_⟩⟩⟩
   all_goals
     have hdet : ((γ 0 0 : ℤ) : ℚ) * (γ 1 1 : ℤ) - (γ 0 1 : ℤ) * (γ 1 0 : ℤ) = 1 := by
@@ -142,7 +142,7 @@ end GlobalTheory.KZ.SiegelMem
 namespace GlobalTheory.KZ.SiegelMem
 
 theorem exp_int {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosed Ω] (ε : Ω →+* ℂ) {c M : ℕ} (hM : 0 < M)
-    {y : Fin 2 → ℚ} (P : Fin 2 → ℤ) (hP : ∀ i, (M : ℚ) * y i = P i) (hy : admitted c y) :
+    {y : Fin 2 → ℚ} (P : Fin 2 → ℤ) (hP : ∀ i, (M : ℚ) * y i = P i) (hy : GlobalTheory.Sieg.admitted c y) :
     ∃ (a : ℤ → Ω) (n0 : ℤ), (∀ n < n0, a n = 0) ∧ ∀ τ : ℍ,
       HasSum (fun n : ℤ => ε (a n) * Complex.exp (2 * Real.pi * Complex.I * (n : ℂ) * τ / M)) (sg c y τ) := by
   have hMz : (M : ℤ) ≠ 0 := by exact_mod_cast hM.ne'
@@ -170,7 +170,7 @@ theorem exp_int {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosed Ω] (ε : �
     simp only [n]
     field_simp
     ring
-  have hadm : admitted c x' := by
+  have hadm : GlobalTheory.Sieg.admitted c x' := by
     refine ⟨hy.1, hy.2.1, fun ⟨⟨m0, hm0⟩, ⟨m1, hm1⟩⟩ => hy.2.2 ⟨⟨m0 + c * n 0, ?_⟩, ⟨m1 + c * n 1, ?_⟩⟩⟩
     · rw [hyx]; push_cast; rw [hm0]; ring
     · rw [hyx]; push_cast; rw [hm1]; ring
@@ -211,7 +211,7 @@ end GlobalTheory.KZ.SiegelMem
 namespace GlobalTheory.KZ.SiegelMem
 
 theorem an_siegel_eq : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (T : Tower Ω ε)
-    (c : ℕ) (x : Fin 2 → ℚ), admitted c x → T.an (siegel T c x) = ((sgC c x : ℂ → ℂ) : Mero) := by
+    (c : ℕ) (x : Fin 2 → ℚ), GlobalTheory.Sieg.admitted c x → T.an (siegel T c x) = ((sgC c x : ℂ → ℂ) : Mero) := by
   intro Ω _ _ _ ε T c x hx
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed ℚ
   set M : ℕ := (x 0).den * (x 1).den with hMdef

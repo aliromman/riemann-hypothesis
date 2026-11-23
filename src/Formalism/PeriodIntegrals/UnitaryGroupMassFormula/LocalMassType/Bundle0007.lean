@@ -88,7 +88,7 @@ theorem split_reduction : SplitR := by
   have hm2 : ∀ x, x * (1 - e) = π₂ x • (1 - e) := mul_ce h2 he h0 h1
   have hdec : ∀ x, x = π₁ x • e + π₂ x • (1 - e) := decomp h2 he h0 h1
   have hσσ := sigma_invol σ hCM
-  set f := sigR (Fv F v) σ e with hf
+  set f := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ e with hf
   have hff : f * f = f := by rw [hf, ← map_mul, he]
   have hfe : f = 1 - e := by
     have c1 := idem_cases (show π₁ f * π₁ f = π₁ f by rw [← map_mul, hff])
@@ -103,7 +103,7 @@ theorem split_reduction : SplitR := by
     · exfalso
       obtain ⟨y, hy⟩ := sigma_ne_id σ hCM
       have hfe : f = e := by simpa using hfd
-      have hid : ∀ x, sigR (Fv F v) σ x = x := by
+      have hid : ∀ x, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x = x := by
         intro x
         conv_lhs => rw [hdec x]
         rw [map_add (f := _), sigR_smul, sigR_smul, map_sub, map_one, ← hf, hfe]
@@ -115,26 +115,26 @@ theorem split_reduction : SplitR := by
       apply h1
       rw [← sigR_sigR σ v hσσ e, ← hf, hfd]
       simp
-  have hσe : sigR (Fv F v) σ e = 1 - e := hfe
-  have hσ1 : sigR (Fv F v) σ (1 - e) = e := by
+  have hσe : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ e = 1 - e := hfe
+  have hσ1 : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (1 - e) = e := by
     rw [map_sub, map_one, hσe, sub_sub_cancel]
-  have hp2σ : ∀ x, π₂ (sigR (Fv F v) σ x) = π₁ x := by
+  have hp2σ : ∀ x, π₂ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x) = π₁ x := by
     intro x
     apply uniq2 h1 (K := Fv F v)
-    calc π₂ (sigR (Fv F v) σ x) • (1 - e) = sigR (Fv F v) σ x * (1 - e) := (hm2 _).symm
-      _ = sigR (Fv F v) σ x * sigR (Fv F v) σ e := by rw [hσe]
-      _ = sigR (Fv F v) σ (x * e) := (map_mul _ _ _).symm
-      _ = sigR (Fv F v) σ (π₁ x • e) := by rw [hm1]
-      _ = π₁ x • sigR (Fv F v) σ e := sigR_smul σ v _ _
+    calc π₂ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x) • (1 - e) = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x * (1 - e) := (hm2 _).symm
+      _ = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x * Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ e := by rw [hσe]
+      _ = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (x * e) := (map_mul _ _ _).symm
+      _ = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (π₁ x • e) := by rw [hm1]
+      _ = π₁ x • Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ e := sigR_smul σ v _ _
       _ = π₁ x • (1 - e) := by rw [hσe]
-  have hp1σ : ∀ x, π₁ (sigR (Fv F v) σ x) = π₂ x := by
+  have hp1σ : ∀ x, π₁ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x) = π₂ x := by
     intro x
     apply uniq1 h0 (K := Fv F v)
-    calc π₁ (sigR (Fv F v) σ x) • e = sigR (Fv F v) σ x * e := (hm1 _).symm
-      _ = sigR (Fv F v) σ x * sigR (Fv F v) σ (1 - e) := by rw [hσ1]
-      _ = sigR (Fv F v) σ (x * (1 - e)) := (map_mul _ _ _).symm
-      _ = sigR (Fv F v) σ (π₂ x • (1 - e)) := by rw [hm2]
-      _ = π₂ x • sigR (Fv F v) σ (1 - e) := sigR_smul σ v _ _
+    calc π₁ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x) • e = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x * e := (hm1 _).symm
+      _ = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x * Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (1 - e) := by rw [hσ1]
+      _ = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (x * (1 - e)) := (map_mul _ _ _).symm
+      _ = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (π₂ x • (1 - e)) := by rw [hm2]
+      _ = π₂ x • Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (1 - e) := sigR_smul σ v _ _
       _ = π₂ x • e := by rw [hσ1]
   have hsc : ∀ c : Fv F v, π₁ (sc (E := E) v c) = c ∧ π₂ (sc (E := E) v c) = c := by
     intro c

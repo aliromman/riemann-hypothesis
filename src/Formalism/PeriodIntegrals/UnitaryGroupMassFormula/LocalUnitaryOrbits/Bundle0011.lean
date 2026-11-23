@@ -331,7 +331,7 @@ theorem tr_nd_prod {k : Type} [Field k] (z : k × k) (hz : z ≠ 0) :
 theorem trNd_of_res {K : Type} [CommRing K] (τ : K →+* K) (π : OR (E := E) v →+* K) (hcm : IsCMExt F E σ)
     {ϖ : Fv F v} (hϖ : IsUnif v ϖ) (hres : IsRes σ v ϖ τ π) (hnd : ∀ z : K, z ≠ 0 → ∃ t : K, t * z + τ (t * z) ≠ 0)
     (c : Fv F v ⊗[F] E) (hc : c ∈ OEv (E := E) v) (hcn : sc (E := E) v (ϖ⁻¹) * c ∉ OEv (E := E) v) :
-    ∃ t ∈ OEv (E := E) v, IsU v (t * c + sigR (Fv F v) σ (t * c)) := by
+    ∃ t ∈ OEv (E := E) v, IsU v (t * c + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (t * c)) := by
   have hv : Valued.v ϖ = WithZero.exp (-1 : ℤ) := hϖ
   have hϖ0 : ϖ ≠ 0 := by
     intro h
@@ -350,14 +350,14 @@ theorem trNd_of_res {K : Type} [CommRing K] (τ : K →+* K) (π : OR (E := E) v
   obtain ⟨tO, htO⟩ := hsurj tb
   have ht0 : (tO : Fv F v ⊗[F] E) ∈ OEv (E := E) v := tO.2
   have htc0 : (tO : Fv F v ⊗[F] E) * c ∈ OEv (E := E) v := (tO * cO).2
-  let yO : OR (E := E) v := ⟨sigR (Fv F v) σ ((tO : Fv F v ⊗[F] E) * c), sigR_mem σ v htc0⟩
+  let yO : OR (E := E) v := ⟨Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ ((tO : Fv F v ⊗[F] E) * c), sigR_mem σ v htc0⟩
   have hy : π yO = τ (π (tO * cO)) := hsig (tO * cO) yO rfl
-  set s := (tO : Fv F v ⊗[F] E) * c + sigR (Fv F v) σ ((tO : Fv F v ⊗[F] E) * c) with hs
+  set s := (tO : Fv F v ⊗[F] E) * c + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ ((tO : Fv F v ⊗[F] E) * c) with hs
   have hsO : π (tO * cO + yO) ≠ 0 := by
     rw [map_add (f := _), hy, map_mul, htO]
     exact htb
   have hs0 : s ∈ OEv (E := E) v := (tO * cO + yO).2
-  have hsf : sigR (Fv F v) σ s = s := by
+  have hsf : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ s = s := by
     rw [hs, map_add (f := _), sigR_invol σ v hcm, add_comm]
   refine ⟨tO, ht0, ?_⟩
   obtain ⟨a, ha, hsa⟩ := fix_int σ v hcm hs0 hsf

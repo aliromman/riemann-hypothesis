@@ -182,7 +182,7 @@ theorem square_chart_c1_local {F E : Type} [Field F] [NumberField F] [Field E] [
   have hTiT : Ti * Tm = 1 := by
     rw [hTm, hTi, ← Matrix.map_mul, Matrix.nonsing_inv_mul G hu, Matrix.map_one _ (map_zero _) (map_one _)]
   set c : Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) → Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) :=
-    Formalism.UG.cT (sigR (Ainf F) σ) with hc
+    Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf F) σ) with hc
   have hsig := sq_sig_inv (Ainf F) σ hσ
   have hcc : ∀ P, c (c P) = P := by intro P; ext i j; simp [hc, Formalism.UG.cT, hsig]
   have hcadd : ∀ P Q, c (P + Q) = c P + c Q := by intro P Q; ext i j; simp [hc, Formalism.UG.cT]
@@ -193,13 +193,13 @@ theorem square_chart_c1_local {F E : Type} [Field F] [NumberField F] [Field E] [
     ext i j
     simp only [hc, Formalism.UG.cT, hTm, Matrix.transpose_apply, Matrix.map_apply]
     rw [← hT i j]
-    simp [sigR, inclR]
+    simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, inclR]
   have hcTi : c Ti * Tm = 1 := by
     calc c Ti * Tm = c Ti * c Tm := by rw [hcT]
       _ = c (Tm * Ti) := (hcmul Tm Ti).symm
       _ = 1 := by rw [hTTi, hc1]
   have hcont_c : Continuous c := by
-    show Continuous fun P : Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) => (P.map (sigR (Ainf F) σ))ᵀ
+    show Continuous fun P : Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) => (P.map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf F) σ))ᵀ
     exact (continuous_id.matrix_map (continuous_sigRP (Ainf F) σ)).matrix_transpose
   set Bq : Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) → Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) →
       Matrix (Fin m) (Fin m) (Ainf F ⊗[F] E) := fun h k => c (Ti * h) * Tm * (Ti * k) with hBq
@@ -381,7 +381,7 @@ theorem witt_R {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] 
   have hDfix : ∀ j, σ (D j j) = D j j := fun j => by
     rw [← hDv]; exact PIW.AdelicOrbitU.hform_conj sE T hinv hTH _ _
 
-  let sS := sigR R σ
+  let sS := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ
   let JS := JR (F := F) R J
   have hsS : ∀ z, sS (sS z) = z := (PIW.AdelicOrbitU.stFix F E σ h2 hfix R).1
   have hJS : IsHerm sS JS := PIW.AdelicOrbitU.isHerm_JR R σ J hJ.1

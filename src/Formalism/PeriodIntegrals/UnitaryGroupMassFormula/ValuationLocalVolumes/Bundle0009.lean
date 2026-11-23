@@ -179,7 +179,7 @@ theorem henselSurjective_of_primitiveDual (a : ℕ) (hD : PrimDual σ J ψ v Λ 
   obtain ⟨W, hW, hd⟩ := hD hS hSD hUn hL y hy
   obtain ⟨L, -, hLΛ⟩ := hL
   have hTr : TrOnto σ v := PI.OmLocU.Red.trOnto_holds σ J ψ v hS
-  have hdiag : ∀ i, ∃ x ∈ OEv (E := E) v, x + sigR (Fv F v) σ x = (S : Matrix (Fin a) (Fin a) _) i i :=
+  have hdiag : ∀ i, ∃ x ∈ OEv (E := E) v, x + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x = (S : Matrix (Fin a) (Fin a) _) i i :=
     fun i => hTr hUn _ (hS' i i) (S.2 i i)
   choose x hx hxs using hdiag
   set A : Matrix (Fin a) (Fin a) (Fv F v ⊗[F] E) := fun i j =>
@@ -191,7 +191,7 @@ theorem henselSurjective_of_primitiveDual (a : ℕ) (hD : PrimDual σ J ψ v Λ 
     · exact hS' i j
     · exact hx i
     · exact oEv_zero v
-  have hAS : ∀ i j, A i j + sigR (Fv F v) σ (A j i) = (S : Matrix (Fin a) (Fin a) _) i j := by
+  have hAS : ∀ i j, A i j + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (A j i) = (S : Matrix (Fin a) (Fin a) _) i j := by
     intro i j
     rcases lt_trichotomy i j with h | rfl | h
     · simp [hAdef, h, not_lt.2 h.le, h.ne']
@@ -206,7 +206,7 @@ theorem henselSurjective_of_primitiveDual (a : ℕ) (hD : PrimDual σ J ψ v Λ 
     rw [hR_sum_smul_right, hR_sum_smul_left]
     have e1 : ∑ k, A k j * hR (Fv F v) σ J (y i) (W k) = A i j := by
       simp only [fun k => (hd i k).1, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true]
-    have e2 : ∑ k, sigR (Fv F v) σ (A k i) * hR (Fv F v) σ J (W k) (y j) = sigR (Fv F v) σ (A j i) := by
+    have e2 : ∑ k, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (A k i) * hR (Fv F v) σ J (W k) (y j) = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (A j i) := by
       simp only [fun k => (hd j k).2, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true]
     rw [e1, e2, hAS]
 

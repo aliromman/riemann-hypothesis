@@ -93,11 +93,11 @@ theorem BR_symm (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) {n a : ℕ}
     BR (Fv F v) σ J X Y = BR (Fv F v) σ J Y X := by
   let φ : (Fv F v ⊗[F] E) →ₐ[Fv F v] (Fv F v ⊗[F] E) :=
     Algebra.TensorProduct.map (AlgHom.id (Fv F v) (Fv F v)) σ
-  have hφ : ∀ z, sigR (Fv F v) σ z = φ z := by
+  have hφ : ∀ z, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z = φ z := by
     intro z
     induction z using TensorProduct.induction_on with
     | zero => simp
-    | tmul x y => simp [φ, sigR, Algebra.TensorProduct.map_tmul]
+    | tmul x y => simp [φ, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.map_tmul]
     | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
   have hinv : ∀ z, φ (φ z) = z := by
     intro z
@@ -106,20 +106,20 @@ theorem BR_symm (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) {n a : ℕ}
     | tmul x y => simp [φ, Algebra.TensorProduct.map_tmul, hσ]
     | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
   let e := AlgEquiv.ofBijective φ (Function.Involutive.bijective hinv)
-  have htr : ∀ z, Algebra.trace (Fv F v) (Fv F v ⊗[F] E) (sigR (Fv F v) σ z) =
+  have htr : ∀ z, Algebra.trace (Fv F v) (Fv F v ⊗[F] E) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z) =
       Algebra.trace (Fv F v) (Fv F v ⊗[F] E) z := by
     intro z
     rw [hφ]
     exact Algebra.trace_eq_of_algEquiv e z
-  have hss : ∀ z, sigR (Fv F v) σ (sigR (Fv F v) σ z) = z := by
+  have hss : ∀ z, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z) = z := by
     intro z
     rw [hφ, hφ]
     exact hinv z
-  have hsJ : ∀ i j, sigR (Fv F v) σ (JR (Fv F v) J i j) = JR (Fv F v) J j i := by
+  have hsJ : ∀ i j, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (JR (Fv F v) J i j) = JR (Fv F v) J j i := by
     intro i j
-    simp [JR, inclR, sigR, Algebra.TensorProduct.map_tmul, hJ]
+    simp [JR, inclR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.map_tmul, hJ]
   have hsym : ∀ x y : Fin n → Fv F v ⊗[F] E,
-      hR (Fv F v) σ J x y = sigR (Fv F v) σ (hR (Fv F v) σ J y x) := by
+      hR (Fv F v) σ J x y = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (hR (Fv F v) σ J y x) := by
     intro x y
     unfold hR Formalism.UG.hform
     set_option synthInstance.maxHeartbeats 100000 in
@@ -140,14 +140,14 @@ theorem BR_cont_joint (σ : E →ₐ[F] E) {n a : ℕ} (J : Matrix (Fin n) (Fin 
     | exact LinearMap.continuous_of_finiteDimensional _
   let φ : (Fv F v ⊗[F] E) →ₐ[Fv F v] (Fv F v ⊗[F] E) :=
     Algebra.TensorProduct.map (AlgHom.id (Fv F v) (Fv F v)) σ
-  have hφ : ∀ z, sigR (Fv F v) σ z = φ z := by
+  have hφ : ∀ z, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z = φ z := by
     intro z
     induction z using TensorProduct.induction_on with
     | zero => simp
-    | tmul x y => simp [φ, sigR, Algebra.TensorProduct.map_tmul]
+    | tmul x y => simp [φ, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.map_tmul]
     | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
-  have hsg : Continuous (sigR (Fv F v) σ) := by
-    have h1 : ⇑(sigR (Fv F v) σ) = ⇑(φ.toLinearMap) := funext hφ
+  have hsg : Continuous (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) := by
+    have h1 : ⇑(Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) = ⇑(φ.toLinearMap) := funext hφ
     rw [h1]
     first
     | exact IsModuleTopology.continuous_of_linearMap _

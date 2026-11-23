@@ -99,15 +99,15 @@ end Gen
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
   {σ : E →ₐ[F] E} {v : HeightOneSpectrum (𝓞 F)}
 
-theorem continuous_sigR' (σ : E →ₐ[F] E) : Continuous (sigR (Fv F v) σ) := by
+theorem continuous_sigR' (σ : E →ₐ[F] E) : Continuous (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) := by
   have : IsModuleTopology (Fv F v) (Fv F v ⊗[F] E) := ⟨rfl⟩
-  have h : ∀ x : Fv F v ⊗[F] E, sigR (Fv F v) σ x = (σ.toLinearMap.baseChange (Fv F v)) x := by
+  have h : ∀ x : Fv F v ⊗[F] E, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x = (σ.toLinearMap.baseChange (Fv F v)) x := by
     intro x
     induction x using TensorProduct.induction_on with
     | zero => simp
-    | tmul r e => simp [sigR]
+    | tmul r e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
     | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
-  have : (sigR (Fv F v) σ : Fv F v ⊗[F] E → Fv F v ⊗[F] E) = (σ.toLinearMap.baseChange (Fv F v)) :=
+  have : (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ : Fv F v ⊗[F] E → Fv F v ⊗[F] E) = (σ.toLinearMap.baseChange (Fv F v)) :=
     funext h
   rw [this]
   exact IsModuleTopology.continuous_of_linearMap _
@@ -120,16 +120,16 @@ theorem e_mul_f : D.e * (1 - D.e) = 0 := by
   rw [mul_sub, mul_one, D.he.eq, sub_self]
 
 def shear {ι : Type} (τ : ι → ι) : (ι → Fv F v ⊗[F] E) ≃ₜ+ (ι → Fv F v ⊗[F] E) where
-  toFun z k := z k + D.e * sigR (Fv F v) σ (z (τ k))
-  invFun w k := w k - D.e * sigR (Fv F v) σ (w (τ k))
+  toFun z k := z k + D.e * Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (z (τ k))
+  invFun w k := w k - D.e * Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (w (τ k))
   left_inv z := by
     funext k
     simp only [map_add (f := _), map_mul, D.hσ]
-    linear_combination (-(sigR (Fv F v) σ (sigR (Fv F v) σ (z (τ (τ k)))))) * D.e_mul_f
+    linear_combination (-(Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (z (τ (τ k)))))) * D.e_mul_f
   right_inv w := by
     funext k
     simp only [map_sub, map_mul, D.hσ]
-    linear_combination (-(sigR (Fv F v) σ (sigR (Fv F v) σ (w (τ (τ k)))))) * D.e_mul_f
+    linear_combination (-(Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (w (τ (τ k)))))) * D.e_mul_f
   map_add' x y := by
     funext k
     simp only [Pi.add_apply, map_add (f := _)]
@@ -140,7 +140,7 @@ def shear {ι : Type} (τ : ι → ι) : (ι → Fv F v ⊗[F] E) ≃ₜ+ (ι �
     (continuous_apply k).sub (continuous_const.mul ((continuous_sigR' σ).comp (continuous_apply (τ k))))
 
 theorem shear_apply {ι : Type} (τ : ι → ι) (z : ι → Fv F v ⊗[F] E) (k : ι) :
-    D.shear τ z k = z k + D.e * sigR (Fv F v) σ (z (τ k)) := rfl
+    D.shear τ z k = z k + D.e * Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (z (τ k)) := rfl
 
 theorem shear_first_coordinate {ι : Type} (τ : ι → ι) (z : ι → Fv F v ⊗[F] E) (k : ι) :
     D.p 0 (D.shear τ z k) = D.p 0 (z k) + D.p 1 (z (τ k)) := by

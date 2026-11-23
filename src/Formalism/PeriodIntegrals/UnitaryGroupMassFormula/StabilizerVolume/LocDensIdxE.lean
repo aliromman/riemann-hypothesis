@@ -93,7 +93,7 @@ theorem comap_eq (k0 k1 : Fin 2) (hk : k0 ≠ k1) (ρ : F)
       have hfx := hfix (fun l => crdS b v σ a S i i l) (by
         funext m
         simp only [Matrix.mulVec, dotProduct, Matrix.map_apply]
-        have hs : sigR (Fv F v) σ (Sm i i) = Sm i i := S.1.2 i i
+        have hs : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Sm i i) = Sm i i := S.1.2 i i
         have := cr_sig b v σ (Sm i i) m
         rw [hs] at this
         simp only [crdS_eq]
@@ -105,7 +105,7 @@ theorem comap_eq (k0 k1 : Fin 2) (hk : k0 ≠ k1) (ρ : F)
       · have e : crdS b v σ a S i i k = algebraMap F (Fv F v) ρ * crdS b v σ a S i i k0 := hfx
         rw [e]
         exact val_mul_lt v hρ hd
-    · have hs : Sm i j = sigR (Fv F v) σ (Sm j i) := (S.1.2 i j).symm
+    · have hs : Sm i j = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Sm j i) := (S.1.2 i j).symm
       rw [crdS_eq, show ((S : HermR (Fv F v) σ a) : Matrix (Fin a) (Fin a) (Fv F v ⊗[F] E)) i j = Sm i j
         from rfl, hs, cr_sig, Fin.sum_univ_two]
       refine Valuation.map_add_lt _ (val_mul_lt v (hC _ _) ?_) (val_mul_lt v (hC _ _) ?_)

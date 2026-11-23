@@ -449,7 +449,7 @@ abbrev termGramMatrix (X : TermTie D) {u u' : D.what₂.Word} (t : D.s.Term u u'
 def wordPairGramNorm (D : D7) (u u' : D.what₂.Word) (Z : GramM D) : ℝ := ∏ τ, nV D (Tu D u) (Tu D u') Z τ
 
 def wordPairGramProduct (D : D7) (u u' : D.what₂.Word) (Z : GramM D) : ℝ :=
-  (∏ τ, Gz D (Tu D u) (Tu D u') Z τ) * ((gS D : ℝ)⁻¹) ^ (D.R.m * D.R.f)
+  (∏ τ, Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') Z τ) * ((gS D : ℝ)⁻¹) ^ (D.R.m * D.R.f)
 
 def pairDeterminant (X : TermTie D) {u u' : D.what₂.Word} (p : D.s.Pair u u') : ℝ :=
   latDet (hS D) (Mlat (X.abelian₂ (D.s.pfst p)) (X.fl (D.s.pfst p)) (X.fl' (D.s.pfst p)) (X.fl' (D.s.psnd p)) (X.beta p) (gS D)) *

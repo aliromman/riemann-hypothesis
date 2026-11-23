@@ -40,7 +40,7 @@ def Cmat : Matrix (Fin 2) (Fin 2) F := fun k l => b.repr (σ (b l)) k
 def cr (y : Fv F v ⊗[F] E) (k : Fin 2) : Fv F v := (Algebra.TensorProduct.basis (Fv F v) b).repr y k
 
 theorem cr_sig (y : Fv F v ⊗[F] E) (k : Fin 2) :
-    cr b v (sigR (Fv F v) σ y) k = ∑ l, algebraMap F (Fv F v) (Cmat b σ k l) * cr b v y l :=
+    cr b v (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ y) k = ∑ l, algebraMap F (Fv F v) (Cmat b σ k l) * cr b v y l :=
   crd_sigR b v σ y k
 
 theorem cr_smul_one (t : Fv F v) (k : Fin 2) :

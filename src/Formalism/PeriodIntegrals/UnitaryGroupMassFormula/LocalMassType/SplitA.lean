@@ -118,21 +118,21 @@ theorem finrank_tens (h : Module.finrank F E = 2) :
 theorem finDim_tens : FiniteDimensional (Fv F v) (Fv F v ⊗[F] E) :=
   Module.Finite.of_basis (Algebra.TensorProduct.basis (Fv F v) (Module.finBasis F E))
 
-theorem sigR_sc (c : Fv F v) : sigR (Fv F v) σ (sc (E := E) v c) = sc (E := E) v c := by
-  simp [sigR, sc]
+theorem sigR_sc (c : Fv F v) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (sc (E := E) v c) = sc (E := E) v c := by
+  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, sc]
 
-theorem sigR_inclR (y : E) : sigR (Fv F v) σ (inclR (F := F) (Fv F v) y) = inclR (F := F) (Fv F v) (σ y) := by
-  simp [sigR, inclR]
+theorem sigR_inclR (y : E) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (inclR (F := F) (Fv F v) y) = inclR (F := F) (Fv F v) (σ y) := by
+  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, inclR]
 
 theorem sigR_smul (c : Fv F v) (x : Fv F v ⊗[F] E) :
-    sigR (Fv F v) σ (c • x) = c • sigR (Fv F v) σ x := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (c • x) = c • Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x := by
   rw [← PI.LocMassTypU.sc_mul_eq_smul, map_mul, sigR_sc, PI.LocMassTypU.sc_mul_eq_smul]
 
 theorem sigR_sigR (hσ : ∀ y, σ (σ y) = y) (x : Fv F v ⊗[F] E) :
-    sigR (Fv F v) σ (sigR (Fv F v) σ x) = x := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x) = x := by
   induction x using TensorProduct.induction_on with
   | zero => simp
-  | tmul c y => simp [sigR, hσ]
+  | tmul c y => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hσ]
   | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
 
 theorem inclR_injective : Function.Injective (inclR (F := F) (Fv F v) : E → Fv F v ⊗[F] E) :=

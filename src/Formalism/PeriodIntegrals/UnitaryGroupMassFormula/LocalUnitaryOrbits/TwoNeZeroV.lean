@@ -61,13 +61,13 @@ theorem fixed_mem_F (hcm : IsCMExt F E σ) (e : E) (he : σ e = e) : ∃ f : F, 
 theorem sc_eq (a : Fv F v) : sc (E := E) v a = algebraMap (Fv F v) (Fv F v ⊗[F] E) a := by
   simp [sc, Algebra.TensorProduct.algebraMap_apply]
 
-theorem add_sig_sc (hcm : IsCMExt F E σ) (z : Fv F v ⊗[F] E) : ∃ t : Fv F v, z + sigR (Fv F v) σ z = sc (E := E) v t := by
+theorem add_sig_sc (hcm : IsCMExt F E σ) (z : Fv F v ⊗[F] E) : ∃ t : Fv F v, z + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z = sc (E := E) v t := by
   induction z using TensorProduct.induction_on with
   | zero => exact ⟨0, by simp [sc_eq]⟩
   | tmul r e =>
     obtain ⟨f, hf⟩ := fixed_mem_F σ hcm (e + σ e) (by rw [map_add (f := _), sigma_invol σ hcm, add_comm])
     refine ⟨f • r, ?_⟩
-    have hs : sigR (Fv F v) σ (r ⊗ₜ[F] e) = r ⊗ₜ[F] σ e := by
+    have hs : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (r ⊗ₜ[F] e) = r ⊗ₜ[F] σ e := by
       simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.map_tmul]
     rw [hs, ← TensorProduct.tmul_add, ← hf, Algebra.algebraMap_eq_smul_one, ← TensorProduct.smul_tmul]
     rfl
@@ -86,7 +86,7 @@ theorem two_ne_zero_v : (2 : Fv F v) ≠ 0 := by
   rw [map_ofNat, map_zero]
   exact h2
 
-theorem fix_sc (hcm : IsCMExt F E σ) (z : Fv F v ⊗[F] E) (hz : sigR (Fv F v) σ z = z) :
+theorem fix_sc (hcm : IsCMExt F E σ) (z : Fv F v ⊗[F] E) (hz : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z = z) :
     ∃ a : Fv F v, z = sc (E := E) v a := by
   obtain ⟨t, ht⟩ := add_sig_sc σ v hcm z
   rw [hz] at ht
@@ -123,7 +123,7 @@ theorem sc_mem_int {a : Fv F v} (ha : sc (E := E) v a ∈ OEv (E := E) v) : a �
   rw [← hy]
   exact y.2
 
-theorem fix_int (hcm : IsCMExt F E σ) {z : Fv F v ⊗[F] E} (hz0 : z ∈ OEv (E := E) v) (hz : sigR (Fv F v) σ z = z) :
+theorem fix_int (hcm : IsCMExt F E σ) {z : Fv F v ⊗[F] E} (hz0 : z ∈ OEv (E := E) v) (hz : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z = z) :
     ∃ a ∈ v.adicCompletionIntegers F, z = sc (E := E) v a := by
   obtain ⟨a, ha⟩ := fix_sc σ v hcm z hz
   exact ⟨a, sc_mem_int v (ha ▸ hz0), ha⟩

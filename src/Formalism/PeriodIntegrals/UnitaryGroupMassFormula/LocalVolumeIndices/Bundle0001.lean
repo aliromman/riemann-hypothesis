@@ -67,11 +67,11 @@ theorem Bridge_tf_injective : Function.Injective (tf I hb) := by
 theorem Bridge_tf_surjective : Function.Surjective (tf I hb) := by
   intro h
   let φ : Af I.F ⊗[I.F] I.E →+* I.E ⊗[I.F] Af I.F := (swapE I).symm.toAlgHom.toRingHom
-  have hσ : φ.comp (sigR (Af I.F) I.cm.sig) = (Formalism.UG.sigR I.cm.sig (Af I.F)).comp φ := by
+  have hσ : φ.comp (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af I.F) I.cm.sig) = (Formalism.UG.sigR I.cm.sig (Af I.F)).comp φ := by
     refine RingHom.ext fun t => ?_
     induction t using TensorProduct.induction_on with
     | zero => simp
-    | tmul a e => simp [φ, swapE, sigR, Formalism.UG.sigR]
+    | tmul a e => simp [φ, swapE, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Formalism.UG.sigR]
     | add s u hs hu => simp only [map_add (f := _)] at hs hu ⊢; rw [hs, hu]
   have hJ : (JR (Af I.F) I.J).map φ = I.J.map (Formalism.UG.inclE (F := I.F) (Af I.F)) := by
     ext i j

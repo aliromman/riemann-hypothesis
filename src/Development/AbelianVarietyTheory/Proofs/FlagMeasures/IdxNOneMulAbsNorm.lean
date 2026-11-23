@@ -354,7 +354,7 @@ theorem smul_fvec_mem {T : D.host.E} (F : FlagG (VS D) D.R.rS T) (a : Fin (D.R.r
   · rename_i a
     exact Submodule.mem_sup_left (Submodule.subset_span ⟨a, x, hx, by simp [FlagG.fvec]⟩)
 
-theorem main : ∀ (D : D7) (large₂ : SizeData₂ D) (u u' : D.what₂.Word) (C' Cl Cg cb Cu cT CT C0 A : ℝ), Hyp D large₂ u u' C' Cl Cg cb Cu cT CT C0 A → ∀ F0 : FlagG (VS D) D.R.rS ((Tu D u : ℕ) : D.host.E), F0.e = D.sp.hypE → F0.z = D.zmOf u → ∀ Λ : LatV D, IsRowLat D F0 Λ → ∀ F' : FlagU D u', IsTermF D Λ (lf D F0) F' → IsGeneric Λ (gS D) (lf D F0) F' → NG Λ (lf D F0) F' = ∏ τ, Gz D (Tu D u) (Tu D u') (ZhatL (lf D F0) F') τ := by
+theorem main : ∀ (D : D7) (large₂ : SizeData₂ D) (u u' : D.what₂.Word) (C' Cl Cg cb Cu cT CT C0 A : ℝ), Hyp D large₂ u u' C' Cl Cg cb Cu cT CT C0 A → ∀ F0 : FlagG (VS D) D.R.rS ((Tu D u : ℕ) : D.host.E), F0.e = D.sp.hypE → F0.z = D.zmOf u → ∀ Λ : LatV D, IsRowLat D F0 Λ → ∀ F' : FlagU D u', IsTermF D Λ (lf D F0) F' → IsGeneric Λ (gS D) (lf D F0) F' → NG Λ (lf D F0) F' = ∏ τ, Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (ZhatL (lf D F0) F') τ := by
   intro D large₂ u u' C' Cl Cg cb Cu cT CT C0 A hH F0 he hz Λ hΛ F' hF' _
   have hT : Tu D u ≠ 0 := hH.2.1.2.1.ne_zero
   obtain ⟨-, ⟨-, hu, hl, -⟩, hX⟩ := hΛ
@@ -400,7 +400,7 @@ theorem main : ∀ (D : D7) (large₂ : SizeData₂ D) (u u' : D.what₂.Word) (
     by_cases hp : p = 0
     · simp [hp]
     · exact ((RowPerp.main D u F0 he hz).1.1 τ p hp).le
-  have hGz : ∀ τ, Gz D (Tu D u) (Tu D u') (ZhatL (lf D F0) F') τ =
+  have hGz : ∀ τ, Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (ZhatL (lf D F0) F') τ =
       ‖embS D τ G‖ * (D.host.rdE ^ (4 * s))⁻¹ := fun τ => by
     have e : embS D τ G = ((‖embS D τ (Dl F0 F'.fl (D.R.rS + 1))‖ ^ 2 -
         (Tu D u : ℝ) * (Tu D u' : ℝ) * ‖embS D τ (Dl F0 F'.fl D.R.rS)‖ ^ 2 : ℝ) : ℂ) := by
@@ -413,7 +413,7 @@ theorem main : ∀ (D : D7) (large₂ : SizeData₂ D) (u u' : D.what₂.Word) (
       rw [Real.rpow_neg hrd0.le, ← Real.rpow_natCast]
       push_cast
       rfl
-    rw [e, Complex.norm_real, Real.norm_of_nonneg h0, Gz, absDl, absDl, absReal, absReal, s2, ← hs, e2]
+    rw [e, Complex.norm_real, Real.norm_of_nonneg h0, Formalism.MainNotions.S.Cnt.Gz, absDl, absDl, absReal, absReal, s2, ← hs, e2]
     change (‖embS D τ (Dl F0 F'.fl (D.R.rS + 1))‖ * _) ^ 2 - _ * (‖embS D τ (Dl F0 F'.fl D.R.rS)‖ * _) ^ 2 = _
     ring
   simp only [hGz]

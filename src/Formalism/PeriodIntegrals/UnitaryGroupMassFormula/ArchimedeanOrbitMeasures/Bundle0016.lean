@@ -354,7 +354,7 @@ open MeasureTheory Topology Filter Formalism.BasicNotions Formalism.L2.SG.HidaSe
 open scoped TensorProduct
 
 def cTI {D : D7} (X : HidaSetting D) (a : MfI X) : MfI X :=
-  Matrix.transpose (a.map (sigR (Ainf X.B.I.F) X.B.I.cm.sig))
+  Matrix.transpose (a.map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf X.B.I.F) X.B.I.cm.sig))
 
 def RmulFacts : Prop := ∀ {D : D7} (X : HidaSetting D),
     (∀ a : MfI X, Measurable (rmulT X a)) ∧ (∀ a b : MfI X, ∀ Y, rmulT X a (rmulT X b Y) = rmulT X (b * a) Y) ∧

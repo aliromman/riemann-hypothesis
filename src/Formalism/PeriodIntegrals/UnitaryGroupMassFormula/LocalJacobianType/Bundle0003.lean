@@ -217,23 +217,23 @@ theorem oev_mul {x y : Fv F v ⊗[F] E} (hx : x ∈ OEv (E := E) v) (hy : y ∈ 
     exact Submodule.smul_mem _ c hx
 
 theorem sigR_smul (σ : E →ₐ[F] E) (c : Fv F v) (x : Fv F v ⊗[F] E) :
-    sigR (Fv F v) σ (c • x) = c • sigR (Fv F v) σ x := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (c • x) = c • Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x := by
   induction x using TensorProduct.induction_on with
   | zero => simp
-  | tmul a b => simp [sigR, TensorProduct.smul_tmul']
+  | tmul a b => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, TensorProduct.smul_tmul']
   | add x y hx hy => simp only [smul_add, map_add (f := _), hx, hy]
 
 private theorem sigR_smulO_lemma (σ : E →ₐ[F] E) (c : v.adicCompletionIntegers F)
-    (x : Fv F v ⊗[F] E) : sigR (Fv F v) σ (c • x) = c • sigR (Fv F v) σ x := by
+    (x : Fv F v ⊗[F] E) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (c • x) = c • Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x := by
   first
     | rw [← algebraMap_smul (Fv F v) c x, sigR_smul, algebraMap_smul]
     | (induction x using TensorProduct.induction_on with
         | zero => simp
-        | tmul a b => simp [sigR, TensorProduct.smul_tmul']
+        | tmul a b => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, TensorProduct.smul_tmul']
         | add y z hy hz => simp only [smul_add, map_add (f := _), hy, hz])
 
 theorem oev_sigR (σ : E →ₐ[F] E) {x : Fv F v ⊗[F] E} (hx : x ∈ OEv (E := E) v) :
-    sigR (Fv F v) σ x ∈ OEv (E := E) v := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x ∈ OEv (E := E) v := by
   unfold OEv at hx ⊢
   rw [SetLike.mem_coe] at hx ⊢
   induction hx using Submodule.span_induction with
@@ -242,9 +242,9 @@ theorem oev_sigR (σ : E →ₐ[F] E) {x : Fv F v ⊗[F] E} (hx : x ∈ OEv (E :
     apply Submodule.subset_span
     first
       | exact ⟨NumberField.RingOfIntegers.mapRingHom (σ : E →+* E) a', Set.mem_univ _,
-          by simp [sigR, inclR]⟩
+          by simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, inclR]⟩
       | exact ⟨⟨σ a', (a'.isIntegral_coe.map (σ : E →+* E).toIntAlgHom)⟩, Set.mem_univ _,
-          by simp [sigR, inclR]⟩
+          by simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, inclR]⟩
   | zero => simp
   | add x y _ _ hx hy =>
     rw [map_add (f := _)]

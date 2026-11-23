@@ -34,7 +34,7 @@ theorem adelic_bounds : AdelBounds := by
   set g := finMat σ J h with hgdef
   have hgg' : g * g' = 1 := by rw [hgdef, hg'def, ← finMat_mul, mul_inv_cancel, finMat_one]
   have hg'g : g' * g = 1 := by rw [hgdef, hg'def, ← finMat_mul, inv_mul_cancel, finMat_one]
-  have hU : cT (sigR (Af F) σ) g * JR (Af F) J * g = JR (Af F) J := finMat_unitary σ J h
+  have hU : cT (PI.UJClassFin.sigR (Af F) σ) g * JR (Af F) J * g = JR (Af F) J := finMat_unitary σ J h
   have hvs : ∀ (c : E) (x : Fin M → E), vinc (F := F) (c • x) = inclR (F := F) (Af F) c • vinc (F := F) x := by
     intro c x
     funext i
@@ -94,8 +94,8 @@ theorem adelic_bounds : AdelBounds := by
           funext i
           simp [vinc, inclR, Algebra.TensorProduct.tmul_mul_tmul]
         rw [e3, hermA_smul_left, hermA_vinc]
-        have e4 : D • (sigR (Af F) σ (a ⊗ₜ[F] (1 : E)) * inclR (F := F) (Af F) (PI.HermLatFin.herm (σ : E →+* E) J x y)) =
-            sigR (Af F) σ (a ⊗ₜ[F] (1 : E)) * inclR (F := F) (Af F) ((D : E) * PI.HermLatFin.herm (σ : E →+* E) J x y) := by
+        have e4 : D • (PI.UJClassFin.sigR (Af F) σ (a ⊗ₜ[F] (1 : E)) * inclR (F := F) (Af F) (PI.HermLatFin.herm (σ : E →+* E) J x y)) =
+            PI.UJClassFin.sigR (Af F) σ (a ⊗ₜ[F] (1 : E)) * inclR (F := F) (Af F) ((D : E) * PI.HermLatFin.herm (σ : E →+* E) J x y) := by
           rw [nsmul_eq_mul, map_mul, map_natCast]
           ring
         rw [e4]

@@ -198,7 +198,7 @@ theorem hR_mapV (x y : Fin n → R ⊗[F] E) :
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [hR, Formalism.UG.hform, map_sum, map_mul, mapV_apply]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  have h1 : tensMap (E := E) φ (sigR R σ (x i)) = sigR R' σ (tensMap (E := E) φ (x i)) := by
+  have h1 : tensMap (E := E) φ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (x i)) = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R' σ (tensMap (E := E) φ (x i)) := by
     have := congrArg (fun f : R ⊗[F] E →+* R' ⊗[F] E => f (x i)) (tensMap_sigR (E := E) φ σ)
     simpa using this
   rw [h1]

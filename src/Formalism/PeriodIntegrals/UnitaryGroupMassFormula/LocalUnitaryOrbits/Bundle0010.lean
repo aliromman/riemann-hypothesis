@@ -230,7 +230,7 @@ theorem redU_of (hU : Orb.UnitV σ J ψ v Λ) (hR : ResAlg σ J ψ v) (a : ℕ) 
   obtain ⟨e, he, he1⟩ := oBas1_of_unitV σ J ψ v Λ hU hstd hG.2.1 hG.2.2.1 hG.2.2.2.1
   have hT := gY_mem σ J ψ v Λ hG
   obtain ⟨w, hw, -, hd⟩ := hG.2.2.2.2.2.2
-  have hconj : ∀ i j, gramR (Fv F v) σ J Y i j = sigR (Fv F v) σ (gramR (Fv F v) σ J Y j i) := fun i j =>
+  have hconj : ∀ i j, gramR (Fv F v) σ J Y i j = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (gramR (Fv F v) σ J Y j i) := fun i j =>
     (Orb.hR_conj σ J v hcm hJ (Y j) (Y i)).symm
   obtain ⟨k, _, _, hk, h⟩ := hR hstd hG.2.2.2.1 ϖ hϖ
   refine ⟨k, inferInstance, inferInstance, hk, ?_⟩
@@ -273,7 +273,7 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
   (v : HeightOneSpectrum (𝓞 F))
 
 theorem b_tr_sig (hcm : IsCMExt F E σ) (w : Fv F v ⊗[F] E) :
-    Algebra.trace (Fv F v) (Fv F v ⊗[F] E) (sigR (Fv F v) σ w) = Algebra.trace (Fv F v) (Fv F v ⊗[F] E) w := by
+    Algebra.trace (Fv F v) (Fv F v ⊗[F] E) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ w) = Algebra.trace (Fv F v) (Fv F v ⊗[F] E) w := by
   have hinv := b_sig_sig σ hcm
   have hnt := b_sig_nt σ hcm
   have hfin : Module.finrank F E = 2 := hcm.2.2.1
@@ -281,14 +281,14 @@ theorem b_tr_sig (hcm : IsCMExt F E σ) (w : Fv F v ⊗[F] E) :
   rw [trace_v v σ hinv hnt hfin, trace_v v σ hinv hnt hfin, sigR_sigR v σ hinv, add_comm]
 
 def hm {a : ℕ} (hinv : ∀ y, σ (σ y) = y) (i j : Fin a) (c : Fv F v ⊗[F] E) : HermR (Fv F v) σ a :=
-  ⟨Matrix.single i j c + Matrix.single j i (sigR (Fv F v) σ c), fun p q => by
+  ⟨Matrix.single i j c + Matrix.single j i (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ c), fun p q => by
     simp only [Matrix.add_apply, Matrix.single_apply]
-    rw [map_add (f := _), apply_ite (sigR (Fv F v) σ), apply_ite (sigR (Fv F v) σ), map_zero, sigR_sigR v σ hinv, add_comm]
+    rw [map_add (f := _), apply_ite (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ), apply_ite (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ), map_zero, sigR_sigR v σ hinv, add_comm]
     congr 1 <;> exact if_congr and_comm rfl rfl⟩
 
 theorem coe_hm {a : ℕ} (hinv : ∀ y, σ (σ y) = y) (i j : Fin a) (c : Fv F v ⊗[F] E) :
     (hm σ v hinv i j c : Matrix (Fin a) (Fin a) (Fv F v ⊗[F] E)) =
-      Matrix.single i j c + Matrix.single j i (sigR (Fv F v) σ c) := rfl
+      Matrix.single i j c + Matrix.single j i (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ c) := rfl
 
 theorem hm_mem {a : ℕ} (hinv : ∀ y, σ (σ y) = y) (i j : Fin a) {c : Fv F v ⊗[F] E}
     (hc : c ∈ OEv (E := E) v) : hm σ v hinv i j c ∈ HO σ v a := by
@@ -317,7 +317,7 @@ theorem pair_hm (hcm : IsCMExt F E σ) {a : ℕ} (i j : Fin a) (c : Fv F v ⊗[F
       Algebra.trace (Fv F v) (Fv F v ⊗[F] E) (c * (T : Matrix (Fin a) (Fin a) _) j i) := by
   unfold pairHerm
   rw [sum_eq_trace, coe_hm, add_mul, Matrix.trace_add, Matrix.trace_single_mul, Matrix.trace_single_mul,
-    smul_eq_mul, smul_eq_mul, ← T.2 i j, ← map_mul (sigR (Fv F v) σ), map_add, b_tr_sig σ v hcm, half_mul]
+    smul_eq_mul, smul_eq_mul, ← T.2 i j, ← map_mul (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ), map_add, b_tr_sig σ v hcm, half_mul]
 
 theorem pairHerm_smul_right' {a : ℕ} (s : Fv F v) (S T : HermR (Fv F v) σ a) :
     pairHerm (Fv F v) σ a S (s • T) = s * pairHerm (Fv F v) σ a S T := by
@@ -334,7 +334,7 @@ theorem pair_int (hcm : IsCMExt F E σ) {a : ℕ} {S T : HermR (Fv F v) σ a} (h
     with hudef
   have hu : u ∈ OEv (E := E) v :=
     sum_mem fun p _ => sum_mem fun q _ => b_mul_mem v (hS p q) (hT q p)
-  have hfix : sigR (Fv F v) σ u = u := by
+  have hfix : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ u = u := by
     set_option synthInstance.maxHeartbeats 100000 in
       rw [hudef, map_sum]
     set_option synthInstance.maxHeartbeats 100000 in

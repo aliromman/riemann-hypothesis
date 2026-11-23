@@ -219,11 +219,11 @@ theorem cntCl_le_encard_mul {α ι : Type} {R : α → α → Prop} (hR : Equiva
 
 theorem prod_nV (D : D7) (u u' : D.what₂.Word) (Z : GramM D) (hg : gS D ≠ 0) :
     ∏ τ, nV D (Tu D u) (Tu D u') Z τ = (Real.exp 1 * Real.pi / (D.R.k * D.host.v)) ^ (D.R.k * D.R.f) *
-      ((∏ τ, Gz D (Tu D u) (Tu D u') Z τ) / NE (E := D.host.E) (gS D) ^ (D.R.rS + 1) / NT D u) ^ D.R.k := by
+      ((∏ τ, Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') Z τ) / NE (E := D.host.E) (gS D) ^ (D.R.rS + 1) / NT D u) ^ D.R.k := by
   obtain ⟨hcard, hE, -, hm, -⟩ := GlobalTheory.real_places_facts D
   have hg' : (0 : ℝ) < gS D := Nat.cast_pos.2 (Nat.pos_of_ne_zero hg)
   have e : ∀ τ, nV D (Tu D u) (Tu D u') Z τ = ((Real.exp 1 * Real.pi / (D.R.k * D.host.v)) *
-      (((gS D : ℝ) ^ D.R.m)⁻¹ * (Tu D u : ℝ)⁻¹) * Gz D (Tu D u) (Tu D u') Z τ) ^ D.R.k := fun τ => by
+      (((gS D : ℝ) ^ D.R.m)⁻¹ * (Tu D u : ℝ)⁻¹) * Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') Z τ) ^ D.R.k := fun τ => by
     rw [nV, Real.rpow_neg hg'.le, Real.rpow_natCast]
     congr 1
     ring
@@ -258,7 +258,7 @@ theorem main : ∀ Cg cb Cu cT CT C0 A : ℝ, ∃ C : ℝ, ∀ (D : D7) (large�
     (hTb u).2 (hTb u').2 Z
   have z3 := h3 C c3 D large₂ u u' C' Cl hCl hH Z
   set H := HHZ D large₂.sc.b C Z with hHd
-  set G := (∏ τ, Gz D (Tu D u) (Tu D u') Z τ) / NE (E := D.host.E) (gS D) ^ (D.R.rS + 1) with hGd
+  set G := (∏ τ, Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') Z τ) / NE (E := D.host.E) (gS D) ^ (D.R.rS + 1) with hGd
   have hN : 1 ≤ NT D u := one_le_pow₀ (Nat.one_le_cast.2 hs.2.1.one_le)
   have hH1 : 1 ≤ H := hN.trans z1
   have hNE : 1 ≤ NE (E := D.host.E) (gS D) ^ (D.R.rS + 1) :=
@@ -288,7 +288,7 @@ theorem main : ∀ Cg cb Cu cT CT C0 A : ℝ, ∃ C : ℝ, ∀ (D : D7) (large�
         obtain ⟨o1, o2, o3⟩ := orth_lattice D u u' F0 Λ hs ⟨he, hz⟩ hΛ F' ⟨t1, t2⟩
         refine ⟨_, ⟨o1, o2, o3.trans (le_of_eq ?_)⟩, ⟨t1, t2⟩, t4, le_rfl⟩
         rw [G0, FrameDet.main D large₂ u u' C' Cl Cg cb Cu cT CT C0 A hH F0 he hz Λ hΛ F' ⟨t1, t2⟩ t3, hGd]
-        simp only [Gz, absDl, lead_eq t4])
+        simp only [Formalism.MainNotions.S.Cnt.Gz, absDl, lead_eq t4])
       (by
         rintro P ⟨p1, p2, p3⟩
         have := h1 C c1 D large₂ u u' C' Cl hCl hH F0 he hz Λ hΛ Z hZ 1 le_rfl hk P p1 p2 G' H hG'1

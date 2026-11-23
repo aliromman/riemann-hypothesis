@@ -71,7 +71,7 @@ theorem exists_sec_isUnit {X X' Y W Z : Scheme.{0}} {L : LB X} {M : LB X'} (hL :
     (fun V _ h => by simp [Fintype.prod_sum_type, hρ])
     (pullMulSec s ρ (LB.oneGen L (Y := Y)) h1)
   have u₁ : IsUnit (sval s (r ≫ ρ) z I) := by
-    obtain ⟨j, hj, hu⟩ := (mem_nonzeroLocus s _).1 hs
+    obtain ⟨j, hj, hu⟩ := (ReciprocityTheory.ChartRestriction.G.Geo.Tor.mem_nonzeroLocus s _).1 hs
     have hj' : (r ≫ ρ) z ∈ LB.wchart L (fun _ : Fin k => i) j := hj
     have h₁ : IsUnit (gs (r ≫ ρ) z (LB.wchart L (fun _ : Fin k => i) j) (s.f j)) :=
       (congrArg IsUnit (gs_stalkMap (r ≫ ρ) z _ hj' _)).mpr (hu.map _)

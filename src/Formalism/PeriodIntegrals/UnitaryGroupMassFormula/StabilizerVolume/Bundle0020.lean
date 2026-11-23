@@ -221,13 +221,13 @@ variable {F : Type} [Field F] [NumberField F] {E : Type} [Field E] [Algebra F E]
   (b : Module.Basis (Fin d) F E) [FiniteDimensional F E] (v : HeightOneSpectrum (𝓞 F))
 
 theorem crd_sigR (σ : E →ₐ[F] E) (z : Fv F v ⊗[F] E) (l : Fin d) :
-    crd b (Fv F v) (sigR (Fv F v) σ z) l =
+    crd b (Fv F v) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z) l =
       ∑ k, crd b (Fv F v) z k * algebraMap F (Fv F v) (b.repr (σ (b k)) l) := by
   set B := Algebra.TensorProduct.basis (Fv F v) b with hBdef
   have hB : ∀ k, B k = (1 : Fv F v) ⊗ₜ[F] b k := fun k => Algebra.TensorProduct.basis_apply _ _
-  have hs : ∀ k, sigR (Fv F v) σ ((1 : Fv F v) ⊗ₜ[F] b k) = (1 : Fv F v) ⊗ₜ[F] σ (b k) := by
+  have hs : ∀ k, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ ((1 : Fv F v) ⊗ₜ[F] b k) = (1 : Fv F v) ⊗ₜ[F] σ (b k) := by
     intro k
-    simp [sigR]
+    simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
   conv_lhs => rw [← B.sum_repr z]
   set_option synthInstance.maxHeartbeats 100000 in
     rw [map_sum]
@@ -238,7 +238,7 @@ theorem crd_sigR (σ : E →ₐ[F] E) (z : Fv F v ⊗[F] E) (l : Fin d) :
   simp [Finsupp.smul_apply, Finsupp.mapRange_apply, hBdef]
 
 theorem ev_sig (σ : E →ₐ[F] E) :
-    ∀ᶠ v in cofinite, ∀ z ∈ latA v b, sigR (Fv F v) σ z ∈ latA v b := by
+    ∀ᶠ v in cofinite, ∀ z ∈ latA v b, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z ∈ latA v b := by
   filter_upwards [ev_int_all (fun q : Fin d × Fin d => b.repr (σ (b q.1)) q.2)] with v h
   intro z hz l
   rw [crd_sigR]

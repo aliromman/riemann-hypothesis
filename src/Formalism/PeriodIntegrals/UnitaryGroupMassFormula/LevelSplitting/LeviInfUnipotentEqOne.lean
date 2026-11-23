@@ -45,10 +45,10 @@ theorem uI_mul_uT (g : HA R σ J) : uI R σ J P g * uT R σ J P g = 1 := by
   rw [uI, Matrix.adjugate_mul, det_uT, one_smul]
 
 def cj (U : Matrix (Fin r) (Fin r) (R ⊗[F] E)) : Matrix (Fin r) (Fin r) (R ⊗[F] E) :=
-  Matrix.of fun a b => sigR R σ (U b a)
+  Matrix.of fun a b => Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (U b a)
 
 theorem cj_apply (U : Matrix (Fin r) (Fin r) (R ⊗[F] E)) (a b : Fin r) :
-    cj R σ U a b = sigR R σ (U b a) := rfl
+    cj R σ U a b = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (U b a) := rfl
 
 theorem cj_mul (U V : Matrix (Fin r) (Fin r) (R ⊗[F] E)) : cj R σ U * cj R σ V = cj R σ (V * U) := by
   ext a b
@@ -109,15 +109,15 @@ include hσσ hJ hP
 
 theorem levU_mem (g : HA R σ J) : levU hσσ hJ hP g ∈ HR R σ J := by
   have H : (datR R σ J P T).Hyp := datR_hyp hσσ hJ hP
-  show Formalism.UG.cT (sigR R σ) (LinearMap.toMatrix' (levL (datR R σ J P T) (uT R σ J P g)
+  show Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (LinearMap.toMatrix' (levL (datR R σ J P T) (uT R σ J P g)
       (cj R σ (uI R σ J P g)))) * JR R J * LinearMap.toMatrix' (levL (datR R σ J P T)
       (uT R σ J P g) (cj R σ (uI R σ J P g))) = JR R J
   apply PI.LevelKSplit.W.SemiA.uj_of_uni
   intro x y
   rw [LinearMap.toMatrix'_mulVec, LinearMap.toMatrix'_mulVec]
   refine levL_uni H _ _ (fun b c => ?_) (fun b c => ?_) x y
-  · calc ∑ a, sigR R σ (uT R σ J P g a b) * cj R σ (uI R σ J P g) a c
-        = sigR R σ ((uI R σ J P g * uT R σ J P g) c b) := by
+  · calc ∑ a, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (uT R σ J P g a b) * cj R σ (uI R σ J P g) a c
+        = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ ((uI R σ J P g * uT R σ J P g) c b) := by
           set_option synthInstance.maxHeartbeats 100000 in
             rw [Matrix.mul_apply, map_sum]
           refine Finset.sum_congr rfl fun a _ => ?_
@@ -127,7 +127,7 @@ theorem levU_mem (g : HA R σ J) : levU hσσ hJ hP g ∈ HR R σ J := by
           by_cases h : b = c
           · subst h; simp
           · simp [h, Ne.symm h]
-  · calc ∑ a, sigR R σ (cj R σ (uI R σ J P g) a b) * uT R σ J P g a c
+  · calc ∑ a, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (cj R σ (uI R σ J P g) a b) * uT R σ J P g a c
         = (uI R σ J P g * uT R σ J P g) b c := by
           rw [Matrix.mul_apply]
           refine Finset.sum_congr rfl fun a _ => ?_

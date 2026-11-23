@@ -300,9 +300,9 @@ variable {S : Type} [CommRing S] (x0 : Sp S ⟶ X0)
 
 theorem unitΓ_homAt {A B : Type} [CommRing A] [Algebra S A] [CommRing B] [Algebra S B] (f : A →ₐ[S] B)
     (u : Aˣ) :
-    Units.map (homAt x0 f).left.appTop.hom.toMonoidHom (unitΓ u) = unitΓ (Units.map f.toMonoidHom u) := by
+    Units.map (Formalism.L2.Pj.homAt x0 f).left.appTop.hom.toMonoidHom (unitΓ u) = unitΓ (Units.map f.toMonoidHom u) := by
   ext
-  simp only [unitΓ, toΓ, homAt, Over.homMk_left, spMap, Units.coe_map, MonoidHom.coe_coe,
+  simp only [unitΓ, toΓ, Formalism.L2.Pj.homAt, Over.homMk_left, spMap, Units.coe_map, MonoidHom.coe_coe,
     RingHom.toMonoidHom_eq_coe]
   rw [← CommRingCat.comp_apply, ← Scheme.ΓSpecIso_inv_naturality]
   rfl

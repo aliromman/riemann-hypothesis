@@ -418,10 +418,10 @@ def SplitR : Prop :=
     (v : HeightOneSpectrum (𝓞 F)),
     StdHyp σ J ψ → UnramAt (E := E) v → etaV (E := E) v = 1 →
     ∃ (e : Fv F v ⊗[F] E) (π₁ π₂ : Fv F v ⊗[F] E →+* Fv F v),
-      e * e = e ∧ sigR (Fv F v) σ e = 1 - e ∧
+      e * e = e ∧ Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ e = 1 - e ∧
       (∀ x, x * e = sc (E := E) v (π₁ x) * e) ∧ (∀ x, x * (1 - e) = sc (E := E) v (π₂ x) * (1 - e)) ∧
       π₁ e = 1 ∧ π₂ e = 0 ∧ (∀ c : Fv F v, π₁ (sc (E := E) v c) = c ∧ π₂ (sc (E := E) v c) = c) ∧
-      (∀ x, π₂ (sigR (Fv F v) σ x) = π₁ x) ∧ (∀ x, π₁ (sigR (Fv F v) σ x) = π₂ x) ∧
+      (∀ x, π₂ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x) = π₁ x) ∧ (∀ x, π₁ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x) = π₂ x) ∧
       (∀ x, x ∈ OEv (E := E) v ↔
         π₁ x ∈ v.adicCompletionIntegers F ∧ π₂ x ∈ v.adicCompletionIntegers F)
 
@@ -437,7 +437,7 @@ def LatStd : Prop :=
           y = (Q : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) *ᵥ x) ∧
       ∀ x y : Fin n → Fv F v ⊗[F] E,
         hR (Fv F v) σ J ((Q : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) *ᵥ x)
-          ((Q : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) *ᵥ y) = ∑ i, sigR (Fv F v) σ (x i) * y i
+          ((Q : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) *ᵥ y) = ∑ i, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (x i) * y i
 
 def SatSplit : Prop :=
   ∀ {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F)) (n m : ℕ)

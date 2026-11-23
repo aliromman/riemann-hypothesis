@@ -406,7 +406,7 @@ theorem orbTup_holds : OrbTup := by
     rw [← hDv]; exact PIW.AdelicOrbitU.hform_conj sE T hinv hTH _ _
 
   let R := AF F
-  let sS := sigR R σ
+  let sS := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ
   let JS := JR (F := F) R J
   have hsS : ∀ z, sS (sS z) = z := (PIW.AdelicOrbitU.stFix F E σ h2 hfix R).1
   have hJS : IsHerm sS JS := PIW.AdelicOrbitU.isHerm_JR R σ J hJ.1

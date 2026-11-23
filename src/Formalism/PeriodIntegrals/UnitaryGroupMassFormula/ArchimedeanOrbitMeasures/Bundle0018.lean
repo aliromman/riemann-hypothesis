@@ -465,7 +465,7 @@ theorem nearFacts_of (hU : UnitsOpenTens) : NearFacts := by
     ⟨(Matrix.isUnit_iff_isUnit_det _).2 hT1.2, fun Y hY => ?_⟩⟩
   apply linIndep_of_isUnit_det (Ainf X.B.I.F) X.B.I.cm.sig X.B.I.J
   rw [hY, ← hCh.2.2.2 T hT1.1, hgram, gramR_Y0_eq_TI X u' hT, Matrix.det_mul, Matrix.det_mul]
-  have hc : (cTI X (a T)).det = sigR (Ainf X.B.I.F) X.B.I.cm.sig (a T).det := by
+  have hc : (cTI X (a T)).det = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf X.B.I.F) X.B.I.cm.sig (a T).det := by
     rw [cTI, Matrix.det_transpose, RingHom.map_det]
     rfl
   rw [hc]

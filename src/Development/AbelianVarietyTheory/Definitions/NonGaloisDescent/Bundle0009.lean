@@ -390,7 +390,7 @@ def HodgeL (bkP : BKPh X) (i : X.Tw) (s : X.Sig i) : Prop :=
     ((∀ k, X.l i ≠ D.host.g k) → (bkP.br i v hv).IsCrysW (D.loc (X.l i)) (r.comp (DecV N v).subtype)) ∧
     (bkP.br i v hv).IsPotCrysW (D.loc (X.l i)) (r.comp (DecV N v).subtype)
 
-def NoInv (i : X.Tw) (M : GE N → Matrix (Fin D.R.r) (Fin D.R.r) (X.O0 i)) (v : HeightOneSpectrum (𝓞 D.host.E)) : Prop :=
+def NoInv (i : X.Tw) (M : Formalism.MainNotions.BlochKatoReduction.Gen.GE N → Matrix (Fin D.R.r) (Fin D.R.r) (X.O0 i)) (v : HeightOneSpectrum (𝓞 D.host.E)) : Prop :=
   ∀ A : ValuationSubring N.Om, IsPlaceOver A v →
     ∀ x : Fin D.R.r → FractionRing (X.O0 i), (∀ g ∈ Dec (F := D.host.E) A,
       ((M g).map (algebraMap (X.O0 i) (FractionRing (X.O0 i)))).mulVec x = x) → x = 0
@@ -403,7 +403,7 @@ def NegCount (bkP : BKPh X) (i : X.Tw) (s : X.Sig i) : Prop :=
 
 def Pure (i : X.Tw) (s : X.Sig i) (ι : FractionRing (X.O0 i) →+* ℂ) : Prop :=
   ∀ v, v ∉ placesOver D.host.E (X.l i) → v ∉ Spl (X := X) i → ∀ A : ValuationSubring N.Om, IsPlaceOver (F := D.host.E) A v →
-    ∀ σ : GE N, IsFrob (F := D.host.E) A (normV v) σ → ∀ z : ℂ,
+    ∀ σ : Formalism.MainNotions.BlochKatoReduction.Gen.GE N, IsFrob (F := D.host.E) A (normV v) σ → ∀ z : ℂ,
       ((Tmat i s σ).charpoly.map (rd i ι)).IsRoot z → ‖z‖ = ((normV v : ℕ) : ℝ) ^ ((1 - (D.R.t : ℝ)) / 2)
 
 def ReadEmb (bkP : BKPh X) (i : X.Tw) (ι : FractionRing (X.O0 i) →+* ℂ) (v : HeightOneSpectrum (𝓞 D.host.E))
@@ -420,17 +420,17 @@ def GoodJ (D : Formalism.BasicNotions.D7) (J : (D.host.E →+* ℂ) → Multiset
     ∀ a ∈ J τc, a < -1 ∨ (D.R.t : ℤ) < a
 
 def CharDual (i : X.Tw) (s : X.Sig i) : Prop :=
-  ∀ g g' : GE N, (∀ x, g' x = X.cc (g (X.cc.symm x))) →
+  ∀ g g' : Formalism.MainNotions.BlochKatoReduction.Gen.GE N, (∀ x, g' x = X.cc (g (X.cc.symm x))) →
     (Tdual i s g').charpoly = ((((eps0 X i g : (X.O0 i)ˣ) : X.O0 i) ^ D.R.t) • Tmat i s g).charpoly
 
 def FrobDual (i : X.Tw) (s : X.Sig i) : Prop :=
   ∀ P, P ∉ X.S0 i → Formalism.BasicNotions.IsSplitPl D.host P → (∀ P', IsConjPl D.host P P' → P' ∉ X.S0 i) →
     ∀ A : ValuationSubring N.Om, IsPlaceOver (F := D.host.E) A P →
-    ∀ g g' : GE N, IsFrob (F := D.host.E) A (normV P) g → (∀ x, g' x = X.cc (g (X.cc.symm x))) →
+    ∀ g g' : Formalism.MainNotions.BlochKatoReduction.Gen.GE N, IsFrob (F := D.host.E) A (normV P) g → (∀ x, g' x = X.cc (g (X.cc.symm x))) →
     (Tdual i s g').charpoly = ((((eps0 X i g : (X.O0 i)ˣ) : X.O0 i) ^ D.R.t) • Tmat i s g).charpoly
 
 def HkFrob (i : X.Tw) (s : X.Sig i) : Prop :=
-  ∀ P, P ∉ X.S0 i → Formalism.BasicNotions.IsSplitPl D.host P → ∀ σ : GE N, IsFrob (F := D.host.E) (N.plOm.1 P) (normV P) σ⁻¹ →
+  ∀ P, P ∉ X.S0 i → Formalism.BasicNotions.IsSplitPl D.host P → ∀ σ : Formalism.MainNotions.BlochKatoReduction.Gen.GE N, IsFrob (F := D.host.E) (N.plOm.1 P) (normV P) σ⁻¹ →
     ∀ k, k ≤ D.R.r → (-1 : X.O i) ^ k * ((normV P : ℕ) : X.O i) ^ (k * (k - 1) / 2) * X.hEig i s k P =
       algebraMap (X.O0 i) (X.O i)
         ((((((eps0 X i σ : (X.O0 i)ˣ) : X.O0 i) ^ D.R.t) • Tmat i s σ).charpolyRev).coeff k)

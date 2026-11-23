@@ -187,7 +187,7 @@ theorem phi_ker (hSD : IsSDLoc σ J v Λ) {e : Fin n → Fin n → Fv F v ⊗[F]
 theorem gram_coord (hcm : IsCMExt F E σ) (hJ : ∀ i j, σ (J j i) = J i j) (hSD : IsSDLoc σ J v Λ)
     {e : Fin n → Fin n → Fv F v ⊗[F] E} (he : Orb.IsOBas v Λ e) (he1 : gramR (Fv F v) σ J e = 1) {a : ℕ}
     (X : lamA v Λ a) (i j : Fin a) :
-    gramR (Fv F v) σ J (X : TupV (E := E) v n a) i j = ∑ p, sigR (Fv F v) σ (cf σ J v Λ hSD he X i p : Fv F v ⊗[F] E) *
+    gramR (Fv F v) σ J (X : TupV (E := E) v n a) i j = ∑ p, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (cf σ J v Λ hSD he X i p : Fv F v ⊗[F] E) *
       (cf σ J v Λ hSD he X j p : Fv F v ⊗[F] E) := by
   show hR (Fv F v) σ J ((X : TupV (E := E) v n a) i) ((X : TupV (E := E) v n a) j) = _
   conv_lhs => rw [expand σ J v Λ he he1 (memA v Λ X j)]

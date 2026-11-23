@@ -302,8 +302,8 @@ theorem dual_latIn (h : V →ₗ⋆[K] V →ₗ[K] K) (hs : h.IsSymm) (hp : PD h
     (L : Submodule (𝓞 K) V) (hL : IsIntLat h L) :
     IsIntLat (hRes h A) (latIn A L) ∧
       dual (hRes h A) (latIn A L) = (dual h L).map (p.restrictScalars (𝓞 K)) := by
-  obtain ⟨h1, h2, -⟩ := dualLattice (𝓞 K) K V h hs (nondeg h hp) star_range L hL.1
-  obtain ⟨k1, k2, -⟩ := dualLattice (𝓞 K) K A (hRes h A) hsA (nondeg _ hpA) star_range _
+  obtain ⟨h1, h2, -⟩ := Formalism.HermitianLatticesTheory.dualLattice (𝓞 K) K V h hs (nondeg h hp) star_range L hL.1
+  obtain ⟨k1, k2, -⟩ := Formalism.HermitianLatticesTheory.dualLattice (𝓞 K) K A (hRes h A) hsA (nondeg _ hpA) star_range _
     (lat_map A p hsur _ h1)
   have e : dual (hRes h A) ((dual h L).map (p.restrictScalars (𝓞 K))) = latIn A L := by
     ext a

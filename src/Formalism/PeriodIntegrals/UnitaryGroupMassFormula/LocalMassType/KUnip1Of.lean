@@ -205,9 +205,9 @@ theorem kUnip1_of (hS : SplitR) : KUnip1 := by
     · rw [if_neg hc]
       exact hUlow _ _ (lt_of_le_of_ne (Fin.le_last c) hc)
   have hYoff : ∀ c d, ¬ (c = Fin.last r ∧ d = Fin.last r) →
-      Formalism.UG.hform (sigR (Fv F v) σ) (JR (Fv F v) J) (Y0 c) (Y0 d) = 0 := by
+      Formalism.UG.hform (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (JR (Fv F v) J) (Y0 c) (Y0 d) = 0 := by
     intro c d hcd
-    show Formalism.UG.hform (sigR (Fv F v) σ) (JR (Fv F v) J)
+    show Formalism.UG.hform (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (JR (Fv F v) J)
       (sc (E := E) v (alp v r c) • ratV (F := F) (Fv F v) (F0 P c))
       (sc (E := E) v (alp v r d) • ratV (F := F) (Fv F v) (F0 P d)) = 0
     rw [WKUP.hform_smul]
@@ -220,7 +220,7 @@ theorem kUnip1_of (hS : SplitR) : KUnip1 := by
     rw [hZ, hZ0]
     simp only
     rw [hstdR, hstdR]
-    exact WKUP.gram_gen (sigR (Fv F v) σ) (JR (Fv F v) J) U Y0 hlast hYoff a b
+    exact WKUP.gram_gen (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (JR (Fv F v) J) U Y0 hlast hYoff a b
   obtain ⟨k, hkK, hk⟩ := witt_gen D Q hQΛ hQh transitiveOverLocalRings Z0 Z hZ0I hZI hA0 hB0 hA1 hB1 hstd
   refine ⟨k, hkK, fun b => ?_⟩
   have hkb := hk b

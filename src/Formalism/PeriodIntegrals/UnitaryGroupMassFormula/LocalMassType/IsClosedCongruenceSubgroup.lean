@@ -48,17 +48,17 @@ section HATop
 
 variable (σ : E →ₐ[F] E) {n : ℕ} (J : Matrix (Fin n) (Fin n) E) (v : HeightOneSpectrum (𝓞 F))
 
-theorem continuous_sigR : Continuous (sigR (Fv F v) σ) := by
+theorem continuous_sigR : Continuous (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) := by
   haveI : FiniteDimensional F E := Module.Finite.of_restrictScalars_finite ℚ F E
   haveI := LocMassOrdSF.isModTop_tens (F := F) (E := E) (R := Fv F v)
   let f : (Fv F v ⊗[F] E) →ₗ[Fv F v] (Fv F v ⊗[F] E) :=
     TensorProduct.AlgebraTensorModule.map LinearMap.id σ.toLinearMap
   have hf : Continuous f := IsModuleTopology.continuous_of_linearMap f
-  have heq : (sigR (Fv F v) σ : Fv F v ⊗[F] E → Fv F v ⊗[F] E) = f := by
+  have heq : (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ : Fv F v ⊗[F] E → Fv F v ⊗[F] E) = f := by
     funext x
     induction x using TensorProduct.induction_on with
     | zero => simp
-    | tmul a b => simp [f, sigR]
+    | tmul a b => simp [f, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
     | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
   rw [heq]
   exact hf
@@ -67,7 +67,7 @@ theorem isClosed_HR : IsClosed (HR (Fv F v) σ J : Set (GL (Fin n) (Fv F v ⊗[F
   have hv : Continuous fun g : GL (Fin n) (Fv F v ⊗[F] E) => (g : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) :=
     Units.continuous_val
   have hm : Continuous fun g : GL (Fin n) (Fv F v ⊗[F] E) =>
-      Formalism.UG.cT (sigR (Fv F v) σ) (g : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) := by
+      Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (g : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) := by
     unfold Formalism.UG.cT
     exact (hv.matrix_map (continuous_sigR σ v)).matrix_transpose
   exact isClosed_eq ((hm.matrix_mul continuous_const).matrix_mul hv) continuous_const

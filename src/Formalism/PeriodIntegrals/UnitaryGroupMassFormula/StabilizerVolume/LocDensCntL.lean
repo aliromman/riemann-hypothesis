@@ -91,8 +91,8 @@ theorem Pt_mul (x y x' y' : Fv F v) :
 theorem one_eq_Pt : (1 : Fv F v ⊗[F] E) = Pt v A 1 0 := by
   simp [Pt, Algebra.TensorProduct.one_def]
 
-theorem sig_Pt (x y : Fv F v) : sigR (Fv F v) σ (Pt v A x y) = Pt v A x (-y) := by
-  simp [Pt, sigR, Algebra.TensorProduct.map_tmul, A.hσδ, TensorProduct.tmul_neg, TensorProduct.neg_tmul]
+theorem sig_Pt (x y : Fv F v) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Pt v A x y) = Pt v A x (-y) := by
+  simp [Pt, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.map_tmul, A.hσδ, TensorProduct.tmul_neg, TensorProduct.neg_tmul]
 
 theorem Xc_mul (z w : Fv F v ⊗[F] E) :
     Xc v A (z * w) = Xc v A z * Xc v A w + Yc v A z * Yc v A w * algebraMap F (Fv F v) A.D0 := by
@@ -104,11 +104,11 @@ theorem Yc_mul (z w : Fv F v ⊗[F] E) :
   conv_lhs => rw [decomp v A z, decomp v A w]
   rw [Pt_mul, Yc_Pt]
 
-theorem Xc_sig (z : Fv F v ⊗[F] E) : Xc v A (sigR (Fv F v) σ z) = Xc v A z := by
+theorem Xc_sig (z : Fv F v ⊗[F] E) : Xc v A (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z) = Xc v A z := by
   conv_lhs => rw [decomp v A z]
   rw [sig_Pt, Xc_Pt]
 
-theorem Yc_sig (z : Fv F v ⊗[F] E) : Yc v A (sigR (Fv F v) σ z) = -Yc v A z := by
+theorem Yc_sig (z : Fv F v ⊗[F] E) : Yc v A (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z) = -Yc v A z := by
   conv_lhs => rw [decomp v A z]
   rw [sig_Pt, Yc_Pt]
 
@@ -184,19 +184,19 @@ theorem incl_mem (e : E) (he : ∀ j, algebraMap F (Fv F v) (A.c.repr e j) ∈ v
   rw [mem_lamC]
   exact ⟨by rw [Xc, repr_incl]; exact he 0, by rw [Yc, repr_incl]; exact he 1⟩
 
-theorem sig_mem {z : Fv F v ⊗[F] E} (hz : z ∈ lamC v A hD) : sigR (Fv F v) σ z ∈ lamC v A hD := by
+theorem sig_mem {z : Fv F v ⊗[F] E} (hz : z ∈ lamC v A hD) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z ∈ lamC v A hD := by
   rw [mem_lamC] at hz ⊢
   rw [Xc_sig, Yc_sig]
   exact ⟨hz.1, neg_mem hz.2⟩
 
 def sigC : lamC v A hD →+* lamC v A hD where
-  toFun z := ⟨sigR (Fv F v) σ z, sig_mem v A hD z.2⟩
+  toFun z := ⟨Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z, sig_mem v A hD z.2⟩
   map_one' := Subtype.ext (map_one _)
   map_mul' _ _ := Subtype.ext (map_mul _ _ _)
   map_zero' := Subtype.ext (map_zero _)
   map_add' _ _ := Subtype.ext (map_add _ _ _)
 
-theorem coe_sigC (z : lamC v A hD) : (sigC v A hD z : Fv F v ⊗[F] E) = sigR (Fv F v) σ z := rfl
+theorem coe_sigC (z : lamC v A hD) : (sigC v A hD z : Fv F v ⊗[F] E) = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z := rfl
 
 variable {K : Type} [CommRing K] [Algebra (𝓞 F ⧸ v.asIdeal) K] (r : K)
   (hr : r * r = algebraMap _ K (red v (algebraMap F (Fv F v) A.D0)))

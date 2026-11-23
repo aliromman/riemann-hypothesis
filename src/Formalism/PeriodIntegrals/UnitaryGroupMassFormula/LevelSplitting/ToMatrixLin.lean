@@ -73,7 +73,7 @@ theorem N_le_S' (hP : P.IsStd σ J T) : Nsub R σ J P ≤ Ssub R σ J P := by
     intro a
     have := hP.2.2.2.1 a
     unfold hR ratV hE at *
-    unfold Formalism.UG.hform sigR JR inclR at *
+    unfold Formalism.UG.hform Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR JR inclR at *
     have h3 := congrArg (Algebra.TensorProduct.includeRight (R := F) (A := R) (B := E)) this
     set_option synthInstance.maxHeartbeats 100000 in
       simpa [Algebra.TensorProduct.includeRight_apply, Algebra.TensorProduct.map_tmul, map_sum,
@@ -210,7 +210,7 @@ theorem Pi_lin_one : (datR R σ J P T).Pi (lin R σ J 1) = LinearMap.id := by
       inclR (F := F) R (hE σ J x y) := by
     intro x y
     show (datR R σ J P T).h (ratV (F := F) R x) (ratV (F := F) R y) = _
-    unfold SemiG.Dat.h datR ratV hE Formalism.UG.hform sigR JR inclR
+    unfold SemiG.Dat.h datR ratV hE Formalism.UG.hform Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR JR inclR
     set_option synthInstance.maxHeartbeats 100000 in
       simp [Algebra.TensorProduct.includeRight_apply, Algebra.TensorProduct.map_tmul, map_sum,
       map_mul]
@@ -321,7 +321,7 @@ private theorem uni_lin' (g : HA R σ J) : (datR R σ J P T).Uni (lin R σ J g) 
 theorem piU_mem (g : HA R σ J) (hg : g ∈ Ssub R σ J P) : piU hσσ hJ hP g hg ∈ HR R σ J := by
   have hU := SemiG.Dat.Pi_uni (D := datR R σ J P T) (datR_hyp hσσ hJ hP)
     (mapW_lin_of_mem_Ssub hσσ hJ hP hg) (uni_lin' hσσ hJ hP g)
-  have hm := uj_of_uni (sigR R σ) (JR R J) (piMat (P := P) (T := T) g) (fun x y => by
+  have hm := uj_of_uni (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (JR R J) (piMat (P := P) (T := T) g) (fun x y => by
     rw [piMat_mulVec, piMat_mulVec]
     exact hU x y)
   exact hm

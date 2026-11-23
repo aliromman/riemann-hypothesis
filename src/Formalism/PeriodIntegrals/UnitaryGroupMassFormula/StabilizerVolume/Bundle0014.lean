@@ -60,7 +60,7 @@ theorem freeSurj_of (h : SemisimpleTens) : FreeSurj := by
   intro F E _ _ _ _ _ σ hCM M J hJ ha hc a hA1 hA2 X0 hT0 hdet X hX S
   have := h F E σ hCM
   have hσ : ∀ x, σ (σ x) = x := sigma_invol σ hCM.2.2.2
-  let s := sigR (Ainf F) σ
+  let s := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf F) σ
   let Z : Fin a → Fin M → Ainf F ⊗[F] E := fun i => Matrix.vecMul (fun l => s (X i l)) (JR (F := F) (Ainf F) J)
   have hZh : ∀ i y, hR (Ainf F) σ J (X i) y = ∑ k, Z i k * y k := by
     intro i y
@@ -114,7 +114,7 @@ theorem freeSurj_of (h : SemisimpleTens) : FreeSurj := by
   have h2 : hR (Ainf F) σ J (Y i) (X j) = half * (S : Matrix _ _ _) i j := by
     rw [← hR_herm (Ainf F) σ hσ J hJ.1 (X j) (Y i), hZh, hY i j]
     simp only [map_mul]
-    rw [show sigR (Ainf F) σ half = half from hsh, S.2 i j]
+    rw [show Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf F) σ half = half from hsh, S.2 i j]
   show hR (Ainf F) σ J (X i) (Y j) + hR (Ainf F) σ J (Y i) (X j) = _
   rw [h1, h2, ← add_mul, hh, one_mul]
 

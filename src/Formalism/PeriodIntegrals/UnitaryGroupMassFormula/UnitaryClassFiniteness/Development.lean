@@ -23,17 +23,17 @@ def abelian₂ (L : Set (Fin M → E)) (h : HA (AF F) σ J) : Set (Fin M → E) 
   {x | (finMat σ J h⁻¹).mulVec (vinc (F := F) x) ∈ latHat F E L}
 
 theorem sigR_inclR (R : Type) [CommRing R] [Algebra F R] (e : E) :
-    sigR R σ (inclR R e) = inclR R (σ e) := by
-  simp [sigR, inclR]
+    PI.UJClassFin.sigR R σ (inclR R e) = inclR R (σ e) := by
+  simp [PI.UJClassFin.sigR, inclR]
 
 theorem bc_mem (g : GL (Fin M) E) (hg : g ∈ UJ (σ : E →+* E) J) :
     bc (inclR (AF F)) g ∈ HR (AF F) σ J := by
   have hg' : cT (σ : E →+* E) (g : Matrix (Fin M) (Fin M) E) * J * (g : Matrix (Fin M) (Fin M) E) = J := hg
-  have hc : cT (sigR (AF F) σ) ((g : Matrix (Fin M) (Fin M) E).map (inclR (AF F))) =
+  have hc : cT (PI.UJClassFin.sigR (AF F) σ) ((g : Matrix (Fin M) (Fin M) E).map (inclR (AF F))) =
       (cT (σ : E →+* E) (g : Matrix (Fin M) (Fin M) E)).map (inclR (AF F)) := by
     ext i j
     simp [cT, sigR_inclR]
-  show cT (sigR (AF F) σ) ((g : Matrix (Fin M) (Fin M) E).map (inclR (AF F))) * J.map (inclR (AF F)) *
+  show cT (PI.UJClassFin.sigR (AF F) σ) ((g : Matrix (Fin M) (Fin M) E).map (inclR (AF F))) * J.map (inclR (AF F)) *
     (g : Matrix (Fin M) (Fin M) E).map (inclR (AF F)) = J.map (inclR (AF F))
   rw [hc, ← Matrix.map_mul, ← Matrix.map_mul, hg']
 

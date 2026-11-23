@@ -380,7 +380,9 @@ theorem _root_.GlobalTheory.T.integrable_full_rank_fibre :
     refine HasCompactSupport.intro hPreimage fun g hg => ?_
     have hZero : Φ (g.val * X₀) = 0 := not_not.1 hg
     simp [hZero]
-  exact hContinuous.integrable_of_hasCompactSupport hSupport
+  letI : MeasurableSpace (GL (Fin a) k) := Units.instMeasurableSpace
+  haveI : BorelSpace (GL (Fin a) k) := GlobalTheory.SplitFlip.borel_GL
+  exact hContinuous.integrable_of_hasCompactSupport (μ := GlobalTheory.SplitFlip.haarVol (GlobalTheory.SplitWeil.KO k (Fin a))) hSupport
 end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIntegralModularFamilyValueDivPeriodPowStatement

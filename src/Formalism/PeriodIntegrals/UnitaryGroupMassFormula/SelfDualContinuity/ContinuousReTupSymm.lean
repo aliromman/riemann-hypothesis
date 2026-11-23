@@ -90,12 +90,12 @@ theorem continuous_reTup_symm (ι : Type) [Fintype ι] : Continuous (reTup (E :=
   show Continuous fun X : Fin (Fintype.card ι) → Fin 1 → Fv F v ⊗[F] E => X (Fintype.equivFin ι i) 0
   exact (continuous_apply 0).comp (continuous_apply _)
 
-theorem sigR_id (z : Fv F v ⊗[F] E) : sigR (Fv F v) (AlgHom.id F E) z = z := by
+theorem sigR_id (z : Fv F v ⊗[F] E) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) (AlgHom.id F E) z = z := by
   first
-  | simp [sigR]
+  | simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
   | (induction z using TensorProduct.induction_on with
       | zero => simp
-      | tmul a b => simp [sigR, Algebra.TensorProduct.map_tmul]
+      | tmul a b => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.map_tmul]
       | add x y hx hy => rw [map_add (f := _), hx, hy])
 
 theorem JR_one : JR (F := F) (Fv F v) (1 : Matrix (Fin 1) (Fin 1) E) = 1 := by

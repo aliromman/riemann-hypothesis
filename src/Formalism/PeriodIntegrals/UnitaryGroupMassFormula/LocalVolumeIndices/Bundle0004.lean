@@ -115,14 +115,14 @@ theorem idempotent_complement_idem : (1 - eP I p) * (1 - eP I p) = 1 - eP I p :=
   rw [sub_mul, one_mul, mul_sub, mul_one, HelpSng_e_idem, sub_self, sub_zero]
 
 private theorem sigR_tmul_lemma_3 {R : Type} [CommRing R] [Algebra I.F R] (a : R) (b : I.E) :
-    sigR R I.cm.sig (a ⊗ₜ[I.F] b) = a ⊗ₜ[I.F] I.cm.sig b := rfl
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R I.cm.sig (a ⊗ₜ[I.F] b) = a ⊗ₜ[I.F] I.cm.sig b := rfl
 
-theorem HelpSng_sig_e : sigR (Af I.F) I.cm.sig (eP I p) = eP I p := by
-  show sigR (Af I.F) I.cm.sig (chi I p ⊗ₜ[I.F] (1 : I.E)) = chi I p ⊗ₜ[I.F] (1 : I.E)
+theorem HelpSng_sig_e : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af I.F) I.cm.sig (eP I p) = eP I p := by
+  show Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af I.F) I.cm.sig (chi I p ⊗ₜ[I.F] (1 : I.E)) = chi I p ⊗ₜ[I.F] (1 : I.E)
   rw [sigR_tmul_lemma_3, map_one]
 
 theorem HelpSng_sig_theta (t : Fv I.F p ⊗[I.F] I.E) :
-    sigR (Af I.F) I.cm.sig (thetaP I p t) = thetaP I p (sigR (Fv I.F p) I.cm.sig t) := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af I.F) I.cm.sig (thetaP I p t) = thetaP I p (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv I.F p) I.cm.sig t) := by
   induction t using TensorProduct.induction_on with
   | zero => simp only [map_zero]
   | tmul a b => rw [localTheta_tmul, sigR_tmul_lemma_3, sigR_tmul_lemma_3, localTheta_tmul]
@@ -163,18 +163,18 @@ theorem HelpSng_JR_split :
 
 theorem HelpSng_cT_mix {m o : Type} (A : Matrix m o (Af I.F ⊗[I.F] I.E))
     (K : Matrix m o (Fv I.F p ⊗[I.F] I.E)) :
-    Formalism.UG.cT (sigR (Af I.F) I.cm.sig) (mixM I p A K) =
-      mixM I p (Formalism.UG.cT (sigR (Af I.F) I.cm.sig) A) (Formalism.UG.cT (sigR (Fv I.F p) I.cm.sig) K) := by
+    Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af I.F) I.cm.sig) (mixM I p A K) =
+      mixM I p (Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af I.F) I.cm.sig) A) (Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv I.F p) I.cm.sig) K) := by
   ext i j
-  show sigR (Af I.F) I.cm.sig (mixM I p A K j i) = mixM I p (Formalism.UG.cT (sigR (Af I.F) I.cm.sig) A)
-    (Formalism.UG.cT (sigR (Fv I.F p) I.cm.sig) K) i j
+  show Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af I.F) I.cm.sig (mixM I p A K j i) = mixM I p (Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af I.F) I.cm.sig) A)
+    (Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv I.F p) I.cm.sig) K) i j
   simp only [mixM, Matrix.add_apply, Matrix.smul_apply, Matrix.map_apply, smul_eq_mul, map_add (f := _), map_mul,
     map_sub, map_one, HelpSng_sig_e, HelpSng_sig_theta]
   rfl
 
 theorem HelpSng_cT_one :
-    Formalism.UG.cT (sigR (Af I.F) I.cm.sig) (1 : Matrix (Fin I.n) (Fin I.n) (Af I.F ⊗[I.F] I.E)) = 1 := by
-  show ((1 : Matrix (Fin I.n) (Fin I.n) (Af I.F ⊗[I.F] I.E)).map (sigR (Af I.F) I.cm.sig))ᵀ = 1
+    Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af I.F) I.cm.sig) (1 : Matrix (Fin I.n) (Fin I.n) (Af I.F ⊗[I.F] I.E)) = 1 := by
+  show ((1 : Matrix (Fin I.n) (Fin I.n) (Af I.F ⊗[I.F] I.E)).map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af I.F) I.cm.sig))ᵀ = 1
   rw [Matrix.map_one _ (map_zero _) (map_one _), Matrix.transpose_one]
 
 def sngGL (k : GL (Fin I.n) (Fv I.F p ⊗[I.F] I.E)) : GL (Fin I.n) (Af I.F ⊗[I.F] I.E) where
@@ -185,12 +185,12 @@ def sngGL (k : GL (Fin I.n) (Fv I.F p ⊗[I.F] I.E)) : GL (Fin I.n) (Af I.F ⊗[
 
 theorem HelpSng_unitary (k : HA (Fv I.F p) I.cm.sig I.J) :
     sngGL I p (HA.mat (Fv I.F p) I.cm.sig I.J k) ∈ HR (Af I.F) I.cm.sig I.J := by
-  have hK : Formalism.UG.cT (sigR (Fv I.F p) I.cm.sig)
+  have hK : Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv I.F p) I.cm.sig)
       ((HA.mat (Fv I.F p) I.cm.sig I.J k : GL (Fin I.n) (Fv I.F p ⊗[I.F] I.E)) :
         Matrix (Fin I.n) (Fin I.n) (Fv I.F p ⊗[I.F] I.E)) * JR (Fv I.F p) I.J *
       ((HA.mat (Fv I.F p) I.cm.sig I.J k : GL (Fin I.n) (Fv I.F p ⊗[I.F] I.E)) :
         Matrix (Fin I.n) (Fin I.n) (Fv I.F p ⊗[I.F] I.E)) = JR (Fv I.F p) I.J := k.2
-  show Formalism.UG.cT (sigR (Af I.F) I.cm.sig) (mixM I p 1 _) * JR (Af I.F) I.J * mixM I p 1 _ = JR (Af I.F) I.J
+  show Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af I.F) I.cm.sig) (mixM I p 1 _) * JR (Af I.F) I.J * mixM I p 1 _ = JR (Af I.F) I.J
   conv_lhs => rw [← HelpSng_JR_split I p]
   rw [HelpSng_cT_mix, HelpSng_mix_mul, HelpSng_mix_mul, hK, HelpSng_cT_one, Matrix.one_mul,
     Matrix.mul_one, HelpSng_JR_split]

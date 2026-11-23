@@ -64,15 +64,15 @@ theorem b_int_of_sc {a : Fv F v} (ha : sc (E := E) v a ∈ OEv (E := E) v) : a �
   exact y.2
 
 theorem b_sigR_mem (σ : E →ₐ[F] E) {z : Fv F v ⊗[F] E} (hz : z ∈ OEv (E := E) v) :
-    sigR (Fv F v) σ z ∈ OEv (E := E) v := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z ∈ OEv (E := E) v := by
   induction hz using Submodule.span_induction with
   | mem x hx =>
     obtain ⟨b, -, rfl⟩ := hx
     have hb : IsIntegral ℤ (σ (b : E)) := by
       simpa using (b.isIntegral_coe).map (σ.toRingHom.toIntAlgHom)
-    have e : sigR (Fv F v) σ (inclR (F := F) (Fv F v) (b : E)) =
+    have e : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (inclR (F := F) (Fv F v) (b : E)) =
         inclR (F := F) (Fv F v) ((⟨σ (b : E), hb⟩ : 𝓞 E) : E) := by
-      simp [sigR, inclR]
+      simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, inclR]
     rw [e]
     exact b_inclR_mem (F := F) (E := E) v ⟨σ (b : E), hb⟩
   | zero => rw [map_zero]; exact Submodule.zero_mem _
@@ -80,12 +80,12 @@ theorem b_sigR_mem (σ : E →ₐ[F] E) {z : Fv F v ⊗[F] E} (hz : z ∈ OEv (E
   | smul r x _ hx =>
     have h1 : r • x = algebraMap (Fv F v) (Fv F v ⊗[F] E) (r : Fv F v) * x := by
       rw [← Algebra.smul_def]; rfl
-    have h2 : algebraMap (Fv F v) (Fv F v ⊗[F] E) (r : Fv F v) * sigR (Fv F v) σ x =
-        r • sigR (Fv F v) σ x := by
+    have h2 : algebraMap (Fv F v) (Fv F v ⊗[F] E) (r : Fv F v) * Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x =
+        r • Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x := by
       rw [← Algebra.smul_def]; rfl
-    have h3 : sigR (Fv F v) σ (algebraMap (Fv F v) (Fv F v ⊗[F] E) (r : Fv F v)) =
+    have h3 : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (algebraMap (Fv F v) (Fv F v ⊗[F] E) (r : Fv F v)) =
         algebraMap (Fv F v) (Fv F v ⊗[F] E) (r : Fv F v) := by
-      simp [sigR, Algebra.TensorProduct.algebraMap_apply]
+      simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.algebraMap_apply]
     rw [h1, map_mul, h3, h2]
     exact Submodule.smul_mem _ r hx
 
@@ -108,7 +108,7 @@ theorem b_hR_smul_right (x y : Fin n → Fv F v ⊗[F] E) (c : Fv F v ⊗[F] E) 
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 
 theorem b_hR_smul_left (c : Fv F v ⊗[F] E) (x y : Fin n → Fv F v ⊗[F] E) :
-    hR (Fv F v) σ J (c • x) y = sigR (Fv F v) σ c * hR (Fv F v) σ J x y := by
+    hR (Fv F v) σ J (c • x) y = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ c * hR (Fv F v) σ J x y := by
   simp only [hR, Formalism.UG.hform, Pi.smul_apply, smul_eq_mul, map_mul, Finset.mul_sum]
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 
@@ -147,7 +147,7 @@ theorem dualW_of_perf (a : ℕ) (hP : TrPerf σ J ψ v) : DualW σ J ψ v Λ a :
   · intro h
     refine ⟨dV v • Y, fun i => ?_, by rw [smul_smul, inv_mul_cancel₀ hd0, one_smul]⟩
     refine (hSD _).2 fun x hx => hP hS hU _ fun c hc => ?_
-    have hcx : Pi.single i (sigR (Fv F v) σ c • x) ∈ LamT v (L : Set (Fin n → E)) a := by
+    have hcx : Pi.single i (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ c • x) ∈ LamT v (L : Set (Fin n → E)) a := by
       intro j
       by_cases hj : j = i
       · subst hj

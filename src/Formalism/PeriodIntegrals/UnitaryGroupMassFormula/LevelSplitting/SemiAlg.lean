@@ -19,7 +19,7 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] 
   (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) {r : ℕ} (P : Frame E M r) (T : F)
 
 def datR : SemiG.Dat (R ⊗[F] E) (Fin M) r where
-  σA := sigR R σ
+  σA := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ
   JA := JR R J
   e a := ratV (F := F) R (P.e a)
   f a := ratV (F := F) R (P.f a)
@@ -28,7 +28,7 @@ def datR : SemiG.Dat (R ⊗[F] E) (Fin M) r where
 
 theorem datR_h (x y : Fin M → R ⊗[F] E) : (datR R σ J P T).h x y = hR R σ J x y := rfl
 
-theorem sigR_inclR (x : E) : sigR R σ (inclR (F := F) R x) = inclR (F := F) R (σ x) :=
+theorem sigR_inclR (x : E) : _root_.Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (inclR (F := F) R x) = inclR (F := F) R (σ x) :=
   DFunLike.congr_fun (Algebra.TensorProduct.map_comp_includeRight (AlgHom.id F R) σ) x
 
 theorem hR_ratV (x y : Fin M → E) :
@@ -49,13 +49,13 @@ theorem datR_hyp (hσσ : ∀ x, σ (σ x) = x) (hJ : IsHermND σ J) (hP : P.IsS
   have hne : algebraMap F E (-T) ≠ 0 := (map_ne_zero (algebraMap F E)).2 (neg_ne_zero.2 hT)
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro x
-    show sigR R σ (sigR R σ x) = x
+    show Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ x) = x
     induction x using TensorProduct.induction_on with
     | zero => simp
-    | tmul r e => simp [sigR, hσσ]
+    | tmul r e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hσσ]
     | add x y hx hy => simp only [map_add (f := _), hx, hy]
   · intro i j
-    show sigR R σ (JR R J j i) = JR R J i j
+    show Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (JR R J j i) = JR R J i j
     simp only [JR, Matrix.map_apply, sigR_inclR, hJ1 i j]
   · intro a b
     show (datR R σ J P T).h (ratV (F := F) R (P.e a)) (ratV (F := F) R (P.e b)) = 0
@@ -170,23 +170,23 @@ theorem mapX_S {g : HA R σ J} (hg : g ∈ Ssub R σ J P) : (datR R σ J P T).Ma
 theorem uni_lin (g : HA R σ J) : (datR R σ J P T).Uni (lin R σ J g) := by
   open Matrix in (
   intro x y
-  have hmem : Formalism.UG.cT (sigR R σ) ((HA.mat R σ J g : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) (R ⊗[F] E)) *
+  have hmem : Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) ((HA.mat R σ J g : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) (R ⊗[F] E)) *
       JR R J * ((HA.mat R σ J g : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) (R ⊗[F] E)) = JR R J := g.2
-  show Formalism.UG.hform (sigR R σ) (JR R J)
+  show Formalism.UG.hform (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (JR R J)
       (((HA.mat R σ J g : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) (R ⊗[F] E)) *ᵥ x)
       (((HA.mat R σ J g : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) (R ⊗[F] E)) *ᵥ y) =
-    Formalism.UG.hform (sigR R σ) (JR R J) x y
+    Formalism.UG.hform (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (JR R J) x y
   generalize ((HA.mat R σ J g : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) (R ⊗[F] E)) = N at hmem ⊢
-  have hmem' : (N.map (sigR R σ))ᵀ * JR R J * N = JR R J := hmem
-  have hf : ∀ u v : Fin M → R ⊗[F] E, Formalism.UG.hform (sigR R σ) (JR R J) u v =
-      (fun i => sigR R σ (u i)) ⬝ᵥ (JR R J *ᵥ v) := by
+  have hmem' : (N.map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ))ᵀ * JR R J * N = JR R J := hmem
+  have hf : ∀ u v : Fin M → R ⊗[F] E, Formalism.UG.hform (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (JR R J) u v =
+      (fun i => Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (u i)) ⬝ᵥ (JR R J *ᵥ v) := by
     intro u v
     simp only [Formalism.UG.hform, dotProduct, mulVec, Finset.mul_sum, mul_assoc]
   rw [hf, hf]
-  have hs : (fun i => sigR R σ ((N *ᵥ x) i)) = (N.map (sigR R σ)) *ᵥ (fun i => sigR R σ (x i)) := by
+  have hs : (fun i => Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ ((N *ᵥ x) i)) = (N.map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ)) *ᵥ (fun i => Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (x i)) := by
     funext i
     exact RingHom.map_mulVec _ _ _ i
-  rw [hs, ← vecMul_transpose (N.map (sigR R σ)), ← dotProduct_mulVec]
+  rw [hs, ← vecMul_transpose (N.map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ)), ← dotProduct_mulVec]
   simp only [mulVec_mulVec, ← Matrix.mul_assoc]
   rw [hmem'])
 

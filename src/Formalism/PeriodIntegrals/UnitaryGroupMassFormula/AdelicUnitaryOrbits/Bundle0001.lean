@@ -188,14 +188,14 @@ theorem quad_decomp (z : R ⊗[F] E) :
   rw [Fin.sum_univ_two, quadBasisR_zero, quadBasisR_one, TensorProduct.smul_tmul',
     TensorProduct.smul_tmul', smul_eq_mul, smul_eq_mul, mul_one, mul_one]
 
-private lemma sigR_tmul_adelic_unitary_orbits (x : R) (y : E) : sigR R σ (x ⊗ₜ[F] y) = x ⊗ₜ[F] σ y := by
+private lemma sigR_tmul_adelic_unitary_orbits (x : R) (y : E) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (x ⊗ₜ[F] y) = x ⊗ₜ[F] σ y := by
   first
   | rfl
-  | simp [sigR]
-  | (unfold sigR; simp)
+  | simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
+  | (unfold Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR; simp)
 
 theorem quad_sig (hσθ : σ θ = -θ) (a b : R) :
-    sigR R σ (a ⊗ₜ[F] (1 : E) + b ⊗ₜ[F] θ) = a ⊗ₜ[F] (1 : E) + (-b) ⊗ₜ[F] θ := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (a ⊗ₜ[F] (1 : E) + b ⊗ₜ[F] θ) = a ⊗ₜ[F] (1 : E) + (-b) ⊗ₜ[F] θ := by
   rw [map_add (f := _), sigR_tmul_adelic_unitary_orbits, sigR_tmul_adelic_unitary_orbits, map_one, hσθ, TensorProduct.tmul_neg,
     TensorProduct.neg_tmul]
 
@@ -218,7 +218,7 @@ theorem quad_trace {d : F} (hd : θ * θ = algebraMap F E d) (a b : R) :
     quadBasisR_one, ← Algebra.TensorProduct.one_def, mul_one, e1, quad_coord_zero, quad_coord_one]
   ring
 
-theorem quad_sig_sig (hσσ : ∀ a : E, σ (σ a) = a) (z : R ⊗[F] E) : sigR R σ (sigR R σ z) = z := by
+theorem quad_sig_sig (hσσ : ∀ a : E, σ (σ a) = a) (z : R ⊗[F] E) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ z) = z := by
   induction z using TensorProduct.induction_on with
   | zero => rw [map_zero, map_zero]
   | tmul x y => rw [sigR_tmul_adelic_unitary_orbits, sigR_tmul_adelic_unitary_orbits, hσσ]
@@ -248,15 +248,15 @@ def StP : Prop := ∀ (F : Type) [Field F] [NumberField F], UnitChoice (AF F)
 def StFix : Prop :=
   ∀ (F E : Type) [Field F] [CharZero F] [Field E] [Algebra F E] (σ : E →ₐ[F] E), Module.finrank F E = 2 →
     (∀ a : E, σ a = a ↔ a ∈ (algebraMap F E).range) → ∀ (R : Type) [CommRing R] [Algebra F R],
-    (∀ z : R ⊗[F] E, sigR R σ (sigR R σ z) = z) ∧
-    ∀ z : R ⊗[F] E, sigR R σ z = z →
+    (∀ z : R ⊗[F] E, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ z) = z) ∧
+    ∀ z : R ⊗[F] E, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ z = z →
       z = algebraMap R (R ⊗[F] E) (algebraMap F R (1 / 2) * Algebra.trace R (R ⊗[F] E) z)
 
 def StLam : Prop :=
   ∀ (F E : Type) [Field F] [CharZero F] [Field E] [Algebra F E] (σ : E →ₐ[F] E), Module.finrank F E = 2 →
     (∀ a : E, σ a = a ↔ a ∈ (algebraMap F E).range) → ∀ (R : Type) [CommRing R] [Algebra F R], UnitChoice R →
     ∀ (t : R ⊗[F] E) (β : F), β ≠ 0 →
-      ∃ lam : R ⊗[F] E, lam * sigR R σ lam = 1 ∧ IsUnit (algebraMap F (R ⊗[F] E) β - sigR R σ lam * t)
+      ∃ lam : R ⊗[F] E, lam * Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ lam = 1 ∧ IsUnit (algebraMap F (R ⊗[F] E) β - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ lam * t)
 
 end PIW.AdelicOrbitU
 end

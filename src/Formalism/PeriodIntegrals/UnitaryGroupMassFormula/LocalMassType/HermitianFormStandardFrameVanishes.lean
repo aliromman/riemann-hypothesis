@@ -76,8 +76,8 @@ theorem hermitian_form_standard_frame_vanishes (hCM : IsCMExt F E σ) (hJ : IsHe
       exact hP.1 i j
 
 theorem sigR_inclR (v : HeightOneSpectrum (𝓞 F)) (e : E) :
-    sigR (Fv F v) σ (inclR (Fv F v) e) = inclR (Fv F v) (σ e) := by
-  simp [sigR, inclR, Algebra.TensorProduct.map_tmul]
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (inclR (Fv F v) e) = inclR (Fv F v) (σ e) := by
+  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, inclR, Algebra.TensorProduct.map_tmul]
 
 theorem hR_ratV (v : HeightOneSpectrum (𝓞 F)) (a b : Fin n → E) :
     hR (Fv F v) σ J (ratV (F := F) (Fv F v) a) (ratV (F := F) (Fv F v) b) =
@@ -117,13 +117,13 @@ theorem gram_matrix_unitary_invariance : GramU := by
     Formalism.UG.hform _ _ (Y a) (Y b)
   rw [hform_sum_left]
   simp only [hform_sum_right]
-  have hinner : ∀ c, ∑ d, uMat v x d b * Formalism.UG.hform (sigR (Fv F v) σ) (JR (Fv F v) J) (Y c) (Y d) =
+  have hinner : ∀ c, ∑ d, uMat v x d b * Formalism.UG.hform (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (JR (Fv F v) J) (Y c) (Y d) =
       uMat v x (Fin.last r) b * hR (Fv F v) σ J (Y c) (Y (Fin.last r)) := by
     intro c
     rw [Finset.sum_eq_single (Fin.last r)]
     · rfl
     · intro d _ hd
-      rw [show Formalism.UG.hform (sigR (Fv F v) σ) (JR (Fv F v) J) (Y c) (Y d) = hR (Fv F v) σ J (Y c) (Y d)
+      rw [show Formalism.UG.hform (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (JR (Fv F v) J) (Y c) (Y d) = hR (Fv F v) σ J (Y c) (Y d)
         from rfl, hG0 c d (fun h => hd h.2), mul_zero]
     · intro h; exact absurd (Finset.mem_univ _) h
   simp only [hinner]

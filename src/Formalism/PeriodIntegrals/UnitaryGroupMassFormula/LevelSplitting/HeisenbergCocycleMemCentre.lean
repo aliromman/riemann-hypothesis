@@ -91,12 +91,12 @@ theorem nd_datR (hJ : IsHermND σ J) : ND (datR R σ J P T) := by
   have hJx : JR R J *ᵥ x = 0 := by
     funext i
     have h1 := hx (Pi.single i (1 : R ⊗[F] E))
-    have hs : ∀ k, sigR R σ ((Pi.single i (1 : R ⊗[F] E) : Fin M → R ⊗[F] E) k) =
+    have hs : ∀ k, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ ((Pi.single i (1 : R ⊗[F] E) : Fin M → R ⊗[F] E) k) =
         (Pi.single i (1 : R ⊗[F] E) : Fin M → R ⊗[F] E) k := fun k => by
       rcases eq_or_ne k i with rfl | hk
       · rw [Pi.single_eq_same, map_one]
       · rw [Pi.single_eq_of_ne hk, map_zero]
-    change ∑ k, ∑ j, sigR R σ ((Pi.single i (1 : R ⊗[F] E) : Fin M → R ⊗[F] E) k) * JR R J k j *
+    change ∑ k, ∑ j, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ ((Pi.single i (1 : R ⊗[F] E) : Fin M → R ⊗[F] E) k) * JR R J k j *
       x j = 0 at h1
     simp only [Pi.single_apply, zero_mul] at h1
     simpa [Matrix.mulVec, dotProduct] using h1
@@ -109,18 +109,18 @@ variable (hJ : IsHermND σ J) (H : (datR R σ J P T).Hyp) {half : R ⊗[F] E}
 include hJ H hh
 
 theorem sMat_uj {y : Fin r → Fin M → R ⊗[F] E} (hy : ∀ a, IsWp (datR R σ J P T) (y a)) :
-    Formalism.UG.cT (sigR R σ) (sMat (datR R σ J P T) half y) * JR R J * sMat (datR R σ J P T) half y =
+    Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (sMat (datR R σ J P T) half y) * JR R J * sMat (datR R σ J P T) half y =
       JR R J :=
   PI.LevelKSplit.W.SemiA.uj_of_uni _ _ _ fun x x' => by
     rw [sMat, LinearMap.toMatrix'_mulVec, LinearMap.toMatrix'_mulVec]
     exact sL_uni H hy hh x x'
 
 theorem sMat_linv {y : Fin r → Fin M → R ⊗[F] E} (hy : ∀ a, IsWp (datR R σ J P T) (y a)) :
-    (J⁻¹).map (inclR (F := F) R) * Formalism.UG.cT (sigR R σ) (sMat (datR R σ J P T) half y) * JR R J *
+    (J⁻¹).map (inclR (F := F) R) * Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (sMat (datR R σ J P T) half y) * JR R J *
       sMat (datR R σ J P T) half y = 1 := by
-  have e : (J⁻¹).map (inclR (F := F) R) * Formalism.UG.cT (sigR R σ) (sMat (datR R σ J P T) half y) *
+  have e : (J⁻¹).map (inclR (F := F) R) * Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (sMat (datR R σ J P T) half y) *
       JR R J * sMat (datR R σ J P T) half y = (J⁻¹).map (inclR (F := F) R) *
-      (Formalism.UG.cT (sigR R σ) (sMat (datR R σ J P T) half y) * JR R J *
+      (Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (sMat (datR R σ J P T) half y) * JR R J *
         sMat (datR R σ J P T) half y) := by
     simp only [Matrix.mul_assoc]
   rw [e, sMat_uj hJ H hh hy, hJi hJ]
@@ -128,7 +128,7 @@ theorem sMat_linv {y : Fin r → Fin M → R ⊗[F] E} (hy : ∀ a, IsWp (datR R
 def sU {y : Fin r → Fin M → R ⊗[F] E} (hy : ∀ a, IsWp (datR R σ J P T) (y a)) :
     GL (Fin M) (R ⊗[F] E) where
   val := sMat (datR R σ J P T) half y
-  inv := (J⁻¹).map (inclR (F := F) R) * Formalism.UG.cT (sigR R σ) (sMat (datR R σ J P T) half y) *
+  inv := (J⁻¹).map (inclR (F := F) R) * Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (sMat (datR R σ J P T) half y) *
     JR R J
   val_inv := mul_eq_one_comm.2 (sMat_linv hJ H hh hy)
   inv_val := sMat_linv hJ H hh hy

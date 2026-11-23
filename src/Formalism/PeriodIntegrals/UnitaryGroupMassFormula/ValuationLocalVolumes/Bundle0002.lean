@@ -146,7 +146,7 @@ def permHerm (π : Equiv.Perm (Fin n)) : HermR R σ n ≃ₜ+ HermR R σ n where
   continuous_invFun := (continuous_subtype_val.matrix_submatrix π.symm π.symm).subtype_mk _
 
 theorem conjT_diagonal (f : Fin n → R ⊗[F] E) :
-    conjT R σ (Matrix.diagonal f) = Matrix.diagonal fun i => sigR R σ (f i) := by
+    conjT R σ (Matrix.diagonal f) = Matrix.diagonal fun i => Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (f i) := by
   unfold conjT
   rw [Matrix.diagonal_map (map_zero _), Matrix.diagonal_transpose]
 

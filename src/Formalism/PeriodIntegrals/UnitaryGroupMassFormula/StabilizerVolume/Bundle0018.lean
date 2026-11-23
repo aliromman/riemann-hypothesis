@@ -361,9 +361,9 @@ theorem BR_eT (σ : E →ₐ[F] E) {M a : ℕ} (J : Matrix (Fin M) (Fin M) E)
   by_cases hp : p = p'
   · subst hp
     simp only [Pi.single_eq_same, if_true, hR, hform_single, JR, Matrix.map_apply]
-    have e : sigR (Fv F v) σ ((1 : Fv F v) ⊗ₜ[F] b k) * inclR (Fv F v) (J i j) *
+    have e : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ ((1 : Fv F v) ⊗ₜ[F] b k) * inclR (Fv F v) (J i j) *
         ((1 : Fv F v) ⊗ₜ[F] b l) = (1 : Fv F v) ⊗ₜ[F] (σ (b k) * J i j * b l) := by
-      simp [sigR, inclR, Algebra.TensorProduct.tmul_mul_tmul]
+      simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, inclR, Algebra.TensorProduct.tmul_mul_tmul]
     rw [e, trace_one_tmul]
   · have hp' : p' ≠ p := fun h => hp h.symm
     simp [Pi.single_apply, hp, hR, Formalism.UG.hform]

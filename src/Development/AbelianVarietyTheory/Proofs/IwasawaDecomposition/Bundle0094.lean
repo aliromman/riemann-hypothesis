@@ -130,14 +130,14 @@ def ev (v : HeightOneSpectrum (𝓞 L)) : AdeleRing (𝓞 L) L →* v.adicComple
   map_one' := rfl
   map_mul' _ _ := rfl
 
-def part (a : Ideles L) (S : Finset (HeightOneSpectrum (𝓞 L))) : Ideles L :=
-  ∏ v ∈ S, localIdele L v (Units.map (ev v) a)
+def part (a : GlobalTheory.Mem.Chr.Ideles L) (S : Finset (HeightOneSpectrum (𝓞 L))) : GlobalTheory.Mem.Chr.Ideles L :=
+  ∏ v ∈ S, GlobalTheory.Mem.Chr.localIdele L v (Units.map (ev v) a)
 
-theorem part_inv (a : Ideles L) (S : Finset (HeightOneSpectrum (𝓞 L))) : (part a S)⁻¹ = part a⁻¹ S := by
+theorem part_inv (a : GlobalTheory.Mem.Chr.Ideles L) (S : Finset (HeightOneSpectrum (𝓞 L))) : (part a S)⁻¹ = part a⁻¹ S := by
   simp only [part, map_inv, Finset.prod_inv_distrib]
 
 theorem ev_local_self (v : HeightOneSpectrum (𝓞 L)) (x : (v.adicCompletion L)ˣ) :
-    ev v (localIdele L v x : AdeleRing (𝓞 L) L) = x := by
+    ev v (GlobalTheory.Mem.Chr.localIdele L v x : AdeleRing (𝓞 L) L) = x := by
   classical
   have := Function.update_self (β := fun w : HeightOneSpectrum (𝓞 L) => w.adicCompletion L) v
     (x : v.adicCompletion L) (fun _ => 1)
@@ -145,32 +145,32 @@ theorem ev_local_self (v : HeightOneSpectrum (𝓞 L)) (x : (v.adicCompletion L)
   rfl
 
 theorem ev_local_ne {v w : HeightOneSpectrum (𝓞 L)} (hw : w ≠ v) (x : (v.adicCompletion L)ˣ) :
-    ev w (localIdele L v x : AdeleRing (𝓞 L) L) = 1 := by
+    ev w (GlobalTheory.Mem.Chr.localIdele L v x : AdeleRing (𝓞 L) L) = 1 := by
   classical
   have := Function.update_of_ne (β := fun w : HeightOneSpectrum (𝓞 L) => w.adicCompletion L) hw
     (x : v.adicCompletion L) (fun _ => 1)
   convert this
   rfl
 
-theorem ev_part_mem (a : Ideles L) {S : Finset (HeightOneSpectrum (𝓞 L))} {w : HeightOneSpectrum (𝓞 L)} (hw : w ∈ S) :
+theorem ev_part_mem (a : GlobalTheory.Mem.Chr.Ideles L) {S : Finset (HeightOneSpectrum (𝓞 L))} {w : HeightOneSpectrum (𝓞 L)} (hw : w ∈ S) :
     ev w (part a S : AdeleRing (𝓞 L) L) = ev w (a : AdeleRing (𝓞 L) L) := by
   rw [part, Units.coe_prod, map_prod, Finset.prod_eq_single_of_mem w hw (fun v _ hv => ev_local_ne hv.symm _),
     ev_local_self]
   rfl
 
-theorem ev_part_not_mem (a : Ideles L) {S : Finset (HeightOneSpectrum (𝓞 L))} {w : HeightOneSpectrum (𝓞 L)}
+theorem ev_part_not_mem (a : GlobalTheory.Mem.Chr.Ideles L) {S : Finset (HeightOneSpectrum (𝓞 L))} {w : HeightOneSpectrum (𝓞 L)}
     (hw : w ∉ S) : ev w (part a S : AdeleRing (𝓞 L) L) = 1 := by
   rw [part, Units.coe_prod, map_prod]
   exact Finset.prod_eq_one fun v hv => ev_local_ne (fun e : w = v => hw (e ▸ hv)) _
 
-theorem part_fst (a : Ideles L) (S : Finset (HeightOneSpectrum (𝓞 L))) : (part a S : AdeleRing (𝓞 L) L).1 = 1 := by
+theorem part_fst (a : GlobalTheory.Mem.Chr.Ideles L) (S : Finset (HeightOneSpectrum (𝓞 L))) : (part a S : AdeleRing (𝓞 L) L).1 = 1 := by
   have h : finPartI L (part a S) = part a S := by
     rw [part, map_prod]
     exact Finset.prod_congr rfl fun v _ => Units.ext rfl
   rw [← h]
   rfl
 
-theorem tendsto_part_val {a : Ideles L} (ha : a ∈ unitIdl L) (h1 : (a : AdeleRing (𝓞 L) L).1 = 1) :
+theorem tendsto_part_val {a : GlobalTheory.Mem.Chr.Ideles L} (ha : a ∈ unitIdl L) (h1 : (a : AdeleRing (𝓞 L) L).1 = 1) :
     Tendsto (fun S => (part a S : AdeleRing (𝓞 L) L)) atTop (𝓝 (a : AdeleRing (𝓞 L) L)) := by
   have h2 : Tendsto (fun S => (part a S : AdeleRing (𝓞 L) L).2) atTop (𝓝 (a : AdeleRing (𝓞 L) L).2) := by
     refine tendsto_finiteAdele _ _ (fun S v => ?_) (fun v => (ha v).le) fun v => ?_
@@ -188,7 +188,7 @@ theorem tendsto_part_val {a : Ideles L} (ha : a ∈ unitIdl L) (h1 : (a : AdeleR
     exact tendsto_const_nhds.congr fun S => (part_fst a S).symm
   exact h3.prodMk_nhds h2
 
-theorem tendsto_part {a : Ideles L} (ha : a ∈ unitIdl L) (h1 : ∀ w, (a : AdeleRing (𝓞 L) L).1 w = 1) :
+theorem tendsto_part {a : GlobalTheory.Mem.Chr.Ideles L} (ha : a ∈ unitIdl L) (h1 : ∀ w, (a : AdeleRing (𝓞 L) L).1 w = 1) :
     Tendsto (part a) atTop (𝓝 a) := by
   have e : finPartI L a = a := finPartI_eq_self h1
   have e' : finPartI L a⁻¹ = a⁻¹ := by rw [map_inv, e]
@@ -200,7 +200,7 @@ theorem tendsto_part {a : Ideles L} (ha : a ∈ unitIdl L) (h1 : ∀ w, (a : Ade
 
 
 open Classical in
-theorem eq_one_of_local : ∀ (L : Type) [Field L] [NumberField L] (ψ : Ideles L →* ℂˣ), Continuous ψ → ∀ a : Ideles L, a ∈ unitIdl L → (∀ w, (a : AdeleRing (𝓞 L) L).1 w = 1) → (∀ v (x : (v.adicCompletion L)ˣ), (x : v.adicCompletion L) = (a : AdeleRing (𝓞 L) L).2 v → ψ (localIdele L v x) = 1) → ψ a = 1 := by
+theorem eq_one_of_local : ∀ (L : Type) [Field L] [NumberField L] (ψ : GlobalTheory.Mem.Chr.Ideles L →* ℂˣ), Continuous ψ → ∀ a : GlobalTheory.Mem.Chr.Ideles L, a ∈ unitIdl L → (∀ w, (a : AdeleRing (𝓞 L) L).1 w = 1) → (∀ v (x : (v.adicCompletion L)ˣ), (x : v.adicCompletion L) = (a : AdeleRing (𝓞 L) L).2 v → ψ (GlobalTheory.Mem.Chr.localIdele L v x) = 1) → ψ a = 1 := by
   intro L _ _ ψ hψ a ha h1 hl
   have t := (hψ.tendsto a).comp (tendsto_part ha h1)
   have e : ψ ∘ part a = fun _ => 1 := funext fun S => by

@@ -78,16 +78,16 @@ theorem hR_add_right (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) 
 
 theorem hR_herm (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) {M : ℕ} (J : Matrix (Fin M) (Fin M) E)
     (hJ : ∀ i j, σ (J j i) = J i j) (x y : Fin M → R ⊗[F] E) :
-    sigR R σ (hR R σ J x y) = hR R σ J y x := by
-  have hinv : ∀ a : R ⊗[F] E, sigR R σ (sigR R σ a) = a := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (hR R σ J x y) = hR R σ J y x := by
+  have hinv : ∀ a : R ⊗[F] E, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ a) = a := by
     intro a
     induction a using TensorProduct.induction_on with
     | zero => simp
-    | tmul r e => simp [sigR, hσ]
+    | tmul r e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hσ]
     | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
-  have hJ' : ∀ i j, sigR R σ (JR R J i j) = JR R J j i := by
+  have hJ' : ∀ i j, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (JR R J i j) = JR R J j i := by
     intro i j
-    simp [JR, inclR, sigR, hJ]
+    simp [JR, inclR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hJ]
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [hR, Formalism.UG.hform, map_sum, map_mul, hinv, hJ']
   rw [Finset.sum_comm]
@@ -97,7 +97,7 @@ theorem hR_herm (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) {M : ℕ} (J :
 theorem gramB_mem (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) {M n : ℕ}
     (J : Matrix (Fin M) (Fin M) E) (hJ : ∀ i j, σ (J j i) = J i j)
     (X Y : Fin n → Fin M → R ⊗[F] E) : gramB R σ J X Y ∈ HermR R σ n := by
-  show ∀ a b, sigR R σ (gramB R σ J X Y b a) = gramB R σ J X Y a b
+  show ∀ a b, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (gramB R σ J X Y b a) = gramB R σ J X Y a b
   intro a b
   simp only [gramB, map_add (f := _), hR_herm R σ hσ J hJ]
   ring

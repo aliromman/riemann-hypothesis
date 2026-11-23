@@ -226,17 +226,17 @@ theorem sigma_invol (hcm : IsCMExt F E σ) (x : E) : σ (σ x) = x := by
   have h2 := hcm.2.2.2 τ.toRingHom x
   rw [h1, h2, star_star]
 
-theorem sigR_invol (hcm : IsCMExt F E σ) (z : Fv F v ⊗[F] E) : sigR (Fv F v) σ (sigR (Fv F v) σ z) = z := by
+theorem sigR_invol (hcm : IsCMExt F E σ) (z : Fv F v ⊗[F] E) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z) = z := by
   induction z using TensorProduct.induction_on with
   | zero => simp
   | tmul r e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.map_tmul, sigma_invol σ hcm]
   | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
 
-theorem sigR_inclR (e : E) : sigR (Fv F v) σ (inclR (F := F) (Fv F v) e) = inclR (F := F) (Fv F v) (σ e) := by
+theorem sigR_inclR (e : E) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (inclR (F := F) (Fv F v) e) = inclR (F := F) (Fv F v) (σ e) := by
   simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR, Algebra.TensorProduct.map_tmul]
 
 theorem hR_conj (hcm : IsCMExt F E σ) (hJ : ∀ i j, σ (J j i) = J i j) (x y : Fin n → Fv F v ⊗[F] E) :
-    sigR (Fv F v) σ (hR (Fv F v) σ J x y) = hR (Fv F v) σ J y x := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (hR (Fv F v) σ J x y) = hR (Fv F v) σ J y x := by
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [hR, hform, map_sum, map_mul, sigR_invol σ v hcm, JR, Matrix.map_apply, sigR_inclR, hJ]
   rw [Finset.sum_comm]
@@ -244,9 +244,9 @@ theorem hR_conj (hcm : IsCMExt F E σ) (hJ : ∀ i j, σ (J j i) = J i j) (x y :
   ring
 
 def NormOne : Prop :=
-  StdHyp σ J ψ → UnramAt (E := E) v → ∀ u ∈ OEv (E := E) v, sigR (Fv F v) σ u = u →
+  StdHyp σ J ψ → UnramAt (E := E) v → ∀ u ∈ OEv (E := E) v, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ u = u →
     (∃ u' ∈ OEv (E := E) v, u * u' = 1) →
-    ∃ l ∈ OEv (E := E) v, sigR (Fv F v) σ l * l * u = 1
+    ∃ l ∈ OEv (E := E) v, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ l * l * u = 1
 
 def UnitNorm : Prop :=
   StdHyp σ J ψ → (∃ L : Submodule (𝓞 E) (Fin n → E), Submodule.IsLattice E L ∧ (L : Set (Fin n → E)) = Λ) →

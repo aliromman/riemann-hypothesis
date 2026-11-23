@@ -102,13 +102,13 @@ theorem continuous_hR (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M)
   haveI : IsModuleTopology R (R ⊗[F] E) := ⟨rfl⟩
   haveI : IsTopologicalRing (R ⊗[F] E) := IsModuleTopology.isTopologicalRing R _
   let sL : R ⊗[F] E →ₗ[R] R ⊗[F] E :=
-    { toFun := sigR R σ
+    { toFun := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ
       map_add' := map_add _
       map_smul' := fun r x => by
         rw [RingHom.id_apply, Algebra.smul_def, Algebra.smul_def, map_mul]
         congr 1
-        simp [sigR, Algebra.TensorProduct.algebraMap_apply] }
-  have hs : Continuous (sigR R σ) := IsModuleTopology.continuous_of_linearMap sL
+        simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.algebraMap_apply] }
+  have hs : Continuous (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) := IsModuleTopology.continuous_of_linearMap sL
   simp only [hR, Formalism.UG.hform]
   exact continuous_finsetSum _ fun i _ => continuous_finsetSum _ fun j _ =>
     ((hs.comp ((continuous_apply i).comp continuous_fst)).mul continuous_const).mul
@@ -119,13 +119,13 @@ theorem continuous_gramR_apply (σ : E →ₐ[F] E) {M n : ℕ} (J : Matrix (Fin
   haveI : IsModuleTopology R (R ⊗[F] E) := ⟨rfl⟩
   haveI : IsTopologicalRing (R ⊗[F] E) := IsModuleTopology.isTopologicalRing R _
   let sL : R ⊗[F] E →ₗ[R] R ⊗[F] E :=
-    { toFun := sigR R σ
+    { toFun := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ
       map_add' := map_add _
       map_smul' := fun r x => by
         rw [RingHom.id_apply, Algebra.smul_def, Algebra.smul_def, map_mul]
         congr 1
-        simp [sigR, Algebra.TensorProduct.algebraMap_apply] }
-  have hs : Continuous (sigR R σ) := IsModuleTopology.continuous_of_linearMap sL
+        simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.algebraMap_apply] }
+  have hs : Continuous (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) := IsModuleTopology.continuous_of_linearMap sL
   simp only [gramR, hR, Formalism.UG.hform]
   exact continuous_finsetSum _ fun i _ => continuous_finsetSum _ fun j _ =>
     ((hs.comp ((continuous_apply i).comp (continuous_apply a))).mul continuous_const).mul
@@ -140,15 +140,15 @@ theorem isClosed_HermR (σ : E →ₐ[F] E) (n : ℕ) :
   haveI : IsModuleTopology R (R ⊗[F] E) := ⟨rfl⟩
   haveI : IsTopologicalRing (R ⊗[F] E) := IsModuleTopology.isTopologicalRing R _
   let sL : R ⊗[F] E →ₗ[R] R ⊗[F] E :=
-    { toFun := sigR R σ
+    { toFun := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ
       map_add' := map_add _
       map_smul' := fun r x => by
         rw [RingHom.id_apply, Algebra.smul_def, Algebra.smul_def, map_mul]
         congr 1
-        simp [sigR, Algebra.TensorProduct.algebraMap_apply] }
-  have hs : Continuous (sigR R σ) := IsModuleTopology.continuous_of_linearMap sL
+        simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.algebraMap_apply] }
+  have hs : Continuous (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) := IsModuleTopology.continuous_of_linearMap sL
   have hset : (HermR R σ n : Set (Matrix (Fin n) (Fin n) (R ⊗[F] E))) =
-      ⋂ a, ⋂ b, {S | sigR R σ (S b a) = S a b} := by
+      ⋂ a, ⋂ b, {S | Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (S b a) = S a b} := by
     ext S
     simp only [Set.mem_iInter, Set.mem_setOf_eq]
     rfl
@@ -175,18 +175,18 @@ theorem sigma_invol [NumberField E] (σ : E →ₐ[F] E)
 variable (R : Type) [CommRing R] [Algebra F R]
 
 theorem sigR_invol (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) (x : R ⊗[F] E) :
-    sigR R σ (sigR R σ x) = x := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ x) = x := by
   induction x using TensorProduct.induction_on with
   | zero => simp
-  | tmul a e => simp [sigR, hσ]
+  | tmul a e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hσ]
   | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
 
 theorem gramR_mem (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) {M n : ℕ}
     (J : Matrix (Fin M) (Fin M) E) (hJ : ∀ i j, σ (J j i) = J i j)
     (X : Fin n → Fin M → R ⊗[F] E) : gramR R σ J X ∈ HermR R σ n := by
   intro a b
-  have hJR : ∀ i j, sigR R σ (JR R J j i) = JR R J i j := fun i j => by
-    simp [JR, inclR, sigR, hJ]
+  have hJR : ∀ i j, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (JR R J j i) = JR R J i j := fun i j => by
+    simp [JR, inclR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hJ]
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [gramR, hR, Formalism.UG.hform, map_sum, map_mul, sigR_invol R σ hσ, hJR]
   rw [Finset.sum_comm]

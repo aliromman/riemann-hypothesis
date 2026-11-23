@@ -163,7 +163,7 @@ theorem gens_rank [FiniteDimensional K V] (hK : IsCMUnram K) (h : V →ₗ⋆[K]
   have h0 := (GlobalTheory.T.hermitianLatticeDiscriminantOrder_ne_zero_unimodular K V h hK hs hnd L hL).1
   have hle : L ≤ dual h L := fun x hx => (isomAct_mem_dual h L x).2 fun y hy => hL.2 y hy x hx
   exact (_root_.GlobalTheory.Mass.LatticeGens.gens_and_count K V L (dual h L) hle h0).1
-    (dualLattice (𝓞 K) K V h hs hnd star_int L hL.1).1.fg
+    (Formalism.HermitianLatticesTheory.dualLattice (𝓞 K) K V h hs hnd star_int L hL.1).1.fg
 
 end
 

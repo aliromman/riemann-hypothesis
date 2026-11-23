@@ -369,13 +369,13 @@ theorem d_norm_Dmin (hrd : 0 < D.host.rdE) (t : D.s.Term u u') (τ : D.what₂.T
 
 theorem d_Gf_eq (hrd : 0 < D.host.rdE) (t : D.s.Term u u') (τ : D.what₂.Tau) :
     Formalism.QuantumDeterminants.Gf D.R.k D.R.rS (Y.W τ).z (Y.W τ).z' (Y.γ t τ) =
-      Gz D (Tu D u) (Tu D u') (ZhatL (X.fl t) (X.fl' t)) τ := by
+      Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (ZhatL (X.fl t) (X.fl' t)) τ := by
   have h1 := d_norm_Dmin Y hrd t τ (D.R.rS + 1) le_rfl
   have h2 := d_norm_Dmin Y hrd t τ D.R.rS (Nat.le_succ _)
   unfold DminN at h1 h2
   rw [dite_eq_left (by omega)] at h1 h2
   obtain ⟨_, _, _, _, hz, hz', _⟩ := Y.goodW τ
-  unfold Formalism.QuantumDeterminants.Gf Gz
+  unfold Formalism.QuantumDeterminants.Gf Formalism.MainNotions.S.Cnt.Gz
   rw [Complex.normSq_eq_norm_sq, Complex.normSq_eq_norm_sq, hz, hz', ← h1, ← h2]
   rfl
 
@@ -450,7 +450,7 @@ theorem d_tprod_inv {C' Cl Cg cb Cu cT CT C0 δ : ℝ} (hH : Cnt.Hyp0 D large₂
 
 theorem d_nProduct {C' Cl Cg cb Cu cT CT C0 : ℝ} (hH : Cnt.Hyp0 D large₂ C' Cl Cg cb Cu cT CT C0) (Z : GramM D) :
     ∏ τ, nV D (Tu D u) (Tu D u') Z τ =
-      LatticeSumBounds.nTot D.R.k D.R.f D.host.v ((∏ τ, Gz D (Tu D u) (Tu D u') Z τ) * ((gS D : ℝ)⁻¹) ^ (D.R.m * D.R.f)) (NT D u) := by
+      LatticeSumBounds.nTot D.R.k D.R.f D.host.v ((∏ τ, Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') Z τ) * ((gS D : ℝ)⁻¹) ^ (D.R.m * D.R.f)) (NT D u) := by
   obtain ⟨_, _, _, _, _, _, _, _, _, _, _, h12, _, h14, _, _, _, _, h19, _⟩ := hH.1
   have h19' : 1 ≤ D.host.v := h19
   have hk1 : 1 ≤ D.R.k := by have := D.R.m_add_three_le_k; omega
@@ -466,11 +466,11 @@ theorem d_nProduct {C' Cl Cg cb Cu cT CT C0 : ℝ} (hH : Cnt.Hyp0 D large₂ C' 
       exact_mod_cast this
     unfold gS
     exact_mod_cast Nat.mul_pos h0 h1
-  have N := Formalism.HermitianLatticeCounting.P.prodVolumeFactor D.what₂.Tau D.R.k D.R.rS (fun τ => Gz D (Tu D u) (Tu D u') Z τ)
+  have N := Formalism.HermitianLatticeCounting.P.prodVolumeFactor D.what₂.Tau D.R.k D.R.rS (fun τ => Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') Z τ)
     (fun _ => D.host.v) (Tu D u) (gS D) D.host.v hk1 hT hg (fun _ => by linarith) (by simp)
   rw [D.what₂.card_Tau] at N
   have e : ∀ τ, nV D (Tu D u) (Tu D u') Z τ =
-      LatticeSumBounds.nv D.R.k D.R.rS (Gz D (Tu D u) (Tu D u') Z τ) (Tu D u) (gS D) D.host.v := by
+      LatticeSumBounds.nv D.R.k D.R.rS (Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') Z τ) (Tu D u) (gS D) D.host.v := by
     intro τ
     unfold nV LatticeSumBounds.nv
     rw [Real.rpow_neg hg.le, Real.rpow_natCast, ← d_m_eq D, inv_pow]
@@ -493,7 +493,7 @@ def TermPtsTie : Prop :=
 def LatticeDeterminantFactorization : Prop :=
   ∀ t : D.s.Term u u', D.s.Gterm t ≠ 0 →
     G0 (X.abelian₂ t) (gS D) (X.fl t) (X.fl' t) =
-      (∏ τ, Gz D (Tu D u) (Tu D u') (ZhatL (X.fl t) (X.fl' t)) τ) * ((gS D : ℝ)⁻¹) ^ (D.R.m * D.R.f)
+      (∏ τ, Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (ZhatL (X.fl t) (X.fl' t)) τ) * ((gS D : ℝ)⁻¹) ^ (D.R.m * D.R.f)
 
 variable {X}
 

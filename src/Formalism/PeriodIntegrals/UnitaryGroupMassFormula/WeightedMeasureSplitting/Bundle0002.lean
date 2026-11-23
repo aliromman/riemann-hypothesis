@@ -102,18 +102,18 @@ theorem JR_map (R R' : Type) [CommRing R] [Algebra F R] [CommRing R'] [Algebra F
 
 theorem unit_map (R R' : Type) [CommRing R] [Algebra F R] [CommRing R'] [Algebra F R'] (φ : R →ₐ[F] R')
     (X : Matrix (Fin n) (Fin n) (R ⊗[F] E)) :
-    (Formalism.UG.cT (sigR R σ) X * JR R J * X).map (tensMap (E := E) φ) =
-      Formalism.UG.cT (sigR R' σ) (X.map (tensMap φ)) * JR R' J * X.map (tensMap φ) := by
-  rw [Matrix.map_mul, Matrix.map_mul, ← Formalism.UG.P.incl_cT_map (sigR R σ) (sigR R' σ) (tensMap φ)
+    (Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) X * JR R J * X).map (tensMap (E := E) φ) =
+      Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R' σ) (X.map (tensMap φ)) * JR R' J * X.map (tensMap φ) := by
+  rw [Matrix.map_mul, Matrix.map_mul, ← Formalism.UG.P.incl_cT_map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R' σ) (tensMap φ)
     (tensMap_sigR φ σ), JR_map]
 
 theorem glPair_mem (g₁ : HA (Ainf F) σ J) (g₂ : HA (Af F) σ J) :
     glPair (HA.mat _ σ J g₁) (HA.mat _ σ J g₂) ∈ HR (AF F) σ J := by
-  have h1 : Formalism.UG.cT (sigR (Ainf F) σ) (HA.mat _ σ J g₁ : Matrix (Fin n) (Fin n) _) * JR (Ainf F) J *
+  have h1 : Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf F) σ) (HA.mat _ σ J g₁ : Matrix (Fin n) (Fin n) _) * JR (Ainf F) J *
       (HA.mat _ σ J g₁ : Matrix (Fin n) (Fin n) _) = JR (Ainf F) J := g₁.2
-  have h2 : Formalism.UG.cT (sigR (Af F) σ) (HA.mat _ σ J g₂ : Matrix (Fin n) (Fin n) _) * JR (Af F) J *
+  have h2 : Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af F) σ) (HA.mat _ σ J g₂ : Matrix (Fin n) (Fin n) _) * JR (Af F) J *
       (HA.mat _ σ J g₂ : Matrix (Fin n) (Fin n) _) = JR (Af F) J := g₂.2
-  show Formalism.UG.cT (sigR (AF F) σ) (glM _ _) * JR (AF F) J * glM _ _ = JR (AF F) J
+  show Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF F) σ) (glM _ _) * JR (AF F) J * glM _ _ = JR (AF F) J
   apply mat_ext_spl
   · rw [unit_map, glM_fst, h1, JR_map]
   · rw [unit_map, glM_snd, h2, JR_map]

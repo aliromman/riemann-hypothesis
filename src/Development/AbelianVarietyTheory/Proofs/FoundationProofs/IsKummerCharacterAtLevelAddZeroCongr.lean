@@ -1,7 +1,6 @@
 module
 
 public import Mathlib
-public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0081
 public import Development.AbelianVarietyTheory.Definitions.Foundations.Bundle0008
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.TowerUnitClassModPrimePowProperties
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0112

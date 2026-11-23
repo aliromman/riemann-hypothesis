@@ -101,13 +101,13 @@ theorem linIndep_of_isUnit_det (σ : E →ₐ[F] E) {M n : ℕ} (J : Matrix (Fin
 
 variable [LocallyCompactSpace R] [T2Space R]
 
-private theorem continuous_sigR_stabilizer_orbit_volume (σ : E →ₐ[F] E) : Continuous (sigR R σ) := by
+private theorem continuous_sigR_stabilizer_orbit_volume (σ : E →ₐ[F] E) : Continuous (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) := by
   haveI : IsModuleTopology R (R ⊗[F] E) := ⟨rfl⟩
-  have e : ⇑(sigR R σ) = ⇑(LinearMap.baseChange R σ.toLinearMap) := by
+  have e : ⇑(Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) = ⇑(LinearMap.baseChange R σ.toLinearMap) := by
     funext z
     induction z using TensorProduct.induction_on with
     | zero => simp
-    | tmul r e => simp [sigR, LinearMap.baseChange_tmul]
+    | tmul r e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, LinearMap.baseChange_tmul]
     | add a b ha hb => rw [map_add (f := _), map_add (f := _), ha, hb]
   rw [e]
   exact IsModuleTopology.continuous_of_linearMap _
@@ -145,7 +145,7 @@ theorem isClosed_HermR (σ : E →ₐ[F] E) (n : ℕ) :
         (Algebra.TensorProduct.basis R (Module.finBasis F E)).equivFun.toLinearMap)
   have hs := continuous_sigR_stabilizer_orbit_volume (F := F) (E := E) R σ
   have e : (HermR R σ n : Set (Matrix (Fin n) (Fin n) (R ⊗[F] E))) =
-      ⋂ a, ⋂ b, {S | sigR R σ (S b a) = S a b} := by
+      ⋂ a, ⋂ b, {S | Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (S b a) = S a b} := by
     ext S
     simp only [Set.mem_iInter, Set.mem_setOf_eq]
     rfl
@@ -171,18 +171,18 @@ theorem sigma_invol [NumberField E] (σ : E →ₐ[F] E)
 variable (R : Type) [CommRing R] [Algebra F R]
 
 theorem sigR_invol (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) (x : R ⊗[F] E) :
-    sigR R σ (sigR R σ x) = x := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ x) = x := by
   induction x using TensorProduct.induction_on with
   | zero => simp
-  | tmul r e => simp [sigR, hσ]
+  | tmul r e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hσ]
   | add a b ha hb => rw [map_add (f := _), map_add (f := _), ha, hb]
 
 theorem gramR_mem (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) {M n : ℕ}
     (J : Matrix (Fin M) (Fin M) E) (hJ : ∀ i j, σ (J j i) = J i j)
     (X : Fin n → Fin M → R ⊗[F] E) : gramR R σ J X ∈ HermR R σ n := by
-  have hJR : ∀ p q, sigR R σ (JR R J q p) = JR R J p q := fun p q => by
-    simp [JR, inclR, sigR, hJ]
-  show ∀ a b, sigR R σ (gramR R σ J X b a) = gramR R σ J X a b
+  have hJR : ∀ p q, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (JR R J q p) = JR R J p q := fun p q => by
+    simp [JR, inclR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hJ]
+  show ∀ a b, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (gramR R σ J X b a) = gramR R σ J X a b
   intro a b
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [gramR, hR, Formalism.UG.hform, map_sum, map_mul]

@@ -222,12 +222,12 @@ variable (r : ℕ)
 def pSet (g : ℕ) (p : Fin (r + 1) × Fin (r + 1)) : Set (Fv F v ⊗[F] E) :=
   if p.1 < p.2 then {y | y * sc (E := E) v (g : Fv F v)⁻¹ ∈ OEv (E := E) v}
   else if p.1 = p.2 then
-    {y | y ∈ OEv (E := E) v ∧ (y + sigR (Fv F v) σ y) * sc (E := E) v (g : Fv F v)⁻¹ ∈ OEv (E := E) v}
+    {y | y ∈ OEv (E := E) v ∧ (y + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ y) * sc (E := E) v (g : Fv F v)⁻¹ ∈ OEv (E := E) v}
   else OEv (E := E) v
 
 theorem famL_image
     (htr : ∀ w : Fv F v ⊗[F] E, algebraMap (Fv F v) (Fv F v ⊗[F] E) (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) w) =
-      w + sigR (Fv F v) σ w)
+      w + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ w)
     {g : ℕ} (hg0 : g ≠ 0) {θ : Fv F v ⊗[F] E} (hθO : θ ∈ OEv (E := E) v)
     (hθ : Algebra.trace (Fv F v) (Fv F v ⊗[F] E) θ = 1) (p : Fin (r + 1) × Fin (r + 1)) (y : Fv F v ⊗[F] E) :
     y ∈ famL v r (g : Fv F v) θ p '' OEv (E := E) v ↔ y ∈ pSet σ v r g p := by
@@ -249,7 +249,7 @@ theorem famL_image
 
 theorem box_meas (hfin : Module.finrank F E = 2)
     (htr : ∀ w : Fv F v ⊗[F] E, algebraMap (Fv F v) (Fv F v ⊗[F] E) (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) w) =
-      w + sigR (Fv F v) σ w)
+      w + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ w)
     {g : ℕ} (hg0 : g ≠ 0) (hg : absV v (g : Fv F v) = (g : ℝ)⁻¹) {θ Δ : Fv F v ⊗[F] E}
     (hθO : θ ∈ OEv (E := E) v) (hθ : Algebra.trace (Fv F v) (Fv F v ⊗[F] E) θ = 1)
     (hΔ : Algebra.trace (Fv F v) (Fv F v ⊗[F] E) Δ = 0) (hΔ0 : Δ ≠ 0)
@@ -276,11 +276,11 @@ theorem box_meas (hfin : Module.finrank F E = 2)
 
 theorem diag_key
     (htr : ∀ w : Fv F v ⊗[F] E, algebraMap (Fv F v) (Fv F v ⊗[F] E) (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) w) =
-      w + sigR (Fv F v) σ w)
+      w + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ w)
     {θ : Fv F v ⊗[F] E} (hθ : Algebra.trace (Fv F v) (Fv F v ⊗[F] E) θ = 1) (c y : Fv F v ⊗[F] E)
-    (hc : sigR (Fv F v) σ c = c) :
-    (y - c * θ) + sigR (Fv F v) σ (y - c * θ) = y + sigR (Fv F v) σ y - c := by
-  have h1 : θ + sigR (Fv F v) σ θ = 1 := by rw [← htr, hθ, map_one]
+    (hc : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ c = c) :
+    (y - c * θ) + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (y - c * θ) = y + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ y - c := by
+  have h1 : θ + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ = 1 := by rw [← htr, hθ, map_one]
   rw [map_sub, map_mul, hc]
   linear_combination (-c) * h1
 
@@ -290,7 +290,7 @@ def ctr (θ : Fv F v ⊗[F] E) (c : Matrix (Fin (r + 1)) (Fin (r + 1)) (Fv F v �
 
 theorem hermBox_eq
     (htr : ∀ w : Fv F v ⊗[F] E, algebraMap (Fv F v) (Fv F v ⊗[F] E) (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) w) =
-      w + sigR (Fv F v) σ w)
+      w + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ w)
     {g : ℕ} (hg0 : g ≠ 0) {θ : Fv F v ⊗[F] E} (hθO : θ ∈ OEv (E := E) v)
     (hθ : Algebra.trace (Fv F v) (Fv F v ⊗[F] E) θ = 1)
     (c : Matrix (Fin (r + 1)) (Fin (r + 1)) (Fv F v ⊗[F] E)) (hc : VolTHermInt σ v r c) :
@@ -343,7 +343,7 @@ theorem hermBox_eq
 
 theorem hermBox_meas (hfin : Module.finrank F E = 2)
     (htr : ∀ w : Fv F v ⊗[F] E, algebraMap (Fv F v) (Fv F v ⊗[F] E) (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) w) =
-      w + sigR (Fv F v) σ w)
+      w + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ w)
     {g : ℕ} (hg0 : g ≠ 0) (hg : absV v (g : Fv F v) = (g : ℝ)⁻¹) {θ Δ : Fv F v ⊗[F] E}
     (hθO : θ ∈ OEv (E := E) v) (hθ : Algebra.trace (Fv F v) (Fv F v ⊗[F] E) θ = 1)
     (hΔ : Algebra.trace (Fv F v) (Fv F v ⊗[F] E) Δ = 0) (hΔ0 : Δ ≠ 0)

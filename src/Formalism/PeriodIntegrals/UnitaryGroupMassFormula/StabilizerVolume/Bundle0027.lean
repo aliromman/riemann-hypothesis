@@ -35,14 +35,14 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] {d : ℕ
   (b : Module.Basis (Fin d) F E) (v : HeightOneSpectrum (𝓞 F)) (σ : E →ₐ[F] E)
 
 theorem crd_sigR (y : Fv F v ⊗[F] E) (k : Fin d) :
-    (Algebra.TensorProduct.basis (Fv F v) b).repr (sigR (Fv F v) σ y) k =
+    (Algebra.TensorProduct.basis (Fv F v) b).repr (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ y) k =
       ∑ l, algebraMap F (Fv F v) (b.repr (σ (b l)) k) *
         (Algebra.TensorProduct.basis (Fv F v) b).repr y l := by
   induction y using TensorProduct.induction_on with
   | zero => simp
   | tmul r e =>
-    have hs : sigR (Fv F v) σ (r ⊗ₜ[F] e) = r ⊗ₜ[F] σ e := by
-      simp [sigR, Algebra.TensorProduct.map_tmul]
+    have hs : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (r ⊗ₜ[F] e) = r ⊗ₜ[F] σ e := by
+      simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.map_tmul]
     rw [hs]
     simp only [Algebra.TensorProduct.basis_repr_tmul, Finsupp.smul_apply, Finsupp.mapRange_apply,
       smul_eq_mul]

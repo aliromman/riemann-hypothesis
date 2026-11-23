@@ -177,17 +177,17 @@ theorem perp_full {ι : Type} [Fintype ι] [DecidableEq ι] (X : ι → Fin n �
   have hG : IsUnit (gramG σ J v X).det := ⟨⟨_, u, hu, by rw [mul_comm]; exact hu⟩, rfl⟩
   let eq : ι ≃ Fin n := Fintype.equivFinOfCardEq hc
   let M : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E) := Matrix.of fun i m => X (eq.symm m) i
-  have hA : cT (sigR (Fv F v) σ) M * JR (Fv F v) J * M = (gramG σ J v X).submatrix eq.symm eq.symm := by
+  have hA : cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) M * JR (Fv F v) J * M = (gramG σ J v X).submatrix eq.symm eq.symm := by
     ext p q
     simp only [cT, Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply, Finset.sum_mul]
     simp only [M, Matrix.of_apply, gramG, hR, hform, Matrix.submatrix_apply]
     exact Finset.sum_comm
-  have hdA : IsUnit (cT (sigR (Fv F v) σ) M * JR (Fv F v) J).det := by
+  have hdA : IsUnit (cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) M * JR (Fv F v) J).det := by
     have h1 := congrArg det hA
     rw [det_submatrix_equiv_self, det_mul] at h1
     rw [← h1] at hG
     exact isUnit_of_mul_isUnit_left hG
-  have hB : (cT (sigR (Fv F v) σ) M * JR (Fv F v) J) *ᵥ w = 0 := by
+  have hB : (cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) M * JR (Fv F v) J) *ᵥ w = 0 := by
     funext m
     have h2 := hw (eq.symm m)
     simp only [hR, hform] at h2
@@ -195,7 +195,7 @@ theorem perp_full {ι : Type} [Fintype ι] [DecidableEq ι] (X : ι → Fin n �
     simp only [M, Matrix.of_apply]
     rw [Finset.sum_comm]
     exact h2
-  have h3 := congrArg (fun y => (cT (sigR (Fv F v) σ) M * JR (Fv F v) J)⁻¹ *ᵥ y) hB
+  have h3 := congrArg (fun y => (cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) M * JR (Fv F v) J)⁻¹ *ᵥ y) hB
   simpa [mulVec_mulVec, nonsing_inv_mul _ hdA] using h3
 
 theorem orthoGen (hU : UnitV σ J ψ v Λ) (hstd : StdHyp σ J ψ)

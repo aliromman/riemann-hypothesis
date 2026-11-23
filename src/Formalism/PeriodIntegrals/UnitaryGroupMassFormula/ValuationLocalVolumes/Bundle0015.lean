@@ -247,7 +247,7 @@ theorem pair_mem (v : PlX X) (s : Fv X.B.I.F v) (w : (VS D).V) (l : Fin X.B.I.n 
     rw [← hE_crdOf]
     exact (hform_star X _ _).symm
   rw [h1, h2, ← sigR_inclR]
-  have hsc : sc (E := X.B.I.E) v s = sigR (Fv X.B.I.F v) X.B.I.cm.sig (sc (E := X.B.I.E) v s) :=
+  have hsc : sc (E := X.B.I.E) v s = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv X.B.I.F v) X.B.I.cm.sig (sc (E := X.B.I.E) v s) :=
     (sigR_tmul_one (Fv X.B.I.F v) X.B.I.cm.sig s).symm
   rw [hsc, ← map_mul]
   exact sigR_oev X.B.I.cm.sig v ((pm_iff X v s w y).1 (hP hy))

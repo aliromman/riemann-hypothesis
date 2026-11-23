@@ -21,11 +21,11 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E] {R S : Type} [CommRing R
   [CommRing S] [Algebra F S]
 
 theorem map_sigR (f : R →ₐ[F] S) (σ : E →ₐ[F] E) (z : R ⊗[F] E) :
-    Algebra.TensorProduct.map f (AlgHom.id F E) (sigR R σ z) =
-      sigR S σ (Algebra.TensorProduct.map f (AlgHom.id F E) z) := by
+    Algebra.TensorProduct.map f (AlgHom.id F E) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ z) =
+      Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR S σ (Algebra.TensorProduct.map f (AlgHom.id F E) z) := by
   induction z using TensorProduct.induction_on with
   | zero => simp
-  | tmul r e => simp [sigR, Algebra.TensorProduct.map_tmul]
+  | tmul r e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.map_tmul]
   | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy, map_add (f := _), map_add (f := _)]
 
 theorem map_inclR (f : R →ₐ[F] S) (e : E) :

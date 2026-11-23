@@ -79,14 +79,14 @@ theorem ext_p {x y : (R1 × R2) ⊗[F] E} (h1 : p1 R1 R2 x = p1 R1 R2 y)
 variable (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E)
 
 theorem fst_conj_bis (x : (R1 × R2) ⊗[F] E) :
-    p1 R1 R2 (sigR (R1 × R2) σ x) = sigR R1 σ (p1 R1 R2 x) := by
+    p1 R1 R2 (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (R1 × R2) σ x) = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R1 σ (p1 R1 R2 x) := by
   induction x using TensorProduct.induction_on with
   | zero => simp
   | tmul r e => rfl
   | add x y hx hy => simp only [map_add (f := _), hx, hy]
 
 theorem snd_conj_alt (x : (R1 × R2) ⊗[F] E) :
-    p2 R1 R2 (sigR (R1 × R2) σ x) = sigR R2 σ (p2 R1 R2 x) := by
+    p2 R1 R2 (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (R1 × R2) σ x) = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R2 σ (p2 R1 R2 x) := by
   induction x using TensorProduct.induction_on with
   | zero => simp
   | tmul r e => rfl
@@ -97,14 +97,14 @@ theorem fst_inclusion (e : E) : p1 R1 R2 (inclR (F := F) (R1 × R2) e) = inclR (
 theorem snd_inclusion (e : E) : p2 R1 R2 (inclR (F := F) (R1 × R2) e) = inclR (F := F) R2 e := rfl
 
 theorem map_fst_conj_transpose (P : Matrix (Fin M) (Fin M) ((R1 × R2) ⊗[F] E)) :
-    (Formalism.UG.cT (sigR (R1 × R2) σ) P).map (p1 R1 R2) =
-      Formalism.UG.cT (sigR R1 σ) (P.map (p1 R1 R2)) := by
+    (Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (R1 × R2) σ) P).map (p1 R1 R2) =
+      Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R1 σ) (P.map (p1 R1 R2)) := by
   ext i j
   simp [Formalism.UG.cT, fst_conj_bis]
 
 theorem map_snd_conj_transpose (P : Matrix (Fin M) (Fin M) ((R1 × R2) ⊗[F] E)) :
-    (Formalism.UG.cT (sigR (R1 × R2) σ) P).map (p2 R1 R2) =
-      Formalism.UG.cT (sigR R2 σ) (P.map (p2 R1 R2)) := by
+    (Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (R1 × R2) σ) P).map (p2 R1 R2) =
+      Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R2 σ) (P.map (p2 R1 R2)) := by
   ext i j
   simp [Formalism.UG.cT, snd_conj_alt]
 
@@ -149,9 +149,9 @@ def glift (u : GL (Fin M) (R2 ⊗[F] E)) : GL (Fin M) ((R1 × R2) ⊗[F] E) :=
 
 theorem glift_mem (g : HA R2 σ J) : glift R1 R2 (HA.mat R2 σ J g) ∈ HR (R1 × R2) σ J := by
   have hg : HA.mat R2 σ J g ∈ HR R2 σ J := g.2
-  change Formalism.UG.cT (sigR R2 σ) ((HA.mat R2 σ J g : Matrix (Fin M) (Fin M) (R2 ⊗[F] E))) * JR (F := F) R2 J *
+  change Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R2 σ) ((HA.mat R2 σ J g : Matrix (Fin M) (Fin M) (R2 ⊗[F] E))) * JR (F := F) R2 J *
     (HA.mat R2 σ J g : Matrix (Fin M) (Fin M) (R2 ⊗[F] E)) = JR (F := F) R2 J at hg
-  change Formalism.UG.cT (sigR (R1 × R2) σ) (mlift R1 R2 (HA.mat R2 σ J g : Matrix (Fin M) (Fin M) (R2 ⊗[F] E))) *
+  change Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (R1 × R2) σ) (mlift R1 R2 (HA.mat R2 σ J g : Matrix (Fin M) (Fin M) (R2 ⊗[F] E))) *
     JR (F := F) (R1 × R2) J * mlift R1 R2 (HA.mat R2 σ J g : Matrix (Fin M) (Fin M) (R2 ⊗[F] E)) = JR (F := F) (R1 × R2) J
   apply mext
   · rw [Matrix.map_mul, Matrix.map_mul, map_fst_conj_transpose, map_fst_form, matrix_lift_fst]

@@ -72,7 +72,7 @@ theorem herm_scal (t : ℝ) (S : HermR (Ainf X.B.I.F) X.B.I.cm.sig (D.R.rS + 1 +
   simp only [Matrix.of_apply, map_mul]
   rw [hS]
   congr 1
-  simp [sigR, Algebra.TensorProduct.algebraMap_apply]
+  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.algebraMap_apply]
 
 theorem matCoord_symm_add (c c' : EuclideanSpace ℝ (Fin (D.R.rS + 1 + D.R.rS) × Fin (D.R.rS + 1 + D.R.rS) × Module.Free.ChooseBasisIndex (Ainf X.B.I.F) (Ainf X.B.I.F ⊗[X.B.I.F] X.B.I.E) × InfinitePlace X.B.I.F)) :
     (matCoord X).symm (c + c') = (matCoord X).symm c + (matCoord X).symm c' := by

@@ -214,7 +214,7 @@ theorem smul_apply (h : HA R σ J) {n : ℕ} (X : Fin n → Fin M → R ⊗[F] E
 
 theorem BR_smul (h : HA R σ J) {n : ℕ} (X Y : Fin n → Fin M → R ⊗[F] E) :
     BR R σ J (h • X) (h • Y) = BR R σ J X Y := by
-  have hg' : Formalism.UG.cT (sigR R σ) ((HA.mat R σ J h : GL (Fin M) (R ⊗[F] E)) :
+  have hg' : Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) ((HA.mat R σ J h : GL (Fin M) (R ⊗[F] E)) :
       Matrix (Fin M) (Fin M) _) * JR R J *
       ((HA.mat R σ J h : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) _) = JR R J := h.2
   simp only [BR, smul_apply, hR, TopoGram.hform_mulVec, hg']

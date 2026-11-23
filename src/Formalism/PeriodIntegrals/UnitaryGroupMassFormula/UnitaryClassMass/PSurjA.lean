@@ -61,7 +61,7 @@ theorem incM_inv_mul (U : GL (Fin M) E) : incM (F := F) U⁻¹ * incM (F := F) U
   exact Matrix.map_one _ (map_zero _) (map_one _)
 
 theorem incM_unitary (U : GL (Fin M) E) (hU : U ∈ UJ (σ : E →+* E) J) :
-    cT (sigR (AF F) σ) (incM (F := F) U) * JR (AF F) J * incM (F := F) U = JR (AF F) J := by
+    cT (PI.UJClassFin.sigR (AF F) σ) (incM (F := F) U) * JR (AF F) J * incM (F := F) U = JR (AF F) J := by
   have := PI.UnitaryGroupMassFormula.UJClassFin.bc_mem (F := F) σ J U hU
   exact this
 
@@ -79,9 +79,9 @@ def patchGL (e : ι → AF F ⊗[F] E) (he : ∀ i j, e i * e j = if i = j then 
     exact fam_one e hs 1
 
 theorem patchGL_mem (e : ι → AF F ⊗[F] E) (he : ∀ i j, e i * e j = if i = j then e i else 0)
-    (hs : ∑ i, e i = 1) (hσe : ∀ i, sigR (AF F) σ (e i) = e i) (γ : ι → GL (Fin M) E)
+    (hs : ∑ i, e i = 1) (hσe : ∀ i, PI.UJClassFin.sigR (AF F) σ (e i) = e i) (γ : ι → GL (Fin M) E)
     (hγ : ∀ i, γ i ∈ UJ (σ : E →+* E) J) : patchGL e he hs γ ∈ HR (AF F) σ J := by
-  show cT (sigR (AF F) σ) (∑ i, e i • incM (γ i)) * JR (AF F) J * (∑ i, e i • incM (γ i)) = JR (AF F) J
+  show cT (PI.UJClassFin.sigR (AF F) σ) (∑ i, e i • incM (γ i)) * JR (AF F) J * (∑ i, e i • incM (γ i)) = JR (AF F) J
   rw [cT_fam]
   simp_rw [hσe]
   conv_lhs => rw [← fam_one e hs (JR (AF F) J)]
@@ -90,7 +90,7 @@ theorem patchGL_mem (e : ι → AF F ⊗[F] E) (he : ∀ i j, e i * e j = if i =
   exact fam_one e hs _
 
 def patchHA (e : ι → AF F ⊗[F] E) (he : ∀ i j, e i * e j = if i = j then e i else 0)
-    (hs : ∑ i, e i = 1) (hσe : ∀ i, sigR (AF F) σ (e i) = e i) (γ : ι → GL (Fin M) E)
+    (hs : ∑ i, e i = 1) (hσe : ∀ i, PI.UJClassFin.sigR (AF F) σ (e i) = e i) (γ : ι → GL (Fin M) E)
     (hγ : ∀ i, γ i ∈ UJ (σ : E →+* E) J) : HA (AF F) σ J :=
   (⟨patchGL e he hs γ, patchGL_mem σ J e he hs hσe γ hγ⟩ : HR (AF F) σ J)
 
@@ -100,7 +100,7 @@ theorem finE_inclR (x : E) : finE F E (inclR (AF F) x) = inclR (Af F) x := by
   rfl
 
 theorem finMat_patch_inv (e : ι → AF F ⊗[F] E) (he : ∀ i j, e i * e j = if i = j then e i else 0)
-    (hs : ∑ i, e i = 1) (hσe : ∀ i, sigR (AF F) σ (e i) = e i) (γ : ι → GL (Fin M) E)
+    (hs : ∑ i, e i = 1) (hσe : ∀ i, PI.UJClassFin.sigR (AF F) σ (e i) = e i) (γ : ι → GL (Fin M) E)
     (hγ : ∀ i, γ i ∈ UJ (σ : E →+* E) J) :
     finMat σ J (patchHA σ J e he hs hσe γ hγ)⁻¹ =
       ∑ i, finE F E (e i) • ((γ i)⁻¹ : GL (Fin M) E).val.map (inclR (Af F)) := by
@@ -112,7 +112,7 @@ theorem finMat_patch_inv (e : ι → AF F ⊗[F] E) (he : ∀ i j, e i * e j = i
     simp [Matrix.map_apply, Matrix.sum_apply, incM, map_sum, map_mul, finE_inclR]
 
 theorem patch_mulVec (e : ι → AF F ⊗[F] E) (he : ∀ i j, e i * e j = if i = j then e i else 0)
-    (hs : ∑ i, e i = 1) (hσe : ∀ i, sigR (AF F) σ (e i) = e i) (γ : ι → GL (Fin M) E)
+    (hs : ∑ i, e i = 1) (hσe : ∀ i, PI.UJClassFin.sigR (AF F) σ (e i) = e i) (γ : ι → GL (Fin M) E)
     (hγ : ∀ i, γ i ∈ UJ (σ : E →+* E) J) (x : Fin M → E) :
     (finMat σ J (patchHA σ J e he hs hσe γ hγ)⁻¹).mulVec (PI.UnitaryGroupMassFormula.UJClassFin.vinc (F := F) x) =
       ∑ i, finE F E (e i) • PI.UnitaryGroupMassFormula.UJClassFin.vinc (F := F) (((γ i)⁻¹ : GL (Fin M) E).val.mulVec x) := by

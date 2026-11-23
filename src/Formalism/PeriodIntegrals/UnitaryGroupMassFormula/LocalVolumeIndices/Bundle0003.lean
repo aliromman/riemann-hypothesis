@@ -202,14 +202,14 @@ theorem LocIdxLift_cT_map {A B : Type} [CommRing A] [CommRing B] (s : A →+* A)
 
 theorem LocIdxLift_mem (p : HeightOneSpectrum (𝓞 I.F)) (y : HA (Fv I.F p) I.cm.sig I.J) :
     liftGL I p (HA.mat (Fv I.F p) I.cm.sig I.J y) ∈ HR (Af I.F) I.cm.sig I.J := by
-  show Formalism.UG.cT (sigR (Af I.F) I.cm.sig) (liftM I p _) * JR (Af I.F) I.J * liftM I p _ = JR (Af I.F) I.J
+  show Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af I.F) I.cm.sig) (liftM I p _) * JR (Af I.F) I.J * liftM I p _ = JR (Af I.F) I.J
   apply LocIdxLift_ext I
   intro v
   have hJ : (JR (Af I.F) I.J).map (tV I v) = JR (Fv I.F v) I.J := by
     ext i j
     simp [JR, tV, tensMap_inclR]
   rw [Matrix.map_mul, Matrix.map_mul,
-    LocIdxLift_cT_map _ (sigR (Fv I.F v) I.cm.sig) _ (tensMap_sigR (evalV I.F v) I.cm.sig), hJ]
+    LocIdxLift_cT_map _ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv I.F v) I.cm.sig) _ (tensMap_sigR (evalV I.F v) I.cm.sig), hJ]
   by_cases h : v = p
   · subst h
     rw [LocIdxLift_liftM_same]

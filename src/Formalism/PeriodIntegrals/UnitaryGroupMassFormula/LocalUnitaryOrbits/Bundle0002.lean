@@ -121,14 +121,14 @@ def ClsU (a : ℕ) (Y : TupV (E := E) v n a) : Prop :=
 
 theorem hR_add_smul (s : Fv F v ⊗[F] E) (x z y w : Fin n → Fv F v ⊗[F] E) :
     hR (Fv F v) σ J (x + s • z) (y + s • w) = hR (Fv F v) σ J x y + s * hR (Fv F v) σ J x w +
-      sigR (Fv F v) σ s * hR (Fv F v) σ J z y + sigR (Fv F v) σ s * s * hR (Fv F v) σ J z w := by
+      Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ s * hR (Fv F v) σ J z y + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ s * s * hR (Fv F v) σ J z w := by
   simp only [hR, Formalism.UG.hform, Pi.add_apply, Pi.smul_apply, smul_eq_mul, map_add (f := _), map_mul,
     Finset.mul_sum, ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   ring
 
-theorem sigR_sc (x : Fv F v) : sigR (Fv F v) σ (sc (E := E) v x) = sc (E := E) v x := by
-  simp [sigR, sc]
+theorem sigR_sc (x : Fv F v) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (sc (E := E) v x) = sc (E := E) v x := by
+  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, sc]
 
 theorem unif_int {ϖ : Fv F v} (hϖ : IsUnif v ϖ) : ϖ ∈ v.adicCompletionIntegers F := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, hϖ]

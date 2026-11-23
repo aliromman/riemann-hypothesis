@@ -70,7 +70,7 @@ def hermFam : Submodule ℝ (V → Matrix (Fin m) (Fin m) ℂ) where
 end Gen
 
 theorem sigR_alg {D : D7} (X : HidaSetting D) (q : X.B.I.F) :
-    sigR (Ainf X.B.I.F) X.B.I.cm.sig (algebraMap X.B.I.F (Ainf X.B.I.F ⊗[X.B.I.F] X.B.I.E) q) =
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf X.B.I.F) X.B.I.cm.sig (algebraMap X.B.I.F (Ainf X.B.I.F ⊗[X.B.I.F] X.B.I.E) q) =
       algebraMap X.B.I.F (Ainf X.B.I.F ⊗[X.B.I.F] X.B.I.E) q :=
   (Algebra.TensorProduct.map (AlgHom.id X.B.I.F (Ainf X.B.I.F)) X.B.I.cm.sig).commutes q
 
@@ -99,7 +99,7 @@ theorem nuBridge : NuBridge := by
     fun S v => S.1.map (PI.AprimeInfU.thetaInf X v)
   have thH_herm : ∀ S, thH S ∈ hermFam (InfinitePlace X.B.I.F) (D.R.rS + 1 + D.R.rS) := by
     intro S v
-    have hS : ∀ a b, sigR (Ainf X.B.I.F) X.B.I.cm.sig (S.1 b a) = S.1 a b := S.2
+    have hS : ∀ a b, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf X.B.I.F) X.B.I.cm.sig (S.1 b a) = S.1 a b := S.2
     ext i j
     simp only [thH, Matrix.conjTranspose_apply, Matrix.map_apply]
     rw [show star (PI.AprimeInfU.thetaInf X v (S.1 j i)) =
@@ -148,9 +148,9 @@ theorem nuBridge : NuBridge := by
     choose y hy using fun a b : Fin (D.R.rS + 1 + D.R.rS) => NuB.theta_surj X (fun v => M v a b)
     let h2 := algebraMap X.B.I.F (Ainf X.B.I.F ⊗[X.B.I.F] X.B.I.E) (1 / 2)
     let Sm : Matrix (Fin (D.R.rS + 1 + D.R.rS)) (Fin (D.R.rS + 1 + D.R.rS)) (Ainf X.B.I.F ⊗[X.B.I.F] X.B.I.E) :=
-      fun a b => h2 * (y a b + sigR (Ainf X.B.I.F) X.B.I.cm.sig (y b a))
+      fun a b => h2 * (y a b + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf X.B.I.F) X.B.I.cm.sig (y b a))
     have hSm : Sm ∈ HermR (Ainf X.B.I.F) X.B.I.cm.sig (D.R.rS + 1 + D.R.rS) := by
-      show ∀ a b, sigR (Ainf X.B.I.F) X.B.I.cm.sig (Sm b a) = Sm a b
+      show ∀ a b, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf X.B.I.F) X.B.I.cm.sig (Sm b a) = Sm a b
       intro a b
       simp only [Sm, h2, map_mul, map_add (f := _), sigR_invP _ _ (sig_invI X), sigR_alg]
       ring
@@ -195,7 +195,7 @@ theorem nuBridge : NuBridge := by
     have hTh : ∀ v a b, PI.AprimeInfU.thetaInf X v (T.1 b a) =
         conj (PI.AprimeInfU.thetaInf X v (T.1 a b)) := by
       intro v a b
-      have hT' : ∀ a b, sigR (Ainf X.B.I.F) X.B.I.cm.sig (T.1 b a) = T.1 a b := T.2
+      have hT' : ∀ a b, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf X.B.I.F) X.B.I.cm.sig (T.1 b a) = T.1 a b := T.2
       rw [← NuB.theta_sigR X v, hT' b a]
     rw [e1, inner_reimV]
     simp only [sumReI]

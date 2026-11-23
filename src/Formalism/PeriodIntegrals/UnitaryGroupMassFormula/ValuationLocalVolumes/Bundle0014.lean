@@ -131,15 +131,15 @@ theorem int_of_alg {θ : Fv F v ⊗[F] E} (hθO : θ ∈ OEv (E := E) v)
 
 theorem mem_aL_image (σ : E →ₐ[F] E)
     (htr : ∀ w : Fv F v ⊗[F] E, algebraMap (Fv F v) (Fv F v ⊗[F] E) (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) w) =
-      w + sigR (Fv F v) σ w)
+      w + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ w)
     {g : ℕ} (hg0 : g ≠ 0) {θ : Fv F v ⊗[F] E} (hθO : θ ∈ OEv (E := E) v)
     (hθ : Algebra.trace (Fv F v) (Fv F v ⊗[F] E) θ = 1) (y : Fv F v ⊗[F] E) :
     y ∈ aL v (g : Fv F v) θ '' OEv (E := E) v ↔
-      y ∈ OEv (E := E) v ∧ (y + sigR (Fv F v) σ y) * sc (E := E) v (g : Fv F v)⁻¹ ∈ OEv (E := E) v := by
+      y ∈ OEv (E := E) v ∧ (y + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ y) * sc (E := E) v (g : Fv F v)⁻¹ ∈ OEv (E := E) v := by
   classical
   have hsc : ∀ c : Fv F v, sc (E := E) v c = algebraMap (Fv F v) (Fv F v ⊗[F] E) c := fun c => by
     rw [Algebra.algebraMap_eq_smul_one, ← Formalism.L2.SG.Pf.NcVal.VolTU.sc_mul_eq_smul, mul_one]
-  have hcond : (y + sigR (Fv F v) σ y) * sc (E := E) v (g : Fv F v)⁻¹ =
+  have hcond : (y + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ y) * sc (E := E) v (g : Fv F v)⁻¹ =
       algebraMap (Fv F v) (Fv F v ⊗[F] E) (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) y * (g : Fv F v)⁻¹) := by
     rw [← htr, hsc, map_mul]
   have hone : (1 : Fv F v ⊗[F] E) ∈ OEv (E := E) v := by
@@ -230,16 +230,16 @@ theorem primDual_of (a : ℕ) (hB : Red.OBas1 σ J ψ v Λ) (hLI : LeftInvO σ J
     intro j i
     have := congrFun (congrFun hNM j) i
     simpa [Matrix.mul_apply, Matrix.one_apply] using this
-  refine ⟨fun j => ∑ l, sigR (Fv F v) σ (N j l) • e l,
+  refine ⟨fun j => ∑ l, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (N j l) • e l,
     fun j => (he _).2 ⟨_, fun l => UnN.sigR_mem σ v (hN j l), rfl⟩, fun i j => ⟨?_, ?_⟩⟩
-  · have h1 : ∀ l, hR (Fv F v) σ J (y i) (e l) = sigR (Fv F v) σ (M i l) := by
+  · have h1 : ∀ l, hR (Fv F v) σ J (y i) (e l) = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (M i l) := by
       intro l
       rw [hyM i, hR_sum_smul_left]
       simp [hee]
     rw [hR_sum_smul_right]
     simp only [h1]
-    have e2 : ∑ l, sigR (Fv F v) σ (N j l) * sigR (Fv F v) σ (M i l) =
-        sigR (Fv F v) σ (∑ l, N j l * M i l) := by
+    have e2 : ∑ l, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (N j l) * Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (M i l) =
+        Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (∑ l, N j l * M i l) := by
       set_option synthInstance.maxHeartbeats 100000 in
         rw [map_sum]
       simp only [map_mul]
@@ -247,7 +247,7 @@ theorem primDual_of (a : ℕ) (hB : Red.OBas1 σ J ψ v Λ) (hLI : LeftInvO σ J
     by_cases hij : i = j
     · subst hij; simp
     · simp [hij, Ne.symm hij]
-  · have h2 : ∀ k, hR (Fv F v) σ J (∑ l, sigR (Fv F v) σ (N j l) • e l) (e k) = N j k := by
+  · have h2 : ∀ k, hR (Fv F v) σ J (∑ l, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (N j l) • e l) (e k) = N j k := by
       intro k
       rw [hR_sum_smul_left]
       simp only [hee, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]

@@ -112,7 +112,7 @@ theorem redP_of_gramCor (a : ℕ) (Y : TupV (E := E) v n a)
   have hY := hG.2.2.2.2.2.1
   have hT : ∀ i j, gramR (Fv F v) σ J Y i j ∈ OR (E := E) v := fun i j =>
     (hSD (Y j)).1 (hY j) (Y i) (hY i)
-  have hconj : ∀ i j, gramR (Fv F v) σ J Y i j = sigR (Fv F v) σ (gramR (Fv F v) σ J Y j i) := fun i j =>
+  have hconj : ∀ i j, gramR (Fv F v) σ J Y i j = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (gramR (Fv F v) σ J Y j i) := fun i j =>
     (Orb.hR_conj σ J v hcm hJ (Y j) (Y i)).symm
   obtain ⟨k, _, _, hk, h⟩ := hR hstd hG.2.2.2.1 ϖ hϖ
   refine ⟨k, inferInstance, inferInstance, hk, ?_⟩

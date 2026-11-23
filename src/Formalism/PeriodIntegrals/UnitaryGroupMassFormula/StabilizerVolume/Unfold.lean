@@ -23,9 +23,9 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
   (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E)
 
 theorem inclR_comp_sigma :
-    (inclR (F := F) (AF F) : E →+* AF F ⊗[F] E).comp (σ : E →+* E) = (sigR (AF F) σ).comp (inclR (F := F) (AF F)) := by
+    (inclR (F := F) (AF F) : E →+* AF F ⊗[F] E).comp (σ : E →+* E) = (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF F) σ).comp (inclR (F := F) (AF F)) := by
   ext e
-  simp [inclR, sigR]
+  simp [inclR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
 
 def ratEl (g : GL (Fin M) E) (hg : g ∈ Formalism.UG.UJ (σ : E →+* E) J) : HFinIn (AF F) σ J :=
   ⟨⟨Formalism.UG.bc (inclR (F := F) (AF F)) g, Formalism.UG.P.bc_mem _ _ _ (inclR_comp_sigma σ) J g hg⟩,

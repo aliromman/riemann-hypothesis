@@ -216,7 +216,7 @@ theorem rows_KBound_of {C' Cl Cg cb Cu cT CT C0 A c : ℝ} (hH : Cnt.Hyp D large
       intro τ
       rw [← d_norm_Dmin Y hrd t τ D.R.rS (Nat.le_succ _)]
       exact norm_pos_iff.2 fun h => hD ((rows_Dr_zero_iff Y hrd t τ).1 h)
-    have hGeq : ∀ τ, Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ = Tr D u * Tr D u' * absDl D (termGramMatrix X t) D.R.rS τ ^ 2 *
+    have hGeq : ∀ τ, Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ = Tr D u * Tr D u' * absDl D (termGramMatrix X t) D.R.rS τ ^ 2 *
         Lat.sh (Tu D u) (Tu D u') (X.fl t) (X.fl' t) (embS D τ) ^ 2 := by
       intro τ
       have h := rowsT_nu_eq Y hrd t hG hrel hD τ
@@ -250,13 +250,13 @@ theorem rows_KBound_of {C' Cl Cg cb Cu cT CT C0 A c : ℝ} (hH : Cnt.Hyp D large
             calc 2 * (c * (D.R.m : ℝ)) * D.R.f = (c * (D.R.m : ℝ) * D.R.f) * 2 := by ring
               _ ≤ (c * (D.R.m : ℝ) * D.R.f) * (c * (D.R.m : ℝ) ^ 2) := mul_le_mul_of_nonneg_left h1 h0
               _ = _ := by ring) _
-    have h8 : ∏ τ, max 1 (1 / Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ) ≤ HHZ D large₂.sc.b c (termGramMatrix X t) := by
+    have h8 : ∏ τ, max 1 (1 / Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ) ≤ HHZ D large₂.sc.b c (termGramMatrix X t) := by
       simp only [one_div]
       exact (rowsT_HH_term Y hH hHH t hG hrel).2.2.1
     have key := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.degFactorBound D.what₂.Tau
       (fun τ => Lat.sh (Tu D u) (Tu D u') (X.fl t) (X.fl' t) (embS D τ))
       (fun τ => Lat.ch (Tu D u) (Tu D u') (X.fl t) (X.fl' t) (embS D τ))
-      (fun τ => Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ) (fun τ => absDl D (termGramMatrix X t) D.R.rS τ)
+      (fun τ => Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (termGramMatrix X t) τ) (fun τ => absDl D (termGramMatrix X t) D.R.rS τ)
       (Tr D u) (Tr D u') (HHZ D large₂.sc.b c (termGramMatrix X t)) (one_le_mul_of_one_le_of_one_le hT1 hT1')
       (fun τ => ⟨rowsT_sh_pos Y hrd t hG hrel hD τ, by
         unfold Lat.ch; exact div_nonneg (norm_nonneg _) (Real.sqrt_nonneg _), rowsT_ch_sq Y hrd t hG hrel hD τ⟩)

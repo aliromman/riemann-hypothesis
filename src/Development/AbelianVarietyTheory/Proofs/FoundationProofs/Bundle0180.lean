@@ -62,7 +62,7 @@ theorem siegel_eq {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ} (T
   rw [siegel, dite_eq_left hex, hex.choose_spec, hf]
 
 theorem sl_siegel : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (T : Tower Ω ε) (c : ℕ)
-    (x : Fin 2 → ℚ) (γ : SL(2, ℤ)), admitted c x → T.sl (ofSL γ) (siegel T c x) = siegel T c (act x γ) := by
+    (x : Fin 2 → ℚ) (γ : SL(2, ℤ)), GlobalTheory.Sieg.admitted c x → T.sl (ofSL γ) (siegel T c x) = siegel T c (act x γ) := by
   intro Ω _ _ _ ε T c x γ hx
   symm
   apply siegel_eq

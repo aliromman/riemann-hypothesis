@@ -79,7 +79,7 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] 
   (σ : E →ₐ[F] E) {n M : ℕ}
 
 def conjT (D : Matrix (Fin n) (Fin n) (R ⊗[F] E)) : Matrix (Fin n) (Fin n) (R ⊗[F] E) :=
-  (D.map (sigR R σ))ᵀ
+  (D.map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ))ᵀ
 
 theorem conjT_mul (A B : Matrix (Fin n) (Fin n) (R ⊗[F] E)) :
     conjT R σ (A * B) = conjT R σ B * conjT R σ A := by
@@ -89,10 +89,10 @@ theorem conjT_mul (A B : Matrix (Fin n) (Fin n) (R ⊗[F] E)) :
 theorem conjT_one : conjT R σ (1 : Matrix (Fin n) (Fin n) (R ⊗[F] E)) = 1 := by
   simp [conjT]
 
-theorem sigR_sigR (hσ : ∀ x, σ (σ x) = x) (x : R ⊗[F] E) : sigR R σ (sigR R σ x) = x := by
+theorem sigR_sigR (hσ : ∀ x, σ (σ x) = x) (x : R ⊗[F] E) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ x) = x := by
   induction x using TensorProduct.induction_on with
   | zero => simp
-  | tmul a b => simp [sigR, Algebra.TensorProduct.map_tmul, hσ]
+  | tmul a b => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.map_tmul, hσ]
   | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
 
 theorem conjT_conjT (hσ : ∀ x, σ (σ x) = x) (A : Matrix (Fin n) (Fin n) (R ⊗[F] E)) :
@@ -104,11 +104,11 @@ theorem mem_herm_iff (S : Matrix (Fin n) (Fin n) (R ⊗[F] E)) :
     S ∈ HermR R σ n ↔ conjT R σ S = S := by
   constructor
   · intro h
-    have h' : ∀ a b, sigR R σ ((S : Matrix (Fin n) (Fin n) (R ⊗[F] E)) b a) = S a b := h
+    have h' : ∀ a b, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ ((S : Matrix (Fin n) (Fin n) (R ⊗[F] E)) b a) = S a b := h
     ext a b
     exact h' a b
   · intro h
-    have h' : ∀ a b, sigR R σ ((S : Matrix (Fin n) (Fin n) (R ⊗[F] E)) b a) = S a b := by
+    have h' : ∀ a b, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ ((S : Matrix (Fin n) (Fin n) (R ⊗[F] E)) b a) = S a b := by
       intro a b
       have := congrFun (congrFun h a) b
       simpa [conjT] using this

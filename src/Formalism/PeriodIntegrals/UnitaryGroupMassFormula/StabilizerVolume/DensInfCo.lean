@@ -94,9 +94,9 @@ theorem hR_add_right (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) 
 
 theorem hR_herm (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) {M : ℕ} (J : Matrix (Fin M) (Fin M) E)
     (hJ : ∀ i j, σ (J j i) = J i j) (x y : Fin M → R ⊗[F] E) :
-    sigR R σ (hR R σ J x y) = hR R σ J y x := by
-  have hJR : ∀ i j, sigR R σ (JR R J i j) = JR R J j i := by
-    intro i j; simp [JR, inclR, sigR, hJ]
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (hR R σ J x y) = hR R σ J y x := by
+  have hJR : ∀ i j, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (JR R J i j) = JR R J j i := by
+    intro i j; simp [JR, inclR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hJ]
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [hR, Formalism.UG.hform, map_sum, map_mul, sigR_invol R σ hσ, hJR]
   rw [Finset.sum_comm]

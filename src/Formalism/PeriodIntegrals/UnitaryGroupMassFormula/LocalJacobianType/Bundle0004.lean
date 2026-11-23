@@ -158,7 +158,7 @@ structure SD where
   h0 : e ≠ 0
   h1 : e ≠ 1
   hr : Module.finrank (Fv F v) (Fv F v ⊗[F] E) = 2
-  hσ : sigR (Fv F v) σ e = 1 - e
+  hσ : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ e = 1 - e
 
 namespace SD
 
@@ -184,8 +184,8 @@ theorem p_sc (i : Fin 2) (t : Fv F v) : D.p i (sc (E := E) v t) = t := by
   rw [this, AlgHom.commutes]; rfl
 
 theorem p_sig (z : Fv F v ⊗[F] E) :
-    D.p 0 (sigR (Fv F v) σ z) = D.p 1 z ∧ D.p 1 (sigR (Fv F v) σ z) = D.p 0 z := by
-  have h : sigR (Fv F v) σ z = D.p 1 z • D.e + D.p 0 z • (1 - D.e) := by
+    D.p 0 (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z) = D.p 1 z ∧ D.p 1 (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z) = D.p 0 z := by
+  have h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z = D.p 1 z • D.e + D.p 0 z • (1 - D.e) := by
     conv_lhs => rw [D.decomp z]
     rw [map_add (f := _), sigR_smul, sigR_smul, map_sub, map_one, D.hσ, sub_sub_cancel, add_comm]
   rw [h]
@@ -299,7 +299,7 @@ theorem mem_iff (x : Fv F v ⊗[F] E) :
 end SD
 
 theorem sigR_eq_congr (hfin : Module.finrank F E = 2) :
-    ∃ τ : E ≃ₐ[F] E, ∀ z, sigR (Fv F v) σ z =
+    ∃ τ : E ≃ₐ[F] E, ∀ z, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z =
       Algebra.TensorProduct.congr (AlgEquiv.refl : Fv F v ≃ₐ[F] Fv F v) τ z := by
   have : Module.Finite F E := Module.finite_of_finrank_pos (by omega)
   refine ⟨AlgEquiv.ofBijective σ (AlgHom.bijective σ), fun z => rfl⟩
@@ -313,11 +313,11 @@ theorem exists_SD (hS : SplitHyp σ v) : Nonempty (SD σ v) := by
   have dec := PI.LocDualGen.EpS.decomp hr e he he0 he1
   have pair := PI.LocDualGen.EpS.repr_pair hr e he he0 he1
   obtain ⟨τ, hτ⟩ := sigR_eq_congr (σ := σ) (v := v) hfin
-  have hinj : Function.Injective (sigR (Fv F v) σ) := by
+  have hinj : Function.Injective (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) := by
     intro z w h
     rw [hτ, hτ] at h
     exact (Algebra.TensorProduct.congr (AlgEquiv.refl : Fv F v ≃ₐ[F] Fv F v) τ).injective h
-  set f := sigR (Fv F v) σ e with hfdef
+  set f := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ e with hfdef
   have hfi : f * f = f := by rw [hfdef, ← map_mul, hee]
   have h01 : ∀ i, P i f = 0 ∨ P i f = 1 := by
     intro i
@@ -337,15 +337,15 @@ theorem exists_SD (hS : SplitHyp σ v) : Nonempty (SD σ v) := by
   · exfalso
     apply hσ
     have hfe : f = e := by rw [hfdec, a1, b0]; simp
-    have hfix : ∀ z, sigR (Fv F v) σ z = z := by
+    have hfix : ∀ z, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z = z := by
       intro z
       conv_lhs => rw [dec z]
-      rw [map_add, sigR_smul, sigR_smul, (sigR (Fv F v) σ).map_sub,
-        (sigR (Fv F v) σ).map_one, ← hfdef, hfe, ← dec z]
+      rw [map_add, sigR_smul, sigR_smul, (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ).map_sub,
+        (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ).map_one, ← hfdef, hfe, ← dec z]
     ext x
     have h1 := hfix ((1 : Fv F v) ⊗ₜ[F] x)
-    have h2 : sigR (Fv F v) σ ((1 : Fv F v) ⊗ₜ[F] x) = (1 : Fv F v) ⊗ₜ[F] (σ x) := by
-      simp [sigR]
+    have h2 : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ ((1 : Fv F v) ⊗ₜ[F] x) = (1 : Fv F v) ⊗ₜ[F] (σ x) := by
+      simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
     rw [h2] at h1
     exact Algebra.TensorProduct.includeRight_injective (algebraMap F (Fv F v)).injective h1
   · exfalso

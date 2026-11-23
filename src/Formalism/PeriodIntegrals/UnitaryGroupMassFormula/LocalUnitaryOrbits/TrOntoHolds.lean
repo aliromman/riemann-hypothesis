@@ -40,13 +40,13 @@ theorem trOnto_holds (hstd : StdHyp σ J ψ) : TrOnto σ v := by
   have hσθ : sigO σ θ = algebraMap (𝓞 F) (𝓞 E) t - θ := by rw [ht]; ring
   have hinc : ∀ a : 𝓞 F, inclR (F := F) (Fv F v) ((algebraMap (𝓞 F) (𝓞 E) a : 𝓞 E) : E) =
       sc (E := E) v (iO v a) := fun a => inclR_alg' v (a : F)
-  have hsiθ : sigR (Fv F v) σ iθ = sc (E := E) v (iO v t) - iθ := by
+  have hsiθ : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ iθ = sc (E := E) v (iO v t) - iθ := by
     have e1 := congrArg (fun y : 𝓞 E => inclR (F := F) (Fv F v) (y : E)) hσθ
     simp only [AddSubgroupClass.coe_sub, map_sub, hinc, sigO_coe] at e1
     rw [hiθ, sigR_incl]
     exact e1
   have htr : ∀ a b : Fv F v, (sc (E := E) v a + sc (E := E) v b * iθ) +
-      sigR (Fv F v) σ (sc (E := E) v a + sc (E := E) v b * iθ) = sc (E := E) v (2 * a + b * iO v t) := by
+      Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (sc (E := E) v a + sc (E := E) v b * iθ) = sc (E := E) v (2 * a + b * iO v t) := by
     intro a b
     rw [map_add (f := _), map_mul, sigR_sc, sigR_sc, hsiθ]
     simp only [sc_eq', map_add (f := _), map_mul, map_ofNat]

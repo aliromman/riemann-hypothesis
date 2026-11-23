@@ -47,7 +47,7 @@ theorem one_le_sizeZ (b C : ℝ) (Z : GramM D) : 1 ≤ sizeZ D b C Z := by
 
 theorem prod_Gz_le {b C B T T' : ℝ} (hb : 1 ≤ b) (hC : 0 ≤ C) (hr : 1 ≤ D.R.rS) (hT : 1 ≤ T * T') (hB : T * T' ≤ B)
     (Z : GramM D) :
-    ∏ τ, Gz D T T' Z τ ≤ (B * (b ^ (C * (D.R.m : ℝ) ^ 2)) ^ 2) ^ D.R.f * sizeZ D b C Z ^ 2 := by
+    ∏ τ, Formalism.MainNotions.S.Cnt.Gz D T T' Z τ ≤ (B * (b ^ (C * (D.R.m : ℝ) ^ 2)) ^ 2) ^ D.R.f * sizeZ D b C Z ^ 2 := by
   obtain ⟨hcard, -, -, -, hrd, -⟩ := GlobalTheory.real_places_facts D
   have hH : 0 < b ^ (C * (D.R.m : ℝ) ^ 2) := Real.rpow_pos_of_pos (by linarith) _
   have hB1 : 1 ≤ B := hT.trans hB
@@ -62,10 +62,10 @@ theorem prod_Gz_le {b C B T T' : ℝ} (hb : 1 ≤ b) (hC : 0 ≤ C) (hr : 1 ≤ 
     have h := le_max_right 1 (absDl D Z l τ / b ^ (C * (D.R.m : ℝ) ^ 2))
     rw [div_le_iff₀ hH] at h
     linarith
-  have hpt : ∀ τ, |Gz D T T' Z τ| ≤ B * (b ^ (C * (D.R.m : ℝ) ^ 2)) ^ 2 *
+  have hpt : ∀ τ, |Formalism.MainNotions.S.Cnt.Gz D T T' Z τ| ≤ B * (b ^ (C * (D.R.m : ℝ) ^ 2)) ^ 2 *
       (max 1 (absDl D Z (D.R.rS + 1) τ / b ^ (C * (D.R.m : ℝ) ^ 2)) *
         max 1 (absDl D Z D.R.rS τ / b ^ (C * (D.R.m : ℝ) ^ 2))) ^ 2 := fun τ => by
-    unfold Gz
+    unfold Formalism.MainNotions.S.Cnt.Gz
     have ha := hsq (D.R.rS + 1) τ
     have hc := hsq D.R.rS τ
     have hMa := one_le_pow₀ (n := 2) (hM1 (D.R.rS + 1) τ)
@@ -81,11 +81,11 @@ theorem prod_Gz_le {b C B T T' : ℝ} (hb : 1 ≤ b) (hC : 0 ≤ C) (hr : 1 ≤ 
     have e6 := mul_nonneg (mul_nonneg (mul_nonneg (zero_le_one.trans hB1) hK) (zero_le_one.trans hMc)) (sub_nonneg.2 hMa)
     rw [abs_le]
     constructor <;> nlinarith [e1, e2, e3, e4, e5, e6, ha, hA0]
-  have hprod : ∏ τ, Gz D T T' Z τ ≤ ∏ τ, (B * (b ^ (C * (D.R.m : ℝ) ^ 2)) ^ 2 *
+  have hprod : ∏ τ, Formalism.MainNotions.S.Cnt.Gz D T T' Z τ ≤ ∏ τ, (B * (b ^ (C * (D.R.m : ℝ) ^ 2)) ^ 2 *
       (max 1 (absDl D Z (D.R.rS + 1) τ / b ^ (C * (D.R.m : ℝ) ^ 2)) *
         max 1 (absDl D Z D.R.rS τ / b ^ (C * (D.R.m : ℝ) ^ 2))) ^ 2) :=
-    calc ∏ τ, Gz D T T' Z τ ≤ |∏ τ, Gz D T T' Z τ| := le_abs_self _
-      _ = ∏ τ, |Gz D T T' Z τ| := Finset.abs_prod _ _
+    calc ∏ τ, Formalism.MainNotions.S.Cnt.Gz D T T' Z τ ≤ |∏ τ, Formalism.MainNotions.S.Cnt.Gz D T T' Z τ| := le_abs_self _
+      _ = ∏ τ, |Formalism.MainNotions.S.Cnt.Gz D T T' Z τ| := Finset.abs_prod _ _
       _ ≤ _ := Finset.prod_le_prod₀ (fun τ _ => abs_nonneg _) (fun τ _ => hpt τ)
   rw [Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ, hcard, Finset.prod_pow] at hprod
   have hsz : ∏ τ, (max 1 (absDl D Z (D.R.rS + 1) τ / b ^ (C * (D.R.m : ℝ) ^ 2)) *
@@ -109,7 +109,7 @@ theorem prod_Gz_le {b C B T T' : ℝ} (hb : 1 ≤ b) (hC : 0 ≤ C) (hr : 1 ≤ 
 
 theorem sizes {b C CT : ℝ} (hb : 1 ≤ b) (hC : 2 ≤ C) (hCT : CT ≤ C) (hr : 1 ≤ D.R.rS) {T T' : ℝ} (h1 : 1 ≤ T)
     (h1' : 1 ≤ T') (hT : T ≤ b ^ (CT * D.R.m)) (hT' : T' ≤ b ^ (CT * D.R.m)) (Z : GramM D) :
-    1 ≤ HHZ D b C Z ∧ T ^ D.R.f ≤ HHZ D b C Z ∧ ∏ τ, Gz D T T' Z τ ≤ HHZ D b C Z := by
+    1 ≤ HHZ D b C Z ∧ T ^ D.R.f ≤ HHZ D b C Z ∧ ∏ τ, Formalism.MainNotions.S.Cnt.Gz D T T' Z τ ≤ HHZ D b C Z := by
   have hb0 : 0 ≤ b := by linarith
   have hbp : 0 < b := by linarith
   have hm : (2 : ℝ) ≤ D.R.m := by exact_mod_cast D.R.two_le_m

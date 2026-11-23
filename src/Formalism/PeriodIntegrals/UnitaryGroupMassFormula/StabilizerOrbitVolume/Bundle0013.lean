@@ -30,11 +30,11 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] {d : ℕ
 variable {b v}
 
 theorem sigR_incl (σ : E →ₐ[F] E) (e : E) :
-    sigR (Fv F v) σ (inclR (Fv F v) e) = inclR (Fv F v) (σ e) := by
-  simp [sigR, inclR, Algebra.TensorProduct.map_tmul]
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (inclR (Fv F v) e) = inclR (Fv F v) (σ e) := by
+  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, inclR, Algebra.TensorProduct.map_tmul]
 
 theorem sigR_smul (σ : E →ₐ[F] E) (c : Fv F v) (z : Fv F v ⊗[F] E) :
-    sigR (Fv F v) σ (c • z) = c • sigR (Fv F v) σ z := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (c • z) = c • Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ z := by
   rw [Algebra.smul_def, map_mul, sigR_algebraMap, ← Algebra.smul_def]
 
 end Int

@@ -72,12 +72,12 @@ section SlopeTestRemainingChoices
 variable {F E : Type} [Field F] [Field E] [Algebra F E]
 
 lemma sigR_inclR (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) (e : E) :
-    sigR R σ (inclR R e) = inclR R (σ e) :=
+    _root_.Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (inclR R e) = inclR R (σ e) :=
   DFunLike.congr_fun (Algebra.TensorProduct.map_comp_includeRight (AlgHom.id F R) σ) e
 
 lemma isHerm_JR (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) {n : ℕ}
     (J : Matrix (Fin n) (Fin n) E) (hJ : ∀ i j, σ (J j i) = J i j) :
-    Formalism.UG.IsHerm (sigR R σ) (JR R J) := by
+    Formalism.UG.IsHerm (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (JR R J) := by
   unfold Formalism.UG.IsHerm Formalism.UG.cT
   ext i j
   simp only [Matrix.transpose_apply, Matrix.map_apply, JR, sigR_inclR, hJ]

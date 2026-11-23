@@ -26,7 +26,7 @@ def VDK (σ : Mx k r → (H →L[ℂ] H)) (w0 v : H) : Prop :=
 def BeConvAt (z : Fin (2 * r + k + 1) → ℂ) (c : ℂ) (π : Mx k r → (Wp →L[ℂ] Wp)) (μW μN : Measure (Mt k r))
     (σ : Mx k r → (H →L[ℂ] H)) (w0 : H) : Prop :=
   (∀ u ∈ smoothVecs (k := k) (r := r) σ, ∀ v : H, VDK σ w0 v → Integrable (beF z c π σ u v) (μW.prod μN)) ∧
-  (∀ v : H, VDK σ w0 v → ∀ x : Wp, IsCWCont (k := k) (r := r) σ (fun u => be z c π μW μN σ u v x)) ∧
+  (∀ v : H, VDK σ w0 v → ∀ x : Wp, Formalism.MainNotions.S.IsCWCont (k := k) (r := r) σ (fun u => be z c π μW μN σ u v x)) ∧
   (∀ h ∈ UWset k r z, ∀ m ∈ Nset k r, ∀ u ∈ smoothVecs (k := k) (r := r) σ, ∀ v : H, VDK σ w0 v →
     be z c π μW μN σ (σ (h * m) u) v = (psi k r z c m • π h).comp (be z c π μW μN σ u v)) ∧
   (∀ h ∈ UWset k r z, ∀ m ∈ Nset k r, ∀ u : H, VDK σ w0 u → ∀ v ∈ smoothVecs (k := k) (r := r) σ,

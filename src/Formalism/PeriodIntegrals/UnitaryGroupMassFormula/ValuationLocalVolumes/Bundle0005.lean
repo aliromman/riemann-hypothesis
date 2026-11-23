@@ -22,11 +22,11 @@ section Gen
 
 variable {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E)
 
-theorem sigR_inclR (e : E) : sigR R σ (inclR R e) = inclR R (σ e) :=
+theorem sigR_inclR (e : E) : _root_.Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (inclR R e) = inclR R (σ e) :=
   DFunLike.congr_fun (Algebra.TensorProduct.map_comp_includeRight (AlgHom.id F R) σ) e
 
-theorem sigR_tmul_one (x : R) : sigR R σ (x ⊗ₜ[F] (1 : E)) = x ⊗ₜ[F] (1 : E) := by
-  simp [sigR]
+theorem sigR_tmul_one (x : R) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (x ⊗ₜ[F] (1 : E)) = x ⊗ₜ[F] (1 : E) := by
+  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
 
 theorem hform_smul {A : Type} [CommRing A] {M : ℕ} (τ : A →+* A) (J : Matrix (Fin M) (Fin M) A) (c d : A)
     (x y : Fin M → A) : Formalism.UG.hform τ J (c • x) (d • y) = τ c * d * Formalism.UG.hform τ J x y := by
@@ -134,7 +134,7 @@ theorem omVGram_holds : OmVGram X u' := by
   rw [hY, hY]
   unfold hR
   rw [hform_smul]
-  change sigR (Fv X.B.I.F v) X.B.I.cm.sig (sc v (scl X v a)) * sc v (scl X v b) *
+  change Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv X.B.I.F v) X.B.I.cm.sig (sc v (scl X v a)) * sc v (scl X v b) *
       hR (Fv X.B.I.F v) X.B.I.cm.sig X.B.I.J _ _ = _
   rw [hR_ratTup]
   simp only [sc, sigR_tmul_one, Algebra.TensorProduct.tmul_mul_tmul, one_mul]

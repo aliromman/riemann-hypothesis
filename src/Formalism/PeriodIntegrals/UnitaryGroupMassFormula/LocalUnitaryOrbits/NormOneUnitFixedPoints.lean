@@ -109,9 +109,9 @@ theorem int_of_sc {r : Fv F v} (h : sc (E := E) v r ∈ OEv (E := E) v) : r ∈ 
   apply sc_mul_ne_one v (hv.le : r⁻¹ ∈ v.adicCompletionIntegers F) hv h
   rw [sc_mul_sc, inv_mul_cancel₀ hr0, sc_one]
 
-theorem fix_sc (hcm : IsCMExt F E σ) (s : Fv F v ⊗[F] E) (hs : sigR (Fv F v) σ s = s) :
+theorem fix_sc (hcm : IsCMExt F E σ) (s : Fv F v ⊗[F] E) (hs : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ s = s) :
     ∃ r : Fv F v, s = sc (E := E) v r := by
-  have key : ∀ t : Fv F v ⊗[F] E, ∃ r : Fv F v, t + sigR (Fv F v) σ t = sc (E := E) v r := by
+  have key : ∀ t : Fv F v ⊗[F] E, ∃ r : Fv F v, t + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ t = sc (E := E) v r := by
     intro t
     induction t using TensorProduct.induction_on with
     | zero => exact ⟨0, by simp [sc]⟩
@@ -120,8 +120,8 @@ theorem fix_sc (hcm : IsCMExt F E σ) (s : Fv F v ⊗[F] E) (hs : sigR (Fv F v) 
         rw [map_add (f := _), PI.OmLocU.Orb.sigma_invol σ hcm, add_comm]
       obtain ⟨c, hc⟩ := gr_fix_range σ hcm hfix
       refine ⟨c • a, ?_⟩
-      have hs1 : sigR (Fv F v) σ (a ⊗ₜ[F] e) = a ⊗ₜ[F] σ e := by
-        simp [sigR, Algebra.TensorProduct.map_tmul]
+      have hs1 : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (a ⊗ₜ[F] e) = a ⊗ₜ[F] σ e := by
+        simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.map_tmul]
       rw [hs1, ← TensorProduct.tmul_add, ← hc, Algebra.algebraMap_eq_smul_one, TensorProduct.tmul_smul,
         TensorProduct.smul_tmul']
       rfl
@@ -129,8 +129,8 @@ theorem fix_sc (hcm : IsCMExt F E σ) (s : Fv F v ⊗[F] E) (hs : sigR (Fv F v) 
       obtain ⟨rx, hx⟩ := hx
       obtain ⟨ry, hy⟩ := hy
       refine ⟨rx + ry, ?_⟩
-      rw [map_add (f := _), show x + y + (sigR (Fv F v) σ x + sigR (Fv F v) σ y) =
-        (x + sigR (Fv F v) σ x) + (y + sigR (Fv F v) σ y) by abel, hx, hy]
+      rw [map_add (f := _), show x + y + (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ y) =
+        (x + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x) + (y + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ y) by abel, hx, hy]
       simp [sc, TensorProduct.add_tmul]
   obtain ⟨r, hr⟩ := key s
   have h2 : (2 : Fv F v) ≠ 0 := by
@@ -146,7 +146,7 @@ theorem fix_sc (hcm : IsCMExt F E σ) (s : Fv F v ⊗[F] E) (hs : sigR (Fv F v) 
   rw [e, ← hr, hs, ← two_smul (Fv F v) s, smul_smul, one_div, inv_mul_cancel₀ h2, one_smul]
 
 theorem fix_int_sc (hcm : IsCMExt F E σ) {s : Fv F v ⊗[F] E} (hs0 : s ∈ OEv (E := E) v)
-    (hs : sigR (Fv F v) σ s = s) : ∃ r ∈ v.adicCompletionIntegers F, s = sc (E := E) v r := by
+    (hs : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ s = s) : ∃ r ∈ v.adicCompletionIntegers F, s = sc (E := E) v r := by
   obtain ⟨r, hr⟩ := fix_sc σ v hcm s hs
   exact ⟨r, int_of_sc v (hr ▸ hs0), hr⟩
 
@@ -167,8 +167,8 @@ theorem sc_mem {r : Fv F v} (hr : r ∈ v.adicCompletionIntegers F) : sc (E := E
 theorem sc_eq (r : Fv F v) :
     sc (E := E) v r = (Algebra.TensorProduct.includeLeftRingHom : Fv F v →+* Fv F v ⊗[F] E) r := rfl
 
-theorem sigR_sc' (r : Fv F v) : sigR (Fv F v) σ (sc (E := E) v r) = sc (E := E) v r := by
-  simp [sigR, sc, Algebra.TensorProduct.map_tmul]
+theorem sigR_sc' (r : Fv F v) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (sc (E := E) v r) = sc (E := E) v r := by
+  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, sc, Algebra.TensorProduct.map_tmul]
 
 theorem norm_le_one_of {x : Fv F v} (hx : x ∈ v.adicCompletionIntegers F) : ‖x‖ ≤ 1 :=
   Valued.toNormedField.norm_le_one_iff.2 hx
@@ -178,7 +178,7 @@ theorem norm_eq_one_of {x : Fv F v} (hx : x ∈ v.adicCompletionIntegers F) (h :
 
 theorem exists_theta (hRes : PI.OmLocU.Red.ResAlg σ J ψ v) (hstd : StdHyp σ J ψ) (hun : UnramAt (E := E) v)
     {ϖ : Fv F v} (hϖ : IsUnif v ϖ) : ∃ θ ∈ OEv (E := E) v,
-      (θ - sigR (Fv F v) σ θ) * (θ - sigR (Fv F v) σ θ) ∉ PO (E := E) v ϖ := by
+      (θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ) * (θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ) ∉ PO (E := E) v ϖ := by
   classical
   obtain ⟨k, _, _, -, hcase⟩ := hRes hstd hun ϖ hϖ
   rcases hcase with ⟨-, K, _, _, σ', π, -, -, hne, hsurj, hker, hsig⟩ | ⟨-, π, hsurj, hker, hsig⟩
@@ -188,14 +188,14 @@ theorem exists_theta (hRes : PI.OmLocU.Red.ResAlg σ J ψ v) (hstd : StdHyp σ J
       exact hne (AlgEquiv.ext h)
     obtain ⟨θ, rfl⟩ := hsurj z
     refine ⟨θ, θ.2, fun hmem => ?_⟩
-    let θs : PI.OmLocU.Red.OR (E := E) v := ⟨sigR (Fv F v) σ θ, PI.OmLocU.UnN.sigR_mem σ v θ.2⟩
+    let θs : PI.OmLocU.Red.OR (E := E) v := ⟨Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ, PI.OmLocU.UnN.sigR_mem σ v θ.2⟩
     have h1 := hsig θ θs rfl
     have h2 : π ((θ - θs) * (θ - θs)) = 0 := (hker _).2 hmem
     rw [map_mul, map_sub, h1] at h2
     exact hz (by simpa using (sub_eq_zero.1 (mul_self_eq_zero.1 h2)).symm)
   · obtain ⟨θ, hθ⟩ := hsurj (1, 0)
     refine ⟨θ, θ.2, fun hmem => ?_⟩
-    let θs : PI.OmLocU.Red.OR (E := E) v := ⟨sigR (Fv F v) σ θ, PI.OmLocU.UnN.sigR_mem σ v θ.2⟩
+    let θs : PI.OmLocU.Red.OR (E := E) v := ⟨Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ, PI.OmLocU.UnN.sigR_mem σ v θ.2⟩
     have h1 := hsig θ θs rfl
     have h2 : π ((θ - θs) * (θ - θs)) = 0 := (hker _).2 hmem
     rw [map_mul, map_sub, h1, hθ] at h2
@@ -208,17 +208,17 @@ theorem normOne_of (hRes : PI.OmLocU.Red.ResAlg σ J ψ v) : PI.OmLocU.Orb.NormO
   have hcm : IsCMExt F E σ := hstd.1
   obtain ⟨ϖ, hϖ⟩ := unifEx_holds v
   obtain ⟨θ, hθ0, hθd⟩ := exists_theta σ J ψ v hRes hstd hun hϖ
-  set θs := sigR (Fv F v) σ θ with hθs
+  set θs := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ with hθs
   have hθs0 : θs ∈ OEv (E := E) v := PI.OmLocU.UnN.sigR_mem σ v hθ0
-  have hθinv : sigR (Fv F v) σ θs = θ := PI.OmLocU.Orb.sigR_invol (v := v) σ hcm θ
+  have hθinv : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θs = θ := PI.OmLocU.Orb.sigR_invol (v := v) σ hcm θ
   obtain ⟨t, ht, hT⟩ := fix_int_sc σ v hcm (oEv_add v hθ0 hθs0) (by rw [map_add (f := _), hθinv, add_comm])
   obtain ⟨m, hm, hM⟩ := fix_int_sc σ v hcm (oEv_mul v hθ0 hθs0) (by rw [map_mul, hθinv, mul_comm])
   obtain ⟨ε, hε, hU⟩ := fix_int_sc σ v hcm hu0 hus
-  have hus' : sigR (Fv F v) σ u' = u' := by
-    have h1 : sigR (Fv F v) σ u' * u = 1 := by
+  have hus' : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ u' = u' := by
+    have h1 : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ u' * u = 1 := by
       rw [← hus, ← map_mul, show u' * u = 1 by rw [mul_comm]; exact huu', map_one]
-    calc sigR (Fv F v) σ u' = sigR (Fv F v) σ u' * (u * u') := by rw [huu', mul_one]
-      _ = (sigR (Fv F v) σ u' * u) * u' := by ring
+    calc Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ u' = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ u' * (u * u') := by rw [huu', mul_one]
+      _ = (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ u' * u) * u' := by ring
       _ = u' := by rw [h1, one_mul]
   obtain ⟨ε', hε', hU'⟩ := fix_int_sc σ v hcm hu'0 hus'
 
@@ -288,7 +288,7 @@ theorem normOne_of (hRes : PI.OmLocU.Red.ResAlg σ J ψ v) : PI.OmLocU.Orb.NormO
   have hxi : x ∈ v.adicCompletionIntegers F := Valued.toNormedField.norm_le_one_iff.1 hx
   have hyi : y ∈ v.adicCompletionIntegers F := Valued.toNormedField.norm_le_one_iff.1 hy
   refine ⟨sc (E := E) v x + sc (E := E) v y * θ, oEv_add v (sc_mem v hxi) (oEv_mul v (sc_mem v hyi) hθ0), ?_⟩
-  have hl : sigR (Fv F v) σ (sc (E := E) v x + sc (E := E) v y * θ) = sc (E := E) v x + sc (E := E) v y * θs := by
+  have hl : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (sc (E := E) v x + sc (E := E) v y * θ) = sc (E := E) v x + sc (E := E) v y * θs := by
     rw [map_add (f := _), map_mul, sigR_sc', sigR_sc']
   rw [hl]
   have e1 : (sc (E := E) v x + sc (E := E) v y * θs) * (sc (E := E) v x + sc (E := E) v y * θ) =

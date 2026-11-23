@@ -450,7 +450,7 @@ theorem leviAt_add {n : ℕ} {Y : Type u} [TopologicalSpace Y] [T2Space Y] [Seco
         wdb n k (fun v => ((g ((A.chart i).symm v) : ℝ) : ℂ)) v := by
     filter_upwards [hf1.eventually (by simp), hg1.eventually (by simp)] with v a b
     exact wdb_add (a.differentiableAt (by simp)) (b.differentiableAt (by simp))
-  rw [wd_congr hw, wd_add (differentiableAt_wdb hf1) (differentiableAt_wdb hg1)]
+  rw [wd_congr _ _ _ _ _ hw, wd_add (differentiableAt_wdb hf1) (differentiableAt_wdb hg1)]
   ring
 
 theorem leviAt_log_normSq {n : ℕ} {Y : Type u} [TopologicalSpace Y] [T2Space Y] [SecondCountableTopology Y] [MeasurableSpace Y] [BorelSpace Y] {ι : Type*} {La : Type*} [AddCommGroup La] (A : WeightedAtlas n Y ι La) (i : ι) (h : Y → ℂ) (y : Y) (hy : y ∈ (A.chart i).source)
@@ -496,7 +496,7 @@ theorem leviAt_log_normSq {n : ℕ} {Y : Type u} [TopologicalSpace Y] [T2Space Y
       simp only [Real.deriv_log, Complex.ofReal_inv, hc, map_mul, map_inv₀]
       field_simp
       ring
-    rw [wd_congr hev, wd_conj (hQd.restrictScalars ℝ), wdb_of_differentiableAt hQd, map_zero]
+    rw [wd_congr _ _ _ _ _ hev, wd_conj (hQd.restrictScalars ℝ), wdb_of_differentiableAt hQd, map_zero]
   unfold WeightedAtlas.leviAt leviV
   simp only [key, zero_mul, Finset.sum_const_zero, Complex.zero_re]
 

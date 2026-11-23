@@ -154,7 +154,7 @@ theorem trace_inclR (x : E) :
 theorem trace_v (σ : E →ₐ[F] E) (hinv : ∀ y, σ (σ y) = y) (hnt : ∃ x, σ x ≠ x)
     (hfin : Module.finrank F E = 2) (w : Fv F v ⊗[F] E) :
     algebraMap (Fv F v) (Fv F v ⊗[F] E) (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) w) =
-      w + sigR (Fv F v) σ w := by
+      w + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ w := by
   induction w using TensorProduct.inductionOn with
   | tmul c e =>
     have e1 : c ⊗ₜ[F] e = c • inclR (F := F) (Fv F v) e := by
@@ -164,15 +164,15 @@ theorem trace_v (σ : E →ₐ[F] E) (hinv : ∀ y, σ (σ y) = y) (hnt : ∃ x,
       rw [e1, map_smul, trace_inclR, smul_eq_mul, mul_comm]
     rw [hL, Algebra.TensorProduct.algebraMap_apply, Algebra.algebraMap_self, RingHom.id_apply,
       ← Algebra.smul_def, TensorProduct.smul_tmul]
-    simp only [sigR, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Algebra.TensorProduct.map_tmul,
+    simp only [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Algebra.TensorProduct.map_tmul,
       AlgHom.id_apply]
     rw [← TensorProduct.tmul_add, ← trace_eq_add σ hinv hnt hfin e, Algebra.algebraMap_eq_smul_one]
   | add w1 w2 h1 h2 => rw [map_add (f := _), map_add (f := _), h1, h2, map_add (f := _)]; abel
 
 theorem sigR_sigR (σ : E →ₐ[F] E) (hinv : ∀ y, σ (σ y) = y) (w : Fv F v ⊗[F] E) :
-    sigR (Fv F v) σ (sigR (Fv F v) σ w) = w := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ w) = w := by
   induction w using TensorProduct.inductionOn with
-  | tmul c e => simp [sigR, hinv]
+  | tmul c e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hinv]
   | add w1 w2 h1 h2 => rw [map_add (f := _), map_add (f := _), h1, h2]
 
 theorem b_inclR_mem (a : 𝓞 E) : inclR (F := F) (Fv F v) (a : E) ∈ OEv (E := E) v :=

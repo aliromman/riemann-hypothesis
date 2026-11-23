@@ -39,7 +39,7 @@ def colM (Z : Fin n → Fin n → Fv F v ⊗[F] E) : Matrix (Fin n) (Fin n) (Fv 
   fun i p => Z p i
 
 theorem gram_eq_colM (Z : Fin n → Fin n → Fv F v ⊗[F] E) :
-    gramR (Fv F v) σ J Z = cT (sigR (Fv F v) σ) (colM v Z) * JR (Fv F v) J * colM v Z := by
+    gramR (Fv F v) σ J Z = cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (colM v Z) * JR (Fv F v) J * colM v Z := by
   ext p q
   simp only [gramR, hR, hform, cT, colM, Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply,
     Finset.sum_mul]
@@ -88,20 +88,20 @@ theorem orbAll_of (a : ℕ) (Y : TupV (E := E) v n a) (hE : ExtOrth σ J ψ v Λ
     have : uY * uY⁻¹ = 1 := mul_inv_cancel uY
     exact congrArg Units.val this
   have hkval : (k : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) = colM v ZX * ((uY⁻¹ : GL (Fin n) (Fv F v ⊗[F] E)) : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) := rfl
-  have hgXY : cT (sigR (Fv F v) σ) (colM v ZX) * JR (Fv F v) J * colM v ZX =
-      cT (sigR (Fv F v) σ) (colM v ZY) * JR (Fv F v) J * colM v ZY := by
+  have hgXY : cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (colM v ZX) * JR (Fv F v) J * colM v ZX =
+      cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (colM v ZY) * JR (Fv F v) J * colM v ZY := by
     rw [← gram_eq_colM, ← gram_eq_colM, hgX, hgY]
   have hkU : k ∈ HR (Fv F v) σ J := by
-    show cT (sigR (Fv F v) σ) (k : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) * JR (Fv F v) J * (k : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) =
+    show cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (k : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) * JR (Fv F v) J * (k : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) =
       JR (Fv F v) J
     rw [hkval]
     set N := ((uY⁻¹ : GL (Fin n) (Fv F v ⊗[F] E)) : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E))
-    calc cT (sigR (Fv F v) σ) (colM v ZX * N) * JR (Fv F v) J * (colM v ZX * N)
-        = cT (sigR (Fv F v) σ) N * (cT (sigR (Fv F v) σ) (colM v ZX) * JR (Fv F v) J * colM v ZX) * N := by
+    calc cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (colM v ZX * N) * JR (Fv F v) J * (colM v ZX * N)
+        = cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) N * (cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (colM v ZX) * JR (Fv F v) J * colM v ZX) * N := by
           rw [cT_mul]; simp only [Matrix.mul_assoc]
-      _ = cT (sigR (Fv F v) σ) N * (cT (sigR (Fv F v) σ) (colM v ZY) * JR (Fv F v) J * colM v ZY) * N := by
+      _ = cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) N * (cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (colM v ZY) * JR (Fv F v) J * colM v ZY) * N := by
           rw [hgXY]
-      _ = cT (sigR (Fv F v) σ) (colM v ZY * N) * JR (Fv F v) J * (colM v ZY * N) := by
+      _ = cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) (colM v ZY * N) * JR (Fv F v) J * (colM v ZY * N) := by
           rw [cT_mul]; simp only [Matrix.mul_assoc]
       _ = JR (Fv F v) J := by rw [hYN, cT_one, Matrix.one_mul, Matrix.mul_one]
   let g : HA (Fv F v) σ J := (⟨k, hkU⟩ : ↥(HR (Fv F v) σ J))

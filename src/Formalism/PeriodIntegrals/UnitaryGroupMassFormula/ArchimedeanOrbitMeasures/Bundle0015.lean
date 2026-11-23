@@ -281,7 +281,7 @@ theorem BR_smul {D : D7} (X : HidaSetting D) (g : HA (Ainf X.B.I.F) X.B.I.cm.sig
   unfold BR
   refine Finset.sum_congr rfl fun a _ => ?_
   congr 1
-  have hg : Formalism.UG.cT (sigR (Ainf X.B.I.F) X.B.I.cm.sig)
+  have hg : Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Ainf X.B.I.F) X.B.I.cm.sig)
       (↑(HA.mat (Ainf X.B.I.F) X.B.I.cm.sig X.B.I.J g) : Matrix _ _ _) * JR (Ainf X.B.I.F) X.B.I.J *
       (↑(HA.mat (Ainf X.B.I.F) X.B.I.cm.sig X.B.I.J g) : Matrix _ _ _) = JR (Ainf X.B.I.F) X.B.I.J :=
     (show HR (Ainf X.B.I.F) X.B.I.cm.sig X.B.I.J from g).2

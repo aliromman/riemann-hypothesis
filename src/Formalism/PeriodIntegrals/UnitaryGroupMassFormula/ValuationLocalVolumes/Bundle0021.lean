@@ -30,9 +30,9 @@ theorem isoW_gen {a : ℕ} (Y : TupV (E := E) v n a) (z : Fin a) (γ : Fv F v)
   obtain ⟨hS, hL, hSD, hUn, -, hYp⟩ := hG
   have hcm := hS.1
   have hJ : ∀ i j, σ (J j i) = J i j := hS.2.1.1
-  have hconj : ∀ x y, sigR (Fv F v) σ (hR (Fv F v) σ J x y) = hR (Fv F v) σ J y x :=
+  have hconj : ∀ x y, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (hR (Fv F v) σ J x y) = hR (Fv F v) σ J y x :=
     fun x y => PI.OmLocU.Orb.hR_conj σ J v hcm hJ x y
-  have hsc : ∀ r : Fv F v, sigR (Fv F v) σ (sc (E := E) v r) = sc (E := E) v r :=
+  have hsc : ∀ r : Fv F v, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (sc (E := E) v r) = sc (E := E) v r :=
     fun r => PI.OmLocU.NormOneUnitFixedPoints.sigR_sc' σ v r
   set G := gramR (Fv F v) σ J Y with hGdef
 
@@ -93,20 +93,20 @@ theorem isoW_gen {a : ℕ} (Y : TupV (E := E) v n a) (z : Fin a) (γ : Fv F v)
     rw [hy, hAddR, hSmulR, ← hy, hyX, h2, zero_add]
 
   obtain ⟨θ, hθO, hθ⟩ := PI.OmLocU.Red.trOnto_holds σ J ψ v hS hUn 1 (oEv_one v) (map_one _)
-  have hinv : ∀ x, sigR (Fv F v) σ (sigR (Fv F v) σ x) = x := PI.OmLocU.Orb.sigR_invol σ v hcm
-  have hNO : sigR (Fv F v) σ θ * θ ∈ OEv (E := E) v := by
+  have hinv : ∀ x, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x) = x := PI.OmLocU.Orb.sigR_invol σ v hcm
+  have hNO : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ * θ ∈ OEv (E := E) v := by
     refine oEv_mul v ?_ hθO
     have := hθ ▸ (oEv_one (E := E) v)
-    have e : sigR (Fv F v) σ θ = (θ + sigR (Fv F v) σ θ) - θ := by ring
+    have e : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ = (θ + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ) - θ := by ring
     rw [e]
     exact oEv_add v this (oEv_neg v hθO)
-  have hNf : sigR (Fv F v) σ (sigR (Fv F v) σ θ * θ) = sigR (Fv F v) σ θ * θ := by
+  have hNf : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ * θ) = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ * θ := by
     rw [map_mul, hinv, mul_comm]
   obtain ⟨ν, hν, hNν⟩ := PI.OmLocU.NormOneUnitFixedPoints.fix_int_sc σ v hcm hNO hNf
   obtain ⟨s, hsO, hs⟩ := exists_integral_root_of_quadratic v β γ ν hβ hγ hγm hν
   set t := sc (E := E) v s * θ with ht
   have htO : t ∈ OEv (E := E) v := oEv_mul v (PI.OmLocU.NormOneUnitFixedPoints.sc_mem v hsO) hθO
-  have hσt : sigR (Fv F v) σ t = sc (E := E) v s * sigR (Fv F v) σ θ := by
+  have hσt : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ t = sc (E := E) v s * Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ := by
     rw [ht, map_mul, hsc]
   set w := w0 + t • y with hw
   have hwL : w ∈ latLoc (E := E) v Λ :=
@@ -116,7 +116,7 @@ theorem isoW_gen {a : ℕ} (Y : TupV (E := E) v n a) (z : Fin a) (γ : Fv F v)
   have hwX : ∀ i, hR (Fv F v) σ J w (X i) = if i = z then 1 else 0 := by
     intro i; rw [hw, hAddL, hSmulL, hyX, hw0X, mul_zero, add_zero]
   have E0 : hR (Fv F v) σ J w w = b + t * hR (Fv F v) σ J w0 y +
-      (sigR (Fv F v) σ t * hR (Fv F v) σ J y w0 + sigR (Fv F v) σ t * (t * hR (Fv F v) σ J y y)) := by
+      (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ t * hR (Fv F v) σ J y w0 + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ t * (t * hR (Fv F v) σ J y y)) := by
     rw [hw, hAddL, hAddR, hAddR, hSmulR, hSmulL, hSmulL, hSmulR]
   have key : sc (E := E) v (β + (1 - γ * β) * s - γ * (1 - γ * β) * ν * s ^ 2) = 0 := by
     rw [hs]; simp [sc]

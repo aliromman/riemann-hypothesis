@@ -77,8 +77,8 @@ structure SD (σ : E →ₐ[F] E) (v : HeightOneSpectrum (𝓞 F)) where
   he1 : π₁ e = 1
   he2 : π₂ e = 0
   hsc : ∀ c : Fv F v, π₁ (sc (E := E) v c) = c ∧ π₂ (sc (E := E) v c) = c
-  hσ1 : ∀ x, π₁ (sigR (Fv F v) σ x) = π₂ x
-  hσ2 : ∀ x, π₂ (sigR (Fv F v) σ x) = π₁ x
+  hσ1 : ∀ x, π₁ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x) = π₂ x
+  hσ2 : ∀ x, π₂ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ x) = π₁ x
   hO : ∀ x, x ∈ OEv (E := E) v ↔ π₁ x ∈ v.adicCompletionIntegers F ∧ π₂ x ∈ v.adicCompletionIntegers F
 
 variable {σ : E →ₐ[F] E} {v : HeightOneSpectrum (𝓞 F)} (D : SD σ v)
@@ -125,7 +125,7 @@ theorem SD.kS_one {n : ℕ} : D.kS (1 : Matrix (Fin n) (Fin n) (Fv F v)) 1 = 1 :
   · rw [SD.snd_proj_split_matrix_entry, Matrix.one_apply, Matrix.one_apply]; split_ifs <;> simp
 
 def stdH (σ : E →ₐ[F] E) {n : ℕ} (x y : Fin n → Fv F v ⊗[F] E) : Fv F v ⊗[F] E :=
-  ∑ i, sigR (Fv F v) σ (x i) * y i
+  ∑ i, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (x i) * y i
 
 theorem SD.fst_proj_standard_hermitian_form {n : ℕ} (x y : Fin n → Fv F v ⊗[F] E) :
     D.π₁ (stdH σ x y) = (fun i => D.π₂ (x i)) ⬝ᵥ (fun i => D.π₁ (y i)) := by
@@ -229,7 +229,7 @@ theorem stepW_core {σ : E →ₐ[F] E} {n : ℕ} {J : Matrix (Fin n) (Fin n) E}
         y = (Q : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) *ᵥ x)
     (hQh : ∀ x y : Fin n → Fv F v ⊗[F] E,
       hR (Fv F v) σ J ((Q : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) *ᵥ x)
-        ((Q : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) *ᵥ y) = ∑ i, sigR (Fv F v) σ (x i) * y i)
+        ((Q : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) *ᵥ y) = ∑ i, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (x i) * y i)
     (hSat : SatSplit) (hC : WCore)
     (hPr : IsPrim v Λ (locF v (ratTup (F := F) (Fv F v) (F0 P)))) (h : HA (Fv F v) σ J)
     (hPrh : IsPrim v Λ (locF v (h • ratTup (F := F) (Fv F v) (F0 P)))) :
@@ -376,8 +376,8 @@ theorem stepW_core {σ : E →ₐ[F] E} {n : ℕ} {J : Matrix (Fin n) (Fin n) E}
   have hkx : ∀ x, kM *ᵥ x = Qm *ᵥ (kstd *ᵥ (Qi *ᵥ x)) := by
     intro x; rw [hkM, mulVec_mulVec, mulVec_mulVec, Matrix.mul_assoc]
   have hmem : kG ∈ HR (Fv F v) σ J := by
-    show Formalism.UG.cT (sigR (Fv F v) σ) kM * JR (Fv F v) J * kM = JR (Fv F v) J
-    apply hform_ext (sigR (Fv F v) σ)
+    show Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) kM * JR (Fv F v) J * kM = JR (Fv F v) J
+    apply hform_ext (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ)
     intro x y
     rw [← hform_mulVec]
     show hR (Fv F v) σ J (kM *ᵥ x) (kM *ᵥ y) = hR (Fv F v) σ J x y

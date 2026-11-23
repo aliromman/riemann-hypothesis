@@ -93,7 +93,7 @@ theorem exists_leftInv_of_linIndep {K : Type} [CommRing K] [IsSemisimpleRing K] 
 theorem secGram_holds : SecGram := by
   intro F E _ _ _ _ _ σ hσ M J hJ hdet R _ _ hss a x hx
   have := hss
-  let s := sigR R σ
+  let s := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ
   let Z : Fin a → Fin M → R ⊗[F] E := fun i => Matrix.vecMul (fun l => s (x i l)) (JR (F := F) R J)
   have hZh : ∀ i y, hR R σ J (x i) y = ∑ k, Z i k * y k := by
     intro i y
@@ -136,7 +136,7 @@ theorem secGram_holds : SecGram := by
   refine ⟨q, fun S hS => ?_⟩
   have hh : algebraMap F (R ⊗[F] E) (1 / 2) + algebraMap F (R ⊗[F] E) (1 / 2) = 1 := by
     rw [← map_add (f := _), show (1 / 2 : F) + 1 / 2 = 1 by norm_num, map_one]
-  have hsh : sigR R σ (algebraMap F (R ⊗[F] E) (1 / 2)) = algebraMap F (R ⊗[F] E) (1 / 2) :=
+  have hsh : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (algebraMap F (R ⊗[F] E) (1 / 2)) = algebraMap F (R ⊗[F] E) (1 / 2) :=
     (Algebra.TensorProduct.map (AlgHom.id F R) σ).commutes _
   have h1 : ∀ i j, hR R σ J (x i)
       (fun k => ∑ i', (algebraMap F (R ⊗[F] E) (1 / 2) * S i' j) * q k i') =

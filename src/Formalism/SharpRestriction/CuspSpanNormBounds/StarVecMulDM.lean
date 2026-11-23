@@ -37,9 +37,9 @@ theorem star_vecMul_dM (v : Fin (2 * r + k + 1) → ℂ) : star v ᵥ* dM k r κ
 
 theorem Zhat_cj (hκ : 0 < κ) (hτ : 0 < τ) {z z' : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z)
     (hz' : inWb k r z') (g : Mx k r) (a b : Fin (r + 1)) :
-    Zhat k r ((τ : ℂ) • z) ((τ : ℂ) • z') (cj k r κ τ g) a b =
-      ((tF r κ τ a.val * tF r κ τ b.val : ℝ) : ℂ) * Zhat k r z z' g a b := by
-  unfold Zhat herm
+    Formalism.QuantumDeterminants.Zhat k r ((τ : ℂ) • z) ((τ : ℂ) • z') (cj k r κ τ g) a b =
+      ((tF r κ τ a.val * tF r κ τ b.val : ℝ) : ℂ) * Formalism.QuantumDeterminants.Zhat k r z z' g a b := by
+  unfold Formalism.QuantumDeterminants.Zhat herm
   rw [cj_mulVec, dM_mulVec_fvec hz' b, Matrix.mulVec_smul, Matrix.mulVec_smul, Matrix.mulVec_smul,
     Matrix.mulVec_mulVec (M := Hpk k r) (N := dMi k r κ τ), Hpk_mul_dMi hκ hτ, ← Matrix.mulVec_mulVec,
     dotProduct_smul, Matrix.dotProduct_mulVec, star_vecMul_dM, dM_mulVec_fvec hz a, star_smul,

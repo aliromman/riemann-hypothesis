@@ -317,18 +317,18 @@ private theorem sc_of_isUnif_of_mem_integers {ϖ r : Fv F v} (hϖ : IsUnif v ϖ)
   · rw [NormOneUnitFixedPoints.sc_mul_sc, mul_comm r, ← mul_assoc, mul_inv_cancel₀ hϖ0, one_mul]
 
 theorem mem_of_theta (hcm : IsCMExt F E σ) {ϖ : Fv F v} (hϖ : IsUnif v ϖ) (θ : Fv F v ⊗[F] E)
-    (hθ : θ ∈ OEv (E := E) v) (hnd : (θ - sigR (Fv F v) σ θ) * (θ - sigR (Fv F v) σ θ) ∉ PO (E := E) v ϖ)
+    (hθ : θ ∈ OEv (E := E) v) (hnd : (θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ) * (θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ) ∉ PO (E := E) v ϖ)
     (z : Fv F v ⊗[F] E)
     (hz : ∀ x ∈ OEv (E := E) v, Algebra.trace (Fv F v) (Fv F v ⊗[F] E) (x * z) ∈ v.adicCompletionIntegers F) :
     z ∈ OEv (E := E) v := by
   have hσσ := b_sig_sig σ hcm
   have htr := trace_v v σ hσσ (sig_nt σ hcm) hcm.2.2.1
   have hsθ := UnN.sigR_mem σ v hθ
-  have hδ : θ - sigR (Fv F v) σ θ ∈ OEv (E := E) v := by
+  have hδ : θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ ∈ OEv (E := E) v := by
     rw [sub_eq_add_neg]
     exact Orb.oev_add v hθ (Orb.oev_neg v hsθ)
-  have hfix : sigR (Fv F v) σ ((θ - sigR (Fv F v) σ θ) * (θ - sigR (Fv F v) σ θ))
-      = (θ - sigR (Fv F v) σ θ) * (θ - sigR (Fv F v) σ θ) := by
+  have hfix : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ ((θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ) * (θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ))
+      = (θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ) * (θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ) := by
     rw [map_mul, map_sub, sigR_sigR v σ hσσ θ]
     ring
   obtain ⟨r, hr, hreq⟩ := NormOneUnitFixedPoints.fix_int_sc σ v hcm (b_mul_mem v hδ hδ) hfix
@@ -336,20 +336,20 @@ theorem mem_of_theta (hcm : IsCMExt F E σ) {ϖ : Fv F v} (hϖ : IsUnif v ϖ) (�
   have ha := hz 1 (b_one_mem v)
   rw [one_mul] at ha
   have hb := hz θ hθ
-  have key : (θ - sigR (Fv F v) σ θ) * z
+  have key : (θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ) * z
       = algebraMap (Fv F v) _ (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) (θ * z))
-        - sigR (Fv F v) σ θ * algebraMap (Fv F v) _ (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) z) := by
+        - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ * algebraMap (Fv F v) _ (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) z) := by
     rw [htr, htr, map_mul]
     ring
-  have hy : (θ - sigR (Fv F v) σ θ) * z ∈ OEv (E := E) v := by
+  have hy : (θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ) * z ∈ OEv (E := E) v := by
     rw [key, sub_eq_add_neg]
     refine Orb.oev_add v ?_ (Orb.oev_neg v (b_mul_mem v hsθ ?_))
     · rw [← b_sc_eq]
       exact b_sc_mem v hb
     · rw [← b_sc_eq]
       exact b_sc_mem v ha
-  have hz' : z = sc v r⁻¹ * ((θ - sigR (Fv F v) σ θ) * ((θ - sigR (Fv F v) σ θ) * z)) := by
-    rw [← mul_assoc (θ - sigR (Fv F v) σ θ), hreq, ← mul_assoc, NormOneUnitFixedPoints.sc_mul_sc,
+  have hz' : z = sc v r⁻¹ * ((θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ) * ((θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ) * z)) := by
+    rw [← mul_assoc (θ - Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ θ), hreq, ← mul_assoc, NormOneUnitFixedPoints.sc_mul_sc,
       inv_mul_cancel₀ hr0, NormOneUnitFixedPoints.sc_one, one_mul]
   rw [hz']
   exact b_mul_mem v (b_sc_mem v hrinv) (b_mul_mem v hδ hy)

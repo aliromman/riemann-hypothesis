@@ -26,11 +26,11 @@ theorem psi_surj (k0 : Fin 2) (hσ : ∀ x, σ (σ x) = x)
     (hu : ∀ k, algebraMap F (Fv F v) (b.repr 1 k / b.repr 1 k0) ∈ v.adicCompletionIntegers F)
     (hk0 : b.repr 1 k0 ≠ 0) : Function.Surjective (psi b v σ a k0) := by
   intro g
-  have hinv : ∀ y : Fv F v ⊗[F] E, sigR (Fv F v) σ (sigR (Fv F v) σ y) = y := by
+  have hinv : ∀ y : Fv F v ⊗[F] E, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ y) = y := by
     intro y
     induction y using TensorProduct.induction_on with
     | zero => simp
-    | tmul r e => simp [sigR, hσ]
+    | tmul r e => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, hσ]
     | add x y hx hy => simp only [map_add (f := _), hx, hy]
   set u : Fv F v := algebraMap F (Fv F v) (b.repr 1 k0) with hu_def
   have hu0 : u ≠ 0 := (map_ne_zero (algebraMap F (Fv F v))).mpr hk0
@@ -38,16 +38,16 @@ theorem psi_surj (k0 : Fin 2) (hσ : ∀ x, σ (σ x) = x)
     (Algebra.TensorProduct.basis (Fv F v) b).equivFun.symm ![(g (i, j) : Fv F v), (g (j, i) : Fv F v)]
   let D : Fin a → Fv F v ⊗[F] E := fun i => ((g (i, i) : Fv F v) / u) • (1 : Fv F v ⊗[F] E)
   let M : Matrix (Fin a) (Fin a) (Fv F v ⊗[F] E) := fun i j =>
-    if i < j then Y i j else if j < i then sigR (Fv F v) σ (Y j i) else D i
-  have hD : ∀ i, sigR (Fv F v) σ (D i) = D i := by
+    if i < j then Y i j else if j < i then Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (Y j i) else D i
+  have hD : ∀ i, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (D i) = D i := by
     intro i
-    simp [D, sigR, Algebra.TensorProduct.one_def, TensorProduct.smul_tmul']
+    simp [D, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Algebra.TensorProduct.one_def, TensorProduct.smul_tmul']
   have hY : ∀ i j k, cr b v (Y i j) k = ![(g (i, j) : Fv F v), (g (j, i) : Fv F v)] k :=
     fun i j k => cr_symm b v _ k
   have hDk : ∀ i k, cr b v (D i) k = (g (i, i) : Fv F v) / u * algebraMap F (Fv F v) (b.repr 1 k) :=
     fun i k => cr_smul_one b v _ k
   have hM : M ∈ HermR (Fv F v) σ a := by
-    show ∀ i j, sigR (Fv F v) σ (M j i) = M i j
+    show ∀ i j, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (M j i) = M i j
     intro i j
     rcases lt_trichotomy i j with h | rfl | h
     · simp [M, h, lt_asymm h, hinv]

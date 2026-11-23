@@ -241,12 +241,12 @@ theorem jetCopy_eq {d n : ℕ} (m : ℕ) (i : Fin n) :
 variable (C : ChartAt Xo c y) (φ : Fin C.d → MvPowerSeries (Fin 1 × Fin (dL Dw)) S)
 
 theorem xExp_zero (hφ : IsExpOf C.B.G.F C.uvec φ) (m : ℕ) :
-    homAt y.x (jetAug : Jet S (Fin 1 × Fin (dL Dw)) m →ₐ[S] S) ≫ xExp y C φ m = 1 := by
+    Formalism.L2.Pj.homAt y.x (jetAug : Jet S (Fin 1 × Fin (dL Dw)) m →ₐ[S] S) ≫ xExp y C φ m = 1 := by
   rw [xExp, ← Category.assoc, GermD.homAt_comp, jφ, aug_comp_jetSubstPS m (fun p : Fin 1 × Fin C.d => φ p.2) (fun p => hφ.const p.2)]
   exact C.chart.zero m
 
 theorem xExp_trunc (m : ℕ) :
-    homAt y.x (jetTrunc : Jet S (Fin 1 × Fin (dL Dw)) (m + 1) →ₐ[S] Jet S (Fin 1 × Fin (dL Dw)) m) ≫
+    Formalism.L2.Pj.homAt y.x (jetTrunc : Jet S (Fin 1 × Fin (dL Dw)) (m + 1) →ₐ[S] Jet S (Fin 1 × Fin (dL Dw)) m) ≫
       xExp y C φ (m + 1) = xExp y C φ m := by
   rw [xExp, xExp, ← Category.assoc, GermD.homAt_comp, jφ, jφ, jetSubstPS_trunc', ← GermD.homAt_comp,
     Category.assoc, C.chart.trunc m]
@@ -282,10 +282,10 @@ theorem jφ_law (hφ : IsExpOf C.B.G.F C.uvec φ) (m : ℕ) :
   simp only [addP, MvPolynomial.coe_add, MvPolynomial.coe_X]
 
 theorem xExp_law (hφ : IsExpOf C.B.G.F C.uvec φ) (m : ℕ) :
-    homAt y.x (jetSubstP m (addP (Dw := Dw) (S := S))) ≫ xExp y C φ m =
+    Formalism.L2.Pj.homAt y.x (jetSubstP m (addP (Dw := Dw) (S := S))) ≫ xExp y C φ m =
       jpt y (dL Dw) (xExp y C φ) m (0 : Fin 2) * jpt y (dL Dw) (xExp y C φ) m (1 : Fin 2) := by
   have e0 : ∀ i : Fin 2, jpt y (dL Dw) (xExp y C φ) m i =
-      homAt y.x (jetSubstPS (m := m) (fun p : Fin 2 × Fin C.d => atPt p.1 (φ p.2))) ≫ jpt y C.d C.x m i := by
+      Formalism.L2.Pj.homAt y.x (jetSubstPS (m := m) (fun p : Fin 2 × Fin C.d => atPt p.1 (φ p.2))) ≫ jpt y C.d C.x m i := by
     intro i
     rw [jpt, jpt, xExp, ← Category.assoc, GermD.homAt_comp, jφ_copy C φ hφ, ← GermD.homAt_comp, Category.assoc]
   rw [e0, e0, ← MonObj.comp_mul, ← C.chart.law m, xExp, ← Category.assoc, GermD.homAt_comp, jφ_law C φ hφ,
@@ -293,7 +293,7 @@ theorem xExp_law (hφ : IsExpOf C.B.G.F C.uvec φ) (m : ℕ) :
 
 theorem xExp_act (hφ : IsExpOf C.B.G.F C.uvec φ) (hA : ExpActOf C φ) (m : ℕ) (a : 𝓞 E) :
     xExp y C φ m ≫ Xo.univ.t.act.act a =
-      homAt y.x (jetSubstP m (actP (Dw := Dw) (S := S) c a)) ≫ xExp y C φ m := by
+      Formalism.L2.Pj.homAt y.x (jetSubstP m (actP (Dw := Dw) (S := S) c a)) ≫ xExp y C φ m := by
   have hP : ∀ q, MvPolynomial.constantCoeff (actP (Dw := Dw) (S := S) c a q) = 0 := fun q => by simp [actP]
   have hA' : (jφ φ m).comp (jetSubstPS (m := m) (fun p : Fin 1 × Fin C.d => C.B.A.act a p.2)) =
       (jetSubstP m (actP (Dw := Dw) (S := S) c a)).comp (jφ φ m) := by
@@ -305,7 +305,7 @@ theorem xExp_act (hφ : IsExpOf C.B.G.F C.uvec φ) (hA : ExpActOf C φ) (m : ℕ
       jetSubstPS_psJet m (fun q : Fin 1 × Fin (dL Dw) => (actP (Dw := Dw) (S := S) c a q : MvPowerSeries (Fin 1 × Fin (dL Dw)) S))
         (fun q => const_coeff_coe_zero _ (hP q)), hA a p.2, actS_eq]
   have hC : C.x m ≫ Xo.univ.t.act.act a =
-      homAt y.x (jetSubstPS (m := m) (fun p : Fin 1 × Fin C.d => C.B.A.act a p.2)) ≫ C.x m :=
+      Formalism.L2.Pj.homAt y.x (jetSubstPS (m := m) (fun p : Fin 1 × Fin C.d => C.B.A.act a p.2)) ≫ C.x m :=
     C.chart.act m a
   rw [xExp, Category.assoc, hC, ← Category.assoc, GermD.homAt_comp, hA', ← GermD.homAt_comp, Category.assoc]
 
@@ -321,7 +321,7 @@ variable {S : Type} [CommRing S] [Algebra c.F S] [Algebra ℚ S] {y : FrPt Xo c 
 variable (C : ChartAt Xo c y)
 
 def pOf (g : Fin 1 × Fin C.d → S) : overAt y.x (DualNumber S) ⟶ Xo.univ.t.G :=
-  homAt y.x (tp g) ≫ C.x 1
+  Formalism.L2.Pj.homAt y.x (tp g) ≫ C.x 1
 
 theorem fin_one_pair_eq {d : ℕ} (q : Fin 1 × Fin d) : ((0 : Fin 1), q.2) = q := Prod.ext (Subsingleton.elim _ _) rfl
 
@@ -334,7 +334,7 @@ theorem pOf_zero : pOf C 0 = 1 := by
     show TrivSqZeroExt.inr (0 : S) =
       algebraMap S (DualNumber S) (MvPolynomial.aeval (fun _ => (0 : S)) (MvPolynomial.X q))
     rw [MvPolynomial.aeval_X, map_zero, TrivSqZeroExt.inr_zero]
-  have hz : homAt y.x (jetAug : Jet S (Fin 1 × Fin C.d) (0 + 1) →ₐ[S] S) ≫ C.x 1 = 1 := C.chart.zero 1
+  have hz : Formalism.L2.Pj.homAt y.x (jetAug : Jet S (Fin 1 × Fin C.d) (0 + 1) →ₐ[S] S) ≫ C.x 1 = 1 := C.chart.zero 1
   rw [pOf, h, ← GermD.homAt_comp, Category.assoc, hz, MonObj.comp_one]
 
 def tp2 (g g' : Fin 1 × Fin C.d → S) : Jet S (Fin 2 × Fin C.d) (0 + 1) →ₐ[S] DualNumber S :=
@@ -363,10 +363,10 @@ theorem pOf_add (g g' : Fin 1 × Fin C.d → S) : pOf C (g + g') = pOf C g * pOf
     rw [AlgHom.comp_apply, jetSubstPS_mk (0 + 1) (fun p : Fin 1 × Fin C.d => C.B.G.F p.2) (fun p => C.B.G.const p.2),
       tp2, tp_psJet, tp_mk, C.B.G.const, TrivSqZeroExt.inl_zero, zero_add, lin_F]
     simp only [Pi.add_apply, fin_one_pair_eq]
-  have hl : homAt y.x (jetSubstPS (m := 0 + 1) (fun p : Fin 1 × Fin C.d => C.B.G.F p.2)) ≫ C.x 1 =
-      (homAt y.x (jetCopy C.d (0 + 1) (0 : Fin 2)) ≫ C.x 1) * (homAt y.x (jetCopy C.d (0 + 1) (1 : Fin 2)) ≫ C.x 1) :=
+  have hl : Formalism.L2.Pj.homAt y.x (jetSubstPS (m := 0 + 1) (fun p : Fin 1 × Fin C.d => C.B.G.F p.2)) ≫ C.x 1 =
+      (Formalism.L2.Pj.homAt y.x (jetCopy C.d (0 + 1) (0 : Fin 2)) ≫ C.x 1) * (Formalism.L2.Pj.homAt y.x (jetCopy C.d (0 + 1) (1 : Fin 2)) ≫ C.x 1) :=
     C.chart.law 1
-  have e := congrArg (fun f => homAt y.x (tp2 C g g') ≫ f) hl
+  have e := congrArg (fun f => Formalism.L2.Pj.homAt y.x (tp2 C g g') ≫ f) hl
   simp only [MonObj.comp_mul, ← Category.assoc, GermD.homAt_comp, hc, hF, h0, h1] at e
   exact e
 
@@ -376,14 +376,14 @@ theorem pOf_sum : ∀ (n : ℕ) (f : Fin n → Fin 1 × Fin C.d → S),
   | n + 1, f => by rw [Fin.sum_univ_succ, pOf_add, pOf_sum n, List.ofFn_succ, List.prod_cons]
 
 theorem eps_pOf (a : S) (g : Fin 1 × Fin C.d → S) :
-    spMap (epsMul a) ≫ (homAt y.x (tp g) ≫ C.x 1).left = (pOf C (a • g)).left := by
+    spMap (epsMul a) ≫ (Formalism.L2.Pj.homAt y.x (tp g) ≫ C.x 1).left = (pOf C (a • g)).left := by
   have h : (TrivSqZeroExt.map (a • LinearMap.id : S →ₗ[S] S)).comp (tp g) = tp (a • g) := by
     apply jet_hom_ext
     intro q
     rw [AlgHom.comp_apply, tp_mk, tp_mk, TrivSqZeroExt.map_inr]
     rfl
   rw [pOf, ← h]
-  simp only [Over.comp_left, homAt, Over.homMk_left, ← Category.assoc, spMap, epsMul, ← Spec.map_comp,
+  simp only [Over.comp_left, Formalism.L2.Pj.homAt, Over.homMk_left, ← Category.assoc, spMap, epsMul, ← Spec.map_comp,
     ← CommRingCat.ofHom_comp]
   rfl
 
@@ -399,15 +399,15 @@ theorem tan_jφ (hφ : IsExpOf C.B.G.F C.uvec φ) (j : Fin (dL Dw)) :
   simp only [ite_mul, _root_.one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
 
 theorem xExp_tan (hφ : IsExpOf C.B.G.F C.uvec φ) (ℓ : Lt1 Dw) : IsCombAt y.x
-    (fun j : Fin (dL Dw) => (homAt y.x (jetTan ((0 : Fin 1), j) :
+    (fun j : Fin (dL Dw) => (Formalism.L2.Pj.homAt y.x (jetTan ((0 : Fin 1), j) :
       Jet S (Fin 1 × Fin (dL Dw)) (0 + 1) →ₐ[S] DualNumber S) ≫ xExp y C φ 1).left)
     (fun j => if j = ltIdx Dw ℓ then 1 else 0) (y.u ℓ.1 ℓ.2) := by
-  have hv : ∀ j : Fin (dL Dw), homAt y.x (jetTan ((0 : Fin 1), j) :
+  have hv : ∀ j : Fin (dL Dw), Formalism.L2.Pj.homAt y.x (jetTan ((0 : Fin 1), j) :
       Jet S (Fin 1 × Fin (dL Dw)) (0 + 1) →ₐ[S] DualNumber S) ≫ xExp y C φ 1 =
-      homAt y.x (tp fun q : Fin 1 × Fin C.d => MvPowerSeries.coeff (Finsupp.single ((0 : Fin 1), j) 1) (φ q.2)) ≫
+      Formalism.L2.Pj.homAt y.x (tp fun q : Fin 1 × Fin C.d => MvPowerSeries.coeff (Finsupp.single ((0 : Fin 1), j) 1) (φ q.2)) ≫
         C.x 1 := by
     intro j
-    show homAt y.x _ ≫ (homAt y.x (jφ φ (0 + 1)) ≫ C.x 1) = _
+    show Formalism.L2.Pj.homAt y.x _ ≫ (Formalism.L2.Pj.homAt y.x (jφ φ (0 + 1)) ≫ C.x 1) = _
     rw [← Category.assoc, GermD.homAt_comp, tan_jφ C φ hφ j]
   obtain ⟨u, hu, hprod⟩ := C.chart.tan ℓ
   have hu' : u = fun i => pOf C (C.uvec ℓ i • fun q : Fin 1 × Fin C.d => if q = ((0 : Fin 1), i) then (1 : S) else 0) := by

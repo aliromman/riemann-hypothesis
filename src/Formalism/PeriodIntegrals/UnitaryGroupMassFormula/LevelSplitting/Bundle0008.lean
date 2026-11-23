@@ -123,11 +123,11 @@ theorem ncoord_of_parts (hH : HeisP F E σ M J) (hL : LevP F E σ M J) : NCoord 
   obtain ⟨sH, csH, cyH, hs1, hdec, hyH, hZN1, hcent, hmul, hZnorm, hconj, hZconj⟩ :=
     hH hJ hinv r P T hP
   obtain ⟨A, Lev, hAN, hAcl, cLev, hLev, hAN1, hN1norm, hAcomm⟩ := hL hJ hinv r P T hP
-  have hmemW : ∀ m : LevelUnipotentSubgroup (Af F) σ J P, ∀ a, yH (Af F) σ J P m a ∈ Wp (Af F) σ J P := by
+  have hmemW : ∀ m : LevelUnipotentSubgroup (Af F) σ J P, ∀ a, yH (Af F) σ J P m a ∈ PI.LevelKSplit.W.NC.Wp (Af F) σ J P := by
     intro m a
     obtain ⟨y, hy, -⟩ := hdec m m.2
     rw [← hy a]; exact (y a).2
-  let yQ : LevelUnipotentSubgroup (Af F) σ J P → (Fin r → Wp (Af F) σ J P) := fun m a =>
+  let yQ : LevelUnipotentSubgroup (Af F) σ J P → (Fin r → PI.LevelKSplit.W.NC.Wp (Af F) σ J P) := fun m a =>
     ⟨yH (Af F) σ J P m a, hmemW m a⟩
   have H : CoordHyp (Nsub (Af F) σ J P) A (LevelUnipotentSubgroup (Af F) σ J P) (Zsub (Af F) σ J P) Lev sH yQ :=
     { hAN := hAN

@@ -41,12 +41,12 @@ instance t2Space_tensorProduct_finiteExtension : T2Space (R ⊗[F] E) := by
   obtain ⟨ι, _, ⟨h⟩⟩ := exists_homeomorph_tens (F := F) (E := E) R
   exact h.isEmbedding.t2Space
 
-theorem continuous_sigR (σ : E →ₐ[F] E) : Continuous (sigR R σ) := by
-  have e : (sigR R σ : R ⊗[F] E → R ⊗[F] E) = (σ.toLinearMap.baseChange R : R ⊗[F] E → R ⊗[F] E) := by
+theorem continuous_sigR (σ : E →ₐ[F] E) : Continuous (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) := by
+  have e : (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ : R ⊗[F] E → R ⊗[F] E) = (σ.toLinearMap.baseChange R : R ⊗[F] E → R ⊗[F] E) := by
     funext x
     induction x using TensorProduct.induction_on with
     | zero => simp
-    | tmul r y => simp [sigR, LinearMap.baseChange_tmul]
+    | tmul r y => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, LinearMap.baseChange_tmul]
     | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
   rw [e]
   exact IsModuleTopology.continuous_of_linearMap _
@@ -62,7 +62,7 @@ instance t2Space_matrix_tensor : T2Space (Matrix (Fin M) (Fin M) (R ⊗[F] E)) :
 theorem isClosed_HR (σ : E →ₐ[F] E) (J : Matrix (Fin M) (Fin M) E) :
     IsClosed (HR R σ J : Set (GL (Fin M) (R ⊗[F] E))) := by
   have hc : Continuous fun g : GL (Fin M) (R ⊗[F] E) =>
-      Formalism.UG.cT (sigR R σ) (g : Matrix (Fin M) (Fin M) (R ⊗[F] E)) * JR R J * (g : Matrix (Fin M) (Fin M) (R ⊗[F] E)) := by
+      Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (g : Matrix (Fin M) (Fin M) (R ⊗[F] E)) * JR R J * (g : Matrix (Fin M) (Fin M) (R ⊗[F] E)) := by
     unfold Formalism.UG.cT
     exact (((Units.continuous_val.matrix_map (continuous_sigR R σ)).matrix_transpose).matrix_mul
       continuous_const).matrix_mul Units.continuous_val

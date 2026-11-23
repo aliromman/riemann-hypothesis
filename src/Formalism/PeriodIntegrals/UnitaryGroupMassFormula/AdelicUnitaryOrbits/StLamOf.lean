@@ -136,12 +136,12 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E] (σ : E →ₐ[F] E)
 variable (R : Type) [CommRing R] [Algebra F R]
 
 theorem sigR_algebraMap (r : R) :
-    sigR R σ (algebraMap R (R ⊗[F] E) r) = algebraMap R (R ⊗[F] E) r := by
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (algebraMap R (R ⊗[F] E) r) = algebraMap R (R ⊗[F] E) r := by
   rw [Algebra.TensorProduct.algebraMap_apply]
-  simp [sigR]
+  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
 
-theorem sigR_tmul (r : R) (x : E) : sigR R σ (r ⊗ₜ x) = r ⊗ₜ σ x := by
-  simp [sigR]
+theorem sigR_tmul (r : R) (x : E) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ (r ⊗ₜ x) = r ⊗ₜ σ x := by
+  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
 
 theorem decomp (θ : E) (hspan : ∀ e : E, ∃ p q : F, e = algebraMap F E p + algebraMap F E q * θ)
     (z : R ⊗[F] E) : ∃ a b : R, z = algebraMap R (R ⊗[F] E) a + algebraMap R (R ⊗[F] E) b * (1 ⊗ₜ θ) := by
@@ -185,7 +185,7 @@ theorem stLam_of (hQ : QuadGen) : StLam := by
     rw [Algebra.TensorProduct.algebraMap_apply, Algebra.TensorProduct.algebraMap_apply,
       hidR]
   rw [hβS]
-  refine core (algebraMap R (R ⊗[F] E)) (sigR R σ) (1 ⊗ₜ θ) (algebraMap F R d)
+  refine core (algebraMap R (R ⊗[F] E)) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ) (1 ⊗ₜ θ) (algebraMap F R d)
     (algebraMap F R β) (algebraMap F R P) (algebraMap F R Q) a b ?_ ?_ ?_ ?_
     (algebraMap F R β⁻¹) (algebraMap F R (Q * d)⁻¹) (algebraMap F R (1 / 4)) ?_ ?_ ?_ hU
   · rw [Algebra.TensorProduct.tmul_pow, one_pow, hθ, Algebra.TensorProduct.algebraMap_apply,
