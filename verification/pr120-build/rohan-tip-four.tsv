@@ -1,0 +1,5 @@
+module	parent_errors	corrected_errors	corrected_kernel	corrected_lake_dep_hash
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SemidirectVolume.HermitianDatumFormEq	4	0	pass	1c2c95e8fc9f12b1
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.ExistsUnifFv	5	0	pass	1b043a77af390942
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassFiniteness.Bundle0004	26	0	pass	8a3598be66097574
+Formalism.SharpRestriction.CuspSpanNormBounds.TheoremBConstants	4	0	pass	32b9cd25878c6054

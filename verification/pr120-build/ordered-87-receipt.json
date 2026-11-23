@@ -1,0 +1,30 @@
+{
+  "candidate": "860a822eefb357b054bc3178642656d7270401b1",
+  "parents": [
+    "8ad1ea21532af9e0d7e92ea802e12c3420402e60",
+    "2053aa91b43b0718872dfcedfa87b09a8c9bab79"
+  ],
+  "tree": "f19c592b6297f101d115bfd9933f763fab8b6516",
+  "main": "51d9b1a28026d458aef9c9af3df8b083276e3d2d",
+  "before_sources": 149397,
+  "after_sources": 63550,
+  "reduction": 85847,
+  "protected": [
+    "src/Challenge.lean",
+    "src/Statements.lean",
+    "src/Main.lean",
+    "lean-toolchain",
+    "lakefile.toml",
+    "lake-manifest.json",
+    "export-targets.txt",
+    "comparator.json"
+  ],
+  "stock_jobs": 24247,
+  "original_report_files": 87,
+  "original_members": 292,
+  "output_targets": 93,
+  "project_source_dependencies_including_targets": 2999,
+  "module_count_filter": "NUL-delimited git ls-tree -rz --name-only REV -- src, names ending in .lean",
+  "full_build_status": "pending",
+  "comparator_status": "pending"
+}

@@ -1,0 +1,39 @@
+{
+  "candidate": "860a822eefb357b054bc3178642656d7270401b1",
+  "trusted": "51d9b1a28026d458aef9c9af3df8b083276e3d2d",
+  "protected_inputs": {
+    "src/Challenge.lean": "a3cebbf30be6b9268a0ed413c9bbc256dfa9f4bfa04f1a75f144d135da5e21a5",
+    "src/Main.lean": "fb2d5fe89a9dfcff8ba95fa5703c865254f8564af06d99dec73304f458818432",
+    "src/Statements.lean": "3ab58a3af2384def08e6f71531c33939a83a1408e31ac5b0e75bf4afa488a463",
+    "lakefile.toml": "e12dd96eb155851de5107571dbfc959e5d9b230ead90331b4778b55b048590bb",
+    "lake-manifest.json": "ee003c5c7a9b2b2a82a142b6633916661c07117199dd143d94d1af63910237df",
+    "lean-toolchain": "582a63f8f9c5128067b688778c1051cf1464c3ca9d57b9325025c051c29b774a",
+    "export-targets.txt": "9eeb2e5e55be4a78f6e4983fc950dba915b45ad8aeb7a02a32341927a89e05e8",
+    "comparator.json": "8ea890e6ccda9cf3983ada343af18a41d12542036875a3936e7925ed5b1582ff"
+  },
+  "bytes": 356112850,
+  "sha256": "ccaa35047adcb2b493ad0ca36abfdd02633b56f5afad009d027b4570ee0f2194",
+  "theorem_names": [
+    "riemannHypothesis",
+    "riemannZeta_eq_zero_re",
+    "LFunction_ne_zero_of_half_lt_re",
+    "LFunction_eq_zero_re",
+    "LFunction_eq_zero_re_of_isPrimitive"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "external_kernels": {
+    "Lean paranoid": [
+      "leanchecker-paranoid",
+      "--silent",
+      "--from-export"
+    ],
+    "nanoda": [
+      "nanoda_bin"
+    ]
+  },
+  "lean": "Lean (version 4.36.0, arm64-apple-darwin24.6.0, commit 611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9, Release)"
+}
