@@ -269,8 +269,9 @@ open IsDiscreteValuationRing in
 theorem sq_mul_not_mem_maxIdeal_pow :
     ∀ (F : Type) [Field F] [ValuativeRel F] [TopologicalSpace F] [IsNonarchimedeanLocalField F] (p e : ℕ) (c : ℤ),
       p.Prime → 0 < e → OrdIs F p e → ¬ (p : ℤ) ∣ c →
-      ∀ w ∈ 𝓂[F] ^ (3 * e), ((w : 𝒪[F]) : F) ≠ (p : F) ^ 2 * (c : F) := by
+      ∀ w ∈ (@IsLocalRing.maximalIdeal ↥𝒪[F] _ (ValuationRing.isLocalRing _)) ^ (3 * e), ((w : 𝒪[F]) : F) ≠ (p : F) ^ 2 * (c : F) := by
   intro F _ _ _ _ p e c hp he hord hc w hw heq
+  have : IsLocalRing 𝒪[F] := ValuationRing.isLocalRing _
   have hw' : w = (p : 𝒪[F]) ^ 2 * (c : 𝒪[F]) := by
     apply Subtype.ext
     simpa using heq
