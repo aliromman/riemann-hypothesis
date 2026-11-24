@@ -59,6 +59,8 @@ jobs:
           PR_NUMBER: ${{ steps.published.outputs.number }}
           HEAD_REV: ${{ steps.published.outputs.head }}
         run: |
+          # Get the ancestry of this parent without downloading other upstream branches.
+          git fetch --quiet --unshallow --filter=tree:0 --no-tags --no-write-fetch-head origin "$(git rev-parse HEAD)"
           git fetch --quiet --no-tags origin "+refs/pull/$PR_NUMBER/head:refs/root-check/reviewed"
           git merge-base --is-ancestor "$HEAD_REV" refs/root-check/reviewed
           for commit in a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1 4fc7348e335c0c93eece5d0183bfc64f52081b84 343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf; do
