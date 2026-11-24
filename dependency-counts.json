@@ -1,0 +1,11 @@
+{
+  "project_modules": 60928,
+  "project_edges": 376421,
+  "changed": 11582,
+  "unchanged_direct_importers": 9995,
+  "unchanged_transitive_importers": 30956,
+  "contains_Main": true,
+  "project_import_all": 7,
+  "changed_import_all_targets": [],
+  "project_meta_imports": 0
+}

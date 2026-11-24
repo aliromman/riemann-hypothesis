@@ -1,0 +1,140 @@
+{
+  "roots": {
+    "Development.AutomorphicSpectrum.Proofs.MembershipProofs.CyclicAndLine": [
+      "Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff",
+      "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+      "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.GoodChar",
+      "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.LaEqSqrtSmulLam",
+      "Development.AutomorphicSpectrum.Proofs.MembershipProofs.CyclicAndLine"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.HeightProofs.OpenImmersionCompStructureEqGeneric": [
+      "Development.AbelianVarietyTheory.Proofs.HeightProofs.OpenImmersionCompStructureEqGeneric"
+    ],
+    "Development.EtaleCohomology.CohomologicalPurity.FinLeafHens": [
+      "Development.AbelianVarietyTheory.Definitions.Divisors.BlockGLMap",
+      "Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition",
+      "Development.EtaleCohomology.CohomologicalPurity.FinLeafHens",
+      "Development.EtaleCohomology.CohomologicalPurity.InrFold",
+      "Development.EtaleCohomology.CohomologicalPurity.LeafIndExc"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ArithmeticGroupCuspCentreLattice": [
+      "Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.NormConst",
+      "Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.UnivFrame",
+      "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ArithmeticGroupCuspCentreLattice",
+      "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FinrankRatSkewHermitianMatricesCmField",
+      "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ZMatEInjective"
+    ],
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase": [
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase"
+    ],
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.CanonEx": [
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AdjointDiagonalRepPreservesWeightPiece",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.CanonEx",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsCharZeroPt",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ConjTor",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight"
+    ],
+    "Development.EtaleCohomology.TateTwists.EtaleTensorProductSheafExistsOfComponents": [
+      "Development.EtaleCohomology.TateTwists.EtaleTensorComplexExistsOfSheafTensorComplex",
+      "Development.EtaleCohomology.TateTwists.EtaleTensorProductSheafExistsOfComponents"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.EqZeroOfNotPrimary": [
+      "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.InvariantSubspaceMobiusInverseRecEqOfFinrankLt",
+      "Development.AbelianVarietyTheory.Proofs.CharacterTheory.EqZeroOfNotPrimary"
+    ],
+    "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CycleNumberRename": [
+      "Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.BundleChernComparison",
+      "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CycleNumberRename",
+      "Development.WeilBound.CoreStatements.IdealCycleValues.ProdMapToMultiset"
+    ],
+    "Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.LeNuIffPowMemPrinc": [
+      "Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.LeNuIffPowMemPrinc"
+    ],
+    "Development.AutomorphicSpectrum.Proofs.MetricProofs.RiemannFormPeriodDeterminantBound": [
+      "Development.AutomorphicSpectrum.Proofs.MetricProofs.RiemannFormPeriodDeterminantBound"
+    ],
+    "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsNineAdd": [
+      "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsDefs",
+      "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsNineAdd",
+      "Development.WeilBound.CoreStatements.TemperedRepresentationTheory.GelfandSpectralNormalisation.NormalisedInvariants.PoitouTateExactSecond"
+    ],
+    "Development.EtaleCohomology.TateTwists.EtaleChainsMayerVietorisShortExactOfFree": [
+      "Development.EtaleCohomology.TateTwists.EtaleChainsMayerVietorisShortExactOfFree"
+    ],
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.PTensorGK": [
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData",
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.LiftCommEAt",
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.PTensorGK",
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.QdetFacts",
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.StepFormula"
+    ],
+    "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.GraphAlgebraStandardSmooth": [
+      "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.GraphAlgebraStandardSmooth"
+    ],
+    "Development.WeilBound.ThetaLifts.Reductions.SiegelHaar": [
+      "Development.WeilBound.ThetaLifts.Reductions.SiegelHaar"
+    ],
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.FormallyEtaleCoordinates": [
+      "Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.SpanSingletonProduct",
+      "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleCoordinates",
+      "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.FormallyEtaleCoordinates"
+    ],
+    "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TraceUnique": [
+      "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TraceUnique"
+    ]
+  },
+  "order": [
+    "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.InvariantSubspaceMobiusInverseRecEqOfFinrankLt",
+    "Development.AbelianVarietyTheory.Definitions.Divisors.BlockGLMap",
+    "Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition",
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+    "Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff",
+    "Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.NormConst",
+    "Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.UnivFrame",
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.EqZeroOfNotPrimary",
+    "Development.AbelianVarietyTheory.Proofs.HeightProofs.OpenImmersionCompStructureEqGeneric",
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ZMatEInjective",
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FinrankRatSkewHermitianMatricesCmField",
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ArithmeticGroupCuspCentreLattice",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AdjointDiagonalRepPreservesWeightPiece",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ConjTor",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsCharZeroPt",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.CanonEx",
+    "Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.LeNuIffPowMemPrinc",
+    "Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.BundleChernComparison",
+    "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.LaEqSqrtSmulLam",
+    "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.GoodChar",
+    "Development.WeilBound.CoreStatements.IdealCycleValues.ProdMapToMultiset",
+    "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CycleNumberRename",
+    "Development.AutomorphicSpectrum.Proofs.MembershipProofs.CyclicAndLine",
+    "Development.AutomorphicSpectrum.Proofs.MetricProofs.RiemannFormPeriodDeterminantBound",
+    "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TraceUnique",
+    "Development.EtaleCohomology.CohomologicalPurity.InrFold",
+    "Development.EtaleCohomology.CohomologicalPurity.LeafIndExc",
+    "Development.EtaleCohomology.CohomologicalPurity.FinLeafHens",
+    "Development.EtaleCohomology.TateTwists.EtaleChainsMayerVietorisShortExactOfFree",
+    "Development.EtaleCohomology.TateTwists.EtaleTensorComplexExistsOfSheafTensorComplex",
+    "Development.EtaleCohomology.TateTwists.EtaleTensorProductSheafExistsOfComponents",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.SpanSingletonProduct",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleCoordinates",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.FormallyEtaleCoordinates",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.GraphAlgebraStandardSmooth",
+    "Development.WeilBound.CoreStatements.TemperedRepresentationTheory.GelfandSpectralNormalisation.NormalisedInvariants.PoitouTateExactSecond",
+    "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsDefs",
+    "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsNineAdd",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.StepFormula",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.QdetFacts",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.LiftCommEAt",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.PTensorGK",
+    "Development.WeilBound.ThetaLifts.Reductions.SiegelHaar"
+  ]
+}

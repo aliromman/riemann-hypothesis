@@ -1,0 +1,50 @@
+{
+  "parent": "9893104138b909cddb3dea39fb23d62d8f83141a",
+  "head": "1ae1f79ed3f27986e4493a1c8fb6e21455d7467a",
+  "source_tree": "e4578d9cb1c96062bc9a81dbb3cb3aae8156cd6e",
+  "source_files": 11582,
+  "members": 68250,
+  "member_bodies_with_verified_scope_fusion": 24576,
+  "planner_modules_compared": 60929,
+  "planner_modules_protected": 12685,
+  "fused_adjacent_empty_lines_removed": 3064,
+  "additional_command_lines_saved": 4703,
+  "additional_open_lines_saved": 4271,
+  "refined_clumps": 850,
+  "bytes_in_original_member_sources": 514384469,
+  "candidate_tools": {
+    "scripts/clump.py": [
+      {
+        "mode": "100644",
+        "blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+        "sha256": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44"
+      },
+      {
+        "mode": "100644",
+        "blob": "b82652f58380a8977ecb5389fbe7eb90f7ef1eb9",
+        "sha256": "15907141a0494fc0c3dec133db73043d2c3923fb97180b737692d90c428132d3"
+      }
+    ],
+    "scripts/test_clump_scopes.py": [
+      null,
+      {
+        "mode": "100644",
+        "blob": "3491f6c28f6c7f81b635e2631268c649a3c32372",
+        "sha256": "99f9ebabd2d60c1c99343f5918dda875f0c44b0d7eec0552b095005e7ce435c6"
+      }
+    ]
+  },
+  "focused_test_output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 0.004s\n\nOK",
+  "production_source_manifest_sha256": "d01a2698cfb30e36fd5de1877d4847a0b47f0af85c2a3b0f63c6c53f3358bd59",
+  "selection_sha256": "4c4f19ab798e056b2c317d9a632fef5c45eac023b833e546da6937560e83d265",
+  "title": "source and normal-tooling verification before native eligibility closes",
+  "dependencies": {
+    "affected_modules_including_changed": 42538,
+    "unchanged_directly_dependent": 9995,
+    "unchanged_transitively_dependent": 30956,
+    "full_Main_source_closure_including_Main": 60716,
+    "edited_in_full_Main_source_closure": 11581,
+    "visible_to_Main": 11464,
+    "Main_visible": 60111
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "07eee57ea636754a789d92f28c74bfa7d054157a": {
+    "other_lean": {
+      "blank": 83,
+      "bytes": 34242,
+      "comment": 15,
+      "end": 7,
+      "lines": 718,
+      "modules": 9,
+      "nonblank": 635,
+      "open": 5,
+      "other": 605,
+      "public": 2,
+      "section": 1
+    },
+    "src": {
+      "blank": 1766685,
+      "bytes": 1058774150,
+      "comment": 253088,
+      "end": 372455,
+      "lines": 15840472,
+      "modules": 60929,
+      "nonblank": 14073787,
+      "noncomputable": 64905,
+      "open": 359378,
+      "other": 12768907,
+      "public": 124053,
+      "section": 131001
+    }
+  },
+  "1ae1f79ed3f27986e4493a1c8fb6e21455d7467a": {
+    "other_lean": {
+      "blank": 83,
+      "bytes": 34242,
+      "comment": 15,
+      "end": 7,
+      "lines": 718,
+      "modules": 9,
+      "nonblank": 635,
+      "open": 5,
+      "other": 605,
+      "public": 2,
+      "section": 1
+    },
+    "src": {
+      "blank": 1755625,
+      "bytes": 1089628061,
+      "comment": 121828,
+      "end": 274425,
+      "lines": 16497900,
+      "modules": 60929,
+      "nonblank": 14742275,
+      "noncomputable": 40329,
+      "open": 288868,
+      "other": 13823444,
+      "public": 124053,
+      "section": 69328
+    }
+  },
+  "34dc399440138c56a6e20db29278f096b0053f8d": {
+    "other_lean": {
+      "blank": 83,
+      "bytes": 34242,
+      "comment": 15,
+      "end": 7,
+      "lines": 718,
+      "modules": 9,
+      "nonblank": 635,
+      "open": 5,
+      "other": 605,
+      "public": 2,
+      "section": 1
+    },
+    "src": {
+      "blank": 1755625,
+      "bytes": 1037711035,
+      "comment": 121828,
+      "end": 274425,
+      "lines": 15443363,
+      "modules": 60929,
+      "nonblank": 13687738,
+      "noncomputable": 40329,
+      "open": 288868,
+      "other": 12768907,
+      "public": 124053,
+      "section": 69328
+    }
+  },
+  "9893104138b909cddb3dea39fb23d62d8f83141a": {
+    "other_lean": {
+      "blank": 83,
+      "bytes": 34242,
+      "comment": 15,
+      "end": 7,
+      "lines": 718,
+      "modules": 9,
+      "nonblank": 635,
+      "open": 5,
+      "other": 605,
+      "public": 2,
+      "section": 1
+    },
+    "src": {
+      "blank": 1766685,
+      "bytes": 1110691176,
+      "comment": 253088,
+      "end": 372455,
+      "lines": 16895009,
+      "modules": 60929,
+      "nonblank": 15128324,
+      "noncomputable": 64905,
+      "open": 359378,
+      "other": 13823444,
+      "public": 124053,
+      "section": 131001
+    }
+  }
+}
