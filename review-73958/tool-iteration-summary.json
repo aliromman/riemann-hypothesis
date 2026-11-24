@@ -1,0 +1,26 @@
+{
+  "read_cpu": {
+    "parent_ms": 81.873,
+    "candidate_ms": 53.306,
+    "slower_sources": 0,
+    "count": 257
+  },
+  "read_wall": {
+    "parent_ms": 84.192047,
+    "candidate_ms": 54.503499,
+    "slower_sources": 1,
+    "count": 257
+  },
+  "render_cpu": {
+    "parent_ms": 290.092,
+    "candidate_ms": 184.481,
+    "slower_sources": 1,
+    "count": 257
+  },
+  "render_wall": {
+    "parent_ms": 302.495712,
+    "candidate_ms": 191.623788,
+    "slower_sources": 1,
+    "count": 257
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "542": {
+    "head": "dbd042ee426fe9b63bb83ee69d9f4c294d997edb",
+    "base": "e06d3f2ceb656cffa144febb2887e9c80f641b5e",
+    "files": [
+      "scripts/clump.py",
+      "scripts/test_clump.py"
+    ],
+    "clean": true,
+    "status": 1,
+    "test": [
+      "",
+      "FAILED (errors=1)"
+    ],
+    "layout_agnostic_test": 0,
+    "adjusted_test_summary": "...............\n----------------------------------------------------------------------\nRan 15 tests in 0.112s\n\nOK\n"
+  },
+  "807": {
+    "head": "1bc9d4f6ba1392d3f382d0c6f5fb4381de48672b",
+    "base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+    "files": [
+      "scripts/clump.py",
+      "scripts/test_unclump.py"
+    ],
+    "clean": true,
+    "status": 1,
+    "test": [
+      "",
+      "FAILED (failures=4)"
+    ],
+    "layout_agnostic_test": 0,
+    "adjusted_test_summary": "...................\n----------------------------------------------------------------------\nRan 19 tests in 0.789s\n\nOK\n"
+  },
+  "897": {
+    "head": "a2b3d1bec28627abc94c193644c98c973ee950e8",
+    "base": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+    "files": [
+      "scripts/clump.py",
+      "scripts/test_clump_plan.py"
+    ],
+    "clean": false,
+    "conflicts": 1,
+    "resolved_cached_flag": true,
+    "status": 0,
+    "test": [
+      "",
+      "OK"
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "active": 279,
+  "changed_proposals_since_preceding_271": 48,
+  "proposals_needing_large_format_reconciliation": [
+    120,
+    988
+  ],
+  "new_conflicting_paths": {
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ThetaAtMove.lean": {
+      "proposal": 399,
+      "parent_conflict": false,
+      "change": "text",
+      "fewer_commands": 35,
+      "fewer_nonblank": 56,
+      "members": 11
+    },
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/CardDivisionPointsHalfSplitPlaceNormPow.lean": {
+      "proposal": 399,
+      "parent_conflict": false,
+      "change": "text",
+      "fewer_commands": 27,
+      "fewer_nonblank": 44,
+      "members": 9
+    },
+    "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/BesselToFourierJacobiMixedPiecesAdmissibleStatement.lean": {
+      "proposal": 399,
+      "parent_conflict": false,
+      "change": "text",
+      "fewer_commands": 96,
+      "fewer_nonblank": 139,
+      "members": 22
+    },
+    "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/FockConjugatesSpanDepthDataStatement.lean": {
+      "proposal": 399,
+      "parent_conflict": false,
+      "change": "text",
+      "fewer_commands": 76,
+      "fewer_nonblank": 109,
+      "members": 17
+    },
+    "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/FourierJacobiToBesselPiecesMutualAnnihilatorsStatement.lean": {
+      "proposal": 399,
+      "parent_conflict": false,
+      "change": "text",
+      "fewer_commands": 51,
+      "fewer_nonblank": 76,
+      "members": 13
+    },
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/ExistsUniqueMovedKappaJet.lean": {
+      "proposal": 399,
+      "parent_conflict": false,
+      "change": "text",
+      "fewer_commands": 15,
+      "fewer_nonblank": 39,
+      "members": 12
+    },
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ImportsBisStatement.lean": {
+      "proposal": 399,
+      "parent_conflict": false,
+      "change": "text",
+      "fewer_commands": 45,
+      "fewer_nonblank": 75,
+      "members": 15
+    },
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/LinkedFamiliesFixedValues.lean": {
+      "proposal": 1001,
+      "parent_conflict": false,
+      "change": "text",
+      "fewer_commands": 3,
+      "fewer_nonblank": 7,
+      "members": 2
+    },
+    "src/Formalism/LocalToGlobal/LatticeGeometry/GeoTiedP.lean": {
+      "proposal": 1001,
+      "parent_conflict": false,
+      "change": "DELETED",
+      "fewer_commands": 21,
+      "fewer_nonblank": 31,
+      "members": 5
+    },
+    "src/Development/ResolutionOfSingularities/EmbeddedResolution/StrongResolution/AffineCentersOverSingularLocus.lean": {
+      "proposal": 1007,
+      "parent_conflict": false,
+      "change": "text",
+      "fewer_commands": 11,
+      "fewer_nonblank": 17,
+      "members": 3
+    }
+  }
+}

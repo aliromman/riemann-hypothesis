@@ -1,0 +1,16 @@
+refused 0 folds because of clashing declaration names
+modules 2  clumps 1  absorbed 1  files after 1  (max-lines 10000)
+       0-50           1
+      50-100          0
+     100-200          0
+     200-500          0
+     500-1000         0
+    1000-2000         0
+    2000-5000         0
+    5000-10000        0
+   10000-1000000000       0
+
+plan {'Examples.Head': ['Examples.Leaf', 'Examples.Head']}
+legacy expected failure: /private/tmp/rh-million-refactor.VIyB06/second-study/tmpmjfqjtbb/src/Examples/Head.lean:15:0: error: Missing name after `end`: Expected the current scope name `A`
+current CLI-generated module and downstream three declarations passed
+normal plan, apply, exact two-file unclump passed
