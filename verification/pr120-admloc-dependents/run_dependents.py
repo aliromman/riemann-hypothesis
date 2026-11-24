@@ -71,12 +71,33 @@ def main():
     raw=phase("public","scan",stock,requested,32)
     pending=[r["module"] for r in raw if r["terms"]]
     sides=[phase(label,"kernel",p,pending,4) for label,p in (("old-conversion",stock),("new-conversion",candidate))]
-    failures=[r["module"] for r in raw if r["structural"]]
+    failures = [r["module"] for r in raw if r["structural"]]
+    affected = {}
     for side in sides:
-        failures.extend(r["module"] for r in side if r["structural"] or any(v["conversion"]!="defeq" for v in r["terms"]))
+        for row in side:
+            if row["structural"]:
+                failures.append(row["module"])
+            for term in row["terms"]:
+                if term["conversion"] != "defeq":
+                    affected.setdefault(row["module"], set()).add((term["declaration"], term["field"]))
+    for label, project in (("stock",stock),("candidate",candidate)):
+        with (out/(label+"-proof-helpers.jsonl")).open("w") as log:
+            for module, terms in sorted(affected.items()):
+                fields = sorted(terms)
+                result = subprocess.run(["lake","--no-cache","env","lean","--run",str(HERE/"CompareAuxProofs.lean"),
+                                         label,module,module_object(stock,module),module_object(candidate,module),
+                                         *["\t".join(t) for t in fields]],cwd=project,env=env,text=True,stdout=subprocess.PIPE)
+                rows = [json.loads(line) for line in result.stdout.splitlines()]
+                for row in rows:
+                    log.write(json.dumps(row,separators=(",",":"))+"\n")
+                log.flush()
+                if result.returncode or [(r["declaration"],r["field"]) for r in rows] != fields or any(
+                    r["module"] != module or r["environment"] != label or
+                    r["originalToExpanded"] != "defeq" or r["expandedConversion"] != "defeq" for r in rows):
+                    failures.append(module)
     totals={k:sum(r[k] for r in raw) for k in ("public","rawTypes","definitions","rawDefinitions","theorems","rawProofs","axiomRecords")}
     result=dict(stock=BASE,candidate=FIX,modules=len(requested),fullModules=len(full),targets=targets,verifiedSourceFiles=verified,
-                totals=totals,kernelComparisonModules=len(pending),failedModules=sorted(set(failures)))
+                totals=totals,kernelComparisonModules=len(pending),expandedProofFields=sum(map(len,affected.values())),failedModules=sorted(set(failures)))
     (out/"result.json").write_text(json.dumps(result,indent=2)+"\n")
     print(json.dumps(result,indent=2),flush=True)
     if failures:raise SystemExit(1)

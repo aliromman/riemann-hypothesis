@@ -1,0 +1,29 @@
+{
+  "stock": "d27f71347abceb76cd37dc8a5fccbe556ec2be90",
+  "candidate": "26c70f301cc7fb498680f61144ac55f604069506",
+  "modules": 5,
+  "fullModules": 1588,
+  "targets": [
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.IsTheta",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.OrdinaryJacquetModules.CoreOrdAlt",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.OrdDefs",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.UnitaryHeckeData",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.UnitaryPointProperties"
+  ],
+  "verifiedSourceFiles": {
+    "stock": 3024,
+    "candidate": 3024
+  },
+  "totals": {
+    "public": 165,
+    "rawTypes": 139,
+    "definitions": 99,
+    "rawDefinitions": 79,
+    "theorems": 45,
+    "rawProofs": 42,
+    "axiomRecords": 165
+  },
+  "kernelComparisonModules": 5,
+  "expandedProofFields": 4,
+  "failedModules": []
+}

@@ -1,0 +1,43 @@
+{
+  "stock": "d27f71347abceb76cd37dc8a5fccbe556ec2be90",
+  "candidate": "26c70f301cc7fb498680f61144ac55f604069506",
+  "modules": 467,
+  "fullModules": 1588,
+  "remainingModules": 1121,
+  "totals": {
+    "public": 3526,
+    "rawTypes": 3380,
+    "definitions": 1091,
+    "rawDefinitions": 1030,
+    "theorems": 2272,
+    "rawProofs": 2095,
+    "axiomRecords": 3526
+  },
+  "changedFields": {
+    "definition": 61,
+    "type": 146,
+    "recursorRule": 3
+  },
+  "kernelComparisons": {
+    "stock": {
+      "modules": 89,
+      "rawConversionPassed": 206,
+      "rawConversionFailed": 4,
+      "expandedInBoth": 4
+    },
+    "candidate": {
+      "modules": 89,
+      "rawConversionPassed": 206,
+      "rawConversionFailed": 4,
+      "expandedInBoth": 4
+    }
+  },
+  "failedModules": [],
+  "lakeJobsPerArm": 42427,
+  "batchCount": 12,
+  "independentRawScan": true,
+  "verifiedSourceFiles": {
+    "stock": 12065,
+    "candidate": 12065
+  }
+}

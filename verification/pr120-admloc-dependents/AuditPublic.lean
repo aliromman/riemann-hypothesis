@@ -72,10 +72,16 @@ private partial def bindersAgree (a b : Expr) : Bool :=
   | .forallE .., _ | _, .forallE .. => false
   | _, _ => true
 
+private def sameRecursorFields (x y : RecursorVal) : Bool :=
+  { x with toConstantVal := y.toConstantVal, rules := y.rules } == y &&
+    x.rules.length == y.rules.length && (x.rules.zip y.rules).all fun (a,b) => a.ctor == b.ctor && a.nfields == b.nfields
+
 private def metadataAgrees (a b : ConstantInfo) : Bool :=
   match a, b with
   | .defnInfo x, .defnInfo y => x.safety == y.safety && x.hints == y.hints && x.all == y.all
   | .opaqueInfo x, .opaqueInfo y => x.isUnsafe == y.isUnsafe && x.all == y.all
+  | .recInfo x, .recInfo y =>
+    sameRecursorFields x y
   | _, _ => kindAndValue a b
 
 private def conversion (env : Environment) (a b : Expr) : String := Id.run do
@@ -133,6 +139,10 @@ private unsafe def audit (mod oldPath newPath : String) (env : Option Environmen
       let some y := b.value? (allowOpaque := true) | throw <| IO.userError s!"missing candidate body {name}"
       if equalExpr x y then rawDefs := rawDefs + 1
       else terms := terms.push (difference env name "definition" x y)
+    | .recInfo x, .recInfo y =>
+      for (oldRule, newRule) in x.rules.zip y.rules do
+        if !equalExpr oldRule.rhs newRule.rhs then
+          terms := terms.push (difference env name ("recursor rule " ++ oldRule.ctor.toString) oldRule.rhs newRule.rhs)
     | _, _ => pure ()
   IO.println <| Json.compress <| Json.mkObj [
     ("module", toJson mod), ("public", toJson oldPub.size), ("rawTypes", toJson rawTypes),
