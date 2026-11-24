@@ -1,0 +1,81 @@
+{
+  "observed": "2026-11-24T15:46:55.157894+00:00",
+  "parent": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+  "peers": {
+    "988": {
+      "details": {
+        "headRefOid": "35e53a486431f2db6d7ebbf4ceca4774ebd1ccd8",
+        "isDraft": true,
+        "state": "OPEN",
+        "title": "Drop the clump-header comments",
+        "updatedAt": "2026-11-24T13:25:19Z",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/988"
+      },
+      "conflicts_against_community_parent": 230,
+      "prs": {
+        "879": {
+          "head": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+          "additional_textual_conflicts": 0,
+          "all_textual_conflicts": 230,
+          "path_list_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "977": {
+          "head": "be239239d08c7bf865ba618cf6515891b4596c84",
+          "additional_textual_conflicts": 11557,
+          "all_textual_conflicts": 11787,
+          "path_list_sha256": "49234b76863e9daa0c76cc0c99f27b16cb022288eddf336e27ba913fe33880c6"
+        }
+      }
+    },
+    "1198": {
+      "details": {
+        "headRefOid": "712388580aa05c66131759d338678dbe79f769ad",
+        "isDraft": false,
+        "state": "MERGED",
+        "title": "chore: batch 6 of 68 small PRs",
+        "updatedAt": "2026-11-24T15:44:30Z",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1198"
+      },
+      "conflicts_against_community_parent": 0,
+      "prs": {
+        "879": {
+          "head": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+          "additional_textual_conflicts": 100,
+          "all_textual_conflicts": 100,
+          "path_list_sha256": "f077d50aed5e948cbe25292faf27c217a891e2d449ed8ea6726f46ab0be7c31d"
+        },
+        "977": {
+          "head": "be239239d08c7bf865ba618cf6515891b4596c84",
+          "additional_textual_conflicts": 47,
+          "all_textual_conflicts": 47,
+          "path_list_sha256": "30af579d8c8e57e6d609456b37ca7f4039f49896d55ad8d918280f249620d474"
+        }
+      }
+    },
+    "1236": {
+      "details": {
+        "headRefOid": "700a2364664b7e92fe9792234ccd9eb8970233ec",
+        "isDraft": false,
+        "state": "OPEN",
+        "title": "Collapse 1,264 more thin wrappers",
+        "updatedAt": "2026-11-24T15:08:22Z",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1236"
+      },
+      "conflicts_against_community_parent": 0,
+      "prs": {
+        "879": {
+          "head": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+          "additional_textual_conflicts": 1699,
+          "all_textual_conflicts": 1699,
+          "path_list_sha256": "f36d4858e0193e9e0c0bafecbf5e9b3cdc2eb1f5aefa6d0ae1dc635ab9a89fdb"
+        },
+        "977": {
+          "head": "be239239d08c7bf865ba618cf6515891b4596c84",
+          "additional_textual_conflicts": 4,
+          "all_textual_conflicts": 4,
+          "path_list_sha256": "f623b9897035d1a44f614ae225b1d194224dec5f8ce23b02fe60c9b427c64dad"
+        }
+      }
+    }
+  }
+}

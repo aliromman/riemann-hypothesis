@@ -1,0 +1,143 @@
+{
+  "source": "be239239d08c7bf865ba618cf6515891b4596c84",
+  "git_source_tree": "a598d19cccf798deb6e2bea9700cbac2ff050e11",
+  "run": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45428708977",
+  "job": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45428708977/job/138567727308",
+  "workflow": "fa6d58e3dd552ac7d1ad9e5d52d65dfa37895627",
+  "original_actions_artifact_sha256": "228077d3346475db63073d2a0c66ad0bba8cc5cfae83950525d959808e901afc",
+  "ubuntu": [
+    "Python 3.12.16",
+    "PyYAML 6.0.2",
+    "cp (GNU coreutils) 9.4"
+  ],
+  "test_counts": {
+    "native": {
+      "ran": 60,
+      "skipped": 0,
+      "seconds": 0.418
+    },
+    "clump": {
+      "ran": 13,
+      "skipped": 0,
+      "seconds": 0.045
+    },
+    "scripts": {
+      "ran": 309,
+      "skipped": 0,
+      "seconds": 8.015
+    }
+  },
+  "genuine_lean_diagnostic_errors": {
+    "ordinary": {
+      "line": 7,
+      "owners": {
+        "initial": [
+          "other"
+        ],
+        "previous": [
+          "note"
+        ],
+        "candidate": []
+      },
+      "log_sha256": "dbf0bcd1dff03847ab17c18eabe53269b0e82196574febf1c1e2016609306b38",
+      "sources_restored": true
+    },
+    "above-banner": {
+      "line": 7,
+      "owners": {
+        "initial": [
+          "other"
+        ],
+        "previous": [
+          "note"
+        ],
+        "candidate": []
+      },
+      "log_sha256": "60628a1440b51a47701cbf916808c89e4610715ee90a0598c1a4cc263c45ce17",
+      "sources_restored": true
+    },
+    "compact-member": {
+      "line": 9,
+      "owners": {
+        "initial": [
+          "Examples.Leaf"
+        ],
+        "previous": [
+          "Examples.Leaf"
+        ],
+        "candidate": [
+          "Examples.Leaf"
+        ]
+      },
+      "log_sha256": "e2b2bff85aa5bc412ae6578a1896e79c601797ba8d12b2f11ba6bf4a7db16448",
+      "sources_restored": true
+    },
+    "legacy-literal": {
+      "line": 13,
+      "owners": {
+        "initial": [
+          "note"
+        ],
+        "previous": [
+          "Examples.Leaf"
+        ],
+        "candidate": [
+          "Examples.Leaf"
+        ]
+      },
+      "log_sha256": "33eb752708443f92d79f0397c232c22f8cd7e8a399d10ef99cf3e2bba2435fc0",
+      "sources_restored": true
+    }
+  },
+  "proof_binding": {
+    "test_source": "be239239d08c7bf865ba618cf6515891b4596c84",
+    "prior_author": "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
+    "stock_author": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0",
+    "actual_source_at_capture": "be239239d08c7bf865ba618cf6515891b4596c84",
+    "github_merge_observed_before_1198": "e6a19154a96e0d4afef4687c25a894493f949e0a",
+    "its_first_parent": "59f8db6dd40aa9aa4fb10cfd86e1c7bbc48d8780",
+    "merge_observed_at_publication": "e6a19154a96e0d4afef4687c25a894493f949e0a",
+    "merge_parents_at_publication": [
+      "59f8db6dd40aa9aa4fb10cfd86e1c7bbc48d8780",
+      "be239239d08c7bf865ba618cf6515891b4596c84"
+    ],
+    "observed_main": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+    "observed_main_src": "980141067b4eec00e78e2d490134c6299613cdef",
+    "exact_candidate_git_entries": {
+      "src": "a598d19cccf798deb6e2bea9700cbac2ff050e11",
+      ".gitattributes": "388ae3892de0350a636b6ecef7026bfc1959ef06",
+      "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+      "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+      "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+      "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+      "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+      "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+      "comparator/FormalConjecturesChallenge.lean": "290a2c6270f8da3852c7051d7da0f30032a70421",
+      "comparator/formal-conjectures.json": "e3afddc98129d1d1183ff217d434165fd893a0fe",
+      "comparator/formal-conjectures-export-targets.txt": "80bbbf91461783bb8e7f0bb8061b792668d4140a"
+    },
+    "exact_parent_git_entries": {
+      "src": "00c2fd41c7b96184317b81cef9e3ffdc730e99c6",
+      ".gitattributes": "388ae3892de0350a636b6ecef7026bfc1959ef06",
+      "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+      "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+      "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+      "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+      "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+      "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+      "comparator/FormalConjecturesChallenge.lean": "290a2c6270f8da3852c7051d7da0f30032a70421",
+      "comparator/formal-conjectures.json": "e3afddc98129d1d1183ff217d434165fd893a0fe",
+      "comparator/formal-conjectures-export-targets.txt": "80bbbf91461783bb8e7f0bb8061b792668d4140a"
+    },
+    "old_stock_workflow": "218b9f99c404188661ffe95eb2856f811d2e623b",
+    "old_stock_zip_sha256": "f9fd9ebf792d5b7229dc3a5672aed92858c2c941db71bd4eb5bc649237606fe6",
+    "stock_record": "https://github.com/aliromman/riemann-hypothesis/tree/a7fb525c65f4ddd937f824af71390d5c7af769d0/ci/stock-batch-1119/results/45406473993/",
+    "source_sandbox_record": "https://github.com/aliromman/riemann-hypothesis/tree/2681befb7db772d74f377191479b6d9e4991de76/ci/source-sandbox/results/45409835286/",
+    "original_source_sandbox_zip_sha256": "cfd325f742ac0298fc046cc74efc27a27de6bf7157ac16cda67a57fd4a344197",
+    "module_manifest_sha256": "0be4f7d2dc2245d221501a8821f7a265982a3ea58cdd0bc799abb98681470f23",
+    "parent_receipt_sha256": "90458fed17b4e5c112b617dd9103728ad2437adc5c6a98affda4cb9dec05b3d7",
+    "map_sha256": "c9c3395160949cf4e45e01e99a9c349f558b990936280a754fc6b3faaea2c37c",
+    "old_stock_compilations_repeated": 0,
+    "old_mathematical_sandbox_compilations_repeated": 0
+  }
+}

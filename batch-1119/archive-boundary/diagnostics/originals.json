@@ -1,0 +1,4 @@
+{
+  "Examples.Leaf": "module\npublic import Init\n\n@[expose] public section\ntheorem leaf : False := True.intro\n",
+  "Examples.Main": "module\npublic import Examples.Leaf\n\n@[expose] public section\ntheorem ordinary : True := True.intro\n"
+}

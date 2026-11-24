@@ -1,0 +1,160 @@
+{
+  "declaration_catalog": {
+    "declarations_sha256": "c624e0bd8af1c4f269280ae8f2c80440b2b4024793d5bcc4cfcc14a91e5bc494",
+    "distinct_names": 528927,
+    "module_rows": 11575,
+    "occurrences": 533869,
+    "updated_manifest_sha256": "7ea35bbcade9aec47afc01e2c1a4293d08710b802ce14cb300821ae2c85f0c03"
+  },
+  "local_driver_sha256": "e390cb10a99ab61fa5727601e5d195cb1636444e3559b35eb54276b63af82566",
+  "new_arm_replay": {
+    "actual_setup_sha256": "1b2fb747459b6a6e11e5312a3cfa258d22b3cba5959e457185047c92cb39e422",
+    "all_fifteen_archived_arm_linux_files": {
+      "Development.AutomorphicArithmetic.CharacterBoxes.ClaimStrip": {
+        ".ir": "5ff162bf8e78c0e579932f20d4175215c0e3a1a82cae360e9020e964319eb57e",
+        ".ir.sig": "797356d6860d9953afe90b102dbd8ce1f1593e00f03b684ee7328260ba28b88e",
+        ".olean": "f65378f566324eac6e405a5ca19ddf24153292d6bfb27acfd96b85e490490964",
+        ".olean.private": "08acfbdd3e6c4dfaf0dcebe8816d7ba797d036a2747dbef6a0991447856d3c1f",
+        ".olean.server": "e6e632bdc988e0cbf565eb5c1fde83149ec9a8ab78a70c8d996afda21c50a063"
+      },
+      "Development.AutomorphicArithmetic.CharacterBoxes.MainConclusion": {
+        ".ir": "e5ce7d75d619a455fbeed77ef38c70c3d9f18bc18b1674a20c6052e10dd422b3",
+        ".ir.sig": "5f84130bc4a78315ec2a1a341e36fc1b17b7949f984257c34609685d99c25ace",
+        ".olean": "218a74759d91b27876c02fbf3018f8548a2e2edc855707e25c87594a9fb1211a",
+        ".olean.private": "338e4bdf374a5809cccf9f8d7136aea2960f5939476ebbebcb23b337ec3db942",
+        ".olean.server": "6362e55c1e44d95a51cfd05325c7b980a7012adc15f0b4039fb2506dd476fc33"
+      },
+      "Main": {
+        ".ir": "e09c68e5f6c5ad5537b9d5007b52a3198fb3c0e888ae5801ca8287252870e373",
+        ".ir.sig": "779598cfda7a3d8328963de46628bc96c785c48b4dceb2cd59af63c85ee8a47f",
+        ".olean": "a2816fa85156ebb38ddb00e6697fe2c2cc26f2aa0d333a6f6613e37af0266418",
+        ".olean.private": "03cbbe139445990ff63547fb4f8319f1595e4bd261242bc3089a835d89ba7573",
+        ".olean.server": "7a28837ac5708315e89045acbed3d82320d5175c5e528e712b46958c4293897d"
+      }
+    },
+    "axiom_log_sha256": "5c819f12ef6406191cd66cab057e8bff8da6d3c5f669b9828c536dad7255b878",
+    "challenge_log_sha256": "566d997bebba63ecc69081e67b98a15c42f7899e0bc412f449f28595fde31e1d",
+    "changed_sources_visible": 11441,
+    "direct_reference_observer_sha256": "b1928cbf0b171137c24749b6fc0f8fdebd51d21b975188c44a99f48c3c9085fd",
+    "direct_reference_result_sha256": "46f6f6ee753ae4c21af40ce7eb99653a1e5f8c5bbf0bf35109228dd557503d34",
+    "effective_input_sha256": "7ff42467a3284016ed34d8cd01774d3fa54f91b64eddb3a8d45f823b53f9fbe5",
+    "fresh_arm_kernel_accepts": [
+      "riemannHypothesis",
+      "riemannZeta_eq_zero_re",
+      "LFunction_ne_zero_of_half_lt_re",
+      "LFunction_eq_zero_re",
+      "LFunction_eq_zero_re_of_isPrimitive"
+    ],
+    "frozen_challenge_sha256": "bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60",
+    "immutable_preceding_publication": "ac83ca84627e2f8fbeec57f8ea40f4fe1be15100",
+    "kernel_replay_lean_sha256": "fb69b0939d762b6766f61b3df58458456cea570cdbd344ed4284badc792481ae",
+    "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+    "linux_run": 45421761727,
+    "linux_source_head": "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
+    "official_module_manifest_sha256": "0be4f7d2dc2245d221501a8821f7a265982a3ea58cdd0bc799abb98681470f23",
+    "ordinary_project_inputs_read": 59296,
+    "original_github_artifact": 14935593185,
+    "original_github_zip_sha256": "44b1fe937af35e7b100e4f7d28972f349eb3d81560a78bb532c374e1c9b41de0",
+    "portable_replay_log_sha256": "44fb4f8873e3305b52856e823ba53c7264d0dc3dc11027b75b154b6b19573ddc",
+    "portable_stdlib_reviewer_sha256": "cbfbf8a435550e11a69f9915862abb84d6a07c9d5d3d093fbbbb0a940888d88b",
+    "replay_log_sha256": "44fb4f8873e3305b52856e823ba53c7264d0dc3dc11027b75b154b6b19573ddc",
+    "root_declaration_comparison": {
+      "candidateNames": 5,
+      "different": 0,
+      "examples": [],
+      "kernelImage": true,
+      "parentNames": 5,
+      "proofChanges": 0,
+      "publicImage": true,
+      "publicImports": true
+    },
+    "wrong_proof_rejected": true
+  },
+  "source_equivalence": {
+    "actual_git_blob_sha256_rereads": 23150,
+    "all_project_lean_sources": 60147,
+    "all_src_git_entries_sha256": "448a1fdc77b4b8561b029f9b1a239bc9e8e3370ed01e79f5e4c65d63288d8fdb",
+    "base": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+    "changed_local_modules": 11575,
+    "complete_git_diff": {
+      "scripts/clump.py": {
+        "989ea9c41e8400a6fe894fe365298c219f8c7e1d": "4d48e0fe65e1e12f1dead1e543056590cf24590d",
+        "be239239d08c7bf865ba618cf6515891b4596c84": "a79e5b81d13dee8647636e5ff1d033aea5ca3066"
+      },
+      "scripts/tests/test_clump_scopes.py": {
+        "989ea9c41e8400a6fe894fe365298c219f8c7e1d": "533a49476477b3e77f829d74a41039d7f2fa501b",
+        "be239239d08c7bf865ba618cf6515891b4596c84": "754c93d97a699561cc92c8468c9d49aaa4bf70c9"
+      }
+    },
+    "head": "be239239d08c7bf865ba618cf6515891b4596c84",
+    "identical_compiler_and_proof_inputs": {
+      ".github/workflows/checks.yml": "0633ccfcba2a90ee35beff24b043cf658cfe27f7",
+      "comparator": "a14c3e84eee63917486fb7369cc8a4cfbb8c35d4",
+      "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+      "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+      "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+      "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+      "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+      "scripts/cache-baselines.json": "1058e98a047e34861fc5843d13f6407e3b14fa70",
+      "scripts/cache-settings.py": "3844a627bdb7d80b34361f0961550df6a28a0f56",
+      "scripts/ci-cache-get.py": "4ab0793bad994c099bb42ef80c65e732f06b4144",
+      "scripts/ci-prepare.py": "e2da3442d4023f2f4e5e6f936f70a2df238d06fa",
+      "scripts/publish-ci-cache.py": "d4a34080b403c870997e7a1ab0fcc2188c1aa00e",
+      "scripts/publish-lake-cache.py": "64bcb9fea4f3fbbe985b51ef863792502de78572",
+      "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+      "src/Development/AutomorphicArithmetic/CharacterBoxes/ClaimStrip.lean": "29e782040b5531cb594d926c6ad6858e4edc1ee8",
+      "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean": "f3b0f6c4a567ca5f04f8125347b845f7a23e1f61",
+      "src/Main.lean": "67c65badc15f80a1db65df1c84dc7a4928fc410f",
+      "src/Statements.lean": "23b01f745b80075e377c415abae96ece3570d0b0"
+    },
+    "native_expanded_sha256": "60d2e83fdb01ef32911c77f141b54b56b1fc8fa08491b8fa25458eefccb10acb",
+    "original": "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
+    "same_src_tree": "a598d19cccf798deb6e2bea9700cbac2ff050e11",
+    "selected_source_pairs_sha256": "07a0a43eac26c93f894cfec084fb0a1e99176e86d196a108753abaa9205ee6a3"
+  },
+  "successor_tool_checks": {
+    "additional_command_lines_saved": 4490,
+    "additional_open_lines_saved": 4098,
+    "bytes_in_original_member_sources": 515443111,
+    "candidate_tools": {
+      "scripts/clump.py": [
+        {
+          "blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+          "mode": "100644",
+          "sha256": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44"
+        },
+        {
+          "blob": "a79e5b81d13dee8647636e5ff1d033aea5ca3066",
+          "mode": "100644",
+          "sha256": "01a81b1a58da622db0427e99139e3b399aa12fae43cde2d59aa709795c3bcade"
+        }
+      ],
+      "scripts/tests/test_clump_scopes.py": [
+        null,
+        {
+          "blob": "754c93d97a699561cc92c8468c9d49aaa4bf70c9",
+          "mode": "100644",
+          "sha256": "0a7c606c3c7646a5b6f887cff8a83b2b899493854b889363d967db931c743a05"
+        }
+      ]
+    },
+    "focused_test_output": ".............\n----------------------------------------------------------------------\nRan 13 tests in 0.049s\n\nOK",
+    "fused_adjacent_empty_lines_removed": 3029,
+    "head": "be239239d08c7bf865ba618cf6515891b4596c84",
+    "member_bodies_with_verified_scope_fusion": 24534,
+    "members": 68375,
+    "parent": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+    "planner_modules_compared": 60147,
+    "planner_modules_protected": 12418,
+    "refined_clumps": 841,
+    "source_dispositions": {
+      "current_withdrawals": 4,
+      "preceding_verified": 11579,
+      "selected": 11575,
+      "updated_upstream_originals": 139
+    },
+    "source_files": 11575,
+    "source_tree": "a598d19cccf798deb6e2bea9700cbac2ff050e11"
+  },
+  "successor_tool_checks_sha256": "ed55957550f8deb730dc522e05eefe65c2dd5341f5826a08d6ede65c159cd4e1"
+}

@@ -1,0 +1,28 @@
+info: ArchiveBoundary: no previous manifest, creating one from scratch
+info: toolchain not updated; already up-to-date
+✖ [3/6] Building Examples.Plain (380ms)
+trace: .> LEAN_PATH=/private/tmp/rh-million-refactor.VIyB06/scope-archive-boundary/tmpimm7vwxb/.lake/build/lib/lean /Users/aliromman/Projects/RiemannHypothesis/.lake/module-study/port591/pinned/lean-4.37.0-rc1-darwin_aarch64/bin/lean /private/tmp/rh-million-refactor.VIyB06/scope-archive-boundary/tmpimm7vwxb/src/Examples/Plain.lean -o /private/tmp/rh-million-refactor.VIyB06/scope-archive-boundary/tmpimm7vwxb/.lake/build/lib/lean/Examples/Plain.olean -i /private/tmp/rh-million-refactor.VIyB06/scope-archive-boundary/tmpimm7vwxb/.lake/build/lib/lean/Examples/Plain.ilean -c /private/tmp/rh-million-refactor.VIyB06/scope-archive-boundary/tmpimm7vwxb/.lake/build/ir/Examples/Plain.c --setup /private/tmp/rh-million-refactor.VIyB06/scope-archive-boundary/tmpimm7vwxb/.lake/build/ir/Examples/Plain.setup.json --json
+error: src/Examples/Plain.lean:6:28: Type mismatch
+  True.intro
+has type
+  True
+but is expected to have type
+  False
+✖ [5/6] Building Examples.Main (380ms)
+trace: .> LEAN_PATH=/private/tmp/rh-million-refactor.VIyB06/scope-archive-boundary/tmpimm7vwxb/.lake/build/lib/lean /Users/aliromman/Projects/RiemannHypothesis/.lake/module-study/port591/pinned/lean-4.37.0-rc1-darwin_aarch64/bin/lean /private/tmp/rh-million-refactor.VIyB06/scope-archive-boundary/tmpimm7vwxb/src/Examples/Main.lean -o /private/tmp/rh-million-refactor.VIyB06/scope-archive-boundary/tmpimm7vwxb/.lake/build/lib/lean/Examples/Main.olean -i /private/tmp/rh-million-refactor.VIyB06/scope-archive-boundary/tmpimm7vwxb/.lake/build/lib/lean/Examples/Main.ilean -c /private/tmp/rh-million-refactor.VIyB06/scope-archive-boundary/tmpimm7vwxb/.lake/build/ir/Examples/Main.c --setup /private/tmp/rh-million-refactor.VIyB06/scope-archive-boundary/tmpimm7vwxb/.lake/build/ir/Examples/Main.setup.json --json
+error: src/Examples/Main.lean:6:19: Type mismatch
+  True.intro
+has type
+  True
+but is expected to have type
+  False
+error: src/Examples/Main.lean:12:24: Type mismatch
+  True.intro
+has type
+  True
+but is expected to have type
+  False
+Some required targets logged failures:
+- Examples.Plain
+- Examples.Main
+error: build failed

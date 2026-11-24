@@ -1,0 +1,70 @@
+{
+  "snapshot_utc": "2026-11-24T15:41:05.377224+00:00",
+  "mathematical_parent": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+  "main": "59f8db6dd40aa9aa4fb10cfd86e1c7bbc48d8780",
+  "main_source": "00c2fd41c7b96184317b81cef9e3ffdc730e99c6",
+  "same_mathematical_source": true,
+  "same_configuration": true,
+  "paths_since_parent": [
+    ".github/workflows/batch-queue.yml",
+    "AGENTS.md",
+    "docs/references.bib",
+    "scripts/QUICK-CHECKS.md",
+    "scripts/batch-queue-sync.py",
+    "scripts/ci-runner.py",
+    "scripts/quick-check.py",
+    "scripts/quick-schedule.py",
+    "scripts/tests/test_batch_queue_sync.py",
+    "scripts/tests/test_ci_runner.py",
+    "scripts/tests/test_quick_check.py",
+    "verification/CI-RUNNERS.md"
+  ],
+  "protected": {
+    "lean-toolchain": "100644 blob 0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lake-manifest.json": "100644 blob 8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "lakefile.toml": "100644 blob 43b9f74431077a10cc1edecbc15239fe38d92591",
+    "src/Main.lean": "100644 blob 67c65badc15f80a1db65df1c84dc7a4928fc410f",
+    "src/Statements.lean": "100644 blob 23b01f745b80075e377c415abae96ece3570d0b0",
+    "src/Challenge.lean": "100644 blob 9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "comparator.json": "100644 blob e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "100644 blob e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    "comparator": "040000 tree a14c3e84eee63917486fb7369cc8a4cfbb8c35d4",
+    "scripts/ci-cache-get.py": "100644 blob 4ab0793bad994c099bb42ef80c65e732f06b4144",
+    "scripts/cache-settings.py": "100644 blob 3844a627bdb7d80b34361f0961550df6a28a0f56",
+    "scripts/cache-baselines.json": "100644 blob 1058e98a047e34861fc5843d13f6407e3b14fa70"
+  },
+  "pulls": {
+    "879": {
+      "head": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+      "github_merge": "4894d50f6e36f772410351d3d44e45bcba8ada7c",
+      "base_at_pr": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+      "computed_whole_tree": "93b24fd0aed0a5a4fd9b69fec9e2a5d44d530964",
+      "conflicts": [],
+      "clean": true,
+      "same_complete_lean_tree": true,
+      "same_configuration": true,
+      "same_tools": true,
+      "github_merge_tree": "62b79d1d0489e04f74b56684697249fc5fffa740",
+      "github_merge_parents": [
+        "6866a9c6260d77b88a7b5477433e3044b6844f9b",
+        "a2a92740de233b5ca34edee530cb1efe7cd63b73"
+      ]
+    },
+    "977": {
+      "head": "be239239d08c7bf865ba618cf6515891b4596c84",
+      "github_merge": "e6a19154a96e0d4afef4687c25a894493f949e0a",
+      "base_at_pr": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+      "computed_whole_tree": "22f1e418ef25af85f264610b447856df4643abcc",
+      "conflicts": [],
+      "clean": true,
+      "same_complete_lean_tree": true,
+      "same_configuration": true,
+      "same_tools": true,
+      "github_merge_tree": "22f1e418ef25af85f264610b447856df4643abcc",
+      "github_merge_parents": [
+        "59f8db6dd40aa9aa4fb10cfd86e1c7bbc48d8780",
+        "be239239d08c7bf865ba618cf6515891b4596c84"
+      ]
+    }
+  }
+}
