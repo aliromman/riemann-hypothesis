@@ -1,8 +1,13 @@
 {
   "input": "repairs",
   "groups": [
-    "repair-large",
-    "repair-1",
-    "repair-2"
+    "repair-tidy-large",
+    "repair-tidy-1",
+    "repair-tidy-2",
+    "repair-tidy-3",
+    "repair-tidy-4",
+    "repair-tidy-5",
+    "repair-tidy-6",
+    "repair-tidy-7"
   ]
 }
