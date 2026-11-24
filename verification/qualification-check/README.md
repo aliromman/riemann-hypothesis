@@ -89,3 +89,22 @@ Run the commands below from the original 4.36 checkout. The test builds a tempor
 lake build Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Langlands Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RecOfRecLiteral
 python3 "$tools/field_label_controls.py" --repo "$PWD" --ilean-dir "$PWD/.lake/build/lib/lean" --checker "$tools/check_qualifications.py"
 ```
+
+## Automorphic lift premise and gauge-lattice rewrite
+
+The original 4.36 compiler records `UpperTheory.Esk.H0` as the premise of `lift` in `PfHolWC`. The name `ReciprocityTheory.Gal.H0` produces a type error at the premise. Two more errors follow when a proof calls the missing `lift`. In `SlabNDensePf`, the matrix rewrite uses `Formalism.L2.SG.Pf.SlabNDensePf.gE`. It fails with `Formalism.MainNotions.S.gE`.
+
+Both providers were in scope in each arm. The original, integration, and repaired spellings gave 0, 3, and 0 diagnostics in the complete lift module. The counts were 0, 1, and 0 in the complete lattice module. The import closures had 19,876 and 1,153 original project modules. Each per-member receipt contains the original compiler span. `lift-gauge-native.jsonl` contains all six input hashes and diagnostics. The source constructor reproduces all six hashes.
+
+Use the clean original 4.36 checkout at `c7791603122c0328f79e49f6be5d7d4402effc53`. Set `tools` and `controls` to absolute paths as above. Build both providers and both original modules. Run the three arms with the Lean command in “Replay the five arithmetic proofs.”
+
+```sh
+base=c7791603122c0328f79e49f6be5d7d4402effc53
+for pair in 'PfHolWC ReciprocityTheory.GaloisValuations.SeparatedDvrSecondCohomologyMem' 'SlabNDensePf Formalism.SharpRestriction.CuspSpanNormBounds.StandingNumericalData'; do
+  set -- $pair
+  python3 "$tools/make_name_controls.py" --repo . --original "$base" --receipt "$tools/$1.jsonl" --extra-public-import "$2" --output "$controls"
+  lake build "$2"
+done
+cat "$tools/PfHolWC.jsonl" "$tools/SlabNDensePf.jsonl" | python3 -c 'import json,sys; print("\n".join(r["member"] for r in map(json.loads,sys.stdin)))' > "$controls/members.txt"
+xargs lake build < "$controls/members.txt"
+```
