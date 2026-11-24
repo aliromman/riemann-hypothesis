@@ -1,0 +1,86 @@
+name: Recheck exact import edits on the current community parent
+on:
+  push:
+    branches: [ci/import-pruning/screen]
+    paths: ['ci/current-recheck/dispatch.json']
+
+permissions:
+  contents: read
+
+env:
+  RUST_MIN_STACK: '33554432'
+  LEAN_ABORT_ON_PANIC: '1'
+  LEAN_NUM_THREADS: '1'
+  MATHLIB_CACHE_GET_URL: https://cache.mathlib.org/mathlib4
+  PARENT_CACHE: rh-screen-v4-all-18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a
+  MATH_CACHE: rh-screen-math-v1-linux-x64-31ce06eaadf4a200c0e1407c5f10953cf606b8f8
+
+jobs:
+  prepare:
+    if: github.repository == 'aliromman/riemann-hypothesis' && github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 165
+    outputs:
+      groups: ${{ steps.dispatch.outputs.groups }}
+      mode: ${{ steps.dispatch.outputs.mode }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: harness
+          persist-credentials: false
+          sparse-checkout: |
+            ci/current-recheck
+            ci/import-screen
+      - id: dispatch
+        name: Read the independently reviewed native group selection
+        working-directory: harness/ci/current-recheck
+        run: |
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          dispatch=json.loads(Path('dispatch.json').read_bytes())
+          mode=dispatch['mode']
+          if mode=='seed':
+              groups=['seed-only']
+          else:
+              available=json.loads(Path('request.json').read_bytes())['groups']
+              groups=list(available) if mode=='all' else dispatch['groups']
+              if (mode not in ('all','selected') or not groups or len(set(groups))!=len(groups)
+                  or not set(groups)<=set(available)):
+                  raise ValueError('unknown or duplicate native group')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              print('groups='+json.dumps(groups),file=f)
+              print('mode='+mode,file=f)
+          PY
+      - name: Look up the current complete parent cache
+        id: current
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-screen-cache
+          key: ${{ env.PARENT_CACHE }}
+          lookup-only: true
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        if: steps.current.outputs.cache-hit != 'true'
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: 343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf
+          path: parent
+          persist-credentials: false
+          sparse-checkout: |
+            src
+            scripts
+      - name: Reuse archives from the previous published parent
+        if: steps.current.outputs.cache-hit != 'true'
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-screen-cache
+          key: rh-screen-v3-latest-7ef75c550561a6f21d27bb76c9a53fcf6a9a6fe5d5d481f2cdb56e9b1262589d-c2a87f3d5a19cec44cdaf5a7d00c6519654cdc5bdc15323f4c2e36826ee55057
+      - name: Validate the official parent and fetch each remaining archive once
+        if: steps.current.outputs.cache-hit != 'true'
+        run: python3 harness/ci/current-recheck/parent.py --parent parent --cache "$RUNNER_TEMP/rh-screen-cache"
+      - name: Save the complete authenticated parent
+        if: steps.current.outputs.cache-hit != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-screen-cache
+          key: ${{ env.PARENT_CACHE }}
