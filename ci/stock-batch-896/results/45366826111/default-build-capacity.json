@@ -1,0 +1,136 @@
+{
+  "observed_utc": "2026-11-24T09:16:00Z",
+  "current_parent": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+  "authenticated_current_parent_modules": 60629,
+  "candidate_default_target_build_measured": false,
+  "current_candidate": {
+    "observed_utc": "2026-11-24T09:46:49.115190+00:00",
+    "candidate_head": "9db9c372b954b858261870086c953c60d07a2890",
+    "github_merge": "7caed4e13dfdb503dd13b79ccc6ef6e7699fb875",
+    "actual_parent": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+    "source_tree": "2f3a5bc48d255b9683b700ec22411ab69d4b4efa",
+    "source_fingerprint": "158abf5b3e68dbcf8186854c56537f200431b74bf0421bfb2350448132b21877",
+    "parent_project_modules": 60629,
+    "source_changed_modules": 11647,
+    "source_changed_or_potentially_downstream_modules": 42544,
+    "graph_sha256": "48b7623709bb346e3e358747896b17c0e11933018855d0bcd3d461d25dc728f5",
+    "public_probes": {
+      "matching_input_fingerprint": {
+        "url": "https://rh-cache.taucetiproject.org/ci/inputs/158abf5b3e68dbcf8186854c56537f200431b74bf0421bfb2350448132b21877.json",
+        "http_status": 404
+      },
+      "known_parent_receipt": {
+        "url": "https://rh-cache.taucetiproject.org/ci/revisions/c9883164b0b3d762cee21f889d03d59a53b3ba3b.json",
+        "http_status": 200,
+        "matching_successful_receipt": true,
+        "candidate_head": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+        "module_manifest_sha256": "a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463",
+        "receipt_sha256": "1a68a38e971cc2de2bb1d45add8e70228b63b5ab8627d557e12cae200d211753"
+      },
+      "author_receipt": {
+        "url": "https://rh-cache.taucetiproject.org/ci/revisions/9db9c372b954b858261870086c953c60d07a2890.json",
+        "http_status": 404
+      },
+      "author_fragment_map": {
+        "url": "https://rh-cache.taucetiproject.org/rh-buildq/maps/9db9c372b954b858261870086c953c60d07a2890.jsonl",
+        "http_status": 404
+      },
+      "author_portable_revision": {
+        "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/tc/leanprover--lean4---v4.37.0-rc1/9db9c372b954b858261870086c953c60d07a2890.jsonl",
+        "http_status": 404
+      },
+      "author_platform_revision": {
+        "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/pt/x86_64-unknown-linux-gnu/tc/leanprover--lean4---v4.37.0-rc1/9db9c372b954b858261870086c953c60d07a2890.jsonl",
+        "http_status": 404
+      },
+      "merge_receipt": {
+        "url": "https://rh-cache.taucetiproject.org/ci/revisions/7caed4e13dfdb503dd13b79ccc6ef6e7699fb875.json",
+        "http_status": 404
+      },
+      "merge_fragment_map": {
+        "url": "https://rh-cache.taucetiproject.org/rh-buildq/maps/7caed4e13dfdb503dd13b79ccc6ef6e7699fb875.jsonl",
+        "http_status": 404
+      },
+      "merge_portable_revision": {
+        "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/tc/leanprover--lean4---v4.37.0-rc1/7caed4e13dfdb503dd13b79ccc6ef6e7699fb875.jsonl",
+        "http_status": 404
+      },
+      "merge_platform_revision": {
+        "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/pt/x86_64-unknown-linux-gnu/tc/leanprover--lean4---v4.37.0-rc1/7caed4e13dfdb503dd13b79ccc6ef6e7699fb875.jsonl",
+        "http_status": 404
+      }
+    },
+    "upstream_pull_request_head": "9db9c372b954b858261870086c953c60d07a2890",
+    "upstream_is_draft": true,
+    "upstream_build_pr_checks": [
+      {
+        "name": "resolve",
+        "conclusion": "SKIPPED",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45366710034/job/138350252197"
+      },
+      {
+        "name": "proof_plan",
+        "conclusion": "SKIPPED",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45366710034/job/138350264722"
+      },
+      {
+        "name": "quick_resolve",
+        "conclusion": "SKIPPED",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45366710034/job/138350193200"
+      },
+      {
+        "name": "fragment",
+        "conclusion": "SKIPPED",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45366710034/job/138350259979"
+      },
+      {
+        "name": "build",
+        "conclusion": "SKIPPED",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45366710034/job/138350193673"
+      },
+      {
+        "name": "proof_worker",
+        "conclusion": "SKIPPED",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45366710034/job/138350194193"
+      },
+      {
+        "name": "quick_check",
+        "conclusion": "SKIPPED",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45366710034/job/138350194501"
+      },
+      {
+        "name": "fragment_publish",
+        "conclusion": "SKIPPED",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45366710034/job/138350194631"
+      }
+    ],
+    "upstream_viewer_permission": "READ"
+  },
+  "prior_parent_stock_extraction": {
+    "parent": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+    "parent_modules": 60928,
+    "compressed_ltar_bytes": 3846552837,
+    "observed_samples": 1064,
+    "observed_output_bytes": 3394640629,
+    "estimated_project_output_bytes": 75477330270.46875,
+    "estimated_standard_error_bytes": 1466649509.5425553,
+    "method": "Order the complete archive population by compressed size. Include the largest 40. Split the remaining rows into 32 equally sized groups. Take 32 modules from each group by SHA-256 rank of stock-size-sample-v1: followed by the module name. Restore those LTARs with stock leantar. Weight each group by its population. Exclude source files, package outputs, temporary setup files and filesystem allocation overhead."
+  },
+  "local_host": {
+    "physical_memory_gb": 48,
+    "available_disk_gib_approximate": 9,
+    "inherited_matching_toolchain_modules_with_partial_outputs": 60789,
+    "inherited_private_olean_count": 3032
+  },
+  "observed_ubuntu_job": {
+    "previous_run": 45354961381,
+    "root_filesystem_gib": 145,
+    "free_after_bounded_mathlib_gib": 77
+  },
+  "standard_runner_reference": "https://docs.github.com/en/actions/reference/runners/github-hosted-runners",
+  "hosted_time_limit": "https://docs.github.com/en/actions/reference/limits",
+  "community_full_pool": "https://github.com/leanprover-community/riemann-hypothesis/blob/c9883164b0b3d762cee21f889d03d59a53b3ba3b/verification/CI-RUNNERS.md",
+  "community_full_pool_free_disk_gib": 250,
+  "community_full_pool_ideal_memory_gib": 128,
+  "conclusion": "A full candidate build was not established by these bounded jobs. The community full-build pool can run the ordinary default targets."
+}
