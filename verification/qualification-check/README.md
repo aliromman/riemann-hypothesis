@@ -61,3 +61,18 @@ done
 The constructor uses the original UTF-16 source span and writes three complete files per module. Its 15 output hashes match the inputs used for the native controls. The `previous` arm must fail in each module. These results concern the source occurrences identified in the receipt. The physical consolidated modules also need to compile with their integrated dependencies.
 
 The native totals include diagnostic names such as `error(lean.unknownIdentifier)`. This corrects the initial total of eight for #705. The original and repaired arms each had zero.
+
+## Theta doubling function
+
+[Author PR #452](https://github.com/rohanarun/riemann-hypothesis/pull/452) added 26 explicit names to resolve a tactic ambiguity. Seven sites need the generic function `GlobalTheory.ThK.Dbl.flat`. The editor data from Lean 4.36 records this function at every site. Each uses the specialized `GlobalTheory.Doubling.flat` at parent `696a2f9d37a216fb63eed77543a4d57a8878fb5d`. All seven are in the five files changed by `322a074332d984449c116c89dc715e22b50c3b61`.
+
+The six complete original modules compile with both providers in scope. Every module fails when it uses the specialized function in place of the original. The six modules give seven native diagnostics in total. All six compile when they use the absolute name of the original function. Read `theta-flat-references.jsonl` for the seven original source positions and `theta-flat-native.jsonl` for all 18 runs.
+
+To reproduce the controls, use the same original 4.36 checkout and `tools` and `controls` paths as above. Build the six original modules and the additional import before running Lean. Run the three arms with the Lean command above. The option adds the same provider to every arm.
+
+```sh
+python3 "$tools/make_name_controls.py" --repo . --original c7791603122c0328f79e49f6be5d7d4402effc53 --receipt "$tools/theta-flat-references.jsonl" --extra-public-import Development.AbelianVarietyTheory.Definitions.Foundations.T2SpaceAdeleRing --output "$controls"
+python3 -c 'import json,sys; print("\n".join(sorted({r["member"] for r in map(json.loads, open(sys.argv[1]))})))' "$tools/theta-flat-references.jsonl" > "$controls/members.txt"
+lake build Development.AbelianVarietyTheory.Definitions.Foundations.T2SpaceAdeleRing
+xargs lake build < "$controls/members.txt"
+```

@@ -4,6 +4,7 @@ from collections import defaultdict
 import hashlib
 import json
 from pathlib import Path
+import re
 import subprocess
 
 
@@ -13,6 +14,8 @@ def main():
     parser.add_argument("--original", required=True)
     parser.add_argument("--receipt", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--extra-public-import", action="append", default=[], metavar="MODULE",
+                        help="add the same public import to all three source controls")
     args = parser.parse_args()
     cases = defaultdict(list)
     for row in map(json.loads, args.receipt.read_text().splitlines()):
@@ -34,6 +37,12 @@ def main():
                 if arm != "original":
                     selected = row["previous"] if arm == "previous" else row["token"]
                     lines[line] = lines[line][:start] + selected + lines[line][start + len(token):]
+            if args.extra_public_import:
+                imports = [i for i, text in enumerate(lines) if re.match(r"^\s*(?:public\s+)?import ", text)]
+                if not imports:
+                    raise ValueError(f"no import header in {module}")
+                insert_at = imports[-1] + 1
+                lines[insert_at:insert_at] = [f"public import {name}\n" for name in args.extra_public_import]
             dest = args.output / arm / rel
             dest.parent.mkdir(parents=True, exist_ok=True)
             data = "".join(lines).encode()
