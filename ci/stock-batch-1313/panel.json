@@ -1,0 +1,291 @@
+{
+  "base": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "ref": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+  "changes": 38966,
+  "removed_roots": [],
+  "replacements": {},
+  "graph_sha256": "de1fe13e172b47bb9b1f27c429cc282e94e3e528f3ec4c90f8a9d300a2b40e75",
+  "benchmark": [],
+  "theorems": [],
+  "replays": [
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex"
+  ],
+  "downstream": [],
+  "roots": [
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypicalCurvesTangentAndBases",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.DegreeCountCohomology.SolCnt",
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CharacterIdealPrincipalEigenStatement",
+    "Development.EtaleCohomology.CohomologicalPurity.LeafImgPf",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StalkKrullDimension",
+    "Development.WeilBound.CoreStatements.HodgeTatePoints.RiRank",
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex"
+  ],
+  "changed_sources": {
+    "Development.AbelianVarietyTheory.BlockTheory.AdelicCMFields.UnitaryHeckeCharacterIdele": {
+      "parent": "407d56376f507bb74a982b4e84b45756a6922c199fbce1df8157997eeb757884",
+      "candidate": "7f9bee6fbdc46b552972d2d3a0c8a6f486882e4f34fc5f090b34a768c5fa7ac6",
+      "removed_imports": 31,
+      "added_imports": 0
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition": {
+      "parent": "4cd21619d8cd95628779ffefe45acc842650b83e005c603b3ea4c70b85197651",
+      "candidate": "78b96fa2f6ab7ce168a56a84057f4536e9cf172c73cbcb0f9cbce3e2104c29b4",
+      "removed_imports": 26,
+      "added_imports": 0
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.EntireEqOfHalfPlane": {
+      "parent": "48d38104b3631d273f8e8974337a4fe76187b16d57ce20f5474b2b7f4287d56c",
+      "candidate": "f580a46b223a922a6d8ec7f2b6869e7ac58a473e3c9197cb9653005bbf4bd898",
+      "removed_imports": 32,
+      "added_imports": 0
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff": {
+      "parent": "43b0fdcf341191032a8fa30c233d3dfeef88d205b3a77a086d26e4f662580c23",
+      "candidate": "2f70bccfed7d6e553a37d17876c9d76366adb11fe9812df68a6f7b13a9b06ca6",
+      "removed_imports": 32,
+      "added_imports": 0
+    },
+    "Development.AbelianVarietyTheory.Definitions.Foundations.IsSatFrame": {
+      "parent": "2b06a665bb3a76f364a61e0037274ec3799bc121e7784f8eec62b8e816c067e5",
+      "candidate": "c32dfa17809347cfa9873225c89a976665ff8a096d3863da978c5a8e4c8f1cf7",
+      "removed_imports": 27,
+      "added_imports": 0
+    },
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace": {
+      "parent": "0801620888e0d55c6ce30891921c038b0fa7f6ae16882853e8476a3c2a742ea5",
+      "candidate": "16ecdda9d8ab87772a0ab8f0a4bfbd561a9ab408efe6bd1728e4b4e6b8308180",
+      "removed_imports": 27,
+      "added_imports": 0
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypicalCurvesTangentAndBases": {
+      "parent": "398abe0a86131275510ed97c17f0fc2cb583bef29746ce99db47c13c5f59b189",
+      "candidate": "91f3982d0d3e17d92896d0bbb52669798cb33b7193e58974517dcc9575c44bd5",
+      "removed_imports": 32,
+      "added_imports": 0
+    },
+    "Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsVariableChangeEqLatticeCurve": {
+      "parent": "a7ecef8d43eac1d9beb8b40c7b11f0c551745bc75a57dd02c9d46aff77952816",
+      "candidate": "6018580dc822d89698c155f1705de0639fdc9b153dd86e6e20064a2497297fb5",
+      "removed_imports": 27,
+      "added_imports": 0
+    },
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex": {
+      "parent": "bedbd3f327a4937f8befaa14cbad224ad837fb589196de3eb390349ec3a2e234",
+      "candidate": "f996a2a64359360ab73e2fe0b707d0e7f6969bd02a4e541219dd39abaad49220",
+      "removed_imports": 32,
+      "added_imports": 0
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.TypicalBasisCoordinates": {
+      "parent": "61919db759b6b86eb353000768a2da11c42ee08bcdf5800e89fbce017e2e0396",
+      "candidate": "c4ce34e13bb8c7e87f5087134bc7b14a6265357e91c5bbd26ca755e9fe6dc86f",
+      "removed_imports": 26,
+      "added_imports": 0
+    },
+    "Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.HeckeLEntireAndNonzeroAtOne": {
+      "parent": "ad99390066565c9ce122a9b895b79c7bf12414d37537a13b1d81db1e8ce672a6",
+      "candidate": "2990c095eabe9ca78f7f322f47376273d81606fc319e2a3cd32a3216c07b5a72",
+      "removed_imports": 30,
+      "added_imports": 0
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective": {
+      "parent": "c618651783309e1835a6de216b892431148e69e4e0bad579761854b995c0faa3",
+      "candidate": "18dc1cc192ec7f97b5842f91105c313f96810860812510490519fc5e03cee96c",
+      "removed_imports": 28,
+      "added_imports": 0
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.LocalRingsCompletion.IsCharOneOfSubsingleton": {
+      "parent": "2c2ad889d689309f80d083c3072dca8ba936779c16c39b0a0aa5b902b86e255f",
+      "candidate": "ed1b82bac2e13515a6b7558457f24b9b2ed48c637dd1671f9de9f7bcab1d86dc",
+      "removed_imports": 31,
+      "added_imports": 0
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.LocalRingsCompletion.nakayama": {
+      "parent": "c54b87c9e6012bbde3f66ebe0fdcd498b3660a4e5c27d63fdcc70593b3b499ba",
+      "candidate": "81cdf5abcda6f82bf19adffc69567c2b38fe49b4b628886395ab0096b1c31a30",
+      "removed_imports": 27,
+      "added_imports": 0
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.DegreeCountCohomology.SolCnt": {
+      "parent": "5930bbb89c36221773bde3264ed3e6c518d750cf55d69ec86be36bcd56834f30",
+      "candidate": "9fbfa79bad2badafb9e33bc133a8096e1b4697af700cd0dbaee78292dd083f5e",
+      "removed_imports": 30,
+      "added_imports": 0
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.PairedDualFirstOrderDualMatrixSpace": {
+      "parent": "aa8a0f94b4bb4fe9d73a669b5806a64a3b27b8783852dba8a9f3dda7ed20c16e",
+      "candidate": "bda25b835ff97aefb8ed5cf22aded958ca4f29e731799f7cdcd7544353cf39ac",
+      "removed_imports": 30,
+      "added_imports": 0
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne": {
+      "parent": "6fad138128262a85117420b5791ea78b0a67b821722a482ffca1fa527e11be7d",
+      "candidate": "b154e2fe1df0fc5e5059c337befe4444334c8221feab92ecd804b39d3757fded",
+      "removed_imports": 29,
+      "added_imports": 0
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight": {
+      "parent": "39153d6dbd666dbab81d29404bd72460e039c71f9c0ab87a13be7665c49324d1",
+      "candidate": "e352a0e6b2cf5a7c22bcabe8bab540057089891230dca4ec9a41e7158d393dee",
+      "removed_imports": 32,
+      "added_imports": 0
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.RepAlg": {
+      "parent": "4995e5ab1053cf77dfb12d3a2b1c261770cef771108d867c53bef2207c632472",
+      "candidate": "6441e4393b0e3c343a349e351d133dd2dca670f635d70fd260c2232f93b5bf84",
+      "removed_imports": 27,
+      "added_imports": 0
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.UniversalOrdinaryDeterminantRing": {
+      "parent": "2cbf37e0e10c4f31e8f8b6dc77320348c5e550c497e8ee0f24479ffd9d7d5872",
+      "candidate": "2890739743324ea21d729d5f79081e5f5da71d4b792bee587a483db032cabed5",
+      "removed_imports": 30,
+      "added_imports": 0
+    },
+    "Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsTight": {
+      "parent": "6bdf4a4536c9c6635b77a1b15ded690ad591ad6f8a02aede897a9577aee037ae",
+      "candidate": "cd23205a66990e8481427c5317255352ccfe79ff81467107a7deb8e7a9633bee",
+      "removed_imports": 30,
+      "added_imports": 0
+    },
+    "Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.StepOrderRes": {
+      "parent": "fd0b44d96422218498d301a0c4e06e73263b119d08c02fcf949bf9e02c60dc7e",
+      "candidate": "42a462ffd319b49d03778f5ac340c3a464ad82b5d6c92e78604fc09626be2b86",
+      "removed_imports": 30,
+      "added_imports": 0
+    },
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CharacterIdealPrincipalEigen": {
+      "parent": "832991e875bfd24edaf6957122983a4d10628b0bc6bc883b2a03f02053f7c4d5",
+      "candidate": "c4227ad5fdb5e1300c9075a4b02645a00f939d24a4467214449479689a5c4b4a",
+      "removed_imports": 28,
+      "added_imports": 0
+    },
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CharacterIdealPrincipalEigenStatement": {
+      "parent": "77b3a5203b62d3b04f6e775a90f92fcbd2cb7d348556bef95e9fe618190fb846",
+      "candidate": "aba4fbf28a728d47efd883cfe3eaafdd34a81774a1beab32bf42f26b48a98535",
+      "removed_imports": 28,
+      "added_imports": 0
+    },
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.TeichmullerCharacterOrderGenerates": {
+      "parent": "49b0aec5748bd07409d9e1a1dcfd0f1ded4b9e735fd290997fdc99a2b53c4958",
+      "candidate": "1f5013753c0704978ababe32abd2c82c889e07757eb42201bc9ea124065929da",
+      "removed_imports": 28,
+      "added_imports": 0
+    },
+    "Development.EtaleCohomology.CohomologicalPurity.InrFold": {
+      "parent": "7b13fb63dfd80f45c72665d4de56efc706218568b351afb2934686cd40faf495",
+      "candidate": "4e32b6d8074507252e2658185c2076bbf7fa2b8ceb41270bf1ea39cecc30f597",
+      "removed_imports": 26,
+      "added_imports": 0
+    },
+    "Development.EtaleCohomology.CohomologicalPurity.LeafBdCut": {
+      "parent": "9afcc91c9746a5f9ad46ffedeecc9a44e20b449806b7e60e07ddc97e65af9ed8",
+      "candidate": "450e16c1e0505e2ad89da01956349f45112e634b66a1e8ebd086c3890751ad04",
+      "removed_imports": 26,
+      "added_imports": 0
+    },
+    "Development.EtaleCohomology.CohomologicalPurity.LeafImgPf": {
+      "parent": "eda0ec427f26238772982ca63cc35ea2e4835632395be804b53139182a1fe88c",
+      "candidate": "7e8d6745be30721c2ea7322a04eba2709da52d5ee3688c8aeafa4a8bccb97267",
+      "removed_imports": 26,
+      "added_imports": 0
+    },
+    "Development.EtaleCohomology.CohomologicalPurity.LeafIndExc": {
+      "parent": "6d2cbf8fbb988b4c3df11f059f2461bb0e21b61145513ba049500b659cf34969",
+      "candidate": "7c71024fd01c90988c71cc3836cfb18dd5e9985b60695abacccd9889e8764dc1",
+      "removed_imports": 26,
+      "added_imports": 0
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.SpanSingletonProduct": {
+      "parent": "2f3c9adf251432d297f5644d56342702d5776a45cb865bb0874ee29f1b4760a6",
+      "candidate": "bb8e368adeb559c1cd6a9a18058e44f5e1b9e5f229badcaaf9828a09a8bd2a8d",
+      "removed_imports": 27,
+      "added_imports": 0
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleChartExistence": {
+      "parent": "49105f48bd5bd4ca8f8cc2d6e0cd4b043e3f67f88d2e90007337c9c192508d69",
+      "candidate": "0f661d2bd82b9e07e6785c2c790b2ac46221c3622593388a5c2e1cbcf97883b1",
+      "removed_imports": 26,
+      "added_imports": 0
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.SmoothRegular": {
+      "parent": "589e28cb4d46eaf10e7bc651959b61ab50912ef1bd37f201aee69a83b296caf9",
+      "candidate": "76163dd570cbd54e7c3d7578132ac05e956bba7d629aab22386ca11cb71c3927",
+      "removed_imports": 26,
+      "added_imports": 0
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StalkKrullDimension": {
+      "parent": "eab934f2a087a003be870ca2f846e0bc6d5ff300088a2b360d6368e80012abef",
+      "candidate": "caf4edd5c9345074d5606796d3f7c44cf14ddd14e9eabfa2f336daa0bf3d6890",
+      "removed_imports": 28,
+      "added_imports": 0
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StrictNormalCrossings": {
+      "parent": "564b27c3bd1952ef60bb7bdd2a54290911ec4e315ce030fa750525ad62ffd41a",
+      "candidate": "11191746741fc9e83b9a804e4b2dea2b26bad57c68bc2598008e4efdbf6281b5",
+      "removed_imports": 26,
+      "added_imports": 0
+    },
+    "Development.ResolutionOfSingularities.Foundations.BlowupUniversalProperty": {
+      "parent": "a77e304b43db5190e7fe538b92723027eb1be49539f81bfc5a4159c2b9c10bd9",
+      "candidate": "534fb96d1d5bd2fc5e601a44bc1d1faca38cb47974b31c630a9aca23306ea100",
+      "removed_imports": 26,
+      "added_imports": 0
+    },
+    "Development.ResolutionOfSingularities.Foundations.Schemes.AffineOpens": {
+      "parent": "afa95322130c7277e41d8cb63f414008c4d5512f8fba7a76eb1b67b567c7e9f7",
+      "candidate": "8e2c872c3e9c61270b5af81c30e8512939016b8531fb9b030fb0c3b5f82948b9",
+      "removed_imports": 26,
+      "added_imports": 0
+    },
+    "Development.WeilBound.CoreStatements.HodgeTatePoints.RiRank": {
+      "parent": "49156ab2f63960aa31dc38295219e383fee19ffeca34b42906e9706c974a23a1",
+      "candidate": "c87724bc36d50ab19d85c1ffcb585de347bf2f83de60e4522f16d7a6681a2845",
+      "removed_imports": 31,
+      "added_imports": 0
+    },
+    "Development.WeilBound.ThetaLifts.LeviDeterminants.GrowSplit": {
+      "parent": "ab75862a825c57d92e268b5935c5719ef01e7c49d876c798d31fbb2a1bde58bf",
+      "candidate": "9b5c6d18f3c00eb8d2e4a45ccd7530a4cd15ef8f39420d3cd35e81f4167f9280",
+      "removed_imports": 27,
+      "added_imports": 0
+    }
+  },
+  "cone": 74,
+  "changed": 38,
+  "strict_private": [],
+  "integration_timing": {
+    "roots": [
+      "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+      "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange"
+    ],
+    "modules": [
+      "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+      "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange",
+      "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.AlternatingMapSumSmulEqDetSmul"
+    ]
+  },
+  "expected_libraries": [
+    "Development"
+  ],
+  "pull": 879,
+  "prior_bounded_run": 45446269669,
+  "exact_prior_inputs": {
+    "previous_workflow": "bbe6a0c7c89aabdeecfda95e151ecf9f8584d6fd",
+    "previous_run": 45446269669,
+    "all_named_timing_and_external_theorem_inputs": true
+  },
+  "latest_selection": {
+    "selection": "One current source per edited Development subject, closest to a 12-project-module cone, with module name as the tie breaker. Include the concurrent duplicate import if its project cone fits the published workload limit.",
+    "groups": {
+      "AbelianVarietyTheory": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypicalCurvesTangentAndBases",
+      "AutomorphicArithmetic": "Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.DegreeCountCohomology.SolCnt",
+      "AutomorphicSpectrum": "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CharacterIdealPrincipalEigenStatement",
+      "EtaleCohomology": "Development.EtaleCohomology.CohomologicalPurity.LeafImgPf",
+      "ResolutionOfSingularities": "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StalkKrullDimension",
+      "WeilBound": "Development.WeilBound.CoreStatements.HodgeTatePoints.RiRank"
+    },
+    "explicit_concurrent_import": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex",
+    "concurrent_import_cone_modules": 21,
+    "included_concurrent_import": true
+  }
+}

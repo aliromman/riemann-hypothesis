@@ -1,0 +1,21 @@
+{
+  "source_repository": "aliromman/riemann-hypothesis",
+  "source_ref": "refs/heads/ci/batch-1313/pr-879-reviewed-source",
+  "source_head": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+  "parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "donor": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "parent_source_tree": "b722dc0d057c3a869ad607e0c93231665a963b63",
+  "parent_module_manifest": "56ef968afb7ef3227b98278bbf86cf5b2baa24385b4f89f3aca63599a437af92",
+  "checked_commit": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+  "candidate_source_tree": "6af81f1c5c2293469175c13cfd47bc25932da66c",
+  "git_tree": "bbc866445a0103e2bf7b6d11a8078eb87ba7cf3d",
+  "pins": {
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d"
+  },
+  "mode": "public-fork-head",
+  "pull_number": 879,
+  "facet_policy": "complete-parent-payload-exact-private-import-header-v2",
+  "preceding_raw_comparison_run": 45368083272
+}
