@@ -1,0 +1,41 @@
+{
+  "run": 45463319384,
+  "conclusion": "failure",
+  "failed_step": "Post-timing stdout/stderr check expected 656 plan members, inherited from batch 7; the independently checked batch 8 plan has 666. All 30 timed observations were produced before that failure.",
+  "source": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+  "zip_sha256": "9c3789e59187d48d65e757e4682ff043a20e15264ecee857db32436015f87144",
+  "corrected_repeat": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45465474672",
+  "first_run_medians": {
+    "plan": {
+      "published": {
+        "wall_s": 23.313282753,
+        "cpu_s": 22.796847,
+        "peak_rss_bytes": 3740139520
+      },
+      "proposed": {
+        "wall_s": 21.763138998,
+        "cpu_s": 21.746427999999998,
+        "peak_rss_bytes": 735707136
+      }
+    },
+    "apply": {
+      "community": {
+        "wall_s": 20.005889238,
+        "cpu_s": 19.655068,
+        "peak_rss_bytes": 3573747712
+      },
+      "published": {
+        "wall_s": 0.388121466,
+        "cpu_s": 0.371937,
+        "peak_rss_bytes": 72613888
+      },
+      "proposed": {
+        "wall_s": 0.390213418,
+        "cpu_s": 0.37319899999999995,
+        "peak_rss_bytes": 72613888
+      }
+    }
+  },
+  "scored_rounds": 5,
+  "warmups_per_tool": 1
+}

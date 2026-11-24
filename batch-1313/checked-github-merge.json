@@ -1,0 +1,24 @@
+{
+  "utc": "2026-11-24T19:02:14.053698+00:00",
+  "pr": 977,
+  "head": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+  "community_main": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "github_merge": "aaa4820de613f26db47257375ca52156a8197258",
+  "github_tree": "ded99e3598129fe64a813bba7c03e8de75dd080c",
+  "src": "e0641dda707407a73d29502a55f1789eab873789",
+  "parents": [
+    "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "28e9eedf5e13abbe174794bb69fa8363296cf2ad"
+  ],
+  "protected": [
+    "lean-toolchain",
+    "lake-manifest.json",
+    "lakefile.toml",
+    "comparator.json",
+    "export-targets.txt",
+    "src/Main.lean",
+    "src/Challenge.lean",
+    "src/Statements.lean"
+  ],
+  "mergeable": true
+}

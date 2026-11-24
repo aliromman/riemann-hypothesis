@@ -1,0 +1,79 @@
+{
+  "source_checkout": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+  "source_tree": "e0641dda707407a73d29502a55f1789eab873789",
+  "members": 666,
+  "plan_roots": 204,
+  "original_and_restored_tracked_files": 59869,
+  "source_census_sha256": "7f37607a784714f14dfd573df90721dfcdae0a16d529e0c76a1aacdb37f7a3d4",
+  "tool_sha256": {
+    "community": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44",
+    "published": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf",
+    "proposed": "42027c05de988741decb36b3d9c6f689feed372e17331a40b1c867f0bf1bf933"
+  },
+  "saved_plan_sha256": "0aea27f6c11bf6a6c26184cc238728ee7fd46e2630a8f08629d6e68c5520235a",
+  "generated_root_streams": {
+    "community": "409e916d943768e27bb5c5ec108cec4fceffc69690cb492ea5260ed04c96dc7c",
+    "published": "e1a3dd789a5455e1ac26d41de92f14d9a6071c0924bc243a3bde9a5fb21424d3",
+    "proposed": "e1a3dd789a5455e1ac26d41de92f14d9a6071c0924bc243a3bde9a5fb21424d3"
+  },
+  "order": "One warm-up per tool. Five scored rounds rotate the first tool. The plan uses two tools and apply uses three.",
+  "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+  "platform": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+  "medians": {
+    "plan": {
+      "published": {
+        "wall_s": 20.281066893,
+        "cpu_s": 20.102984,
+        "peak_rss_bytes": 3740004352
+      },
+      "proposed": {
+        "wall_s": 19.222290956,
+        "cpu_s": 19.221443999999998,
+        "peak_rss_bytes": 735764480
+      }
+    },
+    "apply": {
+      "community": {
+        "wall_s": 17.046036871,
+        "cpu_s": 16.909212,
+        "peak_rss_bytes": 3573882880
+      },
+      "published": {
+        "wall_s": 0.31315102,
+        "cpu_s": 0.31732799999999994,
+        "peak_rss_bytes": 72617984
+      },
+      "proposed": {
+        "wall_s": 0.312751326,
+        "cpu_s": 0.317642,
+        "peak_rss_bytes": 72617984
+      }
+    }
+  },
+  "observations_sha256": "e86f7528cf802de3ddfe537894ecbf1a9d7b0a0b65ea70f66aa695fe8f1a8703",
+  "run": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45465474672",
+  "workflow": "d204f91b30182d134e626fb20e7452518b5b950b",
+  "source": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+  "original_id": 14953304179,
+  "zip_sha256": "730ec6ecac537df176950fd245c17c32fd9120968ca26328ab0c4e0afc852004",
+  "baseline_tools": {
+    "community": {
+      "repo": "leanprover-community/riemann-hypothesis",
+      "ref": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+      "git_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+      "sha256": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44"
+    },
+    "published": {
+      "repo": "aliromman/riemann-hypothesis",
+      "ref": "70f5e2c0737a9289949627d834612ed30d25432f",
+      "git_blob": "e7729f1bb64f7e9d8b3ef1edbe98459f6536602f",
+      "sha256": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf"
+    },
+    "proposed": {
+      "repo": "aliromman/riemann-hypothesis",
+      "ref": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+      "git_blob": "b5cb4699f2f6265de696c087eafc797994e9db70",
+      "sha256": "42027c05de988741decb36b3d9c6f689feed372e17331a40b1c867f0bf1bf933"
+    }
+  }
+}

@@ -20,3 +20,11 @@ For the complete comparison, 8,227 changed owners require new compilations. Anot
 The official parent has 65,982,391,336 bytes of project compiler data across five files per module. The complete table gives all 299,340 file hashes and sizes. Whole-project clean build time remains unmeasured. [Parent files and sizes](ordinary-lake)
 
 The two proposals combine cleanly. Across all 9,139 shared source paths, Git preserved the proposed import header and scope body byte for byte. Together they remove 1,396,755 nonblank Lean lines. The peer inventory reports additional Git conflicts against each peer's own control merge with main. [Combined tree and path counts](composition.json) · [Per-file checks](composition-source.jsonl.gz) · [Open PR inventory](coordination/summary.json) · [Precedents and source comparisons](coordination/current-precedents.json)
+
+## Additional checks
+
+The parent control rebuilt both real proof providers and Main. Main’s 59,011 public project inputs and MainConclusion’s additional private dependency on Lemmata.TracePi were authenticated separately. The rebuilt provider and Main files matched all fifteen official outputs. Replacing the provider-only input with a wrong file failed the check. [Parent control](parent-control/pinned-parent.json) · [Wrong-input control](parent-control/wrong-provider-only-input.json)
+
+The inspected draft of community batch #1410 was `10b741f004e9878adc2b5f8b5adc915df4b94f6a`. Across the two refactors, it shares 5,680 source files. A source-only reconstruction accounted for each one. The batch replaces StrongMultiplicityOne.Strong’s 25-member archive with a 16-line proof file, which supersedes the old renderer change on that path. The preview preserves those source bytes. A future community merge needs its own compiler comparisons. [Draft source comparison](coordination/batch9-preview.json) · [Per-file decisions](coordination/batch9-sources.jsonl.gz)
+
+The current Ubuntu test run passed 314 repository script tests, including 14 clump tests, and 60 native CI tests. All four compiler diagnostics matched their reference inputs, stock errors and recovered member names. [Tests and logs](tests/summary.json) · [Full tool timing and memory](planner/README.md)
