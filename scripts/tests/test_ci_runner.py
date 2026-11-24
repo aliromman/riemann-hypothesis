@@ -15,7 +15,7 @@ import unittest
 from types import SimpleNamespace
 from unittest.mock import patch
 
-SCRIPT = Path(__file__).with_name("ci-runner.py")
+SCRIPT = Path(__file__).resolve().parents[1] / "ci-runner.py"
 spec = importlib.util.spec_from_file_location("ci_runner", SCRIPT)
 runner = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(runner)

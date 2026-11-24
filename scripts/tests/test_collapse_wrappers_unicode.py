@@ -1,4 +1,4 @@
-"""Run with LEAN=/path/to/lean python3 scripts/test_collapse_wrappers_unicode.py."""
+"""Run with LEAN=/path/to/lean python3 scripts/tests/test_collapse_wrappers_unicode.py."""
 
 import os
 from pathlib import Path
@@ -7,10 +7,10 @@ import sys
 import tempfile
 import unittest
 
+
+SCRIPT = Path(__file__).resolve().parents[1] / "collapse_wrappers.py"
+sys.path.insert(0, str(SCRIPT.parent))
 from collapse_wrappers import IDENT_RE
-
-
-SCRIPT = Path(__file__).with_name("collapse_wrappers.py")
 
 
 class UnicodeWrapperCollapse(unittest.TestCase):

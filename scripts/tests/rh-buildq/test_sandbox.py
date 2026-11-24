@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Tests of the fragment sandbox with a hostile lakefile. Needs bwrap and an installed toolchain.
 
-  python3 scripts/rh-buildq/test_sandbox.py [-v]
+  python3 scripts/tests/rh-buildq/test_sandbox.py [-v]
 
 RH_TEST_TOOLCHAIN may name a toolchain directory; by default the newest one under ~/.elan.
 The hostile lakefile tries, while Lake elaborates it, to write into $HOME, read ~/.ssh, read
@@ -15,11 +15,11 @@ from main's must be refused before anything of it runs.
 import importlib.util, json, os, shutil, socket, subprocess, tempfile, unittest
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parent
+BUILDQ = Path(__file__).resolve().parents[2] / "rh-buildq"
 
 
 def load(name, file):
-    spec = importlib.util.spec_from_file_location(name, HERE / file)
+    spec = importlib.util.spec_from_file_location(name, BUILDQ / file)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
@@ -184,7 +184,7 @@ print(json.dumps(bad))
 
 class TrustedInputs(unittest.TestCase):
     """fragment.check_inputs refuses targets whose dependencies would be chosen by the target."""
-    TRUSTED = HERE.parents[1]
+    TRUSTED = BUILDQ.parents[1]
 
     def manifest(self, **change):
         m = json.loads((self.TRUSTED / "lake-manifest.json").read_text())

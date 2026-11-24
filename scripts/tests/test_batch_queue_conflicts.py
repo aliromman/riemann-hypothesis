@@ -9,7 +9,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-SCRIPT = Path(__file__).with_name("batch-queue-conflicts.py")
+SCRIPT = Path(__file__).resolve().parents[1] / "batch-queue-conflicts.py"
 spec = importlib.util.spec_from_file_location("batch_queue_conflicts", SCRIPT)
 conflicts = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(conflicts)
