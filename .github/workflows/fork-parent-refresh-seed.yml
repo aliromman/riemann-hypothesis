@@ -2,7 +2,7 @@ name: Prepare the published RH parent for both native comparisons
 on:
   push:
     branches: [ci/import-pruning/screen]
-    paths: ['ci/parent-refresh/authority.json']
+    paths: ['ci/parent-refresh/authority.json', 'ci/parent-refresh/seed.py']
 
 permissions:
   contents: read
@@ -57,7 +57,7 @@ jobs:
       - name: Verify the published manifest and download only missing official archives
         if: steps.existing.outputs.cache-hit != 'true'
         run: |
-          python3 harness/ci/current-recheck/parent.py --parent parent --cache "$RUNNER_TEMP/rh-screen-cache" --authority harness/ci/parent-refresh/authority.json
+          python3 harness/ci/parent-refresh/seed.py --parent parent --cache "$RUNNER_TEMP/rh-screen-cache" --authority harness/ci/parent-refresh/authority.json
           df -h .
       - name: Save the fully authenticated project archives for both proposals
         if: steps.existing.outputs.cache-hit != 'true'
