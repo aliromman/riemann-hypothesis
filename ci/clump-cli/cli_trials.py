@@ -18,10 +18,10 @@ import time
 
 TOOL_SHA = {
     "community": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44",
-    "published": "01a81b1a58da622db0427e99139e3b399aa12fae43cde2d59aa709795c3bcade",
-    "proposed": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf",
+    "published": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf",
+    "proposed": "42027c05de988741decb36b3d9c6f689feed372e17331a40b1c867f0bf1bf933",
 }
-HEADS = ("f6177155e8e440c0a831d4c15de4c74341de0a93", "e7127ce8136d8ed36e610884d8578de1cffadd19")
+HEADS = ("e7127ce8136d8ed36e610884d8578de1cffadd19", "8d792c7fd2c0f411f215762a82145a4484ea29dd")
 SOURCE = "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505"
 PLAN = "7f008f70f550f162cba7e1b23b8b15309086d8efd3ff8c0c4a2ff9ed4521a175"
 STREAMS = {
@@ -127,6 +127,7 @@ def main():
             print(json.dumps(row, separators=(",", ":")), file=out)
         print(command, trial, label, f"{stats['wall_s']:.3f}", stats["peak_rss_bytes"], flush=True)
     observations.write_text("")
+    plan_stdout = None
     for trial in range(6):
         for label in order(["published", "proposed"], trial):
             command = [sys.executable, "-B", scripts[label], "plan", project, "--out", plan_file,
@@ -134,7 +135,11 @@ def main():
             stats = run_cli(project, command, child_log)
             sha = digest(plan_file.read_bytes())
             assert sha == PLAN
-            record("plan", label, trial, stats, plan_sha256=sha)
+            stdout = digest(child_log.read_bytes())
+            if plan_stdout is None:
+                plan_stdout = stdout
+            assert stdout == plan_stdout
+            record("plan", label, trial, stats, plan_sha256=sha, output_sha256=stdout)
     saved = json.loads(plan_file.read_bytes())
     if len(saved) != 199:
         raise ValueError("unexpected number of clumps")

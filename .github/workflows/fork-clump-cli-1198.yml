@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           repository: aliromman/riemann-hypothesis
-          ref: e7127ce8136d8ed36e610884d8578de1cffadd19
+          ref: 8d792c7fd2c0f411f215762a82145a4484ea29dd
           path: project
           fetch-depth: 1
           persist-credentials: false
@@ -63,6 +63,10 @@ jobs:
         shell: bash
         run: |
           python3 -B verifier/ci/clump-cli/cli_trials.py "$PWD/project" "$RUNNER_TEMP/clump-tools" "$RUNNER_TEMP/clump-results"
+      - name: Retain the planner text and compare the three apply output streams
+        shell: bash
+        run: |
+          python3 -B verifier/ci/clump-cli/standard_streams.py "$PWD/project" "$RUNNER_TEMP/clump-tools" "$RUNNER_TEMP/clump-results"
       - name: Retain the raw CLI observations and exact saved plan
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
