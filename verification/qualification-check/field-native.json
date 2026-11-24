@@ -1,0 +1,186 @@
+{
+  "before_check": {
+    "tool_exit": 0,
+    "sites": [
+      {
+        "member": "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Langlands",
+        "original_line": 63,
+        "recorded": [
+          "GlobalTheory.LocLanglands.LawsLit.twist"
+        ],
+        "verdict": "matches"
+      },
+      {
+        "member": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RecOfRecLiteral",
+        "original_line": 37,
+        "recorded": [
+          "GlobalTheory.LocLanglands.Laws.twist"
+        ],
+        "verdict": "matches"
+      }
+    ]
+  },
+  "after_check": {
+    "tool_exit": 1,
+    "sites": [
+      {
+        "member": "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Langlands",
+        "original_line": 63,
+        "recorded": [
+          "GlobalTheory.LocLanglands.LawsLit.twist"
+        ],
+        "verdict": "manual: name before := can be a field label"
+      },
+      {
+        "member": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RecOfRecLiteral",
+        "original_line": 37,
+        "recorded": [
+          "GlobalTheory.LocLanglands.Laws.twist"
+        ],
+        "verdict": "manual: name before := can be a field label"
+      }
+    ]
+  },
+  "native_controls": [
+    {
+      "member": "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Langlands",
+      "arm": "original",
+      "sites": 1,
+      "extra_imports": [
+        "public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsUnitarisableOfCharIff\n"
+      ],
+      "project_closure": 781,
+      "exit": 0,
+      "errors": [],
+      "sha256": "518414e856510c4248e6fd728346897b05fc03e57fdd5790eadfcff37df2b982"
+    },
+    {
+      "member": "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Langlands",
+      "arm": "proposed",
+      "sites": 1,
+      "extra_imports": [
+        "public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsUnitarisableOfCharIff\n"
+      ],
+      "project_closure": 781,
+      "exit": 1,
+      "errors": [
+        {
+          "pos": {
+            "column": 4,
+            "line": 64
+          },
+          "kind": "[anonymous]",
+          "message": "`GlobalTheory` is not a field of structure `LawsLit`"
+        },
+        {
+          "pos": {
+            "column": 2,
+            "line": 63
+          },
+          "kind": "[anonymous]",
+          "message": "Fields missing: `twist`"
+        }
+      ],
+      "sha256": "0c7d944fb3048c442a6d3bf70801ec98a4746c5eaff0bd3eb83785aa900324e4"
+    },
+    {
+      "member": "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Langlands",
+      "arm": "recorded",
+      "sites": 1,
+      "extra_imports": [
+        "public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsUnitarisableOfCharIff\n"
+      ],
+      "project_closure": 781,
+      "exit": 1,
+      "errors": [
+        {
+          "pos": {
+            "column": 4,
+            "line": 64
+          },
+          "kind": "[anonymous]",
+          "message": "`_root_` is not a field of structure `LawsLit`"
+        },
+        {
+          "pos": {
+            "column": 2,
+            "line": 63
+          },
+          "kind": "[anonymous]",
+          "message": "Fields missing: `twist`"
+        }
+      ],
+      "sha256": "ba050505a14ab15c1dd59c55795978c2ebc5b465f27f2b4c2f2ec8313a12c343"
+    },
+    {
+      "member": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RecOfRecLiteral",
+      "arm": "original",
+      "sites": 1,
+      "extra_imports": [
+        "public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsUnitarisableOfCharIff\n"
+      ],
+      "project_closure": 2275,
+      "exit": 0,
+      "errors": [],
+      "sha256": "39ff8ecc7b9872cce66f4cc9140d0f61a209fb47a2cb07874e78fd7a63777c00"
+    },
+    {
+      "member": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RecOfRecLiteral",
+      "arm": "proposed",
+      "sites": 1,
+      "extra_imports": [
+        "public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsUnitarisableOfCharIff\n"
+      ],
+      "project_closure": 2275,
+      "exit": 1,
+      "errors": [
+        {
+          "pos": {
+            "column": 6,
+            "line": 38
+          },
+          "kind": "[anonymous]",
+          "message": "`GlobalTheory` is not a field of structure `Laws`"
+        },
+        {
+          "pos": {
+            "column": 4,
+            "line": 37
+          },
+          "kind": "[anonymous]",
+          "message": "Fields missing: `twist`"
+        }
+      ],
+      "sha256": "80465f2d393c7e6ee4bb66df2e6dcc91391942ac55c12e0e54df7c0e2dae767a"
+    },
+    {
+      "member": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RecOfRecLiteral",
+      "arm": "recorded",
+      "sites": 1,
+      "extra_imports": [
+        "public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsUnitarisableOfCharIff\n"
+      ],
+      "project_closure": 2275,
+      "exit": 1,
+      "errors": [
+        {
+          "pos": {
+            "column": 6,
+            "line": 38
+          },
+          "kind": "[anonymous]",
+          "message": "`_root_` is not a field of structure `Laws`"
+        },
+        {
+          "pos": {
+            "column": 4,
+            "line": 37
+          },
+          "kind": "[anonymous]",
+          "message": "Fields missing: `twist`"
+        }
+      ],
+      "sha256": "6c1cda72c3678579a22d218aa00b315df9f4a9e85f531691583da457540dc00b"
+    }
+  ]
+}

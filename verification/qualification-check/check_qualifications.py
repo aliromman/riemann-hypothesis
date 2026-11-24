@@ -20,6 +20,28 @@ def utf16(text):
     return len(text.encode("utf-16-le")) // 2
 
 
+def followed_by_assignment(lines, index, stop):
+    """Check the first token after an occurrence, across Lean comments and line breaks."""
+    depth = 0
+    for i in range(index, len(lines)):
+        line = lines[i]
+        pos = stop if i == index else 0
+        while pos < len(line):
+            if line.startswith("/-", pos):
+                depth += 1
+                pos += 2
+            elif depth and line.startswith("-/", pos):
+                depth -= 1
+                pos += 2
+            elif depth or line[pos].isspace():
+                pos += 1
+            elif line.startswith("--", pos):
+                break
+            else:
+                return line.startswith(":=", pos)
+    return False
+
+
 def member_ranges(lines, physical):
     starts = [(index, line[len(MARKER):]) for index, line in enumerate(lines)
               if line.startswith(MARKER)]
@@ -142,10 +164,12 @@ def main():
                     names = uses[n, utf16(old[n][:start]), utf16(old[n][:stop])]
                     if not token.startswith("_root_.") or token.rsplit(".", 1)[-1] != former[0].rsplit(".", 1)[-1]:
                         verdict = "manual: edit is not an absolute qualification"
-                    elif names == {token.removeprefix("_root_.")}:
-                        verdict = "matches"
-                    else:
+                    elif names != {token.removeprefix("_root_.")}:
                         verdict = "manual: missing or different original constant"
+                    elif followed_by_assignment(old, n, stop):
+                        verdict = "manual: name before := can be a field label"
+                    else:
+                        verdict = "matches"
                     report(verdict, path, i + 1, column=proposed.start() + 1, member=member,
                            original_line=n + 1, original_utf16_column=utf16(old[n][:start]),
                            previous=former[0], token=token, original_token=site[0],

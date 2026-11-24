@@ -76,3 +76,16 @@ python3 -c 'import json,sys; print("\n".join(sorted({r["member"] for r in map(js
 lake build Development.AbelianVarietyTheory.Definitions.Foundations.T2SpaceAdeleRing
 xargs lake build < "$controls/members.txt"
 ```
+
+## Structure field assignments
+
+Lean records the projection name for a structure field label. Changing the label `twist :=` to a fully qualified projection still makes the assignment invalid. With both providers imported, each of the two complete original modules accepts its bare label. Each reports two errors with the external name and two with the absolute name of the original projection. [Restored fields](https://github.com/rohanarun/riemann-hypothesis/pull/722) · [Sibling repair](https://github.com/rohanarun/riemann-hypothesis/pull/707).
+
+The checker now sends a changed name that precedes `:=` to manual review, including across nested comments and line breaks. Valid terms can also occur in that position, for example at the end of a proposition just before its proof. Use a native compile for these edits. The rule catches both known field-label errors. All seven earlier qualification diffs retain their verdicts across 171 sites.
+
+Run the commands below from the original 4.36 checkout. The test builds a temporary Git fixture from the two original files. It checks the actual compiler spans for the two field labels.
+
+```sh
+lake build Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Langlands Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RecOfRecLiteral
+python3 "$tools/field_label_controls.py" --repo "$PWD" --ilean-dir "$PWD/.lake/build/lib/lean" --checker "$tools/check_qualifications.py"
+```
