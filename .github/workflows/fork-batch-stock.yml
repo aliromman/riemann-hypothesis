@@ -1,8 +1,8 @@
-name: Stock Lake and Comparator for PR 977 on batch 1018
+name: Stock Lake and Comparator for PR 977 on batch 1119
 on:
   push:
-    branches: [ci/batch-1018/stock-977]
-    paths: ['ci/stock-batch-1018/request.json']
+    branches: [ci/batch-1119/stock-977]
+    paths: ['ci/stock-batch-1119/request.json']
 permissions:
   contents: read
 jobs:
@@ -21,16 +21,16 @@ jobs:
         with:
           path: harness
           persist-credentials: false
-          sparse-checkout: ci/stock-batch-1018
+          sparse-checkout: ci/stock-batch-1119
       - name: Select the pinned public objects
         id: source
         shell: bash
         run: |
-          ci="$GITHUB_WORKSPACE/harness/ci/stock-batch-1018"
+          ci="$GITHUB_WORKSPACE/harness/ci/stock-batch-1119"
           python3 - <<'PYCODE'
           import json,os,re
           from pathlib import Path
-          r=json.loads(Path('harness/ci/stock-batch-1018/request.json').read_bytes())
+          r=json.loads(Path('harness/ci/stock-batch-1119/request.json').read_bytes())
           assert r['source_repository']=='aliromman/riemann-hypothesis'
           assert r['mode'] in ('public-fork-head','github-pull-merge')
           for key in ('parent','checked_commit','source_head'):
