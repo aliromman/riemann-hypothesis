@@ -1,0 +1,60 @@
+{
+  "projected_digest": "d4dc16d9ceab43e4c0ceac42fc5d6cedcfaf1cbf009a7370fc1bbc83f950f172",
+  "size_table_sha256": "7133f0b97a3ce2c914c331bfa81c78c56aee8400cd3b3f94737efe4fdb2773b5",
+  "projected_for_head": "e0a0acde813bd368786947b98704ee6814656a15",
+  "published_head": "e0a0acde813bd368786947b98704ee6814656a15",
+  "published_parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "published_source_tree": "1a18c4e2e08b6b8ad61020378dec54de6c5f8e5b",
+  "source_pairs_sha256": "75efb0f7e9e11bd35529e92a0ad1f640e29e5c36093cb17e35e197364c42e672",
+  "scope": "all changed source files",
+  "total": {
+    "modules_smaller": 39007,
+    "modules_unchanged": 0,
+    "modules_larger": 0,
+    "total_bytes_saved": 379529840,
+    "total_bytes_added": 0,
+    "net_bytes_saved": 379529840,
+    "median_net_bytes_per_module": 9736,
+    "biggest_increase_bytes": 0,
+    "largest_increases": [],
+    "biggest_decrease_bytes": 11872
+  },
+  "facets": {
+    ".olean": {
+      "modules_smaller": 39007,
+      "modules_unchanged": 0,
+      "modules_larger": 0,
+      "total_bytes_saved": 187182864,
+      "total_bytes_added": 0,
+      "net_bytes_saved": 187182864,
+      "median_net_bytes_per_module": 4808,
+      "biggest_increase_bytes": 0,
+      "largest_increases": [],
+      "biggest_decrease_bytes": 5936
+    },
+    ".ir.sig": {
+      "modules_smaller": 0,
+      "modules_unchanged": 39007,
+      "modules_larger": 0,
+      "total_bytes_saved": 0,
+      "total_bytes_added": 0,
+      "net_bytes_saved": 0,
+      "median_net_bytes_per_module": 0,
+      "biggest_increase_bytes": 0,
+      "largest_increases": [],
+      "biggest_decrease_bytes": 0
+    },
+    ".ir": {
+      "modules_smaller": 39007,
+      "modules_unchanged": 0,
+      "modules_larger": 0,
+      "total_bytes_saved": 192346976,
+      "total_bytes_added": 0,
+      "net_bytes_saved": 192346976,
+      "median_net_bytes_per_module": 4928,
+      "biggest_increase_bytes": 0,
+      "largest_increases": [],
+      "biggest_decrease_bytes": 5936
+    }
+  }
+}

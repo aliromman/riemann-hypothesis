@@ -22,3 +22,9 @@ The official parent cache restored all 59,883 modules on an Apple silicon Mac. T
 ## Reviewer measurements
 
 The fork records the ordinary Lake workloads, their timing limits and the source proof checked in the default sandbox. The combined PR tree has a separate compilation panel. [Ordinary build and sandbox measurements](bounded-checks.md) · [Both patches together](composition-native) · [Conflicts with current open PRs](coordination) · [List of affected declarations](declarations)
+
+## Compiled outputs and theorem checks
+
+The final records cover all 39,007 changed source modules and all five declarations in `Main`. The raw ZIP files retain the original GitHub authentication digests. The upstream comparison records all paths changed since this mathematical parent and checks the two Git merge previews. [Compiled outputs](native) · [Five theorem proofs](five-theorems) · [Latest main comparison](latest-main.json)
+
+The two proposals also share a measured compiler workload. Its input record identifies the exact joint tree and the community modules used. [Combined-source comparison](composition-native) · [Stock Lake and sandboxed source replays](bounded-checks.md) · [Cross-PR merge checks](coordination)
