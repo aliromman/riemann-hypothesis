@@ -38,3 +38,24 @@ lake env python3 "$replay" --repo .
 ```
 
 Each original proof compiles. Changing only the local use to the proposed global name gives one unsolved goal in the rank-one proof and two errors in each theta proof. The replay checks the expected return codes and diagnostic counts. It writes each result to standard output. See `native-local-proofs.jsonl`.
+
+## Replay the five arithmetic proofs
+
+The same check accepts a repair that replaces an incorrect qualification with the absolute name from the original compiler. All 13 changes in [author PR #705](https://github.com/rohanarun/riemann-hypothesis/pull/705) match. Five complete source controls compiled with their original spelling and with the repaired spelling. The branch spelling gave eight diagnostics across the five proofs. The 15 compiled input hashes and diagnostics are in `native-typed-maps.jsonl`.
+
+Set `tools` to this directory. Set `controls` to an empty directory on the same machine. Use absolute paths for both. Run these commands in the clean original checkout with its pinned dependencies.
+
+```sh
+base=c7791603122c0328f79e49f6be5d7d4402effc53
+python3 "$tools/make_name_controls.py" --repo . --original "$base" --receipt "$tools/typed-maps.jsonl" --output "$controls"
+python3 -c 'import json,sys; print("\n".join(sorted({r["member"] for r in map(json.loads,open(sys.argv[1]))})))' "$tools/typed-maps.jsonl" > "$controls/members.txt"
+xargs lake build < "$controls/members.txt"
+for arm in original previous restored; do
+  while IFS= read -r module; do
+    path=$(printf '%s' "$module" | tr . /)
+    lake env lean -DautoImplicit=false -DrelaxedAutoImplicit=false -DmaxSynthPendingDepth=3 -DmaxHeartbeats=4000000 --root="$controls/$arm" "$controls/$arm/$path.lean"
+  done < "$controls/members.txt"
+done
+```
+
+The constructor uses the original UTF-16 source span and writes three complete files per module. Its 15 output hashes match the inputs used for the native controls. The `previous` arm must fail in each module. These results concern the source occurrences identified in the receipt. The physical consolidated modules also need to compile with their integrated dependencies.

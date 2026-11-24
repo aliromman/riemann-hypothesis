@@ -140,7 +140,7 @@ def main():
                         continue
                     start, stop = site.span()
                     names = uses[n, utf16(old[n][:start]), utf16(old[n][:stop])]
-                    if not token.startswith("_root_.") or not token.endswith("." + former[0]):
+                    if not token.startswith("_root_.") or token.rsplit(".", 1)[-1] != former[0].rsplit(".", 1)[-1]:
                         verdict = "manual: edit is not an absolute qualification"
                     elif names == {token.removeprefix("_root_.")}:
                         verdict = "matches"
@@ -148,7 +148,8 @@ def main():
                         verdict = "manual: missing or different original constant"
                     report(verdict, path, i + 1, column=proposed.start() + 1, member=member,
                            original_line=n + 1, original_utf16_column=utf16(old[n][:start]),
-                           token=token, original_constants=sorted(names))
+                           previous=former[0], token=token, original_token=site[0],
+                           original_constants=sorted(names))
         for i, (before, after) in enumerate(zip(left, right)):
             if before != after and i not in owned:
                 report("manual: bundle header changed", path, i + 1)
