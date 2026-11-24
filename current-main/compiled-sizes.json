@@ -1,0 +1,30 @@
+{
+  "modules": 40481,
+  "sha256": "ef785e2362f6561e2c02a9898102a82da4e1507e8658db6144750d97c4960405",
+  "facets": {
+    ".olean": {
+      "parent": 7004633600,
+      "candidate": 6810322304,
+      "smaller": 40481,
+      "larger": 0,
+      "equal": 0
+    },
+    ".ir.sig": {
+      "parent": 10039288,
+      "candidate": 10039288,
+      "smaller": 0,
+      "larger": 0,
+      "equal": 40481
+    },
+    ".ir": {
+      "parent": 521505600,
+      "candidate": 321825960,
+      "smaller": 40481,
+      "larger": 0,
+      "equal": 0
+    }
+  },
+  "new_compiler_parent_native_outputs": 16,
+  "earlier_native_outputs_with_identical_current_projection": 40465,
+  "current_native_screen_remaining": true
+}

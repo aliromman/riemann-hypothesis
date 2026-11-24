@@ -1,0 +1,39 @@
+{
+  "base": "d27f71347abceb76cd37dc8a5fccbe556ec2be90",
+  "head": "6c9263df4fa0de0e7719aebb952e0e44df47b421",
+  "graph_sha256": "1eea63e656493b1d5f30ab34bd8b913ab3edadc2d615e2313e471196749941a4",
+  "compiled_project_modules": 60928,
+  "project_import_edges": 376421,
+  "changed": 40481,
+  "directly_import_edited": 38754,
+  "unchanged_directly_import_edited": 1973,
+  "transitive_dependents_including_changed": 50417,
+  "unchanged_transitive_dependents": 9936,
+  "full_Main_source_closure_including_Main": 60716,
+  "affected_in_Main_closure": 50267,
+  "Main_effective_project_artifacts": 60111,
+  "changed_visible_artifacts": 40116,
+  "main_project_imports": {
+    "Statements": {
+      "project_modules": 1,
+      "edited_modules": 0
+    },
+    "Development.AutomorphicArithmetic.CharacterBoxes.ClaimStrip": {
+      "project_modules": 2,
+      "edited_modules": 0
+    },
+    "Development.AutomorphicArithmetic.CharacterBoxes.MainConclusion": {
+      "project_modules": 60713,
+      "edited_modules": 40481
+    }
+  },
+  "edited_by_area": {
+    "AbelianVarietyTheory": 25843,
+    "AutomorphicArithmetic": 7147,
+    "AutomorphicSpectrum": 3423,
+    "DiscreteGroups": 37,
+    "EtaleCohomology": 660,
+    "ResolutionOfSingularities": 336,
+    "WeilBound": 3035
+  }
+}
