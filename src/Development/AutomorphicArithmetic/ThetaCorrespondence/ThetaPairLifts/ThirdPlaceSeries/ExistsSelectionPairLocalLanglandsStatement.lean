@@ -379,6 +379,8 @@ end -- clump:auto
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ReFaceZeroPartConventionsChosenAgain", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StableIffCarrierEq\npublic import Formalism.LocalToGlobal.IndefiniteReal.WeakCharacterisationWithError\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FurtherFaceStatementsIndependentOfError\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FurtherRowsUpdatedScalars\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PartAtUpdSReFace\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ReFacePrim\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ReadUpdSKeep\nimport Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.XEUpdSZeroLam\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
 section -- clump:auto
 @[expose] public section
+set_option backward.isDefEq.lazyProjDelta false
+set_option backward.isDefEq.lazyWhnfCore false
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx
 open scoped TensorProduct InnerProductSpace
@@ -404,11 +406,11 @@ theorem reFace_zero_parts : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 I
   have h6 := read_updS_keep R F (zeroLam R F (Zsc (R.toCx3 F).zs).l6m) Dc Sp Zsc (reFaceErr (R.updS R.kap (zeroLam R F (Zsc (R.toCx3 F).zs).l6m)) F Dc Sp Zsc)
     (XE_updS_zeroLam R F (Zsc (R.toCx3 F).zs).l6m hP.char hH.prim hH.ok hH.sep hZ) X0 Y Z
   refine ⟨R.kap, (zeroLam R F (Zsc (R.toCx3 F).zs).l6m), (reFaceErr (R.updS R.kap (zeroLam R F (Zsc (R.toCx3 F).zs).l6m)) F Dc Sp Zsc), ?_, ?_, ?_, rfl, ?_, ?_⟩
-  · exact (by with_unfolding_all exact (h1 :))
-  · exact (by with_unfolding_all exact (h3 :))
-  · exact (by with_unfolding_all exact (h4 :))
-  · exact (by with_unfolding_all exact (h5 :))
-  · exact (by with_unfolding_all exact (h6 :))
+  · exact (by exact (h1 :))
+  · exact (by exact (h3 :))
+  · exact (by exact (h4 :))
+  · exact (by exact (h5 :))
+  · exact (by exact (h6 :))
 
 end GlobalTheory.Mem.R3
 
@@ -435,6 +437,8 @@ end -- clump:auto
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ColumnParamsInstanceData", "h": "module\n\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HarishChandraFinite\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HasDRepIffHasDerivAt\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.HarishChandraModulesOn\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.AdmissibleDiscreteSeriesOfHasParam\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsNormLeHeightPow\npublic import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.TwArgs\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GeoHalfUpd\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DivisionCompatibleAtReadIdentificationsStatement\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ReFaceZeroPartConventionsChosenAgainStatement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PlaceModelImp\n\n"}
 section -- clump:auto
 @[expose] public section
+set_option backward.isDefEq.lazyProjDelta false
+set_option backward.isDefEq.lazyWhnfCore false
 
 open Formalism.BasicNotions Formalism.MainNotions NumberField IsDedekindDomain
 open Formalism.L2 Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Rows Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx Formalism.IndefR.Lev
@@ -469,11 +473,11 @@ variable {R F} {X0 : BaseLevelRowSide D} {Y : Read (A3 := A3) R.toRealDat F.lv2 
 
 def newC (C₀ : ReadC R (reFace F Dc Sp₀ Zsc₀) X0 Y) (ht : Y'.tup = Y.tup) (hj : HEq Y'.jA Y.jA) :
     ReadC (newR R lam err) (reFace F Dc Sp Zsc) X0 Y' where
-  wU := (by with_unfolding_all exact (C₀.wU :))
-  bij := (by with_unfolding_all exact (C₀.bij :))
-  eNu := (by with_unfolding_all exact (C₀.eNu :))
-  NuC := (by with_unfolding_all exact (C₀.NuC :))
-  nu := (by with_unfolding_all exact (C₀.nu :))
+  wU := (by exact (C₀.wU :))
+  bij := (by exact (C₀.bij :))
+  eNu := (by exact (C₀.eNu :))
+  NuC := (by exact (C₀.NuC :))
+  nu := (by exact (C₀.nu :))
   pt := by
     have h := dep_imp (β := fun tup : T → D.what₂.Tup =>
         ∀ t, (Fin (rDim D A3.A F.P1 F.ψ1 t) → D.what₂.LL) →ₛₗ[D.what₂.embLL] D.what₂.Amb (tup t))
@@ -481,8 +485,8 @@ def newC (C₀ : ReadC R (reFace F Dc Sp₀ Zsc₀) X0 Y) (ht : Y'.tup = Y.tup) 
         (f : Fin ((A3.side3 F.P1 F.ψ1 (zsOf R F)).nV t) → D.what₂.LL),
         D.what₂.embLL ((Dc (zsOf R F)).Pt (C₀.wU u) t x f) =
           D.what₂.perCol u (tup t) (D.jN u (C₀.eNu u x)) (jA t ((rV0 D A3.A F.P1 F.ψ1 t).mulVec f)))
-      (b := Y.jA) (b' := (by with_unfolding_all exact (Y'.jA :))) ht ((by with_unfolding_all exact (hj :))) ((by with_unfolding_all exact (C₀.pt :)))
-    with_unfolding_all exact (h :)
+      (b := Y.jA) (b' := (by exact (Y'.jA :))) ht ((by exact (hj :))) ((by exact (C₀.pt :)))
+    exact (h :)
 
 
 
@@ -491,8 +495,8 @@ theorem rationalFormsComparison_baseLevel_indep_scalars {a0 : AmbForm D X0.s} (h
     ∃ J, AmbTie D A3.A X0.s a0 (reFace F Dc Sp Zsc).P0 (reFace F Dc Sp Zsc).ψ0 Y'.tup Y'.jA0 J := by
   have h' := dep_imp (β := fun tup : T → D.what₂.Tup =>
       ∀ t, (Fin (rDim D A3.A F.P0 F.ψ0 t) → D.what₂.LL) →ₛₗ[D.what₂.embLL] X0.s.Amb (tup t))
-    (fun tup jA => ∃ J, AmbTie D A3.A X0.s a0 F.P0 F.ψ0 tup jA J) (b := Y.jA0) (b' := (by with_unfolding_all exact (Y'.jA0 :))) ht ((by with_unfolding_all exact (hj :))) h
-  exact (by with_unfolding_all exact (h' :))
+    (fun tup jA => ∃ J, AmbTie D A3.A X0.s a0 F.P0 F.ψ0 tup jA J) (b := Y.jA0) (b' := (by exact (Y'.jA0 :))) ht ((by exact (hj :))) h
+  exact (by exact (h' :))
 
 
 
@@ -501,10 +505,10 @@ theorem mj_new {Z : ReadL R F X0 Y} {Z' : ReadL (newR R lam err) (reFace F Dc Sp
   set_option backward.isDefEq.lazyWhnfCore false in
   set_option backward.isDefEq.lazyProjDelta false in
     obtain ⟨J, hJ⟩ := h
-    have e : Z'.jW = (by with_unfolding_all exact (Z.jW :)) := eq_of_heq ((by with_unfolding_all exact (hj :)))
-    refine ⟨⟨(by with_unfolding_all exact (J.eW :))⟩, ?_, (by with_unfolding_all exact (hJ.hlat :))⟩
+    have e : Z'.jW = (by exact (Z.jW :)) := eq_of_heq ((by exact (hj :)))
+    refine ⟨⟨(by exact (J.eW :))⟩, ?_, (by exact (hJ.hlat :))⟩
     rewrite [e]
-    exact (by with_unfolding_all exact (hJ.j_eq :))
+    exact (by exact (hJ.j_eq :))
 
 end Field
 
@@ -556,15 +560,15 @@ def newTw (hC : GlobalTheory.Published.DiscreteSeriesCover ∧ GlobalTheory.Publ
   R := newR R lam err
   F := reFace F Dc Sp Zsc
   cG := cG
-  geo := (by with_unfolding_all exact ((newGeo lam err g) :))
+  geo := (by exact ((newGeo lam err g) :))
   pins := hP
   err := hE
   Y := Y'
   Z := Z'
   C := newC lam err C₀ ht hj
-  sEE := (by with_unfolding_all exact (sEE :))
+  sEE := (by exact (sEE :))
   div := (_root_.GlobalTheory.divTied3_read hC D G Pl0 I0 T A3 C.Q.c.F (newR R lam err) (reFace F Dc Sp Zsc) cG ex.p0 Y' Z' (newC lam err C₀ ht hj)
-    (by with_unfolding_all exact (sEE :)) Yd (mj_new lam err hM hW).choose hP hH (fun _ _ => (by with_unfolding_all exact (hG :)))).1
+    (by exact (sEE :)) Yd (mj_new lam err hM hW).choose hP hH (fun _ _ => (by exact (hG :)))).1
   JA := (rationalFormsComparison_baseLevel_indep_scalars lam err hA ht hj0).choose
   amb0 := (rationalFormsComparison_baseLevel_indep_scalars lam err hA ht hj0).choose_spec
   JM := (mj_new lam err hM hW).choose
@@ -617,23 +621,23 @@ theorem twArgs_exists : (GlobalTheory.Published.DiscreteSeriesCover ∧ GlobalTh
   let a : TwArgs ex t :=
     { Dc := Dc, Sp := Sp, Zsc := Zsc, lam := lam, err := err, lam_eq := hl, x := x
       pack := rfl
-      intersectionNumber_baseChange := (by with_unfolding_all exact (hH :))
-      κ := (by with_unfolding_all exact ((HEq.refl t.r.z.geo.κ) :))
-      v₀ := (by with_unfolding_all exact ((HEq.refl t.r.z.geo.v₀) :))
-      fw := (by with_unfolding_all exact ((HEq.refl t.r.z.geo.fw.e) :))
-      tup := (by with_unfolding_all exact ((heq_of_eq h1) :))
-      tupT := (by with_unfolding_all exact ((heq_of_eq h2) :))
-      jA := (by with_unfolding_all exact (h3 :))
-      jA0 := (by with_unfolding_all exact (h4 :))
-      eMt := (by with_unfolding_all exact (h5 :))
-      PY := (by with_unfolding_all exact (h6 :))
-      PW := (by with_unfolding_all exact (h9 :))
-      eFT := (by with_unfolding_all exact (h7 :))
-      IL := (by with_unfolding_all exact (h8 :))
-      eE := (by with_unfolding_all exact (h10 :))
-      eW := (by with_unfolding_all exact (h11 :))
-      jW := (by with_unfolding_all exact (h13 :))
-      eRR := (by with_unfolding_all exact (h12 :)) }
+      intersectionNumber_baseChange := (by exact (hH :))
+      κ := (by exact ((HEq.refl t.r.z.geo.κ) :))
+      v₀ := (by exact ((HEq.refl t.r.z.geo.v₀) :))
+      fw := (by exact ((HEq.refl t.r.z.geo.fw.e) :))
+      tup := (by exact ((heq_of_eq h1) :))
+      tupT := (by exact ((heq_of_eq h2) :))
+      jA := (by exact (h3 :))
+      jA0 := (by exact (h4 :))
+      eMt := (by exact (h5 :))
+      PY := (by exact (h6 :))
+      PW := (by exact (h9 :))
+      eFT := (by exact (h7 :))
+      IL := (by exact (h8 :))
+      eE := (by exact (h10 :))
+      eW := (by exact (h11 :))
+      jW := (by exact (h13 :))
+      eRR := (by exact (h12 :)) }
   have hCols := newTw_preserves_columns (R := t.r.z.R) (F := t.r.z.F) (cG := t.r.z.cG)
     (Y := t.r.Y) (Z := t.r.Z) (Dc := Dc) (Sp₀ := Sp₀) (Sp := Sp) (Zsc₀ := Zsc₀)
     (Zsc := Zsc) (Y' := Y') lam err hC t.r.z.geo Z' C₀ sEE hP hH hE hG hA.2 hM h1 h3 h4 h13 t.inGeo
@@ -745,6 +749,8 @@ end -- clump:auto
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSelectedRealization", "h": "module\n\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HasDRepIffHasDerivAt\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.HarishChandraModulesOn\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.AdmissibleDiscreteSeriesOfHasParam\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HarishChandraFinite\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsNormLeHeightPow\npublic import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.SameDegreeZeroFormsSelf\npublic import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.TwArgs\npublic import Formalism.LocalToGlobal.Divisibility.NumbersLemmas\npublic import Formalism.LocalToGlobal.Divisibility.NumericScaleExponentEqExtended\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ColumnParametersInstanceDataStatement\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsTwExtend\nimport Lean.Exception\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StrictHenselianAcyclic\n\n"}
 section -- clump:auto
 @[expose] public section
+set_option backward.isDefEq.lazyProjDelta false
+set_option backward.isDefEq.lazyWhnfCore false
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.Host GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl NumberField IsDedekindDomain
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
@@ -837,7 +843,7 @@ theorem zsc_pin (a : TwArgs ex t) (x : R3.TwIn ex) (hx : HEq a.x x) (L' : SizeDa
   cases x with
   | mk G Pl0 I0 T' A3 core R' F cG geo pins err' Y Z' C' sEE div JA amb0 JM mjH =>
   cases pack
-  exact (by with_unfolding_all exact (h :))
+  exact (by exact (h :))
 
 
 
@@ -888,21 +894,21 @@ theorem see_pin (a : TwArgs ex t) (x : R3.TwIn ex) (hx : HEq a.x x) (X : Formali
   cases x with
   | mk G Pl0 I0 T' A3 core R' F cG geo pins err' Y Z' C' sEE div JA amb0 JM mjH =>
   cases pack
-  refine ⟨(by with_unfolding_all exact (sE :)), ?_, ?_⟩
-  · exact (by with_unfolding_all exact (HEq.refl sE :))
-  · exact (by with_unfolding_all exact (h :))
+  refine ⟨(by exact (sE :)), ?_, ?_⟩
+  · exact (by exact (HEq.refl sE :))
+  · exact (by exact (h :))
 
 
 
 theorem read_cols (Dc : ∀ Zs : DefSub (famT t).fam3.amb3, DefCols ((famT t).side3 t.r.z.F.P1 t.r.z.F.ψ1 Zs)) (Sp₀ : ∀ Zs, SPer (Dc Zs))
     (Zsc₀ : DefSub (famT t).fam3.amb3 → IndefScale (famT t).fam3.base3)
-    (C₀ : ReadC t.r.z.R (reFace t.r.z.F Dc Sp₀ Zsc₀) ex.p0 ((by with_unfolding_all exact (t.r.Y :)))) :
+    (C₀ : ReadC t.r.z.R (reFace t.r.z.F Dc Sp₀ Zsc₀) ex.p0 ((by exact (t.r.Y :)))) :
     ∃ (wU : (w.st Z).toD7.what₂.Word → (Dc (zsOf t.r.z.R t.r.z.F)).Mem) (_ : Function.Bijective wU)
       (eNu : ∀ u, (Fin ((Dc (zsOf t.r.z.R t.r.z.F)).a (wU u)) → (w.st Z).toD7.what₂.LL) ≃ₗ[(w.st Z).toD7.what₂.LL] ((w.st Z).toD7.div.Nu u).V),
       HEq C₀.wU wU ∧ HEq C₀.eNu eNu := by
-  refine ⟨(by with_unfolding_all exact (C₀.wU :)), (by with_unfolding_all exact (C₀.bij :)), (by with_unfolding_all exact (C₀.eNu :)), ?_, ?_⟩
-  · exact (by with_unfolding_all exact (HEq.refl C₀.wU :))
-  · exact (by with_unfolding_all exact (HEq.refl C₀.eNu :))
+  refine ⟨(by exact (C₀.wU :)), (by exact (C₀.bij :)), (by exact (C₀.eNu :)), ?_, ?_⟩
+  · exact (by exact (HEq.refl C₀.wU :))
+  · exact (by exact (HEq.refl C₀.eNu :))
 
 
 
@@ -915,8 +921,8 @@ theorem see_cast (X : Formalism.L2.SG.HidaSetting.HidaSetting (w.st Z).toD7) (hK
     (sE : Tw (twAt (w.st Z).toD7.what₂.embLL (famT t).A.v0) t.r.z.R.toRealDat.HE.H →ₗ⋆[ℂ] Tw (twAt (w.st Z).toD7.what₂.embLL (famT t).A.v0) (HHX X)) :
     ∃ sEE : (t.r.z.R.toCx3 t.r.z.F).EE →ₗ⋆[ℂ] S.HH, HEq sEE sE := by
   subst hz
-  refine ⟨(by with_unfolding_all exact (sE :)), ?_⟩
-  exact (by with_unfolding_all exact (HEq.refl sE :))
+  refine ⟨(by exact (sE :)), ?_⟩
+  exact (by exact (HEq.refl sE :))
 
 
 
@@ -927,7 +933,7 @@ theorem selection_group_ambient_tie (hC : GlobalTheory.Published.DiscreteSeriesC
     (hp : ∀ p, t.r.z.R.EEp3 p ≠ ⊥ → ∀ i, t.r.z.R.Wp3 i p ≠ ⊥ ∧ ∀ v, v ≠ (famT t).A.v0 → t.r.z.R.PartAt t.r.z.F i p v)
     (Dc : ∀ Zs : DefSub (famT t).fam3.amb3, DefCols ((famT t).side3 t.r.z.F.P1 t.r.z.F.ψ1 Zs)) (Sp₀ : ∀ Zs, SPer (Dc Zs))
     (Zsc₀ : DefSub (famT t).fam3.amb3 → IndefScale (famT t).fam3.base3)
-    (C₀ : ReadC t.r.z.R (reFace t.r.z.F Dc Sp₀ Zsc₀) ex.p0 ((by with_unfolding_all exact (t.r.Y :))))
+    (C₀ : ReadC t.r.z.R (reFace t.r.z.F Dc Sp₀ Zsc₀) ex.p0 ((by exact (t.r.Y :))))
     (X : Formalism.L2.SG.HidaSetting.HidaSetting (w.st Z).toD7) (hK : X.LevelSubgroupCharacter) (Gd : Formalism.L2.SG.RowDict.GoodOp X) (pw : ∀ u, PerW X hK u)
     (ι : Formalism.L2.Theta.GA (w.st Z).toD7 (Yc (w.st Z).toD7 0) ≃* X.B.I.GA) (g : Formalism.L2.Theta.GA (w.st Z).toD7 (Yc (w.st Z).toD7 0)) (c : ℝ) (hc : 0 < c)
     (hev : EvalTieT (t.r.z.R.toRealDat.MY 0) t.r.z.R.toRealDat.ν0 t.r.z.R.toRealDat.fd0
@@ -953,13 +959,13 @@ theorem selection_group_ambient_tie (hC : GlobalTheory.Published.DiscreteSeriesC
   obtain ⟨x, hx⟩ : ∃ x : R3.TwIn ex, HEq a.x x := ⟨a.x, HEq.rfl⟩
   have hW : HEq x.C.wU C₀.wU := by
     obtain rfl := eq_of_heq hx
-    exact (by with_unfolding_all exact (haWU :))
+    exact (by exact (haWU :))
   have hN : HEq x.C.eNu C₀.eNu := by
     obtain rfl := eq_of_heq hx
-    exact (by with_unfolding_all exact (haENu :))
+    exact (by exact (haENu :))
   have hE : HEq x.sEE sEE := by
     obtain rfl := eq_of_heq hx
-    exact (by with_unfolding_all exact (haSEE :))
+    exact (by exact (haSEE :))
   obtain ⟨sE', h1, h2⟩ := see_pin a x hx X Gd ι g c κ sE hsE
   exact ⟨a, x, hx, haDc, hW, hN, zsc_pin a x hx L' Del h0 c' haZsc,
     sp_pin a x hx X hK Gd pw Dc Sp wU bij eNu haDc haSp (hW.trans hw0) (hN.trans hn0) hSp,
@@ -1254,6 +1260,8 @@ end -- clump:auto
 -- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExistsSelectionPairLocalLanglands", "h": "module\n\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SameGaloisLevelExists\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TwistedBundle\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinRepApply\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.DsExistsOfDiscreteSeriesExists\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsNormLeHeightPow\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HasDRepIffHasDerivAt\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.WeilRepresentationUnitaryPair\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.AdmissibleDiscreteSeriesOfHasParam\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.HarishChandraModulesOn\npublic import Formalism.LocalToGlobal.IndefiniteReal.FrameExistence.FramesExistOfDiagonalTypePlaces\npublic import Formalism.LocalToGlobal.IndefiniteReal.IsFDiagIffDiagonal\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSelectedRealization\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LinksAnalyticHypothesesOfWeilRepHarishChandra\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RowPartFormsAndNonzeroVectorsEveryPlaceStatement\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.GoodGenericCharacterOfSeriesTypes\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExistsRowsKCColPinsStatement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
 section -- clump:auto
 @[expose] public section
+set_option backward.isDefEq.lazyProjDelta false
+set_option backward.isDefEq.lazyWhnfCore false
 
 
 
@@ -1288,39 +1296,39 @@ theorem ev_at_join_pinned {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {p : _ro
     EvalTieT (Formalism.L2.SG.RowsJoinPinned.MP q.x.what₂.r.z.R.toRealDat) q.x.what₂.r.z.R.toRealDat.ν0
       q.x.what₂.r.z.R.toRealDat.fd0 (Formalism.L2.SG.RowsJoinPinned.EP q.x.what₂.r.z.R.toRealDat q.x.what₂.r.z.F.lv2) sP.X sP.G
       (Formalism.L2.SG.RowsJoinPinned.iotaX sP.X sP.inst).toMulEquiv q.saturationAtWeightedPoint.t q.saturationAtWeightedPoint.c := by
-  have hF0 : (fun u => (R.T.cols.forms u).to0) = (fun u => (q.x.col.C.forms u).to0) := (by with_unfolding_all exact (congrArg (fun (C : type_of% q.x.col.C) => fun u => (C.forms u).to0) hR.s.cols :))
-  exact (by with_unfolding_all exact (pack_move (D := (q.w.st q.Z).toD7) (F0 := fun u => (R.T.cols.forms u).to0) (F0' := fun u => (q.x.col.C.forms u).to0)
+  have hF0 : (fun u => (R.T.cols.forms u).to0) = (fun u => (q.x.col.C.forms u).to0) := (by exact (congrArg (fun (C : type_of% q.x.col.C) => fun u => (C.forms u).to0) hR.s.cols :))
+  exact (by exact (pack_move (D := (q.w.st q.Z).toD7) (F0 := fun u => (R.T.cols.forms u).to0) (F0' := fun u => (q.x.col.C.forms u).to0)
     ((hF0)) (P := (sP)) (P' := (q.saturationAtWeightedPoint.P)) ((hsP))
     (fun _ P => EvalTieT (Formalism.L2.SG.RowsJoinPinned.MP q.x.what₂.r.z.R.toRealDat) q.x.what₂.r.z.R.toRealDat.ν0
       q.x.what₂.r.z.R.toRealDat.fd0 (Formalism.L2.SG.RowsJoinPinned.EP q.x.what₂.r.z.R.toRealDat q.x.what₂.r.z.F.lv2) P.X P.G
       (Formalism.L2.SG.RowsJoinPinned.iotaX P.X P.inst).toMulEquiv q.saturationAtWeightedPoint.t q.saturationAtWeightedPoint.c) ((q.saturationAtWeightedPoint.ev)) : _))
-theorem nonempty_rXs_of_prmR_none {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {N : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL} {Γ : GeoP} {p : _root_.GlobalTheory.Mem.Top.Bl.Parameters hL} (hp : p = _root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N SExt.none Γ) {K : Ctx}
+theorem nonempty_rXs_of_prmR_none {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {N : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL} {p : _root_.GlobalTheory.Mem.Top.Bl.Parameters hL} (hp : p = _root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N SExt.none) {K : Ctx}
     (q : WPt p.s K) : Nonempty (RXs q.x.what₂) := by
   subst hp
-  exact (by with_unfolding_all exact (Nonempty.intro q.x.rx :))
+  exact (by exact (Nonempty.intro q.x.rx :))
 end GlobalTheory.Mem.R3.SelectionPairing
 end
 open GlobalTheory.Mem.R3.SelectionPairing in
 
-theorem GlobalTheory.Mem.R3.SelectionPairing.exists_selection_pair_local_langlands_alt : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.CasselmanWallach → GlobalTheory.Published.WeilRepresentationUnitaryPair → GlobalTheory.Published.DiscreteSeriesExists → GlobalTheory.Published.HarishChandraFinite → GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.NT.RayField → ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (N : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL) (Γ : GeoP) (p : _root_.GlobalTheory.Mem.Top.Bl.Parameters hL), p = _root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N SExt.none Γ → (∀ K B f T w Z Wt p0 t nch n xd c, N K B f T w Z Wt p0 t nch n xd c → Nonempty (_root_.GlobalTheory.HeightCounting.Up.extensionWithLaw hL K B f T w Z Wt p0 t nch n xd c)) → ∀ (K : Ctx) (q : WPt p.s K), (∀ X : GlobalTheory.Mem.Stages, K.Over X.B.toPre → HostHyp X.toD7 ∧ X.toD7.host.F = maximalRealSubfield X.toD7.host.E ∧ (∀ i, IsFDiag (Wc X.toD7 i) ∧ IsFDiag (Vc X.toD7 i)) ∧ (∀ i, (Vc X.toD7 i).IsPosDef) ∧ (∀ j, Formalism.IndefR.Seed.FrmC.StdLat (X.toD7.sp.Y j) ∧ Formalism.IndefR.Seed.FrmC.StdLat (X.toD7.sp.V j) ∧ (1 ≤ j → j ≤ X.toD7.R.m → Formalism.IndefR.Seed.FrmC.StdLat (X.toD7.sp.W j))) ∧ Formalism.IndefR.Seed.FrmC.StdLat X.toD7.sp.X' ∧ (∀ i, (∀ a b, (Vc X.toD7 i).hT ((Vc X.toD7 i).frame a) ((Vc X.toD7 i).frame b) = if a = b then 1 else 0) ∧ (Vc X.toD7 i).L0 = Submodule.span (𝓞 X.toD7.host.E) (Set.range (Vc X.toD7 i).frame)) ∧ ((∀ a b, X.toD7.sp.X'.hT (X.toD7.sp.X'.frame a) (X.toD7.sp.X'.frame b) = if a = b then 1 else 0) ∧ X.toD7.sp.X'.L0 = Submodule.span (𝓞 X.toD7.host.E) (Set.range X.toD7.sp.X'.frame))) → GlobalTheory.CuspMult.MultEq q.x.what₂.r.z.R.toRealDat → ∀ (R : _root_.Formalism.L2.RecTAlt q.O.ex), _root_.GlobalTheory.Mem.Top.Bl.RecordCompatibleExtended q R → ∀ (sP : GlobalTheory.Mem.SRe.SPack (q.w.D q.Z) fun u => (R.T.cols.forms u).to0) (sS : GlobalTheory.Mem.SRe.SRest sP), HEq sP q.saturationAtWeightedPoint.P → HEq sS q.saturationAtWeightedPoint.S → ∀ (Del h0 : ℕ) (c : ℝ) (hin : ∀ u, Formalism.L2.SG.PoincareInHH.PoincareSetting.InHH (sS.toRealSpectralMatching R).X u (sS.toRealSpectralMatching R).Y.hK), ∃ (a : TwArgs q.O.ex q.x.what₂) (x : TwIn q.O.ex), HEq a.x x ∧ ∃ C : _root_.GlobalTheory.Cp.SquareIntegrableColumns R.T (divisionPairOfAdelicFormsFaceColumnsData x), HEq (fun Zs => C.c.face Zs) x.F.Dc ∧ HEq C.Sp x.F.Sp ∧ HEq C.c.W q.B.wts ∧ HEq C.c.Xg q.x.what₂.r.z.Xg ∧ _root_.Formalism.L2.DIV.ColumnCharactersCompatible C.toS ∧ x.F.Zsc = GlobalTheory.Fc.zsc (divisionPairOfAdelicFormsFaceColumnsData x) Del h0 c ∧ HEq (x.F.Sp (zsOf x.R x.F)) (Formalism.IndefR.Cx.spOf (X := (sS.toRealSpectralMatching R).X) (twAt (q.w.D q.Z).what₂.embLL x.A3.A.v0) (x.F.Dc (zsOf x.R x.F)) (sS.toRealSpectralMatching R).Y.hK (sS.toRealSpectralMatching R).G x.wd (fun m => _root_.Formalism.IndefR.pwOf_alt (sS.toRealSpectralMatching R) hin (x.wd m)) x.bR) ∧ ∃ (κ : ℝ) (sEEc : Tw (twAt (q.w.D q.Z).what₂.embLL x.A3.A.v0) x.R.HE.H →ₗ⋆[ℂ] Tw (twAt (q.w.D q.Z).what₂.embLL x.A3.A.v0) (Formalism.L2.SG.PoincareInHH.PoincareSetting.HHX (sS.toRealSpectralMatching R).X)), HEq x.sEE sEEc ∧ 0 < κ ∧ ∀ (v : Tw (twAt (q.w.D q.Z).what₂.embLL x.A3.A.v0) x.R.HE.H) (hx : x.R.HE.e (Tw.out v) ∈ (x.R.toRealDat.EEat (x.R.toRealDat.levR x.F.lv2 true))), sEEc v = Tw.mk (twAt (q.w.D q.Z).what₂.embLL x.A3.A.v0) (((1 : ℂ) * (κ : ℂ)) • (Formalism.IndefR.AutomorphicEvaluation.sEEofTT (x.R.MY 0) x.R.ν0 x.R.fd0 (x.R.toRealDat.EEat (x.R.toRealDat.levR x.F.lv2 true)) (sS.toRealSpectralMatching R).X (sS.toRealSpectralMatching R).G (Formalism.L2.SG.RowsJoinPinned.iotaX sP.X sP.inst).toMulEquiv q.saturationAtWeightedPoint.t q.saturationAtWeightedPoint.c) ⟨x.R.HE.e (Tw.out v), hx⟩) ∧ RealDat.nP x.F.lv2 true * ‖sEEc v‖ ^ 2 = ‖v‖ ^ 2 := by
-  intro hDS hHC hCW hWR hDSE hHCF hCRD hGAR hRay hL N Γ p hp hNEb K q hHost hMult R hR sP sS hsP hsS Del h0 c hin
+theorem GlobalTheory.Mem.R3.SelectionPairing.exists_selection_pair_local_langlands_alt : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.CasselmanWallach → GlobalTheory.Published.WeilRepresentationUnitaryPair → GlobalTheory.Published.DiscreteSeriesExists → GlobalTheory.Published.HarishChandraFinite → GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.NT.RayField → ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (N : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL) (p : _root_.GlobalTheory.Mem.Top.Bl.Parameters hL), p = _root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N SExt.none → (∀ K B f T w Z Wt p0 t nch n xd c, N K B f T w Z Wt p0 t nch n xd c → Nonempty (_root_.GlobalTheory.HeightCounting.Up.extensionWithLaw hL K B f T w Z Wt p0 t nch n xd c)) → ∀ (K : Ctx) (q : WPt p.s K), (∀ X : GlobalTheory.Mem.Stages, K.Over X.B.toPre → HostHyp X.toD7 ∧ X.toD7.host.F = maximalRealSubfield X.toD7.host.E ∧ (∀ i, IsFDiag (Wc X.toD7 i) ∧ IsFDiag (Vc X.toD7 i)) ∧ (∀ i, (Vc X.toD7 i).IsPosDef) ∧ (∀ j, Formalism.IndefR.Seed.FrmC.StdLat (X.toD7.sp.Y j) ∧ Formalism.IndefR.Seed.FrmC.StdLat (X.toD7.sp.V j) ∧ (1 ≤ j → j ≤ X.toD7.R.m → Formalism.IndefR.Seed.FrmC.StdLat (X.toD7.sp.W j))) ∧ Formalism.IndefR.Seed.FrmC.StdLat X.toD7.sp.X' ∧ (∀ i, (∀ a b, (Vc X.toD7 i).hT ((Vc X.toD7 i).frame a) ((Vc X.toD7 i).frame b) = if a = b then 1 else 0) ∧ (Vc X.toD7 i).L0 = Submodule.span (𝓞 X.toD7.host.E) (Set.range (Vc X.toD7 i).frame)) ∧ ((∀ a b, X.toD7.sp.X'.hT (X.toD7.sp.X'.frame a) (X.toD7.sp.X'.frame b) = if a = b then 1 else 0) ∧ X.toD7.sp.X'.L0 = Submodule.span (𝓞 X.toD7.host.E) (Set.range X.toD7.sp.X'.frame))) → GlobalTheory.CuspMult.MultEq q.x.what₂.r.z.R.toRealDat → ∀ (R : _root_.Formalism.L2.RecTAlt q.O.ex), _root_.GlobalTheory.Mem.Top.Bl.RecordCompatibleExtended q R → ∀ (sP : GlobalTheory.Mem.SRe.SPack (q.w.D q.Z) fun u => (R.T.cols.forms u).to0) (sS : GlobalTheory.Mem.SRe.SRest sP), HEq sP q.saturationAtWeightedPoint.P → HEq sS q.saturationAtWeightedPoint.S → ∀ (Del h0 : ℕ) (c : ℝ) (hin : ∀ u, Formalism.L2.SG.PoincareInHH.PoincareSetting.InHH (sS.toRealSpectralMatching R).X u (sS.toRealSpectralMatching R).Y.hK), ∃ (a : TwArgs q.O.ex q.x.what₂) (x : TwIn q.O.ex), HEq a.x x ∧ ∃ C : _root_.GlobalTheory.Cp.SquareIntegrableColumns R.T (divisionPairOfAdelicFormsFaceColumnsData x), HEq (fun Zs => C.c.face Zs) x.F.Dc ∧ HEq C.Sp x.F.Sp ∧ HEq C.c.W q.B.wts ∧ HEq C.c.Xg q.x.what₂.r.z.Xg ∧ _root_.Formalism.L2.DIV.ColumnCharactersCompatible C.toS ∧ x.F.Zsc = GlobalTheory.Fc.zsc (divisionPairOfAdelicFormsFaceColumnsData x) Del h0 c ∧ HEq (x.F.Sp (zsOf x.R x.F)) (Formalism.IndefR.Cx.spOf (X := (sS.toRealSpectralMatching R).X) (twAt (q.w.D q.Z).what₂.embLL x.A3.A.v0) (x.F.Dc (zsOf x.R x.F)) (sS.toRealSpectralMatching R).Y.hK (sS.toRealSpectralMatching R).G x.wd (fun m => _root_.Formalism.IndefR.pwOf_alt (sS.toRealSpectralMatching R) hin (x.wd m)) x.bR) ∧ ∃ (κ : ℝ) (sEEc : Tw (twAt (q.w.D q.Z).what₂.embLL x.A3.A.v0) x.R.HE.H →ₗ⋆[ℂ] Tw (twAt (q.w.D q.Z).what₂.embLL x.A3.A.v0) (Formalism.L2.SG.PoincareInHH.PoincareSetting.HHX (sS.toRealSpectralMatching R).X)), HEq x.sEE sEEc ∧ 0 < κ ∧ ∀ (v : Tw (twAt (q.w.D q.Z).what₂.embLL x.A3.A.v0) x.R.HE.H) (hx : x.R.HE.e (Tw.out v) ∈ (x.R.toRealDat.EEat (x.R.toRealDat.levR x.F.lv2 true))), sEEc v = Tw.mk (twAt (q.w.D q.Z).what₂.embLL x.A3.A.v0) (((1 : ℂ) * (κ : ℂ)) • (Formalism.IndefR.AutomorphicEvaluation.sEEofTT (x.R.MY 0) x.R.ν0 x.R.fd0 (x.R.toRealDat.EEat (x.R.toRealDat.levR x.F.lv2 true)) (sS.toRealSpectralMatching R).X (sS.toRealSpectralMatching R).G (Formalism.L2.SG.RowsJoinPinned.iotaX sP.X sP.inst).toMulEquiv q.saturationAtWeightedPoint.t q.saturationAtWeightedPoint.c) ⟨x.R.HE.e (Tw.out v), hx⟩) ∧ RealDat.nP x.F.lv2 true * ‖sEEc v‖ ^ 2 = ‖v‖ ^ 2 := by
+  intro hDS hHC hCW hWR hDSE hHCF hCRD hGAR hRay hL N p hp hNEb K q hHost hMult R hR sP sS hsP hsS Del h0 c hin
   have hRX : Nonempty (RXs q.x.what₂) := _root_.GlobalTheory.Mem.R3.SelectionPairing.nonempty_rXs_of_prmR_none hp q
   have h := _root_.GlobalTheory.Mem.R3.SelC.square_integrable_columns_of_witnesses _ K q R.T.ker hR.k hRX
   refine h.elim fun Dc h => h.elim fun Sp₀ h => h.elim fun Zsc₀ h => h.elim fun C₀ hC => ?_
   have hcore := selection_group_ambient_tie (K := K) (w := q.w) (Z := q.Z) (Wt := q.x.Wt) (ex := q.O.ex) (t := q.x.what₂)
-    ⟨hDS, hHC, hCW, hHCF, hCRD⟩ ((by with_unfolding_all exact (q.x.obj.amb :))) ((by with_unfolding_all exact (q.x.obj.mjH :))) ((by with_unfolding_all exact (q.core_data_of_point.row.grp :)))
-    ((by with_unfolding_all exact ((_root_.GlobalTheory.Mem.R3.SelectionPairing.wp3_ne_bot_and_piece_at_of_multEq hWR hDSE hHCF hCRD q hMult) :))) Dc Sp₀ Zsc₀ ((by with_unfolding_all exact (C₀ :))) (sS.toRealSpectralMatching R).X ((by with_unfolding_all exact ((sS.toRealSpectralMatching R).Y.hK :)))
-    ((by with_unfolding_all exact ((sS.toRealSpectralMatching R).G :))) ((by with_unfolding_all exact ((_root_.Formalism.IndefR.pwOf_alt (sS.toRealSpectralMatching R) hin) :)))
-    ((by with_unfolding_all exact ((Formalism.L2.SG.RowsJoinPinned.iotaX sP.X sP.inst).toMulEquiv :))) ((by with_unfolding_all exact (q.saturationAtWeightedPoint.t :))) q.saturationAtWeightedPoint.c q.saturationAtWeightedPoint.c_pos
-    ((by with_unfolding_all exact ((_root_.GlobalTheory.Mem.R3.SelectionPairing.ev_at_join_pinned q R hR sP hsP) :))) q.O.L Del h0 c
+    ⟨hDS, hHC, hCW, hHCF, hCRD⟩ ((by exact (q.x.obj.amb :))) ((by exact (q.x.obj.mjH :))) ((by exact (q.core_data_of_point.row.grp :)))
+    ((by exact ((_root_.GlobalTheory.Mem.R3.SelectionPairing.wp3_ne_bot_and_piece_at_of_multEq hWR hDSE hHCF hCRD q hMult) :))) Dc Sp₀ Zsc₀ ((by exact (C₀ :))) (sS.toRealSpectralMatching R).X ((by exact ((sS.toRealSpectralMatching R).Y.hK :)))
+    ((by exact ((sS.toRealSpectralMatching R).G :))) ((by exact ((_root_.Formalism.IndefR.pwOf_alt (sS.toRealSpectralMatching R) hin) :)))
+    ((by exact ((Formalism.L2.SG.RowsJoinPinned.iotaX sP.X sP.inst).toMulEquiv :))) ((by exact (q.saturationAtWeightedPoint.t :))) q.saturationAtWeightedPoint.c q.saturationAtWeightedPoint.c_pos
+    ((by exact ((_root_.GlobalTheory.Mem.R3.SelectionPairing.ev_at_join_pinned q R hR sP hsP) :))) q.O.L Del h0 c
   refine hcore.elim fun a h => h.elim fun x h => ?_
-  have hc := hC R.T rfl a x h.1 ((by with_unfolding_all exact (h.2.1 :))) ((by with_unfolding_all exact (h.2.2.1 :))) ((by with_unfolding_all exact (h.2.2.2.1 :)))
+  have hc := hC R.T rfl a x h.1 ((by exact (h.2.1 :))) ((by exact (h.2.2.1 :))) ((by exact (h.2.2.2.1 :)))
   refine hc.elim fun C c' => ?_
   refine Exists.intro a (Exists.intro x (And.intro h.1 (Exists.intro C (And.intro c'.1 (And.intro c'.2.1 (And.intro c'.2.2.1
     (And.intro c'.2.2.2.1 (And.intro c'.2.2.2.2 (And.intro ?_ (And.intro ?_ ?_))))))))))
-  · exact (by with_unfolding_all exact (h.2.2.2.2.1 :))
-  · exact (by with_unfolding_all exact (h.2.2.2.2.2.1 :))
-  · exact (by with_unfolding_all exact (h.2.2.2.2.2.2 :))
+  · exact (by exact (h.2.2.2.2.1 :))
+  · exact (by exact (h.2.2.2.2.2.1 :))
+  · exact (by exact (h.2.2.2.2.2.2 :))
 end
 end -- clump:auto
 end -- clump:auto

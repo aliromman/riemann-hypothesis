@@ -948,19 +948,34 @@ theorem loss_num (s t r Λ L1 U k0 : ℝ) (ht0 : 0 ≤ t) (hts : t ≤ s) (hr : 
     (hL : L1 ≤ Λ) (hU : U ≤ (t + 1) * ((r + 1) * (Λ + 1) + 1)) (hk : 0 ≤ k0) :
     ((((2 * s + 1) + 1) * r + (t + 1) * 2) + (t + 1)) * L1 + 2 * U ≤ 10 * (s + 1) * (r + 1) * Λ + k0 := by
   have hs0 : 0 ≤ s := le_trans ht0 hts
-  have hA : 0 ≤ (((2 * s + 1) + 1) * r + (t + 1) * 2) + (t + 1) := by nlinarith
+  have hr0 : 0 ≤ r := by linarith
+  have hΛ0 : 0 ≤ Λ := by linarith
+  have hA : 0 ≤ (((2 * s + 1) + 1) * r + (t + 1) * 2) + (t + 1) := by positivity
   have e1 : ((((2 * s + 1) + 1) * r + (t + 1) * 2) + (t + 1)) * L1 ≤
       ((2 * s + 2) * r + 3 * (s + 1)) * Λ := by
     calc ((((2 * s + 1) + 1) * r + (t + 1) * 2) + (t + 1)) * L1
         ≤ ((((2 * s + 1) + 1) * r + (t + 1) * 2) + (t + 1)) * Λ := mul_le_mul_of_nonneg_left hL hA
-      _ ≤ ((2 * s + 2) * r + 3 * (s + 1)) * Λ := by nlinarith
+      _ ≤ ((2 * s + 2) * r + 3 * (s + 1)) * Λ := by
+          apply mul_le_mul_of_nonneg_right _ hΛ0
+          have : ((2 * s + 1) + 1) * r = (2 * s + 2) * r := by ring
+          linarith
   have e2 : U ≤ (s + 1) * ((r + 1) * (Λ + 1) + 1) := by
-    have : 0 ≤ (r + 1) * (Λ + 1) + 1 := by nlinarith
-    nlinarith
+    have : 0 ≤ (r + 1) * (Λ + 1) + 1 := by positivity
+    exact hU.trans (mul_le_mul_of_nonneg_right (by linarith) this)
   have e3 : (s + 1) * ((r + 1) * (Λ + 1) + 1) ≤ (s + 1) * ((2 * r + 3) * Λ) := by
     apply mul_le_mul_of_nonneg_left _ (by linarith)
-    nlinarith
-  nlinarith
+    have hrΛ : r + 2 ≤ (r + 2) * Λ := le_mul_of_one_le_right (by linarith) hΛ
+    have h1 : (r + 1) * (Λ + 1) + 1 = (r + 1) * Λ + (r + 2) := by ring
+    have h2 : (2 * r + 3) * Λ = (r + 1) * Λ + (r + 2) * Λ := by ring
+    linarith
+  have hsum : ((2 * s + 2) * r + 3 * (s + 1)) * Λ + 2 * ((s + 1) * ((2 * r + 3) * Λ)) ≤
+      10 * (s + 1) * (r + 1) * Λ := by
+    have h1 : ((2 * s + 2) * r + 3 * (s + 1)) * Λ + 2 * ((s + 1) * ((2 * r + 3) * Λ)) =
+        (6 * r + 9) * ((s + 1) * Λ) := by ring
+    have h2 : 10 * (s + 1) * (r + 1) * Λ = (10 * r + 10) * ((s + 1) * Λ) := by ring
+    rw [h1, h2]
+    exact mul_le_mul_of_nonneg_right (by linarith) (by positivity)
+  linarith [hL0]
 
 section Inst
 
@@ -985,12 +1000,23 @@ theorem restValNum_proved {CYb Cde Ck CD Cb Cc : ℝ} (hCYb : 1 ≤ CYb) (hCE1 :
     exact this
 
   have hmR : (4 : ℝ) ≤ (X.r : ℝ) := by exact_mod_cast hF.m4
-  have hp25 : (25 : ℝ) ≤ (X.p : ℝ) := by nlinarith [hF.p_ge]
+  have hp25 : (25 : ℝ) ≤ (X.p : ℝ) := by
+    have h1 : (25 : ℝ) ≤ ((X.r : ℝ) + 1) ^ 2 := by
+      calc (25 : ℝ) = 5 ^ 2 := by norm_num
+        _ ≤ ((X.r : ℝ) + 1) ^ 2 := pow_le_pow_left₀ (by norm_num) (by linarith) 2
+    linarith [hF.p_ge]
   have hp1 : (1 : ℝ) < (X.p : ℝ) := by linarith
   have hs0 : (0 : ℝ) ≤ (X.s : ℝ) := Nat.cast_nonneg _
   have ha1 : (1 : ℝ) ≤ (X.L.a : ℝ) := hF.a1
   have hsm : 2 * (X.s : ℝ) + 2 ≤ (X.r : ℝ) := by exact_mod_cast hF.s_le
-  have hsp : 3 * (X.s : ℝ) + 2 ≤ (X.p : ℝ) := by nlinarith [hF.p_ge]
+  have hsp : 3 * (X.s : ℝ) + 2 ≤ (X.p : ℝ) := by
+    have h1 : (X.r : ℝ) + 1 ≤ ((X.r : ℝ) + 1) ^ 2 := le_self_pow₀ (by linarith) (by norm_num)
+    have h2 : 3 * (X.s : ℝ) + 2 ≤ 2 * (X.r : ℝ) := by linarith
+    have h3 : 2 * (X.r : ℝ) ≤ ((X.r : ℝ) + 1) ^ 2 := by
+      calc 2 * (X.r : ℝ) ≤ 5 * ((X.r : ℝ) + 1) := by linarith
+        _ ≤ ((X.r : ℝ) + 1) * ((X.r : ℝ) + 1) := mul_le_mul_of_nonneg_right (by linarith) (by linarith)
+        _ = ((X.r : ℝ) + 1) ^ 2 := (sq _).symm
+    linarith [hF.p_ge]
   have hbase : (0 : ℝ) < 8 * (X.L.a : ℝ) + (X.r : ℝ) := by linarith
   have hΛ : 1 ≤ lgA X.p X.L.a X.r := by
     unfold lgA
@@ -998,7 +1024,11 @@ theorem restValNum_proved {CYb Cde Ck CD Cb Cc : ℝ} (hCYb : 1 ≤ CYb) (hCE1 :
     linarith
   have hbig : Real.logb X.p (8 * (aBig X : ℝ) + (X.r : ℝ)) ≤ lgA X.p X.L.a X.r := by
     have e1 : 8 * (aBig X : ℝ) + (X.r : ℝ) ≤ (3 * (X.s : ℝ) + 2) * (8 * (X.L.a : ℝ) + (X.r : ℝ)) := by
-      unfold aBig; push_cast; nlinarith
+      unfold aBig; push_cast
+      have hsr : (X.r : ℝ) ≤ (3 * (X.s : ℝ) + 2) * (X.r : ℝ) := le_mul_of_one_le_left (by linarith) (by linarith)
+      have h1 : (3 * (X.s : ℝ) + 2) * (8 * (X.L.a : ℝ) + (X.r : ℝ)) =
+          8 * ((3 * (X.s : ℝ) + 2) * (X.L.a : ℝ)) + (3 * (X.s : ℝ) + 2) * (X.r : ℝ) := by ring
+      linarith
     have e0 : (0 : ℝ) < 8 * (aBig X : ℝ) + (X.r : ℝ) := by
       have : (0 : ℝ) ≤ (aBig X : ℝ) := Nat.cast_nonneg _
       linarith

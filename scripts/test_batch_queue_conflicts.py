@@ -337,13 +337,34 @@ class Reports(unittest.TestCase):
         self.assertIn("#7 deletes `src/G09.lean`, which #11 starts to import in `src/New.lean`; and 3 more\n", body)
         self.assertNotIn("src/G10.lean", body)
 
-    def test_unread_import_lines_need_a_comment(self):
+    def test_a_finding_is_not_listed_again_as_fine(self):
+        stale_apart, stale_clean = conflicts.Comparison("apart"), conflicts.Comparison("clean", [b"a.txt"])
+        stale_apart.stale = [("ours", b"src/Gone.lean", b"src/New.lean")]
+        stale_clean.stale = [("theirs", b"src/Old.lean", b"src/F.lean")]
+        fine_apart, fine_clean = conflicts.Comparison("apart"), conflicts.Comparison("clean", [b"b.txt"])
+        others = {11: "batch queue", 12: "building", 13: "batch queue", 14: "building"}
+        body, needed = conflicts.report(7, "0" * 40, others,
+                                        {11: stale_apart, 12: stale_clean, 13: fine_apart, 14: fine_clean})
+        self.assertTrue(needed)
+        self.assertIn("It has no file in common with #13.\n", body)
+        self.assertIn("git merges them without conflict:\n\n- #14 (`building`): 1 file\n", body)
+        self.assertNotIn("- #12 (`building`): 1 file", body)
+
+    def test_unread_import_lines_are_reported_without_a_comment(self):
         result = conflicts.Comparison("apart")
         result.unread = True
         body, needed = conflicts.report(7, "0" * 40, {11: "batch queue"}, {11: result})
-        self.assertTrue(needed)
+        self.assertFalse(needed)
         self.assertIn("Import lines were not read for these", body)
         self.assertIn("- #11 (`batch queue`)", body)
+
+    def test_unread_import_lines_do_not_hide_a_finding(self):
+        unread, stale = conflicts.Comparison("apart"), conflicts.Comparison("apart")
+        unread.unread = True
+        stale.stale = [("ours", b"src/Gone.lean", b"src/New.lean")]
+        body, needed = conflicts.report(7, "0" * 40, {11: "batch queue", 12: "building"}, {11: unread, 12: stale})
+        self.assertTrue(needed)
+        self.assertIn("Import lines were not read for these", body)
 
     def test_nothing_to_compare(self):
         body, needed = conflicts.report(7, "0" * 40, {}, {})

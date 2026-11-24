@@ -70,53 +70,11 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.HhSection, Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.KerCoef, Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.LocGraded, Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.LocGradedTop, Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ObsCocycle, Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CocycleNormalForm, Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ObsCorrect, Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ObsClass
 
 -- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.HhSection =====
--- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.HhSection", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.FramedTwoCoboundaries\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ContSection\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.LinearAlgebra.Matrix.Determinant.Basic\npublic import Mathlib.LinearAlgebra.Matrix.NonsingularInverse\n\n"}
+-- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.HhSection", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.FramedTwoCoboundaries\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ContSection\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.HhSmall\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.LinearAlgebra.Matrix.Determinant.Basic\npublic import Mathlib.LinearAlgebra.Matrix.NonsingularInverse\n\n"}
 section -- clump:auto
 @[expose] public section
 
 open IsLocalRing MvPowerSeries UpperTheory.V.Alg
-
-open Matrix in
-private theorem expand_small {O : Type} [CommRing O] [IsLocalRing O] {ι : Type} [Fintype ι] [DecidableEq ι]
-    {R : Type} [CommRing R] [Algebra O R] [IsCO O R] {R' : Type} [CommRing R'] [Algebra O R'] [IsCO O R']
-    (p : R →ₐ[O] R') (hs : maximalIdeal R * RingHom.ker p = ⊥) (J h Z : Matrix ι ι R)
-    (hh : h.map (res O R) = 1) (hZ : Z.map p = 0) :
-    (h + Z)ᵀ * J * (h + Z) = hᵀ * J * h + (Zᵀ * J + J * Z) ∧ (h + Z).map (res O R) = 1 := by
-  have k : ∀ x y : R, res O R x = 0 → p y = 0 → x * y = 0 := fun x y hx hy => by
-    have : x * y ∈ maximalIdeal R * RingHom.ker p :=
-      Ideal.mul_mem_mul ((res_eq_zero_iff O R x).1 hx) hy
-    rwa [hs, Ideal.mem_bot] at this
-  have z1 : ∀ a b, p (Z a b) = 0 := fun a b => congrFun (congrFun hZ a) b
-  have z2 : ∀ a b, res O R (Z a b) = 0 := fun a b => by rw [← res_map p, z1, map_zero]
-  have h1 : ∀ a b, res O R ((h - 1) a b) = 0 := fun a b => by
-    have := congrFun (congrFun hh a) b
-    simp only [map_apply] at this
-    rw [Matrix.sub_apply, map_sub, this]
-    by_cases e : a = b
-    · subst e; simp
-    · simp [one_apply_ne e]
-  have K : ∀ A B : Matrix ι ι R, (∀ a b, res O R (A a b) = 0) → (∀ a b, p (B a b) = 0) →
-      Aᵀ * J * B = 0 ∧ Bᵀ * J * A = 0 := fun A B hA hB => by
-    constructor
-    · ext a b
-      simp only [Matrix.mul_apply, transpose_apply, Matrix.zero_apply, Finset.sum_mul]
-      refine Finset.sum_eq_zero fun c _ => Finset.sum_eq_zero fun d _ => ?_
-      rw [mul_right_comm, k _ _ (hA _ _) (hB _ _), zero_mul]
-    · ext a b
-      simp only [Matrix.mul_apply, transpose_apply, Matrix.zero_apply, Finset.sum_mul]
-      refine Finset.sum_eq_zero fun c _ => Finset.sum_eq_zero fun d _ => ?_
-      rw [mul_right_comm, mul_comm (B _ _), k _ _ (hA _ _) (hB _ _), zero_mul]
-  constructor
-  · obtain ⟨e1, e2⟩ := K (h - 1) Z h1 z1
-    obtain ⟨e3, -⟩ := K Z Z z2 z1
-    rw [transpose_sub, transpose_one, sub_mul, sub_mul, one_mul, sub_eq_zero] at e1
-    rw [mul_sub, mul_one, sub_eq_zero] at e2
-    rw [transpose_add, add_mul, add_mul, mul_add, mul_add, e1, e2, e3]
-    abel
-  · ext a b
-    have := congrFun (congrFun hh a) b
-    simp only [map_apply] at this
-    rw [map_apply, Matrix.add_apply, map_add (f := _), z2, add_zero, this]
 
 open Matrix Classical in
 private theorem inv_supp {O : Type} [CommRing O] {ι X : Type} [Fintype ι] [DecidableEq ι] [AddCommGroup X] {w : ι → X}
@@ -150,95 +108,6 @@ private theorem inv_supp {O : Type} [CommRing O] {ι X : Type} [Fintype ι] [Dec
   by_contra n
   rw [if_neg n, mul_zero] at e3
   exact h e3.symm
-
-open Matrix Classical in
-private theorem fix_point {O : Type} [CommRing O] [IsLocalRing O] {ι X : Type} [Fintype ι] [DecidableEq ι]
-    [AddCommGroup X] {w : ι → X} (Φ : FormData O w)
-    {R : Type} [CommRing R] [Algebra O R] [IsCO O R] {R' : Type} [CommRing R'] [Algebra O R'] [IsCO O R']
-    (p : R →ₐ[O] R') (hs : maximalIdeal R * RingHom.ker p = ⊥) (K : Matrix ι ι R) (hK : Φ.JR R * K = 1)
-    (u : R) (hu : 2 * u = 1) (h' : Matrix ι ι R') (hh : Φ.HH h') (h0 : Matrix ι ι R) (b1 : h0.map p = h')
-    (b2 : ∀ a b, Φ.blk a ≠ Φ.blk b → h0 a b = 0) :
-    Φ.HH (h0 + Matrix.of fun a b => if Φ.blk a = Φ.blk b then
-      (K * ((-u) • (h0ᵀ * Φ.JR R * h0 - Φ.JR R))) a b else 0) ∧
-    (h0 + Matrix.of fun a b => if Φ.blk a = Φ.blk b then
-      (K * ((-u) • (h0ᵀ * Φ.JR R * h0 - Φ.JR R))) a b else 0).map p = h' := by
-  obtain ⟨a1, a2, a3⟩ := hh
-  have b3 : h0.map (res O R) = 1 := by
-    rw [← a3, ← b1]
-    ext a b
-    simp [res_map]
-  have jp : (Φ.JR R).map p = Φ.JR R' := by
-    ext a b
-    simp [FormData.JR]
-  have jb : ∀ a b, Φ.JR R a b ≠ 0 → Φ.blk b = Φ.σ (Φ.blk a) := fun a b e =>
-    Φ.hblk a b fun n => e (by simp [FormData.JR, n])
-  obtain ⟨ε, hε, hε2⟩ : ∃ ε : R, (Φ.JR R)ᵀ = ε • Φ.JR R ∧ ε * ε = 1 := by
-    rcases Φ.sym with e | e
-    · refine ⟨1, ?_, by simp⟩
-      ext a b
-      have := congrFun (congrFun e a) b
-      simp only [transpose_apply] at this
-      simp [FormData.JR, this]
-    · refine ⟨-1, ?_, by simp⟩
-      ext a b
-      have := congrFun (congrFun e a) b
-      simp only [transpose_apply] at this
-      simp [FormData.JR, this]
-  set E := h0ᵀ * Φ.JR R * h0 - Φ.JR R with hE
-  have E1 : E.map p = 0 := by
-    rw [hE, Matrix.map_sub _ (map_sub p), Matrix.map_mul, Matrix.map_mul, transpose_map, b1, jp, a1, sub_self]
-  have E2 : Eᵀ = ε • E := by
-    rw [hE, transpose_sub, transpose_mul, transpose_mul, transpose_transpose, hε, smul_sub]
-    simp [mul_assoc]
-  have E3 : ∀ a b, Φ.blk b ≠ Φ.σ (Φ.blk a) → E a b = 0 := fun a b e => by
-    have : Φ.JR R a b = 0 := by_contra fun n => e (jb a b n)
-    rw [hE, Matrix.sub_apply, this, sub_zero]
-    simp only [Matrix.mul_apply, transpose_apply, Finset.sum_mul]
-    refine Finset.sum_eq_zero fun c _ => Finset.sum_eq_zero fun d _ => ?_
-    by_cases e1 : Φ.blk d = Φ.blk a
-    · by_cases e2 : Φ.blk c = Φ.blk b
-      · have : Φ.JR R d c = 0 := by_contra fun n => e (by rw [← e2, ← e1]; exact jb d c n)
-        simp [this]
-      · simp [b2 _ _ e2]
-    · simp [b2 _ _ e1]
-  set Z0 : Matrix ι ι R := K * ((-u) • E) with hZ0
-  have Z1 : Φ.JR R * Z0 = (-u) • E := by rw [hZ0, ← mul_assoc, hK, one_mul]
-  have Z2 : ∀ a b, p (Z0 a b) = 0 := fun a b => by
-
-    rw [hZ0, Matrix.mul_apply, map_sum]
-    refine Finset.sum_eq_zero fun c _ => ?_
-    have : p (E c b) = 0 := congrFun (congrFun E1 c) b
-    simp [this]
-  let Z : Matrix ι ι R := Matrix.of fun a b => if Φ.blk a = Φ.blk b then Z0 a b else 0
-  have Z3 : Z.map p = 0 := by
-    ext a b
-    by_cases e : Φ.blk a = Φ.blk b <;> simp [Z, e, Z2]
-  have Z4 : Φ.JR R * Z = (-u) • E := by
-    ext a b
-    by_cases e : Φ.blk b = Φ.σ (Φ.blk a)
-    · rw [← Z1, Matrix.mul_apply, Matrix.mul_apply]
-      refine Finset.sum_congr rfl fun c _ => ?_
-      by_cases n : Φ.JR R a c = 0
-      · simp [n]
-      · have : Φ.blk c = Φ.blk b := by rw [e]; exact jb a c n
-        simp [Z, this]
-    · rw [Matrix.smul_apply, E3 a b e, smul_zero, Matrix.mul_apply]
-      refine Finset.sum_eq_zero fun c _ => ?_
-      by_cases n : Φ.JR R a c = 0
-      · simp [n]
-      · have : ¬ Φ.blk c = Φ.blk b := fun m => e (by rw [← m]; exact jb a c n)
-        simp [Z, this]
-  have Z5 : Zᵀ * Φ.JR R = (-u) • E := by
-    have := congrArg (fun M => ε • Mᵀ) Z4
-    simp only [transpose_mul, transpose_smul, hε, E2, Matrix.mul_smul, smul_smul] at this
-    rw [hε2, one_smul, mul_left_comm, hε2, mul_one] at this
-    exact this
-  obtain ⟨c1, c2⟩ := expand_small p hs (Φ.JR R) h0 Z b3 Z3
-  change Φ.HH (h0 + Z) ∧ (h0 + Z).map p = h'
-  refine ⟨⟨?_, fun a b e => by simp [Z, e, b2 a b e], c2⟩, ?_⟩
-  · rw [c1, Z4, Z5, ← add_smul, show -u + -u = -1 by rw [← hu]; ring, neg_one_smul, hE]
-    abel
-  · rw [Matrix.map_add _ (map_add p), b1, Z3, add_zero]
 
 section Good
 
@@ -313,7 +182,7 @@ theorem UpperTheory.V.Alg.hh_section :
     have hd : IsUnit Φ.J.det := (Matrix.isUnit_iff_isUnit_det _).1 Φ.unit
     rw [FormData.JR, ← Matrix.map_mul, Matrix.mul_nonsing_inv _ hd]
     simp
-  have key := fun s => fix_point Φ p hs _ hK _ hu' (h s) (hH s) (h0 s) (b1 s) (b2 s)
+  have key := fun s => Φ.hh_corrected_lift p hs _ hK _ hu' (h s) (hH s) (h0 s) (b1 s) (b2 s)
   have gJ : ∀ a b, Good (maximalIdeal A) W (Φ.c - w a - w b) fun _ : S => Φ.JR A a b := fun a b =>
     good_const' _ fun n => by rw [← Φ.hw a b n]; abel
   have gK : ∀ a b, Good (maximalIdeal A) W (w a + w b - Φ.c) fun _ : S => Φ.J⁻¹.map (algebraMap O A) a b :=

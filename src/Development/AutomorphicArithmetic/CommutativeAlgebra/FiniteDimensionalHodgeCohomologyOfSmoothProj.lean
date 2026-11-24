@@ -64,11 +64,7 @@ private theorem smulHom_eq {X : Scheme.{0}} (F : X.Modules) (r : Γ(X, ⊤)) :
   rfl
 
 /-- `Module.Finite` passes from `N` to `M` along an additive equivalence that commutes with scalars.
-
-Used below instead of building a linear equivalence `coh F n ≃ₗ[R] Sheaf.H …` as a definition:
-`coh.toH` and the module structure on `Sheaf.H` write that group with different instance terms, and
-the kernel is slow to compare additions across the two forms, which the fields of a linear
-equivalence make it do repeatedly. -/
+Used below in place of a linear equivalence onto `Sheaf.H`, which is slow for the kernel to check. -/
 private theorem finite_of_addEquiv {R M N : Type} [CommRing R] [AddCommGroup M] [Module R M]
     [AddCommMonoid N] [Module R N] (h : Module.Finite R N) (e : M ≃+ N)
     (he : ∀ (r : R) (x : M), e (r • x) = r • e x) : Module.Finite R M :=

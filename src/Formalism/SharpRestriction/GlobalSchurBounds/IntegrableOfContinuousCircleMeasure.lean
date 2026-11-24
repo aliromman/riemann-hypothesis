@@ -404,14 +404,14 @@ theorem column_top_entry : LastColumnBound := by
   constructor
   · unfold wt
     rw [Fin.sum_univ_succ, h0]
-    nlinarith
+    linarith
   · unfold wt plus
     rw [Fin.sum_univ_succ, h0, hl]
     have e : ∑ j : Fin (κ + 1), (lam j.succ - -bt) = ∑ j : Fin (κ + 1), lam j.succ + (κ + 1) * bt := by
       rw [Finset.sum_sub_distrib, Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
       push_cast; ring
     rw [e]
-    nlinarith
+    linarith
 
 end Formalism.HermitianLattices.TraceIntegrality
 end -- clump:auto
@@ -445,7 +445,9 @@ theorem b_nums {D : D7} {T g1 g2 : ℕ} {Cn x b L b' Sc eta : ℝ} (h : Nums D T
   have hb'4 : 4 ≤ b' := by linarith
   have hdiv : b' / x ≤ b' := div_le_self hb'0 (by linarith)
   have h8 : 8 ≤ x * b * D.host.v := by
-    have hxb : 16 ≤ x * b := by nlinarith
+    have hxb : 16 ≤ x * b := by
+      calc (16 : ℝ) = 2 * 8 := by norm_num
+        _ ≤ x * b := mul_le_mul (by linarith) (by linarith) (by norm_num) (by linarith)
     linarith [mul_nonneg (by linarith : (0 : ℝ) ≤ x * b) (by linarith : (0 : ℝ) ≤ D.host.v - 1)]
   have hL1 : 1 ≤ L := by
     have h1 : (1 : ℝ) < Real.log 8 := by
@@ -557,9 +559,10 @@ theorem numbers_of_nums {D : D7} {T g1 g2 : ℕ} {Cn x b L b' Sc eta : ℝ} (K :
   have hm0 : (0 : ℝ) ≤ (D.R.m : ℝ) := by positivity
   refine ⟨hL1, hv, hL, by linarith, ?_, Real.log_natCast_nonneg _, ?_, ?_, ?_, ?_, ?_, rfl, by linarith,
     by positivity, ?_, hsq, hlin, hpow⟩
-  · nlinarith
-  · have : 0 ≤ (D.R.m : ℝ) * L := by positivity
-    nlinarith
+  · exact hbb.trans (le_mul_of_one_le_left (by linarith) (by linarith))
+  · have h1 : Cn * ((D.R.m : ℝ) * L) ≤ (2 * Cn + 4) * ((D.R.m : ℝ) * L) :=
+      mul_le_mul_of_nonneg_right (by linarith) (by positivity)
+    linarith
   · have : ((g1 : ℝ) * g2) = ((g1 * g2 : ℕ) : ℝ) := by push_cast; ring
     rw [this]; exact Real.log_natCast_nonneg _
   · by_cases h1 : (g1 : ℝ) = 0
@@ -574,7 +577,7 @@ theorem numbers_of_nums {D : D7} {T g1 g2 : ℕ} {Cn x b L b' Sc eta : ℝ} (K :
       rw [le_div_iff₀ hx0] at hsm; linarith
     have h2 : K * (Sc + eta + (D.R.m : ℝ) * D.R.t) ≤ x * (Sc + eta + (D.R.m : ℝ) * D.R.t) :=
       mul_le_mul_of_nonneg_right hKx (by linarith)
-    nlinarith
+    linarith [le_mul_of_one_le_left (by linarith : (0 : ℝ) ≤ eta) hK1, le_mul_of_one_le_left hmt hK1]
 
 theorem lamCol_stepB (D : D7) (u : D.what₂.Word) (τ : D.what₂.Tau) (i : ℕ) (h : i + 1 < D.R.k) :
     lamCol D u τ (i + 1) < lamCol D u τ i + 1 := by
@@ -622,7 +625,7 @@ theorem col_setup (D : D7) (u : D.what₂.Word) (Cn x b L b' Sc eta K : ℝ) (hK
     rw [h2, h3] at h1
     have h4 : lam τ i.succ < lam τ i.castSucc + 1 := by exact_mod_cast h1
     omega
-  have hKSc : Sc ≤ K * Sc := by nlinarith
+  have hKSc : Sc ≤ K * Sc := le_mul_of_one_le_left (by linarith) hK1
   have hwt : ∀ τ, colAbs D u τ = (wt (lam τ) : ℝ) := fun τ => by
     unfold colAbs wt
     rw [hκ, Finset.sum_range]
@@ -700,11 +703,13 @@ theorem col_setup (D : D7) (u : D.what₂.Word) (Cn x b L b' Sc eta K : ℝ) (hK
     rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul] at h1
     push_cast at h1 ⊢
     have hκ0 : (0 : ℝ) ≤ ((κ : ℝ) + 1 + 1) * (K * Sc) := by positivity
-    nlinarith
+    have hle := le_mul_of_one_le_left hκ0 (by linarith : (1 : ℝ) ≤ 2 * Cn + 4)
+    linarith
   · intro τ hτ
     have := hnt τ hτ (Fin.last (κ + 1))
     rw [abs_of_nonneg this.1]
-    nlinarith
+    have hle := le_mul_of_one_le_left hKS0 (by linarith : (1 : ℝ) ≤ 2 * Cn + 4)
+    linarith
 
 end Z56a
 
@@ -874,7 +879,8 @@ theorem classMap_estimate_of_partial (Cn C5 : ℝ) : ∃ C : ℝ, ∀ (D : D7) (
   have hlT0 : 0 ≤ lT := Real.log_natCast_nonneg _
   have hk1 : (1 : ℝ) ≤ (D.R.k : ℝ) := by rw [hkR]; have : (0 : ℝ) ≤ ((κ + 1 : ℕ) : ℝ) := by positivity
                                          linarith
-  have hlkv : 0 ≤ Real.log ((D.R.k : ℝ) * D.host.v) := Real.log_nonneg (by nlinarith)
+  have hlkv : 0 ≤ Real.log ((D.R.k : ℝ) * D.host.v) :=
+    Real.log_nonneg (one_le_mul_of_one_le_of_one_le hk1 hv1)
   have hplus0 : ∀ τ i, 0 ≤ plus (lam τ) i := fun τ i => by
     unfold plus
     have := hanti τ (Fin.le_last i)

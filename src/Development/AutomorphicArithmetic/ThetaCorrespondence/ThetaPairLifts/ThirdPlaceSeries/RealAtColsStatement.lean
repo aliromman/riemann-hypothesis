@@ -333,8 +333,6 @@ theorem image_refl {E : Type} [Field E] [NumberField E] (f : E ≃+* E) (hf : f 
     exact Formalism.L2.Host.CT.mem_plMap (RingEquiv.refl E) P x
   rw [h, Finset.image_id]
 
-variable {hL : GlobalTheory.Published.LocalLanglandsGL} {p : Prm hL} {K : Ctx}
-
 
 end GlobalTheory.Fam.LinkedPins
 

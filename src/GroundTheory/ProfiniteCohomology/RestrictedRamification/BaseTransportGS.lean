@@ -463,6 +463,8 @@ end Compact
 
 section ZMod
 
+attribute [local irreducible] compactTransport compactCupRes cohomologyMapAlong
+
 theorem gsMackeyCompactIso_compactCupRes_zmod (n : ℕ)
     {D' : Rep.{u} (ULift.{u} ℤ) (galUnramifiedOutside L Ω (placesOver S))} [IsDiscreteRep D']
     {D : Rep.{u} (ULift.{u} ℤ) (gsOpenSubgroup S hL : Subgroup (galUnramifiedOutside F Ω S))} [IsDiscreteRep D]

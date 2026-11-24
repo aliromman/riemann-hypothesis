@@ -253,13 +253,15 @@ theorem UpperTheory.V.LDataCardLeFinrank.H1_transport_field_iso :
   let Ψ := pairH1DecompositionMap (qzTw D' e) (qzTw D e) (ψ.symm : GS Ω (D.S : Set (HeightOneSpectrum (𝓞 F))) →* GS Ω' (D'.S : Set (HeightOneSpectrum (𝓞 F')))) hψs LinearMap.id continuous_id hq'
   have hΦΨ : Φ.comp Ψ = LinearMap.id := by
     apply Submodule.linearMap_qext
-    ext z g
-    simp [Φ, Ψ, pairH1DecompositionMap, compatiblePairCocycles1]
-  have hΨΦ : Ψ.comp Φ = LinearMap.id := by
+    ext z
+    refine congrArg Submodule.Quotient.mk (Subtype.ext (funext fun g => ?_))
+    exact congrArg (z : GS Ω' (↑D'.S : Set (HeightOneSpectrum (𝓞 F'))) → QZ l) (ψ.symm_apply_apply g)
+  have hΨΦ: Ψ.comp Φ = LinearMap.id := by
     apply Submodule.linearMap_qext
-    ext z g
-    simp [Φ, Ψ, pairH1DecompositionMap, compatiblePairCocycles1]
-  have hσ' : ∀ x, σ.symm (algebraMap F' Ω' x) = algebraMap F Ω (f.symm x) := by
+    ext z
+    refine congrArg Submodule.Quotient.mk (Subtype.ext (funext fun g => ?_))
+    exact congrArg (z : GS Ω (↑D.S : Set (HeightOneSpectrum (𝓞 F))) → QZ l) (ψ.apply_symm_apply g)
+  have hσ': ∀ x, σ.symm (algebraMap F' Ω' x) = algebraMap F Ω (f.symm x) := by
     intro x
     rw [RingEquiv.symm_apply_eq, hσ, RingEquiv.apply_symm_apply]
   have hφ' : ∀ g x, σ.symm (φ.symm g x) = g (σ.symm x) := by

@@ -71,6 +71,56 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConvXPowMul, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GammaEigenvalueOnWachLatticeQPowerQuotient, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachModuleInverseQuotientFreeFiniteCrystalline, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachModuleConsequencesPoleQuotient
 
+-- Short-circuit expensive `OL LL` / `LetA` / `Submodule` typeclass backtracking.
+public noncomputable local instance (priority := high) instAlgOLLetA {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (n : ℕ) :
+    Algebra ↥(Formalism.BasicNotions.Loc.OL LL) (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) :=
+  Pi.algebra _ _
+
+public noncomputable local instance (priority := high) instModOLLetA {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (n : ℕ) :
+    Module ↥(Formalism.BasicNotions.Loc.OL LL) (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) :=
+  (instAlgOLLetA LL n).toModule
+
+public noncomputable local instance (priority := high) instSMulOLLetA {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (n : ℕ) :
+    SMul ↥(Formalism.BasicNotions.Loc.OL LL) (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) :=
+  (instAlgOLLetA LL n).toSMul
+
+public noncomputable local instance (priority := high) instHSMulOLLetA {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (n : ℕ) :
+    HSMul ↥(Formalism.BasicNotions.Loc.OL LL)
+      (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL))
+      (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) :=
+  @instHSMul _ _ (instAlgOLLetA LL n).toSMul
+
+public noncomputable local instance (priority := high) instModOLSubmodLetA {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (n : ℕ) (M : Type*) [AddCommGroup M]
+    [Module (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) M]
+    [Module ↥(Formalism.BasicNotions.Loc.OL LL) M]
+    [IsScalarTower ↥(Formalism.BasicNotions.Loc.OL LL) (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) M]
+    (S : Submodule (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) M) :
+    Module ↥(Formalism.BasicNotions.Loc.OL LL) ↥S :=
+  Submodule.module' S
+
+public noncomputable local instance (priority := high) instSMulOLSubmodLetA {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (n : ℕ) (M : Type*) [AddCommGroup M]
+    [Module (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) M]
+    [Module ↥(Formalism.BasicNotions.Loc.OL LL) M]
+    [IsScalarTower ↥(Formalism.BasicNotions.Loc.OL LL) (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) M]
+    (S : Submodule (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) M) :
+    SMul ↥(Formalism.BasicNotions.Loc.OL LL) ↥S :=
+  (Submodule.module' S).toSMul
+
+public noncomputable local instance (priority := high) instHSMulOLSubmodLetA {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (n : ℕ) (M : Type*) [AddCommGroup M]
+    [Module (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) M]
+    [Module ↥(Formalism.BasicNotions.Loc.OL LL) M]
+    [IsScalarTower ↥(Formalism.BasicNotions.Loc.OL LL) (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) M]
+    (S : Submodule (ZMod n → PowerSeries ↥(Formalism.BasicNotions.Loc.OL LL)) M) :
+    HSMul ↥(Formalism.BasicNotions.Loc.OL LL) ↥S ↥S :=
+  @instHSMul _ _ (Submodule.module' S).toSMul
+
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConvXPowMul =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConvXPowMul", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NotFullBot\npublic import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NBasisLoc\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachExpansionBasisDivisibility\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachExpansionsSpanFullLattice\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachWeierstrassTestAndDensity\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.SharpRestriction.LevelLetterCocycles.DeltaInvariantLattices\n\n"}
 section -- clump:auto
@@ -260,7 +310,6 @@ private theorem expansion_smul_scalar {O L A X M : Type}
 
 
 set_option synthInstance.maxHeartbeats 400000 in
-set_option maxHeartbeats 20000000 in
 theorem ex_smul_O (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (Cm : CmpOf D.loc D.locA HW F)
     (l : ℕ) [Fact l.Prime] (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL) (T : Lt K LL)
     (hT : IsCrys ((D.loc l).PD K) T.ρ) (i : Let K) (ζ : ↥LL.1) (hprim : IsPrimitiveRoot ζ (l ^ s))
@@ -384,7 +433,6 @@ private theorem quotient_eigenvector_of_expansion {O L M X : Type}
       Module.algebraMap_end_apply] using hkill
 
 set_option synthInstance.maxHeartbeats 400000 in
-set_option maxHeartbeats 20000000 in
 theorem occ : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (Cm : CmpOf D.loc D.locA HW F) (l : ℕ) [Fact l.Prime] (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL), let W := (HW l).W K s LL h; ∀ T : Lt K LL, IsCrys ((D.loc l).PD K) T.ρ → ∀ y : ℕ, 1 ≤ y → ∀ a ∈ Jumps (PD := (D.loc l).PD K) T, ∀ j : ℕ, 1 ≤ j → j ≤ y → ∃ x ∈ invN W T (W.Q ^ y), x ∉ W.N T ∧ W.γ T x - (((uU W ^ (-(a + j)) : (↥(OL LL))ˣ) : ↥(OL LL))) • x ∈ W.N T := by
   intro D HW F Cm l _ K s LL h W T hT y hy a ha j hj1 hjy
   classical
@@ -698,7 +746,6 @@ private theorem free_finite_of_Q [IsDomain O] [IsDiscreteValuationRing O]
 end Generic
 
 
-set_option maxHeartbeats 16000000 in
 set_option synthInstance.maxHeartbeats 4000000 in
 theorem quo_free_finite : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (l : ℕ) [Fact l.Prime] (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL), let W := (HW l).W K s LL h; ∀ T : Lt K LL, IsCrys ((D.loc l).PD K) T.ρ → ∀ y : ℕ, Module.Free ↥(OL LL) (quo W T (invN W T (W.Q ^ y)) (W.N T)) ∧ Module.Finite ↥(OL LL) (quo W T (invN W T (W.Q ^ y)) (W.N T)) := by
   intro D HW F l _ K s LL h W T hT y

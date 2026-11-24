@@ -78,16 +78,8 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.PAdicHodge.SenTateCharQp, GroundTheory.PAdicHodge.FieldOfNormsResidue, GroundTheory.PAdicHodge.SenTateCharStep, GroundTheory.PAdicHodge.SenTateCharTrace, GroundTheory.PAdicHodge.SenTateCharacters, GroundTheory.PAdicHodge.BCrisRegularSenTate
 
--- `LocalBridge` (imported transitively via `BCrisEigen`) provides a second, non-defeq
--- `ValuativeRel` on subfields of `PadicAlgCl p`; disable it in favour of
--- `intermediateField_valuativeRel`, which this file is written against.
-attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
-  GroundTheory.PAdicHodge.subfield_compatible GroundTheory.PAdicHodge.subfield_isValuativeTopology
-  GroundTheory.PAdicHodge.subfield_isNontrivial
-  GroundTheory.PAdicHodge.isNonarchimedeanLocalField_intermediateField
-  GroundTheory.PAdicHodge.isNonarchimedeanLocalField_tower
-  GroundTheory.PAdicHodge.valuativeExtension_padic
-  GroundTheory.PAdicHodge.valuativeExtension_intermediateField
+-- Do not `open scoped GroundTheory.PAdicHodge.LocalBridge` here: this file is written against
+-- `intermediateField_valuativeRel`, and `LocalBridge`'s norm-based `ValuativeRel` on subfields is not defeq to it.
 
 -- ===== clump member: GroundTheory.PAdicHodge.SenTateCharQp =====
 -- clump-header: {"m": "GroundTheory.PAdicHodge.SenTateCharQp", "h": "module\n\npublic import Mathlib.NumberTheory.Padics.PadicIntegers\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.Padics.LocalField\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Algebra.Group.Units\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.Analysis.SpecificLimits.Basic\n\n"}

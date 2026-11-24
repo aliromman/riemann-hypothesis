@@ -243,7 +243,11 @@ theorem arith (k m t N S η : ℝ) (hm : 1 ≤ m) (hk : 1 ≤ k) (hkm : k + m �
   have h4 : N ≤ N * N := le_mul_of_one_le_left (by linarith) (by linarith)
   have h5 : η ≤ m * η := le_mul_of_one_le_left hη hm
   have h6 : m * η ≤ t * (m * η) := le_mul_of_one_le_left (by linarith) ht
-  nlinarith
+  have h7 : 1 ≤ N * N := by linarith
+  have hsq : N ^ 2 = N * N := sq N
+  have hmt : m * (t + 1) * (2 * η) = 2 * (m * t * η) + 2 * (m * η) := by ring
+  have hmt2 : t * (m * η) = m * t * η := by ring
+  linarith
 
 theorem degree_fine : ∀ {D : D7} (L : SizeData₂ D), SizesAt L → ParameterChoice' D L → KapDef D → 2 ≤ L.sc.x → ∀ (u : D.what₂.Word), ∀ j ∈ SizeData₂.lifts D, |degPi D u j - (fockDeg D j : ℝ) - (topSum L + sizeOffTops D j)| ≤ 20 * degErr L := by
   intro D L h P hK hx u j hj
@@ -310,11 +314,13 @@ theorem admissibleDegree_count_at_parameter_const {D : D7} (L : SizeData₂ D) (
   have hN2 : (D.R.N D.R.m : ℝ) ^ 2 ≤ (D.R.m : ℝ) * D.R.t * L.etaSz := by
     have a1 : (D.R.N D.R.m : ℝ) ^ 2 ≤ 4 * (D.R.N D.R.m : ℝ) ^ 3 + 6 := by
       rcases le_total (D.R.N D.R.m : ℝ) 1 with hN1 | hN1
-      · nlinarith [pow_nonneg hN0 3]
-      · nlinarith [pow_nonneg hN0 2]
+      · have := pow_le_pow_left₀ hN0 hN1 2
+        linarith [pow_nonneg hN0 3]
+      · have := pow_le_pow_right₀ hN1 (show 2 ≤ 3 by norm_num)
+        linarith [pow_nonneg hN0 2]
     have a2 : L.etaSz ≤ (D.R.m : ℝ) * D.R.t * L.etaSz := by
-      have : (1 : ℝ) ≤ (D.R.m : ℝ) * D.R.t := by nlinarith
-      nlinarith
+      have : (1 : ℝ) ≤ (D.R.m : ℝ) * D.R.t := one_le_mul_of_one_le_of_one_le hm ht
+      exact le_mul_of_one_le_left he.le this
     linarith
   have hf0 : (0 : ℝ) ≤ D.R.f := Nat.cast_nonneg _
   have hc0 : 0 ≤ (D.host.TT.card : ℝ) * L.sc.b' / L.sc.x :=
@@ -334,7 +340,7 @@ theorem admissibleDegree_count_at_parameter_const {D : D7} (L : SizeData₂ D) (
   unfold Formalism.MainNotions.WeightDegreeSizes.DegreeCountBound Formalism.MainNotions.WeightDegreeSizes.errG Formalism.MainNotions.WeightDegreeSizes.sumA at *
   change |degPi D u j - (fockDeg D j : ℝ) - topSum L| ≤ _
   rw [abs_le] at hf ⊢
-  constructor <;> nlinarith [hf.1, hf.2]
+  constructor <;> linarith [hf.1, hf.2]
 
 theorem admissibleDegreeCount_along_family : ∀ {eps : ℝ} (Fm : FamP eps), 0 < eps → eps < 1 / 52 → ∃ C x0 : ℝ, 0 ≤ C ∧ ∀ x, x0 ≤ x →
     ∀ hx : Fm.x1 < x, ∀ i : Fm.Ix x, Formalism.MainNotions.WeightDegreeSizes.DegreeCountBound (Fm.D x i) (Fm.L x i) C := by
@@ -406,7 +412,8 @@ theorem N_le_b (h : SizesAt L) (P : ParameterChoice' D L) : 5 * (D.R.N D.R.m : �
   have hk : (5 : ℝ) ≤ D.R.k := by
     exact_mod_cast (by have := D.R.m_add_three_le_k; have := D.R.two_le_m; omega : 5 ≤ D.R.k)
   have h0 : (0 : ℝ) ≤ D.R.N D.R.m := Nat.cast_nonneg _
-  nlinarith
+  have h2 : 5 * (D.R.N D.R.m : ℝ) ≤ (D.R.k : ℝ) * D.R.N D.R.m := mul_le_mul_of_nonneg_right hk h0
+  linarith
 
 theorem true_entry_le (h : SizesAt L) (P : ParameterChoice' D L) (hx : 2 ≤ L.sc.x) (u : D.what₂.Word) (τ : D.what₂.Tau)
     (i : ℕ) (hi : i ≤ D.R.m) (a : Fin (D.R.N i)) (ha : ¬ (a.1 = 0 ∧ τ ∈ topsOf D.host D.eTau)) :
@@ -547,7 +554,8 @@ theorem trace_sq_le (x : H.E) (a : ℤ) (T : ℕ) (ha : (a : H.E) = x + H.conj x
   have h4 : (H.φ₀ x).re * (H.φ₀ x).re + (H.φ₀ x).im * (H.φ₀ x).im = (T : ℝ) := by exact_mod_cast h2
   have h5 : (a : ℝ) ^ 2 ≤ 4 * T := by
     rw [h3, ← h4]
-    nlinarith [mul_self_nonneg (H.φ₀ x).im]
+    have heq : (2 * (H.φ₀ x).re) ^ 2 = 4 * ((H.φ₀ x).re * (H.φ₀ x).re) := by ring
+    linarith [mul_self_nonneg (H.φ₀ x).im]
   exact_mod_cast h5
 
 end Host
@@ -602,7 +610,10 @@ theorem not_dvd_trace {D : D7} (X : ErrX D) (u : D.what₂.Word) (a : ℤ)
   have hk2 : 1 ≤ k ^ 2 := by
     have := sq_pos_of_ne_zero hk
     omega
-  nlinarith [mul_pow T k 2]
+  rw [mul_pow] at hle
+  have h6 : T * T ≤ T * T * k ^ 2 := le_mul_of_one_le_right (mul_self_nonneg T) hk2
+  have h7 : 5 * T ≤ T * T := mul_le_mul_of_nonneg_right h5 (by omega)
+  linarith [sq T]
 
 theorem coprime_conj {D : D7} (X : ErrX D) (u : D.what₂.Word) (w : D.what₂.places.Pl)
     (hw : D.what₂.places.resChar w = (D.mem u).A.T) :
@@ -797,13 +808,15 @@ theorem ETpi_le (h : SizesAt L) (P : ParameterChoice' D L) (hx : 2 ≤ L.sc.x) (
     have := Finset.card_le_univ (Formalism.MainNotions.product_first_zeroth_parts.tops D)
     rw [D.what₂.card_Tau] at this
     exact_mod_cast this
-  have h3 : ((D.R.t : ℝ) + 1) * ((D.R.m : ℝ) + 1) ≤ L.sc.b := by nlinarith
+  have h3 : ((D.R.t : ℝ) + 1) * ((D.R.m : ℝ) + 1) ≤ L.sc.b := by
+    have heq : ((D.R.t : ℝ) + 1) * ((D.R.m : ℝ) + 1) = (D.R.m : ℝ) * ((D.R.t : ℝ) + 1) + ((D.R.t : ℝ) + 1) := by ring
+    linarith
   have h4 : ((Formalism.MainNotions.product_first_zeroth_parts.tops D).card : ℝ) * (((D.R.t : ℝ) + 1) * ((D.R.m : ℝ) + 1)) ≤ D.R.f * L.sc.b :=
     mul_le_mul h2 h3 (by positivity) hf0
   have h5 : (D.R.f : ℝ) * D.R.N D.R.m ≤ D.R.f * L.sc.b :=
     mul_le_mul_of_nonneg_left (by linarith [Nat.cast_nonneg (α := ℝ) (D.R.N D.R.m)]) hf0
   have h6 : 0 ≤ (D.R.f : ℝ) * L.sc.b := by positivity
-  nlinarith
+  linarith
 
 theorem admissible_off_type_level_budget : ∀ {eps : ℝ} (Fm : FamP eps), 0 < eps → eps < 1 / 52 → TuSize Fm → ∃ C x0 : ℝ, 0 ≤ C ∧ ∀ x, x0 ≤ x → ∀ hx : Fm.x1 < x, ∀ i : Fm.Ix x, Formalism.MainNotions.WeightDegreeSizes.LevelPrimeBudget (Fm.D x i) (Fm.L x i) C := by
   intro eps Fm _ _ ⟨x₁, h1⟩
@@ -950,13 +963,15 @@ theorem small_le (P : ParameterChoice' D L) (hx : 2 ≤ L.sc.x) :
     have h2 : LevelStarExponents.h0 L ≤ L.etaSz := div_le_self L.etaSz_pos.le hm
     obtain ⟨r1, r2⟩ := ranks_le D
     have hN : (1 : ℝ) ≤ D.R.N D.R.m := by linarith
-    have h3 : (D.R.k : ℝ) * D.R.N D.R.m ≤ (D.R.N D.R.m : ℝ) ^ 2 := by nlinarith
+    have h3 : (D.R.k : ℝ) * D.R.N D.R.m ≤ (D.R.N D.R.m : ℝ) ^ 2 := by
+      rw [sq]; exact mul_le_mul_of_nonneg_right (by linarith) (by linarith)
     have h4 : (D.R.N D.R.m : ℝ) ^ 2 ≤ (D.R.N D.R.m : ℝ) ^ 3 := pow_le_pow_right₀ hN (by norm_num)
     have h5 : (0 : ℝ) ≤ (D.R.N D.R.m : ℝ) ^ 3 := by positivity
     linarith
   · unfold Scale.w''
     refine div_le_div_of_nonneg_left hb'.le (by norm_num) ?_
-    nlinarith [one_le_n D]
+    have := mul_le_mul (one_le_n D) hx (by norm_num) (by linarith [one_le_n D])
+    linarith
 
 theorem wj_false_le (h : SizesAt L) (P : ParameterChoice' D L) (hx : 2 ≤ L.sc.x) (j : ℕ) (h1 : 1 ≤ j) (h2 : j ≤ D.R.m)
     (t : HH D) : wj D j (tauPl D (false, t)) ≤ 9 / 4 * L.sc.b' := by
@@ -1011,8 +1026,8 @@ theorem ctD_le (h : SizesAt L) (P : ParameterChoice' D L) (hx : 2 ≤ L.sc.x) (u
   have hb := one_le_b L
   have hS := L.Sc_pos
   have hN : (0 : ℝ) ≤ D.R.N D.R.m := Nat.cast_nonneg _
-  have e6 : L.Sc ≤ L.sc.w'' D.R.n := by nlinarith
-  have e7 : (D.R.N D.R.m : ℝ) ≤ L.sc.w'' D.R.n := by nlinarith
+  have e6 : L.Sc ≤ L.sc.w'' D.R.n := (le_mul_of_one_le_left hS.le (by linarith : (1 : ℝ) ≤ D.R.k)).trans e4
+  have e7 : (D.R.N D.R.m : ℝ) ≤ L.sc.w'' D.R.n := (le_mul_of_one_le_left hN (by linarith : (1 : ℝ) ≤ D.R.k)).trans e2
   have w0 := (wj_bounds h hx (i + 1) j1 j2 (tauPl D (false, t))).1
   have w1 := wj_false_le h P hx (i + 1) j1 j2 t
   have w2 := wj_true_le h P hx (i + 1) j1 j2 t
@@ -1139,7 +1154,7 @@ theorem offDiagonalRamified_bound_const_four (h : SizesAt L) (P : ParameterChoic
     exact le_mul_of_one_le_left (by positivity) hm
   have h1 : Real.log (D.host.d : ℝ) * |EatD D j| ≤ L.sc.L * (2 * ((D.R.f : ℝ) * L.sc.b)) :=
     mul_le_mul hlog hE2 (abs_nonneg _) (by linarith)
-  nlinarith
+  linarith
 
 theorem offDiagonalRamified_bound_along_family : ∀ {eps : ℝ} (Fm : FamP eps), 0 < eps → eps < 1 / 52 → ∃ C x0 : ℝ, 0 ≤ C ∧ ∀ x, x0 ≤ x → ∀ hx : Fm.x1 < x, ∀ i : Fm.Ix x, Formalism.MainNotions.WeightDegreeSizes.DiscriminantOffsetBound (Fm.D x i) (Fm.L x i) C := by
   intro eps Fm _ _
@@ -1200,8 +1215,9 @@ theorem errG_abs_le {L : SizeData₂ D} (h : SizesAt L) (P : ParameterChoice' D 
   have he := L.etaSz_pos
   have hN0 : (0 : ℝ) ≤ Formalism.MainNotions.G.Nm D := by unfold Formalism.MainNotions.G.Nm; positivity
   have hmt : (D.R.m : ℝ) * D.R.t * L.etaSz ≤ (D.R.m : ℝ) * ((D.R.t : ℝ) + 1) * L.etaSz := by
-    have : (0 : ℝ) ≤ D.R.m := Nat.cast_nonneg _
-    nlinarith
+    have : (D.R.m : ℝ) * D.R.t ≤ (D.R.m : ℝ) * ((D.R.t : ℝ) + 1) :=
+      mul_le_mul_of_nonneg_left (by linarith) (Nat.cast_nonneg _)
+    exact mul_le_mul_of_nonneg_right this he.le
   have hkN : (D.R.k : ℝ) * Formalism.MainNotions.G.Nm D ≤ L.sc.b := e3
   set Y : ℝ := (D.R.f : ℝ) * ((D.R.k : ℝ) * L.Sc + (D.R.m : ℝ) * D.R.t * L.etaSz + (D.R.k : ℝ) * Formalism.MainNotions.G.Nm D) +
     (D.host.TT.card : ℝ) * L.sc.b' / L.sc.x with hY
@@ -1228,7 +1244,7 @@ theorem errG_abs_le {L : SizeData₂ D} (h : SizesAt L) (P : ParameterChoice' D 
   rw [e]
   refine (abs_add_le _ _).trans ?_
   rw [abs_of_nonneg (by positivity : 0 ≤ 2 * (∑ τ : D.what₂.Tau, wj D j τ))]
-  nlinarith
+  linarith
 
 theorem typePrime_sizes_le_budget_single {L : SizeData₂ D} (h : SizesAt L) (P : ParameterChoice' D L) (hx : 2 ≤ L.sc.x) (c : ErrC) (Cd C₂ : ℝ)
     (h2 : FactDGam D C₂) :

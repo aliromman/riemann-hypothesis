@@ -6,7 +6,7 @@ if [[ "$#" != 1 || "$1" != get ]]; then
   exit 2
 fi
 
-RH_CACHE_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+RH_CACHE_ROOT="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$RH_CACHE_ROOT"
 
 # scripts/ci-cache-get.py needs Python 3.11 for tomllib. Say so before downloading anything.

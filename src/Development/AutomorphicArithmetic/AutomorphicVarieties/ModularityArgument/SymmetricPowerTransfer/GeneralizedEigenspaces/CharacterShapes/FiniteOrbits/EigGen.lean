@@ -270,7 +270,7 @@ private theorem sLev0 {L : Type} [Field L] [NumberField L] [IsCMField L] (B : Br
 end UpperTheory.V.Z.Sym.So
 
 set_option allowUnsafeReducibility true in
-attribute [local irreducible] cv Kv Ov DX KD RP SA Lsq dcF SD.lvS lev SUA Subgroup.comap MulEquiv.toMonoidHom Subgroup.toGroup Subgroup.subgroupOf
+attribute [local irreducible] cv Kv Ov DX KD RP SA Lsq dcF SD.lvS lev SUA Subgroup.comap MulEquiv.toMonoidHom Subgroup.toGroup Subgroup.subgroupOf KU Kall Dat.UG Lev.iw
 
 theorem UpperTheory.V.Z.Sym.So.sLev :
     UpperTheory.V.Z.Sym.So.SLev := by
@@ -479,6 +479,9 @@ theorem val_inv_ge {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [I
 
 variable {B : Bridge L}
 
+
+set_option allowUnsafeReducibility true in
+attribute [local irreducible] cv DX KD RP SA Lsq KU SD.lvS lev Kall Dat.UG Lev.iw
 
 theorem place_el (hB : B.Ok) (T : Spl B) {S : Finset (Plc L)} {VL : ∀ w : Plc L, Lev (Kw w)} {A : SD B.Δ} (hA : A.Ok) (hF : Fit T S VL A)
     {a : ∀ w : Plc L, (Kw w)ˣ →* ℂˣ} {b : Chs (Lp L)} (hab : FitCh T S a b) {w : Plc L} (hw : w ∈ S) (h : IsSplitAt w) (t : (Kw w)ˣ)
@@ -713,7 +716,7 @@ private theorem all_gen {H : Type} [Group H] (E : H ≃* ↥(finU (E := L) (n :=
 end UpperTheory.V.Z.Sym.So.OS
 
 set_option allowUnsafeReducibility true in
-attribute [local irreducible] DX KD RP SA
+attribute [local irreducible] cv Ov DX KD RP SA KU SD.lvS lev Kall Dat.UG
 
 open UpperTheory.V.Z.Sym.So.OS in
 

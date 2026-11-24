@@ -435,7 +435,6 @@ theorem UpperTheory.Reformulated.B.CoPoint.coPt :
     have h1 : Polynomial.aeval (y x) P = 0 := h0
     rw [Polynomial.aeval_algHom_apply] at h1
     exact h1
-  haveI hlocR : IsLocalHom (algebraMap c.O R) := UpperTheory.V.Alg.IsCO.isLocalHom
   have hfin := UpperTheory.monic_ideal_completion hres (RingHom.ker y) hJ ϖ hϖ
   have hlt : ‖algebraMap c.O (Formalism.ConjugateSelfDual.Qbar l) ϖ‖ < 1 :=
     hm ϖ hϖ.not_isUnit

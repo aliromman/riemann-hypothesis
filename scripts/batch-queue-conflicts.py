@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Report text conflicts between one queued pull request and the rest of the batch queue.
+"""Report conflicts between one queued pull request and the rest of the batch queue.
 
 The batch-queue workflow runs this from its trusted checkout. Pull request commits are fetched
 as git objects and compared with `git merge-tree`. Nothing from a pull request is checked out
@@ -444,16 +444,21 @@ def report(number, head, others, results):
     if unknown:
         lines += ["", "These could not be compared:", ""]
         lines += [f"- #{other} (`{label}`): {result.note}" for other, label, result in unknown]
-    clean = rows("clean")
+    # A pull request listed above with a finding is not listed again below as being fine.
+    found = {other for other, _, _ in stale}
+    clean = [row for row in rows("clean") if row[0] not in found]
     if clean:
         lines += ["", "It changes some of the same files as these, and git merges them without conflict:", ""]
         lines += [f"- #{other} (`{label}`): {count(len(result.shared), 'file')}" for other, label, result in clean]
-    apart = rows("apart")
+    apart = [row for row in rows("apart") if row[0] not in found]
     if apart:
         lines += ["", "It has no file in common with " + ", ".join(f"#{other}" for other, _, _ in apart) + "."]
     lines += ["", f"This compares text, and new imports against deleted Lean files, at `{head[:10]}`. "
                   "Pull requests that pass both can still fail to build together."]
-    return "\n".join(lines) + "\n", bool(conflicts or stale or unread or too_many or unknown)
+    # Unread import lines are reported but are no reason to comment on their own: while a labelled
+    # pull request changes more than IMPORT_LIMIT Lean files, every queued pull request that deletes
+    # one would otherwise get a comment with no finding in it.
+    return "\n".join(lines) + "\n", bool(conflicts or stale or too_many or unknown)
 
 
 def publish(repo, number, body, needed):

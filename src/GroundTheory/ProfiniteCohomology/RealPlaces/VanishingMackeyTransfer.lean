@@ -137,14 +137,16 @@ def unitsLocalToCompact (n : ℕ) : UnitsLoc S n →+ unitsTateCohomology S ιr 
   (tateLocalToCompact (gsFinFamily S ιs) (gsRealFamily S ιr) (galSUnitsMax K.1 ℚ̄ S) (finUnits S)
     (finUnitsMor S ιs) realUnits (realUnitsMor S ιr) n).hom.toAddMonoidHom
 
-
+-- With `tateLocalToCompact` irreducible, the next two proofs compare it with the body of
+-- `unitsLocalToCompact` argument by argument; unfolding both first is slow.
+attribute [local irreducible] tateLocalToCompact in
 theorem exists_unitsLocalToCompact_eq (n : ℕ) (x : unitsTateCohomology S ιr ιs (n + 1))
     (hx : unitsToGlobal S ιr ιs (n + 1) x = 0) : ∃ t, unitsLocalToCompact S ιr ιs n t = x :=
   (ShortComplex.moduleCat_exact_iff _).1 (tateCompactCohomology_exact_compact
     (gsFinFamily S ιs) (gsRealFamily S ιr) (galSUnitsMax K.1 ℚ̄ S) (finUnits S) (finUnitsMor S ιs)
     realUnits (realUnitsMor S ιr) n) x hx
 
-
+attribute [local irreducible] tateLocalToCompact in
 theorem unitsLocalToCompact_unitsGlobalToLocal (n : ℕ) (g : cohomology (galSUnitsMax K.1 ℚ̄ S) (n + 1)) :
     unitsLocalToCompact S ιr ιs (n + 1) (unitsGlobalToLocal S ιr ιs (n + 1) g) = 0 :=
   hom_apply_hom_apply_of_comp_eq (tateGlobalToLocal_tateLocalToCompact (gsFinFamily S ιs)
@@ -216,7 +218,11 @@ theorem exists_realUnitsRes_two_eq
     rw [AddEquiv.apply_symm_apply] at this
     exact this.symm
   have hw : brauerLocal ι (sUnitsBrauer K S g₀.1) (.inl w.1) =
-      realLocalization ι (by norm_num : 1 ≤ 2) (sUnitsInfl K S 2 g₀.1) w := rfl
+      realLocalization ι (by norm_num : 1 ≤ 2) (sUnitsInfl K S 2 g₀.1) w := by
+    -- `rfl` proves this, but is slow.
+    rw [brauerLocal_apply, show sUnitsBrauer K S g₀.1 = sUnitsInfl K S 2 g₀.1 from rfl]
+    delta realLocalization
+    simp only [AddMonoidHom.coe_mk, ZeroHom.coe_mk]
   rw [← realLocalEquiv_realUnitsRes S ιr ι (by norm_num) w, ← hw, hg]
   change ((∑ w, DirectSum.of (localGaloisCohomology K 2) (.inl w.1) (realLocalEquiv w 2 (t w))) +
     DirectSum.of (localGaloisCohomology K 2) (.inr v₀) c) (.inl w.1) = _

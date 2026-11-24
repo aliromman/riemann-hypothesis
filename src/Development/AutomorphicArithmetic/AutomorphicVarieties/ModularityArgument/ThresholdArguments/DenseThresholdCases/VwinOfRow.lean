@@ -37,7 +37,6 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomolog
 public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.BlochKatoLocal
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.GaloisRepresentations.GreenbergWiles
 public import Development.WeilBound.CoreStatements.PublishedTheorems.HeckeLAdicCharacters.Outright
-public import Development.DiscreteGroups.GlobalIrreducibility.LConvFinal
 public import Development.WeilBound.CoreStatements.AbelianHeightsDuality.PublishedTheoremStatements.BridgesAut
 public import Development.WeilBound.CoreStatements.AbelianHeightsDuality.PublishedTheoremStatements.BridgesMore
 public import Development.WeilBound.CoreStatements.AbelianHeightsDuality.PublishedTheoremStatements.ProvedMore
@@ -295,8 +294,6 @@ theorem UpperTheory.LiteratureTheorems.brauer_degree_zero_of_open (O : _root_.Up
   (GlobalTheory.BrauerZero.brauerDegreeZero )
 theorem UpperTheory.LiteratureTheorems.ess_square_integrable_segments_of_open (O : _root_.UpperTheory.LiteratureTheorems.OpenImageCondition) : GlobalTheory.Published.EssSquareIntegrableSegments :=
   PositivityTheory.Exh.essSquareIntegrableSegments_of_seg (PositivityTheory.RgGu.segmentRepresentation)
-theorem UpperTheory.LiteratureTheorems.local_converse_gl_of_open (O : _root_.UpperTheory.LiteratureTheorems.OpenImageCondition) : GlobalTheory.Published.LocalConverseGL :=
-  DiscreteGroups.sglob.LConv.localConverseGL
 theorem UpperTheory.LiteratureTheorems.cusp_forms_bounded_gl_of_open (O : _root_.UpperTheory.LiteratureTheorems.OpenImageCondition) : GlobalTheory.Published.CuspFormsBoundedGL :=
   _root_.RfCs.cuspidalSpectrumGL.2.2
 theorem UpperTheory.LiteratureTheorems.jacquet_shalika_rigidity_of_open (O : _root_.UpperTheory.LiteratureTheorems.OpenImageCondition) : GlobalTheory.Published.JacquetShalikaRigidity :=
@@ -1585,7 +1582,6 @@ theorem UpperTheory.One.Join.local_inputs_from_literature (O : _root_.UpperTheor
     multi := (_root_.UpperTheory.LiteratureTheorems.langlands_multisegments_of_open O)
     exh := (_root_.UpperTheory.LiteratureTheorems.langlands_exhaustion_gl_of_open O)
     cos := (_root_.UpperTheory.LiteratureTheorems.standard_cosocle_gl_of_open O)
-    conv := (_root_.UpperTheory.LiteratureTheorems.local_converse_gl_of_open O)
     dzi := (_root_.UpperTheory.LiteratureTheorems.depth_zero_induction_of_open O)
     brauer := (_root_.UpperTheory.LiteratureTheorems.brauer_degree_zero_of_open O)
     chev := (_root_.UpperTheory.LiteratureTheorems.chevalley_units_of_open O)

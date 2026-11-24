@@ -114,6 +114,86 @@ section
 
 set_option synthInstance.maxHeartbeats 100000
 
+local instance (priority := high) instAlgebraTRing_DegTop {K : Type} [Field K] (p : TRing K) :
+    Algebra K p.R :=
+  Ideal.Quotient.algebra K
+
+local instance (priority := high) instCommRingTRing_DegTop {K : Type} [Field K] (p : TRing K) :
+    CommRing p.R :=
+  Ideal.Quotient.commRing p.I
+
+local instance (priority := high) instModuleTRing_DegTop {K : Type} [Field K] (p : TRing K) :
+    Module K p.R :=
+  Algebra.toModule
+
+local instance (priority := high) instAddCommGroupRul_DegTop :
+    AddCommGroup (Rul Xo c) :=
+  inferInstance
+
+local instance (priority := high) instModuleRul_DegTop :
+    Module c.F (Rul Xo c) :=
+  inferInstance
+
+local instance (priority := high) instSMulWithZeroRul_DegTop :
+    SMulWithZero c.F (Rul Xo c) :=
+  Module.toMulActionWithZero.toSMulWithZero
+
+local instance (priority := high) instAddCommGroupCuspW_DegTop (G : WTZ E) :
+    AddCommGroup ↥(cuspW Xo c U G) :=
+  Submodule.addCommGroup _
+
+local instance (priority := high) instModuleCuspW_DegTop (G : WTZ E) :
+    Module c.F ↥(cuspW Xo c U G) :=
+  Submodule.module _
+
+local instance (priority := high) instSMulWithZeroCuspW_DegTop (G : WTZ E) :
+    SMulWithZero c.F ↥(cuspW Xo c U G) :=
+  Module.toMulActionWithZero.toSMulWithZero
+
+local instance (priority := high) instDistribMulActionCuspW_DegTop (G : WTZ E) :
+    DistribMulAction c.F ↥(cuspW Xo c U G) :=
+  Module.toDistribMulAction
+
+local instance (priority := high) instMulActionCuspW_DegTop (G : WTZ E) :
+    MulAction c.F ↥(cuspW Xo c U G) :=
+  DistribMulAction.toMulAction
+
+local instance (priority := high) instSMulCuspW_DegTop (G : WTZ E) :
+    SMul c.F ↥(cuspW Xo c U G) :=
+  Module.toDistribMulAction.toDistribSMul.toSMul
+
+local instance (priority := high) instHSMulCuspW_DegTop (G : WTZ E) :
+    HSMul c.F ↥(cuspW Xo c U G) ↥(cuspW Xo c U G) :=
+  instHSMul
+
+local instance (priority := high) instAddCommGroupCuspOn_DegTop (Z : Comp Xo c) (G : WTZ E) :
+    AddCommGroup ↥(cuspOn U Z G) :=
+  Submodule.addCommGroup _
+
+local instance (priority := high) instModuleCuspOn_DegTop (Z : Comp Xo c) (G : WTZ E) :
+    Module c.F ↥(cuspOn U Z G) :=
+  Submodule.module _
+
+local instance (priority := high) instSMulWithZeroCuspOn_DegTop (Z : Comp Xo c) (G : WTZ E) :
+    SMulWithZero c.F ↥(cuspOn U Z G) :=
+  Module.toMulActionWithZero.toSMulWithZero
+
+local instance (priority := high) instDistribMulActionCuspOn_DegTop (Z : Comp Xo c) (G : WTZ E) :
+    DistribMulAction c.F ↥(cuspOn U Z G) :=
+  Module.toDistribMulAction
+
+local instance (priority := high) instMulActionCuspOn_DegTop (Z : Comp Xo c) (G : WTZ E) :
+    MulAction c.F ↥(cuspOn U Z G) :=
+  DistribMulAction.toMulAction
+
+local instance (priority := high) instSMulCuspOn_DegTop (Z : Comp Xo c) (G : WTZ E) :
+    SMul c.F ↥(cuspOn U Z G) :=
+  Module.toDistribMulAction.toDistribSMul.toSMul
+
+local instance (priority := high) instHSMulCuspOn_DegTop (Z : Comp Xo c) (G : WTZ E) :
+    HSMul c.F ↥(cuspOn U Z G) ↥(cuspOn U Z G) :=
+  instHSMul
+
 theorem range_pow_le {Z : Comp Xo c} {G : WTZ E} (hG : Even G.2) (n : ℕ) :
     (LinearMap.range (genPoint Z (cuspOn U Z G))) ^ (n + 1) ≤
       (cuspOn U Z ((n + 1) • G)).map (genVal Z).toLinearMap := by

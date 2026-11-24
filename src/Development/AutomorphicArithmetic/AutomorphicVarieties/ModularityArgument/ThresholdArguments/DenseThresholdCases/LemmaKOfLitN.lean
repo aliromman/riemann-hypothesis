@@ -314,10 +314,11 @@ private theorem UpperTheory.V.KT.orbit_number_power_bound (D d N p : ℕ) (hD : 
     omega
   have hDB : D ≤ B := by
     rw [hBdef]
-    nlinarith
+    calc D ≤ 2 * D := by omega
+      _ ≤ 2 * D * d := Nat.le_mul_of_pos_right _ hd1
   have hdB : d ≤ B := by
     rw [hBdef]
-    nlinarith
+    exact Nat.le_mul_of_pos_left _ (by omega)
   have hNB : N ≤ B := le_trans hd hdB
   have hX : D ^ N * d ^ d ≤ B ^ (2 * d) := by
     have a : D ^ N ≤ B ^ d :=
@@ -338,7 +339,7 @@ private theorem UpperTheory.V.KT.orbit_number_power_bound (D d N p : ℕ) (hD : 
       (Nat.mul_ne_zero (by omega) (pow_ne_zero _ (by omega)))
     have hY : N ^ N * (D ^ N * d ^ d) ^ 2 ≤ B ^ d * (B ^ (2 * d)) ^ 2 :=
       Nat.mul_le_mul hNN (Nat.pow_le_pow_left hX 2)
-    have h4 : 4 ≤ B ^ 2 := by nlinarith
+    have h4 : 4 ≤ B ^ 2 := by rw [sq]; exact Nat.mul_le_mul hB2 hB2
     calc 2 * (N ^ N * (D ^ N * d ^ d) ^ 2) + 1 ≤ 4 * (N ^ N * (D ^ N * d ^ d) ^ 2) := by omega
       _ ≤ B ^ 2 * (B ^ d * (B ^ (2 * d)) ^ 2) := Nat.mul_le_mul h4 hY
       _ = B ^ (5 * d + 2) := by ring
@@ -358,17 +359,24 @@ private theorem UpperTheory.V.KT.orbit_number_power_bound (D d N p : ℕ) (hD : 
       12 * (p + 1) * d ^ 3 * N := by
     have e1 : d ≤ d ^ 3 * N * (p + 1) := by
       have : 1 ≤ d ^ 2 * N * (p + 1) := Nat.one_le_iff_ne_zero.mpr (by positivity)
-      nlinarith
+      calc d ≤ d * (d ^ 2 * N * (p + 1)) := Nat.le_mul_of_pos_right _ this
+        _ = d ^ 3 * N * (p + 1) := by ring
     have e2 : d ^ 2 * N ≤ d ^ 3 * N * (p + 1) := by
       have : 1 ≤ d * (p + 1) := Nat.one_le_iff_ne_zero.mpr (by positivity)
-      nlinarith
+      calc d ^ 2 * N ≤ d ^ 2 * N * (d * (p + 1)) := Nat.le_mul_of_pos_right _ this
+        _ = d ^ 3 * N * (p + 1) := by ring
     have e3 : d * N * (p + 1) ≤ d ^ 3 * N * (p + 1) := by
       have : 1 ≤ d ^ 2 := Nat.one_le_pow _ _ (by omega)
-      nlinarith
+      calc d * N * (p + 1) ≤ d * N * (p + 1) * d ^ 2 := Nat.le_mul_of_pos_right _ this
+        _ = d ^ 3 * N * (p + 1) := by ring
     have e4 : d ^ 2 * N * (p + 1) ≤ d ^ 3 * N * (p + 1) := by
       have : d ^ 2 * N * (p + 1) * 1 ≤ d ^ 2 * N * (p + 1) * d := Nat.mul_le_mul_left _ hd1
-      nlinarith
-    nlinarith
+      calc d ^ 2 * N * (p + 1) = d ^ 2 * N * (p + 1) * 1 := (mul_one _).symm
+        _ ≤ d ^ 2 * N * (p + 1) * d := this
+        _ = d ^ 3 * N * (p + 1) := by ring
+    have e5 : 2 * d * (1 + d * N) + ((5 * d + 2) * d + 1) * (d * N * (p + 1)) = 2 * d + 2 * (d ^ 2 * N) + 5 * (d ^ 3 * N * (p + 1)) + 2 * (d ^ 2 * N * (p + 1)) + d * N * (p + 1) := by ring
+    have e6 : 12 * (p + 1) * d ^ 3 * N = 12 * (d ^ 3 * N * (p + 1)) := by ring
+    omega
   calc (D ^ N * d ^ d) ^ (1 + d * N) *
         ((2 * (N ^ N * (D ^ N * d ^ d) ^ 2) + 1) ^ d + 1) ^ (d * N * (p + 1))
       ≤ B ^ (2 * d * (1 + d * N)) * B ^ (((5 * d + 2) * d + 1) * (d * N * (p + 1))) :=
@@ -386,7 +394,7 @@ theorem UpperTheory.V.KT.orbnum :
   have hd : N ≤ dd L N := by
     simp only [dd]
     have : 1 ≤ Module.finrank ℚ L := Module.finrank_pos
-    nlinarith
+    exact Nat.le_mul_of_pos_left _ this
   have := orbit_number_power_bound (absD L) (dd L N) N p hD hN hd
   simpa only [orbBound, I0, RR] using this
 end -- clump:auto
@@ -408,17 +416,17 @@ theorem exponent_le (e n N m D : ℝ) (he : 1 ≤ e) (hn : 1 ≤ n) (hN1 : 1 ≤
   have hlog2 : (0.69 : ℝ) < Real.log 2 := by have := Real.log_two_gt_d9; linarith
   have hL2 : Real.log 2 ≤ Real.log (2 * D) := Real.log_le_log (by norm_num) (by linarith)
   have hL : (0.69 : ℝ) < Real.log (2 * D) := by linarith
-  have ha1 : 1 ≤ e * n := by nlinarith
-  have hea : e ≤ e * n := by nlinarith
-  have hP1 : 1 ≤ n * N := by nlinarith
-  have hP : n * N ≤ 10 * (e * n) := by nlinarith
+  have ha1 : 1 ≤ e * n := one_le_mul_of_one_le_of_one_le he hn
+  have hea : e ≤ e * n := le_mul_of_one_le_right (by linarith) hn
+  have hP1 : 1 ≤ n * N := one_le_mul_of_one_le_of_one_le hn hN1
+  have hP : n * N ≤ 10 * (e * n) := by have := mul_le_mul_of_nonneg_left (by linarith : N ≤ 10 * e) (by linarith : (0 : ℝ) ≤ n); linarith
   have hNa : N ≤ 10 * (e * n) := by linarith
   have hm1 : m + 1 ≤ 4 * (e * n) := by linarith
   have hlogP : Real.log (2 * D * (n * N)) ≤ 16 * (e * n) * Real.log (2 * D) := by
     rw [Real.log_mul (ne_of_gt hD2) (ne_of_gt (by linarith))]
     have := Real.log_le_sub_one_of_pos (show 0 < n * N by linarith)
-    nlinarith [mul_nonneg (sub_nonneg.2 hL.le) (by linarith : (0 : ℝ) ≤ 16 * (e * n) - 1)]
-  have hlogP0 : 0 ≤ Real.log (2 * D * (n * N)) := Real.log_nonneg (by nlinarith)
+    linarith [mul_nonneg (sub_nonneg.2 hL.le) (by linarith : (0 : ℝ) ≤ 16 * (e * n) - 1)]
+  have hlogP0 : 0 ≤ Real.log (2 * D * (n * N)) := Real.log_nonneg (le_trans (by linarith) (le_mul_of_one_le_right (by linarith) hP1))
   have hA0 : 0 ≤ 12 * (n * N) ^ 3 * N * Real.log (2 * D * (n * N)) + 2 * (n * N * N) := by
     have : 0 ≤ n * N := by linarith
     positivity
@@ -435,9 +443,10 @@ theorem exponent_le (e n N m D : ℝ) (he : 1 ≤ e) (hn : 1 ≤ n) (hN1 : 1 ≤
         apply mul_le_mul hP hNa (by linarith) (by linarith)
       have q2 : (e * n) ^ 2 ≤ (e * n) ^ 5 := pow_le_pow_right₀ ha1 (by norm_num)
       have q3 : 0 ≤ (e * n) ^ 5 := by positivity
-      nlinarith [mul_le_mul_of_nonneg_left hL.le q3]
+      have q1' : n * N * N ≤ 100 * (e * n) ^ 2 := by linarith
+      linarith [mul_le_mul_of_nonneg_left hL.le q3]
     have q4 : 0 ≤ Real.log (2 * D) := by linarith
-    nlinarith [t1, t2]
+    linarith [t1, t2]
   have hE : (2 * e * n) ^ 24 = 2 ^ 24 * (e * n) ^ 24 := by ring
   have hp6 : (e * n) ^ 6 ≤ (e * n) ^ 24 := pow_le_pow_right₀ ha1 (by norm_num)
   have hp1 : e * n ≤ (e * n) ^ 6 := by
@@ -450,13 +459,19 @@ theorem exponent_le (e n N m D : ℝ) (he : 1 ≤ e) (hn : 1 ≤ n) (hN1 : 1 ≤
           mul_le_mul_of_nonneg_right hm1 hA0
       _ ≤ _ := mul_le_mul_of_nonneg_left hA (by linarith)
   have k2 : 2 * m ≤ 12 * (e * n) ^ 6 * Real.log (2 * D) := by
-    nlinarith [mul_le_mul_of_nonneg_right hp1 hLpos]
+    have hL6 : 0.69 * (e * n) ^ 6 ≤ (e * n) ^ 6 * Real.log (2 * D) := by
+      have := mul_le_mul_of_nonneg_right hL.le (by positivity : (0 : ℝ) ≤ (e * n) ^ 6); linarith
+    linarith [mul_le_mul_of_nonneg_right hp1 hLpos, hL6]
   have k3 : (e * n) ^ 6 * Real.log (2 * D) ≤ (e * n) ^ 24 * Real.log (2 * D) :=
     mul_le_mul_of_nonneg_right hp6 hLpos
   rw [hE]
   have k4 : 4 * (e * n) * (1920300 * (e * n) ^ 5 * Real.log (2 * D)) =
       7681200 * ((e * n) ^ 6 * Real.log (2 * D)) := by ring
-  nlinarith [k1, k2, k3, k4]
+  have k0 : 12 * (m + 1) * (n * N) ^ 3 * N * Real.log (2 * D * (n * N)) + (m + 1) * (2 * (n * N * N)) =
+      (m + 1) * (12 * (n * N) ^ 3 * N * Real.log (2 * D * (n * N)) + 2 * (n * N * N)) := by ring
+  rw [mul_assoc] at k2 ⊢
+  have hpos : 0 ≤ (e * n) ^ 24 * Real.log (2 * D) := by positivity
+  linarith [k0, k1, k2, k3, k4, hpos]
 
 end UpperTheory.V.ZK.TorsionExponentBound
 
@@ -501,7 +516,7 @@ theorem torsAll : ∃ C : ℝ, ∀ (L) [Field L] [NumberField L], IsTotallyCompl
     apply Real.exp_le_exp.2
     push_cast
     have : (0 : ℝ) ≤ (Module.finrank ℚ L : ℝ) * N * N := by positivity
-    nlinarith
+    have := mul_le_mul_of_nonneg_left hl3 this; linarith
   have hs1 : 1 ≤ 3 ^ (UpperTheory.V.KT.dd L N * N) := Nat.one_le_pow _ _ (by norm_num)
   have key := ht.log_le_exp hs1 hAexp hsexp
   refine key.trans ?_
@@ -917,7 +932,7 @@ theorem UpperTheory.V.K.numFin :
   have hlog : Real.log ((n:ℝ) + 1) ≤ n := by
     have := Real.log_le_sub_one_of_pos (show (0:ℝ) < n + 1 by positivity)
     linarith
-  have hx2 : (2:ℝ) ≤ 2 * e * n := by nlinarith
+  have hx2 : (2:ℝ) ≤ 2 * e * n := by have h1 : (1:ℝ) ≤ e * n := one_le_mul_of_one_le_of_one_le he' hn'; linarith
   have hx1 : (1:ℝ) ≤ 2 * e * n := by linarith
   have hC : (2 * (e:ℝ) * n) ^ C ≤ (2 * (e:ℝ) * n) ^ (max C 0) :=
     Real.rpow_le_rpow_of_exponent_le hx1 (le_max_left _ _)
@@ -935,7 +950,7 @@ theorem UpperTheory.V.K.numFin :
     have : (2 * (e:ℝ)) * (2 * (e:ℝ) + 3) ≤ (2 * (e:ℝ)) * (5 * (e:ℝ)) :=
       mul_le_mul_of_nonneg_left h5 (by positivity)
     have := mul_le_mul_of_nonneg_left this (show (0:ℝ) ≤ 4 * n by positivity)
-    nlinarith
+    have := mul_le_mul_of_nonneg_right this (show (0:ℝ) ≤ n by positivity); linarith
   set x := 2 * (e:ℝ) * n with hx
   set L := Real.log (2 * (D:ℝ)) with hLdef
   set p := x ^ (max C 0) with hp
@@ -944,9 +959,9 @@ theorem UpperTheory.V.K.numFin :
   have hx7 : (2:ℝ) ^ 7 ≤ x ^ 7 := by gcongr
   have hx9 : 10 * x ^ 2 ≤ x ^ 9 - 1 := by
     have e9 : x ^ 9 = x ^ 2 * x ^ 7 := by ring
-    have hsq : 4 ≤ x ^ 2 := by nlinarith
+    have hsq : 4 ≤ x ^ 2 := by have := mul_le_mul hx2 hx2 (by norm_num) (by linarith); linarith
     rw [e9]
-    nlinarith
+    have := mul_le_mul_of_nonneg_left hx7 (by positivity : (0:ℝ) ≤ x ^ 2); linarith
   have hA : 4 * (n:ℝ) * L * ((2 * (e:ℝ)) * (2 * (e:ℝ) + 3)) * Real.log ((n:ℝ) + 1)
       ≤ (x ^ 9 - 1) * (p * L) := by
     have e1 : 4 * (n:ℝ) * L * ((2 * (e:ℝ)) * (2 * (e:ℝ) + 3)) * Real.log ((n:ℝ) + 1)
@@ -954,8 +969,8 @@ theorem UpperTheory.V.K.numFin :
     rw [e1]
     have hQ : 4 * (n:ℝ) * ((2 * (e:ℝ)) * (2 * (e:ℝ) + 3)) * Real.log ((n:ℝ) + 1) ≤ x ^ 9 - 1 := by
       linarith
-    have hpL : L ≤ p * L := by nlinarith
-    have hx90 : 0 ≤ x ^ 9 - 1 := by nlinarith
+    have hpL : L ≤ p * L := le_mul_of_one_le_left hL (Real.one_le_rpow hx1 (le_max_right C 0))
+    have hx90 : 0 ≤ x ^ 9 - 1 := by linarith [sq_nonneg x]
     calc _ ≤ (x ^ 9 - 1) * L := mul_le_mul_of_nonneg_right hQ hL
       _ ≤ (x ^ 9 - 1) * (p * L) := mul_le_mul_of_nonneg_left hpL hx90
   have hexp1 : Real.exp (x ^ C * L) ≤ Real.exp (p * L) :=
@@ -966,8 +981,10 @@ theorem UpperTheory.V.K.numFin :
     have hpL0 : 0 ≤ p * L := mul_nonneg (by linarith) hL
     have h1 : 1 ≤ Real.exp (p * L) := Real.one_le_exp hpL0
     have h2 := Real.add_one_le_exp ((x ^ 9 - 1) * (p * L))
-    have h3 : 0 ≤ (x ^ 9 - 1) * (p * L) := mul_nonneg (by nlinarith) hpL0
-    nlinarith
+    have h3 : 0 ≤ (x ^ 9 - 1) * (p * L) := mul_nonneg (by linarith [sq_nonneg x]) hpL0
+    have h4 : 1 * ((x ^ 9 - 1) * (p * L)) ≤ Real.exp (p * L) * ((x ^ 9 - 1) * (p * L)) := mul_le_mul_of_nonneg_right h1 h3
+    have h5 : Real.exp (p * L) * ((x ^ 9 - 1) * (p * L) + 1) ≤ Real.exp (p * L) * Real.exp ((x ^ 9 - 1) * (p * L)) := mul_le_mul_of_nonneg_left h2 (Real.exp_pos _).le
+    linarith
   linarith
 end -- clump:auto
 end -- clump:auto
@@ -1040,7 +1057,7 @@ private theorem sf_nu {l : ℕ} [Fact l.Prime] (U : Subgroup ℤ_[l]ˣ) (h0 : U.
       have h2 : (1:ℝ) < l := by exact_mod_cast (Fact.out : l.Prime).one_lt
       have h3 : (0:ℝ) < (l:ℝ)⁻¹ := by positivity
       have h4 : (l:ℝ)⁻¹ < 1 := inv_lt_one_of_one_lt₀ h2
-      nlinarith
+      have := mul_lt_mul_of_pos_left h4 h3; linarith
     rw [PadicInt.norm_add_eq_max_of_ne] <;> simp_all [ne_of_gt, le_of_lt]
   have hmem : hunit.unit ^ U.index ∈ U := U.pow_index_mem hunit.unit
   by_contra hcon
@@ -1151,7 +1168,10 @@ theorem UpperTheory.V.ZK.sFinal :
   have e3 : (n : ℝ) * ((Nat.log l n : ℝ) * Real.log l) ≤ n * Real.log ((n : ℝ) + 1) :=
     mul_le_mul_of_nonneg_left hLog (by positivity)
   have hcoef : (3 + e : ℝ) ≤ 4 * (2 * e * (2 * e + 3)) * Real.log (2 * ((discr L).natAbs : ℝ)) := by
-    have q1 : (3 + e : ℝ) ≤ 4 * (2 * e * (2 * e + 3)) * (1 / 2) := by nlinarith
+    have q1 : (3 + e : ℝ) ≤ 4 * (2 * e * (2 * e + 3)) * (1 / 2) := by
+      have he1 : (1 : ℝ) ≤ e := by exact_mod_cast (by omega : 1 ≤ e)
+      have : (1 : ℝ) ≤ (e : ℝ) ^ 2 := one_le_pow₀ he1
+      linarith
     have q2 : 4 * (2 * e * (2 * e + 3)) * (1 / 2 : ℝ) ≤ 4 * (2 * e * (2 * e + 3)) * Real.log (2 * ((discr L).natAbs : ℝ)) :=
       mul_le_mul_of_nonneg_left hY (by positivity)
     linarith

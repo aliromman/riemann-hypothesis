@@ -166,7 +166,7 @@ theorem blockEnds_prod_le (D : D7) (F G : ℕ → ℝ) (hF0 : ∀ l, 0 ≤ F l) 
         calc (1 : ℝ) = ∏ _i ∈ Finset.Ico acc t, (1 : ℝ) := by simp
           _ ≤ _ := Finset.prod_le_prod₀ (fun _ _ => zero_le_one) (fun i _ => hG1 _)
       have h2 : 0 ≤ G (t + 1) := le_trans zero_le_one (hG1 _)
-      nlinarith
+      exact le_mul_of_one_le_left h2 h1
     have hrest0 : 0 ≤ ((blockEnds D (acc + s) bs).map F).prod := by
       apply List.prod_nonneg
       intro a ha
@@ -197,7 +197,7 @@ theorem wLoc_le (v : D.what₂.Tau) (γ : Point D.host.E (D.R.rS + 1)) : wLoc D 
     intro l
     simp only [G]
     split
-    · exact one_le_pow₀ (by nlinarith [sq_nonneg (absV D v (leadMinorK (ptMat γ) l (by assumption)))])
+    · exact one_le_pow₀ (le_add_of_nonneg_right (sq_nonneg _))
     · exact le_rfl
   have h := blockEnds_prod_le D G G (fun l => zero_le_one.trans (hG1 l)) (fun l => le_rfl) hG1 (D.R.rS + 1) γ.1 0
     (fun b hb => (γ.2.1 b hb).2) (by rw [Nat.zero_add]; exact γ.2.2)
@@ -224,7 +224,7 @@ theorem WLoc_le (T T' : ℕ) (v : D.what₂.Tau) (γ : Point D.host.E (D.R.rS + 
     · exact le_rfl
   have hG1 : ∀ l, 1 ≤ G l := by
     intro l; simp only [G]; split
-    · nlinarith [sq_nonneg (absV D v (leadMinorK (ptMat γ) l (by assumption)))]
+    · exact le_add_of_nonneg_right (sq_nonneg _)
     · exact le_rfl
   have h := blockEnds_prod_le D F G hF0 hFG hG1 (D.R.rS + 1) γ.1 0
     (fun b hb => (γ.2.1 b hb).2) (by rw [Nat.zero_add]; exact γ.2.2)
@@ -307,7 +307,7 @@ theorem weights_le (T T' : ℕ) (v : D.what₂.Tau) (γ : Point D.host.E (D.R.rS
     rw [← Real.rpow_natCast]
     calc WLoc D T T' v γ ^ p ≤ (Fl D v γ (Fin.last D.R.rS) * ∏ l, Fl D v γ l) ^ p :=
           Real.rpow_le_rpow hW0 hW hp
-      _ ≤ _ := Real.rpow_le_rpow_of_exponent_le (by nlinarith) (Nat.le_ceil p)
+      _ ≤ _ := Real.rpow_le_rpow_of_exponent_le (one_le_mul_of_one_le_of_one_le hPh1 hPi1) (Nat.le_ceil p)
   rw [prod_Fl_NQ, ← Fl_last]
   exact weights_arith _ _ _ _ A ⌈p⌉₊ hPi1 hPh1 hw0 hw (Real.rpow_nonneg hW0 _) hWp
 
@@ -338,7 +338,7 @@ theorem max_inv_mul_le {c x : ℝ} (hc : 0 < c) (hx : x ≠ 0) :
   have h2 : (1 : ℝ) ≤ max 1 (1 / |x|) := le_max_left _ _
   have hx' : 0 < |x| := abs_pos.mpr hx
   apply max_le
-  · nlinarith
+  · exact one_le_mul_of_one_le_of_one_le h1 h2
   · calc 1 / (c * x) ≤ 1 / (c * |x|) := by
           rcases lt_or_gt_of_ne hx with h | h
           · have e1 : c * x < 0 := mul_neg_of_pos_of_neg hc h
@@ -361,7 +361,7 @@ theorem rdE_le (b Ch : ℝ) (hb : 2 ≤ b) (hka : 0 < kaRe D) (hkinv : (kaRe D)�
   have hrd := rdE_pos D
   have hg0 : (1 : ℝ) ≤ (D.host.g 0 : ℝ) := by exact_mod_cast (D.host.g_prime 0).one_lt.le
   have hg1 : (1 : ℝ) ≤ (D.host.g 1 : ℝ) := by exact_mod_cast (D.host.g_prime 1).one_lt.le
-  have hgg : (1 : ℝ) ≤ (D.host.g 0 : ℝ) * (D.host.g 1 : ℝ) := by nlinarith
+  have hgg : (1 : ℝ) ≤ (D.host.g 0 : ℝ) * (D.host.g 1 : ℝ) := one_le_mul_of_one_le_of_one_le hg0 hg1
   have e : (kaRe D)⁻¹ = (D.host.g 0 : ℝ) * (D.host.g 1 : ℝ) * D.host.rdE / (2 * Real.pi) := by
     unfold kaRe Formalism.BasicNotions.Host.ka Formalism.BasicNotions.Host.v
     have := Real.pi_pos
@@ -369,8 +369,10 @@ theorem rdE_le (b Ch : ℝ) (hb : 2 ≤ b) (hka : 0 < kaRe D) (hkinv : (kaRe D)�
   have h1 : D.host.rdE ≤ 2 * Real.pi * (kaRe D)⁻¹ := by
     rw [e]
     have hpi := Real.pi_pos
-    field_simp
-    nlinarith
+    have hcancel : 2 * Real.pi * ((D.host.g 0 : ℝ) * (D.host.g 1 : ℝ) * D.host.rdE / (2 * Real.pi)) =
+        ((D.host.g 0 : ℝ) * (D.host.g 1 : ℝ)) * D.host.rdE := by field_simp
+    rw [hcancel]
+    exact le_mul_of_one_le_left hrd.le hgg
   have h2 : 2 * Real.pi ≤ b ^ (3 : ℝ) := by
     have : (2 : ℝ) ^ 3 ≤ b ^ 3 := pow_le_pow_left₀ (by norm_num) hb 3
     have h4 := Real.pi_le_four
@@ -403,7 +405,13 @@ theorem alfProd_inv_le (Rd : ℝ) (hRd1 : 1 ≤ Rd) (hRd : D.host.rdE ≤ Rd) (n
         rw [← pow_mul, inv_pow]
     _ ≤ (Rd ^ (D.R.rS * n)) ^ 4 := pow_le_pow_left₀ h0 h1 4
     _ = Rd ^ (D.R.rS * n * 4) := by rw [← pow_mul]
-    _ ≤ Rd ^ ((2 * D.R.rS + 2) ^ 2) := pow_le_pow_right₀ hRd1 (by nlinarith)
+    _ ≤ Rd ^ ((2 * D.R.rS + 2) ^ 2) := pow_le_pow_right₀ hRd1 (by
+          calc D.R.rS * n * 4 ≤ D.R.rS * (D.R.rS + 1) * 4 := Nat.mul_le_mul_right 4 (Nat.mul_le_mul_left _ hn)
+            _ ≤ (2 * D.R.rS + 2) * (2 * D.R.rS + 2) := by
+              have : D.R.rS * (D.R.rS + 1) * 4 = 2 * D.R.rS * (2 * D.R.rS + 2) := by ring
+              rw [this]
+              exact Nat.mul_le_mul_right _ (by omega)
+            _ = (2 * D.R.rS + 2) ^ 2 := (sq _).symm)
 
 end Rd
 
@@ -462,9 +470,12 @@ theorem num_Fr (D : D7) (Ch Cf b ka : ℝ) (hCh : 0 ≤ Ch) (hCf : 0 ≤ Cf) (hb
     _ = b ^ (Ch * (Cf * m ^ 2) + Ch * (D.R.rS : ℝ) * (Cf * m)) := (Real.rpow_add hb0 _ _).symm
     _ ≤ b ^ (2 * Ch * Cf * m ^ 2) := by
         apply Real.rpow_le_rpow_of_exponent_le hb1
-        have : Ch * Cf * ((D.R.rS : ℝ) * m) ≤ Ch * Cf * (m * m) :=
+        have h1 : Ch * Cf * ((D.R.rS : ℝ) * m) ≤ Ch * Cf * (m * m) :=
           mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right hrm hm0) (mul_nonneg hCh hCf)
-        nlinarith
+        have e1 : Ch * (Cf * m ^ 2) + Ch * (D.R.rS : ℝ) * (Cf * m) =
+            Ch * Cf * (m * m) + Ch * Cf * ((D.R.rS : ℝ) * m) := by ring
+        have e2 : 2 * Ch * Cf * m ^ 2 = 2 * (Ch * Cf * (m * m)) := by ring
+        linarith
 
 theorem GsC_pos (D : D7) (ka : ℝ) (hka : 0 < ka) : 0 < GsC D ka := by
   unfold GsC
@@ -488,7 +499,10 @@ theorem num_Gs (D : D7) (Ch b ka : ℝ) (hCh : 0 ≤ Ch) (hb : 2 ≤ b) (hka : 0
         apply Real.rpow_le_rpow_of_exponent_le hb1
         have e : ((2 * D.R.rS * (D.R.rS + 1) : ℕ) : ℝ) ≤ 2 * ((2 * D.R.rS + 2 : ℕ) : ℝ) ^ 2 := by
           push_cast
-          nlinarith [(Nat.cast_nonneg D.R.rS : (0 : ℝ) ≤ D.R.rS)]
+          have hdiff : 2 * (2 * (D.R.rS : ℝ) + 2) ^ 2 - 2 * (D.R.rS : ℝ) * ((D.R.rS : ℝ) + 1) =
+              6 * (D.R.rS : ℝ) ^ 2 + 14 * (D.R.rS : ℝ) + 8 := by ring
+          have hpos : (0 : ℝ) ≤ 6 * (D.R.rS : ℝ) ^ 2 + 14 * (D.R.rS : ℝ) + 8 := by positivity
+          linarith
         have e2 := mul_le_mul_of_nonneg_left e hCh
         linarith
 
@@ -596,7 +610,8 @@ theorem sum_weighted_point_counts_le_cube (D : D7) (Aw Cb2 : ℝ) (hAw : 0 ≤ A
   have ht0 : (0 : ℝ) ≤ (D.R.rS : ℝ) + 1 := by linarith
   have f1 := mul_le_mul_of_nonneg_left hc ht0
   have t2 : ((D.R.rS : ℝ) + 1) ^ 2 ≤ ((D.R.rS : ℝ) + 1) ^ 3 := pow_le_pow_right₀ ht (by norm_num)
-  have t1 : ((D.R.rS : ℝ) + 1) ≤ ((D.R.rS : ℝ) + 1) ^ 3 := by nlinarith
+  have t1 : ((D.R.rS : ℝ) + 1) ≤ ((D.R.rS : ℝ) + 1) ^ 3 := by
+    simpa only [pow_one] using pow_le_pow_right₀ ht (show 1 ≤ 3 by norm_num)
   have f2 := mul_le_mul_of_nonneg_left t2 hAw
   have f3 := mul_le_mul_of_nonneg_left t2 h
   have f4 : 0 ≤ Aw * ((D.R.rS : ℝ) + 1) ^ 3 := mul_nonneg hAw (pow_nonneg ht0 _)

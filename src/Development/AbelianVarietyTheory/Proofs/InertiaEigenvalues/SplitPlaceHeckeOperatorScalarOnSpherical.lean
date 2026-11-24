@@ -1,5 +1,6 @@
 module
 
+public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeDoubleCosetOperatorsStandardFacts
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SphericalLabelOperatorsOnHyperspecialFixedVector
 public import Formalism.LocalToGlobal.GaloisLevelStructure.DefsAut
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RankLeAleph0SmoothIrreducibleUnitaryAdelic
@@ -67,25 +68,9 @@ variable {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ}
 
 local notation3 "L⁺" => maximalRealSubfield L
 
-theorem triv_mul {T : Set (HeightOneSpectrum (𝓞 L⁺))} {x y : GAf L n} (hx : TrivOutside T x)
-    (hy : TrivOutside T y) : TrivOutside T (x * y) := by
-  intro w hw
-  have : ((x * y).1 : Matrix (Fin n) (Fin n) (AL L)) = (x.1 : Matrix (Fin n) (Fin n) (AL L)) * (y.1 : Matrix (Fin n) (Fin n) (AL L)) := rfl
-  rw [this, Matrix.map_mul, hx w hw, hy w hw, mul_one]
-
-theorem triv_inv {T : Set (HeightOneSpectrum (𝓞 L⁺))} {x : GAf L n} (hx : TrivOutside T x) :
-    TrivOutside T x⁻¹ := by
-  intro w hw
-  have h1 : (((x⁻¹ : GAf L n).1 : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) * (x.1 : Matrix (Fin n) (Fin n) (AL L)) = 1 := by
-    rw [← Units.val_mul, ← Subgroup.coe_mul, inv_mul_cancel]
-    rfl
-  have h2 := congrArg (fun M => M.map (compAt L w)) h1
-  simp only [Matrix.map_mul, hx w hw, mul_one] at h2
-  rw [h2, Matrix.map_one _ (map_zero _) (map_one _)]
-
-theorem triv_one {T : Set (HeightOneSpectrum (𝓞 L⁺))} : TrivOutside T (1 : GAf L n) := by
-  intro w _
-  exact Matrix.map_one _ (map_zero _) (map_one _)
+alias triv_mul := _root_.GlobalTheory.HeckeStdFacts.triv_mul
+alias triv_inv := _root_.GlobalTheory.HeckeStdFacts.triv_inv
+alias triv_one := _root_.GlobalTheory.HeckeStdFacts.triv_one
 
 def locK (n : ℕ) (v : HeightOneSpectrum (𝓞 L⁺)) : Subgroup (GAf L n) where
   carrier := {κ | κ ∈ Umax L n ∧ TrivOutside {v} κ}
@@ -93,159 +78,15 @@ def locK (n : ℕ) (v : HeightOneSpectrum (𝓞 L⁺)) : Subgroup (GAf L n) wher
   one_mem' := ⟨one_mem _, triv_one⟩
   inv_mem' := fun ha => ⟨inv_mem ha.1, triv_inv ha.2⟩
 
-theorem mem_Umax_of_loc (s : SplitPlace L) (x : GAf L n) (hx : TrivOutside {s.v} x)
-    (h1 : ∀ i j, Valued.v (((s.loc n x : GL (Fin n) (s.v.adicCompletion L⁺)) : Matrix (Fin n) (Fin n) (s.v.adicCompletion L⁺)) i j) ≤ 1)
-    (h2 : ∀ i j, Valued.v (((s.loc n x⁻¹ : GL (Fin n) (s.v.adicCompletion L⁺)) : Matrix (Fin n) (Fin n) (s.v.adicCompletion L⁺)) i j) ≤ 1) :
-    x ∈ Umax L n := by
-  obtain ⟨e, he, he'⟩ := GlobalTheory.SplitSep.exists_sep L s
-  intro i j
-  have hconj : conjAL L ((x.1 : Matrix (Fin n) (Fin n) (AL L)) i j) =
-      (((x⁻¹ : GAf L n).1 : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) j i := by
-    rw [GlobalTheory.FinTypCount.inv_val]
-    rfl
-  have hz : (x.1 : Matrix (Fin n) (Fin n) (AL L)) i j - (1 : Matrix (Fin n) (Fin n) (AL L)) i j ∈ ALint L := by
-    apply GlobalTheory.mem_ALint_of_supported_at_split L s e he he'
-    · intro w hw
-      have := congrFun (congrFun (hx w (by simpa using hw)) i) j
-      simp only [Matrix.map_apply] at this
-      rw [map_sub, this]
-      by_cases hij : i = j <;> simp [Matrix.one_apply, hij]
-    · have e1 : s.proj ((x.1 : Matrix (Fin n) (Fin n) (AL L)) i j) =
-          ((s.loc n x : GL (Fin n) (s.v.adicCompletion L⁺)) : Matrix (Fin n) (Fin n) (s.v.adicCompletion L⁺)) i j := rfl
-      rw [map_sub, e1]
-      refine (Valuation.map_sub _ _ _).trans (max_le (h1 i j) ?_)
-      by_cases hij : i = j <;> simp [Matrix.one_apply, hij]
-    · have e1 : s.proj ((((x⁻¹ : GAf L n).1 : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) j i) =
-          ((s.loc n x⁻¹ : GL (Fin n) (s.v.adicCompletion L⁺)) : Matrix (Fin n) (Fin n) (s.v.adicCompletion L⁺)) j i := rfl
-      rw [map_sub, map_sub, hconj, e1]
-      refine (Valuation.map_sub _ _ _).trans (max_le (h2 j i) ?_)
-      by_cases hij : i = j <;> simp [Matrix.one_apply, hij]
-  have := add_mem hz (show (1 : Matrix (Fin n) (Fin n) (AL L)) i j ∈ ALint L by
-    by_cases hij : i = j <;> simp [Matrix.one_apply, hij, Subring.one_mem, Subring.zero_mem])
-  simpa using this
-
-theorem mem_GLint_iff {F : Type} [Field F] {O : Subring F} {x : GL (Fin n) F} :
-    x ∈ Formalism.UG.GLint (Fin n) O ↔ (∀ i j, x.1 i j ∈ O) ∧ ∀ i j, (x⁻¹).1 i j ∈ O := by
-  refine ⟨?_, fun h => ⟨⟨Matrix.of fun i j => ⟨_, h.1 i j⟩, Matrix.of fun i j => ⟨_, h.2 i j⟩, ?_, ?_⟩, rfl⟩⟩
-  · rintro ⟨y, rfl⟩
-    exact ⟨fun i j => (y.1 i j).2, fun i j => ((y⁻¹).1 i j).2⟩
-  · refine Matrix.map_injective O.subtype_injective ?_
-    simp only
-    rw [Matrix.map_mul, Matrix.map_one _ (map_zero _) (map_one _)]
-    exact x.mul_inv
-  · refine Matrix.map_injective O.subtype_injective ?_
-    simp only
-    rw [Matrix.map_mul, Matrix.map_one _ (map_zero _) (map_one _)]
-    exact x.inv_mul
-
-theorem proj_mem (s : SplitPlace L) {z : AL L} (hz : z ∈ ALint L) :
-    s.proj z ∈ (s.v.adicCompletionIntegers L⁺).toSubring := by
-  have key : ALint L ≤ ((s.v.adicCompletionIntegers L⁺).toSubring).comap s.proj := by
-    rw [ALint, Subring.closure_le]
-    rintro y (⟨o, rfl⟩ | ⟨a, ha, rfl⟩)
-    · show s.proj _ ∈ (s.v.adicCompletionIntegers L⁺).toSubring
-      have e : s.proj ((o : L) ⊗ₜ[L⁺] (1 : AFplus L)) = s.i (o : L) := by
-        simp [SplitPlace.proj]
-      rw [e]
-      exact s.split_le_one o
-    · show s.proj _ ∈ (s.v.adicCompletionIntegers L⁺).toSubring
-      have e : s.proj ((1 : L) ⊗ₜ[L⁺] a) = a s.v := by
-        simp only [SplitPlace.proj, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Algebra.TensorProduct.lift_tmul, map_one, one_mul]
-        rfl
-      rw [e]
-      exact ha s.v
-  exact key hz
-
-theorem loc_mem_GLint_iff (s : SplitPlace L) {x : GAf L n} (hx : TrivOutside {s.v} x) :
-    s.loc n x ∈ Formalism.UG.GLint (Fin n) (s.v.adicCompletionIntegers L⁺).toSubring ↔ x ∈ Umax L n := by
-  rw [mem_GLint_iff, ← map_inv]
-  exact ⟨fun h => mem_Umax_of_loc s x hx h.1 h.2,
-    fun h => ⟨fun i j => proj_mem s (h i j), fun i j => proj_mem s (inv_mem h i j)⟩⟩
-
-theorem exists_tSet_eq (s : SplitPlace L) (ϖ : s.v.adicCompletion L⁺) (k : ℕ) (hϖ : IsUnif L s.v ϖ) :
-    ∃ α : GAf L n, TrivOutside {s.v} α ∧ ∀ x, x ∈ tSet L n s ϖ k ↔
-      ∃ k₁ ∈ locK n s.v, ∃ k₂ ∈ locK n s.v, x = k₁ * α * k₂ := by
-  obtain ⟨-, -, hlift⟩ := _root_.GlobalTheory.SplitAdelic.main L n s
-  have h0 : ϖ ≠ 0 := by
-    rintro rfl
-    have : Valued.v (0 : s.v.adicCompletion L⁺) = WithZero.exp (-1 : ℤ) := hϖ
-    rw [map_zero] at this
-    exact WithZero.exp_ne_zero this.symm
-  have hdet : (Formalism.UG.diagJ n ϖ k).det ≠ 0 := by
-    rw [Formalism.UG.diagJ, Matrix.det_diagonal]
-    exact Finset.prod_ne_zero_iff.2 fun i _ => by split_ifs; exacts [h0, one_ne_zero]
-  obtain ⟨α, ⟨hα, eα⟩, -⟩ := hlift (Matrix.GeneralLinearGroup.mkOfDetNeZero _ hdet)
-  have eα' : ((s.loc n α : GL (Fin n) (s.v.adicCompletion L⁺)) : Matrix (Fin n) (Fin n) _) = Formalism.UG.diagJ n ϖ k := by
-    rw [eα]; rfl
-  refine ⟨α, hα, fun x => ⟨?_, ?_⟩⟩
-  · rintro ⟨hx, a, ha, b, hb, e⟩
-    obtain ⟨a', ⟨ha', rfl⟩, -⟩ := hlift a
-    obtain ⟨b', ⟨hb', rfl⟩, -⟩ := hlift b
-    refine ⟨a', ⟨(loc_mem_GLint_iff s ha').1 ha, ha'⟩, b', ⟨(loc_mem_GLint_iff s hb').1 hb, hb'⟩, ?_⟩
-    refine (hlift (s.loc n x)).unique ⟨hx, rfl⟩ ⟨triv_mul (triv_mul ha' hα) hb', Units.ext ?_⟩
-    rw [e, map_mul, map_mul, Units.val_mul, Units.val_mul, eα']
-  · rintro ⟨a, ha, b, hb, rfl⟩
-    refine ⟨triv_mul (triv_mul ha.2 hα) hb.2, _, (loc_mem_GLint_iff s ha.2).2 ha.1, _, (loc_mem_GLint_iff s hb.2).2 hb.1, ?_⟩
-    rw [map_mul, map_mul, Units.val_mul, Units.val_mul, eα']
-
-theorem exists_cong_conj (a : GAf L n) : ∃ N : ℕ, 0 < N ∧ ∀ κ, NG.Cong L n N κ → a⁻¹ * κ * a ∈ Umax L n := by
-  obtain ⟨m, hm, h⟩ := GlobalTheory.FinTypCount.exists_denom_matrix (a.1 : Matrix (Fin n) (Fin n) (AL L))
-  obtain ⟨m', hm', h'⟩ := GlobalTheory.FinTypCount.exists_denom_matrix ((a⁻¹ : GAf L n).1 : Matrix (Fin n) (Fin n) (AL L))
-  refine ⟨m' * m, Nat.mul_pos hm' hm, fun κ hκ i j => ?_⟩
-  choose y hy ey using hκ.2
-  set A : Matrix (Fin n) (Fin n) (AL L) := (a.1 : Matrix (Fin n) (Fin n) (AL L))
-  set B : Matrix (Fin n) (Fin n) (AL L) := ((a⁻¹ : GAf L n).1 : Matrix (Fin n) (Fin n) (AL L))
-  have hBA : B * A = 1 := Units.inv_mul a.1
-  have hκe : (κ.1 : Matrix (Fin n) (Fin n) (AL L)) = 1 + (m' : AL L) • (m : AL L) • Matrix.of y := by
-    ext i j
-    simp only [Matrix.add_apply, Matrix.smul_apply, Matrix.of_apply, smul_eq_mul]
-    have := ey i j
-    push_cast at this
-    linear_combination this
-  have e : (((a⁻¹ * κ * a : GAf L n).1 : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) =
-      1 + ((m' : AL L) • B) * Matrix.of y * ((m : AL L) • A) := by
-    change B * (κ.1 : Matrix (Fin n) (Fin n) (AL L)) * A = _
-    rw [hκe, Matrix.mul_add, Matrix.add_mul, Matrix.mul_one, hBA]
-    simp only [Matrix.mul_smul, Matrix.smul_mul]
-    rw [smul_comm]
-  show (((a⁻¹ * κ * a : GAf L n).1 : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) i j ∈ ALint L
-  rw [e, Matrix.add_apply]
-  refine add_mem ?_ ?_
-  · by_cases hij : i = j <;> simp [Matrix.one_apply, hij]
-  · simp only [Matrix.mul_apply, Matrix.smul_apply, smul_eq_mul, Matrix.of_apply]
-    exact sum_mem fun l _ => mul_mem (sum_mem fun l' _ => mul_mem (h' i l') (hy l' l)) (h l j)
-
-theorem exists_reps {G : Type} [Group G] (U : Subgroup G) (D : Set G) (hD : ((fun x : G => (x : G ⧸ U)) '' D).Finite) :
-    ∃ R : Finset G, (∀ γ ∈ R, γ ∈ D) ∧ ∀ x ∈ D, ∃! γ, γ ∈ R ∧ γ⁻¹ * x ∈ U := by
-  classical
-  have hc : ∀ c ∈ hD.toFinset, ∃ x ∈ D, (x : G ⧸ U) = c := fun c hc => by simpa using hc
-  choose! r hrD hr using hc
-  refine ⟨hD.toFinset.image r, fun γ hγ => ?_, fun x hx => ?_⟩
-  · obtain ⟨c, hc, rfl⟩ := Finset.mem_image.1 hγ
-    exact hrD c hc
-  · have hm : (x : G ⧸ U) ∈ hD.toFinset := hD.mem_toFinset.2 ⟨x, hx, rfl⟩
-    refine ⟨r x, ⟨Finset.mem_image.2 ⟨_, hm, rfl⟩, QuotientGroup.eq.1 (hr _ hm)⟩, ?_⟩
-    rintro γ ⟨hγ, e⟩
-    obtain ⟨c, hc, rfl⟩ := Finset.mem_image.1 hγ
-    have : c = (x : G ⧸ U) := (hr c hc).symm.trans (QuotientGroup.eq.2 e)
-    rw [this]
-
-theorem finite_dc (v : HeightOneSpectrum (𝓞 L⁺)) (a : GAf L n) :
-    ((fun x : GAf L n => (x : GAf L n ⧸ Umax L n)) '' {x | ∃ k₁ ∈ locK n v, ∃ k₂ ∈ locK n v, x = k₁ * a * k₂}).Finite := by
-  obtain ⟨N, hN, h⟩ := exists_cong_conj a
-  obtain ⟨J, hJ⟩ := GlobalTheory.AlgFormsFin.exists_cover L n hN
-  refine ((J.finite_toSet).image fun j : GAf L n => ((j * a : GAf L n) : GAf L n ⧸ Umax L n)).subset ?_
-  rintro _ ⟨_, ⟨k₁, h₁, k₂, h₂, rfl⟩, rfl⟩
-  obtain ⟨j, hj, κ, hκ, rfl⟩ := hJ k₁ h₁.1
-  refine ⟨j, hj, QuotientGroup.eq.2 ?_⟩
-  have := mul_mem (h κ hκ) h₂.1
-  convert this using 1
-  group
-
-theorem exists_repsU (v : HeightOneSpectrum (𝓞 L⁺)) (a : GAf L n) : ∃ R : Finset (GAf L n),
-    (∀ γ ∈ R, ∃ k₁ ∈ locK n v, ∃ k₂ ∈ locK n v, γ = k₁ * a * k₂) ∧
-      ∀ x, (∃ k₁ ∈ locK n v, ∃ k₂ ∈ locK n v, x = k₁ * a * k₂) → ∃! γ, γ ∈ R ∧ γ⁻¹ * x ∈ Umax L n :=
-  exists_reps (Umax L n) _ (finite_dc v a)
+alias mem_Umax_of_loc := _root_.GlobalTheory.HeckeStdFacts.mem_Umax_of_loc
+alias mem_GLint_iff := _root_.GlobalTheory.HeckeStdFacts.mem_GLint_iff
+alias proj_mem := _root_.GlobalTheory.HeckeStdFacts.proj_mem
+alias loc_mem_GLint_iff := _root_.GlobalTheory.HeckeStdFacts.loc_mem_GLint_iff
+alias exists_tSet_eq := _root_.GlobalTheory.HeckeStdFacts.exists_tSet_eq
+alias exists_cong_conj := _root_.GlobalTheory.HeckeStdFacts.exists_cong_conj
+alias exists_reps := _root_.GlobalTheory.HeckeStdFacts.exists_reps
+alias finite_dc := _root_.GlobalTheory.HeckeStdFacts.finite_dc
+alias exists_repsU := _root_.GlobalTheory.HeckeStdFacts.exists_repsU
 
 theorem reps_of_repsU {v : HeightOneSpectrum (𝓞 L⁺)} {a : GAf L n} (ha : TrivOutside {v} a) {R : Finset (GAf L n)}
     (h : (∀ γ ∈ R, ∃ k₁ ∈ locK n v, ∃ k₂ ∈ locK n v, γ = k₁ * a * k₂) ∧

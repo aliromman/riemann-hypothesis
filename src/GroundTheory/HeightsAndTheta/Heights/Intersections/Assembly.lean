@@ -489,7 +489,7 @@ theorem VerticalEmbedding.proof (hD : regularityDehomogenization_holds.Statement
 
   let t : Ideal (MRing ι) → MRing ι := fun W =>
     if h : ReciprocityTheory.ChartRestriction.G.Geo.IsRelevant W then ∏ k, (X ⟨k, (h k).choose⟩ : MRing ι) ^ a k else 1
-  have ht : ∀ W : Ideal (MRing ι), W.IsPrime → ReciprocityTheory.ChartRestriction.G.Geo.IsRelevant W → ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (t W) a ∧ t W ∉ W := by
+  have ht : ∀ W : Ideal (MRing ι), W.IsPrime → ReciprocityTheory.ChartRestriction.G.Geo.IsRelevant W → IsMultiHomog (t W) a ∧ t W ∉ W := by
     intro W hWp hW
     simp only [t, dif_pos hW]
     refine ⟨AvoidRing.isMultiHomog_coordProd _ _, fun hmem => ?_⟩
@@ -504,7 +504,7 @@ theorem VerticalEmbedding.proof (hD : regularityDehomogenization_holds.Statement
   let y : MRing ι → Ideal (MRing ι) → FractionRing (MRing ι ⧸ P) := fun s W =>
     algebraMap (MRing ι ⧸ P) (FractionRing (MRing ι ⧸ P)) (Ideal.Quotient.mk P s) /
       algebraMap (MRing ι ⧸ P) (FractionRing (MRing ι ⧸ P)) (Ideal.Quotient.mk P (t W))
-  have hdata : ∀ (s : MRing ι), ∀ W ∈ divSupp P s, P ≤ W ∧ W.IsPrime ∧ ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (t W) a ∧ t W ∉ W ∧
+  have hdata : ∀ (s : MRing ι), ∀ W ∈ divSupp P s, P ≤ W ∧ W.IsPrime ∧ IsMultiHomog (t W) a ∧ t W ∉ W ∧
       ∀ s' : MRing ι, y s' W * algebraMap (MRing ι ⧸ P) (FractionRing (MRing ι ⧸ P)) (Ideal.Quotient.mk P (t W)) =
         algebraMap (MRing ι ⧸ P) (FractionRing (MRing ι ⧸ P)) (Ideal.Quotient.mk P s') := by
     intro s W hW
@@ -512,10 +512,10 @@ theorem VerticalEmbedding.proof (hD : regularityDehomogenization_holds.Statement
     obtain ⟨h1, h2⟩ := ht W hW.1.1.1 hW.2
     exact ⟨hPW, hW.1.1.1, h1, h2, fun s' => div_mul_cancel₀ _ (hne W hPW h2)⟩
 
-  have term : ∀ s : MRing ι, ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog s a → s ∉ P → ∀ W ∈ divSupp P s,
+  have term : ∀ s : MRing ι, IsMultiHomog s a → s ∉ P → ∀ W ∈ divSupp P s,
       (multAt (P ⊔ Ideal.span {s}) W : ℝ) *
           (if IsHorizontal W then 0 else
-            (geoNum 0 W (fun j => ((Fin.elim0 : Fin 0 → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) j).a) : ℝ) * Real.log (charOf W)) =
+            (geoNum 0 W (fun j => ((Fin.elim0 : Fin 0 → HermLine ι) j).a) : ℝ) * Real.log (charOf W)) =
         Real.log (Nat.card (locRing P W ⧸ locIdeal P W (y s W))) := by
     intro s hs hsP W hW
     have hA : IsSectionOn P (HermLine.ofMetrics (fun k => fsMetric (ι := ι k)) (fun k => (a k : ℤ))) s :=
@@ -530,15 +530,15 @@ theorem VerticalEmbedding.proof (hD : regularityDehomogenization_holds.Statement
       exact hsP h1
     rw [hm]
     exact hC K ι P s a W _ (y s W) hP hs hsP hW hyW hy0
-  have hvert : ∀ s : MRing ι, ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog s a → s ∉ P →
-      vertR P (Fin.elim0 : Fin 0 → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) s =
+  have hvert : ∀ s : MRing ι, IsMultiHomog s a → s ∉ P →
+      vertR P (Fin.elim0 : Fin 0 → HermLine ι) s =
         ∑ᶠ W ∈ divSupp P s, Real.log (Nat.card (locRing P W ⧸ locIdeal P W (y s W))) := by
     intro s hs hsP
     unfold vertR
     exact finsum_mem_congr rfl fun W hW => term s hs hsP W hW
   rw [hvert f hf hfP, hvert g hg hgP]
   refine hL K ι P f g a x t (y f) (y g) hP hf hg hfP hgP hx fun W hW => ?_
-  obtain ⟨-, -, hta, htW, hy⟩ : P ≤ W ∧ W.IsPrime ∧ ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (t W) a ∧ t W ∉ W ∧ _ := by
+  obtain ⟨-, -, hta, htW, hy⟩ : P ≤ W ∧ W.IsPrime ∧ IsMultiHomog (t W) a ∧ t W ∉ W ∧ _ := by
     rcases hW with hW | hW
     · exact hdata f W hW
     · exact hdata g W hW
@@ -1312,16 +1312,16 @@ theorem SemilocChartRatio.proof (hF : FibreOverFinite.Statement) : SemilocChartR
   have hwnz : Ideal.Quotient.mk P' w ∈ nonZeroDivisors (MRing ι' ⧸ P') :=
     mem_nonZeroDivisors_of_ne_zero (by rwa [Ne, Ideal.Quotient.eq_zero_iff_mem])
   set N : MRing ι' := ∏ k, (X ⟨k, i' k⟩ : MRing ι') ^ d₀ k with hN
-  have hNd : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog N d₀ := AvoidRing.isMultiHomog_coordProd i' d₀
+  have hNd : IsMultiHomog N d₀ := AvoidRing.isMultiHomog_coordProd i' d₀
   have hNP : N ∉ P' := AvoidRing.coordProd_not_mem hPp i' hi' d₀
   have hwW : ∀ W' ∈ fibreOver v P' W, w ∉ W' := fun W' hW' => hwS W' (Set.mem_insert_of_mem _ hW')
-  have gen : ∀ u : MRing ι', ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog u (Pi.single q.1 1 + d₀) →
+  have gen : ∀ u : MRing ι', IsMultiHomog u (Pi.single q.1 1 + d₀) →
       IsLocalization.mk' (FractionRing (MRing ι' ⧸ P')) (Ideal.Quotient.mk P' u) ⟨_, hwnz⟩ ∈
         semiLocRing P' (fibreOver v P' W) := fun u hu =>
     Subring.subset_closure ⟨u, w, _, hwnz, hwW, hu, hwd, rfl⟩
-  have hq : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (X q * N) (Pi.single q.1 1 + d₀) :=
+  have hq : IsMultiHomog (X q * N) (Pi.single q.1 1 + d₀) :=
     AvoidRing.isMultiHomog_mul (AvoidRing.isMultiHomog_X q.1 q.2) hNd
-  have hc : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (X ⟨q.1, i' q.1⟩ * N) (Pi.single q.1 1 + d₀) :=
+  have hc : IsMultiHomog (X ⟨q.1, i' q.1⟩ * N) (Pi.single q.1 1 + d₀) :=
     AvoidRing.isMultiHomog_mul (AvoidRing.isMultiHomog_X q.1 (i' q.1)) hNd
   refine ⟨⟨_, gen _ hq⟩, ⟨_, gen _ hc⟩, ?_, ?_⟩
   · show IsLocalization.mk' _ _ _ ≠ (0 : FractionRing (MRing ι' ⧸ P'))

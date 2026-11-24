@@ -72,7 +72,6 @@ def ListTailLogSmooth.Statement : Prop :=
 
 section Inhabitants
 
-open GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.Regular (projLineChartData)
 
 end Inhabitants
 

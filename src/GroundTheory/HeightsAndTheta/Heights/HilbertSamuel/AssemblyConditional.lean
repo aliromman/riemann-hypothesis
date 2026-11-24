@@ -163,7 +163,7 @@ section Telescoping
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
-def quotLine (C A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (ha : A.a = C.a) : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι where
+def quotLine (C A : HermLine ι) (ha : A.a = C.a) : HermLine ι where
   a := 0
   h z := A.h z / C.h z
   pos z hz := div_pos (A.pos z hz) (C.pos z hz)
@@ -174,7 +174,7 @@ def quotLine (C A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (ha : 
     rw [mul_div_mul_left _ _ hne]
     simp
 
-theorem tensor_quotLine (C A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (ha : A.a = C.a) (hv : ∀ z, C.h z = 0 → A.h z = 0) :
+theorem tensor_quotLine (C A : HermLine ι) (ha : A.a = C.a) (hv : ∀ z, C.h z = 0 → A.h z = 0) :
     C.tensor (quotLine C A ha) = A := by
   apply tele_herm_ext
   · funext k
@@ -185,13 +185,13 @@ theorem tensor_quotLine (C A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine
     · rw [h0, hv z h0, zero_mul]
     · exact mul_div_cancel₀ _ h0
 
-theorem isSmoothHerm_quotLine {C A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (ha : A.a = C.a) (hC : IsSmoothHerm C) (hA : IsSmoothHerm A) :
+theorem isSmoothHerm_quotLine {C A : HermLine ι} (ha : A.a = C.a) (hC : IsSmoothHerm C) (hA : IsSmoothHerm A) :
     IsSmoothHerm (quotLine C A ha) :=
   hA.div hC fun z hz => (C.pos z hz).ne'
 
 theorem fam_degZero_block (I : AllFam) (hI : I.IsFamily) {P : Ideal (MRing ι)} {n : ℕ}
-    (hP : IsArithVar P (n + 1)) (L : Fin n → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (hL : ∀ j, IsSmoothHerm (L j))
-    (B : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (hB : IsSmoothHerm B) (hB0 : B.a = 0) :
+    (hP : IsArithVar P (n + 1)) (L : Fin n → HermLine ι) (hL : ∀ j, IsSmoothHerm (L j))
+    (B : HermLine ι) (hB : IsSmoothHerm B) (hB0 : B.a = 0) :
     I K ι P (n + 1) (Fin.snoc L B) = ptsIntegral P (pot L) fun z => Real.log (B.h z) := by
   classical
   have hR := (hI K ι).2.2 P n L B 1 0 hP hL hB (fun k => by simp [hB0])
@@ -207,18 +207,18 @@ theorem fam_degZero_block (I : AllFam) (hI : I.IsFamily) {P : Ideal (MRing ι)} 
   rfl
 
 theorem ptsIntegral_log_sub (hInt : PtsIntegrableStatement) {P : Ideal (MRing ι)} {e : ℕ}
-    (hP : IsArithVar P (e + 1)) (L : Fin e → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (hL : ∀ j, IsSmoothHerm (L j))
-    (B₀ B₁ : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (h₀ : IsSmoothHerm B₀) (h₁ : IsSmoothHerm B₁) (h₀a : B₀.a = 0) (h₁a : B₁.a = 0)
+    (hP : IsArithVar P (e + 1)) (L : Fin e → HermLine ι) (hL : ∀ j, IsSmoothHerm (L j))
+    (B₀ B₁ : HermLine ι) (h₀ : IsSmoothHerm B₀) (h₁ : IsSmoothHerm B₁) (h₀a : B₀.a = 0) (h₁a : B₁.a = 0)
     (g : ((Σ k, ι k) → ℂ) → ℝ) (hg : ∀ z ∈ mcPts P, g z = Real.log (B₁.h z) - Real.log (B₀.h z)) :
     ptsIntegral P (pot L) (fun z => Real.log (B₁.h z)) - ptsIntegral P (pot L) (fun z => Real.log (B₀.h z)) =
       ptsIntegral P (pot L) g := by
   classical
-  have hl : ∀ B : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι, (fun z => Real.log (B.h z)) = fun z => - logNorm B 1 z := by
+  have hl : ∀ B : HermLine ι, (fun z => Real.log (B.h z)) = fun z => - logNorm B 1 z := by
     intro B
     funext z
     simp [logNorm, Real.log_inv]
   have hP1 : (1 : MRing ι) ∉ P := fun h1 => hP.2.1.1.ne_top ((Ideal.eq_top_iff_one P).mpr h1)
-  have hsec : ∀ B : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι, B.a = 0 → IsSectionOn P B 1 := fun B hB =>
+  have hsec : ∀ B : HermLine ι, B.a = 0 → IsSectionOn P B 1 := fun B hB =>
     ⟨0, fun k => by simp [hB], tele_one_homog, hP1⟩
   rw [hl B₁, hl B₀, tele_ptsIntegral_neg, tele_ptsIntegral_neg]
   unfold ptsIntegral
@@ -240,10 +240,10 @@ theorem ptsIntegral_log_sub (hInt : PtsIntegrableStatement) {P : Ideal (MRing ι
     · simp
   · simp
 
-def blockTeleFam (A A' : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (N i : ℕ) : Fin N → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι :=
+def blockTeleFam (A A' : HermLine ι) (N i : ℕ) : Fin N → HermLine ι :=
   fun j => if j.val < i then A' else A
 
-theorem blockTeleFam_succAbove (A A' : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (D i : ℕ) (hi : i < D + 1) (k : ℕ) (hk : k = i ∨ k = i + 1) :
+theorem blockTeleFam_succAbove (A A' : HermLine ι) (D i : ℕ) (hi : i < D + 1) (k : ℕ) (hk : k = i ∨ k = i + 1) :
     blockTeleFam A A' (D + 1) k ∘ (⟨i, hi⟩ : Fin (D + 1)).succAbove = blockTeleFam A A' D i := by
   funext j
   simp only [Function.comp_apply, blockTeleFam]
@@ -262,7 +262,7 @@ theorem blockTeleFam_succAbove (A A' : ReciprocityTheory.ChartRestriction.G.Geo.
       show ¬ j.val + 1 < k
       omega), if_neg h]
 
-theorem blockTeleFam_smooth {A A' : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hA : IsSmoothHerm A) (hA' : IsSmoothHerm A') (N i : ℕ)
+theorem blockTeleFam_smooth {A A' : HermLine ι} (hA : IsSmoothHerm A) (hA' : IsSmoothHerm A') (N i : ℕ)
     (j : Fin N) : IsSmoothHerm (blockTeleFam A A' N i j) := by
   unfold blockTeleFam
   split_ifs
@@ -270,7 +270,7 @@ theorem blockTeleFam_smooth {A A' : ReciprocityTheory.ChartRestriction.G.Geo.Her
   · exact hA
 
 theorem top_sub_top_blockMixPot (hInt : PtsIntegrableStatement) (I : AllFam) (hI : I.IsFamily)
-    {P : Ideal (MRing ι)} {D : ℕ} (hP : IsArithVar P (D + 1)) {A A' C : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hA : IsSmoothHerm A)
+    {P : Ideal (MRing ι)} {D : ℕ} (hP : IsArithVar P (D + 1)) {A A' C : HermLine ι} (hA : IsSmoothHerm A)
     (hA' : IsSmoothHerm A') (hC : IsSmoothHerm C) (ha : A.a = C.a) (ha' : A'.a = C.a)
     (hv : ∀ z, C.h z = 0 → A.h z = 0) (hv' : ∀ z, C.h z = 0 → A'.h z = 0) :
     I K ι P (D + 1) (fun _ => A') - I K ι P (D + 1) (fun _ => A) = ∑ i ∈ Finset.range (D + 1),
@@ -313,11 +313,11 @@ theorem top_sub_top_blockMixPot (hInt : PtsIntegrableStatement) (I : AllFam) (hI
     simp only [pot, blockMixPot, blockTeleFam]
     split_ifs <;> rfl
   rw [e1, e0]
-  have q1 : (Fin.snoc (α := fun _ => ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (blockTeleFam A A' D i) A') =
-      Fin.snoc (α := fun _ => ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (blockTeleFam A A' D i) (C.tensor (quotLine C A' ha')) := by
+  have q1 : (Fin.snoc (α := fun _ => HermLine ι) (blockTeleFam A A' D i) A') =
+      Fin.snoc (α := fun _ => HermLine ι) (blockTeleFam A A' D i) (C.tensor (quotLine C A' ha')) := by
     rw [tensor_quotLine C A' ha' hv']
-  have q0 : (Fin.snoc (α := fun _ => ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (blockTeleFam A A' D i) A) =
-      Fin.snoc (α := fun _ => ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (blockTeleFam A A' D i) (C.tensor (quotLine C A ha)) := by
+  have q0 : (Fin.snoc (α := fun _ => HermLine ι) (blockTeleFam A A' D i) A) =
+      Fin.snoc (α := fun _ => HermLine ι) (blockTeleFam A A' D i) (C.tensor (quotLine C A ha)) := by
     rw [tensor_quotLine C A ha hv]
   rw [q1, q0]
   rw [hadd _ _ _ _ _ hP hLs hC hB₁, hadd _ _ _ _ _ hP hLs hC hB₀, add_sub_add_left_eq_sub,
@@ -337,7 +337,7 @@ section Pivot
 
 variable {K : Type} [Fintype K] [DecidableEq K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
-theorem h_eq_zero_of_fs (k₀ : K) (A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (hA : A.a = ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.unitDeg k₀) (z : (Σ k, ι k) → ℂ)
+theorem h_eq_zero_of_fs (k₀ : K) (A : HermLine ι) (hA : A.a = ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.unitDeg k₀) (z : (Σ k, ι k) → ℂ)
     (hz : (HermLine.ofMetrics (fun k => fsMetric (ι := ι k)) (ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.unitDeg k₀)).h z = 0) : A.h z = 0 := by
   obtain ⟨k, -, hk⟩ := Finset.prod_eq_zero_iff.mp hz
   have hk0 : k = k₀ := by
@@ -1653,7 +1653,7 @@ theorem metric_forms (D : ℕ) (w : Ix (Fin (D + 1)) → ℂ) :
   rw [formApply_forms, norm_mul, mul_pow]
 
 theorem isMultiHomog_forms (D : ℕ) (q : Ix (Veronese.Idx D)) :
-    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (Veronese.forms D q) ((fun _ _ => 2 : Unit → Unit → ℕ) q.1) := by
+    IsMultiHomog (Veronese.forms D q) ((fun _ _ => 2 : Unit → Unit → ℕ) q.1) := by
   have h := Inter.AvoidRing.isMultiHomog_mul
     (Inter.AvoidRing.isMultiHomog_X (R := ℤ) (ι := GlobalTheory (Fin (D + 1))) () q.2.1.1)
     (Inter.AvoidRing.isMultiHomog_X (R := ℤ) (ι := GlobalTheory (Fin (D + 1))) () q.2.1.2)
@@ -1671,17 +1671,17 @@ theorem isBasePtFree_forms (D : ℕ) : IsBasePtFree (⊥ : Ideal (MRing (GlobalT
   simp [Veronese.forms, pow_two]
 
 theorem tensor_self {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
-    {F : Ideal (MRing ι) → (n : ℕ) → (Fin n → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) → ℝ} (hF : IsIntersectionFamily F)
-    {P : Ideal (MRing ι)} {n : ℕ} (hP : IsArithVar P n) {T : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hT : IsSmoothHerm T) :
+    {F : Ideal (MRing ι) → (n : ℕ) → (Fin n → HermLine ι) → ℝ} (hF : IsIntersectionFamily F)
+    {P : Ideal (MRing ι)} {n : ℕ} (hP : IsArithVar P n) {T : HermLine ι} (hT : IsSmoothHerm T) :
     F P n (fun _ => T.tensor T) = 2 ^ n * F P n (fun _ => T) := by
   have hTT : IsSmoothHerm (T.tensor T) := hT.mul hT
-  have intersection_update_fsHerm_neg_one : ∀ L : Fin n → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι, (∀ i, IsSmoothHerm (L i)) → ∀ j : Fin n,
+  have intersection_update_fsHerm_neg_one : ∀ L : Fin n → HermLine ι, (∀ i, IsSmoothHerm (L i)) → ∀ j : Fin n,
       F P n (Function.update L j (T.tensor T)) = 2 * F P n (Function.update L j T) := by
     intro L hL j
     cases n with
     | zero => exact j.elim0
     | succ m =>
-      have e : ∀ X : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι, IsSmoothHerm X →
+      have e : ∀ X : HermLine ι, IsSmoothHerm X →
           F P (m + 1) (Function.update L j X) =
             F P (m + 1) (Fin.snoc (fun i : Fin m => L (Equiv.swap j (Fin.last m) i.castSucc)) X) := by
         intro X hX

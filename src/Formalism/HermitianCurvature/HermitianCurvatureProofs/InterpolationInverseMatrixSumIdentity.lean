@@ -52,6 +52,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+public import Formalism.HermitianCurvature.HermitianCurvatureProofs.ConnectionRaisingConstantEq
 
 @[expose] public section
 
@@ -823,8 +824,6 @@ end Formalism.FourierDecayAlt.P.NFx3
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem theorem_S_of_steps : Formalism.FourierDecayAlt.NF.ThmSOfSteps := by
-  exact NFx3.thmSOfSteps
 theorem normal_form_from_module : Formalism.FourierDecayAlt.NF.NormalFormFromModuleOfParts := by
   exact NFx3.normalFormFromModuleOfParts
 

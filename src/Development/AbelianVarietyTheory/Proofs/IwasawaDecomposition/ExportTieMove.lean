@@ -82,16 +82,16 @@ variable {D : D7} (r : Rest D)
 theorem placeMap_up {S T : HSp D} (B : Base S T) (a : AE D) :
     HEq ((baseUp r B).F.placeMap ((a))) (B.F.placeMap a) := by
   have h : (fun Tm : (WO S T → ℂ) →ₗ[ℂ] (WO S T → ℂ) =>
-      (IsPlaceModel (baseUp r B).F.ψ (symplO _ _) (heisO (baseUp r B).F.ψ _ _) ((by with_unfolding_all exact (a :))) (baseUp r B).F.lat 1 (baseUp r B).F.f₀
-        ((by with_unfolding_all exact (Tm :))))) = IsPlaceModel B.F.ψ (symplO S T) (heisO B.F.ψ S T) a B.F.lat 1 B.F.f₀ :=
-    funext fun Tm => propext ⟨fun g => ⟨(by with_unfolding_all exact (g.1 :)), (by with_unfolding_all exact (g.2 :)), (by with_unfolding_all exact (g.3 :))⟩, fun g => ⟨(by with_unfolding_all exact (g.1 :)), (by with_unfolding_all exact (g.2 :)), (by with_unfolding_all exact (g.3 :))⟩⟩
+      (IsPlaceModel (baseUp r B).F.ψ (symplO _ _) (heisO (baseUp r B).F.ψ _ _) ((by exact (a :))) (baseUp r B).F.lat 1 (baseUp r B).F.f₀
+        ((by exact (Tm :))))) = IsPlaceModel B.F.ψ (symplO S T) (heisO B.F.ψ S T) a B.F.lat 1 B.F.f₀ :=
+    funext fun Tm => propext ⟨fun g => ⟨(by exact (g.1 :)), (by exact (g.2 :)), (by exact (g.3 :))⟩, fun g => ⟨(by exact (g.1 :)), (by exact (g.2 :)), (by exact (g.3 :))⟩⟩
   delta Frame.placeMap
-  with_unfolding_all exact heq_of_eq (congrArg Classical.epsilon h)
+  exact heq_of_eq (congrArg Classical.epsilon h)
 
 open Classical in
 theorem vecAt_up {S T : HSp D} (B : Base S T) : (baseUp r B).vecAt = (B.vecAt) := by
   delta ExportSeries.Base.vecAt Frame.vec
-  rewrite [show (baseUp r B).F.placeMap = ((by with_unfolding_all exact (B.F.placeMap :))) from (by with_unfolding_all exact ((funext fun a => eq_of_heq (placeMap_up r B a)) :))]
+  rewrite [show (baseUp r B).F.placeMap = ((by exact (B.F.placeMap :))) from (by exact ((funext fun a => eq_of_heq (placeMap_up r B a)) :))]
   dsimp only [halfIdem, Frame.datumFn, ExportSeries.Base.locFn, baseUp, twistUp]
   rfl
 
@@ -100,7 +100,7 @@ private theorem series_up {S T : HSp D} (B : Base S T) :
   funext ω f g
   refine LinearMap.ext fun P => funext fun x => ?_
   delta series thetaKO
-  with_unfolding_all refine congrArg (fun v : WO S T → ℂ => ω (g, x) v 0) ?_
+  refine congrArg (fun v : WO S T → ℂ => ω (g, x) v 0) ?_
   dsimp only [Frame.fock, pureTensorO, aPlusAll, aPlus, crea, Datum.dRho, baseUp]
   rfl
 
@@ -115,7 +115,7 @@ theorem genSet_up {S T : HSp D} (B : Base S T) (ω) (t : Twist D Circle) :
   rewrite [vecAt_up r B, series_up r B]
   rfl
 
-def univUp {A : Type} [AddCommGroup A] (t : UnivTwist D A) : UnivTwist (overD D r) A := ⟨(by with_unfolding_all exact (t.del :)), (by with_unfolding_all exact (t.kap :))⟩
+def univUp {A : Type} [AddCommGroup A] (t : UnivTwist D A) : UnivTwist (overD D r) A := ⟨(by exact (t.del :)), (by exact (t.kap :))⟩
 
 theorem xiCoef_up {S T : HSp D} {A : Type} [AddCommGroup A] [Fintype A] (B : Base S T) (ω) (u : UnivTwist D A) :
     (baseUp r B).xiCoef (((ω : PairRep S T))) (univUp r u) = ((B.xiCoef ω u : (Q : Finset (Pl (overD D r).host.E)) → ((PP : Pl (overD D r).host.E) → A → Matrix (Fin T.rank) (Fin S.rank) (kP PP) → ℚ) → GA (overD D r) S → PolF (overD D r) T.rank S.rank → (↥Q → A) → GA (overD D r) T → ℂ)) := by
@@ -132,18 +132,18 @@ theorem embLL0_up : embLL0 (overD D r) = (embLL0 D).comp e.toRingHom := RingHom.
 
 theorem labLL0_up (τ : D.what₂.Tau) : e.toRingHom.comp (labLL0 (overD D r) ((τ))) = (labLL0 D τ) := by
   refine RingHom.ext fun x => (embLL0 D).injective ((h.embLL0_eq _).trans ?_)
-  have a := DFunLike.congr_fun (embLL0_labLL0 (D := overD D r) ((by with_unfolding_all exact (τ :)))) x
-  have c := DFunLike.congr_fun (embLL0_labLL0 (D := D) τ) ((by with_unfolding_all exact (x :)))
+  have a := DFunLike.congr_fun (embLL0_labLL0 (D := overD D r) ((by exact (τ :)))) x
+  have c := DFunLike.congr_fun (embLL0_labLL0 (D := D) τ) ((by exact (x :)))
   refine Eq.trans a ?_
-  exact (by with_unfolding_all exact (c.symm :))
+  exact (by exact (c.symm :))
 
 theorem coefLat_up {S T : HSp D} (B : Base S T) (O : Subring ℂ) (g : Bridge.Gf S) :
     (baseUp r B).coefLat (embLL0 (overD D r)) (labLL0 (overD D r)) O ((g)) = (B.coefLat (embLL0 D) (labLL0 D) O g) := by
-  have a := GlobalTheory.CoefLatIso.coefLatFn_ringEquiv D S.rank _ _ e (embLL0 D) ((by with_unfolding_all exact ((labLL0 (overD D r)) :))) O B.w.lam (B.latAt g)
-  have c : (fun τ : D.what₂.Tau => e.toRingHom.comp (((by with_unfolding_all exact ((labLL0 (overD D r)) :)) : D.what₂.Tau → (D.host.E →+* ↥(overD D r).LL0)) τ)) =
-      labLL0 D := funext fun τ => (by with_unfolding_all exact ((labLL0_up h τ) :))
+  have a := GlobalTheory.CoefLatIso.coefLatFn_ringEquiv D S.rank _ _ e (embLL0 D) ((by exact ((labLL0 (overD D r)) :))) O B.w.lam (B.latAt g)
+  have c : (fun τ : D.what₂.Tau => e.toRingHom.comp (((by exact ((labLL0 (overD D r)) :)) : D.what₂.Tau → (D.host.E →+* ↥(overD D r).LL0)) τ)) =
+      labLL0 D := funext fun τ => (by exact ((labLL0_up h τ) :))
   rw [← embLL0_up h, c] at a
-  exact (by with_unfolding_all exact ((congrArg (fun L : Submodule O (GLR D S.rank → ℂ) => (harm T.rank B.w B.F.BS).restrictScalars O ⊓
+  exact (by exact ((congrArg (fun L : Submodule O (GLR D S.rank → ℂ) => (harm T.rank B.w B.F.BS).restrictScalars O ⊓
     L.comap ((harmFn T.rank B.w B.F.BS).restrictScalars O)) a) :))
 
 end Lat
@@ -154,13 +154,13 @@ variable (ρ : Setup D.ntw) (i : D.ntw.Tw) (j : Fin D.R.m) (b : Bool)
 
 theorem se_theta : (setupUp r ρ).theta ((i)) ((j)) b = (ρ.theta i j b) := by
   funext h P
-  have e : @Eq (type_of% (ρ.B i j b).theta) ((by with_unfolding_all exact ((baseUp r (ρ.B i j b)).theta :))) (ρ.B i j b).theta :=
-    (by with_unfolding_all exact ((theta_up r (ρ.B i j b)) :))
-  exact (by with_unfolding_all exact ((congrArg (fun t : type_of% (ρ.B i j b).theta => t (ρ.om i j b 1) ((by with_unfolding_all exact (h :))) ((by with_unfolding_all exact (P :)))) e) :))
+  have e : @Eq (type_of% (ρ.B i j b).theta) ((by exact ((baseUp r (ρ.B i j b)).theta :))) (ρ.B i j b).theta :=
+    (by exact ((theta_up r (ρ.B i j b)) :))
+  exact (by exact ((congrArg (fun t : type_of% (ρ.B i j b).theta => t (ρ.om i j b 1) ((by exact (h :))) ((by exact (P :)))) e) :))
 
 theorem se_gens : (setupUp r ρ).gens ((i)) ((j)) b = (ρ.gens i j b) := by
   funext k Q ψ
-  exact (by with_unfolding_all exact ((genSet_up r (ρ.B i j b) (ρ.om i j b 1) (ρ.tw i b k ((by with_unfolding_all exact (Q :))) ((by with_unfolding_all exact (ψ :))))) :))
+  exact (by exact ((genSet_up r (ρ.B i j b) (ρ.om i j b 1) (ρ.tw i b k ((by exact (Q :))) ((by exact (ψ :))))) :))
 
 private theorem univOf_up (Q : Finset (Pl D.host.E)) (M : ℕ) :
     univOf (overD D r).nexp i Q M (setupUp r ρ).rc =
@@ -188,19 +188,19 @@ variable {r ρ i j b} {ι : D.what₂.LL →+* (overD D r).what₂.LL} {e : ↥(
 include h
 
 theorem se_lat (O : Subring ℂ) (g : GA D (Vc D j)) : (setupUp r ρ).lat ((i)) ((j)) b O ((g)) = (ρ.lat i j b O g) :=
-  (by with_unfolding_all exact ((coefLat_up h (ρ.B i j b) O (finPt _ g)) :))
+  (by exact ((coefLat_up h (ρ.B i j b) O (finPt _ g)) :))
 
 theorem datum_up {s g P} (d : ρ.IsDatum i j b s g P) : (setupUp r ρ).IsDatum ((i)) ((j)) b ((s)) ((g)) ((P)) :=
-  ⟨(by with_unfolding_all exact (d.split :)), (by with_unfolding_all exact (d.off :)), (by with_unfolding_all exact (d.fin :)), (by with_unfolding_all exact (d.supp :)), by
+  ⟨(by exact (d.split :)), (by exact (d.off :)), (by exact (d.fin :)), (by exact (d.supp :)), by
     have a := se_lat (ρ := ρ) (i := i) (j := j) (b := b) h (ρ.eO i b).range g
-    have c := (le_of_eq a.symm) ((by with_unfolding_all exact (d.mem :)) : ((by with_unfolding_all exact (P :))) ∈ _)
-    exact (by with_unfolding_all exact (c :))⟩
+    have c := (le_of_eq a.symm) ((by exact (d.mem :)) : ((by exact (P :))) ∈ _)
+    exact (by exact (c :))⟩
 
 theorem datum_dn {s g P} (d : (setupUp r ρ).IsDatum ((i)) ((j)) b s g P) : ρ.IsDatum i j b ((s)) ((g)) ((P)) :=
-  ⟨(by with_unfolding_all exact (d.split :)), (by with_unfolding_all exact (d.off :)), (by with_unfolding_all exact (d.fin :)), (by with_unfolding_all exact (d.supp :)), by
-    have a := se_lat (ρ := ρ) (i := i) (j := j) (b := b) h (ρ.eO i b).range ((by with_unfolding_all exact (g :)))
-    have c := (le_of_eq a) ((by with_unfolding_all exact (d.mem :)) : ((by with_unfolding_all exact (P :))) ∈ _)
-    exact (by with_unfolding_all exact (c :))⟩
+  ⟨(by exact (d.split :)), (by exact (d.off :)), (by exact (d.fin :)), (by exact (d.supp :)), by
+    have a := se_lat (ρ := ρ) (i := i) (j := j) (b := b) h (ρ.eO i b).range ((by exact (g :)))
+    have c := (le_of_eq a) ((by exact (d.mem :)) : ((by exact (P :))) ∈ _)
+    exact (by exact (c :))⟩
 
 
 omit h in
@@ -211,24 +211,24 @@ theorem rat_up {hρ : ρ.Good} {hρ' : (setupUp r ρ).Good} {rd : Rd ρ D.nexp i
     SeriesTie.Rat hρ' (rdUp r rd) := by
   refine ⟨fun s x P d => ?_, fun k Q ψ h1 h2 s x P d => ?_, fun Q M h1 s x P d h2 a => ?_⟩
   · rewrite [se_theta r ρ i j b]
-    exact (by with_unfolding_all exact ((g.1 _ _ _ (datum_dn h d)) :))
+    exact (by exact ((g.1 _ _ _ (datum_dn h d)) :))
   · rewrite [se_gens r ρ i j b]
-    exact (by with_unfolding_all exact ((g.2.1 k ((by with_unfolding_all exact (Q :))) ((by with_unfolding_all exact (ψ :))) ((by with_unfolding_all exact (h1 :))) ((by with_unfolding_all exact (h2 :))) _ _ _ (datum_dn h d)) :))
+    exact (by exact ((g.2.1 k ((by exact (Q :))) ((by exact (ψ :))) ((by exact (h1 :))) ((by exact (h2 :))) _ _ _ (datum_dn h d)) :))
   · rewrite [se_xi r ρ i j b]
-    exact (by with_unfolding_all exact ((g.2.2 ((by with_unfolding_all exact (Q :))) M ((by with_unfolding_all exact (h1 :))) _ _ _ (datum_dn h d) ((by with_unfolding_all exact (h2 :))) ((by with_unfolding_all exact (a :)))) :))
+    exact (by exact ((g.2.2 ((by exact (Q :))) M ((by exact (h1 :))) _ _ _ (datum_dn h d) ((by exact (h2 :))) ((by exact (a :)))) :))
 
 theorem rat_dn {hρ : ρ.Good} {hρ' : (setupUp r ρ).Good} {rd : Rd ρ D.nexp i j b} (g : SeriesTie.Rat hρ' (rdUp r rd)) :
     SeriesTie.Rat hρ rd := by
   refine ⟨fun s x P d => ?_, fun k Q ψ h1 h2 s x P d => ?_, fun Q M h1 s x P d h2 a => ?_⟩
   · have c := g.1 _ _ _ (datum_up h d)
     rewrite [se_theta r ρ i j b] at c
-    exact (by with_unfolding_all exact (c :))
-  · have c := g.2.1 k ((by with_unfolding_all exact (Q :))) ((by with_unfolding_all exact (ψ :))) ((by with_unfolding_all exact (h1 :))) ((by with_unfolding_all exact (h2 :))) _ _ _ (datum_up h d)
+    exact (by exact (c :))
+  · have c := g.2.1 k ((by exact (Q :))) ((by exact (ψ :))) ((by exact (h1 :))) ((by exact (h2 :))) _ _ _ (datum_up h d)
     rewrite [se_gens r ρ i j b] at c
-    exact (by with_unfolding_all exact (c :))
-  · have c := g.2.2 ((by with_unfolding_all exact (Q :))) M ((by with_unfolding_all exact (h1 :))) _ _ _ (datum_up h d) ((by with_unfolding_all exact (h2 :))) ((by with_unfolding_all exact (a :)))
+    exact (by exact (c :))
+  · have c := g.2.2 ((by exact (Q :))) M ((by exact (h1 :))) _ _ _ (datum_up h d) ((by exact (h2 :))) ((by exact (a :)))
     rewrite [se_xi r ρ i j b] at c
-    exact (by with_unfolding_all exact (c :))
+    exact (by exact (c :))
 
 end Setup
 
@@ -238,18 +238,18 @@ theorem rat_copy_iff {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : �
     SeriesTie.Rat hρ (rd i j b) ↔ SeriesTie.Rat hρ' (rd' i' (h.cm j) b) := by
   obtain ⟨r, rfl⟩ := h.exists_rest
   obtain rfl := SameData.eq_up r hs
-  have e0 : @Eq D.ntw.Tw ((by with_unfolding_all exact (i :))) ((by with_unfolding_all exact (i' :))) := (by with_unfolding_all exact ((@eq_of_heq D.ntw.Tw i ((by with_unfolding_all exact (i' :))) ((by with_unfolding_all exact (hi :)))) :))
-  have e1 : ∀ (i' : (overD D r).ntw.Tw) (hi : HEq ((by with_unfolding_all exact (i' :)) : D.ntw.Tw) i') (j' : Fin (overD D r).R.m),
-      rd' i' j' b = (by with_unfolding_all exact ((rdUp r (rd ((by with_unfolding_all exact (i' :))) ((by with_unfolding_all exact (j' :))) b)) :)) := fun i' hi j' => by
+  have e0 : @Eq D.ntw.Tw ((by exact (i :))) ((by exact (i' :))) := (by exact ((@eq_of_heq D.ntw.Tw i ((by exact (i' :))) ((by exact (hi :)))) :))
+  have e1 : ∀ (i' : (overD D r).ntw.Tw) (hi : HEq ((by exact (i' :)) : D.ntw.Tw) i') (j' : Fin (overD D r).R.m),
+      rd' i' j' b = (by exact ((rdUp r (rd ((by exact (i' :))) ((by exact (j' :))) b)) :)) := fun i' hi j' => by
     refine LinearMap.ext fun f => ?_
-    have a := hrd _ i' hi ((by with_unfolding_all exact (j' :))) b ((by with_unfolding_all exact (f :)))
-    have c : h.fmCast hi ((j' : ℕ) + 1) b ((by with_unfolding_all exact (f :))) = (by with_unfolding_all exact (f :)) := (by with_unfolding_all exact ((eq_of_heq (h.fmCast_heq hi ((j' : ℕ) + 1) b ((by with_unfolding_all exact (f :))))) :))
-    have a' : HEq (rd' i' j' b (h.fmCast hi ((j' : ℕ) + 1) b ((by with_unfolding_all exact (f :))))) (rd ((by with_unfolding_all exact (i' :))) ((by with_unfolding_all exact (j' :))) b ((by with_unfolding_all exact (f :)))) := (by with_unfolding_all exact (a :))
+    have a := hrd _ i' hi ((by exact (j' :))) b ((by exact (f :)))
+    have c : h.fmCast hi ((j' : ℕ) + 1) b ((by exact (f :))) = (by exact (f :)) := (by exact ((eq_of_heq (h.fmCast_heq hi ((j' : ℕ) + 1) b ((by exact (f :))))) :))
+    have a' : HEq (rd' i' j' b (h.fmCast hi ((j' : ℕ) + 1) b ((by exact (f :))))) (rd ((by exact (i' :))) ((by exact (j' :))) b ((by exact (f :)))) := (by exact (a :))
     rewrite [c] at a'
-    exact (by with_unfolding_all exact ((@eq_of_heq (GA (overD D r) (Wc (overD D r) j') → ℂ) (rd' i' j' b f) ((by with_unfolding_all exact ((rd ((i')) ((j')) b ((f))) : _))) ((by with_unfolding_all exact (a' :)))) :))
+    exact (by exact ((@eq_of_heq (GA (overD D r) (Wc (overD D r) j') → ℂ) (rd' i' j' b f) ((by exact ((rd ((i')) ((j')) b ((f))) : _))) ((by exact (a' :)))) :))
   subst e0
   rewrite [e1 _ hi (h.cm j)]
-  exact ⟨fun g => (by with_unfolding_all exact ((rat_up h (hρ' := hρ') g) :)), fun g => rat_dn h (hρ' := hρ') ((by with_unfolding_all exact (g :)))⟩
+  exact ⟨fun g => (by exact ((rat_up h (hρ' := hρ') g) :)), fun g => rat_dn h (hρ' := hρ') ((by exact (g :)))⟩
 
 end GlobalTheory.TwInputs.Move.RatUp
 
@@ -1210,49 +1210,50 @@ variable {D : D7} (r : Rest D)
 
 theorem placeModel_up {mm nn : ℕ} {ψ B hs e Λ c f₀ T} (h : @IsPlaceModel D mm nn ψ B hs e Λ c f₀ T) :
     @IsPlaceModel (overD D r) mm nn ((ψ)) ((B)) ((hs)) ((e)) ((Λ)) c ((f₀)) ((T)) :=
-  @IsPlaceModel.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (trans := (by with_unfolding_all exact (h.trans :))) (modul := (by with_unfolding_all exact (h.modul :)))
-    (vac := (by with_unfolding_all exact (h.vac :)))
+  @IsPlaceModel.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (trans := h.trans) (modul := h.modul)
+    (vac := h.vac)
 
 theorem placeModel_dn {mm nn : ℕ} {ψ B hs e Λ c f₀ T} (h : @IsPlaceModel (overD D r) mm nn ψ B hs e Λ c f₀ T) :
     @IsPlaceModel D mm nn ((ψ)) ((B)) ((hs)) ((e)) ((Λ)) c ((f₀)) ((T)) :=
-  @IsPlaceModel.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (trans := (by with_unfolding_all exact (h.trans :))) (modul := (by with_unfolding_all exact (h.modul :)))
-    (vac := (by with_unfolding_all exact (h.vac :)))
+  @IsPlaceModel.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (trans := h.trans) (modul := h.modul)
+    (vac := h.vac)
 
 theorem placeMap_up {S T : HSp D} (B : Base S T) (a : AE D) :
     (baseUp r B).F.placeMap ((a)) = (B.F.placeMap a) := by
-  have hP : (fun L : (WO (D := overD D r) ((by with_unfolding_all exact (S :))) ((by with_unfolding_all exact (T :))) → ℂ) →ₗ[ℂ] (WO (D := overD D r) ((by with_unfolding_all exact (S :))) ((by with_unfolding_all exact (T :))) → ℂ) =>
-      IsPlaceModel (baseUp r B).F.ψ (symplO ((by with_unfolding_all exact (S :))) ((by with_unfolding_all exact (T :))))
-        (heisO (baseUp r B).F.ψ ((by with_unfolding_all exact (S :))) ((by with_unfolding_all exact (T :)))) ((by with_unfolding_all exact (a :))) (baseUp r B).F.lat 1 (baseUp r B).F.f₀ L) =
-      (by with_unfolding_all exact ((fun L : (WO S T → ℂ) →ₗ[ℂ] (WO S T → ℂ) =>
-        IsPlaceModel B.F.ψ (symplO S T) (heisO B.F.ψ S T) a B.F.lat 1 B.F.f₀ L) :)) :=
-    funext fun L => propext ⟨fun h => (by with_unfolding_all exact ((placeModel_dn r h) :)), fun h => (by with_unfolding_all exact ((placeModel_up r h) :))⟩
-  unfold Frame.placeMap
-  exact (by with_unfolding_all exact ((congrArg Classical.epsilon hP) :))
+  have hP : (fun L : (WO (D := overD D r) S T → ℂ) →ₗ[ℂ] (WO (D := overD D r) S T → ℂ) =>
+      IsPlaceModel (baseUp r B).F.ψ (symplO S T)
+        (heisO (baseUp r B).F.ψ S T) a (baseUp r B).F.lat 1 (baseUp r B).F.f₀ L) =
+      (fun L : (WO S T → ℂ) →ₗ[ℂ] (WO S T → ℂ) =>
+        IsPlaceModel B.F.ψ (symplO S T) (heisO B.F.ψ S T) a B.F.lat 1 B.F.f₀ L) :=
+    funext fun L => propext ⟨fun h => placeModel_dn r h, fun h => placeModel_up r h⟩
+  delta Frame.placeMap
+  exact congrArg Classical.epsilon hP
 
 theorem vec_up {S T : HSp D} (B : Base S T) (Q ω) :
-    (baseUp r B).F.vec (baseUp r B).G (by with_unfolding_all exact (Q :))
-      (by with_unfolding_all exact (ω :)) = (by with_unfolding_all exact (B.F.vec B.G Q ω :)) := by
-  have e := placeMap_up r B (halfIdem B.G.Pg Q)
-  show (baseUp r B).F.placeMap (by with_unfolding_all exact (halfIdem B.G.Pg Q :))
-    (by with_unfolding_all exact (B.F.datumFn B.G Q ω :)) = _
-  rw [e]
-  with_unfolding_all exact rfl
-
+    (baseUp r B).F.vec (baseUp r B).G Q ω = B.F.vec B.G Q ω := by
+  delta Frame.vec
+  dsimp only [halfIdem, Frame.datumFn, baseUp]
+  exact congrArg (fun f => f (B.F.datumFn B.G Q ω)) (placeMap_up r B (halfIdem B.G.Pg Q))
 
 open Classical in
 theorem vecAt_up {S T : HSp D} (B : Base S T) (Q φ) :
-    (baseUp r B).vecAt (by with_unfolding_all exact (Q :))
-      (by with_unfolding_all exact (φ :)) = (by with_unfolding_all exact (B.vecAt Q φ :)) := by
-  show (baseUp r B).F.vec (baseUp r B).G (by with_unfolding_all exact (B.de.Q ∪ Q :))
-    (by with_unfolding_all exact (B.locFn Q φ :)) = _
-  exact vec_up r B _ _
+    (baseUp r B).vecAt Q φ = B.vecAt Q φ := by
+  delta ExportSeries.Base.vecAt
+  dsimp only [ExportSeries.Base.locFn, baseUp, twistUp]
+  exact vec_up r B (B.de.Q ∪ Q) (B.locFn Q φ)
+
+private theorem series_eq {S T : HSp D} (B : Base S T) :
+    @series (overD D r) S T (baseUp r B).F = @series D S T B.F := by
+  funext ω f g
+  refine LinearMap.ext fun P => funext fun x => ?_
+  delta series thetaKO
+  refine congrArg (fun v : WO S T → ℂ => ω (g, x) v 0) ?_
+  dsimp only [Frame.fock, pureTensorO, aPlusAll, aPlus, crea, Datum.dRho, baseUp]
+  rfl
 
 theorem series_up {S T : HSp D} (B : Base S T) (ω : PairRep S T) (Q φ h) :
-    series (baseUp r B).F (by with_unfolding_all exact (ω :))
-      ((baseUp r B).vecAt (by with_unfolding_all exact (Q :)) (by with_unfolding_all exact (φ :)))
-      (by with_unfolding_all exact (h :)) = (by with_unfolding_all exact (series B.F ω (B.vecAt Q φ) h :)) := by
-  rw [vecAt_up r B]
-  with_unfolding_all exact rfl
+    series (baseUp r B).F ω ((baseUp r B).vecAt Q φ) h = series B.F ω (B.vecAt Q φ) h := by
+  rw [vecAt_up r B, series_eq r B]
 
 theorem theta_up {S T : HSp D} (B : Base S T) (ω : PairRep S T) (h : GA D S) :
     (baseUp r B).theta ((ω)) ((h)) = (B.theta ω h) :=
@@ -1264,38 +1265,54 @@ theorem vecFlat_up {S T : HSp D} (B : Base S T) (ψ : Twist D Circle) :
 
 theorem gen_up {S T : HSp D} (B : Base S T) (ω : PairRep S T) (ψ : Twist D Circle) :
     (baseUp r B).gen ((ω)) (twistUp r ψ) = (B.gen ω ψ) := by
-  unfold Base.gen
-  rw [vecFlat_up]
-  exact (by with_unfolding_all exact (rfl :))
+  delta ExportSeries.Base.gen
+  rw [vecFlat_up r B, series_eq r B]
+  rfl
 
 theorem genSet_up {S T : HSp D} (B : Base S T) (ω : PairRep S T) (ψ : Twist D Circle) (h P) :
-    (baseUp r B).genSet (by with_unfolding_all exact (ω :)) (twistUp r ψ)
-      (by with_unfolding_all exact (h :)) (by with_unfolding_all exact (P :)) =
-        (by with_unfolding_all exact (B.genSet ω ψ h P :)) := by
-  unfold Base.genSet
-  rw [gen_up]
-  with_unfolding_all exact rfl
+    (baseUp r B).genSet ω (twistUp r ψ) h P = B.genSet ω ψ h P := by
+  delta ExportSeries.Base.genSet
+  rw [gen_up r B]
+  dsimp only [twistUp]
+  rfl
 
-def univUp {C : Type} [AddCommGroup C] (u : UnivTwist D C) : UnivTwist (overD D r) C := ⟨(by with_unfolding_all exact (u.del :)), (by with_unfolding_all exact (u.kap :))⟩
+def univUp {C : Type} [AddCommGroup C] (u : UnivTwist D C) : UnivTwist (overD D r) C := ⟨u.del, u.kap⟩
 
 theorem vecFam_up {S T : HSp D} (B : Base S T) {C : Type} (Q : Finset (Pl D.host.E))
     (Φ : ∀ PP : Pl D.host.E, C → Matrix (Fin T.rank) (Fin S.rank) (kP PP) → ℚ) :
-    (baseUp r B).vecFam (C := C) ((by with_unfolding_all exact (Q :))) ((by with_unfolding_all exact (Φ :))) = (by with_unfolding_all exact ((B.vecFam (C := C) Q Φ) :)) :=
-  funext fun a => vecAt_up r B Q _
+    (baseUp r B).vecFam (C := C) Q Φ = B.vecFam (C := C) Q Φ :=
+  funext fun _ => vecAt_up r B Q _
 
 theorem xiCoef_up {S T : HSp D} (B : Base S T) {C : Type} [AddCommGroup C] [Fintype C] (ω : PairRep S T) (u : UnivTwist D C)
     (Q : Finset (Pl D.host.E)) (Φ : ∀ PP : Pl D.host.E, C → Matrix (Fin T.rank) (Fin S.rank) (kP PP) → ℚ) (h : GA D S)
     (P : PolF D T.rank S.rank) :
     (baseUp r B).xiCoef ((ω)) (univUp r u) ((Q)) ((Φ)) ((h)) ((P)) = (B.xiCoef ω u Q Φ h P) := by
-  unfold Base.xiCoef Base.xi
-  rw [vecFam_up]
-  exact (by with_unfolding_all exact (rfl :))
+  delta ExportSeries.Base.xiCoef ExportSeries.Base.xi
+  rw [vecFam_up r B, series_eq r B]
+  rfl
 
 theorem classSum_up {S T : HSp D} (B : Base S T) (ω : PairRep S T) (ψ : Twist D Circle) {I : Type} [Fintype I] (h : I → GA D S) :
-    (baseUp r B).classSum (I := I) ((by with_unfolding_all exact (ω :))) (twistUp r ψ) ((by with_unfolding_all exact (h :))) = (by with_unfolding_all exact ((B.classSum ω ψ h) :)) := by
-  unfold Base.classSum
-  rw [vecFlat_up]
-  exact (by with_unfolding_all exact (rfl :))
+    (baseUp r B).classSum (I := I) ω (twistUp r ψ) h = B.classSum ω ψ h := by
+  delta ExportSeries.Base.classSum
+  rw [vecFlat_up r B, series_eq r B]
+  dsimp only [ExportSeries.Base.levJ, baseUp, twistUp]
+  rfl
+
+private theorem baseUp_coefLat {S T : HSp D} (B : Base S T) {K : Type} [Field K] [NumberField K]
+    (σ : K →+* ℂ) (emb : D.what₂.Tau → (D.host.E →+* K)) (O : Subring ℂ) :
+    (baseUp r B).coefLat σ emb O = B.coefLat σ emb O := by
+  funext x
+  delta Base.coefLat harmLat
+  dsimp only [baseUp]
+  rfl
+
+private theorem baseUp_mtLat {S T : HSp D} (B : Base S T) {K : Type} [Field K] [NumberField K]
+    (σ : K →+* ℂ) (emb : D.what₂.Tau → (D.host.E →+* K)) (O : Subring ℂ) (t : Twist D Circle) :
+    (baseUp r B).mtLat σ emb O (twistUp r t) = B.mtLat σ emb O t := by
+  delta Base.mtLat
+  rw [baseUp_coefLat r B]
+  dsimp only [ExportSeries.Base.levJ, baseUp, twistUp]
+  rfl
 
 theorem coefLat_of_equiv {S T : HSp D} (B : Base S T) {K : Type} [Field K] [NumberField K] (e : K ≃+* ↥D.LL0) (σ : K →+* ℂ)
     (emb : D.what₂.Tau → (D.host.E →+* K)) (hσ : ∀ x, embLL0 D (e x) = σ x) (hemb : ∀ τ, σ.comp (emb τ) = tauE D τ)
@@ -1315,38 +1332,70 @@ section Setup
 
 variable (ρ : Setup D.ntw) (i : D.ntw.Tw) (j : Fin D.R.m) (b : Bool)
 
-theorem liftSetupOverExtendedData_theta_eq : (setupUp r ρ).theta ((i)) ((j)) b = (ρ.theta i j b) :=
-  (by with_unfolding_all exact ((funext fun h => congrArg DFunLike.coe (theta_up r (ρ.B i j b) (ρ.om i j b 1) h)) :))
+theorem liftSetupOverExtendedData_theta_eq : (setupUp r ρ).theta ((i)) ((j)) b = (ρ.theta i j b) := by
+  funext h
+  delta Setup.theta
+  dsimp only [setupUp]
+  exact congrArg DFunLike.coe (theta_up r (ρ.B i j b) (ρ.om i j b 1) h)
 
-theorem liftSetupOverExtendedData_gens_eq : (setupUp r ρ).gens ((i)) ((j)) b = (ρ.gens i j b) :=
-  (by with_unfolding_all exact ((funext fun k => funext fun Q => funext fun ψ => funext fun h => funext fun P =>
-    genSet_up r (ρ.B i j b) (ρ.om i j b 1) (ρ.tw i b k Q ψ) h P) :))
+theorem liftSetupOverExtendedData_gens_eq : (setupUp r ρ).gens ((i)) ((j)) b = (ρ.gens i j b) := by
+  funext k Q ψ h P
+  delta Setup.gens Setup.tw
+  dsimp only [setupUp]
+  exact genSet_up r (ρ.B i j b) (ρ.om i j b 1) (ρ.tw i b k Q ψ) h P
 
-theorem liftSetupOverExtendedData_classSum_eq : (setupUp r ρ).sum ((i)) ((j)) b = (ρ.sum i j b) :=
-  (by with_unfolding_all exact ((funext fun k => funext fun Q => funext fun ψ =>
-    classSum_up r (ρ.B i j b) (ρ.om i j b (ρ.tw i b k Q ψ).chi) (ρ.tw i b k Q ψ) (ρ.rep i j b (ρ.tw i b k Q ψ))) :))
+theorem liftSetupOverExtendedData_classSum_eq : (setupUp r ρ).sum ((i)) ((j)) b = (ρ.sum i j b) := by
+  funext k Q ψ
+  delta Setup.sum Setup.tw
+  dsimp only [setupUp, twistDn, twistUp]
+  exact classSum_up r (ρ.B i j b) (ρ.om i j b (ρ.tw i b k Q ψ).chi) (ρ.tw i b k Q ψ) (ρ.rep i j b (ρ.tw i b k Q ψ))
 
-theorem liftSetupOverExtendedData_xi_eq : (setupUp r ρ).xi ((i)) ((j)) b (overD D r).nexp = (ρ.xi i j b D.nexp) :=
-  (by with_unfolding_all exact ((funext fun Q => funext fun M => funext fun h => funext fun P =>
-    xiCoef_up r (ρ.B i j b) (ρ.om i j b 1) (univOf D.nexp i (admissibleConjugatePairPlaces D.ntw i Q M) M ρ.rc)
-      (half (ρ.ch i) (admissibleConjugatePairPlaces D.ntw i Q M)) (Base.univFam (univOf D.nexp i (admissibleConjugatePairPlaces D.ntw i Q M) M ρ.rc) (ρ.β j)) h P) :))
+private theorem univOf_up (Q : Finset (Pl D.host.E)) (M : ℕ) :
+    univOf (overD D r).nexp i Q M (setupUp r ρ).rc =
+      univUp r (univOf D.nexp i Q M ρ.rc) := by
+  dsimp only [setupUp, univOf, univUp, coord, Recip.pull, Recip.sym, resOf, IsResAt]
+  rfl
+
+theorem liftSetupOverExtendedData_xi_eq : (setupUp r ρ).xi ((i)) ((j)) b (overD D r).nexp = (ρ.xi i j b D.nexp) := by
+  funext Q M h P
+  let Q₀ := admissibleConjugatePairPlaces (overD D r).ntw i Q M
+  let u := univOf D.nexp i Q₀ M ρ.rc
+  let ω := ρ.om i j b 1
+  let Φ := ExportSeries.Base.univFam u (ρ.β j)
+  have atFam := xiCoef_up r (ρ.B i j b) ω u (half (ρ.ch i) Q₀) Φ h P
+  delta Setup.xi
+  rw [univOf_up r ρ i Q₀ M]
+  dsimp only [setupUp, ω, Φ, u, Q₀, univUp, ExportSeries.Base.univFam,
+    admissibleConjugatePairPlaces, Formalism.MainNotions.NAdm.AdmQ,
+    Formalism.MainNotions.NAdm.TWSet] at atFam ⊢
+  exact atFam
+
+private theorem twistOf_up (ρ : Setup D.ntw) (i : D.ntw.Tw) (b : Bool) (k : ℕ) (Q : Finset (Pl D.host.E))
+    (ψ : G D.host.E D.nd.Om →* (D.ntw.Ok i k)ˣ) :
+    (setupUp r ρ).tw i b k Q ψ = twistUp r (ρ.tw i b k Q ψ) := by
+  dsimp only [Setup.tw, setupUp, twistOf, twistUp, Setup.eOk, Recip.pull, Recip.sym, resOf, IsResAt]
+  rfl
 
 variable {r} {ι : D.what₂.LL →+* (overD D r).what₂.LL} {e : ↥(overD D r).LL0 ≃+* ↥D.LL0} (hc : CopyTw D (overD D r) ι e)
 include hc
 
 theorem liftSetupOverExtendedData_lat_eq : (setupUp r ρ).lat ((i)) ((j)) b = (ρ.lat i j b) := by
   funext O x
-  have := coefLat_of_equiv (ρ.B i j b) e (embLL0 (overD D r)) ((by with_unfolding_all exact ((labLL0 (overD D r)) :))) hc.embLL0_eq
-    ((by with_unfolding_all exact ((embLL0_labLL0 (D := overD D r)) :))) O
-  exact (by with_unfolding_all exact ((congrFun this (finPt _ x)) :))
+  delta Setup.lat
+  dsimp only [setupUp]
+  exact (congrFun (baseUp_coefLat r (ρ.B i j b) (embLL0 (overD D r)) (labLL0 (overD D r)) O) (finPt _ x)).trans
+    (congrFun (coefLat_of_equiv (ρ.B i j b) e (embLL0 (overD D r)) (labLL0 (overD D r)) hc.embLL0_eq
+      (embLL0_labLL0 (D := overD D r)) O) (finPt _ x))
 
 theorem liftSetupOverExtendedData_integralForms_eq : (setupUp r ρ).mt ((i)) ((j)) b = (ρ.mt i j b) := by
-  have H := mtLat_of_equiv (ρ.B i j b) e (embLL0 (overD D r)) ((by with_unfolding_all exact ((labLL0 (overD D r)) :))) hc.embLL0_eq
-    ((by with_unfolding_all exact ((embLL0_labLL0 (D := overD D r)) :)))
-  have H' := fun (k : ℕ) (Q : Finset (Pl D.host.E)) (ψ : G D.host.E D.nd.Om →* (D.ntw.Ok i k)ˣ) =>
-    H (ρ.eOk i b k).range (ρ.tw i b k Q ψ)
   funext k Q ψ
-  exact (by with_unfolding_all exact ((H' k ((Q)) ((ψ))) : _))
+  delta Setup.mt
+  dsimp only [setupUp, Setup.eOk]
+  exact (congrArg ((baseUp r (ρ.B i j b)).mtLat (embLL0 (overD D r)) (labLL0 (overD D r)) (ρ.eOk i b k).range)
+    (twistOf_up r ρ i b k Q ψ)).trans
+    ((baseUp_mtLat r (ρ.B i j b) (embLL0 (overD D r)) (labLL0 (overD D r)) (ρ.eOk i b k).range (ρ.tw i b k Q ψ)).trans
+      (mtLat_of_equiv (ρ.B i j b) e (embLL0 (overD D r)) (labLL0 (overD D r)) hc.embLL0_eq
+        (embLL0_labLL0 (D := overD D r)) (ρ.eOk i b k).range (ρ.tw i b k Q ψ)))
 
 theorem liftSetupOverExtendedData_isDatum_eq : (setupUp r ρ).IsDatum ((i)) ((j)) b = (ρ.IsDatum i j b) := by
   funext s x P
@@ -1354,11 +1403,10 @@ theorem liftSetupOverExtendedData_isDatum_eq : (setupUp r ρ).IsDatum ((i)) ((j)
   refine propext ⟨fun d => ?_, fun d => ?_⟩
   · have m := d.mem
     rw [hl] at m
-    exact (⟨(by with_unfolding_all exact (d.split :)), (by with_unfolding_all exact (d.off :)), (by with_unfolding_all exact (d.fin :)), (by with_unfolding_all exact (d.supp :)), (by with_unfolding_all exact (m :))⟩ : ρ.IsDatum i j b ((by with_unfolding_all exact (s :))) ((by with_unfolding_all exact (x :))) ((by with_unfolding_all exact (P :))))
-  · have d' : ρ.IsDatum i j b ((by with_unfolding_all exact (s :))) ((by with_unfolding_all exact (x :))) ((by with_unfolding_all exact (P :))) := d
-    refine ⟨(by with_unfolding_all exact (d'.split :)), (by with_unfolding_all exact (d'.off :)), (by with_unfolding_all exact (d'.fin :)), (by with_unfolding_all exact (d'.supp :)), ?_⟩
-    rewrite [hl]
-    exact (by with_unfolding_all exact (d'.mem :))
+    exact ⟨d.split, d.off, d.fin, d.supp, m⟩
+  · refine ⟨d.split, d.off, d.fin, d.supp, ?_⟩
+    rw [hl]
+    exact d.mem
 
 end Setup
 
@@ -1368,23 +1416,23 @@ variable {ι : D.what₂.LL →+* (overD D r).what₂.LL} {e : ↥(overD D r).LL
   {ρ : Setup D.ntw} {i : D.ntw.Tw} {j : Fin D.R.m} {b : Bool}
 
 def cellUp {hρ : ρ.Good} (hρ' : (setupUp r ρ).Good) {rd : Rd ρ D.nexp i j b} (t : CellTie hρ D.nexp rd) :
-    CellTie hρ' (overD D r).nexp (i := (by with_unfolding_all exact (i :))) (j := (by with_unfolding_all exact (j :))) (b := b) ((by with_unfolding_all exact (rd :))) where
-  supp := (by with_unfolding_all exact (t.supp :))
-  cls := (by with_unfolding_all exact (t.cls :))
-  coef := (by with_unfolding_all exact (t.coef :))
-  rdV := (by with_unfolding_all exact (t.rdV :))
-  U_eq := (by with_unfolding_all exact (t.U_eq :))
-  psiU_eq := (by with_unfolding_all exact (t.psiU_eq :))
-  dat := by rewrite [liftSetupOverExtendedData_isDatum_eq ρ i j b hc]; exact (by with_unfolding_all exact (t.dat :))
-  dat_onto := by rewrite [liftSetupOverExtendedData_isDatum_eq ρ i j b hc, liftSetupOverExtendedData_theta_eq r ρ i j b]; exact (by with_unfolding_all exact (t.dat_onto :))
-  lev_iff := (by with_unfolding_all exact (t.lev_iff :))
-  th_eq := by rewrite [liftSetupOverExtendedData_theta_eq r ρ i j b]; exact (by with_unfolding_all exact (t.th_eq :))
-  thPsi_iff := by rewrite [liftSetupOverExtendedData_gens_eq r ρ i j b]; exact (by with_unfolding_all exact (t.thPsi_iff :))
-  thU_eq := by rewrite [liftSetupOverExtendedData_xi_eq r ρ i j b]; exact (by with_unfolding_all exact (t.thU_eq :))
-  thU_off := by rewrite [liftSetupOverExtendedData_xi_eq r ρ i j b]; exact (by with_unfolding_all exact (t.thU_off :))
-  rdV_inj := (by with_unfolding_all exact (t.rdV_inj :))
-  mtLat_iff := by rewrite [liftSetupOverExtendedData_integralForms_eq ρ i j b hc]; exact (by with_unfolding_all exact (t.mtLat_iff :))
-  thP_eq := by rewrite [liftSetupOverExtendedData_classSum_eq r ρ i j b]; exact (by with_unfolding_all exact (t.thP_eq :))
+    CellTie hρ' (overD D r).nexp (i := i) (j := j) (b := b) rd where
+  supp := t.supp
+  cls := t.cls
+  coef := t.coef
+  rdV := t.rdV
+  U_eq := t.U_eq
+  psiU_eq := t.psiU_eq
+  dat := by rewrite [liftSetupOverExtendedData_isDatum_eq ρ i j b hc]; exact t.dat
+  dat_onto := by rewrite [liftSetupOverExtendedData_isDatum_eq ρ i j b hc, liftSetupOverExtendedData_theta_eq r ρ i j b]; exact t.dat_onto
+  lev_iff := t.lev_iff
+  th_eq := by rewrite [liftSetupOverExtendedData_theta_eq r ρ i j b]; exact t.th_eq
+  thPsi_iff := by rewrite [liftSetupOverExtendedData_gens_eq r ρ i j b]; exact t.thPsi_iff
+  thU_eq := by rewrite [liftSetupOverExtendedData_xi_eq r ρ i j b]; exact t.thU_eq
+  thU_off := by rewrite [liftSetupOverExtendedData_xi_eq r ρ i j b]; exact t.thU_off
+  rdV_inj := t.rdV_inj
+  mtLat_iff := by rewrite [liftSetupOverExtendedData_integralForms_eq ρ i j b hc]; exact t.mtLat_iff
+  thP_eq := by rewrite [liftSetupOverExtendedData_classSum_eq r ρ i j b]; exact t.thP_eq
 
 theorem cellUp_rdV {hρ : ρ.Good} (hρ' : (setupUp r ρ).Good) {rd : Rd ρ D.nexp i j b} (t : CellTie hρ D.nexp rd) :
     HEq t.rdV (cellUp r hc hρ' t).rdV := HEq.rfl
@@ -1578,10 +1626,10 @@ set_option maxRecDepth 100000 in
 theorem expTied_copy : ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : ↥D'.LL0 ≃+* ↥D.LL0}, CopyAll D D' ι e → ∀ {cf : CharFrame D} {cf' : CharFrame D'}, SameFrame cf cf' → CharSide D cf → CharSide D' cf' → ∀ X : NExpTied D, ∃ X' : NExpTied D', (TauTrue X → TauTrue X') ∧ ∀ (i : D.ntw.Tw) (i' : D'.ntw.Tw), HEq i i' → ∀ (j : ℕ) (b : Bool) (k : ℕ) (Q : Finset (PlE D.host)) (Q' : Finset (PlE D'.host)), HEq Q Q' → ∀ (ψ : G D.host.E D.nd.Om →* (D.ntw.Ok i k)ˣ) (ψ' : G D'.host.E D'.nd.Om →* (D'.ntw.Ok i' k)ˣ), HEq ψ ψ' → ∀ (h1 : 1 ≤ j) (h2 : j ≤ D.R.m) (h2' : j ≤ D'.R.m) (hA' : NX.AdmTw D' i' k Q' ψ'), ∃ hA : NX.AdmTw D i k Q ψ, HEq (X.mtV i j b k Q ψ h1 h2 hA).QP (X'.mtV i' j b k Q' ψ' h1 h2' hA').QP ∧ HEq (X.mtV i j b k Q ψ h1 h2 hA).DP (X'.mtV i' j b k Q' ψ' h1 h2' hA').DP ∧ ∀ (ε : FractionRing (D.ntw.Ok i k) →+* ℂ) (ε' : FractionRing (D'.ntw.Ok i' k) →+* ℂ), HEq ε ε' → ∀ (V V' : Type) [aV : AddCommGroup V] [mV : Module ℂ V] [aV' : AddCommGroup V'] [mV' : Module ℂ V'], V = V' → HEq aV aV' → HEq mV mV' → ∀ (r : D.nexp.MtV i j b k Q ψ → Formalism.AUTREP.GAf D.host.E D.R.nV → V) (r' : D'.nexp.MtV i' j b k Q' ψ' → Formalism.AUTREP.GAf D'.host.E D'.R.nV → V'), HEq r r' → GlobalTheory.HeightCounting.Reads X i j b k Q ψ h1 h2 hA ε V r → GlobalTheory.HeightCounting.Reads X' i' j b k Q' ψ' h1 h2' hA' ε' V' r' := by
   intro D D' ι e h cf cf' _ hcs hcs' X
   obtain ⟨r, rfl⟩ := h.cp.exists_rest
-  have hk : ∀ i b t, Formalism.L2.NX.kEmb D i b t = (by with_unfolding_all exact ((Formalism.L2.NX.kEmb (overD D r) ((by with_unfolding_all exact (i :))) b ((by with_unfolding_all exact (t :)))) :)) := fun i b t =>
-    RingHom.ext fun x => (by with_unfolding_all exact (eq_of_heq (α := FractionRing (D.ntw.O i)) (a := Formalism.L2.NX.kEmb D i b t x)
-        (a' := (by with_unfolding_all exact ((Formalism.L2.NX.kEmb (overD D r) ((i)) b ((t)) ((x))) : _)))
-        ((by with_unfolding_all exact ((kEmb_heq h.cp (i := i) (i' := (i)) (((HEq.refl i))) b (t := t) (t' := (t)) (((HEq.refl t)))
+  have hk : ∀ i b t, Formalism.L2.NX.kEmb D i b t = (by exact ((Formalism.L2.NX.kEmb (overD D r) ((by exact (i :))) b ((by exact (t :)))) :)) := fun i b t =>
+    RingHom.ext fun x => (by exact (eq_of_heq (α := FractionRing (D.ntw.O i)) (a := Formalism.L2.NX.kEmb D i b t x)
+        (a' := (by exact ((Formalism.L2.NX.kEmb (overD D r) ((i)) b ((t)) ((x))) : _)))
+        ((by exact ((kEmb_heq h.cp (i := i) (i' := (i)) (((HEq.refl i))) b (t := t) (t' := (t)) (((HEq.refl t)))
           (x := x) (x' := (x)) (((HEq.refl x)))) : _))) :))
   obtain ⟨X', hτ, hM⟩ := core D r X h.pl
     (fun i j b t h1 h2 => by
@@ -1590,22 +1638,22 @@ theorem expTied_copy : ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {
       exact this)
     (fun i j b t h1 h2 sh lam hsh hw => by
       refine X.rhoW_wt i j b t h1 h2 sh lam ?_ ?_
-      · have h3 : ({(((1 / 2 : ℚ)) : ℂ)} : Multiset ℂ) = {sh} := (infG_eta hcs' ((by with_unfolding_all exact (t :)))).symm.trans (c := {sh}) ((by with_unfolding_all exact (hsh :)))
+      · have h3 : ({(((1 / 2 : ℚ)) : ℂ)} : Multiset ℂ) = {sh} := (infG_eta hcs' ((by exact (t :)))).symm.trans (c := {sh}) ((by exact (hsh :)))
         exact (infG_eta hcs t).trans h3
       · rw [hk]
         exact hw)
   refine ⟨X', fun ⟨τ, hτ'⟩ => ?_, fun i i' hi j b k Q Q' hQ ψ ψ' hψ h1 h2 h2' hA' => ?_⟩
-  · have hτ2 : X'.tauG = (by with_unfolding_all exact (X.tauG :)) := (by with_unfolding_all exact ((eq_of_heq (a := X'.tauG) (a' := (by with_unfolding_all exact (X.tauG :))) ((by with_unfolding_all exact (hτ.symm :)))) :))
-    refine ⟨fun j kv => (Units.map e.symm.toRingHom.toMonoidHom).comp ((by with_unfolding_all exact ((τ j ((by with_unfolding_all exact (kv :)))) :))), fun i j b kv x h1 h2 => ?_⟩
+  · have hτ2 : X'.tauG = (by exact (X.tauG :)) := (by exact ((eq_of_heq (a := X'.tauG) (a' := (by exact (X.tauG :))) ((by exact (hτ.symm :)))) :))
+    refine ⟨fun j kv => (Units.map e.symm.toRingHom.toMonoidHom).comp ((by exact ((τ j ((by exact (kv :)))) :))), fun i j b kv x h1 h2 => ?_⟩
     rw [hτ2]
-    exact (by with_unfolding_all exact ((hτ' ((by with_unfolding_all exact (i :))) j b ((by with_unfolding_all exact (kv :))) ((by with_unfolding_all exact (x :))) h1 ((by with_unfolding_all exact (h2 :)))).trans (eq_of_heq (α := FractionRing (D.ntw.O ((by with_unfolding_all exact (i :)))))
-      (a' := (by with_unfolding_all exact ((GlobalTheory.SeriesTie.sideEmb (overD D r).ntw i b (e.symm ((τ j ((kv)) ((x)) : (↥D.LL0)ˣ) : ↥D.LL0))) : _)))
-      ((by with_unfolding_all exact ((side_heq h.cp (i := (i)) (i' := i) (((HEq.refl i))) b ((τ j ((kv)) ((x)) : (↥D.LL0)ˣ) : ↥D.LL0)) : _)))) :))
+    exact (by exact ((hτ' ((by exact (i :))) j b ((by exact (kv :))) ((by exact (x :))) h1 ((by exact (h2 :)))).trans (eq_of_heq (α := FractionRing (D.ntw.O ((by exact (i :)))))
+      (a' := (by exact ((GlobalTheory.SeriesTie.sideEmb (overD D r).ntw i b (e.symm ((τ j ((kv)) ((x)) : (↥D.LL0)ˣ) : ↥D.LL0))) : _)))
+      ((by exact ((side_heq h.cp (i := (i)) (i' := i) (((HEq.refl i))) b ((τ j ((kv)) ((x)) : (↥D.LL0)ˣ) : ↥D.LL0)) : _)))) :))
   · cases hi; cases hQ; cases hψ
-    refine ⟨(by with_unfolding_all exact (hA' :)), (hM i j b k Q ψ h1 h2 ((by with_unfolding_all exact (hA' :)))).1, (hM i j b k Q ψ h1 h2 ((by with_unfolding_all exact (hA' :)))).2.1, ?_⟩
+    refine ⟨(by exact (hA' :)), (hM i j b k Q ψ h1 h2 ((by exact (hA' :)))).1, (hM i j b k Q ψ h1 h2 ((by exact (hA' :)))).2.1, ?_⟩
     intro ε ε' hε V V' aV mV aV' mV' hV haV hmV ρ ρ' hρ hR
     subst hV; cases haV; cases hmV; cases hε; cases hρ
-    exact (by with_unfolding_all exact (((hM i j b k Q ψ h1 h2 ((by with_unfolding_all exact (hA' :)))).2.2 ε V ρ hR) :))
+    exact (by exact (((hM i j b k Q ψ h1 h2 ((by exact (hA' :)))).2.2 ε V ρ hR) :))
 
 end GlobalTheory.HeightCounting.ExpCopy
 
@@ -1752,61 +1800,31 @@ namespace GlobalTheory.HeightCounting.SideCopy.LamCopy
 
 
 
-set_option maxRecDepth 100000 in
 theorem lam_copy : ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : ↥D'.LL0 ≃+* ↥D.LL0}, CopyAll D D' ι e → ∀ {cf : CharFrame D} {cf' : CharFrame D'}, SameFrame cf cf' → (∃ Z : GlobalTheory.LamTie.LamDat D, Z.Ok ∧ Z.Teich ∧ Z.C = cf ∧ Z.q0 = AbsolutelyIrreducibleSpan.q0 D ∧ GlobalTheory.LamTie.IsLamTieFull D.ntw Z) → ∃ Z : GlobalTheory.LamTie.LamDat D', Z.Ok ∧ Z.Teich ∧ Z.C = cf' ∧ Z.q0 = AbsolutelyIrreducibleSpan.q0 D' ∧ GlobalTheory.LamTie.IsLamTieFull D'.ntw Z := by
   rintro D D' ι e h cf cf' ⟨f1, f2, f3, f4⟩ ⟨⟨C, q, w0, c, chi⟩, hOk, hT, rfl, hq, hF⟩
-  have he : ∀ x : ↥D'.LL0, D'.what₂.embLL (x : D'.what₂.LL) = D.what₂.embLL (e x : D.what₂.LL) := fun x => (h.cp.embLL0_eq x).symm
-  have nOm := h.cp.gal.Om
-  have ninstOm := h.cp.gal.instOm
-  have nalgOm := h.cp.gal.algOm
-  have nplOm := h.cp.gal.plOm
-  have nPlG := h.cp.gal.PlG
-  have hR := h.cp.gal.R
-  have hhost := h.cp.gal.host
-  have hTau := h.cp.Tau
-  have heTau := h.cp.eTau
-  have hhc := h.cp.hc
+  obtain ⟨r, rfl⟩ := h.cp.exists_rest
+  have he : ∀ x : ↥(overD D r).LL0, (overD D r).what₂.embLL (x : (overD D r).what₂.LL) = D.what₂.embLL (e x : D.what₂.LL) :=
+    fun x => (h.cp.embLL0_eq x).symm
   have hinW1 := h.cp.inW1
   have hemb0 := h.cp.emb0
-  obtain ⟨xcc, hTw, hl, hO0, hcrO0, xalgO0, xtopO0, hO, hcrO, halgO,
-    xOk, xcrOk, xalgOk, xzk, xpD, xchi1, xSig, xfinSig, xjS, xside,
-    xrhoS, hS0, xhEig, hab, hsideL, xRCG, xgrpRCG, xfinRCG, xart, xth⟩ :=
-    h.cp.set
   have hjL := h.jL
   have hs2 := h.s2
   have hlamG := h.lamG
   have hXv := h.Xv
   have hqs := h.qs
-  -- The extracted fields suffice for the dependent eliminations below.
   clear h ι
-  cases D; cases D'
-  dsimp only at hR hhost
-  subst hR; subst hhost
-  rename Rows.Data _ => r1; cases r1; rename Rows.Data _ => r2; cases r2
-  dsimp only at hTau
-  subst hTau
-  dsimp only at heTau hhc
-  subst heTau; subst hhc
-  rename NData _ _ _ => nd1; cases nd1
-  rename NData _ _ _ => nd2; cases nd2
-  dsimp only at nOm ninstOm nalgOm nplOm nPlG
-  subst nOm; subst ninstOm; subst nalgOm; subst nplOm; subst nPlG
-  rename NTw _ _ _ _ _ => n1; cases n1
-  rename NTw _ _ _ _ _ => n2; cases n2
-  dsimp only at xcc
-  subst xcc
-  dsimp only at hTw hl hO0 hcrO0 hab hsideL hO hcrO halgO hS0
-  subst hTw; subst hl; subst hO0; subst hcrO0; subst hab; subst hsideL; subst hO; subst hcrO; subst hS0
-  dsimp only at xalgO0 xtopO0 xOk xcrOk xalgOk xzk xpD xchi1 xSig xfinSig xjS xside xrhoS xhEig xRCG xgrpRCG xfinRCG xart xth hjL hs2 hlamG hXv hqs halgO
-  subst xalgO0; subst xtopO0; subst halgO; subst xOk; subst xcrOk; subst xalgOk; subst xzk; subst xpD; subst xchi1; subst xSig; subst xfinSig; subst xjS; subst xside; subst xrhoS; subst xhEig; subst xRCG; subst xgrpRCG; subst xfinRCG; subst xart; subst xth
-  subst hjL; subst hs2; subst hlamG; subst hXv; subst hqs
-  cases C; cases cf'  
+  cases r
+  rename RestX _ _ _ _ => rx
+  cases rx
+  dsimp only [overD, overX] at hjL hs2 hlamG hXv hqs
+  cases hjL; cases hs2; cases hlamG; cases hXv; cases hqs
+  cases C; cases cf'
   dsimp only at f1 f2 f3 f4
   subst f1; subst f2; subst f3; subst f4
-  refine ⟨⟨_, q, w0, c, chi⟩, ⟨(by with_unfolding_all exact (hOk.places :)), (by with_unfolding_all exact (hOk.aux :)), (by with_unfolding_all exact (hOk.big :))⟩, (by with_unfolding_all exact (hT :)), rfl, (by with_unfolding_all exact (hq :)), fun i hi => ?_⟩
+  refine ⟨⟨_, q, w0, c, chi⟩, ⟨hOk.places, hOk.aux, hOk.big⟩, hT, rfl, hq, fun i hi => ?_⟩
   obtain ⟨t0, j, t1, t2⟩ := hF i ((hinW1 i i HEq.rfl).2 hi)
-  refine ⟨(by with_unfolding_all exact (t0 :)), (by with_unfolding_all exact (j :)), fun x => ?_, (by with_unfolding_all exact (t2 :))⟩
-  exact (congrArg j (he x)).trans ((t1 (e x)).trans ((by with_unfolding_all exact ((congrArg (GlobalTheory.ToricDenom.toBar _ i) (eq_of_heq (hemb0 i i HEq.rfl x))) :))))
+  refine ⟨t0, j, fun x => ?_, t2⟩
+  exact (congrArg j (he x)).trans ((t1 (e x)).trans (congrArg (GlobalTheory.ToricDenom.toBar _ i) (eq_of_heq (hemb0 i i HEq.rfl x))))
 
 end GlobalTheory.HeightCounting.SideCopy.LamCopy
 end -- clump:auto

@@ -85,9 +85,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicArithmetic.AutomorphicVarieties.FrobeniusSmoothVectors.ExistsNonzeroLowCocycle
 import Development.AutomorphicArithmetic.AutomorphicVarieties.FrobeniusSmoothVectors.LocFlat
 import Development.AutomorphicArithmetic.AutomorphicVarieties.FrobeniusSmoothVectors.LocRho
--- Instance search for `IsLocalRing` of complete local `O`-algebras is slow
--- in this (large) import closure; try the `IsCO` projection first.
-attribute [local instance 2000] UpperTheory.V.Alg.IsCO.toIsLocalRing
 -- The overlapping-instances linter times out on several statements below.
 set_option linter.overlappingInstances false
 
@@ -577,7 +574,6 @@ theorem UpperTheory.V.Fr.frobenius_corner_middle_trivial :
       show q (χ _) = 1
       rw [e, hI v x hx hΨ, map_one]
   rw [← sub_eq_zero]
-  haveI : IsNoetherianRing D := IsCO.toIsNoetherian O
   have hb := Ideal.iInf_pow_eq_bot_of_isLocalRing (maximalIdeal D) (maximalIdeal.isMaximal D).ne_top
   rw [← Ideal.mem_bot, ← hb]
   exact Ideal.mem_iInf.2 key

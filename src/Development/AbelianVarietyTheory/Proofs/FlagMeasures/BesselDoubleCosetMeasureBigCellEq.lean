@@ -11,7 +11,8 @@ public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsHaarOnIffGr
 public import Mathlib.Analysis.SpecialFunctions.PolarCoord
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.BlockAnti
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsUniqueHaarDensityAtIdentity
-public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadicalStatement
+public import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
+public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadical
 public import Formalism.HermitianCurvature.WeylElementCommutesLevelOne
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LintegralBigCellHaarDensityConstant
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.BigCellHermitian
@@ -801,8 +802,8 @@ theorem isDis_bigCell : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ)) (
   intro k r z z' μsec μG μW μW' c κ hk hz hz' hT hT' hsec hc hκ hG hd hW hW1 hW' hW1'
   have hWb : B.IsHaarOn (UWset k r z) μW := ((GlobalTheory.HaarNotions.isHaarOn_iff_groups k r μW).2.2 z hz hT hk).1 hW
   have hWb' : B.IsHaarOn (UWset k r z') μW' := ((GlobalTheory.HaarNotions.isHaarOn_iff_groups k r μW').2.2 z' hz' hT' hk).1 hW'
-  have hN := GlobalTheory.T.haarLie_isHaarOn_unipotentRadical k r (ENNReal.ofReal κ) (ENNReal.ofReal_pos.2 hκ) ENNReal.ofReal_lt_top
-  have hN1 := GlobalTheory.T.haarLie_isHaarOn_unipotentRadical k r 1 one_pos ENNReal.one_lt_top
+  have hN := _root_.GlobalTheory.haarLie_isHaarOn_Nset k r (ENNReal.ofReal κ) (ENNReal.ofReal_pos.2 hκ) ENNReal.ofReal_lt_top
+  have hN1 := _root_.GlobalTheory.haarLie_isHaarOn_Nset k r 1 one_pos ENNReal.one_lt_top
   have hsm : haarLie (Nset k r) (ENNReal.ofReal κ) = ENNReal.ofReal κ • haarLie (Nset k r) 1 := by
     unfold haarLie; rw [one_smul]
   set μN := haarLie (Nset k r) (ENNReal.ofReal κ) with hμN

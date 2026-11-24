@@ -2,6 +2,7 @@ module
 
 public import Mathlib.Analysis.Analytic.Order
 public import Mathlib.Analysis.Calculus.DSlope
+public import Mathlib.Analysis.Meromorphic.Order
 import Mathlib.Analysis.Calculus.LogDeriv
 public import Mathlib.Analysis.CStarAlgebra.Classes
 import Mathlib.Algebra.Order.Floor.Extended
@@ -56,6 +57,30 @@ open Complex DirichletCharacter ArithmeticFunction MeasureTheory Filter Topology
 
 namespace GlobalTheory
 
+/-- The logarithmic derivative of a meromorphic function has residue equal to its order.
+Negative orders cover poles; values at the center do not affect the punctured-neighborhood formula. -/
+theorem logDeriv_eq_order_div_add_analytic_of_meromorphic
+    {f : ℂ → ℂ} {p : ℂ} {n : ℤ} (hf : MeromorphicAt f p)
+    (hn : meromorphicOrderAt f p = n) :
+    ∃ g : ℂ → ℂ, AnalyticAt ℂ g p ∧ ∀ᶠ s in 𝓝[≠] p, f s ≠ 0 ∧
+      deriv f s / f s = (n : ℂ) / (s - p) + g s := by
+  obtain ⟨g, hg, hg0, hfg⟩ := (meromorphicOrderAt_eq_int_iff hf).mp hn
+  have heq : f =ᶠ[𝓝[≠] p] fun s => (s - p) ^ n * g s := by
+    filter_upwards [hfg] with s hs
+    simpa only [smul_eq_mul] using hs
+  refine ⟨fun s => deriv g s / g s, hg.deriv.div hg hg0, ?_⟩
+  filter_upwards [heq, logDeriv_congr_nhdsNE heq, self_mem_nhdsWithin,
+    nhdsWithin_le_nhds (hg.continuousAt.eventually_ne hg0),
+    nhdsWithin_le_nhds hg.eventually_analyticAt] with s hs hlog hsp hgne hga
+  have hsub : s - p ≠ 0 := sub_ne_zero.mpr hsp
+  refine ⟨by rw [hs]; exact mul_ne_zero (zpow_ne_zero _ hsub) hgne, ?_⟩
+  change logDeriv f s = _
+  rw [hlog, logDeriv_fun_mul (f := fun z : ℂ => (z - p) ^ n) (g := g) s
+    (zpow_ne_zero _ hsub) hgne ((differentiableAt_id.sub_const p).zpow (Or.inl hsub))
+    hga.differentiableAt,
+    logDeriv_fun_zpow (f := fun z : ℂ => z - p) (differentiableAt_id.sub_const p)]
+  simp [logDeriv_apply, div_eq_mul_inv]
+
 theorem logDeriv_eq_order_div_add_analytic :
     ∀ (f : ℂ → ℂ) (p : ℂ), AnalyticAt ℂ f p → (¬ ∀ᶠ s in 𝓝 p, f s = 0) →
       ∃ g : ℂ → ℂ, AnalyticAt ℂ g p ∧ ∀ᶠ s in 𝓝[≠] p, f s ≠ 0 ∧
@@ -63,27 +88,10 @@ theorem logDeriv_eq_order_div_add_analytic :
   intro f p hf hne
   have htop : analyticOrderAt f p ≠ ⊤ := by
     rw [Ne, analyticOrderAt_eq_top]; exact hne
-  obtain ⟨g, hg, hg0, hfg⟩ := (hf.analyticOrderNatAt_eq_iff htop (n := analyticOrderNatAt f p)).mp rfl
-  set m := analyticOrderNatAt f p with hm
-  refine ⟨fun s => deriv g s / g s, hg.deriv.div hg hg0, ?_⟩
-  have h1 : ∀ᶠ s in 𝓝 p, g s ≠ 0 := hg.continuousAt.eventually_ne hg0
-  have h2 : ∀ᶠ s in 𝓝 p, AnalyticAt ℂ g s := hg.eventually_analyticAt
-  have h3 := hfg.eventually_nhds
-  have h4 : ∀ᶠ s in 𝓝[≠] p, s ≠ p := self_mem_nhdsWithin
-  filter_upwards [h4, nhdsWithin_le_nhds h1, nhdsWithin_le_nhds h2, nhdsWithin_le_nhds h3]
-    with s hsp hs1 hs2 hs3
-  have hsub : s - p ≠ 0 := sub_ne_zero.mpr hsp
-  have hev : f =ᶠ[𝓝 s] fun z => (z - p) ^ m * g z := by
-    filter_upwards [hs3] with z hz
-    rw [hz, smul_eq_mul]
-  have hfs : f s = (s - p) ^ m * g s := hev.eq_of_nhds
-  refine ⟨by rw [hfs]; exact mul_ne_zero (pow_ne_zero _ hsub) hs1, ?_⟩
-  change logDeriv f s = _
-  rw [(logDeriv_congr_nhds hev).eq_of_nhds,
-    logDeriv_fun_mul (f := fun z : ℂ => (z - p) ^ m) (g := g) s (pow_ne_zero _ hsub) hs1
-      ((differentiableAt_id.sub_const p).pow m) hs2.differentiableAt,
-    logDeriv_fun_pow (f := fun z : ℂ => z - p) (differentiableAt_id.sub_const p)]
-  simp [logDeriv_apply, div_eq_mul_inv]
+  have horder : meromorphicOrderAt f p = (analyticOrderNatAt f p : ℤ) := by
+    rw [hf.meromorphicOrderAt_eq, ← Nat.cast_analyticOrderNatAt htop, ENat.map_natCast]
+  simpa only [Int.cast_natCast] using
+    logDeriv_eq_order_div_add_analytic_of_meromorphic hf.meromorphicAt horder
 
 /-- Multiplying a simple principal part by a holomorphic weight multiplies its residue
 by the value of that weight. The minus sign matches the explicit-formula convention. -/

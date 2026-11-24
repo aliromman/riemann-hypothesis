@@ -169,7 +169,11 @@ private lemma inv_re_ge_of_norm_sub_le {t r : ℝ} {w : ℂ} (hr : 0 < r) (hw : 
     rw [h, Complex.zero_re] at hzre'
     linarith
   rw [Complex.inv_re, div_le_div_iff₀ (by positivity) hpos, Complex.normSq_eq_norm_sq]
-  nlinarith [mul_le_mul hznorm hznorm (norm_nonneg _) (by positivity : (0 : ℝ) ≤ 2 * r)]
+  have hsq : ‖z‖ ^ 2 ≤ (2 * r) ^ 2 := by
+    rw [sq, sq]; exact mul_le_mul hznorm hznorm (norm_nonneg _) (by positivity)
+  have h4r : (2 * r) ^ 2 ≤ z.re * (4 * r) := by
+    have := mul_le_mul_of_nonneg_right hzre'.le (by positivity : (0 : ℝ) ≤ 4 * r); linarith
+  linarith
 
 
 open Complex DirichletCharacter ArithmeticFunction MeasureTheory Filter Topology in
@@ -182,7 +186,7 @@ theorem _root_.GlobalTheory.SmallDiscZeros.few_zeros : ∃ C : ℝ, 0 < C ∧ �
   have hσ2 : 1 + r ≤ 2 := by linarith
   have hq : (1 : ℝ) ≤ q := Nat.one_le_cast.mpr (Nat.pos_of_ne_zero (NeZero.ne q))
   have hL0 : 0 ≤ Real.log (q * (|t| + 2)) :=
-    Real.log_nonneg (by nlinarith [abs_nonneg t])
+    Real.log_nonneg (one_le_mul_of_one_le_of_one_le hq (by linarith [abs_nonneg t]))
   have hTS : _root_.GlobalTheory.Lin.zerosDisc χ (1 + t * I) r ⊆ _root_.GlobalTheory.Lin.zerosDisc χ (2 + t * I) 3 := by
     intro w hw
     simp only [_root_.GlobalTheory.Lin.zerosDisc, Set.mem_setOf_eq] at hw ⊢
@@ -217,7 +221,7 @@ theorem _root_.GlobalTheory.SmallDiscZeros.few_zeros : ∃ C : ℝ, 0 < C ∧ �
       linarith [Real.log_two_lt_d9]
     have hCl : C * Real.log ((1 : ℕ) * (|(0 : ℝ)| + 2)) / (1 + r) ^ 0 ≤ C := by
       rw [pow_zero, div_one]
-      nlinarith
+      exact mul_le_of_le_one_right hC.le hlog
     linarith
   have key : ∀ (X Y W : ℂ) (B : ℝ), ‖(X - Y) + W‖ ≤ B → ‖W‖ ≤ B + ‖X‖ + ‖Y‖ := by
     intro X Y W B h
@@ -276,10 +280,10 @@ theorem _root_.GlobalTheory.SmallDiscZeros.few_zeros : ∃ C : ℝ, 0 < C ∧ �
   have h3 : 4 * r * (C * L + G + 1) ≤ 4 * (C * (r * L)) + 4 + 4 * r * (C + 1) := by
     have e : 4 * r * (1 / r) = 4 := by field_simp
     have h5 := mul_le_mul_of_nonneg_left hG_le (by positivity : (0 : ℝ) ≤ 4 * r)
-    nlinarith
+    linarith
   have hrL : 0 ≤ r * L := by positivity
   have h6 := mul_le_mul_of_nonneg_right hr2 (by positivity : (0 : ℝ) ≤ C + 1)
-  nlinarith [mul_nonneg hC.le hrL]
+  linarith [mul_nonneg hC.le hrL]
 
 end GlobalTheory.SmallDiscZeros
 end -- clump:auto
@@ -439,7 +443,7 @@ theorem _root_.GlobalTheory.Lin.sq_integral_primeSum_div_le (a : ℕ → ℂ) (x
     linarith
   have hd := discrim_le_zero hquad
   unfold discrim at hd
-  nlinarith [hd]
+  linarith [hd]
 
 end GlobalTheory.Lin
 end -- clump:auto
@@ -700,7 +704,7 @@ lemma pw_small (K k : ℕ) {u δ : ℝ} (hδ : 0 < δ) (hu : 0 ≤ u) (h : u ≤
   have h2 : u / (δ / 3) ≤ k := by
     rw [div_le_iff₀ (by positivity)]
     have : (K : ℝ) ≤ k := by exact_mod_cast hK
-    nlinarith
+    have := mul_le_mul_of_nonneg_left this (by positivity : (0 : ℝ) ≤ δ / 3); linarith
   have h3 : Real.exp (u / (δ / 3) - u) ≤ 3 ^ k * Real.exp (-(u / 2)) := by
     have h4 : Real.exp k ≤ 3 ^ k := by
       rw [← mul_one (k : ℝ), Real.exp_nat_mul]
@@ -923,12 +927,14 @@ theorem large_mean_of_large_derivative : ∀ A : ℝ, 1 ≤ A → ∃ a b C r₀
   set η : ℝ := 1 / (16 * C * A) with hη
   have hη0 : 0 < η := by positivity
   have hη1 : η ≤ 1 := by
-    rw [hη, div_le_one (by positivity)]; nlinarith
+    rw [hη, div_le_one (by positivity)]
+    have := mul_le_mul_of_nonneg_left hA (by positivity : (0 : ℝ) ≤ 16 * C); linarith
   set δ : ℝ := A⁻¹ * η with hδ
   have hδ0 : 0 < δ := by positivity
   have hδ1 : δ ≤ 1 := mul_le_one₀ (inv_le_one_of_one_le₀ hA) hη0.le hη1
   have hab : δ / 3 < 32 / δ := by
-    rw [div_lt_div_iff₀ (by norm_num) hδ0]; nlinarith
+    rw [div_lt_div_iff₀ (by norm_num) hδ0]
+    have := mul_le_of_le_one_left hδ0.le hδ1; linarith
   have hlA : 0 ≤ Real.log A := Real.log_nonneg hA
   refine ⟨δ / 3, 32 / δ, 6 * Real.log A + 4 * (32 / δ), 1 / (8 * A * (B + 1)), 1, by positivity,
     hab, by positivity, by positivity, ?_⟩
@@ -938,11 +944,12 @@ theorem large_mean_of_large_derivative : ∀ A : ℝ, 1 ≤ A → ∃ a b C r₀
   rw [le_div_iff₀ (by positivity)] at hr0
   have hrA : 8 * (r * A) ≤ 1 := by
     have : 0 ≤ r * A * B := by positivity
-    nlinarith
+    linarith
   have hrB : 8 * (r * A * B) ≤ 1 := by
     have : 0 ≤ r * A := by positivity
-    nlinarith
-  have hr1 : r / 2 ≤ 1 := by nlinarith
+    linarith
+  have hr1 : r / 2 ≤ 1 := by
+    have : r ≤ r * A := le_mul_of_one_le_right hr.le hA; linarith
   obtain ⟨hs, hsum⟩ := hCs (r / 2) (by positivity) hr1
   have hser := series_le c hc hr hδ0 K (m + 1) h1 h2 hs
   have hxy' : δ / 3 * K / r ≤ 32 / δ * K / r := by gcongr
@@ -977,10 +984,10 @@ theorem large_mean_of_large_derivative : ∀ A : ℝ, 1 ≤ A → ∃ a b C r₀
     have h3 : 4 * r ≤ A⁻¹ := by
       rw [inv_eq_one_div, le_div_iff₀ hA0]
       have : 0 ≤ r * A := by positivity
-      nlinarith
+      linarith
     have h4 : B ≤ (A * r)⁻¹ / 8 := by
       rw [inv_eq_one_div, div_div, le_div_iff₀ (by positivity)]
-      nlinarith
+      linarith
     calc _ ≤ A⁻¹ ^ (m + 1) * ((A * r)⁻¹ / 8) := by gcongr
       _ = _ := by rw [hM]; ring
   have e4 : M / (2 * r) ≤ I₁ := by
@@ -1074,9 +1081,9 @@ theorem sum_vonMangoldt_div_nat_bounds (N : ℕ) (hN : 1 ≤ N) :
     rwa [Chebyshev.psi, Nat.floor_natCast] at h
   constructor
   · refine le_of_mul_le_mul_left ?_ hN'
-    nlinarith
+    linarith
   · refine le_of_mul_le_mul_left ?_ hN'
-    nlinarith
+    linarith
 
 theorem mertens_first_vonMangoldt :
     ∃ CM : ℝ, 0 ≤ CM ∧ ∀ y : ℝ, 1 ≤ y →
@@ -1360,7 +1367,7 @@ theorem count_param : ∃ a D C C' r₀ K₀ η : ℝ, 0 < a ∧ 0 < D ∧ 0 < C
   have hr2 : r ≤ 1 / 2 := hrr.trans (min_le_left _ _)
   have hq : (1 : ℝ) ≤ q := by exact_mod_cast NeZero.one_le
   have hK : (1 : ℝ) ≤ K := by exact_mod_cast hK1
-  have hL0 : 0 ≤ L := (Real.log_nonneg (by nlinarith)).trans hqL
+  have hL0 : 0 ≤ L := (Real.log_nonneg (one_le_mul_of_one_le_of_one_le hq (by linarith))).trans hqL
   set N := Real.exp (a * K / r) with hNdef
   set M := Real.exp (b * K / r) with hMdef
   have hN1 : 1 ≤ N := Real.one_le_exp (by positivity)
@@ -1435,7 +1442,7 @@ theorem zero_density : ∃ A C η : ℝ, 0 < A ∧ 0 < C ∧ 0 < η ∧ ∀ (q :
   have hq : (1 : ℝ) ≤ q := by exact_mod_cast NeZero.one_le
   have m1 := min_le_left η (r0 / 2)
   have m2 := min_le_right η (r0 / 2)
-  have hl0 : 0 ≤ Real.log (q * (T + 3)) := Real.log_nonneg (by nlinarith)
+  have hl0 : 0 ≤ Real.log (q * (T + 3)) := Real.log_nonneg (one_le_mul_of_one_le_of_one_le hq (by linarith))
   have hir : 0 < 1 / r0 := by positivity
   obtain ⟨L, hL⟩ : ∃ L : ℝ, L = Real.log (q * (T + 3)) + 1 / r0 := ⟨_, rfl⟩
   have hL0 : 0 < L := by linarith
@@ -1449,8 +1456,10 @@ theorem zero_density : ∃ A C η : ℝ, 0 < A ∧ 0 < C ∧ 0 < η ∧ ∀ (q :
     rw [div_le_comm₀ hL0 hr0]; linarith
   have x1 : 1 ≤ r * L := (div_le_iff₀ hL0).1 r2
   have hlT : Real.log (q * (T + 3)) ≤ 3 * Real.log (q * T) := by
-    have hT2 : 4 ≤ T ^ 2 := by nlinarith
-    have h3 : T + 3 ≤ T ^ 3 := by nlinarith
+    have hT2 : 4 ≤ T ^ 2 := (by norm_num : (4 : ℝ) = 2 ^ 2) ▸ pow_le_pow_left₀ (by norm_num) hT 2
+    have h3 : T + 3 ≤ T ^ 3 := by
+      have : 4 * T ≤ T ^ 3 := by rw [pow_succ]; exact mul_le_mul_of_nonneg_right hT2 (by linarith)
+      linarith
     have h4 : (q : ℝ) ≤ q ^ 3 := le_self_pow₀ hq (by norm_num)
     calc _ ≤ Real.log ((q * T) ^ 3) := by
           refine Real.log_le_log (by positivity) ?_
@@ -1463,8 +1472,10 @@ theorem zero_density : ∃ A C η : ℝ, 0 < A ∧ 0 < C ∧ 0 < η ∧ ∀ (q :
     have s2 := mul_le_mul_of_nonneg_left hlT s0
     have s3 := mul_nonneg s0 hl0
     rcases max_choice (2 * (1 - σ)) (1 / L) with h | h
-    · rw [hr, h, hL]; nlinarith
-    · rw [hr, h, one_div_mul_cancel hL0.ne']; nlinarith
+    · rw [hr, h, hL]; linarith
+    · rw [hr, h, one_div_mul_cancel hL0.ne']
+      have : 0 ≤ (1 - σ) * Real.log (q * T) := mul_nonneg s0 (Real.log_nonneg (one_le_mul_of_one_le_of_one_le hq (by linarith)))
+      linarith
   obtain ⟨K, hK⟩ : ∃ K : ℕ, K = ⌈E * (r * L)⌉₊ := ⟨_, rfl⟩
   have k1 : E * (r * L) ≤ K := hK ▸ Nat.le_ceil _
   have k2 : (K : ℝ) ≤ (E + 1) * (r * L) := by
@@ -1482,8 +1493,8 @@ theorem zero_density : ∃ A C η : ℝ, 0 < A ∧ 0 < C ∧ 0 < η ∧ ∀ (q :
       calc 4 * L * r = a * (4 / a * (r * L)) := by field_simp
         _ ≤ _ := this
     have n2 : 2 * q * (T + 1) ≤ (q * (T + 3)) ^ 2 := by
-      have : (q : ℝ) ≤ q ^ 2 := by nlinarith
-      have : 2 * (T + 1) ≤ (T + 3) ^ 2 := by nlinarith
+      have : (q : ℝ) ≤ q ^ 2 := le_self_pow₀ hq (by norm_num)
+      have : 2 * (T + 1) ≤ (T + 3) ^ 2 := by linarith [sq_nonneg (T + 2)]
       calc 2 * q * (T + 1) = q * (2 * (T + 1)) := by ring
         _ ≤ q ^ 2 * (T + 3) ^ 2 := by gcongr
         _ = _ := by ring
@@ -1626,19 +1637,19 @@ theorem layers {ι : Type*} (s : Finset ι) (w δ : ι → ℝ) (hw : ∀ i, 0 �
       have a2 := Nat.lt_floor_add_one (L * (δ i - η))
       have hm : ⌊L * (δ i - η)⌋₊ ∈ Finset.range J := by
         rw [Finset.mem_range, Nat.floor_lt h0]
-        nlinarith
+        have := mul_le_mul_of_nonneg_left (by linarith : δ i - η ≤ e) hL.le; linarith
       have := Finset.single_le_sum hnn hm
       rw [if_pos] at this
       · have h3 : Real.exp (-(L * δ i)) ≤ Real.exp (-(L * η) - ⌊L * (δ i - η)⌋₊) :=
           Real.exp_le_exp.2 (by linarith)
-        nlinarith
+        have := mul_le_mul_of_nonneg_left h3 hwi; linarith
       · refine le_min ?_ h2
         have : δ i - η ≤ (⌊L * (δ i - η)⌋₊ + 1) / L := by
           rw [le_div_iff₀ hL]; linarith
         linarith
     · have h3 : Real.exp (-(L * δ i)) ≤ Real.exp (-(L * e)) :=
-        Real.exp_le_exp.2 (by nlinarith)
-      nlinarith
+        Real.exp_le_exp.2 (by have := mul_le_mul_of_nonneg_left (le_of_not_ge h2) hL.le; linarith)
+      have := mul_le_mul_of_nonneg_left h3 hwi; linarith
   · linarith
 
 theorem sum_rpow_zeros_le : ∃ A C η₀ : ℝ, 0 < A ∧ 0 < C ∧ 0 < η₀ ∧ ∀ (q : ℕ) [NeZero q] (T u η : ℝ), 2 ≤ T → ((q : ℝ) * T) ^ A ≤ u → 0 ≤ η → ∑ χ : DirichletCharacter ℂ q, (∑ᶠ ρ ∈ zerosBox χ (1 / 2) T ∩ {ρ | ρ.re ≤ 1 - η}, (ord χ ρ : ℝ) * u ^ (ρ.re - 1)) ≤ C * (u ^ (-η / 2) + u ^ (-η₀)) := by
@@ -1654,7 +1665,7 @@ theorem sum_rpow_zeros_le : ∃ A C η₀ : ℝ, 0 < A ∧ 0 < C ∧ 0 < η₀ �
   refine ⟨2 * A₁ + 4 / e, C₁ * Real.exp (1 / 2) * K + C₂, e / 2, by positivity, by positivity,
     by positivity, fun q _ T u η hT hu hη => ?_⟩
   have hq : (1 : ℝ) ≤ q := by exact_mod_cast NeZero.one_le
-  have hqT : (1 : ℝ) < q * T := by nlinarith
+  have hqT : (1 : ℝ) < q * T := lt_of_lt_of_le (by linarith : (1 : ℝ) < T) (le_mul_of_one_le_left (by linarith) hq)
   have hu1 : 1 < u := (Real.one_lt_rpow hqT (by positivity)).trans_le hu
   have hu0 : 0 < u := by linarith
   have hL : 0 < Real.log u := Real.log_pos hu1
@@ -1665,9 +1676,9 @@ theorem sum_rpow_zeros_le : ∃ A C η₀ : ℝ, 0 < A ∧ 0 < C ∧ 0 < η₀ �
   set L := Real.log u with hLdef
   set M := Real.log (q * T) with hMdef
   have h4 : 0 < 4 / e := by positivity
-  have hLM1 : 2 * A₁ * M ≤ L := by nlinarith
+  have hLM1 : 2 * A₁ * M ≤ L := by have := mul_pos h4 hM; linarith
   have hLM2 : 4 * M ≤ e * L := by
-    have : 4 / e * M ≤ L := by nlinarith [mul_pos hA₁ hM]
+    have : 4 / e * M ≤ L := by linarith [mul_pos hA₁ hM]
     rw [div_mul_eq_mul_div, div_le_iff₀ he0] at this
     linarith
   choose hfin hcount using fun χ : DirichletCharacter ℂ q => H₂ q χ T hT
@@ -1727,7 +1738,7 @@ theorem sum_rpow_zeros_le : ∃ A C η₀ : ℝ, 0 < A ∧ 0 < C ∧ 0 < η₀ �
       have hx3 : L * x ≤ L * η + (j + 1) := by
         have := mul_le_mul_of_nonneg_left hx1 hL.le
         rwa [mul_add, mul_div_cancel₀ _ hL.ne'] at this
-      nlinarith [mul_le_mul_of_nonneg_right hLM1 hx0]
+      linarith [mul_le_mul_of_nonneg_right hLM1 hx0]
     refine (Finset.sum_le_sum this).trans ?_
     rw [← Finset.mul_sum]
     have := hsum.sum_le_tsum (Finset.range J) (fun _ _ => by positivity)
@@ -1749,7 +1760,7 @@ theorem sum_rpow_zeros_le : ∃ A C η₀ : ℝ, 0 < A ∧ 0 < C ∧ 0 < η₀ �
   have p1 : 0 ≤ u ^ (-η / 2) := by positivity
   have p2 : 0 ≤ u ^ (-(e / 2)) := by positivity
   have p3 : 0 ≤ C₁ * Real.exp (1 / 2) * K := by positivity
-  nlinarith [mul_nonneg p3 p2, mul_nonneg hC₂.le p1]
+  linarith [mul_nonneg p3 p2, mul_nonneg hC₂.le p1]
 
 end GlobalTheory.Lin.ZeroSum
 end -- clump:auto

@@ -244,6 +244,8 @@ variable {K L : FiniteSubfield} [Fact (K ≤ L)] (S : Set (HeightOneSpectrum (�
 
 
 
+attribute [local irreducible] compactZmodDualityMap gsMackeyCompactIso cohomologyIsoOfContinuousMulEquiv
+
 theorem bijective_compactZmodDualityMap_gsOpenSubgroup_of_surjective
     (τ : compactCohomologyRes (mackeyFamily (gsOpenSubgroup S hL) (gsFinFamily S ιs))
       (Rep.res (gsOpenSubgroup S hL : Subgroup (galUnramifiedOutside K.1 ℚ̄ S)).subtype (gsRoots S n)) 3 →+ ZMod n)
@@ -508,6 +510,8 @@ theorem bijective_tateCompactDualityMap_coind (t : tateCompactCohomologyRes φ �
 end Coind
 
 section Cores
+
+attribute [local irreducible] tateCompactCores tateCoindIso
 
 theorem surjective_tateCompactCores_three (D : Rep (ULift.{0} ℤ) G) [IsDiscreteRep D] [Finite D] {n : ℕ}
     (hD : ∀ d : D, n • d = 0)
@@ -882,6 +886,8 @@ theorem gsTauBijective_of_le (W₀ : OpenSubgroup (galUnramifiedOutside K.1 ℚ�
   exact gsTauBijective_gsOpenSubgroup S ιs hS hev hL W₀ hW₀ hU
 
 
+
+attribute [local irreducible] tateCompactDualityMap compactZmodDualityMap tateCompactCores
 
 include hS hev in
 theorem bijective_tateCompactDualityMap_coind_gs_of_even

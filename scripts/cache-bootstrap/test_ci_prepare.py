@@ -300,11 +300,22 @@ class PreparationTests(unittest.TestCase):
         header.update(schema=1, modules=1, map_sha256=prep.digest(data), input_fingerprint=identity["input_fingerprint"])
         row = ["Module", "1" * 16, "2" * 16 + ".ltar", "3" * 64]
         encode = lambda h, r: gzip.compress((json.dumps(h) + "\n" + json.dumps(r) + "\n").encode(), mtime=0)
-        self.assertEqual(prep.manifest_hashes(encode(header, row), entries, data, identity), {row[2]: row[3]})
+        self.assertEqual(prep.manifest_artifacts(encode(header, row), data, identity),
+                         (entries, {row[2]: row[3]}))
         with self.assertRaises(ValueError):
-            prep.manifest_hashes(encode({**header, "map_sha256": "0" * 64}, row), entries, data, identity)
+            prep.manifest_artifacts(encode({**header, "map_sha256": "0" * 64}, row), data, identity)
         with self.assertRaises(ValueError):
-            prep.manifest_hashes(encode(header, ["../outside", *row[1:]]), entries, data, identity)
+            prep.manifest_artifacts(encode(header, ["../outside", *row[1:]]), data, identity)
+
+    def test_unselected_modules_cannot_disagree_on_an_archive_digest(self):
+        archive = "3" * 16 + ".ltar"
+        entries = {"1" * 16: archive, "2" * 16: archive}
+        data = prep.publication.encode_map(entries)
+        rows = {"1" * 16: ["A", "1" * 16, archive, "a" * 64],
+                "2" * 16: ["B", "2" * 16, archive, "b" * 64]}
+        manifest = prep.publication.encode_manifest(sample_identity(), data, rows)
+        with self.assertRaisesRegex(ValueError, "Conflicting archive digests"):
+            prep.manifest_artifacts(manifest, data, modules={"NewModule"})
 
     def test_downloads_verify_existing_files_and_atomically_replace_partial_cache(self):
         with tempfile.TemporaryDirectory(prefix='rh-prep-"quoted-') as directory:
@@ -331,6 +342,55 @@ class PreparationTests(unittest.TestCase):
                 self.assertEqual(downloader.call_count, 1)
             with self.assertRaises(ValueError):
                 prep.downloads(cache, {"a" * 16: name}, {})
+
+    def test_prepare_reports_map_count_before_any_state_or_download_and_always_continues(self):
+        checks = prep.runner_checks()
+        minimum = checks.MINIMUM_MAX_MAP_COUNT
+        with tempfile.TemporaryDirectory() as directory, patch.object(prep, "runner_checks", return_value=checks):
+            root = Path(directory)
+            args = SimpleNamespace(trusted=root / "trusted", candidate=root / "candidate", state=root / "state",
+                                   request=root / "request.json", output=root / "paths.json")
+            # Low, at the doctor minimum, and where the file does not exist (macOS): preparation goes on.
+            # It is stopped here at its next step, so whatever was printed came before any state or download.
+            for count, lines in ((65530, 2), (minimum, 1), (None, 0)):
+                with self.subTest(count=count), patch.object(checks, "max_map_count", return_value=count), \
+                        patch.object(checks.sys, "platform", "darwin"), \
+                        patch.object(prep.settings, "require_baseline", side_effect=RuntimeError("preparation continues")), \
+                        patch.object(prep.subprocess, "run") as run, patch.object(prep, "get") as get, \
+                        redirect_stdout(io.StringIO()) as stdout:
+                    with self.assertRaisesRegex(RuntimeError, "preparation continues"):
+                        prep.prepare(args)
+                    for untouched in (run, get):
+                        untouched.assert_not_called()
+                    printed = stdout.getvalue().splitlines()
+                    self.assertEqual(len(printed), lines)
+                    if count is not None:
+                        self.assertEqual(printed[0], f"vm.max_map_count is {count} on this runner host "
+                                                     f"(runner minimum {minimum})")
+                    if lines == 2:
+                        self.assertTrue(printed[1].startswith("::warning title="))
+                self.assertEqual(list(root.iterdir()), [])
+
+    def test_prepare_continues_when_ci_runner_cannot_be_loaded_or_its_report_fails(self):
+        # runner_checks() runs all of ci-runner.py's top-level code, so a broken later version of that
+        # file must not stop every build job at prepare.
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            args = SimpleNamespace(trusted=root / "trusted", candidate=root / "candidate", state=root / "state",
+                                   request=root / "request.json", output=root / "paths.json")
+            broken_report = SimpleNamespace(report_max_map_count=lambda: 1 / 0)
+            for runner_checks, expected in (
+                    ({"side_effect": ModuleNotFoundError("No module named 'yaml'")},
+                     "Skipped the vm.max_map_count report: ModuleNotFoundError: No module named 'yaml'"),
+                    ({"return_value": broken_report},
+                     "Skipped the vm.max_map_count report: ZeroDivisionError: division by zero")):
+                with self.subTest(expected=expected), patch.object(prep, "runner_checks", **runner_checks), \
+                        patch.object(prep.settings, "require_baseline", side_effect=RuntimeError("preparation continues")), \
+                        redirect_stdout(io.StringIO()) as stdout:
+                    with self.assertRaisesRegex(RuntimeError, "preparation continues"):
+                        prep.prepare(args)
+                    self.assertEqual(stdout.getvalue().splitlines(), [expected])
+            self.assertEqual(list(root.iterdir()), [])
 
 
 if __name__ == "__main__":

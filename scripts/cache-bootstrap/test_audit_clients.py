@@ -109,6 +109,7 @@ class HelperPreflightTests(unittest.TestCase):
         helper = load("build_tests_fixture", SCRIPTS / "cache-bootstrap/test_ci_build.py")
         with patch.object(sys, "argv", ["test_ci_build.py", "--resource-tests-only"]), \
                 patch.object(helper, "resource_tests") as resources, \
+                patch.object(helper, "snapshot_tests", side_effect=AssertionError("snapshot ran")), \
                 patch.object(helper, "recovery_tests", side_effect=AssertionError("recovery ran")):
             helper.main()
         resources.assert_called_once()
@@ -117,9 +118,11 @@ class HelperPreflightTests(unittest.TestCase):
         helper = load("normal_build_tests_fixture", SCRIPTS / "cache-bootstrap/test_ci_build.py")
         with patch.object(sys, "argv", ["test_ci_build.py"]), \
                 patch.object(helper, "resource_tests"), \
+                patch.object(helper, "snapshot_tests") as snapshot, \
                 patch.object(helper, "recovery_tests", side_effect=RuntimeError("recovery reached")):
             with self.assertRaisesRegex(RuntimeError, "recovery reached"):
                 helper.main()
+        snapshot.assert_called_once()
 
     @unittest.skipUnless(hasattr(os, "mkfifo"), "FIFO fixture requires POSIX")
     def test_fifo_credential_rejects_without_waiting_for_writer(self):

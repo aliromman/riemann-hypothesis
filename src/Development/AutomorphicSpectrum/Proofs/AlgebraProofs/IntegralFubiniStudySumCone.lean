@@ -488,7 +488,7 @@ open scoped ENNReal
 namespace GlobalTheory.CompanionTheory.Ar.Short.Crofton
 
 theorem setCrofton : ∀ (n e δ : ℕ) (h : HermNorm n) (W : Ideal (MvPolynomial (Fin n) ℂ))
-  (f : MvPolynomial (Fin (e + 1) × Fin n) ℂ), IsProjPrime W → IsChowForm W (e + 1) f → IsMultiHomog δ f →
+  (f : MvPolynomial (Fin (e + 1) × Fin n) ℂ), IsProjPrime W → IsChowForm W (e + 1) f → GroundTheory.Heights₂.Heights.IsMultiHomog δ f →
   ∀ A : Set (EuclideanSpace ℂ (Fin n)), IsOpen A → IsScaleStable A →
     planeMass n e * ∫⁻ π : Fin (e + 1) → Fin n → ℂ, matGauss π *
         cntOver (coneSet h W ∩ A) π (firstCoordVec (e + 1)) =
@@ -848,7 +848,7 @@ open scoped ENNReal
 
 
 theorem _root_.GlobalTheory.CompanionTheory.Relay.crofton_formula_fibre_sum : ∀ (n e δ : ℕ) (h : HermNorm n) (W : Ideal (MvPolynomial (Fin n) ℂ))
-  (f : MvPolynomial (Fin (e + 1) × Fin n) ℂ), IsProjPrime W → IsChowForm W (e + 1) f → IsMultiHomog δ f →
+  (f : MvPolynomial (Fin (e + 1) × Fin n) ℂ), IsProjPrime W → IsChowForm W (e + 1) f → GroundTheory.Heights₂.Heights.IsMultiHomog δ f →
   ∀ φ : EuclideanSpace ℂ (Fin n) → ℝ≥0∞, Measurable φ →
     (∀ s : ℝ≥0∞, IsOpen {y | s < φ y} ∧ IsScaleStable {y | s < φ y}) →
     Measurable (fun π : Fin (e + 1) → Fin n → ℂ => ∑' y : fibrePts (coneSet h W) π, φ y) ∧
@@ -1091,7 +1091,7 @@ private theorem ne_zero_of_mem_fibre_pts {n e : ℕ} (S : Set (EuclideanSpace �
 
 theorem GlobalTheory.CompanionTheory.Ar.Short.Crofton.fsSum_crofton : ∀ (n e δ : ℕ) (h : HermNorm n) (W : Ideal (MvPolynomial (Fin n) ℂ))
   (f : MvPolynomial (Fin (e + 1) × Fin n) ℂ) (u : Fin n → ℂ),
-  IsProjPrime W → IsChowForm W (e + 1) f → IsMultiHomog δ f → linForm u ∉ W →
+  IsProjPrime W → IsChowForm W (e + 1) f → GroundTheory.Heights₂.Heights.IsMultiHomog δ f → linForm u ∉ W →
     Integrable (fsSum h u (coneSet h W)) (gaussM (e + 1) n) ∧
       ∫ π, fsSum h u (coneSet h W) π ∂(gaussM (e + 1) n) =
         (gaussM (e + 1) n Set.univ).toReal * coneIntegral h W e (fsLog h u) := by

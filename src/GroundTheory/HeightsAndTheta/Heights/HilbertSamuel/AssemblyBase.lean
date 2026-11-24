@@ -605,7 +605,7 @@ theorem BlockResolutionFormsIndependent.proof (hND : NonvanishingDense.Statement
   have hFc : Continuous F :=
     continuous_finsetSum _ fun k _ => continuous_const.mul (continuous_eval _)
 
-  have hev : ∀ (s : MRing ι) (e : K → ℕ), ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog s e → ∀ (c : K → ℂ) (z : (Σ k, ι k) → ℂ),
+  have hev : ∀ (s : MRing ι) (e : K → ℕ), IsMultiHomog s e → ∀ (c : K → ℂ) (z : (Σ k, ι k) → ℂ),
       eval (fun p => c p.1 * z p) (map (Int.castRingHom ℂ) s) =
         (∏ k, c k ^ e k) * eval z (map (Int.castRingHom ℂ) s) := by
     intro s e hs c z
@@ -780,13 +780,13 @@ theorem PointHeightFS.proof : PointHeightFS.Statement := by
   intro I hI
   classical
   have hP : IsArithVar (⊥ : Ideal (MRing (GlobalTheory (Fin 1)))) (0 + 1) := IndefiniteRowSideFullHecke.Inter.isArithVar_bot 0
-  have hs : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog x0 fun _ => 1 := IndefiniteRowSideFullHecke.Inter.isMultiHomog_Xb 1 0
+  have hs : IsMultiHomog x0 fun _ => 1 := IndefiniteRowSideFullHecke.Inter.isMultiHomog_Xb 1 0
   have hx0 : x0 ∉ (⊥ : Ideal (MRing (GlobalTheory (Fin 1)))) := by
     rw [Ideal.mem_bot]
     exact X_ne_zero _
   have hR := (hI Unit (GlobalTheory (Fin 1))).2.2 ⊥ 0 Fin.elim0 fsOne x0 (fun _ => 1) hP (fun j => j.elim0)
     isSmoothHerm_fsOne (fun _ => rfl) hs hx0
-  have hL : (Fin.snoc (Fin.elim0 : Fin 0 → ReciprocityTheory.ChartRestriction.G.Geo.HermLine (GlobalTheory (Fin 1))) fsOne : Fin 1 → _) =
+  have hL : (Fin.snoc (Fin.elim0 : Fin 0 → HermLine (GlobalTheory (Fin 1))) fsOne : Fin 1 → _) =
       fun _ => fsOne := by
     funext j
     fin_cases j
@@ -1235,9 +1235,9 @@ noncomputable section
 variable {K : Type} [Fintype K] [DecidableEq K] {ι : K → Type} (F : Type) [Field F]
 
 theorem segreMap_monomial_isMultiHomog (d : ((_ : Unit) × ((k : K) → ι k)) →₀ ℕ) (a : F) :
-    NumbersDVR.IsMultiHomog (segreMap F (monomial d a))
+    IsMultiHomog (segreMap F (monomial d a))
       (fun _ => Finsupp.weight (blockWeight (fun _ : Unit => ∀ k, ι k)) d ()) := by
-  unfold NumbersDVR.IsMultiHomog
+  unfold IsMultiHomog
   rw [segreMap, aeval_monomial, algebraMap_eq, Finsupp.prod]
   refine IsWeightedHomogeneous.C_mul ?_ a
   have hX : ∀ v : (_ : Unit) × ((k : K) → ι k),
@@ -1328,7 +1328,7 @@ theorem prod_weights {n : ℕ} (q : ℝ) (s : Fin n → Fin 2) :
 theorem proof : ShiftIntersectionPolynomial.Statement := by
   intro K _ ι _ II P n A B hII hP hA hB
   have hI : IsIntersectionFamily (II K ι) := hII K ι
-  set e : Fin 2 → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι := ![A, B] with he_def
+  set e : Fin 2 → HermLine ι := ![A, B] with he_def
   have he : ∀ i, IsSmoothHerm (e i) := by
     intro i
     rcases Fin.exists_fin_two.mp ⟨i, rfl⟩ with h | h <;> rw [h] <;> simpa [e]
@@ -1356,7 +1356,7 @@ theorem proof : ShiftIntersectionPolynomial.Statement := by
   · intro q
     set Z := GroundTheory.Heights₂.Heights.HilbertSamuel.HermLine.zcomb A B (q : ℤ) 1 with hZ_def
     have hZ : IsSmoothHerm Z := ZCombLimit.isSmoothHerm_zcomb_int hA hB _ _
-    have hposition : ∀ (L : Fin n → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (a : Fin n), (∀ j, IsSmoothHerm (L j)) →
+    have hposition : ∀ (L : Fin n → HermLine ι) (a : Fin n), (∀ j, IsSmoothHerm (L j)) →
         II K ι P n (Function.update L a Z) =
           (![(q : ℝ), 1] : Fin 2 → ℝ) 0 * II K ι P n (Function.update L a (e 0)) +
             (![(q : ℝ), 1] : Fin 2 → ℝ) 1 * II K ι P n (Function.update L a (e 1)) := by
@@ -1410,7 +1410,7 @@ theorem regularityLocalDimension_holds.proof (hF : LocRingFrac.Statement) (hL : 
   have := hnoeth
   refine ⟨hloc, hnoeth, ?_⟩
   choose c hc using hW.2
-  have ht : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (∏ k, (X ⟨k, c k⟩ : MRing ι) ^ a k) a := AvoidRing.isMultiHomog_coordProd c a
+  have ht : IsMultiHomog (∏ k, (X ⟨k, c k⟩ : MRing ι) ^ a k) a := AvoidRing.isMultiHomog_coordProd c a
   have htW : (∏ k, (X ⟨k, c k⟩ : MRing ι) ^ a k) ∉ W := AvoidRing.coordProd_not_mem hWp c hc a
   have htP : Ideal.Quotient.mk P (∏ k, (X ⟨k, c k⟩ : MRing ι) ^ a k) ∈ nonZeroDivisors (MRing ι ⧸ P) :=
     mem_nonZeroDivisors_of_ne_zero fun h => htW (hPW (Ideal.Quotient.eq_zero_iff_mem.mp h))

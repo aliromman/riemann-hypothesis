@@ -195,7 +195,8 @@ theorem cab_sum_nz (hP : Ext.PackingCount) (hA : Ext.GaussianTailBound) {DF : �
       mul_nonneg (by positivity) (by linarith)
     have hgd' : 2 * (g : ℝ) ≤ (dstar (E := E) P.m : ℝ) := by exact_mod_cast hgd
     have ht0nn : 0 ≤ t0 (E := E) P.q P.R0 := by rw [ht0]; exact mul_nonneg hq.le hb.le
-    have hmul : t0 (E := E) P.q P.R0 ≤ Real.pi / 2 * t0 (E := E) P.q P.R0 := by nlinarith
+    have hmul : t0 (E := E) P.q P.R0 ≤ Real.pi / 2 * t0 (E := E) P.q P.R0 :=
+      le_mul_of_one_le_left ht0nn hpi
     have heq : Real.pi / 2 * P.q * b0 (E := E) P.q P.R0 = Real.pi / 2 * t0 (E := E) P.q P.R0 := by
       rw [ht0]; ring
     rw [heq]
@@ -238,15 +239,17 @@ theorem cab_sum_nz (hP : Ext.PackingCount) (hA : Ext.GaussianTailBound) {DF : �
     have hδR : Real.sqrt (b0 (E := E) P.q P.R0) ≤ R / (4 * Real.sqrt (Real.pi / 2 * P.q)) := by
       rw [le_div_iff₀ h4]
       rw [Real.sqrt_mul haq.le] at hR
-      nlinarith
+      have : Real.sqrt (b0 (E := E) P.q P.R0) * (4 * Real.sqrt (Real.pi / 2 * P.q)) =
+          4 * (Real.sqrt (Real.pi / 2 * P.q) * Real.sqrt (b0 (E := E) P.q P.R0)) := by ring
+      linarith
     have hnorm : ∀ x ∈ S.image φ, ‖x‖ ≤ R / (4 * Real.sqrt (Real.pi / 2 * P.q)) := by
       intro x hx
       obtain ⟨i, hi, rfl⟩ := Finset.mem_image.mp hx
       show ‖(Col.ob (IR I)).repr ⟨Col.uc (IR I) (cabOut i.1 : Vsp X.dim), uc_mem_IR _⟩‖ ≤ _
       rw [LinearIsometryEquiv.norm_map]
       show ‖Col.uc (IR I) (cabOut i.1 : Vsp X.dim)‖ ≤ _
-      rw [le_div_iff₀ h4]
-      nlinarith [hS i hi]
+      rw [le_div_iff₀ h4, mul_comm]
+      exact hS i hi
     have hsep : ∀ x ∈ S.image φ, ∀ y ∈ S.image φ, x ≠ y →
         Real.sqrt (b0 (E := E) P.q P.R0) ≤ dist x y := by
       intro x hx y hy hxy
@@ -347,7 +350,9 @@ theorem cab_R (hI : IsSplit P I) (hP : Ext.PackingCount) (hA : Ext.GaussianTailB
               | exact Complex.im_le_norm _
         _ ≤ ‖Col.uc (IR I) v‖ * ‖v‖ := by rw [Hf_eq_inner_swap']; exact norm_inner_le_norm _ _
         _ = ‖v‖ * ‖Col.uc (IR I) v‖ := mul_comm _ _
-    nlinarith [norm_nonneg (Col.uc (IR I) v), norm_nonneg v]
+    rcases eq_or_lt_of_le (norm_nonneg (Col.uc (IR I) v)) with h0 | hpos
+    · rw [← h0]; exact norm_nonneg v
+    · exact le_of_mul_le_mul_right (by rw [← sq, h1]; exact h2) hpos
   have hterm : ∀ c : Col.Qc X I, ‖Col.Tc X I P.q β c v‖ ≤ B * Real.exp (P.q * Real.pi * ‖v‖ ^ 2 / 2 -
       P.q * Real.pi * ‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ ^ 2 + 2 * P.q * Real.pi * ‖v‖ * ‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖) := by
     intro c
@@ -359,13 +364,30 @@ theorem cab_R (hI : IsSplit P I) (hP : Ext.PackingCount) (hA : Ext.GaussianTailB
     rw [norm_sub_rev] at hd
     have hsq : ‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ ^ 2 - 2 * ‖Col.uc (IR I) v‖ * ‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ ≤
         ‖Col.uc (IR I) v - Col.uc (IR I) (cabOut c : Vsp X.dim)‖ ^ 2 := by
-      nlinarith [mul_nonneg (sub_nonneg.2 hd) (sub_nonneg.2 hd2), sq_nonneg ‖Col.uc (IR I) v‖,
-        norm_nonneg (Col.uc (IR I) v - Col.uc (IR I) (cabOut c : Vsp X.dim))]
+      have habs : |‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ - ‖Col.uc (IR I) v‖| ≤
+          ‖Col.uc (IR I) v - Col.uc (IR I) (cabOut c : Vsp X.dim)‖ :=
+        abs_sub_le_iff.mpr ⟨hd, hd2⟩
+      have hsq' : (‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ - ‖Col.uc (IR I) v‖) ^ 2 ≤
+          ‖Col.uc (IR I) v - Col.uc (IR I) (cabOut c : Vsp X.dim)‖ ^ 2 := by
+        rw [← sq_abs]
+        exact pow_le_pow_left₀ (abs_nonneg _) habs 2
+      have hexp : (‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ - ‖Col.uc (IR I) v‖) ^ 2 =
+          ‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ ^ 2 -
+            2 * ‖Col.uc (IR I) v‖ * ‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ +
+            ‖Col.uc (IR I) v‖ ^ 2 := by ring
+      linarith [sq_nonneg ‖Col.uc (IR I) v‖]
     have hkey : ‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ ^ 2 - 2 * ‖v‖ * ‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ ≤
         ‖Col.uc (IR I) v - Col.uc (IR I) (cabOut c : Vsp X.dim)‖ ^ 2 := by
-      nlinarith [mul_le_mul_of_nonneg_left huc (norm_nonneg (Col.uc (IR I) (cabOut c : Vsp X.dim)))]
+      have := mul_le_mul_of_nonneg_right (by linarith : 2 * ‖Col.uc (IR I) v‖ ≤ 2 * ‖v‖)
+        (norm_nonneg (Col.uc (IR I) (cabOut c : Vsp X.dim)))
+      linarith
     have hqpi : 0 ≤ (P.q : ℝ) * Real.pi := by positivity
-    nlinarith [mul_le_mul_of_nonneg_left hkey hqpi]
+    have hmul := mul_le_mul_of_nonneg_left hkey hqpi
+    have hexp : (P.q : ℝ) * Real.pi *
+        (‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ ^ 2 - 2 * ‖v‖ * ‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖) =
+        P.q * Real.pi * ‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ ^ 2 -
+          2 * P.q * Real.pi * ‖v‖ * ‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ := by ring
+    linarith
   have hC : ∀ a : cabNZ X I, Real.exp (P.q * Real.pi * ‖v‖ ^ 2 / 2 - P.q * Real.pi * ‖Col.uc (IR I) (cabOut (a : Col.Qc X I) : Vsp X.dim)‖ ^ 2 +
       2 * P.q * Real.pi * ‖v‖ * ‖Col.uc (IR I) (cabOut (a : Col.Qc X I) : Vsp X.dim)‖) ≤
       Real.exp (P.q * Real.pi * ‖v‖ ^ 2 / 2 + 2 * P.q * Real.pi * ‖v‖ ^ 2) *
@@ -514,7 +536,8 @@ theorem cab_dstar_ge (P : Par X DF) : 2 ≤ dstar (E := E) P.m := by
   show 2 ≤ 2 * PT.f E * P.m
   have h1 := P.hm1
   have h2 : 1 ≤ PT.f E := le_trans (Nat.one_le_pow _ _ (by omega)) P.hmf
-  nlinarith
+  calc 2 = 2 * 1 * 1 := by norm_num
+    _ ≤ 2 * PT.f E * P.m := Nat.mul_le_mul (Nat.mul_le_mul_left 2 h2) h1
 
 theorem cab_q_ge (P : Par X DF) : (2 : ℝ) ≤ P.q := by
   have h1 := P.C3
@@ -548,8 +571,7 @@ theorem threshold_ge_log_bound (P : Par X DF) {c : ℕ} (hc : c ≤ DF) :
         Real.log_le_log (mul_pos (by linarith) (by linarith)) (mul_le_mul_of_nonneg_left hcDF (by linarith))
       have hlogc : 0 ≤ Real.log ((P.q : ℝ) * c) :=
         Real.log_nonneg (one_le_mul_of_one_le_of_one_le hq1 hc1)
-      nlinarith [mul_le_mul_of_nonneg_right hcDF (by linarith : (0 : ℝ) ≤ 7 + Real.log (P.q * c)),
-        mul_le_mul_of_nonneg_left hlog (by linarith : (0 : ℝ) ≤ DF)]
+      exact mul_le_mul (by linarith) (by linarith) (by linarith) (by linarith)
   linarith
 
 theorem threshold_ge_rank_log_two (P : Par X DF) : (X.gA : ℝ) * Real.log 2 ≤ t0 (E := E) P.q P.R0 := by

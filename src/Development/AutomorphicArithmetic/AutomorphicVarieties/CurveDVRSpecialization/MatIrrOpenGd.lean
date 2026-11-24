@@ -50,8 +50,6 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicCases.A
 
 @[expose] public section
 
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
-
 section SlopeTestRemainingChoices
 
 open Matrix IsLocalRing UpperTheory.V.U3 UpperTheory.V.UnitaryThreeInertia

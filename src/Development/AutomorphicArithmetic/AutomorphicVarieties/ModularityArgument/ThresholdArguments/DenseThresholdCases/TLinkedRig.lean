@@ -78,7 +78,6 @@ section -- clump:auto
 
 
 section
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 open NumberField Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp IsLocalRing UpperTheory.V UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Base UpperTheory.V.Af UpperTheory.V.Pr
   UpperTheory.V.Th
 private theorem ap_norm {l : ℕ} [Fact l.Prime] (x : PadicAlgCl l) (h : IsIntegral ℤ_[l] x) : ‖x‖ ≤ 1 := by

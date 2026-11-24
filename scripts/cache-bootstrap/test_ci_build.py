@@ -30,7 +30,7 @@ def resource_tests(ci):
     assert ci.normalized_exit_code(-15) == 143
     assert ci.normalized_exit_code(1) == 1
     with tempfile.TemporaryDirectory(prefix="rh-ci-work-location-") as temporary:
-        root = Path(temporary)
+        root = Path(temporary).resolve()
         workspace, small_tmp = root / "workspace", root / "small-tmp"
         workspace.mkdir()
         small_tmp.mkdir()
@@ -101,7 +101,7 @@ def resource_tests(ci):
         (proc / "99/task/100/status").write_text("State:\tT (stopped)\n")
         assert ci.verify_quiesced_controller(99, proc) == [99]
     with tempfile.TemporaryDirectory(prefix="rh-ci-root-link-") as directory:
-        directory = Path(directory)
+        directory = Path(directory).resolve()
         (directory / "outside/lib").mkdir(parents=True)
         (directory / "outside/lib/Proof.trace").write_text("host file must not be followed")
         (directory / "build").symlink_to(directory / "outside", target_is_directory=True)
@@ -112,7 +112,7 @@ def resource_tests(ci):
         else:
             raise AssertionError("host controller followed a symlink above its file root")
     with tempfile.TemporaryDirectory(prefix="rh-ci-tool-cache-") as directory:
-        directory = Path(directory)
+        directory = Path(directory).resolve()
         project, packages = directory / "project", directory / "packages"
         project.mkdir()
         (packages / "tool").mkdir(parents=True)
@@ -160,11 +160,52 @@ def resource_tests(ci):
     print("PASS CI resource limits: fail-closed memory scope, secret-free launcher, disk watchdog, normalized signal exits")
 
 
+def snapshot_tests(ci):
+    with tempfile.TemporaryDirectory(prefix="rh-ci-snapshot-") as temporary:
+        root = Path(temporary).resolve()
+        candidate, destination = root / "candidate", root / "snapshot"
+        (candidate / "src/Nested").mkdir(parents=True)
+        destination.mkdir()
+        (candidate / "src/Nested/Proof.lean").write_text("theorem proof : True := .intro\n")
+        (candidate / "lakefile.toml").write_text('name = "snapshot"\n')
+        (candidate / "lake-manifest.json").write_text("{}\n")
+        (candidate / "lean-toolchain").write_text(ci.TOOLCHAIN + "\n")
+        run(["git", "init", "-q"], candidate)
+        run(["git", "add", "."], candidate)
+        run(["git", "-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid", "commit", "-qm", "snapshot"], candidate)
+        head = ci.git(candidate, "rev-parse", "HEAD")
+        ci.snapshot(candidate, head, destination)
+
+        def rejects(message):
+            try:
+                ci.verify_snapshot(candidate, head, destination)
+            except ValueError as error:
+                assert message in str(error)
+            else:
+                raise AssertionError("changed snapshot passed Git verification")
+
+        proof = destination / "src/Nested/Proof.lean"
+        proof.chmod(0o755)
+        rejects("differs from its Git blob")
+        proof.chmod(0o644)
+        proof.write_text("changed")
+        rejects("differs from its Git blob")
+        proof.unlink()
+        rejects("inventory differs from Git blobs")
+        proof.symlink_to(candidate / "src/Nested/Proof.lean")
+        rejects("non-regular archived input")
+        proof.unlink()
+        proof.parent.rmdir()
+        proof.parent.symlink_to(candidate / "src/Nested", target_is_directory=True)
+        rejects("inventory differs from Git blobs")
+    print("PASS snapshot verification: rejects missing or changed files, mode changes, and symlinks")
+
+
 def recovery_tests(ci):
     environment = {**ci.trusted_env(), "ELAN_TOOLCHAIN": ci.TOOLCHAIN}
     toolchain = Path(subprocess.check_output(["elan", "which", "lean"], env=environment, text=True).strip()).parent.parent
     with tempfile.TemporaryDirectory(prefix="rh-ci-recovery-") as temporary:
-        work = Path(temporary)
+        work = Path(temporary).resolve()
         project, cache = work / "project", work / "cache"
         library, ir = project / ".lake/build/lib/lean", project / ".lake/build/ir"
         for directory in (project / "src", library, ir, cache / "artifacts"):
@@ -195,6 +236,19 @@ def recovery_tests(ci):
         ci.recover_completed_map(project, cache, toolchain, work, destination, known,
                                  known_mappings={"1" * 16: known_name})
         assert ci.load_map(destination) == {"1" * 16: known_name}, "cached LTAR hits need not leave a local archive alias"
+        mapping = ci.load_map(destination)
+        assert ci.collect_mapped_modules(project, cache, mapping, incomplete=True) == [
+            ("Complete", "1" * 16, known_name)
+        ]
+        # A malformed trace may be ignored for an already cached partial map.
+        # Locating a missing archive still requires the strict scan.
+        (cache / "artifacts" / known_name).rename(aliases[0])
+        try:
+            ci.collect_mapped_modules(project, cache, mapping, incomplete=True)
+        except json.JSONDecodeError:
+            pass
+        else:
+            raise AssertionError("staging a missing LTAR accepted a malformed module trace")
     print("PASS missing-map recovery: completed cached LTAR retained; partial cache/trace discarded")
 
 
@@ -212,9 +266,10 @@ def main():
     resource_tests(ci)
     if args.resource_tests_only:
         return
+    snapshot_tests(ci)
     recovery_tests(ci)
     with (nullcontext(str(args.keep.resolve())) if args.keep else tempfile.TemporaryDirectory(prefix="rh-ci-fixture-")) as temporary:
-        temporary = Path(temporary)
+        temporary = Path(temporary).resolve()
         root, packages, cache = temporary / "candidate", temporary / "packages", temporary / "cache"
         for directory in (root / "src", packages, cache):
             directory.mkdir(parents=True)

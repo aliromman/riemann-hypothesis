@@ -370,72 +370,7 @@ open ReciprocityTheory.ChartRestriction.G.T0 GlobalTheory.Height.OrderTieGuards
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
   {l : Level H} {Xo : Moduli Dw l} {c : Coeff l}
 
-theorem ordTieOn_of_valued {h : GenFrEx Xo c} {δ : ∀ Z : Comp Xo c, AddValuation (Om Z) (WithTop ℤ) → Ix Dw → ℤ}
-    {PY : HeightOneSpectrum (𝓞 c.F) → Type}
-    {lies : ∀ la (T : CDVR) (ι : c.F →+* T.Fr), IntFr Xo c T ι → PY la → Prop}
-    (hl : LiesTotal Xo c (trivialClassCondition Xo c) PY lies)
-    (hv : ∀ (Z : Comp Xo c) (v : AddValuation (Om Z) (WithTop ℤ)), IsNormDiscrete v →
-      ((∃ la, IsOver (K := c.F) v la) ∨ IsTrivOn c.F v) →
-      ∃ (T : CDVR) (ψ : Om Z →+* T.Fr) (y : IntFr Xo c T (ψ.comp (algebraMap c.F (Om Z)))),
-        (∀ a : Om Z, a ≠ 0 → ((vV T.V (ψ a) : ℤ) : WithTop ℤ) = v a) ∧
-        ∀ (a : (E →+* ℂ) × ℕ → ℕ) (n : ℕ) (f : Rul Xo c), f ∈ sec Xo c a n → (evI y f = 0 ↔ evC h Z f = 0) ∧
-          (evC h Z f ≠ 0 → ordC (δ Z v) v (wtZ a n) (valC h a n f Z) = vV T.V (evI y f))) :
-    OrdTieOn h δ (trivialClassCondition Xo c) PY lies := by
-  intro Z v la hd ho
-  obtain ⟨T, ψ, y, hψ, hy⟩ := hv Z v hd (Or.inl ⟨la, ho⟩)
-  obtain ⟨hpos, hres⟩ := restrict_eq hd ho
-  obtain ⟨e, he⟩ := Int.eq_ofNat_of_zero_le hpos.le
-  have he0 : 0 < e := by omega
-  have hO : OverLa la T.V (ψ.comp (algebraMap c.F (Om Z))) e := by
-    refine ⟨he0, fun a => ?_⟩
-    by_cases ha : a = 0
-    · subst ha; simp [vV, vLa]
-    · have := (hψ _ ((map_ne_zero (algebraMap c.F (Om Z))).2 ha)).trans (hres a ha)
-      rw [he] at this
-      exact_mod_cast this
-  obtain ⟨η, hη⟩ := hl la T _ e hO y trivial
-  refine ⟨PtV.mk la hO y trivial η hη, fun a n f hf h0 => ?_, fun a n f hf h0 _ => ?_⟩
-  · change _ = _ * nval T.V e (evI y f)
-    rw [nval_of_ne (fun hz => h0 ((hy a n f hf).1.1 hz)), (hy a n f hf).2 h0, he, ← EReal.coe_mul,
-      EReal.coe_eq_coe_iff]
-    have : (e : ℝ) ≠ 0 := by exact_mod_cast he0.ne'
-    push_cast
-    field_simp
-  · change nval T.V e (evI y f) = ⊤
-    rw [(hy a n f hf).1.2 h0, nval_zero]
-
 end
-
-theorem exists_unit_of_vV_eq_zero (T : CDVR) {x : T.Fr} (hx : x ≠ 0) (h0 : vV T.V x = 0) :
-    ∃ u : T.Vˣ, algebraMap T.V T.Fr (u : T.V) = x := by
-  have hne : valV T.V x ≠ 0 := valV_ne_zero hx
-  have h1 : valV T.V x = 1 := by
-    have h2 : WithZero.log (valV T.V x) = 0 := by simpa [vV] using h0
-    rw [← WithZero.exp_log hne, h2, WithZero.exp_zero]
-  obtain ⟨z, hz⟩ : ∃ z : T.V, algebraMap T.V T.Fr z = x := by
-    obtain ⟨z, hz | hz⟩ := ValuationRing.isInteger_or_isInteger T.V x |>.elim
-      (fun ⟨z, hz⟩ => (⟨z, Or.inl hz⟩ : ∃ z : T.V, algebraMap T.V T.Fr z = x ∨ algebraMap T.V T.Fr z = x⁻¹))
-      (fun ⟨z, hz⟩ => ⟨z, Or.inr hz⟩)
-    · exact ⟨z, hz⟩
-    · have hz1 : (IsDiscreteValuationRing.maximalIdeal T.V).valuation T.Fr (algebraMap T.V T.Fr z) = 1 := by
-        rw [hz, map_inv₀]
-        change (valV T.V x)⁻¹ = 1
-        rw [h1, inv_one]
-      have hzn := (HeightOneSpectrum.valuation_eq_one_iff_notMem _).1 hz1
-      have hu : IsUnit z := by
-        by_contra hn
-        exact hzn ((IsLocalRing.mem_maximalIdeal z).2 hn)
-      obtain ⟨u, rfl⟩ := hu
-      refine ⟨(u⁻¹ : T.Vˣ), ?_⟩
-      rw [map_units_inv, hz, inv_inv]
-  have hz1 : (IsDiscreteValuationRing.maximalIdeal T.V).valuation T.Fr (algebraMap T.V T.Fr z) = 1 := by
-    rw [hz]; exact h1
-  have hzn := (HeightOneSpectrum.valuation_eq_one_iff_notMem _).1 hz1
-  have hu : IsUnit z := by
-    by_contra hn
-    exact hzn ((IsLocalRing.mem_maximalIdeal z).2 hn)
-  obtain ⟨u, rfl⟩ := hu
-  exact ⟨u, hz⟩
 
 theorem exists_frameShift_ordTies : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l), 1 ≤ Dw.p + Dw.q → (∀ p : ℕ, p.Prime → l.GoodAt p) → l.A = 1 → ∀ [Fintype (Comp Xo c)] (h : GenFrEx Xo c), ∃ δ : ∀ Z : Comp Xo c, AddValuation (Om Z) (WithTop ℤ) → Ix Dw → ℤ, OrdTieQ h δ ∧ OrdTieQZ h δ ∧ (∀ (PY : HeightOneSpectrum (𝓞 c.F) → Type) (lies : ∀ la (T' : CDVR) (ι : c.F →+* T'.Fr), IntFr Xo c T' ι → PY la → Prop), LiesTotal Xo c (trivialClassCondition Xo c) PY lies → OrdTieOn h δ (trivialClassCondition Xo c) PY lies ∧ OrdTie h δ (trivialClassCondition Xo c) PY lies) ∧ ∀ d : ReciprocityTheory.ChartRestriction.G.T0.Data c.F (Comp Xo c) (fun Z => Om Z) (WTZ E) (fun Z => AC Z), DivFin d → FrShFin d δ := by
   intro E _ _ _ H Dw l Xo c hpq hgood hA _ h
@@ -446,7 +381,7 @@ theorem exists_frameShift_ordTies : ∀ (E : Type) [Field E] [NumberField E] [Is
     have htriv : trivCls Xo c T _ y := by
       intro a ha
       have ha' : algebraMap c.F (Om Z) a ≠ 0 := (map_ne_zero _).2 ha
-      refine exists_unit_of_vV_eq_zero T ((map_ne_zero _).2 ha) ?_
+      refine GlobalTheory.HeightDefinite.Ties.exists_unit_of_vV_eq_zero T ((map_ne_zero _).2 ha) ?_
       have := (hψ _ ha').trans (ht a ha)
       exact_mod_cast this
     refine ⟨⟨T, _, y, htriv⟩, fun a n f hf h0 => ?_, fun a n f hf h0 => ?_⟩
@@ -458,7 +393,7 @@ theorem exists_frameShift_ordTies : ∀ (E : Type) [Field E] [NumberField E] [Is
   refine ⟨δ, fun Z v hd ht => ?_, hQZ, fun PY lies hl => ?_, fun d hD => hfin d hD⟩
   · obtain ⟨q, hq, -⟩ := hQZ Z v hd ht
     exact ⟨q, hq⟩
-  · have hOn := ordTieOn_of_valued hl hv
+  · have hOn := GlobalTheory.HeightDefinite.Ties.ordTieOn_of_valued hl hv
     exact ⟨hOn, hOn.ordTie⟩
 
 theorem ordTies_of_pins : ∀ (D : D7) (Q : Par D), Q.Pins → ∀ j, InR D j → ∀ [Fintype (Comp (Q.Xo j) Q.c)] (h : GenFrEx (Q.Xo j) Q.c), KapFG (Q.Xo j) Q.c ∧ (∃ d, KapTrdeg (Q.Xo j) Q.c d ∧ d + Nat.card (FlagVar (Q.Dw j)) = WeightFamilies.dimY D j) ∧ FnTrdeg (Q.Xo j) Q.c (WeightFamilies.dimY D j) ∧ CompNe (Q.Xo j) Q.c ∧ ∃ δ : ∀ Z : Comp (Q.Xo j) Q.c, AddValuation (Om Z) (WithTop ℤ) → Ix (Q.Dw j) → ℤ, OrdTieQ h δ ∧ OrdTieQZ h δ ∧ OrdTieOn h δ (trivialClassCondition (Q.Xo j) Q.c) (fun _ => Unit) (fun _ _ _ _ _ => True) ∧ OrdTie h δ (trivialClassCondition (Q.Xo j) Q.c) (fun _ => Unit) (fun _ _ _ _ _ => True) ∧ ∀ d : ReciprocityTheory.ChartRestriction.G.T0.Data Q.c.F (Comp (Q.Xo j) Q.c) (fun Z => Om Z) (WTZ D.host.E) (fun Z => AC Z), DivFin d → FrShFin d δ := by
@@ -506,9 +441,6 @@ theorem conj_cmHostRoot_ne_self {E : Type} [Field E] [NumberField E] [IsCMField 
   have h8 : (0 : ℝ) < H.d := by exact_mod_cast H.d_prime.pos
   nlinarith [sq_nonneg x]
 
-theorem tauEmb_inj {t t' : D.what₂.Tau} (h : DV.tauEmb D t = DV.tauEmb D t') : t = t' :=
-  D.eTau.injective (Subtype.ext ((factEmb D.R D.host).1.1 h))
-
 theorem tauEmb_ne_conj (Q : Par D) (hp : Q.PinHost) (t t' : D.what₂.Tau) :
     DV.tauEmb D t ≠ conjEmb (DV.tauEmb D t') := by
   intro h
@@ -545,7 +477,7 @@ theorem wtA_tau (Q : Par D) (hp : Q.PinHost) {j : ℕ} (w : WeightFamilies.Wt D 
   rw [Finset.sum_eq_single t]
   · simp [tauEmb_ne_conj Q hp]
   · intro t' _ ht'
-    have : DV.tauEmb D t ≠ DV.tauEmb D t' := fun h => ht' (tauEmb_inj h).symm
+    have : DV.tauEmb D t ≠ DV.tauEmb D t' := fun h => ht' (GlobalTheory.HeightDefinite.tauEmb_inj h).symm
     simp [tauEmb_ne_conj Q hp, this]
   · simp
 
@@ -609,7 +541,7 @@ theorem wtA_conj_tau (Q : Par D) (hp : Q.PinHost) {j : ℕ} (w : WeightFamilies.
   · simp [h1]
   · intro t' _ ht'
     have : conjEmb (DV.tauEmb D t) ≠ conjEmb (DV.tauEmb D t') := fun h =>
-      ht' (GlobalTheory.LeafCompare.tauEmb_inj (by
+      ht' (GlobalTheory.HeightDefinite.tauEmb_inj (by
         rw [← conjEmb_invol (DV.tauEmb D t'), ← h, conjEmb_invol]))
     simp [h1, this]
   · simp
@@ -701,14 +633,6 @@ namespace GlobalTheory.HeightTop.Generic
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
   {l : Level H} {Xo : Moduli Dw l} {c : Coeff l}
 
-theorem frBor_of_frMap {S T : Type} [CommRing S] [Algebra c.F S] [CommRing T] [Algebra c.F T]
-    (φ : S →ₐ[c.F] T) {t : Ix Dw → Sˣ} {y y' : FrPt Xo c S} {z z' : FrPt Xo c T} (h : FrBor t y y')
-    (hz : FrMap φ y z) (hz' : FrMap φ y' z') : FrBor (fun i => Units.map (φ : S →* T) (t i)) z z' := by
-  obtain ⟨g, hg2, hg1, hg⟩ := (GlobalTheory.Frames.frBor_iff_frChg y y' t).1 h
-  have hc := (GlobalTheory.Frames.ChgBC.frChg_baseChange E H Dw l Xo c S T φ y y' z z' g _ hg hz).1 hz'
-  exact (GlobalTheory.Frames.frBor_iff_frChg z z' _).2
-    ⟨fun τ => (g τ).map φ, fun τ i j hij => by simp [hg2 τ i j hij], fun τ i => by simp [hg1], hc⟩
-
 theorem evR_of_frMap (hL : EvLaws Xo c) {a : (E →+* ℂ) × ℕ → ℕ} {n : ℕ} {g : Rul Xo c} (hg : g ∈ sec Xo c a n)
     {S T : Type} [CommRing S] [IsReduced S] [Algebra c.F S] [CommRing T] [Algebra c.F T] (φ : S →ₐ[c.F] T)
     {y : FrPt Xo c S} {z : FrPt Xo c T} (hyz : FrMap φ y z) : evR Xo c g z = φ (evR Xo c g y) := by
@@ -716,47 +640,6 @@ theorem evR_of_frMap (hL : EvLaws Xo c) {a : (E →+* ℂ) × ℕ → ℕ} {n : 
   rw [evR_eq_map_of_test_point hL hg q χ y₀ y hy₀,
     evR_eq_map_of_test_point hL hg q (φ.comp χ) y₀ z (frMap_trans _ _ _ χ φ _ _ _ hy₀ hyz)]
   rfl
-
-theorem isFractionRing_chart {h : GenFrEx Xo c} (C : FChart h) : IsFractionRing C.R (Om C.Z) := by
-  refine IsFractionRing.of_field _ _ fun x => ?_
-  obtain ⟨a, ha, b, hb, hb0, e⟩ := C.frac x
-  exact ⟨⟨a, ha⟩, ⟨b, hb⟩, by
-    change x = a / b
-    rw [eq_div_iff hb0, e]⟩
-
-attribute [local instance 1100] Subalgebra.algebra in
-attribute [local instance 100] IntermediateField.instAlgebraSubtypeMem in
-theorem le_of_generic {h : GenFrEx Xo c} (C : FChart h) (σ : c.F →+* ℂ) (F : (C.R →ₐ[c.F] CAt σ) → ℝ)
-    (hF : @Continuous _ _ (TopologicalSpace.induced (fun x (a : C.R) => Formalism.L2.PjFree.toC (x a)) inferInstance) _ F)
-    (M : ℝ) (hM : ∀ (x : C.R →ₐ[c.F] CAt σ) (P : Om C.Z →+* ℂ), P ∈ T0.PT (Ω := Om C.Z) σ →
-      (∀ a, Formalism.L2.PjFree.toC (x a) = P a) → F x ≤ M) (ψ : C.R →ₐ[c.F] CAt σ) : F ψ ≤ M := by
-  letI : TopologicalSpace (C.R →ₐ[c.F] CAt σ) :=
-    TopologicalSpace.induced (fun x (a : C.R) => Formalism.L2.PjFree.toC (x a)) inferInstance
-  have hcl : IsClosed {x | F x ≤ M} := isClosed_le hF continuous_const
-  refine hcl.closure_subset (mem_closure_iff_nhds.2 fun t ht => ?_)
-  rw [nhds_induced, Filter.mem_comap] at ht
-  obtain ⟨s, hs, hst⟩ := ht
-  rw [nhds_pi, Filter.mem_pi'] at hs
-  obtain ⟨I, u, hu, hIu⟩ := hs
-  have hev : ∀ᶠ ε in nhdsWithin (0 : ℝ) (Set.Ioi 0),
-      ∀ a ∈ I, Metric.ball (Formalism.L2.PjFree.toC (ψ a)) ε ⊆ u a := by
-    rw [Filter.eventually_all_finset]
-    intro a _
-    obtain ⟨δ, hδ, hb⟩ := Metric.mem_nhds_iff.1 (hu a)
-    filter_upwards [Ioo_mem_nhdsGT hδ] with ε hε
-    exact (Metric.ball_subset_ball hε.2.le).trans hb
-  obtain ⟨ε, hε, hε0⟩ := (hev.and self_mem_nhdsWithin).exists
-  haveI := C.sm
-  haveI := isFractionRing_chart C
-  let φ : C.R →+* ℂ := ψ.toRingHom
-  have hφ : φ.comp (algebraMap c.F C.R) = σ := RingHom.ext fun k => ψ.commutes k
-  obtain ⟨P, hP, hPε⟩ := GlobalTheory.generic_points_dense GlobalTheory.exists_algIndep_tuple_near c.F C.R (Om C.Z) σ φ hφ I ε hε0
-  let x : C.R →ₐ[c.F] CAt σ :=
-    { (P.comp (algebraMap C.R (Om C.Z)) : C.R →+* ℂ) with
-      commutes' := fun k => RingHom.congr_fun hP k }
-  refine ⟨x, hst (hIu fun a ha => hε a ha ?_), hM x P hP fun a => rfl⟩
-  rw [Metric.mem_ball, dist_eq_norm]
-  exact hPε a ha
 
 section Pin
 
@@ -770,28 +653,6 @@ abbrev pn (fn : ∀ σ : c.F →+* ℂ, FrPt Xo c (CAt σ) → Ix Dw → ℝ) (�
   ptNorm (K := c.F) (fun S _ _ => FrPt Xo c S) (fun φ y z => FrMap φ y z) σ (fn σ) (ex Dw a n) g y
 
 include hU hx hfn
-
-theorem pn_frBor_good (hd : Dom a n) (hg : g ∈ sec Xo c a n) {σ : c.F →+* ℂ} (hσ : Formalism.L2.PjFree.GoodEmb c σ)
-    {t : Ix Dw → (CAt σ)ˣ} {y y' : FrPt Xo c (CAt σ)} (hb : FrBor t y y') : pn fn σ a n g y' = pn fn σ a n g y := by
-  obtain ⟨k, x, s, hs⟩ := (hU σ hσ).2.2.1 y
-  have hs' := (GlobalTheory.Reg.BorelGroupoid.frBor_groupoid E H Dw l Xo c (CAt σ)).2.1 _ _ _ _ _ hs hb
-  have T := (_root_.GlobalTheory.FrameNorm.Comparison₂.ptNorm_eq_pnorm E H Dw l Xo c r U hU xR fn hx hfn).2.1 σ hσ k x
-  exact (T _ _ hs' a n hd g hg).trans (T _ _ hs a n hd g hg).symm
-
-theorem pn_frBor (hd : Dom a n) (hg : g ∈ sec Xo c a n) {σ : c.F →+* ℂ}
-    {t : Ix Dw → (CAt σ)ˣ} {y y' : FrPt Xo c (CAt σ)} (hb : FrBor t y y') : pn fn σ a n g y' = pn fn σ a n g y := by
-  by_cases hσ : Formalism.L2.PjFree.GoodEmb c σ
-  · exact pn_frBor_good hU hx hfn hd hg hσ hb
-  · have hσ' : Formalism.L2.PjFree.GoodEmb c ((starRingEnd ℂ).comp σ) := by
-      have := Formalism.L2.PjFree.goodEmb_goodOf c σ
-      unfold Formalism.L2.PjFree.goodOf at this
-      rwa [if_neg hσ] at this
-    have hL := (_root_.GlobalTheory.Reg.evLaws_genFr_atlas E H Dw l Xo c).1
-    obtain ⟨z, hz⟩ := hL.bc _ _ (conjAlg σ) y
-    obtain ⟨z', hz'⟩ := hL.bc _ _ (conjAlg σ) y'
-    have T := (_root_.GlobalTheory.FrameNorm.Comparison₂.ptNorm_eq_pnorm E H Dw l Xo c r U hU xR fn hx hfn).2.2 σ
-    exact ((T _ _ hz' a n g hg).symm.trans
-      (pn_frBor_good hU hx hfn hd hg hσ' (frBor_of_frMap _ hb hz hz'))).trans (T _ _ hz a n g hg)
 
 attribute [local instance 1100] Subalgebra.algebra in
 attribute [local instance 100] IntermediateField.instAlgebraSubtypeMem in
@@ -807,83 +668,9 @@ theorem pn_generic (hd : Dom a n) (hg : g ∈ sec Xo c a n) {h : GenFrEx Xo c}
   obtain rfl : x = (PAlg P).comp C.R.val := AlgHom.ext hxP
   obtain rfl : z = w := (GlobalTheory.Frames.frMap_unique_refl_iff E H Dw l Xo c _ _ _ C.y).1 _ _ hz h1
   rw [(_root_.GlobalTheory.FrameNorm.fnConj_valAtCx_nrmC_eq_ptNorm E H Dw l Xo c r U hU xR fn hx hfn h yP hyP).2.2 C.Z P a n g hg]
-  exact pn_frBor hU hx hfn hd hg (frBor_of_frMap _ C.bor (hyP C.Z P) hw)
-
-attribute [local instance 1100] Subalgebra.algebra in
-attribute [local instance 100] IntermediateField.instAlgebraSubtypeMem in
-theorem pn_continuous (hg : g ∈ sec Xo c a n) {h : GenFrEx Xo c} (C : FChart h) {σ : c.F →+* ℂ}
-    (y : (C.R →ₐ[c.F] CAt σ) → FrPt Xo c (CAt σ)) (hy : ∀ x, FrMap x C.y (y x)) :
-    @Continuous _ _ (TopologicalSpace.induced (fun x (b : C.R) => Formalism.L2.PjFree.toC (x b)) inferInstance) _
-      fun x => pn fn σ a n g (y x) := by
-  letI : TopologicalSpace (C.R →ₐ[c.F] CAt σ) :=
-    TopologicalSpace.induced (fun x (b : C.R) => Formalism.L2.PjFree.toC (x b)) inferInstance
-  haveI := C.sm
-  have hL := (_root_.GlobalTheory.Reg.evLaws_genFr_atlas E H Dw l Xo c).1
-  have hc : ∀ b : C.R, Continuous fun x : C.R →ₐ[c.F] CAt σ => Formalism.L2.PjFree.toC (x b) := fun b =>
-    (continuous_apply b).comp
-      (continuous_induced_dom (f := fun (x : C.R →ₐ[c.F] CAt σ) (b : C.R) => Formalism.L2.PjFree.toC (x b)))
-  have hf : ∀ i, Continuous fun x => |fn σ (y x) i| := fun i =>
-    continuousOn_univ.1 (_root_.GlobalTheory.FrameNorm.fn_continuousOn_smooth E H Dw l Xo c r U hU xR fn hx hfn σ C.R C.y _ Set.univ (fun x => x) y
-      (fun b => (hc b).continuousOn) (fun x _ => hy x) i)
-  have hne := (_root_.GlobalTheory.FrameNorm.Comparison₂.ptNorm_eq_pnorm E H Dw l Xo c r U hU xR fn hx hfn).1
-  have e : (fun x => pn fn σ a n g (y x)) =
-      fun x => ‖Formalism.L2.PjFree.toC (x (evR Xo c g C.y))‖ * ∏ i, |fn σ (y x) i|⁻¹ ^ ex Dw a n i := by
-    funext x
-    rw [← evR_of_frMap hL hg x (hy x)]
-    rfl
-  rw [e]
-  exact (hc _).norm.mul (continuous_finsetProd _ fun i _ =>
-    ((hf i).inv₀ fun x => abs_ne_zero.2 (hne _ _ _)).pow _)
+  exact GlobalTheory.HeightDefinite.Generic.pn_frBor hU hx hfn hd hg (GlobalTheory.HeightDefinite.Generic.frBor_of_frMap _ C.bor (hyP C.Z P) hw)
 
 end Pin
-
-attribute [local instance 1100] Subalgebra.algebra in
-attribute [local instance 100] IntermediateField.instAlgebraSubtypeMem in
-theorem supC_le_iSup_generic : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l), ∀ (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Formalism.L2.PjFree.Unf Xo c σ r), (∀ σ, Formalism.L2.PjFree.GoodEmb c σ → Formalism.L2.PjFree.IsUnf (U σ)) → ∀ (xR : ℝ) (fn : ∀ σ : c.F →+* ℂ, FrPt Xo c (CAt σ) → Ix Dw → ℝ), 0 < xR → FnPin U xR fn → ∀ (h : GenFrEx Xo c) (yP : ∀ Z : Comp Xo c, ∀ P : Om Z →+* ℂ, FrPt Xo c (CAt (sgOf P))), (∀ Z, CBase h Z (yP Z)) → ∀ a n, Dom a n → ∀ (Z : Comp Xo c), ∀ f ∈ Formalism.L2.PjFree.cusp Xo c U a n, ∀ g ∈ Formalism.L2.PjFree.cusp Xo c U a n, evC h Z g = evC h Z f → (∀ Z', Z' ≠ Z → evC h Z' g = 0) → ∀ σ : c.F →+* ℂ, BddAbove (Set.range fun P : T0.PT (Ω := Om Z) σ => nrmC fn (yP Z) (wtZ a n) (valC h a n f Z) P) ∧ Formalism.L2.PjFree.supC Xo c U xR (Formalism.L2.PjFree.goodOf c σ) a n g ≤ ⨆ P : T0.PT (Ω := Om Z) σ, nrmC fn (yP Z) (wtZ a n) (valC h a n f Z) P := by
-  intro E _ _ _ H Dw l Xo c r U hU xR fn hx hfn h yP hyP a n hd Z f hf g hg hgf hg0 σ
-  have hgs := Formalism.L2.PjFree.cusp_le_sec Xo c U a n hg
-  obtain ⟨hB, hS⟩ := _root_.GlobalTheory.FrameNorm.SupNorm.supBdd_and_supR_eq E H Dw l Xo c r U hU xR fn hx hfn a n hd g hg
-  obtain ⟨hL, -, -, hA⟩ := _root_.GlobalTheory.Reg.evLaws_genFr_atlas E H Dw l Xo c
-  have hv : valC h a n f Z = valC h a n g Z := by unfold valC; rw [hgf]
-  rw [hv, ← hS σ]
-  have hbdd : BddAbove (Set.range fun P : T0.PT (Ω := Om Z) σ => nrmC fn (yP Z) (wtZ a n) (valC h a n g Z) P) := by
-    refine ⟨supR Xo c fn σ a n g, ?_⟩
-    rintro _ ⟨⟨P, hP⟩, rfl⟩
-    obtain rfl : sgOf P = σ := hP
-    dsimp only
-    rw [(_root_.GlobalTheory.FrameNorm.fnConj_valAtCx_nrmC_eq_ptNorm E H Dw l Xo c r U hU xR fn hx hfn h yP hyP).2.2 Z P a n g hgs]
-    exact le_ciSup (hB (sgOf P)) (yP Z P)
-  have hnn : 0 ≤ ⨆ P : T0.PT (Ω := Om Z) σ, nrmC fn (yP Z) (wtZ a n) (valC h a n g Z) P :=
-    Real.iSup_nonneg fun P => mul_nonneg (norm_nonneg _)
-      (Finset.prod_nonneg fun i _ => zpow_nonneg (abs_nonneg _) _)
-  refine ⟨hbdd, Real.iSup_le (fun y => ?_) hnn⟩
-  letI : Field (CAt σ) := inferInstanceAs (Field ℂ)
-  obtain ⟨C, ψ, z, t, hz, hb⟩ := hA h (CAt σ) y
-  change pn fn σ a n g y ≤ _
-  rw [pn_frBor hU hx hfn hd hgs hb]
-  by_cases hZ : C.Z = Z
-  · subst hZ
-    choose w hw using fun x : C.R →ₐ[c.F] CAt σ => hL.bc _ _ x C.y
-    obtain rfl : z = w ψ := (GlobalTheory.Frames.frMap_unique_refl_iff E H Dw l Xo c _ _ _ C.y).1 _ _ hz (hw ψ)
-    refine le_of_generic C σ (fun x => pn fn σ a n g (w x)) (pn_continuous hU hx hfn hgs C w hw) _
-      (fun x P hP hxP => ?_) ψ
-    rw [pn_generic hU hx hfn hd hgs hyP C x P hP hxP (hw x)]
-    exact le_ciSup hbdd ⟨P, hP⟩
-  · have h1 : evR Xo c g C.yg = 0 := by
-      rw [hL.wt a n g hgs _ C.t _ _ (hL.test _ _) (hL.test _ _) C.bor]
-      have := hg0 C.Z hZ
-      unfold evC at this
-      rw [this, mul_zero]
-    have h2 : evR Xo c g C.y = 0 := by
-      rw [evR_of_frMap hL hgs C.R.val C.gen] at h1
-      exact Subtype.ext h1
-    have h3 : evR Xo c g z = 0 := by rw [evR_of_frMap hL hgs ψ hz, h2, map_zero]
-    have h4 : pn fn σ a n g z = 0 := by
-      change cabs (evR Xo c g z) * _ = 0
-      rw [h3]
-      exact mul_eq_zero_of_left (norm_zero (E := ℂ)) _
-    rw [h4]
-    exact hnn
 
 end GlobalTheory.HeightTop.Generic
 
@@ -916,7 +703,7 @@ theorem supPTGe_of_fnPin : ∀ (D : D7) (T : Core D) (h : LawsCore T) (j : ℕ) 
     apply hev
     change evC hG Z F.1 = 0
     rw [← h1, h3, evC_zero]
-  · have h4 := (GlobalTheory.HeightTop.Generic.supC_le_iSup_generic _ _ _ _ (T.Q.Xo j) T.Q.c D.R.r
+  · have h4 := (GlobalTheory.HeightDefinite.Generic.supC_le_iSup_generic _ _ _ _ (T.Q.Xo j) T.Q.c D.R.r
       (fun σ => Formalism.L2.PjFree.Unf.ofPj (T.U j σ)) hU (xiR D) fn hx hfn hG yP hyP (wtA ka) ka.n (dom_wtA ka) Z
       F.1 hFc g hg h1 h0 sg).2
     change cutN T.C T.Ns j ka sg ⟨g, hg'⟩ ≤ _
@@ -983,122 +770,6 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 
 namespace GlobalTheory.SectionBasis
 
-
-open ReciprocityTheory.ChartRestriction.G.T0 in
-
-
-theorem basis_descends_record {D : D7} {B : WeightFamilies.Prov D} {P : ModuliIntegralCharts.Prov D} {j : ℕ} (X : PJ D B P j)
-    (la : HeightOneSpectrum (𝓞 B.KO)) {ka wL wF : WeightFamilies.Wt D j} (G : GlobalFamilyData X ka wL wF) (hB : InBasis G la)
-    {ι : Type} [Fintype ι] (Ω : ι → Type) [∀ Z, Field (Ω Z)] [∀ Z, Algebra B.KO (Ω Z)]
-    (gF : ∀ Z, X.Forms →ₐ[B.KO] Ω Z) {Dd N : ℕ} (hD : Dd = WeightFamilies.dimY D j) (e : Fin G.N ≃ Fin (N + 1))
-    (j0 : ι → Fin (N + 1)) (v : ∀ Z, Fin G.N → Ω Z) (hvF : ∀ Z k, gF Z (X.inc wL (G.w k)) = v Z k)
-    (x : ∀ Z, Fin N → Ω Z) (hv : ∀ Z, v Z (e.symm (j0 Z)) ≠ 0)
-    (hx : ∀ Z k, x Z k = v Z (e.symm ((j0 Z).succAbove k)) / v Z (e.symm (j0 Z)))
-    (hind : ∀ Z, AlgebraicIndependent B.KO (sImg (D := Dd) (j0 Z) (x Z)))
-    (hfin : ∀ Z, FiniteDimensional (IntermediateField.adjoin B.KO (Set.range (sImg (D := Dd) (j0 Z) (x Z))))
-      (OmS (Ω Z) Dd N))
-    (g0 : B.Cusp j wF) (θ : Fin G.del → ∀ Z, Ω Z) (hθ : ∀ k Z, gF Z (X.inc wF (G.th' k)) = θ k Z)
-    (g : ∀ Z, Ω Z) (hgF : ∀ Z, gF Z (X.inc wF g0) = g Z) (hg : ∀ Z, g Z ≠ 0)
-    (E : letI : ∀ Z, Module (Kp X la G.N) (RZs X la G.N (Ω Z) (gF Z) G.w ⧸
-          Ideal.map (phiZ X la G.N (Ω Z) (gF Z) G.w) (Jid X la G.w)) := fun Z =>
-        ((Ideal.Quotient.mk (Ideal.map (phiZ X la G.N (Ω Z) (gF Z) G.w) (Jid X la G.w))).comp
-          (algebraMap (Kp X la G.N) (RZs X la G.N (Ω Z) (gF Z) G.w))).toModule
-      SectionSheafQuotient X la G.w wF ≃ₗ[Kp X la G.N] ∀ Z, RZs X la G.N (Ω Z) (gF Z) G.w ⧸
-                           Ideal.map (phiZ X la G.N (Ω Z) (gF Z) G.w) (Jid X la G.w))
-    (hE : ∀ (F : B.Cusp j wF) Z, E (resF G la F) Z *
-        Ideal.Quotient.mk (Ideal.map (phiZ X la G.N (Ω Z) (gF Z) G.w) (Jid X la G.w))
-          (lwZ X la G.N (Ω Z) (gF Z) G.w (algebraMap (Rp X la G.N) (Lw X la G.w) (emb X la G.N (X.inc wF g0)))) =
-        Ideal.Quotient.mk (Ideal.map (phiZ X la G.N (Ω Z) (gF Z) G.w) (Jid X la G.w))
-          (lwZ X la G.N (Ω Z) (gF Z) G.w (algebraMap (Rp X la G.N) (Lw X la G.w) (emb X la G.N (X.inc wF F))))) :
-    ∑ Z, Module.finrank (IntermediateField.adjoin B.KO (Set.range (sImg (D := Dd) (j0 Z) (x Z))))
-      (OmS (Ω Z) Dd N) = G.del ∧
-    (∀ p : Fin G.del → MvPolynomial (TVar Dd N) B.KO,
-      (∀ Z, ∑ k, sHom (j0 Z) (x Z) (p k) * algebraMap (Ω Z) (OmS (Ω Z) Dd N) (θ k Z / g Z) = 0) → ∀ k, p k = 0) ∧
-    (∀ y : ∀ Z, OmS (Ω Z) Dd N, ∃ q : MvPolynomial (TVar Dd N) B.KO, (∀ Z, sHom (j0 Z) (x Z) q ≠ 0) ∧
-      ∃ p : Fin G.del → MvPolynomial (TVar Dd N) B.KO, ∀ Z, sHom (j0 Z) (x Z) q * y Z =
-        ∑ k, sHom (j0 Z) (x Z) (p k) * algebraMap (Ω Z) (OmS (Ω Z) Dd N) (θ k Z / g Z)) := by
-  let iK : Algebra B.KO (Kp X la G.N) :=
-    ((algebraMap (X.Kl la) (Kp X la G.N)).comp (algebraMap B.KO (X.Kl la))).toAlgebra
-  have : IsScalarTower B.KO (X.Kl la) (Kp X la G.N) := IsScalarTower.of_algebraMap_eq' rfl
-  obtain ⟨h1, h2⟩ := coords_of_equiv _ (tL G la) hB.1 hB.2 E
-  refine basis_descends_loc (Kl := X.Kl la) hD e j0 v x hv hx hind hfin _ (GlobalTheory.CurveRecord.tv_indep X la G.N)
-    (fun Z i => rzMap X la G.N (Ω Z) (gF Z) (Formalism.MainNotions.Gaps.EtaleWeightGaps.sec X la G.w i))
-    (fun Z i => by rw [GlobalTheory.CurveRecord.rzMap_sec_eq]; simp only [hvF])
-    (fun Z => Ideal.map (phiZ X la G.N (Ω Z) (gF Z) G.w) (Jid X la G.w))
-    (fun Z => GlobalTheory.CurveRecord.map_Jid_eq X la G.N (Ω Z) (gF Z) G.w) _ (fun _ _ => rfl) θ g hg
-    (fun k Z => E (tL G la k) Z) (fun k Z => ?_) h1 h2
-  have := hE (G.th' k) Z
-  rw [lwZ_alg, lwZ_alg, rzMap_emb, rzMap_emb, hgF, hθ] at this
-  exact this
-
-
-open ReciprocityTheory.ChartRestriction.G.T0 in
-
-
-theorem chosenForms_basis_of_value_basis {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H}
-    {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} [Fintype (Comp Xo c)]
-    (d : ReciprocityTheory.ChartRestriction.G.T0.Data c.F (Comp Xo c) (fun Z => Om Z) (WTZ E) (fun Z => AC Z)) {n : ℕ}
-    (θ : Fin n → ∀ Z : Comp Xo c, Om Z) (g : ∀ Z : Comp Xo c, Om Z) (hg : ∀ Z, g Z ≠ 0) (eδ : Fin d.del ≃ Fin n)
-    (h1 : ∀ p : Fin n → MvPolynomial (TVar d.D d.N) c.F,
-      (∀ Z, ∑ k, sHom (d.jc Z) (d.x Z) (p k) * algebraMap (Om Z) (OmS (Om Z) d.D d.N) (θ k Z / g Z) = 0) →
-        ∀ k, p k = 0)
-    (h2 : ∀ y : ∀ Z, OmS (Om Z) d.D d.N, ∃ q : MvPolynomial (TVar d.D d.N) c.F,
-      (∀ Z, sHom (d.jc Z) (d.x Z) q ≠ 0) ∧
-      ∃ p : Fin n → MvPolynomial (TVar d.D d.N) c.F, ∀ Z, sHom (d.jc Z) (d.x Z) q * y Z =
-        ∑ k, sHom (d.jc Z) (d.x Z) (p k) * algebraMap (Om Z) (OmS (Om Z) d.D d.N) (θ k Z / g Z))
-    (sel : Fin d.del → Fin d.np)
-    (hsel : ∀ i Z, d.thp (sel i) Z = AddMonoidAlgebra.single d.wF (θ (eδ i) Z)) : A4Selection d sel := by
-  refine ⟨fun Z => AddMonoidAlgebra.single d.wF (g Z), fun Z => ⟨mem_AG.2 ⟨_, rfl⟩, by simpa using hg Z⟩,
-    fun p hp k => ?_, fun y => ?_⟩
-  · have := h1 (fun k => p (eδ.symm k)) (fun Z => by
-      rw [← hp Z, ← eδ.sum_comp]
-      refine Finset.sum_congr rfl fun k _ => ?_
-      rw [hsel, ratio_single _ _ _ (hg Z), eδ.symm_apply_apply]
-      rfl) (eδ k)
-    exact (congrArg p (eδ.symm_apply_apply k)).symm.trans this
-  · obtain ⟨q, hq, p, hp⟩ := h2 y
-    refine ⟨q, hq, fun k => p (eδ k), fun Z => (hp Z).trans ?_⟩
-    rw [← eδ.sum_comp]
-    refine Finset.sum_congr rfl fun k _ => ?_
-    rw [hsel, ratio_single _ _ _ (hg Z)]
-    rfl
-
-
-
-
-theorem chosenForms_restrict_basis_functionField : ∀ (D : D7) (T : Top D) (h : LawsP T) (j : ℕ) (hj : InR D j) (hG : GenFrEx (T.Q.Xo j) T.Q.c) (ka wL wF : WeightFamilies.Wt D j) (G : GlobalFamilyData (recPlus h j hj) ka wL wF) (S : Scal (recB h.toLawsCore)) (g0 : (recB h.toLawsCore).Cusp j wF) (la : HeightOneSpectrum (𝓞 (recB h.toLawsCore).KO)) [Fintype (Comp (T.Q.Xo j) T.Q.c)] (d : ReciprocityTheory.ChartRestriction.G.T0.Data T.Q.c.F (Comp (T.Q.Xo j) T.Q.c) (fun Z => Om Z) (WTZ D.host.E) (fun Z => AC Z)) (e : Fin G.N ≃ Fin (d.N + 1)), d.D = WeightFamilies.dimY D j → (∀ k, d.w (e k) = valC hG (wtA wL) wL.n (G.w k).1) → (∀ Z, d.w (d.jc Z) Z ≠ 0) → CurveHyp h j hj hG ka wL wF G S g0 → InBasis G la → ∃ eδ : Fin d.del ≃ Fin G.del, ∀ sel : Fin d.del → Fin d.np, (∀ i, d.thp (sel i) = valC hG (wtA wF) wF.n (G.th' (eδ i)).1) → d.wF = wtZ (wtA wF) wF.n → A4Selection d sel := by
-  intro D T h j hj hG ka wL wF G S g0 la _ d e hD hw hb hH hB
-  have hT : GenFromTest (T.Q.Xo j) T.Q.c hG := fun Z => h.allTest j hj (Om Z) (genFr hG Z)
-  obtain ⟨hfg, htr⟩ := GlobalTheory.FlagDim.fnFG_fnTrdeg_record D T.Q h.pins.2.2.2 j hj
-  have hA1 := independent_differentials_ratios_cusp_forms_trdeg D T h j hj hG ka wL wF G d e hD hw hb hH.2.1.2
-  have hS := fun Z => GlobalTheory.genericSection_field (D := d.D) (d.jc Z) (d.x Z) (hfg Z) ((htr Z).trans (by rw [hD])) (hA1 Z)
-  have hg := GlobalTheory.CurveRecord.evC_ne_zero h j hj hG hT (GlobalTheory.Reg.genValInj_record D T h j hj hG)
-    (GlobalTheory.Reg.compSplit_record D T h j hj hG) G hH.2.1 g0 hH.2.2.2
-  obtain ⟨⟨E, hE⟩, -⟩ := GlobalTheory.SectionProduct.tieS D T h j hj hG ka wL wF G hT S g0 la hH hB
-  have hw' : ∀ i Z, d.w i Z = AddMonoidAlgebra.single (wtZ (wtA wL) wL.n) (evC hG Z (G.w (e.symm i)).1) := by
-    intro i Z
-    have := congrFun (hw (e.symm i)) Z
-    rwa [e.apply_symm_apply] at this
-  have hq : ∀ Z, evC hG Z (G.w (e.symm (d.jc Z))).1 ≠ 0 := by
-    intro Z h0
-    apply hb Z
-    rw [hw', h0]
-    simp
-  have hx : ∀ Z k, d.x Z k =
-      evC hG Z (G.w (e.symm ((d.jc Z).succAbove k))).1 / evC hG Z (G.w (e.symm (d.jc Z))).1 := by
-    intro Z k
-    unfold ReciprocityTheory.ChartRestriction.G.T0.Data.x
-    rw [hw', hw']
-    exact ratio_single _ _ _ (hq Z)
-  obtain ⟨h0, h1, h2⟩ := basis_descends_record (recPlus h j hj) la G hB (fun Z : Comp (T.Q.Xo j) T.Q.c => Om Z)
-    (fun Z => formsEvR j hG hT Z) hD e d.jc (fun Z k => evC hG Z (G.w k).1)
-    (fun Z k => formsEvR_inc h j hj hG hT Z wL (G.w k)) d.x hq hx (fun Z => (hS Z).1) (fun Z => (hS Z).2.1) g0
-    (fun k Z => evC hG Z (G.th' k).1) (fun k Z => formsEvR_inc h j hj hG hT Z wF (G.th' k))
-    (fun Z => evC hG Z g0.1) (fun Z => formsEvR_inc h j hj hG hT Z wF g0) hg E hE
-  have hdel : d.del = G.del := h0
-  refine ⟨finCongr hdel, fun sel hsel hF => ?_⟩
-  exact chosenForms_basis_of_value_basis d (fun k Z => evC hG Z (G.th' k).1) (fun Z => evC hG Z g0.1) hg (finCongr hdel) h1 h2 sel
-    (fun i Z => by rw [hsel, hF]; rfl)
 
 end GlobalTheory.SectionBasis
 end -- clump:auto
@@ -1351,7 +1022,7 @@ theorem heights_indefinite :
     rw [Equiv.apply_symm_apply]
   have ha1 : A1Bigness d := GlobalTheory.BigRec.independent_differentials_ratios_cusp_forms_trdeg D T h j hj hG ka wL wF G d eN.symm rfl hwe (fun Z => valC_ne_zero (hwb Z))
     (fun Z => ⟨k0 Z, hk0 Z, hk0' Z⟩)
-  obtain ⟨eD, heD⟩ := GlobalTheory.SectionBasis.chosenForms_restrict_basis_functionField D T h j hj hG ka wL wF G S g0 (Classical.arbitrary _) d eN.symm rfl hwe
+  obtain ⟨eD, heD⟩ := GlobalTheory.HeightDefinite.Basis.chosenForms_restrict_basis_functionField D T h j hj hG ka wL wF G S g0 (Classical.arbitrary _) d eN.symm rfl hwe
     (fun Z => valC_ne_zero (hwb Z)) hH (hIB _)
   have ha4 : A4Selection d eD := heD eD (fun _ => rfl) rfl
   have hdel : d.del = G.del := by simpa using Fintype.card_congr eD

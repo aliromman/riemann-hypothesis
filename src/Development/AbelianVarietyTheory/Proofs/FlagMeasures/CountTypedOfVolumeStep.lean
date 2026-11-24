@@ -170,9 +170,9 @@ theorem integrable_ph (B : RowsAut) (d : InfinitePlace B.I.F → ℝ) (h : ℝ) 
       have h3 := Real.sqrt_pos.2 h1
       have h4 := hb v
       have h5 : (0 : ℝ) < B.I.n := h1.trans_le h2
-      have h6 : (B.I.n : ℝ) * rkR (B.I.ε v) ≤ (B.I.n : ℝ) ^ 2 := by nlinarith
+      have h6 : (B.I.n : ℝ) * rkR (B.I.ε v) ≤ (B.I.n : ℝ) ^ 2 := by rw [sq]; exact mul_le_mul_of_nonneg_left h2 h5.le
       have h7 : 0 < (B.I.n : ℝ) ^ 2 * Real.sqrt (rkR (B.I.ε v)) := by positivity
-      nlinarith [mul_le_mul_of_nonneg_right h6 h3.le])
+      linarith [mul_le_mul_of_nonneg_right h6 h3.le])
   simp only [zero_mul, Real.exp_zero, mul_one] at h0
   exact h0.mono' hc.aestronglyMeasurable (Filter.Eventually.of_forall hm)
 
@@ -402,16 +402,20 @@ theorem deepBound (hV : GlobalTheory.FlagMeas.AbsoluteVolume) (hK : GlobalTheory
   have hfR : (1 : ℝ) ≤ B.I.f := by exact_mod_cast hf1
   have hgR : (1 : ℝ) ≤ B.g := by exact_mod_cast hg1
   obtain ⟨X, hX⟩ : ∃ X : ℝ, X = (B.I.n : ℝ) * B.I.f * B.I.rd * B.g * b := ⟨_, rfl⟩
-  have a1 : (8 : ℝ) ≤ B.I.n * B.I.f := by nlinarith
-  have a2 : (8 : ℝ) ≤ B.I.n * B.I.f * B.g := by nlinarith
-  have a3 : (16 : ℝ) ≤ B.I.n * B.I.f * B.g * b := by nlinarith
+  have a1 : (8 : ℝ) ≤ B.I.n * B.I.f := le_trans hnR (le_mul_of_one_le_right (by linarith) hfR)
+  have a2 : (8 : ℝ) ≤ B.I.n * B.I.f * B.g := le_trans a1 (le_mul_of_one_le_right (by linarith) hgR)
+  have a3 : (16 : ℝ) ≤ B.I.n * B.I.f * B.g * b := by have := mul_le_mul a2 hb (by norm_num) (by linarith); linarith
   have hXe : X = B.I.rd * (B.I.n * B.I.f * B.g * b) := by rw [hX]; ring
-  have hX16 : 16 ≤ X := by rw [hXe]; nlinarith
-  have hXrd : B.I.rd ≤ X := by rw [hXe]; nlinarith
+  have hX16 : 16 ≤ X := by rw [hXe]; exact le_trans a3 (le_mul_of_one_le_left (by linarith) hrd1)
+  have hXrd : B.I.rd ≤ X := by rw [hXe]; exact le_mul_of_one_le_right (by linarith) (by linarith)
   have hXf : 2 * B.I.f * B.I.rd ≤ X := by
-    have : 2 * (B.I.f : ℝ) ≤ B.I.n * B.I.f * B.g * b := by nlinarith
-    rw [hXe]; nlinarith
-  have hXsq : 2 * B.I.f * B.I.rd ≤ X ^ 2 := by nlinarith
+    have : 2 * (B.I.f : ℝ) ≤ B.I.n * B.I.f * B.g * b := by
+      have h1 : 2 * (B.I.f : ℝ) ≤ B.I.n * B.I.f := mul_le_mul_of_nonneg_right (by linarith) (by linarith)
+      have h2 : (B.I.n : ℝ) * B.I.f ≤ B.I.n * B.I.f * B.g := le_mul_of_one_le_right (by positivity) hgR
+      have h3 : (B.I.n : ℝ) * B.I.f * B.g ≤ B.I.n * B.I.f * B.g * b := le_mul_of_one_le_right (by positivity) (by linarith)
+      linarith
+    rw [hXe]; have := mul_le_mul_of_nonneg_left this (by linarith : (0 : ℝ) ≤ B.I.rd); linarith
+  have hXsq : 2 * B.I.f * B.I.rd ≤ X ^ 2 := hXf.trans (le_self_pow₀ (by linarith) (by norm_num))
   have hVol := hV B.I p q (by first | exact hSig) hqn hn8 X (by linarith) hXrd hXsq
     c B.μf (by first | exact hc)
   obtain ⟨hKs, hKg0, hKsT⟩ := GlobalTheory.CongIndex.measure_Kset_le B.I B.μf B.g hg1
@@ -552,7 +556,7 @@ theorem gap_threshold_pays_far_terms : ∀ (Cg : ℝ) (n f q : ℕ) (rd g b : �
   set s := Real.sqrt (n : ℝ) with hs_def
   have hs2 : s ^ 2 = n := Real.sq_sqrt (by linarith)
   have hs1 : 1 ≤ s := Real.one_le_sqrt.2 (by linarith)
-  have hsn : s ≤ n := by nlinarith
+  have hsn : s ≤ n := by rw [← hs2]; exact le_self_pow₀ hs1 (by norm_num)
   have hqs : (q : ℝ) ≤ s := (Real.le_sqrt (by positivity) (by linarith)).2 hqnR
   set ℓ := Real.log (b * rd) with hℓ_def
   have hbrd : 2 ≤ b * rd := le_trans hb (le_mul_of_one_le_right (by linarith) hrd)
@@ -562,7 +566,7 @@ theorem gap_threshold_pays_far_terms : ∀ (Cg : ℝ) (n f q : ℕ) (rd g b : �
     linarith
   have hlogb : Real.log b ≤ ℓ := Real.log_le_log (by linarith) (le_mul_of_one_le_right (by linarith) hrd)
   have hlogb0 : 0 ≤ Real.log b := Real.log_nonneg (by linarith)
-  have hKl : 2.76 ≤ (Cg + 4) * ℓ := by nlinarith [mul_nonneg hCg (by linarith : (0 : ℝ) ≤ ℓ)]
+  have hKl : 2.76 ≤ (Cg + 4) * ℓ := by have := mul_nonneg hCg (by linarith : (0 : ℝ) ≤ ℓ); linarith
 
   have hX : 50 * (Cg + 4) * (n : ℝ) ^ 3 * f * ℓ ≤ h * ep ^ 2 / 16 := by
     have e : 8 * 10 ^ 14 * (Cg + 4) * (n : ℝ) ^ 19 * (f : ℝ) ^ 5 * ℓ * ep ^ 2 / 16
@@ -751,16 +755,16 @@ private theorem epN_pos_and_le_inv_sqrt_and_mul_le_log_two (n f q : ℕ) (hn : 8
   have hD : 0 < (n : ℝ) ^ 8 * (f : ℝ) ^ 2 := by positivity
   have hn8 : (n : ℝ) ^ 2 ≤ (n : ℝ) ^ 8 := pow_le_pow_right₀ (by linarith) (by norm_num)
   have hf2 : (1 : ℝ) ≤ (f : ℝ) ^ 2 := one_le_pow₀ hf'
-  have hnD : (n : ℝ) ^ 2 ≤ (n : ℝ) ^ 8 * (f : ℝ) ^ 2 := by nlinarith
-  have hn2 : (n : ℝ) ≤ (n : ℝ) ^ 2 := by nlinarith
+  have hnD : (n : ℝ) ^ 2 ≤ (n : ℝ) ^ 8 * (f : ℝ) ^ 2 := hn8.trans (le_mul_of_one_le_right (by positivity) hf2)
+  have hn2 : (n : ℝ) ≤ (n : ℝ) ^ 2 := le_self_pow₀ (by linarith) (by norm_num)
   refine ⟨by positivity, ?_, ?_⟩
   · have hs : Real.sqrt (2 * (q : ℝ)) ≤ 2 * q :=
-      calc Real.sqrt (2 * (q : ℝ)) ≤ Real.sqrt ((2 * (q : ℝ)) ^ 2) := Real.sqrt_le_sqrt (by nlinarith)
+      calc Real.sqrt (2 * (q : ℝ)) ≤ Real.sqrt ((2 * (q : ℝ)) ^ 2) := Real.sqrt_le_sqrt (le_self_pow₀ (by linarith) (by norm_num))
         _ = 2 * q := Real.sqrt_sq (by linarith)
     have hspos : 0 < Real.sqrt (2 * (q : ℝ)) := Real.sqrt_pos.2 (by linarith)
     calc 1 / 10 ^ 6 / ((n : ℝ) ^ 8 * (f : ℝ) ^ 2) ≤ 1 / (2 * q) := by
           rw [div_le_div_iff₀ hD (by linarith)]
-          nlinarith
+          linarith [hnD, hn2, hqn']
       _ ≤ 1 / Real.sqrt (2 * (q : ℝ)) := one_div_le_one_div_of_le hspos hs
   · have hlog : (0.6931471803 : ℝ) < Real.log 2 := Real.log_two_gt_d9
     have h1 : (n : ℝ) ^ 2 / ((n : ℝ) ^ 8 * (f : ℝ) ^ 2) ≤ 1 := (div_le_one hD).2 hnD
@@ -868,7 +872,7 @@ theorem flagRare_of_nonzeroFlagBound : GlobalTheory.FlagMeas.NonzeroFlagBound �
   rw [prob, hset, Formalism.MainNotions.S.AutInst.vol, ← ENNReal.toReal_div]
   calc _ ≤ Real.exp (-(1 / 3 * (B.I.n : ℝ) * B.I.f * Real.log B.I.n)) :=
         ENNReal.toReal_le_of_le_ofReal (Real.exp_pos _).le key
-    _ ≤ _ := Real.exp_le_exp.2 (by nlinarith)
+    _ ≤ _ := Real.exp_le_exp.2 (by linarith)
 
 end GlobalTheory.FlagRareProof
 end -- clump:auto
@@ -961,14 +965,18 @@ theorem volume_bound_arith : ∀ (E : Type) [Field E] [NumberField E] [StarRing 
   have hlog1 : Real.log r ≤ r - 1 := Real.log_le_sub_one_of_pos (by linarith)
   have hX0 : 0 < X := by linarith
   have hX1 : 1 ≤ X := by linarith
-  have hA : 1 + f * Real.log r ≤ X ^ 2 := by nlinarith
+  have hA : 1 + f * Real.log r ≤ X ^ 2 := by
+    have hfr : (f : ℝ) * Real.log r ≤ f * (r - 1) := mul_le_mul_of_nonneg_left hlog1 (by linarith)
+    have hfr0 : (0 : ℝ) ≤ f * r := by positivity
+    linarith [hfX]
   have hA0 : 0 ≤ 1 + f * Real.log r := by positivity
   have hpi : Real.pi ^ 3 ≤ 3.15 ^ 3 := pow_le_pow_left₀ Real.pi_pos.le Real.pi_lt_d2.le 3
   have hc : 8 * Real.pi ^ 3 * 4 * 1.4 ≤ X ^ 11 := by
     have : (2 : ℝ) ^ 11 ≤ X ^ 11 := pow_le_pow_left₀ (by norm_num) hX 11
-    nlinarith
+    linarith [hpi, this]
   have hpi0 := Real.pi_pos
-  have he0 : 0 ≤ (f : ℝ) * (((n : ℝ) ^ 2 - 4) / 2) := mul_nonneg (by linarith) (by nlinarith)
+  have hn64 : (64 : ℝ) ≤ (n : ℝ) ^ 2 := by have := mul_le_mul hn' hn' (by norm_num) (by linarith); linarith
+  have he0 : 0 ≤ (f : ℝ) * (((n : ℝ) ^ 2 - 4) / 2) := mul_nonneg (by linarith) (by linarith)
   have h1 : (8 * Real.pi ^ 3 * 4 * 1.4) ^ f ≤ (X ^ 11) ^ f := pow_le_pow_left₀ (by positivity) hc f
   have h2 : r ^ (5 * f) ≤ X ^ (5 * f) := pow_le_pow_left₀ (by linarith) hrX _
   have h3 : (1 + f * Real.log r) ^ (5 * f) ≤ (X ^ 2) ^ (5 * f) := pow_le_pow_left₀ hA0 hA _
@@ -995,8 +1003,8 @@ theorem volume_bound_arith : ∀ (E : Type) [Field E] [NumberField E] [StarRing 
     _ ≤ X ^ ((n ^ 2 * f : ℕ) : ℝ) := by
         refine Real.rpow_le_rpow_of_exponent_le hX1 ?_
         push_cast
-        have : (64 : ℝ) ≤ (n : ℝ) ^ 2 := by nlinarith
-        nlinarith
+        have : (64 : ℝ) ≤ (n : ℝ) ^ 2 := by have := mul_le_mul hn' hn' (by norm_num) (by linarith); linarith
+        have := mul_le_mul_of_nonneg_left (by linarith : (26 : ℝ) + ((n : ℝ) ^ 2 - 4) / 2 ≤ (n : ℝ) ^ 2) (by linarith : (0 : ℝ) ≤ (f : ℝ)); linarith
     _ = X ^ (n ^ 2 * f) := Real.rpow_natCast _ _
 
 end GlobalTheory.VolArith
@@ -1042,7 +1050,7 @@ theorem absoluteVolume_of_volumeStep : VolumeStep → AbsoluteVolume := by
   have hp : 2 ≤ p := by
     by_contra h
     have h1 : 7 ≤ q := by omega
-    have h2 : 7 * q ≤ q ^ 2 := by nlinarith
+    have h2 : 7 * q ≤ q ^ 2 := by rw [sq]; exact Nat.mul_le_mul_right q h1
     omega
   obtain ⟨⟨I₀, hsame, hsig₀⟩, hrat⟩ :=
     _root_.GlobalTheory.FlagMeas.VolRatio.volumeRatio_of_volumeStep hstep I p q 2 0 hsig hp (Nat.zero_le _) le_rfl
@@ -1203,7 +1211,7 @@ theorem sum_two_pow_pred_mul_exp_neg_le :
     linarith
   have h4 : (0 : ℝ) ≤ (1 / 2) ^ q := by positivity
   rw [h2]
-  nlinarith [mul_nonneg h0.le h4, mul_le_mul_of_nonneg_right h3 h0.le]
+  linarith [mul_nonneg h0.le h4, mul_le_mul_of_nonneg_right h3 h0.le]
 
 end GlobalTheory
 end -- clump:auto
@@ -1300,13 +1308,17 @@ theorem nonzeroFlagBound : VolumeStep → NonzeroFlagBound := by
     have := Real.log_le_sub_one_of_pos hpos
     have : (16 : ℝ) ≤ I.n := by linarith
     exact_mod_cast this
-  have h2q : 2 * q + 2 ≤ I.n := by nlinarith
+  have h2q : 2 * q + 2 ≤ I.n := by
+    rcases le_or_gt q 3 with hq3 | hq3
+    · omega
+    · have h4 : 4 * q ≤ q ^ 2 := by rw [sq]; exact Nat.mul_le_mul_right q hq3
+      omega
   set X : ℝ := I.n * I.f * Real.log I.n with hX
   have hX15 : 15 ≤ X := by
     have h1 : (1 : ℝ) ≤ I.n := by exact_mod_cast (by omega : 1 ≤ I.n)
     have h2 : (1 : ℝ) ≤ I.f := by exact_mod_cast hf1
     have h3 : (1 : ℝ) ≤ I.n * I.f := one_le_mul_of_one_le_of_one_le h1 h2
-    rw [hX]; nlinarith
+    rw [hX]; exact le_trans (by linarith) (le_mul_of_one_le_left (by linarith) h3)
   have hone : ∀ J ∈ Finset.Icc 1 q, ∀ c : Composition J,
       I.muA μf (typeSet I c.blocksFun (simplexH c.length) ∩ fund) / I.muA μf fund ≤
         ENNReal.ofReal (Real.exp (-(1 / 2 * J * X))) := by
@@ -1516,11 +1528,11 @@ theorem moderate_log_factor_absorbed : ∀ Cg : ℝ, ∃ n₀ : ℕ, ∀ (n f q 
   have hq1 : (1 : ℝ) ≤ q := by exact_mod_cast hq
   have hqn' : (q : ℝ) ^ 2 ≤ n := by exact_mod_cast hqn
   set L := Real.log n with hLdef
-  have hm1 : (n : ℝ) ≤ n * f := by nlinarith
+  have hm1 : (n : ℝ) ≤ n * f := le_mul_of_one_le_right hn0.le hf1
   have hm : (1 : ℝ) ≤ n * f := by linarith
-  have hX : (n * f : ℝ) * (1 + K) ≤ 1 / 16 * n * f * L := by nlinarith
-  have hX1 : (n * f : ℝ) ≤ 1 / 16 * n * f * L := by nlinarith
-  have hX2 : (n * f : ℝ) + K ≤ 1 / 16 * n * f * L := by nlinarith
+  have hX : (n * f : ℝ) * (1 + K) ≤ 1 / 16 * n * f * L := by have := mul_le_mul_of_nonneg_left hL (by positivity : (0 : ℝ) ≤ (n : ℝ) * f); linarith
+  have hX1 : (n * f : ℝ) ≤ 1 / 16 * n * f * L := by have := mul_nonneg (by positivity : (0 : ℝ) ≤ (n : ℝ) * f) hK0; linarith
+  have hX2 : (n * f : ℝ) + K ≤ 1 / 16 * n * f * L := by have := le_mul_of_one_le_left hK0 hm; linarith
   set E := Real.exp (1 / 16 * n * f * L) with hE
   have hE0 : 0 < E := Real.exp_pos _
   have hEn : Real.exp n ≤ E := Real.exp_le_exp.mpr (by linarith)
@@ -1532,7 +1544,7 @@ theorem moderate_log_factor_absorbed : ∀ Cg : ℝ, ∃ n₀ : ℕ, ∀ (n f q 
     have h1 : L ≤ E := by
       have := Real.log_le_sub_one_of_pos hn0; linarith
     have h2 : Real.log f ≤ E := by
-      have : Real.sqrt n ≤ n := Real.sqrt_le_iff.mpr ⟨hn0.le, by nlinarith⟩
+      have : Real.sqrt n ≤ n := Real.sqrt_le_iff.mpr ⟨hn0.le, le_self_pow₀ hn1 (by norm_num)⟩
       linarith
     have h3 : Real.log g ≤ |Cg| * E := by
       have h4 : Real.log g ≤ Real.log (b ^ Cg) := Real.log_le_log (by linarith) hgb
@@ -1567,7 +1579,7 @@ theorem moderate_log_factor_absorbed : ∀ Cg : ℝ, ∃ n₀ : ℕ, ∀ (n f q 
       _ ≤ (22 * f * n) * ((|Cg| + 4) * E) := by gcongr
       _ = (n * f * K) * E := by rw [hK]; ring
       _ ≤ E * E := by gcongr
-  · have hqn2 : (q : ℝ) ≤ n := by nlinarith
+  · have hqn2 : (q : ℝ) ≤ n := le_trans (le_self_pow₀ hq1 (by norm_num)) hqn'
     have h2e : (2 : ℝ) ≤ Real.exp 1 := by
       have := Real.add_one_le_exp (1 : ℝ); linarith
     have hp : (2 : ℝ) ^ q ≤ Real.exp q := by
@@ -1620,16 +1632,16 @@ theorem one_type_arith (L κ Y : ℝ) (a J : ℕ) (hL : 0 ≤ L) (hJ : 1 ≤ J) 
   have hYa0 : 0 ≤ Y ^ a := pow_nonneg hY0 a
   rcases lt_or_ge κ 0 with hκ0 | hκ0
   · have : κ * Y ^ a ≤ 0 := mul_nonpos_of_nonpos_of_nonneg hκ0.le hYa0
-    nlinarith [Real.exp_pos (-(3 / 8) * L)]
+    linarith [Real.exp_pos (-(3 / 8) * L)]
   · have h1 : κ * Y ^ a ≤ Real.exp (-(1 / 2 * J * L)) * Real.exp (a * (1 / 8 * L)) :=
       mul_le_mul hκ hYa hYa0 (Real.exp_pos _).le
     rw [← Real.exp_add] at h1
     have hJ' : (1 : ℝ) ≤ J := by exact_mod_cast hJ
     have ha' : (a : ℝ) ≤ J := by exact_mod_cast haJ
     have h2 : -(1 / 2 * J * L) + a * (1 / 8 * L) ≤ -(3 / 8) * L := by
-      nlinarith [mul_nonneg (sub_nonneg.2 ha') hL, mul_nonneg (sub_nonneg.2 hJ') hL]
+      linarith [mul_nonneg (sub_nonneg.2 ha') hL, mul_nonneg (sub_nonneg.2 hJ') hL]
     have h3 := Real.exp_le_exp.2 h2
-    nlinarith
+    linarith
 
 theorem nearModerate : GlobalTheory.FlagMeas.FlagMeasureBound → GlobalTheory.FlagMeas.ConstantBound → GlobalTheory.Dec.NearUnip →
     GlobalTheory.Deep.PtBound → GlobalTheory.IndefiniteRowSideFullHecke.NearNonzeroTerms.NearModerate := by
@@ -1823,7 +1835,7 @@ theorem count_unbundled : GlobalTheory.IndefiniteRowSideFullHecke.LatticeCountin
   have hlog : 0 ≤ Real.log (b * I.rd) := by
     apply Real.log_nonneg
     have := one_le_rd I
-    nlinarith
+    exact le_trans (by linarith) (le_mul_of_one_le_right (by linarith) this)
   have hC' : 8 * 10 ^ 14 * (A + 4) ≤ C := (le_max_right _ _).trans hC
   have hH : GlobalTheory.Count.CountHyp B A n₀ (fun v => fdegOf (Formalism.REAL.muG (I.ε v)) (σ v) (w v)) p q b := by
     refine ⟨fun v => ⟨hHC v, hDS v, hlow v, hfd v⟩, hpq, le_trans hn₁ hn, hq, Real.le_exp_of_log_le hrd, hf, hb,

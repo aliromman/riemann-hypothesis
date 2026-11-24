@@ -48,6 +48,7 @@ import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Order.CompletePartialOrder
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.NumRho
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirAlgebra.RhoEqRhoCAddRhoN, ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirAlgebra.KhwLowKSubRootEqZero
@@ -238,10 +239,6 @@ theorem nsq_sub' (x y : Fin n → ℝ) : nsq (x - y) = nsq x - 2 * dot x y + nsq
 theorem nsq_shift (μ x y : Fin n → ℝ) : nsq (μ + x - y) - nsq (x - y) = nsq μ + 2 * dot μ (x - y) := by
   simp only [nsq, dot, Pi.add_apply, Pi.sub_apply, mul_sum, ← sum_add_distrib, ← sum_sub_distrib]
   exact sum_congr rfl (fun _ _ => by ring)
-
-theorem nsq_root {a b : Fin n} (hab : a ≠ b) : nsq (root a b) = 2 := by
-  simp [nsq, dot, root, Pi.single_apply, mul_sub, sum_sub_distrib, hab, Ne.symm hab]
-  norm_num
 
 section Unitary
 

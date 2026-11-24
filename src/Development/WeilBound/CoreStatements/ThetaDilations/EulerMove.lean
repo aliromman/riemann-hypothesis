@@ -102,7 +102,7 @@ theorem euler_move : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numbe
     Finset.prod_congr rfl fun v _ => (lintegral_map (hφ v) (mev v)).symm,
     tprod_congr fun v : {v // v ∉ S} => congrArg ENNReal.toReal (hoff v.1 (hS' _ v.2)).symm]
   simp only [h2, ENNReal.smul_def, lintegral_smul_measure, smul_eq_mul, Finset.prod_mul_distrib]
-  rw [mul_mul_mul_comm, ← ENNReal.coe_finsetProd, ← ENNReal.coe_mul, u2, ENNReal.coe_one]
+  rw [mul_mul_mul_comm, ← ENNReal.ofNNReal_finsetProd, ← ENNReal.coe_mul, u2, ENNReal.coe_one]
   simp
 
 end PositivityTheory.PlacePermOperatorBicommutantSpan

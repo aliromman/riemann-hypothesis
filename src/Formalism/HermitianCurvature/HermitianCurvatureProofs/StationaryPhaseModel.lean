@@ -720,7 +720,9 @@ theorem osc_bound (d q : ℕ) (β : ℂ) (hβ : β ≠ 0) (Γ c₁ : ℝ) (hc₁
   have hσ2 : σ ^ 2 = τ := Real.sq_sqrt hτ.le
   have hw : ∀ x ∈ A, 0 < wt σ x := fun x _ => by unfold wt; positivity
   have hτw : ∀ x ∈ A, τ ≤ wt σ x ^ 2 := fun x _ => by
-    unfold wt; nlinarith [norm_nonneg x]
+    unfold wt
+    calc τ = σ ^ 2 := hσ2.symm
+      _ ≤ (‖x‖ + σ) ^ 2 := pow_le_pow_left₀ hσ.le (le_add_of_nonneg_left (norm_nonneg x)) 2
   have hD : ∀ x ∈ A, min (c₁ ^ 2) 1 / 2 * wt σ x ^ 2 ≤ ∑ l, (fderiv ℝ φ x (dirv l)) ^ 2 + τ := fun x hx => by
     obtain ⟨l, hl⟩ := hlow x hx
     have h1 : (c₁ * ‖x‖) ^ 2 ≤ (fderiv ℝ φ x (dirv l)) ^ 2 := by
@@ -729,14 +731,20 @@ theorem osc_bound (d q : ℕ) (β : ℂ) (hβ : β ≠ 0) (Γ c₁ : ℝ) (hc₁
     have h2 : (fderiv ℝ φ x (dirv l)) ^ 2 ≤ ∑ l, (fderiv ℝ φ x (dirv l)) ^ 2 :=
       Finset.single_le_sum (f := fun l => (fderiv ℝ φ x (dirv l)) ^ 2) (fun i _ => sq_nonneg _) (Finset.mem_univ l)
     have h3 : wt σ x ^ 2 ≤ 2 * (‖x‖ ^ 2 + σ ^ 2) := by
-      unfold wt; nlinarith [sq_nonneg (‖x‖ - σ)]
+      unfold wt
+      have := sq_nonneg (‖x‖ - σ)
+      have : (‖x‖ + σ) ^ 2 = 2 * (‖x‖ ^ 2 + σ ^ 2) - (‖x‖ - σ) ^ 2 := by ring
+      linarith
     have h4 : min (c₁ ^ 2) 1 * ‖x‖ ^ 2 ≤ c₁ ^ 2 * ‖x‖ ^ 2 :=
       mul_le_mul_of_nonneg_right (min_le_left _ _) (sq_nonneg _)
     have h5 : min (c₁ ^ 2) 1 * σ ^ 2 ≤ 1 * σ ^ 2 :=
       mul_le_mul_of_nonneg_right (min_le_right _ _) (sq_nonneg _)
     have h6 : min (c₁ ^ 2) 1 / 2 * wt σ x ^ 2 ≤ min (c₁ ^ 2) 1 / 2 * (2 * (‖x‖ ^ 2 + σ ^ 2)) :=
       mul_le_mul_of_nonneg_left h3 (by positivity)
-    nlinarith
+    have h7 : min (c₁ ^ 2) 1 / 2 * (2 * (‖x‖ ^ 2 + σ ^ 2)) =
+        min (c₁ ^ 2) 1 * ‖x‖ ^ 2 + min (c₁ ^ 2) 1 * σ ^ 2 := by ring
+    have h8 : (c₁ * ‖x‖) ^ 2 = c₁ ^ 2 * ‖x‖ ^ 2 := by ring
+    linarith
   obtain ⟨b', hb's, hb'A, hb'S, hEq⟩ := hC dirv B_norm_dirv A (wt σ) φ τ hτ hw hτw
     (hφ.of_le (by norm_cast; omega)) hφS hD V b (2 * (q : ℤ)) K hbs hbA hb
   rw [hEq]
@@ -967,8 +975,7 @@ theorem holo_bound {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [Fin
       rfl
     have hsubb : ball x (((i + 1 : ℕ) : ℝ) * δ) ⊆ ball x (((i + 1 + 1 : ℕ) : ℝ) * δ) := by
       refine ball_subset_ball ?_
-      push_cast
-      nlinarith
+      exact mul_le_mul_of_nonneg_right (by exact_mod_cast (by omega : i + 1 ≤ i + 1 + 1)) hδ.le
     have h3 := ih (f := fun y => fderiv ℂ f y v) (M := M / δ * ‖v‖)
       ((C_differentiableOn_fderiv_apply isOpen_ball hf v).mono hsubb) (by
         intro y hy
@@ -1039,7 +1046,10 @@ theorem D_norm_sq_le_nsq (d : ℕ) (x : Fin d → ℂ) : ‖x‖ ^ 2 ≤ D_nsq d
 
 theorem D_exp_decay (n : ℕ) (s : ℝ) (hs : 0 ≤ s) :
     (1 + s) ^ (2 * n) * Real.exp (-s ^ 2) ≤ 2 ^ n * n.factorial * Real.exp 1 := by
-  have h1 : (1 + s) ^ 2 ≤ 2 * (1 + s ^ 2) := by nlinarith [sq_nonneg (1 - s)]
+  have h1 : (1 + s) ^ 2 ≤ 2 * (1 + s ^ 2) := by
+    have := sq_nonneg (1 - s)
+    have : (1 + s) ^ 2 = 2 * (1 + s ^ 2) - (1 - s) ^ 2 := by ring
+    linarith
   have h3 : (1 + s ^ 2) ^ n ≤ n.factorial * Real.exp (1 + s ^ 2) := by
     rw [mul_comm]
     exact (div_le_iff₀ (by positivity)).1
@@ -1132,7 +1142,7 @@ theorem D_gau_bound (d N : ℕ) : ∃ M : ℝ, 0 ≤ M ∧ ∀ δ : ℝ, 0 < δ 
       _ ≤ (1 + ‖a • x‖) ^ i * ‖iteratedFDeriv ℝ i (D_gau d 1) (a • x)‖ := by
           have h5 : a * ‖x‖ + a * σ ≤ 1 + ‖a • x‖ := by
             rw [norm_smul, Real.norm_of_nonneg ha0.le]
-            have : a * σ ≤ 1 := by nlinarith
+            have : a * σ ≤ 1 := (mul_le_of_le_one_left hσ.le ha1).trans hσ1
             linarith
           have h6 : 0 ≤ a * ‖x‖ + a * σ := by positivity
           exact mul_le_mul_of_nonneg_right (pow_le_pow_left₀ h6 h5 i) (norm_nonneg _)
@@ -1187,7 +1197,10 @@ theorem D_dil_sym {N : ℕ} {h : E → F} {ρ₀ M : ℝ} (hh : ContDiff ℝ N h
   by_cases hx : R⁻¹ • x ∈ tsupport h
   · have h1 : ‖R⁻¹ • x‖ ≤ ρ₀ := by simpa using hs hx
     rw [norm_smul, Real.norm_of_nonneg (inv_pos.2 hR0).le, inv_mul_le_iff₀ hR0] at h1
-    have h2 : wt σ x ≤ (ρ₀ + 1) * R := by unfold wt; nlinarith
+    have h2 : wt σ x ≤ (ρ₀ + 1) * R := by
+      unfold wt
+      have : (ρ₀ + 1) * R = ρ₀ * R + R := by ring
+      linarith
     have h3 : R⁻¹ * wt σ x ≤ ρ₀ + 1 := by rw [inv_mul_le_iff₀ hR0]; linarith
     have h4 : (R⁻¹ * wt σ x) ^ i ≤ (ρ₀ + 1) ^ N :=
       (pow_le_pow_left₀ (by positivity) h3 i).trans (pow_le_pow_right₀ (by linarith) hi)
@@ -1275,7 +1288,7 @@ theorem D_amp (d N : ℕ) (hN : 2 ≤ N) {ρ : ℝ} (hρ : 0 < ρ) : ∃ K : ℝ
       unfold D_gau
       rw [Real.exp_le_one_iff]
       have : 0 ≤ ∑ k, ‖x k‖ ^ 2 := by positivity
-      nlinarith
+      exact mul_nonpos_of_nonpos_of_nonneg (by linarith) this
     have h00 : D_gau d δ 0 = 1 := by simp [D_gau]
     have hfd : fderiv ℝ (fun x => 1 - D_gau d δ x) 0 = 0 := by
       apply IsLocalMin.fderiv_eq_zero
@@ -1838,7 +1851,10 @@ theorem E_quad_bound {φ : E → ℝ} (hφ : ContDiff ℝ 2 φ) {r Γ : ℝ} (hr
       refine (norm_add_le _ _).trans ?_
       rw [norm_mul]
       norm_num
-    nlinarith [mul_nonneg hΓ hr.le, mul_nonneg (mul_nonneg hΓ hr.le) hr.le]
+    have h4 : 0 ≤ Γ * r := mul_nonneg hΓ hr.le
+    have h5 : 0 ≤ Γ * r * r := mul_nonneg h4 hr.le
+    have h6 : Γ * (r + 1) ^ 2 = Γ * r * r + 2 * (Γ * r) + Γ := by ring
+    linarith
   | succ i =>
     rw [← norm_iteratedFDeriv_fderiv, E_quad_fderiv hφ]
     have h := (Sym.clm (A := Set.univ) (N := i) (fderiv ℝ (fderiv ℝ φ) 0) (σ := 1) one_pos).2 x trivial i le_rfl
@@ -1853,7 +1869,8 @@ theorem E_quad_bound {φ : E → ℝ} (hφ : ContDiff ℝ 2 φ) {r Γ : ℝ} (hr
     have hz0 : 0 ≤ wt 1 x ^ ((1 : ℤ) - (i : ℤ)) := zpow_nonneg (by linarith) _
     calc ‖fderiv ℝ (fderiv ℝ φ) 0‖ * wt 1 x ^ ((1 : ℤ) - (i : ℤ)) ≤ Γ * (r + 1) :=
           mul_le_mul h2 hz hz0 hΓ
-      _ ≤ Γ * (r + 1) ^ 2 := by nlinarith [mul_nonneg hΓ hr.le]
+      _ ≤ Γ * (r + 1) ^ 2 :=
+          mul_le_mul_of_nonneg_left (le_self_pow₀ (by linarith) (by norm_num)) hΓ
 
 theorem E_P_contDiff {φ : E → ℝ} {n : ℕ} (hφ : ContDiff ℝ n φ) : ContDiff ℝ n (E_P φ) :=
   hφ.sub (E_quad_contDiff φ n)
@@ -2086,8 +2103,9 @@ theorem E_ph_low {d : ℕ} {φ : (Fin d → ℂ) → ℝ} {n : ℕ} (h3n : 3 ≤
           mul_le_mul a1 h2 (abs_nonneg _) zero_le_one
       _ = K * ‖x‖ ^ 2 := one_mul _
   have h4 : K * ‖x‖ ^ 2 ≤ c₁ / 2 * ‖x‖ := by
-    have : K * ‖x‖ ≤ c₁ / 2 := (mul_le_mul_of_nonneg_left hxρ hK0).trans hρ
-    nlinarith [norm_nonneg x]
+    have h4' : K * ‖x‖ ≤ c₁ / 2 := (mul_le_mul_of_nonneg_left hxρ hK0).trans hρ
+    calc K * ‖x‖ ^ 2 = (K * ‖x‖) * ‖x‖ := by ring
+      _ ≤ (c₁ / 2) * ‖x‖ := mul_le_mul_of_nonneg_right h4' (norm_nonneg x)
   have h5 := abs_sub_abs_le_abs_sub (fderiv ℝ φ x (dirv l)) ((1 - s) * fderiv ℝ (E_P φ) x (dirv l))
   linarith
 

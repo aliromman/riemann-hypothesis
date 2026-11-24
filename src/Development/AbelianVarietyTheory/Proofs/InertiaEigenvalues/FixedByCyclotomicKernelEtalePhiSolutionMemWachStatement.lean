@@ -58,6 +58,23 @@ import Mathlib.Tactic.Basify
 import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Polynomial.Basic
 
+attribute [-instance]
+  NormedSpace.toModule Submodule.normedSpace Submodule.seminormedAddCommGroup
+  Submodule.normedAddCommGroup SubalgebraClass.toNormedAlgebra
+  Subalgebra.isScalarTower_left Subalgebra.isScalarTower_mid
+  Submonoid.instIsScalarTowerSubtypeMem Submonoid.instSMulCommClassSubtypeMem_1
+  Subalgebra.smulCommClass_right Subalgebra.smulCommClass_left
+  MulSemiringAction.toDistribMulAction
+  RingHomClass.toLinearMapClassNNRat RingHomClass.toLinearMapClassRat
+  NonUnitalAlgHomClass.instLinearMapClass
+  NonUnitalAlgHomClass.instSemilinearMapClassOfNonUnitalAlgSemiHomClassOfClassRingHom
+  Algebra.TensorProduct.instNonUnitalSemiring Algebra.TensorProduct.instNonUnitalRing
+  TopologicalSpace.Compacts.instSetLike AddMonCat.addMonoidObj
+  IdemCommSemiring.toCommSemiring IdemSemiring.toSemiring
+  KleeneAlgebra.toIdemSemiring IdemCommSemiring.toIdemSemiring
+attribute [local instance high]
+  Submodule.module TensorProduct.leftModule Algebra.TensorProduct.leftAlgebra
+
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PadicClosed, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FixedByCyclotomicKernelEtalePhiSolutionMemWach, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FixedByCyclotomicKernelEtalePhiSolutionMemWachStatement
 
@@ -601,7 +618,6 @@ theorem tilt_mem (I : IoS AI R) (hW : IoW I) (c : Om l) (hc : c ∈ K0 K) (m : �
   have h1 := hW ⟨c, hc⟩ m hm hl hcm x ht (fun i => ⟨_, hint i⟩) fun _ => rfl
   exact ⟨_, (I.ioE_ext _).trans (congrArg (inclR LL) h1)⟩
 
-set_option synthInstance.maxHeartbeats 200000 in
 theorem eroot_mem (I : IoS AI R) (j : ℕ) : ∃ e,
     (φRW LL)^[j] (fW LL (WittVector.teichmuller l (AI.εroot j))) = I.ioE e ^ l ^ s := by
   obtain ⟨e, he⟩ := exists_succ I
@@ -613,8 +629,6 @@ theorem mem_perf {R E : Type} [CommRing R] [CommRing E] {j : E →+* R} {φ : R 
     x ∈ perf j φ hφ p := ⟨n, e ^ k, 0, by rw [h, map_pow, mul_zero, add_zero]⟩
 
 
-set_option synthInstance.maxHeartbeats 200000 in
-set_option maxHeartbeats 1000000 in
 theorem approx (hG : Good K s LL) (I : IoS AI R) (hW : IoW I) (y : RW LL) (hy : FixH AI K y) (m : ℕ) :
     ∃ (n : ℕ) (y0 : RW LL) (e : R.EE) (r : RW LL),
       (φRW LL)^[n] y0 = I.ioE e + (l : RW LL) * r ∧ NearPi AI LL s m (y - y0) := by

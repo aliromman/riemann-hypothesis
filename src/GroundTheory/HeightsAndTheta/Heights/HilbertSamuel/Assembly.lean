@@ -158,14 +158,14 @@ theorem backQ_map (k₀ : K) (M : Matrix (Ix (Fin r)) (ι k₀) ℤ) (g : MvPoly
     backQ k₀ M (map (Int.castRingHom ℚ) g) = map (Int.castRingHom ℚ) (back k₀ M g) := by
   rw [back, backQ, map_bind₁]
 
-theorem fst_eq_of_mem_support {f : MRing ι} {k₀ : K} {n : ℕ} (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f (blockDeg k₀ n))
+theorem fst_eq_of_mem_support {f : MRing ι} {k₀ : K} {n : ℕ} (hf : IsMultiHomog f (blockDeg k₀ n))
     {c : (Σ k, ι k) →₀ ℕ} (hc : AddMonoidAlgebra.coeff f c ≠ 0) {p : Σ k, ι k} (hp : p ∈ c.support) : p.1 = k₀ := by
   by_contra hne
   have h := hf c (mem_support_iff.mpr hc) p.1
   rw [blockDeg, if_neg hne, Finset.sum_eq_zero_iff] at h
   exact (Finsupp.mem_support_iff.mp hp) (h p.2 (Finset.mem_univ _))
 
-theorem isHomogeneous_of_blockDeg {f : MRing ι} {k₀ : K} {n : ℕ} (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f (blockDeg k₀ n)) :
+theorem isHomogeneous_of_blockDeg {f : MRing ι} {k₀ : K} {n : ℕ} (hf : IsMultiHomog f (blockDeg k₀ n)) :
     f.IsHomogeneous n := by
   intro c hc
   have h := hf c (mem_support_iff.mpr hc)
@@ -173,7 +173,7 @@ theorem isHomogeneous_of_blockDeg {f : MRing ι} {k₀ : K} {n : ℕ} (hf : Reci
   simp only [Pi.one_apply, smul_eq_mul, mul_one, h, blockDeg, Finset.sum_ite_eq', Finset.mem_univ, if_true]
 
 theorem isHomogeneous_fwd (k₀ : K) (N : Matrix (ι k₀) (Ix (Fin r)) ℤ) {f : MRing ι} {n : ℕ}
-    (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f (blockDeg k₀ n)) : (fwd k₀ N f).IsHomogeneous n := by
+    (hf : IsMultiHomog f (blockDeg k₀ n)) : (fwd k₀ N f).IsHomogeneous n := by
   have := (isHomogeneous_of_blockDeg hf).aeval (blockSubst k₀ N) (isHomogeneous_blockSubst k₀ N)
   rw [one_mul, aeval_eq_bind₁] at this
   exact this
@@ -188,7 +188,7 @@ theorem weight_wB (c : (Σ k, ι k) →₀ ℕ) : Finsupp.weight wB c = fun k =>
   · simp [wB, Ne.symm hk']
 
 theorem isMultiHomog_iff_wB (f : MRing ι) (a : K → ℕ) :
-    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f a ↔ IsWeightedHomogeneous wB f a := by
+    IsMultiHomog f a ↔ IsWeightedHomogeneous wB f a := by
   constructor
   · intro h c hc
     rw [weight_wB]
@@ -200,7 +200,7 @@ theorem isMultiHomog_iff_wB (f : MRing ι) (a : K → ℕ) :
     exact congrFun this k
 
 theorem isMultiHomog_back (k₀ : K) (M : Matrix (Ix (Fin r)) (ι k₀) ℤ) {g : MvPolynomial (Ix (Fin r)) ℤ} {n : ℕ}
-    (hg : g.IsHomogeneous n) : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (back k₀ M g) (blockDeg k₀ n) := by
+    (hg : g.IsHomogeneous n) : IsMultiHomog (back k₀ M g) (blockDeg k₀ n) := by
   have hbf : ∀ j, IsWeightedHomogeneous wB (blockForms k₀ M j) (Pi.single k₀ 1) := fun j =>
     IsWeightedHomogeneous.sum _ _ _ fun i _ => (isWeightedHomogeneous_X ℤ wB (⟨k₀, i⟩ : Σ k, ι k)).C_mul _
   rw [isMultiHomog_iff_wB, show blockDeg k₀ n = n • Pi.single k₀ 1 by
@@ -246,7 +246,7 @@ variable {y : (Σ k, ι k) → Ω} {k₀ : K} {M : Matrix (Ix (Fin r)) (ι k₀)
   {x : Ix (Fin r) → Ω}
 
 theorem back_fwd_sub_mem (h : IsBlockImage y k₀ M N x) {f : MRing ι} {n : ℕ}
-    (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f (blockDeg k₀ n)) : back k₀ M (fwd k₀ N f) - f ∈ mCoordIdeal y := by
+    (hf : IsMultiHomog f (blockDeg k₀ n)) : back k₀ M (fwd k₀ N f) - f ∈ mCoordIdeal y := by
   rw [← Ideal.Quotient.eq]
   have e1 : back k₀ M (fwd k₀ N f) = bind₁ (fun p => back k₀ M (blockSubst k₀ N p)) f := by
     simp only [back, fwd, bind₁_bind₁]
@@ -270,13 +270,13 @@ theorem aeval_back (h : IsBlockImage y k₀ M N x) (g : MvPolynomial (Ix (Fin r)
   have hx : (fun j => aeval y (blockForms k₀ M j)) = x := funext fun j => by simp [blockForms, h.1 j]
   rw [back, aeval_bind₁, hx]
 
-theorem aeval_fwd (h : IsBlockImage y k₀ M N x) {f : MRing ι} {n : ℕ} (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f (blockDeg k₀ n)) :
+theorem aeval_fwd (h : IsBlockImage y k₀ M N x) {f : MRing ι} {n : ℕ} (hf : IsMultiHomog f (blockDeg k₀ n)) :
     aeval x (fwd k₀ N f) = aeval y f := by
   have h0 := aeval_eq_zero_of_mem (back_fwd_sub_mem h hf)
   rw [map_sub, sub_eq_zero, aeval_back h] at h0
   exact h0
 
-theorem eval_fwd (h : IsBlockImage y k₀ M N x) {f : MRing ι} {n : ℕ} (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f (blockDeg k₀ n))
+theorem eval_fwd (h : IsBlockImage y k₀ M N x) {f : MRing ι} {n : ℕ} (hf : IsMultiHomog f (blockDeg k₀ n))
     {z : (Σ k, ι k) → ℂ} (hz : z ∈ mcPts (mCoordIdeal y)) :
     eval (blockMapC k₀ M z) (map (Int.castRingHom ℂ) (fwd k₀ N f)) = eval z (map (Int.castRingHom ℂ) f) := by
   have e : ∀ g : MvPolynomial (Ix (Fin r)) ℤ,
@@ -301,7 +301,7 @@ theorem secM_eq (h : IsBlockImage y k₀ M N x) (n : ℕ) :
     secM y (blockDeg k₀ n) = (sec ℤ x n).toAddSubgroup := by
   unfold secM
   congr 1
-  have hset : {s | ∃ g : MRing ι, ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog g (blockDeg k₀ n) ∧ aeval y g = s} =
+  have hset : {s | ∃ g : MRing ι, IsMultiHomog g (blockDeg k₀ n) ∧ aeval y g = s} =
       ((sec ℤ x n : Submodule ℤ Ω) : Set Ω) := by
     ext s
     simp only [Set.mem_ofPred_eq, sec, Submodule.map_coe, Set.mem_image, SetLike.mem_coe,
@@ -452,7 +452,7 @@ theorem blockGram_eq (d₀ : HSMBlockDatum D K ι Ω) (M : Matrix (Ix (Fin r)) (
     (hint : ∀ g : (Ix (Fin r) → ℂ) → ℂ, ContinuousOn g {0}ᶜ → (∀ (c : ℂ) z, c ≠ 0 → g (c • z) = g z) →
       ∫ a, g (resPt d' a) ∂d'.dV = ∫ a, g (blockMapC d₀.k₀ M (blockPt d₀ a)) ∂d₀.dV)
     (n : ℕ) {s : ℕ} (b : Fin s → MvPolynomial (Σ k, ι k) ℚ)
-    (hb : ∀ j, ∃ f : MRing ι, ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f (blockDeg d₀.k₀ n) ∧ b j = map (Int.castRingHom ℚ) f) :
+    (hb : ∀ j, ∃ f : MRing ι, IsMultiHomog f (blockDeg d₀.k₀ n) ∧ b j = map (Int.castRingHom ℚ) f) :
     blockGram d₀ n b = resGram d' n fun j => fwdQ d₀.k₀ N (b j) := by
   set bt : Fin s → MvPolynomial (Ix (Fin r)) ℚ := fun j => fwdQ d₀.k₀ N (b j) with hbt_def
   have hbt : ∀ j, ∃ f : MvPolynomial (Ix (Fin r)) ℤ, f.IsHomogeneous n ∧ bt j = map (Int.castRingHom ℚ) f := by

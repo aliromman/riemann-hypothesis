@@ -99,28 +99,28 @@ variable {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat B} {w : ColW B f T} {Z
 
 theorem nchT_up (n : NchT w Z Wt nch) : Nonempty (NchT w (upL Z S' N h) Wt (nchUp S' N h nch)) :=
   ⟨{ tp := {
-       xi := by with_unfolding_all exact (n.tp.xi :)
-       xi_inj := by with_unfolding_all exact (n.tp.xi_inj :)
-       xi_fin := by with_unfolding_all exact (n.tp.xi_fin :)
-       xi_triv := by with_unfolding_all exact (n.tp.xi_triv :)
-       xi_tame := by with_unfolding_all exact (n.tp.xi_tame :)
-       psi := by with_unfolding_all exact (n.tp.psi :)
-       trueColumnChoices_heckeChar_reference_eq_one := by with_unfolding_all exact (n.tp.trueColumnChoices_heckeChar_reference_eq_one :)
-       xi_star := by with_unfolding_all exact (n.tp.xi_star :)
-       xi_star' := by with_unfolding_all exact (n.tp.xi_star' :)
-       xi_tw := by with_unfolding_all exact (n.tp.xi_tw :)
-       psi_is := by with_unfolding_all exact (n.tp.psi_is :)
-       psi_un := by with_unfolding_all exact (n.tp.psi_un :) }
-     xi := by with_unfolding_all exact (n.xi :)
-     psi := by with_unfolding_all exact (n.psi :)
+       xi := (n.tp.xi :)
+       xi_inj := (n.tp.xi_inj :)
+       xi_fin := (n.tp.xi_fin :)
+       xi_triv := (n.tp.xi_triv :)
+       xi_tame := (n.tp.xi_tame :)
+       psi := (n.tp.psi :)
+       trueColumnChoices_heckeChar_reference_eq_one := (n.tp.trueColumnChoices_heckeChar_reference_eq_one :)
+       xi_star := (n.tp.xi_star :)
+       xi_star' := (n.tp.xi_star' :)
+       xi_tw := (n.tp.xi_tw :)
+       psi_is := (n.tp.psi_is :)
+       psi_un := (n.tp.psi_un :) }
+     xi := (n.xi :)
+     psi := (n.psi :)
      tie := {
-       twOf_eq := by with_unfolding_all exact (n.tie.twOf_eq :)
-       twSide_eq := by with_unfolding_all exact (n.tie.twSide_eq :)
-       Q_eq := by with_unfolding_all exact (n.tie.Q_eq :)
-       psi_eq := by with_unfolding_all exact (n.tie.psi_eq :)
-       embedding_baseField_condition := by with_unfolding_all exact (n.tie.embedding_baseField_condition :) }
+       twOf_eq := (n.tie.twOf_eq :)
+       twSide_eq := (n.tie.twSide_eq :)
+       Q_eq := (n.tie.Q_eq :)
+       psi_eq := (n.tie.psi_eq :)
+       embedding_baseField_condition := (n.tie.embedding_baseField_condition :) }
      Q := n.Q
-     chrPsi := by with_unfolding_all exact (n.chrPsi :) }⟩
+     chrPsi := (n.chrPsi :) }⟩
 
 theorem kept_up (nch : NChoice (w.D Z)) : Kept nch (nchUp S' N h nch) := by
   refine ⟨?_, ?_, ?_, HEq.rfl, HEq.rfl, HEq.rfl, HEq.rfl, HEq.rfl, HEq.rfl⟩ <;> constructor <;> rfl
@@ -132,8 +132,8 @@ theorem goodO_up (g : GoodO (w.D Z) nch xd) : GoodO (w.D (upL Z S' N h)) (nchUp 
   obtain ⟨⟨E, N0, S⟩, hE, hAt, hCl⟩ := g.tw
   cases hE
   refine ⟨⟨⟨twEOf _, N0, S⟩, rfl, ?_, ?_⟩, g.sep⟩
-  · with_unfolding_all exact hAt
-  · with_unfolding_all exact hCl
+  · exact hAt
+  · exact hCl
 end
 
 end GlobalTheory.LayerMove
@@ -198,7 +198,7 @@ end Side
 
 theorem jMt_rowsSame : ∀ (K : Ctx) (B : Base) (f : Fr B.toPre) (T : TwDat B) (w : ColW B f T) (Z : w.Lt) (Wt : Set B.places.Pl) (S' : SStage B w.C Z.W) (N : ∀ u, Submodule (𝓞 B.LL) (Z.V.div.Nu u).V) (h : B.Word → ℝ) (p0 : BaseLevelRowSide (w.D Z)) (t : RowsT K w Z Wt p0) (p0' : BaseLevelRowSide (w.D (upL Z S' N h))) (t' : RowsT K w (upL Z S' N h) Wt p0'), RowsSame t t' → ∀ (μ : (w.D Z).what₂.Tup) (hμ : Formalism.IndefR.RecTie.Used0 (w.D Z) μ) (hμ' : Formalism.IndefR.RecTie.Used0 (w.D (upL Z S' N h)) μ) (i : Fin (w.D Z).R.m) (x : (w.D Z).what₂.Mt μ ((i : ℕ) + 1)), HEq (t'.r.Y.IL.jMt μ hμ' i x).1 (t.r.Y.IL.jMt μ hμ i x).1 := by
   intro K B f T w Z Wt S' N h p0 t p0' t' hs μ hμ hμ' i x
-  have H := side t'.r.Y ((by with_unfolding_all exact (i :)))
+  have H := side t'.r.Y i
   have a1 := hs.tup
   have a2 := hs.eMt
   cases t' with | mk hX' r' exAt' inGeo' grpAt' grp' mu' exact' untw' emt0' emt' etaF' rowInt' idx' => ?_
@@ -220,9 +220,8 @@ theorem jMt_rowsSame : ∀ (K : Ctx) (B : Base) (f : Fr B.toPre) (T : TwDat B) (
   subst e5
   have e6 : cG' = t.r.z.cG := eq_of_heq hs.cG
   subst e6
-  exact (by with_unfolding_all exact ((H ((by with_unfolding_all exact ((Formalism.IndefR.RecTie.Used0 (w.D Z)) :))) ((by with_unfolding_all exact (t.r.Y.tup :))) ((by with_unfolding_all exact (a1 :))) ((by with_unfolding_all exact (t.r.Y.eMt :))) ((by with_unfolding_all exact (a2 :))) ((by with_unfolding_all exact ((gOf t.r.Y i) :)))
-    ((by with_unfolding_all exact ((fun τ => (t.r.Y.formsL i τ).span) :))) ((by with_unfolding_all exact ((t.r.Y.mtRead i) :))) ((by with_unfolding_all exact (μ :))) ((by with_unfolding_all exact ((t.r.Y.tupT μ) :))) ((by with_unfolding_all exact ((t.r.Y.tupTie μ hμ) :))) ((by with_unfolding_all exact (hμ :)))
-    ((by with_unfolding_all exact (hμ' :))) ((by with_unfolding_all exact (x :)))) :))
+  exact H (Formalism.IndefR.RecTie.Used0 (w.D Z)) t.r.Y.tup a1 t.r.Y.eMt a2 (gOf t.r.Y i)
+    (fun τ => (t.r.Y.formsL i τ).span) (t.r.Y.mtRead i) μ (t.r.Y.tupT μ) (t.r.Y.tupTie μ hμ) hμ hμ' x
 
 end GlobalTheory.Mem.R3.Rw.JmtUp
 end -- clump:auto
@@ -239,7 +238,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.HeightCounting.Up GlobalTheory.Mem.SRe GlobalTheory.Mem.R3.Rw
 
 theorem _root_.GlobalTheory.T.rowReadings_sameRows_identify_definiteForms : ∀ (K : Ctx) (B : Base) (f : Fr B.toPre) (T : TwDat B) (w : ColW B f T) (Z : w.Lt) (Wt : Set B.places.Pl) (S' : SStage B w.C Z.W) (N : ∀ u, Submodule (𝓞 B.LL) (Z.V.div.Nu u).V) (h : B.Word → ℝ) (p0 : BaseLevelRowSide (w.D Z)) (t : RowsT K w Z Wt p0) (p0' : BaseLevelRowSide (w.D (upL Z S' N h))) (t' : RowsT K w (upL Z S' N h) Wt p0'), RowsSame t t' → ∀ (μ : (w.D Z).what₂.Tup) (hμ : Formalism.IndefR.RecTie.Used0 (w.D Z) μ) (hμ' : Formalism.IndefR.RecTie.Used0 (w.D (upL Z S' N h)) μ) (i : Fin (w.D Z).R.m) (x : (w.D Z).what₂.Mt μ ((i : ℕ) + 1)), HEq (t'.r.Y.IL.jMt μ hμ' i x).1 (t.r.Y.IL.jMt μ hμ i x).1 := by
-  first | exact @GlobalTheory.Mem.R3.Rw.JmtUp.jMt_rowsSame
+  exact @GlobalTheory.Mem.R3.Rw.JmtUp.jMt_rowsSame
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RowReadingsSameRowsIdentifyDefiniteFormsStatement =====
@@ -263,65 +262,65 @@ variable {D : D7} (m : Mv D) {hL : _root_.UpperTheory.Zero.LLC.RecTExists}
 section
 variable {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE} {M : Formalism.L2.MtFam D} {C : NChoice D} {tp : TupTied D cf C}
 def Mv.ndSpec_alt {big} {L : LocAll (lay0 D)} (x : NdSpec A.pl M C big L.X L.T) : NdSpec (m.sideA_alt A).pl (m.mt M) (m.ch C) big (m.loc L).X (m.loc L).T := @_root_.GlobalTheory.HeightCounting.NdSpec.mk (_) (_) (_) (_) (_) (_) (_)
-    (iq := (by with_unfolding_all exact (x.iq :)))
-    (iq_alg := (by with_unfolding_all exact (x.iq_alg :)))
-    (iq_LL := (by with_unfolding_all exact (x.iq_LL :)))
-    (iq_big := (by with_unfolding_all exact (x.iq_big :)))
+    (iq := (x.iq))
+    (iq_alg := (x.iq_alg))
+    (iq_LL := (x.iq_LL))
+    (iq_big := (x.iq_big))
     (B := @_root_.Formalism.L2.NLocBase.mk (_) (_)
-      (Oc := (by with_unfolding_all exact (x.B.Oc :)))
-      (ringOc := (by with_unfolding_all exact (x.B.ringOc :)))
-      (domOc := (by with_unfolding_all exact (x.B.domOc :)))
-      (dvrOc := (by with_unfolding_all exact (x.B.dvrOc :)))
-      (ec := (by with_unfolding_all exact (x.B.ec :)))
-      (ec_w := (by with_unfolding_all exact (x.B.ec_w :)))
-      (V := (by with_unfolding_all exact (x.B.V :)))
-      (acgV := (by with_unfolding_all exact (x.B.acgV :)))
-      (modV := (by with_unfolding_all exact (x.B.modV :)))
-      (modVO := (by with_unfolding_all exact (x.B.modVO :)))
-      (towV := (by with_unfolding_all exact (x.B.towV :)))
-      (iV := (by with_unfolding_all exact (x.B.iV :)))
-      (iV_basis := (by with_unfolding_all exact (x.B.iV_basis :)))
-      (Qc := (by with_unfolding_all exact (x.B.Qc :)))
-      (hL := (by with_unfolding_all exact (x.B.hL :)))
-      (hL_def := (by with_unfolding_all exact (x.B.hL_def :)))
-      (hK := (by with_unfolding_all exact (x.B.hK :)))
-      (hK_def := (by with_unfolding_all exact (x.B.hK_def :)))
-      (split := (by with_unfolding_all exact (x.B.split :)))
-      (Qc_over := (by with_unfolding_all exact (x.B.Qc_over :)))
-      (Qc_conj := (by with_unfolding_all exact (x.B.Qc_conj :))))
-    (Q_eq := (by with_unfolding_all exact (x.Q_eq :)))
-    (mx := (by with_unfolding_all exact (x.mx :)))
-    (mx_max := (by with_unfolding_all exact (x.mx_max :)))
-    (mx_inj := (by with_unfolding_all exact (x.mx_inj :)))
-    (mx_all := (by with_unfolding_all exact (x.mx_all :)))
-    (phO := (by with_unfolding_all exact (x.phO :)))
-    (phK := (by with_unfolding_all exact (x.phK :)))
-    (phK_alg := (by with_unfolding_all exact (x.phK_alg :)))
-    (phK_emb := (by with_unfolding_all exact (x.phK_emb :)))
-    (Psi := (by with_unfolding_all exact (x.Psi :)))
-    (Psi_inj := (by with_unfolding_all exact (x.Psi_inj :)))
-    (Psi_range := (by with_unfolding_all exact (x.Psi_range :)))
-    (Psi_pr := (by with_unfolding_all exact (x.Psi_pr :)))
-    (ptX := (by with_unfolding_all exact (x.ptX :)))
-    (ptX_hT := (by with_unfolding_all exact (x.ptX_hT :)))
-    (iotaC := (by with_unfolding_all exact (x.iotaC :)))
-    (iotaC_coh := (by with_unfolding_all exact (x.iotaC_coh :)))
-    (Qc_eq := (by with_unfolding_all exact (x.Qc_eq :)))
-    (std := (by with_unfolding_all exact (x.std :)))
-    (act_hK := (by with_unfolding_all exact (x.act_hK :)))
-    (twOf_eq := (by with_unfolding_all exact (x.twOf_eq :)))
-    (twSide_eq := (by with_unfolding_all exact (x.twSide_eq :)))
-    (psi_eq := (by with_unfolding_all exact (x.psi_eq :)))
-    (twO_alg := (by with_unfolding_all exact (x.twO_alg :)))
-    (tw_reads := (by with_unfolding_all exact (x.tw_reads :)))
-    (heckeLoc_gamma_places := (by with_unfolding_all exact (x.heckeLoc_gamma_places :)))
-    (nbr := (by with_unfolding_all exact (x.nbr :)))
-    (nbr_ind := (by with_unfolding_all exact (x.nbr_ind :)))
-    (self_good := (by with_unfolding_all exact (x.self_good :)))
-    (nbr_iq := (by with_unfolding_all exact (x.nbr_iq :)))
-    (bj := (by with_unfolding_all exact (x.bj :)))
-    (bj_span := (by with_unfolding_all exact (x.bj_span :)))
-    (bj_rel := (by with_unfolding_all exact (x.bj_rel :)))
+      (Oc := (x.B.Oc))
+      (ringOc := (x.B.ringOc))
+      (domOc := (x.B.domOc))
+      (dvrOc := (x.B.dvrOc))
+      (ec := (x.B.ec))
+      (ec_w := (x.B.ec_w))
+      (V := (x.B.V))
+      (acgV := (x.B.acgV))
+      (modV := (x.B.modV))
+      (modVO := (x.B.modVO))
+      (towV := (x.B.towV))
+      (iV := (x.B.iV))
+      (iV_basis := (x.B.iV_basis))
+      (Qc := (x.B.Qc))
+      (hL := (x.B.hL))
+      (hL_def := (x.B.hL_def))
+      (hK := (x.B.hK))
+      (hK_def := (x.B.hK_def))
+      (split := (x.B.split))
+      (Qc_over := (x.B.Qc_over))
+      (Qc_conj := (x.B.Qc_conj)))
+    (Q_eq := (x.Q_eq))
+    (mx := (x.mx))
+    (mx_max := (x.mx_max))
+    (mx_inj := (x.mx_inj))
+    (mx_all := (x.mx_all))
+    (phO := (x.phO))
+    (phK := (x.phK))
+    (phK_alg := (x.phK_alg))
+    (phK_emb := (x.phK_emb))
+    (Psi := (x.Psi))
+    (Psi_inj := (x.Psi_inj))
+    (Psi_range := (x.Psi_range))
+    (Psi_pr := (x.Psi_pr))
+    (ptX := (x.ptX))
+    (ptX_hT := (x.ptX_hT))
+    (iotaC := (x.iotaC))
+    (iotaC_coh := (x.iotaC_coh))
+    (Qc_eq := (x.Qc_eq))
+    (std := (x.std))
+    (act_hK := (x.act_hK))
+    (twOf_eq := (x.twOf_eq))
+    (twSide_eq := (x.twSide_eq))
+    (psi_eq := (x.psi_eq))
+    (twO_alg := (x.twO_alg))
+    (tw_reads := (x.tw_reads))
+    (heckeLoc_gamma_places := (x.heckeLoc_gamma_places))
+    (nbr := (x.nbr))
+    (nbr_ind := (x.nbr_ind))
+    (self_good := (x.self_good))
+    (nbr_iq := (x.nbr_iq))
+    (bj := (x.bj))
+    (bj_span := (x.bj_span))
+    (bj_rel := (x.bj_rel))
 end
 section
 end
@@ -351,20 +350,20 @@ variable {D : D7} (m : Mv D) {hL : _root_.UpperTheory.Zero.LLC.RecTExists}
 section
 variable {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE} {M : Formalism.L2.MtFam D} {C : NChoice D} {tp : TupTied D cf C}
 def Mv.autSpec_alt {big} {L : LocAll (lay0 D)} {Sp : NdSpec A.pl M C big L.X L.T} (x : _root_.GlobalTheory.HeightCounting.AutomorphicSpecialisation A M tp.tup Sp.iq L.Y L.C) : _root_.GlobalTheory.HeightCounting.AutomorphicSpecialisation (m.sideA_alt A) (m.mt M) (m.tp tp).tup (m.ndSpec_alt Sp).iq (m.loc L).Y (m.loc L).C := @_root_.GlobalTheory.HeightCounting.AutomorphicSpecialisation.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_)
-    (iotaQ := (by with_unfolding_all exact (x.iotaQ :)))
-    (iotaQC := (by with_unfolding_all exact (x.iotaQC :)))
-    (kFbar := (by with_unfolding_all exact (x.kFbar :)))
-    (locW := (by with_unfolding_all exact (x.locW :)))
-    (satW := (by with_unfolding_all exact (x.satW :)))
-    (wdOf := (by with_unfolding_all exact (x.wdOf :)))
-    (muC := (by with_unfolding_all exact (x.muC :)))
-    (S := (by with_unfolding_all exact (x.S :)))
-    (irr := (by with_unfolding_all exact (x.irr :)))
-    (inj := (by with_unfolding_all exact (x.inj :)))
-    (surj := (by with_unfolding_all exact (x.surj :)))
-    (typeV := (by with_unfolding_all exact (x.typeV :)))
-    (ptV := (by with_unfolding_all exact (x.ptV :)))
-    (emb := (by with_unfolding_all exact (x.emb :)))
+    (iotaQ := (x.iotaQ))
+    (iotaQC := (x.iotaQC))
+    (kFbar := (x.kFbar))
+    (locW := (x.locW))
+    (satW := (x.satW))
+    (wdOf := (x.wdOf))
+    (muC := (x.muC))
+    (S := (x.S))
+    (irr := (x.irr))
+    (inj := (x.inj))
+    (surj := (x.surj))
+    (typeV := (x.typeV))
+    (ptV := (x.ptV))
+    (emb := (x.emb))
 end
 section
 end
@@ -391,7 +390,7 @@ noncomputable section
 namespace GlobalTheory.LayerMove
 
 variable {D : D7} (m : Mv D) {hL : _root_.UpperTheory.Zero.LLC.RecTExists}
-theorem Mv.automorphy_of_move {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE} (x : _root_.GlobalTheory.HeightCounting.AutomorphicSideRealised hL D A.wdT A.au) : _root_.GlobalTheory.HeightCounting.AutomorphicSideRealised hL m.D (m.sideA_alt A).wdT (m.sideA_alt A).au := (by with_unfolding_all exact (x :))
+theorem Mv.automorphy_of_move {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE} (x : _root_.GlobalTheory.HeightCounting.AutomorphicSideRealised hL D A.wdT A.au) : _root_.GlobalTheory.HeightCounting.AutomorphicSideRealised hL m.D (m.sideA_alt A).wdT (m.sideA_alt A).au := (x)
 section
 end
 section
@@ -421,118 +420,100 @@ namespace GlobalTheory.LayerMove
 variable {D : D7} (m : Mv D) {hL : _root_.UpperTheory.Zero.LLC.RecTExists}
 def Mv.sideB_alt {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE} {low Pq S hk eig θ} (x : SideB D cf A.row low Pq S hk eig θ) : SideB m.D (m.cf cf) (m.sideA_alt A).row low Pq S hk eig θ := @_root_.GlobalTheory.HeightCounting.SideB.mk (_) (_) (_) (_) (_) (_) (_) (_) (_)
     (twF := @_root_.GlobalTheory.HeightCounting.TwFrameC.mk (_)
-      (K0 := (by with_unfolding_all exact (x.twF.K0 :)))
-      (eO0 := (by with_unfolding_all exact (x.twF.eO0 :)))
-      (j0 := (by with_unfolding_all exact (x.twF.j0 :)))
-      (Lw := (by with_unfolding_all exact (x.twF.Lw :)))
-      (eO := (by with_unfolding_all exact (x.twF.eO :)))
-      (eOk := (by with_unfolding_all exact (x.twF.eOk :)))
-      (iCq := (by with_unfolding_all exact (x.twF.iCq :)))
-      (S0x := (by with_unfolding_all exact (x.twF.S0x :))))
+      (K0 := (x.twF.K0))
+      (eO0 := (x.twF.eO0))
+      (j0 := (x.twF.j0))
+      (Lw := (x.twF.Lw))
+      (eO := (x.twF.eO))
+      (eOk := (x.twF.eOk))
+      (iCq := (x.twF.iCq))
+      (S0x := (x.twF.S0x)))
     (tw := @_root_.GlobalTheory.HeightCounting.TwistFrameLowIndexCompatibility.mk (_) (_) (_)
-      (pl_emb := (by with_unfolding_all exact (x.tw.pl_emb :)))
-      (ringSpec_baseIntegersEquiv_algebraMap := (by with_unfolding_all exact (x.tw.ringSpec_baseIntegersEquiv_algebraMap :)))
-      (ringSpec_baseEmbedding_compatible := (by with_unfolding_all exact (x.tw.ringSpec_baseEmbedding_compatible :)))
-      (eO_alg := (by with_unfolding_all exact (x.tw.eO_alg :)))
-      (eOk_alg := (by with_unfolding_all exact (x.tw.eOk_alg :)))
-      (mu_g := (by with_unfolding_all exact (x.tw.mu_g :)))
-      (hk_split := (by with_unfolding_all exact (x.tw.hk_split :)))
-      (ringSpec_excludedPlaces_eq := (by with_unfolding_all exact (x.tw.ringSpec_excludedPlaces_eq :)))
-      (concreteTwistFrame_extraExcludedPlaces_conj := (by with_unfolding_all exact (x.tw.concreteTwistFrame_extraExcludedPlaces_conj :)))
-      (B_range := (by with_unfolding_all exact (x.tw.B_range :)))
-      (sig_inj := (by with_unfolding_all exact (x.tw.sig_inj :)))
-      (qs_pos := (by with_unfolding_all exact (x.tw.qs_pos :)))
-      (concreteTwistFrame_extraExcluded_over_smallPrimes := (by with_unfolding_all exact (x.tw.concreteTwistFrame_extraExcluded_over_smallPrimes :))))
-    (cover := (by with_unfolding_all exact (x.cover :)))
+      (pl_emb := (x.tw.pl_emb))
+      (ringSpec_baseIntegersEquiv_algebraMap := (x.tw.ringSpec_baseIntegersEquiv_algebraMap))
+      (ringSpec_baseEmbedding_compatible := (x.tw.ringSpec_baseEmbedding_compatible))
+      (eO_alg := (x.tw.eO_alg))
+      (eOk_alg := (x.tw.eOk_alg))
+      (mu_g := (x.tw.mu_g))
+      (hk_split := (x.tw.hk_split))
+      (ringSpec_excludedPlaces_eq := (x.tw.ringSpec_excludedPlaces_eq))
+      (concreteTwistFrame_extraExcludedPlaces_conj := (x.tw.concreteTwistFrame_extraExcludedPlaces_conj))
+      (B_range := (x.tw.B_range))
+      (sig_inj := (x.tw.sig_inj))
+      (qs_pos := (x.tw.qs_pos))
+      (concreteTwistFrame_extraExcluded_over_smallPrimes := (x.tw.concreteTwistFrame_extraExcluded_over_smallPrimes)))
+    (cover := (x.cover))
     (chiD := @_root_.Formalism.L2.NC.NChiData.mk (_)
-      (mu0 := (by with_unfolding_all exact (x.chiD.mu0 :)))
-      (etaT := (by with_unfolding_all exact (x.chiD.etaT :)))
-      (del := (by with_unfolding_all exact (x.chiD.del :)))
-      (psi := (by with_unfolding_all exact (x.chiD.psi :)))
-      (chiI := (by with_unfolding_all exact (x.chiD.chiI :)))
-      (embO := (by with_unfolding_all exact (x.chiD.embO :))))
+      (mu0 := (x.chiD.mu0))
+      (etaT := (x.chiD.etaT))
+      (del := (x.chiD.del))
+      (psi := (x.chiD.psi))
+      (chiI := (x.chiD.chiI))
+      (embO := (x.chiD.embO)))
     (chi := @_root_.Formalism.L2.NC.NormalizedCharacterCompatibility.mk (_) (_)
-      (psi := (by with_unfolding_all exact (x.chi.psi :)))
-      (del_fix := (by with_unfolding_all exact (x.chi.del_fix :)))
-      (delta := (by with_unfolding_all exact (x.chi.delta :)))
-      (chi1 := (by with_unfolding_all exact (x.chi.chi1 :)))
-      (ringSpec_sidedEmbedding_fixedField := (by with_unfolding_all exact (x.chi.ringSpec_sidedEmbedding_fixedField :)))
-      (etaT_unr := (by with_unfolding_all exact (x.chi.etaT_unr :)))
-      (etaT_inf := (by with_unfolding_all exact (x.chi.etaT_inf :)))
-      (lamG := (by with_unfolding_all exact (x.chi.lamG :))))
-    (eta_eq := (by with_unfolding_all exact (x.eta_eq :)))
-    (ringSpec_normalisedCharacter_eq := (by with_unfolding_all exact (x.ringSpec_normalisedCharacter_eq :)))
-    (del_eq := (by with_unfolding_all exact (x.del_eq :)))
-    (iCq_embO := (by with_unfolding_all exact (x.iCq_embO :)))
-    (embO_star := (by with_unfolding_all exact (x.embO_star :)))
-    (deltaRead := (by with_unfolding_all exact (x.deltaRead :)))
+      (psi := (x.chi.psi))
+      (del_fix := (x.chi.del_fix))
+      (delta := (x.chi.delta))
+      (chi1 := (x.chi.chi1))
+      (ringSpec_sidedEmbedding_fixedField := (x.chi.ringSpec_sidedEmbedding_fixedField))
+      (etaT_unr := (x.chi.etaT_unr))
+      (etaT_inf := (x.chi.etaT_inf))
+      (lamG := (x.chi.lamG)))
+    (eta_eq := (x.eta_eq))
+    (ringSpec_normalisedCharacter_eq := (x.ringSpec_normalisedCharacter_eq))
+    (del_eq := (x.del_eq))
+    (iCq_embO := (x.iCq_embO))
+    (embO_star := (x.embO_star))
+    (deltaRead := (x.deltaRead))
     (exp := @_root_.Formalism.L2.NExpTied.mk (_)
-      (U_eq := (by with_unfolding_all exact (x.exp.U_eq :)))
-      (psiU_gen := (by with_unfolding_all exact (x.exp.psiU_gen :)))
-      (psiU_side := (by with_unfolding_all exact (x.exp.psiU_side :)))
-      (psiU_xi := (by with_unfolding_all exact (x.exp.psiU_xi :)))
-      (delU_cont := (by with_unfolding_all exact (x.exp.delU_cont :)))
-      (delU_ine := (by with_unfolding_all exact (x.exp.delU_ine :)))
-      (thU_empty := (by with_unfolding_all exact (x.exp.thU_empty :)))
-      (sgnT := (by with_unfolding_all exact (x.exp.sgnT :)))
-      (sgnT_one := (by with_unfolding_all exact (x.exp.sgnT_one :)))
-      (Wt := (by with_unfolding_all exact (x.exp.Wt :)))
-      (acgWt := (by with_unfolding_all exact (x.exp.acgWt :)))
-      (modWt := (by with_unfolding_all exact (x.exp.modWt :)))
-      (fdWt := (by with_unfolding_all exact (x.exp.fdWt :)))
-      (rhoW := (by with_unfolding_all exact (x.exp.rhoW :)))
-      (rhoW_irr := (by with_unfolding_all exact (x.exp.rhoW_irr :)))
-      (rhoW_alg := (by with_unfolding_all exact (x.exp.rhoW_alg :)))
-      (tauG := (by with_unfolding_all exact (x.exp.tauG :)))
-      (sgnG := (by with_unfolding_all exact (x.exp.sgnG :)))
-      (sgnG_one := (by with_unfolding_all exact (x.exp.sgnG_one :)))
-      (tau_galois_first_character := (by with_unfolding_all exact (x.exp.tau_galois_first_character :)))
-      (mtV := @fun x1 => @fun x2 => @fun x3 => @fun x4 => @fun x5 => @fun x6 => @fun x7 => @fun x8 => @fun x9 => @_root_.Formalism.L2.NX.MtVReal.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_)
-        (W := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).W : _)))
-        (acg := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).acg : _)))
-        (mod := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).mod : _)))
-        (fd := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).fd : _)))
-        (ρ := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).ρ : _)))
-        (irr := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).irr : _)))
-        (alg := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).alg : _)))
-        (bc := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).bc : _)))
-        (J := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).J : _)))
-        (χ := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).χ : _)))
-        (J_open := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).J_open : _)))
-        (hyp := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).hyp : _)))
-        (QP := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).QP : _)))
-        (QP_sub := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).QP_sub : _)))
-        (QP_cover := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).QP_cover : _)))
-        (QP_nconj := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).QP_nconj : _)))
-        (DP := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).DP : _)))
-        (DP_sub := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).DP_sub : _)))
-        (DP_cover := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).DP_cover : _)))
-        (DP_nconj := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).DP_nconj : _)))
-        (sp := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).sp : _)))
-        (sp_w := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).sp_w : _)))
-        (redG := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).redG : _)))
-        (J_mem := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).J_mem : _)))
-        (chi_eq := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).chi_eq : _)))
-        (real := (by with_unfolding_all exact ((@_root_.Formalism.L2.NExpTied.mtV (_) x.exp ((x1)) ((x2)) ((x3)) ((x4)) ((x5)) ((x6)) ((x7)) ((x8)) ((x9))).real : _))))
-      (rhoW_hw := (by with_unfolding_all exact (x.exp.rhoW_hw :)))
-      (rhoW_wt := (by with_unfolding_all exact (x.exp.rhoW_wt :))))
-    (pq := (by with_unfolding_all exact (x.pq :)))
-    (psiU := (by with_unfolding_all exact (x.psiU :)))
-    (rho := (by with_unfolding_all exact (x.rho :)))
-    (chiL := (by with_unfolding_all exact (x.chiL :)))
-    (hs := (by with_unfolding_all exact (x.hs :)))
-    (eF := (by with_unfolding_all exact (x.eF :)))
-    (bsup := (by with_unfolding_all exact (x.bsup :)))
-    (act := (by with_unfolding_all exact (x.act :)))
-    (cHk := (by with_unfolding_all exact (x.cHk :)))
-    (hkEq := (by with_unfolding_all exact (x.hkEq :)))
-    (cHk_del := (by with_unfolding_all exact (x.cHk_del :)))
-    (hk_emb := (by with_unfolding_all exact (x.hk_emb :)))
-    (sigSpan := (by with_unfolding_all exact (x.sigSpan :)))
-    (rowS := (by with_unfolding_all exact (x.rowS :)))
-    (rowS_eig := (by with_unfolding_all exact (x.rowS_eig :)))
-    (hEig_zero := (by with_unfolding_all exact (x.hEig_zero :)))
-    (rhoS := (by with_unfolding_all exact (x.rhoS :)))
+      (U_eq := (x.exp.U_eq))
+      (psiU_gen := (x.exp.psiU_gen))
+      (psiU_side := (x.exp.psiU_side))
+      (psiU_xi := (x.exp.psiU_xi))
+      (delU_cont := (x.exp.delU_cont))
+      (delU_ine := (x.exp.delU_ine))
+      (thU_empty := (x.exp.thU_empty))
+      (sgnT := (x.exp.sgnT))
+      (sgnT_one := (x.exp.sgnT_one))
+      (Wt := (x.exp.Wt))
+      (acgWt := (x.exp.acgWt))
+      (modWt := (x.exp.modWt))
+      (fdWt := (x.exp.fdWt))
+      (rhoW := (x.exp.rhoW))
+      (rhoW_irr := (x.exp.rhoW_irr))
+      (rhoW_alg := (x.exp.rhoW_alg))
+      (tauG := (x.exp.tauG))
+      (sgnG := (x.exp.sgnG))
+      (sgnG_one := (x.exp.sgnG_one))
+      (tau_galois_first_character := (x.exp.tau_galois_first_character))
+      (mtV := fun x1 x2 x3 x4 x5 x6 x7 x8 x9 =>
+        let v := @_root_.Formalism.L2.NExpTied.mtV (_) x.exp x1 x2 x3 x4 x5 x6 x7 x8 x9
+        @_root_.Formalism.L2.NX.MtVReal.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_)
+          (W := v.W) (acg := v.acg) (mod := v.mod) (fd := v.fd) (ρ := v.ρ) (irr := v.irr)
+          (alg := v.alg) (bc := v.bc) (J := v.J) (χ := v.χ) (J_open := v.J_open) (hyp := v.hyp)
+          (QP := v.QP) (QP_sub := v.QP_sub) (QP_cover := v.QP_cover) (QP_nconj := v.QP_nconj)
+          (DP := v.DP) (DP_sub := v.DP_sub) (DP_cover := v.DP_cover) (DP_nconj := v.DP_nconj)
+          (sp := v.sp) (sp_w := v.sp_w) (redG := v.redG) (J_mem := v.J_mem)
+          (chi_eq := v.chi_eq) (real := v.real))
+      (rhoW_hw := (x.exp.rhoW_hw))
+      (rhoW_wt := (x.exp.rhoW_wt)))
+    (pq := (x.pq))
+    (psiU := (x.psiU))
+    (rho := (x.rho))
+    (chiL := (x.chiL))
+    (hs := (x.hs))
+    (eF := (x.eF))
+    (bsup := (x.bsup))
+    (act := (x.act))
+    (cHk := (x.cHk))
+    (hkEq := (x.hkEq))
+    (cHk_del := (x.cHk_del))
+    (hk_emb := (x.hk_emb))
+    (sigSpan := (x.sigSpan))
+    (rowS := (x.rowS))
+    (rowS_eig := (x.rowS_eig))
+    (hEig_zero := (x.hEig_zero))
+    (rhoS := (x.rhoS))
 section
 end
 section
@@ -564,22 +545,22 @@ section
 variable {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE} {M : Formalism.L2.MtFam D} {C : NChoice D} {tp : TupTied D cf C}
 theorem Mv.choiceSide_alt {low Pq S hk eig θ} {Bs : SideB D cf A.row low Pq S hk eig θ} (x : ChoiceSide D cf M Bs.exp C tp) : ChoiceSide m.D (m.cf cf) (m.mt M) (m.sideB_alt Bs).exp (m.ch C) (m.tp tp) := @_root_.GlobalTheory.HeightCounting.ChoiceSide.mk (_) (_) (_) (_) (_) (_)
     (nct := @_root_.Formalism.BasicNotions.NChTie.mk (_) (_)
-      (twOf_eq := (by with_unfolding_all exact (x.nct.twOf_eq :)))
-      (twSide_eq := (by with_unfolding_all exact (x.nct.twSide_eq :)))
-      (Q_eq := (by with_unfolding_all exact (x.nct.Q_eq :)))
-      (psi_eq := (by with_unfolding_all exact (x.nct.psi_eq :)))
-      (embedding_baseField_condition := (by with_unfolding_all exact (x.nct.embedding_baseField_condition :))))
+      (twOf_eq := (x.nct.twOf_eq))
+      (twSide_eq := (x.nct.twSide_eq))
+      (Q_eq := (x.nct.Q_eq))
+      (psi_eq := (x.nct.psi_eq))
+      (embedding_baseField_condition := (x.nct.embedding_baseField_condition)))
     (choice := @_root_.GlobalTheory.HeightCounting.ChoiceC.mk (_) (_)
-      (twI_conj := (by with_unfolding_all exact (x.choice.twI_conj :)))
-      (sd_place := (by with_unfolding_all exact (x.choice.sd_place :)))
-      (emb_side := (by with_unfolding_all exact (x.choice.emb_side :)))
-      (sd_conj := (by with_unfolding_all exact (x.choice.sd_conj :)))
-      (one := (by with_unfolding_all exact (x.choice.one :)))
-      (conj := (by with_unfolding_all exact (x.choice.conj :))))
-    (off := (by with_unfolding_all exact (x.off :)))
-    (adm := (by with_unfolding_all exact (x.adm :)))
-    (psi := (by with_unfolding_all exact (x.psi :)))
-    (eMt_level := (by with_unfolding_all exact (x.eMt_level :)))
+      (twI_conj := (x.choice.twI_conj))
+      (sd_place := (x.choice.sd_place))
+      (emb_side := (x.choice.emb_side))
+      (sd_conj := (x.choice.sd_conj))
+      (one := (x.choice.one))
+      (conj := (x.choice.conj)))
+    (off := (x.off))
+    (adm := (x.adm))
+    (psi := (x.psi))
+    (eMt_level := (x.eMt_level))
 end
 section
 end
@@ -608,7 +589,7 @@ namespace GlobalTheory.LayerMove
 variable {D : D7} (m : Mv D) {hL : _root_.UpperTheory.Zero.LLC.RecTExists}
 section
 variable {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE} {M : Formalism.L2.MtFam D} {C : NChoice D} {tp : TupTied D cf C}
-theorem Mv.labConj_alt (x : LabConj D A.wdT) : LabConj m.D (m.sideA_alt A).wdT := (by with_unfolding_all exact (x :))
+theorem Mv.labConj_alt (x : LabConj D A.wdT) : LabConj m.D (m.sideA_alt A).wdT := (x)
 end
 section
 end
@@ -635,7 +616,7 @@ namespace UpperTheory.One.M
 
 def mvCg_alt (s : _root_.UpperTheory.One.M.TrivialCondition) {D : D7} (m : Mv D) {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE}
     (x : _root_.GlobalTheory.HeightCounting.CGTrueT hL D A.wdT) : _root_.GlobalTheory.HeightCounting.CGTrueT hL m.D (m.sideA_alt A).wdT :=
-  @_root_.UpperTheory.One.M.New.cgMk _ _ _ s ((by with_unfolding_all exact (x.e :))) ((by with_unfolding_all exact ((_root_.UpperTheory.One.M.New.cgGood s x) :))) ((by with_unfolding_all exact ((_root_.UpperTheory.One.M.New.cgSurj x) :))) ((by with_unfolding_all exact (x.zero :))) ((by with_unfolding_all exact (x.loc :))) ((by with_unfolding_all exact (x.tw :))) ((by with_unfolding_all exact (x.inf :))) ((by with_unfolding_all exact (x.csd :)))
+  @_root_.UpperTheory.One.M.New.cgMk _ _ _ s (x.e) ((_root_.UpperTheory.One.M.New.cgGood s x)) ((_root_.UpperTheory.One.M.New.cgSurj x)) (x.zero) (x.loc) (x.tw) (x.inf) (x.csd)
 end UpperTheory.One.M
 end
 end
@@ -665,7 +646,7 @@ end
 section
 variable {cf : CharFrame D} {C : NChoice D} {tp : TupTied D cf C}
 theorem Mv.phtOn_alt {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE} {fr : Formalism.L2.OmFrame D} (x : PhtOn A.wd fr fun _ _ _ _ => True) : PhtOn (m.sideA_alt A).wd (m.omFrame fr) fun _ _ _ _ => True := @_root_.GlobalTheory.HeightCounting.PhtOn.mk (_) (_) (_) (_) (_)
-    (card := (by with_unfolding_all exact (x.card :)))
+    (card := (x.card))
 end
 end GlobalTheory.LayerMove
 end
@@ -690,7 +671,7 @@ noncomputable section
 namespace GlobalTheory.LayerMove
 
 variable {D : D7} (m : Mv D) {hL : _root_.UpperTheory.Zero.LLC.RecTExists}
-theorem Mv.herm_wCell_last_mul_mulVec_eq_of_inWb {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE} {rep} (x : _root_.GlobalTheory.HeightCounting.RepresentationParametersHold hL D rep (fun σ w ↦ (A.wdT.e w) (A.row.locR σ w)) A.row.satR) : _root_.GlobalTheory.HeightCounting.RepresentationParametersHold hL m.D rep (fun σ w ↦ ((m.sideA_alt A).wdT.e w) ((m.sideA_alt A).row.locR σ w)) (m.sideA_alt A).row.satR := (by with_unfolding_all exact (x :))
+theorem Mv.herm_wCell_last_mul_mulVec_eq_of_inWb {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE} {rep} (x : _root_.GlobalTheory.HeightCounting.RepresentationParametersHold hL D rep (fun σ w ↦ (A.wdT.e w) (A.row.locR σ w)) A.row.satR) : _root_.GlobalTheory.HeightCounting.RepresentationParametersHold hL m.D rep (fun σ w ↦ ((m.sideA_alt A).wdT.e w) ((m.sideA_alt A).row.locR σ w)) (m.sideA_alt A).row.satR := (x)
 section
 end
 section
@@ -736,16 +717,16 @@ theorem Mv.exists_at_alt {cf : CharFrame D} {C : NChoice D} {tp : TupTied D cf C
   refine ⟨@_root_.GlobalTheory.Mem.Top.Bl.NAtData.mk hL m.D _ _ _
     (⟨@_root_.GlobalTheory.HeightCounting.NormChoiceConstructed.mk hL m.D m.pre.D (m.pre.cf cf0) jE (m.pre.sideA_alt A) ((_root_.UpperTheory.One.M.mvCg_alt trivial) m.pre cg) (m.pre.automorphy_of_move au) rep (m.pre.herm_wCell_last_mul_mulVec_eq_of_inWb row) low Pq S hk eig θ
       (m.pre.sideB_alt Bs) (m.pre.mt M) (m.pre.ch C0) (m.pre.tp tp0) (m.pre.choiceSide_alt ch) (m.pre.mtInput mt) big (m.pre.loc L)
-      (m.pre.ndSpec_alt Sp) (m.pre.autSpec_alt Au) ((by with_unfolding_all exact (ss :))) m.withLoc_pre, m.pack_pre tp0⟩)
+      (m.pre.ndSpec_alt Sp) (m.pre.autSpec_alt Au) (ss) m.withLoc_pre, m.pack_pre tp0⟩)
     ((_root_.UpperTheory.One.M.mvAll_alt trivial) m all)
-    ((by with_unfolding_all exact ((congrArg (fun p : Σ c : CharFrame (withLoc L), TupTied (withLoc L) c (chL L C0) =>
-      (⟨m.cf p.1, m.tp p.2⟩ : Σ c : CharFrame m.D, TupTied m.D c (m.ch (chL L C0)))) chr_eq) :)))
-    (m.host host) ((by with_unfolding_all exact (frameN :))) (m.chrN chrN) (m.chrGal chrGal) ((by with_unfolding_all exact (Pq' :))) ((by with_unfolding_all exact (Pq_over :))) ((by with_unfolding_all exact (pq :))) ((by with_unfolding_all exact (jE_eq :)))
-    ((by with_unfolding_all exact ((heq_of_eq (congrArg m.mt hmt)) :))) ((by with_unfolding_all exact (Pq_eq :))) ((by with_unfolding_all exact (hlow :))) (m.oSplit split) ((by with_unfolding_all exact ((m.pre.ratIn ratIn) :))) ((by with_unfolding_all exact (r1 :))) ((by with_unfolding_all exact (r2 :)))
-    ((by with_unfolding_all exact (r3 :))) ((by with_unfolding_all exact ((m.pre.rowDepth depth) :))), ?_⟩
-  refine ⟨HEq.rfl, (by with_unfolding_all exact ((HEq.refl Pq') :)), (by with_unfolding_all exact ((HEq.refl (ratL L S)) :)), (by with_unfolding_all exact ((HEq.refl hk) :)), (by with_unfolding_all exact ((HEq.refl rep) :)), (by with_unfolding_all exact ((HEq.refl eig) :)), ?_⟩
+    ((congrArg (fun p : Σ c : CharFrame (withLoc L), TupTied (withLoc L) c (chL L C0) =>
+      (⟨m.cf p.1, m.tp p.2⟩ : Σ c : CharFrame m.D, TupTied m.D c (m.ch (chL L C0)))) chr_eq))
+    (m.host host) (frameN) (m.chrN chrN) (m.chrGal chrGal) (Pq') (Pq_over) (pq) (jE_eq)
+    ((heq_of_eq (congrArg m.mt hmt))) (Pq_eq) (hlow) (m.oSplit split) ((m.pre.ratIn ratIn)) (r1) (r2)
+    (r3) ((m.pre.rowDepth depth)), ?_⟩
+  refine ⟨HEq.rfl, ((HEq.refl Pq')), ((HEq.refl (ratL L S))), ((HEq.refl hk)), ((HEq.refl rep)), ((HEq.refl eig)), ?_⟩
   rintro ⟨h1, h2, fr, h3, h4⟩
-  exact ⟨(by with_unfolding_all exact ((m.pre.labConj_alt (A := A) h1) :)), (by with_unfolding_all exact (h2 :)), (by with_unfolding_all exact ((m.pre.omFrame fr) :)), (by with_unfolding_all exact (h3 :)), (by with_unfolding_all exact ((m.pre.phtOn_alt (A := A) h4) :))⟩
+  exact ⟨((m.pre.labConj_alt (A := A) h1)), (h2), ((m.pre.omFrame fr)), (h3), ((m.pre.phtOn_alt (A := A) h4))⟩
 end GlobalTheory.LayerMove
 end
 end
@@ -774,7 +755,7 @@ variable {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.He
 end
 section
 variable {cf : CharFrame D} {C : NChoice D} {tp : TupTied D cf C}
-theorem Mv.tauTrue_alt {a : _root_.GlobalTheory.HeightCounting.NAllCAlt D C} (x : TauTrue a.exp) : TauTrue ((_root_.UpperTheory.One.M.mvAll_alt trivial) m a).exp := (by with_unfolding_all exact (x :))
+theorem Mv.tauTrue_alt {a : _root_.GlobalTheory.HeightCounting.NAllCAlt D C} (x : TauTrue a.exp) : TauTrue ((_root_.UpperTheory.One.M.mvAll_alt trivial) m a).exp := (x)
 end
 end GlobalTheory.LayerMove
 end
@@ -788,7 +769,7 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-macro "kc%" t:term:max : term => `(by with_unfolding_all exact ($t :))
+macro "kc%" t:term:max : term => `($t)
 
 open Lean Elab Tactic in
 local elab "row_exact " term:term : tactic =>
@@ -964,13 +945,11 @@ theorem exists_nonempty_nMore_upL (hL : _root_.UpperTheory.Zero.LLC.RecTExists) 
     )
     ?_
     ⟨@_root_.GlobalTheory.GeoTie.ThetaTie.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_)
-    (side := @fun x1 => @fun x2 => @fun x3 => @_root_.GlobalTheory.GeoTie.SideTie.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_)
-      (pt := row_cast% (@_root_.GlobalTheory.GeoTie.ThetaTie.side (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) geo (row_cast% x1) (row_cast% x2) (row_cast% x3)).pt)
-      (cover := row_cast% (@_root_.GlobalTheory.GeoTie.ThetaTie.side (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) geo (row_cast% x1) (row_cast% x2) (row_cast% x3)).cover)
-      (ev_eq := row_cast% (@_root_.GlobalTheory.GeoTie.ThetaTie.side (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) geo (row_cast% x1) (row_cast% x2) (row_cast% x3)).ev_eq)
-      (fmUr := row_cast% (@_root_.GlobalTheory.GeoTie.ThetaTie.side (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) geo (row_cast% x1) (row_cast% x2) (row_cast% x3)).fmUr)
-      (hk := row_cast% (@_root_.GlobalTheory.GeoTie.ThetaTie.side (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) geo (row_cast% x1) (row_cast% x2) (row_cast% x3)).hk)
-      (hk_none := row_cast% (@_root_.GlobalTheory.GeoTie.ThetaTie.side (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) geo (row_cast% x1) (row_cast% x2) (row_cast% x3)).hk_none))
+    (side := fun x1 x2 x3 =>
+      let s := @_root_.GlobalTheory.GeoTie.ThetaTie.side (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) geo (row_cast% x1) (row_cast% x2) (row_cast% x3)
+      @_root_.GlobalTheory.GeoTie.SideTie.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_)
+        (pt := row_cast% s.pt) (cover := row_cast% s.cover) (ev_eq := row_cast% s.ev_eq)
+        (fmUr := row_cast% s.fmUr) (hk := row_cast% s.hk) (hk_none := row_cast% s.hk_none))
     (isUnramified₂ := row_cast% geo.isUnramified₂)
     ⟩
     (row_cast% ok) (row_cast% th) (row_cast% xda) (row_cast% ((mvOf w Z S' N h).large large)) (row_cast% inner'.1) (row_cast% inner'.2.1) (row_cast% inner'.2.2)⟩⟩
@@ -999,37 +978,37 @@ variable {D : D7} (m : Mv D)
 
 def Mv.lam (x : GlobalTheory.LamTie.LamDat D) : GlobalTheory.LamTie.LamDat m.D := @_root_.GlobalTheory.LamTie.LamDat.mk (_)
     (C := @_root_.Formalism.L2.Host.CharFrame.mk (_)
-      (P := (by with_unfolding_all exact (x.C.P :)))
-      (W := (by with_unfolding_all exact (x.C.W :)))
-      (mu0 := (by with_unfolding_all exact (x.C.mu0 :)))
-      (eta := (by with_unfolding_all exact (x.C.eta :)))
-      (chiPsi := (by with_unfolding_all exact (x.C.chiPsi :)))
-      (del := (by with_unfolding_all exact (x.C.del :)))
-      (del' := (by with_unfolding_all exact (x.C.del' :)))
-      (isMu0 := (by with_unfolding_all exact (x.C.isMu0 :)))
-      (isEta := (by with_unfolding_all exact (x.C.isEta :)))
-      (isChi := (by with_unfolding_all exact (x.C.isChi :)))
-      (isDel := (by with_unfolding_all exact (x.C.isDel :)))
-      (isDel' := (by with_unfolding_all exact (x.C.isDel' :))))
-    (q0 := (by with_unfolding_all exact (x.q0 :)))
-    (w0 := (by with_unfolding_all exact (x.w0 :)))
-    (c := (by with_unfolding_all exact (x.c :)))
-    (chi := (by with_unfolding_all exact (x.chi :)))
+      (P := (x.C.P))
+      (W := (x.C.W))
+      (mu0 := (x.C.mu0))
+      (eta := (x.C.eta))
+      (chiPsi := (x.C.chiPsi))
+      (del := (x.C.del))
+      (del' := (x.C.del'))
+      (isMu0 := (x.C.isMu0))
+      (isEta := (x.C.isEta))
+      (isChi := (x.C.isChi))
+      (isDel := (x.C.isDel))
+      (isDel' := (x.C.isDel')))
+    (q0 := (x.q0))
+    (w0 := (x.w0))
+    (c := (x.c))
+    (chi := (x.chi))
 theorem Mv.lam_ok {l : GlobalTheory.LamTie.LamDat D} (x : l.Ok) : (m.lam l).Ok := @_root_.GlobalTheory.LamTie.LamDat.Ok.mk (_) (_)
-    (places := (by with_unfolding_all exact (x.places :)))
-    (aux := (by with_unfolding_all exact (x.aux :)))
-    (big := (by with_unfolding_all exact (x.big :)))
-theorem Mv.lam_teich {l : GlobalTheory.LamTie.LamDat D} (x : l.Teich) : (m.lam l).Teich := (by with_unfolding_all exact (x :))
-theorem Mv.lam_tie {l : GlobalTheory.LamTie.LamDat D} (x : GlobalTheory.LamTie.IsLamTieFull D.ntw l) : GlobalTheory.LamTie.IsLamTieFull m.D.ntw (m.lam l) := (by with_unfolding_all exact (x :))
+    (places := (x.places))
+    (aux := (x.aux))
+    (big := (x.big))
+theorem Mv.lam_teich {l : GlobalTheory.LamTie.LamDat D} (x : l.Teich) : (m.lam l).Teich := (x)
+theorem Mv.lam_tie {l : GlobalTheory.LamTie.LamDat D} (x : GlobalTheory.LamTie.IsLamTieFull D.ntw l) : GlobalTheory.LamTie.IsLamTieFull m.D.ntw (m.lam l) := (x)
 
 theorem Mv.rowLoc {D : D7} (m : Mv D) {C : NChoice D} (a : NAllC D C) (F : Formalism.L2.RowFrame D) (F' : Formalism.L2.RowFrame m.D)
     (hF : HEq F'.rep F.rep) (x : Formalism.L2.RowLocTied D a.gal.lp F) : Formalism.L2.RowLocTied m.D (m.all a).gal.lp F' := by
   obtain ⟨rep, inj⟩ := F
   obtain ⟨rep', inj'⟩ := F'
-  have e : rep' = (by with_unfolding_all exact (rep :)) := eq_of_heq ((by with_unfolding_all exact (hF :)))
+  have e : rep' = (rep) := eq_of_heq (hF)
   subst e
   exact (@_root_.Formalism.L2.RowLocTied.mk (_) (_) (_)
-    (sat := (by with_unfolding_all exact (x.sat :)))
+    (sat := (x.sat))
     )
 
 theorem congrFun_heq {α β : Type} {f g : α → β} (h : HEq f g) (x : α) : f x = g x := by rw [eq_of_heq h]
@@ -1072,30 +1051,31 @@ local notation "bb" => Oth.L (o2 o V' S')
 
 variable (YS) in
 def ys : @NExpRealS (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) ((cG)) ((S)) :=
-  @NExpRealS.mk (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) ((by with_unfolding_all exact (cG :))) ((by with_unfolding_all exact (S :)))
-    (fi := (by with_unfolding_all exact (YS.fi :))) (geq := (by with_unfolding_all exact (YS.geq :))) (rho := (by with_unfolding_all exact (YS.rho :))) (chi := (by with_unfolding_all exact (YS.chi :))) (eF := (by with_unfolding_all exact (YS.eF :))) (bsup := (by with_unfolding_all exact (YS.bsup :)))
-    (act := (by with_unfolding_all exact (YS.act :)))
+  @NExpRealS.mk (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) (cG) (S)
+    (fi := (YS.fi)) (geq := (YS.geq)) (rho := (YS.rho)) (chi := (YS.chi)) (eF := (YS.eF)) (bsup := (YS.bsup))
+    (act := (YS.act))
 
-def rho (ρ : Setup o.L.D.ntw) : Setup (Late.D bb).ntw := (by with_unfolding_all exact ((seT (o2 o V' S') ρ) :))
+def rho (ρ : Setup o.L.D.ntw) : Setup (Late.D bb).ntw :=
+  seT (o := o) (o2 o V' S') ρ
 
-theorem good {ρ : Setup o.L.D.ntw} (h : ρ.Good) : (rho V' S' ρ).Good := (by with_unfolding_all exact ((seGood (o2 o V' S') h) :))
+theorem good {ρ : Setup o.L.D.ntw} (h : ρ.Good) : (rho V' S' ρ).Good :=
+  seGood (o := o) (o2 o V' S') h
 
 theorem pin {ρ : Setup o.L.D.ntw} (p : RealPin R cG ρ) :
-    @RealPin (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) ((cG)) (rho V' S' ρ) :=
-  @RealPin.mk (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) ((by with_unfolding_all exact (cG :))) (rho V' S' ρ)
-    ((by with_unfolding_all exact (p.psi :))) ((by with_unfolding_all exact (p.inf :))) ((by with_unfolding_all exact (p.cartT :))) ((by with_unfolding_all exact (p.onbS :))) ((by with_unfolding_all exact (p.onbT :))) ((by with_unfolding_all exact (p.latS :))) ((by with_unfolding_all exact (p.latT :))) ((by with_unfolding_all exact (p.frS :)))
-    ((by with_unfolding_all exact (p.frT :))) ((by with_unfolding_all exact (p.vac :))) ((by with_unfolding_all exact (p.Pg :))) ((by with_unfolding_all exact (p.grp :))) ((by with_unfolding_all exact (p.mu0 :))) ((by with_unfolding_all exact (p.eta :))) ((by with_unfolding_all exact (p.delta :))) ((by with_unfolding_all exact (p.deltaPl :)))
-    ((by with_unfolding_all exact (p.ap :))) ((by with_unfolding_all exact (p.am :)))
+    @RealPin (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) ((cG)) (rho V' S' ρ) := by
+  dsimp only [rho, seT, o2]
+  exact @RealPin.mk (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) cG (seT (o := o) (o2 o V' S') ρ)
+    p.psi p.inf p.cartT p.onbS p.onbT p.latS p.latT p.frS
+    p.frT p.vac p.Pg p.grp p.mu0 p.eta p.delta p.deltaPl
+    p.ap p.am
 
 variable (R v₀) in
 theorem norm_iff (ρ : Setup o.L.D.ntw) (i : o.L.D.ntw.Tw) (j : Fin o.L.D.R.m) (b : Bool) (ν : ℂ) :
     @IsNorm (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) ((v₀)) ((j))
       ((rho V' S' ρ).B ((i)) ((j)) b) ν ↔ IsNorm R v₀ (ρ.B i j b) ν := by
+  dsimp only [rho, seT, o2]
   constructor <;> rintro ⟨h0, c, ⟨g, c0R, c0L, hF, u, hu, hh⟩, hn⟩ <;>
-    refine ⟨h0, c, ⟨(by with_unfolding_all exact g), (by with_unfolding_all exact c0R),
-      (by with_unfolding_all exact c0L), ?_, (by with_unfolding_all exact u),
-      (by with_unfolding_all exact hu), (by with_unfolding_all exact hh)⟩,
-      (by with_unfolding_all exact hn)⟩
+    refine ⟨h0, c, ⟨g, c0R, c0L, ?_, u, hu, hh⟩, hn⟩
   have hTie := famTie_imp (a := bb) o.L G _ _ Pl0 T _ _ _ _ _ _ _ _ _ _ _ _ _ g c0R c0L hF
   on_goal 2 =>
     have hTie := famTie_imp (a := o.L) bb G _ _ Pl0 T _ _ _ _ _ _ _ _ _ _ _ _ _ g c0R c0L hF
@@ -1116,32 +1096,33 @@ theorem norm_iff (ρ : Setup o.L.D.ntw) (i : o.L.D.ntw.Tw) (j : Fin o.L.D.R.m) (
 variable (YS v₀) in
 theorem rat_iff {ρ : Setup o.L.D.ntw} (hρ : ρ.Good) (i : o.L.D.ntw.Tw) (j : Fin o.L.D.R.m) (b : Bool) (ν : ℂ) :
     SeriesTie.Rat (good V' S' hρ) (@realRd (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) ((cG)) ((S))
-      (ys V' S' YS) ((v₀)) _ (good V' S' hρ) ((i)) ((j)) b ν) ↔ SeriesTie.Rat hρ (realRd YS v₀ hρ i j b ν) :=
-  ⟨fun h => @ratT' B C W o (o2 o V' S') _ _ ρ i j b _ (realRd YS v₀ hρ i j b ν) hρ ((by with_unfolding_all exact (h :))),
-    fun h => (by with_unfolding_all exact ((@ratT B C W o (o2 o V' S') _ _ ρ i j b _ (realRd YS v₀ hρ i j b ν) hρ h) :))⟩
+      (ys V' S' YS) ((v₀)) _ (good V' S' hρ) ((i)) ((j)) b ν) ↔ SeriesTie.Rat hρ (realRd YS v₀ hρ i j b ν) := by
+  dsimp only [ys, rho, seT, o2, realRd]
+  exact ⟨fun h => @ratT' B C W o (o2 o V' S') _ _ ρ i j b _ (realRd YS v₀ hρ i j b ν) hρ h,
+    fun h => @ratT B C W o (o2 o V' S') _ _ ρ i j b _ (realRd YS v₀ hρ i j b ν) hρ h⟩
 
 theorem scalar {ρ : Setup o.L.D.ntw} {hρ : ρ.Good} {i : o.L.D.ntw.Tw} {j : Fin o.L.D.R.m} {b : Bool} {ν : ℂ}
     (h : IsScalar YS v₀ hρ i j b ν) :
     @IsScalar (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) ((cG)) ((S))
       (ys V' S' YS) ((v₀)) _ (good V' S' hρ) ((i)) ((j)) b ν :=
-  @IsScalar.mk (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) ((by with_unfolding_all exact (cG :))) ((by with_unfolding_all exact (S :)))
-      (ys V' S' YS) ((by with_unfolding_all exact (v₀ :))) _ (good V' S' hρ) ((by with_unfolding_all exact (i :))) ((by with_unfolding_all exact (j :))) b ν h.ne
+  @IsScalar.mk (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) cG S
+      (ys V' S' YS) v₀ _ (good V' S' hρ) i j b ν h.ne
     (fun h' => (norm_iff V' S' R v₀ ρ i j b _).2 (h.norm (h'.imp fun ν => (norm_iff V' S' R v₀ ρ i j b ν).1)))
     (fun h' => (rat_iff V' S' YS v₀ hρ i j b _).2 (h.rat (h'.imp fun ν h'' =>
       ⟨(norm_iff V' S' R v₀ ρ i j b ν).1 h''.1, (rat_iff V' S' YS v₀ hρ i j b ν).1 h''.2⟩)))
 
 def ex (p : ExportTie YS v₀) :
     @ExportTie (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) ((cG)) ((S)) (ys V' S' YS) ((v₀)) :=
-  @ExportTie.mk (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) ((by with_unfolding_all exact (cG :))) ((by with_unfolding_all exact (S :))) (ys V' S' YS) ((by with_unfolding_all exact (v₀ :)))
+  @ExportTie.mk (Late.D bb) G _ _ Pl0 I0 T (famInThreeCoefficientChange bb A3) Ks _ _ (alg bb iK) (real3 bb R) cG S (ys V' S' YS) v₀
     (ρ := rho V' S' p.ρ)
     (good := good V' S' p.good)
     (pin := pin V' S' p.pin)
-    (vec := (by with_unfolding_all exact (p.vec :)))
-    (ν := (by with_unfolding_all exact (p.ν :)))
-    (scalar := fun i j b => (by with_unfolding_all exact ((scalar V' S' (p.scalar ((i)) ((j)) b)) : _)))
-    (tie := fun i j b => (by with_unfolding_all exact ((cellT (o2 o V' S') (p.tie ((i)) ((j)) b)) : _)))
-    (hecke := fun i j b => (by with_unfolding_all exact ((heckeTieT (o2 o V' S') (p.hecke ((i)) ((j)) b)) : _)))
-    (univ := (by with_unfolding_all exact (p.univ :)))
+    (vec := p.vec)
+    (ν := p.ν)
+    (scalar := fun i j b => scalar V' S' (p.scalar i j b))
+    (tie := fun i j b => by dsimp only [ys, rho, seT, o2, realRd]; exact cellT (o2 o V' S') (p.tie i j b))
+    (hecke := fun i j b => by dsimp only [ys, rho, seT, o2, realRd]; exact heckeTieT (o2 o V' S') (p.hecke i j b))
+    (univ := p.univ)
 
 end GlobalTheory.LayerMove.SerUp
 end
@@ -1207,32 +1188,35 @@ theorem _root_.GlobalTheory.T.geo_heq_geoHalf_of_same : ∀ (K : Ctx) (B : Base)
   subst e5
   have e6 : cG' = t.r.z.cG := eq_of_heq hs.cG
   subst e6
-  have e7 : geo' = (by with_unfolding_all exact ((GlobalTheory.Mem.R3.Tr.geoHalf (a := ⟨Z.W, Z.V, Z.S, Z.N, Z.G⟩) (upL Z S' N h) (iK := t.r.z.alg) t.r.z.geo) :)) := eq_of_heq ((by with_unfolding_all exact (hg :)))
+  have e7 : geo' = ((GlobalTheory.Mem.R3.Tr.geoHalf (a := ⟨Z.W, Z.V, Z.S, Z.N, Z.G⟩) (upL Z S' N h) (iK := t.r.z.alg) t.r.z.geo)) := eq_of_heq (hg)
   subst e7
   intro kKs hk YS kKs' hk' YS' hkk hfi heF a X' hX PV PV' hPV Pq Pq' hPq s
-  have e8 : kKs' = (by with_unfolding_all exact (kKs :)) := eq_of_heq ((by with_unfolding_all exact (hkk :)))
+  have e8 : kKs' = (kKs) := eq_of_heq (hkk)
   subst e8
   obtain ⟨fi', geq', rho', chi', eF', bsup', act'⟩ := YS'
-  have e9 : fi' = (by with_unfolding_all exact (YS.fi :)) := eq_of_heq ((by with_unfolding_all exact (hfi :)))
-  have e10 : eF' = (by with_unfolding_all exact (YS.eF :)) := eq_of_heq ((by with_unfolding_all exact (heF :)))
+  have e9 : fi' = (YS.fi) := eq_of_heq (hfi)
+  have e10 : eF' = (YS.eF) := eq_of_heq (heF)
   subst e9 e10
-  have e11 : X' = (by with_unfolding_all exact (((_root_.UpperTheory.One.M.mvAll_alt trivial) (mvOf w Z S' N h) a).exp :)) := eq_of_heq ((by with_unfolding_all exact (hX :)))
-  have e12 : Pq' = (by with_unfolding_all exact (Pq :)) := eq_of_heq ((by with_unfolding_all exact (hPq :)))
+  have e11 : X' = (((_root_.UpperTheory.One.M.mvAll_alt trivial) (mvOf w Z S' N h) a).exp) := eq_of_heq (hX)
+  have e12 : Pq' = (Pq) := eq_of_heq (hPq)
   subst e11 e12
-  have e13 : (fun i => (PV' i).ψ) = (by with_unfolding_all exact ((fun i => (PV i).ψ) :)) := eq_of_heq ((by with_unfolding_all exact (hPV :)))
-  have e14 : PV' = fun j => @Formalism.IndefR.principalLevelFrame.RowPsi.mk _ _ _ ((by with_unfolding_all exact ((PV ((j))).ψ : _))) ((by with_unfolding_all exact ((PV ((j))).inj : _))) ((by with_unfolding_all exact ((PV ((j))).into : _)))
-      ((by with_unfolding_all exact ((PV ((j))).onto : _))) := funext fun j => SerUp.rowPsi_ext ((by with_unfolding_all exact ((congrFun e13 j) :)))
+  have e13 : (fun i => (PV' i).ψ) = ((fun i => (PV i).ψ)) := eq_of_heq (hPV)
+  have e14 : PV' = fun (j : Fin (w.st (upL Z S' N h)).toD7.R.m) =>
+      @Formalism.IndefR.principalLevelFrame.RowPsi.mk (w.st (upL Z S' N h)).toD7
+        (Formalism.IndefR.Links.Vc (w.st (upL Z S' N h)).toD7 j) (w.st (upL Z S' N h)).toD7.R.nV
+        (PV j).ψ (PV j).inj (PV j).into (PV j).onto :=
+    funext fun j => SerUp.rowPsi_ext (congrFun e13 j)
   subst e14
   exact ⟨@SerAt.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_)
-    (ex := (by with_unfolding_all exact ((@SerUp.ex B w.C Z.W ⟨Z.V, Z.S, Z.N, Z.G⟩ (upL Z S' N h).V S' _ _ _ _ _ _ _ _ _ _ t.r.z.alg t.r.z.R t.r.z.cG _ YS
-      t.r.z.geo.v₀ s.ex) :)))
-    (bad := (by with_unfolding_all exact (s.bad :))) (ch := (by with_unfolding_all exact (s.ch :))) (join := (by with_unfolding_all exact (s.join :))) (sup := (by with_unfolding_all exact (s.sup :))) (off := (by with_unfolding_all exact (s.off :)))
-    (lam := (by with_unfolding_all exact (((mvOf w Z S' N h).lam s.lam) :)))
-    (lam_ok := (by with_unfolding_all exact (((mvOf w Z S' N h).lam_ok s.lam_ok) :)))
-    (lam_teich := (by with_unfolding_all exact (((mvOf w Z S' N h).lam_teich s.lam_teich) :)))
-    (lam_C := (by with_unfolding_all exact ((congrArg (mvOf w Z S' N h).cf s.lam_C) :)))
-    (lam_q := (by with_unfolding_all exact (s.lam_q :)))
-    (lam_tie := (by with_unfolding_all exact (((mvOf w Z S' N h).lam_tie s.lam_tie) :)))⟩
+    (ex := ((@SerUp.ex B w.C Z.W ⟨Z.V, Z.S, Z.N, Z.G⟩ (upL Z S' N h).V S' _ _ _ _ _ _ _ _ _ _ t.r.z.alg t.r.z.R t.r.z.cG _ YS
+      t.r.z.geo.v₀ s.ex)))
+    (bad := (s.bad)) (ch := (s.ch)) (join := (s.join)) (sup := (s.sup)) (off := (s.off))
+    (lam := (((mvOf w Z S' N h).lam s.lam)))
+    (lam_ok := (((mvOf w Z S' N h).lam_ok s.lam_ok)))
+    (lam_teich := (((mvOf w Z S' N h).lam_teich s.lam_teich)))
+    (lam_C := ((congrArg (mvOf w Z S' N h).cf s.lam_C)))
+    (lam_q := (s.lam_q))
+    (lam_tie := (((mvOf w Z S' N h).lam_tie s.lam_tie)))⟩
 end
 end -- clump:auto
 end -- clump:auto
@@ -1264,18 +1248,18 @@ theorem exists_kept_nChoice_thData_upL : ∀ (hL : _root_.UpperTheory.Zero.LLC.R
   · rintro rfl
     exact ⟨HEq.rfl, HEq.rfl⟩
   · rintro p0 t n p0' t' ⟨tp', xi', psi', tie', Q', chr'⟩ hs hg ⟨c, e, ⟨bk⟩⟩
-    have e1 : tp' = (by with_unfolding_all exact (((mvOf w Z S' N h).tp n.tp) :)) := tupTied_ext (xi'.trans ((by with_unfolding_all exact (n.xi.symm :)))) (psi'.trans ((by with_unfolding_all exact (n.psi.symm :))))
+    have e1 : tp' = (((mvOf w Z S' N h).tp n.tp)) := tupTied_ext (xi'.trans (n.xi.symm)) (psi'.trans (n.psi.symm))
     subst e1
     obtain ⟨a', hA⟩ := (mvOf w Z S' N h).exists_at_alt c.a
     obtain ⟨r', ⟨e'⟩⟩ := exists_nonempty_nMore_upL hL K B f T w Z Wt S' N h nch xd
       p0 t p0' t' hs hg
       (_root_.GlobalTheory.T.rowReadings_sameRows_identify_definiteForms K B f T w Z Wt S' N h p0 t p0' t' hs)
       (_root_.GlobalTheory.T.geo_heq_geoHalf_of_same K B f T w Z Wt S' N h nch p0 t p0' t' hs hg)
-      (tp' := by with_unfolding_all exact (mvOf w Z S' N h).tp n.tp)
-      c.a (by with_unfolding_all exact a') (by with_unfolding_all exact hA) c.row e
-    have hq : a'.Pq = (by with_unfolding_all exact (c.a.Pq :)) := eq_of_heq ((by with_unfolding_all exact (hA.2.1 :)))
-    have hsel : Set.range a'.Pq = (by with_unfolding_all exact ((Set.range w.I.sel) :)) := (congrArg Set.range hq).trans ((by with_unfolding_all exact (c.sel :)))
-    exact ⟨⟨⟨(by with_unfolding_all exact (a' :)), (by with_unfolding_all exact (r' :)), (by with_unfolding_all exact (hsel :))⟩, (by with_unfolding_all exact (e' :)), ⟨(by with_unfolding_all exact (((mvOf w Z S' N h).bkLaw bk) :))⟩⟩⟩
+      (tp' := (mvOf w Z S' N h).tp n.tp)
+      c.a (a') (hA) c.row e
+    have hq : a'.Pq = (c.a.Pq) := eq_of_heq (hA.2.1)
+    have hsel : Set.range a'.Pq = ((Set.range w.I.sel)) := (congrArg Set.range hq).trans (c.sel)
+    exact ⟨⟨⟨(a'), (r'), (hsel)⟩, (e'), ⟨(((mvOf w Z S' N h).bkLaw bk))⟩⟩⟩
 end GlobalTheory.LayerMove
 end
 end

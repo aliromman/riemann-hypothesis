@@ -50,6 +50,8 @@ open Complex
 
 namespace Claim
 
+/-- A zero in the open critical strip descends to the inducing primitive character:
+the extra Euler factors are nonzero there. -/
 theorem prim_zero {N : ℕ} [NeZero N] (χ : DirichletCharacter ℂ N) [NeZero χ.conductor] {s : ℂ}
     (hs0 : 0 < s.re) (hs1 : s.re < 1) (h : DirichletCharacter.LFunction χ s = 0) :
     DirichletCharacter.LFunction χ.primitiveCharacter s = 0 := by
@@ -63,6 +65,8 @@ theorem gamma_ne_zero {M : ℕ} [NeZero M] (φ : DirichletCharacter ℂ M) {t : 
   · rw [hφ.gammaFactor_def]
     exact Complex.Gammaℝ_ne_zero_of_re_pos (by rw [Complex.add_re, Complex.one_re]; linarith)
 
+/-- The functional equation reflects a primitive zero at `s` to a zero for the inverse
+character at `1 - s`. The gamma factors are nonzero in the open critical strip. -/
 theorem prim_reflect {M : ℕ} [NeZero M] (ψ : DirichletCharacter ℂ M) (hψ : ψ.IsPrimitive) {s : ℂ}
     (hs0 : 0 < s.re) (hs1 : s.re < 1) (h : DirichletCharacter.LFunction ψ s = 0) :
     DirichletCharacter.LFunction ψ⁻¹ (1 - s) = 0 := by
@@ -76,6 +80,9 @@ theorem prim_reflect {M : ℕ} [NeZero M] (ψ : DirichletCharacter ℂ M) (hψ :
   rw [DirichletCharacter.LFunction_eq_completed_div_gammaFactor ψ⁻¹ (1 - s)
     (Or.inl (ne_zero_of_re_pos ht0)), fe, zero_div]
 
+/-- Right-half-plane nonvanishing for all Dirichlet characters forces all zeros in the
+open critical strip onto the critical line. A zero to the left is first reduced to a
+primitive character and then reflected into the right half-plane. -/
 theorem strip (h : HalfPlane) : Strip := by
   unfold HalfPlane at h
   intro N _ χ s hs0 hs1 hz
@@ -84,14 +91,17 @@ theorem strip (h : HalfPlane) : Strip := by
   rcases lt_trichotomy s.re (1 / 2) with hlt | heq | hgt
   · exfalso
     have : NeZero χ.conductor := ⟨χ.conductor_ne_zero⟩
-    have hp := prim_zero χ hs0 hs1 hz
-    have hr := prim_reflect χ.primitiveCharacter χ.primitiveCharacter_isPrimitive hs0 hs1 hp
+    have hprimitive := prim_zero χ hs0 hs1 hz
+    have hreflected := prim_reflect χ.primitiveCharacter χ.primitiveCharacter_isPrimitive hs0 hs1 hprimitive
     have ht : (1 : ℂ) - s ≠ 1 := fun e => hs0' (sub_eq_self.mp e)
     exact h χ.conductor χ.primitiveCharacter⁻¹ (1 - s)
-      (by rw [Complex.sub_re, Complex.one_re]; linarith) (Or.inr ht) hr
+      (by rw [Complex.sub_re, Complex.one_re]; linarith) (Or.inr ht) hreflected
   · exact heq
   · exact absurd hz (h N χ s hgt (Or.inr hs))
 
+/-- Specialize the strip result to the character of modulus one. Outside the open
+critical strip, use zeta nonvanishing for real part at least one and the classification
+of zeros for nonpositive real part. -/
 theorem zeta (h : HalfPlane) : Zeta := by
   intro s hz htriv _
   by_cases hpos : 0 < s.re

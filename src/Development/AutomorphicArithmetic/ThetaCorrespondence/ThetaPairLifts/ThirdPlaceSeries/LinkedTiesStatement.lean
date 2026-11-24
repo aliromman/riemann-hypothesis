@@ -498,8 +498,8 @@ theorem eMtTheta_of_args_alt {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {K : 
 end GlobalTheory.ClassSumPinLink
 namespace GlobalTheory.ClassSumPinLink
 
-theorem pIota_classSumPin_alt : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (N : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL) (S : SExt) (Γ : GeoP), (∀ K B f T w Z Wt p0 t nch n xd c, N K B f T w Z Wt p0 t nch n xd c → Nonempty (_root_.GlobalTheory.HeightCounting.Up.extensionWithLaw hL K B f T w Z Wt p0 t nch n xd c)) → ∀ (K : Ctx) (q : WPt (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ).s K) (c : ℝ) (b : _root_.GlobalTheory.Fc.BundleCondition (q.w.D q.Z) q.O c) (_ : _root_.GlobalTheory.Mem.Top.Bl.BundleWitness (p := _root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ) q b) (t : b.Comparison₂), _root_.GlobalTheory.Fc.Ind.IotaPointSummands _ _ c (b.part t) ∧ (_root_.GlobalTheory.Fc.Ind.DivisorPointSummands _ _ c (b.part t) → GlobalTheory.ExportPin.ClassSumPin (b.part t).pt) := by
-  intro hL N S Γ hN K q c b hb t
+theorem pIota_classSumPin_alt : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (N : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL) (S : SExt), (∀ K B f T w Z Wt p0 t nch n xd c, N K B f T w Z Wt p0 t nch n xd c → Nonempty (_root_.GlobalTheory.HeightCounting.Up.extensionWithLaw hL K B f T w Z Wt p0 t nch n xd c)) → ∀ (K : Ctx) (q : WPt (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S).s K) (c : ℝ) (b : _root_.GlobalTheory.Fc.BundleCondition (q.w.D q.Z) q.O c) (_ : _root_.GlobalTheory.Mem.Top.Bl.BundleWitness (p := _root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S) q b) (t : b.Comparison₂), _root_.GlobalTheory.Fc.Ind.IotaPointSummands _ _ c (b.part t) ∧ (_root_.GlobalTheory.Fc.Ind.DivisorPointSummands _ _ c (b.part t) → GlobalTheory.ExportPin.ClassSumPin (b.part t).pt) := by
+  intro hL N S hN K q c b hb t
   refine ⟨?_, fun hD => ?_⟩
   · obtain ⟨sP, sS, -, -, hS⟩ := hb.s
     have key : ∀ S' : _root_.Formalism.L2.SG.SpectralTiesReal.STiesRAlt b.R, S' = sS.toRealSpectralMatching b.R → ∀ x : S'.X.B.I.E, HEq (S'.X.ιE x) x := by
@@ -508,7 +508,7 @@ theorem pIota_classSumPin_alt : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists
     exact key b.S hS
   · have hth : GlobalTheory.HeightCounting.EMtTheta hb.x.Y hb.y.y.nexp q.O.ex.nch := by
       obtain ⟨m⟩ := hN _ _ _ _ _ _ _ _ _ _ _ _ _ q.x.nx.2
-      exact _root_.GlobalTheory.ClassSumPinLink.eMtTheta_of_args_alt q.x.what₂ q.x.n (_root_.GlobalTheory.Mem.Top.Bl.WPt.core_data_of_point (p := _root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ) q) hb.a hb.x hb.ax hb.y.y.nexp hb.sx hb.eF hb.fi m.1.th
+      exact _root_.GlobalTheory.ClassSumPinLink.eMtTheta_of_args_alt q.x.what₂ q.x.n (_root_.GlobalTheory.Mem.Top.Bl.WPt.core_data_of_point (p := _root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S) q) hb.a hb.x hb.ax hb.y.y.nexp hb.sx hb.eF hb.fi m.1.th
     have hR : _root_.GlobalTheory.ClassSumPinLink.ReadAtAlt (_root_.GlobalTheory.Mem.Top.Bl.realPackageOfBundle b) := by
       rw [hb.y.eq]
       exact _root_.GlobalTheory.ClassSumPinLink.readAt_rpkX_of_eMtTheta hb.y.y hth
@@ -992,8 +992,8 @@ theorem sidePt_part_of_pack_alt {D : D7} {O : Obj D} {c : ℝ} (b : _root_.Globa
     exact ⟨Tq, HEq.rfl, rfl⟩
   exact key (_root_.GlobalTheory.Mem.Top.Bl.realPackageOfBundle b) h t.1.Tp
 
-theorem pin_pt_of_bundle_witness : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (N : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL) (S : SExt) (Γ : GeoP) (hE : _root_.GlobalTheory.PlugPt.HasExponent' N) (K : Ctx) (q : WPt (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ).s K) (c : ℝ) (b : _root_.GlobalTheory.Fc.BundleCondition (q.w.D q.Z) q.O c) (_ : _root_.GlobalTheory.Mem.Top.Bl.BundleWitness (p := _root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ) q b) (t : b.Comparison₂), _root_.GlobalTheory.PlugPt.pinnedPointOfReading (_root_.GlobalTheory.PlugPt.ExtensionReading.of RX hE (SXE S) (OX Γ)) K q c (b.part t).pt := by
-  intro hL N S Γ hE K q c b w t
+theorem pin_pt_of_bundle_witness : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (N : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL) (S : SExt) (hE : _root_.GlobalTheory.PlugPt.HasExponent' N) (K : Ctx) (q : WPt (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S).s K) (c : ℝ) (b : _root_.GlobalTheory.Fc.BundleCondition (q.w.D q.Z) q.O c) (_ : _root_.GlobalTheory.Mem.Top.Bl.BundleWitness (p := _root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S) q b) (t : b.Comparison₂), _root_.GlobalTheory.PlugPt.pinnedPointOfReading (_root_.GlobalTheory.PlugPt.ExtensionReading.of RX hE (SXE S) OX) K q c (b.part t).pt := by
+  intro hL N S hE K q c b w t
   obtain ⟨x, a, ax, y, recPin, -, -, sx, eF, fi, -⟩ := w
   obtain rfl := eq_of_heq ax
   obtain ⟨Tp, hTp, h⟩ := _root_.GlobalTheory.PlugPt.sidePt_part_of_pack_alt b t y.y y.eq
@@ -1061,14 +1061,14 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.RT Globa
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.GeoTies
 
-theorem linked_ties_alt : GlobalTheory.NT.RayField → ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (N : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL) (S : SExt) (Γ : GeoP), (∀ K B f T w Z Wt p0 t nch n xd c, N K B f T w Z Wt p0 t nch n xd c → Nonempty (_root_.GlobalTheory.HeightCounting.Up.extensionWithLaw hL K B f T w Z Wt p0 t nch n xd c)) → _root_.GlobalTheory.Fc.RL.LinkedAt (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ) _root_.GlobalTheory.Fc.R1.SlotDivisorCondition → _root_.GlobalTheory.Fc.RL.LinkedAt (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ) fun Q L => Row Q L (AtAll fun D O c (b : _root_.GlobalTheory.Fc.BundleCondition D O c) => ∀ t : b.Comparison₂, _root_.GlobalTheory.Fc.Ind.IotaPointSummands D O c (b.part t) ∧ GlobalTheory.ExportPin.ClassSumPin (b.part t).pt ∧ (b.part t).pt.CompatibilityConditions ∧ GlobalTheory.CovTop.RecTied D O.L ∧ GlobalTheory.BigOn.More (b.part t).pt) := by
-  intro hRF hL N S Γ hN hDiv
+theorem linked_ties_alt : GlobalTheory.NT.RayField → ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (N : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL) (S : SExt), (∀ K B f T w Z Wt p0 t nch n xd c, N K B f T w Z Wt p0 t nch n xd c → Nonempty (_root_.GlobalTheory.HeightCounting.Up.extensionWithLaw hL K B f T w Z Wt p0 t nch n xd c)) → _root_.GlobalTheory.Fc.RL.LinkedAt (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S) _root_.GlobalTheory.Fc.R1.SlotDivisorCondition → _root_.GlobalTheory.Fc.RL.LinkedAt (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S) fun Q L => Row Q L (AtAll fun D O c (b : _root_.GlobalTheory.Fc.BundleCondition D O c) => ∀ t : b.Comparison₂, _root_.GlobalTheory.Fc.Ind.IotaPointSummands D O c (b.part t) ∧ GlobalTheory.ExportPin.ClassSumPin (b.part t).pt ∧ (b.part t).pt.CompatibilityConditions ∧ GlobalTheory.CovTop.RecTied D O.L ∧ GlobalTheory.BigOn.More (b.part t).pt) := by
+  intro hRF hL N S hN hDiv
   have hE : _root_.GlobalTheory.PlugPt.HasExponent' N := (_root_.GlobalTheory.ExpTiesOfLayer.hasExp_of_layer_alt hL).2 N fun K B f T w Z Wt p0 t nch n xd c h =>
     (hN K B f T w Z Wt p0 t nch n xd c h).map Prod.fst
-  let ν := _root_.GlobalTheory.PlugPt.ExtensionReading.of RX hE (SXE S) (OX Γ)
-  have hRow := _root_.GlobalTheory.PlugPt.rowE_part_ties_alt hRF hL (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ).s ν (IsGoodE (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ).s) (GlobalTheory.Plug.coreCondition_RX _ rfl)
-  have hlink : ∀ (K : Ctx) (β : BPt K) (c : ℝ) (b : _root_.GlobalTheory.Fc.BundleCondition β.D β.O c), _root_.GlobalTheory.Mem.Top.Bl.BundleLinkage (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ) K β c b → ∀ t : b.Comparison₂,
-      linkOf (𝒮 := (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ).s) (Bd := _root_.GlobalTheory.Fc.Ind.PointSummands) (fun K q c b => _root_.GlobalTheory.PlugPt.pinnedPointOfReading ν K q c b.pt) K β c (b.part t) := by
+  let ν := _root_.GlobalTheory.PlugPt.ExtensionReading.of RX hE (SXE S) OX
+  have hRow := _root_.GlobalTheory.PlugPt.rowE_part_ties_alt hRF hL (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S).s ν (IsGoodE (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S).s) (GlobalTheory.Plug.coreCondition_RX _ rfl)
+  have hlink : ∀ (K : Ctx) (β : BPt K) (c : ℝ) (b : _root_.GlobalTheory.Fc.BundleCondition β.D β.O c), _root_.GlobalTheory.Mem.Top.Bl.BundleLinkage (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S) K β c b → ∀ t : b.Comparison₂,
+      linkOf (𝒮 := (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S).s) (Bd := _root_.GlobalTheory.Fc.Ind.PointSummands) (fun K q c b => _root_.GlobalTheory.PlugPt.pinnedPointOfReading ν K q c b.pt) K β c (b.part t) := by
     intro K β c b hl t
     obtain ⟨q, b', ⟨w⟩, e⟩ := hl
     have key : ∀ (x y : Σ (D : D7) (O : Obj D), _root_.GlobalTheory.Fc.BundleCondition D O c), x = y → ∀ t : x.2.2.Comparison₂, ∃ t' : y.2.2.Comparison₂,
@@ -1076,16 +1076,16 @@ theorem linked_ties_alt : GlobalTheory.NT.RayField → ∀ (hL : _root_.UpperThe
       rintro x _ rfl t
       exact ⟨t, rfl⟩
     obtain ⟨t', e'⟩ := key ⟨β.D, β.O, b⟩ _ e t
-    exact ⟨q, b'.part t', _root_.GlobalTheory.PlugPt.pin_pt_of_bundle_witness hL N S Γ hE K q c b' w t', e'⟩
-  have hB : RowE (sAnd (IsGoodE (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ).s) GlobalTheory.PlugPt.RayPosition) (_root_.GlobalTheory.Mem.Top.Bl.BundleLinkage (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ))
+    exact ⟨q, b'.part t', _root_.GlobalTheory.PlugPt.pin_pt_of_bundle_witness hL N S hE K q c b' w t', e'⟩
+  have hB : RowE (sAnd (IsGoodE (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S).s) GlobalTheory.PlugPt.RayPosition) (_root_.GlobalTheory.Mem.Top.Bl.BundleLinkage (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S))
       (fun _ D O c (b : _root_.GlobalTheory.Fc.BundleCondition D O c) => ∀ t : b.Comparison₂, GlobalTheory.PlugPt.TiesB D O c (b.part t).pt ∧ GlobalTheory.CovTop.RecTied D O.L ∧
         GlobalTheory.BigOn.More (b.part t).pt) :=
     EvP.mono (fun _ K _ H β hq c b hl t => H β hq c (b.part t) (hlink K β c b hl t)) hRow
-  have hR2 : _root_.GlobalTheory.Fc.RL.LinkedAt (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ) fun Q L => Row Q L (AtAll fun D O c (b : _root_.GlobalTheory.Fc.BundleCondition D O c) => ∀ t : b.Comparison₂,
+  have hR2 : _root_.GlobalTheory.Fc.RL.LinkedAt (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S) fun Q L => Row Q L (AtAll fun D O c (b : _root_.GlobalTheory.Fc.BundleCondition D O c) => ∀ t : b.Comparison₂,
       GlobalTheory.PlugPt.TiesB D O c (b.part t).pt ∧ GlobalTheory.CovTop.RecTied D O.L ∧ GlobalTheory.BigOn.More (b.part t).pt) :=
     ⟨GlobalTheory.PlugPt.RayPosition, GlobalTheory.Plug.largeBaseProperty_rayProperty hRF KPx _, RowE.row hB⟩
-  obtain ⟨R, hR, hrow⟩ := RowL.and (KP := KPx) (Q := IsBuiltE (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ).s) (Q' := IsGoodE (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ).s)
-    (Lk := _root_.GlobalTheory.Mem.Top.Bl.BundleLinkage (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ)) (H := AtAll _root_.GlobalTheory.Fc.R1.DivisorBundleCondition) hDiv hR2
+  obtain ⟨R, hR, hrow⟩ := RowL.and (KP := KPx) (Q := IsBuiltE (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S).s) (Q' := IsGoodE (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S).s)
+    (Lk := _root_.GlobalTheory.Mem.Top.Bl.BundleLinkage (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S)) (H := AtAll _root_.GlobalTheory.Fc.R1.DivisorBundleCondition) hDiv hR2
   refine ⟨R, hR, hrow.imp fun 𝒜 σ s H => ?_⟩
   intro eps Fm hc x hx i
   obtain ⟨κ, -, -, hs⟩ := s Fm hc
@@ -1103,7 +1103,7 @@ theorem linked_ties_alt : GlobalTheory.NT.RayField → ∀ (hL : _root_.UpperThe
         (y.2.2.part t).pt.CompatibilityConditions ∧ GlobalTheory.CovTop.RecTied y.1 y.2.1.L ∧ GlobalTheory.BigOn.More (y.2.2.part t).pt := by
     rintro _ rfl htw hdv hT t
     obtain ⟨hTB, hRec, hMore⟩ := hT t
-    have hcs := _root_.GlobalTheory.ClassSumPinLink.pIota_classSumPin_alt hL N S Γ hN K q c b' w t
+    have hcs := _root_.GlobalTheory.ClassSumPinLink.pIota_classSumPin_alt hL N S hN K q c b' w t
     refine ⟨hcs.1, hcs.2 (_root_.GlobalTheory.Fc.FourBoundsAtBundles.p_div_of_div3g _ hdv), ?_, hRec, hMore⟩
     exact _root_.GlobalTheory.PlugPt.ties_of_tiesB_alt _ _ c _ hTB hRec.1 (_root_.GlobalTheory.Fc.Ind.pt_realised_and_pb_eq _ _ c _).1 htw
   exact key ⟨β.D, β.O, b⟩ e htw hdv hT

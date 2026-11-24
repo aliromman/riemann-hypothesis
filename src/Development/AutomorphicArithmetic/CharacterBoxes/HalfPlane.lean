@@ -1,11 +1,11 @@
 module
 
-public import Mathlib.NumberTheory.LSeries.DirichletContinuation
+public import Statements
 
 @[expose] public section
 
-def Claim.HalfPlane : Prop :=
-  ∀ (N : ℕ) [NeZero N] (χ : DirichletCharacter ℂ N) (s : ℂ), 1 / 2 < s.re → (χ ≠ 1 ∨ s ≠ 1) → DirichletCharacter.LFunction χ s ≠ 0
+/-- The common right-half-plane nonvanishing statement used by the critical-strip reduction. -/
+def Claim.HalfPlane : Prop := DirichletLNonvanishingRightOfHalf
 
 def Claim.Strip : Prop :=
   ∀ (N : ℕ) [NeZero N] (χ : DirichletCharacter ℂ N) (s : ℂ), 0 < s.re → s.re < 1 → DirichletCharacter.LFunction χ s = 0 → s.re = 1 / 2

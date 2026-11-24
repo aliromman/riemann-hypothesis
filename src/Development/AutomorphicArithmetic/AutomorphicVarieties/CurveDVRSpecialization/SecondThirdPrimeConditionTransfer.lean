@@ -81,9 +81,6 @@ import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Monotonicity.Lemmas
 import Mathlib.Topology.Sheaves.Presheaf
 
--- These parent projections have an undetermined `O` and make failing instance searches explode.
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
-
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.StableField, Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.StableOf, Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.ThickAlg, Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.ThickOf, Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.SecondThirdPrimeConditionTransfer
 
@@ -887,7 +884,6 @@ theorem UpperTheory.V.Pr.thickOf :
     ∀ (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [UpperTheory.V.Fr.IsCoef l O] [Algebra ℤ_[l] O] (F : UpperTheory.V.Fr.Frame l (IsLocalRing.ResidueField O)) (T : UpperTheory.V.Pr.Setup F 3), T.ThickOf := by
   intro l _ O _ _ _ _ _ F T Φ hΦ x L P hP hthick
   obtain ⟨hTE, s, hc, hs⟩ := hthick
-  haveI : IsLocalRing L.R := UpperTheory.V.Alg.IsCO.toIsLocalRing L.O' (R := L.R)
   haveI : Nontrivial (L.R ⧸ P) := Ideal.Quotient.nontrivial_iff.2 hP.ne_top
   haveI : IsLocalRing (L.R ⧸ P) := .of_surjective' _ Ideal.Quotient.mk_surjective
   have hmax : (maximalIdeal L.R).map (Ideal.Quotient.mk P) = maximalIdeal (L.R ⧸ P) :=
@@ -973,7 +969,6 @@ theorem UpperTheory.V.Pr.rankThree_deformationSetup_splitting_condition :
     ∀ (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [UpperTheory.V.Fr.IsCoef l O] [Algebra ℤ_[l] O] (F : UpperTheory.V.Fr.Frame l (IsLocalRing.ResidueField O)) (T : UpperTheory.V.Pr.Setup F 3), T.SecondThirdPrimeConditionTransfer := by
   intro l _ O _ _ _ _ _ F T Φ hΦ hN4 J hJ x L p q hp hTE hch hPex P' hP' hP'q hP'TI
   haveI := L.co
-  haveI : IsLocalRing L.R := UpperTheory.V.Alg.IsCO.toIsLocalRing L.O' (R := L.R)
   obtain ⟨P, hP, hPp, hPTI, hJP⟩ := hPex
   obtain ⟨h, c, hc0, hch', hs⟩ := chain_nat hch
   have back_le : ∀ (A : Ideal L.R) [A.IsPrime] (w : UpperTheory.V.W.Point T.r)

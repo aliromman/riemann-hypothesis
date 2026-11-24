@@ -474,6 +474,7 @@ noncomputable section
 open NumberField IsDedekindDomain Neutral.B1 Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations
 open GlobalTheory.HeckeGal GlobalTheory.Pst GlobalTheory.TripleGal GlobalTheory.CompanionTheory.LTHodge GlobalTheory.CompanionTheory.LTPer
 open scoped Classical
+open scoped GroundTheory.PAdicHodge.LocalBridge
 set_option maxSynthPendingDepth 1
 
 namespace GlobalTheory.CompanionTheory.LTPer
@@ -894,8 +895,6 @@ open scoped GroundTheory.PAdicHodge.CyclNorms
 namespace GlobalTheory.CompanionTheory.LTNorm
 
 variable {l : ℕ} [Fact l.Prime]
-
-attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel GroundTheory.PAdicHodge.subfield_compatible GroundTheory.PAdicHodge.subfield_isValuativeTopology GroundTheory.PAdicHodge.subfield_isNontrivial GroundTheory.PAdicHodge.isNonarchimedeanLocalField_intermediateField GroundTheory.PAdicHodge.isNonarchimedeanLocalField_tower GroundTheory.PAdicHodge.valuativeExtension_padic GroundTheory.PAdicHodge.valuativeExtension_intermediateField GroundTheory.PAdicHodge.subfield_isUltrametricDist
 
 theorem unramifiedDegree_eq_one_of_fix (K : FinExt l) [FiniteDimensional ℚ_[l] ↥K.1] (g : Om l ≃ₐ[↥K.1] Om l)
     (h : ∀ u ∈ GroundTheory.PAdicHodge.unramifiedClosure l, g u = u) :

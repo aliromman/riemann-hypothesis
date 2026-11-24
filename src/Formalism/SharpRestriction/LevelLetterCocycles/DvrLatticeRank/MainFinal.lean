@@ -84,6 +84,20 @@ import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Basify
 
+attribute [-instance]
+  NormedSpace.toModule Submodule.normedSpace Submodule.seminormedAddCommGroup
+  Submodule.normedAddCommGroup SubalgebraClass.toNormedAlgebra
+  Subalgebra.isScalarTower_left Subalgebra.isScalarTower_mid
+  Submonoid.instIsScalarTowerSubtypeMem Submonoid.instSMulCommClassSubtypeMem_1
+  Subalgebra.smulCommClass_right Subalgebra.smulCommClass_left
+  MulSemiringAction.toDistribMulAction
+  RingHomClass.toLinearMapClassNNRat RingHomClass.toLinearMapClassRat
+  NonUnitalAlgHomClass.instLinearMapClass
+  NonUnitalAlgHomClass.instSemilinearMapClassOfNonUnitalAlgSemiHomClassOfClassRingHom
+  Algebra.TensorProduct.instNonUnitalSemiring Algebra.TensorProduct.instNonUnitalRing
+attribute [local instance high]
+  Submodule.module TensorProduct.leftModule Algebra.TensorProduct.leftAlgebra
+
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FinrankMapMkQ, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.LatticeFinrank, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.OthDisj, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.LVSmulA, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.SpanLeRange, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.UniversalFiltrationHolds, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.UniversalLiftFiltration, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.UniversalLiftRingMembership, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.U1r2Basis, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.UniversalLiftValuationPoints, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.U1linkPf, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.MainFinal
 

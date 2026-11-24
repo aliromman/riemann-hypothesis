@@ -241,6 +241,20 @@ theorem opn_mono {X : Scheme.{0}} (U : X.Opens) : Mono (opn U).hom := by
 def LeafWCov : Prop := Hyp → ∀ (q : ℕ) [NeZero q] (d : ℕ) (R : Type) [CommRing R], IsUnit (q : R) →
   Cover2 (ZMod q) (wb d R) (pr d R).hom
 
+theorem eqv_comp {R : Type} [CommRing R] {E E' E'' : Spc} {f : E ⟶ E'} {g : E' ⟶ E''} {F : Shv R}
+    (hf : Eqv R f F) (hg : Eqv R g F) : Eqv R (f ≫ g) F := by
+  intro n
+  have : (pull R (f ≫ g) F n : _ → _) = pull R f F n ∘ pull R g F n := funext fun x => pull_comp R f g F n x
+  rw [this]; exact (hf n).comp (hg n)
+
+theorem eqv_of_section {R : Type} [CommRing R] {E E' : Spc} {f : E ⟶ E'} {r : E' ⟶ E} {F : Shv R}
+    (h : f ≫ r = 𝟙 _) (hr : Eqv R r F) : Eqv R f F := by
+  intro n
+  have hc : (pull R f F n : _ → _) ∘ pull R r F n = id := by
+    funext x; change pull R f F n (pull R r F n x) = x; rw [← pull_comp, h, pull_id]
+  have : Function.Bijective ((pull R f F n : _ → _) ∘ pull R r F n) := by rw [hc]; exact Function.bijective_id
+  exact (Function.Bijective.of_comp_iff _ (hr n)).1 this
+
 def LeafWEqvR : Prop := Hyp → ∀ (q : ℕ) [NeZero q] (d : ℕ) (R : Type) [CommRing R], IsUnit (q : R) →
   ∀ i, Eqv _ (wa d R) (tw q i)
 
