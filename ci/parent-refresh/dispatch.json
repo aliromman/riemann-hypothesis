@@ -1,18 +1,10 @@
 {
-  "request": "structural-896",
+  "request": "direct-1018",
   "groups": [
-    "896-clump-large-1",
-    "896-clump-large-2",
-    "896-clump-ordinary-1",
-    "896-clump-ordinary-10",
-    "896-clump-ordinary-2",
-    "896-clump-ordinary-3",
-    "896-clump-ordinary-4",
-    "896-clump-ordinary-5",
-    "896-clump-ordinary-6",
-    "896-clump-ordinary-7",
-    "896-clump-ordinary-8",
-    "896-clump-ordinary-9"
+    "direct-1018-large-1",
+    "direct-1018-ordinary-1",
+    "direct-1018-ordinary-2",
+    "direct-1018-ordinary-3"
   ],
-  "seed_run": 45364077504
+  "seed_run": 45386532201
 }
