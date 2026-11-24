@@ -102,12 +102,18 @@ class Module:
         self.lines = self.body.count("\n") + 6 + len(self.scopes)
         self.exotic = exotic
 
+    @property
+    def already_clumped(self):
+        return is_clump_file(self)
 
-def load(root, names=None):
-    """Read tracked Lean modules, optionally restricting the work to a set of names."""
+
+PlanModule = collections.namedtuple("PlanModule", "imports lines exotic decls already_clumped")
+
+
+def iter_modules(root, names=None):
+    """Read each selected tracked Lean source once."""
     out = subprocess.run(["git", "-C", root, "ls-files", "-z", "src/*.lean"],
                          capture_output=True, check=True).stdout.decode()
-    mods = {}
     for p in out.split("\0"):
         if not p:
             continue
@@ -115,8 +121,19 @@ def load(root, names=None):
         if names is not None and name not in names:
             continue
         with open(os.path.join(root, p), encoding="utf-8") as f:
-            mods[name] = Module(name, p, f.read())
-    return mods
+            mod = Module(name, p, f.read())
+        yield mod
+
+
+def load(root, names=None):
+    """Read the complete tracked modules selected by name."""
+    return {m.name: m for m in iter_modules(root, names)}
+
+
+def load_for_plan(root):
+    """Keep the import graph, declaration names and sizes needed by the planner."""
+    return {m.name: PlanModule(m.imports, m.lines, m.exotic, m.decls, m.already_clumped)
+            for m in iter_modules(root)}
 
 
 # ---------------------------------------------------------------------------
@@ -131,7 +148,7 @@ def plan(mods, max_lines, exclude=frozenset()):
 
     def clumpable(m):
         return (lib_of(m) not in PROTECTED_LIBS and not mods[m].exotic and m not in exclude
-                and not is_clump_file(mods[m]))
+                and not mods[m].already_clumped)
 
     # Reverse topological order: dependencies before importers.
     indeg = {m: len(deps[m]) for m in mods}
@@ -682,7 +699,7 @@ def main():
     u = sub.add_parser("unclump"); u.add_argument("root")
     args = ap.parse_args()
     if args.cmd == "plan":
-        mods = load(args.root)
+        mods = load_for_plan(args.root)
         clumps = plan(mods, args.max_lines, read_exclude(args.exclude))
         stats(mods, clumps, args.max_lines)
         if args.out:
