@@ -2,9 +2,9 @@
   "pr": 977,
   "base": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
   "base_src": "980141067b4eec00e78e2d490134c6299613cdef",
-  "head": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "head": "e7127ce8136d8ed36e610884d8578de1cffadd19",
   "src": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
-  "tree": "49ca624d33498ce6e5e699b40acb8be0a76517dc",
+  "tree": "e762966aaa46dd64fd3eac49d9824d4310d6eef7",
   "old_head": "be239239d08c7bf865ba618cf6515891b4596c84",
   "old_base": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
   "counts": {
@@ -934,5 +934,12 @@
     ],
     "extra_blank_lines": 1,
     "extra_nonblank_lines": 0
+  },
+  "before_scope_scan_reuse": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "scope_scan_reuse": {
+    "same_complete_lean_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+    "changed_files": [
+      "scripts/clump.py"
+    ]
   }
 }

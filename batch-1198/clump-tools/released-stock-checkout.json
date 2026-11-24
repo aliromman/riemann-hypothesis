@@ -1,0 +1,12 @@
+{
+  "head": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+  "actual_source_files_verified": 59909,
+  "source_records_sha256": "bd3969eb46e734ff50028c8a1644be03b25620e0c60ac0e5a9d93c007d45f66d",
+  "verified_after_all_18_observations": true,
+  "source_single_link_allocated_bytes": 1165139968,
+  "free_before_bytes": 297779200,
+  "free_after_bytes": 1507328000,
+  "original_end_of_run_git_index_write": "out of disk space",
+  "recovery": "The normal CLI completed every trial and every independent input/output check before the optional index-stat write. The retained index and all physical Git blobs were verified after sufficient space was available. The recorded observations were not rerun."
+}

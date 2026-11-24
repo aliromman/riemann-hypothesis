@@ -1,0 +1,68 @@
+{
+  "parent": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "published": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "proposed": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+  "source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+  "modules": 11551,
+  "members": 68255,
+  "full_proposed_and_published_render_equal": 11551,
+  "matched_render_bodies_all_three": 11551,
+  "warmups": 1,
+  "measured_trials": 5,
+  "benchmarked_calls": 207918,
+  "totals_sum_of_per_file_medians_in_ms": {
+    "community": {
+      "read_cpu": 1217.061999999996,
+      "read_wall": 1217.5488479999951,
+      "construct_cpu": 3598.70900000001,
+      "construct_wall": 3600.104864999983,
+      "render_cpu": 2654.9730000000177,
+      "render_wall": 2655.5970710000133,
+      "construct_render_cpu": 6261.55999999999,
+      "construct_render_wall": 6263.902002999991
+    },
+    "published": {
+      "read_cpu": 1055.362999999994,
+      "read_wall": 1055.7791169999987,
+      "construct_cpu": 3799.6999999999975,
+      "construct_wall": 3801.2133929999977,
+      "render_cpu": 3980.860000000007,
+      "render_wall": 3982.4574750000097,
+      "construct_render_cpu": 7786.950999999974,
+      "construct_render_wall": 7790.733755000022
+    },
+    "proposed": {
+      "read_cpu": 1052.2759999999994,
+      "read_wall": 1052.5415539999995,
+      "construct_cpu": 3789.7860000000014,
+      "construct_wall": 3791.5172249999914,
+      "render_cpu": 1681.2919999999892,
+      "render_wall": 1681.3708869999944,
+      "construct_render_cpu": 5477.205999999999,
+      "construct_render_wall": 5479.162335999978
+    }
+  },
+  "slower_files": {
+    "community-to-proposed": {
+      "construct_cpu": 10628,
+      "construct_wall": 10775,
+      "read_wall": 784,
+      "read_cpu": 619,
+      "render_cpu": 48,
+      "render_wall": 53,
+      "construct_render_cpu": 300,
+      "construct_render_wall": 315
+    },
+    "published-to-proposed": {
+      "read_cpu": 4044,
+      "read_wall": 5140,
+      "construct_cpu": 4236,
+      "construct_wall": 4845,
+      "render_cpu": 1,
+      "render_wall": 1,
+      "construct_render_cpu": 1,
+      "construct_render_wall": 1
+    }
+  },
+  "raw_sha256": "056413883995c644e1026559b765f9bd482f1cc73c3dfc1cea95b53f39a9d157"
+}

@@ -1,0 +1,41 @@
+{
+  "mathematical_parent": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "branch_comparison": {
+    "first": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+    "second": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+    "same_tracked_paths": 60043,
+    "identical_files": 60042,
+    "different": {
+      "scripts/clump.py": [
+        "100644 blob a79e5b81d13dee8647636e5ff1d033aea5ca3066",
+        "100644 blob e7729f1bb64f7e9d8b3ef1edbe98459f6536602f"
+      ]
+    },
+    "exact_unchanged_git_entries_sha256": "530bf6481f2afdba7a227243f8be95e15fd9b781f29ba41783b6e76dc1097031",
+    "equal_project_lean_sources": 59909,
+    "equal_all_tracked_lean_sources": 59918
+  },
+  "first_pr": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+  "joint_comparison": {
+    "first": "505b9b694c0ef9a45d5fe84ca9b83b13eab1a24d",
+    "second": "9ddb9d443eaca8fffab68b5f18e3de78662ce658",
+    "same_tracked_paths": 60043,
+    "identical_files": 60042,
+    "different": {
+      "scripts/clump.py": [
+        "100644 blob a79e5b81d13dee8647636e5ff1d033aea5ca3066",
+        "100644 blob e7729f1bb64f7e9d8b3ef1edbe98459f6536602f"
+      ]
+    },
+    "exact_unchanged_git_entries_sha256": "2ee5cec16bd3e990070c2f524965f4079a3ae78a26891056e42b13988154fdd6",
+    "equal_project_lean_sources": 59909,
+    "equal_all_tracked_lean_sources": 59918
+  },
+  "same_proposal_source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+  "same_joint_source_tree": "3f98b67eaa78f274d54e56dcc5dc6f5f21e8323b",
+  "current_joint_git_tree": "9ddb9d443eaca8fffab68b5f18e3de78662ce658",
+  "all_planner_input_records": 59909,
+  "all_recoverable_archives": 12364,
+  "same_raw_archive_records_sha256": "a8cf839e0a6ea22a354696301cbae7d6f214547aa88a04a7d40e700ff1370d0e",
+  "raw_render_comparisons_sha256": "056413883995c644e1026559b765f9bd482f1cc73c3dfc1cea95b53f39a9d157"
+}

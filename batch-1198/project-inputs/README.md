@@ -1,0 +1,5 @@
+# Compiler inputs
+
+The source graph and the import headers in the 59,908 published project module files have the same 368,104 edges. The comparison uses their import flags to determine the project files Lean loads for each root. Changes to a deep import can require a different set of compiler files. [Source and compiled import comparison](validated-graph.json) · [Effects on project modules](project-input-impact.json)
+
+Of the 11,551 edited modules, 3,297 have a previous native result with identical original and proposed source bytes, the same whole owning archive and equivalent effective compiler inputs. The other 8,254 require comparisons against the current parent. An independent check confirmed each transfer against the prior proof archive. A real unchanged source and owning archive failed the transfer check when its imported public module changed. [Selection](selection.json) · [Independent transfer checks](verified-transfers.json) · [Real rejection](different-real-input-rejected.json) · [Differences between the two community releases](complete-facets.json)

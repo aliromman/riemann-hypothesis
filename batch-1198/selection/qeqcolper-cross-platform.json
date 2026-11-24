@@ -1,0 +1,42 @@
+{
+  "actual_facets_changed": [
+    ".olean.server"
+  ],
+  "candidate": "331d96991cd168519a8835ddd5a95fa72f158a97ab326de4dd42a438903389b1",
+  "constant_info": {
+    "candidateNames": 17,
+    "different": 0,
+    "examples": [],
+    "kernelImage": true,
+    "parentNames": 17,
+    "proofChanges": 0,
+    "publicImage": true,
+    "publicImports": true
+  },
+  "current_genuine_project_inputs_on_mac": 2663,
+  "github_artifact": 14941634728,
+  "github_run": 45432611097,
+  "github_sha256": "sha256:b30cefd649ba0eeac44b78c564fda28ad3c5f508270377d356e9a8ea54eb13c8",
+  "mac_run_sha256": "1118b5387763a026338f87be2925a1598c571b8c5275e21333116816fd262015",
+  "module": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.QEqColPer",
+  "new_github_and_mac_raw_sha256": {
+    ".ir": "cdc7692f2bedcdead14d6698618ffb7f78a55ffa0be48a4cd986eeaca574cdc2",
+    ".ir.sig": "e8951434a58244d67e264b35ba7074c16a6ecf42996fc2904187ac8eff494517",
+    ".olean": "b285fdee2f1da0400054514b36f4a4a00ddeb09f1e1a7568eb40d687626b6fb6",
+    ".olean.private": "00450212206a2c78bfab15cea279400c3c8a0d5ac0b0f93fbf8159a6344d11cf",
+    ".olean.server": "960a324eac768d3ca04c7c3abbb83ce37c5ebb761675054011334cfd8ff68080"
+  },
+  "official_parent": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "old_github_and_mac_raw_sha256": {
+    ".ir": "cdc7692f2bedcdead14d6698618ffb7f78a55ffa0be48a4cd986eeaca574cdc2",
+    ".ir.sig": "e8951434a58244d67e264b35ba7074c16a6ecf42996fc2904187ac8eff494517",
+    ".olean": "b285fdee2f1da0400054514b36f4a4a00ddeb09f1e1a7568eb40d687626b6fb6",
+    ".olean.private": "00450212206a2c78bfab15cea279400c3c8a0d5ac0b0f93fbf8159a6344d11cf",
+    ".olean.server": "84fa7606e61500bed73c3f31079698acc81323a24d0bfc0ac840154f260b3f72"
+  },
+  "published_sources": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+  "scheduled_final_sources": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "source": "a7009829c7c6d3dec4f63e0821539eb688eef75867c554013e2fdf4774297295",
+  "warning_sha256": "fa643fff31fcce35703320ccc281700ef8805c0254207c4a4bbda2677a4b1dfd",
+  "warnings": 1
+}

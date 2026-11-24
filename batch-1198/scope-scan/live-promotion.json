@@ -1,0 +1,16 @@
+{
+  "baseRefName": "main",
+  "headRefName": "codex/simplify-clump-scopes",
+  "headRefOid": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+  "headRepositoryOwner": {
+    "id": "U_kgDODYXfmQ",
+    "name": "Ali Romman",
+    "login": "aliromman"
+  },
+  "isDraft": true,
+  "state": "OPEN",
+  "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/977",
+  "previous": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "source": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+  "observed_utc": "2026-11-24T16:45:01.197733+00:00"
+}

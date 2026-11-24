@@ -1,6 +1,6 @@
 # Community batch 6 and PR #977
 
-The community merged batch #1198 as `1da818b50f1e18808db2792b9dc735bda8cb84d8`. The proposed commit is `f6177155e8e440c0a831d4c15de4c74341de0a93`. The project uses Lean 4.37.0-rc1 and Mathlib `31ce06eaadf4`. The official receipt authenticates 59,908 project modules. [Community batch](https://github.com/leanprover-community/riemann-hypothesis/pull/1198) · [Community cache receipt](https://rh-cache.taucetiproject.org/ci/revisions/1da818b50f1e18808db2792b9dc735bda8cb84d8.json) · [Parent input comparison](official-receipt-comparison.json)
+The community merged batch #1198 as `1da818b50f1e18808db2792b9dc735bda8cb84d8`. The proposed commit is `e7127ce8136d8ed36e610884d8578de1cffadd19`. The project uses Lean 4.37.0-rc1 and Mathlib `31ce06eaadf4`. The official receipt authenticates 59,908 project modules. [Community batch](https://github.com/leanprover-community/riemann-hypothesis/pull/1198) · [Community cache receipt](https://rh-cache.taucetiproject.org/ci/revisions/1da818b50f1e18808db2792b9dc735bda8cb84d8.json) · [Parent input comparison](official-receipt-comparison.json)
 
 The patch removes 251,428 Lean scope commands and 131,362 comment lines from 11,551 proof clumps. It preserves the archive and order of all 68,255 original members. It joins 24,512 compatible public and noncomputable sections. Charging all 415 net new Python lines gives 251,013 fewer code lines. [Command categories](scope-command-counts.json) · [Reproduced source pairs](scope-source-rows.jsonl.gz) [Source audit](source-audit.json)
 
@@ -20,3 +20,9 @@ A full default-target Lake rebuild and the full sandboxed five-theorem Comparato
 The final reader and the preceding reader restore identical member bytes and order across 12,364 recoverable archives and 73,087 members on this tree. The community reader already fails to extract one other, unedited archive, `DefectTorsionSecondCohomologyKernel`, where local declarations appear between its first marker and its header. The same file and error are recorded on this revision. The final diagnostic control includes ordinary files and code before an archive. [Whole-tree comparison](archive-reads.json) · [Real stock errors](diagnostics/result.json)
 
 In `QEqColPer` the new upstream proof removes three former member refinements. The final source keeps the one genuine section fusion. Restoring one blank line gives the standard rendering of the remaining body. All 840 retained refinements save at least one additional command. [Exact source and original member comparison](selection/standard-QEqColPer.json) · [Current per-owner refinements](selection/current-refinements.json)
+
+## Compiled outputs and theorem checks
+
+The final records cover all 11,551 changed source modules and all five declarations in `Main`. The raw ZIP files retain the original GitHub authentication digests. The upstream comparison records all paths changed since this mathematical parent and checks the two Git merge previews. [Compiled outputs](native) · [Five theorem proofs](five-theorems) · [Latest main comparison](latest-main.json)
+
+The two proposals also share a measured compiler workload. Its input record identifies the exact joint tree and the community modules used. [Combined-source comparison](composition-native) · [Stock Lake and sandboxed source replays](bounded-checks.md) · [Cross-PR merge checks](coordination)

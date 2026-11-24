@@ -1,0 +1,43 @@
+{
+  "input_commit": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+  "complete_saved_plan_sha256": "7f008f70f550f162cba7e1b23b8b15309086d8efd3ff8c0c4a2ff9ed4521a175",
+  "tracked_lean_modules": 59909,
+  "clumps": 199,
+  "members": 656,
+  "removed_files_per_application": 457,
+  "selected_source_digest": "246e304c6ed5e9ee92e06ead0432876b47266a7bf04e025547f7d88f1b10d623",
+  "generated_output_stream": {
+    "upstream": "9566483e9bd36d62c63a22a9413f1f21cf646a4863922b457dba85ec54e2529a",
+    "current": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0",
+    "planned": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0"
+  },
+  "measurements": {
+    "upstream": {
+      "wall_s": 15.598259,
+      "cpu_s": 11.24056,
+      "peak_rss_bytes": 3918086144
+    },
+    "current": {
+      "wall_s": 12.204364708,
+      "cpu_s": 11.091738,
+      "peak_rss_bytes": 3920003072
+    },
+    "planned": {
+      "wall_s": 0.2895515,
+      "cpu_s": 0.264061,
+      "peak_rss_bytes": 92864512
+    }
+  },
+  "raw_sha256": "313364e5ee9f477627eb67741544358dd18b7c66e5a28089dad7423163fa9e56",
+  "python": "3.12.16",
+  "platform": "macOS-27.2-arm64-arm-64bit",
+  "existing_clean_worktree_moved_as_a_unit": true,
+  "warmup_rounds": 1,
+  "scored_rounds": 5,
+  "tool_sha256": {
+    "upstream": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44",
+    "current": "52ad0455b1e1d24e17783ac08d8409aeb56de53c50bec09527b908d9f55d4592",
+    "planned": "01a81b1a58da622db0427e99139e3b399aa12fae43cde2d59aa709795c3bcade"
+  }
+}

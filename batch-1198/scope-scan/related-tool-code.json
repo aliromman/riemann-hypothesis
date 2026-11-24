@@ -1,0 +1,59 @@
+[
+  {
+    "pr": 988,
+    "title": "Drop the clump-header comments",
+    "head": "35e53a486431f2db6d7ebbf4ceca4774ebd1ccd8",
+    "base": "5f2c8594adf1f48032d37583118512cd7bbf3afa",
+    "diff_sha256": "23796bd079a79ae4eec1daf38eb84860af4540c504ceb5cc57a90408d69a1b3a",
+    "changed_hunks": [
+      "@@ -2 +2 @@",
+      "@@ -15,2 +15 @@ namespaces it left open closed explicitly:",
+      "@@ -21,3 +20,3 @@ namespaces it left open closed explicitly:",
+      "@@ -28 +26,0 @@ Usage:",
+      "@@ -31,2 +29,4 @@ Usage:",
+      "@@ -45 +44,0 @@ SEAM_END = \"-- ===== end clump member: \"",
+      "@@ -294,4 +293,2 @@ def render(root, order, mods):",
+      "@@ -299,3 +295,0 @@ def render(root, order, mods):",
+      "@@ -303 +296,0 @@ def render(root, order, mods):",
+      "@@ -324,44 +316,0 @@ def apply(root, clumps):",
+      "@@ -429 +377,0 @@ def main():",
+      "@@ -443,2 +390,0 @@ def main():"
+    ],
+    "reuses_scopes_in_renderer": false,
+    "changes_to_scan_or_scope_capture": []
+  },
+  {
+    "pr": 807,
+    "title": "Prevent unclump from overwriting existing Lean modules",
+    "head": "1bc9d4f6ba1392d3f382d0c6f5fb4381de48672b",
+    "base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+    "diff_sha256": "eca9b789a0f36c90fe2ada44df43facd022a0e7fbcb9c05fd08a87f970634e3b",
+    "changed_hunks": [
+      "@@ -23 +23,2 @@ the member bodies were not edited.  If they were, it still restores the edited b",
+      "@@ -342,0 +344,2 @@ def unclump_text(text):",
+      "@@ -347,0 +351,18 @@ def unclump_text(text):",
+      "@@ -348,0 +370 @@ def unclump(root):",
+      "@@ -352 +374,2 @@ def unclump(root):",
+      "@@ -354 +377,2 @@ def unclump(root):",
+      "@@ -356 +380,2 @@ def unclump(root):",
+      "@@ -360,6 +385,32 @@ def unclump(root):",
+      "@@ -444 +495,4 @@ def main():"
+    ],
+    "reuses_scopes_in_renderer": false,
+    "changes_to_scan_or_scope_capture": []
+  },
+  {
+    "pr": 542,
+    "title": "Fix commented imports and fresh-checkout unclumping",
+    "head": "dbd042ee426fe9b63bb83ee69d9f4c294d997edb",
+    "base": "e06d3f2ceb656cffa144febb2887e9c80f641b5e",
+    "diff_sha256": "062b60056a21cc63c2e4bffdf187e5b8092aa062da1e4c52fda7cde59532d4eb",
+    "changed_hunks": [
+      "@@ -52 +52,2 @@ PROTECTED_LIBS = {\"Main\", \"Challenge\"}",
+      "@@ -79 +80 @@ class Module:",
+      "@@ -361,0 +363 @@ def unclump(root):"
+    ],
+    "reuses_scopes_in_renderer": false,
+    "changes_to_scan_or_scope_capture": []
+  }
+]

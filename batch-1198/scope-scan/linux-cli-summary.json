@@ -1,0 +1,54 @@
+{
+  "source_checkout": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+  "source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+  "members": 656,
+  "plan_roots": 199,
+  "original_and_restored_tracked_files": 59909,
+  "source_census_sha256": "496895deca1ebb78e52804972649881d919b090859afeb086abb4efa85818be0",
+  "tool_sha256": {
+    "community": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44",
+    "published": "01a81b1a58da622db0427e99139e3b399aa12fae43cde2d59aa709795c3bcade",
+    "proposed": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf"
+  },
+  "saved_plan_sha256": "7f008f70f550f162cba7e1b23b8b15309086d8efd3ff8c0c4a2ff9ed4521a175",
+  "generated_root_streams": {
+    "community": "9566483e9bd36d62c63a22a9413f1f21cf646a4863922b457dba85ec54e2529a",
+    "published": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0",
+    "proposed": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0"
+  },
+  "order": "One warm-up per tool. Five scored rounds rotate the first tool. The plan uses two tools and apply uses three.",
+  "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+  "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+  "medians": {
+    "plan": {
+      "published": {
+        "wall_s": 31.205361647,
+        "cpu_s": 30.467188,
+        "peak_rss_bytes": 3765706752
+      },
+      "proposed": {
+        "wall_s": 31.632664959,
+        "cpu_s": 30.887148999999997,
+        "peak_rss_bytes": 3778183168
+      }
+    },
+    "apply": {
+      "community": {
+        "wall_s": 27.000914995,
+        "cpu_s": 26.37321,
+        "peak_rss_bytes": 3606495232
+      },
+      "published": {
+        "wall_s": 0.632754967,
+        "cpu_s": 0.622111,
+        "peak_rss_bytes": 72544256
+      },
+      "proposed": {
+        "wall_s": 0.500829241,
+        "cpu_s": 0.48968,
+        "peak_rss_bytes": 72544256
+      }
+    }
+  },
+  "observations_sha256": "85fde3146fac80a3d894545cf258bd0f49008ebdfaf9963b7692a6df3e8c2c63"
+}
