@@ -1,6 +1,6 @@
 {
   "base": "d27f71347abceb76cd37dc8a5fccbe556ec2be90",
-  "ref": "b9be9b789d211a66c8918d22ef288d9d0a091a36",
+  "ref": "483fb485bd20e7a45a09f41ea0eec36a3c1827e5",
   "strict_private": [],
   "replays": [
     "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll",
@@ -127,10 +127,10 @@
     },
     "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable": {
       "members": 27,
-      "net": 134,
-      "code": 80,
+      "net": 137,
+      "code": 83,
       "parent": "6512d3a572dad0aadbea208c74b5fc7f1b5433e0f8fe9c9be57e6c5275d40717",
-      "candidate": "8b8ef811c7c873860b5ef125c7bf21670973983857b65e832608bf1ebff93e9c",
+      "candidate": "af643b9580f0ed84976542d36b4cc82a48edc8e394da54c5a70c86cfcf45de4e",
       "fusions": 12,
       "borrowed": 26
     },
@@ -463,8 +463,8 @@
       "library": "Development",
       "stratum": "large",
       "members": 27,
-      "net": 134,
-      "code": 80,
+      "net": 137,
+      "code": 83,
       "source_bytes": 151741,
       "cone": 4
     },
@@ -570,5 +570,17 @@
       "sha256": "9bf232ca29179dce903c72e3121754f9e639887a77f3072e88ef1ce68638c35b",
       "theorem_proof_expr_index": 874946
     }
-  ]
+  ],
+  "revised_cone_sources": [
+    "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable"
+  ],
+  "repeat_timing": [
+    "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable"
+  ],
+  "timing_predecessor": {
+    "run": 45354961381,
+    "checked_commit": "b9be9b789d211a66c8918d22ef288d9d0a091a36",
+    "sha256": "f19dba0994ba94fd32119e086a5fba2865a66ce679a70dfb8701e527b3f1c728",
+    "artifact_path": "results/45354961381/stock-lake.zip"
+  }
 }

@@ -87,15 +87,20 @@ def main():
     names = [r["module"] for r in panel["benchmark"]]
     if len(names) != 12 or len(set(names)) != 12 or not set(names) <= set(scope["fresh"]) & set(scope["changed"]):
         raise ValueError("the predeclared twelve-source panel is not in the fresh integrated build")
-    eligible = set(scope["changed"])
-    summary = dict(status="complete", method="Two predeclared changed roots per source library. Warm-up and five serial matched pairs alternate parent-first and candidate-first order. Both revisions compile with the same unmodified stock Lake setup from the integrated tree, with one Lean thread. CPU is user plus system. Elapsed includes process launch and olean, ilean and C output. Hydration, dependency scheduling and declaration checks are outside the timer.",
-                   eligible_changed_roots=len(eligible), candidate_source_tree=scope.get("candidate_source_tree"),
+    repeat = set(panel["repeat_timing"])
+    if not repeat or not repeat <= set(names):
+        raise ValueError("the repeated timing roots differ from the declared panel")
+    eligible = set(scope["changed"]) & set(scope["roots"])
+    summary = dict(status="complete", method="Repeat the affected root or roots from the original predeclared twelve-module panel. Warm-up and five serial matched pairs alternate parent-first and candidate-first order. Both revisions compile with the same unmodified stock Lake setup from the integrated tree, with one Lean thread. CPU is user plus system. Elapsed includes process launch and olean, ilean and C output. Hydration, dependency scheduling and declaration checks are outside the timer.",
+                   predeclared_modules=names, repeated_modules=sorted(repeat), eligible_changed_roots=len(eligible), candidate_source_tree=scope.get("candidate_source_tree"),
                    parent_source_tree=scope.get("source_tree"), lean=output(["lean", "--version"]).strip(),
                    system=platform.platform(), runner_image=os.environ.get("ImageVersion"),
                    logical_cpus=os.cpu_count(), initial_load_averages=os.getloadavg(), modules={}, totals={})
     with (WORK/"benchmark-samples.jsonl").open("w") as log, tempfile.TemporaryDirectory(dir=WORK) as temp:
         scratch = Path(temp)
         for k, name in enumerate(names):
+            if name not in repeat:
+                continue
             expected = panel["changed_sources"][name]
             relative, bodies, actual_header = sources(name, expected)
             actual = CANDIDATE/".lake/build/ir"/Path(*name.split(".")).with_suffix(".setup.json")

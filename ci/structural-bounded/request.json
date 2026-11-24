@@ -1,19 +1,19 @@
 {
   "source_repository": "aliromman/riemann-hypothesis",
   "source_ref": "refs/heads/codex/simplify-clump-scopes",
-  "source_head": "b9be9b789d211a66c8918d22ef288d9d0a091a36",
-  "parent": "d27f71347abceb76cd37dc8a5fccbe556ec2be90",
+  "source_head": "1ae1f79ed3f27986e4493a1c8fb6e21455d7467a",
+  "parent": "86b7a0de35098e42e2f7e695f3c82e086f3deae4",
   "donor": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
   "parent_source_tree": "70327238ca7c4189479eee72f3c22812f1922329",
   "parent_module_manifest": "18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a",
-  "checked_commit": "b9be9b789d211a66c8918d22ef288d9d0a091a36",
-  "candidate_source_tree": "ea4eca26ea9220038083bd2c6c6313c0a2cba605",
-  "git_tree": "806143ae5ab49ea97d2d5158342349545d10e6fb",
+  "checked_commit": "483fb485bd20e7a45a09f41ea0eec36a3c1827e5",
+  "candidate_source_tree": "e4578d9cb1c96062bc9a81dbb3cb3aae8156cd6e",
+  "git_tree": "f48b22a3d01f8686de52c8ccd17bf4ee0c993042",
   "pins": {
     "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
     "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
     "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d"
   },
-  "mode": "public-fork-head",
-  "pull_number": null
+  "mode": "github-pull-merge",
+  "pull_number": 977
 }

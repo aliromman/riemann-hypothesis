@@ -105,6 +105,9 @@ jobs:
         run: |
           leantar="$(dirname "$(elan which lean)")/leantar"
           python3 "$CI_HELPERS/prepare.py" ../parent . "$WORK" "$CI_HELPERS/$PANEL-roots.txt" --max-roots "$MAX_ROOTS" --leantar "$leantar" --candidate-head "$(git rev-parse HEAD)" --base-profile "$PANEL"
+      - name: Identify all changed inputs to the original timing panel
+        working-directory: candidate
+        run: python3 "$CI_HELPERS/verify_prior.py" . ../parent "$WORK"
       - name: Fetch the official Mathlib cache for the selected imports
         working-directory: candidate
         shell: bash
@@ -118,7 +121,17 @@ jobs:
         working-directory: candidate
         shell: bash
         run: bash "$CI_HELPERS/check.sh" "$PANEL" "$WORK" "$CI_HELPERS"
-      - name: Measure fresh parent and candidate compilations
+      - name: Compare changed theorems with the upstream Comparator and three kernels
+        if: success() && env.PANEL == 'bounded'
+        timeout-minutes: 25
+        working-directory: candidate
+        shell: bash
+        run: |
+          lean=$(elan which lean)
+          export PATH="${lean%/*}:$PATH"
+          export LEAN_NUM_THREADS=1
+          lake env python3 "$CI_HELPERS/theorem_check.py" "$WORK" ../parent
+      - name: Repeat the affected matched compiler trials
         if: success() && env.PANEL == 'bounded'
         continue-on-error: true
         timeout-minutes: 70
@@ -137,16 +150,6 @@ jobs:
           export LEAN_NUM_THREADS=1
           export MATHLIB_CACHE_DIR="$RUNNER_TEMP/mathlib-cache"
           lake env python3 "$CI_HELPERS/lake_pairs.py" "$WORK" ../parent
-      - name: Compare changed theorems with the upstream Comparator and three kernels
-        if: success() && env.PANEL == 'bounded'
-        timeout-minutes: 25
-        working-directory: candidate
-        shell: bash
-        run: |
-          lean=$(elan which lean)
-          export PATH="${lean%/*}:$PATH"
-          export LEAN_NUM_THREADS=1
-          lake env python3 "$CI_HELPERS/theorem_check.py" "$WORK" ../parent
       - name: Save the scope and verification output
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -162,6 +165,7 @@ jobs:
             ${{ runner.temp }}/module-check/replay.log
             ${{ runner.temp }}/module-check/facet-comparisons.jsonl
             ${{ runner.temp }}/module-check/pr-source.json
+            ${{ runner.temp }}/module-check/original-timing-scope.json
             ${{ runner.temp }}/module-check/benchmark.json
             ${{ runner.temp }}/module-check/lake-benchmark.json
             ${{ runner.temp }}/module-check/lake-pairs.jsonl
