@@ -1,0 +1,170 @@
+name: Stock Lake and Comparator for PR 879 on batch 896
+on:
+  push:
+    branches: [ci/batch-896/stock-879]
+    paths: ['ci/stock-batch-896/request.json']
+permissions:
+  contents: read
+jobs:
+  check:
+    if: github.repository == 'aliromman/riemann-hypothesis' && github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    env:
+      LEAN_ABORT_ON_PANIC: '1'
+      LEAN_NUM_THREADS: '2'
+      RUST_MIN_STACK: '33554432'
+      MATHLIB_CACHE_GET_URL: https://cache.mathlib.org/mathlib4
+    steps:
+      - name: Check out the independent fork verifier
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: harness
+          persist-credentials: false
+          sparse-checkout: ci/stock-batch-896
+      - name: Select the pinned public objects
+        id: source
+        shell: bash
+        run: |
+          ci="$GITHUB_WORKSPACE/harness/ci/stock-batch-896"
+          python3 - <<'PYCODE'
+          import json,os,re
+          from pathlib import Path
+          r=json.loads(Path('harness/ci/stock-batch-896/request.json').read_bytes())
+          assert r['source_repository']=='aliromman/riemann-hypothesis'
+          assert r['mode'] in ('public-fork-head','github-pull-merge')
+          for key in ('parent','checked_commit','source_head'):
+              assert re.fullmatch('[0-9a-f]{40}',r[key])
+          dest='leanprover-community/riemann-hypothesis' if r['mode']=='github-pull-merge' else r['source_repository']
+          with open(os.environ['GITHUB_OUTPUT'],'a')as f:
+              print('parent='+r['parent'], 'candidate='+r['checked_commit'],'repository='+dest,sep='\n',file=f)
+          PYCODE
+          echo "CI_HELPERS=$ci" >> "$GITHUB_ENV"
+          echo "WORK=$RUNNER_TEMP/module-check" >> "$GITHUB_ENV"
+          echo PANEL=bounded >> "$GITHUB_ENV"
+          echo MAX_ROOTS=100 >> "$GITHUB_ENV"
+      - name: Check out immutable candidate sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: ${{ steps.source.outputs.repository }}
+          ref: ${{ steps.source.outputs.candidate }}
+          path: candidate
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /lakefile.toml
+            /lake-manifest.json
+            /lean-toolchain
+      - name: Check out the authenticated community parent
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: ${{ steps.source.outputs.parent }}
+          path: parent
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /comparator.json
+            /export-targets.txt
+            /lakefile.toml
+            /lake-manifest.json
+            /lean-toolchain
+      - name: Verify the published Git trees and materialize the declared cone
+        run: |
+          python3 "$CI_HELPERS/bind_source.py" candidate parent "$WORK" "$CI_HELPERS/request.json"
+          for tree in parent candidate; do
+            {
+              printf '%s\n' '/lakefile.toml' '/lake-manifest.json' '/lean-toolchain'
+              if [[ "$tree" == parent ]]; then printf '%s\n' '/scripts/' '/comparator.json' '/export-targets.txt'; fi
+              cat "$CI_HELPERS/bounded-paths.txt"
+            } > "$RUNNER_TEMP/$tree-sparse"
+            git -C "$tree" sparse-checkout set --no-cone --stdin < "$RUNNER_TEMP/$tree-sparse"
+          done
+      - name: Install the pinned toolchain
+        working-directory: candidate
+        shell: bash
+        run: |
+          curl -fsSL --retry 3 https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          "$HOME/.elan/bin/elan" toolchain install "$(cat lean-toolchain)"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Exercise Comparator acceptance and rejection
+        if: env.PANEL == 'bounded'
+        timeout-minutes: 5
+        working-directory: candidate
+        shell: bash
+        run: |
+          lean=$(elan which lean)
+          export PATH="${lean%/*}:$PATH"
+          export LEAN_NUM_THREADS=1
+          python3 "$CI_HELPERS/controls.py" "$WORK" ../parent
+      - name: Restore the published parent archives
+        working-directory: candidate
+        shell: bash
+        run: |
+          leantar="$(dirname "$(elan which lean)")/leantar"
+          python3 "$CI_HELPERS/prepare.py" ../parent . "$WORK" "$CI_HELPERS/$PANEL-roots.txt" --max-roots "$MAX_ROOTS" --leantar "$leantar" --candidate-head "$(git rev-parse HEAD)" --base-profile "$PANEL"
+      - name: Fetch the official Mathlib cache for the selected imports
+        working-directory: candidate
+        shell: bash
+        run: |
+          mapfile -t mathlib < "$WORK/mathlib-inputs.txt"
+          export MATHLIB_CACHE_DIR="$RUNNER_TEMP/mathlib-cache"
+          lake exe mathlib/cache get "${mathlib[@]}"
+          git diff --exit-code -- src lake-manifest.json lakefile.toml lean-toolchain
+          df -h .
+      - name: Build and compare the candidate
+        working-directory: candidate
+        shell: bash
+        run: bash "$CI_HELPERS/check.sh" "$PANEL" "$WORK" "$CI_HELPERS"
+      - name: Compare changed theorems with the upstream Comparator and three kernels
+        if: success() && env.PANEL == 'bounded'
+        timeout-minutes: 25
+        working-directory: candidate
+        shell: bash
+        run: |
+          lean=$(elan which lean)
+          export PATH="${lean%/*}:$PATH"
+          export LEAN_NUM_THREADS=1
+          lake env python3 "$CI_HELPERS/theorem_check.py" "$WORK" ../parent
+      - name: Measure fresh parent and candidate compilations
+        if: success() && env.PANEL == 'bounded'
+        continue-on-error: true
+        timeout-minutes: 70
+        working-directory: candidate
+        shell: bash
+        run: |
+          export LEAN_NUM_THREADS=1
+          export MATHLIB_CACHE_DIR="$RUNNER_TEMP/mathlib-cache"
+          lake env python3 "$CI_HELPERS/benchmark.py" "$WORK" ../parent
+      - name: Time paired source-to-olean stock Lake builds
+        if: success()
+        continue-on-error: true
+        timeout-minutes: 32
+        working-directory: candidate
+        run: |
+          export LEAN_NUM_THREADS=1
+          export MATHLIB_CACHE_DIR="$RUNNER_TEMP/mathlib-cache"
+          lake env python3 "$CI_HELPERS/lake_pairs.py" "$WORK" ../parent
+      - name: Save the scope and verification output
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: structural-check-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            ${{ runner.temp }}/module-check/report.json
+            ${{ runner.temp }}/module-check/receipt.json
+            ${{ runner.temp }}/module-check/build.log
+            ${{ runner.temp }}/module-check/comparisons.tsv
+            ${{ runner.temp }}/module-check/replay.log
+            ${{ runner.temp }}/module-check/facet-comparisons.jsonl
+            ${{ runner.temp }}/module-check/pr-source.json
+            ${{ runner.temp }}/module-check/benchmark.json
+            ${{ runner.temp }}/module-check/lake-benchmark.json
+            ${{ runner.temp }}/module-check/lake-pairs.jsonl
+            ${{ runner.temp }}/module-check/benchmark-samples.jsonl
+            ${{ runner.temp }}/module-check/scoped-comparator/
+            ${{ runner.temp }}/module-check/control-reports/

@@ -1,0 +1,19 @@
+{
+  "source_repository": "aliromman/riemann-hypothesis",
+  "source_ref": "refs/heads/codex/prune-development-mathlib-imports",
+  "source_head": "c4b66990077a462b2e2d35777fe0f55644463e87",
+  "parent": "bde3cce9fc2feaf9a39c7f37711cb26c7c44fd1b",
+  "donor": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+  "parent_source_tree": "6e972745429bd501b15e5daa9db46c8a9feb85db",
+  "parent_module_manifest": "a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463",
+  "checked_commit": "1eea9dc9cf3635757f61b9c2cf8d85205f2426a7",
+  "candidate_source_tree": "c7126960bde14461813ed3125e947e47544c04c1",
+  "git_tree": "02aaddd37a4348bcda8fbf789162fc815a4e5f8c",
+  "pins": {
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d"
+  },
+  "mode": "github-pull-merge",
+  "pull_number": 879
+}
