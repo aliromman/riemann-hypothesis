@@ -1,0 +1,211 @@
+{
+  "authority": {
+    "base": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "tree": "b722dc0d057c3a869ad607e0c93231665a963b63",
+    "manifest": "56ef968afb7ef3227b98278bbf86cf5b2baa24385b4f89f3aca63599a437af92",
+    "graph": "de1fe13e172b47bb9b1f27c429cc282e94e3e528f3ec4c90f8a9d300a2b40e75"
+  },
+  "tasks": {
+    "private": {
+      "pr": 879,
+      "head": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+      "src": "6af81f1c5c2293469175c13cfd47bc25932da66c",
+      "upstream_clump_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+      "source_table_sha256": "487ccde33a6fc1ab3fbcbcdd9c94bf853ee2e7a203fb762019caa43c155314c7"
+    }
+  },
+  "groups": {
+    "imports-1313-large-1": {
+      "task": "private",
+      "count": 88,
+      "sha256": "8439170c95e061b08b288a22662c3310c13b38e22cac20b7cf89bae82920bf94",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 3010.15
+    },
+    "imports-1313-large-2": {
+      "task": "private",
+      "count": 88,
+      "sha256": "4d84f51c06b75a8388d1b9734ba1dd982f9a2cccf7767cd38b79f3f36e5daf00",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 3008.77
+    },
+    "imports-1313-ordinary-1": {
+      "task": "private",
+      "count": 1556,
+      "sha256": "a8ef5cfcd8c9cea74dfbf5be38d6021c3dae1377e8487ea068f76a5bf290f0d2",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6552.35
+    },
+    "imports-1313-ordinary-2": {
+      "task": "private",
+      "count": 1556,
+      "sha256": "777b17388cf4c82c098cf888b6de68beb3bc4de6669b6804b19421b02b90dfcd",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6552.34
+    },
+    "imports-1313-ordinary-3": {
+      "task": "private",
+      "count": 1556,
+      "sha256": "e628c9241fde929d86c79d55bad9b9828f18a91caf2a6c024c80589f0c6e5a14",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6552.35
+    },
+    "imports-1313-ordinary-4": {
+      "task": "private",
+      "count": 1556,
+      "sha256": "5509f1c6f30b41c76b6d4cfb8da250eb598990fb160b0604930c36cae5b1532c",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6552.36
+    },
+    "imports-1313-ordinary-5": {
+      "task": "private",
+      "count": 1556,
+      "sha256": "b45947d16c38f01f782c0cda4ab9f57854e4702204e78a1dd4c580d76879e16c",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6552.36
+    },
+    "imports-1313-ordinary-6": {
+      "task": "private",
+      "count": 1557,
+      "sha256": "9912215656344b5b93b215b4c497846380b1f4e3ed4247a01feae2c04baae1c7",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6553.08
+    },
+    "imports-1313-ordinary-7": {
+      "task": "private",
+      "count": 1556,
+      "sha256": "35599aa30331bdfc49fb4819101a23a193631bc602141062720dcbf725031e8e",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6552.35
+    },
+    "imports-1313-ordinary-8": {
+      "task": "private",
+      "count": 1556,
+      "sha256": "1a0d46d68a03c20c19d10020ffe490ad90ebc9571b151249de0258d5a5b913ad",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6552.34
+    },
+    "imports-1313-ordinary-9": {
+      "task": "private",
+      "count": 1556,
+      "sha256": "b27deb08ae898e3464e1487019aa7a13db7f0dd1b4628cb755c98cb2e7ca074e",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6552.35
+    },
+    "imports-1313-ordinary-10": {
+      "task": "private",
+      "count": 1556,
+      "sha256": "5f406b1bdb7062e737f6274214c2ebb1ad4a6a7851857329b6cf59ee62e4b26c",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6552.35
+    },
+    "imports-1313-ordinary-11": {
+      "task": "private",
+      "count": 1556,
+      "sha256": "b646c7189823d220988e2b3cf6d6889c4377c30aeeb092697fcba3297558d532",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6552.35
+    },
+    "imports-1313-ordinary-12": {
+      "task": "private",
+      "count": 1557,
+      "sha256": "d82a36c47e672f9c49538c0ec7402a2273de83bf93de3724ecafafedd9fdb4f1",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6553.08
+    },
+    "imports-1313-ordinary-13": {
+      "task": "private",
+      "count": 1556,
+      "sha256": "64f8b6a4aa1ca93039c627ab5ae76ca393df3b69fd924208d61d31374f7319c7",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6552.35
+    },
+    "imports-1313-ordinary-14": {
+      "task": "private",
+      "count": 1556,
+      "sha256": "63bad23373828e9dcfc042aab397adb213e024a55220dfeff9d9ab04139ea996",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 6552.36
+    },
+    "imports-1313-ordinary-tail-1": {
+      "task": "private",
+      "count": 479,
+      "sha256": "fd1615988b286ac0ea667cd29b4ae88860b89e51f467ddc8541341ec4322cfe0",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2023.56
+    },
+    "imports-1313-ordinary-tail-2": {
+      "task": "private",
+      "count": 479,
+      "sha256": "30f7ade38a223c27e4944423658290887a419aa09cc9ff725ca22086442f426d",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2023.56
+    },
+    "imports-1313-ordinary-tail-3": {
+      "task": "private",
+      "count": 479,
+      "sha256": "05b4b94e86331535b95d5a2f6992f3d4a8bdfa226bcb676da61bb7670135d177",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2023.56
+    },
+    "imports-1313-ordinary-tail-4": {
+      "task": "private",
+      "count": 479,
+      "sha256": "4105dd8c9d522a2b7d6323d749973f5c7a52b84436e6c138153f5b41bf33b496",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2023.56
+    },
+    "imports-1313-ordinary-tail-5": {
+      "task": "private",
+      "count": 479,
+      "sha256": "9401e383afb876e427c8314555fefd2c4d86fa1dec69d4e7d33d17798990459e",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2023.56
+    },
+    "imports-1313-ordinary-tail-6": {
+      "task": "private",
+      "count": 479,
+      "sha256": "d0c7330d8c02921bae7ff15c16e29741e831e8e57aea6bafacee41d429b08ff6",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2023.56
+    },
+    "imports-1313-ordinary-tail-7": {
+      "task": "private",
+      "count": 479,
+      "sha256": "5be4787416185b14c0ba0d714e3f2b526794b87c16dee2edf66d25bc2e6c6da9",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2023.56
+    },
+    "imports-1313-ordinary-tail-8": {
+      "task": "private",
+      "count": 479,
+      "sha256": "c8e84afc6e7d28992f6ae9421e3aff64d0bfe171ae55672eb6c07d7b4af03fc6",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2023.56
+    }
+  }
+}
