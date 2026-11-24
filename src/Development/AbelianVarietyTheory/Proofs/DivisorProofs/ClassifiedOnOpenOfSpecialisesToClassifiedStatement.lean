@@ -1201,7 +1201,7 @@ theorem torsRat_away_iff : ∀ (R : Type) [CommRing R] [IsDomain R] (f : R) [IsD
       show (spMap (κ.comp j) ≫ jK (Localization.Away f)) ≫ spMap (algebraMap R (Localization.Away f)) = _
       rw [ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, Category.assoc, Category.assoc, hsq]
     let e0 : Over.mk (T.hom ≫ spMap (algebraMap R (Localization.Away f))) ⟶ Over.mk (spMap κ ≫ jK R) :=
-      Over.homMk (𝟙 _) ((Category.id_comp _).trans hT.symm)
+      Over.homMk (𝟙 T.left) ((Category.id_comp _).trans hT.symm)
     let x' := (GlobalTheory.ObjPull.pushEquiv hπ T).symm (e0 ≫ x)
     have hx' : x' ^ n = 1 := by
       simp only [x']

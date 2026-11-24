@@ -86,10 +86,10 @@ theorem cell_antidiag (d : Fin 2 → ℕ) (σ : ∀ i, Irr k (d i))
   simp only [Fin.sum_univ_two, Fintype.card_fin, Equiv.swap_apply_left, Equiv.swap_apply_right] at r0 r1 c0 c1
   have hrz : ∀ i j, j ≠ Equiv.swap 0 1 i → b.1 i j = 0 := by
     intro i j hj
-    fin_cases i <;> fin_cases j <;> simp_all
+    fin_cases i <;> fin_cases j <;> first | exact absurd (by decide) hj | assumption
   have hcz : ∀ j i, i ≠ Equiv.swap 0 1 j → b.1 i j = 0 := by
     intro j i hi
-    fin_cases i <;> fin_cases j <;> simp_all
+    fin_cases i <;> fin_cases j <;> first | exact absurd (by decide) hi | assumption
   have hrf : ∀ i, b.1 i (Equiv.swap 0 1 i) = d i := by
     intro i
     fin_cases i <;> simp <;> omega
@@ -376,7 +376,7 @@ theorem exists_jac_map_of_eq (hG : GeometricLemma) (hBZ : BernsteinZelevinskyFin
   have hsm : IsSmooth (piTensor fun i => (σ i).π) := isSmooth_piTensor fun i => (σ i).smooth
   obtain ⟨f₁, g₁, ⟨E₁⟩⟩ := GlobalTheory.CompanionTheory.Hypotheses₂.TD.cell_diag (k := k) (b (b.symm G1)) (fun i j hj => by
     rw [Equiv.apply_symm_apply, hG1]
-    fin_cases i <;> fin_cases j <;> simp_all) (piTensor fun i => (σ i).π) hsm
+    fin_cases i <;> fin_cases j <;> first | exact absurd rfl hj | rfl) (piTensor fun i => (σ i).π) hsm
   have F₀ := (h4 (b.symm G0) f₀ g₀).some.trans E₀
   have F₁ := (h4 (b.symm G1) f₁ g₁).some.trans E₁
   have : Nontrivial (⨂[ℂ] i, (σ (Equiv.swap 0 1 i)).V) := GlobalTheory.ProdSupport.nontrivial_piTensor _

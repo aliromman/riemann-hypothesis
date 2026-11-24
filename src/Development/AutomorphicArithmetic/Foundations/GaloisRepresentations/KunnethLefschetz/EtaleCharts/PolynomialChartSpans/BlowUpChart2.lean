@@ -129,7 +129,7 @@ theorem UpperTheory.exists_affineBlowup_coordinate_chart_cover :
   · intro j
     rw [Category.assoc, affineBlowupChart_comp_toSpec, ← Spec.map_comp]
     congr 1
-    ext x : 1
+    ext : 1
     have hcomp := awayCoordGenEquivMvPolynomial_symm_comp_coordBlowupSubst A
       (Finset.univ : Finset (Fin D)) j (Finset.mem_univ j)
     rw [algebraMap_chart_eq_chartRingHom, ← hcomp]
@@ -186,7 +186,7 @@ theorem UpperTheory.idealSheaf_comap_eq_specIdealSheaf_of_eq_map :
         (φ : S →+* Γ(X, N.1)), I.ideal N = Ideal.map φ J →
         I.comap N.1.ι = (specIdealSheaf J).comap (N.2.isoSpec.hom ≫ Spec.map (CommRingCat.ofHom φ)) := by
   intro S _ X I N J φ h
-  ext V : 1
+  ext : 1
   funext V
   have e : (V : (N.1 : Scheme.{0}).Opens) ≤ N.1.ι ⁻¹ᵁ N.1 := by
     intro x _

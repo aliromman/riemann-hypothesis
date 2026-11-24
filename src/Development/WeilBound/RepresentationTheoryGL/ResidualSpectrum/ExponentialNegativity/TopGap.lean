@@ -229,7 +229,7 @@ theorem pairMap_range {k : Type} [Field k] {n : ℕ} (a b : Fin (n + 1) → k)
   · rw [hμ, zero_smul, add_zero] at hzero
     rcases smul_eq_zero.mp hzero with hl | h0
     · apply hφ
-      ext p
+      ext
       · simp [hl]
       · simp [hμ]
     · exact ha h0

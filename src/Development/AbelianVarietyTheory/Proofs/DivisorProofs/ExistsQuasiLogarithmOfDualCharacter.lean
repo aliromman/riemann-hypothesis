@@ -771,7 +771,7 @@ theorem hasVal_log_of_mul_self_eq_zero :
     by_cases h0 : β () = 0
     · simp [h0]
     · have h1 : β () ≠ 1 := by
-        intro h1; apply hβ; ext u; simp [h1]
+        intro h1; apply hβ; ext; simp [h1]
       have hsupp : β.support = {()} := by
         ext u; simp [h0]
       rw [hsupp, Finset.prod_singleton]

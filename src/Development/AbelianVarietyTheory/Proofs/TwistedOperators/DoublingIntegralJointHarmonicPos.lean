@@ -640,7 +640,7 @@ theorem map_flow_eq_zero {V E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ
       exact h1
     exact (smul_eq_zero.mp h2).resolve_left (by exact_mod_cast n.factorial_ne_zero)
   have hp0 : p = 0 := by
-    ext n y
+    ext n
     rw [p.apply_eq_prod_smul_coeff, hc n, smul_zero]
     rfl
   rw [hp0] at hp

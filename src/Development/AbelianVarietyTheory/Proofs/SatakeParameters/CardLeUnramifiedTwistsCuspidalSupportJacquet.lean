@@ -128,7 +128,7 @@ theorem equiv_detRep_of_isIrreducible : ∀ (k : Type) [Field k] [ValuativeRel k
     exact smul_left_injective ℂ hv hab
   let e : ℂ ≃ₗ[ℂ] V := LinearEquiv.ofBijective _ ⟨hinj, hsurj⟩
   refine ⟨(Representation.Equiv.mk e fun g => ?_).symm⟩
-  ext c
+  ext
   simp only [LinearMap.coe_comp, Function.comp_apply, LinearEquiv.coe_coe, e,
     detRep, ofChar_apply,
     detChar_apply, hact]

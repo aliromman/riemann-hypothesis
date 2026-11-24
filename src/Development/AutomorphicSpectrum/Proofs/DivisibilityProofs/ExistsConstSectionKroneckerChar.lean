@@ -683,7 +683,7 @@ theorem ofAt_toAt (V : Type) [CommRing V] : ofAt V ≫ toAt V = 𝟙 _ :=
   Over.OverMorphism.ext (Category.comp_id _)
 
 def ptAt (V : Type) [CommRing V] : Over.mk (𝟙 (Sp V)) ⟶ ptOver V V :=
-  Over.homMk (𝟙 _) ((Category.id_comp _).trans (pt_hom V))
+  Over.homMk (𝟙 (Sp V)) ((Category.id_comp _).trans (pt_hom V))
 
 theorem one_left_at (V : Type) [CommRing V] (G : Over (Sp V)) [GrpObj G] :
     (1 : Over.mk (𝟙 (Sp V)) ⟶ G).left = (1 : ptOver V V ⟶ G).left := by

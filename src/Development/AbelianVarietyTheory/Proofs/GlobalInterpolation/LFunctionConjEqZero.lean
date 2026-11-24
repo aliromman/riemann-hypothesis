@@ -2,6 +2,8 @@ module
 
 import Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.LFunctionConj
 import Mathlib.Algebra.Group.SelfInv
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsBoundRight
+
 public import Mathlib.Analysis.Analytic.Order
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.NumberTheory.LSeries.DirichletContinuation
@@ -71,20 +73,9 @@ theorem LFunction_conj_eq_zero {d : ℕ} [NeZero d] {χ : DirichletCharacter ℂ
 
 theorem one_le_order {q : ℕ} [NeZero q] {χ : DirichletCharacter ℂ q} (h : χ ≠ 1) {ρ : ℂ}
     (hρ : LFunction χ ρ = 0) : 1 ≤ analyticOrderNatAt (LFunction χ) ρ := by
-  have hd : Differentiable ℂ (LFunction χ) := differentiable_LFunction h
-  have ha : AnalyticOnNhd ℂ (LFunction χ) Set.univ := analyticOnNhd_univ_iff_differentiable.mpr hd
-  have h2 : LFunction χ 2 ≠ 0 := LFunction_ne_zero_of_one_le_re χ (Or.inl h) (by norm_num)
-  have hfin2 : analyticOrderAt (LFunction χ) 2 ≠ ⊤ := by
-    rw [(ha 2 trivial).analyticOrderAt_eq_zero.mpr h2]
-    exact ENat.zero_ne_top
-  have hfin : analyticOrderAt (LFunction χ) ρ ≠ ⊤ :=
-    ha.analyticOrderAt_ne_top_of_isPreconnected isPreconnected_univ trivial trivial hfin2
-  have hne : analyticOrderAt (LFunction χ) ρ ≠ 0 := (ha ρ trivial).analyticOrderAt_ne_zero.mpr hρ
-  rw [Nat.one_le_iff_ne_zero]
-  intro h0
-  apply hne
-  rw [← Nat.cast_analyticOrderNatAt hfin, h0]
-  rfl
+  refine GlobalTheory.GoodHeight.one_le_order χ ?_ hρ
+  rintro rfl
+  exact LFunction_apply_one_ne_zero h hρ
 
 theorem re_lt_one {q : ℕ} [NeZero q] {χ : DirichletCharacter ℂ q} (h : χ ≠ 1) {ρ : ℂ}
     (hρ : LFunction χ ρ = 0) : ρ.re < 1 := by

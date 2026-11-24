@@ -525,32 +525,6 @@ theorem one_mem_ipow_mul {𝔡 : Ideal (𝓞 K)} (h : 𝔡 ≠ ⊥) (n : ℤ) : 
 variable [StarRing K]
 
 
-private theorem geo_lemma_2 {K : Type} [Field K] [StarRing K] {𝔡 : Ideal (𝓞 K)}
-    (hs : ∀ x ∈ 𝔡, ∃ y ∈ 𝔡, (y : K) = star (x : K)) (m : ℕ) :
-    ∀ x ∈ 𝔡 ^ m, ∃ y ∈ 𝔡 ^ m, (y : K) = star (x : K) := by
-  induction m with
-  | zero =>
-    intro x _
-    have h1 : star (x : K) ∈ (1 : Submodule (𝓞 K) K) := _root_.GlobalTheory.UnimodQuot.star_mem_one (Submodule.mem_one.2 ⟨x, rfl⟩)
-    obtain ⟨y, hy⟩ := Submodule.mem_one.1 h1
-    exact ⟨y, by simp, hy⟩
-  | succ m ih =>
-    intro x hx
-    rw [pow_succ] at hx ⊢
-    refine Submodule.smul_induction_on hx ?_ ?_
-    · intro a ha b hb
-      obtain ⟨a', ha', e1⟩ := ih a ha
-      obtain ⟨b', hb', e2⟩ := hs b hb
-      refine ⟨a' * b', Ideal.mul_mem_mul ha' hb', ?_⟩
-      have c1 : ((a' * b' : 𝓞 K) : K) = (a' : K) * b' := map_mul (algebraMap (𝓞 K) K) a' b'
-      have c2 : ((a * b : 𝓞 K) : K) = (a : K) * b := map_mul (algebraMap (𝓞 K) K) a b
-      rw [smul_eq_mul, c1, c2, e1, e2, star_mul']
-    · rintro x y ⟨x', hx', e1⟩ ⟨y', hy', e2⟩
-      refine ⟨x' + y', add_mem hx' hy', ?_⟩
-      have c1 : ((x' + y' : 𝓞 K) : K) = (x' : K) + y' := map_add (algebraMap (𝓞 K) K) x' y'
-      have c2 : ((x + y : 𝓞 K) : K) = (x : K) + y := map_add (algebraMap (𝓞 K) K) x y
-      rw [c1, c2, e1, e2, star_add]
-
 theorem star_mem_ipow {𝔡 : Ideal (𝓞 K)} (h : 𝔡 ≠ ⊥) (hs : ∀ x ∈ 𝔡, ∃ y ∈ 𝔡, (y : K) = star (x : K))
     (n : ℤ) {t : K} (ht : t ∈ ipow 𝔡 n) : star t ∈ ipow 𝔡 n := by
   apply GlobalTheory.DegCnt.PosJ.star_mem_ipow <;> assumption

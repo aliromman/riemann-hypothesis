@@ -81,22 +81,13 @@ theorem cc_lev_pi (c : ZMod n) (ζ : LL) (hζ : ∃ j : ℕ, IsPrimitiveRoot ζ 
   rw [map_add (f := _), map_one, map_mul, PowerSeries.constantCoeff_C, hE0, mul_one] at this
   linear_combination this
 
-theorem constantCoeff_q_zero_eq_p : PowerSeries.constantCoeff W.q₀ = (PD.p : O) := by
-  have h := congrArg (PowerSeries.coeff 1) W.q₀_def
-  rw [PowerSeries.coeff_succ_X_mul, PowerSeries.coeff_zero_eq_constantCoeff_apply] at h
-  rw [h, map_sub, PowerSeries.coeff_one, if_neg one_ne_zero, sub_zero]
-  have e : ((1 : PowerSeries O) + PowerSeries.X) ^ PD.p =
-      (((Polynomial.X + 1) ^ PD.p : Polynomial O) : PowerSeries O) := by
-    rw [Polynomial.coe_pow, Polynomial.coe_add, Polynomial.coe_X, Polynomial.coe_one, add_comm]
-  rw [e, Polynomial.coeff_coe, Polynomial.coeff_X_add_one_pow, Nat.choose_one_right]
-
 theorem cc_lev_q_one (c : ZMod n) : PowerSeries.constantCoeff (W.lev c 1 W.q) = (PD.p : LL) := by
   have hq : W.q = (fun _ => PowerSeries.mk fun k => PowerSeries.coeff (k + 1) W.q₀) * letπ +
       (PD.p : LetA O n) := by
     funext i
     simp only [LocWach.q, Pi.add_apply, Pi.mul_apply, letπ, Pi.natCast_apply]
     conv_lhs => rw [PowerSeries.eq_shift_mul_X_add_const W.q₀]
-    rw [constantCoeff_q_zero_eq_p, map_natCast]
+    rw [Formalism.MainNotions.N.Ln34.CrystallineExponents.constantCoeff_q_zero_eq_p, map_natCast]
   rw [hq, map_add (f := _), map_mul, map_natCast, map_add (f := _), map_mul,
     cc_lev_pi W c 1 ⟨0, by rw [pow_zero]; exact IsPrimitiveRoot.one⟩, sub_self, mul_zero, zero_add,
     map_natCast]
@@ -173,24 +164,6 @@ alias Nl_le_N := _root_.Formalism.MainNotions.LiftingTheory.wmap_Nl_le
 theorem mem_Nl_of {T : LocLat G Qp LL O} {c : ZMod n} {y : W.DD T} (hy : y ∈ W.N T)
     (hc : (letE c : LetA O n) • y = y) : y ∈ W.Nl T c :=
   ⟨y, hy, by simp only [LinearMap.smul_apply, LinearMap.id_apply]; exact hc⟩
-
-theorem smul_eq_single {T : LocLat G Qp LL O} {c : ZMod n} {y : W.DD T}
-    (hc : (letE c : LetA O n) • y = y) (o : O) :
-    o • y = (Pi.single c (PowerSeries.C o) : LetA O n) • y := by
-  conv_lhs => rw [← hc]
-  rw [← smul_assoc]
-  congr 1
-  funext i
-  by_cases h : i = c
-  · subst h; simp [letE, PowerSeries.smul_eq_C_mul]
-  · simp [letE, h]
-
-theorem letπ_mul_single (c : ZMod n) (a : PowerSeries O) :
-    (letπ : LetA O n) * Pi.single c a = Pi.single c (PowerSeries.X * a) := by
-  funext i
-  by_cases h : i = c
-  · subst h; simp [letπ]
-  · simp [letπ, h]
 
 theorem levN_sum {T : LocLat G Qp LL O} (c : ZMod n) (ζ : LL) {r : ℕ} {b : Fin r → W.DD T}
     (hbN : ∀ m, b m ∈ W.N T) (a : Fin r → LetA O n) (hy : ∑ m, a m • b m ∈ W.N T) (j : ℤ) :

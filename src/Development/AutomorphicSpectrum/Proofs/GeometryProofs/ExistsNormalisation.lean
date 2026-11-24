@@ -94,78 +94,6 @@ instance isLocalRing_regAt {X : Scheme.{0}} {Ω : Type} [Field Ω] (ξ : Spec (C
     IsLocalRing (regAt ξ p) :=
   (LocalSubring.range (genMap ξ p)).isLocalRing
 
-theorem int_trans {o K : Type} [CommRing o] [Field K] [Algebra o K] (A B : Subalgebra o K)
-    (hAB : ∀ a ∈ A, a ∈ B) (hB : ∀ b ∈ B, IsIntegral A b) (a : K) (ha : IsIntegral B a) : IsIntegral A a := by
-  letI : Algebra A B := (Subalgebra.inclusion hAB).toRingHom.toAlgebra
-  haveI : IsScalarTower A B K := IsScalarTower.of_algebraMap_eq fun _ => rfl
-  haveI : Algebra.IsIntegral A B := ⟨fun b => by
-    have := hB b b.2
-    exact (isIntegral_algebraMap_iff (A := B) (B := K) (x := b) ).1 this⟩
-  exact isIntegral_trans a ha
-
-theorem mem_of_isIntegral_loc {o K : Type} [CommRing o] [Field K] [Algebra o K] (A : Subalgebra o K) (D : Subring K)
-    (hA : ∀ a, IsIntegral A a → a ∈ A) (hAD : ∀ a ∈ A, a ∈ D)
-    (hD : ∀ a ∈ D, ∃ u ∈ A, ∃ v ∈ A, v ≠ 0 ∧ v⁻¹ ∈ D ∧ a = u / v) (a : K) (ha : IsIntegral D a) : a ∈ D := by
-  obtain ⟨v, -, hv0, hvi, hi⟩ := _root_.GlobalTheory.CompanionTheory.Ggeo.ClearDenominators.exists_mul_isIntegral A D hAD hD a ha
-  have e : a = (v * a) * v⁻¹ := by field_simp
-  rw [e]
-  exact mul_mem (hAD _ (hA _ hi)) hvi
-
-theorem ideal_ext {o K : Type} [CommRing o] [Field K] [Algebra o K] (A : Subalgebra o K) (R : Subring K)
-    (hAR : ∀ a ∈ A, a ∈ R) (hR : ∀ r ∈ R, ∃ u ∈ A, ∃ v ∈ A, v ≠ 0 ∧ v⁻¹ ∈ R ∧ r = u / v)
-    (P₁ P₂ : Ideal (integralClosure R K).toSubring)
-    (hag : ∀ t : (integralClosure R K).toSubring, IsIntegral A (t : K) → (t ∈ P₁ ↔ t ∈ P₂)) : P₁ = P₂ := by
-  have hRT : ∀ r ∈ R, r ∈ (integralClosure R K).toSubring := fun r hr =>
-    isIntegral_algebraMap (x := (⟨r, hr⟩ : R))
-  have key : ∀ Q₁ Q₂ : Ideal (integralClosure R K).toSubring,
-      (∀ t : (integralClosure R K).toSubring, IsIntegral A (t : K) → t ∈ Q₁ → t ∈ Q₂) → Q₁ ≤ Q₂ := by
-    intro Q₁ Q₂ h t ht
-    obtain ⟨v, hv, hv0, hvi, hi⟩ := _root_.GlobalTheory.CompanionTheory.Ggeo.ClearDenominators.exists_mul_isIntegral A R hAR hR t t.2
-    have h1 := h (⟨v, hRT v (hAR v hv)⟩ * t) hi (Q₁.mul_mem_left _ ht)
-    have h2 := Q₂.mul_mem_left ⟨v⁻¹, hRT _ hvi⟩ h1
-    have e : (⟨v⁻¹, hRT _ hvi⟩ : (integralClosure R K).toSubring) * (⟨v, hRT v (hAR v hv)⟩ * t) = t := by
-      apply Subtype.ext
-      change v⁻¹ * (v * (t : K)) = t
-      field_simp
-    rwa [e] at h2
-  exact le_antisymm (key _ _ fun t ht => (hag t ht).1) (key _ _ fun t ht => (hag t ht).2)
-
-theorem exists_ne {o : Type} [CommRing o] {Ω : Type} [Field Ω] [Algebra o Ω] {κ : Type} {x : κ → Ω}
-    (M : PModel o x) : ∃ c, x c ≠ 0 := by
-  obtain ⟨c, hc⟩ := M.tie.cover ⟨genPt M.ξ, specializes_rfl⟩
-  exact ⟨c, hc.1⟩
-
-theorem join_chart {o : Type} [CommRing o] {Ω : Type} [Field Ω] [Algebra o Ω] {κ : Type} (x : κ → Ω) (d n : ℕ)
-    (z : κ ⊕ Fin n → Ω) (hz : ∀ c, z (Sum.inl c) = x c ^ d)
-    (hi : ∀ c, x c ≠ 0 → ∀ a : Ω, IsIntegral (chRing o x c) a ↔
-      a ∈ Submodule.span (chRing o x c) (Set.range fun k => z k / x c ^ d))
-    (c : κ) (hc : x c ≠ 0) (a : Ω) (ha : IsIntegral (chRing o x c) a) :
-    a ∈ chRing o (joinCo (RingHom.id Ω) x z) (c, Sum.inl c) := by
-  have hcd : x c ^ d ≠ 0 := pow_ne_zero _ hc
-  have h1 : ∀ k, z k / x c ^ d ∈ chRing o (joinCo (RingHom.id Ω) x z) (c, Sum.inl c) := fun k => by
-    have e : joinCo (RingHom.id Ω) x z (c, k) / joinCo (RingHom.id Ω) x z (c, Sum.inl c) = z k / x c ^ d := by
-      simp only [joinCo, RingHom.id_apply, hz]
-      rw [mul_div_mul_left _ _ hc]
-    rw [← e]
-    exact Algebra.subset_adjoin ⟨(c, k), rfl⟩
-  have h2 : ∀ j, x j / x c ∈ chRing o (joinCo (RingHom.id Ω) x z) (c, Sum.inl c) := fun j => by
-    have e : joinCo (RingHom.id Ω) x z (j, Sum.inl c) / joinCo (RingHom.id Ω) x z (c, Sum.inl c) = x j / x c := by
-      simp only [joinCo, RingHom.id_apply, hz]
-      rw [mul_div_mul_right _ _ hcd]
-    rw [← e]
-    exact Algebra.subset_adjoin ⟨(j, Sum.inl c), rfl⟩
-  have h3 : chRing o x c ≤ chRing o (joinCo (RingHom.id Ω) x z) (c, Sum.inl c) :=
-    Algebra.adjoin_le (by rintro _ ⟨j, rfl⟩; exact h2 j)
-  have key : ∀ a ∈ Submodule.span (chRing o x c) (Set.range fun k => z k / x c ^ d),
-      a ∈ chRing o (joinCo (RingHom.id Ω) x z) (c, Sum.inl c) := by
-    intro a h
-    induction h using Submodule.span_induction with
-    | mem a h => obtain ⟨k, rfl⟩ := h; exact h1 k
-    | zero => exact zero_mem _
-    | add a b _ _ ha hb => exact add_mem ha hb
-    | smul r a _ h => exact mul_mem (h3 r.2) h
-  exact key a ((hi c hc a).1 ha)
-
 theorem map_chRing {o : Type} [CommRing o] {Ω : Type} [Field Ω] [Algebra o Ω] {κ : Type} (x : κ → Ω)
     (Ω' : Type) [Field Ω'] [Algebra Ω Ω'] [Algebra o Ω'] [IsScalarTower o Ω Ω'] (c : κ) (a : Ω)
     (ha : a ∈ chRing o x c) : algebraMap Ω Ω' a ∈ chRing o (fun k => algebraMap Ω Ω' (x k)) c := by
@@ -180,38 +108,15 @@ theorem map_chRing {o : Type} [CommRing o] {Ω : Type} [Field Ω] [Algebra o Ω]
   | add a b _ _ ha hb => rw [map_add]; exact add_mem ha hb
   | mul a b _ _ ha hb => rw [map_mul]; exact mul_mem ha hb
 
-theorem exists_of_mem_chRing {o : Type} [CommRing o] {Ω : Type} [Field Ω] [Algebra o Ω] {κ : Type} (x : κ → Ω)
-    (Ω' : Type) [Field Ω'] [Algebra Ω Ω'] [Algebra o Ω'] [IsScalarTower o Ω Ω'] (c : κ) (a : Ω')
-    (ha : a ∈ chRing o (fun k => algebraMap Ω Ω' (x k)) c) : ∃ b ∈ chRing o x c, algebraMap Ω Ω' b = a := by
-  induction ha using Algebra.adjoin_induction with
-  | mem a h =>
-    obtain ⟨j, rfl⟩ := h
-    exact ⟨x j / x c, Algebra.subset_adjoin ⟨j, rfl⟩, map_div₀ _ _ _⟩
-  | algebraMap r =>
-    exact ⟨algebraMap o Ω r, Subalgebra.algebraMap_mem _ r, (IsScalarTower.algebraMap_apply o Ω Ω' r).symm⟩
-  | add a b _ _ ha hb =>
-    obtain ⟨a', h1, rfl⟩ := ha
-    obtain ⟨b', h2, rfl⟩ := hb
-    exact ⟨a' + b', add_mem h1 h2, map_add _ _ _⟩
-  | mul a b _ _ ha hb =>
-    obtain ⟨a', h1, rfl⟩ := ha
-    obtain ⟨b', h2, rfl⟩ := hb
-    exact ⟨a' * b', mul_mem h1 h2, map_mul _ _ _⟩
-
 theorem normal_of_charts {o : Type} [CommRing o] {Ω' : Type} [Field Ω'] [Algebra o Ω'] {κ' : Type} [Finite κ']
     {y : κ' → Ω'} (M' : PModel o y) (S : Set κ') (hS : ∀ p' : Cpt M'.ξ, ∃ c ∈ S, InChart M'.ξ y c p')
     (hI : ∀ c ∈ S, ∀ a : Ω', IsIntegral (chRing o y c) a → a ∈ chRing o y c) : Flat.NormalCpt M'.ξ := by
   intro p' a ha
   obtain ⟨c, hcS, hp⟩ := hS p'
   have h := _root_.GlobalTheory.CompanionTheory.Ar.chart_regAt_localisation o Ω' κ' y M' c p' hp
-  refine mem_of_isIntegral_loc (chRing o y c) (regAt M'.ξ p') (hI c hcS) h.1 (fun a ha => ?_) a ha
+  refine PositivityTheory.HtPt.Mb.LNormExists.NormEx.mem_of_isIntegral_loc (chRing o y c) (regAt M'.ξ p') (hI c hcS) h.1 (fun a ha => ?_) a ha
   obtain ⟨u, hu, v, hv, hvu, rfl⟩ := (h.2 a).1 ha
   exact ⟨u, hu, v, hv, hvu.1, hvu.2.2, rfl⟩
-
-theorem unitAt_map {X X' : Scheme.{0}} {Ω Ω' : Type} [Field Ω] [Field Ω'] {ξ : Spec (CommRingCat.of Ω) ⟶ X}
-    {ξ' : Spec (CommRingCat.of Ω') ⟶ X'} (i : Ω →+* Ω') {p : Cpt ξ} {p' : Cpt ξ'}
-    (h : ∀ a ∈ regAt ξ p, i a ∈ regAt ξ' p') {u : Ω} (hu : unitAt ξ p u) : unitAt ξ' p' (i u) :=
-  ⟨(map_ne_zero i).2 hu.1, h _ hu.2.1, by rw [← map_inv₀]; exact h _ hu.2.2⟩
 
 section Sit
 
@@ -239,7 +144,7 @@ theorem fibre_iff (hD : Dominates M'.ξ M.ξ f (algebraMap Ω Ω'))
   constructor
   · intro h
     have hl := dom_of_eq hD h
-    refine ⟨hC c hp.1 p' fun j => ?_, fun u hu => ⟨unitAt_map _ hl.1, hl.2 u (hr.1 u hu)⟩⟩
+    refine ⟨hC c hp.1 p' fun j => ?_, fun u hu => ⟨PositivityTheory.HtPt.Mb.LNormExists.NormEx.unitAt_map _ hl.1, hl.2 u (hr.1 u hu)⟩⟩
     rw [← map_div₀]
     exact hl.1 _ (hp.2 j)
   · rintro ⟨hp', hu⟩
@@ -289,14 +194,6 @@ theorem chart_over (hD : Dominates M'.ξ M.ξ f (algebraMap Ω Ω'))
 
 end Sit
 
-theorem isIntegral_mono {o K : Type} [CommRing o] [Field K] [Algebra o K] (A : Subalgebra o K) (R : Subring K)
-    (h : ∀ a ∈ A, a ∈ R) (b : K) (hb : IsIntegral A b) : IsIntegral R b :=
-  IsIntegral.map_of_comp_eq (A.val.toRingHom.codRestrict R fun a => h a a.2) (RingHom.id K) (by ext; rfl) hb
-
-theorem isIntegral_mono' {K : Type} [Field K] {R D : Subring K} (h : R ≤ D) (b : K) (hb : IsIntegral R b) :
-    IsIntegral D b :=
-  IsIntegral.map_of_comp_eq (Subring.inclusion h) (RingHom.id K) (by ext; rfl) hb
-
 section Sit
 
 variable {o : Type} [CommRing o] {Ω : Type} [Field Ω] [Algebra o Ω] {κ : Type} [Finite κ] {x : κ → Ω}
@@ -316,7 +213,7 @@ theorem normAt_of_charts (hD : Dominates M'.ξ M.ξ f (algebraMap Ω Ω'))
   let A₀ := fun c => chRing o (fun k => algebraMap Ω Ω' (x k)) c
   have hB1 : ∀ c, x c ≠ 0 → ∀ a : Ω', IsIntegral (A₀ c) a → a ∈ chRing o y (e c) := fun c hc a => (hB c hc a).2
   have hAR : ∀ a ∈ A₀ c, a ∈ (regAt M.ξ p).map i₀ := fun a ha => by
-    obtain ⟨b, hb, rfl⟩ := exists_of_mem_chRing x Ω' c a ha
+    obtain ⟨b, hb, rfl⟩ := PositivityTheory.HtPt.Mb.LNormExists.NormEx.exists_of_mem_chRing x Ω' c a ha
     exact ⟨b, hr.1 b hb, rfl⟩
   have hR : ∀ r ∈ (regAt M.ξ p).map i₀, ∃ u ∈ A₀ c, ∃ v ∈ A₀ c, v ≠ 0 ∧ v⁻¹ ∈ (regAt M.ξ p).map i₀ ∧ r = u / v := by
     rintro _ ⟨a, ha, rfl⟩
@@ -340,9 +237,9 @@ theorem normAt_of_charts (hD : Dominates M'.ξ M.ξ f (algebraMap Ω Ω'))
       have hu : unitAt M'.ξ p' (i₀ a) := ⟨h0, hl.1 a ha, hinv⟩
       exact ⟨a⁻¹, (hl.2 a ha hu).2.2, map_inv₀ _ _⟩
     · intro t ht
-      exact hN p' t (isIntegral_mono' hRD t ht)
+      exact hN p' t (PositivityTheory.HtPt.Mb.LNormExists.NormEx.isIntegral_mono' hRD t ht)
     · intro b hb
-      exact isIntegral_mono _ _ hAR b ((hB c hc b).1 hb)
+      exact PositivityTheory.HtPt.Mb.LNormExists.NormEx.isIntegral_mono _ _ hAR b ((hB c hc b).1 hb)
     · intro a ha
       obtain ⟨u, hu, v, hv, hvu, rfl⟩ := (hr'.2 a).1 ha
       exact ⟨u, hu, v, hv, hvu.1, hvu.2.2, rfl⟩
@@ -350,7 +247,7 @@ theorem normAt_of_charts (hD : Dominates M'.ξ M.ξ f (algebraMap Ω Ω'))
   · obtain ⟨P, hPm, hD', -⟩ := first p' hf
     exact ⟨P, hPm, hD'⟩
   · have hBT : ∀ b : chRing o y (e c), (b : Ω') ∈ (integralClosure ((regAt M.ξ p).map i₀) Ω').toSubring := fun b =>
-      isIntegral_mono _ _ hAR _ ((hB c hc b).1 b.2)
+      PositivityTheory.HtPt.Mb.LNormExists.NormEx.isIntegral_mono _ _ hAR _ ((hB c hc b).1 b.2)
     let ι : chRing o y (e c) →+* (integralClosure ((regAt M.ξ p).map i₀) Ω').toSubring :=
       { toFun := fun b => ⟨b, hBT b⟩
         map_one' := rfl
@@ -375,7 +272,7 @@ theorem normAt_of_charts (hD : Dominates M'.ξ M.ξ f (algebraMap Ω Ω'))
       exact not_iff_not.1 (h2.symm.trans h1)
     obtain ⟨P', hPm', hD', hP'⟩ := first p' hf
     have e' : P = P' := by
-      refine ideal_ext (A₀ c) ((regAt M.ξ p).map i₀) hAR hR P P' fun t ht => ?_
+      refine PositivityTheory.HtPt.Mb.LNormExists.NormEx.ideal_ext (A₀ c) ((regAt M.ξ p).map i₀) hAR hR P P' fun t ht => ?_
       have hb : (t : Ω') ∈ chRing o y (e c) := (hB c hc _).2 ht
       have h1 : t ∈ P ↔ ¬ unitAt M'.ξ p' (t : Ω') := hmem ⟨t, hb⟩
       rw [h1, hP' t]

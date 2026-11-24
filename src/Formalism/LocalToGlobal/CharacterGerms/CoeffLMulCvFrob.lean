@@ -28,7 +28,7 @@ variable {C : Type} [Field C] [CharZero C] {V : VF C}
 theorem intS_cv {γ : PowerSeries C} (h : ∀ n, V.Ge 0 (PowerSeries.coeff n γ)) : IntS V γ := by
   intro μ
   have hμ : μ = Finsupp.single () (μ ()) := by
-    ext u
+    ext
     simp
   rw [hμ]
   exact h (μ ())

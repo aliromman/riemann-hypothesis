@@ -131,7 +131,7 @@ theorem mem_SerS_iff {K : Type*} [CommRing K] (S : Subring K) (f : PowerSeries K
     exact h _
   · intro h e
     have he : e = Finsupp.single () (e ()) := by
-      ext u
+      ext
       simp
     rw [he]
     exact h (e ())

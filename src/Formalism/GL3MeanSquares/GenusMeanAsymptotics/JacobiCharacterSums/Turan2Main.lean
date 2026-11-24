@@ -215,34 +215,17 @@ theorem tp_eval_sum (n : ℕ) (z : Fin n → ℂ) (x : ℂ) :
 theorem tp_coeff_norm (n : ℕ) (z : Fin n → ℂ) (hz : ∀ i, ‖z i‖ ≤ 1) (a : ℕ) (ha : a ≤ n) :
     ‖(tp n z).coeff a‖ ≤ n.choose a := by
   classical
-  set s : Multiset ℂ := Finset.univ.val.map z with hs
-  have hcard : Multiset.card s = n := by simp [hs]
-  have htp : tp n z = (s.map fun t => X - C t).prod := by
-    rw [tp, Finset.prod_eq_multiset_prod, hs, Multiset.map_map]
-    rfl
-  have hprod : ∀ t : Multiset ℂ, (∀ x ∈ t, ‖x‖ ≤ 1) → ‖t.prod‖ ≤ 1 := by
-    intro t
-    induction t using Multiset.induction_on with
-    | empty => intro _; simp
-    | cons x t ih =>
-      intro h
-      rw [Multiset.prod_cons, norm_mul]
-      exact mul_le_one₀ (h x (Multiset.mem_cons_self x t)) (norm_nonneg _)
-        (ih fun y hy => h y (Multiset.mem_cons_of_mem hy))
-  have hmem : ∀ t ∈ s, ‖t‖ ≤ 1 := by
-    intro t ht
-    rw [hs, Multiset.mem_map] at ht
-    obtain ⟨i, _, rfl⟩ := ht
-    exact hz i
-  rw [htp, Multiset.prod_X_sub_C_coeff s (by rw [hcard]; exact ha), hcard, norm_mul, norm_pow,
-    norm_neg, norm_one, one_pow, one_mul, ← Nat.choose_symm ha, Multiset.esymm]
-  calc ‖((s.powersetCard (n - a)).map Multiset.prod).sum‖
-      ≤ (((s.powersetCard (n - a)).map Multiset.prod).map norm).sum := norm_multiset_sum_le _
-    _ = ((s.powersetCard (n - a)).map fun t => ‖t.prod‖).sum := by rw [Multiset.map_map]; rfl
-    _ ≤ ((s.powersetCard (n - a)).map fun _ => (1 : ℝ)).sum := by
-        refine Multiset.sum_map_le_sum_map _ _ fun t ht => hprod t fun x hx => hmem x ?_
-        exact Multiset.mem_of_le (Multiset.mem_powersetCard.mp ht).1 hx
-    _ = n.choose (n - a) := by simp [Multiset.card_powersetCard, hcard]
+  have hp : tp n z = ∏ i, (X + C (-z i)) := by simp [tp, sub_eq_add_neg]
+  rw [hp, Finset.prod_X_add_C_coeff _ _ (by simpa using ha), Finset.card_univ, Fintype.card_fin]
+  calc
+    ‖∑ t ∈ (Finset.univ : Finset (Fin n)).powersetCard (n - a), ∏ i ∈ t, -z i‖
+        ≤ ∑ t ∈ (Finset.univ : Finset (Fin n)).powersetCard (n - a), (1 : ℝ) := by
+      apply norm_sum_le_of_le
+      intro t _
+      rw [norm_prod]
+      exact Finset.prod_le_one₀ (fun i _ => norm_nonneg _) (fun i _ => by simpa using hz i)
+    _ = (n.choose (n - a) : ℝ) := by simp [Finset.card_powersetCard]
+    _ = n.choose a := by rw [Nat.choose_symm ha]
 
 theorem tp_sum_norm (n : ℕ) (z : Fin n → ℂ) (hz : ∀ i, ‖z i‖ ≤ 1) :
     ∑ a ∈ range (n + 1), ‖(tp n z).coeff a‖ ≤ 2 ^ n := by

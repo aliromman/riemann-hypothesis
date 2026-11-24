@@ -977,7 +977,8 @@ theorem exists_onb (S : HSp D) (v : Pl D) (ε : AE D) (Λ : AddSubgroup (Fin S.r
   have adj_mul {l m n : ℕ} (X : Matrix (Fin l) (Fin m) (AE D)) (Y : Matrix (Fin m) (Fin n) (AE D)) : adj (X * Y) = adj Y * adj X := by
     ext i j
     change cA D ((X * Y) j i) = (adj Y * adj X) i j
-    simp only [Matrix.mul_apply, map_sum, map_mul, GlobalTheory.MixModel.adj, Matrix.transpose_apply, Matrix.map_apply, mul_comm]
+    simp only [Matrix.mul_apply, map_sum, map_mul, GlobalTheory.MixModel.adj, Matrix.transpose_apply, Matrix.map_apply]
+    exact Finset.sum_congr rfl fun _ _ => mul_comm _ _
   obtain ⟨β, β', hβ, hβ', h1, h2, hmem, hHO, hHc, hH⟩ := _root_.GlobalTheory.IwaPlace.SDBasis.exists_basis_unimodular D S v ε Λ ht hεε hcε hεO hεI hΛ
   obtain ⟨P, P', hP, hP', hPP', hP'P, hPH⟩ := _root_.GlobalTheory.IwaPlace.UnimodNF.unimodular_congr_one D v ε S.rank _ ht hεε hcε hεO hεI hHO hHc hH
   refine ⟨β * P, P' * β', mul_mem_idAt_left P hβ, mul_mem_idAt_right P' hβ', ?_, ?_, ?_, ?_⟩
@@ -1007,7 +1008,8 @@ theorem selfDual_orbit : ∀ (D : D7) (S₀ : HSp D) (v : Pl D) (Λ Λ' : AddSub
   have adj_mul {l m n : ℕ} (X : Matrix (Fin l) (Fin m) (AE D)) (Y : Matrix (Fin m) (Fin n) (AE D)) : adj (X * Y) = adj Y * adj X := by
     ext i j
     change cA D ((X * Y) j i) = (adj Y * adj X) i j
-    simp only [Matrix.mul_apply, map_sum, map_mul, GlobalTheory.MixModel.adj, Matrix.transpose_apply, Matrix.map_apply, mul_comm]
+    simp only [Matrix.mul_apply, map_sum, map_mul, GlobalTheory.MixModel.adj, Matrix.transpose_apply, Matrix.map_apply]
+    exact Finset.sum_congr rfl fun _ _ => mul_comm _ _
   obtain ⟨⟨ε, hεε, hcε, hεO, hεI, -⟩, -⟩ := _root_.GlobalTheory.FinPl.localComponents D (· = v)
   obtain ⟨b, b', hb, hb', hbb', hb'b, hmem, hG⟩ := exists_onb S v ε Λ ht hεε hcε hεO hεI hΛ
   obtain ⟨c, c', hc, hc', hcc', hc'c, hmem', hG'⟩ := exists_onb S v ε Λ' ht hεε hcε hεO hεI hΛ'

@@ -210,12 +210,7 @@ variable [NeZero q]
 
 theorem zsym_rootNumber_ne_zero {χ : DirichletCharacter ℂ q} (hχ : χ.IsPrimitive) :
     χ.rootNumber ≠ 0 := by
-  intro h
-  have h1 := hχ.completedLFunction_one_sub (-1)
-  rw [h, mul_zero, zero_mul] at h1
-  have h2 := χ.LFunction_eq_completed_div_gammaFactor (1 - -1) (Or.inl (by norm_num))
-  rw [h1, zero_div] at h2
-  exact χ.LFunction_ne_zero_of_one_le_re (Or.inr (by norm_num)) (by norm_num) h2
+  exact DirichletCharacter.rootNumber_ne_zero hχ
 
 noncomputable def zsymFactor (χ : DirichletCharacter ℂ q) (s : ℂ) : ℂ :=
   (q : ℂ) ^ ((1 - s) - 1 / 2) * χ.rootNumber * (χ.gammaFactor s)⁻¹ / (χ⁻¹.gammaFactor (1 - s))⁻¹
@@ -256,9 +251,7 @@ theorem zsymFactor_analyticAt (χ : DirichletCharacter ℂ q) {s : ℂ}
 
 theorem zsym_analyticAt_LFunction (χ : DirichletCharacter ℂ q) {s : ℂ} (hs : s ≠ 1) :
     AnalyticAt ℂ χ.LFunction s := by
-  refine DifferentiableOn.analyticAt (s := {1}ᶜ) (fun z hz => ?_)
-    (isOpen_compl_singleton.mem_nhds hs)
-  exact (χ.differentiableAt_LFunction z (Or.inl hz)).differentiableWithinAt
+  exact ZeroWindow.analyticOff χ s hs
 
 end
 

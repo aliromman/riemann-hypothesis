@@ -73,13 +73,13 @@ private def Cn : Spc where
   map θ :=
     { app := fun T => TypeCat.ofHom fun v => v ∘ θ.unop.toOrderHom
       naturality := fun T T' g => by
-        ext v k
+        ext v
         rfl }
   map_id k := by
-    ext T v j
+    ext T v
     rfl
   map_comp f g := by
-    ext T v j
+    ext T v
     rfl
 
 private def hT {A : Type} [One A] {n : ℕ} (i : Fin (n + 1)) (v : Fin (n + 1) → A) : Fin (n + 2) → A :=

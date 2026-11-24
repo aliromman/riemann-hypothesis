@@ -119,23 +119,6 @@ theorem homog_mon (c : ∀ k, ι k) (m : K → ℕ) : IsMultiHomog (mon c m) m :
   rw [hsum] at h
   exact h
 
-private theorem mConeMap_monomial' (y : (Σ k, ι k) → Ω) (m : (Σ k, ι k) →₀ ℕ) (r : ℤ) :
-    mConeMap y (MvPolynomial.monomial m r) =
-      MvPolynomial.C (aeval y (MvPolynomial.monomial m r : MRing ι)) *
-        ∏ k, (MvPolynomial.X k : MvPolynomial K Ω) ^ (∑ i, m ⟨k, i⟩) := by
-  classical
-  have hX : (∏ p : Σ k, ι k, (MvPolynomial.X p.1 : MvPolynomial K Ω) ^ m p) =
-      ∏ k, (MvPolynomial.X k : MvPolynomial K Ω) ^ (∑ i, m ⟨k, i⟩) := by
-    rw [Fintype.prod_sigma]
-    refine Finset.prod_congr rfl (fun k _ => ?_)
-    dsimp only
-    exact Finset.prod_pow_eq_pow_sum _ _ _
-  rw [← hX, mConeMap, MvPolynomial.aeval_monomial, MvPolynomial.aeval_monomial, Finsupp.prod_fintype,
-    Finsupp.prod_fintype]
-  · simp only [mul_pow, Finset.prod_mul_distrib, map_mul, map_prod, map_pow, MvPolynomial.algebraMap_apply]
-    ring
-  all_goals simp
-
 theorem sub_mem_coord (y : (Σ k, ι k) → Ω) {f g : MRing ι} {d : K → ℕ} (hf : IsMultiHomog f d)
     (hg : IsMultiHomog g d) (e : aeval y f = aeval y g) : f - g ∈ mCoordIdeal y := by
   rw [mCoordIdeal, RingHom.mem_ker, map_sub, _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.ProjLine.mConeMap_eq_of_isMultiHomog y hf, _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.ProjLine.mConeMap_eq_of_isMultiHomog y hg, e, sub_self]

@@ -756,7 +756,7 @@ theorem cc_psubst {τ : Type} [Finite τ] {a : MvPowerSeries τ K} (ha0 : MvPowe
 theorem hur_exp : Hur R ((PowerSeries.exp K : PowerSeries K) : MvPowerSeries Unit K) := by
   intro n
   have hn : n = Finsupp.single () (n ()) := by
-    ext u
+    ext
     simp
   have hc : MvPowerSeries.coeff n (PowerSeries.exp K : MvPowerSeries Unit K) = PowerSeries.coeff (n ()) (PowerSeries.exp K) := by
     conv_lhs => rw [hn]

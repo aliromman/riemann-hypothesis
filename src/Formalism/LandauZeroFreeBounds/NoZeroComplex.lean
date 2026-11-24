@@ -71,11 +71,7 @@ namespace Formalism.ZeroFreeDirichlet
 
 lemma negLogDeriv_eq_LSeries {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) {s : ℂ}
     (hs : 1 < s.re) : negLD χ s = LSeries (↗χ * ↗Λ) s := by
-  unfold negLD
-  rw [DirichletCharacter.LSeries_twist_vonMangoldt_eq χ hs,
-    DirichletCharacter.deriv_LFunction_eq_deriv_LSeries χ hs,
-    DirichletCharacter.LFunction_eq_LSeries χ hs]
-  ring
+  exact negLD_eq_LSeries_mul_vonMangoldt χ hs
 
 lemma hasSum_re_term {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) {s : ℂ}
     (hs : 1 < s.re) : HasSum (fun n ↦ (term (↗χ * ↗Λ) s n).re) (negLD χ s).re := by
