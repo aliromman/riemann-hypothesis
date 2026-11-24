@@ -1,0 +1,155 @@
+{
+  "authority": {
+    "base": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "tree": "c9e0bade70ab9e778941a02e423609a4e6aa76e3",
+    "manifest": "816164d26c3ad2b5bceaf1337ab7a172bbc10b1fa15c52ab8c04495436314c65",
+    "graph": "2d79c727402413d1dedd697e5e2445cccd13b3a46a88545cb2f9e8992b42c90c"
+  },
+  "tasks": {
+    "structural": {
+      "pr": 977,
+      "head": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+      "src": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749",
+      "upstream_clump_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+      "source_table_sha256": "00c92cb923882d90fc89a0b9c48894136d2a3fbf2c4d5bd28afd4d5cd9a67490"
+    }
+  },
+  "groups": {
+    "clumps-1266-large-1": {
+      "task": "structural",
+      "count": 56,
+      "sha256": "e81692ee2b91fbc98486879bfe23e64704b4c09ec871a791392a66fdd8ff8caa",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 2335.59
+    },
+    "clumps-1266-large-2": {
+      "task": "structural",
+      "count": 56,
+      "sha256": "505e6350cdd98343064dc3dbaf8768aee50e4484659fe576e8c966c8ac042203",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 2335.51
+    },
+    "clumps-1266-large-3": {
+      "task": "structural",
+      "count": 55,
+      "sha256": "65e94d68a18e7f2e09ade1ca8160214ba244b64a735d515d47ebac72be2ccfb5",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 2334.03
+    },
+    "clumps-1266-ordinary-1": {
+      "task": "structural",
+      "count": 595,
+      "sha256": "ac1adec9f4894ca0d771ea5d85074f75d54cc18e748cf5ae4757c4b262c1bb92",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5396.28
+    },
+    "clumps-1266-ordinary-12": {
+      "task": "structural",
+      "count": 595,
+      "sha256": "359f0507a66b05696cd50a296ddd888a9c443c1bead9b7541c670794cf922ef6",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5396.27
+    },
+    "clumps-1266-ordinary-13": {
+      "task": "structural",
+      "count": 595,
+      "sha256": "deda7bc26f96dfc2e7e9913affa4cafa3cff4cd788ecab1e2b765becd5f4f7d6",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5396.28
+    },
+    "clumps-1266-ordinary-2": {
+      "task": "structural",
+      "count": 595,
+      "sha256": "78e9eb78b9eb7aa8dd02558b3dff508c4de57b3fad85153562c8e2f5cc023a54",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5396.26
+    },
+    "clumps-1266-ordinary-4": {
+      "task": "structural",
+      "count": 595,
+      "sha256": "1db375e8a28bcfd19b01df4b723d37eb61e5b3600f97e79a9be8ad3cadadc4ed",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5396.29
+    },
+    "clumps-1266-ordinary-5": {
+      "task": "structural",
+      "count": 595,
+      "sha256": "bb0b4f82ea9e0dd79a169e182e823eb95f38872d4fab4c31e13d53ee3eb2ba8d",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5396.28
+    },
+    "clumps-1266-ordinary-6": {
+      "task": "structural",
+      "count": 595,
+      "sha256": "22644639c34d2ce032f177e05501cc3ff228280f89891ce8e780f1fcfe31025e",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5396.29
+    },
+    "clumps-1266-ordinary-7": {
+      "task": "structural",
+      "count": 595,
+      "sha256": "efd48c0f55c81b2cef8c3f6544c721576bb99c2ca040dc72218fffcf2027bd47",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5396.28
+    },
+    "clumps-1266-ordinary-8": {
+      "task": "structural",
+      "count": 595,
+      "sha256": "94d66ae63987daf900e27cd9662131f42577a3732cd96b52d6adfcaa30011a37",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5396.28
+    },
+    "clumps-1266-ordinary-9": {
+      "task": "structural",
+      "count": 595,
+      "sha256": "3791a2116b0876eb56fa0825bdaf24569ff76195352a7e178d5b928f0aecbb5c",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5396.27
+    },
+    "clumps-1266-ordinary-tail-1": {
+      "task": "structural",
+      "count": 341,
+      "sha256": "a4875c1c4397399bc7d0ca4ef4419fa27d4838463326086f0867d39ca8105c4c",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 3095.46
+    },
+    "clumps-1266-ordinary-tail-2": {
+      "task": "structural",
+      "count": 341,
+      "sha256": "7693bfd9c1f5fbf71f3d812a1e87bc4b4617454f593974eca9f26a168ca5d3c1",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 3095.47
+    },
+    "clumps-1266-ordinary-tail-3": {
+      "task": "structural",
+      "count": 341,
+      "sha256": "9b555f877818645d1d696cb06cd6aa469e70cdfcfd875f3342a8712e0c0bc5fe",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 3095.44
+    },
+    "clumps-1266-ordinary-tail-4": {
+      "task": "structural",
+      "count": 341,
+      "sha256": "0f2116917687f06edb51afde2cffc64ddefa4ac9118992666490ca56c5f85647",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 3095.44
+    }
+  }
+}
