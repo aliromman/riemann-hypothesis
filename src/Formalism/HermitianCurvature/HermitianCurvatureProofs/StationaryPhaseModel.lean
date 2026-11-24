@@ -2131,8 +2131,6 @@ structure E_Phase (d : ℕ) (r Γ c₁ : ℝ) (φ : (Fin d → ℂ) → ℝ) : P
 
 variable {d : ℕ} {β : ℂ} {r Γ c₁ ρ τ : ℝ} {φ : (Fin d → ℂ) → ℝ}
 
-theorem E_sqrt_pos (hτ : 0 < τ) : 0 < Real.sqrt τ := Real.sqrt_pos.2 hτ
-
 theorem E_sqrt_le_one (hτ1 : τ ≤ 1) : Real.sqrt τ ≤ 1 := Real.sqrt_le_one.2 hτ1
 
 theorem E_est {q : ℕ} {C : ℝ} (hq : q ≤ 4) (hOB : E_OB d q β (Γ + Γ * (r + 1) ^ (d + 5)) (c₁ / 2) C)
@@ -2145,9 +2143,9 @@ theorem E_est {q : ℕ} {C : ℝ} (hq : q ≤ 4) (hOB : E_OB d q β (Γ + Γ * (
     ‖∫ x, osc (fun y => quad φ y + s * E_P φ y) τ x • b x ∂(muPi β (Fin d))‖ ≤ C * K * τ ^ (d + q) := by
   refine hOB (Metric.closedBall (0 : Fin d → ℂ) ρ) _ τ hτ ?_ ?_ ?_ V b K hK hbc hbs hb
   · exact E_ph_contDiff (hph.smooth.of_le (by exact_mod_cast (by omega : d + 2 + q ≤ d + 6))) s
-  · have h := E_ph_sym (N := d + 5) (by omega) hph.smooth hr (E_sqrt_pos hτ) (E_sqrt_le_one hτ1) hph.crit
+  · have h := E_ph_sym (N := d + 5) (by omega) hph.smooth hr (Real.sqrt_pos_of_pos hτ) (E_sqrt_le_one hτ1) hph.crit
       hph.bd hs
-    exact (h.subset (Metric.closedBall_subset_closedBall hρr)).mono (fun x _ => E_wt_pos (E_sqrt_pos hτ) x)
+    exact (h.subset (Metric.closedBall_subset_closedBall hρr)).mono (fun x _ => E_wt_pos (Real.sqrt_pos_of_pos hτ) x)
       (by omega) le_rfl
   · exact E_ph_low (by omega) hph.smooth hr hph.crit hph.bd hph.low hρr hρ hs
 
@@ -2165,9 +2163,9 @@ theorem E_est_u {C : ℝ} (hOB : E_OB d 1 β (Γ * (r + 1) ^ (d + 5)) c₁ C)
     ‖∫ x, osc φ τ x • b x ∂(muPi β (Fin d))‖ ≤ C * K * τ ^ (d + 1) := by
   refine hOB (Metric.closedBall (0 : Fin d → ℂ) r) _ τ hτ ?_ ?_ hph.low V b K hK hbc hbs ?_
   · exact hph.smooth.of_le (by exact_mod_cast (by omega : d + 2 + 1 ≤ d + 6))
-  · have h := E_dphi_sym (N := d + 5) (by omega) hph.smooth hr (E_sqrt_pos hτ) (E_sqrt_le_one hτ1) hph.crit
+  · have h := E_dphi_sym (N := d + 5) (by omega) hph.smooth hr (Real.sqrt_pos_of_pos hτ) (E_sqrt_le_one hτ1) hph.crit
       hph.bd
-    exact h.mono (fun x _ => E_wt_pos (E_sqrt_pos hτ) x) (by omega) le_rfl
+    exact h.mono (fun x _ => E_wt_pos (Real.sqrt_pos_of_pos hτ) x) (by omega) le_rfl
   · exact_mod_cast hb
 
 end EEst
@@ -2275,15 +2273,15 @@ theorem E_P_sym' (hr : 0 < r) (hph : E_Phase d r Γ c₁ φ) (hρr : ρ ≤ r) (
     (hN : N ≤ d + 6) :
     Sym (Metric.closedBall (0 : Fin d → ℂ) ρ) (wt (Real.sqrt τ)) 3 N
       ((Γ + Γ * (r + 1) ^ 2) * (r + 1) ^ (d + 6)) (E_P φ) :=
-  ((E_P_sym (by omega) hph.smooth hr (E_sqrt_pos hτ) (E_sqrt_le_one hτ1) hph.crit hph.bd).subset
-    (Metric.closedBall_subset_closedBall hρr)).mono (fun x _ => E_wt_pos (E_sqrt_pos hτ) x) hN le_rfl
+  ((E_P_sym (by omega) hph.smooth hr (Real.sqrt_pos_of_pos hτ) (E_sqrt_le_one hτ1) hph.crit hph.bd).subset
+    (Metric.closedBall_subset_closedBall hρr)).mono (fun x _ => E_wt_pos (Real.sqrt_pos_of_pos hτ) x) hN le_rfl
 
 theorem E_Pe_sym' (hr : 0 < r) (hph : E_Phase d r Γ c₁ φ) (hρr : ρ ≤ r) (hτ : 0 < τ) (hτ1 : τ ≤ 1) {N : ℕ}
     (hN : N ≤ d + 6) :
     Sym (Metric.closedBall (0 : Fin d → ℂ) ρ) (wt (Real.sqrt τ)) 4 N
       ((Γ + Γ * (r + 1) ^ 2) * (r + 1) ^ (d + 6)) (E_Pe φ) :=
-  ((E_Pe_sym (by omega) hph.smooth hr (E_sqrt_pos hτ) (E_sqrt_le_one hτ1) hph.crit hph.bd).subset
-    (Metric.closedBall_subset_closedBall hρr)).mono (fun x _ => E_wt_pos (E_sqrt_pos hτ) x) hN le_rfl
+  ((E_Pe_sym (by omega) hph.smooth hr (Real.sqrt_pos_of_pos hτ) (E_sqrt_le_one hτ1) hph.crit hph.bd).subset
+    (Metric.closedBall_subset_closedBall hρr)).mono (fun x _ => E_wt_pos (Real.sqrt_pos_of_pos hτ) x) hN le_rfl
 
 theorem model_integral_second_error {C : ℝ} (hOB : E_OB d 3 β (Γ + Γ * (r + 1) ^ (d + 5)) (c₁ / 2) C)
     (hr : 0 < r) (hΓ : 0 < Γ) (hph : E_Phase d r Γ c₁ φ) (hρ0 : 0 < ρ) (hρr : ρ ≤ r)
@@ -2297,9 +2295,9 @@ theorem model_integral_second_error {C : ℝ} (hOB : E_OB d 3 β (Γ + Γ * (r +
         (2 ^ (d + 1 + 3) * (Cχ * (ρ + 1) ^ (d + 1 + 3)) * (ρ + 2) * S)) * τ ^ (d + 3) := by
   have hS : 0 ≤ S := (norm_nonneg _).trans ha
   have hw : ∀ x ∈ Metric.closedBall (0 : Fin d → ℂ) ρ, 0 < wt (Real.sqrt τ) x :=
-    fun x _ => E_wt_pos (E_sqrt_pos hτ) x
+    fun x _ => E_wt_pos (Real.sqrt_pos_of_pos hτ) x
   have hP := E_P_sym' (N := d + 1 + 3) hr hph hρr hτ hτ1 (by omega)
-  have hA := model_amplitude_symbol (N := d + 1 + 3) (a₀ := a₀) (ℓ := ℓ) hρ0 (fun i hi => hC i (by omega)) hρ0 (E_sqrt_pos hτ)
+  have hA := model_amplitude_symbol (N := d + 1 + 3) (a₀ := a₀) (ℓ := ℓ) hρ0 (fun i hi => hC i (by omega)) hρ0 (Real.sqrt_pos_of_pos hτ)
     (E_sqrt_le_one hτ1) ha hl
   have h := Sym.smul hw (Sym.mul hw hP hP) hA
   rw [show ((3 : ℤ) + 3 + 0) = 2 * ((3 : ℕ) : ℤ) by norm_num] at h
@@ -2330,7 +2328,7 @@ theorem model_integral_first_error {C : ℝ} (hβ : β ≠ 0) (hOB : E_OB d 2 β
         (2 ^ (d + 1 + 2) * (Cχ * (ρ + 1) ^ (d + 1 + 2)) * S)) * τ ^ (d + 2)) := by
   have hS : 0 ≤ S := (norm_nonneg _).trans ha
   have hw : ∀ x ∈ Metric.closedBall (0 : Fin d → ℂ) ρ, 0 < wt (Real.sqrt τ) x :=
-    fun x _ => E_wt_pos (E_sqrt_pos hτ) x
+    fun x _ => E_wt_pos (Real.sqrt_pos_of_pos hτ) x
   have hs0 : (0 : ℝ) ∈ Set.Icc (0 : ℝ) 1 := ⟨le_rfl, zero_le_one⟩
   have hφc : Continuous φ := hph.smooth.continuous
   have hqc : Continuous (quad φ) := (E_quad_contDiff φ 0).continuous
@@ -2345,9 +2343,9 @@ theorem model_integral_first_error {C : ℝ} (hβ : β ≠ 0) (hOB : E_OB d 2 β
 
   have hPe := E_Pe_sym' (N := d + 1 + 2) hr hph hρr hτ hτ1 (by omega)
   have hP := E_P_sym' (N := d + 1 + 2) hr hph hρr hτ hτ1 (by omega)
-  have hB0 := constant_amplitude_symbol (N := d + 1 + 2) (a₀ := a₀) hρ0 (fun i hi => hC i (by omega)) hρ0 (E_sqrt_pos hτ)
+  have hB0 := constant_amplitude_symbol (N := d + 1 + 2) (a₀ := a₀) hρ0 (fun i hi => hC i (by omega)) hρ0 (Real.sqrt_pos_of_pos hτ)
     (E_sqrt_le_one hτ1) ha
-  have hB1 := linear_amplitude_symbol (N := d + 1 + 2) (ℓ := ℓ) hρ0 (fun i hi => hC i (by omega)) hρ0 (E_sqrt_pos hτ)
+  have hB1 := linear_amplitude_symbol (N := d + 1 + 2) (ℓ := ℓ) hρ0 (fun i hi => hC i (by omega)) hρ0 (Real.sqrt_pos_of_pos hτ)
     (E_sqrt_le_one hτ1) hl
   have h0 := Sym.smul hw hPe hB0
   have h1 := Sym.smul hw hP hB1
@@ -2440,7 +2438,7 @@ theorem E_u_sym (hr : 0 < r) (hρ0 : 0 < ρ) (hτ : 0 < τ) (hτ1 : τ ≤ 1) (h
   have had : ContDiff ℝ (d + 2 : ℕ) a := ha.of_le (by exact_mod_cast (by omega : d + 2 ≤ 2 * d + 2))
   have hu : E_u d ρ a = a - modelAmplitude d ρ (a 0) (fderiv ℝ a 0) := rfl
   have h := Sym.of_vanish (f := E_u d ρ a) (M := S + 2 ^ (d + 2) * (Cχ * (r + 1) ^ (d + 2)) * (r + 2) * S) 2 hr
-    (E_sqrt_pos hτ) (E_sqrt_le_one hτ1) (by omega) (had.sub hA1.1) ?_ ?_
+    (Real.sqrt_pos_of_pos hτ) (E_sqrt_le_one hτ1) (by omega) (had.sub hA1.1) ?_ ?_
   · exact_mod_cast h
   · intro x hx i hi
     have hin : ((i : ℕ) : WithTop ℕ∞) ≤ (d + 2 : ℕ) := by exact_mod_cast hi

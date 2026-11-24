@@ -139,6 +139,16 @@ lemma vinv {σ : ℝ} (h : σ ≠ 0) (T : ℝ) :
   rw [I_sq]
   ring
 
+/-- At the jump, the truncated Perron kernel is an arctangent rather than a step value. -/
+lemma truncated_perron_kernel_one {c : ℝ} (hc : c ≠ 0) (T : ℝ) :
+    (1 / (2 * Real.pi) : ℂ) *
+      (∫ t in (-T)..T, (1 : ℂ) ^ ((c : ℂ) + t * I) / ((c : ℂ) + t * I)) =
+      ((Real.arctan (T / c) / Real.pi : ℝ) : ℂ) := by
+  simp only [Complex.one_cpow, one_div]
+  rw [vinv hc T]
+  push_cast
+  field_simp
+
 lemma hinv {T : ℝ} (h : T ≠ 0) (a b : ℝ) :
     (∫ x in a..b, ((x : ℂ) + ((-T : ℝ) : ℂ) * I)⁻¹) - ∫ x in a..b, ((x : ℂ) + T * I)⁻¹
       = 2 * I * ((Real.arctan (b / T) - Real.arctan (a / T) : ℝ) : ℂ) := by
@@ -462,29 +472,19 @@ lemma kernel_bound : ∃ C : ℝ, 0 < C ∧ ∀ y c T : ℝ, 0 < y → 0 < c →
   have hyc : 0 < y ^ c := Real.rpow_pos_of_pos hy c
   by_cases hy1 : y = 1
   · subst hy1
-    have hI : ∫ t in (-T)..T, ((1 : ℝ) : ℂ) ^ ((c : ℂ) + t * I) / ((c : ℂ) + t * I)
-        = ((2 * Real.arctan (T / c) : ℝ) : ℂ) := by
-      rw [← GlobalTheory.PerronKernel.vinv hc.ne' T]
-      congr 1
-      ext t
-      rw [Complex.ofReal_one, Complex.one_cpow, one_div]
     have ha0 : 0 < Real.arctan (T / c) := Real.arctan_pos.2 (by positivity)
     have ha1 : Real.arctan (T / c) < Real.pi / 2 := Real.arctan_lt_pi_div_two _
     have hpi := Real.pi_pos
-    have hE : ‖(1 / (2 * Real.pi) : ℂ) * ((2 * Real.arctan (T / c) : ℝ) : ℂ)
-        - (if (1 : ℝ) ≤ 1 then 1 else 0)‖ ≤ 1 := by
-      rw [if_pos le_rfl]
-      have hre : (1 / (2 * Real.pi) : ℂ) * ((2 * Real.arctan (T / c) : ℝ) : ℂ) - 1
-          = ((Real.arctan (T / c) / Real.pi - 1 : ℝ) : ℂ) := by
-        push_cast
-        field_simp
+    have hE : ‖((Real.arctan (T / c) / Real.pi : ℝ) : ℂ) - 1‖ ≤ 1 := by
+      have hre : ((Real.arctan (T / c) / Real.pi : ℝ) : ℂ) - 1
+          = ((Real.arctan (T / c) / Real.pi - 1 : ℝ) : ℂ) := by push_cast; rfl
       rw [hre, Complex.norm_real, Real.norm_eq_abs, abs_le]
       have h1 : 0 ≤ Real.arctan (T / c) / Real.pi := div_nonneg ha0.le hpi.le
       have h2 : Real.arctan (T / c) / Real.pi ≤ 1 := by
         rw [div_le_one hpi]
         linarith
       constructor <;> linarith
-    rw [hI]
+    rw [Complex.ofReal_one, GlobalTheory.PerronKernel.truncated_perron_kernel_one hc.ne', ite_eq_left le_rfl]
     refine ⟨?_, ?_⟩
     · calc _ ≤ (1 : ℝ) := hE
         _ ≤ max C 1 * (1 : ℝ) ^ c := by

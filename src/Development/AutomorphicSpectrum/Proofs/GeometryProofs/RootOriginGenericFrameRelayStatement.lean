@@ -80,15 +80,13 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.CommonZeroEvaluation.ConstantRegularAwayFibres, Development.WeilBound.CoreStatements.CommonZeroEvaluation.EigenLatticeDecomposition, Development.WeilBound.CoreStatements.CommonZeroEvaluation.ExistsLocalChartCentre, Development.WeilBound.CoreStatements.CommonZeroEvaluation.LieLatticeActionStable, Development.WeilBound.CoreStatements.CommonZeroEvaluation.LieLatticeLocalRing, Development.WeilBound.CoreStatements.CommonZeroEvaluation.LieModelLocalSubringAction, Development.WeilBound.CoreStatements.CommonZeroEvaluation.SubringSpecMorphismExt, Development.WeilBound.CoreStatements.CommonZeroEvaluation.GenericFrameRootOrigin, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginGenericFrameRelay, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginGenericFrameRelayStatement
 
-@[expose] public section -- clump member: Development.WeilBound.CoreStatements.CommonZeroEvaluation.ConstantRegularAwayFibres
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.CommonZeroEvaluation.ConstantRegularAwayFibres
 
 open AlgebraicGeometry CategoryTheory
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
-noncomputable section
 
 namespace ModelDimension
 
@@ -127,7 +125,6 @@ theorem constant_regular_away_fibres : ∀ (E : Type) [Field E] [NumberField E] 
   exact mul_mem (inv_natCast_mem_regAt q hq n) h1
 
 end ModelDimension
-end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.CommonZeroEvaluation.EigenLatticeDecomposition
@@ -374,10 +371,8 @@ open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
 
-@[expose] public section -- clump member: Development.WeilBound.CoreStatements.CommonZeroEvaluation.LieModelLocalSubringAction
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.CommonZeroEvaluation.LieModelLocalSubringAction
 
-noncomputable section
 
 namespace ModelDimension.Tan
 
@@ -458,12 +453,9 @@ theorem ModelDimension.lie_model_local_subring_action : ∀ (E : Type) [Field E]
   rw [hw1, Category.assoc, hb1]
   exact (ModelDimension.Tan.tanY_base Y y yΩ hx τ i (hu τ i)).symm
 end -- clump:auto
-end -- clump:auto
 
-@[expose] public section -- clump member: Development.WeilBound.CoreStatements.CommonZeroEvaluation.SubringSpecMorphismExt
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.CommonZeroEvaluation.SubringSpecMorphismExt
 
-noncomputable section
 
 namespace ModelDimension
 
@@ -483,7 +475,6 @@ theorem subring_spec_morphism_ext : ∀ (E : Type) [Field E] [NumberField E] [Is
 
 end ModelDimension
 end -- clump:auto
-end -- clump:auto
 
 end -- clump: shared namespace opens
 
@@ -493,11 +484,9 @@ open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
 
-@[expose] public section -- clump member: Development.WeilBound.CoreStatements.CommonZeroEvaluation.GenericFrameRootOrigin
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.CommonZeroEvaluation.GenericFrameRootOrigin
 
 open AlgebraicGeometry CategoryTheory
-noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Plug.KeyRootZ
 
 theorem diag_unit {Ω Li : Type} [Field Ω] [AddCommGroup Li] [Module Ω Li] (A : Subring Ω) {n : ℕ} (u w b : Fin n → Li)
@@ -756,10 +745,8 @@ theorem diag_root_line : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
 end GlobalTheory.CompanionTheory.Ar.Plug.KeyRootZ
 
 end -- clump:auto
-end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginGenericFrameRelay
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 attribute [local instance 1100] Subalgebra.algebra in
 attribute [local instance 100] IntermediateField.instAlgebraSubtypeMem in
@@ -767,7 +754,6 @@ alias _root_.GlobalTheory.CompanionTheory.Relay.root_origin_generic_frame_relay 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginGenericFrameRelayStatement
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 
 -- clump-header: {"m": "Development.WeilBound.CoreStatements.CommonZeroEvaluation.ConstantRegularAwayFibres", "h": "module\n\npublic import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeLine\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.IsHomogeneousCompIdeal\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenMapFromSpecStalk\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Development.AutomorphicSpectrum.Definitions.GlobalGeometry.DefiniteFormStabilizerFiniteAwayFromP\nimport Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ModelSmall\n\n"}

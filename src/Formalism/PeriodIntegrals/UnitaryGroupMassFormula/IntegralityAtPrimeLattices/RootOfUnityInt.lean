@@ -210,7 +210,7 @@ theorem valSc_tr (T : Forms0 D u) (w : D.what₂.places.Pl) (c : (D.mem u).C.cls
       fun τ => N τ * atInf (embT D) ((B⁻¹ : GL (Fin (D.R.N 0)) D.host.E) : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) τ := by
     funext τ
     simp only [hNdef, Matrix.mul_assoc]
-    rw [LocalLatticeBases.at_infinity_mul_inv, Matrix.mul_one]
+    rw [Formalism.L2.Forms.atInf_mul_inv, Matrix.mul_one]
   rw [hM]
 
 theorem upIncInt0_of (T : Forms0 D u) (hC : LocalLatticeBases.ChiFin0 T) (hL : UpLatLoc0 T) : UpIncInt0 T := by

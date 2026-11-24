@@ -139,9 +139,6 @@ theorem mem_GinfC_of_off (V : HSp D) (S : GlobalTheory.FinPl.Pl D → Prop) {g :
     · exact b ⟨w.1, hw⟩
   exact GlobalTheory.FinPl.OffInh.mem_GinfC_of_all (fun _ => trivial) h3
 
-
-
-
 theorem mem_lev_of_inK {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc) (X : Node)
     (hΛ : Submodule.IsFullLattice D.host.E (G.Λ X)) {κ : GA D (G.V X)}
     (hκ : InK (G.V X) (G.Λ X) (fun v => v ∉ G.pl.S0) κ) : κ ∈ lev G X := by
@@ -196,7 +193,6 @@ theorem idAt_le_idOff_compl' (P : GlobalTheory.FinPl.Pl D → Prop) : idAt D P �
   exact fun w => ha.2 ⟨w.1, w.2⟩
 
 end GlobalTheory.PlaceLevelCosets
-
 
 open GlobalTheory.PlaceLevelCosets GlobalTheory.FinPl.PlacesAdeles in
 theorem GlobalTheory.PlaceLevelCosets.levCoset_of_places : All fun {D} _ _ _ {G} _ _ => ∀ i, i ≤ D.R.m → (lev G (.grid i 0) ≤ GfC _ ∧ IsCompact (lev G (.grid i 0) : Set (GA D (G.V (.grid i 0)))) ∧ IsOpen (((lev G (.grid i 0)).subgroupOf (GfC _) : Subgroup (GfC (G.V (.grid i 0)))) : Set (GfC (G.V (.grid i 0))))) ∧ ∀ (R : Subgroup (GA D (G.V (.grid i 0)))) h, (∀ v ∉ G.pl.S0, ∀ h₁ ∈ grpAt _ (· = v), ∀ h₂ ∈ grpOff _ (· = v), h = h₁ * h₂ → CosetAt _ R (G.Λ (.grid i 0)) v h₁) → (∀ h₁ ∈ grpAt _ (fun v => v ∈ G.pl.S0), ∀ h₂ ∈ grpOff _ (fun v => v ∈ G.pl.S0), h = h₁ * h₂ → ∃ r ∈ R, r ∈ grpAt _ (fun v => v ∈ G.pl.S0) ∧ ∃ k ∈ lev G (.grid i 0), k ∈ grpAt _ (fun v => v ∈ G.pl.S0) ∧ h₁ = r * k) → ∃ r ∈ R, ∃ a ∈ GinfC _, ∃ k ∈ lev G (.grid i 0), h = r * a * k := by
@@ -731,7 +727,6 @@ theorem mt_off_mul {P : GlobalTheory.FinPl.Pl D → Prop} {S : HSp D} {g : GA D 
 
 end GlobalTheory.AscFin.LocCond
 
-
 open GlobalTheory.AscFin.LocCond in
 theorem GlobalTheory.AscFin.cond_loc : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ (V V₀ W W₀ : HSp D) (ρ σ : ℕ) (dV : HypDec V V₀ ρ) (dW : HypDec W W₀ σ) (p : Pieces V₀ W W₀ ρ σ) (x : Mx D W.rank ρ) (y : Mx D V₀.rank σ) (P : GlobalTheory.FinPl.Pl D → Prop) (h₁ h₂ : GA D W), h₁ ∈ grpAt W P → h₂ ∈ grpOff W P → Cond dW p x y ψ (fun _ => True) (h₁ * h₂) → Cond dW p x y ψ P h₁ := by
   intro D ψ _ V V₀ W W₀ ρ σ dV dW p x y P h₁ h₂ _ h2 hc
@@ -888,8 +883,6 @@ variable {ψ : AddChar (AF D.host.F) ℂ} {V V₀ W W₀ : HSp D} {ρ σ : ℕ} 
   {p : Pieces V₀ W W₀ ρ σ} {x : Mx D W.rank ρ} {y : Mx D V₀.rank σ} {LV : Lat V} {LV₀ : Lat V₀} {LW : Lat W} {LW₀ : Lat W₀}
   {v : Pl D}
 
-
-
 theorem col_of_pt (hG : GoodAt dV dW x ψ LV LV₀ LW LW₀ v) (hS : StdAt dV dW p LV LW v) {r g κ : GA D W}
     (hr : r ∈ Rgrp W x) (hκ : InK W LW (· = v) κ) (hC : Cond dW p x y ψ (· = v) (r * g * κ))
     (q : Mx D W.rank W.rank) (hq : ∀ z ∈ latV W LW (· = v), q *ᵥ z ∈ latV W LW (· = v)) (i : Fin ρ)
@@ -972,8 +965,6 @@ theorem psi_of_shift (hG : GoodAt dV dW x ψ LV LV₀ LW LW₀ v) (hS : StdAt dV
   rwa [e2] at h1
 
 end General
-
-
 
 theorem parts {ψ : AddChar (AF D.host.F) ℂ} {V V₀ W W₀ : HSp D} {σ : ℕ} {dV : HypDec V V₀ (σ + 1)} {dW : HypDec W W₀ σ}
     {p : Pieces V₀ W W₀ (σ + 1) σ} {z : Fin W₀.rank → D.host.E} {y : Mx D V₀.rank σ} {LV : Lat V} {LV₀ : Lat V₀} {LW : Lat W}
@@ -1110,8 +1101,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.FinPl (Lat idAt idOff intAt grpAt grpOff MxAt latV latA InK MonoAt OrthAt PrimAt ColsAt)
 open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
-
-
 
 noncomputable section
 namespace GlobalTheory.LevelOffS
@@ -1276,7 +1265,6 @@ theorem exists_unit_mem_modul {T : Type} {L : LevCh D T} {sc : Consts} (G : Grid
     exact h2
 
 end GlobalTheory.LevelOffS
-
 
 open GlobalTheory.LevelOffS in
 theorem GlobalTheory.LevelOffS.inK_mem_lev : All fun {D} _ _ _ {G} _ _ => ∀ i, i ≤ D.R.m → ∀ v, v ∉ G.pl.S0 → ∀ κ, InK (G.V (.grid i 0)) (G.Λ (.grid i 0)) (· = v) κ → κ ∈ lev G (.grid i 0) := by
@@ -1448,8 +1436,6 @@ theorem pairS_idem {T : HSp D} {ρ : ℕ} {c : AE D} (hc : c * c = c) (hcA : cA 
     pairS T (c • x) (c • y) = pairS T x (c • y) := by
   simp only [pairS, adj_smul, Matrix.mul_smul, Matrix.smul_mul, Matrix.trace_smul, smul_eq_mul, hcA]
   rw [← mul_assoc, hc]
-
-
 
 theorem cond_of_flatS_ne : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (V V₀ W W₀ : HSp D) (ρ σ : ℕ) (dV : HypDec V V₀ ρ) (dW : HypDec W W₀ σ) (s : Step ψ V V₀ W W₀ ρ σ) (x₀ : Matrix (Fin W.rank) (Fin ρ) D.host.E) (y : Mx D V₀.rank σ), LinearIndependent D.host.E x₀.transpose → ∀ p : Pieces V₀ W W₀ ρ σ, p.Is dV dW (rat x₀) ψ → ∀ Φ ∈ cls dV dW p (rat x₀) y ψ, ∀ h, flatS dV dW s (rat x₀) y (s.om (1, h) Φ) ≠ 0 → Cond dW p (rat x₀) y ψ (fun _ => True) h := by
   intro D ψ V V₀ W W₀ ρ σ dV dW s x₀ y hli p hp Φ hΦ h hne

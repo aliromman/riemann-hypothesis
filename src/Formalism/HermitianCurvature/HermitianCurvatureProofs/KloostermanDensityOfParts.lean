@@ -94,10 +94,6 @@ theorem p_sum_le {V : Type*} [AddCommGroup V] [Module ℂ V] (p : Seminorm ℂ V
     rw [Finset.sum_cons, Finset.sum_cons]
     exact (map_add_le_add p _ _).trans (add_le_add_right ih _)
 
-theorem nexp (x : ℝ) : ‖Complex.exp (Complex.I * (x : ℂ))‖ = 1 := by
-  rw [mul_comm]
-  exact Complex.norm_exp_ofReal_mul_I x
-
 theorem geom_bound (q : ℂ) (hq : ‖q‖ = 1) (hq1 : q ≠ 1) (M : ℕ) :
     ‖∑ m ∈ range M, q ^ m‖ ≤ 2 / ‖q - 1‖ := by
   have hne : 0 < ‖q - 1‖ := norm_pos_iff.2 (sub_ne_zero.2 hq1)
@@ -155,14 +151,14 @@ theorem averaging_vanishes : C6.AveragingZero := by
   set q : Fin s → ℂ := fun j => Complex.exp (Complex.I * ((t * (c j * u).re : ℝ) : ℂ)) with hqdef
   have hq1 : ∀ j ∈ Finset.univ.erase j0, q j ≠ 1 := fun j hj =>
     exp_ne_one (mul_ne_zero htpos.ne' (hu j hj)) (hphase j)
-  have hqn : ∀ j, ‖q j‖ = 1 := fun j => nexp _
+  have hqn : ∀ j, ‖q j‖ = 1 := fun j => Complex.norm_exp_I_mul_ofReal _
   have hpsi : ∀ j (x : ℂ), G.psi β (-(w j0) * x) * G.psi β (w j * x) =
       Complex.exp (Complex.I * (((c j * x).re : ℝ) : ℂ)) := by
     intro j x
     rw [show c j * x = β * (-(w j0) * x) + β * (w j * x) by simp only [hcdef]; ring, Complex.add_re,
       Complex.ofReal_add, mul_add, Complex.exp_add]
     rfl
-  have hpsin : ∀ x : ℂ, ‖G.psi β x‖ = 1 := fun x => nexp _
+  have hpsin : ∀ x : ℂ, ‖G.psi β x‖ = 1 := fun x => Complex.norm_exp_I_mul_ofReal _
   set Kc : ℝ := ∑ j ∈ Finset.univ.erase j0, 2 / ‖q j - 1‖ * p (a j) with hKc
   have hC' : 0 ≤ C' := by
     obtain ⟨N, hN⟩ := exists_nat_gt (|x₁| / ‖u‖ + 1)
@@ -212,7 +208,7 @@ theorem averaging_vanishes : C6.AveragingZero := by
         congr 1
         push_cast
         ring
-      simp only [hcoef, hterm, ← Finset.mul_sum, norm_mul, nexp, one_mul]
+      simp only [hcoef, hterm, ← Finset.mul_sum, norm_mul, Complex.norm_exp_I_mul_ofReal, one_mul]
       exact geom_bound (q j) (hqn j) (hq1 j hj) N
     have hsplit : ∑ j, coef j • a j = coef j0 • a j0 + ∑ j ∈ Finset.univ.erase j0, coef j • a j :=
       (Finset.add_sum_erase _ _ (Finset.mem_univ j0)).symm

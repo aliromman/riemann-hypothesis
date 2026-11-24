@@ -931,6 +931,7 @@ end -- clump:auto
 open MeasureTheory Formalism.DegreeFormula GlobalTheory.TrueCx
 
 open scoped Matrix ComplexOrder
+open scoped GlobalTheory.CompHt
 
 namespace GlobalTheory.UnifNull
 
@@ -1149,6 +1150,7 @@ end GlobalTheory.LieBase
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HodgeMetricChernIntegralEqCovolumeMulFlagDegree
+open scoped GlobalTheory.CompHt
 
 namespace GlobalTheory.LieBase
 

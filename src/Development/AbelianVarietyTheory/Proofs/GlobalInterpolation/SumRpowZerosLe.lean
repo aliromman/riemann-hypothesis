@@ -1481,8 +1481,9 @@ end -- clump:auto
 
 namespace GlobalTheory.Lin.ZeroSum
 
-theorem mem_disc {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) {T : ℝ} {ρ : ℂ}
-    (h : ρ ∈ zerosBox χ (1 / 2) T) :
+theorem mem_disc_of_nonneg {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) {σ T : ℝ} {ρ : ℂ}
+    (hσ : 0 ≤ σ)
+    (h : ρ ∈ zerosBox χ σ T) :
     ⌊ρ.im⌋ ∈ Finset.Icc (-⌈T⌉) ⌈T⌉ ∧ ρ ∈ zerosDisc χ (2 + ((⌊ρ.im⌋ : ℝ) : ℂ) * I) 3 := by
   obtain ⟨h1, h2, h3, h4⟩ := h
   rw [abs_le] at h3
@@ -1505,26 +1506,33 @@ theorem mem_disc {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) {T : ℝ} 
   · rintro rfl
     simp at h2
 
-theorem total_count : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q) (T : ℝ),
-    2 ≤ T → ∃ h : (zerosBox χ (1 / 2) T).Finite,
-      ∑ ρ ∈ h.toFinset, (ord χ ρ : ℝ) ≤ C * (q * T ^ 2) := by
+theorem mem_disc {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) {T : ℝ} {ρ : ℂ}
+    (h : ρ ∈ zerosBox χ (1 / 2) T) :
+    ⌊ρ.im⌋ ∈ Finset.Icc (-⌈T⌉) ⌈T⌉ ∧ ρ ∈ zerosDisc χ (2 + ((⌊ρ.im⌋ : ℝ) : ℂ) * I) 3 :=
+  mem_disc_of_nonneg χ (by norm_num : (0 : ℝ) ≤ 1 / 2) h
+
+/-- The weighted zero count retains logarithmic dependence on the level,
+including zeros on the imaginary axis when `σ = 0`. -/
+theorem total_count_log : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q) (T σ : ℝ),
+    2 ≤ T → 0 ≤ σ → ∃ h : (zerosBox χ σ T).Finite,
+      ∑ ρ ∈ h.toFinset, (ord χ ρ : ℝ) ≤ C * T * Real.log (q * (T + 3)) := by
   obtain ⟨C, hC, H⟩ := _root_.GlobalTheory.LogDerivHigher.main
-  refine ⟨12 * C, by positivity, fun q _ χ T hT => ?_⟩
+  refine ⟨4 * C, by positivity, fun q _ χ T σ hT hσ => ?_⟩
   have hf : ∀ n : ℤ, (zerosDisc χ (2 + ((n : ℝ) : ℂ) * I) 3).Finite :=
     fun n => (H q χ 2 n 0 (by norm_num) le_rfl).1
-  have hfin : (zerosBox χ (1 / 2) T).Finite := by
+  have hfin : (zerosBox χ σ T).Finite := by
     refine ((Finset.Icc (-⌈T⌉) ⌈T⌉).finite_toSet.biUnion (fun n _ => hf n)).subset ?_
     intro ρ hρ
     simp only [Set.mem_iUnion]
-    exact ⟨_, (mem_disc χ hρ).1, (mem_disc χ hρ).2⟩
+    exact ⟨_, (mem_disc_of_nonneg χ hσ hρ).1, (mem_disc_of_nonneg χ hσ hρ).2⟩
   refine ⟨hfin, ?_⟩
   have hq : (1 : ℝ) ≤ q := by exact_mod_cast NeZero.one_le
   have a3 := Int.ceil_lt_add_one T
   have a4 := Int.le_ceil T
   rw [← Finset.sum_fiberwise_of_maps_to (t := Finset.Icc (-⌈T⌉) ⌈T⌉) (g := fun ρ : ℂ => ⌊ρ.im⌋)
-    (fun ρ hρ => (mem_disc χ (hfin.mem_toFinset.1 hρ)).1)]
+    (fun ρ hρ => (mem_disc_of_nonneg χ hσ (hfin.mem_toFinset.1 hρ)).1)]
   have key : ∀ n ∈ Finset.Icc (-⌈T⌉) ⌈T⌉,
-      ∑ ρ ∈ hfin.toFinset with ⌊ρ.im⌋ = n, (ord χ ρ : ℝ) ≤ C * (q * (3 * T)) := by
+      ∑ ρ ∈ hfin.toFinset with ⌊ρ.im⌋ = n, (ord χ ρ : ℝ) ≤ C * Real.log (q * (T + 3)) := by
     intro n hn
     have h2 := (H q χ 2 n 0 (by norm_num) le_rfl).2.1
     rw [finsum_mem_eq_finite_toFinset_sum _ (hf n)] at h2
@@ -1539,24 +1547,39 @@ theorem total_count : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q] (χ : Diri
           intro ρ hρ
           rw [Finset.mem_filter] at hρ
           rw [Set.Finite.mem_toFinset, ← hρ.2]
-          exact (mem_disc χ (hfin.mem_toFinset.1 hρ.1)).2
+          exact (mem_disc_of_nonneg χ hσ (hfin.mem_toFinset.1 hρ.1)).2
       _ ≤ _ := h2
       _ ≤ _ := by
           refine mul_le_mul_of_nonneg_left ?_ hC.le
-          refine (Real.log_le_self (by positivity)).trans ?_
-          refine mul_le_mul_of_nonneg_left (by linarith) (by positivity)
+          apply Real.log_le_log (by positivity)
+          exact mul_le_mul_of_nonneg_left (by linarith) (by positivity)
   refine (Finset.sum_le_card_nsmul _ _ _ key).trans ?_
   rw [nsmul_eq_mul]
   have hc : ((Finset.Icc (-⌈T⌉) ⌈T⌉).card : ℝ) ≤ 4 * T := by
     have h0 : (0 : ℤ) ≤ ⌈T⌉ + 1 - -⌈T⌉ := by
       have : (0 : ℤ) ≤ ⌈T⌉ := Int.ceil_nonneg (by linarith)
-      omega
+      lia
     have : (((Finset.Icc (-⌈T⌉) ⌈T⌉).card : ℤ) : ℝ) = ((⌈T⌉ + 1 - -⌈T⌉ : ℤ) : ℝ) := by
       rw [Int.card_Icc, Int.toNat_of_nonneg h0]
     push_cast at this
     rw [this]; linarith
-  calc _ ≤ (4 * T) * (C * (q * (3 * T))) := by gcongr
+  have hlog : 0 ≤ Real.log ((q : ℝ) * (T + 3)) := Real.log_nonneg (by nlinarith)
+  calc _ ≤ (4 * T) * (C * Real.log (q * (T + 3))) := by gcongr
     _ = _ := by ring
+
+theorem total_count : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q) (T : ℝ),
+    2 ≤ T → ∃ h : (zerosBox χ (1 / 2) T).Finite,
+      ∑ ρ ∈ h.toFinset, (ord χ ρ : ℝ) ≤ C * (q * T ^ 2) := by
+  obtain ⟨C, hC, H⟩ := total_count_log
+  refine ⟨3 * C, by positivity, fun q _ χ T hT => ?_⟩
+  obtain ⟨hfin, hbound⟩ := H q χ T (1 / 2) hT (by norm_num)
+  refine ⟨hfin, hbound.trans ?_⟩
+  have hlog : Real.log ((q : ℝ) * (T + 3)) ≤ q * (3 * T) :=
+    (Real.log_le_self (by positivity)).trans
+      (mul_le_mul_of_nonneg_left (by linarith) (by positivity))
+  calc C * T * Real.log ((q : ℝ) * (T + 3)) ≤ C * T * (q * (3 * T)) := by
+         gcongr
+       _ = (3 * C) * (q * T ^ 2) := by ring
 
 theorem layers {ι : Type*} (s : Finset ι) (w δ : ι → ℝ) (hw : ∀ i, 0 ≤ w i) {L η e : ℝ}
     (hL : 0 < L) (J : ℕ) (hJ : L * e < J) (hη : 0 ≤ η) :

@@ -136,7 +136,7 @@ theorem sum_zeta_pow_mul_rpow_le (s : ℝ) (N k : ℕ) :
         · rintro ⟨h, h0⟩
           have h1 : 0 < x.1 := Nat.pos_of_ne_zero (by rintro h1; rw [h1] at h; omega)
           have h2 : 0 < x.2 := Nat.pos_of_ne_zero (by rintro h1; rw [h1] at h; omega)
-          refine ⟨⟨⟨h1, ?_⟩, h2, ?_⟩, h⟩ <;> nlinarith
+          refine ⟨⟨⟨h1, (Nat.le_mul_of_pos_right _ h2).trans (h.le.trans hn.2)⟩, h2, (Nat.le_mul_of_pos_left _ h1).trans (h.le.trans hn.2)⟩, h⟩
         · rintro ⟨_, h⟩
           exact ⟨h, by omega⟩
       · intro x hx
@@ -286,12 +286,12 @@ theorem residue_rankin_numeric (x : ℝ) (hx : (3 / 2 : ℝ) ≤ x) (f : ℕ) :
     have he := Real.exp_one_lt_d9
     have hp0 := Real.pi_pos
     have he0 := Real.exp_pos 1
-    have h3 : 2 * Real.pi * Real.exp 1 ≤ 18 := by nlinarith
+    have h3 : 2 * Real.pi * Real.exp 1 ≤ 18 := by linarith [mul_lt_mul'' hpi he hp0.le he0.le]
     have h4 : (1 + L) ^ 2 ≤ (7 / 2 * L) ^ 2 :=
       pow_le_pow_left₀ (by linarith) (by linarith) 2
     calc 2 * Real.pi * Real.exp 1 * (1 + L) ^ 2 ≤ 18 * (7 / 2 * L) ^ 2 :=
           mul_le_mul h3 h4 (by positivity) (by norm_num)
-      _ ≤ (16 * L) ^ 2 := by nlinarith [sq_nonneg L]
+      _ ≤ (16 * L) ^ 2 := by linarith [sq_nonneg L]
   have hc := pow_le_pow_left₀ (by positivity) hb f
   calc (2 * Real.pi) ^ f * (x ^ f * Real.exp 1 ^ f * ((1 + L) ^ 2) ^ f)
       = (2 * Real.pi * Real.exp 1 * (1 + L) ^ 2) ^ f * x ^ f := by
@@ -325,7 +325,7 @@ theorem dedekindZeta_residue_le_log_rootDiscr_pow :
       = (2 * Real.pi) ^ Formalism.HermitianLatticesTheory.fDeg K * ((classNumber K : ℝ) * Units.regulator K) := by ring
     _ ≤ _ := mul_le_mul_of_nonneg_left hHR hp.le
     _ ≤ _ := hnum
-    _ ≤ _ := by nlinarith
+    _ ≤ _ := by linarith [le_mul_of_one_le_right hq hw]
 
 end GlobalTheory
 end -- clump:auto
@@ -362,7 +362,7 @@ theorem log_factor_le (n m : ℕ) (a : ℝ) (hn : 18 ≤ n) (ha : a ≤ m) (hm :
   have hc : 2 * Real.pi * Real.exp 1 ≤ n := by
     have h1 := Real.pi_lt_d2
     have h2 := Real.exp_one_lt_d9
-    nlinarith
+    linarith [mul_lt_mul'' h1 h2 hpi.le he.le]
   have hL : 0 ≤ Real.log (n / (2 * Real.pi * Real.exp 1)) :=
     Real.log_nonneg (by rw [le_div_iff₀ (by positivity)]; linarith)
   have h1 : (m : ℝ) ^ m / m.factorial ≤ Real.exp 1 ^ m := by
@@ -373,7 +373,7 @@ theorem log_factor_le (n m : ℕ) (a : ℝ) (hn : 18 ≤ n) (ha : a ≤ m) (hm :
     have h3 : Real.pi * Real.exp 1 / m ≤ (n / (2 * Real.pi * Real.exp 1))⁻¹ := by
       rw [inv_div, div_le_div_iff₀ hm0 (by linarith)]
       have : 0 < Real.pi * Real.exp 1 := by positivity
-      nlinarith
+      linarith [mul_le_mul_of_nonneg_left hm this.le]
     calc 2 * Real.pi ^ (m + 1) / (m.factorial : ℝ)
         = (2 * Real.pi) * ((Real.pi / m) ^ m * ((m : ℝ) ^ m / m.factorial)) := by
           rw [div_pow, pow_succ]; field_simp
@@ -383,7 +383,7 @@ theorem log_factor_le (n m : ℕ) (a : ℝ) (hn : 18 ≤ n) (ha : a ≤ m) (hm :
       _ ≤ _ := by gcongr
   refine (Real.log_le_log (by positivity) h2).trans ?_
   rw [Real.log_mul (by positivity) (by positivity), Real.log_pow, Real.log_inv]
-  nlinarith
+  linarith [mul_le_mul_of_nonneg_right ha hL]
 
 theorem log_ratio_add_le (n q : ℕ) (a : ℝ) (hn : 18 ≤ n) (ha : a ≤ q) (hq : (n : ℝ) / 2 ≤ q)
     (j : ℕ) : Real.log (sphV (q + j) / sphV q) ≤
@@ -524,7 +524,7 @@ theorem rpow_le (v x : ℝ) (hv : 3 / 4 ≤ v) (hx : 0 ≤ x) : v ^ (-x) ≤ Rea
   have h1 := Real.one_sub_inv_le_log_of_pos hv0
   have h2 : v⁻¹ ≤ 4 / 3 := by
     rw [inv_le_comm₀ hv0 (by norm_num)]; linarith
-  nlinarith
+  linarith [mul_le_mul_of_nonneg_right (show -1 / 3 ≤ Real.log v by linarith) hx]
 
 theorem inv_sph_le (J : ℕ) (s : ℝ) (hJ : (J : ℝ) ≤ s) (hJ1 : 1 ≤ J) :
     (sphV J)⁻¹ ≤ Real.exp (J * (s / 2 * Real.log s)) := by
@@ -537,10 +537,10 @@ theorem inv_sph_le (J : ℕ) (s : ℝ) (hJ : (J : ℝ) ≤ s) (hJ1 : 1 ≤ J) :
     have h3 : ((J * (J - 1) / 2 : ℕ) : ℝ) ≤ ((J * (J - 1) : ℕ) : ℝ) / (2 : ℕ) := Nat.cast_div_le
     rw [Nat.cast_mul, Nat.cast_sub hJ1] at h3
     push_cast at h3
-    nlinarith
+    linarith [mul_le_mul_of_nonneg_left (show (J : ℝ) - 1 ≤ s by linarith) h0.le]
   have h4 : Real.log J ≤ Real.log s := Real.log_le_log h0 hJ
   have h5 : 0 ≤ Real.log J := Real.log_nonneg h1
-  calc _ ≤ (J * (s / 2)) * Real.log s := mul_le_mul h2 h4 h5 (by nlinarith)
+  calc _ ≤ (J * (s / 2)) * Real.log s := mul_le_mul h2 h4 h5 (mul_nonneg h0.le (by linarith))
     _ = _ := by ring
 
 theorem zeta_prod (E : Type) [Field E] [NumberField E] (J : ℕ) :
@@ -559,11 +559,11 @@ theorem zeta_prod (E : Type) [Field E] [NumberField E] (J : ℕ) :
 theorem numeric (N s L c : ℝ) (hs : 100 ≤ s) (hN : N = s * s) (hL : 15 ≤ L) (hc0 : 0 ≤ c) (hc : c ≤ 2) :
     N / 3 + (c - (N - 2 * s) * (L - (c + 1)) + 3.49 + s / 2 * (L / 2)) + 2 * (3 + N) + 2 + 1 ≤
       -(1 / 2 * N * L) := by
-  have h1 : 100 * s ≤ N := by nlinarith
+  have h1 : 100 * s ≤ N := by rw [hN]; exact mul_le_mul_of_nonneg_right hs (by linarith)
   have h2 : (N - 2 * s) * (c + 1) ≤ N * 3 := mul_le_mul (by linarith) (by linarith) (by linarith) (by linarith)
   have h3 : 100 * s * L ≤ N * L := mul_le_mul_of_nonneg_right h1 (by linarith)
   have h4 : N * 15 ≤ N * L := mul_le_mul_of_nonneg_left hL (by linarith)
-  nlinarith
+  linarith [show (N - 2 * s) * (L - (c + 1)) = N * L - 2 * (s * L) - (N - 2 * s) * (c + 1) by ring]
 
 end ConstBd
 
@@ -604,7 +604,7 @@ theorem constantBound : ConstantBound := by
   have hJ0 : (0 : ℝ) ≤ J := Nat.cast_nonneg J
   have hf0 : (0 : ℝ) ≤ f := Nat.cast_nonneg f
   have haJ' : (a : ℝ) ≤ J := by exact_mod_cast haJ
-  have h100 : 100 * s ≤ n := by nlinarith
+  have h100 : 100 * s ≤ n := by rw [hss]; exact mul_le_mul_of_nonneg_right hs100 (by linarith)
   have h2J : 2 * J + 2 ≤ n := by
     have : (2 : ℝ) * J + 2 ≤ n := by linarith
     exact_mod_cast this
@@ -620,7 +620,7 @@ theorem constantBound : ConstantBound := by
     have h1 : Real.exp 2 = Real.exp 1 ^ 2 := by rw [Real.exp_one_pow]; norm_num
     have := Real.exp_one_gt_d9
     have := Real.pi_lt_d2
-    nlinarith
+    linarith [pow_le_pow_left₀ (by norm_num : (0 : ℝ) ≤ 2.7) (by linarith : (2.7 : ℝ) ≤ Real.exp 1) 2]
 
   have T1 : Formalism.HermitianLatticesTheory.vInv E ^ (-((f : ℝ) * dimN n j / 2)) ≤ Real.exp (f * J * (n / 3)) := by
     refine (rpow_le _ _ (by linarith) (by positivity)).trans (Real.exp_le_exp.2 ?_)
@@ -629,7 +629,7 @@ theorem constantBound : ConstantBound := by
 
   have T2 : (2 : ℝ) ^ (-((f : ℝ) * ((n : ℝ) * J - (J : ℝ) ^ 2 + (J : ℝ) / 2))) ≤ 1 := by
     apply Real.rpow_le_one_of_one_le_of_nonpos (by norm_num)
-    have : (0 : ℝ) ≤ (n : ℝ) * J - (J : ℝ) ^ 2 + (J : ℝ) / 2 := by nlinarith
+    have : (0 : ℝ) ≤ (n : ℝ) * J - (J : ℝ) ^ 2 + (J : ℝ) / 2 := by linarith [mul_le_mul_of_nonneg_right (show (J : ℝ) ≤ n by linarith) hJ0, sq (J : ℝ)]
     have := mul_nonneg hf0 this
     linarith
 

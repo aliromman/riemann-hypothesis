@@ -1415,7 +1415,6 @@ theorem rma_isDom_omPlus (hz : inWb k r z) (hz' : inWb k r z') : IsDom k r z z' 
   rw [e]
   exact hg.2
 
-
 variable (k r z z' π π') in
 def rma_K : Submodule ℂ (Mx k r → (Wq →L[ℂ] Wp)) where
   carrier := FFl k r z z' π π' 0 (OmPlus k r z z')
@@ -1433,7 +1432,6 @@ theorem rma_resG_add {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] (i :
     (J J' : Mx k r → E) (c : Fin r → ℂ) (g : Mx k r) :
     resG k r i (J + J') c g = resG k r i J c g + resG k r i J' c g := by
   simp only [resG, Pi.add_apply, smul_add]
-
 
 open Classical in
 variable (z z') in
@@ -1519,7 +1517,6 @@ theorem rma_res_apply (hz : inWb k r z) (hz' : inWb k r z') (J : Mx k r → (Wq 
   rw [e]
   exact rma_resFn_of_mem J hy
 
-
 variable (V : Type) [AddCommGroup V] [Module ℂ V] in
 def rma_fst : Pr V →ₐ[ℂ] Module.End ℂ V where
   toFun x := x.1
@@ -1534,7 +1531,6 @@ theorem rma_fst_mkP {V : Type} [AddCommGroup V] [Module ℂ V] (A B : Module.End
 theorem rma_star_alg {V : Type} [AddCommGroup V] [Module ℂ V] (w : ℂ) :
     star (algebraMap ℂ (Pr V) w) = algebraMap ℂ (Pr V) (star w) := by
   rw [P.Qx8.algebraMap_Pr, P.Qx8.algebraMap_Pr, P.Qx8.star_mkPair, star_star]
-
 
 variable (k r z z') in
 def rma_Loc {E : Type*} (N : OM (Fn k r E)) : Prop :=
@@ -1724,7 +1720,6 @@ theorem rma_QQi (X : ActualOps k r z z' π π') (L : R.LevelData (Pr (RadSp k r 
   rw [hQ, Matrix.smul_apply, map_smul, LinearMap.smul_apply, Submodule.coe_smul, Pi.smul_apply, Pi.smul_apply]
   congr 1
   exact (rma_sandw X L hL Y r le_rfl _ _ (rma_base X Y) (rma_QL_loc Y)).1 a b Ψ y hy
-
 
 variable (k r z z') in
 def rma_Qop (s : ℂ) : ℂ → Wd.M2 (D.Op (Mx k r → (Wq →L[ℂ] Wp))) := fun Y =>
@@ -2022,12 +2017,6 @@ theorem sq_jf_congr (D : RealPlaceData k r Wp Wq) {F F₂ : Mat k r → (Wq →L
       (Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_inv h1.1) (Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_inv h2.1)) hg) h4.1) h3.1
   simp only [rho, h _ hs]
 
-theorem sq_bcWeight_nonneg (T T' : ℝ) (q : (Fin r → ℂ) × ℂ) : 0 ≤ bcWeight k r T T' q := by
-  unfold bcWeight
-  split_ifs with h
-  · exact mul_nonneg (Finset.prod_nonneg fun a _ => by positivity) (pow_nonneg (sub_nonneg.2 h) _)
-  · exact le_rfl
-
 variable [FiniteDimensional ℂ Wq]
 
 theorem sq_beta_congr (D : RealPlaceData k r Wp Wq) {F F₂ G : Mat k r → (Wq →L[ℂ] Wp)}
@@ -2043,7 +2032,7 @@ theorem sq_beta_congr (D : RealPlaceData k r Wp Wq) {F F₂ G : Mat k r → (Wq 
         (hsVec (JF D F₂ (bigCell k r q.1 (D.μsec q.2))))
     rw [sq_jf_congr D h hg]
   · have hw : bcWeight k r (Tz k r D.z) (Tz k r D.z') q = 0 :=
-      le_antisymm (not_lt.1 hQ) (sq_bcWeight_nonneg _ _ q)
+      le_antisymm (not_lt.1 hQ) (Formalism.FourierDecayAlt.P.B7.boundary_weight_nonneg _ _ q)
     show (bcWeight k r (Tz k r D.z) (Tz k r D.z') q : ℂ) * _ = (bcWeight k r (Tz k r D.z) (Tz k r D.z') q : ℂ) * _
     rw [hw]
     simp

@@ -21,6 +21,12 @@ a pull request that GitHub cannot merge into it is told so in a comment. Once th
 request is merged or closed, its branch is removed. What it contained and is still open stays
 queued, and the next run starts a new batch with it.
 
+Queued commits are merged in pull request number order, except that those of pull requests
+labelled `priority` go first: when one of them and another pull request cannot both be merged,
+the other one is left out. The order counts when a batch is started or rebuilt. After that, a
+newly queued commit is merged on top of what is already there, and one that was left out stays
+out until the batch is rebuilt or a new commit of it is queued, labelled `priority` or not.
+
 A batch assembled by hand is being built for as long as its pull request is open and its branch
 holds the head commit of an open pull request, and this script labels its pull request
 `building` to say so. One that is labelled `batch queue` itself waits in the queue like any
@@ -70,6 +76,8 @@ import subprocess
 import sys
 
 QUEUED, BUILDING = "batch queue", "building"
+# A maintainer's label: pull requests that carry it go into a batch before the others.
+PRIORITY = "priority"
 PREFIX = "batch/"
 # The name `start` gives a batch branch. Any other `batch/...` branch is not this script's.
 OWN_BATCH = re.compile(r"batch/[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{6}(?:-[0-9]+)?")
@@ -832,7 +840,7 @@ def sync(gh, now=None):
     if batch:
         restack(gh, batch, state, base, main_sha, log)
     queued = sorted((pr for pr in pulls.values() if QUEUED in pr["labels"] and not is_batch(pr) and pr["base"] == main),
-                    key=lambda pr: pr["number"])
+                    key=lambda pr: (PRIORITY not in pr["labels"], pr["number"]))
     for pr in queued:
         number, key = pr["number"], str(pr["number"])
         sha, comments = look(gh, pr, state["seen"])

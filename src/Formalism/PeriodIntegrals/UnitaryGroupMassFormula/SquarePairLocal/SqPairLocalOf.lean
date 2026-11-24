@@ -81,7 +81,7 @@ theorem wz_le_of {a b : ℤᵐ⁰} (hb : b ≤ 1)
   rcases eq_or_ne b 0 with rfl | h0
   · have : a = 0 := by
       by_contra ha0
-      obtain ⟨N, hN⟩ := wz_exists_nat_lt a ha0
+      obtain ⟨N, hN⟩ := @WithZero.exists_exp_neg_natCast_lt a ha0
       exact absurd (h N (by simp)) (not_le.2 hN)
     simp [this]
   · have hl : log b ≤ 0 := by
@@ -210,7 +210,7 @@ theorem ball_sub (x : v.adicCompletion E) {s : Set (v.adicCompletion E)} (hs : s
   obtain ⟨γ, hγ⟩ := Valued.mem_nhds.1 hs
   have h0 : embedding γ.1 ≠ 0 := fun h =>
     γ.ne_zero (embedding_injective (h.trans (map_zero _).symm))
-  obtain ⟨K, hK⟩ := wz_exists_nat_lt _ h0
+  obtain ⟨K, hK⟩ := @WithZero.exists_exp_neg_natCast_lt _ h0
   refine ⟨K, fun z hz => hγ ?_⟩
   show Valued.v.restrict (z - x) < γ.1
   rw [Valuation.restrict_lt_iff_lt_embedding]

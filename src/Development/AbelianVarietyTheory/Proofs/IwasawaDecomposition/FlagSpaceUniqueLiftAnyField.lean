@@ -186,7 +186,7 @@ theorem coord_iff_of_hom (hπ : C.π = f ≫ j) (hT : Tied e B j f₀ S A₀) (h
     simp only [← Category.assoc]
     rw [e0]
 
-  have hU := (GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible E H Dw l Xo c O β Z _ φA _ fA _ φ₁ _ (f.stalkMap (p (IsLocalRing.closedPoint K))).hom
+  have hU := (GlobalTheory.ShFam.EigCoord.coord_spec E H Dw l Xo c O β Z _ φA _ fA _ φ₁ _ (f.stalkMap (p (IsLocalRing.closedPoint K))).hom
     inferInstance hSA hst hφ₁).1 f₁
   obtain ⟨G, hG⟩ := hU.1.exists
   have hGdet : ∀ τ, IsUnit (G τ).det := hU.2 G hG
@@ -201,7 +201,7 @@ theorem coord_iff_of_hom (hπ : C.π = f ≫ j) (hT : Tied e B j f₀ S A₀) (h
       (φ : B.Fn →+* C.Y.Fn).comp (algebraMap _ B.X.functionField) :=
     RingHom.ext fun a => (map_algebraMap_stalk hφ (p (IsLocalRing.closedPoint K)) a).symm
   rw [← hcomp] at c2
-  have e4 := ((GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible E H Dw l Xo c O β Z _ φA _ fA _ _ _ _ inferInstance hSA c1.1 c1.2.1).1 C.f0).1.unique c1 c2
+  have e4 := ((GlobalTheory.ShFam.EigCoord.coord_spec E H Dw l Xo c O β Z _ φA _ fA _ _ _ _ inferInstance hSA c1.1 c1.2.1).1 C.f0).1.unique c1 c2
   have dA₀ : ∀ τ, ((A₀.map (φ : B.Fn →+* C.Y.Fn)) τ).det ≠ 0 := fun τ => by
     rw [Mat.det_map]; exact (map_ne_zero _).2 (Fr.det_ne hA₀ τ)
   have dA₁ : ∀ τ, (A₁ τ).det ≠ 0 := Fr.det_ne hA₁
@@ -237,7 +237,7 @@ theorem coord_iff_of_hom (hπ : C.π = f ≫ j) (hT : Tied e B j f₀ S A₀) (h
       h = h' * G.map (Scheme.stalkClosedPointTo (R := .of K) p).hom := fun h' hh' => by
     have c3 := _root_.GlobalTheory.ShFam.CoordComp.coord_comp E H Dw l Xo c O β Z _ _ _ fA _ _ _ f₁ _ _ _ g _ _ _ _ inferInstance hG hh'
     rw [← hxK] at c3
-    exact ((GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible E H Dw l Xo c O β Z _ φA _ fA _ χ _ _ inferInstance hSA hh.1 hh.2.1).1 g).1.unique hh c3
+    exact ((GlobalTheory.ShFam.EigCoord.coord_spec E H Dw l Xo c O β Z _ φA _ fA _ χ _ _ inferInstance hSA hh.1 hh.2.1).1 g).1.unique hh c3
   have hx₁ : x = spMap (Scheme.stalkClosedPointTo (R := .of K) p).hom ≫
       (stalkPt C.Y (p (IsLocalRing.closedPoint K)) ≫ C.π ≫ genι Z) := by
     rw [← hx, hπ]
@@ -247,7 +247,7 @@ theorem coord_iff_of_hom (hπ : C.π = f ≫ j) (hT : Tied e B j f₀ S A₀) (h
     rw [hh.2.1, hxK, hφ₁, RingHom.comp_assoc]
   have bwd : ∀ h', h = h' * G.map (Scheme.stalkClosedPointTo (R := .of K) p).hom →
       f₁.Coord (Scheme.stalkClosedPointTo (R := .of K) p).hom g h' := fun h' hh' => by
-    obtain ⟨h'', hh''⟩ := ((GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible E H Dw l Xo c O β Z _ φ₁ _ f₁ K χ _ _ inferInstance hS₁ hx₁ hχ₁).1 g).1.exists
+    obtain ⟨h'', hh''⟩ := ((GlobalTheory.ShFam.EigCoord.coord_spec E H Dw l Xo c O β Z _ φ₁ _ f₁ K χ _ _ inferInstance hS₁ hx₁ hχ₁).1 g).1.exists
     have e10 : h' * G.map (Scheme.stalkClosedPointTo (R := .of K) p).hom =
         h'' * G.map (Scheme.stalkClosedPointTo (R := .of K) p).hom := hh'.symm.trans (fwd h'' hh'')
     have e9 : h' = h'' := by
@@ -283,7 +283,7 @@ theorem lifts_closed (hj : j ≫ genStr Z ≫ spMap e.toRingHom = B.str) (hπ : 
       (stalkPt B (x (IsLocalRing.closedPoint K)) ≫ j ≫ genι Z) := by
     conv_lhs => rw [← hx'']
     simp only [Category.assoc]
-  obtain ⟨g, hg⟩ := (GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible E H Dw l Xo c O β Z _ φA _ fA K χ _ _ inferInstance hSA hxg hχ').2 h
+  obtain ⟨g, hg⟩ := (GlobalTheory.ShFam.EigCoord.coord_spec E H Dw l Xo c O β Z _ φA _ fA K χ _ _ inferInstance hSA hxg hχ').2 h
     fun τ => (hh τ).2.1.isUnit
   refine (existsUnique_congr fun p => and_congr_right fun hp => ?_).2 (hL K χ x hχ g)
   subst hp

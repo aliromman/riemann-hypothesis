@@ -1631,12 +1631,6 @@ theorem foldr_map_comp {α β : Type*} (f : α → β → β) (l : List α) (x :
   | nil => rfl
   | cons a l ih => simp only [List.map_cons, List.foldr_cons, Function.comp_apply, ih]
 
-theorem foldr_map' {α β γ : Type*} (f : α → β) (g : β → γ → γ) (l : List α) (x : γ) :
-    (l.map f).foldr g x = l.foldr (fun a y => g (f a) y) x := by
-  induction l with
-  | nil => rfl
-  | cons a l ih => simp only [List.map_cons, List.foldr_cons, ih]
-
 theorem eO_eq_vUnit {p : ℕ} (G : GAtP p) (vp : G.O) (unif : Irreducible vp) (eO : ℕ)
     (h : Associated (p : G.O) (vp ^ eO)) : (eO : ℝ) = vUnit G := by
   obtain ⟨u, hu⟩ := h

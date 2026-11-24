@@ -1281,7 +1281,7 @@ theorem trace_integral' : TraceInt := by
   let w : Valuation K (WithZero (Multiplicative ℤ)) := Valued.v
   let m := IsLocalRing.maximalIdeal O
   have hcomplete : IsAdicComplete m O := by
-    have hIntegers := Formalism.BasicNotions.Examples₂.adicInt_integers (K := I.F) v
+    have hIntegers := IsDedekindDomain.HeightOneSpectrum.adicCompletionIntegers.integers (K := I.F) v
     obtain ⟨π, hπ⟩ := Formalism.BasicNotions.Examples₂.adicInt_exists_unif (K := I.F) v
     have hm : m = Ideal.span {π} := by
       ext x
@@ -1315,7 +1315,7 @@ theorem trace_integral' : TraceInt := by
           ((Valued.hasBasis_nhds_zero K (WithZero (Multiplicative ℤ))).comap _).mem_iff.mp hU
         have hγ0 : MonoidWithZeroHom.ValueGroup₀.embedding γ.1 ≠ 0 := by
           exact (_root_.map_ne_zero MonoidWithZeroHom.ValueGroup₀.embedding).mpr γ.ne_zero
-        obtain ⟨n, hn⟩ := Formalism.BasicNotions.Examples₂.wz_exists_nat_lt _ hγ0
+        obtain ⟨n, hn⟩ := @WithZero.exists_exp_neg_natCast_lt _ hγ0
         have hπn : w ((π : K) ^ n) = WithZero.exp (-(n : ℤ)) := by
           change Valued.v ((π : K) ^ n) = _
           rw [map_pow, hπ, ← WithZero.exp_nsmul]

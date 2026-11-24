@@ -99,26 +99,6 @@ lemma inj_one (κ : FractionRing R →+* FractionRing R')
     simpa using this
   simp [h3]
 
-lemma inj_pi {T : Type} [Fintype T] [DecidableEq T] (κ : FractionRing R →+* FractionRing R')
-    (hκ : κ.comp (algebraMap R _) = (algebraMap R' _).comp (algebraMap R R')) :
-    Function.Injective (((kapL κ hκ).compLeft T).liftBaseChange R') := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
-  intro y hy
-  have key : ∀ (y : R' ⊗[R] (T → FractionRing R)) (h : T),
-      (kapL κ hκ).liftBaseChange R' (TensorProduct.piRight R R' R' (fun _ : T => FractionRing R) y h) =
-        (((kapL κ hκ).compLeft T).liftBaseChange R' y) h := by
-    intro y h
-    induction y using TensorProduct.induction_on with
-    | zero => simp
-    | tmul r f => simp [TensorProduct.piRight_apply, LinearMap.liftBaseChange_tmul]
-    | add a b ha hb => simp only [map_add (f := _), Pi.add_apply, ha, hb]
-  apply (TensorProduct.piRight R R' R' (fun _ : T => FractionRing R)).injective
-  rw [map_zero]
-  funext h
-  apply inj_one κ hκ
-  rw [key, hy]
-  simp
-
 theorem alg_core {T : Type} [CommGroup T] [Finite T] [Module.Flat R R']
     (κ : FractionRing R →+* FractionRing R')
     (hκ : κ.comp (algebraMap R _) = (algebraMap R' _).comp (algebraMap R R'))
@@ -189,7 +169,7 @@ theorem alg_core {T : Type} [CommGroup T] [Finite T] [Module.Flat R R']
     rw [e2, LinearMap.lTensor_comp, LinearMap.comp_apply]
     obtain ⟨y, hy⟩ := hN t
     have e3 : (a t).lTensor R' z = N.subtype.lTensor R' y :=
-      inj_pi κ hκ ((hc t).trans hy.symm)
+      PositivityTheory.HtPt.Htat.ValuationInjectivePi.inj_pi κ hκ ((hc t).trans hy.symm)
     rw [e3]
     exact (hexN _).2 ⟨y, rfl⟩
   obtain ⟨y, hy⟩ := (hexS z).1 hz

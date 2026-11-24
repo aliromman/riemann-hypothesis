@@ -124,14 +124,6 @@ theorem plurRe_log_norm {z0 : Fin e → ℂ} {B : (Fin e → ℂ) → ℂ} (hB :
 def diagLog (b : Matrix (Fin N) (Fin N) ℂ) (k : ℕ) : ℝ :=
   ∑ a : Fin N, if (a : ℕ) < k then Real.log ‖b a a‖ else 0
 
-theorem plurRe_diagLog {z0 : Fin e → ℂ} {b : (Fin e → ℂ) → Matrix (Fin N) (Fin N) ℂ}
-    (hb : ∀ a, AnalyticAt ℂ (fun w => b w a a) z0) (h0 : ∀ a, b z0 a a ≠ 0) (k : ℕ) :
-    PlurRe z0 fun w => diagLog (b w) k := by
-  refine PlurRe.sum fun a => ?_
-  by_cases h : (a : ℕ) < k
-  · simpa [h] using plurRe_log_norm (hb a) (h0 a)
-  · simpa [h] using PlurRe.zero z0
-
 def stepCorr (N j : ℕ) (i : Fin N) (b : Matrix (Fin N) (Fin N) ℂ) : ℝ :=
   if (i : ℕ) + 1 ≤ j then diagLog b (N - j + ((i : ℕ) + 1)) - diagLog b (N - j)
   else diagLog b N - diagLog b (N - j) + diagLog b ((i : ℕ) + 1 - j)
@@ -141,16 +133,9 @@ theorem plurRe_stepCorr {z0 : Fin e → ℂ} {b : (Fin e → ℂ) → Matrix (Fi
     PlurRe z0 fun w => stepCorr N j i (b w) := by
   by_cases hc : (i : ℕ) + 1 ≤ j
   · simp only [stepCorr, hc, ↓reduceIte]
-    exact (plurRe_diagLog hb h0 _).sub (plurRe_diagLog hb h0 _)
+    exact (GlobalTheory.CompanionTheory.Ar.PB.PerDiag.plurRe_diagLog hb h0 _).sub (GlobalTheory.CompanionTheory.Ar.PB.PerDiag.plurRe_diagLog hb h0 _)
   · simp only [stepCorr, hc, ↓reduceIte]
-    exact ((plurRe_diagLog hb h0 _).sub (plurRe_diagLog hb h0 _)).add (plurRe_diagLog hb h0 _)
-
-theorem stepPot_unitary_mul {j : ℕ} {u : Matrix (Fin N) (Fin N) ℂ}
-    (hu : gramOf (sigForm N j) u = diagonal fun i => ((sigForm N j i : ℝ) : ℂ))
-    (i : Fin N) (g : Matrix (Fin N) (Fin N) ℂ) : stepPot N j i (u * g) = stepPot N j i g := by
-  have h k := (_root_.GlobalTheory.CompanionTheory.Ar.PB.gramLog_inv N (sigForm N j) k g u 1).1 hu
-  unfold stepPot
-  simp only [h]
+    exact ((GlobalTheory.CompanionTheory.Ar.PB.PerDiag.plurRe_diagLog hb h0 _).sub (GlobalTheory.CompanionTheory.Ar.PB.PerDiag.plurRe_diagLog hb h0 _)).add (GlobalTheory.CompanionTheory.Ar.PB.PerDiag.plurRe_diagLog hb h0 _)
 
 private theorem submatrix_mulVec_eq_mulVec_extend (G : Matrix (Fin N) (Fin N) ℂ) (k : ℕ)
     (v : {a : Fin N // (a : ℕ) < k} → ℂ) (a : {a : Fin N // (a : ℕ) < k}) :
@@ -854,7 +839,7 @@ theorem exists_cell_coords {j : ℕ} (hj : j ≤ N) (gc : (Fin e → ℂ) → Ma
       convert this using 1
       rw [hw, ← Matrix.mul_assoc, hinvu, Matrix.one_mul, Matrix.mul_assoc,
         Matrix.mul_nonsing_inv _ hdw, Matrix.mul_one]
-    rw [hw, stepPot_unitary_mul hu, stepPot_mul_triangular hj hcell (PositivityTheory.Xgp.per_cell.up_tri _) hdw]
+    rw [hw, GlobalTheory.CompanionTheory.Ar.PB.PerDiag.stepPot_unitary_mul hu, stepPot_mul_triangular hj hcell (PositivityTheory.Xgp.per_cell.up_tri _) hdw]
     ring
   · intro v
     have hz : HasFDerivAt (fun w => PositivityTheory.Xgp.per_cell.low (P w))
@@ -1070,7 +1055,6 @@ theorem pairEquiv_lt_snd {j : ℕ} (hj : j ≤ N) (p : Pairs N) (i : Fin N) :
   simp only [pairEquiv, Equiv.ofBijective_apply, pairMap, lt_max_iff, Fin.lt_def, relF]
 
 end PerDiag
-
 
 open PerDiag in
 theorem levi_diagonal_of_isPeriodChart :

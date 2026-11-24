@@ -264,8 +264,8 @@ theorem UpperTheory.geometric_side_comparison :
     intro x (hx : ‖φ x‖ < 1)
     simp only [Set.mem_setOf_eq, not_lt]
     apply Real.exp_le_exp.mpr
-    have ha2 : ‖φ x‖ ^ 2 ≤ 1 := by nlinarith [norm_nonneg (φ x)]
-    nlinarith [Real.pi_pos]
+    have ha2 : ‖φ x‖ ^ 2 ≤ 1 := pow_le_one₀ (norm_nonneg (φ x)) hx.le
+    linarith [mul_nonneg Real.pi_pos.le (sub_nonneg.mpr ha2)]
   have hfin2 : {x : A | ‖φ x‖ < 1 / 2}.Finite :=
     hfin.subset (fun x (hx : ‖φ x‖ < 1 / 2) => show ‖φ x‖ < 1 by linarith)
   set H := hfin.toFinset with hH
@@ -307,12 +307,12 @@ theorem UpperTheory.geometric_side_comparison :
       intro x hx
       simp only [Finset.mem_sdiff, hF, hH, Set.Finite.mem_toFinset, Set.mem_setOf_eq, not_lt] at hx
       obtain ⟨h1, h3⟩ := hx
-      have ha2 : ‖φ x‖ ^ 2 ≤ 1 := by nlinarith [norm_nonneg (φ x)]
+      have ha2 : ‖φ x‖ ^ 2 ≤ 1 := pow_le_one₀ (norm_nonneg (φ x)) h1.le
       have e1 : Real.exp (-Real.pi) ≤ Real.exp (-Real.pi * ‖φ x‖ ^ 2) :=
-        Real.exp_le_exp.mpr (by nlinarith [Real.pi_pos])
-      have e2 : (1 : ℝ) / 4 ≤ ‖φ x‖ ^ 2 := by nlinarith
+        Real.exp_le_exp.mpr (by linarith [mul_nonneg Real.pi_pos.le (sub_nonneg.mpr ha2)])
+      have e2 : (1 : ℝ) / 4 ≤ ‖φ x‖ ^ 2 := by linarith [pow_le_pow_left₀ (by norm_num) h3 2]
       have := Real.exp_pos (-Real.pi)
-      nlinarith
+      linarith [mul_le_mul e2 e1 this.le (sq_nonneg ‖φ x‖)]
     calc ((H \ F).card : ℝ) * (Real.exp (-Real.pi) / 4) = ∑ x ∈ H \ F, Real.exp (-Real.pi) / 4 := by
           rw [Finset.sum_const, nsmul_eq_mul]
       _ ≤ _ := Finset.sum_le_sum hpt
@@ -330,12 +330,12 @@ theorem UpperTheory.geometric_side_comparison :
       by_cases hx : x ∈ F
       · rw [if_pos hx]
         have : Real.exp (-Real.pi * ‖φ x‖ ^ 2) ≤ 1 :=
-          Real.exp_le_one_iff.mpr (by nlinarith [Real.pi_pos, sq_nonneg ‖φ x‖])
-        nlinarith [sq_nonneg ‖φ x‖]
+          Real.exp_le_one_iff.mpr (by linarith [mul_nonneg Real.pi_pos.le (sq_nonneg ‖φ x‖)])
+        linarith [mul_nonneg (sq_nonneg ‖φ x‖) hp.le]
       · rw [if_neg hx]
         simp only [hF, Set.Finite.mem_toFinset, Set.mem_setOf_eq, not_lt] at hx
-        have : (1 : ℝ) / 4 ≤ ‖φ x‖ ^ 2 := by nlinarith
-        nlinarith
+        have : (1 : ℝ) / 4 ≤ ‖φ x‖ ^ 2 := by linarith [pow_le_pow_left₀ (by norm_num) hx 2]
+        linarith [mul_le_mul_of_nonneg_right this hp.le]
     calc _ ≤ ∑' x, (4 * (‖φ x‖ ^ 2 * Real.exp (-Real.pi * ‖φ x‖ ^ 2)) + (if x ∈ F then (1 : ℝ) else 0)) :=
           Summable.tsum_le_tsum hle hS ((hT.mul_left 4).add hg)
       _ = _ := by rw [Summable.tsum_add (hT.mul_left 4) hg, tsum_mul_left, hsum]
@@ -343,7 +343,7 @@ theorem UpperTheory.geometric_side_comparison :
   have hE1 : Real.exp (-Real.pi) ≤ 1 := Real.exp_le_one_iff.mpr (by linarith [Real.pi_pos])
   have hT0 : 0 ≤ ∑' x, ‖φ x‖ ^ 2 * Real.exp (-Real.pi * ‖φ x‖ ^ 2) :=
     tsum_nonneg (fun x => by positivity)
-  nlinarith [mul_le_mul_of_nonneg_left hS1 hE.le, mul_le_mul_of_nonneg_left hreal hE.le,
+  linarith [hsd, mul_le_mul_of_nonneg_left hS1 hE.le, mul_le_mul_of_nonneg_left hreal hE.le,
     mul_le_mul_of_nonneg_left h2 hE.le, mul_le_mul_of_nonneg_right hE1 hT0]
 end -- clump:auto
 

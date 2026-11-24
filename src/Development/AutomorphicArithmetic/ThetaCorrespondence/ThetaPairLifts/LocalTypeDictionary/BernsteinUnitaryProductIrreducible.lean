@@ -85,7 +85,6 @@ structure ThetaLocalInputs : Prop where
   zelevinskyPolynomialRing : GlobalTheory.Published.ZelevinskyPolynomialRing
   bernsteinZelevinskyFiniteness : GlobalTheory.Published.BernsteinZelevinskyFiniteness
   cuspTraceClass : GlobalTheory.Published.CuspTraceClass
-  flathFactorisation : GlobalTheory.Published.FlathFactorisation
   weilSiegelFormulaUnitary : GlobalTheory.Published.WeilSiegelFormulaUnitary
   doublingMethod : _root_.GlobalTheory.Published.DoublingMethodLocalZetaIntegrals
   unramifiedDoublingGL : GlobalTheory.Published.UnramifiedDoublingGL

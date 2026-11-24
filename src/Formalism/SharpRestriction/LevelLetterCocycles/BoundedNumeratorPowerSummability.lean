@@ -624,7 +624,7 @@ private lemma sigma_exponent_le_real (ℓ : ℕ) (hℓ : 3 ≤ ℓ) (g h j : ℕ
   have hM0 : (0 : ℝ) ≤ (Mpar ℓ g h : ℝ) := by positivity
   have hr : (ℓ : ℝ) / ((ℓ : ℝ) - 1) ^ 2 ≤ 3 / 4 := by
     rw [div_le_iff₀ hq2]
-    nlinarith
+    linarith [hq, mul_nonneg (show (0 : ℝ) ≤ 3 * ℓ - 1 by linarith) (sub_nonneg.mpr hL)]
   have hr0 : (0 : ℝ) ≤ (ℓ : ℝ) / ((ℓ : ℝ) - 1) ^ 2 := by positivity
   have hX0 : (0 : ℝ) ≤ ((3 * g : ℝ) + (Mpar ℓ g h : ℝ) / (ℓ : ℝ) ^ m) * ℓ / ((ℓ : ℝ) - 1) ^ 2 + 1 := by
     positivity
@@ -633,7 +633,7 @@ private lemma sigma_exponent_le_real (ℓ : ℕ) (hℓ : 3 ≤ ℓ) (g h j : ℕ
       3 * g * ((ℓ : ℝ) / ((ℓ : ℝ) - 1) ^ 2) +
         (Mpar ℓ g h : ℝ) * ((ℓ : ℝ) / ((ℓ : ℝ) - 1) ^ 2) / (ℓ : ℝ) ^ m := by
     field_simp
-  have t1 : 3 * g * ((ℓ : ℝ) / ((ℓ : ℝ) - 1) ^ 2) ≤ 9 / 4 * g := by nlinarith
+  have t1 : 3 * g * ((ℓ : ℝ) / ((ℓ : ℝ) - 1) ^ 2) ≤ 9 / 4 * g := by linarith [mul_le_mul_of_nonneg_left hr hg0]
   have t2 : (Mpar ℓ g h : ℝ) * ((ℓ : ℝ) / ((ℓ : ℝ) - 1) ^ 2) / (ℓ : ℝ) ^ m ≤
       3 / 2 * ((h : ℝ) + 2 * g) / ((ℓ : ℝ) - 1) ^ (m + 1 + 1) + 3 / 4 := by
     have hB : (0 : ℝ) < ((ℓ : ℝ) - 1) ^ (m + 1 + 1) := by positivity
@@ -656,10 +656,10 @@ private lemma sigma_exponent_le_real (ℓ : ℕ) (hℓ : 3 ≤ ℓ) (g h j : ℕ
       have k2 := mul_le_mul_of_nonneg_left k1 (mul_nonneg hA0 hq2.le)
       have e2 : ((ℓ : ℝ) - 1) ^ (m + 1 + 1) = ((ℓ : ℝ) - 1) ^ m * ((ℓ : ℝ) - 1) ^ 2 := by ring
       rw [e2]
-      nlinarith [k2]
+      linarith [k2]
     have s4 : ((ℓ : ℝ) / ((ℓ : ℝ) - 1) ^ 2) / (ℓ : ℝ) ^ m ≤ 3 / 4 := by
       rw [div_le_iff₀ hP0]
-      nlinarith
+      linarith [hM0, hr0, le_mul_of_one_le_right (by norm_num : (0 : ℝ) ≤ 3 / 4) hP1]
     linarith
   rw [e1] at hceil ⊢
   linarith
@@ -672,7 +672,7 @@ theorem total_exponent_le_eight_hundred : ExponentBoundOfRankAndKappaBounds := b
   have hq : (2 : ℝ) ≤ (ℓ : ℝ) - 1 := by linarith
   have hB4 : (4 : ℝ) ≤ ((ℓ : ℝ) - 1) ^ (j + 1) := by
     have := pow_le_pow_right₀ (by linarith : (1 : ℝ) ≤ (ℓ : ℝ) - 1) (by omega : 2 ≤ j + 1)
-    nlinarith
+    linarith [pow_le_pow_left₀ (by norm_num) hq 2]
   have hB0 : (0 : ℝ) < ((ℓ : ℝ) - 1) ^ (j + 1) := by linarith
   have hg1 : (1 : ℝ) ≤ g := by exact_mod_cast hg
   have hGg : (G : ℝ) ≤ g := by exact_mod_cast hG
@@ -689,21 +689,21 @@ theorem total_exponent_le_eight_hundred : ExponentBoundOfRankAndKappaBounds := b
     rwa [Real.logb_self_eq_one (by linarith)] at this
   have hGL : (G : ℝ) / ℓ ≤ g / 3 := by
     rw [div_le_div_iff₀ (by positivity) (by norm_num)]
-    nlinarith
+    exact mul_le_mul hGg hL (by norm_num) (by linarith)
   have hgB : (g : ℝ) / ((ℓ : ℝ) - 1) ^ (j + 1) ≤ g / 4 :=
     div_le_div_of_nonneg_left (by positivity) (by norm_num) hB4
   have h4g : 4 * (g : ℝ) / ((ℓ : ℝ) - 1) ≤ 2 * g := by
     rw [div_le_iff₀ (by linarith)]
-    nlinarith
+    linarith [mul_le_mul_of_nonneg_left hq (show (0 : ℝ) ≤ g by linarith)]
   have eσ : 3 / 2 * ((h : ℝ) + 2 * g) / ((ℓ : ℝ) - 1) ^ (j + 1) =
       3 / 2 * ((h : ℝ) / ((ℓ : ℝ) - 1) ^ (j + 1)) + 3 * ((g : ℝ) / ((ℓ : ℝ) - 1) ^ (j + 1)) := by
     ring
   rw [eσ] at hσ
   rw [hlog2] at hkap
-  have hge : (g : ℝ) ≤ g * ell := by nlinarith
-  have hee : (ell : ℝ) ≤ g * ell := by nlinarith
-  have h1e : (1 : ℝ) ≤ g * ell := by nlinarith
-  nlinarith
+  have hge : (g : ℝ) ≤ g * ell := le_mul_of_one_le_right (by linarith) hell1
+  have hee : (ell : ℝ) ≤ g * ell := le_mul_of_one_le_left (by linarith) hg1
+  have h1e : (1 : ℝ) ≤ g * ell := one_le_mul_of_one_le_of_one_le hg1 hell1
+  linarith [hB0, hgh', hT, hΛ, hl2, hGL, hgB, h4g, hrr, hkap]
 
 end Formalism.TruncatedSeriesCounting.WachCoordinates
 end -- clump:auto

@@ -345,7 +345,6 @@ theorem coCpt_last : GlobalTheory.Unf.CoCpt (G.V (.grid D.R.m D.R.m)) := by
   simp only [Node.neg, Nat.sub_self, Nat.zero_div, Nat.sub_zero] at this
   exact GlobalTheory.DefiniteQuotient.posDef_of_signature this
 
-
 variable (G) in
 abbrev Pols : Type := ∀ j : ℕ, PolF D (G.V (.top (j + 1))).rank (G.V (.top j)).rank
 
@@ -520,7 +519,6 @@ theorem rhoH_central {D : D7} {θ : InfFam D} (hθ : IsInfFam θ) {V : HSp D} {x
   rw [GlobalTheory.CoefModel.rhoH_toHilb, hs]
   exact (GlobalTheory.CoefModel.toHilb lam hJ).map_smul _ _
 
-
 open scoped ComplexOrder in
 theorem pairVec_cen {D : D7} {θ : InfFam D} (hθ : IsInfFam θ) {V : HSp D} {x : DefSp V} (hx : x.Is)
     (lam : D.what₂.Tau → DomWeight V.rank) {J : D.what₂.Tau → Matrix (Fin V.rank) (Fin V.rank) ℂ} (hJ : ∀ τ, (J τ).PosDef) :
@@ -583,8 +581,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.RowVac
 
-
-
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GlobalTheory.ChiGrid.GridData L sc} {U : Set T}
 
 private lemma eToEAf_mem_hatL_of_mem {n : ℕ} (C : Submodule (𝓞 D.host.E) (Fin n → D.host.E)) (s : Fin n → D.host.E) (hs : s ∈ C) :
@@ -600,8 +596,6 @@ theorem fwd_gen (V : HSp D) (k : Formalism.L2.Theta.GA D V) (C Λ : Submodule (�
       Formalism.L2.Herm.hatL (F := D.host.F) Λ := by
   rw [GlobalTheory.MovedHomLat.bridge]
   exact (hb _).1 (eToEAf_mem_hatL_of_mem C s hs)
-
-
 
 theorem bwd_gen (V : HSp D) (k : Formalism.L2.Theta.GA D V) (C Λ : Submodule (𝓞 D.host.E) (Fin V.rank → D.host.E))
     (hb : ∀ v, v ∈ Formalism.L2.Herm.hatL (F := D.host.F) C ↔
@@ -669,8 +663,6 @@ theorem neg_mem_GfC (V : HSp D) {g : Formalism.L2.Theta.GA D V} (hg : g ∈ GfC 
   unfold GfC at hg ⊢
   rw [MonoidHom.mem_ker] at hg ⊢
   exact hg
-
-
 
 theorem moved_isVac (W : G.Weil) (N : Std G U) (Z : Normal W N) (i : ℕ) (hi : i < D.R.m) :
     W.IsVac (.chi i D.R.m) (W.om (.chi i D.R.m) (G.toPair (.chi i D.R.m) (N.u (Pair.chi i D.R.m : Pair T).small).1
@@ -769,12 +761,12 @@ theorem moves_of_hat (V : HSp D) (g : GA D V) (Λ M : Lat V)
   constructor
   · intro hyΛ
     refine GlobalTheory.HatLatV.mem_latV_of_hatL D V M _ _ hy' ?_
-    rw [GlobalTheory.Core.Mi.FrameMove.finE_mulVec_hat]
+    rw [GlobalTheory.FinPl.GlobImage.finE_mulVec]
     exact (h _).1 (GlobalTheory.LatVHat.latV_mem_hatL D V Λ _ y hyΛ)
   · intro hyM
     refine GlobalTheory.HatLatV.mem_latV_of_hatL D V Λ _ y hy ?_
     refine (h _).2 ?_
-    rw [← GlobalTheory.Core.Mi.FrameMove.finE_mulVec_hat]
+    rw [← GlobalTheory.FinPl.GlobImage.finE_mulVec]
     exact GlobalTheory.LatVHat.latV_mem_hatL D V M _ _ hyM
 
 theorem negGA_mem_GfC (V : HSp D) {g : GA D V} (hg : g ∈ GfC V) : negGA V g ∈ GfC (negSp V) := by
@@ -1085,8 +1077,6 @@ theorem defPer_of_smul {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : Gr
 section
 variable {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type} {A : FamIn D.what₂.LL Γ Pl0 T D.R.m}
   {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] {R : RealDat D A Ks}
-
-
 
 theorem fockAt_of_steps (ch : Choice R) (hB : BasicAt ch) (hMv : MovedAt ch) (hCF : ColFock ch)
     (hL : ∀ (t : T) (M : Vol ch.G), IsHaarDef M → ∀ (f : SchRow ch.G), (∀ i, IsThetaFunO ch.W.ψ _ _ (f i)) →

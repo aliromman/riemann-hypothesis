@@ -250,10 +250,8 @@ open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompLawsModelRootBound
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompLawsModelRootBound
 
-noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Plug.CuspHodge
 
@@ -350,17 +348,13 @@ theorem cusp_hodgeLe : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [I
 
 end GlobalTheory.CompanionTheory.Ar.Plug.CuspHodge
 end -- clump:auto
-end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompLawsModelRootBoundStatement
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicDiscComponentGrowth
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicDiscComponentGrowth
 
-noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.VsReg.Chart
 
@@ -636,17 +630,14 @@ theorem mem_chartLatNm_of_disc : (∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] (A
 
 end GlobalTheory.CompanionTheory.Ar.VsReg.Chart
 end -- clump:auto
-end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicDiscComponentGrowthStatement
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 theorem _root_.GlobalTheory.T.holomorphic_disc_component_growth : (∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] (A : Subalgebra ℚ Ω), A.FG → Algebra.Smooth ℚ A → (∀ x : Ω, ∃ a ∈ A, ∃ b ∈ A, b ≠ 0 ∧ x * b = a) → ∀ g h b : A, (h : Ω) ≠ 0 → (b : Ω) ≠ 0 → (g : Ω) / h ∉ A → ∃ (ψ : ℂ → (A →+* ℂ)) (C : ℝ), (∀ a : A, DifferentiableOn ℂ (fun z => ψ z a) (Metric.ball 0 1)) ∧ ∀ z ∈ Metric.ball (0 : ℂ) 1, z ≠ 0 → ψ z b ≠ 0 ∧ ψ z h ≠ 0 ∧ ‖ψ z h‖ ≤ C * ‖z‖ * ‖ψ z g‖) → ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (Ω : Type) [Field Ω] [Algebra ℚ Ω] (y : (Σ k, ι k) → Ω) (a : K → ℤ) (s : Ω) (Hb : ((Σ k, ι k) → ℂ) → ℝ) (w f₀ : MRing ι), Birational y → SmoothGenericFibreM y → Small.IsFormOff (mCoordIdeal y) w → Small.IsFormOff (mCoordIdeal y) f₀ → (∀ z ∈ mcPts (mCoordIdeal y), MvPolynomial.aeval z w ≠ 0 → Small.ValLe y a s z (Hb z)) → (∀ Zf : ℂ → (Σ k, ι k) → ℂ, (∀ p, DifferentiableOn ℂ (fun z => Zf z p) (Metric.ball 0 1)) → (∀ z ∈ Metric.ball (0 : ℂ) 1, Zf z ∈ mcPts (mCoordIdeal y)) → (∀ z ∈ Metric.ball (0 : ℂ) 1, z ≠ 0 → MvPolynomial.aeval (Zf z) f₀ ≠ 0) → ∃ (C ρ : ℝ) (M : ℕ), 0 < ρ ∧ ∀ z : ℂ, 0 < ‖z‖ → ‖z‖ < ρ → Hb (Zf z) ≤ C * (1 + |Real.log ‖z‖|) ^ M) → ∃ N : ℕ, 0 < N ∧ (N : Ω) * s ∈ chartLatNm y a 1 := by
   first | exact @GlobalTheory.CompanionTheory.Ar.VsReg.Chart.mem_chartLatNm_of_disc
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicDiscOrbitBound
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 namespace GlobalTheory.CompanionTheory.Ar.Plug.Disc
 
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.M.FinHolAtlas
@@ -980,7 +971,6 @@ end GlobalTheory.CompanionTheory.Ar.Plug
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicDiscOrbitBoundStatement
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 end -- clump:auto
 
@@ -1524,10 +1514,8 @@ open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginExistsForm
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginExistsForm
 
-noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Small.OffForm
 
@@ -1675,17 +1663,13 @@ theorem GlobalTheory.CompanionTheory.RootForm.exists_form : ∀ (E : Type) [Fiel
   have hu := unitAt_of_forms hz hco cc hcc hG hH hHy hGy hGw hHw
   exact (Or.interior x z hco).1 (not_not.1 fun h => heff h hu)
 end -- clump:auto
-end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginExistsFormStatement
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginWeightSection
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginWeightSection
 
-noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.VsReg
 
@@ -1772,17 +1756,13 @@ theorem sing_prod_le_rW_pow : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
 
 end GlobalTheory.CompanionTheory.Ar.VsReg
 end -- clump:auto
-end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginWeightSectionStatement
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.UniformNormSectionCount
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.UniformNormSectionCount
 
-noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Plug
 

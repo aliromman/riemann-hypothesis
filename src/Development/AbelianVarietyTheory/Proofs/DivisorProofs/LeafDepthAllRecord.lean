@@ -137,7 +137,7 @@ theorem not_inPsi_conjugate {E : Type} [Field E] [NumberField E] [IsCMField E] (
   rw [hr] at e3
   have e4 : r ^ 2 = -(H.d : ℝ) := by exact_mod_cast e3
   have : (0 : ℝ) < H.d := by exact_mod_cast H.d_prime.pos
-  nlinarith [sq_nonneg r]
+  linarith [sq_nonneg r]
 
 theorem zero_eq_bg_iff {d : ℕ} [NeZero d] (s : ZMod d) : (0 : Fin 2) = RF.bg s ↔ Even s.val := by
   unfold RF.bg
@@ -255,7 +255,7 @@ theorem not_inPsi_conj {E : Type} [Field E] [NumberField E] [IsCMField E] (H : R
   rw [hr] at e
   have e4 : r ^ 2 = -(H.d : ℝ) := by exact_mod_cast e
   have : (0 : ℝ) < H.d := by exact_mod_cast H.d_prime.pos
-  nlinarith [sq_nonneg r]
+  linarith [sq_nonneg r]
 
 theorem pkg_of_supply (P : RF.Par) (l : ℕ) {C : Type} [Field C] (V : VF C) (hV : V.l = l) (Z : Finset P.Pl)
     (hZ : RF.IsReps P Z) (hw : ∀ z, 0 ≤ P.w z) (big : P.Pl → Fin 2 → ZMod P.d → Prop)
@@ -409,7 +409,7 @@ theorem not_inPsi_conjugate {E : Type} [Field E] [NumberField E] [IsCMField E] (
   rw [hr] at e3
   have e4 : r ^ 2 = -(H.d : ℝ) := by exact_mod_cast e3
   have : (0 : ℝ) < H.d := by exact_mod_cast hd
-  nlinarith [sq_nonneg r]
+  linarith [sq_nonneg r]
 
 theorem pkgSplit : (∀ (p : ℕ) [Fact p.Prime], ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF.UpFSt p) → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (lv : Level H) (Xo : Moduli Dw lv) (c : Coeff lv) [StarRing (𝓞 E)], PkgSplitSt Xo c := by
   intro hU E _ _ _ H Dw lv Xo c _ hstar N j pl a hj1 hjm hpl hp hq hdom la h2 hq' hd' hM _ T io e hov y hy C3 nW ν hν
@@ -573,7 +573,7 @@ theorem real_bounds {T Dd G y w η t S S' η' w2 x : ℝ} (hT : 40 * (Dd + 2) �
   have hT0 : 0 < T := by linarith
   have htη0 : 0 < t * η := mul_pos (by linarith) (by linarith)
   have h4 : t * η * x ≤ w2 := (le_div_iff₀ (by linarith)).1 h3
-  have h5 : t * η ≤ w := by nlinarith
+  have h5 : t * η ≤ w := (le_mul_of_one_le_right htη0.le hx.le).trans (h4.trans hw)
   constructor
   · have e : (1 - (Dd + 4) / T) * w = (T - Dd - 4) * w / T := by field_simp; ring
     rw [e, div_le_iff₀ hT0]
@@ -584,9 +584,9 @@ theorem real_bounds {T Dd G y w η t S S' η' w2 x : ℝ} (hT : 40 * (Dd + 2) �
     have a4 : T * T ≤ t * η := mul_le_mul hTt (by linarith) hT0.le (by linarith)
     have a5 : 0 ≤ (Dd + 2) * η := mul_nonneg (by linarith) (by linarith)
     have a6 : 0 ≤ (Dd + 2) ^ 2 := by positivity
-    nlinarith
+    grind
   · have a1 : 0 ≤ (Dd + 2) * G := by positivity
-    nlinarith
+    linarith
 
 theorem le_two_floor {a : ℝ} (h : 1 ≤ a) : a ≤ 2 * (⌊a⌋₊ : ℝ) := by
   have h1 : (1 : ℝ) ≤ (⌊a⌋₊ : ℝ) := by exact_mod_cast (Nat.one_le_floor_iff a).2 h
@@ -702,13 +702,12 @@ theorem gap_bounds : ∀ (D : D7) (L : SizeData₂ D) (Pm : ParameterChoice' D L
     (by exact_mod_cast TO_le_t Tp) Pm.t_le_eta Pm.teta L.sc.one_lt_alt hw ?_ ?_ ?_
   · rw [L.Sc_eq]
     show _ ≤ 2 * ((D.R.k : ℝ) * (4 * ((⌊(D.s.Del : ℝ)⌋₊ : ℕ) : ℝ)))
-    have : (0 : ℝ) ≤ D.R.k := Nat.cast_nonneg _
-    nlinarith
+    linarith [mul_le_mul_of_nonneg_left hDel (mul_nonneg (Nat.cast_nonneg (α := ℝ) D.R.k) (by norm_num : (0 : ℝ) ≤ 4))]
   · unfold NumDatum.Sc; positivity
   · show _ ≤ 2 * ((D.R.m : ℝ) * ((⌊LevelStarExponents.h0 L⌋₊ : ℕ) : ℝ))
     have e : L.etaSz = D.R.m * LevelStarExponents.h0 L := by unfold LevelStarExponents.h0; field_simp
     rw [e]
-    nlinarith
+    linarith [mul_le_mul_of_nonneg_left hh hmR.le]
 
 end GlobalTheory.GoodDepth.Gap
 end -- clump:auto
@@ -752,7 +751,7 @@ theorem floor_le (T T' : ℕ) (hT : T ≤ T') (hT' : 0 < T') (c c' : ℤ) (h0 : 
   · rw [Int.toNat_of_nonpos h]; simpa using h0
   · rw [Int.toNat_of_nonneg h]
     have := Int.mul_ediv_self_le (x := c) hp.ne'
-    nlinarith
+    exact (mul_le_mul_of_nonneg_right hT2 h).trans (this.trans hc)
 
 theorem step {p : ℕ} (T : ℕ) (g κ : Fin p → ℕ) (h : ∀ i, (T : ℤ) * g i ≤ WeightAlgebra.gapZ κ i + 2) (i : ℕ) :
     (T : ℝ) * ((ext0 (ofGaps g) i : ℝ) - ext0 (ofGaps g) (i + 1)) ≤ (ext0 κ i : ℝ) - ext0 κ (i + 1) + 2 := by
@@ -805,7 +804,7 @@ theorem rest_bounds (A : ℕ → ℝ) (hA : Antitone A) (h0 : ∀ i, 0 ≤ A i) 
   simp only [nsmul_eq_mul] at a1 a2 a3
   push_cast at a1 a2
   have a5 : 0 ≤ ((n : ℝ) + 1) * A (n + 1) := mul_nonneg (by positivity) (h0 _)
-  constructor <;> nlinarith
+  constructor <;> grind
 
 section Place
 
@@ -933,7 +932,7 @@ theorem restAt_bounds (hj : InR D j) (τ : D.what₂.Tau) :
       (mul_le_mul_of_nonneg_right c3 (by linarith))
   have v1 := mul_le_mul_of_nonneg_left r2 hT
   have v2 := mul_le_mul_of_nonneg_left m1 hT
-  nlinarith
+  grind
 
 theorem le_two_floor {x : ℝ} (h : 1 ≤ x) : 1 ≤ (⌊x⌋₊ : ℝ) ∧ x ≤ 2 * (⌊x⌋₊ : ℝ) := by
   have h1 : 1 ≤ ⌊x⌋₊ := Nat.le_floor (by exact_mod_cast h)
@@ -947,15 +946,15 @@ theorem sizes_le : L.Sc ≤ 2 * (numOf D L).Sc ∧ L.etaSz ≤ 2 * (numOf D L).e
   have ht : (0 : ℝ) ≤ D.R.t := Nat.cast_nonneg _
   have hk : (0 : ℝ) ≤ D.R.k := Nat.cast_nonneg _
   have hm : (0 : ℝ) < D.R.m := by exact_mod_cast (by have := D.R.two_le_m; omega : 0 < D.R.m)
-  obtain ⟨d1, d2⟩ := le_two_floor (x := ((D.s.Del : ℚ) : ℝ)) (by have := Tp.Del_TO; nlinarith)
-  obtain ⟨-, e2⟩ := le_two_floor (x := LevelStarExponents.h0 L) (by have := Tp.heightBound_ge_order_sq; nlinarith)
+  obtain ⟨d1, d2⟩ := le_two_floor (x := ((D.s.Del : ℚ) : ℝ)) ((one_le_pow₀ hT).trans Tp.Del_TO)
+  obtain ⟨-, e2⟩ := le_two_floor (x := LevelStarExponents.h0 L) (by linarith [Tp.heightBound_ge_order_sq, one_le_pow₀ (n := 2) hT])
   have e3 : L.etaSz = D.R.m * LevelStarExponents.h0 L := by unfold LevelStarExponents.h0; field_simp
   have x1 : (numOf D L).Sc = D.R.k * (4 * (⌊((D.s.Del : ℚ) : ℝ)⌋₊ : ℝ)) := rfl
   have x2 : (numOf D L).eta = D.R.m * (⌊LevelStarExponents.h0 L⌋₊ : ℝ) := rfl
   rw [x1, x2, L.Sc_eq]
-  refine ⟨by nlinarith, ?_, by nlinarith⟩
+  refine ⟨by linarith [mul_le_mul_of_nonneg_left d2 (mul_nonneg hk (by norm_num : (0 : ℝ) ≤ 4))], ?_, by linarith [mul_le_mul_of_nonneg_left (show (1 : ℝ) ≤ 4 * (⌊((D.s.Del : ℚ) : ℝ)⌋₊ : ℝ) by linarith) hk]⟩
   rw [e3]
-  nlinarith
+  linarith [mul_le_mul_of_nonneg_left e2 hm.le]
 
 end Place
 
@@ -1046,7 +1045,7 @@ theorem goodPage_run : ∀ (D : D7) (L : SizeData₂ D) (Pm : ParameterChoice' D
     rw [← mul_div_assoc, div_le_iff₀ hTpos]
     have hD : (1 : ℝ) ≤ Tp.Dp := by exact_mod_cast hDp
     have hk : (1 : ℝ) ≤ D.R.k := by exact_mod_cast (by omega : 1 ≤ D.R.k)
-    nlinarith [mul_nonneg (sub_nonneg.2 hD) (sub_nonneg.2 hk)]
+    linarith [mul_nonneg (sub_nonneg.2 hD) (sub_nonneg.2 hk)]
   · refine le_trans ?_ Tp.nW_win.1
     show 10 * (D.R.r : ℝ) * (D.R.f + (D.R.f : ℝ) ^ 2 * ((D.R.k : ℝ) - 1) ^ 3 * L.sc.L ^ 2 / D.R.m) ≤ _
     unfold LevelStarExponents.nW
@@ -1264,7 +1263,7 @@ theorem placeTie_of_pins : ∀ (D : D7) (L : SizeData₂ D) (T : Core D), T.Q.Pi
             rw [hx] at hs
             have hs' : x ^ 2 = -(T.Q.H.d : ℝ) := by exact_mod_cast hs
             have hd : (0 : ℝ) < T.Q.H.d := by exact_mod_cast T.Q.H.d_prime.pos
-            nlinarith [sq_nonneg x]
+            linarith [sq_nonneg x]
           apply hc
           calc star T.Q.H.rt0 = star (τ (T.Q.H.rt : D.host.E)) := by rw [hτ']
             _ = τ (D.host.conj (T.Q.H.rt : D.host.E)) := h4.symm
@@ -1365,7 +1364,7 @@ theorem leafGood_run : ∃ C0 : ℝ, ∀ (D : D7) (L : SizeData₂ D) (Pm : Para
       calc (∑ z, (numOf D L).w (ι j) z) ≤ ∑ _z : RPl D.R, 2 * L.sc.b := Finset.sum_le_sum fun z _ => (h z).2
         _ = 2 * (D.R.f : ℝ) * L.sc.b := by
           rw [Finset.sum_const, Finset.card_univ, card_RPl, nsmul_eq_mul]; ring
-    · rw [R.wt_eq, hb]; nlinarith
+    · rw [R.wt_eq, hb]; linarith [mul_le_mul_of_nonneg_right hf8 hb0.le]
     · have h := (_root_.GlobalTheory.WeightExponents.weight_exponents D T.Q hT.pins (ι j) (R.inR j) (lR Tp hK (ι j))).1
       have h2 := R.DF_ge j
       rw [← h] at h2
@@ -1555,7 +1554,7 @@ theorem leafDepthTwo_of_unscaled_bound : ∀ (E : Type) [Field E] [NumberField E
       rw [sub_div, hramR]
     unfold DepthTie.s1T DepthTie.sWT at hs1
     rw [he0]
-    nlinarith
+    rw [mul_add, mul_one] at hR; linarith
   intro w hw h2 j
   obtain ⟨h1, h1'⟩ := DepthTie.tieE Xo c Dd O ι hE hT hpr w hw
   exact ⟨key w j h2 h1, key (conjPl w) j (by rw [plc_conjPl]; exact h2) h1', content_zero_at_small_primes N O Nd ι hPg tF tP w h2 j⟩
@@ -1590,7 +1589,7 @@ theorem sizes_two_arith (T f q m v A S C b Sc η : ℝ) (hf : 0 ≤ f) (hq : 0 �
   have h1 : f * (1 + v / 2) * (2 * b + Sc) + T * S ≤ (2 + v) * (2 * f * b + f * (Sc + η)) := by
     have p1 : 0 ≤ f * (1 + v / 2) * (2 * b + Sc) := by positivity
     have p2 : 0 ≤ (1 + v) * (f * η) := by positivity
-    nlinarith
+    grind
   have h0 : 0 ≤ (2 + v) * (2 * f * b + f * (Sc + η)) := by positivity
   rw [e1]
   calc q * (f * (1 + v / 2) * (2 * b + Sc) + T * S) ≤ q * ((2 + v) * (2 * f * b + f * (Sc + η))) :=
@@ -1680,7 +1679,7 @@ theorem GlobalTheory.RunDepth.leafDepth2_run : (∀ (p : ℕ) [Fact p.Prime], Av
     intro j _
     show _ ≤ Tp.nWn
     refine le_trans ?_ Tp.nW_lo.1
-    nlinarith [Nat.mul_le_mul_left (D.R.f * D.R.r) (show 2 ≤ D.R.r + 1 by omega)]
+    rw [show 2 * D.R.f * D.R.r = D.R.f * D.R.r * 2 by ring]; exact Nat.mul_le_mul_left _ (by omega)
   have hL : LawsPi T (depOf T EX Tp hK) := lawsPi_depRun hM EX _ _ _ _ _ hn
   refine _root_.GlobalTheory.RunDepth.leafDepthTwo_of_unscaled_bound D.host.E T.Q.H T.Q.l T.Q.Dw T.Q.Xo T.Q.c (depOf T EX Tp hK) K Bs Df S P oc O ι N (numOf D L)
     hR.E_eq hR.σ_eq hR.T_eq ⟨hR.jets_eq_fact, hR.g2_eq, hR.cmQuadraticForm_eq_alternatingForm, hR.dd_eq, hR.sm_eq⟩ hL.piSplit hPg tF

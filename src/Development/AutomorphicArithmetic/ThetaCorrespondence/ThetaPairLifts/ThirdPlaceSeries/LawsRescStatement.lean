@@ -612,7 +612,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] [MeasurableSpace k] [BorelSpace k]
 variable {n n' : Type} [Fintype n] [DecidableEq n] [Fintype n'] [DecidableEq n'] {c : ℕ}
 
-
 omit [MeasurableSpace k] [BorelSpace k] in
 theorem exists_open_fix {Y : Type} [Fintype Y] [DecidableEq Y] (L : Level (GL Y k)) (hL : IsOpen (L.J : Set (GL Y k))) (α : GL Y k) :
     ∃ U : Subgroup (GL Y k), IsOpen (U : Set (GL Y k)) ∧ ∀ (A : Type) [AddCommGroup A] [Module ℂ A] (σ : Representation ℂ (GL Y k) A),
@@ -642,7 +641,6 @@ theorem exists_isOneComb {ψ : AddChar k Circle} (hψ : HasConductor ψ 1) {ν :
   rw [(he A σ hσ l _ hl (h A σ hσ v hv)).1, GlobalTheory.PosOne.comb, GlobalTheory.PosOne.comb,
     Finsupp.sum_mapDomain_index (by simp) (fun _ _ _ => add_mul _ _ _)]
   simp only [map_mul, Module.End.mul_apply]
-
 
 omit [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] [MeasurableSpace k] [BorelSpace k] in
 theorem exists_covers {ι V : Type} [Zero V] {p : ℕ} {J : Subgroup (GL (n ⊕ Fin c) k)} (s : Finset ι)
@@ -675,13 +673,11 @@ theorem exists_covers_flat {ψ : AddChar k Circle} (hψ : HasConductor ψ 1) (ν
   convert hT using 2 with h
   rw [GlobalTheory.StepData.flat, ← GlobalTheory.SplitWeil.om_mul, one_mul, mul_one]
 
-
 omit [BorelSpace k] in
 theorem xi_mem_SB (ψ : AddChar k Circle) (ν : Measure k) (μ : kˣ →* ℂˣ) (Φ : SB (Matrix (n ⊕ Fin c) (n' ⊕ Fin (c + 1)) k))
     (J : Subgroup (GL (n ⊕ Fin c) k)) (b : GL (n ⊕ Fin c) k) (h' : GL (n' ⊕ Fin (c + 1)) k) (h : GL (n ⊕ Fin c) k) :
     GlobalTheory.StepData.xi ψ ν μ Φ.1 J b h' h ∈ SB (Matrix n n' k) :=
   (SB _).smul_mem _ (GlobalTheory.RootEx.opE_mem_SB 1 ψ ν (GlobalTheory.SplitWeil.om_mem_SB μ h' h Φ.2))
-
 
 omit [MeasurableSpace k] [BorelSpace k] in
 theorem exists_isCombAt {D : D7} {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) (p : Place D k) {S T : HSp D}
@@ -693,12 +689,9 @@ theorem exists_isCombAt {D : D7} {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdCh
   rw [show Φ = ⟨Ξ, hΞ⟩ from Subtype.ext h, show Φ₀ = O from Subtype.ext (h₀.trans hO.symm)]
   exact h2 Tm hT
 
-
 end Local
 
 variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {σ : ℕ}
-
-
 
 theorem exists_qstep (hψ : IsStdChar D ψ (-1)) (S : Dbl2 ψ σ) {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] [MeasurableSpace k] [BorelSpace k] (ν : Measure k) (hν : IsUnitVol ν)
@@ -733,8 +726,6 @@ theorem exists_qstep (hψ : IsStdChar D ψ (-1)) (S : Dbl2 ψ σ) {k : Type} [Fi
   exact ⟨gl₀, gl₁, gl₂, l₀, l₁, l₂, D₁, D₂, dat₁, dat₂, A₁, A₂, cov₁ () (Finset.mem_univ _), cov₂, d₁, d₂, ent₁, ent₂, e₀, e₂,
     one₀, one₂, m₁, m₂, a₁, a₂, b₁, b₂, g₁, g₂, _, rfl⟩
 
-
-
 end GlobalTheory.QPl.Inhab
 end -- clump:auto
 
@@ -753,8 +744,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 namespace GlobalTheory.QFinOneAt
-
-
 
 theorem core {D : D7} {c : Comm D} {v : VCom c} {t : Tup c} (hψ : IsStdChar D c.ψ (-1)) (hv : v.Is) (ht : t.Is)
     {χ : ℕ → (AE D)ˣ →* Circle} (Q' : QAt v χ) (χz : (AE D)ˣ →* Circle) (j σ : ℕ) (h : j + 2 * (σ + 1) + 2 = D.R.m)
@@ -927,8 +916,6 @@ end GlobalTheory.TwistPlaceSplit
 
 namespace GlobalTheory.TwistPlaceSplit
 
-
-
 theorem main : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : VTup t) (F : QFam v t), c.Is → v.Is → F.Pins w → ∀ j, j + 1 < D.R.m → ∀ (i : Fin F.r) Ψ₁, GlobalTheory.FinPl.Vac c.ψ _ _ (v.N j) (v.N (j + 1)) (· ∈ w.Q) Ψ₁ → ∃ f₁, GlobalTheory.FinPl.Vac c.ψ _ _ (v.N j) (v.N (j + 1)) (· = (F.Q i).q.v) f₁ ∧ comb c.ψ _ _ (w.eQ j) Ψ₁ = comb c.ψ _ _ ((F.Q i).eL j) f₁ := by
   intro D c v t w F hc hv hP j hj i Ψ₁ hΨ
   classical
@@ -1008,7 +995,6 @@ open GlobalTheory.FinPl in
 theorem at_le_off' {D : D7} (V : HSp D) {P P' : Pl D → Prop} (h : ∀ p, P p → ¬ P' p) : grpAt V P ≤ grpOff V P' :=
   (GlobalTheory.FinPl.SetCut.grp_split D V ∅).2.2.2.2.2.2.1 P P' h
 
-
 open GlobalTheory.FinPl in
 theorem off_mono {D : D7} {V : HSp D} {R R' : Pl D → Prop} (hR : ∀ p, R' p → R p) {g : GA D V} (h : g ∈ grpOff V R) :
     g ∈ grpOff V R' := by
@@ -1020,7 +1006,6 @@ theorem off_mono {D : D7} {V : HSp D} {R R' : Pl D → Prop} (hR : ∀ p, R' p �
   rw [Submodule.mem_iInf] at this ⊢
   intro u
   exact this ⟨u.1, hR u.1 u.2⟩
-
 
 open GlobalTheory.FinPl in
 theorem off_of_each {D : D7} {V : HSp D} {R : Pl D → Prop} {g : GA D V} (h : ∀ p, R p → g ∈ grpOff V (· = p)) :
@@ -1415,8 +1400,6 @@ end -- clump: shared namespace opens
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LawsResc
 @[expose] public section
 
-
-
 section
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Datum Formalism.L2.Forms MeasureTheory IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Unf GlobalTheory.SeeSaw GlobalTheory.LocMod GlobalTheory.MiS GlobalTheory.QPl GlobalTheory.QTw GlobalTheory.AdForm GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Fam GlobalTheory.SeeSaw GlobalTheory.StepData GlobalTheory.SplitWeil
@@ -1442,8 +1425,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LawsRescStatement
-
-
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Definitions.LatticeFrames.CombSmulLeft", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.LatticeFrames.RescOne\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HandBFSmul\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

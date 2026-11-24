@@ -569,7 +569,6 @@ open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.Char
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.CommonZeroEvaluation.RegularChartNonzeroDenominator
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 attribute [local instance 1100] Subalgebra.algebra in
 attribute [local instance 100] IntermediateField.instAlgebraSubtypeMem in
@@ -611,7 +610,6 @@ theorem ModelDimension.regular_chart_nonzero_denominator : ∀ (E : Type) [Field
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameChartNonzeroDenominator
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 
 attribute [local instance 1100] Subalgebra.algebra in
@@ -620,7 +618,6 @@ alias _root_.GlobalTheory.CompanionTheory.Relay.frame_chart_nonzero_denominator 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameChartNonzeroDenominatorStatement
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 
 end -- clump:auto
@@ -844,7 +841,6 @@ open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.Char
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.CommonZeroEvaluation.IntegralFrameOverCdvr
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 open AlgebraicGeometry CategoryTheory ModelDimension.Near
 
@@ -966,22 +962,18 @@ theorem ModelDimension.integral_frame_over_cdvr : Top.Given → ∀ (E : Type) [
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntegralFrameSubalgebraRelay
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 
 alias _root_.GlobalTheory.CompanionTheory.Relay.integral_frame_subalgebra_relay := _root_.ModelDimension.integral_frame_over_cdvr
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntegralFrameSubalgebraRelayStatement
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.WeightSectionComponentValue
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.WeightSectionComponentValue
 
-noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Plug.FinTr.Approx
 
@@ -1242,10 +1234,8 @@ theorem approx_main : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [Is
 
 end GlobalTheory.CompanionTheory.Ar.Plug.FinTr.Approx
 end -- clump:auto
-end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.WeightSectionComponentValueStatement
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 
 

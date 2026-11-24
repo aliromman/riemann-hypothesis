@@ -1147,6 +1147,7 @@ set_option autoImplicit false
 
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AllWt GlobalTheory.FactorDepth GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.MeanTop
+open scoped GlobalTheory.CompHt
 
 namespace GlobalTheory.RefSum.DivWt
 

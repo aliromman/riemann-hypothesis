@@ -1028,9 +1028,6 @@ namespace GlobalTheory.CompanionTheory.Ar.Num.FamLat
 
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X}
 
-theorem isLocalRing_regAt (q : Cpt ξ) : IsLocalRing (regAt ξ q) :=
-  IsLocalRing.of_surjective' (genMap ξ q).rangeRestrict (genMap ξ q).rangeRestrict_surjective
-
 theorem coordLat_locFree (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Spec (CommRingCat.of Ω) ⟶ X) (K : Type) [Fintype K]
     [DecidableEq K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (hT : CoordTie ℤ ξ (mseg y)) (A : Type)
     [CommRing A] [Algebra A Ω] (hA : HasConstants ℤ A y) (m : Ideal A) [m.IsPrime] (O : Type) [CommRing O] [IsDomain O]
@@ -1091,7 +1088,7 @@ theorem coordLat_locFree (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Spec (Com
         refine Finset.sum_congr rfl fun i _ => ?_
         rw [map_smul, hf']
         rfl
-  have key := _root_.GlobalTheory.CompanionTheory.Ar.Num.SecAlg.locFree_and_extend (chartRing O (mseg y) c) Q (fun q => regAt ξ q.1) r Λ (fun q => isLocalRing_regAt q.1)
+  have key := _root_.GlobalTheory.CompanionTheory.Ar.Num.SecAlg.locFree_and_extend (chartRing O (mseg y) c) Q (fun q => regAt ξ q.1) r Λ (fun q => GlobalTheory.CompanionTheory.Ar.regAt_isLocalRing q.1)
     (fun q a ha => h1 a ha q.1 q.2.1 q.2.2)
     (fun P hP => by
       obtain ⟨q, hq1, hq2, hq⟩ := h2 P hP

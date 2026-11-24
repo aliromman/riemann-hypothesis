@@ -15,54 +15,13 @@ public import Formalism.LocalToGlobal.GlobalTheory.GL6.RndLinkAdmTOf
 public import Formalism.LocalToGlobal.LatticeGeometry.GeometryDefinitions.PClassE
 public import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsEquiv
 public import Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.AdelicFunctionRightTranslateDiamond
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
-import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.RationalPointsLeHolds
 import Formalism.LocalToGlobal.GlobalTheory.GL6.PKerAtP
-import Mathlib.Tactic.Basify
-import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.GlobalTheory.GL6.CongruenceNoKernelOfLevelZeroIdentities, Formalism.LocalToGlobal.GlobalTheory.GL6.AdelicFunctionExtendsFromClasses, Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.NaturalTranslateAdelicFunction
@@ -177,8 +136,6 @@ theorem translate_mem_span_adelic (S : StepLevel F E σ J T f bad) (emb : ι →
       funext y; simp only [Pi.smul_apply, smul_eq_mul]; ring
     rw [e]; exact Submodule.smul_mem _ r ha
 
-
-
 theorem adelic_function_extends_from_classes (S : StepLevel F E σ J T f bad) (emb : ι → E →+* ℂ)
     (hc : ∀ τ x, emb τ (σ x) = starRingEnd ℂ (emb τ x)) (lam : ι → DomWeight n)
     {C : Type} [Fintype C] (y : C → UPts σ J (FiniteAdeleRing (𝓞 F) F)) (hs : ∀ c, RndStabTriv S (y c))
@@ -229,8 +186,6 @@ section Tied
 
 variable {D : D7} {u : D.what₂.Word}
 
-
-
 end Tied
 
 end Formalism.L2.GlobalTheoryTheory.LocalLatticeBases
@@ -271,9 +226,7 @@ theorem is_translate_inverse (T : Forms0 D u) (γ : UJ (sigD D : D.host.E →+* 
   rw [Equiv.apply_symm_apply]
   show (T.val0.eY s).1 τ = atInf (embT D) (γ.1 : Matrix _ _ D.host.E) τ *
     (atInf (embT D) ((γ.1⁻¹ : GL _ D.host.E) : Matrix _ _ D.host.E) τ * (T.val0.eY s).1 τ)
-  rw [← Matrix.mul_assoc, at_infinity_mul_inv, Matrix.one_mul]
-
-
+  rw [← Matrix.mul_assoc, Formalism.L2.Forms.atInf_mul_inv, Matrix.one_mul]
 
 theorem up_move_natural (T : Forms0 D u) (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0)
     (z : ↥(Ld D u 0 (Nat.zero_le _) c)) (hz : (D.fm u).fv 0 v c (T.lv0.pr v c z) = 1) :
@@ -288,8 +241,6 @@ theorem up_move_natural (T : Forms0 D u) (v : (D.mem u).A.vT) (c : (D.mem u).C.c
   funext s
   rw [h6 h s _ (is_translate_inverse T γ s), Units.val_inv_eq_inv_val]
   rfl
-
-
 
 theorem down_move_natural (T : Forms0 D u) (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0)
     (g : Module.Dual ((D.mem u).A.Fv v) ((D.fm u).lk 0 v c)) (hg0 : g ≠ 0) :
@@ -340,8 +291,6 @@ theorem class_eq_of_rational_translate (T : Forms0 D u) (c c' : (D.mem u).C.cls 
       (T.cls0.y c').1 * κ.1) : c = c' :=
   T.cls0.y_bij.1 (rnd_cls _ γ hγ _ _ κ h)
 
-
-
 theorem U_op_preserves_forms_zero (T : Forms0 D u) (v : (D.mem u).A.vT) (φ : (D.mem u).C.cls 0 → (D.mem u).C.Y 0 → ℂ)
     (hφ : φ ∈ (D.fm u).Fi 0) : Formalism.MainNotions.product_first_zeroth_parts.Uop D u 0 v φ ∈ (D.fm u).Fi 0 := by
   classical
@@ -381,8 +330,6 @@ theorem U_op_preserves_forms_zero (T : Forms0 D u) (v : (D.mem u).A.vT) (φ : (D
   show G (T.cls0.y c) z = _
   rw [hGc, hU]
   simp
-
-
 
 theorem D_op_preserves_forms_zero (T : Forms0 D u) (v : (D.mem u).A.vT) (φ : (D.mem u).C.cls 0 → (D.mem u).C.Y 0 → ℂ)
     (hφ : φ ∈ (D.fm u).Fi 0) : Formalism.MainNotions.product_first_zeroth_parts.Dop D u 0 v φ ∈ (D.fm u).Fi 0 := by
@@ -437,8 +384,6 @@ def IsUpMvF (T : Forms0 D u) (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0) (x : (
       (T.cls0.y ((D.fm u).up 0 v c x)).1 = (T.cls0.y c).1 * η.1 * κ.1 ∧
     ∀ h, (D.fm u).upT 0 v c x h = natTr0 T γ κ h
 
-
-
 theorem U_op_eq_move_sum (T : Forms0 D u) (v : (D.mem u).A.vT) (ψ : Fn D u 0)
     {g : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F) → Fr D 0 (Nat.zero_le _) → ℂ}
     (hg : g ∈ AdFun T.cls0.lev (embT D))
@@ -475,8 +420,6 @@ def UpDiaMatch0F (T : Forms0 D u) : Prop :=
         UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)),
       (∀ x, IsUpMvF T v c x.1 (Mv x)) ∧ (∀ x, IsUpMvF T v _ x.1 (Mv2 x)) ∧
       ∀ x, (Mv2 (σ x)).1⁻¹ * κd.1 * (Mv x).1 ∈ T.cls0.lev.U
-
-
 
 theorem diamond_commutes_U_distinct (T : Forms0 D u) (hM : UpDiaMatch0F T) (v v' : (D.mem u).A.vT) (hvv : v ≠ v')
     (a : ((D.mem u).A.Fv v')ˣ) (φ : Fn D u 0) (hφ : φ ∈ (D.fm u).Fi 0) :
@@ -561,8 +504,6 @@ def IsDnMvF (T : Forms0 D u) (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0) (x : M
       (T.cls0.y ((D.fm u).dn 0 v c x)).1 = (T.cls0.y c).1 * η.1 * κ.1 ∧
     ∀ h, (D.fm u).dnT 0 v c x h = natTr0 T γ κ h
 
-
-
 theorem D_op_eq_move_sum (T : Forms0 D u) (v : (D.mem u).A.vT) (ψ : Fn D u 0)
     {g : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F) → Fr D 0 (Nat.zero_le _) → ℂ}
     (hg : g ∈ AdFun T.cls0.lev (embT D))
@@ -599,8 +540,6 @@ def DnDiaMatch0F (T : Forms0 D u) : Prop :=
         UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)),
       (∀ x, IsDnMvF T v c x.1 (Mv x)) ∧ (∀ x, IsDnMvF T v _ x.1 (Mv2 x)) ∧
       ∀ x, (Mv2 (σ x)).1⁻¹ * κd.1 * (Mv x).1 ∈ T.cls0.lev.U
-
-
 
 theorem diamond_commutes_D_distinct (T : Forms0 D u) (hM : DnDiaMatch0F T) (v v' : (D.mem u).A.vT) (hvv : v ≠ v')
     (a : ((D.mem u).A.Fv v')ˣ) (φ : Fn D u 0) (hφ : φ ∈ (D.fm u).Fi 0) :
@@ -764,16 +703,12 @@ theorem mul_lattice_dual_comm {F E : Type} [Field F] [NumberField F] [Field E] [
     rw [← hermitian_form_unitary_mul (σ : E →+* E) J _ hgi] at this
     rwa [mulVec_mulVec, ← Units.val_mul, inv_mul_cancel, Units.val_one, one_mulVec] at this
 
-
-
 theorem level_stabilises_base_lattice (T : Forms0 D u) (κ : T.cls0.lev.U) :
     κ.1 ∈ stabGL (latS (F := D.host.F) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)
       (tensInt (F := D.host.F) (FiniteAdeleRing (𝓞 D.host.F) D.host.F) (intOE D.host.E) (intAd D.host.F))
       T.cls0.lev.Lb) :=
   Formalism.L2.Geo.Def.PC.stab_of_loc T.cls0.lev.Lb T.cls0.lev.Lb_span κ.1
     (fun w => (T.cls0.lev.Uloc_lev w (((T.cls0.lev.U_eq _).1 κ.2).2 w)).2)
-
-
 
 theorem diamond_stabilises_base_lattice (T : Forms0 D u) (v' : (D.mem u).A.vT) (k : ℤ)
     (δ : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F))
@@ -785,9 +720,6 @@ theorem diamond_stabilises_base_lattice (T : Forms0 D u) (v' : (D.mem u).A.vT) (
   by_cases hw : w = (T.atT.eV v').1
   · subst hw; exact hδ.2.1.2
   · rw [hδ.1 w hw]; exact one_mem _
-
-
-
 
 theorem diamond_lattice_transport (T : Forms0 D u) (v' : (D.mem u).A.vT) (k : ℤ)
     (δ : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F))

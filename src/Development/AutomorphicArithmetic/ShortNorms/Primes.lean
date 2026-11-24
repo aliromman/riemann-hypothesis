@@ -1220,7 +1220,7 @@ theorem smallOne_of :
   have hNC : C₀ ≤ N := le_trans (le_trans (le_max_left _ _) (le_max_left _ _)) hN
   have hNl : Real.log (200 * Cr) / cr ≤ N := le_trans (le_max_right _ _) hN
   set K : ℝ := (N:ℝ) ^ 2 with hK
-  have hNK : (N:ℝ) ≤ K := by nlinarith
+  have hNK : (N:ℝ) ≤ K := le_self_pow₀ (by linarith) two_ne_zero
   have hK0 : 0 ≤ K := by positivity
   refine ⟨3 * K + 1, by linarith, ?_⟩
   intro M hM
@@ -1229,7 +1229,7 @@ theorem smallOne_of :
     subst hM2
     refine ⟨3, Nat.prime_three, by norm_num, ?_⟩
     have h1 : ((2:ℕ):ℝ) ^ (2:ℝ) ≤ ((2:ℕ):ℝ) ^ (3 * K + 1) :=
-      Real.rpow_le_rpow_of_exponent_le (by norm_num) (by nlinarith)
+      Real.rpow_le_rpow_of_exponent_le (by norm_num) (by linarith [hC₀, hc])
     have h2 : ((2:ℕ):ℝ) ^ (2:ℝ) = 4 := by norm_num
     push_cast at h1 h2 ⊢
     linarith
@@ -1244,7 +1244,7 @@ theorem smallOne_of :
     set Y : ℝ := B ^ K with hY
     have hY0 : 0 < Y := Real.rpow_pos_of_pos hB0 _
     have hlogY : Real.log Y = K * Real.log B := Real.log_rpow hB0 K
-    have hlogY0 : 0 < Real.log Y := by rw [hlogY]; nlinarith
+    have hlogY0 : 0 < Real.log Y := by rw [hlogY]; exact mul_pos (by linarith) (by linarith)
     have hexp : Real.exp (-cr * N) ≤ 1 / (200 * Cr) := by
       have h1 : Real.log (200 * Cr) ≤ cr * N := by
         rw [div_le_iff₀ hcr] at hNl; linarith
@@ -1257,23 +1257,23 @@ theorem smallOne_of :
       have e1 : Real.exp (-cr * Real.log Y / Real.log B) ≤ Real.exp (-cr * N) := by
         apply Real.exp_le_exp.mpr
         rw [hlogY, show -cr * (K * Real.log B) / Real.log B = -cr * K by field_simp]
-        nlinarith
+        linarith [mul_le_mul_of_nonneg_left hNK hcr.le]
       have e2 : Real.exp (-cr * √(Real.log Y)) ≤ Real.exp (-cr * N) := by
         apply Real.exp_le_exp.mpr
         have : (N:ℝ) ≤ √(Real.log Y) := by
           rw [show (N:ℝ) = √K by rw [hK, Real.sqrt_sq (by positivity)]]
           apply Real.sqrt_le_sqrt
-          rw [hlogY]; nlinarith
-        nlinarith
+          rw [hlogY]; exact le_mul_of_one_le_right hK0 hlogB
+        linarith [mul_le_mul_of_nonneg_left this hcr.le]
       have e3 : Cr * Real.exp (-cr * N) ≤ 1 / 200 := by
         have := mul_le_mul_of_nonneg_left hexp hCr.le
         rw [show Cr * (1 / (200 * Cr)) = 1 / 200 by field_simp] at this
         exact this
-      nlinarith [mul_le_mul_of_nonneg_left e1 hCr.le, mul_le_mul_of_nonneg_left e2 hCr.le]
+      linarith [mul_le_mul_of_nonneg_left e1 hCr.le, mul_le_mul_of_nonneg_left e2 hCr.le]
     have hc1 : B ^ C₀ ≤ Y := Real.rpow_le_rpow_of_exponent_le (by linarith) (by linarith)
     have hc3 : B ^ (7:ℝ) ≤ 1 * Y ^ ((1:ℝ) / 3) := by
       rw [one_mul, hY, ← Real.rpow_mul hB0.le]
-      exact Real.rpow_le_rpow_of_exponent_le (by linarith) (by nlinarith)
+      exact Real.rpow_le_rpow_of_exponent_le (by linarith) (by linarith)
     have hmain := hI M 1 hM3 (Nat.coprime_one_left M) Y 1 hc1 le_rfl (by simpa using hρ) hc3
     have hpos : 0 < c * 1 * B ^ (-6:ℝ) * Y / Real.log Y := by
       have := Real.rpow_pos_of_pos hB0 (-6:ℝ)
@@ -1293,15 +1293,15 @@ theorem smallOne_of :
         linarith
       have hBM : B ≤ (M:ℝ) ^ (3:ℝ) := by
         rw [show (3:ℝ) = ((3:ℕ):ℝ) by norm_num, Real.rpow_natCast, hB]
-        have h9 : (9:ℝ) ≤ (M:ℝ) ^ 2 := by nlinarith
-        nlinarith
+        have h9 : (9:ℝ) ≤ (M:ℝ) ^ 2 := by linarith [pow_le_pow_left₀ (by norm_num) hMr 2]
+        linarith [hB12, hlogY0, mul_le_mul_of_nonneg_right h9 (show (0:ℝ) ≤ M by linarith)]
       have hM0 : (0:ℝ) < M := by linarith
       have hYM : Y ≤ (M:ℝ) ^ (3 * K) := by
         rw [hY, Real.rpow_mul hM0.le]
         exact Real.rpow_le_rpow hB0.le hBM hK0
       rw [Real.rpow_add hM0, Real.rpow_one]
       have : 0 < (M:ℝ) ^ (3 * K) := Real.rpow_pos_of_pos hM0 _
-      nlinarith
+      linarith [mul_le_mul_of_nonneg_left hMr this.le]
 
 end UpperTheory.T3
 end -- clump:auto

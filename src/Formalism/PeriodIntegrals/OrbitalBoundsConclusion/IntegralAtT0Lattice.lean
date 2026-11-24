@@ -235,9 +235,6 @@ theorem exists_not_mem_valuation_div_le_one (v0 p : HeightOneSpectrum (𝓞 F)) 
   rw [div_le_one₀ (zero_lt_iff.2 WithZero.exp_ne_zero)]
   exact (v0.intValuation_le_pow_iff_mem s _).2 hs
 
-
-
-
 theorem away_core (Λ : Submodule (𝓞 E) (Fin n → E)) (hΛ : Formalism.L2.GlobalTheoryTheory.Comp.IsLat Λ)
     (g1 g2 : GL (Fin n) (E ⊗[F] FiniteAdeleRing (𝓞 F) F)) (v0 : HeightOneSpectrum (𝓞 F))
     (hst : ∀ q, q ≠ v0 → ∀ z ∈ Formalism.L2.Geo.Def.PC.latV q Λ,
@@ -315,9 +312,6 @@ open Formalism.BasicNotions Formalism.L2.Forms Formalism.L2.GlobalTheoryTheory.L
 
 variable {D : D7} {u : D.what₂.Word}
 
-
-
-
 theorem kappa_stab_dl (T : Forms0 D u) (κ : T.cls0.lev.U) :
     κ.1 ∈ stabGL (Formalism.L2.Geo.Def.PC.latA (F := D.host.F)
       (Formalism.L2.GlobalTheoryTheory.Comp.dl (sigD D) (gramN D 0 (Nat.zero_le _)) T.cls0.lev.Lb)) := by
@@ -348,9 +342,6 @@ theorem kappa_stab_dl (T : Forms0 D u) (κ : T.cls0.lev.U) :
     rw [heq] at this
     exact this
   simpa using inv_mem hst
-
-
-
 
 theorem lattices_away_from_place (T : Forms0 D u) : AwayLat0 T := by
   intro v v' hvv c c' γ η κ h1 h2
@@ -421,9 +412,6 @@ open Formalism.BasicNotions Formalism.L2.Forms Formalism.L2.GlobalTheoryTheory.L
 
 variable {D : D7} {u : D.what₂.Word} {i : ℕ} {hi : i ≤ D.R.m}
 
-
-
-
 theorem cls_tLd (K : ClsTied u i hi) (c : (D.mem u).C.cls i) (y : Fin (D.R.N i) → D.host.E) (hy : y ∈ Ld D u i hi c) :
     (((D.mem u).A.T : ℕ) : 𝓞 D.host.E) • y ∈ clsCrd D u i hi c := by
   have hM : clsCrd D u i hi c = Formalism.UG.CS.globLat (K.y c).1 K.lev.Lb :=
@@ -469,8 +457,6 @@ theorem cls_tLd (K : ClsTied u i hi) (c : (D.mem u).C.cls i) (y : Fin (D.R.N i) 
       smul_eq_mul, mul_one, mul_zero, apply_ite, map_zero, ite_mul, zero_mul,
       Finset.sum_ite_eq, Finset.mem_univ, if_true, map_natCast, Pi.smul_apply, nsmul_eq_mul]
   rw [hv, hGm, Matrix.mulVec_smul]
-
-
 
 theorem lk_locP (A : AtTTied u) (K : ClsTied u i hi) (v : (D.mem u).A.vT) (c : (D.mem u).C.cls i) :
     Formalism.HermitianLatticesTheory.localization₂ (A.Pv v) (Lk A i hi v c) = Formalism.HermitianLatticesTheory.localization₂ (A.Pv v) (clsCrd D u i hi c) := by
@@ -588,7 +574,6 @@ theorem ratSpan_smul (D : D7) {N : ℕ} (lam : D.what₂.Tau → DomWeight N) (r
   | add x y _ _ hx hy => rw [smul_add]; exact add_mem hx hy
   | neg x _ hx => rw [smul_neg]; exact neg_mem hx
 
-
 open Classical in
 theorem ratSpan_ten (D : D7) {N : ℕ} (lam : D.what₂.Tau → DomWeight N) (τv : D.what₂.Tau)
     (f : D.what₂.Tau → MvPolynomial (Fin N × Fin N) ℤ) (hf : ∀ τ, f τ ∈ delSq ℤ N (lam τ))
@@ -628,7 +613,6 @@ theorem ratSpan_ten (D : D7) {N : ℕ} (lam : D.what₂.Tau → DomWeight N) (τ
       rw [map_smul, smul_mul_assoc]
     rw [e, smul_smul, ← ho, ← map_mul]
     exact hx (r * r')
-
 
 open Classical in
 theorem ratSpan_subP (D : D7) {N : ℕ} (lam : D.what₂.Tau → DomWeight N) (τv : D.what₂.Tau)
@@ -726,8 +710,6 @@ theorem atInf_ratO (M : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) (τ : D
   rw [bwA_embT_eq]
   exact ratO_mem D _
 
-
-
 theorem ratC_tr (T : Forms0 D u) (hC : LocalLatticeBases.ChiFin0 T)
     (γ : UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))) (κ : T.cls0.lev.U)
     (h : (D.mem u).C.Y 0 → ℂ) (hh : RatC T h) :
@@ -741,7 +723,7 @@ theorem ratC_tr (T : Forms0 D u) (hC : LocalLatticeBases.ChiFin0 T)
     atInf (embT D) ((γ.1⁻¹ : GL (Fin (D.R.N 0)) D.host.E) : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) τ with hNdef
   have hNN' : ∀ τ, N τ * atInf (embT D) ((γ.1 : GL (Fin (D.R.N 0)) D.host.E) :
       Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) τ = 1 := fun τ =>
-    mul_eq_one_comm.1 (LocalLatticeBases.at_infinity_mul_inv _ γ.1 τ)
+    mul_eq_one_comm.1 (Formalism.L2.Forms.atInf_mul_inv _ γ.1 τ)
   have e1 : ∀ z, h (T.val0.eY.symm (frameTranslate (embT D) (fun τ x => embedding_conj_compat D τ x) γ.1⁻¹
         ((UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY z))) =
       fnOf _ (shiftOf (lamT u 0)) (fun τ => N τ * (1 : D.what₂.Tau → Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) ℂ) τ) P

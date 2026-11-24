@@ -1190,7 +1190,7 @@ theorem UAt_of (D : D7) (L : SizeData₂ D) (X : Inst D L) (Y : LatInst D) (K : 
     have heq : yProd Y u w hg VV' F =
         (VV'.toList.map vOf).foldr (fun v F' => ((D.gat u w hg).yv v)^[(Y.Fl u w hg).mm] F') F := by
       unfold yProd
-      rw [foldr_map_comp, foldr_map', hmm]
+      rw [foldr_map_comp, List.foldr_map, hmm]
     refine ⟨BB, subset_refl _, VV'.toList.map vOf, hnodup, by ext; simp [BB], F, ?_, heq⟩
     rw [Finset.sdiff_self, Finset.sum_empty, zpow_zero]
     exact ⟨F, hF, one_smul (D.gat u w hg).Kf F⟩

@@ -741,11 +741,9 @@ theorem global_decay : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fint
 end GlobalTheory.CompanionTheory.Ar.Small.GlobDecay
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.MemOpenOfForms
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.MemOpenOfForms
 open AlgebraicGeometry CategoryTheory
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
-noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Small.FormsVal
 
@@ -942,12 +940,9 @@ theorem mem_open_of_forms : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
 
 end GlobalTheory.CompanionTheory.Ar.Small.FormsVal
 end -- clump:auto
-end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.RootOriginMultiplicityBound
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.RootOriginMultiplicityBound
 
-noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Small.Fund
 
@@ -989,12 +984,9 @@ theorem combLine_ref_a_eq_line_a : ∀ (E : Type) [Field E] [NumberField E] [IsC
 
 end GlobalTheory.CompanionTheory.Ar.Small.Fund
 end -- clump:auto
-end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.RootOriginWeightComparisonShift
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.RootOriginWeightComparisonShift
 
-noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Small.Fund.Orbit
 
@@ -1090,12 +1082,9 @@ theorem torus_invariant : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
 
 end GlobalTheory.CompanionTheory.Ar.Small.Fund.Orbit
 end -- clump:auto
-end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginWeightFree
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginWeightFree
 
-noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Small.Free
 
@@ -1458,7 +1447,6 @@ theorem root_origin_weight_free : ∀ (E : Type) [Field E] [NumberField E] [IsCM
 
 end GlobalTheory.CompanionTheory.Ar.Small
 end -- clump:auto
-end -- clump:auto
 
 end -- clump: shared namespace opens
 
@@ -1469,11 +1457,9 @@ open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.Char
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec
 open scoped Matrix
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GoodOriginRootWeightBound
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GoodOriginRootWeightBound
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
-noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Small
 
@@ -1485,11 +1471,9 @@ theorem good_origin_root_coefficients : ∀ (E : Type) [Field E] [NumberField E]
 
 end GlobalTheory.CompanionTheory.Ar.Small
 end -- clump:auto
-end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GoodOriginRootWeightBoundStatement
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 theorem _root_.GlobalTheory.T.good_origin_root_weight_bound : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) [DecidableEq (CMType H)] (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (T : Top.RootTower (CMType H) (Dw.p + Dw.q)) (o : Top.GoodOrigin Y T) (B : ℕ) (b₀ : T.Comp) (lam : Top.Wt (CMType H) (Dw.p + Dw.q)) (n' : Option (RootIx Dw) → ℤ), (∀ j, (n' j : ℝ) = (T.M B b₀).coef lam 0 j) → Top.RegDominant lam → ∃ (q₀ : ℕ) (n₀ : Option (RootIx Dw) → ℤ) (ε : (T.M B b₀).Ω) (u : MRing (T.M B b₀).ι) (C s₀ : ℝ), 0 < q₀ ∧ (∀ j, (n₀ j : ℝ) = q₀ * (T.M B b₀).coef T.nu (-1) j) ∧ ε ≠ 0 ∧ ε ∈ chartLatNm (T.M B b₀).y (Top.combLine ((T.M B b₀).line 1) n₀).a 1 ∧ Small.IsFormOff (mCoordIdeal (T.M B b₀).y) u ∧ 0 ≤ C ∧ 0 < s₀ ∧ ∀ s : ℝ, 0 < s → s ≤ s₀ → ∀ z ∈ mcPts (mCoordIdeal (T.M B b₀).y), MvPolynomial.aeval z u ≠ 0 → ∀ x : ℂ, Small.HasVal (T.M B b₀).y (Top.combLine ((T.M B b₀).line 1) n₀).a ε z x → x ≠ 0 → s / q₀ * Real.log ‖x‖ + (T.M B b₀).weight (Top.scale s) (lam - s • T.nu) s z ≤ C * s + Real.log (∏ r, ((o.toTowerOrigin.Or B b₀).sing r).h z ^ n' (some r)) := by
   first | exact @GlobalTheory.CompanionTheory.Ar.Small.good_origin_root_coefficients
@@ -1584,10 +1568,8 @@ open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.StrictWeightGrowthBound
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.StrictWeightGrowthBound
 
-noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Plug.Mult
 
@@ -1854,10 +1836,8 @@ theorem vs_mult : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
 
 end GlobalTheory.CompanionTheory.Ar.Plug.Mult
 end -- clump:auto
-end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.StrictWeightGrowthBoundStatement
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 theorem _root_.GlobalTheory.T.strict_weight_growth_bound : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l), ∀ (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) [DecidableEq (CMType H)] (T : Top.RootTower (CMType H) (Dw.p + Dw.q)) (o : Top.GoodOrigin Y T) (B : ℕ) (b : T.Comp) (u : GlobalTheory.AllWt.Weight Dw), (∀ τ, StrictAnti (u τ)) → ∃ (C : ℝ) (s : ℕ → ℝ) (q : ℕ → ℕ) (m : ℕ → Option (RootIx Dw) → ℤ) (θ : ℕ → (T.M B b).Ω), 0 ≤ C ∧ (∀ n, 0 < s n) ∧ Tendsto s atTop (𝓝 0) ∧ (∀ n, 0 < q n ∧ 8 ∣ q n ∧ θ n ≠ 0) ∧ (∀ n j, (m n j : ℝ) = q n * (T.M B b).coef (T.lamS (reW u) (s n)) (s n) j) ∧ ∀ (n τ : ℕ) (t : ℝ), ∀ σ ∈ chartLatNm (T.M B b).y (Top.combLine ((T.M B b).line (Top.scale (s n))) (m n)).a τ, IsSmallH (mCoordIdeal (T.M B b).y) (T.M B b).y (Small.shiftH (Top.combLine ((T.M B b).line (Top.scale (s n))) (m n)) (q n * t)) τ σ → σ * θ n ^ τ ∈ modelSmall (o.toTowerOrigin.Or B b) ((τ * q n) • u) (Real.exp (((τ * q n : ℕ) : ℝ) * (t + C * s n))) := by
   first | exact @GlobalTheory.CompanionTheory.Ar.Plug.Mult.vs_mult

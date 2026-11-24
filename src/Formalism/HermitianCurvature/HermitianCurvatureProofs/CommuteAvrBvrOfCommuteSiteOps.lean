@@ -69,11 +69,11 @@ theorem z10 (h : IsLevelStart L st) {Y : ℂ} (hi : Y ∈ st.inv) :
     st.QQ Y 1 0 * L.ζ = L.ζ * st.QQ Y 1 0 - st.QQ Y 1 1 ∧ Commute (st.QQ Y 1 0) L.ζb := by
   have hlow := h.low Y hi
   have htau := h.tau Y
-  have mζ : L.ζ ∈ zfns L := by simp [zfns]
-  have mζi : L.ζi ∈ zfns L := by simp [zfns]
-  have mζb : L.ζb ∈ zfns L := by simp [zfns]
-  have mGG : L.GG ∈ zfns L := by simp [zfns]
-  have mGGi : L.GGi ∈ zfns L := by simp [zfns]
+  have mζ : L.ζ ∈ zfns L := Or.inl rfl
+  have mζi : L.ζi ∈ zfns L := Or.inr (Or.inl rfl)
+  have mζb : L.ζb ∈ zfns L := Or.inr (Or.inr (Or.inl rfl))
+  have mGG : L.GG ∈ zfns L := Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl))))
+  have mGGi : L.GGi ∈ zfns L := Or.inr (Or.inr (Or.inr (Or.inr (Or.inr rfl))))
   have cm : ∀ {x y : A}, x ∈ zfns L → y ∈ zfns L → Commute x y := fun hx hy => fn_comm L hx hy
   have hX : ∀ g ∈ zfns L, Commute (st.x Y) g := h.x_fn Y
   have hE : ∀ g ∈ zfns L, Commute (st.ee Y) g := h.ee_fn Y
@@ -111,9 +111,9 @@ theorem z10 (h : IsLevelStart L st) {Y : ℂ} (hi : Y ∈ st.inv) :
 
 theorem zetaQQ : ZetaQQ := by
   intro A _ _ _ _ r L st hS h Y hY hi
-  have mζ : L.ζ ∈ zfns L := by simp [zfns]
-  have mζb : L.ζb ∈ zfns L := by simp [zfns]
-  have mG : L.GG ∈ zfns L := by simp [zfns]
+  have mζ : L.ζ ∈ zfns L := Or.inl rfl
+  have mζb : L.ζb ∈ zfns L := Or.inr (Or.inr (Or.inl rfl))
+  have mG : L.GG ∈ zfns L := Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl))))
   have sζb : star L.ζb = L.ζ := by rw [← hS.1, star_star]
   have herm : ∀ Z : ℂ, star Z = Z → ∀ i j, star (st.QQ Z i j) = st.QQ Z j i := fun Z hZ i j => by
     have := congrFun (congrFun (h.start.herm Z hZ) j) i
@@ -214,8 +214,8 @@ theorem vecP (L : LevelData A r) (φ : A →+* A) (t : ℂ) (hal : ∀ z, φ (al
     φ (L.Ar Y) = L.Ar (Y + t) ∧ φ (L.Br Y) = L.Br (Y + t) := by
   have hT : ∀ l, φ.mapMatrix (L.Tl Y l) = L.Tl (Y + t) l := by
     intro l
-    have hc : φ (L.c l) = L.c l := hf _ (by simp [R.LevelData.fns])
-    have hci : φ (L.ci l) = L.ci l := hf _ (by simp [R.LevelData.fns])
+    have hc : φ (L.c l) = L.c l := hf _ (Or.inl (Or.inl (Or.inl (Or.inl ⟨l, rfl⟩))))
+    have hci : φ (L.ci l) = L.ci l := hf _ (Or.inl (Or.inl (Or.inl (Or.inr ⟨l, rfl⟩))))
     ext i j
     fin_cases i <;> fin_cases j <;> simp [R.LevelData.Tl, hal, hp, hc, hci, map_add (f := _)] <;> abel
   have hTP : φ.mapMatrix (L.Tprod Y) = L.Tprod (Y + t) := by
@@ -236,8 +236,8 @@ theorem vecM (L : LevelData A r) (φ : A →+* A) (t : ℂ) (hal : ∀ z, φ (al
     φ (L.Avr Y) = L.Avr (Y - t) ∧ φ (L.Bvr Y) = L.Bvr (Y - t) := by
   have hT : ∀ l, φ.mapMatrix (L.Tvl Y l) = L.Tvl (Y - t) l := by
     intro l
-    have hc : φ (L.cb l) = L.cb l := hf _ (by simp [R.LevelData.fns])
-    have hci : φ (L.cbi l) = L.cbi l := hf _ (by simp [R.LevelData.fns])
+    have hc : φ (L.cb l) = L.cb l := hf _ (Or.inl (Or.inl (Or.inr ⟨l, rfl⟩)))
+    have hci : φ (L.cbi l) = L.cbi l := hf _ (Or.inl (Or.inr ⟨l, rfl⟩))
     ext i j
     fin_cases i <;> fin_cases j <;> simp [R.LevelData.Tvl, hal, hp, hc, hci, map_sub] <;> abel
   have hTP : φ.mapMatrix (L.Tvprod Y) = L.Tvprod (Y - t) := by
@@ -305,7 +305,7 @@ theorem eff_Z (L : LevelData A r) : Eff L (cZ L) 0 0 := by
     show L.ζi * x * L.ζ = x
     rw [mul_assoc, hx, ← mul_assoc, L.ζi_ζ, one_mul]
   have hal : ∀ z, cZ L (algebraMap ℂ A z) = algebraMap ℂ A z := fun z => hfix _ (Algebra.commutes z L.ζ)
-  have hf : ∀ x ∈ L.fns, cZ L x = x := fun x hx => hfix _ (L.fns_comm x hx L.ζ (by simp))
+  have hf : ∀ x ∈ L.fns, cZ L x = x := fun x hx => hfix _ (L.fns_comm x hx L.ζ (Or.inr (Or.inl rfl)))
   have hp : ∀ l, cZ L (L.p l) = L.p l + algebraMap ℂ A 0 := by
     intro l
     simp only [map_zero, add_zero]
@@ -321,7 +321,7 @@ theorem eff_Zb (L : LevelData A r) : Eff L (cZb L) 0 0 := by
     show L.ζbi * x * L.ζb = x
     rw [mul_assoc, hx, ← mul_assoc, L.ζbi_ζb, one_mul]
   have hal : ∀ z, cZb L (algebraMap ℂ A z) = algebraMap ℂ A z := fun z => hfix _ (Algebra.commutes z L.ζb)
-  have hf : ∀ x ∈ L.fns, cZb L x = x := fun x hx => hfix _ (L.fns_comm x hx L.ζb (by simp))
+  have hf : ∀ x ∈ L.fns, cZb L x = x := fun x hx => hfix _ (L.fns_comm x hx L.ζb (Or.inr (Or.inr (Or.inr (Or.inl rfl)))))
   have hp : ∀ l, cZb L (L.p l) = L.p l + algebraMap ℂ A 0 := by
     intro l
     simp only [map_zero, add_zero]

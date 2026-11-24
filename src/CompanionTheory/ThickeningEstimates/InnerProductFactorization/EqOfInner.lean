@@ -36,16 +36,9 @@ theorem exists_rho (w : l ⊕ l → ℝ) (f : Sch l) : ∃ g : Sch l, ⇑g = rho
 theorem toLp_rho {w : l ⊕ l → ℝ} {f g : Sch l} (h : ⇑g = rhoFun w f) : g.toLp 2 volume = rho w (f.toLp 2 volume) :=
   PositivityTheory.ThKF.E.toLp_rho h
 
-theorem eq_of_inner {u v : Sch l} (h : ∀ φ : Sch l, inner ℂ (φ.toLp 2 volume) (u.toLp 2 volume) =
-    inner ℂ (φ.toLp 2 volume) (v.toLp 2 volume)) : u = v := by
-  apply injective_toLp 2 volume
-  have := h (u - v)
-  rw [← sub_eq_zero, ← inner_sub_right, ← toLpCLM_apply (𝕜 := ℂ), map_sub] at this
-  exact sub_eq_zero.1 (inner_self_eq_zero.1 this)
-
 theorem Impl.dRho {s : (l ⊕ l → ℝ) →ₗ[ℝ] (l ⊕ l → ℝ)} {S : Sch l →ₗ[ℂ] Sch l} (h : Impl s S)
     (hs : Function.Surjective S) (w : l ⊕ l → ℝ) (f : Sch l) : S (dRho w f) = dRho (s w) (S f) := by
-  refine eq_of_inner fun φ => ?_
+  refine PositivityTheory.ThKF.E.eq_of_inner fun φ => ?_
   obtain ⟨φ', rfl⟩ := hs φ
   have d1 := hasDerivAt_inner_rho w φ' f
   have d2 := hasDerivAt_inner_rho (s w) (S φ') (S f)

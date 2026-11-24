@@ -147,9 +147,9 @@ theorem exponent_bound (CH C R F : ℝ) (hCH : 0 ≤ CH) (hC : 100 * (CH + 10) �
         + ((2 * R + 2) + 3 + CH * (2 * R + 2)) * (80 * R ^ 4 * F)
       ≤ C * (2 * R + 2) ^ 2 * F * (C * R ^ 4) := by
   have hR2 : 1 ≤ R ^ 2 := one_le_pow₀ hR
-  have hR4 : R ^ 2 ≤ R ^ 4 := by nlinarith
+  have hR4 : R ^ 2 ≤ R ^ 4 := pow_le_pow_right₀ hR (by norm_num)
   have hR41 : 1 ≤ R ^ 4 := le_trans hR2 hR4
-  have hS : 1 ≤ (R + 1) ^ 2 := by nlinarith
+  have hS : 1 ≤ (R + 1) ^ 2 := one_le_pow₀ (by linarith)
   have hP0 : 0 ≤ R ^ 4 * (R + 1) ^ 2 := by positivity
   have e1 : R ^ 2 ≤ R ^ 4 * (R + 1) ^ 2 := by
     calc R ^ 2 ≤ R ^ 4 := hR4
@@ -159,15 +159,15 @@ theorem exponent_bound (CH C R F : ℝ) (hCH : 0 ≤ CH) (hC : 100 * (CH + 10) �
     calc (R + 1) ^ 2 = 1 * (R + 1) ^ 2 := by ring
     _ ≤ R ^ 4 * (R + 1) ^ 2 := by gcongr
   have e3 : R ^ 4 * (2 * R + 5) ≤ 5 * (R ^ 4 * (R + 1) ^ 2) := by
-    have : 2 * R + 5 ≤ 5 * (R + 1) ^ 2 := by nlinarith
+    have : 2 * R + 5 ≤ 5 * (R + 1) ^ 2 := by linarith [sq_nonneg R]
     calc R ^ 4 * (2 * R + 5) ≤ R ^ 4 * (5 * (R + 1) ^ 2) := by gcongr
     _ = 5 * (R ^ 4 * (R + 1) ^ 2) := by ring
   have e4 : R ^ 4 * (2 * R + 2) ≤ 2 * (R ^ 4 * (R + 1) ^ 2) := by
-    have : 2 * R + 2 ≤ 2 * (R + 1) ^ 2 := by nlinarith
+    have : 2 * R + 2 ≤ 2 * (R + 1) ^ 2 := by linarith [sq_nonneg R]
     calc R ^ 4 * (2 * R + 2) ≤ R ^ 4 * (2 * (R + 1) ^ 2) := by gcongr
     _ = 2 * (R ^ 4 * (R + 1) ^ 2) := by ring
   have hC1 : 1000 ≤ C := by linarith
-  have hCC : 413 + 160 * CH ≤ 4 * C ^ 2 := by nlinarith
+  have hCC : 413 + 160 * CH ≤ 4 * C ^ 2 := by linarith [mul_le_mul_of_nonneg_right hC1 (by linarith : (0 : ℝ) ≤ C), sq C]
   nlinarith [mul_le_mul_of_nonneg_left e1 hF, mul_le_mul_of_nonneg_left e2 hF,
     mul_le_mul_of_nonneg_left e3 hF, mul_le_mul_of_nonneg_left e4 (mul_nonneg hF hCH),
     mul_le_mul_of_nonneg_left hCC (mul_nonneg hF hP0)]
@@ -186,8 +186,8 @@ theorem b_part (CH C : ℝ) (hCH : 0 ≤ CH) (hC : 100 * (CH + 10) ≤ C) (r m f
     exact pow_le_pow_left₀ (by norm_num) hb _
   have h8v : 8 * v ≤ b ^ (3 : ℝ) := by
     rw [show (3 : ℝ) = ((3 : ℕ) : ℝ) by norm_num, Real.rpow_natCast]
-    have h4 : 4 ≤ b ^ 2 := by nlinarith
-    nlinarith [mul_le_mul_of_nonneg_left h4 hb0.le]
+    have h4 : 4 ≤ b ^ 2 := by linarith [pow_le_pow_left₀ (by norm_num : (0 : ℝ) ≤ 2) hb 2]
+    linarith [mul_le_mul_of_nonneg_left h4 hb0.le, show b * b ^ 2 = b ^ 3 by ring]
   have f2 : (8 * v) ^ (2 * (r + 1) ^ 2 * f) ≤ b ^ (3 * (2 * ((r : ℝ) + 1) ^ 2 * f)) := by
     rw [show (3 * (2 * ((r : ℝ) + 1) ^ 2 * f)) = 3 * ((2 * (r + 1) ^ 2 * f : ℕ) : ℝ) by
       push_cast; ring, Real.rpow_mul_natCast hb0.le]
@@ -275,7 +275,7 @@ theorem GlobalTheory.amplitude_arithmetic : ∀ CH : ℝ, 0 ≤ CH → ∃ C₀ 
     have h2 := Real.exp_one_lt_d9
     have hpe : Real.pi * Real.exp 1 < 3.15 * 2.7182818286 :=
       mul_lt_mul'' h1 h2 Real.pi_pos.le (Real.exp_pos 1).le
-    nlinarith
+    linarith
   rw [hPi]
   exact GlobalTheory.AmpArith.regroup
     (mul_nonneg (pow_nonneg hv0 _) (pow_nonneg (mul_nonneg (mul_nonneg
@@ -452,9 +452,9 @@ theorem gap_hypothesis_of_kernel_bound_large_constant {D : D7} {large₂ : SizeD
   have hn0 : (0 : ℝ) ≤ (D.R.r : ℝ) ^ 19 := by positivity
   have hf5 : (1 : ℝ) ≤ (D.R.f : ℝ) ^ 5 := one_le_pow₀ (by linarith)
   have h16 : 16 * (D.R.r : ℝ) ^ 19 ≤ Cl * (D.R.r : ℝ) ^ 19 * (D.R.f : ℝ) ^ 5 * large₂.sc.L := by
-    have a1 : 16 * (D.R.r : ℝ) ^ 19 ≤ Cl * (D.R.r : ℝ) ^ 19 := by nlinarith
+    have a1 : 16 * (D.R.r : ℝ) ^ 19 ≤ Cl * (D.R.r : ℝ) ^ 19 := mul_le_mul_of_nonneg_right (by linarith) hn0
     have a2 : Cl * (D.R.r : ℝ) ^ 19 ≤ Cl * (D.R.r : ℝ) ^ 19 * ((D.R.f : ℝ) ^ 5 * large₂.sc.L) :=
-      le_mul_of_one_le_right (by positivity) (by nlinarith)
+      le_mul_of_one_le_right (by positivity) (one_le_mul_of_one_le_of_one_le hf5 hL.le)
     linarith [show Cl * (D.R.r : ℝ) ^ 19 * ((D.R.f : ℝ) ^ 5 * large₂.sc.L) =
       Cl * (D.R.r : ℝ) ^ 19 * (D.R.f : ℝ) ^ 5 * large₂.sc.L by ring]
   have hR : ((16 * (D.R.r : ℚ) ^ 19 : ℚ) : ℝ) ≤ (((D.hc τ).b ⟨j.1 + 1, hj⟩ - (D.hc τ).b j : ℚ) : ℝ) := by
@@ -1060,20 +1060,20 @@ theorem const_loss_le (r : ℕ) (hr : 1 ≤ r) (H : ℝ) (hH : 1 ≤ H) :
     16 * (4 * r + 4 : ℝ) * (4 * r : ℝ) ^ (4 * r ^ 2) * (2 * H) ^ (16 * r ^ 3 + 4 * r) *
       ((2 * H) ^ (2 * r)) ^ ((r + 1) * (8 * r ^ 2 + 2)) ≤ (8 * r * H) ^ (80 * r ^ 4) := by
   have hr' : (1 : ℝ) ≤ r := by exact_mod_cast hr
-  have hB8 : (8 : ℝ) ≤ 8 * r * H := by nlinarith
+  have hB8 : (8 : ℝ) ≤ 8 * r * H := by linarith [one_le_mul_of_one_le_of_one_le hr' hH]
   have hB1 : (1 : ℝ) ≤ 8 * r * H := by linarith
   have hH0 : (0 : ℝ) ≤ 2 * H := by linarith
-  have e1 : (16 : ℝ) ≤ (8 * r * H) ^ 2 := by nlinarith
-  have e2 : (4 * r + 4 : ℝ) ≤ (8 * r * H) ^ 1 := by rw [pow_one]; nlinarith
-  have e3 : (4 * r : ℝ) ≤ 8 * r * H := by nlinarith
-  have e4 : 2 * H ≤ 8 * r * H := by nlinarith
+  have e1 : (16 : ℝ) ≤ (8 * r * H) ^ 2 := by linarith [pow_le_pow_left₀ (by norm_num : (0 : ℝ) ≤ 8) hB8 2]
+  have e2 : (4 * r + 4 : ℝ) ≤ (8 * r * H) ^ 1 := by rw [pow_one]; linarith [le_mul_of_one_le_right (by linarith : (0 : ℝ) ≤ r) hH]
+  have e3 : (4 * r : ℝ) ≤ 8 * r * H := by linarith [le_mul_of_one_le_right (by linarith : (0 : ℝ) ≤ r) hH]
+  have e4 : 2 * H ≤ 8 * r * H := by linarith [le_mul_of_one_le_left (by linarith : (0 : ℝ) ≤ H) hr']
   have hexp : 2 + 1 + 4 * r ^ 2 + (16 * r ^ 3 + 4 * r) + 2 * r * ((r + 1) * (8 * r ^ 2 + 2)) ≤ 80 * r ^ 4 := by
     have p1 : r ^ 1 ≤ r ^ 4 := Nat.pow_le_pow_right (by omega) (by norm_num)
     have p2 : r ^ 2 ≤ r ^ 4 := Nat.pow_le_pow_right (by omega) (by norm_num)
     have p3 : r ^ 3 ≤ r ^ 4 := Nat.pow_le_pow_right (by omega) (by norm_num)
     have p0 : 1 ≤ r ^ 4 := Nat.one_le_pow _ _ (by omega)
     rw [pow_one] at p1
-    nlinarith
+    grind
   calc 16 * (4 * r + 4 : ℝ) * (4 * r : ℝ) ^ (4 * r ^ 2) * (2 * H) ^ (16 * r ^ 3 + 4 * r) *
         ((2 * H) ^ (2 * r)) ^ ((r + 1) * (8 * r ^ 2 + 2))
       ≤ (8 * r * H) ^ 2 * (8 * r * H) ^ 1 * (8 * r * H) ^ (4 * r ^ 2) * (8 * r * H) ^ (16 * r ^ 3 + 4 * r) *
@@ -1101,10 +1101,10 @@ theorem size_loss_le (C' : ℝ) (C₁ k r : ℕ) (hC : C' + 2 ≤ C₁) (hr : 1 
     field_simp
   have hinv : 1 / (r : ℝ) ≤ 1 := by rw [div_le_one hr0]; exact hr'
   have hCk : (C' + 2) * k ≤ C₁ * k := mul_le_mul_of_nonneg_right hC hk0
-  have q1 : (r : ℝ) ≤ r ^ 2 := by nlinarith
-  have q2 : (r : ℝ) ^ 2 ≤ r ^ 3 := by nlinarith
-  have q3 : (r : ℝ) ^ 3 ≤ r ^ 4 := by nlinarith
-  nlinarith
+  have q1 : (r : ℝ) ≤ r ^ 2 := le_self_pow₀ hr' (by norm_num)
+  have q2 : (r : ℝ) ^ 2 ≤ r ^ 3 := pow_le_pow_right₀ hr' (by norm_num)
+  have q3 : (r : ℝ) ^ 3 ≤ r ^ 4 := pow_le_pow_right₀ hr' (by norm_num)
+  rw [hsplit]; linarith
 
 end GlobalTheory.Amp
 end -- clump:auto
@@ -1155,7 +1155,7 @@ theorem prod_degBd_le_explicit (C' : ℝ) (ι : Type) [Fintype ι] (k r j q : �
     have h3 : (0 : ℝ) < k := by exact_mod_cast (show 0 < k by omega)
     have h4 : 0 < Real.pi * Real.exp 1 := by positivity
     rw [div_le_div_iff₀ h2' h3]
-    nlinarith
+    linarith [mul_le_mul_of_nonneg_left h1' h4.le]
   have hA := const_loss_le r hr H₁ hH
   set A : ℝ := 16 * (4 * r + 4 : ℝ) * (4 * r : ℝ) ^ (4 * r ^ 2) * (2 * H₁) ^ (16 * r ^ 3 + 4 * r) with hAdef
   have hA0 : 0 ≤ A := by rw [hAdef]; positivity
@@ -1298,7 +1298,7 @@ theorem prodC_holds : ProdC := by
         rw [← Finset.prod_pow]
         exact Finset.prod_congr rfl fun v _ => by rw [hgram]
       have h3 : 0 ≤ ∏ v, Dm v l := Finset.prod_nonneg fun v _ => (hpos v).le
-      nlinarith
+      exact le_of_sq_le_sq (by linarith : (1 : ℝ) ^ 2 ≤ (∏ v, Dm v l) ^ 2) h3
   obtain ⟨hr, hG, -⟩ := relevantSet_zeroG_not_identity ht
   obtain ⟨j, hj', c, hN⟩ := exists_nfFull_of_relevant_of_G_eq_zero Y t hr hG
   have hjT := index_eq_normalForm t hN
@@ -1436,7 +1436,7 @@ theorem chain {a V L w vol Pr om vk sd A0f PB G : ℝ} (ha : 0 ≤ a) (hV : 1 �
     (hPr0 : 0 ≤ Pr) (hom : 0 ≤ om) (hvk : 0 ≤ vk)
     (hfact : a * V ≤ w * (vol * Pr)) (hvol : vol ≤ om * (vk * L)) (hPr : Pr ≤ sd * (A0f * PB))
     (hG : vk * L * L * A0f * PB ≤ G) (hsd : 0 ≤ sd) : a ≤ w * sd * G * om := by
-  have s1 : a ≤ a * V * L := by nlinarith
+  have s1 : a ≤ a * V * L := by rw [mul_assoc]; exact le_mul_of_one_le_right ha hV
   have s2 : a * V * L ≤ w * (vol * Pr) * L := mul_le_mul_of_nonneg_right hfact hL
   have s3 : vol * Pr ≤ om * (vk * L) * Pr := mul_le_mul_of_nonneg_right hvol hPr0
   have s4 : om * (vk * L) * Pr ≤ om * (vk * L) * (sd * (A0f * PB)) :=
@@ -1447,7 +1447,7 @@ theorem chain {a V L w vol Pr om vk sd A0f PB G : ℝ} (ha : 0 ≤ a) (hV : 1 �
   have s6 : w * (om * (vk * L) * (sd * (A0f * PB))) * L = w * sd * om * (vk * L * L * A0f * PB) := by ring
   have s7 : w * sd * om * (vk * L * L * A0f * PB) ≤ w * sd * om * G :=
     mul_le_mul_of_nonneg_left hG (by positivity)
-  nlinarith
+  linarith [show w * sd * om * G = w * sd * G * om by ring]
 
 theorem sizes {D : D7} {large₂ : SizeData₂ D} {C' Cl Cg cb Cw cT CT C0 : ℝ}
     (hH : Formalism.MainNotions.NonGenericAndKTwoTheorems.KTwoHypotheses D large₂ C' Cl Cg cb Cw cT CT C0) (hC' : 40 ≤ C') (hCl : 1 ≤ Cl) :

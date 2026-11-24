@@ -62,32 +62,6 @@ section Translates
 
 variable {D : D7} {T : Tor D} {N N' : ℕ}
 
-theorem hf_add_left (x y z : VC D N N') : Hf D T (x + y) z = Hf D T x z + Hf D T y z := by
-  simp only [Hf, Pi.add_apply, add_mul, Finset.sum_add_distrib, add_div]
-
-theorem hf_nsmul (n : ℕ) (x z : VC D N N') : Hf D T (n • x) z = Hf D T x (n • z) := by
-  simp only [Hf, Pi.smul_apply, nsmul_eq_mul, map_mul, map_natCast]
-  congr 1
-  refine Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ =>
-    Finset.sum_congr rfl fun _ _ => by ring
-
-theorem hf_conj (x z : VC D N N') : Hf D T z x = (starRingEnd ℂ) (Hf D T x z) := by
-
-  simp only [Hf, map_div₀, map_sum, map_mul, Complex.conj_conj, Complex.conj_ofReal]
-  congr 1
-  refine Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ =>
-    Finset.sum_congr rfl fun _ _ => by ring
-
-theorem differentiable_hf (x : VC D N N') : Differentiable ℂ (fun z => Hf D T z x) := by
-  unfold Hf
-  fun_prop
-
-theorem differentiable_wd (x : VC D N N') {G : VC D N N' → ℂ} (hG : Differentiable ℂ G) :
-    Differentiable ℂ (Wd D T x G) := by
-  have h := differentiable_hf (T := T) x
-  unfold Wd U
-  fun_prop
-
 theorem wd_wd_of_int {x z : VC D N N'} {G : VC D N N' → ℂ} (hx : Wd D T x G = G) (m : ℤ)
     (hm : (Hf D T x z).im = m) (w : VC D N N') : Wd D T x (Wd D T z G) w = Wd D T z G w := by
   apply _root_.GlobalTheory.FinWeil.RatTransl.wd_wd_of_int <;> assumption
@@ -108,7 +82,7 @@ theorem test_mem (hg : admG1 D) (hc : Crv D cc δ) (P : Pair D cc δ t0 Q) (hQ :
   obtain ⟨hd, he⟩ := P.vac.1
   refine ⟨?_, Q, hQ, fun x hx => ?_⟩
   · rw [hF]
-    exact Differentiable.fun_sum fun i _ => (differentiable_wd _ hd).const_mul _
+    exact Differentiable.fun_sum fun i _ => (GlobalTheory.FinWeil.RatTransl.differentiable_wd _ hd).const_mul _
   · have hx' : Q • x ∈ La0 D (tor0 D cc δ) P.a P.d := AddSubgroup.nsmul_mem _ hx _
     have h0 : Wd D (tor0 D cc δ) (Q • x) P.e0 = P.e0 := by
       rw [hW _ hx']
@@ -118,7 +92,7 @@ theorem test_mem (hg : admG1 D) (hc : Crv D cc δ) (P : Pair D cc δ t0 Q) (hQ :
     have h1 : ∀ i, Wd D (tor0 D cc δ) (Q • x) (Wd D (tor0 D cc δ) (pt D (tor0 D cc δ) δ (z i)) P.e0) w =
         Wd D (tor0 D cc δ) (pt D (tor0 D cc δ) δ (z i)) P.e0 w := fun i => by
       obtain ⟨m, hm⟩ := hI x hx _ (hz i)
-      exact wd_wd_of_int h0 m (by rw [hf_nsmul, hm]) w
+      exact wd_wd_of_int h0 m (by rw [GlobalTheory.FinWeil.RatTransl.hf_nsmul, hm]) w
     rw [hF]
     refine Eq.trans ?_ (Finset.sum_congr rfl fun i _ => congrArg ((r i : ℂ) * ·) (h1 i))
     generalize (fun i => Wd D (tor0 D cc δ) (pt D (tor0 D cc δ) δ (z i)) P.e0) = G

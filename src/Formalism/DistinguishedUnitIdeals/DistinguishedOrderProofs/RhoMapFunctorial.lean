@@ -100,33 +100,30 @@ section lat
 variable {O : Type} [CommRing O] {B : Base O} {n : ℕ} {V : Type} [AddCommGroup V]
   [Module (PowerSeries O) V] (L : Lat B n V)
 
-private theorem phiIt_succ_lemma (i : ZMod n) (k : ℕ) (v : V) :
-    L.phiIt i (k + 1) v = L.φ (i + ((k + 1 : ℕ) : ZMod n)) (L.phiIt i k v) := rfl
-
 private theorem phiIt_zero_lemma_2 (i : ZMod n) (v : V) : L.phiIt i 0 v = v := rfl
 
 theorem phiIt_zero (i : ZMod n) (k : ℕ) : L.phiIt i k 0 = 0 := by
   induction k with
   | zero => rfl
-  | succ k ih => rw [phiIt_succ_lemma, ih, map_zero]
+  | succ k ih => rw [Formalism.ExponentWindows.E.S1.phiIt_succ, ih, map_zero]
 
 theorem phiIt_add (i : ZMod n) (k : ℕ) (u v : V) :
     L.phiIt i k (u + v) = L.phiIt i k u + L.phiIt i k v := by
   induction k with
   | zero => rfl
-  | succ k ih => simp only [phiIt_succ_lemma, ih, map_add (f := _)]
+  | succ k ih => simp only [Formalism.ExponentWindows.E.S1.phiIt_succ, ih, map_add (f := _)]
 
 theorem phiIt_sub (i : ZMod n) (k : ℕ) (u v : V) :
     L.phiIt i k (u - v) = L.phiIt i k u - L.phiIt i k v := by
   induction k with
   | zero => rfl
-  | succ k ih => simp only [phiIt_succ_lemma, ih, map_sub]
+  | succ k ih => simp only [Formalism.ExponentWindows.E.S1.phiIt_succ, ih, map_sub]
 
 theorem phiIt_smul (i : ZMod n) (k : ℕ) (a : PowerSeries O) (v : V) :
     L.phiIt i k (a • v) = ((⇑B.φ)^[k] a) • L.phiIt i k v := by
   induction k with
   | zero => rfl
-  | succ k ih => simp only [phiIt_succ_lemma, ih, L.φ_semi, Function.iterate_succ_apply']
+  | succ k ih => simp only [Formalism.ExponentWindows.E.S1.phiIt_succ, ih, L.φ_semi, Function.iterate_succ_apply']
 
 theorem phiIt_C (i : ZMod n) (k : ℕ) (m : O) (v : V) :
     L.phiIt i k (C m • v) = C m • L.phiIt i k v := by
@@ -150,7 +147,7 @@ theorem γ_phiIt (i : ZMod n) (k : ℕ) (v : V) :
   induction k with
   | zero => simp only [phiIt_zero_lemma_2, Nat.cast_zero, add_zero]
   | succ k ih =>
-    rw [phiIt_succ_lemma, phiIt_succ_lemma, ← L.comm]
+    rw [Formalism.ExponentWindows.E.S1.phiIt_succ, Formalism.ExponentWindows.E.S1.phiIt_succ, ← L.comm]
     have hk : i + ((k + 1 : ℕ) : ZMod n) - 1 = i + (k : ZMod n) := by push_cast; ring
     rw [hk, ih]
 
@@ -360,7 +357,7 @@ variable {O : Type} [CommRing O] {B : Base O} {n : ℕ} {V V' : Type} [AddCommGr
 theorem hom_phiIt (i : ZMod n) (k : ℕ) (v : V) : h.f (L.phiIt i k v) = L'.phiIt i k (h.f v) := by
   induction k with
   | zero => rfl
-  | succ k ih => rw [phiIt_succ_lemma, phiIt_succ_lemma, h.φ_comm, ih]
+  | succ k ih => rw [Formalism.ExponentWindows.E.S1.phiIt_succ, Formalism.ExponentWindows.E.S1.phiIt_succ, h.φ_comm, ih]
 
 theorem hom_pull {i : ZMod n} {k : ℕ} {v : V} (hv : v ∈ L.pull i k) : h.f v ∈ L'.pull i k := by
   have hle : L.pull i k ≤ (L'.pull i k).comap h.f := by
