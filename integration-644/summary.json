@@ -1,0 +1,125 @@
+{
+  "public": {
+    "pull_request": "https://github.com/leanprover-community/riemann-hypothesis/pull/879",
+    "pr_head": "4fc7348e335c0c93eece5d0183bfc64f52081b84",
+    "comparison_parent": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+    "upstream_main": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+    "merge_base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+    "source_mode": "github-test-merge",
+    "checked_commit": "ed7f034b1d3b309166315c8527a2228c6d1ec328",
+    "source_tree": "62e25fabf61fa91901268fe30617394d9827ea03",
+    "observed_github_merge": "ed7f034b1d3b309166315c8527a2228c6d1ec328",
+    "ci_head": "83de7253de04a016aa86fd990818a24faa4e7564"
+  },
+  "job_steps": {
+    "Set up job": "success",
+    "Check out fork inputs": "success",
+    "Select the attested upstream base": "success",
+    "Check out the community cache tools and pins": "success",
+    "Materialize the selected source cone": "success",
+    "Match the bounded job to its published upstream PR": "success",
+    "Install the pinned toolchain": "success",
+    "Exercise Comparator acceptance and rejection": "success",
+    "Restore the published parent archives": "success",
+    "Fetch the official Mathlib cache for the selected imports": "success",
+    "Build and compare the candidate": "success",
+    "Measure fresh parent and candidate compilations": "success",
+    "Compare changed theorems with the upstream Comparator and three kernels": "success",
+    "Save the scope and verification output": "success",
+    "Post Check out the community cache tools and pins": "success",
+    "Post Check out fork inputs": "success",
+    "Complete job": "success"
+  },
+  "roots": 72,
+  "project_modules": 143,
+  "fresh_sources": 100,
+  "changed_sources": 97,
+  "declarations": 9745,
+  "changed_source_declarations": 7711,
+  "expanded_parent_archive_bytes": 164746644,
+  "compressed_parent_archive_bytes": 9581022,
+  "private_and_public_comparisons": "All sorted kernel declarations and normalized public module images matched",
+  "replayed_roots": [
+    "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+    "Development.AbelianVarietyTheory.Definitions.Divisors.FderivFnCongr",
+    "Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff"
+  ],
+  "controls": {
+    "alternative-proof": {
+      "verdict": "accepted",
+      "statements": "success",
+      "axioms": "success",
+      "kernels": {
+        "nanoda": "success",
+        "Lean paranoid": "success",
+        "Lean default": "success"
+      }
+    },
+    "other-statement": {
+      "verdict": "failure",
+      "statements": "failure",
+      "axioms": "skipped",
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      }
+    },
+    "extra-axiom": {
+      "verdict": "failure",
+      "statements": "success",
+      "axioms": "failure",
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      }
+    }
+  },
+  "theorems": [
+    {
+      "theorem": "GlobalTheory.CatCoh.commAlgFunctorCoboundaryZero_mem_cocyclesOne",
+      "kernel_verdicts": {
+        "Lean default": "success",
+        "Lean paranoid": "success",
+        "nanoda": "success"
+      },
+      "parent_bytes": 4888069,
+      "candidate_bytes": 4888069,
+      "identical_exports": true,
+      "parent_source_sha256": "fdf02329ded6c87c37dc39f2bf6a0cb94720214359395b98619a7b24d3fb7a08",
+      "candidate_source_sha256": "c7580e6b64700b1d4b97542808767ef8924169157f3248849255cffebf2ecc7e",
+      "comparator_seconds": 1.219
+    },
+    {
+      "theorem": "GlobalTheory.TopForm.isBaseChange_exteriorPower",
+      "kernel_verdicts": {
+        "Lean default": "success",
+        "Lean paranoid": "success",
+        "nanoda": "success"
+      },
+      "parent_bytes": 52581161,
+      "candidate_bytes": 52581161,
+      "identical_exports": true,
+      "parent_source_sha256": "cc3c0a380d13991803c810c5b3cfb23a9bd6fd68caa4a522e9737bed85591684",
+      "candidate_source_sha256": "68844441ce8b7f390ca829157de13b201b9f4c287862699e6a3e5378134a2cc6",
+      "comparator_seconds": 18.122
+    }
+  ],
+  "timing_status": "complete",
+  "timing_totals": {
+    "cpu_seconds": {
+      "parent_sum_medians": 5.856818,
+      "candidate_sum_medians": 5.585578000000001,
+      "change_percent": -4.63118369052955,
+      "slower_modules": []
+    },
+    "elapsed_seconds": {
+      "parent_sum_medians": 5.859280118000015,
+      "candidate_sum_medians": 5.582668869000031,
+      "change_percent": -4.720908429522252,
+      "slower_modules": []
+    }
+  },
+  "timing_sample_count": 32
+}

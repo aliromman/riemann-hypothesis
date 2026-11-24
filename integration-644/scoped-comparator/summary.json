@@ -1,0 +1,151 @@
+{
+  "status": "accepted",
+  "parent": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+  "donor": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+  "manifest": "18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a",
+  "candidate_head": "83de7253de04a016aa86fd990818a24faa4e7564",
+  "candidate_source_tree": "62e25fabf61fa91901268fe30617394d9827ea03",
+  "export_byte_limit": 100663296,
+  "theorems": [
+    {
+      "module": "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+      "theorem": "GlobalTheory.CatCoh.commAlgFunctorCoboundaryZero_mem_cocyclesOne",
+      "status": "accepted",
+      "removed_imports": [
+        "Mathlib.Algebra.Order.Floor.Extended",
+        "Mathlib.Algebra.Order.Floor.Semifield",
+        "Mathlib.Algebra.Order.Interval.Basic",
+        "Mathlib.Analysis.Complex.UpperHalfPlane.Basic",
+        "Mathlib.Analysis.Normed.Algebra.GelfandRadius",
+        "Mathlib.Analysis.SpecialFunctions.Bernstein",
+        "Mathlib.Analysis.SpecialFunctions.Gamma.Basic",
+        "Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp",
+        "Mathlib.Combinatorics.Enumerative.DyckWord",
+        "Mathlib.Combinatorics.SimpleGraph.Triangle.Removal",
+        "Mathlib.Data.NNRat.Floor",
+        "Mathlib.Data.Nat.Choose.Multinomial",
+        "Mathlib.Geometry.Euclidean.Volume.Basic",
+        "Mathlib.NumberTheory.Chebyshev",
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.Height.Projectivization",
+        "Mathlib.NumberTheory.LucasLehmer",
+        "Mathlib.NumberTheory.SelbergSieve",
+        "Mathlib.RingTheory.Radical.NatInt",
+        "Mathlib.RingTheory.WittVector.IsPoly",
+        "Mathlib.Tactic.Echelon.Zsqrtd",
+        "Mathlib.Tactic.Inclusion.Extension.Core.Core",
+        "Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses",
+        "Mathlib.Tactic.ReduceModChar",
+        "Mathlib.Topology.Sheaves.Init"
+      ],
+      "parent_source_sha256": "fdf02329ded6c87c37dc39f2bf6a0cb94720214359395b98619a7b24d3fb7a08",
+      "candidate_source_sha256": "c7580e6b64700b1d4b97542808767ef8924169157f3248849255cffebf2ecc7e",
+      "exports": {
+        "parent": {
+          "bytes": 4888069,
+          "sha256": "00615d0ad579cd5a3309866b1d7e5861bfa4d6b206bf92d861a0d9b542eee332",
+          "theorem_proof_expr_index": 83803,
+          "elapsed_seconds": 1.118
+        },
+        "candidate": {
+          "bytes": 4888069,
+          "sha256": "00615d0ad579cd5a3309866b1d7e5861bfa4d6b206bf92d861a0d9b542eee332",
+          "theorem_proof_expr_index": 83803,
+          "elapsed_seconds": 1.018
+        }
+      },
+      "changed_direct_project_imports": [],
+      "comparator_seconds": 1.219,
+      "returncode": 0,
+      "judgement": "accepted",
+      "sandboxed": false,
+      "compare_statements": "success",
+      "check_axioms": "success",
+      "kernels": {
+        "Lean default": "success",
+        "Lean paranoid": "success",
+        "nanoda": "success"
+      }
+    },
+    {
+      "module": "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange",
+      "theorem": "GlobalTheory.TopForm.isBaseChange_exteriorPower",
+      "status": "accepted",
+      "removed_imports": [
+        "Mathlib.Algebra.Order.Floor.Extended",
+        "Mathlib.Algebra.Order.Floor.Semifield",
+        "Mathlib.Algebra.Order.Interval.Basic",
+        "Mathlib.Analysis.Complex.UpperHalfPlane.Basic",
+        "Mathlib.Analysis.Normed.Algebra.GelfandRadius",
+        "Mathlib.Analysis.SpecialFunctions.Bernstein",
+        "Mathlib.Analysis.SpecialFunctions.Gamma.Basic",
+        "Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp",
+        "Mathlib.Combinatorics.Enumerative.DyckWord",
+        "Mathlib.Combinatorics.SimpleGraph.Triangle.Removal",
+        "Mathlib.Data.NNRat.Floor",
+        "Mathlib.Data.Nat.Choose.Multinomial",
+        "Mathlib.Geometry.Euclidean.Volume.Basic",
+        "Mathlib.NumberTheory.Chebyshev",
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.Height.Projectivization",
+        "Mathlib.NumberTheory.LucasLehmer",
+        "Mathlib.NumberTheory.SelbergSieve",
+        "Mathlib.RingTheory.Radical.NatInt",
+        "Mathlib.RingTheory.WittVector.IsPoly",
+        "Mathlib.Tactic.Echelon.Zsqrtd",
+        "Mathlib.Tactic.Inclusion.Extension.Core.Core",
+        "Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses",
+        "Mathlib.Tactic.Polynomial.Basic",
+        "Mathlib.Tactic.ReduceModChar",
+        "Mathlib.Topology.Sheaves.Init"
+      ],
+      "parent_source_sha256": "cc3c0a380d13991803c810c5b3cfb23a9bd6fd68caa4a522e9737bed85591684",
+      "candidate_source_sha256": "68844441ce8b7f390ca829157de13b201b9f4c287862699e6a3e5378134a2cc6",
+      "exports": {
+        "parent": {
+          "bytes": 52581161,
+          "sha256": "2dcae760dcc362b23a2aec4c37f91947c52936d0274a4d81e8d65c82812ae24e",
+          "theorem_proof_expr_index": 938376,
+          "elapsed_seconds": 2.723
+        },
+        "candidate": {
+          "bytes": 52581161,
+          "sha256": "2dcae760dcc362b23a2aec4c37f91947c52936d0274a4d81e8d65c82812ae24e",
+          "theorem_proof_expr_index": 938376,
+          "elapsed_seconds": 2.674
+        }
+      },
+      "changed_direct_project_imports": [
+        "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.AlternatingMapSumSmulEqDetSmul"
+      ],
+      "comparator_seconds": 18.122,
+      "returncode": 0,
+      "judgement": "accepted",
+      "sandboxed": false,
+      "compare_statements": "success",
+      "check_axioms": "success",
+      "kernels": {
+        "Lean default": "success",
+        "Lean paranoid": "success",
+        "nanoda": "success"
+      }
+    }
+  ],
+  "pull_request": "https://github.com/leanprover-community/riemann-hypothesis/pull/879",
+  "pr_head": "4fc7348e335c0c93eece5d0183bfc64f52081b84",
+  "checked_commit": "ed7f034b1d3b309166315c8527a2228c6d1ec328",
+  "source_mode": "github-test-merge",
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}

@@ -1,0 +1,355 @@
+{
+  "status": "complete",
+  "method": "Four SHA-256-ranked changed roots from the bounded cone. Each has one warm-up pair and three measured pairs with alternating order. Serial single-thread Lean compiles both headers against the same integrated candidate dependencies and parent-header Lake import map. CPU is user plus system. Elapsed includes process launch and .olean, .ilean and C output. Cache hydration, Lake scheduling and declaration comparison occur outside the timer.",
+  "eligible_changed_roots": 69,
+  "candidate_source_tree": "62e25fabf61fa91901268fe30617394d9827ea03",
+  "parent_source_tree": "70327238ca7c4189479eee72f3c22812f1922329",
+  "lean": "Lean (version 4.37.0-rc1, x86_64-unknown-linux-gnu, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "system": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+  "runner_image": "20261116.133.1",
+  "logical_cpus": 4,
+  "initial_load_averages": [
+    3.54736328125,
+    2.29296875,
+    0.98095703125
+  ],
+  "modules": {
+    "Development.AbelianVarietyTheory.Definitions.Divisors.IotaScalarOne": {
+      "removed_imports": [
+        "Mathlib.Algebra.Order.Floor.Extended",
+        "Mathlib.Algebra.Order.Floor.Semifield",
+        "Mathlib.Algebra.Order.Interval.Basic",
+        "Mathlib.Analysis.Complex.UpperHalfPlane.Basic",
+        "Mathlib.Analysis.Normed.Algebra.GelfandRadius",
+        "Mathlib.Analysis.SpecialFunctions.Bernstein",
+        "Mathlib.Analysis.SpecialFunctions.Gamma.Basic",
+        "Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp",
+        "Mathlib.Combinatorics.Enumerative.DyckWord",
+        "Mathlib.Combinatorics.SimpleGraph.Triangle.Removal",
+        "Mathlib.Data.NNRat.Floor",
+        "Mathlib.Data.Nat.Choose.Multinomial",
+        "Mathlib.Geometry.Euclidean.Volume.Basic",
+        "Mathlib.NumberTheory.Chebyshev",
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.Height.Projectivization",
+        "Mathlib.NumberTheory.LucasLehmer",
+        "Mathlib.NumberTheory.SelbergSieve",
+        "Mathlib.RingTheory.Radical.NatInt",
+        "Mathlib.Tactic.Echelon.Zsqrtd",
+        "Mathlib.Tactic.Inclusion.Extension.Core.Core",
+        "Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses",
+        "Mathlib.Topology.Sheaves.Init"
+      ],
+      "source_sha256": {
+        "parent": "ffbf25d7e79f2d41e4d3aa474d2eeb9f97819a3b176b213f5d70d63ab5f32bf8",
+        "candidate": "9a10fa7e05a1b09ccc1a33b166144edc77dfa92664265b37ddfd5b705b56cfcb"
+      },
+      "cpu_seconds": {
+        "parent": 0.6842459999999999,
+        "candidate": 0.6035820000000005,
+        "change_percent": -11.788742645188922,
+        "ranges": {
+          "parent": [
+            0.6815509999999994,
+            0.6869139999999996
+          ],
+          "candidate": [
+            0.596393,
+            0.6057639999999997
+          ]
+        },
+        "slower_pairs": []
+      },
+      "elapsed_seconds": {
+        "parent": 0.6905238890000192,
+        "candidate": 0.6048903509999946,
+        "change_percent": -12.401241921410522,
+        "ranges": {
+          "parent": [
+            0.6893765220000319,
+            0.692927907000012
+          ],
+          "candidate": [
+            0.6042902309999931,
+            0.6133735259999753
+          ]
+        },
+        "slower_pairs": []
+      },
+      "number of imported modules": {
+        "parent": 14348,
+        "candidate": 12753
+      },
+      "number of imported bytes": {
+        "parent": 2456914096,
+        "candidate": 2261496544
+      },
+      "number of imported consts": {
+        "parent": 395932,
+        "candidate": 347177
+      }
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.LogAbsVpOfNormalised": {
+      "removed_imports": [
+        "Mathlib.Algebra.Order.Floor.Extended",
+        "Mathlib.Algebra.Order.Floor.Semifield",
+        "Mathlib.Algebra.Order.Interval.Basic",
+        "Mathlib.Analysis.Complex.UpperHalfPlane.Basic",
+        "Mathlib.Analysis.Normed.Algebra.GelfandRadius",
+        "Mathlib.Analysis.SpecialFunctions.Bernstein",
+        "Mathlib.Analysis.SpecialFunctions.Gamma.Basic",
+        "Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp",
+        "Mathlib.Combinatorics.Enumerative.DyckWord",
+        "Mathlib.Combinatorics.SimpleGraph.Triangle.Removal",
+        "Mathlib.Data.NNRat.Floor",
+        "Mathlib.Data.Nat.Choose.Multinomial",
+        "Mathlib.Geometry.Euclidean.Volume.Basic",
+        "Mathlib.NumberTheory.Chebyshev",
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.Height.Projectivization",
+        "Mathlib.NumberTheory.LucasLehmer",
+        "Mathlib.NumberTheory.SelbergSieve",
+        "Mathlib.RingTheory.Radical.NatInt",
+        "Mathlib.Tactic.Echelon.Zsqrtd",
+        "Mathlib.Tactic.Inclusion.Extension.Core.Core",
+        "Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses",
+        "Mathlib.Topology.Sheaves.Init"
+      ],
+      "source_sha256": {
+        "parent": "56353f59b4d2bf4da2fd7772dcda7dae14e1e1134e6db1024c195baaaa713051",
+        "candidate": "318ddb2a06436797a366102e48b39d284fe2c8987dbfb0543212ca506aa487f7"
+      },
+      "cpu_seconds": {
+        "parent": 2.420611000000001,
+        "candidate": 2.3450329999999986,
+        "change_percent": -3.122269542689937,
+        "ranges": {
+          "parent": [
+            2.385643000000002,
+            2.4261419999999982
+          ],
+          "candidate": [
+            2.3243990000000023,
+            2.357810000000001
+          ]
+        },
+        "slower_pairs": []
+      },
+      "elapsed_seconds": {
+        "parent": 2.4128951910000183,
+        "candidate": 2.345755177000001,
+        "change_percent": -2.7825499528718156,
+        "ranges": {
+          "parent": [
+            2.3855192239999496,
+            2.4262300760000244
+          ],
+          "candidate": [
+            2.3236477519999994,
+            2.358124979999957
+          ]
+        },
+        "slower_pairs": []
+      },
+      "number of imported modules": {
+        "parent": 14317,
+        "candidate": 13248
+      },
+      "number of imported bytes": {
+        "parent": 2445134536,
+        "candidate": 2388037024
+      },
+      "number of imported consts": {
+        "parent": 392976,
+        "candidate": 380638
+      }
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff": {
+      "removed_imports": [
+        "Mathlib.Algebra.Order.Floor.Extended",
+        "Mathlib.Algebra.Order.Floor.Semifield",
+        "Mathlib.Algebra.Order.Interval.Basic",
+        "Mathlib.Analysis.Normed.Algebra.GelfandRadius",
+        "Mathlib.Analysis.SpecialFunctions.Bernstein",
+        "Mathlib.Analysis.SpecialFunctions.Gamma.Basic",
+        "Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp",
+        "Mathlib.Combinatorics.Enumerative.DyckWord",
+        "Mathlib.Combinatorics.SimpleGraph.Triangle.Removal",
+        "Mathlib.Data.NNRat.Floor",
+        "Mathlib.Data.Nat.Choose.Multinomial",
+        "Mathlib.Geometry.Euclidean.Volume.Basic",
+        "Mathlib.NumberTheory.Chebyshev",
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.Height.Projectivization",
+        "Mathlib.NumberTheory.LucasLehmer",
+        "Mathlib.NumberTheory.SelbergSieve",
+        "Mathlib.RingTheory.Radical.NatInt",
+        "Mathlib.RingTheory.WittVector.IsPoly",
+        "Mathlib.Tactic.Echelon.Zsqrtd",
+        "Mathlib.Tactic.Inclusion.Extension.Core.Core",
+        "Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses",
+        "Mathlib.Tactic.Polynomial.Basic",
+        "Mathlib.Tactic.ReduceModChar",
+        "Mathlib.Topology.Sheaves.Init"
+      ],
+      "source_sha256": {
+        "parent": "3e546e7be8043b6e3315c9357282c83cd9a1129e5c2069d5ed08ce679131ac25",
+        "candidate": "a09f44ab12084db43acf81ed5ec72333fbae449e5f3022983de50ece60677e90"
+      },
+      "cpu_seconds": {
+        "parent": 0.8097409999999989,
+        "candidate": 0.7779020000000001,
+        "change_percent": -3.9319980092398565,
+        "ranges": {
+          "parent": [
+            0.806167999999996,
+            0.8185610000000008
+          ],
+          "candidate": [
+            0.771674,
+            0.7806069999999998
+          ]
+        },
+        "slower_pairs": []
+      },
+      "elapsed_seconds": {
+        "parent": 0.816537927000013,
+        "candidate": 0.7768625690000022,
+        "change_percent": -4.8589730725404845,
+        "ranges": {
+          "parent": [
+            0.8125902439999777,
+            0.8177163379999683
+          ],
+          "candidate": [
+            0.7714824539999654,
+            0.786290565999991
+          ]
+        },
+        "slower_pairs": []
+      },
+      "number of imported modules": {
+        "parent": 14359,
+        "candidate": 13078
+      },
+      "number of imported bytes": {
+        "parent": 2457168560,
+        "candidate": 2352578312
+      },
+      "number of imported consts": {
+        "parent": 395833,
+        "candidate": 371591
+      }
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.DlogRatioVolumeFormNeZero": {
+      "removed_imports": [
+        "Mathlib.Algebra.Order.Floor.Extended",
+        "Mathlib.Algebra.Order.Floor.Semifield",
+        "Mathlib.Algebra.Order.Interval.Basic",
+        "Mathlib.Analysis.Complex.UpperHalfPlane.Basic",
+        "Mathlib.Analysis.Normed.Algebra.GelfandRadius",
+        "Mathlib.Analysis.SpecialFunctions.Bernstein",
+        "Mathlib.Analysis.SpecialFunctions.Gamma.Basic",
+        "Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp",
+        "Mathlib.Combinatorics.Enumerative.DyckWord",
+        "Mathlib.Combinatorics.SimpleGraph.Triangle.Removal",
+        "Mathlib.Data.NNRat.Floor",
+        "Mathlib.Data.Nat.Choose.Multinomial",
+        "Mathlib.Geometry.Euclidean.Volume.Basic",
+        "Mathlib.NumberTheory.Chebyshev",
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.Height.Projectivization",
+        "Mathlib.NumberTheory.LucasLehmer",
+        "Mathlib.NumberTheory.SelbergSieve",
+        "Mathlib.RingTheory.Radical.NatInt",
+        "Mathlib.Tactic.Echelon.Zsqrtd",
+        "Mathlib.Tactic.Inclusion.Extension.Core.Core",
+        "Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses",
+        "Mathlib.Topology.Sheaves.Init"
+      ],
+      "source_sha256": {
+        "parent": "bc1d9361742ab0073960646805dc78ec6af9a244eb0c6e3bb67fe08673cbec0f",
+        "candidate": "bdb6553ee3d097ce6b98d7ab45cd5b66edce32d1b3d829e1b4099fb7dd502add"
+      },
+      "cpu_seconds": {
+        "parent": 1.9422199999999998,
+        "candidate": 1.8590610000000014,
+        "change_percent": -4.2816467753394765,
+        "ranges": {
+          "parent": [
+            1.934568999999997,
+            1.9553439999999949
+          ],
+          "candidate": [
+            1.8409630000000012,
+            1.8620399999999995
+          ]
+        },
+        "slower_pairs": []
+      },
+      "elapsed_seconds": {
+        "parent": 1.9393231109999647,
+        "candidate": 1.8551607720000334,
+        "change_percent": -4.339779097281782,
+        "ranges": {
+          "parent": [
+            1.9373150010000018,
+            1.9604470899999455
+          ],
+          "candidate": [
+            1.8403141370000071,
+            1.8611069930000212
+          ]
+        },
+        "slower_pairs": []
+      },
+      "number of imported modules": {
+        "parent": 14511,
+        "candidate": 13003
+      },
+      "number of imported bytes": {
+        "parent": 2526598480,
+        "candidate": 2365006096
+      },
+      "number of imported consts": {
+        "parent": 409250,
+        "candidate": 367130
+      }
+    }
+  },
+  "totals": {
+    "cpu_seconds": {
+      "parent_sum_medians": 5.856818,
+      "candidate_sum_medians": 5.585578000000001,
+      "change_percent": -4.63118369052955,
+      "slower_modules": []
+    },
+    "elapsed_seconds": {
+      "parent_sum_medians": 5.859280118000015,
+      "candidate_sum_medians": 5.582668869000031,
+      "change_percent": -4.720908429522252,
+      "slower_modules": []
+    }
+  },
+  "final_load_averages": [
+    2.11767578125,
+    2.103515625,
+    0.9970703125
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_module": "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange",
+  "solution_module": "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange",
+  "theorem_names": [
+    "GlobalTheory.TopForm.isBaseChange_exteriorPower"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "external_kernels": {
+    "Lean paranoid": [
+      "leanchecker-paranoid",
+      "--silent",
+      "--from-export"
+    ],
+    "nanoda": [
+      "nanoda_bin"
+    ]
+  }
+}

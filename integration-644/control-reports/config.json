@@ -1,0 +1,22 @@
+{
+  "challenge_module": "Control",
+  "solution_module": "Control",
+  "theorem_names": [
+    "ComparisonControl.original"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "external_kernels": {
+    "Lean paranoid": [
+      "leanchecker-paranoid",
+      "--silent",
+      "--from-export"
+    ],
+    "nanoda": [
+      "nanoda_bin"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_module": "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+  "solution_module": "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+  "theorem_names": [
+    "GlobalTheory.CatCoh.commAlgFunctorCoboundaryZero_mem_cocyclesOne"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "external_kernels": {
+    "Lean paranoid": [
+      "leanchecker-paranoid",
+      "--silent",
+      "--from-export"
+    ],
+    "nanoda": [
+      "nanoda_bin"
+    ]
+  }
+}
