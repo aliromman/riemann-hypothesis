@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           repository: aliromman/riemann-hypothesis
-          ref: 989ea9c41e8400a6fe894fe365298c219f8c7e1d
+          ref: be239239d08c7bf865ba618cf6515891b4596c84
           persist-credentials: false
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
@@ -23,7 +23,7 @@ jobs:
         id: setup
         shell: bash
         run: |
-          test "$(git rev-parse HEAD)" = 989ea9c41e8400a6fe894fe365298c219f8c7e1d
+          test "$(git rev-parse HEAD)" = be239239d08c7bf865ba618cf6515891b4596c84
           test "$(git rev-parse HEAD:src)" = a598d19cccf798deb6e2bea9700cbac2ff050e11
           python -m venv "$RUNNER_TEMP/unit-env"
           "$RUNNER_TEMP/unit-env/bin/python" -m pip install --disable-pip-version-check -r scripts/ci-publisher-requirements.txt PyYAML==6.0.2
@@ -47,10 +47,21 @@ jobs:
         if: always() && steps.setup.outcome == 'success'
         shell: bash
         run: python3 -m unittest discover -s scripts/tests 2>&1 | tee "$RUNNER_TEMP/unit-tests/scripts.txt"
+      - name: Check out the fork-only stock diagnostic harness
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: fork-verifier
+          persist-credentials: false
+          sparse-checkout: ci/clump-diagnostics
+      - name: Attribute four real stock Lake diagnostics on the submitted source
+        shell: bash
+        run: |
+          git fetch --quiet --depth=1 --no-tags --filter=blob:none origin 2b481024a8665bd5b24ca40d28fe90cb4fb86ce0 989ea9c41e8400a6fe894fe365298c219f8c7e1d
+          python3 fork-verifier/ci/clump-diagnostics/control.py "$PWD" "$RUNNER_TEMP/unit-tests"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: ubuntu-suites-989ea9c41e8400a6fe894fe365298c219f8c7e1d
+          name: ubuntu-suites-be239239d08c7bf865ba618cf6515891b4596c84
           path: ${{ runner.temp }}/unit-tests/
           if-no-files-found: error
           retention-days: 7
