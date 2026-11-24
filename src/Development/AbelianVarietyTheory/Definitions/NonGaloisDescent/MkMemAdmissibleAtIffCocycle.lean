@@ -681,7 +681,7 @@ end Tens
 
 section Shortcut
 
-instance (priority := high) modTens {O M X : Type} [CommRing O] [AddCommGroup M] [Module O M] [AddCommGroup X]
+scoped instance (priority := high) modTens {O M X : Type} [CommRing O] [AddCommGroup M] [Module O M] [AddCommGroup X]
     [Module O X] : Module O (M ⊗[O] X) :=
   TensorProduct.instModule
 
@@ -689,7 +689,7 @@ instance (priority := high) modProd {O M N : Type} [CommRing O] [AddCommGroup M]
     [Module O N] : Module O (M × N) :=
   Prod.instModule
 
-instance (priority := high) modFun {O M ι : Type} [CommRing O] [AddCommGroup M] [Module O M] :
+scoped instance (priority := high) modFun {O M ι : Type} [CommRing O] [AddCommGroup M] [Module O M] :
     Module O (ι → M) :=
   Pi.Function.module ι O M
 

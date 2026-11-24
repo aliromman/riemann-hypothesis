@@ -122,7 +122,6 @@ private theorem sr_abs {R A K M W ι ι' : Type} [CommRing R] [CommRing A] [Alge
   obtain ⟨μ, hμ⟩ := h2 j
   exact fun F hF => Submodule.mem_iSup_of_mem μ (Module.End.mem_eigenspace_iff.2 (hμ F hF))
 attribute [local instance 2000] UpperTheory.V.W.coefLocal
-attribute [-instance] GlobalTheory.AdmLoc.modFun
 
 
 theorem UpperTheory.V.Th.AnnihilatorQuotientFinite.sphRed :
