@@ -500,8 +500,7 @@ def read_scope_members(lines):
         raise ValueError("duplicate clump member in the header table")
     if not names or names != [info["m"] for info in headers]:
         raise ValueError("clump member names differ from the header table")
-    start = lines.index(CLUMP_MARK)
-    preamble = [line for line in lines[start + 1:marks[0][0]] if line.strip()]
+    preamble = [line for line in lines[:marks[0][0]] if line.strip()]
     if preamble != ["-- Members: " + ", ".join(names)]:
         raise ValueError("unexpected text before the first clump member")
     result = {}
@@ -544,20 +543,27 @@ def read_scope_members(lines):
     return result
 
 
-def uses_scope_markers(lines):
-    for line in lines:
+def clump_layout(lines):
+    """Find the archive banner and identify the layout below it."""
+    try:
+        start = lines.index(CLUMP_MARK) + 1
+    except ValueError:
+        return None, False
+    for i in range(start, len(lines)):
+        line = lines[i]
         if line.startswith(SEAM_BEGIN):
-            return False
+            break
         if member_start(line) or line in (SHARED_OPENS, "section " + SHARED_OPENS) or line.startswith(HEADER_TAG):
-            return True
-    return False
+            return start, True
+    return start, False
 
 
 def unclump_text(text):
     lines = text.split("\n")
-    if uses_scope_markers(lines):
-        return read_scope_members(lines)
-    i, out = 0, {}
+    start, compact = clump_layout(lines)
+    if compact:
+        return read_scope_members(lines[start:])
+    i, out = start or 0, {}
     while i < len(lines):
         if not lines[i].startswith(SEAM_BEGIN):
             i += 1
@@ -614,9 +620,11 @@ def blame(root, logs):
                         lines = g.read().split("\n")
                 except FileNotFoundError:
                     continue
+                start, compact = clump_layout(lines)
+                if start is None:
+                    continue
                 member = None
-                compact = uses_scope_markers(lines)
-                for x in reversed(lines[:line]):
+                for x in reversed(lines[start:line]):
                     if not compact:
                         if x.startswith(SEAM_BEGIN):
                             member = x[len(SEAM_BEGIN):].rstrip(" =")

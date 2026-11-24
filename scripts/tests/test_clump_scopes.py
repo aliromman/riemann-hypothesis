@@ -138,6 +138,13 @@ end A"""
         _, text = self.make_group()
         self.check_blame(text, [("open Nat", "Example.A"), ("theorem two", "Example.B"), ("theorem three", "Example.C")])
 
+    def test_markers_outside_the_archive_are_comments(self):
+        preface = clump.MEMBER_TAG + "note\n" + clump.SEAM_BEGIN + "other =====\nexample : True := .intro\n"
+        self.check_blame(preface, [("example", None)])
+        sources, compact = self.make_group()
+        self.assertEqual(clump.unclump_text(preface + compact), sources)
+        self.check_blame(preface + compact, [("example", None), ("theorem two", "Example.B")])
+
     def check_blame(self, text, cases):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
@@ -148,7 +155,7 @@ end A"""
                 line = next(i for i, val in enumerate(text.splitlines(), 1) if val.startswith(snippet))
                 log = root / "build.log"
                 log.write_text(f"error: src/Example.lean:{line}:0: test error\n")
-                self.assertEqual(clump.blame(root, [log]), [name])
+                self.assertEqual(clump.blame(root, [log]), [] if name is None else [name])
 
 
 if __name__ == "__main__":
