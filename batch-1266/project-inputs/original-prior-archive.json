@@ -1,0 +1,11 @@
+{
+  "prior_head": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+  "prior_root_workflow_sha": "011ab1397c454e13862a8d90e224eaf15e9ed80c",
+  "prior_run_id": 45450262786,
+  "prior_artifact_id": 14948469568,
+  "prior_root_archive_sha256": "854da5812be3e887f011962cff54ca4dbba6820474533de5a8bda6e86ae859ad",
+  "prior_proof_input_sha256": "666b0f72f119f7dde200abf66b5294ac7dcdef23db7e8c76390ea3679c1f4b5b",
+  "prior_published_rows_sha256": "0a3990eb920dd68be1a551374149bba72df1f0dc3a2a087cd0e9debb7f896a7e",
+  "prior_proven_sources": 39021,
+  "prior_declaration_instances": 877411
+}

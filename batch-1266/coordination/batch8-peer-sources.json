@@ -1,0 +1,63 @@
+{
+  "base": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "open_batch": 1313,
+  "observed_state": {
+    "headRefOid": "dda69e8303156955dfaddbc0e7192c9ceff81855",
+    "isDraft": true,
+    "mergedAt": null,
+    "state": "OPEN"
+  },
+  "peer_head": "dda69e8303156955dfaddbc0e7192c9ceff81855",
+  "heads": {
+    "879": "e0a0acde813bd368786947b98704ee6814656a15",
+    "977": "963ebea3bb3d7c2c5738946fca45317b8084f972"
+  },
+  "unique_shared_sources": 284,
+  "by_proposal": {
+    "879": {
+      "shared": 256,
+      "all": {
+        "reconstructed": 243,
+        "deleted_by_peer": 13
+      },
+      "textual_conflicts": {
+        "reconstructed": 15,
+        "deleted_by_peer": 12
+      },
+      "requires_review": []
+    },
+    "977": {
+      "shared": 120,
+      "all": {
+        "reconstructed": 112,
+        "deleted_by_peer": 8
+      },
+      "textual_conflicts": {
+        "deleted_by_peer": 8,
+        "reconstructed": 16
+      },
+      "requires_review": []
+    }
+  },
+  "shared_tooling": {
+    "879": [],
+    "977": []
+  },
+  "exact_source_preview": {
+    "879": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 38994,
+      "net_nonblank_lean_lines": 1015149,
+      "net_lean_code_commands": 1015149
+    },
+    "977": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 11540,
+      "net_nonblank_lean_lines": 382250,
+      "net_lean_code_commands": 251087,
+      "net_code_less_added_python": 250639
+    }
+  },
+  "status": "Source reconstruction for an open draft batch. Only the source was checked. The comparison records every unresolved source and uses the lower count for any such module. A change of parent requires fresh compiler evidence.",
+  "rows_sha256": "5f32aea525d0ccc19822a36f05a47ad463c2a86265eff416c975bbaa0403a1df"
+}

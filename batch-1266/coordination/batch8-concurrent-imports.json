@@ -1,0 +1,14 @@
+{
+  "source": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/ExtensionEmbeddingMixedSymmOfIsComplex.lean",
+  "committed_parent_blob": "0f240ee11e5a176580742895afdd01fc2b098109",
+  "pr_blob": "c019639f4e95fbc3b0186c7b2928e30a4c1e8c7e",
+  "draft_blob": "4d22c492d0d3978218220a99b60cf8e2dcd25796",
+  "upstream_inserted_import_lines": [
+    "public import Mathlib.Topology.Homotopy.Lifting",
+    "import Mathlib.Topology.Sheaves.Init",
+    "public import Development.WeilBound.ThetaLifts.LeviDeterminants.GrowSplit"
+  ],
+  "upstream_proof_body_sha256": "f8e0837e275b7a63ebe623153b5fb1a8b314e0a524ca4ce99f8f76843b52f889",
+  "source_preview_sha256": "f996a2a64359360ab73e2fe0b707d0e7f6969bd02a4e541219dd39abaad49220",
+  "removed_original_private_imports": 32
+}

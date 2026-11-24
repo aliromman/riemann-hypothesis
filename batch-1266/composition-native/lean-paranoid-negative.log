@@ -1,0 +1,5 @@
+Lean default kernel rejects the solution: while replaying declaration 'Nat.zero_add':
+(kernel) declaration type mismatch, 'Nat.zero_add' has type
+  Nat
+but it is expected to have type
+  forall (n : Nat), Eq.{1} Nat (HAdd.hAdd.{0, 0, 0} Nat Nat Nat (instHAdd.{0} Nat instAddNat) (OfNat.ofNat.{0} Nat 0 (instOfNatNat 0)) n) n
