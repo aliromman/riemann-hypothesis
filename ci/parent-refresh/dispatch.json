@@ -1,8 +1,8 @@
 {
-  "request": "direct-1313",
+  "request": "scope-direct-1313",
   "groups": [
-    "direct-1313-large-1",
-    "direct-1313-ordinary-1"
+    "scope-direct-1313-large-1",
+    "scope-direct-1313-ordinary-1"
   ],
   "seed_run": 45460415396
 }
