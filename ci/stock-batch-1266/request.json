@@ -1,0 +1,21 @@
+{
+  "source_repository": "aliromman/riemann-hypothesis",
+  "source_ref": "refs/heads/ci/import-pruning/batch-1266-source",
+  "source_head": "e0a0acde813bd368786947b98704ee6814656a15",
+  "parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "donor": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "parent_source_tree": "c9e0bade70ab9e778941a02e423609a4e6aa76e3",
+  "parent_module_manifest": "816164d26c3ad2b5bceaf1337ab7a172bbc10b1fa15c52ab8c04495436314c65",
+  "checked_commit": "e0a0acde813bd368786947b98704ee6814656a15",
+  "candidate_source_tree": "1a18c4e2e08b6b8ad61020378dec54de6c5f8e5b",
+  "git_tree": "700b85bcad74ab8380ff3fdf2e9cc862521b499b",
+  "pins": {
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d"
+  },
+  "mode": "public-fork-head",
+  "pull_number": 879,
+  "facet_policy": "complete-parent-payload-exact-private-import-header-v2",
+  "preceding_raw_comparison_run": 45368083272
+}
