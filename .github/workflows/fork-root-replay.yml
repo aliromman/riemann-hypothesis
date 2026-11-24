@@ -105,6 +105,7 @@ jobs:
           path: ${{ runner.temp }}/rh-screen-cache
           key: rh-root-reuse-v1-${{ steps.published.outputs.base }}
           restore-keys: |
+            rh-screen-all-a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463
             rh-screen-v4-all-18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a
             rh-screen-v3-latest-7ef75c550561a6f21d27bb76c9a53fcf6a9a6fe5d5d481f2cdb56e9b1262589d-
             rh-screen-v2-rest-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-

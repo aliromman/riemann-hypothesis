@@ -112,13 +112,19 @@ def restore_batch(names,index,shas,cache,leantar,rebuilder,baseline,images,reade
                 candidate_oid=hashlib.sha1(b'blob '+str(len(current)).encode()+b'\0'+current).hexdigest()
                 if (r['parent_blob'],r['candidate_blob'],r['parent_ltar_sha256'])!=(old_blobs[n],candidate_oid,shas[index[n][2]]):
                     raise ValueError('structural compiler row differs from its Git source or full archive: '+n)
-                for suffix,asset in zip(ORDINARY,parents.inputs(n,None)):
-                    if file_sha(asset)!=r['parent_facets'][suffix] or r['parent_facets'][suffix]!=r['facets'][suffix]:
-                        raise ValueError('the authentic source compiler outputs differ from the unchanged root input: '+n)
+                for suffix in r['parent_facets']:
+                    if file_sha(public.with_suffix(suffix))!=r['parent_facets'][suffix]:
+                        raise ValueError('the structural parent compiler facet differs from its official archive: '+n)
+                if any(r['parent_facets'][s]!=r['facets'][s] for s in ORDINARY):
+                    raise ValueError('the ordinary structural compiler outputs changed: '+n)
                 identity_bytes+=public.stat().st_size
                 dst.parent.mkdir(parents=True,exist_ok=True)
                 public.replace(dst)
             else:
+                if 'parent_public_ir' in r:
+                    for ext,asset in zip(('.olean','.ir.sig','.ir'),parents.inputs(n,None)):
+                        if file_sha(asset)!=r['parent_public_ir'][ext]:
+                            raise ValueError('the fresh compiler parent differs from the authenticated archive: '+n)
                 check_edits(old,current,n)
                 new_jobs.append((n,old,current,dst,r['facets']))
             result.append((n,str(dst),r['facets']['.olean']))
@@ -144,18 +150,23 @@ def main():
     args=p.parse_args()
     for k,v in vars(args).items():setattr(args,k,v.resolve())
     req,inputs=read_request(args.request)
-    import current_reuse
+    import current_reuse, refresh
+    refreshed=req['base_src']==refresh.TREE
     latest=req['base_src']==current_reuse.TREE
     structural=req.get('source_mode')=='clump-scopes'
-    if structural and not latest:raise ValueError('the structural source refactor has a different compiler baseline')
-    if not latest and (req['base']!=PARENT or req['base_src']!=SOURCE_TREE):
+    if structural and not (latest or refreshed):raise ValueError('the structural source refactor has a different compiler baseline')
+    if not (latest or refreshed) and (req['base']!=PARENT or req['base_src']!=SOURCE_TREE):
         raise ValueError('this cache does not certify the approved base revision')
     args.work.mkdir(parents=True,exist_ok=True)
     baseline=args.work/'baseline';images=args.work/'images'
     if baseline.exists() or images.exists():raise ValueError('use a fresh root staging directory')
     candidate=args.candidate
     old_sources,source_count,source_bytes=actual_diff(candidate,req,inputs)
-    if latest:
+    if refreshed:
+        api,index,shas=refresh.published_parent(args.parent,args.cache,req)
+        graph_digest,manifest=refresh.GRAPH,refresh.MANIFEST
+        graph_file=args.cache/'metadata/current-headers.json'
+    elif latest:
         api,index,shas=current_reuse.current_parent(args.parent,args.cache,req)
         graph_digest,manifest=current_reuse.GRAPH,current_reuse.MANIFEST
         graph_file=args.cache/'metadata/current-headers.json'
@@ -179,7 +190,10 @@ def main():
     validation={}
     cache_tools=current_reuse.vetted_helpers(args.parent,args.cache) if latest else args.parent/'scripts'
     dl=load(cache_tools/'ci-prepare.py','root_download')
-    if structural:
+    if refreshed:
+        mode='structural' if structural else 'private'
+        validation.update(refresh.certify(args.parent,args.cache,api,graph,index,shas,inputs,req,args.bin/'leantar',dl,mode))
+    elif structural:
         from structural_gate import check_actions
         validation.update(check_actions(req,inputs))
     elif latest:
@@ -187,7 +201,7 @@ def main():
         validation.update(check_artifacts(req,inputs))
     if reused and latest:
         validation.update(current_reuse.check(args.parent,args.cache,api,graph,index,shas,reused,req['head'],args.bin/'leantar',dl))
-    elif reused:
+    elif reused and not refreshed:
         from csv import DictReader
         check_reuse(args.parent,args.cache,HERE.parent/'import-screen',api,graph,index,shas,source_path,canonical)
         meta=json.loads((HERE.parent/'import-screen/reuse-meta.json').read_bytes())

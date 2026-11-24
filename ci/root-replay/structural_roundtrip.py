@@ -106,7 +106,11 @@ def check(req, inputs, parent, candidate, recipe):
     if not refinements.keys() <= inputs.keys():
         raise ValueError('the source refinement names an unselected file')
     removed_blank_lines = extra_commands = extra_opens = 0
+    dispositions = {}
     try:
+        if req['base_src'] == '6e972745429bd501b15e5daa9db46c8a9feb85db':
+            from structural_choices import check as check_choices
+            dispositions = check_choices(req, inputs, candidate, old, new, reader, prior, proposal, fuse, check_clump)
         selected = {str(source_path(n)) for n in inputs}
         if old.keys() != new.keys():
             raise ValueError('the planning domain changed')
@@ -139,6 +143,7 @@ def check(req, inputs, parent, candidate, recipe):
     tests = subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-s', str(candidate / 'scripts'),
                             '-p', 'test_clump_scopes.py'], capture_output=True, text=True, check=True)
     return {'parent': base, 'head': head, 'source_tree': req['head_src'], 'source_files': len(inputs),
+            'source_dispositions': dispositions,
             'members': members, 'member_bodies_with_verified_scope_fusion': changed_members,
             'planner_modules_compared': planner_modules, 'planner_modules_protected': protected_modules,
             'fused_adjacent_empty_lines_removed': removed_blank_lines, 'additional_command_lines_saved': extra_commands,

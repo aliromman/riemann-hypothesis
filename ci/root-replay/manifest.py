@@ -82,6 +82,8 @@ def package(stage, number, out, first_commit=False):
             request[key]=bound[key]
         if bound.get('fusion_refinements'):
             request['fusion_refinements']=bound['fusion_refinements']
+    for key in ('previous_native_artifacts','preceding_root','structural_dispositions'):
+        if key in bound:request[key]=bound[key]
     new_reports=bound.get('new_reports',{})
     native={r['origin'] for r in inputs.values() if r['kind']=='fresh'}
     if new_reports:
