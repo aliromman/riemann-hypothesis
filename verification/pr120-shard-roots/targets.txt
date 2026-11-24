@@ -1,0 +1,4 @@
+Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0707
+Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0715
+Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0725
+Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0276

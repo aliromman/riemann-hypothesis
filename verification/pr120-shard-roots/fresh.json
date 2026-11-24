@@ -1,0 +1,33 @@
+{
+  "revision": "1c5f0accc9a1e44d4166867f5452c8bc68440979",
+  "results": [
+    {
+      "module": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0707",
+      "exit": 0,
+      "errors": 0,
+      "input_sha256": "9003936eabedf7bd453789d7217be3e4e93b0a90c008784a45acabadaebe2331",
+      "olean_sha256": "0ae27c4cb69ff71d9975d2cc0fca1fa61e3ae83febc0b96c9bd54e2efbc59b1f"
+    },
+    {
+      "module": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0715",
+      "exit": 0,
+      "errors": 0,
+      "input_sha256": "479a4b9a54d285dd0e2698849ee456a56055ec8ac828f7c82a7178e1b9d5fbe1",
+      "olean_sha256": "e67679626c8c6c8a6bfe297ac884751368b7f6a7956ad9441eace08ca4af21c6"
+    },
+    {
+      "module": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0725",
+      "exit": 0,
+      "errors": 0,
+      "input_sha256": "990603d0cd8138358a55621e8bbf57f3c21ca2cd954ef3f05c9fa86a157723c5",
+      "olean_sha256": "122f8e8582de40778f4b01b1987530f401143a0cb0baf952a505c2874428c96a"
+    },
+    {
+      "module": "Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0276",
+      "exit": 0,
+      "errors": 0,
+      "input_sha256": "439767a4527b3823d0407ec7a1e86cb0a07502bdfc79ba8424b973d7cca29aa3",
+      "olean_sha256": "1ace520f98b6125686b7934177def3746267fd0c5da6e7bdceb4221e3b2d215f"
+    }
+  ]
+}

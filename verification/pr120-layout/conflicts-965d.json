@@ -1,0 +1,26 @@
+{
+  "main": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+  "candidate": "965d3f0aa89d57ce85de56207bea4d785e37c896",
+  "merge_base": "c7791603122c0328f79e49f6be5d7d4402effc53",
+  "git_version": "git version 2.54.0 (Apple Git-157)",
+  "merge_exit": 1,
+  "conflicting_paths": 62721,
+  "stage_patterns": {
+    "1,2": 43247,
+    "1,2,3": 11912,
+    "1,3": 7561,
+    "2,3": 1
+  },
+  "src_conflicts": 62717,
+  "non_src_conflicts": [
+    "README.md",
+    "tools/ci_native/PROOFS.md",
+    "tools/ci_native/proof-policy.json",
+    "tools/ci_native/test_policy.py"
+  ],
+  "git_warnings": [],
+  "files_with_direct_Mathlib_import_line": {
+    "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1": 86,
+    "965d3f0aa89d57ce85de56207bea4d785e37c896": 32681
+  }
+}

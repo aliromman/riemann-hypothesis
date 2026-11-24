@@ -1,0 +1,22 @@
+{
+  "jobs": [
+    "35419"
+  ],
+  "target_results": {
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0707": [
+      "\u26a0 [33321/33483] Replayed Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0707"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0715": [
+      "\u26a0 [33567/33823] Replayed Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0715"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0725": [
+      "\u26a0 [35418/35419] Built Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0725 (13s)"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0276": []
+  },
+  "errors": [],
+  "failed_jobs": [],
+  "manifest_sha256": "1393a48d12ef27ca62fa89a81e9fdf119859c94eac0d6425b99f750d0b2f6216",
+  "revision": "1c5f0accc9a1e44d4166867f5452c8bc68440979",
+  "exit": 0
+}
