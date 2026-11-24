@@ -13,28 +13,6 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CenterOp
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveTimeAverageIsWave
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ZOpSmooth
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelDecomposition
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -47,16 +25,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.UniformSpace.Uniformizable
 import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Topology.Algebra.Group.Units
 import Mathlib.Tactic.TypeStar
-import Mathlib.Tactic.ENatToNat
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BumpConvolutionSupportStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoshTransformCasimirReal, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoshTransformCasimirRealStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoshTransformConvolution, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoshTransformConvolutionStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelMultiplierLinear, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelMultiplierLinearStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelMultiplierOnEigenfunction, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelMultiplierOnEigenfunctionStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConvRightEquivariant, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralConvApplyEq, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KRegConv, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelComposition, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelCompositionStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelConvolution, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelConvolutionStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelDecompositionStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelWordOrderSwap, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelWordOrderSwapStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AsmMultMain
