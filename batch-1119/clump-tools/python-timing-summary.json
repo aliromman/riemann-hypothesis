@@ -1,0 +1,35 @@
+{
+  "parent": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+  "head": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0",
+  "files": 11575,
+  "warmup_pairs_per_file": 1,
+  "measured_pairs_per_file": 5,
+  "total_obs_with_warmup": 138900,
+  "order": "Alternate the first side across source order and trial. Both tool calls operate on already loaded source.",
+  "statistics": "Sum of five-observation per-source medians. Values are milliseconds.",
+  "parent_bodies_that_did_not_reproduce": [],
+  "candidate_bodies_that_did_not_reproduce": [],
+  "milliseconds": {
+    "read_cpu": {
+      "parent_ms": 1257.934999999996,
+      "candidate_ms": 1211.9219999999934,
+      "slower_sources": 4670
+    },
+    "read_wall": {
+      "parent_ms": 1271.5142229999963,
+      "candidate_ms": 1225.951158999995,
+      "slower_sources": 4933
+    },
+    "render_cpu": {
+      "parent_ms": 2795.923999999993,
+      "candidate_ms": 4204.529999999986,
+      "slower_sources": 11573
+    },
+    "render_wall": {
+      "parent_ms": 2819.9795639999998,
+      "candidate_ms": 4240.705666000007,
+      "slower_sources": 11569
+    }
+  },
+  "raw_sha256": "2c3fd71493d92090985f8f7bef6816bc665ce66cf2de277986e787d74ad347ad"
+}
