@@ -88,7 +88,7 @@ private theorem gsp_map {B B' : Type} [CommRing B] [CommRing B'] (f : B →+* B'
 
 private def w4 (a : Fin 4) : ℤ × ℤ := (lamW a, muW a)
 
-private theorem w4_sub_w4_eq_wt (a b : Fin 4) : w4 a - w4 b = wt a b := rfl
+private theorem w4_sub_w4_eq_wt (a b : Fin 4) : _root_.w4 a - _root_.w4 b = wt a b := rfl
 
 private theorem card_ten {n : ℕ} (u : Fin n → ℤ × ℤ) (hu : ∀ j, Nat.card {i // u i = j} = dimsP j) : n = 10 := by
   classical
@@ -113,7 +113,7 @@ theorem UpperTheory.V.Loc.spChartP :
   obtain ⟨ρ₀, h0, hpt⟩ := r0pt D hD
   have hQ0 : EqP D q (D.loc ρ₀ q).hom := ((ptMap D hD c.O ρ₀).1 hpt).atP q hq
   have h0' : (D.loc ρ₀ q).hom = D.r0At q := congrArg (fun r => MonoidHom.comp r (D.Gp q).subtype) h0
-  have hst : ρ.TStable w4 := by
+  have hst : ρ.TStable _root_.w4 := by
     intro R' _ _ _ f t ht
     let s : R'ˣ × R'ˣ := (t (Multiplicative.ofAdd (1, 0)), t (Multiplicative.ofAdd (0, 1)))
     have hs : ∀ j, wv s j = t (Multiplicative.ofAdd j) := fun j => by
@@ -144,7 +144,7 @@ theorem UpperTheory.V.Loc.spChartP :
     refine ⟨f', fun g a b => ?_⟩
     rw [hf', _root_.w4_sub_w4_eq_wt, ← hs]
     rfl
-  obtain ⟨x, P, n, u, φ, hx, hφ, hy, hw, hS⟩ := liftChart (l := l) (D.rbarAt q) w4 E R ρ (fun B _ _ r => EqP D q r)
+  obtain ⟨x, P, n, u, φ, hx, hφ, hy, hw, hS⟩ := liftChart (l := l) (D.rbarAt q) _root_.w4 E R ρ (fun B _ _ r => EqP D q r)
     (fun B B' _ _ _ _ f r => ⟨fun h => ⟨fun g => by
         rw [← f.commutes]
         exact (gsp_map (f : B →+* B') _ _).1 (h.1 g), fun g hg => by
@@ -156,7 +156,7 @@ theorem UpperTheory.V.Loc.spChartP :
         exact (h.2 g hg).trans (Matrix.map_one _ (map_zero f) (map_one f)).symm)⟩⟩)
     hrep hst (D.loc ρ₀ q) hQ0 (fun g a b hab => by
       rw [h0']
-      exact Matrix.diagonal_apply_ne (fun i => (D.ps i g : c.O)) fun e => hab (congrArg w4 e))
+      exact Matrix.diagonal_apply_ne (fun i => (D.ps i g : c.O)) fun e => hab (congrArg _root_.w4 e))
     (by
       intro B _ _ _ _ _ _ _ _ _ _ π hπ B' _ _ _ _ _ _ _ _ _ _ π' hπ' p hp hpc r' h1 h2 h3
       obtain ⟨r, a1, a2, a3⟩ := spLiftP D hD q hq E B π hπ B' π' hπ' p hp hpc r' ⟨h0' ▸ h1, h2⟩ h3
