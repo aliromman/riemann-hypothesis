@@ -1,0 +1,44 @@
+[
+  {
+    "case": "bare",
+    "sha256": "e42ec4682f61f19bc01543d0c699cb2973274279eb55065aa3e0096153def341",
+    "exit": 1,
+    "errors": [
+      {
+        "caption": "",
+        "data": "Ambiguous term\n  Dec\nPossible interpretations:\n  ReciprocityTheory.Gal.Dec A : Subgroup (Formalism.ConjugateSelfDual.G E \u03a9)\n  \n  Neutral.B1.Dec E A : Subgroup (G E \u03a9)",
+        "endPos": {
+          "column": 37,
+          "line": 10
+        },
+        "fileName": "bare.lean",
+        "isSilent": false,
+        "keepFullRange": false,
+        "kind": "[anonymous]",
+        "pos": {
+          "column": 34,
+          "line": 10
+        },
+        "severity": "error"
+      }
+    ]
+  },
+  {
+    "case": "recorded",
+    "sha256": "58118ab0c3067f58cbc7b361dca50712a44c3ebb94e26c1dba0df02903fb26a4",
+    "exit": 0,
+    "errors": []
+  },
+  {
+    "case": "other",
+    "sha256": "9bc3b6d4e11f8540689b3ba2b38f989f55c49e80e361d04187a002866200fa1f",
+    "exit": 0,
+    "errors": []
+  },
+  {
+    "case": "same_subgroup",
+    "sha256": "f9b139ce5b63aac280261d599d113adc9cd642d952817b50236df4ab9c0e99f3",
+    "exit": 0,
+    "errors": []
+  }
+]

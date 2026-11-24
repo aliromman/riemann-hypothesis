@@ -1,0 +1,11 @@
+{
+  "revision": "82e1833b15b64323a3ea24936377b600412a058e",
+  "module": "Development.AutomorphicSpectrum.Proofs.MetricProofs.ChartDensityIntegrable",
+  "source_sha256": "e9bf2a81953189ca179d1eb210675c5140b93b0c1c4cab389bd340f777e474be",
+  "manifest_sha256": "6aefabf4bf7d8aba9235fbd142cccfb03d674c8109c91cd15e0d982ddf3db020",
+  "jobs": [
+    "Build completed successfully (21313 jobs)."
+  ],
+  "failed": [],
+  "errors": []
+}

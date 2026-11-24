@@ -1,0 +1,2 @@
+module	line	column	member	old_line	old_column	token	proposed	original	status
+Development.AbelianVarietyTheory.Definitions.GaloisGeometry.Bundle0019	53	94	Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsWeight	46	94	Dec	ReciprocityTheory.Gal.Dec	ReciprocityTheory.Gal.Dec	exact

@@ -1,0 +1,20 @@
+{
+  "revision": "0da3667a166e6fb5ff5362fb7753cd4be7689a7a",
+  "module": "Development.AutomorphicSpectrum.Proofs.MetricProofs.ChartDensityIntegrable",
+  "source_sha256": "4be908f79a5a89a8e61a94178b0e46a726ed2592b833bdf14efb641a6eb9c9d6",
+  "manifest_sha256": "9e7eb0637296a6582743dae19d3e3eefbb9b6e7d94bee7ebf164bc0aaa9c983d",
+  "jobs": [],
+  "failed": [
+    "\u2716 [21312/21313] Building Development.AutomorphicSpectrum.Proofs.MetricProofs.ChartDensityIntegrable (7.7s)"
+  ],
+  "errors": [
+    "error: src/Development/AutomorphicSpectrum/Proofs/MetricProofs/ChartDensityIntegrable.lean:36:25: Unknown constant `GroundTheory.Heights\u2082.Heights.PtsSegreChartFibreSum._root_.GroundTheory.Heights\u2082.Heights.PtsSegreChartFibreSum.logNorm_ofWeight_one`",
+    "error: src/Development/AutomorphicSpectrum/Proofs/MetricProofs/ChartDensityIntegrable.lean:199:14: Unknown identifier `isClosed_zeroSet`",
+    "error: src/Development/AutomorphicSpectrum/Proofs/MetricProofs/ChartDensityIntegrable.lean:221:29: Unknown identifier `isSectionOn_ofWeight_one`",
+    "error: src/Development/AutomorphicSpectrum/Proofs/MetricProofs/ChartDensityIntegrable.lean:146:77: unsolved goals",
+    "error: src/Development/AutomorphicSpectrum/Proofs/MetricProofs/ChartDensityIntegrable.lean:257:27: Unknown identifier `exists_minimalPrime_of_mem_zeroSet`",
+    "error: src/Development/AutomorphicSpectrum/Proofs/MetricProofs/ChartDensityIntegrable.lean:257:11: Tactic `rcases` failed: `x\u271d : ?m.408` is not an inductive datatype",
+    "error: src/Development/AutomorphicSpectrum/Proofs/MetricProofs/ChartDensityIntegrable.lean:281:27: Unknown identifier `exists_poly_of_not_mem`",
+    "error: src/Development/AutomorphicSpectrum/Proofs/MetricProofs/ChartDensityIntegrable.lean:281:11: Tactic `rcases` failed: `x\u271d : ?m.740` is not an inductive datatype"
+  ]
+}
