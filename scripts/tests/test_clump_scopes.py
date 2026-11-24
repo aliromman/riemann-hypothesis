@@ -73,16 +73,32 @@ end A"""
         self.assertEqual(clump.unclump_text(edited),
                          {name: value.replace("\nopen Nat\n", "\nopen Int\n") for name, value in sources.items()})
 
+    def write_project(self, root, sources):
+        src = root / "src" / "Example"
+        src.mkdir(parents=True)
+        for name, text in sources.items():
+            (src / (name.split(".")[-1] + ".lean")).write_text(text)
+        subprocess.run(["git", "init", "-q", root], check=True)
+        subprocess.run(["git", "-C", root, "add", "src"], check=True)
+        return src
+
+    def test_plan_keeps_existing_clumps_separate(self):
+        sources, archive = self.make_group()
+        members = list(sources)
+        sources["Example.Archive"] = archive
+        sources["Example.Tail"] = "module\npublic import Example.Archive\n\ntheorem tail : True := .intro\n"
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            self.write_project(root, sources)
+            modules = clump.load_for_plan(root)
+            self.assertEqual(clump.plan(modules, 1000), {"Example.C": members})
+            self.assertEqual(clump.plan(modules, 1000, {"Example.B"}), {})
+
     def test_apply_reads_only_the_modules_in_the_plan(self):
         sources, _ = self.make_group()
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
-            src = root / "src" / "Example"
-            src.mkdir(parents=True)
-            for name, text in sources.items():
-                (src / (name.split(".")[-1] + ".lean")).write_text(text)
-            subprocess.run(["git", "init", "-q", root], check=True)
-            subprocess.run(["git", "-C", root, "add", "src"], check=True)
+            src = self.write_project(root, sources)
             (src / "C.lean").unlink()
 
             with self.assertRaises(FileNotFoundError):
