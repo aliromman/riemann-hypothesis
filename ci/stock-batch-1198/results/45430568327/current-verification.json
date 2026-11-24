@@ -1,5 +1,5 @@
 {
-  "source_sandbox": "https://github.com/aliromman/riemann-hypothesis/tree/4366fc4a54fe18b21b3dcda79770f37c682ad2ba/ci/source-sandbox/results/45431323026/",
+  "source_sandbox": "https://github.com/aliromman/riemann-hypothesis/tree/bf805f6403e2b832caf6942742ac28f6526b2015/ci/source-sandbox/results/45431323026/",
   "verified_sources": {
     "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular": {
       "parent": "08651606886f625d8bd0b4ee559d94f9d8e222beb962777a1defff31badff61a",
@@ -67,8 +67,8 @@
   },
   "ordinary_stock_measurement_head": "c0228c0ae22d9cbf3e5466760718fd19111058ac",
   "ordinary_stock_measurement_merge": "19beb187eef5fd39b78be2d7bd81855b2b5a4327",
-  "current_source_head": "f6177155e8e440c0a831d4c15de4c74341de0a93",
-  "current_merge": "177babf54b6c42736e5040c9fec8f5e2a00864ff",
+  "current_source_head": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+  "current_merge": "afbfc8aaa68c7b339d67b782e24e7381325d987b",
   "current_candidate_source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
   "different_sources_outside_all_checked_inputs": [
     "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/QEqColPer.lean"
@@ -79,39 +79,39 @@
       "status": 404
     },
     "author_receipt": {
-      "url": "https://rh-cache.taucetiproject.org/ci/revisions/f6177155e8e440c0a831d4c15de4c74341de0a93.json",
+      "url": "https://rh-cache.taucetiproject.org/ci/revisions/e7127ce8136d8ed36e610884d8578de1cffadd19.json",
       "status": 404
     },
     "author_fragment_map": {
-      "url": "https://rh-cache.taucetiproject.org/rh-buildq/maps/f6177155e8e440c0a831d4c15de4c74341de0a93.jsonl",
+      "url": "https://rh-cache.taucetiproject.org/rh-buildq/maps/e7127ce8136d8ed36e610884d8578de1cffadd19.jsonl",
       "status": 404
     },
     "author_portable_revision": {
-      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/tc/leanprover--lean4---v4.37.0-rc1/f6177155e8e440c0a831d4c15de4c74341de0a93.jsonl",
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/tc/leanprover--lean4---v4.37.0-rc1/e7127ce8136d8ed36e610884d8578de1cffadd19.jsonl",
       "status": 404
     },
     "author_platform_revision": {
-      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/pt/x86_64-unknown-linux-gnu/tc/leanprover--lean4---v4.37.0-rc1/f6177155e8e440c0a831d4c15de4c74341de0a93.jsonl",
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/pt/x86_64-unknown-linux-gnu/tc/leanprover--lean4---v4.37.0-rc1/e7127ce8136d8ed36e610884d8578de1cffadd19.jsonl",
       "status": 404
     },
     "merge_receipt": {
-      "url": "https://rh-cache.taucetiproject.org/ci/revisions/177babf54b6c42736e5040c9fec8f5e2a00864ff.json",
+      "url": "https://rh-cache.taucetiproject.org/ci/revisions/afbfc8aaa68c7b339d67b782e24e7381325d987b.json",
       "status": 404
     },
     "merge_fragment_map": {
-      "url": "https://rh-cache.taucetiproject.org/rh-buildq/maps/177babf54b6c42736e5040c9fec8f5e2a00864ff.jsonl",
+      "url": "https://rh-cache.taucetiproject.org/rh-buildq/maps/afbfc8aaa68c7b339d67b782e24e7381325d987b.jsonl",
       "status": 404
     },
     "merge_portable_revision": {
-      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/tc/leanprover--lean4---v4.37.0-rc1/177babf54b6c42736e5040c9fec8f5e2a00864ff.jsonl",
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/tc/leanprover--lean4---v4.37.0-rc1/afbfc8aaa68c7b339d67b782e24e7381325d987b.jsonl",
       "status": 404
     },
     "merge_platform_revision": {
-      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/pt/x86_64-unknown-linux-gnu/tc/leanprover--lean4---v4.37.0-rc1/177babf54b6c42736e5040c9fec8f5e2a00864ff.jsonl",
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/pt/x86_64-unknown-linux-gnu/tc/leanprover--lean4---v4.37.0-rc1/afbfc8aaa68c7b339d67b782e24e7381325d987b.jsonl",
       "status": 404
     }
   },
-  "observed_utc": "2026-11-24T16:12:19.255135+00:00",
+  "observed_utc": "2026-11-24T16:47:08.032476+00:00",
   "unit_tests": {
     "actual_runner_source": "c0228c0ae22d9cbf3e5466760718fd19111058ac",
     "url": "https://github.com/aliromman/riemann-hypothesis/tree/fae64fb569cba9e83bcf85ea565168726e8f0876/ci/clump-diagnostics/results/45430700016/",
@@ -128,5 +128,9 @@
     "specific_source_outside_tests_and_cone": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/QEqColPer.lean",
     "original_blob": "b2866071ef5aa52ddf561f10f3cf92ed4a34f369",
     "new_blob": "b6f94924a42f4a8f4ff6488447ea528d62c94d0e"
-  }
+  },
+  "previous_f617_binding": "https://github.com/aliromman/riemann-hypothesis/tree/9d5d5e50be11d25b5ad6cca7ce00360277750b8f/ci/stock-batch-1198/results/45430568327/",
+  "promoted_renderer_record": "promoted-renderer.json",
+  "actual_renderer_test": "https://github.com/aliromman/riemann-hypothesis/tree/e404f06536002d82af7ab5d91ac5ce2ecfbc3fe8/ci/clump-diagnostics/results/45437935668/",
+  "actual_renderer_cli_timing": "https://github.com/aliromman/riemann-hypothesis/tree/b5d67ad4d912d1b17a63150658017581ecfb7b7e/ci/clump-cli/results/45438578717/"
 }
