@@ -1,0 +1,104 @@
+{
+  "source_sandbox": "https://github.com/aliromman/riemann-hypothesis/tree/4366fc4a54fe18b21b3dcda79770f37c682ad2ba/ci/source-sandbox/results/45431323026/",
+  "verified_sources": {
+    "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne": {
+      "parent": "14370c67b950b186f54a74f6200bbb48bcb849664f4006de37158e90e0addf04",
+      "candidate": "5da538ce39fe3a0e9de338a2536246613d05aa2086af382ffe4a2e8334b1ebd4"
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange": {
+      "parent": "cc3c0a380d13991803c810c5b3cfb23a9bd6fd68caa4a522e9737bed85591684",
+      "candidate": "68844441ce8b7f390ca829157de13b201b9f4c287862699e6a3e5378134a2cc6"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.AlternatingMapSumSmulEqDetSmul": {
+      "parent": "aeb72ff6bc8bfcbbf1e3d164d8da6bb81c1beafffb1255442365a6e1d0918eb0",
+      "candidate": "33931b49abf21ce46ce52ec994c274ee376feb7194f78cb7c1abdf920e5dae3e"
+    }
+  },
+  "two_exports": [
+    {
+      "name": "GlobalTheory.CatCoh.commAlgFunctorCoboundaryZero_mem_cocyclesOne",
+      "module": "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+      "built": 1,
+      "parent_export_bytes": 4888069,
+      "sha256": "00615d0ad579cd5a3309866b1d7e5861bfa4d6b206bf92d861a0d9b542eee332",
+      "official_report": "879-CommAlgFunctorCoboundaryZeroMemCocyclesOne-report.json",
+      "verified_candidate_facets": {
+        "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne": {
+          ".olean": "5d6c7aef55d250b19e9b282d96e9de6e29dc232a9301389f1b2144b2f5401d26",
+          ".ir.sig": "e7ffdf32c5288941ca0cb94db1988ce9cddcdc9718a3713e8c38d7bf64b663f4",
+          ".ir": "0dfa746d889011e9d5996df56f523d5483921f336de2b0664ebcb24dbe274d4a"
+        }
+      }
+    },
+    {
+      "name": "GlobalTheory.TopForm.isBaseChange_exteriorPower",
+      "module": "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange",
+      "built": 2,
+      "parent_export_bytes": 52581161,
+      "sha256": "2dcae760dcc362b23a2aec4c37f91947c52936d0274a4d81e8d65c82812ae24e",
+      "official_report": "879-ExistsAlgHomOfIsBaseChange-report.json",
+      "verified_candidate_facets": {
+        "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange": {
+          ".olean": "f2301336ad0249586955b8e8a88bfd2f7a0391f863ca360b625bc97f14646f0c",
+          ".ir.sig": "2a1765c4df17719a36592d6984a11d757e0b13e4e888fe353d1cf0d2a156c772",
+          ".ir": "7367b73ec7e080bddcab840212b381322826cb1f0ae794be415f2af86dbc18b1"
+        },
+        "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.AlternatingMapSumSmulEqDetSmul": {
+          ".olean": "aa2d69110561b3f108195d93f3f7e776fc714f12767966c1d04be1ff2c16bcd4",
+          ".ir.sig": "00705131015da9382201f2aac72937ea3054bdadac2fa21549e8aca26c13d0fa",
+          ".ir": "0f777c3b670fcf3105507027710ca230de54cec4dcb07f63fe30906014d293be"
+        }
+      }
+    }
+  ],
+  "sandbox_zip": {
+    "id": 14939720943,
+    "bytes": 19080,
+    "sha256": "f51aa7ae87fd8fc5d9482bb1f6d12cdf61eef6af42bc77a3e2973f1840da5d9e"
+  },
+  "ordinary_stock_measurement_head": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+  "ordinary_stock_measurement_merge": "4db316c45c8e1d40f99c60396f58951e7ae2a22f",
+  "current_source_head": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+  "current_merge": "4db316c45c8e1d40f99c60396f58951e7ae2a22f",
+  "current_candidate_source_tree": "7225a26844ccbc8d12877c062c1fe5330ec78ad1",
+  "different_sources_outside_all_checked_inputs": [],
+  "default_build_candidate_routes": {
+    "matching_input_fingerprint": {
+      "url": "https://rh-cache.taucetiproject.org/ci/inputs/5d170f5eadb14b31617c241a6683aaf71a1a8aeef4f359071fb4cf188690b2c3.json",
+      "status": 404
+    },
+    "author_receipt": {
+      "url": "https://rh-cache.taucetiproject.org/ci/revisions/ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d.json",
+      "status": 404
+    },
+    "author_fragment_map": {
+      "url": "https://rh-cache.taucetiproject.org/rh-buildq/maps/ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d.jsonl",
+      "status": 404
+    },
+    "author_portable_revision": {
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/tc/leanprover--lean4---v4.37.0-rc1/ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d.jsonl",
+      "status": 404
+    },
+    "author_platform_revision": {
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/pt/x86_64-unknown-linux-gnu/tc/leanprover--lean4---v4.37.0-rc1/ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d.jsonl",
+      "status": 404
+    },
+    "merge_receipt": {
+      "url": "https://rh-cache.taucetiproject.org/ci/revisions/4db316c45c8e1d40f99c60396f58951e7ae2a22f.json",
+      "status": 404
+    },
+    "merge_fragment_map": {
+      "url": "https://rh-cache.taucetiproject.org/rh-buildq/maps/4db316c45c8e1d40f99c60396f58951e7ae2a22f.jsonl",
+      "status": 404
+    },
+    "merge_portable_revision": {
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/tc/leanprover--lean4---v4.37.0-rc1/4db316c45c8e1d40f99c60396f58951e7ae2a22f.jsonl",
+      "status": 404
+    },
+    "merge_platform_revision": {
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/pt/x86_64-unknown-linux-gnu/tc/leanprover--lean4---v4.37.0-rc1/4db316c45c8e1d40f99c60396f58951e7ae2a22f.jsonl",
+      "status": 404
+    }
+  },
+  "observed_utc": "2026-11-24T16:12:13.964504+00:00"
+}
