@@ -12,6 +12,7 @@ SOURCE = '0ba0b4d44fa26b97a376ec10889be6b553237103'
 OPERATION = 'runtime-cache'
 PROOF_OPERATION = 'native-proof'
 PROOF_PARTS = ('.olean','.olean.server','.olean.private','.ilean','.ir.sig','.ir','.c','.trace')
+PROOF_SUFFIXES = PROOF_PARTS + tuple(part + '.hash' for part in PROOF_PARTS)
 
 def proof_policy(): return read(Path(__file__).with_name('proof-policy.json'))
 
@@ -27,7 +28,7 @@ def proof_worklist(path):
     return {module_name(x) for x in names}
 
 def proof_path(path):
-    return any(PurePosixPath(path).name.endswith(s) for s in PROOF_PARTS+tuple(x+'.hash' for x in PROOF_PARTS))
+    return PurePosixPath(path).name.endswith(PROOF_SUFFIXES)
 SHA = re.compile(r'^[0-9a-f]{64}$')
 IDENT = re.compile(r'^[A-Za-z0-9_-]{1,80}$')
 MAX_FILES = 2_000_000

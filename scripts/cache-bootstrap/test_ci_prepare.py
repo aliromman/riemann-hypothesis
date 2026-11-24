@@ -300,11 +300,22 @@ class PreparationTests(unittest.TestCase):
         header.update(schema=1, modules=1, map_sha256=prep.digest(data), input_fingerprint=identity["input_fingerprint"])
         row = ["Module", "1" * 16, "2" * 16 + ".ltar", "3" * 64]
         encode = lambda h, r: gzip.compress((json.dumps(h) + "\n" + json.dumps(r) + "\n").encode(), mtime=0)
-        self.assertEqual(prep.manifest_hashes(encode(header, row), entries, data, identity), {row[2]: row[3]})
+        self.assertEqual(prep.manifest_artifacts(encode(header, row), data, identity),
+                         (entries, {row[2]: row[3]}))
         with self.assertRaises(ValueError):
-            prep.manifest_hashes(encode({**header, "map_sha256": "0" * 64}, row), entries, data, identity)
+            prep.manifest_artifacts(encode({**header, "map_sha256": "0" * 64}, row), data, identity)
         with self.assertRaises(ValueError):
-            prep.manifest_hashes(encode(header, ["../outside", *row[1:]]), entries, data, identity)
+            prep.manifest_artifacts(encode(header, ["../outside", *row[1:]]), data, identity)
+
+    def test_unselected_modules_cannot_disagree_on_an_archive_digest(self):
+        archive = "3" * 16 + ".ltar"
+        entries = {"1" * 16: archive, "2" * 16: archive}
+        data = prep.publication.encode_map(entries)
+        rows = {"1" * 16: ["A", "1" * 16, archive, "a" * 64],
+                "2" * 16: ["B", "2" * 16, archive, "b" * 64]}
+        manifest = prep.publication.encode_manifest(sample_identity(), data, rows)
+        with self.assertRaisesRegex(ValueError, "Conflicting archive digests"):
+            prep.manifest_artifacts(manifest, data, modules={"NewModule"})
 
     def test_downloads_verify_existing_files_and_atomically_replace_partial_cache(self):
         with tempfile.TemporaryDirectory(prefix='rh-prep-"quoted-') as directory:
