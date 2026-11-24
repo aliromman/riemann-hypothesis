@@ -1,0 +1,136 @@
+{
+  "provider": {
+    "exit": 0,
+    "error_count": 0,
+    "first_error": [],
+    "log_sha256": "beb1b3bacead1e3da5fdc23b5cf55c27bcfd5c793f41d8ad355ba983d759ee38",
+    "sourceSha256": "a9eb5c511da3b2bd1947495778d5456e79ced83f9f37988f36906d4b7e443e7a",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "62841b08b66098f483569e580165b6b93c052de36809ecf54249cb7353df0c89"
+    }
+  },
+  "original-proof": {
+    "exit": 0,
+    "error_count": 0,
+    "first_error": [],
+    "log_sha256": "eb66e5ed71465621c5691f903596bff4afe397344591b27cd3bbcfa811fa7364",
+    "sourceSha256": "54e0608187c5c7ec304dba5c374df9c42f4d3c3e36f5b62ac1b8a37742892a76",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "37827d94ba0421be1aa050d2b136cfcd8e749092543b269318920ffe09b3e55f"
+    }
+  },
+  "exposed-proof": {
+    "exit": 1,
+    "error_count": 7,
+    "first_error": [
+      [
+        {
+          "column": 37,
+          "line": 81
+        },
+        "failed to synthesize\n  SFinite (\u03bc.restrict Q)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached\n\nNote: Use `set_option synthInstance.maxHeartbeats <num>` to set the limit.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command."
+      ]
+    ],
+    "log_sha256": "e593eaafe59c8e5f6c6804d45ad84b39fb7b0102e7edef5f2326c89500945deb",
+    "sourceSha256": "e5f06b99e35ada55d4ceaa433bf48a85ef9e8e40e72ac3763450aa3b679f5587"
+  },
+  "ported-proof": {
+    "exit": 0,
+    "error_count": 0,
+    "first_error": [],
+    "log_sha256": "e74607c92e092281961ed3189f5676b166dcbe23c25d619d2bf87a32a6e9c1ed",
+    "sourceSha256": "e5f06b99e35ada55d4ceaa433bf48a85ef9e8e40e72ac3763450aa3b679f5587",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "37827d94ba0421be1aa050d2b136cfcd8e749092543b269318920ffe09b3e55f"
+    }
+  },
+  "stock-AdelicSearch": {
+    "exit": 1,
+    "error_count": 4,
+    "first_error": [
+      [
+        {
+          "column": 58,
+          "line": 17
+        },
+        "failed to synthesize\n  LocallyCompactSpace (AdelicGLn.AdelicGL K n)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached\n\nNote: Use `set_option synthInstance.maxHeartbeats <num>` to set the limit.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command."
+      ]
+    ],
+    "log_sha256": "2fdb4826c4c596191eb0177b5fac875c18d9d1149209168408395e962e74223b",
+    "sourceSha256": "088c0a1767b1716a89d48fa2a89867d27b225447ca9165400c98d5f923adf552"
+  },
+  "port-AdelicSearch": {
+    "exit": 0,
+    "error_count": 0,
+    "first_error": [],
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sourceSha256": "088c0a1767b1716a89d48fa2a89867d27b225447ca9165400c98d5f923adf552",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "6c680b5acf9e3b1efc866d4725dfd3270d32aa07db0efbed5873cb114ce9b770"
+    }
+  },
+  "stock-SplitFlipField": {
+    "exit": 0,
+    "error_count": 0,
+    "first_error": [],
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sourceSha256": "0ac5665e4614d41297c74ae13ca28a738d3742d4e5add2dbb29aeca5bb849020",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "0486712768b87f49c46f135e880a190a0cee3040c024c42533ff736dccc81172"
+    }
+  },
+  "port-SplitFlipField": {
+    "exit": 0,
+    "error_count": 0,
+    "first_error": [],
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sourceSha256": "0ac5665e4614d41297c74ae13ca28a738d3742d4e5add2dbb29aeca5bb849020",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "0486712768b87f49c46f135e880a190a0cee3040c024c42533ff736dccc81172"
+    }
+  },
+  "stock-LGrpField": {
+    "exit": 0,
+    "error_count": 0,
+    "first_error": [],
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sourceSha256": "ecd3d2955dbd60bd166ba73c9871d2711df2ffe37e6f6a6e4e42bdf3b64fa47c",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "680c8b22ce788ad7b2e9ec5cb4b63d298d5790bbe1f46e4e86e4d3ceace8dc1c"
+    }
+  },
+  "port-LGrpField": {
+    "exit": 0,
+    "error_count": 0,
+    "first_error": [],
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sourceSha256": "ecd3d2955dbd60bd166ba73c9871d2711df2ffe37e6f6a6e4e42bdf3b64fa47c",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "680c8b22ce788ad7b2e9ec5cb4b63d298d5790bbe1f46e4e86e4d3ceace8dc1c"
+    }
+  }
+}
