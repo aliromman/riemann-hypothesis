@@ -210,7 +210,7 @@ theorem PH.dual1 (h : PH vecc B ka nu) {c : ℤ} (hc : c ≤ 0) (i : Fin (N + 1)
   have h3 := h.hK
   omega
 
-theorem PH.heights (_h : PH vecc B ka nu) (i : Fin N) (c : ℤ) :
+theorem PH.heights (i : Fin N) (c : ℤ) :
     colH (muP nu ka i.succ.castSucc) c = (if c ≤ nu (i.val + 1) then 1 else 0) + colH (ka i.castSucc) c ∧
     colH (muP nu ka i.succ.succ) c = (if c ≤ nu (i.val + 2) then 1 else 0) + colH (ka i.succ) c := by
   refine ⟨?_, ?_⟩
@@ -238,7 +238,7 @@ theorem PH.not_costly_zero (h : PH vecc B ka nu) (c : ℤ) : ¬ IsCostly (muP nu
 
 theorem PH.costly_succ (h : PH vecc B ka nu) (i : Fin N) (c : ℤ) :
     IsCostly (muP nu ka) c i.succ ↔ colH (ka i.castSucc) c < colH (ka i.succ) c := by
-  obtain ⟨e1, e2⟩ := h.heights i c
+  obtain ⟨e1, e2⟩ := PH.heights (ka := ka) (nu := nu) i c
   have hm : nu (i.val + 1) ≤ nu (i.val + 2) := h.numono _
   have p1 : 1 ≤ colH (ka i.castSucc) c → c ≤ nu (i.val + 1) := fun hc => h.pos_le i.castSucc hc
   unfold IsCostly
@@ -325,7 +325,7 @@ private theorem colH_muP_succ_ne_castSucc_iff_vec (h : PH vecc B ka nu) (LL : Li
     · exfalso
       split_ifs at hlt <;> omega
   | succ k =>
-    obtain ⟨e1, e2⟩ := h.heights k c
+    obtain ⟨e1, e2⟩ := PH.heights (ka := ka) (nu := nu) k c
     have hm : nu (k.val + 1) ≤ nu (k.val + 2) := h.numono _
     have p1 : 1 ≤ colH (ka k.castSucc) c → c ≤ nu (k.val + 1) := fun hc => h.pos_le k.castSucc hc
     rw [e1, e2, hvs]

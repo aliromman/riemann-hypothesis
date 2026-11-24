@@ -143,7 +143,7 @@ private theorem bs_mul_D_eq_S (Z : ℝ) (y : ℝ) (q : ℕ) (κ : ℕ → ℂ) :
     have := (Finset.mem_Icc.1 hm).1
     exact_mod_cast this
   by_cases h : y < (m : ℝ)
-  · simp only [h, if_true]
+  · simp only [h, ite_true]
     rw [min_eq_right ((div_le_one hm0).2 h.le)]
     push_cast
     ring
@@ -330,7 +330,7 @@ theorem bad_share :
       rw [le_div_iff₀ hY0] at hi1
       rw [div_lt_iff₀ hY0, pow_succ] at hi2
       refine ⟨i, fun _ => ⟨hi1.trans h2, y, ⟨hi1, le_min ?_ h2⟩, hy'⟩⟩
-      nlinarith
+      linarith
     · exact ⟨0, fun h => absurd h hq⟩
   choose f hf using hidx
   have hcard : (B.card : ℝ) = ∑ i ∈ B.image f, ((B.filter (fun q => f q = i)).card : ℝ) := by
@@ -343,7 +343,7 @@ theorem bad_share :
     obtain ⟨q₀, hq₀, rfl⟩ := Finset.mem_image.1 hi
     have hX := (hf q₀ hq₀).1
     have h1 : (1 : ℝ) ≤ 2 ^ f q₀ := one_le_pow₀ (by norm_num)
-    have hYY : Y ≤ 2 ^ f q₀ * Y := by nlinarith
+    have hYY : Y ≤ 2 ^ f q₀ * Y := le_mul_of_one_le_left hY0.le h1
     have := bs_markov (Y := 2 ^ f q₀ * Y) (W := min (2 * (2 ^ f q₀ * Y)) X) (P := P) (Z := Z)
       (B := B.filter (fun q => f q = f q₀)) hC hτ (by linarith) (le_min (by linarith) hX)
       (min_le_left _ _)
@@ -424,9 +424,8 @@ theorem kappaC :
         rw [norm_div, norm_mul, Complex.norm_real, Real.norm_eq_abs,
           abs_of_nonneg ArithmeticFunction.vonMangoldt_nonneg, Complex.norm_natCast]
         apply div_le_div_of_nonneg_right _ (Nat.cast_nonneg _)
-        have := DirichletCharacter.norm_le_one χ (n : ZMod N)
-        have h0 := (ArithmeticFunction.vonMangoldt_nonneg (n := n))
-        nlinarith
+        exact mul_le_of_le_one_right ArithmeticFunction.vonMangoldt_nonneg
+          (DirichletCharacter.norm_le_one χ (n : ZMod N))
       _ ≤ C0 * Real.log z := hM z hz2
       _ = 400 * C0 * Real.log Y := by rw [hz, Real.log_pow]; push_cast; ring
   have hL : logDerivLAtOne χ = -tailL χ z - ∑ n ∈ Icc 1 ⌊z⌋₊, (ArithmeticFunction.vonMangoldt n : ℂ) * χ n / n := by
@@ -438,7 +437,7 @@ theorem kappaC :
         refine (norm_sub_le _ _).trans ?_
         rw [norm_neg]
     _ ≤ 1 + 400 * C0 * Real.log Y := add_le_add htail hsum
-    _ ≤ (400 * C0 + 1) * Real.log Y := by nlinarith
+    _ ≤ (400 * C0 + 1) * Real.log Y := by linarith
 
 end QH
 end -- clump:auto
@@ -745,9 +744,9 @@ theorem RR_le :
           intro n hn
           apply min_le_min_left
           apply div_le_div_of_nonneg_left hy0 (pow_pos (Nat.cast_pos.mpr hn) 2)
-          have := (Nat.cast_nonneg n : (0:ℝ) ≤ n)
           push_cast
-          nlinarith
+          gcongr
+          linarith
       _ ≤ dA_KC * (3 * Real.sqrt y) :=
           mul_le_mul_of_nonneg_left (dA_sum_min_sq y (by linarith) N) hK.le
       _ = 3 * dA_KC * Real.sqrt y := by ring
@@ -790,7 +789,7 @@ theorem RR_le :
   calc RR (cN y) m₀ N ≤ _ := hsplit
     _ ≤ 3 * dA_KC * Real.sqrt y + C₁ * w * Real.log y := add_le_add hA hB
     _ ≤ (3 * dA_KC + C₁) * (Real.sqrt y + w * Real.log y) := by
-        nlinarith [mul_nonneg (by linarith : (0:ℝ) ≤ 3 * dA_KC) hwl, mul_nonneg hC₁.le hsq]
+        linarith [mul_nonneg (by positivity : (0:ℝ) ≤ 3 * dA_KC) hwl, mul_nonneg hC₁.le hsq]
 
 end QH
 end -- clump:auto
@@ -862,7 +861,7 @@ private theorem sum_sP_sq_large_primes_le (y : ℝ) (hy : 3 ≤ y) (N : ℕ) :
     have h2 : 3 * Real.log y * y ≤ 3 * Real.log y * (2 * Y) :=
       mul_le_mul_of_nonneg_left (by linarith) (by positivity)
     have h3 := mul_le_mul_of_nonneg_left (h1.trans h2) (show 0 ≤ 4 * Real.log 4 by positivity)
-    nlinarith
+    linarith
   calc ∑ p ∈ (Ioc Y N).filter Nat.Prime, sP (cN y) N p ^ 2
       ≤ ∑ p ∈ (Ioc Y N).filter Nat.Prime, 4 * y ^ 2 * (Real.log p ^ 2 / (p : ℝ) ^ 2) := sum_le_sum hterm
     _ = 4 * y ^ 2 * ∑ p ∈ (Ioc Y N).filter Nat.Prime, Real.log p ^ 2 / (p : ℝ) ^ 2 := by rw [mul_sum]
@@ -920,7 +919,7 @@ private theorem sum_sP_sq_small_primes_le_of_bound (C0 : ℝ) (hC0 : 0 < C0)
       rw [hlogsq] at hlog
       have : C0 ^ 2 * Real.log y ^ 2 ≤ 2 * C0 ^ 2 * Real.log y * Real.log p := by
         have hc : 0 ≤ C0 ^ 2 * Real.log y := by positivity
-        nlinarith [mul_le_mul_of_nonneg_left (show Real.log y ≤ 2 * Real.log p by linarith) hc]
+        linarith [mul_le_mul_of_nonneg_left (show Real.log y ≤ 2 * Real.log p by linarith) hc]
       linarith
   have step2 := sum_le_sum hterm
   rw [sum_add_distrib, ← mul_sum] at step2
@@ -941,18 +940,21 @@ private theorem sum_sP_sq_small_primes_le_of_bound (C0 : ℝ) (hC0 : 0 < C0)
   have htheta := sum_log_primes_le_mul_log_four Y
   have hL : 0 < Real.log 4 := Real.log_pos (by norm_num)
   have hA : ((S : ℝ) + 1) * Real.log y ≤ 4 * y := by
-    have : ((S : ℝ) + 1) * Real.log y ≤ (Real.sqrt y + 1) * (2 * Real.sqrt y) :=
-      mul_le_mul (by linarith) hlsy hly (by linarith)
-    nlinarith
+    calc ((S : ℝ) + 1) * Real.log y ≤ (Real.sqrt y + 1) * (2 * Real.sqrt y) :=
+          mul_le_mul (by linarith) hlsy hly (by linarith)
+      _ ≤ (2 * Real.sqrt y) * (2 * Real.sqrt y) :=
+          mul_le_mul_of_nonneg_right (by linarith) (by positivity)
+      _ = 4 * (Real.sqrt y * Real.sqrt y) := by ring
+      _ = 4 * y := by rw [hsqsq]
   have hA' : ((S : ℝ) + 1) * (C0 ^ 2 * Real.log y ^ 2) ≤ 4 * C0 ^ 2 * (y * Real.log y) := by
     have := mul_le_mul_of_nonneg_right hA (show 0 ≤ C0 ^ 2 * Real.log y by positivity)
-    nlinarith
+    linarith
   have hB : 2 * C0 ^ 2 * Real.log y * ∑ p ∈ (range (Y + 1)).filter Nat.Prime, Real.log p
       ≤ 2 * C0 ^ 2 * Real.log 4 * (y * Real.log y) := by
     have h1 : ∑ p ∈ (range (Y + 1)).filter Nat.Prime, Real.log p ≤ y * Real.log 4 :=
       htheta.trans (mul_le_mul_of_nonneg_right hYle hL.le)
     have := mul_le_mul_of_nonneg_left h1 (show 0 ≤ 2 * C0 ^ 2 * Real.log y by positivity)
-    nlinarith
+    linarith
   calc _ ≤ _ := step1
     _ ≤ _ := step2
     _ ≤ _ := by linarith
@@ -967,7 +969,7 @@ theorem sPsq_le :
   rw [← Finset.sum_filter_add_sum_filter_not _ (fun p => p ≤ ⌊y⌋₊)]
   have h3 := sum_sP_sq_small_primes_le_of_bound C0 hC0 hb y hy N
   have h2 := sum_sP_sq_large_primes_le y hy N
-  nlinarith
+  linarith
 
 end QH
 end -- clump:auto
@@ -1002,7 +1004,7 @@ theorem sum_cN_le :
     _ = y * ∑ n ∈ Icc 1 ⌊Z⌋₊, ArithmeticFunction.vonMangoldt n / (n : ℝ) := by
           rw [Finset.mul_sum]
     _ ≤ y * (C * Real.log Z) := mul_le_mul_of_nonneg_left (hM Z hZ) hy
-    _ ≤ (C + 1) * y * Real.log Z := by nlinarith [mul_nonneg hy hlog]
+    _ ≤ (C + 1) * y * Real.log Z := by linarith [mul_nonneg hy hlog]
 
 end QH
 end -- clump:auto
@@ -1019,6 +1021,137 @@ open Finset Formalism.HermitianLattices.ZeroFreeRegionGL2 Formalism.HermitianLat
 namespace QH
 
 
+private theorem final_ineqK_log {A ε C₀ L u lm ℓm ℓ : ℝ} (hA0 : 0 < A) (hε : 0 < ε)
+    (hL1 : 2 ≤ L) (hL5 : 8 * |C₀| * (Real.log (6 + A) + ε / 5 + 1) ≤ L)
+    (hP0 : L ^ 2 * ℓ / 8 ≤ u) (hℓm : ℓm ≤ 4 * Real.exp (ε / 5 * L))
+    (hlm0 : 2 ≤ lm) (hlm : lm ≤ ℓ) (hℓ : ℓ ≤ ℓm + A * L) :
+    C₀ * lm * Real.log (lm + 2) ≤ u := by
+  have hL0 : 0 < L := by linarith
+  have hA : lm + 2 ≤ (6 + A) * Real.exp ((ε / 5 + 1) * L) := by
+    have hεL : 0 ≤ ε / 5 * L := by positivity
+    have e1 : Real.exp (ε / 5 * L) ≤ Real.exp ((ε / 5 + 1) * L) :=
+      Real.exp_le_exp.mpr (by linarith)
+    have e2 : L ≤ Real.exp ((ε / 5 + 1) * L) := by
+      have := Real.add_one_le_exp L
+      have : Real.exp L ≤ Real.exp ((ε / 5 + 1) * L) := Real.exp_le_exp.mpr (by linarith)
+      linarith
+    have e4 := mul_le_mul_of_nonneg_left e2 hA0.le
+    linarith
+  have hB : Real.log (lm + 2) ≤ Real.log (6 + A) + (ε / 5 + 1) * L := by
+    calc Real.log (lm + 2) ≤ Real.log ((6 + A) * Real.exp ((ε / 5 + 1) * L)) :=
+          Real.log_le_log (by linarith) hA
+      _ = _ := by rw [Real.log_mul (by positivity) (Real.exp_pos _).ne', Real.log_exp]
+  have hl806 : 0 ≤ Real.log (6 + A) := Real.log_nonneg (by linarith)
+  have hlog0 : 0 ≤ Real.log (lm + 2) := Real.log_nonneg (by linarith)
+  have hC : |C₀| * Real.log (lm + 2) ≤ L ^ 2 / 8 := by
+    have : |C₀| * Real.log (lm + 2) ≤ |C₀| * (Real.log (6 + A) + (ε / 5 + 1) * L) :=
+      mul_le_mul_of_nonneg_left hB (abs_nonneg _)
+    have : |C₀| * (Real.log (6 + A) + (ε / 5 + 1) * L) ≤
+        |C₀| * ((Real.log (6 + A) + ε / 5 + 1) * L) := by
+      apply mul_le_mul_of_nonneg_left _ (abs_nonneg _)
+      have : Real.log (6 + A) ≤ Real.log (6 + A) * L := le_mul_of_one_le_right hl806 (by linarith)
+      linarith
+    have h5 := mul_le_mul_of_nonneg_right hL5 hL0.le
+    linarith
+  calc C₀ * lm * Real.log (lm + 2) ≤ |C₀| * lm * Real.log (lm + 2) := by
+        apply mul_le_mul_of_nonneg_right _ hlog0
+        exact mul_le_mul_of_nonneg_right (le_abs_self _) (by linarith)
+    _ = lm * (|C₀| * Real.log (lm + 2)) := by ring
+    _ ≤ lm * (L ^ 2 / 8) := mul_le_mul_of_nonneg_left hC (by linarith)
+    _ ≤ ℓ * (L ^ 2 / 8) := mul_le_mul_of_nonneg_right hlm (by positivity)
+    _ ≤ u := by linarith
+
+private theorem final_ineqK_page {B ε c₀ L u ℓ : ℝ} (hc₀ : 0 < c₀) (hL1 : 2 ≤ L)
+    (hL2 : 8 * (ε / 5 + 2 + B + Real.log 128) / c₀ ≤ L) (hu0 : 0 < u)
+    (hP1 : L ^ 2 / 8 ≤ u / ℓ) (hlogu : Real.log u ≤ (ε / 5 + 2) * L) :
+    16 * u * Real.exp (-(c₀ / ℓ * u)) ≤ Real.exp (-(B * L)) / 8 := by
+  have hL0 : 0 < L := by linarith
+  have hl128 : 0 ≤ Real.log 128 := Real.log_nonneg (by norm_num)
+  have hc : c₀ * L ^ 2 / 8 ≤ c₀ / ℓ * u := by
+    have := mul_le_mul_of_nonneg_left hP1 hc₀.le
+    have e1 : c₀ / ℓ * u = c₀ * (u / ℓ) := by ring
+    have e2 : c₀ * L ^ 2 / 8 = c₀ * (L ^ 2 / 8) := by ring
+    rw [e1, e2]; exact this
+  have hk : (ε / 5 + 2 + B) * L + Real.log 128 ≤ c₀ * L ^ 2 / 8 := by
+    have h8 : 8 * (ε / 5 + 2 + B + Real.log 128) ≤ c₀ * L := by
+      rwa [div_le_iff₀ hc₀, mul_comm L] at hL2
+    have h9 := mul_le_mul_of_nonneg_right h8 hL0.le
+    have : Real.log 128 ≤ Real.log 128 * L := le_mul_of_one_le_right hl128 (by linarith)
+    have e : c₀ * L ^ 2 / 8 = c₀ * L * L / 8 := by ring
+    linarith
+  have hlu : u = Real.exp (Real.log u) := (Real.exp_log hu0).symm
+  calc 16 * u * Real.exp (-(c₀ / ℓ * u))
+      ≤ 16 * Real.exp ((ε / 5 + 2) * L) * Real.exp (-(c₀ * L ^ 2 / 8)) := by
+        gcongr
+        rw [hlu]; exact Real.exp_le_exp.mpr hlogu
+    _ = Real.exp ((ε / 5 + 2) * L - c₀ * L ^ 2 / 8 + Real.log 16) := by
+        rw [Real.exp_add, Real.exp_log (by norm_num), sub_eq_add_neg, Real.exp_add]; ring
+    _ ≤ Real.exp (-(B * L) - Real.log 8) := Real.exp_le_exp.mpr (by
+        have : Real.log 128 = Real.log 16 + Real.log 8 := by
+          rw [← Real.log_mul (by norm_num) (by norm_num)]; norm_num
+        linarith)
+    _ = Real.exp (-(B * L)) / 8 := by rw [Real.exp_sub, Real.exp_log (by norm_num)]
+
+private theorem final_ineqK_pnt {B c₃ A₀ L u lm : ℝ} (hc₃ : 0 < c₃) (hL1 : 2 ≤ L)
+    (hL3 : 8 * (B + Real.log (32 * (|A₀| + 1))) / c₃ ≤ L)
+    (hL4 : Real.log (32 * (|A₀| + 1)) ≤ L) (hP2 : L ^ 2 / 8 ≤ u / lm)
+    (h3 : (B + 1) ^ 2 / c₃ * L ^ 3 ≤ u) :
+    2 * |A₀| * (Real.exp (-(c₃ * u / lm)) + Real.exp (-Real.sqrt (c₃ * u))) ≤
+      Real.exp (-(B * L)) / 8 := by
+  have hL0 : 0 < L := by linarith
+  set Q := 32 * (|A₀| + 1)
+  have hQ0 : 0 < Q := by positivity
+  have hQ : 0 ≤ Real.log Q := Real.log_nonneg (by linarith [abs_nonneg A₀])
+  have hA : 2 * |A₀| ≤ Q / 16 := by simp only [Q]; linarith [abs_nonneg A₀]
+  have key : ∀ t : ℝ, B * L + Real.log Q ≤ t →
+      2 * |A₀| * Real.exp (-t) ≤ Real.exp (-(B * L)) / 16 := by
+    intro t ht
+    calc 2 * |A₀| * Real.exp (-t) ≤ Q / 16 * Real.exp (-t) :=
+          mul_le_mul_of_nonneg_right hA (Real.exp_pos _).le
+      _ ≤ Q / 16 * Real.exp (-(B * L) - Real.log Q) :=
+          mul_le_mul_of_nonneg_left (Real.exp_le_exp.mpr (by linarith)) (by positivity)
+      _ = Real.exp (-(B * L)) / 16 := by
+          rw [Real.exp_sub, Real.exp_log hQ0]; field_simp
+  have t1 : B * L + Real.log Q ≤ c₃ * u / lm := by
+    have : 8 * (B + Real.log Q) ≤ c₃ * L := by rwa [div_le_iff₀ hc₃, mul_comm L] at hL3
+    have h2 : c₃ * (L ^ 2 / 8) ≤ c₃ * u / lm := by
+      rw [mul_div_assoc]; exact mul_le_mul_of_nonneg_left hP2 hc₃.le
+    have h9 := mul_le_mul_of_nonneg_right this hL0.le
+    have : Real.log Q ≤ Real.log Q * L := le_mul_of_one_le_right hQ (by linarith)
+    have e : c₃ * (L ^ 2 / 8) = c₃ * L * L / 8 := by ring
+    linarith
+  have t2 : B * L + Real.log Q ≤ Real.sqrt (c₃ * u) := by
+    have : (B + 1) * L ≤ Real.sqrt (c₃ * u) := by
+      apply Real.le_sqrt_of_sq_le
+      have : c₃ * ((B + 1) ^ 2 / c₃ * L ^ 3) = (B + 1) ^ 2 * L ^ 3 := by field_simp
+      have := mul_le_mul_of_nonneg_left h3 hc₃.le
+      have hL23 : L ^ 2 ≤ L ^ 3 := by
+        have : L ^ 3 = L ^ 2 * L := by ring
+        rw [this]; exact le_mul_of_one_le_right (sq_nonneg L) (by linarith)
+      have e : ((B + 1) * L) ^ 2 = (B + 1) ^ 2 * L ^ 2 := by ring
+      have := mul_le_mul_of_nonneg_left hL23 (sq_nonneg (B + 1))
+      rw [e]; linarith
+    linarith
+  have := key _ t1
+  have := key _ t2
+  linarith
+
+private theorem final_ineqK_tail {B L u : ℝ} (hB0 : 0 < B) (hL1 : 2 ≤ L)
+    (hu : 5 * (B + 1) * L ^ 3 ≤ u) :
+    Real.exp (-(2 / 5 * u)) ≤ Real.exp (-(B * L)) / 4 := by
+  have hl4 : Real.log 4 ≤ 2 := by
+    have e : Real.log 4 = 2 * Real.log 2 := by
+      rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.log_pow]; norm_num
+    have := Real.log_two_lt_d9; linarith
+  have h4L : 4 * L ≤ L ^ 3 := by
+    have : L ^ 3 = L ^ 2 * L := by ring
+    rw [this]; nlinarith
+  have h5L := mul_le_mul_of_nonneg_left h4L (by linarith : 0 ≤ B + 1)
+  have h6L : 0 ≤ B * L := by positivity
+  calc Real.exp (-(2 / 5 * u)) ≤ Real.exp (-(B * L) - Real.log 4) :=
+        Real.exp_le_exp.mpr (by linarith)
+    _ = _ := by rw [Real.exp_sub, Real.exp_log (by norm_num)]
+
 private theorem final_ineqK (A B ε c₀ c₃ A₀ C₀ L u lm ℓm ℓ : ℝ) (hA0 : 0 < A) (hB0 : 0 < B) (hε : 0 < ε) (hc₀ : 0 < c₀) (hc₃ : 0 < c₃)
     (hL1 : 2 ≤ L) (hL2 : 8 * (ε / 5 + 2 + B + Real.log 128) / c₀ ≤ L)
     (hL3 : 8 * (B + Real.log (32 * (|A₀| + 1))) / c₃ ≤ L) (hL4 : Real.log (32 * (|A₀| + 1)) ≤ L)
@@ -1032,9 +1165,7 @@ private theorem final_ineqK (A B ε c₀ c₃ A₀ C₀ L u lm ℓm ℓ : ℝ) (
     2 * |A₀| * (Real.exp (-(c₃ * u / lm)) + Real.exp (-Real.sqrt (c₃ * u))) ≤ Real.exp (-(B * L)) / 8 ∧
     Real.exp (-(2 / 5 * u)) ≤ Real.exp (-(B * L)) / 4 := by
   have hL0 : 0 < L := by linarith
-  have hu0 : 0 < u := by
-    have : 0 < (A / 4 + (B + 1) ^ 2 / c₃ + 5 * (B + 1)) * L ^ 3 := by positivity
-    linarith
+  have hu0 : 0 < u := lt_of_lt_of_le (by positivity) hu2
   have h16 : 0 ≤ (B + 1) ^ 2 / c₃ * L ^ 3 := by positivity
   have h17 : 0 ≤ A * L ^ 3 := by positivity
   have h18 : 0 ≤ (B + 1) * L ^ 3 := by positivity
@@ -1044,112 +1175,34 @@ private theorem final_ineqK (A B ε c₀ c₃ A₀ C₀ L u lm ℓm ℓ : ℝ) (
     linarith
   have hℓ0 : 0 < ℓ := by linarith
   have hP1 : L ^ 2 / 8 ≤ u / ℓ := by rw [le_div_iff₀ hℓ0]; linarith
-  have hP2 : L ^ 2 / 8 ≤ u / lm := by
-    have : u / ℓ ≤ u / lm := div_le_div_of_nonneg_left hu0.le (by linarith) hlm
-    linarith
-  have hQ : 0 ≤ Real.log (32 * (|A₀| + 1)) := Real.log_nonneg (by nlinarith [abs_nonneg A₀])
-  have hl128 : 0 ≤ Real.log 128 := Real.log_nonneg (by norm_num)
-  refine ⟨?_, ?_, ?_, ?_⟩
-  ·
-    have hA : lm + 2 ≤ (6 + A) * Real.exp ((ε / 5 + 1) * L) := by
-      have hεL : 0 ≤ ε / 5 * L := by positivity
-      have e1 : Real.exp (ε / 5 * L) ≤ Real.exp ((ε / 5 + 1) * L) := Real.exp_le_exp.mpr (by linarith)
-      have e2 : L ≤ Real.exp ((ε / 5 + 1) * L) := by
-        have := Real.add_one_le_exp L
-        have : Real.exp L ≤ Real.exp ((ε / 5 + 1) * L) := Real.exp_le_exp.mpr (by linarith)
-        linarith
-      have e4 := mul_le_mul_of_nonneg_left e2 hA0.le
-      linarith
-    have hB : Real.log (lm + 2) ≤ Real.log (6 + A) + (ε / 5 + 1) * L := by
-      calc Real.log (lm + 2) ≤ Real.log ((6 + A) * Real.exp ((ε / 5 + 1) * L)) := Real.log_le_log (by linarith) hA
-        _ = _ := by rw [Real.log_mul (by positivity) (Real.exp_pos _).ne', Real.log_exp]
-    have hl806 : 0 ≤ Real.log (6 + A) := Real.log_nonneg (by linarith)
-    have hlog0 : 0 ≤ Real.log (lm + 2) := Real.log_nonneg (by linarith)
-    have hC : |C₀| * Real.log (lm + 2) ≤ L ^ 2 / 8 := by
-      have : |C₀| * Real.log (lm + 2) ≤ |C₀| * (Real.log (6 + A) + (ε / 5 + 1) * L) :=
-        mul_le_mul_of_nonneg_left hB (abs_nonneg _)
-      have : |C₀| * (Real.log (6 + A) + (ε / 5 + 1) * L) ≤ |C₀| * ((Real.log (6 + A) + ε / 5 + 1) * L) := by
-        apply mul_le_mul_of_nonneg_left _ (abs_nonneg _)
-        have : Real.log (6 + A) ≤ Real.log (6 + A) * L := by nlinarith
-        linarith
-      have h5 := mul_le_mul_of_nonneg_right hL5 hL0.le
-      linarith
-    calc C₀ * lm * Real.log (lm + 2) ≤ |C₀| * lm * Real.log (lm + 2) := by
-          apply mul_le_mul_of_nonneg_right _ hlog0
-          exact mul_le_mul_of_nonneg_right (le_abs_self _) (by linarith)
-      _ = lm * (|C₀| * Real.log (lm + 2)) := by ring
-      _ ≤ lm * (L ^ 2 / 8) := mul_le_mul_of_nonneg_left hC (by linarith)
-      _ ≤ ℓ * (L ^ 2 / 8) := mul_le_mul_of_nonneg_right hlm (by positivity)
-      _ ≤ u := by linarith
-  · have hc : c₀ * L ^ 2 / 8 ≤ c₀ / ℓ * u := by
-      have := mul_le_mul_of_nonneg_left hP1 hc₀.le
-      have e1 : c₀ / ℓ * u = c₀ * (u / ℓ) := by ring
-      have e2 : c₀ * L ^ 2 / 8 = c₀ * (L ^ 2 / 8) := by ring
-      rw [e1, e2]; exact this
-    have hk : (ε / 5 + 2 + B) * L + Real.log 128 ≤ c₀ * L ^ 2 / 8 := by
-      have h8 : 8 * (ε / 5 + 2 + B + Real.log 128) ≤ c₀ * L := by rwa [div_le_iff₀ hc₀, mul_comm L] at hL2
-      have h9 := mul_le_mul_of_nonneg_right h8 hL0.le
-      have : Real.log 128 ≤ Real.log 128 * L := by nlinarith
-      have e : c₀ * L ^ 2 / 8 = c₀ * L * L / 8 := by ring
-      linarith
-    have hlu : u = Real.exp (Real.log u) := (Real.exp_log hu0).symm
-    calc 16 * u * Real.exp (-(c₀ / ℓ * u)) ≤ 16 * Real.exp ((ε / 5 + 2) * L) * Real.exp (-(c₀ * L ^ 2 / 8)) := by
-          gcongr
-          rw [hlu]; exact Real.exp_le_exp.mpr hlogu
-      _ = Real.exp ((ε / 5 + 2) * L - c₀ * L ^ 2 / 8 + Real.log 16) := by
-          rw [Real.exp_add, Real.exp_log (by norm_num), sub_eq_add_neg, Real.exp_add]; ring
-      _ ≤ Real.exp (-(B * L) - Real.log 8) := Real.exp_le_exp.mpr (by
-          have : Real.log 128 = Real.log 16 + Real.log 8 := by
-            rw [← Real.log_mul (by norm_num) (by norm_num)]; norm_num
-          linarith)
-      _ = Real.exp (-(B * L)) / 8 := by rw [Real.exp_sub, Real.exp_log (by norm_num)]
-  · set Q := 32 * (|A₀| + 1)
-    have hQ0 : 0 < Q := by positivity
-    have hA : 2 * |A₀| ≤ Q / 16 := by simp only [Q]; linarith [abs_nonneg A₀]
-    have key : ∀ t : ℝ, B * L + Real.log Q ≤ t → 2 * |A₀| * Real.exp (-t) ≤ Real.exp (-(B * L)) / 16 := by
-      intro t ht
-      calc 2 * |A₀| * Real.exp (-t) ≤ Q / 16 * Real.exp (-t) := mul_le_mul_of_nonneg_right hA (Real.exp_pos _).le
-        _ ≤ Q / 16 * Real.exp (-(B * L) - Real.log Q) :=
-            mul_le_mul_of_nonneg_left (Real.exp_le_exp.mpr (by linarith)) (by positivity)
-        _ = Real.exp (-(B * L)) / 16 := by
-            rw [Real.exp_sub, Real.exp_log hQ0]; field_simp
-    have t1 : B * L + Real.log Q ≤ c₃ * u / lm := by
-      have : 8 * (B + Real.log Q) ≤ c₃ * L := by rwa [div_le_iff₀ hc₃, mul_comm L] at hL3
-      have h2 : c₃ * (L ^ 2 / 8) ≤ c₃ * u / lm := by
-        rw [mul_div_assoc]; exact mul_le_mul_of_nonneg_left hP2 hc₃.le
-      have h9 := mul_le_mul_of_nonneg_right this hL0.le
-      have : Real.log Q ≤ Real.log Q * L := by nlinarith
-      have e : c₃ * (L ^ 2 / 8) = c₃ * L * L / 8 := by ring
-      linarith
-    have t2 : B * L + Real.log Q ≤ Real.sqrt (c₃ * u) := by
-      have : (B + 1) * L ≤ Real.sqrt (c₃ * u) := by
-        apply Real.le_sqrt_of_sq_le
-        have : c₃ * ((B + 1) ^ 2 / c₃ * L ^ 3) = (B + 1) ^ 2 * L ^ 3 := by field_simp
-        have h3 : (B + 1) ^ 2 / c₃ * L ^ 3 ≤ u := by
-          linarith
-        have := mul_le_mul_of_nonneg_left h3 hc₃.le
-        have hL23 : L ^ 2 ≤ L ^ 3 := by
-          have : L ^ 3 = L ^ 2 * L := by ring
-          rw [this]; nlinarith [sq_nonneg L]
-        have e : ((B + 1) * L) ^ 2 = (B + 1) ^ 2 * L ^ 2 := by ring
-        have := mul_le_mul_of_nonneg_left hL23 (sq_nonneg (B + 1))
-        rw [e]; linarith
-      linarith
-    have := key _ t1
-    have := key _ t2
-    linarith
-  · have hl4 : Real.log 4 ≤ 2 := by
-      have e : Real.log 4 = 2 * Real.log 2 := by
-        rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.log_pow]; norm_num
-      have := Real.log_two_lt_d9; linarith
-    have h4L : 4 * L ≤ L ^ 3 := by
-      have : L ^ 3 = L ^ 2 * L := by ring
-      rw [this]; nlinarith
-    have h5L := mul_le_mul_of_nonneg_left h4L (by linarith : 0 ≤ B + 1)
-    have h6L : 0 ≤ B * L := by positivity
-    calc Real.exp (-(2 / 5 * u)) ≤ Real.exp (-(B * L) - Real.log 4) := Real.exp_le_exp.mpr (by linarith)
-      _ = _ := by rw [Real.exp_sub, Real.exp_log (by norm_num)]
+  have hP2 : L ^ 2 / 8 ≤ u / lm :=
+    hP1.trans (div_le_div_of_nonneg_left hu0.le (by linarith) hlm)
+  exact ⟨final_ineqK_log hA0 hε hL1 hL5 hP0 hℓm hlm0 hlm hℓ,
+    final_ineqK_page hc₀ hL1 hL2 hu0 hP1 hlogu,
+    final_ineqK_pnt hc₃ hL1 hL3 hL4 hP2 (by linarith),
+    final_ineqK_tail hB0 hL1 (by linarith)⟩
 
+private theorem twistK_final_bound {T P X r k η d : ℝ} (hX : 0 < X) (hP : 0 ≤ P)
+    (hη0 : 0 ≤ η) (hη1 : η ≤ 1) (hr : 4 * r ≤ η / 8) (hk : 2 * |k| ≤ η / 8)
+    (hd : d ≤ η / 4) (hd_eq : d = Real.exp (-(2 / 5 * Real.log X)))
+    (hcount : X ^ (9 / 10 : ℝ) ≤ P)
+    (hmain : T ≤ (4 * r + 2 * |k|) * (P + X ^ (1 / 2 : ℝ)) + X ^ (1 / 2 : ℝ)) :
+    T ≤ η * P := by
+  have hsq2 : X ^ (1 / 2 : ℝ) ≤ d * P := by
+    have e : X ^ (1 / 2 : ℝ) = X ^ (-(2 / 5) : ℝ) * X ^ (9 / 10 : ℝ) := by
+      rw [← Real.rpow_add hX]; norm_num
+    have e2 : X ^ (-(2 / 5) : ℝ) = d := by
+      rw [Real.rpow_def_of_pos hX, hd_eq]; congr 1; ring
+    rw [e, e2]
+    exact mul_le_mul_of_nonneg_left hcount (hd_eq ▸ (Real.exp_pos _).le)
+  have ha4 : 4 * r + 2 * |k| ≤ η / 4 := by linarith
+  have t1 : (4 * r + 2 * |k|) * (P + X ^ (1 / 2 : ℝ)) ≤ η / 4 * (P + d * P) :=
+    mul_le_mul ha4 (by linarith) (add_nonneg hP (Real.rpow_nonneg hX.le _)) (by linarith)
+  have t2 : d * P ≤ η / 4 * P := mul_le_mul_of_nonneg_right hd hP
+  have t3 : η / 4 * (d * P) ≤ η / 4 * (1 / 4 * P) :=
+    mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right (by linarith) hP) (by linarith)
+  have hηP : 0 ≤ η * P := mul_nonneg hη0 hP
+  linarith
 
 theorem twistK :
     ∀ ε A B : ℝ, 0 < ε → 0 < A → 0 < B → ∃ Y₀ : ℝ, ∀ Y ≥ Y₀, ∀ (U : ℝ) (m₀ a₀ : ℕ), admitted ε Y U m₀ a₀ →
@@ -1195,13 +1248,13 @@ theorem twistK :
     le_trans (le_trans (le_trans (le_max_right _ _) (le_max_left _ _)) (le_max_right _ _)) hLL
   have hL5 : 8 * |C₀| * (Real.log (6 + A) + ε / 5 + 1) ≤ Real.log x :=
     le_trans (le_trans (le_max_right _ _) (le_max_right _ _)) hLL
+  have hLp : 0 < Real.log x := lt_of_lt_of_le two_pos hL1
   have hx1 : 1 ≤ x := by
-    have := Real.add_one_le_exp (Real.log x)
-    rw [Real.exp_log hx0] at this; linarith
-  have hu2 : (A / 4 + (B + 1) ^ 2 / c₃ + 5 * (B + 1)) * Real.log x ^ 3 ≤ Real.log X := (hx₂ x hxx₂).trans hX2
-  have hu0 : 0 < Real.log X := by
-    have : 0 < (A / 4 + (B + 1) ^ 2 / c₃ + 5 * (B + 1)) * Real.log x ^ 3 := by positivity
-    linarith
+    rw [← Real.exp_zero]
+    exact (Real.le_log_iff_exp_le hx0).1 hLp.le
+  have hu2 : (A / 4 + (B + 1) ^ 2 / c₃ + 5 * (B + 1)) * Real.log x ^ 3 ≤ Real.log X :=
+    (hx₂ x hxx₂).trans hX2
+  have hu0 : 0 < Real.log X := lt_of_lt_of_le (by positivity) hu2
   rcases le_or_gt X 0 with hXn | hXp
   · refine ⟨0, fun s _ _ _ _ _ _ => ?_⟩
     have : PPset m₀ a₀ X = ∅ := by
@@ -1219,38 +1272,42 @@ theorem twistK :
       have : Real.log 4 = 2 * Real.log 2 := by
         rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.log_pow]; norm_num
       have := Real.log_two_lt_d9
-      have : (8 : ℝ) ≤ Real.log x ^ 3 := by nlinarith
+      have : (8 : ℝ) ≤ Real.log x ^ 3 :=
+        (by norm_num : (8 : ℝ) = 2 ^ 3) ▸ pow_le_pow_left₀ (by norm_num) hL1 3
       have hK : 5 ≤ (A / 4 + (B + 1) ^ 2 / c₃ + 5 * (B + 1)) := by
         have : 0 ≤ (B + 1) ^ 2 / c₃ := by positivity
         linarith
-      have := mul_le_mul_of_nonneg_right hK (by linarith : 0 ≤ Real.log x ^ 3)
+      have := mul_le_mul_of_nonneg_right hK (by positivity : 0 ≤ Real.log x ^ 3)
       linarith
     exact (Real.log_le_log_iff (by norm_num) hXp).mp h4
   have hxA : 1 ≤ x ^ A := Real.one_le_rpow hx1 hA0.le
   have hm0 : (0 : ℝ) < m₀ := by exact_mod_cast hm
   obtain ⟨Z, hZdef⟩ : ∃ Z : ℝ, Z = (m₀ : ℝ) * x ^ A := ⟨_, rfl⟩
   have hZ3 : 3 ≤ Z := by
-    have : (8 : ℝ) ≤ m₀ := by exact_mod_cast hm8
-    rw [hZdef]; nlinarith
+    have hm8' : (8 : ℝ) ≤ m₀ := by exact_mod_cast hm8
+    rw [hZdef]
+    exact (by norm_num : (3 : ℝ) ≤ 8).trans (hm8'.trans (le_mul_of_one_le_right hm0.le hxA))
   have hℓ : Real.log Z ≤ Real.log m₀ + A * Real.log x := by
     rw [hZdef, Real.log_mul hm0.ne' (by positivity), Real.log_rpow hx0]
   have hℓm : Real.log m₀ ≤ 4 * Real.exp (ε / 5 * Real.log x) := by
     have hxe : x ^ (ε / 5) = Real.exp (ε / 5 * Real.log x) := by
       rw [Real.rpow_def_of_pos hx0, mul_comm]
-    have hLp : 0 < Real.log x ^ 2 := by positivity
+    have hLp2 : 0 < Real.log x ^ 2 := by positivity
     have h := hX1.trans hX3
     rw [hxe] at h
-    have : Real.log m₀ / 4 * Real.log x ^ 2 ≤ Real.exp (ε / 5 * Real.log x) * Real.log x ^ 2 := by linarith
-    have := le_of_mul_le_mul_right this hLp
+    have : Real.log m₀ / 4 * Real.log x ^ 2 ≤ Real.exp (ε / 5 * Real.log x) * Real.log x ^ 2 := by
+      linarith
+    have := le_of_mul_le_mul_right this hLp2
     linarith
   have hlogu : Real.log (Real.log X) ≤ (ε / 5 + 2) * Real.log x := by
-    have hLp : 0 < Real.log x := by linarith
     calc Real.log (Real.log X) ≤ Real.log (x ^ (ε / 5) * Real.log x ^ 2) := Real.log_le_log hu0 hX3
       _ = ε / 5 * Real.log x + 2 * Real.log (Real.log x) := by
-          rw [Real.log_mul (by positivity) (by positivity), Real.log_rpow hx0, Real.log_pow]; push_cast; ring
-      _ ≤ _ := by
-          have := Real.log_le_sub_one_of_pos hLp
-          linarith only [this]
+          rw [Real.log_mul (by positivity) (by positivity), Real.log_rpow hx0, Real.log_pow]
+          push_cast; ring
+      _ ≤ ε / 5 * Real.log x + 2 * Real.log x :=
+          add_le_add le_rfl (mul_le_mul_of_nonneg_left
+            ((Real.log_le_sub_one_of_pos hLp).trans (sub_le_self _ zero_le_one)) two_pos.le)
+      _ = (ε / 5 + 2) * Real.log x := by ring
 
   let bad : ℕ → Prop := fun s => 1 < s ∧ Odd s ∧ Squarefree s ∧ s.Coprime m₀ ∧ (s : ℝ) ≤ x ^ A ∧
       ∃ (χ : DirichletCharacter ℂ (m₀ * s)) (β : ℝ), E (m₀ * s) = some (χ, β) ∧ 1 - β < c₀ / Real.log Z ∧
@@ -1266,7 +1323,7 @@ theorem twistK :
     obtain ⟨sq1, ne1, L1, _, lt1⟩ := (hE (m₀ * s₁) hM1 (dvd_mul_of_dvd_left h8 _)).1 _ he1
     obtain ⟨sq2, ne2, L2, _, lt2⟩ := (hE (m₀ * s₂) hM2 (dvd_mul_of_dvd_left h8 _)).1 _ he2
     have hag := hpage Z (m₀ * s₁) (m₀ * s₂) χ₁ χ₂ β₁ β₂ hZ3 (hMZ _ hN1') (hMZ _ hN2') sq1 sq2 ne1 ne2 L1 L2
-      (by linarith) (by linarith) lt1 lt2
+      (sub_lt_comm.1 hlt1) (sub_lt_comm.1 hlt2) lt1 lt2
     apply jacobi_separate m₀ s₁ s₂ hm ho1 ho2 hq1 hq2 hc1 hc2
     intro u hu hus
     have hum : u.Coprime m₀ := by
@@ -1292,64 +1349,54 @@ theorem twistK :
   have hlm0 : 2 ≤ Real.log ((m₀ * s : ℕ) : ℝ) := by
     have : (8 : ℝ) ≤ ((m₀ * s : ℕ) : ℝ) := by
       exact_mod_cast le_trans hm8 (Nat.le_mul_of_pos_right _ (by omega))
-    linarith [Real.log_le_log (by norm_num) this]
+    exact hlog8.trans (Real.log_le_log (by norm_num) this)
   have hlm : Real.log ((m₀ * s : ℕ) : ℝ) ≤ Real.log Z :=
     Real.log_le_log (by exact_mod_cast hM) (hMZ s hsN)
-  obtain ⟨f1, f2, f3, f4⟩ := final_ineqK A B ε c₀ c₃ A₀ C₀ (Real.log x) (Real.log X) (Real.log ((m₀ * s : ℕ) : ℝ))
-    (Real.log m₀) (Real.log Z) hA0 hB0 hε hc₀ hc₃ hL1 hL2 hL3 hL4 hL5 hX1 hu2 hlogu hℓm hlm0 hlm hℓ
+  obtain ⟨f1, f2, f3, f4⟩ := final_ineqK A B ε c₀ c₃ A₀ C₀ (Real.log x) (Real.log X)
+    (Real.log ((m₀ * s : ℕ) : ℝ)) (Real.log m₀) (Real.log Z)
+    hA0 hB0 hε hc₀ hc₃ hL1 hL2 hL3 hL4 hL5 hX1 hu2 hlogu hℓm hlm0 hlm hℓ
   set η : ℝ := Real.exp (-(B * Real.log x)) with hη
-  have hη1 : η ≤ 1 := Real.exp_le_one_iff.mpr (by nlinarith)
+  have hη1 : η ≤ 1 := Real.exp_le_one_iff.mpr (neg_nonpos.mpr (by positivity))
   have hη0 : 0 ≤ η := (Real.exp_pos _).le
-  have hxη : x ^ (-B) = η := by rw [Real.rpow_def_of_pos hx0, hη]; ring_nf
+  have hxη : x ^ (-B) = η := by rw [Real.rpow_def_of_pos hx0, hη]; congr 1; ring
   set ρ : ℝ := Real.exp (-(c₃ * Real.log X / Real.log ((m₀ * s : ℕ) : ℝ))) +
     Real.exp (-Real.sqrt (c₃ * Real.log X)) with hρ
   have hρ0 : 0 < ρ := by positivity
   set k : ℝ := A₀ * ρ with hk
   have hkabs : |k| = |A₀| * ρ := by rw [hk, abs_mul, abs_of_pos hρ0]
+  have hk2 : 2 * |k| ≤ η / 8 := by rw [hkabs, ← mul_assoc]; exact f3
   have hk' : |k| ≤ 1 / 2 := by linarith
   set r : ℝ := 4 * Real.log X * Real.exp (-(c₀ / Real.log Z * Real.log X)) with hr
   have hr0 : 0 ≤ r := by positivity
+  have hr4 : 4 * r ≤ η / 8 := by
+    rw [show 4 * r = 16 * Real.log X * Real.exp (-(c₀ / Real.log Z * Real.log X)) by rw [hr]; ring]
+    exact f2
   have hr' : r ≤ 1 / 2 := by linarith
   have hli : 0 < liX X := lt_of_lt_of_le (by positivity) (liX_lower hX4)
   have hb : ∀ b ∈ clsB m₀ s a₀, |(piAP X (m₀ * s) b : ℝ) - mainAP (E (m₀ * s)) b X| ≤
       k * mainAP (E (m₀ * s)) b X :=
-    fun b hbB => hPNT X b (by linarith) f1 (coprime_of_cls ha hbB)
+    fun b hbB => hPNT X b (le_trans (by norm_num) hX4) f1 (coprime_of_cls ha hbB)
   have hG : ∀ (χ : DirichletCharacter ℂ (m₀ * s)) (β : ℝ), E (m₀ * s) = some (χ, β) →
       (∀ u : ℕ, u % m₀ = 1 % m₀ → u.Coprime s → χ (u : ZMod (m₀ * s)) = ((jacobiSym (u : ℤ) s : ℤ) : ℂ)) →
       |liX (X ^ β)| ≤ r * liX X := by
     intro χ β heq hal
     obtain ⟨_, _, _, hβl, _⟩ := hEx (χ, β) heq
-    have hβ2 : β ≤ 1 - c₀ / Real.log Z := by
-      by_contra hc
-      exact hnb ⟨h1, hodd, hsq, hcop, hsN, χ, β, heq, by linarith, hal⟩
+    have hβ2 : β ≤ 1 - c₀ / Real.log Z :=
+      le_sub_comm.1 (not_lt.1 fun hc => hnb ⟨h1, hodd, hsq, hcop, hsN, χ, β, heq, hc, hal⟩)
     have hβ1 : 1 / 2 ≤ β := by
-      have : 1 / (8 * Real.log ((m₀ * s : ℕ) : ℝ)) ≤ 1 / 2 := by
-        rw [div_le_div_iff₀ (by positivity) (by norm_num)]; linarith
-      simp only at hβl
-      linarith
+      have : (2 : ℝ) ≤ 8 * Real.log ((m₀ * s : ℕ) : ℝ) :=
+        (by norm_num : (2 : ℝ) ≤ 8 * 2).trans (mul_le_mul_of_nonneg_left hlm0 (by norm_num))
+      have h18 : 1 / (8 * Real.log ((m₀ * s : ℕ) : ℝ)) ≤ 1 / 2 :=
+        one_div_le_one_div_of_le two_pos this
+      calc (1 / 2 : ℝ) = 1 - 1 / 2 := by norm_num
+        _ ≤ 1 - 1 / (8 * Real.log ((m₀ * s : ℕ) : ℝ)) := sub_le_sub_left h18 1
+        _ ≤ β := hβl.le
     exact liX_pow_le hX4 hβ1 hβ2
-  have hmain := twist_one m₀ s a₀ hm h1 hodd hsq hcop.symm ha X r k (E (m₀ * s)) hXp.le hr0 hr' hli hk' hb hG
+  have hmain := twist_one m₀ s a₀ hm h1 hodd hsq hcop.symm ha X r k (E (m₀ * s))
+    hXp.le hr0 hr' hli hk' hb hG
   have hcount := hx₁ x X m₀ a₀ hxx₁ hm h8 ha hX1 hX2 hX3
-  set P : ℝ := ((PPset m₀ a₀ X).card : ℝ)
-  set d : ℝ := Real.exp (-(2 / 5 * Real.log X))
-  have hsq2 : X ^ (1 / 2 : ℝ) ≤ d * P := by
-    have e : X ^ (1 / 2 : ℝ) = X ^ (-(2 / 5) : ℝ) * X ^ (9 / 10 : ℝ) := by
-      rw [← Real.rpow_add hXp]; norm_num
-    have e2 : X ^ (-(2 / 5) : ℝ) = d := by
-      rw [Real.rpow_def_of_pos hXp]; show _ = Real.exp _; congr 1; ring
-    rw [e, e2]
-    exact mul_le_mul_of_nonneg_left hcount (Real.exp_pos _).le
-  have hP0 : 0 ≤ P := Nat.cast_nonneg _
-  have ha4 : 4 * r + 2 * |k| ≤ η / 4 := by linarith
-  have t1 : (4 * r + 2 * |k|) * (P + X ^ (1 / 2 : ℝ)) ≤ η / 4 * (P + d * P) :=
-    mul_le_mul ha4 (by linarith) (add_nonneg hP0 (Real.rpow_nonneg hXp.le _)) (by linarith)
-  have t2 : d * P ≤ η / 4 * P := mul_le_mul_of_nonneg_right f4 hP0
-  have t3 : η / 4 * (d * P) ≤ η / 4 * (1 / 4 * P) :=
-    mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right (by linarith) hP0) (by linarith)
   rw [hxη]
-  have : η / 4 * (P + d * P) = η / 4 * P + η / 4 * (d * P) := by ring
-  have hηP : 0 ≤ η * P := mul_nonneg hη0 hP0
-  linarith
+  exact twistK_final_bound hXp (Nat.cast_nonneg _) hη0 hη1 hr4 hk2 f4 rfl hcount hmain
 
 end QH
 end -- clump:auto
@@ -1377,7 +1424,7 @@ private lemma ev_log (δ A : ℝ) (hδ : 0 < δ) (hA : 0 < A) :
   calc A * Real.log Y ≤ A * (1 / A * Y ^ δ) := mul_le_mul_of_nonneg_left h1 hA.le
     _ = Y ^ δ := by field_simp
 
-private lemma sizes (y w : ℝ) (hy : 1 ≤ y) (hw0 : 0 ≤ w) (hw : w ≤ y ^ (1 / 5 : ℝ)) :
+private lemma sizes (y w : ℝ) (hy : 1 ≤ y) (hw : w ≤ y ^ (1 / 5 : ℝ)) :
     Real.log y ≤ 2 * Real.sqrt y ∧ w * Real.log y ≤ 4 * Real.sqrt y := by
   have hy0 : 0 < y := by linarith
   have key : ∀ a : ℝ, 0 < a → a * Real.log y ≤ y ^ a := by
@@ -1402,6 +1449,61 @@ private lemma sizes (y w : ℝ) (hy : 1 ≤ y) (hw0 : 0 ≤ w) (hw : w ≤ y ^ (
       _ = 10 / 3 * Real.sqrt y := by rw [← hmul]; ring
       _ ≤ 4 * Real.sqrt y := by linarith
 
+private theorem meanSqK_combine {C1 C2 C3 C4 y Y K L R A S M η : ℝ}
+    (hC1 : 0 < C1) (hC2 : 0 < C2) (hC4 : 0 < C4) (hy3 : 3 ≤ y) (hyYK : y ≤ Y ^ K)
+    (hY0 : 0 < Y) (hL1 : 1 ≤ L) (hsz1 : L ≤ 2 * Real.sqrt y)
+    (hR0 : 0 ≤ R) (hRle : R ≤ 5 * C1 * Real.sqrt y) (hA1 : A ≤ C3 * y * L)
+    (hS0 : 0 ≤ S) (hS : S ≤ C4 * y * M) (hM2 : M ^ 2 ≤ Y)
+    (hη0 : 0 ≤ η) (hprod : Y ^ K * Y * η = 1) :
+    A + R ^ 2 + (2 * (C2 * L) ^ 2 + 2 * (C2 * L) * R) + η * S ^ 2 ≤
+      (C3 + 25 * C1 ^ 2 + 4 * C2 ^ 2 + 20 * C1 * C2 + C4 ^ 2) * y * L := by
+  have hy0 : 0 ≤ y := by linarith
+  have hL0 : 0 ≤ L := by linarith
+  set sq := Real.sqrt y
+  have hsq0 : 0 ≤ sq := Real.sqrt_nonneg y
+  have hsq2 : sq * sq = y := Real.mul_self_sqrt hy0
+  have hsq1 : 1 ≤ sq := Real.one_le_sqrt.2 (by linarith)
+  have hsqy : sq ≤ y := by
+    calc sq = sq * 1 := (mul_one sq).symm
+      _ ≤ sq * sq := mul_le_mul_of_nonneg_left hsq1 hsq0
+      _ = y := hsq2
+  have hyL : y ≤ y * L := le_mul_of_one_le_right hy0 hL1
+  have hR2 : R ^ 2 ≤ 25 * C1 ^ 2 * (y * L) := by
+    calc R ^ 2 ≤ (5 * C1 * sq) ^ 2 := pow_le_pow_left₀ hR0 hRle 2
+      _ = 25 * C1 ^ 2 * (sq * sq) := by ring
+      _ = 25 * C1 ^ 2 * y := by rw [hsq2]
+      _ ≤ 25 * C1 ^ 2 * (y * L) := mul_le_mul_of_nonneg_left hyL (by positivity)
+  have hB2 : 2 * (C2 * L) ^ 2 ≤ 4 * C2 ^ 2 * (y * L) := by
+    calc 2 * (C2 * L) ^ 2 = 2 * C2 ^ 2 * (L * L) := by ring
+      _ ≤ 2 * C2 ^ 2 * (2 * y * L) :=
+          mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right (by linarith) hL0) (by positivity)
+      _ = 4 * C2 ^ 2 * (y * L) := by ring
+  have hBR : 2 * (C2 * L) * R ≤ 20 * C1 * C2 * (y * L) := by
+    have hLsq : L * sq ≤ 2 * y := by
+      calc L * sq ≤ 2 * sq * sq := mul_le_mul_of_nonneg_right hsz1 hsq0
+        _ = 2 * y := by rw [mul_assoc, hsq2]
+    calc 2 * (C2 * L) * R ≤ 2 * (C2 * L) * (5 * C1 * sq) :=
+          mul_le_mul_of_nonneg_left hRle (by positivity)
+      _ = 10 * C1 * C2 * (L * sq) := by ring
+      _ ≤ 10 * C1 * C2 * (2 * y) := mul_le_mul_of_nonneg_left hLsq (by positivity)
+      _ = 20 * C1 * C2 * y := by ring
+      _ ≤ 20 * C1 * C2 * (y * L) := mul_le_mul_of_nonneg_left hyL (by positivity)
+  have hS2 : S ^ 2 ≤ C4 ^ 2 * y ^ 2 * Y := by
+    calc S ^ 2 ≤ (C4 * y * M) ^ 2 := pow_le_pow_left₀ hS0 hS 2
+      _ = C4 ^ 2 * y ^ 2 * M ^ 2 := by ring
+      _ ≤ C4 ^ 2 * y ^ 2 * Y := mul_le_mul_of_nonneg_left hM2 (by positivity)
+  have hη1 : y * Y * η ≤ 1 := by
+    calc y * Y * η ≤ Y ^ K * Y * η := by gcongr
+      _ = 1 := hprod
+  have hηt : η * S ^ 2 ≤ C4 ^ 2 * (y * L) := by
+    calc η * S ^ 2 ≤ η * (C4 ^ 2 * y ^ 2 * Y) := mul_le_mul_of_nonneg_left hS2 hη0
+      _ = C4 ^ 2 * y * (y * Y * η) := by ring
+      _ ≤ C4 ^ 2 * y * 1 := mul_le_mul_of_nonneg_left hη1 (by positivity)
+      _ ≤ C4 ^ 2 * (y * L) := by rw [mul_one]; exact mul_le_mul_of_nonneg_left hyL (sq_nonneg _)
+  have hA1' : A ≤ C3 * (y * L) := by linarith
+  calc _ ≤ C3 * (y * L) + 25 * C1 ^ 2 * (y * L) + 4 * C2 ^ 2 * (y * L) + 20 * C1 * C2 * (y * L)
+        + C4 ^ 2 * (y * L) := by linarith
+    _ = (C3 + 25 * C1 ^ 2 + 4 * C2 ^ 2 + 20 * C1 * C2 + C4 ^ 2) * y * L := by ring
 
 theorem meanSqK :
     ∃ C : ℝ, 0 < C ∧ ∀ ε K : ℝ, 0 < ε → ε ≤ 1 → 1 ≤ K → ∃ Y₀ : ℝ, ∀ Y ≥ Y₀, ∀ (U : ℝ) (m₀ a₀ : ℕ),
@@ -1438,14 +1540,16 @@ theorem meanSqK :
       rw [Real.log_pow, hlogZ]; push_cast; ring
     rw [← h, Real.exp_log (pow_pos hZpos 2)]
   have hZ2' : Z ^ 2 = Y ^ (800 * K) := by
-    rw [hZ2, Real.rpow_def_of_pos hY0]; ring_nf
+    rw [hZ2, Real.rpow_def_of_pos hY0]; congr 1; ring
   have hN : ((⌊Z⌋₊ : ℕ) : ℝ) ≤ Z := Nat.floor_le hZpos.le
   have hN2 : (((⌊Z⌋₊ ^ 2 : ℕ)) : ℝ) ≤ Z ^ 2 := by
     push_cast
     exact pow_le_pow_left₀ (Nat.cast_nonneg _) hN 2
-  have hq : ∀ q ∈ Formalism.HermitianLattices.ZeroFreeRegionGL2.PPset m₀ a₀ U, Nat.Prime q ∧ q % m₀ = a₀ % m₀ ∧ ⌊Z⌋₊ ^ 2 < q := by
+  have hq : ∀ q ∈ Formalism.HermitianLattices.ZeroFreeRegionGL2.PPset m₀ a₀ U,
+      Nat.Prime q ∧ q % m₀ = a₀ % m₀ ∧ ⌊Z⌋₊ ^ 2 < q := by
     intro q hqP
-    simp only [Formalism.HermitianLattices.ZeroFreeRegionGL2.PPset, Finset.mem_filter, Finset.mem_Icc] at hqP
+    simp only [Formalism.HermitianLattices.ZeroFreeRegionGL2.PPset, Finset.mem_filter,
+      Finset.mem_Icc] at hqP
     obtain ⟨⟨hq1, hqU⟩, hqp, hqm, hqs⟩ := hqP
     refine ⟨hqp, hqm, ?_⟩
     have hUf : 0 < ⌊U⌋₊ := by omega
@@ -1455,18 +1559,18 @@ theorem meanSqK :
     have hy1 := hY1 Y hYa
     have h1 : Z ^ 2 ≤ U ^ (1 / 2 : ℝ) := by
       rw [hZ2, Real.rpow_def_of_pos hU0]
-      apply Real.exp_le_exp.2
-      linarith
+      exact Real.exp_le_exp.2 (by linarith)
     have h2 : (((⌊Z⌋₊ ^ 2 : ℕ)) : ℝ) < (q : ℝ) := by linarith
     exact_mod_cast h2
   have hs : ∀ s : ℕ, 1 < s → Odd s → Squarefree s → s.Coprime m₀ → s ≤ ⌊Z⌋₊ ^ 2 → s ≠ nstar →
-      |∑ q ∈ Formalism.HermitianLattices.ZeroFreeRegionGL2.PPset m₀ a₀ U, ((jacobiSym (q : ℤ) s : ℤ) : ℝ)| ≤
+      |∑ q ∈ Formalism.HermitianLattices.ZeroFreeRegionGL2.PPset m₀ a₀ U,
+        ((jacobiSym (q : ℤ) s : ℤ) : ℝ)| ≤
         Y ^ (-(K + 1)) * ((Formalism.HermitianLattices.ZeroFreeRegionGL2.PPset m₀ a₀ U).card : ℝ) := by
     intro s h1 h2 h3 h4 h5 h6
     apply hn s h1 h2 h3 h4 _ h6
     have : ((s : ℕ) : ℝ) ≤ (((⌊Z⌋₊ ^ 2 : ℕ)) : ℝ) := by exact_mod_cast h5
     rw [← hZ2']
-    linarith
+    exact this.trans hN2
   set w := Y ^ (ε / 5) with hw
   have hw1 : 1 ≤ w := Real.one_le_rpow hY1' (by positivity)
   have hpw : ∀ p : ℕ, Nat.Prime p → p ∣ m₀ → p ≤ ⌊Z⌋₊ → (p : ℝ) ≤ w := by
@@ -1480,9 +1584,13 @@ theorem meanSqK :
     rw [show Y ^ K * Y * Y ^ (-(K + 1)) = Y ^ (K + 1 + (-(K + 1))) by
       rw [Real.rpow_add hY0, Real.rpow_add hY0, Real.rpow_one]]
     simp
+  have hKL : (400 * K * Real.log Y) ^ 2 ≤ Y := by
+    have h := hY2 Y hYb
+    have h' := pow_le_pow_left₀ (by positivity) h 2
+    rwa [← Real.sqrt_eq_rpow, Real.sq_sqrt hY0.le] at h'
   intro y hy κ hκ
   obtain ⟨hYy, hyYK⟩ := hy
-  have hy3 : (3 : ℝ) ≤ y := by linarith
+  have hy3 : (3 : ℝ) ≤ y := hY3'.trans hYy
   have hy0 : 0 ≤ y := by linarith
   have hL1 : 1 ≤ Real.log y := by
     rw [Real.le_log_iff_exp_le (by linarith)]
@@ -1490,90 +1598,23 @@ theorem meanSqK :
   have hwy : w ≤ y ^ (1 / 5 : ℝ) := by
     calc w ≤ Y ^ (1 / 5 : ℝ) := Real.rpow_le_rpow_of_exponent_le hY1' (by linarith)
       _ ≤ y ^ (1 / 5 : ℝ) := Real.rpow_le_rpow hY0.le hYy (by norm_num)
-  obtain ⟨hsz1, hsz2⟩ := sizes y w (by linarith) (by linarith) hwy
+  obtain ⟨hsz1, hsz2⟩ := sizes y w (by linarith) hwy
   have hmain := meanSq_abs (Formalism.HermitianLattices.ZeroFreeRegionGL2.PPset m₀ a₀ U) m₀ a₀ nstar Z y (Y ^ (-(K + 1)))
     (C2 * Real.log y) κ hA.eight hA.coprime hy0 hη0 hq hκ (fun p => hsP y hy3 _ p) hs
   refine le_trans hmain ?_
   apply mul_le_mul_of_nonneg_right _ (Nat.cast_nonneg _)
-  set L := Real.log y with hLdef
-  set R := RR (cN y) m₀ ⌊Z⌋₊ with hRdef
-  set sq := Real.sqrt y with hsqdef
-  have hL0 : 0 ≤ L := by linarith
-  have hsq0 : 0 ≤ sq := Real.sqrt_nonneg y
-  have hsq2 : sq * sq = y := Real.mul_self_sqrt hy0
-  have hsq1 : 1 ≤ sq := Real.one_le_sqrt.2 (by linarith)
-  have hsqy : sq ≤ y := by
-    calc sq = sq * 1 := (mul_one sq).symm
-      _ ≤ sq * sq := mul_le_mul_of_nonneg_left hsq1 hsq0
-      _ = y := hsq2
-  have hR0 : 0 ≤ R := by
-    rw [hRdef, RR]
-    exact Finset.sum_nonneg (fun n _ => cN_nonneg y hy0 n)
-  have hRle : R ≤ 5 * C1 * sq := by
-    have := hRR y hy3 ⌊Z⌋₊ m₀ w hw1 hpw
-    calc R ≤ C1 * (sq + w * L) := this
-      _ ≤ C1 * (5 * sq) := mul_le_mul_of_nonneg_left (by linarith) hC1.le
-      _ = 5 * C1 * sq := by ring
-  have hyL : y ≤ y * L := le_mul_of_one_le_right hy0 hL1
-  have hA1 := hsPsq y hy3 ⌊Z⌋₊
-  have hR2 : R ^ 2 ≤ 25 * C1 ^ 2 * (y * L) := by
-    have h := pow_le_pow_left₀ hR0 hRle 2
-    have h' : (5 * C1 * sq) ^ 2 = 25 * C1 ^ 2 * (sq * sq) := by ring
-    have h3 : 25 * C1 ^ 2 * y ≤ 25 * C1 ^ 2 * (y * L) :=
-      mul_le_mul_of_nonneg_left hyL (by positivity)
-    rw [h', hsq2] at h
-    linarith
-  have hB2 : 2 * (C2 * L) ^ 2 ≤ 4 * C2 ^ 2 * (y * L) := by
-    have hL2 : L ≤ 2 * y := by linarith
-    have h1 : L * L ≤ 2 * y * L := mul_le_mul_of_nonneg_right hL2 hL0
-    have h2 : C2 ^ 2 * (L * L) ≤ C2 ^ 2 * (2 * y * L) := mul_le_mul_of_nonneg_left h1 (sq_nonneg _)
-    have h3 : 2 * (C2 * L) ^ 2 = 2 * (C2 ^ 2 * (L * L)) := by ring
-    have h4 : 2 * (C2 ^ 2 * (2 * y * L)) = 4 * C2 ^ 2 * (y * L) := by ring
-    linarith
-  have hBR : 2 * (C2 * L) * R ≤ 20 * C1 * C2 * (y * L) := by
-    have h1 : 2 * (C2 * L) * R ≤ 2 * (C2 * L) * (5 * C1 * sq) :=
-      mul_le_mul_of_nonneg_left hRle (by positivity)
-    have h2 : L * sq ≤ 2 * y := by
-      have := mul_le_mul_of_nonneg_right hsz1 hsq0
-      rw [mul_assoc, hsq2] at this
-      exact this
-    have h3 : C1 * C2 * (L * sq) ≤ C1 * C2 * (2 * y) := mul_le_mul_of_nonneg_left h2 (by positivity)
-    have h4 : C1 * C2 * y ≤ C1 * C2 * (y * L) := mul_le_mul_of_nonneg_left hyL (by positivity)
-    have h5 : 2 * (C2 * L) * (5 * C1 * sq) = 10 * (C1 * C2 * (L * sq)) := by ring
-    have h6 : C1 * C2 * (2 * y) = 2 * (C1 * C2 * y) := by ring
-    have h7 : 20 * C1 * C2 * (y * L) = 20 * (C1 * C2 * (y * L)) := by ring
-    linarith
+  have hR0 : 0 ≤ RR (cN y) m₀ ⌊Z⌋₊ :=
+    Finset.sum_nonneg (fun n _ => cN_nonneg y hy0 n)
+  have hRle : RR (cN y) m₀ ⌊Z⌋₊ ≤ 5 * C1 * Real.sqrt y := by
+    calc RR (cN y) m₀ ⌊Z⌋₊ ≤ C1 * (Real.sqrt y + w * Real.log y) := hRR y hy3 ⌊Z⌋₊ m₀ w hw1 hpw
+      _ ≤ C1 * (5 * Real.sqrt y) := mul_le_mul_of_nonneg_left (by linarith) hC1.le
+      _ = 5 * C1 * Real.sqrt y := by ring
   have hS0 : 0 ≤ ∑ n ∈ Finset.Icc 1 ⌊Z⌋₊, cN y n :=
     Finset.sum_nonneg (fun n _ => cN_nonneg y hy0 n)
   have hS : ∑ n ∈ Finset.Icc 1 ⌊Z⌋₊, cN y n ≤ C4 * y * (400 * K * Real.log Y) := by
     rw [← hlogZ]; exact hcN y Z hy0 (by linarith)
-  have hKL : (400 * K * Real.log Y) ^ 2 ≤ Y := by
-    have h := hY2 Y hYb
-    have h0 : 0 ≤ 400 * K * Real.log Y := by positivity
-    have h' := pow_le_pow_left₀ h0 h 2
-    rw [← Real.sqrt_eq_rpow, Real.sq_sqrt hY0.le] at h'
-    exact h'
-  have hS2 : (∑ n ∈ Finset.Icc 1 ⌊Z⌋₊, cN y n) ^ 2 ≤ C4 ^ 2 * y ^ 2 * Y := by
-    have h := pow_le_pow_left₀ hS0 hS 2
-    have h2 : (C4 * y * (400 * K * Real.log Y)) ^ 2 ≤ C4 ^ 2 * y ^ 2 * Y := by
-      rw [show (C4 * y * (400 * K * Real.log Y)) ^ 2 = C4 ^ 2 * y ^ 2 * (400 * K * Real.log Y) ^ 2 by ring]
-      exact mul_le_mul_of_nonneg_left hKL (by positivity)
-    linarith
-  have hη1 : y * Y * Y ^ (-(K + 1)) ≤ 1 := by
-    calc y * Y * Y ^ (-(K + 1)) ≤ Y ^ K * Y * Y ^ (-(K + 1)) := by gcongr
-      _ = 1 := hprod
-  have hηt : Y ^ (-(K + 1)) * (∑ n ∈ Finset.Icc 1 ⌊Z⌋₊, cN y n) ^ 2 ≤ C4 ^ 2 * (y * L) := by
-    calc Y ^ (-(K + 1)) * (∑ n ∈ Finset.Icc 1 ⌊Z⌋₊, cN y n) ^ 2
-        ≤ Y ^ (-(K + 1)) * (C4 ^ 2 * y ^ 2 * Y) := mul_le_mul_of_nonneg_left hS2 hη0
-      _ = C4 ^ 2 * y * (y * Y * Y ^ (-(K + 1))) := by ring
-      _ ≤ C4 ^ 2 * y * 1 := mul_le_mul_of_nonneg_left hη1 (by positivity)
-      _ ≤ C4 ^ 2 * (y * L) := by rw [mul_one]; exact mul_le_mul_of_nonneg_left hyL (sq_nonneg _)
-  have hA1' : ∑ p ∈ Finset.Icc 1 ⌊Z⌋₊ with Nat.Prime p, sP (cN y) ⌊Z⌋₊ p ^ 2 ≤ C3 * (y * L) := by
-    have : C3 * y * L = C3 * (y * L) := by ring
-    linarith
-  calc _ ≤ C3 * (y * L) + 25 * C1 ^ 2 * (y * L) + 4 * C2 ^ 2 * (y * L) + 20 * C1 * C2 * (y * L)
-        + C4 ^ 2 * (y * L) := by linarith
-    _ = (C3 + 25 * C1 ^ 2 + 4 * C2 ^ 2 + 20 * C1 * C2 + C4 ^ 2) * y * L := by ring
+  exact meanSqK_combine hC1 hC2 hC4 hy3 hyYK hY0 hL1 hsz1 hR0 hRle (hsPsq y hy3 ⌊Z⌋₊)
+    hS0 hS hKL hη0 hprod
 
 end QH
 end -- clump:auto
@@ -1688,10 +1729,11 @@ theorem stage :
       linarith
     have hnd : ¬ q ∣ ξ.1 + 1 := by
       intro hd
-      have : (q : ℝ) ≤ ((ξ.1 + 1 : ℕ) : ℝ) := by exact_mod_cast Nat.le_of_dvd (Nat.succ_pos _) hd
+      have : (q : ℝ) ≤ ((ξ.1 + 1 : ℕ) : ℝ) := by
+        exact_mod_cast Nat.le_of_dvd (Nat.succ_pos _) hd
       linarith
     obtain ⟨ψ, hψp, hψ1, hψ⟩ := twist_prim (ξ.1 + 1) q ξ.2 hξp hqp hq2' hnd
-    haveI hne : NeZero ((ξ.1 + 1) * q) := ⟨mul_ne_zero (Nat.succ_ne_zero _) hqp.ne_zero⟩
+    have hne : NeZero ((ξ.1 + 1) * q) := ⟨mul_ne_zero (Nat.succ_ne_zero _) hqp.ne_zero⟩
     have hlev : (((ξ.1 + 1) * q : ℕ) : ℝ) ≤ F * U := by
       rw [Nat.cast_mul]
       exact mul_le_mul hξF hq2 (Nat.cast_nonneg _) hF0.le
@@ -1715,7 +1757,8 @@ theorem stage :
     exact hB
   have hP0 : (0 : ℝ) ≤ (PPset m₀ a₀ U).card := Nat.cast_nonneg _
   have hb1 : (B₁.card : ℝ) ≤ η / 2 * (PPset m₀ a₀ U).card := by
-    have h := hcb (F * U) F B₁ (by nlinarith) (fun q hq => by
+    have h3FU : (3 : ℝ) ≤ F * U := le_trans (by linarith) (le_mul_of_one_le_left hU0.le hF1)
+    have h := hcb (F * U) F B₁ h3FU (fun q hq => by
       obtain ⟨hq1, hq2⟩ := Finset.mem_filter.1 hq
       exact ⟨(hPP q hq1).1, lt_of_le_of_lt hFU (hPP q hq1).2.1, hq2⟩)
     have e : (U ^ (1 / 2 : ℝ) * U) ^ (1 / 4 : ℝ) = U ^ (3 / 8 : ℝ) := by
@@ -1739,8 +1782,11 @@ theorem stage :
       _ ≤ Ξ.card • (η / (2 * (R + 1)) * (PPset m₀ a₀ U).card) := Finset.sum_le_card_nsmul _ _ _ hb2
       _ ≤ (R + 1) * (η / (2 * (R + 1)) * (PPset m₀ a₀ U).card) := by
           rw [nsmul_eq_mul]
-          exact mul_le_mul_of_nonneg_right hR' (by positivity)
-      _ = _ := by field_simp
+          exact mul_le_mul_of_nonneg_right hR' (mul_nonneg (by positivity) hP0)
+      _ = ((R + 1 : ℝ) * (η / (2 * (R + 1)))) * (PPset m₀ a₀ U).card := by ring
+      _ = _ := by
+          congr 1
+          field_simp
   have hc : (B.card : ℝ) ≤ B₁.card + (Ξ.biUnion B₂).card := by
     exact_mod_cast (Finset.card_le_card hsub).trans (Finset.card_union_le _ _)
   linarith

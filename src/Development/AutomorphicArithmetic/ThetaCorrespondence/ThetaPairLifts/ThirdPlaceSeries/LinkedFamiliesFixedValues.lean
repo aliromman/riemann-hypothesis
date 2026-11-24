@@ -50,7 +50,6 @@ namespace Formalism.L2
 
 structure NTiedAllAlt (D : D7) (C : NChoice D) (I : TwIn D) where
   gal : _root_.Formalism.L2.NGalTiedAlt D
-  n : _root_.GlobalTheory.HeightCounting.NTiedGPlaceholder D
   loc : LocTied D
   data : NormalizedDataCompatibility D
   cover : NormalizedLocalCompatibility D gal.mt

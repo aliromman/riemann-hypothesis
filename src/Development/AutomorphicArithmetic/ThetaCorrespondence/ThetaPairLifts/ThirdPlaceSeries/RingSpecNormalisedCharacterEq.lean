@@ -29,7 +29,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Number
 
 structure NAllCAlt (D : D7) (C : NChoice D) where
   gal : _root_.Formalism.L2.NGalTiedAlt D
-  n : _root_.GlobalTheory.HeightCounting.NTiedGPlaceholder D
   loc : LocTied D
   data : NormalizedDataCompatibility D
   cover : NormalizedLocalCompatibility D gal.mt
@@ -83,14 +82,8 @@ structure NAllCAlt (D : D7) (C : NChoice D) where
 variable {D : D7} {C : NChoice D} {I : TwIn D}
 end
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host NumberField IsDedekindDomain
-def LpCmpAlt (_hL : _root_.UpperTheory.Zero.LLC.RecTExists) : Prop :=
-  ∀ (D : D7) (_T : GlobalTheory.RowTie.WDTie D.nd D.naut), Nonempty (LPTiedPlaceholder D)
-def CgCmpAlt (hL : _root_.UpperTheory.Zero.LLC.RecTExists) : Prop :=
-  ∀ (D : D7) (T : GlobalTheory.RowTie.WDTie D.nd D.naut), _root_.GlobalTheory.HeightCounting.CGTrueT hL D T → Nonempty (_root_.GlobalTheory.HeightCounting.NTiedGPlaceholder D)
 structure ArchimedeanComparison' (hL : _root_.UpperTheory.Zero.LLC.RecTExists) : Prop where
   pht : PhtCmp
-  lp : _root_.GlobalTheory.HeightCounting.LpCmpAlt hL
-  cg : _root_.GlobalTheory.HeightCounting.CgCmpAlt hL
 end GlobalTheory.HeightCounting
 end
 end

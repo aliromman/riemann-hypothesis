@@ -197,7 +197,7 @@ theorem main : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω]
       (Subsingleton.elim _ _)
   have e : (DivisionRing.toRatAlgebra : Algebra ℚ M) = M.algebra' := Subsingleton.elim _ _
   have hfd : @FiniteDimensional ℚ M _ _ (DivisionRing.toRatAlgebra (R := M)).toModule := by
-    rw [e]; assumption
+    rwa [e]
   exact @exists_mem_Ine_lift ℚ Ω _ _ _ _ _ A M _ DivisionRing.toRatAlgebra _ hst hfd _ τ h
 
 end GlobalTheory.InertiaLift

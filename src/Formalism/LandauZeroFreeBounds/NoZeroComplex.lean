@@ -78,20 +78,6 @@ lemma hasSum_re_term {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) {s : �
   rw [negLogDeriv_eq_LSeries χ hs]
   exact Complex.hasSum_re (DirichletCharacter.LSeriesSummable_twist_vonMangoldt χ hs).hasSum
 
-lemma term_ofReal_add_mul_I {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (σ u : ℝ) (n : ℕ) :
-    term (↗χ * ↗Λ) ((σ : ℂ) + u * I) n =
-      ((Λ n / (n : ℝ) ^ σ : ℝ) : ℂ) * (χ n / (n : ℂ) ^ ((u : ℂ) * I)) := by
-  rcases eq_or_ne n 0 with rfl | hn
-  · simp [LSeries.term_def]
-  · have hn' : (n : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr hn
-    rw [LSeries.term_def, if_neg hn, Complex.cpow_add _ _ hn']
-    push_cast
-    rw [Complex.ofReal_cpow (Nat.cast_nonneg n)]
-    push_cast
-    simp only [Pi.mul_apply]
-    rw [div_mul_div_comm]
-    ring
-
 lemma term_ofReal {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (σ : ℝ) (n : ℕ) :
     term (↗χ * ↗Λ) (σ : ℂ) n = ((Λ n / (n : ℝ) ^ σ : ℝ) : ℂ) * χ n := by
   rcases eq_or_ne n 0 with rfl | hn
@@ -110,40 +96,8 @@ lemma term_three_four_one_nonneg {q : ℕ} [NeZero q] (χ : DirichletCharacter �
     0 ≤ 3 * (term (↗(1 : DirichletCharacter ℂ q) * ↗Λ) (σ : ℂ) n).re
       + 4 * (term (↗χ * ↗Λ) ((σ : ℂ) + t * I) n).re
       + (term (↗(χ ^ 2) * ↗Λ) ((σ : ℂ) + ((2 * t : ℝ) : ℂ) * I) n).re := by
-  rcases eq_or_ne n 0 with rfl | hn
-  · simp [LSeries.term_def]
-  have ha := vonMangoldt_div_rpow_nonneg σ n
-  rw [term_ofReal, term_ofReal_add_mul_I, term_ofReal_add_mul_I]
-  by_cases hu : IsUnit (n : ZMod q)
-  · have h1 : (1 : DirichletCharacter ℂ q) n = 1 := MulChar.one_apply hu
-    have h2 : (χ ^ 2) n = (χ n) ^ 2 := MulChar.pow_apply' χ two_ne_zero _
-    have hχ1 : ‖χ n‖ = 1 := by
-      have := DirichletCharacter.unit_norm_eq_one χ hu.unit
-      rwa [IsUnit.unit_spec] at this
-    have hc : ‖(n : ℂ) ^ ((t : ℂ) * I)‖ = 1 := by
-      rw [Complex.norm_natCast_cpow_of_pos (Nat.pos_of_ne_zero hn)]
-      simp
-    have hc2 : (n : ℂ) ^ (((2 * t : ℝ) : ℂ) * I) = ((n : ℂ) ^ ((t : ℂ) * I)) ^ 2 := by
-      rw [← Complex.cpow_nat_mul]
-      push_cast
-      ring_nf
-    set w := χ n / (n : ℂ) ^ ((t : ℂ) * I) with hw_def
-    have hw : ‖w‖ = 1 := by rw [hw_def, norm_div, hχ1, hc, div_one]
-    have hw2 : (χ ^ 2) n / (n : ℂ) ^ (((2 * t : ℝ) : ℂ) * I) = w ^ 2 := by
-      rw [h2, hc2, div_pow]
-    rw [h1, hw2]
-    have hn1 : w.re * w.re + w.im * w.im = 1 := by
-      rw [← Complex.normSq_apply, Complex.normSq_eq_norm_sq, hw]
-      norm_num
-    have hre : (w ^ 2).re = 2 * w.re ^ 2 - 1 := by
-      rw [sq, Complex.mul_re]
-      nlinarith [hn1]
-    rw [Complex.re_ofReal_mul, Complex.re_ofReal_mul, Complex.re_ofReal_mul, hre, Complex.one_re]
-    nlinarith [mul_nonneg ha (sq_nonneg (1 + w.re))]
-  · have h1 : (1 : DirichletCharacter ℂ q) n = 0 := MulChar.map_nonunit _ hu
-    have h2 : χ n = 0 := MulChar.map_nonunit _ hu
-    have h3 : (χ ^ 2) n = 0 := MulChar.map_nonunit _ hu
-    simp [h1, h2, h3]
+  simpa only [Complex.ofReal_mul, Complex.ofReal_ofNat] using
+    GlobalTheory.logDerivativeThreeFourOne.term_nonneg χ σ t n
 
 lemma eq_one_or_eq_neg_one_of_sq_eq_one {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ^ 2 = 1)
     {n : ℕ} (hu : IsUnit (n : ZMod q)) : χ n = 1 ∨ χ n = -1 := by

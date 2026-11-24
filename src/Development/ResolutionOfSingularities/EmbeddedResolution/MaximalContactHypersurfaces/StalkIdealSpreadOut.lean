@@ -136,92 +136,27 @@ theorem exists_opens_stalkIdeal_eq {X : Scheme.{u}} [IsLocallyNoetherian X]
     (map_le_map_of_isUnit_mul_mem (X.presheaf.germ U y hyU).hom (u₁ * u₂) hyunit _ _ hv1)
     (map_le_map_of_isUnit_mul_mem (X.presheaf.germ U y hyU).hom (u₁ * u₂) hyunit _ _ hv2)
 
-private theorem notMem_of_mem_primeCompl {R : Type*} [CommRing R] {m : Ideal R} [m.IsPrime]
-    {x : R} (hx : x ∈ m.primeCompl) : x ∉ m := hx
-
-private theorem exists_notMem_mul_mem_of_map_le {R : Type*} [CommRing R] (S : Type*) [CommRing S]
-    [Algebra R S] (m : Ideal R) [hmp : m.IsPrime] [IsLocalization m.primeCompl S]
-    {A B : Ideal R} (hAB : Ideal.map (algebraMap R S) A ≤ Ideal.map (algebraMap R S) B)
-    {a : R} (ha : a ∈ A) : ∃ t : R, t ∉ m ∧ t * a ∈ B := by
-  have hmem : algebraMap R S a ∈ Ideal.map (algebraMap R S) B :=
-    hAB (Ideal.mem_map_of_mem _ ha)
-  obtain ⟨⟨b, s⟩, hbs⟩ := (IsLocalization.mem_map_algebraMap_iff m.primeCompl S).mp hmem
-  have hbs' : algebraMap R S (a * (s : R)) = algebraMap R S (b : R) := by
-    rw [map_mul]
-    exact hbs
-  obtain ⟨c, hc⟩ := (IsLocalization.eq_iff_exists m.primeCompl S).mp hbs'
-  have hc2 : (c : R) ∉ m := notMem_of_mem_primeCompl c.2
-  have hs2 : (s : R) ∉ m := notMem_of_mem_primeCompl s.2
-  refine ⟨(c : R) * (s : R), ?_, ?_⟩
-  · intro hcs
-    rcases hmp.mem_or_mem hcs with h1 | h1
-    · exact hc2 h1
-    · exact hs2 h1
-  · have hEq : ((c : R) * (s : R)) * a = (c : R) * (b : R) := by
-      rw [← hc]
-      ring
-    rw [hEq]
-    exact Ideal.mul_mem_left _ _ b.2
-
-private theorem le_of_forall_isMaximal_exists_mul_mem {R : Type*} [CommRing R] {A B : Ideal R}
-    (h : ∀ m : Ideal R, m.IsMaximal → ∀ a ∈ A, ∃ t : R, t ∉ m ∧ t * a ∈ B) : A ≤ B := by
-  intro a ha
-  by_contra hab
-  obtain ⟨C, hCmem⟩ : ∃ C : Ideal R, ∀ r : R, r ∈ C ↔ r * a ∈ B := by
-    refine ⟨{ carrier := {r : R | r * a ∈ B}
-              add_mem' := ?_
-              zero_mem' := ?_
-              smul_mem' := ?_ }, fun r => Iff.rfl⟩
-    · intro x y hx hy
-      show (x + y) * a ∈ B
-      rw [add_mul]
-      exact B.add_mem hx hy
-    · show (0 : R) * a ∈ B
-      rw [zero_mul]
-      exact B.zero_mem
-    · intro c x hx
-      show (c • x) * a ∈ B
-      rw [smul_eq_mul, mul_assoc]
-      exact Ideal.mul_mem_left _ _ hx
-  have hCne : C ≠ ⊤ := by
-    intro hCtop
-    have h1 : (1 : R) ∈ C := by
-      rw [hCtop]
-      exact Submodule.mem_top
-    have h2 := (hCmem 1).mp h1
-    rw [one_mul] at h2
-    exact hab h2
-  obtain ⟨m, hm, hCm⟩ := Ideal.exists_le_maximal C hCne
-  obtain ⟨t, htm, htB⟩ := h m hm a ha
-  exact htm (hCm ((hCmem t).mpr htB))
-
-private theorem ideal_le_of_stalkIdeal_le {Y : Scheme.{u}} (A B : Y.IdealSheafData)
-    (W : Y.affineOpens) (h : ∀ x : ↥Y, x ∈ W.1 → stalkIdeal A x ≤ stalkIdeal B x) :
-    A.ideal W ≤ B.ideal W := by
-  refine le_of_forall_isMaximal_exists_mul_mem ?_
-  intro m hm a ha
-  have hmp : m.IsPrime := hm.isPrime
-  set y : PrimeSpectrum Γ(Y, W.1) := ⟨m, hmp⟩ with hydef
-  set x : ↥Y := W.2.fromSpec.base y with hxdef
-  have hy : x ∈ W.1 := by
-    have hmem : x ∈ Set.range (W.2.fromSpec.base) := ⟨y, rfl⟩
-    rw [W.2.range_fromSpec] at hmem
-    exact hmem
-  let algI : Algebra Γ(Y, W.1) ↑(Y.presheaf.stalk x) :=
-    (Y.presheaf.germ W.1 x hy).hom.toAlgebra
-  have hloc : IsLocalization m.primeCompl ↑(Y.presheaf.stalk x) :=
-    W.2.isLocalization_stalk' y hy
-  refine exists_notMem_mul_mem_of_map_le (↑(Y.presheaf.stalk x)) m ?_ ha
-  have halg : (algebraMap Γ(Y, W.1) ↑(Y.presheaf.stalk x))
-      = (Y.presheaf.germ W.1 x hy).hom := rfl
-  rw [halg, ← stalkIdeal_eq_map_germ A x W hy, ← stalkIdeal_eq_map_germ B x W hy]
-  exact h x hy
-
 private theorem ideal_eq_of_stalkIdeal_eq {Y : Scheme.{u}} (A B : Y.IdealSheafData)
     (W : Y.affineOpens) (h : ∀ x : ↥Y, x ∈ W.1 → stalkIdeal A x = stalkIdeal B x) :
-    A.ideal W = B.ideal W :=
-  le_antisymm (ideal_le_of_stalkIdeal_le A B W fun x hx => le_of_eq (h x hx))
-    (ideal_le_of_stalkIdeal_le B A W fun x hx => le_of_eq (h x hx).symm)
+    A.ideal W = B.ideal W := by
+  refine Ideal.eq_of_localization_maximal fun m hm => ?_
+  have := hm.isPrime
+  set y : PrimeSpectrum Γ(Y, W.1) := ⟨m, hm.isPrime⟩
+  set x : ↥Y := W.2.fromSpec.base y
+  have hy : x ∈ W.1 := by
+    have hmem : x ∈ Set.range W.2.fromSpec.base := ⟨y, rfl⟩
+    rwa [W.2.range_fromSpec] at hmem
+  let _ : Algebra Γ(Y, W.1) ↑(Y.presheaf.stalk x) := (Y.presheaf.germ W.1 x hy).hom.toAlgebra
+  have : IsLocalization m.primeCompl ↑(Y.presheaf.stalk x) := W.2.isLocalization_stalk' y hy
+  let e : ↑(Y.presheaf.stalk x) ≃ₐ[Γ(Y, W.1)] Localization.AtPrime m :=
+    IsLocalization.algEquiv m.primeCompl _ _
+  have hmapeq : ∀ I : Y.IdealSheafData,
+      Ideal.map (algebraMap Γ(Y, W.1) (Localization.AtPrime m)) (I.ideal W) =
+        Ideal.map e.toAlgHom.toRingHom (stalkIdeal I x) := fun I => by
+    rw [stalkIdeal_eq_map_germ I x W hy, Ideal.map_map]
+    congr 1
+    exact RingHom.ext fun r => (e.commutes r).symm
+  rw [hmapeq A, hmapeq B, h x hy]
 
 theorem restrictIdeal_eq_of_stalkIdeal_eq {X : Scheme.{u}} (I J : X.IdealSheafData) (U : X.Opens)
     (h : ∀ y : X, y ∈ U → stalkIdeal I y = stalkIdeal J y) :

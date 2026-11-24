@@ -712,14 +712,12 @@ theorem UpperTheory.V.Z.Sym.Loc.caseM :
     have e : IsFix O c (ν • ofE Δ u) (((t : K) • s • (ω : Lsq K Δ)) • ofE Δ (ω - star ω : Etau K τ)) (z • S) ↔
         IsFix O c (ν • ofE Δ u) (((t : K) • s • (ω : Lsq K Δ)) • ofE Δ (ω - star ω : Etau K τ)) S :=
       ⟨fun h => by simpa using key z⁻¹ _ h, key z S⟩
-    trace_state
     rw [e]
   · intro z S
     have e : IsFixP O τ ((t : K) * (τ ^ 2 - 4)) (z • S) ↔ IsFixP O τ ((t : K) * (τ ^ 2 - 4)) S :=
       ⟨fun h => by
         have h' := hPinv z⁻¹ _ h
         rwa [show ((quo z⁻¹ * ·) '' (z • S)) = z⁻¹ • z • S from rfl, inv_smul_smul] at h', hPinv z S⟩
-    trace_state
     rw [e]
   · rintro z S S₀ ⟨h0, rfl⟩
     exact ⟨hPinv z S₀ h0, phi_act g s S₀ z⟩

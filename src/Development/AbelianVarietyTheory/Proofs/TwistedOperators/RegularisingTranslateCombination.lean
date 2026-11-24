@@ -239,7 +239,7 @@ theorem squareTriple_avoid {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G 
       (∀ w ∈ locPl G t, w.under (𝓞 D.host.F) ≠ Bs.v₁) ∧ Bs.v₁ ∉ P := by
   classical
   obtain ⟨e, Bs, Γ, X, om, om', h, hTr, -⟩ := GlobalTheory.T.squareThetaTripleHypotheses_of_standing hL W t i j hst M hM
-  obtain ⟨v, hvP, hvs, hvl, ⟨τ⟩⟩ := GlobalTheory.T.exists_splitCompletely_auxiliary_place_outside_finset (G := G) hL t (X.T ∪ P)
+  obtain ⟨v, hvP, hvs, hvl, ⟨τ⟩⟩ := GlobalTheory.T.exists_splitCompletely_auxiliary_place_outside_finset (G := G) t (X.T ∪ P)
   let Bs' : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Base D.host.F D.host.E := { Bs with v₁ := v, τ₁ := τ }
   refine ⟨e, Bs', Γ, X, om, om', ?_, ?_, hvl, fun h' => hvP (Finset.mem_union_right _ h')⟩
   · exact ⟨h.ψ, h.JW, h.JW₁, h.JWW, h.cart, h.α, h.β, h.μW, h.μW₁⟩

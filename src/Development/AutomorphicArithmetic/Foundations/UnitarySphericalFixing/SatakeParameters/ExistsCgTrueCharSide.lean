@@ -67,11 +67,11 @@ namespace New
 
 variable {hL : RecTExists} {D : D7} {T : GlobalTheory.RowTie.WDTie D.nd D.naut}
 
-theorem cgGood (_ : TrivialCondition) (C : CGTrueT hL D T) : ∀ a (π : D.naut.CG a), GoodAll (C.e a π) := C.good
+theorem cgGood (C : CGTrueT hL D T) : ∀ a (π : D.naut.CG a), GoodAll (C.e a π) := C.good
 
 theorem cgSurj (C : CGTrueT hL D T) : ∀ a, 0 < a → ∀ ρ : HostCGu D.host a, GoodAll ρ → ∃ π, C.e a π = ρ := C.surj
 
-def cgMk (_ : TrivialCondition) (e : ∀ a, D.naut.CG a ↪ HostCGu D.host a) (good : ∀ a (π : D.naut.CG a), GoodAll (e a π))
+def cgMk (e : ∀ a, D.naut.CG a ↪ HostCGu D.host a) (good : ∀ a (π : D.naut.CG a), GoodAll (e a π))
     (surj : ∀ a, 0 < a → ∀ ρ : HostCGu D.host a, GoodAll ρ → ∃ π, e a π = ρ) (zero : IsEmpty (D.naut.CG 0))
     (loc : ∀ a (π : D.naut.CG a) w, T.e w (D.naut.locG π w) = ParLawsT.locGT hL D.nd.plOm (e a π) w)
     (tw : haveI := host_isCMField D.host; ∀ a (π : D.naut.CG a) (χ : D.naut.CG 1), e a (D.naut.tw π χ) = (e a π).tw (e 1 χ))

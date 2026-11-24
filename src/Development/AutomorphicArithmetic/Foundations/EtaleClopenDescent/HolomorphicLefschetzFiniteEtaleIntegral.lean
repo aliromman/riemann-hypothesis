@@ -467,7 +467,7 @@ private theorem algebraMap_etTrace [Module.Finite B B'] [Algebra.Etale B B'] (b 
 end Alg
 
 theorem germ_comap_eq_algebraMap_germ_of_finite_etale : ∀ (Z Y : Scheme.{0}) [IsIntegral Z] [IsIntegral Y] (p : Z ⟶ Sp ℂ) (p' : Y ⟶ Sp ℂ)
-    (c : Y ⟶ Z) (hc : c ≫ p = p') [IsFinite c] [Etale c] [Algebra Z.functionField Y.functionField],
+    (c : Y ⟶ Z) [IsFinite c] [Etale c] [Algebra Z.functionField Y.functionField],
     (∀ (V : Z.Opens) (hV : genericPoint Z ∈ V) (hV' : genericPoint Y ∈ c ⁻¹ᵁ V) (g : Γ(Z, V)),
       (Y.presheaf.germ (c ⁻¹ᵁ V) (genericPoint Y) hV').hom ((c.app V).hom g) =
         algebraMap Z.functionField Y.functionField ((Z.presheaf.germ V (genericPoint Z) hV).hom g)) →
@@ -476,7 +476,7 @@ theorem germ_comap_eq_algebraMap_germ_of_finite_etale : ∀ (Z Y : Scheme.{0}) [
       (Z.presheaf.germ V (genericPoint Z) hg).hom (secTrace (f := c) p p' hV b') =
         Algebra.trace Z.functionField Y.functionField
           ((Y.presheaf.germ (c ⁻¹ᵁ V) (genericPoint Y) hg').hom b') := by
-  intro Z Y _ _ p p' c _ _ _ _ hg V hVa hV hV' b'
+  intro Z Y _ _ p p' c _ _ _ hg V hVa hV hV' b'
   haveI : Nonempty V := ⟨⟨_, hV⟩⟩
   haveI : Nonempty (c ⁻¹ᵁ V : Y.Opens) := ⟨⟨_, hV'⟩⟩
   letI := secAlg p p' c V
@@ -571,7 +571,7 @@ theorem UpperTheory.functionField_of_finite_etale_cover :
     rw [formTraceU_smul_formPull, Submodule.coe_smul, Submodule.coe_smul, SemiHom.mDR_smul,
       SemiHom.mDR_smul, e, mDR_square (semiHom_germSec p hη) (semiHom_appSec hc V)
         (semiHom_germSec p' hη') (fun b ↦ hg V hη hη' b), hspec]
-    exact congrArg (· • _) (UpperTheory.Cb.germ_comap_eq_algebraMap_germ_of_finite_etale Z Y p p' c hc hg V hV hη hη' b')
+    exact congrArg (· • _) (UpperTheory.Cb.germ_comap_eq_algebraMap_germ_of_finite_etale Z Y p p' c hg V hV hη hη' b')
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.FunctionFieldOfFiniteEtaleCover =====

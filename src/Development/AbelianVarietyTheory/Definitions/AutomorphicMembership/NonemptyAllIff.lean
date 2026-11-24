@@ -29,7 +29,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Number
 
 structure NAllC (D : D7) (C : NChoice D) where
   gal : NGalTied D
-  n : NormalizedHeckeDataPlaceholder D
   loc : LocTied D
   data : NormalizedDataCompatibility D
   cover : NormalizedLocalCompatibility D gal.mt

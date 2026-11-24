@@ -26,7 +26,7 @@ structure RealRecPins {Q : RealT Rc P Dcf Spf Zscf S Ks} (Qp : RealPins Q) (Qr :
 
   stdPsi : Formalism.IndefR.principalLevelFrame.StdPsi Qp.hF Qr.PY ∧ ∀ i, Formalism.IndefR.principalLevelFrame.StdPsi Qp.hF (Qr.PW i)
 
-  rowLoc : Formalism.IndefR.principalLevelFrame.RowLocPin Rc.T.n.gal.lp Q.Rl.θ Qr.PY (Q.Rl.MY 0)
+  rowLoc : Formalism.IndefR.principalLevelFrame.RowLocPin Q.Rl.θ Qr.PY (Q.Rl.MY 0)
     (fun b => levS _ (Q.Rl.βY 0) (Q.Rl.dat0 (Q.Rl.toRealDat.levR Q.F.lv2 b)))
     (fun b => Formalism.IndefR.Lev.levChi _ (Q.Rl.βY 0) (Q.Rl.dat0 (Q.Rl.toRealDat.levR Q.F.lv2 b))) (fun _ => Q.Rl.e0) Qr.eFT
 

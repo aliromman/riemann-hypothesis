@@ -1127,7 +1127,7 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open UpperTheory.Gal.Int.Geo (Lv IsTrans Integ)
 
 private theorem ev_nsmul {G : GDatum} {k : Type} [Field k] {Q : Type} [Group Q] {act : G.O → Q → Q}
-    {e : ℕ → Q → Q → kˣ → Prop} (I : GTateIso G k Q act e) (n : ℕ) (hn : 0 < n) (d : ℕ) (x : G.La) :
+    {e : ℕ → Q → Q → kˣ → Prop} (I : GTateIso G k Q act e) (n : ℕ) (d : ℕ) (x : G.La) :
     I.ev n (d • x) = I.ev n x ^ d := by
   have h0 : I.ev n 0 = 1 := by
     have := I.add n 0 0
@@ -1164,7 +1164,7 @@ theorem UpperTheory.Gal.FixZ.witScal_of :
       (UpperTheory.Gal.Int.Geo.integ_of_mem (one_mem _))).1 n hn hnp (d • x) y
     have hev : I.ev n x ≫ ((𝟙 X.univ.A) ^ d) = I.ev n (d • x) ≫ 𝟙 _ := by
       rw [MonObj.comp_pow, Category.comp_id, Category.comp_id]
-      exact (ev_nsmul I n hn d x).symm
+      exact (ev_nsmul I n d x).symm
     have hin : inAf D (d • x) = d • inAf D x := GlobalTheory.AdelicSim.inAf_nsmul D d x
     rw [hev, h1]
     simp only [map_one, Module.End.one_apply, hin, hact]

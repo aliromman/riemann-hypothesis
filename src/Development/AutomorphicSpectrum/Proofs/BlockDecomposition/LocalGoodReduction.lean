@@ -104,16 +104,8 @@ end Generic
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
 theorem mul_nrmL_comm (hU : Unr E) (n : ℕ) (w : Pl E) {y g : GLw n w} (hg : g ∈ twCent (thL n w) y) :
-    g * nrmL n w y = nrmL n w y * g := by
-  have hinv := (GlobalTheory.BCT.ThBasic.twist_basic E hU n w).2.1
-  by_cases hs : IsSplitAt w
-  · have h1 : thL n w = MonoidHom.id _ := by rw [thL, if_pos hs]
-    rw [h1] at hg
-    have h : g * y = y * g := hg
-    simpa only [nrmL, if_pos hs] using h
-  · have h1 : thL n w = thetaGL n (cj w) := by rw [thL, if_neg hs]
-    rw [h1] at hg hinv
-    simpa only [nrmL, if_neg hs] using mul_norm_comm _ hinv hg
+    g * nrmL n w y = nrmL n w y * g :=
+  (GlobalTheory.CptTorus.twCent_commute hU n w y hg).eq
 
 theorem twCent_comm (hU : Unr E) (n : ℕ) (w : Pl E) (y : GLw n w) (hy : (nrmL n w y).val.charpoly.Separable)
     (g h : GLw n w) (hg : g ∈ twCent (thL n w) y) (hh : h ∈ twCent (thL n w) y) : g * h = h * g := by
@@ -124,64 +116,8 @@ theorem twCent_comm (hU : Unr E) (n : ℕ) (w : Pl E) (y : GLw n w) (hy : (nrmL 
   exact Units.ext (GlobalTheory.BCT.CentComm.commute_of_commute_separable hy (key hg) (key hh)).eq
 
 theorem cptPart_le_compact (hU : Unr E) (n : ℕ) (w : Pl E) (y : GLw n w) (hs : (nrmL n w y).val.charpoly.Separable) :
-    ∃ H : Subgroup (GLw n w), IsCompact (H : Set (GLw n w)) ∧ cptPart (twCent (thL n w) y) ≤ H := by
-  set M := nrmL n w y with hM
-  set N : Matrix (Fin n) (Fin n) (w.adicCompletion E) := (M : Matrix (Fin n) (Fin n) (w.adicCompletion E)) with hN
-  have hval : ∀ g : GLw n w, Commute g M → (g : Matrix (Fin n) (Fin n) (w.adicCompletion E)) * N = N * g := by
-    intro g hg
-    have := congrArg (fun x : GLw n w => (x : Matrix (Fin n) (Fin n) (w.adicCompletion E))) hg.eq
-    simpa [Units.val_mul] using this
-  have hadj : ∀ g : GLw n w, Commute g M →
-      (g : Matrix (Fin n) (Fin n) (w.adicCompletion E)) ∈ Algebra.adjoin (w.adicCompletion E) {N} :=
-    fun g hg => GlobalTheory.Tw.CentralizerAdjoin.mem_adjoin_of_commute N _ hs (hval g hg)
-  have hcomm : ∀ g h : GLw n w, Commute g M → Commute h M → Commute g h := by
-    intro g h hg hh
-    have h1 : Commute (g : Matrix (Fin n) (Fin n) (w.adicCompletion E)) (h : Matrix (Fin n) (Fin n) (w.adicCompletion E)) := by
-      refine Algebra.commute_of_mem_adjoin_of_forall_mem_commute (hadj h hh) ?_
-      intro b hb
-      rw [Set.mem_singleton_iff] at hb
-      rw [hb]
-      exact hval g hg
-    exact Units.ext (by simpa [Units.val_mul] using h1.eq)
-  let S : Set (GLw n w) := {g | Commute g M ∧ IsCompact (closure (Subgroup.zpowers g : Set (GLw n w)))}
-  let H0 : Subgroup (GLw n w) :=
-    { carrier := S
-      one_mem' := by
-        refine ⟨Commute.one_left M, ?_⟩
-        rw [Subgroup.zpowers_one_eq_bot, Subgroup.coe_bot, closure_singleton]
-        exact isCompact_singleton
-      mul_mem' := by
-        intro g h hg hh
-        refine ⟨hg.1.mul_left hh.1, ?_⟩
-        have hK := hg.2.mul hh.2
-        refine hK.of_isClosed_subset isClosed_closure (closure_minimal ?_ hK.isClosed)
-        rintro x ⟨k, rfl⟩
-        simp only
-        rw [(hcomm g h hg.1 hh.1).mul_zpow]
-        exact Set.mul_mem_mul (subset_closure ⟨k, rfl⟩) (subset_closure ⟨k, rfl⟩)
-      inv_mem' := by
-        intro g hg
-        refine ⟨hg.1.inv_left, ?_⟩
-        show IsCompact (closure (Subgroup.zpowers g⁻¹ : Set (GLw n w)))
-        rw [Subgroup.zpowers_inv]
-        exact hg.2 }
-  obtain ⟨c, hc⟩ := _root_.GlobalTheory.LocBounded.bounded_of_isIntegral E w n N hs
-  have hB := _root_.GlobalTheory.BoundedGL.isCompact_bounded E w n c
-  have hSB : (H0 : Set (GLw n w)) ⊆ {g : GL (Fin n) (w.adicCompletion E) | ∀ i j,
-      Valued.v ((g : Matrix (Fin n) (Fin n) (w.adicCompletion E)) i j) ≤ c ∧
-      Valued.v (((g⁻¹ : GL (Fin n) (w.adicCompletion E)) : Matrix (Fin n) (Fin n) (w.adicCompletion E)) i j) ≤ c} := by
-    intro g hg
-    have hg' : g⁻¹ ∈ H0 := H0.inv_mem hg
-    intro i j
-    exact ⟨hc _ (hadj g hg.1) (_root_.GlobalTheory.isIntegral_of_isCompact_closure_zpowers E w n g hg.2) i j,
-      hc _ (hadj g⁻¹ hg'.1) (_root_.GlobalTheory.isIntegral_of_isCompact_closure_zpowers E w n g⁻¹ hg'.2) i j⟩
-  refine ⟨H0.topologicalClosure, ?_, ?_⟩
-  · rw [Subgroup.topologicalClosure_coe]
-    exact hB.of_isClosed_subset isClosed_closure (closure_minimal hSB hB.isClosed)
-  · refine le_trans ?_ (Subgroup.le_topologicalClosure H0)
-    rw [cptPart, Subgroup.closure_le]
-    rintro t ⟨ht, htc⟩
-    exact ⟨mul_nrmL_comm hU n w ht, htc⟩
+    ∃ H : Subgroup (GLw n w), IsCompact (H : Set (GLw n w)) ∧ cptPart (twCent (thL n w) y) ≤ H :=
+  GlobalTheory.CptTorus.main E hU n w y hs
 
 theorem good_pair (hU : Unr E) (a b : ℕ) (w : Pl E) (y : GLw a w × GLw b w)
     (h₁ : (nrmL a w y.1).val.charpoly.Separable) (h₂ : (nrmL b w y.2).val.charpoly.Separable) :

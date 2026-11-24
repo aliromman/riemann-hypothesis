@@ -1,5 +1,6 @@
 module
 
+public import Formalism.LocalToGlobal.ComplexLatticeArea
 public import Formalism.LocalToGlobal.GlobalTheory.GL3.PHfTrace
 public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.IntegralClosureCriterionSecond
 import Mathlib.Algebra.Order.Star.Int
@@ -10,6 +11,9 @@ import Mathlib.Tactic.TypeStar
 noncomputable section
 
 namespace Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.AR
+
+export Formalism.ComplexLatticeArea
+  (Bf Bf_swap Bf_sub_zsmul_left Bf_sub_zsmul_right cramer Bf_comb cast_toNat area_spec)
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions.TaylorLogMetric Formalism.FrobeniusOrbits
 
@@ -50,152 +54,6 @@ def bK : D.host.K := ⟨bb D, bK_mem D⟩
 
 theorem okc_of (u : 𝓞 D.host.K) : OKc D (D.host.φ₀ ((u : D.host.K) : D.host.E)) :=
   by apply _root_.UpperTheory.Reformulated.B.IntegralClosureCriterionSecond.okc_of
-
-end Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.AR
-
-end
-
-noncomputable section
-
-namespace Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.AR
-
-open Formalism.MainNotions.TaylorLogMetric
-
-def Bf (w₁ w₂ : ℂ) : ℝ := (starRingEnd ℂ w₁ * w₂).im
-
-theorem Bf_swap (w₁ w₂ : ℂ) : Bf w₂ w₁ = -Bf w₁ w₂ := by
-  simp only [Bf, Complex.mul_im, Complex.conj_re, Complex.conj_im]; ring
-
-theorem Bf_sub_zsmul_left (u w w₂ : ℂ) (q : ℤ) : Bf (u - q • w) w₂ = Bf u w₂ - q * Bf w w₂ := by
-  simp only [Bf, zsmul_eq_mul, map_sub, map_mul, map_intCast, Complex.mul_im, Complex.sub_re,
-    Complex.sub_im, Complex.mul_re, Complex.intCast_re, Complex.intCast_im, Complex.conj_re,
-    Complex.conj_im]; ring
-
-theorem Bf_sub_zsmul_right (w₁ u w : ℂ) (q : ℤ) : Bf w₁ (u - q • w) = Bf w₁ u - q * Bf w₁ w := by
-  simp only [Bf, zsmul_eq_mul, Complex.mul_im, Complex.sub_re,
-    Complex.sub_im, Complex.mul_re, Complex.intCast_re, Complex.intCast_im, Complex.conj_re,
-    Complex.conj_im]; ring
-
-theorem cramer (w₁ w₂ u : ℂ) :
-    (Bf u w₂ : ℂ) * w₁ + (Bf w₁ u : ℂ) * w₂ = (Bf w₁ w₂ : ℂ) * u := by
-  apply Complex.ext <;>
-    simp only [Bf, Complex.mul_im, Complex.mul_re, Complex.add_re, Complex.add_im,
-      Complex.ofReal_re, Complex.ofReal_im, Complex.conj_re, Complex.conj_im] <;> ring
-
-theorem Bf_comb (w₁ w₂ : ℂ) (s t s' t' : ℝ) :
-    Bf ((s : ℂ) * w₁ + (t : ℂ) * w₂) ((s' : ℂ) * w₁ + (t' : ℂ) * w₂) = (s * t' - t * s') * Bf w₁ w₂ := by
-  simp only [Bf, map_add (f := _), map_mul, Complex.conj_ofReal, Complex.mul_im, Complex.mul_re,
-    Complex.add_re, Complex.add_im, Complex.ofReal_re, Complex.ofReal_im, Complex.conj_re,
-    Complex.conj_im]; ring
-
-theorem cast_toNat (n : ℤ) (h : 0 ≤ n) : ((n.toNat : ℕ) : ℝ) = (n : ℝ) := by
-  rw [← Int.cast_natCast, Int.toNat_of_nonneg h]
-
-theorem area_spec (Λ : AddSubgroup ℂ) (κ : ℝ) (hκ : 0 < κ)
-    (hdisc : ∀ w₁ ∈ Λ, ∀ w₂ ∈ Λ, ∃ n : ℤ, Bf w₁ w₂ = κ * n)
-    (hne : ∃ w₁ ∈ Λ, ∃ w₂ ∈ Λ, Bf w₁ w₂ ≠ 0) :
-    ∃ m : ℕ, 0 < m ∧ area Λ = κ * m ∧ ∀ w₁ ∈ Λ, ∀ w₂ ∈ Λ, ∃ n : ℤ, Bf w₁ w₂ = area Λ * n := by
-  classical
-
-  have hQ : ∃ n : ℕ, 0 < n ∧ ∃ w₁ ∈ Λ, ∃ w₂ ∈ Λ, Bf w₁ w₂ = κ * n := by
-    obtain ⟨w₁, h₁, w₂, h₂, h0⟩ := hne
-    obtain ⟨n, hn⟩ := hdisc w₁ h₁ w₂ h₂
-    rcases lt_trichotomy n 0 with hn0 | hn0 | hn0
-    · refine ⟨(-n).toNat, by omega, w₂, h₂, w₁, h₁, ?_⟩
-      rw [Bf_swap, hn, cast_toNat _ (by omega)]; push_cast; ring
-    · exact absurd (by rw [hn, hn0]; simp) h0
-    · refine ⟨n.toNat, by omega, w₁, h₁, w₂, h₂, ?_⟩
-      rw [hn, cast_toNat _ hn0.le]
-  set m := Nat.find hQ with hm
-  obtain ⟨hm0, w₁, h₁, w₂, h₂, hw⟩ := Nat.find_spec hQ
-  have hmin : ∀ n : ℕ, 0 < n → ∀ u ∈ Λ, ∀ v ∈ Λ, Bf u v = κ * n → m ≤ n :=
-    fun n hn u hu v hv h => Nat.find_min' hQ ⟨hn, u, hu, v, hv, h⟩
-
-  have harea : area Λ = κ * m := by
-    unfold area
-    refine IsLeast.csInf_eq ⟨⟨by positivity, w₁, h₁, w₂, h₂, ?_⟩, ?_⟩
-    · change κ * m = |Bf w₁ w₂|
-      rw [hw, abs_of_nonneg (by positivity)]
-    · rintro a ⟨ha, u, hu, v, hv, rfl⟩
-      change κ * m ≤ |Bf u v|
-      obtain ⟨n, hn⟩ := hdisc u hu v hv
-      rcases lt_trichotomy n 0 with hn0 | hn0 | hn0
-      · have := hmin (-n).toNat (by omega) v hv u hu (by
-          rw [Bf_swap, hn, cast_toNat _ (by omega)]; push_cast; ring)
-        rw [hn, abs_mul, abs_of_pos hκ, abs_of_neg (by exact_mod_cast hn0 : (n : ℝ) < 0)]
-        have h' : ((m : ℤ) : ℝ) ≤ ((-n : ℤ) : ℝ) := by exact_mod_cast (by omega : (m : ℤ) ≤ -n)
-        push_cast at h'
-        exact mul_le_mul_of_nonneg_left h' hκ.le
-      · exfalso; change 0 < |Bf u v| at ha; rw [hn, hn0] at ha; simp at ha
-      · have := hmin n.toNat (by omega) u hu v hv (by rw [hn, cast_toNat _ hn0.le])
-        rw [hn, abs_mul, abs_of_pos hκ, abs_of_pos (by exact_mod_cast hn0 : (0 : ℝ) < n)]
-        have h' : ((m : ℤ) : ℝ) ≤ ((n : ℤ) : ℝ) := by exact_mod_cast (by omega : (m : ℤ) ≤ n)
-        push_cast at h'
-        exact mul_le_mul_of_nonneg_left h' hκ.le
-  refine ⟨m, hm0, harea, ?_⟩
-  set g := κ * m with hg
-  have hg0 : 0 < g := by positivity
-
-  have hleft : ∀ u ∈ Λ, ∃ q : ℤ, Bf u w₂ = g * q := by
-    intro u hu
-    obtain ⟨n, hn⟩ := hdisc u hu w₂ h₂
-    refine ⟨n / m, ?_⟩
-    have hr : Bf (u - (n / m) • w₁) w₂ = κ * ((n % m : ℤ) : ℝ) := by
-      rw [Bf_sub_zsmul_left, hn, hw]
-      have := Int.mul_ediv_add_emod n m
-      have : (n : ℝ) = ((n % m : ℤ) : ℝ) + m * ((n / m : ℤ) : ℝ) := by
-        have h2 : (n : ℝ) = ((m : ℤ) : ℝ) * ((n / m : ℤ) : ℝ) + ((n % m : ℤ) : ℝ) := by exact_mod_cast this.symm
-        rw [h2]; push_cast; ring
-      rw [this]; ring
-    have hr0 : n % (m : ℤ) = 0 := by
-      by_contra hne0
-      have hpos : 0 < n % (m : ℤ) := lt_of_le_of_ne (Int.emod_nonneg _ (by omega)) (Ne.symm hne0)
-      have hlt : n % (m : ℤ) < m := Int.emod_lt_of_pos _ (by omega)
-      have := hmin (n % (m : ℤ)).toNat (by omega) _ (Λ.sub_mem hu (Λ.zsmul_mem h₁ _)) w₂ h₂
-        (by rw [hr, cast_toNat _ hpos.le])
-      omega
-    have := Int.mul_ediv_add_emod n m
-    rw [hr0, add_zero] at this
-    have h3 : (n : ℝ) = (m : ℝ) * ((n / m : ℤ) : ℝ) := by exact_mod_cast this.symm
-    rw [hn, hg, h3]; ring
-  have hright : ∀ u ∈ Λ, ∃ q : ℤ, Bf w₁ u = g * q := by
-    intro u hu
-    obtain ⟨n, hn⟩ := hdisc w₁ h₁ u hu
-    refine ⟨n / m, ?_⟩
-    have hr : Bf w₁ (u - (n / m) • w₂) = κ * ((n % m : ℤ) : ℝ) := by
-      rw [Bf_sub_zsmul_right, hn, hw]
-      have := Int.mul_ediv_add_emod n m
-      have : (n : ℝ) = ((n % m : ℤ) : ℝ) + m * ((n / m : ℤ) : ℝ) := by
-        have h2 : (n : ℝ) = ((m : ℤ) : ℝ) * ((n / m : ℤ) : ℝ) + ((n % m : ℤ) : ℝ) := by exact_mod_cast this.symm
-        rw [h2]; push_cast; ring
-      rw [this]; ring
-    have hr0 : n % (m : ℤ) = 0 := by
-      by_contra hne0
-      have hpos : 0 < n % (m : ℤ) := lt_of_le_of_ne (Int.emod_nonneg _ (by omega)) (Ne.symm hne0)
-      have hlt : n % (m : ℤ) < m := Int.emod_lt_of_pos _ (by omega)
-      have := hmin (n % (m : ℤ)).toNat (by omega) w₁ h₁ _ (Λ.sub_mem hu (Λ.zsmul_mem h₂ _))
-        (by rw [hr, cast_toNat _ hpos.le])
-      omega
-    have := Int.mul_ediv_add_emod n m
-    rw [hr0, add_zero] at this
-    have h3 : (n : ℝ) = (m : ℝ) * ((n / m : ℤ) : ℝ) := by exact_mod_cast this.symm
-    rw [hn, hg, h3]; ring
-
-  have hdec : ∀ u ∈ Λ, ∃ s t : ℤ, u = ((s : ℝ) : ℂ) * w₁ + ((t : ℝ) : ℂ) * w₂ := by
-    intro u hu
-    obtain ⟨s, hs⟩ := hleft u hu
-    obtain ⟨t, ht⟩ := hright u hu
-    refine ⟨s, t, ?_⟩
-    have hc := cramer w₁ w₂ u
-    rw [hs, ht, hw] at hc
-    have hg0' : (g : ℂ) ≠ 0 := by exact_mod_cast hg0.ne'
-    apply mul_left_cancel₀ hg0'
-    rw [← hc]; push_cast; ring
-  intro u hu v hv
-  obtain ⟨s, t, rfl⟩ := hdec u hu
-  obtain ⟨s', t', rfl⟩ := hdec v hv
-  refine ⟨s * t' - t * s', ?_⟩
-  rw [Bf_comb, hw, harea]; push_cast; ring
 
 end Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.AR
 

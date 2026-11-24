@@ -504,7 +504,7 @@ theorem top_of (hemb : SEmb E) (hN1 : RadiusPosLeTenth) (hN2 : KatoClassHeckeEul
     calc κ ≤ ms / t / n' := div_le_div_of_nonneg_right hm.1 hn'R.le
       _ = ms / n' / t := by ring
       _ ≤ ρ / 1000 / t := div_le_div_of_nonneg_right hmsn ht0.le
-      _ = ρ / (1000 * t) := by ring
+      _ = ρ / (1000 * t) := by ring_nf
   obtain ⟨hκ1, hη1, hfin⟩ := hN3 ρ κ hρ0 hρ1 hκ0 hκρ
   obtain ⟨n, hnu, hnξ, -, -, hnap, -, hnJ, hnb⟩ :=
     hD2ii r X.toData ξ hiso (X.lmulC h1 z0) hz1dom δ κ hκ0 hκ1 hδb

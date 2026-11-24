@@ -81,7 +81,7 @@ structure NRow {hL : GlobalTheory.Published.LocalLanglandsGL} {cf : CharFrame D}
   nexp : NExpRealS R cG (ratDatR R cG kKs hk)
   hecke : NExpRealH R cG (ratDatR R cG kKs hk) nexp
   grp : GrpTie D A3.A F.P0 F.ψ0 F.P1 F.ψ1 (R.eG.trans cG)
-  rowLoc : principalLevelFrame.RowLocPin a.all.gal.lp R.θ Y.PY (R.MY 0) (fun b => levS _ (R.βY 0) (R.dat0 (R.toRealDat.levR F.lv2 b)))
+  rowLoc : principalLevelFrame.RowLocPin R.θ Y.PY (R.MY 0) (fun b => levS _ (R.βY 0) (R.dat0 (R.toRealDat.levR F.lv2 b)))
     (fun b => levChi _ (R.βY 0) (R.dat0 (R.toRealDat.levR F.lv2 b))) (fun _ => R.e0) Y.eFT
   S_eq : HEq (ratL a.nt.L a.nt.S) (ratDatR R cG kKs hk)
   hL_eq : HEq a.nt.hL hecke.hL

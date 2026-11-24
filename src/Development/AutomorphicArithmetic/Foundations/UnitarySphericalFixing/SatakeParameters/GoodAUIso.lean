@@ -55,7 +55,7 @@ namespace New
 
 def Sph0 (π : NG.AutRep L n) (v : HeightOneSpectrum (𝓞 (maximalRealSubfield L))) : Prop := π.SphAt v
 
-theorem sphGood (_ : TrivialCondition) {π : NG.AutRep L n} {v} (h : SphAtG π v) : NoSplit L v → GoodAU π := h.2
+theorem sphGood {π : NG.AutRep L n} {v} (h : SphAtG π v) : NoSplit L v → GoodAU π := h.2
 
 theorem sphMk {π : NG.AutRep L n} {v} (h : Sph0 π v) (hg : NoSplit L v → GoodAU π) : SphAtG π v := ⟨h, hg⟩
 

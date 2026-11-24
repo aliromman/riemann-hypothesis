@@ -592,9 +592,9 @@ open GlobalTheory.Mem.R3.Tr GlobalTheory.LayerMove
 noncomputable section
 namespace UpperTheory.One.M
 
-def mvCg_alt (s : _root_.UpperTheory.One.M.TrivialCondition) {D : D7} (m : Mv D) {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE}
+def mvCg_alt {D : D7} (m : Mv D) {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding D cf jE}
     (x : _root_.GlobalTheory.HeightCounting.CGTrueT hL D A.wdT) : _root_.GlobalTheory.HeightCounting.CGTrueT hL m.D (m.sideA_alt A).wdT :=
-  @_root_.UpperTheory.One.M.New.cgMk _ _ _ s (x.e) ((_root_.UpperTheory.One.M.New.cgGood s x)) ((_root_.UpperTheory.One.M.New.cgSurj x)) (x.zero) (x.loc) (x.tw) (x.inf) (x.csd)
+  @_root_.UpperTheory.One.M.New.cgMk _ _ _ (x.e) ((_root_.UpperTheory.One.M.New.cgGood x)) ((_root_.UpperTheory.One.M.New.cgSurj x)) (x.zero) (x.loc) (x.tw) (x.inf) (x.csd)
 end UpperTheory.One.M
 end
 end
@@ -693,10 +693,10 @@ theorem Mv.exists_at_alt {cf : CharFrame D} {C : NChoice D} {tp : TupTied D cf C
   obtain ⟨rfl, rfl, rfl⟩ := pack
   have hmt : mtL L M = all.gal.mt := eq_of_heq mt_eq
   refine ⟨@_root_.GlobalTheory.Mem.Top.Bl.NAtData.mk hL m.D _ _ _
-    (⟨@_root_.GlobalTheory.HeightCounting.NormChoiceConstructed.mk hL m.D m.pre.D (m.pre.cf cf0) jE (m.pre.sideA_alt A) ((_root_.UpperTheory.One.M.mvCg_alt trivial) m.pre cg) (m.pre.automorphy_of_move au) rep (m.pre.herm_wCell_last_mul_mulVec_eq_of_inWb row) low Pq S hk eig θ
+    (⟨@_root_.GlobalTheory.HeightCounting.NormChoiceConstructed.mk hL m.D m.pre.D (m.pre.cf cf0) jE (m.pre.sideA_alt A) (_root_.UpperTheory.One.M.mvCg_alt m.pre cg) (m.pre.automorphy_of_move au) rep (m.pre.herm_wCell_last_mul_mulVec_eq_of_inWb row) low Pq S hk eig θ
       (m.pre.sideB_alt Bs) (m.pre.mt M) (m.pre.ch C0) (m.pre.tp tp0) (m.pre.choiceSide_alt ch) (m.pre.mtInput mt) big (m.pre.loc L)
       (m.pre.ndSpec_alt Sp) (m.pre.autSpec_alt Au) (ss) m.withLoc_pre, m.pack_pre tp0⟩)
-    ((_root_.UpperTheory.One.M.mvAll_alt trivial) m all)
+    (_root_.UpperTheory.One.M.mvAll_alt m all)
     ((congrArg (fun p : Σ c : CharFrame (withLoc L), TupTied (withLoc L) c (chL L C0) =>
       (⟨m.cf p.1, m.tp p.2⟩ : Σ c : CharFrame m.D, TupTied m.D c (m.ch (chL L C0)))) chr_eq))
     (m.host host) (frameN) (m.chrN chrN) (m.chrGal chrGal) (Pq') (Pq_over) (pq) (jE_eq)
@@ -733,7 +733,7 @@ variable {cf : CharFrame D} {jE : D.host.E →+* Qb} {A : _root_.GlobalTheory.He
 end
 section
 variable {cf : CharFrame D} {C : NChoice D} {tp : TupTied D cf C}
-theorem Mv.tauTrue_alt {a : _root_.GlobalTheory.HeightCounting.NAllCAlt D C} (x : TauTrue a.exp) : TauTrue ((_root_.UpperTheory.One.M.mvAll_alt trivial) m a).exp := (x)
+theorem Mv.tauTrue_alt {a : _root_.GlobalTheory.HeightCounting.NAllCAlt D C} (x : TauTrue a.exp) : TauTrue (_root_.UpperTheory.One.M.mvAll_alt m a).exp := (x)
 end
 end GlobalTheory.LayerMove
 end
@@ -776,13 +776,13 @@ noncomputable section
 namespace GlobalTheory.LayerMove
 
 variable {D : D7} (m : Mv D)
-theorem Mv.rowLoc_alt {D : D7} (m : Mv D) {C : NChoice D} (a : _root_.GlobalTheory.HeightCounting.NAllCAlt D C) (F : Formalism.L2.RowFrame D) (F' : Formalism.L2.RowFrame m.D)
-    (hF : HEq F'.rep F.rep) (x : _root_.Formalism.L2.RowLocTiedAlt D a.gal.lp F) : _root_.Formalism.L2.RowLocTiedAlt m.D ((_root_.UpperTheory.One.M.mvAll_alt trivial) m a).gal.lp F' := by
+theorem Mv.rowLoc_alt {D : D7} (m : Mv D) (F : Formalism.L2.RowFrame D) (F' : Formalism.L2.RowFrame m.D)
+    (hF : HEq F'.rep F.rep) (x : _root_.Formalism.L2.RowLocTiedAlt D F) : _root_.Formalism.L2.RowLocTiedAlt m.D F' := by
   obtain ⟨rep, inj⟩ := F
   obtain ⟨rep', inj'⟩ := F'
   have e : rep' = row_cast% rep := eq_of_heq (row_cast% hF)
   subst e
-  exact (@_root_.Formalism.L2.RowLocTiedAlt.mk (_) (_) (_)
+  exact (@_root_.Formalism.L2.RowLocTiedAlt.mk (_) (_)
     (sat := row_cast% x.sat)
     )
 
@@ -793,7 +793,7 @@ theorem exists_nonempty_nMore_upL (hL : _root_.UpperTheory.Zero.LLC.RecTExists) 
     (hg : HEq t'.r.z.geo (GlobalTheory.Mem.R3.Tr.geoHalf (a := ⟨Z.W, Z.V, Z.S, Z.N, Z.G⟩)
       (upL Z S' N h) (iK := t.r.z.alg) t.r.z.geo))
     (hj : ∀ (μ : (w.D Z).what₂.Tup) (hμ : Formalism.IndefR.RecTie.Used0 (w.D Z) μ) (hμ' : Formalism.IndefR.RecTie.Used0 (w.D (upL Z S' N h)) μ) (i : Fin (w.D Z).R.m) (x : (w.D Z).what₂.Mt μ ((i : ℕ) + 1)), HEq (t'.r.Y.IL.jMt μ hμ' i x).1 (t.r.Y.IL.jMt μ hμ i x).1)
-    (hser : ∀ (kKs : ↥t.r.z.core.Q.c.F →+* ↥(w.st Z).toD7.LL0) (hk : ∀ x, ((kKs x : ↥(w.st Z).toD7.LL0) : (w.st Z).toD7.what₂.LL) = algebraMap _ (w.st Z).toD7.what₂.LL x) (YS : Formalism.IndefR.NX.NExpRealS t.r.z.R t.r.z.cG (Formalism.IndefR.NX.ratDatR t.r.z.R t.r.z.cG kKs hk)) (kKs' : ↥t'.r.z.core.Q.c.F →+* ↥(w.st (upL Z S' N h)).toD7.LL0) (hk' : ∀ x, ((kKs' x : ↥(w.st (upL Z S' N h)).toD7.LL0) : (w.st (upL Z S' N h)).toD7.what₂.LL) = algebraMap _ (w.st (upL Z S' N h)).toD7.what₂.LL x) (YS' : Formalism.IndefR.NX.NExpRealS t'.r.z.R t'.r.z.cG (Formalism.IndefR.NX.ratDatR t'.r.z.R t'.r.z.cG kKs' hk')), HEq kKs' kKs → HEq YS'.fi YS.fi → HEq YS'.eF YS.eF → ∀ (a : _root_.GlobalTheory.HeightCounting.NAllCAlt (w.D Z) nch) (X' : Formalism.L2.NExpTied (w.st (upL Z S' N h)).toD7), HEq X' ((_root_.UpperTheory.One.M.mvAll_alt trivial) (mvOf w Z S' N h) a).exp → ∀ (PV : ∀ i : Fin (w.st Z).toD7.R.m, Formalism.IndefR.principalLevelFrame.RowPsi (Formalism.IndefR.Links.Vc (w.st Z).toD7 i) (w.st Z).toD7.R.nV) (PV' : ∀ i : Fin (w.st (upL Z S' N h)).toD7.R.m, Formalism.IndefR.principalLevelFrame.RowPsi (Formalism.IndefR.Links.Vc (w.st (upL Z S' N h)).toD7 i) (w.st (upL Z S' N h)).toD7.R.nV), HEq (fun i => (PV' i).ψ) (fun i => (PV i).ψ) → ∀ Pq Pq', HEq Pq' Pq → SerAt (D := (w.st Z).toD7) YS t.r.z.geo.v₀ a.exp PV (TC.cf w.I w.l Z) Pq → Nonempty (SerAt (D := (w.st (upL Z S' N h)).toD7) YS' t'.r.z.geo.v₀ X' PV' (TC.cf w.I w.l (upL Z S' N h)) Pq'))
+    (hser : ∀ (kKs : ↥t.r.z.core.Q.c.F →+* ↥(w.st Z).toD7.LL0) (hk : ∀ x, ((kKs x : ↥(w.st Z).toD7.LL0) : (w.st Z).toD7.what₂.LL) = algebraMap _ (w.st Z).toD7.what₂.LL x) (YS : Formalism.IndefR.NX.NExpRealS t.r.z.R t.r.z.cG (Formalism.IndefR.NX.ratDatR t.r.z.R t.r.z.cG kKs hk)) (kKs' : ↥t'.r.z.core.Q.c.F →+* ↥(w.st (upL Z S' N h)).toD7.LL0) (hk' : ∀ x, ((kKs' x : ↥(w.st (upL Z S' N h)).toD7.LL0) : (w.st (upL Z S' N h)).toD7.what₂.LL) = algebraMap _ (w.st (upL Z S' N h)).toD7.what₂.LL x) (YS' : Formalism.IndefR.NX.NExpRealS t'.r.z.R t'.r.z.cG (Formalism.IndefR.NX.ratDatR t'.r.z.R t'.r.z.cG kKs' hk')), HEq kKs' kKs → HEq YS'.fi YS.fi → HEq YS'.eF YS.eF → ∀ (a : _root_.GlobalTheory.HeightCounting.NAllCAlt (w.D Z) nch) (X' : Formalism.L2.NExpTied (w.st (upL Z S' N h)).toD7), HEq X' (_root_.UpperTheory.One.M.mvAll_alt (mvOf w Z S' N h) a).exp → ∀ (PV : ∀ i : Fin (w.st Z).toD7.R.m, Formalism.IndefR.principalLevelFrame.RowPsi (Formalism.IndefR.Links.Vc (w.st Z).toD7 i) (w.st Z).toD7.R.nV) (PV' : ∀ i : Fin (w.st (upL Z S' N h)).toD7.R.m, Formalism.IndefR.principalLevelFrame.RowPsi (Formalism.IndefR.Links.Vc (w.st (upL Z S' N h)).toD7 i) (w.st (upL Z S' N h)).toD7.R.nV), HEq (fun i => (PV' i).ψ) (fun i => (PV i).ψ) → ∀ Pq Pq', HEq Pq' Pq → SerAt (D := (w.st Z).toD7) YS t.r.z.geo.v₀ a.exp PV (TC.cf w.I w.l Z) Pq → Nonempty (SerAt (D := (w.st (upL Z S' N h)).toD7) YS' t'.r.z.geo.v₀ X' PV' (TC.cf w.I w.l (upL Z S' N h)) Pq'))
     {tp : TupTied (w.D Z) (TC.cf w.I w.l Z) nch} {tp' : TupTied (w.D (upL Z S' N h)) (TC.cf w.I w.l (upL Z S' N h)) (nchUp S' N h nch)}
     (a : _root_.GlobalTheory.Mem.Top.Bl.NAtData hL (w.D Z) (TC.cf w.I w.l Z) nch tp)
     (a' : _root_.GlobalTheory.Mem.Top.Bl.NAtData hL (w.D (upL Z S' N h)) (TC.cf w.I w.l (upL Z S' N h)) (nchUp S' N h nch) tp') (hA : _root_.GlobalTheory.LayerMove.AtSameAltAlt (mvOf w Z S' N h) a a')
@@ -825,7 +825,7 @@ theorem exists_nonempty_nMore_upL (hL : _root_.UpperTheory.Zero.LLC.RecTExists) 
   obtain ⟨nt', all', chr_eq', host', frameN', chrN', chrGal', Pq', Pq_over', pq', jE_eq', mt_eq', Pq_eq', hlow', split', ratIn',
     r1', r2', r3', depth'⟩ := a'
   obtain ⟨s1, s2, s3, s4, s5, s6, s7⟩ := hA
-  have e8 : all' = row_cast% ((_root_.UpperTheory.One.M.mvAll_alt trivial) (mvOf w Z S' N h) a.all) := eq_of_heq (row_cast% s1)
+  have e8 : all' = row_cast% (_root_.UpperTheory.One.M.mvAll_alt (mvOf w Z S' N h) a.all) := eq_of_heq (row_cast% s1)
   have e9 : Pq' = row_cast% a.Pq := eq_of_heq (row_cast% s2)
   subst e8 e9
   obtain ⟨kKs, hk, nexp, hecke, grp, rowLoc, S_eq, hL_eq, rep_eq⟩ := r
@@ -848,8 +848,8 @@ theorem exists_nonempty_nMore_upL (hL : _root_.UpperTheory.Zero.LLC.RecTExists) 
     (bsup := row_cast% nexp.bsup)
     (act := row_cast% nexp.act)
     )
-    (row_cast% (HEq.refl kKs)) (row_cast% (HEq.refl nexp.fi)) (row_cast% (HEq.refl nexp.eF)) a.all (row_cast% ((_root_.UpperTheory.One.M.mvAll_alt trivial) (mvOf w Z S' N h) a.all).exp)
-    (row_cast% (HEq.refl ((_root_.UpperTheory.One.M.mvAll_alt trivial) (mvOf w Z S' N h) a.all).exp)) ad.PV (@fun x1 => @_root_.Formalism.IndefR.principalLevelFrame.RowPsi.mk (_) (_) (_)
+    (row_cast% (HEq.refl kKs)) (row_cast% (HEq.refl nexp.fi)) (row_cast% (HEq.refl nexp.eF)) a.all (row_cast% (_root_.UpperTheory.One.M.mvAll_alt (mvOf w Z S' N h) a.all).exp)
+    (row_cast% (HEq.refl (_root_.UpperTheory.One.M.mvAll_alt (mvOf w Z S' N h) a.all).exp)) ad.PV (@fun x1 => @_root_.Formalism.IndefR.principalLevelFrame.RowPsi.mk (_) (_) (_)
       (ψ := row_cast% (@_root_.GlobalTheory.HeightCounting.MtAd.PV (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) ad (row_cast% x1)).ψ)
       (inj := row_cast% (@_root_.GlobalTheory.HeightCounting.MtAd.PV (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) ad (row_cast% x1)).inj)
       (into := row_cast% (@_root_.GlobalTheory.HeightCounting.MtAd.PV (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) ad (row_cast% x1)).into)
@@ -884,7 +884,7 @@ theorem exists_nonempty_nMore_upL (hL : _root_.UpperTheory.Zero.LLC.RecTExists) 
     (lvl := ⟨row_cast% l1, row_cast% l2, row_cast% l3, row_cast% l4, row_cast% l5,
       ⟨row_cast% lv.place, row_cast% lv.comp, row_cast% lv.gen, row_cast% lv.p0, row_cast% lv.chi0, row_cast% lv.ps, row_cast% lv.chis⟩⟩)
     )
-    (row_cast% ((mvOf w Z S' N h).rowLoc_alt a.all _ (row_cast% (Formalism.L2.Col.rowFrameOf (w.D (upL Z S' N h)) _ eFT')) (row_cast% hs.rep) rowLoc))
+    (row_cast% ((mvOf w Z S' N h).rowLoc_alt _ (row_cast% (Formalism.L2.Col.rowFrameOf (w.D (upL Z S' N h)) _ eFT')) (row_cast% hs.rep) rowLoc))
     (row_cast% (s3.trans S_eq)) (row_cast% (s4.trans hL_eq)) (row_cast% ((s5.trans rep_eq).trans hs.rep.symm)), ⟨@_root_.GlobalTheory.HeightCounting.RealExpansionExtraData.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_)
     (@_root_.GlobalTheory.HeightCounting.MtAd.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_)
     (PV := @fun x1 => @_root_.Formalism.IndefR.principalLevelFrame.RowPsi.mk (_) (_) (_)
@@ -979,13 +979,13 @@ theorem Mv.lam_ok {l : GlobalTheory.LamTie.LamDat D} (x : l.Ok) : (m.lam l).Ok :
 theorem Mv.lam_teich {l : GlobalTheory.LamTie.LamDat D} (x : l.Teich) : (m.lam l).Teich := (x)
 theorem Mv.lam_tie {l : GlobalTheory.LamTie.LamDat D} (x : GlobalTheory.LamTie.IsLamTieFull D.ntw l) : GlobalTheory.LamTie.IsLamTieFull m.D.ntw (m.lam l) := (x)
 
-theorem Mv.rowLoc {D : D7} (m : Mv D) {C : NChoice D} (a : NAllC D C) (F : Formalism.L2.RowFrame D) (F' : Formalism.L2.RowFrame m.D)
-    (hF : HEq F'.rep F.rep) (x : Formalism.L2.RowLocTied D a.gal.lp F) : Formalism.L2.RowLocTied m.D (m.all a).gal.lp F' := by
+theorem Mv.rowLoc {D : D7} (m : Mv D) (F : Formalism.L2.RowFrame D) (F' : Formalism.L2.RowFrame m.D)
+    (hF : HEq F'.rep F.rep) (x : Formalism.L2.RowLocTied D F) : Formalism.L2.RowLocTied m.D F' := by
   obtain ⟨rep, inj⟩ := F
   obtain ⟨rep', inj'⟩ := F'
   have e : rep' = (rep) := eq_of_heq (hF)
   subst e
-  exact (@_root_.Formalism.L2.RowLocTied.mk (_) (_) (_)
+  exact (@_root_.Formalism.L2.RowLocTied.mk (_) (_)
     (sat := (x.sat))
     )
 
@@ -1145,7 +1145,7 @@ open GlobalTheory.HeightCounting.Up GlobalTheory.Mem.SRe GlobalTheory.Mem.R3.Rw
 open GlobalTheory.HeightCounting GlobalTheory.Mem.R3.Tr
 open GlobalTheory.LayerMove
 
-theorem _root_.GlobalTheory.T.geo_heq_geoHalf_of_same : ∀ (K : Ctx) (B : Base) (f : Fr B.toPre) (T : TwDat B) (w : ColW B f T) (Z : w.Lt) (Wt : Set B.places.Pl) (S' : SStage B w.C Z.W) (N : ∀ u, Submodule (𝓞 B.LL) (Z.V.div.Nu u).V) (h : B.Word → ℝ) (nch : NChoice (w.D Z)) (p0 : BaseLevelRowSide (w.D Z)) (t : RowsT K w Z Wt p0) (p0' : BaseLevelRowSide (w.D (upL Z S' N h))) (t' : RowsT K w (upL Z S' N h) Wt p0'), RowsSame t t' → HEq t'.r.z.geo (GlobalTheory.Mem.R3.Tr.geoHalf (a := ⟨Z.W, Z.V, Z.S, Z.N, Z.G⟩) (upL Z S' N h) (iK := t.r.z.alg) t.r.z.geo) → ∀ (kKs : ↥t.r.z.core.Q.c.F →+* ↥(w.st Z).toD7.LL0) (hk : ∀ x, ((kKs x : ↥(w.st Z).toD7.LL0) : (w.st Z).toD7.what₂.LL) = algebraMap _ (w.st Z).toD7.what₂.LL x) (YS : Formalism.IndefR.NX.NExpRealS t.r.z.R t.r.z.cG (Formalism.IndefR.NX.ratDatR t.r.z.R t.r.z.cG kKs hk)) (kKs' : ↥t'.r.z.core.Q.c.F →+* ↥(w.st (upL Z S' N h)).toD7.LL0) (hk' : ∀ x, ((kKs' x : ↥(w.st (upL Z S' N h)).toD7.LL0) : (w.st (upL Z S' N h)).toD7.what₂.LL) = algebraMap _ (w.st (upL Z S' N h)).toD7.what₂.LL x) (YS' : Formalism.IndefR.NX.NExpRealS t'.r.z.R t'.r.z.cG (Formalism.IndefR.NX.ratDatR t'.r.z.R t'.r.z.cG kKs' hk')), HEq kKs' kKs → HEq YS'.fi YS.fi → HEq YS'.eF YS.eF → ∀ (a : _root_.GlobalTheory.HeightCounting.NAllCAlt (w.D Z) nch) (X' : Formalism.L2.NExpTied (w.st (upL Z S' N h)).toD7), HEq X' ((_root_.UpperTheory.One.M.mvAll_alt trivial) (mvOf w Z S' N h) a).exp → ∀ (PV : ∀ i : Fin (w.st Z).toD7.R.m, Formalism.IndefR.principalLevelFrame.RowPsi (Formalism.IndefR.Links.Vc (w.st Z).toD7 i) (w.st Z).toD7.R.nV) (PV' : ∀ i : Fin (w.st (upL Z S' N h)).toD7.R.m, Formalism.IndefR.principalLevelFrame.RowPsi (Formalism.IndefR.Links.Vc (w.st (upL Z S' N h)).toD7 i) (w.st (upL Z S' N h)).toD7.R.nV), HEq (fun i => (PV' i).ψ) (fun i => (PV i).ψ) → ∀ Pq Pq', HEq Pq' Pq → SerAt (D := (w.st Z).toD7) YS t.r.z.geo.v₀ a.exp PV (TC.cf w.I w.l Z) Pq → Nonempty (SerAt (D := (w.st (upL Z S' N h)).toD7) YS' t'.r.z.geo.v₀ X' PV' (TC.cf w.I w.l (upL Z S' N h)) Pq') := by
+theorem _root_.GlobalTheory.T.geo_heq_geoHalf_of_same : ∀ (K : Ctx) (B : Base) (f : Fr B.toPre) (T : TwDat B) (w : ColW B f T) (Z : w.Lt) (Wt : Set B.places.Pl) (S' : SStage B w.C Z.W) (N : ∀ u, Submodule (𝓞 B.LL) (Z.V.div.Nu u).V) (h : B.Word → ℝ) (nch : NChoice (w.D Z)) (p0 : BaseLevelRowSide (w.D Z)) (t : RowsT K w Z Wt p0) (p0' : BaseLevelRowSide (w.D (upL Z S' N h))) (t' : RowsT K w (upL Z S' N h) Wt p0'), RowsSame t t' → HEq t'.r.z.geo (GlobalTheory.Mem.R3.Tr.geoHalf (a := ⟨Z.W, Z.V, Z.S, Z.N, Z.G⟩) (upL Z S' N h) (iK := t.r.z.alg) t.r.z.geo) → ∀ (kKs : ↥t.r.z.core.Q.c.F →+* ↥(w.st Z).toD7.LL0) (hk : ∀ x, ((kKs x : ↥(w.st Z).toD7.LL0) : (w.st Z).toD7.what₂.LL) = algebraMap _ (w.st Z).toD7.what₂.LL x) (YS : Formalism.IndefR.NX.NExpRealS t.r.z.R t.r.z.cG (Formalism.IndefR.NX.ratDatR t.r.z.R t.r.z.cG kKs hk)) (kKs' : ↥t'.r.z.core.Q.c.F →+* ↥(w.st (upL Z S' N h)).toD7.LL0) (hk' : ∀ x, ((kKs' x : ↥(w.st (upL Z S' N h)).toD7.LL0) : (w.st (upL Z S' N h)).toD7.what₂.LL) = algebraMap _ (w.st (upL Z S' N h)).toD7.what₂.LL x) (YS' : Formalism.IndefR.NX.NExpRealS t'.r.z.R t'.r.z.cG (Formalism.IndefR.NX.ratDatR t'.r.z.R t'.r.z.cG kKs' hk')), HEq kKs' kKs → HEq YS'.fi YS.fi → HEq YS'.eF YS.eF → ∀ (a : _root_.GlobalTheory.HeightCounting.NAllCAlt (w.D Z) nch) (X' : Formalism.L2.NExpTied (w.st (upL Z S' N h)).toD7), HEq X' (_root_.UpperTheory.One.M.mvAll_alt (mvOf w Z S' N h) a).exp → ∀ (PV : ∀ i : Fin (w.st Z).toD7.R.m, Formalism.IndefR.principalLevelFrame.RowPsi (Formalism.IndefR.Links.Vc (w.st Z).toD7 i) (w.st Z).toD7.R.nV) (PV' : ∀ i : Fin (w.st (upL Z S' N h)).toD7.R.m, Formalism.IndefR.principalLevelFrame.RowPsi (Formalism.IndefR.Links.Vc (w.st (upL Z S' N h)).toD7 i) (w.st (upL Z S' N h)).toD7.R.nV), HEq (fun i => (PV' i).ψ) (fun i => (PV i).ψ) → ∀ Pq Pq', HEq Pq' Pq → SerAt (D := (w.st Z).toD7) YS t.r.z.geo.v₀ a.exp PV (TC.cf w.I w.l Z) Pq → Nonempty (SerAt (D := (w.st (upL Z S' N h)).toD7) YS' t'.r.z.geo.v₀ X' PV' (TC.cf w.I w.l (upL Z S' N h)) Pq') := by
   intro K B f T w Z Wt S' N h nch p0 t p0' t' hs hg
   cases t' with | mk hX' r' exAt' inGeo' grpAt' grp' mu' exact' untw' emt0' emt' etaF' rowInt' idx' => ?_
   cases r' with | mk z' holds' Y' ZZ' tupix' => ?_
@@ -1175,7 +1175,7 @@ theorem _root_.GlobalTheory.T.geo_heq_geoHalf_of_same : ∀ (K : Ctx) (B : Base)
   have e9 : fi' = (YS.fi) := eq_of_heq (hfi)
   have e10 : eF' = (YS.eF) := eq_of_heq (heF)
   subst e9 e10
-  have e11 : X' = (((_root_.UpperTheory.One.M.mvAll_alt trivial) (mvOf w Z S' N h) a).exp) := eq_of_heq (hX)
+  have e11 : X' = ((_root_.UpperTheory.One.M.mvAll_alt (mvOf w Z S' N h) a).exp) := eq_of_heq (hX)
   have e12 : Pq' = (Pq) := eq_of_heq (hPq)
   subst e11 e12
   have e13 : (fun i => (PV' i).ψ) = ((fun i => (PV i).ψ)) := eq_of_heq (hPV)

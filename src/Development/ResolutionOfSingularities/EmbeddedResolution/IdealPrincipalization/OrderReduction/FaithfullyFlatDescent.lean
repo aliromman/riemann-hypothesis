@@ -34,12 +34,6 @@ theorem IsStrictPullbackBlowupSeq.congr_hom {X' X : Scheme.{u}} {g g' : X' ⟶ X
   subst hg
   exact h
 
-theorem IsStrictPullbackBlowupSeq.congr_sourceSeq {X' X : Scheme.{u}} {g : X' ⟶ X}
-    {t t' : SequenceOfBlowups X'} {s : SequenceOfBlowups X} (h : IsStrictPullbackBlowupSeq g t s) (ht : t = t') :
-    IsStrictPullbackBlowupSeq g t' s := by
-  subst ht
-  exact h
-
 theorem IsStrictPullbackBlowupSeq.baseChange_of_comp {Q Y X : Scheme.{u}} {φ : Q ⟶ Y} {h : Y ⟶ X}
     [AlgebraicGeometry.Flat φ] [AlgebraicGeometry.Flat h]
     {u : SequenceOfBlowups Q} {s : SequenceOfBlowups X}

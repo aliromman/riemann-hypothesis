@@ -48,26 +48,6 @@ structure IsLocallyMonomialPrincipalization (P : ℕ → Prop) (F : Principaliza
       ∀ i < (F T).length,
         PrincipalizationCertificate ((F T).schemeAt i) (MarkedSequenceOfBlowups.projectionToSpec (F T) i) ((F T).ideal i) T.mult
           (MarkedSequenceOfBlowups.boundaryLocus (F T) i) ((F T).center i)
-  base_change :
-    ∀ (T : MarkedIdealWithBoundary.{u}), IsLocallyMonomialTriple T → P T.krullDimSucc →
-      ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-        (E' : List (T.baseChange L f).scheme.IdealSheafData),
-        MarkedIdealWithBoundary.SameNontrivialBoundary (T.baseChange L f).boundary E' →
-          IsLocallyMonomialTriple ((T.baseChange L f).withBoundary E') →
-            P ((T.baseChange L f).withBoundary E').krullDimSucc →
-              IsPullbackBlowupSequence
-                (Limits.pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-                (F ((T.baseChange L f).withBoundary E')).toSequenceOfBlowups (F T).toSequenceOfBlowups
-  base_change_strict :
-    ∀ (T : MarkedIdealWithBoundary.{u}), IsLocallyMonomialTriple T → P T.krullDimSucc →
-      ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-        (E' : List (T.baseChange L f).scheme.IdealSheafData),
-        MarkedIdealWithBoundary.SameNontrivialBoundary (T.baseChange L f).boundary E' →
-          IsLocallyMonomialTriple ((T.baseChange L f).withBoundary E') →
-            P ((T.baseChange L f).withBoundary E').krullDimSucc →
-              IsStrictPullbackBlowupSeq
-                (Limits.pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-                (F ((T.baseChange L f).withBoundary E')).toSequenceOfBlowups (F T).toSequenceOfBlowups
   center_eq :
     ∀ (T : MarkedIdealWithBoundary.{u}), IsLocallyMonomialTriple T → P T.krullDimSucc →
       ∀ i < (F T).length,

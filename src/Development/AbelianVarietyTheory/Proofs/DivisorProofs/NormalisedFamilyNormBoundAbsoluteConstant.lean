@@ -731,7 +731,7 @@ private lemma thetaConst_zero_one_eq_eta_mul_weberF₁_sq (hTP : _root_.GlobalTh
       (∏' n : ℕ, (1 - q ^ (n + 1))) ^ 2 := by
     refine ((hΘ.mul hA).unique ?_).trans (sq _).symm
     convert hB.mul hB using 1
-    ring
+    ring_nf
   have e₂ : cexp (2 * ↑Real.pi * I * ((τ : ℂ) / 2)) = q := by
     rw [hqdef]; congr 1; ring
   have hexp : cexp (2 * ↑Real.pi * I * ((τ : ℂ) / 2) / 24) ^ 2 =
@@ -774,12 +774,12 @@ private lemma thetaConst_one_zero_eq_eta_mul_weberF₂_sq (hTP : _root_.GlobalTh
       (∏' n : ℕ, (1 - (q ^ 4) ^ (n + 1))) * (2 * ∏' k : ℕ, (1 + q ^ (2 * k + 2))) := by
     refine hθ.unique ?_
     convert hD.mul hg using 1
-    ring
+    ring_nf
   have h₂ : (∏' n : ℕ, (1 - (q ^ 2) ^ (n + 1))) * (∏' k : ℕ, (1 + q ^ (2 * k + 2))) =
       ∏' n : ℕ, (1 - (q ^ 4) ^ (n + 1)) := by
     refine (hA.mul hC).unique ?_
     convert hD using 1
-    ring
+    ring_nf
   have hc : ((√2 : ℝ) : ℂ) ^ 2 = 2 := by
     rw [← Complex.ofReal_pow, Real.sq_sqrt (by norm_num)]; norm_num
   have hx : cexp (2 * ↑Real.pi * I * (2 * (τ : ℂ)) / 24) ^ 2 =

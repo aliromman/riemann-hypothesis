@@ -29,7 +29,7 @@ section
 noncomputable section
 open Formalism.BasicNotions Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP NumberField IsDedekindDomain
 namespace Formalism.L2
-structure AUTiedAlt (D : D7) (L : LPTiedPlaceholder D) (M : MtFam D) (A : AVTied D M) where
+structure AUTiedAlt (D : D7) (M : MtFam D) (A : AVTied D M) where
   cls : ∀ j, 1 ≤ j → j ≤ D.R.m → NG.AutRep D.host.E D.R.nV → D.nbc.AU j
   surj : ∀ j h1 h2, Function.Surjective (cls j h1 h2)
   iso : ∀ j h1 h2 π π', cls j h1 h2 π = cls j h1 h2 π' ↔ π.Iso π'
@@ -46,11 +46,10 @@ structure AUTiedAlt (D : D7) (L : LPTiedPlaceholder D) (M : MtFam D) (A : AVTied
   emb : ∀ i P, D.nbc.embAV i P = cls (D.nd.j i) (D.nd.j_range i).1 (D.nd.j_range i).2 (A.rep i P)
 structure NGalTiedAlt (D : D7) where
   fr : OmFrame D
-  lp : LPTiedPlaceholder D
   mt : MtFam D
   hecke : HeckeTied D mt
   av : AVTied D mt
-  au : _root_.Formalism.L2.AUTiedAlt D lp mt av
+  au : _root_.Formalism.L2.AUTiedAlt D mt av
   rational : HeckeRational D mt
   tup : D.what₂.Tup → Fin D.R.m → Host.HChar D.host.E
   level : LevelTied D mt tup

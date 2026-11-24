@@ -1577,11 +1577,11 @@ namespace PositivityTheory.KB
 theorem sStab : SStab := sStab_of _root_.PositivityTheory.KB.sChain_of _root_.PositivityTheory.KB.sBridge_of
 theorem sFin : SFin := sFin_of _root_.PositivityTheory.KB.sBridge_of
 theorem sPsi : SPsi := sPsi_of _root_.PositivityTheory.KB.sChain_of
-theorem sAff : SAff := sAff_of _root_.PositivityTheory.KB.sChain_of _root_.PositivityTheory.KB.sEv_of _root_.PositivityTheory.KB.sSep _root_.PositivityTheory.KB.sBridge_of
-theorem sHecke : SHecke := sHecke_of _root_.PositivityTheory.KB.sChain_of _root_.PositivityTheory.KB.sEv_of _root_.PositivityTheory.KB.sSep sStab sFin sAff
+theorem sAff : SAff := sAff_of _root_.PositivityTheory.KB.sChain_of _root_.PositivityTheory.KB.sSep
+theorem sHecke : SHecke := sHecke_of _root_.PositivityTheory.KB.sChain_of _root_.PositivityTheory.KB.sEv_of sStab sFin sAff
 theorem sPU : SPU := sPU_of sHt_of
 theorem sMom : SMom := TwSMInt2.sMom_of sHt_of
-theorem sWhit : SWhit := sWhit_of _root_.PositivityTheory.KB.sEv_of sStokes_of
+theorem sWhit : SWhit := sWhit_of sStokes_of
 theorem sCen : SCen := sCen_of _root_.PositivityTheory.KB.sEv_of
 theorem sLoc : SLoc := sLoc_of _root_.PositivityTheory.KB.sEv_of
 

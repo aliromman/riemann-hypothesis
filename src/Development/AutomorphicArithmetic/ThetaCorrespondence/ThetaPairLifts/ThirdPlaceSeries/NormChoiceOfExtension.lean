@@ -67,7 +67,7 @@ structure NormRealisationData {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {cf 
   nexp : NExpRealS R cG (ratDatR R cG kKs hk)
   hecke : NExpRealH R cG (ratDatR R cG kKs hk) nexp
   grp : GrpTie D A3.A F.P0 F.ψ0 F.P1 F.ψ1 (R.eG.trans cG)
-  rowLoc : _root_.Formalism.IndefR.principalLevelFrame.RowLocPinAlt a.all.gal.lp R.θ Y.PY (R.MY 0) (fun b => levS _ (R.βY 0) (R.dat0 (R.toRealDat.levR F.lv2 b)))
+  rowLoc : _root_.Formalism.IndefR.principalLevelFrame.RowLocPinAlt R.θ Y.PY (R.MY 0) (fun b => levS _ (R.βY 0) (R.dat0 (R.toRealDat.levR F.lv2 b)))
     (fun b => levChi _ (R.βY 0) (R.dat0 (R.toRealDat.levR F.lv2 b))) (fun _ => R.e0) Y.eFT
   S_eq : HEq (ratL a.nt.L a.nt.S) (ratDatR R cG kKs hk)
   hL_eq : HEq a.nt.hL hecke.hL

@@ -79,7 +79,7 @@ theorem crossOp_eig_gap (hE : IsGlRep E) (hU : IsInfUnitary ε E) (hV : IsKIrrHW
       ReciprocityTheory.ChartRestriction.DS.casValK ε (ReciprocityTheory.ChartRestriction.DS.lowK ε lam) := by
     exact_mod_cast hc
   subst hμeq
-  have hgap := ReciprocityTheory.ChartRestriction.DS.G2.gap_gt hrs hbig
+  have hgap := ReciprocityTheory.ChartRestriction.DS.G2.gap_gt hbig
   have hn0 : (0 : ℝ) ≤ n := Nat.cast_nonneg n
   have hne' : r ≠ s := fun h => hrs (congrArg ε h)
   rcases lt_or_gt_of_ne hne' with hlt | hgt

@@ -243,7 +243,7 @@ theorem intS_pull {V V' : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] [Norm
   simp only [map_add (f := _), map_sum, map_sub, map_smul, add_sub_add_right_eq_sub,
     ContinuousAlternatingMap.compContinuousLinearMap_apply]
   congr 1
-  · abel
+  · abel_nf
   · funext j
     simp
 

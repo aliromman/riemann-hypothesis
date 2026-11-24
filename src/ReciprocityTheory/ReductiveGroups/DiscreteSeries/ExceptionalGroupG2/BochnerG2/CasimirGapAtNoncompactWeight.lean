@@ -367,8 +367,7 @@ theorem k_highest_weight_layer_decomp (hE : IsGlRep E) (hU : IsInfUnitary ε E)
   refine ⟨w₀, hw₀, hw₀μ, m, ws, hsum, fun j => ⟨(hws j).1, fun h0 => ?_⟩⟩
   obtain ⟨h1, h2⟩ := khw_layer_succ_bound hE hU hV hc hmono hh hbig (j : ℕ) (hws j).1
     (hws j).2.1 h0 (hws j).2.2
-  obtain ⟨a, b, hab⟩ := isNCSum_succ_exists h1
-  have := (gap_gt hab hbig).2
+  have := (gap_gt hbig).2
   exact ⟨h1, by linarith, h2⟩
 
 theorem casimir_gap_at_noncompact_weight (hE : IsGlRep E) (hU : IsInfUnitary ε E)

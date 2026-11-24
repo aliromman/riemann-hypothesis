@@ -124,22 +124,6 @@ def IsPullbackSequence {X X' : Scheme.{u}} (φ : X' ⟶ X) (s' : BlowupSequence 
     (∀ i, ∀ hi : i < s'.length,
       s'.center i = (s.center (r i)).comap ((e i hi.le).hom ≫ pullback.snd φ (s.structMap (r i))))
 
-abbrev specFieldExtension (k K : Type u) [Field k] [Field K] [Algebra k K] :
-    Spec (CommRingCat.of K) ⟶ Spec (CommRingCat.of k) :=
-  Spec.map (CommRingCat.ofHom (algebraMap k K))
-
-abbrev fieldBaseChange {X : Scheme.{u}} {k : Type u} [Field k] (f : X ⟶ Spec (CommRingCat.of k))
-    (K : Type u) [Field K] [Algebra k K] : Scheme.{u} :=
-  pullback f (specFieldExtension k K)
-
-abbrev fieldBaseChangeProj {X : Scheme.{u}} {k : Type u} [Field k] (f : X ⟶ Spec (CommRingCat.of k))
-    (K : Type u) [Field K] [Algebra k K] : fieldBaseChange f K ⟶ X :=
-  pullback.fst f (specFieldExtension k K)
-
-abbrev fieldBaseChangeStructMap {X : Scheme.{u}} {k : Type u} [Field k] (f : X ⟶ Spec (CommRingCat.of k))
-    (K : Type u) [Field K] [Algebra k K] : fieldBaseChange f K ⟶ Spec (CommRingCat.of K) :=
-  pullback.snd f (specFieldExtension k K)
-
 abbrev ResolutionRuleCharZero : Type (u + 1) :=
   ∀ (k : Type u) [Field k] [CharZero k] (X : Scheme.{u}) (f : X ⟶ Spec (CommRingCat.of k))
     [LocallyOfFiniteType f] [QuasiCompact f] [IsReduced X], BlowupSequence X
@@ -161,16 +145,9 @@ def IsSmoothFunctorialRule (R : ResolutionRuleCharZero.{u}) : Prop :=
     (φ : X' ⟶ X) (r : ℕ) [SmoothOfRelativeDimension r φ],
     φ ≫ f = f' → IsPullbackSequence φ (R k X' f') (R k X f)
 
-def IsFieldExtensionFunctorialRule (R : ResolutionRuleCharZero.{u}) : Prop :=
-  ∀ (k : Type u) [Field k] [CharZero k] (X : Scheme.{u}) (f : X ⟶ Spec (CommRingCat.of k))
-    [LocallyOfFiniteType f] [QuasiCompact f] [IsReduced X]
-    (K : Type u) [Field K] [CharZero K] [Algebra k K] [IsReduced (fieldBaseChange f K)],
-    IsPullbackSequence (fieldBaseChangeProj f K)
-      (R K (fieldBaseChange f K) (fieldBaseChangeStructMap f K)) (R k X f)
-
 def FunctorialResolutionCharZero : Prop :=
   ∃ R : ResolutionRuleCharZero.{u},
-    IsResolutionRuleCharZero R ∧ IsSmoothFunctorialRule R ∧ IsFieldExtensionFunctorialRule R
+    IsResolutionRuleCharZero R ∧ IsSmoothFunctorialRule R
 
 end
 
@@ -265,23 +242,9 @@ def IsSmoothFunctorialPrincipalizationRule (R : PrincipalizationRuleCharZero.{u}
     ∀ (hI' : IsNonzeroOnComponents (I.comap φ)) (hE' : HasSimpleNormalCrossings p' (E.map fun D => D.comap φ)),
       IsPullbackSequence φ (R k X' p' (I.comap φ) hI' (E.map fun D => D.comap φ) hE') (R k X p I hI E hE)
 
-def IsFieldExtensionFunctorialPrincipalizationRule (R : PrincipalizationRuleCharZero.{u}) : Prop :=
-  ∀ (k : Type u) [Field k] [CharZero k] (X : Scheme.{u}) (p : X ⟶ Spec (CommRingCat.of k))
-    [Smooth p] [LocallyOfFiniteType p] [QuasiCompact p]
-    (I : X.IdealSheafData) (hI : IsNonzeroOnComponents I) (E : List X.IdealSheafData)
-    (hE : HasSimpleNormalCrossings p E) (K : Type u) [Field K] [CharZero K] [Algebra k K]
-    (hI' : IsNonzeroOnComponents (I.comap (fieldBaseChangeProj p K)))
-    (hE' : HasSimpleNormalCrossings (fieldBaseChangeStructMap p K)
-      (E.map fun D => D.comap (fieldBaseChangeProj p K))),
-    IsPullbackSequence (fieldBaseChangeProj p K)
-      (R K (fieldBaseChange p K) (fieldBaseChangeStructMap p K) (I.comap (fieldBaseChangeProj p K)) hI'
-        (E.map fun D => D.comap (fieldBaseChangeProj p K)) hE')
-      (R k X p I hI E hE)
-
 def FunctorialPrincipalizationCharZero : Prop :=
   ∃ R : PrincipalizationRuleCharZero.{u},
-    IsPrincipalizationRuleCharZero R ∧ IsSmoothFunctorialPrincipalizationRule R ∧
-      IsFieldExtensionFunctorialPrincipalizationRule R
+    IsPrincipalizationRuleCharZero R ∧ IsSmoothFunctorialPrincipalizationRule R
 
 end
 

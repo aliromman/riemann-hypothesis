@@ -150,10 +150,10 @@ theorem mul_inv_eq (hNtΔ : Nt * Δ = 0) (x : Matrix β β R) :
   constructor
   · simp only [Matrix.add_mul, Matrix.mul_sub, Matrix.one_mul, Matrix.mul_one, Matrix.smul_mul, Matrix.mul_smul,
       hM, smul_zero]
-    abel
+    abel_nf
   · simp only [Matrix.sub_mul, Matrix.mul_add, Matrix.one_mul, Matrix.mul_one, Matrix.smul_mul, Matrix.mul_smul,
       hM, smul_zero]
-    abel
+    abel_nf
 
 theorem q_col (h2 : Δ * Δt + N * Nt = (2 : R) • 1) (hD' : D' * (Nt * G * N) = 1) :
     (1 - ⅟(2 : R) • (Δ * (Δt * G * N * D') * Nt)) * G * N = N * (⅟(2 : R) • (Nt * G * N)) := by

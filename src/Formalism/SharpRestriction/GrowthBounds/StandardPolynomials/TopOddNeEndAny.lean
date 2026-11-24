@@ -214,7 +214,7 @@ theorem bMk_eq (C0 CE1 CE2 : ℝ) (β : GlobalTheory X) (j : Fin (numSeg X.TT)) 
     try abel
   · simp only [hs, if_false, Finset.sum_const_zero, zero_add, add_zero]
     try simp only [mul_comm]
-    try abel
+    try abel_nf
     try ring_nf
 
 theorem sum_aMk (C0 CE1 CE2 : ℝ) (β : GlobalTheory X) :

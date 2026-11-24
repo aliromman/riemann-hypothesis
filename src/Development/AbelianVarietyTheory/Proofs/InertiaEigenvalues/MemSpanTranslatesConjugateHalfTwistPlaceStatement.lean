@@ -777,7 +777,7 @@ theorem sbHalf_locConst_cptSupp : ∀ (D : D7) (S T : HSp D) (βS : GL (Fin S.ra
       ext i j
       simp only [Matrix.map_apply, Matrix.smul_apply, smul_eq_mul, nsmul_eq_mul, map_mul, map_natCast]
       push_cast
-      ring
+      ring_nf
     have : x' = x + k • (K2 • K1 • t) := by rw [← key]; abel
     rw [this, hinv _ h2 hu x]
   · intro x hx
@@ -795,7 +795,7 @@ theorem sbHalf_locConst_cptSupp : ∀ (D : D7) (S T : HSp D) (βS : GL (Fin S.ra
     simp only [Matrix.map_apply, Matrix.smul_apply, smul_eq_mul, nsmul_eq_mul] at hij ⊢
     rw [hw', map_mul, map_mul, ← hij, map_natCast]
     push_cast
-    ring
+    ring_nf
 
 end GlobalTheory.DownLift.SplitCoef
 

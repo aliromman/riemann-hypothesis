@@ -137,38 +137,6 @@ theorem kgv_of_gOf (X : HidaSetting D) (p : TypX X) (y : HA (Fv X.B.I.F p.1) X.B
     Submodule.smul_mem _ _ hz, ?_⟩
   rw [e, smul_smul, hw, mul_assoc, Units.mul_inv, mul_one]
 
-theorem coe_K2Hg (X : HidaSetting D) (hb : AdBridgeIso X.B.I) (hK : X.LevelSubgroupCharacter) (u : D.what₂.Word) :
-    (unitaryLevelClosureSubgroup X hb u : Set (Hsub (Af X.B.I.F) X.B.I.cm.sig X.B.I.J (frameOf X u))) = Subtype.val ⁻¹' K2u X hb u := by
-  obtain ⟨h1, hmul, hinv, -, -⟩ := hK
-  have fmul : ∀ a b : X.B.I.Gf, finHA X hb (a * b) = finHA X hb a * finHA X hb b := by
-    intro a b
-    unfold finHA
-    rw [← Prod.snd_mul, ← map_mul, ← map_mul, Prod.mk_mul_mk, mul_one]
-  have finv : ∀ a : X.B.I.Gf, finHA X hb a⁻¹ = (finHA X hb a)⁻¹ := by
-    intro a
-    unfold finHA
-    rw [← Prod.snd_inv, ← map_inv, ← map_inv, Prod.inv_mk, inv_one]
-  have fone : finHA X hb 1 = 1 := by
-    unfold finHA
-    show ((splitA X.B.I.cm.sig X.B.I.J) ((toHA X.B.I hb) 1)).2 = 1
-    rw [map_one, map_one, Prod.snd_one]
-  let S : Subgroup (Hsub (Af X.B.I.F) X.B.I.cm.sig X.B.I.J (frameOf X u)) :=
-    { carrier := Subtype.val ⁻¹' K2u X hb u
-      mul_mem' := by
-        rintro x y ⟨_, ⟨k1, hk1, rfl⟩, hx⟩ ⟨_, ⟨k2, hk2, rfl⟩, hy⟩
-        refine ⟨finHA X hb (k1 * k2), ⟨k1 * k2, hmul k1 hk1 k2 hk2, rfl⟩, ?_⟩
-        simp only [Subgroup.coe_mul, ← hx, ← hy, fmul]
-        group
-      one_mem' := ⟨finHA X hb 1, ⟨1, h1, rfl⟩, by simp [fone]⟩
-      inv_mem' := by
-        rintro x ⟨_, ⟨k, hk, rfl⟩, hx⟩
-        refine ⟨finHA X hb k⁻¹, ⟨k⁻¹, hinv k hk, rfl⟩, ?_⟩
-        simp only [Subgroup.coe_inv, ← hx, finv]
-        group }
-  unfold unitaryLevelClosureSubgroup
-  exact congrArg (fun H : Subgroup (Hsub (Af X.B.I.F) X.B.I.cm.sig X.B.I.J (frameOf X u)) =>
-    (H : Set (Hsub (Af X.B.I.F) X.B.I.cm.sig X.B.I.J (frameOf X u)))) (Subgroup.closure_eq S)
-
 theorem mem_conjugate_level_of_local (X : HidaSetting D) (hb : AdBridgeIso X.B.I) (hK : X.LevelSubgroupCharacter) (hL : X.LevelSubgroupNormalized)
     (u : D.what₂.Word) (z : HA (Af X.B.I.F) X.B.I.cm.sig X.B.I.J)
     (hz : z ∈ Kf X.B.I.cm.sig X.B.I.J (X.B.I.L : Set (Fin X.B.I.n → X.B.I.E)))

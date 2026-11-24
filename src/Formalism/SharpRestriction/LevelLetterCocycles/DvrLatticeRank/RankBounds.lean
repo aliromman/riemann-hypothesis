@@ -416,7 +416,7 @@ theorem Fl_last (Pt : ZMod n → LL → (K →ₐ[Qp] LL) → Prop) (Eπ : LetA 
     rw [R_smul_letE S _ hr, hprod, ← R_smul_letE S _ hr, ← smulLA_mul]
     congr 1
     rw [mul_comm 2 h', pow_mul]
-    ring
+    ring_nf
   rw [h1] at hrx
   have hu : IsUnit (algebraMap (LetA O n) W.EE (Eπ ^ h')) := by rw [map_pow]; exact hEu.pow h'
   have hx' := smulE_inj (W := W) (T := T) (π' := π') (c := c) hu hrx

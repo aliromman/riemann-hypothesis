@@ -341,7 +341,7 @@ theorem continuous_apply_apply (hπ : ∀ g, ‖π g‖ ≤ 1) {T : Type*} [Topo
   refine squeeze_zero (fun _ => norm_nonneg _) (fun x => ?_) (by simpa using h1.add h2)
   calc ‖π (p x) (u x) - π (p x₀) (u x₀)‖
       = ‖π (p x) (u x - u x₀) + (π (p x) (u x₀) - π (p x₀) (u x₀))‖ := by
-        rw [map_sub]; try abel
+        rw [map_sub]; try abel_nf
     _ ≤ ‖π (p x) (u x - u x₀)‖ + ‖π (p x) (u x₀) - π (p x₀) (u x₀)‖ := norm_add_le _ _
     _ ≤ ‖u x - u x₀‖ + ‖π (p x) (u x₀) - π (p x₀) (u x₀)‖ := by
         gcongr

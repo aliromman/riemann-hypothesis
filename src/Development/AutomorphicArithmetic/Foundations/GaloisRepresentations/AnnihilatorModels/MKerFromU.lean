@@ -30,10 +30,6 @@ section Helpers
 variable {p : ℕ} [Fact p.Prime] {D : Datum p} {R : Type} [CommRing R] {b : Base D R} {N : ℕ}
   {S : Scheme.{0}} {s : S ⟶ Sp R}
 
-private theorem powc {A B T : Over S} [GrpObj A] [GrpObj B] (h : T ⟶ A) (f : A ⟶ B) [IsMonHom f] (n : ℕ) :
-    (h ^ n) ≫ f = (h ≫ f) ^ n := by
-  exact map_pow (IsMonHom.monoidHom f T) h n
-
 private abbrev sc (o : Obj b N s) (x : 𝓞 D.F) : o.A ⟶ o.A := o.act.act (algebraMap (𝓞 D.F) D.O x)
 
 private instance sc_hom (o : Obj b N s) (x : 𝓞 D.F) : IsMonHom (sc o x) := o.act.hom _
@@ -65,32 +61,12 @@ private theorem sc_nat (o : Obj b N s) (n : ℕ) : sc o (n : 𝓞 D.F) = (𝟙 o
 
 private theorem sc_killed (o : Obj b N s) {T : Over S} (z : T ⟶ o.A) {c : ℕ} (hz : z ^ c = 1) (t : 𝓞 D.F) :
     z ≫ sc o (t * (c : 𝓞 D.F)) = 1 := by
-  rw [sc_mul, sc_nat, ← Category.assoc, _root_.GlobalTheory.SemiAbTorsion.comp_pow_points, Category.comp_id, hz]
-  have h := powc z (sc o t) 0
-  rwa [pow_zero, pow_zero] at h
+  rw [sc_mul, sc_nat, ← Category.assoc, MonObj.comp_pow, Category.comp_id, hz, MonObj.one_comp]
 
 end Helpers
 
 private theorem bar_bar {p : ℕ} [Fact p.Prime] (D : Datum p) (a : 𝓞 D.F) : D.bar (D.bar a) = a := by
   rw [RingOfIntegers.ext_iff, D.bar_eq, D.bar_eq, IsCMField.complexConj_apply_apply]
-
-private theorem one_comp_monHom' {S : Scheme.{0}} {T A B : Over S} [GrpObj A] [GrpObj B] (f : A ⟶ B)
-    [IsMonHom f] : (1 : T ⟶ A) ≫ f = 1 := by
-  have h := powc (1 : T ⟶ A) f 0
-  rwa [pow_zero, pow_zero] at h
-
-private theorem comp_one_grpObj {S : Scheme.{0}} {X T A : Over S} [GrpObj A] (f : X ⟶ T) :
-    f ≫ (1 : T ⟶ A) = 1 := by
-  have h := _root_.GlobalTheory.SemiAbTorsion.comp_pow_points f (1 : T ⟶ A) 0
-  rwa [pow_zero, pow_zero] at h
-
-private theorem comp_mul_grpObj {S : Scheme.{0}} {T A B : Over S} [GrpObj B] (f : T ⟶ A)
-    (h₁ h₂ : A ⟶ B) : f ≫ (h₁ * h₂) = (f ≫ h₁) * (f ≫ h₂) := by
-  rw [Hom.mul_def, Hom.mul_def, ← Category.assoc, comp_lift]
-
-private theorem comp_id_pow_eq_pow {S : Scheme.{0}} {T A : Over S} [GrpObj A] (f : T ⟶ A) (n : ℕ) :
-    f ≫ (𝟙 A ^ n) = f ^ n := by
-  rw [_root_.GlobalTheory.SemiAbTorsion.comp_pow_points, Category.comp_id]
 
 theorem UpperTheory.Gal.crystallineComparison.Mod.kerFromU_of :
     UElt → PairCalc → Adjoint → DivC → KerFromU := by
@@ -115,44 +91,44 @@ theorem UpperTheory.Gal.crystallineComparison.Mod.kerFromU_of :
     intro o' ψ _ hl T' u hu hpu
     refine ⟨?_, e, ?_⟩
     · have hl' : sc o α ≫ ψ = ψ ≫ sc o' α := hl _
-      rw [Category.assoc, hl', ← Category.assoc, hu, one_comp_monHom']
+      rw [Category.assoc, hl', ← Category.assoc, hu, MonObj.one_comp]
     · intro a ha
       show (u ≫ sc o α) ≫ sc o a = 1
       rw [Category.assoc, ← sc_mul]
       exact kill u hpu _ (hα1 a ha)
   have gpow : g ^ (p ^ e) = 1 := by
-    rw [← comp_id_pow_eq_pow g (p ^ e), ← hψ₁a, ← Category.assoc, hg, one_comp_monHom']
+    rw [← Category.comp_id g, ← MonObj.comp_pow, ← hψ₁a, ← Category.assoc, hg, MonObj.one_comp]
   have dec : g = (g ≫ sc o α) * (g ≫ sc o (D.bar α)) := by
-    rw [← comp_mul_grpObj, ← sc_add]
+    rw [← MonObj.comp_mul, ← sc_add]
     obtain ⟨t', ht'⟩ := Ideal.mem_span_singleton'.mp hα2
     have hsum : α + D.bar α = 1 + t' * ((p ^ e : ℕ) : 𝓞 D.F) := by
       rw [Nat.cast_pow, ht']
       ring
-    rw [hsum, sc_add, comp_mul_grpObj, sc_one, Category.comp_id, sc_killed o g gpow t',
+    rw [hsum, sc_add, MonObj.comp_mul, sc_one, Category.comp_id, sc_killed o g gpow t',
       _root_.mul_one]
   have hA1 : (g ≫ sc o α) ≫ ψ₂ = 1 := ((hiff T _).1 (uk o₁ ψ₁ hl1 T g hg gpow)).1
   obtain ⟨ν, hν, hνc⟩ := (hD (Sp k) o₂.A o₁.A o₂.ab (p ^ e) cpos).1 (ψ₂' ≫ sc o α ≫ ψ₁)
     inferInstance (by
       intro T' t ht
       have hu2 : (t ≫ ψ₂') ≫ ψ₂ = 1 := by
-        rw [Category.assoc, hψ₂b, comp_id_pow_eq_pow, ht]
+        rw [Category.assoc, hψ₂b, MonObj.comp_pow, Category.comp_id, ht]
       have hu3 : (t ≫ ψ₂') ^ (p ^ e) = 1 := by
-        rw [← powc, ht, one_comp_monHom']
+        rw [← MonObj.pow_comp, ht, MonObj.one_comp]
       have h' := ((hiff T' _).2 (uk o₂ ψ₂ hl2 T' _ hu2 hu3)).1
       simpa only [Category.assoc] using h')
   haveI := hν
   have hfac : ν ≫ ψ₁' = ψ₂' ≫ sc o α := by
     refine (hD (Sp k) o₂.A o.A o₂.ab (p ^ e) cpos).2 _ _ inferInstance inferInstance ?_
-    rw [← powc, hνc]
+    rw [← MonObj.pow_comp, hνc]
     simp only [Category.assoc, hψ₁a]
-    rw [← Category.assoc, comp_id_pow_eq_pow]
+    rw [← Category.assoc, MonObj.comp_pow, Category.comp_id]
   have h3 : ∀ (T' : Over (Sp k)) (x y : T' ⟶ o.A) (a : 𝓞 D.F),
       evc o.isLB (x ≫ sc o a) y = evc o.isLB x (y ≫ sc o (D.bar a)) :=
     (hP p D R b N (Sp k) s o).2.2.1
   have hB : (g ≫ sc o (D.bar α)) ≫ ψ₂ = 1 := by
     obtain ⟨e', hcop, hnd⟩ := (hP p D R b N (Sp k) s o₂).2.2.2.1
     have zc : ((g ≫ sc o (D.bar α)) ≫ ψ₂) ^ (p ^ e) = 1 := by
-      rw [Category.assoc, ← powc, gpow, one_comp_monHom']
+      rw [Category.assoc, ← MonObj.pow_comp, gpow, MonObj.one_comp]
     have ze : ((g ≫ sc o (D.bar α)) ≫ ψ₂) ^ e' = 1 := by
       apply hnd
       have ad2 := (hA p D R b N k s (p ^ e) o o₂ ψ₂ ψ₂' h2 hm2' hψ₂b (o₂.A ⊗ T)
@@ -161,10 +137,8 @@ theorem UpperTheory.Gal.crystallineComparison.Mod.kerFromU_of :
       rw [ad2, ← Category.assoc, h3, bar_bar, Category.assoc, ← hfac, ← Category.assoc]
       have ad1 := (hA p D R b N k s (p ^ e) o o₁ ψ₁ ψ₁' h1 hm1' hψ₁b (o₂.A ⊗ T)
         (snd o₂.A T ≫ g) (fst o₂.A T ≫ ν)).1
-      rw [← ad1, Category.assoc, hg, comp_one_grpObj]
+      rw [← ad1, Category.assoc, hg, MonObj.comp_one]
       exact GlobalTheory.AbDual.IsAdditive.evc_one o₁.isLB (hP p D R b N (Sp k) s o₁).1 _
     have hgcd := pow_gcd_eq_one.2 ⟨ze, zc⟩
     rwa [Nat.Coprime.gcd_eq_one (Nat.Coprime.pow_right e hcop), pow_one] at hgcd
-  have mm : ∀ a a' : T ⟶ o.A, (a * a') ≫ ψ₂ = (a ≫ ψ₂) * (a' ≫ ψ₂) :=
-    fun a a' => (IsMonHom.monoidHom ψ₂ T).map_mul a a'
-  rw [dec, mm, hA1, hB, _root_.one_mul]
+  rw [dec, MonObj.mul_comp, hA1, hB, _root_.one_mul]

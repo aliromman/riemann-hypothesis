@@ -20,14 +20,7 @@ open Semi
 
 def SecBaseChangeAnySt : Prop :=
   ∀ (S : Scheme.{0}) (P : PolAV S) (n : ℕ), 1 ≤ n →
-    ∀ p : S, ∃ V : S.Opens, p ∈ V ∧ ∃ b : Fin (n ^ P.g) → LB.Sec (LPow P.A P.L n (overRes (T := baseOver S) V)),
-      ∀ (R : Type) [CommRing R] (t : Spec (CommRingCat.of R) ⟶ (overRes (T := baseOver S) V).left)
-        (b' : Fin (n ^ P.g) → LB.Sec (LPow P.A P.L n (baseAt t))),
-        (∀ i, IsPullSec P.A P.L n (homAt t ▷ P.A) (whiskerRight_snd (homAt t) P.A) (b i) (b' i)) →
-        LinearIndependent Γ((baseAt t).left, ⊤)
-            (fun i => (SecM.ofSec P.A (b' i) : SecM P.A P.L n (baseAt t))) ∧
-          Submodule.span Γ((baseAt t).left, ⊤)
-            (Set.range fun i => (SecM.ofSec P.A (b' i) : SecM P.A P.L n (baseAt t))) = ⊤
+    ∀ p : S, SecBaseChangeAt P n p
 
 def twistLB {S : Scheme.{0}} (A : Over S) [GrpObj A] (L : LB A.left) (q : ℕ) {T : Over S}
     (c : T ⟶ A) : LB (T ⊗ A).left :=

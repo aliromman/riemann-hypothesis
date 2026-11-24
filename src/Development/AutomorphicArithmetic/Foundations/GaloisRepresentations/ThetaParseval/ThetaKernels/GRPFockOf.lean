@@ -866,7 +866,7 @@ private theorem fock_second_action_eq_derivation {n d : ℕ} (Y : Mat d 0) :
     have hcard : Fintype.card (FockH1Action.Ix n 0) = n := by simp [FockH1Action.Ix]
     rw [hcard, ← Nat.cast_smul_eq_nsmul ℂ, smul_smul, ← Finset.sum_mul, Matrix.trace]
     simp only [Matrix.diag]
-    ring
+    ring_nf
 
 private theorem det_of_block {d : ℕ} (Y : Mat d 0) (g : GL (Fin d) ℂ)
     (hg : ∀ a b, g.1 a b = NormedSpace.exp Y (Sum.inl a) (Sum.inl b)) (c : ℤ) :

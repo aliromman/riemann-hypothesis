@@ -99,7 +99,7 @@ theorem rankOnDigits_cast (hB : BlockRankAt) (hY : DimYAt) (C0 CE1 CE2 : ℝ) (X
   · rw [if_neg hb, if_neg hb]
     simp
 
-theorem restUp_of (hB : BlockRankAt) (hY : DimYAt) (_hCZ : CharZeroAt) (hC : RestCountUp) : RestUp := by
+theorem restUp_of (hB : BlockRankAt) (hY : DimYAt) (hC : RestCountUp) : RestUp := by
   refine TransportedAlt.mono ?_ hC
   intro C0 CYb Cde Ck CD Cb CE1 CE2 _ Cc h X _ W Qq O Kf _ _ _ _ _ _ _ _ _ _ ι σ jO w hS hH hc j m hm rz ry hd
   have hD1 : D1num X := ⟨hS.1.prime, hS.1.five_le, hS.1.two_le, hS.1.even⟩
@@ -108,7 +108,7 @@ theorem restUp_of (hB : BlockRankAt) (hY : DimYAt) (_hCZ : CharZeroAt) (hC : Res
   rw [← rankOnDigits_cast hB hY C0 CE1 CE2 X O (dvrOfStd hS) j m rz ry] at h1
   exact_mod_cast h1
 
-theorem restLow_of (hB : BlockRankAt) (hY : DimYAt) (_hCZ : CharZeroAt) (hC : RestCountLow) : RestLow := by
+theorem restLow_of (hB : BlockRankAt) (hY : DimYAt) (hC : RestCountLow) : RestLow := by
   refine TransportedAlt.mono ?_ hC
   intro C0 CYb Cde Ck CD Cb CE1 CE2 _ Cc h X _ W Qq O Kf _ _ _ _ _ _ _ _ _ _ ι σ jO w hS hH hc j m hm hm2 rz ry hd
   have hD1 : D1num X := ⟨hS.1.prime, hS.1.five_le, hS.1.two_le, hS.1.even⟩

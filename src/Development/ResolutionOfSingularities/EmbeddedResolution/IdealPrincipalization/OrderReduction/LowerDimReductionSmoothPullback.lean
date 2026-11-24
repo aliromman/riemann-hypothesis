@@ -48,17 +48,6 @@ namespace MarkedBlowupSequenceData
 variable {k : Type u} [Field k] {X : Scheme.{u}} {p : X ⟶ Spec (CommRingCat.of k)}
   {I : X.IdealSheafData} {m : ℕ} {E : List X.IdealSheafData}
 
-theorem ideal_congr_index (u : MarkedBlowupSequenceData p I m E) {i j : ℕ} (h : i = j) :
-    u.ideal i = (u.ideal j).comap (eqToHom (congrArg (fun n => u.obj n) h)) := by
-  subst h
-  simp
-
-theorem boundary_congr_index (u : MarkedBlowupSequenceData p I m E) {i j : ℕ} (h : i = j) :
-    u.boundary i =
-      (u.boundary j).map (fun A => A.comap (eqToHom (congrArg (fun n => u.obj n) h))) := by
-  subst h
-  simp
-
 end MarkedBlowupSequenceData
 
 theorem IsStrictPullbackBlowupSeq.of_eq {X' X : Scheme.{u}} {φ : X' ⟶ X} {B₁ B₂ : SequenceOfBlowups X'}

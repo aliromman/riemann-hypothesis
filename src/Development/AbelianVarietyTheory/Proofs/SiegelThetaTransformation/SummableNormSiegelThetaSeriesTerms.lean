@@ -134,7 +134,7 @@ theorem exists_bound {κ ι : Type} [Fintype κ] [Fintype ι] {R : ℕ} (hR : 0 
   let r : κ → ι → Fin (R * R) := fun k i => ⟨(n k i % (R * R)).toNat, by
     have := Int.emod_lt_of_pos (n k i) hRR
     have := Int.emod_nonneg (n k i) hRR.ne'
-    zify; rw [Int.toNat_of_nonneg this]; assumption⟩
+    zify; rwa [Int.toNat_of_nonneg this]⟩
   have key := h.2 (Matrix.of fun k i => ((r k i : ℕ) : ℚ) / R)
     (Matrix.of fun k i => ((n k i / (R * R) : ℤ) : ℚ)) (fun k i => isIntegral_algebraMap (x := n k i / (R * R)))
   have he : (Matrix.of fun k i => (n k i : ℚ) / R) =

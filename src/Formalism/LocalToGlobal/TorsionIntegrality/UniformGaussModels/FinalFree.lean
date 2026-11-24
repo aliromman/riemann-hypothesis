@@ -1619,7 +1619,7 @@ theorem lmat_map_σ (σ : MaximalUnramifiedExtension l →+* MaximalUnramifiedEx
     (lmat δ A B).map σ = lmat δ A (-B) := by
   ext x y
   simp only [Matrix.map_apply, lmat_apply, map_add (f := _), map_mul, map_ratCast, hσδ, Matrix.neg_apply, Rat.cast_neg]
-  ring
+  ring_nf
 
 theorem lmat_mem {dK : ℕ} {δ : MaximalUnramifiedExtension l} {hδ : δ ^ 2 = -(dK : MaximalUnramifiedExtension l)} (U₁ U₂ : Matrix m m' ℚ)
     (hU : ∀ x y, padicNorm l (U₁ x y) ≤ 1 ∧ padicNorm l (U₂ x y) ≤ 1) (x : m) (y : m') :

@@ -166,7 +166,7 @@ theorem bRaw_cjT (hcj : ∀ x, cj (cj x) = x) (Z : Matrix (Fin (r + 1)) (Fin (r 
       cj (w a) * ((Z.map O.subtype).mulVec ((Z.map O.subtype)⁻¹.mulVec (fun i => (y i : E)))) a := by
     simp only [Matrix.mulVec, dotProduct, Finset.mul_sum]
     refine Finset.sum_congr rfl fun j _ => ?_
-    ring
+    ring_nf
   rw [e, Matrix.mulVec_mulVec, Matrix.mul_nonsing_inv _ hu, Matrix.one_mulVec]
 
 theorem lamS_cjT (Z : Matrix (Fin (r + 1)) (Fin (r + 1)) O) (hu : IsUnit (Z.map O.subtype).det)

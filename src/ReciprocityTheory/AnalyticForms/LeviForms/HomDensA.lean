@@ -162,7 +162,7 @@ theorem eq_map_C_add_X_sq_smul {n : Type*} (P : Matrix n n ℂ[X]) (h1 : cf 1 P 
   have hq1 : (P i j - C ((P i j).coeff 0)).coeff 1 = 0 := by simp [h1']
   simp only [Matrix.add_apply, Matrix.map_apply, Matrix.smul_apply, Matrix.sub_apply, smul_eq_mul, cf]
   rw [← eq_X_sq_mul _ hq0 hq1]
-  ring
+  ring_nf
 
 theorem det_coeff_zero_one_of_coeffMatrix_one {n : Type*} [Fintype n] [DecidableEq n] (P : Matrix n n ℂ[X])
     (h1 : cf 1 P = 0) : P.det.coeff 0 = (cf 0 P).det ∧ P.det.coeff 1 = 0 := by

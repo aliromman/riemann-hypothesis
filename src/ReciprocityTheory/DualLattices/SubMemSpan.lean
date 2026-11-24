@@ -14,6 +14,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.DualLattices.InstAddCommMonoidFibreFst
 public import ReciprocityTheory.DualLattices.IsPairingValueAddRight
+public import ReciprocityTheory.DualLattices.IsFibreSq
 
 @[expose] public section
 
@@ -130,10 +131,6 @@ end OAdj
 namespace DualPair
 
 variable {R : LAlg R₀} (Dp : DualPair R)
-
-lemma π_η : Dp.π.1 Dp.η = 0 := by
-  have h := Dp.η_mem
-  rwa [Submodule.restrictScalars_mem, RingHom.mem_ker] at h
 
 lemma sub_mem_span (d : (Dp.D : Type u)) : d - Dp.σ.1 (Dp.π.1 d) ∈ Ideal.span {Dp.η} := by
   rw [← Dp.ker_eq, RingHom.mem_ker, map_sub, Dp.sect, sub_self]

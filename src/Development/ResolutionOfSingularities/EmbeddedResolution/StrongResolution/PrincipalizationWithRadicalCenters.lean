@@ -10,7 +10,7 @@ public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrin
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MonomialCase.MonomialPrincipalizationBaseChange
 public import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.StrictPullbackCriterion
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.CanonicalPrincipalization
-public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.FieldExtensionBaseChange
+public import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.StrictPullbackComposition
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.OrderReductionBaseChange
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.DivisorReduction.DivisorReductionHypotheses
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.GeometryHypotheses
@@ -564,52 +564,8 @@ open CategoryTheory AlgebraicGeometry CategoryTheory.Limits
 
 namespace FunctorialResolution.EmbeddedResolution
 
-def OrderAtBaseFieldChangeInvariance : Prop :=
-  ∀ (T : MarkedIdealWithBoundary.{u}), T.IsAdmissible →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-      (B : Scheme.{u}) (b : B ⟶ T.scheme) (pB : B ⟶ Spec (CommRingCat.of T.base)),
-      b ≫ T.structMap = pB →
-      ∀ (IB : B.IdealSheafData) (EB : List B.IdealSheafData),
-        (@MarkedIdealWithBoundary.mk T.base T.instField B pB IB T.mult EB).IsAdmissible →
-        ∀ (Q : Scheme.{u}) (a : Q ⟶ B)
-          (b' : Q ⟶ pullback T.structMap (specMapOfFieldHom T.base L f)),
-          IsPullback a b' b (pullback.fst T.structMap (specMapOfFieldHom T.base L f)) →
-          ∀ (A : B.IdealSheafData) (y : ↥Q), orderAt (A.comap a) y = orderAt A (a y)
-
-instance instSurjectivePullbackFstSpecMapField (k L : Type u) [Field k] [Field L]
-    (f : k →+* L) (X : Scheme.{u}) (p : X ⟶ Spec (CommRingCat.of k)) :
-    AlgebraicGeometry.Surjective (pullback.fst p (specMapOfFieldHom k L f)) :=
-  inferInstance
-
-private theorem isPullbackBlowupSequence_monomialPrincipalization_baseChange (hGeom : MonomialGeometryHypotheses.{u})
-    (hinv : ComapIsoInvariance.{u})
-    (hord : OrderAtBaseFieldChangeInvariance.{u}) (T : MarkedIdealWithBoundary.{u})
-    (hT : MonomialCenter.IsLocallyMonomialTriple T) (L : Type u) [Field L] [CharZero L]
-    (f : T.base →+* L) (E' : List (T.baseChange L f).scheme.IdealSheafData)
-    (hE : MarkedIdealWithBoundary.SameNontrivialBoundary (T.baseChange L f).boundary E')
-    (hT' : MonomialCenter.IsLocallyMonomialTriple ((T.baseChange L f).withBoundary E')) :
-    IsPullbackBlowupSequence (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-      (monomialPrincipalization hinv ((T.baseChange L f).withBoundary E')).toSequenceOfBlowups
-      (monomialPrincipalization hinv T).toSequenceOfBlowups := by
-  have : AlgebraicGeometry.Flat (pullback.fst T.structMap (specMapOfFieldHom T.base L f)) :=
-    inferInstance
-  have hord' : ∀ (B : Scheme.{u}) (b : B ⟶ T.scheme) (pB : B ⟶ Spec (CommRingCat.of T.base)),
-      b ≫ T.structMap = pB →
-      ∀ (IB : B.IdealSheafData) (EB : List B.IdealSheafData),
-        (@MarkedIdealWithBoundary.mk T.base T.instField B pB IB T.mult EB).IsAdmissible →
-        ∀ (Q : Scheme.{u}) (a : Q ⟶ B)
-          (b' : Q ⟶ pullback T.structMap (specMapOfFieldHom T.base L f)),
-          IsPullback a b' b (pullback.fst T.structMap (specMapOfFieldHom T.base L f)) →
-          ∀ (A : B.IdealSheafData) (z : ↥Q), orderAt (A.comap a) z = orderAt A (a z) :=
-    hord T hT.valid L f
-  exact monomialPrincipalization_isPullbackBlowupSequence_of_flat hGeom hinv T
-    (pullback T.structMap (specMapOfFieldHom T.base L f)) L
-    (pullback.snd T.structMap (specMapOfFieldHom T.base L f))
-    (pullback.fst T.structMap (specMapOfFieldHom T.base L f)) E' hT hE.symm hT' hord'
-
 theorem isLocallyMonomialPrincipalization_monomialPrincipalization
-    (hGeom : MonomialGeometryHypotheses.{u}) (hinv : ComapIsoInvariance.{u})
-    (hord : OrderAtBaseFieldChangeInvariance.{u}) (P : ℕ → Prop) :
+    (hGeom : MonomialGeometryHypotheses.{u}) (hinv : ComapIsoInvariance.{u}) (P : ℕ → Prop) :
     MonomialCenter.IsLocallyMonomialPrincipalization P (monomialPrincipalization hinv) := by
   have hmonomial := isMonomialCasePrincipalization_monomialPrincipalization hGeom hinv
   have hne : ∀ T : MarkedIdealWithBoundary.{u}, MonomialCenter.IsLocallyMonomialTriple T →
@@ -620,8 +576,6 @@ theorem isLocallyMonomialPrincipalization_monomialPrincipalization
   refine
     { center_subset_boundaryLocus := fun T hT _ => hmonomial.center_subset_boundaryLocus T hT
       cert := fun T hT _ => hmonomial.cert T hT
-      base_change := ?_
-      base_change_strict := ?_
       center_eq := fun T hT _ => hmonomial.center_eq T hT
       minLevel_ne_zero := fun T hT _ => hmonomial.minLevel_ne_zero T hT
       key_le := fun T hT _ => hmonomial.key_le T hT
@@ -631,11 +585,6 @@ theorem isLocallyMonomialPrincipalization_monomialPrincipalization
       smooth_pullback := ?_
       smooth_pullback_strict := ?_
       trivial_of_coSupport_empty := fun T hT _ => hmonomial.trivial_of_coSupport_empty T hT }
-  · intro T hT _ L instL instCZ f E' hE hT' _
-    exact isPullbackBlowupSequence_monomialPrincipalization_baseChange hGeom hinv hord T hT L f E' hE hT'
-  · intro T hT _ L instL instCZ f E' hE hT' _
-    exact (isPullbackBlowupSequence_monomialPrincipalization_baseChange hGeom hinv hord T hT L f E' hE
-      hT').isStrictPullback_of_surjective (hne T hT)
   · intro T hT _ Y q h hsmooth hq E' hE hT' _
     exact monomialPrincipalization_isPullbackBlowupSequence_of_smooth hGeom hinv T hT Y q h hq E' hE hT'
   · intro T hT _ Y q h hsmooth instSurj hq E' hE hT' _
@@ -648,7 +597,7 @@ end -- clump:auto
 -- ===== end clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MonomialCase.LocallyMonomialPrincipalization =====
 
 -- ===== clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.MaxOrderReduction =====
--- clump-header: {"m": "Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.MaxOrderReduction", "h": "module\n\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.CanonicalPrincipalization\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.OrderReductionResolution\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.FieldExtensionBaseChange\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.OrderReductionBaseChange\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.OrderReductionTrivialCases\nimport Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.SmoothBaseChangeCompatibility\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MonomialCase.LocallyMonomialPrincipalization\nimport Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.StrictPullbackCriterion\nimport Development.ResolutionOfSingularities.Foundations.Schemes.IdealSheafData\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
+-- clump-header: {"m": "Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.MaxOrderReduction", "h": "module\n\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.CanonicalPrincipalization\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.OrderReductionResolution\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.StrictPullbackComposition\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.OrderReductionBaseChange\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.OrderReductionTrivialCases\nimport Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.SmoothBaseChangeCompatibility\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MonomialCase.LocallyMonomialPrincipalization\nimport Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.StrictPullbackCriterion\nimport Development.ResolutionOfSingularities.Foundations.Schemes.IdealSheafData\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -662,43 +611,10 @@ namespace FunctorialResolution.EmbeddedResolution
 
 namespace MaxOrderReduction
 
-private theorem orderAtBaseFieldChangeInvariance_of_geometryHypotheses (hG : PrincipalizationGeometryHypotheses.{u}) :
-    OrderAtBaseFieldChangeInvariance.{u} := by
-  intro T hT L _ _ f B b pB hpB IB EB hTB Q a b' hpb A y
-  subst hpB
-  have hQ : IsPullback
-      (Limits.pullback.fst b (Limits.pullback.fst T.structMap (specMapOfFieldHom T.base L f)))
-      (Limits.pullback.snd b (Limits.pullback.fst T.structMap (specMapOfFieldHom T.base L f))) b
-      (Limits.pullback.fst T.structMap (specMapOfFieldHom T.base L f)) :=
-    IsPullback.of_hasPullback _ _
-  let E : Q ≅ Limits.pullback (b ≫ T.structMap) (specMapOfFieldHom T.base L f) :=
-    hpb.isoIsPullback B (Limits.pullback T.structMap (specMapOfFieldHom T.base L f)) hQ ≪≫
-      Limits.pullbackRightPullbackFstIso T.structMap (specMapOfFieldHom T.base L f) b
-  have he : E.hom ≫ Limits.pullback.fst (b ≫ T.structMap) (specMapOfFieldHom T.base L f) = a := by
-    simp [E, Iso.trans_hom]
-  have hcomp : A.comap a =
-      (A.comap
-        (Limits.pullback.fst (b ≫ T.structMap) (specMapOfFieldHom T.base L f))).comap E.hom := by
-    rw [← he]
-    simp [Scheme.IdealSheafData.comap_comp]
-  have h1 : orderAt (A.comap a) y
-      = orderAt (A.comap (Limits.pullback.fst (b ≫ T.structMap) (specMapOfFieldHom T.base L f)))
-          (E.hom.base y) := by
-    rw [hcomp]
-    exact FunctorialResolution.EmbeddedResolution.orderAt_comap_of_isIso E.hom _ y
-  have h2 := hG.orderAt_baseChange
-    (MarkedIdealWithBoundary.mk T.base B (b ≫ T.structMap) IB T.mult EB) hTB L f A (E.hom.base y)
-  have h3 : orderAt A
-      ((Limits.pullback.fst (b ≫ T.structMap) (specMapOfFieldHom T.base L f)).base (E.hom.base y))
-      = orderAt A (a y) := by
-    rw [← he]
-    simp
-  exact h1.trans (h2.trans h3)
-
 theorem monomialPrincipalization_spec (hG : PrincipalizationGeometryHypotheses.{u})
     (hinv : ComapIsoInvariance.{u}) : MonomialPrincipalizationHypotheses hinv := by
   have h := isLocallyMonomialPrincipalization_monomialPrincipalization hG.monomialInputs hinv
-      (orderAtBaseFieldChangeInvariance_of_geometryHypotheses hG) (fun _ => True)
+      (fun _ => True)
   exact
     { cert := fun T hTm i hi => h.cert T hTm trivial i hi
       center_nonempty := fun T hTm i hi => h.center_nonempty T hTm trivial i hi
@@ -718,23 +634,8 @@ theorem isMaxOrderReduction_orderReductionSeq (hG : PrincipalizationGeometryHypo
       resolves := fun T hT hdim => isResolution_orderReductionSeq hG hinv hmon hspec hT hdim
       trivial_of_coSupport_empty := fun T hT hdim hc =>
         orderReductionSeq_length_eq_zero_of_orderAtLeastLocus_empty hinv T A hc
-      base_change := ?_
-      base_change_strict := ?_
       smooth_pullback := ?_
       smooth_pullback_strict := ?_ }
-  · intro T hT hdim L _ _ f E' hE hT' hdim'
-    exact orderReductionSeq_isPullbackBlowupSequence_pullbackOverField hG hinv n A B hspec T hT hdim L
-      (baseChangeStructMap T L f) (baseChangeProj T L f) E' hE.symm hT' hdim'
-      (baseChangeCompatible_baseChangeProj_of_isOrderReduction hG hinv n A B hspec T hT hdim L f)
-  · intro T hT hdim L _ _ f E' hE hT' hdim'
-    have hp := orderReductionSeq_isPullbackBlowupSequence_pullbackOverField hG hinv n A B hspec T hT hdim L
-      (baseChangeStructMap T L f) (baseChangeProj T L f) E' hE.symm hT' hdim'
-      (baseChangeCompatible_baseChangeProj_of_isOrderReduction hG hinv n A B hspec T hT hdim L f)
-    have hsurj : AlgebraicGeometry.Surjective (baseChangeProj T L f) :=
-      instSurjectivePullbackFstSpecMapField T.base L f T.scheme T.structMap
-    exact hp.isStrictPullback_of_surjective fun i hi =>
-      (Scheme.IdealSheafData.support_nonempty_iff_ne_top _).mp
-        (center_support_nonempty_orderReductionSeq hG hinv hmon hspec hT hdim i hi)
   · intro T hT hdim Y q h hsm hq E' hE hT' hdim'
     have := hsm
     exact orderReductionSeq_isPullbackBlowupSequence_pullbackOverField hG hinv n A B hspec T hT hdim T.base q h E'

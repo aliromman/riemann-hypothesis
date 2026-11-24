@@ -17,21 +17,6 @@ noncomputable section
 
 universe u
 
-private theorem lt_of_add_one_le_natCast {a : WithBot ℕ∞} {n : ℕ} (h : a + 1 ≤ (n : WithBot ℕ∞)) :
-    a < (n : WithBot ℕ∞) := by
-  induction a using WithBot.recBotCoe with
-  | bot => exact WithBot.bot_lt_coe _
-  | coe e =>
-    induction e using ENat.recTopCoe with
-    | top =>
-      exfalso
-      have h' : ((⊤ : ℕ∞) + 1 : ℕ∞) ≤ (n : ℕ∞) := by exact_mod_cast h
-      simp at h'
-    | coe m =>
-      have h' : ((m + 1 : ℕ) : ℕ∞) ≤ (n : ℕ∞) := by exact_mod_cast h
-      have h'' : m + 1 ≤ n := by exact_mod_cast h'
-      exact_mod_cast (show m < n by omega)
-
 private theorem special_dim_add_one_le {O : Type u} [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] {ϖ : O} (hϖ : Irreducible ϖ) {K : Type} {ι : K → Type}
     (P : Ideal (MRing ι O)) [P.IsPrime] (hnt : P.comap (C : O →+* MRing ι O) = ⊥) :
@@ -98,7 +83,7 @@ theorem ConservationOfNumberLE.proof (h1 : IntNumAssoc.Statement.{u})
 
   have hsp : ringKrullDim (MRing ι (IsLocalRing.ResidueField O) ⧸ specialIdeal P) <
       ((d + 1 + Fintype.card K : ℕ) : WithBot ℕ∞) :=
-    lt_of_add_one_le_natCast ((special_dim_add_one_le hϖ P hnt).trans hdim)
+    ENat.WithBot.add_one_le_natCast_iff.mp ((special_dim_add_one_le hϖ P hnt).trans hdim)
   rw [hg, h1 (IsLocalRing.ResidueField O) K ι d (specialIdeal P) (h5 O K ι P hhom) hsp a]
   exact h2 O ϖ hϖ K ι P (fun V => intNum (IsLocalRing.ResidueField O) V a)
 

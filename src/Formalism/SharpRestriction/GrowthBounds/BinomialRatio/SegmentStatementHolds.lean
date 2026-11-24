@@ -250,7 +250,7 @@ theorem oddSet_disj (TT : Finset (Fin n')) (j j' : Fin (numSeg TT)) (h : j ≠ j
   rcases cd_cases (segStart TT j') (segStart TT j) with ⟨_, e4⟩ | ⟨_, e4⟩ <;>
   omega
 
-theorem sum_segS (TT : Finset (Fin n')) (_h2 : 2 ≤ numSeg TT) :
+theorem sum_segS (TT : Finset (Fin n')) :
     (∑ j, segS TT j) + numSeg TT ≤ TT.card := by
   have hdisj : Disjoint (Finset.univ.biUnion (oddSet TT)) (TT.filter (fun s => Even s.val)) := by
     rw [Finset.disjoint_left]

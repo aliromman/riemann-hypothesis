@@ -1627,7 +1627,7 @@ section -- clump:auto
 
 namespace PositivityTheory.KB
 
-theorem sAff_of (hCh : SChain) (_hEv : SEv) (hSep : SSep) (_hBr : SBridge) : SAff :=
+theorem sAff_of (hCh : SChain) (hSep : SSep) : SAff :=
   SplitAffineSpectral.sAff_of_parts hCh hSep SplitAffineSpectral.core SplitAffineSpectral.transfer SplitAffineSpectral.span SplitAffineSpectral.unit SplitAffineSpectral.eigen
     SplitAffineSpectral.evCob
 

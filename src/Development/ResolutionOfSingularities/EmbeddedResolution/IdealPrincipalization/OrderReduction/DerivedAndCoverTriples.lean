@@ -65,10 +65,6 @@ theorem etale_coverMap_of_isAdmissible (T : MarkedIdealWithBoundary.{u}) (hv : T
   rw [coverMap_eq_sigmaOpensDesc]
   exact etale_sigmaOpensDesc T.scheme (chosenCoverData T hv).opens
 
-instance instEtaleCoverMap (T : MarkedIdealWithBoundary.{u}) (hv : T.IsAdmissible) :
-    Etale (coverMap T hv) :=
-  etale_coverMap_of_isAdmissible T hv
-
 theorem smooth_coverMap_of_isAdmissible (T : MarkedIdealWithBoundary.{u}) (hv : T.IsAdmissible) :
     AlgebraicGeometry.Smooth (coverMap T hv) := by
   have : Etale (coverMap T hv) := etale_coverMap_of_isAdmissible T hv

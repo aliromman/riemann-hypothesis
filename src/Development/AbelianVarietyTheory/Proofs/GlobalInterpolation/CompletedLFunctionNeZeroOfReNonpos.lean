@@ -394,14 +394,14 @@ namespace LFunctionImaginaryAxis
 
 open Filter Topology
 
-private lemma analyticAt_factor (a : ℂ) {p : ℕ} (hp : p.Prime) (s : ℂ) :
+lemma analyticAt_factor (a : ℂ) {p : ℕ} (hp : p.Prime) (s : ℂ) :
     AnalyticAt ℂ (fun z : ℂ => 1 - a * (p : ℂ) ^ (-z)) s := by
   apply Differentiable.analyticAt
   intro z
   have hp0 : (p : ℂ) ≠ 0 := by exact_mod_cast hp.ne_zero
   fun_prop (disch := exact Or.inl hp0)
 
-private lemma order_factor (a : ℂ) {p : ℕ} (hp : p.Prime) (s : ℂ) :
+lemma order_factor (a : ℂ) {p : ℕ} (hp : p.Prime) (s : ℂ) :
     analyticOrderAt (fun z : ℂ => 1 - a * (p : ℂ) ^ (-z)) s =
       if a * (p : ℂ) ^ (-s) = 1 then 1 else 0 := by
   split_ifs with ha
@@ -417,7 +417,7 @@ private lemma order_factor (a : ℂ) {p : ℕ} (hp : p.Prime) (s : ℂ) :
     exact Complex.ofReal_ne_zero.mpr (ne_of_gt (Real.log_pos (by exact_mod_cast hp.one_lt)))
   · exact analyticOrderAt_eq_zero.mpr (.inr (sub_ne_zero.mpr (Ne.symm ha)))
 
-private lemma order_product (a : ℕ → ℂ) (S : Finset ℕ)
+lemma order_product (a : ℕ → ℂ) (S : Finset ℕ)
     (hS : ∀ p ∈ S, p.Prime) (s : ℂ) :
     analyticOrderAt (fun z : ℂ => ∏ p ∈ S, (1 - a p * (p : ℂ) ^ (-z))) s =
       (S.filter fun p => a p * (p : ℂ) ^ (-s) = 1).card := by

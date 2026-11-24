@@ -217,7 +217,7 @@ theorem top_shape {n' mm : ℕ} (TT : Finset (Fin n')) (aw bw : Fin n' → ℤ) 
       · simp only [Fin.val_rev, Fin.val_succ, Fin.coe_castSucc]
         omega
 
-theorem share_abs (L H Hp Cl κ₁ κ₂ ep : ℝ) (hL : 0 ≤ L) (_hH : 0 ≤ H) (hCl : 0 ≤ Cl) (h1 : 0 ≤ κ₁) (h1' : κ₁ ≤ 1)
+theorem share_abs (L H Hp Cl κ₁ κ₂ ep : ℝ) (hL : 0 ≤ L) (hCl : 0 ≤ Cl) (h1 : 0 ≤ κ₁) (h1' : κ₁ ≤ 1)
     (h2 : 0 ≤ κ₂) (hep : 0 ≤ ep) (a1 : Cl * H ≤ L) (a2 : (1 - ep) * L ≤ Cl * H) (a3 : Hp ≤ 2 * H) :
     (1 - (κ₁ + 2 * κ₂ + ep)) * L ≤ Cl * ((1 - κ₁) * H - κ₂ * Hp) := by
   have e1 : 0 ≤ (1 - κ₁) * (Cl * H - (1 - ep) * L) := mul_nonneg (by linarith) (by linarith)
@@ -368,7 +368,7 @@ theorem cloud_bound_of_prop_and_weyl_dimension (hP : CloudLowerBoundWeyl) (hW : 
     rw [hVf2, hVf, ← mul_div_assoc]
     refine div_le_div_of_nonneg_right ?_ hN.le
     nlinarith [mul_le_mul_of_nonneg_right hE2 hVfnn]
-  exact share_abs _ _ _ _ _ _ _ (dL_nonneg R lam0) (dL_nonneg R _) hClnn hk1 hk1' hk2 hep0 a1 a2 a3
+  exact share_abs _ _ _ _ _ _ _ (dL_nonneg R lam0) hClnn hk1 hk1' hk2 hep0 a1 a2 a3
 
 end Formalism.MainNotions.flipOneThree.Pf
 

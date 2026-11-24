@@ -587,28 +587,12 @@ theorem isOrderReduction_maxContact_of_descentHypotheses
     (hdes : DescentHypotheses hinv P A L) :
     IsOrderReduction P (maxContactPrincipalization hinv A) L := by
   refine
-    { cert := ?_, base_change := ?_, base_change_strict := ?_, pushforward := ?_,
+    { cert := ?_, pushforward := ?_,
       order_le := ?_, center_nonempty := ?_, resolves := ?_, smooth_pullback := ?_,
-      smooth_pullback_strict := ?_, trivial_of_coSupport_empty := ?_ }
+      trivial_of_coSupport_empty := ?_ }
   · intro T hv hdim hO i hi
     exact orderCertificate_of_orderAt_le_mult hinv P A L hstar hdes T hv hdim
       ((MarkedIdealWithBoundary.isOrderBoundedByMult_iff T).mp hO) i hi
-  · intro T hv hdim hO K _ _ f E' hBE hV' hP' hO'
-    have hord : ∀ x : ↥((T.baseChange K f).withBoundary E').scheme,
-        orderAt ((T.baseChange K f).withBoundary E').ideal x ≤ (T.mult : ℕ∞) := by
-      intro x
-      have h := (MarkedIdealWithBoundary.isOrderBoundedByMult_iff ((T.baseChange K f).withBoundary E')).mp hO' x
-      rwa [MarkedIdealWithBoundary.withBoundary_mult, MarkedIdealWithBoundary.baseChange_mult] at h
-    exact hdes.base_change T hv hdim ((MarkedIdealWithBoundary.isOrderBoundedByMult_iff T).mp hO) K f E' hBE hV'
-      hP' hord
-  · intro T hv hdim hO K _ _ f E' hBE hV' hP' hO'
-    have hord : ∀ x : ↥((T.baseChange K f).withBoundary E').scheme,
-        orderAt ((T.baseChange K f).withBoundary E').ideal x ≤ (T.mult : ℕ∞) := by
-      intro x
-      have h := (MarkedIdealWithBoundary.isOrderBoundedByMult_iff ((T.baseChange K f).withBoundary E')).mp hO' x
-      rwa [MarkedIdealWithBoundary.withBoundary_mult, MarkedIdealWithBoundary.baseChange_mult] at h
-    exact hdes.base_change_strict T hv hdim ((MarkedIdealWithBoundary.isOrderBoundedByMult_iff T).mp hO) K f E' hBE
-      hV' hP' hord
   · intro T hv hdim hO hbdry hmult Y q e _ hq hsm J hJv hJd hJi
     exact isPushforward_of_isSmoothDivisor hinv P Q A L L' hstar hdes hdiv hlow hdimlink T hv hdim hO
       hbdry hmult Y q e hq hsm J hJv hJd hJi
@@ -631,17 +615,6 @@ theorem isOrderReduction_maxContact_of_descentHypotheses
       rwa [hm] at h
     exact hdes.smooth_pullback T hv hdim ((MarkedIdealWithBoundary.isOrderBoundedByMult_iff T).mp hO) Y q g hq E' hBE
       hV' hP' hord
-  · intro T hv hdim hO Y q g _ _ hq E' hBE hV' hP' hO'
-    have hm : ((T.pullbackAlong Y q g).withBoundary E').mult = T.mult :=
-      (MarkedIdealWithBoundary.withBoundary_mult (T.pullbackAlong Y q g) E').trans
-        (T.pullbackAlong_mult Y q g)
-    have hord : ∀ x : ↥((T.pullbackAlong Y q g).withBoundary E').scheme,
-        orderAt ((T.pullbackAlong Y q g).withBoundary E').ideal x ≤ (T.mult : ℕ∞) := by
-      intro x
-      have h := (MarkedIdealWithBoundary.isOrderBoundedByMult_iff ((T.pullbackAlong Y q g).withBoundary E')).mp hO' x
-      rwa [hm] at h
-    exact hdes.smooth_pullback_strict T hv hdim ((MarkedIdealWithBoundary.isOrderBoundedByMult_iff T).mp hO) Y q g hq
-      E' hBE hV' hP' hord
   · intro T hv hdim hO hemp
     exact length_eq_zero_of_orderAtLeastLocus_eq_empty hinv P A T hv hdim
       ((MarkedIdealWithBoundary.isOrderBoundedByMult_iff T).mp hO) hemp

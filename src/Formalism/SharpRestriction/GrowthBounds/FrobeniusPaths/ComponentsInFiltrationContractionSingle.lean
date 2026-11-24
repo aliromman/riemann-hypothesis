@@ -46,6 +46,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+public import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.LatticeCountingFormula
 
 @[expose] public section
 
@@ -456,10 +457,6 @@ theorem antisymmetric_double_sum_eq_zero {A : Type*} [AddCommGroup A] (f : Fin n
     rw [e]; exact h0 _
   · intro x _; simp
   · intro x _; rfl
-
-theorem exterior_wedge_sq_zero (a : Fin n) : exteriorWedge P a * exteriorWedge P a = 0 := by
-  refine LinearMap.ext fun K => funext fun J => ?_
-  simp [exterior_wedge_apply]
 
 theorem exterior_contraction_sq_zero (a : Fin n) : exteriorContraction P a * exteriorContraction P a = 0 := by
   refine LinearMap.ext fun K => funext fun J => ?_

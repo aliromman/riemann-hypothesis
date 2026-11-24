@@ -412,7 +412,7 @@ theorem stab_two_sgn (hqd : HypOdd q d) (hd16 : d % 16 = 7) (h : IsLayer (e + 2)
           | rfl
           | push_cast; rfl
       rw [e1, e2, hωv, map_div₀, map_add (f := _), map_one, hσb, map_ofNat]
-      ring
+      ring_nf
     have hsmul : ∀ z, σ • z ∈ P ↔ z ∈ P := smul_mem_iff_of_stab σ P hσ
     have hprodP : ω * (1 - ω) ∈ P := by
       rw [hprod]

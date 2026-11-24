@@ -58,32 +58,8 @@ theorem eval_comp_pullback {n d : ℕ} (A : Matrix (Fin d) (Fin n) ℂ) (x : Fin
 
 theorem fibre_finite {n d : ℕ} (I : Ideal (MvPolynomial (Fin n) ℂ)) (A : Matrix (Fin d) (Fin n) ℂ)
     (hA : GroundTheory.Heights₂.Heights.ComplexSets.IsFiniteProjection I A) (y : Fin d → ℂ) :
-    {x : Fin n → ℂ | (∀ q ∈ I, eval x q = 0) ∧ A.mulVec x = y}.Finite := by
-  classical
-  let _ : Algebra (MvPolynomial (Fin d) ℂ) (MvPolynomial (Fin n) ℂ ⧸ I) :=
-    (GroundTheory.Heights₂.Heights.ComplexSets.projHom I A).toRingHom.toAlgebra
-  let _ : Module (MvPolynomial (Fin d) ℂ) (MvPolynomial (Fin n) ℂ ⧸ I) := Algebra.toModule
-  have : Module.Finite (MvPolynomial (Fin d) ℂ) (MvPolynomial (Fin n) ℂ ⧸ I) := hA.finite
-  have : Algebra.IsIntegral (MvPolynomial (Fin d) ℂ) (MvPolynomial (Fin n) ℂ ⧸ I) :=
-    Algebra.IsIntegral.of_finite _ _
-  have key : ∀ i : Fin n, ∃ f : Polynomial (MvPolynomial (Fin d) ℂ), f.Monic ∧
-      Polynomial.eval₂ (GroundTheory.Heights₂.Heights.ComplexSets.pullback A).toRingHom (X i) f ∈ I := by
-    intro i
-    obtain ⟨f, hfm, hf⟩ :=
-      Algebra.IsIntegral.isIntegral (R := MvPolynomial (Fin d) ℂ) (Ideal.Quotient.mk I (X i))
-    refine ⟨f, hfm, ?_⟩
-    rw [← Ideal.Quotient.eq_zero_iff_mem, Polynomial.hom_eval₂]
-    exact hf
-  choose f hfm hfI using key
-  refine (Set.Finite.pi (t := fun i => {z : ℂ | z ∈ ((f i).map (eval y)).roots})
-    (fun i => Multiset.finite_toSet _)).subset ?_
-  rintro x ⟨hx, hAx⟩
-  simp only [Set.mem_pi, Set.mem_univ, true_implies, Set.mem_ofPred_eq]
-  intro i
-  have h0 := hx _ (hfI i)
-  rw [Polynomial.hom_eval₂, eval_comp_pullback, hAx, eval_X] at h0
-  rw [Polynomial.mem_roots ((hfm i).map _).ne_zero, Polynomial.IsRoot, Polynomial.eval_map]
-  exact h0
+    {x : Fin n → ℂ | (∀ q ∈ I, eval x q = 0) ∧ A.mulVec x = y}.Finite :=
+  IndefiniteRowSideFullHecke.ComplexSets.fibre_finite hA y
 
 theorem proof (hF : HolomorphicFibreInfinite.Statement) : BranchOffHypersurface.Statement := by
   intro n k J b U φ hJ hdim hb hU hne hφd hφi hφJ

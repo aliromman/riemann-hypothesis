@@ -733,7 +733,7 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 section G
 variable {E Ω : Type} [Field E] [NumberField E] [IsCMField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] {l : ℕ} [Fact l.Prime] {a : ℕ}
 end G
-theorem galHodge0_of_cgTrue (sw : _root_.UpperTheory.One.M.TrivialCondition) (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (hF : GlobalTheory.Published.AutomorphicFormsFiniteGL)
+theorem galHodge0_of_cgTrue (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (hF : GlobalTheory.Published.AutomorphicFormsFiniteGL)
     (hG : _root_.UpperTheory.GalS.CuspUAlt) (hB : GlobalTheory.Published.DeRhamPotSemistable) (hGL : _root_.UpperTheory.GalS.CarUAlt)
     {D : D7} {T : WDTie D.nd D.naut} (C : _root_.GlobalTheory.HeightCounting.CGTrueT hL D T) : UpperTheory.GalS.GalHodge0 D T := by
   intro l _ ι π s hc hr
@@ -817,7 +817,7 @@ theorem galHodge0_of_cgTrue (sw : _root_.UpperTheory.One.M.TrivialCondition) (hL
       exact UpperTheory.GalS.ncW_of_nc T hm
     have hgood : UpperTheory.Zero.LLC.Good (⟨D.R.r, ParLaws.toCl ((CG.mk π₀).loc w)⟩ : IrrGL (k := w.adicCompletion D.host.E)) := by
       rw [hmk]
-      exact _root_.UpperTheory.One.M.New.cgGood sw C _ π w
+      exact _root_.UpperTheory.One.M.New.cgGood C _ π w
     have hs2 : 2 * s = ((D.R.r : ℤ) - 1 - wt : ℤ) := by
       push_cast
       linarith
@@ -895,7 +895,7 @@ open GlobalTheory GlobalTheory.WeilDeligne GlobalTheory.CuspRep GlobalTheory.Loc
 open GlobalTheory.Mem.Chr hiding HChar
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 namespace UpperTheory.GalS
-theorem sep_conj_g_alt (sw : _root_.UpperTheory.One.M.TrivialCondition) (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (hF : GlobalTheory.Published.AutomorphicFormsFiniteGL) {D : D7}
+theorem sep_conj_g_alt (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (hF : GlobalTheory.Published.AutomorphicFormsFiniteGL) {D : D7}
     {T : GlobalTheory.RowTie.WDTie D.nd D.naut} (C : _root_.GlobalTheory.HeightCounting.CGTrueT hL D T) {a : ℕ} (π : D.naut.CG a) (hc : D.naut.csd π) {w w' : PlE D.host}
     (hw : IsConjPl D.host w w') (k : Sep D.nd D.naut (D.naut.locG π w)) : Sep D.nd D.naut (D.naut.locG π w') := by
   have := host_isCMField D.host
@@ -918,7 +918,7 @@ theorem sep_conj_g_alt (sw : _root_.UpperTheory.One.M.TrivialCondition) (hL : _r
   obtain ⟨σ, hσ, -⟩ := LocEx.exists_isLocComp hF _ a π₀ w
   have good : ∀ (v : PlE D.host) (τ : SmIrr (GL (Fin a) (v.adicCompletion D.host.E))), π₀.IsLocComp v τ →
       UpperTheory.Zero.LLC.Good (cls (ParLaws.toRep τ)) := fun v τ hτ => by
-    have g := _root_.UpperTheory.One.M.New.cgGood sw C _ π v
+    have g := _root_.UpperTheory.One.M.New.cgGood C _ π v
     have h1 : (CG.mk π₀).IsLoc v (Quotient.mk _ τ) := hτ
     rw [← hmk, CG.IsLoc.unique _ a _ v _ _ h1.loc h1] at g
     exact g
@@ -1056,7 +1056,7 @@ end G
 theorem _root_.UpperTheory.GalS.ghOf'_alt (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (hF : GlobalTheory.Published.AutomorphicFormsFiniteGL)
     (hG : _root_.UpperTheory.GalS.CuspUAlt) (hB : GlobalTheory.Published.DeRhamPotSemistable) (hGL : _root_.UpperTheory.GalS.CarUAlt)
     (D : D7) (T : GlobalTheory.RowTie.WDTie D.nd D.naut) (C : _root_.GlobalTheory.HeightCounting.CGTrueT hL D T) (hl : LabTrue D T) : UpperTheory.GalS.GalHodgeN D T :=
-  ⟨(_root_.GlobalTheory.HodgeOfTrue.galHodge0_of_cgTrue trivial) hL hF hG hB hGL C, GlobalTheory.T.full_degree_label_forces_trivial_wild_inertia D T hl, fun π hc _ _ hw k => (_root_.UpperTheory.GalS.sep_conj_g_alt trivial) hL hF C π hc hw k,
+  ⟨_root_.GlobalTheory.HodgeOfTrue.galHodge0_of_cgTrue hL hF hG hB hGL C, GlobalTheory.T.full_degree_label_forces_trivial_wild_inertia D T hl, fun π hc _ _ hw k => _root_.UpperTheory.GalS.sep_conj_g_alt hL hF C π hc hw k,
     fun _ S π w ht => _root_.UpperTheory.GalS.tm_rankOne_alt hL C S π w ht⟩
 end GlobalTheory.HodgeOfTrue
 namespace GlobalTheory.GalAway

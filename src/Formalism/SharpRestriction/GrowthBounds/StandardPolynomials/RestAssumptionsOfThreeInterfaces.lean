@@ -111,10 +111,6 @@ section Xi
 
 variable {O : Type} [CommRing O] [IsDomain O]
 
-theorem xiVar_inj (N r t : ℕ) : Function.Injective (xiVar N r t) := by
-  intro c d h
-  simpa [xiVar] using h
-
 theorem xiSpan (N r t b : ℕ) :
     XiPolZ O N r t b ≤ Submodule.span O
       {g : MvPolynomial (BVar N r t) (KK O) | ∃ γ : Fin r → ℕ, ∑ c, γ c = b ∧ g = ∏ c, X (xiVar N r t c) ^ γ c} := by

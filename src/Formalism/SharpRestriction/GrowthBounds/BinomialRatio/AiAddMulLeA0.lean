@@ -51,7 +51,7 @@ namespace Formalism.MainNotions.ColumnSystems.Pf
 
 open Formalism.MainNotions.G
 
-theorem coarse_ratio_small {Al Ai Pl Pi bl bi b' be k p : ℝ} (hAl : 0 ≤ Al) (hb : 0 < b') (_hbe0 : 0 ≤ be) (hbe : be ≤ 1 / 12)
+theorem coarse_ratio_small {Al Ai Pl Pi bl bi b' be k p : ℝ} (hAl : 0 ≤ Al) (hb : 0 < b') (hbe : be ≤ 1 / 12)
     (hPi : 0 < Pi) (hp : 0 < p) (hP : p * Pi ≤ Pl) (h1 : Al * Pl ≤ bl) (h2 : bl ≤ b' * (1 + be))
     (h3 : bi - k * Pi < Ai * Pi) (h4 : b' * (1 - be) ≤ bi) : Al ≤ 2 * (Ai + k) / p := by
   rw [le_div_iff₀ hp]
@@ -62,7 +62,7 @@ theorem coarse_ratio_small {Al Ai Pl Pi bl bi b' be k p : ℝ} (hAl : 0 ≤ Al) 
 
 theorem Ai_add_mul_le_A0 {Ai A0 de ε k p N1 La s : ℝ} (hAi : 0 ≤ Ai) (hA : Ai * (1 + de) < A0) (hde : 40 * ε ≤ de)
     (hde6 : de < 1 / 6) (hε : ε = N1 * La / k) (hk : 5 ≤ k) (hkA : k ≤ A0) (hp : k ^ 2 ≤ p) (hLa : 1 ≤ La)
-    (hN1 : 1 ≤ N1) (_hs0 : 0 ≤ s) (hs : s ≤ N1) :
+    (hN1 : 1 ≤ N1) (hs : s ≤ N1) :
     Ai + s * (2 * (Ai + k) / p + 2 * La * A0 / k) ≤ A0 := by
   have hk0 : 0 < k := by linarith
   have hp0 : 0 < p := lt_of_lt_of_le (by positivity) hp
@@ -173,7 +173,7 @@ theorem partial_width_le_cap [NeZero X.m] (hH : 1 ≤ H) (h : Std C0 Cde CE1 CE2
           exact Nat.pow_le_pow_right (by have := h.p5; omega) (by omega)
         have hPP' : (X.p : ℝ) * ((X.p ^ (segG X.TT j - (segDists X.TT j).get i) : ℕ) : ℝ) ≤
             ((X.p ^ (segG X.TT j - (segDists X.TT j).get l) : ℕ) : ℝ) := by exact_mod_cast hPP
-        have := coarse_ratio_small (k := X.k) (Nat.cast_nonneg _) h.bpos h.be0 hbe12 (h.levels j i).1 hp0 hPP' (hcb l).1
+        have := coarse_ratio_small (k := X.k) (Nat.cast_nonneg _) h.bpos hbe12 (h.levels j i).1 hp0 hPP' (hcb l).1
           (h.winB _ (pos_mem X.TT j l).1).2 (hcb i).2 (h.winB _ (pos_mem X.TT j i).1).1
         linarith
     · rw [if_neg hl]
@@ -194,7 +194,7 @@ theorem partial_width_le_cap [NeZero X.m] (hH : 1 ≤ H) (h : Std C0 Cde CE1 CE2
       have h2 := h.Y1
       have : X.k ^ 2 * 1 ≤ X.k ^ 2 * X.Y ^ 2 := mul_le_mul_of_nonneg_left (by nlinarith) (by positivity)
       linarith
-    exact Ai_add_mul_le_A0 (ε := eps X C0) (Nat.cast_nonneg _) hAi hde h.de6 rfl hk5 hA0k hpk h.La1 h.one_le_level_alt (Nat.cast_nonneg _) hsN
+    exact Ai_add_mul_le_A0 (ε := eps X C0) (Nat.cast_nonneg _) hAi hde h.de6 rfl hk5 hA0k hpk h.La1 h.one_le_level_alt hsN
   have hsumZ : (∑ l : Fin (segS X.TT j),
       (if l.val < i.val + 1 then ((coarseA X.p S b l : ℤ) + (b.sg l : ℤ)) else 0)) ≤ S.A0 X.p := by
     exact_mod_cast hsumR

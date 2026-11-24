@@ -15,6 +15,7 @@ import Mathlib.RingTheory.SimpleRing.Principal
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
+public import Development.AutomorphicArithmetic.PrimeDiscriminants.CycImage
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.UnitaryNorms.PowValCast, Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostRam, Formalism.LocalToGlobal.UnitaryNorms.ExistsCycAct, Formalism.LocalToGlobal.Columns.CyclotomicIsCyclotomicExtension
@@ -177,13 +178,6 @@ theorem condN_div_q : H.condN / H.q = H.QS * H.d := by
 theorem condN_div_d : H.condN / H.d = H.QS * H.q := by
   obtain ⟨-, hd, -, -, -⟩ := H.hyp
   rw [HostRaw.condN, Nat.mul_div_cancel _ hd.pos]
-
-theorem ordCompl_q : ordCompl[H.q] H.condN = H.QS * H.d := by
-  obtain ⟨hq, hd, hq8, hd16, -⟩ := H.hyp
-  rw [condN_eq_q]
-  apply ordCompl_mul_prime hq
-  have hqd : Nat.Coprime H.d H.q := (Nat.coprime_primes hd hq).mpr (by omega)
-  exact Nat.Coprime.mul_left (Nat.Coprime.coprime_dvd_right (Nat.dvd_mul_right H.q H.d) H.QS_coprime) hqd
 
 variable {H}
 

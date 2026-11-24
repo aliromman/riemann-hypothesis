@@ -97,30 +97,6 @@ structure DescentHypotheses (hinv : ComapIsoInvariance.{u}) (P : ℕ → Prop)
     ∀ (N : W.IdealSheafData) (μ : ℕ) (Mem : Set ↥W) (Z : W.IdealSheafData),
       OrderCertificate W' (g ≫ p) (N.comap g) μ (g.base ⁻¹' Mem) (Z.comap g) →
       OrderCertificate W p N μ Mem Z
-  base_change : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc →
-      (∀ x : ↥T.scheme, orderAt T.ideal x ≤ (T.mult : ℕ∞)) →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-      (E' : List (T.baseChange L f).scheme.IdealSheafData),
-      MarkedIdealWithBoundary.SameNontrivialBoundary (T.baseChange L f).boundary E' →
-      ((T.baseChange L f).withBoundary E').IsAdmissible →
-      P ((T.baseChange L f).withBoundary E').krullDimSucc →
-      (∀ x : ↥((T.baseChange L f).withBoundary E').scheme,
-        orderAt ((T.baseChange L f).withBoundary E').ideal x ≤ (T.mult : ℕ∞)) →
-      IsPullbackBlowupSequence (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-        (maxContactPrincipalization hinv A ((T.baseChange L f).withBoundary E')).toSequenceOfBlowups
-        (maxContactPrincipalization hinv A T).toSequenceOfBlowups
-  base_change_strict : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc →
-      (∀ x : ↥T.scheme, orderAt T.ideal x ≤ (T.mult : ℕ∞)) →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-      (E' : List (T.baseChange L f).scheme.IdealSheafData),
-      MarkedIdealWithBoundary.SameNontrivialBoundary (T.baseChange L f).boundary E' →
-      ((T.baseChange L f).withBoundary E').IsAdmissible →
-      P ((T.baseChange L f).withBoundary E').krullDimSucc →
-      (∀ x : ↥((T.baseChange L f).withBoundary E').scheme,
-        orderAt ((T.baseChange L f).withBoundary E').ideal x ≤ (T.mult : ℕ∞)) →
-      IsStrictPullbackBlowupSeq (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-        (maxContactPrincipalization hinv A ((T.baseChange L f).withBoundary E')).toSequenceOfBlowups
-        (maxContactPrincipalization hinv A T).toSequenceOfBlowups
   comp_openImmersion : ∀ (T : MarkedIdealWithBoundary.{u}) (h : OrderReductionHypotheses P T) (d : BlowupSequenceData T.scheme)
       (D : StrictPullbackBlowupSeq (MaxContactCoverData.coverMap T h.valid)
         (coverBlowupSequence hinv A T h.valid).toMarkedSequenceOfBlowups.toSequenceOfBlowups d.toSequenceOfBlowups)
@@ -157,19 +133,6 @@ structure DescentHypotheses (hinv : ComapIsoInvariance.{u}) (P : ℕ → Prop)
       (∀ x : ↥((T.pullbackAlong Y q g).withBoundary E').scheme,
         orderAt ((T.pullbackAlong Y q g).withBoundary E').ideal x ≤ (T.mult : ℕ∞)) →
       IsPullbackBlowupSequence g
-        (maxContactPrincipalization hinv A ((T.pullbackAlong Y q g).withBoundary E')).toSequenceOfBlowups
-        (maxContactPrincipalization hinv A T).toSequenceOfBlowups
-  smooth_pullback_strict : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc →
-      (∀ x : ↥T.scheme, orderAt T.ideal x ≤ (T.mult : ℕ∞)) →
-    ∀ (Y : Scheme.{u}) (q : Y ⟶ Spec (CommRingCat.of T.base)) (g : Y ⟶ T.scheme)
-      [AlgebraicGeometry.Smooth g] [AlgebraicGeometry.Surjective g], g ≫ T.structMap = q →
-    ∀ E' : List Y.IdealSheafData,
-      MarkedIdealWithBoundary.SameNontrivialBoundary (T.pullbackAlong Y q g).boundary E' →
-      ((T.pullbackAlong Y q g).withBoundary E').IsAdmissible →
-      P ((T.pullbackAlong Y q g).withBoundary E').krullDimSucc →
-      (∀ x : ↥((T.pullbackAlong Y q g).withBoundary E').scheme,
-        orderAt ((T.pullbackAlong Y q g).withBoundary E').ideal x ≤ (T.mult : ℕ∞)) →
-      IsStrictPullbackBlowupSeq g
         (maxContactPrincipalization hinv A ((T.pullbackAlong Y q g).withBoundary E')).toSequenceOfBlowups
         (maxContactPrincipalization hinv A T).toSequenceOfBlowups
   flat_coverMap : ∀ (T : MarkedIdealWithBoundary.{u}) (h : OrderReductionHypotheses P T),

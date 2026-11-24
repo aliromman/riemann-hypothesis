@@ -76,7 +76,6 @@ theorem nc_de (X : Formalism.MainNotions.G.Inst D L) (Y : Formalism.MainNotions.
     (h1 : 9 ≤ K.dl1) (h2 : 9 ≤ K.dl2) (hlog : 1 ≤ Real.logb (D.what₂.places.resChar w) (2 * L.sc.a))
     (hS : nc_Size D L Y u w hg t0 j) : nc_De D L X Y K u w hg t0 j := by
   have hp : 2 ≤ D.what₂.places.resChar w := hg.1.two_le
-  have hA : (1 : ℝ) ≤ 2 * L.sc.a := by have := nc_a_ge (L := L); linarith
   have hmt := (hL u w hg)
   have ht : (Y.Fl u w hg).t = D.R.t := hmt.2.1
   have hk := hT.gat_k u w hg
@@ -93,7 +92,7 @@ theorem nc_de (X : Formalism.MainNotions.G.Inst D L) (Y : Formalism.MainNotions.
     have : (D.gat u w hg).P.m + 1 + (j - 1) * (D.R.t + 1) ≤ D.R.k + D.R.m * (D.R.t + 1) := by
       rw [hk]; exact Nat.add_le_add_left (Nat.mul_le_mul_right _ (by omega)) _
     exact_mod_cast this
-  have hde := nc_de_le (D.what₂.places.resChar w) (Y.Fl u w hg).t _ _ _ j hp (2 * L.sc.a) (D.R.N D.R.m : ℝ) hA hlog
+  have hde := nc_de_le (D.what₂.places.resChar w) (Y.Fl u w hg).t _ _ _ j hp (2 * L.sc.a) (D.R.N D.R.m : ℝ) hlog
     hN1 hN0 hS.1 hS.2
   have hinj := nc_iota_inj X Y hT hL u w hg t0 ht0
   have hNv : (Formalism.MainNotions.G.Nv X (D.what₂.places.resChar w) t0 : ℝ) = ((Y.Fl u w hg).TT (Y.vOf u w hg t0)).card := by

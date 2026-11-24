@@ -17,19 +17,8 @@ noncomputable section
 universe u
 
 theorem withBotENat_lt_of_add_one_le {a : WithBot ℕ∞} {n : ℕ} (h : a + 1 ≤ (n : WithBot ℕ∞)) :
-    a < (n : WithBot ℕ∞) := by
-  induction a using WithBot.recBotCoe with
-  | bot => exact WithBot.bot_lt_coe _
-  | coe e =>
-    induction e using ENat.recTopCoe with
-    | top =>
-      exfalso
-      have h' : ((⊤ : ℕ∞) + 1 : ℕ∞) ≤ (n : ℕ∞) := by exact_mod_cast h
-      simp at h'
-    | coe m =>
-      have h' : ((m + 1 : ℕ) : ℕ∞) ≤ (n : ℕ∞) := by exact_mod_cast h
-      have h'' : m + 1 ≤ n := by exact_mod_cast h'
-      exact_mod_cast (show m < n by omega)
+    a < (n : WithBot ℕ∞) :=
+  ENat.WithBot.add_one_le_natCast_iff.mp h
 
 theorem SpecialDimBound.proof : SpecialDimBound.Statement := by
   intro O _ _ _ ϖ hϖ K _ _ ι _ P d hP

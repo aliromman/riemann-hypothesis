@@ -254,7 +254,7 @@ lemma coeff_det_eq (R' : Subalgebra O (X' → Matrix d d (FractionRing O)))
     map_sum, map_mul, psi, MvPolynomial.eval₂Hom_X', MvPolynomial.eval₂Hom_C, Finset.mul_sum]
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [pow_succ]
-    ring
+    ring_nf
   rw [hL, RingHom.map_det, hmat, Matrix.det_smul, PowerSeries.coeff_X_pow_mul', if_pos (by omega),
     Nat.add_sub_cancel]
   symm

@@ -124,4 +124,8 @@ def CountLowAt (C0 CYb Cde Ck CD Cb CE1 CE2 Cc : ℝ) : Prop :=
 def RestCountUp : Prop := TransportedAlt fun C0 CYb Cde Ck CD Cb CE1 CE2 _ Cc => CountUpAt C0 CYb Cde Ck CD Cb CE1 CE2 Cc
 def RestCountLow : Prop := TransportedAlt fun C0 CYb Cde Ck CD Cb CE1 CE2 _ Cc => CountLowAt C0 CYb Cde Ck CD Cb CE1 CE2 Cc
 
+theorem xiVar_inj (N r t : ℕ) : Function.Injective (xiVar N r t) := by
+  intro c c' h
+  simpa [xiVar] using h
+
 end Formalism.MainNotions.ColumnSystems.Pf

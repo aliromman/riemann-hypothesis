@@ -181,7 +181,7 @@ theorem scale (k : ℕ) (g : Newform k) (p : ℕ) (hp : p.Prime) (z : ℍ) :
   rw [pow_mul, Function.Periodic.qParam, Function.Periodic.qParam, ← Complex.exp_nat_mul]
   congr 2
   push_cast
-  ring
+  ring_nf
 
 theorem hecke_identity (k : ℕ) (g : Newform k) (p : ℕ) (hp : p.Prime) (hpM : ¬ p ∣ g.M) (z : ℍ) :
     g.a p * g.f z = (p : ℂ)⁻¹ * ∑ b ∈ Finset.range p, g.f (ofComplex (((z : ℂ) + b) / p))

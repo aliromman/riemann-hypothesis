@@ -1371,12 +1371,11 @@ theorem main_alt_alt : Hypotheses₂ → ∀ (D : D7) (L : SizeData₂ D) (P : P
     · exact ⟨0, 1, by decide, h⟩
     · exact ⟨1, 0, by decide, Finset.mem_singleton.1 h⟩
   obtain ⟨k, k', hkk, hlk⟩ := hk
-  have hl2 : D.nd.l i ≠ 2 := by have := g_two_lt L hG k; omega
   refine (_root_.GlobalTheory.NLinkTyp.etaLoc_le_rhs_alt hPr D L P nch HW F X C₂ hS constantSecondHub CT hCT h68 hG i hi k k' hkk hlk).trans ?_
   refine Finset.sum_le_sum fun π hπ => ?_
   exact mul_le_mul_of_nonneg_left (rhs_le L P X constantSecondHub C1 hC68 hC1 hpar heta hS.kill i hi
     (by rw [hlk]; exact UpperTheory.Small.not_mem_of_mod D.host (D.ntypes.g_cond k))
-    (UpperTheory.KStar.nuL_eq_zero_of_g D _ (by rw [hlk]; fin_cases k <;> simp [TwistedPlaces.gset]) hl2) π hπ) (Nat.cast_nonneg _)
+    (UpperTheory.KStar.nuL_eq_zero_of_g D _ (by rw [hlk]; fin_cases k <;> simp [TwistedPlaces.gset])) π hπ) (Nat.cast_nonneg _)
 end GlobalTheory.NLinkTyp
 end
 end

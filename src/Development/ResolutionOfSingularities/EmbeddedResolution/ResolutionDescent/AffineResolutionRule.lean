@@ -85,16 +85,6 @@ def IsCompatibleWithEtaleCovers (R : AffineResolutionRule.{u}) : Prop :=
     φ ≫ pY = pW → (∀ y : ↥Y, ∃ w : ↥W, φ.base w = y) →
     IsStrictPullbackBlowupSeq φ (R k W pW) (R k Y pY)
 
-def IsCompatibleWithFieldBaseChange (R : AffineResolutionRule.{u}) : Prop :=
-  ∀ (k : Type u) [Field k] [CharZero k] (Y : Scheme.{u})
-    (p : Y ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.LocallyOfFiniteType p]
-    [AlgebraicGeometry.QuasiCompact p] [AlgebraicGeometry.IsReduced Y]
-    [AlgebraicGeometry.IsAffine Y] (K : Type u) [Field K] [CharZero K] [Algebra k K]
-    [AlgebraicGeometry.IsReduced (baseChange p K)]
-    [AlgebraicGeometry.IsAffine (baseChange p K)],
-    IsStrictPullbackBlowupSeq (baseChangeProjection p K)
-      (R K (baseChange p K) (baseChangeToSpec p K)) (R k Y p)
-
 def IsInducedByAffineRule (R : AffineResolutionRule.{u}) (k : Type u) [Field k] [CharZero k] (Y : Scheme.{u})
     (p : Y ⟶ Spec (CommRingCat.of k)) (B : SequenceOfBlowups Y) : Prop :=
   ∀ (W : Scheme.{u}) (q : W ⟶ Spec (CommRingCat.of k))
@@ -109,14 +99,5 @@ def ExistsGluedBlowupSequence (R : AffineResolutionRule.{u}) : Prop :=
     (p : Y ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.LocallyOfFiniteType p]
     [AlgebraicGeometry.QuasiCompact p] [AlgebraicGeometry.IsReduced Y],
     ∃ B : SequenceOfBlowups Y, (∀ i, i < B.length → B.center i ≠ ⊤) ∧ IsInducedByAffineRule R k Y p B
-
-def InducedRuleCompatibleWithFieldExtension (R : AffineResolutionRule.{u}) : Prop :=
-  IsCompatibleWithOpenImmersions R → IsCompatibleWithFieldBaseChange R →
-  ∀ F : ResolutionRule.{u},
-    (∀ (k : Type u) [Field k] [CharZero k] (X : Scheme.{u})
-      (f : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.LocallyOfFiniteType f]
-      [AlgebraicGeometry.QuasiCompact f] [AlgebraicGeometry.IsReduced X],
-      IsInducedByAffineRule R k X f (F k X f)) →
-    IsCompatibleWithFieldExtension F
 
 end FunctorialResolution.EmbeddedResolution

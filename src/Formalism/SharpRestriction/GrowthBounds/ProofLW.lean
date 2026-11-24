@@ -244,7 +244,7 @@ section Loc
 variable {n' k1 : ℕ}
 
 theorem lw_de_le (p t : ℕ) (TT : Finset (Fin n')) (lam0 : Fin n' → Fin (k1 + 1) → ℤ) (w : ℕ → Fin n' → ℤ) (j : ℕ)
-    (hp : 2 ≤ p) (A : ℝ) (NM : ℝ) (hA : 1 ≤ A) (hl : 1 ≤ Real.logb p A) (hN1 : (NN k1 t j : ℝ) ≤ NM)
+    (hp : 2 ≤ p) (A : ℝ) (NM : ℝ) (hl : 1 ≤ Real.logb p A) (hN1 : (NN k1 t j : ℝ) ≤ NM)
     (hN0 : (NN k1 t (j - 1) : ℝ) ≤ NM) (hal : ∀ s, (al TT lam0 s : ℝ) ≤ A)
     (hls : ∀ s, (lsz t TT lam0 w j s : ℝ) ≤ A ^ 2) :
     de p t TT lam0 w j ≤ 5 * (n' : ℝ) * NM ^ 2 * Real.logb p A + 4 * (TT.card : ℝ) * Real.logb p A ^ 2 := by
@@ -254,9 +254,9 @@ theorem lw_de_le (p t : ℕ) (TT : Finset (Fin n')) (lam0 : Fin n' → Fin (k1 +
   have hNM : 1 ≤ NM := le_trans hN1' hN1
   have hN0' : (0 : ℝ) ≤ NN k1 t (j - 1) := by positivity
   have hα : ∀ s, (lgp p (al TT lam0 s) : ℝ) ≤ 2 * ℓ := fun s => by
-    have := nc_lgp_le p hp _ A 1 hA (by rw [pow_one]; exact hal s) hl; push_cast at this; linarith
+    have := nc_lgp_le p hp _ A 1 (by rw [pow_one]; exact hal s) hl; push_cast at this; linarith
   have hlz : ∀ s, (lgp p (lsz t TT lam0 w j s) : ℝ) ≤ 3 * ℓ := fun s => by
-    have := nc_lgp_le p hp _ A 2 hA (hls s) hl; push_cast at this; linarith
+    have := nc_lgp_le p hp _ A 2 (hls s) hl; push_cast at this; linarith
   have hα0 : ∀ s, (0 : ℝ) ≤ lgp p (al TT lam0 s) := fun s => by positivity
   have hlz0 : ∀ s, (0 : ℝ) ≤ lgp p (lsz t TT lam0 w j s) := fun s => by positivity
   have h1 : ∑ s : Fin n', ((NN k1 t j : ℝ) * lgp p (al TT lam0 s) +
@@ -299,7 +299,6 @@ theorem lw_de (X : Formalism.MainNotions.G.Inst D L) (Y : Formalism.MainNotions.
     (h1 : 5 ≤ K.dl1) (h2 : 4 ≤ K.dl2) (hlog : 1 ≤ Real.logb (D.what₂.places.resChar w) (2 * L.sc.a))
     (hS : lw_Size D L Y u w hg t0 j) : nc_De D L X Y K u w hg t0 j := by
   have hp : 2 ≤ D.what₂.places.resChar w := hg.1.two_le
-  have hA : (1 : ℝ) ≤ 2 * L.sc.a := by have := nc_a_ge (L := L); linarith
   have hmt := (hL u w hg)
   have ht : (Y.Fl u w hg).t = D.R.t := hmt.2.1
   have hk := hT.gat_k u w hg
@@ -316,7 +315,7 @@ theorem lw_de (X : Formalism.MainNotions.G.Inst D L) (Y : Formalism.MainNotions.
     have : (D.gat u w hg).P.m + 1 + (j - 1) * (D.R.t + 1) ≤ D.R.k + D.R.m * (D.R.t + 1) := by
       rw [hk]; exact Nat.add_le_add_left (Nat.mul_le_mul_right _ (by omega)) _
     exact_mod_cast this
-  have hde := lw_de_le (D.what₂.places.resChar w) (Y.Fl u w hg).t _ _ _ j hp (2 * L.sc.a) (D.R.N D.R.m : ℝ) hA hlog
+  have hde := lw_de_le (D.what₂.places.resChar w) (Y.Fl u w hg).t _ _ _ j hp (2 * L.sc.a) (D.R.N D.R.m : ℝ) hlog
     hN1 hN0 hS.1 hS.2
   have hinj := nc_iota_inj X Y hT hL u w hg t0 ht0
   have hNv : (Formalism.MainNotions.G.Nv X (D.what₂.places.resChar w) t0 : ℝ) = ((Y.Fl u w hg).TT (Y.vOf u w hg t0)).card := by

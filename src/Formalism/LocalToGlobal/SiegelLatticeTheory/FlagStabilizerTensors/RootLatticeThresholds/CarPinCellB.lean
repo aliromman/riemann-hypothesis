@@ -10,6 +10,7 @@ public import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.AmpOrbQuot
 import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCSB
 import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.BigCellConjI
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeCountingBound.ArchPlace
+public import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.HaarTrHolds
 
 @[expose] public section
 
@@ -59,12 +60,6 @@ theorem orbQuot_exists (L : LocBessel k r) {g : Mx k r} (hg : g ∈ UH (Hpk k r)
 end Gen
 
 variable {D : D7} {X : Formalism.L2.SG.HidaSetting.HidaSetting D} {θ : ℝ} (C : Choice X θ) (hB : WuBessel C)
-
-theorem trHyp_C (u : D.what₂.Word) (τ : D.what₂.Tau) :
-    Formalism.L2.SG.Pf.Bridge.TrHyp (Formalism.L2.SG.RealObj.InfCut.PtRepPf.frU X u (vOf X τ)) (C.Q τ) (C.Qi τ)
-      (fun a : Fin D.R.rS => frS D ^ (D.R.rS - (a : ℕ))) :=
-  ⟨(C.isT τ).1, (C.isT τ).2.1, (C.isT τ).2.2.1, fun a => ((C.isT τ).2.2.2 a a rfl).1,
-    fun a => ((C.isT τ).2.2.2 a a rfl).2⟩
 
 theorem gB_mem (u : D.what₂.Word) (τ : D.what₂.Tau) (γ : Formalism.REAL.UJ (X.B.I.ε (vOf X τ))) :
     gB C τ γ ∈ UH (Hpk D.R.k D.R.rS) :=

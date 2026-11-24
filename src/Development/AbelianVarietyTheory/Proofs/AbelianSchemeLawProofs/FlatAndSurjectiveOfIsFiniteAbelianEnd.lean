@@ -87,7 +87,7 @@ theorem exists_flat_away {A B : Type} [CommRing A] [CommRing B] [IsDomain A] [Is
   letI : Algebra A C := ((algebraMap B C).comp φ).toAlgebra
   haveI : IsScalarTower A B C := IsScalarTower.of_algebraMap_eq' rfl
   haveI : IsLocalization (Algebra.algebraMapSubmonoid B (Submonoid.powers r)) C := by
-    rw [Algebra.algebraMapSubmonoid_powers]; assumption
+    rwa [Algebra.algebraMapSubmonoid_powers]
   have h1 : Module.Flat A (LocalizedModule (Submonoid.powers r) B) :=
     Module.Flat.trans A (Localization (Submonoid.powers r)) _
   exact Module.Flat.of_linearEquiv

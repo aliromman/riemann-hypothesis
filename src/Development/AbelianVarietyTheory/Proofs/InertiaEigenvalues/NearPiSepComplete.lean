@@ -74,18 +74,6 @@ private theorem crd_tmul_lemma {l : ℕ} [Fact l.Prime] (LL : FinExt l)
   rfl
 
 
-private theorem crd_mul_lemma_2 {l : ℕ} [Fact l.Prime] (LL : FinExt l)
-    (i : Fin (Module.finrank ℤ_[l] ↥(OL LL))) (q : WCb l) (y : RW LL) :
-    crd (W := WCb l) (basisO LL) i (((1 : ↥(OL LL)) ⊗ₜ[ℤ_[l]] q) * y) =
-      q * crd (W := WCb l) (basisO LL) i y := by
-  induction y using TensorProduct.induction_on with
-  | zero => simp
-  | tmul o w =>
-    rw [Algebra.TensorProduct.tmul_mul_tmul, one_mul, crd_tmul_lemma, crd_tmul_lemma, mul_smul_comm]
-  | add y z hy hz =>
-    rw [mul_add, LinearMap.map_add (f := _), LinearMap.map_add (f := _), hy, hz]
-    exact (mul_add q _ _).symm
-
 private theorem expand_lemma_3 {l : ℕ} [Fact l.Prime] (LL : FinExt l) (y : RW LL) :
     ∑ k, basisO LL k ⊗ₜ[ℤ_[l]] crd (W := WCb l) (basisO LL) k y = y := by
   induction y using TensorProduct.induction_on with
@@ -121,88 +109,6 @@ private theorem rwdiv_lemma_6 {l : ℕ} [Fact l.Prime] (LL : FinExt l) (z : RW L
   refine Finset.sum_congr rfl fun k _ => ?_
   rw [hv k, ← nsmul_eq_mul, ← nsmul_eq_mul, TensorProduct.tmul_smul]
 
-private theorem cc_inclW_lemma_7 {l : ℕ} [Fact l.Prime] (w : Ainf l) :
-    (inclW l w).coeff 0 = algebraMap (OCb l) (Cb l) (w.coeff 0) := by
-  unfold inclW
-  exact WittVector.map_coeff _ _ 0
-
-private theorem cc_pi_lemma_8 {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P) (s : ℕ) :
-    (inclW l (WittVector.teichmuller l (AI.εroot s) - 1)).coeff 0 =
-      algebraMap (OCb l) (Cb l) (AI.εroot s - 1) := by
-  rw [cc_inclW_lemma_7]
-  congr 1
-  change WittVector.constantCoeff (WittVector.teichmuller l (AI.εroot s) - 1) = _
-  rw [map_sub, map_one]
-  rfl
-
-private theorem inclR_piR_lemma_9 {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P)
-    (LL : FinExt l) (s : ℕ) :
-    piR AI LL s =
-      (1 : ↥(OL LL)) ⊗ₜ[ℤ_[l]] inclW l (WittVector.teichmuller l (AI.εroot s) - 1) := rfl
-
-private theorem inclR_tmul_lemma_10 {l : ℕ} [Fact l.Prime] (LL : FinExt l) (o : ↥(OL LL)) (w : Ainf l) :
-    (inclR LL) (o ⊗ₜ[ℤ_[l]] w) = o ⊗ₜ[ℤ_[l]] inclW l w := rfl
-
-private theorem cc_inclR_lemma_11 {l : ℕ} [Fact l.Prime] (LL : FinExt l)
-    (i : Fin (Module.finrank ℤ_[l] ↥(OL LL))) (a : ↥(OL LL) ⊗[ℤ_[l]] Ainf l) :
-    ∃ c : OCb l, (crd (W := WCb l) (basisO LL) i (inclR LL a)).coeff 0 = algebraMap (OCb l) (Cb l) c := by
-  induction a using TensorProduct.induction_on with
-  | zero => exact ⟨0, by simp⟩
-  | tmul o w =>
-    refine ⟨((basisO LL).coord i o • w).coeff 0, ?_⟩
-    rw [inclR_tmul_lemma_10, crd_tmul_lemma, ← cc_inclW_lemma_7]
-    congr 1
-    exact (map_smul (inclWA l) _ _).symm
-  | add a b ha hb =>
-    obtain ⟨c1, h1⟩ := ha
-    obtain ⟨c2, h2⟩ := hb
-    refine ⟨c1 + c2, ?_⟩
-    have e : (inclR LL) (a + b) = (inclR LL) a + (inclR LL) b := (inclR LL).toRingHom.map_add a b
-    rw [e, LinearMap.map_add (f := _), map_add (algebraMap (OCb l) (Cb l)), ← h1, ← h2]
-    exact WittVector.add_coeff_zero _ _
-
-private theorem coord_of_near_lemma_12 {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P)
-    (LL : FinExt l) (s n : ℕ) (y : RW LL) (h : NearPi AI LL s n y)
-    (i : Fin (Module.finrank ℤ_[l] ↥(OL LL))) :
-    ∃ c, crdZero LL i y = algebraMap (OCb l) (Cb l) ((AI.εroot s - 1) ^ n * c) := by
-  unfold NearPi Near at h
-  obtain ⟨a, r, rfl⟩ := h
-  obtain ⟨c, hc⟩ := cc_inclR_lemma_11 LL i a
-  refine ⟨c, ?_⟩
-  rw [map_add (f := _), ← nsmul_eq_mul, map_nsmul, nsmul_eq_mul, crdZero_apply, inclR_piR_lemma_9,
-    Algebra.TensorProduct.tmul_pow, one_pow, crd_mul_lemma_2]
-  change WittVector.constantCoeff (p := l) (R := Cb l) (_ * _) + _ = _
-  rw [map_mul, map_pow]
-  change (inclW l (WittVector.teichmuller l (AI.εroot s) - 1)).coeff 0 ^ n *
-    (crd (W := WCb l) (basisO LL) i (inclR LL a)).coeff 0 + _ = _
-  rw [cc_pi_lemma_8, hc, map_mul, map_pow]
-  simp
-
-set_option maxHeartbeats 2000000 in
-private theorem near_of_coord_lemma_13 {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P)
-    (LL : FinExt l) (s n : ℕ) (y : RW LL)
-    (h : ∀ i, ∃ c, crdZero LL i y = algebraMap (OCb l) (Cb l) ((AI.εroot s - 1) ^ n * c)) :
-    NearPi AI LL s n y := by
-  choose c hc using h
-  let a : ↥(OL LL) ⊗[ℤ_[l]] Ainf l := ∑ k, basisO LL k ⊗ₜ[ℤ_[l]] WittVector.teichmuller l (c k)
-  obtain ⟨r, hr⟩ := rwdiv_lemma_6 LL (y - piR AI LL s ^ n * (inclR LL) a) (fun i => by
-    have ha : (inclR LL) a = ∑ k, basisO LL k ⊗ₜ[ℤ_[l]] inclW l (WittVector.teichmuller l (c k)) := by
-      change (inclR LL : RA LL →+* RW LL) (∑ k, basisO LL k ⊗ₜ[ℤ_[l]] WittVector.teichmuller l (c k)) = _
-      set_option synthInstance.maxHeartbeats 100000 in
-        rw [map_sum]
-      exact Finset.sum_congr rfl fun k _ => rfl
-    rw [LinearMap.map_sub, inclR_piR_lemma_9, Algebra.TensorProduct.tmul_pow, one_pow, crd_mul_lemma_2, ha,
-      crd_sum_lemma_4]
-    change WittVector.constantCoeff (p := l) (R := Cb l) (_ - _) = 0
-    rw [map_sub, map_mul, map_pow]
-    change (crd (W := WCb l) (basisO LL) i y).coeff 0 -
-      (inclW l (WittVector.teichmuller l (AI.εroot s) - 1)).coeff 0 ^ n *
-        (inclW l (WittVector.teichmuller l (c i))).coeff 0 = 0
-    rw [← crdZero_apply, hc, cc_pi_lemma_8, cc_inclW_lemma_7, WittVector.teichmuller_coeff_zero, map_mul,
-      map_pow, sub_self])
-  unfold NearPi Near
-  exact ⟨a, r, sub_eq_iff_eq_add'.mp hr⟩
-
 private theorem surj_lemma_14 {l : ℕ} [Fact l.Prime] (LL : FinExt l)
     (c : Fin (Module.finrank ℤ_[l] ↥(OL LL)) → OCb l) :
     ∃ x : RW LL, ∀ i, crdZero LL i x = algebraMap (OCb l) (Cb l) (c i) := by
@@ -221,8 +127,8 @@ theorem nearPi_sep_complete (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocA
   refine ⟨fun x hx => ?_, fun k f hf => ?_⟩
   · refine rwdiv_lemma_6 LL x fun i => ?_
     rw [← crdZero_apply]
-    exact key.1 x (fun m i => coord_of_near_lemma_12 P AI LL s m x (hx m) i) i
-  · obtain ⟨x, hx⟩ := key.2 k f (fun n i => coord_of_near_lemma_12 P AI LL s (n + k) (f n) (hf n) i)
-    exact ⟨x, fun m => near_of_coord_lemma_13 P AI LL s (m + k) _ (hx m)⟩
+    exact key.1 x (fun m i => (nearPi_iff_crd AI LL s m x).1 (hx m) i) i
+  · obtain ⟨x, hx⟩ := key.2 k f (fun n i => (nearPi_iff_crd AI LL s (n + k) (f n)).1 (hf n) i)
+    exact ⟨x, fun m => (nearPi_iff_crd AI LL s (m + k) _).2 (hx m)⟩
 
 end GlobalTheory.Decompl

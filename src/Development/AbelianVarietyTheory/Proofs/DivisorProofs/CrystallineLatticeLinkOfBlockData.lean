@@ -290,7 +290,7 @@ theorem diagonal_entry_of_semilinear_mod_subspace : ∀ (F : Type) [Field F] (n 
     convert h using 1
     ext i
     simp only [Pi.smul_apply, Pi.sub_apply, Pi.add_apply, smul_eq_mul, hc]
-    ring
+    ring_nf
   have hc0 : c = 0 := by
     by_contra hne
     apply he

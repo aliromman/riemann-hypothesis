@@ -446,9 +446,6 @@ section -- clump:auto
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount GlobalTheory.LKCx
 open scoped TensorProduct Classical
 
-
-#check GlobalTheory.IntBasisKQ.exists_basis_intKQ
-
 noncomputable section
 
 open scoped Pointwise

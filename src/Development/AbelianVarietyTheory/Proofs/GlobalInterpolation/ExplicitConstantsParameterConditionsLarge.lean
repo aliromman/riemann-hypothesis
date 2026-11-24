@@ -344,9 +344,9 @@ theorem half_le_abs_node_sub_mid (b : ℝ) (i j : ℕ) (H : ℝ) (hH : 0 ≤ H) 
     H ≤ |(b + i * (2 * H)) - (b + j * (2 * H) + 2 * H / 2)| := by
   rcases Nat.lt_or_ge j i with h | h
   · have : (j : ℝ) + 1 ≤ i := by exact_mod_cast h
-    exact le_abs.2 (Or.inl (by nlinarith))
+    exact le_abs.2 (Or.inl (by nlinarith only [this, hH]))
   · have : (i : ℝ) ≤ j := by exact_mod_cast h
-    exact le_abs.2 (Or.inr (by nlinarith))
+    exact le_abs.2 (Or.inr (by nlinarith only [this, hH]))
 
 theorem szRow_lowsFar : SzRow (fun C D L => (∀ τ (i j : Fin D.R.m),
     2 * L.sc.b / lStar L + (D.R.t : ℝ) / 2 + 3 ≤ |(((D.hc τ).b i - (D.hc τ).e j : ℚ) : ℝ)|)) := by
@@ -403,7 +403,7 @@ theorem szRow_lowsFar : SzRow (fun C D L => (∀ τ (i j : Fin D.R.m),
     positivity
   have : 2 * L.sc.b / ((D.R.m : ℝ) * L.sc.b / Λ) ≤ 2 * Λ := by
     rw [div_div_eq_mul_div, div_le_iff₀ (by positivity)]
-    nlinarith [mul_nonneg hΛ0 hb0.le]
+    nlinarith only [hm, mul_nonneg hΛ0 hb0.le]
   linarith
 
 end GlobalTheory.EX
@@ -495,7 +495,7 @@ theorem szRow_logf : SzRow (fun C D L => (Real.log D.R.f ≤ Real.sqrt D.R.rS) �
   refine ⟨Real.le_sqrt_of_sq_le hsq, ?_, ?_, ?_⟩
   · have hr : D.R.rS ≤ D.R.m := by unfold Ranks.rS; omega
     have hr' : (D.R.rS : ℝ) ≤ D.R.m := by exact_mod_cast hr
-    have h2 : (D.R.m : ℝ) ≤ (D.R.m : ℝ) ^ 2 := by nlinarith
+    have h2 : (D.R.m : ℝ) ≤ (D.R.m : ℝ) ^ 2 := by nlinarith only [hm2']
     have h3 : (D.R.m : ℝ) ^ 2 ≤ (D.R.m : ℝ) ^ 2 * L.sc.L := le_mul_of_one_le_right (by positivity) hL
     linarith
   · have hkr : D.R.k ≤ D.R.r := by unfold Ranks.r; omega
@@ -512,18 +512,18 @@ theorem szRow_logf : SzRow (fun C D L => (Real.log D.R.f ≤ Real.sqrt D.R.rS) �
     have hcr : 1 ≤ C.P.cLL * D.R.r := by
       have := mul_le_mul_of_nonneg_left (le_trans hxc hxr) hc0.le
       rwa [mul_inv_cancel₀ hc0.ne'] at this
-    have hcrf : 1 ≤ C.P.cLL * D.R.r * D.R.f := by nlinarith
+    have hcrf : 1 ≤ C.P.cLL * D.R.r * D.R.f := by nlinarith only [hcr, hf2']
     have h3 : Real.log D.R.r ≤ C.P.cLL * D.R.r * D.R.f * Real.log D.R.r :=
       le_mul_of_one_le_left (by linarith) hcrf
     rw [hb]
-    nlinarith
+    nlinarith only [hl0, hlr, h3, he]
   · unfold nW
     rw [hW]
     have hk1 : (1 : ℝ) ≤ D.R.k := by exact_mod_cast (by omega : 1 ≤ D.R.k)
     have hk0 : (0 : ℝ) ≤ (D.R.k : ℝ) - 1 := by linarith
     have h2 : 0 ≤ (D.R.f : ℝ) ^ 2 * ((D.R.k : ℝ) - 1) ^ 3 * L.sc.L ^ 2 / D.R.m := by positivity
     have hr0 : (0 : ℝ) ≤ D.R.r := by positivity
-    nlinarith [mul_nonneg hr0 h2, mul_nonneg hr0 (sub_nonneg.mpr hf2')]
+    nlinarith only [mul_nonneg hr0 h2, mul_nonneg hr0 (sub_nonneg.mpr hf2')]
 
 end GlobalTheory.EX
 end -- clump:auto
@@ -682,7 +682,7 @@ theorem szRow_cloud_le : SzRow (fun C D L => (4 * L.Sc ≤ L.LaG * L.sc.b' / D.R
     have h5 : Real.exp ((cD + 11) * Real.log L.sc.x) ≤ Real.exp (L.sc.x ^ eps - L.sc.x ^ (eps / 3)) :=
       Real.exp_le_exp.2 (by simp only [pow_zero, mul_one, one_mul] at h; linarith)
     have h6 := Real.exp_pos (L.sc.x ^ eps - L.sc.x ^ (eps / 3))
-    nlinarith
+    nlinarith only [hx1', h5, h6]
   have key : 16 * C.P.CDelG * (D.R.k : ℝ) ^ 2 * (D.s.Del : ℝ) ≤ L.LaG * L.sc.b' := by
     have hk2 : (D.R.k : ℝ) ^ 2 ≤ (2 * L.sc.x ^ (5 : ℕ)) ^ 2 := by gcongr
     have hb0 : 0 ≤ L.sc.b' := le_trans (by positivity) hb
@@ -696,8 +696,8 @@ theorem szRow_cloud_le : SzRow (fun C D L => (4 * L.Sc ≤ L.LaG * L.sc.b' / D.R
   have hP : 0 ≤ (D.R.k : ℝ) ^ 2 * (D.s.Del : ℝ) := by positivity
   refine ⟨?_, ?_, ?_⟩
   · rw [le_div_iff₀ hk0, L.Sc_eq]
-    nlinarith
-  · nlinarith
+    nlinarith only [key, hP, hCD]
+  · nlinarith only [key, hP, hCD]
   · have h := h3 L.sc.x hx3
     simp only [pow_zero, mul_one, Real.rpow_zero] at h
     have h7 : Real.log (D.s.Del : ℝ) ≤ Real.log (2 * L.sc.x ^ cD) := Real.log_le_log (by linarith) hD2
@@ -838,7 +838,7 @@ theorem szRow_exact : SzRow (fun C D L => (∀ τ (t : D.host.TT) (hm : 0 < D.R.
       exact_mod_cast this
     simp only [Nat.sub_zero]
     push_cast
-    nlinarith
+    nlinarith only [hD, hk]
   · intro τ hk ht
     rw [(hu τ (by omega) ht).2, hv τ ⟨D.R.k - 2, by omega⟩]
     simp
@@ -846,7 +846,7 @@ theorem szRow_exact : SzRow (fun C D L => (∀ τ (t : D.host.TT) (hm : 0 < D.R.
   · intro τ j h
     rw [(hb τ ⟨j + 1, h⟩).1, (hb τ ⟨j, by omega⟩).1, hh0]
     push_cast
-    constructor <;> nlinarith
+    constructor <;> nlinarith only [Nat.cast_nonneg (α := ℝ) (h0v L.sc ch)]
   · rw [hV.etaF_eq, hC.2.2.2.2.2.2.2.2.2.2.2.1]
   · rw [hcc, Ideal.absNorm_top]
     simp only [Nat.cast_one, Real.log_one]
@@ -879,7 +879,7 @@ theorem gap_cube_bound (x t k m r : ℝ) (hx : 4 ≤ x) (ht0 : 0 ≤ t) (hk0 : 0
   have h5 : x ^ 5 ≤ x ^ 401 := pow_le_pow_right₀ hx1 (by norm_num)
   have h7 : (7 : ℝ) ≤ x ^ 401 := by
     have : x ^ 2 ≤ x ^ 401 := pow_le_pow_right₀ hx1 (by norm_num)
-    nlinarith
+    nlinarith only [hx, this]
   have h402 : x ^ 401 ≤ x ^ 402 := pow_le_pow_right₀ hx1 (by norm_num)
   have hA : k + m * (t + (r + 6) + 1) ≤ x ^ 403 := by
     have h1 : m * (t + (r + 6) + 1) ≤ x * (3 * x ^ 401) :=
@@ -1022,7 +1022,7 @@ theorem szRow_primes_conductor : SzRow (fun C D L => (L.sc.x ^ (2 * L.Ct + 5) < 
       unfold Ranks.r; omega
     have ht : D.R.t ≤ D.host.q := by
       have := D.host.qd_big.1
-      nlinarith
+      nlinarith only [this, hr]
     have ht' : (D.R.t : ℝ) ≤ Real.exp (L.sc.x ^ (L.sc.eps / 5)) :=
       le_trans (by exact_mod_cast ht) ((Real.log_le_iff_le_exp hq0).mp q2)
     have hE : (condE D : ℝ) ≤ Real.exp (2 * L.sc.x ^ (L.sc.eps / 5) * Real.log L.sc.x ^ 2) := by
@@ -1337,7 +1337,7 @@ theorem nN_div_m_le {C : FC} (hCt : C.Ct = 401) {cD ch : ℝ} {D : D7} {L : Size
     have h := D.R.rank_add_five_le
     have h1 : D.R.k + 1 ≤ D.R.t := by omega
     unfold Ranks.N
-    nlinarith
+    nlinarith only [h1, D.R.two_le_m]
   have hN' : (D.R.N D.R.m : ℝ) ≤ 2 * D.R.t * D.R.m := by exact_mod_cast hN
   rw [div_le_iff₀ hm]
   have e : L.sc.x ^ (404 : ℝ) = L.sc.x ^ (3 : ℝ) * L.sc.x ^ (401 : ℝ) := by
@@ -1403,8 +1403,8 @@ theorem szRow_windowLength : SzRow (fun C D L => (∀ l : ℕ, 11 ≤ l → ∃ 
       refine (Real.log_le_log hy hb).trans (le_of_eq ?_)
       rw [Real.log_mul (by norm_num) (by positivity), Real.log_rpow hx0]
     have hlb : Real.logb 5 ((D.R.n : ℝ) * D.R.N D.R.m / D.R.m) ≤ 400 * Real.log L.sc.x := by
-      rw [Real.logb, div_le_iff₀ (by linarith)]
-      nlinarith
+      rw [Real.logb, div_le_iff₀ (by linarith only [l4, l2, l5])]
+      nlinarith only [hl, l4, l2, l2', l5, hlog, hq]
     have a1 : (⌈(400 : ℝ) * Real.log L.sc.x⌉₊ : ℝ) < 400 * Real.log L.sc.x + 1 :=
       Nat.ceil_lt_add_one (by linarith)
     have a2 : ((⌈Real.logb 5 ((D.R.n : ℝ) * D.R.N D.R.m / D.R.m)⌉₊ : ℕ) : ℝ) ≤ (⌈(400 : ℝ) * Real.log L.sc.x⌉₊ : ℝ) := by

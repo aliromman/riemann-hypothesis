@@ -36,16 +36,21 @@ def homAt {S : Scheme.{0}} {V : S.Opens} {R : Type} [CommRing R]
     (t : Spec (CommRingCat.of R) ⟶ (overRes (T := baseOver S) V).left) :
     baseAt t ⟶ overRes (T := baseOver S) V := Over.homMk t rfl
 
+/-- Near `p` there are sections of the `n`th power whose pullbacks form a basis on each affine
+test scheme. -/
+abbrev SecBaseChangeAt {S : Scheme.{0}} (P : PolAV S) (n : ℕ) (p : S) : Prop :=
+  ∃ V : S.Opens, p ∈ V ∧ ∃ b : Fin (n ^ P.g) → LB.Sec (LPow P.A P.L n (overRes (T := baseOver S) V)),
+    ∀ (R : Type) [CommRing R] (t : Spec (CommRingCat.of R) ⟶ (overRes (T := baseOver S) V).left)
+      (b' : Fin (n ^ P.g) → LB.Sec (LPow P.A P.L n (baseAt t))),
+      (∀ i, IsPullSec P.A P.L n (homAt t ▷ P.A) (whiskerRight_snd (homAt t) P.A) (b i) (b' i)) →
+      LinearIndependent Γ((baseAt t).left, ⊤)
+          (fun i => (SecM.ofSec P.A (b' i) : SecM P.A P.L n (baseAt t))) ∧
+        Submodule.span Γ((baseAt t).left, ⊤)
+          (Set.range fun i => (SecM.ofSec P.A (b' i) : SecM P.A P.L n (baseAt t))) = ⊤
+
 def SecBaseChangeSt : Prop :=
   ∀ (S : Scheme.{0}) [IsLocallyNoetherian S] (P : PolAV S) (n : ℕ), 1 ≤ n →
-    ∀ p : S, ∃ V : S.Opens, p ∈ V ∧ ∃ b : Fin (n ^ P.g) → LB.Sec (LPow P.A P.L n (overRes (T := baseOver S) V)),
-      ∀ (R : Type) [CommRing R] (t : Spec (CommRingCat.of R) ⟶ (overRes (T := baseOver S) V).left)
-        (b' : Fin (n ^ P.g) → LB.Sec (LPow P.A P.L n (baseAt t))),
-        (∀ i, IsPullSec P.A P.L n (homAt t ▷ P.A) (whiskerRight_snd (homAt t) P.A) (b i) (b' i)) →
-        LinearIndependent Γ((baseAt t).left, ⊤)
-            (fun i => (SecM.ofSec P.A (b' i) : SecM P.A P.L n (baseAt t))) ∧
-          Submodule.span Γ((baseAt t).left, ⊤)
-            (Set.range fun i => (SecM.ofSec P.A (b' i) : SecM P.A P.L n (baseAt t))) = ⊤
+    ∀ p : S, SecBaseChangeAt P n p
 
 def VeryAmpleAt {S : Scheme.{0}} (A : Over S) [GrpObj A] (L : LB A.left) (N : ℕ) : Prop :=
   ∀ U : S.Opens, IsAffineOpen U →

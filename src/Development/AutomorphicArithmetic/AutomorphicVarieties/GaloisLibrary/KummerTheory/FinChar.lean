@@ -29,37 +29,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology UpperTheory.V UpperTheory.V.LDataCardLeFinrank UpperTheory.V.Base UpperTheory.V.Kum
 
-private theorem exists_valuationSubring_isPlaceOver (K Ω : Type) [Field K] [NumberField K] [Field Ω] [Algebra K Ω]
-    (v : HeightOneSpectrum (𝓞 K)) : ∃ A : ValuationSubring Ω, IsPlaceOver A v := by
-  let f : 𝓞 K →+* Ω := (algebraMap K Ω).comp (algebraMap (𝓞 K) K)
-  have hf : Function.Injective f :=
-    (algebraMap K Ω).injective.comp (IsFractionRing.injective (𝓞 K) K)
-  let e : 𝓞 K ≃+* f.range := RingEquiv.ofBijective f.rangeRestrict
-    ⟨fun x y h => hf (congrArg Subtype.val h), f.rangeRestrict_surjective⟩
-  let I : Ideal f.range := v.asIdeal.map e
-  have hI : I ≠ ⊤ := by
-    haveI : (v.asIdeal.map e).IsPrime := Ideal.map_isPrime_of_equiv e
-    exact Ideal.IsPrime.ne_top this
-  obtain ⟨V, hRV, hV⟩ := Ideal.image_subset_nonunits_valuationSubring I hI
-  have hlt : ∀ y ∈ v.asIdeal, V.valuation (f y) < 1 := by
-    intro y hy
-    have h1 : f y ∈ V.nonunits := hV ⟨e y, Ideal.mem_map_of_mem e hy, rfl⟩
-    exact (ValuationSubring.mem_nonunits_iff V).1 h1
-  have hle : ∀ y : 𝓞 K, V.valuation (f y) ≤ 1 := by
-    intro y
-    exact (ValuationSubring.valuation_le_one_iff V _).2 (hRV (RingHom.mem_range_self f y))
-  refine ⟨V, fun x => ⟨fun hx => ?_, fun hx => hlt x hx⟩⟩
-  by_contra hxv
-  obtain ⟨r, y, hy, hry⟩ := v.isMaximal.exists_inv hxv
-  have h2 : V.valuation (f (r * x)) < 1 := by
-    rw [map_mul, Valuation.map_mul]
-    exact lt_of_le_of_lt (mul_le_of_le_one_left' (hle r)) hx
-  have h3 : V.valuation (f (r * x + y)) < 1 := by
-    rw [map_add (f := _)]
-    exact Valuation.map_add_lt _ h2 (hlt y hy)
-  rw [hry, map_one, Valuation.map_one] at h3
-  exact lt_irrefl _ h3
-
 private theorem finite_above_of_ne_zero (K : Type) [Field K] [NumberField K] (N : ℕ) (hN : N ≠ 0) :
     (Above K N).Finite := by
   have h0 : Ideal.span {((N : ℕ) : 𝓞 K)} ≠ 0 := by
@@ -96,7 +65,7 @@ theorem UpperTheory.V.Kum.finChar :
       (fun g h => by rw [hadd, one_mul])
     refine ⟨β, a, ?_, hβ, hg⟩
     intro v hv
-    obtain ⟨A, hA⟩ := exists_valuationSubring_isPlaceOver K Ω v
+    obtain ⟨A, hA⟩ := exists_isPlaceOver Ω v
     have hnot : ¬ A.valuation (N : Ω) < 1 := fun h => hv (((placeDict K Ω).2.2.2 A v N hA).1 h)
     exact dvdOfIne K Ω n A v β a hA hβ
       (fun g hg' => by rw [hg, hine A hnot g hg', ZMod.val_zero, pow_zero, one_mul])

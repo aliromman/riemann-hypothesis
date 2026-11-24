@@ -77,6 +77,7 @@ import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsAd
 import Mathlib.Tactic.Basify
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.RecTExists
+import Lemmata.TracePi
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.CommutativeAlgebra.HodgeCohomologyOpenRestrictionEquiv, Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.ExistsFiniteEtaleRestrictClopen, Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.HodgePullHodgeTraceEqSumRestrictOpen, Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.SmoothOfRelativeDimensionCompEtale, Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.HolomorphicLefschetzFiniteEtaleCorrespondence, Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.IsProjOverRestrictClopen, Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.LefschetzFixedPointFiniteEtaleCorrespondence, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.WeightOneGeometricRealization, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GaloisRepresentationsOfThetaLift, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.RowSrc, Development.AutomorphicArithmetic.CharacterBoxes.MainConclusion
@@ -574,7 +575,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.IsProjOverRestrictClopen =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.LefschetzFixedPointFiniteEtaleCorrespondence =====
--- clump-header: {"m": "Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.LefschetzFixedPointFiniteEtaleCorrespondence", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.IsGaloisCover\npublic import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.OmegaPullOmegaTraceOfSecTraceOne\npublic import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.CechModulesFunctorShortExactOfIsAffineOpen\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HodgePullHodgePull\npublic import Development.AutomorphicArithmetic.CommutativeAlgebra.HodgeCohomologyOpenRestrictionEquiv\npublic import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.CompactSpaceOfProjectiveAndOfFinite\npublic import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.ExistsFiniteEtaleRestrictClopen\npublic import Mathlib.AlgebraicGeometry.Morphisms.Smooth\npublic import Mathlib.Basic.Complex.Basic\npublic import Mathlib.Order.CompletePartialOrder\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsIntegralClopenDecompositionOfSmooth\npublic import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.ExistsUniqueComplexPointLiftClopenCover\npublic import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.HodgePullHodgeTraceEqSumRestrictOpen\npublic import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.HolomorphicLefschetzFiniteEtaleCorrespondence\npublic import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.IsProjOverRestrictClopen\nimport Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.IsTangentMatrixIffRestrictOpen\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
+-- clump-header: {"m": "Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.LefschetzFixedPointFiniteEtaleCorrespondence", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.IsGaloisCover\npublic import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.OmegaPullOmegaTraceOfSecTraceOne\npublic import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.CechModulesFunctorShortExactOfIsAffineOpen\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HodgePullHodgePull\npublic import Development.AutomorphicArithmetic.CommutativeAlgebra.HodgeCohomologyOpenRestrictionEquiv\npublic import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.CompactSpaceOfProjectiveAndOfFinite\npublic import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.ExistsFiniteEtaleRestrictClopen\npublic import Mathlib.AlgebraicGeometry.Morphisms.Smooth\npublic import Mathlib.Basic.Complex.Basic\npublic import Mathlib.Order.CompletePartialOrder\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsIntegralClopenDecompositionOfSmooth\npublic import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.ExistsUniqueComplexPointLiftClopenCover\npublic import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.HodgePullHodgeTraceEqSumRestrictOpen\npublic import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.HolomorphicLefschetzFiniteEtaleCorrespondence\npublic import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.IsProjOverRestrictClopen\nimport Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.IsTangentMatrixIffRestrictOpen\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Lemmata.TracePi\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -607,42 +608,12 @@ private theorem pull_congr {X X' : Scheme.{0}} {s : X ⟶ Sp ℂ} {s' : X' ⟶ S
     hodgePull hf a b x = hodgePull hf' a b x := by
   subst e; rfl
 
-private theorem trace_pi_eq_sum_trace_blocks {J : Type} [Fintype J] [DecidableEq J] {N : J → Type}
-    [∀ j, AddCommGroup (N j)] [∀ j, Module ℂ (N j)] [∀ j, FiniteDimensional ℂ (N j)]
-    (f : (∀ j, N j) →ₗ[ℂ] (∀ j, N j)) :
-    LinearMap.trace ℂ (∀ j, N j) f =
-      ∑ j, LinearMap.trace ℂ (N j) (LinearMap.proj j ∘ₗ f ∘ₗ LinearMap.single ℂ N j) := by
-  have hf : f = ∑ i, ∑ k, LinearMap.single ℂ N i ∘ₗ
-      ((LinearMap.proj i ∘ₗ f ∘ₗ LinearMap.single ℂ N k) ∘ₗ LinearMap.proj k) := by
-    refine LinearMap.ext fun x => ?_
-    simp only [LinearMap.sum_apply, LinearMap.comp_apply, LinearMap.coe_proj,
-      Function.eval, LinearMap.coe_single]
-    rw [Finset.sum_comm]
-    simp only [Finset.univ_sum_single]
-
-    rw [← map_sum, Finset.univ_sum_single]
-  conv_lhs => rw [hf]
-
-  simp only [map_sum]
-  haveI hFr : ∀ j, Module.Free ℂ (N j) := fun j => Module.Free.of_divisionRing ℂ (N j)
-  haveI : Module.Free ℂ (∀ j, N j) := Module.Free.pi ℂ N
-  haveI : Module.Finite ℂ (∀ j, N j) := Module.Finite.pi
-  refine Finset.sum_congr rfl fun i _ => ?_
-  rw [Finset.sum_eq_single i]
-  · rw [LinearMap.trace_comp_comm', LinearMap.comp_assoc, LinearMap.proj_comp_single_same,
-      LinearMap.comp_id]
-  · intro k _ hk
-    rw [LinearMap.trace_comp_comm', LinearMap.comp_assoc, LinearMap.proj_comp_single_ne ℂ N k i hk,
-      LinearMap.comp_zero, map_zero]
-  · intro h
-    exact absurd (Finset.mem_univ i) h
-
 private theorem trace_block {J : Type} [Fintype J] [DecidableEq J] {M : Type} [AddCommGroup M]
     [Module ℂ M] {N : J → Type} [∀ j, AddCommGroup (N j)] [∀ j, Module ℂ (N j)]
     [∀ j, FiniteDimensional ℂ (N j)] (e : M ≃ₗ[ℂ] ∀ j, N j) (u : M →ₗ[ℂ] M) :
     LinearMap.trace ℂ M u = ∑ j, LinearMap.trace ℂ (N j)
       (LinearMap.proj j ∘ₗ e.toLinearMap ∘ₗ u ∘ₗ e.symm.toLinearMap ∘ₗ LinearMap.single ℂ N j) := by
-  rw [← LinearMap.trace_conj' u e, trace_pi_eq_sum_trace_blocks, LinearEquiv.conj_apply]
+  rw [← LinearMap.trace_conj' u e, LinearMap.trace_pi, LinearEquiv.conj_apply]
   rfl
 
 open Classical in

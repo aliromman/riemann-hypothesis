@@ -20,9 +20,7 @@ variable {n : ℕ}
 
 section Num
 
-variable {ε : Fin n → Bool}
-
-theorem gap_gt {a b : Fin n} (hε : ε a ≠ ε b) {h : ℝ}
+theorem gap_gt {h : ℝ}
     (hbig : 2 * (n : ℝ) < h) :
     2 * (n : ℝ) - 3 < h ∧ (n : ℝ) - 1 < h := by
   have := (Nat.cast_nonneg n : (0 : ℝ) ≤ n)
