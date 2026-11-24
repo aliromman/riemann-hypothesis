@@ -4,9 +4,22 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import tempfile
 from manifest import read_request
 
 UPSTREAM='leanprover-community/riemann-hypothesis'
+def actual_base(number,main,head):
+    with tempfile.TemporaryDirectory() as temporary:
+        repo=Path(temporary)/'ancestry.git'
+        subprocess.run(['git','init','--quiet','--bare',repo],check=True)
+        def git(*args):
+            return subprocess.check_output(['git','-C',repo,*args],text=True).strip()
+        git('fetch','--quiet','--no-tags','--filter=tree:0','https://github.com/'+UPSTREAM+'.git',
+            'refs/heads/main:refs/heads/main',f'refs/pull/{number}/head:refs/heads/candidate')
+        if (git('rev-parse','refs/heads/main'),git('rev-parse','refs/heads/candidate'))!=(main,head):
+            raise ValueError('a live Git revision changed during the ancestry check')
+        return git('merge-base','refs/heads/main','refs/heads/candidate')
+
 def snapshot(folder):
     req,_=read_request(folder)
     def get(path):
@@ -14,9 +27,11 @@ def snapshot(folder):
     pr=get('pulls/'+str(req['pull_request']))
     base=pr['base']
     current=get('branches/main')['commit']['sha']
-    if base['repo']['full_name']!=UPSTREAM or base['ref']!='main' or pr['head']['sha']!=req['head'] or base['sha']!=req['base'] or current!=req['base']:
-        raise ValueError('the live upstream pull head or latest community main differs from the reviewed request')
-    return {'number':pr['number'],'url':pr['html_url'],'base':current,'head':pr['head']['sha'],
+    if base['repo']['full_name']!=UPSTREAM or base['ref']!='main' or pr['head']['sha']!=req['head']:
+        raise ValueError('the live upstream pull request differs from the reviewed request')
+    parent=current if current==req['base'] and current==base['sha'] else actual_base(pr['number'],current,req['head'])
+    if parent!=req['base']:raise ValueError('the actual pull request merge base differs from the attested parent')
+    return {'number':pr['number'],'url':pr['html_url'],'base':parent,'main_at_check':current,'head':pr['head']['sha'],
             'head_repository':pr['head']['repo']['full_name'],'head_ref':pr['head']['ref'],'state':pr['state']}
 
 if __name__=='__main__':
