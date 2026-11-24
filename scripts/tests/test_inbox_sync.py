@@ -9,7 +9,7 @@ from pathlib import Path
 import subprocess
 import unittest
 
-SCRIPT = Path(__file__).with_name("inbox-sync.py")
+SCRIPT = Path(__file__).resolve().parents[1] / "inbox-sync.py"
 spec = importlib.util.spec_from_file_location("inbox_sync", SCRIPT)
 inbox = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(inbox)

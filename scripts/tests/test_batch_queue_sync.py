@@ -9,7 +9,7 @@ from pathlib import Path
 import re
 import unittest
 
-SCRIPT = Path(__file__).with_name("batch-queue-sync.py")
+SCRIPT = Path(__file__).resolve().parents[1] / "batch-queue-sync.py"
 spec = importlib.util.spec_from_file_location("batch_queue_sync", SCRIPT)
 batch = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(batch)

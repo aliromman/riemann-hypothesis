@@ -106,7 +106,7 @@ class RestorePathTests(unittest.TestCase):
 
 class HelperPreflightTests(unittest.TestCase):
     def test_resource_only_skips_recovery(self):
-        helper = load("build_tests_fixture", SCRIPTS / "cache-bootstrap/test_ci_build.py")
+        helper = load("build_tests_fixture", SCRIPTS / "tests/test_ci_build.py")
         with patch.object(sys, "argv", ["test_ci_build.py", "--resource-tests-only"]), \
                 patch.object(helper, "resource_tests") as resources, \
                 patch.object(helper, "snapshot_tests", side_effect=AssertionError("snapshot ran")), \
@@ -115,7 +115,7 @@ class HelperPreflightTests(unittest.TestCase):
         resources.assert_called_once()
 
     def test_normal_mode_still_enters_recovery(self):
-        helper = load("normal_build_tests_fixture", SCRIPTS / "cache-bootstrap/test_ci_build.py")
+        helper = load("normal_build_tests_fixture", SCRIPTS / "tests/test_ci_build.py")
         with patch.object(sys, "argv", ["test_ci_build.py"]), \
                 patch.object(helper, "resource_tests"), \
                 patch.object(helper, "snapshot_tests") as snapshot, \

@@ -1,4 +1,4 @@
-"""Run with LEAN=/path/to/lean python3 scripts/test_collapse_wrappers_strings.py."""
+"""Run with LEAN=/path/to/lean python3 scripts/tests/test_collapse_wrappers_strings.py."""
 
 import os
 from pathlib import Path
@@ -8,7 +8,7 @@ import tempfile
 import unittest
 
 
-SCRIPT = Path(__file__).with_name("collapse_wrappers.py")
+SCRIPT = Path(__file__).resolve().parents[1] / "collapse_wrappers.py"
 
 
 class WrapperStrings(unittest.TestCase):
