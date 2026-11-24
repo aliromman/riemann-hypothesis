@@ -23,6 +23,11 @@ Don't open a pull request until the change is finished and you have checked that
 If you open one before then, open it as a draft (`gh pr create --draft`) and mark it ready for
 review once it is done. A draft stays out of the maintainers' review queue.
 
+When a maintainer hands a pull request back to you, it gets the `awaiting-author` label and
+leaves the review queue. Once you have made the changes they asked for, or answered their
+question, comment `ready` on the pull request, with nothing else in the comment. That takes the
+label off and puts the pull request back in the queue.
+
 To check that it compiles, bring your branch up to date with `main`, fetch the cache and run
 `lake build`. Lake rebuilds the files you changed and every file that imports them, so this also
 catches a lemma you removed that is still used somewhere else. It must finish without errors.
@@ -99,6 +104,14 @@ others with `attribute [local instance high]`. That hides a slow instance search
 fixing it, and it ties the file to instances declared elsewhere, so it is hard to undo later.
 Find the instance that sends the search the wrong way, for example with
 `set_option trace.Meta.synthInstance true in` on the slow declaration, and fix it there.
+
+### Turning on old behaviour with `set_option backward`
+
+Don't add options such as `set_option backward.isDefEq.respectTransparency false`. They bring
+back how an older Lean behaved, and Lean removes them later, so a proof that needs one breaks on
+a future bump. Many files still have them from earlier bumps; don't copy those. Fix the proof
+instead: often it is enough to rewrite with a lemma rather than rely on Lean to unfold a
+definition.
 
 ### Small speed-ups to the CI scripts
 

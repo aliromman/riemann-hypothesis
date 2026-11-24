@@ -20,19 +20,29 @@ name: batch queue
 # Commenting `aa` hands a pull request back to its author: it adds the `awaiting-author` label and
 # nothing else. The inbox workflow takes a pull request with that label out of the inbox.
 #
+# Commenting `ready` hands it back to the maintainers: it takes `awaiting-author` off and nothing
+# else. The pull request's author can do this as well as maintainers. The inbox workflow counts
+# the label coming off as the pull request entering review again, and this workflow starts it for
+# that pull request, so it goes back in the inbox within a minute or so. Without the label there
+# is nothing to take off, and `ready` does nothing.
+#
 # A pull request that is closed, merged or not, loses `batch queue` and `building`. Reopened, it
 # gets `batch queue` back if this workflow took the label off and nobody commented `-batch` on
 # it meanwhile. A label a person took off stays off.
 #
 # The batches are the branches this workflow starts, named after the time they were started:
 # `batch/2026-11-23-041230`, with `-2` and so on after it if that name was taken. A `batch/...`
-# branch under another name, such as one a maintainer assembled by hand, is left alone: nothing
-# is merged into it, its pull request cannot be frozen and its text is not rewritten.
+# branch under another name, such as one a maintainer assembled by hand, is never added to and
+# its text is not rewritten. It can still be frozen with a `freeze` comment, though not by a
+# dispatched build, since such a batch is often built only to try it. The sync job then relabels
+# `building` each pull request labelled `batch queue` whose head commit is in that branch, and
+# records them in a comment there.
 #
 # Only a comment whose whole text is one of these counts, letter case and surrounding blank space
-# aside: `batch` or `b`, `batch <commit>` or `b <commit>`, `-batch` or `-b`, `freeze`, and `aa`.
-# `aa` needs triage access to this repository and the others need write access. Every other
-# comment is ignored. GitHub runs this workflow from the default branch for every event below, so
+# aside: `batch` or `b`, `batch <commit>` or `b <commit>`, `-batch` or `-b`, `freeze`, `aa` and
+# `ready`. `aa` needs triage access to this repository, `ready` needs triage access or to come
+# from the pull request's author, and the others need write access. Every other comment is
+# ignored. GitHub runs this workflow from the default branch for every event below, so
 # a pull request cannot change what it does. Nothing from a pull request is checked out or run:
 # GitHub performs the merges, and comparisons read git objects only.
 #
@@ -62,19 +72,21 @@ permissions: {}
 
 jobs:
   label:
-    name: Act on a maintainer's `batch`, `-batch`, `freeze` or `aa` comment
+    name: Act on a `batch`, `-batch`, `freeze`, `aa` or `ready` comment
     # A first filter, so that most comments start no runner: pull requests only, and the comment
     # has to contain one of the words. `b`, `-b` and `aa` are too short to look for anywhere in a
-    # comment, so they are only noticed at its very start. startsWith ignores letter case. The
-    # step below makes the exact comparison.
+    # comment, and `ready` too common, so they are only noticed at its very start. startsWith
+    # ignores letter case. The step below makes the exact comparison.
     if: >-
       ${{ github.event_name == 'issue_comment' && github.event.issue.pull_request &&
           (contains(github.event.comment.body, 'batch') || contains(github.event.comment.body, 'freeze') ||
            startsWith(github.event.comment.body, 'b') || startsWith(github.event.comment.body, '-b') ||
-           startsWith(github.event.comment.body, 'aa')) }}
+           startsWith(github.event.comment.body, 'aa') || startsWith(github.event.comment.body, 'ready')) }}
     runs-on: ubuntu-latest
-    # `contents: read` is for the log of pushes to a branch of this repository.
+    # `contents: read` is for the log of pushes to a branch of this repository, and
+    # `actions: write` for starting the inbox workflow after `ready`.
     permissions:
+      actions: write
       contents: read
       issues: write
       pull-requests: write
@@ -90,6 +102,7 @@ jobs:
           REPO: ${{ github.repository }}
           PR: ${{ github.event.issue.number }}
           AUTHOR: ${{ github.event.comment.user.login }}
+          OPENER: ${{ github.event.issue.user.login }}
           BODY: ${{ github.event.comment.body }}
           WHEN: ${{ github.event.comment.created_at }}
           LABEL: batch queue
@@ -113,27 +126,36 @@ jobs:
             -b) text=-batch ;;
           esac
           case "$text" in
-            batch | -batch | freeze | aa) ;;
+            batch | -batch | freeze | aa | ready) ;;
             *)
-              echo "The comment is not just 'batch', '-batch', 'freeze' or 'aa', or 'b' or '-b': nothing to do."
+              echo "The comment is not just 'batch', '-batch', 'freeze', 'aa' or 'ready', or 'b' or '-b': nothing to do."
               exit 0
               ;;
           esac
 
-          # Write access or higher, or triage access for `aa`. The API reports the maintain role
-          # as write and triage as read under `permission`, so triage is told apart by `role_name`.
-          if ! access=$(gh api "repos/$REPO/collaborators/$AUTHOR/permission" --jq '.permission + " " + (.role_name // "")'); then
-            echo "::error::Could not read the access $AUTHOR has to $REPO."
-            exit 1
+          # Write access or higher, or triage access for `aa` and `ready`. The API reports the
+          # maintain role as write and triage as read under `permission`, so triage is told apart
+          # by `role_name`. The pull request's author may comment `ready` whatever their access.
+          if [ "$text" = ready ] && [ "$AUTHOR" = "$OPENER" ]; then
+            permission=author
+            role=''
+          else
+            if ! access=$(gh api "repos/$REPO/collaborators/$AUTHOR/permission" --jq '.permission + " " + (.role_name // "")'); then
+              echo "::error::Could not read the access $AUTHOR has to $REPO."
+              exit 1
+            fi
+            read -r permission role <<< "$access"
           fi
-          read -r permission role <<< "$access"
           case "$permission" in
-            admin | write) ;;
+            admin | write | author) ;;
             *)
-              if [ "$text" = aa ] && [ "$role" = triage ]; then
+              if { [ "$text" = aa ] || [ "$text" = ready ]; } && [ "$role" = triage ]; then
                 :
               elif [ "$text" = aa ]; then
                 echo "$AUTHOR has '${role:-$permission}' access. Labelling a pull request '$WAITING' needs triage access."
+                exit 0
+              elif [ "$text" = ready ]; then
+                echo "$AUTHOR did not open pull request $PR and has '${role:-$permission}' access. Taking '$WAITING' off someone else's pull request needs triage access."
                 exit 0
               else
                 echo "$AUTHOR has '${role:-$permission}' access. Queuing, unqueuing or freezing needs write access."
@@ -158,15 +180,30 @@ jobs:
             exit 0
           fi
 
+          if [ "$text" = ready ]; then
+            # Back to the maintainers. The inbox workflow counts the label coming off as the pull
+            # request entering review again. A label change made with this job's token starts no
+            # run of it, so this asks for one.
+            if gh api "repos/$REPO/issues/$PR/labels" --jq '.[].name' | grep -qxF -- "$WAITING"; then
+              gh api -X DELETE "repos/$REPO/issues/$PR/labels/$(jq -rn --arg label "$WAITING" '$label | @uri')" --silent
+              echo "Removed '$WAITING' from pull request $PR, as $AUTHOR asked."
+              if ! gh workflow run inbox.yml --repo "$REPO" -f "pr=$PR"; then
+                echo "::warning::Could not start the inbox workflow for pull request $PR."
+              fi
+            else
+              echo "Pull request $PR does not carry '$WAITING': nothing to do."
+            fi
+            exit 0
+          fi
+
           if [ "$text" = freeze ]; then
-            # Only a batch can be frozen: an open pull request from a branch of this repository
-            # that the sync job started, `batch/` and a time. The label is the record that it is
-            # frozen.
+            # Only a batch can be frozen: an open pull request from a `batch/...` branch of this
+            # repository, whether the sync job started it or a maintainer assembled it by hand.
+            # The label is the record that it is frozen.
             head=$(gh api "repos/$REPO/pulls/$PR" --jq '(.head.repo.full_name // "-") + " " + .head.ref + " " + .state')
             read -r home ref state <<< "$head"
-            own='^batch/[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{6}(-[0-9]+)?$'
-            if [ "$home" != "$REPO" ] || [ "$state" != open ] || ! [[ "$ref" =~ $own ]]; then
-              echo "Pull request $PR is not an open batch pull request of this workflow: nothing to freeze."
+            if [ "$home" != "$REPO" ] || [ "$state" != open ] || [[ "$ref" != batch/?* ]]; then
+              echo "Pull request $PR is not an open batch pull request: nothing to freeze."
               exit 0
             fi
             gh api -X POST "repos/$REPO/issues/$PR/labels" -f "labels[]=$FROZEN" --silent
@@ -282,7 +319,8 @@ jobs:
             exit 0
           fi
           # Only a batch the sync job started: a branch of this repository named `batch/` and a
-          # time. A batch assembled by hand under another name is not frozen.
+          # time. A batch assembled by hand is often built just to try it, so only a `freeze`
+          # comment freezes one of those.
           head=$(gh api "repos/$REPO/pulls/$number" --jq '(.head.repo.full_name // "-") + " " + .head.ref + " " + .state')
           read -r home ref state <<< "$head"
           own='^batch/[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{6}(-[0-9]+)?$'
