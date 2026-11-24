@@ -80,6 +80,7 @@ def check_clump(name, a, b, refinement, prior, proposal, fuse, candidate):
 
 
 def check(req, inputs, parent, candidate, recipe):
+    from verified_batch import BATCHES
     if req.get('source_mode') != 'clump-scopes':
         raise ValueError('unrecognized structural root request')
     base, head = req['base'], req['head']
@@ -112,19 +113,19 @@ def check(req, inputs, parent, candidate, recipe):
         if req['base_src'] == '6e972745429bd501b15e5daa9db46c8a9feb85db':
             from structural_choices import check as check_choices
             dispositions = check_choices(req, inputs, candidate, old, new, reader, prior, proposal, fuse, check_clump)
-        elif req['base_src'] == 'fd6cca42e515165d98659a81ff24b5c84b71ece6':
-            from batch_1018 import HISTORY, OLD_BASE
+        elif req['base_src'] in BATCHES:
+            batch = BATCHES[req['base_src']]
             from structural_choices import changed
-            previous_head = HISTORY[977]['head']
-            earlier_parent, earlier = ls(candidate, OLD_BASE), ls(candidate, previous_head)
+            previous_head = batch['history']['977']['head']
+            earlier_parent, earlier = ls(candidate, batch['previous_base']), ls(candidate, previous_head)
             existing = changed(earlier_parent, earlier)
             selected_now = changed(old, new)
             named = {str(source_path(n)) for n in inputs}
             declared = req['structural_dispositions']
             withdrawn = {str(source_path(n)) for n in declared['withdrawn']}
-            if (declared['initial_head'] != previous_head or len(existing) != HISTORY[977]['count'] or
+            if (declared['initial_head'] != previous_head or len(existing) != batch['history']['977']['count'] or
                     named != selected_now or not named <= existing or len(withdrawn) != len(declared['withdrawn']) or
-                    existing - named != withdrawn or any(new[p] != old[p] for p in withdrawn)):
+                    existing - named != withdrawn or any(new.get(p) != old.get(p) for p in withdrawn)):
                 raise ValueError('the latest selected and withdrawn clumps differ from the preceding verified PR')
             modified = sum(earlier_parent[p] != old[p] for p in named)
             if any(earlier_parent[p] == old[p] and earlier[p] != new[p] for p in named):

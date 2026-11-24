@@ -1,6 +1,6 @@
 """Re-elaborate the five final theorems using candidate images for changed modules."""
 from __future__ import annotations
-import argparse, gc, hashlib, json, os, resource, sqlite3, subprocess, time
+import argparse, gc, gzip, hashlib, json, os, resource, sqlite3, subprocess, time
 from pathlib import Path
 
 def digest(p):
@@ -18,6 +18,7 @@ def main():
         p.add_argument('--'+key,type=Path,required=True)
     p.add_argument('--challenge',type=Path)
     p.add_argument('--parent-bindings',type=Path)
+    p.add_argument('--provider-originals',type=Path)
     args=p.parse_args()
     for k,v in vars(args).items():
         if v is not None:setattr(args,k,v.resolve())
@@ -39,12 +40,14 @@ def main():
     assert all(not deep for _,deep in visible)
     roots={n for n,_ in visible}
     candidates={}
+    checked={}
     for line in args.images.read_text().splitlines():
         if not line:continue
         m,name,sha=line.split('\t');p=Path(name)
         if not p.is_file() or digest(p)!=sha:raise ValueError('candidate public SHA mismatch: '+m)
         if m in candidates or any(m==k for _,k in all_special): raise ValueError('ineligible candidate module: '+m)
         candidates[m]=p
+        checked[m]=sha
     native={m:str(candidates.get(m,args.baseline.joinpath(*m.split('.')).with_suffix('.olean'))) for m in roots}
     verified_parent={}
     if args.parent_bindings:
@@ -54,6 +57,7 @@ def main():
             p=Path(native[m]);stat=p.stat()
             if digest(p)!=expected.get(m):raise ValueError('parent public image differs from the authenticated archive: '+m)
             verified_parent[p]=(stat.st_ino,stat.st_size,stat.st_mtime_ns,expected[m])
+            checked[m]=expected[m]
         del expected
     setup={'name':'Main','isModule':True,'package':'tree',
         'options':{'relaxedAutoImplicit':False,'autoImplicit':False,'pp.unicode.fun':True,'maxSynthPendingDepth':3,'maxHeartbeats':4000000},
@@ -76,6 +80,26 @@ def main():
             raise ValueError('source checkout or compiled artifact manifest differs from its recorded tree')
         if len(candidates)!=bound['changed']:raise ValueError('incomplete manifest')
         res['source_binding']=bound
+    if args.provider_originals:
+        from providers import rebuild
+        if not args.parent_bindings or not roots <= checked.keys():
+            raise ValueError('the direct provider check requires every authenticated Main input')
+        parent=res.get('source_binding',{}).get('parent') or 'HEAD'
+        providers=rebuild(args.repo,parent,args.provider_originals,args.work/'providers',args.bin,args.judge,
+                          graph,setup,checked,roots&candidates.keys(),env)
+        for m,r in providers.items():
+            actual=Path(r['public_output'])
+            if m not in native or digest(actual)!=checked[m]:
+                raise ValueError('fresh provider differs from the certified Main input: '+m)
+            setup['importArts'][m]=[[str(actual)],[]]
+        raw=json.dumps(setup,separators=(',',':')).encode()
+        cert.write_bytes(raw)
+        exported=args.work/'providers/main-setup.json.gz'
+        with exported.open('wb') as dest:
+            with gzip.GzipFile(filename='',fileobj=dest,mode='wb',mtime=0,compresslevel=4) as stream:
+                stream.write(raw)
+        res['direct_providers']={'providers':providers,'actual_main_setup_sha256':digest(cert),
+                                 'compressed_main_setup_sha256':digest(exported)}
     del graph,paths,visible,roots,candidates,native,setup
     gc.collect()
     steps=[

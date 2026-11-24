@@ -15,6 +15,7 @@ from types import SimpleNamespace
 
 from manifest import read_request,sha
 from native import Blobs,file_sha,git,header,hosted_batch,ls,tree
+from providers import FACETS,PROVIDERS
 
 HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE.parent/'import-screen'))
@@ -135,6 +136,12 @@ def restore_batch(names,index,shas,cache,leantar,rebuilder,baseline,images,reade
             if n=='Main':
                 for ext in ('.server','.private'):
                     Path(str(public)+ext).replace(Path(str(dst)+ext))
+            if n in PROVIDERS:
+                for ext in (*FACETS[1:],'.trace'):
+                    public.with_suffix(ext).replace(dst.with_suffix(ext))
+                _,key,archive=index[n]
+                owner={'module':n,'lake_key':key,'archive':archive,'sha256':shas[archive]}
+                dst.with_suffix('.owner.json').write_bytes(canonical(owner))
             parent_bytes+=public.stat().st_size
             public.replace(dst)
             bindings.append((n,digest))
@@ -150,8 +157,8 @@ def main():
     args=p.parse_args()
     for k,v in vars(args).items():setattr(args,k,v.resolve())
     req,inputs=read_request(args.request)
-    import current_reuse, refresh, batch_1018
-    newest = req['base_src'] == batch_1018.TREE
+    import current_reuse, refresh, verified_batch
+    newest = verified_batch.BATCHES.get(req['base_src'])
     refreshed=req['base_src']==refresh.TREE
     latest=req['base_src']==current_reuse.TREE
     structural=req.get('source_mode')=='clump-scopes'
@@ -164,8 +171,8 @@ def main():
     candidate=args.candidate
     old_sources,source_count,source_bytes=actual_diff(candidate,req,inputs)
     if newest:
-        api,index,shas=batch_1018.published_parent(args.parent,args.cache,req)
-        graph_digest,manifest=batch_1018.GRAPH,batch_1018.MANIFEST
+        api,index,shas=verified_batch.published_parent(newest,args.parent,args.cache,req)
+        graph_digest,manifest=newest['graph'],newest['manifest']
         graph_file=args.cache/'metadata/current-headers.json'
     elif refreshed:
         api,index,shas=refresh.published_parent(args.parent,args.cache,req)
@@ -197,8 +204,9 @@ def main():
     dl=load(cache_tools/'ci-prepare.py','root_download')
     if refreshed or newest:
         mode='structural' if structural else 'private'
-        engine = batch_1018 if newest else refresh
-        validation.update(engine.certify(args.parent,args.cache,api,graph,index,shas,inputs,req,args.bin/'leantar',dl,mode))
+        arguments = (args.parent,args.cache,api,graph,index,shas,inputs,req,args.bin/'leantar',dl,mode)
+        status = verified_batch.certify(newest,*arguments) if newest else refresh.certify(*arguments)
+        validation.update(status)
     elif structural:
         from structural_gate import check_actions
         validation.update(check_actions(req,inputs))
