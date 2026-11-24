@@ -368,11 +368,39 @@
     "same_original_candidate_owner_and_effective_inputs": 190918
   },
   "excluded_from_final_candidates": 1344,
+  "excluded_historical_outcomes": {
+    "after_coordinated_selection": {
+      "excluded": 22,
+      "fresh_current_native_pass": 21,
+      "same_owner_and_effective_inputs": 1,
+      "same_source_historical_no_same_source_pair_observation": 1,
+      "same_source_historical_pass": 21,
+      "strict_current_or_transferred": 22,
+      "strict_transferable_from_earlier_parent": 1
+    },
+    "all": {
+      "excluded": 1344,
+      "fresh_current_native_pass": 21,
+      "same_owner_and_effective_inputs": 271,
+      "same_source_historical_no_same_source_pair_observation": 46,
+      "same_source_historical_pass": 1298,
+      "strict_current_or_transferred": 292,
+      "strict_transferable_from_earlier_parent": 271
+    },
+    "before_dispatch": {
+      "excluded": 1322,
+      "same_owner_and_effective_inputs": 270,
+      "same_source_historical_no_same_source_pair_observation": 45,
+      "same_source_historical_pass": 1277,
+      "strict_current_or_transferred": 270,
+      "strict_transferable_from_earlier_parent": 270
+    }
+  },
   "excluded_source_rows": {
-    "bytes": 217562,
+    "bytes": 266389,
     "file": "initial-exclusions.jsonl.gz",
-    "file_sha256": "41a90da8556dd8cc97c60fbdc90f3e2b1a5ef2d9bff87f4b06887ae9a1fefcde",
-    "uncompressed_sha256": "ec7d79a8c3b3e71e876cf33959581ea9325bfc5afe85dcd60003698dd752eeac"
+    "file_sha256": "df5236c85c51ca549465566f27d870daa69de499d739a28e618ff7ff571d904f",
+    "uncompressed_sha256": "61fcab955341ff51a9f784ac4d286dafcbdb1677ec9bd4cdce6ea6eddfb46be6"
   },
   "incomplete_group_attempts": [],
   "independent_parent_name_census": {
