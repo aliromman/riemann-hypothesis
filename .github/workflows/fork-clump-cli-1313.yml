@@ -2,7 +2,7 @@ name: Measure the complete clump plan and saved apply
 on:
   push:
     branches: [ci/clump-scopes/cli-timing-1313]
-    paths: [ci/clump-cli/cli_trials.py, ci/clump-cli/request.json, .github/workflows/fork-clump-cli-1313.yml]
+    paths: [ci/clump-cli/cli_trials.py, ci/clump-cli/request.json, ci/clump-cli/standard_streams.py, ci/clump-cli/plan-input-equality.json, .github/workflows/fork-clump-cli-1313.yml]
 permissions:
   contents: read
 jobs:

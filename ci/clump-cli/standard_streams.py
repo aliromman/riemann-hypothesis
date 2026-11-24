@@ -14,7 +14,7 @@ assert test.read_bytes()==plan.read_bytes() and sha(test.read_bytes())==checks["
 assert {r["output_sha256"]for r in rows if r["command"]=="plan"}=={sha(published.stderr+published.stdout)}
 (out/"plan.stdout").write_bytes(published.stdout);(out/"plan.stderr").write_bytes(published.stderr);test.unlink()
 data=json.loads(plan.read_bytes());names=["src/"+m.replace(".","/")+".lean" for members in data.values() for m in members]
-assert len(names)==len(set(names))==656
+assert len(data)==checks["roots"] and len(names)==len(set(names))==checks["members"]
 hashes={}
 with tempfile.TemporaryDirectory()as name:
  pathspec=pathlib.Path(name)/"paths";pathspec.write_bytes(b"\0".join(k.encode()for k in names)+b"\0")
