@@ -29,6 +29,14 @@ while IFS= read -r name; do
   fi
 done < "$work/compare.txt"
 cat "$work/comparisons.tsv"
+(
+  cd "$ci"
+  lean -c "$work/BuildPublic.c" BuildPublic.lean
+  leanc -o "$work/build-public" "$work/BuildPublic.c"
+  lean -c "$work/IRHeaders.c" IRHeaders.lean
+  leanc -o "$work/ir-headers" "$work/IRHeaders.c"
+)
+python3 "$ci/facet_projection.py" "$work"
 python3 "$ci/audit.py" "$work"
 mapfile -t replays < <(jq -r '.replays[]' "$ci/panel.json")
 lake env leanchecker -v "${replays[@]}" 2>&1 | tee "$work/replay.log"

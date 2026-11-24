@@ -22,6 +22,7 @@ def main():
             r=panel['changed_sources'][n]
             if (sha(a),sha(b))!=(r['parent'],r['candidate']):raise ValueError('incorrect source transition '+n)
         elif a!=b:raise ValueError('unstated source edit '+n)
+    projection=json.loads((w/'import-projection.json').read_bytes())
     samples=collections.defaultdict(list)
     with tempfile.TemporaryDirectory(dir=w)as root,(w/'lake-pairs.jsonl').open('w')as log:
         tmp=Path(root)
@@ -50,8 +51,8 @@ def main():
                 if set(names)!=built:raise ValueError(f'not all stock project compilations were observed: {built ^ set(names)}')
                 for n in names:
                     out=build/'lib/lean'/Path(*n.split('.'))
-                    required=('.ir.sig','.ir') if n in panel['changed_sources'] else ('.olean','.ir.sig','.ir')
-                    if any(sha(out.with_suffix(ext).read_bytes())!=reference[n][ext] for ext in required):
+                    expected = projection[n]['expected_sha256'] if side=='candidate' and n in projection else reference[n]
+                    if any(sha(out.with_suffix(ext).read_bytes())!=expected[ext] for ext in ('.olean','.ir.sig','.ir')):
                         raise ValueError('compiled bytes differ from the authenticated parent '+n)
                     completed=subprocess.run([w/'check-interface',n,w/'parent'/(n+'.olean'),out.with_suffix('.olean'),w/'comparison'],capture_output=True,text=True,check=True)
                     cmp=json.loads(completed.stdout)

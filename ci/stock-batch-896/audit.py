@@ -14,7 +14,7 @@ with (w/'facet-comparisons.jsonl').open('w') as f:
         changed=[ext for ext,h in candidate.items() if pinned[ext]!=h]
         required=set(pinned) if n in panel['strict_private'] else ordinary
         if n in panel['changed_sources'] and n not in panel['strict_private']:
-            required=required-{'.olean'}
+            required=required-{'.olean','.ir'}
         bad=sorted(required.intersection(changed))
         print(json.dumps(dict(module=n,fresh=n in report['fresh'],raw_different=changed,required=sorted(required),required_different=bad,old_warning_count=len(before),new_warning_count=len(after),equal_warnings=before==after,parent_sha256=pinned,candidate_sha256=candidate),separators=(',',':')),file=f)
         if bad or before!=after:diffs[n]=dict(required_different=bad,old_warnings=before,new_warnings=after)

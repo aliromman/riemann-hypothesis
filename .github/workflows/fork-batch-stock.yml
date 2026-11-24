@@ -161,6 +161,7 @@ jobs:
             ${{ runner.temp }}/module-check/comparisons.tsv
             ${{ runner.temp }}/module-check/replay.log
             ${{ runner.temp }}/module-check/facet-comparisons.jsonl
+            ${{ runner.temp }}/module-check/import-projection.json
             ${{ runner.temp }}/module-check/pr-source.json
             ${{ runner.temp }}/module-check/benchmark.json
             ${{ runner.temp }}/module-check/lake-benchmark.json

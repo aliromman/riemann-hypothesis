@@ -125,7 +125,7 @@ def main():
     facets = {}; warnings = {}
     for root in cone:
         path = root_outputs/"lib/lean"/Path(*root.split("."))
-        for ext in (".olean", ".olean.server", ".olean.private"):
+        for ext in (".olean", ".olean.server", ".olean.private", ".ir.sig", ".ir"):
             shutil.copyfile(path.with_suffix(ext), baseline/(root+ext))
         facets[root] = {suffix:digest(path.with_suffix(suffix).read_bytes())
                         for suffix in (".olean", ".olean.server", ".olean.private", ".ir.sig", ".ir")}
