@@ -1,0 +1,37 @@
+{
+  "previous_head": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0",
+  "published_head": "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
+  "changed_paths": [
+    "scripts/clump.py",
+    "scripts/tests/test_clump_scopes.py"
+  ],
+  "ordinary_source_tree_before_after": "a598d19cccf798deb6e2bea9700cbac2ff050e11",
+  "previous_joint_tree": "54208efb40ca9ffdcb301d1f4612a626e30f2b26",
+  "published_joint_tree": "96cdc9aaad23268e69dacd7d5a35d98686b22aef",
+  "joint_lean_tree_before_after": "57fece943c0c76d817de2f24ff7e9ab75564e672",
+  "tools_git_blobs": {
+    "scripts/clump.py": {
+      "before": "508aa4bca972f5fd3acdf671b6ea945ea241b87c",
+      "after": "4d48e0fe65e1e12f1dead1e543056590cf24590d"
+    },
+    "scripts/tests/test_clump_scopes.py": {
+      "before": "61a753e686cd948d91d745d066def8ad09f1e177",
+      "after": "533a49476477b3e77f829d74a41039d7f2fa501b"
+    }
+  },
+  "complete_diff_from_community_parent": {
+    "scripts/clump.py": {
+      "added": 268,
+      "removed": 23
+    },
+    "scripts/tests/test_clump_scopes.py": {
+      "added": 155,
+      "removed": 0
+    }
+  },
+  "net_python_lines": 400,
+  "source_commands_removed": 251766,
+  "net_commands_less_python": 251366,
+  "ancestor_with_native_workers": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0",
+  "comparison": "The entire Git diff from the native-tested source commit changes only the diagnostic script and its test. The two combined trees have the same complete Lean source tree and differ only at those same two paths."
+}

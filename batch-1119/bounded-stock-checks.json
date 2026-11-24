@@ -1,0 +1,32 @@
+{
+  "public_directory": "https://github.com/aliromman/riemann-hypothesis/tree/2681befb7db772d74f377191479b6d9e4991de76/ci/source-sandbox/results/45409835286",
+  "commit": "2681befb7db772d74f377191479b6d9e4991de76",
+  "scope": "Four project theorems, two from each pull request, built and exported from source. Final-author Ubuntu Python suites are a separate job.",
+  "committed_files_sha256": {
+    "verified.json": "f3ef9a1b123666d5156fca2725b583c1bc4c827365a21b0cceb87ce9daa79224",
+    "final-clump-binding.json": "d27d869b802d5d49a4ed72996602b5b6a74295a8a302755b0156e876bb4edb97",
+    "sandbox.zip": "cfd325f742ac0298fc046cc74efc27a27de6bf7157ac16cda67a57fd4a344197",
+    "final-python-suites.zip": "73d83fde0c3633e6dc1f1c9dfa4cb92c436c559470fb23007a2e1758e8b68629"
+  },
+  "successful_jobs": [
+    {
+      "id": 138500318947,
+      "run_id": 45409835286,
+      "name": "check",
+      "conclusion": "success",
+      "html_url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45409835286/job/138500318947"
+    },
+    {
+      "id": 138503244640,
+      "run_id": 45410674890,
+      "name": "python-suites",
+      "conclusion": "success",
+      "html_url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45410674890/job/138503244640"
+    }
+  ],
+  "scope_author_commit": "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
+  "sources": {
+    "879": "3110cd2d2babb91b1ded853bfe86be26360b99e8",
+    "977": "a7fb525c65f4ddd937f824af71390d5c7af769d0"
+  }
+}
