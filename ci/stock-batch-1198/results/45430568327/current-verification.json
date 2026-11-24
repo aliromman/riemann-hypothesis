@@ -1,5 +1,5 @@
 {
-  "source_sandbox": "https://github.com/aliromman/riemann-hypothesis/tree/bf805f6403e2b832caf6942742ac28f6526b2015/ci/source-sandbox/results/45431323026/",
+  "source_sandbox": "https://github.com/aliromman/riemann-hypothesis/tree/ee7f370bbee5adeae169f6d268734be1390cdf0d/ci/source-sandbox/results/45431323026/",
   "verified_sources": {
     "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular": {
       "parent": "08651606886f625d8bd0b4ee559d94f9d8e222beb962777a1defff31badff61a",
@@ -111,8 +111,34 @@
       "status": 404
     }
   },
-  "observed_utc": "2026-11-24T16:47:08.032476+00:00",
+  "observed_utc": "2026-11-24T16:47:42.629185+00:00",
   "unit_tests": {
+    "actual_runner_source": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+    "url": "https://github.com/aliromman/riemann-hypothesis/tree/e404f06536002d82af7ab5d91ac5ce2ecfbc3fe8/ci/clump-diagnostics/results/45437935668/",
+    "zip_sha256": "f13a45fde295bed443a5fc5bfa8efef37899da79cc67a96fdd3b0fce54a46901",
+    "counts": {
+      "native": {
+        "ran": 60,
+        "seconds": 1.426,
+        "skipped": 0
+      },
+      "clump": {
+        "ran": 13,
+        "seconds": 0.303,
+        "skipped": 0
+      },
+      "scripts": {
+        "ran": 313,
+        "seconds": 14.366,
+        "skipped": 0
+      }
+    }
+  },
+  "previous_f617_binding": "https://github.com/aliromman/riemann-hypothesis/tree/9d5d5e50be11d25b5ad6cca7ce00360277750b8f/ci/stock-batch-1198/results/45430568327/",
+  "promoted_renderer_record": "promoted-renderer.json",
+  "actual_renderer_test": "https://github.com/aliromman/riemann-hypothesis/tree/e404f06536002d82af7ab5d91ac5ce2ecfbc3fe8/ci/clump-diagnostics/results/45437935668/",
+  "actual_renderer_cli_timing": "https://github.com/aliromman/riemann-hypothesis/tree/b5d67ad4d912d1b17a63150658017581ecfb7b7e/ci/clump-cli/results/45438578717/",
+  "previous_unit_evidence": {
     "actual_runner_source": "c0228c0ae22d9cbf3e5466760718fd19111058ac",
     "url": "https://github.com/aliromman/riemann-hypothesis/tree/fae64fb569cba9e83bcf85ea565168726e8f0876/ci/clump-diagnostics/results/45430700016/",
     "zip_sha256": "0706a34540ebf3d1962400789eecb3d51f0ae99f898b671ca56bbf24c7afa0fa",
@@ -128,9 +154,5 @@
     "specific_source_outside_tests_and_cone": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/QEqColPer.lean",
     "original_blob": "b2866071ef5aa52ddf561f10f3cf92ed4a34f369",
     "new_blob": "b6f94924a42f4a8f4ff6488447ea528d62c94d0e"
-  },
-  "previous_f617_binding": "https://github.com/aliromman/riemann-hypothesis/tree/9d5d5e50be11d25b5ad6cca7ce00360277750b8f/ci/stock-batch-1198/results/45430568327/",
-  "promoted_renderer_record": "promoted-renderer.json",
-  "actual_renderer_test": "https://github.com/aliromman/riemann-hypothesis/tree/e404f06536002d82af7ab5d91ac5ce2ecfbc3fe8/ci/clump-diagnostics/results/45437935668/",
-  "actual_renderer_cli_timing": "https://github.com/aliromman/riemann-hypothesis/tree/b5d67ad4d912d1b17a63150658017581ecfb7b7e/ci/clump-cli/results/45438578717/"
+  }
 }
