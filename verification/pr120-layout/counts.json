@@ -1,0 +1,109 @@
+{
+  "trees": {
+    "historical": {
+      "commit": "c7791603122c0328f79e49f6be5d7d4402effc53",
+      "all_lean": 149406,
+      "src_lean": 149397,
+      "protected_blobs": {
+        "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+        "src/Statements.lean": "23b01f745b80075e377c415abae96ece3570d0b0",
+        "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+        "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c"
+      },
+      "lean_toolchain": "leanprover/lean4:v4.36.0"
+    },
+    "initial": {
+      "commit": "f94106583626ad6b48ac6e239e0b2e5ffc879555",
+      "all_lean": 47891,
+      "src_lean": 47882,
+      "protected_blobs": {
+        "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+        "src/Statements.lean": "23b01f745b80075e377c415abae96ece3570d0b0",
+        "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+        "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c"
+      },
+      "lean_toolchain": "leanprover/lean4:v4.36.0"
+    },
+    "main": {
+      "commit": "c827d9fe3249dbd50b6bb82c948fcae88cfff583",
+      "all_lean": 60804,
+      "src_lean": 60790,
+      "protected_blobs": {
+        "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+        "src/Statements.lean": "23b01f745b80075e377c415abae96ece3570d0b0",
+        "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+        "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c"
+      },
+      "lean_toolchain": "leanprover/lean4:v4.37.0-rc1"
+    },
+    "integration": {
+      "commit": "7b6f4b929c2857ac175c35b21382022b7ac6f752",
+      "all_lean": 47893,
+      "src_lean": 47884,
+      "protected_blobs": {
+        "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+        "src/Statements.lean": "23b01f745b80075e377c415abae96ece3570d0b0",
+        "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+        "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c"
+      },
+      "lean_toolchain": "leanprover/lean4:v4.36.0"
+    }
+  },
+  "comparisons": {
+    "historical..initial": {
+      "all_lean": {
+        "base": 149406,
+        "candidate": 47891,
+        "removed_paths": 121774,
+        "added_paths": 20259,
+        "net_reduction": 101515,
+        "percentage": 67.9457
+      },
+      "src_lean": {
+        "base": 149397,
+        "candidate": 47882,
+        "removed_paths": 121774,
+        "added_paths": 20259,
+        "net_reduction": 101515,
+        "percentage": 67.9498
+      }
+    },
+    "historical..integration": {
+      "all_lean": {
+        "base": 149406,
+        "candidate": 47893,
+        "removed_paths": 121773,
+        "added_paths": 20260,
+        "net_reduction": 101513,
+        "percentage": 67.9444
+      },
+      "src_lean": {
+        "base": 149397,
+        "candidate": 47884,
+        "removed_paths": 121773,
+        "added_paths": 20260,
+        "net_reduction": 101513,
+        "percentage": 67.9485
+      }
+    },
+    "main..integration": {
+      "all_lean": {
+        "base": 60804,
+        "candidate": 47893,
+        "removed_paths": 43147,
+        "added_paths": 30236,
+        "net_reduction": 12911,
+        "percentage": 21.2338
+      },
+      "src_lean": {
+        "base": 60790,
+        "candidate": 47884,
+        "removed_paths": 43142,
+        "added_paths": 30236,
+        "net_reduction": 12906,
+        "percentage": 21.2305
+      }
+    }
+  },
+  "merge_base": "c7791603122c0328f79e49f6be5d7d4402effc53"
+}
