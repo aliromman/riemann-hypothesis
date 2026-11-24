@@ -1,0 +1,110 @@
+{
+  "source": "be239239d08c7bf865ba618cf6515891b4596c84",
+  "scripts": {
+    "initial": [
+      "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0",
+      "d346751f04fc9b6773cc53cd50bd2dea115db88a9df4dc3b8466499403ea9128"
+    ],
+    "previous": [
+      "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
+      "a4f1990726580a924d4cf95ecd7a76bcb00099a1e28756c06e9c91c47b5abcdf"
+    ],
+    "candidate": [
+      "be239239d08c7bf865ba618cf6515891b4596c84",
+      "01a81b1a58da622db0427e99139e3b399aa12fae43cde2d59aa709795c3bcade"
+    ]
+  },
+  "cases": {
+    "ordinary": {
+      "owners": {
+        "initial": [
+          "other"
+        ],
+        "previous": [
+          "note"
+        ],
+        "candidate": []
+      },
+      "compiler": "Lake version 5.0.0-src+0b77e12 (Lean version 4.37.0-rc1)",
+      "stock_exit": 1,
+      "line": 7,
+      "source_line": "example : False := True.intro",
+      "build_log_sha256": "dbf0bcd1dff03847ab17c18eabe53269b0e82196574febf1c1e2016609306b38",
+      "input_sources": {
+        "Main": "module\npublic import Init\n\n@[expose] public section\n-- clump member: note\n-- ===== clump member: other =====\nexample : False := True.intro\n"
+      },
+      "source_compiled": "module\npublic import Init\n\n@[expose] public section\n-- clump member: note\n-- ===== clump member: other =====\nexample : False := True.intro\n",
+      "exact_unclump": true
+    },
+    "above-banner": {
+      "owners": {
+        "initial": [
+          "other"
+        ],
+        "previous": [
+          "note"
+        ],
+        "candidate": []
+      },
+      "compiler": "Lake version 5.0.0-src+0b77e12 (Lean version 4.37.0-rc1)",
+      "stock_exit": 1,
+      "line": 7,
+      "source_line": "example : False := True.intro",
+      "build_log_sha256": "60628a1440b51a47701cbf916808c89e4610715ee90a0598c1a4cc263c45ce17",
+      "input_sources": {
+        "Leaf": "module\npublic import Init\n\n@[expose] public section\ntheorem leaf : True := True.intro\n",
+        "Main": "module\npublic import Examples.Leaf\n\n@[expose] public section\ntheorem root : True := True.intro\n"
+      },
+      "source_compiled": "module\n\npublic import Init\n\n-- clump member: note\n-- ===== clump member: other =====\nexample : False := True.intro\n-- This file was produced by scripts/clump.py from the modules listed below.\n-- Members: Examples.Leaf, Examples.Main\n\n@[expose] public section -- clump member: Examples.Leaf\ntheorem leaf : True := True.intro\nend -- clump:auto\n\n@[expose] public section -- clump member: Examples.Main\ntheorem root : True := True.intro\n\n-- clump-header: {\"m\": \"Examples.Leaf\", \"h\": \"module\\npublic import Init\\n\\n\"}\n-- clump-header: {\"m\": \"Examples.Main\", \"h\": \"module\\npublic import Examples.Leaf\\n\\n\"}\n",
+      "exact_unclump": true
+    },
+    "compact-member": {
+      "owners": {
+        "initial": [
+          "Examples.Leaf"
+        ],
+        "previous": [
+          "Examples.Leaf"
+        ],
+        "candidate": [
+          "Examples.Leaf"
+        ]
+      },
+      "compiler": "Lake version 5.0.0-src+0b77e12 (Lean version 4.37.0-rc1)",
+      "stock_exit": 1,
+      "line": 9,
+      "source_line": "theorem leaf : False := True.intro",
+      "build_log_sha256": "e2b2bff85aa5bc412ae6578a1896e79c601797ba8d12b2f11ba6bf4a7db16448",
+      "input_sources": {
+        "Leaf": "module\npublic import Init\n\n@[expose] public section\ntheorem leaf : False := True.intro\n",
+        "Main": "module\npublic import Examples.Leaf\n\n@[expose] public section\ntheorem root : True := True.intro\n"
+      },
+      "source_compiled": "module\n\npublic import Init\n\n-- This file was produced by scripts/clump.py from the modules listed below.\n-- Members: Examples.Leaf, Examples.Main\n\n@[expose] public section -- clump member: Examples.Leaf\ntheorem leaf : False := True.intro\nend -- clump:auto\n\n@[expose] public section -- clump member: Examples.Main\ntheorem root : True := True.intro\n\n-- clump-header: {\"m\": \"Examples.Leaf\", \"h\": \"module\\npublic import Init\\n\\n\"}\n-- clump-header: {\"m\": \"Examples.Main\", \"h\": \"module\\npublic import Examples.Leaf\\n\\n\"}\n",
+      "exact_unclump": true
+    },
+    "legacy-literal": {
+      "owners": {
+        "initial": [
+          "note"
+        ],
+        "previous": [
+          "Examples.Leaf"
+        ],
+        "candidate": [
+          "Examples.Leaf"
+        ]
+      },
+      "compiler": "Lake version 5.0.0-src+0b77e12 (Lean version 4.37.0-rc1)",
+      "stock_exit": 1,
+      "line": 13,
+      "source_line": "theorem leaf : False := True.intro",
+      "build_log_sha256": "33eb752708443f92d79f0397c232c22f8cd7e8a399d10ef99cf3e2bba2435fc0",
+      "input_sources": {
+        "Leaf": "module\npublic import Init\n\n@[expose] public section\n-- clump member: note\ntheorem leaf : False := True.intro\n",
+        "Main": "module\npublic import Examples.Leaf\n\n@[expose] public section\ntheorem root : True := True.intro\n"
+      },
+      "source_compiled": "module\n\npublic import Init\n\n-- This file was produced by scripts/clump.py from the modules listed below.\n-- Members: Examples.Leaf, Examples.Main\n\n-- ===== clump member: Examples.Leaf =====\n-- clump-header: {\"m\": \"Examples.Leaf\", \"h\": \"module\\npublic import Init\\n\\n\"}\nsection -- clump:auto\n@[expose] public section\n-- clump member: note\ntheorem leaf : False := True.intro\nend -- clump:auto\nend -- clump:auto\n-- ===== end clump member: Examples.Leaf =====\n\n-- ===== clump member: Examples.Main =====\n-- clump-header: {\"m\": \"Examples.Main\", \"h\": \"module\\npublic import Examples.Leaf\\n\\n\"}\nsection -- clump:auto\n@[expose] public section\ntheorem root : True := True.intro\nend -- clump:auto\nend -- clump:auto\n-- ===== end clump member: Examples.Main =====\n",
+      "exact_unclump": true
+    }
+  }
+}
