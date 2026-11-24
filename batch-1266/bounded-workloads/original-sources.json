@@ -1,0 +1,20 @@
+{
+  "stock879": {
+    "commit": "6e5030c3846bcf157ddad686d7750447f8f70346",
+    "folder": "ci/stock-batch-1266/results/45446269669",
+    "evidence": "https://github.com/aliromman/riemann-hypothesis/tree/6e5030c3846bcf157ddad686d7750447f8f70346/ci/stock-batch-1266/results/45446269669",
+    "files": {
+      "README.md": "cfda1d41a88053e6e5fec0e83385f5ff488475a7",
+      "identical-inputs.json": "edb10224a4efad315f3154da25598af99c06c4b3"
+    }
+  },
+  "sandbox": {
+    "commit": "ec29eed2be2f35a51f82053da385d6ca8ec328c7",
+    "folder": "ci/source-sandbox/results/45446517890",
+    "evidence": "https://github.com/aliromman/riemann-hypothesis/tree/ec29eed2be2f35a51f82053da385d6ca8ec328c7/ci/source-sandbox/results/45446517890",
+    "files": {
+      "README.md": "c88eaaf13a6dbd98a2e430f827424a604ad53b65",
+      "verified.json": "452d46e76fec8147d273d5c4fb1264c09b5b006e"
+    }
+  }
+}

@@ -1,0 +1,718 @@
+{
+  "Development.AutomorphicSpectrum.Proofs.MembershipProofs.CyclicAndLine": {
+    "order": [
+      "Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff",
+      "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+      "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.GoodChar",
+      "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.LaEqSqrtSmulLam",
+      "Development.AutomorphicSpectrum.Proofs.MembershipProofs.CyclicAndLine"
+    ],
+    "current_full_project_cone": [
+      "Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff",
+      "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+      "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.GoodChar",
+      "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.LaEqSqrtSmulLam",
+      "Development.AutomorphicSpectrum.Proofs.MembershipProofs.CyclicAndLine"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {}
+  },
+  "Development.AbelianVarietyTheory.Proofs.HeightProofs.OpenImmersionCompStructureEqGeneric": {
+    "order": [
+      "Development.AbelianVarietyTheory.Proofs.HeightProofs.OpenImmersionCompStructureEqGeneric"
+    ],
+    "current_full_project_cone": [
+      "Development.AbelianVarietyTheory.Proofs.HeightProofs.OpenImmersionCompStructureEqGeneric",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.Clauses",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.HasArcDataIff",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsGrpPullback",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsHolPeriods",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsLieBasis",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.OneArcSt",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.PushInvertible",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.RigidArc",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ThetaUnifAV",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.TwoWeightEqOneAddRoot",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ConstGen",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegExp",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegExpF",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegOUnif",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegUnif",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.GtPtBridgeSt",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.IsNsmul",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.LinCombTrivG",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.NonzeroLocus",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.QkToAkU",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.RosatiAdj",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ThetaPt",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ThickTransComp",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.AbelianSchemeQuotients.IsAbelianScheme",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.AbelianSchemeQuotients.QSurjective",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.AbelianSchemeQuotients.SplitExtDefs",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubicalPullBaseChangeSt",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.SplitTori.SplitTorusAff"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.Clauses": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.HasArcDataIff": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsGrpPullback": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsHolPeriods": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsLieBasis": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.OneArcSt": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.PushInvertible": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.RigidArc": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ThetaUnifAV": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.TwoWeightEqOneAddRoot": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ConstGen": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegExp": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegExpF": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegOUnif": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegUnif": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.GtPtBridgeSt": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.IsNsmul": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.LinCombTrivG": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.NonzeroLocus": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.QkToAkU": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.RosatiAdj": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ThetaPt": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ThickTransComp": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.AbelianSchemeQuotients.QSurjective": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.AbelianSchemeQuotients.SplitExtDefs": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubicalPullBaseChangeSt": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ]
+    }
+  },
+  "Development.EtaleCohomology.CohomologicalPurity.FinLeafHens": {
+    "order": [
+      "Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition",
+      "Development.EtaleCohomology.CohomologicalPurity.FinLeafHens",
+      "Development.EtaleCohomology.CohomologicalPurity.InrFold",
+      "Development.EtaleCohomology.CohomologicalPurity.LeafIndExc"
+    ],
+    "current_full_project_cone": [
+      "Development.AbelianVarietyTheory.Definitions.Divisors.BlockGLMap",
+      "Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition",
+      "Development.AbelianVarietyTheory.Definitions.Divisors.GalMapMul",
+      "Development.AbelianVarietyTheory.Definitions.Divisors.PullHlComp",
+      "Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsMatrixForm",
+      "Development.EtaleCohomology.CohomologicalPurity.FinLeafHens",
+      "Development.EtaleCohomology.CohomologicalPurity.InrFold",
+      "Development.EtaleCohomology.CohomologicalPurity.LeafHensCutDef",
+      "Development.EtaleCohomology.CohomologicalPurity.LeafIndExc",
+      "Development.EtaleCohomology.CohomologicalPurity.LeafRootPf",
+      "GroundTheory.ProfiniteCohomology.ContinuousCochains",
+      "GroundTheory.ProfiniteCohomology.DiscreteModules",
+      "GroundTheory.ProfiniteCohomology.DiscreteModules.IsDiscreteRepIffForallExistsOpenNormalSubgroup"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {
+      "Development.AbelianVarietyTheory.Definitions.Divisors.BlockGLMap": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "Development.EtaleCohomology.CohomologicalPurity.FinLeafHens": [
+        "owner_ltar"
+      ]
+    }
+  },
+  "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ArithmeticGroupCuspCentreLattice": {
+    "order": [
+      "Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.NormConst",
+      "Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.UnivFrame",
+      "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ArithmeticGroupCuspCentreLattice",
+      "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FinrankRatSkewHermitianMatricesCmField",
+      "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ZMatEInjective"
+    ],
+    "current_full_project_cone": [
+      "Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.NormConst",
+      "Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.UnivFrame",
+      "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ArithmeticGroupCuspCentreLattice",
+      "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FinrankRatSkewHermitianMatricesCmField",
+      "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ZMatEInjective",
+      "Formalism.LocalToGlobal.ProjectiveLattices.AlgebraMapCAt",
+      "Formalism.LocalToGlobal.ProjectiveLattices.EmbKCoe",
+      "Formalism.LocalToGlobal.ProjectiveLattices.IntegrableOnIntegrand",
+      "Formalism.LocalToGlobal.ProjectiveLattices.IsCombAt",
+      "Formalism.LocalToGlobal.ProjectiveLattices.JFDFree",
+      "Formalism.LocalToGlobal.ProjectiveLattices.UnFree",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.Clauses",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.FlagBasis",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsGrpPullback",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsHolPeriods",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsLieBasis",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.PushInvertible",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ThetaUnifAV",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.TwoWeightEqOneAddRoot",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ConstGen",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.NonzeroLocus",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ThetaPt",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ThickTransComp",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.ModerateCoefficientPositivity",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.Signature",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.AbelianSchemeQuotients.IsAbelianScheme",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubicalPullBaseChangeSt",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.SplitTori.SplitTorusAff"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {
+      "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ArithmeticGroupCuspCentreLattice": [
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.Clauses": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.FlagBasis": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsGrpPullback": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsHolPeriods": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsLieBasis": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.PushInvertible": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ThetaUnifAV": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.TwoWeightEqOneAddRoot": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ConstGen": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.NonzeroLocus": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ThetaPt": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ThickTransComp": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.ModerateCoefficientPositivity": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.Signature": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubicalPullBaseChangeSt": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ]
+    }
+  },
+  "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase": {
+    "order": [
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase"
+    ],
+    "current_full_project_cone": [
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase",
+      "ReciprocityTheory.GaloisValuations.SeparatedDvrSecondCohomologyMem"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {}
+  },
+  "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.CanonEx": {
+    "order": [
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AdjointDiagonalRepPreservesWeightPiece",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.CanonEx",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsCharZeroPt",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ConjTor",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight"
+    ],
+    "current_full_project_cone": [
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AdjointDiagonalRepPreservesWeightPiece",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.CanonEx",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsCharZeroPt",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ConjTor",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight",
+      "ReciprocityTheory.GaloisValuations.SeparatedDvrSecondCohomologyMem"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {}
+  },
+  "Development.AbelianVarietyTheory.Proofs.CharacterTheory.EqZeroOfNotPrimary": {
+    "order": [
+      "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.InvariantSubspaceMobiusInverseRecEqOfFinrankLt",
+      "Development.AbelianVarietyTheory.Proofs.CharacterTheory.EqZeroOfNotPrimary"
+    ],
+    "current_full_project_cone": [
+      "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.InvariantSubspaceMobiusInverseRecEqOfFinrankLt",
+      "Development.AbelianVarietyTheory.Proofs.CharacterTheory.EqZeroOfNotPrimary"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {}
+  },
+  "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CycleNumberRename": {
+    "order": [
+      "Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.BundleChernComparison",
+      "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CycleNumberRename",
+      "Development.WeilBound.CoreStatements.IdealCycleValues.ProdMapToMultiset"
+    ],
+    "current_full_project_cone": [
+      "Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.BundleChernComparison",
+      "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CycleNumberRename",
+      "Development.WeilBound.CoreStatements.IdealCycleValues.ProdMapToMultiset",
+      "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.BundleObjects",
+      "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Objects",
+      "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsBundles",
+      "GroundTheory.HeightsAndTheta.Heights.IterateExamples.Statements",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.Bundle",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.Bundle": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ]
+    }
+  },
+  "Development.EtaleCohomology.EtaleSheaves.LeafMapWPf": {
+    "order": [
+      "Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition",
+      "Development.EtaleCohomology.EtaleSheaves.EtaleChapterDTwo",
+      "Development.EtaleCohomology.EtaleSheaves.HalfDegreeVanishing.SecondBlockUnimodularLocusInclusionMono",
+      "Development.EtaleCohomology.EtaleSheaves.InstCommRingR",
+      "Development.EtaleCohomology.EtaleSheaves.LeafGeomPf",
+      "Development.EtaleCohomology.EtaleSheaves.LeafMapWPf"
+    ],
+    "current_full_project_cone": [
+      "Development.AbelianVarietyTheory.Definitions.Divisors.BlockGLMap",
+      "Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition",
+      "Development.AbelianVarietyTheory.Definitions.Divisors.GalMapMul",
+      "Development.AbelianVarietyTheory.Definitions.Divisors.PullHlComp",
+      "Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsMatrixForm",
+      "Development.EtaleCohomology.EtaleSheaves.EtaleChapterDTwo",
+      "Development.EtaleCohomology.EtaleSheaves.HalfDegreeVanishing.SecondBlockUnimodularLocusInclusionMono",
+      "Development.EtaleCohomology.EtaleSheaves.InstCommRingR",
+      "Development.EtaleCohomology.EtaleSheaves.LeafGeomPf",
+      "Development.EtaleCohomology.EtaleSheaves.LeafMapWPf",
+      "GroundTheory.ProfiniteCohomology.ContinuousCochains",
+      "GroundTheory.ProfiniteCohomology.DiscreteModules",
+      "GroundTheory.ProfiniteCohomology.DiscreteModules.IsDiscreteRepIffForallExistsOpenNormalSubgroup"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {
+      "Development.AbelianVarietyTheory.Definitions.Divisors.BlockGLMap": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "Development.EtaleCohomology.EtaleSheaves.HalfDegreeVanishing.SecondBlockUnimodularLocusInclusionMono": [
+        "owner_ltar"
+      ],
+      "Development.EtaleCohomology.EtaleSheaves.LeafMapWPf": [
+        "owner_ltar"
+      ]
+    }
+  },
+  "Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.LeNuIffPowMemPrinc": {
+    "order": [
+      "Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.LeNuIffPowMemPrinc"
+    ],
+    "current_full_project_cone": [
+      "Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.LeNuIffPowMemPrinc"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {}
+  },
+  "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsNineAdd": {
+    "order": [
+      "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsDefs",
+      "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsNineAdd",
+      "Development.WeilBound.CoreStatements.TemperedRepresentationTheory.GelfandSpectralNormalisation.NormalisedInvariants.PoitouTateExactSecond"
+    ],
+    "current_full_project_cone": [
+      "Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology\u2082.PoitouTateNineTermTransgressionZeroApply",
+      "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsDefs",
+      "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsNineAdd",
+      "Development.WeilBound.CoreStatements.TemperedRepresentationTheory.GelfandSpectralNormalisation.NormalisedInvariants.PoitouTateExactSecond",
+      "Formalism.ConjugateSelfDual.Statement",
+      "ReciprocityTheory.GaloisValuations.ContinuousConstSMulQuotient",
+      "ReciprocityTheory.GaloisValuations.Global",
+      "ReciprocityTheory.GaloisValuations.GlobalA",
+      "ReciprocityTheory.GaloisValuations.GlobalB",
+      "ReciprocityTheory.GaloisValuations.SeparatedDvrSecondCohomologyMem",
+      "ReciprocityTheory.Hypotheses.GalCoh",
+      "ReciprocityTheory.Hypotheses.GalCohDefs"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {
+      "Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology\u2082.PoitouTateNineTermTransgressionZeroApply": [
+        "owner_ltar"
+      ],
+      "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsDefs": [
+        "owner_ltar"
+      ],
+      "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsNineAdd": [
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.GaloisValuations.Global": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.GaloisValuations.GlobalB": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.Hypotheses.GalCoh": [
+        "owner_ltar"
+      ],
+      "ReciprocityTheory.Hypotheses.GalCohDefs": [
+        "base",
+        "first",
+        "merged_tree",
+        "owner_ltar"
+      ]
+    }
+  },
+  "Development.EtaleCohomology.TateTwists.EtaleChainsMayerVietorisShortExactOfFree": {
+    "order": [
+      "Development.EtaleCohomology.TateTwists.EtaleChainsMayerVietorisShortExactOfFree"
+    ],
+    "current_full_project_cone": [
+      "Development.AbelianVarietyTheory.Definitions.Divisors.GalMapMul",
+      "Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsMatrixForm",
+      "Development.EtaleCohomology.TateTwists.EtaleChainsMayerVietorisShortExactOfFree"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {}
+  },
+  "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SymplecticPeriodMatrixIntegrality": {
+    "order": [
+      "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SymplecticPeriodMatrixIntegrality"
+    ],
+    "current_full_project_cone": [
+      "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SymplecticPeriodMatrixIntegrality"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {}
+  },
+  "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.PTensorGK": {
+    "order": [
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData",
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.LiftCommEAt",
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.PTensorGK",
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.QdetFacts",
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.StepFormula"
+    ],
+    "current_full_project_cone": [
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData",
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.LiftCommEAt",
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.PTensorGK",
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.QdetFacts",
+      "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.StepFormula",
+      "Formalism.RealPlaceAnalysis.StatementA",
+      "Formalism.RealPlaceAnalysis.StatementB",
+      "Formalism.RealPlaceAnalysis.StatementE"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {}
+  },
+  "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.GraphAlgebraStandardSmooth": {
+    "order": [
+      "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.GraphAlgebraStandardSmooth"
+    ],
+    "current_full_project_cone": [
+      "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.GraphAlgebraStandardSmooth"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {}
+  },
+  "Development.WeilBound.ThetaLifts.Reductions.SiegelHaar": {
+    "order": [
+      "Development.WeilBound.ThetaLifts.Reductions.SiegelHaar"
+    ],
+    "current_full_project_cone": [
+      "Development.WeilBound.ThetaLifts.Reductions.SiegelHaar",
+      "Formalism.UnipotentAdelicQuotients.HaarProductClosedCompact"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {}
+  },
+  "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.FormallyEtaleCoordinates": {
+    "order": [
+      "Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.SpanSingletonProduct",
+      "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleCoordinates",
+      "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.FormallyEtaleCoordinates"
+    ],
+    "current_full_project_cone": [
+      "Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.SpanSingletonProduct",
+      "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleCoordinates",
+      "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.FormallyEtaleCoordinates"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {}
+  },
+  "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TraceUnique": {
+    "order": [
+      "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TraceUnique"
+    ],
+    "current_full_project_cone": [
+      "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TraceUnique"
+    ],
+    "added": [],
+    "removed": [],
+    "updated_sources": {}
+  }
+}

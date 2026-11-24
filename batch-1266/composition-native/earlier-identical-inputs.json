@@ -1,0 +1,153 @@
+{
+  "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.InvariantSubspaceMobiusInverseRecEqOfFinrankLt": {
+    "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.InvariantSubspaceMobiusInverseRecEqOfFinrankLt": "5a6a6cb425ca18c76fb604a2c834913fc0496302276473f2ecd738f4d62faa53"
+  },
+  "Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff": {
+    "Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff": "2b2eeaa0bf31304b571f8ed8cfa66817158a7efacae3eeb1357e07c9b5c21bf1",
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace": "d3f19a1bedbb52adb474c8ad6fde3b5f8d880289bad2da5d9ff1b2267c25e3d3"
+  },
+  "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace": {
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace": "d3f19a1bedbb52adb474c8ad6fde3b5f8d880289bad2da5d9ff1b2267c25e3d3"
+  },
+  "Development.AbelianVarietyTheory.Proofs.CharacterTheory.EqZeroOfNotPrimary": {
+    "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.InvariantSubspaceMobiusInverseRecEqOfFinrankLt": "5a6a6cb425ca18c76fb604a2c834913fc0496302276473f2ecd738f4d62faa53",
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.EqZeroOfNotPrimary": "ad3457f808d0e2cdf8bb0b1fd882fa4d8b46ad31d3ccfa4b4f9c7c6bcf85e3b1"
+  },
+  "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective": {
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective": "b1ca79b320d0275dfe068e17bfde4b0e5631a4c3ce77d0b6619340dabb1a2777"
+  },
+  "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1": {
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1": "2ae50a0befd29cf96a61d7e3eaaf6418eab8b976661994cc2a6633770851f7e0",
+    "ReciprocityTheory.GaloisValuations.SeparatedDvrSecondCohomologyMem": "863dbe915920a4587fa675cb91e022487e5bf12cad5ec26b5ba780ce13dc6604"
+  },
+  "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase": {
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1": "2ae50a0befd29cf96a61d7e3eaaf6418eab8b976661994cc2a6633770851f7e0",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase": "f2ddb340f3a0eb5c669434777dbaa129b7d640ae9dd6bd97368fb5f8f2c5e39b",
+    "ReciprocityTheory.GaloisValuations.SeparatedDvrSecondCohomologyMem": "863dbe915920a4587fa675cb91e022487e5bf12cad5ec26b5ba780ce13dc6604"
+  },
+  "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AdjointDiagonalRepPreservesWeightPiece": {
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AdjointDiagonalRepPreservesWeightPiece": "b11807a79ccbbddbb79bda23352636b6516100aa5a973cdef515204b6d83fae2",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne": "532a34a2038f7f05cf4f9745dd18ce8321ffd3324e0053599effe439659ba8f1",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight": "80d51a31b2b56034609819dcc1f8eb4dd9f093c6916329631511ce55a2e8fc34",
+    "ReciprocityTheory.GaloisValuations.SeparatedDvrSecondCohomologyMem": "863dbe915920a4587fa675cb91e022487e5bf12cad5ec26b5ba780ce13dc6604"
+  },
+  "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.CanonEx": {
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective": "b1ca79b320d0275dfe068e17bfde4b0e5631a4c3ce77d0b6619340dabb1a2777",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AdjointDiagonalRepPreservesWeightPiece": "b11807a79ccbbddbb79bda23352636b6516100aa5a973cdef515204b6d83fae2",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.CanonEx": "0c88ab94d5697623d565310fc4180eb00f693db6a18537bb122bbb6d2826ab8c",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsCharZeroPt": "6f8b4f6ffb05f6ab008f1c45229c8bd8e3df43cf1493aa26703263827b743caa",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne": "532a34a2038f7f05cf4f9745dd18ce8321ffd3324e0053599effe439659ba8f1",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ConjTor": "b7f8eea6cbfd2590d5db3d895f2f022c9a78d7f6485ceae89fe4ab9f27a5347f",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight": "80d51a31b2b56034609819dcc1f8eb4dd9f093c6916329631511ce55a2e8fc34",
+    "ReciprocityTheory.GaloisValuations.SeparatedDvrSecondCohomologyMem": "863dbe915920a4587fa675cb91e022487e5bf12cad5ec26b5ba780ce13dc6604"
+  },
+  "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsCharZeroPt": {
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective": "b1ca79b320d0275dfe068e17bfde4b0e5631a4c3ce77d0b6619340dabb1a2777",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AdjointDiagonalRepPreservesWeightPiece": "b11807a79ccbbddbb79bda23352636b6516100aa5a973cdef515204b6d83fae2",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsCharZeroPt": "6f8b4f6ffb05f6ab008f1c45229c8bd8e3df43cf1493aa26703263827b743caa",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne": "532a34a2038f7f05cf4f9745dd18ce8321ffd3324e0053599effe439659ba8f1",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ConjTor": "b7f8eea6cbfd2590d5db3d895f2f022c9a78d7f6485ceae89fe4ab9f27a5347f",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight": "80d51a31b2b56034609819dcc1f8eb4dd9f093c6916329631511ce55a2e8fc34",
+    "ReciprocityTheory.GaloisValuations.SeparatedDvrSecondCohomologyMem": "863dbe915920a4587fa675cb91e022487e5bf12cad5ec26b5ba780ce13dc6604"
+  },
+  "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne": {
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne": "532a34a2038f7f05cf4f9745dd18ce8321ffd3324e0053599effe439659ba8f1",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight": "80d51a31b2b56034609819dcc1f8eb4dd9f093c6916329631511ce55a2e8fc34"
+  },
+  "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ConjTor": {
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne": "532a34a2038f7f05cf4f9745dd18ce8321ffd3324e0053599effe439659ba8f1",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ConjTor": "b7f8eea6cbfd2590d5db3d895f2f022c9a78d7f6485ceae89fe4ab9f27a5347f",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight": "80d51a31b2b56034609819dcc1f8eb4dd9f093c6916329631511ce55a2e8fc34"
+  },
+  "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight": {
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight": "80d51a31b2b56034609819dcc1f8eb4dd9f093c6916329631511ce55a2e8fc34"
+  },
+  "Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.LeNuIffPowMemPrinc": {
+    "Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.LeNuIffPowMemPrinc": "bab652f84d6f0c95b04da405d6b6acdb527ec69b3936dd262bfad5ad23e788b1"
+  },
+  "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.GoodChar": {
+    "Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff": "2b2eeaa0bf31304b571f8ed8cfa66817158a7efacae3eeb1357e07c9b5c21bf1",
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace": "d3f19a1bedbb52adb474c8ad6fde3b5f8d880289bad2da5d9ff1b2267c25e3d3",
+    "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.GoodChar": "f5f7530e8110a68265d348a477123ae608518d56263e73c455cd7deb995417e6",
+    "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.LaEqSqrtSmulLam": "038c8bf5ef9659b8f03d92e688cc5cc0ad6a4c4759958e7104202859572d5a38"
+  },
+  "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.LaEqSqrtSmulLam": {
+    "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.LaEqSqrtSmulLam": "038c8bf5ef9659b8f03d92e688cc5cc0ad6a4c4759958e7104202859572d5a38"
+  },
+  "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SymplecticPeriodMatrixIntegrality": {
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SymplecticPeriodMatrixIntegrality": "3d2051410081f60093df584194a6a044ccedd78da3470e834aa0950a4d04c68c"
+  },
+  "Development.AutomorphicSpectrum.Proofs.MembershipProofs.CyclicAndLine": {
+    "Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff": "2b2eeaa0bf31304b571f8ed8cfa66817158a7efacae3eeb1357e07c9b5c21bf1",
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace": "d3f19a1bedbb52adb474c8ad6fde3b5f8d880289bad2da5d9ff1b2267c25e3d3",
+    "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.GoodChar": "f5f7530e8110a68265d348a477123ae608518d56263e73c455cd7deb995417e6",
+    "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.LaEqSqrtSmulLam": "038c8bf5ef9659b8f03d92e688cc5cc0ad6a4c4759958e7104202859572d5a38",
+    "Development.AutomorphicSpectrum.Proofs.MembershipProofs.CyclicAndLine": "b6fa150b62e715fee64a0cee7b3d7f05eb8e9c09cf74b62900c8839a9afdfccb"
+  },
+  "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TraceUnique": {
+    "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TraceUnique": "90ebe76f9069df1fc7dad68ae2ef23ba1d8b9392ffc491300167fc56483d7d4d"
+  },
+  "Development.EtaleCohomology.TateTwists.EtaleChainsMayerVietorisShortExactOfFree": {
+    "Development.AbelianVarietyTheory.Definitions.Divisors.GalMapMul": "1e4c927f2339c98628202e681836cea966a86ac22e5f740a6affea33edc59929",
+    "Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsMatrixForm": "fc0036b3b57952c5de08f403649c48e617d75a279eabd173190b355bc6c3b12f",
+    "Development.EtaleCohomology.TateTwists.EtaleChainsMayerVietorisShortExactOfFree": "769dec92419a86a4d7e822eea93b5f4eb46f05b96f1efa7b0d8d4714d07a7eba"
+  },
+  "Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.SpanSingletonProduct": {
+    "Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.SpanSingletonProduct": "bee57fdd18d98a5671e0005b9961e2a3c7e506a5b1afa841da0cea3a437c70a3"
+  },
+  "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleCoordinates": {
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleCoordinates": "a486d9f80ecf064c1c81ecb9891a832ccc23a5f951742eccae4d535e639aff76"
+  },
+  "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.FormallyEtaleCoordinates": {
+    "Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.SpanSingletonProduct": "bee57fdd18d98a5671e0005b9961e2a3c7e506a5b1afa841da0cea3a437c70a3",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleCoordinates": "a486d9f80ecf064c1c81ecb9891a832ccc23a5f951742eccae4d535e639aff76",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.FormallyEtaleCoordinates": "e67abb1c581b025ad8ede19d2545414c0d5aeb2b9d90b6a542017c31fddf4e96"
+  },
+  "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.GraphAlgebraStandardSmooth": {
+    "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.GraphAlgebraStandardSmooth": "fd48b063b115ceeb9bfbec08be52ffa1f63969dd82b8cac5fb15b8e26e99c8e9"
+  },
+  "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData": {
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData": "420e92e3f4107b93297bc3e8ec884d296cf3e43673b28ae267f917d60a891e5c",
+    "Formalism.RealPlaceAnalysis.StatementA": "c218e62d90b7b5f7ecd5aa55a10f006feae4d71efa298a58d7686a25c691de57",
+    "Formalism.RealPlaceAnalysis.StatementB": "6e2078ab1e15db4b5ccdd3a8ac29c2809083c527e14e4fdbb196424e54af4181",
+    "Formalism.RealPlaceAnalysis.StatementE": "18fb63e9c7fd408d57cf1de043defcb2f826b181157ae61d4f08bbcc0b0422fa"
+  },
+  "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.LiftCommEAt": {
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData": "420e92e3f4107b93297bc3e8ec884d296cf3e43673b28ae267f917d60a891e5c",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.LiftCommEAt": "aaa61414d1f3e1178cc6bc1e07f6684d59806a816484fe3fe5421cc8f5f38c97",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.QdetFacts": "ae67721e0dcd3b08368348d27c2132be616f4e4580ef80d10dee1c68a528b93e",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.StepFormula": "83eba6d92ca5020f06320965921f02a6d34616ccebdd3b8dbce057a485572500",
+    "Formalism.RealPlaceAnalysis.StatementA": "c218e62d90b7b5f7ecd5aa55a10f006feae4d71efa298a58d7686a25c691de57",
+    "Formalism.RealPlaceAnalysis.StatementB": "6e2078ab1e15db4b5ccdd3a8ac29c2809083c527e14e4fdbb196424e54af4181",
+    "Formalism.RealPlaceAnalysis.StatementE": "18fb63e9c7fd408d57cf1de043defcb2f826b181157ae61d4f08bbcc0b0422fa"
+  },
+  "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.PTensorGK": {
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData": "420e92e3f4107b93297bc3e8ec884d296cf3e43673b28ae267f917d60a891e5c",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.LiftCommEAt": "aaa61414d1f3e1178cc6bc1e07f6684d59806a816484fe3fe5421cc8f5f38c97",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.PTensorGK": "e7825291ea16ca6a3a9d392e6618a021f074bb6fa1b8f436a1ce724406991756",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.QdetFacts": "ae67721e0dcd3b08368348d27c2132be616f4e4580ef80d10dee1c68a528b93e",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.StepFormula": "83eba6d92ca5020f06320965921f02a6d34616ccebdd3b8dbce057a485572500",
+    "Formalism.RealPlaceAnalysis.StatementA": "c218e62d90b7b5f7ecd5aa55a10f006feae4d71efa298a58d7686a25c691de57",
+    "Formalism.RealPlaceAnalysis.StatementB": "6e2078ab1e15db4b5ccdd3a8ac29c2809083c527e14e4fdbb196424e54af4181",
+    "Formalism.RealPlaceAnalysis.StatementE": "18fb63e9c7fd408d57cf1de043defcb2f826b181157ae61d4f08bbcc0b0422fa"
+  },
+  "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.QdetFacts": {
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData": "420e92e3f4107b93297bc3e8ec884d296cf3e43673b28ae267f917d60a891e5c",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.QdetFacts": "ae67721e0dcd3b08368348d27c2132be616f4e4580ef80d10dee1c68a528b93e",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.StepFormula": "83eba6d92ca5020f06320965921f02a6d34616ccebdd3b8dbce057a485572500",
+    "Formalism.RealPlaceAnalysis.StatementA": "c218e62d90b7b5f7ecd5aa55a10f006feae4d71efa298a58d7686a25c691de57",
+    "Formalism.RealPlaceAnalysis.StatementB": "6e2078ab1e15db4b5ccdd3a8ac29c2809083c527e14e4fdbb196424e54af4181",
+    "Formalism.RealPlaceAnalysis.StatementE": "18fb63e9c7fd408d57cf1de043defcb2f826b181157ae61d4f08bbcc0b0422fa"
+  },
+  "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.StepFormula": {
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData": "420e92e3f4107b93297bc3e8ec884d296cf3e43673b28ae267f917d60a891e5c",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.StepFormula": "83eba6d92ca5020f06320965921f02a6d34616ccebdd3b8dbce057a485572500",
+    "Formalism.RealPlaceAnalysis.StatementA": "c218e62d90b7b5f7ecd5aa55a10f006feae4d71efa298a58d7686a25c691de57",
+    "Formalism.RealPlaceAnalysis.StatementB": "6e2078ab1e15db4b5ccdd3a8ac29c2809083c527e14e4fdbb196424e54af4181",
+    "Formalism.RealPlaceAnalysis.StatementE": "18fb63e9c7fd408d57cf1de043defcb2f826b181157ae61d4f08bbcc0b0422fa"
+  },
+  "Development.WeilBound.ThetaLifts.Reductions.SiegelHaar": {
+    "Development.WeilBound.ThetaLifts.Reductions.SiegelHaar": "ab23bf62fa9999d31ccc31bd9dc2a89a014933e3d38d9e74bdc861f4dd45a3fc",
+    "Formalism.UnipotentAdelicQuotients.HaarProductClosedCompact": "05fe550cb04c72997c48f31cb6bf0ebd1be191b745ab41626e8865b337fe9bb4"
+  }
+}

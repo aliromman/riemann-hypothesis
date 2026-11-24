@@ -1,0 +1,312 @@
+{
+  "previous_run": 45431197871,
+  "previous_workflow": "f3aae0655526a12e1fa18a8e8c3a4ac29efc3f78",
+  "previous_linux_root": "4db316c45c8e1d40f99c60396f58951e7ae2a22f",
+  "previous_original_actions_zip_sha256": "4a80042defaa7d6ddbfc60c9c1b1381ec7457a61fa0fe63451e590f8c1d3d0cb",
+  "previous_record": "https://github.com/aliromman/riemann-hypothesis/tree/f6c3420f029cdcf1274767047e6e2122b945459c/ci/stock-batch-1198/results/45431197871/",
+  "current_run": 45446269669,
+  "current_root": "e0a0acde813bd368786947b98704ee6814656a15",
+  "previous_current_fixed_git_inputs": {
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    ".gitattributes": "388ae3892de0350a636b6ecef7026bfc1959ef06",
+    "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "comparator/FormalConjecturesChallenge.lean": "290a2c6270f8da3852c7051d7da0f30032a70421",
+    "comparator/formal-conjectures.json": "e3afddc98129d1d1183ff217d434165fd893a0fe",
+    "comparator/formal-conjectures-export-targets.txt": "80bbbf91461783bb8e7f0bb8061b792668d4140a"
+  },
+  "complete_panel_changed_inputs": {
+    "parent_sources": 24,
+    "candidate_sources": 24,
+    "parent_direct_imports": 24,
+    "candidate_direct_imports": 24,
+    "input_identity": 42,
+    "archive_digest": 32,
+    "gone": 0,
+    "new": 0
+  },
+  "transferred": {
+    "timing/Development.AbelianVarietyTheory.Definitions.Divisors.IotaScalarOne": {
+      "roots": [
+        "Development.AbelianVarietyTheory.Definitions.Divisors.IotaScalarOne"
+      ],
+      "identical_project_modules": 2,
+      "rows": {
+        "Development.AbelianVarietyTheory.Definitions.Divisors.IotaScalarOne": {
+          "parent_git_blob": "be8bad1b2591d64c428219bf84dfb6adc7f9309c",
+          "candidate_git_blob": "6f1e65561e33461c31e12b25bd75a3360323b7f2",
+          "ordinary_import_flags_and_order": [
+            [
+              "Development.AbelianVarietyTheory.Definitions.Divisors.XiMulNu",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "06d3639a82188572",
+            "50757b4440badf44.ltar",
+            "599165e0a76636c52340f450aa90120a6f1041500a48964dff43f724182a2670"
+          ]
+        },
+        "Development.AbelianVarietyTheory.Definitions.Divisors.XiMulNu": {
+          "parent_git_blob": "200db3347489affa43c3c93d29a08e50cb4cadf3",
+          "candidate_git_blob": "7d961fc06899c57e3c780c626daf8de4c2e2c22d",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "53065381ebc39b1a",
+            "04ce54769daeef0c.ltar",
+            "823cc7ed0488298443aff6b8fa381a72d889bcf3aa4ea61df183021ccd86d097"
+          ]
+        }
+      },
+      "rows_sha256": "10eef95a73238b15c2301d8157acb1235532fa371853acef9b7ab47afc9e5077"
+    },
+    "timing/Development.AbelianVarietyTheory.Definitions.Divisors.LogAbsVpOfNormalised": {
+      "roots": [
+        "Development.AbelianVarietyTheory.Definitions.Divisors.LogAbsVpOfNormalised"
+      ],
+      "identical_project_modules": 2,
+      "rows": {
+        "Development.AbelianVarietyTheory.Definitions.Divisors.LogAbsVpOfNormalised": {
+          "parent_git_blob": "4a0409da1803d190d9b685231252aa034624d870",
+          "candidate_git_blob": "ea34fa8da41500afcf9f79da3b6b53db0dc4d100",
+          "ordinary_import_flags_and_order": [
+            [
+              "Development.AbelianVarietyTheory.Proofs.HermitianTraceForms.IsLocallyConstantRankAtStalkEigenSub",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "4f8cf2ee634888bf",
+            "34949269dfd9d16e.ltar",
+            "4e96a8d1954f9d09cb8762a674680de6a9b1eceb9be465fe5803f4fbd63bbba1"
+          ]
+        },
+        "Development.AbelianVarietyTheory.Proofs.HermitianTraceForms.IsLocallyConstantRankAtStalkEigenSub": {
+          "parent_git_blob": "90cb90bfec647f873fd261b02e224bb5b1f0dad1",
+          "candidate_git_blob": "ae55386fa0c49e0745574028ef3b6bd0d4993596",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "12b496d8679f7216",
+            "3837d36bd0c4f308.ltar",
+            "e458c98ad14d3a5cef5617526991eb2f68e56e1d412908df02782b76367b4b33"
+          ]
+        }
+      },
+      "rows_sha256": "6e01531fe69190108dccfbcb939ae958948547ba3aceca2b6bddcf4d6e5e552f"
+    },
+    "timing/Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff": {
+      "roots": [
+        "Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff"
+      ],
+      "identical_project_modules": 1,
+      "rows": {
+        "Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff": {
+          "parent_git_blob": "8f92d63aba675bb5795501fbe7d8070a1dcb2247",
+          "candidate_git_blob": "9ae1beef2db45a7b9438637e9d5818f2c4bf78c8",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "77181090d3b08f2c",
+            "e632431f38a7f962.ltar",
+            "0ed9f237b36265c52edfa4353bf9284cb46759123009b88b4e45e6d700703c81"
+          ]
+        }
+      },
+      "rows_sha256": "57d33f94f3f04bbcded8a9396a875cb35deba7dfb4e90c77f87c2b6354f4dd9a"
+    },
+    "timing/Development.AbelianVarietyTheory.Definitions.Divisors.DlogRatioVolumeFormNeZero": {
+      "roots": [
+        "Development.AbelianVarietyTheory.Definitions.Divisors.DlogRatioVolumeFormNeZero"
+      ],
+      "identical_project_modules": 5,
+      "rows": {
+        "Development.AbelianVarietyTheory.Definitions.Divisors.CupPair": {
+          "parent_git_blob": "cda23289d580654a84a13109cdc36693ee1d98a4",
+          "candidate_git_blob": "3e81cfbd9718d2b8ff2d650eed0ba49cbb9a3c7a",
+          "ordinary_import_flags_and_order": [
+            [
+              "Development.AbelianVarietyTheory.Definitions.Divisors.IsFlatLift",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "b1b74b209fec0021",
+            "8b0be35aff287fb5.ltar",
+            "f2dd244d209cf5396bcd9fa6d84eb4dd4bdda2e2513c1d2d4b3174a4eb56e382"
+          ]
+        },
+        "Development.AbelianVarietyTheory.Definitions.Divisors.DlogRatioVolumeFormNeZero": {
+          "parent_git_blob": "fa5f389428c343400c1f55e00cea346a2eb00c10",
+          "candidate_git_blob": "0b67c139a66ce7c18f149aaa6804960722c063ab",
+          "ordinary_import_flags_and_order": [
+            [
+              "Development.AbelianVarietyTheory.Definitions.Divisors.CupPair",
+              true,
+              false,
+              false
+            ],
+            [
+              "Development.AbelianVarietyTheory.Definitions.Divisors.OneFormMapEqKaehlerDifferentialMap",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "6bc55f9ac05235f0",
+            "2073ebdf8b8c61e0.ltar",
+            "fe3fac7058038c75e39e5b5b62d485b496fcb0dcf1cf38095f35496d2b1c1720"
+          ]
+        },
+        "Development.AbelianVarietyTheory.Definitions.Divisors.IsFlatLift": {
+          "parent_git_blob": "7ebcf6b66e1dfbc15a58ca14d1dccd7593834774",
+          "candidate_git_blob": "c2be87bf0f34ba78ff15ae7be5dc8e6e13359657",
+          "ordinary_import_flags_and_order": [
+            [
+              "Development.AbelianVarietyTheory.Definitions.QuasicoherentCohomology.IsIsoTermComparisonRestrictScalars",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "847428d67b9e5d5c",
+            "b85f34b5831b8ddc.ltar",
+            "489b9fc8d10e0d34c6c75d86ff8f8664ec65aa3b9cce5b644b27b572f8398743"
+          ]
+        },
+        "Development.AbelianVarietyTheory.Definitions.Divisors.OneFormMapEqKaehlerDifferentialMap": {
+          "parent_git_blob": "c60b169ff05af4dd56d09011062e2c727f3940a3",
+          "candidate_git_blob": "6cec911a3a6d7e5fbec6717ec8d2682861aae841",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "4f7eae2b9a012a2d",
+            "8ee2ed6c24b7b1dd.ltar",
+            "e30da777b2270348bc5d4a4e9df1b72b6959b2e2dda45d2f071859adaebf1a8f"
+          ]
+        },
+        "Development.AbelianVarietyTheory.Definitions.QuasicoherentCohomology.IsIsoTermComparisonRestrictScalars": {
+          "parent_git_blob": "c12abf59874642562ff5fa5b1bf59810252c9b69",
+          "candidate_git_blob": "4cb00497a91e6a85ce933cd3285d31064ec3fd65",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "7fd424912c5b3e41",
+            "e99c4e2536ef2f42.ltar",
+            "0f1d85fa87e11674203f889c3e96dbdd043a87ba7419e1a584cb7ca908ec5464"
+          ]
+        }
+      },
+      "rows_sha256": "9966572205adffff592aba034a2103f07321e57d8c36f8959039ca720ed37664"
+    },
+    "exports/Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne": {
+      "roots": [
+        "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne"
+      ],
+      "identical_project_modules": 1,
+      "rows": {
+        "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne": {
+          "parent_git_blob": "07708f566fb8ffdfb01d817c6460fc1e03b8a4bd",
+          "candidate_git_blob": "687824dfa0ccc0a0b81810d5073d64c3a0154ae9",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "d781764436ef023f",
+            "209dde247991b46d.ltar",
+            "56a4c8ddc5d7fea8d3e8281a04cbd4fb6d28d884890b65bb78d14dfb529e1958"
+          ]
+        }
+      },
+      "rows_sha256": "547e40a09336906b9724ab949e64a86515ff8c36ff580b71f473f6b9a0b2f16c"
+    },
+    "exports/Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange": {
+      "roots": [
+        "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange"
+      ],
+      "identical_project_modules": 2,
+      "rows": {
+        "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange": {
+          "parent_git_blob": "fcaabc01f2e63a1a56ee043d85b60870a968e2c2",
+          "candidate_git_blob": "4a63bd13dea6666ae5e30d8e78ea783e9e9e89a3",
+          "ordinary_import_flags_and_order": [
+            [
+              "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.AlternatingMapSumSmulEqDetSmul",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "c60b690914170cf1",
+            "b992698d31771ac9.ltar",
+            "0af841d849b01fdf682b867a910117801ed4eab47226b38057f4461f61bf8a2c"
+          ]
+        },
+        "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.AlternatingMapSumSmulEqDetSmul": {
+          "parent_git_blob": "5928079103bdbdc32f7d18e31e68b696c3ecd24e",
+          "candidate_git_blob": "2529fdd883e387467e1eba62f04b94ca6cc1b8c0",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "a139d8303e407edd",
+            "e169f76420d131a8.ltar",
+            "6e60133e040a32c5b85611feea1cec56514030b1ca1833c211a68bc4f2560304"
+          ]
+        }
+      },
+      "rows_sha256": "dc6edfb5fb60b07e249c74375449f79ddafeaebd0c6a0b81051c71a5ecea80ea"
+    },
+    "lake-pairs": {
+      "roots": [
+        "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+        "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange"
+      ],
+      "identical_project_modules": 3,
+      "rows": {
+        "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne": {
+          "parent_git_blob": "07708f566fb8ffdfb01d817c6460fc1e03b8a4bd",
+          "candidate_git_blob": "687824dfa0ccc0a0b81810d5073d64c3a0154ae9",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "d781764436ef023f",
+            "209dde247991b46d.ltar",
+            "56a4c8ddc5d7fea8d3e8281a04cbd4fb6d28d884890b65bb78d14dfb529e1958"
+          ]
+        },
+        "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange": {
+          "parent_git_blob": "fcaabc01f2e63a1a56ee043d85b60870a968e2c2",
+          "candidate_git_blob": "4a63bd13dea6666ae5e30d8e78ea783e9e9e89a3",
+          "ordinary_import_flags_and_order": [
+            [
+              "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.AlternatingMapSumSmulEqDetSmul",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "c60b690914170cf1",
+            "b992698d31771ac9.ltar",
+            "0af841d849b01fdf682b867a910117801ed4eab47226b38057f4461f61bf8a2c"
+          ]
+        },
+        "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.AlternatingMapSumSmulEqDetSmul": {
+          "parent_git_blob": "5928079103bdbdc32f7d18e31e68b696c3ecd24e",
+          "candidate_git_blob": "2529fdd883e387467e1eba62f04b94ca6cc1b8c0",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "a139d8303e407edd",
+            "e169f76420d131a8.ltar",
+            "6e60133e040a32c5b85611feea1cec56514030b1ca1833c211a68bc4f2560304"
+          ]
+        }
+      },
+      "rows_sha256": "b78e0a1aaf8d5ec5e9cb99f387d382d6941a585b71e7d18daa0e210b49f3e36d"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "879": {
+    "changed_deep_project_targets": 0,
+    "deep_project_targets": [
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.GammaLaurentFactors.LocalEmbeddingNorms.MatchIndOf",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LeviSmoothLocalization.PrincipalSeriesMatching.MatchBCX",
+      "Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.TsphVec",
+      "ReciprocityTheory.ReductiveGroups.DiscreteSeries.RigidityTheorems.ClosGenStable",
+      "ReciprocityTheory.ReductiveGroups.DiscreteSeries.RigidityTheorems.RorthFunctionalEqZero"
+    ],
+    "different_public_compiler_images": 39007,
+    "head": "e0a0acde813bd368786947b98704ee6814656a15",
+    "main": "transitive_only",
+    "modules": 59883,
+    "per_project_module_flags_sha256": "2508ee1432e7446b74f56e96fc84a753884549538166255a5b478f6b0ce0c34c",
+    "pr": 879,
+    "scope": {
+      "all": {
+        "direct": 37938,
+        "identical_public_inputs": 13971,
+        "transitive_only": 7974
+      },
+      "selected": {
+        "direct": 35373,
+        "identical_public_inputs": 2722,
+        "transitive_only": 912
+      },
+      "unselected": {
+        "direct": 2565,
+        "identical_public_inputs": 11249,
+        "transitive_only": 7062
+      }
+    },
+    "selected": 39007
+  },
+  "977": {
+    "changed_deep_project_targets": 0,
+    "deep_project_targets": [
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.GammaLaurentFactors.LocalEmbeddingNorms.MatchIndOf",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LeviSmoothLocalization.PrincipalSeriesMatching.MatchBCX",
+      "Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.TsphVec",
+      "ReciprocityTheory.ReductiveGroups.DiscreteSeries.RigidityTheorems.ClosGenStable",
+      "ReciprocityTheory.ReductiveGroups.DiscreteSeries.RigidityTheorems.RorthFunctionalEqZero"
+    ],
+    "different_public_compiler_images": 0,
+    "head": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+    "main": "identical_public_inputs",
+    "modules": 59883,
+    "per_project_module_flags_sha256": "148f84fa26c96a56d842fab4efa21566901f98db849b77ffb431dd8b1d1962d7",
+    "pr": 977,
+    "scope": {
+      "all": {
+        "identical_public_inputs": 59883
+      },
+      "selected": {
+        "identical_public_inputs": 11548
+      },
+      "unselected": {
+        "identical_public_inputs": 48335
+      }
+    },
+    "selected": 11548
+  }
+}

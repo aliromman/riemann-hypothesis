@@ -1,0 +1,112 @@
+{
+  "parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "candidate": "e0a0acde813bd368786947b98704ee6814656a15",
+  "project_cone": 51,
+  "measured": {
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.SmulStrictMono": {
+      "original_git": "bd17892ea1788f3988f7b28ee44681299e08b097",
+      "candidate_git": "074e397487ffe6fffc0337ee741d14a74c4db341",
+      "official_ltar": "da9208e3e4d831402030b5dd0219b7a476149de374c5a245d48e32db0fc5f9c8"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TensorHomCubes.StabDirectedSystem": {
+      "original_git": "5baa9746387cc7be40f021b42e3fe44a634c0c87",
+      "candidate_git": "05d3deb56d808d532537da52c1e499ea0a71e75b",
+      "official_ltar": "9ccc96f88e39bd8227a72391928cf752c6a8dc4220ec9e1cd97a85e764a5a3a8"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.ActLPos": {
+      "original_git": "e953af8f72268929f3ffc357e34d3340a4a335b3",
+      "candidate_git": "fb024cdaed4fddaf7d1888c75cd63d4ddc593215",
+      "official_ltar": "2859a7787c59a89395ad9ce6326eac6d7b254ed92985736e08193a0a95cf2993"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.SBridgeAlt": {
+      "original_git": "cedbb26d90a6c3a123fd6c3f8ad13327ae72325d",
+      "candidate_git": "b69ece6543a8d6336da6d0f56ff00c8f07d13d40",
+      "official_ltar": "20db64626498017e14eb681ace034145cbf972716fe741745c6b5e095a6268bd"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PartitionUnitySmooth.Smoothing": {
+      "original_git": "041294acfd010307d83d6df2b7a14475a6f1d49d",
+      "candidate_git": "3ee38b606e0913a1d26381bb24f96ee7a092000d",
+      "official_ltar": "79a351c032fe6ff3e1124c33f2320adf0f5a7ffa49886a177bd9f7bd8a8fe7b2"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.Cardsep": {
+      "original_git": "c0e1ed32cca8ef4d2f51e617617817073222ec01",
+      "candidate_git": "0ac8b8a869dde324f67ab9716509cba4a5fb8e10",
+      "official_ltar": "1b9b290a902c5e2598f6eb0ce48e904b398d4c8ef047b0a59d17cdbe02963ca7"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.Cntconj": {
+      "original_git": "a50ad17a164935e70a308c1d72884d6f1cfd3b27",
+      "candidate_git": "d2ff1f7c4bc075ce58be326ca9ac27241b66b491",
+      "official_ltar": "824aff9c91baa296db4210d05a8bcf520a195f31e333c3db705b5d197af84cdb"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.LowbdSmul": {
+      "original_git": "bfaff681c97ee5c2930867386c2e89b228db0c7a",
+      "candidate_git": "cc68461dc2c1d17987fc2c7b98ab1175275f6c90",
+      "official_ltar": "a18d8e4e98a3cd1bae5a889c2bb42f3585a03dadcef95e2f7f8dfffd6a5200ca"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.Locfin": {
+      "original_git": "30359fd5886af8b1ea58e9d4e55b52864dd1dbb0",
+      "candidate_git": "f7a10efa9ad19ea8822ef1d4d65e85bef2ab9849",
+      "official_ltar": "014516e6e4c3d04394e50a3842ebb887f2e9de91903572ee8b9f4245f53d7a15"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PartitionUnitySmooth.ReNonnegPsd": {
+      "original_git": "325ddda47818c33c85a29b814d2ce5b0a09ea62a",
+      "candidate_git": "89e56978c4cdd3b712813b435dd96647ecdbb9f1",
+      "official_ltar": "711614245eec5f3caa7fab8c5e001ea2bd9ddbd913aad73b88e286ba4a5f1981"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.Gramlow": {
+      "original_git": "6c92b014836014ba98b8cc811b3cf3192af2e45f",
+      "candidate_git": "2632cdf8992dae9350d63a9bc667d337b5efba35",
+      "official_ltar": "90a2a056a77d17878eaaee53fec5cabc281fdf240a3572c60a7f77fefba6ec99"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ConvexNerveComplexes.NerveFaceClosed": {
+      "original_git": "9f333ee22d95a9d0022336e3a84cfeb5598f069b",
+      "candidate_git": "93d028098243a3875a85ae4dcf17578322a3a28e",
+      "official_ltar": "0dc7d874e567b6ecfc86349120e4a3eb06877030906b092e44ee5222a9f381c3"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.SmulNeZeroLat": {
+      "original_git": "507509f50d071df74632219f47d5cd3e026e51a0",
+      "candidate_git": "2d99df513efdd3fcb9e8ef4de43d502bbdaf9679",
+      "official_ltar": "4c18f51bf70c8168cbaf689f268756b1698ecd9e0b1ea79b0a08e137e054aaf6"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.RealVec": {
+      "original_git": "ac92ef84d39458d19a360dfaf388f1713bdfba5e",
+      "candidate_git": "b666097285e57a95f5683dc4e23134b927607d3c",
+      "official_ltar": "1edcc2184712d640ce0d691a7539e2565c1faa187d69104eee4a929864769648"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.Realsurj": {
+      "original_git": "da722533473e6bb6f01f37429f3696c32d215a96",
+      "candidate_git": "0b333d9dbec5fa5944879b812fbcdb48c1c36377",
+      "official_ltar": "40a42a422fdb98ca5d1662d440f67bae1259eabbf932dc1830def08dc20a5c75"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.Rypos": {
+      "original_git": "7bc15deab588d23804d7f6327dcd58a7b0587150",
+      "candidate_git": "0b5f1a6038f93881bf65e9c787ab4d8b604aded4",
+      "official_ltar": "165ce19868f4c670147aaab402f3a8001d6401505d87d8b8ea2171696dedec0c"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.Exbasis": {
+      "original_git": "81ad696a5af72e2dfc3639036942788a7c1e0eb1",
+      "candidate_git": "4e09cc28d96f81f7cb17fc686b25c67611e2ece2",
+      "official_ltar": "4dd115726275c23571b4decba19f076fb4ac9d1f14c11ff0559b531dc97bfba5"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.Hadam": {
+      "original_git": "fb8ca44bae931df12fb0c8a8a51cc11f02800544",
+      "candidate_git": "afb12719ab791c36181834a49b1911032ce9a039",
+      "official_ltar": "b7579934ffc13e1a40c9425e01933c151714a9d5624ff59c8d40a15630559531"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.Scinv": {
+      "original_git": "e2bf34c46779f2ad877bc52d0f7b788e6c37f966",
+      "candidate_git": "76e0f5193ebaa8691c70056af8c9be5751c3b51d",
+      "official_ltar": "76f91311183f811d3eb83ad1946b72c989885f81cf003a62a9dd41ce3e5e7b40"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PartitionUnitySmooth.GThick": {
+      "original_git": "fa086d28caeef20af02475beee4692f2c631d9a8",
+      "candidate_git": "59ffcf008cf277905c5fe1c27d294b35c782b1ac",
+      "official_ltar": "5eef37458d1253b127c71a64dedd23852a92eb08a8151919593494207a4b9a19"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PartitionUnitySmooth.RhoNonnegBis": {
+      "original_git": "695d85c793e51340e2c828ee7dc5b8a633473df2",
+      "candidate_git": "e668ff089f40fef573508e67d229bf23dd09e150",
+      "official_ltar": "c8a3d8b2107c5bfd7547ea73c4b4a8a83745e1208e51f9c7ba03ba55fb8e0296"
+    }
+  }
+}
