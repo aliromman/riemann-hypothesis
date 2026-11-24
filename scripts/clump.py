@@ -544,13 +544,19 @@ def read_scope_members(lines):
     return result
 
 
-def unclump_text(text):
-    lines = text.split("\n")
+def uses_scope_markers(lines):
     for line in lines:
         if line.startswith(SEAM_BEGIN):
-            break
+            return False
         if member_start(line) or line in (SHARED_OPENS, "section " + SHARED_OPENS) or line.startswith(HEADER_TAG):
-            return read_scope_members(lines)
+            return True
+    return False
+
+
+def unclump_text(text):
+    lines = text.split("\n")
+    if uses_scope_markers(lines):
+        return read_scope_members(lines)
     i, out = 0, {}
     while i < len(lines):
         if not lines[i].startswith(SEAM_BEGIN):
@@ -609,13 +615,16 @@ def blame(root, logs):
                 except FileNotFoundError:
                     continue
                 member = None
+                compact = uses_scope_markers(lines)
                 for x in reversed(lines[:line]):
+                    if not compact:
+                        if x.startswith(SEAM_BEGIN):
+                            member = x[len(SEAM_BEGIN):].rstrip(" =")
+                            break
+                        continue
                     start = member_start(x)
                     if start:
                         member = start[1]
-                        break
-                    if x.startswith(SEAM_BEGIN):
-                        member = x[len(SEAM_BEGIN):].rstrip(" =")
                         break
                     if x in (SHARED_OPENS, "section " + SHARED_OPENS):
                         for row in lines[line:]:

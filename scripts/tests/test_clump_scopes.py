@@ -126,18 +126,25 @@ end A"""
                 clump.unclump_text(edited)
 
     def test_original_comment_can_use_the_new_marker(self):
-        source = "module\n\n@[expose] public section\n-- clump member: note\ntheorem one : True := True.intro\n"
-        module = clump.Module("Example", "", source)
-        self.assertEqual(clump.unclump_text(clump.render("", ["Example"], {"Example": module})), {"Example": source})
+        for marker in (clump.MEMBER_TAG + "note", clump.SHARED_OPENS, clump.HEADER_TAG + "note"):
+            with self.subTest(marker=marker):
+                source = f"module\n\n@[expose] public section\n{marker}\ntheorem one : True := True.intro\n"
+                module = clump.Module("Example", "", source)
+                text = clump.render("", ["Example"], {"Example": module})
+                self.assertEqual(clump.unclump_text(text), {"Example": source})
+                self.check_blame(text, [("theorem one", "Example")])
 
     def test_blame_marks_the_shared_group_and_each_member(self):
         _, text = self.make_group()
+        self.check_blame(text, [("open Nat", "Example.A"), ("theorem two", "Example.B"), ("theorem three", "Example.C")])
+
+    def check_blame(self, text, cases):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             source = root / "src" / "Example.lean"
             source.parent.mkdir()
             source.write_text(text)
-            for snippet, name in [("open Nat", "Example.A"), ("theorem two", "Example.B"), ("theorem three", "Example.C")]:
+            for snippet, name in cases:
                 line = next(i for i, val in enumerate(text.splitlines(), 1) if val.startswith(snippet))
                 log = root / "build.log"
                 log.write_text(f"error: src/Example.lean:{line}:0: test error\n")
