@@ -1,0 +1,70 @@
+{
+  "upstream": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+  "current_heads": {
+    "879": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+    "977": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0"
+  },
+  "1103": {
+    "head": "4ca80fef8b8afa33bb9960b933b062279686f292",
+    "files": 3051,
+    "relative_to": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca",
+    "libraries": {
+      "CompanionTheory": 606,
+      "Lemmata": 25,
+      "PositivityTheory": 213,
+      "ReciprocityTheory": 2207
+    },
+    "removed_imports_by_library": {
+      "Mathlib": 121492,
+      "Std": 522
+    },
+    "shared_import_files": 0,
+    "shared_scope_files": 415,
+    "source_composition_checks": 415,
+    "current_base_merge_tree": "637323014a39397bca836a44dfb82af44bd84d7f",
+    "scope_merge_tree": "c8d9bc50d68f288f8fc56c9a8032974920ea90a2"
+  },
+  "988": {
+    "head": "35e53a486431f2db6d7ebbf4ceca4774ebd1ccd8",
+    "changed_paths": 12533,
+    "conflicts": {
+      "879": [
+        230,
+        0
+      ],
+      "977": [
+        230,
+        11557
+      ]
+    },
+    "current_member_records": 68375,
+    "current_header_bytes": 170266809
+  },
+  "120": {
+    "head": "2d345a6cbd20a8f91e28f0be1147e663055b48cc",
+    "state": "OPEN",
+    "toolchain": "leanprover/lean4:v4.36.0",
+    "base": "c7791603122c0328f79e49f6be5d7d4402effc53",
+    "changed_paths": 162028,
+    "conflicts": {
+      "879": [
+        62242,
+        0
+      ],
+      "977": [
+        62242,
+        4
+      ]
+    },
+    "scope_and_import_shared": [
+      37250,
+      11137
+    ],
+    "inspected_bundle": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PadicHodgeTheory/Bundle0001.lean"
+  },
+  "1057": {
+    "head": "8d31233f27d0057692856ad9263fd7899b457f03",
+    "state": "CLOSED",
+    "merged_at": null
+  }
+}
