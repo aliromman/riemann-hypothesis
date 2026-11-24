@@ -1,0 +1,379 @@
+{
+  "run": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45443344649",
+  "job": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45443344649/job/138620264565",
+  "workflow": "a01b2251fb8c2fd0fd8ea024adbd70c7e9360b97",
+  "artifact_id": 14944218282,
+  "original_actions_zip_sha256": "5d616235f941bc5bd601aa8b2b87fdc0e86ef941552c150a128d0003b5642d15",
+  "original_actions_zip_bytes": 25924,
+  "source_checkout": "8d792c7fd2c0f411f215762a82145a4484ea29dd",
+  "source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+  "all_59909_before_and_after_git_blobs_sha256": "496895deca1ebb78e52804972649881d919b090859afeb086abb4efa85818be0",
+  "true_fresh_process_counts": {
+    "warmups": 5,
+    "scored": 25
+  },
+  "cli_tools": {
+    "community": {
+      "repo": "leanprover-community/riemann-hypothesis",
+      "ref": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+      "sha256": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44",
+      "git_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496"
+    },
+    "published": {
+      "repo": "aliromman/riemann-hypothesis",
+      "ref": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+      "sha256": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf",
+      "git_blob": "e7729f1bb64f7e9d8b3ef1edbe98459f6536602f"
+    },
+    "proposed": {
+      "repo": "aliromman/riemann-hypothesis",
+      "ref": "8d792c7fd2c0f411f215762a82145a4484ea29dd",
+      "sha256": "42027c05de988741decb36b3d9c6f689feed372e17331a40b1c867f0bf1bf933",
+      "git_blob": "b5cb4699f2f6265de696c087eafc797994e9db70"
+    }
+  },
+  "timing_driver_sha256": "02a408fd6e022447d30c9b04717135191ed32a9213e0f6bbb13d7ce308fb93eb",
+  "saved_plan_sha256": "7f008f70f550f162cba7e1b23b8b15309086d8efd3ff8c0c4a2ff9ed4521a175",
+  "plan_roots": 199,
+  "plan_members": 656,
+  "generated_root_digests": {
+    "community": "9566483e9bd36d62c63a22a9413f1f21cf646a4863922b457dba85ec54e2529a",
+    "published": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0",
+    "proposed": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0"
+  },
+  "original_summary": {
+    "source_checkout": "8d792c7fd2c0f411f215762a82145a4484ea29dd",
+    "source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+    "members": 656,
+    "plan_roots": 199,
+    "original_and_restored_tracked_files": 59909,
+    "source_census_sha256": "496895deca1ebb78e52804972649881d919b090859afeb086abb4efa85818be0",
+    "tool_sha256": {
+      "community": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44",
+      "published": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf",
+      "proposed": "42027c05de988741decb36b3d9c6f689feed372e17331a40b1c867f0bf1bf933"
+    },
+    "saved_plan_sha256": "7f008f70f550f162cba7e1b23b8b15309086d8efd3ff8c0c4a2ff9ed4521a175",
+    "generated_root_streams": {
+      "community": "9566483e9bd36d62c63a22a9413f1f21cf646a4863922b457dba85ec54e2529a",
+      "published": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0",
+      "proposed": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0"
+    },
+    "order": "One warm-up per tool. Five scored rounds rotate the first tool. The plan uses two tools and apply uses three.",
+    "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+    "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "medians": {
+      "plan": {
+        "published": {
+          "wall_s": 27.669199521,
+          "cpu_s": 27.443945,
+          "peak_rss_bytes": 3778146304
+        },
+        "proposed": {
+          "wall_s": 25.888292301,
+          "cpu_s": 25.884758,
+          "peak_rss_bytes": 761360384
+        }
+      },
+      "apply": {
+        "community": {
+          "wall_s": 23.787720697,
+          "cpu_s": 23.573125,
+          "peak_rss_bytes": 3606478848
+        },
+        "published": {
+          "wall_s": 0.453168024,
+          "cpu_s": 0.436631,
+          "peak_rss_bytes": 73347072
+        },
+        "proposed": {
+          "wall_s": 0.441390122,
+          "cpu_s": 0.438224,
+          "peak_rss_bytes": 73347072
+        }
+      }
+    },
+    "observations_sha256": "c47406bcbaa94126aaf030b3b160cb2b09717660ed4e2e9279e3f75be76100e3"
+  },
+  "observations_sha256": "c47406bcbaa94126aaf030b3b160cb2b09717660ed4e2e9279e3f75be76100e3",
+  "machine": {
+    "python": "3.12.16",
+    "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "image": "20261116.376.1",
+    "physical_memory_bytes": 16759308288,
+    "available_processors": 4,
+    "free_disk_bytes_before_timing": 89983574016,
+    "cpu_model": "model name\t: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz"
+  },
+  "comparisons": {
+    "plan": {
+      "published_to_proposed": {
+        "wall_s": {
+          "baseline_median": 27.669199521,
+          "proposed_median": 25.888292301,
+          "median_percent_change": -6.436424800248918,
+          "baseline_range": [
+            27.58686715,
+            28.46508079
+          ],
+          "proposed_range": [
+            25.841973076,
+            26.211680892
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [],
+          "paired_percent": [
+            -8.64041754132343,
+            -5.38740226977894,
+            -6.39677462694308,
+            -6.436424800248918,
+            -7.9163657205976845
+          ]
+        },
+        "cpu_s": {
+          "baseline_median": 27.443945,
+          "proposed_median": 25.884758,
+          "median_percent_change": -5.681351569535642,
+          "baseline_range": [
+            27.391973,
+            28.256456
+          ],
+          "proposed_range": [
+            25.83447,
+            26.209578
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [],
+          "paired_percent": [
+            -8.00733961910397,
+            -4.742641210985421,
+            -5.846366325902608,
+            -5.681351569535642,
+            -7.2439303782470095
+          ]
+        },
+        "peak_rss_bytes": {
+          "baseline_median": 3778146304,
+          "proposed_median": 761360384,
+          "median_percent_change": -79.8483085953042,
+          "baseline_range": [
+            3778109440,
+            3778289664
+          ],
+          "proposed_range": [
+            761167872,
+            761532416
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [],
+          "paired_percent": [
+            -79.85340400412403,
+            -79.8464857598196,
+            -79.84828674823666,
+            -79.85297114930118,
+            -79.84452004154227
+          ]
+        }
+      }
+    },
+    "apply": {
+      "community_to_proposed": {
+        "wall_s": {
+          "baseline_median": 23.787720697,
+          "proposed_median": 0.441390122,
+          "median_percent_change": -98.14446231472834,
+          "baseline_range": [
+            23.674548285,
+            24.270048113
+          ],
+          "proposed_range": [
+            0.437341346,
+            0.487170357
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [],
+          "paired_percent": [
+            -98.15269402087348,
+            -98.14446231472834,
+            -98.10083118587343,
+            -97.96505231263676,
+            -98.1970902654881
+          ]
+        },
+        "cpu_s": {
+          "baseline_median": 23.573125,
+          "proposed_median": 0.438224,
+          "median_percent_change": -98.14100167033433,
+          "baseline_range": [
+            23.483567999999998,
+            24.088478000000002
+          ],
+          "proposed_range": [
+            0.434044,
+            0.479977
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [],
+          "paired_percent": [
+            -98.15171186933775,
+            -98.14100167033433,
+            -98.12801246944244,
+            -97.97769143510861,
+            -98.19722524602841
+          ]
+        },
+        "peak_rss_bytes": {
+          "baseline_median": 3606478848,
+          "proposed_median": 73347072,
+          "median_percent_change": -97.96624144792433,
+          "baseline_range": [
+            3606323200,
+            3606765568
+          ],
+          "proposed_range": [
+            72560640,
+            73347072
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [],
+          "paired_percent": [
+            -97.98796070191379,
+            -97.97365513184359,
+            -97.96622065943652,
+            -97.96624144792433,
+            -97.96640312165695
+          ]
+        }
+      },
+      "published_to_proposed": {
+        "wall_s": {
+          "baseline_median": 0.453168024,
+          "proposed_median": 0.441390122,
+          "median_percent_change": -2.5990143558760948,
+          "baseline_range": [
+            0.443017042,
+            0.464769242
+          ],
+          "proposed_range": [
+            0.437341346,
+            0.487170357
+          ],
+          "rounds_increased": [
+            3,
+            4
+          ],
+          "rounds_equal": [],
+          "paired_percent": [
+            -5.901400850446126,
+            -4.731288856579785,
+            1.0232390770907873,
+            7.503250714794474,
+            -1.2301969187000328
+          ]
+        },
+        "cpu_s": {
+          "baseline_median": 0.436631,
+          "proposed_median": 0.438224,
+          "median_percent_change": 0.36483896012879935,
+          "baseline_range": [
+            0.431205,
+            0.46136
+          ],
+          "proposed_range": [
+            0.434044,
+            0.479977
+          ],
+          "rounds_increased": [
+            1,
+            3,
+            4
+          ],
+          "rounds_equal": [],
+          "paired_percent": [
+            0.6583875418884277,
+            -5.014739032425874,
+            1.9198313211787221,
+            6.698781574905022,
+            -0.5427924265569817
+          ]
+        },
+        "peak_rss_bytes": {
+          "baseline_median": 73347072,
+          "proposed_median": 73347072,
+          "median_percent_change": 0.0,
+          "baseline_range": [
+            72691712,
+            73347072
+          ],
+          "proposed_range": [
+            72560640,
+            73347072
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "paired_percent": [
+            -0.1803121654364137,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    }
+  },
+  "timing_workflow_conclusion": "failure",
+  "step_conclusions": {
+    "Set up job": "success",
+    "Check out the fixed measurement driver": "success",
+    "Check out the complete source": "success",
+    "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065": "success",
+    "Verify the checkout and the three original script blobs": "success",
+    "Time and verify the two planners and three apply implementations": "success",
+    "Retain the planner text and compare the three apply output streams": "failure",
+    "Retain the raw CLI observations and exact saved plan": "success",
+    "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065": "skipped",
+    "Post Check out the complete source": "success",
+    "Post Check out the fixed measurement driver": "success",
+    "Complete job": "success"
+  },
+  "original_actions_step_logs_zip_sha256": "821155c58057b0fef154e1d31cd18ccf194cfbe899681fc1fb21f90179648461",
+  "independent_output_record": {
+    "workflow": "97d789fd4f309ac2df1e0980feeab13d4a49099f",
+    "run": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45444098126",
+    "job": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45444098126/job/138622964408",
+    "artifact_id": 14944057933,
+    "original_actions_zip_sha256": "74a5c40b2b25dad438ab4c3c62f6c4ebf6d6d8ad1fe77a212758ed1fdf5ddbba",
+    "original_actions_zip_bytes": 14727,
+    "separate_output_checks": {
+      "plan_files_sha256": {
+        "published": "7f008f70f550f162cba7e1b23b8b15309086d8efd3ff8c0c4a2ff9ed4521a175",
+        "proposed": "7f008f70f550f162cba7e1b23b8b15309086d8efd3ff8c0c4a2ff9ed4521a175"
+      },
+      "plan_stdout_sha256": "dde6023266eaed992b363132a6fed053ea08f2a29fc93c588dab400caefcbd30",
+      "plan_stderr_sha256": "2d6dff91ffa77ec4598e11079b258c6a25d457bc3d52d845b385bb7ca60fdd83",
+      "plan_combined_sha256": "60646be64e4e1dcc07a5fdeb94af478a08269d459a3d906df9a76cea00547558",
+      "apply_stdout_stderr_sha256": {
+        "community": [
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        ],
+        "published": [
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        ],
+        "proposed": [
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        ]
+      },
+      "restored_each_apply": true
+    },
+    "matching_timed_plan_combined_outputs": 12
+  }
+}
