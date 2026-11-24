@@ -1,0 +1,52 @@
+{
+  "workflow": "d23bd9b768b60e1bd887a0244a40b8a0446d7c04",
+  "source": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+  "parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "pr": 977,
+  "source_ref": "refs/heads/ci/batch-1313/pr-977-source",
+  "tree": "f47ab20324ce9e28d2b32293650435672045cd70",
+  "operational_branch": "refs/heads/ci/batch-1313/stock-977",
+  "parent_workflow": "3aadb31f965c5b7c0e2cf704c789480b4c555cad",
+  "roots": [
+    "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa",
+    "CompanionTheory.AutomorphicTheory.BesselWaveGrids.NqMovedExample",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularPairLiftToPrimePowerField",
+    "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable",
+    "Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco",
+    "Formalism.JumpKernelCokernel.LengthTheoremsWithEarlier",
+    "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFiniteModuloGeneralEquation",
+    "GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblySympl",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.FinalTF",
+    "ReciprocityTheory.DualLattices.QExpansionMonoWCoeffZero",
+    "ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality",
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+    "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters",
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuadraticLevelSetDensity",
+    "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoboundaryOfNormOneInSubalgebraStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjOfIsConjGlFieldExtensionInclusion",
+    "Formalism.CoboundaryTransfers.GammaStableTransfers.Transfer",
+    "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.LemmaGIdeal",
+    "GroundTheory.AutomorphicForms.DixmierMalliavinLine",
+    "GroundTheory.AutomorphicForms.DixmierMalliavin",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HHINDA",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.KTFiniteDimensional",
+    "GroundTheory.LocalFields.FormalGroups.LubinTateGroup",
+    "Formalism.GradedWeylDivisibility.FinalC",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.ValNorm"
+  ],
+  "modules": 239,
+  "changed": 29,
+  "replays": [
+    "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjOfIsConjGlFieldExtensionInclusion",
+    "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.LemmaGIdeal",
+    "GroundTheory.AutomorphicForms.DixmierMalliavin",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.KTFiniteDimensional"
+  ],
+  "selection": {
+    "selection": "Repeat the previously measured ordinary panel. It has two changed upstream sources and archives on this community batch."
+  }
+}

@@ -1,0 +1,1076 @@
+{
+"CompanionTheory.AutomorphicTheory.PadicUnitaryWeights.UnitarySiegelSets.SiegelSetUnitaryHolds": [
+"CompanionTheory.ThickeningEstimates.LieGroupReduction.SiegelCore",
+"CompanionTheory.AutomorphicTheory.PadicUnitaryWeights.UnitarySiegelSets.SiegelSetUnitaryHolds"
+],
+"CompanionTheory.RealGroups.GeneralUnitaryRepresentations.WhittakerModels.WhitCuspOfSegCuspGeneric": [
+"CompanionTheory.RealGroups.GeneralUnitaryRepresentations.WhittakerModels.RankDual",
+"CompanionTheory.RealGroups.GeneralUnitaryRepresentations.WhittakerModels.WhitLeOneOfDict",
+"CompanionTheory.RealGroups.GeneralUnitaryRepresentations.WhittakerModels.WhitCuspOfSegCuspGeneric"
+],
+"CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.LinearChangeEulerProduct": [
+"CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.HaarMapLinearScalingByDeterminant",
+"CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.LinearChangeEulerProduct"
+],
+"Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.Brauer": [
+"Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry\u2082.HypothesesAbsDet",
+"Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry\u2082.CaraianiTempered",
+"Development.AbelianVarietyTheory.PublishedTheorems.Divisors\u2082.HilbertKodairaSpencer",
+"Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.Brauer"
+],
+"Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FiniteDimensionalLetter": [
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SpanMkQOneTmul",
+"Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FiniteDimensionalLetter"
+],
+"Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.GrNormPosOfBasis": [
+"Development.AbelianVarietyTheory.Statements.HeightBoundStatement.HTBoundSt",
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LatDRSubsetLatHT",
+"Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.GrNormPosOfBasis"
+],
+"Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MonodromyZeroOfWeilDeligneRepClassIff": [
+"Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsSemisimpleOfISupEigenspace",
+"Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MonodromyZeroOfWeilDeligneRepClassIff"
+],
+"Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PushInvertibleModelOfIso": [
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NonemptyOfModToModIso",
+"Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PushInvertibleModelOfIso"
+],
+"Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDimEqOne": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSemiAbelianTensorOverScheme",
+"Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDimEqOne"
+],
+"Development.AbelianVarietyTheory.Definitions.Divisors.IsAffineOpenAndIsPushout": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDualPullback",
+"Development.AbelianVarietyTheory.Definitions.Divisors.IsAffineOpenAndIsPushout"
+],
+"Development.AbelianVarietyTheory.Definitions.Divisors.ToKnownTheoremsOf": [
+"Development.AbelianVarietyTheory.PublishedTheorems.Divisors\u2082.L2ExtensionLogCanonical",
+"Development.AbelianVarietyTheory.Definitions.Divisors.ToKnownTheoremsOf"
+],
+"Development.AbelianVarietyTheory.Definitions.Foundations.ForallEventuallyFinLocIff": [
+"Development.AbelianVarietyTheory.Definitions.Foundations.ToContinuousLinearMapMemHomIn",
+"Development.AbelianVarietyTheory.Definitions.Foundations.ForallEventuallyFinLocIff"
+],
+"Development.AbelianVarietyTheory.Definitions.GaloisGeometry.GoodIdempotentFixesOfOnlySeriesOfLabelActs": [
+"Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry\u2082.LocalGlobalAboveL",
+"Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry\u2082.HeckeLAdicParameterAbove",
+"Development.AbelianVarietyTheory.Definitions.GaloisGeometry.GoodIdempotentFixesOfOnlySeriesOfLabelActs"
+],
+"Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.WeilPairingEqOfIsomorphicCubePairings": [
+"Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.WeilIsOfLbIsoCubeLB",
+"Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.WeilPairingEqOfIsomorphicCubePairings"
+],
+"Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.NormalisedThetaNormInvariant": [
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsBoundOrthonormalFrame",
+"Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.NormalisedThetaNormInvariant"
+],
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CuspFormsArchimedeanKFiniteStarCompMemStatement": [
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CuspFormsArchimedeanKFiniteStarCompMem",
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CuspFormsArchimedeanKFiniteStarCompMemStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.DoublingZetaValueAtEisensteinHolomorphicPointStatement": [
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.DoublingZetaValueAtEisensteinHolomorphicPoint",
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.DoublingZetaValueAtEisensteinHolomorphicPointStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LastSeesawDatumEqLatticePairOverVacuumStatement": [
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceDatumBoxTensorLineOverVacuum",
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaSliceLineSumEqIntertwinerImage",
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LastSeesawDatumEqLatticePairOverVacuumStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.WeilRepPreservesFockDegreeOfCommuteCartanStatement": [
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.WeilRepPreservesFockDegreeOfCommuteCartan",
+"Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.WeilRepPreservesFockDegreeOfCommuteCartanStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.DegenerationProofs.UniformisationGenericFibreCartesianToModelBundleStatement": [
+"Development.AbelianVarietyTheory.Proofs.DegenerationProofs.UniformisationGenericFibreCartesianToModelBundle",
+"Development.AbelianVarietyTheory.Proofs.DegenerationProofs.UniformisationGenericFibreCartesianToModelBundleStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianVarietyDegreePolynomialMapEqCharpolyRatioStatement": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.PadicNormDegreeEqPadicNormDetTateModule",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianVarietyDegreePolynomialMapEqCharpolyRatioStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.AffineOpenRingIsDomainNoetherianIntegrallyClosed": [
+"Development.AbelianVarietyTheory.Definitions.Divisors.NotSymEOfNe",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.AffineOpenRingIsDomainNoetherianIntegrallyClosed"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.AntitoneWeightLogBound": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.SupConstantLogBound",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.AntitoneWeightLogBound"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoefMapNormEquivariantBasisOfFive": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.CircleEqOneIffOfConj",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugateWeilRepresentationFifth",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugateWeilRepresentationSecond",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugateWeilRepresentationSixth",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugateWeilRepresentationThird",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoprimeScalarCentralElement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoprimeScalarForEmbedding",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.EmbeddingConjugateOscillatorEighth",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.EmbeddingConjugateOscillatorFirst",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.EmbeddingConjugateOscillatorNinth",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.EmbeddingConjugateOscillatorSixth",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqOfConjOnFinite",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExtremalVectorsHolomorphicModelUniqueUpToPhaseStatement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.RingHomEqOnAdjoinSimple",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.SignForWeilModelFamily",
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AnalyticFibreDescriptionLevelMoveMarkingCompStatement",
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.OmegaFormGaloisEquivariance",
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.OmegaFormPeriodRelation",
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.OmegaFormSignExists",
+"Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.HostElementIdempotentModTwo",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoefMapNormEquivariantBasisOfFive"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoheightAddPointClosureDimEqDim": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeightMaximalLePrimeAddDim",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoheightAddPointClosureDimEqDim"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompactCoveredByOpenCosets": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.OmAOneApply",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompactCoveredByOpenCosets"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugateActionUniformisationCharacters": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.GtPtAct",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.EndUOfOLinear",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugateActionUniformisationCharacters"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.DarbouxChangeRealisedCompAndReindex": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjLinApply",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicSchwartzConjMem",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.DarbouxChangeRealisedCompAndReindex"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.E8ThetaSetupGenericPointExists": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsChartFiniteEtaleCoverGenericPoint",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLevelCoverMatrices",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.SharpPolarizationPullbackStable",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsChartSiegelLevelCoverSharpTheta",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.E8ThetaSetupGenericPointExists"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.EigenIntertwinerSkewPlaneUniqueDual": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinRel",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.EigenIntertwinerSkewPlaneUniqueDual"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqSmulOfCommuteHeisenbergLinearModelSchwartzBruh": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterTrivialMatrixLatticeOpenCompactBasis",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFinsetEqSumAddCosetIndicator",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOpenSubgroupPeriodic",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqSmulOfCommuteHeisenbergLinearModelSchwartzBruh"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsComplAtFactorOfIsAdicComplete": [
+"Development.AbelianVarietyTheory.Definitions.Divisors.MinSt5OfMinSt4",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsComplAtFactorOfIsAdicComplete"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFromBase": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TautBaseChangeTripleLiftLeft",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFromBase"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLatticeSplitIndexPrimeTo": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFieldUnitMemOpenArchimedeanUnits",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLatticeSplitIndexPrimeTo"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNormalisedBlowupCyclotomicAwayProjective": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteOpenImmersionPSpace",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNormalisedBlowupCyclotomicAwayProjective"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsProductPrincipallyPolarisedAbelianScheme": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSumPolAV",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsProductPrincipallyPolarisedAbelianScheme"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTensorBundleRigidification": [
+"Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.CubeConclusionIff",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTensorBundleRigidification"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeometricTorsionPointGenericFibreMemberHasLabelStatement": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeometricTorsionPointGenericFibreMemberHasLabel",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeometricTorsionPointGenericFibreMemberHasLabelStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.GsAppTopOfSection": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.SharpTorsionDefOver",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.GsAppTopOfSection"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarishChandraFiniteFormsGLSingleCharSpanMem": [
+"Development.AbelianVarietyTheory.Definitions.Divisors.CentralNilGL",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarishChandraFiniteFormsGLSingleCharSpanMem"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeisenbergWordL2Bound": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.DHRealAdSmul",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeisenbergWordL2Bound"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntersectionNumberGlobalSectionEqSumCycle": [
+"Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CoheightEqOneOfDimClosure",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntersectionNumberGlobalSectionEqSumCycle"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsGrpPullbackPasteFactorisationStatement": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsGrpPullbackPasteFactorisation",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsGrpPullbackPasteFactorisationStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.NondegOfFieldExtension": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.NondegeneratePairingOfGenericFibre",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelAmpleOfGenericFibreNormalLocalDomain",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.XMemNonZeroDivisors",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.NondegOfFieldExtension"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrimitiveFamiliesThetaSymmetricMinMemberCompareStatement": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrimitiveFamiliesThetaSymmetricMinMemberCompare",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrimitiveFamiliesThetaSymmetricMinMemberCompareStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelTraitCharacterGroupFinrankLeGenusThree": [
+"Development.AbelianVarietyTheory.Proofs.UniformizationProofs.IsProperOfSubsingleton",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelTraitCharacterGroupFinrankLeGenusThree"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothVectorsUnitaryRepStableConjSkewAdjointStatement": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothVectorsUnitaryRepStableConjSkewAdjoint",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothVectorsUnitaryRepStableConjSkewAdjointStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TheoremOfSquareCechPicardTranslatesStatement": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TheoremOfSquareCechPicardTranslates",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TheoremOfSquareCechPicardTranslatesStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaSetupLabellingTransportGaloisConjugate": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorsionPointTransferThroughCommonGrpPullback",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaSetupLabellingTransportGaloisConjugate"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TransposeMulIncl": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.BlkEquivInl",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteModuleGradedQuantumDet",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TransposeMulIncl"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalTermEqFinprodLocalTerms": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.GroupAverageRestrictedProductMaxCompactProd",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.GroupAverageRestrictedProductMaxCompactProdStatement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemCompactPartRestrictedProductIffForall",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemCompactPartRestrictedProductIffForallStatement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelIndexRestrictedProductComponentwiseEqProd",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelIndexRestrictedProductComponentwiseEqProdStatement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalTermEqFinprodLocalTerms"
+],
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.UValThruTopOfDisjoint": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFanOrderIdealGluedClopenPieces",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.UValThruTopOfDisjoint"
+],
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselPeriodPositivity": [
+"Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselFunctionalSideGrowth",
+"Development.AbelianVarietyTheory.Proofs.JetHarmonics.GapCoefficientDerivativeBound",
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselPeriodPositivity"
+],
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsKFiniteBesselPeriodNeZeroGap": [
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.DiscreteSeriesBesselGap",
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsKFiniteBesselPeriodNeZeroGap"
+],
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermitianMovesTotalMeasureEstimates": [
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.EichlerMoveScalarFibreMeasureOne",
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.IndexIntegrableShareTopLevelVectors",
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.IndexMeasureIntegralProdFubini",
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.IndexMeasureIntegralProdFubiniStatement",
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.IndexMeasureIntegralEqMeanOverRepresentatives",
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.TermIntegralNearOneBound",
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermitianMovesTotalMeasureEstimates"
+],
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.UniformBesselConstant": [
+"Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselSettingUniformConstant",
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.UniformBesselConstant"
+],
+"Development.AbelianVarietyTheory.Proofs.FoundationProofs.WittIdxOfParallelSig": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeOfIsotropicSignature",
+"Development.AbelianVarietyTheory.Proofs.FoundationProofs.WittIdxOfParallelSig"
+],
+"Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.QuotientInvariantMeasureExistsUniqueUnimodularStatement": [
+"Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.QuotientInvariantMeasureExistsUniqueUnimodular",
+"Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.QuotientInvariantMeasureExistsUniqueUnimodularStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.HomLieEquivScalarTmul": [
+"Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.FormallyUnramifiedRingOfIntegers",
+"Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.HomLieEquivScalarTmul"
+],
+"Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsRationalMirabolicMovingRowToLastStatement": [
+"Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsRationalMirabolicMovingRowToLast",
+"Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsRationalMirabolicMovingRowToLastStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GaloisHodgeOfCuspidal": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCompNormEq",
+"Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GaloisHodgeOfCuspidal"
+],
+"Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.OfShortExact": [
+"Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FontaineInequalityDcrisFiniteConcreteRingsStatement",
+"Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.OfShortExact"
+],
+"Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WhittakerCoefficientRationalMirabolicMulStatement": [
+"Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WhittakerCoefficientRationalMirabolicMul",
+"Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WhittakerCoefficientRationalMirabolicMulStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMultilinearMapOfIsotypicCommutingSubgroupsStatement": [
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CommutingEndAlgebrasCommonFixedVector",
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAlgHomEndomorphismOfSpanIntertwiners",
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMultilinearMapOfCommutingEndAlgHom",
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMultilinearMapOfIsotypicCommutingSubgroupsStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InnerOfNormEq": [
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HilbertSchurOfAdjointClosed",
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InnerOfNormEq"
+],
+"Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsBirationalModelSemiAbelianAmpleFrames": [
+"Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsSecOnOfPowOne",
+"Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsBirationalModelSemiAbelianAmpleFrames"
+],
+"Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.QuotientBoundOfKillDetectConstantRoom": [
+"Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.QbridgeOfNumGood",
+"Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.QuotientBoundOfKillDetectConstantRoom"
+],
+"Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.ExistsDriftFunctionRealUnitaryGroup": [
+"Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.FrameStepOfRightMulRealUnitaryGroup",
+"Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.ExistsDriftFunctionRealUnitaryGroup"
+],
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsAntiInvariantSignAdeleSplitPlace": [
+"Development.AbelianVarietyTheory.Proofs.FlagMeasures.MemInverseDifferentIdealPowRealIffUnramifiedCm",
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsAntiInvariantSignAdeleSplitPlace"
+],
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeisenbergOperatorIsotropicTranslationCharSplitStatement": [
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeisenbergOperatorIsotropicTranslationCharSplit",
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeisenbergOperatorIsotropicTranslationCharSplitStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.ParabolicMeasureModulus": [
+"Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.LanglandsClassification",
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.ParabolicMeasureModulus"
+],
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.SobolevSeminormWeilThetaPolynomialInHeightStatement": [
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.SobolevSeminormWeilThetaPolynomialInHeight",
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.SobolevSeminormWeilThetaPolynomialInHeightStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.VacuumSplitPlaceIndicatorDualPair": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeStableAlmostAllPlacesLeft",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeStableAlmostAllPlacesRight",
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.VacuumSplitPlaceIndicatorDualPair"
+],
+"Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsEmbeddingCompleteAlgClosedFixedCarrierStatement": [
+"Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsEmbeddingCompleteAlgClosedFixedCarrier",
+"Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsEmbeddingCompleteAlgClosedFixedCarrierStatement"
+],
+"Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.HodgeTateInclusionChartCharacters": [
+"Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.LinearDataHodgeTateInclusion",
+"Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.HodgeTateInclusionChartCharacters"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HidaCompleteRings.AdmLocal": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HidaCompleteRings.CompleteFin",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HidaCompleteRings.AdmLocal"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.CongruenceNumberRankThree": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.UpperTriangularPlaces.SafeUGap",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.CongruenceNumberRankThree"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.CyclotomicCharacterPlusPart": [
+"Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CyclotomicCharacterThird",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.CyclotomicCharacterPlusPart"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.AdmissibleLevelRestriction.UnlAllOf": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SemisimpleLevels.TeichNotLt",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.AdmissibleLevelRestriction.UnlAllOf"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalDescent.GLDenseRanges.InertiaPartMaps.ValOrd": [
+"Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIwasawaDecompositionUpperUnitriangularInte",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalDescent.GLDenseRanges.InertiaPartMaps.ValOrd"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalDescent.SphericalTwists.JTwist": [
+"Development.AbelianVarietyTheory.Proofs.SatakeParameters.LocalGlobalOfGelfandKazhdan",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.EtaCondition",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.SumFamilyOfReductions",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.SumHodgeTate",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.HodgeTateWeightsOfLocalGlobal",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalDescent.SphericalTwists.JTwist"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SphericalDecomposition.SphOfWit": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.KatoTwoSOfTwo",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SphericalDecomposition.SphOfWit"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.EHostNumberU": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.LevelAway",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.EHostNumberU"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.EHostRigidU": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.RigDiag",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.RigSub",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.EHostRigidU"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.Link2": [
+"Development.AbelianVarietyTheory.Definitions.Divisors.IsLocCompIffEquiv",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.Link2"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.NonemptyUnitaryHeckeParts": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.ProjectiveTransportAlongEquiv",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.NonemptyUnitaryHeckeParts"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.OffDiagonalNilpotentRankFour": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.ExistsMemPinsInsertKerOfPadicCharacter",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.ExistsPinningElementsOfLocAb",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.ExistsPlaceOverLLocDegMulCardEq",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.KrullDimQuotientLeCardOfRadicalParameters",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.NonemptyLocalWeilDataDecompositionGroupOfMemPlac",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.OffDiagonalNilpotentRankFour"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.OrdA": [
+"Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsFun",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.OrdA"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TAboveW": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.WeilDeligneUnramified.WeilCharpolySupport.ExistsInjectiveSection",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TAboveW"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TCompEx": [
+"Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.SplitComp",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TCompEx"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TNiceFour": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.CharacteristicPolynomials.CharpolyCompNegRoots",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TNiceFour"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.UnramifiedOfSplitDistinctCharacters": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.SmoothDepth.OpenLevelSubgroups.LocSph",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.UnramifiedOfSplitDistinctCharacters"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.GaloisRepresentationTypes.CoreOf": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.OrdVan2",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.GaloisRepresentationTypes.CoreOf"
+],
+"Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.PtInertiaAway": [
+"Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsMoreTail",
+"Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.NormSumLt",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.PtInertiaAway"
+],
+"Development.AutomorphicArithmetic.CommutativeAlgebra.TateTwistAffineLineProjectionEquiv": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomotopyInvarianceEtaleStatement",
+"Development.AutomorphicArithmetic.CommutativeAlgebra.TateTwistAffineLineProjectionEquiv"
+],
+"Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AdmissibleResidues.FrobeniusTraceCountBoundOfRatEigensystemCount": [
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.AdicNormProdLeProdOfInjectiveClasses",
+"Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.ExistsIntEqProdOfGaloisPermutedIntegral",
+"Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AdmissibleResidues.FrobeniusTraceCountBoundOfRatEigensystemCount"
+],
+"Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilAldChart": [
+"Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LagrangianDecomposition.EmbQMapApply",
+"Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilAldChart"
+],
+"Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKwhitPure": [
+"Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerCovolume.PureGenSubFock",
+"Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKwhitPure"
+],
+"Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilTunitHeis": [
+"Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.DarbouxCharts.DarbouxAnti",
+"Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilTunitHeis"
+],
+"Development.AutomorphicArithmetic.QuadraticCharacters.GaussRoot": [
+"Development.AutomorphicArithmetic.QuadraticCharacters.LogDerivAtOne",
+"Development.AutomorphicArithmetic.QuadraticCharacters.GaussRoot"
+],
+"Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.LieSecondOrderOfRealLift": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArchimedeanSchwartzIntegralMulStarNeZero",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagonalIntegralInvariantFormDiagonalLagrangian",
+"Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.LieSecondOrderOfRealLift"
+],
+"Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RealEmbeddingsOfCharactersOfSameExponent": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.RealMapsTwoTriplesAgree",
+"Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RealEmbeddingsOfCharactersOfSameExponent"
+],
+"Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.TwistCuspFormApproxWeighted": [
+"Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsKFiniteIteratedCompactAverageApproxStatement",
+"Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.TwistCuspFormApproxWeighted"
+],
+"Development.AutomorphicSpectrum.Proofs.MetricProofs.GapEqWeightSubNextStatement": [
+"Development.WeilBound.CoreStatements.PluriharmonicCharts.XPolyTowtBound",
+"Development.AutomorphicSpectrum.Proofs.MetricProofs.GapEqWeightSubNextStatement"
+],
+"Development.AutomorphicSpectrum.Proofs.MetricProofs.RationalityOfResolutionStatementStatement": [
+"Development.AutomorphicSpectrum.Proofs.MetricProofs.RationalityOfResolutionStatement",
+"Development.AutomorphicSpectrum.Proofs.MetricProofs.RationalityOfResolutionStatementStatement"
+],
+"Development.EtaleCohomology.CohomologicalPurity.FinLeafChart": [
+"Development.EtaleCohomology.CohomologicalPurity.LeafCoordPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafEtPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafLocPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafNbhdPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafPickPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafPolyPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafRankPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafSecPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf",
+"Development.EtaleCohomology.CohomologicalPurity.FinLeafChart"
+],
+"Development.EtaleCohomology.CohomologicalPurity.FinLeafThom": [
+"Development.EtaleCohomology.CohomologicalPurity.LeafActPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafAffEqvPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafConeCokPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafDblCokPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafFreeCovPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafGeoPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafHtpyOnePf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafHtpyZeroPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafNerveSplitPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafPBMapPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafPLocPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafRepPtPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafTauNatPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafTauTopPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafTauUPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafUnitsRepPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafWGmPf",
+"Development.EtaleCohomology.CohomologicalPurity.LeafWLocPf",
+"Development.EtaleCohomology.KummerExtensions.EtaleWeightedBlowupExceptionalChartTorsorOfEquiv",
+"Development.EtaleCohomology.CohomologicalPurity.FinLeafThom"
+],
+"Development.EtaleCohomology.EtaleSheaves.InstCommRingR": [
+"Development.EtaleCohomology.EtaleSheaves.EtaleChapterDTwo",
+"Development.EtaleCohomology.EtaleSheaves.InstCommRingR"
+],
+"Development.EtaleCohomology.TateTwists.EtaleChainCochainEvalDifferentialFormulaHolds": [
+"Development.EtaleCohomology.TateTwists.EtaleCochainEvaluationCoboundaryFormula",
+"Development.EtaleCohomology.TateTwists.EtaleChainCochainEvalDifferentialFormulaHolds"
+],
+"Development.EtaleCohomology.TateTwists.EtaleChainCochainExistsOfEvalData": [
+"Development.EtaleCohomology.TateTwists.EtaleCochainExistsOfNaturalEvaluation",
+"Development.EtaleCohomology.TateTwists.EtaleChainCochainExistsOfEvalData"
+],
+"Development.EtaleCohomology.TateTwists.EtaleKInjectiveExtensionAlongQuasiIsoFromSingle": [
+"Development.EtaleCohomology.TateTwists.EtaleTwistResolutionUniversalExtension",
+"Development.EtaleCohomology.TateTwists.EtaleKInjectiveExtensionAlongQuasiIsoFromSingle"
+],
+"Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.DesTens": [
+"Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.ExactUpToSpan",
+"Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.SplitClause",
+"Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.PowersGood",
+"Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.DesTens"
+],
+"Development.WeilBound.CoreStatements.PluriharmonicCharts.MapsToTwoFlagFramesOrthogonalOfIsometry": [
+"Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverArithmeticSixth",
+"Development.WeilBound.CoreStatements.PluriharmonicCharts.MapsToTwoFlagFramesOrthogonalOfIsometry"
+],
+"Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.EulerFactorLevels.FinLevelHolds": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNeZeroOfTwistedOrbitalPointTermNeZero",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNeZeroOfTwistedOrbitalPointTermNeZeroStatement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinsumDoubleCosetRestrictedProductEqProd",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinsumDoubleCosetRestrictedProductEqProdStatement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralPointTermDoubleCosetInvari",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralPointTermDoubleCosetInvariStatement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralPointTermOneUnramified",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralPointTermOneUnramifiedStatement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalTermEqFinprodLocalTermsStatement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralRestrictedProductFinprod",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralRestrictedProductFinprodStatement",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteEulerProductOf",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteHalfOfTwist",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteMassProductFormula",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteReindexing",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalComparisonOf",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EventuallyOfSectionPlaces",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteTwistedDoubleCosets",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalConditionsOfEquiv",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NonsplitPlacePairEquiv",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormCharpolySeparableOfElliptic",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RationalElementIntegralAlmostAll",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SectionMeetsAbovePlace",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SwapTwistCompactPartInProd",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SwapTwistCompactPartLe",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallyBezoutSeparableDerivativeAdicIntegersStatement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertIntegralTwistedConjugatesTwistedCentralizerStatement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralConjEtaleMemCentralizerMulIntegralGLStatement",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemMaxCompactGLOfCommuteEtaleCharpolyBoundedStatement",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitAlmostEverywhereFacts",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitConditionsOfEquiv",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalHypothesesHold",
+"Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.EulerFactorLevels.DcCount",
+"Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.EulerFactorLevels.PUnitAE",
+"Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.EulerFactorLevels.FinLevelHolds"
+],
+"Development.WeilBound.RepresentationTheoryGL.DiscreteSeries.DiscreteSeriesCovers.FdTopB": [
+"Development.WeilBound.RepresentationTheoryGL.DiscreteSeries.DiscreteSeriesCovers.DiscreteSeriesHilbert.StepSqInt",
+"Development.WeilBound.RepresentationTheoryGL.FormalDegree.FormalDegreeHilbert.FormalDegreeFormula.ModelFunctionsMultiply",
+"Development.WeilBound.RepresentationTheoryGL.DiscreteSeries.DiscreteSeriesCovers.FdTopB"
+],
+"Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.AbsoluteRigidity.LandauIteratedDerivatives.LandauL": [
+"Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GenDirichletHasSumIteratedDeriv",
+"Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.AbsoluteRigidity.LandauIteratedDerivatives.LandauL"
+],
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.CoreTop": [
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.SymbolFirstFamilyOfMem",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.SymKEqZeroOfOm",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.BoxLeFirstFamily",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.DiagApply",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.ComapDomainInlAdd",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.FirstFamilySymbolMulVariablePow",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.MapDomainInlInr",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.SymmetricFiltrationIffSupported",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.TransvectionInv",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.InvOp",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.AdjoinFirstOperatorsPreservesFamily",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.FformSmulRight",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.MonomialMemSupported",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.KAlgOfAdjoinRestrict",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.FunctionalRepresentationByContraction",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.ContractionFirstOperatorAdjoint",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.SecondOperatorMemSecondFamily",
+"Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.PolynomialDerivatives.CoreTop"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.BernsteinExponentBounds.BernAll": [
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.TwistedPieces.FiniteDimensionalDescent.Dichotomy",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.TwistedPieces.FiniteDimensionalDescent.FrobeniusSections",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.TwistedPieces.FiniteDimensionalDescent.RestrictedCharpolys",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.TwistedPieces.IntegralParts.FibresAndCosets",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.TwistedPieces.IntegralParts.ModulusAndOrbits",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.TwistedPieces.IntegralParts.HaarAndNilCore",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.TwistedPieces.LocalTraceForms.SplitAndTransl",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.TwistedPieces.TraceFormAlt",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.BernsteinExponentBounds.BernAll"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.BernsteinExponentBounds.ExpBound": [
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.OpenCellDecomposition.OpenCellCore",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.CompactUnipotentSubgroupFiniteGenerationStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.OpenCellFunctionCompactSupportUnipotentStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.OpenCellUnipotentUniquenessClosedStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ProjectionToTwistedEigenfunctionSupportStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.SmoothVectorCompactUnipotentFixerStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.TwistedJacquetTensorProductEquivStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.UnipotentRadicalDecompositionNormalStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.WhittakerHeredityStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.OpenCellDecomposition.OpenCell",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.StdQuotGenericOfStdSubGeneric",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.BernsteinExponentBounds.ExpBound"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.BernsteinExponentBounds.ThmBChar0": [
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.DerCharEqOneOfMemUnipRad",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CentralProducts.CentralHelpers",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsNontrivialDerivativeStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.TwistedJacquetIteratedPhiEquivStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.AddChar",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.IsIrreducibleIffFinrank",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.UnitaryAdmissibleComplementHolds",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CentralProducts.BernOf",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.MirabolicTwistedKernelDerivativeZeroStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.RestrictionMirabolicTwistedKernelStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.DistribHaarCharEqOneOfValuationEqOne",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.EventuallyHaarDetEqOneNearOne",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.EventuallyHaarDetEqOneNearOneStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsGLLastBasisVecMulEqStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsOpenCompactLatticeContaining",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsOpenCompactLatticeContainingStatement",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HaarMeasureSubgroupRelIndexMul",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.HaarMeasureSubgroupRelIndexMulStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.LocalContinuousSectionVecMulOrbit",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.LocalContinuousSectionVecMulOrbitStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.RelIndexAnnihilatorsDuality",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.RelIndexAnnihilatorsDualityStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.SesquilinearEqZeroOfDiagZero",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.SesquilinearEqZeroOfDiagZeroStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.HermitianForms.LiftStep",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.HermitianForms.UnitaryLattices.DerivPos",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.BoundOneTwo",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.FormTraceEq",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.HasTraceDistrOfAdmissible",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.LevelSmulSmul",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.TraceDistributionsGL.ThmA",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.BernsteinExponentBounds.ThmBChar0"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.CentralizerReps": [
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsChainsOfRange",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.CentralizerReps"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.ModulusInduction": [
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.Fourier",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.ModulusInduction"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.OpenSlices": [
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ImportsBisExtra",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.OpenSlices"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.SliceVanishing": [
+"Development.WeilBound.CoreStatements.AutomorphicKernels.BernsteinUnitaryProducts.BernsteinTheoremA.FiberLocalization.EqZeroOfFiberEquivariant",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.SliceVanishing"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.FrobeniusReciprocity.FrobProof": [
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.PartialIntegralMemSchwartzBruhat",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.PartialIntegralMemSchwartzBruhatStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.InvariantFunctionalEqHaarMultiple",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.InvariantFunctionalEqHaarMultipleStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.SchwartzBruhatProdSpanTensors",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.SchwartzBruhatProdSpanTensorsStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.TensInduction",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.TrivSymmApply",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsContinuousSectionQuotient",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsContinuousSectionQuotientStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsSchwartzBruhatCharacterIntegralOne",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsSchwartzBruhatCharacterIntegralOneStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.UnimodularHaarRightInvariant",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.UnimodularHaarRightInvariantStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.FrobeniusReciprocity.FrobProof"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.HermitianForms.BesselSum": [
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.BlockHomomorphism",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.CardCosetRepsEqRelIndex",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.CardCosetRepsEqRelIndexStatement",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterAnnihilatorIntegerLattice",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.CharacterAnnihilatorIntegerLatticeStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.CompactScaledIntoNhds",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.CompactScaledIntoNhdsStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsCharacterSeparatingLatticeStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsCosetRepsOpenInCompact",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsCosetRepsOpenInCompactStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsScaledNontrivialCharacter",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsScaledNontrivialCharacterStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.RelIndexLatticeEqHaarDet",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.RelIndexLatticeEqHaarDetStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.HermitianForms.BesselSum"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.HermitianForms.Core": [
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ComapMulVecCompactOpen",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ComapMulVecCompactOpenStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.CosetSumTranslateInvariant",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.CosetSumTranslateInvariantStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsCompactOpenSubgroupMem",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsCompactOpenSubgroupMemStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.HermitianSemidefiniteNullRadical",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.HermitianSemidefiniteNullRadicalStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.IsCompactSupAddSubgroup",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.IsCompactSupAddSubgroupStatement",
+"Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsOpenAdditiveCharacterKernel",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.IsOpenAdditiveCharacterKernelStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.RelIndexOpenCompactNeZeroStatement",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.HermitianForms.Core"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.AnnihilatorOpenCompactStatement": [
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.AnnihilatorOpenCompact",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.AnnihilatorOpenCompactStatement"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsFiniteCosetRepresentativesStatement": [
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsFiniteCosetRepresentatives",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.ExistsFiniteCosetRepresentativesStatement"
+],
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.LatticeAnnihilatorWithinNhdsStatement": [
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.LatticeAnnihilatorWithinNhds",
+"Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.LatticeAnnihilatorWithinNhdsStatement"
+],
+"Development.WeilBound.ThetaLifts.FrameEstimates.CoefBd": [
+"Development.WeilBound.ThetaLifts.FrameEstimates.FinBound",
+"Development.WeilBound.ThetaLifts.FrameEstimates.CoefBd"
+],
+"Development.WeilBound.ThetaLifts.FrameEstimates.GrpTop": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiscreteTopologyRationalUnitary",
+"Development.WeilBound.ThetaLifts.FrameEstimates.GrpTop"
+],
+"Development.WeilBound.ThetaLifts.LatticeBasics.GoodNe": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeValueNotFiniteOrder",
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitPrimeDegreeOne",
+"Development.WeilBound.ThetaLifts.LatticeBasics.GoodNe"
+],
+"Development.WeilBound.ThetaLifts.LeviDeterminants.AdelicThetaSumNormLePolynomialScale": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicThetaSumNormLePolynomialScale",
+"Development.WeilBound.ThetaLifts.LeviDeterminants.AdelicThetaSumNormLePolynomialScale"
+],
+"Development.WeilBound.ThetaLifts.LeviDeterminants.LagrangianUniqueness.GeoLeaves": [
+"Development.WeilBound.ThetaLifts.LeviDeterminants.LagrangianUniqueness.GeoAdm",
+"Development.WeilBound.ThetaLifts.LeviDeterminants.LagrangianUniqueness.GeoLeaves"
+],
+"Development.WeilBound.ThetaLifts.LocalTheory.DixmierCommutants.LocalMultiplicityOneIrreducibleGL": [
+"Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilObjectsInhabited",
+"Development.WeilBound.ThetaLifts.LocalTheory.DixmierCommutants.LocalMultiplicityOneIrreducibleGL"
+],
+"Formalism.BranchSandwichDivisors.BranchIsometryProofs.BranchMap": [
+"Formalism.BranchSandwichDivisors.BranchIsometryProofs.MemBranchRangeOfDefectEq",
+"Formalism.BranchSandwichDivisors.BranchIsometryProofs.BranchMap"
+],
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactSupportFiniteClass": [
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.ThetaConjOfParts",
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactSupportFiniteClass"
+],
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.LetterLiftOfParts": [
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.StarStartConjugationIdentity",
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.LetterLiftOfParts"
+],
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.NormalFormOrderZeroOfParts": [
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.WeightedSumDifferenceIdentity",
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.NormalFormOrderZeroOfParts"
+],
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.QminorZero": [
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.ChainX1",
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.QminorZero"
+],
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.RightDerivativeRulePsi": [
+"Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianCovectors.HermBvecLeft",
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.RightDerivativeRulePsi"
+],
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.WCellMemOmPlus": [
+"Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeylCellRange.ReflectionMultiplicationOnBigCell",
+"Formalism.HermitianCurvature.HermitianCurvatureProofs.WCellMemOmPlus"
+],
+"Formalism.LFunctionBounds.LFunctionBoundsProofs.LPartialSum": [
+"Formalism.LFunctionBounds.PositivityBound",
+"Formalism.LFunctionBounds.LFunctionBoundsProofs.LPartialSum"
+],
+"Formalism.LocalToGlobal.Columns.LevPackFrLat": [
+"Formalism.LocalToGlobal.Columns.LocalLevelIsKOneAtT",
+"Formalism.LocalToGlobal.Columns.LevPackFrLat"
+],
+"Formalism.LocalToGlobal.Columns.TiedCrd": [
+"Formalism.LocalToGlobal.Columns.TiedCG",
+"Formalism.LocalToGlobal.Columns.TiedCrd"
+],
+"Formalism.LocalToGlobal.GlobalTheory.IrreducibleOfCountSizes": [
+"Formalism.LocalToGlobal.GlobalTheory.FamCol",
+"Formalism.LocalToGlobal.GlobalTheory.IrreducibleOfCountSizes"
+],
+"Formalism.LocalToGlobal.GroupLattices.LevelGatherings.SecPsiMulPow": [
+"Formalism.SharpRestriction.InertJacobiLevels.VVEqEmptyOfNotIsResidueClassZero",
+"Formalism.LocalToGlobal.GroupLattices.LevelGatherings.SecPsiMulPow"
+],
+"Formalism.LocalToGlobal.HermitianForms.TiedStep": [
+"Formalism.LocalToGlobal.HermitianForms.DetShiftShW",
+"Formalism.LocalToGlobal.HermitianForms.TiedStep"
+],
+"Formalism.LocalToGlobal.HermitianForms.TiedSym": [
+"Formalism.LocalToGlobal.HermitianForms.TiedTwLv",
+"Formalism.LocalToGlobal.HermitianForms.TiedSym"
+],
+"Formalism.LocalToGlobal.HermitianForms.TiedTwSymAll": [
+"Formalism.LocalToGlobal.HermitianColumns.TiedQCHost",
+"Formalism.LocalToGlobal.HermitianForms.TiedTwSymAll"
+],
+"Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.EFinSmulEqOfFinPart": [
+"Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.SobDer",
+"Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.EFinSmulEqOfFinPart"
+],
+"Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.JArith": [
+"Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.IntegralSquareRoots.CharSingle",
+"Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.JArith"
+],
+"Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqFacts": [
+"Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.SplitTripleEquations.MuOneOfSplit",
+"Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqFacts"
+],
+"Formalism.LocalToGlobal.NumberFieldFamilies.IdTransSM": [
+"Formalism.LocalToGlobal.UnitaryNorms.UnrAe",
+"Formalism.LocalToGlobal.NumberFieldFamilies.IdTransSM"
+],
+"Formalism.LocalToGlobal.ProjectiveLattices.GenSectB": [
+"Formalism.LocalToGlobal.ProjectiveLattices.GenSectA",
+"Formalism.LocalToGlobal.ProjectiveLattices.GenSectB"
+],
+"Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IsIdentityOfEqualFlags": [
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.LFrame",
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.IdLift",
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.IdRoot",
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.IdScal",
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.IdUnit",
+"Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IsIdentityOfEqualFlags"
+],
+"Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.RowsGoodRed": [
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.SphericalFunctionConvolutionIdentity",
+"Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.RowsGoodRed"
+],
+"Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.ExplicitFormulaBoundHolds": [
+"Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.KernelDiagonalOfTriangleInequality",
+"Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.ExplicitFormulaBoundHolds"
+],
+"Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.HermitianETransportInvariant": [
+"Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.DdTraceCore",
+"Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.PsiTrCore",
+"Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.HermitianETransportInvariant"
+],
+"Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.InHHLeaf": [
+"Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.RrkbLeOneAddSq",
+"Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.InHHLeaf"
+],
+"Formalism.MahlerMeasure.MahlerMeasureProofs.WeightSpaceDimensionMonotone": [
+"Formalism.MahlerMeasure.MahlerMeasureProofs.FreezeY",
+"Formalism.MahlerMeasure.MahlerMeasureProofs.WeightSpaceDimensionMonotone"
+],
+"Formalism.PeriodIntegrals.OrbitalBoundsConclusion.FrameInd": [
+"Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FrameInduction.FinrankUperpOfDet",
+"Formalism.PeriodIntegrals.OrbitalBoundsConclusion.FrameInd"
+],
+"Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelSplitting.NCDefs": [
+"Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelSplitting.LevelSAllOfExistSMeasKf",
+"Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelSplitting.MeasurableSetBorelOfIsClosed",
+"Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelSplitting.MeasAll",
+"Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SemidirectVolume.ProdHaar",
+"Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelSplitting.NCDefs"
+],
+"Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.Development": [
+"Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.Reduce",
+"Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.Development"
+],
+"Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCPX": [
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.DecayHypothesisOfLargeConstants",
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.TraceConjMulEqHilbertSchmidt",
+"Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCPX"
+],
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.FamilyStatementOfItemsFourSeven": [
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.ParabolicSumAdmissibleOfParabolic",
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.FamilyStatementOfItemsFourSeven"
+],
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.SphericalFunctionIntegrableOfLocal": [
+"Formalism.LogSumExpBounds.StatementD",
+"Formalism.FlagUnipotentLattices.HalfDifferenceL1Bound",
+"Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.SphericalFunctionIntegrableOfLocal"
+],
+"Formalism.SharpRestriction.CuspSpanNormBounds.KappaEndpoints": [
+"Formalism.SharpRestriction.CuspSpanNormBounds.LatticeIndexAndWeightTheory",
+"Formalism.SharpRestriction.CuspSpanNormBounds.KappaEndpoints"
+],
+"Formalism.SharpRestriction.CuspSpanNormBounds.KfinOfMemLowKSub": [
+"Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.SmoothVectorsTranslateUnitary",
+"Formalism.SharpRestriction.CuspSpanNormBounds.KfinOfMemLowKSub"
+],
+"Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals": [
+"Formalism.SharpRestriction.CuspSpanNormBounds.GlobalAssemblyOfStatements",
+"Formalism.SharpRestriction.CuspSpanNormBounds.GluingLemmasAndTheorems",
+"Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals"
+],
+"Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.OrderedAtRanksOfPositionElement": [
+"Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.OrderedAtRanksOfPositionChange",
+"Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.OrderedAtRanksOfPositionElement"
+],
+"Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.UnitaryRepUnimodularOfFiniteVolume": [
+"Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.CovolumeIndependentOfFundamentalDomain",
+"Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.UnimodF",
+"Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.UnitaryRepUnimodularOfFiniteVolume"
+],
+"Formalism.SharpRestriction.GrowthBounds.ChartedClasses.ValIntN": [
+"Formalism.SharpRestriction.GrowthBounds.ChartComparison.LocTiesOf",
+"Formalism.SharpRestriction.GrowthBounds.ChartedClasses.ValIntN"
+],
+"Formalism.SharpRestriction.GrowthBounds.LatticeSystems": [
+"Formalism.SubspaceCounting.SubspaceCountingProofs.LengthLayers",
+"Formalism.SubspaceCounting.SubspaceCountingProofs.ManyOrbitsRefined",
+"Formalism.SharpRestriction.GrowthBounds.LatticeSystems"
+],
+"Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.BlockValuationZpOfLatticeInclusion": [
+"Formalism.ThetaLogCoordinates.BihomogeneousPairs.LetterChainEmbeddings.LatticeLinearHolds",
+"Formalism.ThetaLogCoordinates.BihomogeneousPairs.LetterChainEmbeddings.LevelLatticeOf",
+"Formalism.ThetaLogCoordinates.BihomogeneousPairs.LetterChainEmbeddings.PlusOp",
+"Formalism.ThetaLogCoordinates.BihomogeneousPairs.LetterChainEmbeddings.StepPlus",
+"Formalism.ThetaLogCoordinates.BihomogeneousPairs.LetterChainEmbeddings.StepTie",
+"Formalism.ThetaLogCoordinates.BihomogeneousPairs.FinalLL",
+"Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.BlockValuationZpOfLatticeInclusion"
+],
+"Formalism.SharpRestriction.GrowthBounds.TopChoiceBounds": [
+"Formalism.SubspaceCounting.SubspaceCountingProofs.TopsChoicePartA",
+"Formalism.SharpRestriction.GrowthBounds.TopChoiceBounds"
+],
+"Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.GaussElementarySymmetric": [
+"Formalism.ArtinHasse.ArtinHasseProofs.SymmSeries",
+"Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.GaussElementarySymmetric"
+],
+"Formalism.WachLatticeTwists.CharacterSplitJumps.Statement": [
+"Formalism.WachLatticeTwists.HodgeTateChains.InvariantsCohomologyData",
+"Formalism.WachLatticeTwists.CharacterSplitJumps.Statement"
+],
+"GroundTheory.ArithmeticGeometry.SchemeCohomology.CechLeray": [
+"GroundTheory.ArithmeticGeometry.SchemeCohomology.Cartan",
+"GroundTheory.ArithmeticGeometry.SchemeCohomology.InjectiveCech",
+"GroundTheory.ArithmeticGeometry.SchemeCohomology.CechLeray"
+],
+"GroundTheory.ArithmeticGeometry.SchemeCohomology.CurveFunctionField": [
+"GroundTheory.ArithmeticGeometry.SchemeCohomology.CurveBase",
+"GroundTheory.ArithmeticGeometry.SchemeCohomology.CurveFunctionField"
+],
+"GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.FormalCompare": [
+"GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.FormalTower",
+"GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.FormalCompare"
+],
+"GroundTheory.AutomorphicForms.CuspidalDiscreteness.ExistsLintegralConstantTermL2SqLe": [
+"GroundTheory.AutomorphicForms.CuspidalDiscreteness.IsHilbertSchmidtOfAeEqDual",
+"GroundTheory.AutomorphicForms.CuspidalDiscreteness.ExistsLintegralConstantTermL2SqLe"
+],
+"GroundTheory.AutomorphicForms.GL2Classical.IsWeightLevelAdelicLift": [
+"GroundTheory.AutomorphicForms.GL2Classical.Iwasawa",
+"GroundTheory.AutomorphicForms.GL2Classical.IsWeightLevelAdelicLift"
+],
+"GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitChartMult": [
+"GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitChartMultLemmas",
+"GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitChartMult"
+],
+"GroundTheory.HeightsAndTheta.Heights.Intersections.IsSmoothMetricOfIsSmoothHerm": [
+"GroundTheory.HeightsAndTheta.Heights.Intersections.AnalyticResolutionHypothesesProjectiveLine",
+"GroundTheory.HeightsAndTheta.Heights.Intersections.IsSmoothMetricOfIsSmoothHerm"
+],
+"ReciprocityTheory.AnalyticForms.RegularLocalRings.BaseChangeC": [
+"ReciprocityTheory.AnalyticForms.RegularLocalRings.BaseChangeCB",
+"ReciprocityTheory.AnalyticForms.RegularLocalRings.BaseChangeC"
+],
+"ReciprocityTheory.ClassFieldTheory.LocalClassField.ExistsDvdQKPowSubOne": [
+"ReciprocityTheory.GroupCohomology.CardLenStatement",
+"ReciprocityTheory.ClassFieldTheory.LocalClassField.ExistsDvdQKPowSubOne"
+],
+"ReciprocityTheory.ClassFieldTheory.LocalClassField.ExistsIntEKMulVbar": [
+"ReciprocityTheory.ClassFieldTheory.LocalClassField.QZDefs",
+"ReciprocityTheory.ClassFieldTheory.LocalClassField.ExistsIntEKMulVbar"
+],
+"ReciprocityTheory.ClassFieldTheory.LocalClassField.ValUnitsD": [
+"ReciprocityTheory.ClassFieldTheory.LocalClassField.ValUnitsC",
+"ReciprocityTheory.ClassFieldTheory.LocalClassField.ValUnitsD"
+],
+"ReciprocityTheory.DualLattices.NsetExpInjectiveSurjective": [
+"ReciprocityTheory.DualLattices.StThmA",
+"ReciprocityTheory.DualLattices.NsetExpInjectiveSurjective"
+],
+"ReciprocityTheory.L2DbarEstimates.WeakHolomorphy.HoloContDiffAtComplex": [
+"ReciprocityTheory.L2DbarEstimates.WeakHolomorphy.ExistsClmOfI",
+"ReciprocityTheory.L2DbarEstimates.WeakHolomorphy.HoloContDiffAtComplex"
+],
+"ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.LocalFieldAutomorphisms.ModelF": [
+"ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.LocalFieldAutomorphisms.ModelA",
+"ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.LocalFieldAutomorphisms.ModelF"
+],
+"ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.TaylorExpansionLocalCoordinates": [
+"ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.IteratedFDerivEqZeroOfIsBigO",
+"ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.TaylorExpansionLocalCoordinates"
+],
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.DataGenSubIrred": [
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SchurA",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.DataGenSubIrred"
+],
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.InnerCompactWordActionAdjoint": [
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.IsKRelationCompactWordAction",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.InnerCompactWordActionAdjoint"
+],
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.K2V": [
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.LiftHighestWeightVector",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.LowestKTypeLink",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.VermaConeB",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.VermaConeC",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.VermaCone",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.VermaProductIdentity",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.MemEigenTensorSpaceIff",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.RightHolPowerDetDiag",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.K2V"
+],
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.LowestKTypeVectorExists": [
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.SASingle",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.LowestKTypeVectorExists"
+],
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.SACommSES": [
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.LowestWeightLiftLemmas",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.SACommSES"
+],
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.CoefEmbed": [
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.OccDAdjB",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.OccDAdj",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.CoefEmbed"
+],
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.OccBLowKShiftF": [
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.AestronglyMeasurablePsiInner",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.PosSemidefWeightedInnerNonneg",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.CuspProjectionOrthogonality",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.ExistsKEquivariantMap",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.OccBLowKShiftF"
+],
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.PoleMatch": [
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.MomentMatch",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.PtrScalar",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.PoleMatchA",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.PoleMatch"
+],
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.TraceFormulaH": [
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.TraceFormulaB",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.TraceFormulaH"
+],
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Weighted": [
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.WeightedB",
+"ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Weighted"
+]
+}

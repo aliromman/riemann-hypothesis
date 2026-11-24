@@ -1,0 +1,49 @@
+{
+  "449": {
+    "title": "Streamline proofs and prune unused private imports across 8 modules (-3,449 lines)",
+    "head": "616da26210151a85d9099bdd80defb5c7216601d",
+    "merge_base": "1fe9f67d517acae353e96c8059f2dcb79e794dc8",
+    "rows": [
+      {
+        "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/CommutativeAlgebra/LemmaP.lean",
+        "our_removed": 31,
+        "peer_removed": 6,
+        "same_private_lines_removed": 1,
+        "peer_also_changes_body": true
+      }
+    ]
+  },
+  "450": {
+    "title": "Streamline proofs and prune unused private imports across 7 modules (-2,698 lines)",
+    "head": "ed6e1e74cb3cde260a0291c7e3fccf1bf78ccdc9",
+    "merge_base": "1fe9f67d517acae353e96c8059f2dcb79e794dc8",
+    "rows": [
+      {
+        "path": "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/PrimeMeanValueCharactersTwistIntegralLe.lean",
+        "our_removed": 32,
+        "peer_removed": 5,
+        "same_private_lines_removed": 3,
+        "peer_also_changes_body": true
+      },
+      {
+        "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PadicHodgeTheory/SplAdjUnit.lean",
+        "our_removed": 32,
+        "peer_removed": 6,
+        "same_private_lines_removed": 4,
+        "peer_also_changes_body": true
+      }
+    ]
+  },
+  "361": {
+    "title": "Drop unused private Mathlib imports from the root theorems.",
+    "head": "26e7851a2520e9d172c85d88e55a8c228859c8dc",
+    "merge_base": "1fe9f67d517acae353e96c8059f2dcb79e794dc8",
+    "rows": []
+  },
+  "1257": {
+    "title": "perf(Formalism): prune redundant private ext-47 imports outside LocalToGlobal",
+    "head": "d86b35f4eff641f6e9c4c47142eeabd858c8dc8e",
+    "merge_base": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca",
+    "rows": []
+  }
+}

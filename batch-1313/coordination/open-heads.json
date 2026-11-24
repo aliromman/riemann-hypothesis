@@ -1,0 +1,1142 @@
+[
+  {
+    "headRefOid": "1d38fc3ea4f1debe393a30883b4716160065ad10",
+    "number": 1403,
+    "title": "refactor(AutomorphicSpectrum, GroundTheory): reuse Mathlib and imported proofs across 116 modules (\u22121,784 lines)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1403"
+  },
+  {
+    "headRefOid": "64ab6bd4287fa96cb78064598b3593f8e0ed9903",
+    "number": 1402,
+    "title": "perf: replace remaining private import Mathlib headers with targeted imports",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1402"
+  },
+  {
+    "headRefOid": "68686b473f5e18df48e07ba9281989d11526b498",
+    "number": 1401,
+    "title": "refactor(Development/AbelianVarietyTheory/Proofs/TwistedOperators): reuse imported lemmas instead of duplicate proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1401"
+  },
+  {
+    "headRefOid": "4532bcbe004ce01116611ee850089cca2cd7b846",
+    "number": 1400,
+    "title": "refactor(Development/AutomorphicSpectrum/Proofs/GeometryProofs): reuse imported lemmas instead of duplicate proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1400"
+  },
+  {
+    "headRefOid": "8d842bfc628663646554a9351e104a16dc0a38cb",
+    "number": 1399,
+    "title": "refactor(Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs): reuse imported lemmas instead of duplicate proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1399"
+  },
+  {
+    "headRefOid": "4fd338e913cbc8ca4a85f08a5e8c145356dd888a",
+    "number": 1398,
+    "title": "refactor(Development/AutomorphicSpectrum/Proofs/BlockDecomposition): reuse imported lemmas instead of duplicate proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1398"
+  },
+  {
+    "headRefOid": "7344818c91947be0a565d8054f0df410775ee358",
+    "number": 1397,
+    "title": "chore: remove 574 declarations that the main theorems do not use (batch 6)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1397"
+  },
+  {
+    "headRefOid": "23253f126532e50d4f5ed7433ea573c6a89a481b",
+    "number": 1396,
+    "title": "chore: remove the unused private lemma `isPtL_of_ptOfList_ne_none` from DataInst",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1396"
+  },
+  {
+    "headRefOid": "4ebe2ad90d7623456c7751bca80ac73968d2a940",
+    "number": 1395,
+    "title": "chore: remove 2006 declarations that the main theorems do not use (batch 5)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1395"
+  },
+  {
+    "headRefOid": "a8fb449849a0d2beae28a868a90613f57d11281c",
+    "number": 1394,
+    "title": "chore: remove the unused private lemma `mem_support_or_of_mem_support_add` from ThmPJet",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1394"
+  },
+  {
+    "headRefOid": "d63207ab3afe5f7ed04cb9476d60b43ce9420150",
+    "number": 1393,
+    "title": "chore: remove 1281 declarations that the main theorems do not use (batch 4)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1393"
+  },
+  {
+    "headRefOid": "c25c4d4223ff56a852f7afd3451c0295ae565780",
+    "number": 1392,
+    "title": "refactor(Formalism): reuse Mathlib and imported proofs across 88 modules (\u22122,165 lines)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1392"
+  },
+  {
+    "headRefOid": "e4663034cb29c23d96ca5261a47009c41739f925",
+    "number": 1390,
+    "title": "chore: remove two unused private lemmas from GoingUpInvariantOnOpens",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1390"
+  },
+  {
+    "headRefOid": "d2c4e48a51611daf43f638d9fb6c55fafdb9a915",
+    "number": 1391,
+    "title": "chore: remove 1172 declarations that the main theorems do not use (batch 3)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1391"
+  },
+  {
+    "headRefOid": "f7d911128ec3a6100e7e5e9184f3e4db99d28163",
+    "number": 1389,
+    "title": "chore: remove 1449 declarations that the main theorems do not use (batch 2)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1389"
+  },
+  {
+    "headRefOid": "de27c7a027d0a0b2bf41398b44893fa70c2602f1",
+    "number": 1388,
+    "title": "chore: remove the unused private lemma `comp_mul_of_isGrpPullback_lift` from ESecCompOfIsGrpPullback",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1388"
+  },
+  {
+    "headRefOid": "2c84c1646b935b19bd61464b2e55f6627a9c5be4",
+    "number": 1387,
+    "title": "chore: remove 866 declarations that the main theorems do not use (batch 1)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1387"
+  },
+  {
+    "headRefOid": "60d72eeccd3fcffbb420619f9aa2c99bad27e123",
+    "number": 1386,
+    "title": "chore: remove two unused private lemmas from BoxSymIsSymmetry",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1386"
+  },
+  {
+    "headRefOid": "4d0418e5f6484b0cfc8ef0d744572938cb6e57d2",
+    "number": 1385,
+    "title": "chore: remove 182 unused private declarations",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1385"
+  },
+  {
+    "headRefOid": "9e8a0f22e4bfedaada39a56741a2b5d963cf0161",
+    "number": 1384,
+    "title": "refactor: use the PPowerBlockMetric copies of the duplicated ExistsFormOfMemChartRingZ declarations",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1384"
+  },
+  {
+    "headRefOid": "fe5b253bf8bea036cf995aa491ee4f1e25b1f29d",
+    "number": 1383,
+    "title": "chore: remove the unused private lemma `mem_intLattice_dual_iff` from HolomorphicPeriodicCocycleCoboundary",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1383"
+  },
+  {
+    "headRefOid": "6219a15f2c467f5ed1f0d2dea9eda8ecc492d2ff",
+    "number": 1382,
+    "title": "refactor: use the GoodTowerRealAgreement copies of the duplicated ExistsGoodRootTower declarations",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1382"
+  },
+  {
+    "headRefOid": "4bec610e971ce39f4b48d5eed7afdde5c94149a4",
+    "number": 1381,
+    "title": "refactor: use the OppositeWeylSubgroupClosed copies of the duplicated NotMidCases declarations",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1381"
+  },
+  {
+    "headRefOid": "5626fa7a23b40ddc8e9dcdb70e0f39c7d7637b3c",
+    "number": 1380,
+    "title": "chore: remove the unused private lemma `matrix_of_pow_succ_apply_eq_sum_prod` from TraceTransposePow",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1380"
+  },
+  {
+    "headRefOid": "272990532607d9e0ab13353fcd90708410cdfbd6",
+    "number": 1379,
+    "title": "refactor: use the PHfArith copies of the duplicated HfArith declarations",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1379"
+  },
+  {
+    "headRefOid": "f35673755ff8c8d93ce40151e645ee501bd04fa7",
+    "number": 1378,
+    "title": "refactor: use the LowestKTypeMultiplicity copies of the duplicated BridgeLemma3 declarations",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1378"
+  },
+  {
+    "headRefOid": "2f8abb65ca6a36170a005dcf7244e03d95351639",
+    "number": 1377,
+    "title": "refactor: use the LocScalarPf copies of the duplicated WuFinal declarations",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1377"
+  },
+  {
+    "headRefOid": "a8771da3bff85f100a3e500ec31bd63216a0726f",
+    "number": 1376,
+    "title": "refactor: use the GeneratesOfNonzeroOnSpecialFibre copies of the duplicated ExistsNonzeroOfGenerator declarations",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1376"
+  },
+  {
+    "headRefOid": "6c6f9d48c36b6cd1d6c777442b8970a71953fd0b",
+    "number": 1375,
+    "title": "refactor: use the GenusOneWittExistsOf copies of the duplicated VarChange declarations",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1375"
+  },
+  {
+    "headRefOid": "d46ad0ec711f17de4c9a60300ef1230dfea22df0",
+    "number": 1374,
+    "title": "chore: remove five modules that nothing imports",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1374"
+  },
+  {
+    "headRefOid": "f6e098f1e37e348038a7abbed1b90f8879715fa8",
+    "number": 1373,
+    "title": "refactor(GroundTheory/HeightsAndTheta/Heights/HilbertSamuel): reuse imported lemmas instead of duplicate proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1373"
+  },
+  {
+    "headRefOid": "10fc1861e5b03e38d3db8a80aa18642f19d5b020",
+    "number": 1372,
+    "title": "refactor(Development/AbelianVarietyTheory/Proofs/FlagMeasures): reuse imported lemmas instead of duplicate proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1372"
+  },
+  {
+    "headRefOid": "a840d7c2883001574f9ed0ef2df8499f653cec2e",
+    "number": 1371,
+    "title": "refactor(Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues): reuse imported lemmas instead of duplicate proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1371"
+  },
+  {
+    "headRefOid": "3e10521d03150a6f94c5ca44b9394ae94790489d",
+    "number": 1370,
+    "title": "refactor(Development/AutomorphicSpectrum/Proofs/AlgebraProofs): reuse imported lemmas instead of duplicate proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1370"
+  },
+  {
+    "headRefOid": "ebfffb9601a520fe19e699b7bb5b1b62b60468f5",
+    "number": 1369,
+    "title": "refactor(Development/AbelianVarietyTheory/Proofs/ModuliProofs): reuse imported lemmas instead of duplicate proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1369"
+  },
+  {
+    "headRefOid": "6a3f87c4144fe2eb70acb0d10c0da3faba2a14d1",
+    "number": 1368,
+    "title": "refactor: use Mathlib's instances instead of local copies",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1368"
+  },
+  {
+    "headRefOid": "a043f3e39a488b00fde8178793bbbcbc17f96241",
+    "number": 1367,
+    "title": "refactor: use Mathlib's power series lemmas instead of local restatements",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1367"
+  },
+  {
+    "headRefOid": "e29f87b9fc72fabc8320a0018b8717d65b97412c",
+    "number": 1366,
+    "title": "refactor: use Mathlib's number theory and valuation lemmas instead of local restatements",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1366"
+  },
+  {
+    "headRefOid": "3d593a79ab64c86e9fbcb4c435beea75b8698e20",
+    "number": 1365,
+    "title": "refactor: use Mathlib's group theory lemmas instead of local restatements",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1365"
+  },
+  {
+    "headRefOid": "ba6b328496629b85e7058e2444acf0044a3a0522",
+    "number": 1364,
+    "title": "refactor: use Mathlib's analysis lemmas instead of local restatements",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1364"
+  },
+  {
+    "headRefOid": "fb013cfa20a136589dfad25ef8a675c56465c7ed",
+    "number": 1363,
+    "title": "refactor: use Mathlib's Fin and List lemmas instead of local restatements",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1363"
+  },
+  {
+    "headRefOid": "ba905ce9189a63fbd66a336bdee7e7d4263f5425",
+    "number": 1362,
+    "title": "refactor: use Mathlib's scheme lemmas instead of local restatements",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1362"
+  },
+  {
+    "headRefOid": "052b94b25a87415547fe78f41ea2ca974bb5b8dc",
+    "number": 1361,
+    "title": "refactor(Formalism/PeriodIntegrals): use the OneCosetSharp definitions in UnfoldEquiv",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1361"
+  },
+  {
+    "headRefOid": "bfdac605668d709d550799aad2306103f1618332",
+    "number": 1360,
+    "title": "refactor(Formalism/SharpRestriction): use the LevelValueSmul originals in ModelLPfA",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1360"
+  },
+  {
+    "headRefOid": "bf655d6dacb9ffd3a492ddb8e21fef241f667aa3",
+    "number": 1359,
+    "title": "refactor(Development/AbelianVarietyTheory): use the HoweConditionActionCoinvariantsFock originals in ExistsWeilRepOrientedPairRationalSchrodingerStatement",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1359"
+  },
+  {
+    "headRefOid": "0acc037615703715d0a4e26a9dffd174358d0284",
+    "number": 1358,
+    "title": "refactor(Development/AutomorphicSpectrum): delete InterNumEqSumLengthMulInterNumRed, a copy of IntersectionNumberSheafEqSumLengthMulCycle",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1358"
+  },
+  {
+    "headRefOid": "3bcff9f62cfcc463e5fc9679506c710d84278b4c",
+    "number": 1357,
+    "title": "refactor(Development/AbelianVarietyTheory): use the UnitaryExistence chart-cover lemmas in ChartCoverFOfSecBaseChange",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1357"
+  },
+  {
+    "headRefOid": "a7b851879c25ce0fb8a15c6ec72982202cfd1c00",
+    "number": 1356,
+    "title": "refactor(Development/WeilBound): use the SchwartzFunctionalEqZeroOfDense originals in SchInt",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1356"
+  },
+  {
+    "headRefOid": "f2bed9f5b91d9f5e6d77992f07350a4053dc39f3",
+    "number": 1355,
+    "title": "refactor: remove the duplicate WeilCompact Sobolev bound module",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1355"
+  },
+  {
+    "headRefOid": "a8b85efbbb3e52551bf2217354192ea97ec70337",
+    "number": 1354,
+    "title": "refactor(Formalism/PeriodIntegrals): use the AdeleIntA originals in AddDense",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1354"
+  },
+  {
+    "headRefOid": "42e4022a566f487c842fb8de427e47e52dfa5a3a",
+    "number": 1353,
+    "title": "refactor(Formalism/PeriodIntegrals): delete OmEDiagMonomial, a copy of ExistsMonomialWeight",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1353"
+  },
+  {
+    "headRefOid": "313733e9e4305c407174d50a1b402bc6885a0a39",
+    "number": 1352,
+    "title": "refactor(Formalism/LocalToGlobal): use the UnipRat originals in SlabNDenseRat",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1352"
+  },
+  {
+    "headRefOid": "13541e5669de783dff6653d135f36916c5c29909",
+    "number": 1351,
+    "title": "refactor(Formalism): use the UnrealifyRealify lemmas in LowestKTypeMultiplicity and StabilizerFixesTailCoords",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1351"
+  },
+  {
+    "headRefOid": "647b69d0d2b1cdde8cf8cc280c0f777ba1661987",
+    "number": 1350,
+    "title": "refactor(Formalism/PeriodIntegrals): use the GL3MeanSquares originals of the semilocal Hermitian lattice lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1350"
+  },
+  {
+    "headRefOid": "5da6523e51a30b263c337aeeb76d47c4184587ab",
+    "number": 1349,
+    "title": "refactor(Development/AbelianVarietyTheory): delete DivisorProofs/ExistsIdeleAt, a wrapper copy of IwasawaDecomposition/ExistsIdeleAt",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1349"
+  },
+  {
+    "headRefOid": "202b64520f2be0337e3e6ebd36d986f135850205",
+    "number": 1348,
+    "title": "refactor(Development/WeilBound): use the CompanionTheory segment-reordering lemmas instead of ReorderCommon",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1348"
+  },
+  {
+    "headRefOid": "26866d0778321b6a3163543e51f55e344bc8e8ce",
+    "number": 1347,
+    "title": "refactor(Formalism/LocalToGlobal): use the SpanRangeEmb4EqTop originals in PStdOK",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1347"
+  },
+  {
+    "headRefOid": "6acfee7ddcae3efc6d495b458a84f2a98ae7dbe0",
+    "number": 1346,
+    "title": "Remove unused lemma and simplify goal1 theorem in FiberEq.lean",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1346"
+  },
+  {
+    "headRefOid": "a9a175a3491017a222114da7b92b4cf4914c8571",
+    "number": 1345,
+    "title": "refactor(Formalism/PeriodIntegrals): delete FlagLevelCharacterEqPsiDivN, a copy of LevelSubgroupCharacterUnitary",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1345"
+  },
+  {
+    "headRefOid": "84add9723497110528aaf6bcb5eb9384827b2856",
+    "number": 1344,
+    "title": "refactor(Formalism/PeriodIntegrals): use the NcValVolOrdTr originals in VolUTr",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1344"
+  },
+  {
+    "headRefOid": "8734d6b575d7a3137898a67308aa81d60ae9bfbd",
+    "number": 1343,
+    "title": "refactor(Development/AbelianVarietyTheory): use the CompanionTheory Harish-Chandra declarations in HarishChandraModulesIndefiniteUnitaryGroup",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1343"
+  },
+  {
+    "headRefOid": "378635964ac21e8944acad5fd74521d5e4d42369",
+    "number": 1342,
+    "title": "refactor(Development/AbelianVarietyTheory): use the InertCoprimeLemmas originals in the curve dictionary",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1342"
+  },
+  {
+    "headRefOid": "c2929471b4c25c5ca0a3a555bf249d9e3b0e499f",
+    "number": 1341,
+    "title": "refactor: use StabilizerVolume copies of seven more StabilizerOrbitVolume modules",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1341"
+  },
+  {
+    "headRefOid": "b7493fef035a23b0715eee01bd59eedb25a9b8c1",
+    "number": 1340,
+    "title": "refactor(Development/WeilBound): use the VacuumImageIntertwiner originals in PfDict",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1340"
+  },
+  {
+    "headRefOid": "f61492e902a22c0b67a03bb882ab8cb7cc89f71c",
+    "number": 1339,
+    "title": "refactor(Development/WeilBound): drop the ChowMahlerFamilies copy of the sequence-test-function lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1339"
+  },
+  {
+    "headRefOid": "3319faaba65badc2cf6fbdaa8768ef4ec3431717",
+    "number": 1338,
+    "title": "refactor(Development/AbelianVarietyTheory): drop the GaloisGeometry copy of five ChartRank modules",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1338"
+  },
+  {
+    "headRefOid": "69e4cfdcf0a365048cc6c9d4615f2c290bed5aad",
+    "number": 1337,
+    "title": "refactor: remove the unused Fock block pairing proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1337"
+  },
+  {
+    "headRefOid": "252f2c71928cbd31375f677593e2c929b1a1e501",
+    "number": 1336,
+    "title": "refactor(Formalism/BranchSandwichDivisors): name the gl_n commutation relation in BranchMap",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1336"
+  },
+  {
+    "headRefOid": "744af632b924be156d6bf88d96095e74a4b0d3fb",
+    "number": 1335,
+    "title": "refactor(Development/AbelianVarietyTheory): make complRel and isLocalField global instances",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1335"
+  },
+  {
+    "headRefOid": "b946ed74323c833ae14928c8b12262b525bb6699",
+    "number": 1334,
+    "title": "refactor(AutomorphicArithmetic): reuse Mathlib and imported proofs across 86 modules (\u22121,199 lines)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1334"
+  },
+  {
+    "headRefOid": "62e40b48b5c28a8342c65b62b72a97e70b9090cc",
+    "number": 1333,
+    "title": "refactor(AbelianVarietyTheory, WeilBound): reuse Mathlib and imported proofs across 47 modules (\u22121,669 lines)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1333"
+  },
+  {
+    "headRefOid": "9f1d610f8f3b177060363ab1f961793bdb5d262a",
+    "number": 1332,
+    "title": "refactor: reuse existing maximal lattice representatives proof",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1332"
+  },
+  {
+    "headRefOid": "bfc6446813a5d872906699183236f34242f144ed",
+    "number": 1331,
+    "title": "refactor(Formalism/BranchSandwichDivisors): share the orthogonal-sum induction with InnerRealizeEqZero",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1331"
+  },
+  {
+    "headRefOid": "18431ccc35522c874b061ee9124a647c76bc22d9",
+    "number": 1330,
+    "title": "refactor: reuse existing flag cover point lifting proof",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1330"
+  },
+  {
+    "headRefOid": "b402a0b056e17aa987f203c016a0311bccc28f54",
+    "number": 1329,
+    "title": "refactor: remove the duplicate IsIntegrallyClosedOfDenomBis module",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1329"
+  },
+  {
+    "headRefOid": "ff0f05f3dcd09871b1ba29c13dac1bbb352967c1",
+    "number": 1328,
+    "title": "chore: remove redundant `set_option autoImplicit false` lines",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1328"
+  },
+  {
+    "headRefOid": "2dbf38ec96c3a44920fb7786c422019f885f3350",
+    "number": 1327,
+    "title": "refactor: reuse the wave-grid bound on the sum of absolute weights",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1327"
+  },
+  {
+    "headRefOid": "29990c778defb679b6099f288e6693cda055b373",
+    "number": 1326,
+    "title": "refactor: reuse fraction-field denominator clearing for lattices",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1326"
+  },
+  {
+    "headRefOid": "65894a1efda0d7bdcb9ea745d29ae6c413441440",
+    "number": 1325,
+    "title": "refactor: drop four unread clauses from tableLineDegreeTwo.admitted",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1325"
+  },
+  {
+    "headRefOid": "7b92c9c688b240646a4e41302f2988e28d6518bc",
+    "number": 1324,
+    "title": "refactor(Formalism/DoubleCosetMeasures): scope instMeasGL, instMeasMat and instBorelGL",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1324"
+  },
+  {
+    "headRefOid": "a18e895e63af6a9868885c028e9e471dd529c746",
+    "number": 1323,
+    "title": "refactor(ResolutionOfSingularities): reuse Mathlib and imported proofs across 24 modules (\u22121,007 lines)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1323"
+  },
+  {
+    "headRefOid": "59f8afea23fccdd13c7b45d0927bf936246eb7f1",
+    "number": 1322,
+    "title": "refactor(Formalism/BranchSandwichDivisors): shorten BranchIsometryProofs proofs with Mathlib lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1322"
+  },
+  {
+    "headRefOid": "ab7abb920141fc3caec316d68a3378a099e0191a",
+    "number": 1321,
+    "title": "refactor(Formalism/BranchSandwichDivisors): drop duplicate lemmas from OrthSum",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1321"
+  },
+  {
+    "headRefOid": "464f7729ec76274ed5cbe0dd49a80564f975cc94",
+    "number": 1320,
+    "title": "refactor: reuse existing Iwasawa decomposition proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1320"
+  },
+  {
+    "headRefOid": "1921ad04fce4b363785dd91cce382ce602ca2468",
+    "number": 1319,
+    "title": "chore: remove the unused HodgeLowerBound push-down and Hodge flag proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1319"
+  },
+  {
+    "headRefOid": "223fa48db64a65568ae3c43a938f86219a10d144",
+    "number": 1318,
+    "title": "refactor: prove strongMultOneC from smooth_multiplicity_one_holds",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1318"
+  },
+  {
+    "headRefOid": "01a039dfbcaf64256bf39c49b9b76deae97f0175",
+    "number": 1317,
+    "title": "refactor: remove the length_theorems_all_hold and length_theorems_with_earlier bundles",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1317"
+  },
+  {
+    "headRefOid": "b5a7ab6049c72beb98bf13e1a1f30f5d8650fb31",
+    "number": 1316,
+    "title": "refactor: drop hypotheses that two theorems ignore",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1316"
+  },
+  {
+    "headRefOid": "d610ce1d314665a6bb1f54c0a2e016634d2643a6",
+    "number": 1315,
+    "title": "perf(GroundTheory/LocalFields): simplify Lubin-Tate descent and deduplicate sections in Descent",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1315"
+  },
+  {
+    "headRefOid": "7bae84af6b6c55fd364e195de1ba682e3148fdaf",
+    "number": 1314,
+    "title": "chore: rename the 99 modules that are not in UpperCamelCase",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1314"
+  },
+  {
+    "headRefOid": "39b43cbf1b6fb101100b78187ff8f1381b551bc0",
+    "number": 1312,
+    "title": "feat: restore the public cache for selected Lean modules",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1312"
+  },
+  {
+    "headRefOid": "a65d3bba659fda54fca96a056c3e8473ff061434",
+    "number": 1311,
+    "title": "refactor(Formalism/BranchSandwichDivisors): use Mathlib weighted-homogeneous component lemmas in BranchMap",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1311"
+  },
+  {
+    "headRefOid": "cdb134de38bf2f61452263950292764df92ae8a1",
+    "number": 1300,
+    "title": "Delete 29 instance witnesses, 3 `rulesCommRing` erasers and 2 priority overrides that the `IsCD` fix (#611) made unnecessary",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1300"
+  },
+  {
+    "headRefOid": "f6ec5d8dce24c33fc08a49c037618497405ebc0d",
+    "number": 1297,
+    "title": "refactor: share crystalline assembly for definite-unitary representations",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1297"
+  },
+  {
+    "headRefOid": "09853599cfb303e67ce050b920d18778b01472dd",
+    "number": 1296,
+    "title": "refactor: reuse the carrier proofs for D7 Hermitian lattices (\u22122,893 lines net)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1296"
+  },
+  {
+    "headRefOid": "f334414ad792be93351c5289d3c529d96dc45b33",
+    "number": 1292,
+    "title": "ci: fail on info messages in the build",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1292"
+  },
+  {
+    "headRefOid": "c334b65337a443a919d11c59b615921583027d98",
+    "number": 1289,
+    "title": "refactor: share the trace proof for abelian variety uniformization",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1289"
+  },
+  {
+    "headRefOid": "e3f6fbbd26980bb700c40d6d168426fc852b2596",
+    "number": 1277,
+    "title": "perf(RelativeSerre): pin the sheaf Abelian instance in SheafHOver and SheafHEquiv",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1277"
+  },
+  {
+    "headRefOid": "bdfb3abb01039c6832e6a618c8efc33f9f5c4588",
+    "number": 1271,
+    "title": "ci: run Mathlib's text-based style linters",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1271"
+  },
+  {
+    "headRefOid": "814f7e38887a09c0ee93aad53ad72fab7fe35956",
+    "number": 1267,
+    "title": "ci: run Mathlib text-based linters on tracked sources",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1267"
+  },
+  {
+    "headRefOid": "d86b35f4eff641f6e9c4c47142eeabd858c8dc8e",
+    "number": 1257,
+    "title": "perf(Formalism): prune redundant private ext-47 imports outside LocalToGlobal",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1257"
+  },
+  {
+    "headRefOid": "b9155464470dad95654022f12cefa8db0bef00a3",
+    "number": 1241,
+    "title": "refactor(Formalism/LocalRingCardinality): reuse Mathlib Lucas certificates",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1241"
+  },
+  {
+    "headRefOid": "e478f6d5fae6425900463fe0ab099a6cfcb673de",
+    "number": 1238,
+    "title": "ci: take `inbox` off what the batch queue labels `building`",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1238"
+  },
+  {
+    "headRefOid": "700a2364664b7e92fe9792234ccd9eb8970233ec",
+    "number": 1236,
+    "title": "Collapse 1,264 more thin wrappers",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1236"
+  },
+  {
+    "headRefOid": "fc2858b67241d995acf3d1acbb9fdca50db2b49c",
+    "number": 1219,
+    "title": "refactor: reuse quotient map exactness for module length",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1219"
+  },
+  {
+    "headRefOid": "cc8f16b37b8866930882f116a3a757b19316b340",
+    "number": 1215,
+    "title": "Keep the kernel from comparing \ud835\udfd9 (Sp V) with spMap (algebraMap V V) in six modules",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1215"
+  },
+  {
+    "headRefOid": "aa17ab604a61baa0364e9a803b1e4c152cd5a6cc",
+    "number": 1212,
+    "title": "refactor: expand products using multilinear span coefficients",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1212"
+  },
+  {
+    "headRefOid": "8f35ba3f3e2fa424315ca09846b36f96268915f2",
+    "number": 1204,
+    "title": "refactor: reuse discrete valuation and logarithm lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1204"
+  },
+  {
+    "headRefOid": "0f0437ecb5500e14a6d3dfe045b592a0a4d76d9c",
+    "number": 1201,
+    "title": "refactor: reuse linear exactness for module length",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1201"
+  },
+  {
+    "headRefOid": "f995372f870b1de4584bf092ae55aefd4cf48250",
+    "number": 1195,
+    "title": "refactor: reuse the integrated operator norm bound",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1195"
+  },
+  {
+    "headRefOid": "6dd4d6e10fe1c8fa2a413bafa58118b652561ed0",
+    "number": 1181,
+    "title": "refactor: reuse the Hausdorff congruence criterion",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1181"
+  },
+  {
+    "headRefOid": "5516f088f7e03ced538f3616f83031c66398bbe4",
+    "number": 1175,
+    "title": "refactor: reuse invariant submodule and projection lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1175"
+  },
+  {
+    "headRefOid": "265a63f6d5e0f754a2b4fe7b8741abdc5a6a309f",
+    "number": 1171,
+    "title": "Refactor/remove unused archimedean proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1171"
+  },
+  {
+    "headRefOid": "63b6c1e70c60bf83d7e453bc6e1dc0f17cec56a7",
+    "number": 1170,
+    "title": "refactor: reuse Mathlib constructions for id\u00e8les",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1170"
+  },
+  {
+    "headRefOid": "38f038b181cde4ff2d7017a11c3db608cc74ee3d",
+    "number": 1168,
+    "title": "refactor: reuse Mathlib polydisc helper lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1168"
+  },
+  {
+    "headRefOid": "2a396b120aae81357786674fd84b773dfef804a7",
+    "number": 1167,
+    "title": "scripts: check the axioms of the judged theorems after a build (second proposal of #526)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1167"
+  },
+  {
+    "headRefOid": "b5a837dc46b35076dbd52f4ae79700438ec864be",
+    "number": 1165,
+    "title": "refactor: simplify continuous character normalization",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1165"
+  },
+  {
+    "headRefOid": "549cc8a999b6c0b27aeb4fb5638c84c14b8ccdeb",
+    "number": 1163,
+    "title": "chore: remove the holomorphic discrete series and metaplectic proofs left unused",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1163"
+  },
+  {
+    "headRefOid": "6ccfa825ad8622d61aba432afbe04f1c0b59fae3",
+    "number": 1159,
+    "title": "refactor: reuse quotient surjectivity for pro-p lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1159"
+  },
+  {
+    "headRefOid": "70dbd121f7405e0fd5e844f1dac3bcbc9e475f9b",
+    "number": 1156,
+    "title": "refactor: reuse Krull topology stabilizer and coset lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1156"
+  },
+  {
+    "headRefOid": "8bcca25acd330930b7bfb7fe80a2a8c07deb790a",
+    "number": 1149,
+    "title": "refactor: remove unused mirabolic proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1149"
+  },
+  {
+    "headRefOid": "3aa03fdbf2ea166af01049b5c97bf7bc4caf50c8",
+    "number": 1148,
+    "title": "refactor: reuse unit subtraction in the Schur complement proof",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1148"
+  },
+  {
+    "headRefOid": "4a8b7f42f8a5f81ea4f31e176a20552d1cb33b13",
+    "number": 1145,
+    "title": "refactor: use localization to clear lattice denominators",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1145"
+  },
+  {
+    "headRefOid": "f774ac55fa569fad9ac7c3bdd0024854c367a4bd",
+    "number": 1140,
+    "title": "refactor: reuse finite field quadratic lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1140"
+  },
+  {
+    "headRefOid": "b7603314a93388785c287268e4efd998340ce94e",
+    "number": 1136,
+    "title": "refactor: reuse Mathlib representation stabilizers",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1136"
+  },
+  {
+    "headRefOid": "c768e4a6edba5d0f72a9c0a719f1f07348e8e29a",
+    "number": 1131,
+    "title": "refactor: use the local ring unit-of-sum lemma",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1131"
+  },
+  {
+    "headRefOid": "ea8f27c97e1a4340b3f39ccaa76f0993ecfd92d0",
+    "number": 1126,
+    "title": "refactor: reuse Mathlib localization lemmas for length",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1126"
+  },
+  {
+    "headRefOid": "79fa44fa7ce70e35927979b245bb6c2a6710667e",
+    "number": 1125,
+    "title": "refactor: reuse Mathlib lemmas for Teichm\u00fcller roots",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1125"
+  },
+  {
+    "headRefOid": "fdb187806e2481d9684fe6a7f2d67c72d40ba690",
+    "number": 1124,
+    "title": "refactor: reuse Mathlib fiber cardinality lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1124"
+  },
+  {
+    "headRefOid": "4e0c3241e71bb468184b69d8bfacff03bcdf0252",
+    "number": 1120,
+    "title": "fix(cache): use Lake's toolchain to locate leantar",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1120"
+  },
+  {
+    "headRefOid": "b87e92e63c8c29e7164f744f2633352106e4c65d",
+    "number": 1113,
+    "title": "refactor: use closed dense range for surjectivity",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1113"
+  },
+  {
+    "headRefOid": "8d86341df14af485d8f18b9f7888c1c18519049a",
+    "number": 1102,
+    "title": "refactor: reuse matrix column and valuation lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1102"
+  },
+  {
+    "headRefOid": "d5657fa9d91507d45cd8562996700f4f3629f142",
+    "number": 1099,
+    "title": "refactor: replace deprecated lemma names (#1021) and shorten 11,888 proofs (\u221217,189 lines)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1099"
+  },
+  {
+    "headRefOid": "02cc8f43d1ce5ad873ea5b69b6541ad15b4751e5",
+    "number": 1086,
+    "title": "refactor: reuse Mathlib finiteness of monic divisors",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1086"
+  },
+  {
+    "headRefOid": "5e14d6250515a0a184c571e7be522e5b4c2a78c9",
+    "number": 1074,
+    "title": "refactor: reuse unitary matrix lemmas for the complex group",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1074"
+  },
+  {
+    "headRefOid": "a77d43e8e482dcc2e2bd6ff79577d0fda4a8f427",
+    "number": 1071,
+    "title": "perf(ThirdPlaceSeries): remove with_unfolding_all in MMvDmvAll and SideAAlt",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1071"
+  },
+  {
+    "headRefOid": "56cb14c9288e46d46cc0982f7438e4eccc8cd904",
+    "number": 1066,
+    "title": "refactor: reuse closed-kernel and Hilbert span lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1066"
+  },
+  {
+    "headRefOid": "451fb81a9de629976706d2149b29652af80abaea",
+    "number": 1061,
+    "title": "refactor: share monomial normalization zero detection",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1061"
+  },
+  {
+    "headRefOid": "68062cd8a2ba34b1186bfa425d0ca477bef526bd",
+    "number": 1053,
+    "title": "refactor: reuse CM conjugation involutivity",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1053"
+  },
+  {
+    "headRefOid": "a3253052b4b1c1ccd28dce5c73a598f545948d45",
+    "number": 1043,
+    "title": "refactor: reuse Mathlib valuation ring lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1043"
+  },
+  {
+    "headRefOid": "9e3763eda12bcd2e82c4a7d6b0378b6a4c3feb10",
+    "number": 1037,
+    "title": "fix: use the Mathlib measurable space for matrix measures",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1037"
+  },
+  {
+    "headRefOid": "c0ef04b7c3c7c51d5a4507f58348f4c831b240ca",
+    "number": 1026,
+    "title": "refactor: reuse linear independence lemmas for Cauchy\u2013Binet",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1026"
+  },
+  {
+    "headRefOid": "4101e18d7959fd0715ef295978beb6e3b05983fe",
+    "number": 1022,
+    "title": "refactor: reuse the nonarchimedean finite-sum bound",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1022"
+  },
+  {
+    "headRefOid": "e7ae1c118b2abd3d8a825005867a3486b567e98d",
+    "number": 1021,
+    "title": "Replace deprecated if/dif lemma names and push_neg",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1021"
+  },
+  {
+    "headRefOid": "ddfc0b6d1d17fc297eac6f7ec649515dff6a37f6",
+    "number": 1020,
+    "title": "refactor: reuse basis extension for independent vectors",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1020"
+  },
+  {
+    "headRefOid": "823916b136dbf7a8831649231752f232351c420a",
+    "number": 1015,
+    "title": "refactor: reuse the complex radial Gamma integral",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1015"
+  },
+  {
+    "headRefOid": "d591bac938eabdea3f49167792b41e8934a8bbd8",
+    "number": 1009,
+    "title": "refactor: reuse semilocal norm lemmas",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1009"
+  },
+  {
+    "headRefOid": "35e53a486431f2db6d7ebbf4ceca4774ebd1ccd8",
+    "number": 988,
+    "title": "Drop the clump-header comments",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/988"
+  },
+  {
+    "headRefOid": "25ebea58cc86565036ecd876dc090c16db20c906",
+    "number": 981,
+    "title": "Propagate the ramified theta bound to the averaged error",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/981"
+  },
+  {
+    "headRefOid": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+    "number": 977,
+    "title": "refactor: share scope commands within reversible proof clumps",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/977"
+  },
+  {
+    "headRefOid": "006c7640df8286e68e92e027fcdd9f25533a3e3e",
+    "number": 953,
+    "title": "refactor: minimize literature theorem dependencies and eliminate redundant Row assumptions",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/953"
+  },
+  {
+    "headRefOid": "55118c239520d6dcdb2755528e38abe16552e548",
+    "number": 940,
+    "title": "perf: replace nlinarith with explicit arithmetic in 3 DivisorProofs modules",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/940"
+  },
+  {
+    "headRefOid": "ec04aff18f08d54b60fdc8c34c5bec1cd814a90f",
+    "number": 932,
+    "title": "perf: replace nlinarith with explicit arithmetic in 3 SquareIntegrability modules",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/932"
+  },
+  {
+    "headRefOid": "b3ee916d3ae8e69d9684431f9c86693639bff758",
+    "number": 919,
+    "title": "perf: replace nlinarith with explicit arithmetic in 4 JetHarmonics modules",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/919"
+  },
+  {
+    "headRefOid": "e05737b0d310930177bc746e7cf64f12d7731438",
+    "number": 911,
+    "title": "fix: scope the AdmLoc module instances for tensors and functions",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/911"
+  },
+  {
+    "headRefOid": "e0a0acde813bd368786947b98704ee6814656a15",
+    "number": 879,
+    "title": "refactor(Development): remove redundant private Mathlib imports",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/879"
+  },
+  {
+    "headRefOid": "f3884b109f3481b30a34699d8fec3f0d993f6bc0",
+    "number": 811,
+    "title": "Preserve slope tails and simplify window selection",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/811"
+  },
+  {
+    "headRefOid": "1bc9d4f6ba1392d3f382d0c6f5fb4381de48672b",
+    "number": 807,
+    "title": "Prevent unclump from overwriting existing Lean modules",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/807"
+  },
+  {
+    "headRefOid": "5f46df00b4f93fa86ae1d0ef6834f937d7355485",
+    "number": 804,
+    "title": "Remove two same-name duplicate theorems and align the binders of dSW_smooth and mt_mul",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/804"
+  },
+  {
+    "headRefOid": "f993efcb37cdff0e7531d84c7b206a7770913a73",
+    "number": 669,
+    "title": "Remove 827 proof files by grouping related results",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/669"
+  },
+  {
+    "headRefOid": "8c7c30fee79b3d60f2c6c0d4bff552081656ec29",
+    "number": 645,
+    "title": "Rename the 278 modules with non-ASCII or quoted names (redo of #206 after #324)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/645"
+  },
+  {
+    "headRefOid": "bddf5e65507dcf6c93b202d36f86c15d4edceaba",
+    "number": 604,
+    "title": "scripts: apply the edits Lean prints with its warnings (deprecated theorems, `haveI`), for #137",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/604"
+  },
+  {
+    "headRefOid": "7e8724483fbdb220e9b581a442a061bdde61810c",
+    "number": 577,
+    "title": "cache get: don't stop on untracked non-Lean files under src (e.g. .DS_Store)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/577"
+  },
+  {
+    "headRefOid": "e923cfc566076d370a6be20f29d3c2a7a73739a1",
+    "number": 565,
+    "title": "CI: fail a pull request that adds `sorry`, an axiom or another risky construct under `src/`",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/565"
+  },
+  {
+    "headRefOid": "5349f7d52f8581308faf0945a8c81818bdbd30f5",
+    "number": 563,
+    "title": "Reuse the prime reciprocal bound across three modules",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/563"
+  },
+  {
+    "headRefOid": "f28ef92603e5d823fb818d8b5900d10361f556c3",
+    "number": 542,
+    "title": "Fix commented imports and fresh-checkout unclumping",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/542"
+  },
+  {
+    "headRefOid": "a18416a1e7f55153a76f5f1fc57b8cbc19de2c23",
+    "number": 491,
+    "title": "Keep wrappers with possible transitive users during regeneration",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/491"
+  },
+  {
+    "headRefOid": "f737c737b763099399fa4044684a8a099673130c",
+    "number": 467,
+    "title": "Handle Unicode paths and renames in quick-check planning",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/467"
+  },
+  {
+    "headRefOid": "7609731c6f750d19cf2f3f0abce0ab0c26c86d23",
+    "number": 464,
+    "title": "Avoid D7 and PackSigma proof-term blowups in 16 modules",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/464"
+  },
+  {
+    "headRefOid": "c562279410a915dd25a35e44617acf9e593ddbd0",
+    "number": 455,
+    "title": "Add a script that counts CPU instructions for the modules a PR changes",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/455"
+  },
+  {
+    "headRefOid": "ed6e1e74cb3cde260a0291c7e3fccf1bf78ccdc9",
+    "number": 450,
+    "title": "Streamline proofs and prune unused private imports across 7 modules (-2,698 lines)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/450"
+  },
+  {
+    "headRefOid": "616da26210151a85d9099bdd80defb5c7216601d",
+    "number": 449,
+    "title": "Streamline proofs and prune unused private imports across 8 modules (-3,449 lines)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/449"
+  },
+  {
+    "headRefOid": "cc10d0dd2cc0d6542f7cd83867125e113612626a",
+    "number": 431,
+    "title": "Remove two hypothesis fields the proof never reads",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/431"
+  },
+  {
+    "headRefOid": "5d0d440adfea1762cca8c0db9ec757a6aabcf39f",
+    "number": 424,
+    "title": "Consolidate duplicate proofs from Principia ProofGolf (6,958 fewer lines)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/424"
+  },
+  {
+    "headRefOid": "6c809b618d7d326004da6f3528da67784d8227a2",
+    "number": 418,
+    "title": "Simplify CurveDerivativeDecay via gap-free Casimir-Lipschitz formal-degree bound",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/418"
+  },
+  {
+    "headRefOid": "26e7851a2520e9d172c85d88e55a8c228859c8dc",
+    "number": 361,
+    "title": "Drop unused private Mathlib imports from the root theorems.",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/361"
+  },
+  {
+    "headRefOid": "a976a13e6069ef4b8713c31ebf27591b83b7611f",
+    "number": 359,
+    "title": "Use minimal stock setup in persistent Lean proof workers",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/359"
+  },
+  {
+    "headRefOid": "3a39f4cd34d221b1800e1e3ab323be9f1272a9fc",
+    "number": 358,
+    "title": "Sharpen the ramified theta-kernel vanishing bound",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/358"
+  },
+  {
+    "headRefOid": "6f8e76bfeef56f9c06208b0f5d952ff8a8cf590a",
+    "number": 351,
+    "title": "Add script which get cache for Windows",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/351"
+  },
+  {
+    "headRefOid": "f26f3a48c37e99d0c3374e3e3c790989c1e8853d",
+    "number": 350,
+    "title": "refactor(LatticeSlopes): simplify Gram determinant, rank, quotient, and slope proofs",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/350"
+  },
+  {
+    "headRefOid": "add483d65b0e8f764c42fcc8fe65a4e8a13c47a0",
+    "number": 349,
+    "title": "refactor(PieriRules): deduplicate 33 ThetaBesselIsometries proof files via JetHarmonics",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/349"
+  },
+  {
+    "headRefOid": "bcc0fd53fb92149c2085aa8c9f6705e6f5fee770",
+    "number": 242,
+    "title": "Reuse the segment-representation proof and remove 35 unused modules",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/242"
+  },
+  {
+    "headRefOid": "e751784d047c83ad4f087d59623bfe4dade4fc56",
+    "number": 235,
+    "title": "Keep the historic mirror check independent of live Lean pins",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/235"
+  },
+  {
+    "headRefOid": "be5843b7e5dbebae7be5eaf4aaf2b0e7db7e95c3",
+    "number": 173,
+    "title": "Remove declarations unused by the five theorems (S1, Lean 4.36)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/173"
+  },
+  {
+    "headRefOid": "495c07387b87d9fa87841dfcacbc42f6e6fff6d6",
+    "number": 168,
+    "title": "Use theorem aliases for 25,907 generated abelian-variety statements",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/168"
+  },
+  {
+    "headRefOid": "9fb32e14bf4d75cf2d640c33009b10303add6a11",
+    "number": 126,
+    "title": "Remove no-op options (stacked on #120)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/126"
+  },
+  {
+    "headRefOid": "4414005abeb07bab97b93c7f77571c2c7a4dbfd7",
+    "number": 125,
+    "title": "Split Lemmata package into dependent and independent parts",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/125"
+  },
+  {
+    "headRefOid": "7455952b33cd81f8c7ab71b97688ad565ea1ce2f",
+    "number": 113,
+    "title": "Add a manually triggered workflow that runs the Lean auto-formatter over `src/`",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/113"
+  },
+  {
+    "headRefOid": "9aa6fa266e611fb26a23e7060d4e257e1eacd1a8",
+    "number": 97,
+    "title": "Run the Lean auto-formatter over `src/`",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/97"
+  },
+  {
+    "headRefOid": "dacaca3616ad0341b1c975d8e610bcf97fcd9485",
+    "number": 85,
+    "title": "Pilot: Lean auto-formatter on a sample of the submission (not for merging)",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/85"
+  }
+]

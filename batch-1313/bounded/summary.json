@@ -1,0 +1,211 @@
+{
+  "run": 45462199995,
+  "workflow": "d23bd9b768b60e1bd887a0244a40b8a0446d7c04",
+  "status": "success",
+  "url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45462199995",
+  "job_url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45462199995/job/138687521376",
+  "job_steps": {
+    "Set up job": "success",
+    "Check out the independent fork verifier": "success",
+    "Select the pinned public objects": "success",
+    "Check out immutable candidate sources": "success",
+    "Check out the authenticated community parent": "success",
+    "Verify the published Git trees and materialize the declared cone": "success",
+    "Install the pinned toolchain": "success",
+    "Exercise Comparator acceptance and rejection": "success",
+    "Restore the published parent archives": "success",
+    "Fetch the official Mathlib cache for the selected imports": "success",
+    "Build and compare the candidate": "success",
+    "Save the scope and verification output": "success",
+    "Post Check out the authenticated community parent": "success",
+    "Post Check out immutable candidate sources": "success",
+    "Post Check out the independent fork verifier": "success",
+    "Complete job": "success"
+  },
+  "artifact_id": 14953082727,
+  "container_sha256": "ab3fbbc75ce2aba9be39c0a4c1a7610358c4bcffa35f4985ec04637f75942d6c",
+  "public": {
+    "source_repository": "aliromman/riemann-hypothesis",
+    "source_ref": "refs/heads/ci/batch-1313/pr-977-source",
+    "source_head": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+    "parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "donor": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "parent_source_tree": "b722dc0d057c3a869ad607e0c93231665a963b63",
+    "parent_module_manifest": "56ef968afb7ef3227b98278bbf86cf5b2baa24385b4f89f3aca63599a437af92",
+    "checked_commit": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+    "candidate_source_tree": "e0641dda707407a73d29502a55f1789eab873789",
+    "git_tree": "ded99e3598129fe64a813bba7c03e8de75dd080c",
+    "pins": {
+      "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+      "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+      "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d"
+    },
+    "mode": "public-fork-head",
+    "pull_number": 977,
+    "upstream_main_observed": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "pr_head": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+    "comparison_parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "source_mode": "public-fork-head",
+    "source_tree": "e0641dda707407a73d29502a55f1789eab873789",
+    "ci_head": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+    "workflow_head": "d23bd9b768b60e1bd887a0244a40b8a0446d7c04",
+    "pull_request": "https://github.com/leanprover-community/riemann-hypothesis/pull/977"
+  },
+  "project_modules": 239,
+  "roots": 27,
+  "changed": 29,
+  "fresh": 36,
+  "changed_by_library": {
+    "CompanionTheory": 5,
+    "Development": 4,
+    "Formalism": 8,
+    "GroundTheory": 5,
+    "PositivityTheory": 2,
+    "ReciprocityTheory": 5
+  },
+  "expanded_parent_archive_bytes": 190678586,
+  "compressed_parent_bytes": 10850609,
+  "declarations": 7656,
+  "changed_module_declarations": 1852,
+  "raw_differences": {
+    ".olean.server": 33,
+    ".olean.private": 25
+  },
+  "required_raw_facets": "public .olean and both IR files, all five when a project module imports all/meta",
+  "different_warnings": 0,
+  "confirmed_fresh_builds": 36,
+  "replayed_roots": [
+    "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjOfIsConjGlFieldExtensionInclusion",
+    "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.LemmaGIdeal",
+    "GroundTheory.AutomorphicForms.DixmierMalliavin",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.KTFiniteDimensional"
+  ],
+  "downstream_cases": [
+    {
+      "library": "CompanionTheory",
+      "consumer": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuadraticLevelSetDensity",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.ArchimedeanGaussianFourier"
+      ]
+    },
+    {
+      "library": "CompanionTheory",
+      "consumer": "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa"
+      ]
+    },
+    {
+      "library": "Development",
+      "consumer": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoboundaryOfNormOneInSubalgebraStatement",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyLinearEquivOfPiFinPowFiniteStatement"
+      ]
+    },
+    {
+      "library": "Development",
+      "consumer": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjOfIsConjGlFieldExtensionInclusion",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyLinearEquivOfPiFinPowFiniteStatement"
+      ]
+    },
+    {
+      "library": "Formalism",
+      "consumer": "Formalism.CoboundaryTransfers.GammaStableTransfers.Transfer",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "Formalism.LagrangeIdealLifts.LiftLagrangeIdealInt"
+      ]
+    },
+    {
+      "library": "Formalism",
+      "consumer": "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.LemmaGIdeal",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "Formalism.LagrangeIdealLifts.LiftLagrangeIdealInt"
+      ]
+    },
+    {
+      "library": "GroundTheory",
+      "consumer": "GroundTheory.AutomorphicForms.DixmierMalliavinLine",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "GroundTheory.AutomorphicForms.DixmierMalliavinLineStage"
+      ]
+    },
+    {
+      "library": "GroundTheory",
+      "consumer": "GroundTheory.AutomorphicForms.DixmierMalliavin",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "GroundTheory.AutomorphicForms.DixmierMalliavinLine"
+      ]
+    },
+    {
+      "library": "ReciprocityTheory",
+      "consumer": "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.ValNorm",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "ReciprocityTheory.SemistableReduction.AlgAll"
+      ]
+    },
+    {
+      "library": "ReciprocityTheory",
+      "consumer": "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.KTFiniteDimensional",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "ReciprocityTheory.SemistableReduction.AlgAll"
+      ]
+    }
+  ],
+  "controls": {
+    "alternative-proof": {
+      "verdict": "accepted",
+      "statements": "success",
+      "axioms": "success",
+      "kernels": {
+        "nanoda": "success",
+        "Lean paranoid": "success",
+        "Lean default": "success"
+      }
+    },
+    "other-statement": {
+      "verdict": "failure",
+      "statements": "failure",
+      "axioms": "skipped",
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      }
+    },
+    "extra-axiom": {
+      "verdict": "failure",
+      "statements": "success",
+      "axioms": "failure",
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      }
+    }
+  },
+  "replacements": {},
+  "carried_inputs": {
+    "previous_workflow": "3aadb31f965c5b7c0e2cf704c789480b4c555cad",
+    "previous_run": 45446277703,
+    "all_named_timing_and_external_theorem_inputs": true
+  },
+  "previous_input_assessment": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+  "timing_status": {
+    "individual": "No new timing on this runner",
+    "end_to_end": "No new timing on this runner"
+  },
+  "original_bytes": 90355
+}

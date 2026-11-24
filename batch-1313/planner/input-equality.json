@@ -1,0 +1,19 @@
+{
+  "parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "published": "70f5e2c0737a9289949627d834612ed30d25432f",
+  "proposed": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+  "source": "e0641dda707407a73d29502a55f1789eab873789",
+  "files": 59869,
+  "already_clumped": 12349,
+  "all_module_fields_sha256": "5261e872e2d80092f413d3b7876632d09524ab426b52f2f6ef65810fef4c7f86",
+  "roots": 204,
+  "members": 666,
+  "saved_plan": "0aea27f6c11bf6a6c26184cc238728ee7fd46e2630a8f08629d6e68c5520235a",
+  "root_streams": {
+    "community": "409e916d943768e27bb5c5ec108cec4fceffc69690cb492ea5260ed04c96dc7c",
+    "published": "e1a3dd789a5455e1ac26d41de92f14d9a6071c0924bc243a3bde9a5fb21424d3",
+    "proposed": "e1a3dd789a5455e1ac26d41de92f14d9a6071c0924bc243a3bde9a5fb21424d3"
+  },
+  "stdout": "modules 59869  clumps 204  absorbed 462  files after 59407  (max-lines 10000)\n       0-50       12149\n      50-100      13242\n     100-200      15375\n     200-500      12544\n     500-1000      3491\n    1000-2000      2565\n    2000-5000        35\n    5000-10000        5\n   10000-1000000000       1\n",
+  "stderr": "refused 9 folds because of clashing declaration names\n"
+}
