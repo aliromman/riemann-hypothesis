@@ -1,0 +1,43 @@
+{
+  "authority": {
+    "base": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "tree": "c9e0bade70ab9e778941a02e423609a4e6aa76e3",
+    "manifest": "816164d26c3ad2b5bceaf1337ab7a172bbc10b1fa15c52ab8c04495436314c65",
+    "graph": "2d79c727402413d1dedd697e5e2445cccd13b3a46a88545cb2f9e8992b42c90c"
+  },
+  "tasks": {
+    "structural": {
+      "pr": 977,
+      "head": "70f5e2c0737a9289949627d834612ed30d25432f",
+      "src": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749",
+      "upstream_clump_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+      "source_table_sha256": "00c92cb923882d90fc89a0b9c48894136d2a3fbf2c4d5bd28afd4d5cd9a67490"
+    }
+  },
+  "groups": {
+    "scope-direct-1266-large-1": {
+      "task": "structural",
+      "count": 5,
+      "sha256": "10ed6abfd6c2a495c9b0f8e874dc2c4989cd900ae66cc27f39729a3223504ce9",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 564.62
+    },
+    "scope-direct-1266-ordinary-1": {
+      "task": "structural",
+      "count": 240,
+      "sha256": "2cb9d0a24bea5a3cd8bd7f2f6da36e95bd27f0192623a2c793d9a763405d169f",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 1762.04
+    },
+    "scope-direct-1266-ordinary-2": {
+      "task": "structural",
+      "count": 239,
+      "sha256": "49f0669f33171c7bcd4311e9b0d38087b1780d8dea08499674e0f6216cd079d7",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 1761.36
+    }
+  }
+}

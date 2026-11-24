@@ -1,8 +1,9 @@
 {
-  "request": "direct-1266",
+  "request": "scope-direct-1266",
   "groups": [
-    "direct-1266-large-1",
-    "direct-1266-ordinary-1"
+    "scope-direct-1266-large-1",
+    "scope-direct-1266-ordinary-1",
+    "scope-direct-1266-ordinary-2"
   ],
   "seed_run": 45445328947
 }
