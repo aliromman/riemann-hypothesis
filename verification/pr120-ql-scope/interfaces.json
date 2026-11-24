@@ -1,0 +1,219 @@
+[
+  {
+    "before": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.Bundle0007",
+    "after": [
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.Bundle0007"
+    ],
+    "original": [
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.InverseGramEigenvaluesSumHsStatement",
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.QuantumDeterminantEquality",
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.ShuffleOfPermImports",
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.TorusConjugationPreservesCongruenceStatement"
+    ],
+    "counts": [
+      6,
+      6,
+      0,
+      6,
+      6,
+      6
+    ]
+  },
+  {
+    "before": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.Bundle0008",
+    "after": [
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.Bundle0008"
+    ],
+    "original": [
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.CapelliPolynomialPermutationMatch",
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.CartanExists",
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.EntryMulSubOne",
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.ExistsUniqueParam",
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.FixedVectorStatement",
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.PairingStatement"
+    ],
+    "counts": [
+      22,
+      22,
+      6,
+      16,
+      16,
+      22
+    ]
+  },
+  {
+    "before": "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0023",
+    "after": [
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0023"
+    ],
+    "original": [
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.GaloisOfPrimePowerDegree",
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.GenericIsomorphismProductModels"
+    ],
+    "counts": [
+      20,
+      20,
+      0,
+      20,
+      20,
+      20
+    ]
+  },
+  {
+    "before": "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0025",
+    "after": [
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0025"
+    ],
+    "original": [
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsOpenImmersionOfSections",
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.PartVanishesOnTorusTorsionFourier",
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ProdIrrAndWeakNeron"
+    ],
+    "counts": [
+      20,
+      20,
+      0,
+      20,
+      20,
+      20
+    ]
+  },
+  {
+    "before": "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0026",
+    "after": [
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0026"
+    ],
+    "original": [
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.SmConnIdempotentSplits",
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TranslationBySection"
+    ],
+    "counts": [
+      26,
+      26,
+      1,
+      25,
+      25,
+      26
+    ]
+  },
+  {
+    "before": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0002",
+    "after": [
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0002",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.GeneralLinearIntegralCompactOpen"
+    ],
+    "original": [
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdaptedFrameOrthogonalSubspaceStatement",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.BlockBasisChangeEntries",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.GeneralLinearIntegralCompactOpen",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.IwasawaDecompositionUpperTriangular",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.LocalFieldUniformizerNormProperties",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.RamifiedPrimeContainsDiscriminantStatement",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.SkewOperatorBoundedByPolynomialRootsStatement"
+    ],
+    "counts": [
+      29,
+      6,
+      1,
+      28,
+      22,
+      29
+    ]
+  },
+  {
+    "before": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0003",
+    "after": [
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0003",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.MemIntegralGLIffIntegralUnitDet"
+    ],
+    "original": [
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.BlockBasisChangeEntriesStatement",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.MemIntegralGLIffIntegralUnitDet",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.PrimePowerNotDvdDifferentStatement"
+    ],
+    "counts": [
+      5,
+      2,
+      0,
+      5,
+      5,
+      5
+    ]
+  },
+  {
+    "before": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0006",
+    "after": [
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0006",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.GeneralLinearUnimodularHaar"
+    ],
+    "original": [
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteContinuousCrossedHomomorphisms",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.FinitelyManyOpenSubgroupsBoundedIndex",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.GaloisUnramifiedOutsideCohomology",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.GeneralLinearUnimodularHaar"
+    ],
+    "counts": [
+      19,
+      18,
+      2,
+      17,
+      17,
+      19
+    ]
+  },
+  {
+    "before": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0013",
+    "after": [
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.IntegrandEqOnPiece",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0013"
+    ],
+    "original": [
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.AbelContinuation",
+      "Development.AutomorphicSpectrum.Proofs.GlobalProofs.IntegrandEqOnPiece"
+    ],
+    "counts": [
+      10,
+      9,
+      9,
+      1,
+      1,
+      10
+    ]
+  },
+  {
+    "before": "Development.WeilBound.ThetaLifts.LatticeBasics.LocUnrSplitL",
+    "after": [
+      "Development.WeilBound.ThetaLifts.LatticeBasics.LocUnrSplitL"
+    ],
+    "original": [
+      "Development.WeilBound.ThetaLifts.LatticeBasics.LocUnrSplitL"
+    ],
+    "counts": [
+      5,
+      5,
+      1,
+      4,
+      4,
+      5
+    ]
+  },
+  {
+    "before": "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.Bundle0001",
+    "after": [
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.Bundle0001"
+    ],
+    "original": [
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeG",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeK",
+      "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.WithBotEqOfAddOne"
+    ],
+    "counts": [
+      12,
+      12,
+      2,
+      10,
+      10,
+      12
+    ]
+  }
+]

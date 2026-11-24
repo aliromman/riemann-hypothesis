@@ -1,0 +1,14 @@
+{
+  "module": "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsUnrM",
+  "line": 47,
+  "references": {
+    "instBorelGL": {
+      "m": "Formalism.DoubleCosetMeasures.Statement",
+      "n": "Formalism.DoubleCosetMeasures.instBorelGL"
+    },
+    "instMeasGL": {
+      "m": "Formalism.DoubleCosetMeasures.Statement",
+      "n": "Formalism.DoubleCosetMeasures.instMeasGL"
+    }
+  }
+}

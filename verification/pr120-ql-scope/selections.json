@@ -1,0 +1,36 @@
+{
+  "Development/AutomorphicSpectrum/Definitions/GlobalGeometry/InstBorelGL.lean": {
+    "exit": 0,
+    "info": []
+  },
+  "Unchanged.lean": {
+    "exit": 0,
+    "info": [
+      "GlobalTheory.CompanionTheory.QL.instMeasGL 1",
+      "GlobalTheory.CompanionTheory.QL.instBorelGL 1"
+    ]
+  },
+  "Scoped.lean": {
+    "exit": 0,
+    "info": [
+      "GlobalTheory.CompanionTheory.QL.instMeasGL 1",
+      "GlobalTheory.CompanionTheory.QL.instBorelGL 1",
+      "Units.instMeasurableSpace",
+      "GlobalTheory.CompanionTheory.QL.instMeasGL 1",
+      "GlobalTheory.CompanionTheory.QL.instBorelGL 1"
+    ]
+  },
+  "Importer.lean": {
+    "exit": 0,
+    "info": [
+      "GlobalTheory.CompanionTheory.QL.instMeasGL 1",
+      "GlobalTheory.CompanionTheory.QL.instBorelGL 1"
+    ]
+  },
+  "ErasedBorel.lean": {
+    "exit": 1,
+    "info": [
+      "failed to synthesize\n  BorelSpace (GL (Fin 1) \u211d)\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command."
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "provider": "Development.AutomorphicSpectrum.Definitions.GlobalGeometry.InstBorelGL",
+  "graphs": {
+    "original": {
+      "revision": "c7791603122c0328f79e49f6be5d7d4402effc53",
+      "files": 149397,
+      "main_inputs": 149284
+    },
+    "before": {
+      "revision": "f1ee9d0689a257a713e51378c69395714a0118ae",
+      "files": 47885,
+      "main_inputs": 47884,
+      "logical_sources": 121223,
+      "different_access": [
+        48588,
+        48587,
+        48588,
+        0
+      ]
+    },
+    "after": {
+      "revision": "ceaf3e60cfd51cb15e2839137e92731b4d2bfd8b",
+      "files": 47926,
+      "main_inputs": 47925,
+      "logical_sources": 121223,
+      "different_access": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "build_inputs": {
+    "ql-small-native/before": {
+      "revision": "f1ee9d0689a257a713e51378c69395714a0118ae",
+      "source_count": 1491,
+      "targets": [
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.Bundle0007",
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.Bundle0008",
+        "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0023",
+        "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0025",
+        "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0026",
+        "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0002",
+        "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0003",
+        "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0006",
+        "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0013",
+        "Development.WeilBound.ThetaLifts.LatticeBasics.LocUnrSplitL",
+        "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.Bundle0001"
+      ],
+      "source_manifest_sha256": "faad89f1767cf42b9da00665357ae2d6bc9884de92f57fb14553938e1cc5ff8c"
+    },
+    "ql-small-native/after": {
+      "revision": "ceaf3e60cfd51cb15e2839137e92731b4d2bfd8b",
+      "source_count": 614,
+      "targets": [
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.Bundle0007",
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.Bundle0008",
+        "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0023",
+        "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0025",
+        "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0026",
+        "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0002",
+        "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0003",
+        "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0006",
+        "Development.AutomorphicSpectrum.Proofs.GlobalProofs.GeneralLinearIntegralCompactOpen",
+        "Development.AutomorphicSpectrum.Proofs.GlobalProofs.GeneralLinearUnimodularHaar",
+        "Development.AutomorphicSpectrum.Proofs.GlobalProofs.IntegrandEqOnPiece",
+        "Development.AutomorphicSpectrum.Proofs.GlobalProofs.MemIntegralGLIffIntegralUnitDet",
+        "Development.WeilBound.ThetaLifts.LatticeBasics.LocUnrSplitL",
+        "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.Bundle0001"
+      ],
+      "source_manifest_sha256": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae"
+    },
+    "ql-supplement-native/after": {
+      "revision": "ceaf3e60cfd51cb15e2839137e92731b4d2bfd8b",
+      "source_count": 1157,
+      "targets": [
+        "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0013"
+      ],
+      "source_manifest_sha256": "293f41e9d0f7cb5c00abaaa66ce4c5114dc9ed9dfd43d27b5d2fb840146e649f"
+    }
+  }
+}

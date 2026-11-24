@@ -1,0 +1,77 @@
+{
+  "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.Bundle0007": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "a577cf2f5b7aed7f",
+    "native_kernel": "pass"
+  },
+  "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.Bundle0008": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "88aaa9638974a582",
+    "native_kernel": "pass"
+  },
+  "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0023": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "515dd86459801f01",
+    "native_kernel": "pass"
+  },
+  "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0025": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "8d4284bed32c11a1",
+    "native_kernel": "pass"
+  },
+  "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0026": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "c47702ca243daebb",
+    "native_kernel": "pass"
+  },
+  "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0002": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "88dbcf0ebd963efe",
+    "native_kernel": "pass"
+  },
+  "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0003": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "0fdd139b08d492a6",
+    "native_kernel": "pass"
+  },
+  "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0006": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "b9a55b5416d8c049",
+    "native_kernel": "pass"
+  },
+  "Development.AutomorphicSpectrum.Proofs.GlobalProofs.GeneralLinearIntegralCompactOpen": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "91dfe85829913b77",
+    "native_kernel": "pass"
+  },
+  "Development.AutomorphicSpectrum.Proofs.GlobalProofs.GeneralLinearUnimodularHaar": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "8d3482c3d2a3c0eb",
+    "native_kernel": "pass"
+  },
+  "Development.AutomorphicSpectrum.Proofs.GlobalProofs.IntegrandEqOnPiece": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "3f603bd7e1839baf",
+    "native_kernel": "pass"
+  },
+  "Development.AutomorphicSpectrum.Proofs.GlobalProofs.MemIntegralGLIffIntegralUnitDet": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "8f6776d4ec0735e2",
+    "native_kernel": "pass"
+  },
+  "Development.WeilBound.ThetaLifts.LatticeBasics.LocUnrSplitL": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "157be78e036305e5",
+    "native_kernel": "pass"
+  },
+  "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.Bundle0001": {
+    "source_manifest": "b0207e862ce1f87e2b1e2f743cc853ce336d0f615cccd8b26f98c0b8d57a0fae",
+    "dependency_hash": "8e8515618eb0b681",
+    "native_kernel": "pass"
+  },
+  "Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0013": {
+    "source_manifest": "293f41e9d0f7cb5c00abaaa66ce4c5114dc9ed9dfd43d27b5d2fb840146e649f",
+    "dependency_hash": "ca6890db819e58f5",
+    "native_kernel": "pass"
+  }
+}
