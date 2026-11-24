@@ -1,0 +1,179 @@
+{
+  "authority": {
+    "base": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+    "tree": "980141067b4eec00e78e2d490134c6299613cdef",
+    "manifest": "edc38df9198228480080821adb772f6c4109fdba7404a04be28bc49a250cb487",
+    "graph": "36c2f8b5f3d67b345de9307632a90087bafa9a64bf30b1dc76e203b4978bd2d3"
+  },
+  "tasks": {
+    "structural": {
+      "pr": 977,
+      "head": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+      "src": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+      "upstream_clump_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+      "source_table_sha256": "f155f7922d1e35a0deea5e08932508cfffa2a4a05c7d3ce4f82f34c41da10f90"
+    }
+  },
+  "groups": {
+    "clumps-1198-large-1": {
+      "task": "structural",
+      "count": 51,
+      "sha256": "ca49ee5301a3ab50f59c74406080cbf53f3e66542211b2b3f202c825fa5322b0",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 2434.84
+    },
+    "clumps-1198-large-2": {
+      "task": "structural",
+      "count": 50,
+      "sha256": "f2ee1ec5e9269e63b8d20b5044a76bd0459b0ed9b40fad97d938737df2a5caa7",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 2432.98
+    },
+    "clumps-1198-large-3": {
+      "task": "structural",
+      "count": 51,
+      "sha256": "fadc24e381f64c83eba5d7f0238c2300da2039f5f76f00428623f7f1f8b12221",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 2434.59
+    },
+    "clumps-1198-ordinary-1": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "e8b4eb0b954a1ad27b242b97e5aeb71e54c821f4047df9784d8c5026f6db4f6e",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.43
+    },
+    "clumps-1198-ordinary-2": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "8305fe573a5a07919f7e370dd14479eec50c62b2ebfb213f6723754611ba8231",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.44
+    },
+    "clumps-1198-ordinary-3": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "f6ef4afe6806bc1007d4b7def297bdde3096f23d49c62b3c3d67e279a0ce5ea2",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.44
+    },
+    "clumps-1198-ordinary-4": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "4f1b9dda98871280c600f81b111a3b62cb2a53eb0bdafdd872629c65bcaf36c3",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.45
+    },
+    "clumps-1198-ordinary-5": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "7a5a47f1784071d17a07aef6b82d6992fd666088c2db913a1450bea984b32fa3",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.44
+    },
+    "clumps-1198-ordinary-6": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "7f86146246f1b863448d1f94c4faad5a8ae84de3cd55ad1c85966fb8833d1d9a",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.44
+    },
+    "clumps-1198-ordinary-7": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "5e76b56d0bf2789770d6d22b4474c625d554459a2fd6e9df780155183511d91d",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.45
+    },
+    "clumps-1198-ordinary-8": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "b6e7416a628b19090f31b72c8534062d0151e1061702c3ec0760e73b0962a4fe",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.44
+    },
+    "clumps-1198-ordinary-9": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "5a788fa07a778d0c72e9b4e3bb9144ee0173e0b847124cdc328bec11f2659662",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.45
+    },
+    "clumps-1198-ordinary-10": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "0dd5ec15734421cdf4863787ba0c633138e6e4d159e82de6e9da288e22c0f8c1",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.46
+    },
+    "clumps-1198-ordinary-11": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "63b194490b4e7f85063588d72be5046cf003588a91afbcac1e49fb49322ba18a",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.45
+    },
+    "clumps-1198-ordinary-12": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "95819a481b5022c9aa8fbcff855282210745dba8eb8b249fdff2828c792715d0",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.44
+    },
+    "clumps-1198-ordinary-13": {
+      "task": "structural",
+      "count": 473,
+      "sha256": "c6e3ab1752de1c8db6a0b6083e93139698b842f3f9f4adf533e818265b2df707",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4379.44
+    },
+    "clumps-1198-ordinary-tail-1": {
+      "task": "structural",
+      "count": 271,
+      "sha256": "84dd56208e887518ec473e8b435c15bf45dbd4e18db91b4eb2675e9d76cbec5f",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2512.18
+    },
+    "clumps-1198-ordinary-tail-2": {
+      "task": "structural",
+      "count": 270,
+      "sha256": "9f3fb794add051f255284bd5db3816d9a9defa7f8ed705dbd858bc534a403c99",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2511.45
+    },
+    "clumps-1198-ordinary-tail-3": {
+      "task": "structural",
+      "count": 271,
+      "sha256": "de588769e993086c8e24f28762ce8fef421f1df7b04dc86edd956d5310899e8e",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2512.27
+    },
+    "clumps-1198-ordinary-tail-4": {
+      "task": "structural",
+      "count": 271,
+      "sha256": "7673682c0854acd6de226a7a15540dff8373ab00dca9578166182cdb76acc8ae",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2512.28
+    }
+  }
+}
