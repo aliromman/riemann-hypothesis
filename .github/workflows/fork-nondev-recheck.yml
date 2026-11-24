@@ -1,0 +1,135 @@
+name: Check private Mathlib imports in three independent libraries
+on:
+  push:
+    branches: [ci/import-pruning/screen]
+    paths: ['ci/nondev-recheck/dispatch.json']
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  RUST_MIN_STACK: '33554432'
+  LEAN_ABORT_ON_PANIC: '1'
+  LEAN_NUM_THREADS: '1'
+  MATHLIB_CACHE_GET_URL: https://cache.mathlib.org/mathlib4
+  PARENT_CACHE: rh-screen-v4-all-18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a
+  MATH_CACHE: rh-screen-math-v1-linux-x64-31ce06eaadf4a200c0e1407c5f10953cf606b8f8
+
+jobs:
+  check:
+    if: github.repository == 'aliromman/riemann-hypothesis' && github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 342
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        group: [pilot-1, pilot-2]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: harness
+          persist-credentials: false
+          sparse-checkout: |
+            ci/nondev-recheck
+            ci/current-recheck
+            ci/import-screen
+            ci/root-replay
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: 343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf
+          path: parent
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /lakefile.toml
+            /lake-manifest.json
+            /lean-toolchain
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: d27f71347abceb76cd37dc8a5fccbe556ec2be90
+          path: reviewed
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: /lean-toolchain
+      - name: Verify the reviewed community sources and build pins
+        run: |
+          python3 - <<'PYCODE'
+          import json,subprocess
+          from pathlib import Path
+          plan=json.loads(Path('harness/ci/nondev-recheck/dispatch.json').read_bytes())
+          def rev(repo,obj):
+              return subprocess.check_output(['git','-C',repo,'rev-parse',obj],text=True).strip()
+          assert rev('reviewed','HEAD')==plan['reviewed_head'] and rev('parent','HEAD')==plan['donor']
+          assert rev('reviewed','HEAD:src')==rev('parent','HEAD:src')==plan['src']
+          for path in ('lean-toolchain','lakefile.toml','lake-manifest.json'):
+              assert rev('reviewed','HEAD:'+path)==rev('parent','HEAD:'+path),path
+          PYCODE
+      - name: Restore the newly authenticated full parent
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-screen-cache
+          key: ${{ env.PARENT_CACHE }}
+          fail-on-cache-miss: true
+      - name: Install the pinned compiler
+        working-directory: parent
+        run: bash ../harness/ci/import-screen/install-lean.sh
+      - name: Restore the shared pinned Mathlib downloads
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-mathlib-cache
+          key: ${{ env.MATH_CACHE }}
+      - name: Prepare official dependencies and the native declaration comparer
+        working-directory: parent
+        run: |
+          MATHLIB_CACHE_DIR="$RUNNER_TEMP/rh-mathlib-cache" lake exe mathlib/cache get
+          git diff --exit-code -- lakefile.toml lean-toolchain lake-manifest.json
+          screen="$GITHUB_WORKSPACE/harness/ci/import-screen"
+          lean -R "$screen" -c "$RUNNER_TEMP/CheckInterface.c" "$screen/CheckInterface.lean"
+          leanc -O2 -o "$RUNNER_TEMP/check-interface" "$RUNNER_TEMP/CheckInterface.c"
+          root="$GITHUB_WORKSPACE/harness/ci/root-replay"
+          lean -R "$root" -c "$RUNNER_TEMP/BuildPublic.c" "$root/BuildPublic.lean"
+          leanc -O2 -o "$RUNNER_TEMP/build-public" "$RUNNER_TEMP/BuildPublic.c"
+          df -h .
+      - name: Recover same-variant compiler receipts
+        id: receipts
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-nondev-receipts
+          key: rh-nondev-644-v1-${{ matrix.group }}-${{ hashFiles('harness/ci/current-recheck/*.py', 'harness/ci/nondev-recheck/check.py', 'harness/ci/nondev-recheck/dispatch.json', 'harness/ci/import-screen/CheckInterface.lean') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            rh-nondev-644-v1-${{ matrix.group }}-${{ hashFiles('harness/ci/current-recheck/*.py', 'harness/ci/nondev-recheck/check.py', 'harness/ci/nondev-recheck/dispatch.json', 'harness/ci/import-screen/CheckInterface.lean') }}-
+      - id: native
+        name: Re-elaborate exact reviewed sources and compare all local declarations
+        working-directory: parent
+        env:
+          GROUP: ${{ matrix.group }}
+        run: |
+          trial="$GITHUB_WORKSPACE/harness/ci/nondev-recheck"
+          export RH_LTAR_MANIFEST="$RUNNER_TEMP/rh-screen-cache/metadata/18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a.jsonl.gz"
+          export RH_LTAR_DIAGNOSTICS="$RUNNER_TEMP/rh-nondev-results/leantar-diagnostics.jsonl"
+          python3 -u "$trial/check.py" "$GROUP" . "$RUNNER_TEMP/rh-screen-cache" \
+            "$RUNNER_TEMP/rh-nondev-results" "$RUNNER_TEMP/rh-nondev-receipts" \
+            "$(dirname "$(elan which lean)")" "$RUNNER_TEMP/check-interface" "$RUNNER_TEMP/build-public"
+      - name: Save checkpoints for incomplete groups
+        if: always() && steps.native.outcome == 'failure'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-nondev-receipts
+          key: ${{ steps.receipts.outputs.cache-primary-key }}
+      - name: Publish source-bound native certificates
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: nondev-native-${{ matrix.group }}-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 7
+          path: |
+            ${{ runner.temp }}/rh-nondev-results/results.jsonl
+            ${{ runner.temp }}/rh-nondev-results/report.json
+            ${{ runner.temp }}/rh-nondev-results/scope.json
+            ${{ runner.temp }}/rh-nondev-results/library-options.json
+            ${{ runner.temp }}/rh-nondev-results/leantar-diagnostics.jsonl

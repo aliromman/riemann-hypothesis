@@ -1,0 +1,33 @@
+{
+  "reviewed_head": "d27f71347abceb76cd37dc8a5fccbe556ec2be90",
+  "donor": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+  "src": "70327238ca7c4189479eee72f3c22812f1922329",
+  "manifest": "18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a",
+  "graph": "1eea63e656493b1d5f30ab34bd8b913ab3edadc2d615e2313e471196749941a4",
+  "groups": {
+    "pilot-1": {
+      "count": 198,
+      "lines": 5577,
+      "by_namespace": {
+        "Formalism": 66,
+        "GroundTheory": 66,
+        "ReciprocityTheory": 66
+      },
+      "full_ancestors": 3441,
+      "sha256": "0ec83541b5c4e318720c7d81f60a97456969820cb7464b420b4d5cd8256037f5",
+      "workers": 3
+    },
+    "pilot-2": {
+      "count": 198,
+      "lines": 5562,
+      "by_namespace": {
+        "Formalism": 66,
+        "GroundTheory": 66,
+        "ReciprocityTheory": 66
+      },
+      "full_ancestors": 3165,
+      "sha256": "3885e8da66148126536b035fff4ced99b6edbf90514a38fdd6662359694acdca",
+      "workers": 3
+    }
+  }
+}
