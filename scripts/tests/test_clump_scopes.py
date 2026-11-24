@@ -2,6 +2,7 @@
 
 import importlib.util
 import json
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -71,6 +72,26 @@ end A"""
         edited = text.replace("\nopen Nat\n", "\nopen Int\n", 1)
         self.assertEqual(clump.unclump_text(edited),
                          {name: value.replace("\nopen Nat\n", "\nopen Int\n") for name, value in sources.items()})
+
+    def test_apply_reads_only_the_modules_in_the_plan(self):
+        sources, _ = self.make_group()
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            src = root / "src" / "Example"
+            src.mkdir(parents=True)
+            for name, text in sources.items():
+                (src / (name.split(".")[-1] + ".lean")).write_text(text)
+            subprocess.run(["git", "init", "-q", root], check=True)
+            subprocess.run(["git", "-C", root, "add", "src"], check=True)
+            (src / "C.lean").unlink()
+
+            with self.assertRaises(FileNotFoundError):
+                clump.apply(root, {"Example.C": list(sources)})
+            members = ["Example.A", "Example.B"]
+            clump.apply(root, {"Example.B": members})
+            self.assertFalse((src / "A.lean").exists())
+            self.assertEqual(clump.unclump_text((src / "B.lean").read_text()),
+                             {name: sources[name] for name in members})
 
     def test_temporary_open_stays_with_its_command(self):
         body = ["@[expose] public section", "open Int", "open Nat"]

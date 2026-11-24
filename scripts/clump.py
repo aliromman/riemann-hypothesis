@@ -103,7 +103,8 @@ class Module:
         self.exotic = exotic
 
 
-def load(root):
+def load(root, names=None):
+    """Read tracked Lean modules, optionally restricting the work to a set of names."""
     out = subprocess.run(["git", "-C", root, "ls-files", "-z", "src/*.lean"],
                          capture_output=True, check=True).stdout.decode()
     mods = {}
@@ -111,6 +112,8 @@ def load(root):
         if not p:
             continue
         name = p[len("src/"):-len(".lean")].replace("/", ".")
+        if names is not None and name not in names:
+            continue
         with open(os.path.join(root, p), encoding="utf-8") as f:
             mods[name] = Module(name, p, f.read())
     return mods
@@ -457,7 +460,8 @@ def render(root, order, mods):
 
 
 def apply(root, clumps):
-    mods = load(root)
+    members = set(clumps).union(*clumps.values())
+    mods = load(root, members)
     for r, order in clumps.items():
         text = render(r, order, mods)
         for m in order:
