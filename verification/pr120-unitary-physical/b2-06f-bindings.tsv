@@ -1,0 +1,13 @@
+module	line	column	token	historical	compiled	providers	result
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.RootOfUnityInt	23	11	_root_.Formalism.UG.UJ	Formalism.UG.UJ	Formalism.UG.UJ	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.RootOfUnityInt	24	11	_root_.Formalism.UG.UPts	Formalism.UG.UPts	Formalism.UG.UPts	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.RootOfUnityInt	25	35	_root_.Formalism.UG.bc	Formalism.UG.bc	Formalism.UG.bc	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.RootOfUnityInt	26	6	_root_.Formalism.UG.bc	Formalism.UG.bc	Formalism.UG.bc	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.RootOfUnityInt	26	30	_root_.Formalism.UG.inclE	Formalism.UG.inclE	Formalism.UG.inclE	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.RootOfUnityInt	138	14	_root_.Formalism.UG.UJ	Formalism.UG.UJ	Formalism.UG.UJ	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.RootOfUnityInt	146	48	_root_.Formalism.UG.UJ	Formalism.UG.UJ	Formalism.UG.UJ	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.RootOfUnityInt	178	10	_root_.Formalism.UG.UJ	Formalism.UG.UJ	Formalism.UG.UJ	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	180	12	_root_.Formalism.UG.cT	Formalism.UG.cT	Formalism.UG.cT	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	185	21	_root_.Formalism.UG.cT	Formalism.UG.cT	Formalism.UG.cT	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	190	13	_root_.Formalism.UG.cT	Formalism.UG.cT	Formalism.UG.cT	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	198	33	_root_.Formalism.UG.cT	Formalism.UG.cT	Formalism.UG.cT	Formalism.SatakeDualWeyl.Statement	original

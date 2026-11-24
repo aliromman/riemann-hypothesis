@@ -1,0 +1,37 @@
+{
+  "targets": {
+    "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003": "Built",
+    "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.RootOfUnityInt": "Built",
+    "Formalism.HermitianCurvature.HermitianCurvatureProofs.Bundle0178": "Building"
+  },
+  "diagnostics": [
+    [
+      "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ValuationLocalVolumes/Bundle0005.lean",
+      "38",
+      "57",
+      "Application type mismatch: The argument"
+    ],
+    [
+      "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ValuationLocalVolumes/Bundle0005.lean",
+      "74",
+      "7",
+      "Application type mismatch: The argument"
+    ],
+    [
+      "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ValuationLocalVolumes/Bundle0005.lean",
+      "141",
+      "38",
+      "Application type mismatch: The argument"
+    ],
+    [
+      "Formalism/HermitianCurvature/HermitianCurvatureProofs/Bundle0178.lean",
+      "242",
+      "29",
+      "unsolved goals"
+    ]
+  ],
+  "revision": "b2c5a15e74d12f88d5b4a4cb3603c3fb0a4f33b5",
+  "bindings": {
+    "captured": 12
+  }
+}

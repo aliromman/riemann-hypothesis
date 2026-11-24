@@ -1,0 +1,33 @@
+{
+  "targets": {
+    "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003": "Built",
+    "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.RootOfUnityInt": "Built"
+  },
+  "diagnostics": [
+    [
+      "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ValuationLocalVolumes/Bundle0005.lean",
+      "38",
+      "57",
+      "Application type mismatch: The argument"
+    ],
+    [
+      "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ValuationLocalVolumes/Bundle0005.lean",
+      "74",
+      "7",
+      "Application type mismatch: The argument"
+    ],
+    [
+      "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ValuationLocalVolumes/Bundle0005.lean",
+      "141",
+      "38",
+      "Application type mismatch: The argument"
+    ]
+  ],
+  "revision": "06f623ee16c15a745990f46c204eff9064ba4fe7",
+  "build_exit": 1,
+  "bindings": {
+    "original": 12
+  },
+  "kernel_exit": 0,
+  "axiom_check_exit": 0
+}

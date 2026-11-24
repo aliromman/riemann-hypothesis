@@ -1,0 +1,28 @@
+{
+  "revision": "965d3f0aa89d57ce85de56207bea4d785e37c896",
+  "project_source_count": 12897,
+  "source_manifest_sha256": "f0dddc13333dc0c647ab41ebac5c42897d39f835d81473ac490236fcebd75bdd",
+  "lake_jobs": 44043,
+  "targets": {
+    "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.RootOfUnityInt": {
+      "native_kernel": "pass",
+      "dependency_hash": "1716f349e4617ca2",
+      "exported_axiom_records": 20
+    },
+    "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003": {
+      "native_kernel": "pass",
+      "dependency_hash": "6e077b69c60fdb09",
+      "exported_axiom_records": 35
+    },
+    "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ValuationLocalVolumes.Bundle0007": {
+      "native_kernel": "pass",
+      "dependency_hash": "b7368fd9394abc74",
+      "exported_axiom_records": 44
+    },
+    "Formalism.HermitianCurvature.HermitianCurvatureProofs.Bundle0178": {
+      "native_kernel": "pass",
+      "dependency_hash": "f84686e1fbb97113",
+      "exported_axiom_records": 50
+    }
+  }
+}
