@@ -94,7 +94,7 @@ jobs:
     timeout-minutes: 335
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 8
       matrix:
         group: ${{ fromJSON(needs.prepare.outputs.groups) }}
     steps:
