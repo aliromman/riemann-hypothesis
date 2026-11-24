@@ -37,6 +37,10 @@ def read_request(folder):
         raise ValueError('invalid pull request revision')
     if any(not COMMIT.fullmatch(req[k]) for k in ('base','head','base_src','head_src')):
         raise ValueError('invalid reviewed Git identity')
+    if req.get('source_mode','private-imports') not in ('private-imports','clump-scopes'):
+        raise ValueError('unrecognized source verification mode')
+    if req.get('source_mode')=='clump-scopes' and (not SHA256.fullmatch(req['source_trial_sha256']) or not isinstance(req['tooling'],dict)):
+        raise ValueError('incomplete structural source or tooling identity')
     packed=(folder/'native.jsonl.gz').read_bytes()
     if sha(packed)!=req['bundle_sha256']:
         raise ValueError('native input bundle digest mismatch')
@@ -73,6 +77,14 @@ def package(stage, number, out, first_commit=False):
         bundle_sha256=sha(packed),source_provenance_sha256=sha(data),ir_table_sha256=sha(audit),
         stage_report_sha256=sha(summary.read_bytes()))
     request['revision']='first published commit' if first_commit else 'current head'
+    if bound.get('source_mode')=='clump-scopes':
+        for key in ('source_mode','source_trial_sha256','tooling'):
+            request[key]=bound[key]
+    new_reports=bound.get('new_reports',{})
+    native={r['origin'] for r in inputs.values() if r['kind']=='fresh'}
+    if new_reports:
+        request['native_artifacts']={h:new_reports[h]['artifact'] for h in sorted(native) if 'artifact' in new_reports[h]}
+
     out.mkdir(parents=True,exist_ok=True)
     (out/'native.jsonl.gz').write_bytes(packed)
     (out/'request.json').write_text(json.dumps(request,indent=2)+'\n')

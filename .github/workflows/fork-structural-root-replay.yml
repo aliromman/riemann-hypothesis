@@ -1,0 +1,16 @@
+name: Replay the five RH roots after clump scope changes
+on:
+  push:
+    branches: [ci/import-pruning/screen]
+    paths: ['ci/root-replay/structural-request/request.json']
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: read
+
+jobs:
+  roots:
+    uses: ./.github/workflows/fork-root-replay.yml
+    with:
+      request_directory: ci/root-replay/structural-request

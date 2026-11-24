@@ -1,14 +1,21 @@
 name: Replay the five RH roots at the published pull head
 on:
+  workflow_call:
+    inputs:
+      request_directory:
+        type: string
+        required: true
   push:
     branches: [ci/import-pruning/screen]
     paths: ['ci/root-replay/request/request.json']
 
 permissions:
+  actions: read
   contents: read
   pull-requests: read
 
 env:
+  ROOT_REQUEST_DIRECTORY: ${{ inputs.request_directory || 'ci/root-replay/request' }}
   LEAN_ABORT_ON_PANIC: '1'
   LEAN_NUM_THREADS: '1'
   RUST_MIN_STACK: '33554432'
@@ -27,12 +34,13 @@ jobs:
           sparse-checkout: |
             ci/root-replay
             ci/import-screen
+            ci/structural-screen/recipe
       - id: published
         name: Bind the review request to the latest public PR and upstream main
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          python3 harness/ci/root-replay/published.py --request harness/ci/root-replay/request \
+          python3 harness/ci/root-replay/published.py --request "harness/$ROOT_REQUEST_DIRECTORY" \
             --out "$RUNNER_TEMP/root-report/published-before.json" --step-output
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -53,7 +61,17 @@ jobs:
         run: |
           git fetch --quiet --no-tags origin "+refs/pull/$PR_NUMBER/head:refs/root-check/reviewed"
           git merge-base --is-ancestor "$HEAD_REV" refs/root-check/reviewed
+          for commit in a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1 4fc7348e335c0c93eece5d0183bfc64f52081b84 343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf; do
+            if ! git cat-file -e "$commit^{tree}"; then
+              git fetch --quiet --no-tags --no-write-fetch-head origin "$commit"
+            fi
+          done
           git worktree add --quiet --detach "$GITHUB_WORKSPACE/candidate" "$HEAD_REV"
+      - name: Check every selected member with the proposed clump reader and writer
+        if: ${{ inputs.request_directory == 'ci/root-replay/structural-request' }}
+        run: |
+          python3 harness/ci/root-replay/structural_roundtrip.py --request "harness/$ROOT_REQUEST_DIRECTORY" \
+            --parent parent --candidate candidate --out "$RUNNER_TEMP/root-report/structural-roundtrip.json"
       - name: Install the pinned Lean compiler
         working-directory: parent
         run: bash ../harness/ci/import-screen/install-lean.sh
@@ -85,15 +103,17 @@ jobs:
           path: ${{ runner.temp }}/rh-screen-cache
           key: rh-root-reuse-v1-${{ steps.published.outputs.base }}
           restore-keys: |
+            rh-screen-v4-all-18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a
             rh-screen-v3-latest-7ef75c550561a6f21d27bb76c9a53fcf6a9a6fe5d5d481f2cdb56e9b1262589d-
             rh-screen-v2-rest-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
       - name: Reconstruct every changed public interface and both IR outputs from authenticated inputs
         working-directory: parent
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           root="$GITHUB_WORKSPACE/harness/ci/root-replay"
-          export RH_LTAR_MANIFEST="$RUNNER_TEMP/rh-screen-cache/metadata/7ef75c550561a6f21d27bb76c9a53fcf6a9a6fe5d5d481f2cdb56e9b1262589d.jsonl.gz"
           export RH_LTAR_DIAGNOSTICS="$RUNNER_TEMP/root-report/leantar-diagnostics.jsonl"
-          python3 -u "$root/stage.py" --request "$root/request" --parent . --candidate ../candidate \
+          python3 -u "$root/stage.py" --request "$GITHUB_WORKSPACE/harness/$ROOT_REQUEST_DIRECTORY" --parent . --candidate ../candidate \
             --cache "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-root" \
             --bin "$(dirname "$(elan which lean)")" --rebuilder "$RUNNER_TEMP/build-public"
       - name: Record the runner memory allowance and reserve swap for whole-project imports
@@ -126,7 +146,7 @@ jobs:
           work="$RUNNER_TEMP/rh-root"
           python3 -u "$root/compile_roots.py" --repo ../candidate --baseline "$work/baseline" \
             --packages .lake/packages --bin "$(dirname "$(elan which lean)")" \
-            --source-graph "$RUNNER_TEMP/rh-screen-cache/metadata/headers.json" \
+            --source-graph "$work/graph.json" \
             --images "$work/images/images.tsv" --work "$work/roots" --judge "$RUNNER_TEMP/check-interface" \
             --kernel "$root/ReplayMain.lean" --parent-bindings "$work/bindings.sqlite" \
             --challenge .lake/build/lib/lean/Challenge.olean
@@ -136,7 +156,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          python3 harness/ci/root-replay/published.py --request harness/ci/root-replay/request \
+          python3 harness/ci/root-replay/published.py --request "harness/$ROOT_REQUEST_DIRECTORY" \
             --out "$RUNNER_TEMP/root-report/published-after.json"
       - name: Publish the source binding and individual proof results
         if: always()

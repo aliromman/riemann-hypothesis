@@ -43,7 +43,16 @@ def actual_diff(candidate, request, inputs):
     raw=git(candidate,'diff','--no-renames','--name-only','-z',parent,head)
     paths={os.fsdecode(v) for v in raw.split(b'\0') if v}
     wanted={str(source_path(m)) for m in inputs}
-    if paths!=wanted or not paths<=old.keys() or not paths<=new.keys() or paths&{'src/Main.lean','src/Statements.lean','src/Challenge.lean'}:
+    if request.get('source_mode')=='clump-scopes':
+        from structural_gate import tooling
+        extra=paths-wanted
+        if tooling(candidate,parent,head,extra)!=request['tooling']:
+            raise ValueError('the proposed clump tool files differ from their exact Git and SHA-256 records')
+        for path in extra:
+            if file_sha(candidate/path)!=request['tooling'][path][1]['sha256']:
+                raise ValueError('the actual clump tool differs from the committed source: '+path)
+    else:extra=set()
+    if paths!=wanted|extra or not wanted<=old.keys() or not wanted<=new.keys() or wanted&{'src/Main.lean','src/Statements.lean','src/Challenge.lean'}:
         raise ValueError('the complete Git diff is outside the supplied source-bound candidate set')
     total=0
     count=0
@@ -68,7 +77,7 @@ class BatchParents:
         public=self.directories[module]/(module.rsplit('.',1)[-1]+'.olean')
         return [public,public.with_suffix('.ir.sig'),public.with_suffix('.ir')]
 
-def restore_batch(names,index,shas,cache,leantar,rebuilder,baseline,images,reader,old_blobs,candidate,inputs,bindings,batchdir):
+def restore_batch(names,index,shas,cache,leantar,rebuilder,baseline,images,reader,old_blobs,candidate,inputs,bindings,batchdir,structural=False):
     jobs=[]
     directories={}
     for i,n in enumerate(names):
@@ -87,7 +96,7 @@ def restore_batch(names,index,shas,cache,leantar,rebuilder,baseline,images,reade
     opt=SimpleNamespace(out=batchdir,rebuilder=rebuilder,audit_ir=True,plan_only=False,ir_results={})
     new_jobs=[]
     result=[]
-    parent_bytes=0
+    parent_bytes=identity_bytes=0
     for n in names:
         public=parents.inputs(n,None)[0]
         if n in inputs:
@@ -96,9 +105,22 @@ def restore_batch(names,index,shas,cache,leantar,rebuilder,baseline,images,reade
             r=inputs[n]
             if sha(old)!=r['parent_source'] or sha(current)!=r['head_source']:
                 raise ValueError('native compiler receipt differs from the old or proposed source: '+n)
-            check_edits(old,current,n)
             dst=images/'public'/Path(*n.split('.')).with_suffix('.olean')
-            new_jobs.append((n,old,current,dst,r['facets']))
+            if structural:
+                from structural_gate import ORDINARY,header as structural_header
+                structural_header(old,current)
+                candidate_oid=hashlib.sha1(b'blob '+str(len(current)).encode()+b'\0'+current).hexdigest()
+                if (r['parent_blob'],r['candidate_blob'],r['parent_ltar_sha256'])!=(old_blobs[n],candidate_oid,shas[index[n][2]]):
+                    raise ValueError('structural compiler row differs from its Git source or full archive: '+n)
+                for suffix,asset in zip(ORDINARY,parents.inputs(n,None)):
+                    if file_sha(asset)!=r['parent_facets'][suffix] or r['parent_facets'][suffix]!=r['facets'][suffix]:
+                        raise ValueError('the authentic source compiler outputs differ from the unchanged root input: '+n)
+                identity_bytes+=public.stat().st_size
+                dst.parent.mkdir(parents=True,exist_ok=True)
+                public.replace(dst)
+            else:
+                check_edits(old,current,n)
+                new_jobs.append((n,old,current,dst,r['facets']))
             result.append((n,str(dst),r['facets']['.olean']))
         else:
             dst=baseline.joinpath(*n.split('.')).with_suffix('.olean')
@@ -113,7 +135,7 @@ def restore_batch(names,index,shas,cache,leantar,rebuilder,baseline,images,reade
     byte_count=hosted_batch(new_jobs,parents,opt)
     if len(opt.ir_results)!=len(new_jobs) or any(a!=b or c!=d for a,b,c,d in opt.ir_results.values()):
         raise ValueError('the reconstructed stock IR differs from the genuine native compiler output')
-    return result,parent_bytes,byte_count
+    return result,parent_bytes,byte_count+identity_bytes
 
 def main():
     p=argparse.ArgumentParser()
@@ -122,27 +144,50 @@ def main():
     args=p.parse_args()
     for k,v in vars(args).items():setattr(args,k,v.resolve())
     req,inputs=read_request(args.request)
-    if req['base']!=PARENT or req['base_src']!=SOURCE_TREE:
+    import current_reuse
+    latest=req['base_src']==current_reuse.TREE
+    structural=req.get('source_mode')=='clump-scopes'
+    if structural and not latest:raise ValueError('the structural source refactor has a different compiler baseline')
+    if not latest and (req['base']!=PARENT or req['base_src']!=SOURCE_TREE):
         raise ValueError('this cache does not certify the approved base revision')
     args.work.mkdir(parents=True,exist_ok=True)
     baseline=args.work/'baseline';images=args.work/'images'
     if baseline.exists() or images.exists():raise ValueError('use a fresh root staging directory')
     candidate=args.candidate
     old_sources,source_count,source_bytes=actual_diff(candidate,req,inputs)
-    api=load(args.parent/'scripts/ci-cache-get.py','root_cache')
-    index,shas=metadata(api,pin(args.parent,api),args.cache,True)
-    graph_file=args.cache/'metadata/headers.json'
-    if not graph_file.is_file() or file_sha(graph_file)!=GRAPH:
+    if latest:
+        api,index,shas=current_reuse.current_parent(args.parent,args.cache,req)
+        graph_digest,manifest=current_reuse.GRAPH,current_reuse.MANIFEST
+        graph_file=args.cache/'metadata/current-headers.json'
+    else:
+        api=load(args.parent/'scripts/ci-cache-get.py','root_cache')
+        index,shas=metadata(api,pin(args.parent,api),args.cache,True)
+        graph_digest,manifest=GRAPH,MANIFEST
+        graph_file=args.cache/'metadata/headers.json'
+    os.environ['RH_LTAR_MANIFEST']=str(args.cache/'metadata'/(manifest+'.jsonl.gz'))
+    if not graph_file.is_file() or file_sha(graph_file)!=graph_digest:
         graph_file.write_bytes(canonical(graph_from_source(args.parent,index)))
     g=graph_file.read_bytes()
-    if sha(g)!=GRAPH:raise ValueError('parent import graph digest differs from the stock screen')
+    if sha(g)!=graph_digest:raise ValueError('parent import graph digest differs from the stock screen')
+    (args.work/'graph.json').write_bytes(g)
     graph=json.loads(g)
     if graph.keys()!=index.keys():raise ValueError('the project graph differs from the official archive index')
     if not inputs.keys()<=graph.keys():raise ValueError('a candidate module is outside the official project graph')
     reused={n:r for n,r in inputs.items() if r['kind']=='reused'}
-    if any(r['parent']!=SOURCE_TREE for r in inputs.values() if r['kind']=='fresh'):
+    if any(r['parent']!=req['base_src'] for r in inputs.values() if r['kind']=='fresh'):
         raise ValueError('current-base records claim a different source tree')
-    if reused:
+    validation={}
+    cache_tools=current_reuse.vetted_helpers(args.parent,args.cache) if latest else args.parent/'scripts'
+    dl=load(cache_tools/'ci-prepare.py','root_download')
+    if structural:
+        from structural_gate import check_actions
+        validation.update(check_actions(req,inputs))
+    elif latest:
+        from native_artifacts import check as check_artifacts
+        validation.update(check_artifacts(req,inputs))
+    if reused and latest:
+        validation.update(current_reuse.check(args.parent,args.cache,api,graph,index,shas,reused,req['head'],args.bin/'leantar',dl))
+    elif reused:
         from csv import DictReader
         check_reuse(args.parent,args.cache,HERE.parent/'import-screen',api,graph,index,shas,source_path,canonical)
         meta=json.loads((HERE.parent/'import-screen/reuse-meta.json').read_bytes())
@@ -157,7 +202,6 @@ def main():
         raise ValueError('a candidate has a private or meta project consumer')
     modules=sorted(levels.keys() | inputs.keys() | {'Main','Statements'})
     baseline.mkdir();images.mkdir()
-    dl=load(args.parent/'scripts/ci-prepare.py','root_download')
     result=[];bindings=[];parent_bytes=candidate_bytes=initial_cached=0
     reader=Blobs(candidate)
     try:
@@ -170,7 +214,7 @@ def main():
             dl.downloads(args.cache,{key:arc for _,key,arc in batch},shas)
             with tempfile.TemporaryDirectory(dir=args.work) as folder:
                 rows,unchanged,changed=restore_batch(names,index,shas,args.cache,args.bin/'leantar',args.rebuilder,
-                    baseline,images,reader,old_sources,candidate,inputs,bindings,Path(folder))
+                    baseline,images,reader,old_sources,candidate,inputs,bindings,Path(folder),structural)
             result.extend(rows);parent_bytes+=unchanged;candidate_bytes+=changed
             if offset%3200==0:print('source-bound project modules:',offset+len(names),'/',len(modules),flush=True)
     finally:reader.close()
@@ -180,8 +224,8 @@ def main():
         db.executemany('INSERT INTO result VALUES(?,?)',bindings)
     table=images/'images.tsv'
     table.write_text(''.join('\t'.join(r)+'\n' for r in sorted(result)))
-    report={'parent':PARENT,'head':req['head'],'after_src_tree':req['head_src'],'changed':len(inputs),
-        'manifest_sha256':file_sha(table),'input_sha256':req['source_provenance_sha256'],'module_manifest':MANIFEST,
+    report={'source_mode':req.get('source_mode','private-imports'),'parent':req['base'],'parent_source_tree':req['base_src'],'native_reuse':validation,'head':req['head'],'after_src_tree':req['head_src'],'changed':len(inputs),
+        'manifest_sha256':file_sha(table),'input_sha256':req['source_provenance_sha256'],'module_manifest':manifest,
         'visible':len(levels),'candidate_visible':len(inputs.keys()&levels.keys()),'archives':len(modules),
         'complete_candidate_source_blobs':source_count,'complete_candidate_source_bytes':source_bytes,
         'shared_cache_available':initial_cached,'parent_public_bytes':parent_bytes,'candidate_public_bytes':candidate_bytes,
