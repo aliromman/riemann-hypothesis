@@ -14,7 +14,7 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Integrab
 public import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.Bundle0006
 public import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.ParEx
 public import Development.AutomorphicArithmetic.Foundations.Convolution.PowerSumTraces.Bundle0005
-public import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalIdeles.Bundle0001
+public import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalIdeles.RamDefs
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.JacobianTraceQuotients.ElemPairJ
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle0628
 

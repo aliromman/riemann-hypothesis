@@ -73,7 +73,7 @@ public import Formalism.LocalToGlobal.ProjectiveLattices.SatLeaves
 public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0049
 public import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsAHEqOfMemRatPts
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1531
-public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1530
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1530
 public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0047
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.Bundle0019
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels

@@ -11,7 +11,6 @@ open GroundTheory.Automorphic.GodementJacquet
 open scoped NNReal ENNReal Classical ValuativeRel
 
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
-attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 
 namespace UpperTheory.V.Z.ImaginaryQuadraticEtaCharacter
 

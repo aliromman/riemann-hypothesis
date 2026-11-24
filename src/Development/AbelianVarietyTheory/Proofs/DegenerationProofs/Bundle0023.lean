@@ -8,7 +8,7 @@ public import Development.AbelianVarietyTheory.Definitions.Degenerations.PlOrdSo
 public import Development.AbelianVarietyTheory.Statements.SemistableTorsion.SemistableFin
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteMaximalSpectrumOfFiniteOfIsLocalRing
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsSubMemMaximalIdeal
-public import Lean.Elab.Command
+public meta import Lean.Elab.Command
 
 @[expose] public section
 

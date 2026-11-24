@@ -4,7 +4,7 @@ public import Mathlib
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.Bundle0006
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemHatLConjIIffHform
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0198
-public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemHatIffOfSelfDual
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemHatIffOfSelfDual
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle0301
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1645
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1519

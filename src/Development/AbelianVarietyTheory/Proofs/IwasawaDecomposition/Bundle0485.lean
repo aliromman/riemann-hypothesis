@@ -19,7 +19,7 @@ public import Formalism.LocalToGlobal.IndefiniteReal.LinksStage
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0477
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0014
 public import Formalism.LocalToGlobal.IndefiniteReal.Bundle0025
-public import Lean
+public meta import Lean
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NonzeroPlacesOverPrimesLifts
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.Bundle0025
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ReplacementValuesBaseLevelTypePartsEq

@@ -2,7 +2,7 @@ module
 
 public import Formalism.RealPlaceAnalysis.Bundle0001
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.IsClosedEmbeddingToM
-public import Formalism.RealPlaceAnalysis.RealPlaceTaylor.Bundle0001
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.Bundle0001
 public import Mathlib
 public import Formalism.RealPlaceAnalysis.Bundle0003
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.CapelliIdentity.CapelliCentralStatement

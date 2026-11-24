@@ -12,7 +12,7 @@ public import Formalism.LocalToGlobal.KernelLattices.ThDistC
 public import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.Bundle0013
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.Bundle0077
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.StandardRankOneLatticeOfLocal
-public import Formalism.LocalToGlobal.Columns.MemLocPOfSmul
+import Formalism.LocalToGlobal.Columns.MemLocPOfSmul
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PredMemGamRanks
 public import Formalism.LocalToGlobal.Columns.TiedValLatG
 public import Formalism.LocalToGlobal.Columns.CoefModB

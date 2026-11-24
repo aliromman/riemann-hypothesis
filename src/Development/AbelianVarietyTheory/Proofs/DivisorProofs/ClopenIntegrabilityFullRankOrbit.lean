@@ -12,7 +12,6 @@ noncomputable section
 open MeasureTheory GlobalTheory.SplitFlip ValuativeRel
 open scoped Matrix
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
-attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 
 namespace GlobalTheory.FullRankCoinv.Reduce
 

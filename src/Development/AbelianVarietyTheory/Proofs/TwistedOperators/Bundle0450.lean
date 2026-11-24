@@ -12,7 +12,7 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPa
 public import Mathlib
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1433
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1146
-public import Lean
+public meta import Lean
 public import Formalism.LocalToGlobal.IndefiniteReal.FWExist
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.Bundle0010
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle0162

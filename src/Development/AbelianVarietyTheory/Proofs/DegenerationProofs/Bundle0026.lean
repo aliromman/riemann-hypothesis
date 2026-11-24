@@ -7,7 +7,7 @@ public import Development.AbelianVarietyTheory.Definitions.Degenerations.OfDeriv
 public import Development.AbelianVarietyTheory.Definitions.Degenerations.PlOrdSomeOfAssociated
 public import Development.AbelianVarietyTheory.Statements.SemistableTorsion.SemistableFin
 public import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.LocallyOfFinitePresentation
-public import Lean.Elab.Command
+public meta import Lean.Elab.Command
 
 @[expose] public section
 

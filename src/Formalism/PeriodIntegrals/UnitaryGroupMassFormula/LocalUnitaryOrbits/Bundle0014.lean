@@ -6,7 +6,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbi
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.LocDensCntRes
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0008
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.SigRSmulF
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalMassOrder.Bundle0001
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalMassOrder.Bundle0001
 
 @[expose] public section
 

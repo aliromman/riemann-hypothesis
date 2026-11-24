@@ -13,7 +13,7 @@ public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership
 public import Formalism.LocalToGlobal.Columns.TiedValLatG
 public import Formalism.LocalToGlobal.Columns.CoefModB
 public import Formalism.LocalToGlobal.KernelLattices.Bundle0002
-public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.InvSmulMemOfRedL
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.InvSmulMemOfRedL
 public import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.KerIsTerm
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.Bundle0077
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsLevelPrimePointModelRealisation

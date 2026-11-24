@@ -19,7 +19,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.Bun
 public import Development.AbelianVarietyTheory.Definitions.Foundations.Bundle0018
 public import Development.AbelianVarietyTheory.PublishedTheorems.SiegelWeil₂.Bundle0001
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Bundle0154
-public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Bundle0084
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Bundle0084
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.Bundle0019
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.Bundle0008
 public import Formalism.RealPlaceAnalysis.Bundle0004

@@ -1,6 +1,6 @@
 module
 
-public import Development.WeilBound.CoreStatements.PlurisubharmonicCones.Bundle0014
+public import all Development.WeilBound.CoreStatements.PlurisubharmonicCones.Bundle0014
 public import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.GoodOrigin
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.Bundle0014
 public import Development.WeilBound.CoreStatements.PlurisubharmonicCones.Bundle0005

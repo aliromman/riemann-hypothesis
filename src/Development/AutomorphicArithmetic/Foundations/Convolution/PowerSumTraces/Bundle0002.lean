@@ -1,7 +1,7 @@
 module
 
 public import Development.AutomorphicArithmetic.Foundations.Convolution.PowerSumTraces.Bundle0001
-public import GroundTheory.AutomorphicForms.CuspidalDiscreteness.CuspCompact
+import GroundTheory.AutomorphicForms.CuspidalDiscreteness.CuspCompact
 public import Development.AutomorphicArithmetic.Foundations.Convolution.PowerSumTraces.CuspidalMultiplicityOneTotallyComplex
 public import Development.AutomorphicArithmetic.TwistedTraces.Bundle0002
 public import Development.AutomorphicArithmetic.TwistedTraces.Bundle0003

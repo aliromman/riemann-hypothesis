@@ -21,8 +21,6 @@ theorem det_mem_integer {k : Type} [Field k] [ValuativeRel k] {n : ℕ} (X : Mat
   rw [e, ← RingHom.map_det]
   exact (Y.det).2
 
-attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL
-  GlobalTheory.CompanionTheory.QL.instBorelGL in
 theorem integrable_volGL_of_lintegral {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] [MeasurableSpace k] [BorelSpace k] (μ : Measure k) [μ.IsAddHaarMeasure]
     (n : ℕ) (σ s : ℝ) (hs : s ≤ σ - n)
@@ -80,8 +78,6 @@ theorem integrable_volGL_of_lintegral {k : Type} [Field k] [ValuativeRel k] [Top
     _ ≤ ∫⁻ X, I X ∂(volM μ (Fin n) (Fin n)) := lintegral_mono' Measure.restrict_le_self le_rfl
     _ < ⊤ := hI
 
-attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL
-  GlobalTheory.CompanionTheory.QL.instBorelGL in
 theorem integrable_haarVol_of_lintegral {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] [MeasurableSpace k] [BorelSpace k] (n : ℕ) (σ s : ℝ) (hs : s ≤ σ - n)
     (hI : ∫⁻ X : Matrix (Fin n) (Fin n) k, (intM k (Fin n) (Fin n)).indicator (fun Y => ENNReal.ofReal

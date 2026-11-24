@@ -12,8 +12,8 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.Bun
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1380
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1486
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1463
-public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.Bundle0099
-public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsNormalFormArcDatumFramedPointRootOfUnity
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.Bundle0099
+import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsNormalFormArcDatumFramedPointRootOfUnity
 public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0058
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1847
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1853

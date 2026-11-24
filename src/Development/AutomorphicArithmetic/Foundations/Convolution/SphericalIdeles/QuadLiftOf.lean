@@ -1,7 +1,7 @@
 module
 
 public import Mathlib
-public import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalIdeles.Bundle0001
+public import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalIdeles.RamDefs
 public import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalIdeles.QuadLiftUnr
 public import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalIdeles.Bundle0002
 

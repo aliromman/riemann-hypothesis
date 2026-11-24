@@ -3,7 +3,7 @@ module
 public import Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.Bundle0001
 public import Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.Bundle0002
 public import Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.Bundle0001
-public import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.Bundle0004
+public import all Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.Bundle0004
 
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.SummandsContRep
 

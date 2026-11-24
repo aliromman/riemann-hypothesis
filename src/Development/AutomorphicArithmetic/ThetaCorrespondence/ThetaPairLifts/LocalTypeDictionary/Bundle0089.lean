@@ -1,7 +1,6 @@
 module
 
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.DiscreteSpectrumResidualClassification
-public import Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.NarrowSwap
 public import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
 public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0041
 public import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.ThetaIntegralsAgree
@@ -24,20 +23,6 @@ public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.ToricSymb
 public import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZeroOfCurveCoordNorm
 
 @[expose] public section
-
--- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.BciNarrowSwap
-section
-section
-noncomputable section
-open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host GlobalTheory.HeightCounting NumberField IsDedekindDomain GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.FormDict GlobalTheory.DefiniteBC
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-namespace UpperTheory.BaseChangeIdentities
-theorem base_change_speh_narrow_swap : DefiniteN → GlobalTheory.BcSpeh.BcSpeh :=
-  fun h => bcSpeh_of ascComp h
-end UpperTheory.BaseChangeIdentities
-end
-end
-end
 
 -- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.ConstK
 section

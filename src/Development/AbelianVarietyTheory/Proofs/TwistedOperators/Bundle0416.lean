@@ -13,7 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle039
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemHatIffOfSelfDual
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle0207
 public import Mathlib
-public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle0401
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle0401
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle0405
 
 @[expose] public section

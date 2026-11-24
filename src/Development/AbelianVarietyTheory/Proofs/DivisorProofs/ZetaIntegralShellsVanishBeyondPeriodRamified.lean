@@ -21,7 +21,6 @@ theorem valuation_unif_zpow {k : Type} [Field k] [ValuativeRel k] [TopologicalSp
     {ϖ : kˣ} (hϖ : IsUnif ϖ) (m : ℤ) : valuation k ((ϖ ^ m : kˣ) : k) = uniformizer k ^ m := by
   rw [Units.val_zpow_eq_zpow_val, map_zpow₀, hϖ]
 
-attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL in
 theorem shell_eq_zero_of_support : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
     [MeasurableSpace k] [BorelSpace k] (ϖ : kˣ), IsUnif ϖ → ∀ (ν : kˣ →* ℂˣ) (a : ℕ) (μ : Measure (GL (Fin a) k))
     (φ : Matrix (Fin a) (Fin a) k → ℂ) (M' : ℕ), Function.support φ ⊆ scaledInt ϖ a (-(M' : ℤ)) →
@@ -61,32 +60,10 @@ theorem shell_eq_zero_of_support : ∀ (k : Type) [Field k] [ValuativeRel k] [To
   have h2 := (zpow_le_zpow_iff_right_of_lt_one₀ hu0 uniformizer_lt_one).1 h1
   omega
 
-attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL
-  GlobalTheory.CompanionTheory.QL.instBorelGL in
 theorem shell_lemma : ShellLemma := by
   intro k _ _ _ _ _ _ ϖ hϖ ν e hram hcond a μ hμ φ hφ
-  -- The bundled lemmas use the companion Borel model; `ShellLemma` uses the Units model.
-  let mUnits : MeasurableSpace (GL (Fin a) k) := Units.instMeasurableSpace
-  let mCompanion : MeasurableSpace (GL (Fin a) k) := CompanionTheory.QL.instMeasGL a
-  have hBorel : @BorelSpace (GL (Fin a) k) _ mUnits :=
-    GlobalTheory.SplitFlip.borel_GL (k := k) (n := Fin a)
-  have hm : mUnits = mCompanion := hBorel.measurable_eq
-  have ofCompanion
-      (P : (m : MeasurableSpace (GL (Fin a) k)) → @Measure _ m → Prop)
-      (h : ∀ (μ' : @Measure _ mCompanion), @Measure.IsHaarMeasure _ _ _ mCompanion μ' → P mCompanion μ') :
-      P mUnits μ := by
-    let Q (m : MeasurableSpace (GL (Fin a) k)) : Prop :=
-      ∀ (μ' : @Measure _ m), @Measure.IsHaarMeasure _ _ _ m μ' → P m μ'
-    exact (Eq.mp (congrArg Q hm.symm) h) μ hμ
-  have hint := ofCompanion
-    (fun m μ' => by
-      letI := m
-      exact ∀ (n : Fin a → ℤ) (z : ℂ),
-        IntegrableOn (fun g : GL (Fin a) k => φ g.val * (ν (gdet g) : ℂ) * apow (gdet g) z)
-          (shellSet ϖ n) μ')
-    (fun μ' hμ' =>
-      @GlobalTheory.T.integrableOn_cartanDoubleCoset_shellIntegrand k _ _ _ _ _ _
-        ϖ ν e hcond a μ' hμ' φ hφ)
+  have : μ.IsHaarMeasure := hμ
+  have hint := GlobalTheory.T.integrableOn_cartanDoubleCoset_shellIntegrand k ϖ ν e hcond a μ φ hφ
   have h2 : ∀ M : ℤ, IsPeriodic ϖ M φ → ∀ n : Fin a → ℤ, (∃ i, M ≤ n i) → ∀ z : ℂ, shell μ ϖ ν z φ n = 0 := by
     rintro M hM n ⟨i, hi⟩ z
     obtain ⟨u, hu1, hu2⟩ : ∃ u : kˣ, valuation k (u : k) = 1 ∧ ν u ≠ 1 := by
@@ -94,19 +71,10 @@ theorem shell_lemma : ShellLemma := by
       push_neg at h
       exact hram h
     obtain ⟨t, htK, heq, hdisj⟩ := GlobalTheory.T.cartanDoubleCoset_finite_disjoint_leftCosets k ϖ a n
-    unfold shell
-    rw [heq, integral_biUnion_finset t]
-    · exact Finset.sum_eq_zero fun x hx => ofCompanion
-        (fun m μ' => by
-          letI := m
-          exact ∫ g in {g : GL (Fin a) k | (x * diagGL (fun i => ϖ ^ n i))⁻¹ * g ∈ KO k (Fin a)},
-            φ g.val * (ν (gdet g) : ℂ) * apow (gdet g) z ∂μ' = 0)
-        (fun μ' hμ' =>
-          @GlobalTheory.T.setIntegral_leftCoset_shellIntegrand_eq_zero k _ _ _ _ _ _
-            ϖ hϖ ν a μ' hμ' φ M hM n i hi u hu1 hu2 x (htK x hx) z)
+    rw [shell, heq, integral_biUnion_finset t]
+    · exact Finset.sum_eq_zero fun x hx =>
+        GlobalTheory.T.setIntegral_leftCoset_shellIntegrand_eq_zero k ϖ hϖ ν a μ φ M hM n i hi u hu1 hu2 x (htK x hx) z
     · intro x _
-      letI : MeasurableSpace (GL (Fin a) k) := mUnits
-      letI : BorelSpace (GL (Fin a) k) := hBorel
       exact (isOpen_KO.preimage (continuous_const.mul continuous_id)).measurableSet
     · exact hdisj
     · intro x hx

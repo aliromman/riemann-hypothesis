@@ -37,7 +37,6 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle006
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.FullRankCoinvariantInducedIso
 section
-attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open MeasureTheory GlobalTheory.SplitFlip

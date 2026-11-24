@@ -13,7 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1502
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1509
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCompactEntriesBd
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OnePowNotMemHeightOneAsIdeal
-public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemHatIffOfSelfDual
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemHatIffOfSelfDual
 public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0047
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.Bundle0019
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels

@@ -30,7 +30,6 @@ attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 variable {k}
 
-attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL in
 theorem smallF_lact [MeasurableSpace k] [BorelSpace k] (n d : ℕ) (ν : kˣ →* ℂˣ) (h : GL (Fin n) k)
     (Φ : Matrix (Fin n) (Fin d) k → ℂ) (Y : Matrix (Fin n) (Fin d) k) :
     smallF (haarVol (GlobalTheory.SplitWeil.KO k (Fin n))) ν (GlobalTheory.FullRankCoinv.lact ν h Φ) Y =

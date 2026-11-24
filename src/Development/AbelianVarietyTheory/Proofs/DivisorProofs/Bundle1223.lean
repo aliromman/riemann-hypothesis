@@ -202,7 +202,6 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegrableFullRankZeta
 section
-attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 open MeasureTheory GlobalTheory.SplitFlip
 open scoped Matrix
 

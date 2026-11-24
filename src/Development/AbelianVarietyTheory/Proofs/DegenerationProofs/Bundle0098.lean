@@ -24,7 +24,7 @@ public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.VectorFieldOrderAddOfProdStrictHenselian
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0041
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ModelMapGenericallyOpenImmersionCalculus
-public import Lean.Elab.Command
+public meta import Lean.Elab.Command
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsCoordReducedFibreClosedPoint
 public import Development.AbelianVarietyTheory.Definitions.Degenerations.IsNormalSchemeSp
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.Bundle0090

@@ -12,7 +12,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1113
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.SplitFlip GlobalTheory.KSplit Classical
 
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
-attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 
 noncomputable section
 namespace GlobalTheory.GJTransfer

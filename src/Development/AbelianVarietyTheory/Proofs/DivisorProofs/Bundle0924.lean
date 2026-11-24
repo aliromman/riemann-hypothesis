@@ -3,7 +3,7 @@ module
 public import Mathlib
 public import Formalism.LocalToGlobal.IndefiniteReal.FWExist
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0037
-public import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.AuxStatement14
+import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.AuxStatement14
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.Clauses
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0870

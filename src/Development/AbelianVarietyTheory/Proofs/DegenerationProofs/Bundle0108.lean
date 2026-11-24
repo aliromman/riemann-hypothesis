@@ -22,7 +22,7 @@ public import Development.AbelianVarietyTheory.Definitions.Degenerations.OfDeriv
 public import Development.AbelianVarietyTheory.Definitions.Degenerations.PlOrdSomeOfAssociated
 public import Development.AbelianVarietyTheory.Statements.SemistableTorsion.SemistableFin
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ModelMapGenericallyOpenImmersionCalculus
-public import Lean.Elab.Command
+public meta import Lean.Elab.Command
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsGrpObjOfStrictBirationalLaw
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsWeakNeronModelBirationalGroupLaw
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsStrictModelOfBirational

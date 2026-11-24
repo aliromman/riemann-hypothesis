@@ -17,7 +17,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.Local
 open GlobalTheory.FlipMatch
 
 noncomputable section
-attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 namespace GlobalTheory.FlipMatch.FieldTransport
 open ValuativeRel
 

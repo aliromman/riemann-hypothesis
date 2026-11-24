@@ -13,7 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0016
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0004
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle0028
-public import Lean.Elab.Command
+public meta import Lean.Elab.Command
 
 @[expose] public section
 

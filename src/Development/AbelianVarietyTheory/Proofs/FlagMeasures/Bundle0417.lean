@@ -19,8 +19,8 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0413
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0406
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0376
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0300
-public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalTermLatticeOverInnerDatumFgSpan
-public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.GlobSet
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalTermLatticeOverInnerDatumFgSpan
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.GlobSet
 public import Formalism.SharpRestriction.CuspSpanNormBounds.CayleyDegreeNondegeneracy.Bundle0003
 public import Formalism.SharpRestriction.CuspSpanNormBounds.Bundle0014
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ChartGen

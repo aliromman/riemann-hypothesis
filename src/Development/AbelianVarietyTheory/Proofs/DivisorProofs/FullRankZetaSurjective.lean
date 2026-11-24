@@ -12,7 +12,6 @@ open scoped Matrix Topology
 
 noncomputable section
 
-attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 namespace GlobalTheory.FullRankOnto
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {n d : ℕ}

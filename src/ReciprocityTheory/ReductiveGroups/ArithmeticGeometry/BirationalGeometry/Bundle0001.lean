@@ -2,8 +2,8 @@ module
 
 public import Mathlib
 public import Mathlib.Data.ENat.Basic
-public import Lean.Elab.Tactic.NormCast
-public import Lean.Elab.Tactic.Omega
+import Lean.Elab.Tactic.NormCast
+import Lean.Elab.Tactic.Omega
 
 @[expose] public section
 

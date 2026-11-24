@@ -4,7 +4,7 @@ public import Mathlib
 public import Formalism.FormalDegreeBessel.StatementDS
 public import GroundTheory.AutomorphicForms.Cartan
 public import CompanionTheory.RealGroups.UnitaryAdmissibility.ArchimedeanUnitaryDual.InhabitedFinite
-public import Mathlib.Data.Fin.Tuple.Sort
+import Mathlib.Data.Fin.Tuple.Sort
 
 @[expose] public section
 
