@@ -1,0 +1,107 @@
+{
+  "workflow": "40b3f44d8c0631c119fcd106a60bbf94942f8df4",
+  "run": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45437935668",
+  "job": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45437935668/job/138600751165",
+  "source": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+  "source_ref": "refs/heads/ci/clump-scopes/scope-scan-reuse-candidate",
+  "actual_pull_head_at_dispatch": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "actual_pull_head_at_receipt": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+  "prior_tested_source": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "changed_paths": [
+    "scripts/clump.py"
+  ],
+  "renderer_sha256": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf",
+  "matched_git_proof_inputs": {
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    ".gitattributes": "388ae3892de0350a636b6ecef7026bfc1959ef06",
+    "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    "comparator/FormalConjecturesChallenge.lean": "290a2c6270f8da3852c7051d7da0f30032a70421",
+    "comparator/formal-conjectures.json": "e3afddc98129d1d1183ff217d434165fd893a0fe",
+    "comparator/formal-conjectures-export-targets.txt": "80bbbf91461783bb8e7f0bb8061b792668d4140a",
+    "scripts/clump-exclude.txt": "9033b1fdb8cd775f0dddcde1ecf3cfcdccc30695",
+    "scripts/ci-publisher-requirements.txt": "5d3fab7575e8d5031bb185c6f412c4b54619e18a",
+    "tools/ci_native": "00f74fdb2124d83fab44c73b0f9f9cf2c4200701"
+  },
+  "ordinary_stock_proof_record": "https://github.com/aliromman/riemann-hypothesis/tree/9d5d5e50be11d25b5ad6cca7ce00360277750b8f/ci/stock-batch-1198/results/45430568327/",
+  "default_sandbox_record": "https://github.com/aliromman/riemann-hypothesis/tree/4366fc4a54fe18b21b3dcda79770f37c682ad2ba/ci/source-sandbox/results/45431323026/",
+  "artifact_id": 14941088225,
+  "original_actions_zip_sha256": "f13a45fde295bed443a5fc5bfa8efef37899da79cc67a96fdd3b0fce54a46901",
+  "versions": [
+    "Python 3.12.16",
+    "PyYAML 6.0.2",
+    "boto3 1.44.9 botocore 1.44.9",
+    "cp (GNU coreutils) 9.4",
+    "Copyright (C) 2023 Free Software Foundation, Inc.",
+    "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.",
+    "This is free software: you are free to change and redistribute it.",
+    "There is NO WARRANTY, to the extent permitted by law.",
+    "",
+    "Written by Torbj\u00f6rn Granlund, David MacKenzie, and Jim Meyering.",
+    "Lean (version 4.37.0-rc1, x86_64-unknown-linux-gnu, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+    "Lake version 5.0.0-src+0b77e12 (Lean version 4.37.0-rc1)"
+  ],
+  "unit_tests": {
+    "native": {
+      "ran": 60,
+      "seconds": 1.426,
+      "skipped": 0
+    },
+    "clump": {
+      "ran": 13,
+      "seconds": 0.303,
+      "skipped": 0
+    },
+    "scripts": {
+      "ran": 313,
+      "seconds": 14.366,
+      "skipped": 0
+    }
+  },
+  "diagnostic_owners": {
+    "ordinary": {
+      "initial": [
+        "other"
+      ],
+      "previous": [
+        "note"
+      ],
+      "candidate": []
+    },
+    "above-banner": {
+      "initial": [
+        "other"
+      ],
+      "previous": [
+        "note"
+      ],
+      "candidate": []
+    },
+    "compact-member": {
+      "initial": [
+        "Examples.Leaf"
+      ],
+      "previous": [
+        "Examples.Leaf"
+      ],
+      "candidate": [
+        "Examples.Leaf"
+      ]
+    },
+    "legacy-literal": {
+      "initial": [
+        "note"
+      ],
+      "previous": [
+        "Examples.Leaf"
+      ],
+      "candidate": [
+        "Examples.Leaf"
+      ]
+    }
+  }
+}
