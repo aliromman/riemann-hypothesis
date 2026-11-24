@@ -212,11 +212,42 @@
     "same_original_candidate_owner_and_effective_inputs": 85938
   },
   "excluded_from_final_candidates": 294,
+  "excluded_historical_outcomes": {
+    "after_coordinated_selection": {
+      "excluded": 68,
+      "fresh_current_native_nonpass": 1,
+      "fresh_current_native_pass": 66,
+      "same_owner_and_effective_inputs": 1,
+      "same_source_historical_no_same_source_pair_observation": 2,
+      "same_source_historical_pass": 66,
+      "strict_current_or_transferred": 67,
+      "strict_transferable_from_earlier_parent": 1
+    },
+    "all": {
+      "excluded": 294,
+      "fresh_current_native_nonpass": 1,
+      "fresh_current_native_pass": 66,
+      "same_owner_and_effective_inputs": 48,
+      "same_source_historical_difference": 17,
+      "same_source_historical_no_same_source_pair_observation": 2,
+      "same_source_historical_pass": 275,
+      "strict_current_or_transferred": 110,
+      "strict_transferable_from_earlier_parent": 44
+    },
+    "before_dispatch": {
+      "excluded": 226,
+      "same_owner_and_effective_inputs": 47,
+      "same_source_historical_difference": 17,
+      "same_source_historical_pass": 209,
+      "strict_current_or_transferred": 43,
+      "strict_transferable_from_earlier_parent": 43
+    }
+  },
   "excluded_source_rows": {
-    "bytes": 51248,
+    "bytes": 65633,
     "file": "initial-exclusions.jsonl.gz",
-    "file_sha256": "2935070b2e59a8d9ec87f1c03b0f19d268820c5e0fc59c1e767fe83734e9b1d3",
-    "uncompressed_sha256": "15dbf7b752478a1377fa654b24e8d53723c94834b3156421746a7c6e3a509893"
+    "file_sha256": "afe8574bf71f67d0bef9414718a6ba6c2be18eaa15dc7ca46756af18aea1d517",
+    "uncompressed_sha256": "1c9296c5f28980900fffb79b63719c4f7a3c05588052cdf41b21ab17c9d42e71"
   },
   "incomplete_group_attempts": [],
   "independent_parent_name_census": {

@@ -1,0 +1,155 @@
+{
+  "current_main": "ba5e02170fcf8bc19acf4d63110f5eb85f8c0161",
+  "checked_parent": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+  "parent_source_tree": "6e972745429bd501b15e5daa9db46c8a9feb85db",
+  "all_upstream_changes": [
+    "verification/NOTES.md"
+  ],
+  "compared_project_inputs": [
+    "src/Challenge.lean",
+    "comparator.json",
+    "export-targets.txt",
+    "comparator/FormalConjecturesChallenge.lean",
+    "comparator/formal-conjectures.json",
+    "comparator/formal-conjectures-export-targets.txt",
+    "src",
+    "lean-toolchain",
+    "lakefile.toml",
+    "lake-manifest.json",
+    "comparator",
+    "scripts",
+    ".github/workflows"
+  ],
+  "public_parent_receipt": {
+    "url": "https://rh-cache.taucetiproject.org/ci/revisions/ba5e02170fcf8bc19acf4d63110f5eb85f8c0161.json",
+    "status": 200,
+    "sha256": "06f2bd9e72222e76c238505d02ceed92b9a2dbbc82ff0d67f22fdf4282dded17",
+    "data": {
+      "build_exit_code": 0,
+      "build_receipt_sha256": "c9fcc25a3c3a7cc4045dad6e8e614e4a80ace68a2081385797c764e9542a94cd",
+      "build_roots": {},
+      "candidate_head": "ba5e02170fcf8bc19acf4d63110f5eb85f8c0161",
+      "candidate_tree": "4a05567670b0dd8f2cef9fd0e112885e30e377e4",
+      "delta_artifacts": 37990,
+      "input_fingerprint": "674e94ef0e7c7fb0846b7029ba6e05bc05cab53799b1c5a992e3d9e4c5bec527",
+      "lakefile_sha256": "b96a1a0b45e250d91bbf78d3490b79a317678bf13b823227b731cb87e3fd5ce5",
+      "manifest_sha256": "6b5ad855ab2f8544071569928d1b84e8e6be14636e7b2809e7ccabb3937934ee",
+      "map_key": "ci/maps/cf7e2c00148ea7fc5d5cc04ba584fa042d767b7864441e15d33712230095d34d.jsonl",
+      "map_sha256": "cf7e2c00148ea7fc5d5cc04ba584fa042d767b7864441e15d33712230095d34d",
+      "module_manifest_bytes": 4562361,
+      "module_manifest_key": "ci/module-manifests/a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463.jsonl.gz",
+      "module_manifest_sha256": "a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463",
+      "promoted_from": "efde3fcd4bb1a3b94e616b898ec21669ee6950f7",
+      "receipt": {
+        "base_map_sha256": "2ac0c1ba61229279c8aa0778c05193f667824e842cd0444d6218ed0c508662de",
+        "build_exit_code": 0,
+        "build_roots": {},
+        "candidate_head": "ba5e02170fcf8bc19acf4d63110f5eb85f8c0161",
+        "candidate_tree": "4a05567670b0dd8f2cef9fd0e112885e30e377e4",
+        "input_fingerprint": "674e94ef0e7c7fb0846b7029ba6e05bc05cab53799b1c5a992e3d9e4c5bec527",
+        "lakefile_sha256": "b96a1a0b45e250d91bbf78d3490b79a317678bf13b823227b731cb87e3fd5ce5",
+        "manifest_sha256": "6b5ad855ab2f8544071569928d1b84e8e6be14636e7b2809e7ccabb3937934ee",
+        "map_sha256": "cf7e2c00148ea7fc5d5cc04ba584fa042d767b7864441e15d33712230095d34d",
+        "module_manifest_bytes": 4562361,
+        "module_manifest_sha256": "a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463",
+        "schema": 1,
+        "source_tree": "6e972745429bd501b15e5daa9db46c8a9feb85db",
+        "toolchain": "leanprover/lean4:v4.37.0-rc1"
+      },
+      "repository": "leanprover-community/riemann-hypothesis",
+      "schema": 1,
+      "source_tree": "6e972745429bd501b15e5daa9db46c8a9feb85db",
+      "toolchain": "leanprover/lean4:v4.37.0-rc1",
+      "verification": "opaque artifacts; stock Lake content hashes; no proof imports"
+    }
+  },
+  "checked_parent_receipt": {
+    "url": "https://rh-cache.taucetiproject.org/ci/revisions/cb4dc6e23a6187db392c96664295415c55b6b01e.json",
+    "status": 200,
+    "sha256": "5e390012f28e7ae064c9b4c60c09453efa4eb7cb211e6ad623e570e4dc0b3834",
+    "data": {
+      "build_exit_code": 0,
+      "build_receipt_sha256": "c9fcc25a3c3a7cc4045dad6e8e614e4a80ace68a2081385797c764e9542a94cd",
+      "build_roots": {},
+      "candidate_head": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+      "candidate_tree": "497a5f8e611d74db312ba35314cd78b707381242",
+      "delta_artifacts": 37990,
+      "input_fingerprint": "674e94ef0e7c7fb0846b7029ba6e05bc05cab53799b1c5a992e3d9e4c5bec527",
+      "lakefile_sha256": "b96a1a0b45e250d91bbf78d3490b79a317678bf13b823227b731cb87e3fd5ce5",
+      "manifest_sha256": "6b5ad855ab2f8544071569928d1b84e8e6be14636e7b2809e7ccabb3937934ee",
+      "map_key": "ci/maps/cf7e2c00148ea7fc5d5cc04ba584fa042d767b7864441e15d33712230095d34d.jsonl",
+      "map_sha256": "cf7e2c00148ea7fc5d5cc04ba584fa042d767b7864441e15d33712230095d34d",
+      "module_manifest_bytes": 4562361,
+      "module_manifest_key": "ci/module-manifests/a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463.jsonl.gz",
+      "module_manifest_sha256": "a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463",
+      "promoted_from": "efde3fcd4bb1a3b94e616b898ec21669ee6950f7",
+      "receipt": {
+        "base_map_sha256": "2ac0c1ba61229279c8aa0778c05193f667824e842cd0444d6218ed0c508662de",
+        "build_exit_code": 0,
+        "build_roots": {},
+        "candidate_head": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+        "candidate_tree": "497a5f8e611d74db312ba35314cd78b707381242",
+        "input_fingerprint": "674e94ef0e7c7fb0846b7029ba6e05bc05cab53799b1c5a992e3d9e4c5bec527",
+        "lakefile_sha256": "b96a1a0b45e250d91bbf78d3490b79a317678bf13b823227b731cb87e3fd5ce5",
+        "manifest_sha256": "6b5ad855ab2f8544071569928d1b84e8e6be14636e7b2809e7ccabb3937934ee",
+        "map_sha256": "cf7e2c00148ea7fc5d5cc04ba584fa042d767b7864441e15d33712230095d34d",
+        "module_manifest_bytes": 4562361,
+        "module_manifest_sha256": "a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463",
+        "schema": 1,
+        "source_tree": "6e972745429bd501b15e5daa9db46c8a9feb85db",
+        "toolchain": "leanprover/lean4:v4.37.0-rc1"
+      },
+      "repository": "leanprover-community/riemann-hypothesis",
+      "schema": 1,
+      "source_tree": "6e972745429bd501b15e5daa9db46c8a9feb85db",
+      "toolchain": "leanprover/lean4:v4.37.0-rc1",
+      "verification": "opaque artifacts; stock Lake content hashes; no proof imports"
+    }
+  },
+  "candidates": {
+    "879": {
+      "head": "c2c7fc890448cf0c8eab464f115e5e370129697a",
+      "merge_tree": "0782575b4326d80c642a614e89c15997c389f5b6",
+      "src_tree": "4a04249b1ba74ed4740591a6d864145ab47c187d",
+      "all_differences_from_checked_head": [
+        "verification/NOTES.md"
+      ],
+      "six_protected_entries": [
+        "100644 blob 9677ace64b3a5e8b1a571d82d52ee13c53b08026\tsrc/Challenge.lean",
+        "100644 blob e989bcf90ff0c487a7146319a026e661a5bad47c\tcomparator.json",
+        "100644 blob e2d4c02bac8a1411eae85af0376c1aad3b6b5294\texport-targets.txt",
+        "100644 blob 290a2c6270f8da3852c7051d7da0f30032a70421\tcomparator/FormalConjecturesChallenge.lean",
+        "100644 blob e3afddc98129d1d1183ff217d434165fd893a0fe\tcomparator/formal-conjectures.json",
+        "100644 blob 80bbbf91461783bb8e7f0bb8061b792668d4140a\tcomparator/formal-conjectures-export-targets.txt"
+      ]
+    },
+    "977": {
+      "head": "afa44208210943a202ad969173b6317d06c37420",
+      "merge_tree": "974fbed7e1df32d417cbc04325b407d43830a4e0",
+      "src_tree": "b213f5ffaf9e751d375b08432423263dae37da2c",
+      "all_differences_from_checked_head": [
+        "verification/NOTES.md"
+      ],
+      "six_protected_entries": [
+        "100644 blob 9677ace64b3a5e8b1a571d82d52ee13c53b08026\tsrc/Challenge.lean",
+        "100644 blob e989bcf90ff0c487a7146319a026e661a5bad47c\tcomparator.json",
+        "100644 blob e2d4c02bac8a1411eae85af0376c1aad3b6b5294\texport-targets.txt",
+        "100644 blob 290a2c6270f8da3852c7051d7da0f30032a70421\tcomparator/FormalConjecturesChallenge.lean",
+        "100644 blob e3afddc98129d1d1183ff217d434165fd893a0fe\tcomparator/formal-conjectures.json",
+        "100644 blob 80bbbf91461783bb8e7f0bb8061b792668d4140a\tcomparator/formal-conjectures-export-targets.txt"
+      ]
+    }
+  },
+  "parent_receipt_differences": [
+    "candidate_head",
+    "candidate_tree",
+    "receipt"
+  ],
+  "authenticated_module_manifest": {
+    "sha256": "a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463",
+    "bytes": 4562361,
+    "rows": 60630,
+    "header_rows": 1,
+    "distinct_project_modules": 60629
+  }
+}
