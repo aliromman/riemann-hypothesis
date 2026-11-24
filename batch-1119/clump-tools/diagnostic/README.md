@@ -1,0 +1,3 @@
+# Error ownership in retained clump formats
+
+The tool keeps the earlier archive layout if an original member contains a literal reserved comment. The example member contains the comment `-- clump member: note`. A deliberately ill-typed theorem produces the included stock Lake error. The former diagnostic command read the literal comment as a member marker and printed `note`. The corrected command identifies the archive format before it resolves the error line. It prints `Examples.Leaf`. Both original sources are recovered byte for byte after `unclump`. [Sources, commands and observed owners](record.json) · [Original Lake output](stock-lake.log) · [Regression cases](regression-tests.log)

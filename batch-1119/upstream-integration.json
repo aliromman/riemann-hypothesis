@@ -2,9 +2,9 @@
   "pr": 977,
   "base": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
   "base_src": "00c2fd41c7b96184317b81cef9e3ffdc730e99c6",
-  "head": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0",
+  "head": "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
   "src": "a598d19cccf798deb6e2bea9700cbac2ff050e11",
-  "tree": "109bf8db5cc28601f01b311c88012676cf0dcf55",
+  "tree": "56002a4b1f27ca21a06ffffb01a042f8e5689991",
   "old_head": "f3e19bf8371ab5dd383b81e008ec14c4b0331811",
   "old_base": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca",
   "counts": {
@@ -163,5 +163,6 @@
     "src/Formalism/SharpRestriction/RamificationFrobenius/TotientGaloisClasses/HostFacts.lean",
     "src/GroundTheory/ProfiniteCohomology/PoitouTate/PoitouTateNineTermGs.lean",
     "src/PositivityTheory/AutomorphicForms/PublishedInputs/HilbertEisenstein/EisensteinLowWeight.lean"
-  ]
+  ],
+  "integrated_head_before_diagnostic_fix": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0"
 }

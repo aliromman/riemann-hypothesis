@@ -1,8 +1,8 @@
 # Source integration after community batch 5
 
-PR #977 has candidate commit `2b481024a8665bd5b24ca40d28fe90cb4fb86ce0` and source tree `a598d19cccf798deb6e2bea9700cbac2ff050e11`. Its mathematical parent is community commit `1cd97d8aa4a16681b109389ab18eefa4b2ba36d8`. Its official compiler cache lists 60,146 project modules and uses Lean 4.37.0-rc1 with Mathlib `31ce06eaadf4`. [Community batch](https://github.com/leanprover-community/riemann-hypothesis/pull/1119) · [Official community receipt](https://rh-cache.taucetiproject.org/ci/revisions/1cd97d8aa4a16681b109389ab18eefa4b2ba36d8.json)
+PR #977 has candidate commit `989ea9c41e8400a6fe894fe365298c219f8c7e1d` and source tree `a598d19cccf798deb6e2bea9700cbac2ff050e11`. Its mathematical parent is community commit `1cd97d8aa4a16681b109389ab18eefa4b2ba36d8`. Its official compiler cache lists 60,146 project modules and uses Lean 4.37.0-rc1 with Mathlib `31ce06eaadf4`. [Community batch](https://github.com/leanprover-community/riemann-hypothesis/pull/1119) · [Official community receipt](https://rh-cache.taucetiproject.org/ci/revisions/1cd97d8aa4a16681b109389ab18eefa4b2ba36d8.json)
 
-The patch removes 251,766 Lean commands and 131,585 standalone comments from 11,575 clumps. Charging all 384 net new Python lines against the command savings leaves 251,382 code lines removed. The new layout retains 68,375 original members, in their original order, with their complete import headers.
+The patch removes 251,766 Lean commands and 131,585 standalone comments from 11,575 clumps. Charging all 400 net new Python lines against the command savings leaves 251,366 code lines removed. The new layout retains 68,375 original members, in their original order, with their complete import headers.
 
 | Under `src/` | Community parent | Proposed |
 | --- | ---: | ---: |

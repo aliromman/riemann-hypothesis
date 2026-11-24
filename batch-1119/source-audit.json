@@ -5,5 +5,7 @@
   "tidied_members": 3029,
   "fewer_commands": 251766,
   "fewer_nonblank": 383351,
-  "fewer_bytes": 20777563
+  "fewer_bytes": 20777563,
+  "net_python_lines": 400,
+  "lean_commands_less_python": 251366
 }

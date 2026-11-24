@@ -2,7 +2,7 @@
   "upstream": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
   "current_heads": {
     "879": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
-    "977": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0"
+    "977": "989ea9c41e8400a6fe894fe365298c219f8c7e1d"
   },
   "1103": {
     "head": "4ca80fef8b8afa33bb9960b933b062279686f292",
@@ -22,7 +22,7 @@
     "shared_scope_files": 415,
     "source_composition_checks": 415,
     "current_base_merge_tree": "637323014a39397bca836a44dfb82af44bd84d7f",
-    "scope_merge_tree": "c8d9bc50d68f288f8fc56c9a8032974920ea90a2"
+    "scope_merge_tree": "1896636f43fc0dfb373de6b7d7e11dc5a0d821d5"
   },
   "988": {
     "head": "35e53a486431f2db6d7ebbf4ceca4774ebd1ccd8",

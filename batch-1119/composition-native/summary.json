@@ -1,0 +1,15 @@
+{
+  "parent": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+  "first": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+  "second": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0",
+  "merged_tree": "54208efb40ca9ffdcb301d1f4612a626e30f2b26",
+  "roots": 18,
+  "paired_modules": 51,
+  "total_stock_cone": 120,
+  "declarations": 2211,
+  "raw_public_ir_digests": 153,
+  "warnings": 146,
+  "stock_modes": {
+    "authenticated leantar": 120
+  }
+}

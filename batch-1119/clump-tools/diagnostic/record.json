@@ -1,0 +1,25 @@
+{
+  "previous": {
+    "tool_sha256": "d346751f04fc9b6773cc53cd50bd2dea115db88a9df4dc3b8466499403ea9128",
+    "owner": "note"
+  },
+  "proposal": {
+    "tool_sha256": "a4f1990726580a924d4cf95ecd7a76bcb00099a1e28756c06e9c91c47b5abcdf",
+    "owner": "Examples.Leaf"
+  },
+  "previous_head": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0",
+  "compiler": "Lake version 5.0.0-src+0b77e12 (Lean version 4.37.0-rc1)",
+  "actual_commands": [
+    "clump.py plan",
+    "clump.py apply",
+    "lake build +Examples.Main",
+    "clump.py blame",
+    "clump.py unclump"
+  ],
+  "stock_compilation_returncode": 1,
+  "round_trip": true,
+  "sources": {
+    "Examples.Leaf": "module\npublic import Init\n\n@[expose] public section\n-- clump member: note\ntheorem leaf : False := True.intro\n",
+    "Examples.Main": "module\npublic import Examples.Leaf\n\n@[expose] public section\ntheorem ordinary : True := True.intro\n"
+  }
+}
