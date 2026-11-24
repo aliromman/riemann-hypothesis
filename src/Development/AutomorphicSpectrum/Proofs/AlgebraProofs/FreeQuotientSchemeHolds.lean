@@ -672,16 +672,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.FreeQuotGlue.ChartRestrict
 
-theorem opensRange_homOfLE_eq {X : Scheme.{0}} {U V : X.Opens} (h : U ≤ V) :
-    (X.homOfLE h).opensRange = V.ι ⁻¹ᵁ U := by
-  apply le_antisymm
-  · rintro x ⟨y, rfl⟩
-    show V.ι (X.homOfLE h y) ∈ U
-    rw [← Scheme.Hom.comp_apply, Scheme.homOfLE_ι]
-    exact y.2
-  · intro x hx
-    exact ⟨⟨x.1, hx⟩, Subtype.ext (Scheme.homOfLE_apply h _)⟩
-
 theorem isChart_of_le {P X Y : Scheme.{0}} {a b : P ⟶ X} {V : X.Opens} {q : V.toScheme ⟶ Y}
     (h : IsChart a b V q) (D : Y.Opens) (W : X.Opens) (hle : W ≤ V)
     (hW : ∀ u : V.toScheme, V.ι u ∈ W ↔ q u ∈ D) :
@@ -699,7 +689,7 @@ theorem isChart_of_le {P X Y : Scheme.{0}} {a b : P ⟶ X} {V : X.Opens} {q : V.
 
   have hS2 : IsPullback q' (X.homOfLE hle) D.ι q := by
     refine IsOpenImmersion.isPullback q' (X.homOfLE hle) D.ι q hq'.symm ?_
-    rw [Scheme.Opens.opensRange_ι, opensRange_homOfLE_eq hle]
+    rw [Scheme.Opens.opensRange_ι, Scheme.opensRange_homOfLE hle]
     ext u
     exact (hW u).symm
 
@@ -738,7 +728,7 @@ theorem isChart_of_le {P X Y : Scheme.{0}} {a b : P ⟶ X} {V : X.Opens} {q : V.
     refine IsOpenImmersion.isPullback (b ∣_ W) ιK (X.homOfLE hle) (b ∣_ V) ?_ ?_
     · rw [← cancel_mono V.ι, Category.assoc, Category.assoc, morphismRestrict_ι, Scheme.homOfLE_ι,
         morphismRestrict_ι, ← Category.assoc, Scheme.homOfLE_ι]
-    · rw [opensRange_homOfLE_eq hle, opensRange_homOfLE_eq (b.preimage_mono hle)]
+    · rw [Scheme.opensRange_homOfLE hle, Scheme.opensRange_homOfLE (b.preimage_mono hle)]
       ext p
       show (b ∣_ V) p ∈ V.ι ⁻¹ᵁ W ↔ (b ⁻¹ᵁ V).ι p ∈ b ⁻¹ᵁ W
       rw [Scheme.Hom.mem_preimage, Scheme.Hom.mem_preimage, ← Scheme.Hom.comp_apply,

@@ -57,44 +57,13 @@ namespace Formalism.L2.G.Model.TS
 
 open Formalism.GradedWeylDivisibility
 
-lemma adj_fockR_of_subset {σ R : Type*} [CommRing R] (f g : MvPolynomial σ R) (s : Finset (σ →₀ ℕ))
-    (h : f.support ⊆ s) :
-    fockR f g = ∑ m ∈ s, f.coeff m * g.coeff m * ((∏ k ∈ m.support, (m k).factorial : ℕ) : R) :=
-  FockPairing.pair_eq_sum f g s h
-
-lemma adj_fockR_add_left {σ R : Type*} [CommRing R] (f f' g : MvPolynomial σ R) :
-    fockR (f + f') g = fockR f g + fockR f' g :=
-  FockPairing.pair_add_left f f' g
-
-lemma adj_fockR_smul_left {σ R : Type*} [CommRing R] (a : R) (f g : MvPolynomial σ R) :
-    fockR (a • f) g = a * fockR f g :=
-  FockPairing.pair_smul_left a f g
-
-lemma adj_fockR_symm {σ R : Type*} [CommRing R] (f g : MvPolynomial σ R) :
-    fockR f g = fockR g f :=
-  FockPairing.pair_comm f g
-
-lemma adj_fockR_add_right {σ R : Type*} [CommRing R] (f g g' : MvPolynomial σ R) :
-    fockR f (g + g') = fockR f g + fockR f g' :=
-  FockPairing.pair_add_right f g g'
-
-lemma adj_fockR_smul_right {σ R : Type*} [CommRing R] (a : R) (f g : MvPolynomial σ R) :
-    fockR f (a • g) = a * fockR f g :=
-  FockPairing.pair_smul_right a f g
-
-lemma adj_fockR_map {σ R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S) (f g : MvPolynomial σ R) :
-    fockR (map φ f) (map φ g) = φ (fockR f g) :=
-  FockPairing.pair_map φ f g
-
-lemma adj_fockR_rat {σ : Type*} (f g : MvPolynomial σ ℚ) : fockR f g = fockQ f g := rfl
-
-lemma adj_rowDiv_int {r n : ℕ} (a b : Fin r) (k : ℕ) (f g : MvPolynomial (Fin r × Fin n) ℤ) :
-    fockR (rowDiv ℤ a b k f) g = fockR f (rowDiv ℤ b a k g) := by
+private lemma adj_rowDiv_int {r n : ℕ} (a b : Fin r) (k : ℕ) (f g : MvPolynomial (Fin r × Fin n) ℤ) :
+    FockPairing.pair (rowDiv ℤ a b k f) g = FockPairing.pair f (rowDiv ℤ b a k g) := by
   apply Int.cast_injective (α := ℚ)
-  have e1 := adj_fockR_map (Int.castRingHom ℚ) (rowDiv ℤ a b k f) g
-  have e2 := adj_fockR_map (Int.castRingHom ℚ) f (rowDiv ℤ b a k g)
+  have e1 := FockPairing.pair_map (Int.castRingHom ℚ) (rowDiv ℤ a b k f) g
+  have e2 := FockPairing.pair_map (Int.castRingHom ℚ) f (rowDiv ℤ b a k g)
   simp only [eq_intCast] at e1 e2
-  rw [← e1, ← e2, ← lclosedeq_rowDiv_map, ← lclosedeq_rowDiv_map, adj_fockR_rat, adj_fockR_rat]
+  rw [← e1, ← e2, ← lclosedeq_rowDiv_map, ← lclosedeq_rowDiv_map]
   exact fockQRowDivAdj r n a b k _ _
 
 lemma adj_monomial_eq {σ R : Type*} [CommRing R] (m : σ →₀ ℕ) (c : R) :
@@ -103,18 +72,20 @@ lemma adj_monomial_eq {σ R : Type*} [CommRing R] (m : σ →₀ ℕ) (c : R) :
 
 theorem fock_pairing_divided_adjoint : FockRRowDivAdj := by
   intro R _ r n a b k f g
+  change FockPairing.pair (rowDiv R a b k f) g = FockPairing.pair f (rowDiv R b a k g)
   induction f using MvPolynomial.induction_on' with
   | monomial m c =>
     induction g using MvPolynomial.induction_on' with
     | monomial m' c' =>
       rw [adj_monomial_eq m c, adj_monomial_eq m' c', rowDiv_smul, rowDiv_smul,
         lclosedeq_rowDiv_map, lclosedeq_rowDiv_map]
-      rw [adj_fockR_smul_left, adj_fockR_smul_right, adj_fockR_smul_left, adj_fockR_smul_right,
-        adj_fockR_map, adj_fockR_map, adj_rowDiv_int]
+      rw [FockPairing.pair_smul_left, FockPairing.pair_smul_right,
+        FockPairing.pair_smul_left, FockPairing.pair_smul_right,
+        FockPairing.pair_map, FockPairing.pair_map, adj_rowDiv_int]
     | add g1 g2 h1 h2 =>
-      rw [rowDiv_add, adj_fockR_add_right, adj_fockR_add_right, h1, h2]
+      rw [rowDiv_add, FockPairing.pair_add_right, FockPairing.pair_add_right, h1, h2]
   | add f1 f2 h1 h2 =>
-    rw [rowDiv_add, adj_fockR_add_left, adj_fockR_add_left, h1, h2]
+    rw [rowDiv_add, FockPairing.pair_add_left, FockPairing.pair_add_left, h1, h2]
 
 lemma adj_applyWord_cons {R : Type*} [CommRing R] {r n : ℕ} (x : Fin r × Fin r × ℕ)
     (w : List (Fin r × Fin r × ℕ)) (F : MvPolynomial (Fin r × Fin n) R) :

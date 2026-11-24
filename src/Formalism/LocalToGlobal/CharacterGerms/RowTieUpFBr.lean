@@ -68,21 +68,6 @@ variable {R S : Type} [CommRing R] [CommRing S] (φ : R →+* S) {d : ℕ}
 
 def mpt {n : ℕ} (a : Pt R n d) : Pt S n d := fun i => MvPowerSeries.map φ (a i)
 
-private theorem cc_subst_lemma {σ τ A : Type} [Finite σ] [CommRing A] (a : σ → MvPowerSeries τ A)
-    (ha : ∀ s, constantCoeff (a s) = 0) (f : MvPowerSeries σ A) :
-    constantCoeff (MvPowerSeries.subst a f) = constantCoeff f := by
-  rw [MvPowerSeries.constantCoeff_subst (MvPowerSeries.hasSubst_of_constantCoeff_zero ha)]
-  rw [finsum_eq_single _ 0]
-  · simp
-  · intro e he
-    obtain ⟨s, hs⟩ : ∃ s, e s ≠ 0 := by
-      by_contra h
-      push_neg at h
-      exact he (Finsupp.ext h)
-    rw [map_finsuppProd]
-    simp only [map_pow, ha, Finsupp.prod]
-    rw [Finset.prod_eq_zero (Finsupp.mem_support_iff.mpr hs) (zero_pow hs), smul_zero]
-
 theorem map_ev {m n : ℕ} (a : Fin m → Pt R n d) (ha : ∀ j i, constantCoeff (a j i) = 0)
     (f : PS R m d) : MvPowerSeries.map φ (ev a f) = ev (fun j => mpt φ (a j)) (MvPowerSeries.map φ f) := by
   unfold ev
@@ -109,7 +94,9 @@ omit [CommRing S] in
 theorem cc_ev {m n : ℕ} (a : Fin m → Pt R n d) (ha : ∀ j i, constantCoeff (a j i) = 0) (f : PS R m d)
     (hf : constantCoeff f = 0) : constantCoeff (ev a f) = 0 := by
   unfold ev
-  exact (cc_subst_lemma (fun p : Fin m × Fin d => a p.1 p.2) (fun p => ha p.1 p.2) f).trans hf
+  exact MvPowerSeries.constantCoeff_subst_eq_zero
+    (MvPowerSeries.hasSubst_of_constantCoeff_zero fun p : Fin m × Fin d => ha p.1 p.2)
+    (fun p => ha p.1 p.2) hf
 
 omit [CommRing S] in
 @[simp] theorem cc_pt {n : ℕ} (j : Fin n) (i : Fin d) : constantCoeff (pt R d j i) = 0 := by

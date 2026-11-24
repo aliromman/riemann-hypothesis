@@ -237,7 +237,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.Local
 
 namespace GlobalTheory.SqTower.TopGridExists
 
-
 open Matrix in
 theorem exists_isONBasis {k : ℕ} {G s B : Matrix (Fin k) (Fin k) ℂ} {ε : Fin k → Bool}
     (hG : Bᴴ * G * B = Formalism.REAL.Jm ε) (hs : s * B = B * Formalism.REAL.Jm ε) :
@@ -261,7 +260,6 @@ theorem exists_isONBasis {k : ℕ} {G s B : Matrix (Fin k) (Fin k) ℂ} {ε : Fi
       ext a b; simp [Matrix.mul_apply]
     rw [e, hs, ← Matrix.submatrix_mul_equiv (e₂ := π), ← hJ, Matrix.submatrix_diagonal_equiv]
     congr 2; funext a; simp [hπ a]
-
 
 open Matrix GlobalTheory.Grid GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle in
 theorem exists_rig_of_frame {D : D7} {V : HSp D} (A : Fr V) (Λ : Submodule (𝓞 D.host.E) (Fin V.rank → D.host.E))
@@ -335,7 +333,6 @@ theorem exists_rig_of_frame {D : D7} {V : HSp D} (A : Fr V) (Λ : Submodule (�
     · simp only [Fr.cart, Matrix.mul_assoc, h1, Matrix.mul_one]
   choose B hB using hτ
   exact ⟨⟨Λ, β, A.cart, B⟩, rfl, rfl, hΛ, hβ, fun τ => ⟨GlobalTheory.CompactFockAction.cart_isCartanInv A τ, hB τ⟩⟩
-
 
 end GlobalTheory.SqTower.TopGridExists
 
@@ -573,65 +570,8 @@ theorem exists_integral_ne_zero (hSA : GlobalTheory.Published.StrongApproxSU) (h
     (hL : L.Is μ₀) (W : G.Weil) (B : Frames G) (ρ : RealMatch W) (t : T) (i j : Fin D.R.m) (hst : SquareStanding G t) :
     ∃ M : Vol G, M.Is t ∧ ∃ a τ τ' n Φ,
       (∀ w ∈ locPl G t, depthAt G w ≤ n w ∧ IsNatDatum (unifAt w) (n w) (Φ w)) ∧ HasFlip B t ρ i j n Φ τ τ' ∧
-      ∃ g g₁, ∫ u in M.fd _, kerBig W (tensT W a τ) g g₁ u ∂M.ν _ ≠ 0 := by
-  classical
-  obtain ⟨M, hM⟩ := exists_vol G hL t
-  obtain ⟨e, Bs, Γ, X, om, om', h, hT, hti⟩ := GlobalTheory.T.exists_thetaTripleOfSquareGrid_latticeCompatible hL W t i j hst M hM
-  obtain ⟨R, Rf, hm⟩ := hLM _ _ _ Bs _ _ Γ X om om' hT
-  obtain ⟨dec, hk⟩ := hK.1 _ _ _ Bs _ _ Γ X om om' hT
-  obtain ⟨hc, hco⟩ := hk R Rf hm
-  obtain ⟨l, hla, hl⟩ := GlobalTheory.T.exists_adm_eq_thetaIntegral_of_conv Γ.M Bs.ψ _ _ om hT.weil dec.1
-  have hw0 : G.pl.w G.pl.v0 ∈ locPl G t :=
-    Finset.mem_union_left _ (by
-      have : G.pl.v0 ∈ G.pl.S0 := by unfold Places.S0; convert Finset.mem_insert_self _ _
-      unfold Places.W0; convert Finset.mem_image_of_mem _ this)
-  have hv0 := (hti.2.2.1 _).2 ⟨_, hw0, rfl⟩
-  have hd : 0 < (spW G i j).rank + (spW₁ G i j).rank := by have := hT.geo.aBig; omega
-  obtain ⟨f, hf, h0⟩ := exists_I_ne_zero_at hm hc hco hla hl (GlobalTheory.T.theta_distribution_rational_points_invariant_triple Bs Γ X om om' hT 1 (one_mem _)) hv0
-    (GlobalTheory.T.weilRepresentationLocality_tensorModelVW Bs Γ X om om' hT _) (GlobalTheory.T.strongApproximation_splitPlace_skewHermitian_unitary hSA Bs Γ X om om' hT ⟨_, hT.chars.sub hv0⟩)
-    (H := Set.range (blkU _ _ e h.JWW)) fun x => by
-      obtain ⟨s, g, h1, h2⟩ := GlobalTheory.T.exists_detOne_mul_blockUnitary_decomposition _ _ e h.JWW hd x
-      exact ⟨s, _, ⟨g, rfl⟩, h1, h2⟩
-  obtain ⟨φ, hφ, hP, _, ⟨g, rfl⟩, hne⟩ := exists_I_ne_zero_kind hm hc hco (H := Set.range (blkU _ _ e h.JWW))
-    (by rintro _ ⟨x, rfl⟩ _ ⟨y, rfl⟩; exact ⟨x * y, (blkU_mul _ _ e h.JWW x y).symm⟩)
-    (fun v χ => ∀ w ∈ locPl G t, w.under (𝓞 D.host.F) = v → ∃ n Φ, depthAt G w ≤ n ∧ IsNatDatum (unifAt w) n Φ ∧
-      IsLocFn W B t e Γ w v (flipAt W t i j w n Φ) χ)
-    (fun v hv φ₀ hφ₀ => by
-      obtain ⟨w, hw, ew⟩ := (hti.2.2.1 v).1 hv
-      obtain ⟨n, Φ, φ₂, k, φ₃, h1, h2, h3, h4, h5, h6⟩ := GlobalTheory.T.squareFlip_reaches_localQuotient_classes hL W B t i j M hst e Bs Γ X om om' h R Rf hm hti w hw v ew φ₀ hφ₀
-      refine ⟨φ₂, h3.1, fun w' hw' ew' => ?_, _, ⟨k, rfl⟩, φ₃, h4, h5, h6⟩
-      obtain rfl : w = w' := (hti.2.2.2 ⟨v, hT.chars.sub hv⟩ w hw ew).symm.trans (hti.2.2.2 ⟨v, hT.chars.sub hv⟩ w' hw' ew')
-      exact ⟨n, Φ, h1, h2, h3⟩) hf h0
-  have H : ∀ w, ∃ n Φ, w ∈ locPl G t → depthAt G w ≤ n ∧ IsNatDatum (unifAt w) n Φ ∧
-      IsLocFn W B t e Γ w (w.under (𝓞 D.host.F)) (flipAt W t i j w n Φ) (φ (w.under (𝓞 D.host.F))) := fun w => by
-    by_cases hw : w ∈ locPl G t
-    · obtain ⟨n, Φ, H⟩ := hP _ ((hti.2.2.1 _).2 ⟨w, hw, rfl⟩) w hw rfl
-      exact ⟨n, Φ, fun _ => H⟩
-    · exact ⟨0, 0, fun h => absurd h hw⟩
-  choose n Φ H using H
-  have hnat : ∀ w ∈ locPl G t, depthAt G w ≤ n w ∧ IsNatDatum (unifAt w) (n w) (Φ w) := fun w hw => ⟨(H w hw).1, (H w hw).2.1⟩
-  obtain ⟨τ, τ', hF, -⟩ := (LocTensor.local_tensors hL B ρ t i j).2.2.2 (fun w hw hmem => hst.2 w hw (by
-    have e : ((D.host.QS * D.host.q * D.host.d * Ideal.absNorm D.host.ccK : ℕ) : 𝓞 D.host.E) =
-        (D.host.d : 𝓞 D.host.E) * ((D.host.QS * D.host.q * Ideal.absNorm D.host.ccK : ℕ) : 𝓞 D.host.E) := by push_cast; ring
-    rw [e]; exact Ideal.mul_mem_left _ _ hmem)) n Φ hnat
-  obtain ⟨f₀, h1, h2, h3⟩ := GlobalTheory.T.exists_gaussianDatum_flippedFiniteTensor_bigRoute hL W B ρ t i j M hst e Bs Γ X om om' h hT hti n Φ τ τ' hnat hF φ hφ
-    fun w hw => (H w hw).2.2
-  obtain ⟨a, ha⟩ := GlobalTheory.T.realPolynomialVector_reached_by_realDatum hL W B ρ t i j M e Bs Γ X om om' h hT n Φ τ τ' hF φ hφ f₀ h1 h2 h3 f hf
-  obtain ⟨b', hb'⟩ := ρ.onto_big i j (toTens a)
-  obtain ⟨b, rfl⟩ := toTens_surjective b'
-  have hΘ : IsMatched B t ρ i j (tensT W a τ) (tensT W b τ') := ⟨a, b, τ, τ', n, Φ, hb', hnat, hF, rfl, rfl⟩
-  obtain ⟨ξ, hξ, hker⟩ := GlobalTheory.T.big_route_kernel_eq_const_mul_theta hL W B ρ t i j M _ _ hΘ e Bs Γ X om om' h hT _ ha g.1 g.2
-  refine ⟨M, hM, a, τ, τ', n, Φ, hnat, hF, g.1, g.2, ?_⟩
-  have hfd := (hM.vtx (.grid (i + 1) (j + 1)) ⟨i.2, j.2⟩).haar_fund
-  simp only [hker]
-  rw [integral_const_mul, GlobalTheory.T.setIntegral_conjugate_scaled_unitaryGroup_eq _ 1 one_ne_zero h.JW _ _ hfd.1 hfd.2 Γ.M.dom (h.μW ▸ hT.geo.hM.dom)
-    (fun x => GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.theta om _ x _) fun γ hγ x => ?_, ← h.μW]
-  · exact mul_ne_zero hξ hne
-  · have e3 : ((γ * x, blkU _ _ e h.JWW (g.1, g.2)) : UB Γ.V.J × UB Γ.W.J) = (γ, 1) * (x, blkU _ _ e h.JWW (g.1, g.2)) := by
-      simp
-    simp only [GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.theta]
-    rw [e3, map_mul, Module.End.mul_apply,
-      GlobalTheory.T.theta_distribution_rational_points_invariant_triple Bs Γ X om om' hT γ hγ 1 (one_mem _) _ (hT.weil.isUSplitting.pres _ _ ha.1)]
+      ∃ g g₁, ∫ u in M.fd _, kerBig W (tensT W a τ) g g₁ u ∂M.ν _ ≠ 0 :=
+  GlobalTheory.BigNZ.exists_integral_ne_zero hSA hK hLM hL W B ρ t i j hst
 
 end Nonzero
 
@@ -722,8 +662,6 @@ theorem toUX_blk (A B : HSp D) {d : ℕ} (e : Fin A.rank ⊕ Fin B.rank ≃ Fin 
       (e.symm.trans finSumFinEquiv) (e.symm.trans finSumFinEquiv)) (g : GA D A × GA D B) :
     toUX (GlobalTheory.Doubling.hsum A B) (e.symm.trans finSumFinEquiv) h' (blk A B g) = blkU A B e h g :=
   Subtype.ext (Units.ext (blkMat_submatrix e _ _))
-
-
 
 theorem thetaInt_eq_zero (hSA : GlobalTheory.Published.StrongApproxSU) (hK : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree)
     (hLM : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching) {μ₀ : T} (hL : L.Is μ₀) (W : G.Weil) (B : Frames G) (ρ : RealMatch W) (t : T)
@@ -823,7 +761,6 @@ theorem exists_not_isNull (hSA : GlobalTheory.Published.StrongApproxSU) (hK : Gl
     (i j : Fin D.R.m) (hst : SquareStanding G t) : ∃ x, ¬ IsNull W B ρ t i j x := by
   obtain ⟨M, hM, a, τ, τ', n, Φ, hn, hF, g, g₁, h⟩ := exists_integral_ne_zero hSA hK hLM hL W B ρ t i j hst
   exact ⟨toTens a, fun h0 => h (h0 M hM a rfl n Φ τ τ' hn hF g g₁)⟩
-
 
 theorem hasFlip_congr {W : G.Weil} {B : Frames G} {ρ ρ₀ : RealMatch W} (h1 : ρ₀.vX = ρ.vX) (h2 : ρ₀.vT = ρ.vT) {t : T}
     {i j : Fin D.R.m} {n Φ τ τ'} (h : HasFlip B t ρ i j n Φ τ τ') : HasFlip B t ρ₀ i j n Φ τ τ' := by
@@ -1108,9 +1045,6 @@ theorem fr_eq_of_onb {V : HSp D} {A A' : Fr V} (h : ∀ τ, A.onb τ = A'.onb τ
 theorem gridFr_unique {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {W : G.Weil} {X : Node} {A A' : Fr (G.V X)}
     (h : IsGridFr W X A) (h' : IsGridFr W X A') : A = A' :=
   fr_eq_of_onb fun τ => (h τ).1.trans (h' τ).1.symm
-
-
-
 
 open GlobalTheory.SquareConv in
 theorem standing_of_size {large₂ : SizeData₂ D} (hs : GlobalTheory.IndefiniteRowSideFullHecke.LevelPlusSubgroup.SizeRows large₂) (hx : 11 ≤ D.host.splitBound) {T : Type}

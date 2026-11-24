@@ -1599,7 +1599,7 @@ theorem exBL_isLinked_alt : GlobalTheory.Published.GlobalArtinReciprocity → Gl
     obtain ⟨sp, hT, hY, hA', hV, hz, e, -⟩ := β.c.isOver
     exact ⟨sp, hT, hY, hA', hV, hz, β.X, e, rfl⟩
   have hP : K.P.H.levelPrimes = {K.P.H.g 0, K.P.H.g 1, K.P.H.pde, K.P.H.pde', DC.q0H K.P.H} :=
-    hG.host.2.2.2.2.2.2.2.2.2.2.2.2.2
+    hG.host.2.2.2.2.2.2.2.2.2.2.2.2
   have hLT : Formalism.L2.Host.LevelTied β.D :=
     GlobalTheory.Mem.HD.levelTied_of_levEx _ ((GlobalTheory.Mem.HD.levEx_of_over _ _ _ hO hP).2 _ _)
   have hD : β.D = q.w.D q.Z := congrArg Sigma.fst hq

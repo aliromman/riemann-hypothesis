@@ -88,8 +88,6 @@ theorem orderOf_iotaH (e : ℕ) (i : ZMod (2 ^ e)) : orderOf (iotaH e i) = addOr
   rw [orderOf_ofAdd_eq_addOrderOf] at h
   exact h
 
-alias cc_mul_cc := _root_.Formalism.HC.Frame.cc_mul_cc
-
 section Emb
 
 variable (D : D7)

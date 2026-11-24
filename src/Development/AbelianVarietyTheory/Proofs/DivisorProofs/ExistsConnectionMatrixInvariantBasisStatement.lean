@@ -331,43 +331,8 @@ theorem exists_lift_of_smooth (R : Type) [CommRing R] (X : Scheme.{0}) (f : X �
   exact ⟨d, hadd, hmul, fun r => hc r⟩
 
 theorem isAffineHom_q {R : Type} [CommRing R] [IsDomain R] {Q : DegPre R} {O : Type} [CommRing O] [StarRing O]
-    [Module O Q.X] {oa : Q.OAct O} (Y : Ray oa) : IsAffineHom Y.q.left := by
-  obtain ⟨c⟩ := GlobalTheory.TorusModel.nonempty_gtCoord GlobalTheory.allSixLaws.1.globalFns Y.isGt ⊥ 0
-  have hc : IsAffineHom c.q.left := c.q_affine
-  let F := fstG (⊥ : Ideal R) 0 Y.H
-  let j := inv F.left
-  have hF : F.left ≫ Y.H.hom = (thickObj R ⊥ 0 Y.H).hom ≫ thick R ⊥ 0 := Over.w F
-  let ξ := Y.Φ Y.H (𝟙 _)
-  obtain ⟨x, hx⟩ := GlobalTheory.TorusCoord.exists_point c (T := Y.H) (Y.H.hom ≫ inv (thick R ⊥ 0)) (by simp) ξ
-  obtain ⟨ξ', hξ'⟩ := GlobalTheory.TorusCoord.exists_isPointOf c (T := Y.H) j (by
-    rw [← hF]; exact IsIso.inv_hom_id_assoc _ _)
-  let b : Y.H ⟶ Y.H := (Y.Φ Y.H).symm ξ'
-  have hb : Y.Φ Y.H b = ξ' := Equiv.apply_symm_apply _ _
-  let a := x ≫ F.left
-  have ha : a ≫ Y.H.hom = Y.H.hom := by
-    rw [Category.assoc, hF]
-    exact GlobalTheory.TorusCoord.IsPointOf.comp_hom c hx
-  let a' : Y.H ⟶ Y.H := Over.homMk a ha
-  have haj : a ≫ j = x := by simp [a, j]
-  have e1 : b.left ≫ x = j := by
-    have h1 : GtPt.IsPull b.left ξ (Y.Φ Y.H (b ≫ 𝟙 _)) := Y.rep.1 Y.H Y.H b (𝟙 _)
-    rw [Category.comp_id, hb] at h1
-    exact (GlobalTheory.TorusCoord.IsPointOf.pull c hx h1).unique_left c hξ'
-  have e1' : b.left ≫ a = 𝟙 _ := by
-    rw [← Category.assoc, e1]; simp [j]
-  have e2 : a' ≫ b = 𝟙 _ := by
-    have h2 : GtPt.IsPull a (Y.Φ Y.H b) (Y.Φ Y.H (a' ≫ b)) := Y.rep.1 Y.H Y.H a' b
-    rw [hb] at h2
-    have h3 := GlobalTheory.TorusCoord.IsPointOf.pull c hξ' h2
-    rw [haj] at h3
-    exact (Y.Φ Y.H).injective (h3.unique_right c hx)
-  have e2' : a ≫ b.left = 𝟙 _ := congrArg (·.left) e2
-  have : IsIso a := ⟨⟨b.left, e2', e1'⟩⟩
-  have hq : Y.q.left = a ≫ j ≫ c.q.left ≫ pullback.fst Q.P.A.hom (thick R ⊥ 0) := by
-    rw [← Category.assoc a j, haj, ← GlobalTheory.TorusCoord.pG_left]
-    exact hx.1
-  rw [hq]
-  infer_instance
+    [Module O Q.X] {oa : Q.OAct O} (Y : Ray oa) : IsAffineHom Y.q.left :=
+  GlobalTheory.RayEv.Ray.isAffineHom_q Y
 
 theorem smooth_H {R : Type} [CommRing R] [IsDomain R] {Q : DegPre R} {O : Type} [CommRing O] [StarRing O]
     [Module O Q.X] {oa : Q.OAct O} (Y : Ray oa) : Smooth Y.H.hom := by
@@ -537,7 +502,6 @@ variable {X A : Type} [AddCommGroup X] [CommRing A] (P : X → A → Prop)
   (hmul : ∀ χ ψ a b, P χ a → P ψ b → P (χ + ψ) (a * b))
   (hdec : ∀ f : A, ∃! F : X →₀ A, (∀ χ, P χ (F χ)) ∧ f = F.sum (fun _ t => t))
 
-
 include hdec in
 def dec (f : A) : X →₀ A := (hdec f).exists.choose
 
@@ -601,7 +565,6 @@ include hzero hdec in
 theorem proj_of_wt (hz : δ₀ 0 = 0) {α : X} {f : A} (hf : P α f) : proj P hdec δ₀ f = dec P hdec (δ₀ f) α := by
   unfold proj; rw [dec_single P hzero hdec hf, Finsupp.sum_single_index]
   rw [hz, dec_zero P hzero hdec]; rfl
-
 
 include hzero hdec in
 theorem induction_wt (Qp : A → Prop) (q0 : Qp 0) (qadd : ∀ a b, Qp a → Qp b → Qp (a + b))

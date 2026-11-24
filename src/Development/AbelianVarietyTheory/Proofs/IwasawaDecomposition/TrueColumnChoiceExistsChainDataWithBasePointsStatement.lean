@@ -999,6 +999,8 @@ variable {B : Base} {X : PreX B.toPre} (I : TC B X) (l : I.Laws) (Z : Later B (I
 
 
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure TwStep (H : Formalism.L2.Herm.HermColsCh (I.rec7 l Z)) (F : ∀ u, FormsTiedSym (I.rec7 l Z) u (H.Ch u) (H.chOf u))
     (Q : Finset (HeightOneSpectrum (𝓞 (I.rec7 l Z).host.F))) (u : B.Word) (a : I.ι) (i : ℕ) where
   Ch : Type
@@ -1150,6 +1152,8 @@ theorem twStep_mid (hok : I.Ok) (pins : TC.Pins B X) {H : Formalism.L2.Herm.Herm
         hr ((hF u).mid i h1 h2) β (g β)).trans (hC.carC u i h1 h2 (g β)).Lb_eq
     · exact (hoU β v hv).trans ((hC.carC u i h1 h2 (g β)).Uloc_eq v)
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure TopP {H : Formalism.L2.Herm.HermColsCh (I.rec7 l Z)} {F : ∀ u, FormsTiedSym (I.rec7 l Z) u (H.Ch u) (H.chOf u)}
     {Q : Finset (HeightOneSpectrum (𝓞 (I.rec7 l Z).host.F))} {u : B.Word} {a : I.ι} (S : TwStep I l Z H F Q u a B.R.m) : Prop where
   chiM : ∀ h1 β (κ : (S.K h1 le_rfl β).lev.U) (κ' : ((F u).cls B.R.m le_rfl (Or.inr rfl)).lev.U), κ.1 = κ'.1 →
@@ -1205,6 +1209,8 @@ theorem twStep_top (hok : I.Ok) (pins : TC.Pins B X) {H : Formalism.L2.Herm.Herm
 
 
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure TwPack (H : Formalism.L2.Herm.HermColsCh (I.rec7 l Z)) (F : ∀ u, FormsTiedSym (I.rec7 l Z) u (H.Ch u) (H.chOf u))
     (Q : Finset (HeightOneSpectrum (𝓞 (I.rec7 l Z).host.F))) (u : B.Word) (a : I.ι) where
   St : ∀ i, TwStep I l Z H F Q u a i

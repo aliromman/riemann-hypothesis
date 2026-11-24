@@ -798,11 +798,6 @@ theorem eventually_sizes_admitted {eps : ℝ} (Fm : FamP eps) :
 def Adm1F {eps : ℝ} (Fm : FamP eps) : Prop :=
   ∃ C : ℝ, 0 < C ∧ Ev Fm fun x i => AuxBlock8.adm1 (Fm.D x i) (Fm.L x i) (Fm.Gx x i) C
 
-def Adm2F {eps : ℝ} (Fm : FamP eps) : Prop :=
-  Ev Fm fun x i => AuxBlock8.adm2 (Fm.D x i) (Fm.L x i) (Fm.Gx x i)
-
-def Adm3F {eps : ℝ} (Fm : FamP eps) : Prop := Ev Fm fun x i => AuxBlock8.adm3 (Fm.D x i) (Fm.L x i)
-
 def Adm4F {eps : ℝ} (Fm : FamP eps) : Prop := Ev Fm fun x i => AuxBlock8.ArchimedeanSignatureMatching (Fm.D x i) (Fm.L x i) Fm.GK
 
 def Adm5F {eps : ℝ} (Fm : FamP eps) : Prop :=
@@ -1372,11 +1367,6 @@ end Sizes
 section Rest
 
 theorem family_first_lemma {eps : ℝ} (Fm : FamP eps) : Adm1F Fm := TopChoiceBounds.family_uniform_constant_holds Fm
-
-theorem family_orders_first_part {eps : ℝ} (Fm : FamP eps) (C₄ : ℝ) (hS : CornerGLContinuity.FamilyOrdersSmallPrimeBound Fm C₄) (hO : CornerGLContinuity.FamilyGlobalOrderEstimate Fm C₄) :
-    Adm3F Fm := by
-  obtain ⟨x0, h⟩ := hS hO
-  exact ⟨x0, fun x hx i => TopChoiceBounds.order_statement_of_odd_primes (h x hx i) (J.two_readings_of_Frobenius _)⟩
 
 theorem family_orders_bound_of_lemma {eps : ℝ} (Fm : FamP eps) (hS : CornerGLContinuity.FamilyOrdersLargePrimeBound Fm) (hCN : CornerGLContinuity.FamilyWindowLogBound Fm) : Adm4F Fm := by
   obtain ⟨x0, h⟩ := hS (TopChoiceBounds.family_master_orbit_holds Fm) hCN

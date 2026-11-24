@@ -449,7 +449,6 @@ theorem sections_eqLocus_ideal : ∀ (R : Type) [CommRing R] (X : Over (Sp R)), 
       ∀ (T : Type) [CommRing T] (ψ : R →+* T), (spMap ψ ≫ x = spMap ψ ≫ y ↔ ∀ r ∈ I, ψ r = 0) := by
   first
   | exact @_root_.GlobalTheory.IdealSectionsFactorization.exists_ideal_sections_eq
-  | (intros; exact _root_.GlobalTheory.IdealSectionsFactorization.exists_ideal_sections_eq ..)
 
 end GlobalTheory
 end -- clump:auto
@@ -929,7 +928,7 @@ section -- clump:auto
 namespace GlobalTheory
 
 theorem isJacobsonRing_integers : IsJacobsonRing ℤ := by
-  apply _root_.GlobalTheory.ClosedPts.jacobson_int <;> assumption
+  apply _root_.GlobalTheory.ClosedPts.jacobson_int
 
 theorem closedPt_of_finiteType_int : ∀ (R : Type) [CommRing R] [IsDomain R] [Algebra.FiniteType ℤ R] (f : R), f ≠ 0 → ∃ M : Ideal R, M.IsMaximal ∧ f ∉ M ∧ ∃ p : ℕ, p.Prime ∧ (p : R) ∈ M := by
   intro R _ _ _ f hf

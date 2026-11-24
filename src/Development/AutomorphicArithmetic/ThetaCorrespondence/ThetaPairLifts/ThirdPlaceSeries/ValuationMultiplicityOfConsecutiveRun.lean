@@ -565,7 +565,7 @@ theorem exists_theta_multiplication_rule (hP : _root_.GlobalTheory.CovTop.Publis
     rw [← map_mul, mul_inv_cancel₀ ha, map_one, show vV T.V (1 : T.Fr) = 0 by simp [vV]] at h3
     omega
   have hs : ∀ τ, ev (s τ).sig ∈ (algebraMap T.V T.Fr).range := fun τ => by
-    have h1 := _root_.GlobalTheory.FlatCore.Bdry.nval_evI_eq_zero_alt hP hP.q2 E H Dw l Xo c r U x hL Z τ (ArchSec.ofConst (s τ)) T io y hio0 hZ
+    have h1 := _root_.GlobalTheory.FlatCore.Bdry.nval_evI_eq_zero_alt hP E H Dw l Xo c r U x hL Z τ (ArchSec.ofConst (s τ)) T io y hio0 hZ
     change nval T.V 1 (ev (s τ).sig) = 0 at h1
     by_cases h0 : ev (s τ).sig = 0
     · exact h0 ▸ zero_mem _
@@ -1134,7 +1134,7 @@ theorem twisted_section_flat_valuation (hP : _root_.GlobalTheory.CovTop.Publishe
   let ev : Rul Xo c →* T.Fr :=
     ⟨⟨evI y, by rw [← mul_one (evI y 1), ← hid, ← evI_mul, one_mul]⟩, evI_mul y⟩
   have hsig : ∀ τ, ev (sF τ).sig ∈ unitsV T := fun τ => by
-    have hn := _root_.GlobalTheory.FlatCore.Bdry.nval_evI_eq_zero_alt hP hP.q2 E H Dw l Xo c r U x hL Z τ
+    have hn := _root_.GlobalTheory.FlatCore.Bdry.nval_evI_eq_zero_alt hP E H Dw l Xo c r U x hL Z τ
       (ArchSec.ofConst (sF τ)) T io y hio hLies
     have hev0 : evI y (sF τ).sig ≠ 0 := by
       intro h0

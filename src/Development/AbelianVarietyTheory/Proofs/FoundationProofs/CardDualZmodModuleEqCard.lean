@@ -107,7 +107,6 @@ theorem stdAddChar_comp_bijective (n : ℕ) [NeZero n] (A : Type) [AddCommGroup 
       ((ZMod.stdAddChar (N := n)).compAddMonoidHom φ.toAddMonoidHom : AddChar A ℂ) := by
   first
   | (apply _root_.GlobalTheory.StandardAdditiveCharacter.bijective_dual_addChar <;> assumption)
-  | (intros; exact _root_.GlobalTheory.StandardAdditiveCharacter.bijective_dual_addChar ..)
 
 theorem card_dual_eq (n : ℕ) [NeZero n] (A : Type) [AddCommGroup A] [Module (ZMod n) A]
     [Finite A] : Nat.card (Module.Dual (ZMod n) A) = Nat.card A := by
@@ -115,6 +114,40 @@ theorem card_dual_eq (n : ℕ) [NeZero n] (A : Type) [AddCommGroup A] [Module (Z
   have := Fintype.ofFinite A
   rw [Nat.card_eq_of_bijective _ (stdAddChar_comp_bijective n A),
     Nat.card_eq_fintype_card (α := AddChar A ℂ), AddChar.card_eq, ← Nat.card_eq_fintype_card]
+
+
+/-- An injection into the dual of a finite `ZMod n`-module is onto as soon as
+the source has at least as many elements as the module. -/
+theorem bijective_of_injective_into_dual (n : ℕ) [NeZero n] (X Y : Type)
+    [AddCommGroup X] [Module (ZMod n) X] [Finite X] [Finite Y]
+    (f : Y → Module.Dual (ZMod n) X) (hf : Function.Injective f)
+    (hXY : Nat.card X ≤ Nat.card Y) : Function.Bijective f := by
+  haveI : Finite (Module.Dual (ZMod n) X) :=
+    Finite.of_injective (fun φ : Module.Dual (ZMod n) X => (φ : X → ZMod n))
+      DFunLike.coe_injective
+  exact hf.bijective_of_nat_card_le (card_dual_eq n X ▸ hXY)
+
+/-- Mutual injections into finite duals give equal cardinalities and a bijection
+to the dual. This is the counting step common to the arithmetic duality proofs. -/
+theorem bijective_of_mutual_dual_injections (n : ℕ) [NeZero n] (X Y : Type)
+    [AddCommGroup X] [Module (ZMod n) X] [Finite X]
+    [AddCommGroup Y] [Module (ZMod n) Y] [Finite Y]
+    (f : Y → Module.Dual (ZMod n) X) (g : X → Module.Dual (ZMod n) Y)
+    (hf : Function.Injective f) (hg : Function.Injective g) :
+    Function.Bijective f ∧ Nat.card X = Nat.card Y := by
+  haveI : Finite (Module.Dual (ZMod n) X) :=
+    Finite.of_injective (fun φ : Module.Dual (ZMod n) X => (φ : X → ZMod n))
+      DFunLike.coe_injective
+  haveI : Finite (Module.Dual (ZMod n) Y) :=
+    Finite.of_injective (fun φ : Module.Dual (ZMod n) Y => (φ : Y → ZMod n))
+      DFunLike.coe_injective
+  have hXY : Nat.card X ≤ Nat.card Y := by
+    rw [← card_dual_eq n Y]
+    exact Nat.card_le_card_of_injective g hg
+  have hYX : Nat.card Y ≤ Nat.card X := by
+    rw [← card_dual_eq n X]
+    exact Nat.card_le_card_of_injective f hf
+  exact ⟨bijective_of_injective_into_dual n X Y f hf hXY, le_antisymm hXY hYX⟩
 
 end GlobalTheory.ZModDual
 end -- clump:auto

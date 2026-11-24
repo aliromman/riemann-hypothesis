@@ -261,9 +261,9 @@ def ainfTower : ATower (R0 p O ε) p where
   R' n := LR' p O hv ε hε n
   R n := LR p O hv ε hε n
   π n := ⟨{ toRingHom := piRing p O hv ε hε n, commutes' := fun _ => rfl },
-    TowerExample.isLocalHom_of_surj _ (piRing_surj p O hv ε hε n)⟩
+    IsLocalHom.of_surjective _ (piRing_surj p O hv ε hε n)⟩
   q n := ⟨{ toRingHom := Ideal.Quotient.mk (span {(p : O) ^ (n + 1)}), commutes' := fun _ => rfl },
-    TowerExample.isLocalHom_of_surj _ (q_surj p O hv ε hε n)⟩
+    IsLocalHom.of_surjective _ (q_surj p O hv ε hε n)⟩
   ξ n := xiR p O ε n
   surj n := piRing_surj p O hv ε hε n
   ker_eq n := ker_pi p O hv ε hε n
@@ -384,8 +384,8 @@ lemma complete_O (x : ∀ n, (Rn p O n)) (hx : ∀ n, rRing p O n (x (n + 1)) = 
 
 def ainfTowerL : ATowerL (R0 p O ε) p where
   toATower := ainfTower p O hv ε hε
-  r' n := ⟨r'Alg p O ε n, TowerExample.isLocalHom_of_surj _ (r'Alg_surj p O ε n)⟩
-  r n := ⟨rAlg p O hv ε hε n, TowerExample.isLocalHom_of_surj _ (rAlg_surj p O hv ε hε n)⟩
+  r' n := ⟨r'Alg p O ε n, IsLocalHom.of_surjective _ (r'Alg_surj p O ε n)⟩
+  r n := ⟨rAlg p O hv ε hε n, IsLocalHom.of_surjective _ (rAlg_surj p O hv ε hε n)⟩
   r_π n x := by
     obtain ⟨x0, rfl⟩ := Ideal.Quotient.mk_surjective x
     obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective x0

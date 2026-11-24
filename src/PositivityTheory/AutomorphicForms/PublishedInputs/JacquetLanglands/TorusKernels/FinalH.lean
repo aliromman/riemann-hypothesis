@@ -161,33 +161,11 @@ theorem rot_eq {k : InfinitePlace F → ℕ} {φ : TR.Sm F 2}
   simpa [hf, rotA_zero] using hc
 
 theorem infGL_scalar (ρ : (TR.Rinf F)ˣ) :
-    TR.infGL F 2 (Matrix.GeneralLinearGroup.scalar (Fin 2) ρ) = Matrix.GeneralLinearGroup.scalar (Fin 2) (TR.infId F ρ) := by
-  have h1 : TR.pInf F (TR.infId F ρ).val = ρ.val := by
-    change TR.pInf F (1 - TR.sInf F 1 + TR.sInf F _) = _
-    have h : ∀ x, TR.pInf F (TR.sInf F x) = x := fun x => (TR.infEq F).symm_apply_apply x
-    simp [h]
-  have h2 : pFin F (TR.infId F ρ).val = 1 := by
-    change (1 : Af F) - 0 + 0 = 1
-    simp
-  refine TR.ga_ext ?_ ?_
-  · rw [TR.pInf_infGL]
-    refine Units.ext (Matrix.ext fun i j => ?_)
-    fin_cases i <;> fin_cases j <;> simp [Matrix.GeneralLinearGroup.scalar, Matrix.GeneralLinearGroup.map, h1]
-  · rw [TR.pFin_infGL]
-    refine Units.ext (Matrix.ext fun i j => ?_)
-    fin_cases i <;> fin_cases j <;> simp [Matrix.GeneralLinearGroup.scalar, Matrix.GeneralLinearGroup.map, h2]
+    TR.infGL F 2 (Matrix.GeneralLinearGroup.scalar (Fin 2) ρ) = Matrix.GeneralLinearGroup.scalar (Fin 2) (TR.infId F ρ) :=
+  UpperTheory.Esk.HolomorphicVectorLemmas.infGL_scalar ρ
 
-theorem fin_expU {ω : HChar F} (h : IsOfFinOrder ω) (z : TR.Rinf F) : ω.1 (TR.infId F (TR.expU z)) = 1 := by
-  obtain ⟨n, hn, e⟩ := isOfFinOrder_iff_pow_eq_one.1 h
-  have e1 : TR.expU z = TR.expU ((n : ℝ)⁻¹ • z) ^ n := by
-    refine Units.ext (funext fun i => ?_)
-    have : (n : ℝ) ≠ 0 := by positivity
-    simp only [Units.val_pow_eq_pow_val, Pi.pow_apply, TR.expU_val, ← Real.exp_nat_mul, Pi.smul_apply, smul_eq_mul]
-    congr 1
-    field_simp
-  rw [e1, map_pow, map_pow]
-  have e2 : ω.1 ^ n = 1 := congrArg Subtype.val e
-  exact DFunLike.congr_fun e2 _
+theorem fin_expU {ω : HChar F} (h : IsOfFinOrder ω) (z : TR.Rinf F) : ω.1 (TR.infId F (TR.expU z)) = 1 :=
+  UpperTheory.Esk.HolomorphicVectorLemmas.fin_expU h z
 
 theorem scal {k : InfinitePlace F → ℕ} {c : Pl F → ℕ} {ω : HChar F} (hω : IsOfFinOrder ω) {φ : TR.Sm F 2}
     (hφ : IsHolV k c ω φ) (z : TR.Rinf F) (h : GA F 2) :
@@ -345,7 +323,6 @@ open scoped ContDiff
 namespace UpperTheory.Esk.ImaginaryUnitActionLemmas
 
 open UpperTheory.Esk
-
 
 open Classical in
 def Fx {I : Type} (f : X I → ℂ) (w : I → ℂ) : ℂ :=
@@ -539,17 +516,8 @@ theorem pow_char {ω : HChar F} (h : IsOfFinOrder ω) : ∃ n, 0 < n ∧ ∀ x, 
   have e2 : ω.1 ^ n = 1 := congrArg Subtype.val e
   exact ⟨n, hn, fun x => by rw [← MonoidHom.pow_apply, e2, MonoidHom.one_apply]⟩
 
-theorem exp_triv {ω : HChar F} (h : IsOfFinOrder ω) (z : TR.Rinf F) : ω.1 (TR.infId F (TR.expU z)) = 1 := by
-  obtain ⟨n, hn, e⟩ := isOfFinOrder_iff_pow_eq_one.1 h
-  have e1 : TR.expU z = TR.expU ((n : ℝ)⁻¹ • z) ^ n := by
-    refine Units.ext (funext fun i => ?_)
-    have : (n : ℝ) ≠ 0 := by positivity
-    simp only [Units.val_pow_eq_pow_val, Pi.pow_apply, TR.expU_val, ← Real.exp_nat_mul, Pi.smul_apply, smul_eq_mul]
-    congr 1
-    field_simp
-  rw [e1, map_pow, map_pow]
-  have e2 : ω.1 ^ n = 1 := congrArg Subtype.val e
-  exact DFunLike.congr_fun e2 _
+theorem exp_triv {ω : HChar F} (h : IsOfFinOrder ω) (z : TR.Rinf F) : ω.1 (TR.infId F (TR.expU z)) = 1 :=
+  UpperTheory.Esk.HolomorphicVectorLemmas.fin_expU h z
 
 def pU : (TR.Rinf F)ˣ ≃* (InfinitePlace F → ℝˣ) := MulEquiv.piUnits
 
@@ -559,7 +527,6 @@ theorem pU_symm_val (f : InfinitePlace F → ℝˣ) (w : InfinitePlace F) :
 
 omit [NumberField F] [IsTotallyReal F] in
 theorem pU_val (s : (TR.Rinf F)ˣ) (w : InfinitePlace F) : ((pU s w : ℝˣ) : ℝ) = (s : TR.Rinf F) w := rfl
-
 
 open Classical in
 def atV (v : InfinitePlace F) (x : ℝˣ) : (TR.Rinf F)ˣ := pU.symm (Pi.mulSingle v x : InfinitePlace F → ℝˣ)
@@ -1462,53 +1429,9 @@ open NumberField Neutral.B1 Formalism.L2.Host GlobalTheory.CuspRep UpperTheory.V
 
 namespace UpperTheory.Esk.CasimirEigenvalueLemmas
 
-theorem infGL_scalar {F : Type} [Field F] [NumberField F] [IsTotallyReal F] (u : (Rinf F)ˣ) :
-    infGL F 2 (GeneralLinearGroup.scalar (Fin 2) u) = GeneralLinearGroup.scalar (Fin 2) (infId F u) := by
-  have h : ∀ x, pInf F (sInf F x) = x := fun x => (infEq F).symm_apply_apply x
-  have h1 : pInf F (infId F u : Ideles F) = u := by
-    change pInf F (1 - sInf F 1 + sInf F _) = _
-    simp [h]
-  have h2 : pFin F (infId F u : Ideles F) = 1 := by
-    change (1 : Af F) - 0 + 0 = 1
-    simp
-  refine ga_ext ?_ ?_
-  · rw [TR.pInf_infGL]
-    ext i j
-    by_cases e : i = j <;> simp [e, h1]
-  · rw [TR.pFin_infGL]
-    ext i j
-    by_cases e : i = j <;> simp [e, h2]
-
-theorem fin_expU {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {ω : HChar F} (h : IsOfFinOrder ω)
-    (z : Rinf F) : ω.1 (infId F (expU z)) = 1 := by
-  obtain ⟨n, hn, e⟩ := isOfFinOrder_iff_pow_eq_one.1 h
-  have e1 : expU z = expU ((n : ℝ)⁻¹ • z) ^ n := by
-    refine Units.ext (funext fun i => ?_)
-    have : (n : ℝ) ≠ 0 := by positivity
-    simp only [Units.val_pow_eq_pow_val, Pi.pow_apply, expU_val, ← Real.exp_nat_mul, Pi.smul_apply, smul_eq_mul]
-    congr 1
-    field_simp
-  rw [e1, map_pow, map_pow]
-  have e2 : ω.1 ^ n = 1 := congrArg Subtype.val e
-  exact DFunLike.congr_fun e2 _
-
 theorem lie_scalar {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {k c} {ω : HChar F} (h : IsOfFinOrder ω)
-    {φ : Sm F 2} (hφ : UpperTheory.Esk.IsHolV k c ω φ) (z : Rinf F) : lie F 2 (toL (Matrix.scalar (Fin 2) z)) φ = 0 := by
-  refine Subtype.ext (funext fun g => ?_)
-  have h1 := hasDerivAt_curve φ g (fun t => GeneralLinearGroup.scalar (Fin 2) (expU (t • z)))
-    (toL (Matrix.scalar (Fin 2) z)) (by simp [TR.expU_zero]) (by
-      refine hasDerivAt_pi.2 fun i => hasDerivAt_pi.2 fun j => hasDerivAt_pi.2 fun v => ?_
-      by_cases e : i = j
-      · subst e
-        have := ((hasDerivAt_id (0 : ℝ)).mul_const (z v)).exp
-        simpa using this
-      · simpa [Matrix.diagonal_apply, e] using hasDerivAt_const (0 : ℝ) (0 : ℝ))
-  have h2 : (fun t : ℝ => φ.1 (g * infGL F 2 (GeneralLinearGroup.scalar (Fin 2) (expU (t • z))))) = fun _ => φ.1 g := by
-    funext t
-    rw [infGL_scalar, ← GeneralLinearGroup.scalar_commute, hφ.cent, fin_expU h]
-    simp
-  rw [h2] at h1
-  exact h1.unique (hasDerivAt_const _ _)
+    {φ : Sm F 2} (hφ : UpperTheory.Esk.IsHolV k c ω φ) (z : Rinf F) : lie F 2 (toL (Matrix.scalar (Fin 2) z)) φ = 0 :=
+  UpperTheory.Esk.HolomorphicVectorLemmas.lie_scalar h hφ z
 
 theorem casimir {V : Type} [AddCommGroup V] [Module ℂ V] (E : Fin 2 → Fin 2 → Module.End ℂ V)
     (hE : Formalism.REAL.GlRel E) (k : ℂ) (φ : V) (h0 : E 0 0 φ + E 1 1 φ = 0)

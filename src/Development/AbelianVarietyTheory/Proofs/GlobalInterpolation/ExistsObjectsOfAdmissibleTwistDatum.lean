@@ -1359,7 +1359,7 @@ theorem ObjCP.and_q0Pt {Q : Par → PtProp} (h : ObjCP Q) : ObjCP (fun κ => (Q 
   dsimp only at e2 p
   subst e1
   show GlobalTwistingFacts p.L
-  obtain ⟨hv, -, -, -, -, -, -, -, -, -, -, -, ⟨-, -, hle, -⟩, hlev⟩ := d5
+  obtain ⟨hv, -, -, -, -, -, -, -, -, -, -, ⟨-, -, hle, -⟩, hlev⟩ := d5
   have eq0 : q0Av p.D = q0 := (eq_of_from p e4 e2.host.2.2.2.2.2.2.1 hv.2.2.2.2.2.2.1).trans d0.symm
   have hX : (q0Av p.D : ℝ) < p.L.sc.X' := by
     rw [eq0]

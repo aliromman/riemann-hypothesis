@@ -727,7 +727,7 @@ theorem star_fam {eps : ℝ} (Fm : FamP eps) (K : Consts) (hK : K.Nonneg) (C31 C
   have hxx1 : Fm.x1 < x := by linarith
   have hP := Fm.params x hxx1 i
   have hS := Fm.sizes x hxx1 i
-  obtain ⟨A1, -, -, -, A5, -⟩ := hx2 x (by linarith) i
+  obtain ⟨A1, -, A5, -⟩ := hx2 x (by linarith) i
   have hx3' := hx3 x (by linarith)
   have hF := hx3'.2 (Fm.D x i) (Fm.L x i) (Fm.L_x x i hxx1) (Fm.L_eps x i) hS hP A5
   have hN := hx3'.1 (Fm.D x i) (Fm.L x i) (Fm.L_x x i hxx1) (Fm.L_eps x i) hS hP _

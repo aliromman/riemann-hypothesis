@@ -60,7 +60,7 @@ include hC P hPar hL
 open Classical in
 theorem sum_small (T : Finset ℕ) (hT : ∀ l ∈ T, l.Prime ∧ l ≠ 2 ∧ l ≠ 3 ∧ (l : ℝ) ≤ lStar L) :
     ∑ l ∈ T, Real.log l * (bbB L C + lenB L C l) ≤ 1000 * (C + 1) ^ 3 * D.R.f * D.R.m * L.sc.b * large₂ L ^ 2 := by
-  have h5 : ∀ l ∈ T, 5 ≤ l := fun l hl => ge_five (hT l hl).1 (hT l hl).2.1 (hT l hl).2.2.1
+  have h5 : ∀ l ∈ T, 5 ≤ l := fun l hl => Nat.Prime.five_le_of_ne_two_of_ne_three (hT l hl).1 (hT l hl).2.1 (hT l hl).2.2.1
   have hT1 : ∀ l ∈ T, 1 ≤ l ∧ (l : ℝ) ≤ lStar L := fun l hl => ⟨by have := h5 l hl; omega, (hT l hl).2.2.2⟩
   have hT2 : ∀ l ∈ T, 2 ≤ l ∧ (l : ℝ) ≤ lStar L := fun l hl => ⟨by have := h5 l hl; omega, (hT l hl).2.2.2⟩
   have hbb := sum_bb L hC P hPar hL T hT1
