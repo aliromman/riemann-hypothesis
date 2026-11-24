@@ -1,0 +1,132 @@
+{
+  "source_sandbox": "https://github.com/aliromman/riemann-hypothesis/tree/4366fc4a54fe18b21b3dcda79770f37c682ad2ba/ci/source-sandbox/results/45431323026/",
+  "verified_sources": {
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular": {
+      "parent": "08651606886f625d8bd0b4ee559d94f9d8e222beb962777a1defff31badff61a",
+      "candidate": "08651606886f625d8bd0b4ee559d94f9d8e222beb962777a1defff31badff61a"
+    },
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower": {
+      "parent": "a768e7e8759ab147b97a2b7d7088d136de9596b390db6b5a735699aa0b5029c8",
+      "candidate": "069277b98f07eca8ff4074ae0a81f39e79eb7a947e65726c9b30d87a946ce193"
+    },
+    "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters": {
+      "parent": "e1e9b2a0cdfa356ebbce7c18314d5a83273ad6dea18c991dd9ec09db9d8e6937",
+      "candidate": "d453baf5a27f27a0001da3d9425f3c985adc466035c4a72dbe1942a4a794ff02"
+    },
+    "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat": {
+      "parent": "345c180c387372089ca2ae461869e76752bddebff6e7ed97abf84bb8cba0704c",
+      "candidate": "d5ec7fe423b9d8eba168c857c657df98423afd7953157d75ba9adbb43c2d3150"
+    }
+  },
+  "two_exports": [
+    {
+      "name": "GlobalTheory.CompanionTheory.SW.Averaging.bijective_pair",
+      "module": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+      "built": 3,
+      "parent_export_bytes": 3149696,
+      "sha256": "31bf90c0ba09af45d2a9f9f99cc93265e87b6cd3824bb11016d34544ef565bf3",
+      "official_report": "977-QuotientMeasureTower-report.json",
+      "verified_candidate_facets": {
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular": {
+          ".olean": "8f3db2edfbe93955a687575b960408d934075cd3f70b5b498dce761c4de1c6c1",
+          ".ir.sig": "95dba4e3765e5aa629d468d8be862f76ea058a8a6140e2c3e89879ff043341f5",
+          ".ir": "b8bd034ec734dea96a8778e04529f35c2dcff80e040ed21f130a4f2772680e82"
+        },
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower": {
+          ".olean": "1f94310e4e1f28fe4bf620a314d30718eeaa770ca31cbe4d377d678b53bbcead",
+          ".ir.sig": "a784d850fbcbb7d0d3f08088cd6273500c550a8af4521e978591e29f966fc5c7",
+          ".ir": "ab0b9a0d7b8747fcdaf81686dea91576171e3c30183a74c786546434eda789e6"
+        },
+        "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat": {
+          ".olean": "2993474fc82d0e48bb30780d2100cb35e5aa7d97a5cb979a7e7f264c0798db0d",
+          ".ir.sig": "5911d24a61dc865811654bb530cfcbdd4a278d94b58dc6be32198a6f37d0f774",
+          ".ir": "df94ca25c11e220b9538f702e7fa4134fe31252c9b12e04ffed60215da1a575f"
+        }
+      }
+    },
+    {
+      "name": "Formalism.LatticeBaseChangeAlt.four_term_sum_bound_of_parameters",
+      "module": "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters",
+      "built": 1,
+      "parent_export_bytes": 50380642,
+      "sha256": "9bf232ca29179dce903c72e3121754f9e639887a77f3072e88ef1ce68638c35b",
+      "official_report": "977-FourTermSumBoundOfParameters-report.json",
+      "verified_candidate_facets": {
+        "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters": {
+          ".olean": "af5945c3a7311f30a7eca3a1561f88c6368463557a209b28a8631ba5f5fb0a86",
+          ".ir.sig": "38db0e48b096903f10dd459e078ad743cd4eccdd13a6b1ba4570ae899b603a57",
+          ".ir": "c0677dfda312527219e8fe061629c7c84ceca591cddd106615b0f96cd25cfe76"
+        }
+      }
+    }
+  ],
+  "sandbox_zip": {
+    "id": 14939720943,
+    "bytes": 19080,
+    "sha256": "f51aa7ae87fd8fc5d9482bb1f6d12cdf61eef6af42bc77a3e2973f1840da5d9e"
+  },
+  "ordinary_stock_measurement_head": "c0228c0ae22d9cbf3e5466760718fd19111058ac",
+  "ordinary_stock_measurement_merge": "19beb187eef5fd39b78be2d7bd81855b2b5a4327",
+  "current_source_head": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "current_merge": "177babf54b6c42736e5040c9fec8f5e2a00864ff",
+  "current_candidate_source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+  "different_sources_outside_all_checked_inputs": [
+    "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/QEqColPer.lean"
+  ],
+  "default_build_candidate_routes": {
+    "matching_input_fingerprint": {
+      "url": "https://rh-cache.taucetiproject.org/ci/inputs/f276c3697e76d58718a63111854d5d367c72aa3f481f95f5119dc84424757721.json",
+      "status": 404
+    },
+    "author_receipt": {
+      "url": "https://rh-cache.taucetiproject.org/ci/revisions/f6177155e8e440c0a831d4c15de4c74341de0a93.json",
+      "status": 404
+    },
+    "author_fragment_map": {
+      "url": "https://rh-cache.taucetiproject.org/rh-buildq/maps/f6177155e8e440c0a831d4c15de4c74341de0a93.jsonl",
+      "status": 404
+    },
+    "author_portable_revision": {
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/tc/leanprover--lean4---v4.37.0-rc1/f6177155e8e440c0a831d4c15de4c74341de0a93.jsonl",
+      "status": 404
+    },
+    "author_platform_revision": {
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/pt/x86_64-unknown-linux-gnu/tc/leanprover--lean4---v4.37.0-rc1/f6177155e8e440c0a831d4c15de4c74341de0a93.jsonl",
+      "status": 404
+    },
+    "merge_receipt": {
+      "url": "https://rh-cache.taucetiproject.org/ci/revisions/177babf54b6c42736e5040c9fec8f5e2a00864ff.json",
+      "status": 404
+    },
+    "merge_fragment_map": {
+      "url": "https://rh-cache.taucetiproject.org/rh-buildq/maps/177babf54b6c42736e5040c9fec8f5e2a00864ff.jsonl",
+      "status": 404
+    },
+    "merge_portable_revision": {
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/tc/leanprover--lean4---v4.37.0-rc1/177babf54b6c42736e5040c9fec8f5e2a00864ff.jsonl",
+      "status": 404
+    },
+    "merge_platform_revision": {
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/pt/x86_64-unknown-linux-gnu/tc/leanprover--lean4---v4.37.0-rc1/177babf54b6c42736e5040c9fec8f5e2a00864ff.jsonl",
+      "status": 404
+    }
+  },
+  "observed_utc": "2026-11-24T16:12:19.255135+00:00",
+  "unit_tests": {
+    "actual_runner_source": "c0228c0ae22d9cbf3e5466760718fd19111058ac",
+    "url": "https://github.com/aliromman/riemann-hypothesis/tree/fae64fb569cba9e83bcf85ea565168726e8f0876/ci/clump-diagnostics/results/45430700016/",
+    "zip_sha256": "0706a34540ebf3d1962400789eecb3d51f0ae99f898b671ca56bbf24c7afa0fa",
+    "complete_equal_script_and_native_test_input_trees": {
+      "scripts": "f9a67966df70a1fc51a339fbc56177e21050298a",
+      "tools/ci_native": "00f74fdb2124d83fab44c73b0f9f9cf2c4200701",
+      "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+      "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+      "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+      "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+      "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294"
+    },
+    "specific_source_outside_tests_and_cone": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/QEqColPer.lean",
+    "original_blob": "b2866071ef5aa52ddf561f10f3cf92ed4a34f369",
+    "new_blob": "b6f94924a42f4a8f4ff6488447ea528d62c94d0e"
+  }
+}
