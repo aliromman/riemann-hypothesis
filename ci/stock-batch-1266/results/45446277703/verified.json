@@ -1,0 +1,858 @@
+{
+  "run": 45446277703,
+  "workflow": "3aadb31f965c5b7c0e2cf704c789480b4c555cad",
+  "status": "success",
+  "url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45446277703",
+  "job_url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45446277703/job/138630809076",
+  "job_steps": {
+    "Set up job": "success",
+    "Check out the independent fork verifier": "success",
+    "Select the pinned public objects": "success",
+    "Check out immutable candidate sources": "success",
+    "Check out the authenticated community parent": "success",
+    "Verify the published Git trees and materialize the declared cone": "success",
+    "Install the pinned toolchain": "success",
+    "Exercise Comparator acceptance and rejection": "success",
+    "Restore the published parent archives": "success",
+    "Fetch the official Mathlib cache for the selected imports": "success",
+    "Build and compare the candidate": "success",
+    "Compare changed theorems with the upstream Comparator and three kernels": "success",
+    "Measure fresh parent and candidate compilations": "success",
+    "Time paired source-to-olean stock Lake builds": "success",
+    "Save the scope and verification output": "success",
+    "Post Check out the authenticated community parent": "success",
+    "Post Check out immutable candidate sources": "success",
+    "Post Check out the independent fork verifier": "success",
+    "Complete job": "success"
+  },
+  "artifact_id": 14946935799,
+  "container_sha256": "6d460c55a57c971b4babaf5a8ea04ddcdcb73f1c42c1c5bb1942ced715b7197c",
+  "public": {
+    "source_repository": "aliromman/riemann-hypothesis",
+    "source_ref": "refs/heads/ci/clump-scopes/batch-1266-source",
+    "source_head": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+    "parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "donor": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "parent_source_tree": "c9e0bade70ab9e778941a02e423609a4e6aa76e3",
+    "parent_module_manifest": "816164d26c3ad2b5bceaf1337ab7a172bbc10b1fa15c52ab8c04495436314c65",
+    "checked_commit": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+    "candidate_source_tree": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749",
+    "git_tree": "3b78e8aa2ef650e9b986e7b53a03b39fcc31f772",
+    "pins": {
+      "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+      "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+      "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d"
+    },
+    "mode": "public-fork-head",
+    "pull_number": 977,
+    "upstream_main_observed": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "pr_head": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+    "comparison_parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "source_mode": "public-fork-head",
+    "source_tree": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749",
+    "ci_head": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+    "workflow_head": "3aadb31f965c5b7c0e2cf704c789480b4c555cad",
+    "pull_request": "https://github.com/leanprover-community/riemann-hypothesis/pull/977"
+  },
+  "project_modules": 239,
+  "roots": 27,
+  "changed": 29,
+  "fresh": 36,
+  "changed_by_library": {
+    "CompanionTheory": 5,
+    "Development": 4,
+    "Formalism": 8,
+    "GroundTheory": 5,
+    "PositivityTheory": 2,
+    "ReciprocityTheory": 5
+  },
+  "expanded_parent_archive_bytes": 190694024,
+  "compressed_parent_bytes": 10852496,
+  "declarations": 7656,
+  "changed_module_declarations": 1852,
+  "raw_differences": {
+    ".olean.server": 33,
+    ".olean.private": 25
+  },
+  "required_raw_facets": "public .olean and both IR files, all five when a project module imports all/meta",
+  "different_warnings": 0,
+  "confirmed_fresh_builds": 36,
+  "replayed_roots": [
+    "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjOfIsConjGlFieldExtensionInclusion",
+    "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.LemmaGIdeal",
+    "GroundTheory.AutomorphicForms.DixmierMalliavin",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.KTFiniteDimensional"
+  ],
+  "downstream_cases": [
+    {
+      "library": "CompanionTheory",
+      "consumer": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuadraticLevelSetDensity",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.ArchimedeanGaussianFourier"
+      ]
+    },
+    {
+      "library": "CompanionTheory",
+      "consumer": "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa"
+      ]
+    },
+    {
+      "library": "Development",
+      "consumer": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoboundaryOfNormOneInSubalgebraStatement",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyLinearEquivOfPiFinPowFiniteStatement"
+      ]
+    },
+    {
+      "library": "Development",
+      "consumer": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjOfIsConjGlFieldExtensionInclusion",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyLinearEquivOfPiFinPowFiniteStatement"
+      ]
+    },
+    {
+      "library": "Formalism",
+      "consumer": "Formalism.CoboundaryTransfers.GammaStableTransfers.Transfer",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "Formalism.LagrangeIdealLifts.LiftLagrangeIdealInt"
+      ]
+    },
+    {
+      "library": "Formalism",
+      "consumer": "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.LemmaGIdeal",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "Formalism.LagrangeIdealLifts.LiftLagrangeIdealInt"
+      ]
+    },
+    {
+      "library": "GroundTheory",
+      "consumer": "GroundTheory.AutomorphicForms.DixmierMalliavinLine",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "GroundTheory.AutomorphicForms.DixmierMalliavinLineStage"
+      ]
+    },
+    {
+      "library": "GroundTheory",
+      "consumer": "GroundTheory.AutomorphicForms.DixmierMalliavin",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "GroundTheory.AutomorphicForms.DixmierMalliavinLine"
+      ]
+    },
+    {
+      "library": "ReciprocityTheory",
+      "consumer": "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.ValNorm",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "ReciprocityTheory.SemistableReduction.AlgAll"
+      ]
+    },
+    {
+      "library": "ReciprocityTheory",
+      "consumer": "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.KTFiniteDimensional",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "ReciprocityTheory.SemistableReduction.AlgAll"
+      ]
+    }
+  ],
+  "controls": {
+    "alternative-proof": {
+      "verdict": "accepted",
+      "statements": "success",
+      "axioms": "success",
+      "kernels": {
+        "nanoda": "success",
+        "Lean paranoid": "success",
+        "Lean default": "success"
+      }
+    },
+    "other-statement": {
+      "verdict": "failure",
+      "statements": "failure",
+      "axioms": "skipped",
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      }
+    },
+    "extra-axiom": {
+      "verdict": "failure",
+      "statements": "success",
+      "axioms": "failure",
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      }
+    }
+  },
+  "replacements": {},
+  "carried_inputs": {
+    "previous_workflow": "907cdb7d158ed2af3ab7579b5e2271be094eced7",
+    "previous_run": 45430568327,
+    "timing": [
+      {
+        "module": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularPairLiftToPrimePowerField",
+        "library": "Development",
+        "stratum": "small",
+        "members": 2,
+        "net": 10,
+        "code": 7,
+        "source_bytes": 11672,
+        "cone": 4
+      },
+      {
+        "module": "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable",
+        "library": "Development",
+        "stratum": "large",
+        "members": 27,
+        "net": 137,
+        "code": 83,
+        "source_bytes": 151741,
+        "cone": 4
+      },
+      {
+        "module": "Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco",
+        "library": "Formalism",
+        "stratum": "small",
+        "members": 2,
+        "net": 13,
+        "code": 10,
+        "source_bytes": 9101,
+        "cone": 1
+      },
+      {
+        "module": "Formalism.GradedWeylDivisibility.FinalC",
+        "library": "Formalism",
+        "stratum": "large",
+        "members": 19,
+        "net": 118,
+        "code": 80,
+        "source_bytes": 114377,
+        "cone": 35
+      },
+      {
+        "module": "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFiniteModuloGeneralEquation",
+        "library": "GroundTheory",
+        "stratum": "small",
+        "members": 2,
+        "net": 11,
+        "code": 7,
+        "source_bytes": 14702,
+        "cone": 6
+      },
+      {
+        "module": "GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblySympl",
+        "library": "GroundTheory",
+        "stratum": "large",
+        "members": 24,
+        "net": 101,
+        "code": 53,
+        "source_bytes": 111001,
+        "cone": 3
+      }
+    ],
+    "exports": [
+      {
+        "module": "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters",
+        "name": "Formalism.LatticeBaseChangeAlt.four_term_sum_bound_of_parameters",
+        "local": "four_term_sum_bound_of_parameters",
+        "returncode": 0,
+        "bytes": 50380642,
+        "seconds": 12.6,
+        "sha256": "9bf232ca29179dce903c72e3121754f9e639887a77f3072e88ef1ce68638c35b",
+        "theorem_proof_expr_index": 874946
+      }
+    ],
+    "integration_timing": false
+  },
+  "theorems": [
+    {
+      "module": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+      "theorem": "GlobalTheory.CompanionTheory.SW.Averaging.bijective_pair",
+      "status": "accepted",
+      "clump_members": 2,
+      "parent_source_sha256": "82729f890589c2685f0d6c183a6d1b1e431803c0d9cc23b982558b3d41eae1ae",
+      "candidate_source_sha256": "afaeae8c6f01de559c7470feddec81b970664605ea7f57491eb3710ed7f764ef",
+      "exports": {
+        "parent": {
+          "bytes": 3149696,
+          "sha256": "31bf90c0ba09af45d2a9f9f99cc93265e87b6cd3824bb11016d34544ef565bf3",
+          "theorem_proof_expr_index": 50594,
+          "elapsed_seconds": 1.018
+        },
+        "candidate": {
+          "bytes": 3149696,
+          "sha256": "31bf90c0ba09af45d2a9f9f99cc93265e87b6cd3824bb11016d34544ef565bf3",
+          "theorem_proof_expr_index": 50594,
+          "elapsed_seconds": 1.018
+        }
+      },
+      "changed_direct_project_imports": [
+        "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat"
+      ],
+      "comparator_seconds": 0.716,
+      "returncode": 0,
+      "judgement": "accepted",
+      "sandboxed": false,
+      "compare_statements": "success",
+      "check_axioms": "success",
+      "kernels": {
+        "Lean default": "success",
+        "Lean paranoid": "success",
+        "nanoda": "success"
+      }
+    }
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "timing_status": {
+    "individual": "complete",
+    "end_to_end": "complete"
+  },
+  "individual_timing": {
+    "samples": 72,
+    "measured": 60,
+    "pairs": 30,
+    "eligible_changed_roots": 20,
+    "declared_module_stats": {
+      "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa": {
+        "sample": {
+          "module": "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa",
+          "library": "CompanionTheory",
+          "stratum": "small",
+          "members": 2,
+          "net": 9,
+          "code": 5,
+          "source_bytes": 8012,
+          "cone": 21
+        },
+        "source_sha256": {
+          "parent": "52b15091f3e4dbb8701c1b7090a358b6472f03ff29b195b04ac33384f7a69e94",
+          "candidate": "1faca4af904f8b900db98ae8e339dfdbcac18e749558a45123fd73187955e9c1"
+        },
+        "cpu_seconds": {
+          "parent": 0.583915,
+          "candidate": 0.5807460000000004,
+          "change_percent": -0.5427159774966439,
+          "ranges": {
+            "parent": [
+              0.5810669999999999,
+              0.5843650000000001
+            ],
+            "candidate": [
+              0.5775689999999997,
+              0.5840849999999999
+            ]
+          },
+          "slower_pairs": [
+            3
+          ]
+        },
+        "elapsed_seconds": {
+          "parent": 0.5883828089999952,
+          "candidate": 0.5823653090000107,
+          "change_percent": -1.022718527451827,
+          "ranges": {
+            "parent": [
+              0.5845803580000393,
+              0.591680854999936
+            ],
+            "candidate": [
+              0.5801579760000095,
+              0.5849187769999844
+            ]
+          },
+          "slower_pairs": []
+        },
+        "number of imported modules": {
+          "parent": 12541,
+          "candidate": 12541
+        },
+        "number of imported bytes": {
+          "parent": 2246060624,
+          "candidate": 2246060624
+        },
+        "number of imported consts": {
+          "parent": 339154,
+          "candidate": 339154
+        }
+      },
+      "CompanionTheory.AutomorphicTheory.BesselWaveGrids.NqMovedExample": {
+        "sample": {
+          "module": "CompanionTheory.AutomorphicTheory.BesselWaveGrids.NqMovedExample",
+          "library": "CompanionTheory",
+          "stratum": "large",
+          "members": 7,
+          "net": 29,
+          "code": 15,
+          "source_bytes": 48482,
+          "cone": 12
+        },
+        "source_sha256": {
+          "parent": "43846600eeff95d384149338a6b36670bd6c03113136a36f67e4bf42bc834a39",
+          "candidate": "77a014439fdaea9d24b056ba78b8db63ce9213b328e5f8639ef74303083ebe71"
+        },
+        "cpu_seconds": {
+          "parent": 5.239661,
+          "candidate": 5.219294999999996,
+          "change_percent": -0.38868926825617045,
+          "ranges": {
+            "parent": [
+              5.187237999999999,
+              5.246897
+            ],
+            "candidate": [
+              5.184265999999999,
+              5.2356270000000045
+            ]
+          },
+          "slower_pairs": [
+            2
+          ]
+        },
+        "elapsed_seconds": {
+          "parent": 5.2336257549999345,
+          "candidate": 5.213528466000071,
+          "change_percent": -0.3840031737207039,
+          "ranges": {
+            "parent": [
+              5.180785534999927,
+              5.24660652099999
+            ],
+            "candidate": [
+              5.17893127800005,
+              5.220733154999948
+            ]
+          },
+          "slower_pairs": [
+            2
+          ]
+        },
+        "number of imported modules": {
+          "parent": 13650,
+          "candidate": 13650
+        },
+        "number of imported bytes": {
+          "parent": 2481112328,
+          "candidate": 2481112328
+        },
+        "number of imported consts": {
+          "parent": 397766,
+          "candidate": 397766
+        }
+      },
+      "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof": {
+        "sample": {
+          "module": "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof",
+          "library": "PositivityTheory",
+          "stratum": "small",
+          "members": 3,
+          "net": 22,
+          "code": 17,
+          "source_bytes": 21096,
+          "cone": 2
+        },
+        "source_sha256": {
+          "parent": "80b9f3787775d9796d9c4a0e8a6395990f480304ee8f1b8eb6f11e52bab85644",
+          "candidate": "00814aa2357c761ad0c263da3cd874ceeb6dda16693adcc3c8bf87d60ff417b5"
+        },
+        "cpu_seconds": {
+          "parent": 2.4266159999999983,
+          "candidate": 2.4072739999999886,
+          "change_percent": -0.797077081829578,
+          "ranges": {
+            "parent": [
+              2.405684999999992,
+              2.4422370000000013
+            ],
+            "candidate": [
+              2.376019000000001,
+              2.4421520000000045
+            ]
+          },
+          "slower_pairs": [
+            1
+          ]
+        },
+        "elapsed_seconds": {
+          "parent": 2.4201590590000706,
+          "candidate": 2.4080723829999897,
+          "change_percent": -0.49941659640646563,
+          "ranges": {
+            "parent": [
+              2.406805673000008,
+              2.4371104709999827
+            ],
+            "candidate": [
+              2.376477523999938,
+              2.434932850999985
+            ]
+          },
+          "slower_pairs": [
+            1,
+            4
+          ]
+        },
+        "number of imported modules": {
+          "parent": 12279,
+          "candidate": 12279
+        },
+        "number of imported bytes": {
+          "parent": 2184996936,
+          "candidate": 2184996936
+        },
+        "number of imported consts": {
+          "parent": 325262,
+          "candidate": 325262
+        }
+      },
+      "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.FinalTF": {
+        "sample": {
+          "module": "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.FinalTF",
+          "library": "PositivityTheory",
+          "stratum": "large",
+          "members": 19,
+          "net": 107,
+          "code": 69,
+          "source_bytes": 154326,
+          "cone": 35
+        },
+        "source_sha256": {
+          "parent": "60c7f77ec8721782644a86e9eb1d3eb1ba59e30f1a0208a9b0d5e20cfc6b3447",
+          "candidate": "775f40f321631eba256d476811759d1a9e980ee4bfcf4de212cd87c196f19a7e"
+        },
+        "cpu_seconds": {
+          "parent": 9.125549999999986,
+          "candidate": 9.080081999999987,
+          "change_percent": -0.4982494205828636,
+          "ranges": {
+            "parent": [
+              8.999903000000009,
+              9.157499000000001
+            ],
+            "candidate": [
+              8.809723999999981,
+              9.142044999999975
+            ]
+          },
+          "slower_pairs": [
+            2,
+            4
+          ]
+        },
+        "elapsed_seconds": {
+          "parent": 9.062171342999932,
+          "candidate": 9.029053686999987,
+          "change_percent": -0.36544945738116175,
+          "ranges": {
+            "parent": [
+              8.948638236999955,
+              9.100752981999904
+            ],
+            "candidate": [
+              8.752286457000082,
+              9.086492304999979
+            ]
+          },
+          "slower_pairs": [
+            2,
+            4
+          ]
+        },
+        "number of imported modules": {
+          "parent": 13015,
+          "candidate": 13015
+        },
+        "number of imported bytes": {
+          "parent": 2389754792,
+          "candidate": 2389754792
+        },
+        "number of imported consts": {
+          "parent": 379111,
+          "candidate": 379111
+        }
+      },
+      "ReciprocityTheory.DualLattices.QExpansionMonoWCoeffZero": {
+        "sample": {
+          "module": "ReciprocityTheory.DualLattices.QExpansionMonoWCoeffZero",
+          "library": "ReciprocityTheory",
+          "stratum": "small",
+          "members": 2,
+          "net": 9,
+          "code": 5,
+          "source_bytes": 12446,
+          "cone": 1
+        },
+        "source_sha256": {
+          "parent": "cd4a251f2def64bb59f299969142846e09db4a17e094051e043722e49d95f43f",
+          "candidate": "70a7b747fd6a66358cfdb54b98e5d02f9f4a702fefb8a6a07d9a467c890e5f97"
+        },
+        "cpu_seconds": {
+          "parent": 1.6157890000000137,
+          "candidate": 1.6086139999999993,
+          "change_percent": -0.4440555047728556,
+          "ranges": {
+            "parent": [
+              1.6033760000000061,
+              1.6170870000000104
+            ],
+            "candidate": [
+              1.6048910000000145,
+              1.6162039999999962
+            ]
+          },
+          "slower_pairs": [
+            1,
+            5
+          ]
+        },
+        "elapsed_seconds": {
+          "parent": 1.6061778980000554,
+          "candidate": 1.6041712569999618,
+          "change_percent": -0.12493267418212106,
+          "ranges": {
+            "parent": [
+              1.6011463689999346,
+              1.6131766309999875
+            ],
+            "candidate": [
+              1.599080640000011,
+              1.6140024740000172
+            ]
+          },
+          "slower_pairs": [
+            1,
+            5
+          ]
+        },
+        "number of imported modules": {
+          "parent": 12865,
+          "candidate": 12865
+        },
+        "number of imported bytes": {
+          "parent": 2306635440,
+          "candidate": 2306635440
+        },
+        "number of imported consts": {
+          "parent": 359282,
+          "candidate": 359282
+        }
+      },
+      "ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality": {
+        "sample": {
+          "module": "ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality",
+          "library": "ReciprocityTheory",
+          "stratum": "large",
+          "members": 17,
+          "net": 85,
+          "code": 51,
+          "source_bytes": 125249,
+          "cone": 20
+        },
+        "source_sha256": {
+          "parent": "2ede43ba8d6ccc049e0764f7871e8d89e3e6969f0294b9522b2b85c11effb39d",
+          "candidate": "82fca73afc8c1bee46b86183753ebb77c6355c7965ef7d2ede0f275f4a94983c"
+        },
+        "cpu_seconds": {
+          "parent": 8.04172700000003,
+          "candidate": 8.106908000000015,
+          "change_percent": 0.8105348515310862,
+          "ranges": {
+            "parent": [
+              7.913141999999992,
+              8.273036999999995
+            ],
+            "candidate": [
+              7.891313000000023,
+              8.224994
+            ]
+          },
+          "slower_pairs": [
+            5
+          ]
+        },
+        "elapsed_seconds": {
+          "parent": 7.99341509899989,
+          "candidate": 8.061026812000023,
+          "change_percent": 0.8458426362543348,
+          "ranges": {
+            "parent": [
+              7.8679593990000285,
+              8.224720445000003
+            ],
+            "candidate": [
+              7.847990856000024,
+              8.181082113999992
+            ]
+          },
+          "slower_pairs": [
+            5
+          ]
+        },
+        "number of imported modules": {
+          "parent": 14484,
+          "candidate": 14484
+        },
+        "number of imported bytes": {
+          "parent": 2477165952,
+          "candidate": 2477165952
+        },
+        "number of imported consts": {
+          "parent": 401415,
+          "candidate": 401415
+        }
+      }
+    },
+    "totals": {
+      "cpu_seconds": {
+        "parent_sum_medians": 27.03325800000003,
+        "candidate_sum_medians": 27.002918999999984,
+        "change_percent": -0.11222842618542339,
+        "slower_modules": [
+          "ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality"
+        ]
+      },
+      "elapsed_seconds": {
+        "parent_sum_medians": 26.903931962999877,
+        "candidate_sum_medians": 26.898217914000043,
+        "change_percent": -0.021238713388416208,
+        "slower_modules": [
+          "ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality"
+        ]
+      }
+    },
+    "paired_observations": {
+      "elapsed_seconds": {
+        "round_total_percent": {
+          "1": -0.44495903217967037,
+          "2": -0.22459177430713684,
+          "3": -0.5921671901563785,
+          "4": -0.013694775596895248,
+          "5": -0.37472078514370066
+        },
+        "comparison_by_first_side": {
+          "parent": {
+            "pairs": 15,
+            "median_percent": -0.5046285040439025,
+            "slower": 2
+          },
+          "candidate": {
+            "pairs": 15,
+            "median_percent": -0.3180219448599031,
+            "slower": 6
+          }
+        },
+        "total_slower_pairs": 8,
+        "total_pairs": 30,
+        "overlapping_per_source_ranges": 6
+      },
+      "cpu_seconds": {
+        "round_total_percent": {
+          "1": -0.4496032067519029,
+          "2": -0.32866343768842565,
+          "3": -0.6327029485606483,
+          "4": -0.06736835649274742,
+          "5": -0.3165891069139337
+        },
+        "comparison_by_first_side": {
+          "parent": {
+            "pairs": 15,
+            "median_percent": -0.38868926825617045,
+            "slower": 1
+          },
+          "candidate": {
+            "pairs": 15,
+            "median_percent": -0.18930691297216473,
+            "slower": 7
+          }
+        },
+        "total_slower_pairs": 8,
+        "total_pairs": 30,
+        "overlapping_per_source_ranges": 6
+      }
+    },
+    "runner_image": "20261116.133.1",
+    "system": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39"
+  },
+  "end_to_end_timing": {
+    "samples": 12,
+    "measured": 10,
+    "pairs": 5,
+    "status": "complete",
+    "method": "Stock lake --no-cache build of the entire fixed project cone. Each side starts with no project outputs and the same authenticated pinned package cache. One warm-up pair and five measured pairs alternate order; each pair compiles and checks the complete set. Timers cover Lake scheduling and compilation. Project source staging and post-run declaration and byte comparisons occur outside the timer.",
+    "roots": [
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+      "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters"
+    ],
+    "modules": [
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular",
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+      "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters",
+      "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat"
+    ],
+    "changed_modules": [
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+      "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters",
+      "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat"
+    ],
+    "cpu_definition": "child user plus system seconds",
+    "versions": {
+      "lake": "Lake version 5.0.0-src+0b77e12 (Lean version 4.37.0-rc1)",
+      "lean": "Lean (version 4.37.0-rc1, x86_64-unknown-linux-gnu, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)"
+    },
+    "system": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+    "metrics": {
+      "elapsed_seconds": {
+        "parent_median": 11.532765325000014,
+        "candidate_median": 11.536760887000014,
+        "change_percent": 0.03464530741241756,
+        "parent_range": [
+          11.473319901000082,
+          11.59827438900004
+        ],
+        "candidate_range": [
+          11.384397514000057,
+          11.646153733999995
+        ],
+        "slower_pairs": [
+          2,
+          4
+        ]
+      },
+      "cpu_seconds": {
+        "parent_median": 12.854720000000006,
+        "candidate_median": 12.807132000000008,
+        "change_percent": -0.37019865076795,
+        "parent_range": [
+          12.793703,
+          12.913690000000003
+        ],
+        "candidate_range": [
+          12.685340000000004,
+          12.947451000000001
+        ],
+        "slower_pairs": [
+          2,
+          4
+        ]
+      }
+    }
+  }
+}
