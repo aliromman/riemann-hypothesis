@@ -2,12 +2,17 @@
   "base": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca",
   "previous_parent": "cb4dc6e23a6187db392c96664295415c55b6b01e",
   "previous": "afa44208210943a202ad969173b6317d06c37420",
-  "head": "70e09b0994fce225e678b4808941de89c27a763b",
-  "tree": "9cf3968219e523756aa290309101d5b97d16d811",
+  "head": "f3e19bf8371ab5dd383b81e008ec14c4b0331811",
+  "tree": "1ebfa559bc258961ef0b7516a43f2656c6f115a5",
   "src": "445477315d15f0c5eaea8c076b18063ebd7a17a6",
   "old_paths": 11579,
   "paths": 11579,
+  "changed_owners": 517,
   "new": [],
   "removed": [],
-  "changed_owners": 517
+  "integration_head": "70e09b0994fce225e678b4808941de89c27a763b",
+  "tool_refinement": [
+    "scripts/clump.py",
+    "scripts/tests/test_clump_scopes.py"
+  ]
 }
