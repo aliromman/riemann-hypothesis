@@ -1,0 +1,209 @@
+{
+  "run": 45446269669,
+  "workflow": "bbe6a0c7c89aabdeecfda95e151ecf9f8584d6fd",
+  "status": "success",
+  "url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45446269669",
+  "job_url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45446269669/job/138630781381",
+  "job_steps": {
+    "Set up job": "success",
+    "Check out the independent fork verifier": "success",
+    "Select the pinned public objects": "success",
+    "Check out immutable candidate sources": "success",
+    "Check out the authenticated community parent": "success",
+    "Verify the published Git trees and materialize the declared cone": "success",
+    "Install the pinned toolchain": "success",
+    "Exercise Comparator acceptance and rejection": "success",
+    "Restore the published parent archives": "success",
+    "Fetch the official Mathlib cache for the selected imports": "success",
+    "Build and compare the candidate": "success",
+    "Save the scope and verification output": "success",
+    "Post Check out the authenticated community parent": "success",
+    "Post Check out immutable candidate sources": "success",
+    "Post Check out the independent fork verifier": "success",
+    "Complete job": "success"
+  },
+  "artifact_id": 14946690385,
+  "container_sha256": "b551dd1b2d9cde728f972a83825bf1b8c0f64db349de5d43a1c57f7e0c993eab",
+  "public": {
+    "source_repository": "aliromman/riemann-hypothesis",
+    "source_ref": "refs/heads/ci/import-pruning/batch-1266-source",
+    "source_head": "e0a0acde813bd368786947b98704ee6814656a15",
+    "parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "donor": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "parent_source_tree": "c9e0bade70ab9e778941a02e423609a4e6aa76e3",
+    "parent_module_manifest": "816164d26c3ad2b5bceaf1337ab7a172bbc10b1fa15c52ab8c04495436314c65",
+    "checked_commit": "e0a0acde813bd368786947b98704ee6814656a15",
+    "candidate_source_tree": "1a18c4e2e08b6b8ad61020378dec54de6c5f8e5b",
+    "git_tree": "700b85bcad74ab8380ff3fdf2e9cc862521b499b",
+    "pins": {
+      "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+      "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+      "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d"
+    },
+    "mode": "public-fork-head",
+    "pull_number": 879,
+    "facet_policy": "complete-parent-payload-exact-private-import-header-v2",
+    "preceding_raw_comparison_run": 45368083272,
+    "upstream_main_observed": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "pr_head": "e0a0acde813bd368786947b98704ee6814656a15",
+    "comparison_parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "source_mode": "public-fork-head",
+    "source_tree": "1a18c4e2e08b6b8ad61020378dec54de6c5f8e5b",
+    "ci_head": "e0a0acde813bd368786947b98704ee6814656a15",
+    "workflow_head": "bbe6a0c7c89aabdeecfda95e151ecf9f8584d6fd",
+    "pull_request": "https://github.com/leanprover-community/riemann-hypothesis/pull/879"
+  },
+  "project_modules": 140,
+  "roots": 72,
+  "changed": 95,
+  "fresh": 97,
+  "changed_by_library": {
+    "Development": 95
+  },
+  "expanded_parent_archive_bytes": 160894878,
+  "compressed_parent_bytes": 9348602,
+  "declarations": 9540,
+  "changed_module_declarations": 7555,
+  "raw_differences": {
+    ".olean": 95,
+    ".olean.server": 99,
+    ".olean.private": 99,
+    ".ir": 95
+  },
+  "required_raw_facets": "IR signature unchanged throughout; exact whole projected .olean, .ir.sig and .ir on edited headers, exact whole original .olean and both IR parts elsewhere, all five when a project module imports all/meta",
+  "different_warnings": 0,
+  "all_modules_raw_bytes": {
+    ".olean.server": {
+      "parent": 1254336,
+      "candidate": 1255432
+    },
+    ".olean.private": {
+      "parent": 90727992,
+      "candidate": 90748792
+    }
+  },
+  "projected_facets": {
+    "edited": 95,
+    "full_projected_outputs": 285,
+    "byte_counts": {
+      ".olean": {
+        "parent": 42526208,
+        "candidate": 42032384
+      },
+      ".olean.server": {
+        "parent": 951864,
+        "candidate": 952848
+      },
+      ".olean.private": {
+        "parent": 73100464,
+        "candidate": 73121264
+      },
+      ".ir.sig": {
+        "parent": 23560,
+        "candidate": 23560
+      },
+      ".ir": {
+        "parent": 2486408,
+        "candidate": 1982960
+      }
+    },
+    "signature_and_full_header_kinds": {
+      "empty,source": 95
+    },
+    "previous_raw_comparison": 45368083272,
+    "policy": "complete-parent-payload-exact-private-import-header-v2"
+  },
+  "confirmed_fresh_builds": 99,
+  "replayed_roots": [
+    "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+    "Development.AbelianVarietyTheory.Definitions.Divisors.FderivFnCongr",
+    "Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff"
+  ],
+  "downstream_cases": [],
+  "controls": {
+    "alternative-proof": {
+      "verdict": "accepted",
+      "statements": "success",
+      "axioms": "success",
+      "kernels": {
+        "nanoda": "success",
+        "Lean paranoid": "success",
+        "Lean default": "success"
+      }
+    },
+    "other-statement": {
+      "verdict": "failure",
+      "statements": "failure",
+      "axioms": "skipped",
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      }
+    },
+    "extra-axiom": {
+      "verdict": "failure",
+      "statements": "success",
+      "axioms": "failure",
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      }
+    }
+  },
+  "replacements": {},
+  "carried_inputs": {
+    "previous_workflow": "f3aae0655526a12e1fa18a8e8c3a4ac29efc3f78",
+    "previous_run": 45431197871,
+    "timing": [
+      {
+        "module": "Development.AbelianVarietyTheory.Definitions.Divisors.IotaScalarOne"
+      },
+      {
+        "module": "Development.AbelianVarietyTheory.Definitions.Divisors.LogAbsVpOfNormalised"
+      },
+      {
+        "module": "Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff"
+      },
+      {
+        "module": "Development.AbelianVarietyTheory.Definitions.Divisors.DlogRatioVolumeFormNeZero"
+      }
+    ],
+    "exports": [
+      {
+        "module": "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+        "name": "GlobalTheory.CatCoh.commAlgFunctorCoboundaryZero_mem_cocyclesOne",
+        "local": "commAlgFunctorCoboundaryZero_mem_cocyclesOne",
+        "sha256": "00615d0ad579cd5a3309866b1d7e5861bfa4d6b206bf92d861a0d9b542eee332",
+        "bytes": 4888069
+      },
+      {
+        "module": "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange",
+        "name": "GlobalTheory.TopForm.isBaseChange_exteriorPower",
+        "local": "isBaseChange_exteriorPower",
+        "sha256": "2dcae760dcc362b23a2aec4c37f91947c52936d0274a4d81e8d65c82812ae24e",
+        "bytes": 52581161
+      }
+    ],
+    "integration_timing": true
+  },
+  "theorems": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "timing_status": {
+    "individual": "prior_inputs_identical",
+    "end_to_end": "prior_inputs_identical"
+  },
+  "individual_timing": {
+    "status": "prior_inputs_identical",
+    "source_run": 45431197871
+  },
+  "end_to_end_timing": {
+    "status": "prior_inputs_identical",
+    "source_run": 45431197871
+  }
+}
