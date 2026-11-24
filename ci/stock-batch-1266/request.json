@@ -1,0 +1,19 @@
+{
+  "source_repository": "aliromman/riemann-hypothesis",
+  "source_ref": "refs/heads/ci/clump-scopes/batch-1266-source",
+  "source_head": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+  "parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "donor": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "parent_source_tree": "c9e0bade70ab9e778941a02e423609a4e6aa76e3",
+  "parent_module_manifest": "816164d26c3ad2b5bceaf1337ab7a172bbc10b1fa15c52ab8c04495436314c65",
+  "checked_commit": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+  "candidate_source_tree": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749",
+  "git_tree": "3b78e8aa2ef650e9b986e7b53a03b39fcc31f772",
+  "pins": {
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d"
+  },
+  "mode": "public-fork-head",
+  "pull_number": 977
+}

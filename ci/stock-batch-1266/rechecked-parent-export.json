@@ -1,0 +1,35 @@
+{
+  "module": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+  "name": "GlobalTheory.CompanionTheory.SW.Averaging.bijective_pair",
+  "source": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "source_sha256": "82729f890589c2685f0d6c183a6d1b1e431803c0d9cc23b982558b3d41eae1ae",
+  "export": {
+    "bytes": 3149696,
+    "sha256": "31bf90c0ba09af45d2a9f9f99cc93265e87b6cd3824bb11016d34544ef565bf3",
+    "theorem_proof_expr_index": 50594
+  },
+  "previous": {
+    "bytes": 3149696,
+    "sha256": "31bf90c0ba09af45d2a9f9f99cc93265e87b6cd3824bb11016d34544ef565bf3"
+  },
+  "verified_closure": {
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular": [
+      "13b9297b2f91f32f",
+      "5828484b4a7b64c7.ltar",
+      "a0551fd3968402147da41a2b29d0e80e648957af15b38637323339161c14279c"
+    ],
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower": [
+      "d58efc522c66888d",
+      "5229528e6faca6bc.ltar",
+      "7dee327ed44b98fc2ee679c841a083966596dde7367847e8b1e7a1335d55893e"
+    ],
+    "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat": [
+      "0ecf5861284c1699",
+      "6f57aab457b741c4.ltar",
+      "8f8c152a3b80521d49f3ea08d38738a7da2ea3b02d13a643a88f3ca3dc99df29"
+    ]
+  },
+  "archive": "5229528e6faca6bc.ltar",
+  "archive_sha256": "7dee327ed44b98fc2ee679c841a083966596dde7367847e8b1e7a1335d55893e",
+  "input_key": "d58efc522c66888d"
+}
