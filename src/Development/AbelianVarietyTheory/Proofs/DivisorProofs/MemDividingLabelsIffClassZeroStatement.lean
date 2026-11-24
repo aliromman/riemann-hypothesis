@@ -17,6 +17,28 @@ import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ThetaLevelPullbackId
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.AllUniformizationLawsHold
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.QkToAkBaseChange
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.UniformisationEndomorphismsToCompleteDvr
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -45,6 +67,7 @@ import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.Uniformisati
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ValueAtOrigin
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.PsiCoordExistsUniqueUpToUnitLocal
 import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Tactic.Basify
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorsionTranslateOfClassZeroDividing, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorsionTranslateOfClassZeroDividingStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsThetaConstantNeZeroUniformisedMemberStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsThetaConstantDvdPowOverDvr, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsThetaConstantDvdPowOverDvrStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantValuationLeCommonBoundMulMonomial, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantValuationLeCommonBoundMulMonomialStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaMemberDividingLabelClassZero, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaMemberDividingLabelClassZeroStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemDividingLabelsIffClassZero, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemDividingLabelsIffClassZeroStatement

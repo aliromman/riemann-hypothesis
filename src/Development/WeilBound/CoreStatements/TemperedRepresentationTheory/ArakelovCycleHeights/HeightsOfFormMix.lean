@@ -29,6 +29,31 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.Ser
 public import Development.AbelianVarietyTheory.PublishedTheorems.RelativeAmpleness.RelAmpleAndKTrivIff
 public import Development.WeilBound.CoreStatements.AbelianHeightsDuality.ArakelovSingularities.IsClosedImmersionLift
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArithHeightsAndFormsOfIntersectionAndInductive
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -50,8 +75,10 @@ import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjFsBasisOfUnitary
 import Mathlib.Algebra.Ring.IsFormallyReal
 import Mathlib.Analysis.InnerProductSpace.Calculus
+import Mathlib.Tactic.Basify
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ResidueDegreeOfIsOpenImmersion
 import Development.WeilBound.CoreStatements.AbelianHeightsDuality.ArakelovSingularities.TopologicalKrullDimOfPolyCovered
+import Mathlib.Tactic.Polynomial.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ArFormExistsOfInt, Development.AutomorphicSpectrum.Proofs.MetricProofs.ArchIntToZEq, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ArMixOfBaseInt, Development.AutomorphicSpectrum.Proofs.MetricProofs.ToZPullIsometric, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.HeightProjectionOfInt, Development.WeilBound.CoreStatements.AbelianHeightsDuality.ArakelovSingularities.Bridge, Development.WeilBound.CoreStatements.AbelianHeightsDuality.ArakelovSingularities.ExistsTwistMap, Development.WeilBound.CoreStatements.AbelianHeightsDuality.ArakelovSingularities.ExtLBAmb, Development.WeilBound.CoreStatements.AbelianHeightsDuality.ArakelovSingularities.MetricConj, Development.WeilBound.CoreStatements.AbelianHeightsDuality.ArakelovSingularities.MetricLoc, Development.WeilBound.CoreStatements.AbelianHeightsDuality.ArakelovSingularities.MetricPart, Development.WeilBound.CoreStatements.AbelianHeightsDuality.ArakelovSingularities.MetricGlue, Development.WeilBound.CoreStatements.TemperedRepresentationTheory.ArakelovCycleHeights.ExistsMetricExtB, Development.WeilBound.CoreStatements.TemperedRepresentationTheory.ArakelovCycleHeights.HeightsOfFormMix
