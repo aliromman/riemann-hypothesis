@@ -1,0 +1,109 @@
+{
+  "actual_compiler_facets": {
+    ".ir": {
+      "byte_identical": true,
+      "candidate_bytes": 7704,
+      "candidate_sha256": "e09c68e5f6c5ad5537b9d5007b52a3198fb3c0e888ae5801ca8287252870e373",
+      "official_sha256": "e09c68e5f6c5ad5537b9d5007b52a3198fb3c0e888ae5801ca8287252870e373"
+    },
+    ".ir.sig": {
+      "byte_identical": true,
+      "candidate_bytes": 248,
+      "candidate_sha256": "779598cfda7a3d8328963de46628bc96c785c48b4dceb2cd59af63c85ee8a47f",
+      "official_sha256": "779598cfda7a3d8328963de46628bc96c785c48b4dceb2cd59af63c85ee8a47f"
+    },
+    ".olean": {
+      "byte_identical": true,
+      "candidate_bytes": 10816,
+      "candidate_sha256": "a2816fa85156ebb38ddb00e6697fe2c2cc26f2aa0d333a6f6613e37af0266418",
+      "official_sha256": "a2816fa85156ebb38ddb00e6697fe2c2cc26f2aa0d333a6f6613e37af0266418"
+    },
+    ".olean.private": {
+      "byte_identical": true,
+      "candidate_bytes": 8864,
+      "candidate_sha256": "03cbbe139445990ff63547fb4f8319f1595e4bd261242bc3089a835d89ba7573",
+      "official_sha256": "03cbbe139445990ff63547fb4f8319f1595e4bd261242bc3089a835d89ba7573"
+    },
+    ".olean.server": {
+      "byte_identical": true,
+      "candidate_bytes": 1536,
+      "candidate_sha256": "7a28837ac5708315e89045acbed3d82320d5175c5e528e712b46958c4293897d",
+      "official_sha256": "7a28837ac5708315e89045acbed3d82320d5175c5e528e712b46958c4293897d"
+    }
+  },
+  "artifact": 14954732433,
+  "effective_public_inputs": "0c07002a72f8ec714838e7317eaa8cb0627f4e79905e7656d41b18fc06e3b26d",
+  "github_run": 45462683245,
+  "head": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+  "independent_direct_provider_audit": {
+    "Main_setup_sha256": "65885ba717a5608966475c26b2df136c0eed1620f7adff8e2ef290d8f3e8591c",
+    "head": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+    "providers": {
+      "Development.AutomorphicArithmetic.CharacterBoxes.ClaimStrip": {
+        "complete_declaration_names": 5,
+        "consumed_by_Main": true,
+        "effective_project_inputs": 2,
+        "five_raw_outputs_equal": true,
+        "normalized_warnings": 0,
+        "official_ltar_sha256": "74ecdac298d7da00cea54549f4c0f7d391b075738c7e26537ddd5164f4562685",
+        "verified_transitive_inputs_sha256": "534b1ec2c38386aa6a82165ea21beb74a5d086cee57fea89f453c019f4c2f5a3",
+        "visible_selected": 0
+      },
+      "Development.AutomorphicArithmetic.CharacterBoxes.MainConclusion": {
+        "complete_declaration_names": 53,
+        "consumed_by_Main": true,
+        "effective_project_inputs": 59020,
+        "five_raw_outputs_equal": true,
+        "normalized_warnings": 57,
+        "official_ltar_sha256": "97d6e4f9212b1366760dd2a8b6e48b499a9be6da9e4279b562a4fd86da8f20b2",
+        "verified_transitive_inputs_sha256": "2af6fd1dc479c6e394705384b4c5d85005cfa0bb8fc6502d53febdb774aea0f7",
+        "visible_selected": 11411
+      }
+    },
+    "root_archive_sha256": "9732a01e861657af7ae0474317fd9970edd7c261dede7f3742dcf605ff660875",
+    "total_binary_outputs": 10
+  },
+  "independent_macos_rebuild": {
+    "five_facets_match_actual_linux_bytes": true,
+    "macos_report_sha256": "4299bef3fb670bf6c807ef6547f79c0bd05d8bc6c09d2f3c08c79c91d92c9b5e",
+    "native_input_sha256": "5af93aaabcc7240683e6f840e41da451bfcf12164c3a71aece9b651e6ea2a93e",
+    "provider_facets_match_actual_linux_bytes": 10,
+    "source_head": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+    "visible_project_inputs": 59022
+  },
+  "individual_candidate_images": "393fa800e282617127c0882cc510323807fba758d823c9aa461eb0b6cab662b2",
+  "kernel": {
+    "candidateNames": 5,
+    "different": 0,
+    "examples": [],
+    "kernelImage": true,
+    "parentNames": 5,
+    "proofChanges": 0,
+    "publicImage": true,
+    "publicImports": true
+  },
+  "local_replay": {
+    "actual_provider_inputs": [
+      "Development.AutomorphicArithmetic.CharacterBoxes.ClaimStrip",
+      "Development.AutomorphicArithmetic.CharacterBoxes.MainConclusion"
+    ],
+    "edited_module_inputs": 11411,
+    "integrated_project_inputs_checked": 59022,
+    "log_sha256": "44fb4f8873e3305b52856e823ba53c7264d0dc3dc11027b75b154b6b19573ddc",
+    "targets": [
+      "riemannHypothesis",
+      "riemannZeta_eq_zero_re",
+      "LFunction_ne_zero_of_half_lt_re",
+      "LFunction_eq_zero_re",
+      "LFunction_eq_zero_re_of_isPrimitive"
+    ]
+  },
+  "native_bytes_rechecked_locally": 29168,
+  "official_receipt_sha256": "2e6d39e46476916647822d375aa8ee2914c25b3204c2470930c98336b30d7655",
+  "operational_helper_files": 53,
+  "original_zip_sha256": "9732a01e861657af7ae0474317fd9970edd7c261dede7f3742dcf605ff660875",
+  "parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "pr": 977,
+  "public_reviewer_commands_pass": true,
+  "reviewer_commands_sha256": "43630226cd07892f877ea8d537726c9af8705b9d7b6d2cf1772fd84493adefe2"
+}
