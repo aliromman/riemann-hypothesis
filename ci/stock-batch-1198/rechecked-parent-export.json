@@ -1,0 +1,18 @@
+{
+  "module": "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+  "name": "GlobalTheory.CatCoh.commAlgFunctorCoboundaryZero_mem_cocyclesOne",
+  "source": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "source_sha256": "14370c67b950b186f54a74f6200bbb48bcb849664f4006de37158e90e0addf04",
+  "input_key": "d781764436ef023f",
+  "archive": "209dde247991b46d.ltar",
+  "archive_sha256": "56a4c8ddc5d7fea8d3e8281a04cbd4fb6d28d884890b65bb78d14dfb529e1958",
+  "export": {
+    "bytes": 4888069,
+    "sha256": "00615d0ad579cd5a3309866b1d7e5861bfa4d6b206bf92d861a0d9b542eee332",
+    "theorem_proof_expr_index": 83803
+  },
+  "old": {
+    "bytes": 4888069,
+    "sha256": "00615d0ad579cd5a3309866b1d7e5861bfa4d6b206bf92d861a0d9b542eee332"
+  }
+}
