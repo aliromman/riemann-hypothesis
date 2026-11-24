@@ -1,0 +1,122 @@
+name: Certify structural clump source changes
+on:
+  push:
+    branches: [ci/import-pruning/screen]
+    paths: ['ci/structural-screen/dispatch.json']
+permissions:
+  contents: read
+  actions: read
+env:
+  RUST_MIN_STACK: '33554432'
+  LEAN_ABORT_ON_PANIC: '1'
+  LEAN_NUM_THREADS: '1'
+  MATHLIB_CACHE_GET_URL: https://cache.mathlib.org/mathlib4
+  PARENT_CACHE: rh-screen-v4-all-18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a
+  MATH_CACHE: rh-screen-math-v1-linux-x64-31ce06eaadf4a200c0e1407c5f10953cf606b8f8
+
+jobs:
+  prepare:
+    if: github.repository == 'aliromman/riemann-hypothesis' && github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    outputs:
+      groups: ${{ steps.selection.outputs.groups }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout: ci/structural-screen
+      - id: selection
+        name: Bind the complete source request to the current public parent
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 ci/structural-screen/groups_for_run.py
+
+  check:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix:
+        group: ${{ fromJSON(needs.prepare.outputs.groups) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 345
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: harness
+          persist-credentials: false
+          sparse-checkout: |
+            ci/structural-screen
+            ci/current-recheck
+            ci/import-screen
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: 343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf
+          path: parent
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /lakefile.toml
+            /lake-manifest.json
+            /lean-toolchain
+      - name: Restore authenticated project archives
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-screen-cache
+          key: ${{ env.PARENT_CACHE }}
+          fail-on-cache-miss: true
+      - name: Install the project compiler
+        working-directory: parent
+        run: bash ../harness/ci/import-screen/install-lean.sh
+      - name: Restore pinned Mathlib downloads
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-mathlib-cache
+          key: ${{ env.MATH_CACHE }}
+      - name: Prepare Mathlib and the complete declaration comparer
+        working-directory: parent
+        run: |
+          MATHLIB_CACHE_DIR="$RUNNER_TEMP/rh-mathlib-cache" lake exe mathlib/cache get
+          git diff --exit-code -- lakefile.toml lean-toolchain lake-manifest.json
+          screen="$GITHUB_WORKSPACE/harness/ci/import-screen"
+          lean -R "$screen" -c "$RUNNER_TEMP/check.c" "$screen/CheckInterface.lean"
+          leanc -O2 -o "$RUNNER_TEMP/check-interface" "$RUNNER_TEMP/check.c"
+          df -h .
+      - name: Restore same-source native checkpoints
+        id: saved
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-structural-receipts
+          key: rh-struct-v1-${{ matrix.group }}-${{ hashFiles('harness/ci/structural-screen/*.py','harness/ci/structural-screen/request.json','harness/ci/import-screen/CheckInterface.lean') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            rh-struct-v1-${{ matrix.group }}-${{ hashFiles('harness/ci/structural-screen/*.py','harness/ci/structural-screen/request.json','harness/ci/import-screen/CheckInterface.lean') }}-
+      - name: Compile the proposed source and compare actual parent and candidate outputs
+        id: run
+        working-directory: parent
+        env:
+          GROUP: ${{ matrix.group }}
+        run: |
+          export RH_LTAR_MANIFEST="$RUNNER_TEMP/rh-screen-cache/metadata/18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a.jsonl.gz"
+          export RH_LTAR_DIAGNOSTICS="$RUNNER_TEMP/rh-structural-results/leantar-diagnostics.jsonl"
+          python3 -u "$GITHUB_WORKSPACE/harness/ci/structural-screen/run.py" --group "$GROUP" \
+            --parent . --cache "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-structural-results" \
+            --resume "$RUNNER_TEMP/rh-structural-receipts" --bin "$(dirname "$(elan which lean)")" --judge "$RUNNER_TEMP/check-interface"
+      - name: Save incomplete group checkpoints
+        if: always() && steps.run.outcome == 'failure'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-structural-receipts
+          key: ${{ steps.saved.outputs.cache-primary-key }}
+      - name: Publish every native observation
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: structural-native-${{ matrix.group }}-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 7
+          path: |
+            ${{ runner.temp }}/rh-structural-results/results.jsonl
+            ${{ runner.temp }}/rh-structural-results/scope.json
+            ${{ runner.temp }}/rh-structural-results/report.json
+            ${{ runner.temp }}/rh-structural-results/leantar-diagnostics.jsonl

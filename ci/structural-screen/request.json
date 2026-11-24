@@ -1,0 +1,183 @@
+{
+  "base": "d27f71347abceb76cd37dc8a5fccbe556ec2be90",
+  "donor": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+  "tree": "70327238ca7c4189479eee72f3c22812f1922329",
+  "manifest": "18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a",
+  "graph": "1eea63e656493b1d5f30ab34bd8b913ab3edadc2d615e2313e471196749941a4",
+  "source_manifest_sha256": "805734711af64ae93d8ce94837b58f6b7723c86c33658d126c8f03317e79665b",
+  "upstream_clump_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+  "recipe": {
+    "combined.py": "bfce871c6a4a52c0eb328d08a053431a6fecd689021a76b47dc5d7d625aa01b3",
+    "compact_scope.py": "9e0f5633f64a44157bc837790d3b21b58c0f098211c00c1590b9a9ea318e7d70",
+    "context_fusion.py": "322c0ac892bff0bdf808f1ca5b5ee7376bb3d3ee6cef17ab289311ac21fe04ab",
+    "lean_scopes.py": "45c7458f53151746889293ee45235b13b5fac03dd0d1dcd7ada71669d9448624",
+    "share_intervals.py": "6d51599ec49da2ddd288f063f842b1e1905701c2cb0c73602b02bc942617206b"
+  },
+  "files": 12685,
+  "net": 422328,
+  "code": 275860,
+  "groups": {
+    "canary-1": {
+      "count": 11,
+      "sha256": "2a3b0d5e29831543ccdb5e2c09571e9388a87c94a54aea30e77ff36451d5446b",
+      "workers": 2,
+      "timeout": 600,
+      "net": 357,
+      "code": 241,
+      "estimate_seconds": 39.5
+    },
+    "canary-2": {
+      "count": 11,
+      "sha256": "0a4e35256c7f11d1c02dfec95e881d90813a1cbe0075b5c37076b260ea93e98c",
+      "workers": 2,
+      "timeout": 600,
+      "net": 218,
+      "code": 149,
+      "estimate_seconds": 35.8
+    },
+    "large-00": {
+      "count": 103,
+      "sha256": "4bcbfc4c5b3fa78e92d47ba3bb87d4d05020bc19f14e47a875c0ab3d6c35c97a",
+      "workers": 1,
+      "timeout": 1200,
+      "net": 7609,
+      "code": 4287,
+      "estimate_seconds": 4457.1
+    },
+    "large-01": {
+      "count": 105,
+      "sha256": "7294242eb470e488841ed4fb3bb225a91de7d42304e9a5a5b70f0a4e85f7374e",
+      "workers": 1,
+      "timeout": 1200,
+      "net": 7360,
+      "code": 4025,
+      "estimate_seconds": 4458.8
+    },
+    "scope-00": {
+      "count": 890,
+      "sha256": "9444c8e1299430f069f0105ffe4b43213e8b5bed4adc6012c3d8efd9976700c5",
+      "workers": 2,
+      "timeout": 600,
+      "net": 26765,
+      "code": 17433,
+      "estimate_seconds": 4386.9
+    },
+    "scope-01": {
+      "count": 889,
+      "sha256": "60cdbaffe2564e2157f0c0cb023a0ea96b0135c32516fcd4b0eaf6284e18685a",
+      "workers": 2,
+      "timeout": 600,
+      "net": 28737,
+      "code": 19079,
+      "estimate_seconds": 4386.5
+    },
+    "scope-02": {
+      "count": 890,
+      "sha256": "8f2938af50b7060bc648881cc700d4d8def30163a2eb1d425ef4a04edd5fa640",
+      "workers": 2,
+      "timeout": 600,
+      "net": 31136,
+      "code": 20601,
+      "estimate_seconds": 4386.9
+    },
+    "scope-03": {
+      "count": 889,
+      "sha256": "76929bfa57df90b12ccc911650de11d6bfb4fe0a091b1e39adf3f64c40cb9756",
+      "workers": 2,
+      "timeout": 600,
+      "net": 28147,
+      "code": 18288,
+      "estimate_seconds": 4386.5
+    },
+    "scope-04": {
+      "count": 890,
+      "sha256": "148acff01e725c931d360d204b63c63776754a50a7c0a86293ffe81f783b965b",
+      "workers": 2,
+      "timeout": 600,
+      "net": 29838,
+      "code": 19781,
+      "estimate_seconds": 4386.8
+    },
+    "scope-05": {
+      "count": 890,
+      "sha256": "d2bf274d85aee2b861625016041cd817633696b3a2cbb2034f165a4ebc2dd28a",
+      "workers": 2,
+      "timeout": 600,
+      "net": 29302,
+      "code": 19124,
+      "estimate_seconds": 4386.9
+    },
+    "scope-06": {
+      "count": 890,
+      "sha256": "f7dc4ac55d66aefee96418af6b9c2f7fc9a39f3fb45dba96b3a45f16d11363f3",
+      "workers": 2,
+      "timeout": 600,
+      "net": 28159,
+      "code": 18368,
+      "estimate_seconds": 4386.9
+    },
+    "scope-07": {
+      "count": 889,
+      "sha256": "9731bf6d3a3b31df80cc91f615ccb1b0e4b7d070f2a0b9ff36ebdfc20fb37365",
+      "workers": 2,
+      "timeout": 600,
+      "net": 27957,
+      "code": 18226,
+      "estimate_seconds": 4386.5
+    },
+    "scope-08": {
+      "count": 890,
+      "sha256": "6305f6315c2a63d835396dca693b4255c31791bf5b1f88dc25e09cf52c3443e3",
+      "workers": 2,
+      "timeout": 600,
+      "net": 29650,
+      "code": 19521,
+      "estimate_seconds": 4386.9
+    },
+    "scope-09": {
+      "count": 889,
+      "sha256": "037f3b102fbf2fdad1ca1232809da1b33f279960fa67ac7fd1873f9ea79004dc",
+      "workers": 2,
+      "timeout": 600,
+      "net": 28763,
+      "code": 18928,
+      "estimate_seconds": 4386.5
+    },
+    "scope-10": {
+      "count": 890,
+      "sha256": "59a694a0f7a15bc23877f7f4f954b40e0fa38161ed969c222dcf421e0b7267a2",
+      "workers": 2,
+      "timeout": 600,
+      "net": 29940,
+      "code": 19870,
+      "estimate_seconds": 4386.9
+    },
+    "scope-11": {
+      "count": 890,
+      "sha256": "1f70aa362f89cac78895285356444c183852dc8de8e1a3e4c1d043eac542d780",
+      "workers": 2,
+      "timeout": 600,
+      "net": 29558,
+      "code": 19395,
+      "estimate_seconds": 4386.9
+    },
+    "scope-12": {
+      "count": 890,
+      "sha256": "30f0bc835d15e71b120d2d9d705cf32f1ed1040c08859ca5ac65c6f9280e8ff3",
+      "workers": 2,
+      "timeout": 600,
+      "net": 29211,
+      "code": 19022,
+      "estimate_seconds": 4386.9
+    },
+    "scope-13": {
+      "count": 889,
+      "sha256": "94e0f42f0ccfde2146b8ac9322bd558871930984445c5ac1d14da463e7539dbf",
+      "workers": 2,
+      "timeout": 600,
+      "net": 29621,
+      "code": 19522,
+      "estimate_seconds": 4386.5
+    }
+  }
+}
