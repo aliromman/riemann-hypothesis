@@ -1,10 +1,10 @@
 {
-  "source": "963ebea3bb3d7c2c5738946fca45317b8084f972",
-  "source_tree": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749",
+  "source": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+  "source_tree": "e0641dda707407a73d29502a55f1789eab873789",
   "tools": {
     "community": {
       "repo": "leanprover-community/riemann-hypothesis",
-      "ref": "307cef33f046955ee79dba47e0d828d06496d75f",
+      "ref": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
       "git_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
       "sha256": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44"
     },
@@ -16,12 +16,12 @@
     },
     "proposed": {
       "repo": "aliromman/riemann-hypothesis",
-      "ref": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+      "ref": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
       "git_blob": "b5cb4699f2f6265de696c087eafc797994e9db70",
       "sha256": "42027c05de988741decb36b3d9c6f689feed372e17331a40b1c867f0bf1bf933"
     }
   },
-  "driver_sha256": "a640be04c658123e904d4146189120b509a3440a8f0765ca92a96a7be0d503b1",
+  "driver_sha256": "9c511f124d3c7786462753af112a9ac75c5a0113975427080fd2e5735a798f65",
   "exclude_sha256": "bf292aeb2066954adcc3a75f55ef82f610b5376ee0f34f5cb7d75a72c2514b42",
-  "oracle_sha256": "b17b38c0a25b53ab380bea86cc4f9afdae6702c0339839caa5f52e68c34caf23"
+  "oracle_sha256": "e208a82ca1f759b04e881f1b9e1ce4a0b1383622767c15ff03b9cea9fd2099ab"
 }

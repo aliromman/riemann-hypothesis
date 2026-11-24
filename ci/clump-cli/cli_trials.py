@@ -21,14 +21,11 @@ TOOL_SHA = {
     "published": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf",
     "proposed": "42027c05de988741decb36b3d9c6f689feed372e17331a40b1c867f0bf1bf933",
 }
-HEADS = ("70f5e2c0737a9289949627d834612ed30d25432f", "963ebea3bb3d7c2c5738946fca45317b8084f972")
-SOURCE = "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749"
-PLAN = "7f008f70f550f162cba7e1b23b8b15309086d8efd3ff8c0c4a2ff9ed4521a175"
-STREAMS = {
-    "community": "1da546bc59bb2f7254c4f6d74201170264fc1c3a80ffdc0e491c135e12bfcbdd",
-    "published": "72e28cc9c720a348f0dd900f151c45bf43786ac8519ef1e1a22a458d97089178",
-    "proposed": "72e28cc9c720a348f0dd900f151c45bf43786ac8519ef1e1a22a458d97089178",
-}
+HEADS = ('28e9eedf5e13abbe174794bb69fa8363296cf2ad',)
+SOURCE = 'e0641dda707407a73d29502a55f1789eab873789'
+PLAN = '0aea27f6c11bf6a6c26184cc238728ee7fd46e2630a8f08629d6e68c5520235a'
+STREAMS = {'community': '409e916d943768e27bb5c5ec108cec4fceffc69690cb492ea5260ed04c96dc7c', 'published': 'e1a3dd789a5455e1ac26d41de92f14d9a6071c0924bc243a3bde9a5fb21424d3', 'proposed': 'e1a3dd789a5455e1ac26d41de92f14d9a6071c0924bc243a3bde9a5fb21424d3'}
+
 def digest(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -64,7 +61,7 @@ def source_census(project):
         assert got.encode() == oid, name
         checked.update(name + b"\0" + oid + b"\n")
         files[name.decode()] = oid.decode()
-    assert len(files) == 59884
+    assert len(files) == 59869
     return files, checked.hexdigest()
 
 def run_cli(project, command, log):
@@ -141,10 +138,10 @@ def main():
             assert stdout == plan_stdout
             record("plan", label, trial, stats, plan_sha256=sha, output_sha256=stdout)
     saved = json.loads(plan_file.read_bytes())
-    if len(saved) != 199:
+    if len(saved) != 204:
         raise ValueError("unexpected number of clumps")
     names = sorted({m for values in saved.values() for m in values})
-    assert len(names) == sum(map(len, saved.values())) == 656 and saved.keys() <= set(names)
+    assert len(names) == sum(map(len, saved.values())) == 666 and saved.keys() <= set(names)
     originals = {name: (project / path(name)).read_bytes() for name in names}
     def restore():
         for name, data in originals.items():

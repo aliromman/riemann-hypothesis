@@ -1,0 +1,79 @@
+name: Measure the complete clump plan and saved apply
+on:
+  push:
+    branches: [ci/clump-scopes/cli-timing-1313]
+    paths: [ci/clump-cli/cli_trials.py, ci/clump-cli/request.json, .github/workflows/fork-clump-cli-1313.yml]
+permissions:
+  contents: read
+jobs:
+  measure:
+    if: github.repository == 'aliromman/riemann-hypothesis'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out the fixed measurement driver
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: verifier
+          persist-credentials: false
+          sparse-checkout: ci/clump-cli
+      - name: Check out the complete source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: aliromman/riemann-hypothesis
+          ref: 28e9eedf5e13abbe174794bb69fa8363296cf2ad
+          path: project
+          fetch-depth: 1
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Verify the checkout and the three original script blobs
+        shell: bash
+        run: |
+          mkdir "$RUNNER_TEMP/clump-tools" "$RUNNER_TEMP/clump-results"
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, platform, shutil, subprocess, urllib.request
+          root=pathlib.Path(os.environ["RUNNER_TEMP"])
+          recipe=pathlib.Path("verifier/ci/clump-cli")
+          req=json.loads((recipe/"request.json").read_bytes())
+          def git(*args):
+              return subprocess.check_output(["git","-C","project",*args],text=True).strip()
+          assert git("rev-parse","HEAD")==req["source"]
+          assert git("rev-parse","HEAD:src")==req["source_tree"]
+          assert hashlib.sha256((recipe/"cli_trials.py").read_bytes()).hexdigest()==req["driver_sha256"]
+          exclude=pathlib.Path("project/scripts/clump-exclude.txt").read_bytes()
+          assert hashlib.sha256(exclude).hexdigest()==req["exclude_sha256"]
+          for label,tool in req["tools"].items():
+              owner=tool["repo"];ref=tool["ref"]
+              url=f"https://raw.githubusercontent.com/{owner}/{ref}/scripts/clump.py"
+              with urllib.request.urlopen(url,timeout=45) as ans:
+                  data=ans.read()
+              assert hashlib.sha256(data).hexdigest()==tool["sha256"]
+              assert hashlib.sha1(b"blob "+str(len(data)).encode()+b"\0"+data).hexdigest()==tool["git_blob"]
+              (root/"clump-tools"/(label+".py")).write_bytes(data)
+          runner={"python":platform.python_version(),"platform":platform.platform(),"image":os.environ["ImageVersion"],
+                  "physical_memory_bytes":os.sysconf("SC_PHYS_PAGES")*os.sysconf("SC_PAGE_SIZE"),
+                  "available_processors":len(os.sched_getaffinity(0)),"free_disk_bytes_before_timing":shutil.disk_usage(root).free,
+                  "cpu_model":next(e.strip()for e in pathlib.Path("/proc/cpuinfo").read_text().splitlines()if e.startswith("model name"))}
+          (root/"clump-results"/"environment.json").write_text(json.dumps(runner,indent=2)+"\n")
+          (root/"clump-results"/"source-request.json").write_bytes((recipe/"request.json").read_bytes())
+          PY
+      - name: Time and verify the two planners and three apply implementations
+        shell: bash
+        run: |
+          python3 -B verifier/ci/clump-cli/cli_trials.py "$PWD/project" "$RUNNER_TEMP/clump-tools" "$RUNNER_TEMP/clump-results"
+      - name: Retain the planner text and compare the three apply output streams
+        shell: bash
+        run: |
+          python3 -B verifier/ci/clump-cli/standard_streams.py "$PWD/project" "$RUNNER_TEMP/clump-tools" "$RUNNER_TEMP/clump-results" verifier/ci/clump-cli/plan-input-equality.json
+          cp -r "$RUNNER_TEMP/clump-tools" "$RUNNER_TEMP/clump-results/sources"
+          cp verifier/ci/clump-cli/cli_trials.py verifier/ci/clump-cli/plan-input-equality.json "$RUNNER_TEMP/clump-results/sources/"
+      - name: Retain the raw CLI observations and exact saved plan
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: full-clump-cli-${{ github.sha }}
+          path: ${{ runner.temp }}/clump-results
+          if-no-files-found: error
+          retention-days: 7
