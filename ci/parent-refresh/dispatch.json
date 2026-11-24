@@ -1,23 +1,8 @@
 {
-  "request": "clumps-1266-remaining",
+  "request": "direct-1313",
   "groups": [
-    "clumps-1266-large-1",
-    "clumps-1266-large-2",
-    "clumps-1266-large-3",
-    "clumps-1266-ordinary-1",
-    "clumps-1266-ordinary-12",
-    "clumps-1266-ordinary-13",
-    "clumps-1266-ordinary-2",
-    "clumps-1266-ordinary-4",
-    "clumps-1266-ordinary-5",
-    "clumps-1266-ordinary-6",
-    "clumps-1266-ordinary-7",
-    "clumps-1266-ordinary-8",
-    "clumps-1266-ordinary-9",
-    "clumps-1266-ordinary-tail-1",
-    "clumps-1266-ordinary-tail-2",
-    "clumps-1266-ordinary-tail-3",
-    "clumps-1266-ordinary-tail-4"
+    "direct-1313-large-1",
+    "direct-1313-ordinary-1"
   ],
-  "seed_run": 45445328947
+  "seed_run": 45460415396
 }

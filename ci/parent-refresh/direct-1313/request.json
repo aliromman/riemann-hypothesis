@@ -1,0 +1,35 @@
+{
+  "authority": {
+    "base": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "tree": "b722dc0d057c3a869ad607e0c93231665a963b63",
+    "manifest": "56ef968afb7ef3227b98278bbf86cf5b2baa24385b4f89f3aca63599a437af92",
+    "graph": "de1fe13e172b47bb9b1f27c429cc282e94e3e528f3ec4c90f8a9d300a2b40e75"
+  },
+  "tasks": {
+    "private": {
+      "pr": 879,
+      "head": "c54aa01a69e98a511a4ac95e78a045c4f0525566",
+      "src": "d17b65116a2089ceae1a5e0e56463e54358250f1",
+      "upstream_clump_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+      "source_table_sha256": "9830796ce39a9340f9932f20db7e260d73a0127bef3ba138c218f2ae57a2dcb2"
+    }
+  },
+  "groups": {
+    "direct-1313-large-1": {
+      "task": "private",
+      "count": 11,
+      "sha256": "58a514983c8a5533a70e8cc7895c784a3378fe26013c21f616f4b13024ca13f0",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 419.81
+    },
+    "direct-1313-ordinary-1": {
+      "task": "private",
+      "count": 232,
+      "sha256": "be901c9ca997eebe48b0656f2f988ffaed1b9266e4d6c8469136d2fe1a50523f",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 1381.02
+    }
+  }
+}
