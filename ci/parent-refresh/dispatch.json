@@ -1,8 +1,10 @@
 {
-  "request": "direct-1198",
+  "request": "scope-direct-1198",
   "groups": [
-    "direct-1198-large-1",
-    "direct-1198-ordinary-1"
+    "scope-direct-1198-large-1",
+    "scope-direct-1198-ordinary-1",
+    "scope-direct-1198-ordinary-2",
+    "scope-direct-1198-ordinary-3"
   ],
   "seed_run": 45430535715
 }

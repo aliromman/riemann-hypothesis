@@ -1,0 +1,51 @@
+{
+  "authority": {
+    "base": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+    "tree": "980141067b4eec00e78e2d490134c6299613cdef",
+    "manifest": "edc38df9198228480080821adb772f6c4109fdba7404a04be28bc49a250cb487",
+    "graph": "36c2f8b5f3d67b345de9307632a90087bafa9a64bf30b1dc76e203b4978bd2d3"
+  },
+  "tasks": {
+    "structural": {
+      "pr": 977,
+      "head": "c0228c0ae22d9cbf3e5466760718fd19111058ac",
+      "src": "3944961f74ce15f369676a6052f0a6586707750d",
+      "upstream_clump_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+      "source_table_sha256": "729ec9b38286726c8809fa698ad286222a9beab7edf3cfa13199091228ee041a"
+    }
+  },
+  "groups": {
+    "scope-direct-1198-large-1": {
+      "task": "structural",
+      "count": 19,
+      "sha256": "35dfc72a612c02845c673a2bb280511141379bb5c6201ce484998083eb3bd9ec",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 824.71
+    },
+    "scope-direct-1198-ordinary-1": {
+      "task": "structural",
+      "count": 284,
+      "sha256": "5e6ff5fae222e6ec8b1e8522021b1d8dc42e8c94fa3ec92c643d796c2a18f27e",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 1839.64
+    },
+    "scope-direct-1198-ordinary-2": {
+      "task": "structural",
+      "count": 284,
+      "sha256": "ae062a0ff6818d333845915e89c5036802f75de2385067eb2da6b6f46726c2de",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 1839.64
+    },
+    "scope-direct-1198-ordinary-3": {
+      "task": "structural",
+      "count": 284,
+      "sha256": "f8a482e780abe11855f25b0e7dc1c9c202c15a1eef6685a9e650e6e61af85d54",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 1839.63
+    }
+  }
+}
