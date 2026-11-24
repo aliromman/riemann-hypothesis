@@ -10,6 +10,7 @@ env:
   MATHLIB_CACHE_GET_URL: https://cache.mathlib.org/mathlib4
   LEAN_ABORT_ON_PANIC: '1'
   LEAN_NUM_THREADS: '2'
+  RUST_MIN_STACK: '33554432'
 
 jobs:
   prepare:
@@ -47,11 +48,14 @@ jobs:
           import json, os
           from pathlib import Path
           from prepare import MANIFEST, groups
+          from runtime.selection import select
           phase = Path('phase').read_text().strip()
+          selected, scope, retry = select(phase,groups)
           with open(os.environ['GITHUB_OUTPUT'],'a') as output:
-              print('groups='+json.dumps(groups(phase)),file=output)
+              print('groups='+json.dumps(selected),file=output)
+              print('retry='+str(retry).lower(),file=output)
               print('parallel='+str(16 if phase in ('latest','latest-tail') else 4),file=output)
-              print('cache=rh-screen-v3-'+phase.split('-',1)[0]+'-'+MANIFEST+'-'+os.environ['INPUT_HASH'],file=output)
+              print('cache=rh-screen-v3-'+scope+'-'+MANIFEST+'-'+os.environ['INPUT_HASH'],file=output)
               print('math=rh-screen-math-v1-linux-x64-31ce06eaadf4a200c0e1407c5f10953cf606b8f8',file=output)
           PY
       - name: Restore the shared authenticated project archives
@@ -60,23 +64,31 @@ jobs:
         with:
           path: ${{ runner.temp }}/rh-screen-cache
           key: ${{ steps.scope.outputs.cache }}
+          lookup-only: ${{ steps.scope.outputs.retry == 'true' }}
           restore-keys: |
             rh-screen-v2-rest-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
             rh-screen-v2-full-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
             rh-screen-v1-full-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
             rh-screen-v1-pilot-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
+      - name: Confirm the original authenticated parent cache is available
+        if: steps.scope.outputs.retry == 'true' && steps.cached-parent.outputs.cache-hit != 'true'
+        run: |
+          echo 'The exact shared native archive cache is no longer available for this retry.' >&2
+          exit 1
       - name: Bind the community cache to the pinned source and fetch each missing archive once
+        if: steps.scope.outputs.retry != 'true'
         run: |
           trial=harness/ci/import-screen
           python3 "$trial/prepare.py" seed "$(cat "$trial/phase")" --parent parent             --state "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-seed"
       - name: Save source and cache crossover evidence
+        if: steps.scope.outputs.retry != 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: input-equivalence-${{ github.run_id }}-${{ github.run_attempt }}
           retention-days: 3
           path: ${{ runner.temp }}/rh-screen-cache/metadata/reuse-check.json
       - name: Save the verified project archive set
-        if: steps.cached-parent.outputs.cache-hit != 'true'
+        if: steps.scope.outputs.retry != 'true' && steps.cached-parent.outputs.cache-hit != 'true'
         uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: ${{ runner.temp }}/rh-screen-cache
@@ -87,6 +99,7 @@ jobs:
         with:
           path: ${{ runner.temp }}/rh-mathlib-cache
           key: ${{ steps.scope.outputs.math }}
+          lookup-only: ${{ steps.scope.outputs.retry == 'true' }}
       - name: Install Lean to fetch the missing Mathlib archives
         if: steps.cached-math.outputs.cache-hit != 'true'
         working-directory: parent
@@ -155,7 +168,15 @@ jobs:
         env:
           GROUP: ${{ matrix.group }}
         run: |
-          python3 ../harness/ci/import-screen/prepare.py restore "$GROUP" --parent .             --state "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-results"             --leantar "$(dirname "$(elan which lean)")/leantar"
+          trial="$GITHUB_WORKSPACE/harness/ci/import-screen"
+          lean_path=$(elan which lean)
+          RH_STOCK_LEANTAR="$(dirname "$lean_path")/leantar"
+          export RH_STOCK_LEANTAR
+          export RH_LTAR_MANIFEST="$RUNNER_TEMP/rh-screen-cache/metadata/7ef75c550561a6f21d27bb76c9a53fcf6a9a6fe5d5d481f2cdb56e9b1262589d.jsonl.gz"
+          export RH_LTAR_DIAGNOSTICS="$RUNNER_TEMP/rh-results/leantar-diagnostics.jsonl"
+          python3 "$trial/prepare.py" restore "$GROUP" --parent . \
+            --state "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-results" \
+            --leantar "$trial/runtime/decode.py"
       - name: Compile the native comparison helper
         working-directory: parent
         run: |
@@ -190,5 +211,6 @@ jobs:
           if-no-files-found: warn
           path: |
             ${{ runner.temp }}/rh-results/results.jsonl
+            ${{ runner.temp }}/rh-results/leantar-diagnostics.jsonl
             ${{ runner.temp }}/rh-results/scope.json
             ${{ runner.temp }}/rh-results/report.json
