@@ -1,0 +1,63 @@
+{
+  "stock": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+  "candidate": "e05737b0d310930177bc746e7cf64f12d7731438",
+  "retired": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/TheoremsMuLinked/HidaOrdinaryHecke/CtrlMu.lean",
+  "fullModules": 1587,
+  "terminalTargets": [
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.ExistsOrdinaryCharactersHeckeAlgebra",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantReductionEqResidual",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantSatisfiesDeformationRelations",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.LevelUR2OrdPt",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ShortLatticeUnitarize.CompactBoxLattices.CentChar",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.WeightKernels.TwistRatios.AutIso",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.GaloisRepresentationTypes.CoreOf",
+    "Main"
+  ],
+  "projectInputs": 60591,
+  "completed": [
+    {
+      "targets": [
+        "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+        "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato"
+      ],
+      "stockLake": "All targets up-to-date (9637 jobs).",
+      "candidateLake": "Build completed successfully (9637 jobs).",
+      "verifiedSources": {
+        "stock": 157,
+        "candidate": 157
+      },
+      "totals": {
+        "public": 202,
+        "rawTypes": 199,
+        "definitions": 95,
+        "rawDefinitions": 95,
+        "theorems": 97,
+        "rawProofs": 92,
+        "axiomRecords": 202
+      }
+    },
+    {
+      "targets": [
+        "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+        "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato",
+        "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.ImportsSide",
+        "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth"
+      ],
+      "stockLake": "All targets up-to-date (14240 jobs).",
+      "candidateLake": "Build completed successfully (14240 jobs).",
+      "verifiedSources": {
+        "stock": 1753,
+        "candidate": 1753
+      },
+      "totals": {
+        "public": 217,
+        "rawTypes": 214,
+        "definitions": 95,
+        "rawDefinitions": 95,
+        "theorems": 112,
+        "rawProofs": 104,
+        "axiomRecords": 217
+      }
+    }
+  ]
+}

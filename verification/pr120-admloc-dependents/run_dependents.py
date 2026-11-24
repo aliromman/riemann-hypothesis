@@ -9,8 +9,6 @@ import tempfile
 from verify_sources import project_closure
 
 HERE = Path(__file__).resolve().parent
-BASE = "d27f71347abceb76cd37dc8a5fccbe556ec2be90"
-FIX = "26c70f301cc7fb498680f61144ac55f604069506"
 PIN = "leanprover/lean4:v4.37.0-rc1"
 
 def main():
@@ -19,12 +17,14 @@ def main():
     cli.add_argument("--candidate",type=Path,required=True)
     cli.add_argument("--out",type=Path,required=True)
     cli.add_argument("--no-build",action="store_true",help="require all Lake targets to be up to date")
+    cli.add_argument("--plan",type=Path,default=HERE/"dependents.json",help="versioned dependency list and exact source revisions")
     cli.add_argument("--modules",type=Path,help="check a subset, one module per line")
     cli.add_argument("--source-repo",type=Path,help="check a source cone against these Git objects in place of a complete checkout")
     args=cli.parse_args()
     stock, candidate, out = (p.resolve() for p in (args.stock,args.candidate,args.out))
     out.mkdir(parents=True,exist_ok=True)
-    plan=json.loads((HERE/"dependents.json").read_text())
+    plan=json.loads(args.plan.read_text())
+    BASE, FIX = plan["base"], plan["candidate"]
     full=plan["modules"];requested=full if args.modules is None else args.modules.read_text().splitlines()
     if not requested or len(requested)!=len(set(requested)) or not set(requested)<=set(full):
         raise ValueError("The selected modules must belong to the recorded dependency set.")

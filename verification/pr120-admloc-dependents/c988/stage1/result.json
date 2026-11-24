@@ -1,0 +1,26 @@
+{
+  "stock": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+  "candidate": "e05737b0d310930177bc746e7cf64f12d7731438",
+  "modules": 2,
+  "fullModules": 1587,
+  "targets": [
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato"
+  ],
+  "verifiedSourceFiles": {
+    "stock": 157,
+    "candidate": 157
+  },
+  "totals": {
+    "public": 202,
+    "rawTypes": 199,
+    "definitions": 95,
+    "rawDefinitions": 95,
+    "theorems": 97,
+    "rawProofs": 92,
+    "axiomRecords": 202
+  },
+  "kernelComparisonModules": 1,
+  "expandedProofFields": 0,
+  "failedModules": []
+}

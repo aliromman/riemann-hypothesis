@@ -1,0 +1,77 @@
+{
+  "terminal": "376bacf238f6f3a7a4f120aeb01c89d124ea7a66",
+  "integrated": "391110423318cb02f706485f58558245d0a28c6a",
+  "member": "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ClosedPhiFunctoriality.CoordWD",
+  "provider": "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+  "originalInputs": 1639,
+  "exposedInputs": 1641,
+  "arms": {
+    "original": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "0533d6ae7fed985201288f514f89a69bac8d3b9919100adf287bfb26bc385f9c",
+      "sourceSha256": "21ccc359ba8669de7e8f9914a422fd18f08e2c09f71afc27d83df6c7ef1388e5",
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "215a5c0eee5c7a2bfe0f276ba93b24cf6d3997e7706ba5fc143cd18fb86e9713"
+      }
+    },
+    "emitted": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "270b8f5f91fe743bf329c85d005150a391ed046e53b00bbcb2e3755fcc1c1524",
+      "sourceSha256": "6dceecb5d6dcdcb3bd7c218e3f83ea28f9c360323e852707e235b84ca4d43919",
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "215a5c0eee5c7a2bfe0f276ba93b24cf6d3997e7706ba5fc143cd18fb86e9713"
+      }
+    },
+    "exposed": {
+      "exit": 1,
+      "error_count": 1,
+      "first_error": [
+        [
+          {
+            "column": 8,
+            "line": 56
+          },
+          "failed to synthesize\n  HSMul (\u21a5\u2191L) ((Fin a \u2192 \u21a5\u2191L) \u2297[\u211a_[l]] Bst P) ?m.40\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached\n\nNote: Use `set_option synthInstance.maxHeartbeats <num>` to set the limit.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command."
+        ]
+      ],
+      "log_sha256": "048299ca24a62e751e1c491b7ced1ff9ee3f6eaefa0809e9adccd3914dba091e",
+      "sourceSha256": "3f83e6655c74f1e398f61885813f24cc7deaba1681dc373be7e0cbf1305143df"
+    },
+    "local-erasure": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "7ccedb5f672cce1fca6f9d56d52b6bea2f89582a4e0eabdcd235594e8fb16d13",
+      "sourceSha256": "eed9457fc2dab1f7dac4b5085620eac0f4d327b4185515a76df9125e1d31bcf3",
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "215a5c0eee5c7a2bfe0f276ba93b24cf6d3997e7706ba5fc143cd18fb86e9713"
+      }
+    },
+    "scoped-provider": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "0913edea6d24c83699e4344149fd70556ed6e6839445d9b28a3e300ef4cfb626",
+      "sourceSha256": "3f83e6655c74f1e398f61885813f24cc7deaba1681dc373be7e0cbf1305143df",
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "215a5c0eee5c7a2bfe0f276ba93b24cf6d3997e7706ba5fc143cd18fb86e9713"
+      }
+    }
+  }
+}
