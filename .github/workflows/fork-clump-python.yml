@@ -1,0 +1,55 @@
+name: Clump and native Python suites
+on:
+  push:
+    branches: [ci/clump-scopes/ubuntu-python-1018]
+    paths: [.github/workflows/fork-clump-python.yml]
+permissions:
+  contents: read
+jobs:
+  python-tests:
+    if: github.repository == 'aliromman/riemann-hypothesis'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: aliromman/riemann-hypothesis
+          ref: f3e19bf8371ab5dd383b81e008ec14c4b0331811
+          persist-credentials: false
+      - name: Check the source and Ubuntu tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = f3e19bf8371ab5dd383b81e008ec14c4b0331811
+          test "$(git rev-parse HEAD:src)" = 445477315d15f0c5eaea8c076b18063ebd7a17a6
+          if ! /usr/bin/python3 -c 'import yaml'; then
+            sudo apt-get update -qq
+            sudo apt-get install -y --no-install-recommends python3-yaml
+          fi
+          echo /usr/bin >> "$GITHUB_PATH"
+          {
+            git rev-parse HEAD HEAD:src
+            /usr/bin/python3 --version
+            /usr/bin/python3 -c 'import yaml; print("PyYAML", yaml.__version__)'
+            cp --version
+          } | tee "$RUNNER_TEMP/source-and-versions.txt"
+      - name: Run the native CI unit tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tools/ci_native 2>&1 | tee "$RUNNER_TEMP/native-unittest.txt"
+      - name: Run the clump regression tests
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s scripts/tests -p test_clump_scopes.py 2>&1 | tee "$RUNNER_TEMP/clump-unittest.txt"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: ubuntu-python-f3e19bf8371ab5dd383b81e008ec14c4b0331811
+          path: |
+            ${{ runner.temp }}/source-and-versions.txt
+            ${{ runner.temp }}/native-unittest.txt
+            ${{ runner.temp }}/clump-unittest.txt
+          if-no-files-found: error
