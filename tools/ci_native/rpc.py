@@ -94,12 +94,13 @@ def verify_source(root, snapshot, mode=OPERATION):
 def verify_manifest(root, manifest, fingerprint, allowed=None):
     require(manifest.get('schema')==1 and manifest.get('snapshot')==fingerprint,'artifact/source mismatch')
     names=[module_name(x)for x in manifest['modules']]
-    require(len(names)==len(set(names)),'duplicate manifest module')
-    if allowed is not None:require(set(names)<=set(allowed),'unexpected output module')
+    name_set=set(names)
+    require(len(names)==len(name_set),'duplicate manifest module')
+    if allowed is not None:require(name_set<=set(allowed),'unexpected output module')
     require(len(manifest['files'])<=MAX_FILES,'too many artifacts')
     seen=set();total=0
     for row in manifest['files']:
-        require(row['module']in names,'artifact module absent from manifest')
+        require(isinstance(row['module'],str) and row['module']in name_set,'artifact module absent from manifest')
         rel=row['path'];require(rel not in seen,'duplicate artifact path');seen.add(rel)
         relative(rel)
         module_stem=PurePosixPath(*row['module'].split('.'))
@@ -119,12 +120,13 @@ def runtime_path(path):
 def verify_zip(archive, manifest, fingerprint, allowed=None, runtime_only=False):
     require(manifest.get('schema')==1 and manifest.get('snapshot')==fingerprint,'archive source mismatch')
     names=[module_name(x)for x in manifest['modules']]
-    require(len(names)==len(set(names)),'duplicate archive module')
-    if allowed is not None:require(set(names)<=set(allowed),'unexpected archive module')
+    name_set=set(names)
+    require(len(names)==len(name_set),'duplicate archive module')
+    if allowed is not None:require(name_set<=set(allowed),'unexpected archive module')
     expected={r['path']:r for r in manifest['files']}
     require(len(expected)==len(manifest['files'])and len(expected)<=MAX_FILES,'duplicate/oversize manifest')
     for rel,row in expected.items():
-        relative(rel);require(row['module']in names,'archive module mismatch')
+        relative(rel);require(isinstance(row['module'],str) and row['module']in name_set,'archive module mismatch')
         stem=PurePosixPath(*row['module'].split('.'));p=PurePosixPath(rel)
         require(any(p.parent==PurePosixPath('.lake/build')/part/stem.parent and p.name.startswith(stem.name+'.')for part in ['lib/lean','ir']),'archive module/path mismatch')
         require(type(row['bytes'])is int and row['bytes']>=0 and SHA.fullmatch(row['sha256']),'invalid archive metadata')
@@ -286,10 +288,11 @@ def verify_flat(root,manifest,fp,receipt):
     archive_receipt(receipt);require(readonly_mount(root),'published archive must be mounted read-only')
     require(manifest.get('schema')==1 and manifest.get('snapshot')==fp,'flat artifact/source mismatch')
     require(len(manifest['files'])<=MAX_FILES and len(set(x['path']for x in manifest['files']))==len(manifest['files']),'duplicate/oversize flat input')
-    names=[module_name(m)for m in manifest['modules']];require(len(names)==len(set(names)),'duplicate flat module')
+    names=[module_name(m)for m in manifest['modules']];name_set=set(names)
+    require(len(names)==len(name_set),'duplicate flat module')
     total=0
     for row in manifest['files']:
-        require(row['module']in names and type(row['bytes'])is int and row['bytes']>=0 and SHA.fullmatch(row['sha256']),'invalid flat artifact metadata')
+        require(isinstance(row['module'],str) and row['module']in name_set and type(row['bytes'])is int and row['bytes']>=0 and SHA.fullmatch(row['sha256']),'invalid flat artifact metadata')
         p=flat_file(root,row);total+=row['bytes'];require(total<=MAX_BYTES,'flat input byte budget exceeded')
         require(p.stat().st_size==row['bytes']and digest(p)==row['sha256'],'published flat part SHA mismatch')
     return total

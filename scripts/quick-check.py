@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Trusted, bounded changed-module diagnostics; never claims a complete PR build."""
 import argparse, importlib.util, json, os
+from functools import lru_cache
 from pathlib import Path
 import re, subprocess, sys, tempfile
 from types import SimpleNamespace
@@ -50,13 +51,20 @@ def imports(path):
     return result
 
 def dependency_closure(project, targets, maximum=MAX_CLOSURE):
+    # Project files enter seen, but common package imports recur in many headers.
+    # Bound the lookup cache independently of how many package imports a PR adds.
+    @lru_cache(maxsize=MAX_CLOSURE)
+    def project_source(module):
+        if not ci.MODULE.fullmatch(module): raise ValueError('invalid module name')
+        source = project / 'src' / (module.replace('.', '/') + '.lean')
+        return source if source.exists() else None
+
     pending, seen = list(targets), set()
     while pending:
         module = pending.pop()
         if module in seen: continue
-        if not ci.MODULE.fullmatch(module): raise ValueError('invalid module name')
-        source = project / 'src' / (module.replace('.', '/') + '.lean')
-        if not source.exists(): continue  # Package imports are resolved by stock Lake.
+        source = project_source(module)
+        if source is None: continue  # Package imports are resolved by stock Lake.
         ci.safe_file(project, str(source.relative_to(project)))
         seen.add(module)
         if len(seen) > maximum: raise ValueError('project ancestor cone exceeds small-runner budget')

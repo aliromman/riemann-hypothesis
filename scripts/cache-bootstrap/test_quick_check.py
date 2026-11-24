@@ -88,6 +88,16 @@ class QuickChecks(unittest.TestCase):
  def test_runner_registry_excludes_big(self):
   with self.assertRaises(ValueError):q.runner('james-192')
   self.assertEqual(q.runner('gcp-small')['runner_id'],298713)
+ def test_repeated_package_lookup_is_cached_only_within_one_plan(self):
+  from unittest.mock import call, patch
+  self.source('A', 'import Shared\nimport B\n')
+  self.source('B', 'import Shared\n')
+  shared = self.root / 'src/Shared.lean'
+  with patch.object(Path, 'exists', autospec=True, side_effect=Path.exists) as exists:
+   self.assertEqual(q.dependency_closure(self.root, ['A']), ['A', 'B'])
+  self.assertEqual(exists.call_args_list.count(call(shared)), 1)
+  self.source('Shared', 'module\n')
+  self.assertEqual(q.dependency_closure(self.root, ['A']), ['A', 'B', 'Shared'])
  def test_baseline_filter_does_not_require_other_archives(self):
   from types import SimpleNamespace
   ci=q.ci;cache=self.root/'private';(cache/'artifacts').mkdir(parents=True);trusted=self.root/'trusted';(trusted/'artifacts').mkdir(parents=True);rows=[];mapping={}
