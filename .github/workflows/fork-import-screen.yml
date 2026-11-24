@@ -30,8 +30,9 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           repository: leanprover-community/riemann-hypothesis
-          ref: 362d9476fbd4548dead48ed7b6a54600879e1e17
+          ref: a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1
           path: parent
+          fetch-depth: 2
           persist-credentials: false
           sparse-checkout: |
             scripts
@@ -40,7 +41,7 @@ jobs:
         name: Select the reviewed panel and cache keys
         working-directory: harness/ci/import-screen
         env:
-          INPUT_HASH: ${{ hashFiles('harness/ci/import-screen/plans/*.txt', 'harness/ci/import-screen/prepare.py', 'harness/ci/import-screen/lake_imports.py', 'harness/ci/import-screen/panels.py', 'harness/ci/import-screen/catalog.json') }}
+          INPUT_HASH: ${{ hashFiles('harness/ci/import-screen/plans/*.txt', 'harness/ci/import-screen/prepare.py', 'harness/ci/import-screen/lake_imports.py', 'harness/ci/import-screen/panels.py', 'harness/ci/import-screen/catalog.json', 'harness/ci/import-screen/reuse-meta.json') }}
         run: |
           python3 - <<'PY'
           import json, os
@@ -49,8 +50,8 @@ jobs:
           phase = Path('phase').read_text().strip()
           with open(os.environ['GITHUB_OUTPUT'],'a') as output:
               print('groups='+json.dumps(groups(phase)),file=output)
-              print('parallel='+str(12 if phase=='rest' else 8 if phase in ('full','rest-tail') else 4),file=output)
-              print('cache=rh-screen-v2-'+phase.split('-',1)[0]+'-'+MANIFEST+'-'+os.environ['INPUT_HASH'],file=output)
+              print('parallel='+str(12 if phase in ('latest','latest-tail') else 4),file=output)
+              print('cache=rh-screen-v3-'+phase.split('-',1)[0]+'-'+MANIFEST+'-'+os.environ['INPUT_HASH'],file=output)
               print('math=rh-screen-math-v1-linux-x64-31ce06eaadf4a200c0e1407c5f10953cf606b8f8',file=output)
           PY
       - name: Restore the shared authenticated project archives
@@ -60,6 +61,7 @@ jobs:
           path: ${{ runner.temp }}/rh-screen-cache
           key: ${{ steps.scope.outputs.cache }}
           restore-keys: |
+            rh-screen-v2-rest-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
             rh-screen-v2-full-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
             rh-screen-v1-full-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
             rh-screen-v1-pilot-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
@@ -67,6 +69,12 @@ jobs:
         run: |
           trial=harness/ci/import-screen
           python3 "$trial/prepare.py" seed "$(cat "$trial/phase")" --parent parent             --state "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-seed"
+      - name: Save source and cache crossover evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: input-equivalence-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 3
+          path: ${{ runner.temp }}/rh-screen-cache/metadata/reuse-check.json
       - name: Save the verified project archive set
         if: steps.cached-parent.outputs.cache-hit != 'true'
         uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
@@ -112,7 +120,7 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           repository: leanprover-community/riemann-hypothesis
-          ref: 362d9476fbd4548dead48ed7b6a54600879e1e17
+          ref: a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1
           path: parent
           persist-credentials: false
           sparse-checkout-cone-mode: false
@@ -130,12 +138,6 @@ jobs:
       - name: Install the pinned compiler
         working-directory: parent
         run: bash ../harness/ci/import-screen/install-lean.sh
-      - name: Validate the selected parent archives and keep the required Lean facets
-        working-directory: parent
-        env:
-          GROUP: ${{ matrix.group }}
-        run: |
-          python3 ../harness/ci/import-screen/prepare.py restore "$GROUP" --parent .             --state "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-results"             --leantar "$(dirname "$(elan which lean)")/leantar"
       - name: Restore the pinned Mathlib archives
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
@@ -148,6 +150,12 @@ jobs:
           MATHLIB_CACHE_DIR="$RUNNER_TEMP/rh-mathlib-cache" lake exe mathlib/cache get
           git diff --exit-code -- lake-manifest.json lakefile.toml lean-toolchain
           df -h .
+      - name: Validate the selected parent archives and keep the required Lean facets
+        working-directory: parent
+        env:
+          GROUP: ${{ matrix.group }}
+        run: |
+          python3 ../harness/ci/import-screen/prepare.py restore "$GROUP" --parent .             --state "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-results"             --leantar "$(dirname "$(elan which lean)")/leantar"
       - name: Compile the native comparison helper
         working-directory: parent
         run: |

@@ -78,7 +78,7 @@ def main():
     opts=SimpleNamespace(repo=parent,work=work,headers=state/'metadata/headers.json',
                          targets=HERE/'targets.txt',index=work/'index.json',archives=state/'artifacts',
                          baseline=parent/'.lake/build/lib/lean',packages=parent/'.lake/packages',bin=bin_,
-                         judge=judge,timeout=540 if scope['group'].startswith('rest-100000-') else 240)
+                         judge=judge,timeout=540 if scope['group'].startswith('current-100000-') else 240)
     (work/'tmp').mkdir(exist_ok=True)
     soft,hard=resource.getrlimit(resource.RLIMIT_NOFILE)
     if soft<2400:
@@ -87,7 +87,7 @@ def main():
     cert_file=work/'results.jsonl'
     started=time.monotonic()
     # Only one native process enters the largest closures on a 16 GiB VM.
-    workers=1 if scope['group'].startswith('rest-100000-') else 2
+    workers=1 if scope['group'].startswith('current-100000-') else 2
     version=subprocess.check_output([bin_/'lean','--version'],text=True).strip()
     identity=domain(scope,roots,version)
     result_rows,reused=run_panel(checker,roots,work,args.resume.resolve()/'receipt.json.gz',

@@ -9,13 +9,13 @@ import subprocess
 import shutil
 
 from lake_imports import import_levels
-from panels import digest_roots, first_panels, remaining_panels
+from panels import digest_roots, reused_roots, remaining_panels
 
-PARENT = '362d9476fbd4548dead48ed7b6a54600879e1e17'
-SOURCE_TREE = '40e3cf4d94bd95ec57949a01b570b2ece95e4ceb'
-DONOR = 'f82babb107b166beffa76844bbc2c64c8296d247'
-MANIFEST = 'db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855'
-GRAPH = 'ec04ddec7c43648872794bfb65663d7b57eb3797051b57d67516b6292b957326'
+PARENT = 'a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1'
+SOURCE_TREE = '5da48cf36c47a7d87124fe72c0becbbb26a419d9'
+DONOR = PARENT
+MANIFEST = '7ef75c550561a6f21d27bb76c9a53fcf6a9a6fe5d5d481f2cdb56e9b1262589d'
+GRAPH = 'e032f0efab1562e8ceb57acfca014adb55937b17c3b86ad84017a6ca701ef024'
 HERE = Path(__file__).resolve().parent
 def canonical(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode()
@@ -107,26 +107,25 @@ def catalog():
     return json.loads((HERE/'catalog.json').read_bytes())
 
 def groups(phase):
-    if phase == 'pilot':
+    if phase=='pilot':
         return ['pilot']
-    if phase == 'full':
-        return sorted(first_panels())
-    if phase in ('rest','rest-early','rest-tail'):
-        rules=catalog()
-        all_rest=sorted(k for k in rules if k.startswith('rest-'))
-        early=set(sorted(all_rest,key=lambda k: -rules[k]['public_bytes'])[:4])
-        if phase=='rest-early':
-            return [k for k in all_rest if k in early]
-        if phase=='rest-tail':
-            return [k for k in all_rest if k not in early]
-        return all_rest
-    raise ValueError('phase must be pilot, full, rest, rest-early, or rest-tail')
+    all_groups=sorted(k for k in catalog() if k.startswith('current-'))
+    early=set(next(k for k in all_groups if k.startswith(f'current-{bound}-')) for bound in (100,300,1000,100000))
+    if phase=='latest-early':
+        return [k for k in all_groups if k in early]
+    if phase=='latest-tail':
+        return [k for k in all_groups if k not in early]
+    if phase=='latest':
+        return all_groups
+    raise ValueError('choose pilot, latest, latest-early, or latest-tail')
 
-def root_lists(phase, graph):
-    if phase.startswith('rest'):
-        # All rest subwaves share one complete, immutable parent archive cache.
-        return remaining_panels(graph,first_panels())
-    return {group: (HERE/'plans'/(group+'.txt')).read_text().splitlines() for group in groups(phase)}
+def root_lists(phase,graph):
+    if phase=='pilot':
+        return {'pilot': (HERE/'plans/pilot.txt').read_text().splitlines()}
+    if phase.startswith('latest'):
+        # Seed all native-check panels once, even for a partial matrix.
+        return remaining_panels(graph,{'reused':reused_roots()})
+    raise ValueError('invalid panel phase')
 
 def scope(group, graph, candidates):
     rule=catalog()[group]
@@ -152,6 +151,8 @@ def seed(args, api, rows, shas):
     if hashlib.sha256(data).hexdigest() != GRAPH:
         raise ValueError('source-derived project graph differs from the pinned inventory')
     (args.state/'metadata/headers.json').write_bytes(data)
+    from reuse_gate import check
+    check(args.parent,args.state,HERE,api,graph,rows,shas,source_path,canonical)
     needed = set()
     root_directory = args.state/'metadata/root-sets'
     root_directory.mkdir(exist_ok=True)
@@ -163,6 +164,14 @@ def seed(args, api, rows, shas):
     if args.dry_run:
         print('validated plans and parent index:', len(selected), flush=True)
         return
+    # A cache from the prior revision may include superseded LTARs. Keep only
+    # the content-addressed archives that the current source is about to use.
+    current_archives={r[2] for r in selected}
+    artifact_directory=args.state/'artifacts'
+    if artifact_directory.exists():
+        for existing in artifact_directory.iterdir():
+            if existing.name.endswith('.ltar') and existing.name not in current_archives:
+                existing.unlink()
     prepare = load(args.parent/'scripts/ci-prepare.py','screen_prepare')
     for offset in range(0,len(selected),32):
         batch = selected[offset:offset+32]
@@ -183,19 +192,20 @@ def restore(args, api, rows, shas):
     subprocess.run(['git','-C',str(args.parent),'sparse-checkout','set','--no-cone','--stdin'],
                    input='\n'.join(sparse)+'\n',text=True,check=True)
     build = args.parent/'.lake/build'
-    if build.exists():
-        raise ValueError('expected empty project build directory')
+    if any((build/'lib/lean').rglob('*.olean')):
+        raise ValueError('project outputs already exist before restoring the authenticated parent')
     chosen = [rows[n] for n in ancestors]
     # The fork cache is immutable. Reclaim sibling panels' files from this VM's copy.
     keep={archive for _,_,archive in chosen}
     for path in (args.state/'artifacts').iterdir():
         if path.name.endswith('.ltar') and path.name not in keep:
             path.unlink()
-    # The public-facet estimate is measured on these exact parent artifacts.
-    # Keep 10 GiB for Mathlib and 2 GiB for native compiler and unpacking scratch.
+    # The two revisions share these exact archives. Their four public facets
+    # give a measured lower bound. Check free space again at every batch.
     free=shutil.disk_usage(args.work.parent).free
-    reserve=12 * (1 << 30)
-    required=rule['public_bytes']+reserve
+    # Mathlib is already installed. Leave space for the compiler and temporary outputs.
+    reserve=2 * (1 << 30)
+    required=rule['shared_public_bytes']+reserve
     if free < required:
         raise OSError(f'runner disk limit for {args.group}: {free} free, {required} required')
     # Every worker verifies every cached archive that enters its own baseline.
@@ -207,20 +217,24 @@ def restore(args, api, rows, shas):
             if hashlib.file_digest(f,'sha256').hexdigest() != shas[archive]:
                 raise ValueError(f'archive SHA-256 differs: {archive}')
     jobs = api.unpack_jobs(args.parent, args.state, chosen)
+    public_bytes=0
     for offset in range(0,len(jobs),32):
-        if shutil.disk_usage(args.work.parent).free < 2 * (1 << 30):
-            raise OSError('less than 2 GiB remains before the next bounded leantar batch')
+        if shutil.disk_usage(args.work.parent).free < reserve:
+            raise OSError('less than the compiler reserve remains before leantar')
         batch = jobs[offset:offset+32]
         subprocess.run([args.leantar,'--jobs','2','-f','-x','-j','-'],input=json.dumps(batch),text=True,check=True)
         for name, _, _ in chosen[offset:offset+len(batch)]:
             path = Path(*name.split('.'))
             public = build/'lib/lean'/path
+            public_bytes+=sum(public.with_suffix(s).stat().st_size for s in ('.olean','.olean.server','.ir.sig','.ir'))
             for suffix in ('.c','.bc'):
                 (build/'ir'/path).with_suffix(suffix).unlink(missing_ok=True)
             for suffix in ('.trace','.ilean'):
                 public.with_suffix(suffix).unlink(missing_ok=True)
             if name not in private:
                 public.with_suffix('.olean.private').unlink(missing_ok=True)
+    if public_bytes < rule['shared_public_bytes'] or shutil.disk_usage(args.work.parent).free < reserve:
+        raise OSError('restored scope size or remaining space is outside the measured bounds')
     args.work.mkdir(parents=True,exist_ok=True)
     index = [[n,key,archive,shas[archive]] for n,key,archive in chosen]
     (args.work/'index.json').write_bytes(canonical(index))
@@ -229,7 +243,8 @@ def restore(args, api, rows, shas):
     if total!=rule['archive_bytes']:
         raise ValueError('project archive bytes differ from authenticated inventory')
     receipt = dict(disk_free_before_unpack=free,disk_required_before_unpack=required,
-                   expected_parent_public_bytes=rule['public_bytes'],disk_free_after_unpack=shutil.disk_usage(args.work).free,
+                   measured_parent_public_bytes=public_bytes,shared_parent_public_bytes=rule['shared_public_bytes'],
+                   shared_archives=rule['shared_archives'],disk_free_after_unpack=shutil.disk_usage(args.work).free,
                    parent=PARENT,tree=SOURCE_TREE,donor=DONOR,manifest=MANIFEST,graph=GRAPH,
                    group=args.group,roots=len(roots),archives=len(ancestors),archive_bytes=total,private_parents=len(private))
     (args.work/'scope.json').write_text(json.dumps(receipt,indent=2)+'\n')

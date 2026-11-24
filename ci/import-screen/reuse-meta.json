@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "old": {
+    "base": "362d9476fbd4548dead48ed7b6a54600879e1e17",
+    "source_tree": "40e3cf4d94bd95ec57949a01b570b2ece95e4ceb",
+    "lakefile_sha256": "b96a1a0b45e250d91bbf78d3490b79a317678bf13b823227b731cb87e3fd5ce5",
+    "manifest_sha256": "6b5ad855ab2f8544071569928d1b84e8e6be14636e7b2809e7ccabb3937934ee",
+    "toolchain": "leanprover/lean4:v4.37.0-rc1",
+    "input_fingerprint": "4055771648fc902d13836ca77d0e4e19378725ab43400a46eba1b187bcb8c2e2",
+    "candidate_head": "f82babb107b166beffa76844bbc2c64c8296d247",
+    "module_manifest_sha256": "db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855"
+  },
+  "new": {
+    "base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+    "source_tree": "5da48cf36c47a7d87124fe72c0becbbb26a419d9",
+    "lakefile_sha256": "b96a1a0b45e250d91bbf78d3490b79a317678bf13b823227b731cb87e3fd5ce5",
+    "manifest_sha256": "6b5ad855ab2f8544071569928d1b84e8e6be14636e7b2809e7ccabb3937934ee",
+    "toolchain": "leanprover/lean4:v4.37.0-rc1",
+    "input_fingerprint": "d9c631905dbcbe3af7b6c770e6e78fb7ff785ad33ac1e7faf482b8b1cc769f9f",
+    "candidate_head": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+    "module_manifest_sha256": "7ef75c550561a6f21d27bb76c9a53fcf6a9a6fe5d5d481f2cdb56e9b1262589d"
+  },
+  "modules": 9353,
+  "reuse_tsv_sha256": "376b7aa540ac383d5a0f8f958cd4c683fda4499d81208f3b34aaf4a688067884",
+  "witness_gzip_sha256": "28041287cb67b3cf25176b21b6c163720c4422f4d1f5980a8235652cf2782f7f",
+  "graph_sha256": {
+    "old": "ec04ddec7c43648872794bfb65663d7b57eb3797051b57d67516b6292b957326",
+    "new": "e032f0efab1562e8ceb57acfca014adb55937b17c3b86ad84017a6ca701ef024"
+  },
+  "targets_sha256": "5f67ebd907d6a67f6df4b792a0c366a4b5c12cbc0e7a235732ced55b35f47df2",
+  "worker_sha256": "5d64280168a2eb2daaed7fc15491b13443327ec631fa7df2bb8a283c1b6aefed",
+  "exact_checker_sha256": "d42ab8acf8d953f321c501b0e479f7b92c6ab51484f4fae63f745a57deaa0af3",
+  "lean_compiler": "0b77e12952ad39077d80d8bd6b66d601f225c321",
+  "Mathlib": "31ce06eaadf4a200c0e1407c5f10953cf606b8f8",
+  "mode": "same Git blob and owning LTAR SHA-256 and identical sorted (effective project module, import-all/meta flags, complete parent LTAR SHA-256) inputs; identical toolchain, package and Mathlib pins; no project import-all/meta users. Use only if the actual candidate source SHA and complete acceptance certificate also match."
+}
