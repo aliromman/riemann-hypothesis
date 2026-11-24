@@ -80,6 +80,8 @@ def package(stage, number, out, first_commit=False):
     if bound.get('source_mode')=='clump-scopes':
         for key in ('source_mode','source_trial_sha256','tooling'):
             request[key]=bound[key]
+        if bound.get('fusion_refinements'):
+            request['fusion_refinements']=bound['fusion_refinements']
     new_reports=bound.get('new_reports',{})
     native={r['origin'] for r in inputs.values() if r['kind']=='fresh'}
     if new_reports:

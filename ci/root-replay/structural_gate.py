@@ -12,6 +12,8 @@ from prepare import stripped
 
 MODE = 'clump-scopes'
 WORKFLOW = '.github/workflows/fork-structural-check.yml'
+FUSION_BLANK_TRIAL = '0f6ae68c01e2367dabdb858c0106626ae9fabb4e91ca1106797458eefda2439b'
+FUSION_BLANK_PRODUCTION = '7432b368d339b0e775698a0a6672472ed1dc2400a703ce11f1bf1eebabfa3c4f'
 REVIEWED = 'd27f71347abceb76cd37dc8a5fccbe556ec2be90'
 WORKER = '16edfc6e7902ab0eed9b4cbb143807d4561fb47052f6ec69ae26ab0e3a71e12f'
 RUNNER = '6fe6cfbf9d8d186a81fdafb3e034a9fc830f84a2cfeed2d5400c1c9424ff9d26'
@@ -134,6 +136,12 @@ def check_actions(req, inputs):
             raise ValueError('published structural native table differs from the expected digest')
         rows = group(report, raw, ref, ref['source_trial_sha256'])
         for name, expected in wanted[digest].items():
+            if name in req.get('fusion_refinements', {}) and (
+                ref['source_trial_sha256'] != FUSION_BLANK_TRIAL or
+                ref.get('production_source_manifest_sha256') != FUSION_BLANK_PRODUCTION or
+                report['scope'].get('input_mode') != 'exact-source-bytes'
+            ):
+                raise ValueError('the refined source lacks its original exact-source native trial: ' + name)
             if receipt(rows[name], digest) != expected:
                 raise ValueError('structural source, declaration or artifact differs from its original native record: ' + name)
     return {'actions_structural_rows': len(inputs), 'actions_artifacts': len(refs)}

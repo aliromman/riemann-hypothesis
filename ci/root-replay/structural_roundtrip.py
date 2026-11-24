@@ -16,6 +16,68 @@ RECIPE = {'context_fusion.py': '322c0ac892bff0bdf808f1ca5b5ee7376bb3d3ee6cef17ab
           'compact_scope.py': '9e0f5633f64a44157bc837790d3b21b58c0f098211c00c1590b9a9ea318e7d70'}
 
 
+def member_sources(parts, fuse, drop_blank):
+    lines = parts.body.removesuffix('\n').split('\n')
+    fused, count = fuse(lines)
+    def source(body):
+        return parts.header + '\n'.join(body) + ('\n' if parts.body.endswith('\n') else '')
+    standard = source(fused)
+    if not drop_blank:
+        return standard, standard
+    if not count:
+        raise ValueError('the named member has no verified noncomputable section fusion')
+    pos = lines.index('noncomputable section')
+    if pos == 0 or pos + 1 >= len(lines) or lines[pos-1] != '' or lines[pos+1] != '' or fused[pos-1:pos+1] != ['', '']:
+        raise ValueError('the fused source command does not have empty lines on both sides')
+    return standard, source(fused[:pos-1] + fused[pos:])
+
+
+def rendered_counts(text):
+    lines = text.splitlines()
+    code = sum(bool(line.strip()) and not line.lstrip().startswith('--') for line in lines)
+    return code, sum(line.startswith('open ') for line in lines)
+
+
+def check_clump(name, a, b, refinement, prior, proposal, fuse, candidate):
+    changed_members = original_bytes = gain = open_gain = 0
+    header(a, b)
+    original = prior.unclump_text(a.decode())
+    restored = proposal.unclump_text(b.decode())
+    if original.keys() != restored.keys() or list(original) != list(restored) or not original:
+        raise ValueError('the normal unclumper changed member names or order: ' + name)
+    modules = {}
+    baseline_modules = {}
+    cleaned = set(refinement['members']) if refinement is not None else set()
+    if refinement is not None and (not cleaned or len(cleaned) != len(refinement['members']) or not cleaned <= original.keys()):
+        raise ValueError('the refinement does not list distinct original members: ' + name)
+    for n, text in original.items():
+        parts = prior.Module(n, '', text)
+        standard, expected = member_sources(parts, fuse, n in cleaned)
+        if restored[n] != expected:
+            raise ValueError('restored member has a change outside the indicated section fusion: ' + n)
+        modules[n] = proposal.Module(n, '', restored[n])
+        if refinement is not None:
+            baseline_modules[n] = proposal.Module(n, '', standard)
+        changed_members += int(text != expected)
+        original_bytes += len(text.encode())
+    mark = proposal.CLUMP_MARK
+    rendered = proposal.render(str(candidate), list(original), modules)
+    if rendered.partition(mark)[2] != b.decode().partition(mark)[2]:
+        raise ValueError('the normal clump renderer does not recreate the exact selected body: ' + name)
+    if refinement is not None:
+        earlier = proposal.render(str(candidate), list(original), baseline_modules)
+        old_code, old_opens = rendered_counts(earlier)
+        new_code, new_opens = rendered_counts(rendered)
+        gain = old_code - new_code
+        open_gain = old_opens - new_opens
+        if gain <= 0 or gain != refinement['saved_commands']:
+            raise ValueError('the refined source does not realize its measured command savings: ' + name)
+        if open_gain <= 0:
+            raise ValueError('the refined source must reduce physical namespace open commands: ' + name)
+    return {'members': len(original), 'changed_members': changed_members, 'original_bytes': original_bytes,
+            'blanks': len(cleaned), 'commands': gain, 'opens': open_gain}
+
+
 def check(req, inputs, parent, candidate, recipe):
     if req.get('source_mode') != 'clump-scopes':
         raise ValueError('unrecognized structural root request')
@@ -40,6 +102,10 @@ def check(req, inputs, parent, candidate, recipe):
     reader = Blobs(candidate)
     members = changed_members = original_bytes = 0
     planner_modules = protected_modules = 0
+    refinements = req.get('fusion_refinements', {})
+    if not refinements.keys() <= inputs.keys():
+        raise ValueError('the source refinement names an unselected file')
+    removed_blank_lines = extra_commands = extra_opens = 0
     try:
         selected = {str(source_path(n)) for n in inputs}
         if old.keys() != new.keys():
@@ -61,26 +127,13 @@ def check(req, inputs, parent, candidate, recipe):
             a, b = reader.read(old[path]), reader.read(new[path])
             if (sha(a), sha(b)) != (row['parent_source'], row['head_source']):
                 raise ValueError('round-trip source hashes differ: ' + name)
-            header(a, b)
-            original = prior.unclump_text(a.decode())
-            restored = proposal.unclump_text(b.decode())
-            if original.keys() != restored.keys() or list(original) != list(restored) or not original:
-                raise ValueError('the normal unclumper changed member names or order: ' + name)
-            modules = {}
-            for n, text in original.items():
-                parts = prior.Module(n, '', text)
-                code, _ = fuse(parts.body.removesuffix('\n').split('\n'))
-                expected = parts.header + '\n'.join(code) + ('\n' if parts.body.endswith('\n') else '')
-                if restored[n] != expected:
-                    raise ValueError('restored member has a change outside the indicated section fusion: ' + n)
-                modules[n] = proposal.Module(n, '', restored[n])
-                members += 1
-                changed_members += int(text != expected)
-                original_bytes += len(text.encode())
-            mark = proposal.CLUMP_MARK
-            rendered = proposal.render(str(candidate), list(original), modules)
-            if rendered.partition(mark)[2] != b.decode().partition(mark)[2]:
-                raise ValueError('the normal clump renderer does not recreate the exact selected body: ' + name)
+            values = check_clump(name, a, b, refinements.get(name), prior, proposal, fuse, candidate)
+            members += values['members']
+            changed_members += values['changed_members']
+            original_bytes += values['original_bytes']
+            removed_blank_lines += values['blanks']
+            extra_commands += values['commands']
+            extra_opens += values['opens']
     finally:
         reader.close()
     tests = subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-s', str(candidate / 'scripts'),
@@ -88,6 +141,8 @@ def check(req, inputs, parent, candidate, recipe):
     return {'parent': base, 'head': head, 'source_tree': req['head_src'], 'source_files': len(inputs),
             'members': members, 'member_bodies_with_verified_scope_fusion': changed_members,
             'planner_modules_compared': planner_modules, 'planner_modules_protected': protected_modules,
+            'fused_adjacent_empty_lines_removed': removed_blank_lines, 'additional_command_lines_saved': extra_commands,
+            'additional_open_lines_saved': extra_opens, 'refined_clumps': len(refinements),
             'bytes_in_original_member_sources': original_bytes, 'candidate_tools': req['tooling'],
             'focused_test_output': (tests.stdout + tests.stderr).strip()}
 
