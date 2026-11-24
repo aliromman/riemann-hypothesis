@@ -1,0 +1,186 @@
+name: Certify exact sources on the updated RH parent
+on:
+  push:
+    branches: [ci/import-pruning/screen]
+    paths: ['ci/parent-refresh/dispatch.json']
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  RUST_MIN_STACK: '33554432'
+  LEAN_NUM_THREADS: '1'
+  LEAN_ABORT_ON_PANIC: '1'
+  MATHLIB_CACHE_GET_URL: https://cache.mathlib.org/mathlib4
+
+jobs:
+  select:
+    if: github.repository == 'aliromman/riemann-hypothesis' && github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    outputs:
+      jobs: ${{ steps.select.outputs.jobs }}
+      base: ${{ steps.select.outputs.base }}
+      manifest: ${{ steps.select.outputs.manifest }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout: ci/parent-refresh
+      - id: select
+        name: Read the bound Git commits and group roster
+        working-directory: ci/parent-refresh
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,os,re
+          auth=json.loads(Path('authority.json').read_bytes())
+          dispatch=json.loads(Path('dispatch.json').read_bytes())
+          folder=dispatch['request']
+          if not re.fullmatch('[a-z0-9-]+',folder):raise ValueError('invalid plan name')
+          plan=json.loads((Path(folder)/'request.json').read_bytes())
+          if plan['authority']!=auth:raise ValueError('wrong official parent')
+          groups=dispatch['groups']
+          if not groups or len(groups)!=len(set(groups)) or not set(groups)<=set(plan['groups']):raise ValueError('invalid group roster')
+          jobs=[{'group':n,'request':folder,'head':plan['tasks'][plan['groups'][n]['task']]['head']} for n in groups]
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:
+              print('jobs='+json.dumps({'include':jobs}),file=out)
+              print('base='+auth['base'],file=out)
+              print('manifest='+auth['manifest'],file=out)
+              print('seed='+str(dispatch['seed_run']),file=out)
+          PY
+      - name: Wait for the single shared parent archive seed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SEED: ${{ steps.select.outputs.seed }}
+          MANIFEST: ${{ steps.select.outputs.manifest }}
+        run: |
+          python3 - <<'PY'
+          import json,os,subprocess,time
+          repo=os.environ['GITHUB_REPOSITORY']
+          def api(p):return json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+p]))
+          key='rh-screen-all-'+os.environ['MANIFEST']
+          for _ in range(180):
+              state=api('actions/runs/'+str(int(os.environ['SEED'])))
+              if state['name']!='Prepare the published RH parent for both native comparisons' or state['head_branch']!='ci/import-pruning/screen':
+                  raise ValueError('unexpected parent seed')
+              if state['status']=='completed':
+                  if state['conclusion']!='success':raise ValueError('the shared parent seed failed')
+                  entries=api('actions/caches?key='+key)['actions_caches']
+                  if any(e['key']==key and e['ref']=='refs/heads/ci/import-pruning/screen' for e in entries):break
+              time.sleep(25)
+          else:raise ValueError('the completed parent cache is not available')
+          PY
+
+  check:
+    needs: select
+    runs-on: ubuntu-24.04
+    timeout-minutes: 345
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix: ${{ fromJSON(needs.select.outputs.jobs) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: harness
+          persist-credentials: false
+          sparse-checkout: |
+            ci/parent-refresh
+            ci/current-recheck
+            ci/import-screen
+            ci/structural-screen
+            ci/root-replay
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: ${{ needs.select.outputs.base }}
+          path: parent
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /lean-toolchain
+            /lakefile.toml
+            /lake-manifest.json
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: aliromman/riemann-hypothesis
+          ref: ${{ matrix.head }}
+          path: reviewed
+          fetch-depth: 2
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: /lean-toolchain
+      - name: Bind the candidate to its complete parent ancestry
+        env:
+          BASE_REV: ${{ needs.select.outputs.base }}
+          HEAD_REV: ${{ matrix.head }}
+        working-directory: reviewed
+        run: |
+          if ! git merge-base --is-ancestor "$BASE_REV" "$HEAD_REV"; then
+            git fetch --quiet --unshallow --filter=tree:0 --no-tags --no-write-fetch-head origin "$HEAD_REV"
+          fi
+          git merge-base --is-ancestor "$BASE_REV" "$HEAD_REV"
+      - name: Restore the authenticated current project archives
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          key: rh-screen-all-${{ needs.select.outputs.manifest }}
+          path: ${{ runner.temp }}/rh-screen-cache
+          fail-on-cache-miss: true
+      - name: Install the pinned compiler
+        working-directory: parent
+        run: bash ../harness/ci/import-screen/install-lean.sh
+      - name: Restore the pinned Mathlib downloads
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-mathlib-cache
+          key: rh-screen-math-v1-linux-x64-31ce06eaadf4a200c0e1407c5f10953cf606b8f8
+      - name: Prepare Mathlib and the native declaration and import comparers
+        working-directory: parent
+        run: |
+          MATHLIB_CACHE_DIR="$RUNNER_TEMP/rh-mathlib-cache" lake exe mathlib/cache get
+          git diff --exit-code -- lakefile.toml lean-toolchain lake-manifest.json
+          for pair in 'import-screen CheckInterface' 'root-replay BuildPublic'; do
+            read -r path target <<< "$pair"
+            trial="$GITHUB_WORKSPACE/harness/ci/$path"
+            lean -R "$trial" -c "$RUNNER_TEMP/$target.c" "$trial/$target.lean"
+            leanc -O2 -o "$RUNNER_TEMP/$target" "$RUNNER_TEMP/$target.c"
+          done
+      - id: saved
+        name: Restore compatible native checkpoints
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-refresh-receipts
+          key: rh-refresh-${{ needs.select.outputs.manifest }}-${{ matrix.request }}-${{ matrix.group }}-${{ hashFiles('harness/ci/parent-refresh/source_check.py', 'harness/ci/current-recheck/*.py', 'harness/ci/structural-screen/check.py') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            rh-refresh-${{ needs.select.outputs.manifest }}-${{ matrix.request }}-${{ matrix.group }}-${{ hashFiles('harness/ci/parent-refresh/source_check.py','harness/ci/current-recheck/*.py','harness/ci/structural-screen/check.py') }}-
+      - id: native
+        name: Re-elaborate the reviewed source and compare the kernel and compiler outputs
+        env:
+          GROUP: ${{ matrix.group }}
+          REQUEST: ${{ matrix.request }}
+          MANIFEST: ${{ needs.select.outputs.manifest }}
+        run: |
+          export RH_LTAR_MANIFEST="$RUNNER_TEMP/rh-screen-cache/metadata/$MANIFEST.jsonl.gz"
+          export RH_LTAR_DIAGNOSTICS="$RUNNER_TEMP/rh-refresh-results/leantar-diagnostics.jsonl"
+          tool=$(cd parent && elan which lean)
+          python3 -u harness/ci/parent-refresh/source_check.py --group "$GROUP" --request "harness/ci/parent-refresh/$REQUEST" --parent parent --reviewed reviewed --cache "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-refresh-results" --resume "$RUNNER_TEMP/rh-refresh-receipts" --bin "$(dirname "$tool")" --judge "$RUNNER_TEMP/CheckInterface" --rebuilder "$RUNNER_TEMP/BuildPublic"
+      - name: Save incomplete native group checkpoints
+        if: always() && steps.native.outcome == 'failure'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-refresh-receipts
+          key: ${{ steps.saved.outputs.cache-primary-key }}
+      - name: Preserve all observations and diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: reviewed-native-${{ matrix.group }}-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          path: |
+            ${{ runner.temp }}/rh-refresh-results/results.jsonl
+            ${{ runner.temp }}/rh-refresh-results/report.json
+            ${{ runner.temp }}/rh-refresh-results/scope.json
+            ${{ runner.temp }}/rh-refresh-results/leantar-diagnostics.jsonl

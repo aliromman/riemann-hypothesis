@@ -2,7 +2,7 @@
 from __future__ import annotations
 import difflib,hashlib,json,os,subprocess,tempfile,time
 from pathlib import Path
-from parent import HERE,SCREEN
+from parent import HERE,SCREEN,canonical
 import sys
 sys.path.insert(0,str(HERE.parent/'root-replay'))
 from native import header
@@ -17,7 +17,8 @@ class Exact(Runner):
         super().__init__(opt)
         self.variants=variants
 
-    def difference(self,before,after,which):
+    @staticmethod
+    def difference(before,after,which):
         edits=[]
         for op,a,b,c,d in difflib.SequenceMatcher(None,before,after,autojunk=False).get_opcodes():
             if op=='equal':continue
@@ -68,6 +69,7 @@ class Exact(Runner):
                 status='pass' if not out.returncode else 'declarations'
                 if after!=before:status='diagnostics'
                 r.update(status=status,old_warnings=sum(before.values()),new_warnings=sum(after.values()),seconds=round(time.monotonic()-start,3))
+                r.update(old_warning_sha256=sha(canonical(sorted(before.items()))),new_warning_sha256=sha(canonical(sorted(after.items()))))
                 if after!=before:r.update(added=list((after-before).elements())[:1],lost=list((before-after).elements())[:1])
                 if status == 'pass':
                     r['facets']={ext:sha((tmp/('new'+ext)).read_bytes())

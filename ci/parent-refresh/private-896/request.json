@@ -1,0 +1,195 @@
+{
+  "authority": {
+    "base": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+    "tree": "6e972745429bd501b15e5daa9db46c8a9feb85db",
+    "manifest": "a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463",
+    "graph": "48b7623709bb346e3e358747896b17c0e11933018855d0bcd3d461d25dc728f5"
+  },
+  "tasks": {
+    "private": {
+      "pr": 879,
+      "head": "c4b66990077a462b2e2d35777fe0f55644463e87",
+      "src": "c7126960bde14461813ed3125e947e47544c04c1",
+      "upstream_clump_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+      "source_table_sha256": "a253d38d5b96abd3a28913f73a1f4e6af5ad5af99caa1c84c44f67d00edf49d9"
+    }
+  },
+  "groups": {
+    "896-direct-large-1": {
+      "task": "private",
+      "count": 12,
+      "sha256": "6db807e1ec6154f95e563ac2a5a45d1a72d4547283eaffd64f31f17b1c8aa6e9",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 799.42
+    },
+    "896-direct-large-2": {
+      "task": "private",
+      "count": 11,
+      "sha256": "3fef5d3d1d87d32cec6e64f3eb93e4b31147845ff686f2f1cf7a84aff77a8706",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 793.69
+    },
+    "896-direct-large-3": {
+      "task": "private",
+      "count": 12,
+      "sha256": "3152e47856923d523766b9fd64a323d27efcf03005b60f1098818424ba92f0b5",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 792.84
+    },
+    "896-direct-ordinary-1": {
+      "task": "private",
+      "count": 86,
+      "sha256": "bb9050d819341872e4c7f03a8debc4238bb8ad0a3bae0de8a25a8ed44380b60e",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 1352.72
+    },
+    "896-direct-ordinary-2": {
+      "task": "private",
+      "count": 86,
+      "sha256": "053934fa24ff7c8873befa22e816cdbec4a1696712c980e183817e5c96cedc25",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 1352.72
+    },
+    "896-direct-ordinary-3": {
+      "task": "private",
+      "count": 86,
+      "sha256": "683146690f0986db4ea02ac00efbc66d345ab9995d763d8a0518d0d1277081ea",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 1352.74
+    },
+    "896-private-large-1": {
+      "task": "private",
+      "count": 163,
+      "sha256": "7de05587368ec245438ebf95ae04a8e6083a9882cb182567f370f46c6757abb6",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 5055.15
+    },
+    "896-private-ordinary-1": {
+      "task": "private",
+      "count": 1917,
+      "sha256": "2ab7fe61488df8c11bcf49479bd6130dc0f8cb30ca2bec48cd856f48bd5606ea",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.75
+    },
+    "896-private-ordinary-2": {
+      "task": "private",
+      "count": 1917,
+      "sha256": "ee67c7bb52159b1b3da640d8959224a3fcb27108650665ad0d806b26b50b8c6b",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.75
+    },
+    "896-private-ordinary-3": {
+      "task": "private",
+      "count": 1917,
+      "sha256": "dfc7481064d2852279654c538905dbaf7f9b8c282655e9bf606c04908ca8e8e6",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.74
+    },
+    "896-private-ordinary-4": {
+      "task": "private",
+      "count": 1917,
+      "sha256": "fb67f13d826ce91d1f67a0482bab200b9fd4d4e4162b8441b0f4bfec8705c263",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.75
+    },
+    "896-private-ordinary-5": {
+      "task": "private",
+      "count": 1916,
+      "sha256": "62cb1145d57a98730d8ae525588a73f861fac9ee915a79d61a2934cfbf86324e",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.08
+    },
+    "896-private-ordinary-6": {
+      "task": "private",
+      "count": 1917,
+      "sha256": "2e52754b969e6df6316e46f50f76fa45cb6895b4e7cefd42a4558f428ab1526b",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.73
+    },
+    "896-private-ordinary-7": {
+      "task": "private",
+      "count": 1917,
+      "sha256": "c35df53f1ca0f77016d2a4a1742bebc33c9d4f914793e0449dd1c134b87f4cc5",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.75
+    },
+    "896-private-ordinary-8": {
+      "task": "private",
+      "count": 1917,
+      "sha256": "870dcc4f289fb2505ffc8b2b1a5c1ee8393c47f8e7fcefdf106325942cff2edf",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.73
+    },
+    "896-private-ordinary-9": {
+      "task": "private",
+      "count": 1917,
+      "sha256": "705d412cbdb4628e202fcdfbcfdafc138ea9908e2c809274e54ff65371b80ea9",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.75
+    },
+    "896-private-ordinary-10": {
+      "task": "private",
+      "count": 1917,
+      "sha256": "b732b023bc3fb6c2e57b8bc34cb59ea4649c3accab40292940ae88fa64168e68",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.74
+    },
+    "896-private-ordinary-11": {
+      "task": "private",
+      "count": 1917,
+      "sha256": "80450cfa597314f779689519aec0f8bb4f3c9fb64528f8c192619ab118b9fb80",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.73
+    },
+    "896-private-ordinary-12": {
+      "task": "private",
+      "count": 1917,
+      "sha256": "a9b22dfab6c3801dce931988c215ee2639388e3c8a5aaea392875c8af615c0b8",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.75
+    },
+    "896-private-ordinary-13": {
+      "task": "private",
+      "count": 1917,
+      "sha256": "0bb1921859dedd4d793c2b4690a4e7736b2cecaa919515154ea9d1f90bb11ac7",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.74
+    },
+    "896-private-ordinary-14": {
+      "task": "private",
+      "count": 1916,
+      "sha256": "fbcfe40031bb0eacad0d4fbdad6c4bf4ad4ad67196f6bd4b201be284d3784a8d",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.08
+    },
+    "896-private-ordinary-15": {
+      "task": "private",
+      "count": 1916,
+      "sha256": "6ab0a3b0181c7c66e261db09437c561716142f63e82c1e7f920ee96700c1a5a3",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 8641.08
+    }
+  }
+}

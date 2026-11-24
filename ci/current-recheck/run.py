@@ -29,14 +29,17 @@ def load_plan(group,folder):
     if len(variants)!=g['count']:raise ValueError('candidate group count differs')
     return plan,g,variants
 
-def run_group(checker,group,variants,work,resume,domain,seconds,workers):
+def private_variant_matches(row, variant):
+    return [row['source'],row['candidate'],row['removed'],row['added_imports']]==[variant[2],variant[3],variant[5],variant[6]]
+
+def run_group(checker,group,variants,work,resume,domain,seconds,workers,variant_matches=private_variant_matches):
     saved={};path=resume/'results.json.gz'
     if path.exists():
         data=json.loads(gzip.decompress(path.read_bytes()))
         if data['domain']!=domain or sha(canonical(data['rows']))!=data['sha']:raise ValueError('wrong native checkpoint identity')
         for row in data['rows']:
             n=row['module'];v=variants[n]
-            if n in saved or [row['source'],row['candidate'],row['removed'],row['added_imports']]!=[v[2],v[3],v[5],v[6]]:
+            if n in saved or not variant_matches(row,v):
                 raise ValueError('checkpoint differs from the exact candidate header')
             if row['status']=='pass' and (type(row.get('kernelImage')) is not bool or set(row['facets'])!=set(CERT) or row['different']!=0):
                 raise ValueError('incomplete passed record')
