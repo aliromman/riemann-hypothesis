@@ -22,7 +22,7 @@ strict-implicit and instance arguments (parsed from their source by lean_signatu
 it cannot parse counts as a mismatch), when the wrapper file declares `variable`s, when `X` does
 not resolve to exactly one project declaration, when a caller
 mentions `N` in a way that might not be a reference (field notation, a local declaration of
-the same short name), when the wrapper is imported by a protected module, or when they are
+the same short name, a possible string literal), when the wrapper is imported by a protected module, or when they are
 listed in `scripts/collapse-wrappers-exclude.txt` (e.g. because a caller failed to compile).
 This is not reversible by a script.
 
@@ -42,7 +42,18 @@ from lean_signature import signature, telescope  # noqa: E402
 FIRST_RE = re.compile(r"\bfirst\s*\|\s*exact\s+@?([^\s|()\[\]{},]+)")
 TERM_RE = re.compile(r":=\s*(?:by\s+exact\s+)?@?([^\s|()\[\]{},]+)\s*$")
 OPEN_RE = re.compile(r"^open\s+(?:scoped\s+)?(.*?)(?:\s+in)?\s*(?:--.*)?$")
-IDENT_RE = re.compile(r"(@?)((?:[A-Za-z_À-￿][\w'!?À-￿]*\.)*[A-Za-z_À-￿][\w'!?À-￿]*)")
+# Lean 4.37.0-rc1: Init/Meta/Defs.lean, isLetterLike/isIdFirst/isIdRest.
+# In particular, tuple brackets and λ/Π/Σ are not identifier characters.
+ID_LETTERS = (
+    r"A-Za-z_\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u017f"
+    r"\u0391-\u039f\u03a1-\u03a2\u03a4-\u03a9"
+    r"\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2100-\u214f"
+    r"\U0001d49c-\U0001d59f"
+)
+ID_REST = ID_LETTERS + r"0-9'!?\u2080-\u2089\u2090-\u209c\u1d62-\u1d6a\u2c7c"
+# Keep escaped components atomic: «N.foo» is not the qualified name N.foo.
+ID_COMPONENT = rf"(?:«[^»]*»|[{ID_LETTERS}][{ID_REST}]*)"
+IDENT_RE = re.compile(rf"(@?)({ID_COMPONENT}(?:\.{ID_COMPONENT})*)")
 PROTECTED = {"Main", "Statements", "Challenge"}
 ALLOWED_OTHER = re.compile(
     r"^(?:open\b|namespace\b|end\b|section\b|noncomputable\s+section|@\[expose\]|public\s+section|set_option\b|universe\b|variable\b|--|/-|-/)")
@@ -197,11 +208,20 @@ def main():
             body = mods[c].body
             if last not in body:
                 continue
+            # Every string literal lies between the first and last double quote.
+            # Keep doubtful uses, including raw/interpolated strings, rather than
+            # rewrite their contents. This may also retain a use between strings.
+            if '"' in body and last in body[body.index('"'):body.rindex('"') + 1]:
+                ok = False
+                break
             if any(d.rsplit(".", 1)[-1] == last for d in mods[c].decls):
                 ok = False
                 break
             for mt in IDENT_RE.finditer(body):
                 t = mt.group(2)
+                if "«" in t and last in t:
+                    ok = False  # the source name index does not resolve escaped components
+                    break
                 if t.rsplit(".", 1)[-1] != last:
                     continue
                 if not (n == t or n.endswith("." + t)):
