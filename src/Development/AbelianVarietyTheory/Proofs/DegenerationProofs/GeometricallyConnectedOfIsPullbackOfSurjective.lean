@@ -3,6 +3,7 @@ module
 public import Mathlib.AlgebraicGeometry.Geometrically.Integral
 public import Mathlib.Combinatorics.Quiver.ReflQuiver
 public import Mathlib.FieldTheory.IsAlgClosed.Basic
+import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.Valuation.ValuationRing
 public import Mathlib.RingTheory.Valuation.LocalSubring
 public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
@@ -13,7 +14,6 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSc
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GeometricallyIntegralIffGeometricallyConnectedOf
 public import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.LocallyOfFinitePresentationDiagMap
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal

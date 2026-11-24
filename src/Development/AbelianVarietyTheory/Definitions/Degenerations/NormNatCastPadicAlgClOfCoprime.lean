@@ -4,8 +4,8 @@ public import Development.AbelianVarietyTheory.Definitions.Degenerations.ArithBa
 public import Mathlib.NumberTheory.LegendreSymbol.AddCharacter
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.OrthogonalFreeOfPerfectAltZmod
 import Mathlib.Algebra.Order.Star.Real
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

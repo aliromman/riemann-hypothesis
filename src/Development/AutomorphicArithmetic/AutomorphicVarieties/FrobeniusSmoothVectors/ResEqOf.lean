@@ -2,6 +2,7 @@ module
 
 public import Mathlib.RingTheory.AdjoinRoot
 public import Mathlib.RingTheory.DiscreteValuationRing.Basic
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
 public import Mathlib.RingTheory.LocalRing.ResidueField.Defs
 public import Mathlib.Algebra.Polynomial.Eval.Irreducible
 public import Mathlib.FieldTheory.Finiteness
@@ -15,7 +16,6 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.FrobeniusSm
 public import Mathlib.Algebra.CharP.Algebra
 public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 public import Mathlib.FieldTheory.PrimitiveElement
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal

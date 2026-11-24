@@ -11,7 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.CharacterTheory.InvariantS
 public import Development.AbelianVarietyTheory.Proofs.CharacterTheory.InvertibleEndInnerProductRootPowerSumMobius
 public import Development.AbelianVarietyTheory.Proofs.CharacterTheory.PrimitiveEndClassFunctionZeroOfCharpolyMassZero
 import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal

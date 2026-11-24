@@ -1,8 +1,8 @@
 module
 
+import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.NumberTheory.Padics.RingHoms
 import Mathlib.Algebra.Order.Star.Int
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime

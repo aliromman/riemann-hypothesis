@@ -5,7 +5,7 @@ public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsA
 import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsBasisLatticeNear
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Algebra.Order.Star.Real
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

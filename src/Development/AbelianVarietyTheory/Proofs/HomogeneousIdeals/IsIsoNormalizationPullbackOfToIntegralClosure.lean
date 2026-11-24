@@ -1,5 +1,6 @@
 module
 
+import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.AlgebraicGeometry.Morphisms.QuasiFinite
 public import Mathlib.AlgebraicGeometry.Morphisms.SchemeTheoreticallyDominant
 public import Mathlib.AlgebraicGeometry.Normalization
@@ -10,7 +11,6 @@ import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
 import Mathlib.AlgebraicGeometry.Sites.Fpqc
 import Mathlib.AlgebraicGeometry.ZariskisMainTheorem
 import Mathlib.CategoryTheory.ExtremalEpi
-import Mathlib.NumberTheory.Height.NumberField
 public import Mathlib.RingTheory.Invariant.Basic
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.NormNum.Irrational

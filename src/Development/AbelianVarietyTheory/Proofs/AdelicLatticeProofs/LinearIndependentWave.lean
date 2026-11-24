@@ -3,7 +3,7 @@ module
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.GroupTheory.Coset.Defs
 public import Mathlib.LinearAlgebra.LinearIndependent.Defs
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.Style

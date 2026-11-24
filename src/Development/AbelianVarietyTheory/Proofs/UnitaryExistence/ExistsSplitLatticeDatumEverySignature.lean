@@ -5,7 +5,7 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsDat
 public import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.ExistsConjDatum
 public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.HermitianDatumDirectPower
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.HermitianLatticeSignatureSplitOfDefinite
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.NormNum.Irrational

@@ -4,9 +4,9 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.OneFormMapEq
 public import Development.AbelianVarietyTheory.Definitions.Divisors.CrystallineConnectionFormCoboundaryZero
 public import Development.AbelianVarietyTheory.Definitions.Divisors.CechDeRhamCoefMapOneFormsRestrictAlongFunctor
 public import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.StructureHomApply
+import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.RingTheory.Kaehler.Polynomial
 import Mathlib.Algebra.Order.Star.Int
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime

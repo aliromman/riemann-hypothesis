@@ -4,9 +4,9 @@ public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.LieAlgebr
 public import Mathlib.CategoryTheory.MorphismProperty.Descent
 public import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.IsAffineHomOfFlatQuotientOfAffineKernel
 import Mathlib.AlgebraicGeometry.Morphisms.Descent
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Flat.FaithfullyFlat.Descent
+import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal

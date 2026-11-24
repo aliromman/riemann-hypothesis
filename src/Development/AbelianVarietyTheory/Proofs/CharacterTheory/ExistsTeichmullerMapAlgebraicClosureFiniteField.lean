@@ -1,8 +1,8 @@
 module
 
+import Mathlib.Analysis.Complex.Polynomial.Basic
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal

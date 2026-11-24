@@ -4,7 +4,7 @@ public import Mathlib.Algebra.Module.ZLattice.Basic
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.Calculus.ContDiff.Defs
 public import Mathlib.Geometry.Manifold.PartitionOfUnity
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style

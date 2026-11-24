@@ -1,7 +1,7 @@
 module
 
 public import Formalism.LocalToGlobal.CharacterGerms.RowTieFB
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

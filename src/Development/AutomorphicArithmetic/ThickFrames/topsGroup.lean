@@ -5,6 +5,7 @@ public import Formalism.SubspaceCounting.GoodOrbitIntervalTileCondition
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ChoiceOfTops
 public import Development.AutomorphicArithmetic.ThickFrames.expectationSpec
 public import Development.AutomorphicArithmetic.ThickFrames.MarkedGe
+import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.Basic.Real.Basic
 public import Mathlib.GroupTheory.Index
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
@@ -15,7 +16,6 @@ public import Mathlib.Analysis.Complex.ExponentialBounds
 public import Mathlib.Algebra.Order.Field.GeomSum
 public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 public import Mathlib.Algebra.BigOperators.Field
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

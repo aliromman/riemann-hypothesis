@@ -2,6 +2,7 @@ module
 
 public import Mathlib.RingTheory.AdicCompletion.Basic
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoordApply
+import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.TensorProduct.IsBaseChangeFree
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.OneAddXMulDerivativeBin
 public import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
@@ -14,7 +15,6 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsB
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsMatrixFrobenius
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemXSmulOfProjective
 public import Mathlib.Algebra.Divisibility.Prod
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

@@ -3,11 +3,11 @@ module
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.Calculus.ImplicitContDiff
 public import Mathlib.Analysis.Calculus.IteratedDeriv.Defs
+import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 public import Mathlib.Order.CompletePartialOrder
 public import Mathlib.Order.Filter.Germ.Basic
 public import Mathlib.RingTheory.LaurentSeries
 public import Mathlib.Analysis.Complex.TaylorSeries
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime

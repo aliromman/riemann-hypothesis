@@ -2,8 +2,8 @@ module
 
 public import ReciprocityTheory.CommutativeAlgebra.CohenMacaulay.ModDepthGE
 public import Mathlib.RingTheory.Etale.Basic
+import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational

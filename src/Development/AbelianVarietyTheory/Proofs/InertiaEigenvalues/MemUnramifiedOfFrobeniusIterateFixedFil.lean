@@ -1,7 +1,7 @@
 module
 
 public import Formalism.LocalRingCardinality.AdicCompletionLocal.LocTied
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational

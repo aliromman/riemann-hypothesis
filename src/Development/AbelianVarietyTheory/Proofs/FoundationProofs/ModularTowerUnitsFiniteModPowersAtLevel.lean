@@ -1,6 +1,7 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.Foundations.ExpUpper
+import Mathlib.Analysis.Complex.Polynomial.Basic
 public import Mathlib.Analysis.Meromorphic.Order
 public import Mathlib.Analysis.Complex.Convex
 public import Mathlib.Analysis.Complex.CauchyIntegral
@@ -17,7 +18,6 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.TendstoMo
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.UpperHalfPlaneCodiscreteGermIdentityAndUnits
 public import Mathlib.GroupTheory.Schreier
 public import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

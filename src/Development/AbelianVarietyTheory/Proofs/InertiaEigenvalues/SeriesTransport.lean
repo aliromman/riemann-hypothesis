@@ -1,8 +1,8 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PeriodDiscExtensionTateElement
+import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Algebra.Order.Star.Int
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Order.Interval.Finset.Box
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.NormNum.Irrational

@@ -1,7 +1,7 @@
 module
 
+import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.RamificationInertia.Ramification
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime

@@ -2,6 +2,7 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.DlogRatioVolumeFormNeZero
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardAffineOpenRingPolynomialEquivStatement
+import Mathlib.Analysis.Complex.Polynomial.Basic
 public import Mathlib.RingTheory.MvPolynomial.Ideal
 public import Mathlib.RingTheory.IntegralClosure.IntegralRestrict
 public import Mathlib.RingTheory.Trace.Quotient
@@ -17,7 +18,6 @@ public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.CardAlgHomRed
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FibFiniteAndSep
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LocalMaximality.ResidueOfTraceIsFiberSum
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTopDegreeCoefficientFormAndEqOnTopFormsStatement
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime

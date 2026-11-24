@@ -1,5 +1,6 @@
 module
 
+import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.FieldTheory.Perfect
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPowCharEqOfIsReducedFinite
 public import Mathlib.RingTheory.Noetherian.Nilpotent
@@ -19,7 +20,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCocommOfSu
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerAppEqBialgHomKernelIdealOfIdempotents
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerIdealFinrankEqPowOfIdempotent
 public import Development.AbelianVarietyTheory.Definitions.Divisors.WittOnFalse
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.Tactic.Linter.HaveILetI

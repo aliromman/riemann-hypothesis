@@ -7,7 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsIntegralOfQ
 public import Mathlib.Algebra.Module.FinitePresentation
 public import Mathlib.RingTheory.Flat.EquationalCriterion
 import ReciprocityTheory.SemistableReduction.SemiContractC
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

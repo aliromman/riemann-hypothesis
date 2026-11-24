@@ -4,7 +4,7 @@ public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.Multip
 public import Mathlib.Analysis.Normed.Group.Tannery
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DifferentiableOddTheta
 import Mathlib.Algebra.Order.Star.Real
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

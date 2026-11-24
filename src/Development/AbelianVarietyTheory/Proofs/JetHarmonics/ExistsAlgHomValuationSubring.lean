@@ -1,5 +1,6 @@
 module
 
+import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.FieldTheory.IsAlgClosed.Basic
 public import Mathlib.GroupTheory.Divisible
 public import Mathlib.Algebra.Category.Grp.Injective
@@ -7,7 +8,6 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ExistsWeightBasisFiltration
 public import Mathlib.RingTheory.AdicCompletion.Topology
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsExtensionCharacter
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal

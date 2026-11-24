@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Algebra.Algebra.Subalgebra.Basic
+import Mathlib.Analysis.Complex.Polynomial.Basic
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.LinearAlgebra.Dimension.Basic
 public import Mathlib.FieldTheory.IsAlgClosed.Spectrum
@@ -15,7 +16,6 @@ public import Mathlib.RingTheory.Algebraic.Defs
 public import Mathlib.LinearAlgebra.PiTensorProduct.Basis
 public import Mathlib.RingTheory.Algebraic.LinearIndependent
 import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI

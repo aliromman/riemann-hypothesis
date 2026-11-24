@@ -2,12 +2,12 @@ module
 
 public import ReciprocityTheory.ThetaQuasiPeriods.PeriodLattice
 public import Mathlib.NumberTheory.ModularForms.JacobiTheta.TwoVariable
+import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.Topology.Algebra.InfiniteSum.UniformOn
 import Mathlib.Algebra.Order.Star.Real
 public import Mathlib.Analysis.Calculus.SmoothSeries
 import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
 public import Mathlib.MeasureTheory.Integral.Pi
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.RingTheory.TotallySplit

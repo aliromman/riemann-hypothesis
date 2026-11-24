@@ -1,11 +1,11 @@
 module
 
 public import Mathlib.Algebra.Polynomial.AlgebraMap
+import Mathlib.Analysis.Complex.Polynomial.Basic
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.LinearAlgebra.Dimension.Basic
 import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.FieldTheory.IsAlgClosed.Spectrum
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

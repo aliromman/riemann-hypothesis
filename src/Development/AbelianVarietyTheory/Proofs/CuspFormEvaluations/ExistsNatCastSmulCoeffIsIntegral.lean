@@ -3,13 +3,13 @@ module
 public import Mathlib.Algebra.Algebra.Rat
 public import Mathlib.Algebra.MvPolynomial.Basic
 public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
+import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.IntegralClosure.IsIntegral.Defs
 public import Mathlib.Algebra.Order.BigOperators.GroupWithZero.Finset
 public import Mathlib.RingTheory.Algebraic.Defs
 public import Mathlib.RingTheory.Algebraic.Integral
 public import Mathlib.RingTheory.Localization.Integral
 public import Formalism.LocalToGlobal.ProjectiveLattices.IsThRule
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime

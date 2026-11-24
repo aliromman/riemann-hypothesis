@@ -1,8 +1,8 @@
 module
 
 public import Mathlib.NumberTheory.NumberField.Basic
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
 public import Mathlib.RingTheory.Ideal.Norm.AbsNorm
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Henselian
 public import Mathlib.RingTheory.Ideal.Norm.RelNorm
 import Mathlib.RingTheory.RegularLocalRing.Defs

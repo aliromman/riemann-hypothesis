@@ -12,8 +12,8 @@ import Mathlib.AlgebraicGeometry.Sites.Fpqc
 public import Mathlib.AlgebraicGeometry.ZariskisMainTheorem
 import Mathlib.CategoryTheory.ExtremalEpi
 import Mathlib.CategoryTheory.Limits.Shapes.Connected
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.DualNumber
+import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal

@@ -3,8 +3,8 @@ module
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LocalPrimeGaloisActionPeriodT
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAlgEquivRootOfUnityEqPow
 import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.NumberTheory.Height.NumberField
 public import Mathlib.RingTheory.Finiteness.Nilpotent
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

@@ -4,11 +4,11 @@ public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentation
 public import Mathlib.CategoryTheory.Category.Basic
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SchurDeterminants.PairSplit
 public import Mathlib.Algebra.MvPolynomial.Funext
+import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.MvPolynomial.Homogeneous
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PSchSchurHomogeneous
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.JacobiTrudi
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SchurDeterminants.PSpanE
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

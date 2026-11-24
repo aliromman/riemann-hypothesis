@@ -5,7 +5,7 @@ public import GroundTheory.HeightsAndTheta.Heights.ArithDegree
 public import Development.WeilBound.CoreStatements.AmpleLineBundles.SpanLeOfMem
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.LinearIndependentSumElimOfExact
 public import GroundTheory.HeightsAndTheta.Heights.LatticeLemmas.PNormComparison
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.NormNum.Irrational

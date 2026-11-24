@@ -3,9 +3,9 @@ module
 public import Mathlib.RingTheory.Discriminant
 public import Mathlib.RingTheory.Etale.Basic
 import Mathlib.Algebra.AffineMonoid.UniqueSums
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.RegularLocalRing.Defs

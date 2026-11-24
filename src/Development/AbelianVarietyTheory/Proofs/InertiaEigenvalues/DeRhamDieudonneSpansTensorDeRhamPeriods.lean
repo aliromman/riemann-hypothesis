@@ -5,8 +5,8 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ActQdRP
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsInvFilD
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LinearIndependentOfInvariant
 import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Coalgebra.CoassocSimps
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime

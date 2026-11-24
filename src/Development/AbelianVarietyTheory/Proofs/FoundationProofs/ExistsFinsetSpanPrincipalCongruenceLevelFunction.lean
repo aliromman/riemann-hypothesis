@@ -1,6 +1,7 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DiagMod
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
 public import Mathlib.RingTheory.Flat.FaithfullyFlat.Basic
 public import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.Henselian
@@ -10,7 +11,6 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.SiegelNeZ
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SlTwoInvariantHolomorphicMemAdjoinJInvariant
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.UpperHalfPlaneCodiscreteGermIdentityAndUnits
 import Mathlib.Analysis.Complex.RemovableSingularity
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.PicardGroup
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI

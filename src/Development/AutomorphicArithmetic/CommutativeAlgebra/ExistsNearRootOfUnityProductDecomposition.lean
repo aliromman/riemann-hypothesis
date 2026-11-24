@@ -1,6 +1,7 @@
 module
 
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.GoodRoot
+import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.RingTheory.Ideal.Quotient.Operations
 public import Mathlib.LinearAlgebra.Basis.Basic
 public import Mathlib.RingTheory.Ideal.BigOperators
@@ -25,7 +26,6 @@ public import Mathlib.Dynamics.Newton
 public import Mathlib.Algebra.Group.Commute.Units
 public import Mathlib.Algebra.Polynomial.AlgebraMap
 public import Mathlib.Algebra.Polynomial.Derivative
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime

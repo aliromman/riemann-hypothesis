@@ -1,13 +1,13 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.AwayLiftCompFromZeroRingHom
+import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Projective.Basic
 public import Mathlib.AlgebraicGeometry.Morphisms.Proper
 public import Mathlib.Order.CompletePartialOrder
 public import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
 import Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Proper
-import Mathlib.NumberTheory.Height.NumberField
 public import Mathlib.RingTheory.MvPolynomial.Ideal
 import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.NormNum.Irrational

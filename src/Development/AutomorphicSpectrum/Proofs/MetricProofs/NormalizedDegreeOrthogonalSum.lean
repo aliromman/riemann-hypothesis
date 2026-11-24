@@ -4,7 +4,7 @@ public import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsOrthFu
 public import GroundTheory.HeightsAndTheta.Heights.ArithDegree
 public import Mathlib.Order.CompletePartialOrder
 public import Development.WeilBound.CoreStatements.AmpleLineBundles.SpanLeOfMem
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

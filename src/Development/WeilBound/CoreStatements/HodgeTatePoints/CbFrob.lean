@@ -3,7 +3,6 @@ module
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.CbBase
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.CoeffEvPowOne
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.FirstPowerEqProdAt
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
@@ -20,6 +19,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Connected.Separation
+import Mathlib.Topology.GDelta.MetrizableSpace
 import Mathlib.Topology.Separation.CompletelyRegular
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.HasSubstEv
 import Std.Tactic.BVDecide.Normalize.Prop

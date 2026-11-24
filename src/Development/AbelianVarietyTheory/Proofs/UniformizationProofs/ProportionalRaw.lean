@@ -4,11 +4,11 @@ public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 public import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.LinearIndependentOfCommSmul
 public import Mathlib.GroupTheory.Coset.Card
 public import Development.AbelianVarietyTheory.Definitions.Uniformization.ExistsUniqueSamePt
+import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.Tactic.ENatToNat
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ChainVal
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExpFLinear
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.HopfAlgebra.Basic

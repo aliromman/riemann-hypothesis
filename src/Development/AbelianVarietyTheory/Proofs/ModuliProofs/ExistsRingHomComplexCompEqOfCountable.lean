@@ -1,11 +1,11 @@
 module
 
+import Mathlib.Analysis.Complex.Polynomial.Basic
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.RingTheory.DedekindDomain.Basic
 public import Mathlib.Algebra.MvPolynomial.Cardinal
 import Mathlib.Algebra.Order.Star.Int
 public import Mathlib.FieldTheory.IsAlgClosed.Classification
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal

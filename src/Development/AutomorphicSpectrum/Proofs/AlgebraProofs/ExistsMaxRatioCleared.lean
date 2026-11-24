@@ -1,9 +1,9 @@
 module
 
+import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.Data.Fintype.Defs
 public import Mathlib.Tactic.ToAdditive
 import Mathlib.Algebra.Order.Star.Rat
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

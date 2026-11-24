@@ -1,10 +1,10 @@
 module
 
+import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.Basic.Real.Basic
 public import Mathlib.Data.Nat.PadicValNat
 public import Mathlib.Data.Nat.PrimeFin
 import Mathlib.Algebra.Order.Star.Int
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime

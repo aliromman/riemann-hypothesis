@@ -7,6 +7,7 @@ public import Mathlib.LinearAlgebra.Eigenspace.Charpoly
 public import Mathlib.LinearAlgebra.Eigenspace.Triangularizable
 public import Mathlib.LinearAlgebra.Charpoly.ToMatrix
 public import Mathlib.LinearAlgebra.Eigenspace.Basic
+import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.RootsOfUnity.EnoughRootsOfUnity
 public import Mathlib.Algebra.Polynomial.AlgebraMap
 public import Mathlib.Data.Matrix.Basic
@@ -20,7 +21,6 @@ public import Development.EtaleCohomology.DivisorCycles.ExpVanPf
 public import Development.EtaleCohomology.DivisorCycles.SemisPf
 public import Development.EtaleCohomology.DivisorCycles.TangentDegree
 public import Development.EtaleCohomology.DivisorCycles.TangentFieldExtension
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

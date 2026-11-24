@@ -3,12 +3,12 @@ module
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LowerLeftBlock
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.JpUnif
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformBoundednessStatement
+import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.LocalRing.ResidueField.Basic
 public import Mathlib.Data.Matrix.ColumnRowPartitioned
 public import Mathlib.LinearAlgebra.Matrix.Rank
 public import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Card
 public import Mathlib.RingTheory.DiscreteValuationRing.Basic
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

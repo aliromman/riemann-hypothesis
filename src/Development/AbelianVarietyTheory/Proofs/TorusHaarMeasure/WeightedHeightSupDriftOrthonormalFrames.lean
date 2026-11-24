@@ -9,7 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.IsOrthUpd
 public import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.MajorantEqSumNormSqOrthonormalFrameStatement
 public import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.SubspaceSupAlternative
 public import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.WeightedSumDriftInequality
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare

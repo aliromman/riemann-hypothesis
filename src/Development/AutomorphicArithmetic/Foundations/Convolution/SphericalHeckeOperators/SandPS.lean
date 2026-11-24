@@ -1,6 +1,7 @@
 module
 
 public import GroundTheory.AutomorphicForms.SphericalLaurent
+import Mathlib.Analysis.Complex.Polynomial.Basic
 public import Mathlib.Data.Fintype.Perm
 public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 public import Mathlib.Tactic.Continuity
@@ -16,7 +17,6 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Spherica
 public import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalHeckeOperators.ThPMul
 public import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalHeckeOperators.VandSum
 import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational

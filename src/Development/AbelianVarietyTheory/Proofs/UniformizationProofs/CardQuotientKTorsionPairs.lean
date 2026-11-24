@@ -5,7 +5,7 @@ public import Development.AbelianVarietyTheory.Definitions.Uniformization.TXFram
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.CardTorsionOverZero
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.GtOntoDivisibleKernel
 import Mathlib.GroupTheory.IndexNSmul
-import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.NormNum.Irrational
