@@ -332,6 +332,55 @@ class PreparationTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 prep.downloads(cache, {"a" * 16: name}, {})
 
+    def test_prepare_reports_map_count_before_any_state_or_download_and_always_continues(self):
+        checks = prep.runner_checks()
+        minimum = checks.MINIMUM_MAX_MAP_COUNT
+        with tempfile.TemporaryDirectory() as directory, patch.object(prep, "runner_checks", return_value=checks):
+            root = Path(directory)
+            args = SimpleNamespace(trusted=root / "trusted", candidate=root / "candidate", state=root / "state",
+                                   request=root / "request.json", output=root / "paths.json")
+            # Low, at the doctor minimum, and where the file does not exist (macOS): preparation goes on.
+            # It is stopped here at its next step, so whatever was printed came before any state or download.
+            for count, lines in ((65530, 2), (minimum, 1), (None, 0)):
+                with self.subTest(count=count), patch.object(checks, "max_map_count", return_value=count), \
+                        patch.object(checks.sys, "platform", "darwin"), \
+                        patch.object(prep.settings, "require_baseline", side_effect=RuntimeError("preparation continues")), \
+                        patch.object(prep.subprocess, "run") as run, patch.object(prep, "get") as get, \
+                        redirect_stdout(io.StringIO()) as stdout:
+                    with self.assertRaisesRegex(RuntimeError, "preparation continues"):
+                        prep.prepare(args)
+                    for untouched in (run, get):
+                        untouched.assert_not_called()
+                    printed = stdout.getvalue().splitlines()
+                    self.assertEqual(len(printed), lines)
+                    if count is not None:
+                        self.assertEqual(printed[0], f"vm.max_map_count is {count} on this runner host "
+                                                     f"(runner minimum {minimum})")
+                    if lines == 2:
+                        self.assertTrue(printed[1].startswith("::warning title="))
+                self.assertEqual(list(root.iterdir()), [])
+
+    def test_prepare_continues_when_ci_runner_cannot_be_loaded_or_its_report_fails(self):
+        # runner_checks() runs all of ci-runner.py's top-level code, so a broken later version of that
+        # file must not stop every build job at prepare.
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            args = SimpleNamespace(trusted=root / "trusted", candidate=root / "candidate", state=root / "state",
+                                   request=root / "request.json", output=root / "paths.json")
+            broken_report = SimpleNamespace(report_max_map_count=lambda: 1 / 0)
+            for runner_checks, expected in (
+                    ({"side_effect": ModuleNotFoundError("No module named 'yaml'")},
+                     "Skipped the vm.max_map_count report: ModuleNotFoundError: No module named 'yaml'"),
+                    ({"return_value": broken_report},
+                     "Skipped the vm.max_map_count report: ZeroDivisionError: division by zero")):
+                with self.subTest(expected=expected), patch.object(prep, "runner_checks", **runner_checks), \
+                        patch.object(prep.settings, "require_baseline", side_effect=RuntimeError("preparation continues")), \
+                        redirect_stdout(io.StringIO()) as stdout:
+                    with self.assertRaisesRegex(RuntimeError, "preparation continues"):
+                        prep.prepare(args)
+                    self.assertEqual(stdout.getvalue().splitlines(), [expected])
+            self.assertEqual(list(root.iterdir()), [])
+
 
 if __name__ == "__main__":
     unittest.main()

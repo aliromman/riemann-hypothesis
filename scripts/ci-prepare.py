@@ -264,7 +264,27 @@ def preparation_state(directory):
     return state if TOOLCHAIN == "leanprover/lean4:v4.33.1" else state / settings.TOOLCHAIN_DIR
 
 
+def runner_checks():
+    """Runner hosts download ci-runner.py on its own, so it owns the host thresholds and messages."""
+    # Loaded for prepare only: the hosted resolver and publisher import this file without runner code.
+    spec = importlib.util.spec_from_file_location("rh_ci_runner", Path(__file__).with_name("ci-runner.py"))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def report_max_map_count():
+    """Run ci-runner.py's job-start report. Nothing here stops the job, including a failure to load that file."""
+    try:
+        runner_checks().report_max_map_count()
+    except Exception as error:
+        print(f"Skipped the vm.max_map_count report: {type(error).__name__}: {error}", flush=True)
+
+
 def prepare(args):
+    # First, before any download: log this host's vm.max_map_count, and warn if it is low. A low value
+    # otherwise shows up only hours into the build, as "failed to read file". The job goes on either way.
+    report_max_map_count()
     trusted = Path(args.trusted).resolve()
     settings.require_baseline()
     state = preparation_state(args.state)
