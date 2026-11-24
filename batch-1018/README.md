@@ -7,3 +7,7 @@ The new upstream tree changes 517 edited owners. Both readers agree on the 68,40
 The preceding proof and timing records are under `verified/` at immutable revisions. Their recorded compiler inputs predate this mathematical update. The current source, native and root comparisons have separate records.
 
 The saved-plan loader follow-up changes two Python files and leaves the entire Lean tree identical. It cuts median elapsed time on the complete 147-clump saved plan from 10.862 to 0.229 seconds relative to the prior draft. It also lowers median peak memory from 4,055 to 92 decimal MB. [Measurements and controls](clump-tools)
+
+## Compiled outputs and theorem checks
+
+The final records cover all 11,579 changed source modules and all five declarations in `Main`. The raw ZIP files retain the original GitHub authentication digests. The latest main comparison lists every subsequent upstream path and checks whether it changes a tested source or tool. [Compiled outputs](native) · [Five theorem proofs](five-theorems) · [Latest main comparison](latest-main.json)

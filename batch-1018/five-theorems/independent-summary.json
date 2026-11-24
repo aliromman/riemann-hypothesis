@@ -1,0 +1,75 @@
+{
+  "actual_compiler_facets": {
+    ".ir": {
+      "byte_identical": true,
+      "candidate_bytes": 7704,
+      "candidate_sha256": "e09c68e5f6c5ad5537b9d5007b52a3198fb3c0e888ae5801ca8287252870e373",
+      "official_sha256": "e09c68e5f6c5ad5537b9d5007b52a3198fb3c0e888ae5801ca8287252870e373"
+    },
+    ".ir.sig": {
+      "byte_identical": true,
+      "candidate_bytes": 248,
+      "candidate_sha256": "779598cfda7a3d8328963de46628bc96c785c48b4dceb2cd59af63c85ee8a47f",
+      "official_sha256": "779598cfda7a3d8328963de46628bc96c785c48b4dceb2cd59af63c85ee8a47f"
+    },
+    ".olean": {
+      "byte_identical": true,
+      "candidate_bytes": 10816,
+      "candidate_sha256": "a2816fa85156ebb38ddb00e6697fe2c2cc26f2aa0d333a6f6613e37af0266418",
+      "official_sha256": "a2816fa85156ebb38ddb00e6697fe2c2cc26f2aa0d333a6f6613e37af0266418"
+    },
+    ".olean.private": {
+      "byte_identical": true,
+      "candidate_bytes": 8864,
+      "candidate_sha256": "03cbbe139445990ff63547fb4f8319f1595e4bd261242bc3089a835d89ba7573",
+      "official_sha256": "03cbbe139445990ff63547fb4f8319f1595e4bd261242bc3089a835d89ba7573"
+    },
+    ".olean.server": {
+      "byte_identical": true,
+      "candidate_bytes": 1536,
+      "candidate_sha256": "7a28837ac5708315e89045acbed3d82320d5175c5e528e712b46958c4293897d",
+      "official_sha256": "7a28837ac5708315e89045acbed3d82320d5175c5e528e712b46958c4293897d"
+    }
+  },
+  "artifact": 14924473267,
+  "effective_public_inputs": "c78d5245b927d6af7a08201cbdbb0110259c6197b3eca465bca904f82467f36e",
+  "github_run": 45401577071,
+  "head": "f3e19bf8371ab5dd383b81e008ec14c4b0331811",
+  "independent_macos_rebuild": {
+    "five_facets_match_actual_linux_bytes": true,
+    "macos_report_sha256": "e78a0567c2efc6b4284e76b2e75f5e408f3459006fe3b47e13798a787bc494d4",
+    "native_input_sha256": "010dbc8e9dc5de29a44194955fd348052643e38538f3632604f861c6ea9db820",
+    "source_head": "f3e19bf8371ab5dd383b81e008ec14c4b0331811",
+    "visible_project_inputs": 59752
+  },
+  "individual_candidate_images": "4803c81e50a8d9327e2402b13da149e67cb62c47b0033d44f0048484228b4b1b",
+  "kernel": {
+    "candidateNames": 5,
+    "different": 0,
+    "examples": [],
+    "kernelImage": true,
+    "parentNames": 5,
+    "proofChanges": 0,
+    "publicImage": true,
+    "publicImports": true
+  },
+  "local_replay": {
+    "integrated_project_inputs_checked": 59752,
+    "log_sha256": "44fb4f8873e3305b52856e823ba53c7264d0dc3dc11027b75b154b6b19573ddc",
+    "targets": [
+      "riemannHypothesis",
+      "riemannZeta_eq_zero_re",
+      "LFunction_ne_zero_of_half_lt_re",
+      "LFunction_eq_zero_re",
+      "LFunction_eq_zero_re_of_isPrimitive"
+    ]
+  },
+  "native_bytes_rechecked_locally": 29168,
+  "official_receipt_sha256": "a7b5e4ec1364152e3bdc7370473e668e1168ef42f3fec5b52d8032d596fe09b6",
+  "operational_helper_files": 47,
+  "original_zip_sha256": "825bf1e05f29eb16f4f7809b8f67034b6cbae945f83588785a96a5d700f57203",
+  "parent": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca",
+  "pr": 977,
+  "public_reviewer_commands_pass": true,
+  "reviewer_commands_sha256": "8ff409c4efb0d902f8c297430772f97725e3b3db68e0e4cd6047fc7f0aef1f9d"
+}

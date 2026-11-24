@@ -9,3 +9,7 @@ PR #1057 changes the visibility of project imports and of individual clump membe
 The large rename, formatting, consolidation and other conflicts are recorded per path in the compressed table. This snapshot describes the heads named in each record. [Archive removal](https://github.com/leanprover-community/riemann-hypothesis/pull/988) · [Import privatization](https://github.com/leanprover-community/riemann-hypothesis/pull/1057)
 
 A later import-pruning change, #1103 by @dga471, edits 3,141 files outside Development. A direct Git comparison shows zero common files with #879. It shares 423 files with #977. The merged bytes in each contain its import header and the scope branch’s clump body. [Peer source check](later-independent-imports.json) · [PR #1103](https://github.com/leanprover-community/riemann-hypothesis/pull/1103)
+
+## Follow-up on community batch 5
+
+Community batch #1119 shares 143 source files with this proposal at its reviewed head. The source pass preserves the 4 files that the batch deletes as deletions and applies the same transformation to all 139 surviving sources. The exercise counts 23 additional textual conflicts in a normal Git merge. A combined build on that future baseline would have to check the new proof text. [Source inventory for the open batch](batch5-peer-sources.json) · [Per-file records](batch5-peer-sources.jsonl.gz) · [Other new or updated open proposals](incremental-peer-heads.json)
