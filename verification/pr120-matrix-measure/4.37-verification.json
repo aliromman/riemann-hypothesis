@@ -1,0 +1,121 @@
+{
+  "patch": "9e3763eda12bcd2e82c4a7d6b0378b6a4c3feb10",
+  "parent": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+  "git": {
+    "src": "8e7b26628c3a12e1026f8dbdeb10f6c0e9ca5f04",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c"
+  },
+  "builds": {
+    "base": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+    "release": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+    "targets": [
+      "Formalism.DoubleCosetMeasures.StatementZ",
+      "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+      "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SingleBlockDoublingIntegralValue",
+      "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+      "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace"
+    ],
+    "sourceCount": 829,
+    "stockExit": 0,
+    "candidateExit": 0
+  },
+  "jobsPerBuild": 11989,
+  "publicDeclarations": [
+    {
+      "axiomRecords": 9,
+      "definitions": 9,
+      "module": "Formalism.DoubleCosetMeasures.StatementZ",
+      "public": 9,
+      "rawDefinitions": 8,
+      "rawProofs": 0,
+      "rawTypes": 9,
+      "structural": [
+        "kind, universe parameters, binders or declaration metadata changed: Formalism.DoubleCosetMeasures.instMeasMat"
+      ],
+      "terms": [
+        {
+          "conversion": "pending",
+          "declaration": "Formalism.DoubleCosetMeasures.instMeasMat",
+          "field": "definition"
+        }
+      ],
+      "theorems": 0
+    },
+    {
+      "axiomRecords": 14,
+      "definitions": 6,
+      "module": "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+      "public": 14,
+      "rawDefinitions": 5,
+      "rawProofs": 8,
+      "rawTypes": 14,
+      "structural": [
+        "kind, universe parameters, binders or declaration metadata changed: GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix"
+      ],
+      "terms": [
+        {
+          "conversion": "pending",
+          "declaration": "GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix",
+          "field": "definition"
+        }
+      ],
+      "theorems": 8
+    },
+    {
+      "axiomRecords": 39,
+      "definitions": 3,
+      "module": "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SingleBlockDoublingIntegralValue",
+      "public": 39,
+      "rawDefinitions": 3,
+      "rawProofs": 36,
+      "rawTypes": 39,
+      "structural": [
+        "kind, universe parameters, binders or declaration metadata changed: GlobalTheory.Mem.SingleQ.rowEqM"
+      ],
+      "terms": [],
+      "theorems": 36
+    },
+    {
+      "axiomRecords": 10,
+      "definitions": 1,
+      "module": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+      "public": 10,
+      "rawDefinitions": 1,
+      "rawProofs": 9,
+      "rawTypes": 10,
+      "structural": [],
+      "terms": [],
+      "theorems": 9
+    },
+    {
+      "axiomRecords": 16,
+      "definitions": 16,
+      "module": "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+      "public": 16,
+      "rawDefinitions": 15,
+      "rawProofs": 0,
+      "rawTypes": 16,
+      "structural": [
+        "kind, universe parameters, binders or declaration metadata changed: GlobalTheory.SplitWeil.matrixMeasurableSpace"
+      ],
+      "terms": [
+        {
+          "conversion": "pending",
+          "declaration": "GlobalTheory.SplitWeil.matrixMeasurableSpace",
+          "field": "definition"
+        }
+      ],
+      "theorems": 0
+    }
+  ],
+  "freshKernel": {
+    "Formalism.DoubleCosetMeasures.StatementZ": 0,
+    "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord": 0,
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SingleBlockDoublingIntegralValue": 0,
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero": 0,
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace": 0
+  }
+}

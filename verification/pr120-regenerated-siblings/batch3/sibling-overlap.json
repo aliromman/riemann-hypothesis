@@ -1,0 +1,37 @@
+{
+  "upstream/pr669-live": {
+    "head": "b4d800add3eca5cf16f8b110c5af2742ab1db8f3",
+    "base": "15c3d17de0594234e32bbabb440f6b457523838a",
+    "changed": 2155,
+    "deleted": 827,
+    "sharedPaths": [
+      "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/UnitarySatakeWeylInvariant.lean",
+      "src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/UnitarySatakeEqOfSameUnramifiedBaseChange.lean",
+      "src/Development/AutomorphicArithmetic/AutomorphicVarieties/AutomorphicForms/TemperedLocalComponents/PRepNew.lean",
+      "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/TranscendenceTraces/IsolateSpecHolds.lean",
+      "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/KummerCupProducts/EtaleChernClassEqKummerClass.lean",
+      "src/GroundTheory/HeightsAndTheta/Heights/FiniteCovolume/OfUnfolding.lean",
+      "src/GroundTheory/HeightsAndTheta/Heights/RemainderTerms/Imports.lean",
+      "src/GroundTheory/HeightsAndTheta/Heights/SemipositiveHeights/TailBound.lean"
+    ],
+    "sharedDeletions": []
+  },
+  "upstream/pr989-live": {
+    "head": "9bcb245a14040d5d24ea64150fb4a341dec853e4",
+    "base": "b37b32c236352418f6edf1ed85dd2e4b14420686",
+    "changed": 2,
+    "deleted": 0,
+    "sharedPaths": [],
+    "sharedDeletions": []
+  },
+  "upstream/pr1018-live": {
+    "head": "078c813f42279372458fc7177f276b4832560cad",
+    "base": "73958da58a8a4d1f61b789745c5444baf6247cae",
+    "changed": 1780,
+    "deleted": 147,
+    "sharedPaths": [
+      "src/Formalism/SharpRestriction/LevelLetterCocycles/DvrLatticeRank/FramePfDat.lean"
+    ],
+    "sharedDeletions": []
+  }
+}

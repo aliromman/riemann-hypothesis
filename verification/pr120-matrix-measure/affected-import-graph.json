@@ -1,0 +1,18 @@
+{
+  "base": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+  "providers": [
+    "Formalism.DoubleCosetMeasures.StatementZ",
+    "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace"
+  ],
+  "directImporters": 293,
+  "affectedIncludingProviders": 14667,
+  "inMain": 14653,
+  "targetConeAffected": 23,
+  "totalSources": 60630,
+  "individual": {
+    "Formalism.DoubleCosetMeasures.StatementZ": 3348,
+    "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord": 746,
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace": 13777
+  }
+}

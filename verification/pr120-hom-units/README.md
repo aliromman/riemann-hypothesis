@@ -1,5 +1,7 @@
 # Unit morphisms in two divisibility proofs
 
+At Waterloo the pinned full `Bundle1269` still failed on the domain unit after #952. ArjunB3hl’s #999 qualified `MonoidHom.map_one` and the complete module passed on the 20,764-input native dependency graph. On the later integration, the complete member and reconstructed bundle also pass native kernel replay. Cheng’s #1000 retains all 44 public types and axiom sets of its previous Hecke–Fubini bundle. [Waterloo check](https://github.com/rohanarun/riemann-hypothesis/pull/999) · [Successor checks](successor-21f32.json)
+
 The M4 build at `2d20aa9035becfe380b9fe619e3d3fc968cf3400` reached `DivisorProofs.Bundle1269` after its dependency `Bundle1254` built. The compiler failed at `map_one` on line 123. Rmsnorm supplied the unit on the relevant morphism type in author PR #952. The fix is also in `92e91959e3fbd8a3533172cffdb6272143341d1f`. The same PR changes a second proof in `Bundle1447`. [M4 report](https://github.com/leanprover-community/riemann-hypothesis/pull/120#issuecomment-7128029551) · [Rmsnorm’s patch](https://github.com/rohanarun/riemann-hypothesis/pull/952)
 
 `CanonicalUnit.lean` proves by reflexivity that the supplied `OfNat` instance is the standard instance on morphisms into a monoid object in a Cartesian monoidal category. It also checks Mathlib’s `Hom.one_def`. Both proofs use only the three axioms listed in the project’s Comparator configuration. [Lean source](CanonicalUnit.lean) · [Axiom output](canonical.log)

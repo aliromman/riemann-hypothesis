@@ -1,0 +1,234 @@
+{
+  "merged": {
+    "head": "21f32da2751f7db09c38ef6d1dfb1cf961eb3c3b",
+    "original": "c7791603122c0328f79e49f6be5d7d4402effc53",
+    "cases": {
+      "fub-member": {
+        "module": "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.PCompat",
+        "sourceSHA256": "2095b42bd49eb1353e6acf4028ae98aaa5d866f85d152a9742a9219ee0af061f",
+        "compareWith": [
+          "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.PCompat"
+        ],
+        "authorBlob": "37df47cad778c1bae3c89a55d9e99cac0e3bcbc7dbfbfbb67f47664ba7857a58",
+        "compile": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "c1d24ddc16b8670539023df361e7ecf89ae2957ab76604ebe7bd892610a8539f"
+        },
+        "interfaceExit": 0,
+        "interface": [
+          18,
+          4,
+          1,
+          17,
+          12,
+          18
+        ],
+        "kernel": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "7c5ad3c88af9cb60ae0287960565b73c7d111d23d2bb0716084fdea14fb25e84"
+        }
+      },
+      "hom-member": {
+        "module": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteEtalePointOfExt",
+        "sourceSHA256": "598ecffb687ac01773a3516b7750614d5d2ed9e2673fbb731231241c4fe52e1f",
+        "compareWith": [
+          "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteEtalePointOfExt"
+        ],
+        "authorBlob": "d71cb338d85d88c66e76891f1dcd886f72872c3fc40949d05cb7a78e06726e16",
+        "compile": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "a39747b3bc9d1938356efe5e3710a73d02242f2cf0c305ae11f8c5e4eb404b76"
+        },
+        "interfaceExit": 0,
+        "interface": [
+          9,
+          9,
+          0,
+          9,
+          5,
+          9
+        ],
+        "kernel": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "e4401ef1f44c0397f916f479d1687163724f8d6c75b95eb5238f8546fa4439b8"
+        }
+      },
+      "fub-bundle": {
+        "module": "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.Bundle0003",
+        "sourceSHA256": "2ef3c0822d4072af660701c221df34bd79e52dcbd1bf955554369447edebe3b0",
+        "compareWith": [
+          "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.HasCompactSupportOfSection",
+          "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.PCompat"
+        ],
+        "authorBlob": "37df47cad778c1bae3c89a55d9e99cac0e3bcbc7dbfbfbb67f47664ba7857a58",
+        "compile": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "60c219c23f31108acb2e1217b68fd06f0d7ba098db4151b82efe9a3ca2ea9c23"
+        },
+        "interfaceExit": 1,
+        "kernel": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "b869161867fb4e5d317a826a8d8002bb062032b88a26209b4d71cba98f7f4e54"
+        }
+      },
+      "hom-bundle": {
+        "module": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1269",
+        "sourceSHA256": "3db49b71c18b0b9939ae426a4b50251ee7610f1a361d5f7cf1134ef9ebbde955",
+        "compareWith": [
+          "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteEtalePointOfExt",
+          "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinsumLogGaussAbsLeFractionalIdealIndex",
+          "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FirstOrderPointIffRingHomAffineOpenSections"
+        ],
+        "authorBlob": "d71cb338d85d88c66e76891f1dcd886f72872c3fc40949d05cb7a78e06726e16",
+        "compile": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "b5238a5edf0bd2eb3ab4f588e57480b6e472b51bf9067e814ad50dc29befdd8a"
+        },
+        "interfaceExit": 0,
+        "interface": [
+          19,
+          0,
+          1,
+          18,
+          11,
+          19
+        ],
+        "kernel": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "f914abad93ade5d0438b97f2e6d6e0dd985e53a4d3737a4bed19c6b0dd39b7f9"
+        }
+      }
+    }
+  },
+  "previousFubini": {
+    "previous-versus-members": [
+      1,
+      "uncaught exception: missing public PositivityTheory.Rg.BcB.CG.gInf.congr_simp"
+    ],
+    "merged-versus-previous": [
+      0,
+      "44\t44\t3\t41\t39\t44"
+    ]
+  },
+  "earlierMorphisms": {
+    "lean": "Lean (version 4.36.0, arm64-apple-darwin24.6.0, commit 611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9, Release)",
+    "original": "c7791603122c0328f79e49f6be5d7d4402effc53",
+    "before": "2d20aa9035becfe380b9fe619e3d3fc968cf3400",
+    "repair": "75dd653aaa59d745e7f4794cfb4c6da5d1f73455",
+    "integration": "92e91959e3fbd8a3533172cffdb6272143341d1f",
+    "modules": {
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1269": {
+        "before": {
+          "sourceSHA256": "b9fefcec08af23f249d45c21caec5bea3cd15c73318ae49391ff923bb835a28a",
+          "compile": {
+            "exit": 0,
+            "error_count": 0,
+            "first_error": [],
+            "log_sha256": "0660f0950279b565059e1ca8188aa2e9e8d4684a322a2eb471526f2f34bb8e15"
+          },
+          "kernel": {
+            "exit": 0,
+            "error_count": 0,
+            "first_error": [],
+            "log_sha256": "e4401ef1f44c0397f916f479d1687163724f8d6c75b95eb5238f8546fa4439b8"
+          },
+          "interface": {
+            "public": 9,
+            "identicalStoredTypes": 9,
+            "definitions": 0,
+            "theorems": 9,
+            "matchingProofs": 6,
+            "axiomRecords": 9
+          }
+        },
+        "after": {
+          "sourceSHA256": "9494871d2b78aa28b85814965e3ccf263934c5976cd1ac9a72e59247c4e592aa",
+          "compile": {
+            "exit": 0,
+            "error_count": 0,
+            "first_error": [],
+            "log_sha256": "235223254e6c6e556b0be37c77a8e60434a8695be0b57f0629f72246dc623e6b"
+          },
+          "kernel": {
+            "exit": 0,
+            "error_count": 0,
+            "first_error": [],
+            "log_sha256": "e4401ef1f44c0397f916f479d1687163724f8d6c75b95eb5238f8546fa4439b8"
+          },
+          "interface": {
+            "public": 9,
+            "identicalStoredTypes": 9,
+            "definitions": 0,
+            "theorems": 9,
+            "matchingProofs": 5,
+            "axiomRecords": 9
+          }
+        }
+      },
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1447": {
+        "before": {
+          "sourceSHA256": "b6b6a206431ab79bd73d14f5d3e4a77c3fb3962790c1787b8364a27fa874b56f",
+          "compile": {
+            "exit": 0,
+            "error_count": 0,
+            "first_error": [],
+            "log_sha256": "095ce76cbf1249c4f7059059f18f629a637d49d45ba1fbbe4ef2776ca164652c"
+          },
+          "kernel": {
+            "exit": 0,
+            "error_count": 0,
+            "first_error": [],
+            "log_sha256": "b61a122b6032fa546e92a4a54a663ec366efdcdae9e76c3ba60ee5eb2e3e7a88"
+          },
+          "interface": {
+            "public": 1,
+            "identicalStoredTypes": 1,
+            "definitions": 0,
+            "theorems": 1,
+            "matchingProofs": 1,
+            "axiomRecords": 1
+          }
+        },
+        "after": {
+          "sourceSHA256": "d1aaa75457a58eab3a75a4b666cc0c5bc939b752d900a1a4f93657acc418d714",
+          "compile": {
+            "exit": 0,
+            "error_count": 0,
+            "first_error": [],
+            "log_sha256": "903c14e927033a59b05827abb1edfa5a74a6ea953ef8620da18663327388a4d9"
+          },
+          "kernel": {
+            "exit": 0,
+            "error_count": 0,
+            "first_error": [],
+            "log_sha256": "b61a122b6032fa546e92a4a54a663ec366efdcdae9e76c3ba60ee5eb2e3e7a88"
+          },
+          "interface": {
+            "public": 1,
+            "identicalStoredTypes": 1,
+            "definitions": 0,
+            "theorems": 1,
+            "matchingProofs": 0,
+            "axiomRecords": 1
+          }
+        }
+      }
+    }
+  }
+}

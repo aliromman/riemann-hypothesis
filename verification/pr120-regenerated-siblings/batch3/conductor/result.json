@@ -1,0 +1,39 @@
+{
+  "module": "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductorBound",
+  "inputs": [
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductor",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductorBound"
+  ],
+  "totals": {
+    "public": 24,
+    "rawTypes": 24,
+    "definitions": 2,
+    "rawDefinitions": 1,
+    "theorems": 22,
+    "rawProofs": 18,
+    "axiomRecords": 24
+  },
+  "changedFields": 1,
+  "expandedFields": 1,
+  "publicUnion": true,
+  "passed": true,
+  "base": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+  "candidateSource": "3c9a905a881545be5b0a7a93bddddb8cbe1ba45d2a21b3ec306902ff6ff34057",
+  "stockObjects": {
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductor": [
+      "3a8442fa791fa215cc418803d39ac9c19f3deb20e04ff4197145f16a3037be9c",
+      "053dbc74a3c2406cb806062af05e6be3e7e4af1e1e4b8acd1210f6cb462571d5",
+      "fa76ce6764e7ef2f67afebeda7e7aa7af373610b8bde0336e884f402ed0788d1"
+    ],
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductorBound": [
+      "3a5bb05e984e8874671ab5f4aa4244f828d9b63744fb0df89a50c62830232565",
+      "47fd113797ffb3b9d75ede469e9361af4822a69417aa3400e3473e710d850e24",
+      "a2ef74fea01ddd6aa4d2f03304e9bc0db72ecc452bacb8c4657cb1070aee9501"
+    ]
+  },
+  "candidateObject": [
+    "03486b2e8c2e54f0859670416bb3be50afd4583fc11466557adff36cb675c767",
+    "0963b0b16cc7a862ee59fcc783be40f862ca83cebcb2bf827150d0029d9c5cf9",
+    "ae315fef5934987b934bc9c822cadfe4f611e676226897817a411539c07f660f"
+  ]
+}

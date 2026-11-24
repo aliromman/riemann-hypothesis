@@ -1,0 +1,188 @@
+{
+  "main": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+  "groups": {
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftSemiPiBijective": [
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftBaseChangeProdBijectiveSemilinear",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftSemiPiBijective"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleIsoPullOfIsLineBundleIsoOnOpen": [
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleGlueOfOpenCoverCocycle",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleIsoPullOfIsLineBundleIsoOnOpen"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFourLeviGL2RootIndexOfCardSq": [
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFourLeviGL2CartanDoubleCosets",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFourLeviGL2RootIndexOfCardSq"
+    ],
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.AutomorphicRankinSelberg.KerDiff": [
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.AutomorphicRankinSelberg.IntOnOfBdd",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.AutomorphicRankinSelberg.KerDiff"
+    ],
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IsCrystallineUpperTriangularIffMemFiniteCocycles": [
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IsCrystallineExtensionIffMemFiniteCocycles",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IsCrystallineUpperTriangularIffMemFiniteCocycles"
+    ],
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNwtGlue": [
+      "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNormSpec",
+      "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNwtAgree",
+      "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNwtGlue"
+    ],
+    "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaJ": [
+      "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaI",
+      "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaJ"
+    ],
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PowOneSeriesPFormula": [
+      "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MultiplicationByPFactorsFrobenius",
+      "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PowOneSeriesPFormula"
+    ],
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LineMapExists": [
+      "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KapZero",
+      "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LineMapExists"
+    ],
+    "Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf": [
+      "Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf",
+      "Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StLocDensContOnOpen": [
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StListMonoRaise",
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StListMonoDens",
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StLocDensContOnOpen"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntMonoOfDensLe": [
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntegrableOfDensLe",
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntMonoOfDensLe"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsDimensionInequalitySteps": [
+      "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsDimensionInequality",
+      "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsDimensionInequalitySteps"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StCoordLatticeFullRank": [
+      "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StDualLatticeMultiple",
+      "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StCoordLatticeFullRank"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelTorsionBound": [
+      "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelChartPoly",
+      "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelOneStep",
+      "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelTorsionBound"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvPolynomialReduction": [
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvMonomialReduction",
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvPolynomialReduction"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralPermute": [
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralAntisymmetrize",
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralPermute"
+    ],
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductorBound": [
+      "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductor",
+      "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductorBound"
+    ],
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.PDUnit": [
+      "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.PDMul",
+      "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.PDUnit"
+    ],
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.PJone": [
+      "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.PJinv",
+      "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.PJone"
+    ]
+  },
+  "consumers": [
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRigidifiedSymmetricCubicalBundleExtensionStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussManinPeriodsHolds",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.GlueOpenChartsAdditiveFamiliesRepresentingStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitarySatakeWeylInvariant",
+    "Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnitarySatakeEqOfSameUnramifiedBaseChange",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.TemperedLocalComponents.PRepNew",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CrystallineOrdinaryIdeals.SaturatedOrdIdealPointsIsLCrystallineStatement",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TTypeEx",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IsCrystallineTriangularIffMemFiniteCocyclesOfCha",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.TriLift",
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.IsolateSpecHolds",
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AlphaBetaIsomorphismTransport",
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FamilyGivesConjugateLieData",
+    "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.HomogeneousPowerSumDecomposition",
+    "Development.EtaleCohomology.CohomologicalPurity.FinLeafChart",
+    "Development.WeilBound.CoreStatements.HodgeTatePoints.CocpMain",
+    "Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.KummerCupProducts.EtaleChernClassEqKummerClass",
+    "Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FramePfDat",
+    "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.AssemblyDimensionInequality",
+    "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.OfUnfolding",
+    "GroundTheory.HeightsAndTheta.Heights.OrbitLimits.MoriwakiHSClosed",
+    "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.Imports",
+    "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.RestAt",
+    "GroundTheory.HeightsAndTheta.Heights.SemipositiveHeights.TailBound"
+  ],
+  "refused": [],
+  "deleted": [
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftBaseChangeProdBijectiveSemilinear",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleGlueOfOpenCoverCocycle",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFourLeviGL2CartanDoubleCosets",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.AutomorphicRankinSelberg.IntOnOfBdd",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IsCrystallineExtensionIffMemFiniteCocycles",
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNormSpec",
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNwtAgree",
+    "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaI",
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MultiplicationByPFactorsFrobenius",
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KapZero",
+    "Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf",
+    "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StListMonoDens",
+    "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StListMonoRaise",
+    "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntegrableOfDensLe",
+    "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsDimensionInequality",
+    "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StDualLatticeMultiple",
+    "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelChartPoly",
+    "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelOneStep",
+    "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvMonomialReduction",
+    "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralAntisymmetrize",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductor",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.PDMul",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.PJinv"
+  ],
+  "sources": {
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftSemiPiBijective": "94a2e2677b4c2262928f8e249c6843bbe5376217f0eefb14ee1c88c32716808b",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleIsoPullOfIsLineBundleIsoOnOpen": "a528a688467d8326090502b2a70b42fb194073285018c89f24c65b54ad7b6f15",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFourLeviGL2RootIndexOfCardSq": "98323466d2529ca315f9f9765b6b9fb2bde39245f4e89c4cc827182655a9abb8",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.AutomorphicRankinSelberg.KerDiff": "3c29dc3482cd885c1714aae32eafe9737e522e19b56a2bbf45d7f5dd21533d2e",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IsCrystallineUpperTriangularIffMemFiniteCocycles": "53977972288b3be3bb2ab82315929a21273414340c3e6a52d6d9938a0da5f114",
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNwtGlue": "e7f278ad31eff7f6eac47644fb1786ff494a287e6dbfea97c533131204eb3688",
+    "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaJ": "4ad4bbd198944957da2129be066dd9080fe3a9533d9c3827ecec804a09f243c1",
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PowOneSeriesPFormula": "9309f88226cbe2a26d9f0b0cfe3b50403b0f8432e70cfff3c7f45775be528081",
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LineMapExists": "8be29a4589138119f5335f4d2ed27b883570f7463000278704950ae75e3a063e",
+    "Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf": "6541e982c798c6885fdd0489a96e6201c44f5aab780f4c10b48547162101b46a",
+    "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StLocDensContOnOpen": "c744871b70f554497e67beff95b41a06933d0a6a57da0e3651db78aa20544f96",
+    "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntMonoOfDensLe": "35f9134dda9f12d7c647aeed064b32bb9482ca40358235a8edc7dc2dab01d13a",
+    "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsDimensionInequalitySteps": "d5f494ebd7aa02a38cd6da3ada676a3e42fde7cbb260bb73e44aca17ea266189",
+    "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StCoordLatticeFullRank": "813fb83bc6e1278ade574181e5f7adf6422c24474f0446bb37a69959cdaff6c9",
+    "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelTorsionBound": "e77229629c3f55843a6d05a39a60caa5275fa7a2a71996ae6f2808287e6084c3",
+    "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvPolynomialReduction": "1387969941e149663070e1463b256ddf8dc6d7b0c3f65c94a2caccef2757e0b8",
+    "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralPermute": "2168354895f5f8d4669e04c9bb59c820358f4e1604cec18a1227a89acc0eb2ca",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductorBound": "3c9a905a881545be5b0a7a93bddddb8cbe1ba45d2a21b3ec306902ff6ff34057",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.PDUnit": "0cb741239e2cfffcba31069e15a7bb7006b32200bdeb17b902186a5f1bc78bcf",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.PJone": "67a3de2a6aaa0bae978eefdf8d66d1a45e9602bff9da6f0abe2bd419edac11e1",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussManinPeriodsHolds": "cd8db1117cabe5131d0cc5c7cfd14c7295905639c123d4951d2bcd891634ed15",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRigidifiedSymmetricCubicalBundleExtensionStatement": "fa92065adbc5b6d73ad1746db23cc1d8039c94bfeeaf3334e523195d4b85fe9e",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.GlueOpenChartsAdditiveFamiliesRepresentingStatement": "e480fdfb1548847ee6868b868e8109e42ef1d1dd1e119f579c9146b7b6c757ed",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitarySatakeWeylInvariant": "363d56d032a7727860c667d7e0f3da04f41d2f97de7a1adcfa6c2d1eb5dba81c",
+    "Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnitarySatakeEqOfSameUnramifiedBaseChange": "738a856e62d2689dff8792ef87db0167fba0df8b04c87e744e4de0e4876d9669",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.TemperedLocalComponents.PRepNew": "84e9b5d559ab3fbf0035ed41509199f0e8af4ab974b36d78ddd558d9efbaf688",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CrystallineOrdinaryIdeals.SaturatedOrdIdealPointsIsLCrystallineStatement": "c8405b7933002c6acf003be495840c8448ce60e45eed8830f1900a2e6625e201",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IsCrystallineTriangularIffMemFiniteCocyclesOfCha": "ac9c5429886077d56a77a54d469fadeeddf4a8a1348c4475b4a98552b6adcf38",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.TriLift": "e3bcd8027a067f70825038539ab6c077b776f23f35894750d274b64255490947",
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.IsolateSpecHolds": "ad65894a35c04c23b057ba9f250b1e5d80cf7159364eacd84f65a2b64d61d640",
+    "Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FramePfDat": "4ddd0213ec91dfe795ae7c80f5aa481eb3046f07420b0dfa003eab4b5f54b55c",
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AlphaBetaIsomorphismTransport": "4b6a9f396f547bc4f3a1ac0997bc57d4f1785b7f8744b04e1a5d647de8caff6f",
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FamilyGivesConjugateLieData": "4aa5f377b5dc80df389886924c6023c92f124b626594571242e4e686cb36e4bb",
+    "Development.WeilBound.CoreStatements.HodgeTatePoints.CocpMain": "3bf8f79f0a80d1b405413a8b4e52a7632f3ac3f766a35d4228bc9bbc3b0fd97b",
+    "Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.KummerCupProducts.EtaleChernClassEqKummerClass": "2b9cc667520b3f37350bed74a85d6de1fe285ba62d928241c58f95532b6a05b4",
+    "Development.EtaleCohomology.CohomologicalPurity.FinLeafChart": "b633c097f241fadaa03ceac56018b0ac63cc48774b436d38805b0b7fe7b303a9",
+    "GroundTheory.HeightsAndTheta.Heights.SemipositiveHeights.TailBound": "94f4a1199ee046c4e8ba275449e37e9ca0addb67402f506cf75be2b09ae0efa0",
+    "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.AssemblyDimensionInequality": "2b268f6920fd9202e1bd11a45c6320359e1886f586ed17287a5dad5d4959bba9",
+    "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.OfUnfolding": "5a8a084d4990c1c1dbf01f07b7c9eec121352744c5c29f58df332d0284c83573",
+    "GroundTheory.HeightsAndTheta.Heights.OrbitLimits.MoriwakiHSClosed": "c5f4d7d1d9cae72be794ce3ba6cfbbc7684a76178d3b728c036ec25c9eee8bc8",
+    "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.HomogeneousPowerSumDecomposition": "f8901078170a2ba28e6f182f68a1d4058fce49da802f038daa9fd67d68c33e9e",
+    "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.Imports": "68ae1e323d3f9721153b52068162cf5b80a288560e2216a9f6d49aecb367a9f6",
+    "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.RestAt": "e5e42a2b28f4946cd28acf2139621e204ce956769528dca2a06ab0f5ed5ffb5a",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TTypeEx": "4cf8a9965152d3b3be470677ca28e399568aa1d89524a7365c8b12d965f94088"
+  },
+  "recovered_logical_sources": 423,
+  "author": "fbb0941754dee95d15639f3d4d5596a3f508648b"
+}

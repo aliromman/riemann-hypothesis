@@ -1,0 +1,14 @@
+{
+  "main": "b80cdeb74291c56519954d450dc08f12c6389e65",
+  "head": "b4d800add3eca5cf16f8b110c5af2742ab1db8f3",
+  "merge_base": "15c3d17de0594234e32bbabb440f6b457523838a",
+  "exit": 1,
+  "conflicting_paths": 2,
+  "stages": {
+    "1,2": 1,
+    "1,2,3": 1
+  },
+  "src": 2,
+  "non_src": [],
+  "messages": []
+}

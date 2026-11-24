@@ -1,0 +1,181 @@
+{
+  "MatrixMeasurableSpace": {
+    "module": "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "f93af0bc7379987509b8025bd053e4c8c60bd21cca4b59de49475f90bc0c1ca1"
+    },
+    "scan": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "74f4d7ed36c2f6b274d69712c5e1ae934b1262ae7ce74b9d4a1447e5a8267861"
+    },
+    "interface": {
+      "axiomRecords": 16,
+      "definitions": 16,
+      "module": "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+      "public": 16,
+      "rawDefinitions": 15,
+      "rawProofs": 0,
+      "rawTypes": 16,
+      "structural": [
+        "kind, universe parameters, binders or declaration metadata changed: GlobalTheory.SplitWeil.matrixMeasurableSpace"
+      ],
+      "terms": [
+        {
+          "conversion": "pending",
+          "declaration": "GlobalTheory.SplitWeil.matrixMeasurableSpace",
+          "field": "definition"
+        }
+      ],
+      "theorems": 0
+    }
+  },
+  "StatementZ": {
+    "module": "Formalism.DoubleCosetMeasures.StatementZ",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "8a3d8178fb964b56ce80e8d96faed40b038fa892f278b2132909f774ac4cfad7"
+    },
+    "scan": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "a2deb823df2ded2f800408c1922048d0242831091af35b0a07a4fc9de8bca80b"
+    },
+    "interface": {
+      "axiomRecords": 9,
+      "definitions": 9,
+      "module": "Formalism.DoubleCosetMeasures.StatementZ",
+      "public": 9,
+      "rawDefinitions": 8,
+      "rawProofs": 0,
+      "rawTypes": 9,
+      "structural": [
+        "kind, universe parameters, binders or declaration metadata changed: Formalism.DoubleCosetMeasures.instMeasMat"
+      ],
+      "terms": [
+        {
+          "conversion": "pending",
+          "declaration": "Formalism.DoubleCosetMeasures.instMeasMat",
+          "field": "definition"
+        }
+      ],
+      "theorems": 0
+    }
+  },
+  "GJMatrixCoord": {
+    "module": "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "b0c13e7ebc06c481f3c2a8e1dac386c2185a6a2c2cb29d36ad2d78e7b2b212a5"
+    },
+    "scan": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "275f1d9662020497bac4fa6282d32f196d08bc06b54551c730b58491700bbb1f"
+    },
+    "interface": {
+      "axiomRecords": 14,
+      "definitions": 6,
+      "module": "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+      "public": 14,
+      "rawDefinitions": 5,
+      "rawProofs": 7,
+      "rawTypes": 14,
+      "structural": [
+        "kind, universe parameters, binders or declaration metadata changed: GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix"
+      ],
+      "terms": [
+        {
+          "conversion": "pending",
+          "declaration": "GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix",
+          "field": "definition"
+        }
+      ],
+      "theorems": 8
+    }
+  },
+  "SingleBlockDoublingIntegralValue": {
+    "module": "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SingleBlockDoublingIntegralValue",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "97d360f4413c31fb17c97ce0dcc74f4510f6f0160f4ed510ccd871d27ca43c04"
+    },
+    "scan": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "0353644aa45d60b1a0cbf09f44820915bf06b073f3e569d9df6511d1c8aa0b82"
+    },
+    "interface": {
+      "axiomRecords": 38,
+      "definitions": 3,
+      "module": "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SingleBlockDoublingIntegralValue",
+      "public": 38,
+      "rawDefinitions": 3,
+      "rawProofs": 32,
+      "rawTypes": 38,
+      "structural": [
+        "kind, universe parameters, binders or declaration metadata changed: GlobalTheory.Mem.SingleQ.rowEqM"
+      ],
+      "terms": [],
+      "theorems": 35
+    }
+  },
+  "EqZeroOfIpEqZero": {
+    "module": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "9a98d697148aeeaef2919f8872b830c5c7af0d9fbc1496b756ecd865494859ce"
+    },
+    "scan": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "64d0f7a49e6a5fd05dbf8e1a4392ab8aee92300eebfd0280786ce1c2c679db52"
+    },
+    "interface": {
+      "axiomRecords": 10,
+      "definitions": 1,
+      "module": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+      "public": 10,
+      "rawDefinitions": 1,
+      "rawProofs": 8,
+      "rawTypes": 10,
+      "structural": [],
+      "terms": [],
+      "theorems": 9
+    }
+  },
+  "expanded-doubling": {
+    "module": "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SingleBlockDoublingIntegralValue",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "97d360f4413c31fb17c97ce0dcc74f4510f6f0160f4ed510ccd871d27ca43c04"
+    }
+  },
+  "wide-twisted": {
+    "module": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "9a98d697148aeeaef2919f8872b830c5c7af0d9fbc1496b756ecd865494859ce"
+    }
+  }
+}
