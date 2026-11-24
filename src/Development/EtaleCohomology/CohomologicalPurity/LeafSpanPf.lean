@@ -40,6 +40,82 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 
+-- This file was produced by scripts/clump.py from the modules listed below.
+-- Members: Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf, Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf
+
+-- ===== clump member: Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf =====
+-- clump-header: {"m": "Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf", "h": "module\n\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafChartCut\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace LateralTheory.CohomologicalPurity.ChartCut
+
+
+open RingHom in
+theorem shrink_away {n : ℕ} {R S : Type} [CommRing R] [CommRing S] (ψ : R →+* S) (u v : S)
+    (T : Type) [CommRing T] [Algebra S T] [IsLocalization.Away (u * v) T]
+    (h : ((algebraMap S (Localization.Away u)).comp ψ).IsStandardSmoothOfRelativeDimension n) :
+    ((algebraMap S T).comp ψ).IsStandardSmoothOfRelativeDimension n := by
+  let B := Localization.Away (algebraMap S (Localization.Away u) v)
+  have h2 : ((algebraMap (Localization.Away u) B).comp
+      ((algebraMap S (Localization.Away u)).comp ψ)).IsStandardSmoothOfRelativeDimension n :=
+    zero_add n ▸ (IsStandardSmoothOfRelativeDimension.algebraMap_isLocalizationAway
+      (algebraMap S (Localization.Away u) v)).comp h
+  have hB : IsLocalization.Away (u * v) B := inferInstance
+  let eT : B ≃ₐ[S] T := IsLocalization.algEquiv (Submonoid.powers (u * v)) B T
+  have h3 : ((algebraMap S B).comp ψ).IsStandardSmoothOfRelativeDimension n := by
+    rw [IsScalarTower.algebraMap_eq S (Localization.Away u) B, RingHom.comp_assoc]; exact h2
+  have h4 := (isStandardSmoothOfRelativeDimension_respectsIso (n := n)).left _ eT.toRingEquiv h3
+  have hT : algebraMap S T = (eT.toRingEquiv.toRingHom).comp (algebraMap S B) := by
+    ext x; exact (eT.commutes x).symm
+  rw [hT, RingHom.comp_assoc]; exact h4
+
+theorem LeafShrink_of : LeafShrink := by
+  intro e d R A _ _ φ I p hp hIp ⟨h1, h2⟩
+  obtain ⟨a, ha1, hap⟩ : ∃ a : A, ((algebraMap A (Localization.Away a)).comp φ).IsStandardSmoothOfRelativeDimension (e + d) ∧ a ∉ p := by
+    by_contra hcon
+    push Not at hcon
+    apply hp.ne_top
+    rw [eq_top_iff, ← h1.span_eq_top, Ideal.span_le]
+    intro g hg; exact hcon g hg
+  have hq : (p.map (Ideal.Quotient.mk I)).IsPrime :=
+    Ideal.map_isPrime_of_surjective Ideal.Quotient.mk_surjective (by rw [Ideal.mk_ker]; exact hIp)
+  obtain ⟨c, hc1, hcq⟩ : ∃ c : A ⧸ I, ((algebraMap (A ⧸ I) (Localization.Away c)).comp ((Ideal.Quotient.mk I).comp φ)).IsStandardSmoothOfRelativeDimension e ∧ c ∉ p.map (Ideal.Quotient.mk I) := by
+    by_contra hcon
+    push Not at hcon
+    apply hq.ne_top
+    rw [eq_top_iff, ← h2.span_eq_top, Ideal.span_le]
+    intro g hg; exact hcon g hg
+  obtain ⟨b, rfl⟩ := Ideal.Quotient.mk_surjective c
+  have hbp : b ∉ p := fun hb => hcq (Ideal.mem_map_of_mem _ hb)
+  refine ⟨a * b, fun h => (hp.mem_or_mem h).elim hap hbp, ?_⟩
+  intro A' _ _ _
+  refine ⟨shrink_away φ a b A' ha1, ?_⟩
+  have hloc : IsLocalization (Algebra.algebraMapSubmonoid (A ⧸ I) (Submonoid.powers (a * b)))
+      (A' ⧸ I.map (algebraMap A A')) := inferInstance
+  have key : Algebra.algebraMapSubmonoid (A ⧸ I) (Submonoid.powers (a * b)) =
+      Submonoid.powers (Ideal.Quotient.mk I b * Ideal.Quotient.mk I a) := by
+    rw [Algebra.algebraMapSubmonoid, Submonoid.map_powers, mul_comm a b, map_mul]; rfl
+  have : IsLocalization.Away (Ideal.Quotient.mk I b * Ideal.Quotient.mk I a)
+      (A' ⧸ I.map (algebraMap A A')) := by
+    unfold IsLocalization.Away; rw [← key]; exact hloc
+  have hcomp : (Ideal.Quotient.mk (I.map (algebraMap A A'))).comp ((algebraMap A A').comp φ) =
+      (algebraMap (A ⧸ I) (A' ⧸ I.map (algebraMap A A'))).comp ((Ideal.Quotient.mk I).comp φ) := by
+    ext x; rfl
+  rw [hcomp]
+  exact shrink_away _ _ (Ideal.Quotient.mk I a) _ hc1
+
+end LateralTheory.CohomologicalPurity.ChartCut
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf =====
+
+-- ===== clump member: Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf =====
+-- clump-header: {"m": "Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf", "h": "module\n\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafChartCut\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
+section -- clump:auto
 @[expose] public section
 
 noncomputable section
@@ -200,3 +276,7 @@ theorem LeafSpan_of : LateralTheory.CohomologicalPurity.ChartCut.LeafSpan := by
   exact ⟨y, g', hg'p, hg'⟩
 
 end LateralTheory.CohomologicalPurity.LeafSpanPf
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf =====

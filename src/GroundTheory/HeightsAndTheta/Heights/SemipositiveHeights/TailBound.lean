@@ -5,10 +5,7 @@ public import ReciprocityTheory.AnalyticForms.PotentialTheory.SNCAtlas
 public import ReciprocityTheory.AnalyticForms.AnalyticCharts.Partition
 public import ReciprocityTheory.AnalyticForms.PotentialTheory.AtlasIndep
 public import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StListMono
-public import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StListMonoRaise
-public import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StListMonoDens
 public import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StLocDensContOnOpen
-public import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntegrableOfDensLe
 public import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntMonoOfDensLe
 public import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.LintegralImageEqLintegralNormSqDetMul
 public import ReciprocityTheory.AnalyticForms.PotentialTheory.MaMeasureA

@@ -9,7 +9,6 @@ public import Development.EtaleCohomology.CohomologicalPurity.LeafPickPf
 public import Development.EtaleCohomology.CohomologicalPurity.LeafPolyPf
 public import Development.EtaleCohomology.CohomologicalPurity.LeafRankPf
 public import Development.EtaleCohomology.CohomologicalPurity.LeafSecPf
-public import Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf
 public import Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
@@ -50,6 +49,12 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 
+-- This file was produced by scripts/clump.py from the modules listed below.
+-- Members: Development.EtaleCohomology.CohomologicalPurity.FinLeafChart
+
+-- ===== clump member: Development.EtaleCohomology.CohomologicalPurity.FinLeafChart =====
+-- clump-header: {"m": "Development.EtaleCohomology.CohomologicalPurity.FinLeafChart", "h": "module\n\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafChartCut\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafCoordPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafEtPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafLocPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafNbhdPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafPickPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafPolyPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafRankPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafSecPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
+section -- clump:auto
 @[expose] public section
 
 namespace LateralTheory.Fin.LeafChart
@@ -69,3 +74,6 @@ theorem etale_coordinate_chart_existence : LateralTheory.CohomologicalPurity.Lea
   apply LateralTheory.CohomologicalPurity.ChartCut.goal_of <;> first | exact etale_chart_localization_property_holds | exact etale_chart_shrinking_open_property_holds | exact etale_chart_conormal_rank_property_holds | exact etale_chart_generator_choice_property_holds | exact etale_chart_ideal_span_property_holds | exact etale_chart_etaleness_property_holds | exact etale_chart_coordinate_functions_property_holds | exact etale_chart_section_property_holds | exact etale_chart_polynomial_algebra_property_holds | exact etale_chart_neighborhood_property_holds
 alias intersectionNumber_baseChange := _root_.LateralTheory.Fin.LeafChart.etale_coordinate_chart_existence
 end LateralTheory.Fin.LeafChart
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.CohomologicalPurity.FinLeafChart =====

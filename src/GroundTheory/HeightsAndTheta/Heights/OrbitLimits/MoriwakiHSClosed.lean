@@ -1,7 +1,5 @@
 module
 
-public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelChartPoly
-public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelOneStep
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelTorsionBound
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelSectionsLarge
 public import Mathlib.CategoryTheory.Category.Basic

@@ -16,7 +16,6 @@ public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCharacterBoun
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvAboveTop
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvIdealComponent
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvIdealRepresentation
-public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvMonomialReduction
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvPolynomialReduction
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvStaircaseComponent
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvStaircaseDegree
@@ -40,7 +39,6 @@ public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagAltTopDeg
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagCoeffBlockPermute
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagDiffPrime
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagInjSumBound
-public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralAntisymmetrize
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralPermute
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagPowerSumPreimage
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagProdPrimesDvd
