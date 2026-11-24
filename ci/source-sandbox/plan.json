@@ -1,0 +1,98 @@
+{
+  "parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "parent_src": "c9e0bade70ab9e778941a02e423609a4e6aa76e3",
+  "donor": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "module_manifest": "816164d26c3ad2b5bceaf1337ab7a172bbc10b1fa15c52ab8c04495436314c65",
+  "config_blobs": {
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294"
+  },
+  "mathlib": [
+    "Mathlib.Algebra.Order.Floor.Extended",
+    "Mathlib.Algebra.Order.Floor.Semifield",
+    "Mathlib.Algebra.Order.Interval.Basic",
+    "Mathlib.Analysis.Complex.UpperHalfPlane.Basic",
+    "Mathlib.Analysis.Normed.Algebra.GelfandRadius",
+    "Mathlib.Analysis.SpecialFunctions.Bernstein",
+    "Mathlib.Analysis.SpecialFunctions.Gamma.Basic",
+    "Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp",
+    "Mathlib.Combinatorics.Enumerative.DyckWord",
+    "Mathlib.Combinatorics.SimpleGraph.Triangle.Removal",
+    "Mathlib.Data.NNRat.Floor",
+    "Mathlib.Data.Nat.Choose.Multinomial",
+    "Mathlib.Dynamics.Ergodic.Action.Regular",
+    "Mathlib.Geometry.Euclidean.Volume.Basic",
+    "Mathlib.MeasureTheory.Group.Defs",
+    "Mathlib.MeasureTheory.Group.FundamentalDomain",
+    "Mathlib.MeasureTheory.Group.LIntegral",
+    "Mathlib.MeasureTheory.Group.Measure",
+    "Mathlib.MeasureTheory.Integral.Lebesgue.Basic",
+    "Mathlib.MeasureTheory.Measure.Haar.Unique",
+    "Mathlib.NumberTheory.Chebyshev",
+    "Mathlib.NumberTheory.Height.NumberField",
+    "Mathlib.NumberTheory.Height.Projectivization",
+    "Mathlib.NumberTheory.LucasLehmer",
+    "Mathlib.NumberTheory.SelbergSieve",
+    "Mathlib.RingTheory.Radical.NatInt",
+    "Mathlib.Tactic.Echelon.Zsqrtd",
+    "Mathlib.Tactic.Inclusion.Extension.Core.Core",
+    "Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit",
+    "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp",
+    "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses",
+    "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic",
+    "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses",
+    "Mathlib.Tactic.Linter.Style",
+    "Mathlib.Tactic.NormNum.Irrational",
+    "Mathlib.Tactic.NormNum.IsCoprime",
+    "Mathlib.Tactic.NormNum.IsSquare",
+    "Mathlib.Tactic.NormNum.LegendreSymbol",
+    "Mathlib.Tactic.NormNum.ModEq",
+    "Mathlib.Tactic.NormNum.NatFib",
+    "Mathlib.Tactic.NormNum.NatLog",
+    "Mathlib.Tactic.NormNum.NatSqrt",
+    "Mathlib.Tactic.NormNum.Ordinal",
+    "Mathlib.Tactic.NormNum.Parity",
+    "Mathlib.Tactic.NormNum.Prime",
+    "Mathlib.Tactic.NormNum.RealSqrt",
+    "Mathlib.Topology.Sheaves.Init"
+  ],
+  "pulls": {
+    "977": {
+      "author": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+      "source_ref": "refs/heads/ci/clump-scopes/batch-1266-source",
+      "tested_commit": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+      "src": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749",
+      "stock_workflow": "3aadb31f965c5b7c0e2cf704c789480b4c555cad",
+      "theorems": [
+        {
+          "module": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+          "name": "GlobalTheory.CompanionTheory.SW.Averaging.bijective_pair",
+          "sha256": "31bf90c0ba09af45d2a9f9f99cc93265e87b6cd3824bb11016d34544ef565bf3",
+          "bytes": 3149696,
+          "project_closure": [
+            "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular",
+            "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+            "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat"
+          ]
+        }
+      ],
+      "source_sha256": {
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular": {
+          "parent": "1cd8f5b8f9d577e714b66b7237a5fa9fadea7bb3de5f6d291cb922b65b027b79",
+          "candidate": "1cd8f5b8f9d577e714b66b7237a5fa9fadea7bb3de5f6d291cb922b65b027b79"
+        },
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower": {
+          "parent": "82729f890589c2685f0d6c183a6d1b1e431803c0d9cc23b982558b3d41eae1ae",
+          "candidate": "afaeae8c6f01de559c7470feddec81b970664605ea7f57491eb3710ed7f764ef"
+        },
+        "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat": {
+          "parent": "345c180c387372089ca2ae461869e76752bddebff6e7ed97abf84bb8cba0704c",
+          "candidate": "d5ec7fe423b9d8eba168c857c657df98423afd7953157d75ba9adbb43c2d3150"
+        }
+      }
+    }
+  }
+}
