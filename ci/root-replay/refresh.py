@@ -32,11 +32,28 @@ PRIOR_WORKFLOW = 'd0ae1c75be22b5daba75bb8f917780e452247dbc'
 HERE = Path(__file__).resolve().parent
 
 
+def current_checks(original, current):
+    """Permit removal of the old submission's manual pin comparison in #1016."""
+    if current == original:
+        return
+    start = original.index(b'          # The toolchain and dependency pins are still')
+    end = original.index(b'  # The second Comparator setup')
+    if sha(original[start:end]) != '92317093ffcf2ebdc6e2f84f8284838c25ea5acd9303ada292d35aa4371a2bb3' or original[:start] + original[end:] != current:
+        raise ValueError('the current proof workflow differs from its reviewed configuration')
+
+
+def current_inputs(repo, revision):
+    git(repo, 'merge-base', '--is-ancestor', BASE, revision)
+    checks = '.github/workflows/checks.yml'
+    pinned = [path for path in VERIFICATION_INPUTS if path != checks]
+    git(repo, 'diff', '--quiet', BASE, revision, '--', *pinned, 'comparator')
+    current_checks(git(repo, 'show', BASE + ':' + checks), git(repo, 'show', revision + ':' + checks))
+
+
 def published_parent(repo, state, req):
     if git(repo, 'rev-parse', 'HEAD').decode().strip() != req['base'] or req['base_src'] != TREE:
         raise ValueError('current checkout differs from its requested parent')
-    git(repo, 'merge-base', '--is-ancestor', BASE, req['base'])
-    git(repo, 'diff', '--quiet', BASE, req['base'], '--', *VERIFICATION_INPUTS)
+    current_inputs(repo, req['base'])
     api = load(vetted_helpers(repo, state) / 'ci-cache-get.py', 'root_cache')
     identity = api.current_identity(repo)
     if identity['source_tree'] != TREE:
