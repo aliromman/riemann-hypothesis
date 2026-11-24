@@ -50,7 +50,7 @@ jobs:
           phase = Path('phase').read_text().strip()
           with open(os.environ['GITHUB_OUTPUT'],'a') as output:
               print('groups='+json.dumps(groups(phase)),file=output)
-              print('parallel='+str(12 if phase in ('latest','latest-tail') else 4),file=output)
+              print('parallel='+str(16 if phase in ('latest','latest-tail') else 4),file=output)
               print('cache=rh-screen-v3-'+phase.split('-',1)[0]+'-'+MANIFEST+'-'+os.environ['INPUT_HASH'],file=output)
               print('math=rh-screen-math-v1-linux-x64-31ce06eaadf4a200c0e1407c5f10953cf606b8f8',file=output)
           PY
