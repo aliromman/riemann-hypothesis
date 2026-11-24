@@ -1,0 +1,157 @@
+name: Local import edits in stock Lake
+on:
+  push:
+    branches: [ci/import-pruning/pilot, ci/import-pruning/bounded]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    if: github.repository == 'aliromman/riemann-hypothesis' && github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      LEAN_ABORT_ON_PANIC: '1'
+      LEAN_NUM_THREADS: '2'
+      RUST_MIN_STACK: '33554432'
+      MATHLIB_CACHE_GET_URL: https://cache.mathlib.org/mathlib4
+    steps:
+      - name: Check out fork inputs
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: candidate
+          fetch-depth: 2
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /ci/lean-import-check/
+            /lakefile.toml
+            /lake-manifest.json
+            /lean-toolchain
+      - name: Select the attested upstream base
+        id: base
+        shell: bash
+        run: |
+          panel=${GITHUB_REF_NAME##*/}
+          base=$(jq -er --arg panel "$panel" '.[$panel].parent | select(test("^[0-9a-f]{40}$"))' candidate/ci/lean-import-check/cache-bases.json)
+          echo "commit=$base" >> "$GITHUB_OUTPUT"
+      - name: Check out the community cache tools and pins
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: ${{ steps.base.outputs.commit }}
+          path: parent
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /comparator.json
+            /export-targets.txt
+            /lakefile.toml
+            /lake-manifest.json
+            /lean-toolchain
+      - name: Materialize the selected source cone
+        shell: bash
+        run: |
+          panel=${GITHUB_REF_NAME##*/}
+          ci="$GITHUB_WORKSPACE/candidate/ci/lean-import-check"
+          case "$panel" in
+            pilot) max_roots=8 ;;
+            bounded) max_roots=80 ;;
+            *) exit 1 ;;
+          esac
+          for tree in parent candidate; do
+            {
+              printf '%s\n' '/lakefile.toml' '/lake-manifest.json' '/lean-toolchain'
+              if [[ "$tree" == parent ]]; then
+                printf '%s\n' '/scripts/' '/comparator.json' '/export-targets.txt'
+              else
+                printf '%s\n' '/ci/lean-import-check/'
+              fi
+              cat "$ci/$panel-paths.txt"
+            } > "$RUNNER_TEMP/$tree-sparse"
+            git -C "$tree" sparse-checkout set --no-cone --stdin < "$RUNNER_TEMP/$tree-sparse"
+          done
+          printf '%s\n' "PANEL=$panel" "MAX_ROOTS=$max_roots" "CI_HELPERS=$ci" "WORK=$RUNNER_TEMP/module-check" >> "$GITHUB_ENV"
+      - name: Match the bounded job to its published upstream PR
+        if: env.PANEL == 'bounded'
+        working-directory: candidate
+        shell: bash
+        run: |
+          python3 "$CI_HELPERS/bind_merge.py" . ../parent "$WORK"
+      - name: Install the pinned toolchain
+        working-directory: candidate
+        shell: bash
+        run: |
+          curl -fsSL --retry 3 https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          "$HOME/.elan/bin/elan" toolchain install "$(cat lean-toolchain)"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Exercise Comparator acceptance and rejection
+        if: env.PANEL == 'bounded'
+        timeout-minutes: 5
+        working-directory: candidate
+        shell: bash
+        run: |
+          lean=$(elan which lean)
+          export PATH="${lean%/*}:$PATH"
+          export LEAN_NUM_THREADS=1
+          python3 "$CI_HELPERS/controls.py" "$WORK" ../parent
+      - name: Restore the published parent archives
+        working-directory: candidate
+        shell: bash
+        run: |
+          leantar="$(dirname "$(elan which lean)")/leantar"
+          python3 "$CI_HELPERS/prepare.py" ../parent . "$WORK" "$CI_HELPERS/$PANEL-roots.txt" --max-roots "$MAX_ROOTS" --leantar "$leantar" --candidate-head "$GITHUB_SHA" --base-profile "$PANEL"
+      - name: Fetch the official Mathlib cache for the selected imports
+        working-directory: candidate
+        shell: bash
+        run: |
+          mapfile -t mathlib < "$WORK/mathlib-inputs.txt"
+          export MATHLIB_CACHE_DIR="$RUNNER_TEMP/mathlib-cache"
+          lake exe mathlib/cache get "${mathlib[@]}"
+          git diff --exit-code -- src lake-manifest.json lakefile.toml lean-toolchain
+          df -h .
+      - name: Build and compare the candidate
+        working-directory: candidate
+        shell: bash
+        run: bash "$CI_HELPERS/check.sh" "$PANEL" "$WORK" "$CI_HELPERS"
+      - name: Measure fresh parent and candidate compilations
+        if: success() && env.PANEL == 'bounded'
+        continue-on-error: true
+        timeout-minutes: 20
+        working-directory: candidate
+        shell: bash
+        run: |
+          export LEAN_NUM_THREADS=1
+          export MATHLIB_CACHE_DIR="$RUNNER_TEMP/mathlib-cache"
+          lake env python3 "$CI_HELPERS/benchmark.py" "$WORK" ../parent
+      - name: Compare changed theorems with the upstream Comparator and three kernels
+        if: success() && env.PANEL == 'bounded'
+        timeout-minutes: 25
+        working-directory: candidate
+        shell: bash
+        run: |
+          lean=$(elan which lean)
+          export PATH="${lean%/*}:$PATH"
+          export LEAN_NUM_THREADS=1
+          lake env python3 "$CI_HELPERS/theorem_check.py" "$WORK" ../parent
+      - name: Save the scope and verification output
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: import-check-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            ${{ runner.temp }}/module-check/report.json
+            ${{ runner.temp }}/module-check/receipt.json
+            ${{ runner.temp }}/module-check/build.log
+            ${{ runner.temp }}/module-check/comparisons.tsv
+            ${{ runner.temp }}/module-check/replay.log
+            ${{ runner.temp }}/module-check/pr-source.json
+            ${{ runner.temp }}/module-check/benchmark.json
+            ${{ runner.temp }}/module-check/benchmark-samples.jsonl
+            ${{ runner.temp }}/module-check/scoped-comparator/
+            ${{ runner.temp }}/module-check/control-reports/

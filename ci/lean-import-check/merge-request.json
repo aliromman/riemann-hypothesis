@@ -1,0 +1,11 @@
+{
+  "pull_request": "https://github.com/leanprover-community/riemann-hypothesis/pull/879",
+  "pr_head": "4fc7348e335c0c93eece5d0183bfc64f52081b84",
+  "comparison_parent": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+  "upstream_main": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+  "merge_base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+  "source_mode": "github-test-merge",
+  "checked_commit": "ed7f034b1d3b309166315c8527a2228c6d1ec328",
+  "source_tree": "62e25fabf61fa91901268fe30617394d9827ea03",
+  "observed_github_merge": "ed7f034b1d3b309166315c8527a2228c6d1ec328"
+}
