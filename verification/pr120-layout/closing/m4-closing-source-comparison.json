@@ -1,0 +1,265 @@
+{
+  "pin": "2d20aa9035becfe380b9fe619e3d3fc968cf3400",
+  "closing": "fbb0941754dee95d15639f3d4d5596a3f508648b",
+  "gist": "5e431652188c0c9b498e6b0284b830da7da8cde5",
+  "logSHA256": {
+    "final-all-errors-2d20.txt": "70e54d1115387387361373a323602b2c32e6d03d993c139433db5e2161dfecf0",
+    "final-first-clean-2d20.txt": "dec230dfbb40ca3d6ba064e85a296cd5b9b68202054f6bf630f4fa47f28411bd"
+  },
+  "errors": 67,
+  "files": 16,
+  "sameSource": 4,
+  "rows": [
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/Bundle1269.lean",
+      "errors": 1,
+      "first": [
+        123,
+        55,
+        "failed to synthesize"
+      ],
+      "oldBlob": "1967c62eb0bbefccfef5b2c0a67d7cb55b54a724",
+      "closingBlob": "fbb154dfae3a10d604a4d9b7dccc9e083f87cf19",
+      "sameSource": false,
+      "unchangedLineAt": null,
+      "sourceCommits": [
+        "2e8dbd3158c Use the monoid-hom unit lemma in endo_descent",
+        "75dd653aaa5 Supply canonical Over (Sp _) OfNat 1 instances in DivisorProofs Bundle1447 and Bundle1269"
+      ]
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/Bundle0265.lean",
+      "errors": 2,
+      "first": [
+        210,
+        41,
+        "failed to synthesize"
+      ],
+      "oldBlob": "45af9a3d84ba998397aa55c7bdf66ff14f13f38d",
+      "closingBlob": "0b909b29ea7b52fee621f8dc8b0d9e2ffdba5464",
+      "sameSource": false,
+      "unchangedLineAt": 211,
+      "sourceCommits": [
+        "7778bd441de Supply s-finiteness of the Haar measure in disint_finPart"
+      ]
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/Bundle0463.lean",
+      "errors": 3,
+      "first": [
+        214,
+        57,
+        "failed to synthesize"
+      ],
+      "oldBlob": "5e8714d4621bb40409fa7788c2267f7172e700bf",
+      "closingBlob": "5e8714d4621bb40409fa7788c2267f7172e700bf",
+      "sameSource": true,
+      "unchangedLineAt": 214,
+      "sourceCommits": []
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/SingleBlockDoublingIntegralValue.lean",
+      "errors": 8,
+      "first": [
+        157,
+        6,
+        "Tactic `rewrite` failed: Did not find an occurrence of the pattern"
+      ],
+      "oldBlob": "c3ac9f8e072712e54c129555b4e14c0ca3471180",
+      "closingBlob": "c3ac9f8e072712e54c129555b4e14c0ca3471180",
+      "sameSource": true,
+      "unchangedLineAt": 157,
+      "sourceCommits": []
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/Bundle0484.lean",
+      "errors": 1,
+      "first": [
+        129,
+        46,
+        "failed to synthesize"
+      ],
+      "oldBlob": "a6fc5f56d3d87cb18a4581f247841a796b3318ce",
+      "closingBlob": "32b45ce1afae2e6108b3311640e7ae51b454eaa8",
+      "sameSource": false,
+      "unchangedLineAt": 130,
+      "sourceCommits": [
+        "43705bfcd45 Fix DoubleCosetMeasures & live R2-R4 QL instMeasGL/instBorelGL bundling leaks (80 modules)"
+      ]
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Definitions/Divisors/BarCompSubsetClosure.lean",
+      "errors": 31,
+      "first": [
+        235,
+        13,
+        "failed to synthesize"
+      ],
+      "oldBlob": "2a3a5d001ca02b8ca33866a3bda3eed673bdddbb",
+      "closingBlob": "3f2887b30208888e0239863443243c0927f4ade5",
+      "sameSource": false,
+      "unchangedLineAt": 236,
+      "sourceCommits": [
+        "e4144699555 Fix GlobalTheory.AdmLoc.{modTens,modFun,modProd,modQuot} priority:=high bundling leaks on remaining InertiaEigenvalues & Definitions/Divisors (incl. R4 BarCompSubsetClosure, 159 modules)"
+      ]
+    },
+    {
+      "path": "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ValuationLocalVolumes/Bundle0015.lean",
+      "errors": 2,
+      "first": [
+        243,
+        46,
+        "Application type mismatch: The argument"
+      ],
+      "oldBlob": "f0ee9792ef5efae246f17a2cb1f66e47982667b7",
+      "closingBlob": "0136e7ccbcf4f9e78d5902dfbc23fa21218a8a9d",
+      "sameSource": false,
+      "unchangedLineAt": null,
+      "sourceCommits": [
+        "0f08c50d6da Fix Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ValuationLocalVolumes.Bundle0015",
+        "6bd84c3138e Fix GlobalTheory.AdmLoc priority:=high bundling leaks across ThetaCorrespondence, SiegelLatticeTheory, UnitaryGroupMassFormula, and PublishedTheorems (72 modules)"
+      ]
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/IntegralTateH2Top.lean",
+      "errors": 1,
+      "first": [
+        289,
+        52,
+        "(deterministic) timeout at `isDefEq`, maximum number of heartbeats (1000000) has been reached"
+      ],
+      "oldBlob": "e664e9bb228db6af58030808aaa8edec535c57f3",
+      "closingBlob": "9c25d4c8c024c7e4d0b0a93c10c20091f71474e4",
+      "sameSource": false,
+      "unchangedLineAt": null,
+      "sourceCommits": [
+        "8f408854c13 Avoid defeq rewrite search in integral Tate H2 proof"
+      ]
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/IntegrableOnCartanDoubleCosetShellIntegrand.lean",
+      "errors": 1,
+      "first": [
+        46,
+        8,
+        "failed to synthesize instance of type class"
+      ],
+      "oldBlob": "44f46ed3a98e6f8f22cb270f7bd0cf665aafd50f",
+      "closingBlob": "44f46ed3a98e6f8f22cb270f7bd0cf665aafd50f",
+      "sameSource": true,
+      "unchangedLineAt": 46,
+      "sourceCommits": []
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SetIntegralLeftCosetShellIntegrandEqZero.lean",
+      "errors": 3,
+      "first": [
+        119,
+        4,
+        "failed to synthesize instance of type class"
+      ],
+      "oldBlob": "be74c139312fa161e0f6955792e92913de383d9e",
+      "closingBlob": "be74c139312fa161e0f6955792e92913de383d9e",
+      "sameSource": true,
+      "unchangedLineAt": 119,
+      "sourceCommits": []
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/IsQuotNormaliserIndicator.lean",
+      "errors": 1,
+      "first": [
+        373,
+        14,
+        "failed to synthesize"
+      ],
+      "oldBlob": "106e308f257ca2330b7c45b6bdcfa6bdffb49ec1",
+      "closingBlob": "d490e137fc7b39e9eb73b302391158b1047cf571",
+      "sameSource": false,
+      "unchangedLineAt": 381,
+      "sourceCommits": [
+        "9bc0db3429c Fix Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsQuotNormaliserIndicator: supply sigma-finiteness of the Haar measures in sliceTerm_of",
+        "43705bfcd45 Fix DoubleCosetMeasures & live R2-R4 QL instMeasGL/instBorelGL bundling leaks (80 modules)"
+      ]
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PadicHodgeTheory/Bundle0037.lean",
+      "errors": 5,
+      "first": [
+        91,
+        48,
+        "Ambiguous term"
+      ],
+      "oldBlob": "8de2cb1214b5194f68e75c941ab74f337b6d659b",
+      "closingBlob": "92e0597ec38202874cb81ad130f2fa59afc3bfaf",
+      "sameSource": false,
+      "unchangedLineAt": null,
+      "sourceCommits": [
+        "1c8e1eab151 Fix Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.Bundle0037"
+      ]
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/Foundations/Convolution/BlockHeckeSlices/CuspidalNormBounds/RepOps.lean",
+      "errors": 3,
+      "first": [
+        12,
+        0,
+        "unknown module Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.TsphVec"
+      ],
+      "oldBlob": "3c8698fdfaa4493f2e291777fe15479fff2e3ef2",
+      "closingBlob": "1c6be8bb489f7e6ba946e744a81c7a76f3b58629",
+      "sameSource": false,
+      "unchangedLineAt": null,
+      "sourceCommits": [
+        "61e885f3ef8 Fix Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.RepOps"
+      ]
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/WhittakerHecke/Bundle0014.lean",
+      "errors": 1,
+      "first": [
+        199,
+        2,
+        "No goals to be solved"
+      ],
+      "oldBlob": "4683af54e31785d740276e23469c8ce2cba3a8fa",
+      "closingBlob": "32420f4cd02ecfd86a58f72cd48f2deca6a81e1a",
+      "sameSource": false,
+      "unchangedLineAt": null,
+      "sourceCommits": [
+        "50ede181043 Fix Development.AutomorphicArithmetic.WhittakerHecke.Bundle0014"
+      ]
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/InductionEstimates/BorelHeckeBounds/HeckeShiftSums/CancelN.lean",
+      "errors": 1,
+      "first": [
+        59,
+        32,
+        "typeclass instance problem is stuck"
+      ],
+      "oldBlob": "570e4014d4e80e2e619e099a65a7409cfb63cce8",
+      "closingBlob": "d7c5cd6b2cbece4ab0f4c327863b799fd1359ccc",
+      "sameSource": false,
+      "unchangedLineAt": null,
+      "sourceCommits": [
+        "929b229c5ce Fix Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.BorelHeckeBounds.HeckeShiftSums.CancelN: qualify private bumpEx as _root_.bumpEx"
+      ]
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/WhittakerHecke/CentralCharGaloisInvariantOfConjInv.lean",
+      "errors": 3,
+      "first": [
+        40,
+        79,
+        "Tactic `rewrite` failed: Did not find an occurrence of the pattern"
+      ],
+      "oldBlob": "3bcaa69c99f3928e87b8f91e9335c7efa26865a7",
+      "closingBlob": "625f9e47f50e236ab14c2840e61a114a7669c38b",
+      "sameSource": false,
+      "unchangedLineAt": null,
+      "sourceCommits": [
+        "b8fc3258a17 Fix Development.AutomorphicArithmetic.WhittakerHecke.CentralCharGaloisInvariantOfConjInv"
+      ]
+    }
+  ]
+}
