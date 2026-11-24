@@ -2,6 +2,7 @@ name: Screen private imports against the published parent
 on:
   push:
     branches: [ci/import-pruning/screen]
+    paths: ['ci/import-screen/**']
 
 permissions:
   contents: read

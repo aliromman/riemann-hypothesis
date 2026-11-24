@@ -1,0 +1,144 @@
+name: Replay the five RH roots at the published pull head
+on:
+  push:
+    branches: [ci/import-pruning/screen]
+    paths: ['ci/root-replay/request/request.json']
+
+permissions:
+  contents: read
+  pull-requests: read
+
+env:
+  LEAN_ABORT_ON_PANIC: '1'
+  LEAN_NUM_THREADS: '1'
+  MATHLIB_CACHE_GET_URL: https://cache.mathlib.org/mathlib4
+
+jobs:
+  roots:
+    if: github.repository == 'aliromman/riemann-hypothesis' && github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 335
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: harness
+          persist-credentials: false
+          sparse-checkout: |
+            ci/root-replay
+            ci/import-screen
+      - id: published
+        name: Bind the review request to the latest public PR and upstream main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 harness/ci/root-replay/published.py --request harness/ci/root-replay/request \
+            --out "$RUNNER_TEMP/root-report/published-before.json" --step-output
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: ${{ steps.published.outputs.base }}
+          path: parent
+          fetch-depth: 2
+          persist-credentials: false
+          sparse-checkout: |
+            src
+            scripts
+            .github/workflows
+      - name: Check out every source in the published candidate tree
+        working-directory: parent
+        env:
+          PR_NUMBER: ${{ steps.published.outputs.number }}
+          HEAD_REV: ${{ steps.published.outputs.head }}
+        run: |
+          git fetch --quiet --no-tags origin "+refs/pull/$PR_NUMBER/head:refs/root-check/reviewed"
+          test "$(git rev-parse refs/root-check/reviewed)" = "$HEAD_REV"
+          git worktree add --quiet --detach "$GITHUB_WORKSPACE/candidate" "$HEAD_REV"
+      - name: Install the pinned Lean compiler
+        working-directory: parent
+        run: bash ../harness/ci/import-screen/install-lean.sh
+      - name: Recover the shared stock Mathlib archives
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-mathlib-cache
+          key: rh-screen-math-v1-linux-x64-31ce06eaadf4a200c0e1407c5f10953cf606b8f8
+      - name: Install the exact Mathlib artifacts and build the trusted Lean helpers
+        working-directory: parent
+        run: |
+          MATHLIB_CACHE_DIR="$RUNNER_TEMP/rh-mathlib-cache" lake exe mathlib/cache get
+          git diff --exit-code -- lean-toolchain lakefile.toml lake-manifest.json
+          trial="$GITHUB_WORKSPACE/harness/ci/root-replay"
+          screen="$GITHUB_WORKSPACE/harness/ci/import-screen"
+          lean -R "$trial" -c "$RUNNER_TEMP/BuildPublic.c" "$trial/BuildPublic.lean"
+          leanc -O2 -o "$RUNNER_TEMP/build-public" "$RUNNER_TEMP/BuildPublic.c"
+          lean -R "$screen" -c "$RUNNER_TEMP/CheckInterface.c" "$screen/CheckInterface.lean"
+          leanc -O2 -o "$RUNNER_TEMP/check-interface" "$RUNNER_TEMP/CheckInterface.c"
+          lean --version | tee "$RUNNER_TEMP/root-report/lean-version.log"
+          grep -F 'commit 0b77e12952ad39077d80d8bd6b66d601f225c321' "$RUNNER_TEMP/root-report/lean-version.log"
+      - name: Export Challenge and compare its bytes with the community checksum
+        run: |
+          python3 harness/ci/root-replay/challenge.py export --parent parent \
+            --out "$RUNNER_TEMP/root-report/challenge-export.json"
+      - name: Recover the project LTARs from the native screen
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-screen-cache
+          key: rh-root-reuse-v1-${{ steps.published.outputs.base }}
+          restore-keys: |
+            rh-screen-v3-latest-7ef75c550561a6f21d27bb76c9a53fcf6a9a6fe5d5d481f2cdb56e9b1262589d-
+            rh-screen-v2-rest-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
+      - name: Reconstruct every changed public interface and both IR outputs from authenticated inputs
+        working-directory: parent
+        run: |
+          root="$GITHUB_WORKSPACE/harness/ci/root-replay"
+          python3 -u "$root/stage.py" --request "$root/request" --parent . --candidate ../candidate \
+            --cache "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-root" \
+            --bin "$(dirname "$(elan which lean)")" --rebuilder "$RUNNER_TEMP/build-public"
+      - name: Record the runner memory allowance and reserve swap for whole-project imports
+        run: |
+          {
+            free -h
+            df -h "$RUNNER_TEMP"
+            swap_bytes=$(awk '/^SwapTotal:/{print $2*1024}' /proc/meminfo)
+            disk_bytes=$(df -B1 --output=avail "$RUNNER_TEMP" | tail -1)
+            if awk -v s="$swap_bytes" -v d="$disk_bytes" 'BEGIN {exit !(s < 8589934592 && d > 12884901888)}'; then
+              space="$RUNNER_TEMP/rh-root-swap"
+              if sudo fallocate -l 8G "$space" && sudo chmod 600 "$space" && sudo mkswap "$space" && sudo swapon "$space"; then
+                echo 'Enabled 8 GiB of swap.'
+              else
+                echo 'The runner could not enable additional swap.'
+                sudo rm -f "$space"
+              fi
+            fi
+            free -h
+          } | tee "$RUNNER_TEMP/root-report/memory.log"
+      - name: Re-elaborate Main and replay the five theorem bodies with the pinned Lean kernel
+        working-directory: parent
+        run: |
+          root="$GITHUB_WORKSPACE/harness/ci/root-replay"
+          work="$RUNNER_TEMP/rh-root"
+          python3 -u "$root/compile_roots.py" --repo ../candidate --baseline "$work/baseline" \
+            --packages .lake/packages --bin "$(dirname "$(elan which lean)")" \
+            --source-graph "$RUNNER_TEMP/rh-screen-cache/metadata/headers.json" \
+            --images "$work/images/images.tsv" --work "$work/roots" --judge "$RUNNER_TEMP/check-interface" \
+            --kernel "$root/ReplayMain.lean" --parent-bindings "$work/bindings.sqlite" \
+            --challenge .lake/build/lib/lean/Challenge.olean
+          python3 "$root/challenge.py" verify --roots "$work/roots" --config ../candidate/comparator.json \
+            --challenge "$RUNNER_TEMP/root-report/challenge-export.json" --out "$RUNNER_TEMP/root-report/verified.json"
+      - name: Confirm the public pull request still has the checked source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 harness/ci/root-replay/published.py --request harness/ci/root-replay/request \
+            --out "$RUNNER_TEMP/root-report/published-after.json"
+      - name: Publish the source binding and individual proof results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: five-roots-${{ steps.published.outputs.head }}-${{ github.run_attempt }}
+          retention-days: 14
+          path: |
+            ${{ runner.temp }}/root-report/
+            ${{ runner.temp }}/rh-root/images/bound.json
+            ${{ runner.temp }}/rh-root/images/images.tsv
+            ${{ runner.temp }}/rh-root/roots/report.json
+            ${{ runner.temp }}/rh-root/roots/*.log
