@@ -1,0 +1,57 @@
+{
+  "snapshot_utc": "2026-11-24T16:07:02.586638+00:00",
+  "mathematical_parent": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "main": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "main_source": "980141067b4eec00e78e2d490134c6299613cdef",
+  "same_mathematical_source": true,
+  "same_configuration": true,
+  "paths_since_parent": [],
+  "protected": {
+    "lean-toolchain": "100644 blob 0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lake-manifest.json": "100644 blob 8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "lakefile.toml": "100644 blob 43b9f74431077a10cc1edecbc15239fe38d92591",
+    "src/Main.lean": "100644 blob 67c65badc15f80a1db65df1c84dc7a4928fc410f",
+    "src/Statements.lean": "100644 blob 23b01f745b80075e377c415abae96ece3570d0b0",
+    "src/Challenge.lean": "100644 blob 9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "comparator.json": "100644 blob e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "100644 blob e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    "comparator": "040000 tree a14c3e84eee63917486fb7369cc8a4cfbb8c35d4",
+    "scripts/ci-cache-get.py": "100644 blob 4ab0793bad994c099bb42ef80c65e732f06b4144",
+    "scripts/cache-settings.py": "100644 blob 3844a627bdb7d80b34361f0961550df6a28a0f56",
+    "scripts/cache-baselines.json": "100644 blob 1058e98a047e34861fc5843d13f6407e3b14fa70"
+  },
+  "pulls": {
+    "879": {
+      "head": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+      "github_merge": "4db316c45c8e1d40f99c60396f58951e7ae2a22f",
+      "base_at_pr": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+      "computed_whole_tree": "0e2f5c7ba4352e2dbaf1a852aedd044f9bb87a8d",
+      "conflicts": [],
+      "clean": true,
+      "same_complete_lean_tree": true,
+      "same_configuration": true,
+      "same_tools": true,
+      "github_merge_tree": "0e2f5c7ba4352e2dbaf1a852aedd044f9bb87a8d",
+      "github_merge_parents": [
+        "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+        "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d"
+      ]
+    },
+    "977": {
+      "head": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+      "github_merge": "177babf54b6c42736e5040c9fec8f5e2a00864ff",
+      "base_at_pr": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+      "computed_whole_tree": "49ca624d33498ce6e5e699b40acb8be0a76517dc",
+      "conflicts": [],
+      "clean": true,
+      "same_complete_lean_tree": true,
+      "same_configuration": true,
+      "same_tools": true,
+      "github_merge_tree": "49ca624d33498ce6e5e699b40acb8be0a76517dc",
+      "github_merge_parents": [
+        "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+        "f6177155e8e440c0a831d4c15de4c74341de0a93"
+      ]
+    }
+  }
+}

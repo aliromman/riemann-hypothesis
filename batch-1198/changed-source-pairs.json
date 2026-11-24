@@ -1,0 +1,2312 @@
+[
+  {
+    "path": "src/Development/AbelianVarietyTheory/Definitions/Divisors/BarCompSubsetClosure.lean",
+    "base_blob": "f682e6300fd4190b61cf76d8000854d30eae044c",
+    "candidate_blob": "a8d0331849328c53cb3e1b742e87b8bcd327df5f",
+    "base_sha256": "ae4f470c8a8bf6b3e521c769c981252dae845dc0499cd44b599eec75ed4cd325",
+    "candidate_sha256": "68a70a62bc639ac8d9fa1261ac5630dd19ca2f03b7767fb3c41381fc01ceb24e",
+    "source_measures": [
+      [
+        487,
+        366,
+        24484
+      ],
+      [
+        464,
+        343,
+        23345
+      ]
+    ],
+    "removed_imports": 23,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Definitions/Divisors/CechDeRhamTotalDifferentialOneFunctionPart.lean",
+    "base_blob": "74c494b81cf73b7a27b2d559ce49169775a278c9",
+    "candidate_blob": "a4625757f9b48b22a927efefc95b287cc6c285ac",
+    "base_sha256": "edea852b45a99710ad9228c4d49d945d677d36e0b36c0ed5a6d6b85bc331e008",
+    "candidate_sha256": "b64c5116ae0fcac2688328482280eb0ca24c6ec3045749a47e6e2d0157e9b789",
+    "source_measures": [
+      [
+        567,
+        460,
+        24761
+      ],
+      [
+        537,
+        430,
+        23295
+      ]
+    ],
+    "removed_imports": 30,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Definitions/Divisors/CommAlgFunctorCoboundaryZeroMemCocyclesOne.lean",
+    "base_blob": "07708f566fb8ffdfb01d817c6460fc1e03b8a4bd",
+    "candidate_blob": "687824dfa0ccc0a0b81810d5073d64c3a0154ae9",
+    "base_sha256": "14370c67b950b186f54a74f6200bbb48bcb849664f4006de37158e90e0addf04",
+    "candidate_sha256": "5da538ce39fe3a0e9de338a2536246613d05aa2086af382ffe4a2e8334b1ebd4",
+    "source_measures": [
+      [
+        397,
+        318,
+        16504
+      ],
+      [
+        368,
+        289,
+        15077
+      ]
+    ],
+    "removed_imports": 29,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Definitions/Divisors/IsHomogeneousCompIdeal.lean",
+    "base_blob": "2ae11119ded9ad78de00e990e079fb0afce6feab",
+    "candidate_blob": "44124f2383d07edb436e164cdbd0f0e4360d2cc3",
+    "base_sha256": "8790518b5059c8b2edd91900df76ada074c81de384a607fe00d854388e0e0871",
+    "candidate_sha256": "e89e1b868625b37e1b1ea3bc0b7fd88973ddfcb839f137244cb99562eed00849",
+    "source_measures": [
+      [
+        266,
+        202,
+        13126
+      ],
+      [
+        244,
+        180,
+        12016
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Definitions/Divisors/SemiposAtOfPositive.lean",
+    "base_blob": "ca3e33fff3c41b0b957e4407dcbe7454e338c8e9",
+    "candidate_blob": "f1710f2a75ee5b9f5e977db4838012e9cc8f7e9a",
+    "base_sha256": "d844815caee454cc1b788fdf08e38dfd8dbab19c3a66c41524ff5e6052b2b909",
+    "candidate_sha256": "ed5790e69e4430f40928862512740d2faa5cc85ed4435d4a2ba26caaf47ddcfd",
+    "source_measures": [
+      [
+        162,
+        120,
+        8711
+      ],
+      [
+        140,
+        98,
+        7601
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Definitions/TwistedInnerProducts/ExistsHeightLeTwoMulQuotHeight.lean",
+    "base_blob": "869214cccd444df9c036ff5e56d3222b3cea7968",
+    "candidate_blob": "7859822e2199d047004765bd22349a64ef9af26d",
+    "base_sha256": "b54a9c70dd428562706a83981faa5307e93e8cb22ff928bfd6f92b7ba6c88605",
+    "candidate_sha256": "63266279bb3f7524c496bef4a0aeca9c29ac46836e0b8a9cd35fdd0c6e472e97",
+    "source_measures": [
+      [
+        967,
+        825,
+        59809
+      ],
+      [
+        935,
+        793,
+        58282
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/EqSemiMeasOfCovolOne.lean",
+    "base_blob": "7692201829772ea829712aa16098de4c607108f1",
+    "candidate_blob": "b5f39c7bbbb6294531e4122152d396a700b4c605",
+    "base_sha256": "1df0e70cbbc1459d0248002079db6f11cf293a104006c30fb4d88502c05c7d38",
+    "candidate_sha256": "7602d6ba5d100ea6218a43e3f3c30ba7bbc2c6a2f99c6c5d5216b7585e6aac58",
+    "source_measures": [
+      [
+        332,
+        292,
+        17931
+      ],
+      [
+        305,
+        265,
+        16648
+      ]
+    ],
+    "removed_imports": 27,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/FourierJacobiMeasureUnitriangularCoordinates.lean",
+    "base_blob": "f925e67299fce95aa79e9a3bb8cd3f2496671cea",
+    "candidate_blob": "32c92498ee4ef2c4f07f63f4048aacb3fb3f2481",
+    "base_sha256": "1ba9b38c950d355d3f673ade9ce20ec0caea88d512fb6ce0957daf91e9cf28c2",
+    "candidate_sha256": "75791af56a5ee8c73c495f558bd40317f965fc40c9a8e30d81ce1232858e5554",
+    "source_measures": [
+      [
+        133,
+        114,
+        7187
+      ],
+      [
+        110,
+        91,
+        6040
+      ]
+    ],
+    "removed_imports": 23,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/AntitoneWeightLogBound.lean",
+    "base_blob": "e69f05b3344a8e0a8bafce80dcec5bf3609e65fe",
+    "candidate_blob": "56d4cadca126ca5c11917e38a9335deea8762ac0",
+    "base_sha256": "78af30237edc59db374c1293f9ac80e7059e9ceeb62f8eabb6b216dcf9a2d208",
+    "candidate_sha256": "d474defc38af9bfd8b605ba030725a5a2f07dcd140dfc4cd72b18a8712fbcd26",
+    "source_measures": [
+      [
+        198,
+        186,
+        13354
+      ],
+      [
+        177,
+        165,
+        12297
+      ]
+    ],
+    "removed_imports": 21,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/DetFrameChangeBalancedTensorsCmType.lean",
+    "base_blob": "31c67941d29a71d9b03efa52dea36ab8ce130437",
+    "candidate_blob": "a55dc24225fe5aacac750a2eb7fc1760f5cf1259",
+    "base_sha256": "04a2ab565a9ffd43a56212469fcc310e4b718ee89125a4560470cb383e4a12c5",
+    "candidate_sha256": "5fe6cdc5d9a56d75f05ef1d7f25531e388cc2e79e3294cd317a310ad5c01e873",
+    "source_measures": [
+      [
+        217,
+        196,
+        12013
+      ],
+      [
+        193,
+        172,
+        10835
+      ]
+    ],
+    "removed_imports": 24,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/EqLastAddGaps.lean",
+    "base_blob": "f4f499e18bd4807fde3d92423188c396f5d0577d",
+    "candidate_blob": "562f74d0cd08824e770dc3676976ea30f682081d",
+    "base_sha256": "b7c2c8f9ec6a14f87ec6fd2a4eaf6b40dcd1f04e2b2ed5b461bf72114a63f752",
+    "candidate_sha256": "a49fbeca4d8b7e60be350f178e356f1921f99539e70408b9c65362a76c0fd6ef",
+    "source_measures": [
+      [
+        133,
+        113,
+        6286
+      ],
+      [
+        109,
+        89,
+        5108
+      ]
+    ],
+    "removed_imports": 24,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsBoundedIntegerGoodCoverThetaSeriesIntegral.lean",
+    "base_blob": "b6a299dc9e196fcfedb8d32597417df9f64c0678",
+    "candidate_blob": "14b1b7841cf8146d66d3f5b73909d35019ca165a",
+    "base_sha256": "f7592de9e323d2f3e81f6439b73dd54b05c769cce246a3f9b212d40fc05bdecd",
+    "candidate_sha256": "1087375607f857e3b48c3733be942e8e8f4a6f93cca594eea9aee7ee0445badd",
+    "source_measures": [
+      [
+        1554,
+        1408,
+        133208
+      ],
+      [
+        1526,
+        1380,
+        131847
+      ]
+    ],
+    "removed_imports": 28,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsKeyUnitPowTwistingSectionOnComponent.lean",
+    "base_blob": "e81aa1104655a3b1ecd1408b28a2ffd7e6953a13",
+    "candidate_blob": "a9908b4f4c474db4c151bef45ebf8aea9ea200ff",
+    "base_sha256": "c4f8541ebd23aebf61a3d6ec1327216f259b6d757053fee777f796634b32bd32",
+    "candidate_sha256": "f1979d76bee61f039f17d94b4d328816f1b54e0048f853a08dd62198002e5e92",
+    "source_measures": [
+      [
+        228,
+        221,
+        15101
+      ],
+      [
+        206,
+        199,
+        14005
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsLogKodairaSpencerGenericEigenFrame.lean",
+    "base_blob": "04e8c6d155fb0994996212f41902797df68563ef",
+    "candidate_blob": "6b157819effc0c088a91a6e4a298275f64bb7129",
+    "base_sha256": "170f82217649e614e7223213941d902db79a91ed8bdb7aba5ea62bd36d3c239d",
+    "candidate_sha256": "7a80133276ea25f3a67a098463c3cd9296e3bb6c2655f6c7c6916f6abbfaba65",
+    "source_measures": [
+      [
+        235,
+        215,
+        18828
+      ],
+      [
+        213,
+        193,
+        17718
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsTwSecOfConst.lean",
+    "base_blob": "7e64f2667ebcbda2a39a65445cc127cd271cbfd3",
+    "candidate_blob": "2b31ab097d07a0b56f2c9bb454a9440f65f5dede",
+    "base_sha256": "e9769f18223dc016912d5e61b569f315f3b823e8fcda5739eb20c8a36228f602",
+    "candidate_sha256": "4ee6f48ed7dd1671422504ddf81c90c50be784b6c5e5743e8f73ebff4dc50e94",
+    "source_measures": [
+      [
+        198,
+        174,
+        16570
+      ],
+      [
+        176,
+        152,
+        15460
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/FlatLineThetaRootTwistTwistingSection.lean",
+    "base_blob": "e43c707e503ff58e385c4ff37fa206518b4f673b",
+    "candidate_blob": "7cb18bbb961080838c5319add537b4d5b37dab88",
+    "base_sha256": "9d1287aba32dcde8a493ecab67c913b2a54279f486e06df1cb79c4c56dadf1b5",
+    "candidate_sha256": "3228b26eea1bbc1fa009ffd59c57b502b3280d0aabe262751c21fd7c5aeaceac",
+    "source_measures": [
+      [
+        187,
+        168,
+        18784
+      ],
+      [
+        164,
+        145,
+        17635
+      ]
+    ],
+    "removed_imports": 23,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/NormPhiHatIndPhi.lean",
+    "base_blob": "46ad05f86940af4d44b982f85472bcd01ca3bcbf",
+    "candidate_blob": "0993b438224f57e6e6a5267e8f490287324372b6",
+    "base_sha256": "b3095e958c9f1d9905fcf8ceea0bb10c68d7e546c4a70320cd051ec6f4ffec4c",
+    "candidate_sha256": "9134f57ffee786e19b6bfb805732c09ecf80002778c82d755e907162fe4deaf1",
+    "source_measures": [
+      [
+        545,
+        511,
+        45265
+      ],
+      [
+        521,
+        487,
+        44094
+      ]
+    ],
+    "removed_imports": 24,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/WeightAntitoneBoundary.lean",
+    "base_blob": "6c6cb9897cffc7942de237254a76959291372f2e",
+    "candidate_blob": "3356e0fd5540f956cc7830f499c0b14339999957",
+    "base_sha256": "eeb7a0b2bb013c6f9dea796b7824b68afe51d422338f8a44f6b087954d0df07f",
+    "candidate_sha256": "bc611247074a17836d1bab6247723305ed0e4927ce33bfd2289338b2d4b90ece",
+    "source_measures": [
+      [
+        241,
+        223,
+        12475
+      ],
+      [
+        219,
+        201,
+        11389
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/DifferentiableAtFractInt.lean",
+    "base_blob": "e81f9ea740133ba845ade4f31a334436cc8f672b",
+    "candidate_blob": "c4a14065a173e4b96d5198693e9247b902712ffa",
+    "base_sha256": "729b094dafe80e17efec82827f633c780883aad9a546eb171886307e107ed616",
+    "candidate_sha256": "96dad56ceb5e0465990b94d8e4a2ed7ffbc9e5230e1a56fc41766eb6862e68db",
+    "source_measures": [
+      [
+        263,
+        233,
+        17553
+      ],
+      [
+        233,
+        203,
+        16130
+      ]
+    ],
+    "removed_imports": 30,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/LFunctionEqTsumOfOneLt.lean",
+    "base_blob": "d58f2e9fe7230c59f023b24c1819a09498cb5820",
+    "candidate_blob": "3be3cc7115357626b26d2f55132abb9b05a2f9bd",
+    "base_sha256": "84bf05b6bdb7a8f95e261417131f16a4747428e4cf4660569215187c8a354da8",
+    "candidate_sha256": "d6a3bc0bd83b179b9e417ed17cb26c8a133e393e1dda2691ab96eff5bab0ad34",
+    "source_measures": [
+      [
+        314,
+        290,
+        17556
+      ],
+      [
+        284,
+        260,
+        16133
+      ]
+    ],
+    "removed_imports": 30,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/LogDerivRiemannZetaLocalZeroSum.lean",
+    "base_blob": "ad90a2ac861ee484868d71acfd1a881d350bf090",
+    "candidate_blob": "428d94e485de0da184031ebb8d289b098c2c718c",
+    "base_sha256": "8f3b4a408e45ab533400b93fea9278e455758ff3c6ef543db88b6303dc40146a",
+    "candidate_sha256": "95a6f6ed95b9175b9b482f630215a85a8937c9d8244290e1dc26da352aaaa737",
+    "source_measures": [
+      [
+        191,
+        178,
+        9019
+      ],
+      [
+        161,
+        148,
+        7596
+      ]
+    ],
+    "removed_imports": 30,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/NormOneSubConjMul.lean",
+    "base_blob": "131eb3b4c127a8a3fc9f5b0ae779552053212c53",
+    "candidate_blob": "2dea8888e966afbea79c488e628b774786506b5f",
+    "base_sha256": "5334b828fe30a9a567454d008c861f8cf47c9c1289313f696b227bb4319942b9",
+    "candidate_sha256": "77f2a1bdb1e95f0e7744e0ed093e6fdf61aa04e8b246ef69569366e1f0d6c29f",
+    "source_measures": [
+      [
+        332,
+        316,
+        22092
+      ],
+      [
+        300,
+        284,
+        20565
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/NormSubOneMulRiemannZetaLe.lean",
+    "base_blob": "075fb5585f61afb9bf6596161d3ef70be55ef0ad",
+    "candidate_blob": "b0768a077846b2646fa788cee0556ac8b8cffd37",
+    "base_sha256": "a1a476cf83e1784bc4848c7690e3be73bba9ed678455beea8ee07206c483349b",
+    "candidate_sha256": "0e0618dff559cfced610d36ea6a806fd98de94aa915efe953c11316fa733bef9",
+    "source_measures": [
+      [
+        299,
+        278,
+        15387
+      ],
+      [
+        269,
+        248,
+        13964
+      ]
+    ],
+    "removed_imports": 30,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/SumRpowZerosLe.lean",
+    "base_blob": "34d232710e9ff7a0272f76a6503ce5983a5c8c5f",
+    "candidate_blob": "f281bd0952bc38e0e5b753654a57b32b1eedbfbd",
+    "base_sha256": "956940ea541f546b1b656bd36e42ac1374351f352f58ed9c7742c639e29df321",
+    "candidate_sha256": "e230842e8dfe1e8cb7f246fcc47076e5117c946326eb024e46a27665ee058e5e",
+    "source_measures": [
+      [
+        1791,
+        1688,
+        117946
+      ],
+      [
+        1760,
+        1657,
+        116457
+      ]
+    ],
+    "removed_imports": 31,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/SummableNinePowMulInvSqSucc.lean",
+    "base_blob": "b3a7d5da03d825d86bf44f8d25ad8da7158901e9",
+    "candidate_blob": "caab7f582d361bd158221d534d1753641385756c",
+    "base_sha256": "2ce01670ee3ba7061c891c52d6db01b716f54446047da021c309e3adc7b7f1c1",
+    "candidate_sha256": "a7110e32a8c9465e794083deb7f87f400c737a17e8932920307fb473429598fb",
+    "source_measures": [
+      [
+        401,
+        380,
+        20492
+      ],
+      [
+        371,
+        350,
+        19069
+      ]
+    ],
+    "removed_imports": 30,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/TruncatedPerronPsi.lean",
+    "base_blob": "248a917b69ee0a566a65f2ee9d0233d12d2f4fb6",
+    "candidate_blob": "bad750f8542d57258980a872c2fac02d070f0511",
+    "base_sha256": "60c9cc8a4728fb1ca323abb5e2ad080055e7dcc43974ef585189158583bab73e",
+    "candidate_sha256": "f5fb9f530bf7dd4a8ee0aacbd750465e2f9d748769b9d1dddc5c1eb0e8d224a9",
+    "source_measures": [
+      [
+        1015,
+        973,
+        59282
+      ],
+      [
+        983,
+        941,
+        57755
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/HodgeMetricChernIntegralEqCovolumeMulFlagDegree.lean",
+    "base_blob": "558e192296be7c8856c7cb1999f34000181d274f",
+    "candidate_blob": "0b0e5b7cd12558571f6f9bd6f55e8d9d68bea63c",
+    "base_sha256": "e6f81f15314f07a02603dd41961978fa911961544ca3d169eb4f5a4d8c415ae5",
+    "candidate_sha256": "652f5475f90eb2584c87173a629752e32967953c1e96b49126eb33d925d119b2",
+    "source_measures": [
+      [
+        1281,
+        1156,
+        130115
+      ],
+      [
+        1250,
+        1125,
+        128632
+      ]
+    ],
+    "removed_imports": 31,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/SmoothOfAlgClosedUnif.lean",
+    "base_blob": "037eadcc0aafca394cd1596f5c55d4f28698d713",
+    "candidate_blob": "67d44c690b04f0ccb5867a93cd56ded26b6c39dd",
+    "base_sha256": "4cef0d6d0dc2cc0efa9dce444cc38305b5b4c71abb67453c74167348f0796aab",
+    "candidate_sha256": "594d2a3603d4bf6d7250030c560b064ca8b8d373b8fb1b87b62f66f09455fd59",
+    "source_measures": [
+      [
+        1640,
+        1480,
+        124910
+      ],
+      [
+        1613,
+        1453,
+        123585
+      ]
+    ],
+    "removed_imports": 27,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/NormalisedThetaFamilyNormalisedAllPlaces.lean",
+    "base_blob": "22cf763986007a6002d6de09ae9f0af506bfb0cd",
+    "candidate_blob": "dc746fd66f54eecdde99aa356d731d1d12fd23a9",
+    "base_sha256": "6dcf230c4da7e9355f19f48ecc871e4f3d43068e1797e1d976d2556ee3a46375",
+    "candidate_sha256": "f2b65efcd64a5dc70fb867e36f3943f1089985b12f34f9340f6d5b11af78ab57",
+    "source_measures": [
+      [
+        853,
+        756,
+        69433
+      ],
+      [
+        821,
+        724,
+        67906
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/OneCosetDecompositionStatementStatement.lean",
+    "base_blob": "ae7d58fe35a36c5ab147b11ae5393b0319e7a98a",
+    "candidate_blob": "a215055591b5f4fc6d9cff192e88ed1e1263123c",
+    "base_sha256": "50aff4a3cd536d158707ea336c4e4cb41427eb12016926c79b36659812bba080",
+    "candidate_sha256": "b221cd2fa5448078703bdf595bfbc774d99fad57a09477fb1988d118f6a8ba87",
+    "source_measures": [
+      [
+        1246,
+        1137,
+        112674
+      ],
+      [
+        1220,
+        1111,
+        111428
+      ]
+    ],
+    "removed_imports": 26,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/PeriodReductionToFockVectorsLargeDepthStatement.lean",
+    "base_blob": "e242345f5cc4a6732c07ed84818981c9dcefdb60",
+    "candidate_blob": "c9e08cd359779840b0ec902455b3fe1ecff6154e",
+    "base_sha256": "81a40e20bcd4a9b00f4777379319e0fb5235dc50aa6382b2197b16679bfb0f74",
+    "candidate_sha256": "9388fb67da1c3d60cba498fa7a0fd17194d8d282ca8e65e3d6b6d0417658f324",
+    "source_measures": [
+      [
+        1261,
+        1117,
+        114682
+      ],
+      [
+        1235,
+        1091,
+        113436
+      ]
+    ],
+    "removed_imports": 26,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/QEqColPer.lean",
+    "base_blob": "30cdc8f929c71a4b6ac402a43b30eb1b176ec1a0",
+    "candidate_blob": "44a7007c38d602dfb30e55f68a36cf876fe414b5",
+    "base_sha256": "a7009829c7c6d3dec4f63e0821539eb688eef75867c554013e2fdf4774297295",
+    "candidate_sha256": "6e508ad05286f3e33c1472dfd560db47f8c6015f31e1df80aac209083e519312",
+    "source_measures": [
+      [
+        291,
+        257,
+        36866
+      ],
+      [
+        266,
+        232,
+        35644
+      ]
+    ],
+    "removed_imports": 25,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AbelianVarietyTheory/PublishedTheorems/TwistedTraceFormula/KudlaSplittingSplitUnitary.lean",
+    "base_blob": "b679b86d1755159fbee9774e7f9a204aff089007",
+    "candidate_blob": "9be965878dab5db94415275db8dbd62b11e0dd76",
+    "base_sha256": "2151ea10a01bb89c8d2b393f67f28a55c9de9fb2abe1a8c3acc53bd6de7afeda",
+    "candidate_sha256": "a4191c87325da0439b365da0c4941d1def55a97fe520ee9eeb6c8e848edf89c6",
+    "source_measures": [
+      [
+        268,
+        224,
+        13900
+      ],
+      [
+        236,
+        192,
+        12373
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/GaloisLibrary/CrystallineBaseChange/Deadel.lean",
+    "base_blob": "0154768b349332b0bff0e96857607021c707a9d3",
+    "candidate_blob": "f8c6d4a4100751d51bdad856c56e03ad78b45775",
+    "base_sha256": "f7c107bd2d608e70c620296de4f013bd56e3eaf1019ada508dbc731d0042a1f5",
+    "candidate_sha256": "0162cd79de5a3f0bdbd557c7c6e0fbf462a123e322194352d70f8deea82a8eed",
+    "source_measures": [
+      [
+        804,
+        723,
+        59438
+      ],
+      [
+        779,
+        698,
+        58245
+      ]
+    ],
+    "removed_imports": 25,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/GeometricSideEstimates/TraceFormPosDefOfTotallyReal.lean",
+    "base_blob": "e049a6eb880e44998fd2f54daac3f293ce717167",
+    "candidate_blob": "5b31eaf3f7976d9273a1b22e70b62a2a7fd4f4bf",
+    "base_sha256": "2b66863b45be542e7b97b544482709e93d13e9ab098ea276487643ea43d5b195",
+    "candidate_sha256": "828ace2dfe6998d738ad0e7f15b38675b0ff2f4751215e17fd5805008004afed",
+    "source_measures": [
+      [
+        539,
+        503,
+        44818
+      ],
+      [
+        515,
+        479,
+        43633
+      ]
+    ],
+    "removed_imports": 24,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/THolRep.lean",
+    "base_blob": "209ba291a5c408ae41057a364039ceb3a82dbbe5",
+    "candidate_blob": "45c28cba6c971a3b0ec1fded3c7988df6ccfc53c",
+    "base_sha256": "38db7378f08528837b5d019923c36414c29d649e3bf43020400b46e7a9dbbe02",
+    "candidate_sha256": "038aac5032c64902c88d07b717576c6548f2f94d864aee75e1b8effc0899cf6e",
+    "source_measures": [
+      [
+        504,
+        496,
+        31870
+      ],
+      [
+        480,
+        472,
+        30709
+      ]
+    ],
+    "removed_imports": 24,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/TraceFormula/OrbitalIntegrals/TwistedOrbitalIntegrals/PlaceData.lean",
+    "base_blob": "c16a246fd3ace2507a1421594ab820278b9e2c2f",
+    "candidate_blob": "9ade79c939b63e5b941cb99f6496cbb3e8b706bd",
+    "base_sha256": "e8b5389049d3db17d13bcc5ca2597f98fd5dca1d7f0d36733d537dd727689597",
+    "candidate_sha256": "9724ee049679f28c514393ce8b4da30f8a1143754b7a8797120ae846cb1766a4",
+    "source_measures": [
+      [
+        116,
+        112,
+        6710
+      ],
+      [
+        91,
+        87,
+        5491
+      ]
+    ],
+    "removed_imports": 25,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/CommutativeAlgebra/EtaleCohomology/PhiAIter.lean",
+    "base_blob": "625c57282633ac001433121ff70c9c20b6cfa62c",
+    "candidate_blob": "48ba3d37fafdb18c60b9715f248be8e05460f193",
+    "base_sha256": "51a4af74a510f1fe9e3ef9f260c25fa30cd4b128ba1f3437e2055eed2ad8477b",
+    "candidate_sha256": "a5a725c026dae625920947473ccb8c9b4f38d68d98d61537b290e6c7bf892415",
+    "source_measures": [
+      [
+        1279,
+        1140,
+        97591
+      ],
+      [
+        1247,
+        1108,
+        96064
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/CommutativeAlgebra/EtaleCohomology/PhiHIterSmul.lean",
+    "base_blob": "bbc798bbb1efcf6b483755df763146f228fdb640",
+    "candidate_blob": "7137889c923e2a20438a17d78c762717b432bdd4",
+    "base_sha256": "f6abc09749ef0efa35f726f62bd035665382c333d331fca39e719eeea5938bf8",
+    "candidate_sha256": "9068dabb8e84420acdeb83b3632c6aa7993ebaa09bda0d1b12267ec1ea98b17a",
+    "source_measures": [
+      [
+        1552,
+        1417,
+        108166
+      ],
+      [
+        1521,
+        1386,
+        106675
+      ]
+    ],
+    "removed_imports": 31,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/CommutativeAlgebra/EtaleCohomology/PhiIterPull.lean",
+    "base_blob": "7e29d760d0324237ce72749c42c6e8ff05be12e3",
+    "candidate_blob": "2aa1915617d297a885915fa154c8cc34db08420e",
+    "base_sha256": "c8535878aca30111fe70c031ea1fcc6b4c2ff96e1e96b75f84ca1441137ba383",
+    "candidate_sha256": "fe22bae86f2c3e37d035807914213c09af4c7610bd96af3d2aa9d573d272b2f2",
+    "source_measures": [
+      [
+        312,
+        269,
+        22687
+      ],
+      [
+        285,
+        242,
+        21340
+      ]
+    ],
+    "removed_imports": 27,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/BasicOpenSections/EsGenAll.lean",
+    "base_blob": "e3b82aba8e5023373ed6f487f2ded050598fad4d",
+    "candidate_blob": "427eec8d4f668d516526de2ed0194b425c9f594a",
+    "base_sha256": "cedfdc7a7d6a6b4cda052b8d2edfe130a06e381bde39f0a5c0ab3863789e6af8",
+    "candidate_sha256": "b7fbc9c88bbc813bf28c589021c7e77df5067c5ceab7e0e6074185d868a0b36f",
+    "source_measures": [
+      [
+        425,
+        383,
+        44497
+      ],
+      [
+        396,
+        354,
+        43089
+      ]
+    ],
+    "removed_imports": 29,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/CrystallineTowers/LocTowerHolds.lean",
+    "base_blob": "20f61881949e4427de26e885ac258626e9133435",
+    "candidate_blob": "8d49c111fc95a468e78f07edfc2a9584a1b6ea94",
+    "base_sha256": "cb4c5ec7666b9c039a819ac9979faffa1aff48d11cf87caa0432ded4dcd1f754",
+    "candidate_sha256": "0687b38d27f76b637cd7120f11d1acf9c85056b59265d9e2c2602347710a5dcb",
+    "source_measures": [
+      [
+        1054,
+        963,
+        95719
+      ],
+      [
+        1027,
+        936,
+        94380
+      ]
+    ],
+    "removed_imports": 27,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/PAdicWittLattices/CorrUniqHolds.lean",
+    "base_blob": "de2f08a6431bdd78eda348b1737217cf0de900fe",
+    "candidate_blob": "143b36a1bfb51fde5f633fc881cc83788d842bbc",
+    "base_sha256": "643e5d52ef0ebff8d46297c63eaa7dd6cc5bf315fcafb67439342c456379b42a",
+    "candidate_sha256": "8195230fd42dd62acf9f66ef4d4516b8d06fea748f1e6e4a430217126b3af5ae",
+    "source_measures": [
+      [
+        1140,
+        1012,
+        97334
+      ],
+      [
+        1108,
+        980,
+        95807
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/SiegelWeilAeisWk.lean",
+    "base_blob": "7d89226d6dc7f00d60f81f5e27b77b8c6a50cbf6",
+    "candidate_blob": "80c651bf90b326b3ebc9d2a4ab0f01cc8b6b943e",
+    "base_sha256": "f3e0e3db1eb47e8a73566783b07bf3303d3b427e2762ee98ef26c13106b5d23e",
+    "candidate_sha256": "a2a85fb2919cb74d5b1335029d4115500f28a0e877083f81d1e2faf76e0cbc8c",
+    "source_measures": [
+      [
+        518,
+        508,
+        46513
+      ],
+      [
+        491,
+        481,
+        45230
+      ]
+    ],
+    "removed_imports": 27,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ShortNorms/Primes.lean",
+    "base_blob": "9865e75fa5d14089fb53e7ba5552b03000cafc4b",
+    "candidate_blob": "8a1b321b14d2ea1d19eef6144797f0724644f43f",
+    "base_sha256": "095a61c6e9f7c543bf3f4cfb77078513a12082c2a6a6bd7e8e47c55c63ecbf37",
+    "candidate_sha256": "72532c1cea4b661a5b08f10343d042c1e180d7a7be577e3639bad2723799756f",
+    "source_measures": [
+      [
+        1356,
+        1265,
+        84507
+      ],
+      [
+        1326,
+        1235,
+        83071
+      ]
+    ],
+    "removed_imports": 30,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/FockModels/TamagawaPeterssonLambdaSqNonneg.lean",
+    "base_blob": "212c495256239591b2957faf4e1aa9bad9bf197b",
+    "candidate_blob": "b8770ecf0bbd867d0661f565e78804f2b498b1f4",
+    "base_sha256": "daef1e23a899acf1f4deb596af9d439166d6e026217f46d6fdb138272dd8259c",
+    "candidate_sha256": "50f4bb78b9fad7a2b5713d87f9d0a9e355c6e2351276bfca629e9523024ae7ef",
+    "source_measures": [
+      [
+        699,
+        622,
+        68059
+      ],
+      [
+        677,
+        600,
+        66973
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/BaseWeightLineBundleIsNef.lean",
+    "base_blob": "cf5aef76e68c45049f232b124ab953c8af343d32",
+    "candidate_blob": "409cd0ead9a0832cd5ae6824c0c56e8b1439e0e8",
+    "base_sha256": "af62917373e947171bb0cd6a2c4f4b8ded2ccfd17df8d0e79c2597421d6e3ca9",
+    "candidate_sha256": "6bc821bd3518fd9f18d930b32c7c1e535e0ad194299f77f2972809695f1a95ca",
+    "source_measures": [
+      [
+        1623,
+        1422,
+        125688
+      ],
+      [
+        1596,
+        1395,
+        124363
+      ]
+    ],
+    "removed_imports": 27,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/CompactificationTopChernEqVolume.lean",
+    "base_blob": "bab6a98d123b8f37ebb30f18bc92dbde07387adf",
+    "candidate_blob": "789f144fc486ff2453d8153ed92fe49df3aecb51",
+    "base_sha256": "34c53278a39b85b3166ef710d8a9c05eaa5f65e65a040fbfa86d7b1ee4e0dc98",
+    "candidate_sha256": "3082686c51f9ecc41ea25d92bb005f5fc8855a7a2d65a1ce50b6aedbb9e3dc43",
+    "source_measures": [
+      [
+        1835,
+        1646,
+        127019
+      ],
+      [
+        1803,
+        1614,
+        125492
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/CoveringTopologyRefinement.lean",
+    "base_blob": "dd88203e4b0f9ca41b7b2db9d1feed97094b8eab",
+    "candidate_blob": "532f03e4fb3877840254c7cd13f1badc15b79724",
+    "base_sha256": "559592210c9fa82922563d9b72ec021e9cfdba6340055f9387b593184ba903b8",
+    "candidate_sha256": "40f07db2aa0bba7755fbd9be3c4cbf324901ec17050cde2948f21440999cdf47",
+    "source_measures": [
+      [
+        1708,
+        1531,
+        164923
+      ],
+      [
+        1679,
+        1502,
+        163508
+      ]
+    ],
+    "removed_imports": 29,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/ExistsCentreCuspGenericValueNeZero.lean",
+    "base_blob": "2e49e9798ddebf524c5573314b6c7bac94a5b727",
+    "candidate_blob": "45a40858071ca43a8ad22f4f18a1d505225d0064",
+    "base_sha256": "58b7409ff601e728a88e0057ca59f4765b3f93161786125366196c55e566c6f2",
+    "candidate_sha256": "01164c492a16f2cf0dd866ac41b0827b47331925e6011f39f287746b7333cbe1",
+    "source_measures": [
+      [
+        1663,
+        1558,
+        121568
+      ],
+      [
+        1632,
+        1527,
+        120094
+      ]
+    ],
+    "removed_imports": 31,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/ExistsCuspRegularLevelDeterminant.lean",
+    "base_blob": "85d298acb718cf8748473d14e2a69f41ef0c99fa",
+    "candidate_blob": "a6e40a3fdaf4c1f5bdb804194d441fadf4da43b1",
+    "base_sha256": "d57579e46c729bc1adf5e9ed9638764c5113bb6e2ddf6cf4fdbb372f96a18cba",
+    "candidate_sha256": "3d33d228597eb3f02ed45f7b3806663e097abf2162c1dcf8e27f229706e0a2d5",
+    "source_measures": [
+      [
+        1956,
+        1787,
+        178910
+      ],
+      [
+        1924,
+        1755,
+        177383
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/ExistsDegreeParametersBound.lean",
+    "base_blob": "11331cf86786de28b62e9e4693337356c6763bbf",
+    "candidate_blob": "9292ce7dc6504f51908bc0f65889d3dbc76772c0",
+    "base_sha256": "0d28356b6ffee2465962d173398155954dcf4635497ad8b97c08552a12cb59ea",
+    "candidate_sha256": "ff8aac08c9e884407db340f7f7b864054f2886db34a3f7a041120a17b0ce2bef",
+    "source_measures": [
+      [
+        1230,
+        1113,
+        123569
+      ],
+      [
+        1200,
+        1083,
+        122103
+      ]
+    ],
+    "removed_imports": 30,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/ExistsFlatUnitSection.lean",
+    "base_blob": "9c87e2bb2822879d386b86f1a9f883a028a83a0b",
+    "candidate_blob": "d928f3eb8ae8d2aefe28a12c7041047d26a595fe",
+    "base_sha256": "1dd81e573ba28dbab600e387172f3607122cdab60b9a1e49b71b122d236707ce",
+    "candidate_sha256": "b4fba28831d59add75d222c339ffea3c2e2e8dd376ea19f288b7ca4815399751",
+    "source_measures": [
+      [
+        1355,
+        1242,
+        111648
+      ],
+      [
+        1330,
+        1217,
+        110438
+      ]
+    ],
+    "removed_imports": 25,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/ExistsGoodCoverAtMinimalLevel.lean",
+    "base_blob": "e1897c4dfb3974d27826fc487e53c83b9cde92f2",
+    "candidate_blob": "d5e8b323aef6074b2015f57dbc87571cd217b0ee",
+    "base_sha256": "901f5d4510081b8b104a0441587f7a058b0c9b1bd1788cac4a867036cb67b1ba",
+    "candidate_sha256": "ad3a89c706c142dc203170e25146e7ab6a764d05251d616786a4dc4f309d18ae",
+    "source_measures": [
+      [
+        907,
+        840,
+        70038
+      ],
+      [
+        883,
+        816,
+        68860
+      ]
+    ],
+    "removed_imports": 24,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/ExistsWeightHodgeBundleGenerated.lean",
+    "base_blob": "431db3960b32723ea0668c97e34300c2afafeb39",
+    "candidate_blob": "033fb9c6d58afac674b58898d11c188e5e4c312a",
+    "base_sha256": "42428f86387150e4d801d6b3a4425ee2357fe6e8f1c719d34ca563b38ae99687",
+    "candidate_sha256": "1c26d0561833deb60af5dc5dd7207ce935911358e9e065757f2de0dcb6e5f493",
+    "source_measures": [
+      [
+        252,
+        232,
+        24910
+      ],
+      [
+        230,
+        210,
+        23824
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/GloballyGeneratedOnOpenOfWeightGapGe.lean",
+    "base_blob": "212ea6e6351ca840c44b434d77a38f7d2dbab14d",
+    "candidate_blob": "7cae47f6bf9ac779489a6d95fdf525b1ec14370f",
+    "base_sha256": "cadcf9e579e698d3da0171dd28259a0ddd27b6a428b5aca490df3498857f3c34",
+    "candidate_sha256": "3fef5a7266a5d3943edddba2e356e2566fcbb1cad855946fd9f01183b8e31b17",
+    "source_measures": [
+      [
+        740,
+        689,
+        77522
+      ],
+      [
+        712,
+        661,
+        76129
+      ]
+    ],
+    "removed_imports": 28,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/HodgeBundleAmpleOnRegularLocus.lean",
+    "base_blob": "19765419021d8c0a1ae9d4d43ef8c04db541dae4",
+    "candidate_blob": "7262dc1f77f2eba416c03507416494a6b4c5e9a2",
+    "base_sha256": "b8e05fcf35b829e3bdfd5eef66ab2a5e23b670f835527a6a8b1b54617b476dc0",
+    "candidate_sha256": "0b057eaabef26280ce687143be3ff828a08b20225f230d82565d4ed5ba01959b",
+    "source_measures": [
+      [
+        344,
+        318,
+        34260
+      ],
+      [
+        322,
+        296,
+        33150
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/HodgeBundleIsNefIsBigOfWeight.lean",
+    "base_blob": "ccd1758b2267cbf9c5cc923843aae164801cebd7",
+    "candidate_blob": "d06a6e2cdaab7159a2dd5d221ba8d3a75a1666f7",
+    "base_sha256": "3d548d99849917f2bea92a457e359b3571941b06ae8104e812ba3435c87fbb82",
+    "candidate_sha256": "a50753c31f745e6e75b08a34c7fc925406c5f078dd2654c33d2999a8166d8ce7",
+    "source_measures": [
+      [
+        159,
+        155,
+        11019
+      ],
+      [
+        137,
+        133,
+        9933
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/IntegralCuspSlopePowerBound.lean",
+    "base_blob": "cd6b9e76077c4cb5208896c321c7d3cd3caf01bf",
+    "candidate_blob": "89651e64db9c39aacd4faf47a011af8ac1a75052",
+    "base_sha256": "8947fc732c197530be6cdcad931771db40b7961f69b246d488d6f3a67b9d9d53",
+    "candidate_sha256": "a5cbee87f812467fd6960a274cf8000ab072a76962d849f41b604bbcbc5cc10f",
+    "source_measures": [
+      [
+        215,
+        210,
+        13703
+      ],
+      [
+        194,
+        189,
+        12646
+      ]
+    ],
+    "removed_imports": 21,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/JetRankComplexLe.lean",
+    "base_blob": "15eda7ed17aa5852032d6947fd9da70e31a96631",
+    "candidate_blob": "74d70740473ab9ce2009657d1d744f5eadf2656f",
+    "base_sha256": "8cc4d74708f98bb99c7185c8f18df4e5e6980772a031cadec92b785f9024761e",
+    "candidate_sha256": "87f8e2dcd058b4115a3fae52ec12480422b79f43295c943b64214311ba1acbe9",
+    "source_measures": [
+      [
+        1573,
+        1442,
+        129295
+      ],
+      [
+        1542,
+        1411,
+        127800
+      ]
+    ],
+    "removed_imports": 31,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/ProportionalityOfLocalCharts.lean",
+    "base_blob": "da9dbdf0b265be7281ddc0b6bc45b558a79708ee",
+    "candidate_blob": "31ef7a9891d9cdd89f012676938b326ad5fccff1",
+    "base_sha256": "2f764db85bdbfd80aacf6f2f31b4fa70c82d5de2726712bb8ffe6c46dce0a807",
+    "candidate_sha256": "e77e585a9fa456e13fbbb698c36792095d205d9beefd12ac0ad6cfcd6d128a08",
+    "source_measures": [
+      [
+        558,
+        495,
+        53206
+      ],
+      [
+        527,
+        464,
+        51722
+      ]
+    ],
+    "removed_imports": 31,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/ProportionalityPrincipleCompactification.lean",
+    "base_blob": "55d3c66e43270434bdcb92f79860302e7a9a441e",
+    "candidate_blob": "329d49b7f8817e8cfd50fe6f8b1c9888ddfd9e0a",
+    "base_sha256": "a895c43b22e4ebaf9da6620815c00e97a504b0781e2798db08b0633ff69f5f47",
+    "candidate_sha256": "22ae4854efc98a7e42fad63b6eff7f14c2730195fe05c626460893759df7d2f4",
+    "source_measures": [
+      [
+        86,
+        81,
+        5834
+      ],
+      [
+        65,
+        60,
+        4777
+      ]
+    ],
+    "removed_imports": 21,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/ShortGeneratorNormComparison.lean",
+    "base_blob": "648e590f351d798b407bfd55ddd4414d99918f20",
+    "candidate_blob": "4f3b92c8a6eafcf76cba144a46fd97f8f99610a7",
+    "base_sha256": "a8e13e120974d1e369f276b1ce21895490b4a4c6c80b8195cbd6b41b31a986b4",
+    "candidate_sha256": "6718c27dd0b042c4c683cf3ebaae428af0ec9a493d46fc2018a39b30ec5a39fe",
+    "source_measures": [
+      [
+        1479,
+        1360,
+        132444
+      ],
+      [
+        1448,
+        1329,
+        130949
+      ]
+    ],
+    "removed_imports": 31,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/TwistedFlatBundleRanks.lean",
+    "base_blob": "f00d276fb6589895e8bc0a3f42db696f7b4e3569",
+    "candidate_blob": "d9f67690072228af34d137a233e2c4956f319be1",
+    "base_sha256": "755bbc88fc5094751041ca9406734f26e0daab6f5c39c62c3bce715bf2cd6100",
+    "candidate_sha256": "4f47222fcbf9d4a50f25d1817ea7b785860bebcb27c89dd3f7eb4776b6cd6f00",
+    "source_measures": [
+      [
+        408,
+        362,
+        35672
+      ],
+      [
+        386,
+        340,
+        34562
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/WeightPrincipalisationBound.lean",
+    "base_blob": "a4d9dfccdd39893bf58da1fd9fee370d8798765b",
+    "candidate_blob": "8d78b9e399a318ead0561899f253f7eeb072e865",
+    "base_sha256": "d6370021ed1728648bf6386410845ed088ecd24c180e70ab3c1f493a2f3d4eb0",
+    "candidate_sha256": "a9c80fdd92ded8cdf00b2f73ac21d2a228322a0b6fd6b93f3d3d497a35b33390",
+    "source_measures": [
+      [
+        736,
+        680,
+        70655
+      ],
+      [
+        705,
+        649,
+        69160
+      ]
+    ],
+    "removed_imports": 31,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/DvReBaseMain.lean",
+    "base_blob": "9f3b60efb5ef7efa0a96a9342769307cb112e60c",
+    "candidate_blob": "1bf07dadf13ddd74a2240a0cc4127d7bdb8b84c8",
+    "base_sha256": "f6fd02365751f71fac6222ebf6fe5a0924279aa2ccdedb721b8788f6544adc30",
+    "candidate_sha256": "3ebff87fca20d4adccd939f24e83f7293ebdb6dd20a6a8eb5f3a64a6ade49b30",
+    "source_measures": [
+      [
+        1889,
+        1760,
+        163380
+      ],
+      [
+        1857,
+        1728,
+        161853
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/ExistsAlgebraicFunctionDefiniteThetaNeZero.lean",
+    "base_blob": "a10b818b70a382786b7367470fe8c28345d47489",
+    "candidate_blob": "1e75cbc74cb76fa8296ae0c750d8dbe68b4fea91",
+    "base_sha256": "3c2561859a0085b9f5939a1075c08f8c5eed13b31127ea6cd3adaaf61a9f160d",
+    "candidate_sha256": "5adc1ba4b6488518aa72b8276b13894968f783550c45d8d7af27609f5bc60b32",
+    "source_measures": [
+      [
+        1858,
+        1673,
+        158222
+      ],
+      [
+        1826,
+        1641,
+        156695
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/BergmanKernelThickPartEstimate.lean",
+    "base_blob": "648f5a58ccee63611d127b88fe29e014fad9991d",
+    "candidate_blob": "67c95b810fd818ea46dcb67a8926b35e61f5bd1c",
+    "base_sha256": "eae3374f12a8699cbd5e92a59007615b224b310ce966834d2d93aae6f549771c",
+    "candidate_sha256": "a908b3cd7fe78f01052d64561465a4cc4c821d1e36144235fbd060659d7aece5",
+    "source_measures": [
+      [
+        1149,
+        1060,
+        99692
+      ],
+      [
+        1124,
+        1035,
+        98485
+      ]
+    ],
+    "removed_imports": 25,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/CoveringBadLocusOfDescentSteps.lean",
+    "base_blob": "db5f1f2c4837ecc628da42ab29b1bd074835157b",
+    "candidate_blob": "1800d200bde65d2ff60d2890fef775d4f3023ec7",
+    "base_sha256": "9b4a47d5f235e489437b8ccdd733cfd44967c98c63ba92928e013cb1bf8be467",
+    "candidate_sha256": "ef6bcc5605391ededd2330754c11d40b229c13e76f6640dde1d53f51a817aa6d",
+    "source_measures": [
+      [
+        1102,
+        985,
+        107954
+      ],
+      [
+        1071,
+        954,
+        106471
+      ]
+    ],
+    "removed_imports": 31,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/CoveringDescentMapsCompatible.lean",
+    "base_blob": "8de05f81077e8b827f4677f61ec63a285bc861c1",
+    "candidate_blob": "687a557483b45c93c623ee2638afec40c078842a",
+    "base_sha256": "3f3059860b97f040aa5aa820f3c0ed9e0ce973a3d6a85fc03c2119619664fa8d",
+    "candidate_sha256": "168d752d2b554e0144f812a41a65c0c5d4a6e3759a09518ac4aa647c074e2dd6",
+    "source_measures": [
+      [
+        817,
+        752,
+        77286
+      ],
+      [
+        788,
+        723,
+        75856
+      ]
+    ],
+    "removed_imports": 29,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/DeepGoodReductionStatement.lean",
+    "base_blob": "444560581c809fbb2ff6afc47350530e4421c7a5",
+    "candidate_blob": "c7e9089a284709ccf74b23cb1b603fd783f73a8b",
+    "base_sha256": "fb63a9522bedbe43cf26b84f7cfda4ba461806cd06d0eceab7693aede9319513",
+    "candidate_sha256": "a1e954dcf1b7b1dba330a32b3ff87bc2ccd7b6a04456f3e452fcc28031bc3c09",
+    "source_measures": [
+      [
+        454,
+        411,
+        52359
+      ],
+      [
+        431,
+        388,
+        51220
+      ]
+    ],
+    "removed_imports": 23,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ExistsDegreeParametersBound.lean",
+    "base_blob": "2804b22bce16ccba0d534e6f4906bf7a35ec5efe",
+    "candidate_blob": "2c95e42f5bc6925b0c7df353e38317dc7673f17e",
+    "base_sha256": "95534041b3acbf83b84a79aaaec87eb1741157e186ddc92892ebc4b851d6255b",
+    "candidate_sha256": "cd7c4e412a5a867b51faa934c18b7e09b1bb9bc14d1e412eb94e9bf84dfc480c",
+    "source_measures": [
+      [
+        1421,
+        1301,
+        140515
+      ],
+      [
+        1391,
+        1271,
+        139059
+      ]
+    ],
+    "removed_imports": 30,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ExistsRowsKCColPins.lean",
+    "base_blob": "5a0740aee102063e87ada5fcb3c4b871e0c41c8e",
+    "candidate_blob": "6061575e12371d1eb504de03d1e5fe9347cebbb9",
+    "base_sha256": "865c9702468734df095dd4dbf2bace37fca7286b848adff3e2084cd4ed20a61d",
+    "candidate_sha256": "7bd7ccc3a6e743f057709874bd559ad76db7b3d6f7015cfbaa888f1c49c7b66d",
+    "source_measures": [
+      [
+        1129,
+        998,
+        84500
+      ],
+      [
+        1103,
+        972,
+        83254
+      ]
+    ],
+    "removed_imports": 26,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HeightLowerBoundGeneral.lean",
+    "base_blob": "0677eff00ea24075edfc1dc88d0342b427417310",
+    "candidate_blob": "693be1bcdda3fba47b3d942dea6e83bf364f19e5",
+    "base_sha256": "ac4cff7f0dda3ba2ab6275fa87a372b81e8d6e346b0568bc3c5b0fc1a927d67e",
+    "candidate_sha256": "0b9eed1e73b0a925f3c095bd107122b4d69cb58ea01a0dd868aacff8e2397793",
+    "source_measures": [
+      [
+        829,
+        734,
+        78046
+      ],
+      [
+        807,
+        712,
+        76960
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HermitianPairingBilinearOnPair.lean",
+    "base_blob": "adbc205cbe33c23dc86392aa95f2c7b02c1c329e",
+    "candidate_blob": "a8effa16248527e2d4f788f7009daa6f088e1b0c",
+    "base_sha256": "8c1db5a121c01cff7a1aedd04a4f29c061bc5a3db08451bbd095b0f549c7f550",
+    "candidate_sha256": "8446f3d523e97d719667abaaf8cba43d1aa4db46347855a1cf7a8729397451c6",
+    "source_measures": [
+      [
+        163,
+        150,
+        15928
+      ],
+      [
+        141,
+        128,
+        14818
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HilbertSamuelLowerBoundOfComponents.lean",
+    "base_blob": "4cee405b63c113a725b50d63598307436b98c61a",
+    "candidate_blob": "5151bd6aa93bc977a59d6cfa0411ae3a5bc33547",
+    "base_sha256": "fe4d62f143dc958bbf96d60c34713a02aa8d552b07f21c8d5c234a07ecd57e4c",
+    "candidate_sha256": "47ea984cae6c47dbe3ad996f651cf3f5149c83296144b910540e89e48111dfa6",
+    "source_measures": [
+      [
+        613,
+        574,
+        55263
+      ],
+      [
+        584,
+        545,
+        53855
+      ]
+    ],
+    "removed_imports": 29,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/LawsRescStatement.lean",
+    "base_blob": "765eae5e2810c1122544cabc6393127006dd1f82",
+    "candidate_blob": "889b3376ab13a53fd35042aefa600019787b183f",
+    "base_sha256": "d74b99ae2cff7c728ce765dfa282508d0432359031078865b10229ad47b6d3e5",
+    "candidate_sha256": "d0e1cf43753dfe069b0ef471024cac890c033119bad6e3c4fc701c569b1deab5",
+    "source_measures": [
+      [
+        1569,
+        1398,
+        163940
+      ],
+      [
+        1542,
+        1371,
+        162657
+      ]
+    ],
+    "removed_imports": 27,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/QuoShape.lean",
+    "base_blob": "700b280eccb0065c09a9dadd234c9288d7e48103",
+    "candidate_blob": "eca2132388b81483aba097dec4e9b9132670e401",
+    "base_sha256": "dc17092bacc323a8c6d2bd1113f8ab95858419bf4469ff4763af88c133f65f69",
+    "candidate_sha256": "861d8a4fedc8432bb043685ca7bd43eb8ec56f3b1c7dfbdbf7f095c6722f0634",
+    "source_measures": [
+      [
+        185,
+        165,
+        16317
+      ],
+      [
+        164,
+        144,
+        15260
+      ]
+    ],
+    "removed_imports": 21,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/RankGrowthBoundSmallScale.lean",
+    "base_blob": "3353c5deff89420c6b2c2550eab5b723953c3d7e",
+    "candidate_blob": "1cebebaaa63e6ce56646c8ca30b7863adecdc789",
+    "base_sha256": "8f37ff2cab94c05e3f3552de449a78c7c7c9076cbd63a8e96934fc906b8ee18c",
+    "candidate_sha256": "ab44398d8bfab3dffdcb7445522dc2c97910eeb00beca337d46c989d5abdefa7",
+    "source_measures": [
+      [
+        513,
+        484,
+        44441
+      ],
+      [
+        483,
+        454,
+        42975
+      ]
+    ],
+    "removed_imports": 30,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ShareStatementOfKnownTheorems.lean",
+    "base_blob": "2a13c3185fcb5fb7375ba7d8eb7b97ec8a0fa709",
+    "candidate_blob": "7d2a5bd36a77cd85811d3184c0899339b448d6c8",
+    "base_sha256": "a6dc0129448e523cc17dc39c4a6c0f664bdf4bc75018889641bf81a4f9cf5937",
+    "candidate_sha256": "a86df6d7288bb1c62e9f502bcf4d6ff7dea766e60ef9d43cbf8e4bbbc31fd520",
+    "source_measures": [
+      [
+        416,
+        392,
+        42066
+      ],
+      [
+        386,
+        362,
+        40600
+      ]
+    ],
+    "removed_imports": 30,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SizesOfCoverStatement.lean",
+    "base_blob": "ed5beca509c9e7a76eca3d0d9128ad9bf7899e93",
+    "candidate_blob": "d82dd3b54d290da30b47e59abc810432dce48ed5",
+    "base_sha256": "286dcd21d2421aae23395919ebf45a9ea63277d11d860eed2b5fbceac6ae5daa",
+    "candidate_sha256": "5d737ca8d48d3ef6ba87fce2d6881b98929b96d647d2f061fb5a41e5dbc052dd",
+    "source_measures": [
+      [
+        63,
+        57,
+        4869
+      ],
+      [
+        42,
+        36,
+        3812
+      ]
+    ],
+    "removed_imports": 21,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SumPtOfSizeStatement.lean",
+    "base_blob": "2acd9aa2436d0e1b916a5a5ad4a01989d56c26a8",
+    "candidate_blob": "670de4ee85f5167e2dc01cf19463670520bda23f",
+    "base_sha256": "0d1d5e48916e172ec5061e0f0a3a0ab6ca565e3e354554e42bda608d7dbf88b3",
+    "candidate_sha256": "9ddcfd96cb710147bd342daf598bc223a3a4988bfe290b7cc0e6e1c61c6997e3",
+    "source_measures": [
+      [
+        1445,
+        1305,
+        110099
+      ],
+      [
+        1416,
+        1276,
+        108691
+      ]
+    ],
+    "removed_imports": 29,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopCovolG.lean",
+    "base_blob": "3a48faa34f64197b9e8b0242a2cb146d7ca67a4e",
+    "candidate_blob": "d08673271e303c87d5100ea400b0f15ecc906b51",
+    "base_sha256": "da3e8a1d3a2d4e4fbd91503331fe3ee08b6f2b96d6b4ddb3ccc14648d260d3a0",
+    "candidate_sha256": "7bec06a9279456e5829290540b849c9813947436fcf5dd7640779fe2dac788cc",
+    "source_measures": [
+      [
+        1762,
+        1545,
+        170377
+      ],
+      [
+        1733,
+        1516,
+        168962
+      ]
+    ],
+    "removed_imports": 29,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/WeightsAtPoint.lean",
+    "base_blob": "f38f2be806b808d541f2e3906aa027d571b031a7",
+    "candidate_blob": "67e828ab958cb1892cb24365592d6b6a86dc4c1d",
+    "base_sha256": "df9ae48eb36e729f255d0f5045145ad43209c717859aef9b661766e935ed41cc",
+    "candidate_sha256": "43402e98f3fa0327c3a8881dd56fec21c10563b57bbc514505c1f28cfbdb47b1",
+    "source_measures": [
+      [
+        431,
+        402,
+        37586
+      ],
+      [
+        402,
+        373,
+        36171
+      ]
+    ],
+    "removed_imports": 29,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ZedSizeStatement.lean",
+    "base_blob": "ae0e530525f510410f21a28931c4e61895890256",
+    "candidate_blob": "cbd156bc94a508892cdbb66f6cccfabf64415357",
+    "base_sha256": "d05a06d43321f1bd2f0bf6632069799e4640d833aafe51eab43bbacd4d80504b",
+    "candidate_sha256": "bd332306bdf7a1212884336d80178ed4e8690df9fbfb58c07b5deb7b3304b01e",
+    "source_measures": [
+      [
+        791,
+        745,
+        60837
+      ],
+      [
+        760,
+        714,
+        59349
+      ]
+    ],
+    "removed_imports": 31,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Definitions/GlobalGeometry/IntMemModelSmall.lean",
+    "base_blob": "33388fc76cf2f8ac3f86769026c14016783485d9",
+    "candidate_blob": "934a153f9050d30cb5e5fa4efc8a52faeb3c3c7c",
+    "base_sha256": "8e6a025a680eb0914312d8a5b40ed416d48915cf2427ae7f1da2a6c7d6f00ef7",
+    "candidate_sha256": "7b3d8bb147c3922921c74b405dd10afd2c5686d28c4bb023d5969081bba4bec3",
+    "source_measures": [
+      [
+        113,
+        92,
+        5172
+      ],
+      [
+        91,
+        70,
+        4070
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Definitions/GlobalGeometry/ModelSmall.lean",
+    "base_blob": "5203f70d4af3c776d329168a5bd99994b72ad0f5",
+    "candidate_blob": "dca138f155158d6a9312ff3376545a1b75679730",
+    "base_sha256": "028f3de6898a221c48fdb8f1fbb59526b4c3c0362c5f0188b23e6941ac8eccf3",
+    "candidate_sha256": "6c67cbf1caaf8fe7871cedba3cc8c200bae8f3899c9d954d4e85e402285d8f51",
+    "source_measures": [
+      [
+        105,
+        80,
+        5150
+      ],
+      [
+        84,
+        59,
+        4087
+      ]
+    ],
+    "removed_imports": 21,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/ArchimedeanSiegelWeilIntegralIdentity.lean",
+    "base_blob": "67b3cb0fed76434599488ad2b7df751313653b5c",
+    "candidate_blob": "904ba5ab6ab0401c2babf4304a7fbf4c6cb8039f",
+    "base_sha256": "a2276d2ef45df6e0307acd22452d306e0186779ff643afbb099127532c48014a",
+    "candidate_sha256": "43467e13932d584c427efeeae7141f4d869aab24c336c270501bf0a00d6eefd3",
+    "source_measures": [
+      [
+        1938,
+        1752,
+        157945
+      ],
+      [
+        1906,
+        1720,
+        156418
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/FinitePropagationSpeedHolds.lean",
+    "base_blob": "b91962302b19f4dbebd9ad05120250333a2c4ad4",
+    "candidate_blob": "fbf4e476a81cc963afad5fd71b84054448d1272c",
+    "base_sha256": "6ea2440ca4f10a1b17f1fd93384041441055ac6695d4d937ed30ecc3976cd30f",
+    "candidate_sha256": "156131017ce1e24c03329108aa96a8b34e1ae1b4e2ad7b9f86564be8957de573",
+    "source_measures": [
+      [
+        1386,
+        1216,
+        130394
+      ],
+      [
+        1354,
+        1184,
+        128867
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/NormOneUnitHilbertNinety.lean",
+    "base_blob": "0429ac9ebfe780296e7984bbbbcb2f37a80b9fbc",
+    "candidate_blob": "329912beebae47a85ebf6dc0a6e2295f467bd710",
+    "base_sha256": "fa04cdff537f7ee737f79e999054f75f5c3a72dcafd9410208dd68c32e40023e",
+    "candidate_sha256": "7a9fdc7e792c5ec590ad9370117400968196ee839c3939d445a22344c21d2447",
+    "source_measures": [
+      [
+        387,
+        366,
+        23912
+      ],
+      [
+        356,
+        335,
+        22417
+      ]
+    ],
+    "removed_imports": 31,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/ArithmeticDegreePositiveHermStatement.lean",
+    "base_blob": "bc81c42775214ab26776a4629bc1dc9a43ca8bff",
+    "candidate_blob": "64ce3a022fe23be84902f9d082c40ccfae141480",
+    "base_sha256": "cdd7893929c5f9ea376dde22018be4dc6f22bf04457fb5047c28547dc02b7e87",
+    "candidate_sha256": "d440dd6ffd9f6513241e9f4426c065d85bff80472ac276a3732db3b9da117fc2",
+    "source_measures": [
+      [
+        173,
+        136,
+        16311
+      ],
+      [
+        147,
+        110,
+        15011
+      ]
+    ],
+    "removed_imports": 26,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/CompLawsTowerBoundStatement.lean",
+    "base_blob": "d6d9899be3f7a5d30e6bcd97015c34771c4fb7e2",
+    "candidate_blob": "4a016c48280c27c09066ec6da76335a66db12b3d",
+    "base_sha256": "25aa45791df34dd5ef9195a7864c53ecd2a613aa97a8893ba0232a008378e774",
+    "candidate_sha256": "25a8ae3a764dfea81ddfdfb943c57b6a547d544bfcd9c951279ae85535d7a59e",
+    "source_measures": [
+      [
+        435,
+        404,
+        33715
+      ],
+      [
+        413,
+        382,
+        32623
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/GenericFrameComponentBoundStatement.lean",
+    "base_blob": "25aa714d0c08940596e39d6df37818d26465cb5f",
+    "candidate_blob": "114d798e94c842f2c0878382def2c5faa8193b4f",
+    "base_sha256": "2213766973fc80081ed6b67c738a32dc758b9823a0f2d0d6b8739876d6dde754",
+    "candidate_sha256": "53bc1798ae0222bbe03edef37ec8e0773f32c0bf2c6eeff7da551f250e3332a3",
+    "source_measures": [
+      [
+        395,
+        365,
+        28431
+      ],
+      [
+        373,
+        343,
+        27339
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/GoodOriginComponentSectionsStatement.lean",
+    "base_blob": "8ad333e25d92324eba48df9359dd48f1e66c158a",
+    "candidate_blob": "d192fe9fdfa0bf112a3e1334827494a9de6cf1b6",
+    "base_sha256": "8bb2ccbd7d3c9e8ab41b0a83dc85277e32b475ad7c5d8fc247b07b3746451841",
+    "candidate_sha256": "585f36cb5e87248b1ea2cce0ca6a68a3332f9fe484849b827fe355af25b29ee0",
+    "source_measures": [
+      [
+        679,
+        635,
+        54942
+      ],
+      [
+        657,
+        613,
+        53850
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/ModelSmallSectionsMulStatement.lean",
+    "base_blob": "127bef8cac8be5ad857c29aa2cfdf27a51ae82b0",
+    "candidate_blob": "e5b0b6f9841ec6c3ab83f90ada4c973352df7a24",
+    "base_sha256": "4c867caa0a0cb9ed3f69309838fbff1077f404191bdfadfa2fe4ba5b10c20aca",
+    "candidate_sha256": "696b63e4c24636da63819fdb16d71e0c976fcbd75c39ab7c24139232e5ecf2c4",
+    "source_measures": [
+      [
+        350,
+        311,
+        21206
+      ],
+      [
+        328,
+        289,
+        20114
+      ]
+    ],
+    "removed_imports": 22,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/ProdZpowLe.lean",
+    "base_blob": "09d91bb30bcd9e06f7dd46769d7f44715243e945",
+    "candidate_blob": "493d3b80766831c42bc27474a5102f6added6514",
+    "base_sha256": "916532979eef0fa672adff31c35d6c4459b4360383d30ecb8e8fc41659e00def",
+    "candidate_sha256": "f229546a1f9c482d9c0b5016cbab2435e7c0f4becaa489c57aadc7c4da7fac2d",
+    "source_measures": [
+      [
+        117,
+        103,
+        6336
+      ],
+      [
+        96,
+        82,
+        5273
+      ]
+    ],
+    "removed_imports": 21,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/RootOriginGenericFrameRelayStatement.lean",
+    "base_blob": "396b74999b8efc0d977eab7eff848dc63b1e210d",
+    "candidate_blob": "9116e7e6b264ac616811081d9f76f1c7dd19b62d",
+    "base_sha256": "8df72500c1e0bc931e38316da631c130db4d0fccc2586495ff415bc84c4062c4",
+    "candidate_sha256": "028cfc36111889aa1b4af2a414035e5d44062b2d023bd26f9116a6eb8d73169d",
+    "source_measures": [
+      [
+        831,
+        760,
+        75603
+      ],
+      [
+        801,
+        730,
+        74145
+      ]
+    ],
+    "removed_imports": 30,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/StrictWeightGrowthBoundStatement.lean",
+    "base_blob": "726fb332819d721026e7eebcbaa639d0d63c16e4",
+    "candidate_blob": "7f97eb0048614667c54213b92be8032b638f352d",
+    "base_sha256": "19c56ae3f8cca834394f2466d43c9189cfeb989487c5f06d78c00b268e382389",
+    "candidate_sha256": "c6ec237429cff86ec563f0a34fe5e4f2e57b388e243c4e8ff3ec0f815edb7b8f",
+    "source_measures": [
+      [
+        1951,
+        1772,
+        153582
+      ],
+      [
+        1919,
+        1740,
+        152055
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/TowerOriginComponentBoundStatement.lean",
+    "base_blob": "19853eb7e6eabe1432820a12ef037f6b55820f65",
+    "candidate_blob": "31a12c0623d037ae0913f264f384a0924f66d049",
+    "base_sha256": "83d9d7d15c7535f365b942d15cc7f48487c7293d6cbcba09de9ab36fd91b675f",
+    "candidate_sha256": "be50318cd774565b5ba283e34ed676bb0d5e24ab0918ba29adddad1c42d2019f",
+    "source_measures": [
+      [
+        574,
+        504,
+        80208
+      ],
+      [
+        546,
+        476,
+        78822
+      ]
+    ],
+    "removed_imports": 28,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/TowerWeightOfZero.lean",
+    "base_blob": "e170269ac9b39bbb3df8d29b632e1b11ab1b9589",
+    "candidate_blob": "579aa03d7564bb64d4674fa3990c3088d288cf58",
+    "base_sha256": "6a20ab513bb343232542e4adff3a1d43cfdece49ed68d4a683175ff940f4a919",
+    "candidate_sha256": "5a18a8a4bb282fb917e57dd90bdda07d5a4bc9da6ef690275ff0dd9ab7c312b2",
+    "source_measures": [
+      [
+        180,
+        160,
+        10129
+      ],
+      [
+        157,
+        137,
+        8998
+      ]
+    ],
+    "removed_imports": 23,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/TowerWeightOfZeroStatement.lean",
+    "base_blob": "cae531599832d5572bcc5d358429eb5107ae2e48",
+    "candidate_blob": "013f798c1d2569bef3ef0c5c2a8c161ff987ef5e",
+    "base_sha256": "ce13da51732d4ccaf9a4fc4b061fe44a7202b62bb7c6a603aa7a38634d74f4f7",
+    "candidate_sha256": "ec29a9f616e36578b73c6254dfb93188f51d9598e13f510c9d69ed93bd24e148",
+    "source_measures": [
+      [
+        47,
+        43,
+        3481
+      ],
+      [
+        26,
+        22,
+        2418
+      ]
+    ],
+    "removed_imports": 21,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/UniformAllNormHeightBoundStatement.lean",
+    "base_blob": "61f0914c695ccca7328bbf25665fa70beab45a3c",
+    "candidate_blob": "33878045a2511fbaaa3486a567796481cf126802",
+    "base_sha256": "c107dd68fe65aca38abfa7ace8b6df63a6d96bb2abb4e5e51997ba833aabbea6",
+    "candidate_sha256": "f06eaa752c15ed17d736a5622919238875cee57710fa243afffe3e45056534eb",
+    "source_measures": [
+      [
+        1579,
+        1407,
+        127931
+      ],
+      [
+        1550,
+        1378,
+        126516
+      ]
+    ],
+    "removed_imports": 29,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/UniformNormAllTowerBoundStatement.lean",
+    "base_blob": "83da24e35719ec09cd80502e6fed2bdd50cbc0b3",
+    "candidate_blob": "47abffd951bab1f8fe56c21ac55366539fe55712",
+    "base_sha256": "836a60464806712b041ae0c21948945e68b3753106221e5978500b4a6e952142",
+    "candidate_sha256": "8931e301a8191d8cfb909d59e99a8b649d5c8901a8483c9248ceee36a71c7485",
+    "source_measures": [
+      [
+        1507,
+        1391,
+        137737
+      ],
+      [
+        1475,
+        1359,
+        136210
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/UniformNormDegreeBoundStatement.lean",
+    "base_blob": "2abd1d8c031b9ef1687bff3299e9fad758074dd6",
+    "candidate_blob": "6428844496233e771e3112cd81441da1b021d36f",
+    "base_sha256": "4ad0ef387bdae0bb9fbf9d740fb3a6a65fbe230e05f52947275893968eb7ed29",
+    "candidate_sha256": "3d55aa9f15fca62722bcecca0fa6bc301fbf98a1d0cf3f9731c0aaff63764c6f",
+    "source_measures": [
+      [
+        1515,
+        1387,
+        129988
+      ],
+      [
+        1492,
+        1364,
+        128860
+      ]
+    ],
+    "removed_imports": 23,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/UniformNormSectionCount.lean",
+    "base_blob": "f267b8ad2100151cb75794bfd068a5550b74fbfc",
+    "candidate_blob": "1043509f13e30979d158a6e4d164f85cf4210e5f",
+    "base_sha256": "fd6980f6db0a05484c811c46400d3a16940f7d06ff272dd5b9f20379f004c6d4",
+    "candidate_sha256": "f1c87b6d84ab165daa8381f07b8e43ebaad5c8e2b69543900c2c8d518992ab22",
+    "source_measures": [
+      [
+        1955,
+        1757,
+        163652
+      ],
+      [
+        1923,
+        1725,
+        162125
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/WeightSectionComponentValueStatement.lean",
+    "base_blob": "d2d4e4cf227793f4e3c2c0174d3465e94db42b93",
+    "candidate_blob": "3426124c0f1e13e6b38d56bcf6b110ed3bd7b602",
+    "base_sha256": "99a18319fc39450f0849cd792269ef69be0c512632e79498305da5f43f547bd1",
+    "candidate_sha256": "de90c88be9e3a45fa406d7b80117a023baa54d803a3804ae40c97a04e4eeaef7",
+    "source_measures": [
+      [
+        1335,
+        1235,
+        114351
+      ],
+      [
+        1303,
+        1203,
+        112824
+      ]
+    ],
+    "removed_imports": 32,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/WeightZeroSectionMembership.lean",
+    "base_blob": "e88daa8b754b961404cba091b75964c459efa745",
+    "candidate_blob": "348f3c3c3a623c25d81a88addffdd141170820da",
+    "base_sha256": "293733bba3ecf79e96ed794c180549e5bc486a90023dc1f53a767e1215c8e883",
+    "candidate_sha256": "d8aca2d65a4b7a74b4779d967bf6fac6c0333495a491be58be2997041f5b2ca4",
+    "source_measures": [
+      [
+        138,
+        128,
+        8465
+      ],
+      [
+        117,
+        107,
+        7402
+      ]
+    ],
+    "removed_imports": 21,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/ResolutionOfSingularities/EmbeddedResolution/EtaleCoordinates/CoordinatePolynomialRing.lean",
+    "base_blob": "312800ecd85fec10d629ca9e37302f0ff2cc6763",
+    "candidate_blob": "c4a663d885d6f070ec986605dc606cf54fdc333f",
+    "base_sha256": "3b2844671963d4746053cb6ecb88e323ca114235c25e3a61b8025f20f1346ed7",
+    "candidate_sha256": "f74cfa9d5ba38aee783dcf631dcf3e36106e95e0368d01707cef15681dccf64d",
+    "source_measures": [
+      [
+        93,
+        83,
+        4382
+      ],
+      [
+        67,
+        57,
+        3072
+      ]
+    ],
+    "removed_imports": 26,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/WeilBound/CoreStatements/AutomorphicKernels/MoriwakiBigness/HilbertSamuelApplications/AhSlimU.lean",
+    "base_blob": "96ab6b58f34811793d6dd86230235b6b0fdf14fb",
+    "candidate_blob": "2e9786f792e4aefc940338ce5c05e97de23b1205",
+    "base_sha256": "616e8d490227ced6e02f8b10501b1ea3c6bdc9a82e34932ddf7b8c49f609fb3d",
+    "candidate_sha256": "9a211a655abeca50cd8e7f563cf16d2a3b4a11f10541fed50955a6f0c921d075",
+    "source_measures": [
+      [
+        1652,
+        1457,
+        130229
+      ],
+      [
+        1623,
+        1428,
+        128821
+      ]
+    ],
+    "removed_imports": 29,
+    "added_imports": 0
+  },
+  {
+    "path": "src/Development/WeilBound/CoreStatements/AutomorphicKernels/MoriwakiBigness/HilbertSamuelApplications/DeepStROfUse.lean",
+    "base_blob": "9947d47b7e7d8802c3afbacf991c6f33ea718fb5",
+    "candidate_blob": "f1e5297053262bf086911bd564bf3710058d7f8b",
+    "base_sha256": "669d474941188a783ce2a22683d679155839175ab4355c5a5b5140295bb75cab",
+    "candidate_sha256": "91057e6ac4bb3bef6899c5e6675ea6c56bf8e1d4a71847dded5f0b780ab493c8",
+    "source_measures": [
+      [
+        1206,
+        1062,
+        126071
+      ],
+      [
+        1178,
+        1034,
+        124712
+      ]
+    ],
+    "removed_imports": 28,
+    "added_imports": 0
+  }
+]
