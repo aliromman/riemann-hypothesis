@@ -1,0 +1,50 @@
+{
+  "module": "Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.BlockValuationOverZpHolds",
+  "candidate": "34177e76b3d63c96565710dd9977ba7155427e13",
+  "source_sha256": "7136ae8646722b5b5c91f0d3b2089cf55abf13d7651d8d4387c78524e5d68234",
+  "parent_sha256": "3acdaa8caaca5135f963fe490c15ac43fa8eb85911956a19337ed586ab0ead55",
+  "local_project_ancestors": 286,
+  "signed_linux_artifact_sha256": "sha256:ae0f5b7417992ed88832b947ad1ec594ed20087e343791f4dd03bff19a620bb2",
+  "local_raw_matches_hosted": {
+    ".ir": true,
+    ".ir.sig": true,
+    ".olean": true,
+    ".olean.private": false,
+    ".olean.server": false
+  },
+  "local_declaration_occurrences": 75,
+  "changed_proofs": 0,
+  "same_nonextension_fields": true,
+  "same_extension_names_and_declaration_order": true,
+  "extension_counts": [
+    [
+      "Lean.IR.declMapExt",
+      25
+    ],
+    [
+      "Lean.regularInitAttr",
+      0
+    ],
+    [
+      "_private.Lean.Compiler.ModPkgExt.0.Lean.modPkgExt",
+      1
+    ]
+  ],
+  "differing_ir_declarations": [
+    [
+      "Lean.IR.declMapExt",
+      "Formalism.MainNotions.G.SymmetricFormBlocks.fL",
+      "1b7b828081e56a1f49fc6fe872e5924bc97fed4a7d90fc16d826d10fe863356b",
+      "130be43929c6014a5d9c80e0de5efd0295ef560f8666733e858cc422a37abb2e",
+      48
+    ]
+  ],
+  "function_diff_sha256": "254d2932222f6b318a487acbe71eebc07dd09921a80bb350b6590fe43e5da9d3",
+  "complete_ir_body_accounted_for_by_typed_join_parameter_permutation": {
+    "module_parent_ir_sha256": "98fa6515ed4c8f408ee39b0c4291a5c9700c0d2426b4433f1e9f5850f39d523c",
+    "permuted_parent_and_actual_candidate_ir_sha256": "42181884bc020dadf9bbe36eafd1440832c69c25a766d7d15feb49960ae05a1d",
+    "candidate_ir_signature_unchanged": true,
+    "diagnostic_source_sha256": "d35507300b91f3c743edbd705df0aab95a7e754dd3d146c12d1a38f3a0f22600",
+    "operation": "Swap the first two parameters of join block 3, update bound variable occurrences, and swap the two corresponding call arguments."
+  }
+}

@@ -1,0 +1,31 @@
+........................................................................................................................{"candidate_head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "mode": "reuse"}
+{"reused_successful_build": {"reused": true}, "pr_head_alias": "ffffffffffffffffffffffffffffffffffffffff"}
+{"candidate_head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "mode": "build"}
+{"build_validated": true}
+{"candidate_head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "mode": "build"}
+{"candidate_head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "mode": "reuse"}
+{"candidate_head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "mode": "build"}
+{"published": false, "reason": "Failed build completed no modules; no cache writes needed"}
+{"promoted": false, "reason": "No successful cache has matching main build inputs; no build was started"}
+{"caught_up_main_alias": {"main": "8888888888888888888888888888888888888888"}}
+Downloading 1 cache archives
+........................s...................{'candidates': 8, 'doubtful-caller': 6, 'collapsed': 2}
+..{'candidates': 6, 'doubtful-caller': 2, 'collapsed': 4}
+.............................................................Uploading 1 cache artifacts with 32 workers
+Uploaded 1/1 cache artifacts
+Uploading 1 cache artifacts with 32 workers
+Uploaded 1/1 cache artifacts
+.Uploading 1 cache artifacts with 32 workers
+..Uploading 1 cache artifacts with 32 workers
+Uploaded 1/1 cache artifacts
+Uploading 1 cache artifacts with 32 workers
+Uploaded 1/1 cache artifacts
+Uploading 2 cache artifacts with 32 workers
+Uploaded 2/2 cache artifacts
+Uploading 0 cache artifacts with 32 workers
+...............................................
+----------------------------------------------------------------------
+Ran 277 tests in 22.711s
+
+OK (skipped=1)
+Adopted pre-registered runner volunteer-host (id 123456) in RiemannHypothesisBuild; no process started.

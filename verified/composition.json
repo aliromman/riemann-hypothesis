@@ -1,0 +1,15 @@
+{
+  "base": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+  "first": "c2c7fc890448cf0c8eab464f115e5e370129697a",
+  "second": "afa44208210943a202ad969173b6317d06c37420",
+  "merged_tree": "10278d269462dcfdccab178ec23a581a3b239e6b",
+  "overlap": 9179,
+  "source_union": 41537,
+  "roots": 18,
+  "modules": 51,
+  "declarations": 2211,
+  "reused_root_cones": 11,
+  "modules_fresh": 23,
+  "modules_with_both_changes": 18,
+  "equal_public_and_ir_hash_pairs": 153
+}

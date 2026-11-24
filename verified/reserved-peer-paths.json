@@ -1,0 +1,575 @@
+{
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ThetaAtMove.lean": {
+    "proposal": 399,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 35,
+    "fewer_nonblank": 56,
+    "members": 11,
+    "also_proposals": [
+      1018
+    ]
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/CardDivisionPointsHalfSplitPlaceNormPow.lean": {
+    "proposal": 399,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 27,
+    "fewer_nonblank": 44,
+    "members": 9,
+    "also_proposals": [
+      1018
+    ]
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/BesselToFourierJacobiMixedPiecesAdmissibleStatement.lean": {
+    "proposal": 399,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 96,
+    "fewer_nonblank": 139,
+    "members": 22,
+    "also_proposals": [
+      1018
+    ]
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/FockConjugatesSpanDepthDataStatement.lean": {
+    "proposal": 399,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 76,
+    "fewer_nonblank": 109,
+    "members": 17,
+    "also_proposals": [
+      1018
+    ]
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/FourierJacobiToBesselPiecesMutualAnnihilatorsStatement.lean": {
+    "proposal": 399,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 51,
+    "fewer_nonblank": 76,
+    "members": 13,
+    "also_proposals": [
+      1018
+    ]
+  },
+  "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/ExistsUniqueMovedKappaJet.lean": {
+    "proposal": 399,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 15,
+    "fewer_nonblank": 39,
+    "members": 12,
+    "also_proposals": [
+      1018
+    ]
+  },
+  "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ImportsBisStatement.lean": {
+    "proposal": 399,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 45,
+    "fewer_nonblank": 75,
+    "members": 15,
+    "also_proposals": [
+      1018
+    ]
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/HeckeCharEqOfSplitOfTied.lean": {
+    "proposal": 505,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 21,
+    "fewer_nonblank": 39,
+    "members": 9
+  },
+  "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/BadWStOf.lean": {
+    "proposal": 505,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 45,
+    "fewer_nonblank": 73,
+    "members": 14
+  },
+  "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/LinkedFamiliesFixedValues.lean": {
+    "proposal": 1001,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 3,
+    "fewer_nonblank": 7,
+    "members": 2,
+    "also_proposals": [
+      1025
+    ]
+  },
+  "src/Formalism/LocalToGlobal/LatticeGeometry/GeoTiedP.lean": {
+    "proposal": 1001,
+    "parent_conflict": false,
+    "change": "DELETED",
+    "fewer_commands": 21,
+    "fewer_nonblank": 31,
+    "members": 5,
+    "also_proposals": [
+      1025
+    ]
+  },
+  "src/Development/ResolutionOfSingularities/EmbeddedResolution/StrongResolution/AffineCentersOverSingularLocus.lean": {
+    "proposal": 1007,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 11,
+    "fewer_nonblank": 17,
+    "members": 3,
+    "also_proposals": [
+      1018,
+      1025
+    ]
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/HeckeTraceDefiniteFormEqSumConjClassesStatement.lean": {
+    "proposal": 1010,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 29,
+    "fewer_nonblank": 46,
+    "members": 9
+  },
+  "src/CompanionTheory/AutomorphicTheory/BesselWaveGrids/WeightedBoundRotatedUniformOfCubicThreshold.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 62,
+    "fewer_nonblank": 106,
+    "members": 22
+  },
+  "src/CompanionTheory/AutomorphicTheory/PieriRules/InfinitesimalCharacterDiscreteSeries.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 9,
+    "fewer_nonblank": 15,
+    "members": 3
+  },
+  "src/CompanionTheory/RealGroups/DiscreteSeries/DiscreteSeriesClassification/KTypesAbove.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 49,
+    "fewer_nonblank": 79,
+    "members": 15
+  },
+  "src/Development/WeilBound/RepresentationTheoryGL/FormalDegree/FormalDegreeHilbert/NormIndOfSteps.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 59,
+    "fewer_nonblank": 87,
+    "members": 14
+  },
+  "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/ExceptionalGroupG2/FormalDegreeG2/FdCons.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "DELETED",
+    "fewer_commands": 43,
+    "fewer_nonblank": 60,
+    "members": 9
+  },
+  "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/ExceptionalGroupG2/FormalDegreeG2/FdConsA.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "DELETED",
+    "fewer_commands": 13,
+    "fewer_nonblank": 19,
+    "members": 3
+  },
+  "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/ExceptionalGroupG2/TensorProductsG2/CoefEmbed.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "DELETED",
+    "fewer_commands": 10,
+    "fewer_nonblank": 13,
+    "members": 2
+  },
+  "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/ExceptionalGroupG2/TensorProductsG2/Decomp.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "DELETED",
+    "fewer_commands": 9,
+    "fewer_nonblank": 15,
+    "members": 3
+  },
+  "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/ExceptionalGroupG2/TensorProductsG2/FormalDegreeConstantDiscrete.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 21,
+    "fewer_nonblank": 31,
+    "members": 5
+  },
+  "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/ExceptionalGroupG2/TensorProductsG2/OccBLowKShiftF.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "DELETED",
+    "fewer_commands": 15,
+    "fewer_nonblank": 20,
+    "members": 3
+  },
+  "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/ExceptionalGroupG2/TensorProductsG2/OccCExistsPs.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "DELETED",
+    "fewer_commands": 17,
+    "fewer_nonblank": 22,
+    "members": 3
+  },
+  "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/ExceptionalGroupG2/TensorProductsG2/PoleMatch.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "DELETED",
+    "fewer_commands": 13,
+    "fewer_nonblank": 18,
+    "members": 3
+  },
+  "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/ExceptionalGroupG2/TensorProductsG2/TraceFormula.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "DELETED",
+    "fewer_commands": 13,
+    "fewer_nonblank": 19,
+    "members": 3
+  },
+  "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/ExceptionalGroupG2/TensorProductsG2/TraceFormulaI.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "DELETED",
+    "fewer_commands": 10,
+    "fewer_nonblank": 13,
+    "members": 2
+  },
+  "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/ExceptionalGroupG2/TensorProductsG2/Weighted.lean": {
+    "proposal": 1011,
+    "parent_conflict": false,
+    "change": "DELETED",
+    "fewer_commands": 9,
+    "fewer_nonblank": 13,
+    "members": 2
+  },
+  "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/FrobeniusFactorisation/NuPull.lean": {
+    "proposal": 1028,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 51,
+    "fewer_nonblank": 81,
+    "members": 15
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/SpectralStageDataTransferLatticesHeightsStatement.lean": {
+    "proposal": 1030,
+    "parent_conflict": false,
+    "change": "text",
+    "fewer_commands": 23,
+    "fewer_nonblank": 37,
+    "members": 7
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/AbelianSchemeTorsionPointsRestrictBijectiveStatement.lean": {
+    "proposal": 1018,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 8,
+    "fewer_nonblank": 11,
+    "members": 2,
+    "also_proposals": [
+      243
+    ]
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ConstantCoeffIterateInvariantDerivationLinear.lean": {
+    "proposal": 1018,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 11,
+    "fewer_nonblank": 17,
+    "members": 3,
+    "also_proposals": [
+      243
+    ]
+  },
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/EisensteinModularTowers/PieceTLevelRaiseEqVp.lean": {
+    "proposal": 1021,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 21,
+    "fewer_nonblank": 33,
+    "members": 6
+  },
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/IdeleGenerators/HolomorphicIrreducibility/EisCoef.lean": {
+    "proposal": 1021,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 5,
+    "fewer_nonblank": 9,
+    "members": 2
+  },
+  "src/Development/AutomorphicArithmetic/Foundations/Convolution/ConvolutionKernels/KernelTransforms/EvExSub.lean": {
+    "proposal": 1021,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 8,
+    "fewer_nonblank": 11,
+    "members": 2
+  },
+  "src/Development/WeilBound/CoreStatements/PublishedTheorems/NadelVanishingPairs/NadelVanishingLemmas/ExistsPrimeCartierDivisor.lean": {
+    "proposal": 1021,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 19,
+    "fewer_nonblank": 28,
+    "members": 5
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsInvariantFormDoubledSpaceSplitPlace.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 9,
+    "fewer_nonblank": 13,
+    "members": 2
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/LintegralSqLatticeModelRepFundamentalDomain.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 13,
+    "fewer_nonblank": 16,
+    "members": 2
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SiegelWeilSectionLawDiagonalLagrangian.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 19,
+    "fewer_nonblank": 24,
+    "members": 3
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/TransportedWeilDatumCMPreservesSchwartzHeisenber.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 25,
+    "fewer_nonblank": 34,
+    "members": 5
+  },
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/WeilDatumTransportCmPreservesAdmissibleForms.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 13,
+    "fewer_nonblank": 21,
+    "members": 4
+  },
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/SiegelWeilAstepTop.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 5,
+    "fewer_nonblank": 29,
+    "members": 12
+  },
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/SiegelWeilFinLt.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 9,
+    "fewer_nonblank": 57,
+    "members": 24
+  },
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/TPWDatumK.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 25,
+    "fewer_nonblank": 69,
+    "members": 22
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/AdelicDilations/COneLawPf.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 12,
+    "fewer_nonblank": 15,
+    "members": 2
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/AwayActions/FinTop.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 19,
+    "fewer_nonblank": 24,
+    "members": 3
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/DilationDecomposition/LocTop.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 12,
+    "fewer_nonblank": 15,
+    "members": 2
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/FiniteLineActions/GeoLine.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 12,
+    "fewer_nonblank": 15,
+    "members": 2
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/LagrangianDecomposition/Siegel.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 7,
+    "fewer_nonblank": 11,
+    "members": 2
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/LocalOperatorBlocks/GoodSigPq.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 12,
+    "fewer_nonblank": 15,
+    "members": 2
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/LocalUnitExistence/ExistsEigenvalueGLOneEqCuspidalLabelGen.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 9,
+    "fewer_nonblank": 13,
+    "members": 2
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/LocalWeilOperators/PsiZeroGram.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 9,
+    "fewer_nonblank": 15,
+    "members": 3
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/SiegelWeilActions/ContSingle.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 9,
+    "fewer_nonblank": 13,
+    "members": 2
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/SiegelWeilActions/EisensteinNormSumRationalInvariant.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 12,
+    "fewer_nonblank": 15,
+    "members": 2
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/SiegelWeilStandard/SiegelWeilStd.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 65,
+    "fewer_nonblank": 93,
+    "members": 14
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/SiegelWeilStandard/SiegelWeilStdOf.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 92,
+    "fewer_nonblank": 130,
+    "members": 19
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/ThetaPlaces/Places.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 9,
+    "fewer_nonblank": 13,
+    "members": 2
+  },
+  "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/WeilRepresentationGenerators/FockOf.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 19,
+    "fewer_nonblank": 24,
+    "members": 3
+  },
+  "src/Development/WeilBound/ThetaLifts/Reductions/WeilPairs/AutGen.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 7,
+    "fewer_nonblank": 11,
+    "members": 2
+  },
+  "src/Development/WeilBound/ThetaLifts/Reductions/WeilPairs/AutReal.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 13,
+    "fewer_nonblank": 16,
+    "members": 2
+  },
+  "src/Development/WeilBound/ThetaLifts/Reductions/WeilPairs/IsScalarOneOfComm.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 35,
+    "fewer_nonblank": 51,
+    "members": 8
+  },
+  "src/Development/WeilBound/ThetaLifts/Reductions/WeilPairs/LatRep.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 13,
+    "fewer_nonblank": 16,
+    "members": 2
+  },
+  "src/Development/WeilBound/ThetaLifts/Reductions/WeilPairs/MfacInvMul.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 43,
+    "fewer_nonblank": 54,
+    "members": 6
+  },
+  "src/Development/WeilBound/ThetaLifts/Reductions/WeilPairs/PrSingle.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 11,
+    "fewer_nonblank": 19,
+    "members": 4
+  },
+  "src/Development/WeilBound/ThetaLifts/Reductions/WeilPairs/SplitPlaceSiegelLawDiagonalLagrangianCharacter.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 13,
+    "fewer_nonblank": 16,
+    "members": 2
+  },
+  "src/Development/WeilBound/ThetaLifts/Reductions/WeilPairs/WeilPairExistence/ExistsIsWeilDatumOF.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 8,
+    "fewer_nonblank": 11,
+    "members": 2
+  },
+  "src/Development/WeilBound/ThetaLifts/Reductions/WeilPairs/WeilPairExistence/WeilEx.lean": {
+    "proposal": 798,
+    "parent_conflict": false,
+    "change": "three-way merge",
+    "fewer_commands": 29,
+    "fewer_nonblank": 40,
+    "members": 6
+  }
+}

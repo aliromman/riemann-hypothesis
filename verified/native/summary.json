@@ -1,0 +1,489 @@
+{
+  "all_observed_attempt_statuses": {
+    "difference": 1,
+    "pass": 9513
+  },
+  "checked_later_with_positive_or_retained_as_exact_source_failure": {
+    "without_strict_retry": 1
+  },
+  "complete_for_published_source": true,
+  "coordinated_before_checks": 11650,
+  "counts_by_comparison": {
+    "fresh_against_current_official_parent": 9447,
+    "same_original_candidate_owner_and_effective_inputs": 2132
+  },
+  "current_native_results": [
+    {
+      "archive_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14909759917/zip",
+      "artifact_id": 14909759917,
+      "attempt": 1,
+      "checked": 95,
+      "container_digest": "sha256:260e8193f3d15bc4f0fa1b445a4829c015c28ae2f26d3461f442c58621a413cd",
+      "group": "896-clump-large-1",
+      "native_group_seconds": 2878.142,
+      "pending": 0,
+      "result_sha256": "9de9538e9fa146031207a8e3afda57f491df74b8b9d6aabe0b4d4c2f176045ad",
+      "run_id": 45366025067,
+      "statuses": {
+        "pass": 95
+      },
+      "workflow_sha": "32fcd6bc58035621c7cfca3a857a7ea9bd99c7c7"
+    },
+    {
+      "archive_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14911901183/zip",
+      "artifact_id": 14911901183,
+      "attempt": 1,
+      "checked": 96,
+      "container_digest": "sha256:e0bff3f3a864c580c72de555b14541e33a77824f7a35c19b05aabf81298932ab",
+      "group": "896-clump-large-2",
+      "native_group_seconds": 3457.313,
+      "pending": 0,
+      "result_sha256": "f545323c7ca04c9dd49b6331b2de5a1bb130e373a52a150a84453298148db879",
+      "run_id": 45366025067,
+      "statuses": {
+        "pass": 96
+      },
+      "workflow_sha": "32fcd6bc58035621c7cfca3a857a7ea9bd99c7c7"
+    },
+    {
+      "archive_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14913800730/zip",
+      "artifact_id": 14913800730,
+      "attempt": 1,
+      "checked": 932,
+      "container_digest": "sha256:d571a2d01f34e3a47649dc944bad52c8da78fd912ee071b07421785eaa410b15",
+      "group": "896-clump-ordinary-1",
+      "native_group_seconds": 4741.147,
+      "pending": 0,
+      "result_sha256": "a46fef540849885b92c8716f123fb3672714d6f0f72dc458ac08faa5f374c86e",
+      "run_id": 45366025067,
+      "statuses": {
+        "pass": 932
+      },
+      "workflow_sha": "32fcd6bc58035621c7cfca3a857a7ea9bd99c7c7"
+    },
+    {
+      "archive_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14914567351/zip",
+      "artifact_id": 14914567351,
+      "attempt": 1,
+      "checked": 933,
+      "container_digest": "sha256:4854e654dcbad79eeae326a624fdbbbab987285e48defac0e318e457cf3848aa",
+      "group": "896-clump-ordinary-10",
+      "native_group_seconds": 5468.179,
+      "pending": 0,
+      "result_sha256": "130149c6685023f7e319663e2a3bbe2279cda3b936fbbed572a94f3f6aef5365",
+      "run_id": 45366025067,
+      "statuses": {
+        "pass": 933
+      },
+      "workflow_sha": "32fcd6bc58035621c7cfca3a857a7ea9bd99c7c7"
+    },
+    {
+      "archive_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14913567281/zip",
+      "artifact_id": 14913567281,
+      "attempt": 1,
+      "checked": 932,
+      "container_digest": "sha256:ab5f2d03a43831268029a68f88d3b2567b12fe398e1b38b24b9fb7b094ebaf7b",
+      "group": "896-clump-ordinary-2",
+      "native_group_seconds": 5189.302,
+      "pending": 0,
+      "result_sha256": "cf180251f5baf62df0f944909b5ccd7ce2e90c50ff29e453003855c75eb93ba0",
+      "run_id": 45366025067,
+      "statuses": {
+        "pass": 932
+      },
+      "workflow_sha": "32fcd6bc58035621c7cfca3a857a7ea9bd99c7c7"
+    },
+    {
+      "archive_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14912525676/zip",
+      "artifact_id": 14912525676,
+      "attempt": 1,
+      "checked": 933,
+      "container_digest": "sha256:1fb3e7bdba54702a224cadc6e042a3e6733fc2aca00cf468f9c3828fa3054223",
+      "group": "896-clump-ordinary-3",
+      "native_group_seconds": 3551.217,
+      "pending": 0,
+      "result_sha256": "1ff2d50bf4f746e9f0674f2f9d5bf4f389e7395cc6db18baa928f52e5164eeae",
+      "run_id": 45366025067,
+      "statuses": {
+        "pass": 933
+      },
+      "workflow_sha": "32fcd6bc58035621c7cfca3a857a7ea9bd99c7c7"
+    },
+    {
+      "archive_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14913295542/zip",
+      "artifact_id": 14913295542,
+      "attempt": 1,
+      "checked": 932,
+      "container_digest": "sha256:aa2aea0a6ea79ee8f39c8a72f01991b32305374d22b077029f7620bda03ab800",
+      "group": "896-clump-ordinary-4",
+      "native_group_seconds": 4183.067,
+      "pending": 0,
+      "result_sha256": "79f3ba22cb30125c4661457af8ec3ea1de54d254db37250a6bb90a1c1027fbd7",
+      "run_id": 45366025067,
+      "statuses": {
+        "pass": 932
+      },
+      "workflow_sha": "32fcd6bc58035621c7cfca3a857a7ea9bd99c7c7"
+    },
+    {
+      "archive_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14911737576/zip",
+      "artifact_id": 14911737576,
+      "attempt": 1,
+      "checked": 932,
+      "container_digest": "sha256:ccc8ca9ce0a41d6c400b5d1baaa84455c37ca84befb3e643f62ea2d26fdcee96",
+      "group": "896-clump-ordinary-5",
+      "native_group_seconds": 3738.377,
+      "pending": 0,
+      "result_sha256": "8b68f7d91d8fe8913c557ca3f4557de0af57bf520b23f489f425e0c260cfb89c",
+      "run_id": 45366025067,
+      "statuses": {
+        "pass": 932
+      },
+      "workflow_sha": "32fcd6bc58035621c7cfca3a857a7ea9bd99c7c7"
+    },
+    {
+      "archive_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14914971575/zip",
+      "artifact_id": 14914971575,
+      "attempt": 1,
+      "checked": 932,
+      "container_digest": "sha256:729b6e3148cad3542c8024288859c6403db9e355d5939cba57fe28089230730e",
+      "group": "896-clump-ordinary-6",
+      "native_group_seconds": 5305.065,
+      "pending": 0,
+      "result_sha256": "f08997636fbb7ab5afa1faefcb86105aab78544d6460a1c97a6f8d0312f88281",
+      "run_id": 45366025067,
+      "statuses": {
+        "pass": 932
+      },
+      "workflow_sha": "32fcd6bc58035621c7cfca3a857a7ea9bd99c7c7"
+    },
+    {
+      "archive_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14910374734/zip",
+      "artifact_id": 14910374734,
+      "attempt": 1,
+      "checked": 933,
+      "container_digest": "sha256:ae0f5b7417992ed88832b947ad1ec594ed20087e343791f4dd03bff19a620bb2",
+      "group": "896-clump-ordinary-7",
+      "native_group_seconds": 2900.268,
+      "pending": 0,
+      "result_sha256": "c1f8d46f979c24d074101fee6af0a86aec52c8a4da051567101a319f0fbac348",
+      "run_id": 45366025067,
+      "statuses": {
+        "difference": 1,
+        "pass": 932
+      },
+      "workflow_sha": "32fcd6bc58035621c7cfca3a857a7ea9bd99c7c7"
+    },
+    {
+      "archive_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14913877704/zip",
+      "artifact_id": 14913877704,
+      "attempt": 1,
+      "checked": 932,
+      "container_digest": "sha256:a7fe83a4d2a834e33a50551b036bcb1c086503dcc12fa9d027366ca8bc37c8a6",
+      "group": "896-clump-ordinary-8",
+      "native_group_seconds": 5473.615,
+      "pending": 0,
+      "result_sha256": "dcb8c9a7bd6fa34393f35e25c09c5be279d5c004ce74aeb80dece1ae0cfa1363",
+      "run_id": 45366025067,
+      "statuses": {
+        "pass": 932
+      },
+      "workflow_sha": "32fcd6bc58035621c7cfca3a857a7ea9bd99c7c7"
+    },
+    {
+      "archive_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14910514632/zip",
+      "artifact_id": 14910514632,
+      "attempt": 1,
+      "checked": 932,
+      "container_digest": "sha256:e9b8a34d6fe824f5276cc2a96a72cd89a798002bce1d22fa960b1d3525a0bd56",
+      "group": "896-clump-ordinary-9",
+      "native_group_seconds": 3519.143,
+      "pending": 0,
+      "result_sha256": "c0a09fc958e2bbaface0beb99e184d049760164b86459d0c4d7229222480b8d6",
+      "run_id": 45366025067,
+      "statuses": {
+        "pass": 932
+      },
+      "workflow_sha": "32fcd6bc58035621c7cfca3a857a7ea9bd99c7c7"
+    }
+  ],
+  "declaration_instances_by_comparison": {
+    "fresh_against_current_official_parent": 448085,
+    "same_original_candidate_owner_and_effective_inputs": 85938
+  },
+  "excluded_from_final_candidates": 294,
+  "excluded_source_rows": {
+    "bytes": 51248,
+    "file": "initial-exclusions.jsonl.gz",
+    "file_sha256": "2935070b2e59a8d9ec87f1c03b0f19d268820c5e0fc59c1e767fe83734e9b1d3",
+    "uncompressed_sha256": "15dbf7b752478a1377fa654b24e8d53723c94834b3156421746a7c6e3a509893"
+  },
+  "incomplete_group_attempts": [],
+  "independent_parent_name_census": {
+    "declarations": 534023,
+    "modules": 11579,
+    "parent_index_sha256": "c9c0db13dba215219da0c5aedf8a1f10db7dcff2ccb64a20882aa82ef8dbb6c9"
+  },
+  "independent_parent_raw_private_census": {
+    "module_count": 41581,
+    "raw_tsv_sha256": "49a5e10b78b0e19c45766542198b69167149faefa2a1000bf6ed23a3f29a2d4a"
+  },
+  "initial_studied_cohort": 11582,
+  "lean": "v4.37.0-rc1",
+  "lean_commit": "0b77e12952ad39077d80d8bd6b66d601f225c321",
+  "local_declaration_instances": 534023,
+  "mathlib": "31ce06eaadf4a200c0e1407c5f10953cf606b8f8",
+  "negative_attempts": 1,
+  "nonpassing_original_observations": {
+    "bytes": 1025,
+    "file": "native-nonpassing.jsonl.gz",
+    "file_sha256": "13c84fbff45a87e3536e6a66934281a35e2ab60cf627f080fd4f9e67f5ed5a55",
+    "uncompressed_sha256": "223bed3ee9bec8924185c358f56545b0ae58e12fcda873dc448db3086fa586e0"
+  },
+  "official_compiler_parent": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+  "official_module_manifest_sha256": "a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463",
+  "official_parent_source_tree": "6e972745429bd501b15e5daa9db46c8a9feb85db",
+  "per_source_rows": {
+    "bytes": 7005302,
+    "file": "native-modules.jsonl.gz",
+    "file_sha256": "f7865b0c7c73ae23be8a896892086b8333c87941e2a478151ddc5f06f8d24ce5",
+    "uncompressed_sha256": "1f8508e55855bd0dd74f55b509c7aa104f91c724fb01f30b680a96aa6257c88d"
+  },
+  "producer_sources_outside_final_git_scope": {
+    "CompanionTheory.AutomorphicTheory.BesselWaveGrids.WeightedBoundRotatedUniformOfCubicThreshold": [
+      "pass"
+    ],
+    "CompanionTheory.AutomorphicTheory.PieriRules.InfinitesimalCharacterDiscreteSeries": [
+      "pass"
+    ],
+    "CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.KTypesAbove": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeTorsionPointsRestrictBijectiveStatement": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsInvariantFormDoubledSpaceSplitPlace": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeTraceDefiniteFormEqSumConjClassesStatement": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LintegralSqLatticeModelRepFundamentalDomain": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelWeilSectionLawDiagonalLagrangian": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaAtMove": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TransportedWeilDatumCMPreservesSchwartzHeisenber": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilDatumTransportCmPreservesAdmissibleForms": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CardDivisionPointsHalfSplitPlaceNormPow": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SpectralStageDataTransferLatticesHeightsStatement": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeCharEqOfSplitOfTied": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.BesselToFourierJacobiMixedPiecesAdmissibleStatement": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockConjugatesSpanDepthDataStatement": [
+      "pass"
+    ],
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.FourierJacobiToBesselPiecesMutualAnnihilatorsStatement": [
+      "pass"
+    ],
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.EisensteinModularTowers.PieceTLevelRaiseEqVp": [
+      "pass"
+    ],
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.HolomorphicIrreducibility.EisCoef": [
+      "pass"
+    ],
+    "Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.EvExSub": [
+      "pass"
+    ],
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilAstepTop": [
+      "pass"
+    ],
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilFinLt": [
+      "pass"
+    ],
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.TPWDatumK": [
+      "pass"
+    ],
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.ExistsUniqueMovedKappaJet": [
+      "pass"
+    ],
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.BadWStOf": [
+      "pass"
+    ],
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ImportsBisStatement": [
+      "pass"
+    ],
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LinkedFamiliesFixedValues": [
+      "pass"
+    ],
+    "Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.AffineCentersOverSingularLocus": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.AdelicDilations.COneLawPf": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.AwayActions.FinTop": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.DilationDecomposition.LocTop": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.FiniteLineActions.GeoLine": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LagrangianDecomposition.Siegel": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalOperatorBlocks.GoodSigPq": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalUnitExistence.ExistsEigenvalueGLOneEqCuspidalLabelGen": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalWeilOperators.PsiZeroGram": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilActions.ContSingle": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilActions.EisensteinNormSumRationalInvariant": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilStandard.SiegelWeilStd": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilStandard.SiegelWeilStdOf": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.ThetaPlaces.Places": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WeilRepresentationGenerators.FockOf": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.FrobeniusFactorisation.NuPull": [
+      "pass"
+    ],
+    "Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.ExistsPrimeCartierDivisor": [
+      "pass"
+    ],
+    "Development.WeilBound.RepresentationTheoryGL.FormalDegree.FormalDegreeHilbert.NormIndOfSteps": [
+      "pass"
+    ],
+    "Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutGen": [
+      "pass"
+    ],
+    "Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutReal": [
+      "pass"
+    ],
+    "Development.WeilBound.ThetaLifts.Reductions.WeilPairs.IsScalarOneOfComm": [
+      "pass"
+    ],
+    "Development.WeilBound.ThetaLifts.Reductions.WeilPairs.LatRep": [
+      "pass"
+    ],
+    "Development.WeilBound.ThetaLifts.Reductions.WeilPairs.MfacInvMul": [
+      "pass"
+    ],
+    "Development.WeilBound.ThetaLifts.Reductions.WeilPairs.PrSingle": [
+      "pass"
+    ],
+    "Development.WeilBound.ThetaLifts.Reductions.WeilPairs.SplitPlaceSiegelLawDiagonalLagrangianCharacter": [
+      "pass"
+    ],
+    "Development.WeilBound.ThetaLifts.Reductions.WeilPairs.WeilPairExistence.ExistsIsWeilDatumOF": [
+      "pass"
+    ],
+    "Development.WeilBound.ThetaLifts.Reductions.WeilPairs.WeilPairExistence.WeilEx": [
+      "pass"
+    ],
+    "Formalism.LocalToGlobal.LatticeGeometry.GeoTiedP": [
+      "pass"
+    ],
+    "Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.BlockValuationOverZpHolds": [
+      "difference"
+    ],
+    "ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.FormalDegreeG2.FdCons": [
+      "pass"
+    ],
+    "ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.FormalDegreeG2.FdConsA": [
+      "pass"
+    ],
+    "ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.CoefEmbed": [
+      "pass"
+    ],
+    "ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.Decomp": [
+      "pass"
+    ],
+    "ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.FormalDegreeConstantDiscrete": [
+      "pass"
+    ],
+    "ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.OccBLowKShiftF": [
+      "pass"
+    ],
+    "ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.OccCExistsPs": [
+      "pass"
+    ],
+    "ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.PoleMatch": [
+      "pass"
+    ],
+    "ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.TraceFormula": [
+      "pass"
+    ],
+    "ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.TraceFormulaI": [
+      "pass"
+    ],
+    "ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.Weighted": [
+      "pass"
+    ]
+  },
+  "published_files": 11579,
+  "published_head": "afa44208210943a202ad969173b6317d06c37420",
+  "pull_request": 977,
+  "raw_facets_different_per_source_by_comparison": {
+    "fresh_against_current_official_parent": {
+      ".olean.private": 6930,
+      ".olean.server": 9446
+    },
+    "same_original_candidate_owner_and_effective_inputs": {
+      ".olean.private": 1451,
+      ".olean.server": 2132
+    }
+  },
+  "same_warning_multisets": 11579,
+  "schema": 1,
+  "selected_nonpassing": 0,
+  "selected_unobserved": 0,
+  "source_pairs_sha256": "458fa1064121cd7719cf21dd2a727dbe97ecf33bb8d298cbac77917e322eb87d",
+  "source_tree": "b213f5ffaf9e751d375b08432423263dae37da2c",
+  "strict_output_digests": 34737,
+  "strict_source_metrics": {
+    "code": 251825,
+    "net_nonblank": 383462
+  },
+  "strict_sources": 11579,
+  "transferred_comparisons_sha256": "038848af142a781c5981281a7a85be51da19c90828bdcaf6425b997c850510ac",
+  "unique_initial_or_coordinated_targets": 11873,
+  "unique_nonpassing_sources": 1,
+  "upstream_parent": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+  "warnings": {
+    "count": 136451,
+    "sources_with_normalized_warning_hashes": 11579,
+    "sources_with_warnings": 9472
+  }
+}
