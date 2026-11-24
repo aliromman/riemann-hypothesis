@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 env:
   RUST_MIN_STACK: '33554432'
@@ -52,15 +53,67 @@ jobs:
               print('groups='+json.dumps(groups),file=f)
               print('mode='+mode,file=f)
           PY
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        if: steps.dispatch.outputs.mode != 'seed'
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: ed7f034b1d3b309166315c8527a2228c6d1ec328
+          path: reviewed
+          fetch-depth: 2
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: /lean-toolchain
+      - name: Verify native inputs against the public pull merge tree
+        if: steps.dispatch.outputs.mode != 'seed'
+        run: |
+          python3 harness/ci/current-recheck/binding.py --repo reviewed --request harness/ci/current-recheck \
+            --out "$RUNNER_TEMP/native-source-binding.json"
+      - name: Save the public source tree binding
+        if: steps.dispatch.outputs.mode != 'seed'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: current-native-source-binding
+          path: ${{ runner.temp }}/native-source-binding.json
+          retention-days: 7
       - name: Look up the current complete parent cache
         id: current
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: ${{ runner.temp }}/rh-screen-cache
           key: ${{ env.PARENT_CACHE }}
+
           lookup-only: true
+      - name: Wait for the single shared parent seed when it is still running
+        if: steps.dispatch.outputs.mode != 'seed' && steps.current.outputs.cache-hit != 'true'
+        working-directory: harness/ci/current-recheck
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json,os,subprocess,time
+          from pathlib import Path
+          seed=json.loads(Path('dispatch.json').read_bytes())['wait_for_seed']
+          if type(seed) is not int or seed<1: raise ValueError('missing dependent seed run')
+          repo=os.environ['GITHUB_REPOSITORY']
+          def api(path):
+              return json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+path]))
+          while True:
+              state=api('actions/runs/'+str(seed))
+              if state['name']!='Recheck exact import edits on the current community parent' or state['head_branch']!='ci/import-pruning/screen':
+                  raise ValueError('unexpected seed workflow identity')
+              if state['status']=='completed':
+                  if state['conclusion']!='success':raise ValueError('official cache seed failed')
+                  break
+              print('Waiting for the shared parent cache.',flush=True)
+              time.sleep(30)
+          for _ in range(6):
+              entries=api('actions/caches?key='+os.environ['PARENT_CACHE'])['actions_caches']
+              if any(c['key']==os.environ['PARENT_CACHE'] and c['ref']=='refs/heads/ci/import-pruning/screen' for c in entries):break
+              time.sleep(10)
+          else:raise ValueError('cache from the successful seed is missing')
+          PY
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-        if: steps.current.outputs.cache-hit != 'true'
+        if: steps.dispatch.outputs.mode == 'seed' && steps.current.outputs.cache-hit != 'true'
         with:
           repository: leanprover-community/riemann-hypothesis
           ref: 343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf
@@ -70,17 +123,109 @@ jobs:
             src
             scripts
       - name: Reuse archives from the previous published parent
-        if: steps.current.outputs.cache-hit != 'true'
+        if: steps.dispatch.outputs.mode == 'seed' && steps.current.outputs.cache-hit != 'true'
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: ${{ runner.temp }}/rh-screen-cache
           key: rh-screen-v3-latest-7ef75c550561a6f21d27bb76c9a53fcf6a9a6fe5d5d481f2cdb56e9b1262589d-c2a87f3d5a19cec44cdaf5a7d00c6519654cdc5bdc15323f4c2e36826ee55057
       - name: Validate the official parent and fetch each remaining archive once
-        if: steps.current.outputs.cache-hit != 'true'
+        if: steps.dispatch.outputs.mode == 'seed' && steps.current.outputs.cache-hit != 'true'
         run: python3 harness/ci/current-recheck/parent.py --parent parent --cache "$RUNNER_TEMP/rh-screen-cache"
       - name: Save the complete authenticated parent
-        if: steps.current.outputs.cache-hit != 'true'
+        if: steps.dispatch.outputs.mode == 'seed' && steps.current.outputs.cache-hit != 'true'
         uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: ${{ runner.temp }}/rh-screen-cache
           key: ${{ env.PARENT_CACHE }}
+
+  check:
+    needs: prepare
+    if: needs.prepare.outputs.mode != 'seed'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 342
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix:
+        group: ${{ fromJSON(needs.prepare.outputs.groups) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: harness
+          persist-credentials: false
+          sparse-checkout: |
+            ci/current-recheck
+            ci/import-screen
+            ci/root-replay
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: 343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf
+          path: parent
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /lakefile.toml
+            /lake-manifest.json
+            /lean-toolchain
+      - name: Restore the newly authenticated full parent
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-screen-cache
+          key: ${{ env.PARENT_CACHE }}
+          fail-on-cache-miss: true
+      - name: Install the pinned compiler
+        working-directory: parent
+        run: bash ../harness/ci/import-screen/install-lean.sh
+      - name: Restore the shared pinned Mathlib downloads
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-mathlib-cache
+          key: ${{ env.MATH_CACHE }}
+      - name: Prepare official dependencies and the native declaration comparer
+        working-directory: parent
+        run: |
+          MATHLIB_CACHE_DIR="$RUNNER_TEMP/rh-mathlib-cache" lake exe mathlib/cache get
+          git diff --exit-code -- lakefile.toml lean-toolchain lake-manifest.json
+          screen="$GITHUB_WORKSPACE/harness/ci/import-screen"
+          lean -R "$screen" -c "$RUNNER_TEMP/CheckInterface.c" "$screen/CheckInterface.lean"
+          leanc -O2 -o "$RUNNER_TEMP/check-interface" "$RUNNER_TEMP/CheckInterface.c"
+          df -h .
+      - name: Recover same-variant compiler receipts
+        id: receipts
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-current-receipts
+          key: rh-644-native-${{ matrix.group }}-${{ hashFiles('harness/ci/current-recheck/*.py', 'harness/ci/current-recheck/request.json', 'harness/ci/import-screen/CheckInterface.lean') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            rh-644-native-${{ matrix.group }}-${{ hashFiles('harness/ci/current-recheck/*.py', 'harness/ci/current-recheck/request.json', 'harness/ci/import-screen/CheckInterface.lean') }}-
+      - id: native
+        name: Re-elaborate exact reviewed sources and compare all local declarations
+        working-directory: parent
+        env:
+          GROUP: ${{ matrix.group }}
+        run: |
+          trial="$GITHUB_WORKSPACE/harness/ci/current-recheck"
+          export RH_LTAR_MANIFEST="$RUNNER_TEMP/rh-screen-cache/metadata/18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a.jsonl.gz"
+          export RH_LTAR_DIAGNOSTICS="$RUNNER_TEMP/rh-current-results/leantar-diagnostics.jsonl"
+          python3 -u "$trial/run.py" --parent . --group "$GROUP" --request "$trial" \
+            --cache "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-current-results" \
+            --resume "$RUNNER_TEMP/rh-current-receipts" --bin "$(dirname "$(elan which lean)")" --judge "$RUNNER_TEMP/check-interface"
+      - name: Save checkpoints for incomplete groups
+        if: always() && steps.native.outcome == 'failure'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-current-receipts
+          key: ${{ steps.receipts.outputs.cache-primary-key }}
+      - name: Publish source-bound native certificates
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: current-native-${{ matrix.group }}-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 7
+          path: |
+            ${{ runner.temp }}/rh-current-results/results.jsonl
+            ${{ runner.temp }}/rh-current-results/report.json
+            ${{ runner.temp }}/rh-current-results/scope.json
+            ${{ runner.temp }}/rh-current-results/leantar-diagnostics.jsonl

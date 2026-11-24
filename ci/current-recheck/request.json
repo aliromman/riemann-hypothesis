@@ -1,0 +1,124 @@
+{
+  "base": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+  "parent_tree": "70327238ca7c4189479eee72f3c22812f1922329",
+  "manifest": "18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a",
+  "graph": "1eea63e656493b1d5f30ab34bd8b913ab3edadc2d615e2313e471196749941a4",
+  "candidate_tree": "bfe42f46492ebfd67cc45bd950c9e34963e563d0",
+  "candidate_src_tree": "62e25fabf61fa91901268fe30617394d9827ea03",
+  "pull_head": "4fc7348e335c0c93eece5d0183bfc64f52081b84",
+  "pull_merge": "ed7f034b1d3b309166315c8527a2228c6d1ec328",
+  "groups": {
+    "large-00": {
+      "count": 113,
+      "sha256": "49da5a0733354e4cf6e9b38d57af4cfc795eb86b7656964360bac85bef2be4a6",
+      "workers": 1,
+      "timeout": 1200,
+      "estimated_previous_seconds": 3994.3
+    },
+    "large-01": {
+      "count": 113,
+      "sha256": "33990e110929de8d792fbdd1e0101a0dcbcd395fa88abd20b1472db5e2d9df4a",
+      "workers": 1,
+      "timeout": 1200,
+      "estimated_previous_seconds": 3994.2
+    },
+    "current-00": {
+      "count": 1729,
+      "sha256": "b2cb11ca220556b39e26f0ac7c57166c4e25efc8fba40e5f6ec85306fad711ab",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.7
+    },
+    "current-01": {
+      "count": 1728,
+      "sha256": "7e4f01e9d32c806802c9dfda4e248785049c859482bf64889c9160a923dfa776",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.4
+    },
+    "current-02": {
+      "count": 1728,
+      "sha256": "f87838be2d4487286e9583d71103f70f90205d90767f1b14c664530ad921e9fe",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.4
+    },
+    "current-03": {
+      "count": 1728,
+      "sha256": "c35852c793ec92e956f56adc6d84f59a7ecc4efcdc757b4cd1651a4accd8b405",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.4
+    },
+    "current-04": {
+      "count": 1729,
+      "sha256": "24870f6226e12a3a7b26efe650e0f6e2fd15cd1961aaa8dee52104fa91743931",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.7
+    },
+    "current-05": {
+      "count": 1728,
+      "sha256": "cebb2959a545e913fd86272f5bebec7b75213fa6b259797d8ee9c9e1dbb7d9cc",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.4
+    },
+    "current-06": {
+      "count": 1729,
+      "sha256": "cf187aa46afb9af046de599f7e44b0a316198b9e1966fee9c79337cf560a19ae",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.7
+    },
+    "current-07": {
+      "count": 1728,
+      "sha256": "57546eeba07619c40085124c11b31859a95da0b4a26d0e90418e57a3a74940e8",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.4
+    },
+    "current-08": {
+      "count": 1728,
+      "sha256": "ca1006e558819fb22701fafac53057dd31e91febb64a3fd7b7f0c7f8513c012b",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.4
+    },
+    "current-09": {
+      "count": 1728,
+      "sha256": "833b69e503eb564ec66afb1888109760115ec0df8e948ec12881ee2248515451",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.4
+    },
+    "current-10": {
+      "count": 1729,
+      "sha256": "9a95d814532a38f65d1249d235948131c865d5acd927b2953248358407306c45",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.7
+    },
+    "current-11": {
+      "count": 1728,
+      "sha256": "f046f24cb52b332cfe8e2a3f44d5097963a51725644b269a3b67a823b0a78996",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.4
+    },
+    "current-12": {
+      "count": 1728,
+      "sha256": "a6197da608627b79ae830a6f456ce179db8ce54ad3c922248db46c66fc382c51",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.4
+    },
+    "current-13": {
+      "count": 1728,
+      "sha256": "e36ae1ce28a786367cca66109c009ad9833582939f59e81d9b3e7f4c68fafd35",
+      "workers": 2,
+      "timeout": 600,
+      "estimated_previous_seconds": 5299.4
+    }
+  }
+}
