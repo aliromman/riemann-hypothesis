@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import tempfile
 
 NAME = re.compile(r"[\w'₀-₉]+(?:\.[\w'₀-₉]+)*")
 MARKER = "-- bundled from "
@@ -67,10 +68,25 @@ def original_position(before, index, historical, by_shape):
     return possible[0] if len(possible) == 1 else None
 
 
+def selector_roles(module, source):
+    """Read namespace-relative names from the compiler's original syntax trees."""
+    tool = Path(__file__).with_name("PrintSelectorRoles.lean")
+    with tempfile.TemporaryDirectory() as directory:
+        path = Path(directory) / "Original.lean"
+        path.write_bytes(source)
+        run = subprocess.run(["lean", "--run", tool, module, path], capture_output=True, text=True)
+    if run.returncode:
+        raise ValueError(f"original syntax check failed for {module}: {(run.stderr or run.stdout)[-1000:]}")
+    rows = (json.loads(line) for line in run.stdout.splitlines())
+    return {(row["line"], row["column"]): row["role"] for row in rows}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", type=Path, required=True)
     parser.add_argument("--original", required=True, help="Git revision of the original Lean sources")
+    parser.add_argument("--check-syntax", action="store_true",
+                        help="elaborate original members with Lean and check open and export syntax roles")
     parser.add_argument("--list-members", action="store_true", help="print original Lake targets for these edits")
     parser.add_argument("--ilean-dir", type=Path,
                         help="lib/lean from a trusted 4.36 build of that original revision")
@@ -89,7 +105,8 @@ def main():
     @lru_cache(maxsize=64)
     def original_module(module):
         stem = Path(*module.split("."))
-        old = git("show", f"{original}:src/{stem}.lean").decode().splitlines()
+        source = git("show", f"{original}:src/{stem}.lean")
+        old = source.decode().splitlines()
         dump = json.loads((args.ilean_dir / stem).with_suffix(".ilean").read_bytes())
         if dump["module"].removeprefix("src.") != module or not isinstance(dump["references"], dict):
             raise ValueError(f"unexpected .ilean module or format for {module}")
@@ -104,7 +121,8 @@ def main():
         by_shape = defaultdict(list)
         for i, line in enumerate(shapes):
             by_shape[line].append(i)
-        return old, shapes, by_shape, uses
+        roles = selector_roles(module, source) if args.check_syntax else {}
+        return old, shapes, by_shape, uses, roles
 
     counts = Counter()
     members = set()
@@ -139,7 +157,7 @@ def main():
                 continue
             baseline = list(map(shape, clean_left[lo:hi]))
             try:
-                old, old_shapes, by_shape, uses = original_module(member)
+                old, old_shapes, by_shape, uses, roles = original_module(member)
             except (OSError, ValueError, KeyError, subprocess.CalledProcessError) as exc:
                 report("manual: missing original evidence", path, member=member, detail=str(exc))
                 continue
@@ -166,6 +184,8 @@ def main():
                         verdict = "manual: edit is not an absolute qualification"
                     elif names != {token.removeprefix("_root_.")}:
                         verdict = "manual: missing or different original constant"
+                    elif (n + 1, start) in roles:
+                        verdict = "manual: namespace syntax, " + roles[n + 1, start]
                     elif followed_by_assignment(old, n, stop):
                         verdict = "manual: name before := can be a field label"
                     else:

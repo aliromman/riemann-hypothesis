@@ -1,0 +1,341 @@
+[
+  {
+    "module": "Development.AutomorphicSpectrum.Proofs.MetricProofs.ChartDensityIntegrable",
+    "arm": "original",
+    "sha256": "90409e3042b4d467292e5f7b12218f657925e9c077dfb7cc09d6ee36364f0519",
+    "selector": {
+      "column": 25,
+      "endByte": 2187,
+      "identifier": "logNorm_ofWeight_one",
+      "line": 36,
+      "role": "open",
+      "startByte": 2167
+    },
+    "errors": []
+  },
+  {
+    "module": "Development.AutomorphicSpectrum.Proofs.MetricProofs.ChartDensityIntegrable",
+    "arm": "absolute",
+    "sha256": "87151e03577d1664188532097b06d157a9edfaae9a6efbb312e3f2be4a5910c9",
+    "selector": {
+      "column": 25,
+      "endByte": 2187,
+      "identifier": "logNorm_ofWeight_one",
+      "line": 36,
+      "role": "open",
+      "startByte": 2167
+    },
+    "errors": [
+      {
+        "pos": {
+          "column": 25,
+          "line": 36
+        },
+        "data": "Unknown constant `GroundTheory.Heights₂.Heights.PtsSegreChartFibreSum._root_.GroundTheory.Heights₂.Heights.PtsSegreChartFibreSum.logNorm_ofWeight_one`"
+      },
+      {
+        "pos": {
+          "column": 14,
+          "line": 199
+        },
+        "data": "Unknown identifier `isClosed_zeroSet`"
+      },
+      {
+        "pos": {
+          "column": 29,
+          "line": 221
+        },
+        "data": "Unknown identifier `isSectionOn_ofWeight_one`"
+      },
+      {
+        "pos": {
+          "column": 77,
+          "line": 146
+        },
+        "data": "unsolved goals"
+      },
+      {
+        "pos": {
+          "column": 27,
+          "line": 257
+        },
+        "data": "Unknown identifier `exists_minimalPrime_of_mem_zeroSet`"
+      },
+      {
+        "pos": {
+          "column": 11,
+          "line": 257
+        },
+        "data": "Tactic `rcases` failed: `x✝ : ?m.408` is not an inductive datatype"
+      },
+      {
+        "pos": {
+          "column": 27,
+          "line": 281
+        },
+        "data": "Unknown identifier `exists_poly_of_not_mem`"
+      },
+      {
+        "pos": {
+          "column": 11,
+          "line": 281
+        },
+        "data": "Tactic `rcases` failed: `x✝ : ?m.740` is not an inductive datatype"
+      }
+    ]
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PSegreChartIntegral",
+    "arm": "original",
+    "sha256": "8cb972d94fa77a08c22b45e56fcb837b6292579ce7b913f23c25eda3f26153a9",
+    "selector": {
+      "column": 29,
+      "endByte": 851,
+      "identifier": "fibre",
+      "line": 21,
+      "role": "open",
+      "startByte": 846
+    },
+    "errors": []
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PSegreChartIntegral",
+    "arm": "absolute",
+    "sha256": "d7083c27a1b9122579ab8611ead47d06edccfe95bf777ab2f2b3fe60c30e8c0f",
+    "selector": {
+      "column": 29,
+      "endByte": 851,
+      "identifier": "fibre",
+      "line": 21,
+      "role": "open",
+      "startByte": 846
+    },
+    "errors": [
+      {
+        "pos": {
+          "column": 29,
+          "line": 21
+        },
+        "data": "Unknown constant `ReciprocityTheory.ChartRestriction.G.Geo._root_.ReciprocityTheory.ChartRestriction.G.Geo.fibre`"
+      },
+      {
+        "pos": {
+          "column": 48,
+          "line": 24
+        },
+        "data": "Unknown identifier `maDensity`"
+      },
+      {
+        "pos": {
+          "column": 12,
+          "line": 28
+        },
+        "data": "Unknown identifier `cxHessian`"
+      },
+      {
+        "pos": {
+          "column": 4,
+          "line": 29
+        },
+        "data": "No applicable extensionality theorem found for type"
+      },
+      {
+        "pos": {
+          "column": 22,
+          "line": 31
+        },
+        "data": "Unknown identifier `cxHessian`"
+      },
+      {
+        "pos": {
+          "column": 32,
+          "line": 32
+        },
+        "data": "Unknown identifier `cxHessian`"
+      },
+      {
+        "pos": {
+          "column": 4,
+          "line": 35
+        },
+        "data": "unsolved goals"
+      },
+      {
+        "pos": {
+          "column": 12,
+          "line": 38
+        },
+        "data": "Unknown identifier `mixedDisc`"
+      },
+      {
+        "pos": {
+          "column": 16,
+          "line": 39
+        },
+        "data": "Unknown identifier `mixedDisc`"
+      },
+      {
+        "pos": {
+          "column": 98,
+          "line": 39
+        },
+        "data": "Unknown identifier `cxHessian`"
+      },
+      {
+        "pos": {
+          "column": 8,
+          "line": 42
+        },
+        "data": "Unknown identifier `maDensity`"
+      },
+      {
+        "pos": {
+          "column": 70,
+          "line": 49
+        },
+        "data": "Unknown identifier `IsGoodProj`"
+      },
+      {
+        "pos": {
+          "column": 4,
+          "line": 50
+        },
+        "data": "Unknown identifier `goodProjExists`"
+      },
+      {
+        "pos": {
+          "column": 14,
+          "line": 51
+        },
+        "data": "Unknown identifier `ptsIntegral`"
+      },
+      {
+        "pos": {
+          "column": 40,
+          "line": 51
+        },
+        "data": "Unknown identifier `ptsIntegralAt`"
+      },
+      {
+        "pos": {
+          "column": 36,
+          "line": 46
+        },
+        "data": "unsolved goals"
+      }
+    ]
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PPtsIntegralProjIndep",
+    "arm": "original",
+    "sha256": "4b90ecdbcfea71dc51cdaf96f2765cb13c9418a5faabd20fee9185683a51a29d",
+    "selector": {
+      "column": 2,
+      "endByte": 772,
+      "identifier": "fibre",
+      "line": 20,
+      "role": "open",
+      "startByte": 767
+    },
+    "errors": []
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PPtsIntegralProjIndep",
+    "arm": "absolute",
+    "sha256": "c8ebcb2dd55acd04f258c83788ba68b882639864275f79322d392e881a356252",
+    "selector": {
+      "column": 2,
+      "endByte": 772,
+      "identifier": "fibre",
+      "line": 20,
+      "role": "open",
+      "startByte": 767
+    },
+    "errors": [
+      {
+        "pos": {
+          "column": 2,
+          "line": 20
+        },
+        "data": "Unknown constant `ReciprocityTheory.ChartRestriction.G.Geo._root_.ReciprocityTheory.ChartRestriction.G.Geo.fibre`"
+      },
+      {
+        "pos": {
+          "column": 69,
+          "line": 24
+        },
+        "data": "Unknown identifier `MRing`"
+      },
+      {
+        "pos": {
+          "column": 4,
+          "line": 28
+        },
+        "data": "Unknown identifier `sheetDensity`"
+      },
+      {
+        "pos": {
+          "column": 46,
+          "line": 28
+        },
+        "data": "Unknown identifier `sheetDensity`"
+      },
+      {
+        "pos": {
+          "column": 9,
+          "line": 29
+        },
+        "data": "Unknown identifier `sheetDensity`"
+      },
+      {
+        "pos": {
+          "column": 68,
+          "line": 32
+        },
+        "data": "Unknown identifier `mcPts`"
+      },
+      {
+        "pos": {
+          "column": 32,
+          "line": 33
+        },
+        "data": "Unknown identifier `sheetDensity`"
+      },
+      {
+        "pos": {
+          "column": 59,
+          "line": 33
+        },
+        "data": "Unknown identifier `sheetDensity`"
+      },
+      {
+        "pos": {
+          "column": 9,
+          "line": 34
+        },
+        "data": "Unknown identifier `sheetDensity`"
+      },
+      {
+        "pos": {
+          "column": 62,
+          "line": 49
+        },
+        "data": "Unknown identifier `isOpen_blockNonzero.measurableSet`"
+      },
+      {
+        "pos": {
+          "column": 19,
+          "line": 59
+        },
+        "data": "Unknown identifier `mcPts`"
+      },
+      {
+        "pos": {
+          "column": 79,
+          "line": 43
+        },
+        "data": "unsolved goals"
+      }
+    ]
+  }
+]

@@ -108,3 +108,18 @@ done
 cat "$tools/PfHolWC.jsonl" "$tools/SlabNDensePf.jsonl" | python3 -c 'import json,sys; print("\n".join(r["member"] for r in map(json.loads,sys.stdin)))' > "$controls/members.txt"
 xargs lake build < "$controls/members.txt"
 ```
+
+## Namespace selections
+
+Use `--check-syntax` before applying an automatic qualification. This mode asks Lean 4.36 to elaborate each changed original module and reads its syntax tree. It checks names in selective `open`, `export`, `hiding`, and both sides of `renaming`. This also covers a local `open` in a term or tactic. A namespace resolves its selected names relative to itself. The editor file can record the same constant for a relative selection and an ordinary term. Changing both to the absolute spelling breaks the selection.
+
+Mrshu first restored the two relative `fibre` selections in OrbitLimits. A later qualification pass reintroduced them. Maugomez77 repaired them with the imports they need. Roy7 found the corresponding `logNorm_ofWeight_one` selection in `ChartDensityIntegrable`. The original, absolute and restored spellings give 0, 16 and 0 diagnostics in `PSegreChartIntegral`, 0, 12 and 0 in `PPtsIntegralProjIndep`, and 0, 8 and 0 in `ChartDensityIntegrable`. Restoring the relative spelling reproduces the original bytes in these controls. The three original import closures contain 580 distinct project modules. [First OrbitLimits repair](https://github.com/rohanarun/riemann-hypothesis/pull/679) · [Later qualification](https://github.com/rohanarun/riemann-hypothesis/pull/759) · [OrbitLimits repair](https://github.com/rohanarun/riemann-hypothesis/pull/785) · [ChartDensityIntegrable repair](https://github.com/rohanarun/riemann-hypothesis/pull/790).
+
+Build the three original modules at `c7791603122c0328f79e49f6be5d7d4402effc53`. Set `tools` to the absolute path of this directory. Run the test from the pinned original checkout.
+
+```sh
+lake build Development.AutomorphicSpectrum.Proofs.MetricProofs.ChartDensityIntegrable GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PSegreChartIntegral GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PPtsIntegralProjIndep
+lake env python3 "$tools/selector_controls.py" --repo . --ilean-dir "$PWD/.lake/build/lib/lean"
+```
+
+The test generates a five-edit Git fixture. The editor records match at all five sites. Syntax checking flags the three namespace entries and accepts the two uses in a rewrite. The checker sends a module to manual review if its original source cannot elaborate. Run qualification checks from the same environment with `lake env python3 "$tools/check_qualifications.py" --check-syntax` and the usual Git and editor-data arguments. See `selector-control-results.jsonl` and `selector-native.json` for the compiler positions and diagnostics.
