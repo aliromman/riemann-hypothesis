@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "pull_request": 879,
+  "base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+  "head": "21baf112ac31f7376204339a3dd01f56d9f6a867",
+  "base_src": "5da48cf36c47a7d87124fe72c0becbbb26a419d9",
+  "head_src": "2b2127750c4fda555377ba2654f4015bfeabf8cc",
+  "changed": 39352,
+  "bundle_sha256": "67fb4646fd4c946c86b6fa6ec135eb8ea5cc970f13d8424b3450cfc2c1bebdc3",
+  "source_provenance_sha256": "d9358e64ba8c0977b727ec39c76ee547a599e406a38255637cf3d01b303c3c74",
+  "ir_table_sha256": "22651ff02ea3f245520f541952568bd3ded96041262dc00c62abe6dbbd90a54b",
+  "stage_report_sha256": "120cb409bc1f41f254ccbc150c9ca040527427d4c264511830f752433eb8a14a",
+  "revision": "first published commit"
+}
