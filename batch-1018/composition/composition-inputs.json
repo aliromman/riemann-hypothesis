@@ -1,0 +1,1407 @@
+{
+  "facets": [
+    ".olean",
+    ".olean.server",
+    ".ir.sig",
+    ".ir",
+    ".olean.private"
+  ],
+  "parents": {
+    "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.InvariantSubspaceMobiusInverseRecEqOfFinrankLt": {
+      "archive": "5a6a6cb425ca18c76fb604a2c834913fc0496302276473f2ecd738f4d62faa53",
+      "facets": [
+        "599cb74911c02d4085e04e4ed6a5af0c1f2e18f33866a82b60dabe0530ef69f7",
+        "c282b4b12a25ac6519cb90bb72f38a07cfc672e26422d3e0cba3dcebb354d437",
+        "07a30bc5b396b2b9ff2b82e90e27c733d6623e880e88802145ca7f382efdd427",
+        "1f8ca65b643f8e108654bb598e62122755bd3816d9a159f8a984971899881b41",
+        "58f1cd0018da0892479691404f4464fbf09445551274991538d47d9a6582f713"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.BlockGLMap": {
+      "archive": "4302fe5f9472cba7170e9177f2363ab6ef0b68f1e0a5f63157bc3169bde5b023",
+      "facets": [
+        "02bc438a12d50d81cfe291ba80e157a83005c8481f632b9487678b5cb77b9f03",
+        "6a0c9923e9da143935d86aa9da99fdf437e4c5ee3745feb6c1733e18941901e1",
+        "23cb4ce9e085defa3194a9d6547c8aed03959e39e7be4009433ad9045a85534b",
+        "9682003d78e747ae78be54fdd6fb351f33e5df3672901cfc725c666567b65c25",
+        "fb9fcfad03ef96fafedc07316473e81d33dc04de1c1cc209674ef5c616923252"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition": {
+      "archive": "0b1ac4c1bb47c546ba11a6a7bae469c1bc85db79b52f34e810f579245d0be94d",
+      "facets": [
+        "58663030cb0d3a17d4beb5ee3114c2d0e3cf25998ae99229ddbdb5bbc7fe8536",
+        "47f4fb36dddd398d3b8cb0bb58b36b91afeca5431b68d82f0ba2b6d1565ebb16",
+        "26b72dbab0af38032cbb08b1ecc3ea0f35539f8ab55b18eeafe7bd6221ad6a2c",
+        "fe7d69de4e1a9fd1df9c96922d548667376b4e33325f294259dbe982551ba058",
+        "1a795a2377fd65a4abdc1e84ac1006f4d5b706c11ac49ebfdfd669cb6ed4316e"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.GalMapMul": {
+      "archive": "1e4c927f2339c98628202e681836cea966a86ac22e5f740a6affea33edc59929",
+      "facets": [
+        "a555a439de40579b5199344e07b090644b3823fbfae62a754c1bd4c92d670059",
+        "82fdb7e0bbf4c1f8f061dc7a4fe2affdc8d2b9737a429060163d2cacdc5f07d3",
+        "bf75a5b7cadae6dfe032ad30e4d500319bf3118100de2d638d1f7f4bcda8b892",
+        "30f33cba6810d820c32cdd5d33fa6fbc940f4649d666962344b4d1c20967ddbe",
+        "42d85303bef5c8a6bfcfef585de36790c91e87b325a8dc6425869dc89e19e903"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff": {
+      "archive": "2c6823348b2a1e841c4de24c957197034ee909e6a55a9b7a2b0f1853d8fad962",
+      "facets": [
+        "50e53db692e793c838f96ba4918502f83a6358b66c3a0398e113dfa6be6fa22e",
+        "d2d7eb1882200f065703c2dd45fa2c855a6e77ba8771892dfd7faf8ecfbeb08d",
+        "759896d733b0b7a537740345ca32a85fcf311fc695b09090c3f5cca9a84aa26f",
+        "c84e4d85a64f5b63f9ca34477d58e70ee346b375d09c4c165f37bd74ec5f630b",
+        "14aa576c88811d5c4f37bda57cf815c8d8afaa283be7e524d716183c6c275a4e"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.PullHlComp": {
+      "archive": "3f0e96654ef5b9e1bf7133faab9e793003aeb47204d4d0df71719c8e71ce9565",
+      "facets": [
+        "1e82741f81d56939533c5fdbfe9193884498262679e970594a8785f526f8cd46",
+        "d519d5a166b8f3b0f4d29c3b690cadbdb7d5709119ae771bd1071f223c90d1be",
+        "e3117e2efbe038bdcd70493424ac596701d14452a1a33c274a12128ee1c1beab",
+        "7ab59bb3d9a4060a619f34fac708aebfeea8ff889c0cbcc29379e9ffbc50cde3",
+        "be2b2f3f702c9e9844fb5709cf49aef3c6d1ea9d3fb3a93225aea12add8a8206"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.NormConst": {
+      "archive": "a50e92d84545d43e907a40d7ecbfba0299431fbf095229337eb20867a736d7dd",
+      "facets": [
+        "c183e69d171027f860c619982dc1c4aa77819991fea2d57a76f2e2aaddc496c8",
+        "8b31d234bd66c4860eef3e1566e2c2e0deb1d266d56cdd51ff8d0d1fd08ebbb8",
+        "b93d42cd58af2b38247eb5ad8edc5c54972b2c35c91b14c0689dba345f5ec47d",
+        "018171ce3fd81063b9a95ef5ab27ff8e234b8b0b767e2096d34744415b5a55a2",
+        "00c8027434f266c5cbbd96b5490735cfb35af0e2df70f2bb4eb8369de23904b4"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.UnivFrame": {
+      "archive": "1d19741651ecba1d7c48426938884d891c47794425ca32a7296627f27b33c71c",
+      "facets": [
+        "1d740279cf0c324e5c753f230e646cec2d58e0912feb8146d99e4730a3baa224",
+        "4f69c6c73f4eb6d59689ebd7dc397252d52a27c10aeaeeb0f980ac66e5e7ddcc",
+        "f35d771edc909f6ae2cf9ffdc94d70954292ff1d7391b03c9a886e7c378af1b5",
+        "f302fb1af94ef86b8e1e8eadb5d60d4e3a75427a4d4341fc8bb899a15032935c",
+        "636396887873411fd11f5479b7f7e4290aed2ac4d772ae58d0766f6e942dd037"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace": {
+      "archive": "d3f19a1bedbb52adb474c8ad6fde3b5f8d880289bad2da5d9ff1b2267c25e3d3",
+      "facets": [
+        "c50cbe4c901764d530e86bd3273bb5ba83708c54b1322e1f3862e22640171f66",
+        "82c47f0f060b5a95e22baf21681dce05fab182173869a9a668f2e5859c27755c",
+        "2d99f1c019c49b50824985ebe5f4c1972a1d2980cfb1d09ab96fee1ac6a0fc7b",
+        "713c7e6936c460c5df8f1cd2d15b9e6b70d47229f065f6e33da12d5feb4b2b04",
+        "1b04b84de8635fbf6999d6826d3d209132c760b4bc69f9af315ad7a0b98fc0bd"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsMatrixForm": {
+      "archive": "fc0036b3b57952c5de08f403649c48e617d75a279eabd173190b355bc6c3b12f",
+      "facets": [
+        "ef4bdb4583e377f76a6c8be193b7d40f44c0c4c9a61d41a00d65904e2a94e527",
+        "fc7744eff64e1ac5db574f97c949e19ca7dc5b60c6fa789da0520128bb6ff63a",
+        "bb3e2503e512caea92f4f3a8e3a67e4aa651777ea6b868c5d7456a2a628abf75",
+        "1fbb4972e8eefc9fba9d7ca33b40a2e7011e6710ff04d13043e4d8b707848973",
+        "1abef4d1f3b272694b5ffe75c2f4c7baf3cf32bec2cf77cf7373adadea981bd1"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.EqZeroOfNotPrimary": {
+      "archive": "ad3457f808d0e2cdf8bb0b1fd882fa4d8b46ad31d3ccfa4b4f9c7c6bcf85e3b1",
+      "facets": [
+        "4d1bc8cebb16850daf25de53af2c86a4fb22927279c6ee8171a8bbdeebd810c9",
+        "c83233d1a2318a514d335215220eef0d64ee417d6f4f32227c477c2226d1b531",
+        "94ad552a09ba2a8e097b462feeb0ee8d28a06238b173f8cda8a8ae45a1edcd1f",
+        "4d8af87be4e523211ef61947dc8a208b38b848d30bb75ad76e4b75714fc15f27",
+        "3b57e76bc98614f4c79d87bc98a037bce81e051e23c9ba71fe2b2895186626f2"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Proofs.HeightProofs.OpenImmersionCompStructureEqGeneric": {
+      "archive": "447948789a0d0bdebbcc674b41d8aad98bf0f1422946b96da406d32abb46e2de",
+      "facets": [
+        "71fa3fd373840e38da68a8bb8c909515e8f3bea80007cdb281f0a2d3dbd01379",
+        "14d27b1a5cd5a4c55aa3d97bca7b7537d46bda4774992ca71dce7f0521e6e1ea",
+        "ba6df6be9d91bee165e2aa4e7ef50925f3f555d4a31eb75d2d2e0c8b59ce393f",
+        "cd8f5d0f65c20d77c9ddce0f085f8667f431b23487f9793a6b0c47841b53e7d7",
+        "b9dc5692e1de631389659489329b3a41909817aabb92b424d870cbb67a58416c"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ArithmeticGroupCuspCentreLattice": {
+      "archive": "0472fc0467d7c92f4e0ed8a18c5d019529f3359c9cf17686ce78f3ab8206ff8f",
+      "facets": [
+        "15db50e40d5a2d277a537ca1fa0ea90ba4c3e511ced6a8fc191127904f9b816a",
+        "998ed8d37887e9a7c543f7e8311a6d785161a47706623fb1b4ad897c8aacf49e",
+        "fe9c0b5fa9b143ec3224b321919eded994fb32d997a74e7854f5e32ba13c0642",
+        "0809d301e61f887b19f6d2fab6aa034a3311df9cbb6b8ae3abe8132e0d161126",
+        "84c80be3e8b07d179b35d9e2e71414bd1a87988834799f5a6f4a07530809d76f"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FinrankRatSkewHermitianMatricesCmField": {
+      "archive": "e9852c3d49906cd9e0bce0bf6da53bc640010aa5fdea2654fcf4961e960b5d5f",
+      "facets": [
+        "afcfaa5050703a404b1a56f32e5172fc6b17ca9b7a96b096082a1aa6a9d10f82",
+        "aebba3b7af337e2aae95fcddeea08a77636744211a388be40f24e89be1734c27",
+        "801f13551eb6ca74fea4597f11bcafaac1d2b3cd37bb17e2620fe0219e90784a",
+        "2d72abafd31a268d73bd3078f365e40b3df4fe3244e96bca61b5624168dc1bc3",
+        "988d5b9f9c4e2f20ef59bbf823908ee518f8f659a2e5e682e192f95587298083"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ZMatEInjective": {
+      "archive": "26f811d78538fbad3842edd98374ec47fbe0d14453d7850950d7d1038d22719e",
+      "facets": [
+        "f14d46e98850930aaeb2a4de6af290b336d431d23ad83e9ee5db1951998412c3",
+        "4eea5f9d78e5103232cc35026296de49bbc7b09ce93e59c6715a853074cd6ada",
+        "6336bbe46b7877dabbf41150433a177026942d1cb0f8e6249a35adc5aa9c7e09",
+        "4ac0b524128af5f2508ece069a127654e734710917cd920c5f2188e4b66708a2",
+        "83e9f8d958b4d32ac352f6299ba06fb481747f3995f42d19ed8a7cfd1517f789"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology\u2082.PoitouTateNineTermTransgressionZeroApply": {
+      "archive": "0fa18ceee6012cb3860b771504536d080d65c0f41292c1c0790e7cfd432631bb",
+      "facets": [
+        "dffc91aef34490d1fc25ab2429236a6b0355079a8a025ab609ee50b0951e3711",
+        "06a90ed725c3605c639f51dcd0129fb4be55aa2d2f63f9de403af376eba15000",
+        "18de5af1c27d9508adf0b91d7313edbd21e3deecd72780129e79933bb580f8fa",
+        "27fb583c0b45f001b0a57f0da372d10fd9faa0d68012c921d1cea3af899b7815",
+        "72d4a9fe636d2e930c5c6268feadfa79f739e3161f8900a42533b00e590c9b2f"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective": {
+      "archive": "b1ca79b320d0275dfe068e17bfde4b0e5631a4c3ce77d0b6619340dabb1a2777",
+      "facets": [
+        "3c2d4b62226ed087c0b04002b44269facdb59c29033cde4586bafe957913c551",
+        "1d1530ccc24b7e1cddd0812ae2e2f398c451200e0ea6d2fcaead9b481d463030",
+        "c5aa8a4b7bb3e02ce507331b2615f5f01110ef5305136844adad1f6da370341e",
+        "38d47493793cf16a18d01a43d5ed01d44ff647b7f549deaa194352828aa64f2f",
+        "c240b5133b79a358a47440f3e103be70efb16bcbd154a9bf57ac9e3c30deba96"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1": {
+      "archive": "2ae50a0befd29cf96a61d7e3eaaf6418eab8b976661994cc2a6633770851f7e0",
+      "facets": [
+        "03f7ae9498f5dbee5b58aa81c18a47936bb23493fb6d560d9e208ef9efd8e39c",
+        "34ebfc09c84a0bbaef0100ebfa8571e93e458208ac03c582f107e8ff60edea73",
+        "291af6b33d36f19e50e2ec067de449b6612962c76364f41e814a3142543a8ca0",
+        "ad943a060c9fd710918c18b93754a3f72bee9c4e87422e155208c100b39d56e0",
+        "ac4d9a19eddca130c16375cc0da56cca905f4ff1abdced36bad622663d041a4e"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase": {
+      "archive": "f2ddb340f3a0eb5c669434777dbaa129b7d640ae9dd6bd97368fb5f8f2c5e39b",
+      "facets": [
+        "f08917cd9743c569adc289adb82c33ef2879c179068299f368e195894b5eb2fc",
+        "6dacdfe3418fb867ea7de332d2c06c808fdda69181b1ab432c0ddcdf1b895b21",
+        "db70db8de9f2a22d1a59a0950bc2ddc238c57e6b5e1a5b16404db87cff044934",
+        "f410dca72a865b94c4b856003b8c390b1fc363e2c258780605f8652e1b9a7594",
+        "c85c52382b3e0115b8eefbe80d5b7575cf13e19b3601673879f6efbb900d4dd1"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AdjointDiagonalRepPreservesWeightPiece": {
+      "archive": "b11807a79ccbbddbb79bda23352636b6516100aa5a973cdef515204b6d83fae2",
+      "facets": [
+        "e0a8b6bc844f3c012c2e902e312c5fff754c383c7a4bfa15487295c4c3794992",
+        "4a5848dd2834f0dd7734a5a37a1a52722b5a4a079afa1e00b23b46420ec4ba2d",
+        "bb64b485da786f55e465420b6b4d37c8e8e2248d01568c3549c2bdffa81a68b9",
+        "d75e3281b5b8625be0ed009a4a7f915b2fcf3f13347d9cb7d5230b4f57a4f96c",
+        "24c1299a254498deef4aebfa2c65c269e4301e219e6955667015ad012b9009e1"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.CanonEx": {
+      "archive": "0c88ab94d5697623d565310fc4180eb00f693db6a18537bb122bbb6d2826ab8c",
+      "facets": [
+        "e62f096d22a3af79eea8978828966f05936e7ce2be0a61f13b039b333bc00237",
+        "bfea0208d4d358a075d4ad5f0217269341b8a82ffb35e9e231b5d88d39f6fe06",
+        "3d8e5f284b066ddb9735852f795e6c4b39a89a662412dbba6e9993dd73c8720c",
+        "ffe6de96d965ef4623a8181e790d532b03106be82a5d6c6cb84413b6dd4c61e6",
+        "f511261aaaebc69756ac67e577607750272dc277b099ae1ad40526ab1e228561"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsCharZeroPt": {
+      "archive": "6f8b4f6ffb05f6ab008f1c45229c8bd8e3df43cf1493aa26703263827b743caa",
+      "facets": [
+        "710b2e233fbfd11ebd447528bc0b6402941540efd24f1e066ca483d356f02ded",
+        "1d1251c33c1c99580f595fb9799951cd9f38e687d5286c1ffdda336be08681bd",
+        "55b24da3eea3fdb096e11bca9b1ee88481a4746aafba5c644639557043f04a6e",
+        "579655d9b003ab29592335f0761f3ab3f1ae6cc06ef460522846317c9f3d0b56",
+        "45984cdef1bcdb0e4c6f610ff7e9fdf61d31e46490fc64ec90e2b9c771b24979"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne": {
+      "archive": "532a34a2038f7f05cf4f9745dd18ce8321ffd3324e0053599effe439659ba8f1",
+      "facets": [
+        "31193bbf2f32c07d7b549f76b191a1cc4e5860be63ea8f5983e3498019494cf5",
+        "55167965db269b893262d5e48ef822f78b65344ab639425739a17b63f2ab047a",
+        "6fb6a0f4aa9d20db3b11817f872b0a3d7c0b0cb24e973b6a6ea1528062e73fd6",
+        "2347c6d1b7407b51e3a79e6d05ec95bdb49eb334dfa5e2f9ea6f52a05d6c390b",
+        "08b66d6b1549113042090a662cb8c5ec93e968f3acbc7f80268754086d8ad744"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ConjTor": {
+      "archive": "b7f8eea6cbfd2590d5db3d895f2f022c9a78d7f6485ceae89fe4ab9f27a5347f",
+      "facets": [
+        "d436c86c22beffca694d8547a47d36827c5c018b6cda81b08ded65e8acb71f5f",
+        "8f486698584d6f8552e4e1ce835f6ce8accc67ee09fcc27da5e99849df7786db",
+        "84d9ebd4ba82005380da0af9fdd3f3216f6543f49f505f3c124cce5ed07b15ce",
+        "ad1b88aa8264bf783ead86f8328ac7f640e1be0b5837f4c6039064e35e070349",
+        "66a676868ca463288e1c87427dfcee47e8aa35e40a7b1107a46bf53527692785"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight": {
+      "archive": "80d51a31b2b56034609819dcc1f8eb4dd9f093c6916329631511ce55a2e8fc34",
+      "facets": [
+        "90cbb35b35bbd5450c44d44d7125da0691ddb2485fd6a05e24d45dcbea955c3d",
+        "59e6b656a47c299e8578a047ab1d5517b563d08217f359c1caa4c73af85a430a",
+        "f192ce253c696c1e93fa609e45e0993c06f024ae477f31f56cc74dad276e1e59",
+        "94846018ba21f137c871b8756a95b6ed3b2ed05343ea1eb81ded98e534a0594c",
+        "87cfdc454e909ff6ced988742f3c8344241d08ebca02eb2aff8a20dfe744d126"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.LeNuIffPowMemPrinc": {
+      "archive": "bab652f84d6f0c95b04da405d6b6acdb527ec69b3936dd262bfad5ad23e788b1",
+      "facets": [
+        "d0bcaacca51f8fc06a76f4eb16f65017844a792918541e50001cb302689afa91",
+        "afba9702804a1bfe16d82fbfcd325f32dfcfacb86760ad8d554d718a1c8938e3",
+        "afd4048c8936bd6e940f6dce4b2daa8fbac0f47a4e82fedf7dd3b2660da1a4cf",
+        "98538d1e7028abcd70602b4e452f80cc622efd40845efdbc0c0d39fff7618480",
+        "1f9874304df44ac0d7bc73a2ef5b0eaf48289c015555a6d50c58a66d671057bf"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.BundleChernComparison": {
+      "archive": "cea1a61639b134df4d4ecb17ccd8d3328c4a11a59b18f554c4c88f808c51a5bc",
+      "facets": [
+        "df87940f3e97455b2df45e0a07cbae2bb1e023f0b062ad225a9592400dec6e07",
+        "f8c477766dafd97e0f992bbd08fdbf90c3651de79f72a5236d1b8f34af8d3703",
+        "88f6caca7cf568569a39ed0a9fc5fefd8787aa7f1275b7f98bfcd167d55c8d3a",
+        "4869303b1799c06467f97fe619af0df8d84c58bea724a375d6a09e678410c54f",
+        "72f756a0ca4367557cbba1123c086fff00facd7fae61c50898447bc72782e109"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.GoodChar": {
+      "archive": "f5f7530e8110a68265d348a477123ae608518d56263e73c455cd7deb995417e6",
+      "facets": [
+        "bd1e722801bcb17f8d079baf437f8dd04434c1b516de6d03c5c5872499b30100",
+        "ee2f3bdab62c8276d0d57e37bbc331c8892f51d7b4b5ad1ee2e5ffa569eeb5a8",
+        "7c1be67be96afe76b1eaf9a6c6d1c7759a2b0d341489b2a24f95e6cfe23ee98d",
+        "649340151698302f328e6ad80c87eed4abee6a58298974829c5d921cb61ce7d3",
+        "d6456bf940f9ec96ed17aab185016c30cbe2c99c6cd99ab67f1934a79a38bd38"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.LaEqSqrtSmulLam": {
+      "archive": "038c8bf5ef9659b8f03d92e688cc5cc0ad6a4c4759958e7104202859572d5a38",
+      "facets": [
+        "212b06b691a06b4204b16a868ddd17365a477ddd748d88bc330383a44c678c0f",
+        "cc480f97fc67e02374c5a28a89d7d9b396642abb133b80abdc497a0d02c40dc0",
+        "3ab50a8568a9ed2455c10e457c8f20dce2b309c85cc3a1c62b95c1e8895202c0",
+        "74914b0fd4aceb0a3f7efd5ae9491831314a613f1f1d03ca2885fecd57308014",
+        "5b31cc28efca71d45bda50cd9b4f6dfb837b94d813bf355ed0b6e138e51e2619"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SymplecticPeriodMatrixIntegrality": {
+      "archive": "3d2051410081f60093df584194a6a044ccedd78da3470e834aa0950a4d04c68c",
+      "facets": [
+        "eaff26d00198beaf98d9262121c7912dcb46339b2d28de650c3579315946ad67",
+        "ddf3c4c002492b03f12a6dd6a4f8ee88b7fe45be3df23c11379b87e700b61c99",
+        "f2bf4da433aa528895f475a4ee2e6bd3e87d68a0a7a61aa1ad08b637f5704d9b",
+        "bb32f88ddc011365b7669a58dd9aa8183fcd650a00ee3390b47ece5662b21b12",
+        "e2311e4bbd16f8683473f8049200a2eb800960b5f2a15910b4571aacb3203602"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CycleNumberRename": {
+      "archive": "852d163e1651536e18d70b21089b499ae0a63e6f0e63798a8c790bc4a1c1a67f",
+      "facets": [
+        "435d7f491d64fb711788ef090be0ba662e2c7bbddbd85acf8ae4613cc1e28f19",
+        "cacf8e1c140743b17e9a8f8a855a64e9ea7bdd7aa090b5062d0ce15f770974a0",
+        "864be3884f732d315305e70228bacbe8576cdd1b8fe9a2a35e472093b69af506",
+        "60cf24fd54bf8c57ff52a7d2e65d680ea8a9c145bab2dc5a2d83baa0e425e376",
+        "29eebdc855db3f9278fa2ef42750a645e07725282ace15638a51b1fdfd59ef25"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.AutomorphicSpectrum.Proofs.MembershipProofs.CyclicAndLine": {
+      "archive": "b6fa150b62e715fee64a0cee7b3d7f05eb8e9c09cf74b62900c8839a9afdfccb",
+      "facets": [
+        "2fb735717146288fbb314898366777a8dbc064aeab61c9823ca31938fd918f4f",
+        "f78874419b50a3a72656170322f9cccb6d1c7637656a09cf90570cab28ffd477",
+        "7c2271ace2435f3dd23f2f8e66cd97d7246b9bc8838d3ba811ae8b2c5cc73e3e",
+        "d703cd7ae5fcb6f3d87b98a177c987e9af126fa6ebbba05b30191135cf315dcc",
+        "32aca963e82f765a5e0006bfd5794553998a127dc639857fc5784ffc9ca44b60"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TraceUnique": {
+      "archive": "90ebe76f9069df1fc7dad68ae2ef23ba1d8b9392ffc491300167fc56483d7d4d",
+      "facets": [
+        "7f8b811540da951471c69c79905329a6f44761696d201904e2ce08c3e485adc0",
+        "e014fdf19cbe95532c7c076ff23a9eb446b3d2d5916a553d25b540de3122fc89",
+        "eef7769b36e9896d6f601afefd7521efd6730ae584b4570a072fd480d5aad40b",
+        "c1eb6f7af440296817f78ce213d1223982cb54a74aa61eb39b0a0446844aa869",
+        "d4d11413938707b949a74b1040b05176d7299ca1a11eed8074ee308841bb61e7"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.EtaleCohomology.CohomologicalPurity.FinLeafHens": {
+      "archive": "06683aa64a093dc9b62aba6adf6f572798e0704637692d9874340468098b71a3",
+      "facets": [
+        "15d145ea4936b8767bf026a5bf84f546123dcbc7ad4a2ae3b4173ac99f89ed0d",
+        "a9b1da9c03d3cd5d8770aa0431601d99df40e27cc6ab7282be2227a6a72c4a8f",
+        "cda0323ee225c43f5063be4db34f3dd6c74793938454b7c334c8f4d194ea081c",
+        "2242654df1cd6b53dfd57c3d692c8a0539e733a264143fe7098fca750bfdfe98",
+        "93f47f65d7153cb804537d6e047da624c19bce23546ea02d5495acc8f1f1ac6f"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.EtaleCohomology.CohomologicalPurity.InrFold": {
+      "archive": "7fded96f3d37c2fbe86593f69c5a2bc44d0b3dee41a48ddff6c3b7223b2682f4",
+      "facets": [
+        "e71eb0efc6a052885156565df619f7b4d61d7be486144d3891e6303a956ca434",
+        "1e9adab57fa6a78a9c17eb155277ac9a91c6c612b69be105748b6b5b1874c4d5",
+        "f56f369ae89528f8431a134af7b6e8ebb2fedb069f337dd3444c32ef4e018fb2",
+        "af10e3e8a9a3247a49a2cac9066721d534b70df6f702ecf8bccbc2a50d03e119",
+        "db1db92f19abf13d84adef116c1ef2470514d488a21c2a22b263d1347705b89d"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.EtaleCohomology.CohomologicalPurity.LeafHensCutDef": {
+      "archive": "5897a724761dd2f976f8ee42cf715a206ca5b14f85fa9df59ba633269f4dffca",
+      "facets": [
+        "dfd510fe68c9346dd83eebd1bcca500d2bace377130e2795b8abd5fac49d5e0c",
+        "08e2184fcaea7a9efc5d1c5e671f3ca249250a394155c1869a4658ca60b499d4",
+        "05a0a588413199154c73d6a27f05dfb3c1ae3ef3bfa615b405588948826b694b",
+        "b35b8024533b662d26ff60bdb5180bdffbec2a21d7cee3067f9df5967b92f519",
+        "f6117b1d9b0afa239a7d0b24586b3dd31f2b9088a1bee3de8ff24812dc5869a4"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.EtaleCohomology.CohomologicalPurity.LeafIndExc": {
+      "archive": "bb9012f6f15363cc78c87922cb21fa9bd15603dd0db7baf1c2ca699f4c12ba93",
+      "facets": [
+        "a000cf2c9874ef9be8e0b84253a5c94b85c7a32e022ac024e979af3a907cda14",
+        "f952fa484a3de58c7fa9bd50e823128301d0fef12fc1305b45f830356397d333",
+        "20c0a4c70884821a91b81482ae87d1d9be7f2fa55107a5c486609356d6bf95db",
+        "821a1cd26c546b1ad3824510825e268772d196b91ea8bd87c20df84bfc47eb8b",
+        "16b2804adf2f81edde451be00dca79b3872c5447d8f6aef3888248b2ccc12f41"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.EtaleCohomology.CohomologicalPurity.LeafRootPf": {
+      "archive": "b5c76f49faa334a99ccf899e658090114e5d30010602135154ad7ee68cb50157",
+      "facets": [
+        "25e4a2324a854f559012b7fd2ea6e4020fe0cbc16159d34fc0620a62deab17a6",
+        "b3fb594da89ae5c2a496ad6a2c017ef2fe63301b6a3e7cbd1d69085f80d5a83e",
+        "adbf5dc44ba58e9c73fb69363b9fe8443bc1ab6063e267489b43c2d8074166df",
+        "7e2b7a29219ad8819da3e17c200ca1ade222048010d9873e268e220ddc4d42a7",
+        "65f625f5d90aabd441646f0532bc02e67d0d52497d9c33d527c55e4599bb4725"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.EtaleCohomology.EtaleSheaves.EtaleChapterDTwo": {
+      "archive": "c344d09f2097b874ce1aadfacb1bf63bad2b4f6072c77e6c560a3ab32f7eb8b7",
+      "facets": [
+        "f4dc438a7a3f4e9aad991f366d2f92423ed8077db3415dcac50c704c34897a6f",
+        "3d4dfd6f508283bd256d45c03890510e837a663378c7ddb8fc45fcb182a7e3fa",
+        "8b0dbacb642ceddaccf8b2c7278950d414d95cd03bfd856c8f9b06dc06743954",
+        "33ae829c639edde503518453b2e235950caffc6639ed98bdc231e0e0041e1b64",
+        "6421b3fd05e4e6fb8ed444c52f47545913c2f3e7a68b40ce6ca424a303878f91"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.EtaleCohomology.EtaleSheaves.HalfDegreeVanishing.SecondBlockUnimodularLocusInclusionMono": {
+      "archive": "280c7f635b5ce721b2c79ba36633d997186e000887b601bed7e0182b6bd019e4",
+      "facets": [
+        "738bec83781e01117646d7060db13bc4902f607b7df010b8c7350843f72024c6",
+        "96466e134f1bd9e2e1c3b19431edaec6438dfab6b930e82d96cfc39db315d7f7",
+        "b666f80b47f399860ba1e9311d8f5c2d5cff3544a17545ec8dba235e03020332",
+        "d55be33b8e5a7758b2ab7d71ed577fff348cd510490ac2f904977aac282d9661",
+        "f614e8410b15789b727e00a789c01046f1b0ddeced4a998c6ce46a76ce8eae5f"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.EtaleCohomology.EtaleSheaves.InstCommRingR": {
+      "archive": "69bbc43aa512b64bd9d7f039a0ecf56ecbe5002249981bc80cc3c115787ecc8f",
+      "facets": [
+        "c5cd46f9e496d8a7ffaddea9d436382b16e3be6671116c0e86d5775c7a339f75",
+        "28eab4515b1edc22b62824b22e94a542bf91768a928a59823070ebfcf943ec67",
+        "cdb705579da62655f328721a739853080a418198dfb682243fedfc5af3b05947",
+        "b2dad2d6d1d94d361c7aaad99a8079e997ddb454a99bf00eced20990aa449fc3",
+        "01bc07124522def918229b92e7313a7c153d721b47b4728dafebe2af9eb1baf3"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.EtaleCohomology.EtaleSheaves.LeafGeomPf": {
+      "archive": "665516b0b5ed25d409ccd1eb01482e9ece3d86e7f9c4fbf8b22f4eee20540051",
+      "facets": [
+        "f40e01463355d5aae00bae8049b0a11a6a0ee9284d2ea20cbcfdd5e198f6e1aa",
+        "560063890614e42cac384c6517a9111fad0720f8318d276668da1348850fd020",
+        "3896ff296c38d258d05338b865eef00303fda9f65194c32ef8e4a18ddab79739",
+        "c2dca6d44e27159f541d7d78b949978cae5c8f614338b7f321c6ce61360f6edb",
+        "89475cc270cc661272f6bdc12985d9d9d66a7994fcde8117196011dc23e7f50e"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.EtaleCohomology.EtaleSheaves.LeafMapWPf": {
+      "archive": "92631ef472ba1af5290c0a9032b12dbd2c891aee1ee04a277a74abc949b123a6",
+      "facets": [
+        "5c1846804f6d6e0d0eadd0a92626313f189b1eccb5372708b35103f51f6b13fd",
+        "b9846968c9662aa2300967841901778c17a931ada72f346eb4aa468dcbbb198f",
+        "56a54e8d0e57d0b675db7a574bac0a327f468e75f80ae603d4921d2f78e9c9cd",
+        "400666a645874019e51ad63ca0203b759bc171b80203617c64ce3ef92c81baf9",
+        "8782c375ec19466992a1ffbb26ef254df42a78198e80049a39dcf26d102f5c0b"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.EtaleCohomology.TateTwists.EtaleChainsMayerVietorisShortExactOfFree": {
+      "archive": "769dec92419a86a4d7e822eea93b5f4eb46f05b96f1efa7b0d8d4714d07a7eba",
+      "facets": [
+        "3531eb785e76981cd9f1ddc225bd4bb36c492d75b04edb3ac57aef666ae3a865",
+        "185b7cf1a258f7899f5d7d5f4f6b5fe1cd450fbe6553e3da4a34fccbc8a79caa",
+        "b682e369035247e76d5814ce7c97fd600dc1069c9c786c3f3c634d5dc8adec53",
+        "6bd410c7d51ea13965b3d457dfa90b25a27f12b079703bf7c4a58f8dec44fea2",
+        "785598bfda944c43984fd0a2f4508b6e5872812e2c3c140bc62c1366ca1315ed"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.SpanSingletonProduct": {
+      "archive": "bee57fdd18d98a5671e0005b9961e2a3c7e506a5b1afa841da0cea3a437c70a3",
+      "facets": [
+        "abd86ba2af6bbed1caf452f6c66a8531a8e3ca416a2db19a3bef40c294614f51",
+        "53eca6059a312b09b30ef84ba1d83d751bc0abdf9365c0f1bcd328be8f4dc4b7",
+        "3560bc7f5dec58f4b6789ffe07a84b4fa6bbcf15b7b173aeadd7ca2e324aaff6",
+        "4a1988f72fe57bb73bfa76f461e19a4ce97286801e51bf358d8320929dc3592c",
+        "d936ee1700af649aa9b9196643fd64923ad31c78bb228e87afd36dd5ec06c322"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleCoordinates": {
+      "archive": "a486d9f80ecf064c1c81ecb9891a832ccc23a5f951742eccae4d535e639aff76",
+      "facets": [
+        "d05e52efb2e4e3124aa91f40ec625705423b3ee6dc0b6d1c2124b620b4496d0e",
+        "b82523cf60ffe580013890b7a646bfd6a2d7a7d50351d5d173d04b6144b4cc34",
+        "eef9f5701ce14e6ba3b5f05efe45a5fc6ae01ec45b3c615a56b14ab9dc23ba30",
+        "e5ff5e6e7dda44a29b0f141907ddfff425c3eed9c07cc328ae277c27908ffa32",
+        "bf5a93c3161ae2b05ca1dca6a86d2e8227c073c45e0ac9abb969605ed0c7e9b4"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.FormallyEtaleCoordinates": {
+      "archive": "e67abb1c581b025ad8ede19d2545414c0d5aeb2b9d90b6a542017c31fddf4e96",
+      "facets": [
+        "80059cd7977d818bb88132b302ec91796e6204bd30a4f146bd5a7c1ab541ba77",
+        "eabd86160ffd57a340ae06084bdd94c5271147c3e01807725a8b79b2e3793c59",
+        "a3b813abfc93d0b102792e9895ede4b8b9c2249bbfd901ee2bd6f5c4c0a97254",
+        "7dda2383fac749eae268bb5776a31467b35a21c83ce8e54e4b7ab88f3e3763c8",
+        "7de40cd377541cceb4946bf491cfaffb7958b8308cf7ed9bedffab209a93e531"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.GraphAlgebraStandardSmooth": {
+      "archive": "fd48b063b115ceeb9bfbec08be52ffa1f63969dd82b8cac5fb15b8e26e99c8e9",
+      "facets": [
+        "eb59e39deab53529f84b2d5b319c90f90dd620dc37dc727567988c08b3a0217c",
+        "42856c23c1cfa94bf2123be3ad9f6ff9ee94ba4e34b51a0513f151b851ed9461",
+        "617d5e6db8ad63fae49e8ea62801a941cb52a8c27d4d0e98694f42413567b022",
+        "41444d79781114d9f603f33d51941746fb8dd9944a9b11302d2be0e3c890b455",
+        "b1312d3124691320adb4ff5ae9fdc2c160dbb483397306fad822853b8c232e21"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.WeilBound.CoreStatements.IdealCycleValues.ProdMapToMultiset": {
+      "archive": "da5092a18062d3d58e3e01855d17c37676a000018e00cd54de8e237aa7d5c012",
+      "facets": [
+        "cfa4bb7c11e68798138115b60c9989272fa32d458a09dcbe5364f536286bec6e",
+        "361d70e662c58c08240e891b10de78f4dd2ccff43cc3159372cc0d6f07ede93b",
+        "600c3b46aaa077b36efa1a45cbe0ecef164749e1f6a3ad50b42984f2ac46872e",
+        "3389e19b19bc3a287a3d11d879e4dbfec0420da5d7bd2a4c6a23c39b14d263c0",
+        "bdfcd00ef7cd58765b24a85517413e66e4c329b76dfdb956910ea8679650f786"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsDefs": {
+      "archive": "0e2218817b5f20ffad8c278c90c03836f9cbdc7753b0b1b468ee70981cc5fa7f",
+      "facets": [
+        "71f569aa4efb04dffbb48cf58cf1dafe4a81e96ab977e1a28da7cac767c6382c",
+        "bf18bbbc2b3a5644ac0569f71628fe2cb9db4bf3d7574fbf28b17c4448b438c4",
+        "0fb1e1e1a4cd150701d81d0857c385c82651bd4b236d82f1d5b02ce0f6c0ebb7",
+        "285b60f61542f298003506b30f0a15f4a06e2a1068284600f796191c0eebbbba",
+        "a3c276a16365179d150a9f467ebeafae386099efa59f263a57e3892001382fdf"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsNineAdd": {
+      "archive": "bf8190d3321f7ab330fbc6a41adeff3c00613dc3ab2c2ade5ecda768d1720a85",
+      "facets": [
+        "cd9d50341a1e31db6b040ac360572db39aad22182bcef1ed54a8ddfa18f76fa0",
+        "868af624157c955a1a933f6c20c2265a758b6fe5a0b4a5d5038d6bcef897dfa7",
+        "be916857ac71405d82a317725083c469f0fffb74c81d9186add5ca16f92051c1",
+        "b8d8ee82f120390981b819c8a352171372acdc1005e8201445fa14d5ce934e9c",
+        "8a934887080f13af05ccc5309319eea80ba2dc11739e4fb4c022834a289aae0a"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.WeilBound.CoreStatements.TemperedRepresentationTheory.GelfandSpectralNormalisation.NormalisedInvariants.PoitouTateExactSecond": {
+      "archive": "6c220cac38c6cf688624b8529ccdbe0139afc465462ca653be8105b86f81d605",
+      "facets": [
+        "c1cf98ac35099aba47f300e3068459911c04f53b43b316010348869305a7b482",
+        "24d399577214cbd796500490723111b62381874e2213ec4ebafb07f87820a3c0",
+        "f5de31a9506563efd718870f34fab73f8753a79d8b8ba2c1db75a708fc43d1ec",
+        "12eac390fc156950445955192542d8defba2e13c0c94d5f490586a4d5611cd9b",
+        "dbf4f310ee8429cc02d876b332c3fd4b367e0ef76b2b8c027cf51c1b52a68758"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData": {
+      "archive": "420e92e3f4107b93297bc3e8ec884d296cf3e43673b28ae267f917d60a891e5c",
+      "facets": [
+        "025453e5dfaebb710ba074d3acc359569eb5135c27feca4eceefd468d6ec3c4b",
+        "3942c43bf8b2b73e16cda8b08479b8c9147a07d33cd6928930100139651d78d2",
+        "28d42b58d7dcd24c70ce579e4a427d218690caff59a411dc4c2fb9f5e8585025",
+        "15949fb1aad22f80e39e32d04721e8767ee534cc220e80f9540e1a2fc79bcecb",
+        "5e9913c17c86f6a8cce122c90dfc7fff5294b8ee14a40b5cf95c52981f9a41bf"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.LiftCommEAt": {
+      "archive": "aaa61414d1f3e1178cc6bc1e07f6684d59806a816484fe3fe5421cc8f5f38c97",
+      "facets": [
+        "42120e410410a386090fa51be1f56cda6857058d2509dc76ab680917bc5f124a",
+        "4c2f9e3914eaac613ce94a64f5adfd55472febfeb089f2411bec4f80d9bcf61c",
+        "f241ab3156e8c6b4332b5b4ccc5a85654384f49f343cf748fc5e5598175bb842",
+        "f9953aec4e465fbe8fa147d9a817901d8d4ef6d734207b2c07a892221e82819f",
+        "c21cb85c00b80e85dc3b2f6471e84dd93660ceb63ef9d6a09360c90bd1c38f4e"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.PTensorGK": {
+      "archive": "e7825291ea16ca6a3a9d392e6618a021f074bb6fa1b8f436a1ce724406991756",
+      "facets": [
+        "fcdf0826c7587d9d0b60ca81b9e7d46b7de455ff30e7f698a72d981e1632c15d",
+        "9d048e85f15b9be8ec32a0a632a909ddfabf41e347244050afbf28ec8500afdb",
+        "e57a46ec2bb3e28916b66b30117efae58cbd8c48f7e45a1a596525053fb149fc",
+        "1a1a20c1d99ae8afb12fe3582c2558b30260b70f21c203f7da0757e7209f21b9",
+        "75e81d5dff6000c4bd612a850cb8f00728a5a5c3e32428727b0f13711c15cee5"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.QdetFacts": {
+      "archive": "ae67721e0dcd3b08368348d27c2132be616f4e4580ef80d10dee1c68a528b93e",
+      "facets": [
+        "b71e4ee759c34ae1525c4be90490eaebff559401c4689c1e9fc7b9cc9648de5a",
+        "faaabd0eca3c7fb4553bd568499f04924eed3aacc6da8be2f37dfb649c92d87c",
+        "46867b2154e8fa618df51b81ed1d0390e43acd67c6612a6da827eb7ae85c8cc8",
+        "c62b05a073a9aa5133e3fef28f7429f5502bf5ee745b56dc9458f74e7a00785b",
+        "ab85efce5828d2016911d1d9ab3904762e57ecb40c1e0cd1abf232efd245c1e8"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.StepFormula": {
+      "archive": "83eba6d92ca5020f06320965921f02a6d34616ccebdd3b8dbce057a485572500",
+      "facets": [
+        "2e9b7dedbea8505034a0e3b2f3bfe029bfb3c28fa4967abbbf4ad24ddcbfaabb",
+        "3d578036f2a55b86a1f9988c728f728a072e3bbd8b3f4fac34d387c443cb9805",
+        "7baf4f9aac997bff1cc350e93c387d40df254bf4f2ec6b49df28d5d8cb64fc3e",
+        "17f19493c012b1d49442cb8a9608479ce7e76ac5c04e4f0722ad1845400ac867",
+        "740e61a4e00700f5c78542ad6f884a5807f21fa1a120dcc6c394abc216864666"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Development.WeilBound.ThetaLifts.Reductions.SiegelHaar": {
+      "archive": "ab23bf62fa9999d31ccc31bd9dc2a89a014933e3d38d9e74bdc861f4dd45a3fc",
+      "facets": [
+        "5ef55cc6625b43914beef71d5c1797cfaf0d32f53e4fce79172b06a486b428bd",
+        "d348dabe8e27d2961eb95fe0c083dd75457275dd6340f75f67b52f1d2a06d875",
+        "3fc6addcaf40fe4a789bb91addd195353e4e62db305ad914fb38fe6ac0fed62a",
+        "abafcfb8d127d71638b5e5860be0f627df2a884ec6c07571ec0a217332c54c3b",
+        "fce4fe5bccba44568b7833e927c93f7123d956222c1bab55ee42284f88c04993"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Formalism.ConjugateSelfDual.Statement": {
+      "archive": "9faf454de655b7c1c2556d966e71336f2be8681e48399f042a115ce9358f3d40",
+      "facets": [
+        "845000ca40424bf68d46ad7d49f2f3a1b28963c958308d1a7640033d9c71c301",
+        "73212ac1dd14ecb8b9cb983b3668f353e16bf540eae1060576979a7173f0b861",
+        "3f556dab48319624bb0d776a2bccc2e322dae87678e2c204ace3dad9c69af5f2",
+        "55c609a11678e51ba009a462e7196013861150ec46f75b9b601afb7f73cb4675",
+        "f058a9a9a0c26ebd4263105acbd257148a3966d87452de2141f34cfe827017a1"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Formalism.LocalToGlobal.ProjectiveLattices.AlgebraMapCAt": {
+      "archive": "bcc684a548ef5d0ef36684b064f15c95cf244e0d5387800fe05b638c50971a76",
+      "facets": [
+        "339ecb266912b1aca53dc178f42c9ffc3d7e43b0fd0fa11ca8dcfc83eebdd733",
+        "0419fd11ba618f0aa097a307085213f6813b43384bbd2bc545ff54b2b9f74449",
+        "a8f6d2da8a6e290c7b5e2c1f8056098bb105e3116c828c4cad1e051462560e1f",
+        "c5aa5d833e2b71b45943a35e1260a1d0189419dbf178e74918dcdfdbc7c5bb21",
+        "e6e243eab2c91e80060536f36fda8fa4273762b309d3d12e1310e3b07940db95"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Formalism.LocalToGlobal.ProjectiveLattices.EmbKCoe": {
+      "archive": "064401de6f0d8320fe139000d06dfdefd5053e22230c8956fc256fc07482d2e0",
+      "facets": [
+        "9049cbc16a47e51ba6c6e9b9a80f590b80472b7cabaf4be15490e3d105223ed8",
+        "6b956695aa353638c8297dab4849eec38f25da9e9d43f8ec0860f2cffc9438cc",
+        "de17e66e4d13add3412dbe60b20a13061eaca1ea470a9b39708d3c59f583572d",
+        "f9fa49abeb302e3b4bb10f483879c63f254a485cdc81de3256512378dfef9ce5",
+        "f61fd5f17f46f4b05add50e3ccb7b4f0badeabcb423b1641dccdbf9ba169166c"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Formalism.LocalToGlobal.ProjectiveLattices.IntegrableOnIntegrand": {
+      "archive": "099fc4fc9fe643f54b9159316d590f06ac990b9e9be38817d32b023685d011ea",
+      "facets": [
+        "f480913a63a70e688186a9e510ec5b55f19c0853d819f1bd2571adf832c7e3b2",
+        "1480d8f5db1231a61dde6e8106e18dfdf4aec44e56f680a772551c34be5ccafe",
+        "40ac84abdcff9be478dfbe92d5d91ac0ad05691b6a5369680d320c31bd2a8f73",
+        "82d9abfe1ad0fe2c215464766f7bae06877d615f76a021c7e4c043d38be37df3",
+        "4766b8e6cdc15de370040121b3288d305c6b4a9541c94001bb22dc45544a35cd"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Formalism.LocalToGlobal.ProjectiveLattices.IsCombAt": {
+      "archive": "22f8a7c56c4625c94aadacfbd1cf54c10e390f38c7600ee28a347e99c62c6db0",
+      "facets": [
+        "4cd29fafd632f5cc50947034810dbb38f8eaee4a7a946bd2f688315397d835a2",
+        "4980362b17933cb33426c77f425ba8a4663bae11a1087a7bc2d413f27464c962",
+        "9eb579f78df1fe958eb88f367b53e931c2839098d7c2dccb93cea07a9aab369d",
+        "2d50bc1b4f5b149893c3140c0e219f9cf33e3abf0985d3bde385a0d414bf2728",
+        "33d837b2708ce77f898c4c2e1067153251c6961342ced0cfc33dea7ce03600c4"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Formalism.LocalToGlobal.ProjectiveLattices.JFDFree": {
+      "archive": "67c4eb2c1ee1ad7fb727ffaa8a74dc1c10f1ea93ffbb858f374a009779f46b9d",
+      "facets": [
+        "e0ca54e4bf398c4e32aa84660ea82b2d6edc7f7db9b0199cf25d548f5f52cb75",
+        "697b95d59eef7227faa803d16dc867daa06b5b2d28b864bf817a24f9c81c0af4",
+        "bad11bcc07cbfb2b75b099b65a1a123dd8f95f17af2be48c0a887215f391bd78",
+        "a9cf71a756f5764b66ac36d39b3fe2ffdac3eb5c8e328e4416012f525ba48e95",
+        "321ed50f03a55f6facdadb1c6424f848b240b8540836f64a31352d1165b66345"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Formalism.LocalToGlobal.ProjectiveLattices.UnFree": {
+      "archive": "87337c245cf6b99088df2ba6427c06e7d1bdee00699445ebbae2d97f03e41767",
+      "facets": [
+        "aa54198d7aa0b709ab11e437230a8fc2084bace09e1df0f8cb5a6ae93e1b77ad",
+        "3dfdde27248fea25233470e0fe85eb61b55169505f245efadfca3f1c64dbad87",
+        "f2d759b2942048b7901d8b9ad9f708aa152b9fa1087a065e776ae969e4715087",
+        "8d7d91f2ac69e12090dc7a4b9d9e33b4c66f4dd08523dfe0f3e884aae9636267",
+        "2ece9730c76bc88eadd5f5524aa9877e8b87fb4c378be6f2e95beb81598eeef0"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Formalism.RealPlaceAnalysis.StatementA": {
+      "archive": "c218e62d90b7b5f7ecd5aa55a10f006feae4d71efa298a58d7686a25c691de57",
+      "facets": [
+        "f4502678e903d70785cd697ec188e1fce14bbf7053a2e0376e32d0aa0bae105c",
+        "67c94fe3dea1fde6f5755410b203ff9c1f720129cfbe5558cd7e97e1981588ae",
+        "dafd42fd1ee80c42eb2071c6a41f5dd4886173d11dcc01a69b8c5c5d0b90b308",
+        "29ea0722d0b2b8bb681a257b776dc6495943f4a5cb253ec122a72f5d216a7633",
+        "1c2199063eeeca3fe61d159d2f1ccee27d15b0d190daafd5df0957b478207d56"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Formalism.RealPlaceAnalysis.StatementB": {
+      "archive": "6e2078ab1e15db4b5ccdd3a8ac29c2809083c527e14e4fdbb196424e54af4181",
+      "facets": [
+        "2057ce69d90a49aa9adf3c8ab7edfbaa5259aa4e3246eef9c052085250e53982",
+        "51dc0926b1e6d003dd5bd8f5b43a8fffa12ec890f4502a45384ba61927135168",
+        "24f4d5e3bea8b743ece2a431eb72054da360e96ca4937b09e165598db67740b9",
+        "b3d927f888824d433ec7562a9a2734078566bc6461ca02d67a2659eeac2ff900",
+        "9d169389445ff5b81b8df83e0c9a841208c71b564de813b3c66fd87b994a9e08"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Formalism.RealPlaceAnalysis.StatementE": {
+      "archive": "18fb63e9c7fd408d57cf1de043defcb2f826b181157ae61d4f08bbcc0b0422fa",
+      "facets": [
+        "3e42b4cc325549410540c89e22381b160fcdc695f680c8a2c3f787f6d7bc657a",
+        "bf0c3fb11605ccc62066f2fbd59b67243430dd23314302b21444b6b05b2e6624",
+        "1f2f112be7f4ba3ad148def469a2346947f9423653e796648bdea7114af41003",
+        "96c3b4fa20c5c4f0272a1c52a9cb3a36740d220c39eb9c6394f5c238224a1347",
+        "db400538d177e2c32c47c1f138c3eb9c503141b7b3be35d588f5a11217ad6e33"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "Formalism.UnipotentAdelicQuotients.HaarProductClosedCompact": {
+      "archive": "05fe550cb04c72997c48f31cb6bf0ebd1be191b745ab41626e8865b337fe9bb4",
+      "facets": [
+        "1afaa93508e1da1f949c0842e625537e71211c55943091f7e9ec99bdbea36f35",
+        "f10ff38802c72fabed1b929d0793af599bce8ed37abba9bbf4572dbee8b2627c",
+        "a7edaa5a7556777374c05bfc1c0f61c11e0ab2a9cf8f515e526a862956b81a4b",
+        "ca1f8b1e80df8677fea6fffaa38b1c7413aff32b43cae38ec1ac1d329a867f24",
+        "c01d3f200fbf86db320e6ce871f21a3b43ccd86a7e31c730e45ddda7f95ea7d7"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.BundleObjects": {
+      "archive": "02777fa374bb509ec33aa065d9439f498da3d48e73061ecce6951c8825fc6e51",
+      "facets": [
+        "11e44973fb3a8fc76e620a9143377bda9c20b6d418df6433a65373cf33c4f3c0",
+        "86d271482d15e1f277e31daffc5871881e2c2e5a3ee0a7c29ea4b83c7fc112d4",
+        "4f49682eca3d05f62a449acdf0c2dc5bfeb4add27c7f42441bf115f67e65124b",
+        "6ab2aba67d6c2c5f9041977fba09f7599b8da4ab38b79df952dc551968ba3536",
+        "8da8b83cdf9e86ab20d42c8831b4b7b1cd34d58f297ca09239195c2d6741ee29"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Objects": {
+      "archive": "7a1e29346867b79a9e6de657d21c26092600e5934b271287b01c6cf66f2df38b",
+      "facets": [
+        "b48570790e3f37f28d56effeeba080e5ac3f56bb2eef01c8fc61b7171d9b2d38",
+        "3b19bacaeb1652e9bac3eaccfe803f61c30751262dac86d123bafae1bad3f0c0",
+        "dfbaf66f22fce4f565984f3c0d9afdb3dae6f04c9ef7a46be64256b772bdc07c",
+        "9fe177cc4d2761aacca84688046fb718e24a4743afa6d3200a318c1f737457a3",
+        "e09d90f69add632b1bf24f30e71e27062d218ca4d4ac4616df31fbf919515afe"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsBundles": {
+      "archive": "b972fe3b9e7fcf35594e5a01be27fa99d06630aba746e554c13c7e5102b2f7e7",
+      "facets": [
+        "2a304e3a45c6098eaad3aed7c6f5c79592bbfac9780246ef75c19bec8c91c4a2",
+        "52e7572423f9cc496a389de3823ebe87674c6b532d485962bbcaadd77a6c70a1",
+        "0c28165642b04542427529d475917930332debf2684dde9c3960c83a884e8a9f",
+        "df4de3e833e67e3bd026e0b141700719ff71efdaeb373dcf4d7dd5ae9d08cb24",
+        "6c23a5b8ea7bacf6d4857ad8d4bdfd52e07f9c800c956023780aed24e9d0591b"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "GroundTheory.HeightsAndTheta.Heights.IterateExamples.Statements": {
+      "archive": "f7be714936d9753d806d267376821d1f431885d8a61e384531bbcb44fb6106ed",
+      "facets": [
+        "7bbd132b7295eb2865ff1bb9e872cc1a87c06e3e143b8a33a8a5331ecbc44fd4",
+        "8e296d2b500ed869edabe98eb154b23fb23526de98649801e2d4bd5edce97f2b",
+        "f2f8fee8a15420c8c1f12ea6eab92f86c17f0c12d8e13e8a10723cf9e6dd9143",
+        "9bcec66b9d0f4c96345917affd67388b7e2e1b58561d8bfe5f24b1551356e397",
+        "835774d1705e8da94daebde4faf26813744f113c91142cd20cc1c901b52c1617"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "GroundTheory.ProfiniteCohomology.ContinuousCochains": {
+      "archive": "e01e3e7fe3d583ae9b90893f6229b9aa84b5b2e68774e9c7edeef2d5bfceca20",
+      "facets": [
+        "c743361b3f5f8223e06f51a5e590d32e07ac52940884a52f0033124e196a6be0",
+        "c19dc48fb4e8cb3e49a04b065a714070c6114241af07a4b453e27cd200a5098a",
+        "c22d2530cc05428f6e45d6596a344a69ab7486281d8a8ec516edc7cde4f26e90",
+        "bbbb9d5ac8ff709f707aad261e6bffc9bdd09f8d5161b1c6e0cbb235003aeaa9",
+        "43088a2f98b2fbc6f8305247556bd819a0742eacc4cb17e3a7d597cd91d24476"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "GroundTheory.ProfiniteCohomology.DiscreteModules": {
+      "archive": "3042d64e4609b2c23ee7347d0eca829dc4cbe75ff5ce682eca3d2234a4523dfe",
+      "facets": [
+        "524a13012b1a3dfb24349cad2efb399a43ded79904a3b15686a4d2a13eea96f3",
+        "b8f81fa465ad48cc1979fcdc028dc41c006bc290a6f13927f01e1de75eae72a8",
+        "4967fa98ea919d54f41738f72779974ad690b2d4eaf15d7aa4c6f4bc7f3aee1a",
+        "c0b405c40dd66e71101b7e19c6643bededb456703f91c42b2aaaeccd1847f83a",
+        "381a8ca9e8ad384ca03eee0f987bffaa67fa13c30f25b0fdeca0ec28aef9600a"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "GroundTheory.ProfiniteCohomology.DiscreteModules.IsDiscreteRepIffForallExistsOpenNormalSubgroup": {
+      "archive": "f502bb0dac768584d69f692d99fffb0fb124c66dddb6d0a75cca0a373c37f433",
+      "facets": [
+        "6e3db86e94c3db4cb599780500731af70d72a7cd50ad8a49a5371dcf54471cae",
+        "84540a38e1b9580f1349291d28f706cadbe44b1ba12b771f41395475b2ffb40b",
+        "1f2be22568b128974ba1cd2091b8b98032fa2fece0d3a8bc4bc386f1671dae13",
+        "81b2952ba4f58ef474131f8332a523e37e01a718747e33f95a79b3e36b0d662e",
+        "28502a3ce78c0cf586fb831890ecf16909b2fbb46d4c2797df398f01dd584d97"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.GaloisValuations.ContinuousConstSMulQuotient": {
+      "archive": "ca5f295a488b812f0cee19a6dd818383d1afe4d387ee1b4cae2e2804bc5fd1ba",
+      "facets": [
+        "b8d904a3a4a15853b1d50ed517085092b68fa7620b72f2b66e2c72584c14d4db",
+        "d260a8767b6d81272d7e03154eac8125f4f6f051b82c62d524f666d52ad35508",
+        "919bfb4d5f948599d1bddec4d00932c7cc946cae68ba3da4979f06552d9e5cfd",
+        "2f8b8794e24c9c420ba7559c0b127f89338a3ec4c5ce7582c8dc0f393ed998f9",
+        "cac0d920caad1fe92111013ef2fdaafc0820f3b63953916af91680be5f942e0e"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.GaloisValuations.Global": {
+      "archive": "99b006a13069374336e44268573712eb6a1b2f2b371dd919928db7947dcea2c3",
+      "facets": [
+        "9b798320ebeb69e4b67174664b874f7a43c451a79f0546235d9b8b0b26699955",
+        "7d56fd648b47200ef235aae3fbf11cd9daf4fadbf21a4bef187b028040a4d866",
+        "04963d9d27c838ff7692704bbb1539cb3526043316ac8afb450f292d997b1e86",
+        "c45de7d2fc2f01f98f5880c1dbe0bb6f43984e8a97d9d75ab4bbee416e4b0ca7",
+        "cfa24cf7313fd5d50bf6b652861c0fe226f99fcdc25801719dd6ba35d273b16d"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.GaloisValuations.GlobalA": {
+      "archive": "d7f520f6c14fb37a316139eca05e414b34090baaf085e7e9ca40cbf0c8094207",
+      "facets": [
+        "a51a53c92f2e7abd21a5e1f65d86c4e8cfcc1f7a0239051e849cf0ad182c6af5",
+        "371debe6eb0d267237b22cd01d0486629987afb818af1cfe9e22cde2509bcbc6",
+        "568b431cb0c0e8e5de21b6a73ba253c896b7d3ce41cd5c95c5d3ab592e0581a1",
+        "e7f2cdd3c314298ef67550ce0316c069abb2526edb6d2a16f3f6d9a03ba6800c",
+        "5648a88ac781e88e7507a576fe8fe95b991096b87af99728a5d730868500505b"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.GaloisValuations.GlobalB": {
+      "archive": "e15c4b1a1708e8070bed4e50c41a904c96a3ec6468ea23ef20d3abb055ff4bb6",
+      "facets": [
+        "6e47092b0209684998abc12ef08431cc171397b3d00b28ad74438f00c6adc054",
+        "5a8937f7b09e8bfd5b6db74de31588828ee0bd2dbc7d6de8bc0d2c7e2c3bdfc4",
+        "4592d76b76d6f708f598cc99bc0b1f4a89d233665075a80bd4cfef0a633cd546",
+        "7820653647801210f6f0c3e9a9a6f6972f777a3260387e43287ec59e90a252fc",
+        "018f70a09bcd058c84edc0d36b645e56474abc7c152dceb8ef92801d6b945001"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.GaloisValuations.SeparatedDvrSecondCohomologyMem": {
+      "archive": "863dbe915920a4587fa675cb91e022487e5bf12cad5ec26b5ba780ce13dc6604",
+      "facets": [
+        "03b14fa72a38d6c2418b02b3344b8dd05a573ce2f461f953d5db5c934d21b849",
+        "10de9b1ec4e7f49544c9c88b3a0ae65fc559eb3fb98a88579091a0245b956c86",
+        "9b826e5ed18433c9dcdf60f57a11f63fa9944ad0c158813fb516f080ee5147ca",
+        "de774b7ff44f5f531eda68aa0c2a7ed1b092c449acdc1eddf216a5210838e0de",
+        "c385fe5c7eabf08f90d437eeff89a47167dde19a7aa031953dcd7f4c7fd36b9c"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.Hypotheses.GalCoh": {
+      "archive": "99c5b6d593057ff6b2cd955467a105cfeff85ed20c058f9dee6201e559c32617",
+      "facets": [
+        "a597b62bfa8a1ce3d914ce17e949f6ae0858fdd1bd550ead0db0cbb11185d46a",
+        "fe1b72da785b6c7653c2d512df895702b9bc62cbc5b69e153f60b76bc3906d84",
+        "f98a2bfcb6295fee60103fc3462bce6b3591bc839c9be6ea0f402a59397e51a4",
+        "01d90f1d58bf382e1350cab7b0fe62d875ecfcebffc07d3c0d8b515c77a0dd57",
+        "a3ca764db8566fd89e8057da6d52b424918a0f522bdea86f5a71ba82f664a6d0"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.Hypotheses.GalCohDefs": {
+      "archive": "69d36935bc389ca4434e9f804d65bfba859859c1ec83ee05f5a992b2a42ee6fe",
+      "facets": [
+        "7bcd6be447dafecf238cd93530c7be84b63a6913023d99e7386553d1b09666b7",
+        "c97d5d50e7d4e728928e5acc3e6170213770dff8c3306c33dfccf7b2c59af53d",
+        "82b1e085229419a0e3c71df6af947958eef4bea9bf2fc2a3c65584ad9816d93f",
+        "dbb4f37802fd95dcce631f2e9b9ce94440915370b0d5d8e04246531fdb752c36",
+        "286fa9ded0cb1d595e52b208e33006ef701f2857d3d7f55f9eccca270669d47f"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.Bundle": {
+      "archive": "f17bce8d602df7c4ec7af06b435c3b9930588cb1e04433dc3ad5e2347cc34205",
+      "facets": [
+        "b0dacaae895cc2d6abe4364decaad5a7b0a7f1ae46ebc8dcb615da2083999b32",
+        "465f7699b688187163253595690c1c9e8f22d197b1257a03a36bcf8e6a0f2ff6",
+        "01e33baf6a797e2f424725adbe65ad1481337d09bb98f0664328dcedc0966ba1",
+        "2a3e18c1f766432293ed334ddb1b340f189c451b342d4b9d0011d04ba4055f0b",
+        "8199041d8466c251d495708b74db9c82777f8c68af8301e833ec3823a9e655eb"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn": {
+      "archive": "1fc6b036afea7f0943941a03b39c803c5eddab02ebd5ff4ff3017b65b08e3c1a",
+      "facets": [
+        "570880012698cb64b5e7cf64095766a9b028f481d29549b904a0fc352d6168da",
+        "597d498375122b32d49b49d69b936f06fcfcea9547427091b6afb7104718b966",
+        "f3e94a1aec183f77618a2d569daa3aab29645ac55b29cf01ddf836ba6c9d7b80",
+        "bdb8bf84bd22b9d60ef72b18bf35f78144277a108721454da4a64d5b5c86b007",
+        "08c05b8fbed52e7decf6ccd581bd6b6eb16785480ec297374844c92041849f07"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj": {
+      "archive": "1cad042b29b89d91d7a6626670122c1110786b4ca253ffef20033495bfee8129",
+      "facets": [
+        "1f18536b49f8fb248131cf5b01ff81d9f581fe5fa9389fc89108911c0034c57d",
+        "9ea93b97aff714d994ea6c3d9b262c9e4f605b258bf45f590d1a945750f04522",
+        "581f2feb13513ab0f4d06e915dbcb67ddf45aba93f75edf7cd79ddca29921d64",
+        "3510448a54e23b7174607b0d9e75f00c4029c31718de5e949e9b75e0845e3f84",
+        "07f75e54b841e6ebc21cb275e7960f091e79e0995916d72aa852ee9581f70bc9"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.Clauses": {
+      "archive": "d0c545c81b960623ee5b06a1bc902a8f8f1fc24d07c9dbef2549c36a7a10d189",
+      "facets": [
+        "91fb141907ff2aba57b71328c1baf24385b2bbd8e6e21168326b2ae5ba488553",
+        "c3d940aebc5e002450a510283bb31bbc8a5e56962894464d1ed2b6622f92ede9",
+        "471436b89840e0dc5367b974c91d8fd11cc2131e56c1331d559eb660fe99c545",
+        "b4f21c204340fb7fd267bd6a2219d593537354b0b813a813cbd5206bf1a94076",
+        "077eb39a31eee1c340ea0cc54732b2ef758135ee4eee34e2777df851af5dda6b"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.FlagBasis": {
+      "archive": "9bbe07897e3bbfc828e8136746b18ff1f4080f11299e8aeecb275973aad8bc04",
+      "facets": [
+        "88c8ced7c76cc0b6d522e63ad4f97af0661388e9de924684e0f603a89e1c0df6",
+        "ee512237c8fe9d6f1a8d9214348b65ba8ffb3e317e3b67138e20d246a91b4486",
+        "3685dfffa62a093ff8d3442b676046b33294b2da72a52506e9f419ee10d246a6",
+        "decabd5ea7a666a004d7e1681ea3eb5a932c33ba81a3bd16de5f6b35f48364a8",
+        "eb336c3e290d0ac8e4d6cdab508d50fdad2de4eadf9ac78b2a6717ff82b10f82"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.HasArcDataIff": {
+      "archive": "ed686277dc14ffe93b89ef41ebd13ad42876711beed8c7bc1403d6584b5b2ab0",
+      "facets": [
+        "e8fc47e6befdc33545e1b4ad75c8c8dc42df1caca6b3591b315cad0a7513eba0",
+        "ba3234349267b89be712a35722af7f1147746e8c601603a502fa7f3d79a3f387",
+        "30a82d1e82a2ffe9f634d0eb4a0fdbe8f52202bfd006f5bd0e8047754349bf52",
+        "c1c9549516769bb2a62317bdd921458037609d552c6898eaa5963fbe2982b189",
+        "ac5c0ea69acc086d009b4845e5e0cab94d8069fd79e0536962efd60eae467930"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens": {
+      "archive": "75ecaa172a5bc9a07827f1ce2219f8a86cc1aa520541874c3fbcda38e5897b2d",
+      "facets": [
+        "38d86cbe86e7aca8755eb05c04d4a550a54ba7f599c57404d88dbfd55dc58ffc",
+        "bb4e6a342750c84b31888d6f1a23baa935f72b40df8718d66a69a07f65a7af66",
+        "eb674197cfcbe4ce2ca707fe0927da80d33df796c4d4bc214d4a1f365fe509e3",
+        "18bebb4e03e4c8a9c5b919c1aea5366c305e54946ab87db67c81b69d5c099e9c",
+        "06965181dd62a95cdc946166ec164c609b7a80b72c3b7dfcbb334004790cb4df"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsGrpPullback": {
+      "archive": "6c36ab05a3b5bfc8bb54f03f92975d4bc5b9b5d3a3058f5d8370a39b879083b6",
+      "facets": [
+        "3f9267449ce34993d1d8356c600a95223e29bc5d811a2f8f7c40dfb57c8efe13",
+        "a48472307ee5de3db62b99e215cb0a2d9d7cd490c046e62b449258f90a6f5ffd",
+        "b84f21c8f25f33b02151c04678819f205e3852767a804efabc0c078a6f628b62",
+        "5ebb4e349d85d7c0ac4705ed145bba353f65e7e62c917448e01ef9de46048d82",
+        "7295670cc8f836174c329b3e243eec2d63746fe53ee1171afbf6f9e447c03f99"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsHolPeriods": {
+      "archive": "77ad2211dff2653cd410674cf5d1b724032a5fa8d087d04647c1dc6bc5fd9006",
+      "facets": [
+        "d722e74b82cb302f1eb231436fe445489a45993dbe4c061978bf7e1bba838946",
+        "b154626cb01d3f4f6b003f634523e13d7b4e8d7ba326863249a7493cffdcc52d",
+        "bef14e37b83f66590f65760d7290db8312f37fc207176aae0c9a6c4ee9db452c",
+        "1c8ffd5f7598919585119a91b9cee68c73652140034a3d6dcd9912f781a6ca76",
+        "1c42f77731c2251bc8c312b7ef0053470e52156277387f565320c76f9e403580"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsLieBasis": {
+      "archive": "31c429b1025cf57ec4bb52598be10063990873fbec9f4ad0f10c194019ec0cc6",
+      "facets": [
+        "f8fb56f3664a60a1b259dcf75d84c76e70437555802495d0a56794d0c349ca13",
+        "8f97a52aacb2accebd0a9e8ee01573ace649462b88c0e31a311c55afdece75cc",
+        "0cee50a7ad51436bafc850adb3eea2f510b70dd0005e9cfcd2beefc175ac599a",
+        "4949cecdd370e92ea8618ace4a8e36e5a14c6c6bffaa424f6d8bf5981e304ba2",
+        "e048bb73f5e3e3c234d87038c670b43e00f55a16742c9900f164f5bc1f625d9b"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.OneArcSt": {
+      "archive": "6b4b60ea66e4430377232a5048275a4380272a0867a22e01c3eef369f98ba935",
+      "facets": [
+        "68d57bec327e61ae188ce50171c293499ea46401e73f26158d2b3467ce0f9899",
+        "bf3f0f402b7f83f7141e3948003b49256588f434a1b79140ccf4e5b3363390df",
+        "e3b9fdcf5f8d671340b373b64629220341abbd19f74eedf6164acde12aa1857c",
+        "adef47c9968d38c5818fab4c41eb09472a104397e84b5d8dd52a17e03e3614b7",
+        "6ee26950705e83d3238efc9d7f3ec9edae172cde530ca2dc0bed3dff8d436747"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.PushInvertible": {
+      "archive": "4fc7ccee86429a5fdc8f22d963ddce661eb75248c59d245c0c751890e2ad2325",
+      "facets": [
+        "f5524608d12a97b68021cbf880fef10fdd66d1723f273817906e6a53cfbad7eb",
+        "46bf39965deb1d08f7f1e2e111a4dad9d4ccc2b715758303a77393c9d3d8c953",
+        "a923f801ada250039c180dbfd0bb050ebd7a0f58e2526e0245b2e4962520198f",
+        "988196c56ca206530a6e069cf730f2cee4e5f0753fa526e7580ecd62574c0667",
+        "124776a91ffc61d0bf7a830eba31a24d0b13a5f401fff3e11fc665afb91c1258"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.RigidArc": {
+      "archive": "d8edfc0a2ceba284c468dd901230ed7c24c55153d9010ddd4d751ab5e31bb36b",
+      "facets": [
+        "8e7dffaca3190811f32c87fd692b01680cc8ec88b12669af778e5440a961ae71",
+        "0c2ff8050b447b14f8a31dd14d1b186d1832dc3c2ad1399c7337005100f0b459",
+        "69f3200a6026d388cf03632f37fce1f2cbfb898c852e53177b9960bea830fbf7",
+        "62c7bad9cef35e825006a32590418a4bbffd5b4d87439cf2db542f3acd6f3ae7",
+        "81d0144be537ab9e8e37af5f05696eb31d2617f1e48e9e7965ab4ca59e107fe8"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ThetaUnifAV": {
+      "archive": "d07d2ce6f667f7c1f0403aad44e8dcf3e0f8e33e63472da717dfc22c9b28a3df",
+      "facets": [
+        "1e5b91e965b7e0f70386b4c523d248cdd8d25667f97b83074051d58b2a69e2f0",
+        "e125c233c216102f66504cf10188dcaf149a4817e31f5a86a214f706242f8ac8",
+        "e98449592659f1572f5e0addbc85307035c863830c08d190ec1a5167c5964b6a",
+        "2162b9322df0e022cb0c840ca19893e6f20122c9fa6576895f88604aae3825bb",
+        "6ef4647d75a0c89656c1b5a7f14e0daa53687c17a33932069c5b672953b0e909"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.TwoWeightEqOneAddRoot": {
+      "archive": "791c5d7d1cbdebd26a95eedffaff184c9cb0b50a7933ef8e9d4e594b4ceddebc",
+      "facets": [
+        "03f34686dfa64ceabb17c24ea7f0e771543fa966af392b5857bebbd5b134bba6",
+        "679b5a84a4fe3693b5bee8f7d4c1be03d345b45f37537d04bc0ac1ea3a06149e",
+        "4c7fbdea201114fa7886bafae56b7d6660be0fb1943d248b4f1e44858cdd1452",
+        "f8e51f28655581329457f53ea6a166b6a7cd788570245eae7a3674e10b63d403",
+        "9b00ac2cdf1f62f21a2d8bdef8e1716688061fb599eb3dfa9f844d2563905335"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion": {
+      "archive": "ef91245fa4b9f891e760f18cfcfc4efe7f0f3e852d2733682d34a180cf846765",
+      "facets": [
+        "9240127fce1f5710fc41ed2a12ed3ef80860c195a01eda284baff35d98b817a3",
+        "12b2177761fdfd12012e17310546e290dec9f5894526f11d8245a99fad136736",
+        "58c7c97583eb71d441166cec341a55a0b36d97d0fced537596a6796090a8cc09",
+        "04cf2276bc4435f90681e51efe33bc4e4b52de58e05728ebc6d9b44388a24946",
+        "65f9a2e2889e7a16cefa6ad52698702d303a94ea7c5ab5fb0bbbf388ea24c79b"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ConstGen": {
+      "archive": "72fc4aeae031c10ade35e9cb0369077ff1677b6f8f6de591590841019b865926",
+      "facets": [
+        "5b547a35c1f8a5f218e2ea59a2a1aa3cc7b2601fdda6ee2871258ebcc55d1f16",
+        "0f7fbf584d6d24ff77a9f6b82805fac102550eadf74e6b6d7a950bcf31c2f3a6",
+        "99d08b9599c59b23fd728a8ebf8011896cb1130ee31b1b9ea163b0cd9ad8251f",
+        "b1b1caf4886ec1ab5e607673910bf08bbbbbece4c1a850c18c9e4bad52dd1362",
+        "5582f83dba0b0f672c254bd1ddf422ad62d176f46c03298f777cbb70c2d86e29"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegExp": {
+      "archive": "faf50034cd3319ce06dec9136a098bad6a42e5eb2e60e9a87d43b976954b3f6e",
+      "facets": [
+        "dbb9bce530ae05a97b4c69d91137e0a4a271603c4a565c084fc5b11909096740",
+        "88a8810a1984420ce8283f8dd848a980c8a10e942243206a6228746ac8ae2a18",
+        "6b7ef403bf4610b86999e1a363c489bb31af854b24552b97ac44c1d08e225969",
+        "253c4bc87724eb043ab1bd9bed82350dd5d5f2bfea2f61ad9803c3035e8c1a37",
+        "bbfcad8ec65cf63a8194ab3e8bae04c138a64bece015ed2a82c6b65afc239e4a"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegExpF": {
+      "archive": "625bc8c9bacb220e7fe9e09eb78f0ba21956d37b2607e888a5631fc5997fd795",
+      "facets": [
+        "741d57ccd7272eae382be771681ae971b950969db862dc014995a6205d74142c",
+        "c64cf1b8d0eb33292c956adfcf08840256295aba371229415177258783b6589e",
+        "5c5e9a922357312e76a3bf77f24b5c18be786531d5b25b1c4a816cc2333f1c05",
+        "8620e617154730862bb008e3f080eb237b5af28b34db3318a48550d42fd7659e",
+        "42be1dff97a1ee15d7cb42752f382afc67490c387408c4d837a69c55095c55de"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegOUnif": {
+      "archive": "6f22e86944cf5d1e91fa705f01503bd4f5b2dd1c526643464a7a6a06a3edc6eb",
+      "facets": [
+        "a64b61c17e65277690232d44a3d17d17d2b3be2fae3d40e8ac36267e57194871",
+        "b3c58b7869aedc15d1a18b6bbb3affa95bfa0fd14607a544b5a15f861fa079ad",
+        "636eb54bc423316a728ed24705bec9a9122092deee051cfc8ab6d4a234177b77",
+        "ddbb3828bf02ae445fb6dc88369521566476e6ffda4c60a4e5e47215c2f9afa7",
+        "1a731dd196e2476e5070057da055012015645297c5013d8e148715c81897bbfe"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegUnif": {
+      "archive": "b435b4766bd9f3f175c617a5f8eed00be766c7a1ec681b08860907733b279e69",
+      "facets": [
+        "c36da801e0192cc576639ca5a33118ad7d9812b0e4e6ce2cfa5402afa8c004e2",
+        "a065404f2875a8d33c7700bc49dc4e0f5b27b8d8b017099176fef82c2eeb0a17",
+        "3ee38897f3c927404277d898d96c2daf41d7e187ca20197e1f749c70325319bc",
+        "e8bd3206ea9ce1d832c9b68e7038191de727fed7e8bc512c779623dbc1c60ada",
+        "fdbb5da64f352e70250c1225fc9ce6020e6e0ce7408dcaa2bcedc8827b3135e0"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.GtPtBridgeSt": {
+      "archive": "0e02cde40135ee32584e8b16757d152eb52687b4a56f8684d4a1d6702964c0cf",
+      "facets": [
+        "20ec11bf31e6bbb363c7e460e946a6c1b06a83f43e6170f556d3aa61427052d0",
+        "4c98e51506ca58538bc2880badc920fcc5db7aef2baf7c4ad0256c754c7f3b58",
+        "4c68214e1f5d49bd2e0040d7485586433034a46981d48d7332e480eee589e02c",
+        "a9f2c617ce84a8374da87eeca6e982d6e73aea283fd99b7a7427907b72971936",
+        "eef28b3963931702c033a46ed152a6cd6f24d08318bc9e2e3ac3b4c256afe336"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.IsNsmul": {
+      "archive": "e8b0cd451526742853e33ce365fddc6ae5decac01cd58e84ac6cd9ed33f527e6",
+      "facets": [
+        "ec327987405964495c915c7b09a0225f365e6b4793382f93ae9816568b9aa747",
+        "edab0be0a6c80608b9f94a26dcbea43c7c222c61615234f639a12629ded9f6e8",
+        "b2441448067758e62269d0ebc0c6df5e9a74698bf76c304ef79d11040caeb104",
+        "b554a62149200c70b759bf1263e7efa06d989467ac8faeb3834e07805e1184ca",
+        "ce3c6b0d0ecf4722588c7b43cccbc28dbd2608a0b75543f68e9cec2cadaa39fd"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.LinCombTrivG": {
+      "archive": "bbe94c64e5fc61de873f2f5af80d013a02948460bac17c4632010922c1e5aa57",
+      "facets": [
+        "5bbdc5ee09536ab9ebc3555cee3f8b481cd64fc48bbd55f31a45545c825158b4",
+        "217cd7736660cd754047581b792be7098c6bfc348e77e328bc500b49a1e6a44a",
+        "964124ecaea566a569c6e419df2120877205b1a3a54e86f61b8cc81a9a57ff95",
+        "1f67bb8dbea2a548ba4849b9c4c0fcc15214a0f177ac14a78c9075d5bc1b3771",
+        "94542f14ae4ddbb832d2f8ebb238371ca420ef01402030b876a461b35f5ac485"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.NonzeroLocus": {
+      "archive": "8eb8657e931cada96decf002f781bce851d179ea0906e691610b1b516f9ecfb4",
+      "facets": [
+        "4e772180053304dafc58666bd67bf4d3924dc5ec28c707f770559094e14644ea",
+        "bbb4fcbea31f407672ff5159776b82c1150aadb9f49b3ae7c28224f9b686818e",
+        "3b8d9e4ff574d3e58f300a3285b3e71ec85860884181234a88d632719cb45757",
+        "207b80bd2a7a94d77dc6a7c8083821f41e842c1686395a3b95c8c65708e8d233",
+        "d0246c4e0e854b97996ae25e6fb892267d13d098d266b99a7597558318ef8584"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.QkToAkU": {
+      "archive": "6e46076f850deb5542f7daa080fd3c006bd34269095e3d916aee3a25aea7c49d",
+      "facets": [
+        "40e6da7bb66c99ec15fc93a21b021614653db79b99fe6dec636c79a52943faf0",
+        "31ab5e48b2e1febd2282e645e968c12e37dba3d06c09ef6728d07f06b32e7c78",
+        "338be46c90077d302ea5fbb4f3d5b046a43897ef4444bd48a8a41d2150318644",
+        "898229c786508efbd4a5ff24695893f7ee320fb359d8e2a877044c6749ad2c0e",
+        "b029f9e7359e73d8712cadbcde11e863699bf06fdb11c0f0b0d958f08b070cee"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.RosatiAdj": {
+      "archive": "830ca92036d4a58e2418292c145ac0254c91f575451a62657ced0cb4c6a943dc",
+      "facets": [
+        "f76d97428073552166f6a2a5703dc0d443ca78ee3489a591c39fb81c5b6f7323",
+        "7565de6d6bb658d384662ecf318634392422ae0c8cae84cbb787d0d37dd43d9d",
+        "25ceed9142fff91f7d8cf9eb5735b581173cde575cbde56d24300d2d68495284",
+        "fca78a30bfd0eeff5bd9304915101b0efefd68d23cb3d71300efea1dcf7a01e1",
+        "f746ee28ca728f0c3dc2f7516587335b8123b1a7a307e70e3393758bc09ba44e"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ThetaPt": {
+      "archive": "ba7e40777c7b0fd466869841599e3dda91cf0a521c39942730ececd85a2c03e4",
+      "facets": [
+        "a0cf0c0ec407606e7898363e7aba18fb767c418bd4dd9cf32df4ea2a7e1a373e",
+        "60bca6341f8b2fe90740a832b0709bcebf5aea9aef986c1b5782c4a8100526be",
+        "2f2cb539d664090d83855c63b586d7be406b45bc457c8c87359bb401bc868470",
+        "ea854e3090805da9ea04f22a2230547f288186287f9f465b89d5fa99b68fb8d5",
+        "98efcf9c09d595fe6f0aa20b904f9fd5c8eafffbae63cfc1df51a242434da8fc"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ThickTransComp": {
+      "archive": "03866846278e5d8658147e94a221841bca40da5d83378eef5a3c483142459483",
+      "facets": [
+        "561b645f28a23f6f495e458a1492bed3e8cef5811b93270c0f8b62275dd69a30",
+        "81f67825215a0672e8027f35841a243834adde278803997202872f8fcacf6de2",
+        "8c43cc9a3523a18c7566d90133209cd9fde2ebb299407e792a3c85909e4132f5",
+        "c7ab474b8814cfc384583a73c9cf4549fdb18bafbc99c05960a4d5bd22167e32",
+        "5f5aa5b5d2cffd4ea71dea49967c86b7abf11efaa69c952184366ea5ff62fd86"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.ModerateCoefficientPositivity": {
+      "archive": "ee68bfab6238f83cb34bad69641c5b52993ac43ca90483c6576b3da1952c846e",
+      "facets": [
+        "a0d540c29862caf5c4906fbe3fcf640b776d0e8eb02e71e6c40113d8329ea8d4",
+        "826b5a718a516deee3ab8be2d5de15969ac3ba9ee0fcbc5979fbb8c7df1f0a79",
+        "9d1a213ba09f4472f123846b012cbe678494ae3d4ccd784f848206ad2eb99fb2",
+        "a8dd8cee18033b703524aa990503b5e94cc905395f3e65a41c40b32178fe41b5",
+        "13c0db8600c4f7ee439775d380c64ea92fc9be7b696f9d980c045ce93161f973"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.Signature": {
+      "archive": "a9abf90425676e6771508bf8590f0ad1e0a33a7936dca3dc396b4cd8c1245677",
+      "facets": [
+        "370ae7de2a8e99060dbbd4f0eaf42c486320a0d29fa24aa03a612a7633a4da12",
+        "0c246c1ccdb2ce68163ecdad8bef7e9eb2f4fb3f6ea2e63c4970f7f15ac23947",
+        "f8a0d1c4bf92488880e19eb76bdba3bff4aeb6f92ee3d0e7cee2c8ef2199884c",
+        "46678a52ac287fab483a4b9909c95ab4c91953f7a0e7e8c22e4329a9c773fa5f",
+        "3085e21e7c1b85a2f24c2ab0f55e5aebb57a583d331732e8beb1cbd86a50c3ae"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.AbelianSchemeQuotients.IsAbelianScheme": {
+      "archive": "289a887271a340dadbf79e7ef63e3399a820651cd1d325c7368b221c43277613",
+      "facets": [
+        "0ef105c7ba1b184d981fd81e5fe8b7b1f175848b8b3d109000576b11a4f86c65",
+        "fcc2a852117b4fd86527b02fe7d02562df4ee23dfb711ea16dc76ee86f93a7db",
+        "fc5944c201f150825440a059e303d6fd193ac30c01f19d7c2f3d364354d60470",
+        "a58e66dce96a3df78cc7f3f0c26fb82c8a03af8213da3a85531c5c7a320d7dc6",
+        "4ef7be5352a1a5d5e2f04b82b1101d57ad0003ad0bb3dd8e0ccf3d5e921a91d1"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.AbelianSchemeQuotients.QSurjective": {
+      "archive": "eda4c0c0c539599249062d8965e05140421d28ab723e4d44d008016a7ae3c7b6",
+      "facets": [
+        "cb2f0d46d4c60565b09a12b7339bb11b288f0b9a2d6861d5f84f43c0e5f68a0f",
+        "67ddffec905f53f7bf4ae9df202271571c09059826843500619cfc6ccc6f6c1a",
+        "97c4e87aaf3e9e75fb659d527a67bec78089d95382723ebd3d9f9e22727b751e",
+        "5da496bd14d870f137ee17b79eeeb320bce12b1ce75c01c2af8ab8d45b64d48e",
+        "27a3ccf34f723d3b4f49aab36ccc8ead5900901f8a4777ed1f1f651e46a584fd"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.AbelianSchemeQuotients.SplitExtDefs": {
+      "archive": "c81975e2dc4d7d5b8860acfcaf8e96e8edcb2ad07d20502417f44aee0ae7fbe3",
+      "facets": [
+        "7a2161b1a2475f73517388703e8c13dfb7ae95b89baba6391711195005ee9cb5",
+        "a4916600dd4fe98f76288a144067dcb372ed1d0107a9fc3da2395db823d6acf0",
+        "2baedcfe583dd883a9d64b42836bf4e72cb47f9bf17c283a8848cc13b27546a2",
+        "01ec7ecead198793ccea29c71dac8ce87c3daacabd6ab8e104721cb24d2c7578",
+        "05a61dd1f49a034bf44ee22aeeeb1cfca0bc85232ee4ae853a756a51f09af8b0"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst": {
+      "archive": "8e5c35cfc19e3a1af8b9e2bed0ed7148e7dc0215a8c409b63438ef1bf447e13d",
+      "facets": [
+        "7a999a7173fcb1c7c924c0e672bb6c993815147a496055825bc57ba0f0e15f11",
+        "4dfefaf80f12946a6e591f5edb1928404585721cd8a6c20006ce897132630319",
+        "c1fd6212a814ccf97320eccdbf47a9eb6d9ae8f95edd17dcfc27d4a25e7f4d93",
+        "ef27cc145b786e90c5c00e4b15e8afe143c8fd2c825e2369158a3259c3e16b86",
+        "d09a114008b273a9a78348494eaa8e95ad4b7390afa6dbf2e4e5ca97415ee07d"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubicalPullBaseChangeSt": {
+      "archive": "54c66f6982bb84b5dc82e488ebef274fb0683bf1c546b6acd52e64874294e4d8",
+      "facets": [
+        "88d8b859982302964a8b87cc766a275f00a775e5feb5ae0363e8535efcbcc5c4",
+        "c6b85b633c76a2c2d3640bb8e44400ff98aa76a143ebe9cb1b77ffab14eadd7b",
+        "e4ad26f7f3ea5dfa26663af7523fe6e80bb1cbe13b8b06683716b133b2c419b9",
+        "aee562221daee35f94948f9538cb962085db64bf2bb649551d190c2495803503",
+        "99e288f5be2e1e652cd809eae67d7de03d2e567e4b2ec8f5cd80050c88504e1d"
+      ],
+      "mode": "authenticated leantar"
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.SplitTori.SplitTorusAff": {
+      "archive": "d52fd7c7c70502cc01e321028420a84f1b6324ca4fb664a834b90c60ac800551",
+      "facets": [
+        "8aebf2c16c516072c2dd2f9e8d37484a522428130c1463f52bd68ff9269abbe1",
+        "fd47fecc4aea213b949f41b9dd4a4973b4ba3ff5e30c0f7862ad983a0a2379d1",
+        "06dded0226fdc20477bfbf2f403646c8e5e99184d275c459d3366daba5a71f61",
+        "fbced4e862b576d47f9b94d5f68a4178c356767e5453f78875565ebcc816922a",
+        "0dfdad873cde6925a2ee57b6a4aa863d653fa884fed0a6b4ca53d62016ac737f"
+      ],
+      "mode": "authenticated leantar"
+    }
+  },
+  "order": [
+    "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.InvariantSubspaceMobiusInverseRecEqOfFinrankLt",
+    "Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition",
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+    "Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff",
+    "Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.NormConst",
+    "Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.UnivFrame",
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.EqZeroOfNotPrimary",
+    "Development.AbelianVarietyTheory.Proofs.HeightProofs.OpenImmersionCompStructureEqGeneric",
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ZMatEInjective",
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FinrankRatSkewHermitianMatricesCmField",
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ArithmeticGroupCuspCentreLattice",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AdjointDiagonalRepPreservesWeightPiece",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ConjTor",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsCharZeroPt",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.CanonEx",
+    "Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.LeNuIffPowMemPrinc",
+    "Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.BundleChernComparison",
+    "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.LaEqSqrtSmulLam",
+    "Development.AutomorphicSpectrum.Definitions.MembershipCriteria.GoodChar",
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SymplecticPeriodMatrixIntegrality",
+    "Development.WeilBound.CoreStatements.IdealCycleValues.ProdMapToMultiset",
+    "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CycleNumberRename",
+    "Development.AutomorphicSpectrum.Proofs.MembershipProofs.CyclicAndLine",
+    "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TraceUnique",
+    "Development.EtaleCohomology.CohomologicalPurity.InrFold",
+    "Development.EtaleCohomology.CohomologicalPurity.LeafIndExc",
+    "Development.EtaleCohomology.CohomologicalPurity.FinLeafHens",
+    "Development.EtaleCohomology.EtaleSheaves.EtaleChapterDTwo",
+    "Development.EtaleCohomology.EtaleSheaves.InstCommRingR",
+    "Development.EtaleCohomology.EtaleSheaves.LeafGeomPf",
+    "Development.EtaleCohomology.EtaleSheaves.HalfDegreeVanishing.SecondBlockUnimodularLocusInclusionMono",
+    "Development.EtaleCohomology.EtaleSheaves.LeafMapWPf",
+    "Development.EtaleCohomology.TateTwists.EtaleChainsMayerVietorisShortExactOfFree",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.SpanSingletonProduct",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleCoordinates",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.FormallyEtaleCoordinates",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.GraphAlgebraStandardSmooth",
+    "Development.WeilBound.CoreStatements.TemperedRepresentationTheory.GelfandSpectralNormalisation.NormalisedInvariants.PoitouTateExactSecond",
+    "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsDefs",
+    "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsNineAdd",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.StepFormula",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.QdetFacts",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.LiftCommEAt",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.PTensorGK",
+    "Development.WeilBound.ThetaLifts.Reductions.SiegelHaar"
+  ],
+  "roots": [
+    "Development.AutomorphicSpectrum.Proofs.MembershipProofs.CyclicAndLine",
+    "Development.AbelianVarietyTheory.Proofs.HeightProofs.OpenImmersionCompStructureEqGeneric",
+    "Development.EtaleCohomology.CohomologicalPurity.FinLeafHens",
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ArithmeticGroupCuspCentreLattice",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.CanonEx",
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.EqZeroOfNotPrimary",
+    "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CycleNumberRename",
+    "Development.EtaleCohomology.EtaleSheaves.LeafMapWPf",
+    "Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.LeNuIffPowMemPrinc",
+    "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsNineAdd",
+    "Development.EtaleCohomology.TateTwists.EtaleChainsMayerVietorisShortExactOfFree",
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SymplecticPeriodMatrixIntegrality",
+    "Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.PTensorGK",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.GraphAlgebraStandardSmooth",
+    "Development.WeilBound.ThetaLifts.Reductions.SiegelHaar",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.FormallyEtaleCoordinates",
+    "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TraceUnique"
+  ],
+  "base": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca",
+  "first": "87b887f70183a19b577c6b084a8865f04ecb69e4",
+  "combined": "35d22845a8ca460dc2fa12acf604f327df52072e"
+}

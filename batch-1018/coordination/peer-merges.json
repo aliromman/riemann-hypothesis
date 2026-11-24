@@ -1,0 +1,35 @@
+{
+  "snapshot_utc": "2026-11-24T11:52Z",
+  "open_count": 158,
+  "independent_peers": 156,
+  "parent": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca",
+  "queue_only_main_at_snapshot": "5f2c8594adf1f48032d37583118512cd7bbf3afa",
+  "first": "87b887f70183a19b577c6b084a8865f04ecb69e4",
+  "second": "70e09b0994fce225e678b4808941de89c27a763b",
+  "peer_prs_by_overlap": {
+    "879": 34,
+    "977": 36
+  },
+  "additional_git_conflicts_relative_to_parent": {
+    "879": {
+      "1057": 373,
+      "1058": 14,
+      "1039": 2,
+      "669": 447,
+      "645": 584,
+      "447": 1
+    },
+    "977": {
+      "1057": 208,
+      "988": 11580,
+      "1058": 18,
+      "1045": 2,
+      "1039": 2,
+      "645": 1483,
+      "366": 1,
+      "173": 4,
+      "97": 5513
+    }
+  },
+  "record_sha256": "7fe5a4b0c8a61dbe8681dfa58ebcce6c1dfd917a1e0bc5c487f6bb0811c883bc"
+}
