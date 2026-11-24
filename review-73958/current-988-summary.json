@@ -1,0 +1,10 @@
+{
+  "base": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+  "scope": "34177e76b3d63c96565710dd9977ba7155427e13",
+  "drop": "cb17cf07e78c840ffe62fa92f073bf9c018ece81",
+  "source_git_conflicts": 11647,
+  "tool_git_conflicts": 1,
+  "archived_records": 68850,
+  "preserved_footer_bytes": 171546920,
+  "changed_body_lines_from_their_footer_filter": 0
+}

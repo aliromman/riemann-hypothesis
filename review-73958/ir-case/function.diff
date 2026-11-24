@@ -1,0 +1,48 @@
+--- upstream compiler output
+
++++ candidate compiler output
+
+@@ -53,12 +53,12 @@
+
+   let x_31 : tobj := Finset.prod._at_.Formalism.MainNotions.G.SymmetricFormBlocks.fL.spec_0._redArg x_30 x_29;
+   let x_32 : u8 := Nat.decEq x_11 x_5;
+   dec x_11;
+-  block_3 (x_33 : u8) (x_34 : tobj) (x_35 : tobj) :=
++  block_3 (x_33 : tobj) (x_34 : u8) (x_35 : tobj) :=
+     let x_36 : tobj := Nat.factorialBinarySplitting x_35;
+     dec x_35;
+-    let x_37 : tobj := Nat.mul x_34 x_36;
++    let x_37 : tobj := Nat.mul x_33 x_36;
+     dec x_36;
+-    dec x_34;
++    dec x_33;
+     let x_38 : tobj := Nat.mul x_31 x_37;
+     dec x_37;
+     dec x_31;
+@@ -70,9 +70,9 @@
+
+     Bool.false →
+       dec x_13;
+       let x_41 : tagged := 0;
+-      jmp block_2 x_40 x_33 x_41
++      jmp block_2 x_40 x_34 x_41
+     Bool.true →
+-      jmp block_2 x_40 x_33 x_13;
++      jmp block_2 x_40 x_34 x_13;
+   block_4 (x_42 : tobj) :=
+     let x_43 : tobj := Nat.factorialBinarySplitting x_42;
+     dec x_42;
+@@ -81,10 +81,10 @@
+
+     case x_44 : u8 of
+     Bool.false →
+       let x_45 : tagged := 0;
+-      jmp block_3 x_44 x_43 x_45
++      jmp block_3 x_43 x_44 x_45
+     Bool.true →
+       inc x_4;
+-      jmp block_3 x_44 x_43 x_4;
++      jmp block_3 x_43 x_44 x_4;
+   case x_32 : u8 of
+   Bool.false →
+     let x_46 : tagged := 0;
