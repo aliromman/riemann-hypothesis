@@ -40,7 +40,7 @@ def comparison(results, expected):
     for module, before in expected.items():
         after = results[module]
         differences = [k for k in ['source','candidate','status','n','removed','publicImage','publicImports',
-                                   'parentNames','candidateNames','different','proofChanges','old_warnings','new_warnings']
+                                   'parentNames','candidateNames','different','proofChanges','old_warnings','new_warnings','kernelImage']
                        if before.get(k) != after.get(k)]
         differences += [k for k in FACETS if before.get('facets',{}).get(k) != after.get('facets',{}).get(k)]
         if differences:
@@ -83,20 +83,26 @@ def main():
     matched={}
     if scope['group']=='pilot':
         matched=comparison(result_rows,json.loads((HERE/'pilot-expected.json').read_bytes()))
+    # These raw partitions also contain server and private environment data.
+    # Record their bytes. The exact kernel payload has a separate native comparison.
+    gate_differences = {n: [k for k in keys if k not in ('.olean.server','.olean.private')]
+                        for n,keys in matched.items()}
+    gate_differences = {n:keys for n,keys in gate_differences.items() if keys}
     report=dict(scope=scope,statuses=dict(counts),lines=sum(v['n'] for v in result_rows.values() if v['status']=='pass'),
-                exact_private_proof_modules=sum(r['status']=='pass' and r['proofChanges']==0 for r in result_rows.values()),
-                exact_private_proof_lines=sum(r['n'] for r in result_rows.values() if r['status']=='pass' and r['proofChanges']==0),
+                exact_private_proof_modules=sum(r['status']=='pass' and r['proofChanges']==0 and r['kernelImage'] for r in result_rows.values()),
+                exact_private_proof_lines=sum(r['n'] for r in result_rows.values() if r['status']=='pass' and r['proofChanges']==0 and r['kernelImage']),
                 candidate_modules=len(result_rows),seconds=round(time.monotonic()-started,2),
                 machine=platform.platform(),toolchain=subprocess.check_output([bin_/'lean','--version'],text=True).strip(),
                 workflow_sha=os.environ.get('GITHUB_SHA'),workers=2,lean_threads=1,
                 worker_source_sha=sha((HERE/'verify_retained.py').read_bytes()),
                 checker_source_sha=sha((HERE/'CheckInterface.lean').read_bytes()),result_sha=sha(cert_file.read_bytes()),
-                target_sha=sha((HERE/'targets.txt').read_bytes()),pilot_cross_host_differences=matched)
+                target_sha=sha((HERE/'targets.txt').read_bytes()),pilot_cross_host_differences=matched,
+                pilot_cross_host_gate_differences=gate_differences)
     print(report,flush=True)
     (work/'report.json').write_text(json.dumps(report,indent=2)+'\n')
     if not counts['pass'] or counts['missing-dependency'] or counts['infrastructure']:
         raise SystemExit('parent restoration or verification infrastructure failed')
-    if scope['group']=='pilot' and (counts['pass']!=len(roots) or matched):
+    if scope['group']=='pilot' and (counts['pass']!=len(roots) or gate_differences):
         raise SystemExit('pilot did not reproduce its local certificates')
 if __name__=='__main__':
     main()
