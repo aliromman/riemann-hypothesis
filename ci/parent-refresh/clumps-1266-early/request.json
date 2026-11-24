@@ -1,0 +1,43 @@
+{
+  "authority": {
+    "base": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "tree": "c9e0bade70ab9e778941a02e423609a4e6aa76e3",
+    "manifest": "816164d26c3ad2b5bceaf1337ab7a172bbc10b1fa15c52ab8c04495436314c65",
+    "graph": "2d79c727402413d1dedd697e5e2445cccd13b3a46a88545cb2f9e8992b42c90c"
+  },
+  "tasks": {
+    "structural": {
+      "pr": 977,
+      "head": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+      "src": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749",
+      "upstream_clump_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+      "source_table_sha256": "00c92cb923882d90fc89a0b9c48894136d2a3fbf2c4d5bd28afd4d5cd9a67490"
+    }
+  },
+  "groups": {
+    "clumps-1266-ordinary-10": {
+      "task": "structural",
+      "count": 596,
+      "sha256": "17618c2ac6c8c63d8f454daa4c89db1783a4a8aa7b73aae918aa4e44319abad3",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5397.0
+    },
+    "clumps-1266-ordinary-11": {
+      "task": "structural",
+      "count": 595,
+      "sha256": "9d961449ad3a2f15395374f03248c8fe5a753829a248a4ba59eac8debf808763",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5396.29
+    },
+    "clumps-1266-ordinary-3": {
+      "task": "structural",
+      "count": 595,
+      "sha256": "5ab106489a9699ac336c600827df0da99da3084d5ac9a740667dae8481bf45a3",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 5396.29
+    }
+  }
+}
