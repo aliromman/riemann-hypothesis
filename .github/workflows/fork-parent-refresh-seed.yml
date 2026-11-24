@@ -52,7 +52,7 @@ jobs:
         if: steps.existing.outputs.cache-hit != 'true'
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
-          key: rh-screen-all-0be4f7d2dc2245d221501a8821f7a265982a3ea58cdd0bc799abb98681470f23
+          key: rh-screen-all-edc38df9198228480080821adb772f6c4109fdba7404a04be28bc49a250cb487
           path: ${{ runner.temp }}/rh-screen-cache
       - name: Verify the published manifest and download only missing official archives
         if: steps.existing.outputs.cache-hit != 'true'
