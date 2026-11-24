@@ -1,0 +1,14 @@
+{
+  "run": 45354961381,
+  "attempt": 1,
+  "old_workflow": "d8f3ee0119ccbd71c783f72c8e62907d0ec24ce6",
+  "new_source_tree": "ab277d171ac7c97287fdf2ed74926476f744ac81",
+  "artifact_id": 14903234340,
+  "artifact_sha256": "f19dba0994ba94fd32119e086a5fba2865a66ce679a70dfb8701e527b3f1c728",
+  "new_head": "bde5d32d9681e0e3b30295b53d7bdb45b6cf463a",
+  "new_parent": "e23fe94c20626997fceadcc817237335a0602c20",
+  "new_parent_receipt_sha256": "d85e73fad82557dc3d320a98e0a01387640d0b5454a6d50976bd363e44a5c411",
+  "source_ref": "refs/heads/codex/simplify-clump-scopes",
+  "pull_number": null,
+  "manifest": "18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a"
+}

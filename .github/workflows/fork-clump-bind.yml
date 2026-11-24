@@ -1,0 +1,43 @@
+name: Bind completed stock evidence to the published structural source
+on:
+  push:
+    branches: [ci/clump-scopes/bounded]
+    paths: ['ci/structural-bounded/bind-dispatch.json']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  bind:
+    if: github.repository == 'aliromman/riemann-hypothesis' && github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: verifier
+          sparse-checkout: ci/structural-bounded
+          persist-credentials: false
+      - name: Read the independently pinned community parent
+        id: cfg
+        run: |
+          revision=$(jq -er '.new_parent | select(test("^[0-9a-f]{40}$"))' verifier/ci/structural-bounded/bind-dispatch.json)
+          echo "revision=$revision" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: ${{ steps.cfg.outputs.revision }}
+          path: parent
+          sparse-checkout: scripts
+          persist-credentials: false
+      - name: Verify the original ZIP, source trees, toolchain, policy and official archive manifest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tools="$GITHUB_WORKSPACE/verifier/ci/structural-bounded"
+          python3 "$tools/bind_completed.py" "$tools/bind-dispatch.json" parent "$RUNNER_TEMP/structural-receipt.json"
+      - name: Publish the source-equivalence receipt
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: structural-equivalence-${{ github.sha }}
+          path: ${{ runner.temp }}/structural-receipt.json
+          retention-days: 7
