@@ -1,0 +1,395 @@
+{
+  "run": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45409835286",
+  "workflow": "17ba81dd303ed4dce0a4c9a3e180b08973baaca9",
+  "original_artifacts": {
+    "python-suites.zip": {
+      "id": 14928490032,
+      "bytes": 2207,
+      "sha256": "b479487aecd932f4c1ccb0c65a906e0db6e2d6e1ed5604c19d22a01f768449d9"
+    },
+    "sandbox.zip": {
+      "id": 14927393794,
+      "bytes": 19107,
+      "sha256": "cfd325f742ac0298fc046cc74efc27a27de6bf7157ac16cda67a57fd4a344197"
+    }
+  },
+  "jobs": {
+    "python-suites": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45409835286/job/138500318356",
+    "check": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45409835286/job/138500318947"
+  },
+  "binding": {
+    "parent": "6866a9c6260d77b88a7b5477433e3044b6844f9b",
+    "current_main": "9875ed9904be9d8967f578bd91121d0eafba4ba3",
+    "project": "00c2fd41c7b96184317b81cef9e3ffdc730e99c6",
+    "pulls": {
+      "879": {
+        "author": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+        "tested_merge": "4894d50f6e36f772410351d3d44e45bcba8ada7c",
+        "live_merge": "4894d50f6e36f772410351d3d44e45bcba8ada7c",
+        "live_merge_parents": [
+          "6866a9c6260d77b88a7b5477433e3044b6844f9b",
+          "a2a92740de233b5ca34edee530cb1efe7cd63b73"
+        ],
+        "candidate_src": "6578db3dffd4f7afe7c61f2a6dfd013d3e23c341"
+      },
+      "977": {
+        "author": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0",
+        "tested_merge": "040c785b5b35bf2a35f826aa2273ca2627a95d9c",
+        "live_merge": "040c785b5b35bf2a35f826aa2273ca2627a95d9c",
+        "live_merge_parents": [
+          "6866a9c6260d77b88a7b5477433e3044b6844f9b",
+          "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0"
+        ],
+        "candidate_src": "a598d19cccf798deb6e2bea9700cbac2ff050e11"
+      }
+    },
+    "pins": {
+      "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+      "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+      "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+      "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+      "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294"
+    },
+    "source_sha256": {
+      "879": {
+        "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne": {
+          "parent": "fdf02329ded6c87c37dc39f2bf6a0cb94720214359395b98619a7b24d3fb7a08",
+          "candidate": "c7580e6b64700b1d4b97542808767ef8924169157f3248849255cffebf2ecc7e"
+        },
+        "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange": {
+          "parent": "cc3c0a380d13991803c810c5b3cfb23a9bd6fd68caa4a522e9737bed85591684",
+          "candidate": "68844441ce8b7f390ca829157de13b201b9f4c287862699e6a3e5378134a2cc6"
+        },
+        "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.AlternatingMapSumSmulEqDetSmul": {
+          "parent": "aeb72ff6bc8bfcbbf1e3d164d8da6bb81c1beafffb1255442365a6e1d0918eb0",
+          "candidate": "33931b49abf21ce46ce52ec994c274ee376feb7194f78cb7c1abdf920e5dae3e"
+        }
+      },
+      "977": {
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular": {
+          "parent": "08651606886f625d8bd0b4ee559d94f9d8e222beb962777a1defff31badff61a",
+          "candidate": "08651606886f625d8bd0b4ee559d94f9d8e222beb962777a1defff31badff61a"
+        },
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower": {
+          "parent": "a768e7e8759ab147b97a2b7d7088d136de9596b390db6b5a735699aa0b5029c8",
+          "candidate": "069277b98f07eca8ff4074ae0a81f39e79eb7a947e65726c9b30d87a946ce193"
+        },
+        "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters": {
+          "parent": "e1e9b2a0cdfa356ebbce7c18314d5a83273ad6dea18c991dd9ec09db9d8e6937",
+          "candidate": "d453baf5a27f27a0001da3d9425f3c985adc466035c4a72dbe1942a4a794ff02"
+        },
+        "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat": {
+          "parent": "345c180c387372089ca2ae461869e76752bddebff6e7ed97abf84bb8cba0704c",
+          "candidate": "d5ec7fe423b9d8eba168c857c657df98423afd7953157d75ba9adbb43c2d3150"
+        }
+      }
+    }
+  },
+  "namespace_original": {
+    "command": [
+      "bwrap",
+      "--unshare-all",
+      "--ro-bind",
+      "/",
+      "/",
+      "--dev",
+      "/dev",
+      "--proc",
+      "/proc",
+      "--die-with-parent",
+      "--new-session",
+      "--",
+      "/bin/true"
+    ],
+    "uid": 1001,
+    "system": "Linux-6.8.0-1070-azure-x86_64-with-glibc2.35",
+    "package": "bubblewrap 0.6.1",
+    "settings": {
+      "/proc/sys/user/max_user_namespaces": "63848",
+      "/proc/sys/kernel/unprivileged_userns_clone": "1",
+      "/proc/sys/kernel/apparmor_restrict_unprivileged_userns": "0"
+    },
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "native_results": {
+    "879": [
+      {
+        "name": "GlobalTheory.CatCoh.commAlgFunctorCoboundaryZero_mem_cocyclesOne",
+        "module": "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+        "built": 1,
+        "parent_export_bytes": 4888069,
+        "sha256": "00615d0ad579cd5a3309866b1d7e5861bfa4d6b206bf92d861a0d9b542eee332",
+        "official_report": "879-CommAlgFunctorCoboundaryZeroMemCocyclesOne-report.json",
+        "verified_candidate_facets": {
+          "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne": {
+            ".olean": "c9712c7740b7360118edfccb743b7ae1b5e214e57fed55a4c761c1dee5bc9cd7",
+            ".ir.sig": "e7ffdf32c5288941ca0cb94db1988ce9cddcdc9718a3713e8c38d7bf64b663f4",
+            ".ir": "06199f02b65c08e3340c29198c71122cf7ee88148c30fba196c02dfeffcba4bb"
+          }
+        }
+      },
+      {
+        "name": "GlobalTheory.TopForm.isBaseChange_exteriorPower",
+        "module": "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange",
+        "built": 2,
+        "parent_export_bytes": 52581161,
+        "sha256": "2dcae760dcc362b23a2aec4c37f91947c52936d0274a4d81e8d65c82812ae24e",
+        "official_report": "879-ExistsAlgHomOfIsBaseChange-report.json",
+        "verified_candidate_facets": {
+          "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange": {
+            ".olean": "f2301336ad0249586955b8e8a88bfd2f7a0391f863ca360b625bc97f14646f0c",
+            ".ir.sig": "2a1765c4df17719a36592d6984a11d757e0b13e4e888fe353d1cf0d2a156c772",
+            ".ir": "7367b73ec7e080bddcab840212b381322826cb1f0ae794be415f2af86dbc18b1"
+          },
+          "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.AlternatingMapSumSmulEqDetSmul": {
+            ".olean": "aa2d69110561b3f108195d93f3f7e776fc714f12767966c1d04be1ff2c16bcd4",
+            ".ir.sig": "00705131015da9382201f2aac72937ea3054bdadac2fa21549e8aca26c13d0fa",
+            ".ir": "0f777c3b670fcf3105507027710ca230de54cec4dcb07f63fe30906014d293be"
+          }
+        }
+      }
+    ],
+    "977": [
+      {
+        "name": "GlobalTheory.CompanionTheory.SW.Averaging.bijective_pair",
+        "module": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+        "built": 3,
+        "parent_export_bytes": 3149696,
+        "sha256": "31bf90c0ba09af45d2a9f9f99cc93265e87b6cd3824bb11016d34544ef565bf3",
+        "official_report": "977-QuotientMeasureTower-report.json",
+        "verified_candidate_facets": {
+          "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular": {
+            ".olean": "8f3db2edfbe93955a687575b960408d934075cd3f70b5b498dce761c4de1c6c1",
+            ".ir.sig": "95dba4e3765e5aa629d468d8be862f76ea058a8a6140e2c3e89879ff043341f5",
+            ".ir": "b8bd034ec734dea96a8778e04529f35c2dcff80e040ed21f130a4f2772680e82"
+          },
+          "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower": {
+            ".olean": "1f94310e4e1f28fe4bf620a314d30718eeaa770ca31cbe4d377d678b53bbcead",
+            ".ir.sig": "a784d850fbcbb7d0d3f08088cd6273500c550a8af4521e978591e29f966fc5c7",
+            ".ir": "ab0b9a0d7b8747fcdaf81686dea91576171e3c30183a74c786546434eda789e6"
+          },
+          "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat": {
+            ".olean": "2993474fc82d0e48bb30780d2100cb35e5aa7d97a5cb979a7e7f264c0798db0d",
+            ".ir.sig": "5911d24a61dc865811654bb530cfcbdd4a278d94b58dc6be32198a6f37d0f774",
+            ".ir": "df94ca25c11e220b9538f702e7fa4134fe31252c9b12e04ffed60215da1a575f"
+          }
+        }
+      },
+      {
+        "name": "Formalism.LatticeBaseChangeAlt.four_term_sum_bound_of_parameters",
+        "module": "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters",
+        "built": 1,
+        "parent_export_bytes": 50380642,
+        "sha256": "9bf232ca29179dce903c72e3121754f9e639887a77f3072e88ef1ce68638c35b",
+        "official_report": "977-FourTermSumBoundOfParameters-report.json",
+        "verified_candidate_facets": {
+          "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters": {
+            ".olean": "af5945c3a7311f30a7eca3a1561f88c6368463557a209b28a8631ba5f5fb0a86",
+            ".ir.sig": "38db0e48b096903f10dd459e078ad743cd4eccdd13a6b1ba4570ae899b603a57",
+            ".ir": "c0677dfda312527219e8fe061629c7c84ceca591cddd106615b0f96cd25cfe76"
+          }
+        }
+      }
+    ]
+  },
+  "control_verdicts": {
+    "alternate": {
+      "command": [
+        "/home/runner/.elan/toolchains/leanprover--lean4---v4.37.0-rc1/bin/lake",
+        "comparator",
+        "--config",
+        "/home/runner/work/_temp/proof-logs/control-alternate-config.json",
+        "--challenge-from-export",
+        "/home/runner/work/_temp/control.jsonl",
+        "--json"
+      ],
+      "project_facets": {
+        "Control": {
+          ".olean": "7ee29681ed6f10f47073d18423ed228d8b991bcf7e82eb89e5c565714156ecac",
+          ".ir.sig": "980f50c600437448fa94ca0f990e3eb3b4cc63928a95a44ab62165ad994c0428",
+          ".ir": "7798947fe956229b729deda91053c40c9ff4cc59c04c17f254e80e23ff6e889e"
+        }
+      },
+      "judgement": "accepted",
+      "steps": {
+        "resolve_dependencies": "success",
+        "export_solution": "success",
+        "export_challenge": "skipped",
+        "compare_statements": "success",
+        "check_axioms": "success",
+        "build_solution": "success",
+        "build_challenge": "skipped"
+      },
+      "kernels": {
+        "nanoda": "success",
+        "Lean paranoid": "success",
+        "Lean default": "success"
+      },
+      "sandboxed": true
+    },
+    "statement": {
+      "command": [
+        "/home/runner/.elan/toolchains/leanprover--lean4---v4.37.0-rc1/bin/lake",
+        "comparator",
+        "--config",
+        "/home/runner/work/_temp/proof-logs/control-statement-config.json",
+        "--challenge-from-export",
+        "/home/runner/work/_temp/control.jsonl",
+        "--json"
+      ],
+      "project_facets": {
+        "Control": {
+          ".olean": "77da942b3236b94d86f501edd31383973925c72e6deaabce97ed74a6641a3a99",
+          ".ir.sig": "980f50c600437448fa94ca0f990e3eb3b4cc63928a95a44ab62165ad994c0428",
+          ".ir": "7798947fe956229b729deda91053c40c9ff4cc59c04c17f254e80e23ff6e889e"
+        }
+      },
+      "judgement": "failure",
+      "steps": {
+        "resolve_dependencies": "success",
+        "export_solution": "success",
+        "export_challenge": "skipped",
+        "compare_statements": "failure",
+        "check_axioms": "skipped",
+        "build_solution": "success",
+        "build_challenge": "skipped"
+      },
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      },
+      "sandboxed": true
+    },
+    "axiom": {
+      "command": [
+        "/home/runner/.elan/toolchains/leanprover--lean4---v4.37.0-rc1/bin/lake",
+        "comparator",
+        "--config",
+        "/home/runner/work/_temp/proof-logs/control-axiom-config.json",
+        "--challenge-from-export",
+        "/home/runner/work/_temp/control.jsonl",
+        "--json"
+      ],
+      "project_facets": {
+        "Control": {
+          ".olean": "d62af0670a7b5b6aa101672e36027d731d6ba5180d553e8cad6b7763d2a8ab42",
+          ".ir.sig": "980f50c600437448fa94ca0f990e3eb3b4cc63928a95a44ab62165ad994c0428",
+          ".ir": "7798947fe956229b729deda91053c40c9ff4cc59c04c17f254e80e23ff6e889e"
+        }
+      },
+      "judgement": "failure",
+      "steps": {
+        "resolve_dependencies": "success",
+        "export_solution": "success",
+        "export_challenge": "skipped",
+        "compare_statements": "success",
+        "check_axioms": "failure",
+        "build_solution": "success",
+        "build_challenge": "skipped"
+      },
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      },
+      "sandboxed": true
+    }
+  },
+  "initial_python_versions": [
+    "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0",
+    "a598d19cccf798deb6e2bea9700cbac2ff050e11",
+    "Python 3.12.3",
+    "PyYAML 6.0.1",
+    "cp (GNU coreutils) 9.4",
+    "Copyright (C) 2023 Free Software Foundation, Inc.",
+    "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.",
+    "This is free software: you are free to change and redistribute it.",
+    "There is NO WARRANTY, to the extent permitted by law.",
+    "",
+    "Written by Torbj\u00f6rn Granlund, David MacKenzie, and Jim Meyering.",
+    "Lean (version 4.37.0-rc1, x86_64-unknown-linux-gnu, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+    "Lake version 5.0.0-src+0b77e12 (Lean version 4.37.0-rc1)"
+  ],
+  "initial_python_unit_suites": {
+    "native": {
+      "ran": 60,
+      "skipped": 0,
+      "seconds": 0.438
+    },
+    "clump": {
+      "ran": 12,
+      "skipped": 0,
+      "seconds": 0.029
+    },
+    "scripts": {
+      "ran": 308,
+      "errors": [
+        "test_client_uses_explicit_r2_configuration",
+        "test_file_upload_streams_seekable_file_and_closes_it",
+        "test_get_is_ranged_bounded_preserves_etag_metadata_and_closes_body",
+        "test_get_rejects_oversize_or_inconsistent_bodies_and_closes_them",
+        "test_no_ambient_models_or_config_providers",
+        "test_only_missing_objects_are_absent_and_other_errors_are_sanitized",
+        "test_precondition_conflicts_compare_existing_bytes_and_never_overwrite",
+        "test_put_preserves_create_and_compare_and_swap_conditions",
+        "test_transport_and_body_read_failures_are_sanitized"
+      ],
+      "seconds": 7.067,
+      "missing_api": "botocore.session.load_client_plugins"
+    }
+  },
+  "final_author_python": {
+    "source": "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
+    "src": "a598d19cccf798deb6e2bea9700cbac2ff050e11",
+    "url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45410674890/job/138503244640",
+    "run": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45410674890",
+    "workflow": "ce36d025d005e8439cbb0907450f87e9994a779f",
+    "artifact": 14925939162,
+    "versions": [
+      "Python 3.12.16",
+      "PyYAML 6.0.2",
+      "cp (GNU coreutils) 9.4"
+    ],
+    "package_versions": [
+      "Python 3.12.16",
+      "PyYAML 6.0.2",
+      "boto3 1.44.9 botocore 1.44.9",
+      "cp (GNU coreutils) 9.4",
+      "Copyright (C) 2023 Free Software Foundation, Inc.",
+      "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.",
+      "This is free software: you are free to change and redistribute it.",
+      "There is NO WARRANTY, to the extent permitted by law.",
+      "",
+      "Written by Torbj\u00f6rn Granlund, David MacKenzie, and Jim Meyering.",
+      "Lean (version 4.37.0-rc1, x86_64-unknown-linux-gnu, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+      "Lake version 5.0.0-src+0b77e12 (Lean version 4.37.0-rc1)"
+    ],
+    "sha256": "73d83fde0c3633e6dc1f1c9dfa4cb92c436c559470fb23007a2e1758e8b68629",
+    "unit_tests": {
+      "native": {
+        "ran": 60,
+        "skipped": 0,
+        "seconds": 0.431
+      },
+      "clump": {
+        "ran": 12,
+        "skipped": 0,
+        "seconds": 0.035
+      },
+      "scripts": {
+        "ran": 308,
+        "skipped": 0,
+        "seconds": 8.49
+      }
+    },
+    "unit_tests_passing": {
+      "native": 60,
+      "clump": 12,
+      "scripts": 308
+    }
+  },
+  "final_author_source_binding_sha256": "d27d869b802d5d49a4ed72996602b5b6a74295a8a302755b0156e876bb4edb97"
+}
