@@ -1,0 +1,21 @@
+{
+  "source_repository": "aliromman/riemann-hypothesis",
+  "source_ref": "refs/heads/codex/prune-development-mathlib-imports",
+  "source_head": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+  "parent": "6866a9c6260d77b88a7b5477433e3044b6844f9b",
+  "donor": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+  "parent_source_tree": "00c2fd41c7b96184317b81cef9e3ffdc730e99c6",
+  "parent_module_manifest": "0be4f7d2dc2245d221501a8821f7a265982a3ea58cdd0bc799abb98681470f23",
+  "checked_commit": "4894d50f6e36f772410351d3d44e45bcba8ada7c",
+  "candidate_source_tree": "6578db3dffd4f7afe7c61f2a6dfd013d3e23c341",
+  "git_tree": "62b79d1d0489e04f74b56684697249fc5fffa740",
+  "pins": {
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d"
+  },
+  "mode": "github-pull-merge",
+  "pull_number": 879,
+  "facet_policy": "complete-parent-payload-exact-private-import-header-v2",
+  "preceding_raw_comparison_run": 45368083272
+}
