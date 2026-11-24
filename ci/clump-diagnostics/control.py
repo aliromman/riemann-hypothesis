@@ -11,7 +11,7 @@ import tempfile
 REVISIONS = {
     "initial": ("2b481024a8665bd5b24ca40d28fe90cb4fb86ce0", "d346751f04fc9b6773cc53cd50bd2dea115db88a9df4dc3b8466499403ea9128"),
     "previous": ("989ea9c41e8400a6fe894fe365298c219f8c7e1d", "a4f1990726580a924d4cf95ecd7a76bcb00099a1e28756c06e9c91c47b5abcdf"),
-    "candidate": ("c0228c0ae22d9cbf3e5466760718fd19111058ac", "01a81b1a58da622db0427e99139e3b399aa12fae43cde2d59aa709795c3bcade"),
+    "candidate": ("e7127ce8136d8ed36e610884d8578de1cffadd19", "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf"),
 }
 BANNER = "-- This file was produced by scripts/clump.py from the modules listed below."
 LITERAL = "-- clump member: note\n"
