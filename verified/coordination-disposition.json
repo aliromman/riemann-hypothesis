@@ -1,0 +1,16 @@
+{
+  "before": "c4b66990077a462b2e2d35777fe0f55644463e87",
+  "main": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+  "head": "b880abd478236b392db065624391b785ad648b36",
+  "tree": "303e91df78e5efeab9c3b9e26851340feabff837",
+  "holds": {
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/SymmetricPowerTransfer/TraceFormulaEigenvalues/TraceBlocks.lean": {
+      "proposal": 1010,
+      "parent_conflict": false,
+      "change": "text"
+    }
+  },
+  "parent_blob": "f90caeba99afa630f4fa0aaf1793d9387bd274fb",
+  "previous_candidate_blob": "d7ddfcddd40023957d5e999201f04fe47d5bf64b",
+  "source_paths": 39158
+}

@@ -1,0 +1,18 @@
+{
+  "base": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+  "head": "b880abd478236b392db065624391b785ad648b36",
+  "src": "303e91df78e5efeab9c3b9e26851340feabff837",
+  "files": 39158,
+  "raw_git_pairs": 39158,
+  "scheduled": 29208,
+  "safe_inputs": 9950,
+  "metrics": [
+    1019813,
+    382
+  ],
+  "extra_scheduled": [],
+  "dropped_since_coordinated": [
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.TraceFormulaEigenvalues.TraceBlocks"
+  ],
+  "source_pairs_sha256": "9d6a20b335c53dead2b342e40ab5996eb44a46af2ae3005a595ed28cb94bad6b"
+}
