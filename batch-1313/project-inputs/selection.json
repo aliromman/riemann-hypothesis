@@ -1,0 +1,26 @@
+{
+  "blockers": {
+    "loaded-inputs": 14777,
+    "owner": 11017,
+    "parent-source": 243
+  },
+  "current_head": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+  "current_parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "fresh": 26037,
+  "fresh_sha256": "bdf4fa0a018161207d8cd6e2a8d420665a2a6e545d1c35e20813fd48b78becc8",
+  "graph": "de1fe13e172b47bb9b1f27c429cc282e94e3e528f3ec4c90f8a9d300a2b40e75",
+  "old_head": "e0a0acde813bd368786947b98704ee6814656a15",
+  "old_parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "owners": {
+    "archive": 12929
+  },
+  "policy": "whole-owner",
+  "pr": 879,
+  "reusable": 12929,
+  "reusable_sha256": "7caf25f2f5607c18bf208a6711e84d51a1136b397e26e855b3340082340fa89f",
+  "roots": 38966,
+  "direct_scheduled_head": "c54aa01a69e98a511a4ac95e78a045c4f0525566",
+  "continuing_direct_pairs": 243,
+  "superseded_direct_inputs": [],
+  "current_native_residual": 25794
+}

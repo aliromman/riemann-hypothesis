@@ -1,0 +1,165 @@
+{
+  "run": 45462128613,
+  "workflow": "a6e9d637310a3ff40b98a877ff32f1d1f9ad4902",
+  "status": "success",
+  "url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45462128613",
+  "job_url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45462128613/job/138687263782",
+  "job_steps": {
+    "Set up job": "success",
+    "Check out the independent fork verifier": "success",
+    "Select the pinned public objects": "success",
+    "Check out immutable candidate sources": "success",
+    "Check out the authenticated community parent": "success",
+    "Verify the published Git trees and materialize the declared cone": "success",
+    "Install the pinned toolchain": "success",
+    "Exercise Comparator acceptance and rejection": "success",
+    "Restore the published parent archives": "success",
+    "Fetch the official Mathlib cache for the selected imports": "success",
+    "Build and compare the candidate": "success",
+    "Save the scope and verification output": "success",
+    "Post Check out the authenticated community parent": "success",
+    "Post Check out immutable candidate sources": "success",
+    "Post Check out the independent fork verifier": "success",
+    "Complete job": "success"
+  },
+  "artifact_id": 14954370299,
+  "container_sha256": "b3c2a5e97b599130e32523a7eb669ca02523c73a6c11811313c7c90a561a4bd0",
+  "public": {
+    "source_repository": "aliromman/riemann-hypothesis",
+    "source_ref": "refs/heads/ci/batch-1313/pr-879-reviewed-source",
+    "source_head": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+    "parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "donor": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "parent_source_tree": "b722dc0d057c3a869ad607e0c93231665a963b63",
+    "parent_module_manifest": "56ef968afb7ef3227b98278bbf86cf5b2baa24385b4f89f3aca63599a437af92",
+    "checked_commit": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+    "candidate_source_tree": "6af81f1c5c2293469175c13cfd47bc25932da66c",
+    "git_tree": "bbc866445a0103e2bf7b6d11a8078eb87ba7cf3d",
+    "pins": {
+      "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+      "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+      "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d"
+    },
+    "mode": "public-fork-head",
+    "pull_number": 879,
+    "facet_policy": "complete-parent-payload-exact-private-import-header-v2",
+    "preceding_raw_comparison_run": 45368083272,
+    "upstream_main_observed": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "pr_head": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+    "comparison_parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "source_mode": "public-fork-head",
+    "source_tree": "6af81f1c5c2293469175c13cfd47bc25932da66c",
+    "ci_head": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+    "workflow_head": "a6e9d637310a3ff40b98a877ff32f1d1f9ad4902",
+    "pull_request": "https://github.com/leanprover-community/riemann-hypothesis/pull/879"
+  },
+  "project_modules": 74,
+  "roots": 7,
+  "changed": 38,
+  "fresh": 38,
+  "changed_by_library": {
+    "Development": 38
+  },
+  "expanded_parent_archive_bytes": 58804344,
+  "compressed_parent_bytes": 3544818,
+  "declarations": 3452,
+  "changed_module_declarations": 2071,
+  "raw_differences": {
+    ".olean": 38,
+    ".olean.server": 38,
+    ".olean.private": 38,
+    ".ir": 38
+  },
+  "required_raw_facets": "IR signature unchanged throughout; exact whole projected .olean, .ir.sig and .ir on edited headers, exact whole original .olean and both IR parts elsewhere, all five when a project module imports all/meta",
+  "different_warnings": 0,
+  "all_modules_raw_bytes": {
+    ".olean.server": {
+      "parent": 501840,
+      "candidate": 502176
+    },
+    ".olean.private": {
+      "parent": 31635872,
+      "candidate": 31645792
+    }
+  },
+  "projected_facets": {
+    "edited": 38,
+    "full_projected_outputs": 114,
+    "byte_counts": {
+      ".olean": {
+        "parent": 10907224,
+        "candidate": 10711960
+      },
+      ".olean.server": {
+        "parent": 299056,
+        "candidate": 299392
+      },
+      ".olean.private": {
+        "parent": 21250984,
+        "candidate": 21260904
+      },
+      ".ir.sig": {
+        "parent": 9424,
+        "candidate": 9424
+      },
+      ".ir": {
+        "parent": 835312,
+        "candidate": 636592
+      }
+    },
+    "signature_and_full_header_kinds": {
+      "empty,source": 38
+    },
+    "previous_raw_comparison": 45368083272,
+    "policy": "complete-parent-payload-exact-private-import-header-v2"
+  },
+  "confirmed_fresh_builds": 39,
+  "replayed_roots": [
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex"
+  ],
+  "downstream_cases": [],
+  "controls": {
+    "alternative-proof": {
+      "verdict": "accepted",
+      "statements": "success",
+      "axioms": "success",
+      "kernels": {
+        "nanoda": "success",
+        "Lean paranoid": "success",
+        "Lean default": "success"
+      }
+    },
+    "other-statement": {
+      "verdict": "failure",
+      "statements": "failure",
+      "axioms": "skipped",
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      }
+    },
+    "extra-axiom": {
+      "verdict": "failure",
+      "statements": "success",
+      "axioms": "failure",
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      }
+    }
+  },
+  "replacements": {},
+  "carried_inputs": {
+    "previous_workflow": "bbe6a0c7c89aabdeecfda95e151ecf9f8584d6fd",
+    "previous_run": 45446269669,
+    "all_named_timing_and_external_theorem_inputs": true
+  },
+  "previous_input_assessment": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+  "timing_status": {
+    "individual": "No new timing on this runner",
+    "end_to_end": "No new timing on this runner"
+  },
+  "original_bytes": 55204
+}

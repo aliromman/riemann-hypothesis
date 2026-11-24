@@ -1,0 +1,38 @@
+{
+  "workflow": "a6e9d637310a3ff40b98a877ff32f1d1f9ad4902",
+  "source": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+  "parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "pr": 879,
+  "source_ref": "refs/heads/ci/batch-1313/pr-879-reviewed-source",
+  "tree": "a836865f7cd519476f82053db49a2e83743f7e7c",
+  "operational_branch": "refs/heads/ci/batch-1313/stock-879",
+  "parent_workflow": "bbe6a0c7c89aabdeecfda95e151ecf9f8584d6fd",
+  "roots": [
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypicalCurvesTangentAndBases",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.DegreeCountCohomology.SolCnt",
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CharacterIdealPrincipalEigenStatement",
+    "Development.EtaleCohomology.CohomologicalPurity.LeafImgPf",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StalkKrullDimension",
+    "Development.WeilBound.CoreStatements.HodgeTatePoints.RiRank",
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex"
+  ],
+  "modules": 74,
+  "changed": 38,
+  "replays": [
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex"
+  ],
+  "selection": {
+    "selection": "One current source per edited Development subject, closest to a 12-project-module cone, with module name as the tie breaker. Include the concurrent duplicate import if its project cone fits the published workload limit.",
+    "groups": {
+      "AbelianVarietyTheory": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypicalCurvesTangentAndBases",
+      "AutomorphicArithmetic": "Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.DegreeCountCohomology.SolCnt",
+      "AutomorphicSpectrum": "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CharacterIdealPrincipalEigenStatement",
+      "EtaleCohomology": "Development.EtaleCohomology.CohomologicalPurity.LeafImgPf",
+      "ResolutionOfSingularities": "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StalkKrullDimension",
+      "WeilBound": "Development.WeilBound.CoreStatements.HodgeTatePoints.RiRank"
+    },
+    "explicit_concurrent_import": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex",
+    "concurrent_import_cone_modules": 21,
+    "included_concurrent_import": true
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "utc": "2026-11-24T18:49:32.676851+00:00",
+  "proposals": [
+    {
+      "author": {
+        "id": "MDQ6VXNlcjExNjU5ODM5",
+        "is_bot": false,
+        "login": "rohanarun",
+        "name": ""
+      },
+      "closedAt": "2026-11-21T20:54:20Z",
+      "headRefOid": "1e921c49491c8928c2061fdfb7f1374dc0971226",
+      "mergedAt": "2026-11-21T20:54:20Z",
+      "number": 45,
+      "state": "MERGED",
+      "title": "Prune unused top-level imports and 11,163 unreachable dead modules",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/45"
+    },
+    {
+      "author": {
+        "id": "U_kgDOB1uUdA",
+        "is_bot": false,
+        "login": "james-shore",
+        "name": "James Shore"
+      },
+      "closedAt": "2026-11-24T00:24:14Z",
+      "headRefOid": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "mergedAt": null,
+      "number": 55,
+      "state": "CLOSED",
+      "title": "Remove declarations that are unused in the proof",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/55"
+    },
+    {
+      "author": {
+        "id": "MDQ6VXNlcjExNjU5ODM5",
+        "is_bot": false,
+        "login": "rohanarun",
+        "name": ""
+      },
+      "closedAt": "2026-11-22T17:29:18Z",
+      "headRefOid": "b8f54654a52be8aee49242459fb28d6697fd8d30",
+      "mergedAt": null,
+      "number": 63,
+      "state": "CLOSED",
+      "title": "Consolidate 133,202 small sibling modules into 22,831 antichain bundles (\u2212110,371 files, \u221267.1%)",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/63"
+    },
+    {
+      "author": {
+        "id": "MDQ6VXNlcjgzOTcwOTMy",
+        "is_bot": false,
+        "login": "antoshashakov",
+        "name": "Anton Shakov"
+      },
+      "closedAt": "2026-11-22T07:25:46Z",
+      "headRefOid": "37e3cd06d3bc65c74b9496adfea9f9827e727fbf",
+      "mergedAt": "2026-11-22T07:25:46Z",
+      "number": 68,
+      "state": "MERGED",
+      "title": "Share the rank-induction proof of GL finiteness (9,010 fewer Lean lines)",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/68"
+    },
+    {
+      "author": {
+        "id": "U_kgDOEZPRfw",
+        "is_bot": false,
+        "login": "graohene10-spec",
+        "name": "Kerf"
+      },
+      "closedAt": "2026-11-24T00:04:44Z",
+      "headRefOid": "37126b42f5d00c4ad0a17eda4a6e5429c4126204",
+      "mergedAt": null,
+      "number": 87,
+      "state": "CLOSED",
+      "title": "Shorten checked proofs across 816 Lean modules",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/87"
+    },
+    {
+      "author": {
+        "id": "MDQ6VXNlcjExNjU5ODM5",
+        "is_bot": false,
+        "login": "rohanarun",
+        "name": ""
+      },
+      "closedAt": "2026-11-24T16:35:19Z",
+      "headRefOid": "4af9ead5a547472a25c367cb4f55c17c05d2e39f",
+      "mergedAt": null,
+      "number": 120,
+      "state": "CLOSED",
+      "title": "Collapse 28,169 thin wrappers and consolidate 93,601 modules into 20,258 bundles (\u2212101,512 files, \u221267.9%)",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/120"
+    },
+    {
+      "author": {
+        "id": "MDQ6VXNlcjE3MzIyNTU4",
+        "is_bot": false,
+        "login": "Vilin97",
+        "name": "Vasily Ilin"
+      },
+      "closedAt": "2026-11-23T07:20:13Z",
+      "headRefOid": "4f5b851cae6872352482cec54ae6f85ff9bae2c5",
+      "mergedAt": "2026-11-23T07:20:13Z",
+      "number": 134,
+      "state": "MERGED",
+      "title": "Speed up the build: remove heartbeat overrides, minimize imports, speed up slow proofs",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/134"
+    },
+    {
+      "author": {
+        "id": "MDQ6VXNlcjQ3Nzk1Ng==",
+        "is_bot": false,
+        "login": "kim-em",
+        "name": "Kim Morrison"
+      },
+      "closedAt": "2026-11-23T22:59:49Z",
+      "headRefOid": "238e31886874cf37b82664b1996f4139fd644159",
+      "mergedAt": "2026-11-23T22:59:49Z",
+      "number": 324,
+      "state": "MERGED",
+      "title": "perf: delete thin wrappers and combine modules into import-graph clumps",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/324"
+    },
+    {
+      "author": {
+        "id": "MDQ6VXNlcjg3Nzc0NTEx",
+        "is_bot": false,
+        "login": "brianlzhou",
+        "name": "Brian Zhou"
+      },
+      "closedAt": "2026-11-24T17:07:24Z",
+      "headRefOid": "dcde2bb6b1fe1f1884194e565c64bb5daed6daaf",
+      "mergedAt": null,
+      "number": 609,
+      "state": "CLOSED",
+      "title": "scripts: add prune_mathlib_imports.py for dead private Mathlib imports",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/609"
+    },
+    {
+      "author": {
+        "id": "MDQ6VXNlcjM3OTE3OTM0",
+        "is_bot": false,
+        "login": "Deicyde",
+        "name": "Jack McCarthy"
+      },
+      "closedAt": null,
+      "headRefOid": "35e53a486431f2db6d7ebbf4ceca4774ebd1ccd8",
+      "mergedAt": null,
+      "number": 988,
+      "state": "OPEN",
+      "title": "Drop the clump-header comments",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/988"
+    },
+    {
+      "author": {
+        "id": "MDQ6VXNlcjEyODgwOTIw",
+        "is_bot": false,
+        "login": "dga471",
+        "name": "Daniel Ang"
+      },
+      "closedAt": "2026-11-24T17:03:30Z",
+      "headRefOid": "fc6f9b67c831a0675d69f06c1c91c65ac1122b68",
+      "mergedAt": "2026-11-24T17:03:30Z",
+      "number": 1103,
+      "state": "MERGED",
+      "title": "perf(ReciprocityTheory): prune redundant private ext-47 imports across ReciprocityTheory, CompanionTheory, PositivityTheory and Lemmata",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1103"
+    },
+    {
+      "author": {
+        "id": "MDQ6VXNlcjM3OTE3OTM0",
+        "is_bot": false,
+        "login": "Deicyde",
+        "name": "Jack McCarthy"
+      },
+      "closedAt": null,
+      "headRefOid": "700a2364664b7e92fe9792234ccd9eb8970233ec",
+      "mergedAt": null,
+      "number": 1236,
+      "state": "OPEN",
+      "title": "Collapse 1,264 more thin wrappers",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/1236"
+    }
+  ],
+  "actual_prior_code": "https://github.com/aliromman/riemann-hypothesis/tree/4ff4a916dea1434b564f83253d729595fcd019d6/prior-work"
+}
