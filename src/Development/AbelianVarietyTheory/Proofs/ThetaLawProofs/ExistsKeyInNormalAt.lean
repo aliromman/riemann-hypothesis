@@ -51,11 +51,12 @@ import Development.AbelianVarietyTheory.Definitions.KeyFormula.KaRuleK
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Statements.FundamentalDomains.IsLocalModelOfIntegral, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsKeyInNormalAt
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.FundamentalDomains.IsLocalModelOfIntegral
-
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.FundamentalDomains.IsLocalModelOfIntegral
 
 namespace GlobalTheory.KeyPow.Test
 
@@ -133,9 +134,6 @@ end GlobalTheory.KeyPow.Test
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsKeyInNormalAt
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyPow GlobalTheory.KeyKa

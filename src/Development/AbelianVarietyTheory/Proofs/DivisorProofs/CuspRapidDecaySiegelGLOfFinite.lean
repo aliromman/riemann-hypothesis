@@ -94,7 +94,6 @@ import Mathlib.Tactic.Lemma
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothingGrowthExponent
 
-
 open NumberField GlobalTheory.CuspRep GlobalTheory.CuspQuot GlobalTheory.AutGrowth MeasureTheory Filter Topology
 
 namespace GlobalTheory.AutGrowth
@@ -166,9 +165,11 @@ theorem smoothing_growth_exponent : ∀ (E : Type) [Field E] [NumberField E] [_r
 end GlobalTheory.AutGrowth
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WordEqSmoothingOfReproduced
+section -- clump: shared namespace opens
 
 open NumberField GlobalTheory.CuspRep GlobalTheory.CuspQuot GlobalTheory.AutGrowth MeasureTheory GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.Reduction
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WordEqSmoothingOfReproduced
 
 namespace GlobalTheory.AutGrowth
 
@@ -193,9 +194,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AutomorphicFormGLUniformModerateGrowth
 
-
-open NumberField GlobalTheory.CuspRep GlobalTheory.CuspQuot GlobalTheory.AutGrowth MeasureTheory GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.Reduction
-
 theorem GlobalTheory.AutGrowth.uniform_growth_of_autForm : GlobalTheory.Published.AutomorphicFormsFiniteGL → ∀ (E : Type) [Field E]
     [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ) (φ : Sm E a), IsAutForm φ → ∃ N : ℕ, ∀ l : List (Lie E a),
     ∃ C : ℝ, ∀ y, ‖((l.map (lie E a)).prod φ).1 (infGL E a y)‖ ≤ C * height y ^ N := by
@@ -209,10 +207,6 @@ theorem GlobalTheory.AutGrowth.uniform_growth_of_autForm : GlobalTheory.Publishe
   obtain ⟨C', hC'⟩ := _root_.GlobalTheory.AutGrowth.smoothing_growth_exponent E a ν β hβ φ.1 C N hC
   exact ⟨C', fun y => by rw [hw]; exact hC' y⟩
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open NumberField GlobalTheory.CuspRep GlobalTheory.CuspQuot GlobalTheory.AutGrowth MeasureTheory GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.Reduction
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFundamentalDomainRationalBlockUnipotentGL
 open Topology
@@ -240,7 +234,6 @@ end GlobalTheory.CuspRep
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CuspFormNormLeOfUnipotentVariation
-
 
 namespace GlobalTheory.CuspRep
 
@@ -342,12 +335,7 @@ theorem lieD_le_of_basis : ∀ (E : Type) [Field E] [NumberField E] [_root_.Numb
 end GlobalTheory.CuspRapid
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormSubLeOfLieDerivativeUnipotentSegment
-
-
-open NumberField GlobalTheory.CuspRep GlobalTheory.CuspQuot GlobalTheory.AutGrowth MeasureTheory GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.Reduction
 
 namespace GlobalTheory.CuspRapid
 
@@ -387,12 +375,7 @@ theorem norm_sub_le_of_lieD_unipotent_segment (E : Type) [Field E] [NumberField 
 end GlobalTheory.CuspRapid
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open NumberField GlobalTheory.CuspRep GlobalTheory.CuspQuot GlobalTheory.AutGrowth MeasureTheory GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.Reduction
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelConeSmoothVariationAlongBoundedUnipotent
-
 
 namespace GlobalTheory.RapVari
 
@@ -578,7 +561,6 @@ end GlobalTheory.AdeleApprox
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnipotentRadicalAdelicEqRatMulBoundedRealMulLeve
-
 
 namespace GlobalTheory.RapCover
 
@@ -1002,7 +984,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRealDiagonalInfGLEqPositiveIdeleDiagonal
-
 
 open NumberField GlobalTheory.CuspRep GlobalTheory.CuspQuot GlobalTheory.AutGrowth MeasureTheory GroundTheory.Global GroundTheory.Automorphic
   GroundTheory.Automorphic.Reduction

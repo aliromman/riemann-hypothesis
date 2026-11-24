@@ -79,10 +79,12 @@ import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsDiamondMatrixGamma1Gamma0OfCoprime, Development.AbelianVarietyTheory.Proofs.FoundationProofs.GalAlgClosureRatPrimitiveRootEqPow, Development.AbelianVarietyTheory.Proofs.FoundationProofs.GalBActDiagNatOneComm, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExpUpperInt, Development.AbelianVarietyTheory.Proofs.FoundationProofs.GaloisActionUpperTriangularHeckeReindexOnB, Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeckeOperatorCommGaloisActionModularTower
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsDiamondMatrixGamma1Gamma0OfCoprime
+-- clump: shared namespace opens
 
 open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsDiamondMatrixGamma1Gamma0OfCoprime
 
 namespace GlobalTheory
 
@@ -121,9 +123,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.GalAlgClosureRatPrimitiveRootEqPow
 
-open scoped MatrixGroups TensorProduct
-open Matrix GlobalTheory.KZ
-
 namespace GlobalTheory
 
 theorem algEquiv_primitiveRoot_pow :
@@ -150,10 +149,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.GalBActDiagNatOneComm
-
-
-open scoped MatrixGroups TensorProduct
-open Matrix GlobalTheory.KZ
 
 namespace GlobalTheory.KZ
 
@@ -210,11 +205,6 @@ theorem Tower.galB_act_diag : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] (ε : 
 
 end GlobalTheory.KZ
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open scoped MatrixGroups TensorProduct
-open Matrix GlobalTheory.KZ
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExpUpperInt
 

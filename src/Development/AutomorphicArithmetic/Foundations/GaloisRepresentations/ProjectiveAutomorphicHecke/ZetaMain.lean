@@ -57,9 +57,11 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ProjectiveAutomorphicHecke.CyclotomicConjugation.NormEmb, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ProjectiveAutomorphicHecke.CyclotomicConjugation.NormGlob, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ProjectiveAutomorphicHecke.CyclotomicConjugation.NormLoc, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ProjectiveAutomorphicHecke.ZetaMain
 
-@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ProjectiveAutomorphicHecke.CyclotomicConjugation.NormEmb
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Matrix GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DefU Formalism.L2.Host GlobalTheory.HeckeGal
+
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ProjectiveAutomorphicHecke.CyclotomicConjugation.NormEmb
 open GlobalTheory.SplitPts (conjE)
 open GroundTheory.Global.AdeleBaseChange (finiteAdeleMap)
 open UpperTheory.Gal.CertificateRingHomMap UpperTheory.Gal.CertificateRingHomMap.ZetaNonvanishing₂
@@ -182,8 +184,6 @@ theorem UpperTheory.Gal.CertificateRingHomMap.ZetaNonvanishing₂.normEmb :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ProjectiveAutomorphicHecke.CyclotomicConjugation.NormGlob
-
-open NumberField IsDedekindDomain Matrix GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DefU Formalism.L2.Host GlobalTheory.HeckeGal
 open GlobalTheory.SplitPts (conjE)
 open GroundTheory.Global.AdeleBaseChange (finiteAdeleMap)
 open UpperTheory.Gal.CertificateRingHomMap UpperTheory.Gal.CertificateRingHomMap.ZetaNonvanishing₂
@@ -224,8 +224,6 @@ theorem UpperTheory.Gal.CertificateRingHomMap.ZetaNonvanishing₂.normGlob :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ProjectiveAutomorphicHecke.CyclotomicConjugation.NormLoc
-
-open NumberField IsDedekindDomain Matrix GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DefU Formalism.L2.Host GlobalTheory.HeckeGal
 open GlobalTheory.SplitPts (conjE)
 open GroundTheory.Global.AdeleBaseChange (finiteAdeleMap)
 open UpperTheory.Gal.CertificateRingHomMap UpperTheory.Gal.CertificateRingHomMap.ZetaNonvanishing₂
@@ -290,9 +288,6 @@ theorem UpperTheory.Gal.CertificateRingHomMap.ZetaNonvanishing₂.normLoc :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ProjectiveAutomorphicHecke.ZetaMain
-
-
-open NumberField IsDedekindDomain Matrix GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DefU Formalism.L2.Host GlobalTheory.HeckeGal
 open GlobalTheory.SplitPts (conjE)
 open GroundTheory.Global.AdeleBaseChange (finiteAdeleMap finiteAdeleMap_algebraMap continuous_finiteAdeleMap)
 open GlobalTheory.LFun (KGL)

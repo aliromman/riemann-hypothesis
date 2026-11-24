@@ -364,7 +364,6 @@ open scoped TensorProduct InnerProductSpace ComplexConjugate
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaChainRealZetaNonvanishing
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-
 namespace GlobalTheory.RealZetaProof
 
 
@@ -494,7 +493,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaChainUpwardInductionFixedMetric
 
-
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
 open scoped TensorProduct InnerProductSpace ComplexConjugate
@@ -593,15 +591,7 @@ theorem _root_.GlobalTheory.T.levelPlacesDatum_inv_left_mul_target_level : ∀ (
   first | exact @GlobalTheory.ChainOnto.omegaG_levelP_move
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaChainStepVectorTwoLevelLaw
-
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
-open Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
-open scoped TensorProduct InnerProductSpace ComplexConjugate
-open GlobalTheory.ChainOnto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.ChainOnto.StepVecLawBoth
@@ -686,13 +676,6 @@ theorem vecLaw : ∀ D : D7, ForStep D fun _ _ s s' p => VecLaw p.ω (Lev.levG s
 end GlobalTheory.ChainOnto.StepVecLawBoth
 
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
-open Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
-open scoped TensorProduct InnerProductSpace ComplexConjugate
-open GlobalTheory.ChainOnto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaChainStepVectorTwoLevelLawStatement
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

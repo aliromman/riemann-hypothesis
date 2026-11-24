@@ -82,7 +82,7 @@ import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SurjectiveCu
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsoRefinementsSamePolarised, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsoRefinementsSamePolarisedStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProdTw, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOrderTwoPointTorusExtensionTranslate, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOrderTwoPointTorusExtensionTranslateStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTranslateOfMumfordBundleMatch, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTranslateOfMumfordBundleMatchStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTwoTorsionTwistOfSamePolarisedData, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTwoTorsionTwistOfSamePolarisedDataStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyIsPullDegOfSameTorusTwistStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianPartIsoOfTwoUniformisations, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianPartIsoOfTwoUniformisationsStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsoUniformisationTranslateOrderTwoStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGeneratorTransportLinCombIsoStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalSumTwistCubeIdentity, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalSumTwistCubeIdentityStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformisationsTranslationPeriodMapsCorrespond, Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformisationsTranslationPeriodMapsCorrespondStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformisationDataTranslateOrderTwoIsTwist, Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformisationDataTranslateOrderTwoIsTwistStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOrderTwoPointRefinementsCompareUnif, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOrderTwoPointRefinementsCompareUnifStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTwoTorsionSectionLiftTorusExtension, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTwoTorsionSectionLiftTorusExtensionStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOrderTwoSectionTranslateRefinement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOrderTwoSectionTranslateRefinementStatement
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -210,7 +210,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProdTw
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
-
 
 namespace GlobalTheory.MumCmp.Point
 
@@ -340,7 +339,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOrderTwoPointTorusExtensionTranslate
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
-
 
 namespace GlobalTheory.MumCmp.Point
 
@@ -703,7 +701,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
-
 namespace GlobalTheory.MumCmp
 
 open GlobalTheory.CechPic GlobalTheory.AbDual
@@ -889,7 +886,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianPartIsoOfTwoUniformisations
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
-
 
 namespace GlobalTheory.MumCmp
 
@@ -1171,14 +1167,7 @@ theorem _root_.GlobalTheory.T.uniformisationData_translate_orderTwo_isTwist : âˆ
   first | exact @GlobalTheory.MumCmp.isTwist_of_translate
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOrderTwoPointRefinementsCompareUnif
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
@@ -1201,12 +1190,6 @@ theorem point_and_compare : âˆ€ (R : Type) [CommRing R] [IsDomain R] [IsLocalRin
 end GlobalTheory.MumCmp
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOrderTwoPointRefinementsCompareUnifStatement
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
@@ -1218,7 +1201,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTwoTorsionSectionLiftTorusExtension
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
-
 
 namespace GlobalTheory.TorusLift
 

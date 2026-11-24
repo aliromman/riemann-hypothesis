@@ -52,9 +52,11 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DegreeMonoLatticeLe, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SubDegreeNonposTrivialLattice, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SubDegreeBotAndMaxExists
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DegreeMonoLatticeLe
+-- clump: shared namespace opens
 
 open GlobalTheory.CompanionTheory.Ar.Crv
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DegreeMonoLatticeLe
 
 namespace GlobalTheory.CompanionTheory.Ar.Crv
 
@@ -66,8 +68,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SubDegreeNonposTrivialLattice
 
-open GlobalTheory.CompanionTheory.Ar.Crv
-
 namespace GlobalTheory.CompanionTheory.Ar.Crv
 
 theorem subDeg_le_zero_of_trivial : ∀ (K : Type) [Field K] (C : ACurve K) (V : Type) [AddCommGroup V] [Module K V] [FiniteDimensional K V] (n : ℕ) (b : Module.Basis (Fin n) K V) (L : C.I → AddSubgroup V) (W : Submodule K V), (∀ i, IsLatOf C i b (L i)) → subDeg C L W ≤ 0 :=
@@ -77,9 +77,6 @@ end GlobalTheory.CompanionTheory.Ar.Crv
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SubDegreeBotAndMaxExists
-
-
-open GlobalTheory.CompanionTheory.Ar.Crv
 
 namespace GlobalTheory.CompanionTheory.Ar.Crv.SubdegMax
 

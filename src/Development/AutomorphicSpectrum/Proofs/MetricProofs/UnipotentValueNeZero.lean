@@ -56,12 +56,13 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersecti
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.ValueNeZeroOfRegularUnit, Development.AutomorphicSpectrum.Proofs.MetricProofs.UnipotentValueNeZero
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.ValueNeZeroOfRegularUnit
-
+-- clump: shared namespace opens
 
 open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I2 ReciprocityTheory.ChartRestriction.G.AI.I4 GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights GroundTheory.Heights₂.Heights.LowerBoundFree
 open scoped ComplexOrder Classical
 open GlobalTheory.CompanionTheory.Ar.PB.WSq GlobalTheory.CompanionTheory.Ar.PB.WSq.Fib
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.ValueNeZeroOfRegularUnit
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.WSq.Fib.ValNe
 
@@ -108,10 +109,6 @@ end GlobalTheory.CompanionTheory.Ar.PB.WSq.Fib.ValNe
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.UnipotentValueNeZero
-
-open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I2 ReciprocityTheory.ChartRestriction.G.AI.I4 GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights GroundTheory.Heights₂.Heights.LowerBoundFree
-open scoped ComplexOrder Classical
-open GlobalTheory.CompanionTheory.Ar.PB.WSq GlobalTheory.CompanionTheory.Ar.PB.WSq.Fib
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.WSq.Fib.UpsNe
 

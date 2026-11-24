@@ -93,13 +93,14 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterPairingLocalHermitian, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterPairingLocalHermitianStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsGlobalHermitianLocalApproximation, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsGlobalHermitianLocalApproximationStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsResidueCharacterOfConductor, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsResidueCharacterOfConductorStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralOfCharacterTrivialOnLattice, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralOfCharacterTrivialOnLatticeStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalImageOfUnipotentElement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalImageOfUnipotentElementStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusUpperParabolicLocal, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusUpperParabolicLocalStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormalizedValuationUniformizer, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormalizedValuationUniformizerStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RankResidueLeRankGeneric, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RankResidueLeRankGenericStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SumCharacterOrthogonalityMatrices, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SumCharacterOrthogonalityMatricesStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SurjectiveReductionMaximalCompact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SurjectiveReductionMaximalCompactStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SplitPlaceRankCutOfAlternative
 
-section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterPairingLocalHermitian
-@[expose] public noncomputable section
-
+section -- clump: shared namespace opens
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
+
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterPairingLocalHermitian
+@[expose] public noncomputable section
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS
 open IsDedekindDomain NumberField
@@ -201,12 +202,6 @@ theorem pch_rat_split : ∀ (D : D7) (n : ℕ) (v : Pl D) (τ : D.host.E →ₐ[
 end GlobalTheory.CompanionTheory.Jp.SplitPair
 end -- clump:auto
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
-open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterPairingLocalHermitianStatement
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
@@ -576,14 +571,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusUpperParabolicLocal
-
-
-open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
-open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS
 open IsDedekindDomain NumberField
@@ -677,12 +665,6 @@ theorem upperParabolic_height (D : D7) (n : ℕ) (v : Pl D) (τ : D.host.E →�
 end GlobalTheory.CompanionTheory.Jp.UpTri
 
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
-open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusUpperParabolicLocalStatement
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
@@ -781,7 +763,7 @@ theorem rank_residue_map_le_rank_fraction_map :
 end GlobalTheory.CompanionTheory.Jp
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
@@ -1010,14 +992,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SplitPlaceRankCutOfAlternative
-
-
-open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
-open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS
 open IsDedekindDomain NumberField

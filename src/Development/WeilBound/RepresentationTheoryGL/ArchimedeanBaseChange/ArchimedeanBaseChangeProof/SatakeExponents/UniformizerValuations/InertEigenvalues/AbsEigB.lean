@@ -115,10 +115,11 @@ theorem heckeOp_commute : ∀ (G : Type) [Group G] [TopologicalSpace G] [IsTopol
 end GlobalTheory.CompanionTheory.CassHecke
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryChamberDecomposition
-
+section -- clump: shared namespace opens
 
 open GlobalTheory.PRep Formalism.UG GlobalTheory.LFun PositivityTheory.SphericalProduct
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryChamberDecomposition
 
 namespace GlobalTheory.CompanionTheory.ChamberInd
 
@@ -294,9 +295,6 @@ end GlobalTheory.CompanionTheory.ChamberInd
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryCharacterFacts
-
-
-open GlobalTheory.PRep Formalism.UG GlobalTheory.LFun PositivityTheory.SphericalProduct
 
 namespace GlobalTheory.CompanionTheory.TorusChar
 
@@ -622,8 +620,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryEquivariantForm
 
-open GlobalTheory.PRep Formalism.UG GlobalTheory.LFun PositivityTheory.SphericalProduct
-
 namespace GlobalTheory.CompanionTheory.EqForm
 
 section LinAlg
@@ -848,9 +844,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryFrobeniusReciprocity
 
-
-open GlobalTheory.PRep Formalism.UG GlobalTheory.LFun PositivityTheory.SphericalProduct
-
 namespace GlobalTheory.CompanionTheory.FrobRec
 
 section Abstract
@@ -964,6 +957,8 @@ theorem frobU : FrobU := frobU_of_split _root_.GlobalTheory.CompanionTheory.Bore
 end GlobalTheory.CompanionTheory.FrobRec
 
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsRestBis
 
@@ -1233,7 +1228,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IwahoriFactorisation.StrictDominance.UnitaryExtremality.ExtremeU
 
-
 open GlobalTheory.PRep Formalism.UG GlobalTheory.LFun
 
 namespace PositivityTheory.SphericalProduct
@@ -1253,7 +1247,6 @@ end PositivityTheory.SphericalProduct
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.AbsEigB
-
 
 open GlobalTheory.PRep Formalism.UG PositivityTheory.SphericalProduct
 open scoped Classical

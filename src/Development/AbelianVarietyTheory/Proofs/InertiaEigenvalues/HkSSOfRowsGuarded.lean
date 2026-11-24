@@ -88,7 +88,6 @@ import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HeckePreservesGoodPart
 
-
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.IntegralHeckeForms Formalism.ConjugateSelfDual ReciprocityTheory.Gal NumberField IsDedekindDomain Polynomial GlobalTheory.LiftLeaf GlobalTheory.SupLaw
 open scoped TensorProduct
 
@@ -227,7 +226,6 @@ open scoped TensorProduct InnerProductSpace
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ComplexHeckeConjugatePlacePeterssonAdjoint
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 
 namespace GlobalTheory.ComplexHeckeAdjoint
 
@@ -403,7 +401,6 @@ end -- clump: shared namespace opens
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.IntegralHeckeForms NumberField Polynomial Formalism.IndefR.NX
 open scoped TensorProduct
 
-
 namespace GlobalTheory.GoodSS.Idem
 
 def rhoTw {D : D7} (S : RatDat D.ntw) (j : ℕ) : G0g D.nd →* Module.End D.what₂.LL (S.WL j) where
@@ -471,7 +468,6 @@ end -- clump:auto
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.IntegralHeckeForms Formalism.ConjugateSelfDual ReciprocityTheory.Gal NumberField IsDedekindDomain Polynomial GlobalTheory.LiftLeaf GlobalTheory.SupLaw Formalism.IndefR.NX
 open scoped TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 
 namespace GlobalTheory.HkKs
 
@@ -800,7 +796,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Integral
 open scoped TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-
 namespace GlobalTheory.GoodSS.Heart
 
 theorem exists_lift_end {H X : Type} [AddCommGroup H] [Module ℂ H] [AddCommGroup X] [Module ℂ X]
@@ -1082,10 +1077,11 @@ theorem _root_.GlobalTheory.T.hecke_commutation_real_expansion : ∀ {D : D7} {G
   first | exact @GlobalTheory.GoodSS.Heart.hL_separable_good
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SeparableCompSmul
-
+-- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.IntegralHeckeForms Formalism.ConjugateSelfDual ReciprocityTheory.Gal NumberField IsDedekindDomain Polynomial GlobalTheory.LiftLeaf GlobalTheory.SupLaw
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SeparableCompSmul
 open Formalism.IndefR.NX
 open scoped TensorProduct
 
@@ -1204,8 +1200,6 @@ end GlobalTheory.GoodSS
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SplitCharpolyLatticeKillsSpan
-
-open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.IntegralHeckeForms Formalism.ConjugateSelfDual ReciprocityTheory.Gal NumberField IsDedekindDomain Polynomial GlobalTheory.LiftLeaf GlobalTheory.SupLaw
 open scoped TensorProduct
 
 namespace GlobalTheory
@@ -1237,9 +1231,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HkSSOfRowsGuarded
-
-
-open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.IntegralHeckeForms Formalism.ConjugateSelfDual ReciprocityTheory.Gal NumberField IsDedekindDomain Polynomial GlobalTheory.LiftLeaf GlobalTheory.SupLaw
 open Formalism.IndefR.NX
 open scoped TensorProduct
 

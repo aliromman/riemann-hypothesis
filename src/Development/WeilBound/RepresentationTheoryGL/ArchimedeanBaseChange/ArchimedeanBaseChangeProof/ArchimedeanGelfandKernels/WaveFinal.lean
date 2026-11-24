@@ -70,7 +70,6 @@ import Mathlib.Tactic.TypeStar
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AlgebraEstimateForRegularity
 
-
 open Finset
 open scoped InnerProductSpace
 
@@ -338,10 +337,12 @@ theorem algEst : PositivityTheory.RgBcC.AlgEst := by
 end GlobalTheory.CompanionTheory.SkewWords
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartAndRightWordsSmoothStatement
+section -- clump: shared namespace opens
 
 open MeasureTheory Matrix Finset
 open scoped ContDiff
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartAndRightWordsSmoothStatement
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.SobGL
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -353,10 +354,6 @@ theorem _root_.GlobalTheory.T.chart_and_right_words_smooth : ∀ n : ℕ, IsOpen
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartPartialEqRightWord
-
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.SobGL
 
@@ -439,11 +436,6 @@ theorem chart_main : ∀ (n : ℕ) (V : Type) [NormedAddCommGroup V] [NormedSpac
 end GlobalTheory.CompanionTheory.SobGL.Chart
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartPartialEqRightWordStatement
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.SobGL
@@ -479,13 +471,7 @@ theorem _root_.GlobalTheory.T.haar_chart_integral_comparison : ∀ (n : ℕ) [Me
   first | exact @GlobalTheory.CompanionTheory.SobGL.lebesgue_le_haar
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeftTranslateRightDerivative
-
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.SobGL
 
@@ -558,9 +544,6 @@ end GlobalTheory.CompanionTheory.SobGL.LeftTr
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeftTranslateRightDerivativeStatement
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.SobGL
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -571,8 +554,9 @@ theorem _root_.GlobalTheory.T.left_translate_right_derivative : ∀ (n : ℕ) (V
   first | exact @GlobalTheory.CompanionTheory.SobGL.LeftTr.Rw_left
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PoincareValueBoundOnCube
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PoincareValueBoundOnCube
 
 open MeasureTheory Matrix Finset
 open scoped ContDiff ENNReal

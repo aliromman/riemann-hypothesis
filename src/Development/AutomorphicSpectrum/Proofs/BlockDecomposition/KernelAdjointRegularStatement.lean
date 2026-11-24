@@ -43,11 +43,12 @@ import Mathlib.Topology.Sheaves.Init
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelAdjointRegular, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelAdjointRegularStatement
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelAdjointRegular
-
+-- clump: shared namespace opens
 
 open MeasureTheory Matrix Finset
 open scoped ContDiff ComplexConjugate InnerProductSpace
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelAdjointRegular
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.WaveMult
@@ -111,9 +112,6 @@ end GlobalTheory.CompanionTheory.WaveMult
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelAdjointRegularStatement
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.WaveMult

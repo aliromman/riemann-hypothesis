@@ -284,7 +284,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.PolynomialChartSpans.BlowUpSmooth
 
-
 open CategoryTheory Limits AlgebraicGeometry UpperTheory.Gal.DifferentialFormSections
 
 namespace UpperTheory.Gal.KunnethLefschetz.G
@@ -1274,13 +1273,7 @@ theorem UpperTheory.sections_generated_over_affine_product_cover :
   refine @comp_surj _ _ _ _ _ (isoE _) hs2
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.PolynomialChartSpans.CrossOfRel
-
-
-open CategoryTheory Limits AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor FunctorialResolution.Blowup
-open GroundTheory.Arith.SchemeCoh GroundTheory.Arith.SchemeCoh.ProjSpace MvPolynomial
 
 attribute [local instance] MvPolynomial.gradedAlgebra
 
@@ -1387,6 +1380,8 @@ theorem blEmb : BlowUpEmbedding := by
 
 end UpperTheory.Gal.KunnethLefschetz.G
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.PolynomialChartSpans.ExSmooth
 

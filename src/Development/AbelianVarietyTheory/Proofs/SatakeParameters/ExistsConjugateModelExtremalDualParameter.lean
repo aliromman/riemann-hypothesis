@@ -257,7 +257,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.GramClassElementaryDivisorColumnsCongr
 
-
 namespace GlobalTheory.Hk3.IntWitt
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
@@ -323,7 +322,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeKernelLeOfMatrixLatticeIndexEq
 
-
 namespace GlobalTheory.Hk3.HoweDuality
 
 theorem ker_le_of_latIdx_eq : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicative ℤ))] (ϖ : L) (σ : L →+* L) (q : ℕ),
@@ -385,12 +383,7 @@ end GlobalTheory.Hk3.HoweDuality
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsIntUnitaryOfGramClass
-
-
-open Matrix
 
 namespace GlobalTheory.Hk3.HoweG
 
@@ -489,10 +482,6 @@ theorem exists_intUnitary_of_gramClass : ∀ (L : Type) [Field L] [Valued L (Wit
 end GlobalTheory.Hk3.HoweG
 
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open Matrix
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.SmithNormalFormDiscreteValuationField
 
@@ -1643,12 +1632,7 @@ theorem locVac_mem_span_vac : ∀ (L : Type) [Field L] [CharZero L] [Valued L (W
 end GlobalTheory.Hk3
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.SelfDualLatticeEqUnitaryMulIntegralGL
-
-
-open Matrix
 
 namespace GlobalTheory.Hk3.HoweG
 
@@ -1726,8 +1710,9 @@ end GlobalTheory.Hk3.HoweG
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsConjugateModelExtremalDualParameter
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsConjugateModelExtremalDualParameter
 
 namespace GlobalTheory.Hk3.HoweG
 

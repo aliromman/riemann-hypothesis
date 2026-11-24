@@ -649,12 +649,14 @@ theorem exists_isExp_of_isTen : ThetaUnifAV → Out.Laws → ∀ (E : Type) [Fie
 end GlobalTheory.CM.TenExp
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.DetCondTensorDefinite
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.Serre
 open scoped CategoryTheory.Obj UpperHalfPlane TensorProduct
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.DetCondTensorDefinite
 
 namespace GlobalTheory.TensorDet
 
@@ -786,12 +788,6 @@ end GlobalTheory.TensorDet
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.TensorLieBasisExists
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory GlobalTheory.Serre
-open scoped CategoryTheory.Obj UpperHalfPlane TensorProduct
 open GlobalTheory.GrpTangent
 
 namespace GlobalTheory.SerreLie
@@ -921,6 +917,8 @@ theorem exists_lie_tensor : ∀ (R : Type) [CommRing R] (G : Over (Sp R)) [GrpOb
 
 end GlobalTheory.SerreLie
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 -- clump: shared namespace opens
 

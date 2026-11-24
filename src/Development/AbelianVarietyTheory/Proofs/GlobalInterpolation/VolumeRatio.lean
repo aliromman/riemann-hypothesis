@@ -138,7 +138,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MultipliableEulerFac
 
-
 namespace GlobalTheory.DensityProductCompare
 
 open scoped TensorProduct
@@ -543,7 +542,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.UnitVectorPerpAllIff
 
-
 namespace GlobalTheory.UnitVectorPerpCompare
 
 open NumberField Formalism.BasicNotions GlobalTheory.IndefiniteRowSideFullHecke
@@ -681,11 +679,12 @@ theorem nIdx_eq_zpow : ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (A
 end GlobalTheory.DualIndexPow
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsRealAdeleCoordinatesCmType
-
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Formalism.BasicNotions Formalism.MainNotions.StandardLattice Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.IndefiniteRowSideFullHecke
 open scoped ENNReal TensorProduct
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsRealAdeleCoordinatesCmType
 
 namespace GlobalTheory.RealAdeleCoord
 
@@ -768,9 +767,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsRealAdelicHermitianSignatureCoordinates
 
-open NumberField IsDedekindDomain MeasureTheory Matrix Formalism.BasicNotions Formalism.MainNotions.StandardLattice Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.IndefiniteRowSideFullHecke
-open scoped ENNReal TensorProduct
-
 namespace GlobalTheory.RealSpaceCoord
 
 theorem herm_eq_dot {P Q : ℕ} (x y : ActionCoordinates.Wsp P Q) :
@@ -835,10 +831,6 @@ end GlobalTheory.RealSpaceCoord
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsUnitarySignatureStabiliserCosetCutoff
-
-
-open NumberField IsDedekindDomain MeasureTheory Matrix Formalism.BasicNotions Formalism.MainNotions.StandardLattice Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.IndefiniteRowSideFullHecke
-open scoped ENNReal TensorProduct
 
 namespace GlobalTheory.StabiliserCutoff
 
@@ -932,6 +924,8 @@ theorem exists_cutoff : ∀ (c : CDHaar) (P Q P' Q' : ℕ) (x₀ : ActionCoordin
 
 end GlobalTheory.StabiliserCutoff
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.FibreIntegralPiProdEqProdFibreIntegral
 
@@ -1308,7 +1302,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.UnitaryQuotientIntegralProdOverPlaces
 
-
 namespace GlobalTheory.RealQuotProd
 
 variable {P Q P' Q' : ℕ}
@@ -1394,7 +1387,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.VolumeRatioOfUnfolding
-
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Formalism.BasicNotions Formalism.MainNotions.StandardLattice Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.IndefiniteRowSideFullHecke

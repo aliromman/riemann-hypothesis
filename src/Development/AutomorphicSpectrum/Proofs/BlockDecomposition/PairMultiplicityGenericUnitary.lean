@@ -60,10 +60,11 @@ import Mathlib.Topology.Sheaves.Presheaf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BracketWedgeFormula, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BracketLeviModuleBoundaryPart, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoverByAcyclicPair, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CreAnnApply, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairMultiplicityGenericUnitary
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BracketWedgeFormula
+-- clump: shared namespace opens
 
 open Finset
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BracketWedgeFormula
 
 namespace GlobalTheory.CompanionTheory.RealMult.TorC
 
@@ -256,9 +257,6 @@ end GlobalTheory.CompanionTheory.RealMult.TorC
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BracketLeviModuleBoundaryPart
-
-
-open Finset
 
 namespace GlobalTheory.CompanionTheory.PairMult.LeviQ
 
@@ -826,10 +824,7 @@ end GlobalTheory.CompanionTheory.PairMult
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoverByAcyclicPair
-
-open Finset
 open scoped TensorProduct
-
 
 namespace GlobalTheory.CompanionTheory.RealMult.CovR
 
@@ -1075,11 +1070,6 @@ theorem freeR (n : ℕ) : ∃ (W : Type) (_ : AddCommGroup W) (_ : Module ℂ W)
 
 end GlobalTheory.CompanionTheory.RealMult.CovR
 end -- clump:auto
-
--- clump: shared namespace opens
-
-
-open Finset
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CreAnnApply
 

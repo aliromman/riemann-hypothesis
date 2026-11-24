@@ -84,11 +84,12 @@ import Mathlib.Topology.Sheaves.Presheaf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FibreVolumeNormalFormStabiliser, Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplificationDegenerateSidePieceBound, Development.AbelianVarietyTheory.Proofs.FlagMeasures.DyadicSummationWithDecay, Development.AbelianVarietyTheory.Proofs.FlagMeasures.FlagGramNumberMulLeadingMinorLeTwoPow, Development.AbelianVarietyTheory.Proofs.FlagMeasures.LeadingMinorsGramNumberLeMajorantLengths, Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplitudeDegenerateOperatorNormLeRealPlace
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FibreVolumeNormalFormStabiliser
-
+-- clump: shared namespace opens
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
 open scoped InnerProductSpace ENNReal
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FibreVolumeNormalFormStabiliser
 
 namespace GlobalTheory.Amp.FibreVolume
 
@@ -252,9 +253,6 @@ end GlobalTheory.Amp.FibreVolume
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplificationDegenerateSidePieceBound
-
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
-open scoped InnerProductSpace ENNReal
 
 namespace GlobalTheory.Amp.DegSide
 
@@ -468,9 +466,6 @@ end GlobalTheory.Amp.DegSide
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.DyadicSummationWithDecay
-
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
-open scoped InnerProductSpace ENNReal
 
 namespace GlobalTheory.Amp
 
@@ -711,10 +706,6 @@ end GlobalTheory.Amp
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FlagGramNumberMulLeadingMinorLeTwoPow
-
-
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
-open scoped InnerProductSpace ENNReal
 open ReciprocityTheory.ChartRestriction.DS.Xi.StepA (herm_add_l herm_add_r herm_sub_l herm_sub_r herm_smul_l herm_smul_r herm_zero_l herm_zero_r
   herm_UH Hpk_mulVec Hpk_conjT)
 
@@ -1098,9 +1089,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LeadingMinorsGramNumberLeMajorantLengths
 
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
-open scoped InnerProductSpace ENNReal
-
 namespace GlobalTheory.Amp.MinorBound
 
 open GlobalTheory.PlueckerBound GlobalTheory.Amp.GramFlag
@@ -1232,10 +1220,6 @@ end GlobalTheory.Amp.MinorBound
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplitudeDegenerateOperatorNormLeRealPlace
-
-
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
-open scoped InnerProductSpace ENNReal
 
 namespace GlobalTheory.Amp.DegConv
 

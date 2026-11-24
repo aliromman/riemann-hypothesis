@@ -61,13 +61,12 @@ import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.Ba
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LieDerivativeInducedTensorForms, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LieMemCompactFiniteVectorsOfMem, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UpperMatrixUnitKillsUnipotentInvariantOnLevi, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DiscreteSpectrumOfResidual
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Formalism.L2.Host
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LieDerivativeInducedTensorForms
-
 
 namespace GlobalTheory.LieTensor
 
@@ -348,7 +347,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UpperMatrixUnitKillsUnipotentInvariantOnLevi
 
-
 namespace GlobalTheory.UnipKill
 
 open Matrix
@@ -464,13 +462,7 @@ theorem eop_leviEmb_eq_zero (E : Type) [Field E] [NumberField E] [_root_.NumberF
 end GlobalTheory.UnipKill
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DiscreteSpectrumOfResidual
-
-
-open NumberField IsDedekindDomain Formalism.L2.Host
-open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec
 
 namespace GlobalTheory.SpehInfChar
 

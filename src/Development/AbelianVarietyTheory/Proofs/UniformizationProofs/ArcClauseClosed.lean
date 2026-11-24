@@ -225,7 +225,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.FamilyUnifComponentConst
 
-
 namespace GlobalTheory
 
 theorem isHolTo_comp_fin_one {X : Scheme.{0}} {B : Set ℂ} {y : ℂ → (Sp ℂ ⟶ X)} (h : IsHolTo B y) :
@@ -276,14 +275,7 @@ theorem familyUnif_component_const :
 end GlobalTheory
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.FibreComparison
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.ArcPts
-open scoped CategoryTheory.Obj LaurentSeries PowerSeries
 
 namespace GlobalTheory
 
@@ -307,6 +299,8 @@ theorem fibre_comparison : Out.Laws → Out.Laws2 → ∀ (E : Type) [Field E] [
 
 end GlobalTheory
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.CmpCongrOfExEq
 
@@ -404,7 +398,6 @@ end GlobalTheory.ArcPts
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.EqZeroOfRationalPoints
-
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.ArcPts
@@ -698,7 +691,6 @@ end GlobalTheory.GermRing
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.IsHolToHalfPlaneMono
-
 
 open AlgebraicGeometry CategoryTheory Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -1389,14 +1381,7 @@ theorem specPts_nonempty : Out.Laws → Out.Laws2 → ∀ (E : Type) [Field E] [
 end GlobalTheory.ArcPts.Special
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.HolomorphicDegenerationArcOfUniformisation
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.ArcPts
-open scoped CategoryTheory.Obj LaurentSeries PowerSeries
 
 namespace GlobalTheory.HolomorphicArc
 
@@ -1443,6 +1428,8 @@ theorem main : ReciprocityTheory.ChartRestriction.G.Out.Laws → ReciprocityTheo
 
 end GlobalTheory.HolomorphicArc
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ArcClauseClosed
 

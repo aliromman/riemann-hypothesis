@@ -102,11 +102,12 @@ import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.Unitary
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdeleClassCompactRayDecomposition, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RankOneSiegelWeilThetaAverage, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RankOneThetaIntegralRayFormula, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InfiniteAdeleHaarScalingTotallyReal, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EventuallyActMemLatVIff, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticePreservedCofinitelyByUnit, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalHaarScalingByUnit, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FactorConjugationCancel, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalHaarScalingTensorUnits, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StandardLatticeMeasureEqOne, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RankOneThetaIntegralRayLimit, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaSeriesInvariantRationalUnits, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdeleModuleBoundedOnCompact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaTestFunctionBoundedLargeNorm, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryScalarHasNormOne, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LFunctionSideEquidistribution
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdeleClassCompactRayDecomposition
+section -- clump: shared namespace opens
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter PositivityTheory.Rg.Base1 GroundTheory.Global GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
 open scoped TensorProduct ENNReal NNReal Matrix Classical
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdeleClassCompactRayDecomposition
 
 namespace GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
 
@@ -167,10 +168,6 @@ end GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RankOneSiegelWeilThetaAverage
-
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter PositivityTheory.Rg.Base1 GroundTheory.Global GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
-open scoped TensorProduct ENNReal NNReal Matrix Classical
 
 namespace GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
 
@@ -237,10 +234,6 @@ end GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RankOneThetaIntegralRayFormula
-
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter PositivityTheory.Rg.Base1 GroundTheory.Global GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
-open scoped TensorProduct ENNReal NNReal Matrix Classical
 
 namespace GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil.UnitBd
 
@@ -435,10 +428,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InfiniteAdeleHaarScalingTotallyReal
 
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter PositivityTheory.Rg.Base1 GroundTheory.Global GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
-open scoped TensorProduct ENNReal NNReal Matrix Classical
-
-
 namespace GlobalTheory.CompanionTheory.SW.HaarUnit
 
 theorem norm_inv_unit (F : Type) [Field F] [NumberField F] (hF : IsTotallyReal F)
@@ -491,11 +480,12 @@ end GlobalTheory.CompanionTheory.SW.HaarUnit
 
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EventuallyActMemLatVIff
 
 open PositivityTheory.Rg.Mass HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter
 open scoped TensorProduct ENNReal NNReal
-
 
 namespace GlobalTheory.CompanionTheory.SW.LatFix
 
@@ -554,7 +544,6 @@ end -- clump:auto
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter PositivityTheory.Rg.Base1 GroundTheory.Global GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
 open scoped TensorProduct ENNReal NNReal Matrix Classical
-
 
 namespace GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil.UnitLat
 
@@ -686,11 +675,12 @@ theorem UpperTheory.Reformulated.B.FactorConjugationCancel.map_eq_of_conj :
   rw [ha, h4]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalHaarScalingTensorUnits
-
+-- clump: shared namespace opens
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter PositivityTheory.Rg.Base1 GroundTheory.Global GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
 open scoped TensorProduct ENNReal NNReal Matrix Classical
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalHaarScalingTensorUnits
 
 namespace GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil.UnitScale
 
@@ -838,13 +828,7 @@ theorem map_coordW_unit : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
 end GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil.UnitScale
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter PositivityTheory.Rg.Base1 GroundTheory.Global GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
-open scoped TensorProduct ENNReal NNReal Matrix Classical
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StandardLatticeMeasureEqOne
-
 
 namespace GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil.CoordLat
 
@@ -869,7 +853,6 @@ end GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil.CoordLat
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RankOneThetaIntegralRayLimit
-
 
 namespace GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil.FixedUnit
 
@@ -1282,7 +1265,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdeleModuleBoundedOnCompact
 
-
 namespace GlobalTheory.CompanionTheory.IdeleModBdd
 
 theorem ideleModule_bounded_on_compact : ∀ (K : Type) [Field K] [NumberField K] (C : Set (AdeleRing (𝓞 K) K)), IsCompact C → ∃ R : ℝ, ∀ a : IdeleGroup K, (a : AdeleRing (𝓞 K) K) ∈ C → (IdeleGroup.ideleModule K a : ℝ) ≤ R := by
@@ -1347,14 +1329,8 @@ end GlobalTheory.CompanionTheory.IdeleModBdd
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaTestFunctionBoundedLargeNorm
 @[expose] public noncomputable section
-
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter PositivityTheory.Rg.Base1 GroundTheory.Global GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
-open scoped TensorProduct ENNReal NNReal Matrix Classical
 
 namespace GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil.Vanish
 
@@ -1502,9 +1478,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryScalarHasNormOne
 
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter PositivityTheory.Rg.Base1 GroundTheory.Global GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
-open scoped TensorProduct ENNReal NNReal Matrix Classical
-
 namespace GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
 
 theorem isNm_ue_one : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → ∀ (J : Matrix (Fin 1) (Fin 1) E), IsHermND σ J → ∀ h : HA (AF F) σ J, IsNm σ (ue (AF F) σ J h) 1 := by
@@ -1534,10 +1507,6 @@ end GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LFunctionSideEquidistribution
-
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter PositivityTheory.Rg.Base1 GroundTheory.Global GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
-open scoped TensorProduct ENNReal NNReal Matrix Classical
 
 namespace GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
 

@@ -73,12 +73,11 @@ import Mathlib.Topology.Algebra.Group.Units
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsBorelSphericalSameDoubleCosetSumsZonal, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HasSumHeckeSeriesSphericalEigenfunction, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeckeSeriesCellHasSum, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HasSumSphericalFunctionDoublingLength, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsCommensuratedKO
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open MeasureTheory ValuativeRel GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.SatakeBound GlobalTheory.GLDoubling
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsBorelSphericalSameDoubleCosetSumsZonal
-
 
 namespace GlobalTheory.ZonalBorel
 
@@ -177,7 +176,6 @@ end GlobalTheory.ZonalBorel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HasSumHeckeSeriesSphericalEigenfunction
-
 
 namespace GlobalTheory.HeckeShift
 
@@ -304,7 +302,6 @@ end GlobalTheory.HeckeShift
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeckeSeriesCellHasSum
-
 
 namespace GlobalTheory.LatticePair
 
@@ -472,7 +469,6 @@ end GlobalTheory.LatticePair
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HasSumSphericalFunctionDoublingLength
-
 
 namespace GlobalTheory.DoublingLength
 
@@ -690,12 +686,7 @@ theorem hasSum_doublingLength : ∀ (k : Type) [Field k] [ValuativeRel k] [Topol
 end GlobalTheory.DoublingLength
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsCommensuratedKO
-
-
-open MeasureTheory ValuativeRel GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.SatakeBound GlobalTheory.GLDoubling
 
 namespace GlobalTheory.UnramDoublingProof
 

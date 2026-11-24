@@ -105,7 +105,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
-
 namespace GlobalTheory.Mum
 
 open GlobalTheory.MulPull in
@@ -171,14 +170,7 @@ theorem _root_.GlobalTheory.T.exists_multiplicationPullback_genericSection_cover
   first | exact @GlobalTheory.Mum.exists_mulSecK
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMultiplicationPullbackIntegralFamilyOdd
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
@@ -546,12 +538,6 @@ theorem exists_intFam_mul : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRin
 end GlobalTheory.Mum
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMultiplicationPullbackIntegralFamilyOddStatement
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
@@ -659,13 +645,14 @@ namespace GlobalTheory
 end GlobalTheory
 end -- clump:auto
 
-section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExpansionMultiplicationPullbackTraitDegreeOne
-@[expose] public noncomputable section
-
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
+
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExpansionMultiplicationPullbackTraitDegreeOne
+@[expose] public noncomputable section
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
@@ -845,12 +832,6 @@ theorem expand : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base 
 end GlobalTheory.Mum.MulExpand
 end -- clump:auto
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExpansionMultiplicationPullbackTraitDegreeOneStatement
 attribute [local instance] Over.cartesianMonoidalCategory

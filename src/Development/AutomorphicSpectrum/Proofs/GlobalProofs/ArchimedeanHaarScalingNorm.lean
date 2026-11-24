@@ -92,10 +92,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicAnnihilatorBoxProduct, Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicCharacterTrivialAlmostEverywhere, Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicIntegrableProductIndicator, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ArchimedeanFourierApproximateIdentity, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsRealApproximateIdentity, Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteAdeleBoxMeasureProduct, Development.AutomorphicSpectrum.Proofs.GlobalProofs.GaloisUnramifiedOutsideDescendsFinite, Development.AutomorphicSpectrum.Proofs.GlobalProofs.MemAnnihilatorSmallBallEventually, Development.AutomorphicSpectrum.Proofs.GlobalProofs.NormalisedFourierBumpLimit, Development.AutomorphicSpectrum.Proofs.GlobalProofs.NumberFieldApproximateIdentity, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ArchimedeanHaarScalingNorm
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicAnnihilatorBoxProduct
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published.SiegelOneVector GlobalTheory.CompanionTheory.Hypotheses₂.OneV GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test
 open scoped TensorProduct ENNReal NNReal
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicAnnihilatorBoxProduct
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test
 
@@ -249,10 +251,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicCharacterTrivialAlmostEverywhere
 
-
-open NumberField IsDedekindDomain MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published.SiegelOneVector GlobalTheory.CompanionTheory.Hypotheses₂.OneV GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test
-open scoped TensorProduct ENNReal NNReal
-
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test.ProdM
 
 section FoundMeas
@@ -360,13 +358,7 @@ theorem prodM : ∀ (F : Type) [Field F] [NumberField F] (db : Measure (AF F)), 
 end GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test.ProdM
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open NumberField IsDedekindDomain MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published.SiegelOneVector GlobalTheory.CompanionTheory.Hypotheses₂.OneV GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test
-open scoped TensorProduct ENNReal NNReal
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicIntegrableProductIndicator
-
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test
 
@@ -418,7 +410,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ArchimedeanFourierApproximateIdentity
-
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.BoxMass
 
@@ -531,7 +522,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.GaloisUnramifiedOutsideDescendsFinite
-
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test.InfEx
 
@@ -700,7 +690,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.NormalisedFourierBumpLimit
 
-
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test.InfLim
 
 theorem tendsto_fouInf_div_integral : ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (AF F) ℂ), IsCharAF F ψ → ∀ laminf : Measure (Ainf F), laminf.IsAddHaarMeasure → ∀ ρ : ℕ → Ainf F → ℝ, (∀ k, Continuous (ρ k) ∧ HasCompactSupport (ρ k) ∧ (∀ y, 0 ≤ ρ k y) ∧ 0 < ∫ y, ρ k y ∂laminf) → Filter.Tendsto (fun k => tsupport (ρ k)) Filter.atTop (nhds (0 : Ainf F)).smallSets → ∀ t : Ainf F, Filter.Tendsto (fun k => fouInf ψ laminf (ρ k) t / ((∫ y, ρ k y ∂laminf : ℝ) : ℂ)) Filter.atTop (nhds 1) := by
@@ -848,13 +837,7 @@ theorem exists_bumps (P : Type) [Fintype P] (a : P → ℝ) (ha : ∀ w, a w ≠
 end GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test.InfReal
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ArchimedeanHaarScalingNorm
-
-
-open NumberField IsDedekindDomain MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published.SiegelOneVector GlobalTheory.CompanionTheory.Hypotheses₂.OneV GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test
-open scoped TensorProduct ENNReal NNReal
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test
 

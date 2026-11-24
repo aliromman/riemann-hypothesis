@@ -97,7 +97,6 @@ open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdditiveTorsionFamiliesEqualLocusOpen
 
-
 namespace GlobalTheory.TorsEqOpen
 
 theorem exists_open_eqLocus {S X Y : Scheme.{0}} (f : X ⟶ Y) [IsOpenImmersion (pullback.diagonal f)]
@@ -322,7 +321,6 @@ end -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT
 
-
 namespace GlobalTheory.TorsionFamily
 
 section General
@@ -349,7 +347,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOpenLocusTorsionPointsAreLevelSections
-
 
 namespace GlobalTheory.LevSurjOpen
 
@@ -478,7 +475,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelSectionsExactKernelLocusOpen
-
 
 namespace GlobalTheory.LevTrivOpen
 
@@ -768,15 +764,6 @@ end -- clump:auto
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
-section -- clump: shared namespace opens
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.SiegelTor GlobalTheory.EndLoc
-open scoped CategoryTheory.Obj
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SympAtPullbackIff
 
 namespace GlobalTheory.SympLevLocus
@@ -885,14 +872,6 @@ theorem exists_open_sympLev : ∀ (h M : ℕ) (S' : Scheme.{0}) [IsLocallyNoethe
 end GlobalTheory.SympLevLocus
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.SiegelTor GlobalTheory.EndLoc
-open scoped CategoryTheory.Obj
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsOpenSymplecticLevelLocusStatement
 
 end -- clump:auto
@@ -937,14 +916,7 @@ end -- clump:auto
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOpenLocusIdempotentImageSiegel
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.SiegelTor GlobalTheory.EndLoc
-open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.IdemLocus
 
@@ -1216,6 +1188,8 @@ theorem exists_open_locus : ∀ (h h' M d : ℕ) (O : Type) [Ring O] (bar : O �
 end GlobalTheory.IdemLocus
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
@@ -1227,7 +1201,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPrincipalSiegelAdjointActionPullback
 open scoped CategoryTheory.Obj
-
 
 namespace GlobalTheory.UPel.HT
 
@@ -1282,7 +1255,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdempotentImageRelationOfPullback
-
 
 namespace GlobalTheory.UPel.HT
 
@@ -1383,7 +1355,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelPullbackOfIdempotentImagesAndActionPullbac
-
 
 namespace GlobalTheory.UPel.HT
 
@@ -1495,7 +1466,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelPullbackWithActionCancellation
 
-
 namespace GlobalTheory.UPel.HT
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
@@ -1536,7 +1506,6 @@ end GlobalTheory.UPel.HT
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelFamilyIdempotentImageOpenLocus
-
 
 namespace GlobalTheory.UPel.HT
 

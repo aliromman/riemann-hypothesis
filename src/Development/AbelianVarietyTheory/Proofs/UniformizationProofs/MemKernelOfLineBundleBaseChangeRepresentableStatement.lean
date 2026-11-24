@@ -50,13 +50,14 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.MemKLIffMemKLPush, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.MemKernelOfLineBundleBaseChangeRepresentable, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.MemKernelOfLineBundleBaseChangeRepresentableStatement
 
-section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.MemKLIffMemKLPush
-@[expose] public noncomputable section
-
+-- clump: shared namespace opens
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.UU
 open scoped CategoryTheory.Obj
+
+section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.MemKLIffMemKLPush
+@[expose] public noncomputable section
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
@@ -115,12 +116,6 @@ theorem memKL_iff_memKL_push : ∀ (S S' : Scheme.{0}) (f : S' ⟶ S) (A : Over 
 end GlobalTheory
 end -- clump:auto
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.UU
-open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.MemKernelOfLineBundleBaseChangeRepresentable
 attribute [local instance] Over.cartesianMonoidalCategory

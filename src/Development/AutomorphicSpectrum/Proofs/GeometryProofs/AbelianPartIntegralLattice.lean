@@ -473,11 +473,12 @@ theorem _root_.GlobalTheory.T.eigen_component_map_compat : ∀ (k k' V V' O : Ty
   first | exact @GlobalTheory.CompanionTheory.Ar.Cusp.EigMap.eigComp_map
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HermitianBundleFibreTangent
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField TensorProduct Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HermitianBundleFibreTangent
 
 namespace GlobalTheory.CompanionTheory.Ar.HodgeBC
 
@@ -610,10 +611,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelBaseChangeAction
 
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField TensorProduct Matrix
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
-
 namespace GlobalTheory.CompanionTheory.Ar.ActBC
 
 theorem exists_act_extends : ∀ (L L' : Type) [Field L] [Field L'] (e : L →+* L') (G : Over (Sp L)) (G' : Over (Sp L')) [GrpObj G] [GrpObj G'] (φ : G'.left ⟶ G.left), IsGrpPullback G' G (spMap e) φ → ∀ (O : Type) [CommRing O] (act : OAct O G) (act' : OAct O G'), (∀ a, (act'.act a).left ≫ φ = φ ≫ (act.act a).left) → ∀ (V V' : Type) [AddCommGroup V] [Module L V] [AddCommGroup V'] [Module L' V'] (MV : LieModel G (𝟙 (Sp L)) V) (MV' : LieModel G' (𝟙 (Sp L')) V') (j : V →+ V'), (∀ x, (MV'.pt (j x)).left ≫ φ = spMap (dualMap e) ≫ (MV.pt x).left) → Submodule.span L' (Set.range j) = ⊤ → ∀ ρ : O →+* Module.End L V, MV.IsActOf act.act ρ → ∃ ρ' : O →+* Module.End L' V', MV'.IsActOf act'.act ρ' ∧ ∀ a x, ρ' a (j x) = j (ρ a x) := by
@@ -630,11 +627,6 @@ theorem exists_act_extends : ∀ (L L' : Type) [Field L] [Field L'] (e : L →+*
 
 end GlobalTheory.CompanionTheory.Ar.ActBC
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField TensorProduct Matrix
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelBaseChangeExists
 
@@ -692,7 +684,6 @@ theorem GlobalTheory.CompanionTheory.Ar.LieBc.main : ∀ (L L' : Type) [Field L]
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieValuePullbackFieldExt
-
 
 namespace GlobalTheory.CompanionTheory.Ar.LieSigma.ValBC
 
@@ -760,7 +751,6 @@ end GlobalTheory.CompanionTheory.Ar.LieSigma.ValBC
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorusOverLieModelBaseChange
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.PtHt.Arch.CocharsBC
 
@@ -849,7 +839,6 @@ end -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField Matrix Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi
 open GroundTheory.Heights₂.Heights.LowerBoundFree GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp GlobalTheory.CompanionTheory.Ar.Cusp.PtHt
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.PtHt.Arch
 

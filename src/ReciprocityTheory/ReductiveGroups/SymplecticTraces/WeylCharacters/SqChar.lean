@@ -54,10 +54,11 @@ import Mathlib.Tactic.Polynomial.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.SqCharA, ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.SqChar
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.SqCharA
+-- clump: shared namespace opens
 
 open Finset
 
+@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.SqCharA
 
 namespace ReciprocityTheory.ChartRestriction.TR.Weyl
 
@@ -337,9 +338,6 @@ end ReciprocityTheory.ChartRestriction.TR.Weyl
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.SqChar
-
-
-open Finset
 
 namespace ReciprocityTheory.ChartRestriction.TR.Weyl
 

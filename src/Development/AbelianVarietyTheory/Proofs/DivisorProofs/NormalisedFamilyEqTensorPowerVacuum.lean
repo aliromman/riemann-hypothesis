@@ -253,7 +253,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KappaProductPowAlgebraicModulusOneAll
 
-
 namespace GlobalTheory.KappaPowMod
 
 theorem algebraicModulusOneAll_one : StandardLatticesGL3.Mod1All 1 := by
@@ -519,7 +518,6 @@ end GlobalTheory.BaseVacuum
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrthonormalBasisBlockVacuumLatticeBasisFamily
-
 
 namespace GlobalTheory.BaseVacuum
 
@@ -796,10 +794,11 @@ theorem thetaVectorUpToUnits_thZero_of_even : ∀ (D : D7) (cc : Ideal (𝓞 D.h
 end GlobalTheory.BaseVacuum
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormOneCharacterModulusOneAllEmbeddings
+-- clump: shared namespace opens
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker
 
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormOneCharacterModulusOneAllEmbeddings
 
 namespace GlobalTheory.CharModOne
 
@@ -1004,9 +1003,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelDetIdealSelfDualNormOne
 
-
-open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker
-
 namespace GlobalTheory.SelfDualDetNorm
 
 theorem star_eq_conj (D : D7) (x : D.host.E) :
@@ -1039,9 +1035,6 @@ end GlobalTheory.SelfDualDetNorm
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormalisedFamilyEqTensorPowerVacuum
-
-open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker
-
 
 namespace GlobalTheory.FamilyTieProof
 

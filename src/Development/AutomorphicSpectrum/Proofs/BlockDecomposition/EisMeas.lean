@@ -57,11 +57,13 @@ import Mathlib.RingTheory.PiTensorProduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlockMatrixApplyInrInr, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsFinsetIntOff, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProdNonnegReal, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EisMeas
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlockMatrixApplyInrInr
+-- clump: shared namespace opens
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlockMatrixApplyInrInr
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L PositivityTheory.Rg.Rsw.Em
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
@@ -209,13 +211,6 @@ theorem emb_mem_KOff : ∀ {D : D7} {n r t : ℕ} {hn : r + t = n} (M : Maps D h
 
 end GlobalTheory.CompanionTheory.EmbK
 end -- clump:auto
-
--- clump: shared namespace opens
-
-
-open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
-open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsFinsetIntOff
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)

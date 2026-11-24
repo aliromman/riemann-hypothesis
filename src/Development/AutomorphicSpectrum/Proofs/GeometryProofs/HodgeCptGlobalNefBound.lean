@@ -585,7 +585,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveLieEigenDegree
 attribute [local instance] Over.cartesianMonoidalCategory
 
-
 namespace GlobalTheory.CompanionTheory.Ar.Conj.TopH2
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {X0 : Scheme.{0}}
@@ -758,7 +757,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.M2CurveEstablished
 
-
 namespace GlobalTheory.CompanionTheory.Ar.Conj.CurveDegreeNonneg
 
 open AlgebraicGeometry CategoryTheory NumberField
@@ -826,10 +824,12 @@ theorem m2Curve_holds : CurveSemiAbelianConjecture := by
 end GlobalTheory.CompanionTheory.Ar.Conj.CurveDegreeNonneg
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.M2ModelEstablished
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.M2ModelEstablished
 
 namespace GlobalTheory.CompanionTheory.Ar.Conj
 
@@ -839,10 +839,6 @@ end GlobalTheory.CompanionTheory.Ar.Conj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootLinesUnramifiedPrimes
-
-
-open AlgebraicGeometry CategoryTheory NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
 
 namespace GlobalTheory.CompanionTheory.Ar.Conj.HcptTie
 
@@ -1066,9 +1062,6 @@ end GlobalTheory.CompanionTheory.Ar.Conj.HcptTie
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptGlobalNefBound
-
-open AlgebraicGeometry CategoryTheory NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
 
 namespace GlobalTheory.CompanionTheory.Ar.Conj
 

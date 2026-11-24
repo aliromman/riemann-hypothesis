@@ -823,9 +823,11 @@ theorem UpperTheory.V.J.muLe :
   rfl
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.DerivativeDivisibility.PrimEx
+-- clump: shared namespace opens
 
 open Polynomial
+
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.DerivativeDivisibility.PrimEx
 open scoped Pointwise nonZeroDivisors TensorProduct
 
 private theorem finite_setOf_roots_of_monic_family {Λ F : Type*} [CommRing Λ] [Field F] (ρ : Λ →+* F) {r : ℕ}
@@ -1186,9 +1188,6 @@ theorem UpperTheory.V.J.primEx :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalDescent.GLDenseRanges.InertiaPartMaps.UnrAlgW
-
-
-open Polynomial
 
 namespace UpperTheory.V.J
 

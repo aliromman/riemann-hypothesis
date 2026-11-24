@@ -56,10 +56,11 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: CompanionTheory.AutomorphicTheory.ProductFormulaTheory.SquareIntegrableSegments.SegmentReordering.ReorderCommon, CompanionTheory.AutomorphicTheory.ProductFormulaTheory.SquareIntegrableSegments.SegmentReordering.CsReorderord, CompanionTheory.AutomorphicTheory.ProductFormulaTheory.SquareIntegrableSegments.SegmentReordering.CsOrderfree
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.ProductFormulaTheory.SquareIntegrableSegments.SegmentReordering.ReorderCommon
-
+-- clump: shared namespace opens
 
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.Cos
+
+@[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.ProductFormulaTheory.SquareIntegrableSegments.SegmentReordering.ReorderCommon
 
 namespace CompanionTheory.PfEss.Zc2
 
@@ -185,10 +186,6 @@ theorem reach_of_inv (hcomm : LUnlinkedComm k) {h N : ℕ} {Δ : Fin h → Segme
 
 end CompanionTheory.PfEss.Zc2
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.Cos
 
 @[expose] public section -- clump member: CompanionTheory.AutomorphicTheory.ProductFormulaTheory.SquareIntegrableSegments.SegmentReordering.CsReorderord
 

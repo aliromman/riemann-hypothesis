@@ -79,11 +79,12 @@ import Mathlib.RingTheory.PiTensorProduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContractsOfIsoDirectSum, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsGanGrossPrasadColumnWeights, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsGanGrossPrasadRowWeights, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsPiTensorShuffleEquiv, Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockOnePlaceIsoDirectSumPartitions, Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsoOuterDual, Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsoTwistDetIrrShift, Development.AbelianVarietyTheory.Proofs.TwistedOperators.NonemptyInvFunDualTprodEquiv, Development.AbelianVarietyTheory.Proofs.TwistedOperators.OuterIrrIsoWeylRep, Development.AbelianVarietyTheory.Proofs.TwistedOperators.OuterTensorFockOnePlaceIsoUnitaryFock, Development.AbelianVarietyTheory.Proofs.TwistedOperators.PiTensorMapSurjectiveAndKer, Development.AbelianVarietyTheory.Proofs.TwistedOperators.StrictInterlaceGanGrossPrasadBigSmall, Development.AbelianVarietyTheory.Proofs.TwistedOperators.TensorRepresentationIntertwinerCompat, Development.AbelianVarietyTheory.Proofs.TwistedOperators.FinrankInvFunBranch
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContractsOfIsoDirectSum
-
+section -- clump: shared namespace opens
 
 open MvPolynomial GlobalTheory.IndefiniteRowSideFullHecke.MinorOrderedEntries GlobalTheory.OneFunctional Formalism.BasicNotions GlobalTheory.Branching
 open scoped TensorProduct DirectSum
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContractsOfIsoDirectSum
 
 namespace GlobalTheory.OneFunctional
 
@@ -168,9 +169,6 @@ end GlobalTheory.OneFunctional
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsGanGrossPrasadColumnWeights
-
-open MvPolynomial GlobalTheory.IndefiniteRowSideFullHecke.MinorOrderedEntries GlobalTheory.OneFunctional Formalism.BasicNotions GlobalTheory.Branching
-open scoped TensorProduct DirectSum
 
 namespace GlobalTheory.OneFunctional.ColumnWeights
 
@@ -322,9 +320,6 @@ end GlobalTheory.OneFunctional.ColumnWeights
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsGanGrossPrasadRowWeights
-
-open MvPolynomial GlobalTheory.IndefiniteRowSideFullHecke.MinorOrderedEntries GlobalTheory.OneFunctional Formalism.BasicNotions GlobalTheory.Branching
-open scoped TensorProduct DirectSum
 
 namespace GlobalTheory.OneFunctional.RowWeights
 
@@ -554,6 +549,8 @@ theorem exists_row_weights (S : Sizes) (Q : Entries S) (hQ : Q.Good) :
 end GlobalTheory.OneFunctional.RowWeights
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsPiTensorShuffleEquiv
 
 open scoped TensorProduct
@@ -749,7 +746,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.OuterIrrIsoWeylRep
-
 
 open MvPolynomial Matrix GlobalTheory.IndefiniteRowSideFullHecke.MinorOrderedEntries GlobalTheory.OneFunctional Formalism.BasicNotions GlobalTheory.Branching
 open scoped TensorProduct DirectSum
@@ -1260,11 +1256,12 @@ theorem interlace_big_small (S : Sizes) (Q : Entries S) (hQ : Q.Good) : Interlac
 end GlobalTheory.StrictInterlace
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TensorRepresentationIntertwinerCompat
-
+-- clump: shared namespace opens
 
 open MvPolynomial GlobalTheory.IndefiniteRowSideFullHecke.MinorOrderedEntries GlobalTheory.OneFunctional Formalism.BasicNotions GlobalTheory.Branching
 open scoped TensorProduct DirectSum
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TensorRepresentationIntertwinerCompat
 
 namespace GlobalTheory.OneFunctional
 
@@ -1373,10 +1370,6 @@ end GlobalTheory.OneFunctional
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FinrankInvFunBranch
-
-open MvPolynomial GlobalTheory.IndefiniteRowSideFullHecke.MinorOrderedEntries GlobalTheory.OneFunctional Formalism.BasicNotions GlobalTheory.Branching
-open scoped TensorProduct DirectSum
-
 
 namespace GlobalTheory.OneFunctional
 

@@ -242,9 +242,11 @@ theorem eq_zero_of_isIntegral_mul_of_small :
 end GlobalTheory.CompanionTheory.SmallIntegral
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FrameBlockZeroStabilizesFlag
+-- clump: shared namespace opens
 
 open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RapidDecay
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FrameBlockZeroStabilizesFlag
 open Formalism.UG (cT)
 open GlobalTheory.Orb (archMat)
 open scoped TensorProduct NNReal ENNReal
@@ -302,11 +304,6 @@ theorem stabilises_flag_span : ∀ (E : Type) [Field E] (S : E →+* E) (n r : �
 
 end GlobalTheory.CompanionTheory.RapidDecay
 end -- clump:auto
-
--- clump: shared namespace opens
-
-
-open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RapidDecay
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MinimalParabolicFrameBlockZero
 open Formalism.UG (cT)

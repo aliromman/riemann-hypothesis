@@ -497,12 +497,7 @@ theorem lower_from_counts : ∀ (k : Type) [Field k] [Fintype k] (n : ℕ) (V : 
 end GlobalTheory.CompanionTheory.GapOpLower
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SumHyperplanesComplementFlags
-
-
-open Matrix Classical PositivityTheory.Rg.Rs GlobalTheory.CompanionTheory.GLFirstBasisOrbit
 
 namespace GlobalTheory.CompanionTheory.GapOpMain
 
@@ -964,8 +959,9 @@ theorem gapOp : PositivityTheory.Rg.Rs.GapOp := by
 end GlobalTheory.CompanionTheory.GapOpMain
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.ExponentialNegativity.LatticeReduction.LatticeHeightZeroEq
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.ExponentialNegativity.LatticeReduction.LatticeHeightZeroEq
 
 open Matrix Module
 
@@ -1308,7 +1304,6 @@ end PositivityTheory.Rg.Rs.JLatOf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.ExponentialNegativity.LatticeReduction.RedApplyCongr
-
 
 open NumberField IsDedekindDomain Matrix Module
 open Formalism.UG Formalism.UG.P

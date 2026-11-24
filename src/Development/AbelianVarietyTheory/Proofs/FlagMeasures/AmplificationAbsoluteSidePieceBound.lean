@@ -90,7 +90,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.OffBlockEntriesBoundedNormalFormPairOfFlags
 
-
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp GlobalTheory.Amp.NfComp
 open scoped InnerProductSpace ENNReal
 
@@ -210,7 +209,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RadicalCoordinatesBoundedMajorantLengths
 @[expose] public noncomputable section
-
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
 open scoped InnerProductSpace ENNReal
@@ -722,7 +720,6 @@ end -- clump:auto
 section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TwoFlagsGramNumberNormalFormEqGramProjection
 @[expose] public noncomputable section
 
-
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp GlobalTheory.Amp.Rad
 open scoped InnerProductSpace ENNReal
 
@@ -1201,10 +1198,12 @@ end GlobalTheory.Amp.NormGram
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.VolumeGramConditionCodimTwoThree
+-- clump: shared namespace opens
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
 open scoped InnerProductSpace ENNReal
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.VolumeGramConditionCodimTwoThree
 
 namespace GlobalTheory.Amp.GramVol
 
@@ -1252,12 +1251,6 @@ theorem vol_gram_codim_three : ∀ (k r : ℕ), 1 ≤ r → 2 * r + 6 ≤ k → 
 
 end GlobalTheory.Amp.GramVol
 end -- clump:auto
-
--- clump: shared namespace opens
-
-
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
-open scoped InnerProductSpace ENNReal
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FibreGramNumberNullAndCutoffIntegralBound
 

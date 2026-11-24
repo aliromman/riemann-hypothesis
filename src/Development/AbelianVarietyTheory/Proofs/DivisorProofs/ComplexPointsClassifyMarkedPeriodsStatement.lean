@@ -165,7 +165,6 @@ open scoped Matrix
 
 set_option autoImplicit false
 
-
 attribute [local instance] Over.cartesianMonoidalCategory
 
 
@@ -244,7 +243,7 @@ theorem real_eq_of_exp_neg_two_pi_I_div_eq : ∀ x y : ℝ, (∀ k : ℕ, 0 < k 
 end GlobalTheory
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.PELU
@@ -608,15 +607,7 @@ theorem _root_.GlobalTheory.T.nonempty_moduliMap_of_marked_period_isometry : ∀
   first | exact @GlobalTheory.HTIso.nonempty_objMap_of_markedIsom
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComplexPointsClassifyMarkedPeriods
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.PELU
-open scoped Matrix
-open GlobalTheory.UPel.HT
 
 namespace GlobalTheory.UPel.HT
 
@@ -668,11 +659,6 @@ end GlobalTheory.UPel.HT
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComplexPointsClassifyMarkedPeriodsStatement
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.PELU
-open scoped Matrix
-open GlobalTheory.UPel.HT
 
 alias _root_.GlobalTheory.T.complexPoints_classify_markedPeriods := _root_.GlobalTheory.UPel.HT.Model.fineAt_univ
 

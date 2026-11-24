@@ -66,7 +66,6 @@ import Mathlib.Tactic.TypeStar
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsPosNoShortIntegralVectorFromPoint
 
-
 open NumberField Matrix Formalism.MainNotions.S GlobalTheory.CuspGeo GlobalTheory.ClassFin
 open scoped Topology
 
@@ -149,7 +148,6 @@ end GlobalTheory.CuspGeo
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.RationalConjUnipotentRadicalIsotropic
-
 
 open NumberField Matrix Formalism.MainNotions.S Formalism.UG
 
@@ -280,12 +278,13 @@ theorem naconj : ∀ (I : AutInst), ∀ γ ∈ I.GFset, ∀ W, I.IsIsot W → �
 end GlobalTheory.CuspGeo
 end -- clump:auto
 
-section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ShortVectorCuspUnipotentCoverAllInstances
-@[expose] public noncomputable section
-
+-- clump: shared namespace opens
 
 open NumberField Matrix Formalism.MainNotions.S GlobalTheory.CuspGeo GlobalTheory.ClassFin
 open scoped Topology
+
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ShortVectorCuspUnipotentCoverAllInstances
+@[expose] public noncomputable section
 
 namespace GlobalTheory.CuspGeo
 
@@ -416,10 +415,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.AdelicPointNearCuspScale
-
-open NumberField Matrix Formalism.MainNotions.S GlobalTheory.CuspGeo GlobalTheory.ClassFin
-open scoped Topology
-
 
 namespace GlobalTheory.CuspGeo
 

@@ -300,7 +300,6 @@ open Complex
 open UpperHalfPlane hiding I
 open scoped Real MatrixGroups
 
-
 namespace GlobalTheory.Sieg.ThInv
 
 open GlobalTheory.ThetaWeberRoad GlobalTheory.ThetaWeberRoad.OddDeriv
@@ -397,11 +396,12 @@ theorem th_S : ∀ (τ : ℍ) (z : ℂ), th (z / (τ : ℂ)) (ModularGroup.S •
 end GlobalTheory.Sieg.ThInv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SmoothedThetaQProductEqOddThetaProductQuotient
-
+-- clump: shared namespace opens
 
 open scoped UpperHalfPlane MatrixGroups Manifold
 open GlobalTheory.Sieg GlobalTheory.QFam
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SmoothedThetaQProductEqOddThetaProductQuotient
 
 namespace GlobalTheory.Sieg.ThQuot
 
@@ -526,11 +526,6 @@ theorem cth_eq_th_quot : ∀ (c : ℕ) (τ : ℍ) (z : ℂ), 1 < c → Nat.Copri
 
 end GlobalTheory.Sieg.ThQuot
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open scoped UpperHalfPlane MatrixGroups Manifold
-open GlobalTheory.Sieg GlobalTheory.QFam
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SmoothedThetaQProductModularSTransform
 

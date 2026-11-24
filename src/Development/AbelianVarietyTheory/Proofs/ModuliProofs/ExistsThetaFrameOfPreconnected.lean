@@ -55,12 +55,13 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsFibreFrameOfMemClosure, Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsThetaFrameOfPreconnected
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsFibreFrameOfMemClosure
-
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj TensorProduct
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsFibreFrameOfMemClosure
 open scoped Topology
 open Filter
 
@@ -279,10 +280,6 @@ end GlobalTheory.ThetaFamily
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsThetaFrameOfPreconnected
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj TensorProduct
 
 namespace GlobalTheory.ThetaFamily
 

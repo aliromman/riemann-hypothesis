@@ -690,15 +690,6 @@ theorem UpperTheory.Gal.Wt.famOf_of : ExpBasic → PevExp → SqExp → TopUp �
     omega
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
-section -- clump: shared namespace opens
-
-
-open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
-open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.DefU GlobalTheory.Branching
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.FamOffHolds
 
 namespace UpperTheory.Gal.Wt
@@ -886,13 +877,7 @@ end UpperTheory.Gal.Wt
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.KaplOf
-
-open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
-open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.DefU GlobalTheory.Branching
 open UpperTheory.Gal.Gen (IsLevel fixedBy)
 open UpperTheory.Gal.Wt
 
@@ -920,11 +905,6 @@ theorem UpperTheory.Gal.Wt.kapl_of :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.LadicWeightAtEmbeddingOverPlace
-
-
-open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
-open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.DefU GlobalTheory.Branching
 
 namespace UpperTheory.Gal.Wt
 
@@ -1002,12 +982,6 @@ theorem ladic_weight_at_embedding_over_place : Kap0 := by
 end UpperTheory.Gal.Wt
 
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
-open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.DefU GlobalTheory.Branching
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.NearSub
 open UpperTheory.Gal.Gen (IsLevel fixedBy)
@@ -1216,14 +1190,7 @@ theorem UpperTheory.Gal.Wt.pevExp_of :
     convert Submodule.smul_mem _ (AddMonoidAlgebra.coeff P d) hp using 1
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.Pieces
-
-
-open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
-open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.DefU GlobalTheory.Branching
 
 namespace UpperTheory.Gal.Wt
 
@@ -1302,12 +1269,6 @@ theorem pieces_of (hS : SepPoly) (hN : NearSub) : Pieces := by
 end UpperTheory.Gal.Wt
 
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
-open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.DefU GlobalTheory.Branching
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.QROf
 open UpperTheory.Gal.Gen (IsLevel fixedBy)
@@ -1502,7 +1463,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.TorFacts
 
-
 open Formalism.BasicNotions GlobalTheory.Branching
 
 namespace UpperTheory.Gal.Wt
@@ -1568,12 +1528,13 @@ end UpperTheory.Gal.Wt
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.TwistBd
-
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.DefU GlobalTheory.Branching
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.TwistBd
 open UpperTheory.Gal.Gen (IsLevel fixedBy)
 
 namespace UpperTheory.Gal.Wt
@@ -1622,12 +1583,6 @@ theorem twistBd_of : Twist → TwistBd := by
 end UpperTheory.Gal.Wt
 
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
-open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.DefU GlobalTheory.Branching
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.TwistOf
 open UpperTheory.Gal.Gen (IsLevel fixedBy)

@@ -305,9 +305,11 @@ theorem eigen_of_gen_eigen (C : Type) [Field C] (V : VF C) (O : Type) [CommRing 
 end GlobalTheory.GenEigen
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsIntegralCharacterGeneralizedEigen
+-- clump: shared namespace opens
 
 open scoped BigOperators
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsIntegralCharacterGeneralizedEigen
 open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.GenChar
@@ -418,8 +420,6 @@ end GlobalTheory.GenChar
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.RingHomEqOfCongruentIntegralUnramified
-
-open scoped BigOperators
 open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.CongruentCharacters
@@ -526,8 +526,6 @@ end GlobalTheory.CongruentCharacters
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.LimitIdempotentRangeLeSumEigenspaces
-
-open scoped BigOperators
 open Formalism.L2.FormalSeriesBounds
 
 namespace GlobalTheory.IdemRange
@@ -752,9 +750,6 @@ end GlobalTheory.IdemRange
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.GaugeAdjointEndPairElementaryBlock
-
-
-open scoped BigOperators
 open Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw GlobalTheory.RowVal ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.RowLaw.EndBlock
@@ -984,9 +979,6 @@ end GlobalTheory.RowLaw.EndBlock
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.IsGaugeAdjointIntegralEndPairAdd
-
-
-open scoped BigOperators
 open Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds GlobalTheory.RowLaw GlobalTheory.RowVal MvPowerSeries
 
 namespace GlobalTheory.RowLaw.EndSum
@@ -1171,8 +1163,6 @@ end GlobalTheory.RowLaw.EndSum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.HasGaugeAdjointLieProjectorsSelfConjugatePlace
-
-open scoped BigOperators
 open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.ProjSelf

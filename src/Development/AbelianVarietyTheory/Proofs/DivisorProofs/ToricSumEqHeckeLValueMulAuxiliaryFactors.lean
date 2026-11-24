@@ -76,7 +76,6 @@ import Mathlib.Topology.UniformSpace.Uniformizable
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLatticePointsIntegralIdelesEquiv
 
-
 open NumberField IsDedekindDomain GlobalTheory.CMVal
 
 namespace GlobalTheory.CMVal.LatBij
@@ -441,9 +440,11 @@ end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConductorTimesSplitPrimesExponents
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.CMVal.Euler
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConductorTimesSplitPrimesExponents
 
 namespace GlobalTheory.CMVal.CondExp
 
@@ -498,11 +499,6 @@ theorem condQ_exponents : ∀ (E : Type) [Field E] [NumberField E] (𝔣 : Ideal
 
 end GlobalTheory.CMVal.CondExp
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-
-open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.CMVal.Euler
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteCosetsUnitIdelesCompletedOrder
 
@@ -798,11 +794,7 @@ theorem exists_split_unif_idele : ∀ (E : Type) [Field E] [NumberField E] [IsCM
 end GlobalTheory.CMVal.Euler
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniformiserSplitPlaceCmOrderNonunit
-
-open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.CMVal.Euler
 
 namespace GlobalTheory.CMVal.Euler
 
@@ -894,9 +886,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemCompletedOrderOfLocalCongruenceSplit
 
-
-open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.CMVal.Euler
-
 namespace GlobalTheory.CMVal.Euler.HatLoc
 
 variable {E : Type} [Field E] [NumberField E]
@@ -978,6 +967,8 @@ theorem mem_hatO_of_locIn : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
 
 end GlobalTheory.CMVal.Euler.HatLoc
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasSumIntegralIdelesEulerProduct
 @[expose] public noncomputable section
@@ -1291,7 +1282,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToricSumEqHeckeLValueMulAuxiliaryFactors
-
 
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.CMVal.ObjModel
 

@@ -69,12 +69,13 @@ import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.CubeTheore
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ModuliProofs.HeckePointsOfPartsComm, Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsUniqueHeckeQuotientPointModuli, Development.AbelianVarietyTheory.Proofs.ModuliProofs.ModuliSchemeLevelMapsHeckePoints
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.HeckePointsOfPartsComm
-
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj TensorProduct
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.HeckePointsOfPartsComm
 
 namespace GlobalTheory.HeckePoint
 
@@ -269,10 +270,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsUniqueHeckeQuotientPointModuli
 
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj TensorProduct
-
 namespace GlobalTheory
 
 theorem heckePoints_of_laws :
@@ -287,6 +284,8 @@ theorem heckePoints_of_laws :
 
 end GlobalTheory
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ModuliSchemeLevelMapsHeckePoints
 

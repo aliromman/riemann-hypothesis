@@ -76,10 +76,11 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.BettiKummerRelationPadicAdd, Development.AbelianVarietyTheory.Proofs.FoundationProofs.BettiKummerRelationPadicSmulStatement, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerRootMem, Development.AbelianVarietyTheory.Proofs.FoundationProofs.EqZeroOfBettiKummerRelationPadicZero, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsBettiCocycleKummerRelation, Development.AbelianVarietyTheory.Proofs.FoundationProofs.GammaOneGammaZeroHomogeneousCocyclesFinite, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerBettiModuleFreeFinite
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.BettiKummerRelationPadicAdd
-
+section -- clump: shared namespace opens
 
 open scoped MatrixGroups TensorProduct
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.BettiKummerRelationPadicAdd
 open Matrix GlobalTheory.KZ GlobalTheory.KZ.BettiB
 
 namespace GlobalTheory.KZ.BettiB.Add
@@ -172,8 +173,6 @@ end GlobalTheory.KZ.BettiB.Add
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.BettiKummerRelationPadicSmulStatement
-
-open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ GlobalTheory.KZ.BettiB
 
 theorem _root_.GlobalTheory.T.bettiKummerRelationPadic_smul : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ} (X : Tower Ω ε) (N l : ℕ) [Fact l.Prime] (r : ℤ_[l]) (b : X.Fn l) (c : Gam N l → MvPolynomial (Fin 2) ℤ_[l]), BtZ X N l b c → BtZ X N l (r • b) (r • c) := by
@@ -181,8 +180,6 @@ theorem _root_.GlobalTheory.T.bettiKummerRelationPadic_smul : ∀ {Ω : Type} [F
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerRootMem
-
-open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ
 
 namespace GlobalTheory.KZ
@@ -236,8 +233,6 @@ end GlobalTheory.KZ
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.EqZeroOfBettiKummerRelationPadicZero
-
-open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ GlobalTheory.KZ.BettiB
 
 namespace GlobalTheory.KZ.BettiB
@@ -298,9 +293,6 @@ end GlobalTheory.KZ.BettiB
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsBettiCocycleKummerRelation
-
-
-open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ GlobalTheory.KZ.BettiB
 
 namespace GlobalTheory.KZ.BettiEx
@@ -349,6 +341,8 @@ theorem exists_betti_cocycle {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosu
 end GlobalTheory.KZ.BettiEx
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.GammaOneGammaZeroHomogeneousCocyclesFinite
 
 open scoped MatrixGroups TensorProduct Pointwise
@@ -393,7 +387,6 @@ end GlobalTheory.KZ.BettiB
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerBettiModuleFreeFinite
-
 
 open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ GlobalTheory.KZ.BettiB

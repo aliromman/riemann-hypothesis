@@ -400,7 +400,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.HasSumHeckeUOperatorExplicit
 
-
 open UpperHalfPlane ModularForm CongruenceSubgroup MeasureTheory
 open scoped MatrixGroups ModularForm Manifold Real
 
@@ -1067,10 +1066,12 @@ theorem heckeDiamond_commute_mod_coboundaries_gamma1Gamma0_alt : ∀ (N l k : �
 end GlobalTheory.HeckeFamilyMatrices.Comm
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeckeSumPotentialsCocycleEq
+-- clump: shared namespace opens
 
 open GlobalTheory.KZ GlobalTheory.KZ.H3 Matrix
 open scoped MatrixGroups
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeckeSumPotentialsCocycleEq
 
 namespace GlobalTheory.KZ.DictHk
 
@@ -1178,9 +1179,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PotentialCocycleDehomogenisedLaws
 
-open GlobalTheory.KZ GlobalTheory.KZ.H3 Matrix
-open scoped MatrixGroups
-
 namespace GlobalTheory.KZ.CocPot
 
 theorem I_mem : Complex.I ∈ Hs := by
@@ -1254,10 +1252,6 @@ end GlobalTheory.KZ
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SemisimplePotentialsAtNewformEigensystem
-
-
-open GlobalTheory.KZ GlobalTheory.KZ.H3 Matrix
-open scoped MatrixGroups
 
 namespace GlobalTheory.KZ.SSPotBr
 

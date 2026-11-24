@@ -94,7 +94,6 @@ import Mathlib.RingTheory.WittVector.IsPoly
 
 section -- clump: shared namespace opens
 
-
 open GlobalTheory.GLq GlobalTheory.Published Formalism.MainNotions.ArithmeticCylinders Polynomial
 open scoped Classical
 
@@ -335,12 +334,7 @@ theorem card_generic_irr_le : ∀ (g : ℕ) [Fact g.Prime] (ψ : AddChar (ZMod g
 end GlobalTheory.GLq
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CardCuspidalMultisetsTotalDegreeLe
-
-open GlobalTheory.GLq GlobalTheory.Published Formalism.MainNotions.ArithmeticCylinders Polynomial
-open scoped Classical
 
 namespace GlobalTheory.GLq.CuspMultisetCount
 
@@ -394,11 +388,12 @@ theorem card_le : ∀ (g : ℕ) [Fact g.Prime] (n : ℕ), 0 < n → ∀ S : Fins
 end GlobalTheory.GLq.CuspMultisetCount
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCuspidalCharacterOfRegularCharacterGLn
 
 open GlobalTheory.GLq GlobalTheory.Published Formalism.MainNotions.ArithmeticCylinders Polynomial GlobalTheory.CuspGL
 open scoped Classical
-
 
 namespace GlobalTheory.GreenRegular
 
@@ -615,12 +610,13 @@ theorem exists_cusp_of_regular : ∀ (g : ℕ) [Fact g.Prime] (d : ℕ), 0 < d �
 end GlobalTheory.GreenRegular
 end -- clump:auto
 
-section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MonicIrreducibleInjectRegularCharacterOrbits
-@[expose] public noncomputable section
+-- clump: shared namespace opens
 
 open GlobalTheory.GLq GlobalTheory.Published Formalism.MainNotions.ArithmeticCylinders Polynomial
 open scoped Classical
 
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MonicIrreducibleInjectRegularCharacterOrbits
+@[expose] public noncomputable section
 
 namespace GlobalTheory.PrimeLabOrbit
 
@@ -774,9 +770,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NcardMonicNatDegreeCoeffZeroNeZero
 
-open GlobalTheory.GLq GlobalTheory.Published Formalism.MainNotions.ArithmeticCylinders Polynomial
-open scoped Classical
-
 namespace GlobalTheory.GrPolys
 
 theorem monic_deg_equiv_card (g : ℕ) [Fact g.Prime] (n : ℕ) :
@@ -838,10 +831,6 @@ theorem GlobalTheory.GrPolys.card_monic_coeff_zero_ne_zero :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GreenCuspidalCharsByRegularCharsProof
-
-
-open GlobalTheory.GLq GlobalTheory.Published Formalism.MainNotions.ArithmeticCylinders Polynomial
-open scoped Classical
 
 namespace GlobalTheory.GreenRegularCharactersInertiaEigenvalues
 

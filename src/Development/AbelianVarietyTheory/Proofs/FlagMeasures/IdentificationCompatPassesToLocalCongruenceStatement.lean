@@ -62,7 +62,6 @@ import Mathlib.Tactic.ReduceModChar
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsGlobalVectorCongruentLocalOrthogonal
 
-
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc Formalism.L2.SG.TermDef GlobalTheory.LocOver
 open scoped Classical
 
@@ -247,7 +246,7 @@ theorem exists_one_here_zero_elsewhere : ∀ (D : D7) (p : PlF D), ∃ a : 𝓞 
 end GlobalTheory.CrtG
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc Formalism.L2.SG.TermDef GlobalTheory.LocOver
 open scoped Classical
@@ -298,13 +297,7 @@ theorem _root_.GlobalTheory.T.integers_dense_localIntegers_mod_g : ∀ (D : D7) 
   first | exact @GlobalTheory.IotaDense.iota_dense
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalGlobalCongruenceLatticeTypedPlace
-
-
-open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc Formalism.L2.SG.TermDef GlobalTheory.LocOver
-open scoped Classical
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
@@ -390,11 +383,6 @@ theorem locglob : ∀ (D : D7) (Z : LocDat D) (p : PlF D), (Z.M p).split ≠ non
 end GlobalTheory.IotaLocGlob
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc Formalism.L2.SG.TermDef GlobalTheory.LocOver
-open scoped Classical
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalGlobalCongruenceLatticeTypedPlaceStatement
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
@@ -404,7 +392,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IdentificationCompatPassesToLocalCongruence
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 
 namespace GlobalTheory.IotaLoc
 

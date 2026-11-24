@@ -73,9 +73,11 @@ import Mathlib.Topology.Separation.CompletelyRegular
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EqZeroOfComm, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GlobalEulerChar, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.H0TwDualEqZero, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NonemptySubquotEquiv, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SelAllLeInf, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SelmerObstructionLeResidualSelmerSimpleExtension
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EqZeroOfComm
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen GlobalTheory.TwSys GlobalTheory.SelFun GlobalTheory.Published
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EqZeroOfComm
 
 namespace GlobalTheory.ResComm
 
@@ -261,8 +263,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GlobalEulerChar
 
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen GlobalTheory.TwSys GlobalTheory.SelFun GlobalTheory.Published
-
 namespace GlobalTheory.EulerScalars
 
 noncomputable def subquotEquiv {R R' X : Type*} [CommRing R] [CommRing R'] [AddCommGroup X]
@@ -327,9 +327,6 @@ end GlobalTheory.EulerScalars
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.H0TwDualEqZero
-
-
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen GlobalTheory.TwSys GlobalTheory.SelFun GlobalTheory.Published
 
 namespace GlobalTheory.LocTwoOnto
 
@@ -413,8 +410,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NonemptySubquotEquiv
 
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen GlobalTheory.TwSys GlobalTheory.SelFun GlobalTheory.Published
-
 namespace GlobalTheory.LocEulerScalars
 
 theorem nonempty_subquot_equiv {R R' X : Type*} [Ring R] [Ring R'] [AddCommGroup X] [Module R X]
@@ -468,8 +463,9 @@ theorem localEulerChar_above : LocalFiniteness → LocalEulerChar → ∀ (F Ω 
 end GlobalTheory.LocEulerScalars
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SelAllLeInf
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SelAllLeInf
 
 open NumberField IsDedekindDomain ReciprocityTheory.Gal Formalism.ConjugateSelfDual Formalism.GaloisCohomology Pointwise
 
@@ -582,7 +578,6 @@ end GlobalTheory.SelInfl
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SelmerObstructionLeResidualSelmerSimpleExtension
-
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen GlobalTheory.TwSys GlobalTheory.SelFun GlobalTheory.Published
 

@@ -274,7 +274,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MultiplicationSeriesUnitCoeffNormLe
 
-
 namespace GlobalTheory.Honda
 
 open PowerSeries
@@ -878,7 +877,6 @@ end -- clump:auto
 
 open PowerSeries GlobalTheory.Honda Formalism.L2.Th1.CM
 
-
 namespace GlobalTheory.OddHalfProduct
 
 open Formalism.L2.Th1.F
@@ -1089,7 +1087,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FormalGroupHeightLeTwoGoodReduction
 
 open PowerSeries GlobalTheory.Honda Formalism.L2.Th1.CM
-
 
 namespace GlobalTheory.HeightTwo
 
@@ -1426,10 +1423,11 @@ theorem intLog_shortW (K : Type) [NormedField K] [IsUltrametricDist K] [CharZero
 end GlobalTheory.Honda
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsUnramifiedNearIntegralComplexPadic
+-- clump: shared namespace opens
 
 open PowerSeries GlobalTheory.Honda Formalism.L2.Th1.CM
 
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsUnramifiedNearIntegralComplexPadic
 
 namespace GlobalTheory.ResidueUnr
 
@@ -1558,9 +1556,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MaxUnramifiedResidueAlgClosedAndFrobeniusLift
 
-
-open PowerSeries GlobalTheory.Honda Formalism.L2.Th1.CM
-
 namespace GlobalTheory.Honda.KurUnr
 
 variable {K : Type} [NormedField K] [IsUltrametricDist K]
@@ -1676,8 +1671,6 @@ theorem GlobalTheory.Honda.kur_resAlg_unr : ∀ (l : ℕ) [Fact l.Prime], 2 < l 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.OneSubTwoOmegaSq
-
-open PowerSeries GlobalTheory.Honda Formalism.L2.Th1.CM
 
 namespace GlobalTheory.HondaCM3
 

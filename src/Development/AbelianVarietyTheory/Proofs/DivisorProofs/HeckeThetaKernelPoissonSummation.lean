@@ -84,11 +84,12 @@ import Mathlib.Algebra.Order.Archimedean.Real.Hom
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FourierCompCoordDilationByHalfExp, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FourierHarmonicMonomialMulGaussianComplex, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FourierProdSingleCoordinateFunctions, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussianHarmonicProductKernelContinuousBounded, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeIdealEuclideanLatticeIsZLattice, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TsumRingEqSumIdealCosetsTsum, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeThetaKernelPoissonSummation
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FourierCompCoordDilationByHalfExp
-
+-- clump: shared namespace opens
 
 open NumberField MeasureTheory
 open scoped RealInnerProductSpace FourierTransform
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FourierCompCoordDilationByHalfExp
 
 namespace GlobalTheory.HeckePoisson.Dilation
 
@@ -171,10 +172,6 @@ end GlobalTheory.HeckePoisson.Dilation
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FourierHarmonicMonomialMulGaussianComplex
-
-
-open NumberField MeasureTheory
-open scoped RealInnerProductSpace FourierTransform
 
 namespace GlobalTheory.HeckeLemma
 
@@ -408,11 +405,6 @@ theorem _root_.GlobalTheory.HeckeLemma.fourier_hmon_mul_gaussian : ∀ (k : ℤ)
 end GlobalTheory.HeckeLemma
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open NumberField MeasureTheory
-open scoped RealInnerProductSpace FourierTransform
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FourierProdSingleCoordinateFunctions
 
 namespace GlobalTheory
@@ -434,7 +426,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussianHarmonicProductKernelContinuousBounded
 
-
 namespace GlobalTheory.HeckeTheta.GaussBound
 
 open GlobalTheory.HeckeTheta
@@ -455,7 +446,6 @@ end GlobalTheory.HeckeTheta.GaussBound
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeIdealEuclideanLatticeIsZLattice
-
 
 namespace GlobalTheory.HeckePoisson
 
@@ -570,13 +560,7 @@ theorem cosets_main : ∀ (R : Type) [CommRing R] (M : Ideal R) [Fintype (R ⧸ 
 end GlobalTheory
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeThetaKernelPoissonSummation
-
-
-open NumberField MeasureTheory
-open scoped RealInnerProductSpace FourierTransform
 
 namespace GlobalTheory.HeckePoisson
 

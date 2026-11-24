@@ -52,11 +52,13 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShearGLMulVecAndNabsDet, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicPairingDepthVanishing
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShearGLMulVecAndNabsDet
+-- clump: shared namespace opens
 
 open Matrix MeasureTheory GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.BZSeg GlobalTheory.BZMir GlobalTheory.SplitWeil GlobalTheory.CompanionTheory.MirFourier GlobalTheory.CompanionTheory.BZOnto.PerpSmall ValuativeRel Zc
 open scoped Topology
 open GlobalTheory.CompanionTheory.MirPair
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShearGLMulVecAndNabsDet
 
 namespace GlobalTheory.CompanionTheory.MirPair
 
@@ -86,11 +88,6 @@ end GlobalTheory.CompanionTheory.MirPair
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicPairingDepthVanishing
-
-
-open Matrix MeasureTheory GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.BZSeg GlobalTheory.BZMir GlobalTheory.SplitWeil GlobalTheory.CompanionTheory.MirFourier GlobalTheory.CompanionTheory.BZOnto.PerpSmall ValuativeRel Zc
-open scoped Topology
-open GlobalTheory.CompanionTheory.MirPair
 
 namespace GlobalTheory.CompanionTheory.MirPair
 

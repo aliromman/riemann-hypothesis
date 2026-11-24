@@ -70,7 +70,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsConductorMulMemAdjoinOfSeparable
 
-
 namespace GlobalTheory.UnitLemma
 
 open Polynomial
@@ -325,10 +324,11 @@ theorem fg_units_quot : ∀ (K : UQ) (L : Type) [Field L] [Algebra K.O L] [Algeb
 end GlobalTheory.FieldUnitsQuotFG
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FgUnitsQuotIntegralUnitsReducedFiniteAlgebra
-
+-- clump: shared namespace opens
 
 open GlobalTheory.UnitLemma Polynomial
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FgUnitsQuotIntegralUnitsReducedFiniteAlgebra
 
 namespace GlobalTheory.UnitLemma.NormUnits
 
@@ -429,10 +429,6 @@ theorem units_quot_intUnits_fg : ∀ (K : UQ), (∀ (L : Type) [Field L] [Algebr
 end GlobalTheory.UnitLemma.NormUnits
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open GlobalTheory.UnitLemma Polynomial
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFinsetCosetsIntegralNormUnits
 
 namespace GlobalTheory.NormUnits
@@ -509,7 +505,6 @@ end GlobalTheory.NormUnits
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IntUnitOfMulLat
-
 
 namespace GlobalTheory.HullClasses
 
@@ -829,7 +824,6 @@ end GlobalTheory.UnitLemma.StabIndex
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SelfDualStableLatticeUnitOrbitsFinite
-
 
 namespace GlobalTheory.UnitLemma.OrbitFinite
 

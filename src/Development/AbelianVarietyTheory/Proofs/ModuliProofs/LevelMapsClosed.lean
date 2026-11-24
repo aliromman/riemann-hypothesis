@@ -69,13 +69,14 @@ import Development.AbelianVarietyTheory.Proofs.ModuliProofs.TateIsoDifferBySimil
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ModuliProofs.LevelMapFiniteEtaleSurjectiveOfLaws, Development.AbelianVarietyTheory.Proofs.ModuliProofs.LevelMapsOfParts, Development.AbelianVarietyTheory.Proofs.ModuliProofs.LevelMapsClosed
 
-section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.LevelMapFiniteEtaleSurjectiveOfLaws
-@[expose] public noncomputable section
-
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj TensorProduct
+
+section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.LevelMapFiniteEtaleSurjectiveOfLaws
+@[expose] public noncomputable section
 open GlobalTheory.LevelCover
 
 namespace GlobalTheory.LevCover
@@ -238,12 +239,6 @@ theorem levelMap_finite_etale_surjective_of_laws (hL : Out.Laws) : ∀ (E : Type
 end GlobalTheory.LevCover
 end -- clump:auto
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj TensorProduct
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.LevelMapsOfParts
 

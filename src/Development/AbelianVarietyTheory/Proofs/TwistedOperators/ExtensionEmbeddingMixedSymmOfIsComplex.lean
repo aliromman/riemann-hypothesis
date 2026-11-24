@@ -59,10 +59,12 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsSmoothMulExtensionOfContinuousChar, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsSmoothMulExtensionOfContinuousChar
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain NumberField.mixedEmbedding Classical
 open scoped ContDiff
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsSmoothMulExtensionOfContinuousChar
 
 namespace GlobalTheory
 
@@ -214,10 +216,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex
-
-
-open NumberField IsDedekindDomain NumberField.mixedEmbedding Classical
-open scoped ContDiff
 open Formalism.L2.Host (HChar)
 open GlobalTheory.CMVal (Ideles)
 open GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHeckeCharacterIdele (ideleNorm)

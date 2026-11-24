@@ -68,11 +68,12 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinvariantLeviActionModulus, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinvariantUnipotentActionTrivial, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalConstancyTwistedTranslate, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicCompactModParabolic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusMirabolicBlockFactor, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentCommuteShiftedEmbedding, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClosedEvaluationInduced
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinvariantLeviActionModulus
-
+-- clump: shared namespace opens
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
 open scoped TensorProduct
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinvariantLeviActionModulus
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.QLevi
 
@@ -133,11 +134,6 @@ end GlobalTheory.CompanionTheory.BZPhiPG.QLevi
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
-open scoped TensorProduct
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinvariantUnipotentActionTrivial
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG
@@ -196,7 +192,6 @@ end GlobalTheory.CompanionTheory.BZPhiPG.TwFibre
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicCompactModParabolic
-
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Coc
 
@@ -269,13 +264,7 @@ end GlobalTheory.CompanionTheory.BZPhiPG.Coc
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusMirabolicBlockFactor
-
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
-open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG
 
@@ -303,14 +292,8 @@ end GlobalTheory.CompanionTheory.BZPhiPG
 
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
-open scoped TensorProduct
-
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentCommuteShiftedEmbedding
 @[expose] public noncomputable section
-
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.DConj
 

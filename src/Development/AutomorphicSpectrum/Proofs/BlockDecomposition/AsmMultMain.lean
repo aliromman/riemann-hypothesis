@@ -61,10 +61,12 @@ import Mathlib.Tactic.ENatToNat
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BumpConvolutionSupportStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoshTransformCasimirReal, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoshTransformCasimirRealStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoshTransformConvolution, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoshTransformConvolutionStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelMultiplierLinear, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelMultiplierLinearStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelMultiplierOnEigenfunction, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelMultiplierOnEigenfunctionStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConvRightEquivariant, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralConvApplyEq, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KRegConv, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelComposition, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelCompositionStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelConvolution, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelConvolutionStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelDecompositionStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelWordOrderSwap, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelWordOrderSwapStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AsmMultMain
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BumpConvolutionSupportStatement
+-- clump: shared namespace opens
 
 open MeasureTheory Matrix Finset
 open scoped ContDiff ComplexConjugate InnerProductSpace
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BumpConvolutionSupportStatement
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.WaveMult
@@ -75,10 +77,6 @@ theorem _root_.GlobalTheory.T.bump_convolution_support : ∀ (g g' : ℝ → ℝ
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoshTransformCasimirReal
-
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
@@ -188,9 +186,6 @@ end GlobalTheory.CompanionTheory.WaveMult
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoshTransformCasimirRealStatement
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.WaveMult
@@ -201,10 +196,6 @@ theorem _root_.GlobalTheory.T.cosh_transform_casimir_real : ∀ (n : ℕ) (χ : 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoshTransformConvolution
-
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
@@ -322,11 +313,6 @@ theorem coshT_mul_coshT (g g' : ℝ → ℝ) (T T' : ℝ) (c : ℂ) (h : IsBump 
 end GlobalTheory.CompanionTheory.WaveMult.CoshMul
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoshTransformConvolutionStatement
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
@@ -404,13 +390,7 @@ theorem _root_.GlobalTheory.T.kernel_multiplier_linear : LgFacts → ∀ (n : �
   first | exact @GlobalTheory.CompanionTheory.WaveMult.conv_eq_sum_of_kernels
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelMultiplierOnEigenfunction
-
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
@@ -552,11 +532,6 @@ theorem act_eq_val_of_isMult : LgFacts → ∀ (n : ℕ) [MeasurableSpace (G n)]
 end GlobalTheory.CompanionTheory.WaveMult
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelMultiplierOnEigenfunctionStatement
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
@@ -685,13 +660,7 @@ theorem act_conv : LgFacts → ∀ (n : ℕ) [MeasurableSpace (G n)] [BorelSpace
 end GlobalTheory.CompanionTheory.WaveMult
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KRegConv
-
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.WaveMult
@@ -743,10 +712,6 @@ end GlobalTheory.CompanionTheory.WaveMult
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelComposition
-
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
@@ -828,9 +793,6 @@ end GlobalTheory.CompanionTheory.WaveMult
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelCompositionStatement
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.WaveMult
@@ -841,10 +803,6 @@ theorem _root_.GlobalTheory.T.wave_kernel_composition : RCalc → WaveSpeed → 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelConvolution
-
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
@@ -931,9 +889,6 @@ end GlobalTheory.CompanionTheory.WaveMult
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelConvolutionStatement
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.WaveMult
@@ -944,9 +899,6 @@ theorem _root_.GlobalTheory.T.wave_kernel_convolution : LgFacts → Unimod → R
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelDecompositionStatement
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.WaveMult
@@ -955,10 +907,6 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelWordOrderSwap
-
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
@@ -981,9 +929,6 @@ end GlobalTheory.CompanionTheory.WaveMult.KerSwap
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelWordOrderSwapStatement
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.WaveMult
@@ -994,10 +939,6 @@ theorem _root_.GlobalTheory.T.wave_kernel_word_order_swap : WaveSpeed → RCalc 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AsmMultMain
-
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC

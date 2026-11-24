@@ -603,7 +603,6 @@ end -- clump:auto
 section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.NebentypusOldformTraceToGammaZero
 @[expose] public noncomputable section
 
-
 namespace GlobalTheory.HeckeFamilyMatrices.TrOld
 
 def rep (N l : ℕ) (a b : ℤ) (h : (l : ℤ) * b - N * a = 1) : Option (Fin l) → SL(2, ℤ)
@@ -867,13 +866,7 @@ theorem chiInv_slash_wOld : ∀ (N l : ℕ) (k : ℤ) (a b : ℤ), (l : ℤ) * b
 end GlobalTheory.HeckeFamilyMatrices
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.OldformLevelRaisingSlashSlashNebentypus
-
-
-open GlobalTheory.HeckeFamilyMatrices UpperHalfPlane CongruenceSubgroup
-open scoped MatrixGroups ModularForm Manifold
 
 namespace GlobalTheory.HeckeFamilyMatrices
 
@@ -916,10 +909,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.OldformTraceToGammaOneEqHeckeUlLevelRaising
 
-
-open GlobalTheory.HeckeFamilyMatrices UpperHalfPlane CongruenceSubgroup
-open scoped MatrixGroups ModularForm Manifold
-
 namespace GlobalTheory.HeckeFamilyMatrices
 
 lemma wOld_mul_ulFam (N l : ℕ) (a b : ℤ) (h : (l : ℤ) * b - N * a = 1) (j : ℕ) :
@@ -949,6 +938,8 @@ theorem trOld_eq : ∀ (N l : ℕ) (k : ℤ) (a b : ℤ) (h : (l : ℤ) * b - N 
 
 end GlobalTheory.HeckeFamilyMatrices
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 -- clump: shared namespace opens
 
@@ -1052,7 +1043,6 @@ theorem GlobalTheory.HeckeFamilyMatrices.ulSq_old : ∀ (N l k : ℕ), 5 ≤ N �
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SlashSmulPos
-
 
 namespace GlobalTheory.HeckeFamilyMatrices.UlSemisimple
 

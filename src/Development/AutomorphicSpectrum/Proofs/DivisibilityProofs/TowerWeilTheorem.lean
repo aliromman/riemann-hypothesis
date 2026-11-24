@@ -195,7 +195,7 @@ theorem linA_pow_continuous_lipschitz : ∀ (Ψ : Type) [Fintype Ψ] (N d : ℕ)
 end GlobalTheory.CompanionTheory.Ar.Top
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
 
@@ -590,7 +590,6 @@ end GlobalTheory.CompanionTheory.Ar.Top
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ArithIntersectionSectionRecursion
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Top.EffLat
 
@@ -1003,7 +1002,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.ExistsSmooth
 
-
 namespace RootFieldNumerics.EffN
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
@@ -1144,7 +1142,6 @@ end GlobalTheory.CompanionTheory.Ar.Top
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.TowerRationalWeightBound
-
 
 namespace RootFieldNumerics.DegB
 
@@ -1430,13 +1427,6 @@ theorem zhang_upper_bound_root_model : SuccessiveMinimaUpperBound → ∀ II : I
 
 end GlobalTheory.CompanionTheory.Ar.Top
 end -- clump:auto
-
-end -- clump: shared namespace opens
-
--- clump: shared namespace opens
-
-
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.TowerGapHeightUniformBound
 

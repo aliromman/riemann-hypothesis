@@ -107,7 +107,6 @@ open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.G
 open scoped TensorProduct NNReal ENNReal
 open GlobalTheory.SWC
 
-
 namespace GlobalTheory.HermSD
 
 end GlobalTheory.HermSD
@@ -373,7 +372,6 @@ open scoped TensorProduct ENNReal
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianCoordinatesMeasurePreserving
 
-
 namespace GlobalTheory.CompanionTheory.SiegelND.Coef.TestN.CoordMeas
 
 theorem map_comp_comap {H Y Z : Type} [MeasurableSpace H] [MeasurableSpace Y] [MeasurableSpace Z]
@@ -471,7 +469,6 @@ end GlobalTheory.CompanionTheory.SiegelND.Coef.TestN
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianCoordinatesNaturalInRing
-
 
 namespace GlobalTheory.CompanionTheory.SiegelND.Coef.TestN
 
@@ -596,11 +593,12 @@ theorem preimage_box_shrinking : ∀ (G A ι : Type) [AddCommGroup G] [Topologic
 end GlobalTheory.CompanionTheory.BigCell
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TestTContinuousHasCompactSupport
-
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published.SiegelOneVector GlobalTheory.CompanionTheory.SiegelND GlobalTheory.CompanionTheory.SiegelND.Coef GlobalTheory.CompanionTheory.SiegelND.Coef.TestN
 open scoped TensorProduct ENNReal
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TestTContinuousHasCompactSupport
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.TestC
 
@@ -700,10 +698,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.TestC
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianMeasureEulerProduct
-
-open NumberField IsDedekindDomain MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published.SiegelOneVector GlobalTheory.CompanionTheory.SiegelND GlobalTheory.CompanionTheory.SiegelND.Coef GlobalTheory.CompanionTheory.SiegelND.Coef.TestN
-open scoped TensorProduct ENNReal
-
 
 namespace GlobalTheory.CompanionTheory.SiegelND.Coef.TestN
 

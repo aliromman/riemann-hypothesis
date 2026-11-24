@@ -85,7 +85,6 @@ import Mathlib.Tactic.Polynomial.Basic
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CapacityEquivalence
 
-
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs
 open PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation
@@ -142,7 +141,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConvergenceInfimum
 
-
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs
 open PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation
@@ -198,7 +196,6 @@ end GlobalTheory.CompanionTheory.EGlue
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConvergenceStrip
-
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs
@@ -353,7 +350,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiscreteInfimum
 
-
 open NumberField GlobalTheory.CuspRep GlobalTheory.UnitaryBC
 
 namespace GlobalTheory.CompanionTheory.EGlue
@@ -374,12 +370,13 @@ end GlobalTheory.CompanionTheory.EGlue
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorInduction
-
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs
 open PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorInduction
 
 namespace GlobalTheory.CompanionTheory.EGlue
 
@@ -415,10 +412,6 @@ end GlobalTheory.CompanionTheory.EGlue
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorLimit
-
-open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
-open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs
-open PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation
 open GlobalTheory.CompanionTheory.EGlue
 
 namespace GlobalTheory.CompanionTheory.EGlue.FactorLimProof
@@ -457,11 +450,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HullGeneration
 
-
-open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
-open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs
-open PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation
-
 namespace GlobalTheory.CompanionTheory.EGlue
 
 theorem typeB_of_mem_span {E : Type} [Field E] [NumberField E] [IsCMField E] {N : ℕ}
@@ -496,6 +484,8 @@ theorem hullGen : HullGen := by
 end GlobalTheory.CompanionTheory.EGlue
 
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MultisetEqOfProdAddEq
 
@@ -557,7 +547,6 @@ end GlobalTheory.CompanionTheory.EGlue
 end -- clump:auto
 
 section -- clump: shared namespace opens
-
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs
@@ -855,7 +844,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LimitTrees
 
-
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Rs PositivityTheory.Rg.BcB.SpectralAccumulation GlobalTheory.CompanionTheory.EGlue
 
@@ -1032,7 +1020,6 @@ end GlobalTheory.CompanionTheory.EGlue
 end -- clump:auto
 
 section -- clump: shared namespace opens
-
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 
@@ -1437,7 +1424,6 @@ end -- clump:auto
 
 section -- clump: shared namespace opens
 
-
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs
 open PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation
@@ -1618,7 +1604,6 @@ end -- clump: shared namespace opens
 
 open GlobalTheory.CompanionTheory.EGlue
 
-
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC
 
 namespace GlobalTheory.CompanionTheory.EGlue.Gl0
@@ -1633,7 +1618,6 @@ end GlobalTheory.CompanionTheory.EGlue.Gl0
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.E45FinalGluing
-
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs

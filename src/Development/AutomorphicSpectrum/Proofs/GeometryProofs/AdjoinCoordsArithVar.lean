@@ -74,9 +74,11 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LiftGenericPointOverIsoOpen, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectivePointCoordsExist, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectivePointImageReduced, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SegreProductAffineChart, Development.AutomorphicSpectrum.Proofs.GeometryProofs.StandardSmoothBasicOpen, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AdjoinCoordsArithVar
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LiftGenericPointOverIsoOpen
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite MvPolynomial
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LiftGenericPointOverIsoOpen
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace valR)
 open ReciprocityTheory.ChartRestriction.G.Geo.ResK
 open GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TuplePoint GlobalTheory.CompanionTheory.Ar.SncRes
@@ -129,8 +131,6 @@ end GlobalTheory.CompanionTheory.Ar.Coords
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectivePointCoordsExist
-
-open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite MvPolynomial
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace valR)
 open ReciprocityTheory.ChartRestriction.G.Geo.ResK
 open GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TuplePoint GlobalTheory.CompanionTheory.Ar.SncRes
@@ -181,9 +181,6 @@ end GlobalTheory.CompanionTheory.Ar.TupleCoords
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectivePointImageReduced
-
-
-open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite MvPolynomial
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace valR)
 open ReciprocityTheory.ChartRestriction.G.Geo.ResK
 open GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TuplePoint GlobalTheory.CompanionTheory.Ar.SncRes
@@ -222,9 +219,6 @@ end GlobalTheory.CompanionTheory.Ar.SncRes
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SegreProductAffineChart
-
-
-open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite MvPolynomial
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace valR)
 open ReciprocityTheory.ChartRestriction.G.Geo.ResK
 open GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TuplePoint GlobalTheory.CompanionTheory.Ar.SncRes
@@ -372,8 +366,6 @@ end GlobalTheory.CompanionTheory.Ar.SncRes.ProdChart
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.StandardSmoothBasicOpen
-
-open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite MvPolynomial
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace valR)
 open ReciprocityTheory.ChartRestriction.G.Geo.ResK
 open GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TuplePoint GlobalTheory.CompanionTheory.Ar.SncRes
@@ -441,9 +433,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AdjoinCoordsArithVar
-
-
-open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite MvPolynomial
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace valR)
 open ReciprocityTheory.ChartRestriction.G.Geo.ResK
 open GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TuplePoint

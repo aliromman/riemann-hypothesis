@@ -147,7 +147,6 @@ open GlobalTheory.CompanionTheory.MirPair
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicTwistedKernelNonvanishing
 
-
 namespace GlobalTheory.CompanionTheory.MirPair.AvgBox
 
 theorem setIntegral_eq_sum_reps {E : Type} [AddCommGroup E] [MeasurableSpace E] [MeasurableAdd E]
@@ -300,14 +299,7 @@ end -- clump:auto
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicPairingConductorExtension
-
-
-open Matrix MeasureTheory GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.BZSeg GlobalTheory.BZMir GlobalTheory.SplitWeil GlobalTheory.CompanionTheory.MirFourier GlobalTheory.CompanionTheory.BZOnto.PerpSmall ValuativeRel Zc
-open scoped Topology
-open GlobalTheory.CompanionTheory.MirPair
 
 namespace GlobalTheory.CompanionTheory.MirPair.Nondeg
 
@@ -417,14 +409,7 @@ end GlobalTheory.CompanionTheory.MirPair
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open Matrix MeasureTheory GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.BZSeg GlobalTheory.BZMir GlobalTheory.SplitWeil GlobalTheory.CompanionTheory.MirFourier GlobalTheory.CompanionTheory.BZOnto.PerpSmall ValuativeRel Zc
-open scoped Topology
-open GlobalTheory.CompanionTheory.MirPair
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicPairingConductorShift
-
 
 namespace GlobalTheory.CompanionTheory.MirPair.ConjEv
 
@@ -558,15 +543,6 @@ end -- clump:auto
 
 
 end -- clump:auto
-
-end -- clump: shared namespace opens
-
-section -- clump: shared namespace opens
-
-
-open Matrix MeasureTheory GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.BZSeg GlobalTheory.BZMir GlobalTheory.SplitWeil GlobalTheory.CompanionTheory.MirFourier GlobalTheory.CompanionTheory.BZOnto.PerpSmall ValuativeRel Zc
-open scoped Topology
-open GlobalTheory.CompanionTheory.MirPair
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicPairingDepthInduction
 

@@ -144,7 +144,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreVolumeCompactLowerBound
 
-
 namespace GlobalTheory.CompanionTheory.WeilSiegel.FibreMass
 
 theorem fibre_mass_le_of_pushforward : ∀ (V K : Type) [TopologicalSpace V] [MeasurableSpace V] [BorelSpace V] [T2Space V] [TopologicalSpace K] [MeasurableSpace K] [BorelSpace K] [T2Space K] (μ : Measure V) (lam : Measure K) (Q : V → K) (Z : Set V) (m : K → Measure V), Continuous Q → Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.IsFibreFamily μ Q id Z lam Set.univ m → ∀ [lam.IsOpenPosMeasure] [IsLocallyFiniteMeasure lam] (P : Set V), IsCompact P → IsOpen P → P ⊆ Z → ∀ c : ℝ≥0, (∀ S : Set K, MeasurableSet S → μ (P ∩ Q ⁻¹' S) ≤ (c : ℝ≥0∞) * lam S) → ∀ s, m s P ≤ (c : ℝ≥0∞) := by
@@ -245,7 +244,6 @@ end GlobalTheory.CompanionTheory.WeilSiegel.FibreMass
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreVolumeCoverCountable
-
 
 namespace GlobalTheory.CompanionTheory.WeilSiegel.FibreDensity
 
@@ -430,14 +428,7 @@ theorem density_of_summable_cover : ∀ (V K ι : Type) [Countable ι] [Topologi
 end GlobalTheory.CompanionTheory.WeilSiegel.FibreDensity
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalCompactCoverByUnitScalings
-
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology
-open scoped TensorProduct ENNReal NNReal Matrix
-open GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WeilSiegel.Free
 
 namespace GlobalTheory.CompanionTheory.WeilSiegel.SphereCover
 
@@ -608,11 +599,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalDependentSetNull
 
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology
-open scoped TensorProduct ENNReal NNReal Matrix
-open GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WeilSiegel.Free
-
-
 namespace GlobalTheory.CompanionTheory.WeilSiegel.Free.NonFree
 
 theorem linearIndependent_of_isUnit_qR {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E]
@@ -667,8 +653,9 @@ theorem null_nonfree : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
 end GlobalTheory.CompanionTheory.WeilSiegel.Free.NonFree
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TraceGramUnitScaling
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TraceGramUnitScaling
 
 namespace GlobalTheory.CompanionTheory.AvgFree.Dilate
 
@@ -702,11 +689,13 @@ theorem half_trace_dilate : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
 end GlobalTheory.CompanionTheory.AvgFree.Dilate
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalRankOneVolumeBound
+section -- clump: shared namespace opens
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology
 open scoped TensorProduct ENNReal NNReal Matrix
 open GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WeilSiegel.Free
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalRankOneVolumeBound
 
 namespace GlobalTheory.CompanionTheory.WeilSiegel.DilPush
 
@@ -765,11 +754,6 @@ end GlobalTheory.CompanionTheory.WeilSiegel.DilPush
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RankOneFreeFibreLocal
-
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology
-open scoped TensorProduct ENNReal NNReal Matrix
-open GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WeilSiegel.Free
 
 namespace GlobalTheory.CompanionTheory.WeilSiegel.Free.LengthFibre
 
@@ -832,8 +816,9 @@ theorem isFibreFamily_length : ∀ (F E : Type) [Field F] [NumberField F] [Field
 end GlobalTheory.CompanionTheory.WeilSiegel.Free
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SplitLocalCompactCoverByUnits
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SplitLocalCompactCoverByUnits
 
 namespace GlobalTheory.CompanionTheory.WeilSiegel.Free.CoverS
 
@@ -1142,7 +1127,6 @@ end GlobalTheory.CompanionTheory.WeilSiegel.Free.Dil
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalVolumeRankOneIsotropic
-
 
 namespace GlobalTheory.CompanionTheory.SW.AvgZero
 

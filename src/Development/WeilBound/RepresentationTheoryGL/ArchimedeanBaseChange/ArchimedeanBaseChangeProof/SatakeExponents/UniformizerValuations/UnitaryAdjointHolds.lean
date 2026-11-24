@@ -100,7 +100,6 @@ import Mathlib.RingTheory.WittVector.IsPoly
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralAdaptedTriangularBounded
 
-
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK GlobalTheory.Doubling
@@ -286,7 +285,6 @@ end GlobalTheory.AutomorphicL2Cocompact
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactUnitHolds
-
 
 open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC GlobalTheory.BCT GlobalTheory.AutomorphicL2Unitary
@@ -501,7 +499,6 @@ open GlobalTheory.CuspRep Formalism.BasicNotions
 open scoped Classical
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
-
 namespace GlobalTheory.CompanionTheory.InvDoubleCoset
 
 section Generic
@@ -599,11 +596,13 @@ theorem inv_mem_doubleCoset : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
 end GlobalTheory.CompanionTheory.InvDoubleCoset
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseDoubleCosetNonsplitStatement
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Matrix
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC GlobalTheory.BCT
 open scoped Classical
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseDoubleCosetNonsplitStatement
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.inverse_double_coset_nonsplit : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ (w : Pl E), ¬ IsSplitAt w → ∀ (n : ℕ) (g : UL n w), ∃ k₁ ∈ KL n w, ∃ k₂ ∈ KL n w, g⁻¹ = k₁ * g * k₂ := by
@@ -611,11 +610,6 @@ theorem _root_.GlobalTheory.T.inverse_double_coset_nonsplit : ∀ (E : Type) [Fi
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FixedSpaceRankOne.SphOne
-
-
-open NumberField IsDedekindDomain Matrix
-open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC GlobalTheory.BCT
-open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
@@ -661,8 +655,9 @@ end PositivityTheory.Rg.BcB.F.EigA
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FixedSpaceRankOne.TraceMulOfFinrankOne
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FixedSpaceRankOne.TraceMulOfFinrankOne
 
 open scoped Pointwise
 
@@ -769,7 +764,6 @@ end PositivityTheory.Rg.BcB.F.EigA
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FixedSpaceRankOne.SphStar
-
 
 open NumberField IsDedekindDomain Matrix
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC GlobalTheory.BCT
@@ -897,7 +891,6 @@ end PositivityTheory.Rg.BcB.F.Fok
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.SphericalHeckeUnitary.PuSphHecke
-
 
 open NumberField IsDedekindDomain Matrix Filter
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC GlobalTheory.BCT

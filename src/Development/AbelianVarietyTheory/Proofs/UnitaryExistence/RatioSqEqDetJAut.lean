@@ -57,11 +57,12 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ThetaSqLawOfZero, Development.AbelianVarietyTheory.Proofs.UnitaryExistence.RatioSqEqDetJAut
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ThetaSqLawOfZero
-
+-- clump: shared namespace opens
 
 open Complex Matrix NumberField
 open ReciprocityTheory.PTheta ReciprocityTheory.ChartRestriction.G.Key ReciprocityTheory.ChartRestriction.G.Key.Chi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ThetaSqLawOfZero
 
 namespace GlobalTheory.ThetaCharMult
 
@@ -237,10 +238,6 @@ end GlobalTheory.ThetaCharMult
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.RatioSqEqDetJAut
-
-open Complex Matrix NumberField
-open ReciprocityTheory.PTheta ReciprocityTheory.ChartRestriction.G.Key ReciprocityTheory.ChartRestriction.G.Key.Chi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
 
 namespace GlobalTheory.ThetaRatio
 

@@ -124,7 +124,7 @@ theorem neg_one_zpow_form_apply_semicharacter :
 end GlobalTheory
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -250,7 +250,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsAppellHumbertFrameOfPulledBiextension
-
 
 namespace GlobalTheory.PulledBiextFrame
 
@@ -509,14 +508,7 @@ theorem thetaObject_of_lattice :
 end GlobalTheory
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.RelAmpleOfHermFormPos
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj TensorProduct
 
 namespace GlobalTheory.PositiveAmple
 
@@ -788,14 +780,8 @@ theorem relAmple_of_hermForm_pos : Out.Laws → Out.Laws2 → ThetaUnifAV → �
 end GlobalTheory
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj TensorProduct
-open GlobalTheory.ZM
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ShapeOfUniformisedThetaObject
+open GlobalTheory.ZM
 
 namespace GlobalTheory.ZM
 
@@ -872,6 +858,7 @@ end GlobalTheory.ZM
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.GoodThetaClassOfLatticeFamilies
+open GlobalTheory.ZM
 
 namespace GlobalTheory
 

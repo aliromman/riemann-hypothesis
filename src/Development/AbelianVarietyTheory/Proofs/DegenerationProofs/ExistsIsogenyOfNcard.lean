@@ -82,7 +82,6 @@ import Mathlib.Tactic.Basify
 
 set_option autoImplicit false
 
-
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -281,12 +280,14 @@ theorem exists_descent : ∀ (k : Type) [Field k] [IsAlgClosed k] (A B : Over (S
 end GlobalTheory.CyclicDescent
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.FiniteMulKTriv
+-- clump: shared namespace opens
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.SS
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.FiniteMulKTriv
 
 namespace GlobalTheory.KTrivPoints
 
@@ -316,12 +317,6 @@ end GlobalTheory.KTrivPoints
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.MemKLOfHom
-
-
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open scoped CategoryTheory.Obj
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory.SS
 open ReciprocityTheory.ChartRestriction.G.DVR
 
 namespace GlobalTheory
@@ -357,13 +352,6 @@ theorem memKL_of_hom : ∀ (S : Scheme.{0}) (A B : Over S) [GrpObj A] [GrpObj B]
 
 end GlobalTheory
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open scoped CategoryTheory.Obj
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory.SS
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.RelAmpleOfFiniteEtaleIsogeny
 

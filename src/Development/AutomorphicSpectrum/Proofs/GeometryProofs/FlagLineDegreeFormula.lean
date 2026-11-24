@@ -97,14 +97,13 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GrGenOfIsFlagVBOn
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CoordDegreeBoundGeneric, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GradedDegreeFormula, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GramDetNeZeroOfIndep, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LogCardQuotientBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagLineDegreeFormula
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField TensorProduct Filter Topology Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CoordDegreeBoundGeneric
 open GlobalTheory.CompanionTheory.Ar.RootHt GroundTheory.Heights₂.Heights
-
 
 namespace GlobalTheory.CompanionTheory.Ar.RootHt.FinPhi
 
@@ -418,7 +417,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GradedDegreeFormula
 
-
 namespace GlobalTheory.CompanionTheory.Ar.GrLine
 
 open GroundTheory.Heights₂.Heights
@@ -629,7 +627,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LogCardQuotientBound
 open GlobalTheory.CompanionTheory.Ar.RootHt GroundTheory.Heights₂.Heights
-
 
 namespace GlobalTheory.CompanionTheory.Ar.RootHt.IndexLog
 
@@ -905,13 +902,7 @@ theorem GlobalTheory.CompanionTheory.Ar.RootHt.log_index_le :
   rw [finsum_neg_distrib, finsum_log_finitePlace_natCast hm, neg_neg]
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagLineDegreeFormula
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField TensorProduct Filter Topology Matrix
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
 
 namespace GlobalTheory.CompanionTheory.Ar.RootHt
 open GroundTheory.Heights₂.Heights

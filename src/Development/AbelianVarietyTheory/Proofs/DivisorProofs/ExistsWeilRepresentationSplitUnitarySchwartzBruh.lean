@@ -90,7 +90,7 @@ import Mathlib.RingTheory.PiTensorProduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilFormulaFourierQuadraticCharacter, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FourierHermitianMultiplierBraidRelation, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalNormResidueSignMul, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGLDiagonalCongruentHermitian, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralClosedBallAddCharEqZero, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomogeneousMeasureEqSmulAddHaarLocalField, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussIntegralNormFormNonNormCancel, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussIntegralQuadraticCharEventuallyConst, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussIntegralNormFormScaledEqSignAbsInv, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasGaussIntegralCompactOpenPi, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussIntegralDiagonalHermitianFormMatrices, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianMatrixColumnPairingDiagonalNorm, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasGaussIntegralHermitianQuadraticCharacter, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsWeilRepresentationBigCellRelationFourier, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsWeilRepresentationSplitUnitarySchwartzBruh
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open MeasureTheory Matrix GlobalTheory.KSp GlobalTheory.SplitUnitary
 
@@ -725,12 +725,7 @@ theorem gauss_cancel : ∀ (F : Type) [Field F] [CharZero F] [ValuativeRel F] [T
 end GlobalTheory.KSp.Cancel
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussIntegralQuadraticCharEventuallyConst
-
-
-open MeasureTheory Matrix GlobalTheory.KSp GlobalTheory.SplitUnitary
 open GlobalTheory.WeilM (UG IsQuad IsHerm ResEtaPow)
 open GlobalTheory.SplitWeil (SB nabs)
 open scoped Topology Classical
@@ -840,10 +835,6 @@ theorem gauss_integral_eventually_const : ∀ (X : Type) [AddCommGroup X] [Topol
 
 end GlobalTheory.KSp
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open MeasureTheory Matrix GlobalTheory.KSp GlobalTheory.SplitUnitary
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussIntegralNormFormScaledEqSignAbsInv
 open GlobalTheory.WeilM (UG IsQuad IsHerm ResEtaPow)

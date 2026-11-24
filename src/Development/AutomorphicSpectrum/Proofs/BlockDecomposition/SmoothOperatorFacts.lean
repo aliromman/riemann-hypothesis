@@ -98,14 +98,7 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 alias _root_.GlobalTheory.T.functional_calculus_on_sobolev := _root_.GlobalTheory.CompanionTheory.FcSmooth.phi_keeps_sections
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LaplacianCasimirRelation
-
-
-open MeasureTheory Matrix Finset Filter Topology
-open scoped ContDiff ComplexConjugate InnerProductSpace ZeroAtInfty ENNReal
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
 open PositivityTheory.RgTw (Mat G)
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -200,10 +193,6 @@ end GlobalTheory.CompanionTheory.FcSmooth
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LaplacianCasimirRelationStatement
-
-open MeasureTheory Matrix Finset Filter Topology
-open scoped ContDiff ComplexConjugate InnerProductSpace ZeroAtInfty ENNReal
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
 open PositivityTheory.RgTw (Mat G)
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
@@ -213,11 +202,6 @@ theorem _root_.GlobalTheory.T.laplacian_casimir_relation : ∀ (n : ℕ) (E : KM
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LaplacianPowerCasimirBound
-
-
-open MeasureTheory Matrix Finset Filter Topology
-open scoped ContDiff ComplexConjugate InnerProductSpace ZeroAtInfty ENNReal
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
 open PositivityTheory.RgTw (Mat G)
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -377,10 +361,6 @@ end GlobalTheory.CompanionTheory.LapSec
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LaplacianPowerCasimirBoundStatement
-
-open MeasureTheory Matrix Finset Filter Topology
-open scoped ContDiff ComplexConjugate InnerProductSpace ZeroAtInfty ENNReal
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
 open PositivityTheory.RgTw (Mat G)
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
@@ -393,11 +373,6 @@ theorem _root_.GlobalTheory.T.laplacian_power_casimir_bound : ∀ (n : ℕ) [Mea
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RightWordLaplacianPowerBound
-
-
-open MeasureTheory Matrix Finset Filter Topology
-open scoped ContDiff ComplexConjugate InnerProductSpace ZeroAtInfty ENNReal
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
 open PositivityTheory.RgTw (Mat G)
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -601,12 +576,6 @@ theorem word_bound : ∀ (n : ℕ) [MeasurableSpace (G n)] [BorelSpace (G n)] (�
 end GlobalTheory.CompanionTheory.FcSmooth.WordBd
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open MeasureTheory Matrix Finset Filter Topology
-open scoped ContDiff ComplexConjugate InnerProductSpace ZeroAtInfty ENNReal
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RightWordLaplacianPowerBoundStatement
 open PositivityTheory.RgTw (Mat G)
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -714,7 +683,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothOperatorFacts
-
 
 open MeasureTheory Matrix Finset Filter Topology
 open scoped ContDiff ComplexConjugate InnerProductSpace ZeroAtInfty ENNReal

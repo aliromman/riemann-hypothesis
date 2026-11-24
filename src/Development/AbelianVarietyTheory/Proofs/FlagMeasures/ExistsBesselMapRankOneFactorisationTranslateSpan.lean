@@ -341,7 +341,7 @@ theorem extend_ae_linear_of_local_sq : ∀ {X : Type} [MeasurableSpace X] (μ : 
 end GlobalTheory
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf
 open scoped InnerProductSpace
@@ -373,7 +373,6 @@ end GlobalTheory.SgInf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LintegralCompactLeQuotientMeasureBessel
-
 
 namespace GlobalTheory.SgInf.LocEmb
 
@@ -617,7 +616,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselMatrixCoeffExtendsBoundedEquivariant
 
-
 namespace GlobalTheory.SgInf.BesselExt
 
 variable {k r : ℕ} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
@@ -796,13 +794,7 @@ theorem GlobalTheory.SgInf.bessel_ext_bounded : ∀ (k r : ℕ) {H : Type} [Norm
       exact afun_mul_left hStd hSide hv ξ hu hs hx hSG
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselModelEqOnOfContinuousOnAeEq
-
-
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf
-open scoped InnerProductSpace
 
 namespace GlobalTheory.SgInf.AeqCont
 
@@ -868,11 +860,6 @@ theorem eqOn_of_ae (k r : ℕ) {B : Type} [NormedAddCommGroup B] (μG : Measure 
 
 end GlobalTheory.SgInf.AeqCont
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf
-open scoped InnerProductSpace
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsContinuousBesselMapSmoothVectors
 

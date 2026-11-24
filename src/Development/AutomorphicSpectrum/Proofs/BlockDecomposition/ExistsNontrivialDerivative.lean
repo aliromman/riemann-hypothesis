@@ -69,9 +69,11 @@ import Mathlib.Topology.Algebra.Group.Units
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsInvertibleMatrixLastLineGiven, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicRestrictionUnipotentSmooth, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothVectorFixedBySmallBox, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedInvariantSmallBoxes, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedKernelOfSmallBoxCharacter, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformTwistedInvarianceOnBall, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothMirabolicKernelEqZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedActionSmooth, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsNontrivialDerivative
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsInvertibleMatrixLastLineGiven
+section -- clump: shared namespace opens
 
 open GlobalTheory.PRep GlobalTheory.BZMir GroundTheory.LocalField Matrix GlobalTheory.CompanionTheory.MirFourier
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsInvertibleMatrixLastLineGiven
 
 namespace GlobalTheory.CompanionTheory.MirFourier
 
@@ -101,9 +103,6 @@ end GlobalTheory.CompanionTheory.MirFourier
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicRestrictionUnipotentSmooth
-
-
-open GlobalTheory.PRep GlobalTheory.BZMir GroundTheory.LocalField Matrix GlobalTheory.CompanionTheory.MirFourier
 
 namespace GlobalTheory.CompanionTheory.MirFourier
 
@@ -138,8 +137,6 @@ end GlobalTheory.CompanionTheory.MirFourier
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothVectorFixedBySmallBox
-
-open GlobalTheory.PRep GlobalTheory.BZMir GroundTheory.LocalField Matrix GlobalTheory.CompanionTheory.MirFourier
 open scoped Topology
 
 namespace GlobalTheory.CompanionTheory.MirFourier
@@ -173,8 +170,6 @@ end GlobalTheory.CompanionTheory.MirFourier
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedInvariantSmallBoxes
-
-open GlobalTheory.PRep GlobalTheory.BZMir GroundTheory.LocalField Matrix GlobalTheory.CompanionTheory.MirFourier
 
 namespace GlobalTheory.CompanionTheory.MirFourier
 
@@ -216,9 +211,6 @@ end GlobalTheory.CompanionTheory.MirFourier
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedKernelOfSmallBoxCharacter
-
-
-open GlobalTheory.PRep GlobalTheory.BZMir GroundTheory.LocalField Matrix GlobalTheory.CompanionTheory.MirFourier
 
 namespace GlobalTheory.CompanionTheory.MirFourier.FiniteInversion
 
@@ -453,8 +445,9 @@ end GlobalTheory.CompanionTheory.MirFourier.FiniteInversion
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformTwistedInvarianceOnBall
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformTwistedInvarianceOnBall
 
 open GlobalTheory.PRep GlobalTheory.BZMir GroundTheory.LocalField Matrix
 
@@ -519,7 +512,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothMirabolicKernelEqZero
 
-
 open GlobalTheory.PRep GlobalTheory.BZMir GroundTheory.LocalField Matrix
 
 namespace GlobalTheory.CompanionTheory.MirFourier
@@ -552,7 +544,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedActionSmooth
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.BZMir
-
 
 namespace GlobalTheory.CompanionTheory.BZMir
 
@@ -591,7 +582,6 @@ end GlobalTheory.CompanionTheory.BZMir
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsNontrivialDerivative
-
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.BZMir
 

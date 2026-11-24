@@ -111,7 +111,6 @@ end -- clump:auto
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount GlobalTheory.LKCx GlobalTheory.AwayOrb GlobalTheory.FinClsLoc
 open scoped TensorProduct Classical
 
-
 namespace GlobalTheory.CxRegLoc
 
 theorem local_class_scalar_norm_sep : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (L : G.Level) (f : G.GAf → ℂ),
@@ -194,7 +193,7 @@ theorem local_class_scalar_norm_sep : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup 
 end GlobalTheory.CxRegLoc
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount GlobalTheory.LKCx
 open scoped TensorProduct Classical
@@ -256,7 +255,6 @@ end GlobalTheory.Div
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PadicEmbeddingValuationSubring
-
 
 namespace GlobalTheory.LKCx.ClsReg
 
@@ -480,7 +478,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompactFiniteAdelesAwayPBoundedDenominators
 
-
 namespace GlobalTheory.DenAwayCpt
 
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum GlobalTheory.DenAway
@@ -510,7 +507,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousCharpolyCoeffMulLeftFiniteAdelesAwayP
-
 
 namespace GlobalTheory.CharpolyCont
 
@@ -803,7 +799,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BtOrderEmbeddingOpenImmersion
 
-
 namespace GlobalTheory.LKCx.PadicPolys
 
 theorem minpoly_coeff_bdd : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (K' : Subgroup (Gr G 1)) (f' : Gr G 1 → ℂ),
@@ -857,7 +852,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SimilitudeFactorFormGroupBoundedOfTestSupport
-
 
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
 namespace GlobalTheory.SimBound
@@ -1092,7 +1086,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HenselianQuasiFiniteFinitePart
 
-
 namespace GlobalTheory.LKCx.FinPolysIrr
 
 theorem eig_norm_sq_of_a_one (p : ℕ) [Fact p.Prime] (G : HTGroup p) (ha : G.a = 1) (v : InfinitePlace G.F)
@@ -1190,13 +1183,7 @@ theorem _root_.GlobalTheory.T.orbital_term_real_trivialisation : ∀ (p : ℕ) [
   first | (exact @GlobalTheory.LKCx.finite_minpoly_fix_a_one)
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ClassSummandEqTermOfAOne
-
-
-open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount GlobalTheory.LKCx
-open scoped TensorProduct Classical
 
 namespace GlobalTheory.LKCx.CxReg
 

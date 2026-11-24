@@ -64,14 +64,13 @@ import Mathlib.Topology.Separation.CompletelyRegular
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeHankelTransformABDifferentiableOnSigma, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeHankelTransformABHasDerivAtY, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeYDerivativeTermHasFDerivUpperHalfPlane, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IteratedDerivHeckePhiTransformHasDerivAtHolo, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeFourierTermWirtingerWordDifferentiableOn, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeWeightTwoIsGoodOfTsum, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeEisensteinNonconstantFourierSumSmoothHolomorphic
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open NumberField Complex
 open scoped nonZeroDivisors ContDiff
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization GlobalTheory.HeckeTwo
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeHankelTransformABDifferentiableOnSigma
-
 
 namespace GlobalTheory.HeckeTwoAB
 
@@ -264,7 +263,6 @@ end GlobalTheory.HeckeTwo
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeHankelTransformABHasDerivAtY
-
 
 namespace GlobalTheory.HeckeTwoDY
 
@@ -491,7 +489,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeYDerivativeTermHasFDerivUpperHalfPlane
 open Classical
 
-
 namespace GlobalTheory.HeckeTwo
 
 theorem fderiv_prod_coord {ι : Type} [Fintype ι] [DecidableEq ι] (g : ι → ℂ → ℂ) (L : ι → ℂ →L[ℝ] ℂ) (z : ι → ℂ)
@@ -680,7 +677,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeWeightTwoIsGoodOfTsum
 
-
 namespace GlobalTheory.HeckeTwo.SumGood
 
 section General
@@ -860,14 +856,7 @@ theorem GlobalTheory.HeckeTwo.isGood_of_tsum : ∀ (F : Type) [Field F] [NumberF
     (Metric.mem_ball_self (by linarith)))).differentiableWithinAt
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeEisensteinNonconstantFourierSumSmoothHolomorphic
-
-
-open NumberField Complex
-open scoped nonZeroDivisors ContDiff
-open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization GlobalTheory.HeckeTwo
 
 namespace GlobalTheory.HeckeTwo
 

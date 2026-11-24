@@ -87,7 +87,6 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.GlobOf
 
-
 open MeasureTheory NumberField IsDedekindDomain ValuativeRel Matrix GroundTheory.Global GroundTheory.Global.SemiLocal
 open PositivityTheory.Rg.Tf.Geo (incFin galFin)
 open UpperTheory.ConvolutionTheory UpperTheory.ConvolutionTheory.C Formalism.BasicNotions GlobalTheory.PRep GlobalTheory.CuspRep GlobalTheory.SmGL GlobalTheory.DZA UpperTheory.V.Published UpperTheory.CBC
@@ -333,7 +332,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.CptCpt
 
-
 open ValuativeRel Matrix
 
 namespace UpperTheory.Gal.InertialTypesAlt.L
@@ -500,7 +498,6 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.cptCpt :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.AvgInt
-
 
 open MeasureTheory
 open scoped Classical ENNReal
@@ -729,11 +726,12 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.oneCoset :
   rfl
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.SumCoset
-
+section -- clump: shared namespace opens
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets
 open scoped Classical ENNReal
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.SumCoset
 
 open PositivityTheory.Rg.Tf.Loc UpperTheory.V.Z.Tf.Orb
 
@@ -843,10 +841,6 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.sumCoset :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.OrbSum
-
-
-open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets
-open scoped Classical ENNReal
 
 namespace UpperTheory.Gal.InertialTypesAlt.L
 
@@ -961,9 +955,6 @@ end UpperTheory.Gal.InertialTypesAlt.L
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.MatchOfSum
-
-open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets
-open scoped Classical ENNReal
 
 namespace UpperTheory.Gal.InertialTypesAlt.L
 
@@ -1101,8 +1092,9 @@ theorem matchOfSum : MatchOfSum := by
 end UpperTheory.Gal.InertialTypesAlt.L
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.TraceRangeEq
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.TraceRangeEq
 
 open MeasureTheory GlobalTheory.PRep GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets
 open scoped Classical
@@ -1223,7 +1215,6 @@ end UpperTheory.Gal.InertialTypesAlt.L
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.TwScale
-
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets
 open scoped Classical ENNReal

@@ -58,11 +58,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.G2AddWeierstrassPRowSum, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeierstrassDivisionValueQExpansion
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.G2AddWeierstrassPRowSum
-
+-- clump: shared namespace opens
 
 open scoped UpperHalfPlane MatrixGroups Matrix ModularForm ComplexConjugate
 open GlobalTheory.QFam GlobalTheory.WpFam
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.G2AddWeierstrassPRowSum
 
 namespace GlobalTheory.WpFam
 
@@ -133,9 +134,6 @@ end GlobalTheory.WpFam
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeierstrassDivisionValueQExpansion
-
-open scoped UpperHalfPlane MatrixGroups Matrix ModularForm ComplexConjugate
-open GlobalTheory.QFam GlobalTheory.WpFam
 
 namespace GlobalTheory.WpFam.ExpansionB
 

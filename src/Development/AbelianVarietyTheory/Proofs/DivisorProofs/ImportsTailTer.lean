@@ -80,7 +80,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemClosureRationalPointsUnitaryGroup
 
-
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published
 open scoped TensorProduct
 
@@ -476,7 +475,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsQuaternionMatrixEqOfUnitaryDetOne
 
-
 namespace GlobalTheory.PlaneSU
 
 section Form
@@ -625,7 +623,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrthogonalAnisotropicPairPlaneMatricesFacts
 
-
 namespace GlobalTheory.PlaneSU
 
 open Matrix
@@ -726,7 +723,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFixingKernelEqOneAddLowRankOfUnitary
 
-
 open Matrix
 
 namespace GlobalTheory.PlaneSU
@@ -808,13 +804,7 @@ theorem _root_.GlobalTheory.T.unitary_fixing_kernel_eq_oneAddLowRank_of_unitary 
   first | exact @GlobalTheory.PlaneSU.eq_emb_of_fix
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecialUnitaryFixingPlaneComplementMemClosure
-
-
-open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published GlobalTheory.QSA GlobalTheory.PlaneSU
-open scoped TensorProduct Quaternion
 
 namespace GlobalTheory.PlaneSU
 
@@ -1009,9 +999,13 @@ end GlobalTheory.PlaneSU
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuasiReflectionPairTruncationMemClosure
+end -- clump: shared namespace opens
+
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuasiReflectionPairTruncationMemClosure
 open scoped TensorProduct
 
 namespace GlobalTheory.SUPair
@@ -1213,10 +1207,7 @@ end GlobalTheory.SUPair
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecialUnitaryEqProdQuasiReflectionPairs
-
-open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published
 open scoped TensorProduct Matrix
-
 
 namespace GlobalTheory.SUGenPairs
 
@@ -1361,9 +1352,6 @@ theorem GlobalTheory.SUGenPairs.eq_prod_pairs : ∀ (F E : Type) [Field F] [Numb
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TruncationSpecialUnitaryMemClosureStrongApprox
-
-
-open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published
 open scoped TensorProduct
 
 namespace GlobalTheory.SUAssemble
@@ -1438,8 +1426,6 @@ end GlobalTheory.SUAssemble
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ImportsTailTer
-
-open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published
 open scoped TensorProduct
 
 namespace GlobalTheory.StrongApproxSUProof

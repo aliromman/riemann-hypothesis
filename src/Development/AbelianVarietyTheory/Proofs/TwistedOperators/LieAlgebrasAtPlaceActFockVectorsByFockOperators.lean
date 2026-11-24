@@ -70,7 +70,6 @@ import Mathlib.Tactic.Polynomial.Basic
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.BoundedCommutantVacua
 
-
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
 open MeasureTheory NumberField
 open GlobalTheory.Size (l2O)
@@ -116,9 +115,11 @@ end GlobalTheory.IndefiniteRowSideFullHecke.BoundedCommutantVacua
 
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFockPolynomialOperatorHeisenbergDerivativeStatement
+-- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.S Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Datum
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFockPolynomialOperatorHeisenbergDerivativeStatement
 open Formalism.IndefR.Mult (DSModel dualPar parA parB)
 open Formalism.MainNotions.SchurIrreducible (AdmGK ARi ARiiiUp ARiiiDown ARiiiLine DiscreteSeriesBlattner admQ5)
 open GlobalTheory.IndefiniteRowSideFullHecke.ThetaSourceAction hiding Mat
@@ -136,9 +137,6 @@ theorem _root_.GlobalTheory.T.exists_fockPolynomial_operator_heisenberg_derivati
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilGeneratorQuadraticOneParameterAtPlace
-
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.S Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Datum
 open GlobalTheory.IndefiniteRowSideFullHecke.ThetaSourceAction hiding Mat
 open MeasureTheory Matrix
 open scoped TensorProduct InnerProductSpace ComplexConjugate
@@ -301,10 +299,6 @@ theorem quadGen_oneP : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFa
 end GlobalTheory.ArchRec.Gen
 
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.S Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Datum
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilGeneratorQuadraticOneParameterAtPlaceStatement
 open Formalism.IndefR.Mult (DSModel dualPar parA parB)

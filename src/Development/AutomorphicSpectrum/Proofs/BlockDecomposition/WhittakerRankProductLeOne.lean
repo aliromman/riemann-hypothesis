@@ -54,10 +54,12 @@ import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.GenericUnli
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TensorProductRankLeOne, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WhittakerRankProductLeOne
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TensorProductRankLeOne
+-- clump: shared namespace opens
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.RgGu
 open scoped TensorProduct
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TensorProductRankLeOne
 
 namespace GlobalTheory.CompanionTheory.TensorRank
 
@@ -81,10 +83,6 @@ end GlobalTheory.CompanionTheory.TensorRank
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WhittakerRankProductLeOne
-
-
-open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.RgGu
-open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.RgGu
 

@@ -85,7 +85,6 @@ import Mathlib.Tactic.TypeStar
 
 open PowerSeries
 
-
 namespace GlobalTheory.IndefiniteRowSideFullHecke.NodalSeriesPeriods
 
 abbrev Qbar : Type := ↥(algebraicClosure ℚ ℂ)
@@ -192,7 +191,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.NodalSeriesPeriods
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsFormalGroupAdd
-
 
 namespace GlobalTheory.MomOne.ChordLaw
 
@@ -791,7 +789,7 @@ end Model
 end GlobalTheory.MomOne.ChordLaw
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open PowerSeries GlobalTheory.MomOne
 open scoped ComplexConjugate BigOperators Topology
@@ -1721,13 +1719,7 @@ theorem height_one_of_split : ∀ (d q : ℕ) [Fact q.Prime] (M : Mdl q) (F : Fo
 end GlobalTheory.MomOne
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsMultiplicativeChartAtSplitPrime
-
-
-open PowerSeries GlobalTheory.MomOne
-open scoped ComplexConjugate BigOperators Topology
 
 namespace GlobalTheory.MomOne.SplitChart
 

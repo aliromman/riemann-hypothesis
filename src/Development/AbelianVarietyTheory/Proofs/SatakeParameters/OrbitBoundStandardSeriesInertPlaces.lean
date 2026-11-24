@@ -72,10 +72,11 @@ import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.BiextensionHypo
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KvalGeOrbitGainWithoutOperator, Development.AbelianVarietyTheory.Proofs.SatakeParameters.AddCoordExponentIntegralJetsUnramified, Development.AbelianVarietyTheory.Proofs.SatakeParameters.StandardOrbitSeriesValuationBoundZero, Development.AbelianVarietyTheory.Proofs.SatakeParameters.WordFreeNumberLeOrbitBound, Development.AbelianVarietyTheory.Proofs.SatakeParameters.OrbitBoundStandardSeriesInertPlaces
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KvalGeOrbitGainWithoutOperator
-
+-- clump: shared namespace opens
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd Classical
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KvalGeOrbitGainWithoutOperator
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 open Formalism.L2.Th1.D (F1 F2 OwOK TrDual addC thetaInZ sumE)
 open Formalism.InvariantFactorPaths.G7 (UnrOK IsLawOfLog cob alG capG lsG deLoss dSet lgN DivAB)
@@ -228,8 +229,6 @@ end GlobalTheory.KerGaussA
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.AddCoordExponentIntegralJetsUnramified
-
-open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd Classical
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 open Formalism.L2.Th1.D (F1 F2 OwOK TrDual addC thetaInZ sumE)
 open Formalism.InvariantFactorPaths.G7 (UnrOK IsLawOfLog cob)
@@ -678,9 +677,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.StandardOrbitSeriesValuationBoundZero
-
-
-open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd Classical
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 open Formalism.L2.Th1.D (F1 F2 OwOK TrDual addC thetaInZ sumE expF xOfZ)
 open Formalism.InvariantFactorPaths.G7 (UnrOK IsLawOfLog cob lgF at1)
@@ -1053,9 +1049,6 @@ end GlobalTheory.KerZero
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.WordFreeNumberLeOrbitBound
-
-
-open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd Classical
 open Formalism.InvariantFactorPaths.G7 (lgN)
 open Formalism.MainNotions.OrbitPlaces (Pl orbMap orbLoc Ent Shape OrbOK)
 open PI.OrbBoundFW
@@ -1299,8 +1292,6 @@ end GlobalTheory.KerStd.WordFree
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.OrbitBoundStandardSeriesInertPlaces
-
-open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd Classical
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 open Formalism.L2.Th1.D (F1 F2 OwOK TrDual addC thetaInZ sumE)
 open Formalism.InvariantFactorPaths.G7 (UnrOK IsLawOfLog cob)

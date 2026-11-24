@@ -92,7 +92,6 @@ import Mathlib.RingTheory.PiTensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AmpleHeightBounds
 
-
 namespace GlobalTheory.CompanionTheory.Ar.Ht.AmpleBd
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo NumberField GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Top GlobalTheory.CompanionTheory.Ar.Small GlobalTheory.CompanionTheory.Ar.Cmp GlobalTheory.CompanionTheory.Ar.Ht
@@ -904,11 +903,12 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RefLowerOfFibreInput
+-- clump: shared namespace opens
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo NumberField GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Top GlobalTheory.CompanionTheory.Ar.Small GlobalTheory.CompanionTheory.Ar.Cmp GlobalTheory.CompanionTheory.Ar.Ht
-open GroundTheory.Heights₂.Heights
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RefLowerOfFibreInput
+open GroundTheory.Heights₂.Heights
 
 namespace GlobalTheory.CompanionTheory.Ar.Ht.RefLow
 
@@ -1235,9 +1235,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerI5OfReference
 
-
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo NumberField GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Top GlobalTheory.CompanionTheory.Ar.Small GlobalTheory.CompanionTheory.Ar.Cmp GlobalTheory.CompanionTheory.Ar.Ht
-
 namespace GlobalTheory.CompanionTheory.Ar.Ht.RefTower
 
 section Points
@@ -1499,8 +1496,6 @@ end GlobalTheory.CompanionTheory.Ar.Ht.RefTower
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerI5OfFibreInput
-
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo NumberField GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Top GlobalTheory.CompanionTheory.Ar.Small GlobalTheory.CompanionTheory.Ar.Cmp GlobalTheory.CompanionTheory.Ar.Ht
 
 namespace GlobalTheory.CompanionTheory.Ar.Ht.TopLower
 

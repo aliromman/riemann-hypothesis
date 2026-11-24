@@ -127,11 +127,12 @@ alias main := _root_.GlobalTheory.IntegerScalarIntegral.exists_int_smul_mem
 end GlobalTheory.IntegerScalarIntegral
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.CardParitySignLengthOfEq
-
+-- clump: shared namespace opens
 
 open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.InertSign
 open scoped BigOperators
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.CardParitySignLengthOfEq
 
 namespace GlobalTheory.NearerNeighbour
 
@@ -226,9 +227,6 @@ end GlobalTheory.NearerNeighbour
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsLocalComponentUnitaryMatrix
-
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.InertSign
-open scoped BigOperators
 
 namespace GlobalTheory.LocalComponent
 
@@ -389,12 +387,6 @@ theorem exists_local_component : ∀ (D : D7) (n q : ℕ), q.Prime → ∀ s : M
 
 end GlobalTheory.LocalComponent
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.InertSign
-open scoped BigOperators
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsMatrixProjectionSelfDualLattices
 
@@ -830,12 +822,7 @@ theorem mu_eq_sign : ∀ (D : D7) (T : Tor D) (N N' : ℕ) (A₁ A₂ A₃ : Add
 end GlobalTheory.TriangleSign
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThetaTripleConstantEqOneDistributive
-
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.InertSign
-open scoped BigOperators
 
 namespace GlobalTheory.DistTriple
 
@@ -880,10 +867,6 @@ end GlobalTheory.DistTriple
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThetaTripleDataOfNeighbourTriple
-
-
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.InertSign
-open scoped BigOperators
 
 namespace GlobalTheory.TriangleColumns
 
@@ -1107,10 +1090,6 @@ end GlobalTheory.TriangleColumns
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThetaTripleDiagonalDataOfSelfDualNeighbourTriple
-
-
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.InertSign
-open scoped BigOperators
 
 namespace GlobalTheory.TriangleRows
 
@@ -1347,9 +1326,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.TrivialAtPrimeAdelicGLSubgroup
 
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.InertSign
-open scoped BigOperators
-
 namespace GlobalTheory.TrivSubgroup
 
 variable {D : D7} {q : ℕ}
@@ -1411,10 +1387,6 @@ end GlobalTheory.TrivSubgroup
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.UnitaryTransvectionMovesLatticeAtPrime
-
-
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.InertSign
-open scoped BigOperators
 
 namespace GlobalTheory.UnitaryTransvection
 
@@ -1537,9 +1509,6 @@ end GlobalTheory.UnitaryTransvection
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.WeilRepresentationVacuumSignInertPlaces
-
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.InertSign
-open scoped BigOperators
 
 namespace GlobalTheory.InertSign
 

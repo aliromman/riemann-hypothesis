@@ -95,7 +95,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CentralizerCompactReduction
 
-
 open NumberField IsDedekindDomain Matrix Polynomial
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 GlobalTheory.CompanionTheory.TorusCh
 open scoped Pointwise
@@ -169,10 +168,12 @@ end GlobalTheory.CompanionTheory.TorusCh
 
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CommuteOfCommuteCyclicMatrix
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 GlobalTheory.CompanionTheory.TorusCh
 open scoped Pointwise
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CommuteOfCommuteCyclicMatrix
 
 namespace GlobalTheory.CompanionTheory.TorusCh
 
@@ -257,10 +258,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CommutePolynomialOfMemCentralizer
 
-
-open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 GlobalTheory.CompanionTheory.TorusCh
-open scoped Pointwise
-
 namespace GlobalTheory.CompanionTheory.TorusCh.CommMem
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ}
@@ -312,10 +309,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousOnLambdaSubgroup
 
-open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 GlobalTheory.CompanionTheory.TorusCh
-open scoped Pointwise
-
-
 namespace GlobalTheory.CompanionTheory.TorusCh
 
 theorem continuous_chi {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ}
@@ -352,10 +345,6 @@ end GlobalTheory.CompanionTheory.TorusCh
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DegreeMulIdempotentRange
-
-
-open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 GlobalTheory.CompanionTheory.TorusCh
-open scoped Pointwise
 
 namespace GlobalTheory.CompanionTheory.TorusCh.DegLam
 
@@ -474,6 +463,8 @@ end GlobalTheory.CompanionTheory.TorusCh.DegLam
 
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsFactor
 
 theorem UpperTheory.Reformulated.B.ExistsFactor.exists_factor :
@@ -512,7 +503,6 @@ theorem UpperTheory.Reformulated.B.ExistsFactor.exists_factor :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsEpsilonCentralizerBound
-
 
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 GlobalTheory.CompanionTheory.TorusCh
 open scoped Pointwise
@@ -811,7 +801,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsInvolutionAdjoinNorm
 
-
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4
   GlobalTheory.CompanionTheory.TorusCh
 open scoped Pointwise
@@ -946,11 +935,12 @@ end GlobalTheory.CompanionTheory.TorusCh.SgRing
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsPolynomialProjectionInvariant
-
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 GlobalTheory.CompanionTheory.TorusCh
 open scoped Pointwise
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsPolynomialProjectionInvariant
 
 namespace GlobalTheory.CompanionTheory.TorusCh
 
@@ -1030,9 +1020,6 @@ end GlobalTheory.CompanionTheory.TorusCh
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsPrimitiveIdempotentsSeparating
-
-open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 GlobalTheory.CompanionTheory.TorusCh
-open scoped Pointwise
 
 namespace GlobalTheory.CompanionTheory.TorusCh
 
@@ -1144,9 +1131,6 @@ end GlobalTheory.CompanionTheory.TorusCh
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdempotentLatticeDecomposition
-
-open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 GlobalTheory.CompanionTheory.TorusCh
-open scoped Pointwise
 
 namespace GlobalTheory.CompanionTheory.TorusCh.Signs
 
@@ -1339,8 +1323,9 @@ theorem isotropicIdempotent_signs : ∀ (R : Type) [Ring R], (∀ x y : R, x * y
 end GlobalTheory.CompanionTheory.TorusCh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LambdaInvolutionNeg
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LambdaInvolutionNeg
 
 open NumberField IsDedekindDomain Matrix Polynomial
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 GlobalTheory.CompanionTheory.TorusCh
@@ -1416,7 +1401,6 @@ end GlobalTheory.CompanionTheory.TorusAdj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LogAbsEqLogIdeleModule
-
 
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 GlobalTheory.CompanionTheory.TorusCh
 open scoped Pointwise
@@ -1511,7 +1495,6 @@ end GlobalTheory.CompanionTheory.TorusCh
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AevalTranspose
-
 
 open NumberField IsDedekindDomain Matrix Polynomial
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4

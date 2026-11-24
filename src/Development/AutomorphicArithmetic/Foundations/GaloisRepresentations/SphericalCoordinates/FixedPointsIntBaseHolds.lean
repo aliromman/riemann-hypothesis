@@ -386,9 +386,9 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.PELU GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen
 open GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKGeo Polynomial
 open scoped Matrix TensorProduct Classical
-open UpperTheory.Gal.W2
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PCoordEx
+open UpperTheory.Gal.W2
 
 theorem UpperTheory.Gal.W2.coordEx_of :
     UpperTheory.Gal.W2.PlaceEx → UpperTheory.Gal.W2.AdOfWit → UpperTheory.Gal.W2.PlaceLoc → UpperTheory.Gal.W2.PlacePer → UpperTheory.Gal.W2.CoordEx := by
@@ -414,6 +414,7 @@ theorem UpperTheory.Gal.W2.coordEx_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PCoordMove
+open UpperTheory.Gal.W2
 
 private theorem rd_add' {p : ℕ} [Fact (Nat.Prime p)] {D : UPel.HT.Datum p} {G : HTGroup p}
     (L : Link D G) (x : (AfP p ⊗[ℚ] G.C)ˣ) (h : G.GAf) (a b : VQ D) :
@@ -475,6 +476,7 @@ theorem UpperTheory.Gal.W2.coordMove_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PCoordOcc
+open UpperTheory.Gal.W2
 
 theorem UpperTheory.Gal.W2.coordOcc_of :
     UpperTheory.Gal.W2.WitOfAd → UpperTheory.Gal.W2.PlacePer → UpperTheory.Gal.W2.CoordOcc := by
@@ -493,6 +495,7 @@ theorem UpperTheory.Gal.W2.coordOcc_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PEmbAll
+open UpperTheory.Gal.W2
 
 theorem UpperTheory.Gal.W2.embAll_of :
     UpperTheory.Gal.W2.EmbAll := by
@@ -513,6 +516,7 @@ theorem UpperTheory.Gal.W2.embAll_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PFixEq
+open UpperTheory.Gal.W2
 
 theorem UpperTheory.Gal.W2.fixEq_of :
     UpperTheory.Gal.W2.HeckeCoord → UpperTheory.Gal.W2.OneAt → UpperTheory.Gal.W2.LatIso → UpperTheory.Gal.W2.FixEq := by
@@ -578,6 +582,7 @@ theorem UpperTheory.Gal.W2.fixEq_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PFixGa
+open UpperTheory.Gal.W2
 
 private theorem isCoordA_of_dvd {p : ℕ} [Fact p.Prime] {D : GlobalTheory.UPel.HT.Datum p} {G : HTGroup p} (L : Link D G)
     {x : (AfP p ⊗[ℚ] G.C)ˣ} {N N' : ℕ} (hd : N ∣ N') {D' : PLat D.O D.inv} {t : D.La → D'.La}
@@ -634,15 +639,7 @@ theorem UpperTheory.Gal.W2.fixGa_of :
   · rw [hQQ Q hQj, hQQ Q hQj, hH]
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PGUnif
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.PELU GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen
-open GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKGeo Polynomial
-open scoped Matrix TensorProduct Classical
 
 namespace UpperTheory.Gal.W2
 
@@ -695,11 +692,6 @@ end UpperTheory.Gal.W2
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PHeckeCoord
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.PELU GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen
-open GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKGeo Polynomial
-open scoped Matrix TensorProduct Classical
 open UpperTheory.Gal.W2
 
 theorem UpperTheory.Gal.W2.heckeCoord_of :
@@ -719,6 +711,8 @@ theorem UpperTheory.Gal.W2.heckeCoord_of :
   have hp : p = 1 := by simpa using hd
   exact (Fact.out : p.Prime).one_lt.ne' hp
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PIntMult
 
@@ -1332,13 +1326,14 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PRdAct
-
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.PELU GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen
 open GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKGeo Polynomial
 open scoped Matrix TensorProduct Classical
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PRdAct
 
 namespace UpperTheory.Gal.W2
 
@@ -1373,15 +1368,8 @@ theorem rdAct_of : RdAct := by
 end UpperTheory.Gal.W2
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.PELU GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen
-open GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKGeo Polynomial
-open scoped Matrix TensorProduct Classical
-open UpperTheory.Gal.W2
-
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PRdDense
+open UpperTheory.Gal.W2
 
 private theorem powerSeries_expansion_image_dense_with_denominator {p : ℕ} [Fact p.Prime] (D : Datum p) (N : ℕ) (hN : 0 < N) (hNp : N.Coprime p)
     (z : AfP p ⊗[ℚ] VQ D) : ∃ (w : VQ D) (e : AfP p ⊗[ℚ] VQ D), e ∈ LaHat D ∧
@@ -1438,6 +1426,7 @@ theorem UpperTheory.Gal.W2.rdDense_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PRdForm
+open UpperTheory.Gal.W2
 
 private theorem mul_unit_eq_algebraMap_mul {S A : Type*} [Ring S] [CommRing A] [Algebra A S] (xs : S) (x : Sˣ) (b bi : S)
     (t : A) (hb : bi * b = 1) (hx : (x : S) * b * xs = algebraMap A S t) :
@@ -1477,6 +1466,7 @@ theorem UpperTheory.Gal.W2.rdForm_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PRegSep
+open UpperTheory.Gal.W2
 
 theorem UpperTheory.Gal.W2.regSep_of :
     UpperTheory.Gal.W2.RegSep := by
@@ -1486,6 +1476,7 @@ theorem UpperTheory.Gal.W2.regSep_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PRigid
+open UpperTheory.Gal.W2
 
 theorem UpperTheory.Gal.W2.rigid_of :
     UpperTheory.Gal.W2.Rigid := by

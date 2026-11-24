@@ -71,10 +71,11 @@ import Formalism.LocalToGlobal.ProjectiveLattices.SubConstMemOrig
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsSaturatedGoodVectorsSmallCorank, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.GoodCurvesPairingMemMaxIdeal, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.GaugedFormalGroupKernelSmallOfSecond
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsSaturatedGoodVectorsSmallCorank
-
+-- clump: shared namespace opens
 
 open scoped BigOperators
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsSaturatedGoodVectorsSmallCorank
 open Formalism.L2.FormalSeriesBounds
 
 namespace GlobalTheory.GoodCorank
@@ -245,9 +246,6 @@ end GlobalTheory.GoodCorank
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.GoodCurvesPairingMemMaxIdeal
-
-
-open scoped BigOperators
 open Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds GlobalTheory.RowLaw GlobalTheory.RowLaw.CvEnd GlobalTheory.RowVal MvPowerSeries
 
 namespace GlobalTheory.RowLaw.GoodPair
@@ -997,8 +995,6 @@ theorem GlobalTheory.RowLaw.good_pairing_mem_max : ∀ (C : Type) [Field C] (V :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.GaugedFormalGroupKernelSmallOfSecond
-
-open scoped BigOperators
 open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.RowKernel

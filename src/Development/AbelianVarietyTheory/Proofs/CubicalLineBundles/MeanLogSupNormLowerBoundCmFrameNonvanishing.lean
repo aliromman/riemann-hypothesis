@@ -346,11 +346,13 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.CmPointLowerBoundOfCoefficientBound
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain MeasureTheory IsLocalRing Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.LamCM
 open scoped nonZeroDivisors ComplexOrder
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.CmPointLowerBoundOfCoefficientBound
 
 namespace GlobalTheory
 
@@ -427,11 +429,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.ThetaLineDualDegreeOfKeyFormulaPowerForm
-
-
-open NumberField IsDedekindDomain MeasureTheory IsLocalRing Matrix
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.LamCM
-open scoped nonZeroDivisors ComplexOrder
 
 namespace GlobalTheory
 
@@ -542,12 +539,6 @@ theorem thetaLine_dual_deg_of_keyFormulaPow : GlobalTheory.KeyFormulaPow → ∀
 
 end GlobalTheory
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open NumberField IsDedekindDomain MeasureTheory IsLocalRing Matrix
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.LamCM
-open scoped nonZeroDivisors ComplexOrder
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.ThetaPolynomialLowerBoundOfThetaLineDegree
 

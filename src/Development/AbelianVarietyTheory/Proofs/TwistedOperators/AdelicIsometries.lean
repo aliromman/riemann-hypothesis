@@ -83,7 +83,6 @@ import Mathlib.Data.Nat.Choose.Multinomial
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.AdelicIsometryTransportUniqueModStabilizer
 
-
 open Formalism.BasicNotions Formalism.BasicNotions.TH NumberField IsDedekindDomain Matrix
 open Formalism.L2.DIV (Pl)
 open Formalism.IndefR.Lev (EAf)
@@ -320,9 +319,11 @@ theorem _root_.GlobalTheory.T.conjStable_inverseDifferent_and_normIdeal : ∀ D 
   first | exact @GlobalTheory.Twist.isCStable_inv_different_and_norm_ideal
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.CorrectionOfTransportStatement
+section -- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH NumberField IsDedekindDomain Matrix
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.CorrectionOfTransportStatement
 open Formalism.L2.DIV (Pl)
 open Formalism.IndefR.Lev (EAf)
 open Formalism.IndefR.Datum (IsSelfDualC)
@@ -334,8 +335,6 @@ theorem _root_.GlobalTheory.T.correctionSt_of_transportSt : ∀ D : D7, Transpor
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GluedHermitianLatticeUniqueStatement
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH NumberField IsDedekindDomain Matrix
 open Formalism.L2.DIV (Pl)
 open Formalism.IndefR.Lev (EAf)
 open Formalism.IndefR.Datum (IsSelfDualC)
@@ -345,9 +344,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GluedLatticePrescribedLocalComponents
-
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH NumberField IsDedekindDomain Matrix
 open Formalism.L2.DIV (Pl)
 open Formalism.IndefR.Lev (EAf)
 open Formalism.IndefR.Datum (IsSelfDualC)
@@ -502,8 +498,6 @@ end GlobalTheory.GluedCmp
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GluedLatticePrescribedLocalComponentsStatement
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH NumberField IsDedekindDomain Matrix
 open Formalism.L2.DIV (Pl)
 open Formalism.IndefR.Lev (EAf)
 open Formalism.IndefR.Datum (IsSelfDualC)
@@ -515,9 +509,6 @@ theorem _root_.GlobalTheory.T.gluedLattice_prescribed_localComponents : ∀ (D :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GluedLatticeSelfDualPrimitiveMeet
-
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH NumberField IsDedekindDomain Matrix
 open Formalism.L2.DIV (Pl)
 open Formalism.IndefR.Lev (EAf)
 open Formalism.IndefR.Datum (IsSelfDualC)
@@ -676,8 +667,6 @@ end GlobalTheory.GlueVecLattice
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GluedLatticeSelfDualPrimitiveMeetStatement
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH NumberField IsDedekindDomain Matrix
 open Formalism.L2.DIV (Pl)
 open Formalism.IndefR.Lev (EAf)
 open Formalism.IndefR.Datum (IsSelfDualC)
@@ -691,9 +680,10 @@ theorem _root_.GlobalTheory.T.gluedLattice_selfDual_primitive_meet : ∀ (D : D7
     exact GlobalTheory.GlueVecLattice.glueLat_selfDual_prim_cap D u Y X ι z h L₀ x₀ hL.toIsLattice hg
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HermitianSpacesIsometricOfRankSignature
 @[expose] public noncomputable section
-
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.BasicNotions.TH
 open scoped Matrix nonZeroDivisors
@@ -1536,7 +1526,6 @@ theorem _root_.GlobalTheory.T.selfDualLattice_image_adelicUnitary : ∀ D : D7, 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.AdelicIsometries
-
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR.Lev Formalism.IndefR.Links

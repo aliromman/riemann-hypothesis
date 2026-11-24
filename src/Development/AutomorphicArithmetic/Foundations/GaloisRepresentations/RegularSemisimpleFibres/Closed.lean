@@ -93,7 +93,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.Derive
 @[expose] public noncomputable section
 
-
 open ValuativeRel
 
 namespace UpperTheory.Gal.InertialTypesAlt.L
@@ -173,7 +172,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.LatDesc
-
 
 open ValuativeRel Matrix GlobalTheory.DZA
 
@@ -556,7 +554,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.OrbTransfer
 
-
 open GlobalTheory.BCT
 
 namespace UpperTheory.Gal.InertialTypesAlt.L
@@ -770,10 +767,12 @@ theorem orbTransfer : OrbTransfer := by
 end UpperTheory.Gal.InertialTypesAlt.L
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.LiftVal
+section -- clump: shared namespace opens
 
 open ValuativeRel Matrix Polynomial GlobalTheory.DZA GlobalTheory.LBC
 open scoped Classical
+
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.LiftVal
 
 namespace UpperTheory.Gal.InertialTypesAlt.L
 
@@ -849,10 +848,6 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.liftVal :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.RedNorm
-
-
-open ValuativeRel Matrix Polynomial GlobalTheory.DZA GlobalTheory.LBC
-open scoped Classical
 
 namespace UpperTheory.Gal.InertialTypesAlt.L
 
@@ -1060,10 +1055,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.InflMatch
 
-
-open ValuativeRel Matrix Polynomial GlobalTheory.DZA GlobalTheory.LBC
-open scoped Classical
-
 namespace UpperTheory.Gal.InertialTypesAlt.L
 
 private theorem twOrb_twConj' {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] (θ : G →* G)
@@ -1202,6 +1193,8 @@ theorem inflMatch : GlobalTheory.DZA.InflMatching := by
 
 end UpperTheory.Gal.InertialTypesAlt.L
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.Closed
 

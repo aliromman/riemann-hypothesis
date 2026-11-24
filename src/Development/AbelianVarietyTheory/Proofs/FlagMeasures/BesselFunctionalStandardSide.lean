@@ -52,7 +52,7 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselFormalDegreeEqOfSchurOrthogonality, Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselInnerIntegralEqForm, Development.AbelianVarietyTheory.Proofs.FlagMeasures.IntegrableBesselCoefficientSmulEquivariant, Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselFunctionalStandardSide
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf
 open scoped InnerProductSpace
@@ -89,7 +89,6 @@ end GlobalTheory.SgInf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselInnerIntegralEqForm
-
 
 namespace GlobalTheory.SgInf.InnerInt
 
@@ -395,13 +394,7 @@ theorem integrable_coef_smul : ∀ (k r : ℕ) {H : Type} [NormedAddCommGroup H]
 end GlobalTheory.SgInf.AbsConv
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselFunctionalStandardSide
-
-
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf
-open scoped InnerProductSpace
 
 namespace GlobalTheory.SgInf.KernelRe
 

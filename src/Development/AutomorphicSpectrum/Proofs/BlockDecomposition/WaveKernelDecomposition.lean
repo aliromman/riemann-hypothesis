@@ -115,7 +115,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralDoubleSum
 
-
 open MeasureTheory Matrix Finset Filter Topology
 open scoped ContDiff ComplexConjugate InnerProductSpace
 
@@ -164,11 +163,12 @@ end Pairing
 end GlobalTheory.CompanionTheory.WaveK.Sym
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GelfandOperatorPairingAdjoint
-
+section -- clump: shared namespace opens
 
 open MeasureTheory Matrix Finset
 open scoped ContDiff ComplexConjugate InnerProductSpace
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GelfandOperatorPairingAdjoint
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
@@ -322,9 +322,6 @@ end GlobalTheory.CompanionTheory.WaveMult.WordAdj
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GelfandOperatorPairingAdjointStatement
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.WaveMult
@@ -335,10 +332,6 @@ theorem _root_.GlobalTheory.T.gelfand_operator_pairing_adjoint : ∀ (n : ℕ) (
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WavePairingTimeSymmetry
-
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
@@ -759,9 +752,6 @@ end GlobalTheory.CompanionTheory.WaveMult.WaveSymm
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WavePairingTimeSymmetryStatement
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.WaveMult
@@ -772,9 +762,6 @@ theorem _root_.GlobalTheory.T.wave_pairing_time_symmetry : LgFacts → RCalc →
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveTimeAverageIsWaveStatement
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.WaveMult
@@ -784,8 +771,9 @@ theorem _root_.GlobalTheory.T.wave_time_average_is_wave : WaveSpeed → ∀ (n :
   first | exact @GlobalTheory.CompanionTheory.WaveMult.WaveAvg.isWave_avg
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelDecomposition
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelDecomposition
 
 open MeasureTheory Matrix Finset Filter Topology
 open scoped ContDiff ComplexConjugate InnerProductSpace

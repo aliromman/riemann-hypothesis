@@ -73,7 +73,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExponentialDecayByMidpoints
 
-
 open MeasureTheory Filter Topology PositivityTheory.RgEis GlobalTheory.CompanionTheory.TubeFourier
 
 namespace GlobalTheory.CompanionTheory.TubeFourier
@@ -293,10 +292,11 @@ theorem UpperTheory.Reformulated.B.Yha4.main :
     simp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseTransformContinuous
-
+-- clump: shared namespace opens
 
 open MeasureTheory Filter Topology PositivityTheory.RgEis GlobalTheory.CompanionTheory.TubeFourier
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseTransformContinuous
 
 namespace GlobalTheory.CompanionTheory.TubeFourier
 
@@ -372,8 +372,6 @@ end GlobalTheory.CompanionTheory.TubeFourier
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseTransformHolomorphicLines
-
-open MeasureTheory Filter Topology PositivityTheory.RgEis GlobalTheory.CompanionTheory.TubeFourier
 
 namespace GlobalTheory.CompanionTheory.TubeFourier.InvLine
 
@@ -510,8 +508,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseTransformLocallyBounded
 
-open MeasureTheory Filter Topology PositivityTheory.RgEis GlobalTheory.CompanionTheory.TubeFourier
-
 namespace GlobalTheory.CompanionTheory.TubeFourier
 
 theorem inv_bounded_on_tube : ∀ (X : Type) [NormedAddCommGroup X] [NormedSpace ℂ X] (T : Type) [TopologicalSpace T]
@@ -545,11 +541,6 @@ theorem inv_bounded_on_tube : ∀ (X : Type) [NormedAddCommGroup X] [NormedSpace
 
 end GlobalTheory.CompanionTheory.TubeFourier
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-
-open MeasureTheory Filter Topology PositivityTheory.RgEis GlobalTheory.CompanionTheory.TubeFourier
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FourierInversionProd
 open scoped FourierTransform
@@ -919,12 +910,6 @@ theorem phi_shift_snd (X : Type) [NormedAddCommGroup X] [NormedSpace ℂ X] [Com
 
 end GlobalTheory.CompanionTheory.TubeFourier
 end -- clump:auto
-
-end -- clump: shared namespace opens
-
--- clump: shared namespace opens
-
-open MeasureTheory Filter Topology PositivityTheory.RgEis GlobalTheory.CompanionTheory.TubeFourier
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TubeTransformIndependentOfBase
 

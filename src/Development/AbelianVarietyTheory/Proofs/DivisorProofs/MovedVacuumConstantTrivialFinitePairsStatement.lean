@@ -364,7 +364,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsProdLocalComponentsEqPrimePart
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-
 namespace GlobalTheory.PrimePart
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta GlobalTheory.BotClassDict GlobalTheory.NormSum.VacInt
@@ -480,7 +479,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertSupportedUnitaryPointIntegralCofinite
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 
 namespace GlobalTheory.InertCofinite
 
@@ -689,7 +687,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 1000000
 
-
 namespace GlobalTheory.NormSum.VacInt.PartFin
 
 open GlobalTheory.NormSum.VacInt
@@ -754,13 +751,7 @@ theorem _root_.GlobalTheory.T.unitaryPrimeComponent_finset_prod : ∀ {D : Forma
   first | exact @GlobalTheory.NormSum.VacInt.PartFin.part_finset
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryAdelicCharacterEqOneSplitInert
-
-
-open NumberField IsDedekindDomain
-open scoped Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.InertSuppChar
@@ -810,6 +801,8 @@ theorem char_eq_one : ∀ {D : Formalism.BasicNotions.D7} (V : Formalism.BasicNo
 
 end GlobalTheory.InertSuppChar
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 -- clump: shared namespace opens
 

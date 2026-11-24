@@ -57,10 +57,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.CyclotomicBounds.RamifiedDiscriminants.FunDen, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearCombinationLogBoundRealInequality
 
-section -- clump member: Development.AutomorphicArithmetic.CyclotomicBounds.RamifiedDiscriminants.FunDen
-@[expose] public section
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Finset
+
+section -- clump member: Development.AutomorphicArithmetic.CyclotomicBounds.RamifiedDiscriminants.FunDen
+@[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBounds (betaBound_vp cE_vp n_vp c_vp a0 delta_vp)
 
 noncomputable section
@@ -201,9 +203,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearCombinationLogBoundRealInequality
-
-
-open NumberField IsDedekindDomain Finset
 open GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBounds (betaBound_vp cE_vp n_vp c_vp a0 delta_vp IsClassZetaVals)
 
 namespace GlobalTheory.DenSumPf

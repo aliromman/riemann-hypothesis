@@ -130,7 +130,6 @@ import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentral
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.ExponentMulAbsPow
 
-
 open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.GLq
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
 
@@ -864,12 +863,7 @@ theorem UpperTheory.tameInertiaCharacter_frobenius_conj_eq_pow :
 end -- clump:auto
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.JunkEx
-
-
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Polynomial GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.GLq
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
@@ -1109,8 +1103,9 @@ theorem UpperTheory.Zero.LLC.junkEx :
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.ParDual
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.ParDual
 
 namespace UpperTheory.Zero.LLC.ParameterDuality
 
@@ -1488,7 +1483,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.DiscreteGroups.GlobalIrreducibility.DzTypeCut
 
-
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Polynomial GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.GLq
   GlobalTheory.PRep GlobalTheory.SplitWeil
 
@@ -1508,7 +1502,6 @@ end DiscreteGroups.sglob.DzType
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.DiscreteGroups.GlobalIrreducibility.DzLDepth
-
 
 open NumberField IsDedekindDomain GlobalTheory.GLp GlobalTheory.GLq GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.LocGL GlobalTheory.LocLanglands
 
@@ -1542,7 +1535,6 @@ end DiscreteGroups.sglob.DzType
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.CuspEx
-
 
 open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.GLq
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil

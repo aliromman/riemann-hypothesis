@@ -148,7 +148,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsCuspProdIrr
 
-
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult GlobalTheory.SmGL.Exponents
 
 namespace GlobalTheory.CompanionTheory.Ysupp
@@ -172,7 +171,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProductLanglandsSubquotientSegments
 
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.M
-
 
 namespace GlobalTheory.CompanionTheory.LProd
 
@@ -353,10 +351,11 @@ theorem interleave_embeddings : ∀ {T : Type 1} {u v w : List T}, Zc.Comb.Inter
 end GlobalTheory.CompanionTheory.WordProd.Intl
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WordOccursProductInterleave
-
+-- clump: shared namespace opens
 
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.M
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WordOccursProductInterleave
 
 namespace GlobalTheory.CompanionTheory.WordProd
 
@@ -510,16 +509,11 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WordOccursProductInterleaveStatement
 
-open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.M
-
 theorem _root_.GlobalTheory.T.word_occurs_product_interleave : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (hA : GlobalTheory.Published.IrreducibleAdmissibleGL), ∀ (x y : IrrGL (k := k)) (u v w : List (IrrGL (k := k))), (∀ c ∈ u, c.IsCusp) → (∀ c ∈ v, c.IsCusp) → Wd x.rep u → Wd y.rep v → Zc.Comb.Interleave u v w → Wd (prod₂ x.rep y.rep) w := by
   first | exact @GlobalTheory.CompanionTheory.WordProd.wd_prod₂_of_interleave
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LanglandsSumSubquotientProduct
-
-
-open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.M
 
 namespace GlobalTheory.CompanionTheory.LangSumSub
 
@@ -582,8 +576,6 @@ end GlobalTheory.CompanionTheory.LangSumSub
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LanglandsExhaustionGl
-
-open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.M
 
 namespace GlobalTheory.CompanionTheory.LanglandsMultiseg
 

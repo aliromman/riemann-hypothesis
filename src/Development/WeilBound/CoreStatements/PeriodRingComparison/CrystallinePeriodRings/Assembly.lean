@@ -54,10 +54,11 @@ import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.EqZero
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PeriodRingComparison.AinfInverseMaps.AinfInvMapGOC, Development.WeilBound.CoreStatements.PeriodRingComparison.CrystallinePeriodRings.BcFrob, Development.WeilBound.CoreStatements.PeriodRingComparison.CrystallinePeriodRings.BcrisLogTeichmullerEqT, Development.WeilBound.CoreStatements.PeriodRingComparison.CrystallinePeriodRings.CAFrobAinf, Development.WeilBound.CoreStatements.PeriodRingComparison.CrystallinePeriodRings.Assembly
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PeriodRingComparison.AinfInverseMaps.AinfInvMapGOC
-
+section -- clump: shared namespace opens
 
 open GroundTheory.PAdicHodge
+
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PeriodRingComparison.AinfInverseMaps.AinfInvMapGOC
 open Formalism.BasicNotions.Loc (GQ)
 
 namespace Cmp6
@@ -107,9 +108,6 @@ end Cmp6
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PeriodRingComparison.CrystallinePeriodRings.BcFrob
-
-
-open GroundTheory.PAdicHodge
 
 namespace Cmp6
 
@@ -163,9 +161,6 @@ end Cmp6
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PeriodRingComparison.CrystallinePeriodRings.BcrisLogTeichmullerEqT
-
-
-open GroundTheory.PAdicHodge
 open Formalism.BasicNotions.Loc (GQ)
 
 namespace Cmp6
@@ -198,8 +193,6 @@ end Cmp6
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PeriodRingComparison.CrystallinePeriodRings.CAFrobAinf
-
-open GroundTheory.PAdicHodge
 namespace Cmp6
 variable (l : ℕ) [Fact l.Prime]
 
@@ -234,8 +227,9 @@ theorem cA_frob (x : Reformulated.AutPerF.Acris l (OC l)) :
 end Cmp6
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PeriodRingComparison.CrystallinePeriodRings.Assembly
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PeriodRingComparison.CrystallinePeriodRings.Assembly
 
 open GroundTheory.PAdicHodge Formalism.BasicNotions.Loc
 

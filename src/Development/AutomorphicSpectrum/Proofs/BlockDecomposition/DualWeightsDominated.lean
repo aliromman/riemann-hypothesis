@@ -63,12 +63,13 @@ import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.Archim
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DominanceOfWeylCharacterCoeff, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualWeightSpacesSpan, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorCharInjective, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeightPolynomialTraceIdentity, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualWeightsDominated
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DominanceOfWeylCharacterCoeff
+-- clump: shared namespace opens
 
 open Matrix Finset
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DominanceOfWeylCharacterCoeff
 open scoped InnerProductSpace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCount.Tope
-
 
 namespace GlobalTheory.CompanionTheory.RealCountG.DomA
 
@@ -379,9 +380,6 @@ end GlobalTheory.CompanionTheory.RealCountG.DomA
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualWeightSpacesSpan
-
-
-open Matrix Finset
 open scoped InnerProductSpace ComplexConjugate
 
 namespace GlobalTheory.CompanionTheory.RealCount.TorusSpan
@@ -588,9 +586,6 @@ end GlobalTheory.CompanionTheory.RealCount.Tope
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorCharInjective
-
-
-open Matrix Finset
 open scoped InnerProductSpace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount
 
@@ -680,14 +675,9 @@ theorem wtDual_iSupIndep : ∀ {n : ℕ} (E : KMod n), iSupIndep (wtDual E) := b
 end GlobalTheory.CompanionTheory.RealCount.Tope
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open Matrix Finset
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeightPolynomialTraceIdentity
 open scoped InnerProductSpace ComplexConjugate
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCount.Tope
-
 
 namespace GlobalTheory.CompanionTheory.RealCount.Tope.Ident
 

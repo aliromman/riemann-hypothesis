@@ -84,7 +84,6 @@ open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.BesselModels.BlockEmbedConjIsUnitaryEmbedding
 
-
 namespace UpperTheory.Lit.Bur.BlockEmb
 
 open PI.UpqRep PI.HwUniqW
@@ -221,7 +220,6 @@ end -- clump:auto
 
 open MeasureTheory
 open scoped InnerProductSpace ComplexConjugate
-
 
 namespace UpperTheory.Lit.Bur.Unitarize
 
@@ -511,7 +509,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.BesselModels.HyperbolicFrameCongruentSplitHermGram
 @[expose] public noncomputable section
-
 
 namespace UpperTheory.Lit.Bur.BesselFrame
 
@@ -1010,12 +1007,7 @@ open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.BesselModels.SmoothVecConjugateUnitaryGroupIff
-
-
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 open scoped ContDiff
 
 namespace UpperTheory.Lit.Bur.SmoothConj
@@ -1109,9 +1101,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.BesselModels.SmoothVecStableUnderUnitaryGroup
 
-
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
-
 namespace UpperTheory.Lit.Bur.SmoothTranslate
 
 theorem conj_mem_lieG {n : ℕ} {J g X : Matrix (Fin n) (Fin n) ℂ} (hu : IsUnit g) (hg : g ∈ Formalism.QuantumDeterminants.UH J)
@@ -1161,8 +1150,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.BesselModels.SobolevContOfConjGramForm
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
-
 namespace UpperTheory.Lit.Bur.SobConj
 
 theorem sobCont_conj {n : ℕ} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
@@ -1195,8 +1182,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.BesselModels.SylvesterInertiaSignFormCongrSplitHermitian
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
-
 namespace UpperTheory.Lit.Bur.Inertia
 
 theorem card_plus_of_congr_Hpk : ∀ {m r : ℕ} (ε : Fin (2 * r + m + 1) → Bool)
@@ -1214,8 +1199,9 @@ open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.BesselModels.RankLeOneOfDep
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.BesselModels.RankLeOneOfDep
 
 namespace UpperTheory.Lit.Bur.BurPos
 

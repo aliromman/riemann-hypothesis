@@ -86,10 +86,12 @@ import Development.AbelianVarietyTheory.Definitions.Jets.DepthNumbersThresholdEq
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.DiagonalSplit, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsEndomorphismPairW0, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsIntegralSeriesFrameEqProdRows, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsLadicSeparatingSequenceEmbeddings, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ValEqSelf, Development.AbelianVarietyTheory.Proofs.JetHarmonics.ChartValuesBoundProductsOnPlanes
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.DiagonalSplit
+section -- clump: shared namespace opens
 
 open scoped BigOperators
 open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw GlobalTheory.RowVal ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.DiagonalSplit
 
 namespace GlobalTheory.RowVal.MapSumDiagonal
 
@@ -168,10 +170,6 @@ end GlobalTheory.RowVal.MapSumDiagonal
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsEndomorphismPairW0
-
-
-open scoped BigOperators
-open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw GlobalTheory.RowVal ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 open ReciprocityTheory.ChartRestriction.G.TB ReciprocityTheory.ChartRestriction.G.TB.WickVanishing GlobalTheory.GermDerivativeLinearMaps GlobalTheory.IndefiniteRowSideFullHecke GlobalTheory.ActionLimit GlobalTheory.ActionEnd
 
 namespace GlobalTheory.ActionEndSelf
@@ -312,10 +310,6 @@ end GlobalTheory.ActionEndSelf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsIntegralSeriesFrameEqProdRows
-
-
-open scoped BigOperators
-open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw GlobalTheory.RowVal ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.RowVal.PlaneRead
 
@@ -472,9 +466,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsLadicSeparatingSequenceEmbeddings
 
-open scoped BigOperators
-open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw GlobalTheory.RowVal ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
-
 namespace GlobalTheory.SeparatingSeq
 
 open TeichSeq
@@ -561,9 +552,6 @@ end GlobalTheory.SeparatingSeq
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ValEqSelf
-
-open scoped BigOperators
-open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw GlobalTheory.RowVal ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.ValSelf
 
@@ -938,6 +926,8 @@ theorem valEqSelf : ∀ (C : Type) [Field C] [CharZero C] (V : VF C) (O : Type) 
 
 end GlobalTheory.ValSelf
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ChartValuesBoundProductsOnPlanes
 

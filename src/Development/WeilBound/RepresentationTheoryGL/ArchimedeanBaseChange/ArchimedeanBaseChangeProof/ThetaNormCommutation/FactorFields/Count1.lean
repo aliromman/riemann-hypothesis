@@ -79,7 +79,6 @@ import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
 section -- clump: shared namespace opens
 
-
 open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT PositivityTheory.Rg.BcB.G3
 open scoped Classical TensorProduct
 
@@ -1508,12 +1507,7 @@ theorem PositivityTheory.Rg.BcB.G3.supp_pf : PositivityTheory.Rg.BcB.G3.Supp := 
   simp only [hne, finsum_zero, mul_zero]
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.FactorFields.TwConjOfMkEq
-
-open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT PositivityTheory.Rg.BcB.G3
-open scoped Classical TensorProduct
 
 namespace PositivityTheory.Rg.BcB.G3.FinCl2P
 
@@ -1572,10 +1566,6 @@ theorem PositivityTheory.Rg.BcB.G3.finCl2_pf : FinCl2 := by
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.FactorFields.UnitPairOfSupport
-
-
-open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT PositivityTheory.Rg.BcB.G3
-open scoped Classical TensorProduct
 
 namespace PositivityTheory.Rg.BcB.G3.Unit2P
 
@@ -1662,6 +1652,8 @@ theorem unit_pair_of_support (h1 : LocGood) (h2 : GenUnit) (h3 : Supp) : Unit2 :
 end PositivityTheory.Rg.BcB.G3
 
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.FactorFields.Count1
 

@@ -91,7 +91,6 @@ import Mathlib.RingTheory.Coalgebra.IsFrobenius
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.ExpImm0Of
 
-
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.PELU Filter Topology
 open scoped Matrix
@@ -821,12 +820,13 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PPerNear
-
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.PELU Filter Topology
 open scoped Matrix
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PPerNear
 open GlobalTheory.PerCoordU GlobalTheory.PeriodCoord
 
 namespace UpperTheory.Gal.W2
@@ -868,14 +868,8 @@ theorem perNear_of : PerNear := by
 end UpperTheory.Gal.W2
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.PELU Filter Topology
-open scoped Matrix
-open GlobalTheory.HodgeCoh GlobalTheory.CechDR Polynomial UpperTheory.Gal.W2
-
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PPiLattice
+open GlobalTheory.HodgeCoh GlobalTheory.CechDR Polynomial UpperTheory.Gal.W2
 
 theorem UpperTheory.Gal.W2.piLattice_of :
     UpperTheory.Gal.W2.PiLattice := by
@@ -911,6 +905,7 @@ theorem UpperTheory.Gal.W2.piLattice_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PPtHol
+open GlobalTheory.HodgeCoh GlobalTheory.CechDR Polynomial UpperTheory.Gal.W2
 
 theorem UpperTheory.Gal.W2.ptHol_of :
     UpperTheory.Gal.W2.HolPi → UpperTheory.Gal.W2.PtFibre → UpperTheory.Gal.W2.PtHol := by
@@ -940,6 +935,7 @@ theorem UpperTheory.Gal.W2.ptHol_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PPtImm
+open GlobalTheory.HodgeCoh GlobalTheory.CechDR Polynomial UpperTheory.Gal.W2
 
 private theorem flat_of_eventuallyEq {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] {Y : Scheme.{0}}
     {s s' : V → (Sp ℂ ⟶ Y)} {v₀ w : V} (h : s =ᶠ[𝓝 v₀] s') (hf : Flat s v₀ w) : Flat s' v₀ w := by
@@ -1015,6 +1011,7 @@ theorem UpperTheory.Gal.W2.ptImm_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PRootsFull
+open GlobalTheory.HodgeCoh GlobalTheory.CechDR Polynomial UpperTheory.Gal.W2
 
 private theorem pow_mul_Sb {g : ℕ} {H Sb : Matrix (Fin g) (Fin g) ℂ} {ev : Fin g → ℂ}
     (h : H * Sb = Sb * Matrix.diagonal ev) (i : ℕ) :
@@ -1089,6 +1086,7 @@ theorem UpperTheory.Gal.W2.rootsFull_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PSimDiag
+open GlobalTheory.HodgeCoh GlobalTheory.CechDR Polynomial UpperTheory.Gal.W2
 
 private theorem span_joint (g : ℕ) (I : Type) (M : I → Matrix (Fin g) (Fin g) ℂ)
     (hc : ∀ i j, M i * M j = M j * M i)
@@ -1149,14 +1147,7 @@ theorem UpperTheory.Gal.W2.simDiag_of :
     rw [h, mul_comm]
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PTanDeriv
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.PELU Filter Topology
-open scoped Matrix
 open GlobalTheory.HodgeCoh GlobalTheory.CechDR
 
 namespace UpperTheory.Gal.W2
@@ -1229,14 +1220,8 @@ theorem tanDeriv_of : TanDeriv := by
 end UpperTheory.Gal.W2
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.PELU Filter Topology
-open scoped Matrix
-open GlobalTheory.HodgeCoh GlobalTheory.CechDR Polynomial UpperTheory.Gal.W2
-
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PTraceDual
+open GlobalTheory.HodgeCoh GlobalTheory.CechDR Polynomial UpperTheory.Gal.W2
 
 theorem UpperTheory.Gal.W2.traceDual_of :
     UpperTheory.Gal.W2.TraceDual := by
@@ -1282,6 +1267,7 @@ theorem UpperTheory.Gal.W2.traceDual_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PTraceLat
+open GlobalTheory.HodgeCoh GlobalTheory.CechDR Polynomial UpperTheory.Gal.W2
 
 private lemma realTrace_toLin (g : ℕ) (H : Matrix (Fin g) (Fin g) ℂ) :
     ((LinearMap.trace ℝ (Fin g → ℂ) ((Matrix.toLin' H).restrictScalars ℝ) : ℝ) : ℂ) =
@@ -1341,6 +1327,7 @@ theorem UpperTheory.Gal.W2.traceLat_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PTriCharpoly
+open GlobalTheory.HodgeCoh GlobalTheory.CechDR Polynomial UpperTheory.Gal.W2
 
 theorem UpperTheory.Gal.W2.triCharpoly_of :
     UpperTheory.Gal.W2.TriCharpoly := by
@@ -1358,6 +1345,7 @@ theorem UpperTheory.Gal.W2.triCharpoly_of :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PTspDiag
+open GlobalTheory.HodgeCoh GlobalTheory.CechDR Polynomial UpperTheory.Gal.W2
 
 theorem UpperTheory.Gal.W2.tspDiag_of :
     UpperTheory.Gal.W2.TspDiag := by
@@ -1443,7 +1431,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PTypeCount
-
 
 open NumberField Polynomial
 open scoped Matrix Classical

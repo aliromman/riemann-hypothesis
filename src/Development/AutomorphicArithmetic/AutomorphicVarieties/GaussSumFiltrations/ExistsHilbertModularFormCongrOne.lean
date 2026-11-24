@@ -81,7 +81,6 @@ open scoped Matrix
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaussSumFiltrations.ConstEqZero
 
-
 namespace GlobalTheory.HilbertThetaSeries.QUniq
 
 def chr {V : Type} [Fintype V] (μ x : V → ℝ) : ℂ :=
@@ -355,7 +354,6 @@ end GlobalTheory.HilbertThetaSeries.DualIdele
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaussSumFiltrations.ExistsAdelicFourierExpansionOfLift
-
 
 namespace GlobalTheory.HilbertThetaSeries.LiftExp
 
@@ -1094,7 +1092,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaussSumFiltrations.ExistsOrbitAverageOfSeedPowersWeight
 
-
 namespace GlobalTheory.HilbertThetaSeries.OrbitAvg
 
 section Gen
@@ -1264,13 +1261,7 @@ open scoped Matrix
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaussSumFiltrations.FormSystemOfFinitelyManyStabilizerForms
-
-
-open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
-open scoped Matrix
 
 namespace GlobalTheory.HilbertThetaSeries.SysOfStab
 
@@ -1383,13 +1374,7 @@ open scoped Matrix
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
-open scoped Matrix
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaussSumFiltrations.Gl2AdelicDoubleCosetDecompositionTotallyReal
-
 
 namespace GlobalTheory.HilbertThetaSeries.Reps
 

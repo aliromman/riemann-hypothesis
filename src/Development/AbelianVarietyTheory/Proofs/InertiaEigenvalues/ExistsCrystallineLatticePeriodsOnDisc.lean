@@ -73,7 +73,7 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFinExt
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CrystallineFilteredDeRhamComparison, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CrysLatticeBasisMemSumDeRhamFiltration, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DcrisSpanTensorBcrisRat, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CrystallineLatticeBasisSpanInvariants, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBdRPlusLatticeGeneratorsDdR, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsInvertibleInvariantPeriodMatrixBcris, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCrystallineLatticePeriodsOnDisc
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BKReal GlobalTheory.Per GlobalTheory.BSP GlobalTheory.MemLoc
 open scoped Formalism.Per NNReal
@@ -135,7 +135,6 @@ end GlobalTheory.SeedFil
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CrysLatticeBasisMemSumDeRhamFiltration
-
 
 namespace GlobalTheory.CrysCoordDR
 
@@ -348,7 +347,6 @@ end GlobalTheory.Per.RatSpan
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CrystallineLatticeBasisSpanInvariants
-
 
 namespace GlobalTheory.CrisCoord
 
@@ -782,13 +780,7 @@ theorem exists_invertible_invariant : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l
 end GlobalTheory.Per.PerMat
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCrystallineLatticePeriodsOnDisc
-
-
-open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BKReal GlobalTheory.Per GlobalTheory.BSP GlobalTheory.MemLoc
-open scoped Formalism.Per NNReal
 
 namespace GlobalTheory.SeedExists
 

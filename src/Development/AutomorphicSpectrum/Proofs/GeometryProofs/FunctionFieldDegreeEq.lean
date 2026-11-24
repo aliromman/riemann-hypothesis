@@ -746,11 +746,12 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.length_formula_sum_valuations 
   first | exact @PositivityTheory.HtPt.Plen.len_places
 end -- clump:auto
 
-section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsMultihomogPrimeOfPlace
-@[expose] public noncomputable section
-
+section -- clump: shared namespace opens
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo GroundTheory.FunctionField GroundTheory.Heights₂.Heights.Inter IsLocalRing GlobalTheory.CompanionTheory.Ar.GeoDeg
+
+section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsMultihomogPrimeOfPlace
+@[expose] public noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.GeoDeg.Centre
 
@@ -855,12 +856,7 @@ end GlobalTheory.CompanionTheory.Ar.GeoDeg.Centre
 end -- clump:auto
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo GroundTheory.FunctionField GroundTheory.Heights₂.Heights.Inter IsLocalRing GlobalTheory.CompanionTheory.Ar.GeoDeg
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GeometricNumberZeroFinrank
-
 
 namespace GlobalTheory.CompanionTheory.Ar.GeoDeg.ResDeg
 
@@ -1096,7 +1092,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LocalRingEssFiniteType
 
-
 namespace GlobalTheory.CompanionTheory.Ar.GeoDeg
 
 open GroundTheory.Heights₂.Heights.Targets.CurveVerticalPointChart (chartMono_notMem)
@@ -1190,7 +1185,6 @@ end GlobalTheory.CompanionTheory.Ar.GeoDeg
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.MultihomogPrimeMemDivisorSupport
-
 
 namespace GlobalTheory.CompanionTheory.Ar.GeoDeg.ChartMin
 

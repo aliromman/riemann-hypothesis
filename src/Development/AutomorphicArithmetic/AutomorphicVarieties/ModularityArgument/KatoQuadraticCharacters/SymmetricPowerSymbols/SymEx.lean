@@ -295,7 +295,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.CastEqZeroOf
 
-
 open scoped MatrixGroups Matrix
 open GlobalTheory.KZ GlobalTheory.K4
 
@@ -963,10 +962,11 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.PLev
-
+section -- clump: shared namespace opens
 
 open scoped MatrixGroups Matrix
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.PLev
 open GlobalTheory.KZ GlobalTheory.K4
 
 namespace UpperTheory.V.Z.Kato.Sym
@@ -1033,8 +1033,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.CastVal
 @[expose] public section
-
-open scoped MatrixGroups Matrix
 open GlobalTheory.KZ GlobalTheory.K4 UpperTheory.V.Z.Kato.Sym
 
 section
@@ -1136,9 +1134,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.PRed
-
-
-open scoped MatrixGroups Matrix
 open GlobalTheory.KZ GlobalTheory.K4
 
 namespace UpperTheory.V.Z.Kato.Sym
@@ -1201,8 +1196,6 @@ end UpperTheory.V.Z.Kato.Sym
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.PSymb
-
-open scoped MatrixGroups Matrix
 open GlobalTheory.KZ GlobalTheory.K4 UpperTheory.V.Z.Kato.Sym
 
 theorem UpperTheory.V.Z.Kato.Sym.pSymb :
@@ -1235,6 +1228,8 @@ theorem UpperTheory.V.Z.Kato.Sym.pSymb :
   simp only [dif_pos hxy]
   exact Classical.choose_spec (key s x y hxy)
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.SymEx
 

@@ -62,9 +62,11 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDvdAllAway, Development.AbelianVarietyTheory.Definitions.GaloisGeometry.NotGoodGenericSign, Development.AbelianVarietyTheory.Proofs.SatakeParameters.InertJunkColIn3
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDvdAllAway
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.DivisionValues Formalism.L2 Formalism.L2.DIV Formalism.L2.Indef
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDvdAllAway
 
 namespace GlobalTheory.InertRank
 
@@ -221,9 +223,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.NotGoodGenericSign
 
-
-open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.DivisionValues Formalism.L2 Formalism.L2.DIV Formalism.L2.Indef
-
 namespace GlobalTheory.Hk3.FamModel
 
 open Formalism.L2.Col
@@ -304,8 +303,6 @@ end GlobalTheory.Hk3.FamModel
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.InertJunkColIn3
-
-open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.DivisionValues Formalism.L2 Formalism.L2.DIV Formalism.L2.Indef
 
 namespace GlobalTheory.Hk3
 

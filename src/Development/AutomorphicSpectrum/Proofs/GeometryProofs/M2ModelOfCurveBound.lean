@@ -103,11 +103,12 @@ import Mathlib.RingTheory.TotallySplit
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.HodgeTatePoints.InhConj, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FunctionFieldCurveExists, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SplitCharactersUnramified, Development.WeilBound.CoreStatements.HodgeTatePoints.ChIsDeg, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveDegreeUnique, Development.WeilBound.CoreStatements.HodgeTatePoints.CiIsDeg, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveLatticeDegreeFormula, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveLieEigenDecomposition, Development.WeilBound.CoreStatements.HodgeTatePoints.CiGrAlg, Development.WeilBound.CoreStatements.HodgeTatePoints.LieValAtBase, Development.WeilBound.CoreStatements.HodgeTatePoints.CiGrDeg, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveLieLatticeDegree, Development.WeilBound.CoreStatements.HodgeTatePoints.CiCurveIn, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveThroughCoordinates, Development.WeilBound.CoreStatements.HodgeTatePoints.CiField, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FunctionFieldModelExists, Development.AutomorphicSpectrum.Proofs.MetricProofs.NefThresholdGapCondition, Development.AutomorphicSpectrum.Proofs.GeometryProofs.M2ModelOfCurveBound
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.InhConj
-
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
+
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.InhConj
 
 namespace PositivityTheory.HtPt.Cc
 
@@ -157,11 +158,6 @@ theorem inh_ff : ∀ (k K : Type) [Field k] [Field K] [Algebra k K] [GroundTheor
 
 end PositivityTheory.HtPt.Cc
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FunctionFieldCurveExists
 
@@ -360,7 +356,6 @@ end -- clump: shared namespace opens
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CiIsDeg
 
 set_option backward.isDefEq.respectTransparency false
-
 
 open AlgebraicGeometry CategoryTheory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
@@ -756,7 +751,6 @@ end -- clump:auto
 
 set_option backward.isDefEq.respectTransparency false
 
-
 open AlgebraicGeometry CategoryTheory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
 
@@ -898,7 +892,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CiGrDeg
 
 set_option backward.isDefEq.respectTransparency false
-
 
 open AlgebraicGeometry CategoryTheory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
@@ -1081,7 +1074,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CiCurveIn
 
 set_option backward.isDefEq.respectTransparency false
-
 
 open AlgebraicGeometry CategoryTheory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
@@ -1320,20 +1312,18 @@ theorem curve_in_cpt : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Spec (C
 end PositivityTheory.HtPt.Ci
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveThroughCoordinates
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveThroughCoordinates
 
 theorem _root_.GlobalTheory.CompanionTheory.Relay.curve_through_coordinates : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Spec (CommRingCat.of Ω) ⟶ X) (B : Type) [Fintype B] (J : B → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω), CoordTie ℤ ξ (segre y) → ∀ (K : Type) [Field K] (C : ACurve K) (w : (Σ k, J k) → K), mCoordIdeal y ≤ mCoordIdeal w → (∀ k, ∃ c, w ⟨k, c⟩ ≠ 0) → ∃ (z : Spec (CommRingCat.of K) ⟶ X) (Y : CurveIn C z) (h₀ : genPt ξ ⤳ centre z) (h : ∀ i, genPt ξ ⤳ centre (Y.x i)), CoordsAt ξ y z w ∧ ∀ p : ℕ, (p : K) = 0 → InFibre ξ p ⟨centre z, h₀⟩ ∧ ∀ i, InFibre ξ p ⟨centre (Y.x i), h i⟩ := by
   first | exact @PositivityTheory.HtPt.Ci.curve_in_cpt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CiField
-
-
-open AlgebraicGeometry CategoryTheory NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
 
 namespace PositivityTheory.HtPt.Ci
 
@@ -1510,11 +1500,6 @@ theorem curve_field : ∀ (B : Type) [Fintype B] (J : B → Type) [∀ k, Fintyp
 end PositivityTheory.HtPt.Ci
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FunctionFieldModelExists
 
 namespace GlobalTheory.CompanionTheory.Ar.Crv.Field
@@ -1615,7 +1600,6 @@ end GlobalTheory.CompanionTheory.Ar.Conj.GapThreshold
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.M2ModelOfCurveBound
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Conj.ModelNefness
 

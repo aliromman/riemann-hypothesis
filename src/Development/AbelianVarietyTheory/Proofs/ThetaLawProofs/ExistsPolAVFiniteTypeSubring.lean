@@ -81,11 +81,12 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Cha
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsFinsetKTrivOfSubring, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.IsClosedImmersionDescendsToSubringStatement, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.IsProjOverDescendsToSubring, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.IsProjOverDescendsToSubringStatement, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsProjectiveAbelianModel, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.RelAmpleSubring, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsPolAVFiniteTypeSubring
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsFinsetKTrivOfSubring
-
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsFinsetKTrivOfSubring
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyPow GlobalTheory.KeyKa
@@ -119,11 +120,6 @@ theorem exists_finset_kTriv_of_subring :
 
 end GlobalTheory
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.IsClosedImmersionDescendsToSubringStatement
 attribute [local instance] Over.cartesianMonoidalCategory
@@ -326,14 +322,6 @@ theorem exists_projective_abelian_model : ∀ (S : Type) [CommRing S] [IsDomain 
 
 end GlobalTheory.KeyTf
 end -- clump:auto
-
-end -- clump: shared namespace opens
-
--- clump: shared namespace opens
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.RelAmpleSubring
 attribute [local instance] Over.cartesianMonoidalCategory

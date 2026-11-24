@@ -368,7 +368,7 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Up GlobalTheory.CompanionTheory.Ar.GR
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
@@ -767,14 +767,7 @@ theorem _root_.GlobalTheory.T.torsion_points_isogeny_hopf_order : ∀ (p : ℕ) 
   first | exact @GlobalTheory.CompanionTheory.Relay.torsion_points_isogeny_hopf_order
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AbelianSchemeTorsionAugmentation
-
-
-open ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Up GlobalTheory.CompanionTheory.Ar.GR
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi
 open ReciprocityTheory.ChartRestriction.G.Chart (sp spMap)
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
 attribute [local instance] Over.cartesianMonoidalCategory
@@ -829,12 +822,6 @@ theorem sub_abelianScheme : QuotientByFiniteFlatStatement → ZarhinStatement �
 
 end GlobalTheory.CompanionTheory.Ar.GR
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Up GlobalTheory.CompanionTheory.Ar.GR
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AbelianSchemeTorsionAugmentationStatement
 open ReciprocityTheory.ChartRestriction.G.Chart (sp spMap)

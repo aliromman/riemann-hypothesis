@@ -190,7 +190,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.EqOneOfMembership
 
-
 namespace GlobalTheory.Proof.EqOneOfMembership
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.UG Formalism.MainNotions.StandardLattice GlobalTheory.IndefiniteRowSideFullHecke.TrivialColumnStabiliser
@@ -443,7 +442,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.StabilizerGroupMap
 
-
 namespace GlobalTheory.Proof.StabilizerGroupMap
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.UG Formalism.MainNotions.StandardLattice
@@ -494,7 +492,6 @@ end GlobalTheory.Proof.StabilizerGroupMap
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.MassSelfDualLatticeFirstSpaceEq
-
 
 namespace GlobalTheory.ColClassNumber
 
@@ -631,7 +628,6 @@ end -- clump:auto
 
 open NumberField IsDedekindDomain Matrix Formalism.UG Formalism.BasicNotions Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
-
 
 namespace GlobalTheory.SelfDualFrame
 
@@ -963,7 +959,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.MyTiedNotMeasTupleTied
 
-
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta IsDedekindDomain NumberField Formalism.UG.P
 
 namespace GlobalTheory.MeasTupleEq
@@ -1132,10 +1127,12 @@ theorem ringEquiv_adicCompletion_mem_integers_iff (F : Type) [Field F] [NumberFi
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SplitStabGLIffMemRange
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Matrix Formalism.UG Formalism.BasicNotions Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SplitStabGLIffMemRange
 
 namespace GlobalTheory
 
@@ -1213,9 +1210,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.StabilizerIndex
 
-open NumberField IsDedekindDomain Matrix Formalism.UG Formalism.BasicNotions Formalism.MainNotions.StandardLattice
-open scoped TensorProduct
-
 namespace GlobalTheory.Proof.StabilizerIndex
 
 lemma index_field (F : Type) [Field F] [Finite F] (k : ℕ) (φ : Fin k → F) (hφ : φ ≠ 0) :
@@ -1251,10 +1245,6 @@ end GlobalTheory.Proof.StabilizerIndex
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LocalLevelRelIndexAtLevelPrimeSelfDual
-
-
-open NumberField IsDedekindDomain Matrix Formalism.UG Formalism.BasicNotions Formalism.MainNotions.StandardLattice
-open scoped TensorProduct
 
 namespace GlobalTheory.LevelIndex
 
@@ -1575,8 +1565,9 @@ theorem indexKU_of_selfDualOverBase (H : SelfDualOverBase) : IndexKU := by
 end GlobalTheory.LevelIndex
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SelfDualLatticeLevel
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SelfDualLatticeLevel
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.SelfDualLatticeLevel
 

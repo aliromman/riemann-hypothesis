@@ -499,7 +499,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
-
 namespace GlobalTheory.UPoinc
 
 theorem UDeep.exists_tie (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H)
@@ -567,7 +566,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUdeep
 attribute [local instance] Over.cartesianMonoidalCategory
 
-
 namespace GlobalTheory.UPoinc.UDeepEx
 
 alias lbIso_pull_comp := _root_.GlobalTheory.Ex.GenericFibre.lbIso_pull
@@ -604,7 +602,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
-
 namespace GlobalTheory.UPoinc.ProjOverBase
 
 theorem isProjOver_model : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (cf : Coeff l) (C : UCompact Xo cf), ∀ (X : USetup C) (κ : C.o →+* X.o₁), X.uΩ ≫ C.i ≫ C.z = spMap ((algebraMap X.o₁ X.Ω₁).comp κ) → IsProjOver X.M.s := by
@@ -625,7 +622,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModuliPointCompCompactificationStructure
 attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
-
 
 namespace GlobalTheory.UPoinc.UDeepP
 
@@ -901,7 +897,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SameOfUSame
 
-
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
@@ -1148,14 +1143,15 @@ theorem GLab.norms [ArithBase o Ω] (hM : ReciprocityTheory.ChartRestriction.G.G
 end GlobalTheory.UPoinc.USum
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryThetaFourierClassSumsDeeperIntegral
-
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 open GlobalTheory.Toroidal GlobalTheory.Models GlobalTheory.LN GlobalTheory.ShFam GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZH GlobalTheory.Poinc
 open scoped CategoryTheory.Obj
 open GlobalTheory.UPoinc
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryThetaFourierClassSumsDeeperIntegral
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UPoinc.USum
@@ -1494,14 +1490,6 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host 
 end GlobalTheory.UPoinc.USum
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory IsLocalRing NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
-open GlobalTheory.Toroidal GlobalTheory.Models GlobalTheory.LN GlobalTheory.ShFam GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZH GlobalTheory.Poinc
-open scoped CategoryTheory.Obj
-open GlobalTheory.UPoinc
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryThetaFourierClassSumsDeeperIntegralStatement
 attribute [local instance] Over.cartesianMonoidalCategory
 
@@ -1513,7 +1501,6 @@ end -- clump:auto
 open GlobalTheory
 open Classical
 attribute [local instance] Over.cartesianMonoidalCategory
-
 
 namespace GlobalTheory.UPoinc.UCore
 

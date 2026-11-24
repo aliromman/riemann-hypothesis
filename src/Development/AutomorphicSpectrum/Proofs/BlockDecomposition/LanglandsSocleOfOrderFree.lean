@@ -71,7 +71,6 @@ import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.Zelevin
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsIrreducibleOfIsAtom
 
-
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.IndefiniteRowSideFullHecke.CuspidalSupportClasses GlobalTheory.TypeDim ValuativeRel
 open scoped TensorProduct
 
@@ -105,10 +104,11 @@ theorem isIrreducible_of_isAtom {π : Representation ℂ G V} {U : Subrepresenta
 end GlobalTheory.MaschkeForms
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosocleContragredientSocle
-
+-- clump: shared namespace opens
 
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.Cos
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosocleContragredientSocle
 
 namespace GlobalTheory.CompanionTheory.SocleContra
 
@@ -223,8 +223,6 @@ end GlobalTheory.CompanionTheory.SocleContra
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LanglandsSocleOfOrderFree
-
-open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.Cos
 
 namespace GlobalTheory.CompanionTheory.LSocle
 

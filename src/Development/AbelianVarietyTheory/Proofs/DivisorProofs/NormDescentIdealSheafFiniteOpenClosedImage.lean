@@ -339,7 +339,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoeffNormFormOfFamilyMemRangeIntegrallyClosed
 
-
 namespace GlobalTheory.NormSheaf.IntegralCoeff
 
 open MvPolynomial
@@ -794,7 +793,6 @@ end -- clump:auto
 
 open MvPolynomial
 
-
 namespace GlobalTheory.NormSheaf
 
 theorem map_normForm_eq_prod (K L Ω : Type) [Field K] [Field L] [Algebra K L] [FiniteDimensional K L]
@@ -1143,10 +1141,12 @@ end GaussContentLinearForms
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormCoefficientIdealMapCompleteDvrEqProdLifts
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits IsLocalRing
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LocM
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormCoefficientIdealMapCompleteDvrEqProdLifts
 
 
 open MvPolynomial in
@@ -1231,10 +1231,6 @@ theorem GlobalTheory.NormSheaf.normIdeal_map_eq_prod_lifts : ∀ (A B K L : Type
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormDescentIdealSheafFiniteOpenClosedImage
-
-
-open AlgebraicGeometry CategoryTheory Limits IsLocalRing
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LocM
 
 namespace GlobalTheory.NormSheaf
 

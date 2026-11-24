@@ -83,7 +83,6 @@ open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.BallMeanContinuousLinearFunctional
 open scoped InnerProductSpace
 
-
 namespace GlobalTheory.SgInf
 
 theorem ballMean_eLpNorm_two_le {α E : Type*} [MeasurableSpace α] [NormedAddCommGroup E]
@@ -182,7 +181,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsContinuousLimitUniformCauchy
 open scoped InnerProductSpace
-
 
 namespace GlobalTheory.SgInf.RegLimit
 
@@ -298,7 +296,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SmoothFunctionalOrbitSmoothVector
 open scoped InnerProductSpace ContDiff
 
-
 namespace GlobalTheory.SgInfOrb
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -342,7 +339,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SobolevIneqTranslateCompact
 open scoped InnerProductSpace ContDiff
-
 
 namespace GlobalTheory.SgInf.SobTranslate
 
@@ -495,7 +491,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselUnitaryHaarTransportDiagonal
 open scoped ENNReal
-
 
 namespace GlobalTheory.HaarTransport
 
@@ -705,10 +700,11 @@ theorem sobolev_at_one_compact : ∀ (n : ℕ) (ε : Fin n → Bool), ∃ (S : L
 end GlobalTheory.SobolevHaar
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SobolevInequalityAtIdentityBesselModelUnitaryGro
-
+-- clump: shared namespace opens
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SobolevInequalityAtIdentityBesselModelUnitaryGro
 open scoped InnerProductSpace ContDiff ENNReal
 
 namespace GlobalTheory.SobAtOne
@@ -875,13 +871,8 @@ end GlobalTheory.SobAtOne
 
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TendstoAverageL2Compact
 open scoped InnerProductSpace ENNReal Topology
-
 
 namespace GlobalTheory.SgInf.Mollify
 variable {k r : ℕ}

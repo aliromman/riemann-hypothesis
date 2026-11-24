@@ -76,10 +76,12 @@ import Mathlib.Tactic.Polynomial.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.SetIntegralPeriodLatticeEqVolumeMulCube, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.VolumeFundamentalDomainPeriodLattice, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KeyInNormalFormAndArchimedeanConstant
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.SetIntegralPeriodLatticeEqVolumeMulCube
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.SetIntegralPeriodLatticeEqVolumeMulCube
 
 namespace GlobalTheory
 
@@ -197,10 +199,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.VolumeFundamentalDomainPeriodLattice
 
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
 namespace GlobalTheory.PeriodVol
 
 def reImCoord (g : ℕ) : (Fin g → ℂ) ≃ₗ[ℝ] (Fin g ⊕ Fin g → ℝ) where
@@ -307,9 +305,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KeyInNormalFormAndArchimedeanConstant
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 namespace GlobalTheory
 

@@ -79,7 +79,6 @@ import Std.Tactic.BVDecide.Normalize.BitVec
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.SubsingletonIrrClZero
 
-
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.JHMult
 
 namespace GlobalTheory.SmGL.SegModel
@@ -110,7 +109,6 @@ end GlobalTheory.SmGL.SegModel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.JacquetMultiplicityDropZeroBlocks
-
 
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.Cos Matrix
 
@@ -243,9 +241,11 @@ end GlobalTheory.CompanionTheory.FineProd.JmDrop
 
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.JacquetMultiplicitySublistPadding
+-- clump: shared namespace opens
 
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.Cos
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.JacquetMultiplicitySublistPadding
 
 namespace GlobalTheory.CompanionTheory.FineProd
 
@@ -320,9 +320,6 @@ end GlobalTheory.CompanionTheory.FineProd
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalCellMultiplicityOfColouring
-
-
-open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.Cos
 
 namespace GlobalTheory.CompanionTheory.FineProdCell
 
@@ -420,9 +417,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalCellMultiplicityZeroOfSplitColumn
 
-open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.Cos
-
-
 namespace GlobalTheory.CompanionTheory.FineProd.CellMulti
 
 
@@ -467,9 +461,6 @@ end GlobalTheory.CompanionTheory.FineProd.CellMulti
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SegmentProductJacquetShuffleCount
-
-
-open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.Cos
 
 namespace GlobalTheory.CompanionTheory.FineProd
 

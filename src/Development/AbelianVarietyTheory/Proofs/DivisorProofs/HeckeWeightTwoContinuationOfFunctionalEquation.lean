@@ -198,7 +198,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CardHilbertEisensteinFourierFiberLeNorm
 
-
 namespace GlobalTheory.QFiber
 
 open FractionalIdeal
@@ -366,7 +365,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SummableExpNegTraceTotallyPositiveFractionalIdea
-
 
 namespace GlobalTheory.LatExpSum
 
@@ -635,7 +633,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckePhiFourierTransformSigmaZeroEq
 
-
 open Complex MeasureTheory Set
 open scoped FourierTransform
 
@@ -736,7 +733,6 @@ end -- clump:auto
 open NumberField Complex
 open scoped nonZeroDivisors
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization GlobalTheory.HeckeTwo
-
 
 namespace GlobalTheory.HeckeTwoSum
 
@@ -928,12 +924,13 @@ theorem GlobalTheory.HeckeTwoSum.summable_qClass : ∀ (F : Type) [Field F] [Num
   fun _ _ _ _ 𝔞 𝔟 z hz => GlobalTheory.HeckeTwoSum.summable_qClass_two 𝔞 𝔟 z hz
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeEisensteinWeightTwoQExpansion
-
+section -- clump: shared namespace opens
 
 open NumberField Complex
 open scoped nonZeroDivisors ContDiff
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization GlobalTheory.HeckeTwo
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeEisensteinWeightTwoQExpansion
 
 namespace GlobalTheory.HeckeTwoExp
 
@@ -1025,12 +1022,6 @@ theorem bOne_zero_qExpansion : ∀ (F : Type) [Field F] [NumberField F] [NumberF
 
 end GlobalTheory.HeckeTwoExp
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open NumberField Complex
-open scoped nonZeroDivisors ContDiff
-open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization GlobalTheory.HeckeTwo
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckePhiFourierConstantAtZeroZero
 
@@ -1218,7 +1209,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeEisensteinZeroFrequencyPartIsSmoothHolomorphic
-
 
 namespace GlobalTheory.HeckeTwo
 

@@ -131,13 +131,14 @@ theorem UpperTheory.Reformulated.B.ExistsCoordinate.exists_coord :
     exact ⟨a * c - b * e * H.d, a * e + b * c, by push_cast; linear_combination (b * e : E) * hsq⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DualBasisTraceLogNorm
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Matrix GlobalTheory GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
-open scoped ComplexOrder
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DualBasisTraceLogNorm
+open scoped ComplexOrder
 
 namespace GlobalTheory.CompanionTheory.Ar.RelDual
 
@@ -684,11 +685,6 @@ end GlobalTheory.CompanionTheory.Ar.RelDual
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.EigenLocalBasisLogNorm
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open Matrix GlobalTheory GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
 open scoped ComplexOrder
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl.EigSubLat
@@ -909,12 +905,6 @@ theorem eigSub_span : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
 end GlobalTheory.CompanionTheory.Ar.Fl.EigSubLat
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open Matrix GlobalTheory GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ExistsLocalBasisCmOrder
 open scoped ComplexOrder
 
@@ -923,7 +913,6 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.exists_local_basis_cm_order : 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.SesquilinearFractions.SpMapMonoOfFraction
-
 
 namespace PositivityTheory.Xgf.BaseChangeTangents
 
@@ -1180,7 +1169,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.SesquilinearFractions.GIntFrame
 open scoped ComplexOrder
 
-
 namespace PositivityTheory.Xgf
 
 private theorem isTanAt_iff_epsScale_zero_comp_eq_one {R : Type} [CommRing R] {S : Scheme} (x : Sp R ⟶ S) (G : Over S) [GrpObj G]
@@ -1429,7 +1417,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmPackPureNorm
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl.GFin
 

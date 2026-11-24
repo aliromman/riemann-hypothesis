@@ -53,12 +53,14 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LinearRecurrenceGrowthBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformBoundConstantTerm
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LinearRecurrenceGrowthBound
+-- clump: shared namespace opens
 
 open scoped ENNReal
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology Polynomial
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Rs GlobalTheory.CompanionTheory.Conc
 open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.AutomorphicForm
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LinearRecurrenceGrowthBound
 
 namespace GlobalTheory.CompanionTheory.LinRec
 
@@ -147,12 +149,6 @@ end GlobalTheory.CompanionTheory.LinRec
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformBoundConstantTerm
-
-
-open scoped ENNReal
-open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology Polynomial
-open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Rs GlobalTheory.CompanionTheory.Conc
-open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.AutomorphicForm
 open PositivityTheory.Rg.Rs.An PositivityTheory.Rg.Rs.ctstepglue
 
 namespace GlobalTheory.CompanionTheory.Conc

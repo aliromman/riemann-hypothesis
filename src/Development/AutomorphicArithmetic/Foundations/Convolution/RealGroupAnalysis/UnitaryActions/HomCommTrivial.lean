@@ -64,14 +64,14 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnitaryActions.CellLocal, Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnitaryActions.CellGeneric, Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnitaryActions.HomCommTrivial
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
 open Neutral.B1 Formalism.L2.Host GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Published GroundTheory.Global GroundTheory.Automorphic.GJMatrix
 open scoped Classical
-open UpperTheory.ConvolutionTheory.R2
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnitaryActions.CellLocal
+open UpperTheory.ConvolutionTheory.R2
 
 theorem UpperTheory.ConvolutionTheory.R2.cellLocal :
     ∀ (R : Type) [CommRing R] [IsLocalRing R] (ι : Type) (s : Finset ι) (c d : ι → R),
@@ -116,6 +116,7 @@ theorem UpperTheory.ConvolutionTheory.R2.cellLocal :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnitaryActions.CellGeneric
+open UpperTheory.ConvolutionTheory.R2
 
 private theorem unit_or_unit {R : Type} [CommRing R] [IsLocalRing R] {a b c d : R}
     (h : a * d - b * c = 1) : IsUnit c ∨ IsUnit d := by
@@ -215,14 +216,7 @@ theorem UpperTheory.ConvolutionTheory.R2.cellGeneric :
   exact hf' v hv.1 hv.2 g hg
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnitaryActions.HomCommTrivial
-
-
-open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
-open Neutral.B1 Formalism.L2.Host GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Published GroundTheory.Global GroundTheory.Automorphic.GJMatrix
-open scoped Classical
 
 namespace UpperTheory.ConvolutionTheory.R2
 

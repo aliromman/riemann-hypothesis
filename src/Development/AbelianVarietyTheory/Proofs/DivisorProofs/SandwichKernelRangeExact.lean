@@ -65,9 +65,11 @@ import Mathlib.Algebra.Order.Star.Real
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerMapSubsetImMap, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusOfPadic, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SandwichDatumScalarAction, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SandwichKernelRangeExact
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerMapSubsetImMap
+-- clump: shared namespace opens
 
 open GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.SandwichMaps GlobalTheory.DetInv Matrix TensorProduct
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerMapSubsetImMap
 
 namespace GlobalTheory.DetInv
 
@@ -131,9 +133,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusOfPadic
 
-
-open GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.SandwichMaps GlobalTheory.DetInv Matrix TensorProduct
-
 namespace GlobalTheory.DetInv.PsiPhi
 
 variable {p : ℕ} [Fact p.Prime] {O : Type} [CommRing O] [Fact ¬IsUnit (p : O)]
@@ -156,9 +155,6 @@ end GlobalTheory.DetInv
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SandwichDatumScalarAction
-
-
-open GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.SandwichMaps GlobalTheory.DetInv Matrix TensorProduct
 
 namespace GlobalTheory.DetInv.Intertwine
 
@@ -285,8 +281,6 @@ end GlobalTheory.DetInv
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SandwichKernelRangeExact
-
-open GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.SandwichMaps GlobalTheory.DetInv Matrix TensorProduct
 
 namespace GlobalTheory.DetInv
 

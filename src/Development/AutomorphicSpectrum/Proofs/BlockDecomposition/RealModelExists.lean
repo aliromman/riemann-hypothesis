@@ -707,7 +707,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralRightDerivativeEqZero
 
-
 open Matrix MeasureTheory
 open scoped ContDiff
 open PositivityTheory.RgBcC (GLs Rd)
@@ -865,14 +864,7 @@ theorem _root_.GlobalTheory.T.iwasawa_parabolic_unitary : ∀ (n : ℕ) (lev : F
   first | exact @GlobalTheory.CompanionTheory.ModelS.exists_Pb_mul_unitary
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KActionSkewAdjointL2
-
-
-open Matrix Finset MeasureTheory
-open scoped ContDiff ComplexConjugate InnerProductSpace
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD
 open PositivityTheory.RgTw (Mat)
 open GlobalTheory.CompanionTheory.GLK (e1 e2 f1)
 
@@ -982,12 +974,6 @@ theorem GlobalTheory.CompanionTheory.ModelS.ipK_Kf_transpose : ∀ (n : ℕ) [Me
   rw [L, R]
   linear_combination key _ (skA_skew a b) + Complex.I * key _ (skB_skew a b)
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open Matrix Finset MeasureTheory
-open scoped ContDiff ComplexConjugate InnerProductSpace
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KActionSkewAdjointL2Statement
 open PositivityTheory.RgTw (Mat)
@@ -1106,7 +1092,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LieGeneratorsGlRelations
-
 
 open Matrix
 open PositivityTheory.RgTw (Mat)
@@ -1275,7 +1260,7 @@ end GlobalTheory.CompanionTheory.GLK.Pair
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open Matrix Finset MeasureTheory
 open scoped ContDiff ComplexConjugate InnerProductSpace
@@ -1374,14 +1359,7 @@ theorem _root_.GlobalTheory.T.right_derivative_preserves_equivariant : ∀ (n : 
   first | exact @GlobalTheory.CompanionTheory.ModelS.DR_mem_Eqv
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RightDerivativeRealLieHom
-
-
-open Matrix Finset MeasureTheory
-open scoped ContDiff ComplexConjugate InnerProductSpace
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD
 open PositivityTheory.RgTw (Mat)
 open GlobalTheory.CompanionTheory.GLK (e1 e2 f1)
 
@@ -1434,10 +1412,6 @@ end GlobalTheory.CompanionTheory.ModelS.LieAct
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RightDerivativeRealLieHomStatement
-
-open Matrix Finset MeasureTheory
-open scoped ContDiff ComplexConjugate InnerProductSpace
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD
 open PositivityTheory.RgTw (Mat)
 open GlobalTheory.CompanionTheory.GLK (e1 e2 f1)
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -1447,11 +1421,6 @@ theorem _root_.GlobalTheory.T.right_derivative_real_lie_hom : ∀ (n : ℕ), (�
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RealModelExists
-
-
-open Matrix Finset MeasureTheory
-open scoped ContDiff ComplexConjugate InnerProductSpace
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD
 open PositivityTheory.RgTw (Mat)
 open GlobalTheory.CompanionTheory.GLK (e1 e2 f1)
 

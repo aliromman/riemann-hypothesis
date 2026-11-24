@@ -1042,13 +1042,7 @@ end
 end -- clump:auto
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ReductionLeviGLIsotropicFrame
-
-
-open scoped TensorProduct NNReal ENNReal Matrix
-open NumberField MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet GlobalTheory.UAut GlobalTheory.EisLine GlobalTheory.SphEis
 open GlobalTheory.ResLine (IsHt SemiLat)
 open GlobalTheory.Doubling (absE npow)
 open Formalism.UG (cT bc)
@@ -1087,13 +1081,8 @@ end GlobalTheory.SphEis
 
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open scoped TensorProduct NNReal ENNReal Matrix
-
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SummableAbsDetRationalPointsGodement
 @[expose] public section
-open NumberField MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet GlobalTheory.UAut GlobalTheory.EisLine GlobalTheory.SphEis
 open GlobalTheory.ResLine (IsHt SemiLat)
 open GlobalTheory.Doubling (absE npow)
 open Formalism.UG (cT bc)
@@ -1173,7 +1162,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SummableHeightRpowParabolicCosets
-open NumberField MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet GlobalTheory.UAut GlobalTheory.EisLine GlobalTheory.SphEis
 open GlobalTheory.ResLine (IsHt SemiLat)
 open GlobalTheory.Doubling (absE npow)
 open Formalism.UG (cT bc)
@@ -1203,7 +1191,11 @@ theorem summable_height_rpow : ∀ (F E : Type) [Field F] [NumberField F] [Field
 end GlobalTheory.SphEis
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GodementSummableHeightRpowRepresentatives
+
+open scoped TensorProduct NNReal ENNReal Matrix
 open NumberField MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet GlobalTheory.ResLine GlobalTheory.ResidueEisenstein
 open GlobalTheory.Doubling (absE)
 

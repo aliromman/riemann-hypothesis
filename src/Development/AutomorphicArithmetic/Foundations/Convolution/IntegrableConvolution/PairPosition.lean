@@ -198,12 +198,13 @@ theorem UpperTheory.ConvolutionTheory.L1.cvPowers :
 end -- clump:auto
 end -- clump:auto
 
-section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactGen
-@[expose] public noncomputable section
-
+section -- clump: shared namespace opens
 
 open MeasureTheory NumberField IsDedekindDomain
 open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.RightCosetSpace
+
+section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactGen
+@[expose] public noncomputable section
 open GroundTheory.Automorphic.AutomorphicForm GroundTheory.Automorphic.CuspidalSpectrum UpperTheory.ConvolutionTheory UpperTheory.ConvolutionTheory.C
 open scoped TensorProduct
 
@@ -360,9 +361,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactTens
 @[expose] public section
-
-open MeasureTheory NumberField IsDedekindDomain
-open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.RightCosetSpace
 open GroundTheory.Automorphic.AutomorphicForm GroundTheory.Automorphic.CuspidalSpectrum UpperTheory.ConvolutionTheory UpperTheory.ConvolutionTheory.L1 UpperTheory.ConvolutionTheory.C PositivityTheory.Rg.Tf.Geo PositivityTheory.Rg.Fx
 open scoped TensorProduct
 
@@ -490,10 +488,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.WordTens
-
-
-open MeasureTheory NumberField IsDedekindDomain
-open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.RightCosetSpace
 open GroundTheory.Automorphic.AutomorphicForm GroundTheory.Automorphic.CuspidalSpectrum UpperTheory.ConvolutionTheory.C PositivityTheory.Rg.Tf.Geo
 open scoped ComplexConjugate
 
@@ -695,6 +689,8 @@ theorem UpperTheory.ConvolutionTheory.L1.wordTens :
   have h4 : (aF : archGroup F n → ℂ) = cvPow νF a m := funext hs.pow
   rw [q2, funext p2, h4, ← h3]
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.PairPosition
 

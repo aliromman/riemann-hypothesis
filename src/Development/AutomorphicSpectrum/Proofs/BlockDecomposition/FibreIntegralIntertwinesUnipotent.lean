@@ -89,7 +89,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralCompSymm
 
-
 open MeasureTheory
 open scoped Matrix Pointwise NNReal
 
@@ -118,11 +117,12 @@ theorem map_symm_eq_smul (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace
 end GlobalTheory.ChangeVarPi
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothIntegralLinearChange
-
+-- clump: shared namespace opens
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.Rodier GlobalTheory.CompanionTheory.BZPsiPG
 open scoped TensorProduct
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothIntegralLinearChange
 
 namespace GlobalTheory.CompanionTheory.Rodier.SmIntHaar
 
@@ -188,10 +188,6 @@ end GlobalTheory.CompanionTheory.Rodier.SmIntHaar
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreIntegralIntertwinesUnipotent
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.Rodier GlobalTheory.CompanionTheory.BZPsiPG
-open scoped TensorProduct
-
 
 namespace GlobalTheory.CompanionTheory.BZPsiPG.FibQ
 

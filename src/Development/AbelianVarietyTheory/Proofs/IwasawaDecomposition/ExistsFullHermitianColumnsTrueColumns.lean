@@ -66,7 +66,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemKDSupUnit
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsOpenKerNormOneFiniteAdeleDetClass
 
-
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Col Formalism.L2.DIV GlobalTheory.Mem GlobalTheory.Mem.Chr GlobalTheory.Mem.Col2 GlobalTheory.Mem.Col2.FullDt ReciprocityTheory.Neutral.Bridge.HCFR Neutral.B1
 open scoped TensorProduct Topology
 
@@ -151,7 +150,7 @@ end GlobalTheory.Mem.Col2.FullDt
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Col Formalism.L2.DIV GlobalTheory.Mem GlobalTheory.Mem.Chr GlobalTheory.Mem.Col2 GlobalTheory.Mem.Col2.FullDt ReciprocityTheory.Neutral.Bridge.HCFR Neutral.B1
 open scoped TensorProduct
@@ -307,13 +306,7 @@ theorem _root_.GlobalTheory.T.q_mu0_eq_empty : ∀ (B : Base) (X : PreX B.toPre)
   first | exact @GlobalTheory.Mem.Col2.RefTup.twistPrimes_reference_tuple_eq_empty
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFullHermitianColumnsTrueColumns
-
-
-open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Col Formalism.L2.DIV GlobalTheory.Mem GlobalTheory.Mem.Chr GlobalTheory.Mem.Col2 GlobalTheory.Mem.Col2.FullDt ReciprocityTheory.Neutral.Bridge.HCFR Neutral.B1
-open scoped TensorProduct
 
 namespace GlobalTheory.Mem.Col2.FullDt
 

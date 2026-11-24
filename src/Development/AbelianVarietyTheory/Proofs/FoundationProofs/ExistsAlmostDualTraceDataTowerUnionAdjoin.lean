@@ -60,10 +60,12 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemTowerUnionAdjoinIntegralClosureIff, Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemTowerUnionAdjoinOfGaloisFixed, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsAlmostDualTraceDataTowerUnionAdjoin
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemTowerUnionAdjoinIntegralClosureIff
+-- clump: shared namespace opens
 
 open GlobalTheory.AlmostEt GlobalTheory.K5
 open scoped NNReal
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemTowerUnionAdjoinIntegralClosureIff
 
 namespace GlobalTheory
 
@@ -86,12 +88,6 @@ theorem towerAlg_mem_iff (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebr
 
 end GlobalTheory
 end -- clump:auto
-
--- clump: shared namespace opens
-
-
-open GlobalTheory.AlmostEt GlobalTheory.K5
-open scoped NNReal
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemTowerUnionAdjoinOfGaloisFixed
 

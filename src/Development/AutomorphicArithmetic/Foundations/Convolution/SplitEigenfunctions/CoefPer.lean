@@ -213,7 +213,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.OrbitMeasurability.AbsUnf
 
-
 open MeasureTheory Measure Set
 open scoped ENNReal
 
@@ -530,13 +529,14 @@ theorem UpperTheory.ConvolutionTheory.RankTwoDescent.Cp.zOne :
     rw [gl_mul, hj', mul_assoc, gl_scalarCenter_commute D zz y, mul_assoc]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.OrbitMeasurability.SwapInt
-
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
 open Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Published GroundTheory.Global GroundTheory.Automorphic.GJMatrix
 open UpperTheory.ConvolutionTheory.R2 UpperTheory.ConvolutionTheory.R2.Ff
 open scoped Classical
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.OrbitMeasurability.SwapInt
 open scoped ENNReal
 
 namespace UpperTheory.ConvolutionTheory.RankTwoDescent.Cp
@@ -623,11 +623,6 @@ theorem UpperTheory.ConvolutionTheory.RankTwoDescent.Cp.zAll :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.CoefPer
-
-open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
-open Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Published GroundTheory.Global GroundTheory.Automorphic.GJMatrix
-open UpperTheory.ConvolutionTheory.R2 UpperTheory.ConvolutionTheory.R2.Ff
-open scoped Classical
 open UpperTheory.ConvolutionTheory.RankTwoDescent UpperTheory.ConvolutionTheory.RankTwoDescent.Cp
 
 theorem UpperTheory.ConvolutionTheory.RankTwoDescent.coefPer :

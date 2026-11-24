@@ -533,9 +533,11 @@ theorem padicInt_module_finite_of_separated_of_finite_quotient (l : ℕ) [Fact l
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIntTorsionFreeOfCardQuotientPow
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIntTorsionFreeOfCardQuotientPow
 
 namespace GlobalTheory
 
@@ -602,8 +604,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.QzTorsionZmodEmbedding
 @[expose] public section
-
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology
 
 namespace GlobalTheory
 
@@ -705,8 +705,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.Sha1TorsionLevelFiltration
-
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology
 
 namespace GlobalTheory
 
@@ -856,9 +854,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.LengthEqLengthInvariantsOfTorsionLevels
-
-
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology
 
 namespace GlobalTheory.TateLimit
 

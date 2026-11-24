@@ -75,11 +75,12 @@ import Mathlib.Algebra.Order.Star.Real
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EulerProductConvergenceBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteProductDifferenceBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalHaarMeasureSingleton, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MultipliableLocalFactors, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TailSumOverPlacesSmall, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TruncatedSumLimit, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeanValueFormula
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EulerProductConvergenceBound
-
+-- clump: shared namespace opens
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW GlobalTheory.CompanionTheory.Mass.MeanV PositivityTheory.Rg.Mass NumberField IsDedekindDomain MeasureTheory Topology Filter
 open scoped ENNReal NNReal Classical
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EulerProductConvergenceBound
 
 namespace GlobalTheory.CompanionTheory.Mass.SumDev
 
@@ -243,11 +244,6 @@ theorem sum_bounded_prod : CountBd → ∀ (F : Type) [Field F] [NumberField F],
 end GlobalTheory.CompanionTheory.Mass.SumDev
 
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW GlobalTheory.CompanionTheory.Mass.MeanV PositivityTheory.Rg.Mass NumberField IsDedekindDomain MeasureTheory Topology Filter
-open scoped ENNReal NNReal Classical
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteProductDifferenceBound
 
@@ -494,7 +490,6 @@ end GlobalTheory.CompanionTheory.Mass.MeanV
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeanValueFormula
-
 
 namespace GlobalTheory.CompanionTheory.Mass.MeanV
 

@@ -114,7 +114,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AddValNormUnramifiedInvolutionFieldExtEqMul
 
-
 namespace GlobalTheory.UnitLemma.Unr.NormVal
 
 open GlobalTheory.UnitLemma GlobalTheory.UnitLemma.Unr Polynomial
@@ -300,7 +299,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUniformizerCompatibleUnramifiedExt
 
-
 namespace GlobalTheory.UnitLemma.Unr
 
 open GlobalTheory.UnitLemma Polynomial
@@ -356,9 +354,11 @@ theorem exists_unif (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E) (h : IsUnrExt K 
 end GlobalTheory.UnitLemma.Unr
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBasisTraceInvolutionDetUnitUnramified
+-- clump: shared namespace opens
 
 open GlobalTheory.UnitLemma GlobalTheory.UnitLemma.Unr Polynomial
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBasisTraceInvolutionDetUnitUnramified
 
 theorem GlobalTheory.UnitLemma.Unr.exists_basis_trace_conj_unit :
     ∀ (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E), IsUnrExt K K' d φ → 0 < d →
@@ -573,9 +573,6 @@ theorem GlobalTheory.UnitLemma.Unr.exists_basis_trace_conj_unit :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EtaGramDetInvAlgBaseChangeUnramifiedOdd
-
-
-open GlobalTheory.UnitLemma GlobalTheory.UnitLemma.Unr Polynomial
 
 namespace GlobalTheory.UnitLemma.Unr
 

@@ -86,7 +86,6 @@ import Mathlib.Topology.Separation.CompletelyRegular
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FlagGramEqGramDetProjectionNormalForm
 
-
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
 open scoped InnerProductSpace ENNReal
 
@@ -475,7 +474,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.SemilocalFrames.CmHalfIntegralGeneratorMemAlgebraicClosure
 
-
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf
 open scoped InnerProductSpace ENNReal
 
@@ -558,10 +556,12 @@ theorem _root_.GlobalTheory.Amp.Model.cont_lebN_map (k r : ℕ) :
 end GlobalTheory.Amp.Model
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LintegralRadicalEqTopSectionSplit
+-- clump: shared namespace opens
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
 open scoped InnerProductSpace ENNReal
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LintegralRadicalEqTopSectionSplit
 
 namespace GlobalTheory.Amp.PSplit
 
@@ -719,10 +719,6 @@ end GlobalTheory.Amp.PSplit
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LintegralFlagUnipotentEqStabilizerTimesSection
-
-
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
-open scoped InnerProductSpace ENNReal
 
 namespace GlobalTheory.Amp.RadConj
 
@@ -1097,10 +1093,6 @@ end GlobalTheory.Amp.RadConj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SiegelHeightBoundSection
-
-
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
-open scoped InnerProductSpace ENNReal
 
 namespace GlobalTheory.Amp.SecBound
 
@@ -1544,11 +1536,6 @@ theorem section_coord_le (k r j : ℕ) (hj : j ≤ r) (z z' : (Fin (2 * r + k + 
 
 end GlobalTheory.Amp.SecBound
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
-open scoped InnerProductSpace ENNReal
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TwoMulPiPowLeFourPow
 

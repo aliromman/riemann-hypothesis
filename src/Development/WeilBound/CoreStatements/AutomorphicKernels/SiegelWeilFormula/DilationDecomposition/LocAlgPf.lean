@@ -78,7 +78,6 @@ import Mathlib.Algebra.Order.Star.Real
 
 open scoped Matrix
 
-
 namespace GlobalTheory.CompanionTheory.DCell
 
 open Matrix PositivityTheory.Rg.Sw
@@ -392,7 +391,6 @@ end GlobalTheory.CompanionTheory.ComplexAnalysis
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IteratedDerivGaussianExponentialAtZero
-
 
 open MvPolynomial
 
@@ -719,9 +717,11 @@ theorem holomorphic_integral (m n : ℕ) (X : Fin n → ℝ) (K : (Fin m → Fin
 end GlobalTheory.CompanionTheory.HolMean.DilatedGaussian
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ParabolicDecompositionUpperHalfSpace
+-- clump: shared namespace opens
 
 open scoped Matrix
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ParabolicDecompositionUpperHalfSpace
 
 namespace GlobalTheory.CompanionTheory.SiegelPoint
 
@@ -812,9 +812,6 @@ end GlobalTheory.CompanionTheory.SiegelPoint
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.DilationDecomposition.LocAlgPf
-
-
-open scoped Matrix
 open MeasureTheory PositivityTheory.Rg.Sw
 
 namespace PositivityTheory.SiegelWeilFormula.Kdil

@@ -84,7 +84,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ExistsInhabitant
 
-
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK
@@ -108,7 +107,6 @@ end GlobalTheory.Published.LeviCentreModel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.DetALeviTorus
-
 
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
@@ -411,7 +409,7 @@ end GlobalTheory.CompanionTheory.BlockEntry
 end -- clump:auto
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open NumberField Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
 
@@ -422,7 +420,6 @@ open GlobalTheory.Published GlobalTheory.Published.AutFin GlobalTheory.StdPar Gl
 open GlobalTheory.UAut GlobalTheory.AdelicU GlobalTheory.SiegelSet
 
 open GlobalTheory.LeviHC
-
 
 namespace GlobalTheory.CompanionTheory.BlockEntry
 
@@ -659,12 +656,7 @@ theorem _root_.GlobalTheory.T.automorphic_function_restrict_block : ∀ (D : D7)
   first | exact @GlobalTheory.CompanionTheory.CuspSmooth.mem_Sm_blockEmb_smFun
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.DerEndMemLeftInv
-
-
-open NumberField Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Published GlobalTheory.Published.AutFin GlobalTheory.StdPar GlobalTheory.ThK.SmoothLev GlobalTheory.CompanionTheory.Hypotheses₂.ConstFin GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart

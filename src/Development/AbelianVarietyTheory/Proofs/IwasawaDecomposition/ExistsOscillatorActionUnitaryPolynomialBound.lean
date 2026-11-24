@@ -65,11 +65,12 @@ import Mathlib.RingTheory.PiTensorProduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MovedVacuumDeriv, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasDerivAtOscillatorIntegralSymplecticPath, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsOscillatorActionUnitaryPolynomialBound
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MovedVacuumDeriv
-
+-- clump: shared namespace opens
 
 open MeasureTheory Complex Matrix GlobalTheory.RealWeil GlobalTheory.Mem.Lift
 open scoped RealInnerProductSpace ContDiff Real ComplexOrder Topology
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MovedVacuumDeriv
 
 namespace GlobalTheory.Mem.Lift.MovedVac
 
@@ -266,9 +267,6 @@ end GlobalTheory.Mem.Lift.MovedVac
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasDerivAtOscillatorIntegralSymplecticPath
-
-open MeasureTheory Complex Matrix GlobalTheory.RealWeil GlobalTheory.Mem.Lift
-open scoped RealInnerProductSpace ContDiff Real ComplexOrder Topology
 
 namespace GlobalTheory.Mem.Lift.OscDeriv
 
@@ -661,10 +659,6 @@ end GlobalTheory.Mem.Lift.OscDeriv
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsOscillatorActionUnitaryPolynomialBound
-
-
-open MeasureTheory Complex Matrix GlobalTheory.RealWeil GlobalTheory.Mem.Lift
-open scoped RealInnerProductSpace ContDiff Real ComplexOrder Topology
 
 namespace GlobalTheory.Mem.Lift.OscBound
 

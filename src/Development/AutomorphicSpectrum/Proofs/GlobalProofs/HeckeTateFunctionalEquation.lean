@@ -592,12 +592,7 @@ theorem integral_eq_finsum : ∀ (E : Type) [Field E] [NumberField E] (v : Heigh
 end GlobalTheory.CompanionTheory.PeriodicInt
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.HeckeCharacterConductorExponent
-
-
-open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.IndefiniteRowSideFullHecke.CompletedLStripBounds GlobalTheory.HeckeEps GlobalTheory.CompanionTheory.HeckeBridge GroundTheory.Global GroundTheory.LocalField GroundTheory.Global.IdeleGroup
 open GroundTheory.Automorphic.GodementSection (localChar)
 open Formalism.L2.Host (unif atFin unif_spec)
 
@@ -724,9 +719,6 @@ end GlobalTheory.CompanionTheory.HeckeBridge
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.HeckeGaussSumLocalTerm
-
-
-open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.IndefiniteRowSideFullHecke.CompletedLStripBounds GlobalTheory.HeckeEps GlobalTheory.CompanionTheory.HeckeBridge GroundTheory.Global GroundTheory.LocalField GroundTheory.Global.IdeleGroup
 open GroundTheory.Automorphic.GodementSection (localChar)
 open Formalism.L2.Host (unif atFin unif_spec)
 
@@ -805,9 +797,6 @@ end GlobalTheory.CompanionTheory.HeckeBridge.GaussSum
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.HeckeLFunctionEulerProduct
-
-
-open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.IndefiniteRowSideFullHecke.CompletedLStripBounds GlobalTheory.HeckeEps GlobalTheory.CompanionTheory.HeckeBridge GroundTheory.Global GroundTheory.LocalField GroundTheory.Global.IdeleGroup
 open GroundTheory.Automorphic.GodementSection (localChar)
 open Formalism.L2.Host (unif atFin unif_spec)
 
@@ -873,8 +862,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.LocalAdditiveCharacterEqAdelic
 @[expose] public section
-
-open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.IndefiniteRowSideFullHecke.CompletedLStripBounds GlobalTheory.HeckeEps GlobalTheory.CompanionTheory.HeckeBridge GroundTheory.Global GroundTheory.LocalField GroundTheory.Global.IdeleGroup
 open GroundTheory.Automorphic.GodementSection (localChar)
 open Formalism.L2.Host (unif atFin unif_spec)
 
@@ -1169,6 +1156,8 @@ end GlobalTheory.CompanionTheory.PsiStd
 end
 end -- clump:auto
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.HeckeTateFunctionalEquation
 

@@ -152,7 +152,7 @@ theorem UpperTheory.Reformulated.B.Rc8.norm_le_one_of_mem :
   exact PadicInt.norm_le_one _
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.Ord2 GlobalTheory.KZ GlobalTheory.KA
 open scoped Matrix
@@ -708,13 +708,7 @@ theorem tame_limit : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [Algebr
 end GlobalTheory.KA
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.TameOfShCoc
-
-
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.Ord2 GlobalTheory.KZ GlobalTheory.KA
-open scoped Matrix
 
 namespace GlobalTheory.KZ
 
@@ -740,13 +734,7 @@ end GlobalTheory.KZ
 
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.Ord2 GlobalTheory.KZ GlobalTheory.KA
-open scoped Matrix
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.UnivNormUnramOfOrderOf
-
 
 namespace GlobalTheory.KA.UnivNorm
 
@@ -1065,7 +1053,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.TameShapiroSystemLimitUnramifiedAwayFromL
 
-
 namespace GlobalTheory.KA.TameUnr
 
 open GlobalTheory.KA.UnivNorm
@@ -1356,7 +1343,6 @@ end GlobalTheory.KA.TameUnr
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.NormSubMulAddLeOfUltrametricReplace
-
 
 namespace GlobalTheory.KZ
 

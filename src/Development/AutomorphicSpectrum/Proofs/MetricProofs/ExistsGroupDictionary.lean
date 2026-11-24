@@ -122,7 +122,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.ArchimedeanUnitaryRepresentation
 
-
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.Dict.TmBasic
 
 theorem conj_unitary {ι : Type} [Fintype ι] (M G : Matrix ι ι ℂ)
@@ -187,7 +186,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.BallMobiusZeroContinuous
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.Dict
 
@@ -255,7 +253,6 @@ end GlobalTheory.CompanionTheory.Ar.Cusp.Dict
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsMajorantOfPositiveFrame
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.Dict.TauMaj
 
@@ -466,12 +463,13 @@ theorem exists_majorant : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
 end GlobalTheory.CompanionTheory.Ar.Cusp.Dict.TauMaj
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.LatticeStabilizerEquivAutomorphisms
+-- clump: shared namespace opens
 
 open NumberField Matrix MeasureTheory Filter Topology GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GroundTheory.Heights₂.Heights.FiniteCovolume GroundTheory.Automorphic GlobalTheory.CompanionTheory.Ar.Cusp.Dict
 open scoped ENNReal InnerProductSpace
 open scoped ComplexOrder
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.LatticeStabilizerEquivAutomorphisms
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.Dict.Stab
 
@@ -685,11 +683,6 @@ end GlobalTheory.CompanionTheory.Ar.Cusp.Dict.Stab
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsGroupDictionary
-
-
-open NumberField Matrix MeasureTheory Filter Topology GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GroundTheory.Heights₂.Heights.FiniteCovolume GroundTheory.Automorphic GlobalTheory.CompanionTheory.Ar.Cusp.Dict
-open scoped ENNReal InnerProductSpace
-open scoped ComplexOrder
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.Dict
 

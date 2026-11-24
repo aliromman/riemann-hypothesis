@@ -65,7 +65,7 @@ import Mathlib.Tactic.Basify
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTwistedThetaValueSubsingletonBase, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTwistedThetaValueSubsingletonBaseStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValuePullbackBaseChange, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValuePullbackBaseChangeStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValueTranslateOrthogonalTorsion, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValueTranslateOrthogonalTorsionStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValueUnique, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValueUniqueStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapInverseNatCast
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -74,7 +74,6 @@ open scoped CategoryTheory.Obj
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTwistedThetaValueSubsingletonBase
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
-
 
 namespace GlobalTheory.UPoinc.USum
 
@@ -142,7 +141,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 set_option autoImplicit false
-
 
 namespace GlobalTheory.UPoinc.USum
 
@@ -311,14 +309,7 @@ open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapInverseNatCast
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ZH GlobalTheory.Poinc
 

@@ -83,9 +83,11 @@ import Mathlib.Algebra.Order.Star.Int
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDualOddFrameCuspForms, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsEisensteinSlashNeOutsideGamma, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsOddFrameNotReducesToSmallerOddWeight, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsOddWeightFrameDetNeZero, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPlusMinusCosetRepresentativesTwoMulCard, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPointSlashEvaluationsIndependentGamma, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsTendstoSlashEvaluationMatrixMul, Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteDimensionalModularFormCuspForm, Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteDimensionalOfGammaLe, Development.AbelianVarietyTheory.Proofs.FoundationProofs.LevelOneTwelveMulFinrankModularFormLowerBound, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsEqDiscriminantMulOfExpDecayCusps, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsLevelOneFormOneAddExpDecay, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ReducesToSmallerOddWeightOfLeadingCoeffMatrixDet, Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumFinrankLevelOneLeFinrankCuspFormOfFrame, Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumFinrankLevelOneLeFinrankOfFrame, Development.AbelianVarietyTheory.Proofs.FoundationProofs.TendstoSmulInvOfMulTendstoInvertibleMatrix, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThreeMulCardOddFrameWeightsDvdThree, Development.AbelianVarietyTheory.Proofs.FoundationProofs.OddWeightModularCuspDimensionLowerBound
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDualOddFrameCuspForms
+section -- clump: shared namespace opens
 
 open UpperHalfPlane Filter GlobalTheory.OddFrame
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDualOddFrameCuspForms
 open ModularForm (E₄ E₆)
 open scoped MatrixGroups ModularForm Manifold Topology
 
@@ -253,8 +255,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsEisensteinSlashNeOutsideGamma
-
-open UpperHalfPlane Filter GlobalTheory.OddFrame
 open ModularForm (E₄ E₆)
 open scoped MatrixGroups ModularForm Manifold Topology
 
@@ -410,8 +410,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsOddFrameNotReducesToSmallerOddWeight
-
-open UpperHalfPlane Filter GlobalTheory.OddFrame
 open ModularForm (E₄ E₆)
 open scoped MatrixGroups ModularForm Manifold Topology
 
@@ -513,9 +511,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsOddWeightFrameDetNeZero
-
-
-open UpperHalfPlane Filter GlobalTheory.OddFrame
 open ModularForm (E₄ E₆)
 open scoped MatrixGroups ModularForm Manifold Topology
 
@@ -715,8 +710,6 @@ end GlobalTheory.OddFrame
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPlusMinusCosetRepresentativesTwoMulCard
-
-open UpperHalfPlane Filter GlobalTheory.OddFrame
 open ModularForm (E₄ E₆)
 open scoped MatrixGroups ModularForm Manifold Topology
 
@@ -807,8 +800,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPointSlashEvaluationsIndependentGamma
-
-open UpperHalfPlane Filter GlobalTheory.OddFrame
 open ModularForm (E₄ E₆)
 open scoped MatrixGroups ModularForm Manifold Topology
 
@@ -917,9 +908,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsTendstoSlashEvaluationMatrixMul
-
-
-open UpperHalfPlane Filter GlobalTheory.OddFrame
 open ModularForm (E₄ E₆)
 open scoped MatrixGroups ModularForm Manifold Topology
 
@@ -1037,11 +1025,12 @@ theorem exists_tendsto_evM_mul (M : ℕ) (Γ : Subgroup SL(2, ℤ)) (r : ℕ) (s
 end GlobalTheory.OddFrame
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteDimensionalModularFormCuspForm
 
 open GlobalTheory.HeckeFamilyMatrices UpperHalfPlane ModularForm
 open scoped MatrixGroups ModularForm Manifold
-
 
 namespace GlobalTheory.HeckeFamilyMatrices.FinDim
 

@@ -54,9 +54,11 @@ import Formalism.LocalToGlobal.ProjectiveLattices.SubConstMemOrig
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Counterexamples.UpperHalfSurvey.ValOfKindIndep, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.AdmissibleRowsValueEqRowGauge
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.UpperHalfSurvey.ValOfKindIndep
+-- clump: shared namespace opens
 
 open scoped BigOperators
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.UpperHalfSurvey.ValOfKindIndep
 open Classical
 
 namespace GlobalTheory.RowValueCheck
@@ -138,9 +140,6 @@ end GlobalTheory.RowValueCheck
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.AdmissibleRowsValueEqRowGauge
-
-
-open scoped BigOperators
 open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw GlobalTheory.RowVal ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.RowVal

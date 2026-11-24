@@ -67,7 +67,7 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSectio
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsClopenIntegralOfSmoothOverField, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLinearClosedImmersionProjectiveSpaceCodimT, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIsoNearOrCentreMeets, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIsoRestrictOfClosedImmersionNearGeneric, Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerNeBotAndNotEffCartier, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothOfRelativeDimensionOfIntegralKrullDimEq, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeakResolutionOfPrincipalisation
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
@@ -388,13 +388,7 @@ theorem smoothOfRelativeDimension_of_topologicalKrullDim_eq :
 end GlobalTheory.RelDimOfDim
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeakResolutionOfPrincipalisation
-
-
-open CategoryTheory AlgebraicGeometry TopologicalSpace Limits
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 
 namespace GlobalTheory.WeakRes
 

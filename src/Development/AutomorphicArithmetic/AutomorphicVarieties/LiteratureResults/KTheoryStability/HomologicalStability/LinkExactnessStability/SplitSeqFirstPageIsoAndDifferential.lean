@@ -520,7 +520,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.HomologicalStability.LinkExactnessStability.ProjectivePermTensorFree
 
-
 namespace GlobalTheory.HomStab
 
 variable {k G : Type} [CommRing k] [Group G]
@@ -867,7 +866,6 @@ end -- clump:auto
 
 open CategoryTheory CategoryTheory.Limits GlobalTheory.HomStab GlobalTheory.SeqCx UpperTheory.V.KL
 
-
 open scoped Matrix
 
 namespace GlobalTheory.HomStab.FacePerm
@@ -1074,9 +1072,11 @@ end GlobalTheory.HomStab
 
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.HomologicalStability.LinkExactnessStability.StandardSeqPointCompSplitSeqDifferential
+-- clump: shared namespace opens
 
 open CategoryTheory CategoryTheory.Limits GlobalTheory.HomStab GlobalTheory.SeqCx UpperTheory.V.KL
+
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.HomologicalStability.LinkExactnessStability.StandardSeqPointCompSplitSeqDifferential
 
 namespace GlobalTheory.HomStab
 
@@ -1173,9 +1173,6 @@ end GlobalTheory.HomStab
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.HomologicalStability.LinkExactnessStability.SplitSeqFirstPageIsoAndDifferential
-
-
-open CategoryTheory CategoryTheory.Limits GlobalTheory.HomStab GlobalTheory.SeqCx UpperTheory.V.KL
 
 namespace GlobalTheory.HomStab
 

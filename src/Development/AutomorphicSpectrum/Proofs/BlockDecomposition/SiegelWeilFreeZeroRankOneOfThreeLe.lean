@@ -159,12 +159,13 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasure
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalVolumeRankOneStandard, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteVolumeRankOneEuler, Development.WeilBound.CoreStatements.ThetaDilations.ProdRho, Development.WeilBound.CoreStatements.ThetaDilations.BoundedA, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussianFourierSelfDualAdelic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GlobalVolumeRankOneNormalised, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaMeasureLocallyFiniteInvariant, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SiegelWeilFreeZeroRankOneOfThreeLe
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalVolumeRankOneStandard
-
+section -- clump: shared namespace opens
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology
 open scoped TensorProduct ENNReal NNReal Matrix
 open GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WeilSiegel.Free
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalVolumeRankOneStandard
 
 namespace GlobalTheory.CompanionTheory.WeilSiegel.Free.ScaleZero
 
@@ -285,10 +286,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteVolumeRankOneEuler
 
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology
-open scoped TensorProduct ENNReal NNReal Matrix
-open GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WeilSiegel.Free
-
 namespace GlobalTheory.CompanionTheory.WeilSiegel.Free.GrowthZero
 
 open GlobalTheory.CompanionTheory.SW.Growth
@@ -354,13 +351,14 @@ theorem growth_zero : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
 end GlobalTheory.CompanionTheory.WeilSiegel.Free.GrowthZero
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology GlobalTheory.CompanionTheory.SW.Core
 open scoped ENNReal NNReal MatrixGroups
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.ThetaDilations.ProdRho
-
 
 namespace PositivityTheory.PlacePermOperatorBicommutantSpan
 
@@ -422,7 +420,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.ThetaDilations.BoundedA
 
-
 namespace PositivityTheory.PlacePermOperatorBicommutantSpan
 
 theorem sb_indL {F : Type} [Field F] [NumberField F] {ι : Type} [Fintype ι] {a : ℕ} (ha : 0 < a) :
@@ -436,7 +433,6 @@ end PositivityTheory.PlacePermOperatorBicommutantSpan
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussianFourierSelfDualAdelic
-
 
 namespace GlobalTheory.CompanionTheory.SW.Core0
 
@@ -904,7 +900,6 @@ open GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GlobalVolumeRankOneNormalised
 open GlobalTheory.CompanionTheory.SW.BB GlobalTheory.CompanionTheory.SW.EulerDens
 
-
 namespace GlobalTheory.CompanionTheory.WeilSiegel.Free.EstZero
 
 attribute [local instance] GlobalTheory.CompanionTheory.SW.EulerDens.instLCv GlobalTheory.CompanionTheory.SW.EulerDens.instSCv GlobalTheory.CompanionTheory.SW.EulerDens.instBorv
@@ -1124,7 +1119,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaMeasureLocallyFiniteInvariant
 
-
 namespace GlobalTheory.CompanionTheory.WeilSiegel.Free.ThetaFrame
 
 theorem free_act {S : Type} [CommRing S] {M n : ℕ} (g : GL (Fin M) S) {Y : Fin n → Fin M → S}
@@ -1304,7 +1298,6 @@ end GlobalTheory.CompanionTheory.WeilSiegel.Free.ThetaFrame
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SiegelWeilFreeZeroRankOneOfThreeLe
-
 
 namespace GlobalTheory.CompanionTheory.SW.OneZero
 

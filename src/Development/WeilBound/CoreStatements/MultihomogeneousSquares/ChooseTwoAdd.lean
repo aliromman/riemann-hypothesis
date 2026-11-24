@@ -956,12 +956,13 @@ theorem UpperTheory.Reformulated.B.Ygb2.main :
   ring
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptFrameChangeDeterminant
-
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory NumberField Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.PB GlobalTheory.CompanionTheory.Ar.PB.FMX GlobalTheory.CompanionTheory.Ar.FlagBun
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptFrameChangeDeterminant
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.FMX.Graph
 
@@ -1224,12 +1225,6 @@ theorem coordTie_base : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
 end GlobalTheory.CompanionTheory.Ar.PB.FMX.Graph
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory NumberField Matrix
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.PB GlobalTheory.CompanionTheory.Ar.PB.FMX GlobalTheory.CompanionTheory.Ar.FlagBun
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptFrameDegreeFormula
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.FMX
@@ -1242,7 +1237,6 @@ end GlobalTheory.CompanionTheory.Ar.PB.FMX
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptFrameGenericRank
-
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.FMX
 
@@ -1281,14 +1275,7 @@ theorem hasSncBoundary_reTie : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
 end GlobalTheory.CompanionTheory.Ar.PB.FMX
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptFrameLeadingTerm
-
-
-open AlgebraicGeometry CategoryTheory NumberField Matrix
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.PB GlobalTheory.CompanionTheory.Ar.PB.FMX GlobalTheory.CompanionTheory.Ar.FlagBun
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.FMX
 
@@ -1345,11 +1332,6 @@ theorem GlobalTheory.CompanionTheory.Ar.PB.FMX.exists_flagTotal : ∀ (E : Type)
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptFrameOrderBound
-
-open AlgebraicGeometry CategoryTheory NumberField Matrix
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.PB GlobalTheory.CompanionTheory.Ar.PB.FMX GlobalTheory.CompanionTheory.Ar.FlagBun
-
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.FMX.DimBase
 
@@ -1416,8 +1398,9 @@ theorem isArithVar_xb : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
 end GlobalTheory.CompanionTheory.Ar.PB.FMX.DimBase
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptIsVectorBundleRank
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptIsVectorBundleRank
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.FMX
 
@@ -1500,7 +1483,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagModelExistsOfGiven
 
-
 theorem GlobalTheory.CompanionTheory.Ar.PB.FMX.flagModelExists : GlobalTheory.CompanionTheory.Ar.Top.Given → PB.FlagModelExists := by
   intro _ E _ _ _ H D l Xo c Y S Ω _ _ K₀ _ J₀ _ x₀ 𝔐 nd d bW bO hv hd
   classical
@@ -1564,7 +1546,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MultihomogeneousSquares.ChooseTwoAdd
-
 
 namespace SquareStatements
 

@@ -53,10 +53,11 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.EqUniformizerSmulOfLevelOne, Formalism.SharpRestriction.LevelLetterCocycles.TruncationClauseOfLatticeHypotheses
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.EqUniformizerSmulOfLevelOne
+-- clump: shared namespace opens
 
 open Classical
 
+@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.EqUniformizerSmulOfLevelOne
 
 namespace Formalism.MainNotions.CrystallineLiftingInputs.truncatedSeriesData
 
@@ -601,9 +602,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.TruncationClauseOfLatticeHypotheses
-
-
-open Classical
 
 namespace Formalism.MainNotions.CrystallineLiftingInputs.truncatedSeriesData
 

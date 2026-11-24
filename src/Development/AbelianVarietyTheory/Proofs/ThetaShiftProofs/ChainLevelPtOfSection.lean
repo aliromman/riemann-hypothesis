@@ -74,7 +74,6 @@ import Mathlib.Tactic.Polynomial.Basic
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsPtsEquiv
 
-
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj
 
@@ -416,7 +415,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.SecValTranslate
 
-
 namespace GlobalTheory.TranslateShift
 
 open CubeValues SymmetricSemicharacter EigenNorm FrameValue TwistedTheta ConstFam Out DVR
@@ -620,14 +618,7 @@ theorem fn_translate : Out.Laws → Out.Laws2 → ∀ (E : Type) [Field E] [Numb
 end GlobalTheory.TranslateShift
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.LevelPointsOfArcEqPeriodDivLevel
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.ArcPts
-open scoped CategoryTheory.Obj LaurentSeries PowerSeries
 
 namespace GlobalTheory.LevelRatio
 
@@ -839,6 +830,8 @@ theorem levelPt_of_rep : Out.Laws → Out.Laws2 → ∀ (E : Type) [Field E] [Nu
 
 end GlobalTheory
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ChainLevelPtOfSection
 

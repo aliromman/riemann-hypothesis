@@ -163,7 +163,6 @@ open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-
 namespace GlobalTheory.AdSpan.ReVec.FockVac
 
 variable {D : D7}
@@ -264,7 +263,6 @@ open GlobalTheory.SW hiding Level
 open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 
 namespace GlobalTheory.AdSpan.ReVec
 
@@ -378,7 +376,6 @@ open GlobalTheory.SW hiding Level
 open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 
 namespace GlobalTheory.AdSpan.ReVec.ThetaCarry
 
@@ -589,7 +586,6 @@ open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-
 namespace GlobalTheory.AdSpan.ReVec.Lat
 
 variable {D : D7} (S T : HSp D) (b : Module.Basis (Fin S.rank) D.host.E S.V)
@@ -766,7 +762,6 @@ open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-
 namespace GlobalTheory.AdSpan.ReVec.Sympl
 
 theorem quad_sum_eq_trace {A : Type} [CommRing A] {m n : ℕ} (H : Matrix (Fin n) (Fin n) A)
@@ -865,14 +860,7 @@ theorem _root_.GlobalTheory.T.symplecticFormOnHoms_reframeHomMatrix : ∀ (D : D
   first | exact @GlobalTheory.AdSpan.ReVec.Sympl.symplO_reW
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ReframeVacuumAndLiftVector
-
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.L2.Pj
-open MeasureTheory IsDedekindDomain NumberField Matrix Complex
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.FD GlobalTheory GlobalTheory.ThFr GlobalTheory.Ker GlobalTheory.AdSpan
 open GlobalTheory.SW hiding Level
 open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
@@ -950,6 +938,8 @@ theorem reframe_thPVecOf : ∀ (D : D7) (S T : HSp D) (b : Module.Basis (Fin S.r
 end GlobalTheory.AdSpan.ReVec
 
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ReframeVacuumAndLiftVectorStatement
 

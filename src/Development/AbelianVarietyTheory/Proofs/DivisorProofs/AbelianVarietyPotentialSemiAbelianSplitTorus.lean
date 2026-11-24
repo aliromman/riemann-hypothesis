@@ -71,12 +71,13 @@ import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HenselianL
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsIsoSpecialise, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TorusIsAffineHomAndSplitsFinite, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsFiniteSplitTorusExtensionOfTorusExtension, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NumberFieldStandardFacts, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsSemiAbelianTorusExtensionOfPotentialModel, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyTorusExtOfSplit, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.SemistableOfPotentialSemiAbelianModel, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.SemistableReductionZero, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianVarietyPotentialSemiAbelianSplitTorus
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsIsoSpecialise
-
+section -- clump: shared namespace opens
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsIsoSpecialise
 open GlobalTheory.SS
 
 namespace GlobalTheory.IsoFinite
@@ -159,12 +160,6 @@ theorem exists_finite_iso : ∀ (k Ω : Type) [Field k] [Field Ω] [Algebra k Ω
 
 end GlobalTheory.IsoFinite
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open scoped CategoryTheory.Obj
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TorusIsAffineHomAndSplitsFinite
 
@@ -343,7 +338,6 @@ end -- clump: shared namespace opens
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyTorusExtOfSplit
 
 universe u
-
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open scoped CategoryTheory.Obj

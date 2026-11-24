@@ -140,7 +140,6 @@ import Development.AbelianVarietyTheory.Proofs.ModuliProofs.MemIdealOfOfDense
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.CentralCharts.TopLeIffCentre
 
-
 namespace AnalyticReference
 
 open AlgebraicGeometry CategoryTheory NumberField Filter Topology Matrix
@@ -334,7 +333,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.CentralCharts.FlagImmersion
 
-
 namespace AnalyticReference
 
 open AlgebraicGeometry CategoryTheory NumberField Filter Topology Matrix
@@ -443,7 +441,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.CentralCharts.GapPolynomialPositive
 
-
 namespace AnalyticReference.Deg
 
 open MvPolynomial GlobalTheory.CompanionTheory.Ar.PB
@@ -511,10 +508,12 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.global_reference_gap_positive 
   first | exact @AnalyticReference.gap_polynomial_positive
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsEffectiveWeightSection
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsEffectiveWeightSection
 
 namespace GlobalTheory.CompanionTheory.Ar.ExRefEff
 
@@ -748,9 +747,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ComponentGenericCharZero
 
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
-
 namespace GlobalTheory.CompanionTheory.Ar.CharZeroModel
 
 theorem charZero_of_flat {X : Scheme.{0}} {R : Type} [CommRing R] [IsDomain R] [CharZero R]
@@ -798,10 +794,6 @@ end GlobalTheory.CompanionTheory.Ar.CharZeroModel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.EmbedsGenericOfCharZero
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
 
 namespace GlobalTheory.CompanionTheory.Ar.EmbedsOfTie
 
@@ -870,13 +862,7 @@ theorem embedsGeneric_of_coordTie : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] 
 end GlobalTheory.CompanionTheory.Ar.EmbedsOfTie
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsReferenceGeometrySameGeneric
-
 
 namespace GlobalTheory.CompanionTheory.Ar
 
@@ -1036,7 +1022,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenericPointsFiniteNonempty
 
-
 namespace GlobalTheory.CompanionTheory.Ar.Comps
 
 theorem finite_maximal_points (X : Type) [TopologicalSpace X] [TopologicalSpace.NoetherianSpace X]
@@ -1139,7 +1124,6 @@ theorem _root_.GlobalTheory.T.generic_points_finite_nonempty :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCompComparisonRight
-
 
 namespace GlobalTheory.CompanionTheory.Ar.VbGen
 

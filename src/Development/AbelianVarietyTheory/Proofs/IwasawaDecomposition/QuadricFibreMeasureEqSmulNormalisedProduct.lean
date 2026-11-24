@@ -109,11 +109,12 @@ theorem isFibreFamily_smul {V X Y : Type} [TopologicalSpace V] [MeasurableSpace 
 end GlobalTheory.GramFibreRescale
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EventuallyNormalizedLocalHaarSelfDual
-
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.GaugeEx
 open scoped TensorProduct NNReal ENNReal
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EventuallyNormalizedLocalHaarSelfDual
 
 namespace GlobalTheory.GaugeEx.SelfDualAE
 
@@ -489,11 +490,6 @@ theorem main : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField
 end GlobalTheory.GaugeEx.SelfDualAE
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.GaugeEx
-open scoped TensorProduct NNReal ENNReal
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SelfDualCompSelfAdjoint
 
 namespace GlobalTheory.GaugeEx
@@ -544,7 +540,6 @@ end GlobalTheory.GaugeEx
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSelfDualMeasureGlobalConstRankOnly
-
 
 namespace GlobalTheory.GaugeSdMain
 

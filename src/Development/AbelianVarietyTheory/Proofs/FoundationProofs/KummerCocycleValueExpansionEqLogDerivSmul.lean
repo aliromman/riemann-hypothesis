@@ -108,7 +108,6 @@ end -- clump:auto
 
 open GlobalTheory.K5 GlobalTheory.Glue
 
-
 namespace GlobalTheory.Glue.DPsi
 
 variable {p : ℕ} [Fact p.Prime]
@@ -265,11 +264,12 @@ theorem smul_D_psi : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebr
 end GlobalTheory.Glue.DPsi
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsTowerUnionQDerivationModIntegralClosure
-
+section -- clump: shared namespace opens
 
 open GlobalTheory.AlmostEt GlobalTheory.K5
 open scoped NNReal
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsTowerUnionQDerivationModIntegralClosure
 
 namespace GlobalTheory.AlmostEt.QDer
 
@@ -399,11 +399,6 @@ theorem exists_qDer (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra (O0
 
 end GlobalTheory.AlmostEt.QDer
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open GlobalTheory.AlmostEt GlobalTheory.K5
-open scoped NNReal
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsEqOfSmulMkEqZero
 

@@ -127,7 +127,6 @@ open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv G
 
 set_option autoImplicit false
 
-
 namespace GlobalTheory.Katz.Chart
 
 theorem exists_series_of_cobOne_eq_zero : ∀ (p : ℕ) [Fact p.Prime] (k : Type) [CommRing k] (d : ℕ)
@@ -431,12 +430,7 @@ theorem cartierDual_tangent_mod :
 end GlobalTheory
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualLieExistsAdditiveEvalModPrimePow
-
-
-open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup
 
 namespace GlobalTheory
 
@@ -475,10 +469,6 @@ theorem PDivGroup.dual_lie_exists_eval_mod_pow : ∀ (p : ℕ) (O : Type) [CommR
 end GlobalTheory
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CobOneEvDefectDvd
 
 namespace GlobalTheory.QLog
@@ -498,7 +488,6 @@ end GlobalTheory.QLog
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCartierDualTangentOfCoboundaryOneEqSmul
-
 
 namespace GlobalTheory
 
@@ -915,7 +904,6 @@ open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory
 
 set_option autoImplicit false
 
-
 namespace GlobalTheory.QLogStep
 
 variable {O E : Type} [CommRing O] [CommRing E] [Algebra O E] {d : ℕ}
@@ -1078,7 +1066,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuasiLogarithmGenerationOfDivisionStepPadic
 
 set_option autoImplicit false
-
 
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 
@@ -1264,7 +1251,6 @@ end -- clump:auto
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 
 set_option autoImplicit false
-
 
 namespace GlobalTheory.QLogBasis
 

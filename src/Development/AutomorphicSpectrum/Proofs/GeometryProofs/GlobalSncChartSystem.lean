@@ -141,12 +141,13 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DetLatticeLineBundle, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeFramesAwayPrime, Development.AutomorphicSpectrum.Proofs.GeometryProofs.VerticalDivisorDegree, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GlobalSncChartSystem
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DetLatticeLineBundle
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.SncBase GlobalTheory.CompanionTheory.Ar.GeoModel
 open GroundTheory.Heights₂.Heights.LowerBoundFree
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DetLatticeLineBundle
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.DetLine
 
@@ -222,11 +223,6 @@ end GlobalTheory.CompanionTheory.Ar.Cusp.DetLine
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeFramesAwayPrime
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.SncBase GlobalTheory.CompanionTheory.Ar.GeoModel
-open GroundTheory.Heights₂.Heights.LowerBoundFree
 
 namespace GlobalTheory.CompanionTheory.Ar.GeoModel.DeltaLine
 
@@ -529,11 +525,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.VerticalDivisorDegree
 
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.SncBase GlobalTheory.CompanionTheory.Ar.GeoModel
-open GroundTheory.Heights₂.Heights.LowerBoundFree
-
-
 namespace GlobalTheory.CompanionTheory.Ar.VertForm
 
 open ReciprocityTheory.ChartRestriction.G.ArakelovGeometry
@@ -766,8 +757,9 @@ theorem GlobalTheory.CompanionTheory.Ar.VertForm.exists_vertical : ∀ (X : Sche
   · rw [hfg, mul_div_cancel_right₀ _ hg0]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GlobalSncChartSystem
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GlobalSncChartSystem
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.SncBase

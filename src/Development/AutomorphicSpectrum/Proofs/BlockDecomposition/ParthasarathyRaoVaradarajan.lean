@@ -78,7 +78,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CliffordVectorSpinWeight
 
-
 open Matrix Finset
 open scoped InnerProductSpace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount
@@ -168,7 +167,6 @@ end GlobalTheory.CompanionTheory.RealCount
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsCliffordLowestVector
-
 
 open Matrix Finset
 open scoped InnerProductSpace Kronecker
@@ -411,12 +409,13 @@ theorem exists_cliff_model : ∀ n : ℕ, ∃ (ι : Type) (_ : Fintype ι) (_ : 
 end GlobalTheory.CompanionTheory.CliffModel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsHighestWeightModule
-
+-- clump: shared namespace opens
 
 open Matrix Finset
 open scoped InnerProductSpace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsHighestWeightModule
 
 namespace GlobalTheory.CompanionTheory.RealCount.Extremal
 
@@ -593,12 +592,6 @@ theorem extremal_module : ∀ {n : ℕ} (κ : Fin n → ℝ), Antitone κ → �
 end GlobalTheory.CompanionTheory.RealCount.Extremal
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open Matrix Finset
-open scoped InnerProductSpace
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Sl2SquareKillsVector
 
 namespace GlobalTheory.CompanionTheory.RealCount
@@ -690,7 +683,6 @@ end GlobalTheory.CompanionTheory.RealCount
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ParthasarathyRaoVaradarajan
-
 
 namespace GlobalTheory.CompanionTheory.SpinPRV
 

@@ -97,10 +97,11 @@ import Mathlib.Geometry.Manifold.Algebra.Monoid
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasSumIntegralThetaMellinInterchange, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmTypeProdNormSqEqAbsNormSpan, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GammaIntegralExpSubstitutionRealLine, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralHeckeMellinGaussIntegrandEqProdGamma, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeMellinGaussIntegralNonzeroInteger, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeMellinGaussIntegrandUnitMul, Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrbitUnfoldIntegralPartitionOfUnity, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumNonzeroIntegersPrincipalIdealsUnits, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArchFactorMulPSeriesEqIntegral, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMeasurablePartitionOfUnityUnitLogTranslate, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LaplaceIntegralEntireBoundedInVerticalStrips, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MellinIntegralSplitFunctionalEquation, Development.AbelianVarietyTheory.Proofs.DivisorProofs.PeriodicBoundedGaussianSummableCmType, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompletedHeckePartialLSeriesEntireBoundedStrips, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeLSeriesEqSumPrincipalPartialSeries, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompletedHeckeLBoundedInVerticalStrips
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasSumIntegralThetaMellinInterchange
-
+section -- clump: shared namespace opens
 
 open NumberField MeasureTheory
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasSumIntegralThetaMellinInterchange
 
 namespace GlobalTheory.HeckeMellin
 
@@ -146,8 +147,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmTypeProdNormSqEqAbsNormSpan
 
-open NumberField MeasureTheory
-
 namespace GlobalTheory.CMTypeNorm
 
 theorem place_bijective {K : Type} [Field K] [NumberField K] {I : Type} {φ : I → K →+* ℂ} (h : GlobalTheory.CMVal.IsCMType φ) :
@@ -170,8 +169,6 @@ end GlobalTheory.CMTypeNorm
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GammaIntegralExpSubstitutionRealLine
-
-open NumberField MeasureTheory
 
 namespace GlobalTheory.HeckeMellin
 
@@ -231,8 +228,6 @@ end GlobalTheory.HeckeMellin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralHeckeMellinGaussIntegrandEqProdGamma
-
-open NumberField MeasureTheory
 
 namespace GlobalTheory.HeckeMellinProd
 
@@ -331,9 +326,6 @@ end GlobalTheory.HeckeMellinProd
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeMellinGaussIntegralNonzeroInteger
-
-
-open NumberField MeasureTheory
 
 namespace GlobalTheory.HeckeMellinOne
 
@@ -438,9 +430,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeMellinGaussIntegrandUnitMul
 
-open NumberField MeasureTheory
-
-
 namespace GlobalTheory.HeckeShift
 
 theorem hmon_mul_unit {ζ : ℂ} (hζ : ‖ζ‖ = 1) (n : ℤ) (v : ℂ) :
@@ -521,8 +510,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrbitUnfoldIntegralPartitionOfUnity
 
-open NumberField MeasureTheory
-
 namespace GlobalTheory.OrbitUnfold
 
 theorem hasSum_integral_translate {I : Type} [Fintype I] {U : Type} [Countable U]
@@ -565,8 +552,6 @@ end GlobalTheory.OrbitUnfold
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumNonzeroIntegersPrincipalIdealsUnits
-
-open NumberField MeasureTheory
 
 namespace GlobalTheory
 
@@ -623,9 +608,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArchFactorMulPSeriesEqIntegral
-
-
-open NumberField MeasureTheory
 
 namespace GlobalTheory.HeckeMellin
 
@@ -729,13 +711,8 @@ theorem archFactor_mul_pSeries_eq_integral : ∀ (K : Type) [Field K] [NumberFie
 end GlobalTheory.HeckeMellin
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open NumberField MeasureTheory
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMeasurablePartitionOfUnityUnitLogTranslate
 open scoped ContDiff
-
 
 namespace GlobalTheory
 namespace UnitLogPartition
@@ -891,7 +868,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LaplaceIntegralEntireBoundedInVerticalStrips
 
-
 namespace GlobalTheory.LaplaceStrip
 
 theorem norm_integrand {α : Type} (ℓ : α → ℝ) (g : α → ℂ) (s : ℂ) (x : α) :
@@ -1026,7 +1002,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PeriodicBoundedGaussianSummableCmType
-
 
 namespace GlobalTheory.HeckeLat
 
@@ -1214,7 +1189,6 @@ end -- clump: shared namespace opens
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeLSeriesEqSumPrincipalPartialSeries
 @[expose] public noncomputable section
-
 
 open NumberField
 open scoped nonZeroDivisors
@@ -1472,7 +1446,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompletedHeckeLBoundedInVerticalStrips
-
 
 open NumberField IsDedekindDomain GlobalTheory.CMVal
 open Formalism.L2.Host (HChar)

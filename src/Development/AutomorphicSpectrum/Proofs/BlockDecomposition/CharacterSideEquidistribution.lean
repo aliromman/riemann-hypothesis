@@ -64,11 +64,12 @@ import Mathlib.Topology.Sheaves.Presheaf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanCutoffContinuousCompactSupport, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinitePlaceCutoffContinuousCompactSupport, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurablePureAdelicFunction, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurablePureAdelicFunctionStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModuleRayEqPowDegree, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PureFunctionEnlargeFiniteSet, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PureFunctionThetaSeriesInvariance, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PureFunctionTranslateRayUnits, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaSeriesUniformBoundCompact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaSeriesVanishesLargeModule, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterSideEquidistribution
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanCutoffContinuousCompactSupport
-
+section -- clump: shared namespace opens
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter GroundTheory.Global PositivityTheory.Rg.Base1 GlobalTheory.CompanionTheory.BasePsi
 open scoped ENNReal NNReal Classical
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanCutoffContinuousCompactSupport
 
 namespace GlobalTheory.CompanionTheory.BasePsi
 
@@ -97,13 +98,7 @@ end GlobalTheory.CompanionTheory.BasePsi
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter GroundTheory.Global PositivityTheory.Rg.Base1 GlobalTheory.CompanionTheory.BasePsi
-open scoped ENNReal NNReal Classical
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinitePlaceCutoffContinuousCompactSupport
-
 
 namespace GlobalTheory.CompanionTheory.BasePsi.Test
 
@@ -144,7 +139,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurablePureAdelicFunction
 
-
 namespace GlobalTheory.CompanionTheory.BasePsi
 
 theorem measurable_pure_rv_zero (F : Type) [Field F] [NumberField F]
@@ -181,13 +175,7 @@ end -- clump:auto
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModuleRayEqPowDegree
-
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter GroundTheory.Global PositivityTheory.Rg.Base1 GlobalTheory.CompanionTheory.BasePsi
-open scoped ENNReal NNReal Classical
 
 namespace GlobalTheory.CompanionTheory.BasePsi
 
@@ -216,13 +204,7 @@ end GlobalTheory.CompanionTheory.BasePsi
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter GroundTheory.Global PositivityTheory.Rg.Base1 GlobalTheory.CompanionTheory.BasePsi
-open scoped ENNReal NNReal Classical
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PureFunctionEnlargeFiniteSet
-
 
 namespace GlobalTheory.CompanionTheory.BasePsi.Integrals
 
@@ -509,13 +491,7 @@ theorem pure_term : ∀ (F : Type) [Field F] [NumberField F] (θ : ℝ →+* Ain
 end GlobalTheory.CompanionTheory.BasePsi
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaSeriesUniformBoundCompact
-
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter GroundTheory.Global PositivityTheory.Rg.Base1 GlobalTheory.CompanionTheory.BasePsi
-open scoped ENNReal NNReal Classical
 
 namespace GlobalTheory.CompanionTheory.BasePsi
 
@@ -631,10 +607,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaSeriesVanishesLargeModule
 
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter GroundTheory.Global PositivityTheory.Rg.Base1 GlobalTheory.CompanionTheory.BasePsi
-open scoped ENNReal NNReal Classical
-
-
 namespace GlobalTheory.CompanionTheory.BasePsi
 
 theorem exists_bound_inf {F : Type} [Field F] [NumberField F] (C : Set (Ainf F)) (hC : IsCompact C) :
@@ -712,8 +684,9 @@ end GlobalTheory.CompanionTheory.BasePsi
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterSideEquidistribution
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterSideEquidistribution
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter
 open GroundTheory.Global PositivityTheory.Rg.Base1

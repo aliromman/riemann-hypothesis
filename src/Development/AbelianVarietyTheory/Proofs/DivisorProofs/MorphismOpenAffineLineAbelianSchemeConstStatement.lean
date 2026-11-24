@@ -239,7 +239,7 @@ theorem extend : ∀ (k : Type) [Field k] (B : Over (Sp k)) [IsProper B.hom] [Lo
 end GlobalTheory.AffineLineExt
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open scoped CategoryTheory.Obj CategoryTheory.MonObj Pointwise
@@ -444,15 +444,7 @@ theorem _root_.GlobalTheory.T.mem_range_spMap_mapRingHom_of_fibre_closedPoint : 
   first | exact @GlobalTheory.fibre_line_over_surjection
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsOpenSetOfChartsMem
-
-
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open scoped CategoryTheory.Obj CategoryTheory.MonObj Pointwise
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory.HTLat GlobalTheory.Published GlobalTheory.Published.AbVarRed IsLocalRing
 attribute [local instance] Over.cartesianMonoidalCategory
 attribute [local instance] MvPolynomial.gradedAlgebra
 
@@ -640,13 +632,6 @@ theorem GlobalTheory.isOpen_setOf_charts_mem (R : Type) [CommRing R] (Y : Scheme
   exact (isClosedMap_str R _ hO.isClosed_compl).isOpen_compl
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open scoped CategoryTheory.Obj CategoryTheory.MonObj Pointwise
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory.HTLat GlobalTheory.Published GlobalTheory.Published.AbVarRed IsLocalRing
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsOpenSetOfChartsMemStatement
 attribute [local instance] Over.cartesianMonoidalCategory
 
@@ -655,7 +640,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProjectiveLineChartFamiliesAgreeOnOverlap
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LineConst
-
 
 namespace GlobalTheory.LineConst
 open Polynomial

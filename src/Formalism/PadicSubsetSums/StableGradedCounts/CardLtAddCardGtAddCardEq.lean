@@ -61,10 +61,11 @@ import Mathlib.Algebra.Module.StablyFree.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PadicSubsetSums.CentralIdempotents.FactorOverLocalSubalgebraMonic, Formalism.PadicSubsetSums.StableGradedCounts.CharpolyFactorAnnihilator, Formalism.PadicSubsetSums.StableGradedCounts.FactorOverLocalSubalgebra, Formalism.PadicSubsetSums.StableGradedCounts.ZGoodCuspidal, Formalism.PadicSubsetSums.StableGradedCounts.CardLtAddCardGtAddCardEq
 
-@[expose] public noncomputable section -- clump member: Formalism.PadicSubsetSums.CentralIdempotents.FactorOverLocalSubalgebraMonic
-
+section -- clump: shared namespace opens
 
 open Polynomial
+
+@[expose] public noncomputable section -- clump member: Formalism.PadicSubsetSums.CentralIdempotents.FactorOverLocalSubalgebraMonic
 
 namespace Formalism.IrreducibleCountingLemmas.Z
 
@@ -122,8 +123,6 @@ end Formalism.IrreducibleCountingLemmas.Z
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PadicSubsetSums.StableGradedCounts.CharpolyFactorAnnihilator
-
-open Polynomial
 
 namespace Formalism.IrreducibleCountingLemmas.Z
 
@@ -191,8 +190,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PadicSubsetSums.StableGradedCounts.FactorOverLocalSubalgebra
 
-open Polynomial
-
 namespace Formalism.IrreducibleCountingLemmas.Z
 
 theorem factorOverLocalSubalgebra : FactorOverLocalSubalgebra := by
@@ -233,8 +230,6 @@ end Formalism.IrreducibleCountingLemmas.Z
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PadicSubsetSums.StableGradedCounts.ZGoodCuspidal
-
-open Polynomial
 
 namespace Formalism.IrreducibleCountingLemmas.Z
 
@@ -288,6 +283,8 @@ theorem goodCuspidal_holds : GoodCuspidal := by
 
 end Formalism.IrreducibleCountingLemmas.Z
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Formalism.PadicSubsetSums.StableGradedCounts.CardLtAddCardGtAddCardEq
 

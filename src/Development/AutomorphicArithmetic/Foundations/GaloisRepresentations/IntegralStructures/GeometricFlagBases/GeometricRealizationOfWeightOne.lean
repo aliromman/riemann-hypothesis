@@ -102,7 +102,6 @@ import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdic
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.OutBridge
 
-
 namespace CrystallineSemistableComparison.Out
 
 theorem cstSmooth_of_side (h : EtSideS) : CstSmooth := CrystallineSemistableComparison.cstSmooth_of_side h
@@ -506,7 +505,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CentSumEqZeroOfOrbitalIntegralEqZero
 
-
 namespace GlobalTheory.DefVanish
 
 section Generic
@@ -732,13 +730,7 @@ end -- clump:auto
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LieModelBaseChangeMap
-
-
-open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount
-open scoped TensorProduct Classical
 
 namespace GlobalTheory.LKDef
 
@@ -757,8 +749,9 @@ theorem trace_definite_forms_identity : TraceDefinitePairsEqAutomorphicTrace := 
 end GlobalTheory.LKDef
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.DPairOneIrr
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.DPairOneIrr
 
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid
 open scoped TensorProduct Classical

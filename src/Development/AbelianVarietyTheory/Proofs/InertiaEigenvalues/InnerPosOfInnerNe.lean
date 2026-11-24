@@ -115,7 +115,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsMulRightInvariant
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdjointPairingUnfoldingDownwardLift, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdjointPairingUnfoldingDownwardLiftStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InnerProductIntegralFormula, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InnerProductIntegralFormulaStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PeterssonIntegralFormula, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PeterssonIntegralFormulaStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UpwardVectorLiftMemRangeCoefficientExtension, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UpwardVectorLiftMemRangeCoefficientExtensionStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DownwardLiftAdjointEqUpwardThetaIntegral, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DownwardLiftAdjointEqUpwardThetaIntegralStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIsFinIdem, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockVacuumPairingPolynomialTranslatesScalarStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockVacOmFin, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalCoeffVanishesOffLevelBadPlaces, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalCoeffVanishesOffLevelBadPlacesStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DoubleCosetHeckeSumPreservesPrincipalForms, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DoubleCosetHeckeSumPreservesPrincipalFormsStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFiniteLocalDoubleCosetRepresentatives, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFiniteLocalDoubleCosetRepresentativesStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LevelSubgroupRestrictedProductOfLawsStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalHeckeSumPreservesPrincipalLevelFormsStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NormIntegralStarMulSqLe, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RatSpanOfLaws, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RawLiftOntoOfUpInj, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockCoefficientExtremalEqDiscreteSeriesStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RealLowestKTypeOfExtremalVectorCaseStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RealLow, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InnerPosOfInnerNe
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
@@ -128,7 +128,6 @@ open GlobalTheory.RawLift
 open GlobalTheory.AdjUp
 open GlobalTheory.Grow
 open scoped ComplexOrder
-
 
 namespace GlobalTheory.AdjUnfold
 
@@ -240,7 +239,6 @@ end -- clump:auto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 open GlobalTheory.AdjUp
-
 
 namespace GlobalTheory.AdelicL2Norm
 
@@ -381,7 +379,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 open GlobalTheory.AdjUp
 
-
 namespace GlobalTheory.AdjUp
 
 theorem ip_eq_mul_integral_val : GlobalTheory.Published.CuspRapidDecay → ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type)
@@ -456,7 +453,6 @@ end -- clump:auto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 open GlobalTheory.AdjUp
-
 
 namespace GlobalTheory.AdjRange
 
@@ -705,7 +701,6 @@ end -- clump:auto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 
-
 namespace GlobalTheory.PartsSpanProof
 
 theorem exists_isFinIdem {D : D7} {P : HeightOneSpectrum (𝓞 D.host.E)} {e f : AE D} (h : IsPrimeIdem P e f) :
@@ -802,7 +797,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockVacOmFin
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
-
 
 namespace GlobalTheory.RawLift.FactorInf
 
@@ -935,7 +929,6 @@ end -- clump:auto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 
-
 namespace GlobalTheory.TransSum
 
 def conjMeet {Γ : Type*} [Group Γ] (K : Subgroup Γ) (γ : Γ) : Subgroup Γ :=
@@ -1039,7 +1032,6 @@ end -- clump:auto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 
-
 namespace GlobalTheory.LocalRepsFin
 
 theorem exists_isCosetRep_finIdem : ∀ {D : D7} (V : HSp D) (β : GL (Fin V.rank) (Formalism.IndefR.Lev.EAf D)) (L : LevDat D.host.E ℂ V.rank) (v : HeightOneSpectrum (𝓞 D.host.F)) (f : AE D), IsFinIdem D v f → ∀ α : GA D V, SuppF V f α → ∃ C : Finset (GA D V), (∀ γ ∈ C, SuppF V f γ) ∧ IsCosetRep V {k | k ∈ levG V β L ∧ SuppF V f k} α C := by
@@ -1090,15 +1082,7 @@ theorem _root_.GlobalTheory.T.local_hecke_sum_preserves_principal_level_forms : 
   first | exact @GlobalTheory.LocalHeckeLevel.heckeOn_mem_wall
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NormIntegralStarMulSqLe
-
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
-open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
-open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.IndefR.Links
-open scoped TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 
@@ -1391,13 +1375,6 @@ theorem transLaws : GlobalTheory.Published.CuspRapidDecay → ∀ (D : D7) (G : 
 end GlobalTheory.RawLiftTrans
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
-open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
-open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.IndefR.Links
-open scoped TensorProduct InnerProductSpace
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RatSpanOfLaws
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
@@ -1465,7 +1442,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RealLow
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
-
 
 namespace GlobalTheory.RawLift.RealLowPf
 

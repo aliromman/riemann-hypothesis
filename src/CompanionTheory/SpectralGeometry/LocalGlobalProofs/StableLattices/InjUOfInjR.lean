@@ -64,7 +64,7 @@ import Mathlib.Tactic.Polynomial.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.CreationProductSingleBasis, CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.CreationProductSupportDegree, CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.HighestWeightVectorKilledByRaising, CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.LeviActionCommutesWithBoundary, CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.LeviActionUnitaryAdjoint, CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.LocallyFiniteLeviInvariantSubspace, CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.InjUOfInjR
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open Finset CompanionTheory.RgExh CompanionTheory.RgExh.U
 
@@ -803,12 +803,7 @@ end GlobalTheory.CompanionTheory.RgExhStableChains
 end -- clump:auto
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.InjUOfInjR
-
-
-open Finset CompanionTheory.RgExh CompanionTheory.RgExh.U
 open CompanionTheory.D.LK (Pos Cn ann cre lift bd om cpt allT LocFin)
 open Formalism.REAL (GlRel KHighest IsWeight)
 open CompanionTheory.D.DSIC (KUnit)

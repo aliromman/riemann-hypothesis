@@ -118,7 +118,6 @@ import Formalism.SharpRestriction.GrowthBounds.WeilJacquetShalikaLaw
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ColViewOfBuilt
 
-
 namespace GlobalTheory.Fc.Cv
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.Host GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.Bl GlobalTheory.Fc GlobalTheory.Fc.Cv NumberField
@@ -145,7 +144,6 @@ end GlobalTheory.Fc.Cv
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.GoodTwistCoresOverTrueColumns
-
 
 namespace GlobalTheory.Fc.Cv
 
@@ -313,7 +311,6 @@ end -- clump: shared namespace opens
 open Module NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Forms
 open scoped Matrix ComplexOrder
 
-
 namespace GlobalTheory.Core
 
 theorem fnOf_map_injective {K : Type} [Field K] {ι : Type} [Fintype ι] {n : ℕ} (G : ι → Matrix (Fin n) (Fin n) ℂ)
@@ -356,7 +353,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.CoMTSOfGaInv
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Forms
-
 
 namespace GlobalTheory
 
@@ -402,7 +398,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsIsLocBasisClsP
 
-
 namespace GlobalTheory.ClsPLocBasis
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Forms
@@ -426,10 +421,11 @@ theorem exists_isLocBasis_clsP : ∀ (D : D7) (u : D.what₂.Word) (Ch : ℕ →
 end GlobalTheory.ClsPLocBasis
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsPtEmbOfCoordInt
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Forms
 
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsPtEmbOfCoordInt
 
 namespace GlobalTheory.FormsRatOfInt
 
@@ -460,9 +456,6 @@ end GlobalTheory.FormsRatOfInt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.PtCoMemIntSpan
-
-
-open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Forms
 
 namespace GlobalTheory.PtCo
 
@@ -509,8 +502,6 @@ end GlobalTheory.PtCo
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsIntegralPendingObjectSymmetricFormsLevel
-
-open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Forms
 
 namespace GlobalTheory.RedPt0Pend
 
@@ -819,8 +810,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.FormsMapOfSymmetricComparisonLowerMapFiniteChar
 
-open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Forms
-
 namespace GlobalTheory.RedPt0
 
 theorem formsMap_of_symmetricComparison_lowerMap_finiteChar : ∀ (D : D7) (u : D.what₂.Word) (Ch : ℕ → Type) (chOf : ∀ i, (D.mem u).C.cls i → Ch i) (Tf : FormsTiedSym D u Ch chOf), Formalism.L2.Rows.LowerMapTieS Tf → Formalism.L2.Ker.BeOnTie D u → (∃ n : ℕ, 0 < n ∧ ∀ x : (Tf.cls D.R.m le_rfl (Or.inr rfl)).lev.U, (((Tf.cls D.R.m le_rfl (Or.inr rfl)).lev.chi x : ℂˣ) : ℂ) ^ n = 1 ∧ ∃ r : D.what₂.LL, D.what₂.embLL r = (((Tf.cls D.R.m le_rfl (Or.inr rfl)).lev.chi x : ℂˣ) : ℂ)) → Formalism.MainNotions.product_first_zeroth_parts.Conclusion6 D u := by
@@ -830,6 +819,8 @@ theorem formsMap_of_symmetricComparison_lowerMap_finiteChar : ∀ (D : D7) (u : 
 
 end GlobalTheory.RedPt0
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.FormsMapAtEveryTrueColumnMember
 
@@ -867,7 +858,6 @@ end -- clump:auto
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.Host GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.Bl GlobalTheory.Fc GlobalTheory.Fc.Cv NumberField
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 
 namespace GlobalTheory.Fc.PeriodEntriesOverColumns
 
@@ -1016,7 +1006,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.AdmissiblePeriodTwistsReductionPlaceTuples
 
-
 open Formalism.BasicNotions Formalism.BasicNotions.DV Formalism.MainNotions NumberField
 
 namespace GlobalTheory.PerRedU
@@ -1113,7 +1102,6 @@ end GlobalTheory.PerTwClose
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.TwistedPeriodDecompositionOfClasswiseTwistedPair
-
 
 namespace GlobalTheory.PerRedTw
 

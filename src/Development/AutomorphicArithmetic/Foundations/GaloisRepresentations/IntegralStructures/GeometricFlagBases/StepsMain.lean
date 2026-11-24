@@ -742,12 +742,7 @@ theorem UpperTheory.Gal.Int.Geo.Cut.resEx :
   rfl
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.PCutStep
-
-
-open CategoryTheory Limits AlgebraicGeometry NumberField IsDedekindDomain
 open GlobalTheory.GalV (HTower)
 
 namespace UpperTheory.Gal.Int.Geo
@@ -868,11 +863,12 @@ theorem cutStep_holds : CutStep := by
 end UpperTheory.Gal.Int.Geo
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsBridge
 @[expose] public noncomputable section
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2 NumberField IsDedekindDomain Module GlobalTheory.HeightCounting
-
 
 namespace GlobalTheory.PhtCompare
 

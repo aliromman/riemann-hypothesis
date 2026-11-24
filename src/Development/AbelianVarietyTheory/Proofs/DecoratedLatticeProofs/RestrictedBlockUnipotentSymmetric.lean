@@ -74,7 +74,6 @@ import Formalism.LocalToGlobal.IndefiniteReal.AutomorphicEvaluation
 open NumberField IsDedekindDomain Matrix Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.DIV GlobalTheory.FlagBasis
 open scoped TensorProduct
 
-
 namespace GlobalTheory.FlagChi
 
 open Formalism.L2.SG.Pf.unitaryCongruence
@@ -311,7 +310,6 @@ open NumberField IsDedekindDomain Matrix Formalism.BasicNotions Formalism.MainNo
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-
 namespace GlobalTheory.DiagFrameWeights
 
 theorem isUnit_res {E : Type} [Field E] [NumberField E] (PP : Formalism.L2.DIV.Pl E) (x : Formalism.L2.DIV.kP PP) (hx : x ≠ 0) :
@@ -415,11 +413,13 @@ theorem _root_.GlobalTheory.T.exists_diagonal_frame_change_unweighting_symEdges 
   first | exact @GlobalTheory.DiagFrameWeights.exists_diag_frame
 end -- clump:auto
 
-section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FlagBasisLiftGramSignedPermutation
-@[expose] public noncomputable section
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Matrix Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.DIV GlobalTheory.FlagBasis
 open scoped TensorProduct
+
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FlagBasisLiftGramSignedPermutation
+@[expose] public noncomputable section
 
 namespace GlobalTheory.FlagBasis.GramLift
 open Formalism.L2.SG.Pf.unitaryCongruence
@@ -619,10 +619,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FlagRootSumDualEqSymmetricEdgeSum
 
-open NumberField IsDedekindDomain Matrix Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.DIV GlobalTheory.FlagBasis
-open scoped TensorProduct
-
-
 namespace GlobalTheory.RootSumDual
 
 theorem dualIdx_lt {ρ k n : ℕ} (hn : n = 2 * ρ + k + 1) (i : ℕ) (hi : i < n) : dualIdx ρ k i < n := by
@@ -751,10 +747,6 @@ end GlobalTheory.RootSumDual
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LevelCongruenceIffFlagConditions
-
-
-open NumberField IsDedekindDomain Matrix Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.DIV GlobalTheory.FlagBasis
-open scoped TensorProduct
 
 namespace GlobalTheory.FlagBasis.Cong
 
@@ -998,11 +990,6 @@ theorem k2cong_iff_flagCond (I : AutInst) (g : ℕ) {ρ k : ℕ} (e0 f0 : Fin ρ
 end GlobalTheory.FlagBasis.Cong
 
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open NumberField IsDedekindDomain Matrix Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.DIV GlobalTheory.FlagBasis
-open scoped TensorProduct
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SymmetricUnipotentMemOfFlagBasisDual
 
@@ -1345,7 +1332,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.RestrictedBlockUnipotentSymmetric
-
 
 namespace GlobalTheory.FlagBasis
 

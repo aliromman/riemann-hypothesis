@@ -54,9 +54,11 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDualGenerator.DualAtLMulUnit, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDualGenerator.PsiTower
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDualGenerator.DualAtLMulUnit
+-- clump: shared namespace opens
 
 open ValuativeRel IsDedekindDomain NumberField Formalism.MainNotions.S.Loc
+
+@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDualGenerator.DualAtLMulUnit
 
 namespace PI.LocDualGen.Part2
 
@@ -96,9 +98,6 @@ end PI.LocDualGen.Part2
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDualGenerator.PsiTower
-
-
-open ValuativeRel IsDedekindDomain NumberField Formalism.MainNotions.S.Loc
 
 namespace PI.LocDualGen.Top
 

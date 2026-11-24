@@ -54,7 +54,7 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BottomRanksSumLeTwoExponentAddCentre, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SquareNuInvUnramifiedOverInertPrime, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHeckeUNuInv
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open scoped Pointwise
 open Formalism.BasicNotions Formalism.IndefR.Links IsDedekindDomain NumberField
@@ -181,14 +181,7 @@ theorem nuH_inv_unrAt_of_inertQ : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : 
 end GlobalTheory.FunObj.SqNum
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHeckeUNuInv
-
-
-open scoped Pointwise
-open Formalism.BasicNotions Formalism.IndefR.Links IsDedekindDomain NumberField
-open Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
 open Formalism.L2.Host (HChar)
 open GlobalTheory.ChiGrid GlobalTheory.LeafRestExamples GlobalTheory.FunObj.SqNum
 open GlobalTheory.Mem.Col2.SplitChar (finIdl)

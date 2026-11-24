@@ -91,9 +91,11 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ChartFirstOrderMemSpan, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ChartPSmulLiftEqBt, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CoeffDecomp, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CoeffDvdOfAevalAddSqZero, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.EvImgIsLatSubring, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FAddNsmulFEqEvalPolyFrob, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.HtDualExists, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.IsLocalRingTensorProductOfFiniteOfPoints, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.NsmulFAddSqZeroEq, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PSerFrobOfInvariance, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PairingNsmulRight, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PointsEqTangent, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ValNatCastSmul, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PeriodDatumSignCharactersMemEvalImage
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ChartFirstOrderMemSpan
+-- clump: shared namespace opens
 
 open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ChartFirstOrderMemSpan
 
 namespace GlobalTheory
 
@@ -195,9 +197,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ChartPSmulLiftEqBt
 @[expose] public noncomputable section
-
-
-open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
 
 namespace GlobalTheory
 
@@ -349,9 +348,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CoeffDecomp
-
-
-open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
 
 namespace GlobalTheory.WFrob
 
@@ -510,8 +506,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CoeffDvdOfAevalAddSqZero
 
-open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
-
 namespace GlobalTheory
 
 private lemma polCoef_taylor {R₀ A : Type} [CommRing R₀] [CommRing A] [Algebra R₀ A] {g : ℕ}
@@ -635,9 +629,6 @@ end -- clump:auto
 section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.EvImgIsLatSubring
 @[expose] public noncomputable section
 
-
-open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
-
 namespace GlobalTheory
 
 section
@@ -744,8 +735,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FAddNsmulFEqEvalPolyFrob
-
-open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
 
 namespace GlobalTheory
 
@@ -899,9 +888,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.HtDualExists
 
-
-open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
-
 namespace GlobalTheory
 
 private def htDualRing {R₀ : Type} [CommRing R₀] {Λ S : LAlg R₀} (Dq : DualPair S) (ψ : LHom Λ S) :
@@ -1039,10 +1025,6 @@ theorem evHt_of_lam :
 
 end GlobalTheory
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.IsLocalRingTensorProductOfFiniteOfPoints
 
@@ -1378,7 +1360,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PairingNsmulRight
 
-
 namespace GlobalTheory
 
 namespace SignChar
@@ -1614,12 +1595,7 @@ end GlobalTheory.CotPoints
 end -- clump:auto
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ValNatCastSmul
-
-
-open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
 
 namespace GlobalTheory.EvAct
 
@@ -1720,9 +1696,6 @@ end GlobalTheory.EvAct
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PeriodDatumSignCharactersMemEvalImage
-
-open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
-
 
 namespace GlobalTheory.EvClose
 

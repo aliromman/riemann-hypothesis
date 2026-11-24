@@ -66,11 +66,13 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsConstMulOfIsFnPowNeZero, Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsGenIsValueAtOrigin, Development.AbelianVarietyTheory.Proofs.ModuliProofs.HasThEqClassicalThetaFunctionValues
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsConstMulOfIsFnPowNeZero
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj TensorProduct
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsConstMulOfIsFnPowNeZero
 
 namespace GlobalTheory
 
@@ -154,11 +156,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsGenIsValueAtOrigin
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj TensorProduct
 
 namespace GlobalTheory.OriginValue
 
@@ -252,10 +249,6 @@ end GlobalTheory.OriginValue
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.HasThEqClassicalThetaFunctionValues
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj TensorProduct
 open GlobalTheory.ZM
 
 namespace GlobalTheory.ThetaClassical

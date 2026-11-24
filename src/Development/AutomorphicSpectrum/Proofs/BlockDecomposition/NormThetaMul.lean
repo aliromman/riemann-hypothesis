@@ -57,9 +57,11 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.GaloisBoundSecond, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormThetaMul
 
-@[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.GaloisBoundSecond
+-- clump: shared namespace opens
 
 open NumberField
+
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.GaloisBoundSecond
 
 private lemma norm_le_prod {F : Type} [Field F] [NumberField F] [NumberField.IsTotallyReal F]
     (I : Ideal (RingOfIntegers F)) (y : RingOfIntegers F) (hy : y ∈ I) (h0 : y ≠ 0) :
@@ -246,9 +248,6 @@ theorem UpperTheory.Reformulated.B.GaloisBoundSecond.main :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormThetaMul
-
-
-open NumberField
 
 namespace GlobalTheory.CompanionTheory.MassCount
 

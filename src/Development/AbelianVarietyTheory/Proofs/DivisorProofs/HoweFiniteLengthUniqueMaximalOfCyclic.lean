@@ -68,7 +68,7 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChainLengthLeFinrankAddOne, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HwSubStableOfComm, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsHWOfFd, Development.AbelianVarietyTheory.Proofs.DivisorProofs.BlockCasimirEigenvalueDropsOffBlock, Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuadraticOperatorEigenvectorDiagonalBlockIdentit, Development.AbelianVarietyTheory.Proofs.DivisorProofs.BlockDiagonalEigenvalueLeOfCasimirNearMin, Development.AbelianVarietyTheory.Proofs.DivisorProofs.BlockDiagonalFibreCasimirCommuteSameBlockUnit, Development.AbelianVarietyTheory.Proofs.DivisorProofs.BlockUnitaryDiagonalLeOfEigenvalueBound, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBlockUnitaryFiniteSubspaceOfLeStable, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymNegTSwap, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryPieceBoundedWeightsOfQuadratic, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBlockUnitaryFiniteSubspaceComapInjectiveIntert, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SameBlockIffIsLeft, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBoundedHighestWeightVectorQuadraticSubquot, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MultiPlaceStep, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HoweFiniteLengthUniqueMaximalOfCyclic
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open scoped TensorProduct
 open Formalism.BasicNotions.TH GlobalTheory.FockAlg GlobalTheory.RealLift GlobalTheory.HoweR
@@ -487,13 +487,7 @@ theorem cas_mul_comm_of_block : ∀ (ι M : Type) [Fintype ι] [DecidableEq ι] 
 end GlobalTheory.HoweR
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BlockUnitaryDiagonalLeOfEigenvalueBound
-
-
-open scoped TensorProduct
-open Formalism.BasicNotions.TH GlobalTheory.FockAlg GlobalTheory.RealLift GlobalTheory.HoweR
 
 namespace GlobalTheory.HoweR
 
@@ -664,11 +658,6 @@ theorem re_diag_le_of_eigen_bound : ∀ (ι M : Type) [Fintype ι] [DecidableEq 
 
 end GlobalTheory.HoweR
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open scoped TensorProduct
-open Formalism.BasicNotions.TH GlobalTheory.FockAlg GlobalTheory.RealLift GlobalTheory.HoweR
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBlockUnitaryFiniteSubspaceOfLeStable
 
@@ -935,7 +924,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBoundedHighestWeightVectorQuadraticSubquot
 
-
 namespace GlobalTheory.HoweR.SubQuot
 
 variable {p q : ℕ} {V : Type} [AddCommGroup V] [Module ℂ V]
@@ -1174,13 +1162,7 @@ theorem exists_hwSub_of_quadMod : ∀ (p q : ℕ) (α β α' β' : ℂ), ∃ B :
 end GlobalTheory.HoweR
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MultiPlaceStep
-
-
-open scoped TensorProduct
-open Formalism.BasicNotions.TH GlobalTheory.FockAlg GlobalTheory.RealLift GlobalTheory.HoweR
 
 namespace GlobalTheory.HoweR.Places
 
@@ -1264,9 +1246,6 @@ end GlobalTheory.HoweR.Places
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HoweFiniteLengthUniqueMaximalOfCyclic
-
-open scoped TensorProduct
-open Formalism.BasicNotions.TH GlobalTheory.FockAlg GlobalTheory.RealLift GlobalTheory.HoweR
 
 namespace GlobalTheory.HoweR
 

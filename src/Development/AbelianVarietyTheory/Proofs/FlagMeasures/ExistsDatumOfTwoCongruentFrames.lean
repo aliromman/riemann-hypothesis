@@ -64,13 +64,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsDualFamilyInSelfDualLattice, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsInnerLatticeImageFrameQuotient, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsTotallyIsotropicDualFamilyInLattice, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsUnitaryFrameDual, Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitaryImageStandardLatticeEqSelfDualLattice, Development.AbelianVarietyTheory.Proofs.FlagMeasures.SelfDualLatticeFrameEqStandardTranslate, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsDatumOfTwoCongruentFrames
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open ValuativeRel Formalism.MainNotions.S Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG GlobalTheory.LocOver
 open scoped Classical
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsDualFamilyInSelfDualLattice
-
 
 namespace GlobalTheory.SelfDualFrame
 
@@ -285,7 +284,6 @@ end GlobalTheory.SelfDualFrame
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsInnerLatticeImageFrameQuotient
-
 
 namespace GlobalTheory.StdLatInner
 
@@ -583,13 +581,7 @@ theorem isotropic_dual : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalS
 end GlobalTheory.IsotropicDual
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsUnitaryFrameDual
-
-
-open ValuativeRel Formalism.MainNotions.S Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG GlobalTheory.LocOver
-open scoped Classical
 
 namespace GlobalTheory.UnipFrame
 
@@ -856,13 +848,7 @@ theorem exists_unitary_frame_dual {F : Type} [Field F] [ValuativeRel F] [Topolog
 end GlobalTheory.UnipFrame
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open ValuativeRel Formalism.MainNotions.S Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG GlobalTheory.LocOver
-open scoped Classical
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitaryImageStandardLatticeEqSelfDualLattice
-
 
 namespace GlobalTheory.StdLatImg
 

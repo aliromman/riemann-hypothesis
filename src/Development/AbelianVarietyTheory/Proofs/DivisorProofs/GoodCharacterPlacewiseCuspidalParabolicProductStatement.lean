@@ -50,10 +50,11 @@ import Mathlib.Topology.Sheaves.Init
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GoodCharacterPlacewiseCuspidalParabolicProduct, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GoodCharacterPlacewiseCuspidalParabolicProductStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GoodCharacterPlacewiseCuspidalParabolicProduct
-
+-- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.L2.DIV Formalism.IndefR.Links NumberField
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GoodCharacterPlacewiseCuspidalParabolicProduct
 
 namespace GlobalTheory.GoodCharProd
 
@@ -148,8 +149,6 @@ end GlobalTheory.GoodCharProd
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GoodCharacterPlacewiseCuspidalParabolicProductStatement
-
-open Formalism.BasicNotions Formalism.L2.DIV Formalism.IndefR.Links NumberField
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 

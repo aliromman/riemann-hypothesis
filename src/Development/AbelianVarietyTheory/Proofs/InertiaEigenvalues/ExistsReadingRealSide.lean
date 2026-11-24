@@ -107,7 +107,7 @@ import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemSum
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AlgebraicFormsLevelGroupEqTwistLevelStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SplitPlaceResidueMapEqReduction, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SplitPlaceResidueMapEqReductionStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AlgebraicLevelCharacterEqTwistLevelCharacter, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AlgebraicLevelCharacterEqTwistLevelCharacterStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BaseDataTypeCharacterEqLocalComponent, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BaseDataTypeCharacterEqLocalComponentStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsStandardFrameKeepsMatrices, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsStandardFrameKeepsMatricesStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsWeightEmbeddingHarmonicPolynomialsLattices, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsWeightEmbeddingHarmonicPolynomialsLatticesStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LiftWeightInfinitesimalCharacterEqDefiniteParam, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LiftWeightInfinitesimalCharacterEqDefiniteParamStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ResidueCharacterArtinTameGaloisEqTameValueStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsReadingRealSide
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.N Formalism.MainNotions.StandardLattice Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2 Formalism.L2.Host Formalism.L2.DIV Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.NX GlobalTheory.HeightCounting GlobalTheory.TwInputs GlobalTheory.SeriesTie GlobalTheory.ExportSeries NumberField IsDedekindDomain
 
@@ -1104,12 +1104,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsReadingRealSide
-
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.N Formalism.MainNotions.StandardLattice Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2 Formalism.L2.Host Formalism.L2.DIV Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.NX GlobalTheory.HeightCounting GlobalTheory.TwInputs GlobalTheory.SeriesTie GlobalTheory.ExportSeries NumberField IsDedekindDomain
 open Formalism.MainNotions.IntegralHeckeForms (TwOK)
 open Formalism.AUTREP (GAf)
 open GlobalTheory.FormInner (frameEquiv)

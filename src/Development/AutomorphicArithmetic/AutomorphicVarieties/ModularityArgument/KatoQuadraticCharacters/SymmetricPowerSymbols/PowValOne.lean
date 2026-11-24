@@ -274,7 +274,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ContinuousToK
 
-
 open scoped MatrixGroups
 open Polynomial
 
@@ -448,9 +447,9 @@ end -- clump:auto
 section -- clump: shared namespace opens
 
 open scoped MatrixGroups Matrix
-open GlobalTheory.KZ GlobalTheory.K4 UpperTheory.V.Z.Kato.Sym UpperTheory.V.Z.Kato.Sym.PT
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.UniformizerIntegrality.IsoEx
+open GlobalTheory.KZ GlobalTheory.K4 UpperTheory.V.Z.Kato.Sym UpperTheory.V.Z.Kato.Sym.PT
 
 theorem UpperTheory.V.Z.Kato.Sym.PT.isoEx :
     UpperTheory.V.Z.Kato.Sym.PT.IsoEx := by
@@ -476,6 +475,7 @@ theorem UpperTheory.V.Z.Kato.Sym.PT.isoEx :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.UniformizerIntegrality.TopPt
+open GlobalTheory.KZ GlobalTheory.K4 UpperTheory.V.Z.Kato.Sym UpperTheory.V.Z.Kato.Sym.PT
 
 attribute [local instance] algMdl
 
@@ -535,6 +535,7 @@ theorem UpperTheory.V.Z.Kato.Sym.PT.ptGal :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.UniformizerIntegrality.TopPtAlt
+open GlobalTheory.KZ GlobalTheory.K4 UpperTheory.V.Z.Kato.Sym UpperTheory.V.Z.Kato.Sym.PT
 
 attribute [local instance] algMdl
 
@@ -576,12 +577,7 @@ theorem UpperTheory.V.Z.Kato.Sym.PT.ptGam :
   linear_combination (-1 : ZMod (l ^ n)) * hE
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.UniformizerIntegrality.IsIntegralOfMemOverY
-
-
-open scoped MatrixGroups Matrix
 open GlobalTheory.KZ GlobalTheory.K4
 
 namespace UpperTheory.V.Z.Kato.Sym.PT
@@ -617,8 +613,6 @@ end UpperTheory.V.Z.Kato.Sym.PT
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.UniformizerIntegrality.TopUnit
-
-open scoped MatrixGroups Matrix
 open GlobalTheory.KZ GlobalTheory.K4 UpperTheory.V.Z.Kato.Sym UpperTheory.V.Z.Kato.Sym.PT Polynomial
 
 namespace UpperTheory.V.Z.Kato.Sym.PT
@@ -662,8 +656,6 @@ end UpperTheory.V.Z.Kato.Sym.PT
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.UniformizerIntegrality.UnifLc
-
-open scoped MatrixGroups Matrix
 open GlobalTheory.KZ GlobalTheory.K4 UpperTheory.V.Z.Kato.Sym UpperTheory.V.Z.Kato.Sym.PT
 
 private theorem unif_lc {G A : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
@@ -709,8 +701,6 @@ theorem UpperTheory.V.Z.Kato.Sym.PT.lcGeo :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.UniformizerIntegrality.ValComapLtOne
-
-open scoped MatrixGroups Matrix
 open GlobalTheory.KZ GlobalTheory.K4 UpperTheory.V.Z.Kato.Sym UpperTheory.V.Z.Kato.Sym.PT
 
 attribute [local instance] algMdl
@@ -771,6 +761,8 @@ theorem UpperTheory.V.Z.Kato.Sym.PT.ptIs :
       rw [map_sub, c1 h (hD h hh).1]
       exact hin _ ((ValuationSubring.valuation_le_one_iff _ _).2 hz)
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.PtTop
 

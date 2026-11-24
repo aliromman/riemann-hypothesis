@@ -202,7 +202,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.DuplicationFormulaMaxNormEqCpUnitDiscriminant
 
-
 namespace GlobalTheory.DupNorm
 
 variable {K : Type*} [NormedField K] [IsUltrametricDist K]
@@ -294,7 +293,6 @@ end GlobalTheory.DupNorm
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.LatticeTranslateHalfPeriodSigmaStarPowEightMulEq
-
 
 namespace GlobalTheory.HalfPeriodValue
 
@@ -614,11 +612,13 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.NormPadicWeierstrassModelAbscissaTwoTorsionLeOne
-@[expose] public noncomputable section
+-- clump: shared namespace opens
 
 open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum
 open scoped BigOperators
+
+section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.NormPadicWeierstrassModelAbscissaTwoTorsionLeOne
+@[expose] public noncomputable section
 
 namespace GlobalTheory.PullBackSplit
 open GlobalTheory.EvenTheta
@@ -857,9 +857,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.TorsionTranslateThetaJetsDenominatorBound
 
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum
-open scoped BigOperators
-
 namespace GlobalTheory.TorsionJets
 
 open PowerSeries GlobalTheory.ThetaParam
@@ -1064,10 +1061,6 @@ end GlobalTheory.TorsionJets
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.JetsTorsionTranslatesCmThetaProduct
-
-
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum
-open scoped BigOperators
 
 namespace GlobalTheory.ProductJets
 

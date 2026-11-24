@@ -324,7 +324,6 @@ end -- clump:auto
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil ValuativeRel GlobalTheory.PsType
 
-
 namespace GlobalTheory.StripGrp
 
 variable {k : Type} [Field k] [ValuativeRel k]
@@ -751,7 +750,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsStripClearingUpperRightPrincipalSeriesCong
 
-
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil ValuativeRel GlobalTheory.PsType Matrix
 
 namespace GlobalTheory.PsType.ClearBlock
@@ -907,9 +905,11 @@ theorem clear_upper_right : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologic
 end GlobalTheory.PsType
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PrincipalSeriesCongruenceSubgroupIsOpenIsCompact
+section -- clump: shared namespace opens
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil ValuativeRel GlobalTheory.PsType
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PrincipalSeriesCongruenceSubgroupIsOpenIsCompact
 
 namespace GlobalTheory.PsType
 
@@ -938,8 +938,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PrincipalSeriesCongruenceSubgroupSmoothCharacter
 
-open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil ValuativeRel GlobalTheory.PsType
-
 namespace GlobalTheory.PsType
 
 theorem grp_theta_datum : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ)
@@ -963,9 +961,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsRankOneCornerPrincipalSeriesCongruence
 @[expose] public noncomputable section
-
-
-open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil ValuativeRel GlobalTheory.PsType
 
 namespace GlobalTheory.PsType
 
@@ -1055,9 +1050,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PrincipalSeriesTypeNotIntertwineOutside
 
-
-open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil ValuativeRel GlobalTheory.PsType
-
 namespace GlobalTheory.PsType
 
 theorem not_intertwine : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ) (ψ : Fin n → kˣ →* ℂˣ), Ordered ψ → ∀ y ∈ KO k (Fin n), y ∉ grp ψ → ∃ j ∈ grp ψ, y * j * y⁻¹ ∈ grp ψ ∧ theta ψ j ≠ theta ψ (y * j * y⁻¹) := by
@@ -1127,9 +1119,6 @@ end GlobalTheory.PsType
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PrincipalSeriesUnipotentStripProperties
-
-
-open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil ValuativeRel GlobalTheory.PsType
 
 namespace GlobalTheory.PsType
 
@@ -1263,6 +1252,8 @@ theorem strip_props : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpac
 
 end GlobalTheory.PsType
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SubsingletonJacquetIff
 
@@ -1719,7 +1710,6 @@ end GlobalTheory.PsType
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SubquotientPrinSeriesOfHasVec
-
 
 namespace GlobalTheory.PsType
 

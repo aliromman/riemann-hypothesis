@@ -68,9 +68,11 @@ import Mathlib.RingTheory.MvPolynomial.EulerIdentity
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SumRowDegreeEqOfHarmonicHighestCasimir, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ColumnDegrees, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsEqMulMinorPoly, Development.AbelianVarietyTheory.Proofs.TwistedOperators.FnShapeOfJointShape, Development.AbelianVarietyTheory.Proofs.TwistedOperators.LengthAddLeOfDisjoint, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RowColWeightsAgree, Development.AbelianVarietyTheory.Proofs.TwistedOperators.AbsSubOfDisjoint
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SumRowDegreeEqOfHarmonicHighestCasimir
+section -- clump: shared namespace opens
 
 open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.JointHarm
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SumRowDegreeEqOfHarmonicHighestCasimir
 
 namespace GlobalTheory.HarmRowDegree
 
@@ -350,9 +352,6 @@ end GlobalTheory.HarmRowDegree
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ColumnDegrees
-
-
-open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.JointHarm
 
 namespace GlobalTheory.JointHarm.ColumnDegree
 
@@ -708,8 +707,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsEqMulMinorPoly
 
-open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.JointHarm
-
 namespace GlobalTheory.JointHarm
 
 theorem sum_Ici_sub_succ {n : ℕ} (α : ℕ → ℕ) (hα : Antitone α) (h0 : α n = 0) (a : Fin n) :
@@ -808,8 +805,6 @@ end GlobalTheory.JointHarm
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FnShapeOfJointShape
-
-open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.JointHarm
 
 namespace GlobalTheory.JointHarm.ListShape
 
@@ -925,8 +920,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LengthAddLeOfDisjoint
 
-open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.JointHarm
-
 namespace GlobalTheory.JointHarm
 
 theorem exists_length_of_antitone {α : ℕ → ℕ} (hα : Antitone α) {m : ℕ}
@@ -1040,9 +1033,6 @@ end GlobalTheory.JointHarm
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RowColWeightsAgree
-
-
-open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.JointHarm
 
 namespace GlobalTheory.JointHarm.BlockWeights
 
@@ -1179,8 +1169,9 @@ theorem row_col_weights_agree : ∀ (σ : Type) [DecidableEq σ] (p r : ℕ) (z 
 end GlobalTheory.JointHarm.BlockWeights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.AbsSubOfDisjoint
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.AbsSubOfDisjoint
 
 open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.FockAlg
 

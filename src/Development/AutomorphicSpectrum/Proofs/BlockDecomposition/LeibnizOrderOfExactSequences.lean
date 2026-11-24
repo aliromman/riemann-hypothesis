@@ -65,7 +65,6 @@ import Mathlib.Tactic.TypeStar
 
 section -- clump: shared namespace opens
 
-
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.LeibOrd
 open scoped TensorProduct
 
@@ -393,7 +392,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictionProductRankZeroLeft
 
-
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.LeibOrd GlobalTheory.CompanionTheory.BZRes
 open scoped TensorProduct
 
@@ -594,7 +592,6 @@ end GlobalTheory.CompanionTheory.LeibRes0Left
 end -- clump:auto
 
 section -- clump: shared namespace opens
-
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.LeibOrd
 open scoped TensorProduct
@@ -807,14 +804,8 @@ end GlobalTheory.CompanionTheory.LeibOrd
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsFiltration
 @[expose] public noncomputable section
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.LeibOrd
-open scoped TensorProduct
-
 
 namespace GlobalTheory.CompanionTheory.LeibOrd.ChainFilt
 
@@ -948,10 +939,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiProductRankZeroTrivial
 
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.LeibOrd
-open scoped TensorProduct
-
-
 namespace GlobalTheory.CompanionTheory.PhiGpZero
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -1061,8 +1048,9 @@ end GlobalTheory.CompanionTheory.PhiGpZero
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeibnizOrderOfExactSequences
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeibnizOrderOfExactSequences
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib
 open scoped TensorProduct

@@ -351,7 +351,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EnergyDensitySmooth
 
-
 open MeasureTheory Matrix Finset
 open scoped ContDiff ComplexConjugate InnerProductSpace
 
@@ -1005,14 +1004,7 @@ theorem _root_.GlobalTheory.T.smooth_monotone_cutoff_exists : ∃ χ : ℝ → �
   first | exact @GlobalTheory.CompanionTheory.SmoothCut.exists_smooth_antitone_cut
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TranslatedLengthBoundedDerivative
-
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
-open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 open PositivityTheory.RgTw (Mat G)
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -1090,12 +1082,6 @@ theorem lg_left_facts : LgFacts → ∀ n : ℕ, ∃ C : ℝ, 0 ≤ C ∧ ∀ x 
 end GlobalTheory.CompanionTheory.WaveSpd
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open MeasureTheory Matrix Finset
-open scoped ContDiff ComplexConjugate InnerProductSpace
-open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TranslatedLengthBoundedDerivativeStatement
 open PositivityTheory.RgTw (Mat G)
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -1115,7 +1101,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinitePropagationSpeedHolds
-
 
 open MeasureTheory Matrix Finset
 open scoped ContDiff ComplexConjugate InnerProductSpace

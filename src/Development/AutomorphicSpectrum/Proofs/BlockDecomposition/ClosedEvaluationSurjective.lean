@@ -72,11 +72,12 @@ import Mathlib.RingTheory.Henselian
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BumpSectionValueLocalIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CongruenceSubgroupOpenCompact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CongruenceSubgroupsBasisNhds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShiftedEmbeddingMemCongruenceIff, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothSubrepCompactInductionSpan, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentBallMemCongruence, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentCongruenceFactorization, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClosedEvaluationSurjective
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BumpSectionValueLocalIntegral
+section -- clump: shared namespace opens
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
-open scoped TensorProduct
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BumpSectionValueLocalIntegral
+open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Onto
 
@@ -120,10 +121,7 @@ end GlobalTheory.CompanionTheory.BZPhiPG.Onto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CongruenceSubgroupOpenCompact
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
 open scoped TensorProduct
-
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Onto.Topo
 
@@ -206,8 +204,6 @@ end GlobalTheory.CompanionTheory.BZPhiPG.Onto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CongruenceSubgroupsBasisNhds
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
 open scoped TensorProduct Topology
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Onto
@@ -280,9 +276,6 @@ end GlobalTheory.CompanionTheory.BZPhiPG.Onto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShiftedEmbeddingMemCongruenceIff
-
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
 open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Onto
@@ -353,10 +346,11 @@ end GlobalTheory.CompanionTheory.BZPhiPG.Onto
 
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothSubrepCompactInductionSpan
 
 open GlobalTheory.PRep Topology
-
 
 namespace GlobalTheory.CompanionTheory.PRep.CIndGlue
 
@@ -600,7 +594,6 @@ open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentBallMemCongruence
 
-
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Onto
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -704,7 +697,6 @@ theorem GlobalTheory.CompanionTheory.BZPhiPG.Onto.dEmb_mem_congM_and_ball : ∀ 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentCongruenceFactorization
-
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Onto.Key1
 
@@ -918,7 +910,6 @@ end GlobalTheory.CompanionTheory.BZPhiPG.Onto.Key1
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClosedEvaluationSurjective
-
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Onto
 

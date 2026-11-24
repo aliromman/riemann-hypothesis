@@ -85,7 +85,6 @@ open scoped TensorProduct
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsGrowthExponent
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-
 open GlobalTheory.SmoothGlob GlobalTheory.LowTypeDetermined GlobalTheory.PointAtPlaceHom GlobalTheory.Mem.AutSpace GlobalTheory.TypeSum GlobalTheory.TypeSum.GrowthAtPlace Formalism.REAL
 
 namespace GlobalTheory.TypeSum.GKCoef
@@ -213,7 +212,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.DiscreteSeriesGKMapValuesEqGeneralisedCoefficien
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 
 open GlobalTheory.SmoothGlob GlobalTheory.LowTypeDetermined GlobalTheory.PointAtPlaceHom GlobalTheory.Mem.AutSpace GlobalTheory.TypeSum GlobalTheory.TypeSum.GrowthAtPlace Formalism.REAL
 
@@ -366,7 +364,6 @@ end -- clump: shared namespace opens
 open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped InnerProductSpace
 
-
 namespace GlobalTheory.TypeSum
 
 open GlobalTheory.LowTypeDetermined
@@ -511,7 +508,6 @@ end -- clump:auto
 
 open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped InnerProductSpace
-
 
 namespace GlobalTheory.TypeSum
 
@@ -660,7 +656,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsOrthonormalEigen
 
-
 open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.LowTypeDetermined GlobalTheory.TypeSum
 open scoped InnerProductSpace
 
@@ -779,7 +774,6 @@ open scoped TensorProduct
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsCommonGrowthExponentGKDiscreteSeries
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped InnerProductSpace
-
 
 namespace GlobalTheory.TypeSum.CoefRep
 
@@ -944,7 +938,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.DiscreteSeriesCoeffSeriesOfKTypeProjections
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 
 namespace GlobalTheory.TypeSum.KSeries
 
@@ -1120,7 +1113,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.KProjectionLimitDiscreteSeriesCoeffs
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-
 open MeasureTheory
 open scoped InnerProductSpace
 
@@ -1256,7 +1248,7 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Matrix
 open scoped TensorProduct
@@ -1307,7 +1299,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.MatrixCoefficientFrameChangeDiscreteSeries
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 
 open MeasureTheory Matrix Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 
@@ -1643,13 +1634,7 @@ theorem _root_.GlobalTheory.T.matrix_coefficient_frame_change_discrete_series : 
   first | exact @GlobalTheory.TypeSum.FrameChange.coef_frame_change
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.AutomorphicFormUniformLimitDiscreteSeriesSeries
-
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Matrix
-open scoped TensorProduct
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 

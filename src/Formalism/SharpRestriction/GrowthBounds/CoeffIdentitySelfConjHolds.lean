@@ -82,11 +82,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.CoeffGaugeSquareLowDegree, Formalism.LocalToGlobal.CharacterGerms.CoeffPowCharFrobenius, Formalism.LocalToGlobal.CharacterGerms.CoeffFirstPairingLinear, Formalism.LocalToGlobal.CharacterGerms.FrobPowSmul, Formalism.LocalToGlobal.CharacterGerms.MmMulSeries, Formalism.SharpRestriction.GrowthBounds.ConstantCoeffUnshiftLogarithm, Formalism.SharpRestriction.GrowthBounds.R1sExpLowHolds, Formalism.SharpRestriction.GrowthBounds.SumRescaleTySTwo, Formalism.SharpRestriction.GrowthBounds.CoeffIdentitySelfConjOfFourOpen, Formalism.SharpRestriction.GrowthBounds.RescaleInV, Formalism.SharpRestriction.GrowthBounds.CoeffIdentitySelfConjOfTwo, Formalism.SharpRestriction.GrowthBounds.GenIntSPsubst, Formalism.SharpRestriction.GrowthBounds.CoeffIdentitySelfConjHolds
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.CoeffGaugeSquareLowDegree
-
+section -- clump: shared namespace opens
 
 open scoped BigOperators
 open Classical
+
+@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.CoeffGaugeSquareLowDegree
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -393,9 +394,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.CoeffPowCharFrobenius
 
-open scoped BigOperators
-open Classical
-
 namespace Formalism.L2.FormalSeriesBounds
 
 open ValuationNonnegativity
@@ -423,10 +421,6 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.CoeffFirstPairingLinear
-
-
-open scoped BigOperators
-open Classical
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace Formalism.L2.FormalSeriesBounds
@@ -561,8 +555,9 @@ end PhPowP
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.FrobPowSmul
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.FrobPowSmul
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -582,7 +577,6 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 section -- clump: shared namespace opens
-
 
 open scoped BigOperators
 open Classical
@@ -1257,7 +1251,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.CoeffIdentitySelfConjOfFourOpen
 
-
 namespace Formalism.L2.FormalSeriesBounds
 
 theorem r1sFrob_holds : PowerSeriesFrobeniusCongruence := frobPow_smul
@@ -1274,7 +1267,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RescaleInV
 
 set_option autoImplicit false
-
 
 open scoped BigOperators
 open Classical
@@ -1374,7 +1366,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.CoeffIdentitySelfConjOfTwo
 
-
 namespace Formalism.L2.FormalSeriesBounds
 
 theorem r1sHInt_holds : IntegralUnitFamilies :=
@@ -1389,7 +1380,6 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.GenIntSPsubst
-
 
 open scoped BigOperators
 open Classical
@@ -1673,7 +1663,6 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.CoeffIdentitySelfConjHolds
-
 
 namespace Formalism.L2.FormalSeriesBounds
 

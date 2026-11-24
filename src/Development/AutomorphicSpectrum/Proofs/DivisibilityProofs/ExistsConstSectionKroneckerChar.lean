@@ -119,7 +119,6 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Br
 
-
 namespace GlobalTheory.CompanionTheory.Ar.Br.CvRule
 
 open GlobalTheory.CompanionTheory.Ar.Flat.RuleGlue
@@ -470,7 +469,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsEigFrameOfFrPt
 
-
 namespace GlobalTheory.CompanionTheory.Ar.Flat.RuleVal
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
@@ -700,7 +698,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.NormLeOneIffLogValuation
 
-
 namespace GlobalTheory.CompanionTheory.Ar.Flat.RuleVal
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
@@ -910,7 +907,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Foundations.NotFlatExistsOfIsEmpty
 
-
 namespace GlobalTheory.FlatLine.Model
 
 open NumberField IsDedekindDomain Module AlgebraicGeometry CategoryTheory
@@ -959,7 +955,6 @@ end -- clump:auto
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Br
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Br.FlatNorm
 
@@ -1160,7 +1155,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PadicEmbeddingsConjugateOfUnits
 
 open NumberField IsDedekindDomain GlobalTheory.CompanionTheory.Ar.Fl
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Br.Conj
 
@@ -1546,7 +1540,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameFunctionFiniteNorm
 
-
 namespace GlobalTheory.CompanionTheory.Ar.Br.FinGood
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
@@ -1574,13 +1567,12 @@ theorem finGood : Geo.ResK.ResKStatement → GagaSections → ∀ (E : Type) [Fi
 end GlobalTheory.CompanionTheory.Ar.Br.FinGood
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Br
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GeometricComponentAlgClosed
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Br
 
@@ -1727,13 +1719,7 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.family_uniformization_type_rel
   first | exact @PositivityTheory.Xj6.period_in
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.KroneckerCharacterFrameBound
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Br
 
 namespace GlobalTheory.CompanionTheory.Ar.Br
 
@@ -1748,10 +1734,6 @@ end GlobalTheory.CompanionTheory.Ar.Br
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ExistsConstSectionKroneckerChar
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Br
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Br.CovEx
 

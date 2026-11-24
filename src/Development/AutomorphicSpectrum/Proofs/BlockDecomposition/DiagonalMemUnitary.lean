@@ -108,7 +108,6 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HighestWeightAn
 
 section -- clump: shared namespace opens
 
-
 open Matrix Finset
 open scoped InnerProductSpace
 
@@ -1072,7 +1071,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VandermondeSquares
 
-
 open Finset
 
 namespace GlobalTheory.CompanionTheory.CoefId
@@ -1556,7 +1554,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedTraceWeylCharacter
 
-
 open Matrix Finset
 open scoped InnerProductSpace ComplexConjugate
 
@@ -1622,20 +1619,17 @@ theorem trace_dualT_inv (lam : Fin n → ℤ) (E : KMod n) (T : E.V →L[ℂ] E.
 end GlobalTheory.CompanionTheory.RealCountG.LefDual
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedTraceWeylCharacterStatement
+-- clump: shared namespace opens
 
 open Matrix Finset
 open scoped InnerProductSpace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedTraceWeylCharacterStatement
 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagonalMemUnitary
-
-
-open Matrix Finset
-open scoped InnerProductSpace
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
 
 namespace GlobalTheory.CompanionTheory.RealCountG
 

@@ -117,8 +117,7 @@ theorem lowOne_stable : ∀ (P Q R S : ℕ) (x : ℚ) (k k' : ℕ), x - Formalis
 end GlobalTheory.LowStable
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
+-- clump: shared namespace opens
 
 open Matrix Finset MeasureTheory
 open scoped ContDiff ComplexConjugate InnerProductSpace
@@ -624,13 +623,7 @@ theorem GlobalTheory.CompanionTheory.ModelS.FFin.fRaw_finite (n : ℕ) (lam : Fi
       rw [wf, Set.indicator_of_notMem hg, (GlobalTheory.CompanionTheory.ModelS.Kf a b (wfL e m q)).2.2 g hg]
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InducedFunctionKFiniteStatement
-
-open Matrix Finset MeasureTheory
-open scoped ContDiff ComplexConjugate InnerProductSpace
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD
 open PositivityTheory.RgTw (Mat)
 open GlobalTheory.CompanionTheory.GLK (e1 e2 f1)
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace

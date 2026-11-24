@@ -56,9 +56,11 @@ import Mathlib.RingTheory.Coalgebra.CoassocSimps
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSiegelReducedBasisOfPosDefForm, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSiegelReductionOrthogonal, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAdaptedSiegelBasisBalancedForms
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSiegelReducedBasisOfPosDefForm
+-- clump: shared namespace opens
 
 open Matrix GlobalTheory.RedTh NumberField GlobalTheory.PolFan ReciprocityTheory.ChartRestriction.G.Geo.Tor
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSiegelReducedBasisOfPosDefForm
 open scoped MatrixOrder
 
 namespace GlobalTheory.RedTh.RedBasis
@@ -134,9 +136,6 @@ end GlobalTheory.RedTh.RedBasis
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSiegelReductionOrthogonal
-
-open Matrix GlobalTheory.RedTh NumberField GlobalTheory.PolFan ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
 
 namespace GlobalTheory.RedTh
 
@@ -290,9 +289,6 @@ end GlobalTheory.RedTh
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAdaptedSiegelBasisBalancedForms
-
-
-open Matrix GlobalTheory.RedTh NumberField GlobalTheory.PolFan ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 namespace GlobalTheory.RedTh
 

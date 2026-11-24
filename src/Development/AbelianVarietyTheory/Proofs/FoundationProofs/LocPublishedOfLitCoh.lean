@@ -182,7 +182,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.CrystallineCocycleCoboundaryOfNegativeWeight
 
-
 namespace GlobalTheory.NegVan
 
 private theorem fd_adjoin_range (l : ℕ) [Fact l.Prime] {ι : Type} [Finite ι] (f : ι → PadicAlgCl l) :
@@ -419,7 +418,6 @@ open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.
 open scoped Matrix
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.CardDualCocyclesModPrimePowUnramifiedOutsideSBou
-
 
 namespace GlobalTheory.Ord2.GwFin
 
@@ -690,7 +688,6 @@ end GlobalTheory.Ord2.GwFin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.CardPrimePowTorsionSelmerClassesModPrimePowBound
-
 
 namespace GlobalTheory.Ord2.TorsBound
 
@@ -1203,7 +1200,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.CocyclePairAlternatingNeOnCycloKernel
 
-
 namespace GlobalTheory.Ord2.PairSpan
 
 section Abstract
@@ -1497,11 +1493,12 @@ theorem UpperTheory.Reformulated.B.Rb6.norm_le_one_of_mem :
   exact PadicInt.norm_le_one _
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.StrictVanishingDualOfLiterature
-
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.Ord2
 open scoped Matrix
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.StrictVanishingDualOfLiterature
 
 namespace GlobalTheory.Ord2.StrictKill
 
@@ -1759,9 +1756,6 @@ end GlobalTheory.Ord2.StrictKill
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.LocPublishedOfLitCoh
-
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.Ord2
-open scoped Matrix
 
 namespace GlobalTheory.Ord2
 

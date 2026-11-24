@@ -77,7 +77,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 open scoped UpperHalfPlane MatrixGroups Manifold
 open GlobalTheory.Sieg GlobalTheory.QFam
 
-
 namespace GlobalTheory.Sieg.Distr
 
 open Filter Topology Finset
@@ -321,7 +320,6 @@ end -- clump:auto
 open scoped UpperHalfPlane MatrixGroups Manifold
 open GlobalTheory.Sieg GlobalTheory.QFam
 
-
 namespace GlobalTheory.SiegDist
 
 lemma ee_add (a b : ℂ) : ee (a + b) = ee a * ee b := by
@@ -418,7 +416,6 @@ end -- clump:auto
 open scoped UpperHalfPlane MatrixGroups
 open GlobalTheory.KZ GlobalTheory.Sieg
 
-
 namespace GlobalTheory.KZDist
 
 lemma isAdmissibleSmoothingFactor_divided_indices (c m : ℕ) (x : Fin 2 → ℚ) (a b : ℕ) (hA : admitted c x) (hm : 0 < m) :
@@ -460,9 +457,11 @@ theorem siegel_distribution : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlg
 end GlobalTheory.KZDist
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.SgDist
+-- clump: shared namespace opens
 
 open scoped MatrixGroups Matrix
+
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.SgDist
 open GlobalTheory.KZ GlobalTheory.K4 UpperTheory.V.Z.Kato.Sym
 
 private theorem siegel_admissible_to_rat (c M : ℕ) (hc : 1 < c) (h6 : Nat.Coprime c 6) (hM : 0 < M) (hcM : Nat.Coprime c M)
@@ -595,9 +594,6 @@ theorem UpperTheory.V.Z.Kato.Sym.sgDist :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.RtRt
-
-
-open scoped MatrixGroups Matrix
 open GlobalTheory.KZ GlobalTheory.K4
 
 namespace UpperTheory.V.Z.Kato.Sym

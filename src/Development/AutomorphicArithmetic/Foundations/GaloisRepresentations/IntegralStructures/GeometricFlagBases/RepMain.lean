@@ -1579,12 +1579,7 @@ theorem UpperTheory.Gal.Int.Geo.totCont_of :
   exact continuous_finsetSum _ fun n _ => hDC l k Ω p inferInstance inferInstance n 0 (hfin n) (v n) _
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.RepAsm
-
-
-open CategoryTheory Limits AlgebraicGeometry NumberField GlobalTheory.EtC GlobalTheory.Et TensorProduct Polynomial
 open GlobalTheory.GalV (HTower Htot hop galV galTot)
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N
@@ -1642,6 +1637,8 @@ theorem repEx_of (h1 : GrEx) (h2 : ContGL) (h3 : MatEx) (h4 : MatConj) (h5 : Pie
 end UpperTheory.Gal.Int.Geo
 
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.VFinOf
 

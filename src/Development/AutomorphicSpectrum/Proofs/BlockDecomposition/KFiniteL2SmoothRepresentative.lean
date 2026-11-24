@@ -97,7 +97,6 @@ open scoped ContDiff
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CenterCommutesOneParameterFlow
 
-
 namespace GlobalTheory.CompanionTheory.SmoothRep.Flow
 
 section Abstract
@@ -300,7 +299,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConvolutionMaximalCompactEquivariant
 
-
 namespace GlobalTheory.CompanionTheory.SmoothRep
 
 theorem tst_conj_Kinf {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ}
@@ -348,7 +346,6 @@ end GlobalTheory.CompanionTheory.SmoothRep
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConvolutionRightInvariantOpenCompact
-
 
 namespace GlobalTheory.CompanionTheory.SmoothRep
 
@@ -550,7 +547,6 @@ open NumberField MeasureTheory Topology Matrix GlobalTheory.AutomorphicL2Unitary
 open scoped ContDiff
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConvolutionSmoothLieDerivative
-
 
 namespace GlobalTheory.CompanionTheory.SmoothRep.TstConv
 
@@ -778,7 +774,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalConvolutionSplitCentreInvariant
 
-
 namespace GlobalTheory.CompanionTheory.SmoothRep
 
 theorem convR_lift_splitCentre_mul (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ)
@@ -802,7 +797,6 @@ end GlobalTheory.CompanionTheory.SmoothRep
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsTestFunctionFixedSubspace
-
 
 namespace GlobalTheory.CompanionTheory.SmoothRep.Inj
 
@@ -902,13 +896,7 @@ theorem exists_isTest_Rop_injective : ∀ (E : Type) [Field E] [NumberField E] [
 end GlobalTheory.CompanionTheory.SmoothRep.Inj
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KFiniteIrreducibleFixedVectors
-
-
-open NumberField MeasureTheory Topology Matrix GlobalTheory.AutomorphicL2Unitary GlobalTheory.DiscreteSum GlobalTheory.OpTrace GlobalTheory.UnitaryBC GlobalTheory.DiscSpec GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL GlobalTheory.CompanionTheory.SmoothRep
-open scoped ContDiff
 
 namespace GlobalTheory.CompanionTheory.TypeSpace
 
@@ -1032,13 +1020,7 @@ end GlobalTheory.CompanionTheory.TypeSpace
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open NumberField MeasureTheory Topology Matrix GlobalTheory.AutomorphicL2Unitary GlobalTheory.DiscreteSum GlobalTheory.OpTrace GlobalTheory.UnitaryBC GlobalTheory.DiscSpec GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL GlobalTheory.CompanionTheory.SmoothRep
-open scoped ContDiff
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RightTranslationLieConjugate
-
 
 namespace GlobalTheory.CompanionTheory.SmoothRep
 
@@ -1104,7 +1086,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryExponentialPathExists
 @[expose] public noncomputable section
-
 
 namespace GlobalTheory.CompanionTheory.SmoothRep.KCurve
 
@@ -1205,7 +1186,6 @@ end -- clump: shared namespace opens
 
 open NumberField MeasureTheory Topology Matrix GlobalTheory.AutomorphicL2Unitary GlobalTheory.DiscreteSum GlobalTheory.OpTrace GlobalTheory.UnitaryBC GlobalTheory.DiscSpec GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL
 open scoped ContDiff
-
 
 namespace GlobalTheory.CompanionTheory.SmoothRep.Rep
 

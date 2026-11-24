@@ -114,10 +114,11 @@ theorem isContRep_sub {E : Type} [Field E] [NumberField E] [NumberField.IsTotall
 end GlobalTheory.ContinuousRepresentationCoefficients
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDimensionalEigenIntertwiners
+-- clump: shared namespace opens
 
 open NumberField GlobalTheory.CuspRep GlobalTheory.CuspQuot GlobalTheory.AutGrowth MeasureTheory Filter Topology
 
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDimensionalEigenIntertwiners
 
 namespace GlobalTheory.AutGrowth
 
@@ -176,9 +177,6 @@ end GlobalTheory.AutGrowth
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDimensionalCentreAnnihilatorCompatibleMaps
-
-
-open NumberField GlobalTheory.CuspRep GlobalTheory.CuspQuot GlobalTheory.AutGrowth MeasureTheory Filter Topology
 
 namespace GlobalTheory.AutGrowth.KilledFin
 

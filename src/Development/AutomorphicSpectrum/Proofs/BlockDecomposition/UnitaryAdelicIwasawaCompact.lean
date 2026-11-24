@@ -69,7 +69,6 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsUniqueIsPr
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlockTriangularMemMinimalParabolicLocal
 
-
 open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR
 open Formalism.UG (cT)
 open scoped TensorProduct
@@ -142,9 +141,11 @@ end GlobalTheory.CompanionTheory.KFin
 
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlockTriangularMemMinimalParabolicStatement
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.KFin
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlockTriangularMemMinimalParabolicStatement
 open Formalism.UG (cT)
 open scoped TensorProduct
 
@@ -153,9 +154,6 @@ theorem _root_.GlobalTheory.T.block_triangular_mem_minimal_parabolic : ∀ {F E 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsMaxEvenAdaptedLattice
-
-
-open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.KFin
 open Formalism.UG (cT)
 open scoped TensorProduct
 
@@ -439,8 +437,6 @@ end GlobalTheory.CompanionTheory.KFin.Adapted
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeMaxEvenAlmostAll
-
-open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.KFin
 open Formalism.UG (cT)
 open scoped TensorProduct
 
@@ -611,9 +607,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeStabilizerCompact
-
-
-open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.KFin
 open Formalism.UG (cT)
 open scoped TensorProduct nonZeroDivisors
 
@@ -845,8 +838,6 @@ end GlobalTheory.CompanionTheory.KFin.CompactStab
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeviMatrixMapBaseChange
-
-open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.KFin
 open Formalism.UG (cT)
 open scoped TensorProduct
 
@@ -885,9 +876,6 @@ end GlobalTheory.CompanionTheory.KFin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeviMatrixOne
-
-
-open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.KFin
 open Formalism.UG (cT)
 open scoped TensorProduct
 
@@ -945,8 +933,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFormHermitianPerfect
 @[expose] public section
-
-open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.KFin
 open Formalism.UG (cT)
 open scoped TensorProduct
 
@@ -1054,8 +1040,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalHermitianRing
 @[expose] public section
-
-open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.KFin
 open Formalism.UG (cT)
 open scoped TensorProduct
 
@@ -1246,8 +1230,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalWittFrame
-
-open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.KFin
 open Formalism.UG (cT)
 open scoped TensorProduct
 
@@ -1275,10 +1257,11 @@ theorem isFrame_colV : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Num
 end GlobalTheory.CompanionTheory.KFin.FrameLoc
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MaxEvenLatticeAdaptedBasis
 
 set_option linter.unusedSectionVars false
-
 
 open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.KFin
 open Formalism.UG (cT)
@@ -1446,7 +1429,6 @@ end GlobalTheory.CompanionTheory.KFin.GoodLocal
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MaxEvenLatticeFlagTransitiveLocal
-
 
 open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.KFin
 open Formalism.UG (cT)
@@ -1698,7 +1680,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryAdelicIwasawaCompact
 
 set_option linter.unusedSectionVars false
-
 
 open NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR
 open Formalism.UG (cT)

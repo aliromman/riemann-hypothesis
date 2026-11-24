@@ -222,7 +222,6 @@ end -- clump:auto
 section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCoboundaryOfInvariantUnitaryStepConstants
 @[expose] public noncomputable section
 
-
 namespace GlobalTheory.GaugeAlg
 
 open Matrix Formalism.UG
@@ -967,7 +966,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NonemptyStandardLocalHaarMeasures
 
-
 namespace GlobalTheory.GaugeEx.StdExist
 
 open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.GaugeEx
@@ -1048,10 +1046,12 @@ theorem nonempty_stdMeas (F E : Type) [Field F] [NumberField F] [Field E] [Numbe
 end GlobalTheory.GaugeEx.StdExist
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StdHermitianFibreProductChangeOfBasis
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.GaugeEx
 open scoped TensorProduct NNReal ENNReal
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StdHermitianFibreProductChangeOfBasis
 
 namespace GlobalTheory.GaugeEx.BasisX
 
@@ -1164,10 +1164,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnitaryOneVectorStepCompatibleChangeOfBasis
 @[expose] public noncomputable section
-
-
-open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.GaugeEx
-open scoped TensorProduct NNReal ENNReal
 
 namespace GlobalTheory.GaugeEx.StepTr
 
@@ -1422,9 +1418,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsGaugeOfIsCMExt
 
-open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.GaugeEx
-open scoped TensorProduct NNReal ENNReal
-
 namespace GlobalTheory.GaugeEx
 
 section Scale
@@ -1613,6 +1606,8 @@ theorem GlobalTheory.GaugeEx.exists_isGauge : ∀ (F E : Type) [Field F] [Number
   exact exists_isGauge_of_isCMExt hσ
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ParametersForcedContentEqScaleAtResidueCharStatement
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.Host GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl NumberField IsDedekindDomain
@@ -1623,7 +1618,6 @@ theorem _root_.GlobalTheory.T.forcedContent_eq_scale_at_residueChar : ∀ (D : D
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsConstructedCoreOfAllConstructionStages
-
 
 namespace GlobalTheory.Mem.Top.Bl.CoreAsm
 

@@ -73,7 +73,7 @@ import Mathlib.Topology.Algebra.Star.Unitary
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactGroupDisintegration, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactGroupDisintegrationStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureCongruenceInvariant, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureCongruenceInvariantStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureDensityFormula, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureDensityFormulaStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureLocallyFinite, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureLocallyFiniteStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CongruenceActionDeterminantStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothCholeskyFactor, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothCholeskyFactorStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositiveConeStructure
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open MeasureTheory Matrix Topology Filter
 open scoped ContDiff ENNReal ComplexOrder Pointwise
@@ -348,13 +348,7 @@ theorem _root_.GlobalTheory.T.cone_measure_density_formula : ∀ n : ℕ, (∀�
   first | exact @GlobalTheory.CompanionTheory.ConeHaar.cone_integral
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureLocallyFinite
-
-
-open MeasureTheory Matrix Topology Filter
-open scoped ContDiff ENNReal ComplexOrder Pointwise
 
 open PositivityTheory.RgTw (Mat G hb)
 open PositivityTheory.RgBcC
@@ -444,11 +438,6 @@ theorem coneMeas_ne_zero_and_lt_top : ∀ n : ℕ, coneMeas n ≠ 0 ∧ ∀ C : 
 
 end GlobalTheory.CompanionTheory.ConeHaar.Fin
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open MeasureTheory Matrix Topology Filter
-open scoped ContDiff ENNReal ComplexOrder Pointwise
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureLocallyFiniteStatement
 open PositivityTheory.RgTw (Mat G hb)
@@ -687,13 +676,7 @@ theorem _root_.GlobalTheory.T.smooth_positive_definite_sqrt : ∀ n : ℕ, ∃ �
   first | exact @GlobalTheory.CompanionTheory.ConeHaar.Chol.exists_smooth_section
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositiveConeStructure
-
-
-open MeasureTheory Matrix Topology Filter
-open scoped ContDiff ENNReal ComplexOrder Pointwise
 
 namespace GlobalTheory.CompanionTheory.ConeHaar
 

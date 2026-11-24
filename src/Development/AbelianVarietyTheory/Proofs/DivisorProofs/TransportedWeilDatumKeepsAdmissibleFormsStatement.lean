@@ -455,14 +455,7 @@ theorem _root_.GlobalTheory.T.heisenberg_fixed_invariant_open_compact_compact_su
   first | exact @GlobalTheory.WeilAdm.fixed_invariant_compactSupport
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TransportedWeilDatumKeepsAdmissibleForms
-
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta
-open IsDedekindDomain NumberField MeasureTheory
-open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Matrix ENNReal Classical
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
@@ -564,6 +557,8 @@ theorem transport_adm : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar
 end GlobalTheory.WeilAdm
 
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TransportedWeilDatumKeepsAdmissibleFormsStatement
 

@@ -248,7 +248,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.EnormOfRealToRealLe
 
-
 open MeasureTheory PositivityTheory.Rg.Tf.Loc
 open scoped ENNReal
 
@@ -296,7 +295,6 @@ end PositivityTheory.Rg.BcB.CV
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.ExistsMeasure
-
 
 open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc
@@ -452,7 +450,6 @@ theorem PositivityTheory.Rg.BcB.CV.pf_Glob1 : PositivityTheory.Rg.BcB.D4.SplitAt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.LintegralIndicatorNeTop
-
 
 open MeasureTheory PositivityTheory.Rg.Tf.Loc
 open scoped Pointwise ENNReal
@@ -632,9 +629,11 @@ theorem pf_QInt : QInt := by
 end PositivityTheory.Rg.BcB.CV
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.PAdTop
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Matrix MeasureTheory
+
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.PAdTop
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB
 
 namespace PositivityTheory.Rg.BcB.CV.AdelicTopology
@@ -674,8 +673,6 @@ theorem PositivityTheory.Rg.BcB.CV.pf_AdTop : PositivityTheory.Rg.BcB.DegBdd â†’
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.PClassVanish
-
-open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc
 open scoped Pointwise
 
@@ -812,8 +809,6 @@ theorem PositivityTheory.Rg.BcB.CV.pf_ClassVanish : PositivityTheory.Rg.BcB.D4.P
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.PCutInt
-
-open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB
 open scoped Pointwise
 
@@ -925,9 +920,6 @@ theorem PositivityTheory.Rg.BcB.CV.pf_CutInt : PositivityTheory.Rg.BcB.D4.KerFin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.PFamAt
-
-
-open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc
 
 namespace PositivityTheory.Rg.BcB.CV.FamilyAtPlace
@@ -1009,8 +1001,9 @@ theorem PositivityTheory.Rg.BcB.CV.pf_FamAt : PositivityTheory.Rg.BcB.D4.LocFlag
       exact h5 (embInf n v x) u hu (Wof e') hW'
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.PLocTor
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.PLocTor
 
 open Matrix PositivityTheory.Rg.Tf.Loc
 
@@ -1055,7 +1048,6 @@ theorem PositivityTheory.Rg.BcB.CV.pf_LocTor : PositivityTheory.Rg.BcB.CV.LocTor
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.POneVanish
-
 
 open MeasureTheory PositivityTheory.Rg.Tf.Loc
 
@@ -1223,7 +1215,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.PQProd
 
-
 open MeasureTheory PositivityTheory.Rg.Tf.Loc
 
 namespace PositivityTheory.Rg.BcB.CV.QuotientProduct
@@ -1341,7 +1332,6 @@ end PositivityTheory.Rg.BcB.CV
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.PTwoVanish
-
 
 open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc
@@ -1486,7 +1476,6 @@ end -- clump:auto
 open MeasureTheory PositivityTheory.Rg.Tf.Loc
 open scoped ENNReal NNReal
 
-
 namespace PositivityTheory.Rg.BcB.CV.QuotientMapAlt
 
 def subEquiv {G G' : Type} [Group G] [TopologicalSpace G] [Group G'] [TopologicalSpace G']
@@ -1581,7 +1570,6 @@ theorem PositivityTheory.Rg.BcB.CV.pf_QMap : PositivityTheory.Rg.BcB.D4.NormEq â
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.QuotIntegralMulRight
-
 
 open MeasureTheory PositivityTheory.Rg.Tf.Loc
 open scoped ENNReal

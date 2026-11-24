@@ -54,12 +54,14 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.LatticeUnifFibreEqOfPeriod, Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.CurveHomExtOfDerivativeLieBasis, Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.QuadraticEquationOfDerivative, Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.CmEllipticCurveExistsOfUniformisation
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.LatticeUnifFibreEqOfPeriod
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory
 open scoped CategoryTheory.Obj UpperHalfPlane
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.LatticeUnifFibreEqOfPeriod
 
 namespace GlobalTheory
 
@@ -105,14 +107,6 @@ theorem lattice_unif_fibre_eq_of_period : ThetaUnifAV → ∀ (R : Type) [CommRi
 
 end GlobalTheory
 end -- clump:auto
-
--- clump: shared namespace opens
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory
-open scoped CategoryTheory.Obj UpperHalfPlane
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.CurveHomExtOfDerivativeLieBasis
 

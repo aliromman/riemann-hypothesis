@@ -46,11 +46,12 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeas
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositiveConeIsOpen, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositiveConeIsOpenStatement
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositiveConeIsOpen
-
+-- clump: shared namespace opens
 
 open MeasureTheory Matrix Topology Filter
 open scoped ContDiff ENNReal ComplexOrder Pointwise
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositiveConeIsOpen
 
 open PositivityTheory.RgTw (Mat G hb)
 open PositivityTheory.RgBcC
@@ -138,9 +139,6 @@ end GlobalTheory.CompanionTheory.ConeHaar
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositiveConeIsOpenStatement
-
-open MeasureTheory Matrix Topology Filter
-open scoped ContDiff ENNReal ComplexOrder Pointwise
 open PositivityTheory.RgTw (Mat G hb)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.ConeHaar

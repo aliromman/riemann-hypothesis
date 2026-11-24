@@ -102,7 +102,6 @@ import Mathlib.RingTheory.PiTensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.DualTowerMapExists
 
-
 namespace GlobalTheory
 
 section Helpers
@@ -178,12 +177,13 @@ alias exists_dualTower := _root_.GlobalTheory.dualTower_nonempty
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsEndDifferentialRingHom
+-- clump: shared namespace opens
 
 open TensorProduct IsLocalRing Matrix CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2 ReciprocityTheory.ChartRestriction.G.Chart
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
-attribute [local instance] Over.cartesianMonoidalCategory
 
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsEndDifferentialRingHom
+attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -364,11 +364,7 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsFormalChart
-
-open TensorProduct IsLocalRing Matrix CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2 ReciprocityTheory.ChartRestriction.G.Chart
-open scoped CategoryTheory.Obj CategoryTheory.MonObj
 attribute [local instance] Over.cartesianMonoidalCategory
-
 
 namespace GlobalTheory.FormalChartOf
 
@@ -772,10 +768,6 @@ end GlobalTheory.FormalChartOf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FinOfLocalAlgebraMap
-
-
-open TensorProduct IsLocalRing Matrix CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2 ReciprocityTheory.ChartRestriction.G.Chart
-open scoped CategoryTheory.Obj CategoryTheory.MonObj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FinOf
@@ -1061,11 +1053,6 @@ theorem main :
 end GlobalTheory.FinOf
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open TensorProduct IsLocalRing Matrix CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2 ReciprocityTheory.ChartRestriction.G.Chart
-open scoped CategoryTheory.Obj CategoryTheory.MonObj
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FiniteAlgebraSplitLocal
 attribute [local instance] Over.cartesianMonoidalCategory
 
@@ -1244,7 +1231,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PadicEndApply
 attribute [local instance] Over.cartesianMonoidalCategory
-
 
 namespace GlobalTheory.PadicOrderAction
 
@@ -1685,7 +1671,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsCompatibleBasis
 attribute [local instance] Over.cartesianMonoidalCategory
-
 
 namespace GlobalTheory.PeriodDatum
 

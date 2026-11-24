@@ -113,7 +113,6 @@ end -- clump:auto
 
 set_option autoImplicit false
 
-
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan
@@ -170,7 +169,6 @@ end GlobalTheory.CompanionTheory.Ar.Fan
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.MultipleCellsAmongPolyhedralFan
-
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.CompanionTheory.Ar.Fan GlobalTheory.PolFan.CellClass
 
@@ -340,7 +338,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.ExistsTwistedCentreSet
 
-
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.CompanionTheory.Ar.Fan
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan.TwistedOrbitCentres
@@ -407,7 +404,6 @@ end GlobalTheory.CompanionTheory.Ar.Fan.TwistedOrbitCentres
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.ExistsTwistedSimplicialStarLabel
-
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolFan.StarLab GlobalTheory.CompanionTheory.Ar.Fan
 
@@ -535,7 +531,6 @@ section -- clump: shared namespace opens
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.CompanionTheory.Ar.Fan
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.NewCellMultLtAfterStar
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan.NewCellsStarMultiplicity
 
@@ -819,12 +814,7 @@ theorem exists_star_drop_multCells : ∀ (O : Type) [CommRing O] [IsDedekindDoma
 end GlobalTheory.CompanionTheory.Ar.Fan.StarSubdivisionDropsCells
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.ExistsFanLowerMaxMultiplicity
-
-
-open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.CompanionTheory.Ar.Fan
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan.RoundBelowMaxMultiplicity
 
@@ -862,8 +852,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.MaxMultiplicityLtTop
 
-open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.CompanionTheory.Ar.Fan
-
 namespace GlobalTheory.CompanionTheory.Ar.Fan.MaxMultiplicityFinite
 
 
@@ -894,8 +882,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.SmoothOfMaxMultiplicityLeOne
 
-open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.CompanionTheory.Ar.Fan
-
 namespace GlobalTheory.CompanionTheory.Ar.Fan.SmoothFanTerminal
 
 theorem smoothEnd : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [CharZero O] [Module.Finite ℤ O] (bar : O → O), CMOrd O bar → ∀ (q : ℕ) (φ lab : InvFun O), (∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], Dominates bar X) → IsPolyFan bar q φ → SimpLab bar q φ lab → maxMult bar q φ ≤ 1 → IsPolFan bar q φ ∧ NoSelfInt bar q φ :=
@@ -905,9 +891,6 @@ end GlobalTheory.CompanionTheory.Ar.Fan.SmoothFanTerminal
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.ExistsSmoothSubordinateFan
-
-
-open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.CompanionTheory.Ar.Fan
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan.FanResolution
 
@@ -949,8 +932,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.ExistsSmoothPolyhedralFanRefinement
 
-open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.CompanionTheory.Ar.Fan
-
 namespace GlobalTheory.CompanionTheory.Ar.Fan.SmoothRefinement
 
 theorem exists_smooth_refinement : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [CharZero O] [Module.Finite ℤ O] (bar : O → O) (w0 : O), CMOrd O bar → ∀ (q : ℕ) (ψ : InvFun O), (∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], Dominates bar X) → IsPolyFan bar q ψ → IsTwG w0 ψ → ∃ φ' : InvFun O, IsPolFan bar q φ' ∧ NoSelfInt bar q φ' ∧ IsTwG w0 φ' ∧ ∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], Module.finrank O X ≤ q → ∀ (m : ℕ) (γ : Fin m → LinearMap.BilinForm ℤ X), IsCone bar φ' γ → ψ.LinearOn γ := by
@@ -962,12 +943,13 @@ theorem exists_smooth_refinement : ∀ (O : Type) [CommRing O] [IsDedekindDomain
 end GlobalTheory.CompanionTheory.Ar.Fan.SmoothRefinement
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.IntegerLatticeDominates
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
 
 set_option autoImplicit false
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan.DomZ
 
@@ -1194,7 +1176,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.ExistsSmoothFanInt
 
 set_option autoImplicit false
-
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
 

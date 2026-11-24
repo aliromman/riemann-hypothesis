@@ -69,10 +69,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinvariantUnipotentCharacterTrivial, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralMulVecChangeModulus, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsOpenRightInvarianceOrbitCoefficient, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousOnRowM, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusCharactersProductOne, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OpenCellDoubleCosetUniqueness, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SupportCompactModParabolicOffClosed, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedCoinvariantLeviAction, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentFactorizationCharacterTrivial, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeylConjParabolicProj, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OpenEvaluationInduced
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinvariantUnipotentCharacterTrivial
+-- clump: shared namespace opens
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
 open scoped TensorProduct
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinvariantUnipotentCharacterTrivial
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG
 
@@ -115,10 +117,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralMulVecChangeModulus
 
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
-open scoped TensorProduct
-
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Scale
 
 theorem smInt_subst : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ) (W : Type) [AddCommGroup W] [Module ℂ W] (w : GL (Fin n) k) (F : (Fin n → k) → W),
@@ -133,10 +131,6 @@ end GlobalTheory.CompanionTheory.BZPhiPG.Scale
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsOpenRightInvarianceOrbitCoefficient
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
-open scoped TensorProduct
-
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.OpenSmooth
 
@@ -233,10 +227,6 @@ end GlobalTheory.CompanionTheory.BZPhiPG
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousOnRowM
-
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
-open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Chart
 
@@ -458,10 +448,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusCharactersProductOne
 
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
-open scoped TensorProduct
-
 namespace GlobalTheory.CompanionTheory.BZPhiPG.DetPG
 
 def sumSig (a b : Type) : a ⊕ b ≃ Σ x, Two a b x where
@@ -555,13 +541,7 @@ end GlobalTheory.CompanionTheory.BZPhiPG.DetPG
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
-open scoped TensorProduct
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OpenCellDoubleCosetUniqueness
-
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Stab
 
@@ -751,7 +731,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedCoinvariantLeviAction
 
-
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Coinv
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -824,13 +803,7 @@ end GlobalTheory.CompanionTheory.BZPhiPG.Coinv
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentFactorizationCharacterTrivial
-
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
-open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Conj
 
@@ -1048,10 +1021,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeylConjParabolicProj
 
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
-open scoped TensorProduct
-
-
 namespace GlobalTheory.CompanionTheory.BZPhiPG.EtaConj
 
 open GlobalTheory.CompanionTheory.BZPhiPG.HpgEmb
@@ -1158,10 +1127,6 @@ end GlobalTheory.CompanionTheory.BZPhiPG.EtaConj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OpenEvaluationInduced
-
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
-open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.MemO
 

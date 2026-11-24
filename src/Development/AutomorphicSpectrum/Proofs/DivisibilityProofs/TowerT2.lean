@@ -139,7 +139,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.CoeffShift
 
-
 open MvPolynomial GlobalTheory.CompanionTheory.Ar.Top
 
 namespace RootFieldNumerics.M5
@@ -301,7 +300,6 @@ end RootFieldNumerics.M5
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.AltEqZero
-
 
 open MvPolynomial GlobalTheory.CompanionTheory.Ar.Top
 
@@ -478,7 +476,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.SumChooseLe
 
-
 open Polynomial
 
 namespace RootFieldNumerics.M5
@@ -600,7 +597,6 @@ end RootFieldNumerics.M5
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.RestDegreePowerBound
-
 
 namespace RootFieldNumerics.M5
 
@@ -876,9 +872,11 @@ end RootFieldNumerics.M5
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.LieTermFlagBound
+-- clump: shared namespace opens
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.LieTermFlagBound
 
 namespace GlobalTheory.CompanionTheory.Ar.Top
 
@@ -916,8 +914,6 @@ end GlobalTheory.CompanionTheory.Ar.Top
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.TwoMulThreePowLeFactorial
-
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
 
 namespace RootFieldNumerics
 
@@ -1076,8 +1072,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.LinRootRemainderBound
 
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
-
 namespace GlobalTheory.CompanionTheory.Ar.Top
 
 theorem restSum_total_bound : ∀ (Ψ : Type) [Fintype Ψ] [DecidableEq Ψ] (N : ℕ) (j : ℕ) (bad : Finset ℕ) (frob : ℕ → Ψ → ℕ → Ψ ⊕ Ψ) (u : Wt Ψ N) (g : ℝ) (B : ℕ) (Q : Ψ → ℕ → RP Ψ N), 1 ≤ j → j < N → WeightHyp j u g → bigB0 u g < B + 1 → IsDecomp (linRoot u ^ (dimFl Ψ N + 1)) Q → |∑ τ, ∑ k ∈ Finset.Icc 1 N, restSum j bad frob B τ k (Q τ k)| ≤ 2 * (((dimFl Ψ N : ℝ) + 1) * flagDeg u) * ((min j (N - j) : ℕ) * spread u) :=
@@ -1087,9 +1081,6 @@ end GlobalTheory.CompanionTheory.Ar.Top
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.PowerSumDeltaDecomposition
-
-
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
 
 namespace GlobalTheory.CompanionTheory.Ar.Top
 
@@ -1173,9 +1164,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.TowerIdentityAtCutoff
 @[expose] public noncomputable section
-
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Top
 
@@ -1355,9 +1343,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.TowerT2
-
-
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
 
 namespace GlobalTheory.CompanionTheory.Ar.Top
 

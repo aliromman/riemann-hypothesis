@@ -55,9 +55,11 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.GoodPathReplicate, CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.DiscreteSeriesExhaustion.L2Embedding
 
-@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.GoodPathReplicate
+-- clump: shared namespace opens
 
 open Finset
+
+@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.GoodPathReplicate
 
 namespace CompanionTheory.RgExh
 
@@ -397,9 +399,6 @@ end GlobalTheory.CompanionTheory.RgPath
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.DiscreteSeriesExhaustion.L2Embedding
-
-
-open Finset
 
 namespace CompanionTheory.RgExh
 

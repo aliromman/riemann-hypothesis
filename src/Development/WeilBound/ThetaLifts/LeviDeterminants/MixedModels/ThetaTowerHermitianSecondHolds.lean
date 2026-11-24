@@ -62,12 +62,13 @@ import Development.WeilBound.ThetaLifts.LeviDeterminants.EqZeroOfTheta
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.ThetaLifts.LeviDeterminants.CharacterAdmissibility.DetNeHerm, Development.WeilBound.ThetaLifts.LeviDeterminants.CharacterAdmissibility.LeavesX, Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.ThetaTowerHermitianSecondHolds
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LeviDeterminants.CharacterAdmissibility.DetNeHerm
-
+section -- clump: shared namespace opens
 
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK
+
+@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LeviDeterminants.CharacterAdmissibility.DetNeHerm
 open GlobalTheory.Doubling (absE)
 
 attribute [-instance] CStarMatrix.instHMulOfFintypeOfMulOfAddCommMonoid
@@ -203,10 +204,6 @@ end PositivityTheory.ThKF0.Chr
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.ThetaLifts.LeviDeterminants.CharacterAdmissibility.LeavesX
-
-open scoped TensorProduct NNReal Matrix
-open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
-open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK
 open GlobalTheory.Doubling (absE)
 
 namespace PositivityTheory.ThKF0.Chr
@@ -251,6 +248,8 @@ theorem theta_tower_hermitian_second (hA : PositivityTheory.Mix.AdelSt) : ∀ (F
 
 end PositivityTheory.ThKF0.Chr
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.ThetaTowerHermitianSecondHolds
 

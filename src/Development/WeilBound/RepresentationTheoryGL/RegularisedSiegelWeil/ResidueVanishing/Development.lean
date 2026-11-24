@@ -143,7 +143,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.ResidueVanishing.ContinuationPoleOrder
 
-
 open Filter Topology Set Metric GlobalTheory.Cont
 
 namespace PositivityTheory.Rg.Rsw.Kplug
@@ -290,7 +289,6 @@ end PositivityTheory.Rg.Rsw.Kplug
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.ResidueVanishing.LocalRepresentationSmoothness
-
 
 open scoped Matrix NNReal ENNReal ComplexConjugate
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory
@@ -455,10 +453,12 @@ end PositivityTheory.Rg.Rsw.Kplug
 
 end -- clump:auto
 
-section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaKillingImpliesVanishing
-@[expose] public section
+-- clump: shared namespace opens
 
 open scoped ComplexConjugate Matrix NNReal
+
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaKillingImpliesVanishing
+@[expose] public section
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.Cusp GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.IndefiniteRowSideFullHecke.SphericalVolumeLift (FinPl RealMat Lat IsFockVec IsSphOff HidaSetting volQ)
@@ -487,11 +487,6 @@ end GlobalTheory.Core.Rk.Aniso
 end
 end -- clump:auto
 end -- clump:auto
-
--- clump: shared namespace opens
-
-
-open scoped ComplexConjugate Matrix NNReal
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.ResidueVanishing.ThetaContinuation
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory

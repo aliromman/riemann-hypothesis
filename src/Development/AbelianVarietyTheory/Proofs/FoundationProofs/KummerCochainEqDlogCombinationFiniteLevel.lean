@@ -218,7 +218,6 @@ end -- clump:auto
 
 open GlobalTheory.K5 GlobalTheory.KumDlog
 
-
 namespace GlobalTheory.KumIdeal
 
 theorem exists_mul_modEq_ppow {p : ℕ} (hp : p.Prime) {n a : ℕ} (hn : 1 ≤ n) (ha : ¬ p ^ n ∣ a) :
@@ -399,7 +398,6 @@ end -- clump:auto
 
 open GlobalTheory.K5 GlobalTheory.KumDlog
 
-
 namespace GlobalTheory.KumDlog.AlmostGal
 
 variable {p : ℕ} [Fact p.Prime] {Ω : Type} [Field Ω] [Algebra (O0 p) Ω]
@@ -568,7 +566,6 @@ theorem GlobalTheory.KumDlog.almostGal_coord : ∀ (p : ℕ) [Fact p.Prime], p �
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDerivationModIntegralExtensionPCube
-
 
 namespace GlobalTheory.DerExt
 
@@ -771,7 +768,6 @@ end GlobalTheory.DerExt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDlogDerivationsGluedTowerLevels
-
 
 namespace GlobalTheory.LevGlue
 
@@ -1027,10 +1023,11 @@ theorem exists_levDer : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Alg
 end GlobalTheory.LevDer
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KaehlerRelationDerivationModIntegral
-
+section -- clump: shared namespace opens
 
 open GlobalTheory.K5 GlobalTheory.KumDlog
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KaehlerRelationDerivationModIntegral
 
 namespace GlobalTheory.KumDlog
 
@@ -1087,9 +1084,6 @@ end GlobalTheory.KumDlog
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.TowerGaloisFixedEqDivLevelElements
-
-open GlobalTheory.K5 GlobalTheory.KumDlog
-
 
 namespace GlobalTheory.FixFrac
 
@@ -1173,8 +1167,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.TowerGnExponentsKummerCochains
 
-open GlobalTheory.K5 GlobalTheory.KumDlog
-
 namespace GlobalTheory.KumExpo
 
 theorem exponents : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra (O0 p) Ω], ∀ (T : Tower p Ω) (n m : ℕ), 2 * n ≤ m → ∀ lz lq : Gal p Ω → ZMod (p ^ n),
@@ -1224,8 +1216,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.TowerLevelAdjoinRootsIntegrallyClosedQuotientStatement
 
-open GlobalTheory.K5 GlobalTheory.KumDlog
-
 theorem _root_.GlobalTheory.T.towerLevelAdjoinRoots_integrallyClosed_quotient : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra (O0 p) Ω], IsClo p Ω → ∀ (T : Tower p Ω) (m : ℕ), 1 ≤ m → ∀ a ∈ Lev T m, ∀ b ∈ Lev T m, b ≠ 0 →
   GlobalTheory.K5.IsInt (p := p) (a / b) → a / b ∈ Lev T m := by
   intro p _ Ω _ _ hΩ T m hm a ha b hb hb0 hint
@@ -1253,9 +1243,6 @@ theorem _root_.GlobalTheory.T.towerLevelAdjoinRoots_integrallyClosed_quotient : 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.TraceTowerAlmostDualBasesAdjoinKummerRoot
-
-
-open GlobalTheory.K5 GlobalTheory.KumDlog
 
 namespace GlobalTheory.TraceTower
 
@@ -1373,6 +1360,8 @@ theorem GlobalTheory.traceTower_dualData : ∀ (p : ℕ) [Fact p.Prime] (Ω : Ty
           congr 1
           exact Finset.sum_congr rfl fun k _ => mul_comm _ _
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerCochainEqDlogCombinationFiniteLevel
 

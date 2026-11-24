@@ -315,7 +315,6 @@ open ReciprocityTheory.ChartRestriction.G.Pdiv ReciprocityTheory.ChartRestrictio
 
 set_option autoImplicit false
 
-
 namespace GlobalTheory.TorusFibre
 
 open GlobalTheory.SplitTorus (torusMap bcIso)
@@ -382,7 +381,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 set_option autoImplicit false
 
-
 namespace GlobalTheory.TorusFibreImm
 
 set_option backward.isDefEq.respectTransparency.types false
@@ -424,7 +422,7 @@ end GlobalTheory.TorusFibreImm
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
@@ -592,7 +590,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusCompatOfCompatClosedPoint
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Poinc.FibLat GlobalTheory.Poinc.Eq8
-
 
 namespace GlobalTheory.Poinc.FibLat.ClosedLift
 
@@ -853,17 +850,7 @@ theorem _root_.GlobalTheory.T.torusCompat_of_compat_over_field : ∀ (o Ω : Typ
   first | exact @GlobalTheory.Poinc.FibLat.compat_of_compat_field
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatAtIffOfSpecializes
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
-open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.ZH
-open scoped CategoryTheory.Obj
-open GlobalTheory.Poinc GlobalTheory.TorusPart
-open Classical
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Poinc.FibLat

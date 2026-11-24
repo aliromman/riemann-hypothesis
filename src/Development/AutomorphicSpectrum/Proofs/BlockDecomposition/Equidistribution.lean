@@ -85,11 +85,12 @@ import Mathlib.Algebra.Order.Star.Real
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetCongruenceRefinement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetEmptyPlacesLattice, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetUnitIdealIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanFundamentalDomainIntegers, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticePointCountScaling, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ScalingMeasureProductArchimedean, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeCosetScaledRiemannSum, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsFurtherSide, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HaarMeasureLocalBall, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocallyConstantBoxApproximation, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Equidistribution
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetCongruenceRefinement
-
+section -- clump: shared namespace opens
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter GlobalTheory.CompanionTheory.Equi
 open scoped Classical
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetCongruenceRefinement
 
 namespace GlobalTheory.CompanionTheory.Equi.CosetStep
 
@@ -405,11 +406,6 @@ end GlobalTheory.CompanionTheory.Equi.CosetStep
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter GlobalTheory.CompanionTheory.Equi
-open scoped Classical
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetEmptyPlacesLattice
 
 namespace GlobalTheory.CompanionTheory.Equi
@@ -509,7 +505,6 @@ end GlobalTheory.CompanionTheory.Equi.CosetTop
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanFundamentalDomainIntegers
-
 
 namespace GlobalTheory.CompanionTheory.Equi
 
@@ -862,7 +857,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ScalingMeasureProductArchimedean
 
-
 namespace GlobalTheory.CompanionTheory.Equi.InfScale
 
 open GlobalTheory.CompanionTheory.SW.LocInf
@@ -978,7 +972,6 @@ end GlobalTheory.CompanionTheory.Equi.InfScale
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeCosetScaledRiemannSum
-
 
 namespace GlobalTheory.CompanionTheory.Equi.LatSum
 
@@ -1299,7 +1292,6 @@ end -- clump:auto
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter GlobalTheory.CompanionTheory.Equi
 open scoped Classical
 
-
 namespace GlobalTheory.CompanionTheory.Equi.LocApprox
 
 variable {F : Type} [Field F] [NumberField F]
@@ -1559,7 +1551,6 @@ end GlobalTheory.CompanionTheory.Equi.LocApprox
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Equidistribution
-
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter
 open scoped Classical

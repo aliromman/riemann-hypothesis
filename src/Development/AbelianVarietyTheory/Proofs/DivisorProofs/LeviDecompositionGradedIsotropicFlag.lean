@@ -50,7 +50,7 @@ import Mathlib.LinearAlgebra.TensorProduct.Prod
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsWeightPreservingPartNonLoweringUnit, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsotropicFlagStabilizerNotLowerWeight, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemIsotropicFlagLeviOfKeepsWeights, Development.AbelianVarietyTheory.Proofs.DivisorProofs.OppositeIsotropicFlagStabilizerNotRaiseWeight, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitTorusElementMemIsotropicFlagLevi, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeviDecompositionGradedIsotropicFlag
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet GlobalTheory.UAut
 open scoped TensorProduct
@@ -378,14 +378,7 @@ theorem not_raise_of_mem_parFlag : ∀ (F E : Type) [Field F] [NumberField F] [F
 end GlobalTheory.UAut.OppFlagWeight
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitTorusElementMemIsotropicFlagLevi
-
-
-open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet GlobalTheory.UAut
-open scoped TensorProduct
-open GlobalTheory.Mem.UnipCocompact
 open GlobalTheory.Orb (archMat)
 
 namespace GlobalTheory.UAut.TorusLevi
@@ -525,10 +518,6 @@ end GlobalTheory.UAut.TorusLevi
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeviDecompositionGradedIsotropicFlag
-
-open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet GlobalTheory.UAut
-open scoped TensorProduct
-open GlobalTheory.Mem.UnipCocompact
 open Formalism.UG (cT)
 
 noncomputable section

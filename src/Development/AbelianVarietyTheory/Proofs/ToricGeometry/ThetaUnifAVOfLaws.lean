@@ -153,11 +153,13 @@ theorem bilinForm_bijective_of_nondegenerate_mod (X : Type) [AddCommGroup X] [Mo
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ToricGeometry.ExistsAppellHumbertFrameIsRig
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj Complex Matrix Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped BigOperators Real
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ToricGeometry.ExistsAppellHumbertFrameIsRig
 
 namespace GlobalTheory
 
@@ -396,11 +398,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ToricGeometry.IsAHOfPolarisation
 
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj Complex Matrix Filter Topology
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped BigOperators Real
-
 namespace GlobalTheory
 
 def thetaZeroSec {X : Scheme.{0}} (L : LB X) : L.Sec where
@@ -447,10 +444,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ToricGeometry.ThetaUnifAVOfParts
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj Complex Matrix Filter Topology
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped BigOperators Real
 
 namespace GlobalTheory
 
@@ -539,6 +532,8 @@ theorem thetaUnifAV_of_parts :
 
 end GlobalTheory
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ToricGeometry.ThetaUnifAVOfLaws
 

@@ -68,7 +68,6 @@ import Mathlib.Topology.LocallyConstant.Algebra
 
 open scoped SchwartzMap Matrix
 
-
 namespace GlobalTheory.ArchUniq
 
 open GlobalTheory.RealWeil
@@ -93,12 +92,13 @@ namespace GlobalTheory.ArchUniq
 end GlobalTheory.ArchUniq
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ArchWeilOperatorUnitaryWLintegralNormEq
-
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open GlobalTheory.ArchUniq GlobalTheory.ArchUniq.Coord GlobalTheory.ArchLine
 open scoped Matrix Classical SchwartzMap
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ArchWeilOperatorUnitaryWLintegralNormEq
 open MeasureTheory
 
 namespace GlobalTheory.ArchimedeanLineL2
@@ -144,14 +144,7 @@ end GlobalTheory.ArchimedeanLineL2
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-open GlobalTheory.ArchUniq GlobalTheory.ArchUniq.Coord GlobalTheory.ArchLine
-open scoped Matrix Classical SchwartzMap
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ArchimedeanWeilOperatorIntertwinesSchroedinger
-
 
 namespace GlobalTheory.ArchHeis
 
@@ -330,7 +323,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ArchimedeanWeilOperatorsLinearOneMul
 
-
 namespace GlobalTheory.ArchLine.Laws
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
@@ -470,7 +462,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContinuousOneParameterArchimedeanWeilOperator
 
-
 namespace GlobalTheory.ArchLine.OpCont
 
 theorem evI_fin {F : Type} [Field F] [NumberField F] : evI F ((0, 1) : AF F) = 0 :=
@@ -567,14 +558,7 @@ theorem archOp_apply_continuous : ∀ {F E : Type} [Field F] [NumberField F] [Fi
 end GlobalTheory.ArchLine
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContinuousOneParameterUnitaryCoordinateAction
-
-
-open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-open GlobalTheory.ArchUniq GlobalTheory.ArchUniq.Coord GlobalTheory.ArchLine
-open scoped Matrix Classical SchwartzMap
 
 namespace GlobalTheory.ArchLine
 
@@ -611,14 +595,7 @@ theorem continuous_archAct_line : ∀ {F E : Type} [Field F] [NumberField F] [Fi
 end GlobalTheory.ArchLine
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-open GlobalTheory.ArchUniq GlobalTheory.ArchUniq.Coord GlobalTheory.ArchLine
-open scoped Matrix Classical SchwartzMap
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnitaryArchimedeanCoordinateActionLinearMul
-
 
 namespace GlobalTheory.ArchLine
 
@@ -664,14 +641,7 @@ theorem _root_.GlobalTheory.T.unitary_archimedean_coordinate_action_linear_mul :
   exact GlobalTheory.ArchLine.archAct_linear_mul M
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnitaryArchimedeanCoordinateActionSymplectic
-
-
-open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-open GlobalTheory.ArchUniq GlobalTheory.ArchUniq.Coord GlobalTheory.ArchLine
-open scoped Matrix Classical SchwartzMap
 
 namespace GlobalTheory.ArchLine
 
@@ -709,6 +679,8 @@ theorem omega_archAct {F E : Type} [Field F] [NumberField F] [Field E] [NumberFi
 
 end GlobalTheory.ArchLine
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.ArchimedeanLineSpannedByWeilVector
 @[expose] public section

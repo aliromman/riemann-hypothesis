@@ -580,14 +580,7 @@ theorem theta_projectiveNormality_even :
 end GlobalTheory
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ToricGeometry.ExistsMemThetaLevelCharApplyNeZero
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj Complex Matrix Filter Topology
-open ReciprocityTheory.PTheta ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped BigOperators Real
 
 namespace GlobalTheory
 
@@ -904,6 +897,8 @@ theorem exists_thetaBundle_holUnif :
 end GlobalTheory
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ToricGeometry.FiniteOfIsIntegralOfBirationalOfPresentation
 
 open ReciprocityTheory.PTheta Complex Matrix Filter Topology
@@ -989,7 +984,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ToricGeometry.LocallyOfFiniteTypeTensor
-
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj Complex Matrix Filter Topology
 open ReciprocityTheory.PTheta ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor

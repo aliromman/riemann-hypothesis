@@ -323,10 +323,12 @@ theorem exists_extension_of_dense {X₀ X M : Type} [AddCommGroup X₀] [AddComm
 end GlobalTheory.FinWeil
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsFiniteAdeleExtendedCharacterOfCurve
+-- clump: shared namespace opens
 
 open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.FinWeil
 open scoped BigOperators
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsFiniteAdeleExtendedCharacterOfCurve
 
 namespace GlobalTheory.FinWeil.AdelicChar
 
@@ -456,10 +458,6 @@ end GlobalTheory.FinWeil.AdelicChar
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsAdelicWeilRepresentationModel
-
-
-open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.FinWeil
-open scoped BigOperators
 
 namespace GlobalTheory.FinWeil.Model
 

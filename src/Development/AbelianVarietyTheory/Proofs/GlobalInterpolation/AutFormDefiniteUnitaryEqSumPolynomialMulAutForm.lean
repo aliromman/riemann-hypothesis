@@ -273,9 +273,11 @@ theorem mem_of_finiteDimensional_span_rightTranslates :
 end GlobalTheory.UnitaryBC
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RightFiniteMemPoly
+-- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Matrix GlobalTheory.CuspRep GlobalTheory.UnitaryBC
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RightFiniteMemPoly
 
 namespace GlobalTheory.UnitaryBC
 
@@ -297,9 +299,6 @@ end GlobalTheory.UnitaryBC
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.AutFormDefiniteUnitaryEqSumPolynomialMulAutForm
-
-
-open NumberField IsDedekindDomain Matrix GlobalTheory.CuspRep GlobalTheory.UnitaryBC
 
 namespace GlobalTheory.UnitaryDecomp
 

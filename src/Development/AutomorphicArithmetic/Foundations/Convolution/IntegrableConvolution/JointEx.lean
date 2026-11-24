@@ -51,9 +51,11 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JointNe, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JointEx
 
-@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JointNe
+-- clump: shared namespace opens
 
 open GroundTheory.Automorphic UpperTheory.ConvolutionTheory.C
+
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JointNe
 open scoped InnerProductSpace
 
 namespace UpperTheory.ConvolutionTheory.L1
@@ -228,9 +230,6 @@ theorem UpperTheory.ConvolutionTheory.L1.jointNe :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JointEx
-
-
-open GroundTheory.Automorphic UpperTheory.ConvolutionTheory.C
 
 namespace UpperTheory.ConvolutionTheory.L1
 

@@ -91,7 +91,6 @@ import Mathlib.Algebra.Order.Star.Int
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CyclicVectorIntertwinerDetermined
 
-
 open MeasureTheory GlobalTheory.CompanionTheory.UnitaryFramesMetricPeriods GlobalTheory.CompanionTheory.RgHeA
 open scoped InnerProductSpace ComplexConjugate
 
@@ -149,7 +148,6 @@ end -- clump:auto
 
 open MeasureTheory GlobalTheory.CompanionTheory.UnitaryFramesMetricPeriods GlobalTheory.CompanionTheory.RgHeA
 open scoped InnerProductSpace ComplexConjugate ENNReal
-
 
 namespace GlobalTheory.CompanionTheory.RgHeA.CoefHS
 
@@ -240,11 +238,12 @@ end GlobalTheory.CompanionTheory.RgHeA.CoefHS
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FormalDegreeSchurOrthogonality
-
+section -- clump: shared namespace opens
 
 open MeasureTheory GlobalTheory.CompanionTheory.UnitaryFramesMetricPeriods GlobalTheory.CompanionTheory.RgHeA
 open scoped InnerProductSpace ComplexConjugate
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FormalDegreeSchurOrthogonality
 
 namespace GlobalTheory.CompanionTheory.RgHeA
 
@@ -386,10 +385,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MatrixCoefficientIntertwinerAdjoint
 
-
-open MeasureTheory GlobalTheory.CompanionTheory.UnitaryFramesMetricPeriods GlobalTheory.CompanionTheory.RgHeA
-open scoped InnerProductSpace ComplexConjugate
-
 namespace GlobalTheory.CompanionTheory.RgHeA.TwPf
 
 section Unitary
@@ -438,10 +433,6 @@ end GlobalTheory.CompanionTheory.RgHeA.TwPf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MatrixCoefficientOrthogonalityRelation
-
-open MeasureTheory GlobalTheory.CompanionTheory.UnitaryFramesMetricPeriods GlobalTheory.CompanionTheory.RgHeA
-open scoped InnerProductSpace ComplexConjugate
-
 
 namespace GlobalTheory.CompanionTheory.RgHeA
 
@@ -498,8 +489,9 @@ theorem isSelfAdjoint_coefOp : ∀ {Γ : Type} [Group Γ] [TopologicalSpace Γ] 
 end GlobalTheory.CompanionTheory.RgHeA
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsEigOfLow
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsEigOfLow
 
 open MeasureTheory GlobalTheory.CompanionTheory.UnitaryFramesMetricPeriods PositivityTheory.RgHe.A
 open scoped InnerProductSpace ComplexConjugate
@@ -732,7 +724,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MatrixCoefficientIntegrableSquare
 
-
 open MeasureTheory GlobalTheory.CompanionTheory.UnitaryFramesMetricPeriods Filter Topology
 open scoped InnerProductSpace
 
@@ -837,7 +828,6 @@ open scoped InnerProductSpace
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsMatrixCoefficientIntertwiner
-
 
 open MeasureTheory GlobalTheory.CompanionTheory.UnitaryFramesMetricPeriods PositivityTheory.RgHe.A
 open scoped InnerProductSpace ComplexConjugate
@@ -999,7 +989,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.HeckeVectors.HeckeDoubleCosets.HeckeCoefficientDegrees.DegreeHcOfGoodPresentFamily
 
-
 open MeasureTheory Matrix Topology
 open scoped InnerProductSpace ENNReal
 
@@ -1064,7 +1053,6 @@ end CompanionTheory.D.Upq.Coef
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.HolomorphicDiscreteSeries.SchurEigenProjections.HolomorphicMoments.MomentHigherEstimateHolds
-
 
 open MeasureTheory Matrix Finset
 open scoped InnerProductSpace ENNReal ComplexConjugate

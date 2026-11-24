@@ -238,7 +238,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ISupPowEqPowISupNonneg
 
-
 open scoped Formalism.Per
 
 namespace GlobalTheory.PMon.Gauss
@@ -465,7 +464,6 @@ open scoped Formalism.Per
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EqualGaussNormTeichmullerCancel
 
-
 namespace GlobalTheory.GaussCancel
 
 variable {l : ℕ} [Fact l.Prime]
@@ -641,7 +639,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GaussNormAcrisTeichmullerTiltSubEqOne
 
-
 namespace GlobalTheory.PMon.Gauss
 
 lemma gA_term_le_one (l : ℕ) [Fact l.Prime] (ρ : ℝ) (h0 : 0 ≤ ρ) (h1 : ρ ≤ 1) (a : Formalism.Per.Ainf l) (n : ℕ) :
@@ -807,7 +804,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RootCancelPowEqSelfAcrisGaussNorm
-
 
 open scoped Formalism.Per
 
@@ -1110,7 +1106,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GaussNormAcrisSubUnitLeDigit
 
-
 namespace GlobalTheory.PMon.Gauss
 
 theorem gC_zero_of_radius (l : ℕ) [Fact l.Prime] {ρ : ℝ} (h0 : (l : ℝ)⁻¹ ≤ ρ) (h1 : ρ < 1) :
@@ -1190,7 +1185,6 @@ theorem GlobalTheory.PMon.Gauss.one_digit : ∀ (l : ℕ) [Fact l.Prime] (h s : 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RatioProportionalTarget
-
 
 namespace GlobalTheory.PMon.Gauss
 
@@ -1379,13 +1373,7 @@ theorem ratio_proportional_target : ∀ (l : ℕ) [Fact l.Prime] (h s : ℕ), s 
 end GlobalTheory.PMon.Gauss
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TmSubOneNeZeroPt
-
-
-open GlobalTheory.PMon.Gauss
-open scoped Formalism.Per
 
 namespace GlobalTheory.PMon.Trans
 
@@ -1477,10 +1465,14 @@ theorem GlobalTheory.PMon.Trans.acris_bcris : ∀ (l : ℕ) [Fact l.Prime], Func
   rwa [List.map_replicate, List.prod_replicate, map_pow] at h1
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RatioIntegral
+end -- clump: shared namespace opens
+
+-- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations GlobalTheory.Pst GlobalTheory.PMon TensorProduct
 open scoped Formalism.Per
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RatioIntegral
 
 namespace GlobalTheory.PMon.RatioTransport
 
@@ -1571,10 +1563,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CrisPlusFrobEigenvectorRatioPadic
 
-
-open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations GlobalTheory.Pst GlobalTheory.PMon TensorProduct
-open scoped Formalism.Per
-
 namespace GlobalTheory.PMon
 
 theorem ratio_holds : Ratio := GlobalTheory.PMon.RatioTransport.ratio_of_acris
@@ -1584,10 +1572,6 @@ end GlobalTheory.PMon
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MooreDeterminantCrisPlusNeZero
-
-open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations GlobalTheory.Pst GlobalTheory.PMon TensorProduct
-open scoped Formalism.Per
-
 
 namespace GlobalTheory.PMon.MooreDeterminant
 

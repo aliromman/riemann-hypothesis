@@ -81,7 +81,6 @@ import Mathlib.Tactic.ReduceModChar
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.BlowupOfAgreeingIdealCartier
 
-
 open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 
@@ -238,7 +237,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.EffCartierRestrictIffCartierAt
-
 
 open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
@@ -590,13 +588,7 @@ theorem smooth_affine_chart {k : Type} [Field k] {X : Scheme.{0}} (g : X ⟶ Sp 
 end GlobalTheory.CompanionTheory.Hypotheses₂.Charts
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.LocallyPrincipalOfCartierAt
-
-
-open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver
 
@@ -679,9 +671,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.LocallyPrincipalOfConormalRankOne
-
-open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver
 
@@ -818,9 +807,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsClosedCartierLocusSupport
 
-open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver
-
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver
 
 theorem locPrincipal_locally_const {k A : Type} [Field k] [CommRing A] [IsDomain A] (φ : k →+* A) (I : Ideal A)
@@ -920,10 +906,14 @@ theorem isClosed_cartAt : ∀ {k : Type} [Field k] {X : Scheme.{0}} (g : X ⟶ S
 end GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsIntegralBlowupOfSmooth
+end -- clump: shared namespace opens
+
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsIntegralBlowupOfSmooth
 
 namespace GlobalTheory.CompanionTheory.BlowupIntegral
 
@@ -975,10 +965,6 @@ end GlobalTheory.CompanionTheory.BlowupIntegral
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsIsoRestrictOfBlowupComp
-
-
-open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 
 namespace GlobalTheory.CompanionTheory.Principalise
 
@@ -1044,9 +1030,6 @@ end GlobalTheory.CompanionTheory.Principalise
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.VanishingIdealSmoothAgreesOff
-
-open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 
 namespace GlobalTheory.CompanionTheory.SmoothPart
 
@@ -1135,12 +1118,6 @@ theorem smooth_and_comap_eq : ∀ {k : Type} [Field k] {X : Scheme.{0}} (g : X �
 
 end GlobalTheory.CompanionTheory.SmoothPart
 end -- clump:auto
-
--- clump: shared namespace opens
-
-
-open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PrincipalisationOfCharZero
 

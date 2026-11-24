@@ -458,12 +458,7 @@ theorem exists_sq_eq_neg_of_discr_eq_neg : ∀ (K : Type) [Field K] [NumberField
 end GlobalTheory
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToricSumCoordinateIsAlgebraic
-
-
-open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.LatVal GlobalTheory.IndefiniteRowSideFullHecke.LatticeNormTransport
 open GlobalTheory.ToricTransport (coordIn)
 open scoped nonZeroDivisors
 
@@ -496,8 +491,6 @@ end GlobalTheory.ToricCoordAlg
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertClassFieldLatticeTransport
-
-open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.LatVal GlobalTheory.IndefiniteRowSideFullHecke.LatticeNormTransport
 open GlobalTheory.ToricTransport (coordIn coordIn_div)
 open scoped nonZeroDivisors
 
@@ -677,12 +670,13 @@ end GlobalTheory.TransportProof
 end -- clump:auto
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinprodNuValuesTwistOnlyRamifiedEqOne
 
 open NumberField IsDedekindDomain GlobalTheory.CMVal Formalism.BasicNotions Formalism.IndefR.Links GlobalTheory.ChiGrid GlobalTheory.FunObj.SqNum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 
 namespace GlobalTheory.TwistPairs
 
@@ -936,7 +930,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TateLocalEpsilonFactorMulTameChar
-
 
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.HeckeEps
 open Formalism.L2.Host (unif atFin unif_spec IsUnitAt)
@@ -1331,7 +1324,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ReflectionOfFunctionalEquation
 
-
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.HeckeEps
 
 namespace GlobalTheory.ReflVal
@@ -1578,7 +1570,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRepTrivialAbove
 
-
 open NumberField IsDedekindDomain GlobalTheory.CMVal
 
 namespace GlobalTheory.CMVal.TrivAbove
@@ -1658,7 +1649,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PowerValuationLowerBoundSumPowTwelve
 
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.LatVal
-
 
 namespace GlobalTheory.LatValSum
 
@@ -1742,7 +1732,6 @@ end GlobalTheory.LatValSum
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToricDenominatorOfZetaDenominators
-
 
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.LatVal
 open GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBounds

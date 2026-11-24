@@ -71,7 +71,6 @@ import Mathlib.Algebra.Order.Star.Int
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.IsStarOfClauses
 
-
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan GlobalTheory.PolFan.StarCells
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan.StarOfClauses
@@ -123,7 +122,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.StarDepthTwistedGalois
 
 set_option autoImplicit false
-
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
 
@@ -210,10 +208,11 @@ theorem isTwG_starDepth : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [Char
 end GlobalTheory.CompanionTheory.Ar.Fan.StarDepthTwist
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.IsStarOfFiniteCover
+-- clump: shared namespace opens
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
 
+@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.IsStarOfFiniteCover
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan.StarFiniteCover
 
@@ -300,8 +299,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.StarIntegralValuesPolyhedral
 
-open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
-
 namespace GlobalTheory.CompanionTheory.Ar.Fan.StarPolyhedralFan
 
 theorem isPolyFan_star : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [CharZero O] [Module.Finite ℤ O] (bar : O → O), CMOrd O bar → ∀ (q : ℕ) (ψ w ψ' : InvFun O), IsPolyFan bar q ψ → IsCentreSet bar q ψ w → IsStarOf bar q ψ w ψ' → (∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], Module.finrank O X ≤ q → ∀ β ∈ balForms bar X, (∀ y, 0 ≤ β y y) → ∃ n : ℤ, ψ'.evalZ β = n) → (∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], Module.finrank O X ≤ q → ∀ β ∈ balForms bar X, (∀ y, 0 ≤ β y y) → β ≠ 0 → 0 < ψ'.evalZ β) → IsPolyFan bar q ψ' := by
@@ -320,9 +317,6 @@ end GlobalTheory.CompanionTheory.Ar.Fan.StarPolyhedralFan
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.BalancedFormDecompositionBound
-
-
-open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan.RadicalConeComparison
 
@@ -417,10 +411,6 @@ theorem exists_bounded_gens : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [
 
 end GlobalTheory.CompanionTheory.Ar.Fan.RadicalConeComparison
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
 
 @[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.StarDepthBoundedDenominator
 
@@ -564,7 +554,6 @@ end GlobalTheory.CompanionTheory.Ar.Fan.StarOffCell
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.UniformCellBoundPolyhedralFan
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan.UniformStrictBound
 
@@ -737,12 +726,7 @@ theorem exists_starFun_strict : ∀ (O : Type) [CommRing O] [IsDedekindDomain O]
 end GlobalTheory.CompanionTheory.Ar.Fan.StrictStarFunction
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.ExistsStarSubdivision
-
-
-open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan.StarSubdivision
 

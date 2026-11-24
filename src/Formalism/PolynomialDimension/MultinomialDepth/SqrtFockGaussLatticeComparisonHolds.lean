@@ -57,11 +57,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PolynomialDimension.MultinomialDepth.DiagLaplacianDivPowMemSqrtFockLattice, Formalism.PolynomialDimension.MultinomialDepth.SqrtFockGaussLatticeComparisonHolds
 
-@[expose] public noncomputable section -- clump member: Formalism.PolynomialDimension.MultinomialDepth.DiagLaplacianDivPowMemSqrtFockLattice
-
+-- clump: shared namespace opens
 
 open scoped BigOperators
 open Finset MvPolynomial
+
+@[expose] public noncomputable section -- clump member: Formalism.PolynomialDimension.MultinomialDepth.DiagLaplacianDivPowMemSqrtFockLattice
 
 namespace Formalism.CountingSumsFrames
 
@@ -514,9 +515,6 @@ end Formalism.CountingSumsFrames
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PolynomialDimension.MultinomialDepth.SqrtFockGaussLatticeComparisonHolds
-
-open scoped BigOperators
-open Finset MvPolynomial
 
 namespace Formalism.CountingSumsFrames
 namespace Har4

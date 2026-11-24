@@ -61,11 +61,12 @@ import Mathlib.Tactic.ENatToNat
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AnnSubsetOfMemNhds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SumTwOrbitEqZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwKerPolyBallLeOfValuationLe, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicFourierExpansion
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AnnSubsetOfMemNhds
-
+section -- clump: shared namespace opens
 
 open Matrix GlobalTheory.PRep GlobalTheory.BZMir GlobalTheory.SplitWeil GlobalTheory.CompanionTheory.MirFourier ValuativeRel
 open scoped Topology
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AnnSubsetOfMemNhds
 
 namespace GlobalTheory.CompanionTheory.MirFourier
 
@@ -115,10 +116,6 @@ end GlobalTheory.CompanionTheory.MirFourier
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SumTwOrbitEqZero
-
-open Matrix GlobalTheory.PRep GlobalTheory.BZMir GlobalTheory.SplitWeil GlobalTheory.CompanionTheory.MirFourier ValuativeRel
-open scoped Topology
-
 
 namespace GlobalTheory.CompanionTheory.FiniteFourier
 
@@ -193,10 +190,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwKerPolyBallLeOfValuationLe
 @[expose] public noncomputable section
-
-
-open Matrix GlobalTheory.PRep GlobalTheory.BZMir GlobalTheory.SplitWeil GlobalTheory.CompanionTheory.MirFourier ValuativeRel
-open scoped Topology
 
 namespace GlobalTheory.CompanionTheory.MirFourier
 
@@ -342,8 +335,9 @@ end GlobalTheory.CompanionTheory.MirFourier
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicFourierExpansion
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicFourierExpansion
 
 open Matrix GlobalTheory.PRep GlobalTheory.BZMir GlobalTheory.SplitWeil ValuativeRel
 open scoped Topology

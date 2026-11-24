@@ -1010,12 +1010,7 @@ theorem UpperTheory.Kd.C7.pRepAdd :
       simp [Fr.tw, Fr.ser, dl, dd]
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.IwahoriReduction.LangPolynomials.RepFrob
-
-
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.Ord2 GlobalTheory.KZ GlobalTheory.Col UpperTheory.Kd.C7
 
 namespace UpperTheory.Kd.C7
 
@@ -1217,8 +1212,9 @@ theorem pRepFrob :
 end UpperTheory.Kd.C7
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.IwahoriReduction.LangPolynomials.MemOfMulMem
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.IwahoriReduction.LangPolynomials.MemOfMulMem
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.Ord2 GlobalTheory.KZ GlobalTheory.Col
 

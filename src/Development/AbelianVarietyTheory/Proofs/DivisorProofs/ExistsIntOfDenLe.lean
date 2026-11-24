@@ -69,13 +69,12 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GenericIntersectionEqualsPointsIntegral, Development.AbelianVarietyTheory.Proofs.DivisorProofs.EmbeddingsRealIndependent, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteOfBoundedImageInFinitelyGeneratedSubgroup, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteOfBoundedImageInFinitelyGeneratedSubgroupStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FixedVectorSquaredBound, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormGroupTestFunctionSupportBoundedDenominatorsStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.PAdicDenominatorBound, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntOfDenLe
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount GlobalTheory.LKCx
 open scoped TensorProduct Classical
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GenericIntersectionEqualsPointsIntegral
-
 
 namespace GlobalTheory.LKCx
 
@@ -305,13 +304,7 @@ end -- clump:auto
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntOfDenLe
-
-
-open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount GlobalTheory.LKCx
-open scoped TensorProduct Classical
 
 namespace GlobalTheory.FinFix
 

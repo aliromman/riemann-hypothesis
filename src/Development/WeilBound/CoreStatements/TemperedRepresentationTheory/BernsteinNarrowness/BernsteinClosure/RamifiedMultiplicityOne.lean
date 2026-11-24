@@ -101,11 +101,12 @@ import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.TopOfMap
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InducedTwoCharactersNotScalar, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsAdmissibleDegenerate, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitarisableDegenerateSeries, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CellFunctorScalarDiagonal, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiltrationUniqueSubquotient, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.JacquetInducedTwoCharacters, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NontrivialSubrepresentation, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Imports, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSmoothCharOfCondLE, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SoCoinvOfNarrow, Development.WeilBound.CoreStatements.TemperedRepresentationTheory.BernsteinNarrowness.RamifiedMultiplicityOneOfGeometricFiltration, Development.WeilBound.CoreStatements.TemperedRepresentationTheory.BernsteinNarrowness.BernsteinClosure.RamifiedMultiplicityOne
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InducedTwoCharactersNotScalar
-
+section -- clump: shared namespace opens
 
 open GlobalTheory.PRep GlobalTheory.SmGL
 open scoped TensorProduct
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InducedTwoCharactersNotScalar
 
 namespace GlobalTheory.CompanionTheory.SplitFrob
 
@@ -267,9 +268,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsAdmissibleDegenerate
 
-open GlobalTheory.PRep GlobalTheory.SmGL
-open scoped TensorProduct
-
 namespace GlobalTheory.CompanionTheory.DegenSeries
 
 theorem isAdmissible_degenerate : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k]
@@ -283,10 +281,6 @@ end GlobalTheory.CompanionTheory.DegenSeries
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitarisableDegenerateSeries
-
-
-open GlobalTheory.PRep GlobalTheory.SmGL
-open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.DegenerateSeries
 
@@ -307,13 +301,7 @@ theorem isUnitarisable_degenerateSeries (k : Type) [Field k] [ValuativeRel k] [T
 end GlobalTheory.CompanionTheory.DegenerateSeries
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open GlobalTheory.PRep GlobalTheory.SmGL
-open scoped TensorProduct
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CellFunctorScalarDiagonal
-
 
 namespace GlobalTheory.CompanionTheory.CellDiag
 
@@ -712,7 +700,6 @@ end -- clump: shared namespace opens
 open ValuativeRel Matrix Topology
 open scoped TensorProduct
 
-
 namespace GlobalTheory.CompanionTheory.SplitNarrow
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitFlip GlobalTheory.SplitWeil
@@ -885,7 +872,6 @@ end GlobalTheory.CompanionTheory.SplitNarrow
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SoCoinvOfNarrow
-
 
 namespace GlobalTheory.CompanionTheory.SoCoinvNarrow
 
@@ -1136,7 +1122,6 @@ end GlobalTheory.CompanionTheory.SoCoinvNarrow
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.TemperedRepresentationTheory.BernsteinNarrowness.RamifiedMultiplicityOneOfGeometricFiltration
-
 
 open GlobalTheory.PRep GlobalTheory.SmGL
 

@@ -93,7 +93,6 @@ import ReciprocityTheory.DualLattices.ProdDvdOfIso
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.UpperHalfSurvey.HasColenNotUniqueWithoutGuard
 
-
 namespace GlobalTheory.HopfOrderCheck
 
 open ReciprocityTheory.PGsh.L2
@@ -916,13 +915,7 @@ end -- clump:auto
 alias _root_.GlobalTheory.CompanionTheory.Relay.stable_hopf_order_fundamental_lengths := _root_.PositivityTheory.HtPt.Rb.flag_D
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FlagComparisonTheorem
-
-
-open ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Up GlobalTheory.CompanionTheory.Ar.GR
-open scoped Matrix
 
 namespace GlobalTheory.CompanionTheory.Ar.GR.FlagClose
 
@@ -1220,11 +1213,10 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HopfOrderRetractElementary
 
-open ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Up GlobalTheory.CompanionTheory.Ar.GR
-open scoped Matrix
-
 alias _root_.GlobalTheory.CompanionTheory.Relay.hopf_order_retract_elementary := _root_.PositivityTheory.HtPt.Re.ret_tight
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 -- clump: shared namespace opens
 

@@ -83,7 +83,7 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GammaLeOfDvd
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsNumberFieldExpansionCoeffs, Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemClosureOfFixed, Development.AbelianVarietyTheory.Proofs.FoundationProofs.NatDegreeMinpolyLe, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPrimitiveQuotientLevelPrimeTo, Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeckeTranslateNormProductEqOfDvd, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KroneckerCongruenceFrobeniusDiag, Development.AbelianVarietyTheory.Proofs.FoundationProofs.NqSubGalSmall, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KroneckerCongruenceModularFunctionTowerLevel
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ GlobalTheory.KZ.ES
@@ -493,7 +493,6 @@ end GlobalTheory.ValMax
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPrimitiveQuotientLevelPrimeTo
-
 
 namespace GlobalTheory.KZ.ES.Quot
 
@@ -974,7 +973,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KroneckerCongruenceFrobeniusDiag
 
-
 namespace GlobalTheory.KZ.ES
 
 
@@ -1029,7 +1027,6 @@ end GlobalTheory.KZ.ES
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.NqSubGalSmall
-
 
 namespace GlobalTheory.KZ.ES
 
@@ -1115,13 +1112,7 @@ theorem nq_sub_gal_small : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClo
 end GlobalTheory.KZ.ES
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KroneckerCongruenceModularFunctionTowerLevel
-
-
-open scoped MatrixGroups TensorProduct
-open Matrix GlobalTheory.KZ GlobalTheory.KZ.ES
 
 namespace GlobalTheory.KZ.ES
 

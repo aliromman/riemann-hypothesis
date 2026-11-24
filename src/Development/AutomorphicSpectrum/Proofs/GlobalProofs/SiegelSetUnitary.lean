@@ -77,10 +77,11 @@ import Development.WeilBound.ThetaLifts.Reductions.SiegelGood
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalConstantTermSmall, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GoodFunctionLineDerivative, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeightBoundSiegelTorus, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspFormRapidDecay, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspFormSiegelBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SingleMulSingle, Development.AutomorphicSpectrum.Proofs.GlobalProofs.SiegelSetUnitary
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalConstantTermSmall
-
+section -- clump: shared namespace opens
 
 open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RapidDecay
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalConstantTermSmall
 open Formalism.UG (cT)
 open GlobalTheory.Orb (archMat)
 open scoped TensorProduct NNReal ENNReal Topology
@@ -115,9 +116,6 @@ end GlobalTheory.CompanionTheory.RapidDecay
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GoodFunctionLineDerivative
-
-
-open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RapidDecay
 open Formalism.UG (cT)
 open GlobalTheory.Orb (archMat)
 open scoped TensorProduct NNReal ENNReal Topology
@@ -253,9 +251,6 @@ end GlobalTheory.CompanionTheory.RapidDecay
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeightBoundSiegelTorus
-
-
-open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RapidDecay
 open Formalism.UG (cT)
 open GlobalTheory.Orb (archMat)
 open scoped TensorProduct NNReal ENNReal Topology
@@ -337,8 +332,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspFormRapidDecay
 @[expose] public section
-
-open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RapidDecay
 open Formalism.UG (cT)
 open GlobalTheory.Orb (archMat)
 open scoped TensorProduct NNReal ENNReal Topology
@@ -461,6 +454,8 @@ end GlobalTheory.CompanionTheory.RapidDecay
 end
 end -- clump:auto
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 -- clump: shared namespace opens
 

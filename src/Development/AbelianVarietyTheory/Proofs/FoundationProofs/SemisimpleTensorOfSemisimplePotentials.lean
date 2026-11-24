@@ -76,9 +76,11 @@ import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.EichlerShimuraPotentialSubmoduleAndBaseChange, Development.AbelianVarietyTheory.Proofs.FoundationProofs.Gamma1CapGamma0LevelActsFreelyUpperHalfPlane, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsEichlerShimuraPotentialOfHomogeneousPolyCo, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsKummerPotentialRelationPadic, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsEichlerShimuraPotentialOfMemKummer, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsEichlerShimuraPotentialOfMemVB, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerPotentialSpanHeckeLetterStable, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerClassEvalEqZeroOfVanishingOnCongruence, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerPotentialRelationTrivialEqZero, Development.AbelianVarietyTheory.Proofs.FoundationProofs.TrivialEigenvalueCongruenceVanishes, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerRelatedPairFstEqZeroOfTrivial, Development.AbelianVarietyTheory.Proofs.FoundationProofs.SemisimpleHeckePolyTransportRingEquiv, Development.AbelianVarietyTheory.Proofs.FoundationProofs.SemisimpleTensorOfSemisimplePotentials
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.EichlerShimuraPotentialSubmoduleAndBaseChange
+section -- clump: shared namespace opens
 
 open GlobalTheory.KZ GlobalTheory.KZ.H3 Matrix
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.EichlerShimuraPotentialSubmoduleAndBaseChange
 open scoped MatrixGroups TensorProduct
 
 namespace GlobalTheory.KZ
@@ -126,8 +128,6 @@ end GlobalTheory.KZ
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.Gamma1CapGamma0LevelActsFreelyUpperHalfPlane
-
-open GlobalTheory.KZ GlobalTheory.KZ.H3 Matrix
 open scoped MatrixGroups
 
 namespace GlobalTheory.KZ.FreeAct
@@ -223,9 +223,6 @@ end GlobalTheory.KZ
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsEichlerShimuraPotentialOfHomogeneousPolyCo
-
-
-open GlobalTheory.KZ GlobalTheory.KZ.H3 Matrix
 open scoped MatrixGroups
 
 namespace GlobalTheory.KZ.H3.PotCoc
@@ -316,10 +313,7 @@ theorem GlobalTheory.KZ.H3.exists_pot_of_isCoc : ∀ (R : Type) [CommRing R] (w 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsKummerPotentialRelationPadic
-
-open GlobalTheory.KZ GlobalTheory.KZ.H3 Matrix
 open scoped MatrixGroups TensorProduct
-
 
 namespace GlobalTheory.KZ.H3.KumPot
 
@@ -419,10 +413,14 @@ theorem GlobalTheory.KZ.H3.exists_pot_rel : ∀ (Ω : Type) [Field Ω] [Algebra 
     exact ⟨a • F, PL.2.2.1 a F hF, RO.2.2.1 a b F hR⟩
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsEichlerShimuraPotentialOfMemKummer
+end -- clump: shared namespace opens
+
+section -- clump: shared namespace opens
 
 open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsEichlerShimuraPotentialOfMemKummer
 
 theorem GlobalTheory.KZ.exists_pot_rel_of_mem_bSet : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (X : Tower Ω ε), Function.Injective ε → (∃ φ : ℂ → ℂ, DifferentiableOn ℂ φ Hs ∧ X.an X.jK = (φ : Mero)) → ∀ (N l w : ℕ) [Fact l.Prime], l ≠ 2 → 5 ≤ N → Nat.Coprime N l → Odd w → ∀ b ∈ X.BSet N l w, ∃ F ∈ Pot ℤ_[l] w (Gam N l), H3.Rel X l b F := by
   intro Ω _ _ _ ε X _ hj N l w hl h2 hN hc hw b hb
@@ -433,10 +431,6 @@ theorem GlobalTheory.KZ.exists_pot_rel_of_mem_bSet : ∀ {Ω : Type} [Field Ω] 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsEichlerShimuraPotentialOfMemVB
-
-
-open scoped MatrixGroups TensorProduct
-open Matrix GlobalTheory.KZ
 
 namespace GlobalTheory.KZ.H3
 
@@ -498,10 +492,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerPotentialSpanHeckeLetterStable
 
-open scoped MatrixGroups TensorProduct
-open Matrix GlobalTheory.KZ
-
-
 namespace GlobalTheory.KZ.H3.LamStab
 
 theorem polySlash_map {R S : Type} [CommRing R] [CommRing S] (φ : R →+* S) (m : Matrix (Fin 2) (Fin 2) ℤ)
@@ -558,10 +548,14 @@ theorem GlobalTheory.KZ.H3.lam_stable : ∀ {Ω : Type} [Field Ω] [Algebra ℚ 
   exact key hp
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerClassEvalEqZeroOfVanishingOnCongruence
+end -- clump: shared namespace opens
+
+section -- clump: shared namespace opens
 
 open GlobalTheory.KZ GlobalTheory.KZ.H3 Matrix
 open scoped MatrixGroups TensorProduct
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerClassEvalEqZeroOfVanishingOnCongruence
 
 namespace GlobalTheory.KZ.H3.KZero
 
@@ -672,10 +666,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerPotentialRelationTrivialEqZero
 
-
-open GlobalTheory.KZ GlobalTheory.KZ.H3 Matrix
-open scoped MatrixGroups TensorProduct
-
 namespace GlobalTheory.KZ.H3
 
 theorem relTriv_gamma_of_dvd {N M : ℕ} (h : N ∣ M) {δ : SL(2, ℤ)} (hδ : δ ∈ CongruenceSubgroup.Gamma M) :
@@ -733,10 +723,6 @@ end GlobalTheory.KZ.H3
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.TrivialEigenvalueCongruenceVanishes
-
-open GlobalTheory.KZ GlobalTheory.KZ.H3 Matrix
-open scoped MatrixGroups TensorProduct
-
 
 namespace GlobalTheory.KZ.H3.LamZero
 
@@ -917,11 +903,14 @@ theorem lam_fst_eq_zero_of_triv : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] (�
 end GlobalTheory.KZ.H3
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerRelatedPairFstEqZeroOfTrivial
+end -- clump: shared namespace opens
 
+-- clump: shared namespace opens
 
 open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerRelatedPairFstEqZeroOfTrivial
 
 namespace GlobalTheory.KZ.H3.LamInj
 
@@ -967,10 +956,6 @@ end GlobalTheory.KZ.H3.LamInj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SemisimpleHeckePolyTransportRingEquiv
-
-open scoped MatrixGroups TensorProduct
-open Matrix GlobalTheory.KZ
-
 
 namespace GlobalTheory.KZ.Transport
 
@@ -1079,10 +1064,6 @@ theorem GlobalTheory.KZ.ssPot_transport : ∀ (N l w : ℕ) {E : Type} [Field E]
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SemisimpleTensorOfSemisimplePotentials
-
-
-open scoped MatrixGroups TensorProduct
-open Matrix GlobalTheory.KZ
 
 namespace GlobalTheory.KZ.Comp
 

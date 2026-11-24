@@ -86,7 +86,6 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TensTo
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanCoordinates
 
-
 open HeckeCharacterZeroLocus.SiegelWeilU NumberField IsDedekindDomain MeasureTheory Topology
 open scoped TensorProduct ENNReal NNReal Matrix
 
@@ -1134,19 +1133,18 @@ theorem density_identity_inf : ∀ (F E : Type) [Field F] [NumberField F] [Field
 end GlobalTheory.CompanionTheory.SW.DensInt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DensityIntegralStatement
+section -- clump: shared namespace opens
 
 open HeckeCharacterZeroLocus.SiegelWeilU NumberField IsDedekindDomain MeasureTheory Topology
 open scoped TensorProduct ENNReal NNReal Matrix
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DensityIntegralStatement
 
 theorem _root_.GlobalTheory.T.density_integral : PositivityTheory.PfSWUS.SchInf.DensInt := by
   first | exact @GlobalTheory.CompanionTheory.SW.DensInt.density_identity_inf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinitePartOpen
-
-open HeckeCharacterZeroLocus.SiegelWeilU NumberField IsDedekindDomain MeasureTheory Topology
-open scoped TensorProduct ENNReal NNReal Matrix
 
 namespace GlobalTheory.CompanionTheory.SW.FinOpenGram
 
@@ -1173,10 +1171,6 @@ end GlobalTheory.CompanionTheory.SW.FinOpenGram
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.UnramifiedSchwartzDensity.Assemble
-
-
-open HeckeCharacterZeroLocus.SiegelWeilU NumberField IsDedekindDomain MeasureTheory Topology
-open scoped TensorProduct ENNReal NNReal Matrix
 
 namespace PositivityTheory.PfSWUS.SchInf
 
@@ -1317,6 +1311,8 @@ theorem schwartzDensInf_of (hA : FamCont) (hB : SecInf) (hC : CoordInf) (hD : Sc
 end PositivityTheory.PfSWUS.SchInf
 
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.UnramifiedSchwartzDensity.SchTop
 

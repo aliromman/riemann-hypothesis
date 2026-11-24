@@ -447,7 +447,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.RootSurvey.GeometrySurvey.ExistsTopDegreeCoefficientFormAndEqOnTopForms
 
-
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo GlobalTheory.CompanionTheory.Ar.Top
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.Bound₂
@@ -598,7 +597,6 @@ end GlobalTheory.CompanionTheory.Ar.Flat
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArMonoAddSingle
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat
 
@@ -1193,10 +1191,11 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.MonoLinesLineSmooth
-
+-- clump: shared namespace opens
 
 open MvPolynomial NumberField Filter Topology ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I2 GlobalTheory.CompanionTheory.Ar.Top GlobalTheory.CompanionTheory.Ar.Flat
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.MonoLinesLineSmooth
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat
 
@@ -1248,10 +1247,6 @@ theorem geoMono_eq (hD : DegreeStatement) (Ψ : Type) [Fintype Ψ] [DecidableEq 
 
 end GlobalTheory.CompanionTheory.Ar.Flat
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open MvPolynomial NumberField Filter Topology ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I2 GlobalTheory.CompanionTheory.Ar.Top GlobalTheory.CompanionTheory.Ar.Flat
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootFlatPushforwardGeoFun
 
@@ -1331,7 +1326,6 @@ theorem GlobalTheory.CompanionTheory.Ar.Flat.root_flat_pushforward_eq : PtsInteg
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.PropFTopHolds
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat
 

@@ -129,7 +129,6 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TangentVectorsBaseC
 open NumberField Matrix GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
 open scoped ComplexOrder
 
-
 namespace GlobalTheory.CompanionTheory.Ar.Fl.LocalSum
 
 theorem finsum_linear_combination_four {α : Type} {f g h i : α → ℝ} (hf : {x | f x ≠ 0}.Finite)
@@ -349,7 +348,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.PointShiftStOfPlaceShiftSt
 
 set_option autoImplicit false
-
 
 namespace GlobalTheory.FlatCM.PlaceShiftModel
 
@@ -646,11 +644,12 @@ theorem UpperTheory.Reformulated.B.ConjEqNegOfSqEqNegNat₂.main :
   · simp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DualBasisHermitianSum
-
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DualBasisHermitianSum
 open Matrix GlobalTheory GlobalTheory.CM GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
 open scoped ComplexOrder
 
@@ -781,11 +780,6 @@ theorem sigma_component : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
 end GlobalTheory.CompanionTheory.Ar.Fl.KForm
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.SesquilinearFractions.GGramPush
 open Matrix GlobalTheory GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
 open scoped ComplexOrder CategoryTheory.Obj
@@ -848,9 +842,16 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.hodge_gram_invariant_pullback 
   first | exact @PositivityTheory.Xgf.hodge_gram_invariant_pullback
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieNormSqBaseChange
+end -- clump: shared namespace opens
+
+section -- clump: shared namespace opens
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Matrix GlobalTheory GlobalTheory.CM GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
 open scoped ComplexOrder
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieNormSqBaseChange
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl
 
@@ -862,8 +863,6 @@ end GlobalTheory.CompanionTheory.Ar.Fl
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmPackPeriodProduct
-open Matrix GlobalTheory GlobalTheory.CM GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
-open scoped ComplexOrder
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl.GInf
 
@@ -1310,15 +1309,7 @@ theorem hodgeGram_cmVec : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
 end GlobalTheory.CompanionTheory.Ar.Fl.GInf
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameFunctionCmNumberField
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open Matrix GlobalTheory GlobalTheory.CM GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
-open scoped ComplexOrder
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl.InfPlace
 
@@ -1509,11 +1500,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameFunctionCmValue
 
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open Matrix GlobalTheory GlobalTheory.CM GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
-open scoped ComplexOrder
-
 namespace GlobalTheory.CompanionTheory.Ar.Fl.ConstAlg
 
 theorem finite_fieldRange {E : Type} [Field E] [NumberField E] (τ : E →+* ℂ) :
@@ -1558,8 +1544,9 @@ theorem const_algebraic : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
 end GlobalTheory.CompanionTheory.Ar.Fl.ConstAlg
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlatDegreeHolds
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlatDegreeHolds
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl
 

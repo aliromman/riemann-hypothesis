@@ -51,11 +51,12 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Statements.GeometryStatements.DivMemLineLat, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagCmTypeLatticeComparison
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Statements.GeometryStatements.DivMemLineLat
-
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain MvPolynomial
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Statements.GeometryStatements.DivMemLineLat
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CptInputs
 
@@ -73,11 +74,7 @@ end GlobalTheory.CompanionTheory.Ar.Flat.CptInputs
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagCmTypeLatticeComparison
-
-open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain MvPolynomial
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped ComplexOrder
-
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CptWedge
 

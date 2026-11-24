@@ -52,10 +52,11 @@ import Formalism.LocalToGlobal.ProjectiveLattices.AlgebraMapCAt
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Statements.PrincipalLattices.EqZeroOfOppositeSign, Development.AbelianVarietyTheory.Proofs.UnitaryExistence.HermitianLatticeSignatureSplitOfDefinite
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.PrincipalLattices.EqZeroOfOppositeSign
-
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.PrincipalLattices.EqZeroOfOppositeSign
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
 
@@ -104,8 +105,6 @@ end GlobalTheory.PureTypeModel
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.HermitianLatticeSignatureSplitOfDefinite
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.PureType GlobalTheory.CompRat
 open scoped CategoryTheory.Obj
 

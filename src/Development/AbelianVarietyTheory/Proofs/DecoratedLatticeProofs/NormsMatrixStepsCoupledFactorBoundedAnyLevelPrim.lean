@@ -547,7 +547,6 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 open GlobalTheory.Core.Ht2
 open scoped ComplexOrder
 
-
 namespace GlobalTheory.Core.Ht2.KernelS
 
 theorem kernel_le_sharp (hB : GlobalTheory.IndefiniteRowSideFullHecke.PaddedLastEntry.BlockBound) (hT : FamilyTie) (hV : FamilyVectors) (hL : PeriodLattices)
@@ -635,7 +634,6 @@ end GlobalTheory.Core.Ht2.KernelS
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterSumLocalConstantSeventh
-
 
 namespace GlobalTheory.ColNorms.DatOne
 
@@ -765,7 +763,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FirstCoupledKernelFiniteDatumLevelSize
 
-
 namespace GlobalTheory.Core.Ht2.DatOneS
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker GlobalTheory.IndefiniteRowSideFullHecke.PlaceLogThetaBounds GlobalTheory.ColNorms
@@ -811,7 +808,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterSumLocalConstantEighth
 @[expose] public noncomputable section
-
 
 namespace GlobalTheory.ColNorms.LastDatum
 
@@ -916,7 +912,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LastKernelFiniteDatumBoundedLevelSize
 
-
 namespace GlobalTheory.Core.Ht2.LastDatumS
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker GlobalTheory.IndefiniteRowSideFullHecke.PlaceLogThetaBounds GlobalTheory.ColNorms
@@ -957,7 +952,6 @@ end GlobalTheory.Core.Ht2.LastDatumS
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.SumModGPeriodValues
-
 
 namespace GlobalTheory.PadicUnfold.Period
 
@@ -1242,11 +1236,13 @@ theorem rank_le (R : Ranks) {j : ℕ} (hj : j ≤ R.m) : R.N j + cOf R j ≤ R.N
 end GlobalTheory.ColNorms.Unfold
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.UnfoldedEntryTypePrimeSupportPeriodSize
+section -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker GlobalTheory.IndefiniteRowSideFullHecke.PlaceLogThetaBounds GlobalTheory.ColNorms
 open GlobalTheory.Core.Ht2
 open scoped ComplexOrder
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.UnfoldedEntryTypePrimeSupportPeriodSize
 
 namespace GlobalTheory.Core.Ht2.UnfoldS
 
@@ -1301,11 +1297,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MatrixEntryFiniteDatumBoundedLevelSize
 
-
-open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker GlobalTheory.IndefiniteRowSideFullHecke.PlaceLogThetaBounds GlobalTheory.ColNorms
-open GlobalTheory.Core.Ht2
-open scoped ComplexOrder
-
 namespace GlobalTheory.Core.Ht2.EntryDatumS
 
 open GlobalTheory.ColNorms.EntryDatum
@@ -1347,11 +1338,12 @@ theorem smallDatum_xiEntry_sharp : ∃ C : ℕ, ∀ (CY : ℝ) (D : D7) (N : Num
 end GlobalTheory.Core.Ht2.EntryDatumS
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ColumnNormsOf
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker GlobalTheory.IndefiniteRowSideFullHecke.PlaceLogThetaBounds GlobalTheory.ColNorms
 open scoped ComplexOrder
-
 
 namespace GlobalTheory.ColNorms
 
@@ -1381,7 +1373,6 @@ end GlobalTheory.ColNorms
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoupledClassSumCauchySchwarz
-
 
 namespace GlobalTheory.ColNorms.CplCS
 
@@ -1545,7 +1536,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PairAtInvNatSmulSelf
 
-
 namespace GlobalTheory.ColNorms.SumBound
 
 open NumberField IsDedekindDomain
@@ -1683,7 +1673,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SqNormClassSumMatrixLeCauchySchwarz
 
-
 namespace GlobalTheory.ColNorms.SumBound
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker GlobalTheory.IndefiniteRowSideFullHecke.PlaceLogThetaBounds GlobalTheory.ColNorms
@@ -1743,7 +1732,6 @@ end -- clump:auto
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker GlobalTheory.IndefiniteRowSideFullHecke.PlaceLogThetaBounds GlobalTheory.ColNorms
 open GlobalTheory.Core.Ht2
 open scoped ComplexOrder
-
 
 namespace GlobalTheory.Core.Ht2
 

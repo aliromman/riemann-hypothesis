@@ -135,7 +135,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubleCosetVolumeWeightedSumConj
 
-
 namespace GlobalTheory.OrbDesc
 
 variable {H : Type} [Group H]
@@ -654,7 +653,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinsumUnipotentConjEqZeroOfConstantTermZero
 
-
 namespace GlobalTheory.OrbDesc.NSum
 
 section Unip
@@ -967,7 +965,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PelUniformisedGeometricFree
 
-
 namespace GlobalTheory.OrbDesc
 
 variable {H : Type} [Group H]
@@ -1082,7 +1079,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelIndexNeZeroCentralizerParabolicCosetStabilize
-
 
 namespace GlobalTheory.OrbDesc.StabIndex
 
@@ -1309,13 +1305,7 @@ end -- clump:auto
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwOrbUEqZeroOfCusp
-
-
-open MeasureTheory Matrix
-open scoped Classical
 
 namespace GlobalTheory.OrbDesc
 
@@ -1522,10 +1512,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrbKEqZeroOfCusp
 
-
-open MeasureTheory Matrix
-open scoped Classical
-
 namespace GlobalTheory.OrbDesc
 
 theorem orbK_eq_twOrbU {G : Type} [Group G] (K0 : Subgroup G) (γ : G) (f : G → ℂ)
@@ -1567,10 +1553,11 @@ theorem orbK_eq_zero_of_cusp : ∀ (K : Type) [Field K] [TopologicalSpace K] [Is
 end GlobalTheory.LKCount
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.OrbZero
 
 set_option autoImplicit false
-
 
 open MeasureTheory Matrix Polynomial GlobalTheory.BCT GlobalTheory.BCT.OrbProd GlobalTheory.LKCount GlobalTheory.LKCount.OrbKProd GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid
 open Formalism.UG (Hecke)

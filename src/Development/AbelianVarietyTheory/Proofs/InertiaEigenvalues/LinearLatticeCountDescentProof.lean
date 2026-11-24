@@ -497,7 +497,6 @@ end -- clump:auto
 
 open GlobalTheory.UnitLemma GlobalTheory.UnitLemma.Desc Polynomial Filter Topology
 
-
 namespace GlobalTheory.UnitLemma.Desc
 
 open Classical
@@ -696,7 +695,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NormCharacterOnIdempotentPartOrthogonalityClasse
 
-
 namespace GlobalTheory.UnitLemma.Desc
 
 open GlobalTheory.UnitLemma Polynomial Filter Topology
@@ -839,9 +837,11 @@ theorem sum_chi_ell_cl : ∀ (K : UQ) (B : InvAlg K) (ι : Type) [Fintype ι] [D
 end GlobalTheory.UnitLemma.Desc
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NormCharacterOnIdempotentPartProdInl
+-- clump: shared namespace opens
 
 open GlobalTheory.UnitLemma GlobalTheory.UnitLemma.Desc Polynomial Filter Topology
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NormCharacterOnIdempotentPartProdInl
 
 namespace GlobalTheory.UnitLemma.Desc
 
@@ -874,8 +874,6 @@ end GlobalTheory.UnitLemma.Desc
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SignedInvolutionStableLatticeSumEqAlternatingSum
-
-open GlobalTheory.UnitLemma GlobalTheory.UnitLemma.Desc Polynomial Filter Topology
 
 namespace GlobalTheory.UnitLemma.Desc
 
@@ -1044,9 +1042,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TendstoSignedLatticeSumSubNormCharacterMul
 
-
-open GlobalTheory.UnitLemma GlobalTheory.UnitLemma.Desc Polynomial Filter Topology
-
 namespace GlobalTheory.UnitLemma.Desc
 
 variable {K : UQ} (B : InvAlg K) {ι : Type}
@@ -1192,9 +1187,6 @@ end GlobalTheory.UnitLemma.Desc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LinearLatticeCountDescentProof
-
-open GlobalTheory.UnitLemma GlobalTheory.UnitLemma.Desc Polynomial Filter Topology
-
 
 namespace GlobalTheory.UnitLemma.Desc
 

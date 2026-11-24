@@ -65,7 +65,6 @@ open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheo
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ReTraceHermitianOrthonormalBasisMulEqIte
 
-
 namespace GlobalTheory.TypeSum.CasBasis.PB
 
 variable {n : ℕ}
@@ -395,7 +394,6 @@ end -- clump:auto
 section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.SkewHermitianOrthonormalBasisTraceOrthonormal
 @[expose] public noncomputable section
 
-
 namespace GlobalTheory.TypeSum.CasBasis.KOrth
 
 theorem trE {n : ℕ} (a b c d : Fin n) : trace (unitE a b * unitE c d) = if b = c ∧ a = d then 1 else 0 := by
@@ -534,12 +532,7 @@ end GlobalTheory.TypeSum.CasBasis
 end -- clump:auto
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CasimirDifferenceOperatorEquivariant
-
-
-open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum GlobalTheory.TypeSum.CasBasis GlobalTheory.LowTypeDetermined
 open scoped InnerProductSpace
 
 namespace GlobalTheory.TypeSum.CasEquiv
@@ -708,8 +701,9 @@ end GlobalTheory.TypeSum.CasEquiv
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsSmoothEigenvectorCasimirDifferenceOperator
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsSmoothEigenvectorCasimirDifferenceOperator
 
 open MeasureTheory Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum GlobalTheory.TypeSum.CasBasis
   GlobalTheory.LowTypeDetermined
@@ -779,11 +773,12 @@ end GlobalTheory.TypeSum.CasBasis
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CasimirUnitaryGroupActsByScalarSmoothVectors
+-- clump: shared namespace opens
 
 open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum GlobalTheory.TypeSum.CasBasis GlobalTheory.LowTypeDetermined
 open scoped InnerProductSpace
 
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CasimirUnitaryGroupActsByScalarSmoothVectors
 
 namespace GlobalTheory.TypeSum.CasBasis
 
@@ -816,10 +811,6 @@ end GlobalTheory.TypeSum.CasBasis
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.EllipticEstimateWordLeOnePlusLaplacianPow
-
-
-open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum GlobalTheory.TypeSum.CasBasis GlobalTheory.LowTypeDetermined
-open scoped InnerProductSpace
 
 namespace GlobalTheory.TypeSum.Elliptic
 
@@ -1177,11 +1168,6 @@ end GlobalTheory.TypeSum.Elliptic
 
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum GlobalTheory.TypeSum.CasBasis GlobalTheory.LowTypeDetermined
-open scoped InnerProductSpace
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.IndefiniteUnitaryLieOrthonormalBasesProps
 
 namespace GlobalTheory.TypeSum.CasBasisFacts
@@ -1340,7 +1326,6 @@ theorem GlobalTheory.TypeSum.CasBasis.bases_mem_lie : ∀ (n : ℕ) (ε : Fin n 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.WordsOnWeightedCasimirEigenvectorsBoundedFrame
-
 
 namespace GlobalTheory.TypeSum.CasBasis
 

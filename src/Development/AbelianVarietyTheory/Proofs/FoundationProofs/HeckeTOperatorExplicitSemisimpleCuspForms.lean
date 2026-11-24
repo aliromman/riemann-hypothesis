@@ -128,7 +128,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PeterssonCosetIntegralSumHeckeTAdjoint
 
-
 open UpperHalfPlane ModularForm CongruenceSubgroup MeasureTheory
 open scoped MatrixGroups ModularForm Manifold ComplexConjugate
 
@@ -481,10 +480,12 @@ theorem pet_heckeT_adj : ∀ (N l q : ℕ) (k : ℤ) (σ σ' : SL(2, ℤ)), 0 < 
 end GlobalTheory.Hk
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.LevFiniteIndex
+-- clump: shared namespace opens
 
 open UpperHalfPlane ModularForm CongruenceSubgroup MeasureTheory
 open scoped MatrixGroups ModularForm Manifold
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.LevFiniteIndex
 
 namespace GlobalTheory.Hk
 
@@ -499,9 +500,6 @@ end GlobalTheory.Hk
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PeterssonCosetIntegralSumSelfPosGamma1InterGamma
-
-open UpperHalfPlane ModularForm CongruenceSubgroup MeasureTheory
-open scoped MatrixGroups ModularForm Manifold
 
 namespace GlobalTheory.Hk
 
@@ -576,10 +574,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PeterssonCosetIntegralSumSesquilinearHermitian
 
-
-open UpperHalfPlane ModularForm CongruenceSubgroup MeasureTheory
-open scoped MatrixGroups ModularForm Manifold
-
 namespace GlobalTheory.Hk
 
 theorem lev_finiteIndex' (N l : ℕ) (hN : 0 < N) (hl : 0 < l) : (lev N l).FiniteIndex := by
@@ -621,9 +615,6 @@ end GlobalTheory.Hk
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeckeTOperatorExplicitSemisimpleCuspForms
-
-open UpperHalfPlane ModularForm CongruenceSubgroup MeasureTheory
-open scoped MatrixGroups ModularForm Manifold
 
 namespace GlobalTheory.Hk.Semisimple
 

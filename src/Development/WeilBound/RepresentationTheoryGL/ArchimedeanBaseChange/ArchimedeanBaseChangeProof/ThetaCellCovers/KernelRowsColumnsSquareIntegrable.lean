@@ -110,11 +110,13 @@ theorem bumpEx : BumpEx := by
 end GlobalTheory.CompanionTheory.Bump
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CellSumOfCntBasic
+section -- clump: shared namespace opens
 
 open MeasureTheory
 open scoped ENNReal Pointwise
 open PositivityTheory.Rg.BcB.E1
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CellSumOfCntBasic
 
 namespace GlobalTheory.CompanionTheory.CellSumProof
 
@@ -192,11 +194,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CntBasicOfKerBasic
 
-
-open MeasureTheory
-open scoped ENNReal Pointwise
-open PositivityTheory.Rg.BcB.E1
-
 namespace GlobalTheory.CompanionTheory.KernelCount
 
 theorem cnt_ne_top (X : Ctx) (Ω : Set X.G) (hΩ : IsCompact Ω) (x : X.G) : cnt X.Γ Ω x ≠ ⊤ := by
@@ -258,6 +255,8 @@ end GlobalTheory.CompanionTheory.KernelCount
 
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsTailRest
 
 theorem UpperTheory.Reformulated.B.Yxa1.main :
@@ -276,9 +275,11 @@ theorem UpperTheory.Reformulated.B.Yxa1.main :
     rw [hx, Pi.add_apply, hx']
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoeFnSumAe
+section -- clump: shared namespace opens
 
 open MeasureTheory
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoeFnSumAe
 open scoped ENNReal
 
 namespace GlobalTheory.CompanionTheory.OpEx
@@ -327,9 +328,6 @@ end GlobalTheory.CompanionTheory.OpEx
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ColOp
-
-
-open MeasureTheory
 open PositivityTheory.Rg.BcB.E1
 
 namespace GlobalTheory.CompanionTheory.KernelColumns
@@ -390,8 +388,6 @@ end GlobalTheory.CompanionTheory.KernelColumns
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ColSqOfKerBasic
-
-open MeasureTheory
 open scoped ENNReal Pointwise
 open PositivityTheory.Rg.BcB.E1
 
@@ -467,8 +463,6 @@ end GlobalTheory.CompanionTheory.KernelColumn
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompKey
-
-open MeasureTheory
 open scoped ENNReal
 open PositivityTheory.Rg.BcB.E1
 
@@ -541,8 +535,9 @@ theorem opMul : KerBasic → KerLin → RowInt → KernelL2RowsColumns → Schur
 end GlobalTheory.CompanionTheory.KernelOperators
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousAtOfSqBound
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousAtOfSqBound
 
 open MeasureTheory Topology
 open scoped ENNReal Pointwise
@@ -622,7 +617,6 @@ end GlobalTheory.CompanionTheory.KerVec
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CvAdjEqAvg
-
 
 open MeasureTheory
 open PositivityTheory.Rg.BcB.E1
@@ -719,7 +713,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteOfCompact
 
-
 open MeasureTheory PositivityTheory.Rg.BcB.E1
 open scoped ENNReal Pointwise
 
@@ -812,7 +805,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InnerEqIntegralConjMul
 
-
 open MeasureTheory PositivityTheory.Rg.BcB.E1
 open scoped ENNReal ComplexConjugate
 
@@ -903,7 +895,6 @@ end GlobalTheory.CompanionTheory.KerAdj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegrableReflect
-
 
 open MeasureTheory
 open scoped Pointwise
@@ -1133,9 +1124,11 @@ theorem kerMul_of_kerBasic_of_cvTest : KerBasic → CvTest → KerMul := by
 end GlobalTheory.CompanionTheory.KernelComposition
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelRowsColumnsSquareIntegrable
+section -- clump: shared namespace opens
 
 open MeasureTheory
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelRowsColumnsSquareIntegrable
 open scoped ENNReal Pointwise
 open PositivityTheory.Rg.BcB.E1
 
@@ -1175,13 +1168,9 @@ theorem kernel_rows_columns_square_integrable : KerBasic → CntBasic → ColSq 
 end GlobalTheory.CompanionTheory.KerSquare
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open MeasureTheory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralEnormRpowTwoNeTop
 open scoped ENNReal
 open PositivityTheory.Rg.BcB.E1
-
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralEnormRpowTwoNeTop
 
 namespace GlobalTheory.CompanionTheory.SchurKernel
 
@@ -1232,6 +1221,8 @@ end GlobalTheory.CompanionTheory.SchurKernel
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralWeightedSqLe
+open scoped ENNReal
+open PositivityTheory.Rg.BcB.E1
 
 namespace GlobalTheory.CompanionTheory.Schur
 
@@ -1294,11 +1285,7 @@ theorem schurL : SchurL := by
 end GlobalTheory.CompanionTheory.Schur
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RowIntOfKerBasic
-
-open MeasureTheory
 open scoped ENNReal Pointwise
 
 namespace GlobalTheory.CompanionTheory.KernelRows
@@ -1358,9 +1345,6 @@ end GlobalTheory.CompanionTheory.KernelRows
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SchurOpOfSchurL
-
-
-open MeasureTheory
 open scoped ENNReal
 
 namespace GlobalTheory.CompanionTheory.Schur
@@ -1457,6 +1441,8 @@ end GlobalTheory.CompanionTheory.Schur
 
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwoUnif
 
 open PositivityTheory.Rg.BcB.E1
@@ -1504,7 +1490,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VecCloseOfKerBasicColSq
 
 open PositivityTheory.Rg.BcB.E1
-
 
 open MeasureTheory
 open scoped ENNReal Pointwise
@@ -1574,7 +1559,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VecInnerOfKerBasic
 
-
 open MeasureTheory PositivityTheory.Rg.BcB.E1
 
 namespace GlobalTheory.CompanionTheory.E1
@@ -1603,7 +1587,6 @@ end GlobalTheory.CompanionTheory.E1
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VecLimOf
-
 
 open MeasureTheory PositivityTheory.Rg.BcB.E1
 open scoped ENNReal Pointwise
@@ -1671,7 +1654,6 @@ end GlobalTheory.CompanionTheory.KernelColumns
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VecNormOfVecClose
-
 
 open MeasureTheory
 open scoped ENNReal Pointwise

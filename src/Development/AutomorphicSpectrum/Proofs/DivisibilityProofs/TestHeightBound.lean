@@ -80,10 +80,11 @@ theorem degFl_pk_mul_eq_zero : ∀ (Ψ : Type) [Fintype Ψ] [DecidableEq Ψ] (N 
 end GlobalTheory.CompanionTheory.Ar.Top
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.TestPolynomialRemainderBound
-
+-- clump: shared namespace opens
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.TestPolynomialRemainderBound
 open GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke
 
 namespace GlobalTheory.CompanionTheory.Ar.Top.TestRest
@@ -517,8 +518,6 @@ end GlobalTheory.CompanionTheory.Ar.Top
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.TestHeightBound
-
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
 
 namespace GlobalTheory.CompanionTheory.Ar.Top
 

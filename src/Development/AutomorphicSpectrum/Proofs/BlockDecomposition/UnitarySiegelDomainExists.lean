@@ -81,9 +81,11 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsNearMinimalVector, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MinimalParabolicScalesIsotropic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RationalUnitarySendsIsotropic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RationalUnitaryWittExtension, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AdelicBoxCompact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AdelicTensorRationalApproximation, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AdelicTensorRationalApproximationStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactAdelicNormBounded, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactHeightLowerBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ReductionTheoryLowerBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryAdelicIwasawa, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitarySiegelDomainExists
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsNearMinimalVector
+section -- clump: shared namespace opens
 
 open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RedCov
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsNearMinimalVector
 open Formalism.UG (cT)
 open scoped TensorProduct NNReal ENNReal
 
@@ -181,8 +183,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MinimalParabolicScalesIsotropic
 @[expose] public section
-
-open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RedCov
 open Formalism.UG (cT)
 open scoped TensorProduct NNReal ENNReal
 
@@ -250,8 +250,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RationalUnitarySendsIsotropic
 @[expose] public section
-
-open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RedCov
 open Formalism.UG (cT)
 open scoped TensorProduct NNReal ENNReal
 
@@ -309,9 +307,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RationalUnitaryWittExtension
-
-
-open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RedCov
 open Formalism.UG (cT)
 open scoped TensorProduct NNReal ENNReal
 
@@ -351,6 +346,8 @@ theorem exists_sends_hE : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
 end GlobalTheory.CompanionTheory.RedCov
 
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 section -- clump: shared namespace opens
 
@@ -689,7 +686,6 @@ end -- clump: shared namespace opens
 
 set_option maxSynthPendingDepth 1
 
-
 open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RedCov GlobalTheory.CompanionTheory.RedCov.Simple
 open Formalism.UG (cT)
 open scoped TensorProduct NNReal ENNReal
@@ -723,7 +719,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ReductionTheoryLowerBound
 
 set_option linter.unusedSectionVars false
-
 
 open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RedCov
 open Formalism.UG (cT)

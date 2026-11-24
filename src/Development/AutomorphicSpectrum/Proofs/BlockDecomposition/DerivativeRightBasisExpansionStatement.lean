@@ -44,11 +44,12 @@ import Mathlib.Topology.Sheaves.Init
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DerivativeRightBasisExpansion, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DerivativeRightBasisExpansionStatement
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DerivativeRightBasisExpansion
-
+-- clump: shared namespace opens
 
 open MeasureTheory Matrix Finset Filter Topology
 open scoped ContDiff ComplexConjugate InnerProductSpace ZeroAtInfty
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DerivativeRightBasisExpansion
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc GlobalTheory.CompanionTheory.PresSobA
 
@@ -148,9 +149,6 @@ end GlobalTheory.CompanionTheory.PresSobA.Frame
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DerivativeRightBasisExpansionStatement
-
-open MeasureTheory Matrix Finset Filter Topology
-open scoped ContDiff ComplexConjugate InnerProductSpace ZeroAtInfty
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc GlobalTheory.CompanionTheory.PresSobA
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace

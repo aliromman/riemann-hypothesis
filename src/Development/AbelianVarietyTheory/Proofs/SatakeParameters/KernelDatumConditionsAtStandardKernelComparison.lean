@@ -138,7 +138,6 @@ import Formalism.LocalToGlobal.Columns.ChainTwOk
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.JacobiOfClass
 
-
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd Classical
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 open Formalism.L2.Th1.D (F1 F2 OwOK TrDual phFF)
@@ -210,9 +209,11 @@ theorem hostAt_inert : Formalism.L2.KerInert.GenusOneModelExistsLattice â†’ Form
 end GlobalTheory.KerStd.HostInert
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.GoodModelTwoScaleOne
+section -- clump: shared namespace opens
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Formalism.L2.Col Classical
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.GoodModelTwoScaleOne
 open Formalism.L2.Th1.H (cmL CmOK matH IsIsom taylorMv)
 open Formalism.L2.Th1.GD (LocNorm InMul frameM thetaLin)
 open Formalism.L2.Th1.E (IntCurve curveL Unif)
@@ -296,9 +297,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.NormLeOneOfDisc
-
-
-open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Formalism.L2.Col Classical
 open Formalism.L2.Th1.H (cmL CmOK matH IsIsom taylorMv)
 open Formalism.L2.Th1.GD (LocNorm InMul frameM thetaLin)
 open Formalism.L2.Th1.E (IntCurve curveL Unif)
@@ -491,8 +489,6 @@ end GlobalTheory.ThLoc.ModelThree
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralJetsNormalisedThetaTranslatesAwayDisc
-
-open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Formalism.L2.Col Classical
 open Formalism.L2.Th1.H (cmL CmOK matH IsIsom taylorMv)
 open Formalism.L2.Th1.GD (LocNorm InMul frameM thetaLin)
 open Formalism.L2.Th1.E (IntCurve curveL Unif)
@@ -563,8 +559,6 @@ theorem GlobalTheory.ThLoc.jetsIntegral_away_disc : GlobalTheory.ThLoc.Inputs â†
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralJetsNormalisedThetaCombinationsAwayD
-
-open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Formalism.L2.Col Classical
 open Formalism.L2.Th1.H (cmL CmOK matH IsIsom taylorMv)
 open Formalism.L2.Th1.GD (LocNorm InMul frameM thetaLin)
 open Formalism.L2.Th1.E (IntCurve curveL Unif)
@@ -741,6 +735,8 @@ theorem GlobalTheory.Proof.integralJets_normalisedThetaCombinations_away_d.jetsA
       (t k) (ht k) y hy
 end -- clump:auto
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.MatrixUnitIntegralCombEmbeddedHoms
 
@@ -1109,7 +1105,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.PadicNormDetLatticeBasisEqDetIdealNorm
 
-
 namespace GlobalTheory.DetBasisNorm
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.GL3Theta Formalism.L2.Host GlobalTheory.KerJ NumberField Classical
@@ -1437,7 +1432,6 @@ end GlobalTheory.KerJ
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelPairScalarsIsUnitTrueColumns
-
 
 namespace GlobalTheory.Pdv.UnStd
 

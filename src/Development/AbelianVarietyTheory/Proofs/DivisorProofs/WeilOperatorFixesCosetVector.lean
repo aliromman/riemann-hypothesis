@@ -57,10 +57,12 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeisFix, Development.AbelianVarietyTheory.Proofs.DivisorProofs.VlLeOfMemHatId, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilOperatorFixesCosetVector
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeisFix
+-- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.IndefR.Links IsDedekindDomain NumberField Polynomial
 open scoped Pointwise nonZeroDivisors
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeisFix
 open Formalism.L2.Host (HChar embTau)
 open GlobalTheory.ChiGrid GlobalTheory.LeafRestExamples
 open Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.FunObj GlobalTheory.FunObj.SqNum
@@ -115,9 +117,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.VlLeOfMemHatId
 @[expose] public section
-
-open Formalism.BasicNotions Formalism.IndefR.Links IsDedekindDomain NumberField Polynomial
-open scoped Pointwise nonZeroDivisors
 open Formalism.L2.Host (HChar embTau)
 open GlobalTheory.ChiGrid GlobalTheory.LeafRestExamples
 open Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.FunObj GlobalTheory.FunObj.SqNum
@@ -239,10 +238,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilOperatorFixesCosetVector
-
-
-open Formalism.BasicNotions Formalism.IndefR.Links IsDedekindDomain NumberField Polynomial
-open scoped Pointwise nonZeroDivisors
 open Formalism.L2.Host (HChar embTau)
 open GlobalTheory.ChiGrid GlobalTheory.LeafRestExamples
 open Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.FunObj GlobalTheory.FunObj.SqNum

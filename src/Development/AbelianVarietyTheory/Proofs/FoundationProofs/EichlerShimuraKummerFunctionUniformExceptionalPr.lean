@@ -91,11 +91,12 @@ import Mathlib.Algebra.Order.Star.Int
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDomGauss, Development.AbelianVarietyTheory.Proofs.FoundationProofs.GaussExtensionUniqueOfGauss, Development.AbelianVarietyTheory.Proofs.FoundationProofs.GaussValuationUniqueOnLthRootLevelFields, Development.AbelianVarietyTheory.Proofs.FoundationProofs.RootFFiniteGaloisIsPGroup, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ValuationSubringGaloisStableOfKummer, Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsPowOfGaussValuationCongrOneAlmostAllPrimes, Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemGammaOfMul, Development.AbelianVarietyTheory.Proofs.FoundationProofs.EichlerShimuraKummerFunctionUniformExceptionalPr
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDomGauss
-
+section -- clump: shared namespace opens
 
 open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ GlobalTheory.KZ.ES
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDomGauss
 
 namespace GlobalTheory.KZ.ES
 
@@ -233,9 +234,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.GaussExtensionUniqueOfGauss
 
-open scoped MatrixGroups TensorProduct
-open Matrix GlobalTheory.KZ GlobalTheory.KZ.ES
-
 namespace GlobalTheory.BertiniNoether
 
 theorem gauss_extension_unique_of_gauss : ∀ {F : Type} [Field F] [CharZero F] [IsAlgClosed F] [Algebra.IsAlgebraic ℚ F] {L : Type} [Field L] [Algebra F L] (t : L), Transcendental F t → FiniteDimensional (IntermediateField.adjoin F {t}) L → ∃ S : Finset ℕ, ∀ q : ℕ, q.Prime → q ∉ S → ∀ V : ValuationSubring F, ((q : ℕ) : F) ∈ V.nonunits → ∀ W₁ W₂ : ValuationSubring L, Gauss t V W₁ → Gauss t V W₂ → W₁ = W₂ := by
@@ -279,9 +277,6 @@ end GlobalTheory.BertiniNoether
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.GaussValuationUniqueOnLthRootLevelFields
-
-open scoped MatrixGroups TensorProduct
-open Matrix GlobalTheory.KZ GlobalTheory.KZ.ES
 
 namespace GlobalTheory.KZ.ES.UniqRoot
 
@@ -444,11 +439,12 @@ theorem gauss_unique_root : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgCl
 end GlobalTheory.KZ.ES.UniqRoot
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.RootFFiniteGaloisIsPGroup
 
 open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ GlobalTheory.KZ.ES IntermediateField
-
 
 namespace GlobalTheory.KZ.ES.RootGal
 
@@ -1164,7 +1160,6 @@ theorem GlobalTheory.KZ.ES.pow_of_gauss_congr_one : ∀ {Ω : Type} [Field Ω] [
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemGammaOfMul
-
 
 namespace GlobalTheory.KZ.ES.HeckeLev
 

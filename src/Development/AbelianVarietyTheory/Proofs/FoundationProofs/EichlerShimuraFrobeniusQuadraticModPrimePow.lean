@@ -221,7 +221,6 @@ open Matrix GlobalTheory.KZ
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsLevelFunctionsIntermediateField
 
-
 namespace GlobalTheory.KZ.LevelField
 
 theorem finiteDimensional_adjoin_restrict {F K : Type} [Field F] [Field K] [Algebra F K] (α : K)
@@ -598,7 +597,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.NonLthPowerReductionAlmostAllPrimes
 
-
 namespace GlobalTheory.LthPowRed
 
 open Polynomial
@@ -961,7 +959,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KroneckerRatioReducesToConstModValuation
-
 
 namespace GlobalTheory.KronRatio
 
@@ -1410,9 +1407,11 @@ theorem Tower.kmap_refl {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* �
 end GlobalTheory.KZ
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumActUpperRep
+-- clump: shared namespace opens
 
 open scoped MatrixGroups TensorProduct
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumActUpperRep
 open Matrix GlobalTheory.KZ GlobalTheory.KZ.ES
 
 namespace GlobalTheory.KZ.ES
@@ -1441,9 +1440,6 @@ end GlobalTheory.KZ.ES
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.EichlerShimuraFrobeniusQuadraticModPrimePow
-
-
-open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ
 
 namespace GlobalTheory.KZ.ESmod

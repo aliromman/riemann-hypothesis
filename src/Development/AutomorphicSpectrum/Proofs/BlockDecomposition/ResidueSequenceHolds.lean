@@ -84,7 +84,6 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsOpenFixedOfSu
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousLeviProjTwo
 
-
 namespace GlobalTheory.LocRankBig
 
 open GlobalTheory.SmGL GlobalTheory.SplitWeil
@@ -121,10 +120,12 @@ end Local
 end GlobalTheory.LocRankBig
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClosedCellInducingCharacter
+section -- clump: shared namespace opens
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZRes Topology
 open scoped TensorProduct
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClosedCellInducingCharacter
 
 namespace GlobalTheory.CompanionTheory.BZRes
 
@@ -188,10 +189,6 @@ end GlobalTheory.CompanionTheory.BZRes
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClosedDoubleCosetCriterion
-
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZRes Topology
-open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.BZRes.ClosedOrbit
 
@@ -309,9 +306,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactTransversalDoubleCoset
 
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZRes Topology
-open scoped TensorProduct
-
 namespace GlobalTheory.CompanionTheory.BZRes
 
 theorem dcos_compact_lift {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] {Q P : Subgroup G} {x : G}
@@ -359,9 +353,6 @@ end GlobalTheory.CompanionTheory.BZRes
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InducedFunctionFromCompactData
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZRes Topology
-open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.BZRes.TwoOrbit
 
@@ -441,10 +432,6 @@ end GlobalTheory.CompanionTheory.BZRes.TwoOrbit
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalSectionClosedCell
-
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZRes Topology
-open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.BZRes
 
@@ -532,8 +519,9 @@ end GlobalTheory.CompanionTheory.BZRes
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalSectionOpenCell
+end -- clump: shared namespace opens
 
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalSectionOpenCell
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib Topology
 open scoped TensorProduct
@@ -682,7 +670,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OpenCellInducingCharacter
 
-
 namespace GlobalTheory.CompanionTheory.BZRes
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -760,13 +747,7 @@ end GlobalTheory.CompanionTheory.BZRes
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OpenDoubleCosetCriterion
-
-
-open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZRes Topology
-open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.BZRes.OpenOrbit
 
@@ -915,6 +896,8 @@ theorem mem_dcos_wGL_iff : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologica
 end GlobalTheory.CompanionTheory.BZRes
 
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsSideTail
 
@@ -1089,7 +1072,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ResidueSequenceHolds
-
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib Topology
 open scoped TensorProduct

@@ -140,7 +140,6 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.UU GlobalTheory.FlatSec
 open scoped TensorProduct
 
-
 namespace GlobalTheory.AmplePoint
 
 variable {R R' : Type} [CommRing R] [CommRing R'] {X X' : Scheme.{0}}
@@ -543,16 +542,7 @@ theorem isAffineOpen_translates :
 end GlobalTheory.TransAff
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAffineNonzeroLocusFlatLocalBaseChange
-
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory GlobalTheory.Cartier GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.TorRef
-open scoped CategoryTheory.Obj
-open GlobalTheory.Desc
 
 namespace GlobalTheory.AmplePt
 
@@ -592,14 +582,6 @@ theorem exists_affine_nonzeroLocus_of_square : (∀ (R' : Type) [CommRing R'] [I
 
 end GlobalTheory.AmplePt
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory GlobalTheory.Cartier GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.TorRef
-open scoped CategoryTheory.Obj
-open GlobalTheory.Desc
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAffineNonzeroLocusUnitClosedFibreSemiAb
 
@@ -813,7 +795,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMemBasicOpenOfMemBasicOpenNormCoeff
-
 
 namespace GlobalTheory.NormalDescent
 
@@ -1100,7 +1081,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ReversedCharpolyCoeffInDomainMul
 
-
 open CategoryTheory Polynomial TensorProduct
 
 namespace GlobalTheory.NormalDescent
@@ -1194,7 +1174,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CharpolyMulBaseChangeFiniteMapOfIsPushout
 
-
 namespace GlobalTheory.NormalDescent
 
 open CategoryTheory Polynomial TensorProduct
@@ -1282,7 +1261,6 @@ end -- clump:auto
 open AlgebraicGeometry CategoryTheory Polynomial
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.NormalDescent
-
 
 namespace GlobalTheory.NormalDescent
 
@@ -1508,7 +1486,6 @@ end GlobalTheory.NormalDescent
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AmpleOfFiniteSurjectivePullback
-
 
 open AlgebraicGeometry CategoryTheory Polynomial
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
