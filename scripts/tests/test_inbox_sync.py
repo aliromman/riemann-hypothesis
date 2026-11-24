@@ -145,6 +145,19 @@ class Normalising(unittest.TestCase):
                          [("maint", "changed its labels"), ("maint", "commented")])
 
 
+class AwaitingAuthor(unittest.TestCase):
+    def test_taking_the_label_off_enters_review_and_is_not_a_response(self):
+        pr = inbox.pull(node(1, events=[("on", "awaiting-author", 3, "maint"),
+                                        ("off", "awaiting-author", 10, "maint"), ("ready", 6)]))
+        self.assertEqual(pr["entered"], T0 + datetime.timedelta(minutes=10))
+        self.assertEqual([r["at"] for r in pr["responses"]], [T0 + datetime.timedelta(minutes=3)])
+
+    def test_putting_the_label_on_is_a_response_not_an_entry(self):
+        pr = inbox.pull(node(1, created=0, events=[("on", "awaiting-author", 3, "maint")]))
+        self.assertEqual(pr["entered"], T0)
+        self.assertEqual([r["did"] for r in pr["responses"]], ["changed its labels"])
+
+
 class Sweep(unittest.TestCase):
     def test_new_pull_request_goes_in(self):
         gh = Fake([node(1)])
@@ -275,6 +288,46 @@ class Sweep(unittest.TestCase):
         gh = Fake([node(1, comments=[("maint", 2)],
                         events=[("on", INBOX, 1, BOT), ("off", INBOX, 3, BOT), ("ready", 4)])],
                   roles=MAINT)
+        sweep(gh)
+        self.assertEqual(gh.writes, [("add", 1)])
+
+    def handed_back(self, off_by, *, comments=()):
+        """Answered at 2, `awaiting-author` on at 3 and off again at 10."""
+        return node(1, comments=[("maint", 2)] + list(comments), events=[
+            ("on", INBOX, 1, BOT), ("on", "awaiting-author", 3, "maint"), ("off", INBOX, 4, BOT),
+            ("off", "awaiting-author", 10, off_by)])
+
+    def test_answered_pull_request_goes_back_in_when_the_author_says_ready(self):
+        # `ready` takes the label off with the batch queue workflow's token.
+        gh = Fake([self.handed_back(BOT)], roles=MAINT)
+        log = sweep(gh)
+        self.assertEqual(gh.writes, [("add", 1)])
+        self.assertIn("#1: put in the inbox, because it is waiting for a response", log)
+
+    def test_answered_pull_request_goes_back_in_when_a_maintainer_takes_the_label_off(self):
+        gh = Fake([self.handed_back("maint")], roles=MAINT)
+        sweep(gh)
+        self.assertEqual(gh.writes, [("add", 1)])
+
+    def test_a_response_after_the_label_came_off_keeps_it_out(self):
+        gh = Fake([self.handed_back(BOT, comments=[("maint", 11)])], roles=MAINT)
+        sweep(gh)
+        self.assertEqual(gh.writes, [])
+
+    def test_still_out_while_labelled_awaiting_author(self):
+        handed = self.handed_back(BOT)
+        handed["labels"]["nodes"].append({"name": "awaiting-author"})
+        handed["timelineItems"]["nodes"].append(
+            {"__typename": "LabeledEvent", "createdAt": at(12), "label": {"name": "awaiting-author"},
+             "actor": user("maint")})
+        gh = Fake([handed], roles=MAINT)
+        sweep(gh)
+        self.assertEqual(gh.writes, [])
+
+    def test_label_a_person_took_off_comes_back_when_awaiting_author_comes_off(self):
+        gh = Fake([node(1, events=[("on", INBOX, 1, BOT), ("off", INBOX, 2, "maint"),
+                                   ("on", "awaiting-author", 3, "maint"),
+                                   ("off", "awaiting-author", 5, BOT)])], roles=MAINT)
         sweep(gh)
         self.assertEqual(gh.writes, [("add", 1)])
 

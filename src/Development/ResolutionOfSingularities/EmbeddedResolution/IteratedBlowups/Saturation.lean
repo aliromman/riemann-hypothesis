@@ -207,18 +207,6 @@ theorem quasiCompact_saturationι_of_noetherianSpace {Y : Scheme.{u}}
     hemb.toIsInducing.noetherianSpace
   exact ⟨fun U _ _ => NoetherianSpace.isCompact _⟩
 
-private theorem ideal_comap_hom_id {R : CommRingCat.{u}} (I : Ideal R) :
-    Ideal.comap (CommRingCat.Hom.hom (𝟙 R)) I = I := by
-  ext x
-  simp only [Ideal.mem_comap, CommRingCat.hom_id, RingHom.id_apply]
-
-private theorem ker_comp_map_eqToHom {A : Scheme.{u}} {R : CommRingCat.{u}}
-    {P Q : A.Opens} (e : P = Q) (φ : R ⟶ A.presheaf.obj (Opposite.op Q)) :
-    RingHom.ker (CommRingCat.Hom.hom (φ ≫ A.presheaf.map (eqToHom e).op))
-      = RingHom.ker φ.hom := by
-  subst e
-  simp
-
 private theorem quasiCompact_of_eq {A C : Scheme.{u}} {f g : A ⟶ C} (h : f = g)
     (hf : QuasiCompact g) : QuasiCompact f := by
   subst h

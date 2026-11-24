@@ -267,7 +267,7 @@ theorem exists_artinSymbol : GlobalTheory.Published.GlobalArtinReciprocity → �
     ext x
     rw [Set.mem_preimage, SetLike.mem_coe, SetLike.mem_coe, MonoidHom.mem_ker, hρ, MonoidHom.mem_ker]
   let ψ : (Ω ≃ₐ[E] Ω) →* ClassGroup (𝓞 E) := ρ.comp (toAb E Ω)
-  have hlies : ∀ (v : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω), LiesAbove A v → Neutral.B1.IsPlaceOver A v :=
+  have hlies : ∀ (v : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω), LiesAbove A v → IsPlaceOver A v :=
     fun v A h x => by rw [← h x, A.mem_nonunits_iff]
   refine ⟨ψ⁻¹, ?_, ?_, ?_⟩
   · have e : ((ψ⁻¹).ker : Set (Ω ≃ₐ[E] Ω)) = toAb E Ω ⁻¹' (ρ.ker : Set (Gab E Ω)) := by

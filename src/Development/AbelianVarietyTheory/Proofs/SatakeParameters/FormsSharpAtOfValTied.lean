@@ -2,7 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsMidLevIff
 public import Formalism.LocalToGlobal.InertKernelTheory.K2OfAgreements
-public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaDistributionUnfolded
 public import Development.AbelianVarietyTheory.PublishedTheorems.GlobalTheta.WeylDualWeylLatticesAgreeOfLowestAlcove
 import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
 public import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.SharpPoly

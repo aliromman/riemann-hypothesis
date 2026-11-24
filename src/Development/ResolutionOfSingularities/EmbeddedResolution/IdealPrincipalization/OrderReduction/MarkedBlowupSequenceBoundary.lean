@@ -258,12 +258,6 @@ theorem preimage_iUnion_support_boundary_subset (u : MarkedBlowupSequenceData p 
       exact subset_closure (Set.mem_preimage.mpr (Set.mem_sdiff_of_mem hxD hc))
     exact Set.mem_iUnion₂.mpr ⟨_, hmem, h2⟩
 
-private theorem eq_of_exceptionalIdeal_pow_mul_eq_mul {Y Y' : Scheme.{u}} {π : Y' ⟶ Y}
-    {Z : Y.IdealSheafData} (h : Blowup.IsBlowupAlongIdealSheaf π Z) (n : ℕ) {A B : Y'.IdealSheafData}
-    (e : Blowup.exceptionalIdeal π Z ^ n * A = Blowup.exceptionalIdeal π Z ^ n * B) : A = B := by
-  rw [Blowup.exceptionalIdeal_eq_comap] at e
-  exact eq_of_isLocallyGeneratedByNonZeroDivisor_pow_mul_eq_mul h.1 n e
-
 alias isMarked := _root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.isMarked_toBlowupSequenceData
 
 theorem orderAtLeastLocus_disjoint_boundary_of_le (u : MarkedBlowupSequenceData p I m E)

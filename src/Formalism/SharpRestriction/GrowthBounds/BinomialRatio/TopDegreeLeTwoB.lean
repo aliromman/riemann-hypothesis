@@ -159,9 +159,7 @@ private theorem mul_sum_pow_lt_le_pow_of_segHyp (H : SegHyp p S b' de be aS Q) :
         _ = (p : ℝ) ^ 2 := (sq _).symm
     calc (p : ℝ) * ((∑ j : Fin s, if (j : ℕ) < n then (p : ℝ) ^ (S.d j) else 0) +
           (p : ℝ) ^ (S.d ⟨n, hn'⟩))
-        ≤ (p : ℝ) ^ (S.d ⟨n, hn'⟩) * (1 + p) := by
-          rw [mul_add, mul_add, mul_one, mul_comm ((p : ℝ) ^ _)]
-          linarith
+        ≤ (p : ℝ) ^ (S.d ⟨n, hn'⟩) * (1 + p) := by grind
       _ ≤ (p : ℝ) ^ (S.d ⟨n, hn'⟩) * (p : ℝ) ^ 2 := mul_le_mul_of_nonneg_left h12 hpe
       _ = (p : ℝ) ^ (S.d ⟨n, hn'⟩ + 2) := (pow_add _ _ _).symm
       _ ≤ (p : ℝ) ^ (S.d ⟨n + 1, hn⟩) := pow_le_pow_right₀ (by linarith) hgap

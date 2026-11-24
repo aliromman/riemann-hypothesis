@@ -275,10 +275,7 @@ theorem hostThickExists : HostThickExists := by
   have hs32 : 32 * y < s := by
     by_contra hc
     push_neg at hc
-    have h1 : s * s ≤ 32 * y * s := mul_le_mul_of_nonneg_right hc hs0
-    have h2 : 0 < (x + -32 * s - y) * y := mul_pos hpos hy0
-    have h3 : 0 ≤ y ^ 2 := sq_nonneg y
-    linarith [show s ^ 2 = s * s by ring, show (x + -32 * s - y) * y = x * y - 32 * y * s - y ^ 2 by ring]
+    grind [mul_nonneg hs0 (sub_nonneg.mpr hc), mul_pos hpos hy0, sq_nonneg y]
   have hs16 : 16 < s := by linarith
   obtain ⟨S, hSdef⟩ : ∃ S : ℕ, S = ⌊s / y⌋₊ := ⟨_, rfl⟩
   have hS1 : (S : ℝ) ≤ s / y := by rw [hSdef]; exact Nat.floor_le (div_nonneg hs0 hy0.le)
@@ -293,38 +290,21 @@ theorem hostThickExists : HostThickExists := by
   obtain ⟨a, ha⟩ : ∃ a : ℝ, a = (x - y - 3) / S := ⟨_, rfl⟩
   have haS : a * S = x - y - 3 := by rw [ha]; field_simp
   have h2Sy : s ≤ 2 * S * y := by
-    have h1 : ((S : ℝ) + 1) * y ≤ 2 * S * y :=
-      mul_le_mul_of_nonneg_right (by linarith) hy0.le
-    linarith
+    grind
   have hxle : x ≤ 2 * s * S := by
-    have h : x * y ≤ (2 * s * S) * y := by
-      have h1 : s * s ≤ s * (2 * S * y) := mul_le_mul_of_nonneg_left h2Sy hs0
-      linarith [show s ^ 2 = s * s by ring, show s * (2 * S * y) = (2 * s * S) * y by ring]
+    have h : x * y ≤ (2 * s * S) * y := by grind [mul_le_mul_of_nonneg_left h2Sy hs0]
     exact le_of_mul_le_mul_right h hy0
   have ha2s : a ≤ 2 * s := by
     have h : a * S ≤ (2 * s) * S := by linarith [show (2 * s) * S = 2 * s * S by ring]
     exact le_of_mul_le_mul_right h hSpos
   have ha7 : 7 + y ≤ a := by
     have h1 : (7 + y) * S * y ≤ (x - y - 3) * y := by
-      have hSy' : (7 + y) * (S * y) ≤ (7 + y) * s := mul_le_mul_of_nonneg_left hSy (by linarith)
-      have h32 : (32 * y) * s ≤ s * s := mul_le_mul_of_nonneg_right hs32.le hs0
-      have hy2 : y * y ≤ y * s := mul_le_mul_of_nonneg_left (by linarith) hy0.le
-      have h8s : 8 * s ≤ 16 * (y * s) := by
-        have := mul_le_mul_of_nonneg_right (show (8 : ℝ) ≤ 16 * y by linarith) hs0
-        linarith [show 16 * y * s = 16 * (y * s) by ring]
-      have hys0 : 0 ≤ y * s := mul_nonneg hy0.le hs0
-      linarith [show s ^ 2 = s * s by ring,
-                show (7 + y) * (S : ℝ) * y = (7 + y) * ((S : ℝ) * y) by ring,
-                show (x - y - 3) * y = x * y - y * y - 3 * y by ring,
-                show (7 + y) * s = 7 * s + y * s by ring,
-                show (32 * y) * s = 32 * (y * s) by ring]
+      grind [mul_nonneg hy0.le (sub_nonneg.mpr hSy), mul_nonneg hs0 (sub_nonneg.mpr hs32.le),
+        mul_nonneg hy0.le (sub_nonneg.mpr hs32.le), mul_nonneg hs0 (sub_nonneg.mpr hy_half.le)]
     have h2 : (7 + y) * S ≤ x - y - 3 := le_of_mul_le_mul_right h1 hy0
     exact le_of_mul_le_mul_right (by rw [haS]; exact h2) hSpos
   have hexpb : 3 + S * (7 + y) + S + 2 * a ≤ 32 * s := by
-    have h8S : (8 : ℝ) * S ≤ 16 * (S * y) := by
-      have := mul_le_mul_of_nonneg_left (show (8 : ℝ) ≤ 16 * y by linarith) hSpos.le
-      linarith [show (S : ℝ) * (16 * y) = 16 * ((S : ℝ) * y) by ring]
-    linarith [show (S : ℝ) * (7 + y) = 7 * (S : ℝ) + (S : ℝ) * y by ring]
+    grind [mul_nonneg (sub_nonneg.mpr hy_half.le) hSpos.le]
   have h4L : (0 : ℝ) < 4 * L := by positivity
   obtain ⟨d, hddef⟩ : ∃ d : ℕ, d = ⌊Real.exp a / (4 * L)⌋₊ := ⟨_, rfl⟩
   have hd1 : (d : ℝ) ≤ Real.exp a / (4 * L) := by rw [hddef]; exact Nat.floor_le (by positivity)

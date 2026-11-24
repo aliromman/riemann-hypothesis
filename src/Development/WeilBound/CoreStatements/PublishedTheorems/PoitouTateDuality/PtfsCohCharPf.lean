@@ -2,8 +2,7 @@ module
 
 public import GroundTheory.ProfiniteCohomology.PoitouTate.PtCompactDualMapEqZeroOfPtCompactToGlobalEqZero
 public import ReciprocityTheory.Hypotheses.GalCohDefs
-public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohCmp
-import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohCmpA
+public import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohCmp
 public import Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.ResH1BijectiveOfInverse
 public import Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.ResH2BijectiveOfInverse
 import GroundTheory.ProfiniteCohomology.CupProducts.Cocycles
@@ -83,7 +82,7 @@ theorem resCmpChar0' {G H : Type} [Group G] [TopologicalSpace G] [IsTopologicalG
     show eM (rho (θ.symm h) m) = _
     rw [hM]
     exact congrArg (fun t => A.ρ t (eM m)) (θ.apply_symm_apply h)
-  obtain ⟨e0, he0⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gc0 H R M rho' A eM hM'
+  obtain ⟨e0, he0⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.gc0 H R M rho' A eM hM'
   have hEq : H0 rho = H0 rho' := by
     ext m
     constructor
@@ -98,7 +97,7 @@ theorem resCmpChar0' {G H : Type} [Group G] [TopologicalSpace G] [IsTopologicalG
       (Rep.res (φ v).toMonoidHom A).ρ σ (eM m) := fun v σ m => by
     show eM (rho (lam v (ev v σ)) m) = A.ρ (φ v σ) (eM m)
     rw [hM, hev]
-  choose ev0 hev0 using fun v => PositivityTheory.LocalTateOrthogonality.Gcoh.gc0 (Hv v) R M
+  choose ev0 hev0 using fun v => CompanionTheory.LocalTateOrthogonality.Gcoh.gc0 (Hv v) R M
     ((rho.comp (lam v)).comp (ev v).toMonoidHom) (Rep.res (φ v).toMonoidHom A) eM (hloc v)
   have hEqv : ∀ v, H0 (rho.comp (lam v)) = H0 ((rho.comp (lam v)).comp (ev v).toMonoidHom) := by
     intro v
@@ -114,10 +113,10 @@ theorem resCmpChar0' {G H : Type} [Group G] [TopologicalSpace G] [IsTopologicalG
     fun v => LinearEquiv.ofEq _ _ (hEqv v)
   refine ⟨r0.toAddEquiv.trans e0, fun v => (rv v).toAddEquiv.trans (ev0 v), fun v z => ?_, fun z x hx => ?_, fun v z x hx => ?_⟩
   have hz' : (z : M) ∈ H0 rho' := hEq ▸ z.2
-  obtain ⟨x, hx⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.exists_coc A 0 (fun _ => eM z.1) (IsLocallyConstant.const _) (by
-      refine (PositivityTheory.LocalTateOrthogonality.Gcoh.d_comp rho' A eM hM' 0 fun _ => z.1).trans ?_
+  obtain ⟨x, hx⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.exists_coc A 0 (fun _ => eM z.1) (IsLocallyConstant.const _) (by
+      refine (CompanionTheory.LocalTateOrthogonality.Gcoh.d_comp rho' A eM hM' 0 fun _ => z.1).trans ?_
       funext s
-      rw [PositivityTheory.LocalTateOrthogonality.Gcoh.dn_zero, hz' (s 0), sub_self]
+      rw [CompanionTheory.LocalTateOrthogonality.Gcoh.dn_zero, hz' (s 0), sub_self]
       exact map_zero eM)
   have hE : e0 (r0 z) = cohomologyπ A 0 x := he0 _ x (fun s => congrFun hx s)
   show ev0 v (rv v (resH0 rho (lam v) z)) = ptRes φ A v 0 (e0 (r0 z))

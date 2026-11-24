@@ -2,7 +2,7 @@ module
 
 public import GroundTheory.ProfiniteCohomology.PoitouTate.PtCompactDualMapEqZeroOfPtCompactToGlobalEqZero
 public import ReciprocityTheory.Hypotheses.GalCohDefs
-public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohCmp
+public import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohCmp
 import GroundTheory.ProfiniteCohomology.CupProducts.Cocycles
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
@@ -117,7 +117,7 @@ theorem resCmp1_with_representatives {G H : Type} [Group G] [TopologicalSpace G]
     show eM (rho (θ.symm h) m) = _
     rw [hM]
     simp
-  obtain ⟨e1, he1a, he1b⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gc1 H R M rho' A eM hM'
+  obtain ⟨e1, he1a, he1b⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.gc1 H R M rho' A eM hM'
   have bij := resH1_bijective_of_inverse rho (θ.symm : H ≃* G).toMonoidHom hθs
     (θ : G ≃* H).toMonoidHom θ.continuous (fun g => θ.symm_apply_apply g) (fun h => θ.apply_symm_apply h)
   let r1 : H1 rho ≃ₗ[R] H1 rho' := LinearEquiv.ofBijective _ bij
@@ -125,7 +125,7 @@ theorem resCmp1_with_representatives {G H : Type} [Group G] [TopologicalSpace G]
       (Rep.res (φ v).toMonoidHom A).ρ σ (eM m) := fun v σ m => by
     show eM (rho (lam v (ev v σ)) m) = A.ρ (φ v σ) (eM m)
     rw [hM, hev]
-  choose ev1 hev1a hev1b using fun v => PositivityTheory.LocalTateOrthogonality.Gcoh.gc1 (Hv v) R M
+  choose ev1 hev1a hev1b using fun v => CompanionTheory.LocalTateOrthogonality.Gcoh.gc1 (Hv v) R M
     ((rho.comp (lam v)).comp (ev v).toMonoidHom) (Rep.res (φ v).toMonoidHom A) eM (hloc v)
   have bijv := fun v => resH1_bijective_of_inverse (rho.comp (lam v)) (ev v).toMonoidHom (hev1 v)
     (ev v).symm.toMonoidHom (hev2 v) (fun g => (ev v).apply_symm_apply g) (fun h => (ev v).symm_apply_apply h)

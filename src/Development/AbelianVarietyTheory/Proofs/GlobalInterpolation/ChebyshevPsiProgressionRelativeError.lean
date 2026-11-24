@@ -689,6 +689,33 @@ theorem box_subset {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (T : ℝ
   rintro ρ ⟨a, b, c, d⟩
   exact ⟨by linarith, b, by simpa using c, d⟩
 
+/-- Passing to the primitive character preserves zero boxes strictly to the right of
+`re s = 0`; the extra Euler factors can have zeros on the boundary. -/
+theorem zerosBox_eq_primitiveCharacter {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q)
+    {σ : ℝ} (hσ : 0 < σ) (T : ℝ) :
+    have : NeZero χ.conductor := ⟨χ.conductor_ne_zero⟩
+    zerosBox χ σ T = zerosBox χ.primitiveCharacter σ T := by
+  have : NeZero χ.conductor := ⟨χ.conductor_ne_zero⟩
+  ext ρ
+  have hzero (h0 : σ ≤ ρ.re) (h1 : ρ.re < 1) :=
+    (zeros_eq_zeros_primitiveCharacter q χ ρ (hσ.trans_le h0)
+      (Or.inr (by rintro rfl; simp at h1))).1
+  constructor <;> rintro ⟨h0, h1, ht, hz⟩
+  · exact ⟨h0, h1, ht, (hzero h0 h1).mp hz⟩
+  · exact ⟨h0, h1, ht, (hzero h0 h1).mpr hz⟩
+
+/-- Weighted zero sums, including multiplicities, are unchanged by passage to the
+primitive character in a positive-real-part zero box. -/
+theorem finsum_zerosBox_eq_primitiveCharacter {q : ℕ} [NeZero q]
+    (χ : DirichletCharacter ℂ q) {σ : ℝ} (hσ : 0 < σ) (T : ℝ) (f : ℂ → ℂ) :
+    have : NeZero χ.conductor := ⟨χ.conductor_ne_zero⟩
+    (∑ᶠ ρ ∈ zerosBox χ σ T, (ord χ ρ : ℂ) * f ρ) =
+      ∑ᶠ ρ ∈ zerosBox χ.primitiveCharacter σ T, (ord χ.primitiveCharacter ρ : ℂ) * f ρ := by
+  have : NeZero χ.conductor := ⟨χ.conductor_ne_zero⟩
+  refine finsum_mem_congr (zerosBox_eq_primitiveCharacter χ hσ T) fun ρ hρ => ?_
+  rw [(zeros_eq_zeros_primitiveCharacter q χ ρ (hσ.trans_le hρ.1)
+    (Or.inr (by intro h; have hr := hρ.2.1; simpa [h] using hr))).2]
+
 theorem left_zeros {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (u T : ℝ) (hu : 1 ≤ u) :
     ‖zsum χ 0 T (fun ρ => (u : ℂ) ^ ρ / ρ) -
       ∑ᶠ ρ ∈ zerosBox χ (1 / 2) T, (ord χ ρ : ℂ) * ((u : ℂ) ^ ρ / ρ)‖ ≤
@@ -814,21 +841,8 @@ theorem explicit_formula_right : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q]
       rw [← χ.changeLevel_primitiveCharacter, h, map_one]
     · rintro rfl
       exact primitiveCharacter_one
-  have hcmp : ∀ ρ : ℂ, 1 / 2 ≤ ρ.re → ρ.re < 1 →
-      (LFunction χ ρ = 0 ↔ LFunction χ.primitiveCharacter ρ = 0) ∧
-        ord χ ρ = ord χ.primitiveCharacter ρ := fun ρ a b =>
-    _root_.GlobalTheory.Lin.zeros_eq_zeros_primitiveCharacter q χ ρ (by linarith) (Or.inr (by rintro rfl; simp at b))
-  have hbox : zerosBox χ (1 / 2) T = zerosBox χ.primitiveCharacter (1 / 2) T := by
-    ext ρ
-    constructor
-    · rintro ⟨a, b, c, d⟩
-      exact ⟨a, b, c, (hcmp ρ a b).1.mp d⟩
-    · rintro ⟨a, b, c, d⟩
-      exact ⟨a, b, c, (hcmp ρ a b).1.mpr d⟩
-  have hsum : ∑ᶠ ρ ∈ zerosBox χ (1 / 2) T, (ord χ ρ : ℂ) * ((u : ℂ) ^ ρ / ρ) =
-      ∑ᶠ ρ ∈ zerosBox χ.primitiveCharacter (1 / 2) T,
-        (ord χ.primitiveCharacter ρ : ℂ) * ((u : ℂ) ^ ρ / ρ) :=
-    finsum_mem_congr hbox fun ρ hρ => by rw [(hcmp ρ hρ.1 hρ.2.1).2]
+  have hsum := finsum_zerosBox_eq_primitiveCharacter χ (by norm_num : (0 : ℝ) < 1 / 2)
+    T (fun ρ => (u : ℂ) ^ ρ / ρ)
   have hE := HA χ.conductor χ.primitiveCharacter hprim u T hT hu
   obtain ⟨hZ₁, hZ⟩ := HB χ.conductor χ.primitiveCharacter hprim T hT
   have hD := left_zeros χ.primitiveCharacter u T (by linarith)
@@ -1155,27 +1169,7 @@ namespace GlobalTheory.Lin.Repulsion
 
 theorem one_le_ord {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) {w : ℂ} (hw : w ≠ 1)
     (h0 : LFunction χ w = 0) : 1 ≤ ord χ w := by
-  have han : AnalyticOnNhd ℂ (LFunction χ) ({1}ᶜ : Set ℂ) := by
-    apply DifferentiableOn.analyticOnNhd _ isOpen_compl_singleton
-    intro z hz
-    exact (differentiableAt_LFunction χ z (Or.inl hz)).differentiableWithinAt
-  have hpre : IsPreconnected ({1}ᶜ : Set ℂ) :=
-    (isConnected_compl_singleton_of_one_lt_rank (by simp) (1 : ℂ)).isPreconnected
-  have h2 : (2 : ℂ) ∈ ({1}ᶜ : Set ℂ) := by norm_num
-  have hne : LFunction χ 2 ≠ 0 :=
-    LFunction_ne_zero_of_one_le_re χ (Or.inr (by norm_num)) (by norm_num)
-  have h2o : analyticOrderAt (LFunction χ) 2 ≠ ⊤ := by
-    rw [(han 2 h2).analyticOrderAt_eq_zero.2 hne]; simp
-  have htop : analyticOrderAt (LFunction χ) w ≠ ⊤ :=
-    han.analyticOrderAt_ne_top_of_isPreconnected hpre h2 hw h2o
-  have hz : analyticOrderAt (LFunction χ) w ≠ 0 := by
-    rw [Ne, (han w hw).analyticOrderAt_eq_zero]; simpa using h0
-  unfold ord analyticOrderNatAt
-  rw [Nat.one_le_iff_ne_zero]
-  intro h
-  rcases ENat.toNat_eq_zero.1 h with h | h
-  · exact hz h
-  · exact htop h
+  exact GlobalTheory.GoodHeight.one_le_order χ hw h0
 
 theorem norm_pow_sub_le {a b : ℂ} (ha : ‖a‖ ≤ 1) (hb : ‖b‖ ≤ 1) (j : ℕ) :
     ‖a ^ j - b ^ j‖ ≤ j * ‖a - b‖ := by

@@ -174,7 +174,8 @@ theorem UpperTheory.V.J.denseOf :
   have hbe : b' * e ∉ J := fun hm =>
     (hp₀.mem_or_mem (hZ₀.1.2 hm)).elim hb' he
   have hx : ∃ x : B₀ →ₐ[c.O] Qbar l, J ≤ RingHom.ker x ∧ Gd x ∧ x (b' * e) ≠ 0 := by
-    by_contra hno
+    apply Classical.byContradiction
+    intro hno
     refine hbe (hdense _ fun x h1 h2 => ?_)
     by_contra h3
     exact hno ⟨x, h1, h2, h3⟩
@@ -1032,7 +1033,7 @@ theorem UpperTheory.V.J.fixLe :
     intro D hD
     obtain ⟨X, hXD⟩ := hX D hD
     exact torus l c F C₀ n hF hn S ξ hI D hD.1 hirr X hXD
-  by_cases h0 : ∀ D ∈ FixTan S ξ, D = 0
+  rcases Classical.em (∀ D ∈ FixTan S ξ, D = 0) with h0 | h0
   · have hbot : FixTan S ξ = ⊥ := eq_bot_iff.2 fun D hD => (Submodule.mem_bot _).2 (h0 D hD)
     rw [hbot]
     simp

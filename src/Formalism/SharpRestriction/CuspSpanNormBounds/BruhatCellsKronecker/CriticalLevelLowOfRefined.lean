@@ -129,8 +129,7 @@ theorem TfFacts.aEff_bd (F : TfFacts D large₂ C' Cl Cu C0) (hCl : 4 ≤ Cl) (u
   have hKD : 1 ≤ (D.R.k : ℝ) * D.s.Del := one_le_mul_of_one_le_of_one_le (by linarith) hDel
   have hv1 : 0 ≤ vOne D τ 1 := F.dv τ 1 le_rfl (by have := D.R.m_add_three_le_k; omega)
   have hu := F.du u τ
-  rw [mul_assoc] at hu
-  have hu1 : 1 ≤ uOne D u τ 1 := by linarith
+  have hu1 : 1 ≤ uOne D u τ 1 := by grind
   have hbC : 1 ≤ large₂.sc.b ^ Cu := le_trans hu1 (F.hu1 u τ)
   have hb := F.hb1 τ 1 le_rfl (by have := D.R.two_le_m; omega)
   have hb8 : 8 * ((D.R.k : ℝ) * D.s.Del) ≤ bOne D τ 1 := by
@@ -327,13 +326,7 @@ theorem TfFacts.Gam_le (F : TfFacts D large₂ C' Cl Cu C0) (u : D.what₂.Word)
   have hx : 0 ≤ (D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L := by
     have := one_le_scale_log large₂
     positivity
-  have h1 : (8 * large₂.CGam) * ((D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L) ≤
-      C' * ((D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L) := mul_le_mul_of_nonneg_right F.hGam hx
-  have h2 : C' * ((D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L) = C' * (D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L := by ring
-  have h3 : large₂.CGam * (D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L +
-      large₂.CGam * (D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L =
-      (8 * large₂.CGam) * ((D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L) / 4 := by ring
-  linarith [F.hk]
+  nlinarith [F.hGam, F.hk]
 
 theorem TfFacts.ratio_le (F : TfFacts D large₂ C' Cl Cu C0) (u : D.what₂.Word) :
     D.what₂.Dstar / (D.duS u : ℝ) ≤ C0 * (D.mem u).A.GamP ^ 2 := by
@@ -453,8 +446,7 @@ theorem tf_ev_CL (C : ℝ) : ∃ x0 : ℝ, ∀ x ≥ x0, Fm.x1 < x → ∀ i : F
   have h4 : x ^ eps * (|C| + 1) ≤ x ^ ((1 : ℝ) / 4) := by
     rw [hs]; exact mul_le_mul_of_nonneg_left h2 (le_trans zero_le_one hL)
   have hCP : C * x ^ eps ≤ |C| * x ^ eps := mul_le_mul_of_nonneg_right (le_abs_self C) (le_trans zero_le_one hL)
-  have h5 : x ^ eps * (|C| + 1) = |C| * x ^ eps + x ^ eps := by ring
-  linarith
+  grind
 
 theorem TFrame_of_sizes (Cg cb Cu cT CT C0 C3 : ℝ) (hCl : 4 ≤ sCl Fm)
     (hA : OwnEv Fm fun C' Cl x i => Hyp0 (Fm.D x i) (Fm.L x i) C' Cl Cg cb Cu cT CT C0 → cTvA (Fm.D x i))

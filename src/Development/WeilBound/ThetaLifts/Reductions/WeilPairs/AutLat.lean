@@ -57,13 +57,6 @@ variable {σ : E →ₐ[F] E} {B : Base F E} {nS nT : ℕ} {JS : Matrix (Fin nS)
   {Om : GAF σ JS × GAF σ JT →* Module.End ℂ (thetaSubF σ JS JT ξ₀ B.ψ)}
   {s : Matrix (IxF F nS nT) (IxF F nS nT) ℂ}
 
-theorem finRatF_mem_iff (C : Ctx σ B JS JT ξ₀ θ ι) (hG : GoodLat Λ) (hR : RatSD σ JS JT ξ₀ Λ)
-    (hA : SelfDual (gamFF σ JS JT ξ₀ B.ψ) (latF F E nS nT Λ)) (y : Matrix (Fin nT) (Fin nS) E) :
-    finRatF F y ∈ latF F E nS nT Λ ↔ y ∈ Λ := AutLatA.mem_iff C hR hA y
-
-theorem finite_lat (hB : B.IsGood σ) (hG : GoodLat Λ) (R : ℝ) : {y | y ∈ Λ ∧ ‖infRatF (tauB B) y‖ ≤ R}.Finite :=
-  AutLatA.finLat hB hG R
-
 alias exists_level := _root_.PositivityTheory.ThKW.AutLatA.level
 
 end PositivityTheory.ThKW

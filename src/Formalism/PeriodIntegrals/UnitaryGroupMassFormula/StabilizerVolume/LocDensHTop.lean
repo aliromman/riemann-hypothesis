@@ -683,11 +683,11 @@ theorem card_transport {k K : Type} [Field k] [CommRing K] [Algebra k K] (σ : K
     (J : Matrix (Fin M) (Fin M) K) (T : Matrix (Fin a) (Fin a) K) :
     Nat.card {X : Fin a → Fin M → K // ffGram (σ : K →+* K) J X = T} =
       Nat.card {Y : Fin a → Fin M → k × k //
-        ffGram (FiniteFieldSplitting.swapR k) (J.map e) Y = T.map e} := by
+        ffGram (PI.VolStabS.FiniteFieldSplitting.swapR k) (J.map e) Y = T.map e} := by
   apply Nat.card_congr
   refine Equiv.subtypeEquiv (Equiv.piCongrRight fun _ => Equiv.piCongrRight fun _ => e.toEquiv) ?_
   intro X
-  have key : ffGram (FiniteFieldSplitting.swapR k) (J.map e)
+  have key : ffGram (PI.VolStabS.FiniteFieldSplitting.swapR k) (J.map e)
       ((Equiv.piCongrRight fun _ => Equiv.piCongrRight fun _ => e.toEquiv) X) =
         (ffGram (σ : K →+* K) J X).map e := by
     funext i j
@@ -738,7 +738,7 @@ theorem fFCount_of (hS : FFSplit) (hI : FFInert) : FFCount := by
       have h := hTd.map (e : K →+* k × k)
       rwa [RingHom.map_det] at h
     have hs : (Nat.card {Y : Fin a → Fin M → k × k //
-        ffGram (FiniteFieldSplitting.swapR k) (J.map e) Y = T.map e} : ℝ) =
+        ffGram (PI.VolStabS.FiniteFieldSplitting.swapR k) (J.map e) Y = T.map e} : ℝ) =
         (∏ i : Fin a, ((Nat.card k : ℝ) ^ M - (Nat.card k : ℝ) ^ (i : ℕ))) *
           (Nat.card k : ℝ) ^ (a * (M - a)) := hS k M a haM (J.map e) hJ' hJd' (T.map e) hT' hTd'
     rw [hc, hs, FiniteFieldCounting.split_ratio M a haM _ hq0]

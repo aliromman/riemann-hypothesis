@@ -274,14 +274,13 @@ theorem UpperTheory.ConvolutionTheory.BW.datBasics :
   · obtain ⟨c, hc⟩ := J_eq d j
     obtain ⟨c', hc'⟩ := J_eq d l
     rw [hc, hc']
-    set_option synthInstance.maxHeartbeats 400000 in
-    exact ((Commute.sum_left _ _ _ fun i _ => Commute.sum_right _ _ _ fun k _ => comm_lie i k).smul_left c).smul_right c'
+    refine (Commute.smul_right (Commute.smul_left ?_ c) c')
+    exact Commute.sum_left _ _ _ fun i _ => Commute.sum_right _ _ _ fun k _ => comm_lie i k
   · obtain ⟨c, hc⟩ := J_eq d j
     obtain ⟨a, ha⟩ : ∃ a : Fin n → (Cinf E)ˣ, d.tr v = infGL E n (diagUnits n a) := ⟨_, diag_eq _⟩
     rw [hc, ha]
     exact (Commute.sum_left _ _ _ fun i _ => comm_rt i a).smul_left c
   · obtain ⟨c, hc⟩ := J_eq d j
     exact ⟨c • ∑ i ∈ Finset.univ.filter fun i => d.idx i = j, ιC E n (toL (Matrix.single i i 1)), by
-      set_option synthInstance.maxHeartbeats 100000 in
-        rw [map_smul, map_sum, Finset.sum_congr rfl fun i _ => uC_ιC _]
+      rw [map_smul, map_sum, Finset.sum_congr rfl fun i _ => uC_ιC _]
       exact hc⟩

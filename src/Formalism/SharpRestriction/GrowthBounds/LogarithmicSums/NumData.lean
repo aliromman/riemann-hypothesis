@@ -72,9 +72,7 @@ theorem ev_pow (c α β : ℝ) (h : α < β) : ∀ᶠ x : ℝ in atTop, c * x ^ 
   have e : x ^ β = x ^ α * x ^ (β - α) := by
     rw [← Real.rpow_add hx0]; congr 1; ring
   rw [e]
-  calc c * x ^ α ≤ |c| * x ^ α := mul_le_mul_of_nonneg_right (le_abs_self c) hp.le
-    _ = x ^ α * |c| := mul_comm _ _
-    _ ≤ x ^ α * x ^ (β - α) := mul_le_mul_of_nonneg_left hx hp.le
+  grind [mul_le_mul_of_nonneg_right (le_abs_self c) hp.le, mul_le_mul_of_nonneg_left hx hp.le]
 
 theorem k_le_x_pow_six {D : D7} (L : SizeData₂ D) (hS : Formalism.MainNotions.SizesAt L) : (D.R.k : ℝ) ≤ L.sc.x ^ (6 : ℝ) := by
   have hK := hS.2.2.1.2
@@ -170,14 +168,8 @@ theorem second_bound_arith_a (g k W x b' X' b : ℝ) (hg : g ≤ x / 2) (hx : 0 
   have h2 : k ^ 2 * W * x * b' ≤ b := by
     by_contra hc
     push_neg at hc
-    have hlt := mul_lt_mul_of_pos_left hc hx
-    have e1 : k ^ 2 * W * x * x * b' = x * (k ^ 2 * W * x * b') := by ring
-    have e2 : X' * b' = b' * X' := mul_comm _ _
-    linarith
-  calc g * (k ^ 2 * W) * b' = g * (k ^ 2 * W * b') := by ring
-    _ ≤ (x / 2) * (k ^ 2 * W * b') := mul_le_mul_of_nonneg_right hg hAb
-    _ = (k ^ 2 * W * x * b') / 2 := by ring
-    _ ≤ b / 2 := by linarith
+    grind [mul_lt_mul_of_pos_left hc hx]
+  grind [mul_le_mul_of_nonneg_right hg hAb]
 
 theorem second_bound_arith_b (g k W x b : ℝ) (hg : g ≤ x / 2) (hx : 0 < x) (hk : 1 ≤ k) (hW : x ^ 2 ≤ W) (hW1 : 1 ≤ W)
     (hb : 0 ≤ b) : g * (k ^ 2 * W) * (x * b * ((k * W) ^ 4)⁻¹) ≤ b / 2 := by
@@ -191,9 +183,8 @@ theorem second_bound_arith_b (g k W x b : ℝ) (hg : g ≤ x / 2) (hx : 0 < x) (
   have hkW1 : 1 ≤ k ^ 2 * W ^ 2 := one_le_mul_of_one_le_of_one_le hk2 hW2
   have a1 : x ^ 2 * (k ^ 2 * W) ≤ W * (k ^ 2 * W) := mul_le_mul_of_nonneg_right hW (by positivity)
   have a2 : k ^ 2 * W ^ 2 ≤ (k * W) ^ 4 := by
-    calc k ^ 2 * W ^ 2 = (k ^ 2 * W ^ 2) * 1 := (mul_one _).symm
-      _ ≤ (k ^ 2 * W ^ 2) * (k ^ 2 * W ^ 2) := mul_le_mul_of_nonneg_left hkW1 (by positivity)
-      _ = (k * W) ^ 4 := by ring
+    have := mul_le_mul_of_nonneg_left hkW1 (by positivity : (0 : ℝ) ≤ k ^ 2 * W ^ 2)
+    grind
   have key : x * (k ^ 2 * W * (x * b * ((k * W) ^ 4)⁻¹)) ≤ b := by
     rw [show x * (k ^ 2 * W * (x * b * ((k * W) ^ 4)⁻¹)) = x ^ 2 * k ^ 2 * W * b / (k * W) ^ 4 by
       rw [div_eq_mul_inv]; ring]

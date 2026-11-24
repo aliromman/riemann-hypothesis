@@ -99,7 +99,6 @@ theorem UpperTheory.V.Ws.auRep :
   rw [hxφ, ← Polynomial.map_map]
   erw [hφ.1 g]
   rw [scale_point (algebraMap X.B X.A) X.inj (y : X.A →+* PadicAlgCl l) _ (X.P.r _) (X.cp_map _), e]
-  set_option maxRecDepth 4096 in
-    congr 1
-    simp [W.mat.eq_1, Af.tw_val, W.pushCh.eq_1, PD.map.eq_1]
-    rfl
+  refine congrArg (fun M : Matrix (Fin 4) (Fin 4) (PadicAlgCl l) => M.charpoly.coeff) ?_
+  simp [W.mat.eq_1, Af.tw_val, W.pushCh.eq_1, PD.map.eq_1]
+  rfl

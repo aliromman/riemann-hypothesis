@@ -23,6 +23,11 @@ Don't open a pull request until the change is finished and you have checked that
 If you open one before then, open it as a draft (`gh pr create --draft`) and mark it ready for
 review once it is done. A draft stays out of the maintainers' review queue.
 
+When a maintainer hands a pull request back to you, it gets the `awaiting-author` label and
+leaves the review queue. Once you have made the changes they asked for, or answered their
+question, comment `ready` on the pull request, with nothing else in the comment. That takes the
+label off and puts the pull request back in the queue.
+
 To check that it compiles, bring your branch up to date with `main`, fetch the cache and run
 `lake build`. Lake rebuilds the files you changed and every file that imports them, so this also
 catches a lemma you removed that is still used somewhere else. It must finish without errors.
@@ -92,13 +97,32 @@ available in the versions pinned in `lean-toolchain` and `lake-manifest.json`. I
 use `lia` for linear arithmetic over `ℕ` and `ℤ` rather than `omega`, and try `grind` before
 writing a long proof by hand. Don't open a pull request that only swaps one tactic for another.
 
-### Switching off instances
+### Working around a slow instance search
 
-Don't speed up a file by switching instances off with `attribute [-instance]` or promoting
-others with `attribute [local instance high]`. That hides a slow instance search instead of
-fixing it, and it ties the file to instances declared elsewhere, so it is hard to undo later.
-Find the instance that sends the search the wrong way, for example with
-`set_option trace.Meta.synthInstance true in` on the slow declaration, and fix it there.
+Don't speed up a file by steering Lean around a slow instance search, however it is done.
+Switching instances off with `attribute [-instance]`, adding a `local instance` or a shortcut such
+as `instance : CommRing (LocAlg v) := inferInstance`, and proving private copies of `map_add` so
+that the search never runs all make one file faster and leave the search as slow as before
+everywhere else. Put `set_option trace.Meta.synthInstance true in` and
+`set_option trace.profiler true in` in front of the slow declaration, follow the time to the
+instance that sends the search the wrong way, and fix it where it is declared.
+
+### Turning on old behaviour with `set_option backward`
+
+Don't add options such as `set_option backward.isDefEq.respectTransparency false`. They bring
+back how an older Lean behaved, and Lean removes them later, so a proof that needs one breaks on
+a future bump. Many files still have them from earlier bumps; don't copy those. Fix the proof
+instead: often it is enough to rewrite with a lemma rather than rely on Lean to unfold a
+definition.
+
+### Replacing `exact` or `rfl` with your own tactic
+
+Don't write a tactic with `elab` or `run_tac` that closes the goal in place of `exact` or `rfl`,
+whether it assigns the goal without checking the term's type or checks it with `Kernel.isDefEq`.
+Both hide a slow unification instead of fixing it, and the first leaves a wrong term to show up only
+as a kernel error at the end of the declaration. Some files already have one, such as
+`exact_by_kernel`; don't copy those. If `exact` is slow because the term and the goal only agree
+after unfolding, work out what Lean has to unfold and rewrite with a lemma for it.
 
 ### Small speed-ups to the CI scripts
 

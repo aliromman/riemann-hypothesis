@@ -233,11 +233,7 @@ theorem arith (k m t N S η : ℝ) (hm : 1 ≤ m) (hk : 1 ≤ k) (hkm : k + m �
   have h4 : N ≤ N * N := le_mul_of_one_le_left (by linarith) (by linarith)
   have h5 : η ≤ m * η := le_mul_of_one_le_left hη hm
   have h6 : m * η ≤ t * (m * η) := le_mul_of_one_le_left (by linarith) ht
-  have h7 : 1 ≤ N * N := by linarith
-  have hsq : N ^ 2 = N * N := sq N
-  have hmt : m * (t + 1) * (2 * η) = 2 * (m * t * η) + 2 * (m * η) := by ring
-  have hmt2 : t * (m * η) = m * t * η := by ring
-  linarith
+  grind
 
 theorem degree_fine : ∀ {D : D7} (L : SizeData₂ D), SizesAt L → ParameterChoice' D L → KapDef D → 2 ≤ L.sc.x → ∀ (u : D.what₂.Word), ∀ j ∈ SizeData₂.lifts D, |degPi D u j - (fockDeg D j : ℝ) - (topSum L + sizeOffTops D j)| ≤ 20 * degErr L := by
   intro D L h P hK hx u j hj
@@ -771,9 +767,7 @@ theorem ETpi_le (h : SizesAt L) (P : ParameterChoice' D L) (hx : 2 ≤ L.sc.x) (
     have := Finset.card_le_univ (Formalism.MainNotions.product_first_zeroth_parts.tops D)
     rw [D.what₂.card_Tau] at this
     exact_mod_cast this
-  have h3 : ((D.R.t : ℝ) + 1) * ((D.R.m : ℝ) + 1) ≤ L.sc.b := by
-    have heq : ((D.R.t : ℝ) + 1) * ((D.R.m : ℝ) + 1) = (D.R.m : ℝ) * ((D.R.t : ℝ) + 1) + ((D.R.t : ℝ) + 1) := by ring
-    linarith
+  have h3 : ((D.R.t : ℝ) + 1) * ((D.R.m : ℝ) + 1) ≤ L.sc.b := by grind
   have h4 : ((Formalism.MainNotions.product_first_zeroth_parts.tops D).card : ℝ) * (((D.R.t : ℝ) + 1) * ((D.R.m : ℝ) + 1)) ≤ D.R.f * L.sc.b :=
     mul_le_mul h2 h3 (by positivity) hf0
   have h5 : (D.R.f : ℝ) * D.R.N D.R.m ≤ D.R.f * L.sc.b :=

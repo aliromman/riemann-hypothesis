@@ -129,8 +129,6 @@ variable (F E) in
 def ratMx (p q : ℕ) : AddSubgroup (Mx F E p q) :=
   AddSubgroup.closure (Set.range fun X : Matrix (Fin p) (Fin q) E => incM F X)
 
-theorem ratM_eq {σ : E →ₐ[F] E} (d : SD σ) : d.ratM = ratMx F E d.m d.n := rfl
-
 theorem incM_add {α β : Type} (X Z : Matrix α β E) : incM F (X + Z) = incM F X + incM F Z := by
   simp [incM, Matrix.map_add (f := _)]
 

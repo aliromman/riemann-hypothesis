@@ -2,7 +2,6 @@ module
 
 public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.RealAdelicFockSpace.FinOneMulEqZeroIff
 public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.FockSpaces.LiftExOf
-import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.FockSpaces.LocAddOf
 import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.FockSpaces.ProdGenMem
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
@@ -121,52 +120,6 @@ theorem weight_factor_rotation_ne_zero (p q : ℕ) (e : ℤ) (n : ℕ) (s : ℤ�
     exact pow_ne_zero _ (rot_unit s t _ (Or.inl rfl))
 
 variable {d : SD σ}
-
-theorem om_place (hT : TAll) (hLO : LocOpEx) (hLI : LocInst) (R : RD d) (w : InfinitePlace F) :
-    ∃ (p q : ℕ) (e : ℤ), ∀ y : GR d.n, InK (mR y) → ∀ g ∈ SB (Yf d), ∀ Ω ∈ d.sch, d.T Ω = vac R g →
-      d.om (R.ι w y) Ω = F0 p q e y • Ω := by
-  obtain ⟨L, hL⟩ := hLO F E σ d R w
-  obtain ⟨sL, ρ, p, q, e, -, hLD, -, hLk⟩ := hLI F E σ d R w L hL
-  refine ⟨p, q, e, fun y hy g hg Ω hΩ hTΩ => ?_⟩
-  let Ψ : Mx F E d.m d.n → ℂ := fun X =>
-    (∏ w' ∈ Finset.univ.erase w, fP (1 : PX d.m d.n) (R.loc w' X)) * g (fun k => (d.crd X k).2)
-  have hΨ : Ψ ∈ R.away w := Submodule.subset_span ⟨fun _ => 1, g, hg, rfl⟩
-  have hvt : d.T Ω = R.tens w (fP (1 : PX d.m d.n)) Ψ := by
-    rw [hTΩ]
-    funext X
-    simp only [vac, gau, RD.tens, Ψ]
-    rw [← Finset.mul_prod_erase Finset.univ (fun w' => fP (1 : PX d.m d.n) (R.loc w' X)) (Finset.mem_univ w), mul_assoc]
-    rfl
-  have h1 := (hL y (fP (1 : PX d.m d.n)) (KFock.isSw_fP 1)).2 Ψ (KFock.away_inv R w Ψ hΨ) Ω hΩ hvt
-  rw [hLk y 1 hy, hLD.kvac y hy] at h1
-  have hfP : fP (F0 p q e y • (1 : PX d.m d.n)) = F0 p q e y • fP (1 : PX d.m d.n) := by
-    funext u
-    simp only [fP, evX, MvPolynomial.smul_eq_C_mul, map_mul, MvPolynomial.eval_C, Pi.smul_apply, smul_eq_mul]
-    ring
-  have htens : R.tens w (F0 p q e y • fP (1 : PX d.m d.n)) Ψ = F0 p q e y • R.tens w (fP (1 : PX d.m d.n)) Ψ := by
-    funext X
-    simp only [RD.tens, Pi.smul_apply, smul_eq_mul]
-    ring
-  rw [hfP, htens, ← hvt, ← KFock.T_smul] at h1
-  have hS := d.ok.dbl.weil.2.1.toIsSplitting
-  exact KFock.T_inj hT.1 d (hS.pres _ Ω hΩ) (d.sch.smul_mem _ hΩ) h1
-
-theorem om_rot_vac' (hT : TAll) (hLO : LocOpEx) (hLI : LocInst) (R : RD d) (t : ℝ) :
-    ∃ χ : ℂ, χ ≠ 0 ∧ ∀ g ∈ SB (Yf d), ∀ Ω ∈ d.sch, d.T Ω = vac R g → d.om (rot R t) Ω = χ • Ω := by
-  have key : ∀ l : List (InfinitePlace F), ∃ χ : ℂ, χ ≠ 0 ∧ ∀ g ∈ SB (Yf d), ∀ Ω ∈ d.sch, d.T Ω = vac R g →
-      d.om ((l.map fun w => R.ι w (yrot d.n (R.sg w) t)).prod) Ω = χ • Ω := by
-    intro l
-    induction l with
-    | nil => exact ⟨1, one_ne_zero, fun g _ Ω _ _ => by simp⟩
-    | cons w l ih =>
-      obtain ⟨χ, hχ, h⟩ := ih
-      obtain ⟨p, q, e, hw⟩ := om_place hT hLO hLI R w
-      refine ⟨F0 p q e (yrot d.n (R.sg w) t) * χ, mul_ne_zero (weight_factor_rotation_ne_zero p q e d.n (R.sg w) t) hχ,
-        fun g hg Ω hΩ hTΩ => ?_⟩
-      have hK : InK (mR (yrot d.n (R.sg w) t)) := by rw [mR_yrot]; exact _root_.PositivityTheory.SiegelWeilFormula.KFP.inK_yrotM _ _ _
-      rw [List.map_cons, List.prod_cons, map_mul, Module.End.mul_apply, h g hg Ω hΩ hTΩ, map_smul,
-        hw _ hK g hg Ω hΩ hTΩ, smul_smul, mul_comm]
-  exact key _
 
 end PositivityTheory.SiegelWeilFormula.KFP
 

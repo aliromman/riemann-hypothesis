@@ -703,8 +703,14 @@ theorem liftModelSt_of (G : GlobalFamilyData (xplus X E hM) ka wL wF) (la : Heig
         dsimp only [hsW] at h3 ⊢; omega
       rw [h4]; simp
     res_ker := res_ker_of (hsW hw) hfd hred C hg0
-    ball := fun a ha => ball_of hw C FP FQ (fun ζ => ⟨hFP0 ζ, hFQ0 ζ, hvalF ζ⟩) hv hlift a ha
-    approx := fun r hr => approx_of' hw g0 hsApp (a0 D j T) hr }⟩
+    ball := fun a ha => by
+      have h := ball_of hw C FP FQ (fun ζ => ⟨hFP0 ζ, hFQ0 ζ, hvalF ζ⟩) hv hlift a ha
+      dsimp only [IW] at h
+      exact h
+    approx := fun r hr => by
+      have h := approx_of' hw g0 hsApp (a0 D j T) hr
+      dsimp only [IW] at h
+      exact h }⟩
 
 end Formalism.L2.Pj
 end -- clump:auto

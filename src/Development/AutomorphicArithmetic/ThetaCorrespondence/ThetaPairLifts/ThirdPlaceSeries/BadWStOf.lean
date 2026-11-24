@@ -975,7 +975,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HodgeLineMultipleLeFamilyThreshold =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InvFiveLogLeSumInvPrimes =====
--- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.InvFiveLogLeSumInvPrimes", "h": "module\n\npublic import Mathlib.Analysis.SpecialFunctions.Log.Basic\npublic import Mathlib.Data.Nat.Choose.Central\npublic import Mathlib.NumberTheory.PrimeCounting\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\npublic import Mathlib.Analysis.Complex.ExponentialBounds\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\npublic import Mathlib.Data.Nat.Choose.Factorization\npublic import Mathlib.NumberTheory.Primorial\n\n"}
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.InvFiveLogLeSumInvPrimes", "h": "module\n\npublic import Mathlib.Analysis.Complex.ExponentialBounds\npublic import Mathlib.Analysis.SpecialFunctions.Log.Basic\npublic import Mathlib.Data.Nat.Choose.Central\npublic import Mathlib.Data.Nat.Choose.Factorization\npublic import Mathlib.NumberTheory.PrimeCounting\npublic import Mathlib.NumberTheory.Primorial\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -983,120 +983,67 @@ open Classical
 
 namespace GlobalTheory.PrimeRecip
 
-noncomputable def noSmallDiv (p : ℕ) : ℕ → Bool
-  | 0 => true
-  | d + 1 => (p < (d + 1) * (d + 1) || d + 1 < 2 || p % (d + 1) != 0) && noSmallDiv p d
+/-- Candidate primes that work for every `N` in `[a, b)`. A composite at most
+`a` has a factor between 2 and `√a`, so it cannot pass the gcd test. -/
+private def witnesses (a b : ℕ) : Finset ℕ :=
+  (Finset.Icc ((b + 1) / 2) (a - 3)).filter fun p => p.Coprime a.sqrt.factorial
 
-noncomputable def sortedB : List ℕ → Bool
-  | a :: b :: t => a < b && sortedB (b :: t)
-  | _ => true
-
-noncomputable def okIv (a b j c : ℕ) (L : List ℕ) : Bool :=
-  (L.all fun p => 2 ≤ p && p < 17161 && noSmallDiv p 130 && b ≤ 2 * p && p + 3 ≤ a && p ≤ c) &&
-    sortedB L && 2 ^ j ≤ a && 0 < c && c * 10 ^ 10 ≤ 5 * L.length * j * 6931471803
-
-noncomputable def okAll : ℕ → List (ℕ × ℕ × ℕ × ℕ × List ℕ) → ℕ → Bool
-  | lo, [], hi => hi ≤ lo
-  | lo, (a, b, j, c, L) :: rest, hi => a ≤ lo && okIv a b j c L && okAll b rest hi
-
-theorem noSmallDiv_spec (p : ℕ) : ∀ D, noSmallDiv p D = true →
-    ∀ d, 2 ≤ d → d ≤ D → d * d ≤ p → p % d ≠ 0 := by
-  intro D
-  induction D with
-  | zero => intro _ d h2 hD; omega
-  | succ D ih =>
-    intro h d h2 hD hdd
-    simp only [noSmallDiv, Bool.and_eq_true] at h
-    rcases Nat.lt_or_ge d (D + 1) with hlt | hge
-    · exact ih h.2 d h2 (by omega) hdd
-    · have hd : d = D + 1 := by omega
-      subst hd
-      have h1 := h.1
-      simp only [Bool.or_eq_true, decide_eq_true_eq, bne_iff_ne, ne_eq] at h1
-      rcases h1 with (h1 | h1) | h1
-      · omega
-      · omega
-      · exact h1
-
-theorem prime_of_check {p : ℕ} (h2 : 2 ≤ p) (hp : p < 17161) (h : noSmallDiv p 130 = true) :
-    p.Prime := by
-  rw [Nat.prime_def_le_sqrt]
-  refine ⟨h2, fun m hm hms hdvd => ?_⟩
-  have hmm : m * m ≤ p := Nat.le_sqrt.1 hms
-  have hm130 : m ≤ 130 := by nlinarith
-  exact noSmallDiv_spec p 130 h m hm hm130 hmm (Nat.dvd_iff_mod_eq_zero.1 hdvd)
-
-theorem sortedB_pairwise : ∀ L : List ℕ, sortedB L = true → L.Pairwise (· < ·)
-  | [], _ => List.Pairwise.nil
-  | [_], _ => List.pairwise_singleton _ _
-  | a :: b :: t, h => by
-    simp only [sortedB, Bool.and_eq_true, decide_eq_true_eq] at h
-    have ih := sortedB_pairwise (b :: t) h.2
-    refine List.pairwise_cons.2 ⟨fun x hx => ?_, ih⟩
-    rcases List.mem_cons.1 hx with rfl | hx
-    · exact h.1
-    · exact h.1.trans (List.rel_of_pairwise_cons ih hx)
-
-theorem okIv_sound {a b j c : ℕ} {L : List ℕ} (h : okIv a b j c L = true) (N : ℕ) (haN : a ≤ N)
-    (hNb : N < b) :
+private theorem interval_bound {a b N : ℕ} (ha : 100 ≤ a) (haN : a ≤ N) (hNb : N < b)
+    (hc : 3 * a ≤ 10 * (witnesses a b).card * a.log2) :
     1 / (5 * Real.log N) ≤
       ∑ p ∈ (Finset.range (N + 1)).filter (fun p => p.Prime ∧ N < 2 * p ∧ p + 3 ≤ N),
         (1 : ℝ) / p := by
-  simp only [okIv, Bool.and_eq_true, List.all_eq_true, decide_eq_true_eq] at h
-  obtain ⟨⟨⟨⟨hall, hsort⟩, hj⟩, hc0⟩, hk⟩ := h
-  have hnd : L.Nodup := (sortedB_pairwise L hsort).imp (fun h => ne_of_lt h)
-  have hcard : L.toFinset.card = L.length := List.toFinset_card_of_nodup hnd
-  have hsub : L.toFinset ⊆
+  have hsub : witnesses a b ⊆
       (Finset.range (N + 1)).filter (fun p => p.Prime ∧ N < 2 * p ∧ p + 3 ≤ N) := by
     intro p hp
-    rw [List.mem_toFinset] at hp
-    obtain ⟨⟨⟨⟨⟨h2, h3⟩, h4⟩, h5⟩, h6⟩, -⟩ := hall p hp
-    rw [Finset.mem_filter, Finset.mem_range]
-    exact ⟨by omega, prime_of_check h2 h3 h4, by omega, by omega⟩
-  have hcR : (0 : ℝ) < c := by exact_mod_cast hc0
-  have hkR : (c : ℝ) * 10 ^ 10 ≤ 5 * L.length * j * 6931471803 := by exact_mod_cast hk
-  have hj1 : 1 ≤ j := by
-    rcases Nat.eq_zero_or_pos j with h0 | h0
-    · subst h0; simp at hk; omega
-    · exact h0
-  have h2j : 2 ≤ N := by
-    have : 2 ^ 1 ≤ 2 ^ j := Nat.pow_le_pow_right (by norm_num) hj1
+    obtain ⟨hrange, hcop⟩ := Finset.mem_filter.mp hp
+    obtain ⟨hlo, hhi⟩ := Finset.mem_Icc.mp hrange
+    refine Finset.mem_filter.mpr ⟨Finset.mem_range.mpr (by omega), ?_, by omega, by omega⟩
+    refine Nat.prime_def_le_sqrt.mpr ⟨by omega, fun d hd hdp hdvd => ?_⟩
+    have hda := hdp.trans (Nat.sqrt_le_sqrt (show p ≤ a by omega))
+    have := Nat.eq_one_of_dvd_coprimes hcop hdvd (Nat.dvd_factorial (by omega) hda)
     omega
-  have hN2 : (2 : ℝ) ≤ N := by exact_mod_cast h2j
-  have hlogN : (j : ℝ) * Real.log 2 ≤ Real.log N := by
-    have h2jR : ((2 : ℝ)) ^ j ≤ N := by exact_mod_cast (hj.trans haN)
-    have := Real.log_le_log (by positivity) h2jR
-    rwa [Real.log_pow] at this
-  have hl2 := Real.log_two_gt_d9
-  have hL : 0 < Real.log N := Real.log_pos (by linarith)
-  calc 1 / (5 * Real.log N) ≤ (L.length : ℝ) * (1 / c) := by
-        rw [mul_one_div, div_le_div_iff₀ (by positivity) hcR]
-        have e1 : (L.length : ℝ) * (j * 0.6931471803) ≤ L.length * (j * Real.log 2) :=
-          mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left hl2.le (by positivity))
-            (by positivity)
-        have e2 : (L.length : ℝ) * (j * Real.log 2) ≤ L.length * Real.log N :=
-          mul_le_mul_of_nonneg_left hlogN (by positivity)
-        nlinarith
-    _ = ∑ _p ∈ L.toFinset, (1 : ℝ) / c := by rw [Finset.sum_const, hcard, nsmul_eq_mul]
-    _ ≤ ∑ p ∈ L.toFinset, (1 : ℝ) / p := by
-        refine Finset.sum_le_sum fun p hp => ?_
-        rw [List.mem_toFinset] at hp
-        obtain ⟨⟨⟨⟨⟨h2, -⟩, -⟩, -⟩, -⟩, h7⟩ := hall p hp
-        have : (0 : ℝ) < p := by exact_mod_cast (by omega : 0 < p)
-        exact one_div_le_one_div_of_le this (by exact_mod_cast h7)
+  -- Each witness contributes at least 1/a, and log N ≥ log₂(a) · log 2.
+  have hpow : 2 ^ a.log2 ≤ N := (Nat.log2_self_le (by omega)).trans haN
+  have hlog := Real.log_le_log (by positivity) (show (2 : ℝ) ^ a.log2 ≤ N by exact_mod_cast hpow)
+  rw [Real.log_pow] at hlog
+  have htwo : (2 : ℝ) / 3 ≤ Real.log 2 := by linarith [Real.log_two_gt_d9]
+  have hlog' := (mul_le_mul_of_nonneg_left htwo (Nat.cast_nonneg a.log2)).trans hlog
+  have hc' : 3 * (a : ℝ) ≤ 10 * (witnesses a b).card * a.log2 := by exact_mod_cast hc
+  have ha' : (0 : ℝ) < a := by exact_mod_cast (show 0 < a by omega)
+  have hN' : 0 < Real.log N := Real.log_pos (by exact_mod_cast (show 1 < N by omega))
+  calc
+    1 / (5 * Real.log N) ≤ (witnesses a b).card * (1 / (a : ℝ)) := by
+      rw [mul_one_div, div_le_div_iff₀ (by positivity) ha']
+      linarith [mul_le_mul_of_nonneg_left hlog' (Nat.cast_nonneg (witnesses a b).card)]
+    _ = ∑ _p ∈ witnesses a b, (1 : ℝ) / a := by rw [Finset.sum_const, nsmul_eq_mul]
+    _ ≤ ∑ p ∈ witnesses a b, (1 : ℝ) / p := by
+      refine Finset.sum_le_sum fun p hp => one_div_le_one_div_of_le ?_ ?_
+      · exact_mod_cast (Finset.mem_filter.mp (hsub hp)).2.1.pos
+      · have hpa : p ≤ a - 3 := (Finset.mem_Icc.mp (Finset.mem_filter.mp hp).1).2
+        exact_mod_cast hpa.trans (Nat.sub_le a 3)
     _ ≤ _ := Finset.sum_le_sum_of_subset_of_nonneg hsub (fun _ _ _ => by positivity)
 
-theorem okAll_sound : ∀ (T : List (ℕ × ℕ × ℕ × ℕ × List ℕ)) (lo hi : ℕ), okAll lo T hi = true →
-    ∀ N, lo ≤ N → N < hi → 1 / (5 * Real.log N) ≤
-      ∑ p ∈ (Finset.range (N + 1)).filter (fun p => p.Prime ∧ N < 2 * p ∧ p + 3 ≤ N),
-        (1 : ℝ) / p
-  | [], lo, hi, h, N, h1, h2 => by simp [okAll] at h; omega
-  | (a, b, j, c, L) :: rest, lo, hi, h, N, h1, h2 => by
-    have ⟨⟨hal, hiv⟩, hrest⟩ : (a ≤ lo ∧ okIv a b j c L = true) ∧ okAll b rest hi = true := by
-      simpa only [okAll, Bool.and_eq_true, decide_eq_true_eq] using h
-    by_cases hNb : N < b
-    · exact okIv_sound hiv N (by omega) hNb
-    · exact okAll_sound rest b hi hrest N (by omega) h2
+/-- Check successive intervals starting at 100, increasing each endpoint by 40%. -/
+private def checkIntervals : ℕ → ℕ → Bool
+  | 0, a => 16900 ≤ a
+  | n + 1, a =>
+    let b := 7 * a / 5
+    decide (3 * a ≤ 10 * (witnesses a b).card * a.log2) && checkIntervals n b
+
+private theorem checkIntervals_sound {N : ℕ} (hN : N < 16900) :
+    ∀ n a, checkIntervals n a = true → 100 ≤ a → a ≤ N →
+      1 / (5 * Real.log N) ≤
+        ∑ p ∈ (Finset.range (N + 1)).filter (fun p => p.Prime ∧ N < 2 * p ∧ p + 3 ≤ N),
+          (1 : ℝ) / p
+  | 0, a, h, _, _ => by simp [checkIntervals] at h; omega
+  | n + 1, a, h, ha, haN => by
+    simp only [checkIntervals, Bool.and_eq_true, decide_eq_true_eq] at h
+    by_cases hNb : N < 7 * a / 5
+    · exact interval_bound ha haN hNb h.1
+    · exact checkIntervals_sound hN n _ h.2 (by omega) (by omega)
+
+private theorem intervals_checked : checkIntervals 16 100 = true := by decide +kernel
 
 theorem three_mul_primeCounting_le (s : ℕ) (hs : 6 ≤ s) : 3 * Nat.primeCounting s ≤ s + 9 := by
   have h := Nat.primeCounting_add_le (a := 6) (k := 6) (by norm_num) le_rfl (s - 6)
@@ -1264,29 +1211,13 @@ theorem inv_five_log_le_sum_inv_primes_of_large (N : ℕ) (hN : 16900 ≤ N) :
         have h' : (p : ℝ) ≤ N := by exact_mod_cast (by omega : p ≤ N)
         exact one_div_le_one_div_of_le this h'
 
-def table : List (ℕ × ℕ × ℕ × ℕ × List ℕ) := [
-  (100, 146, 6, 97, [73, 79, 83, 89, 97]),
-  (146, 218, 7, 139, [109, 113, 127, 131, 137, 139]),
-  (218, 334, 7, 211, [167, 173, 179, 181, 191, 193, 197, 199, 211]),
-  (334, 526, 8, 331, [263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331]),
-  (526, 862, 9, 523, [431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523]),
-  (862, 1346, 9, 859, [673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859]),
-  (1346, 2126, 10, 1327, [1063, 1069, 1087, 1091, 1093, 1097, 1103, 1109, 1117, 1123, 1129, 1151, 1153, 1163, 1171, 1181, 1187, 1193, 1201, 1213, 1217, 1223, 1229, 1231, 1237, 1249, 1259, 1277, 1279, 1283, 1289, 1291, 1297, 1301, 1303, 1307, 1319, 1321, 1327]),
-  (2126, 3386, 11, 2113, [1693, 1697, 1699, 1709, 1721, 1723, 1733, 1741, 1747, 1753, 1759, 1777, 1783, 1787, 1789, 1801, 1811, 1823, 1831, 1847, 1861, 1867, 1871, 1873, 1877, 1879, 1889, 1901, 1907, 1913, 1931, 1933, 1949, 1951, 1973, 1979, 1987, 1993, 1997, 1999, 2003, 2011, 2017, 2027, 2029, 2039, 2053, 2063, 2069, 2081, 2083, 2087, 2089, 2099, 2111, 2113]),
-  (3386, 5354, 11, 3373, [2677, 2683, 2687, 2689, 2693, 2699, 2707, 2711, 2713, 2719, 2729, 2731, 2741, 2749, 2753, 2767, 2777, 2789, 2791, 2797, 2801, 2803, 2819, 2833, 2837, 2843, 2851, 2857, 2861, 2879, 2887, 2897, 2903, 2909, 2917, 2927, 2939, 2953, 2957, 2963, 2969, 2971, 2999, 3001, 3011, 3019, 3023, 3037, 3041, 3049, 3061, 3067, 3079, 3083, 3089, 3109, 3119, 3121, 3137, 3163, 3167, 3169, 3181, 3187, 3191, 3203, 3209, 3217, 3221, 3229, 3251, 3253, 3257, 3259, 3271, 3299, 3301, 3307, 3313, 3319, 3323, 3329, 3331, 3343, 3347, 3359, 3361, 3371, 3373]),
-  (5354, 8462, 12, 5351, [4231, 4241, 4243, 4253, 4259, 4261, 4271, 4273, 4283, 4289, 4297, 4327, 4337, 4339, 4349, 4357, 4363, 4373, 4391, 4397, 4409, 4421, 4423, 4441, 4447, 4451, 4457, 4463, 4481, 4483, 4493, 4507, 4513, 4517, 4519, 4523, 4547, 4549, 4561, 4567, 4583, 4591, 4597, 4603, 4621, 4637, 4639, 4643, 4649, 4651, 4657, 4663, 4673, 4679, 4691, 4703, 4721, 4723, 4729, 4733, 4751, 4759, 4783, 4787, 4789, 4793, 4799, 4801, 4813, 4817, 4831, 4861, 4871, 4877, 4889, 4903, 4909, 4919, 4931, 4933, 4937, 4943, 4951, 4957, 4967, 4969, 4973, 4987, 4993, 4999, 5003, 5009, 5011, 5021, 5023, 5039, 5051, 5059, 5077, 5081, 5087, 5099, 5101, 5107, 5113, 5119, 5147, 5153, 5167, 5171, 5179, 5189, 5197, 5209, 5227, 5231, 5233, 5237, 5261, 5273, 5279, 5281, 5297, 5303, 5309, 5323, 5333, 5347, 5351]),
-  (8462, 13522, 13, 8447, [6761, 6763, 6779, 6781, 6791, 6793, 6803, 6823, 6827, 6829, 6833, 6841, 6857, 6863, 6869, 6871, 6883, 6899, 6907, 6911, 6917, 6947, 6949, 6959, 6961, 6967, 6971, 6977, 6983, 6991, 6997, 7001, 7013, 7019, 7027, 7039, 7043, 7057, 7069, 7079, 7103, 7109, 7121, 7127, 7129, 7151, 7159, 7177, 7187, 7193, 7207, 7211, 7213, 7219, 7229, 7237, 7243, 7247, 7253, 7283, 7297, 7307, 7309, 7321, 7331, 7333, 7349, 7351, 7369, 7393, 7411, 7417, 7433, 7451, 7457, 7459, 7477, 7481, 7487, 7489, 7499, 7507, 7517, 7523, 7529, 7537, 7541, 7547, 7549, 7559, 7561, 7573, 7577, 7583, 7589, 7591, 7603, 7607, 7621, 7639, 7643, 7649, 7669, 7673, 7681, 7687, 7691, 7699, 7703, 7717, 7723, 7727, 7741, 7753, 7757, 7759, 7789, 7793, 7817, 7823, 7829, 7841, 7853, 7867, 7873, 7877, 7879, 7883, 7901, 7907, 7919, 7927, 7933, 7937, 7949, 7951, 7963, 7993, 8009, 8011, 8017, 8039, 8053, 8059, 8069, 8081, 8087, 8089, 8093, 8101, 8111, 8117, 8123, 8147, 8161, 8167, 8171, 8179, 8191, 8209, 8219, 8221, 8231, 8233, 8237, 8243, 8263, 8269, 8273, 8287, 8291, 8293, 8297, 8311, 8317, 8329, 8353, 8363, 8369, 8377, 8387, 8389, 8419, 8423, 8429, 8431, 8443, 8447]),
-  (13522, 16900, 13, 13513, [10667, 10687, 10691, 10709, 10711, 10723, 10729, 10733, 10739, 10753, 10771, 10781, 10789, 10799, 10831, 10837, 10847, 10853, 10859, 10861, 10867, 10883, 10889, 10891, 10903, 10909, 10937, 10939, 10949, 10957, 10973, 10979, 10987, 10993, 11003, 11027, 11047, 11057, 11059, 11069, 11071, 11083, 11087, 11093, 11113, 11117, 11119, 11131, 11149, 11159, 11161, 11171, 11173, 11177, 11197, 11213, 11239, 11243, 11251, 11257, 11261, 11273, 11279, 11287, 11299, 11311, 11317, 11321, 11329, 11351, 11353, 11369, 11383, 11393, 11399, 11411, 11423, 11437, 11443, 11447, 11467, 11471, 11483, 11489, 11491, 11497, 11503, 11519, 11527, 11549, 11551, 11579, 11587, 11593, 11597, 11617, 11621, 11633, 11657, 11677, 11681, 11689, 11699, 11701, 11717, 11719, 11731, 11743, 11777, 11779, 11783, 11789, 11801, 11807, 11813, 11821, 11827, 11831, 11833, 11839, 11863, 11867, 11887, 11897, 11903, 11909, 11923, 11927, 11933, 11939, 11941, 11953, 11959, 11969, 11971, 11981, 11987, 12007, 12011, 12037, 12041, 12043, 12049, 12071, 12073, 12097, 12101, 12107, 12109, 12113, 12119, 12143, 12149, 12157, 12161, 12163, 12197, 12203, 12211, 12227, 12239, 12241, 12251, 12253, 12263, 12269, 12277, 12281, 12289, 12301, 12323, 12329, 12343, 12347, 12373, 12377, 12379, 12391, 12401, 12409, 12413, 12421, 12433, 12437, 12451, 12457, 12473, 12479, 12487, 12491, 12497, 12503, 12511, 12517, 12527, 12539, 12541, 12547, 12553, 12569, 12577, 12583, 12589, 12601, 12611, 12613, 12619, 12637, 12641, 12647, 12653, 12659, 12671, 12689, 12697, 12703, 12713, 12721, 12739, 12743, 12757, 12763, 12781, 12791, 12799, 12809, 12821, 12823, 12829, 12841, 12853, 12889, 12893, 12899, 12907, 12911, 12917, 12919, 12923, 12941, 12953, 12959, 12967, 12973, 12979, 12983, 13001, 13003, 13007, 13009, 13033, 13037, 13043, 13049, 13063, 13093, 13099, 13103, 13109, 13121, 13127, 13147, 13151, 13159, 13163, 13171, 13177, 13183, 13187, 13217, 13219, 13229, 13241, 13249, 13259, 13267, 13291, 13297, 13309, 13313, 13327, 13331, 13337, 13339, 13367, 13381, 13397, 13399, 13411, 13417, 13421, 13441, 13451, 13457, 13463, 13469, 13477, 13487, 13499, 13513])]
-
-theorem table_ok : okAll 100 table 16900 = true := by decide +kernel
-
 theorem inv_five_log_le_sum_inv_primes :
     ∀ N : ℕ, 100 ≤ N → 1 / (5 * Real.log N) ≤
       ∑ p ∈ (Finset.range (N + 1)).filter (fun p => p.Prime ∧ N < 2 * p ∧ p + 3 ≤ N),
         (1 : ℝ) / p := by
   intro N hN
   by_cases h : N < 16900
-  · exact okAll_sound table 100 16900 table_ok N hN h
+  · exact checkIntervals_sound h 16 100 intervals_checked le_rfl hN
   · exact inv_five_log_le_sum_inv_primes_of_large N (by omega)
 
 end GlobalTheory.PrimeRecip

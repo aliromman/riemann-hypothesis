@@ -364,9 +364,7 @@ theorem landau_growth_contra {c d e C : ℝ} (hc : 0 < c) (hd : 0 < d) (hde : d 
   rw [ge_iff_le, div_le_iff₀ hcL] at hU
   have h1 : L / 2 * U + 1 ≤ X := Real.add_one_le_exp _
   have hX : |C| < c * X := by
-    have hm := mul_le_mul_of_nonneg_left h1 hc.le
-    have heq : c * (L / 2 * U + 1) = U * (c * L) / 2 + c := by ring
-    linarith
+    grind [mul_le_mul_of_nonneg_left h1 hc.le]
   have hY : X * X ≤ Real.exp (k * L) := by
     rw [hXdef, ← Real.exp_add]
     apply Real.exp_le_exp.mpr
@@ -784,12 +782,7 @@ theorem landau_tails {δ : ℝ} (hδ : 0 < δ) :
       _ < l * (1 + δ) := mul_lt_mul_of_pos_left (by linarith) hl_pos
   obtain ⟨σ, hσ⟩ : ∃ σ : ℝ, σ = M * (2 + l) := ⟨_, rfl⟩
   have hσ1 : l * (2 + l) < σ := by rw [hσ]; gcongr
-  have hs : l < σ - 2 := by
-    have h4l : l + 2 ≤ l * (2 + l) := by
-      have : 4 ≤ 2 + l := by linarith
-      have : l * 4 ≤ l * (2 + l) := mul_le_mul_of_nonneg_left this hl_pos.le
-      linarith
-    linarith
+  have hs : l < σ - 2 := by nlinarith
   have ha : 0 < σ - 2 - l := by linarith
   have hb : 0 < σ - 2 + l := by linarith
   have hσ0 : 0 < σ := by linarith
@@ -843,10 +836,7 @@ theorem landau_tails {δ : ℝ} (hδ : 0 < δ) :
         have h1 : (1 + δ / 2) * σ * U * (l - 2) ≤ k * (l - 2) :=
           mul_le_mul_of_nonneg_right hk1 (by linarith)
         have h2 : (1 + δ / 2) * σ * U * (l - 2) = (l + 1) * σ * U := by rw [← e2]; ring
-        have h3 : l * (σ - 2 + l) ≤ (l + 1) * σ := by
-          have hll : l * (l - 2) ≤ l * (2 + l) := mul_le_mul_of_nonneg_left (by linarith) hl_pos.le
-          have hd_eq : (l + 1) * σ - l * (σ - 2 + l) = σ - l * (l - 2) := by ring
-          linarith
+        have h3 : l * (σ - 2 + l) ≤ (l + 1) * σ := by grind
         have h4 := mul_le_mul_of_nonneg_right h3 (by linarith : 0 ≤ U)
         calc l * U * (σ - 2 + l) = l * (σ - 2 + l) * U := by ring
           _ ≤ (l + 1) * σ * U := h4

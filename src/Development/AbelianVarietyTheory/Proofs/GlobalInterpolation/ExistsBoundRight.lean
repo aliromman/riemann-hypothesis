@@ -140,11 +140,8 @@ theorem local_formula : ∃ C : ℝ, 0 < C ∧ ∀ (N : ℕ) [NeZero N] (χ : Di
   have hN1 : (1 : ℝ) ≤ N := by exact_mod_cast Nat.one_le_iff_ne_zero.mpr (NeZero.ne N)
   have hlog : 1 ≤ Real.log (N * (|s.im| + 2)) := by
     rw [Real.le_log_iff_exp_le (by positivity)]
-    have h1 := Real.exp_one_lt_d9
-    have h2 : (4 : ℝ) ≤ N * (|s.im| + 2) := by
-      calc (4 : ℝ) = 1 * (2 + 2) := by norm_num
-        _ ≤ N * (|s.im| + 2) := mul_le_mul hN1 (by linarith) (by norm_num) (by linarith)
-    linarith
+    have := Real.exp_one_lt_d9
+    nlinarith
   by_cases hχ : χ = 1
   · have hN : N = 1 := by
       have h := hprim

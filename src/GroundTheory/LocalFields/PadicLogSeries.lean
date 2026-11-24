@@ -298,9 +298,7 @@ theorem summable_logSeries {x : K} (hx : x ∈ valBall K 1) :
     exact_mod_cast h1
   simp only [Nat.cast_add, Nat.cast_mul, Nat.cast_pow, Nat.cast_ofNat, Nat.cast_one,
     ] at h3 h4
-  have h4' : 4 * ((e : ℤ) * (padicValNat p (k + 1) : ℤ)) ≤ (k : ℤ) + 1 + 32 * (e : ℤ) ^ 2 := by
-    rw [← mul_assoc]; exact h4
-  linarith [Nat.cast_nonneg (α := ℤ) k]
+  lia
 
 theorem one_le_of_lt_sub_one_mul {a : ℤ} (ha : (absRamificationIndex (K := K) : ℤ) < (p - 1 : ℤ) * a) :
     1 ≤ a := by

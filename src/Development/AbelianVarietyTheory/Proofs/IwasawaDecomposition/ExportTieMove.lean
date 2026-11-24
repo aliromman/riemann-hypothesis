@@ -531,7 +531,35 @@ namespace GlobalTheory.TwInputs.Move
 
 
 
-set_option maxRecDepth 100000 in
+private theorem heckeTie_of_same_aux {D D' : D7} (hR : D.R = D'.R) (hH : HEq D.host D'.host) (hsp : HEq D.sp D'.sp)
+    {Tw Tw' : Type} (hTw : Tw = Tw') {S0 : Tw → Finset (PlE D.host)} {S0' : Tw' → Finset (PlE D'.host)} (hS0 : HEq S0 S0')
+    {Fm : Tw → ℕ → Bool → Type} {Fm' : Tw' → ℕ → Bool → Type} (hFm : HEq Fm Fm')
+    {hkF : ∀ i j b (_ : ℕ), PlE D.host → Fm i j b → Fm i j b} {hkF' : ∀ i j b (_ : ℕ), PlE D'.host → Fm' i j b → Fm' i j b} (hhkF : HEq hkF hkF')
+    {i : Tw} {i' : Tw'} (hi : HEq i i') {j : Fin D.R.m} {j' : Fin D'.R.m} (hj : (j : ℕ) = j') {b : Bool}
+    {mu : (AE D)ˣ →* Circle} {mu' : (AE D')ˣ →* Circle} (hmu : HEq mu mu')
+    {levK : Subgroup (GA D (Wc D j))} {levK' : Subgroup (GA D' (Wc D' j'))} (hlev : HEq levK levK')
+    (r : Fm i ((j : ℕ) + 1) b → (GA D (Wc D j) → ℂ))
+    (r' : Fm' i' ((j' : ℕ) + 1) b → (GA D' (Wc D' j') → ℂ))
+    (hR' : ∀ (f : Fm i ((j : ℕ) + 1) b) (f' : Fm' i' ((j' : ℕ) + 1) b), HEq f f' → HEq (r' f') (r f))
+    (ht : ∀ k P, (1 ≤ k ∧ k ≤ D.R.r ∧ Formalism.BasicNotions.IsSplitPl D.host P ∧ P ∉ S0 i) →
+      ∀ f, (∃ g, ∀ α R₀ z, (Links.IsHeckeAt (Wc D j) P k α ∧ Bridge.IsDC levK α R₀ ∧ IsDetAt (idemAt P) (Wc D j) α z) →
+        r g = fun x => (((mu z : Circle) : ℂ)⁻¹ * (((normV P : ℕ) : ℂ) ^ (k * ((Vc D j).rank / 2)))⁻¹) * ∑ γ ∈ R₀, r f (x * γ)) →
+      ∀ α R₀ z, (Links.IsHeckeAt (Wc D j) P k α ∧ Bridge.IsDC levK α R₀ ∧ IsDetAt (idemAt P) (Wc D j) α z) →
+        r (hkF i ((j : ℕ) + 1) b k P f) = fun x => (((mu z : Circle) : ℂ)⁻¹ * (((normV P : ℕ) : ℂ) ^ (k * ((Vc D j).rank / 2)))⁻¹) * ∑ γ ∈ R₀, r f (x * γ)) :
+    ∀ k P, (1 ≤ k ∧ k ≤ D'.R.r ∧ Formalism.BasicNotions.IsSplitPl D'.host P ∧ P ∉ S0' i') →
+      ∀ f, (∃ g, ∀ α R₀ z, (Links.IsHeckeAt (Wc D' j') P k α ∧ Bridge.IsDC levK' α R₀ ∧ IsDetAt (idemAt P) (Wc D' j') α z) →
+        r' g = fun x => (((mu' z : Circle) : ℂ)⁻¹ * (((normV P : ℕ) : ℂ) ^ (k * ((Vc D' j').rank / 2)))⁻¹) * ∑ γ ∈ R₀, r' f (x * γ)) →
+      ∀ α R₀ z, (Links.IsHeckeAt (Wc D' j') P k α ∧ Bridge.IsDC levK' α R₀ ∧ IsDetAt (idemAt P) (Wc D' j') α z) →
+        r' (hkF' i' ((j' : ℕ) + 1) b k P f) = fun x => (((mu' z : Circle) : ℂ)⁻¹ * (((normV P : ℕ) : ℂ) ^ (k * ((Vc D' j').rank / 2)))⁻¹) * ∑ γ ∈ R₀, r' f (x * γ) := by
+  cases D'
+  dsimp only at hR hH hsp
+  subst hR hTw
+  cases hH; cases hsp; cases hS0; cases hFm; cases hhkF; cases hi
+  obtain rfl : j = j' := Fin.ext hj
+  cases hmu; cases hlev
+  obtain rfl : r' = r := funext fun x => eq_of_heq (hR' x x HEq.rfl)
+  exact ht
+
 theorem heckeTie_of_same {D D' : D7} {N : NData D.R D.host D.what₂} {N' : NData D'.R D'.host D'.what₂}
     {X : NTw D.R D.host D.what₂ D.LL0 N} {X' : NTw D'.R D'.host D'.what₂ D'.LL0 N'}
     {Y : NExp D.R D.host D.what₂ D.LL0 N X} {Y' : NExp D'.R D'.host D'.what₂ D'.LL0 N' X'}
@@ -542,36 +570,29 @@ theorem heckeTie_of_same {D D' : D7} {N : NData D.R D.host D.what₂} {N' : NDat
     (r : Rd ρ Y i j b) (r' : Rd ρ' Y' i' j' b)
     (hR : ∀ (f : Y.Fm i ((j : ℕ) + 1) b) (f' : Y'.Fm i' ((j' : ℕ) + 1) b), HEq f f' → HEq (r' f') (r f))
     (ht : HeckeTie r) : HeckeTie r' := by
-  obtain ⟨a1, a2, a3, nOm, ninstOm, nalgOm, nplOm, nPlG⟩ := h1
-  obtain ⟨xcc, xTw, xl, fixedFieldTransport_baseIntegerRing_heq, fixedFieldTransport_baseIntegerCommRing_heq, fixedFieldTransport_baseIntegerAlgebra_heq, fixedFieldTransport_baseIntegerTopology_heq, xO, xcrO, xalgO, xOk, xcrOk, xalgOk, xzk, xpD, xchi1, xSig, xfinSig, xjS, xside, xrhoS, fixedFieldTransport_initialPlaceSet_heq, xhEig, xLam, xsideL, xRCG, xgrpRCG, xfinRCG, xart, xth⟩ := h2
-  obtain ⟨yFm, yacgFm, ymodFmK, ymodFmO, yactG, yU, ypsiU, yeAlg, yDat, yth, ylev, ythPsi, yMtV, yacgMt, ymodMtK, ymodMtO, yMtLat, ythP, yhkF⟩ := h3
-  cases D; cases D'
-  dsimp only at a1 a2 a3 hsp
-  subst a1; subst a2; subst a3; subst hsp
-  cases N; cases N'
-  dsimp only at nOm ninstOm nalgOm nplOm nPlG
-  subst nOm; subst ninstOm; subst nalgOm; subst nplOm; subst nPlG
-  cases X; cases X'
-  dsimp only at xcc xTw xl fixedFieldTransport_baseIntegerRing_heq fixedFieldTransport_baseIntegerCommRing_heq fixedFieldTransport_baseIntegerAlgebra_heq fixedFieldTransport_baseIntegerTopology_heq xO xcrO xalgO xOk xcrOk xalgOk xzk xpD xchi1 xSig xfinSig xjS xside xrhoS fixedFieldTransport_initialPlaceSet_heq xhEig xLam xsideL xRCG xgrpRCG xfinRCG xart xth
-  subst xcc; subst xTw; subst xl; subst fixedFieldTransport_baseIntegerRing_heq; subst fixedFieldTransport_baseIntegerCommRing_heq; subst fixedFieldTransport_baseIntegerAlgebra_heq; subst fixedFieldTransport_baseIntegerTopology_heq; subst xO; subst xcrO; subst xalgO; subst xOk; subst xcrOk; subst xalgOk; subst xzk; subst xpD; subst xchi1; subst xSig; subst xfinSig; subst xjS; subst xside; subst xrhoS; subst fixedFieldTransport_initialPlaceSet_heq; subst xhEig; subst xLam; subst xsideL; subst xRCG; subst xgrpRCG; subst xfinRCG; subst xart; subst xth
-  cases Y; cases Y'
-  dsimp only at yFm yacgFm ymodFmK ymodFmO yactG yU ypsiU yeAlg yDat yth ylev ythPsi yMtV yacgMt ymodMtK ymodMtO yMtLat ythP yhkF
-  subst yFm; subst yacgFm; subst ymodFmK; subst ymodFmO; subst yactG; subst yU; subst ypsiU; subst yeAlg; subst yDat; subst yth; subst ylev; subst ythPsi; subst yMtV; subst yacgMt; subst ymodMtK; subst ymodMtO; subst yMtLat; subst ythP; subst yhkF
-  subst hi
-  obtain rfl : j = j' := Fin.ext hj
-  have e : ∀ x, r' x = r x := fun x => eq_of_heq (hR x x HEq.rfl)
-  have hmu' : (ρ'.B i j b).mu = (ρ.B i j b).mu := eq_of_heq hmu.symm
-  have hlev' : ρ'.levK i j b = ρ.levK i j b := eq_of_heq hlev.symm
-  have hk : ∀ k P R z F, ρ'.hecke i j b k P R z F = ρ.hecke i j b k P R z F := fun k P R z F => by
-    funext x
-    rw [Setup.hecke_apply, Setup.hecke_apply, hmu']
-  have hd : ∀ k P α R z, ρ'.IsHeckeDatum i j b k P α R z ↔ ρ.IsHeckeDatum i j b k P α R z := fun k P α R z =>
-    ⟨fun d => ⟨d.1, hlev' ▸ d.2, d.3⟩, fun d => ⟨d.1, hlev'.symm ▸ d.2, d.3⟩⟩
-  have ha : ∀ k P f g, HeckeAt r' k P f g ↔ HeckeAt r k P f g := fun k P f g =>
-    ⟨fun hg α R z d => by have := hg α R z ((hd k P α R z).2 d); rwa [e, e, hk] at this,
-      fun hg α R z d => by rw [e, e, hk]; exact hg α R z ((hd k P α R z).1 d)⟩
-  intro k P hkP f hf
-  exact (ha k P f _).2 (ht k P hkP f (by obtain ⟨g, hg⟩ := hf; exact ⟨g, (ha k P f g).1 hg⟩))
+  have hkF_heq : HEq (fun (i : X.Tw) (j : ℕ) (b : Bool) (k : ℕ) (P : PlE D.host) => (Y.hkF i j b k P : Y.Fm i j b → Y.Fm i j b))
+      (fun (i : X'.Tw) (j : ℕ) (b : Bool) (k : ℕ) (P : PlE D'.host) => (Y'.hkF i j b k P : Y'.Fm i j b → Y'.Fm i j b)) := by
+    have key : ∀ {R R' : Ranks} (hR : R = R') {H : Host R} {H' : Host R'} (hH : HEq H H')
+        {Tw Tw' : Type} (hTw : Tw = Tw') {O : Tw → Type} {O' : Tw' → Type}
+        {crO : ∀ i, CommRing (O i)} {crO' : ∀ i, CommRing (O' i)}
+        {Fm : Tw → ℕ → Bool → Type} {Fm' : Tw' → ℕ → Bool → Type}
+        {acgFm : ∀ i j b, AddCommGroup (Fm i j b)} {acgFm' : ∀ i j b, AddCommGroup (Fm' i j b)}
+        {modFmK : ∀ i j b, Module (FractionRing (O i)) (Fm i j b)} {modFmK' : ∀ i j b, Module (FractionRing (O' i)) (Fm' i j b)}
+        {hkF : ∀ i j b (_ : ℕ), PlE H → Module.End (FractionRing (O i)) (Fm i j b)}
+        {hkF' : ∀ i j b (_ : ℕ), PlE H' → Module.End (FractionRing (O' i)) (Fm' i j b)},
+        HEq O O' → HEq crO crO' → HEq Fm Fm' → HEq acgFm acgFm' → HEq modFmK modFmK' → HEq hkF hkF' →
+        HEq (fun i j b k P => (hkF i j b k P : Fm i j b → Fm i j b))
+          (fun i j b k P => (hkF' i j b k P : Fm' i j b → Fm' i j b)) := by
+      intro R R' hR H H' hH Tw Tw' hTw O O' crO crO' Fm Fm' acgFm acgFm' modFmK modFmK' hkF hkF' hO hcrO hFm hacg hmod hhk
+      subst hR hTw; cases hH; cases hO; cases hcrO; cases hFm; cases hacg; cases hmod; cases hhk; rfl
+    exact key h1.R h1.host (eq_of_heq h2.Tw) h2.O h2.crO h3.Fm h3.acgFm h3.modFmK h3.hkF
+  have ht' := heckeTie_of_same_aux h1.R h1.host hsp (eq_of_heq h2.Tw) h2.S0 h3.Fm hkF_heq hi hj hmu hlev r r' hR
+    (fun k P hkP f ⟨g, hg⟩ α R₀ z ⟨d1, d2, d3⟩ => by
+      have h1 := ht k P hkP f ⟨g, fun α R₀ z d => (hg α R₀ z ⟨d.1, d.2, d.3⟩).trans (funext fun x => (ρ.hecke_apply ..).symm)⟩ α R₀ z ⟨d1, d2, d3⟩
+      exact h1.trans (funext fun x => ρ.hecke_apply ..))
+  intro k P hkP f ⟨g, hg⟩ α R₀ z d
+  exact (ht' k P hkP f ⟨g, fun α R₀ z ⟨d1, d2, d3⟩ => (hg α R₀ z ⟨d1, d2, d3⟩).trans (funext fun x => ρ'.hecke_apply ..)⟩ α R₀ z ⟨d.1, d.2, d.3⟩).trans
+    (funext fun x => (ρ'.hecke_apply ..).symm)
 
 theorem heckeTie_move_of_pin : ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : ↥D'.LL0 ≃+* ↥D.LL0} (h : CopyTw D D' ι e) {ρ : Setup D.ntw} {ρ' : Setup D'.ntw},
     (∀ (i : D.ntw.Tw) (i' : D'.ntw.Tw), HEq i i' → ∀ (j : Fin D.R.m) (b : Bool),
@@ -695,14 +716,13 @@ structure SameGeo (D D' : D7) : Prop where
 theorem CopyTw.sameGeo {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : ↥D'.LL0 ≃+* ↥D.LL0} (h : CopyTw D D' ι e) :
     SameGeo D D' := ⟨h.gal.R, h.gal.host, h.sp, h.Tau, h.instTau, h.eTau, h.hc⟩
 
-scoped macro "geo_cases " h:ident D:ident D':ident : tactic =>
+scoped macro "geo_cases " h:ident _D:ident D':ident : tactic =>
   `(tactic| (
     obtain ⟨a1, a2, a3, a4, a5, a6, a7⟩ := $h
-    cases $D:ident with | mk R host sp vol volp what₂ eTau hc => ?_
     cases $D':ident with | mk R' host' sp' vol' volp' rows' eTau' hc' => ?_
     dsimp only at a1 a2 a3 a4 a5 a6 a7
     subst a1; subst a2; subst a3
-    cases what₂; cases rows'
+    cases rows'
     dsimp only at a4 a5 a6 a7
     subst a4; subst a5; subst a6; subst a7))
 
@@ -760,9 +780,8 @@ theorem TwistRel.good (h : SameGeo D D') {A : Type} [CommGroup A] {t : Twist D A
   cases r1; cases r2; cases r3
   exact ⟨g.1, g.2, g.3, g.4, g.5, g.6⟩
 
-scoped macro "base_cases " r:ident B:ident B':ident : tactic =>
+scoped macro "base_cases " r:ident _B:ident B':ident : tactic =>
   `(tactic| (
-    obtain ⟨hr, ⟨_, _, _, _, _, _, _, _, _, _⟩, ⟨_, _, _⟩, ⟨_, _, _⟩, ⟨_, _, _, _, _, _⟩, _, _⟩ := $B
     obtain ⟨hr', ⟨_, _, _, _, _, _, _, _, _, _⟩, ⟨_, _, _⟩, ⟨_, _, _⟩, ⟨_, _, _, _, _, _⟩, _, _⟩ := $B'
     obtain ⟨⟨f1, f2, f3, f4, f5, f6, f7, f8, f9, f10⟩, ⟨g1, g2, g3⟩, ⟨d1, d2, d3⟩, ⟨w1, w2, w3, w4, w5, w6⟩, m1, m2⟩ := $r
     dsimp only at f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 g1 g2 g3 d1 d2 d3 w1 w2 w3 w4 w5 w6 m1 m2
@@ -915,23 +934,24 @@ theorem exists_setupRel (h : SameGeo D D') {N : NData D.R D.host D.what₂} {N' 
     (h1 : GlobalTheory.TwistChoice.SameGalois N N') (h2 : GlobalTheory.TwistChoice.TwistDataAgreeAcrossCoefficients X X') (ρ : Setup X) :
     ∃ ρ' : Setup X', SetupRel ρ ρ' := by
   obtain ⟨gR, ghost, gsp, gTau, ginstTau, geTau, ghc⟩ := h
-  obtain ⟨_, _, _, _, _, w, _⟩ := D
-  obtain ⟨_, _, _, _, _, w', _⟩ := D'
+  cases D'
   dsimp only at gR ghost gsp gTau ginstTau geTau ghc
   subst gR; subst ghost; subst gsp
-  cases w; cases w'
+  cases ‹Rows.Data D.R›
   dsimp only at gTau ginstTau geTau ghc
   subst gTau; subst ginstTau; subst geTau; subst ghc
   obtain ⟨a1, a2, a3, nOm, ninstOm, nalgOm, nplOm, nPlG⟩ := h1
   obtain ⟨xcc, xTw, xl, xO0, xcrO0, xalgO0, xtopO0, xO, xcrO, xalgO, xOk, xcrOk, xalgOk, xzk, xpD, xchi1, xSig, xfinSig, xjS, xside, xrhoS, xS0, xhEig, xLam, xsideL, xRCG, xgrpRCG, xfinRCG, xart, xth⟩ := h2
   dsimp only at a1 a2 a3
   subst a3
-  cases N; cases N'
+  cases N'
   dsimp only at nOm ninstOm nalgOm nplOm nPlG
   subst nOm; subst ninstOm; subst nalgOm; subst nplOm; subst nPlG
-  cases X; cases X'
-  dsimp only at xcc xTw xl xO0 xcrO0 xalgO0 xtopO0 xO xcrO xalgO xOk xcrOk xalgOk xzk xpD xchi1 xSig xfinSig xjS xside xrhoS xS0 xhEig xLam xsideL xRCG xgrpRCG xfinRCG xart xth
-  subst xcc; subst xTw; subst xl; subst xO0; subst xcrO0; subst xalgO0; subst xtopO0; subst xO; subst xcrO; subst xalgO; subst xOk; subst xcrOk; subst xalgOk; subst xzk; subst xpD; subst xchi1; subst xSig; subst xfinSig; subst xjS; subst xside; subst xrhoS; subst xS0; subst xhEig; subst xLam; subst xsideL; subst xRCG; subst xgrpRCG; subst xfinRCG; subst xart; subst xth
+  cases X'
+  dsimp only at xcc xTw xl xO0 xcrO0 xalgO0 xtopO0 xO xcrO xalgO xOk xcrOk xalgOk xzk xpD
+  dsimp only at xchi1 xSig xfinSig xjS xside xrhoS xS0 xhEig xLam xsideL xRCG xgrpRCG xfinRCG xart xth
+  subst xcc xTw xl xO0 xcrO0 xalgO0 xtopO0 xO xcrO xalgO xOk xcrOk xalgOk xzk xpD
+  subst xchi1 xSig xfinSig xjS xside xrhoS xS0 xhEig xLam xsideL xRCG xgrpRCG xfinRCG xart xth
   obtain ⟨rc, ch, bad, e, ek, B, om, Cl, rep, β, eG⟩ := ρ
   rename_i fin
   refine ⟨@Setup.mk _ _ _ ⟨rc.κ, rc.art⟩ ch bad e ek
@@ -960,11 +980,10 @@ theorem RecipRel.good (h : SameGeo D D') {Ω Ω' : Type} [i1 : Field Ω] [i2 : A
     [i2' : Algebra D'.host.E Ω'] (hΩ : Ω = Ω') (h1 : HEq i1 i1') (h2 : HEq i2 i2') {a : Recip D Ω} {a' : Recip D' Ω'}
     (r : RecipRel a a') (g : a.Good) : a'.Good := by
   obtain ⟨gR, ghost, gsp, gTau, ginstTau, geTau, ghc⟩ := h
-  obtain ⟨_, _, _, _, _, w, _⟩ := D
-  obtain ⟨_, _, _, _, _, w', _⟩ := D'
+  cases D'
   dsimp only at gR ghost gsp gTau ginstTau geTau ghc
   subst gR; subst ghost; subst gsp
-  cases w; cases w'
+  cases ‹Rows.Data D.R›
   dsimp only at gTau ginstTau geTau ghc
   subst gTau; subst ginstTau; subst geTau; subst ghc
   subst hΩ; subst h1; subst h2
@@ -982,26 +1001,26 @@ theorem SetupRel.good_of (h : SameGeo D D') {N : NData D.R D.host D.what₂} {N'
   have grc := r.rc.good h (eq_of_heq h1.Om) h1.instOm h1.algOm g.rc
   have h0 := h
   obtain ⟨gR, ghost, gsp, gTau, ginstTau, geTau, ghc⟩ := h
-  obtain ⟨_, _, _, _, _, w, _⟩ := D
-  obtain ⟨_, _, _, _, _, w', _⟩ := D'
+  cases D'
   dsimp only at gR ghost gsp gTau ginstTau geTau ghc
   subst gR; subst ghost; subst gsp
-  cases w; cases w'
+  cases ‹Rows.Data D.R›
   dsimp only at gTau ginstTau geTau ghc
   subst gTau; subst ginstTau; subst geTau; subst ghc
   obtain ⟨a1, a2, a3, nOm, ninstOm, nalgOm, nplOm, nPlG⟩ := h1
   obtain ⟨xcc, xTw, xl, xO0, xcrO0, xalgO0, xtopO0, xO, xcrO, xalgO, xOk, xcrOk, xalgOk, xzk, xpD, xchi1, xSig, xfinSig, xjS, xside, xrhoS, xS0, xhEig, xLam, xsideL, xRCG, xgrpRCG, xfinRCG, xart, xth⟩ := h2
   dsimp only at a1 a2 a3
   subst a3
-  cases N; cases N'
+  cases N'
   dsimp only at nOm ninstOm nalgOm nplOm nPlG
   subst nOm; subst ninstOm; subst nalgOm; subst nplOm; subst nPlG
-  cases X; cases X'
-  dsimp only at xcc xTw xl xO0 xcrO0 xalgO0 xtopO0 xO xcrO xalgO xOk xcrOk xalgOk xzk xpD xchi1 xSig xfinSig xjS xside xrhoS xS0 xhEig xLam xsideL xRCG xgrpRCG xfinRCG xart xth
-  subst xcc; subst xTw; subst xl; subst xO0; subst xcrO0; subst xalgO0; subst xtopO0; subst xO; subst xcrO; subst xalgO; subst xOk; subst xcrOk; subst xalgOk; subst xzk; subst xpD; subst xchi1; subst xSig; subst xfinSig; subst xjS; subst xside; subst xrhoS; subst xS0; subst xhEig; subst xLam; subst xsideL; subst xRCG; subst xgrpRCG; subst xfinRCG; subst xart; subst xth
+  cases X'
+  dsimp only at xcc xTw xl xO0 xcrO0 xalgO0 xtopO0 xO xcrO xalgO xOk xcrOk xalgOk xzk xpD
+  dsimp only at xchi1 xSig xfinSig xjS xside xrhoS xS0 xhEig xLam xsideL xRCG xgrpRCG xfinRCG xart xth
+  subst xcc xTw xl xO0 xcrO0 xalgO0 xtopO0 xO xcrO xalgO xOk xcrOk xalgOk xzk xpD
+  subst xchi1 xSig xfinSig xjS xside xrhoS xS0 xhEig xLam xsideL xRCG xgrpRCG xfinRCG xart xth
   dsimp only at hδ
   subst hδ
-  obtain ⟨⟨κ, art⟩, ch, bad, e, ek, B, om, Cl, rep, β, eG⟩ := ρ
   obtain ⟨⟨κ', art'⟩, ch', bad', e', ek', B', om', Cl', rep', β', eG'⟩ := ρ'
   obtain ⟨⟨r1, r2⟩, r3, r4, r5, r6, r7, r8, r9, r10, -, -⟩ := r
   dsimp only at r1 r2 r3 r4 r5 r6 r8
@@ -1013,7 +1032,7 @@ theorem SetupRel.good_of (h : SameGeo D D') {N : NData D.R D.host D.what₂} {N'
     fun i j b => ((r7 i i .rfl j j rfl b).isBaseFrame h0 .rfl .rfl).2.2 (g.Pg i j b), fun i j b => ?_, fun i j b t ht => ?_,
     fun i j b t ht ha => ?_⟩
   · obtain ⟨x, h3, h4⟩ := he i i .rfl b x'
-    exact (congrArg (e i b) (eq_of_heq h3).symm).trans ((g.e_LL0 i b x).trans h4)
+    exact (congrArg (ρ.e i b) (eq_of_heq h3).symm).trans ((g.e_LL0 i b x).trans h4)
   · have t := (r7 i i .rfl j j rfl b).de
     rw [g.delta i j b] at t
     exact TwistRel.eq ⟨t.1.symm, t.2.symm, t.3.symm⟩
@@ -1486,7 +1505,7 @@ theorem infG_eta {D : D7} {cf : CharFrame D} (hcs : CharSide D cf) (t : D.what�
 
 
 
-set_option maxRecDepth 100000 in
+open Classical in
 theorem core (D : D7) (r : Rest D) (X : NExpTied D) (hpl : HEq D.naut.plGw (overD D r).naut.plGw)
     (hhw : ∀ i j b (t : D.what₂.Tau), 1 ≤ j → j ≤ D.R.m →
       ∃ lam : Fin D.R.nV → ℤ, Formalism.L2.NX.HWAtF (Formalism.L2.NX.cE D) (X.rhoW i j b).dual ((by exact NX.kEmb (overD D r) i b t)) lam)
@@ -1502,76 +1521,76 @@ theorem core (D : D7) (r : Rest D) (X : NExpTied D) (hpl : HEq D.naut.plGw (over
         (ρ : D.nexp.MtV i j b k Q ψ → Formalism.AUTREP.GAf D.host.E D.R.nV → V),
         GlobalTheory.HeightCounting.Reads X i j b k Q ψ h1 h2 hA ε V ρ →
           GlobalTheory.HeightCounting.Reads X' ((by exact i)) j b k ((by exact Q)) ((by exact ψ)) h1 ((by exact h2)) ((by exact hA)) ((by exact ε)) V ((by exact ρ)) := by
-  cases r
-  rename NAut _ => n
-  cases n
-  dsimp only [overD] at hpl
-  cases hpl
-  refine ⟨@Formalism.L2.NExpTied.mk (_)
-      (U_eq := (X.U_eq))
-      (psiU_gen := (X.psiU_gen))
-      (psiU_side := (X.psiU_side))
-      (psiU_xi := (X.psiU_xi))
-      (delU_cont := (X.delU_cont))
-      (delU_ine := (X.delU_ine))
-      (thU_empty := (X.thU_empty))
-      (sgnT := (X.sgnT))
-      (sgnT_one := (X.sgnT_one))
-      (Wt := (X.Wt))
-      (acgWt := (X.acgWt))
-      (modWt := (X.modWt))
-      (fdWt := (X.fdWt))
-      (rhoW := (X.rhoW))
-      (rhoW_irr := (X.rhoW_irr))
-      (rhoW_alg := (X.rhoW_alg))
-      (tauG := (X.tauG))
-      (sgnG := (X.sgnG))
-      (sgnG_one := (X.sgnG_one))
-      (tau_galois_first_character := (X.tau_galois_first_character))
-      (mtV := fun x1 x2 x3 x4 x5 x6 x7 x8 x9 => @Formalism.L2.NX.MtVReal.mk (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_) (_)
-        (W := (@NX.MtVReal.W D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (acg := (@NX.MtVReal.acg D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (mod := (@NX.MtVReal.mod D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (fd := (@NX.MtVReal.fd D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (ρ := (@NX.MtVReal.ρ D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (irr := (@NX.MtVReal.irr D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (alg := (@NX.MtVReal.alg D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (bc := (@NX.MtVReal.bc D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (J := (@NX.MtVReal.J D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (χ := (@NX.MtVReal.χ D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (J_open := (@NX.MtVReal.J_open D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (hyp := (@NX.MtVReal.hyp D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (QP := (@NX.MtVReal.QP D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (QP_sub := (@NX.MtVReal.QP_sub D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (QP_cover := (@NX.MtVReal.QP_cover D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (QP_nconj := (@NX.MtVReal.QP_nconj D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (DP := (@NX.MtVReal.DP D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (DP_sub := (@NX.MtVReal.DP_sub D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (DP_cover := (@NX.MtVReal.DP_cover D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (DP_nconj := (@NX.MtVReal.DP_nconj D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (sp := (@NX.MtVReal.sp D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (sp_w := (@NX.MtVReal.sp_w D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (redG := (@NX.MtVReal.redG D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (J_mem := (@NX.MtVReal.J_mem D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (chi_eq := (@NX.MtVReal.chi_eq D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9)))
-        (real := (@NX.MtVReal.real D x1 x2 x3 x4 x5 x6 (@NExpTied.sgnT D X) (@NExpTied.Wt D X x1 x2 x3) (@NExpTied.acgWt D X x1 x2 x3) (@NExpTied.modWt D X x1 x2 x3) (@NExpTied.rhoW D X x1 x2 x3) (@NExpTied.tauG D X x1 x2 x3) (@NExpTied.mtV D X x1 x2 x3 x4 x5 x6 x7 x8 x9))))
-      (rhoW_hw := (hhw))
-      (rhoW_wt := (hwt)), (HEq.refl X.tauG), fun i j b k Q ψ h1 h2 hA => ⟨?_, ?_, fun ε V _ _ ρ hR => ?_⟩⟩
-  · exact (HEq.refl (X.mtV i j b k Q ψ h1 h2 hA).QP)
-  · exact (HEq.refl (X.mtV i j b k Q ψ h1 h2 hA).DP)
-  · exact (hR)
+  have hpG : ∀ kv, NX.pG (overD D r) kv = NX.pG D kv := fun kv =>
+    congrFun (congrFun (eq_of_heq hpl.symm) kv.1) kv.2
+  have hxi : ∀ kv, NX.xiRed (overD D r) kv = NX.xiRed D kv := fun kv => by
+    unfold NX.xiRed
+    have key : ∀ (P₁ P₂ : PlE D.host) (_ : P₁ = P₂)
+        (d₁ : Decidable (∃ x : ZMod (D.host.g kv.1), ∃ a c : 𝓞 D.host.E, c ∉ P₁.asIdeal ∧ (a : D.host.E) = D.host.xi0 * c ∧
+          ((x.val : 𝓞 D.host.E) * c - a) ∈ P₁.asIdeal))
+        (d₂ : Decidable (∃ x : ZMod (D.host.g kv.1), ∃ a c : 𝓞 D.host.E, c ∉ P₂.asIdeal ∧ (a : D.host.E) = D.host.xi0 * c ∧
+          ((x.val : 𝓞 D.host.E) * c - a) ∈ P₂.asIdeal)),
+        (@dite _ _ d₁ (fun h => h.choose) (fun _ => 0)) = (@dite _ _ d₂ (fun h => h.choose) (fun _ => 0)) := by
+      rintro P _ rfl d₁ d₂
+      exact dite_congr rfl (fun _ => rfl) (fun _ => rfl)
+    exact key _ _ (hpG kv) _ _
+  refine ⟨@Formalism.L2.NExpTied.mk (overD D r)
+      (U_eq := X.U_eq)
+      (psiU_gen := X.psiU_gen)
+      (psiU_side := X.psiU_side)
+      (psiU_xi := fun i b => (X.psiU_xi i b).imp fun θ ⟨h1, h2⟩ =>
+        ⟨h1, fun u => (h2 u).trans (Finset.prod_congr rfl fun kv _ => by rw [hxi kv]; rfl)⟩)
+      (delU_cont := X.delU_cont)
+      (delU_ine := X.delU_ine)
+      (thU_empty := X.thU_empty)
+      (sgnT := X.sgnT)
+      (sgnT_one := X.sgnT_one)
+      (Wt := X.Wt)
+      (acgWt := X.acgWt)
+      (modWt := X.modWt)
+      (fdWt := X.fdWt)
+      (rhoW := X.rhoW)
+      (rhoW_irr := X.rhoW_irr)
+      (rhoW_alg := X.rhoW_alg)
+      (tauG := X.tauG)
+      (sgnG := X.sgnG)
+      (sgnG_one := X.sgnG_one)
+      (tau_galois_first_character := fun i j b kv x u h1 h2 h3 h4 => by
+        rw [hpG kv] at h3 h4 ⊢
+        exact X.tau_galois_first_character i j b kv x u h1 h2 h3 h4)
+      (mtV := fun (i : D.ntw.Tw) j b k (Q : Finset (PlE D.host)) (ψ : G D.host.E D.nd.Om →* (D.ntw.Ok i k)ˣ) h1 h2 hA =>
+        let m := X.mtV i j b k Q ψ h1 h2 hA
+        @Formalism.L2.NX.MtVReal.mk (overD D r) i j b k Q ψ X.sgnT (X.Wt i j b) (X.acgWt i j b) (X.modWt i j b) (X.rhoW i j b) (X.tauG i j b)
+          m.W m.acg m.mod m.fd m.ρ m.irr m.alg m.bc m.J m.χ m.J_open m.hyp
+          m.QP m.QP_sub m.QP_cover m.QP_nconj m.DP m.DP_sub m.DP_cover m.DP_nconj m.sp
+          (fun P hP => m.sp_w P (by
+            rcases hP with h | h | ⟨kv, h⟩
+            · exact Or.inl h
+            · exact Or.inr (Or.inl h)
+            · exact Or.inr (Or.inr ⟨kv, h.trans (hpG kv)⟩)))
+          (fun kv => (hpG kv).symm ▸ m.redG kv)
+          (fun κ => (m.J_mem κ).trans
+            (and_congr Iff.rfl (and_congr (forall_congr' fun kv => by rw [hpG kv]; exact Iff.rfl) Iff.rfl)))
+          (fun κ hκ => (m.chi_eq κ hκ).trans
+            (congrArg (fun a => a * _ * _)
+              (Finset.prod_congr rfl fun kv _ => by
+                have key : ∀ {P₁ P₂ : PlE D.host} (hP : P₁ = P₂)
+                    (red : (m.sp P₂).v.adicCompletionIntegers (maximalRealSubfield D.host.E) →+* ZMod (D.host.g kv.1)),
+                    NX.gVal D i k b kv (m.sp P₂) red (X.tauG i j b kv) (NX.locM (m.sp P₂) κ) =
+                      NX.gVal (overD D r) i k b kv (m.sp P₁) (hP.symm ▸ red) (X.tauG i j b kv) (NX.locM (m.sp P₁) κ) := by
+                  rintro P _ rfl _; rfl
+                exact key (hpG kv) (m.redG kv))))
+          m.real)
+      (rhoW_hw := hhw)
+      (rhoW_wt := hwt), HEq.refl X.tauG, fun i j b k Q ψ h1 h2 hA => ⟨HEq.rfl, HEq.rfl, fun _ _ _ _ _ hR => hR⟩⟩
 
 
 
-set_option maxRecDepth 100000 in
 theorem expTied_copy : ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : ↥D'.LL0 ≃+* ↥D.LL0}, CopyAll D D' ι e → ∀ {cf : CharFrame D} {cf' : CharFrame D'}, SameFrame cf cf' → CharSide D cf → CharSide D' cf' → ∀ X : NExpTied D, ∃ X' : NExpTied D', (TauTrue X → TauTrue X') ∧ ∀ (i : D.ntw.Tw) (i' : D'.ntw.Tw), HEq i i' → ∀ (j : ℕ) (b : Bool) (k : ℕ) (Q : Finset (PlE D.host)) (Q' : Finset (PlE D'.host)), HEq Q Q' → ∀ (ψ : G D.host.E D.nd.Om →* (D.ntw.Ok i k)ˣ) (ψ' : G D'.host.E D'.nd.Om →* (D'.ntw.Ok i' k)ˣ), HEq ψ ψ' → ∀ (h1 : 1 ≤ j) (h2 : j ≤ D.R.m) (h2' : j ≤ D'.R.m) (hA' : NX.AdmTw D' i' k Q' ψ'), ∃ hA : NX.AdmTw D i k Q ψ, HEq (X.mtV i j b k Q ψ h1 h2 hA).QP (X'.mtV i' j b k Q' ψ' h1 h2' hA').QP ∧ HEq (X.mtV i j b k Q ψ h1 h2 hA).DP (X'.mtV i' j b k Q' ψ' h1 h2' hA').DP ∧ ∀ (ε : FractionRing (D.ntw.Ok i k) →+* ℂ) (ε' : FractionRing (D'.ntw.Ok i' k) →+* ℂ), HEq ε ε' → ∀ (V V' : Type) [aV : AddCommGroup V] [mV : Module ℂ V] [aV' : AddCommGroup V'] [mV' : Module ℂ V'], V = V' → HEq aV aV' → HEq mV mV' → ∀ (r : D.nexp.MtV i j b k Q ψ → Formalism.AUTREP.GAf D.host.E D.R.nV → V) (r' : D'.nexp.MtV i' j b k Q' ψ' → Formalism.AUTREP.GAf D'.host.E D'.R.nV → V'), HEq r r' → GlobalTheory.HeightCounting.Reads X i j b k Q ψ h1 h2 hA ε V r → GlobalTheory.HeightCounting.Reads X' i' j b k Q' ψ' h1 h2' hA' ε' V' r' := by
   intro D D' ι e h cf cf' _ hcs hcs' X
   obtain ⟨r, rfl⟩ := h.cp.exists_rest
-  have hk : ∀ i b t, Formalism.L2.NX.kEmb D i b t = (by exact ((Formalism.L2.NX.kEmb (overD D r) ((by exact (i :))) b ((by exact (t :)))) :)) := fun i b t =>
-    RingHom.ext fun x => (by exact (eq_of_heq (α := FractionRing (D.ntw.O i)) (a := Formalism.L2.NX.kEmb D i b t x)
-        (a' := (by exact ((Formalism.L2.NX.kEmb (overD D r) ((i)) b ((t)) ((x))) : _)))
-        ((by exact ((kEmb_heq h.cp (i := i) (i' := (i)) (((HEq.refl i))) b (t := t) (t' := (t)) (((HEq.refl t)))
-          (x := x) (x' := (x)) (((HEq.refl x)))) : _))) :))
+  have hk : ∀ i b t, Formalism.L2.NX.kEmb D i b t = Formalism.L2.NX.kEmb (overD D r) i b t := fun i b t =>
+    RingHom.ext fun x => eq_of_heq (kEmb_heq h.cp (i := i) (i' := i) HEq.rfl b (t := t) (t' := t) HEq.rfl (x := x) (x' := x) HEq.rfl)
   obtain ⟨X', hτ, hM⟩ := core D r X h.pl
     (fun i j b t h1 h2 => by
       have := X.rhoW_hw i j b t h1 h2
@@ -1579,22 +1598,21 @@ theorem expTied_copy : ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {
       exact this)
     (fun i j b t h1 h2 sh lam hsh hw => by
       refine X.rhoW_wt i j b t h1 h2 sh lam ?_ ?_
-      · have h3 : ({(((1 / 2 : ℚ)) : ℂ)} : Multiset ℂ) = {sh} := (infG_eta hcs' ((by exact (t :)))).symm.trans (c := {sh}) ((by exact (hsh :)))
+      · have h3 : ({(((1 / 2 : ℚ)) : ℂ)} : Multiset ℂ) = {sh} := (infG_eta hcs' t).symm.trans hsh
         exact (infG_eta hcs t).trans h3
       · rw [hk]
         exact hw)
   refine ⟨X', fun ⟨τ, hτ'⟩ => ?_, fun i i' hi j b k Q Q' hQ ψ ψ' hψ h1 h2 h2' hA' => ?_⟩
-  · have hτ2 : X'.tauG = (by exact (X.tauG :)) := (by exact ((eq_of_heq (a := X'.tauG) (a' := (by exact (X.tauG :))) ((by exact (hτ.symm :)))) :))
-    refine ⟨fun j kv => (Units.map e.symm.toRingHom.toMonoidHom).comp ((by exact ((τ j ((by exact (kv :)))) :))), fun i j b kv x h1 h2 => ?_⟩
+  · have hτ2 : X'.tauG = X.tauG := eq_of_heq hτ.symm
+    refine ⟨fun j kv => (Units.map e.symm.toRingHom.toMonoidHom).comp (τ j kv), fun i j b kv x h1 h2 => ?_⟩
     rw [hτ2]
-    exact (by exact ((hτ' ((by exact (i :))) j b ((by exact (kv :))) ((by exact (x :))) h1 ((by exact (h2 :)))).trans (eq_of_heq (α := FractionRing (D.ntw.O ((by exact (i :)))))
-      (a' := (by exact ((GlobalTheory.SeriesTie.sideEmb (overD D r).ntw i b (e.symm ((τ j ((kv)) ((x)) : (↥D.LL0)ˣ) : ↥D.LL0))) : _)))
-      ((by exact ((side_heq h.cp (i := (i)) (i' := i) (((HEq.refl i))) b ((τ j ((kv)) ((x)) : (↥D.LL0)ˣ) : ↥D.LL0)) : _)))) :))
+    exact (hτ' i j b kv x h1 h2).trans
+      (eq_of_heq (side_heq h.cp (i := i) (i' := i) HEq.rfl b ((τ j kv x : (↥D.LL0)ˣ) : ↥D.LL0)))
   · cases hi; cases hQ; cases hψ
-    refine ⟨(by exact (hA' :)), (hM i j b k Q ψ h1 h2 ((by exact (hA' :)))).1, (hM i j b k Q ψ h1 h2 ((by exact (hA' :)))).2.1, ?_⟩
+    refine ⟨hA', (hM i j b k Q ψ h1 h2 hA').1, (hM i j b k Q ψ h1 h2 hA').2.1, ?_⟩
     intro ε ε' hε V V' aV mV aV' mV' hV haV hmV ρ ρ' hρ hR
     subst hV; cases haV; cases hmV; cases hε; cases hρ
-    exact (by exact (((hM i j b k Q ψ h1 h2 ((by exact (hA' :)))).2.2 ε V ρ hR) :))
+    exact (hM i j b k Q ψ h1 h2 hA').2.2 ε V ρ hR
 
 end GlobalTheory.HeightCounting.ExpCopy
 
