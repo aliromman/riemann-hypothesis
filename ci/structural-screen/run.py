@@ -3,7 +3,7 @@ import argparse,collections,gzip,json,os,platform,resource,subprocess,time
 from concurrent.futures import FIRST_COMPLETED,ThreadPoolExecutor,wait
 from pathlib import Path
 from types import SimpleNamespace
-from check import BASE,TREE,GRAPH,MANIFEST,HERE,SCREEN,CURRENT,TRANSIENT,Scope,canonical,import_clump,load_request,restore,sha
+from check import BASE,TREE,GRAPH,MANIFEST,HERE,SCREEN,CURRENT,TRANSIENT,Scope,canonical,import_clump,load_request,request_folder,restore,sha
 from receipts import checkpoint
 
 def main():
@@ -22,6 +22,9 @@ def main():
     scope={'group':o.group,'roots':len(variants),'restored':narchives,'parent':req['base'],'donor':BASE,'tree':TREE,
            'graph':GRAPH,'manifest':MANIFEST,'source_manifest_sha256':req['source_manifest_sha256'],'group_sha256':spec['sha256'],
            'recipe':req['recipe'],'official_clump_blob':req['upstream_clump_blob']}
+    if 'production_source_manifest_sha256' in req:
+        scope['production_source_manifest_sha256']=req['production_source_manifest_sha256']
+        scope['input_mode']='exact-source-bytes'
     (o.work/'scope.json').write_bytes(canonical(scope))
     helpers={p.name:sha(p.read_bytes()) for p in (HERE/'check.py',HERE/'run.py',SCREEN/'CheckInterface.lean',SCREEN/'lake_imports.py',
                   SCREEN/'screen.py',SCREEN/'verify_retained.py',SCREEN/'receipts.py',CURRENT/'parent.py')}
@@ -31,7 +34,8 @@ def main():
                     packages=o.parent/'.lake/packages',bin=o.bin,judge=o.judge,timeout=spec['timeout'])
     s,h=resource.getrlimit(resource.RLIMIT_NOFILE)
     if s<2400:resource.setrlimit(resource.RLIMIT_NOFILE,(2400 if h==resource.RLIM_INFINITY else min(h,2400),h))
-    checker=Scope(local,variants,upstream)
+    sources=request_folder(o.group)/'blobs' if req.get('input_mode')=='exact-source-bytes' else None
+    checker=Scope(local,variants,upstream,sources)
     rows={};resume=o.resume/'results.gz'
     if resume.is_file():
         data=json.loads(gzip.decompress(resume.read_bytes()))

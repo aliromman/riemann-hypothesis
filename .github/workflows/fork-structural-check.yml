@@ -89,9 +89,9 @@ jobs:
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: ${{ runner.temp }}/rh-structural-receipts
-          key: rh-struct-v1-${{ matrix.group }}-${{ hashFiles('harness/ci/structural-screen/*.py','harness/ci/structural-screen/request.json','harness/ci/import-screen/CheckInterface.lean') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: rh-struct-v1-${{ matrix.group }}-${{ hashFiles('harness/ci/structural-screen/*.py','harness/ci/structural-screen/request.json','harness/ci/structural-screen/repairs/request.json','harness/ci/import-screen/CheckInterface.lean') }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            rh-struct-v1-${{ matrix.group }}-${{ hashFiles('harness/ci/structural-screen/*.py','harness/ci/structural-screen/request.json','harness/ci/import-screen/CheckInterface.lean') }}-
+            rh-struct-v1-${{ matrix.group }}-${{ hashFiles('harness/ci/structural-screen/*.py','harness/ci/structural-screen/request.json','harness/ci/structural-screen/repairs/request.json','harness/ci/import-screen/CheckInterface.lean') }}-
       - name: Compile the proposed source and compare actual parent and candidate outputs
         id: run
         working-directory: parent

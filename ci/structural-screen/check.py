@@ -12,7 +12,7 @@ from screen import Runner
 from lake_imports import project_artifacts
 from verify_retained import source_warnings,trace_warnings,run_command
 sys.path.insert(0,str(HERE/'recipe'))
-from combined import convert
+from combined import convert,live_counts
 
 FACETS=('.olean','.olean.server','.olean.private','.ir.sig','.ir')
 ORDINARY=('.olean','.ir.sig','.ir')
@@ -21,13 +21,17 @@ TRANSIENT={'timeout','process-failure','infrastructure','missing-dependency'}
 def blob(data):
     return hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
 
+def request_folder(group):
+    return HERE/'repairs' if group.startswith('repair-') else HERE
+
 def load_request(group):
-    req=json.loads((HERE/'request.json').read_bytes())
+    folder=request_folder(group)
+    req=json.loads((folder/'request.json').read_bytes())
     if (req['donor'],req['tree'],req['manifest'],req['graph'])!=(BASE,TREE,MANIFEST,GRAPH):
         raise ValueError('parent identity differs')
     for name,digest in req['recipe'].items():
         if sha((HERE/'recipe'/name).read_bytes())!=digest:raise ValueError('source recipe differs: '+name)
-    spec=req['groups'][group];raw=gzip.decompress((HERE/'groups'/(group+'.jsonl.gz')).read_bytes())
+    spec=req['groups'][group];raw=gzip.decompress((folder/'groups'/(group+'.jsonl.gz')).read_bytes())
     members={m:(a,b,n,c) for m,a,b,n,c in map(json.loads,raw.splitlines())}
     if sha(raw)!=spec['sha256'] or len(members)!=spec['count'] or len(raw.splitlines())!=len(members):raise ValueError('invalid group manifest')
     return req,spec,members
@@ -46,10 +50,11 @@ def flat(table,prefix=''):
         else:yield name,value
 
 class Scope(Runner):
-    def __init__(self,o,variants,upstream):
+    def __init__(self,o,variants,upstream,exact_sources=None):
         super().__init__(o)
         self.variants=variants
         self.clump=upstream
+        self.exact_sources=exact_sources
         config=tomllib.loads((o.repo/'lakefile.toml').read_text())
         self.libraries={lib['name']:dict(flat(lib.get('leanOptions',{}))) for lib in config['lean_lib']}
     def setup(self,m):
@@ -59,11 +64,17 @@ class Scope(Runner):
     def compare(self,m):
         start=time.monotonic();o=self.o
         before=(o.repo/self.paths[m]).read_bytes()
-        transformed=convert(before.decode(),self.clump)
-        if transformed is None:raise ValueError('unrecognized source '+m)
-        after,metrics=transformed
-        after=after.encode()
         src,cand,net,code=self.variants[m]
+        if self.exact_sources is None:
+            transformed=convert(before.decode(),self.clump)
+            if transformed is None:raise ValueError('unrecognized source '+m)
+            text,metrics=transformed
+            after=text.encode()
+        else:
+            if len(cand)!=64 or not set(cand)<=set('0123456789abcdef'):raise ValueError('invalid candidate digest')
+            after=gzip.decompress((self.exact_sources/(cand+'.lean.gz')).read_bytes())
+            old_net,old_code=live_counts(before.decode());new_net,new_code=live_counts(after.decode())
+            metrics={'net':old_net-new_net,'code':old_code-new_code}
         if (sha(before),sha(after),metrics['net'],metrics['code'])!=(src,cand,net,code):raise ValueError('transformation differs from exact source manifest: '+m)
         row={'module':m,'source':src,'candidate':cand,'parent_blob':blob(before),'candidate_blob':blob(after),'net':net,'code':code,
              'import_all_or_meta_consumer':m in self.private_users}
