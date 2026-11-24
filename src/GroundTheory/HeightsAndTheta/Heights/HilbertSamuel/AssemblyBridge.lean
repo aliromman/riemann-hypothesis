@@ -81,7 +81,7 @@ theorem BlockResolutionMixedBridge.proof : BlockResolutionMixedBridge.Statement 
   have hex : ∃ Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (D + 1) → ℂ),
       IsGoodProj (mCoordIdeal d.y) Ψ :=
     goodProjExists K ι (mCoordIdeal d.y) D d.arith
-  set B : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι :=A₁.tensor d.A.inv with hBdef
+  set B : HermLine ι :=A₁.tensor d.A.inv with hBdef
   have hB0 : B.a = 0 := by
     funext k
     simp [B, HermLine.tensor, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.inv, hdeg, d.deg]

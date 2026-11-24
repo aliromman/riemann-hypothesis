@@ -266,10 +266,13 @@ theorem sizesSup : PBC.SizesSup := by
       have hR' : R * m = S.g := by rw [hR]; field_simp
       have hmt : m ^ 2 ≤ thr S b n v ^ 2 := pow_le_pow_left₀ hmpos.le (hmle v) 2
       have : (S.g : ℝ) ^ 2 ≤ R ^ 2 * thr S b n v ^ 2 := by
-        rw [← hR']; nlinarith [sq_nonneg R]
+        rw [← hR', mul_pow]
+        exact mul_le_mul_of_nonneg_left hmt (sq_nonneg R)
       have e : (1 + (R * thr S b n v / S.g) ^ 2) * (S.g : ℝ) ^ 2 =
           (S.g : ℝ) ^ 2 + R ^ 2 * thr S b n v ^ 2 := by field_simp
-      rw [e] <;> nlinarith
+      rw [e]
+      have hrhs : 2 * thr S b n v ^ 2 * R ^ 2 = 2 * (R ^ 2 * thr S b n v ^ 2) := by ring
+      linarith
     calc x ^ 2 * (S6.rd E * (S.g : ℝ) ^ 3 / 2) * (Cs * (1 + (R * thr S b n v / S.g) ^ 2)) / R ^ 2
         = x ^ 2 * (S6.rd E * (S.g : ℝ) ^ 3 / 2) * Cs * ((1 + (R * thr S b n v / S.g) ^ 2) / R ^ 2) := by ring
       _ ≤ x ^ 2 * (S6.rd E * (S.g : ℝ) ^ 3 / 2) * Cs * (2 * thr S b n v ^ 2 / (S.g : ℝ) ^ 2) :=
@@ -278,7 +281,8 @@ theorem sizesSup : PBC.SizesSup := by
           field_simp
       _ ≤ Cs * (thr S b n v ^ 2 * ((S.g : ℝ) * (x * S6.rd E)) ^ 2) * 1 := by
           apply mul_le_mul_of_nonneg_left _ (by positivity)
-          rw [div_le_one (by positivity)] <;> nlinarith
+          rw [div_le_one (by positivity)]
+          exact one_le_mul_of_one_le_of_one_le hg1R hrd1
       _ = _ := mul_one _
   calc (∏ _v : Fin S.f, x ^ 2 * (S6.rd E * (S.g : ℝ) ^ 3 / 2)) *
         (∏ v, Cs * (1 + (R * thr S b n v / S.g) ^ 2)) / R ^ (2 * S.f)
@@ -473,7 +477,9 @@ theorem mfac_shift0 (K : ℕ) {L δ : ℝ} (hL : 0 ≤ L) (hδ : 0 < δ) {a : �
     · apply min_le_min_left
       apply pow_le_pow_left₀ (div_nonneg hL ha)
       rw [div_le_div_iff₀ hapos had]
-      nlinarith
+      have hdiff : (L + δ) * a - L * (a + δ) = δ * (a - L) := by ring
+      have hnn : 0 ≤ δ * (a - L) := mul_nonneg hδ.le (by linarith)
+      linarith
 
 theorem gauss_norm (m n : ℤ) (h : (m : ℂ) + (n : ℂ) * Complex.I ≠ 0) :
     1 ≤ ‖(m : ℂ) + (n : ℂ) * Complex.I‖ := by
@@ -481,15 +487,15 @@ theorem gauss_norm (m n : ℤ) (h : (m : ℂ) + (n : ℂ) * Complex.I ≠ 0) :
     by_contra hc; push Not at hc; apply h; simp [hc.1, hc.2]
   have hsq : (1 : ℝ) ≤ (m : ℝ) ^ 2 + (n : ℝ) ^ 2 := by
     rcases hmn with hm | hn
-    · have : (1 : ℤ) ≤ m ^ 2 := by nlinarith [Int.one_le_abs hm, sq_abs m]
+    · have : (1 : ℤ) ≤ m ^ 2 := by rw [← sq_abs m]; exact one_le_pow₀ (Int.one_le_abs hm)
       have : (1 : ℝ) ≤ (m : ℝ) ^ 2 := by exact_mod_cast this
-      nlinarith [sq_nonneg (n : ℝ)]
-    · have : (1 : ℤ) ≤ n ^ 2 := by nlinarith [Int.one_le_abs hn, sq_abs n]
+      linarith [sq_nonneg (n : ℝ)]
+    · have : (1 : ℤ) ≤ n ^ 2 := by rw [← sq_abs n]; exact one_le_pow₀ (Int.one_le_abs hn)
       have : (1 : ℝ) ≤ (n : ℝ) ^ 2 := by exact_mod_cast this
-      nlinarith [sq_nonneg (m : ℝ)]
+      linarith [sq_nonneg (m : ℝ)]
   rw [← Real.sqrt_one, Complex.norm_def, Complex.normSq_apply]
   apply Real.sqrt_le_sqrt
-  simp; nlinarith
+  simp; rw [← sq, ← sq]; exact hsq
 
 theorem dual_sep (f : ℕ) (R : ℝ) (hR : 0 < R) (σ σ' : crystallineComparison.V f) (hσ : σ ∈ crystallineComparison.dualSet (Lstd f R))
     (hσ' : σ' ∈ crystallineComparison.dualSet (Lstd f R)) (hne : σ ≠ σ') : 1 / (2 * R) ≤ ‖σ - σ'‖ := by
@@ -597,7 +603,9 @@ theorem lstdSum : PBC.LstdSum := by
   have e : Real.pi * (4 * δ * x + δ) ^ 2 * 5 / (5 - 2) / (Real.pi * δ ^ 2) = (4 * x + 1) ^ 2 * 5 / 3 := by
     field_simp; ring
   rw [e]
-  nlinarith [sq_nonneg (x - 1)]
+  have hdiff : 54 * (1 + x ^ 2) - (4 * x + 1) ^ 2 * 5 / 3 =
+      (20 * (x - 1) ^ 2 + 62 * x ^ 2 + 137) / 3 := by ring
+  linarith [sq_nonneg (x - 1), sq_nonneg x]
 
 end Lat
 

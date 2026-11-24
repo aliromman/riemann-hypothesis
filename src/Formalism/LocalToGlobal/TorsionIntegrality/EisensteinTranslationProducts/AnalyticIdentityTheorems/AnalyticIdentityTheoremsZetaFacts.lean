@@ -131,7 +131,7 @@ private lemma hasDerivAt_inv_sub_add_inv_add_div_sq (l z : ℂ) (h : z - l ≠ 0
 lemma differentiableOn_zetaExcept (L : PeriodPair) (l₀ : ℂ) :
     DifferentiableOn ℂ (zetaExcept L l₀) (L.lattice \ {l₀})ᶜ := by
   refine differentiableOn_of_hasSumLocallyUniformlyOn' (hasSumLU_zetaExcept L l₀).hasSumLocallyUniformlyOn (fun l => ?_)
-    L.isOpen_compl_lattice_diff
+    L.isOpen_compl_lattice_sdiff
   by_cases h : (l : ℂ) = l₀
   · simp only [h, ↓reduceIte]
     exact differentiableOn_const 0

@@ -348,13 +348,7 @@ lemma ldiag_term (z : ℂ) (w : ℝ) (N : ℕ) :
 
 lemma ldiag_term0 (z : ℂ) (N : ℕ) :
     z * star z * (N : ℂ) = ((Complex.normSq z * N : ℝ) : ℂ) := by
-  have hs : ∀ x : ℂ, star x = (starRingEnd ℂ) x := fun _ => rfl
-  apply Complex.ext
-  all_goals
-    simp only [hs, Complex.mul_re, Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im,
-      Complex.natCast_re, Complex.natCast_im, Complex.conj_re, Complex.conj_im,
-      Complex.normSq_apply]
-    ring
+  simpa using ldiag_term z 1 N
 
 private theorem mul_sq_mul_le_sq_mul_mul_of_le {c N p q : ℝ} (hc : 0 ≤ c) (hN : 0 ≤ N) (hp : 0 ≤ p)
     (hpq : p ≤ q) : c * p ^ 2 * N ≤ q ^ 2 * (c * N) := by

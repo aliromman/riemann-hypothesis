@@ -21,6 +21,8 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
 
+open scoped GroundTheory.PAdicHodge.LocalBridge
+
 @[expose] public section
 
 noncomputable section

@@ -141,7 +141,7 @@ theorem CycleAverage.proof (h1 : ConeAverage.Statement) : CycleAverage.Statement
   have hf0 : C c * ∏ W ∈ Z.support, g W ^ Z W ≠ 0 :=
     mul_ne_zero (C_ne_zero.mpr hc)
       (Finset.prod_ne_zero_iff.mpr fun W hW => pow_ne_zero _ (hg W hW).1)
-  have hhom : IsMultiHomog δ (C c * ∏ W ∈ Z.support, g W ^ Z W) := hf ▸ hd.homog
+  have hhom : Heights.IsMultiHomog δ (C c * ∏ W ∈ Z.support, g W ^ Z W) := hf ▸ hd.homog
   obtain ⟨δW, hδW, hsum⟩ :=
     exists_degrees_of_chowFormCycle (Nat.succ_pos e) Z c g hg hhom hf0
   have hW : ∀ W ∈ Z.support,

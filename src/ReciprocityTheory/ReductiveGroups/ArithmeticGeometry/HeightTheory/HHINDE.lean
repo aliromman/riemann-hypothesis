@@ -57,6 +57,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.KTFinit
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.ValuationResidueLemmas
 import Mathlib.Tactic.Basify
 import Std.Tactic.BVDecide.Normalize.Prop
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.FsumLeOf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HHINDD, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HHINDE
@@ -399,13 +400,6 @@ theorem Hgt_pow' (hd : d.AxH 𝒜) (h : d.S1) (G : WT) (f : ∀ c, A c)
       d.Hgt h (n • G) (f ^ n) = (n : ℝ) * d.Hgt h G f := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
   exact d.Hgt_pow hd h G f hf hI m
-
-theorem wx_mem (hd : d.AxH 𝒜) (x : Fin (d.N + 1) → K) (c : ι) : d.wx x c ∈ 𝒜 c d.wL := by
-  haveI := hd.tower c
-  rw [Data.wx, Finset.sum_apply]
-  refine Submodule.sum_mem _ fun j _ => ?_
-  rw [Pi.smul_apply, ← algebraMap_smul (Ω c) (x j) (d.w j c)]
-  exact Submodule.smul_mem _ _ (hd.w_mem j c)
 
 theorem intOK_of (hd : d.AxH 𝒜) (h : d.S1) (hI2be : d.HeightIntegralBoundEstimate) (G : WT)
     (hG : G ∈ ({d.wL, d.n1 • d.wde, (2 : ℕ) • d.G1, d.wF, d.G2} : Set WT)) (ta : ∀ c, A c)

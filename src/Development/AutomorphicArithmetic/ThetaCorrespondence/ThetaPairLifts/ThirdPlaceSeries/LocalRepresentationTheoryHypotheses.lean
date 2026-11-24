@@ -60,7 +60,6 @@ structure LocalRepresentationTheoryHypothesesAlt : Prop where
   exh : LanglandsExhaustionGL
   cos : StandardCosocleGL
   llc : _root_.UpperTheory.Zero.LLC.RecTExists
-  conv : LocalConverseGL
   dzi : DepthZeroInduction
   brauer : BrauerDegreeZero
   chev : ChevalleyUnits

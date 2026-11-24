@@ -248,36 +248,7 @@ theorem frame_biext_dictionary_second_partial_law (u v w : Q S d n) : VV m y (E3
     (ee x e y J u (op (FQ G) v w))⁻¹ * ee x e y J u v * ee x e y J u w).val := by
   obtain ⟨U, hU, h⟩ := hf.ph2 m
   have hc := gm_unit (y := y) U ![u, v, w]
-  have C : IsCub (cubV t.cub y J) := by
-    exact {
-    face x y := by
-      have := val_corr hJ (t.cub.face 0) (lift x y).left
-      rw [val_one] at this
-      refine Eq.trans ?_ this
-      refine Eq.trans ?_ (val_cub t.cub (lift x y) hJ (pzero t.G _) (x2 t.G 0) (x2 t.G 1)).symm
-      congr 1 <;> simp [x2, pzero, Hom.one_def]
-    s01 x y w := by
-      have := (val_corr hJ t.cub.cubeSymmetric_swap_first (lift x (lift y w)).left).trans (val_cub t.cub (lift x (lift y w)) hJ _ _ _)
-      refine Eq.trans this ?_
-      congr 1 <;> simp [x3]
-    s12 x y w := by
-      have := (val_corr hJ t.cub.cubeSymmetric_swap_last (lift x (lift y w)).left).trans (val_cub t.cub (lift x (lift y w)) hJ _ _ _)
-      refine Eq.trans this ?_
-      congr 1 <;> simp [x3]
-    coc x x' x'' y := by
-      have := val_corr hJ t.cub.cocycle (lift x (lift x' (lift x'' y))).left
-      have e := ((val_mul hJ _ _ _).trans (congrArg₂ (· * ·) (val_cub t.cub _ hJ _ _ _) (val_cub t.cub _ hJ _ _ _))).symm.trans
-        (this.trans ((val_mul hJ _ _ _).trans (congrArg₂ (· * ·) (val_cub t.cub _ hJ _ _ _) (val_cub t.cub _ hJ _ _ _))))
-      have a₀ : lift x (lift x' (lift x'' y)) ≫ x4 t.G 0 = x := by simp [x4]
-      have a₁ : lift x (lift x' (lift x'' y)) ≫ x4 t.G 1 = x' := by simp [x4]
-      have a₂ : lift x (lift x' (lift x'' y)) ≫ x4 t.G 2 = x'' := by simp [x4]
-      have a₃ : lift x (lift x' (lift x'' y)) ≫ x4 t.G 3 = y := by simp [x4]
-      have b₀ : lift x (lift x' (lift x'' y)) ≫ padd t.G (x4 t.G 0) (x4 t.G 1) = x * x' :=
-        (MonObj.comp_mul _ _ _).trans (by rw [a₀, a₁])
-      have b₁ : lift x (lift x' (lift x'' y)) ≫ padd t.G (x4 t.G 1) (x4 t.G 2) = x' * x'' :=
-        (MonObj.comp_mul _ _ _).trans (by rw [a₁, a₂])
-      rwa [b₀, b₁, a₀, a₁, a₂, a₃] at e
-    }
+  have C : IsCub (cubV t.cub y J) := isCub_cubV t.cub hJ
   have e₀ := val_peG x hJ e ![u, v, w] ![fun j => MvPolynomial.X ((0 : Fin 3), j), fun j => psIn d m ![1, 2] (G.F j)] (gen 0) (op (FQ G) (gen 1) (gen 2))
     (by rintro ⟨l, j⟩; fin_cases l; exacts [hX 0 j, hF 1 2 j])
     (by rintro ⟨l, j⟩; fin_cases l; exacts [MvPolynomial.constantCoeff_X _ _, (cc_psIn d m _ _).trans (G.const j)])
@@ -371,37 +342,8 @@ end Law
 
 theorem fbId : FBIdSt := by
   intro E _ _ _ H X0 t hPow _ hs S _ x0 d G A κ _ tg uvec x e ph1 ph2 sy ad hc hf ha had
-  have localCub : ∀ {T : Over X0} {z : T.left} {J : (T.left ⟶ t.G.left) → t.PP.L.ι}, Good t.PP.L z J → IsCub (cubV t.cub z J) := by
-    intro T z J hJ
-    exact {
-    face x y := by
-      have := val_corr hJ (t.cub.face 0) (lift x y).left
-      rw [val_one] at this
-      refine Eq.trans ?_ this
-      refine Eq.trans ?_ (val_cub t.cub (lift x y) hJ (pzero t.G _) (x2 t.G 0) (x2 t.G 1)).symm
-      congr 1 <;> simp [x2, pzero, Hom.one_def]
-    s01 x y w := by
-      have := (val_corr hJ t.cub.cubeSymmetric_swap_first (lift x (lift y w)).left).trans (val_cub t.cub (lift x (lift y w)) hJ _ _ _)
-      refine Eq.trans this ?_
-      congr 1 <;> simp [x3]
-    s12 x y w := by
-      have := (val_corr hJ t.cub.cubeSymmetric_swap_last (lift x (lift y w)).left).trans (val_cub t.cub (lift x (lift y w)) hJ _ _ _)
-      refine Eq.trans this ?_
-      congr 1 <;> simp [x3]
-    coc x x' x'' y := by
-      have := val_corr hJ t.cub.cocycle (lift x (lift x' (lift x'' y))).left
-      have e := ((val_mul hJ _ _ _).trans (congrArg₂ (· * ·) (val_cub t.cub _ hJ _ _ _) (val_cub t.cub _ hJ _ _ _))).symm.trans
-        (this.trans ((val_mul hJ _ _ _).trans (congrArg₂ (· * ·) (val_cub t.cub _ hJ _ _ _) (val_cub t.cub _ hJ _ _ _))))
-      have a₀ : lift x (lift x' (lift x'' y)) ≫ x4 t.G 0 = x := by simp [x4]
-      have a₁ : lift x (lift x' (lift x'' y)) ≫ x4 t.G 1 = x' := by simp [x4]
-      have a₂ : lift x (lift x' (lift x'' y)) ≫ x4 t.G 2 = x'' := by simp [x4]
-      have a₃ : lift x (lift x' (lift x'' y)) ≫ x4 t.G 3 = y := by simp [x4]
-      have b₀ : lift x (lift x' (lift x'' y)) ≫ padd t.G (x4 t.G 0) (x4 t.G 1) = x * x' :=
-        (MonObj.comp_mul _ _ _).trans (by rw [a₀, a₁])
-      have b₁ : lift x (lift x' (lift x'' y)) ≫ padd t.G (x4 t.G 1) (x4 t.G 2) = x' * x'' :=
-        (MonObj.comp_mul _ _ _).trans (by rw [a₁, a₂])
-      rwa [b₀, b₁, a₀, a₁, a₂, a₃] at e
-    }
+  have localCub : ∀ {T : Over X0} {z : T.left} {J : (T.left ⟶ t.G.left) → t.PP.L.ι}, Good t.PP.L z J → IsCub (cubV t.cub z J) :=
+    isCub_cubV t.cub
   have hL := t.PP.isLB
   have hp := (hPow 3).2
   have := t.act.hom

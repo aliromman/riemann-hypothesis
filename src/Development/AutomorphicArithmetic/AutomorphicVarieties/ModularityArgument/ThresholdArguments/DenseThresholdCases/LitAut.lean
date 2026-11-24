@@ -36,7 +36,6 @@ structure LitLocAlt : Prop where
   multi : LanglandsMultisegments
   exh : LanglandsExhaustionGL
   cos : StandardCosocleGL
-  conv : LocalConverseGL
   dzi : DepthZeroInduction
   brauer : BrauerDegreeZero
   chev : ChevalleyUnits

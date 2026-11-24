@@ -223,15 +223,16 @@ theorem moderateCoefficientPositivity_holds : ModerateCoefficientPositivity (E :
     set B := Bω X ω
     have hB := Bω_nonneg X ω
     set D0 := 1 + X.c τ0 * m τ0
-    have hD0 : 1 ≤ D0 := by have := hc τ0; have := hm τ0; simp only [D0]; nlinarith
+    have hD0 : 1 ≤ D0 := by
+      simp only [D0]
+      linarith [mul_pos (hc τ0) (hm τ0)]
     set K0 := ∑ τ, (1 + X.c τ * B * m τ) ^ 2
     have hK0t : ∀ τ, (1 + X.c τ * B * m τ) ^ 2 ≤ K0 := fun τ =>
       Finset.single_le_sum (f := fun τ => (1 + X.c τ * B * m τ) ^ 2) (fun τ _ => sq_nonneg _)
         (Finset.mem_univ τ)
     have hK1 : 1 ≤ K0 := by
       refine le_trans ?_ (hK0t τ0)
-      have := hc τ0; have := hm τ0
-      nlinarith [mul_nonneg (mul_nonneg (hc τ0).le hB) (hm τ0).le]
+      exact one_le_pow₀ (by linarith [mul_nonneg (mul_nonneg (hc τ0).le hB) (hm τ0).le])
     set w := X.spread la τ0
     have hq : ∀ t : ℝ, ∀ τ, 1 + X.c τ * (∑ j, (t * κ j) * ω j τ) * m τ =
         if τ = τ0 then 1 + X.c τ0 * m τ0 * t else 1 := by
@@ -270,13 +271,15 @@ theorem moderateCoefficientPositivity_holds : ModerateCoefficientPositivity (E :
           (if τ = τ0 then 1 + X.c τ0 * m τ0 * t else 1) ≤ D0 * (1 + t) := by
         intro τ
         split_ifs
-        · have := hc τ0; have := hm τ0
-          constructor
-          · nlinarith [mul_nonneg (mul_nonneg (hc τ0).le (hm τ0).le) ht]
-          · simp only [D0]; nlinarith [mul_nonneg (mul_nonneg (hc τ0).le (hm τ0).le) ht]
+        · constructor
+          · linarith [mul_nonneg (mul_nonneg (hc τ0).le (hm τ0).le) ht]
+          · simp only [D0]
+            have hcm0 : 0 ≤ X.c τ0 * m τ0 := (mul_pos (hc τ0) (hm τ0)).le
+            have : (1 + X.c τ0 * m τ0) * (1 + t) = 1 + X.c τ0 * m τ0 * t + t + X.c τ0 * m τ0 := by ring
+            linarith
         · constructor
           · exact le_refl _
-          · nlinarith
+          · exact one_le_mul_of_one_le_of_one_le hD0 (by linarith)
       have hKρ : ∀ τ (ρ : ℝ), |ρ| ≤ B → (1 + X.c τ * |ρ| * m τ) ^ 2 ≤ K0 := by
         intro τ ρ hρ
         refine le_trans ?_ (hK0t τ)
@@ -284,7 +287,7 @@ theorem moderateCoefficientPositivity_holds : ModerateCoefficientPositivity (E :
           have := hc τ; have := hm τ
           exact mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left hρ (hc τ).le) (hm τ).le
         have h0 : 0 ≤ X.c τ * |ρ| * m τ := by have := hc τ; have := hm τ; positivity
-        nlinarith
+        exact pow_le_pow_left₀ (by linarith) (by linarith) 2
       have hsb := slice_bound X hx hξ la P hP C A hmod ω hω hb (k1 := Z⁻¹) (k2 := Z)
         (R := (D0 * (1 + t)) ^ (|w| / 2)) (inv_pos.mpr hZ0) ((inv_le_one_of_one_le₀ hZ).trans hZ)
         (by
@@ -342,7 +345,7 @@ theorem moderateCoefficientPositivity_holds : ModerateCoefficientPositivity (E :
           exact Real.rpow_le_rpow_of_exponent_le hZ (by linarith [le_abs_self A])
         · exact Real.rpow_le_rpow_of_exponent_le hZ (by linarith [neg_abs_le A])
       have hZsplit : Z ^ (|A| / 2) = (D0 * K0) ^ (|A| / 2) * (1 + t) ^ (|A| / 2) :=
-        Real.mul_rpow (by nlinarith) (by linarith)
+        Real.mul_rpow (mul_nonneg (by linarith) (by linarith)) (by linarith)
       have hRsplit : (D0 * (1 + t)) ^ (|w| / 2) = D0 ^ (|w| / 2) * (1 + t) ^ (|w| / 2) :=
         Real.mul_rpow (by linarith) (by linarith)
       have hE : (1 + t) ^ E' = (1 + t) ^ (|A| / 2) * (1 + t) ^ (|w| / 2) :=
@@ -435,15 +438,15 @@ theorem moderateCoefficientPositivity_holds : ModerateCoefficientPositivity (E :
       have h0 : 0 ≤ X.c τ * |ρ| * X.maj x τ (Data.emb τ.1 ξ) := by
         have := hc τ; have := hm τ; simp only [m] at this; positivity
       simp only [K]
-      nlinarith
+      exact pow_le_pow_left₀ (by linarith) (by linarith) 2
     have hslice : ∀ y : Fin (Fintype.card X.Ψ) → ℝ, ‖hfun X P ξ x ω (fun k => (y k : ℂ) + (b' k : ℂ) * I)‖ ≤
         Cη * X.la1 x ^ (-A) / X.nfac la x := by
       intro y
       have hsb := slice_bound X hx hξ la P hP C A hmod ω hω hb'Ω (k1 := η / K) (k2 := K / η) (R := Rη)
         (by positivity) (by
           rw [div_le_div_iff₀ hK hη0]
-          have hK1 : 1 ≤ K := by simp only [K]; nlinarith [hB]
-          nlinarith [mul_pos hη0 hη0, mul_pos hK hK, hη1])
+          have hK1 : 1 ≤ K := by simp only [K]; exact one_le_pow₀ (by linarith)
+          exact mul_le_mul (by linarith) (by linarith) hη0.le hK.le)
         (by
           intro τ ρ hρ
           rw [hqη, hmin]

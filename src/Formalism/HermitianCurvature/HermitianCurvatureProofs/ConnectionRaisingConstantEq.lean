@@ -272,21 +272,11 @@ theorem not_up_up (P : M.Par) {i j l : ℕ} (hi : i ∈ Icc 1 (P.k - 1)) (hj : j
 
 theorem not_up_down (P : M.Par) {i j l : ℕ} (hi : i ∈ Icc 1 (P.k - 1)) (hj : j ∈ Icc 1 (P.k - 1))
     (hl : l ∈ Icc 1 (P.k - 1)) {τ μ σ : M.Ty P} (h1 : M.Up P i τ μ) (h2 : M.Up P j σ μ) (h3 : M.Up P l τ σ) : False := by
-  have a := Finset.mem_Icc.1 hi; have b := Finset.mem_Icc.1 hj; have c := Finset.mem_Icc.1 hl
-  have e1 := h1 ⟨l - 1, by omega⟩; have e2 := h2 ⟨l - 1, by omega⟩; have e3 := h3 ⟨l - 1, by omega⟩
-  have f1 := h1 ⟨i - 1, by omega⟩; have f2 := h2 ⟨i - 1, by omega⟩; have f3 := h3 ⟨i - 1, by omega⟩
-  have g1 := h1 ⟨j - 1, by omega⟩; have g2 := h2 ⟨j - 1, by omega⟩; have g3 := h3 ⟨j - 1, by omega⟩
-  simp only at e1 e2 e3 f1 f2 f3 g1 g2 g3
-  split_ifs at e1 e2 e3 f1 f2 f3 g1 g2 g3 <;> omega
+  exact not_up_up P hl hj hi h3 h2 h1
 
 theorem not_down_up (P : M.Par) {i j l : ℕ} (hi : i ∈ Icc 1 (P.k - 1)) (hj : j ∈ Icc 1 (P.k - 1))
     (hl : l ∈ Icc 1 (P.k - 1)) {τ μ σ : M.Ty P} (h1 : M.Up P i μ τ) (h2 : M.Up P j μ σ) (h3 : M.Up P l τ σ) : False := by
-  have a := Finset.mem_Icc.1 hi; have b := Finset.mem_Icc.1 hj; have c := Finset.mem_Icc.1 hl
-  have e1 := h1 ⟨l - 1, by omega⟩; have e2 := h2 ⟨l - 1, by omega⟩; have e3 := h3 ⟨l - 1, by omega⟩
-  have f1 := h1 ⟨i - 1, by omega⟩; have f2 := h2 ⟨i - 1, by omega⟩; have f3 := h3 ⟨i - 1, by omega⟩
-  have g1 := h1 ⟨j - 1, by omega⟩; have g2 := h2 ⟨j - 1, by omega⟩; have g3 := h3 ⟨j - 1, by omega⟩
-  simp only at e1 e2 e3 f1 f2 f3 g1 g2 g3
-  split_ifs at e1 e2 e3 f1 f2 f3 g1 g2 g3 <;> omega
+  exact not_up_up P hi hl hj h1 h3 h2
 
 end Types
 

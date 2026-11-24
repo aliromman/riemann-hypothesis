@@ -135,16 +135,7 @@ def ArIso : Prop := ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] 
     ∀ (κ : Type) [Fintype κ] (M : κ → HermLB p) (A : κ → ι → ℤ), (∀ j, (comb L (A j)).Isometric (M j)) →
       IsArFun M D (Φ ∘ₗ (aeval fun j => lin fun i => (A j i : ℝ) : MvPolynomial κ ℝ →ₐ[ℝ] MvPolynomial ι ℝ).toLinearMap)
 
-def ArMetric : Prop := ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D →
-  ∀ (ι : Type) [Fintype ι] (M : HermLB p) (L : ι → HermLB p) (u : ∀ σ : k →+* ℂ, CxPts p σ → ℝ)
-    (hu : ∀ σ y, CxPts.CInfAt (u σ) y) (hc : ∀ σ σ', (Weight.ofFun (u σ)).IsConj (Weight.ofFun (u σ')))
-    (Φ Φ' : MvPolynomial (Option ι) ℝ →ₗ[ℝ] ℝ), IsArFun (fun o : Option ι => o.elim M L) D Φ →
-    IsArFun (fun o : Option ι => o.elim (M.raise u hu hc) L) D Φ' → ∀ n : ι → ℤ,
-      (∀ σ, ((comb L n).φ σ).ChernIntegrableOn D Set.univ (u σ)) ∧
-      Φ' (MvPolynomial.X none * rename some (lin fun i => (n i : ℝ)) ^ D) =
-        Φ (MvPolynomial.X none * rename some (lin fun i => (n i : ℝ)) ^ D) + 1 / 2 * chInt (comb L n) D u
-
-def ArCalc : Prop := ArExists ∧ ArChange ∧ ArShift ∧ ArMix ∧ ArProj ∧ ArIso ∧ ArMetric
+def ArCalc : Prop := ArExists ∧ ArChange ∧ ArShift ∧ ArMix ∧ ArProj ∧ ArIso
 
 theorem ArCalc.arExists (h : ArCalc) : ArExists := h.1
 
@@ -156,7 +147,7 @@ theorem ArCalc.arMix (h : ArCalc) : ArMix := h.2.2.2.1
 
 theorem ArCalc.arProj (h : ArCalc) : ArProj := h.2.2.2.2.1
 
-theorem ArCalc.arIso (h : ArCalc) : ArIso := h.2.2.2.2.2.1
+theorem ArCalc.arIso (h : ArCalc) : ArIso := h.2.2.2.2.2
 
 section Consequences
 

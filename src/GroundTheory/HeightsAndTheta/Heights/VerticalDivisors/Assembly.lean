@@ -486,7 +486,7 @@ theorem map_specRest {R S T : Type*} [CommRing R] [CommRing S] [CommRing T] (φ 
     induction i using Fin.cases <;> simp [eval₂_mul, hp]
 
 theorem constantCoeff_specRest {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S) {δ : ℕ}
-    (hδ : 1 ≤ δ) {f : MvPolynomial (Fin (e + 1) × Fin n) R} (hf : IsMultiHomog δ f)
+    (hδ : 1 ≤ δ) {f : MvPolynomial (Fin (e + 1) × Fin n) R} (hf : Heights.IsMultiHomog δ f)
     (y : Par e n → S) : constantCoeff (specRest φ f y) = 0 := by
   unfold specRest
   rw [← coe_eval₂Hom, ← RingHom.comp_apply, MvPolynomial.comp_eval₂Hom]

@@ -167,97 +167,26 @@ theorem linSub_linSub {n m p : Type} [Finite n] [Fintype m] [Fintype p] (A : n �
   simp only [linSub_C]
   ring
 
-theorem hasSubst_block {ι B : Type} [Finite ι] (k : B) :
-    MvPowerSeries.HasSubst (fun i : ι => (MvPowerSeries.X (k, i) : MvPowerSeries (B × ι) K)) := by
-  have hs : MvPowerSeries.HasSubst (fun i : ι => (MvPowerSeries.X (k, i) : MvPowerSeries (B × ι) K)) := by
-    classical
-    refine ⟨fun s => by simp, fun dd => ?_⟩
-    refine Set.Subsingleton.finite ?_
-    intro s hs t ht
-    by_contra hne
-    apply hs
-    rw [MvPowerSeries.coeff_X, if_neg]
-    rintro rfl
-    apply ht
-    rw [MvPowerSeries.coeff_X, if_neg]
-    intro h
-    exact hne (Prod.ext_iff.mp (Finsupp.single_left_injective one_ne_zero h)).2
-  exact hs
+theorem hasSubst_block {ι B : Type} (k : B) :
+    MvPowerSeries.HasSubst (fun i : ι => (MvPowerSeries.X (k, i) : MvPowerSeries (B × ι) K)) :=
+  MvPowerSeries.HasSubst.X.comp_injective (Prod.mk_right_injective k)
 
 theorem inBlock_C {ι B : Type} (k : B) (r : K) :
     inBlock k (MvPowerSeries.C r : MvPowerSeries ι K) = MvPowerSeries.C r := by
-  have hs : MvPowerSeries.HasSubst (fun i : ι => (MvPowerSeries.X (k, i) : MvPowerSeries (B × ι) K)) := by
-    classical
-    refine ⟨fun s => by simp, fun dd => ?_⟩
-    refine Set.Subsingleton.finite ?_
-    intro s hs t ht
-    by_contra hne
-    apply hs
-    rw [MvPowerSeries.coeff_X, if_neg]
-    rintro rfl
-    apply ht
-    rw [MvPowerSeries.coeff_X, if_neg]
-    intro h
-    exact hne (Prod.ext_iff.mp (Finsupp.single_left_injective one_ne_zero h)).2
-  unfold inBlock
-  rw [← MvPowerSeries.coe_substAlgHom hs]
-  first
-    | exact (MvPowerSeries.substAlgHom hs).commutes r
+  simp only [HurwitzJetIntegrality.inBlock_eq_rename, MvPowerSeries.rename_C]
 
-theorem inBlock_X {ι B : Type} [Finite ι] (k : B) (i : ι) :
+theorem inBlock_X {ι B : Type} (k : B) (i : ι) :
     inBlock k (MvPowerSeries.X i : MvPowerSeries ι K) = MvPowerSeries.X (k, i) := by
-  have hs : MvPowerSeries.HasSubst (fun i : ι => (MvPowerSeries.X (k, i) : MvPowerSeries (B × ι) K)) := by
-    classical
-    refine ⟨fun s => by simp, fun dd => ?_⟩
-    refine Set.Subsingleton.finite ?_
-    intro s hs t ht
-    by_contra hne
-    apply hs
-    rw [MvPowerSeries.coeff_X, if_neg]
-    rintro rfl
-    apply ht
-    rw [MvPowerSeries.coeff_X, if_neg]
-    intro h
-    exact hne (Prod.ext_iff.mp (Finsupp.single_left_injective one_ne_zero h)).2
-  unfold inBlock
-  exact MvPowerSeries.subst_X hs i
+  rw [HurwitzJetIntegrality.inBlock_eq_rename, MvPowerSeries.rename_X]
+  rfl
 
 theorem inBlock_sum {ι B α : Type} (k : B) (s : Finset α) (f : α → MvPowerSeries ι K) :
     inBlock k (∑ a ∈ s, f a) = ∑ a ∈ s, inBlock k (f a) := by
-  have hs : MvPowerSeries.HasSubst (fun i : ι => (MvPowerSeries.X (k, i) : MvPowerSeries (B × ι) K)) := by
-    classical
-    refine ⟨fun s => by simp, fun dd => ?_⟩
-    refine Set.Subsingleton.finite ?_
-    intro s hs t ht
-    by_contra hne
-    apply hs
-    rw [MvPowerSeries.coeff_X, if_neg]
-    rintro rfl
-    apply ht
-    rw [MvPowerSeries.coeff_X, if_neg]
-    intro h
-    exact hne (Prod.ext_iff.mp (Finsupp.single_left_injective one_ne_zero h)).2
-  unfold inBlock
-  rw [← MvPowerSeries.coe_substAlgHom hs]
-  exact map_sum (MvPowerSeries.substAlgHom hs) f s
+  simp only [HurwitzJetIntegrality.inBlock_eq_rename, map_sum]
 
 theorem inBlock_smul {ι B : Type} (k : B) (r : K) (f : MvPowerSeries ι K) :
     inBlock k (r • f) = r • inBlock k f := by
-  have hs : MvPowerSeries.HasSubst (fun i : ι => (MvPowerSeries.X (k, i) : MvPowerSeries (B × ι) K)) := by
-    classical
-    refine ⟨fun s => by simp, fun dd => ?_⟩
-    refine Set.Subsingleton.finite ?_
-    intro s hs t ht
-    by_contra hne
-    apply hs
-    rw [MvPowerSeries.coeff_X, if_neg]
-    rintro rfl
-    apply ht
-    rw [MvPowerSeries.coeff_X, if_neg]
-    intro h
-    exact hne (Prod.ext_iff.mp (Finsupp.single_left_injective one_ne_zero h)).2
-  unfold inBlock
-  exact MvPowerSeries.subst_smul hs r f
+  simp only [HurwitzJetIntegrality.inBlock_eq_rename, map_smul]
 
 def diag4 {n ν : Type} (M : n → ν → K) (w : Fin 4 × n) (y : Fin 4 × ν) : K :=
   if w.1 = y.1 then M w.2 y.2 else 0

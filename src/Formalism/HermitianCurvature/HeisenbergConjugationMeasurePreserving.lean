@@ -328,7 +328,7 @@ theorem gP_mul_le_gP_add (π : ι → V →L[ℝ] ℂ) (c u : V) : gP π c * gP 
   apply pow_le_pow_left₀ (by positivity)
   have := norm_add_le (π v c) (π v u)
   rw [map_add (f := _)]
-  nlinarith [norm_nonneg (π v c), norm_nonneg (π v u), mul_nonneg (norm_nonneg (π v c)) (norm_nonneg (π v u))]
+  linarith [norm_nonneg (π v c), norm_nonneg (π v u), mul_nonneg (norm_nonneg (π v c)) (norm_nonneg (π v u))]
 
 theorem le_gP_of_norm_le (π : ι → V →L[ℝ] ℂ) (R : ℝ) (x : V) (hx : ‖x‖ ≤ R) :
     ∏ v, ((1 + ‖π v‖ * R)^3)⁻¹ ≤ gP π x := by
@@ -548,7 +548,7 @@ private lemma vthp_le_one_tenth_of_small (c : Cfg) (h : c.Ok) (bb : ℝ) (hs : c
     rw [div_le_iff₀ (by linarith)] at hv
     rw [div_le_iff₀ hbp]
     have hkD : 0 ≤ (c.k:ℝ) * c.Del := mul_nonneg hk (by linarith)
-    nlinarith [mul_le_mul_of_nonneg_left hm hkD]
+    linarith [mul_le_mul_of_nonneg_left hm hkD]
   · norm_num
 
 theorem aZeroBound : AZeroBound := by
@@ -564,9 +564,9 @@ theorem aZeroBound : AZeroBound := by
     have h2 : Real.exp c.vth * Real.exp (-c.vth) = 1 := by rw [← Real.exp_add]; simp
     have h3 := Real.exp_pos c.vth
     have h4 := hs.hvth
-    nlinarith [mul_le_mul_of_nonneg_left h1 h3.le, mul_nonneg h3.le (by linarith : (0:ℝ) ≤ 1 / 10 - c.vth)]
+    linarith [mul_le_mul_of_nonneg_left h1 h3.le, mul_nonneg h3.le (by linarith : (0:ℝ) ≤ 1 / 10 - c.vth)]
   have hS : Real.sqrt (14 / 5) ≤ 1.6734 := by
-    nlinarith [Real.sq_sqrt (show (0:ℝ) ≤ 14 / 5 by norm_num), Real.sqrt_nonneg (14 / 5)]
+    exact (Real.sqrt_le_left (by norm_num)).2 (by norm_num)
   have hSE : Real.sqrt (14 / 5) * Real.exp c.vth ≤ 1.6734 * (10 / 9) :=
     mul_le_mul hS hE1 (Real.exp_pos _).le (by norm_num)
   have hcOne : 0 < cOne c bb := by
@@ -577,14 +577,14 @@ theorem aZeroBound : AZeroBound := by
     rw [le_div_iff₀ hW]
     have : 0.38 * (9 / 10) / (11 / 10) * (1 + c.vthp) ≤ 0.38 * (9 / 10) := by
       have : (1 + c.vthp) ≤ 11 / 10 := by linarith
-      nlinarith
+      linarith
     linarith
   refine ⟨?_, ?_⟩
   · unfold AZero
     exact div_pos (by positivity) hcOne
   · unfold AZero
     rw [div_le_iff₀ hcOne]
-    nlinarith [hSE, hcLow]
+    linarith [hSE, hcLow]
 
 lemma rho_nonneg (c : Cfg) (de de' : ℕ → ℝ) (Y : ℝ) (l i : ℕ) (h : c.Ok)
     (hlk : l + 2 ≤ c.k) (hY : Y ∈ c.cutI l) : 0 ≤ c.rho de de' (-Y) i := by
@@ -595,7 +595,7 @@ lemma rho_nonneg (c : Cfg) (de de' : ℕ → ℝ) (Y : ℝ) (l i : ℕ) (h : c.O
     have hv : 4 * c.Del ≤ c.v l := by
       unfold Cfg.v
       have hkl : (l:ℝ) + 2 ≤ c.k := by exact_mod_cast hlk
-      nlinarith [h.hv0, mul_nonneg (by linarith : (0:ℝ) ≤ c.Del) (by linarith : (0:ℝ) ≤ (c.k:ℝ) - 2 - l)]
+      linarith [h.hv0, mul_nonneg (by linarith : (0:ℝ) ≤ c.Del) (by linarith : (0:ℝ) ≤ (c.k:ℝ) - 2 - l)]
     exact div_nonneg (Real.sqrt_nonneg _) (by linarith [hY'.2])
   · exact div_nonneg (Real.sqrt_nonneg _) (Real.sqrt_nonneg _)
 
@@ -615,7 +615,7 @@ lemma edge_bound (c : Cfg) (de de' : ℕ → ℝ) (Y : ℝ) (l : ℕ) (h : c.Ok)
   have hv1 : 0 ≤ c.v 1 := by
     unfold Cfg.v
     push_cast
-    nlinarith [h.hv0, mul_nonneg (by linarith : (0:ℝ) ≤ c.Del) (by linarith : (0:ℝ) ≤ (c.k:ℝ) - 2)]
+    linarith [h.hv0, mul_nonneg (by linarith : (0:ℝ) ≤ c.Del) (by linarith : (0:ℝ) ≤ (c.k:ℝ) - 2)]
   have ha : 4 * c.k * c.Del ≤ c.a - c.v 1 := h.ha
   have h4 : 0 < 4 * (c.k:ℝ) * c.Del := mul_pos (mul_pos (by norm_num) (by linarith)) (by linarith)
   have hapos : 0 < c.a - c.v 1 := by linarith
@@ -806,7 +806,7 @@ lemma delLower (k f : ℕ) (lb CDel Del : ℝ) (hk : 1 ≤ k) (hf : 1 ≤ f) (hl
   have hk0 : (1:ℝ) ≤ k := by exact_mod_cast hk
   have hf0 : (1:ℝ) ≤ f := by exact_mod_cast hf
   have hkpos : (0:ℝ) < k := by linarith
-  have hfl : 1 ≤ (f:ℝ) * lb := by nlinarith
+  have hfl : 1 ≤ (f:ℝ) * lb := one_le_mul_of_one_le_of_one_le hf0 hlb
   have e1 : ((k : ℝ) * f * lb) ^ CDel = (k:ℝ) ^ CDel * ((f:ℝ) * lb) ^ CDel := by
     rw [mul_assoc, Real.mul_rpow hkpos.le (by positivity)]
   have e2 : (k : ℝ) ^ 4 * (k : ℝ) ^ (CDel - 4) = (k:ℝ) ^ CDel := by
@@ -815,7 +815,7 @@ lemma delLower (k f : ℕ) (lb CDel Del : ℝ) (hk : 1 ≤ k) (hf : 1 ≤ f) (hl
     rw [← this]; norm_cast
   have e3 : (f:ℝ) ^ 4 ≤ ((f:ℝ) * lb) ^ CDel := by
     calc (f:ℝ) ^ 4 ≤ ((f:ℝ) * lb) ^ 4 := by
-          apply pow_le_pow_left₀ (by linarith); nlinarith
+          apply pow_le_pow_left₀ (by linarith); exact le_mul_of_one_le_right (by linarith) hlb
       _ = ((f:ℝ) * lb) ^ (4:ℝ) := by norm_cast
       _ ≤ ((f:ℝ) * lb) ^ CDel := Real.rpow_le_rpow_of_exponent_le hfl hC.le
   have hkC : 0 ≤ (k:ℝ) ^ CDel := by positivity
@@ -842,7 +842,7 @@ lemma sqrtTTLower (x bb cT Cb mr TT : ℝ) (hx : 1 ≤ x) (hcT : 0 < cT) (hCb : 
   have h4 : x ^ (cT * Cb) ≤ x ^ (Cb / 2 * (cT * mr)) := by
     apply Real.rpow_le_rpow_of_exponent_le hx
     have : cT * Cb * 2 ≤ cT * Cb * mr := mul_le_mul_of_nonneg_left hm (by positivity)
-    nlinarith
+    linarith
   linarith
 
 lemma quantOne (x fr mr K P W Del : ℝ) (hx : 1 ≤ x) (hm : 0 < mr) (hmf : mr ≤ fr) (hf : 1 ≤ fr)
@@ -868,13 +868,13 @@ lemma quantOne (x fr mr K P W Del : ℝ) (hx : 1 ≤ x) (hm : 0 < mr) (hmf : mr 
   have B1 : P ^ 2 * (1000 * W ^ 2) * x * mr ^ 3 ≤ P ^ 2 * x * x * fr ^ 4 := by
     have := mul_le_mul hWx hm3 (by positivity) hx0.le
     have hp2 : 0 ≤ P ^ 2 := sq_nonneg P
-    nlinarith [mul_le_mul_of_nonneg_left this (mul_nonneg hp2 hx0.le)]
+    linarith [mul_le_mul_of_nonneg_left this (mul_nonneg hp2 hx0.le)]
   have B2 : P ^ 2 * x * x * fr ^ 4 ≤ x ^ 4 * fr ^ 4 * K := by
-    have hxx : x * x ≤ x ^ 4 := by nlinarith
+    have hxx : x * x ≤ x ^ 4 := by rw [← sq]; exact pow_le_pow_right₀ hx (by norm_num)
     have : P ^ 2 * (x * x) * fr ^ 4 ≤ K * x ^ 4 * fr ^ 4 := by
       apply mul_le_mul_of_nonneg_right _ (by positivity)
       exact mul_le_mul hPK hxx (by positivity) hK
-    nlinarith
+    linarith
   linarith
 
 lemma quantitative_fourth_power_bound (x fr mr K P V s Del : ℝ) (hx : 1 ≤ x) (hm : 0 < mr) (hmf : mr ≤ fr)
@@ -895,7 +895,7 @@ lemma quantitative_fourth_power_bound (x fr mr K P V s Del : ℝ) (hx : 1 ≤ x)
   have h4 : K * (x / 40 * x * (10 * fr)) ≤ x ^ 4 * fr ^ 4 * K / 4 := by
     have : x ^ 2 * fr ≤ x ^ 4 * fr ^ 4 := mul_le_mul hx2 hf1 (by linarith) (by positivity)
     have := mul_le_mul_of_nonneg_left this hK
-    nlinarith
+    linarith
   linarith
 
 lemma quantThree (x E P M sT : ℝ) (hx : 1 ≤ x) (hPE : P ^ 2 ≤ E) (hM : 0 < M)
@@ -914,7 +914,7 @@ lemma quantThree (x E P M sT : ℝ) (hx : 1 ≤ x) (hPE : P ^ 2 ≤ E) (hM : 0 <
       _ = x := Real.mul_self_sqrt hx0.le
   have hE : 0 ≤ E := le_trans (sq_nonneg P) hPE
   have := mul_le_mul hPE hMsx (by positivity) hE
-  nlinarith
+  linarith
 
 end Sz8
 
@@ -959,7 +959,7 @@ theorem threshold_products : ThresholdProducts := by
         refine ⟨mul_nonneg hCB0 (pow_nonneg hbase0 _), ?_⟩
         calc C * B w * (C * ka * N / (g * I)) ^ (2 * i - 2)
             ≤ (C * A0 * Real.sqrt k * t w) * (C * Real.pi * N / I) ^ 2 :=
-              mul_le_mul (hCB w) (le_trans hp1 hp2) (pow_nonneg hbase0 _) (by nlinarith [hCB w])
+              mul_le_mul (hCB w) (le_trans hp1 hp2) (pow_nonneg hbase0 _) (hCB0.trans (hCB w))
           _ = _ := by ring) htp
     calc _ ≤ _ := this
       _ = _ := by rw [mul_pow, ← pow_mul]; ring
@@ -975,7 +975,7 @@ theorem threshold_products : ThresholdProducts := by
         refine ⟨mul_nonneg hCB0 (pow_nonneg hbase0 _), ?_⟩
         calc C * B w * (C * ka * N / (g * I)) ^ (2 * (i - 1) + s - 1)
             ≤ (C * A0 * Real.sqrt k * t w) * (C * Real.pi * N / I) :=
-              mul_le_mul (hCB w) (le_trans hp1 hbase) (pow_nonneg hbase0 _) (by nlinarith [hCB w])
+              mul_le_mul (hCB w) (le_trans hp1 hbase) (pow_nonneg hbase0 _) (hCB0.trans (hCB w))
           _ = _ := by ring) htp
     calc _ ≤ _ := this
       _ = _ := by rw [mul_pow]; ring
@@ -1002,7 +1002,7 @@ theorem threshold_products : ThresholdProducts := by
         have hp : (C * ka * N / (g * I)) ^ (2 * (i - 1)) ≤ 1 := pow_le_one₀ hbase0 hbase1
         have h1 : C * B w * ka * (Real.sqrt TT)⁻¹ ≤ (C * A0 * Real.sqrt k * t w) * Real.pi * (Real.sqrt TT)⁻¹ := by
           apply mul_le_mul_of_nonneg_right _ (inv_nonneg.mpr hsT.le)
-          exact mul_le_mul (hCB w) hkapi hka.le (by nlinarith [hCB w])
+          exact mul_le_mul (hCB w) hkapi hka.le (hCB0.trans (hCB w))
         calc (C * B w * ka * (Real.sqrt TT)⁻¹) * (C * ka * N / (g * I)) ^ (2 * (i - 1))
             ≤ (C * B w * ka * (Real.sqrt TT)⁻¹) * 1 := mul_le_mul_of_nonneg_left hp hX0
           _ ≤ (C * A0 * Real.sqrt k * t w) * Real.pi * (Real.sqrt TT)⁻¹ := by rw [mul_one]; exact h1
@@ -1092,7 +1092,9 @@ theorem theta_power_bound : ThetaPower := by
   have hkM : (Real.pi * Ct * C * A0) ^ 2 ≤ k := by linarith
   have hkC : 40 * C * Real.pi ≤ k := by linarith
   have hke : Real.exp (2 / Cb) ≤ k := by linarith
-  have hk4 : (4:ℝ) ≤ k := by nlinarith [sq_nonneg (Ct * C * A0)]
+  have hk4 : (4:ℝ) ≤ k := by
+    have := mul_le_mul hC Real.pi_gt_three.le (by norm_num) (by linarith)
+    linarith
   have hk1 : (1:ℝ) ≤ k := by linarith
   have hkpos : (0:ℝ) < k := by linarith
   have hk1N : 1 ≤ k := by exact_mod_cast hk1
@@ -1119,7 +1121,7 @@ theorem theta_power_bound : ThetaPower := by
     have e : (k:ℝ) ^ 4 * ((f:ℝ) ^ 4 * (k:ℝ) ^ (CDel - 4)) = (k:ℝ) ^ 4 * (f:ℝ) ^ 4 * (k:ℝ) ^ (CDel - 4) := by ring
     linarith
   have hk2 : 16 * (k:ℝ) ^ 2 ≤ (k:ℝ) ^ 4 := by
-    have h16 : (16:ℝ) ≤ (k:ℝ) ^ 2 := by nlinarith
+    have h16 : (16:ℝ) ≤ (k:ℝ) ^ 2 := by have := mul_le_mul hk4 hk4 (by norm_num) hkpos.le; linarith
     calc 16 * (k:ℝ) ^ 2 ≤ (k:ℝ) ^ 2 * (k:ℝ) ^ 2 := mul_le_mul_of_nonneg_right h16 (sq_nonneg _)
       _ = (k:ℝ) ^ 4 := by ring
   have hk256 : (256:ℝ) ≤ (k:ℝ) ^ 4 := by
@@ -1143,7 +1145,7 @@ theorem theta_power_bound : ThetaPower := by
         (by positivity) hkW hD
       rw [hN]; exact this
     · have hsk : Real.sqrt k ≤ k := by
-        calc Real.sqrt k ≤ Real.sqrt ((k:ℝ) ^ 2) := Real.sqrt_le_sqrt (by nlinarith)
+        calc Real.sqrt k ≤ Real.sqrt ((k:ℝ) ^ 2) := Real.sqrt_le_sqrt (le_self_pow₀ hk1 (by norm_num))
           _ = k := Real.sqrt_sq hkpos.le
       have := Sz8.quantitative_fourth_power_bound k f m ((k:ℝ) ^ (CDel - 4)) ((k:ℝ) ^ cExp CDel cT Cb)
         (Real.pi * Ct * C ^ 2 * A0) (Real.sqrt k) Del hk1 (by linarith) hmf' hf1 (by positivity)
@@ -1189,7 +1191,7 @@ theorem final_smallness : FinalSmall := by
     have hlb0 : 0 ≤ Real.log bb := Real.log_nonneg hbb
     have h1 : 16 * Real.log bb ≤ c * Cf * Real.log bb := mul_le_mul_of_nonneg_right hcf hlb0
     have h2 : c * (Cf * Real.log bb) ≤ c * (f * Real.log k) := mul_le_mul_of_nonneg_left hlog hc.le
-    nlinarith
+    linarith
   have hbbT : bb ≤ T ^ f := by
     have : Real.log bb ≤ Real.log (T ^ f) := by rw [Real.log_pow]; exact hlogbb
     exact (Real.log_le_log_iff (by linarith) (by positivity)).mp this
@@ -1213,7 +1215,7 @@ theorem final_smallness : FinalSmall := by
   have h1 : (bb ^ 7)⁻¹ ≤ 1 := inv_le_one_of_one_le₀ (one_le_pow₀ hbb)
   have h2 : (r:ℝ) * (C / Th) ^ f ≤ C * ((r:ℝ) + 1) * (C / Th) ^ f := by
     apply mul_le_mul_of_nonneg_right _ (by positivity)
-    nlinarith
+    exact le_trans (by linarith) (le_mul_of_one_le_left (by positivity) hC)
   linarith
 
 end Formalism.FourierDecayAlt.P
@@ -1268,14 +1270,16 @@ theorem interlacing : Formalism.FourierDecayAlt.Sz.Interlacing := by
     · by_cases h1 : i = 1
       · subst h1
         have : c.u de 1 = c.a := by simp [Cfg.u]
-        rw [this]; nlinarith
+        have h4 : (16 : ℝ) ≤ 4 * (c.k : ℝ) * c.Del := by
+          have := mul_le_mul hkR hDel (by norm_num) (by linarith); linarith
+        rw [this]; linarith [ha, h4]
       · have hne : i ≠ c.k := by omega
         have : c.u de i = c.v (i - 1) - 1 / 2 - de (i - 1) * c.Del := by simp [Cfg.u, h1, hne]
         rw [this]
         have hc1 : ((i - 1 : ℕ) : ℝ) = (i : ℝ) - 1 := by
           rw [Nat.cast_sub hi1]; simp
         unfold Cfg.v; rw [hc1]
-        rcases hw.1 (i - 1) with h | h <;> rw [h] <;> nlinarith
+        rcases hw.1 (i - 1) with h | h <;> rw [h] <;> linarith [hDel]
     · have h1 : i + 1 ≠ 1 := by omega
       by_cases hlast : i + 1 = c.k
       · have : c.u de (i + 1) = c.ulast := by
@@ -1290,7 +1294,7 @@ theorem interlacing : Formalism.FourierDecayAlt.Sz.Interlacing := by
       · have : c.u de (i + 1) = c.v i - 1 / 2 - de i * c.Del := by
           unfold Cfg.u; rw [if_neg h1, if_neg hlast]; simp
         rw [this]
-        rcases hw.1 i with h | h <;> rw [h] <;> nlinarith
+        rcases hw.1 i with h | h <;> rw [h] <;> linarith [hDel]
   · have hl : c.lam c.k = -c.b 1 := by simp [Cfg.lam]
     have hu : c.u de c.k = c.ulast := by
       have : c.k ≠ 1 := by omega
@@ -1309,7 +1313,7 @@ theorem lamStrictAnti : Formalism.FourierDecayAlt.Sz.LamAnti := by
     have h1 : c.lam t = c.v t := by simp [Cfg.lam, htk]
     have h2 : c.lam s = c.v s := by simp [Cfg.lam, hsk]
     rw [h1, h2]; unfold Cfg.v
-    nlinarith
+    have := mul_le_mul_of_nonneg_right hstR (by linarith [hc.hDel] : (0:ℝ) ≤ 2 * c.Del); linarith
   · have h1 : c.lam t = -c.b (t + 1 - c.k) := by simp [Cfg.lam, htk]
     rw [h1]
     by_cases hsk : s < c.k
@@ -1319,7 +1323,7 @@ theorem lamStrictAnti : Formalism.FourierDecayAlt.Sz.LamAnti := by
       have hskR : (s : ℝ) + 1 ≤ (c.k : ℝ) := by exact_mod_cast hsk
       have hv0 := hc.hv0
       unfold Cfg.v
-      nlinarith
+      have := mul_nonneg (by linarith [hc.hDel] : (0:ℝ) ≤ c.Del) (by linarith : (0:ℝ) ≤ (c.k : ℝ) - 1 - s); linarith
     · have h2 : c.lam s = -c.b (s + 1 - c.k) := by simp [Cfg.lam, hsk]
       rw [h2]
       have := Sz3.b_lt c hc (s + 1 - c.k) (by omega) (t + 1 - c.k) (by omega) (by omega)
@@ -1373,7 +1377,7 @@ lemma small_f (f k : ℕ) (hfk : f ≤ k) (hk : 7 ≤ k) : (f : ℝ) * (8 / 2 ^ 
   have hf : (f : ℝ) ≤ k := by exact_mod_cast hfk
   have hlog := Real.log_two_gt_d9
   rw [mul_div_assoc', div_le_iff₀ hpos]
-  nlinarith [mul_lt_mul_of_pos_right hlog hpos]
+  linarith [mul_lt_mul_of_pos_right hlog hpos]
 
 alias vand_pos := _root_.Formalism.FourierDecayAlt.P.Sz4.vand_pos
 
@@ -1459,7 +1463,7 @@ theorem sz_sizesMain_of (hCorA : CorA) (hBeta : BetaOnCut) (hAZ : AZeroBound)
   obtain ⟨Ct, hCt⟩ : ∃ Ct : ℝ, Ct = 2 * C0 * Real.exp (1 / 4) := ⟨_, rfl⟩
   have hCt1 : 1 ≤ Ct := by
     have : 1 ≤ Real.exp (1 / 4) := Real.one_le_exp (by norm_num)
-    rw [hCt]; nlinarith
+    rw [hCt]; exact le_trans (by linarith) (le_mul_of_one_le_right (by linarith) this)
   obtain ⟨k1, hk1⟩ := hThP CA 160 Ct CDel cT Cb hCA (by norm_num) hCt1 hCDel hcT hCb hcTCb
   obtain ⟨k2, hk2⟩ := hFS CA (cExp CDel cT Cb) hCA hc
   refine ⟨max 7 (max k1 k2), ?_⟩
