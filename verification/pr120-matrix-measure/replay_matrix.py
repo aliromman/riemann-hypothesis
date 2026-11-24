@@ -101,6 +101,13 @@ def main():
             print(tag, label, result["exit"], len(result["errors"]), flush=True)
             if len(result["errors"]) != errors or result["exit"] != int(errors != 0):
                 raise RuntimeError("Unexpected compiler result in "+tag+" "+label)
+    original_header = output / "original-header"
+    proof = run(original_header, DOUBLE, source(repo, ORIGINAL, DOUBLE), lib)
+    if proof["exit"] or proof["errors"]:
+        raise RuntimeError("The doubling integral failed with its original imports.")
+    include_library(lib, original_header)
+    results["originalHeader"] = proof
+    (output/"result.json").write_text(json.dumps(results,indent=2)+"\n")
 
 if __name__=="__main__":
     main()

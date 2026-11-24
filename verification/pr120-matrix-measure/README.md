@@ -46,3 +46,26 @@ Both normal builds completed 11,989 Lake jobs across the same 829 project source
 
 
 The three providers have 293 direct project importers. The transitive set has 14,667 modules including the providers. Of these, 14,653 are dependencies of `Main`. The two source cones used here contain 23 affected modules. The upstream draft still requires the complete build. [Project import graph](affected-import-graph.json)
+
+## Repeat the definition checks
+
+The Lean checker reads the stock and candidate objects for each of the three providers and for `rowEqM`. It checks their types and values in both environments. The Python driver verifies all eight results against the receipt for the selected toolchain.
+
+On 4.36, run the proof replay above first. It recompiles the original doubling-integral source with the three changed providers in a separate directory. From the original checkout, run the following commands with the same `scratch` and `tools` paths.
+
+```sh
+stock_path=$(lake env printenv LEAN_PATH)
+python3 "$tools/compare_matrix_definitions.py" --lean "$(command -v lean)" \
+  --stock-path "$stock_path" --candidate-path "$scratch/original-header:$stock_path" \
+  --expected "$tools/4.36-definitions.json"
+```
+
+On 4.37, use the two built checkouts from the previous section. Lake supplies the absolute object paths for each checkout.
+
+```sh
+stock_path=$(cd "$before" && "$bin/lake" env printenv LEAN_PATH)
+candidate_path=$(cd "$after" && "$bin/lake" env printenv LEAN_PATH)
+python3 "$tools/compare_matrix_definitions.py" --lean "$bin/lean" \
+  --stock-path "$stock_path" --candidate-path "$candidate_path" \
+  --expected "$tools/4.37-definitions.json"
+```
