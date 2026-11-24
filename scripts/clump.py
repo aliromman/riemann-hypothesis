@@ -70,7 +70,7 @@ def lib_of(mod):
 
 
 class Module:
-    __slots__ = ("name", "path", "header", "body", "imports", "lines", "exotic", "decls")
+    __slots__ = ("name", "path", "header", "body", "imports", "lines", "exotic", "decls", "scopes")
 
     def __init__(self, name, path, text):
         self.name = name
@@ -98,8 +98,8 @@ class Module:
         self.body = "\n".join(lines[h:])
         self.imports = imports
         # Size counts the body plus seam overhead; imports are deduplicated in the clump header.
-        stack, self.decls = scan(self.body)
-        self.lines = self.body.count("\n") + 6 + len(stack)
+        self.scopes, self.decls = scan(self.body)
+        self.lines = self.body.count("\n") + 6 + len(self.scopes)
         self.exotic = exotic
 
 
@@ -396,7 +396,7 @@ def render_members(out, order, mods):
             marker = SHARED_OPENS if group_end + 1 == len(order) else "section " + SHARED_OPENS
             out.extend([marker, *opens, ""])
         body = original if not opens else original[:1] + original[1 + len(opens):]
-        closing = closers(open_scopes(mods[name].body))
+        closing = closers(mods[name].scopes)
         final = i + 1 == len(order)
         borrow = final or has_own_scope(body, closing)
         if borrow and body and body[0] in PUBLIC_SECTIONS:
@@ -452,7 +452,7 @@ def render(root, order, mods):
         out.append(HEADER_TAG + json.dumps(info, ensure_ascii=False))
         out.append("section" + AUTO)
         out.append(body)
-        out += closers(open_scopes(body))
+        out += closers(mod.scopes)
         out.append("end" + AUTO)
         out.append(SEAM_END + m + " =====")
         out.append("")
