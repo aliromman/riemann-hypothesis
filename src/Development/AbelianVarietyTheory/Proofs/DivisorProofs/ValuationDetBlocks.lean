@@ -63,8 +63,6 @@ open scoped NNReal ENNReal
 
 noncomputable section
 
-attribute [local instance 2000] GlobalTheory.SplitWeil.matrixMeasurableSpace
-
 namespace GlobalTheory.StdLocZeta
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -130,8 +128,6 @@ open GlobalTheory.StdLoc (glVol blockIdx)
 open scoped NNReal ENNReal
 
 noncomputable section
-
-attribute [local instance 2000] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 namespace GlobalTheory.LocStd
 

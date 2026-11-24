@@ -51,9 +51,6 @@ open MeasureTheory Matrix ComplexConjugate
 
 namespace Formalism.DoubleCosetMeasures
 
-@[reducible] scoped instance instMeasMat {m n F : Type} [MeasurableSpace F] : MeasurableSpace (Matrix m n F) :=
-  Matrix.instMeasurableSpace
-
 section Weil
 
 variable {F : Type} [Field F] {a : ℕ} {m : Type} [Fintype m]

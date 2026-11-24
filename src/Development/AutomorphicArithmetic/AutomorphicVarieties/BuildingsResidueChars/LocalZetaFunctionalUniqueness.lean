@@ -316,4 +316,4 @@ theorem UpperTheory.local_zeta_functional_uniqueness :
   · rw [hKset]
     exact hT.preimage ((comap_measurable Units.val).comp
       (@measurable_subtype_coe (GL (Fin n) F)
-        (MeasurableSpace.comap Units.val GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix) _))
+        (MeasurableSpace.comap Units.val inferInstance) _))

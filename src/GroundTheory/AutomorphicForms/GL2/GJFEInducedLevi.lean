@@ -154,10 +154,9 @@ theorem norm_leviIntegrandB (κ : levi F n β →* ℝ≥0) (Ψ : Matrix (Fin n)
 omit [IsNonarchimedeanLocalField F] in
 instance borelSpace_GL : BorelSpace (GL (Fin n) F) := by
   refine ⟨?_⟩
-  have hM : (measurableSpace_matrix : MeasurableSpace (Matrix (Fin n) (Fin n) F)) =
-      _root_.borel (Matrix (Fin n) (Fin n) F) := BorelSpace.measurable_eq
   show MeasurableSpace.comap Units.val _ = _
-  rw [hM, ← borel_comap, ← (Measures.isOpenEmbedding_val F n).isEmbedding.eq_induced]
+  rw [BorelSpace.measurable_eq (α := Matrix (Fin n) (Fin n) F), ← borel_comap,
+    ← (Measures.isOpenEmbedding_val F n).isEmbedding.eq_induced]
 
 theorem levi_decomp {ψ : AddChar F Circle} (hψ : Continuous ψ) (hψ1 : ψ ≠ 1) {γ : RatFunc ℂ}
     (hL : LeviFE F σ (inducedChar β) (measureM β ψ) ψ γ) {Φ : Matrix (Fin n) (Fin n) F → ℂ}

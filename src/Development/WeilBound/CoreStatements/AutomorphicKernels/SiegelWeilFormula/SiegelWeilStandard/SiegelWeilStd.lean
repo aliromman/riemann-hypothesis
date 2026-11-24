@@ -73,10 +73,6 @@ import Development.WeilBound.CoreStatements.AutomorphicKernels.EisensteinSeriesG
 import Mathlib.Topology.Separation.CompletelyRegular
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilFinFinal
 
--- Two defeq-but-not-reducibly-equal matrix measurable space instances are in scope; the statements
--- used here (`CoefData`, `fc`, ...) are phrased with `instMeasMat`, so prefer it.
-attribute [local instance high] Formalism.DoubleCosetMeasures.instMeasMat
-
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilActions.LocCompactNA, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilActions.PsiTContPer, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.RationalCoordinates.RationalCoordinateCountability.CountableRatV, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilActions.CoordsE, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilStandard.SiegelWeilStd
 

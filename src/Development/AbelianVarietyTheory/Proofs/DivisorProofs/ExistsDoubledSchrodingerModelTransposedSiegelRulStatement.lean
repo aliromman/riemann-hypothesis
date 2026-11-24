@@ -791,7 +791,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Ch
 open Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 noncomputable section
 
@@ -942,7 +941,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Ch
 open Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 
 end -- clump:auto
@@ -961,7 +959,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Ch
 open Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 namespace GlobalTheory.DblBoxTheta
 
@@ -1029,7 +1026,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Ch
 open Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 
 end -- clump:auto
@@ -1048,7 +1044,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Ch
 open Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 open MeasureTheory
 
@@ -1162,7 +1157,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Ch
 open Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 
 end -- clump:auto
@@ -1180,7 +1174,6 @@ open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorMode
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open Formalism.IndefR.Datum
 
 noncomputable section

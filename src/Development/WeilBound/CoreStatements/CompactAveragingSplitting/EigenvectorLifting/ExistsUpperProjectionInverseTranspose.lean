@@ -69,8 +69,6 @@ namespace PositivityTheory.ThK.SplitLoc
 open GlobalTheory.SplitFlip GlobalTheory.SplitWeil GlobalTheory.GLDoubling
 open GlobalTheory.IwahoriInj (Deep)
 
-attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace
-
 section Group
 variable {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [MeasurableSpace G] [BorelSpace G]
 

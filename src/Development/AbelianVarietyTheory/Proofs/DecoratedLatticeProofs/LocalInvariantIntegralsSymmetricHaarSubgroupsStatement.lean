@@ -97,7 +97,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 noncomputable section
@@ -151,7 +150,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 
@@ -173,7 +171,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 noncomputable section
@@ -271,7 +268,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 
@@ -293,7 +289,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 noncomputable section
@@ -478,7 +473,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 
@@ -500,7 +494,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 noncomputable section
@@ -606,7 +599,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 
@@ -628,7 +620,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 theorem GlobalTheory.HaarR.map_prodR_isMulLeftInvariant : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] [MeasurableSpace k] [BorelSpace k] (n : Type) [Fintype n] [DecidableEq n] (c p : ℕ), 1 ≤ p → p ≤ c → ∀ (ν : Measure k), ν.IsAddHaarMeasure → ∀ m : Measure (GL n k), m.IsHaarMeasure → ((m.prod (volN ν n c p)).map (prodR p)).IsMulLeftInvariant := by
@@ -718,7 +709,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 
@@ -740,7 +730,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 namespace GlobalTheory.HaarR
@@ -809,7 +798,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 
@@ -831,7 +819,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 noncomputable section
@@ -990,7 +977,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.HaarR
 
 
@@ -1012,7 +998,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 namespace GlobalTheory.HaarR
 open scoped ENNReal NNReal

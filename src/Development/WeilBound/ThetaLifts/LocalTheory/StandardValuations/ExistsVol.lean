@@ -85,8 +85,6 @@ open Matrix MeasureTheory ValuativeRel Topology GlobalTheory.SplitFlip GlobalThe
 
 namespace PositivityTheory.ThKG.Std
 
-attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace
-
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
   {n d a a' : ℕ} {ν α β : kˣ →* ℂˣ} {ϖ : kˣ} {c : ℕ}
 

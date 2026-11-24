@@ -868,8 +868,6 @@ end Local
 
 section Ram
 
-attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace
-
 theorem ramMaps_of (hI : IndIrredNarrow) : RamMaps := by
   intro k _ _ _ _ _ _ a a' ϖ α β ν H hν
   exact ⟨fun _ h _ h₁ c => pRam_add H hν h h₁ c, fun _ h _ h₁ c => pRam'_add H h h₁ c, fun _ h => pRam_mem H hν h,
