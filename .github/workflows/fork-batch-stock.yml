@@ -115,6 +115,7 @@ jobs:
           git diff --exit-code -- src lake-manifest.json lakefile.toml lean-toolchain
           df -h .
       - name: Build and compare the candidate
+        id: stock
         working-directory: candidate
         shell: bash
         run: bash "$CI_HELPERS/check.sh" "$PANEL" "$WORK" "$CI_HELPERS"
@@ -129,7 +130,7 @@ jobs:
           export LEAN_NUM_THREADS=1
           lake env python3 "$CI_HELPERS/theorem_check.py" "$WORK" ../parent
       - name: Measure fresh parent and candidate compilations
-        if: success() && env.PANEL == 'bounded'
+        if: always() && steps.stock.outcome == 'success' && env.PANEL == 'bounded'
         continue-on-error: true
         timeout-minutes: 70
         working-directory: candidate
@@ -139,7 +140,7 @@ jobs:
           export MATHLIB_CACHE_DIR="$RUNNER_TEMP/mathlib-cache"
           lake env python3 "$CI_HELPERS/benchmark.py" "$WORK" ../parent
       - name: Time paired source-to-olean stock Lake builds
-        if: success()
+        if: always() && steps.stock.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 32
         working-directory: candidate

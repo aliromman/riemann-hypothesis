@@ -17,5 +17,7 @@
   "mode": "github-pull-merge",
   "pull_number": 879,
   "facet_policy": "complete-parent-payload-exact-private-import-header-v2",
-  "preceding_raw_comparison_run": 45368083272
+  "theorem_source_policy": "unchanged-original-proof-body-and-private-imports",
+  "preceding_raw_comparison_run": 45368083272,
+  "preceding_schema_run": 45369661753
 }

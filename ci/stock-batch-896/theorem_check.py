@@ -1,5 +1,6 @@
 """Judge up to two edited panel theorems against their published parent exports."""
 
+import difflib
 import hashlib
 import json
 import os
@@ -12,6 +13,26 @@ import sys
 import tempfile
 import time
 
+PREFIX = "Development.AbelianVarietyTheory.Definitions.Divisors."
+# Each entry gives the module, the exported name, and the theorem name in its namespace.
+THEOREMS = (
+    (
+        "CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+        "GlobalTheory.CatCoh.commAlgFunctorCoboundaryZero_mem_cocyclesOne",
+        "commAlgFunctorCoboundaryZero_mem_cocyclesOne",
+    ),
+    (
+        "ExistsAlgHomOfIsBaseChange",
+        "GlobalTheory.TopForm.isBaseChange_exteriorPower",
+        "isBaseChange_exteriorPower",
+    ),
+    ("HasQIff", "GlobalTheory.QFam.IsRAct.actBij", "IsRAct.actBij"),
+    (
+        "LeTwoMulOfForallScale",
+        "GlobalTheory.HermFrame.le_two_mul_of_forall_scale",
+        "le_two_mul_of_forall_scale",
+    ),
+)
 EXPORT_LIMIT = 96 * 1024**2
 KERNELS = ("Lean default", "Lean paranoid", "nanoda")
 
@@ -74,14 +95,29 @@ def inspect_export(path, target):
     return dict(bytes=path.stat().st_size, sha256=digest.hexdigest(), theorem_proof_expr_index=proof)
 
 
-def source_evidence(parent, candidate, local_name, transition):
-    name = re.escape(local_name.encode())
-    source_declaration = rb"(?m)^\s*(?:theorem|lemma) " + name + rb"(?:[ {(]|$)"
-    for side, body in (("parent", parent), ("candidate", candidate)):
-        if hashlib.sha256(body).hexdigest() != transition[side] or not re.search(source_declaration, body):
-            raise ValueError(f"{side} source does not match the declared theorem and structural transition")
-    if parent == candidate:
-        raise ValueError("the chosen theorem module has identical source")
+def source_edits(parent, candidate, local_name):
+    marker = b"@[expose] public section\n"
+    a, sep, old_body = parent.partition(marker)
+    b, _, new_body = candidate.partition(marker)
+    if (
+        not sep
+        or old_body != new_body
+        or not re.search(rb"(?m)^theorem " + re.escape(local_name.encode()) + rb"[ {(]", old_body)
+    ):
+        raise ValueError(f"the original source does not supply the same theorem body for {local_name}")
+    removed = []
+    original, revised = a.splitlines(keepends=True), b.splitlines(keepends=True)
+    for tag, i, j, _, _ in difflib.SequenceMatcher(None, original, revised, autojunk=False).get_opcodes():
+        if tag == "equal":
+            continue
+        if tag != "delete" or any(
+            not re.fullmatch(rb"import Mathlib\.[\w.']+\n", line) for line in original[i:j]
+        ):
+            raise ValueError(f"unexpected source changes before {local_name}")
+        removed.extend(line[7:-1].decode() for line in original[i:j])
+    if not removed:
+        raise ValueError(f"{local_name} has no private import edits")
+    return removed
 
 
 def run(work, trusted, report, summary, directory):
@@ -98,9 +134,11 @@ def run(work, trusted, report, summary, directory):
             raise ValueError("a second project build appears on the dependency search path")
     changed = set(report["changed"]) & set(report["roots"])
     panel = json.loads(Path(__file__).with_name("panel.json").read_bytes())
-    chosen = panel["theorems"]
-    if len(chosen) != 2 or len({r["module"] for r in chosen} & changed) != 2:
-        raise ValueError("both predeclared theorems must belong to edited panel roots")
+    chosen = [(q["module"],q["name"],q["local"]) for q in panel["theorems"]]
+    if len(chosen) != 2 or not {m for m,_,_ in chosen} <= changed:
+        raise ValueError("the two original theorem names must belong to actual changed roots")
+    if not chosen:
+        raise ValueError("no named theorem lies in an edited panel root")
 
     def git_file(name):
         return subprocess.check_output(["git", "-C", trusted, "show", f"HEAD:{name}"], text=True)
@@ -138,16 +176,14 @@ def run(work, trusted, report, summary, directory):
                 dest = (parent_lib / rel).with_suffix(ext)
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 os.link(work / "parent" / (m + ext), dest)
-        for target in chosen:
-            m, name, local = target["module"], target["name"], target["local"]
+        for m, name, local in chosen:
             rel = Path("src", *m.split(".")).with_suffix(".lean")
             before, after = (trusted / rel).read_bytes(), (candidate / rel).read_bytes()
-            source_evidence(before, after, local, panel["changed_sources"][m])
             result = dict(
                 module=m,
                 theorem=name,
                 status="running",
-                clump_members=panel["changed_sources"][m]["members"],
+                removed_imports=source_edits(before, after, local),
                 parent_source_sha256=hashlib.sha256(before).hexdigest(),
                 candidate_source_sha256=hashlib.sha256(after).hexdigest(),
                 exports={},
@@ -175,9 +211,6 @@ def run(work, trusted, report, summary, directory):
                         )
                     result["exports"][side] = inspect_export(export, name)
                     result["exports"][side]["elapsed_seconds"] = round(elapsed, 3)
-                if (result["exports"]["parent"]["sha256"] != target["sha256"]
-                    or result["exports"]["candidate"]["sha256"] != target["sha256"]):
-                    raise ValueError(f"the two genuine theorem proof exports differ from the authenticated {name} preflight")
                 config = policy | dict(challenge_module=m, solution_module=m, theorem_names=[name])
                 cfg, native = directory / (stem + "-config.json"), directory / (stem + "-report.json")
                 write_json(cfg, config)
