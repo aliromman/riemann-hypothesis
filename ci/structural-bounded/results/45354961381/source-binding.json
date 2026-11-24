@@ -1,0 +1,160 @@
+{
+  "status": "same bounded sources, dependencies and compiler inputs",
+  "original_run": 45354961381,
+  "original_workflow": "d8f3ee0119ccbd71c783f72c8e62907d0ec24ce6",
+  "original_artifact_id": 14903234340,
+  "original_artifact_sha256": "f19dba0994ba94fd32119e086a5fba2865a66ce679a70dfb8701e527b3f1c728",
+  "original_candidate": "b9be9b789d211a66c8918d22ef288d9d0a091a36",
+  "original_candidate_src": "ea4eca26ea9220038083bd2c6c6313c0a2cba605",
+  "published_source": "bde5d32d9681e0e3b30295b53d7bdb45b6cf463a",
+  "previous_parent": "d27f71347abceb76cd37dc8a5fccbe556ec2be90",
+  "current_parent": "e23fe94c20626997fceadcc817237335a0602c20",
+  "official_current_receipt_sha256": "d85e73fad82557dc3d320a98e0a01387640d0b5454a6d50976bd363e44a5c411",
+  "module_manifest": "18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a",
+  "authenticated_parent_modules": 60928,
+  "changed_clumps": 31,
+  "declaration_instances": 7045,
+  "theorems": {
+    "GlobalTheory.CompanionTheory.SW.Averaging.bijective_pair": "31bf90c0ba09af45d2a9f9f99cc93265e87b6cd3824bb11016d34544ef565bf3",
+    "Formalism.LatticeBaseChangeAlt.four_term_sum_bound_of_parameters": "9bf232ca29179dce903c72e3121754f9e639887a77f3072e88ef1ce68638c35b"
+  },
+  "timings_computed_by_original_run": 45354961381,
+  "timing": {
+    "compiler": {
+      "status": "complete",
+      "totals": {
+        "cpu_seconds": {
+          "parent_sum_medians": 113.57726099999994,
+          "candidate_sum_medians": 112.87518599999991,
+          "change_percent": -0.6181475004930936,
+          "slower_modules": [
+            "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable",
+            "Formalism.JumpKernelCokernel.LengthTheoremsWithEarlier",
+            "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof",
+            "ReciprocityTheory.DualLattices.QExpansionMonoWCoeffZero"
+          ]
+        },
+        "elapsed_seconds": {
+          "parent_sum_medians": 113.03841622999971,
+          "candidate_sum_medians": 112.40928447399978,
+          "change_percent": -0.5565645529921781,
+          "slower_modules": [
+            "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable",
+            "Formalism.JumpKernelCokernel.LengthTheoremsWithEarlier",
+            "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof",
+            "ReciprocityTheory.DualLattices.QExpansionMonoWCoeffZero"
+          ]
+        }
+      }
+    },
+    "stock_lake": {
+      "status": "complete",
+      "metrics": {
+        "elapsed_seconds": {
+          "parent_median": 18.856839301000036,
+          "candidate_median": 18.770384092000086,
+          "change_percent": -0.45848197367501786,
+          "parent_range": [
+            18.673631400999966,
+            19.28583047500001
+          ],
+          "candidate_range": [
+            18.681260346000045,
+            19.09519900600003
+          ],
+          "slower_pairs": [
+            4,
+            5
+          ]
+        },
+        "cpu_seconds": {
+          "parent_median": 20.872032,
+          "candidate_median": 20.74577699999999,
+          "change_percent": -0.604900375775641,
+          "parent_range": [
+            20.64816400000001,
+            21.366679999999995
+          ],
+          "candidate_range": [
+            20.685858999999994,
+            21.14708600000001
+          ],
+          "slower_pairs": [
+            4,
+            5
+          ]
+        }
+      }
+    }
+  },
+  "pull_number": null,
+  "observed_upstream_main": "ed2fb2c8dbc2380ce1f46627b8f777634b041244",
+  "complete_candidate_src": "ab277d171ac7c97287fdf2ed74926476f744ac81",
+  "complete_parent_src": "70327238ca7c4189479eee72f3c22812f1922329",
+  "pins": {
+    ".gitattributes": "388ae3892de0350a636b6ecef7026bfc1959ef06",
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294"
+  },
+  "different_source_paths_outside_check": [
+    "src/Development/AbelianVarietyTheory/Definitions/AutomorphicMembership/ExpoConjOfIsCsd.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/BesselToJacobiFirstStepFlatMapSupportAll.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/SeeSawIteratedIntegralLawAtTwistOfFactorisationStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/ExistsThetaSystemOfPolarisedLevel.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/CechCocycleEqCoboundaryAddLogDerivativesAffine.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsConnectionMatrixInvariantBasisStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsIsoUniformisationTranslateOrderTwo.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsThetaSystemRealisationRegularAtPrimeStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/HarrisTaylorAuxiliarySymplecticLevelRepresentablStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/InertPrimesLossLogSumAdmissible.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/LogDerivativesCoboundaryCoeffsMemMaximalIdeal.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/MemDividingLabelsIffClassZeroStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/RigidBoundaryChartsForFanUnitaryDatumStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SupremumConstantLogBound.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/TateSimilitudeIffOfSpecializesGeometricPoints.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/TwoLevelFlagDomainCuspFormRanksShiftedWeights.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/UniformisationPeriodsTranslatedBundleTwistStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/MaximalHermitianLatticeMassRatio.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/HeightProofs/UnitaryLatticeDenominatorHeightBoundProof.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsWachPrismOverIntegers.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ProdGammaSubJumpUnitsAnnihilatesQuotient.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/ExistsAdelicReadingDefiniteFormsGivenCoefficientStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/AlgebraicCoboundaryOfHolomorphicCoboundary.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/ExistsLetterCoordinatesSeriesOnePlace.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/OppositePathLocalTotalTensorMemCoefficientField.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/CharacterLevelBounds/PartModel.lean",
+    "src/Development/AutomorphicArithmetic/Foundations/Convolution/TwistedLocalOrbits/ContractI.lean",
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/SiegelWeilFinCore.lean",
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/SiegelWeilFinFinal.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/GoodReduction/SerreTate.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/WittTowerTopStageThetaNormFormula.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ImportsMoreLastStatement.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopShape.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/CoordsStatement.lean",
+    "src/Development/EtaleCohomology/EtaleSheaves/ArchimedeanComparison.lean",
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/RealAdelicFockSpace/ExpAlg.lean",
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/LocVan.lean",
+    "src/Formalism/LocalToGlobal/CharacterGerms/RowTieUpFBr.lean",
+    "src/Formalism/LocalToGlobal/GroupLattices/LinkGConcreteNoKer.lean",
+    "src/Formalism/LocalToGlobal/SiegelLatticeTheory/ClosedLocalOrbits/GaugeLatticeShifts/NormStepsLeviOntoSEnd.lean",
+    "src/Formalism/SharpRestriction/GlobalSchurBounds/GlobalRankLatticeProofs/CMFieldLemmas.lean",
+    "src/Formalism/SharpRestriction/GlobalSchurBounds/GlobalRankLatticeProofs/LemmaOneEightHolds.lean",
+    "src/Formalism/SharpRestriction/GrowthBounds/LogarithmicSums.lean",
+    "src/Formalism/SharpRestriction/GrowthBounds/LogarithmicSums/MeanNum.lean",
+    "src/Formalism/SharpRestriction/GrowthBounds/LogarithmicSums/StarFam.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/RemainderTerms/Imports.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/RemainderTerms/StatementsFlag.lean",
+    "src/GroundTheory/ProfiniteCohomology/LocalClassFormation/InvariantSplit.lean"
+  ],
+  "complete_candidate_src_equal": false,
+  "checked_project_modules": 204,
+  "dependency_graph": {
+    "ordered_import_lists_sha256": "636be205ec91627006fbc9468074b97e186167ef9249d0fabc663fd34ac35ad5",
+    "checked_source_versions": 2,
+    "checked_upstream_readers": 2,
+    "distinct_external_imports": 369
+  }
+}
