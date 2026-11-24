@@ -1,5 +1,17 @@
 # Scope of the two AdmLoc instances after batch 3
 
+Roy7 built the stock and candidate versions of 1,000 affected modules. Both Lake runs exited 0. The strict comparison exited 1. All 12,825 public axiom records agree. Of 872 changed term fields, 869 passed direct kernel comparison in both environments. The other three passed after expansion of proof helpers. Six modules account for the strict failure. For each of their twelve flagged definitions, the two metadata dumps differ only in the regular unfolding height, from 9 to 8. These receipts cover six of the eight terminal targets. The remaining two are `Main` and `TwistRatios.AutIso`. [Roy7's run](https://github.com/leanprover-community/riemann-hypothesis/pull/911#issuecomment-7139478023) · [Pinned receipts](https://gist.github.com/roy7/db4def455fe93b5b7d58c87e86635b26/84d61140ee7235dce6fa95681fa0e1b03ab2c363)
+
+To repeat the receipt check and run the remaining 587 modules, set `tools` as described below. Reuse the two original checkouts and build directories. Use a fresh output directory for this run.
+
+```sh
+git clone https://gist.github.com/db4def455fe93b5b7d58c87e86635b26.git "$out/roy7-gist"
+python3 "$tools/c988/verify_roy7_receipt.py" "$out/roy7-gist" "$tools/c988/dependents.json" > "$out/remaining.txt"
+cmp "$out/remaining.txt" "$tools/c988/remaining-587.txt"
+python3 "$tools/run_dependents.py" --plan "$tools/c988/dependents.json" \
+  --stock "$stock" --candidate "$candidate" --modules "$out/remaining.txt" --out "$out/remaining"
+```
+
 Community main is `c9883164b0b3d762cee21f889d03d59a53b3ba3b`. The candidate is `e05737b0d310930177bc746e7cf64f12d7731438`. The batch deleted the unreachable `CtrlMu` module. The candidate changes the provider and the four remaining modules that disabled `modFun`. There are 271 direct importers. The provider and its transitive importers account for 1,587 modules. Their eight terminal targets use 60,591 project sources on Lean 4.37.0-rc1. [Dependency list and revisions](dependents.json)
 
 The first two runs cover the provider, `UnramifiedEnlargementCutCocyclesBlochKato`, `ImportsSide`, and `Smooth`. The second run verified 1,753 project source blobs on each side and completed all 14,240 Lake jobs. The four modules retain 217 public declarations and all 217 axiom sets. All 95 computational definitions match. Three stored types differ. Both kernels checked that each pair is definitionally equal. The records list each changed declaration. The previous 467-module run used the revisions in the parent directory. [Current run](stage2/result.json) · [Kernel records](stage2/new-conversion.jsonl) · [Build summaries](builds.json)
