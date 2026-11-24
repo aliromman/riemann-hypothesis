@@ -15,7 +15,7 @@ from types import SimpleNamespace
 
 from manifest import read_request,sha
 from native import Blobs,file_sha,git,header,hosted_batch,ls,tree
-from providers import FACETS,PROVIDERS
+from providers import FACETS,PROVIDERS,public_inputs
 
 HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE.parent/'import-screen'))
@@ -228,7 +228,8 @@ def main():
     special={dep for edges in graph.values() for dep,_,meta,deep in edges if meta or deep}
     if special & inputs.keys():
         raise ValueError('a candidate has a private or meta project consumer')
-    modules=sorted(levels.keys() | inputs.keys() | {'Main','Statements'})
+    provider_inputs=set().union(*(public_inputs(m,graph) for m in PROVIDERS))
+    modules=sorted(levels.keys() | provider_inputs | inputs.keys() | {'Main','Statements'})
     baseline.mkdir();images.mkdir()
     result=[];bindings=[];parent_bytes=candidate_bytes=initial_cached=0
     reader=Blobs(candidate)
@@ -254,7 +255,7 @@ def main():
     table.write_text(''.join('\t'.join(r)+'\n' for r in sorted(result)))
     report={'source_mode':req.get('source_mode','private-imports'),'parent':req['base'],'parent_source_tree':req['base_src'],'native_reuse':validation,'head':req['head'],'after_src_tree':req['head_src'],'changed':len(inputs),
         'manifest_sha256':file_sha(table),'input_sha256':req['source_provenance_sha256'],'module_manifest':manifest,
-        'visible':len(levels),'candidate_visible':len(inputs.keys()&levels.keys()),'archives':len(modules),
+        'provider_only_inputs':sorted(provider_inputs-levels.keys()),'visible':len(levels),'candidate_visible':len(inputs.keys()&levels.keys()),'archives':len(modules),
         'complete_candidate_source_blobs':source_count,'complete_candidate_source_bytes':source_bytes,
         'shared_cache_available':initial_cached,'parent_public_bytes':parent_bytes,'candidate_public_bytes':candidate_bytes,
         'ir_signature_and_body_matches':len(result),'remaining_disk_bytes':shutil.disk_usage(args.work).free}

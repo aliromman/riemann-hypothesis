@@ -48,12 +48,19 @@ def main():
         if m in candidates or any(m==k for _,k in all_special): raise ValueError('ineligible candidate module: '+m)
         candidates[m]=p
         checked[m]=sha
-    native={m:str(candidates.get(m,args.baseline.joinpath(*m.split('.')).with_suffix('.olean'))) for m in roots}
+    required = set(roots)
+    if args.provider_originals:
+        from providers import PROVIDERS, public_inputs, rebuild
+        for provider in PROVIDERS:
+            required.update(public_inputs(provider,graph))
+    native={m:str(candidates.get(m,args.baseline.joinpath(*m.split('.')).with_suffix('.olean'))) for m in required}
     verified_parent={}
     if args.parent_bindings:
         with sqlite3.connect(f'file:{args.parent_bindings}?mode=ro',uri=True) as db:
             expected=dict(db.execute('select module, public from result'))
-        for m in roots-candidates.keys():
+        ordinary_main=roots-candidates.keys()
+        provider_only=(required-roots)-candidates.keys()
+        for m in [*sorted(provider_only),*sorted(ordinary_main)]:
             p=Path(native[m]);stat=p.stat()
             if digest(p)!=expected.get(m):raise ValueError('parent public image differs from the authenticated archive: '+m)
             verified_parent[p]=(stat.st_ino,stat.st_size,stat.st_mtime_ns,expected[m])
@@ -61,7 +68,7 @@ def main():
         del expected
     setup={'name':'Main','isModule':True,'package':'tree',
         'options':{'relaxedAutoImplicit':False,'autoImplicit':False,'pp.unicode.fun':True,'maxSynthPendingDepth':3,'maxHeartbeats':4000000},
-        'plugins':[],'dynlibs':[],'importArts':{m:[[v],[]] for m,v in native.items()}}
+        'plugins':[],'dynlibs':[],'importArts':{m:[[native[m]],[]] for m in roots}}
     cert=args.work/'setup.json';cert.write_text(json.dumps(setup,separators=(',',':')))
     # Omit all project directories from the usual search path so an unforeseen project lookup fails.
     prefixes=args.work/'prefixes'
@@ -81,12 +88,11 @@ def main():
         if len(candidates)!=bound['changed']:raise ValueError('incomplete manifest')
         res['source_binding']=bound
     if args.provider_originals:
-        from providers import rebuild
-        if not args.parent_bindings or not roots <= checked.keys():
-            raise ValueError('the direct provider check requires every authenticated Main input')
+        if not args.parent_bindings or not required <= checked.keys():
+            raise ValueError('the root compilation requires an authenticated image for every project input')
         parent=res.get('source_binding',{}).get('parent') or 'HEAD'
         providers=rebuild(args.repo,parent,args.provider_originals,args.work/'providers',args.bin,args.judge,
-                          graph,setup,checked,roots&candidates.keys(),env)
+                          graph,setup,native,checked,candidates,env)
         for m,r in providers.items():
             actual=Path(r['public_output'])
             if m not in native or digest(actual)!=checked[m]:
@@ -100,7 +106,9 @@ def main():
                 stream.write(raw)
         res['direct_providers']={'providers':providers,'actual_main_setup_sha256':digest(cert),
                                  'compressed_main_setup_sha256':digest(exported)}
-    del graph,paths,visible,roots,candidates,native,setup
+    res['fresh_parent_digests']=sum(Path(native[m]) in verified_parent for m in roots)
+    res['provider_only_inputs']=sorted(required-roots)
+    del graph,paths,visible,roots,required,candidates,native,setup
     gc.collect()
     steps=[
       ('compile',[args.bin/'lean','-j1','--tstack=400000','--setup='+str(cert),'--root='+str(args.repo/'src'),'-o',n,args.repo/'src/Main.lean']),
@@ -116,7 +124,6 @@ def main():
     for p,(ino,size,mtime,want) in verified_parent.items():
         s=p.stat()
         if (s.st_ino,s.st_size,s.st_mtime_ns)!=(ino,size,mtime) and digest(p)!=want:raise ValueError('a parent input changed during recheck')
-    res['fresh_parent_digests']=len(verified_parent)
     res['public_sha']=digest(n)
     res['stable_facets']={suffix:digest(Path(str(n)+suffix))==digest(Path(str(args.baseline/'Main.olean')+suffix)) for suffix in ('','.server','.private')}
     (args.work/'report.json').write_text(json.dumps(res))

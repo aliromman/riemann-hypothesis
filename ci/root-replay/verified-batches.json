@@ -164,5 +164,47 @@
     "previous_manifest": "edc38df9198228480080821adb772f6c4109fdba7404a04be28bc49a250cb487",
     "previous_tree": "980141067b4eec00e78e2d490134c6299613cdef",
     "tree": "c9e0bade70ab9e778941a02e423609a4e6aa76e3"
+  },
+  {
+    "base": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "batch": 1313,
+    "graph": "de1fe13e172b47bb9b1f27c429cc282e94e3e528f3ec4c90f8a9d300a2b40e75",
+    "history": {
+      "879": {
+        "artifact": 14955653384,
+        "audit": "497dbb62d417fcb9c3a404f79000ec36024be3eeb9e8305443050787fee1c715",
+        "bundle": "55a1dc6350739f653f0b022cec69cfe0989503a56d3d73bedc56768c19fc7a0a",
+        "count": 39007,
+        "evidence": "d286283ef212deed5e4bd0281f212be8ef6e8298",
+        "head": "e0a0acde813bd368786947b98704ee6814656a15",
+        "parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+        "request": "request",
+        "run": 45465992114,
+        "table": "07f153feef170e34b3afbd15c258065f1ebdf8ebb9384e937fbd82223f1b235d",
+        "workflow": "6207b23c74ec793fb8ed40d2851b4e6bfa1ed42b",
+        "zip": "f58fcfd71c590d3edbf98300cab71f83e636b0a84ca31cde648aea5ac6f92528"
+      },
+      "977": {
+        "artifact": 14954732433,
+        "audit": "b94830d472a8117c147400be4996634867b3e9e292c64fae56b5c2e23b93eca4",
+        "bundle": "824c6fc228037d0c817d4bd359b220f72e0166d8e214285ea31a10d56d6e11b4",
+        "count": 11548,
+        "evidence": "8e8bc23f1ed9907ee34b6343e9b452355d7f3e22",
+        "head": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+        "parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+        "request": "structural-request",
+        "run": 45462683245,
+        "table": "5af93aaabcc7240683e6f840e41da451bfcf12164c3a71aece9b651e6ea2a93e",
+        "workflow": "62a3edc4ab2fb405a601f1f4fe52febdfa1bdc74",
+        "zip": "9732a01e861657af7ae0474317fd9970edd7c261dede7f3742dcf605ff660875"
+      }
+    },
+    "manifest": "56ef968afb7ef3227b98278bbf86cf5b2baa24385b4f89f3aca63599a437af92",
+    "previous_base": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "previous_evidence_path": "batch-1266/five-theorems",
+    "previous_graph": "2d79c727402413d1dedd697e5e2445cccd13b3a46a88545cb2f9e8992b42c90c",
+    "previous_manifest": "816164d26c3ad2b5bceaf1337ab7a172bbc10b1fa15c52ab8c04495436314c65",
+    "previous_tree": "c9e0bade70ab9e778941a02e423609a4e6aa76e3",
+    "tree": "b722dc0d057c3a869ad607e0c93231665a963b63"
   }
 ]

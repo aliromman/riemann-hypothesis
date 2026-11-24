@@ -31,7 +31,14 @@ def digest(file):
         return hashlib.file_digest(reader, "sha256").hexdigest()
 
 
-def rebuild(repo, parent, originals, out, toolchain, judge, graph, setup, checked, changed, env):
+def public_inputs(name, graph):
+    levels = import_levels(name, graph)
+    if any(levels.values()):
+        raise ValueError("the provider has a private or meta compiler input: " + name)
+    return set(levels)
+
+
+def rebuild(repo, parent, originals, out, toolchain, judge, graph, setup, native, checked, changed, env):
     """Return the actual rebuilt provider outputs that Main must import."""
     out.mkdir(parents=True, exist_ok=True)
     candidates = set(changed)
@@ -45,9 +52,9 @@ def rebuild(repo, parent, originals, out, toolchain, judge, graph, setup, checke
                 raise ValueError("provider source differs from its reviewed revision: " + name)
         if name in candidates:
             raise ValueError("the direct provider must have its original source: " + name)
-        levels = import_levels(name, graph)
-        if any(levels.values()) or not levels.keys() <= checked.keys():
-            raise ValueError("a direct provider needs inputs outside the ordinary Main environment: " + name)
+        levels = public_inputs(name, graph)
+        if not levels <= checked.keys():
+            raise ValueError("a provider input has no verified public image: " + name)
         work = out / module.name
         work.mkdir(exist_ok=True)
         inputs = sorted(levels)
@@ -56,10 +63,13 @@ def rebuild(repo, parent, originals, out, toolchain, judge, graph, setup, checke
             with gzip.GzipFile(filename="", fileobj=compressed, mode="wb", compresslevel=4, mtime=0) as stream:
                 for n in inputs:
                     stream.write(stable([n, checked[n], "candidate" if n in candidates else "official"]) + b"\n")
-        arts = {n: setup["importArts"][n] for n in inputs}
+        arts = {n: [[native[n]], []] for n in inputs}
         current = dict(setup, name=name, importArts=arts)
         spec = work / "setup.json"
-        spec.write_bytes(stable(current))
+        setup_bytes = stable(current)
+        spec.write_bytes(setup_bytes)
+        packed_setup = work / "setup.json.gz"
+        packed_setup.write_bytes(gzip.compress(setup_bytes, compresslevel=4, mtime=0))
         before = originals / module.with_suffix(".olean")
         owner = json.loads(before.with_suffix(".owner.json").read_bytes())
         if owner["module"] != name or digest(before) != checked[name]:
@@ -99,7 +109,7 @@ def rebuild(repo, parent, originals, out, toolchain, judge, graph, setup, checke
             "source_filename": display, "embedded_lint_messages": recorded["messages"],
             "effective_inputs": len(inputs), "edited_inputs": len(candidates.intersection(inputs)),
             "input_manifest": str(file.relative_to(out)), "input_manifest_sha256": digest(file),
-            "setup_sha256": digest(spec), "compiler_log_sha256": digest(build),
+            "setup_sha256": digest(spec), "compressed_setup_sha256": digest(packed_setup), "compiler_log_sha256": digest(build),
             "warnings": sum(warnings.values()), "warnings_sha256": sha(stable(sorted(warnings.items()))),
             "facets": facets, "declarations": terms, "public_output": str(actual),
         }
