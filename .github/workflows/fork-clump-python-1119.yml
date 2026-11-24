@@ -2,7 +2,7 @@ name: Run clump and native Python suites with the repository SDK pins
 on:
   push:
     branches: [ci/clump-scopes/ubuntu-python-1119]
-    paths: [.github/workflows/fork-clump-python-1119.yml]
+    paths: [.github/workflows/fork-clump-python-1119.yml, ci/clump-diagnostics/control.py]
 permissions:
   contents: read
 jobs:

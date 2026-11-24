@@ -79,7 +79,7 @@ def main(repo, logs):
             actual_source = main_file.read_text()
             source_line = actual_source.splitlines()[int(diagnostics[0])-1]
             assert ": False := True.intro" in source_line
-            owners = {k: clump(k, "blame", log).splitlines() for k in roles}
+            owners = {k: clump(k, "blame", log).strip().splitlines() for k in roles}
             if case in ("ordinary", "above-banner"):
                 assert owners["previous"] == ["note"] and owners["candidate"] == [], owners
             elif case == "legacy-literal":
