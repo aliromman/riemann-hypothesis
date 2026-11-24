@@ -101,6 +101,11 @@ jobs:
           {
             free -h
             df -h "$RUNNER_TEMP"
+            maps=$(sysctl -n vm.max_map_count)
+            if (( maps < 1048576 )); then
+              sudo sysctl -w vm.max_map_count=1048576 || echo 'The runner kept its original mapping limit.'
+            fi
+            sysctl vm.max_map_count
             swap_bytes=$(awk '/^SwapTotal:/{print $2*1024}' /proc/meminfo)
             disk_bytes=$(df -B1 --output=avail "$RUNNER_TEMP" | tail -1)
             if awk -v s="$swap_bytes" -v d="$disk_bytes" 'BEGIN {exit !(s < 8589934592 && d > 12884901888)}'; then
