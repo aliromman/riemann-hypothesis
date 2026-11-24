@@ -23,3 +23,11 @@ For 4 earlier individual timing workloads and 2 earlier external theorem checks,
 The 3-module fresh stock Lake timing workload also retained every input. Its five pairs remain the earlier measured distribution.
 
 The original Actions ZIP has SHA-256 `b551dd1b2d9cde728f972a83825bf1b8c0f64db349de5d43a1c57f7e0c993eab`. This is a bounded test. The complete nine-target default build and the full five-claim sandbox comparison remain separate community checks. [Exact tested harness](https://github.com/aliromman/riemann-hypothesis/tree/bbe6a0c7c89aabdeecfda95e151ecf9f8584d6fd/ci/stock-batch-1266)
+
+## Actual upstream merge preview
+
+GitHub identifies `e0a0acde813bd368786947b98704ee6814656a15` as the actual PR head. The public merge preview `894e1f2272d645e55e1c59e1ba1a9d64f2464835` has community parent `307cef33f046955ee79dba47e0d828d06496d75f`. Its complete bounded project cone has the same 140 ordered module inputs and the same ten fixed compiler, package and proof files as the Linux job. The record checks all 140 parent and candidate Git blobs and the authenticated archive rows against the original stock ZIP. Earlier timed measurements retain the machine and scope specified above. [Complete current Git and archive binding](canonical.json)
+
+Upstream reported success for its PR label check and success for its frozen challenge files. [Upstream label check](https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45453395447/job/138656257572) [Upstream challenge files check](https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45453395969/job/138656263086)
+
+The public donor has a successful receipt. Of the nine author, merge and whole-input routes, 9 returned HTTP 404. The complete parent public module, IR signature and IR data alone occupy 10,626,355,376 bytes for 59,883 modules. The ordinary Linux runner reported 80 GiB free after bounded Mathlib hydration. The fork had 0 registered self-hosted runners and upstream reported READ permission. The complete default build requires separate community verification. [Measured disk and archive scope](capacity.json)
