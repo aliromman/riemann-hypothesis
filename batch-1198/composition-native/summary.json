@@ -1,0 +1,18 @@
+{
+  "parent": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "first": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+  "second": "c0228c0ae22d9cbf3e5466760718fd19111058ac",
+  "merged_tree": "c7e4aec3ea29518845f6b4189872e5b5badd0e31",
+  "roots": 18,
+  "paired_modules": 51,
+  "total_stock_cone": 120,
+  "declarations": 2211,
+  "raw_public_ir_digests": 153,
+  "warnings": 146,
+  "stock_modes": {
+    "authenticated leantar": 120
+  },
+  "verified_second": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "verified_joint_tree": "505b9b694c0ef9a45d5fe84ca9b83b13eab1a24d",
+  "source_only_successor": true
+}

@@ -16,3 +16,9 @@ The new community batch changes 110 retained sources and deletes 99 others touch
 The graph has 368,104 project import edges. Among untouched modules, 2,574 import a changed module directly and 10,403 depend on one transitively. Both proposals together change 41,417 Lean files. All 9,155 shared files have exactly the import proposal’s header and the scope proposal’s body in the combined tree. It contains 13,031,422 nonblank Lean lines, a reduction of 1,398,667. [Dependency counts](dependencies.json) · [Combined tree](composition.json) · [Per-file comparison](composition-source.jsonl.gz)
 
 A full default-target Lake rebuild and the full sandboxed five-theorem Comparator solution export remain community-run checks. The largest ordinary stock workload and the five-proof kernel replay use different sets of inputs.
+
+## Compiled outputs and theorem checks
+
+The final records cover all 39,021 changed source modules and all five declarations in `Main`. The raw ZIP files retain the original GitHub authentication digests. The upstream comparison records all paths changed since this mathematical parent and checks the two Git merge previews. [Compiled outputs](native) · [Five theorem proofs](five-theorems) · [Latest main comparison](latest-main.json)
+
+The two proposals also share a measured compiler workload. Its input record identifies the exact joint tree and the community modules used. [Combined-source comparison](composition-native) · [Stock Lake and sandboxed source replays](bounded-checks.md) · [Cross-PR merge checks](coordination)

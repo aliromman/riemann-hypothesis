@@ -1,0 +1,85 @@
+{
+  "actual_compiler_facets": {
+    ".ir": {
+      "byte_identical": true,
+      "candidate_bytes": 7704,
+      "candidate_sha256": "e09c68e5f6c5ad5537b9d5007b52a3198fb3c0e888ae5801ca8287252870e373",
+      "official_sha256": "e09c68e5f6c5ad5537b9d5007b52a3198fb3c0e888ae5801ca8287252870e373"
+    },
+    ".ir.sig": {
+      "byte_identical": true,
+      "candidate_bytes": 248,
+      "candidate_sha256": "779598cfda7a3d8328963de46628bc96c785c48b4dceb2cd59af63c85ee8a47f",
+      "official_sha256": "779598cfda7a3d8328963de46628bc96c785c48b4dceb2cd59af63c85ee8a47f"
+    },
+    ".olean": {
+      "byte_identical": true,
+      "candidate_bytes": 10816,
+      "candidate_sha256": "a2816fa85156ebb38ddb00e6697fe2c2cc26f2aa0d333a6f6613e37af0266418",
+      "official_sha256": "a2816fa85156ebb38ddb00e6697fe2c2cc26f2aa0d333a6f6613e37af0266418"
+    },
+    ".olean.private": {
+      "byte_identical": true,
+      "candidate_bytes": 8864,
+      "candidate_sha256": "03cbbe139445990ff63547fb4f8319f1595e4bd261242bc3089a835d89ba7573",
+      "official_sha256": "03cbbe139445990ff63547fb4f8319f1595e4bd261242bc3089a835d89ba7573"
+    },
+    ".olean.server": {
+      "byte_identical": true,
+      "candidate_bytes": 1536,
+      "candidate_sha256": "7a28837ac5708315e89045acbed3d82320d5175c5e528e712b46958c4293897d",
+      "official_sha256": "7a28837ac5708315e89045acbed3d82320d5175c5e528e712b46958c4293897d"
+    }
+  },
+  "artifact": 14948469568,
+  "effective_public_inputs": "6f86943106953d5715ef1d9c4786175126f62c1bf7495dee703168eb7e517ff4",
+  "github_run": 45450262786,
+  "head": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+  "independent_direct_provider_audit": {
+    "Main_setup_sha256": "8456b211fa94b02622362fd55df4b053bb916428cf3512f70fb3a9b7afbf1026",
+    "head": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+    "providers": {
+      "Development.AutomorphicArithmetic.CharacterBoxes.ClaimStrip": {
+        "complete_declaration_names": 5,
+        "consumed_by_Main": true,
+        "effective_project_inputs": 2,
+        "five_raw_outputs_equal": true,
+        "normalized_warnings": 0,
+        "official_ltar_sha256": "74ecdac298d7da00cea54549f4c0f7d391b075738c7e26537ddd5164f4562685",
+        "verified_transitive_inputs_sha256": "534b1ec2c38386aa6a82165ea21beb74a5d086cee57fea89f453c019f4c2f5a3",
+        "visible_selected": 0
+      },
+      "Development.AutomorphicArithmetic.CharacterBoxes.MainConclusion": {
+        "complete_declaration_names": 53,
+        "consumed_by_Main": true,
+        "effective_project_inputs": 59047,
+        "five_raw_outputs_equal": true,
+        "normalized_warnings": 57,
+        "official_ltar_sha256": "2819195ccf32b2884ed6f99f8d661c227cd6f0c09df789c98890d5db5c499d35",
+        "verified_transitive_inputs_sha256": "26c917a7b70758c0f3350b38536c34139c56e062d5a437011e7d978fe98823bc",
+        "visible_selected": 38555
+      }
+    },
+    "root_archive_sha256": "854da5812be3e887f011962cff54ca4dbba6820474533de5a8bda6e86ae859ad",
+    "total_binary_outputs": 10
+  },
+  "individual_candidate_images": "dc36f104873401a4d2168c95837f42d2516d11f8fb46eb36ce65e9398538db62",
+  "kernel": {
+    "candidateNames": 5,
+    "different": 0,
+    "examples": [],
+    "kernelImage": true,
+    "parentNames": 5,
+    "proofChanges": 0,
+    "publicImage": true,
+    "publicImports": true
+  },
+  "native_bytes_rechecked_locally": 29168,
+  "official_receipt_sha256": "a6a11f580ac1cd82a43c7dedb0d255ad775c6af2a235035a384bb407d26a824f",
+  "operational_helper_files": 52,
+  "original_zip_sha256": "854da5812be3e887f011962cff54ca4dbba6820474533de5a8bda6e86ae859ad",
+  "parent": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "pr": 879,
+  "public_reviewer_commands_pass": true,
+  "reviewer_commands_sha256": "53d37c0f68cb88c4c3cd3ca3f614fd52f708c4000faaa779c62705cd2d48a926"
+}

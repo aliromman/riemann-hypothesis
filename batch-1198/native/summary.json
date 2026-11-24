@@ -1,0 +1,839 @@
+{
+  "all_observed_attempt_statuses": {
+    "pass": 24766
+  },
+  "cache_seed_and_initial_selection_recovery": {
+    "conclusion": "success",
+    "github_cache_bytes": 3747566199,
+    "github_cache_id": 11044750717,
+    "github_cache_key": "rh-screen-all-edc38df9198228480080821adb772f6c4109fdba7404a04be28bc49a250cb487",
+    "github_url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45430535715",
+    "log_sha256": "047391e731bf91b3bf551fbdc46bec3716c1e90d66ff3c07ce21f3afd2be199f",
+    "new_archives": 20628,
+    "previous_matching_archives": 39280,
+    "project_archives": 59908,
+    "seed_run": 45430535715,
+    "stock_reported_restore_attempt_counts": [
+      [
+        "59908",
+        "39280",
+        "20628"
+      ]
+    ],
+    "transient_retries": 0,
+    "workflow_commit": "d9093eb7403dc4d8b081fdb7104f3a9a2e6ab8e2"
+  },
+  "checked_input_equivalence_sha256": "3ca313efb1449719b4599537d3025f3358c2c4f8bbc50238b5db4e5ec22d7aab",
+  "complete_for_published_source": true,
+  "confirmed_named_declarations": {
+    "compressed_sha256": "2297e6327ba66f77d5ea3ae649fb025fc1458e557743cf3bcf921ddea3a74f6c",
+    "different_actual_names_with_the_same_display": 0,
+    "distinct_lean_names": 861433,
+    "distinct_rendered_names": 861433,
+    "lean_reader_sha256": "b2f294af6fc55c27712fa39223fcad87dce1dc5707b4c20948c6313ca608aee9",
+    "local_declaration_kinds": {
+      "constructor": 4109,
+      "definition": 124674,
+      "inductive": 3977,
+      "recursor": 3977,
+      "theorem": 740674
+    },
+    "local_declaration_occurrences": 877411,
+    "new_archive_freshly_decoded": 10797,
+    "per_module_counts_sha256": "ec4f574b0609304d6d3db7124bd4094265e3501781810f74e11eb71ebefb9758",
+    "published_table": "pr-879-declarations.jsonl.gz",
+    "raw_sha256": "78bc4b85a1ce70bd3f46b5afe94e8d50acb87adad5f49d1dd4bd7c54e4ce626d",
+    "unchanged_whole_archive_checked": 28224
+  },
+  "counts_by_comparison": {
+    "fresh_against_current_official_parent": 24766,
+    "same_original_candidate_and_checked_compiler_inputs": 14255
+  },
+  "current_native_results": [
+    {
+      "artifact_id": 14942121245,
+      "attempt": 1,
+      "checked": 20,
+      "container_digest": "sha256:b8e29138da5d577b16343dc06bc3e704258bbbfe0931fb3f26bc70a9d1e162e0",
+      "group": "direct-1198-large-1",
+      "native_seconds": 618.133,
+      "original_container": {
+        "bytes": 14207,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14942121245/zip",
+        "relative_path": "producer-archives/14942121245.zip",
+        "sha256": "b8e29138da5d577b16343dc06bc3e704258bbbfe0931fb3f26bc70a9d1e162e0"
+      },
+      "pending": 0,
+      "result_sha256": "60a9a044c42ca9d8d42ba97104136bd411721003a26530c1107b32c564f007ef",
+      "run_id": 45430810403,
+      "statuses": {
+        "pass": 20
+      },
+      "workflow_sha": "f73e0988e37222a326b6a8fdceb9ee6519dc3fe2"
+    },
+    {
+      "artifact_id": 14940502930,
+      "attempt": 1,
+      "checked": 90,
+      "container_digest": "sha256:556882e2b68d6b0451634cdbd9b8d85e9f1472da9de2ba167349eccc3630aa8b",
+      "group": "direct-1198-ordinary-1",
+      "native_seconds": 621.596,
+      "original_container": {
+        "bytes": 53348,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14940502930/zip",
+        "relative_path": "producer-archives/14940502930.zip",
+        "sha256": "556882e2b68d6b0451634cdbd9b8d85e9f1472da9de2ba167349eccc3630aa8b"
+      },
+      "pending": 0,
+      "result_sha256": "c590b823231967b9b453e644cd7dd452d8db79c988774295370796816eb602ac",
+      "run_id": 45430810403,
+      "statuses": {
+        "pass": 90
+      },
+      "workflow_sha": "f73e0988e37222a326b6a8fdceb9ee6519dc3fe2"
+    },
+    {
+      "artifact_id": 14945435229,
+      "attempt": 1,
+      "checked": 85,
+      "container_digest": "sha256:9031c968893ccee6754325fd6e23bc31ee2e7db94296ed3afd924e560f59030a",
+      "group": "imports-1198-large-1",
+      "native_seconds": 2517.293,
+      "original_container": {
+        "bytes": 50864,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14945435229/zip",
+        "relative_path": "producer-archives/14945435229.zip",
+        "sha256": "9031c968893ccee6754325fd6e23bc31ee2e7db94296ed3afd924e560f59030a"
+      },
+      "pending": 0,
+      "result_sha256": "3f975283323b3e890ab44d734c798e09bb2f34492fb38dfb5965c0b9b180ef09",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 85
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14944151115,
+      "attempt": 1,
+      "checked": 84,
+      "container_digest": "sha256:3a019ce8bb56bf983ebbbb34300b9195f477d66f5d6bff6021f3b6758c8a7065",
+      "group": "imports-1198-large-2",
+      "native_seconds": 2347.072,
+      "original_container": {
+        "bytes": 50201,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14944151115/zip",
+        "relative_path": "producer-archives/14944151115.zip",
+        "sha256": "3a019ce8bb56bf983ebbbb34300b9195f477d66f5d6bff6021f3b6758c8a7065"
+      },
+      "pending": 0,
+      "result_sha256": "f82d5d3905dcf852ae186511cff131724cb9f1aaa06021d3c24ddb8e80e49649",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 84
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14945127259,
+      "attempt": 1,
+      "checked": 1487,
+      "container_digest": "sha256:50a9b6c081bb028cdd11276bbf2a94574c67dcffd314c4de8585351368119217",
+      "group": "imports-1198-ordinary-1",
+      "native_seconds": 2962.737,
+      "original_container": {
+        "bytes": 817994,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14945127259/zip",
+        "relative_path": "producer-archives/14945127259.zip",
+        "sha256": "50a9b6c081bb028cdd11276bbf2a94574c67dcffd314c4de8585351368119217"
+      },
+      "pending": 0,
+      "result_sha256": "189b61cee19c3e708f5a2022d21d66fa7862a26538c6e3cf0d547c87f822467f",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1487
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14946030516,
+      "attempt": 1,
+      "checked": 1487,
+      "container_digest": "sha256:e892ce96ab8497eb56b7d645b2d34d3384810e03c8f224c1442b961ad3a240de",
+      "group": "imports-1198-ordinary-10",
+      "native_seconds": 3089.468,
+      "original_container": {
+        "bytes": 818703,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14946030516/zip",
+        "relative_path": "producer-archives/14946030516.zip",
+        "sha256": "e892ce96ab8497eb56b7d645b2d34d3384810e03c8f224c1442b961ad3a240de"
+      },
+      "pending": 0,
+      "result_sha256": "b3d615dd36aee30f3b2822c65b1101ad3c899145fb6aeeb04d62dc07e8bd28a4",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1487
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14948010559,
+      "attempt": 1,
+      "checked": 1487,
+      "container_digest": "sha256:4ba9f9aeed5bd117658f30718ed0f44a04cddce97815aa126cb5646673dc4743",
+      "group": "imports-1198-ordinary-11",
+      "native_seconds": 4486.861,
+      "original_container": {
+        "bytes": 818404,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14948010559/zip",
+        "relative_path": "producer-archives/14948010559.zip",
+        "sha256": "4ba9f9aeed5bd117658f30718ed0f44a04cddce97815aa126cb5646673dc4743"
+      },
+      "pending": 0,
+      "result_sha256": "a67fb13245dc7b099fc414c0ae5698aa983cc8efdab54cbd5f3a687ef17043cc",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1487
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14946287452,
+      "attempt": 1,
+      "checked": 1487,
+      "container_digest": "sha256:83c1005e1237adfc2f471e00847b350674546c1e7acf796ff04bbb5b96da4d24",
+      "group": "imports-1198-ordinary-12",
+      "native_seconds": 4292.608,
+      "original_container": {
+        "bytes": 818162,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14946287452/zip",
+        "relative_path": "producer-archives/14946287452.zip",
+        "sha256": "83c1005e1237adfc2f471e00847b350674546c1e7acf796ff04bbb5b96da4d24"
+      },
+      "pending": 0,
+      "result_sha256": "2c427c6d946aec22c62787d00a4e16f88d78961cd8521c5f0f17ff98df01a545",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1487
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14945925362,
+      "attempt": 1,
+      "checked": 1488,
+      "container_digest": "sha256:0b9f6f114589759e68f38e55d5123d90b358e9b72ea822d83fe32a855db0bed0",
+      "group": "imports-1198-ordinary-13",
+      "native_seconds": 3022.812,
+      "original_container": {
+        "bytes": 817504,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14945925362/zip",
+        "relative_path": "producer-archives/14945925362.zip",
+        "sha256": "0b9f6f114589759e68f38e55d5123d90b358e9b72ea822d83fe32a855db0bed0"
+      },
+      "pending": 0,
+      "result_sha256": "5eed32a8a6643d9bd46534c2df5618556ea2cfe671f65622cffe688139bae06c",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1488
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14945669568,
+      "attempt": 1,
+      "checked": 1488,
+      "container_digest": "sha256:676fb38f672bc6ba84c639e23b30cdfb4e6741ff182cb786fff272a40dcf91d1",
+      "group": "imports-1198-ordinary-14",
+      "native_seconds": 4120.482,
+      "original_container": {
+        "bytes": 816995,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14945669568/zip",
+        "relative_path": "producer-archives/14945669568.zip",
+        "sha256": "676fb38f672bc6ba84c639e23b30cdfb4e6741ff182cb786fff272a40dcf91d1"
+      },
+      "pending": 0,
+      "result_sha256": "f8dc1e0cfc4fc9786f611cfb98d36b33be1d75696942b967b1d8dc65eb1765a7",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1488
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14947375934,
+      "attempt": 1,
+      "checked": 1488,
+      "container_digest": "sha256:805fe3e9ecc77ba489edaa4ca204db0081f2bcb805299f263b77adcf7b9e9458",
+      "group": "imports-1198-ordinary-2",
+      "native_seconds": 4513.485,
+      "original_container": {
+        "bytes": 819515,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14947375934/zip",
+        "relative_path": "producer-archives/14947375934.zip",
+        "sha256": "805fe3e9ecc77ba489edaa4ca204db0081f2bcb805299f263b77adcf7b9e9458"
+      },
+      "pending": 0,
+      "result_sha256": "ad0c3a5abac311ff61120c663fd38dffd1686670fb2f11e10b1ce7ae0cdff957",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1488
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14945002501,
+      "attempt": 1,
+      "checked": 1487,
+      "container_digest": "sha256:b4f24713757bf0f5e1018b86faa928f6fcc5b56d473acb3512379be644216db8",
+      "group": "imports-1198-ordinary-3",
+      "native_seconds": 2959.987,
+      "original_container": {
+        "bytes": 816439,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14945002501/zip",
+        "relative_path": "producer-archives/14945002501.zip",
+        "sha256": "b4f24713757bf0f5e1018b86faa928f6fcc5b56d473acb3512379be644216db8"
+      },
+      "pending": 0,
+      "result_sha256": "ad963fc38a479bb156cb6edd7dcae59a992899bc6b8656ece33f2b03e243322b",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1487
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14947400508,
+      "attempt": 1,
+      "checked": 1487,
+      "container_digest": "sha256:29cfde539061174138c8e09dbb0b583467e348809389141cea5c87ad05780d7d",
+      "group": "imports-1198-ordinary-4",
+      "native_seconds": 4169.298,
+      "original_container": {
+        "bytes": 817856,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14947400508/zip",
+        "relative_path": "producer-archives/14947400508.zip",
+        "sha256": "29cfde539061174138c8e09dbb0b583467e348809389141cea5c87ad05780d7d"
+      },
+      "pending": 0,
+      "result_sha256": "c5489621ad1277cb3201078e396e923a3995b04c69c6c9dbff34ca1abf538059",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1487
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14947425768,
+      "attempt": 1,
+      "checked": 1488,
+      "container_digest": "sha256:f9ace38a1168b2d32fa696822d4b1b4d5eaa4101117a066e1b464f4d1e36ec7d",
+      "group": "imports-1198-ordinary-5",
+      "native_seconds": 4521.99,
+      "original_container": {
+        "bytes": 818023,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14947425768/zip",
+        "relative_path": "producer-archives/14947425768.zip",
+        "sha256": "f9ace38a1168b2d32fa696822d4b1b4d5eaa4101117a066e1b464f4d1e36ec7d"
+      },
+      "pending": 0,
+      "result_sha256": "c1464ab70c5e2639323ffab1d0eca5a6f42da1bc5776853600e4314f0ec70b9c",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1488
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14943669326,
+      "attempt": 1,
+      "checked": 1487,
+      "container_digest": "sha256:0e8b36570f13b8e8a9bc8e9a9c21540335f7a1221f64ad07b576dd4e769eec85",
+      "group": "imports-1198-ordinary-6",
+      "native_seconds": 3319.093,
+      "original_container": {
+        "bytes": 816810,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14943669326/zip",
+        "relative_path": "producer-archives/14943669326.zip",
+        "sha256": "0e8b36570f13b8e8a9bc8e9a9c21540335f7a1221f64ad07b576dd4e769eec85"
+      },
+      "pending": 0,
+      "result_sha256": "18fa8f84b70617cc3d2eed0c4b7680ec8fad48791a27e4f7f3027a75c9cc1c75",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1487
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14944317259,
+      "attempt": 1,
+      "checked": 1488,
+      "container_digest": "sha256:089a23ebe200293f9158cb2836411e7d0aa8a2d0b6edb2d2834852eb19715fa9",
+      "group": "imports-1198-ordinary-7",
+      "native_seconds": 2939.898,
+      "original_container": {
+        "bytes": 814988,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14944317259/zip",
+        "relative_path": "producer-archives/14944317259.zip",
+        "sha256": "089a23ebe200293f9158cb2836411e7d0aa8a2d0b6edb2d2834852eb19715fa9"
+      },
+      "pending": 0,
+      "result_sha256": "cae36880fabd275d2cc2bb8edd12f3e16dd330f17f74a86ed9fcb419e3973806",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1488
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14944522254,
+      "attempt": 1,
+      "checked": 1487,
+      "container_digest": "sha256:16843ee9928dc78acc2737b33769eaf9f33142f64ec795434147b40ea2711f9d",
+      "group": "imports-1198-ordinary-8",
+      "native_seconds": 2972.162,
+      "original_container": {
+        "bytes": 818461,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14944522254/zip",
+        "relative_path": "producer-archives/14944522254.zip",
+        "sha256": "16843ee9928dc78acc2737b33769eaf9f33142f64ec795434147b40ea2711f9d"
+      },
+      "pending": 0,
+      "result_sha256": "c11c59bb6df3b596f48d82521e46725c40bf0e810ed206c17efdccda0d53b579",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1487
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14947721594,
+      "attempt": 1,
+      "checked": 1487,
+      "container_digest": "sha256:030ef8a3c315e8d9ac9ac5dac8bdb403ecddce39cb5ca7eeaf989aff853422a1",
+      "group": "imports-1198-ordinary-9",
+      "native_seconds": 4844.715,
+      "original_container": {
+        "bytes": 818898,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14947721594/zip",
+        "relative_path": "producer-archives/14947721594.zip",
+        "sha256": "030ef8a3c315e8d9ac9ac5dac8bdb403ecddce39cb5ca7eeaf989aff853422a1"
+      },
+      "pending": 0,
+      "result_sha256": "3b9edd33755650edd23b7acd62edb9eb99d677b1144363f123ddc1044d575aa8",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 1487
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14944283744,
+      "attempt": 1,
+      "checked": 458,
+      "container_digest": "sha256:bacb3113a979be8e73f45d6b94d974e5b996dffe4df400ae6e85f3fa940d7639",
+      "group": "imports-1198-ordinary-tail-1",
+      "native_seconds": 915.601,
+      "original_container": {
+        "bytes": 254081,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14944283744/zip",
+        "relative_path": "producer-archives/14944283744.zip",
+        "sha256": "bacb3113a979be8e73f45d6b94d974e5b996dffe4df400ae6e85f3fa940d7639"
+      },
+      "pending": 0,
+      "result_sha256": "3f017fe61eb207a5a507d44c3adeaccd03317a0cfb72737d95414ea5c896b51c",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 458
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14946696525,
+      "attempt": 1,
+      "checked": 458,
+      "container_digest": "sha256:ae668920938ea015289a0ede37ce337c56c442ec000adb409015a963010c2738",
+      "group": "imports-1198-ordinary-tail-2",
+      "native_seconds": 1409.963,
+      "original_container": {
+        "bytes": 254001,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14946696525/zip",
+        "relative_path": "producer-archives/14946696525.zip",
+        "sha256": "ae668920938ea015289a0ede37ce337c56c442ec000adb409015a963010c2738"
+      },
+      "pending": 0,
+      "result_sha256": "d48764bcec388ae4927f1006432b32392cc0d368a0f932e468500e840aba0c1a",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 458
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14946372025,
+      "attempt": 1,
+      "checked": 458,
+      "container_digest": "sha256:0afce6f62c037c050179868e7435d7ada6091e0d37b8f9f8c74ee25701a8b42a",
+      "group": "imports-1198-ordinary-tail-3",
+      "native_seconds": 909.043,
+      "original_container": {
+        "bytes": 255279,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14946372025/zip",
+        "relative_path": "producer-archives/14946372025.zip",
+        "sha256": "0afce6f62c037c050179868e7435d7ada6091e0d37b8f9f8c74ee25701a8b42a"
+      },
+      "pending": 0,
+      "result_sha256": "bcf3914ac590b7c9cba28cc5c9839d2c19cdd6a4ca70ee07eb56c65ae952aa00",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 458
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14946154606,
+      "attempt": 1,
+      "checked": 458,
+      "container_digest": "sha256:b3efb4e0f89ff4554fed8f594bfb8befca2e83e113acb9f1df93c962a5b5b51b",
+      "group": "imports-1198-ordinary-tail-4",
+      "native_seconds": 1262.945,
+      "original_container": {
+        "bytes": 254520,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14946154606/zip",
+        "relative_path": "producer-archives/14946154606.zip",
+        "sha256": "b3efb4e0f89ff4554fed8f594bfb8befca2e83e113acb9f1df93c962a5b5b51b"
+      },
+      "pending": 0,
+      "result_sha256": "f059f05d0095f1012625b00e4b2e4f2eca9ecf0096790d9a878c2147f40c560f",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 458
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14945554905,
+      "attempt": 1,
+      "checked": 458,
+      "container_digest": "sha256:4f8890d18560280062939f8c6ed87050412cab0a92c3bfcda2c819fc4ebe978b",
+      "group": "imports-1198-ordinary-tail-5",
+      "native_seconds": 920.224,
+      "original_container": {
+        "bytes": 254630,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14945554905/zip",
+        "relative_path": "producer-archives/14945554905.zip",
+        "sha256": "4f8890d18560280062939f8c6ed87050412cab0a92c3bfcda2c819fc4ebe978b"
+      },
+      "pending": 0,
+      "result_sha256": "48dc0cb309c1286a8d60abefdd5f7004a5649f41d2dab8370d50b6ed5f5d1b42",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 458
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14948065404,
+      "attempt": 1,
+      "checked": 458,
+      "container_digest": "sha256:f9b9ab9e3c98297b17550baff747d696b1c3328e40d2063084f057ec72dd1b41",
+      "group": "imports-1198-ordinary-tail-6",
+      "native_seconds": 987.209,
+      "original_container": {
+        "bytes": 254332,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14948065404/zip",
+        "relative_path": "producer-archives/14948065404.zip",
+        "sha256": "f9b9ab9e3c98297b17550baff747d696b1c3328e40d2063084f057ec72dd1b41"
+      },
+      "pending": 0,
+      "result_sha256": "75ceeb325b9a9ea7250d5f38b2ab010643240e39ddfab630820f2043a91647bb",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 458
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14946372150,
+      "attempt": 1,
+      "checked": 458,
+      "container_digest": "sha256:ad2e64d30c6b2005061b17c31d3dea997fdf20c5cc1f6daa915042cebc9a1966",
+      "group": "imports-1198-ordinary-tail-7",
+      "native_seconds": 959.97,
+      "original_container": {
+        "bytes": 253075,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14946372150/zip",
+        "relative_path": "producer-archives/14946372150.zip",
+        "sha256": "ad2e64d30c6b2005061b17c31d3dea997fdf20c5cc1f6daa915042cebc9a1966"
+      },
+      "pending": 0,
+      "result_sha256": "40ca181cacbf88ad5cf7836929c85b67b1ba5411157620e1761e33401761ec12",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 458
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    },
+    {
+      "artifact_id": 14945999541,
+      "attempt": 1,
+      "checked": 458,
+      "container_digest": "sha256:e27c2159ca22c245282512a1e2b1800517dadae5ce0d43b97e7a03a3290b0c0f",
+      "group": "imports-1198-ordinary-tail-8",
+      "native_seconds": 933.878,
+      "original_container": {
+        "bytes": 254123,
+        "github_url": "https://api.github.com/repos/aliromman/riemann-hypothesis/actions/artifacts/14945999541/zip",
+        "relative_path": "producer-archives/14945999541.zip",
+        "sha256": "e27c2159ca22c245282512a1e2b1800517dadae5ce0d43b97e7a03a3290b0c0f"
+      },
+      "pending": 0,
+      "result_sha256": "748f8d9102884b25402dbababa99f0dd0ef649383753f05af876a4f70db0a10c",
+      "run_id": 45432576134,
+      "statuses": {
+        "pass": 458
+      },
+      "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+    }
+  ],
+  "declaration_instances_by_comparison": {
+    "fresh_against_current_official_parent": 596579,
+    "same_original_candidate_and_checked_compiler_inputs": 280832
+  },
+  "excluded_current_source_pairs": {
+    "bytes": 20,
+    "file": "excluded-current-native.jsonl.gz",
+    "file_sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83",
+    "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "independent_current_parent_name_census": {
+    "declarations": 877411,
+    "modules": 39021
+  },
+  "lean": "v4.37.0-rc1",
+  "lean_commit": "0b77e12952ad39077d80d8bd6b66d601f225c321",
+  "local_declaration_instances": 877411,
+  "mathlib": "31ce06eaadf4a200c0e1407c5f10953cf606b8f8",
+  "native_run_group_progress": {
+    "45430810403": {
+      "checked": 110,
+      "conclusion": "success",
+      "status": "completed",
+      "statuses": {
+        "pass": 110
+      },
+      "validated_groups": 2
+    },
+    "45432576134": {
+      "checked": 24656,
+      "conclusion": "success",
+      "status": "completed",
+      "statuses": {
+        "pass": 24656
+      },
+      "validated_groups": 24
+    }
+  },
+  "negative_attempts": 0,
+  "nonpassing_original_observations": {
+    "bytes": 20,
+    "file": "native-nonpassing.jsonl.gz",
+    "file_sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83",
+    "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "official_compiler_parent": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "official_module_manifest_sha256": "edc38df9198228480080821adb772f6c4109fdba7404a04be28bc49a250cb487",
+  "official_parent_source_tree": "980141067b4eec00e78e2d490134c6299613cdef",
+  "ordinary_compiler_bytes_on_checked_sources": {
+    ".ir": {
+      "bytes_removed": 192415320,
+      "candidate_bytes": 306570920,
+      "median_bytes_saved": 4928,
+      "modules_larger": 0,
+      "modules_same_size": 0,
+      "modules_smaller": 39021,
+      "parent_bytes": 498986240
+    },
+    ".ir.sig": {
+      "bytes_removed": 0,
+      "candidate_bytes": 9677208,
+      "median_bytes_saved": 0,
+      "modules_larger": 0,
+      "modules_same_size": 39021,
+      "modules_smaller": 0,
+      "parent_bytes": 9677208
+    },
+    ".olean": {
+      "bytes_removed": 187249352,
+      "candidate_bytes": 6437588464,
+      "median_bytes_saved": 4808,
+      "modules_larger": 0,
+      "modules_same_size": 0,
+      "modules_smaller": 39021,
+      "parent_bytes": 6624837816
+    }
+  },
+  "original_native_archives": {
+    "count": 26,
+    "directory": "producer-archives",
+    "exact_container_bytes": 13651413
+  },
+  "original_public_proof": {
+    "prior_artifact_id": 14938195858,
+    "prior_declaration_instances": 879697,
+    "prior_head": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+    "prior_proof_input_sha256": "4c3f3a0afe27efe749f486a59e9a23ad7de6028fefd43b4463399343701d6ded",
+    "prior_proven_sources": 39120,
+    "prior_published_rows_sha256": "6ed95a48ea4c09f778c82fdff6718a07155750bd8065993a733d3f3fad67500d",
+    "prior_root_archive_sha256": "1ae7b0b2f3b2a12e0caeea83cd131730d87d5d11e17fa72e166cc2760cc6fae9",
+    "prior_root_workflow_sha": "fa6303096b380789f69545fdeabd4ef197c46225",
+    "prior_run_id": 45425355403
+  },
+  "per_source_rows": {
+    "bytes": 26947420,
+    "file": "native-modules.jsonl.gz",
+    "file_sha256": "71352ca5317f75976e59b86ea6c59f093ce39e4226fe5262570114aedd84094f",
+    "uncompressed_sha256": "0a3990eb920dd68be1a551374149bba72df1f0dc3a2a087cd0e9debb7f896a7e"
+  },
+  "preceding_evidence_kind_for_current_transfers": {
+    "fresh_against_current_official_parent": 3129,
+    "same_original_candidate_and_checked_compiler_inputs": 11126
+  },
+  "previous_discovery_and_exclusions": {
+    "before_previous_mathematical_batch": {
+      "artifacts_evidence": {
+        "actual_module_rows_sha256": "b97d4ad9561bf2835b98c24d2d64ad9287a53d863a62daf5bec7f090fbd9e317",
+        "github_artifact_id": 14926406473,
+        "github_artifact_sha256": "9108a25f84805a3acda486a43b94a4f669304bd99c09b66d670f5a7483d2e6c9",
+        "run": 45404148990
+      },
+      "complete_source_rows": 39137,
+      "head": "9e72b7b093ae4dabd1bb89f14fc9e8885c5aad5c",
+      "sources_removed_in_current_main": 17,
+      "terminal_nonpasses": 0
+    },
+    "evidence_commit": "4ff4a916dea1434b564f83253d729595fcd019d6",
+    "evidence_directory": "https://github.com/aliromman/riemann-hypothesis/tree/4ff4a916dea1434b564f83253d729595fcd019d6/verified/native",
+    "files": {
+      "initial-exclusions.jsonl.gz": {
+        "bytes": 266389,
+        "git_blob": "7e67bc71978f4d8d262272b1cc47dde0ab957602",
+        "sha256": "df5236c85c51ca549465566f27d870daa69de499d739a28e618ff7ff571d904f"
+      },
+      "native-modules.jsonl.gz": {
+        "bytes": 26229329,
+        "git_blob": "46c777a9867cd2a7090398e575082f433973419c",
+        "sha256": "b9f34c64de3484ef8f45ed4cabd470722751ca38bd0b6b15083b1ef8df22c1a5"
+      },
+      "native-nonpassing.jsonl.gz": {
+        "bytes": 20,
+        "git_blob": "0239669d57f6148035ad2dc4a6d54ae7db678e85",
+        "sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+      },
+      "summary.json": {
+        "bytes": 21612,
+        "git_blob": "85bb2a188bab0e4ab2f5243d69f84549362b68a0",
+        "sha256": "7dd58b6b63be4c7adb270ea1de93736fe4bf0c0296fd0971c62b422b023107ec"
+      }
+    },
+    "original_or_coordinated_sources": 40481,
+    "original_studied_sources": 40481,
+    "previous_mathematical_batch": {
+      "actual_linux_proof_head": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+      "artifacts_evidence": {
+        "actual_module_rows_sha256": "6ed95a48ea4c09f778c82fdff6718a07155750bd8065993a733d3f3fad67500d",
+        "github_artifact_id": 14938195858,
+        "github_artifact_sha256": "1ae7b0b2f3b2a12e0caeea83cd131730d87d5d11e17fa72e166cc2760cc6fae9",
+        "run": 45425355403
+      },
+      "complete_source_rows": 39120,
+      "head": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+      "sources_removed_in_current_main": 99,
+      "terminal_nonpasses": 0
+    },
+    "prior_native_nonpasses": 0,
+    "production_head": "c2c7fc890448cf0c8eab464f115e5e370129697a",
+    "withdrawn_before_current_parent": 1344
+  },
+  "producer_positive_sources_outside_final_git_scope": 0,
+  "project_graph_sha256": "36c2f8b5f3d67b345de9307632a90087bafa9a64bf30b1dc76e203b4978bd2d3",
+  "published_files": 39021,
+  "published_head": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+  "published_parent_cache_receipt": {
+    "build_exit_code": 0,
+    "candidate_head": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+    "candidate_tree": "4bbbca9ac3630d3b73294d1a7a1d86631e0b2dca",
+    "map_sha256": "6f7c2ea69b94b6e3dc61223728b66e348492f9cb94d82af9712cef387666e19c",
+    "module_manifest_sha256": "edc38df9198228480080821adb772f6c4109fdba7404a04be28bc49a250cb487",
+    "modules": 59908,
+    "receipt_sha256": "a6a11f580ac1cd82a43c7dedb0d255ad775c6af2a235035a384bb407d26a824f",
+    "source_tree": "980141067b4eec00e78e2d490134c6299613cdef"
+  },
+  "pull_request": 879,
+  "raw_facets_different_per_source_by_comparison": {
+    "fresh_against_current_official_parent": {
+      ".ir": 24766,
+      ".olean": 24766,
+      ".olean.private": 24758,
+      ".olean.server": 24766
+    },
+    "same_original_candidate_and_checked_compiler_inputs": {
+      ".ir": 14255,
+      ".olean": 14255,
+      ".olean.private": 14253,
+      ".olean.server": 14255
+    }
+  },
+  "same_warning_multisets": 39021,
+  "scheduled_native_and_published_sources": {
+    "actual_source_tree_per_native_run": {
+      "45430810403": {
+        "actual_git_head": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+        "actual_source_tree": "7225a26844ccbc8d12877c062c1fe5330ec78ad1",
+        "identical_in_published_review": 110,
+        "scheduled_sources": 110,
+        "superseded_or_withdrawn": 0,
+        "workflow_sha": "f73e0988e37222a326b6a8fdceb9ee6519dc3fe2"
+      },
+      "45432576134": {
+        "actual_git_head": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+        "actual_source_tree": "7225a26844ccbc8d12877c062c1fe5330ec78ad1",
+        "identical_in_published_review": 24656,
+        "scheduled_sources": 24656,
+        "superseded_or_withdrawn": 0,
+        "workflow_sha": "31a5d9b1ba433c66a5b8b92b9d24c0afa80c5452"
+      }
+    },
+    "changed_other_paths_between_heads": [],
+    "changed_src_paths_between_heads": 0,
+    "identical_retained_source_pairs": 39021,
+    "published_head": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+    "published_source_pairs_sha256": "25dd75907f33b2f091c005c713fe1a5e6ca9f759bba449abb447df8ee2eda846",
+    "published_source_tree": "7225a26844ccbc8d12877c062c1fe5330ec78ad1",
+    "scheduled_head": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+    "scheduled_source_count": 39021,
+    "scheduled_source_pairs_sha256": "25dd75907f33b2f091c005c713fe1a5e6ca9f759bba449abb447df8ee2eda846",
+    "scheduled_source_tree": "7225a26844ccbc8d12877c062c1fe5330ec78ad1",
+    "withdrawn_scheduled_source_pairs": 0
+  },
+  "selected_nonpassing": 0,
+  "selected_unobserved": 0,
+  "source_pairs_sha256": "25dd75907f33b2f091c005c713fe1a5e6ca9f759bba449abb447df8ee2eda846",
+  "source_tree": "7225a26844ccbc8d12877c062c1fe5330ec78ad1",
+  "strict_output_digests": 117063,
+  "strict_source_metrics": {
+    "added": 382,
+    "removed": 1016259
+  },
+  "strict_sources": 39021,
+  "transfer_policy": "whole-owner",
+  "transferred_original_comparison": {
+    "archive": 14255
+  },
+  "upstream_parent": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "warnings": {
+    "total": 173660,
+    "with_warning_digest": 31264
+  }
+}
