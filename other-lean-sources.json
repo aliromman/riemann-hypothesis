@@ -1,0 +1,20 @@
+{
+  "base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+  "counts": {
+    "modules": 9,
+    "nonblank": 635,
+    "lines": 718,
+    "bytes": 34242
+  },
+  "files": [
+    "comparator/FormalConjecturesBridge.lean",
+    "comparator/FormalConjecturesChallenge.lean",
+    "comparator/FormalConjecturesSolution.lean",
+    "comparator/FormalConjecturesStatement.lean",
+    "scripts/Cache.lean",
+    "scripts/cache-bootstrap/RecoverCompleted.lean",
+    "tools/ci_native/backend/ProofProducer.lean",
+    "tools/ci_native/backend/RuntimeProducer.lean",
+    "tools/ci_native/backend437/ProofProducer.lean"
+  ]
+}

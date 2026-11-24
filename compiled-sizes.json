@@ -1,0 +1,27 @@
+{
+  "modules": 39352,
+  "sha256": "4512d6877b06a475e7e43ede097e283ec88a7e1d7651a4ba5db5638cd5f9fb4c",
+  "facets": {
+    ".olean": {
+      "parent": 6657250584,
+      "candidate": 6468033520,
+      "smaller": 39352,
+      "larger": 0,
+      "equal": 0
+    },
+    ".ir.sig": {
+      "parent": 9759296,
+      "candidate": 9759296,
+      "smaller": 0,
+      "larger": 0,
+      "equal": 39352
+    },
+    ".ir": {
+      "parent": 504714248,
+      "candidate": 310320376,
+      "smaller": 39352,
+      "larger": 0,
+      "equal": 0
+    }
+  }
+}

@@ -1,0 +1,718 @@
+{
+  "base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+  "host": "macOS-27.2-arm64-arm-64bit",
+  "processes": 156,
+  "measured_pairs": 65,
+  "panel": [
+    "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FlatMapsPreserveSchwartzBruhatAndSurjective",
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsSelfDualFlagOfSaturatedIsotropicFlag",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.CarryLift",
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.AlgebraEquivSetup.PKNFact",
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IwahoriAndMaximalCompactCriteria",
+    "Development.AutomorphicSpectrum.Proofs.MembershipProofs.SplitQuadraticAlgebraOrder",
+    "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.SplitCentreMulTor",
+    "Development.DiscreteGroups.GlobalIrreducibility.LocTypeOfSerParamLe",
+    "Development.EtaleCohomology.EtaleSheaves.LeafRepCut",
+    "Development.EtaleCohomology.TateTwists.EtaleKummerTriangleExists",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.PrincipalizationWithRadicalCenters",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MonomialCase.CoordinateSubspaceIdeal",
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LagrangianDecomposition.SiegelB",
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilActions.CtSplitOfParts"
+  ],
+  "excluded": {
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilActions.CtSplitOfParts": {
+      "reason": "compiled candidate is outside this source diff"
+    }
+  },
+  "modules": {
+    "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FlatMapsPreserveSchwartzBruhatAndSurjective": {
+      "parent_source": "d887f604e3289b375f57622a8dddcd3be3909476ce9887ab091450e5948fc214",
+      "candidate_source": "c205f5344ad4b5d770bd0f3cba5b3107bba3c56fcbbfa84016fe9b581e11d566",
+      "removed": 30
+    },
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsSelfDualFlagOfSaturatedIsotropicFlag": {
+      "parent_source": "348a7e97b07b708d1704e7a7331187de821c111278943afc0ec08daf5e596fc6",
+      "candidate_source": "d5a6e76978b5b1859e2d09865be1a03eccd5050e50e145d8065a19dc2823ef01",
+      "removed": 24
+    },
+    "Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.CarryLift": {
+      "parent_source": "c26f6f5c72f52305bda4f8dd9a49525c50722758ddd130b17ce3c286dbe3d18f",
+      "candidate_source": "dd6461f4eb4659a93f6bf83c2a321a04c5cf432b5cc6e9761f401781f74ee4a0",
+      "removed": 22
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.AlgebraEquivSetup.PKNFact": {
+      "parent_source": "a8945df5b0062e61f383889f42d28301ff42ec6dc33a80f219b13f9de408e236",
+      "candidate_source": "2c9ec0d5caac6b67ba8785432caded3bb36ac6b8bdf8ad3a5a4d5c266eec04a1",
+      "removed": 21
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IwahoriAndMaximalCompactCriteria": {
+      "parent_source": "90beee59c1ba3eea6dba4fc9e0827280daba02329970b92622c2630fd99691a3",
+      "candidate_source": "cfd12a5cd03f0b10b0c0eafe4d1ee5db22110a192049cf2146a2c6daf883bac1",
+      "removed": 22
+    },
+    "Development.AutomorphicSpectrum.Proofs.MembershipProofs.SplitQuadraticAlgebraOrder": {
+      "parent_source": "a9298faff8b3ff316834e36990a2492a4d3d70a4b334372fb2136bac8885dfbc",
+      "candidate_source": "165a5611caa526e53ac18f5721b0b31ec94c31b8ceb952d7bbf335048bcaf0a2",
+      "removed": 30
+    },
+    "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.SplitCentreMulTor": {
+      "parent_source": "1e89afbbe31cb6297f81443988f67d3ac2c6f1548de8f835216530e231e9792c",
+      "candidate_source": "683669d3ce302bda483aba4c2539617b6f97897b4281e3ab37b5b435865749b8",
+      "removed": 26
+    },
+    "Development.DiscreteGroups.GlobalIrreducibility.LocTypeOfSerParamLe": {
+      "parent_source": "849e580e6898c8297704c6963dce643338bb326ec0589c6e03bb42ce2df64b00",
+      "candidate_source": "d9d63de845c0a1be909858c802de9a2d5e4016b394a05b1488cd6ce2e716d529",
+      "removed": 24
+    },
+    "Development.EtaleCohomology.EtaleSheaves.LeafRepCut": {
+      "parent_source": "dcba21452fa64728acff3fdba2a59a523541061c18e05c7277b7ea30d714b049",
+      "candidate_source": "4e407840ad5a6932a7c31fdc1a8ec157ab2a7f70070b0b64ad9f2eb1079c3724",
+      "removed": 26
+    },
+    "Development.EtaleCohomology.TateTwists.EtaleKummerTriangleExists": {
+      "parent_source": "7b72a2fabb659825a739d2cb400a1a15f439dbd64125ebf5bfa94aaeb166a428",
+      "candidate_source": "1c7d8f689f120c864cb96277758d704fa8daa542f8f988f64f297772d8a03e97",
+      "removed": 26
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.PrincipalizationWithRadicalCenters": {
+      "parent_source": "e6248368fe5863d048d0ffa3c7a03ad9d719b93b224aa31693233c5d37c59c17",
+      "candidate_source": "38ea6cf417453931b3c96549daefd1b8af2a7b3474bb6b6ec712a1c949ccdfc2",
+      "removed": 26
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MonomialCase.CoordinateSubspaceIdeal": {
+      "parent_source": "f1a28ef26562ff18e88850a50433effdc46f66466a3ecfbb2161d9db5c94a336",
+      "candidate_source": "a7d3a1a61b895d24b7fb4be5f7b40947655f025e982dc05de83c767d48e6cda9",
+      "removed": 26
+    },
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LagrangianDecomposition.SiegelB": {
+      "parent_source": "1ee0847caecd52c24a1f50f59ee7d5b8843f5d22459d68c43e648ac42e889fdb",
+      "candidate_source": "eea02a0374129975dada64d120099ed1b6620c32d4723dc2b1768ba873b60d1c",
+      "removed": 26
+    }
+  },
+  "per_module": {
+    "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FlatMapsPreserveSchwartzBruhatAndSurjective": {
+      "cpu": {
+        "parent": 3.545027000000003,
+        "candidate": 3.5434239999999972,
+        "change_pct": -0.04521827337297113,
+        "ranges": [
+          [
+            3.503268000000004,
+            3.6765560000000006
+          ],
+          [
+            3.319836999999998,
+            3.6192480000000002
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 3.6974553340000003,
+        "candidate": 3.542297125,
+        "change_pct": -4.196351138396204,
+        "ranges": [
+          [
+            3.5169515000000002,
+            3.794804708
+          ],
+          [
+            3.396312083,
+            3.836370667
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        4358120952,
+        4149647120
+      ],
+      "number of imported modules": [
+        22140,
+        20591
+      ],
+      "number of imported consts": [
+        406358,
+        392526
+      ]
+    },
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsSelfDualFlagOfSaturatedIsotropicFlag": {
+      "cpu": {
+        "parent": 3.3469099999999905,
+        "candidate": 3.045376999999988,
+        "change_pct": -9.009295140891261,
+        "ranges": [
+          [
+            3.1323510000000034,
+            3.5941709999999993
+          ],
+          [
+            2.867113000000007,
+            3.108193000000007
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 3.780267792,
+        "candidate": 3.272963458,
+        "change_pct": -13.419798858524889,
+        "ranges": [
+          [
+            3.448095583,
+            3.828086625
+          ],
+          [
+            2.9272800830000003,
+            3.3470366250000003
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        4680402040,
+        4580867152
+      ],
+      "number of imported modules": [
+        23191,
+        22009
+      ],
+      "number of imported consts": [
+        432038,
+        424374
+      ]
+    },
+    "Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.CarryLift": {
+      "cpu": {
+        "parent": 2.668559000000002,
+        "candidate": 2.4215360000000032,
+        "change_pct": -9.256793647807616,
+        "ranges": [
+          [
+            2.31242799999999,
+            3.300574999999995
+          ],
+          [
+            2.210318000000015,
+            2.9524379999999937
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 2.6993827500000003,
+        "candidate": 2.443883834,
+        "change_pct": -9.465086638788078,
+        "ranges": [
+          [
+            2.346598625,
+            3.4008052920000003
+          ],
+          [
+            2.230804875,
+            3.3336337090000003
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        6416100416,
+        6331480272
+      ],
+      "number of imported modules": [
+        30113,
+        29186
+      ],
+      "number of imported consts": [
+        599094,
+        592377
+      ]
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.AlgebraEquivSetup.PKNFact": {
+      "cpu": {
+        "parent": 2.892856999999971,
+        "candidate": 2.6710759999999993,
+        "change_pct": -7.666504082295589,
+        "ranges": [
+          [
+            2.446210999999998,
+            3.198913999999995
+          ],
+          [
+            2.528264,
+            2.985126000000008
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 3.098039167,
+        "candidate": 2.945175916,
+        "change_pct": -4.934193622478489,
+        "ranges": [
+          [
+            2.538990375,
+            3.2859530830000003
+          ],
+          [
+            2.703643458,
+            3.032669084
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        5924100672,
+        5838568488
+      ],
+      "number of imported modules": [
+        27592,
+        26659
+      ],
+      "number of imported consts": [
+        548654,
+        541871
+      ]
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IwahoriAndMaximalCompactCriteria": {
+      "cpu": {
+        "parent": 1.9762529999999856,
+        "candidate": 1.9849490000000003,
+        "change_pct": 0.4400246324744339,
+        "ranges": [
+          [
+            1.759057999999996,
+            2.1593210000000056
+          ],
+          [
+            1.748652000000007,
+            2.057037000000008
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 2.0518170000000002,
+        "candidate": 2.0369085410000003,
+        "change_pct": -0.7265978886031199,
+        "ranges": [
+          [
+            1.8761305830000001,
+            2.3532345830000003
+          ],
+          [
+            1.7683994580000002,
+            2.1784507090000003
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        5125666576,
+        5034719616
+      ],
+      "number of imported modules": [
+        24751,
+        23620
+      ],
+      "number of imported consts": [
+        477508,
+        470599
+      ]
+    },
+    "Development.AutomorphicSpectrum.Proofs.MembershipProofs.SplitQuadraticAlgebraOrder": {
+      "cpu": {
+        "parent": 4.9696739999999835,
+        "candidate": 4.892709999999994,
+        "change_pct": -1.5486730115494507,
+        "ranges": [
+          [
+            4.206996000000004,
+            5.217537000000007
+          ],
+          [
+            3.53145600000002,
+            5.035204999999991
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 5.352912042000001,
+        "candidate": 5.225072208,
+        "change_pct": -2.3882296775464273,
+        "ranges": [
+          [
+            4.249620125,
+            5.619763625
+          ],
+          [
+            3.5583343750000003,
+            5.5123950840000004
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        4273877088,
+        4133787640
+      ],
+      "number of imported modules": [
+        21839,
+        20498
+      ],
+      "number of imported consts": [
+        398955,
+        388598
+      ]
+    },
+    "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.SplitCentreMulTor": {
+      "cpu": {
+        "parent": 5.040506999999977,
+        "candidate": 5.101116999999974,
+        "change_pct": 1.2024584034899144,
+        "ranges": [
+          [
+            4.853597999999977,
+            5.395013999999989
+          ],
+          [
+            4.392765999999966,
+            5.688624999999988
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 5.320438833000001,
+        "candidate": 5.654451167,
+        "change_pct": 6.277909482358668,
+        "ranges": [
+          [
+            5.191569792,
+            6.533500125000001
+          ],
+          [
+            4.548629792000001,
+            6.328017042000001
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        5593544048,
+        5505797656
+      ],
+      "number of imported modules": [
+        26426,
+        25490
+      ],
+      "number of imported consts": [
+        518189,
+        511439
+      ]
+    },
+    "Development.DiscreteGroups.GlobalIrreducibility.LocTypeOfSerParamLe": {
+      "cpu": {
+        "parent": 1.9667150000000362,
+        "candidate": 1.7961619999999954,
+        "change_pct": -8.671973315911952,
+        "ranges": [
+          [
+            1.7274940000000356,
+            2.2111389999999744
+          ],
+          [
+            1.4623650000000197,
+            2.0468979999999988
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 2.309371917,
+        "candidate": 2.321812625,
+        "change_pct": 0.5387052604398646,
+        "ranges": [
+          [
+            1.914224584,
+            2.603174917
+          ],
+          [
+            1.7881531670000002,
+            3.020509167
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        4595967024,
+        4487199544
+      ],
+      "number of imported modules": [
+        22840,
+        21631
+      ],
+      "number of imported consts": [
+        426850,
+        418631
+      ]
+    },
+    "Development.EtaleCohomology.EtaleSheaves.LeafRepCut": {
+      "cpu": {
+        "parent": 3.4767210000000546,
+        "candidate": 3.432846999999981,
+        "change_pct": -1.2619361749209301,
+        "ranges": [
+          [
+            3.373589000000038,
+            3.6399360000000343
+          ],
+          [
+            2.9488670000000354,
+            3.791357999999974
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 4.2355995,
+        "candidate": 4.084519,
+        "change_pct": -3.566921282335589,
+        "ranges": [
+          [
+            3.7955303330000003,
+            4.528052875
+          ],
+          [
+            3.4982043330000003,
+            4.267276542
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        4823356576,
+        4325112488
+      ],
+      "number of imported modules": [
+        23861,
+        21119
+      ],
+      "number of imported consts": [
+        447120,
+        405701
+      ]
+    },
+    "Development.EtaleCohomology.TateTwists.EtaleKummerTriangleExists": {
+      "cpu": {
+        "parent": 1.9401839999999595,
+        "candidate": 1.5330729999999733,
+        "change_pct": -20.983112941865034,
+        "ranges": [
+          [
+            1.8207129999999836,
+            2.31235300000003
+          ],
+          [
+            1.5173560000000066,
+            1.7897940000000006
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 2.2711680000000003,
+        "candidate": 1.788845083,
+        "change_pct": -21.23677847697749,
+        "ranges": [
+          [
+            2.048149667,
+            2.4845080840000002
+          ],
+          [
+            1.7061195,
+            2.032200667
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        4764239224,
+        4264470208
+      ],
+      "number of imported modules": [
+        23648,
+        20903
+      ],
+      "number of imported consts": [
+        442294,
+        400788
+      ]
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.PrincipalizationWithRadicalCenters": {
+      "cpu": {
+        "parent": 3.1830280000000073,
+        "candidate": 3.0153440000000273,
+        "change_pct": -5.26806550240776,
+        "ranges": [
+          [
+            2.975099,
+            3.809892999999988
+          ],
+          [
+            2.9280200000000036,
+            3.348399000000029
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 3.72664175,
+        "candidate": 3.466506084,
+        "change_pct": -6.980431268983667,
+        "ranges": [
+          [
+            3.2592490840000004,
+            4.2380397080000005
+          ],
+          [
+            3.263072792,
+            3.8172708340000003
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        4719061432,
+        4218493216
+      ],
+      "number of imported modules": [
+        23499,
+        20751
+      ],
+      "number of imported consts": [
+        438138,
+        396574
+      ]
+    },
+    "Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MonomialCase.CoordinateSubspaceIdeal": {
+      "cpu": {
+        "parent": 2.162582000000043,
+        "candidate": 1.925220999999965,
+        "change_pct": -10.97581502112167,
+        "ranges": [
+          [
+            1.9186039999999593,
+            2.586244999999991
+          ],
+          [
+            1.877061000000026,
+            2.65149999999997
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 2.6372829170000003,
+        "candidate": 2.285434333,
+        "change_pct": -13.34132874906876,
+        "ranges": [
+          [
+            2.2186287080000002,
+            2.8740901660000002
+          ],
+          [
+            2.019634458,
+            3.0445832090000002
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        4680013128,
+        4179444912
+      ],
+      "number of imported modules": [
+        23186,
+        20438
+      ],
+      "number of imported consts": [
+        431660,
+        390096
+      ]
+    },
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LagrangianDecomposition.SiegelB": {
+      "cpu": {
+        "parent": 2.980921999999964,
+        "candidate": 2.842297000000002,
+        "change_pct": -4.650406820438901,
+        "ranges": [
+          [
+            2.577849000000043,
+            3.2064550000000054
+          ],
+          [
+            2.7643620000000055,
+            2.9029510000000016
+          ]
+        ]
+      },
+      "wall": {
+        "parent": 3.5390542910000002,
+        "candidate": 3.4109510000000003,
+        "change_pct": -3.6197040357864307,
+        "ranges": [
+          [
+            3.141944708,
+            3.888334958
+          ],
+          [
+            3.235243542,
+            3.5154662500000002
+          ]
+        ]
+      },
+      "number of imported bytes": [
+        5501919688,
+        5413287288
+      ],
+      "number of imported modules": [
+        26021,
+        25079
+      ],
+      "number of imported consts": [
+        512183,
+        505352
+      ]
+    }
+  },
+  "overall": {
+    "cpu": {
+      "sum_medians": [
+        40.149938999999975,
+        38.2051329999999
+      ],
+      "change_pct": -4.843857919684713,
+      "improved_pairs": 48,
+      "slower_modules": {
+        "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IwahoriAndMaximalCompactCriteria": 0.4400246324744339,
+        "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.SplitCentreMulTor": 1.2024584034899144
+      }
+    },
+    "wall": {
+      "sum_medians": [
+        44.71943129300001,
+        42.478820374
+      ],
+      "change_pct": -5.010374359010983,
+      "improved_pairs": 49,
+      "slower_modules": {
+        "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.SplitCentreMulTor": 6.277909482358668,
+        "Development.DiscreteGroups.GlobalIrreducibility.LocTypeOfSerParamLe": 0.5387052604398646
+      }
+    },
+    "number of imported bytes": {
+      "median_reduction": 108767480,
+      "range": [
+        84620144,
+        500568216
+      ],
+      "modules_reduced": 13
+    },
+    "number of imported modules": {
+      "median_reduction": 1209,
+      "range": [
+        927,
+        2748
+      ],
+      "modules_reduced": 13
+    },
+    "number of imported consts": {
+      "median_reduction": 8219,
+      "range": [
+        6717,
+        41564
+      ],
+      "modules_reduced": 13
+    }
+  }
+}

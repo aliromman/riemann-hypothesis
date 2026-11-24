@@ -1,0 +1,43 @@
+{
+  "scope": {
+    "disk_free_before_unpack": 78593626112,
+    "disk_required_before_unpack": 2851637456,
+    "measured_parent_public_bytes": 915128224,
+    "shared_parent_public_bytes": 704153808,
+    "shared_archives": 3304,
+    "disk_free_after_unpack": 77628997632,
+    "parent": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+    "tree": "5da48cf36c47a7d87124fe72c0becbbb26a419d9",
+    "donor": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+    "manifest": "7ef75c550561a6f21d27bb76c9a53fcf6a9a6fe5d5d481f2cdb56e9b1262589d",
+    "graph": "e032f0efab1562e8ceb57acfca014adb55937b17c3b86ad84017a6ca701ef024",
+    "group": "current-100-02",
+    "roots": 1100,
+    "archives": 4195,
+    "archive_bytes": 232187684,
+    "private_parents": 0
+  },
+  "statuses": {
+    "pass": 1095,
+    "diagnostics": 1,
+    "elaboration": 4
+  },
+  "lines": 29244,
+  "exact_private_proof_modules": 1040,
+  "exact_private_proof_lines": 27668,
+  "candidate_modules": 1100,
+  "resumed_modules": 0,
+  "pending": 0,
+  "seconds": 2111.35,
+  "machine": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+  "toolchain": "Lean (version 4.37.0-rc1, x86_64-unknown-linux-gnu, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "workflow_sha": "55b05d120de3421727dc1c0f67a6dbbc55ab5811",
+  "workers": 2,
+  "lean_threads": 1,
+  "worker_source_sha": "5d64280168a2eb2daaed7fc15491b13443327ec631fa7df2bb8a283c1b6aefed",
+  "checker_source_sha": "d42ab8acf8d953f321c501b0e479f7b92c6ab51484f4fae63f745a57deaa0af3",
+  "result_sha": "845e31853f82f6ed6d40a71e09d431a3b699eff96c45f535081b9238464a493b",
+  "target_sha": "5f67ebd907d6a67f6df4b792a0c366a4b5c12cbc0e7a235732ced55b35f47df2",
+  "pilot_cross_host_differences": {},
+  "pilot_cross_host_gate_differences": {}
+}

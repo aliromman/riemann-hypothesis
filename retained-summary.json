@@ -1,0 +1,16 @@
+{
+  "total_Development_sources": 42178,
+  "native_decisions": 40978,
+  "edited": 39352,
+  "retained": {
+    "coordination or outside Main": 1493,
+    "no candidate imports": 27,
+    "proof terms": 103,
+    "elaboration": 16,
+    "declarations": 11,
+    "no native result for current inputs": 1171,
+    "private-use": 3,
+    "timeout": 1,
+    "IR comparison": 1
+  }
+}

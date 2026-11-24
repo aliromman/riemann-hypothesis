@@ -1,0 +1,37 @@
+{
+  "scope": {
+    "parent": "362d9476fbd4548dead48ed7b6a54600879e1e17",
+    "tree": "40e3cf4d94bd95ec57949a01b570b2ece95e4ceb",
+    "donor": "f82babb107b166beffa76844bbc2c64c8296d247",
+    "manifest": "db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855",
+    "graph": "ec04ddec7c43648872794bfb65663d7b57eb3797051b57d67516b6292b957326",
+    "group": "group-20-2",
+    "roots": 2500,
+    "archives": 3587,
+    "archive_bytes": 151958676,
+    "private_parents": 0
+  },
+  "statuses": {
+    "pass": 2440,
+    "elaboration": 46,
+    "declarations": 11,
+    "diagnostics": 1,
+    "none": 2
+  },
+  "lines": 69259,
+  "exact_private_proof_modules": 2170,
+  "exact_private_proof_lines": 61279,
+  "candidate_modules": 2500,
+  "seconds": 2351.2,
+  "machine": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+  "toolchain": "Lean (version 4.37.0-rc1, x86_64-unknown-linux-gnu, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "workflow_sha": "cf14b4e17db5d9917e3b5ba9ba8c8d8f179a82b8",
+  "workers": 2,
+  "lean_threads": 1,
+  "worker_source_sha": "5d64280168a2eb2daaed7fc15491b13443327ec631fa7df2bb8a283c1b6aefed",
+  "checker_source_sha": "d42ab8acf8d953f321c501b0e479f7b92c6ab51484f4fae63f745a57deaa0af3",
+  "result_sha": "094620837b04bedfb9610fe02f5c96d93270d08618ff92a5a7cd8dff7355889b",
+  "target_sha": "5f67ebd907d6a67f6df4b792a0c366a4b5c12cbc0e7a235732ced55b35f47df2",
+  "pilot_cross_host_differences": {},
+  "pilot_cross_host_gate_differences": {}
+}

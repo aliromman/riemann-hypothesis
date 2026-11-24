@@ -1,0 +1,44 @@
+{
+  "Development.WeilBound.CoreStatements.PluriharmonicCharts.AdjoinLow": {
+    "parent_source": "2cabd30001d954fbeb7273d7a782423926128b66123d1e7e3f6abb08c4e12198",
+    "full_removal_source": "acbc34fcf8c6655ae758dac58b27318d72f613956ca04a0e18b45424122a3e10",
+    "full_removal_status": "pass",
+    "full_removal_changed_proofs": 1,
+    "full_removal_error": [],
+    "actual_source": "fabf6a776d87001afbeaba01bea9e4cf53a424e4804cc2ebb4ca5a9b0c0cc4b5",
+    "actual_import": [
+      "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+    ],
+    "removed": 26,
+    "preserved_declarations": 3
+  },
+  "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TensorEigen": {
+    "parent_source": "a51c26e5e7cbf49f51f0d9536232d1a15db43a1e2137874c02f77a30db65e4e5",
+    "full_removal_source": "33b58adca3ccdd42c00ca0afcaeda26497bc27bdf49f5be0fe9316c73f9acac8",
+    "full_removal_status": "elaboration",
+    "full_removal_changed_proofs": null,
+    "full_removal_error": [
+      "failed to synthesize instance of type class\n  IsAlgClosed ℂ\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.",
+      "Tactic `rcases` failed: `x✝ : ?m.978` is not an inductive datatype"
+    ],
+    "actual_source": "0466b18c8b50a7d612338cce8bffd194440e5e3cda7c5a342fa87e24f123a3bb",
+    "actual_import": [
+      "Mathlib.Analysis.Complex.Polynomial.Basic"
+    ],
+    "removed": 31,
+    "preserved_declarations": 24
+  },
+  "Development.WeilBound.CoreStatements.AmpleLineBundles.SpanLeOfMem": {
+    "parent_source": "49b16941a6cd6e5f92a7ca675305a3854d34ef4245c380a120a2d7cc477999f9",
+    "full_removal_source": "83e4d256940e7de6ea123f508f3d5d1f055f94da3de3183ebde7407965b0f1df",
+    "full_removal_status": "pass",
+    "full_removal_changed_proofs": 1,
+    "full_removal_error": [],
+    "actual_source": "8b719bc8a52344def8077c7c4ec1197fdcefcf205461c1b3d033ae90004282b2",
+    "actual_import": [
+      "Mathlib.RingTheory.Flat.TorsionFree"
+    ],
+    "removed": 26,
+    "preserved_declarations": 15
+  }
+}
