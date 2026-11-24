@@ -1,0 +1,57 @@
+{
+  "actual_compiler_facets": {
+    ".ir": {
+      "byte_identical": true,
+      "candidate_bytes": 7704,
+      "candidate_sha256": "e09c68e5f6c5ad5537b9d5007b52a3198fb3c0e888ae5801ca8287252870e373",
+      "official_sha256": "e09c68e5f6c5ad5537b9d5007b52a3198fb3c0e888ae5801ca8287252870e373"
+    },
+    ".ir.sig": {
+      "byte_identical": true,
+      "candidate_bytes": 248,
+      "candidate_sha256": "779598cfda7a3d8328963de46628bc96c785c48b4dceb2cd59af63c85ee8a47f",
+      "official_sha256": "779598cfda7a3d8328963de46628bc96c785c48b4dceb2cd59af63c85ee8a47f"
+    },
+    ".olean": {
+      "byte_identical": true,
+      "candidate_bytes": 10816,
+      "candidate_sha256": "a2816fa85156ebb38ddb00e6697fe2c2cc26f2aa0d333a6f6613e37af0266418",
+      "official_sha256": "a2816fa85156ebb38ddb00e6697fe2c2cc26f2aa0d333a6f6613e37af0266418"
+    },
+    ".olean.private": {
+      "byte_identical": true,
+      "candidate_bytes": 8864,
+      "candidate_sha256": "03cbbe139445990ff63547fb4f8319f1595e4bd261242bc3089a835d89ba7573",
+      "official_sha256": "03cbbe139445990ff63547fb4f8319f1595e4bd261242bc3089a835d89ba7573"
+    },
+    ".olean.server": {
+      "byte_identical": true,
+      "candidate_bytes": 1536,
+      "candidate_sha256": "7a28837ac5708315e89045acbed3d82320d5175c5e528e712b46958c4293897d",
+      "official_sha256": "7a28837ac5708315e89045acbed3d82320d5175c5e528e712b46958c4293897d"
+    }
+  },
+  "artifact": 14926406473,
+  "effective_public_inputs": "49194e53aa49babe9ff3494eff3c10d6f1e15acd8c8e4c3adb291daa450f4fdd",
+  "github_run": 45404148990,
+  "head": "9e72b7b093ae4dabd1bb89f14fc9e8885c5aad5c",
+  "individual_candidate_images": "7c7f52599ef4b9d7f5eba282b17f355fe856d23fd17e2a1697ed77acf4d56625",
+  "kernel": {
+    "candidateNames": 5,
+    "different": 0,
+    "examples": [],
+    "kernelImage": true,
+    "parentNames": 5,
+    "proofChanges": 0,
+    "publicImage": true,
+    "publicImports": true
+  },
+  "native_bytes_rechecked_locally": 29168,
+  "official_receipt_sha256": "c72524ccbe75389f2126e324dce46d2fcfce009b1f6b84acb9a252352d04a0d2",
+  "operational_helper_files": 47,
+  "original_zip_sha256": "9108a25f84805a3acda486a43b94a4f669304bd99c09b66d670f5a7483d2e6c9",
+  "parent": "c6d67c05b648be9f1993aa84bd32c29ea9d2fb72",
+  "pr": 879,
+  "public_reviewer_commands_pass": true,
+  "reviewer_commands_sha256": "8ff409c4efb0d902f8c297430772f97725e3b3db68e0e4cd6047fc7f0aef1f9d"
+}

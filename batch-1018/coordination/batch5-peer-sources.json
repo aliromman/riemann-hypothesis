@@ -1,0 +1,37 @@
+{
+  "base": "d4b2c1cc39c05a8b49a4adbda9908898a71f12c6",
+  "open_batch": 1119,
+  "peer_head": "56e7712c8a808a5bd59fc74ca4f4937c6c9a91fc",
+  "heads": {
+    "879": "9e72b7b093ae4dabd1bb89f14fc9e8885c5aad5c",
+    "977": "f3e19bf8371ab5dd383b81e008ec14c4b0331811"
+  },
+  "unique_shared_sources": 642,
+  "by_proposal": {
+    "879": {
+      "shared": 603,
+      "all": {
+        "reconstructed": 586,
+        "deleted_by_peer": 17
+      },
+      "textual_conflicts": {
+        "deleted_by_peer": 17,
+        "reconstructed": 5
+      },
+      "requires_review": []
+    },
+    "977": {
+      "shared": 143,
+      "all": {
+        "reconstructed": 139,
+        "deleted_by_peer": 4
+      },
+      "textual_conflicts": {
+        "reconstructed": 19,
+        "deleted_by_peer": 4
+      },
+      "requires_review": []
+    }
+  },
+  "rows_sha256": "aed1cac2cd1ee63259526e9cbb0f32402c4adad203774944c408e0dbe8658a98"
+}

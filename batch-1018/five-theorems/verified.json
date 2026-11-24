@@ -1,0 +1,71 @@
+{
+  "base": "c6d67c05b648be9f1993aa84bd32c29ea9d2fb72",
+  "head": "9e72b7b093ae4dabd1bb89f14fc9e8885c5aad5c",
+  "head_source": "95fe38ceaf8f51ec5628d748d55bd7127e1e6447",
+  "changed": 39137,
+  "checked_parent_public": 20982,
+  "changed_visible_to_Main": 38770,
+  "candidate_visible_and_parent": 59752,
+  "decls": {
+    "candidateNames": 5,
+    "different": 0,
+    "examples": [],
+    "kernelImage": true,
+    "parentNames": 5,
+    "proofChanges": 0,
+    "publicImage": true,
+    "publicImports": true
+  },
+  "kernel_accepted": [
+    "riemannHypothesis",
+    "riemannZeta_eq_zero_re",
+    "LFunction_ne_zero_of_half_lt_re",
+    "LFunction_eq_zero_re",
+    "LFunction_eq_zero_re_of_isPrimitive"
+  ],
+  "negative_control": "negative control: while replaying declaration 'riemannHypothesis':",
+  "axioms": {
+    "riemannHypothesis": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "riemannZeta_eq_zero_re": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "LFunction_ne_zero_of_half_lt_re": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "LFunction_eq_zero_re": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "LFunction_eq_zero_re_of_isPrimitive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "challenge": {
+    "expected": "bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60",
+    "sha256": "bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60",
+    "bytes": 363237517,
+    "seconds": 25.218
+  },
+  "challenge_statement_and_definition_results": [
+    "claim riemannHypothesis",
+    "claim riemannZeta_eq_zero_re",
+    "claim LFunction_ne_zero_of_half_lt_re",
+    "claim LFunction_eq_zero_re",
+    "claim LFunction_eq_zero_re_of_isPrimitive",
+    "definition RiemannZetaZerosOnLine  exact=true  alphaEquivalent=true",
+    "definition DirichletLNonvanishingRightOfHalf  exact=false  alphaEquivalent=true",
+    "definition DirichletLZerosOnLine  exact=false  alphaEquivalent=true",
+    "definition PrimitiveDirichletLZerosOnLine  exact=false  alphaEquivalent=true"
+  ]
+}

@@ -7,3 +7,7 @@ Across 39,137 existing source modules, 1,019,288 private imports are removed and
 Two GitHub metadata checks initially failed during the raw Git fetch of the preceding head. A normal merge of the current community branch kept every proof and released source pair. The new upstream jobs checked the labels and all six frozen paths. [Upstream label check](https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45393892762) · [Upstream frozen-file check](https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45393892788) · [Stock workload and independent theorem checks](https://github.com/aliromman/riemann-hypothesis/tree/e93a448d3202bc9d044b1812a41a0c06e8803c3e/ci/stock-batch-1018/results/45386629388/)
 
 The source, native comparison and final theorem records identify their exact inputs. The full default-target build and the complete independent five-target solution export remain separate.
+
+## Compiled outputs and theorem checks
+
+The final records cover all 39,137 changed source modules and all five declarations in `Main`. The raw ZIP files retain the original GitHub authentication digests. The latest main comparison lists every subsequent upstream path and checks whether it changes a tested source or tool. [Compiled outputs](native) · [Five theorem proofs](five-theorems) · [Latest main comparison](latest-main.json)
