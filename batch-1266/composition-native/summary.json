@@ -1,0 +1,14 @@
+{
+  "first": "e0a0acde813bd368786947b98704ee6814656a15",
+  "second": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+  "merged_src": "606198057a056bcc741f0bc37a9158abf161befb",
+  "current": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "roots": 18,
+  "paired_modules": 51,
+  "fresh": 21,
+  "transferred": 30,
+  "complete_stock_dependencies": 120,
+  "declarations": 2211,
+  "warnings": 146,
+  "ordinary_sha256_checks": 153
+}

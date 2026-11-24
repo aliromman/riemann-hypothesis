@@ -1,0 +1,11 @@
+{
+  "modules": 11548,
+  "members": 68221,
+  "fusions": 24504,
+  "tidied_members": 3024,
+  "fewer_commands": 251315,
+  "fewer_nonblank": 382611,
+  "fewer_bytes": 20742289,
+  "net_python_lines": 448,
+  "lean_commands_less_python": 250867
+}

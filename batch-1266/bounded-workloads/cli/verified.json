@@ -1,0 +1,344 @@
+{
+  "run": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45446832028",
+  "job": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45446832028/job/138632800911",
+  "workflow": "5480a6ea62995b82bf2910a64b7c1e5ba2798d7d",
+  "branch": "ci/clump-scopes/cli-timing-1266",
+  "request": {
+    "source": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+    "source_tree": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749",
+    "tools": {
+      "community": {
+        "repo": "leanprover-community/riemann-hypothesis",
+        "ref": "307cef33f046955ee79dba47e0d828d06496d75f",
+        "git_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+        "sha256": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44"
+      },
+      "published": {
+        "repo": "aliromman/riemann-hypothesis",
+        "ref": "70f5e2c0737a9289949627d834612ed30d25432f",
+        "git_blob": "e7729f1bb64f7e9d8b3ef1edbe98459f6536602f",
+        "sha256": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf"
+      },
+      "proposed": {
+        "repo": "aliromman/riemann-hypothesis",
+        "ref": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+        "git_blob": "b5cb4699f2f6265de696c087eafc797994e9db70",
+        "sha256": "42027c05de988741decb36b3d9c6f689feed372e17331a40b1c867f0bf1bf933"
+      }
+    },
+    "driver_sha256": "a640be04c658123e904d4146189120b509a3440a8f0765ca92a96a7be0d503b1",
+    "exclude_sha256": "bf292aeb2066954adcc3a75f55ef82f610b5376ee0f34f5cb7d75a72c2514b42",
+    "oracle_sha256": "b17b38c0a25b53ab380bea86cc4f9afdae6702c0339839caa5f52e68c34caf23"
+  },
+  "artifact_id": 14947290617,
+  "original_actions_zip_sha256": "79bb234548b459b0916f2f1473d9d34d122cb602f8b5ca8132565ed0026a85c2",
+  "original_actions_zip_bytes": 43753,
+  "verified_files": 59884,
+  "verified_source_census_sha256": "a226068fb920fc555087111a5753a02b699f4d7f246b7b9aa9cd713c550e15bf",
+  "source_output_checks": {
+    "plan_unchanged": true,
+    "plan_stdout_sha256": "ac05db1d2d33f61b791477957db9bf1872f7b1ea2f45ca6a1305a9b4ae05b55f",
+    "plan_stderr_sha256": "2d6dff91ffa77ec4598e11079b258c6a25d457bc3d52d845b385bb7ca60fdd83",
+    "timed_planner_combined_count": 12,
+    "joined_sha256": "5b4d6ba71a23fa3918112215a98f3369d75b48c545b080ddf44f464586446626",
+    "untimed_apply_stdout_stderr_sha256": {
+      "community": [
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ],
+      "published": [
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ],
+      "proposed": [
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ]
+    },
+    "restored_after_each_apply": true
+  },
+  "five_warmups_and_25_scored": true,
+  "original_summary": {
+    "source_checkout": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+    "source_tree": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749",
+    "members": 656,
+    "plan_roots": 199,
+    "original_and_restored_tracked_files": 59884,
+    "source_census_sha256": "a226068fb920fc555087111a5753a02b699f4d7f246b7b9aa9cd713c550e15bf",
+    "tool_sha256": {
+      "community": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44",
+      "published": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf",
+      "proposed": "42027c05de988741decb36b3d9c6f689feed372e17331a40b1c867f0bf1bf933"
+    },
+    "saved_plan_sha256": "7f008f70f550f162cba7e1b23b8b15309086d8efd3ff8c0c4a2ff9ed4521a175",
+    "generated_root_streams": {
+      "community": "1da546bc59bb2f7254c4f6d74201170264fc1c3a80ffdc0e491c135e12bfcbdd",
+      "published": "72e28cc9c720a348f0dd900f151c45bf43786ac8519ef1e1a22a458d97089178",
+      "proposed": "72e28cc9c720a348f0dd900f151c45bf43786ac8519ef1e1a22a458d97089178"
+    },
+    "order": "One warm-up per tool. Five scored rounds rotate the first tool. The plan uses two tools and apply uses three.",
+    "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+    "platform": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+    "medians": {
+      "plan": {
+        "published": {
+          "wall_s": 19.926381065,
+          "cpu_s": 19.76794,
+          "peak_rss_bytes": 3744206848
+        },
+        "proposed": {
+          "wall_s": 18.697253325,
+          "cpu_s": 18.698345,
+          "peak_rss_bytes": 736133120
+        }
+      },
+      "apply": {
+        "community": {
+          "wall_s": 17.050183859,
+          "cpu_s": 16.88166,
+          "peak_rss_bytes": 3577995264
+        },
+        "published": {
+          "wall_s": 0.309789484,
+          "cpu_s": 0.314917,
+          "peak_rss_bytes": 73281536
+        },
+        "proposed": {
+          "wall_s": 0.307312593,
+          "cpu_s": 0.312073,
+          "peak_rss_bytes": 73281536
+        }
+      }
+    },
+    "observations_sha256": "189cd8219de128ebccfa570b8b1b5d6b3797a51b46afce049506861b4145e9bb"
+  },
+  "environment": {
+    "python": "3.12.16",
+    "platform": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+    "image": "20261116.133.1",
+    "physical_memory_bytes": 16464297984,
+    "available_processors": 4,
+    "free_disk_bytes_before_timing": 93442068480,
+    "cpu_model": "model name\t: Intel(R) Xeon(R) 6975P-C"
+  },
+  "comparisons": {
+    "plan": {
+      "published": {
+        "wall_s": {
+          "baseline": 19.926381065,
+          "candidate": 18.697253325,
+          "percent": -6.168344045968899,
+          "baseline_range": [
+            19.827465152,
+            20.088421334
+          ],
+          "candidate_range": [
+            18.666871508,
+            18.815241328
+          ],
+          "increased_pairs": [],
+          "equal_pairs": [],
+          "pair_percent": [
+            -6.081806576400139,
+            -5.853464550827514,
+            -5.749307299017071,
+            -6.925223171446659,
+            -5.750056303112194
+          ]
+        },
+        "cpu_s": {
+          "baseline": 19.76794,
+          "candidate": 18.698345,
+          "percent": -5.4107560018899274,
+          "baseline_range": [
+            19.722311,
+            19.907519
+          ],
+          "candidate_range": [
+            18.667131,
+            18.808989
+          ],
+          "increased_pairs": [],
+          "equal_pairs": [],
+          "pair_percent": [
+            -5.473582511568442,
+            -5.350184367339105,
+            -4.985198255356904,
+            -6.073956277525094,
+            -4.861355412620161
+          ]
+        },
+        "peak_rss_bytes": {
+          "baseline": 3744206848,
+          "candidate": 736133120,
+          "percent": -80.33941099185769,
+          "baseline_range": [
+            3744030720,
+            3744395264
+          ],
+          "candidate_range": [
+            735956992,
+            736219136
+          ],
+          "increased_pairs": [],
+          "equal_pairs": [],
+          "pair_percent": [
+            -80.33903311562571,
+            -80.33891629927031,
+            -80.33951853043042,
+            -80.34411500547525,
+            -80.33810310897775
+          ]
+        }
+      }
+    },
+    "apply": {
+      "community": {
+        "wall_s": {
+          "baseline": 17.050183859,
+          "candidate": 0.307312593,
+          "percent": -98.1975995359265,
+          "baseline_range": [
+            16.976290196,
+            17.163543137
+          ],
+          "candidate_range": [
+            0.30478522,
+            0.310550011
+          ],
+          "increased_pairs": [],
+          "equal_pairs": [],
+          "pair_percent": [
+            -98.19064159118442,
+            -98.1716089415511,
+            -98.19789917492409,
+            -98.2017784693184,
+            -98.20590200848952
+          ]
+        },
+        "cpu_s": {
+          "baseline": 16.88166,
+          "candidate": 0.312073,
+          "percent": -98.15140809612325,
+          "baseline_range": [
+            16.861907,
+            17.040967
+          ],
+          "candidate_range": [
+            0.30945199999999995,
+            0.31560599999999994
+          ],
+          "increased_pairs": [],
+          "equal_pairs": [],
+          "pair_percent": [
+            -98.1497411502528,
+            -98.1296236265055,
+            -98.15204784363623,
+            -98.15852272066786,
+            -98.1647864621718
+          ]
+        },
+        "peak_rss_bytes": {
+          "baseline": 3577995264,
+          "candidate": 73281536,
+          "percent": -97.9518828116593,
+          "baseline_range": [
+            3577761792,
+            3578097664
+          ],
+          "candidate_range": [
+            72495104,
+            73281536
+          ],
+          "increased_pairs": [],
+          "equal_pairs": [],
+          "pair_percent": [
+            -97.97389960505981,
+            -97.97392047932652,
+            -97.95174915882158,
+            -97.95182184937057,
+            -97.9518828116593
+          ]
+        }
+      },
+      "published": {
+        "wall_s": {
+          "baseline": 0.309789484,
+          "candidate": 0.307312593,
+          "percent": -0.7995400515273698,
+          "baseline_range": [
+            0.307705651,
+            0.313934569
+          ],
+          "candidate_range": [
+            0.30478522,
+            0.310550011
+          ],
+          "increased_pairs": [
+            2
+          ],
+          "equal_pairs": [],
+          "pair_percent": [
+            -0.30976456367711735,
+            0.8733414518929283,
+            -0.8160315732344214,
+            -0.35124826656214303,
+            -2.9144127163644673
+          ]
+        },
+        "cpu_s": {
+          "baseline": 0.314917,
+          "candidate": 0.312073,
+          "percent": -0.9030951012489075,
+          "baseline_range": [
+            0.31288099999999996,
+            0.318754
+          ],
+          "candidate_range": [
+            0.30945199999999995,
+            0.31560599999999994
+          ],
+          "increased_pairs": [
+            2
+          ],
+          "equal_pairs": [],
+          "pair_percent": [
+            -0.22404354292586692,
+            0.8709381522048254,
+            -0.9373898519292378,
+            -0.5398910656633671,
+            -2.9182378887794402
+          ]
+        },
+        "peak_rss_bytes": {
+          "baseline": 73281536,
+          "candidate": 73281536,
+          "percent": 0.0,
+          "baseline_range": [
+            72495104,
+            73281536
+          ],
+          "candidate_range": [
+            72495104,
+            73281536
+          ],
+          "increased_pairs": [],
+          "equal_pairs": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "pair_percent": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    }
+  }
+}

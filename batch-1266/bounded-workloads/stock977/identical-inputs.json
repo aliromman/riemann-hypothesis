@@ -1,0 +1,1184 @@
+{
+  "previous_run": 45430568327,
+  "previous_workflow": "907cdb7d158ed2af3ab7579b5e2271be094eced7",
+  "previous_linux_root": "19beb187eef5fd39b78be2d7bd81855b2b5a4327",
+  "previous_original_actions_zip_sha256": "7c4a59966408dd2083824e72770ce1f61953ac38887c927e3a5c9e8fd303a3c6",
+  "previous_record": "https://github.com/aliromman/riemann-hypothesis/tree/e02e84368fb09613e5f8068cb16b3acbd087c275/ci/stock-batch-1198/results/45430568327/",
+  "current_run": 45446277703,
+  "current_root": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+  "previous_current_fixed_git_inputs": {
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    ".gitattributes": "388ae3892de0350a636b6ecef7026bfc1959ef06",
+    "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "comparator/FormalConjecturesChallenge.lean": "290a2c6270f8da3852c7051d7da0f30032a70421",
+    "comparator/formal-conjectures.json": "e3afddc98129d1d1183ff217d434165fd893a0fe",
+    "comparator/formal-conjectures-export-targets.txt": "80bbbf91461783bb8e7f0bb8061b792668d4140a"
+  },
+  "complete_panel_changed_inputs": {
+    "parent_sources": 91,
+    "candidate_sources": 91,
+    "parent_direct_imports": 91,
+    "candidate_direct_imports": 91,
+    "input_identity": 101,
+    "archive_digest": 97,
+    "gone": 0,
+    "new": 0
+  },
+  "transferred": {
+    "timing/Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularPairLiftToPrimePowerField": {
+      "roots": [
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularPairLiftToPrimePowerField"
+      ],
+      "identical_project_modules": 4,
+      "rows": {
+        "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.AbByPOfComm": {
+          "parent_git_blob": "e31efb6ba4e88c128a25a742e28974bed7235237",
+          "candidate_git_blob": "e31efb6ba4e88c128a25a742e28974bed7235237",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "1e7951d8956ebe76",
+            "63c3990450ce3cde.ltar",
+            "bda69454d8eae5fbd467bbd2c17955b8c6f56de47275ed7a0d1492d1732886f9"
+          ]
+        },
+        "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.InvariantSubspaceMobiusInverseRecEqOfFinrankLt": {
+          "parent_git_blob": "9e407ac6a3b049c13893d00725c2ba2880c3fff8",
+          "candidate_git_blob": "9e407ac6a3b049c13893d00725c2ba2880c3fff8",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "2a474f393b3bf383",
+            "c7071af52f2df3fc.ltar",
+            "5a6a6cb425ca18c76fb604a2c834913fc0496302276473f2ecd738f4d62faa53"
+          ]
+        },
+        "Development.AbelianVarietyTheory.Definitions.Divisors.OrthSubrepresentation": {
+          "parent_git_blob": "2a583bb063c40947b0c87e651ea8dd07a8fdc66e",
+          "candidate_git_blob": "2a583bb063c40947b0c87e651ea8dd07a8fdc66e",
+          "ordinary_import_flags_and_order": [
+            [
+              "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.InvariantSubspaceMobiusInverseRecEqOfFinrankLt",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "18c69bb8e5e98b4c",
+            "2d026097d85b1f9f.ltar",
+            "1edaf78c1ec426a2f5a5f5c50b63b2804d259fb81b1990fd2eafe17310ed185f"
+          ]
+        },
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularPairLiftToPrimePowerField": {
+          "parent_git_blob": "c2b552beae4d2fe5a64a8c44314dc1a8f256e173",
+          "candidate_git_blob": "a969ad08f0ebc950505877e9f487be03c07d0e10",
+          "ordinary_import_flags_and_order": [
+            [
+              "Development.AbelianVarietyTheory.Definitions.Divisors.OrthSubrepresentation",
+              true,
+              false,
+              false
+            ],
+            [
+              "Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.AbByPOfComm",
+              false,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "a583620e519cbf90",
+            "4ad9fc0f4bced5be.ltar",
+            "1eed1d71567be44da2e7d14fb35fb85e2b6ed1271ad0557013bfadb7afa8f977"
+          ]
+        }
+      },
+      "rows_sha256": "9b7904e9db775557fe762b7849a877c3b207bf4aa41933572a9c25df812de77d"
+    },
+    "timing/Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable": {
+      "roots": [
+        "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable"
+      ],
+      "identical_project_modules": 4,
+      "rows": {
+        "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EqZeroOfLeSmall": {
+          "parent_git_blob": "cfa9ecbde9417d7718652b1f8618ab7ce820827f",
+          "candidate_git_blob": "cfa9ecbde9417d7718652b1f8618ab7ce820827f",
+          "ordinary_import_flags_and_order": [
+            [
+              "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.VecClose",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "6a132974dcfeb151",
+            "de75d6e2fd10a167.ltar",
+            "520afdbbc6f89a265c33467733f556fc1d4d9dfbd28f357fdd0e0c208f3f9560"
+          ]
+        },
+        "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelL2RowsColumns": {
+          "parent_git_blob": "6c948129d8eaa9c064d2171414a885138bdfa20d",
+          "candidate_git_blob": "6c948129d8eaa9c064d2171414a885138bdfa20d",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "26d4ec4c70b2cb11",
+            "be3ad94af1c93b17.ltar",
+            "af6e22461125229ff7474b41aa75c85d28604d172f2c17b4ddfbb16214eb0a56"
+          ]
+        },
+        "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable": {
+          "parent_git_blob": "fb3f5aefea50864d2d8a98bcacf65f96a2219d04",
+          "candidate_git_blob": "4726a31c120760b7a2359e224279718ea5ce72f6",
+          "ordinary_import_flags_and_order": [
+            [
+              "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.VecClose",
+              true,
+              false,
+              false
+            ],
+            [
+              "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelL2RowsColumns",
+              true,
+              false,
+              false
+            ],
+            [
+              "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EqZeroOfLeSmall",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "16cabf07fa1e408d",
+            "cd78b3a44de3cf3e.ltar",
+            "0635ebdffab719d1a334b1467e86fdd74435fdbd5bf06b253dcbcbbe03d3ca5e"
+          ]
+        },
+        "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.VecClose": {
+          "parent_git_blob": "5d249e0e778c17ed0ef5376f5e28db977dec1c13",
+          "candidate_git_blob": "5d249e0e778c17ed0ef5376f5e28db977dec1c13",
+          "ordinary_import_flags_and_order": [
+            [
+              "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelL2RowsColumns",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "501bebad8fe3dce5",
+            "67f4fd14e6f85fd6.ltar",
+            "31fba3bf85b95b7cfcbe103683ec04282dc55e27a6b7ce0fdba8220a8b00a974"
+          ]
+        }
+      },
+      "rows_sha256": "245ba4b1010c01c623b41a764e3d80b22cad0439036f21d10f845ceb48d5b79b"
+    },
+    "timing/Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco": {
+      "roots": [
+        "Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco"
+      ],
+      "identical_project_modules": 1,
+      "rows": {
+        "Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco": {
+          "parent_git_blob": "f3ac74d6a4b68db8c00030bde6f68cb84bc80d5b",
+          "candidate_git_blob": "3cf456a2d2fbd20d55c74d33148228e7f2667970",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "000694150413ae9f",
+            "4d5ade2ebddd0d1b.ltar",
+            "8a72383618eba38598e92745e774c576ad99c88475aa63e0d1db55bf945894ba"
+          ]
+        }
+      },
+      "rows_sha256": "1947e3b54a7445538ba67b3e90fa82d1ad0b990531a19c5b350e2ada92c5b151"
+    },
+    "timing/Formalism.GradedWeylDivisibility.FinalC": {
+      "roots": [
+        "Formalism.GradedWeylDivisibility.FinalC"
+      ],
+      "identical_project_modules": 35,
+      "rows": {
+        "Formalism.GradedWeylDivisibility.DualWeylDominanceOf": {
+          "parent_git_blob": "5c5bc5c7cb55dde4b1d0eb027c93a25455fa05ae",
+          "candidate_git_blob": "642c6c2231c701f41bbcf1e445fbae3e1ff99cbe",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylMap",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LSatLemmas",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LBidetLemmas",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.RealPlaceAnalysis.RealPlaceTaylor.ProdFactorialSupportSubSingle",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LFockbLemmas",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LHwrowLemmas",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.BideterminantMem",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylNonDom",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.FockSubAdj",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.HWRaise",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.RowDivStable",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.SumIcoTsubTelescope",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.BideterminantDominance",
+              false,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylPoint",
+              false,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylRowGraded",
+              false,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylRowStable",
+              false,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.FockRowAdj",
+              false,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.WeylRowDivStable",
+              false,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "575e036c04b7e6c7",
+            "2121f7964b73a722.ltar",
+            "5a7b28fb021135825a5d84680795a9f727114f508013d7b7a059e986a95243c8"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FinalC": {
+          "parent_git_blob": "0664e213f33c34de5c1a8523b4de3befe1f904e0",
+          "candidate_git_blob": "951591ecb1094f9008eeb1ac21c7bd8b4afa1b5e",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementC",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LCpeelLemmas",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.DualWeylDominanceOf",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LCassemLemmas",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.ColSums",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LBidetdomLemmas",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.ColLexInitMinor",
+              false,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.SSYTPeel",
+              false,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "ba8705947f364d30",
+            "5b29ae9a68db3fc2.ltar",
+            "bcb00a3c8e385b04835814e51ea013af8dc457a0e3674bfe3f253c2e923c0dd9"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.BideterminantDominance": {
+          "parent_git_blob": "929bd6ea4832702d3e1d1f2b8c2dd5f773a30225",
+          "candidate_git_blob": "929bd6ea4832702d3e1d1f2b8c2dd5f773a30225",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LBidetdomLemmas",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "084c49092665721e",
+            "2a25c0f80bac763d.ltar",
+            "074283c9e1f9a981efab63d2466b0f493b9bf1ee510391530724d8ee6a84be48"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.BideterminantMem": {
+          "parent_git_blob": "2b91b665f5dbae7bdd6c980d6239515924fee04e",
+          "candidate_git_blob": "2b91b665f5dbae7bdd6c980d6239515924fee04e",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LBidetMinor",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LBidetLemmas",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "8aed8c1e95a4c201",
+            "459b0dd63a7616d6.ltar",
+            "1b641bdc28dc4c6b8b71f0453622b6504e4f843560f86aab2364591577732ec5"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.ColLexInitMinor": {
+          "parent_git_blob": "a5af1961c601d0ec5c63497cd2290448486efcc5",
+          "candidate_git_blob": "a5af1961c601d0ec5c63497cd2290448486efcc5",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementC",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "03e65ca4a553d0e4",
+            "4798fd5cf24fadea.ltar",
+            "c5f0e0f1523c43b3e6bb778cedc33af42615b10169cfa3dc7487def09bfa5861"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.ColSums": {
+          "parent_git_blob": "982af48adf11998213d8fc8ae970e2245364bed5",
+          "candidate_git_blob": "982af48adf11998213d8fc8ae970e2245364bed5",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementC",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "df796043a72e828d",
+            "c997a9e67511bdc9.ltar",
+            "a0958951da92bb52079315e6569f06aa30e20e23ee8ca895ba92529a1472c439"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylMap": {
+          "parent_git_blob": "a849f6563a4f870965dc0a79d1d23a834897f74c",
+          "candidate_git_blob": "a849f6563a4f870965dc0a79d1d23a834897f74c",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LSatLemmas",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "79a27fef00fa3fe1",
+            "4e9a9bd781cd195a.ltar",
+            "2f5de3b6d022369853ebd8ec78ea3913703df469ac4b8ea770652a4025217ce4"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylNonDom": {
+          "parent_git_blob": "01b48b4cf2d2d42cc9c9191df0a63fc0873d2414",
+          "candidate_git_blob": "01b48b4cf2d2d42cc9c9191df0a63fc0873d2414",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LNondomLemmas",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "e5d87cee1f4d37c2",
+            "2a74e525f2bc7685.ltar",
+            "23c933dea7f9fb8c0e302c7ec9c1e0701c1c0067d07e89720a477ec05fb54a73"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylPoint": {
+          "parent_git_blob": "c28529c946f4dc1ec5b3fba057ebf708de55a91a",
+          "candidate_git_blob": "c28529c946f4dc1ec5b3fba057ebf708de55a91a",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LSatLemmas",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "51b9cb4a04fc9d1a",
+            "9087209ca7e580ae.ltar",
+            "197616613901a5697c89208c737ec1bfc9bcd7075d987e7e2ced14f59e0cc535"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylRowGraded": {
+          "parent_git_blob": "398144d47ef0a02c0b0ba987335e7d797efe262f",
+          "candidate_git_blob": "398144d47ef0a02c0b0ba987335e7d797efe262f",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "b76e47cbaddf2fa6",
+            "4127604de476b58a.ltar",
+            "75177c39c1fd2d9e3d0321fc86ff219249194d52f9ffe91f82fb6d40198115b6"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylRowStable": {
+          "parent_git_blob": "29dcbd9481f455ff15991cdd7a09a9a238916104",
+          "candidate_git_blob": "29dcbd9481f455ff15991cdd7a09a9a238916104",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowstLemmas",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "6ed913984fe12c09",
+            "80982009304cb092.ltar",
+            "91e7a2ce83463d0360c1d0a04445e8927ddd1bd1400c2db1f05e662dbf1a6b2d"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.FockRowAdj": {
+          "parent_git_blob": "f19956c32378b8eeb3dc6872cebf660c676038e8",
+          "candidate_git_blob": "f19956c32378b8eeb3dc6872cebf660c676038e8",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.FockSubAdj",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "bc03ce33cff9273e",
+            "549f05795e119bca.ltar",
+            "d8d39fa7e8305eefa5b3ca924eb42fcf60ba0fd6a4886d9f8427e9029f7f5aaa"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.FockSubAdj": {
+          "parent_git_blob": "492eb9c7ee26c79d0efc93ea971a255bb994ba3d",
+          "candidate_git_blob": "492eb9c7ee26c79d0efc93ea971a255bb994ba3d",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LFocksLemmas",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.RealPlaceAnalysis.RealPlaceTaylor.ProdFactorialSupportSubSingle",
+              false,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "bf0d2f7d246bd650",
+            "bde7101c52088bb3.ltar",
+            "34e6127934b9a3efd6907f834b5db811330cd637c508ce3e6e70256cdd1ff8be"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.HWRaise": {
+          "parent_git_blob": "cf513db8e7f139494001b15e0b4f90f6de66a47c",
+          "candidate_git_blob": "cf513db8e7f139494001b15e0b4f90f6de66a47c",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "0a2fbdf05c350731",
+            "fece2a99b6c2c81e.ltar",
+            "06b98d3d76a257ad183c6666fc65d5c393418feac728b90eebbdf94180799a08"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LBidetLemmas": {
+          "parent_git_blob": "e17b183b757374fffd63e7d4919fc9869e793a36",
+          "candidate_git_blob": "e17b183b757374fffd63e7d4919fc9869e793a36",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "a28b71a550c7d311",
+            "84e42b3f67534115.ltar",
+            "0efe458aad9e2655c4851e4b70fb00327390dec63f7d70d7dfaeb18d03bf57cb"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LBidetMinor": {
+          "parent_git_blob": "5ca898378ff51c88445558f30c9c4aae2938ed07",
+          "candidate_git_blob": "5ca898378ff51c88445558f30c9c4aae2938ed07",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "de2f72ae81a05874",
+            "d6464e7eeaa50ace.ltar",
+            "ab24f13d30eea4da057895b094bd1852865c025d4d40369d46df56485d1f761e"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LBidetdomLemmas": {
+          "parent_git_blob": "21d273f256552c9dd964714427d6f948d86d7cd5",
+          "candidate_git_blob": "21d273f256552c9dd964714427d6f948d86d7cd5",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "c66486965689af9c",
+            "83316d6bfad0f06e.ltar",
+            "43864e181157187925cbeb8aaebd45ce51f9b03323f33478d17f2a43dfd132da"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LCassemLemmas": {
+          "parent_git_blob": "c7017406cfa1738fc7b96874d669cbeeffa5c6be",
+          "candidate_git_blob": "c7017406cfa1738fc7b96874d669cbeeffa5c6be",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "869914d9709e89f7",
+            "fec23c0eadfe18d7.ltar",
+            "f109765cdb3dc4a358b227354bba3146b60c907e940881dcf924370d6b58fe23"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LCpeelLemmas": {
+          "parent_git_blob": "8f48d9c19e978564efb4b13d2f948a6a41d5d479",
+          "candidate_git_blob": "8f48d9c19e978564efb4b13d2f948a6a41d5d479",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementC",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "a1c795fe02432375",
+            "8a28bb9962e76699.ltar",
+            "57505eb9bcdce39815f927a87230caa0bb4fc6fa5357879239878c397f541cce"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LFockbLemmas": {
+          "parent_git_blob": "0d446c624482dd6a010b72015a84d8de09833e05",
+          "candidate_git_blob": "0d446c624482dd6a010b72015a84d8de09833e05",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.RealPlaceAnalysis.FockPairGl",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "ff8b6d4e3365a6b4",
+            "6a2477c9459c17cf.ltar",
+            "14eacc84f1b7221945b31156754bc9dd29cb4a44c0fb66f502bc309aedbfb8f2"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LFocksLemmas": {
+          "parent_git_blob": "d62159ca44d44899089e9ad97a745367413b3157",
+          "candidate_git_blob": "d62159ca44d44899089e9ad97a745367413b3157",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.RealPlaceAnalysis.RealPlaceTaylor.ProdFactorialSupportSubSingle",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "d73a288a593f5841",
+            "25a947f2cb7b02c2.ltar",
+            "1d2b56206f7f2a6de9772d9ae7f9fe16e5b28965778331e8b5f40b67f95585f0"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LHwrowLemmas": {
+          "parent_git_blob": "e65cb512ffc79a3f970bdde3a48fb419d19c9f22",
+          "candidate_git_blob": "e65cb512ffc79a3f970bdde3a48fb419d19c9f22",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "88df413f1a95c4a0",
+            "96a9050d0b485a03.ltar",
+            "a6bbd85189ecf2c8962767e28dbf01ff48f317ca0a19cc3eb30076e9d067ce62"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LNondomLemmas": {
+          "parent_git_blob": "813e4ffdae1674c99b0e166196efd397b865146c",
+          "candidate_git_blob": "813e4ffdae1674c99b0e166196efd397b865146c",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "f5215131406e5fb0",
+            "3a4ab5c570607cb5.ltar",
+            "cc0eff625b7540a81b18a59388729bbaee7f5bcc25a0d7566f554138a1c731e3"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowdivLemmas": {
+          "parent_git_blob": "3bfa92ea26a32697dd4d2dd4a551e8f311ac5202",
+          "candidate_git_blob": "3bfa92ea26a32697dd4d2dd4a551e8f311ac5202",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "0926d8de74d8830f",
+            "47a65b7909ec63fc.ltar",
+            "961ba2d38c5f48650c77b1345ffb73ef47ff7b4cbc6351fcdc5659d7db907df0"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowstLemmas": {
+          "parent_git_blob": "c44b943a055b5e94151a8da94aa9adbb6a43f9a7",
+          "candidate_git_blob": "c44b943a055b5e94151a8da94aa9adbb6a43f9a7",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "ec401697aeaa5b69",
+            "50c6778c070395b5.ltar",
+            "21490f8ef28748f2af8c745ad5aed21b1bd855c112ae7d93d94fae5710a0bd12"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LSatLemmas": {
+          "parent_git_blob": "c49557eae2a6cd1af0294b9b1ff98bbf6bbed000",
+          "candidate_git_blob": "c49557eae2a6cd1af0294b9b1ff98bbf6bbed000",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "a65d44d2e45fb8f5",
+            "b2fb59aaec2bf05f.ltar",
+            "e164d2bd9d3c4bb265cf00f8423932c2a7fb28a129b25b9b4f9cf999e1fc0d87"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.RowDivStable": {
+          "parent_git_blob": "4b82412df5a4fbe8e744e80ac94c1b1aeb1a9f86",
+          "candidate_git_blob": "4b82412df5a4fbe8e744e80ac94c1b1aeb1a9f86",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "f8cc4cfb8b5d86fc",
+            "471a2cbf776fc876.ltar",
+            "9a262294cc3a3ef62ecb802dc63d38fb55cb07ff7912e97a4448c48d2eda5e32"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.SSYTPeel": {
+          "parent_git_blob": "9b251bb4e17f9986b80b16a2add8de67c8fdf586",
+          "candidate_git_blob": "9b251bb4e17f9986b80b16a2add8de67c8fdf586",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementC",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "e07e993d7d6e9104",
+            "77394237dc9e921b.ltar",
+            "917e877e262658408d49440aa0829cde6001ee67ff7bc9e66454b4411c706ba8"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.SumIcoTsubTelescope": {
+          "parent_git_blob": "1b931a903499dbca2a896f3dbb00210fe1ffeaa2",
+          "candidate_git_blob": "1b931a903499dbca2a896f3dbb00210fe1ffeaa2",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LBidetMinor",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LBidetLemmas",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "dc05d4f2e4c67222",
+            "6511211c9cc898eb.ltar",
+            "ff808ccd3f36cb3fe358b4764ee4d7dae6f6c6da9b49f939431594a289a2a612"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.FockSpaceTableaux.WeylRowDivStable": {
+          "parent_git_blob": "8f8ea8d3943c913e3dfb99bad28b70094a8185c3",
+          "candidate_git_blob": "8f8ea8d3943c913e3dfb99bad28b70094a8185c3",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ],
+            [
+              "Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowdivLemmas",
+              false,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "2ed0a49f3639ff26",
+            "aefbe63752e619c9.ltar",
+            "ec3f3c9994bc2f5c704c9da5be13174b68f985c9930c49bb931d867a8559a558"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.StatementA": {
+          "parent_git_blob": "0cd1cd12ab1dcd9c9271f1d45cc9162092888b93",
+          "candidate_git_blob": "0cd1cd12ab1dcd9c9271f1d45cc9162092888b93",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.RealPlaceAnalysis.FockPairGl",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "8f7c7c47c7fb5c71",
+            "1afe43092c319d66.ltar",
+            "331c53d2cae304ae2309ec357bb8486dab91aba634d680b71eb5d5353ce3ad43"
+          ]
+        },
+        "Formalism.GradedWeylDivisibility.StatementC": {
+          "parent_git_blob": "3b4cd01b75b7b976b4e098d55987cb6c236e3c01",
+          "candidate_git_blob": "3b4cd01b75b7b976b4e098d55987cb6c236e3c01",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.GradedWeylDivisibility.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "5ff1d98e6d088d93",
+            "e7317e61a0294422.ltar",
+            "c124e347e84a59fb14bbab076428ed5cc8268b50348aae05b7eb399891cb62e3"
+          ]
+        },
+        "Formalism.RealPlaceAnalysis.FockPairGl": {
+          "parent_git_blob": "05b123503aa281da7d18623596f4f9ae5c7d26c3",
+          "candidate_git_blob": "05b123503aa281da7d18623596f4f9ae5c7d26c3",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.RealPlaceAnalysis.StatementA",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "0269f628bed2bc30",
+            "27b1e15f60f2a3ad.ltar",
+            "c83aa587ae4487a2bf654c5a06992b15196b7edc157f1380a8f9dd9c9a927f4e"
+          ]
+        },
+        "Formalism.RealPlaceAnalysis.RealPlaceTaylor.ProdFactorialSupportSubSingle": {
+          "parent_git_blob": "fbd73a6dd08766fec6b6fe2dbef52b10bd30d98c",
+          "candidate_git_blob": "fbd73a6dd08766fec6b6fe2dbef52b10bd30d98c",
+          "ordinary_import_flags_and_order": [
+            [
+              "Formalism.RealPlaceAnalysis.FockPairGl",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "80d1cf94f103d90c",
+            "5d566715169ce954.ltar",
+            "684c03484406b45a4b54dc599d01410e4b8676508658b0a46e4456130694aac9"
+          ]
+        },
+        "Formalism.RealPlaceAnalysis.StatementA": {
+          "parent_git_blob": "b2cdadf58c2260371899bc57d61f801f4d7ccb01",
+          "candidate_git_blob": "b2cdadf58c2260371899bc57d61f801f4d7ccb01",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "1882c4801ea5dbe6",
+            "150c5a8f4d72f38b.ltar",
+            "c218e62d90b7b5f7ecd5aa55a10f006feae4d71efa298a58d7686a25c691de57"
+          ]
+        }
+      },
+      "rows_sha256": "1c37364011c4929857070fdc51970de4f6eb55ef485a2916b9afa23f0ed050a8"
+    },
+    "timing/GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFiniteModuloGeneralEquation": {
+      "roots": [
+        "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFiniteModuloGeneralEquation"
+      ],
+      "identical_project_modules": 6,
+      "rows": {
+        "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFiniteModuloGeneralEquation": {
+          "parent_git_blob": "618e54a94a81ff56cf56c8253c07f78218a0517a",
+          "candidate_git_blob": "e77cbac033ec48fc8f6516db162c319d83864603",
+          "ordinary_import_flags_and_order": [
+            [
+              "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StZariskiAnalyticNormality",
+              true,
+              false,
+              false
+            ],
+            [
+              "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StFiniteModuloGeneralEquation",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "469cd8931bd40194",
+            "0ae8b1ee26ed74c9.ltar",
+            "5cf29b91522e8d51d3dec30bfa242b84fb35a756568f28bdaadc7032562fdedd"
+          ]
+        },
+        "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StFiniteModuloEliminate": {
+          "parent_git_blob": "1a63217a500c99cb1681ddabd8b28faae46ed348",
+          "candidate_git_blob": "1a63217a500c99cb1681ddabd8b28faae46ed348",
+          "ordinary_import_flags_and_order": [
+            [
+              "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StFiniteModuloIntegral",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "125c6a89ed414086",
+            "11d81ff041a0e383.ltar",
+            "5f9b1a79aab86539c1dcf1bfbab285fd311dab28661b8a0959cb0c101730c96f"
+          ]
+        },
+        "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StFiniteModuloGeneralEquation": {
+          "parent_git_blob": "8fa92a3c6e89b1852373dd7680c1d07616ad34a0",
+          "candidate_git_blob": "8fa92a3c6e89b1852373dd7680c1d07616ad34a0",
+          "ordinary_import_flags_and_order": [
+            [
+              "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StFiniteModuloEliminate",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "4a7be7ff524cf6b8",
+            "5d92ac1e893e3ab0.ltar",
+            "1e38d857de72105ce0711872d31d1c4d171289235ca8f8ebe1410d132ffda884"
+          ]
+        },
+        "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StFiniteModuloIntegral": {
+          "parent_git_blob": "5e50c19c98f051695042c1b4258171c0cb76dcfc",
+          "candidate_git_blob": "5e50c19c98f051695042c1b4258171c0cb76dcfc",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "0ad5e9fd8517fe60",
+            "ecca0e5b465a1295.ltar",
+            "dc38e4e3b224b6bed5c8071a7ea1e519467525df8f5f95853244986affd18a89"
+          ]
+        },
+        "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StNormalModel": {
+          "parent_git_blob": "61bb1cd7a4ce146a732dbb8d3462dfe8d4238d92",
+          "candidate_git_blob": "61bb1cd7a4ce146a732dbb8d3462dfe8d4238d92",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "b34a9b613eac9d2b",
+            "429c2757c5c24a18.ltar",
+            "d5b3652012f4437639d3dd24e3dceb9910f39b9075321721e41184fe39722d31"
+          ]
+        },
+        "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StZariskiAnalyticNormality": {
+          "parent_git_blob": "290ec7d4d73a93e564533cde7927b7fe0688a566",
+          "candidate_git_blob": "290ec7d4d73a93e564533cde7927b7fe0688a566",
+          "ordinary_import_flags_and_order": [
+            [
+              "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StNormalModel",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "962514d7935cbeef",
+            "3e15c1899abc217d.ltar",
+            "aaa72a12eeec0133996637eef8d0cd8427d0a5739cee7471531a83422de79737"
+          ]
+        }
+      },
+      "rows_sha256": "e00dbd5ecfff85a30042d7871291dba655af3771aa2fb9470d33b8de9e5a22ed"
+    },
+    "timing/GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblySympl": {
+      "roots": [
+        "GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblySympl"
+      ],
+      "identical_project_modules": 3,
+      "rows": {
+        "GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblySympl": {
+          "parent_git_blob": "037ce206ca061d87b2c508b34c876475b1b929df",
+          "candidate_git_blob": "f9b77323566dd8d2ad1e98c90aba8b18c3d882e0",
+          "ordinary_import_flags_and_order": [
+            [
+              "GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsSympl",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "94b9d7306f47ea4b",
+            "ffed020471e7e655.ltar",
+            "7bd2d14ce9b78007df0aa7b2979cb1039507de05650874e0f5ab087c1362dbd0"
+          ]
+        },
+        "GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsSympl": {
+          "parent_git_blob": "5406333db57aeb15f6f080afc4b5b587f66e7390",
+          "candidate_git_blob": "5406333db57aeb15f6f080afc4b5b587f66e7390",
+          "ordinary_import_flags_and_order": [
+            [
+              "GroundTheory.HeightsAndTheta.Heights.KernelsMatrix",
+              true,
+              false,
+              false
+            ]
+          ],
+          "official_input_and_archive": [
+            "e13c4eb2cec661db",
+            "a23411847f37a330.ltar",
+            "89db749a2b6981d06110942e16251832f3a6f04152b8c461d347cf21783307cb"
+          ]
+        },
+        "GroundTheory.HeightsAndTheta.Heights.KernelsMatrix": {
+          "parent_git_blob": "40481cd319a085f4464a59e12119963f2ae6938b",
+          "candidate_git_blob": "40481cd319a085f4464a59e12119963f2ae6938b",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "08b860cf2f058907",
+            "4f3e4429f4b4fada.ltar",
+            "c6f2414f73098fd3527fcc34db80d8d500f0013ae0a3bd84488b8c1ea45181a1"
+          ]
+        }
+      },
+      "rows_sha256": "5167ecc5bf03616561799097b3592d56e25f6e38ad8f498bda425a2f06cd2b6a"
+    },
+    "exports/Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters": {
+      "roots": [
+        "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters"
+      ],
+      "identical_project_modules": 1,
+      "rows": {
+        "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters": {
+          "parent_git_blob": "4337ebe98487bb9ed0b48b83ceed6adf606c71f8",
+          "candidate_git_blob": "6349b2130f424eefc1af8ff059d961d921241fac",
+          "ordinary_import_flags_and_order": [],
+          "official_input_and_archive": [
+            "a3865acd36931297",
+            "51088eda1e607c68.ltar",
+            "f4a0d45740ae151e2dc9bb52330befc8595bdc01620cc9605998e18aa76b109d"
+          ]
+        }
+      },
+      "rows_sha256": "ec81854e7b84fe38f21ceb5c0adce48e8c882a97f990e01dea8d358579e8168f"
+    }
+  }
+}

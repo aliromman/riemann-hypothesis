@@ -1,0 +1,18 @@
+{
+  "published_candidate": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+  "math": "70f5e2c0737a9289949627d834612ed30d25432f",
+  "prior_math_parent": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+  "verified_tool_revision": "8d792c7fd2c0f411f215762a82145a4484ea29dd",
+  "base": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "src": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749",
+  "tool_blobs": {
+    "scripts/clump.py": "b5cb4699f2f6265de696c087eafc797994e9db70",
+    "scripts/tests/test_clump_scopes.py": "f2b24c9bb78e415cff91c2970c79a99c86f395be"
+  },
+  "tree": "3b78e8aa2ef650e9b986e7b53a03b39fcc31f772",
+  "joint_git_tree": "c36d9d44c398b3e1aa91a62a3870a1f56e0a82d5",
+  "joint_src": "606198057a056bcc741f0bc37a9158abf161befb",
+  "net_python": 448,
+  "recent_tests": "https://github.com/aliromman/riemann-hypothesis/tree/903b699da22770f16add3375aedbf80f7abcc319/ci/clump-diagnostics/results/45443328549",
+  "timing_evidence": "https://github.com/aliromman/riemann-hypothesis/tree/7db6b03bc21afbb2092d380eb4c17dada847040a/ci/clump-cli/results/45443344649/"
+}

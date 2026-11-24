@@ -1,0 +1,20 @@
+{
+  "mathematical_parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+  "proposal": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+  "src": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749",
+  "official_manifest": "816164d26c3ad2b5bceaf1337ab7a172bbc10b1fa15c52ab8c04495436314c65",
+  "proof_inputs": {
+    "src/Main.lean": "100644 blob 67c65badc15f80a1db65df1c84dc7a4928fc410f\tsrc/Main.lean",
+    "src/Challenge.lean": "100644 blob 9677ace64b3a5e8b1a571d82d52ee13c53b08026\tsrc/Challenge.lean",
+    "src/Statements.lean": "100644 blob 23b01f745b80075e377c415abae96ece3570d0b0\tsrc/Statements.lean",
+    "lean-toolchain": "100644 blob 0e037f58f9a1aa2d5139277bcc4be0061ebeeb05\tlean-toolchain",
+    "lake-manifest.json": "100644 blob 8a747b58a34565cc6cb5341b86544aa5d3a20a2d\tlake-manifest.json",
+    "lakefile.toml": "100644 blob 43b9f74431077a10cc1edecbc15239fe38d92591\tlakefile.toml",
+    "comparator.json": "100644 blob e989bcf90ff0c487a7146319a026e661a5bad47c\tcomparator.json",
+    "export-targets.txt": "100644 blob e2d4c02bac8a1411eae85af0376c1aad3b6b5294\texport-targets.txt",
+    "comparator": "040000 tree a14c3e84eee63917486fb7369cc8a4cfbb8c35d4\tcomparator",
+    ".github/workflows": "040000 tree ae3e0648b9410f4a728859046edd2248f9dd2123\t.github/workflows",
+    "scripts/ci-cache-get.py": "100644 blob 4ab0793bad994c099bb42ef80c65e732f06b4144\tscripts/ci-cache-get.py"
+  },
+  "protected_path_diff": ""
+}

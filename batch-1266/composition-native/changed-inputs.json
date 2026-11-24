@@ -1,0 +1,42 @@
+{
+  "previous": {
+    "base": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+    "first": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+    "second": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+    "merged_tree": "9ddb9d443eaca8fffab68b5f18e3de78662ce658",
+    "merged_src": "3f98b67eaa78f274d54e56dcc5dc6f5f21e8323b",
+    "common_files": 9155,
+    "distinct_files": 41417,
+    "all_headers_and_bodies_exact": 9155,
+    "raw_rows_sha256": "92037dd86df4924c3291392019d27ba9df05d24b9111d88a8e612c3a27ca99e1"
+  },
+  "current": {
+    "base": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "first": "e0a0acde813bd368786947b98704ee6814656a15",
+    "second": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+    "merged_tree": "c36d9d44c398b3e1aa91a62a3870a1f56e0a82d5",
+    "merged_src": "606198057a056bcc741f0bc37a9158abf161befb",
+    "common_files": 9152,
+    "distinct_files": 41403,
+    "all_headers_and_bodies_exact": 9152,
+    "raw_rows_sha256": "f4fee57b6e4fb974bdd3955c6a656352bf319ef952a44eed8bdbb5c4067eaa1f"
+  },
+  "previous_panel_roots": 18,
+  "changed_panel_roots": [
+    "Development.AbelianVarietyTheory.Proofs.HeightProofs.OpenImmersionCompStructureEqGeneric",
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ArithmeticGroupCuspCentreLattice",
+    "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CycleNumberRename",
+    "Development.EtaleCohomology.CohomologicalPurity.FinLeafHens",
+    "Development.EtaleCohomology.EtaleSheaves.LeafMapWPf",
+    "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsNineAdd"
+  ],
+  "project_modules": 120,
+  "surviving_source_panel_modules": 51,
+  "deep_theorem": "PositivityTheory.KB.sPU_of",
+  "deep_module": "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PartitionUnitySmooth.SPUOf",
+  "old_cone": 51,
+  "new_cone": 51,
+  "missing": [],
+  "added": [],
+  "affected_deep": []
+}

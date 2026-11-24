@@ -1,0 +1,215 @@
+{
+  "run": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45446517890",
+  "workflow": "a28448f7008db865305608aa78f5728d1d517725",
+  "original_artifacts": {
+    "sandbox.zip": {
+      "id": 14945688806,
+      "bytes": 11499,
+      "sha256": "dd4a70c5f991eaad786b11e1295cd4d386a21050eed917c2d880ee812e30b6eb"
+    }
+  },
+  "jobs": {
+    "check": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45446517890/job/138631661610"
+  },
+  "binding": {
+    "parent": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "current_main": "307cef33f046955ee79dba47e0d828d06496d75f",
+    "project": "c9e0bade70ab9e778941a02e423609a4e6aa76e3",
+    "pulls": {
+      "977": {
+        "author": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+        "public_fork_ref": "refs/heads/ci/clump-scopes/batch-1266-source",
+        "checked_commit": "963ebea3bb3d7c2c5738946fca45317b8084f972",
+        "comparison_base": "307cef33f046955ee79dba47e0d828d06496d75f",
+        "candidate_src": "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749"
+      }
+    },
+    "pins": {
+      "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+      "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+      "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+      "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+      "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294"
+    },
+    "source_sha256": {
+      "977": {
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular": {
+          "parent": "1cd8f5b8f9d577e714b66b7237a5fa9fadea7bb3de5f6d291cb922b65b027b79",
+          "candidate": "1cd8f5b8f9d577e714b66b7237a5fa9fadea7bb3de5f6d291cb922b65b027b79"
+        },
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower": {
+          "parent": "82729f890589c2685f0d6c183a6d1b1e431803c0d9cc23b982558b3d41eae1ae",
+          "candidate": "afaeae8c6f01de559c7470feddec81b970664605ea7f57491eb3710ed7f764ef"
+        },
+        "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat": {
+          "parent": "345c180c387372089ca2ae461869e76752bddebff6e7ed97abf84bb8cba0704c",
+          "candidate": "d5ec7fe423b9d8eba168c857c657df98423afd7953157d75ba9adbb43c2d3150"
+        }
+      }
+    }
+  },
+  "namespace_original": {
+    "command": [
+      "bwrap",
+      "--unshare-all",
+      "--ro-bind",
+      "/",
+      "/",
+      "--dev",
+      "/dev",
+      "--proc",
+      "/proc",
+      "--die-with-parent",
+      "--new-session",
+      "--",
+      "/bin/true"
+    ],
+    "uid": 1001,
+    "system": "Linux-6.8.0-1070-azure-x86_64-with-glibc2.35",
+    "package": "bubblewrap 0.6.1",
+    "settings": {
+      "/proc/sys/user/max_user_namespaces": "63801",
+      "/proc/sys/kernel/unprivileged_userns_clone": "1",
+      "/proc/sys/kernel/apparmor_restrict_unprivileged_userns": "0"
+    },
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "native_results": {
+    "977": [
+      {
+        "name": "GlobalTheory.CompanionTheory.SW.Averaging.bijective_pair",
+        "module": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+        "built": 3,
+        "parent_export_bytes": 3149696,
+        "sha256": "31bf90c0ba09af45d2a9f9f99cc93265e87b6cd3824bb11016d34544ef565bf3",
+        "official_report": "977-QuotientMeasureTower-report.json",
+        "verified_candidate_facets": {
+          "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular": {
+            ".olean": "31ad8996d4d956314bfa2e26d030bf6d178cc3931bf8614346a30e0fbd952031",
+            ".ir.sig": "95dba4e3765e5aa629d468d8be862f76ea058a8a6140e2c3e89879ff043341f5",
+            ".ir": "c2f85019dbc3ea3f0ee8854c5e1558fbef8e36c3600c96fe5a3bc6dfd36e2d56"
+          },
+          "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower": {
+            ".olean": "96a5d72629b022770051b566b45a9cbf37a970ec7fd0735ebff483b57970d82e",
+            ".ir.sig": "a784d850fbcbb7d0d3f08088cd6273500c550a8af4521e978591e29f966fc5c7",
+            ".ir": "6d7ad11816f2c76cd03390f3c2df0e6624ee93ec741ac7d7dc0602aefdd9c6a4"
+          },
+          "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat": {
+            ".olean": "2993474fc82d0e48bb30780d2100cb35e5aa7d97a5cb979a7e7f264c0798db0d",
+            ".ir.sig": "5911d24a61dc865811654bb530cfcbdd4a278d94b58dc6be32198a6f37d0f774",
+            ".ir": "df94ca25c11e220b9538f702e7fa4134fe31252c9b12e04ffed60215da1a575f"
+          }
+        }
+      }
+    ]
+  },
+  "control_verdicts": {
+    "alternate": {
+      "command": [
+        "/home/runner/.elan/toolchains/leanprover--lean4---v4.37.0-rc1/bin/lake",
+        "comparator",
+        "--config",
+        "/home/runner/work/_temp/proof-logs/control-alternate-config.json",
+        "--challenge-from-export",
+        "/home/runner/work/_temp/control.jsonl",
+        "--json"
+      ],
+      "project_facets": {
+        "Control": {
+          ".olean": "7ee29681ed6f10f47073d18423ed228d8b991bcf7e82eb89e5c565714156ecac",
+          ".ir.sig": "980f50c600437448fa94ca0f990e3eb3b4cc63928a95a44ab62165ad994c0428",
+          ".ir": "7798947fe956229b729deda91053c40c9ff4cc59c04c17f254e80e23ff6e889e"
+        }
+      },
+      "judgement": "accepted",
+      "steps": {
+        "resolve_dependencies": "success",
+        "export_solution": "success",
+        "export_challenge": "skipped",
+        "compare_statements": "success",
+        "check_axioms": "success",
+        "build_solution": "success",
+        "build_challenge": "skipped"
+      },
+      "kernels": {
+        "nanoda": "success",
+        "Lean paranoid": "success",
+        "Lean default": "success"
+      },
+      "sandboxed": true
+    },
+    "statement": {
+      "command": [
+        "/home/runner/.elan/toolchains/leanprover--lean4---v4.37.0-rc1/bin/lake",
+        "comparator",
+        "--config",
+        "/home/runner/work/_temp/proof-logs/control-statement-config.json",
+        "--challenge-from-export",
+        "/home/runner/work/_temp/control.jsonl",
+        "--json"
+      ],
+      "project_facets": {
+        "Control": {
+          ".olean": "77da942b3236b94d86f501edd31383973925c72e6deaabce97ed74a6641a3a99",
+          ".ir.sig": "980f50c600437448fa94ca0f990e3eb3b4cc63928a95a44ab62165ad994c0428",
+          ".ir": "7798947fe956229b729deda91053c40c9ff4cc59c04c17f254e80e23ff6e889e"
+        }
+      },
+      "judgement": "failure",
+      "steps": {
+        "resolve_dependencies": "success",
+        "export_solution": "success",
+        "export_challenge": "skipped",
+        "compare_statements": "failure",
+        "check_axioms": "skipped",
+        "build_solution": "success",
+        "build_challenge": "skipped"
+      },
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      },
+      "sandboxed": true
+    },
+    "axiom": {
+      "command": [
+        "/home/runner/.elan/toolchains/leanprover--lean4---v4.37.0-rc1/bin/lake",
+        "comparator",
+        "--config",
+        "/home/runner/work/_temp/proof-logs/control-axiom-config.json",
+        "--challenge-from-export",
+        "/home/runner/work/_temp/control.jsonl",
+        "--json"
+      ],
+      "project_facets": {
+        "Control": {
+          ".olean": "d62af0670a7b5b6aa101672e36027d731d6ba5180d553e8cad6b7763d2a8ab42",
+          ".ir.sig": "980f50c600437448fa94ca0f990e3eb3b4cc63928a95a44ab62165ad994c0428",
+          ".ir": "7798947fe956229b729deda91053c40c9ff4cc59c04c17f254e80e23ff6e889e"
+        }
+      },
+      "judgement": "failure",
+      "steps": {
+        "resolve_dependencies": "success",
+        "export_solution": "success",
+        "export_challenge": "skipped",
+        "compare_statements": "success",
+        "check_axioms": "failure",
+        "build_solution": "success",
+        "build_challenge": "skipped"
+      },
+      "kernels": {
+        "nanoda": "skipped",
+        "Lean paranoid": "skipped",
+        "Lean default": "skipped"
+      },
+      "sandboxed": true
+    }
+  },
+  "cross_checked_stock_runs": {
+    "977": 45446277703
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "source": "8d792c7fd2c0f411f215762a82145a4484ea29dd",
+  "source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+  "script_tests": 314,
+  "focused_tests": 14,
+  "native_tests": 60,
+  "skipped": 0,
+  "diagnostic_owners": {
+    "ordinary": {
+      "initial": [
+        "other"
+      ],
+      "previous": [
+        "note"
+      ],
+      "candidate": []
+    },
+    "above-banner": {
+      "initial": [
+        "other"
+      ],
+      "previous": [
+        "note"
+      ],
+      "candidate": []
+    },
+    "compact-member": {
+      "initial": [
+        "Examples.Leaf"
+      ],
+      "previous": [
+        "Examples.Leaf"
+      ],
+      "candidate": [
+        "Examples.Leaf"
+      ]
+    },
+    "legacy-literal": {
+      "initial": [
+        "note"
+      ],
+      "previous": [
+        "Examples.Leaf"
+      ],
+      "candidate": [
+        "Examples.Leaf"
+      ]
+    }
+  },
+  "zip_sha256": "a4f240b1377956b75b9a993abe92fb0863785ace8af7b28b27a729ba423c72bb",
+  "artifact": 14945940383,
+  "run": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45443328549",
+  "evidence": "https://github.com/aliromman/riemann-hypothesis/tree/903b699da22770f16add3375aedbf80f7abcc319/ci/clump-diagnostics/results/45443328549"
+}

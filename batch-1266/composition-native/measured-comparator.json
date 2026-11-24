@@ -1,0 +1,34 @@
+{"version": "0.1.0",
+ "sandboxed": false,
+ "report":
+ {"resolve_dependencies":
+  {"output": {"str": {"string": ""}}, "judgement": "skipped"},
+  "kernel_reports":
+  {"nanoda":
+   {"output": {"proc": {"stdout": "", "stderr": ""}}, "judgement": "success"},
+   "Lean paranoid":
+   {"output": {"proc": {"stdout": "", "stderr": ""}}, "judgement": "success"},
+   "Lean default":
+   {"output": {"proc": {"stdout": "", "stderr": ""}}, "judgement": "success"}},
+  "export_solution":
+  {"output": {"str": {"string": ""}}, "judgement": "skipped"},
+  "export_challenge":
+  {"output": {"str": {"string": ""}}, "judgement": "skipped"},
+  "config":
+  {"theorem_names": ["PositivityTheory.KB.sPU_of"],
+   "solution_module":
+   "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PartitionUnitySmooth.SPUOf",
+   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+   "external_kernels":
+   {"nanoda": ["nanoda_bin"],
+    "Lean paranoid": ["leanchecker-paranoid", "--silent", "--from-export"]},
+   "definition_names": null,
+   "challenge_module":
+   "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PartitionUnitySmooth.SPUOf"},
+  "compare_statements":
+  {"output": {"str": {"string": ""}}, "judgement": "success"},
+  "check_axioms": {"output": {"str": {"string": ""}}, "judgement": "success"},
+  "build_solution": {"output": {"str": {"string": ""}}, "judgement": "skipped"},
+  "build_challenge":
+  {"output": {"str": {"string": ""}}, "judgement": "skipped"}},
+ "judgement": "accepted"}
