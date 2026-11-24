@@ -1,0 +1,71 @@
+{
+  "old_head": "70e09b0994fce225e678b4808941de89c27a763b",
+  "published_head": "f3e19bf8371ab5dd383b81e008ec14c4b0331811",
+  "actual_changed_files": [
+    "scripts/clump.py",
+    "scripts/tests/test_clump_scopes.py"
+  ],
+  "one_lean_tree": "445477315d15f0c5eaea8c076b18063ebd7a17a6",
+  "old_combined_tree": "35d22845a8ca460dc2fa12acf604f327df52072e",
+  "new_combined_tree": "75ad49eb2f59eb838f6b495d0eb84d7ad02dfab3",
+  "one_combined_lean_tree": "d5f28ef5488aa438c872dd8bd1825b93f17be82b",
+  "stable_tools_and_frozen_files": {
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "src/Main.lean": "67c65badc15f80a1db65df1c84dc7a4928fc410f",
+    "src/Statements.lean": "23b01f745b80075e377c415abae96ece3570d0b0",
+    "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    "comparator/FormalConjecturesChallenge.lean": "290a2c6270f8da3852c7051d7da0f30032a70421",
+    "comparator/formal-conjectures.json": "e3afddc98129d1d1183ff217d434165fd893a0fe",
+    "comparator/formal-conjectures-export-targets.txt": "80bbbf91461783bb8e7f0bb8061b792668d4140a"
+  },
+  "tool_sha256": "d346751f04fc9b6773cc53cd50bd2dea115db88a9df4dc3b8466499403ea9128",
+  "net_python_physical_lines": 384,
+  "net_real_command_lines_after_charging_python": 251441,
+  "data_of_complete_plan_comparison": {
+    "input_commit": "70e09b0994fce225e678b4808941de89c27a763b",
+    "source_tree": "445477315d15f0c5eaea8c076b18063ebd7a17a6",
+    "complete_saved_plan_sha256": "a5ab5a08a65933e25528ee3ff9b2087994cfe5c71a2bbdf2c793cda3ce996871",
+    "tracked_lean_modules": 60493,
+    "clumps": 147,
+    "members": 565,
+    "removed_files_per_application": 418,
+    "selected_source_digest": "06751a0a1fc8e03603d1400cfde0ed574cb23a3cd62d13d4f4c369ea1dac8f7d",
+    "generated_output_stream": {
+      "upstream": "10f90e4f832d40b19467af62447cd43c2ff843464821afd99fd036f753d8f4c6",
+      "current": "7502fe1f1647637a334f48e5ee01f6f82b391dee081e0011ae1302387d8bbac8",
+      "planned": "7502fe1f1647637a334f48e5ee01f6f82b391dee081e0011ae1302387d8bbac8"
+    },
+    "measurements": {
+      "upstream": {
+        "wall_s": 12.575831667,
+        "cpu_s": 10.840295999999999,
+        "peak_rss_bytes": 4054843392
+      },
+      "current": {
+        "wall_s": 10.86168575,
+        "cpu_s": 10.838705999999998,
+        "peak_rss_bytes": 4054941696
+      },
+      "planned": {
+        "wall_s": 0.228946208,
+        "cpu_s": 0.224936,
+        "peak_rss_bytes": 91734016
+      }
+    },
+    "raw_sha256": "9c6d7c7637731fe69a346d18e0955c0100f77fa7b0d02c3af4fc4ae69688c26c",
+    "python": "3.12.16",
+    "platform": "macOS-27.2-arm64-arm-64bit",
+    "apfs_copy_on_write_source": true,
+    "warmup_rounds": 1,
+    "scored_rounds": 5,
+    "tool_sha256": {
+      "upstream": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44",
+      "current": "52ad0455b1e1d24e17783ac08d8409aeb56de53c50bec09527b908d9f55d4592",
+      "planned": "d346751f04fc9b6773cc53cd50bd2dea115db88a9df4dc3b8466499403ea9128"
+    }
+  }
+}
