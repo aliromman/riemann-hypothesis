@@ -2,13 +2,13 @@
   "schema": 1,
   "pull_request": 879,
   "base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
-  "head": "21baf112ac31f7376204339a3dd01f56d9f6a867",
+  "head": "4fc7348e335c0c93eece5d0183bfc64f52081b84",
   "base_src": "5da48cf36c47a7d87124fe72c0becbbb26a419d9",
-  "head_src": "2b2127750c4fda555377ba2654f4015bfeabf8cc",
-  "changed": 39352,
-  "bundle_sha256": "67fb4646fd4c946c86b6fa6ec135eb8ea5cc970f13d8424b3450cfc2c1bebdc3",
-  "source_provenance_sha256": "d9358e64ba8c0977b727ec39c76ee547a599e406a38255637cf3d01b303c3c74",
-  "ir_table_sha256": "22651ff02ea3f245520f541952568bd3ded96041262dc00c62abe6dbbd90a54b",
-  "stage_report_sha256": "120cb409bc1f41f254ccbc150c9ca040527427d4c264511830f752433eb8a14a",
-  "revision": "first published commit"
+  "head_src": "ad317c4cee6d76bc82b08600004e2eaac628327a",
+  "changed": 40481,
+  "bundle_sha256": "5d85a0bfcd9c23775d0ebf743b8c660eb0816e4202e8894f834784e59261da8c",
+  "source_provenance_sha256": "4c2d2362c890283d4f6f08185c262f87a0830bb1674beeae38c5d51f6d8714f7",
+  "ir_table_sha256": "ab71ad2f274b8f2c3fa7327c0d226d3201a1ad81113e40b368267f33cccbf3b5",
+  "stage_report_sha256": "a68eecccd0c4dc2246764a3bfab7be468a34670ed7bf5592895a9448d5ca0161",
+  "revision": "current head"
 }
