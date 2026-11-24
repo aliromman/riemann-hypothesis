@@ -21,13 +21,13 @@ TOOL_SHA = {
     "published": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf",
     "proposed": "42027c05de988741decb36b3d9c6f689feed372e17331a40b1c867f0bf1bf933",
 }
-HEADS = ("e7127ce8136d8ed36e610884d8578de1cffadd19", "8d792c7fd2c0f411f215762a82145a4484ea29dd")
-SOURCE = "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505"
+HEADS = ("70f5e2c0737a9289949627d834612ed30d25432f", "963ebea3bb3d7c2c5738946fca45317b8084f972")
+SOURCE = "bd038d97d3d9f38ac0ea2eba4e4d7a8ec4cc3749"
 PLAN = "7f008f70f550f162cba7e1b23b8b15309086d8efd3ff8c0c4a2ff9ed4521a175"
 STREAMS = {
-    "community": "9566483e9bd36d62c63a22a9413f1f21cf646a4863922b457dba85ec54e2529a",
-    "published": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0",
-    "proposed": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0",
+    "community": "1da546bc59bb2f7254c4f6d74201170264fc1c3a80ffdc0e491c135e12bfcbdd",
+    "published": "72e28cc9c720a348f0dd900f151c45bf43786ac8519ef1e1a22a458d97089178",
+    "proposed": "72e28cc9c720a348f0dd900f151c45bf43786ac8519ef1e1a22a458d97089178",
 }
 def digest(data):
     return hashlib.sha256(data).hexdigest()
@@ -64,7 +64,7 @@ def source_census(project):
         assert got.encode() == oid, name
         checked.update(name + b"\0" + oid + b"\n")
         files[name.decode()] = oid.decode()
-    assert len(files) == 59909
+    assert len(files) == 59884
     return files, checked.hexdigest()
 
 def run_cli(project, command, log):
