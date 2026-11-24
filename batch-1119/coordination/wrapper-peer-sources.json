@@ -1,0 +1,53 @@
+{
+  "base": "5ba3d66a2a5acdcd70e2482d73e05b41d7116186",
+  "open_pr": 1236,
+  "peer_head": "700a2364664b7e92fe9792234ccd9eb8970233ec",
+  "heads": {
+    "879": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+    "977": "be239239d08c7bf865ba618cf6515891b4596c84"
+  },
+  "unique_shared_sources": 2960,
+  "by_proposal": {
+    "879": {
+      "shared": 2942,
+      "all": {
+        "reconstructed": 1742,
+        "deleted_by_peer": 1200
+      },
+      "textual_conflicts": {
+        "deleted_by_peer": 1200,
+        "reconstructed": 499
+      },
+      "requires_review": []
+    },
+    "977": {
+      "shared": 1155,
+      "all": {
+        "reconstructed": 1155
+      },
+      "textual_conflicts": {
+        "reconstructed": 4
+      },
+      "requires_review": []
+    }
+  },
+  "shared_tooling": {
+    "879": [],
+    "977": []
+  },
+  "reconstructed_source_totals": {
+    "879": {
+      "retained_owners": 37920,
+      "net_nonblank_lean_lines": 990372,
+      "net_lean_code_commands": 990372
+    },
+    "977": {
+      "retained_owners": 11575,
+      "net_nonblank_lean_lines": 383351,
+      "net_lean_code_commands": 251766,
+      "net_code_less_added_python": 251351
+    }
+  },
+  "status": "Source reconstruction for open PR 1236. Totals count only surviving sources that reconstructed. Any cases requiring review are listed. This preview has not been submitted or kernel-checked on that prospective base.",
+  "rows_sha256": "8f0c6f269c7e79f19b418a16817231e90829931457e094cad022c1b79e964ad2"
+}

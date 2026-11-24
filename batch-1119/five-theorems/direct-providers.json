@@ -1,0 +1,28 @@
+{
+  "Main_setup_sha256": "aec948420149732df86dbb625457a850ff8c36dcc5258cd0a7ab65e5124e289a",
+  "head": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+  "providers": {
+    "Development.AutomorphicArithmetic.CharacterBoxes.ClaimStrip": {
+      "complete_declaration_names": 5,
+      "consumed_by_Main": true,
+      "effective_project_inputs": 2,
+      "five_raw_outputs_equal": true,
+      "normalized_warnings": 0,
+      "official_ltar_sha256": "74ecdac298d7da00cea54549f4c0f7d391b075738c7e26537ddd5164f4562685",
+      "verified_transitive_inputs_sha256": "534b1ec2c38386aa6a82165ea21beb74a5d086cee57fea89f453c019f4c2f5a3",
+      "visible_selected": 0
+    },
+    "Development.AutomorphicArithmetic.CharacterBoxes.MainConclusion": {
+      "complete_declaration_names": 53,
+      "consumed_by_Main": true,
+      "effective_project_inputs": 59294,
+      "five_raw_outputs_equal": true,
+      "normalized_warnings": 57,
+      "official_ltar_sha256": "b1864779ab6af91072642c40dc3bd636fef28d9e94d498b9e512e50f55f3d003",
+      "verified_transitive_inputs_sha256": "648b4953392bba8f84e57d56ecd988f205dcb06b1374208ea30de0788be9227a",
+      "visible_selected": 38661
+    }
+  },
+  "root_archive_sha256": "1ae7b0b2f3b2a12e0caeea83cd131730d87d5d11e17fa72e166cc2760cc6fae9",
+  "total_binary_outputs": 10
+}

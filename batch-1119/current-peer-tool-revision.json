@@ -1,0 +1,46 @@
+{
+  "public_head": "be239239d08c7bf865ba618cf6515891b4596c84",
+  "previous_exact_linux_and_arm_build": "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
+  "original_native_workers": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0",
+  "community_parent": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+  "source_tree": "a598d19cccf798deb6e2bea9700cbac2ff050e11",
+  "changed_paths": [
+    "scripts/clump.py",
+    "scripts/tests/test_clump_scopes.py"
+  ],
+  "source_manifests": {
+    "989ea9c41e8400a6fe894fe365298c219f8c7e1d": {
+      "identical_paths": 60279,
+      "identical_path_blob_mode_manifest_sha256": "2c9e471aa8e832648c28d6a360680dfaa09d7b6ebd71e05b0352064c4151979e",
+      "src_files": 60147,
+      "src_entries_sha256": "86e68f25f25f971d315b08b94e8bae5ca7b6e8599a0b4fab99f1458b4f92a262"
+    },
+    "be239239d08c7bf865ba618cf6515891b4596c84": {
+      "identical_paths": 60279,
+      "identical_path_blob_mode_manifest_sha256": "2c9e471aa8e832648c28d6a360680dfaa09d7b6ebd71e05b0352064c4151979e",
+      "src_files": 60147,
+      "src_entries_sha256": "86e68f25f25f971d315b08b94e8bae5ca7b6e8599a0b4fab99f1458b4f92a262"
+    }
+  },
+  "joint_source": "57fece943c0c76d817de2f24ff7e9ab75564e672",
+  "joint_before": "96cdc9aaad23268e69dacd7d5a35d98686b22aef",
+  "joint_after": "e10102f025d68053846b6a44aaae030a4c4150ab",
+  "joint_changed_paths": [
+    "scripts/clump.py",
+    "scripts/tests/test_clump_scopes.py"
+  ],
+  "net_python_lines": 415,
+  "python_diff": {
+    "scripts/clump.py": {
+      "added": 277,
+      "removed": 24
+    },
+    "scripts/tests/test_clump_scopes.py": {
+      "added": 162,
+      "removed": 0
+    }
+  },
+  "removed_lean_scope_commands": 251766,
+  "net_code_lines": 251351,
+  "source_nonblank_removed": 383351
+}

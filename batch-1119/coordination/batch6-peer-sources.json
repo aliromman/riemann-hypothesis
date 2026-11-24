@@ -1,0 +1,62 @@
+{
+  "base": "5ba3d66a2a5acdcd70e2482d73e05b41d7116186",
+  "open_batch": 1198,
+  "peer_head": "712388580aa05c66131759d338678dbe79f769ad",
+  "heads": {
+    "879": "a2a92740de233b5ca34edee530cb1efe7cd63b73",
+    "977": "989ea9c41e8400a6fe894fe365298c219f8c7e1d"
+  },
+  "unique_shared_sources": 1002,
+  "by_proposal": {
+    "879": {
+      "shared": 209,
+      "all": {
+        "reconstructed": 110,
+        "deleted_by_peer": 99
+      },
+      "textual_conflicts": {
+        "deleted_by_peer": 99,
+        "reconstructed": 1
+      },
+      "requires_review": []
+    },
+    "977": {
+      "shared": 895,
+      "all": {
+        "reconstructed": 871,
+        "deleted_by_peer": 24
+      },
+      "textual_conflicts": {
+        "deleted_by_peer": 24,
+        "reconstructed": 23
+      },
+      "requires_review": []
+    }
+  },
+  "shared_tooling": {
+    "879": [],
+    "977": []
+  },
+  "exact_source_preview": {
+    "879": {
+      "retained_owners": 39021,
+      "net_nonblank_lean_lines": 1015877,
+      "net_lean_code_commands": 1015877
+    },
+    "977": {
+      "retained_owners": 11551,
+      "net_nonblank_lean_lines": 382790,
+      "net_lean_code_commands": 251428,
+      "net_code_less_added_python": 251028
+    }
+  },
+  "status": "Source reconstruction for an open draft batch. This has not been proposed on either branch or kernel-checked on that prospective parent.",
+  "rows_sha256": "d6195b56ddbca348e914aa6ccfd8cc532f154848781f0f6e435562b00fce8fcc",
+  "peer_at_observation": {
+    "headRefOid": "712388580aa05c66131759d338678dbe79f769ad",
+    "isDraft": true,
+    "mergedAt": null,
+    "state": "OPEN"
+  },
+  "observed_utc": "2026-11-24T15:24:52.284620+00:00"
+}

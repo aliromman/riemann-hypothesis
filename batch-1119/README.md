@@ -18,3 +18,11 @@ Upstream changed 586 retained module sources and deleted 17 more. The merge appl
 The project graph contains 369,383 project imports. Among untouched modules, 2,656 directly import an edited module and 10,515 depend on an edited module transitively. Both proposals together affect 41,518 distinct Lean files. In every one of the 9,177 overlapping files, the merged bytes consist of the import branch's header and the scope branch's body. That merged tree contains 13,397,697 nonblank Lean lines under `src/`, a reduction of 1,401,779. [Downstream dependencies](dependencies.json) · [Combined source trees](composition.json) · [Per-file composition](composition-source.jsonl.gz)
 
 A full default-target build and the community's full independent five-theorem Comparator export require a separate run.
+
+## Compiled outputs and theorem checks
+
+The final records cover all 39,120 changed source modules and all five declarations in `Main`. The raw ZIP files retain the original GitHub authentication digests. The latest main comparison lists every subsequent upstream path and checks whether it changes a tested source or tool. [Compiled outputs](native) · [Five theorem proofs](five-theorems) · [Latest main comparison](latest-main.json)
+
+We also built two selected workloads with both proposals together. The five full statements have separate evidence for each branch. [Combined-source checks](composition-native) · [From native run inputs to the current PRs](python-only-revision.json)
+
+The following #977 diagnostic revision changes two Python files. Its entire joint Lean source tree is identical to the measured composition. [Published revisions and source manifests](current-peer-tool-revision.json)
