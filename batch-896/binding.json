@@ -1,0 +1,12 @@
+{
+  "base": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+  "base_src_tree": "6e972745429bd501b15e5daa9db46c8a9feb85db",
+  "head": "c4b66990077a462b2e2d35777fe0f55644463e87",
+  "head_src_tree": "c7126960bde14461813ed3125e947e47544c04c1",
+  "git_sources_sha256": "a253d38d5b96abd3a28913f73a1f4e6af5ad5af99caa1c84c44f67d00edf49d9",
+  "changed_modules": 39159,
+  "lean": "leanprover/lean4:v4.37.0-rc1",
+  "mathlib": "31ce06eaadf4a200c0e1407c5f10953cf606b8f8",
+  "official_receipt_sha256": "1a68a38e971cc2de2bb1d45add8e70228b63b5ab8627d557e12cae200d211753",
+  "parent_owner_manifest_sha256": "a6cfc0b330c9b2d25551163316b4ae66dbd1b9006439c8f42621c177ec684463"
+}

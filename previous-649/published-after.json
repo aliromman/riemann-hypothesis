@@ -1,0 +1,12 @@
+{
+  "number": 879,
+  "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/879",
+  "base": "64970dc64f26807fe87a1d50514bf9bec905058f",
+  "main_at_check": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+  "head": "0f8b7e6fde3d0c8c78425f023539ddddcafd014e",
+  "live_pull_head": "0f8b7e6fde3d0c8c78425f023539ddddcafd014e",
+  "revision": "current head",
+  "head_repository": "aliromman/riemann-hypothesis",
+  "head_ref": "codex/prune-development-mathlib-imports",
+  "state": "open"
+}
