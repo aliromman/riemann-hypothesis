@@ -1,0 +1,947 @@
+{
+  "at_review": 271,
+  "released_count": 291,
+  "released_sources": [
+    "src/Development/AbelianVarietyTheory/Definitions/AutomorphicMembership/AmbientBaseHeq.lean",
+    "src/Development/AbelianVarietyTheory/Definitions/AutomorphicMembership/ReplacementValuesBaseLevelTypePartsEq.lean",
+    "src/Development/AbelianVarietyTheory/Definitions/QuasicoherentCohomology/HdimEqZeroOfSubsingleton.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/AdelicLatticeProofs/ExistsRationalUnitarySplitDenominator.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/CoherentCohomologyProofs/PushComparisonBijectiveOfIsClosedEmbedding.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/CoherentCohomologyProofs/SubsingletonOfSheafPullback.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/CuspFormEvaluations/ExistsIsChartGOfBasis.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/AbsFactorialMulEulerCharTwistPowSubLe.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ArithIntersectionCalculusOfFormMixedProjection.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/CardTwistedNormOneMulCardFixedUnitsStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ClassSumsSpanCuspFormsBaseTupleSecondField.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ComponentRanksDegreesAddWithMasses.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ContDiffThetaTransformAdelicSchwartzRealDirection.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/DefinitePairsRatioLocallyRationalTimesNormStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/EtaleCohomologyVanishingAlgebraicOverRatFunc.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/EtaleLocalPrimitiveRootAndRootsOfUnity.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsBoundedIntegerGoodCoverThetaSeriesIntegral.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsCharZeroEigenformSurvivingCompositionFacto.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsFiniteDimensionalSpaceAutomorphicSmoothing.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsFlagCellContainingFramedPoint.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsSemilinearL2Independent.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsUniformisationFiniteExtSameMumfordBundle.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/FlagCellPointImageAndFrameStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/FreeEtaleSheafExcisionShortExact.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/FunctionFieldZerosFiniteSumOrderEqFinrank.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/HermitianTripleFrobeniusTwistOrderFixedPoints.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/HomotopyInvarianceEtale.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/IntegralConjSetLocalUnitaryEqDoubleCosetStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/KeepsCuspLatticeNorm.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/LaurentPolynomialCohomologyVanishing.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/LevelCoverCuspFormPullbackInjectiveDescent.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/LevelMoveEigenlatticeSlopeDefinite.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/LieEigenLatticeLeSpanCmHomImages.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/MemTraceDualLocalizationIffForallRegularFormStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ModelStatementOfFrameGalois.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SmoothAffineCurveEtaleCohomologicalDimensionLeOn.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/TateTwistCohomologyGenericFibreHenselLineSubsingStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/BesselDoubleCosetMeasureBigCellEq.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/CountTypedOfVolumeStep.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/FirstNormAddSubsetIndicatorLe.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/HaarLieNilpotentEqLebesgue.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/LeadingMinorLineUnitAmplitudesLargeGaps.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/LintegralBigCellHaarDensityConstant.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/OpenCellAmplitudeNormEqConstDivDegreeLargeGap.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/FormalGroupCharts/FormalBiextensionsRelatedOfTripleMapOverIdStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/FormalGroupCharts/JetPointAddSqZeroEqProdMulTangent.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/PullEqGaussSmulIntertwiner.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/SChartsAndTransferOfGoodLevel.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/ChebyshevPsiProgressionRelativeError.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/DivisionSecondComplementConstructedPoints.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/ExistsExplicitParameters.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/ExistsLargeVonMangoldtLogPowerSeriesNearZero.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/NormOneSubConjMul.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/PrimeMeanValueCharactersTwistIntegralLe.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/RayClassFamilyPsiWithExceptionalZero.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/SumRpowZerosLe.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/TruncatedExplicitFormula.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/TruncatedPerronPsi.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/HeightProofs/LengthsAtPrimesLeFunctionFieldDataOfCurve.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/HeightProofs/OrdersAuxiliaryFormAtPrimesEqFunctionField.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/AdmissibleOfLargeResidueChar.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/BlochKatoLocalAllPrimesOfBlochKato.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ComparisonMatrixFrobeniusDisc.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/EtaleHermitianPairStructureFacts.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsBcrisTensorLatticeEquivPeriodRing.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsEvaluationConvergentSeriesBcris.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsThetaSeriesRationalVectorNeZeroOfCuspFormsStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/FiltrationJumpsBreuilKisinSubsetGaloisJumps.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/FixedByCyclotomicKernelEtalePhiSolutionMemWachStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/LocalCountOfSetup.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/SelmerLengthBoundAtPoint.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/SpanRangeMap.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/UnitLemmaLieAlgebraUnitaryGroupOfJacquetRallis.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/WittVectorGaussNormUltrametric.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/AcrisFrobeniusEigenFilEqQlMulTPow.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/DiscrMulMemOfIsIntegral.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/DivisionGeometryScalarsTransferSetDivisionStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/ExistsLatticeCoordinatesStep.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/ExportTieMove.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/GeometricHalfToAnalyticDataEnlargedBase.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/LevelThreeToFour.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/WeightNearDiagonalOperatorsBounds.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/ThetaShiftProofs/HasSumLocallyUniformlyOnTerm.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/TorusHaarMeasure/ExistsPosLeLatticeHeightAtFrame.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/UniformizationProofs/ExistsExpansionSectionLineBundlePower.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/UnramifiedDepth/BlockValueOnRowsEq.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/AlgebraTools/CaDetChartPrime.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/ConstantTermArchSmooth.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/CharacterLevelBounds/PartModel.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/CommutativeAlgebra/ObsClass.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/GaloisLibrary/BernoulliNumbers/BRaabe.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/GaloisLibrary/SelmerTransport/ShaLenEq.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/GaloisLibrary/SimultaneousEigenvectors/SimEig.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/LiteratureResults/KTheoryStability/HomologicalStability/LinkExactnessStability/ExistsHomologousCycleWithEntriesInOfExactAtLinks.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/LiteratureResults/KTheoryStability/ReductionBoundsTorsion/ArithmeticGapBounds/AeEqCosetAvgOfMemInvariantSubspace.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/LiteratureResults/KTheoryStability/ReductionBoundsTorsion/IteratedHeckeBounds/HkIterContOn.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ArchimedeanSchwartz/ArchimedeanDerivatives/IntegralHWMul.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/LinkedUnramifiedChains/CrystallineCardinalities/TanA.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/LinkedUnramifiedChains/CrystallineCardinalities/TanAOf.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/LinkedUnramifiedChains/ScalarIrreducibility/NormLeOneOfInt.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/LinkedUnramifiedChains/ScalarIrreducibility/PlaceFree.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/SymmetricPowerTransfer/GeneralizedEigenspaces/CharacterShapes/FiniteOrbits/EigGen.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/SymmetricPowerTransfer/GeneralizedEigenspaces/PlacesOverFinite/LemTWM.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/SymmetricPowerTransfer/WeilDeligneUnramified/LevUnion.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/AdjointLiftingOfCohomology.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/AdmissibleTypeIEvenLevel.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/AutUpA.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/BcIndCs.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/CohInp.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/DnEndsTop.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/FOneCharU.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/GdEndOf.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/LemmaKOfLitN.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/LinkedUnlE.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/ModularDeformationQuotientRegularAtPoint.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/ModularityRankFourOfPromodularity.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/PmTwo.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/RRRigII.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/RigSp4.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/SymTop.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/TLinkedRig.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/TPropEGW.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/UnitaryRankTwoFlags.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/UnitaryThreeInputsOfLiterature.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/VWitApi.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/UpperTriangularPlaces/ConjLeftPosAlt.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PadicHodgeTheory/ExistsEps.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/SymplecticGSp4/GaloisRepIneqOfAllIrreducibleNonvanishing.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/TheoremsMuLinked/GaloisRepresentationTypes/IsIrrOfMatIrr.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/WeakShimuraTheory/RedTanDefs.lean",
+    "src/Development/AutomorphicArithmetic/Foundations/Convolution/LocalGroupAnalysis/FirstGeometricConditionOfProperties.lean",
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/KunnethLefschetz/EtSideGood.lean",
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/ExistsThVEqFK.lean",
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/IsThetaFunOFThetaTrK.lean",
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/TranscendenceTraces/PhiExact.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/BesselModels/IrreducibleUnitaryRepIsoHarishChandraType.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/CrystallineComparison/IsCrisDRAToBdRPlusIff.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/CoveringDomainLatticeRegularity.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/CoveringShiftPreservesGoodAt.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/ExistsFlatUnitSection.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/ExistsGoodCoverAtMinimalLevel.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/HodgeBundleWeights/TwistedFlatBundleRanks.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllStagesAtMemberOfSpecializations.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/CoveringGramMatrixOfLocalTraces.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ExBLIsLinkedPrmRStatement.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ExistsBaseLatticeOfPrime.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ExistsLiftAtDefiniteBadPlaces.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ExistsSelectionPairLocalLanglandsStatement.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/FiniteLevelAndSecond.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/FinitenessOfHyp.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/GaloisAtPlaceOfAutomorphicAtPlace.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/GaloisHypothesesOfIsTriple.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/LayerUpStatement.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/Lb2OfThetaTwistStatement.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/LinkNFam.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/LinkROfIsLinked.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/LinkedTiesStatement.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/MainTheoremPublishedInputsThird.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/MemberEClosing.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/MemberSizesStatement.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/OpenAndLinkedOfStrongerExtension.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/PointEvaluationSideStatement.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/RealAtColsStatement.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ResidueCountOfSsRank.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/RingOfCoveringDescent.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/RowLabOfLayer.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SizesOfCover.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SlotMvPrmRNelStatement.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SumPtOfSizeStatement.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/AlgebraProofs/CutEffectiveDivisor.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/AlgebraProofs/IntegralFubiniStudySumCone.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/AlgebraProofs/MahlerSectionStatementHolds.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/ChamberPairThreeFour.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/LatticeFiltrationComapSpanPow.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/NonrepresentedSignatureObstruction.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/PhiPgCommutationHolds.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/DivisibilityProofs/VolumeTheoremOfInputs.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/AbelianSchemeSpreadsOutFiniteTypeSubringStatement.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/SemiabelianLieLatticeAgree.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/GlobalProofs/CupFlip.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/GlobalProofs/ExistsShintaniConeDomain.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/GlobalProofs/TateDualityH2FiniteCoefficients.lean",
+    "src/Development/DiscreteGroups/GlobalIrreducibility/IneEqOfHasGreenLe.lean",
+    "src/Development/EtaleCohomology/CohomologicalPurity/FixLeafCl.lean",
+    "src/Development/EtaleCohomology/CohomologicalPurity/LeafExcSpPfMono.lean",
+    "src/Development/EtaleCohomology/CohomologicalPurity/LeafHsRelPfSplit.lean",
+    "src/Development/EtaleCohomology/CohomologicalPurity/LeafWCechPf.lean",
+    "src/Development/EtaleCohomology/EtaleSheaves/AlgebraicIntegralClosure.lean",
+    "src/Development/EtaleCohomology/EtaleSheaves/CechSqPf.lean",
+    "src/Development/EtaleCohomology/EtaleSheaves/DomCoverPf.lean",
+    "src/Development/EtaleCohomology/EtaleSheaves/FibStalkPf.lean",
+    "src/Development/EtaleCohomology/EtaleSheaves/LeafUnitsPfB.lean",
+    "src/Development/EtaleCohomology/TateTwists/EtaleAlexanderWhitneyCupCochainExistsForPairing.lean",
+    "src/Development/EtaleCohomology/TateTwists/EtalePrismAlexanderWhitneyHomotopyOfRelations.lean",
+    "src/Development/EtaleCohomology/TateTwists/EtaleSheafRestrictScalarsResolutionHomExistsOfEx.lean",
+    "src/Development/ResolutionOfSingularities/EmbeddedResolution/IdealPrincipalization/MarkedOrderReduction/CompanionIdealReduction.lean",
+    "src/Development/ResolutionOfSingularities/EmbeddedResolution/StrongResolution/AffineCentersOverSingularLocus.lean",
+    "src/Development/WeilBound/CoreStatements/AbelianHeightsDuality/PublishedTheoremStatements/BridgesMore.lean",
+    "src/Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/CoreCasGl.lean",
+    "src/Development/WeilBound/CoreStatements/HeckeCharacterDeRham/DeRhamHeckeResults/LAdicHeckeDeRham/LAdicHeckeFields/FieldOfLeaves.lean",
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/MbLNormExists.lean",
+    "src/Development/WeilBound/CoreStatements/HomogeneousNonvanishing/LatticeIntegrallyClosedTorsion.lean",
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/HodgeTateResidues/Half1.lean",
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/ConeSectionRestriction/TorusMemFldF.lean",
+    "src/Development/WeilBound/CoreStatements/ProjectiveValuations/FlagModelProjectiveEmbedding.lean",
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/HeckeLAdicCharacters/Outright.lean",
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/NadelVanishingPairs/NadelVanishingLemmas/CartierProjectionProperties.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/SatakeExponents/UniformizerValuations/HyperbolicEntryBounds/CasInfOfIm.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/CasimirAlgebra/KugaCoordinates/ClozelCohomological.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/GenericUnitaryGL/ComplementarySeries/SegmentJacquetSubquotients/SegRepOf.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/RegularisedSiegelWeil/SingularNullSets/LGenKF.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/GlobalGaussLaws/GenFinLocB.lean",
+    "src/Development/WeilBound/ThetaLifts/Reductions/LocalLift.lean",
+    "src/Formalism/GL3MeanSquares/GenusMeanAsymptotics/JacobiCharacterSums/PNTFinal.lean",
+    "src/Formalism/GradedWeylDivisibility/DualWeylDominanceOf.lean",
+    "src/Formalism/HermitianCurvature/HeisenbergConjugationMeasurePreserving.lean",
+    "src/Formalism/HermitianCurvature/HermitianCurvatureProofs/PBCLat.lean",
+    "src/Formalism/HyperbolicPlaceProducts/SecondLevelArithmeticNorm.lean",
+    "src/Formalism/LandauZeroFreeBounds/SiegelWalfiszAPOfSiegelLower.lean",
+    "src/Formalism/LocalToGlobal/GlobalTheory/BlockActions/StabiliserBijectiveOfFinite.lean",
+    "src/Formalism/LocalToGlobal/SiegelLatticeTheory/CokernelGLCounts/RankPointCounts/SecondValueMul.lean",
+    "src/Formalism/LocalToGlobal/SiegelLatticeTheory/CokernelGLCounts/RankPointCounts/StabIntPfLatSk.lean",
+    "src/Formalism/LocalToGlobal/SiegelLatticeTheory/CokernelGLCounts/RankPointCounts/ThetaModuleTransport/HeadColumnCoordinates/CornerDeterminantCounts/DetEqEllUB.lean",
+    "src/Formalism/LocalToGlobal/SiegelLatticeTheory/CokernelGLCounts/RankPointCounts/ThetaModuleTransport/HeadColumnCoordinates/FormInverseCounting/SecondProjIotaOneEqZero.lean",
+    "src/Formalism/LocalToGlobal/SiegelLatticeTheory/FlagStabilizerTensors/RootLatticeThresholds/CarrierXPinsP.lean",
+    "src/Formalism/LocalToGlobal/SiegelLatticeTheory/FlagStabilizerTensors/RootLatticeThresholds/L2RightTranslationThm.lean",
+    "src/Formalism/LocalToGlobal/SiegelLatticeTheory/FlagStabilizerTensors/RootLatticeThresholds/YcUnitary.lean",
+    "src/Formalism/LocalToGlobal/TorsionIntegrality/GaussianEigenFrames/GramFrameComposition/GramFrameCompositionMvExpFact.lean",
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/HermitianHaarMeasure/SmoothLevZero.lean",
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/LatticeIndices/LatFreeHolds.lean",
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/LatticeIndices/SecondEmbeddingAlgebraMap.lean",
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/LocalUnitaryOrbits/QSplitHolds.lean",
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/LocalUnitaryOrbits/ResAlgOfSpan.lean",
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/StabilizerVolume/DensInfTop.lean",
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ValuationLocalVolumes/FibPOfDual.lean",
+    "src/Formalism/SharpRestriction/Divisibility/GeneratorPowers/CIndFrFixAsm.lean",
+    "src/Formalism/SharpRestriction/GrowthBounds/CoarseMultiplicity/ChainEmbInj.lean",
+    "src/Formalism/SharpRestriction/GrowthBounds/MonomialFactorials/BlockValuationOverZpHolds.lean",
+    "src/Formalism/SharpRestriction/GrowthBounds/SegmentDegree/RestLamOfRests.lean",
+    "src/Formalism/SharpRestriction/LevelLetterCocycles/DvrLatticeRank/FramePfDat.lean",
+    "src/Formalism/SharpRestriction/LevelLetterCocycles/DvrLatticeRank/MainFinal.lean",
+    "src/Formalism/ThetaLogCoordinates/UniformThetaSubstitution/FrobeniusLiftNorms/CoeffSubstLgFOfDegreeOne.lean",
+    "src/Formalism/TorsionNormIteration/LubinTateExample.lean",
+    "src/Formalism/WachLatticeTwists/RamifiedBlockRings/RamifiedBlockProofs/TopLengthBoundViaSplitting.lean",
+    "src/GroundTheory/ArithmeticGeometry/SchemeCohomology/CechSeparated.lean",
+    "src/GroundTheory/ArithmeticGeometry/SchemeCohomology/ProperCohomology/FinitenessStep.lean",
+    "src/GroundTheory/ArithmeticGeometry/SchemeCohomology/ProperCohomology/FormalFunctions.lean",
+    "src/GroundTheory/AutomorphicForms/AdelicGLn.lean",
+    "src/GroundTheory/AutomorphicForms/GL2/GJFEInducedParabolic.lean",
+    "src/GroundTheory/AutomorphicForms/HarishChandraCentre/Projection.lean",
+    "src/GroundTheory/GlobalFields/ComplexMultiplication/EllipticDegree.lean",
+    "src/GroundTheory/GlobalFields/ComplexMultiplication/MainTheoremLevel.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/AnalyticLimit/OfListTailLog.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/AnalyticLimit/PListTailLogSmooth.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/ArithmeticBezout/OfLeaves.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/ArithmeticBezout/PZeroLocusDimH.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/ArithmeticBezout/StatementsMahler.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/HeightKernels/Assembly.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/HilbertSamuel/Assembly.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/HilbertSamuel/AssemblyBase.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/HilbertSamuel/AssemblyBridge.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/HilbertSamuel/AssemblyConditional.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/HilbertSamuel/PAddBlockIsometric.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/HodgeLowerBound/PHodgeFlagRatioFieldEq.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/Intersections/Assembly.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/LocalFiniteness/IsolatedPointsCountPrime.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/LocalFiniteness/TargetsProjRegularDens.lean",
+    "src/GroundTheory/HeightsAndTheta/Heights/VerticalDivisors/Assembly.lean",
+    "src/GroundTheory/ProfiniteCohomology/LocalEulerCharacteristic/CohomologyMapTensorRightMorCompCohomologyConj.lean",
+    "src/GroundTheory/ProfiniteCohomology/PoitouTate/NonemptyOfNatCastMemOfNeOne.lean",
+    "src/GroundTheory/ProfiniteCohomology/PoitouTate/PoitouTateNineTermGs.lean",
+    "src/GroundTheory/ProfiniteCohomology/RealPlaces/VanishingMackeyTransfer.lean",
+    "src/GroundTheory/ProfiniteCohomology/RealPlaces/VanishingUnits.lean",
+    "src/GroundTheory/ProfiniteCohomology/RestrictedRamification/BaseTransportGS.lean",
+    "src/GroundTheory/TateCohomology/TateLow.lean",
+    "src/PositivityTheory/AutomorphicForms/PublishedInputs/CuspidalContinuity/ArchimedeanCuspidal/EulerProducts/EulDefs.lean",
+    "src/PositivityTheory/AutomorphicForms/PublishedInputs/CuspidalContinuity/ArchimedeanCuspidal/VerticalStrips/GammaZeroLevelMembership.lean",
+    "src/ReciprocityTheory/AnalyticForms/PlurisubharmonicFunctions/HessCRestrictThm.lean",
+    "src/ReciprocityTheory/AnalyticForms/RegularLocalRings/ProjHyp.lean",
+    "src/ReciprocityTheory/AnalyticForms/RegularLocalRings/StalkLoc.lean",
+    "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/FundamentalDomains/ModerateCoefficientPositivityHolds.lean",
+    "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/FundamentalDomains/RealTangentSpace.lean",
+    "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/HeightTheory/AdmissibleValuationPrimeUnique.lean",
+    "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/HeightTheory/HHINDE.lean",
+    "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/HeightTheory/RegAVpt.lean",
+    "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/StrongApproximation/ReachableFixingAddSmulSecond.lean",
+    "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/AnalyticVectors/WeightBound.lean",
+    "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/CasimirAlgebra/KhwLowKSubRootEqZero.lean",
+    "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/LaplaceOperators/LaplaceFoundations/EqSmulHighestWeightOfIsWeight.lean",
+    "src/ReciprocityTheory/ReductiveGroups/UnramifiedIntegrals/RedKerPoly.lean"
+  ],
+  "reserved_count": 209,
+  "reserved_sources": {
+    "src/CompanionTheory/SpectralGeometry/LocalGlobalProofs/AdelicAnalysis/SchurFunctionWhittakerEquivariant.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/AdelicLatticeProofs/CmExtensionAdelesStandardModelDictionary.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/CubicalLineBundles/MeanLogSupNormLowerBoundOfCoreLaws.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/AbelianLocusPointMemRangeSiegelModuliOpenImmersi.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ArithHilbertSamuelSmallSectionsChangeOfMetric.lean": [
+      990
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ChartSeparationDataDefinedOverCentreFieldStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ClassicalTraitsFourierTermsAllLevels.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/CongModOfMkEq.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/DegenerationDataEighthPowerViaCharacterMapsStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/EighthPowerFirstFactorThetaModelStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/EqOfSameGenericProjectiveCoordsStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsBoxFamilyProductDegenerationStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsCentredPureFiniteExtensionDeeperModelStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDegDataTensorPosDefUnimodularFormStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsEffCartierCompl.lean": [
+      974
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsExtNormalisedBlowupStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsFourierTermSystemRegularTraitsGivenChartStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsGaloisTowerBaseChangeThetaMemberStatement.lean": [
+      970
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsGeneratingBoxProductOfRestrictedIsosStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsGeneratorTransportMumfordBundleIsoStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsLatticeEquivTwoMembersSamePointStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsLowerBaseOfTraitAbelianPartStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsMumfordFamilyStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsProjSpaceMapOfTupleHasDivisorStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsPulledBackPeriodsBasePeriodsConstFormStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsRealisedThetaSystemNormalLevelModelStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsRigidifiedCubicalRootPolarisationEtaleStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsSchemePresentingSquareZeroSmoothLiftSystem.lean": [
+      987
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsShortColumnsDetNeZeroHilbertSamuel.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsSymmetricThetaConstantsEqThetaMapCoordsStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsTautologicalChartAtSiegelBlowupPointStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsThetaSetupTowerBaseChangeMemberStatement.lean": [
+      970,
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsUniformisedMemberOfRefinedUniformisationStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/FibreEighthPowerThetaObjectSubfieldStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/HeatOperatorsSymbolZeroTorsionPointsHorizontalStatement.lean": [
+      985
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/IdempotentImageIsoUniformisedFactorOfAdjointPairStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/IdempotentImageUniformisedByFactorDataStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/InnerExpJointHarmPos.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/IsMonHomRescaledRealisationSameGenericFibreStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/IsRegularLocalRingAndIsRelParam.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/LabelsLift.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/LevelCoverImageOpenFiniteOverModuliStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/LineBundleIsoMumfordLambdaOfLocalQuotientStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/MemOOfPowEqOne.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/MinimalSiegelCompactificationExistsStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/MumfordBundleIsoCancelValuesMulStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/MumfordBundleIsoCompValuesMulStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/NTorsionRationalCanonicalFamilyDividedDataStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/NonemptyOfTensorDataPosDefUnimodularStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/NormalisedBlowupAmpleDivisorCompactification.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/NotMemOfStanding.lean": [
+      973
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ProductDataFirstFactorAdjointPair.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SamePolarisedDataOfIdempotentFactorUniformisatio.lean": [
+      986
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SharpPolarizationUniquePullbackStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SharpRefOfRefinesTensorStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SiegelModuliIntegralNormalLocallyNoetherianStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SiegelModuliTraitPeriodsMonomialPosDefStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SiegelThetaMapDeepLevelFiniteFibresStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SiegelToroidalIntegralHolds.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/TautologicalChartCentreIsCompletedEtaleLocalMapStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/TautologicalChartGaloisRigidStalkStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ThetaConstantBundlePowEightIsoDetHodgePowFourStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ThetaConstantPowEqUnitMulSymmetricFunctionStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ThetaConstantsTwoLevelsPrimitiveAtTraitStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ThetaMultiplierEqOfPrimitiveAdjointBundleStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ThetaSumDoubledWeilFixedDiagonalStabilizer.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/TorsionThetaValuesAbelianPartDefinedOverStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/TraitChartGenericFibresSameStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/UniformisationProductOfUniformisedGroups.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/UniformisedMembersClassSumsDeeperLevelsStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/UnitPartPsiTauTangentVectorVariation.lean": [
+      985
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/WeightPartsOverDividingThetaConstantIntegralStatement.lean": [
+      975
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/BesselOrbitalIntegralEqInvDegSmul.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/CardDualZmodModuleEqCard.lean": [
+      971
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/HeckeSemisimpleGeneralisedEigenNewformGamma1Gamm.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/KummerCocycleValueExpansionEqLogDerivSmul.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/PowerSeriesEqOfCongruentValuesAtPrimitiveRoots.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/SquarefreeLabelTorusMassRootsNotDistinctLe.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/UnitaryThetaConstantEqInverseDeterminantPhase.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/ExistsIntegralPeriodElement.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/HeightProofs/WeierstrassPComplexMultiplicationCongruenceModPr.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/BddAllOfThetaSumOnCover.lean": [
+      984
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsEtaleBasisLimitLatticeTower.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/LocalDualityFiniteDiscreteModules.lean": [
+      971
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/SelmerOrderFormulaDualSelmer.lean": [
+      971
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/TrueColumnChoiceExistsChainDataWithBasePointsStatement.lean": [
+      982
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/SmallCharactersSpanJets.lean": [
+      669
+    ],
+    "src/Development/AbelianVarietyTheory/Proofs/SiegelThetaTransformation/HermitianThetaEisensteinConvergeBounded.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/AlgebraTools/ConnectedPrimeFields/CompDim.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/AlgebraTools/IwBernHk.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/GaloisLibrary/KummerTheory/XdualExt.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/GaussSumFiltrations/ThetaTranslateIntegralCongruentOneModPrime.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/HermiteNormalForms/Grampd.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/LiteratureResults/KTheoryStability/ReductionBoundsTorsion/PartitionUnitySmooth/TransZ.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/InductionEstimates/BorelHeckeBounds/HeckeShiftSums/GeoRatio.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/LinkedUnramifiedChains/TeichmullerParts/SubalgebraIntegrality/RankLeOneOfSlices.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/SymmetricPowerTransfer/GlobalUnitaryForms/ScalarTuples/JstdTrace.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/SymmetricPowerTransfer/LocalHermitianForms/LocalOrbitCounts/UnitAdd.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/TraceFormula/GL4GeometricSide/LocAct.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/TraceFormula/GL4GeometricSide/MultiFac.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PatchingModules/AnnihilatorBaseChange/YPrime.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PatchingModules/ArchimedeanH0Cards/Transl.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PatchingModules/SelmerScaling/DefUTest.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/UnitaryThreeDeformations/ExistsRelations.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/WeakShimuraTheory/AdicExtensionMatrices/GenZero.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/Convolution/BlockEvaluation/KillEx.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/Convolution/BlockHeckeSlices/CuspidalNormBounds/KillComp.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/Convolution/EndomorphismSlices/HeckeComponentVectors/HeckeFixedSplitPlace.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/Convolution/LocalGroupAnalysis/FirstCohomologyBoundOfBoundaryBound.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/Convolution/RealGroupAnalysis/UnitaryActions/HomCommTrivial.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/Convolution/RealGroupAnalysis/WeilRepresentation/MeasEx.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/Convolution/SplitEigenfunctions/InfinitePlaceGluing/OneAddXNe.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/EtaleClopenDescent/EtaleCohomologyDegreeZeroSurjectiveLimit.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/EtaleClopenDescent/HocolimAugmentationInjectiveOfPurityInputs.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/EtaleClopenDescent/IsOpenImmersionInclusionOfPiecewise.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/EtaleClopenDescent/TwistedSectionsOfNegativeDegreeVanishing.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/LocalMaximality/PRowEx.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/LocalMaximality/PullbackKahlerOmegaBounded.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/SphericalCoordinates/PJStruct.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/SphericalCoordinates/PPFrameEx.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/SphericalCoordinates/PPlaceEx.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/TPGDatum.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/TranscendenceTraces/PRingSplit.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/Foundations/IwahoriReduction/LangPolynomials/NormOfDvd.lean": [
+      669
+    ],
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/GaloisRepresentations/GreenbergWiles.lean": [
+      971
+    ],
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ExistsSectionBoundedByBergmanKernel.lean": [
+      972
+    ],
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SizeAtStatement.lean": [
+      972
+    ],
+    "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/FunctionalCalculusJointCurve.lean": [
+      669
+    ],
+    "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/TwistedLogCocycleD.lean": [
+      669
+    ],
+    "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/BoundaryChartHodgeMap.lean": [
+      669
+    ],
+    "src/Development/AutomorphicSpectrum/Proofs/MetricProofs/RiemannFormPeriodDeterminantBound.lean": [
+      669
+    ],
+    "src/Development/EtaleCohomology/EtaleSheaves/EtaleEmbedding/EmbedOfLines.lean": [
+      669
+    ],
+    "src/Development/EtaleCohomology/EtaleSheaves/LeafOrdInfLocalPf.lean": [
+      669
+    ],
+    "src/Development/EtaleCohomology/EtaleSheaves/LeafProjModelPfImm.lean": [
+      669
+    ],
+    "src/Development/EtaleCohomology/EtaleSheaves/LocalSlices/LocSliceOf.lean": [
+      669
+    ],
+    "src/Development/ResolutionOfSingularities/EmbeddedResolution/IdealPrincipalization/DivisorReduction/UntwistedDivisorRestriction.lean": [
+      669
+    ],
+    "src/Development/ResolutionOfSingularities/EmbeddedResolution/IdealPrincipalization/MonomialCase/MonomialPrincipalizationBaseChange.lean": [
+      669
+    ],
+    "src/Development/ResolutionOfSingularities/EmbeddedResolution/IdealPrincipalization/OrderReduction/SmoothPullbackMaxContactCover.lean": [
+      669
+    ],
+    "src/Development/ResolutionOfSingularities/EmbeddedResolution/ResolutionDescent/PolynomialRingOverGlobalSections.lean": [
+      669
+    ],
+    "src/Development/WeilBound/CoreStatements/CentralCharts/PshAt0LogNorm.lean": [
+      669
+    ],
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/IsAbFactorTens.lean": [
+      669
+    ],
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/PoitouTateDuality/PoitouTateNineTerm/PoitouTateNormalisedHolds.lean": [
+      971
+    ],
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/SatakeExponents/SphericalEmbeddings/IsSmoothCharUnr.lean": [
+      669
+    ],
+    "src/Development/WeilBound/RepresentationTheoryGL/CasimirAlgebra/TensorRelationsGL/PChain.lean": [
+      669
+    ],
+    "src/Development/WeilBound/RepresentationTheoryGL/CasimirAlgebra/TensorRelationsGL/PTransFin.lean": [
+      669
+    ],
+    "src/Development/WeilBound/RepresentationTheoryGL/HolomorphicDiscreteSeries/LowestKTypeModels/Models.lean": [
+      669
+    ],
+    "src/Development/WeilBound/RepresentationTheoryGL/HolomorphicDiscreteSeries/WordSpans/QminorInt.lean": [
+      669
+    ],
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/AbsoluteConvergence/ProjOpOf.lean": [
+      669
+    ],
+    "src/Development/WeilBound/ThetaLifts/SmallCones/UnfAbs.lean": [
+      669
+    ],
+    "src/Formalism/DirichletDensity/DirichletDensityProofs/MQDiscr.lean": [
+      669
+    ],
+    "src/Formalism/GL3MeanSquares/GenusMeanAsymptotics/UnimodularClassRepresentatives/CardFibGEqProd.lean": [
+      669
+    ],
+    "src/Formalism/HermitianCurvature/HermitianCurvatureProofs/CutNFMainS.lean": [
+      669
+    ],
+    "src/Formalism/HermitianCurvature/HermitianCurvatureProofs/SmoothTruncationInduction.lean": [
+      669
+    ],
+    "src/Formalism/HermitianCurvature/HermitianCurvatureProofs/XFibreOfParts.lean": [
+      669
+    ],
+    "src/Formalism/JumpKernelCokernel/LengthTheoremsWithEarlier.lean": [
+      989
+    ],
+    "src/Formalism/LocalToGlobal/GlobalTheory/CoordinateLengths/IntSpanLeRat.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/GlobalTheory/CoordinateLengths/SecondBranchOfCoordinatesAndCount.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/GlobalTheory/GL4/PStmtFree.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/GlobalTheory/UnramifiedDiagonal/HeckeRamifiedZeroOfMatchingsAndDu.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/GroupLattices/FockModels/TransposeWords/TransposeWordsProofs/WeylFormNondegenerateGlobal.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/IndefiniteReal/HaarTransfer/UnimodP.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/KernelLattices/ColumnData/ColumnDataEquations/SecondConstantHolds.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/KernelLattices/KernelLocalFactors/ThetaLocalEquivalence/ThEquivPAmbOfTiesD.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/PairingIndexBounds/ModelLatticeMoves/MovesComposeU.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/ProjectiveLattices/ArchimedeanQuadraticData/FinitePlaceArcs/FinAtOfStatement.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/ProjectiveLattices/LiftModelHolds.lean": [
+      976
+    ],
+    "src/Formalism/LocalToGlobal/SiegelLatticeTheory/ClosedVolumeStatements/VolumeNormalizedOne.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/SiegelLatticeTheory/FlagStabilizerTensors/RootLatticeThresholds/CutAtHolds.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/SiegelLatticeTheory/TraceIntegralEstimates/ConvGG.lean": [
+      669
+    ],
+    "src/Formalism/LocalToGlobal/TorsionIntegrality/EisensteinTranslationProducts/Th0TranslateProduct.lean": [
+      669
+    ],
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/FiltrationLength/FiltLenFMain.lean": [
+      669
+    ],
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/LatticeColumns/HAdaptRed.lean": [
+      669
+    ],
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/LatticeIndices/SecondCoordsSub.lean": [
+      669
+    ],
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/LocalMassType/MemSecondProjectionIff.lean": [
+      669
+    ],
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/LocalUnimodularLattice/Development.lean": [
+      669
+    ],
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/NormRepresentationLift/ActsByFrameAct.lean": [
+      669
+    ],
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/StabilizerOrbitVolume/LocDensHG.lean": [
+      669
+    ],
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/TermAttractorConstant/GenericityConstantDoubleCosets.lean": [
+      669
+    ],
+    "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/WeightedLimitGauge/OrbitPushM.lean": [
+      669
+    ],
+    "src/Formalism/SharpRestriction/GlobalSchurBounds/GlobalRankLatticeProofs/UnitTraceSumBounds/BeConjOfNormHolds.lean": [
+      669
+    ],
+    "src/Formalism/SharpRestriction/GrowthBounds/ColumnSpanDensity/RhoUpperBoundSmallDepth.lean": [
+      669
+    ],
+    "src/Formalism/SharpRestriction/GrowthBounds/DiagonalSupport/Proposition5OfThreeParts.lean": [
+      669
+    ],
+    "src/Formalism/SharpRestriction/GrowthBounds/MonomialOrderSegments/PlaneGramTheoremOfLemmas.lean": [
+      669
+    ],
+    "src/Formalism/SharpRestriction/LevelLetterCocycles/CrystallineLiftingEveryOrdering.lean": [
+      669
+    ],
+    "src/Formalism/ThetaLogCoordinates/FockResolutionOnto/FockMonomialProofs/OmegaInjectiveHolds.lean": [
+      669
+    ],
+    "src/Formalism/ThetaLogCoordinates/UniformThetaSubstitution/KOneConsequence.lean": [
+      669
+    ],
+    "src/Formalism/WindowSums/PowerSeriesRelationList.lean": [
+      978
+    ],
+    "src/GroundTheory/AutomorphicForms/L2LocalComponents/CenterCommute.lean": [
+      669
+    ],
+    "src/GroundTheory/GlobalFields/GlobalReciprocity/InfKerDegreeLeOfLeSupZhatField.lean": [
+      669
+    ],
+    "src/GroundTheory/HeightsAndTheta/Heights/AnalyticLimit/PTailLogOfMass.lean": [
+      669
+    ],
+    "src/GroundTheory/HeightsAndTheta/Heights/ComplexAnalyticSets/PPrimitivePresentationCover.lean": [
+      669
+    ],
+    "src/GroundTheory/HeightsAndTheta/Heights/DiscreteValuationNumbers/PTwinFlagFurtherTermIndep.lean": [
+      669
+    ],
+    "src/GroundTheory/HeightsAndTheta/Heights/ElementarySymmetric/PRestrLenEuler.lean": [
+      669
+    ],
+    "src/GroundTheory/HeightsAndTheta/Heights/FiniteCovolume/OfUnfolding.lean": [
+      669
+    ],
+    "src/GroundTheory/HeightsAndTheta/Heights/FubiniStudy.lean": [
+      669
+    ],
+    "src/GroundTheory/HeightsAndTheta/Heights/HodgeLowerBound/GramMatrices/PGramAtPosDef.lean": [
+      669
+    ],
+    "src/GroundTheory/HeightsAndTheta/Heights/HodgeLowerBound/POmNPoly.lean": [
+      669
+    ],
+    "src/PositivityTheory/AutomorphicForms/PublishedInputs/JacquetLanglands/TorusKernels/DualNumberUnitMulDecomposition.lean": [
+      669
+    ],
+    "src/ReciprocityTheory/L2DbarEstimates/Localization/ChartFlat.lean": [
+      669
+    ],
+    "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/DiscreteValuationRings/RepsXSt.lean": [
+      975
+    ],
+    "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/HeightTheory/HHINDA.lean": [
+      669
+    ],
+    "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/HeightTheory/NormLineSectionPow.lean": [
+      669
+    ],
+    "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/TaylorDiscriminants/DiscriminantEstimates/DiscriminantTheorems/WickFormula.lean": [
+      669
+    ],
+    "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/ExceptionalGroupG2/BochnerG2/NcVOneDecomp.lean": [
+      669
+    ],
+    "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/MultiplicityOne/HermitianMeasures/JSIntFin.lean": [
+      669
+    ],
+    "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/MultiplicityOne/JSmooth.lean": [
+      669
+    ],
+    "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/MultiplicityOne/JTransM.lean": [
+      468
+    ],
+    "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/TailIntegrals/OscillatoryBound.lean": [
+      669
+    ],
+    "src/ReciprocityTheory/ReductiveGroups/DiscreteSeries/TraceGap/GeneratedSubStable.lean": [
+      669
+    ]
+  },
+  "withdrawn_private_proofs": [
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/HeightTwoFormalGroupUnramifiedMultiplier.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsTripleChartUnitaryBoundaryPointRigidStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/FormalGroupCharts/CanonGaugeExists.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/BreuilKisinEnvelopeFrobeniusSolutionsPowDvd.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/DualExpTeichmullerPowerSumFormula.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/InjectiveOfSpan.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/RpowNegLeNormOfComponent.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitPlaceTuplesOneOrbitModUniformizerPowerStatement.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/InfinitesimalCharacterLimits/LieSumDecompositions/PTypesK.lean",
+    "src/Formalism/HermitianCurvature/HermitianCurvatureProofs/OpLEqZeroOfEventually.lean",
+    "src/Formalism/HermitianCurvature/HermitianCurvatureProofs/PairLevZeroIndep.lean",
+    "src/Formalism/HermitianCurvature/HermitianCurvatureProofs/SelfAdjointDescentHolds.lean",
+    "src/Formalism/SharpRestriction/GrowthBounds/FrobeniusPaths/LatticeCountingFormula.lean",
+    "src/Formalism/SharpRestriction/GrowthBounds/GLWeightTheory.lean",
+    "src/Formalism/SharpRestriction/LevelLetterCocycles/RingStepsOf.lean",
+    "src/GroundTheory/GlobalFields/ComplexMultiplication/JInvariantHomothety.lean",
+    "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/WeightedSumBounds/WtSubOneLe.lean"
+  ]
+}
