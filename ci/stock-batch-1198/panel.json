@@ -1,0 +1,501 @@
+{
+  "base": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "ref": "c0228c0ae22d9cbf3e5466760718fd19111058ac",
+  "changes": 11551,
+  "removed_roots": [],
+  "replacements": {},
+  "graph_sha256": "36c2f8b5f3d67b345de9307632a90087bafa9a64bf30b1dc76e203b4978bd2d3",
+  "benchmark": [
+    {
+      "module": "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa",
+      "library": "CompanionTheory",
+      "stratum": "small",
+      "members": 2,
+      "net": 9,
+      "code": 5,
+      "source_bytes": 9771,
+      "cone": 21
+    },
+    {
+      "module": "CompanionTheory.AutomorphicTheory.BesselWaveGrids.NqMovedExample",
+      "library": "CompanionTheory",
+      "stratum": "large",
+      "members": 7,
+      "net": 29,
+      "code": 15,
+      "source_bytes": 49955,
+      "cone": 12
+    },
+    {
+      "module": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularPairLiftToPrimePowerField",
+      "library": "Development",
+      "stratum": "small",
+      "members": 2,
+      "net": 10,
+      "code": 7,
+      "source_bytes": 11672,
+      "cone": 4
+    },
+    {
+      "module": "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable",
+      "library": "Development",
+      "stratum": "large",
+      "members": 27,
+      "net": 137,
+      "code": 83,
+      "source_bytes": 151741,
+      "cone": 4
+    },
+    {
+      "module": "Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco",
+      "library": "Formalism",
+      "stratum": "small",
+      "members": 2,
+      "net": 13,
+      "code": 10,
+      "source_bytes": 9101,
+      "cone": 1
+    },
+    {
+      "module": "Formalism.GradedWeylDivisibility.FinalC",
+      "library": "Formalism",
+      "stratum": "large",
+      "members": 19,
+      "net": 118,
+      "code": 80,
+      "source_bytes": 114377,
+      "cone": 35
+    },
+    {
+      "module": "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFiniteModuloGeneralEquation",
+      "library": "GroundTheory",
+      "stratum": "small",
+      "members": 2,
+      "net": 11,
+      "code": 7,
+      "source_bytes": 14702,
+      "cone": 6
+    },
+    {
+      "module": "GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblySympl",
+      "library": "GroundTheory",
+      "stratum": "large",
+      "members": 24,
+      "net": 101,
+      "code": 53,
+      "source_bytes": 111001,
+      "cone": 3
+    },
+    {
+      "module": "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof",
+      "library": "PositivityTheory",
+      "stratum": "small",
+      "members": 3,
+      "net": 22,
+      "code": 17,
+      "source_bytes": 23089,
+      "cone": 2
+    },
+    {
+      "module": "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.FinalTF",
+      "library": "PositivityTheory",
+      "stratum": "large",
+      "members": 19,
+      "net": 107,
+      "code": 69,
+      "source_bytes": 156432,
+      "cone": 35
+    },
+    {
+      "module": "ReciprocityTheory.DualLattices.QExpansionMonoWCoeffZero",
+      "library": "ReciprocityTheory",
+      "stratum": "small",
+      "members": 2,
+      "net": 9,
+      "code": 5,
+      "source_bytes": 14138,
+      "cone": 1
+    },
+    {
+      "module": "ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality",
+      "library": "ReciprocityTheory",
+      "stratum": "large",
+      "members": 17,
+      "net": 85,
+      "code": 51,
+      "source_bytes": 125249,
+      "cone": 20
+    }
+  ],
+  "theorems": [
+    {
+      "module": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+      "name": "GlobalTheory.CompanionTheory.SW.Averaging.bijective_pair",
+      "local": "bijective_pair",
+      "returncode": 0,
+      "bytes": 3149696,
+      "seconds": 3.82,
+      "sha256": "31bf90c0ba09af45d2a9f9f99cc93265e87b6cd3824bb11016d34544ef565bf3",
+      "theorem_proof_expr_index": 50594
+    },
+    {
+      "module": "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters",
+      "name": "Formalism.LatticeBaseChangeAlt.four_term_sum_bound_of_parameters",
+      "local": "four_term_sum_bound_of_parameters",
+      "returncode": 0,
+      "bytes": 50380642,
+      "seconds": 12.6,
+      "sha256": "9bf232ca29179dce903c72e3121754f9e639887a77f3072e88ef1ce68638c35b",
+      "theorem_proof_expr_index": 874946
+    }
+  ],
+  "replays": [
+    "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjOfIsConjGlFieldExtensionInclusion",
+    "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.LemmaGIdeal",
+    "GroundTheory.AutomorphicForms.DixmierMalliavin",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.KTFiniteDimensional"
+  ],
+  "downstream": [
+    {
+      "library": "CompanionTheory",
+      "consumer": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuadraticLevelSetDensity",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.ArchimedeanGaussianFourier"
+      ]
+    },
+    {
+      "library": "CompanionTheory",
+      "consumer": "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa"
+      ]
+    },
+    {
+      "library": "Development",
+      "consumer": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoboundaryOfNormOneInSubalgebraStatement",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyLinearEquivOfPiFinPowFiniteStatement"
+      ]
+    },
+    {
+      "library": "Development",
+      "consumer": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjOfIsConjGlFieldExtensionInclusion",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyLinearEquivOfPiFinPowFiniteStatement"
+      ]
+    },
+    {
+      "library": "Formalism",
+      "consumer": "Formalism.CoboundaryTransfers.GammaStableTransfers.Transfer",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "Formalism.LagrangeIdealLifts.LiftLagrangeIdealInt"
+      ]
+    },
+    {
+      "library": "Formalism",
+      "consumer": "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.LemmaGIdeal",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "Formalism.LagrangeIdealLifts.LiftLagrangeIdealInt"
+      ]
+    },
+    {
+      "library": "GroundTheory",
+      "consumer": "GroundTheory.AutomorphicForms.DixmierMalliavinLine",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "GroundTheory.AutomorphicForms.DixmierMalliavinLineStage"
+      ]
+    },
+    {
+      "library": "GroundTheory",
+      "consumer": "GroundTheory.AutomorphicForms.DixmierMalliavin",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "GroundTheory.AutomorphicForms.DixmierMalliavinLine"
+      ]
+    },
+    {
+      "library": "ReciprocityTheory",
+      "consumer": "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.ValNorm",
+      "consumer_changed": true,
+      "direct_changed_dependencies": [
+        "ReciprocityTheory.SemistableReduction.AlgAll"
+      ]
+    },
+    {
+      "library": "ReciprocityTheory",
+      "consumer": "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.KTFiniteDimensional",
+      "consumer_changed": false,
+      "direct_changed_dependencies": [
+        "ReciprocityTheory.SemistableReduction.AlgAll"
+      ]
+    }
+  ],
+  "roots": [
+    "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa",
+    "CompanionTheory.AutomorphicTheory.BesselWaveGrids.NqMovedExample",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularPairLiftToPrimePowerField",
+    "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable",
+    "Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco",
+    "Formalism.JumpKernelCokernel.LengthTheoremsWithEarlier",
+    "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFiniteModuloGeneralEquation",
+    "GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblySympl",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.FinalTF",
+    "ReciprocityTheory.DualLattices.QExpansionMonoWCoeffZero",
+    "ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality",
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+    "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters",
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuadraticLevelSetDensity",
+    "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoboundaryOfNormOneInSubalgebraStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjOfIsConjGlFieldExtensionInclusion",
+    "Formalism.CoboundaryTransfers.GammaStableTransfers.Transfer",
+    "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.LemmaGIdeal",
+    "GroundTheory.AutomorphicForms.DixmierMalliavinLine",
+    "GroundTheory.AutomorphicForms.DixmierMalliavin",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HHINDA",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.KTFiniteDimensional",
+    "GroundTheory.LocalFields.FormalGroups.LubinTateGroup",
+    "Formalism.GradedWeylDivisibility.FinalC",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.ValNorm"
+  ],
+  "changed_sources": {
+    "CompanionTheory.AutomorphicTheory.BesselWaveGrids.NqMovedExample": {
+      "parent": "9c1b6b63016487ad4d5ade613667d12832cad8e1f394b7c15608933ca54044ea",
+      "candidate": "53ffd661a7a2c38a095cdead604aefcc42644492c3327bb39de8633186a117eb",
+      "members": 7,
+      "net": 29,
+      "code": 15
+    },
+    "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa": {
+      "parent": "ddb1807c894e91a7cc0d126c49115cd4bf4f8a0c4a55d924fc841fa6ba326a2e",
+      "candidate": "829a765ccb491324355d37d0324da2a6067646a9cb693001cda550357c18bf9f",
+      "members": 2,
+      "net": 9,
+      "code": 5
+    },
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.ArchimedeanGaussianFourier": {
+      "parent": "52079d8648fc946ac92648a2a0a03e9042088c42058ee17ead3e4be121b70e7b",
+      "candidate": "5bd421d5bdf3e69e7eb993d7d0f4283c6a179c6cc8916480a9ab74d34008bdfc",
+      "members": 3,
+      "net": 18,
+      "code": 13
+    },
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuadraticLevelSetDensity": {
+      "parent": "95b985c8ac24b94fcf493f0a8c6ef9338d9d5e17dadbe7e3f3e0ab95d70dfd27",
+      "candidate": "482258632530cb23f176f5bff884b3ba7d2cc900cbb230abfde66d1397673cc6",
+      "members": 2,
+      "net": 12,
+      "code": 9
+    },
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower": {
+      "parent": "a768e7e8759ab147b97a2b7d7088d136de9596b390db6b5a735699aa0b5029c8",
+      "candidate": "069277b98f07eca8ff4074ae0a81f39e79eb7a947e65726c9b30d87a946ce193",
+      "members": 2,
+      "net": 10,
+      "code": 7
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoboundaryOfNormOneInSubalgebraStatement": {
+      "parent": "8a1f7459e9608f0149526d09c3e22e5eca1a8b8d7309f414bba54688cf65eb69",
+      "candidate": "17f46eac5ef8b3e2f2ce02361475df0fe8c48f5bf4fae6f0f3620dae53ccc4a4",
+      "members": 4,
+      "net": 24,
+      "code": 17
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyLinearEquivOfPiFinPowFiniteStatement": {
+      "parent": "0fb90625beb4a7b2fb90e4003a80cc316b47be33e12af39c6dcf130e25f20599",
+      "candidate": "be0a704caf3dc1bbafc2b804406fd760e61b670c2d3f9245dd45d7e070e2d816",
+      "members": 4,
+      "net": 22,
+      "code": 15
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularPairLiftToPrimePowerField": {
+      "parent": "bbf0d551daa2343ad765cd7087e8514e7d3f314f13af143c519cceaedc5ae55f",
+      "candidate": "6317026aca218c2236b936b3b27f8bfd2b81d151cde1271a05968d92c05f9df5",
+      "members": 2,
+      "net": 10,
+      "code": 7
+    },
+    "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable": {
+      "parent": "6512d3a572dad0aadbea208c74b5fc7f1b5433e0f8fe9c9be57e6c5275d40717",
+      "candidate": "af643b9580f0ed84976542d36b4cc82a48edc8e394da54c5a70c86cfcf45de4e",
+      "members": 27,
+      "net": 137,
+      "code": 83
+    },
+    "Formalism.CoboundaryTransfers.GammaStableTransfers.Transfer": {
+      "parent": "b83a0a42faeeb2cfe8eb4d0845d2bb043cfcfb1a4ed7f2a499992a4c6a6d87a4",
+      "candidate": "4f901ace16050c1e421d3532f180f44295e59445bced4e3f91a04dba4c356e95",
+      "members": 4,
+      "net": 25,
+      "code": 17
+    },
+    "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters": {
+      "parent": "e1e9b2a0cdfa356ebbce7c18314d5a83273ad6dea18c991dd9ec09db9d8e6937",
+      "candidate": "d453baf5a27f27a0001da3d9425f3c985adc466035c4a72dbe1942a4a794ff02",
+      "members": 2,
+      "net": 9,
+      "code": 5
+    },
+    "Formalism.GradedWeylDivisibility.DualWeylDominanceOf": {
+      "parent": "0e508cac40b87ccc7bb0a5cd8fb8f0c28103ad753b71203bdb972b10d73e3356",
+      "candidate": "707fd555d3ab89b259247b48e790c53184c5b454b5b1b5b0b0abfc8c46b40184",
+      "members": 12,
+      "net": 65,
+      "code": 41
+    },
+    "Formalism.GradedWeylDivisibility.FinalC": {
+      "parent": "f502949b7140e0c62cbdb5c87109fc0c2c372b20291a1878bce9fb64cdfaded9",
+      "candidate": "069157d4e074b03d2cdff85b949c026a4949053949dd08698dae074600a295ef",
+      "members": 19,
+      "net": 118,
+      "code": 80
+    },
+    "Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco": {
+      "parent": "ddc97ffabebdf27dab192ee5c346fb696dfbef2dcc0918ca705fe8fe37c983b7",
+      "candidate": "7114ca24114d63c5be98ab4c4b030e5cc77a56f504d86710084cbe16df9eb5ae",
+      "members": 2,
+      "net": 13,
+      "code": 10
+    },
+    "Formalism.LagrangeIdealLifts.LiftLagrangeIdealInt": {
+      "parent": "7fb7628c8fad3878efd068ed43f726b885819a403f734aac009984b7b2abfff4",
+      "candidate": "496b27ef6123b9a19d85cc3a07a8a0ad835ee36d7a6dec3d21d5b5c94842bde4",
+      "members": 6,
+      "net": 33,
+      "code": 21
+    },
+    "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat": {
+      "parent": "345c180c387372089ca2ae461869e76752bddebff6e7ed97abf84bb8cba0704c",
+      "candidate": "d5ec7fe423b9d8eba168c857c657df98423afd7953157d75ba9adbb43c2d3150",
+      "members": 3,
+      "net": 20,
+      "code": 15
+    },
+    "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.RamifiedValuationInequality": {
+      "parent": "ccdce50c68a2fe5d90cd0b1ab41b5da11f880cdb41c8330eecc6d92c6ada9ce5",
+      "candidate": "0bbc738b6420995a4801f0a6200a06196cf1efca88e51b7f508a16db81b38e69",
+      "members": 2,
+      "net": 13,
+      "code": 9
+    },
+    "GroundTheory.AutomorphicForms.DixmierMalliavinLine": {
+      "parent": "4ece50e989c338a8e6fdf2c8802224f983d8dd689679ba1c4ecb9cf697a46703",
+      "candidate": "f933cdc6b79bc1839e3745e2aa1318eef034902155fdabc87d0d99dfd0e72e50",
+      "members": 3,
+      "net": 17,
+      "code": 11
+    },
+    "GroundTheory.AutomorphicForms.DixmierMalliavinLineStage": {
+      "parent": "541e6faf7fc13a8c0aae5a3fdeae8e5cfe85a843baf56c9680fc862c524dc48b",
+      "candidate": "a1b4fc04931e6adfe6bf74acca2245a0860e8755cfbefbb41461177defd36dd7",
+      "members": 2,
+      "net": 13,
+      "code": 9
+    },
+    "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFiniteModuloGeneralEquation": {
+      "parent": "89588844451b850b0cb5580b790e22a4b96681994547790e1d01be75482a18fd",
+      "candidate": "40bbb810ff4814cb9ad586185e3670ebca116a7b50b125785b47c323c09c90e3",
+      "members": 2,
+      "net": 11,
+      "code": 7
+    },
+    "GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblySympl": {
+      "parent": "7d530965a72f6d2b82ca7ff2bc6578953fb53a98ccc9fe90ee047d6367cdb982",
+      "candidate": "4865284e21d0db1155a805a1dca4b7cb8c817883e722e5b2535e6bd8acc7f827",
+      "members": 24,
+      "net": 101,
+      "code": 53
+    },
+    "GroundTheory.LocalFields.FormalGroups.LubinTateGroup": {
+      "parent": "d571f8cf52fb1644ac8e44f29baf1c6546db4d5594faedc0f0b24b4059702f55",
+      "candidate": "22a0be3fe16c0def1bbe5e028eee621d86cad4d375619201b98fa364897b51b8",
+      "members": 2,
+      "net": 9,
+      "code": 5
+    },
+    "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof": {
+      "parent": "0b8b3f9b2315a286b9a7db05f0cf9ea9afb08d2ba628fa7034312822623557a1",
+      "candidate": "77aa846cc9afae20ad9963d2672867ac14a23a3d16c1fa9821e6b2d2e43f8edc",
+      "members": 3,
+      "net": 22,
+      "code": 17
+    },
+    "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.FinalTF": {
+      "parent": "e822856907b1fb8f70f7988ac5f4ce6b6fbb5afde7ec8ce6bb353d25bada0f5d",
+      "candidate": "640f9075b9ec1756fe613bb3f3ecc2d8dfada762b63831d39557a20761950bd8",
+      "members": 19,
+      "net": 107,
+      "code": 69
+    },
+    "ReciprocityTheory.DualLattices.QExpansionMonoWCoeffZero": {
+      "parent": "3a0a35c39e2109fed91d8c95717b12c91752f7a2408eb2443b23e1f6f2c47bf9",
+      "candidate": "13e3aa52cd21752aad7e7adc12eae2a580da092d02b45b1db3ad18274937494a",
+      "members": 2,
+      "net": 9,
+      "code": 5
+    },
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.ValNorm": {
+      "parent": "466f54ce81d28b0fa87718d83d258928ac4710e79992891ea73464a5d5fb759c",
+      "candidate": "da4af5aeecbde87354d0d7692a5889929054ac92d776bbd0a7e9daef84a5db9a",
+      "members": 2,
+      "net": 9,
+      "code": 5
+    },
+    "ReciprocityTheory.SemistableReduction.AlgAll": {
+      "parent": "0716a4ab11deffd062e80f49220066294be33539b837f6d4decf1cb05d853105",
+      "candidate": "17713ef23af13bd2e8e636f9e1082237fead95697e6d9e3986a6c71687e0e12e",
+      "members": 6,
+      "net": 25,
+      "code": 13
+    },
+    "ReciprocityTheory.SemistableReduction.SJCoreD": {
+      "parent": "b6349b43540d0635204d169ee33b0ad30fa5aad77f97baec14a5e779c794897d",
+      "candidate": "ee6e328c962778f87fb26f888e93ad32a47bc09151a1d86d2541f5c4e7e0031a",
+      "members": 2,
+      "net": 13,
+      "code": 9
+    },
+    "ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality": {
+      "parent": "2ede43ba8d6ccc049e0764f7871e8d89e3e6969f0294b9522b2b85c11effb39d",
+      "candidate": "82fca73afc8c1bee46b86183753ebb77c6355c7965ef7d2ede0f275f4a94983c",
+      "members": 17,
+      "net": 85,
+      "code": 51
+    }
+  },
+  "cone": 239,
+  "changed": 29,
+  "strict_private": [],
+  "integration_timing": {
+    "roots": [
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+      "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters"
+    ],
+    "modules": [
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular",
+      "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+      "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters",
+      "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat"
+    ]
+  },
+  "expected_libraries": [
+    "CompanionTheory",
+    "Development",
+    "Formalism",
+    "GroundTheory",
+    "PositivityTheory",
+    "ReciprocityTheory"
+  ],
+  "pull": 977,
+  "prior_bounded_run": 45406473993
+}

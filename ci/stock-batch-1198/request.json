@@ -1,0 +1,19 @@
+{
+  "source_repository": "aliromman/riemann-hypothesis",
+  "source_ref": "refs/heads/codex/simplify-clump-scopes",
+  "source_head": "c0228c0ae22d9cbf3e5466760718fd19111058ac",
+  "parent": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "donor": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "parent_source_tree": "980141067b4eec00e78e2d490134c6299613cdef",
+  "parent_module_manifest": "edc38df9198228480080821adb772f6c4109fdba7404a04be28bc49a250cb487",
+  "checked_commit": "19beb187eef5fd39b78be2d7bd81855b2b5a4327",
+  "candidate_source_tree": "3944961f74ce15f369676a6052f0a6586707750d",
+  "git_tree": "eff493461bfe9f82a9bcf2a183101678b1934443",
+  "pins": {
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d"
+  },
+  "mode": "github-pull-merge",
+  "pull_number": 977
+}
