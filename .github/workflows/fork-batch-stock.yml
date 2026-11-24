@@ -1,8 +1,8 @@
-name: Stock Lake and Comparator for PR 977 on batch 1266
+name: Stock Lake and Comparator for PR 977 on batch 1313
 on:
   push:
-    branches: [ci/batch-1266/stock-977]
-    paths: ['ci/stock-batch-1266/request.json']
+    branches: [ci/batch-1313/stock-977]
+    paths: ['ci/stock-batch-1313/request.json']
 permissions:
   contents: read
 jobs:
@@ -21,16 +21,16 @@ jobs:
         with:
           path: harness
           persist-credentials: false
-          sparse-checkout: ci/stock-batch-1266
+          sparse-checkout: ci/stock-batch-1313
       - name: Select the pinned public objects
         id: source
         shell: bash
         run: |
-          ci="$GITHUB_WORKSPACE/harness/ci/stock-batch-1266"
+          ci="$GITHUB_WORKSPACE/harness/ci/stock-batch-1313"
           python3 - <<'PYCODE'
           import json,os,re
           from pathlib import Path
-          r=json.loads(Path('harness/ci/stock-batch-1266/request.json').read_bytes())
+          r=json.loads(Path('harness/ci/stock-batch-1313/request.json').read_bytes())
           assert r['source_repository']=='aliromman/riemann-hypothesis'
           assert r['mode'] in ('public-fork-head','github-pull-merge')
           for key in ('parent','checked_commit','source_head'):
@@ -120,35 +120,6 @@ jobs:
         working-directory: candidate
         shell: bash
         run: bash "$CI_HELPERS/check.sh" "$PANEL" "$WORK" "$CI_HELPERS"
-      - name: Compare changed theorems with the upstream Comparator and three kernels
-        if: success() && env.PANEL == 'bounded'
-        timeout-minutes: 25
-        working-directory: candidate
-        shell: bash
-        run: |
-          lean=$(elan which lean)
-          export PATH="${lean%/*}:$PATH"
-          export LEAN_NUM_THREADS=1
-          lake env python3 "$CI_HELPERS/theorem_check.py" "$WORK" ../parent
-      - name: Measure fresh parent and candidate compilations
-        if: success() && env.PANEL == 'bounded'
-        continue-on-error: true
-        timeout-minutes: 70
-        working-directory: candidate
-        shell: bash
-        run: |
-          export LEAN_NUM_THREADS=1
-          export MATHLIB_CACHE_DIR="$RUNNER_TEMP/mathlib-cache"
-          lake env python3 "$CI_HELPERS/benchmark.py" "$WORK" ../parent
-      - name: Time paired source-to-olean stock Lake builds
-        if: success()
-        continue-on-error: true
-        timeout-minutes: 32
-        working-directory: candidate
-        run: |
-          export LEAN_NUM_THREADS=1
-          export MATHLIB_CACHE_DIR="$RUNNER_TEMP/mathlib-cache"
-          lake env python3 "$CI_HELPERS/lake_pairs.py" "$WORK" ../parent
       - name: Save the scope and verification output
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

@@ -1,0 +1,8 @@
+{
+  "bounded": {
+    "parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "source_tree": "b722dc0d057c3a869ad607e0c93231665a963b63",
+    "donor": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+    "module_manifest_sha256": "56ef968afb7ef3227b98278bbf86cf5b2baa24385b4f89f3aca63599a437af92"
+  }
+}
