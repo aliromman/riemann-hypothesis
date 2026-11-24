@@ -1,0 +1,70 @@
+--- a/src/Development/AbelianVarietyTheory/Definitions/NonGaloisDescent/MkMemAdmissibleAtIffCocycle.lean
++++ b/src/Development/AbelianVarietyTheory/Definitions/NonGaloisDescent/MkMemAdmissibleAtIffCocycle.lean
+@@ -681,7 +681,7 @@
+
+ section Shortcut
+
+-instance (priority := high) modTens {O M X : Type} [CommRing O] [AddCommGroup M] [Module O M] [AddCommGroup X]
++instance (priority := low) modTens {O M X : Type} [CommRing O] [AddCommGroup M] [Module O M] [AddCommGroup X]
+     [Module O X] : Module O (M ⊗[O] X) :=
+   TensorProduct.instModule
+
+@@ -689,7 +689,7 @@
+     [Module O N] : Module O (M × N) :=
+   Prod.instModule
+
+-instance (priority := high) modFun {O M ι : Type} [CommRing O] [AddCommGroup M] [Module O M] :
++instance (priority := low) modFun {O M ι : Type} [CommRing O] [AddCommGroup M] [Module O M] :
+     Module O (ι → M) :=
+   Pi.Function.module ι O M
+
+--- a/src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/UnramifiedEnlargementCutCocyclesBlochKato.lean
++++ b/src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/UnramifiedEnlargementCutCocyclesBlochKato.lean
+@@ -290,7 +290,6 @@
+     chiOC C (chiU D.nd i 1 * (chiU D.nd i 1)⁻¹) g = 1 := by
+   simp [chiOC]
+
+-attribute [-instance] GlobalTheory.AdmLoc.modFun in
+ theorem _root_.GlobalTheory.T.cocycleExtension_twistedWeilCoefficients_admissible : ∀ (D : D7) (HW : HWOf D.loc) (i : D.nd.Loc)
+     (r : D.nd.X i → (GE D.nd →* GL (Fin D.R.nV) (D.nd.O i))) (ρ : D.nd.X i → (GE D.nd →* GL (Fin D.R.r) (D.nd.O i)))
+     (π : D.nd.X i) (w : HeightOneSpectrum (𝓞 D.host.E)) (hw : w ∈ placesOver D.host.E (D.nd.l i))
+--- a/src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/TOrdVan.lean
++++ b/src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/TOrdVan.lean
+@@ -838,7 +838,6 @@
+   obtain ⟨μ, hμ⟩ := h2 j
+   exact fun F hF => Submodule.mem_iSup_of_mem μ (Module.End.mem_eigenspace_iff.2 (hμ F hF))
+ attribute [local instance 2000] UpperTheory.V.W.coefLocal
+-attribute [-instance] GlobalTheory.AdmLoc.modFun
+
+ theorem UpperTheory.V.Th.AnnihilatorQuotientFinite.sphRed_alt :
+     ∀ (L Ω : Type) [Field L] [NumberField L] [Field Ω] [Algebra L Ω] [IsAlgClosure L Ω] (l : ℕ) [Fact l.Prime] (n : ℕ) (c : Coef l) (H : HSet L Ω l n c), H.Ax →
+--- a/src/Development/AutomorphicArithmetic/AutomorphicVarieties/TheoremsMuLinked/HidaOrdinaryHecke/CtrlMu.lean
++++ b/src/Development/AutomorphicArithmetic/AutomorphicVarieties/TheoremsMuLinked/HidaOrdinaryHecke/CtrlMu.lean
+@@ -122,7 +122,6 @@
+   obtain ⟨μ, hμ⟩ := h2 j
+   exact fun F hF => Submodule.mem_iSup_of_mem μ (Module.End.mem_eigenspace_iff.2 (hμ F hF))
+ attribute [local instance 2000] UpperTheory.V.W.coefLocal
+-attribute [-instance] GlobalTheory.AdmLoc.modFun
+
+
+ theorem UpperTheory.V.Th.AnnihilatorQuotientFinite.sphRed :
+--- a/src/Development/AutomorphicArithmetic/Foundations/Convolution/RealGroupAnalysis/WeilRepresentation/ImportsSide.lean
++++ b/src/Development/AutomorphicArithmetic/Foundations/Convolution/RealGroupAnalysis/WeilRepresentation/ImportsSide.lean
+@@ -235,7 +235,6 @@
+   ext a b
+   simp
+
+-attribute [-instance] GlobalTheory.AdmLoc.modFun in
+ theorem UpperTheory.ConvolutionTheory.R2.I.fin :
+     ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [IsTotallyReal F] (π : TR.CuspSub F 2) (v : P F) (w : P E) (i : Kv v ≃+* Kv w), Continuous i →
+       ∀ σ (σ' : SmIrr (GLv w)), π.IsLocComp v σ → ∀ T : σ'.V →ₗ[ℂ] (GLv v → ℂ), T ≠ 0 →
+--- a/src/Development/AutomorphicArithmetic/Foundations/Convolution/RealGroupAnalysis/WeilRepresentation/Smooth.lean
++++ b/src/Development/AutomorphicArithmetic/Foundations/Convolution/RealGroupAnalysis/WeilRepresentation/Smooth.lean
+@@ -638,7 +638,6 @@
+
+ end UpperTheory.ConvolutionTheory.R2.Ff
+
+-attribute [-instance] GlobalTheory.AdmLoc.modFun
+
+ theorem UpperTheory.ConvolutionTheory.R2.Ff.derT :
+     ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] [IsTotallyReal F] [_root_.NumberField.IsTotallyComplex E] (D : Dat F E) (W : Weil D) (M : Meas F) (π : TR.CuspSub F 2), ∀ f ∈ π.V, ∀ φ ∈ Fock D.δ,

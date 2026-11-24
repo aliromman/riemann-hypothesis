@@ -1,0 +1,487 @@
+{
+  "original_priority": {
+    "original": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "a01354ccb81f2bbea3a59449e4bfa2c9318b0d42d6343329037f5c4a52059054"
+    },
+    "high": {
+      "provider": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "ef60d6a0ed099898614df3bb368771262cb73850afe2dd7162b3f8e798e347e4"
+      },
+      "target": {
+        "exit": 1,
+        "error_count": 51,
+        "first_error": [
+          [
+            {
+              "column": 4,
+              "line": 228
+            },
+            "Function expected at\n  mulB P V\nbut this term has type\n  (Fin 1 \u2192 \u21a5\u2191?m.29) \u2297[\u211a_[l]] Bst P \u2192\u2097[\u211a_[l]] End \u211a_[l] (V \u2297[\u211a_[l]] Bst P)\n\nNote: Expected a function because this term is being applied to the argument\n  (v' \u2297\u209c b')"
+          ]
+        ],
+        "log_sha256": "fc17898d50d8d5e7f0d41219198071b17f7355f4e8367f49c17f2cd6c592c2d8"
+      },
+      "provider_body_sha256": "43e9311b4f5ecdfcb880022a977dfb621999abb5c0816f12532cdfd6257e0be1"
+    },
+    "default": {
+      "provider": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "48cb15b7a3ffbf3b0ddff12abe1e965b22b0e89b09df7b156e93953926dd2a8b"
+      },
+      "target": {
+        "exit": 1,
+        "error_count": 51,
+        "first_error": [
+          [
+            {
+              "column": 4,
+              "line": 228
+            },
+            "Function expected at\n  mulB P V\nbut this term has type\n  (Fin 1 \u2192 \u21a5\u2191?m.29) \u2297[\u211a_[l]] Bst P \u2192\u2097[\u211a_[l]] End \u211a_[l] (V \u2297[\u211a_[l]] Bst P)\n\nNote: Expected a function because this term is being applied to the argument\n  (v' \u2297\u209c b')"
+          ]
+        ],
+        "log_sha256": "ab60a55cac4bcb7ba3baa61c3578d876cb452b0d993993dfb706c8b08619a504"
+      },
+      "provider_body_sha256": "e5f26ac8343b703671f05aad1e63c1c43d25a357817ebe552e583d680a16b940"
+    },
+    "low": {
+      "provider": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "7ef9311269755a2c8d14af9c8d674290042f8d29b90df9df7b8cbfa9923196c3"
+      },
+      "target": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "ea0ca878b517ed44738cb3a8d5097fe3d6719adea3117dc125983b33d385be8c"
+      },
+      "provider_body_sha256": "e1ea2788e4aafca7391e6e7994c6da2f5bc956e7438468dc97f128f226ddf89f",
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "9ad8cb31a8f8af9e9f217d293f492b0635f5bc882e84d2a31c0b8bcdd930c272"
+      }
+    },
+    "reducible": {
+      "provider": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "e1e4e88166a3fdd8eb9363409ceb40146891d6007f9f56b7af6572c91f2a809b"
+      },
+      "target": {
+        "exit": 1,
+        "error_count": 51,
+        "first_error": [
+          [
+            {
+              "column": 4,
+              "line": 228
+            },
+            "Function expected at\n  mulB P V\nbut this term has type\n  (Fin 1 \u2192 \u21a5\u2191?m.29) \u2297[\u211a_[l]] Bst P \u2192\u2097[\u211a_[l]] End \u211a_[l] (V \u2297[\u211a_[l]] Bst P)\n\nNote: Expected a function because this term is being applied to the argument\n  (v' \u2297\u209c b')"
+          ]
+        ],
+        "log_sha256": "78584c98aa11dd13d0996077cb9d45a76062e2845494f189a38277f769a0a54a"
+      },
+      "provider_body_sha256": "a721344825f72cceaf3e673c01436a994be58bd37b5bdddb256f80cd0aae28b4"
+    }
+  },
+  "original_interfaces": {
+    "Satake": [
+      38,
+      38,
+      3,
+      35,
+      35,
+      38
+    ],
+    "provider": [
+      169,
+      169,
+      96,
+      63,
+      63,
+      169
+    ]
+  },
+  "new_main_low": {
+    "revision": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+    "stage": "small",
+    "source_count": 157,
+    "targets": [
+      "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato"
+    ],
+    "builds": {
+      "stock": {
+        "exit": 0,
+        "log_sha256": "705e7be90a545f990b3c123f2d72a365f343a9478a0c9e3b1c5b3989b18ce7a4"
+      },
+      "fixed": {
+        "exit": 1,
+        "log_sha256": "44ef9ca7d466dad2e0cea583e16fbe2a27897256c8ed788c13bc5952fa7591d3"
+      }
+    },
+    "checks": {}
+  },
+  "new_main_scoped": {
+    "revision": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+    "stage": "small",
+    "policy": "scoped",
+    "source_count": 157,
+    "targets": [
+      "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato"
+    ],
+    "builds": {
+      "stock": {
+        "exit": 0,
+        "log_sha256": "705e7be90a545f990b3c123f2d72a365f343a9478a0c9e3b1c5b3989b18ce7a4"
+      },
+      "fixed": {
+        "exit": 0,
+        "log_sha256": "747ae168f249e123ff4dcc2c1efd819ef1d05ba2dc9dd6b5941b8c27c1911241"
+      }
+    },
+    "checks": {
+      "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle": {
+        "interface": 0,
+        "counts": [
+          170,
+          170,
+          95,
+          65,
+          65,
+          170
+        ],
+        "kernel": 0
+      },
+      "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato": {
+        "interface": 1,
+        "kernel": 0
+      }
+    }
+  },
+  "original_scoped": {
+    "provider": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "e87351a8a33cce33cba23c13bf7414c51fb57de2e6e59a9c430cad33bcb10175"
+    },
+    "source_sha256": "98ee9bdc1ae7f08ede91b1f7a439504cbc3f38b9f9ea671afafcbdf4b1a6eed9",
+    "target": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "a2fe9679838af5a0334876315f3c8a614548bfb934538b1a9ba417fcb2a4ef2e"
+    },
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "9ad8cb31a8f8af9e9f217d293f492b0635f5bc882e84d2a31c0b8bcdd930c272"
+    },
+    "interface_exit": 0,
+    "comparison": "38\t38\t3\t35\t35\t38"
+  },
+  "main_scoped_satake": {
+    "revision": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+    "arms": {
+      "stock": {
+        "exit": 0,
+        "errors": [],
+        "log_sha256": "3ded3e8beb4090592296a1fca404033ad9f6b76dfcd4c3deb16d9380b07389c8"
+      },
+      "exposed-high": {
+        "exit": 1,
+        "errors": [
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:84:4: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:84:61: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:90:4: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:90:29: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:92:9: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:95:11: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:102:4: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:102:29: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:104:9: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:107:11: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:114:4: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:114:54: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:116:9: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:119:11: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:122:25: Tactic `simp` failed with a nested error:",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:123:23: Tactic `simp` failed with a nested error:",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:126:4: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:126:67: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:128:9: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:131:11: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:134:25: Tactic `simp` failed with a nested error:",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:135:23: Tactic `simp` failed with a nested error:",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:138:19: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:138:35: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:140:9: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:143:11: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:145:10: Unknown identifier `mulB_tmul`",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:150:19: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:150:35: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:151:6: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:153:9: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:156:11: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:158:10: Unknown identifier `mulB_tmul`",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:170:18: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:170:34: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:172:9: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:175:11: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:177:10: Unknown identifier `mulB_tmul`",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:184:4: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:196:34: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:197:32: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:198:40: Unknown identifier `mulB_smul`",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:198:31: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:199:32: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:200:40: Unknown identifier `mulB_smul_left`",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:200:31: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:205:55: Function expected at",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:209:15: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:213:15: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:217:15: unsolved goals",
+          "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:226:15: unsolved goals"
+        ],
+        "log_sha256": "a4dd1ed44dab0795d26b45c13cc5e93166ab0564ccf51f344ec7d75de6b745a0"
+      },
+      "exposed-scoped": {
+        "exit": 0,
+        "errors": [],
+        "log_sha256": "4407bb61e865b9a56fc1e70fa821728da363960e40590188040edae34da3c305",
+        "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle": {
+          "interface_exit": 0,
+          "counts": "170\t170\t95\t65\t65\t170",
+          "kernel": 0
+        },
+        "Development.AbelianVarietyTheory.Proofs.SatakeParameters.DmulMulDRight": {
+          "interface_exit": 0,
+          "counts": "22\t22\t3\t19\t19\t22",
+          "kernel": 0
+        }
+      }
+    }
+  },
+  "satake_437": {
+    "stock": {
+      "revision": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+      "provider_source_sha256": "ddab80255003a129359073cdcba1290816fd5a3bc49d2d2c5f8f9e6a70ef9555",
+      "caller_source_sha256": "46718b40999750db4a2be71f494ec2bd661c097651303c70e053c6f9198c7989",
+      "sources": 928,
+      "exit": 0,
+      "source_errors": [],
+      "log_sha256": "571ba44240efb25414e49dadc423a060ec963eaa24b076da0e6325b6c16a6b45",
+      "kernel_exit": 0
+    },
+    "exposed-high": {
+      "revision": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+      "provider_source_sha256": "ddab80255003a129359073cdcba1290816fd5a3bc49d2d2c5f8f9e6a70ef9555",
+      "caller_source_sha256": "3dc855599a964cbb54fcf299f3acae42dc1369bf4028ae629cdab14d225d0c3d",
+      "sources": 928,
+      "exit": 1,
+      "source_errors": [
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:84:4: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:84:61: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:90:4: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:90:29: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:92:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:95:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:102:4: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:102:29: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:104:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:107:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:114:4: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:114:54: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:116:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:119:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:122:25: Tactic `simp` failed with a nested error:",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:123:23: Tactic `simp` failed with a nested error:",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:126:4: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:126:67: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:128:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:131:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:134:25: Tactic `simp` failed with a nested error:",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:135:23: Tactic `simp` failed with a nested error:",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:138:19: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:138:35: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:140:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:143:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:145:10: Unknown identifier `mulB_tmul`",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:150:19: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:150:35: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:151:6: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:153:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:156:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:158:10: Unknown identifier `mulB_tmul`",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:170:18: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:170:34: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:172:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:175:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:177:10: Unknown identifier `mulB_tmul`",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:184:4: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:196:34: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:197:32: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:198:40: Unknown identifier `mulB_smul`",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:198:31: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:199:32: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:200:40: Unknown identifier `mulB_smul_left`",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:200:31: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:205:55: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:209:15: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:213:15: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:217:15: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:226:15: unsolved goals"
+      ],
+      "log_sha256": "582faf831705150d80b8b7566f22a9c9d6824a77bb3ed87e545f8aead66093ba"
+    },
+    "exposed-default": {
+      "revision": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+      "provider_source_sha256": "7ec628b0004a32e386c23a5e6b06745033867f98b75ac9ecd136bc2b936373df",
+      "caller_source_sha256": "3dc855599a964cbb54fcf299f3acae42dc1369bf4028ae629cdab14d225d0c3d",
+      "sources": 928,
+      "exit": 1,
+      "source_errors": [
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:84:4: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:84:61: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:90:4: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:90:29: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:92:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:95:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:102:4: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:102:29: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:104:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:107:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:114:4: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:114:54: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:116:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:119:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:122:25: Tactic `simp` failed with a nested error:",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:123:23: Tactic `simp` failed with a nested error:",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:126:4: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:126:67: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:128:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:131:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:134:25: Tactic `simp` failed with a nested error:",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:135:23: Tactic `simp` failed with a nested error:",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:138:19: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:138:35: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:140:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:143:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:145:10: Unknown identifier `mulB_tmul`",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:150:19: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:150:35: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:151:6: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:153:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:156:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:158:10: Unknown identifier `mulB_tmul`",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:170:18: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:170:34: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:172:9: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:175:11: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:177:10: Unknown identifier `mulB_tmul`",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:184:4: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:196:34: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:197:32: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:198:40: Unknown identifier `mulB_smul`",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:198:31: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:199:32: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:200:40: Unknown identifier `mulB_smul_left`",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:200:31: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:205:55: Function expected at",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:209:15: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:213:15: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:217:15: unsolved goals",
+        "error: src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/DmulMulDRight.lean:226:15: unsolved goals"
+      ],
+      "log_sha256": "b3138e7090513375467c6230e856a2710bcaa4c980a6215f1ebebdbf374d9945"
+    },
+    "exposed-low": {
+      "revision": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+      "provider_source_sha256": "9b072e3d265ad8f622979d844cf9ed5b0a818c16b85f7d772139689a6a6eaa72",
+      "caller_source_sha256": "3dc855599a964cbb54fcf299f3acae42dc1369bf4028ae629cdab14d225d0c3d",
+      "sources": 928,
+      "exit": 0,
+      "source_errors": [],
+      "log_sha256": "f414af795e2be1021ff6242b1dd3fc50b36683006a4b13b9e00f1d2e4b7a665e",
+      "kernel_exit": 0
+    }
+  },
+  "integrated_436_stock": {
+    "revision": "16f10fc4b35d0e25866167c112c7232b2cb7f8f8",
+    "policy": "stock",
+    "source_inputs": 130,
+    "provider_sha256": "8ad396cfd2df8710ce7d0845601b796798ae5d9aa5ca29919d3cc3f45e9cbd27",
+    "exit": 0,
+    "errors": [],
+    "checks": {
+      "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle": {
+        "kernel": 0
+      },
+      "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound": {
+        "kernel": 0
+      }
+    }
+  },
+  "integrated_436_low": {
+    "revision": "16f10fc4b35d0e25866167c112c7232b2cb7f8f8",
+    "policy": "low",
+    "source_inputs": 130,
+    "provider_sha256": "2eef32f797d9f3c72e1bdb7e595874bef2d74952270d5d3bb3d8a4954a51cbcd",
+    "exit": 1,
+    "errors": [
+      "error: src/Development/AbelianVarietyTheory/Definitions/NonGaloisDescent/ResBound.lean:103:2: failed to synthesize",
+      "error: src/Development/AbelianVarietyTheory/Definitions/NonGaloisDescent/ResBound.lean:103:106: failed to synthesize"
+    ],
+    "checks": {}
+  },
+  "integrated_436_scoped": {
+    "revision": "16f10fc4b35d0e25866167c112c7232b2cb7f8f8",
+    "policy": "scoped",
+    "source_inputs": 130,
+    "provider_sha256": "48d59ae3ae56f0794903d98d37b404c228e4629e904a5e8a40cdcafc1ecbff8d",
+    "exit": 0,
+    "errors": [],
+    "checks": {
+      "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle": {
+        "kernel": 0,
+        "interface": 0,
+        "comparison": "169\t169\t96\t63\t63\t169"
+      },
+      "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound": {
+        "kernel": 0,
+        "interface": 0,
+        "comparison": "41\t41\t33\t5\t5\t41"
+      }
+    }
+  },
+  "low_original_log_sha256": "44ef9ca7d466dad2e0cea583e16fbe2a27897256c8ed788c13bc5952fa7591d3",
+  "scoped_original_log_sha256": "747ae168f249e123ff4dcc2c1efd819ef1d05ba2dc9dd6b5941b8c27c1911241",
+  "site_audit": [
+    [
+      "AdmLoc",
+      false,
+      true,
+      103
+    ],
+    [
+      "WSF",
+      false,
+      true,
+      83
+    ]
+  ]
+}

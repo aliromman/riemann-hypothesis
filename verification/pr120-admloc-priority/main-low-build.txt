@@ -1,0 +1,23 @@
+✔ [9608/9637] Built Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle (9.1s)
+✔ [9610/9637] Built Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.AdmissibleCharUnramified (3.9s)
+✔ [9611/9637] Built Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.CrystallineExtensions (4.1s)
+✔ [9612/9637] Built Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.AdmissibleCharacterHyp (4.9s)
+✔ [9613/9637] Built Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.InvariantsVanishing (3.8s)
+✔ [9614/9637] Built Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSeriesOfExact (4.1s)
+✔ [9616/9637] Built Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TwistedModelAdmissibleCocycles (5.0s)
+✔ [9622/9637] Built Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteLengthOfSmulEqZero (4.0s)
+✔ [9624/9637] Built Development.AutomorphicArithmetic.CyclotomicBounds.DeRhamLattices.ExistsAdmissibleExtensionLatticeTensor (7.0s)
+✔ [9626/9637] Built Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsCrystallineIffMemH1f (6.5s)
+✖ [9628/9637] Building Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound (15s)
+error: src/Development/AbelianVarietyTheory/Definitions/NonGaloisDescent/ResBound.lean:138:2: failed to synthesize
+  Module (↥(OL S.LL)) (↥S.Γ.T₀.L.T ⊗[↥(OL S.LL)] IndefiniteRowSideFullHecke.InvariantsVanishing.resK S.Γ)
+(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached
+
+Note: Use `set_option synthInstance.maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Some required targets logged failures:
+- Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound
+error: build failed
