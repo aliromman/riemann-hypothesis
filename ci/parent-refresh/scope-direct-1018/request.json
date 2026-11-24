@@ -1,0 +1,51 @@
+{
+  "authority": {
+    "base": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca",
+    "tree": "fd6cca42e515165d98659a81ff24b5c84b71ece6",
+    "manifest": "79edef3a77b0086faf52d4f0df0a9b26b58e45826de20a57def3d5559d6ebe89",
+    "graph": "35bbb99855f7a28a66fbb2d66d862325e02a630cbae1f341c3263647b7ea2307"
+  },
+  "tasks": {
+    "structural": {
+      "pr": 977,
+      "head": "70e09b0994fce225e678b4808941de89c27a763b",
+      "src": "445477315d15f0c5eaea8c076b18063ebd7a17a6",
+      "upstream_clump_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+      "source_table_sha256": "bd3d8fc960d4c92beb6ae53c961f3e972ab59517e5e78f8c96e35eb086e1543e"
+    }
+  },
+  "groups": {
+    "scope-direct-1018-large-1": {
+      "task": "structural",
+      "count": 9,
+      "sha256": "16665c0569368beaa2db4cdcec062010ce34924cfbca94ff05f6d04aaa399d16",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 351.22
+    },
+    "scope-direct-1018-ordinary-1": {
+      "task": "structural",
+      "count": 170,
+      "sha256": "4c0dd40107ac80370bdfe3a3b9eb01a0710825c1b382892e93bc7f5a9a371a8f",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 1937.2
+    },
+    "scope-direct-1018-ordinary-2": {
+      "task": "structural",
+      "count": 169,
+      "sha256": "3552e44a6202f7590db77ffe4b46656332666ae5e2c510d4f9746a61ced37dc1",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 1936.3
+    },
+    "scope-direct-1018-ordinary-3": {
+      "task": "structural",
+      "count": 169,
+      "sha256": "ac5c6f0e4d7d14d65018ea897bb9ee91c56c68cf502eb356da238305547aa3db",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 1936.24
+    }
+  }
+}

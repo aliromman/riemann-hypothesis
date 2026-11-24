@@ -1,10 +1,10 @@
 {
-  "request": "direct-1018",
+  "request": "scope-direct-1018",
   "groups": [
-    "direct-1018-large-1",
-    "direct-1018-ordinary-1",
-    "direct-1018-ordinary-2",
-    "direct-1018-ordinary-3"
+    "scope-direct-1018-large-1",
+    "scope-direct-1018-ordinary-1",
+    "scope-direct-1018-ordinary-2",
+    "scope-direct-1018-ordinary-3"
   ],
   "seed_run": 45386532201
 }
