@@ -283,7 +283,7 @@ def closers(stack):
 # Applying
 
 def is_clump_file(mod):
-    return CLUMP_MARK in mod.body.split("\n", 3)[0:3] or SEAM_BEGIN in mod.body
+    return CLUMP_MARK in mod.header or CLUMP_MARK in mod.body or SEAM_BEGIN in mod.body
 
 
 def member_start(line):

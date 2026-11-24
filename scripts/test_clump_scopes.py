@@ -25,6 +25,13 @@ end A"""
         self.assertEqual(clump.closers(clump.open_scopes(source)),
                          ["end A.«B.C».D" + clump.AUTO, "end" + clump.AUTO])
 
+    def test_existing_clump_after_a_preamble_is_protected(self):
+        _, text = self.make_group()
+        prefix = "set_option pp.universes true\n\n-- A local setting for these members.\n\n"
+        text = text.replace(clump.CLUMP_MARK, prefix + clump.CLUMP_MARK)
+        member = clump.Module("Example.C", "", text)
+        self.assertTrue(clump.is_clump_file(member))
+
     def test_old_layout(self):
         header = "module\npublic import Init\n\n"
         info = json.dumps({"m": "Example.A", "h": header, "nonl": True})
