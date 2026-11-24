@@ -1,0 +1,47 @@
+{
+  "shard_report": "5e9aa6777a581de62b321234921fc536439c0b50",
+  "integration_rows": 35,
+  "dependent_rows": [
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.Bundle0008",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.HostLocVan",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.HostSha"
+  ],
+  "all_three_targets_project_sources": 3819,
+  "all_three_targets_before": "HostLocVan and HostSha built; Bundle0008 timed out.",
+  "all_three_targets_class_field": "25887 Lake jobs completed. All three native kernel replays passed.",
+  "bundle0008_comparison": {
+    "parent": {
+      "revision": "1c5f0accc9a1e44d4166867f5452c8bc68440979",
+      "manifest_sha256": "ad9f0ab6bede567d903af19ae5603a3a83e7ad7b09ca31c77820d8f5b087c080",
+      "caller_errors": 1,
+      "callers_input_count": 477
+    },
+    "class_field": {
+      "revision": "fa785cee0bec564a80e9020765bd516c68aec60c",
+      "manifest_sha256": "e7023836b3752a9d37735592c30fa6dbb1cac7a559633d9b1079e57e985db1c4",
+      "caller_errors": 0,
+      "callers_input_count": 477
+    },
+    "caller_witness": {
+      "revision": "7d60efdb09d5b499fc463c271d1eab1449fcde89",
+      "manifest_sha256": "dd502fd98dc2924febf005749a00886224f271f91cdd174147e072231963870a",
+      "caller_errors": 0,
+      "callers_input_count": 477
+    },
+    "both": {
+      "revision": "c8ebfddf206b8fc6c2a5f648826172a391904cf3",
+      "manifest_sha256": "ee9cf5834b5a1006d61bc90fe599b2677a8c3fd152861f236d353c5bf870341f",
+      "caller_errors": 0,
+      "callers_input_count": 477
+    }
+  },
+  "merged_caller_kernel": "pass",
+  "selected_inputs_changed": {
+    "parent_to_caller_witness": [
+      "CurveDVRSpecialization.Bundle0008"
+    ],
+    "caller_witness_to_both": [
+      "CurveDVRSpecialization.IsUnitOrIsUnitOfAddOne"
+    ]
+  }
+}
