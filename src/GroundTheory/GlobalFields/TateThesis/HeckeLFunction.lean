@@ -446,12 +446,7 @@ theorem LFunction_hasProd_all {s : ℂ} (hs : 1 < s.re) :
 theorem LFunction_ne_zero {s : ℂ} (hs : 1 < s.re) : χ.LFunction s ≠ 0 := by
   set x : HeightOneSpectrum (𝓞 K) → ℂ := fun v ↦ χ.coeffTerm s v.asIdeal with hx
   have hlt : ∀ v, ‖x v‖ < 1 := fun v ↦ norm_lt_one_of_summable _ (χ.summable_norm_coeffTerm hs) v
-  have hne : ∀ v, 1 - x v ≠ 0 := by
-    intro v h
-    have h1 : x v = 1 := (sub_eq_zero.1 h).symm
-    have h2 := hlt v
-    rw [h1, norm_one] at h2
-    exact lt_irrefl _ h2
+  have hne : ∀ v, 1 - x v ≠ 0 := fun v ↦ (IsUnit.one_sub_of_norm_lt_one (hlt v)).ne_zero
   have hinj : Injective fun v : HeightOneSpectrum (𝓞 K) ↦ v.asIdeal :=
     fun v w h ↦ HeightOneSpectrum.ext h
   have hxs : Summable x :=

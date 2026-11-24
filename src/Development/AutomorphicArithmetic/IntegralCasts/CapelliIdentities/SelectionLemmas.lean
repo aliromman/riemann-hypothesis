@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.NumberTheory.NumberField.Basic
+public import Formalism.HermitianLattices.LocS
 public import Mathlib.RingTheory.DedekindDomain.Factorization
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
@@ -115,44 +116,9 @@ noncomputable def hform : {K : Type} →
     [inst_1 : StarRing K] → {n : ℕ} → Matrix (Fin n) (Fin n) K → (Fin n → K) →ₗ⋆[K] (Fin n → K) →ₗ[K] K :=
   fun {K} [Field K] [StarRing K] {n} H => (Matrix.toLinearMapₛₗ₂' K (starRingEnd K) (RingHom.id K)) H
 
-theorem laurent_T_neg_one_mul_T_one.{u_1, u_2} : ∀ {R : Type u_2}
-  [inst : CommRing R] {W : Type u_1} [inst_1 : AddCommGroup W] [inst_2 : Module R W] (S : Submonoid R)
-  (L : Submodule R W) {x y : W},
-  x ∈ {x | ∃ s ∈ S, s • x ∈ L} → y ∈ {x | ∃ s ∈ S, s • x ∈ L} → x + y ∈ {x | ∃ s ∈ S, s • x ∈ L} := by
-  intro R _ W _ _ S L x y hx hy
-  obtain ⟨s, hs, hx⟩ := hx
-  obtain ⟨t, ht, hy⟩ := hy
-  refine ⟨s * t, S.mul_mem hs ht, ?_⟩
-  rw [smul_add]
-  refine L.add_mem ?_ ?_
-  · rw [mul_comm, mul_smul]; exact L.smul_mem _ hx
-  · rw [mul_smul]; exact L.smul_mem _ hy
-
-theorem aux11.{u_1, u_2} : ∀ {R : Type u_1} [inst : CommRing R]
-  {W : Type u_2} [inst_1 : AddCommGroup W] [inst_2 : Module R W] (S : Submonoid R) (L : Submodule R W),
-  letI : Zero W := inst_1.toAddCommMonoid.toAddMonoid.toAddZeroClass.toAddZero.toZero
-  ∃ s ∈ S, s • 0 ∈ L := by
-  intro R _ W hW _ S L
-  letI : Zero W := hW.toAddCommMonoid.toAddMonoid.toAddZeroClass.toAddZero.toZero
-  exact ⟨1, S.one_mem, Eq.mpr (congrArg (fun w : W => w ∈ L) (smul_zero (1 : R))) L.zero_mem⟩
-
-theorem aux12.{u_1, u_2} : ∀ {R : Type u_2} [inst : CommRing R]
-  {W : Type u_1} [inst_1 : AddCommGroup W] [inst_2 : Module R W] (S : Submonoid R) (L : Submodule R W) (r : R) {x : W},
-  x ∈ {x | ∃ s ∈ S, s • x ∈ L} → r • x ∈ {x | ∃ s ∈ S, s • x ∈ L} := by
-  intro R _ W _ _ S L r x hx
-  obtain ⟨s, hs, hx⟩ := hx
-  refine ⟨s, hs, ?_⟩
-  rw [smul_comm]
-  exact L.smul_mem _ hx
-
-noncomputable def locS.{u_1, u_4} : {R : Type u_1} →
-  [inst : CommRing R] →
-    {W : Type u_4} → [inst_1 : AddCommGroup W] → [inst_2 : Module R W] → Submonoid R → Submodule R W → Submodule R W :=
-  fun {R} [inst : CommRing R] {W} [inst_1 : AddCommGroup W] [inst_2 : Module R W] S L =>
-    { carrier := {x | ∃ s ∈ S, s • x ∈ L},
-      add_mem' := @laurent_T_neg_one_mul_T_one R inst W inst_1 inst_2 S L,
-      zero_mem' := aux11 S L,
-      smul_mem' := aux12 S L }
+noncomputable def locS.{u_1, u_4} {R : Type u_1} [CommRing R] {W : Type u_4} [AddCommGroup W]
+    [Module R W] (S : Submonoid R) (L : Submodule R W) : Submodule R W :=
+  Formalism.HermitianLatticesTheory.locS S L
 
 noncomputable def hcompl.{u_1, u_2} : {R : Type u_1} →
   {K : Type u_2} → [inst : CommRing R] → [inst_1 : Field K] → [StarRing K] → [Algebra R K] → Ideal R → Submonoid R :=

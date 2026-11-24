@@ -30,26 +30,43 @@ def user(login):
 BOT = {"__typename": "Bot", "login": "github-actions"}
 
 
-def node(number, *, author="alice", draft=False, ref=None, labels=(), reviews=(), events=(),
-         state="OPEN"):
+def actor(who):
+    return who if isinstance(who, dict) else user(who)
+
+
+def node(number, *, author="alice", draft=False, ref=None, labels=(), created=0, comments=(),
+         reviews=(), events=(), state="OPEN"):
     """A pull request as GraphQL describes it.
 
-    `reviews` holds (login, minutes) and `events` holds (kind, label, minutes, actor), where kind
-    is "on" or "off" and actor is a login or BOT.
+    `comments` and `reviews` hold (login, minutes). `events` holds ("on" or "off", label,
+    minutes, actor) for label changes, where actor is a login or BOT, and ("ready", minutes) or
+    ("reopened", minutes) for the pull request entering review again.
     """
+    timeline = []
+    for event in events:
+        if event[0] in ("ready", "reopened"):
+            kind = "ReadyForReviewEvent" if event[0] == "ready" else "ReopenedEvent"
+            timeline.append({"__typename": kind, "createdAt": at(event[1])})
+        else:
+            kind, name, minutes, who = event
+            timeline.append({"__typename": "LabeledEvent" if kind == "on" else "UnlabeledEvent",
+                             "createdAt": at(minutes), "label": {"name": name}, "actor": actor(who)})
     return {
         "number": number, "state": state, "isDraft": draft, "headRefName": ref or f"topic-{number}",
-        "author": {"login": author},
+        "createdAt": at(created), "author": {"login": author},
         "labels": {"nodes": [{"name": name} for name in labels]},
-        "reviews": {"nodes": [
-            {"state": "COMMENTED", "submittedAt": at(minutes), "author": user(login)}
-            for login, minutes in reviews]},
-        "timelineItems": {"nodes": [
-            {"__typename": "LabeledEvent" if kind == "on" else "UnlabeledEvent",
-             "createdAt": at(minutes), "label": {"name": name},
-             "actor": actor if isinstance(actor, dict) else user(actor)}
-            for kind, name, minutes, actor in events]},
+        "comments": {"nodes": [{"createdAt": at(minutes), "author": actor(who)}
+                               for who, minutes in comments]},
+        "reviews": {"nodes": [{"state": "COMMENTED", "submittedAt": at(minutes), "author": actor(who)}
+                              for who, minutes in reviews]},
+        "timelineItems": {"nodes": timeline},
     }
+
+
+def waiting(number, **more):
+    """A pull request the workflow put in the inbox a minute after it was opened."""
+    events = [("on", INBOX, 1, BOT)] + list(more.pop("events", ()))
+    return node(number, labels=[INBOX] + list(more.pop("labels", ())), events=events, **more)
 
 
 class Fake(inbox.GitHub):
@@ -63,10 +80,12 @@ class Fake(inbox.GitHub):
         # What a later read of one pull request finds, when it changed after the sweep's read.
         self.later = {}
         self.broken = set()
+        self.label_reads = 0
 
     def call(self, method, path, payload=None):
         self.calls += 1
         if method == "GET" and path == f"labels/{INBOX}":
+            self.label_reads += 1
             return (200, {"name": INBOX}) if self.has_label else (404, None)
         if method == "GET" and path.startswith("collaborators/"):
             login = path.split("/")[1]
@@ -78,28 +97,29 @@ class Fake(inbox.GitHub):
             role = self.roles[login]
             permission = {"maintain": "write", "triage": "read"}.get(role, role)
             return 200, {"permission": permission, "role_name": role}
-        if method == "POST":
-            number = int(path.split("/")[1])
-            self.writes.append(("add", number))
-            return 200, []
-        if method == "DELETE":
-            number = int(path.split("/")[1])
-            self.writes.append(("remove", number))
+        if method in ("POST", "DELETE"):
+            self.writes.append(("add" if method == "POST" else "remove", int(path.split("/")[1])))
             return 200, []
         raise AssertionError(f"unexpected {method} {path}")
 
     def graphql(self, query, **variables):
         self.calls += 1
+        if "q" in variables:
+            closed = [n for n in self.nodes.values()
+                      if n["state"] != "OPEN" and {"name": INBOX} in n["labels"]["nodes"]]
+            return {"search": {"nodes": [{"number": n["number"]} for n in closed]}}
         if "number" in variables:
             number = variables["number"]
             return {"repository": {"pullRequest": self.later.get(number, self.nodes.get(number))}}
         # Two to a page, so that the pages are followed.
         open_ = [n for n in self.nodes.values() if n["state"] == "OPEN"]
         start = int(variables["after"] or 0)
-        page = open_[start:start + 2]
         more = start + 2 < len(open_)
         return {"repository": {"pullRequests": {
-            "nodes": page, "pageInfo": {"hasNextPage": more, "endCursor": str(start + 2)}}}}
+            "nodes": open_[start:start + 2], "pageInfo": {"hasNextPage": more, "endCursor": str(start + 2)}}}}
+
+
+MAINT = {"maint": "triage"}
 
 
 def sweep(gh):
@@ -107,21 +127,22 @@ def sweep(gh):
 
 
 class Normalising(unittest.TestCase):
-    def test_reads_the_latest_label_changes_and_skips_bots_and_pending_reviews(self):
-        found = node(1, labels=[INBOX, "small"], events=[
-            ("on", INBOX, 1, BOT), ("off", INBOX, 2, "maint"), ("on", INBOX, 3, "maint"),
-            ("on", "small", 4, BOT), ("off", INBOX, 5, BOT)])
+    def test_reads_entry_label_changes_and_responses(self):
+        found = node(1, labels=[INBOX, "small"], created=0, comments=[("maint", 9)], events=[
+            ("on", INBOX, 1, BOT), ("off", INBOX, 2, "maint"), ("ready", 3), ("on", INBOX, 4, "maint"),
+            ("on", "small", 5, BOT), ("on", "perf", 6, "maint"), ("reopened", 7), ("off", INBOX, 8, BOT)])
         found["reviews"]["nodes"] += [
             {"state": "PENDING", "submittedAt": None, "author": user("maint")},
-            {"state": "COMMENTED", "submittedAt": at(6),
-             "author": {"__typename": "Bot", "login": "copilot"}},
-            {"state": "APPROVED", "submittedAt": at(7), "author": None}]
+            {"state": "COMMENTED", "submittedAt": at(10), "author": {"__typename": "Bot", "login": "copilot"}},
+            {"state": "APPROVED", "submittedAt": at(11), "author": None}]
         pr = inbox.pull(found)
-        self.assertEqual(pr["added"], T0 + datetime.timedelta(minutes=3))
-        # The latest removal was the workflow's own, so no person took it out.
+        self.assertEqual(pr["entered"], T0 + datetime.timedelta(minutes=7))
+        self.assertEqual((pr["added"], pr["added_by"]), (T0 + datetime.timedelta(minutes=4), "maint"))
+        # The latest removal was the workflow's own.
         self.assertIsNone(pr["removed_by"])
-        self.assertEqual(pr["reviews"], [])
-        self.assertEqual(pr["labels"], {INBOX, "small"})
+        # Size labels the workflow adds are not responses; a maintainer's `perf` and comment are.
+        self.assertEqual([(r["login"], r["did"]) for r in pr["responses"]],
+                         [("maint", "changed its labels"), ("maint", "commented")])
 
 
 class Sweep(unittest.TestCase):
@@ -139,28 +160,83 @@ class Sweep(unittest.TestCase):
         self.assertEqual(gh.writes, [])
 
     def test_drafts_batches_and_decided_pull_requests_come_out(self):
-        gh = Fake([node(1, draft=True, labels=[INBOX]), node(2, ref="batch/x", labels=[INBOX]),
-                   node(3, labels=[INBOX, "batch queue"])])
+        gh = Fake([waiting(1, draft=True), waiting(2, ref="batch/x"),
+                   waiting(3, labels=["batch queue"])])
         sweep(gh)
         self.assertEqual(gh.writes, [("remove", 1), ("remove", 2), ("remove", 3)])
 
-    def test_first_review_after_the_label_takes_it_out(self):
-        gh = Fake([node(1, labels=[INBOX], events=[("on", INBOX, 1, BOT)],
-                        reviews=[("maint", 2)])], roles={"maint": "triage"})
+    def test_a_comment_takes_it_out(self):
+        gh = Fake([waiting(1, comments=[("maint", 2)])], roles=MAINT)
+        log = sweep(gh)
+        self.assertEqual(gh.writes, [("remove", 1)])
+        self.assertIn("#1: taken out of the inbox, because maint commented", log)
+
+    def test_a_review_takes_it_out(self):
+        gh = Fake([waiting(1, reviews=[("maint", 2)])], roles=MAINT)
         sweep(gh)
         self.assertEqual(gh.writes, [("remove", 1)])
 
-    def test_review_before_the_label_went_back_on_does_not(self):
-        # A maintainer reviewed, then put the label back by hand to ask for another look.
-        gh = Fake([node(1, labels=[INBOX], events=[("on", INBOX, 1, BOT), ("off", INBOX, 3, BOT),
-                                                   ("on", INBOX, 4, "maint")],
-                        reviews=[("maint", 2)])], roles={"maint": "write"})
+    def test_a_label_change_by_a_maintainer_takes_it_out(self):
+        gh = Fake([waiting(1, events=[("off", "perf", 2, "maint")])], roles=MAINT)
+        sweep(gh)
+        self.assertEqual(gh.writes, [("remove", 1)])
+
+    def test_size_and_path_labels_put_on_by_hand_do_not_count(self):
+        gh = Fake([waiting(1, events=[("on", "extra small", 2, "maint"), ("off", "CI", 3, "maint")])],
+                  roles=MAINT)
+        sweep(gh)
+        self.assertEqual(gh.writes, [])
+        self.assertEqual(gh.lookups, [])
+
+    def test_a_comment_before_the_workflow_labelled_it_counts(self):
+        # The first sweep labelled pull requests that a maintainer had already answered.
+        gh = Fake([node(1, labels=[INBOX], comments=[("maint", 2)], events=[("on", INBOX, 5, BOT)])],
+                  roles=MAINT)
+        sweep(gh)
+        self.assertEqual(gh.writes, [("remove", 1)])
+
+    def test_a_comment_before_it_was_marked_ready_does_not(self):
+        gh = Fake([waiting(1, comments=[("maint", 2)], events=[("ready", 3)])], roles=MAINT)
         sweep(gh)
         self.assertEqual(gh.writes, [])
 
-    def test_reviews_by_the_author_or_without_triage_access_do_not_count(self):
-        gh = Fake([node(1, author="alice", labels=[INBOX], events=[("on", INBOX, 1, BOT)],
-                        reviews=[("alice", 2), ("reader", 3), ("stranger", 4)])],
+    def test_a_comment_before_a_maintainer_put_it_back_does_not(self):
+        # Answered, taken out, then put back by hand to ask for another look.
+        gh = Fake([waiting(1, comments=[("maint", 2)], events=[("off", INBOX, 3, BOT),
+                                                               ("on", INBOX, 4, "maint")])],
+                  roles=MAINT)
+        sweep(gh)
+        self.assertEqual(gh.writes, [])
+
+    def test_the_maintainer_who_put_it_back_can_say_why(self):
+        gh = Fake([waiting(1, comments=[("maint", 2), ("maint", 13)],
+                           events=[("off", INBOX, 3, BOT), ("on", INBOX, 4, "maint")])], roles=MAINT)
+        sweep(gh)
+        self.assertEqual(gh.writes, [])
+
+    def test_their_later_response_still_counts(self):
+        gh = Fake([waiting(1, comments=[("maint", 2), ("maint", 15)],
+                           events=[("off", INBOX, 3, BOT), ("on", INBOX, 4, "maint")])], roles=MAINT)
+        sweep(gh)
+        self.assertEqual(gh.writes, [("remove", 1)])
+
+    def test_someone_else_responding_straight_after_counts(self):
+        gh = Fake([waiting(1, comments=[("maint", 2), ("other", 5)],
+                           events=[("off", INBOX, 3, BOT), ("on", INBOX, 4, "maint")])],
+                  roles={"maint": "triage", "other": "write"})
+        sweep(gh)
+        self.assertEqual(gh.writes, [("remove", 1)])
+
+    def test_responses_at_the_same_moment_as_entering_or_putting_back_do_not_count(self):
+        gh = Fake([waiting(1, comments=[("maint", 3)], events=[("ready", 3)]),
+                   waiting(2, comments=[("other", 4)], events=[("off", INBOX, 2, BOT), ("on", INBOX, 4, "maint")])],
+                  roles={"maint": "triage", "other": "write"})
+        sweep(gh)
+        self.assertEqual(gh.writes, [])
+
+    def test_responses_by_the_author_bots_or_people_without_triage_access_do_not_count(self):
+        gh = Fake([waiting(1, author="alice", comments=[("alice", 2), (BOT, 3), ("reader", 4)],
+                           reviews=[("stranger", 5)])],
                   roles={"alice": "write", "reader": "read"})
         sweep(gh)
         self.assertEqual(gh.writes, [])
@@ -169,22 +245,19 @@ class Sweep(unittest.TestCase):
 
     def test_every_role_from_triage_up_counts(self):
         roles = ["triage", "write", "maintain", "admin"]
-        gh = Fake([node(i, labels=[INBOX], events=[("on", INBOX, 1, BOT)],
-                        reviews=[(role, 2)]) for i, role in enumerate(roles, 1)],
+        gh = Fake([waiting(i, comments=[(role, 2)]) for i, role in enumerate(roles, 1)],
                   roles={role: role for role in roles})
         sweep(gh)
         self.assertEqual(gh.writes, [("remove", i) for i in range(1, 5)])
 
     def test_access_is_looked_up_once_a_run(self):
-        gh = Fake([node(i, labels=[INBOX], events=[("on", INBOX, 1, BOT)],
-                        reviews=[("maint", 2)]) for i in range(1, 4)],
-                  roles={"maint": "triage"})
+        gh = Fake([waiting(i, comments=[("maint", 2)]) for i in range(1, 4)], roles=MAINT)
         sweep(gh)
         self.assertEqual(gh.lookups, ["maint"])
 
-    def test_reviewed_pull_request_without_the_label_is_not_put_back(self):
-        gh = Fake([node(1, events=[("on", INBOX, 1, BOT), ("off", INBOX, 3, BOT)],
-                        reviews=[("maint", 2)])], roles={"maint": "triage"})
+    def test_answered_pull_request_without_the_label_is_not_put_back(self):
+        gh = Fake([node(1, comments=[("maint", 2)], events=[("on", INBOX, 1, BOT), ("off", INBOX, 3, BOT)])],
+                  roles=MAINT)
         sweep(gh)
         self.assertEqual(gh.writes, [])
 
@@ -193,15 +266,34 @@ class Sweep(unittest.TestCase):
         sweep(gh)
         self.assertEqual(gh.writes, [])
 
-    def test_label_the_workflow_took_off_goes_back_once_the_reason_is_gone(self):
-        # Taken out as a draft, then marked ready while the workflow was not running.
-        gh = Fake([node(1, events=[("on", INBOX, 1, BOT), ("off", INBOX, 2, BOT)])])
+    def test_label_a_person_took_off_comes_back_when_the_pull_request_is_reopened(self):
+        gh = Fake([node(1, events=[("on", INBOX, 1, BOT), ("off", INBOX, 2, "maint"), ("reopened", 3)])])
         sweep(gh)
         self.assertEqual(gh.writes, [("add", 1)])
 
-    def test_review_that_lands_during_the_sweep_keeps_it_out(self):
-        gh = Fake([node(1)], roles={"maint": "triage"})
-        gh.later[1] = node(1, reviews=[("maint", 1)])
+    def test_answered_draft_goes_back_in_when_marked_ready(self):
+        gh = Fake([node(1, comments=[("maint", 2)],
+                        events=[("on", INBOX, 1, BOT), ("off", INBOX, 3, BOT), ("ready", 4)])],
+                  roles=MAINT)
+        sweep(gh)
+        self.assertEqual(gh.writes, [("add", 1)])
+
+    def test_response_that_lands_during_the_sweep_keeps_it_out(self):
+        gh = Fake([node(1)], roles=MAINT)
+        gh.later[1] = node(1, comments=[("maint", 1)])
+        sweep(gh)
+        self.assertEqual(gh.writes, [])
+
+    def test_label_put_back_during_the_sweep_stays(self):
+        gh = Fake([waiting(1, comments=[("maint", 2)])], roles=MAINT)
+        gh.later[1] = waiting(1, comments=[("maint", 2)],
+                              events=[("off", INBOX, 3, BOT), ("on", INBOX, 4, "maint")])
+        sweep(gh)
+        self.assertEqual(gh.writes, [])
+
+    def test_marked_ready_during_the_sweep_stays(self):
+        gh = Fake([waiting(1, draft=True)])
+        gh.later[1] = waiting(1, events=[("ready", 2)])
         sweep(gh)
         self.assertEqual(gh.writes, [])
 
@@ -213,13 +305,26 @@ class Sweep(unittest.TestCase):
         self.assertIn("0 of 1 open pull requests are in the inbox", log)
 
     def test_one_failed_lookup_does_not_stop_the_sweep(self):
-        gh = Fake([node(1, labels=[INBOX], events=[("on", INBOX, 1, BOT)], reviews=[("flaky", 2)]),
-                   node(2)])
+        gh = Fake([waiting(1, comments=[("flaky", 2)]), node(2)])
         gh.broken.add("flaky")
         log = sweep(gh)
         self.assertEqual(gh.writes, [("add", 2)])
         self.assertTrue(gh.failed)
         self.assertTrue(any(line.startswith("#1: skipped") for line in log))
+
+    def test_closed_pull_requests_that_kept_the_label_lose_it(self):
+        gh = Fake([waiting(1, state="MERGED"), node(2, state="CLOSED"), waiting(3)])
+        log = sweep(gh)
+        self.assertEqual(gh.writes, [("remove", 1)])
+        self.assertIn("#1: taken out of the inbox, because it is closed", log)
+
+    def test_the_label_is_only_looked_up_before_adding(self):
+        gh = Fake([waiting(1, comments=[("maint", 2)]), waiting(2)], roles=MAINT)
+        sweep(gh)
+        self.assertEqual(gh.label_reads, 0)
+        gh = Fake([node(1), node(2)])
+        sweep(gh)
+        self.assertEqual(gh.label_reads, 1)
 
     def test_every_page_is_read(self):
         gh = Fake([node(i) for i in range(1, 6)])
@@ -228,40 +333,38 @@ class Sweep(unittest.TestCase):
         self.assertIn("5 of 5 open pull requests are in the inbox", log)
 
 
-class Events(unittest.TestCase):
-    def test_marking_ready_puts_a_reviewed_pull_request_back(self):
-        gh = Fake([node(1, events=[("on", INBOX, 1, BOT), ("off", INBOX, 3, "maint")],
-                        reviews=[("maint", 2)])], roles={"maint": "triage"})
-        log = inbox.sync(gh, 1, "ready_for_review")
+class OnePullRequest(unittest.TestCase):
+    def test_batch_comment_takes_it_out_at_once(self):
+        gh = Fake([waiting(1, comments=[("maint", 2)])], roles=MAINT)
+        log = inbox.sync(gh, 1)
+        self.assertEqual(gh.writes, [("remove", 1)])
+        self.assertEqual(log, ["#1: taken out of the inbox, because maint commented"])
+
+    def test_opened_pull_request_goes_in(self):
+        gh = Fake([node(1)])
+        self.assertEqual(inbox.sync(gh, 1), ["#1: put in the inbox, because it is waiting for a response"])
         self.assertEqual(gh.writes, [("add", 1)])
-        self.assertEqual(log, ["#1: put in the inbox, because it was marked ready"])
 
     def test_opening_a_draft_does_nothing(self):
         gh = Fake([node(1, draft=True)])
-        log = inbox.sync(gh, 1, "opened")
+        self.assertEqual(inbox.sync(gh, 1), ["#1: left as it was, because it is a draft"])
         self.assertEqual(gh.writes, [])
-        self.assertEqual(log, ["#1: left as it was, because it is a draft"])
 
     def test_turning_into_a_draft_takes_it_out(self):
-        gh = Fake([node(1, draft=True, labels=[INBOX])])
-        inbox.sync(gh, 1, "converted_to_draft")
+        gh = Fake([waiting(1, draft=True)])
+        inbox.sync(gh, 1)
         self.assertEqual(gh.writes, [("remove", 1)])
 
-    def test_reopening_a_queued_pull_request_leaves_it_out(self):
-        gh = Fake([node(1, labels=["batch queue"])])
-        inbox.sync(gh, 1, "reopened")
-        self.assertEqual(gh.writes, [])
+    def test_a_removal_does_not_need_the_label_to_be_looked_up(self):
+        gh = Fake([waiting(1, comments=[("maint", 2)])], roles=MAINT, label=False)
+        inbox.sync(gh, 1)
+        self.assertEqual((gh.writes, gh.label_reads), ([("remove", 1)], 0))
 
-    def test_closing_takes_it_out(self):
-        gh = Fake([node(1, state="MERGED", labels=[INBOX]), node(2, state="CLOSED")])
-        inbox.sync(gh, 1, "closed")
-        inbox.sync(gh, 2, "closed")
+    def test_closed_pull_request_comes_out(self):
+        gh = Fake([waiting(1, state="MERGED"), node(2, state="CLOSED")])
+        inbox.sync(gh, 1)
+        inbox.sync(gh, 2)
         self.assertEqual(gh.writes, [("remove", 1)])
-
-    def test_an_event_for_a_pull_request_already_in_the_inbox_changes_nothing(self):
-        gh = Fake([node(1, labels=[INBOX])])
-        inbox.sync(gh, 1, "opened")
-        self.assertEqual(gh.writes, [])
 
 
 class Failures(unittest.TestCase):
@@ -282,7 +385,7 @@ class Failures(unittest.TestCase):
 
     def test_unknown_pull_request_is_refused(self):
         with self.assertRaises(inbox.Refused):
-            inbox.sync(Fake([]), 7, "opened")
+            inbox.sync(Fake([]), 7)
 
 
 class Gh(unittest.TestCase):

@@ -2419,6 +2419,26 @@ theorem esymmOn_nonneg {ι : Type} (VV : Finset ι) (κ : ι → ℝ) (hκ : ∀
     0 ≤ esymmOn VV κ k :=
   Finset.sum_nonneg fun _ hB => Finset.prod_nonneg fun v hv => hκ v ((Finset.mem_powersetCard.1 hB).1 hv)
 
+/-- Bound the natural floor of a scaled elementary symmetric sum by a power of the full sum. -/
+theorem floor_scaled_esymmOn_le_sum_pow {ι : Type} (VV : Finset ι) (κ : ι → ℝ)
+    (hκ : ∀ v ∈ VV, 0 ≤ κ v) (m d k : ℕ) :
+    (⌊(d : ℝ) * (m : ℝ) ^ k * esymmOn VV κ k⌋₊ : ℝ) ≤
+      (d : ℝ) * ((m : ℝ) * ∑ v ∈ VV, κ v) ^ k := by
+  have h0 : (0 : ℝ) ≤ (d : ℝ) * (m : ℝ) ^ k * esymmOn VV κ k :=
+    mul_nonneg (by positivity) (esymmOn_nonneg VV κ hκ k)
+  have hs0 : 0 ≤ (m : ℝ) * ∑ v ∈ VV, κ v :=
+    mul_nonneg (Nat.cast_nonneg m) (Finset.sum_nonneg hκ)
+  have hpw : 0 ≤ (d : ℝ) * ((m : ℝ) * ∑ v ∈ VV, κ v) ^ k :=
+    mul_nonneg (Nat.cast_nonneg d) (pow_nonneg hs0 k)
+  have hf : (1 : ℝ) ≤ (k.factorial : ℝ) := by
+    exact_mod_cast Nat.one_le_iff_ne_zero.mpr (Nat.factorial_ne_zero k)
+  calc
+    (⌊(d : ℝ) * (m : ℝ) ^ k * esymmOn VV κ k⌋₊ : ℝ) ≤
+        (d : ℝ) * (m : ℝ) ^ k * esymmOn VV κ k := Nat.floor_le h0
+    _ ≤ (d : ℝ) * ((m : ℝ) * ∑ v ∈ VV, κ v) ^ k / (k.factorial : ℝ) :=
+      esymm_clause VV κ hκ m d k
+    _ ≤ (d : ℝ) * ((m : ℝ) * ∑ v ∈ VV, κ v) ^ k := div_le_self hpw hf
+
 theorem counting_statement_of_block_form (D : Formalism.BasicNotions.D7) (G : GAtP p) (hA : admitted D G) (hR : RemainingCountingStatement G)
     (hfin : Module.Finite G.O G.Mna) (hfree : Fin G.P.nV → Module.Free G.O G.Mna) : Conclusion1 D G := by
   intro VV t Sv Dd cStar S m κ hm hS hLP M d N τ
@@ -2462,16 +2482,10 @@ theorem counting_statement_of_block_form (D : Formalism.BasicNotions.D7) (G : GA
     · intro β _
       obtain ⟨C, hCM, hcard, hx⟩ := hthm β
       refine ⟨C, hCM, ?_, hx⟩
-      have h0 : (0 : ℝ) ≤ (d : ℝ) * (m : ℝ) ^ (β + 1) * esymmOn VV κ (β + 1) :=
-        mul_nonneg (by positivity) (esymmOn_nonneg VV κ hκ _)
-      have hf : (1 : ℝ) ≤ (β + 1).factorial := by
-        exact_mod_cast Nat.one_le_iff_ne_zero.mpr (Nat.factorial_ne_zero _)
-      have hpw : 0 ≤ (d : ℝ) * Sig ^ (β + 1) := by positivity
       calc (C.card : ℝ) ≤ (⌊(d : ℝ) * (m : ℝ) ^ (β + 1) * esymmOn VV κ (β + 1)⌋₊ : ℝ) := by
             exact_mod_cast hcard
-        _ ≤ (d : ℝ) * (m : ℝ) ^ (β + 1) * esymmOn VV κ (β + 1) := Nat.floor_le h0
-        _ ≤ (d : ℝ) * Sig ^ (β + 1) / ((β + 1).factorial : ℝ) := esymm_clause VV κ hκ m d (β + 1)
-        _ ≤ (d : ℝ) * Sig ^ (β + 1) := div_le_self hpw hf
+        _ ≤ (d : ℝ) * Sig ^ (β + 1) :=
+          floor_scaled_esymmOn_le_sum_pow VV κ hκ m d (β + 1)
     · refine ManyOrbitsP.allBut_mono (allLE G VV m Sv M) le_rfl ?_
       calc ∑ v ∈ VV, Sv v ≤ ∑ _v ∈ VV, S := Finset.sum_le_sum hS
         _ = VV.card * S := by simp

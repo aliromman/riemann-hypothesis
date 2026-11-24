@@ -107,7 +107,7 @@ theorem SegHyp.p0 (H : SegHyp p S b' de be aS Q) : (5 : ℝ) ≤ (p : ℝ) := by
 
 theorem SegHyp.top_degree_le_two_b (H : SegHyp p S b' de be aS Q) (i : Fin s) : (S.bTop i : ℝ) ≤ 2 * b' := by
   have hbe : be ≤ 1 := by linarith [H.beLe, H.de6, H.be0]
-  nlinarith [(H.bT i).2, mul_le_mul_of_nonneg_left hbe H.bpos.le]
+  linarith [(H.bT i).2, mul_le_mul_of_nonneg_left hbe H.bpos.le]
 
 private theorem mul_sum_pow_lt_le_pow_of_segHyp (H : SegHyp p S b' de be aS Q) :
     ∀ n : ℕ, ∀ hn : n < s, (p : ℝ) * (∑ j : Fin s, if (j : ℕ) < n then (p : ℝ) ^ (S.d j) else 0) ≤
@@ -153,10 +153,15 @@ private theorem mul_sum_pow_lt_le_pow_of_segHyp (H : SegHyp p S b' de be aS Q) :
       omega
     have ihn := ih hn'
     have hpe : (0 : ℝ) ≤ (p : ℝ) ^ (S.d ⟨n, hn'⟩) := by positivity
-    have h12 : (1 : ℝ) + p ≤ (p : ℝ) ^ 2 := by nlinarith
+    have h12 : (1 : ℝ) + p ≤ (p : ℝ) ^ 2 := by
+      calc (1 : ℝ) + p ≤ 2 * p := by linarith
+        _ ≤ (p : ℝ) * p := mul_le_mul_of_nonneg_right (by linarith) (by linarith)
+        _ = (p : ℝ) ^ 2 := (sq _).symm
     calc (p : ℝ) * ((∑ j : Fin s, if (j : ℕ) < n then (p : ℝ) ^ (S.d j) else 0) +
           (p : ℝ) ^ (S.d ⟨n, hn'⟩))
-        ≤ (p : ℝ) ^ (S.d ⟨n, hn'⟩) * (1 + p) := by nlinarith
+        ≤ (p : ℝ) ^ (S.d ⟨n, hn'⟩) * (1 + p) := by
+          rw [mul_add, mul_add, mul_one, mul_comm ((p : ℝ) ^ _)]
+          linarith
       _ ≤ (p : ℝ) ^ (S.d ⟨n, hn'⟩) * (p : ℝ) ^ 2 := mul_le_mul_of_nonneg_left h12 hpe
       _ = (p : ℝ) ^ (S.d ⟨n, hn'⟩ + 2) := (pow_add _ _ _).symm
       _ ≤ (p : ℝ) ^ (S.d ⟨n + 1, hn⟩) := pow_le_pow_right₀ (by linarith) hgap
@@ -276,7 +281,7 @@ theorem SegHyp.top_ord (H : SegHyp p S b' de be aS Q) {aTop : Fin s → ℕ} {b 
     have hlt := (H.sig i).mp hs
     have hlo : (p : ℝ) ^ (S.d i) < ((S.a : ℝ) / b') * (1 - 2 * de) := by
       by_contra hcon
-      exact hband ⟨not_lt.mp hcon, by nlinarith⟩
+      exact hband ⟨not_lt.mp hcon, le_trans hlt.le (le_mul_of_one_le_right hab0 (by linarith))⟩
     have hxb : (p : ℝ) ^ (S.d i) * b' < (S.a : ℝ) * (1 - 2 * de) := by
       have e : ((S.a : ℝ) / b') * (1 - 2 * de) = (S.a : ℝ) * (1 - 2 * de) / b' := by ring
       rw [e, lt_div_iff₀ hb] at hlo
@@ -288,7 +293,10 @@ theorem SegHyp.top_ord (H : SegHyp p S b' de be aS Q) {aTop : Fin s → ℕ} {b 
         linarith
       have h2 : (1 + be) * ((p : ℝ) ^ (S.d i) * b') ≤ (1 + be) * ((S.a : ℝ) * (1 - 2 * de)) :=
         mul_le_mul_of_nonneg_left hxb.le (by linarith)
-      have h3 : (1 + be) * (1 - 2 * de) ≤ 1 := by nlinarith [mul_nonneg hbe0 hde0]
+      have h3 : (1 + be) * (1 - 2 * de) ≤ 1 := by
+        have hprod : 0 ≤ be * de := mul_nonneg hbe0 hde0
+        have hexp : (1 + be) * (1 - 2 * de) = 1 + be - 2 * de - 2 * (be * de) := by ring
+        linarith
       have h4 : (1 + be) * ((S.a : ℝ) * (1 - 2 * de)) ≤ (S.a : ℝ) := by
         have := mul_le_mul_of_nonneg_left h3 ha0
         linarith
@@ -328,7 +336,7 @@ theorem SegHyp.top_ord (H : SegHyp p S b' de be aS Q) {aTop : Fin s → ℕ} {b 
     have hge : (S.a : ℝ) / b' ≤ (p : ℝ) ^ (S.d i) := not_lt.mp (fun h => hs ((H.sig i).mpr h))
     have hhi : ((S.a : ℝ) / b') * (1 + 2 * de) < (p : ℝ) ^ (S.d i) := by
       by_contra hcon
-      exact hband ⟨by nlinarith, not_lt.mp hcon⟩
+      exact hband ⟨le_trans (mul_le_of_le_one_right hab0 (by linarith)) hge, not_lt.mp hcon⟩
     have hxb : (S.a : ℝ) * (1 + 2 * de) < (p : ℝ) ^ (S.d i) * b' := by
       have e : ((S.a : ℝ) / b') * (1 + 2 * de) = (S.a : ℝ) * (1 + 2 * de) / b' := by ring
       rw [e, div_lt_iff₀ hb] at hhi
@@ -341,7 +349,10 @@ theorem SegHyp.top_ord (H : SegHyp p S b' de be aS Q) {aTop : Fin s → ℕ} {b 
           linarith
         have h2 : (1 - be) * ((S.a : ℝ) * (1 + 2 * de)) ≤ (1 - be) * ((p : ℝ) ^ (S.d i) * b') :=
           mul_le_mul_of_nonneg_left hxb.le (by linarith)
-        have h3 : 1 ≤ (1 - be) * (1 + 2 * de) := by nlinarith [mul_nonneg hbe0 hde0, mul_nonneg hde0 hde0]
+        have h3 : 1 ≤ (1 - be) * (1 + 2 * de) := by
+          have hbd : be * de ≤ be * (1 / 6) := mul_le_mul_of_nonneg_left hde6.le hbe0
+          have hexp : (1 - be) * (1 + 2 * de) = 1 + 2 * de - be - 2 * (be * de) := by ring
+          linarith
         have h4 : (S.a : ℝ) ≤ (1 - be) * ((S.a : ℝ) * (1 + 2 * de)) := by
           have := mul_le_mul_of_nonneg_left h3 ha0
           linarith
@@ -426,7 +437,7 @@ theorem SegHyp.oplus (H : SegHyp p S b' de be aS Q) (b : SegBlock s r) :
     rw [← hP'] at hc
     have hca : (0 : ℝ) ≤ (coarseA p S b i : ℝ) := Nat.cast_nonneg _
     rw [mul_div_assoc', le_div_iff₀ hp0]
-    nlinarith [mul_le_mul_of_nonneg_left hP hca]
+    linarith [mul_le_mul_of_nonneg_left hP hca]
   have hcap : (cap p S b s : ℝ) ≤ (S.a : ℝ) / (p : ℝ) ^ 2 + (s : ℝ) * (2 * (b' / p)) := by
     have h1 := cap_le p S b s
     have h2 : (S.A0 p : ℝ) ≤ (S.a : ℝ) / (p : ℝ) ^ 2 := by
@@ -455,13 +466,16 @@ theorem SegHyp.oplus (H : SegHyp p S b' de be aS Q) (b : SegBlock s r) :
   have hbP : (S.bPlus : ℝ) ≤ 2 * b' := by
     have h1 := H.bP
     have hbe : be ≤ 1 := by linarith [H.beLe, H.de6, H.be0]
-    nlinarith [mul_le_mul_of_nonneg_left hbe hb0.le]
+    linarith [mul_le_mul_of_nonneg_left hbe hb0.le]
   have h3 : S.La * (S.bPlus : ℝ) / ((r : ℝ) + 1) ≤ 2 * (S.La * b' / ((r : ℝ) + 1)) := by
     have hnum : S.La * (S.bPlus : ℝ) ≤ 2 * (S.La * b') := by
-      nlinarith [mul_le_mul_of_nonneg_left hbP hLa]
+      calc S.La * (S.bPlus : ℝ) ≤ S.La * (2 * b') := mul_le_mul_of_nonneg_left hbP hLa
+        _ = 2 * (S.La * b') := by ring
     have hinv : 0 ≤ ((r : ℝ) + 1)⁻¹ := inv_nonneg.mpr hr0.le
     simp only [div_eq_mul_inv]
-    nlinarith [mul_le_mul_of_nonneg_right hnum hinv]
+    calc S.La * (S.bPlus : ℝ) * ((r : ℝ) + 1)⁻¹ ≤ 2 * (S.La * b') * ((r : ℝ) + 1)⁻¹ :=
+          mul_le_mul_of_nonneg_right hnum hinv
+      _ = 2 * (S.La * b' * ((r : ℝ) + 1)⁻¹) := by ring
   have h2 : (S.La / ((r : ℝ) + 1) + 4 / (p : ℝ) ^ 2) * (∑ i, 2 * (S.a : ℝ) / (S.P p i : ℝ)) ≤
       (S.La / ((r : ℝ) + 1) + 4 / (p : ℝ) ^ 2) * ((s : ℝ) * (2 * (S.a : ℝ) / p)) :=
     mul_le_mul_of_nonneg_left hsumP hcoef
@@ -593,8 +607,8 @@ theorem segHyp_of {C0 Cde CE1 CE2 H : ℝ} {X : Loc} (St : Std C0 Cde CE1 CE2 H 
       have h4 := St.Y1
       have h5 : (0 : ℝ) ≤ (X.N1 : ℝ) := Nat.cast_nonneg _
       have hk1 : 1 ≤ X.k := by linarith
-      have h6 : X.k ≤ X.k ^ 2 := by nlinarith
-      have h7 : X.k ^ 2 * 1 ≤ X.k ^ 2 * X.Y ^ 2 := mul_le_mul_of_nonneg_left (by nlinarith) (by positivity)
+      have h6 : X.k ≤ X.k ^ 2 := by simpa using pow_le_pow_right₀ hk1 (show 1 ≤ 2 by norm_num)
+      have h7 : X.k ^ 2 * 1 ≤ X.k ^ 2 * X.Y ^ 2 := mul_le_mul_of_nonneg_left (one_le_pow₀ h4) (by positivity)
       linarith
     Q := by
       show (X.p : ℝ) ^ (segG X.TT j) ≤ (X.p : ℝ) ^ X.G'

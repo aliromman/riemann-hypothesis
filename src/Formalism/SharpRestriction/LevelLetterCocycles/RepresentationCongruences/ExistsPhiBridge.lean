@@ -295,21 +295,38 @@ theorem map_shift (k : ℕ) (F : O⟦X⟧) : map (mkk k) (shift t ht F) = τk t 
 theorem shift_X : shift t ht X = X + C t := ext_k fun k => by
   rw [map_shift, τk_X, _root_.map_add (f := _), PowerSeries.map_X, PowerSeries.map_C]
 
-theorem shift_shift (F : O⟦X⟧) : shift (-t) (neg_mem ht) (shift t ht F) = F := by
+omit ht in
+/-- Translation by zero fixes every formal power series. -/
+theorem shift_zero (F : O⟦X⟧) : shift (0 : O) (zero_mem _) F = F := by
+  have h : (shift (0 : O) (zero_mem _)).toRingHom = RingHom.id _ :=
+    ringHom_ext_nil (fun r => algC _ r)
+      (by simpa using shift_X (0 : O) (zero_mem _)) (by simp [shift_X])
+  exact RingHom.congr_fun h F
+
+omit ht in
+/-- Successive translations add their parameters. -/
+theorem shift_add (s t : O) (hs : s ∈ IsLocalRing.maximalIdeal O)
+    (ht : t ∈ IsLocalRing.maximalIdeal O) (F : O⟦X⟧) :
+    shift s hs (shift t ht F) = shift (s + t) (add_mem hs ht) F := by
   refine ext_k fun k => ?_
-  rw [map_shift]
-  have key : (τk (-t) (neg_mem ht) k).toRingHom.comp (shift t ht).toRingHom =
-      map (mkk k) := by
-    refine (ringHom_ext_nil (h₁ := map (mkk k)) (fun r => ?_) ?_ ?_).symm
-    · show map (mkk k) (C r) = τk (-t) (neg_mem ht) k (shift t ht (C r))
-      rw [PowerSeries.map_C, algC, τk_C]
-    · show map (mkk k) X = τk (-t) (neg_mem ht) k (shift t ht X)
-      rw [PowerSeries.map_X, shift_X, _root_.map_add (f := _), τk_X, τk_C,
-        _root_.map_neg, _root_.map_neg]
+  rw [map_shift, map_shift]
+  have key : (τk s hs k).toRingHom.comp (shift t ht).toRingHom =
+      (τk (s + t) (add_mem hs ht) k).toRingHom := by
+    symm
+    refine ringHom_ext_nil (fun r => ?_) ?_ ?_
+    · show τk (s + t) (add_mem hs ht) k (C r) = τk s hs k (shift t ht (C r))
+      rw [algC, τk_C, τk_C]
+    · show τk (s + t) (add_mem hs ht) k X = τk s hs k (shift t ht X)
+      rw [shift_X, _root_.map_add (f := _), τk_X, τk_C, τk_X,
+        _root_.map_add (f := _), _root_.map_add (f := _)]
       ring
-    · rw [PowerSeries.map_X, PowerSeries.constantCoeff_X]
-      exact IsNilpotent.zero
+    · show IsNilpotent (constantCoeff (τk (s + t) (add_mem hs ht) k X))
+      rw [τk_X]
+      exact nil_k (s + t) (add_mem hs ht) k
   exact RingHom.congr_fun key F
+
+theorem shift_shift (F : O⟦X⟧) : shift (-t) (neg_mem ht) (shift t ht F) = F := by
+  simpa only [neg_add_cancel, shift_zero] using shift_add (-t) t (neg_mem ht) ht F
 
 omit ht in
 theorem shift_congr {t t' : O} (h : t = t') (ht : t ∈ IsLocalRing.maximalIdeal O)

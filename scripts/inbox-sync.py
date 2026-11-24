@@ -1,28 +1,32 @@
 #!/usr/bin/env python3
-"""Keep the `inbox` label on the pull requests that are waiting for a first review.
+"""Keep the `inbox` label on the pull requests that are waiting for a maintainer's first response.
 
 The inbox workflow runs this from its trusted checkout: for one pull request when it is opened,
-reopened, marked ready for review, turned back into a draft or closed, and for every open pull
-request every fifteen minutes. Nothing from a pull request is checked out or run. Everything is read from
-GitHub's API, and the only thing written is the label.
+reopened, marked ready, turned back into a draft, commented on, reviewed, relabelled or closed,
+and for every open pull request every fifteen minutes. Nothing from a pull request is checked out or run.
+Everything is read from GitHub's API, and the only thing written is the label.
 
 A pull request can be in the inbox when it is open, is not a draft, is not a batch, and carries
 none of `batch queue`, `building` and `awaiting-author`. A batch is a pull request from a branch
-named `batch/...`, in this repository or a fork. It leaves the inbox at the first review after it
-went in, by someone with triage access or more. Any submitted review counts, whether it approves,
-requests changes or only comments. Reviews by the pull request's author or by a bot do not.
+named `batch/...`, in this repository or a fork.
 
-Opening, reopening or marking a pull request ready puts it in the inbox, whatever happened to it
-before. Otherwise a pull request without the label gets it only if nobody with triage access has
-reviewed it and no person has taken the label off it. A maintainer who removes `inbox` by hand is
-not overruled, and one who puts it back asks for another look: it stays until the next review.
+A pull request enters review when it is opened, reopened or marked ready. It belongs in the inbox
+until someone with triage access or more responds to it after that: a comment, such as `batch`,
+a review or a review comment, or a change to its labels other than the ones label-pr.yml keeps up
+to date. Responses by the pull request's author or by a bot do not count.
 
-Reviews on pull requests from forks only get a read-only token, so the workflow cannot act on
-them as they are submitted. The sweep picks them up instead. It reads every open pull request
-through GraphQL, a few requests in all, whose allowance is separate from the REST one that the
-batch queue counts on. Before it puts a pull request in the inbox it reads that pull request
-again, so that a review or a close that came in meanwhile is not missed. Access is looked up
-through REST, once a run for each reviewer.
+A maintainer who takes `inbox` off by hand is not overruled until the pull request enters review
+again. One who puts it back asks for another look: it then stays until the next response, not
+counting their own in the ten minutes after, which usually just say why.
+
+Reviews on pull requests from forks only get a read-only token, so the workflow hears about them
+through a second workflow, `inbox review`, that does nothing but run. The sweep catches anything
+the events missed, including closed pull requests that kept the label. It reads every open pull
+request through GraphQL, a few requests in all, whose allowance is separate from the REST one that
+the batch queue counts on. Before it changes the label on a pull request it reads that pull
+request again, so that a response, a label put back or a change of state that came in meanwhile
+is not missed. Access is looked up
+through REST, once a run for each responder.
 """
 from __future__ import annotations
 
@@ -36,26 +40,36 @@ import sys
 INBOX = "inbox"
 # Labels that mean a maintainer has already decided what happens next.
 DECIDED = ("batch queue", "building", "awaiting-author")
+# Labels that label-pr.yml keeps up to date from the files a pull request changes and its size.
+# Someone adding or removing one of these by hand has not responded to the pull request: they were
+# all put on by hand once, before that workflow existed.
+AUTOMATIC = ("CI", "changes-challenge", "changes-lake", "documentation",
+             "extra small", "small", "medium", "large", "extra large")
 PREFIX = "batch/"
-# Events that put a pull request in the inbox whatever happened to it before.
-ENTRY = ("opened", "reopened", "ready_for_review")
-# Repository roles whose review takes a pull request out of the inbox. The REST API reports
+# Repository roles whose response takes a pull request out of the inbox. The REST API reports
 # maintain as write and triage as read under `permission`, so `role_name` is the one to read.
 ROLES = ("admin", "maintain", "write", "triage")
+# How long after putting the label back a maintainer's own responses are taken to be about that.
+GRACE = datetime.timedelta(minutes=10)
 
-# The latest 50 reviews and 100 label changes are enough for any pull request here.
-FIELDS = """
-  number state isDraft headRefName
-  author { login }
-  labels(first: 100) { nodes { name } }
-  reviews(last: 50) { nodes { state submittedAt author { __typename login } } }
-  timelineItems(last: 100, itemTypes: [LABELED_EVENT, UNLABELED_EVENT]) {
-    nodes {
+# The latest 50 comments and reviews and 100 timeline events are enough for any pull request here.
+ACTOR = "{ __typename login }"
+FIELDS = f"""
+  number state isDraft headRefName createdAt
+  author {{ login }}
+  labels(first: 100) {{ nodes {{ name }} }}
+  comments(last: 50) {{ nodes {{ createdAt author {ACTOR} }} }}
+  reviews(last: 50) {{ nodes {{ state submittedAt author {ACTOR} }} }}
+  timelineItems(last: 100, itemTypes: [LABELED_EVENT, UNLABELED_EVENT, READY_FOR_REVIEW_EVENT,
+                                       REOPENED_EVENT]) {{
+    nodes {{
       __typename
-      ... on LabeledEvent { createdAt label { name } actor { __typename login } }
-      ... on UnlabeledEvent { createdAt label { name } actor { __typename login } }
-    }
-  }
+      ... on LabeledEvent {{ createdAt label {{ name }} actor {ACTOR} }}
+      ... on UnlabeledEvent {{ createdAt label {{ name }} actor {ACTOR} }}
+      ... on ReadyForReviewEvent {{ createdAt }}
+      ... on ReopenedEvent {{ createdAt }}
+    }}
+  }}
 """
 EVERY = """query($owner: String!, $name: String!, $after: String) {
   repository(owner: $owner, name: $name) {
@@ -65,6 +79,9 @@ EVERY = """query($owner: String!, $name: String!, $after: String) {
     }
   }
 }""" % FIELDS
+CLOSED = """query($q: String!) {
+  search(query: $q, type: ISSUE, first: 100) { nodes { ... on PullRequest { number } } }
+}"""
 ONE = """query($owner: String!, $name: String!, $number: Int!) {
   repository(owner: $owner, name: $name) { pullRequest(number: $number) { %s } }
 }""" % FIELDS
@@ -130,6 +147,11 @@ class GitHub:
                 return found
             after = page["pageInfo"]["endCursor"]
 
+    def closed_in_inbox(self):
+        """The numbers of closed pull requests that still carry the label."""
+        found = self.graphql(CLOSED, q=f"repo:{self.repo} is:pr is:closed label:{INBOX}")
+        return [node["number"] for node in found["search"]["nodes"] if node]
+
     def pull(self, number):
         """One pull request, open or not, or None if there is no such pull request."""
         node = self.graphql(ONE, owner=self.owner, name=self.name, number=number)
@@ -182,25 +204,39 @@ def person(actor):
 
 def pull(node):
     """What this script needs to know about a pull request, from GraphQL's answer."""
-    # Label changes come oldest first, so the last of each kind is the latest.
-    added = removed_by = None
+    entered = when(node["createdAt"])
+    added = added_by = removed = removed_by = None
+    responses = []
+    # Timeline events come oldest first, so the last of each kind is the latest.
     for item in node["timelineItems"]["nodes"]:
-        if (item.get("label") or {}).get("name") != INBOX:
+        kind, at = item["__typename"], when(item["createdAt"])
+        if kind in ("ReadyForReviewEvent", "ReopenedEvent"):
+            entered = max(entered, at)
             continue
-        if item["__typename"] == "LabeledEvent":
-            added = when(item["createdAt"])
+        actor = person(item.get("actor"))
+        name = (item.get("label") or {}).get("name")
+        if name != INBOX:
+            if actor and name not in AUTOMATIC:
+                responses.append({"login": actor, "at": at, "did": "changed its labels"})
+        elif kind == "LabeledEvent":
+            added, added_by = at, actor
         else:
-            removed_by = person(item.get("actor"))
-    reviews = []
+            removed, removed_by = at, actor
+    for comment in node["comments"]["nodes"]:
+        login = person(comment.get("author"))
+        if login:
+            responses.append({"login": login, "at": when(comment["createdAt"]), "did": "commented"})
     for review in node["reviews"]["nodes"]:
         login = person(review.get("author"))
         if login and review.get("submittedAt") and review.get("state") != "PENDING":
-            reviews.append({"login": login, "at": when(review["submittedAt"])})
+            responses.append({"login": login, "at": when(review["submittedAt"]), "did": "reviewed it"})
+    responses.sort(key=lambda response: response["at"])
     return {
         "number": node["number"], "open": node["state"] == "OPEN", "draft": node["isDraft"],
         "ref": node["headRefName"], "author": (node.get("author") or {}).get("login"),
         "labels": {label["name"] for label in node["labels"]["nodes"]},
-        "reviews": reviews, "added": added, "removed_by": removed_by,
+        "entered": entered, "responses": responses,
+        "added": added, "added_by": added_by, "removed": removed, "removed_by": removed_by,
     }
 
 
@@ -216,24 +252,26 @@ def unavailable(pr):
     return None
 
 
-def reviewer(gh, pr, since=None):
-    """Someone with triage access who reviewed the pull request after `since`, or None.
+def responder(gh, pr, since, grace=None):
+    """The first response after `since` by someone with triage access, or None.
 
-    Every reviewer's access is looked up. Their `authorAssociation` would be cheaper, but GitHub
+    `grace` is a login and a time: that person's responses up to then do not count.
+
+    Every responder's access is looked up. Their `authorAssociation` would be cheaper, but GitHub
     reports a private member of the organisation as a mere contributor to a token that cannot see
     the membership, and the workflow's token is one of those.
     """
-    for review in pr["reviews"]:
-        if review["login"] == pr["author"]:
+    for response in pr["responses"]:
+        if response["login"] == pr["author"] or response["at"] <= since:
             continue
-        if since and review["at"] <= since:
+        if grace and response["login"] == grace[0] and response["at"] <= grace[1]:
             continue
-        if gh.can_triage(review["login"]):
-            return review["login"]
+        if gh.can_triage(response["login"]):
+            return response
     return None
 
 
-def decide(gh, pr, event=None):
+def decide(gh, pr):
     """What to do with the label: ("add" or "remove" or None, and why)."""
     has = INBOX in pr["labels"]
     if not pr["open"]:
@@ -241,27 +279,37 @@ def decide(gh, pr, event=None):
     why = unavailable(pr)
     if why:
         return ("remove" if has else None), why
-    if event in ENTRY:
-        return (None if has else "add"), "it was " + {"opened": "opened", "reopened": "reopened",
-                                                       "ready_for_review": "marked ready"}[event]
-    # When the label is on, only reviews after it went on count. Without the label, any does.
-    who = reviewer(gh, pr, pr["added"] if has else None)
+    # Responses count from when the pull request last entered review, or from when a person put
+    # the label back to ask for another look.
+    since, grace = pr["entered"], None
+    if has and pr["added_by"] and pr["added"] > since:
+        since, grace = pr["added"], (pr["added_by"], pr["added"] + GRACE)
+    found = responder(gh, pr, since, grace)
+    said = f"{found['login']} {found['did']}" if found else None
     if has:
-        return ("remove", f"{who} reviewed it") if who else (None, "it is waiting for a review")
-    if who:
-        return None, f"{who} has reviewed it"
-    if pr["removed_by"]:
+        return ("remove", said) if found else (None, "it is waiting for a response")
+    if found:
+        return None, said
+    if pr["removed_by"] and pr["removed"] > pr["entered"]:
         return None, f"{pr['removed_by']} took it out of the inbox"
-    return "add", "it is waiting for a review"
+    return "add", "it is waiting for a response"
 
 
-def sync(gh, number=None, event=None):
+def sync(gh, number=None):
     """Bring the label up to date on one pull request, or on all open ones. Returns a log."""
-    log = []
-    if not gh.label_exists():
-        if not gh.dry_run:
-            raise Refused(f"There is no `{INBOX}` label in {gh.repo}. Was it renamed?")
-        log.append(f"there is no `{INBOX}` label yet, so a real run would stop here")
+    log, checked = [], False
+
+    def check_label():
+        # Only adding needs the label to exist: GitHub would make a new one. Removing never does.
+        nonlocal checked
+        if checked:
+            return
+        checked = True
+        if not gh.label_exists():
+            if not gh.dry_run:
+                raise Refused(f"There is no `{INBOX}` label in {gh.repo}. Was it renamed?")
+            log.append(f"there is no `{INBOX}` label yet, so a real run would stop here")
+
     if number is None:
         pulls = gh.pulls()
     else:
@@ -271,14 +319,15 @@ def sync(gh, number=None, event=None):
         pulls = [found]
     for i, pr in enumerate(pulls):
         try:
-            action, why = decide(gh, pr, event)
-            if action == "add" and number is None:
-                # The sweep read this pull request a while ago. A review, a close or a new label
-                # since then would otherwise be missed, and a review older than the label never
-                # counts again.
+            action, why = decide(gh, pr)
+            if action and number is None:
+                # The sweep read this pull request a while ago. A response, a close, a label put
+                # back or a pull request marked ready since then would otherwise be missed.
                 pr = pulls[i] = gh.pull(pr["number"]) or pr
-                action, why = decide(gh, pr, event)
+                action, why = decide(gh, pr)
             if action:
+                if action == "add":
+                    check_label()
                 gh.label(pr["number"], action == "add")
                 pr["labels"] = (pr["labels"] | {INBOX}) if action == "add" else (pr["labels"] - {INBOX})
                 log.append(f"#{pr['number']}: {'put in' if action == 'add' else 'taken out of'} "
@@ -290,6 +339,14 @@ def sync(gh, number=None, event=None):
             gh.failed = True
             log.append(f"#{pr['number']}: skipped, because {error}")
     if number is None:
+        # A closed pull request whose `closed` run failed would keep the label for good otherwise.
+        try:
+            for closed in gh.closed_in_inbox():
+                gh.label(closed, False)
+                log.append(f"#{closed}: taken out of the inbox, because it is closed")
+        except RuntimeError as error:
+            gh.failed = True
+            log.append(f"closed pull requests: skipped, because {error}")
         waiting = sum(INBOX in pr["labels"] and pr["open"] for pr in pulls)
         log.append(f"{waiting} of {len(pulls)} open pull requests are in the inbox")
     return log
@@ -299,7 +356,6 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--repo", required=True, help="owner/name")
     parser.add_argument("--pr", type=int, help="look at this pull request only")
-    parser.add_argument("--event", help="the pull_request_target action that started the run")
     parser.add_argument("--dry-run", action="store_true", help="read everything, change nothing")
     parser.add_argument("--summary", type=Path, help="append what was done to this file")
     args = parser.parse_args()
@@ -307,7 +363,7 @@ def main():
     gh = GitHub(args.repo, args.dry_run)
     failure = None
     try:
-        log = sync(gh, args.pr, args.event)
+        log = sync(gh, args.pr)
         failure = 1 if gh.failed else None
     except (Refused, RuntimeError) as error:
         log, failure = [str(error)], 1

@@ -1395,7 +1395,7 @@ theorem mem_hcompl_of_inert {Q : Ideal (𝓞 E)} (hQ : Q.IsPrime) (hc : Q.comap 
 theorem mem_loc_inert {Q : Ideal (𝓞 E)} (hQ : Q.IsPrime) (hc : Q.comap (cj E) = Q) {N : ℕ}
     (L : Submodule (𝓞 E) (Fin N → E)) (y : Fin N → E) :
     y ∈ loc (K := E) Q L ↔ ∃ s : 𝓞 E, s ∉ Q ∧ s • y ∈ L := by
-  simp [loc, locS, mem_hcompl_of_inert hQ hc]
+  simp only [loc, locS, Formalism.HermitianLatticesTheory.mem_locS, mem_hcompl_of_inert hQ hc]
 
 theorem mem_loc_stdLat {Q : Ideal (𝓞 E)} (hQ : Q.IsPrime) (hc : Q.comap (cj E) = Q) {N : ℕ}
     (x : Fin N → E) : x ∈ loc (K := E) Q (stdLat E N) ↔ ∀ i, IntAt Q (x i) := by

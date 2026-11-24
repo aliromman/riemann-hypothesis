@@ -2,10 +2,6 @@ module
 
 public import Mathlib.RingTheory.PowerSeries.WeierstrassPreparation
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.EqZeroOfForallMemCoeffFiltration
-public import Mathlib.RingTheory.DiscreteValuationRing.Basic
-public import Mathlib.RingTheory.LocalRing.ResidueField.Defs
-public import Mathlib.RingTheory.PowerSeries.Order
-import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.CoeffEqZeroOfSumEqZero, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.QuotientDistinguishedTorsionFree

@@ -351,32 +351,57 @@ def qT {G : GlobalFamilyData X ka wL wF} {la : HeightOneSpectrum (𝓞 B.KO)} (Q
   g0 := Q.g0
   c := Q.c
 
-variable (G : GlobalFamilyData X ka wL wF) (S : Scal B)
+variable (G : GlobalFamilyData X ka wL wF)
 
+private theorem structural_la (la : HeightOneSpectrum (𝓞 B.KO)) :
+    (InBasis (gT n G) la ↔ InBasis G la) ∧
+    (∀ (S : Scal B) (CRm : ℝ) (T : ℕ) (c : ℝ),
+      InContainMR (gT n G) la (sT n S) CRm T c ↔ InContainMR G la S CRm T c) ∧
+    (∀ (S : Scal B) (T : ℕ),
+      (Module.finrank (Kp (xT n X) la (gT n G).N)
+        ↥(Submodule.span (Kp (xT n X) la (gT n G).N) (zAll (gT n G) la (sT n S) T)) : ℝ) =
+      (Module.finrank (Kp X la G.N)
+        ↥(Submodule.span (Kp X la G.N) (zAll G la S T)) : ℝ)) ∧
+    (∀ (Q : LocalPointData G la),
+      ((qT n Q).InCurve ↔ Q.InCurve) ∧
+      (∀ (S : Scal B), (qT n Q).InTie (sT n S) ↔ Q.InTie S) ∧
+      (∀ (T : ℕ), (qT n Q).InLift T ↔ Q.InLift T) ∧
+      (qT n Q).Ila = Q.Ila ∧
+      (qT n Q).Net = Q.Net) :=
+  ⟨Iff.rfl, fun _ _ _ _ => Iff.rfl, fun _ _ => rfl,
+   fun _ => ⟨Iff.rfl, fun _ => Iff.rfl, fun _ => Iff.rfl, rfl, rfl⟩⟩
 
-theorem shareRhoR_iff (T d : ℕ) : ShareRhoR (gT n G) (sT n S) T d ↔ ShareRhoR G S T d := Iff.rfl
+variable (S : Scal B)
 
+theorem shareRhoR_iff (T d : ℕ) : ShareRhoR (gT n G) (sT n S) T d ↔ ShareRhoR G S T d := by
+  unfold ShareRhoR
+  exact forall_congr' fun la => by rw [(structural_la n G la).2.2.1 S T]
 
-theorem inBasis_iff (la : HeightOneSpectrum (𝓞 B.KO)) : InBasis (gT n G) la ↔ InBasis G la := Iff.rfl
-
+theorem inBasis_iff (la : HeightOneSpectrum (𝓞 B.KO)) : InBasis (gT n G) la ↔ InBasis G la :=
+  (structural_la n G la).1
 
 theorem inContainMR_iff (la : HeightOneSpectrum (𝓞 B.KO)) (CRm : ℝ) (T : ℕ) (c : ℝ) :
-    InContainMR (gT n G) la (sT n S) CRm T c ↔ InContainMR G la S CRm T c := Iff.rfl
+    InContainMR (gT n G) la (sT n S) CRm T c ↔ InContainMR G la S CRm T c :=
+  (structural_la n G la).2.1 S CRm T c
 
 variable {G}
 
+theorem inCurve_iff {la : HeightOneSpectrum (𝓞 B.KO)} (Q : LocalPointData G la) : (qT n Q).InCurve ↔ Q.InCurve :=
+  ((structural_la n G la).2.2.2 Q).1
 
-theorem inCurve_iff {la : HeightOneSpectrum (𝓞 B.KO)} (Q : LocalPointData G la) : (qT n Q).InCurve ↔ Q.InCurve := Iff.rfl
+theorem inTie_iff {la : HeightOneSpectrum (𝓞 B.KO)} (Q : LocalPointData G la) : (qT n Q).InTie (sT n S) ↔ Q.InTie S :=
+  ((structural_la n G la).2.2.2 Q).2.1 S
 
-
-theorem inTie_iff {la : HeightOneSpectrum (𝓞 B.KO)} (Q : LocalPointData G la) : (qT n Q).InTie (sT n S) ↔ Q.InTie S := Iff.rfl
-
-
-theorem inLift_iff {la : HeightOneSpectrum (𝓞 B.KO)} (Q : LocalPointData G la) (T : ℕ) : (qT n Q).InLift T ↔ Q.InLift T := Iff.rfl
-
+theorem inLift_iff {la : HeightOneSpectrum (𝓞 B.KO)} (Q : LocalPointData G la) (T : ℕ) : (qT n Q).InLift T ↔ Q.InLift T :=
+  ((structural_la n G la).2.2.2 Q).2.2.1 T
 
 theorem heights_iff (Qf : ∀ la, LocalPointData G la) (Gc PH Prw Pet : ℝ) :
-    Heights (fun la => qT n (Qf la)) Gc PH Prw Pet ↔ Heights Qf Gc PH Prw Pet := Iff.rfl
+    Heights (fun la => qT n (Qf la)) Gc PH Prw Pet ↔ Heights Qf Gc PH Prw Pet := by
+  have hIla : ∀ la, (qT n (Qf la)).Ila = (Qf la).Ila := fun la => ((structural_la n G la).2.2.2 (Qf la)).2.2.2.1
+  have hNet : ∀ la, (qT n (Qf la)).Net = (Qf la).Net := fun la => ((structural_la n G la).2.2.2 (Qf la)).2.2.2.2
+  unfold Heights
+  simp only [hIla, hNet]
+  rfl
 
 end Structural
 

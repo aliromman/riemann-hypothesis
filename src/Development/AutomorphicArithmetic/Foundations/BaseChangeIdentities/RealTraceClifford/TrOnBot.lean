@@ -52,6 +52,7 @@ open PositivityTheory.RgTw (Mat)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD UpperTheory.RealTr
 open Formalism.REAL (GlRel IsWeight KHighest Cas)
 
+-- The trace of any endomorphism on the zero submodule vanishes.
 private theorem trOn_bot' {V : Type} [AddCommGroup V] [Module ℂ V] (L : V →ₗ[ℂ] V) :
     trOn (⊥ : Submodule ℂ V) L = 0 := by
   unfold trOn

@@ -54,11 +54,7 @@ theorem prim_zero {N : ℕ} [NeZero N] (χ : DirichletCharacter ℂ N) [NeZero �
     (hs0 : 0 < s.re) (hs1 : s.re < 1) (h : DirichletCharacter.LFunction χ s = 0) :
     DirichletCharacter.LFunction χ.primitiveCharacter s = 0 := by
   have hs : s ≠ 1 := by rintro rfl; norm_num at hs1
-  have key := DirichletCharacter.LFunction_changeLevel χ.conductor_dvd_level
-    χ.primitiveCharacter (Or.inr hs)
-  rw [χ.changeLevel_primitiveCharacter, h] at key
-  exact (mul_eq_zero.mp key.symm).resolve_right <| Finset.prod_ne_zero_iff.mpr fun p hp =>
-    factor_ne_zero _ hs0 p (Nat.prime_of_mem_primeFactors hp)
+  exact (LFunction_eq_zero_iff_primitiveCharacter χ hs0 (Or.inr hs)).mp h
 
 theorem gamma_ne_zero {M : ℕ} [NeZero M] (φ : DirichletCharacter ℂ M) {t : ℂ} (ht : 0 < t.re) :
     DirichletCharacter.gammaFactor φ t ≠ 0 := by

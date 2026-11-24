@@ -133,15 +133,24 @@ theorem completedLFunction_ne_zero_of_re_nonpos {q : ℕ} [NeZero q] {χ : Diric
       intro h'; rw [h'] at hw; norm_num at hw
     rw [LFunction_eq_completed_div_gammaFactor χ⁻¹ (1 - s) (Or.inl h1s), hC, zero_div]
 
-theorem LFunction_zero_of_re_nonpos : ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q), χ.IsPrimitive → ∀ s : ℂ, s.re ≤ 0 → LFunction χ s = 0 → (∃ n : ℕ, s = -n) ∧ analyticOrderNatAt (LFunction χ) s = 1 ∧ (s = 0 → χ.Even ∧ χ ≠ 1) ∧ (s = -1 → χ.Odd) := by
-  intro q _ χ hχ s hs hL
-  have h0 : s ≠ 0 ∨ χ ≠ 1 := by
-    by_contra! h
-    obtain ⟨rfl, rfl⟩ := h
+/-- In the closed left half-plane, the zeros of a primitive Dirichlet L-function
+are exactly the zeros of its gamma factor, except at the trivial character's origin. -/
+theorem LFunction_eq_zero_iff_of_re_nonpos {q : ℕ} [NeZero q] {χ : DirichletCharacter ℂ q}
+    (hχ : χ.IsPrimitive) {s : ℂ} (hs : s.re ≤ 0) :
+    LFunction χ s = 0 ↔ gammaFactor χ s = 0 ∧ (s ≠ 0 ∨ χ ≠ 1) := by
+  by_cases h0 : s ≠ 0 ∨ χ ≠ 1
+  · have h0' : s ≠ 0 ∨ q ≠ 1 := h0.imp id (fun h hq => h (level_one' χ hq))
+    rw [LFunction_eq_completed_div_gammaFactor χ s h0']
+    simp [div_eq_zero_iff, completedLFunction_ne_zero_of_re_nonpos hχ hs h0, h0]
+  · push Not at h0
+    obtain ⟨rfl, rfl⟩ := h0
     have hq : q = 1 := by rw [IsPrimitive, conductor_one] at hχ; exact hχ.symm
     subst hq
-    rw [LFunction_modOne_eq, riemannZeta_zero] at hL
-    norm_num at hL
+    simp [LFunction_modOne_eq, riemannZeta_zero]
+
+theorem LFunction_zero_of_re_nonpos : ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q), χ.IsPrimitive → ∀ s : ℂ, s.re ≤ 0 → LFunction χ s = 0 → (∃ n : ℕ, s = -n) ∧ analyticOrderNatAt (LFunction χ) s = 1 ∧ (s = 0 → χ.Even ∧ χ ≠ 1) ∧ (s = -1 → χ.Odd) := by
+  intro q _ χ hχ s hs hL
+  obtain ⟨hgamma, h0⟩ := (LFunction_eq_zero_iff_of_re_nonpos hχ hs).mp hL
   have h0' : s ≠ 0 ∨ q ≠ 1 := h0.imp id (fun h hq => h (level_one' χ hq))
   have hs1 : s ≠ 1 := by intro h; rw [h] at hs; norm_num at hs
   have hC : completedLFunction χ s ≠ 0 := completedLFunction_ne_zero_of_re_nonpos hχ hs h0
@@ -159,12 +168,7 @@ theorem LFunction_zero_of_re_nonpos : ∀ (q : ℕ) [NeZero q] (χ : DirichletCh
       · exact Filter.Eventually.of_forall fun _ => Or.inr h
     exact this.mono fun w hw => by
       rw [LFunction_eq_completed_div_gammaFactor χ w hw, div_eq_mul_inv, ha]
-  have hG : Gammaℝ (s + a) = 0 := by
-    have := hev.self_of_nhds
-    rw [hL] at this
-    rcases mul_eq_zero.mp this.symm with h | h
-    · exact absurd h hC
-    · exact inv_eq_zero.mp h
+  have hG : Gammaℝ (s + a) = 0 := by rwa [ha] at hgamma
   obtain ⟨n, hn⟩ := Gammaℝ_eq_zero_iff.mp hG
   have hh : HasDerivAt (fun w : ℂ => (Gammaℝ (w + a))⁻¹)
       (deriv (fun w : ℂ => (Gammaℝ w)⁻¹) (s + a)) s :=

@@ -1,16 +1,7 @@
 module
 
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.MemPairOfMemSingle
-import Mathlib.Data.Nat.Totient
-import Mathlib.Data.Rat.Floor
 public import Mathlib.RingTheory.Ideal.BigOperators
-import Mathlib.RingTheory.LocalRing.ResidueField.Basic
-import Mathlib.RingTheory.PowerSeries.NoZeroDivisors
-import Mathlib.Tactic.Continuity.Init
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.GCD
-import Mathlib.Tactic.Positivity.Finset
-import Mathlib.Tactic.TypeStar
 
 @[expose] public section
 
@@ -78,11 +69,8 @@ theorem ContM_mem_of_unif_mul {ϖ : O} (hϖ : Irreducible ϖ) {G : O⟦X⟧} (hG
   rw [Ideal.mem_span_pair]
   exact ⟨t, b, by linear_combination -ht⟩
 
-theorem ContM_order_unit {K : Type*} [Field K] {w : K⟦X⟧} (hw : IsUnit w) : w.order = 0 := by
-  obtain ⟨v, rfl⟩ := hw
-  have h := order_mul (v : K⟦X⟧) (↑v⁻¹ : K⟦X⟧)
-  rw [Units.mul_inv, order_one] at h
-  exact (add_eq_zero.1 h.symm).1
+theorem ContM_order_unit {K : Type*} [Field K] {w : K⟦X⟧} (hw : IsUnit w) : w.order = 0 :=
+  order_zero_of_isUnit hw
 
 variable [IsAdicComplete (IsLocalRing.maximalIdeal O) O]
 

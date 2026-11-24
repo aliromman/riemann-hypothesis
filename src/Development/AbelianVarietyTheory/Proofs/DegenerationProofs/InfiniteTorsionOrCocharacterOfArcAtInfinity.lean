@@ -526,8 +526,10 @@ namespace GlobalTheory.SS.ArcInf
 theorem smConn_gm (k : Type) [Field k] : SmConn (Gm (Sp k)) :=
   ⟨inferInstance, inferInstance, inferInstance, inferInstance, inferInstance⟩
 
+-- `Iso.refl (Sp k)`, not `Iso.refl _`: both sides have underlying scheme `Sp k` by `rfl`, but the
+-- kernel is slow to identify the two underlying schemes with each other directly.
 noncomputable def selfIso (k : Type) [CommRing k] : algOver k k ≅ 𝟙_ (Over (Sp k)) :=
-  Over.isoMk (Iso.refl _) (by
+  Over.isoMk (Iso.refl (Sp k)) (by
     show 𝟙 _ ≫ 𝟙 _ = spMap (algebraMap k k)
     rw [Category.comp_id]
     exact (Spec.map_id _).symm)

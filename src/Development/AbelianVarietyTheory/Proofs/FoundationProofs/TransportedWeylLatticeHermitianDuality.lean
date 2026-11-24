@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.SubmoduleMembership
 public import Formalism.LocalToGlobal.Divisibility.CoefModLemmas
 public import Formalism.QuotientMetricDivisors.Statement
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DualLatticeIsLatticeAndHermitianDual
@@ -66,20 +67,7 @@ variable {K : Type} [Field K] [NumberField K]
 
 theorem mem_of_forall_locP {V : Type} [AddCommGroup V] [Module (𝓞 K) V] (A : Submodule (𝓞 K) V) (x : V)
     (hx : ∀ w : HeightOneSpectrum (𝓞 K), x ∈ localization₂ w.asIdeal A) : x ∈ A := by
-  by_contra hxA
-  let I : Ideal (𝓞 K) := Submodule.comap (LinearMap.toSpanSingleton (𝓞 K) V x) A
-  have hmem : ∀ r : 𝓞 K, r ∈ I ↔ r • x ∈ A := by
-    intro r
-    simp [I]
-  have hI : I ≠ ⊤ := by
-    intro h
-    apply hxA
-    have h1 : (1 : 𝓞 K) ∈ I := h ▸ Submodule.mem_top
-    simpa using (hmem 1).mp h1
-  obtain ⟨p, hp, hIp⟩ := Ideal.exists_le_maximal I hI
-  have hp0 : p ≠ ⊥ := Ring.ne_bot_of_isMaximal_of_not_isField hp (RingOfIntegers.not_isField K)
-  obtain ⟨s, hs, hsx⟩ := hx ⟨p, hp.isPrime, hp0⟩
-  exact hs (hIp ((hmem s).mpr hsx))
+  exact Submodule.mem_of_forall_heightOne_exists_smul_mem (NumberField.RingOfIntegers.not_isField K) A x hx
 
 theorem mem_localization_of_mem {V : Type} [AddCommGroup V] [Module (𝓞 K) V] (w : HeightOneSpectrum (𝓞 K))
     {A : Submodule (𝓞 K) V} {x : V} (hx : x ∈ A) : x ∈ localization₂ w.asIdeal A :=

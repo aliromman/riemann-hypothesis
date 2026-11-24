@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.SubmoduleMembership
 public import Formalism.HermitianLattices.DefsCS
 public import Formalism.FockGram.FockGramProofs.CovolGram
 public import Formalism.HermitianLattices.HermitianLatticesProofs.GenusBasic
@@ -80,14 +81,7 @@ theorem genusCovol_locS_idem (S : Submonoid R) (L : Submodule R W) :
 
 theorem genusCovol_le_of_loc {Y X : Submodule R W}
     (h : ∀ (P : Ideal R) [P.IsMaximal], Y ≤ locS P.primeCompl X) : Y ≤ X := by
-  intro y hy
-  let I : Ideal R := X.comap (LinearMap.toSpanSingleton R W y)
-  by_cases hI : I = ⊤
-  · have : (1 : R) ∈ I := hI ▸ Submodule.mem_top
-    simpa [I] using this
-  · obtain ⟨P, hP, hIP⟩ := Ideal.exists_le_maximal I hI
-    obtain ⟨s, hs, hsy⟩ := h P hy
-    exact absurd (hIP (show s ∈ I by simpa [I] using hsy)) hs
+  exact fun y hy ↦ Submodule.mem_of_forall_exists_smul_mem X y fun P _ ↦ h P hy
 
 theorem genusCovol_pigeon {X Y : Submodule R W}
     (hfin : X.toAddSubgroup.relIndex Y.toAddSubgroup ≠ 0) (r : R) {z : W} (hz : z ∈ Y) :

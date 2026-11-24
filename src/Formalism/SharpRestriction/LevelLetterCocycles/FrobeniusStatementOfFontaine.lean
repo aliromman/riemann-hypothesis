@@ -374,17 +374,21 @@ theorem arith_alt {C N r m e z e' a b' S lg η bd Sgv : ℝ} (hC : 320 ≤ C) (h
     (N + 1) * r * e + z * e' ≤ C * (N + 1) * r * (a + b' + S + 1 + lg + η * bd) + C * N * m * e' := by
   have hX : e ≤ C * (a + b' + S + 1 + lg + η * bd) := by
     have h1 : 0 ≤ η * bd := mul_nonneg hη hbd
-    have h2 : e ≤ 69 * (a + b' + S + 1 + lg + η * bd) := by nlinarith
+    have h2 : e ≤ 69 * (a + b' + S + 1 + lg + η * bd) := by linarith
     have h3 : 0 ≤ a + b' + S + 1 + lg + η * bd := by linarith
-    nlinarith
+    exact h2.trans (mul_le_mul_of_nonneg_right (by linarith) h3)
   have hNr : 0 ≤ (N + 1) * r := by positivity
   have h4 : (N + 1) * r * e ≤ (N + 1) * r * (C * (a + b' + S + 1 + lg + η * bd)) :=
     mul_le_mul_of_nonneg_left hX hNr
   have hNm : 0 ≤ N * m := mul_nonneg hN hm
   have h5 : z * e' ≤ C * N * m * e' := by
-    have : z ≤ C * N * m := by nlinarith
+    have : z ≤ C * N * m := by
+      calc z ≤ 4 * (N * m) := by linarith
+        _ ≤ C * (N * m) := mul_le_mul_of_nonneg_right (by linarith) hNm
+        _ = C * N * m := by ring
     exact mul_le_mul_of_nonneg_right this he'
-  nlinarith
+  linarith [show (N + 1) * r * (C * (a + b' + S + 1 + lg + η * bd)) =
+    C * (N + 1) * r * (a + b' + S + 1 + lg + η * bd) by ring]
 
 theorem arith_big {C N r m e₀ e' a b' S lg η bd Sgv : ℝ} (hC : 320 ≤ C) (hN : 0 ≤ N) (hr : 0 ≤ r)
     (hm : 0 ≤ m) (he' : 0 ≤ e') (ha : 0 ≤ a) (hb' : 0 ≤ b') (hS : 0 ≤ S) (hlg : 0 ≤ lg) (hη : 0 ≤ η)
@@ -393,14 +397,16 @@ theorem arith_big {C N r m e₀ e' a b' S lg η bd Sgv : ℝ} (hC : 320 ≤ C) (
   have h1 : 0 ≤ η * bd := mul_nonneg hη hbd
   have hX : e₀ ≤ C * (a + b' + S + 1 + lg + η * bd) := by
     have h3 : 0 ≤ a + b' + S + 1 + lg + η * bd := by linarith
-    nlinarith
+    have h2 : e₀ ≤ 160 * (a + b' + S + 1 + lg + η * bd) := by linarith
+    exact h2.trans (mul_le_mul_of_nonneg_right (by linarith) h3)
   have hNr : 0 ≤ (N + 1) * r := by positivity
   have h4 : (N + 1) * r * e₀ ≤ (N + 1) * r * (C * (a + b' + S + 1 + lg + η * bd)) :=
     mul_le_mul_of_nonneg_left hX hNr
   have h5 : 0 ≤ C * N * m * e' := by
     have : 0 ≤ C := by linarith
     positivity
-  nlinarith
+  linarith [show (N + 1) * r * (C * (a + b' + S + 1 + lg + η * bd)) =
+    C * (N + 1) * r * (a + b' + S + 1 + lg + η * bd) by ring]
 
 theorem arith_one {C N r m e z e' a b' S lg η bd Sgv R : ℝ} (hC : 320 ≤ C) (hN : 0 ≤ N) (hr : 0 ≤ r)
     (hm : 0 ≤ m) (he' : 0 ≤ e') (ha : 0 ≤ a) (hb' : 0 ≤ b') (hS : 0 ≤ S) (hlg : 0 ≤ lg) (hη : 0 ≤ η)
@@ -408,26 +414,30 @@ theorem arith_one {C N r m e z e' a b' S lg η bd Sgv R : ℝ} (hC : 320 ≤ C) 
     (he : e ≤ 18 * Sgv + 3 * R ^ 2 * (S + 1 + lg) + 1) (hz : z ≤ (R + 1) * N * m) :
     (N + 1) * r * e + z * e' ≤
       C * (N + 1) * r * (a + b' + R ^ 2 * (S + 1 + lg) + η * bd) + C * N * m * R ^ 2 * e' := by
-  have hR2 : 1 ≤ R ^ 2 := by nlinarith
+  have hR2 : 1 ≤ R ^ 2 := one_le_pow₀ hR
   have hU : 1 ≤ S + 1 + lg := by linarith
-  have hRU : S + 1 + lg ≤ R ^ 2 * (S + 1 + lg) := by nlinarith
+  have hRU : S + 1 + lg ≤ R ^ 2 * (S + 1 + lg) := le_mul_of_one_le_left (by linarith) hR2
   have h1 : 0 ≤ η * bd := mul_nonneg hη hbd
-  have hY1 : 1 ≤ a + b' + R ^ 2 * (S + 1 + lg) + η * bd := by nlinarith
+  have hY1 : 1 ≤ a + b' + R ^ 2 * (S + 1 + lg) + η * bd := by linarith
   have hX : e ≤ C * (a + b' + R ^ 2 * (S + 1 + lg) + η * bd) := by
-    have h2 : e ≤ 40 * (a + b' + R ^ 2 * (S + 1 + lg) + η * bd) := by nlinarith
-    nlinarith
+    have h2 : e ≤ 40 * (a + b' + R ^ 2 * (S + 1 + lg) + η * bd) := by linarith
+    exact h2.trans (mul_le_mul_of_nonneg_right (by linarith) (by linarith))
   have hNr : 0 ≤ (N + 1) * r := by positivity
   have h4 : (N + 1) * r * e ≤ (N + 1) * r * (C * (a + b' + R ^ 2 * (S + 1 + lg) + η * bd)) :=
     mul_le_mul_of_nonneg_left hX hNr
   have hNm : 0 ≤ N * m := mul_nonneg hN hm
   have h5 : z * e' ≤ C * N * m * R ^ 2 * e' := by
-    have h6 : R + 1 ≤ C * R ^ 2 := by nlinarith
+    have h6 : R + 1 ≤ C * R ^ 2 := by
+      have hRR2 : R ≤ R ^ 2 := by rw [sq]; exact le_mul_of_one_le_right (by linarith) hR
+      have h2R2 : 2 * R ^ 2 ≤ C * R ^ 2 := mul_le_mul_of_nonneg_right (by linarith) (by positivity)
+      linarith
     have : z ≤ C * N * m * R ^ 2 := by
       calc z ≤ (R + 1) * (N * m) := by linarith
         _ ≤ (C * R ^ 2) * (N * m) := mul_le_mul_of_nonneg_right h6 hNm
         _ = C * N * m * R ^ 2 := by ring
     exact mul_le_mul_of_nonneg_right this he'
-  nlinarith
+  linarith [show (N + 1) * r * (C * (a + b' + R ^ 2 * (S + 1 + lg) + η * bd)) =
+    C * (N + 1) * r * (a + b' + R ^ 2 * (S + 1 + lg) + η * bd) by ring]
 
 theorem thmB_at (C : ℝ) (hC : C0 ≤ C) {CR CA CB CK : ℝ} (hU : AdmBoundsB D HW F Cm CR CA CB CK)
     (hJ : UsedJ D HW F)

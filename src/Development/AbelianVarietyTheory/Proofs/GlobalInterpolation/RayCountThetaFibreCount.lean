@@ -204,14 +204,23 @@ theorem integral_sqrt_one_sub_sq_wide (a b : ℝ) (ha : a ≤ -1) (hb : 1 ≤ b)
     · intro t ht
       rw [Set.uIcc_of_le ha] at ht
       apply Real.sqrt_eq_zero'.mpr
-      nlinarith [ht.1, ht.2]
+      have ht1 : 1 ≤ -t := by linarith [ht.2]
+      have hsq : 1 ≤ t ^ 2 := by
+        calc (1 : ℝ) = 1 * 1 := by norm_num
+          _ ≤ (-t) * (-t) := mul_le_mul ht1 ht1 (by norm_num) (by linarith [ht.2])
+          _ = t ^ 2 := by ring
+      linarith
   have z2 : ∫ t in (1:ℝ)..b, Real.sqrt (1 - t ^ 2) = 0 := by
     rw [intervalIntegral.integral_congr (g := fun _ => (0:ℝ))]
     · simp
     · intro t ht
       rw [Set.uIcc_of_le hb] at ht
       apply Real.sqrt_eq_zero'.mpr
-      nlinarith [ht.1, ht.2]
+      have hsq : 1 ≤ t ^ 2 := by
+        calc (1 : ℝ) = 1 * 1 := by norm_num
+          _ ≤ t * t := mul_le_mul ht.1 ht.1 (by norm_num) (by linarith [ht.1])
+          _ = t ^ 2 := by ring
+      linarith
   rw [z1, z2]
   ring
 
@@ -456,13 +465,20 @@ theorem plane_lattice_reduction_step (e₁ e₂ : ℂ)
       have e : R - k * N = (R / N - k) * N := by field_simp
       have h2 : (R / N - k) ^ 2 ≤ 1 / 4 := by
         rw [← sq_abs]
-        nlinarith [abs_nonneg (R / N - k)]
+        calc |R / N - k| ^ 2 ≤ (1 / 2 : ℝ) ^ 2 := pow_le_pow_left₀ (abs_nonneg _) hr 2
+          _ = 1 / 4 := by norm_num
       rw [e, mul_pow]
-      nlinarith [sq_nonneg N]
+      calc (R / N - k) ^ 2 * N ^ 2 ≤ (1 / 4) * N ^ 2 := mul_le_mul_of_nonneg_right h2 (sq_nonneg N)
+        _ = N ^ 2 / 4 := by ring
     have h3 : J ^ 2 ≤ N ^ 2 / 4 := by
       rw [← sq_abs J]
-      nlinarith [abs_nonneg J]
-    have h4 : N * (2 * M) ≤ N * N := by nlinarith
+      have hJ : |J| ≤ N / 2 := by linarith
+      calc |J| ^ 2 ≤ (N / 2) ^ 2 := pow_le_pow_left₀ (abs_nonneg J) hJ 2
+        _ = N ^ 2 / 4 := by ring
+    have h4 : N * (2 * M) ≤ N * N := by
+      have hNN : N * N = N ^ 2 := (sq N).symm
+      have h2M : N * (2 * M) = 2 * (N * M) := by ring
+      linarith
     exact le_of_mul_le_mul_left h4 hN
 
 theorem plane_lattice_short_basis_of_bound_pow_two (n : ℕ) : ∀ e₁ e₂ : ℂ,
@@ -822,14 +838,25 @@ theorem unit_eq_one [_root_.NumberField.IsTotallyComplex K] (h2 : Module.finrank
   have hle : ‖φ ((t : 𝓞 K) : K)‖ * M ≤ 2 := by
     have h1 : ‖φ ((u : 𝓞 K) : K)‖ = 1 := by
       have := norm_nonneg (φ ((u : 𝓞 K) : K))
-      nlinarith
+      exact (sq_eq_one_iff.mp hu1).resolve_right (by linarith)
     calc ‖φ ((t : 𝓞 K) : K)‖ * M = ‖φ ((u : 𝓞 K) : K) - 1‖ := by
           rw [he, norm_mul, Complex.norm_natCast]
       _ ≤ ‖φ ((u : 𝓞 K) : K)‖ + ‖(1 : ℂ)‖ := norm_sub_le _ _
       _ = 2 := by rw [h1, norm_one]; norm_num
   have hM' : (3 : ℝ) ≤ M := by exact_mod_cast hM
   have hn := norm_nonneg (φ ((t : 𝓞 K) : K))
-  nlinarith
+  have ht_ge1 : 1 ≤ ‖φ ((t : 𝓞 K) : K)‖ := by
+    by_contra hlt
+    have hlt' : ‖φ ((t : 𝓞 K) : K)‖ < 1 := not_le.mp hlt
+    have hlt2 : ‖φ ((t : 𝓞 K) : K)‖ ^ 2 < 1 := by
+      calc ‖φ ((t : 𝓞 K) : K)‖ ^ 2 = ‖φ ((t : 𝓞 K) : K)‖ * ‖φ ((t : 𝓞 K) : K)‖ := sq _
+        _ < 1 * 1 := mul_lt_mul' hlt'.le hlt' hn zero_lt_one
+        _ = 1 := one_mul 1
+    linarith
+  have h3le : (3 : ℝ) ≤ ‖φ ((t : 𝓞 K) : K)‖ * M := by
+    calc (3 : ℝ) = 1 * 3 := by norm_num
+      _ ≤ ‖φ ((t : 𝓞 K) : K)‖ * M := mul_le_mul ht_ge1 hM' (by norm_num) (by linarith)
+  linarith
 
 theorem exists_basis_im {d : ℕ} (hp : d.Prime) (hd : d % 4 = 3) {x : K} (hx : x ^ 2 = -(d : K))
     (h2 : Module.finrank ℚ K = 2) (φ : K →+* ℂ) :
@@ -892,7 +919,9 @@ theorem aRay_eq_ncard_qForm : ∀ (K : Type) [Field K] [NumberField K] (d M : �
     have := normSq_eq h2 φ (M : 𝓞 K)
     simp only [map_natCast, Complex.norm_natCast] at this
     exact_mod_cast this.symm
-  have hM9 : 9 ≤ M ^ 2 := by nlinarith
+  have hM9 : 9 ≤ M ^ 2 := by
+    calc 9 = 3 ^ 2 := by norm_num
+      _ ≤ M ^ 2 := Nat.pow_le_pow_left hM 2
   have hNtop : Ideal.span {(M : 𝓞 K)} ≠ ⊤ := by
     intro h
     rw [h, Ideal.absNorm_top] at hNnorm
@@ -1004,19 +1033,30 @@ theorem aRay_eq_ncard_qForm : ∀ (K : Type) [Field K] [NumberField K] (d M : �
   refine ⟨‖f₁‖ ^ 2 / Nr, ((starRingEnd ℂ) f₁ * f₂).im ^ 2 / (‖f₁‖ ^ 2 * Nr), l, θ₁, θ₂,
     ?_, ?_, ?_, ?_, ?_⟩
   · rw [le_div_iff₀ hNrpos, one_mul]
-    have hM2 : (1 : ℝ) ≤ (M : ℝ) ^ 2 := by nlinarith
-    nlinarith [mul_le_mul_of_nonneg_right hM2 hNrpos.le]
+    have hM2 : (1 : ℝ) ≤ (M : ℝ) ^ 2 := one_le_pow₀ (by exact_mod_cast (by omega : 1 ≤ M))
+    have hm := mul_le_mul_of_nonneg_right hM2 hNrpos.le
+    linarith
   · have hf2 : 0 < ‖f₁‖ ^ 2 := by positivity
     rw [le_div_iff₀ (by positivity), hIsq, one_mul]
     have h1 : ‖f₁‖ ^ 2 ≤ 2 * Iv := by rw [hImf]; exact hshort
     have h2' : 2 * Nr ≤ Iv := by
-      have hM2 : (9 : ℝ) ≤ (M : ℝ) ^ 2 := by nlinarith
-      have hk : (2 : ℝ) ≤ (M : ℝ) ^ 2 * (√(d : ℝ) / 2) := by nlinarith
+      have hM2 : (9 : ℝ) ≤ (M : ℝ) ^ 2 := by exact_mod_cast hM9
+      have hd10 : (10 : ℝ) ≤ √(d : ℝ) := by
+        rw [Real.le_sqrt (by norm_num) (Nat.cast_nonneg _)]
+        norm_num
+        exact_mod_cast hd100
+      have hk : (2 : ℝ) ≤ (M : ℝ) ^ 2 * (√(d : ℝ) / 2) := by
+        calc (2 : ℝ) ≤ 9 * (10 / 2) := by norm_num
+          _ ≤ (M : ℝ) ^ 2 * (√(d : ℝ) / 2) :=
+              mul_le_mul hM2 (by linarith) (by norm_num) (by positivity)
       rw [hIv']
       calc 2 * Nr ≤ (M : ℝ) ^ 2 * (√(d : ℝ) / 2) * Nr := mul_le_mul_of_nonneg_right hk hNrpos.le
         _ = (M : ℝ) ^ 2 * Nr * (√(d : ℝ) / 2) := by ring
     have hIv0 : 0 ≤ Iv := abs_nonneg _
-    nlinarith
+    calc ‖f₁‖ ^ 2 * Nr ≤ (2 * Iv) * Nr := mul_le_mul_of_nonneg_right h1 hNrpos.le
+      _ = Iv * (2 * Nr) := by ring
+      _ ≤ Iv * Iv := mul_le_mul_of_nonneg_left h2' hIv0
+      _ = Iv ^ 2 := (sq Iv).symm
   · have hf2 : ‖f₁‖ ^ 2 ≠ 0 := by positivity
     rw [hIsq, hIv']
     field_simp
@@ -1085,7 +1125,8 @@ theorem exp_neg_mul_sq_le {c : ℝ} (hc : 0 < c) {n : ℤ} (hn : n ≠ 0) :
   rw [div_mul_div_comm, mul_one, mul_pow]
   refine div_le_div_of_nonneg_left (by norm_num) (by positivity) ?_
   refine mul_le_mul_of_nonneg_left ?_ (sq_nonneg _)
-  nlinarith
+  rw [sq ((n : ℝ) ^ 2)]
+  exact le_mul_of_one_le_left (sq_nonneg _) h1
 
 theorem summable_exp_neg_mul_sq {c : ℝ} (hc : 0 < c) :
     Summable fun n : ℤ => Real.exp (-(c * (n : ℝ) ^ 2)) := by
@@ -1099,7 +1140,10 @@ theorem summable_shifted {s : ℝ} (θ : ℝ) (hs : 0 < s) :
   refine Summable.of_nonneg_of_le (fun _ => (Real.exp_pos _).le) (fun m => ?_)
     ((summable_exp_neg_mul_sq (half_pos hs)).mul_left (Real.exp (s * θ ^ 2)))
   rw [← Real.exp_add, Real.exp_le_exp]
-  nlinarith [mul_nonneg hs.le (sq_nonneg ((m : ℝ) + 2 * θ))]
+  have hsq : -(s / 2 * (m : ℝ) ^ 2) + s * θ ^ 2 - (-(s * ((m : ℝ) + θ) ^ 2)) =
+      s / 2 * ((m : ℝ) + 2 * θ) ^ 2 := by ring
+  have hnn : 0 ≤ s / 2 * ((m : ℝ) + 2 * θ) ^ 2 := mul_nonneg (half_pos hs).le (sq_nonneg _)
+  linarith
 
 theorem poisson {s : ℝ} (θ : ℝ) (hs : 0 < s) :
     ((∑' m : ℤ, Real.exp (-(s * (m + θ) ^ 2)) : ℝ) : ℂ) =
@@ -1152,7 +1196,12 @@ theorem shifted_theta_bound : ∀ s θ : ℝ, 0 < s → Summable (fun m : ℤ =>
     rw [e]
     refine mul_le_of_le_one_right (sq_nonneg _) ?_
     rw [div_le_one (by positivity)]
-    nlinarith [Real.pi_gt_three]
+    have hp2 : (9 : ℝ) ≤ Real.pi ^ 2 := by
+      rw [sq]
+      calc (9 : ℝ) = 3 * 3 := by norm_num
+        _ ≤ Real.pi * Real.pi :=
+            mul_le_mul Real.pi_gt_three.le Real.pi_gt_three.le (by norm_num) (by linarith [Real.pi_gt_three])
+    linarith
   have hg0 : g 0 = 1 := by simp [hg]
   have hp := poisson θ hs
   change _ = _ * ∑' n, g n at hp
@@ -1218,7 +1267,10 @@ theorem tsum_prod_weight_approx {ι κ : Type} (u : ι → κ → ℝ) (w : κ �
   have h7 : A * (∑' k, w k - C) ≤ A * (C * c) := mul_le_mul_of_nonneg_left h4.2 hA
   have h8 : A * (-(C * c)) ≤ A * (∑' k, w k - C) := mul_le_mul_of_nonneg_left h4.1 hA
   rw [abs_le]
-  constructor <;> nlinarith
+  have e1 : A * C * (a + c + a * c) = A * a * (C + C * c) + A * (C * c) := by ring
+  have e2 : -(A * C * (a + c + a * c)) = -(A * a * (C + C * c)) + A * (-(C * c)) := by ring
+  have e3 : A * ∑' k, w k - A * C = A * (∑' k, w k - C) := by ring
+  constructor <;> linarith
 
 theorem theta_qForm : ∀ α γ l θ₁ θ₂ t : ℝ, 0 < α → 0 < γ → 0 < t → Summable (fun v : ℤ × ℤ => Real.exp (-(t * qForm α γ l θ₁ θ₂ v))) ∧ |∑' v : ℤ × ℤ, Real.exp (-(t * qForm α γ l θ₁ θ₂ v)) - Real.pi / Real.sqrt (α * γ) / t| ≤ Real.pi / Real.sqrt (α * γ) / t * ((α * t) ^ 2 + (γ * t) ^ 2 + (α * t) ^ 2 * (γ * t) ^ 2) := by
   intro α γ l θ₁ θ₂ t hα hγ ht
@@ -1337,9 +1389,9 @@ theorem rayCountTheta : ∀ (K : Type) [Field K] [NumberField K] (d M : ℕ) (x 
       exact rayCountTheta_fibre_tsum (qForm α γ l θ₁ θ₂) q hq t h96.1
     rw [htsum, ← hC]
     refine le_trans h96.2 ?_
-    have hA : α ≤ α * γ := by nlinarith
-    have hG : γ ≤ α * γ := by nlinarith
-    have hP1 : 1 ≤ α * γ := by nlinarith
+    have hA : α ≤ α * γ := le_mul_of_one_le_right (by linarith) hγ
+    have hG : γ ≤ α * γ := le_mul_of_one_le_left (by linarith) hα
+    have hP1 : 1 ≤ α * γ := one_le_mul_of_one_le_of_one_le hα hγ
     have hsq : 1 ≤ Real.sqrt (α * γ) := by
       rw [show (1 : ℝ) = Real.sqrt 1 from Real.sqrt_one.symm]
       exact Real.sqrt_le_sqrt hP1
@@ -1364,7 +1416,10 @@ theorem rayCountTheta : ∀ (K : Type) [Field K] [NumberField K] (d M : ℕ) (x 
     have hpoly : α ^ 2 + γ ^ 2 + α ^ 2 * γ ^ 2 * t ^ 2 ≤ 3 * (α * γ) ^ 2 := by
       have e1 : α ^ 2 ≤ (α * γ) ^ 2 := pow_le_pow_left₀ (by linarith) hA 2
       have e2 : γ ^ 2 ≤ (α * γ) ^ 2 := pow_le_pow_left₀ (by linarith) hG 2
-      have ht2 : t ^ 2 ≤ 1 := by nlinarith
+      have ht2 : t ^ 2 ≤ 1 := by
+        rw [sq]
+        calc t * t ≤ 1 * 1 := mul_le_mul ht1 ht1 ht0.le (by norm_num)
+          _ = 1 := one_mul 1
       have e3 : α ^ 2 * γ ^ 2 * t ^ 2 ≤ (α * γ) ^ 2 := by
         calc α ^ 2 * γ ^ 2 * t ^ 2 = (α * γ) ^ 2 * t ^ 2 := by ring
           _ ≤ (α * γ) ^ 2 * 1 := mul_le_mul_of_nonneg_left ht2 (by positivity)

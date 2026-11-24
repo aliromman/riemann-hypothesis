@@ -195,43 +195,6 @@ namespace GlobalTheory.SW.FourierJ
 
 open Matrix Complex in
 open scoped ComplexConjugate Real in
-private theorem exists_rep_add_smul_zm_of_intM_smul {κ ι : Type} [Fintype κ] [Fintype ι] {R : ℕ}
-    (hR : 0 < R) (x : Matrix κ ι ℚ) (hx : _root_.GlobalTheory.SW.IntM (R • x)) :
-    ∃ (n : κ → ι → Fin (R * R)) (m : κ → ι → ℤ),
-      x = _root_.GlobalTheory.SW.FourierJ.rep R n + R • _root_.GlobalTheory.SW.FourierJ.zm m := by
-  obtain ⟨M, hM⟩ := (_root_.GlobalTheory.SW.FourierJ.intM_iff _).mp hx
-  have hRR : (0 : ℤ) < (R : ℤ) * R := by positivity
-  have hRq : (R : ℚ) ≠ 0 := by positivity
-  refine ⟨fun k i => ⟨(M k i % ((R : ℤ) * R)).toNat, ?_⟩, fun k i => M k i / ((R : ℤ) * R), ?_⟩
-  · have h1 := Int.emod_nonneg (M k i) hRR.ne'
-    have h2 := Int.emod_lt_of_pos (M k i) hRR
-    have h3 : ((M k i % ((R : ℤ) * R)).toNat : ℤ) < (R : ℤ) * R := by
-      rw [Int.toNat_of_nonneg h1]; exact h2
-    exact_mod_cast h3
-  · ext k i
-    have hk := congrFun (congrFun hM k) i
-    simp only [Matrix.smul_apply, _root_.GlobalTheory.SW.FourierJ.zm, Matrix.of_apply, nsmul_eq_mul] at hk
-    simp only [_root_.GlobalTheory.SW.FourierJ.rep, Matrix.add_apply, Matrix.smul_apply,
-      Matrix.of_apply, _root_.GlobalTheory.SW.FourierJ.zm, nsmul_eq_mul]
-    have h1 := Int.emod_nonneg (M k i) hRR.ne'
-    have hn : (((M k i % ((R : ℤ) * R)).toNat : ℕ) : ℚ) = ((M k i % ((R : ℤ) * R) : ℤ) : ℚ) := by
-      rw [← Int.cast_natCast, Int.toNat_of_nonneg h1]
-    have hq : ((M k i % ((R : ℤ) * R) : ℤ) : ℚ) + (R : ℚ) * R * ((M k i / ((R : ℤ) * R) : ℤ) : ℚ)
-        = (M k i : ℚ) := by
-      have := Int.mul_ediv_add_emod (M k i) ((R : ℤ) * R)
-      have h' : (R : ℚ) * R * ((M k i / ((R : ℤ) * R) : ℤ) : ℚ) +
-          ((M k i % ((R : ℤ) * R) : ℤ) : ℚ) = (M k i : ℚ) := by
-        exact_mod_cast this
-      linear_combination h'
-    have hx' : x k i = (M k i : ℚ) / R := by
-      rw [eq_div_iff hRq]
-      linear_combination hk
-    rw [hx', hn, ← hq, add_div]
-    congr 1
-    rw [mul_assoc, mul_div_cancel_left₀ _ hRq]
-
-open Matrix Complex in
-open scoped ComplexConjugate Real in
 private theorem mem_perSub_iff_exists_eq_smul_zm {κ ι : Type} [Fintype κ] [Fintype ι] (R : ℕ)
     (y : Matrix κ ι ℚ) : y ∈ _root_.GlobalTheory.SW.perSub ℚ κ ι R ↔
       ∃ m : κ → ι → ℤ, y = R • _root_.GlobalTheory.SW.FourierJ.zm m := by
@@ -245,32 +208,6 @@ private theorem mem_perSub_iff_exists_eq_smul_zm {κ ι : Type} [Fintype κ] [Fi
     obtain ⟨y', hy'⟩ := (_root_.GlobalTheory.SW.HaarLevel.intM_iff _).mp
       ((_root_.GlobalTheory.SW.FourierJ.intM_iff _).mpr ⟨m, rfl⟩)
     exact ⟨y', by rw [hy']⟩
-
-open Matrix Complex in
-open scoped ComplexConjugate Real in
-private theorem rep_injective_of_neg_add_eq_smul_zm {κ ι : Type} {R : ℕ} (hR : 0 < R)
-    {n n' : κ → ι → Fin (R * R)} (m : κ → ι → ℤ)
-    (hm : -_root_.GlobalTheory.SW.FourierJ.rep R n + _root_.GlobalTheory.SW.FourierJ.rep R n' =
-      R • _root_.GlobalTheory.SW.FourierJ.zm m) : n = n' := by
-    funext k i
-    have hk := congrFun (congrFun hm k) i
-    simp only [_root_.GlobalTheory.SW.FourierJ.rep, Matrix.add_apply, Matrix.neg_apply,
-      Matrix.of_apply, Matrix.smul_apply, _root_.GlobalTheory.SW.FourierJ.zm, nsmul_eq_mul] at hk
-    have hRq : (R : ℚ) ≠ 0 := by positivity
-    rw [neg_add_eq_sub, ← sub_div, div_eq_iff hRq] at hk
-    have hzq : ((n' k i : ℕ) : ℚ) - (n k i : ℕ) = (R : ℚ) * R * m k i := by
-      linear_combination hk
-    have hz : ((n' k i : ℕ) : ℤ) - (n k i : ℕ) = (R : ℤ) * R * m k i := by
-      exact_mod_cast hzq
-    have hb : ((n' k i : ℕ) : ℤ) < (R : ℤ) * R := by exact_mod_cast (n' k i).isLt
-    have ha : ((n k i : ℕ) : ℤ) < (R : ℤ) * R := by exact_mod_cast (n k i).isLt
-    have h0 : ((n' k i : ℕ) : ℤ) - (n k i : ℕ) = 0 := by
-      apply Int.eq_zero_of_abs_lt_dvd ⟨m k i, hz⟩
-      rw [abs_lt]
-      constructor <;>
-        linarith [Int.natCast_nonneg (n k i : ℕ), Int.natCast_nonneg (n' k i : ℕ)]
-    exact Fin.ext (by omega)
-
 
 open Matrix Complex in
 open scoped ComplexConjugate Real in
@@ -310,7 +247,7 @@ theorem _root_.GlobalTheory.SW.FourierJ.haar_eq_sum_rep : ∀ (κ ι : Type) [Fi
         Matrix κ ι ℚ ⧸ _root_.GlobalTheory.SW.perSub ℚ κ ι R) := by
     intro n n' h
     obtain ⟨m, hm⟩ := (mem_perSub_iff_exists_eq_smul_zm R _).mp (QuotientAddGroup.eq.mp h)
-    exact rep_injective_of_neg_add_eq_smul_zm hR m hm
+    exact rep_eq_of_neg_add_eq_smul_zm hR m hm
   rw [finsum_eq_sum_of_support_subset _ hsupp, Finset.sum_image (fun n _ n' _ h => hinj h)]
   exact Finset.sum_congr rfl fun n _ => hper _
 
@@ -331,69 +268,6 @@ namespace GlobalTheory.SW.FourierJ
 
 open Matrix Complex in
 open scoped ComplexConjugate Real in
-private theorem rep_eq_of_neg_rep_add_rep_eq_smul_zm {κ ι : Type} {R : ℕ} (hR : 0 < R)
-    {n n' : κ → ι → Fin (R * R)} (m : κ → ι → ℤ)
-    (hm : -_root_.GlobalTheory.SW.FourierJ.rep R n + _root_.GlobalTheory.SW.FourierJ.rep R n' =
-      R • _root_.GlobalTheory.SW.FourierJ.zm m) : n = n' := by
-    funext k i
-    have hk := congrFun (congrFun hm k) i
-    simp only [_root_.GlobalTheory.SW.FourierJ.rep, Matrix.add_apply, Matrix.neg_apply,
-      Matrix.of_apply, Matrix.smul_apply, _root_.GlobalTheory.SW.FourierJ.zm, nsmul_eq_mul] at hk
-    have hRq : (R : ℚ) ≠ 0 := by positivity
-    rw [neg_add_eq_sub, ← sub_div, div_eq_iff hRq] at hk
-    have hzq : ((n' k i : ℕ) : ℚ) - (n k i : ℕ) = (R : ℚ) * R * m k i := by
-      linear_combination hk
-    have hz : ((n' k i : ℕ) : ℤ) - (n k i : ℕ) = (R : ℤ) * R * m k i := by
-      exact_mod_cast hzq
-    have hb : ((n' k i : ℕ) : ℤ) < (R : ℤ) * R := by exact_mod_cast (n' k i).isLt
-    have ha : ((n k i : ℕ) : ℤ) < (R : ℤ) * R := by exact_mod_cast (n k i).isLt
-    have h0 : ((n' k i : ℕ) : ℤ) - (n k i : ℕ) = 0 := by
-      apply Int.eq_zero_of_abs_lt_dvd ⟨m k i, hz⟩
-      rw [abs_lt]
-      constructor <;>
-        linarith [Int.natCast_nonneg (n k i : ℕ), Int.natCast_nonneg (n' k i : ℕ)]
-    exact Fin.ext (by omega)
-
-open Matrix Complex in
-open scoped ComplexConjugate Real in
-private theorem exists_rep_add_natCast_smul_zm_of_intM_smul {κ ι : Type} [Fintype κ] [Fintype ι] {R : ℕ}
-    (hR : 0 < R) (x : Matrix κ ι ℚ) (hx : _root_.GlobalTheory.SW.IntM (R • x)) :
-    ∃ (n : κ → ι → Fin (R * R)) (m : κ → ι → ℤ),
-      x = _root_.GlobalTheory.SW.FourierJ.rep R n + R • _root_.GlobalTheory.SW.FourierJ.zm m := by
-  obtain ⟨M, hM⟩ := (_root_.GlobalTheory.SW.FourierJ.intM_iff _).mp hx
-  have hRR : (0 : ℤ) < (R : ℤ) * R := by positivity
-  have hRq : (R : ℚ) ≠ 0 := by positivity
-  refine ⟨fun k i => ⟨(M k i % ((R : ℤ) * R)).toNat, ?_⟩, fun k i => M k i / ((R : ℤ) * R), ?_⟩
-  · have h1 := Int.emod_nonneg (M k i) hRR.ne'
-    have h2 := Int.emod_lt_of_pos (M k i) hRR
-    have h3 : ((M k i % ((R : ℤ) * R)).toNat : ℤ) < (R : ℤ) * R := by
-      rw [Int.toNat_of_nonneg h1]; exact h2
-    exact_mod_cast h3
-  · ext k i
-    have hk := congrFun (congrFun hM k) i
-    simp only [Matrix.smul_apply, _root_.GlobalTheory.SW.FourierJ.zm, Matrix.of_apply, nsmul_eq_mul] at hk
-    simp only [_root_.GlobalTheory.SW.FourierJ.rep, Matrix.add_apply, Matrix.smul_apply,
-      Matrix.of_apply, _root_.GlobalTheory.SW.FourierJ.zm, nsmul_eq_mul]
-    have h1 := Int.emod_nonneg (M k i) hRR.ne'
-    have hn : (((M k i % ((R : ℤ) * R)).toNat : ℕ) : ℚ) = ((M k i % ((R : ℤ) * R) : ℤ) : ℚ) := by
-      rw [← Int.cast_natCast, Int.toNat_of_nonneg h1]
-    have hq : ((M k i % ((R : ℤ) * R) : ℤ) : ℚ) + (R : ℚ) * R * ((M k i / ((R : ℤ) * R) : ℤ) : ℚ)
-        = (M k i : ℚ) := by
-      have := Int.mul_ediv_add_emod (M k i) ((R : ℤ) * R)
-      have h' : (R : ℚ) * R * ((M k i / ((R : ℤ) * R) : ℤ) : ℚ) +
-          ((M k i % ((R : ℤ) * R) : ℤ) : ℚ) = (M k i : ℚ) := by
-        exact_mod_cast this
-      linear_combination h'
-    have hx' : x k i = (M k i : ℚ) / R := by
-      rw [eq_div_iff hRq]
-      linear_combination hk
-    rw [hx', hn, ← hq, add_div]
-    congr 1
-    rw [mul_assoc, mul_div_cancel_left₀ _ hRq]
-
-
-open Matrix Complex in
-open scoped ComplexConjugate Real in
 theorem _root_.GlobalTheory.SW.FourierJ.tsum_level_eq_sum_cosets : ∀ (κ ι : Type) [Fintype κ] [Fintype ι]
     [DecidableEq κ]
     [DecidableEq ι] (R : ℕ) (φ F : Matrix κ ι ℚ → ℂ), 0 < R → _root_.GlobalTheory.SW.HasLevel R φ →
@@ -411,7 +285,7 @@ theorem _root_.GlobalTheory.SW.FourierJ.tsum_level_eq_sum_cosets : ∀ (κ ι : 
     rintro ⟨n, m⟩ ⟨n', m'⟩ h
     simp only [e] at h
     have hn : n = n' := by
-      apply rep_eq_of_neg_rep_add_rep_eq_smul_zm hR (m - m')
+      apply rep_eq_of_neg_add_eq_smul_zm hR (m - m')
       ext k i
       have hk := congrFun (congrFun h k) i
       simp only [_root_.GlobalTheory.SW.FourierJ.rep, Matrix.add_apply, Matrix.neg_apply,
@@ -430,7 +304,7 @@ theorem _root_.GlobalTheory.SW.FourierJ.tsum_level_eq_sum_cosets : ∀ (κ ι : 
   have hsupp : Function.support (fun x => φ x * F x) ⊆ Set.range e := by
     intro x hx
     have hφx : φ x ≠ 0 := left_ne_zero_of_mul (Function.mem_support.mp hx)
-    obtain ⟨n, m, hnm⟩ := exists_rep_add_natCast_smul_zm_of_intM_smul hR x (hφ.1 x hφx)
+    obtain ⟨n, m, hnm⟩ := exists_rep_add_smul_zm_of_intM_smul hR x (hφ.1 x hφx)
     exact ⟨(n, m), by simp only [e, hsmul]; exact hnm.symm⟩
   rw [← he.tsum_eq hsupp]
   have hs2 : Summable fun p => φ (e p) * F (e p) := hsum.comp_injective he

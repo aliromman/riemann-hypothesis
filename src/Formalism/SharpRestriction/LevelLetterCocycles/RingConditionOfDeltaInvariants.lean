@@ -1,5 +1,7 @@
 module
 
+import Mathlib.RingTheory.AdicCompletion.Functoriality
+
 public import Formalism.SharpRestriction.LevelLetterCocycles.CoordHomMapTrace
 public import Formalism.DistinguishedUnitIdeals.FrobeniusCoboundedArc
 import Mathlib.Algebra.Order.Floor.Extended
@@ -515,76 +517,21 @@ theorem mem_smul_top_pi (k : ℕ) (x : Fin k → R) :
     exact sum_mem fun i _ => Submodule.smul_mem_smul (hx i) Submodule.mem_top
 
 theorem precomplete_pi [IsPrecomplete J R] (k : ℕ) : IsPrecomplete J (Fin k → R) := by
-  have key : ∀ (m : ℕ) (y : Fin k → R), y ∈ (J ^ m • ⊤ : Submodule R (Fin k → R)) ↔
-      ∀ i, y i ∈ (J ^ m • ⊤ : Submodule R R) := by
-    intro m y
-    rw [mem_smul_top_pi]
-    simp only [Ideal.smul_eq_mul, Ideal.mul_top]
-  refine ⟨fun f hf => ?_⟩
-  have hfi : ∀ i, ∃ L : R, ∀ n, f n i ≡ L [SMOD (J ^ n • ⊤ : Submodule R R)] := by
-    intro i
-    refine IsPrecomplete.prec' (I := J) (fun m => f m i) (fun {m n} hmn => ?_)
-    have h1 := hf hmn
-    rw [SModEq.sub_mem, key] at h1
-    rw [SModEq.sub_mem]
-    exact h1 i
-  choose L hL using hfi
-  refine ⟨L, fun n => ?_⟩
-  rw [SModEq.sub_mem, key]
-  intro i
-  have h2 := hL i n
-  rw [SModEq.sub_mem] at h2
-  exact h2
+  apply AdicCompletion.of_surjective_iff.mp
+  intro x
+  choose y hy using fun i => AdicCompletion.of_surjective J R ((AdicCompletion.piEquivFin J k) x i)
+  refine ⟨y, (AdicCompletion.piEquivFin J k).injective ?_⟩
+  funext i
+  simpa [AdicCompletion.pi, AdicCompletion.map_of] using hy i
 
 theorem precomplete_of_surj {M N : Type} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
     (f : M →ₗ[R] N) (hf : Function.Surjective f) [IsPrecomplete J M] : IsPrecomplete J N := by
-  have hmap : ∀ m : ℕ, ∀ y ∈ (J ^ m • ⊤ : Submodule R N),
-      ∃ x ∈ (J ^ m • ⊤ : Submodule R M), f x = y := by
-    intro m y hy
-    have hs : (J ^ m • ⊤ : Submodule R N) = (J ^ m • ⊤ : Submodule R M).map f := by
-      rw [Submodule.map_smul'', Submodule.map_top, LinearMap.range_eq_top.mpr hf]
-    rw [hs] at hy
-    obtain ⟨x, hx, rfl⟩ := Submodule.mem_map.mp hy
-    exact ⟨x, hx, rfl⟩
-  have hmapsto : ∀ m : ℕ, ∀ x ∈ (J ^ m • ⊤ : Submodule R M), f x ∈ (J ^ m • ⊤ : Submodule R N) := by
-    intro m x hx
-    have hle : (J ^ m • ⊤ : Submodule R M).map f ≤ (J ^ m • ⊤ : Submodule R N) := by
-      rw [Submodule.map_smul'']
-      exact Submodule.smul_le.mpr fun r hr n _ => Submodule.smul_mem_smul hr Submodule.mem_top
-    exact hle (Submodule.mem_map_of_mem hx)
-  refine ⟨fun g hg => ?_⟩
-  have hd : ∀ k : ℕ, ∃ d ∈ (J ^ k • ⊤ : Submodule R M), f d = g (k + 1) - g k := by
-    intro k
-    apply hmap
-    have h1 := hg (Nat.le_succ k)
-    rw [SModEq.sub_mem] at h1
-    rw [← neg_sub]
-    exact neg_mem h1
-  choose d hdJ hdf using hd
-  obtain ⟨x0, hx0⟩ := hf (g 0)
-  obtain ⟨h, hh⟩ : ∃ h : ℕ → M, ∀ n, h n = x0 + ∑ k ∈ Finset.range n, d k := ⟨_, fun _ => rfl⟩
-  have hfh : ∀ n, f (h n) = g n := by
-    intro n
-    induction n with
-    | zero => rw [hh, Finset.sum_range_zero, add_zero, hx0]
-    | succ n ih =>
-      rw [hh, Finset.sum_range_succ, ← add_assoc, map_add (f := _), ← hh, ih, hdf]
-      abel
-  have hcauchy : ∀ {m n : ℕ}, m ≤ n → h m ≡ h n [SMOD (J ^ m • ⊤ : Submodule R M)] := by
-    intro m n hmn
-    rw [SModEq.sub_mem, hh, hh, ← Finset.sum_range_add_sum_Ico d hmn]
-    have hs : x0 + ∑ k ∈ Finset.range m, d k -
-        (x0 + (∑ k ∈ Finset.range m, d k + ∑ k ∈ Finset.Ico m n, d k)) =
-        -∑ k ∈ Finset.Ico m n, d k := by abel
-    rw [hs]
-    refine neg_mem (sum_mem fun k hk => ?_)
-    exact Submodule.smul_mono_left (Ideal.pow_le_pow_right (Finset.mem_Ico.mp hk).1) (hdJ k)
-  obtain ⟨L, hL⟩ := IsPrecomplete.prec' (I := J) h hcauchy
-  refine ⟨f L, fun n => ?_⟩
-  have h3 := hL n
-  rw [SModEq.sub_mem] at h3 ⊢
-  rw [← hfh n, ← map_sub]
-  exact hmapsto n _ h3
+  apply AdicCompletion.of_surjective_iff.mp
+  intro y
+  obtain ⟨x, rfl⟩ := AdicCompletion.map_surjective_of_mkQ_comp_surjective
+    (I := J) ((Submodule.mkQ_surjective _).comp hf) y
+  obtain ⟨m, rfl⟩ := AdicCompletion.of_surjective J M x
+  exact ⟨f m, (AdicCompletion.map_of J f m).symm⟩
 
 end Complete
 

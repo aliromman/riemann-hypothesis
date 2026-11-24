@@ -666,6 +666,9 @@ section -- clump:auto
 
 set_option maxSynthPendingDepth 1
 
+-- Use the same Abelian instance as Mathlib's `Sheaf.H` and `Sheaf.H'`.
+attribute [local instance 1100] CategoryTheory.sheafIsAbelian
+
 namespace GroundTheory.Arith.SchemeCoh
 
 noncomputable section
@@ -724,7 +727,7 @@ lemma injectiveSequence_hAcyclicOn
 
 variable (hU : iSup U = ⊤)
 
-def cechHEquivOfAcyclic : ∀ (n : ℕ) (G : Sheaf (Opens.grothendieckTopology X) AddCommGrpCat.{u}),
+noncomputable def cechHEquivOfAcyclic : ∀ (n : ℕ) (G : Sheaf (Opens.grothendieckTopology X) AddCommGrpCat.{u}),
     HAcyclicOn.{w, w'} U G → (cechH G.obj U n ≃+ Sheaf.H.{w'} G n)
   | 0, G, _ => cechHZeroEquivH G U hU
   | 1, G, hG => cechHOneEquiv (S := injectiveSequence G) U hU (injectiveSequence_shortExact G)

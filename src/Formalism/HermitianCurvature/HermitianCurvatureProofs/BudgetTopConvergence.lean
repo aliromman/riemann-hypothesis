@@ -103,10 +103,15 @@ theorem budget_second_corollary_holds : DerivativeBudgetCount := by
   have p2 := mul_le_mul_of_nonneg_left hmR (show (0 : ℝ) ≤ 5 * (r : ℝ) by linarith)
   have p3 := mul_le_mul_of_nonneg_left hmmR (show (0 : ℝ) ≤ 2 * (r : ℝ) by linarith)
   have h2 : A₀ - (As : ℝ) - 6 * ((r : ℝ) + 1) * (As : ℝ) ≤
-      A₀ - (κjo : ℝ) - 2 * ((r : ℝ) + 1) * ((((m + 1 + mmB) + o : ℕ)) : ℝ) := by nlinarith
+      A₀ - (κjo : ℝ) - 2 * ((r : ℝ) + 1) * ((((m + 1 + mmB) + o : ℕ)) : ℝ) := by
+    have hp1 : 2 * ((r : ℝ) + 1) * (3 * (As : ℝ)) = 6 * ((r : ℝ) + 1) * (As : ℝ) := by ring
+    linarith
   have h3' : A₀ - (13 * (r : ℝ) + 7) * (As : ℝ) ≤
       A₀ - (κjo : ℝ) - 2 * ((r : ℝ) + 1) * ((((m + 1 + mmB) + o : ℕ)) : ℝ) - 5 * r * ((m : ℝ) + 1) -
-        2 * r * mmB := by nlinarith
+        2 * r * mmB := by
+    have heq : A₀ - (13 * (r : ℝ) + 7) * (As : ℝ) =
+        A₀ - (As : ℝ) - 6 * ((r : ℝ) + 1) * (As : ℝ) - 5 * (r : ℝ) * (As : ℝ) - 2 * (r : ℝ) * (As : ℝ) := by ring
+    linarith
   have hden : (0 : ℝ) < 8 * (2 * (r : ℝ) + 1) := by linarith
   have ha1 : 8 * (2 * (r : ℝ) + 1) *
       a1 r (A₀ - (κjo : ℝ) - 2 * ((r : ℝ) + 1) * ((((m + 1 + mmB) + o : ℕ)) : ℝ)) m mmB =
@@ -115,21 +120,31 @@ theorem budget_second_corollary_holds : DerivativeBudgetCount := by
     unfold a1
     field_simp
   have hrA : (0 : ℝ) ≤ r * As := mul_nonneg hr0 hAs0
-  refine ⟨h2, by rw [ha1]; exact h3', by nlinarith, ?_⟩
+  have hAsr : (As : ℝ) ≤ (r : ℝ) * As := le_mul_of_one_le_left hAs0 hrR
+  refine ⟨h2, by rw [ha1]; exact h3', by ring_nf at hAsr ⊢; linarith, ?_⟩
   apply le_of_mul_le_mul_left _ hden
   rw [ha1]
   have hQ : 0 ≤ (Cc - 20) * (((r : ℝ) + 1) ^ 3 * As) :=
     mul_nonneg (by linarith) (by positivity)
   have h4 : 1 + 4 * (r : ℝ) ≤ ((r : ℝ) + 1) ^ 4 := by
-    nlinarith [pow_nonneg hr0 2, pow_nonneg hr0 3, pow_nonneg hr0 4]
+    have heq : ((r : ℝ) + 1) ^ 4 = 1 + 4 * (r : ℝ) + 6 * (r : ℝ) ^ 2 + 4 * (r : ℝ) ^ 3 + (r : ℝ) ^ 4 := by ring
+    have p2' : (0 : ℝ) ≤ (r : ℝ) ^ 2 := by positivity
+    have p3' : (0 : ℝ) ≤ (r : ℝ) ^ 3 := by positivity
+    have p4' : (0 : ℝ) ≤ (r : ℝ) ^ 4 := by positivity
+    linarith
   have h5 := mul_le_mul_of_nonneg_right h4 hAs0
   calc 8 * (2 * (r : ℝ) + 1) * ((Cc - 20) / 16 * ((r : ℝ) + 1) ^ 3 * (As : ℝ))
       = (2 * (r : ℝ) + 1) / 2 * ((Cc - 20) * (((r : ℝ) + 1) ^ 3 * As)) := by ring
     _ ≤ ((r : ℝ) + 1) * ((Cc - 20) * (((r : ℝ) + 1) ^ 3 * As)) :=
         mul_le_mul_of_nonneg_right (by linarith) hQ
     _ = Cc * (((r : ℝ) + 1) ^ 4 * As) - 20 * (((r : ℝ) + 1) ^ 4 * As) := by ring
-    _ ≤ Cc * (((r : ℝ) + 1) ^ 4 * As) - (13 * (r : ℝ) + 7) * As := by nlinarith
-    _ ≤ A₀ - (13 * (r : ℝ) + 7) * (As : ℝ) := by nlinarith
+    _ ≤ Cc * (((r : ℝ) + 1) ^ 4 * As) - (13 * (r : ℝ) + 7) * As := by
+        have heq : 20 * ((1 + 4 * (r : ℝ)) * (As : ℝ)) - (13 * (r : ℝ) + 7) * (As : ℝ) =
+            67 * ((r : ℝ) * As) + 13 * As := by ring
+        linarith
+    _ ≤ A₀ - (13 * (r : ℝ) + 7) * (As : ℝ) := by
+        rw [← mul_assoc]
+        linarith
     _ ≤ _ := h3'
 
 theorem thresholds_second_corollary_holds : GermThresholds := by
@@ -141,25 +156,34 @@ theorem thresholds_second_corollary_holds : GermThresholds := by
   have hs0 : (0 : ℝ) ≤ s := Nat.cast_nonneg s
   have hn3 : (n : ℝ) ≤ (n : ℝ) ^ 3 := by
     simpa using pow_le_pow_right₀ hnR (show 1 ≤ 3 by norm_num)
-  have hAs1 : (1 : ℝ) ≤ As := by nlinarith
-  have hR : (1 : ℝ) + 3 * r ≤ ((r : ℝ) + 1) ^ 3 := by nlinarith [sq_nonneg (r : ℝ)]
+  have hAs1 : (1 : ℝ) ≤ As := by linarith
+  have hR : (1 : ℝ) + 3 * r ≤ ((r : ℝ) + 1) ^ 3 := by
+    have heq : ((r : ℝ) + 1) ^ 3 = 1 + 3 * (r : ℝ) + 3 * (r : ℝ) ^ 2 + (r : ℝ) ^ 3 := by ring
+    have p2 : (0 : ℝ) ≤ (r : ℝ) ^ 2 := by positivity
+    have p3 : (0 : ℝ) ≤ (r : ℝ) ^ 3 := by positivity
+    linarith
   have hPA : 0 ≤ ((r : ℝ) + 1) ^ 3 * (As : ℝ) := by positivity
   have key : ((r : ℝ) + 1) ^ 3 * (As : ℝ) ≤ c * ((r : ℝ) + 1) ^ 3 * (As : ℝ) := by
-    nlinarith
+    simpa only [mul_assoc] using le_mul_of_one_le_left hPA hc
   refine ⟨?_, ?_, ?_⟩
-  · have e1 : 2 * (r : ℝ) * n ≤ 2 * r * As := by nlinarith
-    have e2 : 2 * (r : ℝ) * As < (1 + 3 * r) * As := by nlinarith
+  · have e1 : 2 * (r : ℝ) * n ≤ 2 * r * As := mul_le_mul_of_nonneg_left (by linarith) (by linarith)
+    have e2 : 2 * (r : ℝ) * As < (1 + 3 * r) * As := mul_lt_mul_of_pos_right (by linarith) (by linarith)
     have e3 : (1 + 3 * (r : ℝ)) * As ≤ ((r : ℝ) + 1) ^ 3 * As :=
       mul_le_mul_of_nonneg_right hR (by linarith)
     linarith
-  · have e3 : (As : ℝ) ≤ ((r : ℝ) + 1) ^ 3 * As := by nlinarith
+  · have e3 : (As : ℝ) ≤ ((r : ℝ) + 1) ^ 3 * As := le_mul_of_one_le_left (by linarith) (by linarith)
     linarith
-  · have e1 : (s : ℝ) ^ 2 ≤ ((r : ℝ) + 1) ^ 3 := by nlinarith [mul_le_mul hsR hsR hs0 hr0]
+  · have e1 : (s : ℝ) ^ 2 ≤ ((r : ℝ) + 1) ^ 3 := by
+      have hs2 : (s : ℝ) ^ 2 ≤ (r : ℝ) ^ 2 := pow_le_pow_left₀ hs0 hsR 2
+      have heq : ((r : ℝ) + 1) ^ 3 = (r : ℝ) ^ 3 + 3 * (r : ℝ) ^ 2 + 3 * (r : ℝ) + 1 := by ring
+      have p2 : (0 : ℝ) ≤ (r : ℝ) ^ 2 := by positivity
+      have p3 : (0 : ℝ) ≤ (r : ℝ) ^ 3 := by positivity
+      linarith
     have e2 : (C₁ : ℝ) * s ^ 2 ≤ c * ((r : ℝ) + 1) ^ 3 :=
       calc (C₁ : ℝ) * s ^ 2 ≤ c * s ^ 2 := mul_le_mul_of_nonneg_right hC (by positivity)
         _ ≤ c * ((r : ℝ) + 1) ^ 3 := mul_le_mul_of_nonneg_left e1 (by linarith)
     have hcP : 0 ≤ c * ((r : ℝ) + 1) ^ 3 := mul_nonneg (by linarith) (by positivity)
-    have e3 : c * ((r : ℝ) + 1) ^ 3 ≤ c * ((r : ℝ) + 1) ^ 3 * As := by nlinarith
+    have e3 : c * ((r : ℝ) + 1) ^ 3 ≤ c * ((r : ℝ) + 1) ^ 3 * As := le_mul_of_one_le_right hcP hAs1
     linarith
 
 theorem powerMatch : PowerMatch := by

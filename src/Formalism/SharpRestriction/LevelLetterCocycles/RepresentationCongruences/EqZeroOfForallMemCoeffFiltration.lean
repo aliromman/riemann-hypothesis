@@ -3,10 +3,6 @@ module
 public import Mathlib.RingTheory.AdicCompletion.Basic
 public import Mathlib.RingTheory.LocalRing.MaximalIdeal.Defs
 public import Mathlib.RingTheory.PowerSeries.Trunc
-import Mathlib.Algebra.Order.Field.Basic
-import Mathlib.Tactic.ContinuousFunctionalCalculus
-import Mathlib.Tactic.Positivity.Finset
-import Mathlib.Tactic.TypeStar
 
 @[expose] public section
 
@@ -169,15 +165,6 @@ theorem subst_smul (hg : constantCoeff g ∈ IsLocalRing.maximalIdeal O) (r : O)
   rw [truncEval_smul, ← smul_sub]
   exact Submodule.smul_of_tower_mem _ r (subst_sub_mem hg f N)
 
-private theorem coeff_trunc_mul_trunc_of_lt {N d : ℕ} (hd : d < N) (f f' : O⟦X⟧) :
-    (trunc N f * trunc N f').coeff d = coeff d (f * f') := by
-  rw [Polynomial.coeff_mul, coeff_mul]
-  refine Finset.sum_congr rfl fun x hx => ?_
-  have hx' := Finset.mem_antidiagonal.mp hx
-  have h1 : x.1 < N := by omega
-  have h2 : x.2 < N := by omega
-  simp [coeff_trunc, h1, h2]
-
 theorem subst_mul (hg : constantCoeff g ∈ IsLocalRing.maximalIdeal O) (f f' : O⟦X⟧) :
     subst hg (f * f') = subst hg f * subst hg f' := by
   refine (subst_eq hg (f * f') _ 0 fun N _ => ?_).symm
@@ -187,8 +174,9 @@ theorem subst_mul (hg : constantCoeff g ∈ IsLocalRing.maximalIdeal O) (f f' : 
     unfold S
     rw [← map_mul (Polynomial.aeval (R := O) g), ← map_sub (Polynomial.aeval (R := O) g)]
     refine aeval_mem_coeffFiltration hg fun d hd => ?_
-    rw [Polynomial.coeff_sub, coeff_trunc_mul_trunc_of_lt hd]
-    simp [coeff_trunc, hd]
+    rw [Polynomial.coeff_sub, coeff_trunc, ite_eq_left hd, sub_eq_zero,
+      ← Polynomial.coeff_coe, Polynomial.coe_mul]
+    exact (coeff_mul_eq_coeff_trunc_mul_trunc f f' hd).symm
   have key : subst hg f * subst hg f' - S g N (f * f') =
       (subst hg f - S g N f) * subst hg f' +
         S g N f * (subst hg f' - S g N f') +

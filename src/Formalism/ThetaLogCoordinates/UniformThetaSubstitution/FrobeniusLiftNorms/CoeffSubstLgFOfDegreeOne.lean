@@ -358,6 +358,15 @@ theorem funEqType_lgF (p : ℕ) [hp : Fact p.Prime] :
   rw [PowerSeries.coeff_X]
   split_ifs <;> simp
 
+/-- Integrality of the addition law for the height-two logarithm
+`lgF(T) = ∑ n ≥ 0, T^(p^(2*n)) / p^n`.
+
+Over `ℚ_[p]`, the identity `lgF(T) - lgF(T^(p^2)) / p = T` gives `funEqType_lgF`, so
+`Formalism.LT.funEqGroup` applies with the identity Frobenius lift and `q = p^2`.
+Uniqueness identifies this integral law with the image of the rational law `FQ`.
+Its rational coefficients therefore have denominators prime to `p`; `norm_ratCast_le_one`
+transfers their integrality to `K`, and uniqueness identifies the resulting law with `F`.
+Only the `ℚ_[p]` step uses the identity endomorphism as a Frobenius lift. -/
 theorem law_integral {K : Type} [NormedField K] [IsUltrametricDist K] [CharZero K] (p : ℕ)
     (hp : p.Prime) (hnp : ‖(p : K)‖ = (p : ℝ)⁻¹) (F : MvPowerSeries (Fin 2) K)
     (hF0 : MvPowerSeries.constantCoeff F = 0) (hF : cob F (lgF K p) = 0) : Integral F := by

@@ -208,6 +208,11 @@ variable {X Y Y' Y'' : Scheme.{0}} (L : LB X) {K K' K₃ : Type} [Fintype K] [Fi
 abbrev Vals (Y : Scheme.{0}) : Type 1 :=
   ∀ (Z : Scheme.{0}) (_ : Z ⟶ Y) (z : Z) (_ : {J // Good L z J}), Z.presheaf.stalk z
 
+-- Ring homomorphisms in the abstract basis lemmas use the semiring projected from a
+-- commutative ring. Match that projection here to avoid reducing pointwise instances down to stalks.
+local instance (Y : Scheme.{0}) : NonAssocSemiring (Vals L Y) :=
+  (inferInstance : CommRing (Vals L Y)).toRing.toSemiring.toNonAssocSemiring
+
 def pull (h : Y' ⟶ Y) : Vals L Y →+* Vals L Y' where
   toFun w Z r z J := w Z (r ≫ h) z J
   map_one' := rfl

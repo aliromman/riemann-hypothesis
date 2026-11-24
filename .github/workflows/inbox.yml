@@ -1,22 +1,29 @@
 name: inbox
 
-# Keeps the `inbox` label on the pull requests that are waiting for a first review. A pull request
-# goes into the inbox when it is opened, reopened or marked ready for review. It comes out when it
-# is turned back into a draft, queued for a batch, labelled `awaiting-author`, reviewed by someone
-# with triage access, or closed. Batches never go in. `scripts/inbox-sync.py` has the exact rules.
+# Keeps the `inbox` label on the pull requests that are waiting for a maintainer's first response.
+# A pull request goes into the inbox when it is opened, reopened or marked ready for review. It
+# comes out as soon as someone with triage access comments on it (`batch` included), reviews it or
+# changes its labels, and when it is turned back into a draft, queued for a batch, labelled
+# `awaiting-author` or closed. Batches never go in. `scripts/inbox-sync.py` has the exact rules.
 #
-# Reviews on pull requests from forks only get a read-only token, so this workflow cannot act on
-# a review when it is submitted. A sweep every fifteen minutes picks reviews up instead. It also
-# labels any pull request whose event was missed, and it does not overrule a maintainer who takes
-# the label off by hand.
+# Reviews on pull requests from forks only get a read-only token, so `inbox-review.yml` runs for
+# them and this workflow follows it, with the pull request's number in that run's name. On a pull
+# request by a first-time contributor that run may wait for approval, so it is followed whether it
+# succeeded or is waiting. A sweep every fifteen minutes catches anything the events missed. It
+# does not overrule a maintainer who takes the label off by hand.
 #
-# pull_request_target lets the token label pull requests from forks. Nothing from a pull request
-# is checked out or run: the script comes from this workflow's own commit, and everything it uses
-# is read from GitHub's API. The label must already exist.
+# pull_request_target, issue_comment and workflow_run give the token write access for pull
+# requests from forks. Nothing from a pull request is checked out or run: the script comes from
+# the same trusted commit as this workflow, and everything it uses is read from GitHub's API.
 
 on:
   pull_request_target:
-    types: [opened, reopened, ready_for_review, converted_to_draft, closed]
+    types: [opened, reopened, ready_for_review, converted_to_draft, labeled, unlabeled, closed]
+  issue_comment:
+    types: [created]
+  workflow_run:
+    workflows: [inbox review]
+    types: [completed]
   schedule:
     - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
@@ -25,14 +32,33 @@ permissions: {}
 
 jobs:
   inbox:
-    # Forks with Actions turned on would otherwise run the sweep against themselves.
-    if: github.repository == 'leanprover-community/riemann-hypothesis'
+    # Forks with Actions turned on would otherwise run against themselves. The rest starts no
+    # runner for events that cannot change anything: comments on issues, comments and label
+    # changes on pull requests that are not in the inbox, and anything a bot or the author did.
+    # The label changes this workflow makes start no runs, because the workflow token makes them.
+    if: >-
+      ${{ github.repository == 'leanprover-community/riemann-hypothesis' && (
+          github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' ||
+          (github.event_name == 'workflow_run' &&
+           contains(fromJSON('["success", "action_required"]'), github.event.workflow_run.conclusion)) ||
+          (github.event_name == 'issue_comment' && github.event.issue.pull_request &&
+           contains(github.event.issue.labels.*.name, 'inbox') &&
+           github.event.comment.user.type != 'Bot' &&
+           github.event.comment.user.login != github.event.issue.user.login) ||
+          (github.event_name == 'pull_request_target' && (
+           contains(fromJSON('["opened", "reopened", "ready_for_review", "converted_to_draft"]'), github.event.action) ||
+           (contains(github.event.pull_request.labels.*.name, 'inbox') && (
+            github.event.action == 'closed' ||
+            (github.event.pull_request.state == 'open' && github.event.label.name != 'inbox' &&
+             github.event.sender.type != 'Bot' &&
+             github.event.sender.login != github.event.pull_request.user.login))))) ) }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    # One run at a time for each pull request, and one sweep at a time. A run that is dropped
-    # while it waits loses nothing, because each run reads everything from GitHub again.
+    # One run at a time for each pull request, one for each relayed review, and one sweep. A run
+    # that is dropped while it waits loses nothing, because each run reads everything from GitHub
+    # again. Relayed reviews get a group of their own because a fork can name that run anything.
     concurrency:
-      group: inbox-${{ github.event.pull_request.number || 'sweep' }}
+      group: inbox-${{ github.event.pull_request.number || github.event.issue.number || (github.event.workflow_run && format('relay {0}', github.event.workflow_run.display_title)) || 'sweep' }}
       cancel-in-progress: false
     permissions:
       contents: read
@@ -49,9 +75,19 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
-          PR: ${{ github.event.pull_request.number }}
-          EVENT: ${{ github.event.action }}
+          PR: ${{ github.event.pull_request.number || github.event.issue.number }}
+          EVENT: ${{ github.event_name }}
+          RUN_NAME: ${{ github.event.workflow_run.display_title }}
         run: |
+          # A review relayed by `inbox review` names its pull request in that run's name. A name
+          # that does not is left alone rather than starting a sweep.
+          if [ "$EVENT" = workflow_run ]; then
+            if ! [[ "$RUN_NAME" =~ ^inbox\ review\ \#([0-9]+)$ ]]; then
+              echo "The run '$RUN_NAME' names no pull request: nothing to do."
+              exit 0
+            fi
+            PR=${BASH_REMATCH[1]}
+          fi
           one=()
-          if [ -n "$PR" ]; then one=(--pr "$PR" --event "$EVENT"); fi
+          if [ -n "$PR" ]; then one=(--pr "$PR"); fi
           python3 scripts/inbox-sync.py --repo "$REPO" "${one[@]}" --summary "$GITHUB_STEP_SUMMARY"

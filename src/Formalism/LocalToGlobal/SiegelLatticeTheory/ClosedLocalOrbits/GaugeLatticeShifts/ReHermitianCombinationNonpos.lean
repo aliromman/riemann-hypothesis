@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.SubmoduleMembership
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.TermDef
 public import Lemmata.GeneralBFactThirdForm.Imports
 import Mathlib.Algebra.Order.Floor.Extended
@@ -238,17 +239,7 @@ theorem localization_mono {P : Ideal (𝓞 E)} [P.IsPrime] {M N : Submodule (�
 theorem mem_of_forall_locP {M : Submodule (𝓞 E) S.V} {x : S.V}
     (h : ∀ P : IsDedekindDomain.HeightOneSpectrum (𝓞 E),
       x ∈ (haveI := P.isPrime; Formalism.HermitianLatticesTheory.localization₂ P.asIdeal M)) : x ∈ M := by
-  by_contra hx
-  let I : Ideal (𝓞 E) := M.comap (LinearMap.toSpanSingleton (𝓞 E) S.V x)
-  have hI : I ≠ ⊤ := by
-    intro htop
-    apply hx
-    have h1 : (1 : 𝓞 E) ∈ I := htop ▸ Submodule.mem_top
-    simpa [I] using h1
-  obtain ⟨m, hm, hIm⟩ := Ideal.exists_le_maximal I hI
-  have hne : m ≠ ⊥ := Ring.ne_bot_of_isMaximal_of_not_isField hm (RingOfIntegers.not_isField E)
-  obtain ⟨s, hs, hsx⟩ := h ⟨m, hm.isPrime, hne⟩
-  exact hs (hIm (by simpa [I] using hsx))
+  exact Submodule.mem_of_forall_heightOne_exists_smul_mem (NumberField.RingOfIntegers.not_isField E) M x h
 
 theorem coe_smul_eq (c : 𝓞 E) (v : S.V) : ((c : E)) • v = c • v := algebraMap_smul E c v
 

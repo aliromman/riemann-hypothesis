@@ -367,18 +367,13 @@ theorem core (D : Formalism.BasicNotions.D7) (G : GAtP p) (v0 : Fin G.P.nV) (e :
       intro β _
       obtain ⟨C, hCM, hcard, hx⟩ := hshift β
       refine ⟨C, hCM, ?_, fun x hxM => ?_⟩
-      · have h0 : (0 : ℝ) ≤ (G.dna : ℝ) * (m : ℝ) ^ (β + 1) * esymmOn VV κ (β + 1) :=
-          mul_nonneg (mul_nonneg (Nat.cast_nonneg _) (pow_nonneg (Nat.cast_nonneg _) _)) (esymmOn_nonneg VV κ hκ _)
-        have hf : (1 : ℝ) ≤ (β + 1).factorial := by
-          exact_mod_cast Nat.one_le_iff_ne_zero.mpr (Nat.factorial_ne_zero _)
-        have hpw2 : 0 ≤ Sig ^ (β + 1) := pow_nonneg hs0 _
-        have hpw : 0 ≤ (G.dna : ℝ) * Sig ^ (β + 1) := mul_nonneg (Nat.cast_nonneg _) hpw2
+      · have hpw : 0 ≤ Sig ^ (β + 1) := pow_nonneg hs0 _
         calc (C.card : ℝ) ≤ (⌊(G.dna : ℝ) * (m : ℝ) ^ (β + 1) * esymmOn VV κ (β + 1)⌋₊ : ℝ) := by
               exact_mod_cast hcard
-          _ ≤ (G.dna : ℝ) * (m : ℝ) ^ (β + 1) * esymmOn VV κ (β + 1) := Nat.floor_le h0
-          _ ≤ (G.dna : ℝ) * Sig ^ (β + 1) / ((β + 1).factorial : ℝ) := esymm_clause VV κ hκ m G.dna (β + 1)
-          _ ≤ (G.dna : ℝ) * Sig ^ (β + 1) := div_le_self hpw hf
-          _ ≤ (G.d : ℝ) * Sig ^ (β + 1) := mul_le_mul_of_nonneg_right (by exact_mod_cast hd) hpw2
+          _ ≤ (G.dna : ℝ) * Sig ^ (β + 1) :=
+            floor_scaled_esymmOn_le_sum_pow VV κ hκ m G.dna (β + 1)
+          _ ≤ (G.d : ℝ) * Sig ^ (β + 1) :=
+            mul_le_mul_of_nonneg_right (by exact_mod_cast hd) hpw
       · have he : e + τ + β * S = τ + β * S + e := by ring
         rw [he]
         exact hx x hxM)

@@ -423,11 +423,11 @@ theorem gapNorm_of (hD : DegPsi) : GapNorm := by
   intro n ε hp hq
   refine ⟨G2.thrS ε + 2, fun lam hlam hgap T μ hμ => ?_⟩
   have hh : G2.thrS ε + 1 < G2.thrS ε + 2 := by linarith
-  have hq0 := G2.one_le_q0_of_p_q_pos hp hq
+  have hq0 := one_le_q0_of_p_q_pos hp hq
   have h8 := G2.fdc_eight hh
   have hP : IsPsiFor ε lam T (PsiM T μ) := (S7.isPsiFor_psiM ε lam _ T μ hlam hμ hgap hq0 h8).1
   have hgap' := G2.fdc_stdGap hlam hgap hh
-  have hw := G2.fdc_w_ne T
+  have hw := _root_.ReciprocityTheory.ChartRestriction.DS.HW.KType.w_ne_zero T
   have hDS := G2.isDS_sigLam hgap' hP hw
   have : CompleteSpace (Hlam ε (PsiM T μ) T.w) := hDS.1
   have : Nontrivial (Hlam ε (PsiM T μ) T.w) := hDS.2.1

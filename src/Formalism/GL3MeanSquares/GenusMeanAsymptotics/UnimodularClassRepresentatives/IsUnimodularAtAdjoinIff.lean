@@ -229,8 +229,8 @@ theorem comb_mem_adjoin_iff (L' : Submodule (𝓞 K) V') (c : K) (a : V') :
 theorem comb_mem_loc_adjoin_iff (p : Ideal (𝓞 K)) (L' : Submodule (𝓞 K) V') (c : K) (a : V') :
     c • S.x₀ + S.ι a ∈ Formalism.HermitianLatticesTheory.loc (K := K) p (S.adjoin L') ↔
       c ∈ Formalism.HermitianLatticesTheory.locR (K := K) p ∧ a ∈ Formalism.HermitianLatticesTheory.loc (K := K) p L' := by
-  simp only [Formalism.HermitianLatticesTheory.locR, Formalism.HermitianLatticesTheory.loc, Formalism.HermitianLatticesTheory.locS, Submodule.mem_mk, AddSubmonoid.mem_mk,
-    AddSubsemigroup.mem_mk, Set.mem_ofPred_eq]
+  simp only [Formalism.HermitianLatticesTheory.locR, Formalism.HermitianLatticesTheory.loc,
+    Formalism.HermitianLatticesTheory.mem_locS]
   constructor
   · rintro ⟨s, hs, hmem⟩
     rw [S.smul_comb, S.comb_mem_adjoin_iff] at hmem

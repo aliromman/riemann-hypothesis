@@ -1076,10 +1076,22 @@ end
 local notation "hE" => (untilt_epsilon (p := l))
 local notation "hZ" => (untilt_frobeniusEquiv_symm_epsilon_ne_one (p := l))
 
+/-- The canonical map `ACris F p → BCris hε`, for a general perfectoid field `F`; `fB` is the case
+`F = ℂ_[l]`.
+
+`fB` is defined through this map so that its value contains no instance proof specialised to
+`ℂ_[l]`. Lean moves such proofs into auxiliary theorems in the value of a definition but leaves
+them in its type, and the kernel is slow to identify the two forms of the ring structure on
+`BCris hε`. -/
+private def aCrisToBCris {F : Type*} [NontriviallyNormedField F] [IsUltrametricDist F] {p : ℕ}
+    [Fact p.Prime] [IsPerfectoidField F p] {ε : PreTilt (normInteger F) p}
+    (hε : PreTilt.untilt ε = 1) : ACris.ACris F p →+* ACris.BCris hε :=
+  (algebraMap (ACris.BCrisPlus F p) (ACris.BCris hε)).comp
+    (algebraMap (ACris.ACris F p) (ACris.BCrisPlus F p))
+
 variable (l) in
 private def fB : Acris l →+* ACris.BCris (untilt_epsilon (p := l)) :=
-  (algebraMap (ACris.BCrisPlus ℂ_[l] l) (ACris.BCris (untilt_epsilon (p := l)))).comp
-    (algebraMap (Acris l) (ACris.BCrisPlus ℂ_[l] l))
+  aCrisToBCris (untilt_epsilon (p := l))
 
 private theorem fB_apply (a : Acris l) :
     fB l a = algebraMap (ACris.BCrisPlus ℂ_[l] l) (ACris.BCris hE)

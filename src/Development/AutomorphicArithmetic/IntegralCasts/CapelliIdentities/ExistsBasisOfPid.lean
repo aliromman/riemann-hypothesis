@@ -1,7 +1,9 @@
 module
 
 public import Mathlib.NumberTheory.NumberField.Basic
+public import Formalism.HermitianLattices.LocS
 public import Mathlib.RingTheory.DedekindDomain.Ideal.Lemmas
+import Development.AbelianVarietyTheory.Definitions.QuasicoherentCohomology.MemSaturatedOrderIsoSubspaceSpanSymmApply
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -54,35 +56,9 @@ namespace UpperTheory.Reformulated.B.Qi33
 
 open scoped NumberField
 
-theorem aux1.{u_1, u_2} {R : Type u_2} [CommRing R] {W : Type u_1} [AddCommGroup W] [Module R W]
-    (S : Submonoid R) (L : Submodule R W) {x y : W} (hx : x ∈ {x : W | ∃ s ∈ S, s • x ∈ L})
-    (hy : y ∈ {x : W | ∃ s ∈ S, s • x ∈ L}) : x + y ∈ {x : W | ∃ s ∈ S, s • x ∈ L} := by
-  obtain ⟨s, hs, hx⟩ := hx
-  obtain ⟨t, ht, hy⟩ := hy
-  refine ⟨s * t, S.mul_mem hs ht, ?_⟩
-  rw [smul_add]
-  refine L.add_mem ?_ ?_
-  · rw [mul_comm, mul_smul]
-    exact L.smul_mem t hx
-  · rw [mul_smul]
-    exact L.smul_mem s hy
-
-theorem aux2.{u_1, u_2} {R : Type u_1} [CommRing R] {W : Type u_2} [AddCommGroup W] [Module R W]
-    (S : Submonoid R) (L : Submodule R W) : ∃ s ∈ S, s • (0 : W) ∈ L :=
-  ⟨1, S.one_mem, by simp⟩
-
-theorem aux3.{u_1, u_2} {R : Type u_2} [CommRing R] {W : Type u_1} [AddCommGroup W] [Module R W]
-    (S : Submonoid R) (L : Submodule R W) (r : R) {x : W} (hx : x ∈ {x : W | ∃ s ∈ S, s • x ∈ L}) :
-    r • x ∈ {x : W | ∃ s ∈ S, s • x ∈ L} := by
-  obtain ⟨s, hs, hx⟩ := hx
-  refine ⟨s, hs, ?_⟩
-  rw [smul_comm]
-  exact L.smul_mem r hx
-
 noncomputable def locS.{u_1, u_4} {R : Type u_1} [CommRing R] {W : Type u_4} [AddCommGroup W]
     [Module R W] (S : Submonoid R) (L : Submodule R W) : Submodule R W :=
-  { carrier := {x : W | ∃ s ∈ S, s • x ∈ L}, add_mem' := @aux1 R _ W _ _ S L,
-    zero_mem' := aux2 S L, smul_mem' := aux3 S L : Submodule R W }
+  Formalism.HermitianLatticesTheory.locS S L
 
 noncomputable def localization₂.{u_1, u_4} {R : Type u_1} [CommRing R] {W : Type u_4} [AddCommGroup W]
     [Module R W] (p : Ideal R) [p.IsPrime] (L : Submodule R W) : Submodule R W :=
@@ -91,22 +67,8 @@ noncomputable def localization₂.{u_1, u_4} {R : Type u_1} [CommRing R] {W : Ty
 private theorem mem_locS_iff {R : Type*} [CommRing R] {W : Type*} [AddCommGroup W]
     [Module R W] (S : Submonoid R) (R' : Type*) [CommRing R'] [Algebra R R'] [IsLocalization S R']
     [Module R' W] [IsScalarTower R R' W] (L : Submodule R W) (x : W) :
-    x ∈ locS S L ↔ x ∈ Submodule.span R' (L : Set W) := by
-  rw [IsLocalization.mem_span_iff S, Submodule.span_eq]
-  constructor
-  · rintro ⟨s, hs, hx⟩
-    refine ⟨s • x, hx, ⟨s, hs⟩, ?_⟩
-    rw [← algebraMap_smul R' s x, smul_smul]
-    have h := IsLocalization.mk'_spec R' (1 : R) (⟨s, hs⟩ : S)
-    simp only [map_one] at h
-    rw [h, one_smul]
-  · rintro ⟨y, hy, z, rfl⟩
-    refine ⟨z, z.2, ?_⟩
-    rw [← algebraMap_smul R' (z : R), smul_smul]
-    have h := IsLocalization.mk'_spec' R' (1 : R) z
-    simp only [map_one] at h
-    rw [h, one_smul]
-    exact hy
+    x ∈ locS S L ↔ x ∈ Submodule.span R' (L : Set W) :=
+  (GlobalTheory.mem_span_localization_iff R' S L x).symm
 
 private theorem exists_basis_of_pid {D K Z : Type} [CommRing D] [IsDomain D]
     [IsPrincipalIdealRing D] [Field K] [Algebra D K] [IsFractionRing D K] [AddCommGroup Z]

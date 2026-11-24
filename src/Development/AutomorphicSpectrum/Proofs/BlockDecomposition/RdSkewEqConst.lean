@@ -253,7 +253,7 @@ namespace GlobalTheory.CompanionTheory.WaveSpd
 theorem rd_skew_eq_const {n : ℕ} (E : KMod n) (Y : Mat n) (hY : Yᴴ = -Y) :
     ∃ B : E.V →L[ℂ] E.V, ∀ f ∈ CE E, ∀ g ∈ GLs n, Rd Y f g = B (f g) := by
   obtain ⟨c, hc, c0, cadd, cd⟩ := GlobalTheory.T.skew_hermitian_unitary_flow Y hY
-  haveI : CompleteSpace E.V := FiniteDimensional.complete ℂ E.V
+  have : CompleteSpace E.V := FiniteDimensional.completeSpace ℂ E.V
   have hinv : ∀ t, (c t)⁻¹ = c (-t) := fun t =>
     inv_eq_of_mul_eq_one_right (by rw [← cadd, add_neg_cancel, c0])
   let Φ : ℝ → (E.V →L[ℂ] E.V) := fun t => E.ρ (c (-t))

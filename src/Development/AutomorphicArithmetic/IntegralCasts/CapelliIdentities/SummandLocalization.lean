@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Algebra.Module.Lattice.Full
+public import Formalism.HermitianLattices.LocS
 public import Mathlib.NumberTheory.NumberField.Basic
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
@@ -56,31 +57,9 @@ namespace UpperTheory.Reformulated.B.SummandLocalization
 
 open scoped NumberField
 
-theorem aux1.{u_1, u_2} {R : Type u_2} [CommRing R] {W : Type u_1} [AddCommGroup W] [Module R W]
-    (S : Submonoid R) (L : Submodule R W) {x y : W} :
-    x ∈ {x : W | ∃ s ∈ S, s • x ∈ L} → y ∈ {x : W | ∃ s ∈ S, s • x ∈ L} →
-      x + y ∈ {x : W | ∃ s ∈ S, s • x ∈ L} := by
-  rintro ⟨s, hs, hx⟩ ⟨t, ht, hy⟩
-  refine ⟨s * t, S.mul_mem hs ht, ?_⟩
-  rw [smul_add, mul_smul s t y, mul_comm s t, mul_smul t s x]
-  exact L.add_mem (L.smul_mem t hx) (L.smul_mem s hy)
-
-theorem aux2.{u_1, u_2} {R : Type u_1} [CommRing R] {W : Type u_2} [AddCommGroup W] [Module R W]
-    (S : Submonoid R) (L : Submodule R W) : ∃ s ∈ S, s • (0 : W) ∈ L :=
-  ⟨1, S.one_mem, by rw [smul_zero]; exact L.zero_mem⟩
-
-theorem aux3.{u_1, u_2} {R : Type u_2} [CommRing R] {W : Type u_1} [AddCommGroup W] [Module R W]
-    (S : Submonoid R) (L : Submodule R W) (r : R) {x : W} :
-    x ∈ {x : W | ∃ s ∈ S, s • x ∈ L} → r • x ∈ {x : W | ∃ s ∈ S, s • x ∈ L} := by
-  rintro ⟨s, hs, hx⟩
-  refine ⟨s, hs, ?_⟩
-  rw [smul_comm]
-  exact L.smul_mem r hx
-
 noncomputable def locS.{u_1, u_4} {R : Type u_1} [CommRing R] {W : Type u_4} [AddCommGroup W]
     [Module R W] (S : Submonoid R) (L : Submodule R W) : Submodule R W :=
-  { carrier := {x : W | ∃ s ∈ S, s • x ∈ L}, add_mem' := @aux1 R _ W _ _ S L,
-    zero_mem' := aux2 S L, smul_mem' := aux3 S L : Submodule R W }
+  Formalism.HermitianLatticesTheory.locS S L
 
 noncomputable def locF {K F W : Type} [Field K] [Field F] [Algebra F K] [AddCommGroup W]
     [Module (𝓞 K) W] (𝔭 : Ideal (𝓞 F)) (L : Submodule (𝓞 K) W) : Submodule (𝓞 K) W :=

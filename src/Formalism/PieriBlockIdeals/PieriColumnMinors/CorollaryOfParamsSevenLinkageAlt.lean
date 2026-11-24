@@ -374,12 +374,15 @@ section -- clump:auto
 namespace PI.PC
 
 def tst (n c : Nat) : Bool :=
-  Nat.blt (n ^ 256) (2 ^ ((3225600000000 * n - 1) / (c * 6931471808)))
+  -- Use the Nat primitives directly: the kernel reduces this test at every step of loop_run.
+  let numerator := Nat.sub (Nat.mul 3225600000000 n) 1
+  let exponent := Nat.div numerator (Nat.mul c 6931471808)
+  Nat.blt (Nat.pow n 256) (Nat.pow 2 exponent)
 
 def force (x : Nat) (f : Nat → Bool) : Bool :=
   match x with
   | 0 => f 0
-  | k + 1 => f (k + 1)
+  | k + 1 => f k.succ
 
 theorem force_eq (x : Nat) (f : Nat → Bool) : force x f = f x := by
   cases x <;> rfl
@@ -389,8 +392,8 @@ def loop (B : Nat) : Nat → Nat → Nat → Nat → Bool
   | k + 1, n, c, Q =>
     force n fun n => force c fun c => force Q fun Q =>
     if Nat.gcd n Q = 1 then
-      tst n (c + 1) && loop B k (n + 1) (c + 1) (if n ≤ B then Q * n else Q)
-    else tst n c && loop B k (n + 1) c Q
+      tst n c.succ && loop B k n.succ c.succ (if n ≤ B then Q.mul n else Q)
+    else tst n c && loop B k n.succ c Q
 
 theorem loop_run : loop 362 131070 2 0 1 = true := by decide +kernel
 
@@ -410,16 +413,15 @@ open Real
 
 theorem tst_sound {m c c' : ℕ} (h : tst m c = true) (hc : c' ≤ c) (hm : 1 ≤ m) :
     (c' : ℝ) * log m < 1.26 * m := by
-  unfold tst at h
+  let q := (3225600000000 * m - 1) / (c * 6931471808)
+  change Nat.blt (m ^ 256) (2 ^ q) = true at h
   rw [Nat.blt_eq] at h
-  obtain ⟨q, hqdef⟩ : ∃ q, q = (3225600000000 * m - 1) / (c * 6931471808) := ⟨_, rfl⟩
-  rw [← hqdef] at h
   have hm256 : 1 ≤ m ^ 256 := Nat.one_le_pow 256 m hm
   have hcpos : 0 < c := by
     rcases Nat.eq_zero_or_pos c with h0 | h0
     · exfalso
       subst h0
-      have hq0 : q = 0 := by rw [hqdef]; simp
+      have hq0 : q = 0 := by simp [q]
       rw [hq0, pow_zero] at h
       exact absurd h (not_lt.mpr hm256)
     · exact h0
@@ -433,7 +435,7 @@ theorem tst_sound {m c c' : ℕ} (h : tst m c = true) (hc : c' ≤ c) (hm : 1 �
     linarith
   have h2 : (q : ℝ) * c * 6931471808 < 3225600000000 * m := by
     have hN : q * (c * 6931471808) ≤ 3225600000000 * m - 1 := by
-      rw [hqdef]; exact Nat.div_mul_le_self _ _
+      exact Nat.div_mul_le_self _ _
     have hpos : 0 < 3225600000000 * m := by positivity
     have hN' : q * (c * 6931471808) < 3225600000000 * m :=
       Nat.lt_of_le_of_lt hN (Nat.sub_lt hpos one_pos)

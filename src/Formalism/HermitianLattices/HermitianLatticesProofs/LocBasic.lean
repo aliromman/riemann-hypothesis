@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.SubmoduleMembership
 public import Formalism.HermitianLattices.StatementLat
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
@@ -91,19 +92,10 @@ theorem locBasic_locS_inf (S : Submonoid R) (L M : Submodule R W) :
 theorem locBasic_lg (S : Ideal R → Submonoid R)
     (hS : ∀ p : Ideal R, p.IsMaximal → ∀ s ∈ S p, s ∉ p) (L : Submodule R W) (x : W)
     (hx : ∀ p : Ideal R, p.IsMaximal → x ∈ locS (S p) L) : x ∈ L := by
-  let I : Ideal R := L.comap (LinearMap.toSpanSingleton R W x)
-  have hI : ∀ r, r ∈ I ↔ r • x ∈ L := fun r => by simp [I]
-  by_contra hxL
-  have hne : I ≠ ⊤ := by
-    intro h
-    apply hxL
-    have h1 : (1 : R) ∈ I := by
-      rw [h]
-      exact Submodule.mem_top
-    simpa using (hI 1).mp h1
-  obtain ⟨p, hp, hIp⟩ := Ideal.exists_le_maximal I hne
+  apply Submodule.mem_of_forall_exists_smul_mem
+  intro p hp
   obtain ⟨s, hs, hsx⟩ := locBasic_mem_locS.mp (hx p hp)
-  exact hS p hp s hs (hIp ((hI s).mpr hsx))
+  exact ⟨s, hS p hp s hs, hsx⟩
 
 end LocS
 

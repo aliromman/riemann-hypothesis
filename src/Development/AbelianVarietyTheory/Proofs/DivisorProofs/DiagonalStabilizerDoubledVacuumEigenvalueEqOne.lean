@@ -92,6 +92,15 @@ theorem lDiag_box_ne_zero (hF : IsTotallyReal F) {κ : Type} [Fintype κ] {Ψ : 
     letI : MeasurableSpace (κ → AF F) := borel _
     haveI : BorelSpace (κ → AF F) := ⟨rfl⟩
     exact (GlobalTheory.SplitSvN.schA_facts hF hΨ).1
+  have hsymm : Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace F).symm := by
+    refine continuous_pi fun v => ?_
+    rcases v.isReal_or_isComplex with hv | hv
+    · rw [(InfinitePlace.Completion.isometry_extensionEmbeddingOfIsReal hv).isEmbedding.continuous_iff]
+      exact ((continuous_apply _).comp continuous_fst).congr fun y =>
+        (congrFun (congrArg Prod.fst ((InfiniteAdeleRing.ringEquiv_mixedSpace F).apply_symm_apply y)) ⟨v, hv⟩).symm
+    · rw [(InfinitePlace.Completion.isometry_extensionEmbedding v).isEmbedding.continuous_iff]
+      exact ((continuous_apply _).comp continuous_snd).congr fun y =>
+        (congrFun (congrArg Prod.snd ((InfiniteAdeleRing.ringEquiv_mixedSpace F).apply_symm_apply y)) ⟨v, hv⟩).symm
   have hg : Continuous (DiagForm.glue : DiagForm.Vi F κ × DiagForm.Vf F κ → κ → AF F) := by
     have hsymm : Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace F).symm := by
       refine continuous_pi fun v => ?_

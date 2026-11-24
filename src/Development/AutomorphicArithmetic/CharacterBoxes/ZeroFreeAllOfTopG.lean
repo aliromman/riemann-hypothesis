@@ -1122,11 +1122,13 @@ theorem poleData (F : CharFamily) : ∃ Φ : ℂ → ℂ, PoleData (gm F) Φ (ze
   · intro ρ hρ
     obtain ⟨hρre, i0, hi0⟩ := (hZ ρ).1 hρ
     have hρ0 : ρ ≠ 0 := fun h => by rw [h] at hρre; simp at hρre
-    have hρ1 : ρ ≠ 1 := by
-      intro h
-      rcases hi0 with h' | h'
-      · exact charFamily_LFunction_ne_zero_of_one_le_re F i0 ρ (by rw [h]; simp) h'
-      · exact charFamily_LFunction_ne_zero_of_one_le_re F i0 _ (by rw [h]; simp) h'
+    have hρlt : ρ.re < 1 := by
+      apply lt_of_not_ge
+      intro hge
+      rcases hi0 with hz | hz
+      · exact charFamily_LFunction_ne_zero_of_one_le_re F i0 ρ hge hz
+      · exact charFamily_LFunction_ne_zero_of_one_le_re F i0 _ (by simpa using hge) hz
+    have hρ1 : ρ ≠ 1 := fun h => by simpa [h] using hρlt
     choose m1 hm1 h1 hh1an hh1ev using fun i => hΦ1pol i ρ hρ0
     choose m2 hm2 h2 hh2an hh2ev using fun i => hΦ2pol i ρ hρ0
     obtain ⟨S, hS⟩ : ∃ S : ℝ, S = ∑ i, F.a i / 2 * ((m1 i : ℝ) + m2 i) := ⟨_, rfl⟩
@@ -1154,18 +1156,12 @@ theorem poleData (F : CharFamily) : ∃ Φ : ℂ → ℂ, PoleData (gm F) Φ (ze
     · intro him
       have hρx : ρ = (ρ.re : ℂ) := by
         apply Complex.ext <;> simp [him]
-      have hlt : ρ.re < 1 := by
-        by_contra hge
-        push_neg at hge
-        rcases hi0 with h' | h'
-        · exact charFamily_LFunction_ne_zero_of_one_le_re F i0 ρ hge h'
-        · exact charFamily_LFunction_ne_zero_of_one_le_re F i0 _ (by simpa using hge) h'
       have hc : (S : ℂ) * (-1 / (ρ * (ρ - 1))) = ((S * (-1 / (ρ.re * (ρ.re - 1))) : ℝ) : ℂ) := by
         push_cast
         rw [← hρx]
       rw [hc, Complex.ofReal_re, Complex.ofReal_im]
       refine ⟨?_, rfl⟩
-      have hneg : ρ.re * (ρ.re - 1) < 0 := mul_neg_of_pos_of_neg hρre (by linarith)
+      have hneg : ρ.re * (ρ.re - 1) < 0 := mul_neg_of_pos_of_neg hρre (sub_neg.mpr hρlt)
       exact mul_pos hS0 (div_pos_of_neg_of_neg (by norm_num) hneg)
     · refine ⟨fun s => ∑ i, (F.a i : ℂ) / 2 * (h1 i s + h2 i s), ?_, ?_⟩
       · apply Finset.analyticAt_fun_sum
@@ -1203,16 +1199,13 @@ noncomputable section
 
 namespace Deduction
 
-theorem lemmaL (F : CharFamily) {θ δ : ℝ} (hθ : 0 < θ) (hθ1 : θ < 1) (hδ : 0 < δ) (h : WindowHyp F θ δ) :
+theorem lemmaL (F : CharFamily) {θ δ : ℝ} (hθ : 0 ≤ θ) (hδ : 0 < δ) (h : WindowHyp F θ δ) :
     ZeroFree F θ := by
   intro i s hs hzero
   obtain ⟨Φ, hP⟩ := poleData F
-  have hZ := landau_window hP hθ hθ1 hδ (windowHypU_of_windowHyp F hδ h)
-  by_cases h1 : 1 ≤ s.re
-  · exact charFamily_LFunction_ne_zero_of_one_le_re F i s h1 hzero
-  · have hmem : s ∈ zeroSet F := ⟨by linarith, i, Or.inl hzero⟩
-    have := hZ s hmem
-    linarith
+  have hZ := landau_window hP hδ (windowHypU_of_windowHyp F hδ h)
+  have hmem : s ∈ zeroSet F := ⟨lt_of_le_of_lt hθ hs, i, Or.inl hzero⟩
+  exact (not_le_of_gt hs) (hZ s hmem)
 
 end Deduction
 
@@ -1232,10 +1225,10 @@ noncomputable section
 
 namespace Deduction
 
-theorem zeroFree_of_rpow_window (F : CharFamily) {θ δ C : ℝ} (hθ : 0 < θ) (hθ1 : θ < 1) (hδ : 0 < δ)
+theorem zeroFree_of_rpow_window (F : CharFamily) {θ δ C : ℝ} (hθ : 0 ≤ θ) (hδ : 0 < δ)
     (h : ∀ Y₀ : ℝ, ∃ Y : ℝ, Y₀ ≤ Y ∧ ∀ y ∈ Set.Icc Y (Y ^ (1 + δ)), Gm F y ≤ C * y ^ θ) :
     ZeroFree F θ :=
-  lemmaL F hθ hθ1 hδ (windowHyp_of_rpow F hδ h)
+  lemmaL F hθ hδ (windowHyp_of_rpow F hδ h)
 
 end Deduction
 
@@ -1254,7 +1247,7 @@ open UpperTheory.Comparison₂ Deduction.CH Formalism Formalism.HC Formalism.D5 
 
 theorem UpperTheory.Comparison₂.formB :
     ∀ Λ : Level, Λ.FormB := by
-  intro Λ la hla θ hθ0 hθ1 hW
+  intro Λ la hla θ hθ0 _ hW
   classical
   let weight (ψ : PChar) : ℝ := if ψ = PChar.one then 1 else Λ.wt ψ
   have weight_pos (ψ : PChar) : 0 < weight ψ := by
@@ -1304,7 +1297,7 @@ theorem UpperTheory.Comparison₂.formB :
     intro ψ hψ s hs
     exact h ⟨ψ, hψ⟩ s hs
   apply hZ
-  refine Deduction.zeroFree_of_rpow_window F (δ := la - 1) (C := 1) hθ0 hθ1 (by linarith) fun Y₀ => ?_
+  refine Deduction.zeroFree_of_rpow_window F (δ := la - 1) (C := 1) hθ0.le (by linarith) fun Y₀ => ?_
   obtain ⟨Y, hY, hx⟩ := hW Y₀
   refine ⟨Y, hY, fun y hy => ?_⟩
   have h1 : (1 : ℝ) + (la - 1) = la := by ring

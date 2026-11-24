@@ -194,9 +194,26 @@ universe u v
 theorem funEqSubst : Formalism.G.FunEqSubst.{u, v} :=
   FunEqSubst_of IntegralSubst_proof _root_.Formalism.LT.CoeffP.coeffBound PowCongr_valid FrobCongr_valid
 
+/-- The scalar, single-Frobenius-term case of Hazewinkel's functional equation lemma.
+
+In Lemma 2.3, take `L = K`, `B = {a : K | ‖a‖ ≤ 1}`, the ideal `pB`, dimension one,
+`s₁ = 1 / p`, and `sᵢ = 0` for `i > 1`. The norm condition in `IsFrobLift` is congruence
+modulo `pB`; the endomorphism preserves `B` and fixes `p`. The condition `IsFunEqType`
+says that `f(T) - (σ f)(T^q) / p` has coefficients in `B`.
+
+For `f(0) = 0` and linear coefficient one, equation (2.5) gives the integral series
+`F(X,Y) = f⁻¹(f(X) + f(Y))` asserted here. The source also treats higher dimensions and
+arbitrary sequences of matrices `sᵢ`.
+
+See M. Hazewinkel, *On formal groups. The functional equation lemma and some of its
+applications*, Astérisque 63 (1979), Lemma 2.3, equation (2.5), p. 74:
+https://www.numdam.org/article/AST_1979__63__73_0.pdf. -/
 theorem funEqGroup : Formalism.G.FunEqGroup.{u} :=
   _root_.Formalism.LT.Asm.FunEqGroup_of' SolveExists_proof InvIntegralOfClass_proof FunEqLowCoeff_proof funEqSubst
 
+/-- Integrality of `f⁻¹ ∘ g` for two series of the same functional equation type, with
+`f(0) = g(0) = 0` and linear coefficient of `f` equal to one. This is the scalar case
+of equation (2.6) in Hazewinkel's Lemma 2.3; see `funEqGroup` for the specialization. -/
 theorem funEqHom : Formalism.G.FunEqHom.{u} :=
   _root_.Formalism.LT.Asm.FunEqHom_of' SolveExists_proof InvIntegralOfClass_proof FunEqLowCoeff_proof funEqSubst
 
