@@ -1,6 +1,7 @@
 """Check the actual structural PR with its normal clump reader, writer and focused tests."""
 import argparse
 import json
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -10,7 +11,7 @@ from native import Blobs, file_sha, git, ls
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / 'import-screen'))
 from prepare import load, source_path
-from structural_gate import header, tooling
+from structural_gate import TEST_FILE, header, tooling
 
 RECIPE = {'context_fusion.py': '322c0ac892bff0bdf808f1ca5b5ee7376bb3d3ee6cef17ab289311ac21fe04ab',
           'compact_scope.py': '9e0f5633f64a44157bc837790d3b21b58c0f098211c00c1590b9a9ea318e7d70'}
@@ -140,8 +141,12 @@ def check(req, inputs, parent, candidate, recipe):
             extra_opens += values['opens']
     finally:
         reader.close()
-    tests = subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-s', str(candidate / 'scripts'),
-                            '-p', 'test_clump_scopes.py'], capture_output=True, text=True, check=True)
+    test_path, = (p for p in req['tooling'] if Path(p).name == TEST_FILE)
+    tests = subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-s', str((candidate / test_path).parent),
+                            '-p', TEST_FILE], capture_output=True, text=True, check=True)
+    test_summary = tests.stderr + tests.stdout
+    if not re.search(r'^Ran [1-9][0-9]* tests? in ', test_summary, re.MULTILINE):
+        raise ValueError('the proposed focused clump tests did not run')
     return {'parent': base, 'head': head, 'source_tree': req['head_src'], 'source_files': len(inputs),
             'source_dispositions': dispositions,
             'members': members, 'member_bodies_with_verified_scope_fusion': changed_members,

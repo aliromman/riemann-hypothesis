@@ -20,7 +20,7 @@ RUNNER = '6fe6cfbf9d8d186a81fdafb3e034a9fc830f84a2cfeed2d5400c1c9424ff9d26'
 REPAIR_WORKER = 'b987f66ad297de8a9210cd7e1c9e7e73c546b62655fdcc3668da24fa7b648c22'
 REPAIR_RUNNER = '74a6311978e07e3a98cb2e0a2adc682c72cd9e1fae1301db7007d5cc1b12b52d'
 ORDINARY = ('.olean', '.ir.sig', '.ir')
-TOOLS = {'scripts/clump.py', 'scripts/test_clump_scopes.py'}
+TEST_FILE = 'test_clump_scopes.py'
 MARK = b'\n-- This file was produced by scripts/clump.py from the modules listed below.\n'
 IMPORT = re.compile(rb'(?:(?:public|private|meta) )*import (?:all )?\S+')
 
@@ -50,8 +50,14 @@ def header(old, candidate):
         raise ValueError('the actual clump source import header or original preamble changed')
 
 
+def tool_paths(repo, parent):
+    stock_tests = git(repo, 'ls-tree', '-d', '-z', parent, '--', 'scripts/tests')
+    directory = 'scripts/tests' if stock_tests else 'scripts'
+    return {'scripts/clump.py', directory + '/' + TEST_FILE}
+
+
 def tooling(repo, parent, head, paths):
-    if paths - TOOLS or 'scripts/clump.py' not in paths:
+    if paths != tool_paths(repo, parent):
         raise ValueError('the structural refactor has an unrecognized tooling change')
     data = {}
     for path in sorted(paths):
