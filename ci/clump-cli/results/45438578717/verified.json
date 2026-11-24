@@ -1,0 +1,342 @@
+{
+  "run": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45438578717",
+  "job": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45438578717/job/138603047345",
+  "workflow": "08169693a59bf67b669ec41c94687b480bd0e7f8",
+  "artifact_id": 14943875037,
+  "original_actions_zip_sha256": "589fb37ea2f621d79f68aea1757c88234f3ece347d2218f5abdcbcac9c472b4a",
+  "original_actions_zip_bytes": 14671,
+  "source_checkout": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+  "source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+  "all_59909_before_and_after_git_blobs_sha256": "496895deca1ebb78e52804972649881d919b090859afeb086abb4efa85818be0",
+  "true_fresh_process_counts": {
+    "warmups": 5,
+    "scored": 25
+  },
+  "cli_tools": {
+    "community": {
+      "repo": "leanprover-community/riemann-hypothesis",
+      "ref": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+      "sha256": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44",
+      "git_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496"
+    },
+    "published": {
+      "repo": "aliromman/riemann-hypothesis",
+      "ref": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+      "sha256": "01a81b1a58da622db0427e99139e3b399aa12fae43cde2d59aa709795c3bcade",
+      "git_blob": "a79e5b81d13dee8647636e5ff1d033aea5ca3066"
+    },
+    "proposed": {
+      "repo": "aliromman/riemann-hypothesis",
+      "ref": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+      "sha256": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf",
+      "git_blob": "e7729f1bb64f7e9d8b3ef1edbe98459f6536602f"
+    }
+  },
+  "timing_driver_sha256": "7dc5fcebff96be053f945b08c47221b872a164bd49638f13ae0ad87fa9e6c213",
+  "saved_plan_sha256": "7f008f70f550f162cba7e1b23b8b15309086d8efd3ff8c0c4a2ff9ed4521a175",
+  "plan_roots": 199,
+  "plan_members": 656,
+  "generated_root_digests": {
+    "community": "9566483e9bd36d62c63a22a9413f1f21cf646a4863922b457dba85ec54e2529a",
+    "published": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0",
+    "proposed": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0"
+  },
+  "original_summary": {
+    "source_checkout": "e7127ce8136d8ed36e610884d8578de1cffadd19",
+    "source_tree": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+    "members": 656,
+    "plan_roots": 199,
+    "original_and_restored_tracked_files": 59909,
+    "source_census_sha256": "496895deca1ebb78e52804972649881d919b090859afeb086abb4efa85818be0",
+    "tool_sha256": {
+      "community": "56992181fe3454c03e8e90fc771aff482dfdc4b39bf58ac3d8f191f42466ca44",
+      "published": "01a81b1a58da622db0427e99139e3b399aa12fae43cde2d59aa709795c3bcade",
+      "proposed": "532a111c35fb0a3fc26cecc28e97dd7d9b19d0d2d63a3a36b59e20d20bad3dcf"
+    },
+    "saved_plan_sha256": "7f008f70f550f162cba7e1b23b8b15309086d8efd3ff8c0c4a2ff9ed4521a175",
+    "generated_root_streams": {
+      "community": "9566483e9bd36d62c63a22a9413f1f21cf646a4863922b457dba85ec54e2529a",
+      "published": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0",
+      "proposed": "6c6ae23dbf326a53cb168c6014c86f27ece96f6da66dd046dfdb3e1b11c161d0"
+    },
+    "order": "One warm-up per tool. Five scored rounds rotate the first tool. The plan uses two tools and apply uses three.",
+    "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+    "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "medians": {
+      "plan": {
+        "published": {
+          "wall_s": 31.205361647,
+          "cpu_s": 30.467188,
+          "peak_rss_bytes": 3765706752
+        },
+        "proposed": {
+          "wall_s": 31.632664959,
+          "cpu_s": 30.887148999999997,
+          "peak_rss_bytes": 3778183168
+        }
+      },
+      "apply": {
+        "community": {
+          "wall_s": 27.000914995,
+          "cpu_s": 26.37321,
+          "peak_rss_bytes": 3606495232
+        },
+        "published": {
+          "wall_s": 0.632754967,
+          "cpu_s": 0.622111,
+          "peak_rss_bytes": 72544256
+        },
+        "proposed": {
+          "wall_s": 0.500829241,
+          "cpu_s": 0.48968,
+          "peak_rss_bytes": 72544256
+        }
+      }
+    },
+    "observations_sha256": "85fde3146fac80a3d894545cf258bd0f49008ebdfaf9963b7692a6df3e8c2c63"
+  },
+  "observations_sha256": "85fde3146fac80a3d894545cf258bd0f49008ebdfaf9963b7692a6df3e8c2c63",
+  "machine": {
+    "python": "3.12.16",
+    "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "image": "20261116.376.1",
+    "physical_memory_bytes": 16760344576,
+    "available_processors": 4,
+    "free_disk_bytes_before_timing": 89988608000,
+    "cpu_model": "model name\t: AMD EPYC 7763 64-Core Processor"
+  },
+  "comparisons": {
+    "plan": {
+      "published_to_proposed": {
+        "wall_s": {
+          "baseline_median": 31.205361647,
+          "proposed_median": 31.632664959,
+          "median_percent_change": 1.369326581866681,
+          "baseline_range": [
+            30.719679868,
+            31.723468769
+          ],
+          "proposed_range": [
+            31.36071357,
+            31.954158372
+          ],
+          "rounds_increased": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "rounds_equal": [],
+          "paired_percent": [
+            2.3007073074734707,
+            0.47717406977865195,
+            0.8894660803631771,
+            2.399577141487752,
+            2.086719994330899
+          ]
+        },
+        "cpu_s": {
+          "baseline_median": 30.467188,
+          "proposed_median": 30.887148999999997,
+          "median_percent_change": 1.378404203236605,
+          "baseline_range": [
+            30.188932,
+            31.006343
+          ],
+          "proposed_range": [
+            30.737601,
+            31.175584999999998
+          ],
+          "rounds_increased": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "rounds_equal": [],
+          "paired_percent": [
+            1.8654878773332717,
+            0.5206708833737528,
+            0.9917639695686598,
+            2.325114480535584,
+            1.8174508458927985
+          ]
+        },
+        "peak_rss_bytes": {
+          "baseline_median": 3765706752,
+          "proposed_median": 3778183168,
+          "median_percent_change": 0.3313167174627596,
+          "baseline_range": [
+            3765374976,
+            3765882880
+          ],
+          "proposed_range": [
+            3777908736,
+            3778260992
+          ],
+          "rounds_increased": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "rounds_equal": [],
+          "paired_percent": [
+            0.34047756057073997,
+            0.3404834865509132,
+            0.3266242841837963,
+            0.32402905493156275,
+            0.32892339587300423
+          ]
+        }
+      }
+    },
+    "apply": {
+      "community_to_proposed": {
+        "wall_s": {
+          "baseline_median": 27.000914995,
+          "proposed_median": 0.500829241,
+          "median_percent_change": -98.14513974399482,
+          "baseline_range": [
+            26.958247602,
+            27.044509557
+          ],
+          "proposed_range": [
+            0.49400862,
+            0.512978261
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [],
+          "paired_percent": [
+            -98.16668842151411,
+            -98.17040044720159,
+            -98.13113756071358,
+            -98.09713795728346,
+            -98.14401306495706
+          ]
+        },
+        "cpu_s": {
+          "baseline_median": 26.37321,
+          "proposed_median": 0.48968,
+          "median_percent_change": -98.14326735350001,
+          "baseline_range": [
+            26.329017,
+            26.434778
+          ],
+          "proposed_range": [
+            0.487961,
+            0.49941099999999994
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [],
+          "paired_percent": [
+            -98.1475917823104,
+            -98.14667976400334,
+            -98.15163221840128,
+            -98.1063700626507,
+            -98.1291002203776
+          ]
+        },
+        "peak_rss_bytes": {
+          "baseline_median": 3606495232,
+          "proposed_median": 72544256,
+          "median_percent_change": -97.9885109688674,
+          "baseline_range": [
+            3606269952,
+            3606634496
+          ],
+          "proposed_range": [
+            72544256,
+            72544256
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [],
+          "paired_percent": [
+            -97.98858863906347,
+            -97.98852239133126,
+            -97.98838531320241,
+            -97.98850868435906,
+            -97.9885109688674
+          ]
+        }
+      },
+      "published_to_proposed": {
+        "wall_s": {
+          "baseline_median": 0.632754967,
+          "proposed_median": 0.500829241,
+          "median_percent_change": -20.84941768619889,
+          "baseline_range": [
+            0.630886991,
+            0.653499003
+          ],
+          "proposed_range": [
+            0.49400862,
+            0.512978261
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [],
+          "paired_percent": [
+            -23.27444515374819,
+            -21.927342215553082,
+            -19.88665351953659,
+            -18.877589284653762,
+            -23.361896697491968
+          ]
+        },
+        "cpu_s": {
+          "baseline_median": 0.622111,
+          "proposed_median": 0.48968,
+          "median_percent_change": -21.287358686793834,
+          "baseline_range": [
+            0.620116,
+            0.634937
+          ],
+          "proposed_range": [
+            0.487961,
+            0.49941099999999994
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [],
+          "paired_percent": [
+            -21.034129098426746,
+            -22.575490962980826,
+            -21.355195797562853,
+            -19.72316837348962,
+            -22.311189929079568
+          ]
+        },
+        "peak_rss_bytes": {
+          "baseline_median": 72544256,
+          "proposed_median": 72544256,
+          "median_percent_change": 0.0,
+          "baseline_range": [
+            72544256,
+            72544256
+          ],
+          "proposed_range": [
+            72544256,
+            72544256
+          ],
+          "rounds_increased": [],
+          "rounds_equal": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "paired_percent": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    }
+  }
+}
