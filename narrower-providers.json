@@ -1,0 +1,229 @@
+{
+  "mathlib": "31ce06eaadf4a200c0e1407c5f10953cf606b8f8",
+  "leaf": "Mathlib.NumberTheory.Height.NumberField",
+  "compiled_modules": 8728,
+  "exported_mathlib_modules_including_self": 3185,
+  "providers": {
+    "Mathlib.Algebra.Order.Ring.Star": {
+      "exported_mathlib_modules_including_self": 591,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.Completion.FinitePlace",
+        "Mathlib.NumberTheory.NumberField.InfinitePlace.Embeddings",
+        "Mathlib.Analysis.Complex.Polynomial.Basic",
+        "Mathlib.Analysis.Complex.Liouville",
+        "Mathlib.Analysis.Complex.CauchyIntegral",
+        "Mathlib.MeasureTheory.Integral.CircleIntegral",
+        "Mathlib.Analysis.SpecialFunctions.NonIntegrable",
+        "Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus",
+        "Mathlib.Analysis.Calculus.FDeriv.Measurable",
+        "Mathlib.Analysis.Normed.Module.FiniteDimension",
+        "Mathlib.Topology.Instances.Matrix",
+        "Mathlib.LinearAlgebra.Matrix.PosDef",
+        "Mathlib.Algebra.Order.Ring.Star"
+      ]
+    },
+    "Mathlib.Algebra.Order.Star.Basic": {
+      "exported_mathlib_modules_including_self": 590,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.InfinitePlace.Basic",
+        "Mathlib.Topology.Instances.Complex",
+        "Mathlib.Analysis.Complex.Basic",
+        "Mathlib.Analysis.RCLike.Basic",
+        "Mathlib.Algebra.Order.Star.Basic"
+      ]
+    },
+    "Mathlib.Analysis.Complex.Polynomial.Basic": {
+      "exported_mathlib_modules_including_self": 2726,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.Completion.FinitePlace",
+        "Mathlib.NumberTheory.NumberField.InfinitePlace.Embeddings",
+        "Mathlib.Analysis.Complex.Polynomial.Basic"
+      ]
+    },
+    "Mathlib.Analysis.Normed.Group.Ultra": {
+      "exported_mathlib_modules_including_self": 1389,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.Completion.FinitePlace",
+        "Mathlib.Topology.Algebra.Valued.NormedValued",
+        "Mathlib.Analysis.Normed.Group.Ultra"
+      ]
+    },
+    "Mathlib.LinearAlgebra.Complex.FiniteDimensional": {
+      "exported_mathlib_modules_including_self": 1611,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.Completion.FinitePlace",
+        "Mathlib.NumberTheory.NumberField.InfinitePlace.Embeddings",
+        "Mathlib.Analysis.Complex.Polynomial.Basic",
+        "Mathlib.LinearAlgebra.Complex.FiniteDimensional"
+      ]
+    },
+    "Mathlib.LinearAlgebra.TensorProduct.Projective": {
+      "exported_mathlib_modules_including_self": 1007,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.Completion.FinitePlace",
+        "Mathlib.RingTheory.RamificationInertia.Inertia",
+        "Mathlib.RingTheory.QuasiFinite.Basic",
+        "Mathlib.Algebra.Module.FinitePresentation",
+        "Mathlib.LinearAlgebra.TensorProduct.Projective"
+      ]
+    },
+    "Mathlib.RingTheory.DedekindDomain.Basic": {
+      "exported_mathlib_modules_including_self": 1647,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.RingTheory.Flat.TorsionFree",
+        "Mathlib.RingTheory.DedekindDomain.Dvr",
+        "Mathlib.RingTheory.DiscreteValuationRing.TFAE",
+        "Mathlib.RingTheory.DedekindDomain.Basic"
+      ]
+    },
+    "Mathlib.RingTheory.Flat.Basic": {
+      "exported_mathlib_modules_including_self": 1334,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.RingTheory.Flat.TorsionFree",
+        "Mathlib.RingTheory.Flat.Tensor",
+        "Mathlib.RingTheory.Flat.Basic"
+      ]
+    },
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra": {
+      "exported_mathlib_modules_including_self": 1671,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.Completion.FinitePlace",
+        "Mathlib.RingTheory.DedekindDomain.AdicValuation.Ramification",
+        "Mathlib.RingTheory.RamificationInertia.Ramification",
+        "Mathlib.RingTheory.LocalRing.Length",
+        "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+      ]
+    },
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Basic": {
+      "exported_mathlib_modules_including_self": 1377,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.Completion.FinitePlace",
+        "Mathlib.RingTheory.DedekindDomain.AdicValuation.Ramification",
+        "Mathlib.RingTheory.RamificationInertia.Ramification",
+        "Mathlib.RingTheory.LocalRing.Length",
+        "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+        "Mathlib.RingTheory.Flat.FaithfullyFlat.Basic"
+      ]
+    },
+    "Mathlib.RingTheory.Flat.TorsionFree": {
+      "exported_mathlib_modules_including_self": 2104,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.RingTheory.Flat.TorsionFree"
+      ]
+    },
+    "Mathlib.RingTheory.HopkinsLevitzki": {
+      "exported_mathlib_modules_including_self": 1794,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.Completion.FinitePlace",
+        "Mathlib.RingTheory.RamificationInertia.Inertia",
+        "Mathlib.RingTheory.QuasiFinite.Basic",
+        "Mathlib.RingTheory.Jacobson.Artinian",
+        "Mathlib.RingTheory.HopkinsLevitzki"
+      ]
+    },
+    "Mathlib.RingTheory.SimpleModule.Basic": {
+      "exported_mathlib_modules_including_self": 1126,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.RingTheory.Flat.TorsionFree",
+        "Mathlib.RingTheory.DedekindDomain.Dvr",
+        "Mathlib.RingTheory.DiscreteValuationRing.TFAE",
+        "Mathlib.RingTheory.Ideal.Cotangent",
+        "Mathlib.Algebra.Module.Torsion.Basic",
+        "Mathlib.RingTheory.SimpleModule.Basic"
+      ]
+    },
+    "Mathlib.RingTheory.Spectrum.Prime.Noetherian": {
+      "exported_mathlib_modules_including_self": 1751,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.Completion.FinitePlace",
+        "Mathlib.RingTheory.RamificationInertia.Inertia",
+        "Mathlib.RingTheory.QuasiFinite.Basic",
+        "Mathlib.RingTheory.Jacobson.Artinian",
+        "Mathlib.RingTheory.HopkinsLevitzki",
+        "Mathlib.RingTheory.Spectrum.Prime.Noetherian"
+      ]
+    },
+    "Mathlib.Topology.GDelta.MetrizableSpace": {
+      "exported_mathlib_modules_including_self": 678,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.Completion.FinitePlace",
+        "Mathlib.NumberTheory.NumberField.InfinitePlace.Embeddings",
+        "Mathlib.Analysis.Complex.Polynomial.Basic",
+        "Mathlib.Analysis.Complex.Liouville",
+        "Mathlib.Analysis.Complex.CauchyIntegral",
+        "Mathlib.MeasureTheory.Measure.Lebesgue.Complex",
+        "Mathlib.MeasureTheory.Constructions.BorelSpace.Complex",
+        "Mathlib.MeasureTheory.Constructions.BorelSpace.Basic",
+        "Mathlib.Topology.GDelta.MetrizableSpace"
+      ]
+    },
+    "Mathlib.Topology.Metrizable.CompletelyMetrizable": {
+      "exported_mathlib_modules_including_self": 1013,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.Completion.FinitePlace",
+        "Mathlib.NumberTheory.NumberField.InfinitePlace.Embeddings",
+        "Mathlib.Analysis.Complex.Polynomial.Basic",
+        "Mathlib.Analysis.Complex.Liouville",
+        "Mathlib.Analysis.Complex.CauchyIntegral",
+        "Mathlib.MeasureTheory.Integral.IntegralEqImproper",
+        "Mathlib.MeasureTheory.Integral.IntervalIntegral.IntegrationByParts",
+        "Mathlib.MeasureTheory.Function.JacobianOneDim",
+        "Mathlib.MeasureTheory.Function.Jacobian",
+        "Mathlib.Analysis.Calculus.InverseFunctionTheorem.ApproximatesLinearOn",
+        "Mathlib.Analysis.Normed.Operator.Banach",
+        "Mathlib.Topology.Baire.CompleteMetrizable",
+        "Mathlib.Topology.Metrizable.CompletelyMetrizable"
+      ]
+    },
+    "Mathlib.Topology.Separation.GDelta": {
+      "exported_mathlib_modules_including_self": 658,
+      "public_path": [
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.NumberField.ProductFormula",
+        "Mathlib.NumberTheory.NumberField.Completion.FinitePlace",
+        "Mathlib.NumberTheory.NumberField.InfinitePlace.Embeddings",
+        "Mathlib.Analysis.Complex.Polynomial.Basic",
+        "Mathlib.Analysis.Complex.Liouville",
+        "Mathlib.Analysis.Complex.CauchyIntegral",
+        "Mathlib.MeasureTheory.Measure.Lebesgue.Complex",
+        "Mathlib.MeasureTheory.Constructions.BorelSpace.Complex",
+        "Mathlib.MeasureTheory.Constructions.BorelSpace.Basic",
+        "Mathlib.Topology.GDelta.MetrizableSpace",
+        "Mathlib.Topology.Separation.GDelta"
+      ]
+    }
+  },
+  "graph_sha256": "b5d3c0c8b2941bbd14d815f7372e61943df11e22a78bc5858790842cde671282"
+}

@@ -1,0 +1,1857 @@
+{
+  "initial_modules": 39352,
+  "new_modules": 1171,
+  "previously_edited_modules_further_refined": 222,
+  "replacements": {
+    "Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.LocalRingStructure": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "35bf2fbda7deb8b2ba322db27dc292095164564941094bf6cd0c9eb3da63f6fc",
+      "revised_source": "6cb97ed782870780e6e03f0e3186c23c801edd3a480c2fadf6534c6be101ba05"
+    },
+    "Development.AbelianVarietyTheory.Counterexamples.JetSurvey.LowKAddStrictAnti": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "e658b9318261813aa8bc38c192f710c4adb8fa337a677a9414511e67ad75f07a",
+      "revised_source": "d329067b1791f2f80afdc0a9ff7df31ef3997635456607e4a9b41fd9fa666808"
+    },
+    "Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.EqOfPowEqOneOfNormSubLt": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "50b8dc7b0eb057588328a3df5533cc429be722170ebe85faf99556d2a8e54159",
+      "revised_source": "3bc6d62f6dfc98e3a066f476bc27639828d568c4d15db14b160117506436ac81"
+    },
+    "Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsSemisimpleOfISupEigenspace": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "966dfc779f390c6923d1229ba376b6c16a3fa19e422da44dc17e7d20f00249e3",
+      "revised_source": "1eaa6c36efecb24e9bfbab5301b46fef7501909299ba0e303eafdf22069af473"
+    },
+    "Development.AbelianVarietyTheory.Definitions.Degenerations.NormNatCastPadicAlgClOfCoprime": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "ce839dcb58243a410c3a61ab10c34e426a12eaae416792df6af8b5fd4d3c992c",
+      "revised_source": "074437fae19b1cd900d88f718e335f187fc26366a455818b16a6c49aed9ced00"
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.ComparisonMemCechHodgeFiltration": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "7bed3ac1de8b5cd294e9ff04ee44839746257904eac93341dd14243a81d5472d",
+      "revised_source": "d72239deb8305bd42fc44f938bad4c5be0f4c91d258ff4d15ee53b25f809e571"
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.RankEqCardIffExistsFrameMatrixFirstColumnBlock": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "b043236626fa7e9649378afe3bf40c1065063e36942a0cdda3c4683367e89e4b",
+      "revised_source": "697acdfa4d7304238749955248ae0db64055b9165cff7328680f43ac146ada4d"
+    },
+    "Development.AbelianVarietyTheory.Definitions.Foundations.ExistsBaseTwoWords": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "30ba5fb8f9dabc8611d680092de6c0fbe48954c990b50e06aa67dd9a2c3ee032",
+      "revised_source": "aea3fe914ad1f434505345e5f67cbf020930043181a2fbd05174171dcf1509af"
+    },
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MemPuncturedRingIffPowerSeriesPart": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.LinearAlgebra.Complex.FiniteDimensional",
+      "initial_source": "656b47a033a3edda2abf48c24835a8d927c1dc57911ee21e725333730473ddc5",
+      "revised_source": "0d0d2e79511e48b191f20a56734074783f9bb854c6c157b9304aa24f10d62e39"
+    },
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ValIrreducible": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "24cec3561112e622e0a29c57b4c0cc8421d03dd2e0159880206fe91de6bb8f75",
+      "revised_source": "fab5fe412599c176d6dad059630c3ca7fe44ff8e080203264abbbc7a98a0ad39"
+    },
+    "Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.OpensRangeChartYSupOpensRangeChartZ": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "1c81967c9c857dca31772a08be3d81707d4cbfe59fe2817230ce3ca014a44d18",
+      "revised_source": "4e90dae07612899153e927882e87a4c8a3aca35f5db7eb34e78854e6c20380b7"
+    },
+    "Development.AbelianVarietyTheory.Definitions.ThetaMetrics.ExistsEventuallyNormRiemannThetaTermLe": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "3cd2248c17556ce16eb383e7305e31e3183fa817017a6b38ae9077c581d2a9c9",
+      "revised_source": "2d781c3047c16edad46ce6b499b2ac3b1dfa65956c5f5ee7034e53cb430255a4"
+    },
+    "Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsGlOfEquiv": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "f0df0b456d2163f768549a280c7a2577156451533dbeb90c7380f2b301789e5d",
+      "revised_source": "541944e22ee359ed07b6c6a29a8286b60a9a1fb04a993292a66fea7c6378a804"
+    },
+    "Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.NotInSupportOfSubsingleton": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "ec5d42b5b45005c4abc7a167eb4666d08e324f1467994c1529a155901b167227",
+      "revised_source": "1fe3ac1dea18128427bf318a7eb32c3e161b6ae294e0536cfc5a76962caea61d"
+    },
+    "Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsRatOfForallComplexRingEquivFixed": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "7cd85d485caaf9bb2084d18fbc9132c45d7a9313b899a3066c04a2a58319c074",
+      "revised_source": "d61775d1f78462b84e8c951610dc197147bc0a37d57dd09785f875eb64f4b3e7"
+    },
+    "Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsTensorStabiliserClosedSLOrbit": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "a4ed0b7c49fc692ac0aa1e20a565197bed915cf5e8ed628b7fee03d30ea1f9d9",
+      "revised_source": "a75586f9b509ac514cda3e078d4165d3b8b18b4471d121d4467e7bfca5e3fd39"
+    },
+    "Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.LinearIndependentWave": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "62f4467c09ebc0e6fd3902b1b075c701186b73f118b18eb503a4d0b8c2891dcc",
+      "revised_source": "9cecfc610c31d901b4da26a1eb94d47e60576be4dbebad0116ccb56da867e493"
+    },
+    "Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.UnitsLocalKummerNormsEqTopOfPow": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "72e2bd31774aa062b0ce98a70e5f6569e6bdc97bc65d4b7731c785e7d0982d2d",
+      "revised_source": "669cb18481cdd09676aedf35fcc0f9536e8fe305d93c7ad366cecb52076e55a1"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.ExistsCharacterEigenvectorOfCommutingRepresentat": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "a08cc94f0e940fdd87aca2ce9df89628681f179fa15bbd3a3dcf25f1ce5f7f12",
+      "revised_source": "74b846c2b7898f5935feaa376330f655d2f3fad060ab0991da05a31640774f9a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.ExistsTeichmullerMapAlgebraicClosureFiniteField": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "815943dcd313dc730611a5d672c4cd97b97322b612c9395db6133fb828f33a08",
+      "revised_source": "8c72d3e262fef9083120397c89992704747dd62fece5abcd7e8f40f25415fa97"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.FiniteGroupFunctionPairingAddNatPosSymm": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "572b86e1cd2130da5f9b5862fe2fd993f1644b6ac25cd241f7c0635957b9184e",
+      "revised_source": "4c067335d893180f7151906349cd2c62b7173fc9f58ff44493a06946cb63dbf0"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.FiniteGroupFunctionPairingEqZeroOfDistinctIrredu": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "25fb8749f160414ded1835a2aebdd4f8da92fc8290e04487a3bb647b4c3ca692",
+      "revised_source": "38887f0ca1b9a587e85273433e9bacc276c3a4de32d13d43683357a15361bd79"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.IrreducibleCharacterLinearOrInducedAbelianByPrim": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "69b66fe6acc29808a7b51066c75de35333c357b5407deb7d4d9d6b51b6e04384",
+      "revised_source": "47ce4b7cb6ecf28ea67d3927b5820fae9417ca08dda46549b75e33e4ddd15919"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.IsCharacterEsymmRootsCharpoly": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "c42408a73904f773d7aa674eb1f9c814484ed90548cabf15a6bb2ea3cb29528f",
+      "revised_source": "84c9ce9e31fd80a524eaadbe58d5b39c47fed988abb3d3d5c8508789e90d2158"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.IsCharacterOverSubfieldInducedClassFunction": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "a55c66f5b32f627bb23c3914ebe3b3c517f90606e99551491b580479199a40a8",
+      "revised_source": "44fb972e6cf095794ded0c3a3eab6c9fe28afc94f9bf6662a216351786034b87"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.IsCharacterOverSubfieldOfRepresentation": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "8b653d430e43ef5fe2619e723b5e8da8ee3686468b94244f4f5e4ef055e31e99",
+      "revised_source": "b325513e5e17e6d0567759f3e0379c2908b1c3faa6e3dada183bb4742c732ce1"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CharacterTheory.PrimitiveClassFunctionExpansionRootSums": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "9bc3f33825f5345e7969a20ba8ccdf74aea70dafe44ea99f2f0cefb489f94e69",
+      "revised_source": "d9239686a0fc11f7c4d6faf6638309e8eea4b6b7cdbfd78b001d89b8040e8e38"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.LengthBaseChangeQuotientOfMapMaximalIdeal": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "8d70cca3f22b87e01be29fe655e854d1b0ba29563f39c04dfc1ddc3eddb594c5",
+      "revised_source": "723ba4f6f306d21700ccd22a05cebe25ba4022831ba478d1feab8cee7efc78c3"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.MemRangeOfForallHeightEqOneOfIsReflexive": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "b4f587296acf064ff4e960d11501817889ed456c42566b53fb122384831283c5",
+      "revised_source": "c9d446fd17f69cff86f6760448c1656e59138792a9d6af82e5c09f11fd63e04d"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.NatCardAlgHomEqFinrankOfIsReducedOfIsFractionRin": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "4131111d4332a17e69d4988ed72f60b4747e748f6380ce066469adc06998780f",
+      "revised_source": "736d00cf234372b6a90fde9fde8483ea003e884d9e4623bf4503358c9457d69d"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CovolumeBounds.DiscreteTopologySpanOfLinearIndependent": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "d6bbc5485ff35b6786aca29c2b3cde770becd3bf2037f4652172b2a0e9fbeab9",
+      "revised_source": "6b5286a8bc01eeee257949c1b43f5d73eaa6251a9241200c0f27e92fd2b356a4"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CovolumeBounds.FderivIntegralApplyOfHolomorphicOfDominated": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "2beff7dd4c7e87870ddc52a24efc52ec529da3b8b2e61cb01001f852ed21c410",
+      "revised_source": "53d578336163173146de5c026b888b474e4511b17b3477cf6c1eb629f82c91cc"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.ExistsConstOfSqMulTendstoZero": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "4137045a4d31393078c6832ce530982fe457ed2744cc60615e9001653148fbfc",
+      "revised_source": "9556372bb05716e7196be4c140b064ea225b1a61912be3104f3060adfe5e0d99"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.FamilyUniformisationFibreTheta": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "f5249753124646222874d487cf034c0dd4877194c9cf99a1c64eb864a5f344c8",
+      "revised_source": "5321fb0b8c9c343d078a78e7f6a1971ae4d4c4f3b63c127245505e98538b9d96"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.SurjectiveOfComplexPointsLiftOfUniversallyClosed": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "116b545253af61bca9d8c01b74c2ba5a6bac3934765c8fc251763031e1e37c80",
+      "revised_source": "5dca65a0c9b2f8398e5f4c32463bf019db716691ec273c4405a747be2a41c0eb"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsGeneratorsLattice": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "b0907c63f9cd3cddd3176aa9722f2fb00e3f34a062a2d6c446b41bd3d30e3223",
+      "revised_source": "db8eb8ce99edf0a5a74a4967124d8002351bec66adcc389efb9ebec5b7ed2fbd"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsNatCastSmulCoeffIsIntegral": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "93b6e9f0247f526c058187220cc0cd208da6cc454f2f24a10a62b6fa7c1af3c0",
+      "revised_source": "36c7b949181406d018ab32a3e22941f88a6014cdf16cca807d06aad79b9238ee"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.IsLocalizedModuleSubtype": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "f3a2dc6d53593aacf8d88ffc19ff543f43ce8f8b5baf3e22ab7dc18da64d6f97",
+      "revised_source": "2df83f883e0aa00a10c4c5a1e7b50e8c4b35a934e2d6cf252869f148edf411e5"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.LevelTupleSumEqRational": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "8c989c54298737f7e223b15a6254333306e05ac88c5cccb3861460fa20703588",
+      "revised_source": "11ad6a6f58686a29806ab8bb715e6983813583e634da6c013e433af006324cd0"
+    },
+    "Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ModNSqIffExistsGenLatSum": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "4e195dc9ed6da7e65182b37c1af820f59b1f73e3cd6374fffed892659f3dc21d",
+      "revised_source": "e5c9e9d090aa66d49246f080837e1969de412e11e659766c62296e991e0f59fe"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ClassicalPointsAndLocalRegularity": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "56ea5f03982b3413cba9022912cab56f91cf7eef87ec50bc60f864cb2bc3b8d2",
+      "revised_source": "baa765bcd66ae18fe4277691ef911d89fd7238424e17af64f1d02e1ad0286f93"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsBundleOnAdmissibleModel": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "07e25053ef0e1562b54d830794e93cda34e793ab79041ca054746c7f3f8727c7",
+      "revised_source": "e4dcec34a71a7de143e7238ef98321e0b4c8870dba9a3cb5fefa16066f56ae82"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsNormalModelThetaTupleMaximalMinors": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "be26321aeea08b319bbe045e2f4acf741c4fb1651df676a96ce432015838e1d5",
+      "revised_source": "9ebc9aea10be4a6610b92768b6108624bb208bd7fd5753f742f4e131988d1dc7"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsRingEquivPowerSeriesOfComplete": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "ada707c4f24964c803ef83b786c1aefe5de3024b5a0b0331dabe16ac37a7d1cb",
+      "revised_source": "69aa0d87a2b1c222f9c88e146a68a6c2837368d0ddd2d5f3526fadaa79167c17"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.FourierExtractionTsumClass": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "ace9863e67b9a559f06122e4bcad4de6cb851705db3f3d123c77e3c2a2fe263f",
+      "revised_source": "55f823d4518f7171e29062ee2a3244e52666b23279c9d6a9a81667250c4086ff"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.GeometricallyConnectedOfIsPullbackOfSurjective": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "ed53c8446198bcb1dce5a34c72b6368f889b9cdf4c5e9c534241b4ecbe394c74",
+      "revised_source": "66d2cdac607875e98a3d6bc626a40f2e4c71b657a6e5a74bd8961dde7d68d291"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.GlueModelsOverSubfield": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "9fdda43dcd8e277080b0120b88dd6139ee272d080e1390d0893e365821c635f3",
+      "revised_source": "2983ec18a003270e88adea217a5a318e0fce698678ab1fc886de33b3c42848d1"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.GroupSchemeMorphismDescends": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "99bd0a46542062e294767b2cebd18f1e2c9e1a188b097a7735df874877e6c780",
+      "revised_source": "3b1c5096e01fc8c0177acda717895fbad0f17e51060599ec62c2f995039bce20"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.HomDescendsToSubfieldContainingFinset": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "fce00f7b3053859e437cb4bde0116e62c885188eabcadca424cbbd4e72f4e2c7",
+      "revised_source": "99a2c790b2cae13523b0cad068652f44f42f53d7d2bfcafd5a1bb615fed24c71"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.QuadraticMapNonnegOfTendstoCofinite": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "28a05b4ffe8419cfff708970c2234fc01ffb25b9b7ea131d0fd9bdd2f569ed63",
+      "revised_source": "b4c8980d58ab162e3b85f4456986947c6ed7246802b6f8e844cf8485f956236a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.SpanRowsClassZeroEqInvariantStatement": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "a15832ac75e6197cd62cabc4e6531fd47e44ce2419d2b961c60a40fc2a14e224",
+      "revised_source": "5bfa15a757d95a5ef1ea74fc1c6c81533d838e7c5988f0b4ab9f4c00afccb82a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TxCosetCriterion": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "37858efef84ca4a7c3b14e14370cd619ef43655bc6e9cc6930148c57f6d8fb06",
+      "revised_source": "e09a4cddd30c5fd2480cf12e381e5cca0a8ddc6825b42862a70f6001c585825c"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbsNormMapRingOfIntegersHom": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "1021a5a8cbac9cf3ded2bf67ee2620dbd0a9370d528d995e085931e1640ef898",
+      "revised_source": "82e3ddc08532b69a95d8b9bdf5a839f34451264f271f846a619946e7c12f16c9"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.BurnsideSurjOfIrred": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "dff501aae9f3ba0297f321eb42bd7a1f037c6e7c8c6da158d0baebbf97ff08e7",
+      "revised_source": "723360118268e349f8c97cb20a2e22fd815c31ab2e696140623ccb22fca7b526"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ClosedImmersionOfBaseChangeFieldExt": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "4fc0f927c2a54fb2e57ecbf38542a22cb30c5f8feb07fb51d9612a8c23a0f557",
+      "revised_source": "375e3e1e12d825c2a0137747a9e981b1fb524e8f4dc0d76735f8e6a71c42123a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoeffMemSubmoduleOfComplexPolyValuesMem": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "b1dad092e034a3dd2c066bdc486d014278550a45f0b8b4733fa178d899cffafd",
+      "revised_source": "de297e4a8db78cae6a8713ebe22068b197f6aa3a133aa5bab27d85c6664b9b2a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComapMapEqSelfOfInjectiveFiniteHopf": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "44866872afd59a3494744e531256fe31e6092e1d7668f10fafd338825932fd2e",
+      "revised_source": "24a3a5f2aa9dc8228106d00e58e63f03ce11a8f54888e69a7b4a224b9f7f3b72"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegreeZeroSectionClassProperties": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "40198836f4c601884bedc3d937cc7245e1fa542da8ebd8d177591a218ffa210b",
+      "revised_source": "7c8821c0e493d0a725b4556536e5cd6262a6d403623a4aea8b66eafd7eb7a2b7"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetEqOneUnitaryPrincipalCongruenceLevelThree": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "363e4b52f1a44b74a147e7582bdda1b0f6ea9f968f5543132294ab603e1274d9",
+      "revised_source": "a37564a1f3560c5d8c1a4a991a183098a4c41b8d9ef82f8704b4c9be4cfdcb0b"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.DixmierSchurOfRankLeAleph0": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "2c53a98fb4aa78e49bab3685b719a947e3438a57ce3083cbe578cfb097c763f3",
+      "revised_source": "3ed0b4265dc528749f0b7e12279017f5f720d6b15c102c669d3107ae52a460fa"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCompatibleSimilitudeLevelTowerStatement": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "e30e8d24a96b5fb125c13ca055e00e30068d52c07b294331c15ec59ce39fb3cc",
+      "revised_source": "18aa6f00b2ff7a18707de4f5f6ae9d9b90e47ad261991fc85f492bb08a0f9ae7"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralInvariantDerivationLog": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Topology.GDelta.MetrizableSpace",
+      "initial_source": "fbd1542447992b0604c12513f9246b007c6652516f3583e795c1b9467db8a0fe",
+      "revised_source": "e051360e9c311fadfb015e3b5a3d138b25dedfa3ce0c8a029b385efed1603b67"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsAlgClosedEmbeddingsOfFamilyStatement": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "3cc1727ddb5b26ef6c6c4b0e707cfa6ab9ec74c81ed1e0b80a822e027b2a6e3b",
+      "revised_source": "d2346782621e8f9aabc16383a22a7a66ea3fbfc9523eec89f1a06a6ec71f87c6"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsConnIsEtSplitting": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "5d50afbd15b148b588c6e64a542f6ab5c5e2b5826068538d33f336540c3884a6",
+      "revised_source": "612ab8ea1f7753f9b4ef358403cca0909952b73c30389e4514bfe910a3cbea8a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLagrangianLiftLieSquareZeroHarrisTaylor": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "dead6f240748ad8b03a0a37d5ee7060d3e601e69b49b78d23073f5a3aa63c4d4",
+      "revised_source": "dbcf8e6d629422c6520401ff3fa1e8a7f79324b1837bafdf677d2da24c304c9a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLaurentConstantTermFormFunctionFieldStatement": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "d3169fc731758322e0065c654ac1fab8edb66d1724b586070cf8a9449520c261",
+      "revised_source": "1c269157086aec3a6360bc14728d151297d426935dd69c5024f4c67168ef0f34"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNeZeroForallComplexPointExtend": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "2caec3c1ddcb3cb36b0d55c933286b5009e110722287c97ac8282498b51e60ad",
+      "revised_source": "282b67ea53b05aab441380e6e398fb5ffa4ca7a9cd0a08ff817a9a538e55e450"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsQuotientPDivGroupClosedSubgroupPTorsion": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "e0a433e2a64f439da7077fa52dc62683149b8637ecf2e7ec2584e3d4f4717e08",
+      "revised_source": "a8320a39bf3c120a8273ccf6234f19d624273312c31526ada8d9371affe0c6b8"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDimensionalOfCommutingFiniteAlgebraJointEi": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "f5488ba260a6684a484573141280aedba0b0bf27dd4eb868f22c25e9f46c7b0b",
+      "revised_source": "850c5b678c8d557f3b57e7c02484f0e401bed6796eb62a2aae07150f87a66123"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankEqMulOfRankAtStalk": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "18c6d307e8e6bc1239ee501c0f55f50273ab1033bf0323460c8290a8295272be",
+      "revised_source": "42be80ee091c2031a67de2fc67bc1c1819a1eb1c73c989219f1f4fc9a3b634aa"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankFiberEqCardSectionsMulLength": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "2831f7242bc2872a545212f1c83145fdec197a09a1f043e569332bb887ff5f69",
+      "revised_source": "7894a0a6b1ef4dacb39b7d1a285d0d8123bddb6389131d9a2f5f98088fb5712f"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankFrobeniusKernelHopfLePowCotangent": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "bcbba97475975cbb7662a9d5556311d6796150851b07571b2f3868d9e7816fb6",
+      "revised_source": "e6c739ed6d9ac9b6ed53e441096c348796b08e9c6b65ea043eb14e01d458f282"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankJointEigenspaceAddConjEqMul": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "6eb3021052cac735c3869d0f1e92d7da01be39a824f1ff7bf32f33253a6bea34",
+      "revised_source": "9d6bc5d9c1224f125a5c2f970ad0b59caaa02683b47229ad62ce991f62981cbd"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisTwistedNormGLBasicProperties": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "abdbbeb5f50ec2dfdc1ee627f5bf74213fba9140de0366932509bafa249d4482",
+      "revised_source": "a27461123e02d2708595898e82e3b7f495ca41e1dfbb2246d499e0823ae0dd5d"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorOrderFaithfulLattice": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "4a3dd194fa17b8e5ba3cc632078b63aa6ccbd03090204c0ca0fb0bb4d06d4b6d",
+      "revised_source": "145d2dac0506d50108e2d512d6b2fec893c41e8fe485e438dd98c69a2f896ac6"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasPAdicPowerSeriesValueSubMemPdIdeal": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "52e4c0c3bfff04647fa4a6a754e198b9b971be558f4500452e8b8c0cbb418cec",
+      "revised_source": "08c0a6a4245451c6e176f098044e4b1ca3fe51150b625a97e5f65ed6bc17792e"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.InjectiveOfMapPderivEqAndMapOneNeZero": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "d55d0f1dcec01446d58b203a3662da3642560ac6a3d047bb08fe9d64a37fe210",
+      "revised_source": "bb1b4d7ec137bd4650653be413e269113f1dfc6b6db24f5c2981b940d5112302"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCocommOfSurjective": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "be264d25223737c41e3d38d0d56adc5ffcc7fce2d862608c032bd07d7b05cf5f",
+      "revised_source": "302f9bd1bbd4b60dae62628b217f7e721a276fcc0af22e59d2dbe098d7fd9743"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsRootMapMinpolyIffExistsRingHomExtension": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "bcf4c3fa53aa6554542e2596f5dfb2a694cd06e36f6faa4bc20aef43ec476ef1",
+      "revised_source": "1ca12db193c5b1867ebc377e33e4a73d544c65fe9c92c0f9561ad81de1c24e80"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSMulRegularOfEtalePuncturedOfDepthPos": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "c9dd7c363436ef2595314534b52aee9440f69699dc5fd031ae179488d58fe953",
+      "revised_source": "54c551ce798ef5103342a00b795a476ffaced19944645678f5725049aca9ca1c"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerIdealFinrankEqPowOfIdempotent": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "d06c5b778bbf0ff6035b886e3f149585a878df9e9124e4864cabd6aa8984d06d",
+      "revised_source": "5950069d75dabf5948e873afd3f0caa57221a5152b32a649f20a24849726a9e6"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemSpanHeisenbergTranslatesOfVacuum": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "7691d1cfd4c0821041889f58b1ba8b629742f0c83cd02e5b27bac65abdeb1115",
+      "revised_source": "28e21990ea982f407a36d6bf661d71abcea57846652f3e411eff884d541fcf92"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProdArgRealUnitEqOne": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "2e7af9a5679dce65b1ac767369bf8ed71a182a668bace9a7dda2d7da8beb5a39",
+      "revised_source": "b7f462bb4f1fc8d6474a61e940c888763a0454180ebf0be52c75782fae906d80"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelIndexUpLatEqSq": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "6ed6f7982ce94f00d65f200b25d0e4fe8adef1558d56d2f348a2dcc7fbfe79df",
+      "revised_source": "fb08d1119516d5a1b3f68ea7a5690d2ba0667e4d7fc93a061030d859dcf8b2d2"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ScalarOfIntertwinesUpToScalar": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "e6d8770cd6cdf561d1b9358d58b534639196062469c7e9b13a4c6a28ce63f66a",
+      "revised_source": "bd78ebd7e525026a94a74342b8045db5284cda4e5f87ad423dca9629ab10b7b4"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzSeminormL2Bound": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "5765f913002df2eb3c70bad9ddc3164feca27c6f50ac6c10e027fb3afc4cf973",
+      "revised_source": "522110ecac5f7fd4d79d5f04a2ead07c9790256058e5cf3d6181fc90b354d6ee"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzVanishingDecomposition": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "5247cbff1c2d71e22ad63e661e21d39740c36b2d53428d6fbb7bcec01d2c9b1b",
+      "revised_source": "4d8783ddcfc8b2f73833db3fe529a2bdd7a48483366c7c596029fd460fdaadd3"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SectionComponentsPreimageOfIsPullback": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.HopkinsLevitzki",
+      "initial_source": "9339931ee97fd0ed8dc98ae0921a26fd27ba90b663ae9cbed10fc147a8bf2797",
+      "revised_source": "3dd54442d5e39310985f3560b43451edf1e2f83639205a47dcff0a971be14544"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ShintaniLiftHarishChandraInductionEqTwistedStatement": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "d285f5d530dfbeae39d5bac8c1ef0a4c55a5e3c5e42f71e7485494596a190949",
+      "revised_source": "66766a916993f677225d3c679f2e0900e0d19c384619dcd344410c1efbef64d0"
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitRealOfCongrOne": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "277187e9dc6c1108bac6b8ae1c6c3805d014f07acdd4f7a703817beb363566f4",
+      "revised_source": "6403accb1e73aa70e69e421487ed8fce0203abc7549c499804793b543b8ffb63"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsPowSmulMemOfIsLat": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "f2b1b2a75d15d87660155a0bb707482799e12c14ea63d93f666a7b8834d7cf57",
+      "revised_source": "166fc12f9d077823bc34edb1197d72a007a735a766c67a1be0bf920c40bbf97a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.GlobalHermitianFramesTermsOrbitsLocal": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "88784cbfbe8949af77d5748c3bf207db9c2044b96803cb3fec46505dd940a540",
+      "revised_source": "0469ca125bbd8a34a45332ce46714baf140f23b95a61b504d44e2c899e9f74fa"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermitianAmplitudeMassProductStructure": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "dd0852fec0e2048bc00ec358c7ce91ff65a9962cc198908ebbcf1ccd7420cab5",
+      "revised_source": "590233d898a43a87a020a97d8433fe3e6d8bf27e6feec84a2633ef4be765dec5"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.NumberFieldLatticeDeterminedByLocalLattices": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "17745514b2509f7dd83353f175eee6b1909019db970a2fc83fe6d2d65a1f1ad9",
+      "revised_source": "0b0f78d200c6d39f88fb40d0ffa0e25f070973fa6a4867558b8645c5fd9aee5d"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.PderivSecondEvFirstPointEqZero": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "418560b0d3a3c59ddad55e547ac527a934b85100fecb95db881ec26f66e1d7f0",
+      "revised_source": "b758287ba0b6a9c5a1a1514c2fd180824db917fae468308d95115ba25717b772"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.CuspFunctionalValueModPrimePowUniqueOddWeightStatement": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "3a80d70031af31c103aaa6a7fa5e2783d0defcb456045bdab4030b20291d2f8f",
+      "revised_source": "aef656783c3c5ce8855834cc34c9d752df17067fa201774f4a8d41fa0516cb2d"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsFinsetSpanPrincipalCongruenceLevelFunction": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "12782bfd4bc718aca08eb997677a337735acea4fec79447aeda401f7532f998c",
+      "revised_source": "9a7636b03ebd54ee5b0244c05a2c871d57e8a6ee6aefa1624fd08fac43c0537d"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.InclWFrobIter": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "1e66c03f0e3d7c7dd2fce2f4d244f596d8e0b49f5d24448c1ca5a206870a74bd",
+      "revised_source": "8417c64eb9a11a6961407593ca8d791bde1a010ec9a32ddaadab02d9439cdf21"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.KroneckerCongruenceModularFunctionTowerLevel": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "2830dbcbf1a860ed6fff71e775e0930adef3f7de26840ef8b702995fa571f9ca",
+      "revised_source": "93d1cbc92252d7db57ebd232faa22ebb23a445d6a6125d969a1275542d801215"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.LatticeExtensionAlongFieldEmbeddingDuals": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "a658e635f70ba7783f0253dd390f82b008ce0a98cd121d411319fe2d59f75e44",
+      "revised_source": "cc7ce1b99ad4296a76b6406b9c81ba5ca5a182a550a85832602cb138365cddeb"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.LaurentSeriesPadicExistsPthPowerCombination": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "e90a7a5b7f3e8e7cff7726e533b37aac804c8553f6fda33c11c7581f596cc977",
+      "revised_source": "cab2d03daa8537a45915ea610ef955b0f054de0d1829c69cf5e232a6d43f6e76"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.ModularFunctionFractionFieldSaturation": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "d76a6ee97ae8ae10ae16b52d379932d506421ac3eb6bd357e197c4f063d61320",
+      "revised_source": "d0556efac24d39461fb947da39446a63e95561347f53bd62da696285ec8ded51"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.ModularTowerUnitsFiniteModPowersAtLevel": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "7c1faab557eb25322c1e9e646f7ec6b69229ec065037b1ff346f14d85c4eb5a7",
+      "revised_source": "3e54be7ab7bd2eb652a3c6268e23c0853f46728d8b64069a2c75c162ce69598d"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.PieceUnitSetEqSmoothingMulPieceRaw": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "684646d0a58aada6f1f40af6cacf1846fa21ea6f3f62144655876d0e25b534c5",
+      "revised_source": "9820a5e4e32b6628aaa9f10a6167a445ad8c6814fd5cfa96007543fc163327bb"
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumLeProdOfTwoLeNat": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "3f9c3140bf038fb5f68eb6d33afbf129a364e29060fb9728852b56bd4c7840eb",
+      "revised_source": "a22f2711ab002463c342ee1cf30b5b9c541f162f4aa4fea3cea9740884e6af88"
+    },
+    "Development.AbelianVarietyTheory.Proofs.GenericRegularity.RankOfQuasiIdem": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "eef7bc48244205ad06c74e1b18d00346bd9597d642285a5e7e52131616357a34",
+      "revised_source": "3570668aae278eda16ef7b008fc5b142734165049cd44bf323d02af317986218"
+    },
+    "Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.JacobiTripleProductTwoVariableTheta": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.LinearAlgebra.Complex.FiniteDimensional",
+      "initial_source": "c04336f5e9339d361ec7c6f77118e21b3c52aa9fd69d0b08132ee4cfa5e1dbaa",
+      "revised_source": "714824a109ba17338e79b4bff96fc3f2638fb40d87fd27a3a56751e11edda38f"
+    },
+    "Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.FormallyUnramifiedOfTangentMapInjective": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "d6c4f8fdbca944a4dcfc1f6cde606d6b6ebf02ee7316e815846bb8e12758789b",
+      "revised_source": "abdb165533a270cf62d1efbd244bef6f79b65413b38aacd781105e6f1c075e76"
+    },
+    "Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.HomLieEquivScalarTmul": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "d38d4a96b3f12137539776c1675abb186bb9f1af2fe110d9bbcbbeaec6876b03",
+      "revised_source": "f9efe9501fd75c6d0343bb855117ce2c693fbcad4c1dc14a5376808c9836f06b"
+    },
+    "Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IsIsoNormalizationPullbackOfToIntegralClosure": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "f9e06ff641b5ce0811d23d31412ba0a0351c66b9de13d5945e6399e32f6d6e86",
+      "revised_source": "5d3891526f39857373b4c431edf9250c53f42a9ceece29189f77bbcfe91c26b0"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BreuilKisinZetaFineBoundSecondBasis": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "db42093430f5be331afc6cc2eadea5d786319033e4672e769d0cfdf805be7cf9",
+      "revised_source": "0f5c1e5fb55cbcf9819ec1638ecc2f326981b9be820e0c64d59007740c7eb011"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CharpolyDvdPowOfAevalEqZero": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "aa2e8bfa0303635395b0084a794fcf59ef5e66b4e704ccc54dd75da3c280d560",
+      "revised_source": "baf3dd6ad21c2fb7c698acf5ad7c7abb670a142135ff290289310998ead14bf0"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CocycleTwistCoboundaryOnBall": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "21b60c229dff94996932e528692b305445140ecefeab567d906ef1000168c67d",
+      "revised_source": "def541688ff1541c8b1d2b4f2d4abfaf6874b8b2edf9495718577b0395607a72"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoeffZeroEqZeroIff": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "5eb7959860d13e3a4c71607669db69d30fd0ad60fdd284de519fa426be3ee4e8",
+      "revised_source": "4106ab6653c770a78f6c9021f1d037ca739714fcdde906e92eeed146c8df6b5a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CyclotomicExistsIff": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "bd87eb488f9e5942a6bf318196efd7cb36e15618c7b565d976e77b56696f75d3",
+      "revised_source": "3429307a243f8a43ca4ef0608ff8784729962d95438b2c9531fffec91e3b81a7"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DeRhamDieudonneSpansTensorDeRhamPeriods": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "9ada22a7194c90547924ae8be75bca189092df7c12dd3b0550513e75ce1685db",
+      "revised_source": "971b6501d6b350912279809064a010afd019dc951a5c8c3e1eb5469e32e701df"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIntegralRetractionFiniteExtensionQl": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "5a58675ab3ec694278fbbbc66deee69e5cec044c0e6bc8ef8e38e31d3006a488",
+      "revised_source": "b126f6ccba72273b0af5c1df6cee1819519b6bacece6385f9758ac9b376e0e80"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsInvertibleDeRhamPeriodMatrixOfIsDR": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "bf81edb562588417353ace5de64f371266212845638cf5640a9c872186d4a1a8",
+      "revised_source": "ff2fbf4046cc3dcc801006d8ddae132525e965da8da523d9d7b1df5923e7a4b4"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIrreducibleSubrepFixedOfUnitary": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "3a097923a45f944f6adfdfb335d00934a08052dcd74872578bca77fc2651bd30",
+      "revised_source": "5806cf6317a2984ac7588d6b686b75546ddf4721e5d142b02e0d60b7513cadb1"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsPowMemSpanCoeffPeriodPow": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "716d6e1d7ec343b072d922bac9155fcf3e3896747e8601c85ad875cb9e9a6b54",
+      "revised_source": "cf6caba7bd25c8d51f8b7ffd5d3e3e4f99b36947de0c394e3d2a1d47fd859345"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUnitSigmaEqMulHilbert90InvAlg": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "ed30a7d1d3a9409e0ce7c563c1d3bc958277dcbc094333e84b24712855be3954",
+      "revised_source": "863d8f9c2db7d4b47e9f757ecfe8a85796e017653badc0df450bb87e8cc78bc9"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsCompactIntMatrix": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Normed.Group.Ultra",
+      "initial_source": "56fa6947950aec849bc818d6df927652d259431cc746103f02813e27f6767ae8",
+      "revised_source": "c9e4a53e30b7ff339661bab382f9389a3e0dcc86fe4b789686dfda3609b58af0"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.JacquetRallisInvKRegularIffIsUnit": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "95940553d451640793f65804174ab82ffa4adc37d5186d274f6e29e827ee05cc",
+      "revised_source": "0ed65735523eccee8e3bfba7ebbd917971788538a3f2ea9c0bf633b0c6d2121d"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.KirillovVanishingOfLimit": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "14ef820353b5905cee442c4dcdb32d1a353bb6a93f08800a83f448833381b236",
+      "revised_source": "70e199144138015f8e85b82dfc2714bbaa6ca66061bc5dd099b2aa87c51e4e97"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LiftingTheoremPhiModulesExactTriple": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "037104e1dd44d332f3a9441d3016e36b27e268955676b0fbddd9614b460df251",
+      "revised_source": "a019f60a34bf23d4da31fbfadac55d819d1c590fbf970215ae919fa8a39d6ea2"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemAdjoinOfMulEqOne": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "922ce1f207dd792c0631f31d273c9a7f8ee25a53390811432608406b9e4cb74a",
+      "revised_source": "a1450f17de1c4992d9eddb30a3dd8d2bb92989f6011ceaf10943550b62cc013f"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemUnramifiedOfFrobeniusIterateFixedFil": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "7f19b6bf7b11349952c2924414804f1eeb36699f387b9b814d7fc3c842f92ced",
+      "revised_source": "8e37e95166429acd4ff8bf805ab5dd528717b2c0c10a579f703ef0b16319459c"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PhiGammaModuleSaturationTheorem": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "6d88b1ea699474baa9e9e6e709a73d4c323afdaff0c3b4c37c862608252465b1",
+      "revised_source": "c2b15ce21d7aa28b16639c4a4395b6810909f706b2d2c661485621ff73ce9b00"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SeriesTransport": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "df5b2290fb3864ac6b7a4cd7a8688c6439e98ee9c10d9adb8240803b28d6d1b2",
+      "revised_source": "9c83d59815ccc7698f26b60da496d6a82f159bf243b0eeb83f731d4022e05c64"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachDeltaInvariantCoboundaries": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "be3b67fab62a3a3307d301b844527e78518f75537c5c23ff5f18f371fc7a34f6",
+      "revised_source": "07ad0028a0f4468eaa61a363c96290f5f6317c626e889d121bf34446fe96e45c"
+    },
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.CapelliComatrixLastRowInvertsCasimir": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "aad366376ee181a6383da33c93925ad7ced5cbe767884385a3e0f1ec8fc9a26f",
+      "revised_source": "d76387c743172a2ca0def5903349f32d4b3629b56e1a93539f54c44a795f251f"
+    },
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.CardFilterFinBounds": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "97d5160634c342ec9cd1dc727254537a1b506c7276a3557d629aaa665056e1b2",
+      "revised_source": "0b7570ecfc0d2b23b8be57466bba6c102703d68caa48c44214ebbbb55b4546cd"
+    },
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.CasimirScalarOfCapelliDeterminantEigenvalue": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "34ae5794f6394041d4737aa815cff7400bef3d1e75b990616f97684365f37848",
+      "revised_source": "000ddaeb563b34bd389b757eb7638ee1b983b3e1e2208ef7b482e54b2c2ce341"
+    },
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsAlgHomValuationSubring": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "1b79cab156da6eb9224f1a61634393f5a0e32321cf927f67c0e928d6680231c9",
+      "revised_source": "b4dd9642d87b71a55306ddd03497c4aeecc7b8013530198dba8b7a2a23b2f613"
+    },
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.PowEqOneOfMultilinear": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "f7a97a761f4bcc2c98e20bcf022eb25817b0bf9ce6e662bc6dc3786d40423cef",
+      "revised_source": "e4995d938d6ab88f8a1610b4d8a43b0aeef09cd3c18dc2570f817a3b04dd77df"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.EntireAntilinearLatticePeriodsConst": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.LinearAlgebra.Complex.FiniteDimensional",
+      "initial_source": "f99329c692a4d2949e6cd5bf5f1489cbff544e48136c1776c23d63b4f0873bc7",
+      "revised_source": "35178ac583bfad5c650d0c2e53f519aa239f864f2097c34f43db4aff17d812bc"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsCompatOfLocal": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "19eac107d53bcef8a16b9bbda078be5a16bcad832b9f21f470f58aa108c6e408",
+      "revised_source": "44592edc3958c87dcca450820bcd85ccc4de479dfdf1540078013fe2c22d3110"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsFiniteEtaleSurjectiveLevelMap": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "4d6afa0d21309447ee987d1861efdf8ff1ba398769fbff56297765874b76c97c",
+      "revised_source": "3ae4b6564bdb1c79d443078ceb32ff83c85ee0671c484af28c8ece391ea554a0"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsRingHomComplexCompEqOfCountable": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "94f2ce900e6792206cf7f296ff8e3fddd83c90ec999afa8d88c9939262fdf75a",
+      "revised_source": "78417df9200bbadd17f5384c10c3dc27c0634c9c3a2cb36d46224fea43b0618a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSabMapExtendingOfIso": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "0e17badce48d1fa56c3751b53fc4703cf055b8877c40d004928fffdedea05171",
+      "revised_source": "7ef32ee2954b43be77b97ca400fa9fd05fe18abf4216f16a5fb4354e6996d614"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSimTrivialOfMult": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "f79ae519566f0e8592aa0bb6c2451a692616ffffb4ec8adcaa10d0c2a9331595",
+      "revised_source": "64cd7360b4a9129d832b942f99eebb41fba8e6e4525d9fbc061d41cc18e9c787"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSmoothPeriodicPartitionOfUnity": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.LinearAlgebra.Complex.FiniteDimensional",
+      "initial_source": "a097c9179525ed920db99e97c4c380f011ffc33dcc2b59b1f36693c6ed9941cb",
+      "revised_source": "af1edb2867b17f35ba7ce7dc813cb78ff76a4c44a02cd6a9adeaff90266e443b"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.GrpObjDescendsToLargeSubfield": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "05e246de12fc42d6eeee745f0f05f68a1f10fa11db21d7a242b52a08f3f04ad3",
+      "revised_source": "a388c6511d5080d93f3893eb6237edc4b4a3488123187e4f00d7216ca8ca7658"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.SmoothOfRelativeDimensionOfDimOfFinrankDerivatio": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "695d383524915babd1160f0d64c6208de780b1e4a1dcfd72446c12892935fecb",
+      "revised_source": "b815a4adeacacd75700660ee693ca82704bdefb141a1f70814d954795b9f946a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.UnimodularSymplecticCoordinatesAndLatticeRank": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "ee36ad2a725a917b44313e6ce90ac883b629c0500ffc63234a8b5a651112075e",
+      "revised_source": "51e793dab5ca7b6a38fc99f34befb15b60603bb1f9bee4c40c23d16e3028dc84"
+    },
+    "Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.CycOfPrime": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "d81bcce06a49ca67b6d55d39294b4e7dad9b4b44fbc19d5da8019a852a6d8f8f",
+      "revised_source": "ae81bc985577effafd17117b289400fa95dc6ce2e457e4ab09327557df9411af"
+    },
+    "Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.FoldrHolDEqIteratedFDeriv": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.LinearAlgebra.Complex.FiniteDimensional",
+      "initial_source": "8afc6fd1994ebdfec75ea11f56710f96b80e76353e1334ce73ccfb06c42e05a3",
+      "revised_source": "239b1845e1ec5b2c28d078404961dcce571686991b647cfb592242017cc21750"
+    },
+    "Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.NeBotOfNorm": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "1fccf1e057b71521895f2bc410e8c7f219d426cd9511b26965a248ccc32fc81f",
+      "revised_source": "0d56eb10b2cf6605dfbea8a19f4cd6db19b5c693cf2bcefda738874b93f03052"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.NonemptyGradedAlgebraSubGrading": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "ef9911ce017c78869caa237c1921e30af638338ce34322bb7675dd46b9a211ed",
+      "revised_source": "5309a9088638ec7d1cf4568f824c9dd7a72f26013b8e390ad15dd0539149adb4"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsNormalisingUnitSimilitudeOrigin": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "423b4bd1f7ca66eeafd512360be766fd7906f8c986e77bda07b75f4ea31348be",
+      "revised_source": "bac8c5743906164ed3ee415914b8a1f53b9b68b2864348a5b981635e27f3f8d7"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.GeomIntegralBaseChangeAndLocalization": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "34803d2ca47f37c83e832a3abfcf7d791c29f918ae89b1450dc391f09316e6d4",
+      "revised_source": "dd956fcfc199c54b5aad11b30640fc56463ab407264ea126c9d3ed9a4dcab9c5"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsInvariantNatLengthLattice": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "0092809be3338970dfd7a669c22f09522c19805fac96be683db0f763c939e43d",
+      "revised_source": "90b61ee639bd08b0ae8d0fb5245a11250e82e7ba362b2606f77d06cd85cbb7a9"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsUniqueFamOfReps": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "0784cc1d044b3e3b6b779d1115c365b76ce64237d10e7bdb81765df6426d82d4",
+      "revised_source": "48869fb883bdbb8a9a73df36dffb3fa119552d00c93bed3f58db68e514e27caa"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.SmulPeriodMapMkZeroFstEqNegForm": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "ad607c3db51b0b79c31a887562ef6d192f0763139bca1b1d26f7a34fca6a294f",
+      "revised_source": "c66326fb47e5357eafe2e8adaf25aa840a480294a379c4cdc0620ed230d6d6d9"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ToricGeometry.ExistsUniqueHomOfLocallyRegular": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "40d19d7dce847c739e3268fde0e115af9068e690c403e7043e82177d1ae01a4e",
+      "revised_source": "53b8c75e5f6c45ddbb0589ced72a8b7f8abd53cd57db63f4bbbcffcf44c73be6"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ToricGeometry.IsUnitOfComplexPoints": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "dcc29a4fa79b83a07d6a8de19ed7bae6794e818e1d33fc8d51f3bac98e563024",
+      "revised_source": "17d882a66d647460a45f9d9ed34639a9f21c97ad11098fca5107acd78cab5c70"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ToricGeometry.MemPeriodLatticeOfThetaTranslateEqUnitMul": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.LinearAlgebra.Complex.FiniteDimensional",
+      "initial_source": "a7b86eb63de56607497a75bae68e006fe750c561f997ed4f5fb7983fda7b19a6",
+      "revised_source": "8d6a0373bcdc2933ba801d2f6aef7a4b5f847057c8ad21ea0b3514719c895f6a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.ToricGeometry.RelAmpleThetaBundleProjectiveModel": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "bc0242911696c7a7f8f14aeaecfd2215be496e7baac40d9e7afcf01fa4e19ff2",
+      "revised_source": "db213446a45a5fe8a0f89158dbe79aa088f57f9aaee290f3f3d14123e21596b5"
+    },
+    "Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.BasePsiLeviLowerBound": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "155ead8c053a65fe6216328e2beecfe2a7b43abada361a6b1d6db65a99bdb19d",
+      "revised_source": "6c3377dd3e5299cfc775724d3c79f7207bb72ba3884aad96d778326d5950fde7"
+    },
+    "Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.BorelDiagNeZero": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "748ffffc24fcac06696d8ee67063b1e64c20928a7da9983a581f34a70f52d240",
+      "revised_source": "c9cc18764f28cd7c3dd8a4998b842e2c3d2ce4c15136847181fad54fdb1525fd"
+    },
+    "Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.HeightRpowNegDistortionContraction": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "f040b21f75a88f4a24c983069b7162c08cefefd02b39a131b7c9c5b8c69b878e",
+      "revised_source": "c2428f8d69559226c00c4bef10285e2891f310152c50e3522f5c6c5c87a14514"
+    },
+    "Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.NormLeOfDet": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "2efcc6cf55574e928871f69b7a7d66074ba1eb623251e4a89312a9255e5d2cd7",
+      "revised_source": "441e518abb3f8d83c74e87d65238ff782b6fb059a74e35bf9253950da4675fe3"
+    },
+    "Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.WeightedHeightSupDriftOrthonormalFrames": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "ea321b070a9d2fa01c20c9db090a9e61d929365c2d396da6f777c299d83f05f8",
+      "revised_source": "d2220cc50fe5bd736cd2fc39be31cc18012af2b878818fbbd2eea494cd1d42dd"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UniformizationProofs.CardQuotientKTorsionPairs": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "6cbaeddc0a0491e6b68a1c4f0e2884d60109a2434bcfa953f501d8aeb2ce6467",
+      "revised_source": "a90b46f76c1d5c19505a748b3933f3e24aec1b9cfa01882a75c9b7450da55e35"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UniformizationProofs.CubTrivDeltaAndEvenUnique": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "a87595bcc58f99c85a1771053dea0344d5309f7d49d5d5b8b6302871889b342a",
+      "revised_source": "85b52d171f15e3ff404132a3c3e99ec84aefb8f66a5eaa16a28116ef6bb0c958"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UniformizationProofs.EvenCubicUnitEqOne": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "885acc89df1bdc3963eb81de2eca1b45be1e7effef3d2347054e418c6eb09953",
+      "revised_source": "1d94809d0085402631954fe9f1c5f1531104c1761faf37848b0e5106467f93ed"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsPrimGenerator": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "dd5ab7fa1ac82a88ffbc091c0b55cee3bcc53fb0d212ca9474b450a0cf9984e2",
+      "revised_source": "cc3cdc0130e04ba507665f3a0392504b2a79fbe09477bb08ce378bc9f6f1ee69"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UniformizationProofs.IntegralFamilyPrescribedTermUnitAtPrime": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "64a7a788e714fb462fcc85d5c43451ba2acd5a0a9ca7c902a19c6be9654bb02e",
+      "revised_source": "21d02b0bff9e1948053fcc152feb3d495d7ec947132df800c292b0527806bcac"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ProportionalRaw": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "5cfcdcac82acfebc6d985cd71b4d7fff8d355c80d5aef929dbbd703dc62f61d5",
+      "revised_source": "28ece5be2eeb783e4b2c2fe23f95b4d5c19bfb84b9123685777771a2ea2a6c3a"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsFundamentalDomainMeanNormSqThetaChar": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "a6d4735108e88dd9ead677212280a04cd9a2d8707c3cb25fd2b2562f31092e25",
+      "revised_source": "3df0d1112801c3c387b76e2c5f8b203de24abacfc281f7f4a06e8a492bab5d0e"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsSplitLatticeDatumEverySignature": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "9edaa887d5e627e59120e8c1eeeca3f85a27e646e86c2e35f46f8a3ec4acbe0f",
+      "revised_source": "4f6278086fd746dbb171f867e88b7e2f31a3c5e2c2198209a6ec57e37561ae76"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FamilyUnifFibreLatticeEqOfPullback": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "d7f6b21af9efb86e9ad422b815d48621020038158d4c33ee07e9e816cebac283",
+      "revised_source": "9bf7ec392dbd1fa3ebe9d6e145f9afc89934771c5108f9396aa94647a9caf155"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FiniteOfIsClosedTorusExtensionOfPowEqOne": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "92524b61f4a20fcc78b088168e25dbea76545950b67aa28f5269555d47f4f8f6",
+      "revised_source": "046f9cd2dbd0c3117bc8c1e47b839e425143a95c5461d7737763c11c49d888ba"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.SignatureHermitianModelOfDatum": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "e506509b627d721a3c16dbec9e95691381cd7ceed6bf9b33433d45921cb52dcb",
+      "revised_source": "21e8cdb0b9234a313eed93bda68a79e1586f956507034a713466c5784c017072"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.EigenspaceDimAddSplitExactTranspose": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "13ca5a185c3c70da8dce824e74c8814f9fdaf72ff74a31cf57f21233a2a47255",
+      "revised_source": "f292daf45457931483233a243319a362bf44485d1879c03903db5fbb1392aebe"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FormalGroupActionLimitsIntegralEndomorphisms": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "cda158de367c938e8ba6df108c88d8d2d44e9e2e9ed9ee7dcfbdddab0bdbec3e",
+      "revised_source": "8bd74cdad56221de928bc82a7a2bf155a3d24f0af07d9e6e029be32f0ec66287"
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.TateBasisMatrix": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "5bbba679619f29a485c09df7f8fd8d18536e61fb892f7ff6a41be30cd6eb2433",
+      "revised_source": "951066b25f65cf51258a3e79f46731e84c817dd4ee9e21842f86502da74ba2fc"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.KillLoc": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "78b22bff944066d1cb48fa5dae6ac68cecf9d6edb686f293df3ea1e9a91a5dce",
+      "revised_source": "fe684e33043d377dcec570fa55d3e2a1b4ebc64903ca156e59fa87b89ddb17eb"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.ExistsSemisimpleRepOfDetLawOfIsAlgClosed": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "5fbc5e3649023ecb1535d8faa44cb4c98dcb593eebe3651df660c694b7ee6f13",
+      "revised_source": "7fd35434f2f297faad2811c4517899e8b73766146c9992476b4417fa8e81bdde"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.FrobeniusSmoothVectors.ResEqOf": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "8a08e0895e451ca0258e302718153908198d588eccb13859ab21434327e9e1b4",
+      "revised_source": "27dd95746d0450fbd3637c6da987220f14ba8d83d065acebc88390e5284e4e87"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.HeckeFixedLevelSpaces.FreeMap": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "93d58d92ef8ea78a1ca0c850e918a81a18f607f481051fa009baba2047163c05",
+      "revised_source": "a24a7a0d29d8e3be2bf08107a3fc62d1ae768db2c77abe59cf81de724d34edc6"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CentralPositiveSemidefinite.SCenOf": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "1292e8637e51a455babf750a32be4fb886962b3d45853a8b3d0a1a8a7811c96f",
+      "revised_source": "003f03f530fc2269b79f9ca95b868047cf28a212580cd9cbb1ae2d89b61d5eb8"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PermutationSigns.SwtAll": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "54d6d52796be4b882402bba89b51982c171a1b806c56534039aa04f0839a7629",
+      "revised_source": "c220175e92b3259f0d16c5b9954d67faca196c4f2d4631d2b6bc50b0c5f52d38"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.ExistsAlgebraicClosureLift": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "initial_source": "5f81f0041296c7ef7c856dfe59adee5b1f7f12acf9c04b13d0cedfe302c87f60",
+      "revised_source": "0cea315b0878a944f50460760c2709e6b01709e7020d926d17e885d0d3421d37"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.SplitUnitElements.Snd": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "cae3be4dc0753414b07dd5e1870f38e0d0048fde8dc34e64591d58983f6d219d",
+      "revised_source": "54164266cf6cc6886f6edf3b9c324c5f5dbc385c478cda1de923dd59c6c6cfc1"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SelmerScaling.AlCSmul": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "d334991f74630bdc86bdff63593a85f341afe25826edd0c436cb60957f3f2efd",
+      "revised_source": "ca581f003b28e3b5c7d9a341627d2cca9cecfe843deb0a7fe16a347680497931"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimuraTheory.AdicExtensionMatrices.GenZero": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "3ea9649b44cf63d396e21aac8b5dccbb0e34f1358c7e3ff9d07159ddab80044a",
+      "revised_source": "863044c99ba29e1287be495cdcc0c3b8188f0fa3ecd5808e79d11b3e0da7ad76"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.ExistsAlgebraicPointOfGroupDeterminant": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "7b809dc56cccebe78b331be2db64f5c19476cc0bd192274f8bd722926fbffaea",
+      "revised_source": "257cdd36e2c68ffa12471c9afce60796f7b80e9ba12462c07f81f51f5ae5dc1a"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.LamFree": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Topology.GDelta.MetrizableSpace",
+      "initial_source": "e7d3a796e9f2236da512b0def0970159b74d0e03d452d8e584a364a92d69d54b",
+      "revised_source": "7e5076bd1cee139cae212e6bcf3c2406527eb79868e0b8bb827d2c1b32e2e7a3"
+    },
+    "Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsNearRootOfUnityProductDecomposition": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "a29f47e9b3e0d2a02abba8173fe1b23853c97026adae1a6798335389ac0de5d6",
+      "revised_source": "20e32675936e13ab2ed13564a54fe9145968e8c422e506dfad03503b2a0a2c79"
+    },
+    "Development.AutomorphicArithmetic.DivisorFrames.ExistsIrreducibleSubrepHeckeEigenOfInvariantForm": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "6b6aae61fefa8e3351ecee70702261f12269a82fb333597f503bffaa6bba598e",
+      "revised_source": "57216acff9ab596d19dbdf76359f3048d56dfe47b1d2b6ae9a2c3ec2a0b2370e"
+    },
+    "Development.AutomorphicArithmetic.Foundations.Convolution.SphericalHeckeOperators.SandPS": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "125a258bdacdf3ec598d848c892e8b76d7add1f63704cac71d839d3d03d1f886",
+      "revised_source": "e91edaa3440fb78c18c6e7baea23d0051d4b23a584875aeb10a4e25da80caef0"
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LocalMaximality.DeRhamRestrictionTraceDegreeOne": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "c3561ee21f1d14b964ce9b3f371539177aefd8b12d90fb4b6dc7c65d6c93634d",
+      "revised_source": "561c3179ee66c1edc822bfea002833527bcee8eea254ade4684ec93097a2f542"
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LocalMaximality.PRYBasic": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "87b4b44ce2ec8f2cf64da4b6843c85ed0b23851e6dde7b98a87037496e2d53d7",
+      "revised_source": "ac8f1a2f0790ae12f8e0b57f12ff7b62fc3dba466b3628a2bdae33b9be28c5de"
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LocalMaximality.PWdBasic": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "b47549baf336a5eceed99a092489cf4d4cb43ebf192056cdcd936b6d82721df1",
+      "revised_source": "85002d4a6993cd462d4d069a9829a2950743f097715321dcba5ce0da7bdd4844"
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SchurDeterminants.SchurYOffClrHolds": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "93a8f38ccec47e7c66da8aacd31791650274d8ce78cf4a4ff9fe710c815a38fb",
+      "revised_source": "63518bb43ced42fdde35bf6737bb4b9b7005e7ec9fbf2699dbda5d2e53735039"
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.AlgebraEquivSetup.PAvgK": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "6bce1e526790e8548f155cc3ba3276db61652840be3680699ed023858a749a3d",
+      "revised_source": "fd9c99175059d43a674225082e23f0abdf3f4163acf743509134d67dd6da1e27"
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.HSepOf": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "e30a77fcb6f46aba43fbdfaa1fced18fef91262524404165b73f54515e467e41",
+      "revised_source": "e8f9b0b90b222b7d9ae5e7a5647cf9c3486a4c6b82bf2461dc7461d19de6de43"
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PFinSec": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "bbae55b378c29fa5c59f99e5371f1740e364d91eea240c49dec45802614f87c1",
+      "revised_source": "8e6dd65ba3aa3f5cfd37391b3bb5c3f14def2eba5d6fb1ecfc92a62c627226b4"
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PGalTrans": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "6586d349bcc5bda17b2f8c614672f4ca41e657c5300c0d3858827660a3e0c3ec",
+      "revised_source": "f6114d3bb2cef5c343d344a6e94a277609b2aba09696a5ee567fb21970a486df"
+    },
+    "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.NonemptyNormalModelOfPresentation": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "9f66f47d824ef1675a1177cfc95bda9b149f2a29695b3f93a7be3eacd56f475b",
+      "revised_source": "130e2f23ea6b1b5ea7e8584a804712ff0a7fc3de5b02e00f5f3af750d10a46ca"
+    },
+    "Development.AutomorphicArithmetic.ThickFrames.topsGroup": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "77dedf149d5dcba5ff39ef685751892549347d39be719a9dbd74f411c7c5e6b0",
+      "revised_source": "2ca4af4ab12d02794d09893a242d7a929a61c7764bb70097cd67c88b68f8dcfb"
+    },
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ExistsMaxRatioCleared": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "babcb911217f98088d3d9ed11f194b1da29152acd7dad1c74f00b13962de8112",
+      "revised_source": "3b587606519a83d833090800fa9151a33f107d533718bb126ea1fbd1d74b714f"
+    },
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.LatticeFactsOfNormalHolds": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "9e34e262f8ce02b9c2c356c197d79c68561b5431d13e8125c5f3c05ab7cf3286",
+      "revised_source": "867d5f5d33d98420237bfa5335c5217f294e5301213aa19d50d2701253cf186f"
+    },
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SymplecticUnipotentShape": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "2a440396612a484230b1fe654009ef312cf8a44d80f1a61c1f98188f37aa72dd",
+      "revised_source": "edcd4432c14418d8c2decdba9b4de8561ea6a9b4da81804639433f91e72f6220"
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactnessStatement": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "6d4b160e1d97c2a01f32a676227481524eaa60b81234167752536b59f431efb8",
+      "revised_source": "129d793b703ec1928648cc192f2c6f65c77b6354bcc4174c4f5a58c91483025f"
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EdgeUnique": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "fa9f19e80a4aa844cc957076be72c7ac781e19ba1122bfa1d53ffce8ce75715e",
+      "revised_source": "c2c61eb2a8d99787eccc348f1b5c49a8026a03b4156c3ebe19a8d99a2d59e513"
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GradedSplittingOverField": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "84ad3b0f0b075aa969c732f63533e2aa7ccd485bcb5f501f7647eeb046834e3d",
+      "revised_source": "e1694cb4e6963a7fea072df4dae0aa6b221026c99677b1abadeb1d8a5897fe0b"
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralRingAdicCompletePrimeRegular": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "054fb5fefe6f6722d241131fd6f3377528d0004cdb8cae5920bd2db3ce27f639",
+      "revised_source": "d70ef7edb0dc02292b2bf49a34bacdc8e5c320bf8f1bd539825573d4a757dfba"
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFrameTaylorClassEq": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "77cfd78a5653385b4b170ee23537eb4935eb9ded4c224ec4c84582296cab4871",
+      "revised_source": "d34e5fc02f2032ade42649ce9f17657ea1be06740d4db135ecf0b603240f1a41"
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormFibreCardZero": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "afe6ee66783bc39cabea07116b3c2adf30b1dc7b0e0baf6da99e839bc993ebb2",
+      "revised_source": "f28a65aaf945633900803f409be6f4ec48c3785da367dee6bdc96db4ee756379"
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TaylorDifferentialRepresentative": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "677927c06a07d0734bacd9bed4fe1def39ecfb5ed033131c8366dec950713ad3",
+      "revised_source": "b1fed35a8f8ffe6c55ee7801d2f0824e5aba1bbd098708f2c5ae65f2678e97e1"
+    },
+    "Development.AutomorphicSpectrum.Proofs.GeometryProofs.SymplecticPolydiscPeriodBasis": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "46a57da342ad76c0c3826a6a99e6899edcae4f47cdeff8106dbc2c57cfef5699",
+      "revised_source": "c5b4c8f1e7a9f4cc180dfde82c743209915814e88c2b8962eb0c9c32efaaf8d8"
+    },
+    "Development.AutomorphicSpectrum.Proofs.MetricProofs.NormalizedDegreeOrthogonalSum": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "064f7c8d56fff45c3fc5f7d0986044884d59bfe85d6693d26c0e31e48b13f7ab",
+      "revised_source": "73d1f2c1a9b2e6304f22910a37afe85d3d4c9b2589dfefc6b7986b4e9a21f75d"
+    },
+    "Development.EtaleCohomology.DivisorCycles.FinStruct": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "110d8bee04c7133a974a39b840192bf868751df2c56680ffb338cd6fb7e90646",
+      "revised_source": "432ddd59201650353a0f851b05a6e84753b4ea5ac175675537d27c3ada18b141"
+    },
+    "Development.WeilBound.CoreStatements.AmpleLineBundles.NormDegreeLeOfMetricBoundedMap": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "4d28e0bdbb4fed5e910e290609e3ba2496bb2bc4eda27072aba6530e7f1db0dc",
+      "revised_source": "f222a5d06652b702f64575d721fceacf62dccf469da3c16ab9d02efe04febc0b"
+    },
+    "Development.WeilBound.CoreStatements.BranchingTraces.BranchingComatrices.RootOfNe": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "f848e1468affa6840f3531f94a2ef20b025379dd9ce5e05f10acdfede67b3be5",
+      "revised_source": "dee3e5dd4a320c9978e2e1d9e848655b2e10636b6869233231d0f857d86b5b38"
+    },
+    "Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreMain": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "b3131484d379974c58df80893f89ac59a732cb63223e28f556121015655770cb",
+      "revised_source": "ffb410bdb90fec8ece74c425c4022f4e81c9b5318af9422efa2ef6edc11d2209"
+    },
+    "Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.Tensor": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "initial_source": "85b587336e95ac3c576a485efb2501f2bb9a4b9a07f14ecfef6d5c5e9558ca82",
+      "revised_source": "3e5b3dd70a436431fa6352ed1754b8e3e7f40e99aa744a900a7fc7b648363c53"
+    },
+    "Development.WeilBound.CoreStatements.HodgeTatePoints.CbFrob": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Topology.GDelta.MetrizableSpace",
+      "initial_source": "03a54d6f2d07609433ec3d6be5dbb72b9425f1d49af92d4833603315908a1368",
+      "revised_source": "9326e2878b62a1fea129386c4b8a938c15e417f93a48db9810cebd891312d7b8"
+    },
+    "Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.DesUnOne": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.Algebra.Order.Ring.Star",
+      "initial_source": "de057433137cb416514b3179e271f3fa4df612f3cf1b99b2c1529c6c80c8d3a7",
+      "revised_source": "2f510f8588a0a031e86160f9aff0b8b307a50113d42aa944ded029af565b98db"
+    },
+    "Development.WeilBound.CoreStatements.VolumeEquality.BaseUnifCoord": {
+      "original_leaf": "Mathlib.NumberTheory.Height.NumberField",
+      "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+      "initial_source": "800898d648953ac087d81813e1fd63528e8e1a5d8f245a1f3d58e0d1529ad86c",
+      "revised_source": "7890a9953840ad9000e96ceb989d490561b2754292b16edd21d5a3f3f2960e56"
+    }
+  },
+  "withdrawn_for_other_pull_requests": {
+    "Development.AutomorphicArithmetic.Foundations.Convolution.PolynomialCoefficientBounds.ChebBd": {
+      "module": "Development.AutomorphicArithmetic.Foundations.Convolution.PolynomialCoefficientBounds.ChebBd",
+      "path": "src/Development/AutomorphicArithmetic/Foundations/Convolution/PolynomialCoefficientBounds/ChebBd.lean",
+      "number": 883,
+      "head": "eeed1daa72306c360da721391dee7b9e2f67293a",
+      "same_deletions": [
+        "Mathlib.Algebra.Order.Floor.Extended",
+        "Mathlib.Algebra.Order.Floor.Semifield",
+        "Mathlib.Algebra.Order.Interval.Basic",
+        "Mathlib.Analysis.Complex.UpperHalfPlane.Basic",
+        "Mathlib.Analysis.Normed.Algebra.GelfandRadius",
+        "Mathlib.Analysis.SpecialFunctions.Bernstein",
+        "Mathlib.Analysis.SpecialFunctions.Gamma.Basic",
+        "Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp",
+        "Mathlib.Combinatorics.Enumerative.DyckWord",
+        "Mathlib.Combinatorics.SimpleGraph.Triangle.Removal",
+        "Mathlib.Data.NNRat.Floor",
+        "Mathlib.Data.Nat.Choose.Multinomial",
+        "Mathlib.Geometry.Euclidean.Volume.Basic",
+        "Mathlib.NumberTheory.Chebyshev",
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.Height.Projectivization",
+        "Mathlib.NumberTheory.LucasLehmer",
+        "Mathlib.NumberTheory.SelbergSieve",
+        "Mathlib.RingTheory.Radical.NatInt",
+        "Mathlib.Tactic.Echelon.Zsqrtd",
+        "Mathlib.Tactic.Inclusion.Extension.Core.Core",
+        "Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses",
+        "Mathlib.Topology.Sheaves.Init"
+      ],
+      "original": "65963ab510b138a295a28e80a7fea2d37f4bbe5178d59b457879e19c519f0171",
+      "initial": "20768a3e5393faf915abbbae2d81875ab386522550ce105f29d592b9c25641a3",
+      "count": 26
+    },
+    "Development.AutomorphicArithmetic.Foundations.Convolution.PolynomialCoefficientBounds.ChebClosed": {
+      "module": "Development.AutomorphicArithmetic.Foundations.Convolution.PolynomialCoefficientBounds.ChebClosed",
+      "path": "src/Development/AutomorphicArithmetic/Foundations/Convolution/PolynomialCoefficientBounds/ChebClosed.lean",
+      "number": 883,
+      "head": "eeed1daa72306c360da721391dee7b9e2f67293a",
+      "same_deletions": [
+        "Mathlib.Algebra.Order.Floor.Extended",
+        "Mathlib.Algebra.Order.Floor.Semifield",
+        "Mathlib.Algebra.Order.Interval.Basic",
+        "Mathlib.Analysis.Complex.UpperHalfPlane.Basic",
+        "Mathlib.Analysis.Normed.Algebra.GelfandRadius",
+        "Mathlib.Analysis.SpecialFunctions.Bernstein",
+        "Mathlib.Analysis.SpecialFunctions.Gamma.Basic",
+        "Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp",
+        "Mathlib.Combinatorics.Enumerative.DyckWord",
+        "Mathlib.Combinatorics.SimpleGraph.Triangle.Removal",
+        "Mathlib.Data.NNRat.Floor",
+        "Mathlib.Data.Nat.Choose.Multinomial",
+        "Mathlib.Geometry.Euclidean.Volume.Basic",
+        "Mathlib.NumberTheory.Chebyshev",
+        "Mathlib.NumberTheory.Height.NumberField",
+        "Mathlib.NumberTheory.Height.Projectivization",
+        "Mathlib.NumberTheory.LucasLehmer",
+        "Mathlib.NumberTheory.SelbergSieve",
+        "Mathlib.RingTheory.Radical.NatInt",
+        "Mathlib.Tactic.Echelon.Zsqrtd",
+        "Mathlib.Tactic.Inclusion.Extension.Core.Core",
+        "Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic",
+        "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses",
+        "Mathlib.Topology.Sheaves.Init"
+      ],
+      "original": "5e0b9d513dc00828120222363f6c6b2610fd332e7b920107bbc7d99a47e7bbb6",
+      "initial": "098fb73354a518259ef44a046403bc348d73ca5f9ac6461d50672ab4cefb0e40",
+      "count": 27
+    },
+    "Development.AbelianVarietyTheory.Definitions.QuasicoherentCohomology.MemSaturatedOrderIsoSubspaceSpanSymmApply": {
+      "module": "Development.AbelianVarietyTheory.Definitions.QuasicoherentCohomology.MemSaturatedOrderIsoSubspaceSpanSymmApply",
+      "path": "src/Development/AbelianVarietyTheory/Definitions/QuasicoherentCohomology/MemSaturatedOrderIsoSubspaceSpanSymmApply.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "976af7dae4c7fa529c335eda82dcd497b3f7e31013088cffed3a88ab57f41ee0",
+      "other_pull_requests": [],
+      "initial": "1460b613a4941a4a6ae92ff46a92f76f801d80cef6cd37f1548ccd2c667fe9db",
+      "count": 27
+    },
+    "Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.ValuationLeIffExistsSmulMem": {
+      "module": "Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.ValuationLeIffExistsSmulMem",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/CubicalLineBundles/ValuationLeIffExistsSmulMem.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "6b9b414d097530ad7fa3ebed0826649bc958a1054e0e4755f9d97529c18f65df",
+      "other_pull_requests": [],
+      "initial": "1f0c82520ca080a191a2dda9abfcf6c2ee67f32dfb44968f22290d45526f1f9e",
+      "count": 29
+    },
+    "Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.MemOfForallLocP": {
+      "module": "Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.MemOfForallLocP",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/CuspFormEvaluations/MemOfForallLocP.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "ceb9752b81f9a948daa4ece2229a5a7e9b9ec8af3b9eb8eb73b390856f10fa7a",
+      "other_pull_requests": [],
+      "initial": "2d07c009466f54a8eb3c86c5ebb2e5a35ffdd963fb41e220881a41050fb14e1f",
+      "count": 29
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.InfiniteTorsionOrCocharacterOfArcAtInfinity": {
+      "module": "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.InfiniteTorsionOrCocharacterOfArcAtInfinity",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/InfiniteTorsionOrCocharacterOfArcAtInfinity.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "6f49f41ba1a9019480e7d8e321b2815044d92fd5e571a2e27b86363f79dd306c",
+      "other_pull_requests": [],
+      "initial": "09929cbdd1f5152c1bf0f7418201510e0a7387ed1af880f523e91797106f935b",
+      "count": 32
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagonalStabilizerDoubledVacuumEigenvalueEqOne": {
+      "module": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagonalStabilizerDoubledVacuumEigenvalueEqOne",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/DiagonalStabilizerDoubledVacuumEigenvalueEqOne.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "b155a2640957386561d20488f52a52f1b57b09552994c5e6c6213db9e550dc7f",
+      "other_pull_requests": [],
+      "initial": "64c1fef3bfbfa52bf7e0ae6375a577be8a69a790094d4a72a6506da4eaba199e",
+      "count": 24
+    },
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsotropicPartEqSpanScaledFrameUnitriangularStatement": {
+      "module": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsotropicPartEqSpanScaledFrameUnitriangularStatement",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/IsotropicPartEqSpanScaledFrameUnitriangularStatement.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "4a45cd88e5e5c8db5aa78990919bffc72bbf5c97cb96f24b8ae865074f103020",
+      "other_pull_requests": [],
+      "initial": "a5b675cd9edd649ccf16a38e5c11286917e1e916c7662d666e9e0966e9258ae9",
+      "count": 30
+    },
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.OneLeSizeZ": {
+      "module": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.OneLeSizeZ",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/OneLeSizeZ.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "97d0bad422d34325df11e28df5ed7ee186045e687e9d7f3ec91689bff42939ef",
+      "other_pull_requests": [],
+      "initial": "b2225ff7bdfd6aae868672f0cf9e5e38285c0b63dee5d3799bb9d0d6e8636903",
+      "count": 31
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.TransportedLatticeLocalizationFreeLeCoefficientS": {
+      "module": "Development.AbelianVarietyTheory.Proofs.FoundationProofs.TransportedLatticeLocalizationFreeLeCoefficientS",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/TransportedLatticeLocalizationFreeLeCoefficientS.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "41d3b1e50ccc1919386ab1821b4945f2f799fe0a316b97aa91dc91a702e41ec3",
+      "other_pull_requests": [],
+      "initial": "424e8d44956dd19220bb2ed516b43c261d0b5c3353ed250d66e6535daa031dea",
+      "count": 28
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.TransportedWeylLatticeHermitianDuality": {
+      "module": "Development.AbelianVarietyTheory.Proofs.FoundationProofs.TransportedWeylLatticeHermitianDuality",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/TransportedWeylLatticeHermitianDuality.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "1c9d221a03c6910d71dc454d5ec6a58888caaee999b118bdaa4786fe4cd6db69",
+      "other_pull_requests": [],
+      "initial": "414aea57b9785b2a2955695e217754e271c61fbd6760133077e18849ee12ace9",
+      "count": 27
+    },
+    "Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RayCountThetaFibreCount": {
+      "module": "Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RayCountThetaFibreCount",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/RayCountThetaFibreCount.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "9eb771fbcb2bff9ad9fa1e3d563f6a19c1be25be845ea74a74f8bda87e5971fc",
+      "other_pull_requests": [],
+      "initial": "b98700a9535c4321fa78195ec1fc08799ef402669c1fcb19fe4b909c7b4f8a82",
+      "count": 32
+    },
+    "Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsThresholdRunHolds": {
+      "module": "Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsThresholdRunHolds",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/HeightProofs/ExistsThresholdRunHolds.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "04ec86b145be25e0d8ecde3603e9250a476091f15ff8792ab92edad63e743ed7",
+      "other_pull_requests": [],
+      "initial": "380d24c90427c13b7816e7e97ac3d976812cf73a439469df02a8e0c5499b0b5d",
+      "count": 23
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUniqueEv": {
+      "module": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUniqueEv",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsUniqueEv.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "5cbf4c810092a1d6f14de8972cc4cb1fd59f47b2de0c4038aa11453ce2f6aafa",
+      "other_pull_requests": [],
+      "initial": "7408faff9ee7095af83ac102ec45f72dbd8bc66c0c72a27624f63dd39ac98a0c",
+      "count": 27
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ObjPull": {
+      "module": "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ObjPull",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/ObjPull.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "4e9a69990ec8d30570767c49d087246f7ea93b4ad804ac592021c92446394b36",
+      "other_pull_requests": [],
+      "initial": "e1c7a3fcf52d8eaf1514fd98949d4cbbac7b60229a2d1255c48a716858d65323",
+      "count": 25
+    },
+    "Development.AbelianVarietyTheory.Proofs.SatakeParameters.MemParahoricOfTrivialReduction": {
+      "module": "Development.AbelianVarietyTheory.Proofs.SatakeParameters.MemParahoricOfTrivialReduction",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/MemParahoricOfTrivialReduction.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "247b9b8972b6fac08a2622a30f0bef4e392de073140d1e09f4664356f870383e",
+      "other_pull_requests": [],
+      "initial": "59f3387df6ede9e86d6b90aaa0698b3f59bd7608325c1bc81b59586ad984f849",
+      "count": 29
+    },
+    "Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.EchEqOneIff": {
+      "module": "Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.EchEqOneIff",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/SiegelThetaTransformation/EchEqOneIff.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "8ea5456d5264dcd5a7b8ad2bb18532b4bbc268fee5f8c438319ac5f83a84af14",
+      "other_pull_requests": [],
+      "initial": "3538c423e5adea71420887e047e9df8915de9e710e5e01478b556f5c867f3bcf",
+      "count": 29
+    },
+    "Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsUnitarySiegelThetaTransformationLawStandar": {
+      "module": "Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsUnitarySiegelThetaTransformationLawStandar",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/SiegelThetaTransformation/ExistsUnitarySiegelThetaTransformationLawStandar.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "58773161d7b2f2e874b30f324a0f99686d8a99350e442d86f49e3e1598cb61e4",
+      "other_pull_requests": [],
+      "initial": "1889ab52fe5240e53a2b5eba8d171b2df581f5df6c8f5f94734a37b996be9207",
+      "count": 32
+    },
+    "Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsExpansionSectionLineBundlePower": {
+      "module": "Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsExpansionSectionLineBundlePower",
+      "path": "src/Development/AbelianVarietyTheory/Proofs/UniformizationProofs/ExistsExpansionSectionLineBundlePower.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "1c75a2465c14af311bf49aa2ee0be1fce0b1dab210c1cd423e7c6c0d07244545",
+      "other_pull_requests": [],
+      "initial": "0bd552f4bb73f1cb15f588e115da6fdbed89a8017c469d56b3e82340e9d23f64",
+      "count": 25
+    },
+    "Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.RealMetaplecticRepresentation": {
+      "module": "Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.RealMetaplecticRepresentation",
+      "path": "src/Development/AbelianVarietyTheory/PublishedTheorems/TwistedTraceFormula/RealMetaplecticRepresentation.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "fd576d16a9d35491f732d0a34f1339a312302f7d259c28f06dd2f79c76d3007a",
+      "other_pull_requests": [],
+      "initial": "da697311313f5e5f400822c3a2a2898f94b3a540fa95759acf4b92a6709a004f",
+      "count": 32
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.SolvableCmExtensionTower": {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.SolvableCmExtensionTower",
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/SolvableCmExtensionTower.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "08e2c5dd9a54b2eab0e96da87bf65ab09dd3b84a56222eaaff0082ae76f88b1c",
+      "other_pull_requests": [],
+      "initial": "a2bd2e6c494729dcc8128a630bc4e046c4edd0257c0b13e276c76001e9c712a4",
+      "count": 21
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.FinalLe": {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.FinalLe",
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/HeightAndVanishing/FinalLe.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "87c27627423f3511c86030be030e5c0514afc156b5fcb281362894efe7ed967c",
+      "other_pull_requests": [],
+      "initial": "9bc2e2e12c26f96537be3afc329945e7c4e4d80636ef8eac3ca83c0bd94301c1",
+      "count": 30
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ClassCounting.NumThree": {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ClassCounting.NumThree",
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ClassCounting/NumThree.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "b02c11c0059ff61e2accb2e4eb74365ac5c0194e8f890a9793c8c1ee06661482",
+      "other_pull_requests": [],
+      "initial": "8a156569d8d5508bef41fbbc8d92e38a39a332f601eb40f3fe680bcf22bc4dab",
+      "count": 30
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.Square": {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.Square",
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/KatoQuadraticCharacters/SymmetricPowerSymbols/Square.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "19059ff728fc701b6a2bb7836f7c810c67215a61193510e30562ab55fe6124cf",
+      "other_pull_requests": [],
+      "initial": "aa29af9eb90b01465a16b54da16b2ad244093ba035e56c0b7d00685739eb9d5c",
+      "count": 28
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.VwinOfRow": {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.VwinOfRow",
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/VwinOfRow.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "72036facfb2e1bf553f19cb99a1cfe24f278da4387ee8914c20bec98bc08c24b",
+      "other_pull_requests": [],
+      "initial": "c629b2fa0ebb4c8f73beaee7c08563f854b42860f75e018bb317eafb8a8d5866",
+      "count": 28
+    },
+    "Development.AutomorphicArithmetic.CharacterBoxes.ClaimStrip": {
+      "module": "Development.AutomorphicArithmetic.CharacterBoxes.ClaimStrip",
+      "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/ClaimStrip.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "51d6d6f4ba6d676e19ee24cf58d053f5b207dba14628f9d7d3da725851448e86",
+      "other_pull_requests": [],
+      "initial": "faf6ae2ee16f9d227a7b402ad118d8ad304928c95c1d72cbbd597ad0f4fc544c",
+      "count": 27
+    },
+    "Development.AutomorphicArithmetic.CharacterBoxes.ExistsPageN": {
+      "module": "Development.AutomorphicArithmetic.CharacterBoxes.ExistsPageN",
+      "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/ExistsPageN.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "aacbefff0ad01d4acf17c9d154f0fd4f13468af12f7d5fe4052f645de9316d7f",
+      "other_pull_requests": [],
+      "initial": "cea1659fce20ce318945f92286bd5f7da33cc1750134da93214cd8934a6f032a",
+      "count": 26
+    },
+    "Development.AutomorphicArithmetic.CharacterBoxes.ZeroFreeAllOfTopG": {
+      "module": "Development.AutomorphicArithmetic.CharacterBoxes.ZeroFreeAllOfTopG",
+      "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/ZeroFreeAllOfTopG.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "79a425708446f88f619909e10cde724fb82f72f1cf507fb8d4cb4bf656ee5983",
+      "other_pull_requests": [],
+      "initial": "6a35ff95398b08cd2154c271369c263f3dcc9aa307e4a05c6140726fa75c4d98",
+      "count": 32
+    },
+    "Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.SmoothModelCrystalline": {
+      "module": "Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.SmoothModelCrystalline",
+      "path": "src/Development/AutomorphicArithmetic/CommutativeAlgebra/EtaleCohomology/SmoothModelCrystalline.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "52ed7617adffbf4e0862e0f4bd4cbd81554cc1e676d65f19cb54ff07351e9c56",
+      "other_pull_requests": [],
+      "initial": "a2fbd3c21eefb8b4ff9d8daea7ca4311ea24142bf18fe21a518e79006c376a7a",
+      "count": 27
+    },
+    "Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.LatMove": {
+      "module": "Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.LatMove",
+      "path": "src/Development/AutomorphicArithmetic/CyclotomicBounds/WildJets/LatMove.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "ec0ffafa9d9025bb8ed21ad904396e03d18a044e5d2de2c6fa8ab562e88ea437",
+      "other_pull_requests": [],
+      "initial": "028bbc547edd03530dc0a34c86698f7d9aacf96f0809df5104ceaa8b4911334f",
+      "count": 22
+    },
+    "Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.landauWindow": {
+      "module": "Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.landauWindow",
+      "path": "src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "d8656d8606ae14b03afe4792750bd54c7df0bd4fd100cac9f67528317fafc6a2",
+      "other_pull_requests": [],
+      "initial": "67a2ab67321c2e7457fc096d2e3db003df89ff4be6462af890d128809808ded5",
+      "count": 31
+    },
+    "Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.TrOnBot": {
+      "module": "Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.TrOnBot",
+      "path": "src/Development/AutomorphicArithmetic/Foundations/BaseChangeIdentities/RealTraceClifford/TrOnBot.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "f5beb02b1e5121c9addc562845336384e58b970e7c634b315c8de0607112f647",
+      "other_pull_requests": [],
+      "initial": "4eec31ab53a6c387cd3238f34f165192bc2653bb00fe9ebb9e79ca18f93411af",
+      "count": 26
+    },
+    "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FinitelyGeneratedModPow": {
+      "module": "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FinitelyGeneratedModPow",
+      "path": "src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/FinitelyGeneratedModPow.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "9ac87971a6e8dc9d6d780de0d96bac0685e19d77685bff23829e63d2f0cd63a8",
+      "other_pull_requests": [],
+      "initial": "f8b3458b9f7a39d02562fb54fe32f517d1bb1f7a49e0a67a7c273d8ed79f975a",
+      "count": 27
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopPlug": {
+      "module": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopPlug",
+      "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopPlug.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "419ff4e00c0da8d46e3b6df4e0f9d0d96938ec66e194e7f56bfdc9f0dbae6c6a",
+      "other_pull_requests": [],
+      "initial": "f5a6ba0b31d16e9254d813371471164578a66873e268672544cffcb8f89af9a9",
+      "count": 31
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DominantCoweightAntitonePairingSum": {
+      "module": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DominantCoweightAntitonePairingSum",
+      "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/DominantCoweightAntitonePairingSum.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "e5a9bad12176121c3fa94b23f79649de3488b6eee3eae07b652380aa7b1e1be9",
+      "other_pull_requests": [],
+      "initial": "8eb9fe48ce531b53e8f3c1a6d961ca01f9bf72e33d9694995aef96f08adbc13f",
+      "count": 30
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RdSkewEqConst": {
+      "module": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RdSkewEqConst",
+      "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/RdSkewEqConst.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "671e7bdc53f46ccd2607a20cbf0ec81b419d87019ea7bc36457c62e4e96d96df",
+      "other_pull_requests": [],
+      "initial": "6588364e1ac6ac3d1fd2c8bde5a383f84e2d1e38c4d509c5b475e1afb15ae984",
+      "count": 31
+    },
+    "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PoitouTateNineTerm.NineAddCore": {
+      "module": "Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PoitouTateNineTerm.NineAddCore",
+      "path": "src/Development/WeilBound/CoreStatements/PublishedTheorems/PoitouTateDuality/PoitouTateNineTerm/NineAddCore.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "59f195f3ae0cc773ebb18218b83fad1fb16b4cb27b79f4c545d96830bd18a460",
+      "other_pull_requests": [],
+      "initial": "159aaead1e842fa69a51b8159cd209bca2e9109a12f3f39fe0c29cb0a3c5ce71",
+      "count": 28
+    },
+    "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.QuadraticCharacterNorms.QuadCharNorm": {
+      "module": "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.QuadraticCharacterNorms.QuadCharNorm",
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/SatakeExponents/UniformizerValuations/QuadraticCharacterNorms/QuadCharNorm.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "6b87e18f4b8a70aa108232ba7a411f4e0bdd7bc081988edcdda8c5d9bd3f3b04",
+      "other_pull_requests": [],
+      "initial": "84e0dd145501a7f9ec966eb94b142ed75c0ae6d3c41ffb5ff4f24341914a518b",
+      "count": 26
+    },
+    "Development.WeilBound.RepresentationTheoryGL.FormalDegree.FormalDegreeHilbert.NormIndOfSteps": {
+      "module": "Development.WeilBound.RepresentationTheoryGL.FormalDegree.FormalDegreeHilbert.NormIndOfSteps",
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/FormalDegree/FormalDegreeHilbert/NormIndOfSteps.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "ad72de8d4ebab2b8be8de72bc5662b23a0fa47bf4182e705dd1a9a4bab5c74cf",
+      "other_pull_requests": [],
+      "initial": "d7dde6f338e60d4ac60549dfc7d13697df5d3cd06286d85a73b4634452b96043",
+      "count": 32
+    },
+    "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsBasisOfPid": {
+      "module": "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsBasisOfPid",
+      "path": "src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/ExistsBasisOfPid.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "3dcdf82f131fc963fc5a598af7cacf979e514309a5a19e90efd9e53e6e752598",
+      "other_pull_requests": [],
+      "initial": "5e09d21d106ba7e2f77ced14e0fcb7fc4141024ae4dffb037d3c5f5c6449cc4f",
+      "count": 26
+    },
+    "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SelectionLemmas": {
+      "module": "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SelectionLemmas",
+      "path": "src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/SelectionLemmas.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "62d0ae0fbf505a2967ed43afea7d7bdfea4962991d8c4ce80d2812f6f37d42e3",
+      "other_pull_requests": [],
+      "initial": "4de9bec7b56a11ebdd7664221fec7a52d86ccfc201ea4ac19b0d01287181100b",
+      "count": 31
+    },
+    "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SummandLocalization": {
+      "module": "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SummandLocalization",
+      "path": "src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/SummandLocalization.lean",
+      "number": 644,
+      "head": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "same_deletions": "upstream changed this source after publication",
+      "original": "ff46eeeff499e92b2bfbfa9519c113610eb3016d2294e18bcdc7cf74dfb24c81",
+      "other_pull_requests": [],
+      "initial": "a8854d8cf9c3c4efc99976fe6321ec288d4a1f726cd17efa3a59ad415c71572d",
+      "count": 27
+    }
+  }
+}

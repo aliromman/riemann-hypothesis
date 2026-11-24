@@ -141,8 +141,8 @@
       "run": 45327949270,
       "url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45327949270",
       "sha": "55b05d120de3421727dc1c0f67a6dbbc55ab5811",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "failure",
       "jobs": [
         {
           "group": "current-100-03",
@@ -725,11 +725,19 @@
         },
         {
           "group": "current-3000-03",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "failure",
           "url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45327949270/job/138226667815",
-          "failed_step": null,
-          "complete_report": false
+          "failed_step": "Check candidate source and compare its compiled output to the parent",
+          "complete_report": true,
+          "native_statuses": {
+            "pass": 598,
+            "none": 1,
+            "timeout": 1
+          },
+          "reported_sources": 600,
+          "exact_private_proof_modules": 598,
+          "failure_class": "incomplete individual native checks in the uploaded report"
         },
         {
           "group": "current-3000-04",
@@ -872,16 +880,23 @@
       "run": 45337680243,
       "url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45337680243",
       "sha": "2584c146f460e82096afe474c7b9389560e7be8a",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "success",
       "jobs": [
         {
           "group": "current-3000-07",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45337680243/job/138254197460",
           "failed_step": null,
-          "complete_report": false
+          "complete_report": true,
+          "native_statuses": {
+            "pass": 598,
+            "none": 1,
+            "elaboration": 1
+          },
+          "reported_sources": 600,
+          "exact_private_proof_modules": 597
         }
       ]
     }

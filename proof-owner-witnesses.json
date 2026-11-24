@@ -1,0 +1,892 @@
+{
+  "paired_failed_controls": 149,
+  "changed_proof_terms": 206,
+  "proposed_owner_substitutions": 112,
+  "published": 61,
+  "modules": {
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormFibreCardZero": {
+      "parent": "a57c9075a785cad18a0d32d114fcf451ffb6e99c4c7943fd86bd95560b9df90d",
+      "removed_control": "92b1fde0e03ad237e2436d8b70d573c1a5c1b6748b29cfcf652047a755408424",
+      "original_owner_archive": "3db1d02b6195384dcf16794acf26fdeb89e1f6f4f14abfeb144d74a4969c5f89",
+      "removed_control_private": "8f9ff86cac18b91cdd1d1ef20e00b50decef7540704b65045a54af62ba53a991",
+      "control_changed_proofs": 3,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.CompanionTheory.UnrDens.NormZero.card_norm_zero": [
+          "StarOrderedRing.toIsOrderedRing"
+        ],
+        "GlobalTheory.CompanionTheory.UnrDens.NormZero.nontrivial_of_resAlg": [
+          "StarOrderedRing.toIsOrderedRing"
+        ],
+        "GlobalTheory.CompanionTheory.UnrDens.NormZero.finite_of_resAlg": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.NonemptyNormalModelOfPresentation": {
+      "parent": "5a815b2d59bf4bffa733f4fe25159f4b42bc5e1fde384abfb480a28add93e45e",
+      "removed_control": "3db7e6a37fc5f9ea2f6920345e2ef1f81f9b474ba7b5e98a2d284f518bdf15ea",
+      "original_owner_archive": "5eb7aa77c5d32b3fb14632010f5365ad93e864e85eabb48cb98b62831bc6a492",
+      "removed_control_private": "ae8987d50242e4b715307e912e87c85445fb5f640ac1cab09b2c6c01941520b8",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Analysis.Complex.Polynomial.Basic",
+      "original_only": {
+        "UpperTheory.Reformulated.B.Gc5.nonempty_normalModel_of_presentation": [
+          "Complex.isAlgClosed"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.ToricGeometry.MemPeriodLatticeOfThetaTranslateEqUnitMul": {
+      "parent": "b6459bcd8cf12fa89b92196efcef6166c9be8f272a8e92818f121c4e9857202c",
+      "removed_control": "de419d119c492d4d29df8f4d1ffb08b49a88b9a0a587855b7e2f05b064c03de7",
+      "original_owner_archive": "2cb81228915b78a709e4525bda8221d239040a90713b76fb898e729ed14123df",
+      "removed_control_private": "be7931ea63be4cf4df60ea07dd214929fc006b15b1084a443d99d6f24a2809c5",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.LinearAlgebra.Complex.FiniteDimensional",
+      "original_only": {
+        "GlobalTheory.mem_periodLattice_of_theta_translate_eq_unit_mul": [
+          "Complex.instFiniteDimensionalReal"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.LaurentSeriesPadicExistsPthPowerCombination": {
+      "parent": "ec3d04974a53aff28e0cc384eff0f0932a4476c24be73b06cbfded279520d001",
+      "removed_control": "f4383429e036b9fd6f418d6e75266c5b2629b8a9c406bf651419fd66b69484d9",
+      "original_owner_archive": "61001491b28b2841c8434a07b03c349fd0a66ed4dde73e6ef609868b6b595054",
+      "removed_control_private": "dd69a8db9d783cf7febde5085f734619dbe0026b02476b8d3189657884071088",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.laurentSeries_eq_sum_single_mul_pow": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSmoothPeriodicPartitionOfUnity": {
+      "parent": "a54895f78b65ec98befc870183003eace55e72e3545943d72a26f961819c46b7",
+      "removed_control": "56471653490a1e0ab7d76db6909c887958352513ced65c05d07c1d1203ac1204",
+      "original_owner_archive": "299663735aaeed2d483cfc0c5b9d950aa7abbbdb969acfe18815e0c7feeab801",
+      "removed_control_private": "b824ed3d4551ae08b68c72a9c69153b29b91bc97544815e874e971a43b21a65e",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.LinearAlgebra.Complex.FiniteDimensional",
+      "original_only": {
+        "GlobalTheory.exists_smooth_periodic_partition_of_unity": [
+          "Complex.instFiniteDimensionalReal"
+        ]
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactnessStatement": {
+      "parent": "e4a40ba2a48cf2be3f94cf70aa0f5e52dd88d8fc7c2a005e223c20a1c8268c60",
+      "removed_control": "fcb99ad4f4ff06824f4b2e66756b25e420dbc456aeffb0bcda5fff999e8918b0",
+      "original_owner_archive": "a089e9c20467f8e39e9b3ced7f01823ae32780b46e4a9ec08b2cb8edfc7c1b60",
+      "removed_control_private": "9308b454397c92b9e17a2cdeeaf16d475064403c2d3493a3ef860be8bf01184c",
+      "control_changed_proofs": 7,
+      "owner": "Mathlib.RingTheory.Flat.TorsionFree",
+      "original_only": {
+        "GlobalTheory.CompanionTheory.Jp.CntCols.rank_fromCols_eq_iff": [
+          "Module.Flat.isTorsionFree"
+        ],
+        "GlobalTheory.CompanionTheory.Jp.Dbl.exists_equiv_pair": [
+          "Module.Flat.isTorsionFree"
+        ],
+        "GlobalTheory.CompanionTheory.Jp.CountRank.card_sub_le": [
+          "Module.Flat.isTorsionFree"
+        ],
+        "GlobalTheory.CompanionTheory.Jp.CntCols.card_completions": [
+          "Module.Flat.isTorsionFree"
+        ],
+        "GlobalTheory.CompanionTheory.Jp.CountRank.card_injective": [
+          "Module.Flat.isTorsionFree"
+        ],
+        "GlobalTheory.CompanionTheory.Jp.RedRank.rank_add_rank_eq": [
+          "Module.Flat.isTorsionFree"
+        ],
+        "GlobalTheory.CompanionTheory.Jp.CntHalf.exists_lowH": [
+          "Module.Flat.isTorsionFree"
+        ]
+      }
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PFinSec": {
+      "parent": "9626ba58e3d243af1c8e616eba87debabcbf0bdb03950489195e3589f2ff90c7",
+      "removed_control": "55a3ed2e98147fd0b6bd31180ec67ad707586e5349dd23d1a9c19089c9b562b5",
+      "original_owner_archive": "7e0a91a22b7eed3fb84b5d77b468479034c0c166255066d2a3558dca0789483c",
+      "removed_control_private": "edac77ce59b72783cbae9b4f5b41ac53aef267b63f10047d72105074e53ac938",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.RingTheory.Flat.TorsionFree",
+      "original_only": {
+        "_private.Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PFinSec.0.UpperTheory.Gal.TranscendenceTraces.FiniteSectionsSeparable.sepClosed_of_isAlgebraic": [
+          "Module.Flat.instOfIsDedekindDomainOfIsTorsionFree",
+          "Module.Flat.isTorsionFree"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SeriesTransport": {
+      "parent": "695fbbb4bf55984848eebc5b3aa06228b85d42742487537fab49654e87b9a53c",
+      "removed_control": "cdb52c63f3fddbf842976a8212eb09dd0e371ed3d4662b923f9be32006cf6137",
+      "original_owner_archive": "621aaae062dccad6d3565b2b44b4894504ded409c33892b9bfb1c5e7d9a49c93",
+      "removed_control_private": "5c36f65a063fcb91fd1fea781b5e43696a3b1ab12b2c1a56c1f1f820f89ce9d3",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.HWL.Cmp.cz_nat": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimuraTheory.AdicExtensionMatrices.GenZero": {
+      "parent": "4844d4591aa2841233cc6f93c3c7967362dad58eae9e8b2528774ca88a07eb23",
+      "removed_control": "7a209d8ad3afb840bf03e0e97d011d1ff93e95a74caa9122b8c542ead972c005",
+      "original_owner_archive": "c0a4a75da79df82379fce152d8a26d75336923d6f713aca9eb611fd2ca268c29",
+      "removed_control_private": "8cd5c2756ed8b3d80ae7ef8a22a55ff0df08577944aed207e4a6016e6301c84f",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "UpperTheory.V.Ws.sxGma": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.PieceUnitSetEqSmoothingMulPieceRaw": {
+      "parent": "a07b83360f550187e8ec4b4294b1e24155deec4f31a5bcfbf649b0de98e4a1a9",
+      "removed_control": "4f9989af5759224eb6cd72162ccbb746efaaede5f85a4e047bfe8651ca167d88",
+      "original_owner_archive": "9d3304114b6a77a797e435ad5e911286bbc03c14798b0a17bd69551cc2ca48cd",
+      "removed_control_private": "4abd5590db2d51250599fce22d8af0064adb389a2c64ebcbd6f6b30eea10db9c",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.KummerEisensteinGalois.Smoothing.zpow_congr_of_pow_eq_one": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SymplecticUnipotentShape": {
+      "parent": "99a65210d76cd10a16e4cdb3502cf94cd618084968ffdf10ef262c68c97b650b",
+      "removed_control": "9853a132c857f55930bb031f1b59999bf6ca9d86b17a82a1435337f5abd8abec",
+      "original_owner_archive": "e4099bfa587d7711c794a8ecf8754f3938bfbc8c2ef5a6a27664304453248910",
+      "removed_control_private": "6ac0c50bc072e45e8256185629295e89212187162f75f1cd8f6dd1e6d05f39df",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.CompanionTheory.Ar.Flat.symplectic_unipotent_shape": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SectionComponentsPreimageOfIsPullback": {
+      "parent": "11a3d9ab5cc3d7ad08b9990b4ff9e066dc660782093c478782e3503c133fbdd3",
+      "removed_control": "9b5d71e0649fe2e7700a2f5161b6a073a26125e1b95048ca4c55dae93938bc80",
+      "original_owner_archive": "2a78ce2d5a88d1f1733bbd6f53b2d5f3726bba22faaadb758a82a3d12ac0cb70",
+      "removed_control_private": "601cd9787c276686ccb97710a52ed2913683ffcc0d74255cf68af2811987a6b2",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.RingTheory.HopkinsLevitzki",
+      "original_only": {
+        "GlobalTheory.preimage_connectedComponent_rationalPoint_baseChange": [
+          "instIsNoetherianRingOfIsArtinianRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.LinearIndependentWave": {
+      "parent": "db31be94ae3cd4b9544b48fc0a670d919a93f02427de7a11b6814ef706975b3c",
+      "removed_control": "7de3d49b90db4da5ad556fc91cbde5e98e4f95cbfefe5fdc55c6a0e7edffeae9",
+      "original_owner_archive": "94f301c25d64c3f60a56c970f47d670a2317170d4b255942e1dfccd828c89c81",
+      "removed_control_private": "91cccd5e6b5ca07b78975223cb8c1f2b43ce6bbc2445ddee4abf8b8b08303b69",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.RingTheory.Flat.TorsionFree",
+      "original_only": {
+        "GlobalTheory.PlaceModel.exists_map_wave": [
+          "Module.Flat.isTorsionFree",
+          "Module.Flat.instOfIsDedekindDomainOfIsTorsionFree"
+        ]
+      }
+    },
+    "Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsNearRootOfUnityProductDecomposition": {
+      "parent": "755f5bf1c165dab6f6bfc511664efe00cbfa81d4141199d6687413def4d7b33c",
+      "removed_control": "44d93bb4d1a4bb2913f9fa699a07aeab00466eb9194eec4b7276d01d44325986",
+      "original_owner_archive": "1f811c1f48d72bd7b96b365888ba12327ec35c2f6f89141a5ecfd08d5d1f4c48",
+      "removed_control_private": "f829090f3dfad770b6abc338e12ed16a7556222c084c86669f9a518f2cf8ca9b",
+      "control_changed_proofs": 3,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "_private.Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsNearRootOfUnityProductDecomposition.0.chart_loc": [
+          "StarOrderedRing.toIsOrderedRing"
+        ],
+        "_private.Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsNearRootOfUnityProductDecomposition.0.chart_eq": [
+          "StarOrderedRing.toIsOrderedRing"
+        ],
+        "_private.Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsNearRootOfUnityProductDecomposition.0.assemble": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.HeightRpowNegDistortionContraction": {
+      "parent": "e0ef368e4c29199928ab346890e80aece3c359cd6cb60aab6b0c4861fc498080",
+      "removed_control": "e4d8924acb66f5edf3c510102babb74e6f9aad23a9bcdd296a8feabd8ff66c74",
+      "original_owner_archive": "d1849ce179fd0cb6aebb78a51432a0667ad62af7c04b4f33e1e3f74c6b77b46b",
+      "removed_control_private": "550bc5b348c1679af87c814e5b2864725d080717e61b4aafdd75eb35fefbb00c",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.RingTheory.Flat.TorsionFree",
+      "original_only": {
+        "GlobalTheory.height_rpow_neg_distortion_contraction": [
+          "Module.Flat.isTorsionFree"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.NatCardAlgHomEqFinrankOfIsReducedOfIsFractionRin": {
+      "parent": "0829d6aadd50f33d8c15ca796877d12aa28c6cdb9edb14901c2ff9a030763ec2",
+      "removed_control": "80708c3d340711f3f3d818749b8a15b7260e03c12ec1f19be05e3131a0d570d3",
+      "original_owner_archive": "7dfb89bd05898912f105022dd746bc756a01a158ae8df72b82d1db916dfffe8b",
+      "removed_control_private": "9f85e68d9acc68d3f652bb6a0cf37e7b8f2cbf242a14d2e981498c9f02bc0279",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.RingTheory.Flat.TorsionFree",
+      "original_only": {
+        "GlobalTheory.natCard_algHom_eq_finrank_of_etale": [
+          "Module.Flat.isTorsionFree"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.QuadraticMapNonnegOfTendstoCofinite": {
+      "parent": "4b8e70b4c3d573b8bd348f351f0f00faf3577dbfa93db0474816a1350ef6d35a",
+      "removed_control": "eb107d0626962d8c401616ff2ad7a0afe0209392a11bfe4a808d59a4ac1863fe",
+      "original_owner_archive": "94f8e8a62dc070c97dfd2caca3d9701175ea5ff97fdfd918905a9aeb25d12042",
+      "removed_control_private": "aab6822345187a45dcedc17586a5ac83293991496d87210881a26853911accdf",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.RingTheory.Flat.TorsionFree",
+      "original_only": {
+        "GlobalTheory.ZH.quadraticMap_nonneg_of_tendsto_cofinite": [
+          "Module.Flat.isTorsionFree",
+          "Module.Flat.instOfIsDedekindDomainOfIsTorsionFree"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.GroupSchemeMorphismDescends": {
+      "parent": "bc154106e94bff3ee88e0c162a54f47526d243f99dd112bff63070416c6a7eeb",
+      "removed_control": "98d5455c4e85677c499609137d0b9b88ea7f99288f95ed14e88e4d194673d7c7",
+      "original_owner_archive": "04fb83664bfb10fb855858c3f2d305773d579fa88b181e0e61266da898070ff9",
+      "removed_control_private": "792f20c3ebb955136e4a9499c31c02d5206a9fe93ec4db58732e4dc3ef50a803",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.RingTheory.Flat.TorsionFree",
+      "original_only": {
+        "GlobalTheory.isAbelianScheme_descends_subfield": [
+          "Module.Flat.instOfIsDedekindDomainOfIsTorsionFree",
+          "Module.Flat.isTorsionFree"
+        ]
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EdgeUnique": {
+      "parent": "a4f3ba181ab469e2655feeed12e043942abd5123116ba69e33ef74ce6a7324c4",
+      "removed_control": "c144c51939e7695b4690de41b3930205566313ed1560e6115c4d89ba39069e21",
+      "original_owner_archive": "a1fc8e775cdc8b30042a854918b1188a987319173894ac816a9fd6565dbd0e46",
+      "removed_control_private": "9141bfc1fa3a4c2dfe1477f9dd108eb0d19a0aefe80e7bb9b52a316100a0a156",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.CompanionTheory.EtSpecProof.edge_unique": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ExistsMaxRatioCleared": {
+      "parent": "5fc28030a9c5c01a3aec04bf1ccac2a09823d140b3ea30a270ee701ddf38ba45",
+      "removed_control": "3782daa19b707c280d4a2955ed819da42239441ae00cccdd39339dcab55744cc",
+      "original_owner_archive": "1d781152c47432742418fa92781d961837cf855fc73825c260564fafd3abac94",
+      "removed_control_private": "e5b4a6b5dd4e0fea32e76cb803d9f4c495d62bb339b4c5435f816edccb7a473c",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.CompanionTheory.Ar.Flat.exists_max_ratio_cleared": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.FoldrHolDEqIteratedFDeriv": {
+      "parent": "9c7213ebbe2e34adc99e29dcbfe41a18f49101a53ee93f3435c48a3f80a01cf8",
+      "removed_control": "2ff695cb7108a8b5566b3d1411463ac70b2c4f9d682493c01a6d190d3997ab26",
+      "original_owner_archive": "7dcaa406cf7cd8529888f53d177b0741142213ce15547e0696d256d9ab55012f",
+      "removed_control_private": "61693169ef376912feb373ce1077f236beafdd4e8b5bcf455d4e0761e7408c50",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.LinearAlgebra.Complex.FiniteDimensional",
+      "original_only": {
+        "GlobalTheory.Ker.CreOp.exists_clm_of_antilinear": [
+          "Complex.instFiniteDimensionalReal"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.CardFilterFinBounds": {
+      "parent": "d91b70e08d02331be3335dce7debdf2e6cdcd939792e18cbbb92e5807739affa",
+      "removed_control": "ce81385ba2e2570047ac75492795fcac2381e8789c7a4f914496f43902847227",
+      "original_owner_archive": "0ebaa47f1669495f83ceaf063567f655bd0ea366711f65349e72196a93dece77",
+      "removed_control_private": "83777df796cf973793f1516156a644e7874b45515d64c19bffffa0badc69fe4d",
+      "control_changed_proofs": 2,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.shape_position": [
+          "StarOrderedRing.toIsOrderedRing"
+        ],
+        "_private.Development.AbelianVarietyTheory.Proofs.JetHarmonics.CardFilterFinBounds.0.GlobalTheory.four_sq_add_le_of_large_bv": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AutomorphicArithmetic.ThickFrames.topsGroup": {
+      "parent": "1ff5d80cb85964da6b62dfd9a37437ec61858cd7a818086eff66b0c858a4fcc7",
+      "removed_control": "43ed7ad43757eb49dfd04b31d37a3e68e19ac24d4d17f267f9ece0cb72419fb9",
+      "original_owner_archive": "98edf6661dd4cfeb7aac175ae06a03c42ac0b42190c18e187d7d7fe016d312e0",
+      "removed_control_private": "1ca71e1d7a180829883a9148f2f6d665021e1187bcbb0f41dc30d8cd17cf4b20",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "UpperTheory.BernoulliSumsFrobeniusOrbits.tiles_le": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.TateBasisMatrix": {
+      "parent": "7487c73356f4592474b9b44fe73917cbf08efea0e44a9208e20bf940289b2a21",
+      "removed_control": "fc974d527fd1867fcf408b7b69427c16248f098d17ea313732374d48fed8ffca",
+      "original_owner_archive": "678df1de06d82da7f558f4a057e6df687f3ed47ef6ca8c03818b0a53e14b52a1",
+      "removed_control_private": "a9c9775420c45670af1a45139533aae8d4b3b9e8674db662bf166096386c4588",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "_private.Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.TateBasisMatrix.0.GlobalTheory.tateMat_val_smul": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.PderivSecondEvFirstPointEqZero": {
+      "parent": "13751c6431a1890c5608d1c0dd4fc440477ac93abd857cddfdd3490192e6e84b",
+      "removed_control": "09ef1b4aa52f24afaac1468cd9d9d0a0ee47535b649adb2078f24bc7a96dffd7",
+      "original_owner_archive": "b7af92a8a90186f6af7d787000245cf518bb9fae7066c61cca61f2690653b91f",
+      "removed_control_private": "fe423d57292827fd83bfe828a363513d0e0cbdf283793554eec24a23b0a8f324",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.FormalLog.pderiv_prim": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FiniteOfIsClosedTorusExtensionOfPowEqOne": {
+      "parent": "f1cbf1bad673aed2942c945a473bbf06ba6792a580d42b7a538e4983de599456",
+      "removed_control": "db673d395f3c8b47142028db9508da326fc2f1f659f5979443f2a41edbd13a6c",
+      "original_owner_archive": "65290c86b2c26b4f9197839b058e2d00004a4af5de0353abd283f4bae38ced41",
+      "removed_control_private": "ca5b765c604063fcf8f3cef33c6e19598520f024794dd983fd7b279020cc317d",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.map_eq_one_of_pow_eq_one_of_finite_ker": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.SplitUnitElements.Snd": {
+      "parent": "654f66e94d809a55a275023540be8cb35a3cf94a31d007f33be5586560d9ae8d",
+      "removed_control": "f87b2092ec669bf22dba85d3932a323e509fd21e498479d8a2b893886c12cd8d",
+      "original_owner_archive": "73ce8571b6c27aa0112de84a18266275d894e82a8b7fc86d0b8d4b3158bcdf98",
+      "removed_control_private": "b2742c050b1dcb6491d9707652c2503b9929352c5943260b445051e62c41da9d",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "UpperTheory.V.Z.Sym.Loc.One.snd": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumLeProdOfTwoLeNat": {
+      "parent": "54c35e2b0e44ad495588d607f47b6e7d895be37eeccdebd0f132276a46f7ec0a",
+      "removed_control": "59241cc18c5cb67c2511611e7c537b42db1cd6af9b377743d0c4995618c1a534",
+      "original_owner_archive": "1d19dc1d964c1bcc4d26c7c12f737c75e2dcc86d5e1c7b0a5f237bd2aa595ab8",
+      "removed_control_private": "0ba7469366c5cc7653a8b4935871b61669682f9dd5d302e37618e0c577e1a1ff",
+      "control_changed_proofs": 3,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.BadShare.sum_le_prod_of_two_le_nat": [
+          "StarOrderedRing.toIsOrderedRing"
+        ],
+        "GlobalTheory.BadShare.sum_primePowerParts_le": [
+          "StarOrderedRing.toIsOrderedRing"
+        ],
+        "_private.Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumLeProdOfTwoLeNat.0.GlobalTheory.BadShare.arith_four": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralRingAdicCompletePrimeRegular": {
+      "parent": "0f4150732307d5ee4be8570cc510980e44f37c796662ad11e203ee048ff6bfde",
+      "removed_control": "c18a320d0a8c91db5588523c7a662dd79ee40d56ed173196aa1fdf2f5203a4f6",
+      "original_owner_archive": "7dd2e1d3ab8534a57913ef66bbca51f4905011ef47b9c6843293df542c46065c",
+      "removed_control_private": "2b68a56371ea3dcdee650fd92769f410747764d5d3c0f5535a518300ebbc677c",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.CompanionTheory.TiltCompl.complete_tf": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MemPuncturedRingIffPowerSeriesPart": {
+      "parent": "6eb9913edf51bff60bc82fa93882082a08f1109141aa713b9e1f5ccbda7440a5",
+      "removed_control": "5e02cfd5d96c75582058f499717058cde705aaa51ce205d6b6eb443062ef8c2a",
+      "original_owner_archive": "a821bc36a2e99c7f09dfe51f0495f4e90a66d758f8c36ec1b81ac367c5f94b11",
+      "removed_control_private": "f47756f7962da5050420fbce391c23dfe87c8e1acee901c40605afe1d9964415",
+      "control_changed_proofs": 3,
+      "owner": "Mathlib.LinearAlgebra.Complex.FiniteDimensional",
+      "original_only": {
+        "GlobalTheory.Conv.hasSum_mul": [
+          "Complex.instFiniteDimensionalReal"
+        ],
+        "GlobalTheory.Conv.mem_convSeries_of_summable": [
+          "Complex.instFiniteDimensionalReal"
+        ],
+        "GlobalTheory.Conv.convergesOn_iff_le_radius": [
+          "Complex.instFiniteDimensionalReal"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IsIsoNormalizationPullbackOfToIntegralClosure": {
+      "parent": "6f7e260bb40533c3a535ff0ec5ee48fba1b03cd7bccb50dde3eff5e6f46ce7d9",
+      "removed_control": "131ae6e05f4b01d1ae9071339235e71f0f727ea0d7a9b98fd88458ee79c0fb90",
+      "original_owner_archive": "bb6744212e9476349517d84f884769b7aa594c3a38f0df83b4eda15a8e38c5bb",
+      "removed_control_private": "23439c88ad0c1497bd47d4bc07ad439be8b6a6c1c9d7c2ae14c47a4f1bf85670",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.IsInvariantSection.mem_range_app_basicOpen": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsCompactIntMatrix": {
+      "parent": "32205daae18b40b85d0c582283aa3f283578dd1ab6192a0885aef5806dc744bb",
+      "removed_control": "e2ea91bd0836350cf0ae4742bd41eaf6519b845a24f2d3dd4b4209b708222912",
+      "original_owner_archive": "f80f764b1fe3dc7fbf5d1adb50afb7c684cb64d5382f56e5bc0fd82d3debc2ce",
+      "removed_control_private": "0b98322eeb8cd6a4fae940c6cf0049d1e6fbca4870e17aae98f09209b66ab3b1",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Analysis.Normed.Group.Ultra",
+      "original_only": {
+        "GlobalTheory.JR.MeasExist.nonempty_meas": [
+          "IsUltrametricDist.nonarchimedeanAddGroup"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.JacobiTripleProductTwoVariableTheta": {
+      "parent": "c43d96ecf4a5c6b9bfe3ad0c443b169648396eef09a2ea5c870134a65e9d815b",
+      "removed_control": "c0a3186c0789f209a133d2cb5e6d4b43b5d9e05e61cf067fc8af3d4cccbae8d3",
+      "original_owner_archive": "72a0babc1f186ab0fa6634a381ad04f17048a9c7b2f74a4fe98c525e5d72c834",
+      "removed_control_private": "01973da5f7384b4a9614d5d80686c33130999b8fc98efc4b00512492d2f70cac",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.LinearAlgebra.Complex.FiniteDimensional",
+      "original_only": {
+        "GlobalTheory.JacobiTriple.tendsto_finCoeff_sum_jacobiTheta₂": [
+          "Complex.instFiniteDimensionalReal"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.InclWFrobIter": {
+      "parent": "5230daf505b58a3888d4f63d6f09e0b6be4b87129c727ec0ad3224f03cbda4a7",
+      "removed_control": "6499cc41f6e23574ae5512cd05bb0b696bf615e47954805fea49b97acb123d74",
+      "original_owner_archive": "71c98a8ae020ffd4e6fd22ffc658179094934b9c70ed2d9e14625b50360ba95a",
+      "removed_control_private": "3eabb786716ccaf4aab952b47c9a6c753a10ecd8d37bf5f4c32237ea7ed057f6",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.RingTheory.Flat.TorsionFree",
+      "original_only": {
+        "GlobalTheory.TorsionBoundCompare.unit_cancel": [
+          "Module.Flat.isTorsionFree",
+          "Module.Flat.instOfIsDedekindDomainOfIsTorsionFree"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsPowSmulMemOfIsLat": {
+      "parent": "e90971607de22cdde7a05a163a6f2a1513b292443eddf9082d65368c3e7801c5",
+      "removed_control": "f46a87150e792a329f100b437486b40a9f4606ad2698e58c84fa39100656b685",
+      "original_owner_archive": "8da64df5dc69705bd8c35f03499dfc5fc52e70d49b833d8d1678d35c14a587ed",
+      "removed_control_private": "1b5820ad8503b4d8287c0f6e5f46a2331b236e015a47c152259cd9d30e2dafbe",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.PowSmulMemLattice.exists_pow_mul_mem_O": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsQuotientPDivGroupClosedSubgroupPTorsion": {
+      "parent": "e223b74d893e373a8e09405766a299f143995fb1b412c7351c484347d3a18cb1",
+      "removed_control": "e3758de90d7c8f512206f37f0e0d4edf5ed9233e2a4add494db8a1e434e2320a",
+      "original_owner_archive": "4c4923e3c4702962e1e18621c37e1fee366f2729459c15dff51e7fcb07785d4d",
+      "removed_control_private": "d61f382ca0fed51b9307937d456aa2e5528350afb9442312a840d9d822c55b48",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.HTPair.exists_quotPDivGroup": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegreeZeroSectionClassProperties": {
+      "parent": "845bfef5c96790824af773de2ba2cfc5b054882c94650311ef4fd7a542b6393f",
+      "removed_control": "58609def66748a5bf4f09de4ca85b1e1d19a050bf6fd69e0f0cb7f960bddab1b",
+      "original_owner_archive": "cd5b7b3224f39082b9a8ef13312fe5805f23f013da2a55da5dc3deb921e719ee",
+      "removed_control_private": "66a625d1ae48089b4aad60be30a269648d6ce66b43707c3f810ed4b03b93fc5b",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.EtC.SectionClass.mk_eq_iff": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsFinsetSpanPrincipalCongruenceLevelFunction": {
+      "parent": "211057938aab3ca9e34fcd49bbbf6930fa8ccc7bc39cf6adbb9fda5c709e7a1d",
+      "removed_control": "508cc25841bb84453773263a443557dada67cfcfa7fd31c05fdb43634b47a468",
+      "original_owner_archive": "8f8c286564f92e0b66a860ad389bd68777163c7d0e0a6d80cbb943b798315644",
+      "removed_control_private": "810ef37f97deba821e9632c3a81b795d06317f5e8f36514389d0a760039e1622",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "original_only": {
+        "GlobalTheory.KZ.ES.LevFin.exists_finset_span": [
+          "Module.FaithfullyFlat.of_isIntegral_of_isDomain"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnitaryExistence.SignatureHermitianModelOfDatum": {
+      "parent": "5e6ea74026bed025ff5a9eab490d12f33f9bd9f8790fd98fff96bbb9035f52b5",
+      "removed_control": "8f11ceec162abb83e85739713f1265121d20a0f8b68f0a66e37e036aef32198b",
+      "original_owner_archive": "eb82e3e8a3f888503e574f7ac3a7828e6c65890f2e82616a1680b3bd7f67eec6",
+      "removed_control_private": "c892cb7556b895d57cf23461f35bc0aede20a3e01d6f3ea593a9c3b2cc356e0b",
+      "control_changed_proofs": 2,
+      "owner": "Mathlib.RingTheory.Flat.TorsionFree",
+      "original_only": {
+        "GlobalTheory.CMType.instNonemptySubtypeRingHomComplexMem": [
+          "Module.Flat.isTorsionFree",
+          "Module.Flat.instOfIsDedekindDomainOfIsTorsionFree"
+        ],
+        "GlobalTheory.HermSign.trace_real_blocks": [
+          "Module.Flat.isTorsionFree",
+          "Module.Flat.instOfIsDedekindDomainOfIsTorsionFree"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.ModuliProofs.EntireAntilinearLatticePeriodsConst": {
+      "parent": "b79651d680ebec62053f4bb783e7f22c7908d813df7d6d04886055300b123118",
+      "removed_control": "e90fa3dc07040e7eafea7626d82609a89c65de7183cf5d3a76855e922eb3029a",
+      "original_owner_archive": "cba9c67b0bfd09307c9faa18bc1d41c481656a0da03542309957d934101fe633",
+      "removed_control_private": "8169193fc71272196834f31f7e7467f1a75b85017fae0a651fc9ae61abfe69ef",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.LinearAlgebra.Complex.FiniteDimensional",
+      "original_only": {
+        "GlobalTheory.entire_antilinear_periods_const": [
+          "Complex.instFiniteDimensionalReal"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CyclotomicExistsIff": {
+      "parent": "93935f329c6dd9032e11766a94b6b98d2a6845447aea20c45be21916cfe1006f",
+      "removed_control": "a8b9544d07dcef9d4cf2ca395a261b9f2a75786d540d4f1ea1afa2120cbed8f3",
+      "original_owner_archive": "d5e8cb5a6a1c9a99877b5d2806e58dbcecbdba1c66d1e5443733baf1a89dc9ce",
+      "removed_control_private": "125a2b71d622c86164a7758c20ec4cbe8d54642696bb71929bf6e1b87d0ccd77",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.PsiLemmaCompare.assembleX_bijective": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.WeilBound.CoreStatements.BranchingTraces.BranchingComatrices.RootOfNe": {
+      "parent": "a0de42778fefde76f373305d535bea8efbffb3b0a6ff3216f906f1209c12b95d",
+      "removed_control": "ca411e88504dd06a9ad2c6c174c9ef6cd79c15ba94b27897714b4b1c36735731",
+      "original_owner_archive": "9071cbd2ac9cc1f506a9cd827c37e92a7c0def86def8506050190c92b9a8729c",
+      "removed_control_private": "cda80d3a9522376c8e88db5df04c96100a468c9b8523e26955a19671cd4791f6",
+      "control_changed_proofs": 4,
+      "owner": "Mathlib.RingTheory.Flat.TorsionFree",
+      "original_only": {
+        "PositivityTheory.UnitaryDecomposition.Com.root_of_ne": [
+          "Module.Flat.isTorsionFree",
+          "Module.Flat.instOfIsDedekindDomainOfIsTorsionFree"
+        ],
+        "PositivityTheory.UnitaryDecomposition.Com.th_eig": [
+          "Module.Flat.isTorsionFree",
+          "Module.Flat.instOfIsDedekindDomainOfIsTorsionFree"
+        ],
+        "PositivityTheory.UnitaryDecomposition.Com.th_proj": [
+          "Module.Flat.isTorsionFree",
+          "Module.Flat.instOfIsDedekindDomainOfIsTorsionFree"
+        ],
+        "PositivityTheory.UnitaryDecomposition.Com.th_single": [
+          "Module.Flat.isTorsionFree",
+          "Module.Flat.instOfIsDedekindDomainOfIsTorsionFree"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.OpensRangeChartYSupOpensRangeChartZ": {
+      "parent": "71029c23c77eb2bb33d3d94b2c69a60e4f0fdb2b0e19a036235b3e202dc96745",
+      "removed_control": "2ecb9912176a7ce01e23109e67d92fe5dd69587edaae6f54cbaad1961513f43e",
+      "original_owner_archive": "5f00a7a5a80e54feb609c4eeb8e3daa31b7908d54773a73b0d30f4830cc56598",
+      "removed_control_private": "ce20df516e11839c2f5866b66839891465e8d38342171d1ec39f07897c306174",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.WeierstrassCurve.monic_originPolynomial": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLaurentConstantTermFormFunctionFieldStatement": {
+      "parent": "147f1a2a8a428ecfa894f580d1a1f1ae0bb47c08b404797c5a8c36f1ab34a01f",
+      "removed_control": "f2d2d2688d1335930b88f7f180f71d110563a812c1226302ab295ba97103f771",
+      "original_owner_archive": "25748366e0b51770cd885d325259751285e3ace0e93227b9e84cab8232cf00a2",
+      "removed_control_private": "9f2f5588bf65b7ddf4a6effa46b7c69daaf813a58d8af42cbeaa0dd5ba62cd86",
+      "control_changed_proofs": 3,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "_private.Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLaurentConstantTermFormFunctionFieldStatement.0.GlobalTheory.linearIndependent_laurentMonomials": [
+          "StarOrderedRing.toIsOrderedRing"
+        ],
+        "_private.Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLaurentConstantTermFormFunctionFieldStatement.0.GlobalTheory.prod_zpow_eq_prod_div_zpow_of_sum_eq_zero": [
+          "StarOrderedRing.toIsOrderedRing"
+        ],
+        "GlobalTheory.exists_isRes": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsInvariantNatLengthLattice": {
+      "parent": "fec22a47627fb063955c826605fbdf0b3d28ffca953933f8b2abde2b519d50d1",
+      "removed_control": "255653b31b945ef0689e2da72a8d8a348ac164454ab691d0a871f023494bc387",
+      "original_owner_archive": "86524f5705aca3f6fc05dace728d0d3df3e3089fac52bb36d5079df1e2443e7e",
+      "removed_control_private": "9e580b1740a5a85743eb0d98dd254be552b998f69d99d68cc442b1aed17f11da",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.end_eq_one_of_pow_eq_one_of_congr": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsConnIsEtSplitting": {
+      "parent": "af5c940686304b80e751a7332f2475c58405fb6fea33ba9bdebc8014e944f7d7",
+      "removed_control": "538aeca3b3420683707703d14f09a84abdfe6cbc0cd5626c37807e23b4d38d66",
+      "original_owner_archive": "f1763cc8babb043f27b354d77e03156da5c051ea57a13a2b856c371b0ae84c56",
+      "removed_control_private": "3640c153fb548420a04b9a143e356d93d485fa6bb3cb7e83cd8570f8fd715dab",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.exists_perfectPart_algHom": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsPowMemSpanCoeffPeriodPow": {
+      "parent": "6baf485aba471aca5d56c760166a06d95e6c2880e8afe9b4b4c96b43c4de2626",
+      "removed_control": "4bed1d20203fe40d6794891d4a13c484e1b5ee9907caa3fac533e0c3fd1dd033",
+      "original_owner_archive": "3a131203bc74233310b35dd1cedd6e6dc1472191dd49f394817225d6c5463006",
+      "removed_control_private": "63aafb35c2100af6127f91041057d8da26e81bffb7a071a6615d518bd46a6d99",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.coeff_zero_ne_zero_of_expand_map_dvd": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUnitSigmaEqMulHilbert90InvAlg": {
+      "parent": "72fba5a1282613a7c03da8905e23a9942617ba705736fe02632902e1aa129def",
+      "removed_control": "d64d9a6e85719ab467f0d6a07ff90f488b9e5719a31ec092d79f1b56ad5f33ab",
+      "original_owner_archive": "e802fa4832e77e9c16c1549853deaf0d290f6834e7c0dad4cf9503118ea5753e",
+      "removed_control_private": "b7612b7618d08683d0b9ec6b66c74d2a5a881129f091423c257cd538f7619efe",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.UnitLemma.HilbertNinety.exists_unit_sigma": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralInvariantDerivationLog": {
+      "parent": "2ee8f7c2c66eda35124c158a5d433ca24bb2718e3f8d46959002397cd1ed0103",
+      "removed_control": "f3a671ddbd41ec9193144747b63232c9c7ea84f9b68b4a1873ba8164a2bb394d",
+      "original_owner_archive": "ae415323d3180ad815a2cf7bee63e5ae8a331bb522445db88ef2f5f9c3faf8ea",
+      "removed_control_private": "489c70653cad59e44e481fee3135e5047dba49a71e15dfcb3d62d82a9563fc7e",
+      "control_changed_proofs": 3,
+      "owner": "Mathlib.Topology.GDelta.MetrizableSpace",
+      "original_only": {
+        "GlobalTheory.LogJacobian.jac_lg_mul_jacEntry": [
+          "instT4SpaceOfMetrizableSpace"
+        ],
+        "GlobalTheory.LogJacobian.pderiv_expOf": [
+          "instT4SpaceOfMetrizableSpace"
+        ],
+        "GlobalTheory.LogJacobian.exists_integral_invariant_derivation": [
+          "instT4SpaceOfMetrizableSpace"
+        ]
+      }
+    },
+    "Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.DesUnOne": {
+      "parent": "97c4ffde7882bad820e6d939ee196d94a3eb300afedc605b1ec6843344661ce2",
+      "removed_control": "99f8f316ad6902e2e78575d363e7e2999511c1e61c573d4d86f76fb5f84f245c",
+      "original_owner_archive": "6fd5832ba2f46db1489727a8313fd42d83d81674ab862e32f22229d0f4d8e7c3",
+      "removed_control_private": "fb4d84d141c9fdfa1b42b0430c07e0d542b0381647d8c6ce91ff2c67e1e3364f",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "CrystallineSemistableComparison.D.rtW_dvd": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FormalGroupActionLimitsIntegralEndomorphisms": {
+      "parent": "759eebfd033bff6153dcf6a76e8e6bd2059eeb1cb402eee16f3a449473563ae2",
+      "removed_control": "2ea1e70c6d5391267e67050abc23e2d433c632b479076ac424cce7096375d3cc",
+      "original_owner_archive": "d7bf1d416fc4a4ddb79ca7a7bd7d31231edca3a258b8fb73fa53772bf4d107e7",
+      "removed_control_private": "9b3c6f522afe1a9c5aec7aa8b3ed459192914d8d7ea6d82313cf6d1f5b537cdb",
+      "control_changed_proofs": 3,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.ActLimit.Tends.unique": [
+          "StarOrderedRing.toIsOrderedRing"
+        ],
+        "GlobalTheory.ActLimit.limit_endomorphisms": [
+          "StarOrderedRing.toIsOrderedRing"
+        ],
+        "GlobalTheory.ActLimit.Tends.ge": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsAlgHomValuationSubring": {
+      "parent": "c7a36322b128cd6be4acddc353c96e18f955c330e0a55aaee4ea21a459492725",
+      "removed_control": "56a0eb89a925d597aef37034fbd81e49d4ad5e2fe909e74f1f826832763d5cda",
+      "original_owner_archive": "bbb4a8da7c20e438957301eb1a82a92d8f63f3797825e95624ab7a2c39130b4b",
+      "removed_control_private": "0c742eca94d3ca5c43265fe09673b3497b774059a0476bd1e05073043334046d",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.TorsionCharacter.exists_pow_mem_span": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Definitions.Divisors.ComparisonMemCechHodgeFiltration": {
+      "parent": "c61c3c6b60943f6790dde4ce3713a87e795cd470e71f4f33a91fc7925b2574c5",
+      "removed_control": "7a91ed93060872a360f7dbaffcd4ed2931def6b0c3ab7e21a68d8743a0e33676",
+      "original_owner_archive": "384eefe1ad3f8faabf25fdc72ac6f2da4e351f5430f6983031f7bfb023ae772e",
+      "removed_control_private": "170c8db4c97e026a7a38cfe0d9b14d39692709356af1aab8f4a0ff2d85b48b4b",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.CechDR.cubeDP._proof_18": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TaylorDifferentialRepresentative": {
+      "parent": "f47f4551c1c586fb160a40d54e72d1d80f2b60dc64d6db9264735021b5c6f006",
+      "removed_control": "7447814221a36ed94185ca3f920a69dd2fa3b65ec9dfe1b84468470ccb6c407c",
+      "original_owner_archive": "a343df021cc115230c9ed7e4d47a46f2e9f08833bf13be2a6fb1e8e1cc9f9aae",
+      "removed_control_private": "640614015cc77fec00ef237253262a54f26a283101e57efb558a6c529eb7b2f3",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.CompanionTheory.ConeLocal.d_form": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemUnramifiedOfFrobeniusIterateFixedFil": {
+      "parent": "8ab9c13b42743698e7af931c2da845931aa1b48c32fead7ae0f8bfb96477b14b",
+      "removed_control": "5ecaac5643f36d0051042dd762126117942be5a507f479d5e829c668e52ad5f5",
+      "original_owner_archive": "e721fe948be512fb5b3e3cf552ec2325b1e1f69dd38f667b752a3f3a0ba9fd91",
+      "removed_control_private": "be11c8c5cdb5dad03e93d67b0b755be0839b6b03c7236a92d949c3fd24fe4a94",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra",
+      "original_only": {
+        "GlobalTheory.CrisPerFix.mem_unramified_of_frobenius_iterate_fixed_fil_alt": [
+          "Module.FaithfullyFlat.of_isIntegral_of_isDomain",
+          "Module.FaithfullyFlat.faithfulSMul"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BreuilKisinZetaFineBoundSecondBasis": {
+      "parent": "25a918512d2db8b2cb708b52e3d6b65f556d9148c5af1a25483ab5464ef81d19",
+      "removed_control": "b6db4775544736727a58062b48f873353bca1632b456570bbeb6d32842bee218",
+      "original_owner_archive": "7adf4af59312c11cd5a03bc3fba14efc00499ecbc6acd17193cce2e366a5e4bb",
+      "removed_control_private": "9ba22f2d1f5756abe73aae685c97bd2f0aea472844f8255ccab4bd7986cfb035",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.nat_mul_add_le_pow": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.HomDescendsToSubfieldContainingFinset": {
+      "parent": "52f44fbec53a9446006fd7e4eb4bb79bd875c109857085eaa0ddf43e28f77eb4",
+      "removed_control": "30a527a65dc47bba0b70f3c236ccf03976a2e0e7ddb9e26c0ff2d7a6dac68e5c",
+      "original_owner_archive": "82320095e25dd27943c3dccc8373f8ff7f6bcb5ba3d1ecbc1ae10eec0625cf07",
+      "removed_control_private": "36acc316feb2a4c8508e584234ac645e0cae350644c62bb08638b32a27682373",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.RingTheory.Flat.TorsionFree",
+      "original_only": {
+        "_private.Development.AbelianVarietyTheory.Proofs.DegenerationProofs.HomDescendsToSubfieldContainingFinset.0.GlobalTheory.surjective_flat_quasiCompact_spMap": [
+          "Module.Flat.instOfIsDedekindDomainOfIsTorsionFree",
+          "Module.Flat.isTorsionFree"
+        ]
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CentralPositiveSemidefinite.SCenOf": {
+      "parent": "05ada8b763ac7652dc8a547d27f3c8d818f2ff9ed4c60b52a1f60302009e510c",
+      "removed_control": "9bdfa2f079245bd088595fb6ff3db1e6dd6fff75a8b42bd983cf7b37fa49851e",
+      "original_owner_archive": "b353ab59e1ab9526c654117c8c270e93572c47d2a167902aca1e1adb4d45e213",
+      "removed_control_private": "5f9db178bf0820be6e472154366020ed45a79fea3799020771d165994d051d9c",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.RingTheory.Flat.TorsionFree",
+      "original_only": {
+        "PositivityTheory.KB.CentralizerFixed.real_smul_posDef": [
+          "Module.Flat.isTorsionFree"
+        ]
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFrameTaylorClassEq": {
+      "parent": "4bf1448ef5fb63b92552e05392839b924ab9d045b41914683ed82d885b178c7f",
+      "removed_control": "6b9898d7433549bb01b3aba4fdc388319b99bbd4f2fbdd958abe6d0ee6fbcf66",
+      "original_owner_archive": "5a64cac97c657ddaa98d652408363fc8606d77531d936ab312d7b135ff582b78",
+      "removed_control_private": "0d2f6ae521cad138a3235a924a6f6fd58e134eac09d1317d9051aee234fb801c",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.CompanionTheory.ConeLocal.DlogApprox.frame_main": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasPAdicPowerSeriesValueSubMemPdIdeal": {
+      "parent": "86a7d656dc7dbe0045a232c1b331f8131f26b02c5213bf7088392349a20c5a8b",
+      "removed_control": "d3949e79ce30c4f394c73a6d59bb6606e77e3c86f7d66ae9251bd9190bac29fe",
+      "original_owner_archive": "91884c3d074d0cad60126110d09345537ae60e40603e2267fc531e683c8595b1",
+      "removed_control_private": "8f7ca22f5f9aec58f58d47df8644b6eda7c2b2c53a6767d39a37d06e55acb6cf",
+      "control_changed_proofs": 1,
+      "owner": "Mathlib.Algebra.Order.Ring.Star",
+      "original_only": {
+        "GlobalTheory.HasValCong.pow_eq_pow_factorization_mul": [
+          "StarOrderedRing.toIsOrderedRing"
+        ]
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.LamFree": {
+      "parent": "02dcff2526a2d02066c2867b38160727b9f4abe34a190168b3d0532e53d6b212",
+      "removed_control": "3fb6319e96f1f672e8dda2dd51fc752aa3ac945c79b23489c23e2e9123a9cd78",
+      "original_owner_archive": "95c3239c1ffd14a7127d0e85a334dc75d1105b299a7c3bb27a6136643ce38453",
+      "removed_control_private": "1190f15bddcc53af13f767b421c1142ec18159b47d8491661045d4332ff16d05",
+      "control_changed_proofs": 2,
+      "owner": "Mathlib.Topology.GDelta.MetrizableSpace",
+      "original_only": {
+        "_private.Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.LamFree.0.a_mu": [
+          "instT6SpaceOfMetrizableSpace"
+        ],
+        "UpperTheory.V.W.lam_zl": [
+          "instT4SpaceOfMetrizableSpace"
+        ]
+      }
+    }
+  }
+}

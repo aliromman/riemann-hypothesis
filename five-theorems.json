@@ -1,79 +1,8 @@
 {
   "base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
-  "head": "21baf112ac31f7376204339a3dd01f56d9f6a867",
-  "source_tree": "2b2127750c4fda555377ba2654f4015bfeabf8cc",
-  "status": "passed",
+  "head": "4fc7348e335c0c93eece5d0183bfc64f52081b84",
+  "source_tree": "ad317c4cee6d76bc82b08600004e2eaac628327a",
+  "status": "awaiting published-head replay",
   "ir_signature_mismatches": 0,
-  "ir_body_mismatches": 0,
-  "results": {
-    "projects": 60115,
-    "candidate_all": 39352,
-    "candidate_visible": 38991,
-    "targets": [
-      "riemannHypothesis",
-      "riemannZeta_eq_zero_re",
-      "LFunction_ne_zero_of_half_lt_re",
-      "LFunction_eq_zero_re",
-      "LFunction_eq_zero_re_of_isPrimitive"
-    ],
-    "parent_main_public": "a2816fa85156ebb38ddb00e6697fe2c2cc26f2aa0d333a6f6613e37af0266418",
-    "public_sha": "a2816fa85156ebb38ddb00e6697fe2c2cc26f2aa0d333a6f6613e37af0266418",
-    "stable_facets": {
-      "": true,
-      ".server": true,
-      ".private": true
-    },
-    "fresh_parent_digests": 21124,
-    "compile": {
-      "code": 0,
-      "seconds": 33.201
-    },
-    "decls": {
-      "code": 0,
-      "seconds": 0.082
-    },
-    "replay": {
-      "code": 0,
-      "seconds": 5.63
-    },
-    "axioms": {
-      "code": 0,
-      "seconds": 3.072
-    },
-    "challenge": {
-      "code": 0,
-      "seconds": 0.617
-    }
-  },
-  "replay": [
-    "negative control: while replaying declaration 'riemannHypothesis':",
-    "(kernel) declaration type mismatch, 'riemannHypothesis' has type",
-    "  True",
-    "but it is expected to have type",
-    "  RiemannHypothesis",
-    "kernel accepted riemannHypothesis",
-    "kernel accepted riemannZeta_eq_zero_re",
-    "kernel accepted LFunction_ne_zero_of_half_lt_re",
-    "kernel accepted LFunction_eq_zero_re",
-    "kernel accepted LFunction_eq_zero_re_of_isPrimitive"
-  ],
-  "axioms": [
-    "axiom table _private.Lean.Util.CollectAxioms.0.Lean.exportedAxiomsExt",
-    "riemannHypothesis\t#[propext, Classical.choice, Quot.sound]",
-    "riemannZeta_eq_zero_re\t#[propext, Classical.choice, Quot.sound]",
-    "LFunction_ne_zero_of_half_lt_re\t#[propext, Classical.choice, Quot.sound]",
-    "LFunction_eq_zero_re\t#[propext, Classical.choice, Quot.sound]",
-    "LFunction_eq_zero_re_of_isPrimitive\t#[propext, Classical.choice, Quot.sound]"
-  ],
-  "challenge": [
-    "claim riemannHypothesis",
-    "claim riemannZeta_eq_zero_re",
-    "claim LFunction_ne_zero_of_half_lt_re",
-    "claim LFunction_eq_zero_re",
-    "claim LFunction_eq_zero_re_of_isPrimitive",
-    "definition RiemannZetaZerosOnLine  exact=true  alphaEquivalent=true",
-    "definition DirichletLNonvanishingRightOfHalf  exact=false  alphaEquivalent=true",
-    "definition DirichletLZerosOnLine  exact=false  alphaEquivalent=true",
-    "definition PrimitiveDirichletLZerosOnLine  exact=false  alphaEquivalent=true"
-  ]
+  "ir_body_mismatches": 0
 }

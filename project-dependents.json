@@ -1,16 +1,16 @@
 {
   "base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
-  "head": "21baf112ac31f7376204339a3dd01f56d9f6a867",
+  "head": "4fc7348e335c0c93eece5d0183bfc64f52081b84",
   "graph_sha256": "e032f0efab1562e8ceb57acfca014adb55937b17c3b86ad84017a6ca701ef024",
   "compiled_project_modules": 60931,
   "project_import_edges": 376417,
-  "changed": 39352,
-  "directly_import_edited": 38708,
-  "unchanged_directly_import_edited": 3052,
-  "transitive_dependents_including_changed": 50455,
-  "unchanged_transitive_dependents": 11103,
+  "changed": 40481,
+  "directly_import_edited": 38754,
+  "unchanged_directly_import_edited": 1973,
+  "transitive_dependents_including_changed": 50422,
+  "unchanged_transitive_dependents": 9941,
   "full_Main_source_closure_including_Main": 60719,
-  "affected_in_Main_closure": 50304,
+  "affected_in_Main_closure": 50272,
   "main_project_imports": {
     "Statements": {
       "project_modules": 1,
@@ -18,20 +18,20 @@
     },
     "Development.AutomorphicArithmetic.CharacterBoxes.ClaimStrip": {
       "project_modules": 2,
-      "edited_modules": 1
+      "edited_modules": 0
     },
     "Development.AutomorphicArithmetic.CharacterBoxes.MainConclusion": {
       "project_modules": 60716,
-      "edited_modules": 39351
+      "edited_modules": 40481
     }
   },
   "edited_by_area": {
-    "AbelianVarietyTheory": 25271,
-    "AutomorphicArithmetic": 6923,
-    "AutomorphicSpectrum": 3213,
-    "DiscreteGroups": 32,
+    "AbelianVarietyTheory": 25843,
+    "AutomorphicArithmetic": 7147,
+    "AutomorphicSpectrum": 3423,
+    "DiscreteGroups": 37,
     "EtaleCohomology": 660,
     "ResolutionOfSingularities": 336,
-    "WeilBound": 2917
+    "WeilBound": 3035
   }
 }
