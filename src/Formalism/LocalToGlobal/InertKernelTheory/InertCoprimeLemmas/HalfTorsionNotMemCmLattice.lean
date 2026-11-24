@@ -541,7 +541,7 @@ theorem hnf (hq : PI.ClassNumImQ.QuadData d K b) (m : ℤ) (hm : (d : ℤ) + 1 =
   have hnorm : Ideal.absNorm cc = g ^ 2 * a := by
     rw [← hdet, hdet2]
     rw [show ((g * a : ℤ)) * g = ((g ^ 2 * a : ℕ) : ℤ) by push_cast; ring]
-    exact Int.natAbs_cast _
+    exact Int.natAbs_natCast _
   exact ⟨g, a, k, hg, ha, hdiv, hmemiff, hnorm⟩
 
 private theorem cmL_omega1_eq (a₁ : ℕ) (b₁ : ℤ) (d₁ : ℕ) (ha₁ : 0 < a₁) (hd₁ : 0 < d₁) (l₁ : ℂ) (hl₁ : l₁ ≠ 0) :

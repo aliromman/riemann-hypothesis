@@ -6,12 +6,15 @@ public import Development.AbelianVarietyTheory.Definitions.Jets.SideFam
 public import Formalism.SharpRestriction.CuspSpanNormBounds.NormalizedLocalScale
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.CellDataExists
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselFunctionEqScalarSqNormalisedBesselTorusCon
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselTorusElementProperties
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsIsType
-public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadicalStatement
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LebesgueRootCoordinatesMapBesselTorusConj
+public import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
+public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadical
 public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselDatumBothSidesAreSides
 public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselSettingUniformConstant
+public import Formalism.HermitianCurvature.HermitianCurvatureProofs.UnipotentUpperFacts
+public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Admissible
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselTorusElementProperties
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LebesgueRootCoordinatesMapBesselTorusConj
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.DiscreteSeriesUnitarySmoothBasic
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.HaarEqSmul
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsHaarOnIffGroupsUnitaryUnipotent
@@ -20,7 +23,6 @@ import Formalism.FormalDegreeBessel.FinalG
 import Formalism.FormalDegreeBessel.FormalDegreeRatio.UnitaryWeylNormalHolds
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.BigCellHermitian
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.SettingConstruction
-public import Formalism.HermitianCurvature.HermitianCurvatureProofs.UnipotentUpperFacts
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LowerSmoothStability.ExistsFinStableOfMemSSup
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
@@ -63,7 +65,6 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
-public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Admissible
 
 @[expose] public section
 

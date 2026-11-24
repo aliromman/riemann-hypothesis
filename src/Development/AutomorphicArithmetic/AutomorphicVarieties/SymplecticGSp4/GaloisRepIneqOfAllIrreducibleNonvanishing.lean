@@ -89,6 +89,20 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.GeA
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Data.Finsupp.WellFounded
 
+attribute [-instance]
+  NormedSpace.toModule Submodule.normedSpace Submodule.seminormedAddCommGroup
+  Submodule.normedAddCommGroup SubalgebraClass.toNormedAlgebra
+  Subalgebra.isScalarTower_left Subalgebra.isScalarTower_mid
+  Submonoid.instIsScalarTowerSubtypeMem Submonoid.instSMulCommClassSubtypeMem_1
+  Subalgebra.smulCommClass_right Subalgebra.smulCommClass_left
+  MulSemiringAction.toDistribMulAction
+  RingHomClass.toLinearMapClassNNRat RingHomClass.toLinearMapClassRat
+  NonUnitalAlgHomClass.instLinearMapClass
+  NonUnitalAlgHomClass.instSemilinearMapClassOfNonUnitalAlgSemiHomClassOfClassRingHom
+  Algebra.TensorProduct.instNonUnitalSemiring Algebra.TensorProduct.instNonUnitalRing
+attribute [local instance high]
+  Submodule.module TensorProduct.leftModule Algebra.TensorProduct.leftAlgebra
+
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.AGraded, Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.AVal, Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.ConjTorus, Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.RigidDiag, Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.TanScale, Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.ExistsLiftOfDerivationOnIdeal, Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.FgMapMk, Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.MPrime, Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.Nval, Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.TorusConjugateCornerEntryEq, Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.WeightAlgebraGeneratedDegreeTwo, Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.GaloisRepIneqOfAllIrreducibleNonvanishing
 

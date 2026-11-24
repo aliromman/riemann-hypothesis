@@ -374,7 +374,6 @@ set_option linter.overlappingInstances false in
 private lemma approx_ideal {O R : Type} [CommRing O] [IsLocalRing O] [CommRing R] [IsLocalRing R]
     [Algebra O R] [UpperTheory.V.Alg.IsCO O R] (I : Ideal R) :
     ∃ M : Submodule O R, M.FG ∧ ∀ z ∈ I, ∃ w ∈ M, z - w ∈ maximalIdeal R * I := by
-  haveI : IsNoetherianRing R := UpperTheory.V.Alg.IsCO.toIsNoetherian (O := O)
   obtain ⟨s, hs⟩ : I.FG := IsNoetherian.noetherian I
   subst hs
   refine ⟨Submodule.span O s, Submodule.fg_span s.finite_toSet, fun z hz => ?_⟩
@@ -504,9 +503,6 @@ theorem UpperTheory.Reformulated.B.Ra2.finite_of_alg :
         (∀ (a : R), ∃ (P : Polynomial O), P ≠ (0 : Polynomial O) ∧ (Polynomial.aeval a : Polynomial O → R) P = (0 : R)) →
           Module.Finite O R := by
   intro O R _ _ _ _ _ _ _ _ hinj halg
-  haveI : IsLocalRing R := UpperTheory.V.Alg.IsCO.toIsLocalRing (O := O)
-  haveI : IsNoetherianRing R := UpperTheory.V.Alg.IsCO.toIsNoetherian (O := O)
-  haveI : IsLocalHom (algebraMap O R) := UpperTheory.V.Alg.IsCO.isLocalHom
   haveI : IsHausdorff (maximalIdeal R) R :=
     (UpperTheory.V.Alg.IsCO.complete (O := O) (R := R)).toIsHausdorff
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible O
@@ -586,7 +582,6 @@ private theorem exists_pair_of_der {O Λ K : Type} [CommRing O] [IsDomain O] [Is
       exact ⟨P, hP, Subtype.ext (by rw [← Subalgebra.aeval_coe]; simpa using h0)⟩
   obtain ⟨G, hG⟩ := hfin.fg_top
   choose ℓ hℓ using hsurj
-  haveI : IsNoetherianRing Λ := IsCO.toIsNoetherian (O := O)
   obtain ⟨Q, hQ⟩ : (RingHom.ker p).FG := IsNoetherian.noetherian _
   let N : Submodule p.range K := Submodule.span p.range (d '' ((G.image ℓ : Finset Λ) ∪ Q : Finset Λ))
   have hsub : ∀ f ∈ (G.image ℓ : Finset Λ) ∪ Q, d f ∈ N := fun f hf =>
@@ -640,7 +635,6 @@ private theorem exists_pair_of_der {O Λ K : Type} [CommRing O] [IsDomain O] [Is
 private theorem map_mem_max {O Λ T : Type} [CommRing O] [IsLocalRing O] [CommRing Λ] [IsLocalRing Λ]
     [Algebra O Λ] [IsCO O Λ] [CommRing T] [IsLocalRing T]
     [Algebra O T] [IsCO O T] (f : Λ →ₐ[O] T) {x : Λ} (hx : x ∈ maximalIdeal Λ) : f x ∈ maximalIdeal T := by
-  haveI : IsLocalHom (algebraMap O T) := IsCO.isLocalHom
   by_contra hn
   obtain ⟨b, hb⟩ := IsCO.res_surj (O := O) (f x)
   have hbu : IsUnit (algebraMap O T b) := by
@@ -674,8 +668,6 @@ private theorem adic_push {O Λ T Γ : Type} [CommRing O] [IsLocalRing O] [CommR
 private theorem inert_push {l : ℕ} [Fact l.Prime] {F : W.GFrame l} {O : Type} [CommRing O] [IsLocalRing O] [Algebra ℤ_[l] O]
     {n : ℕ} (r : W.Resid F O n) (Λ : W.LamObj r) {T : Type} [CommRing T] [Algebra O T] [IsCO O T] (f : Λ.Λ →ₐ[O] T) :
     W.IsInert r fun v i => W.pushCh (f : Λ.Λ →+* T) (Λ.κ v i) := fun v i => by
-  haveI : IsLocalRing Λ.Λ := IsCO.toIsLocalRing (O := O)
-  haveI : IsLocalRing T := IsCO.toIsLocalRing (O := O)
   obtain ⟨ψ, h, hk⟩ := Λ.inert v i
   refine ⟨W.pushCh (f : Λ.Λ →+* T) ψ, ⟨adic_push f h.cont, fun g => ?_, fun g => ?_⟩, ?_⟩
   · exact (res_map f _).trans (h.red g)
@@ -829,7 +821,6 @@ theorem UpperTheory.V.Z.Desc.V0.unramified_at_of_dense_purity_num_e_power_series
   haveI : IsIntegrallyClosed (MvPowerSeries (Fin m) c.O) := GlobalTheory.CohenStructure.isIntegrallyClosed_mvPowerSeries c.O m
   haveI : IsIntegrallyClosed Λ.Λ := IsIntegrallyClosed.of_equiv e.toRingEquiv.symm
   haveI : IsNoetherianRing Λ.Λ := UpperTheory.V.Alg.IsCO.toIsNoetherian (O := c.O)
-  haveI : IsLocalRing Λ.Λ := UpperTheory.V.Alg.IsCO.toIsLocalRing (O := c.O)
   haveI : CharZero Λ.Λ := by
     haveI : CharZero c.O :=
       (RingHom.charZero_iff (ϕ := (c.O.val : c.O →ₐ[ℤ_[l]] PadicAlgCl l).toRingHom) Subtype.val_injective).2 inferInstance

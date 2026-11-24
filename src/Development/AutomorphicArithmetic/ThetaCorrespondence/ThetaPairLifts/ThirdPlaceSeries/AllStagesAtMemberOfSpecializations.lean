@@ -1203,7 +1203,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.HeightCounting.UpPin
 theorem steps_pin_alt : ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, ∀ cDep : ℝ, (_root_.GlobalTheory.HeightCounting.Up.SettingsFormsExistList' hL cDep → _root_.GlobalTheory.HeightCounting.Up.FirstIntermediateLevelExists hL) ∧ (_root_.GlobalTheory.HeightCounting.Up.SeriesExistList' hL cDep → _root_.GlobalTheory.HeightCounting.Up.SecondIntermediateLevelExists hL) ∧
     (_root_.GlobalTheory.HeightCounting.Up.ModuliPointsExistList' hL cDep → _root_.GlobalTheory.HeightCounting.Up.ThirdIntermediateLevelExists hL) ∧ (StepW Start HasBare → _root_.GlobalTheory.HeightCounting.Up.SameGaloisLevelExists hL → SMt → _root_.GlobalTheory.HeightCounting.Up.RationalityStatementThirdPlaceSeries hL → _root_.GlobalTheory.HeightCounting.Up.CuspStatement' hL → _root_.GlobalTheory.HeightCounting.Up.SettingsFormsExistList' hL cDep → _root_.GlobalTheory.HeightCounting.Up.SeriesExistList' hL cDep →
-      _root_.GlobalTheory.HeightCounting.Up.ModuliPointsExistList' hL cDep → _root_.GlobalTheory.HeightCounting.Up.StrictHenselianAcyclicLevelNonempty hL → _root_.GlobalTheory.HeightCounting.Up.FinitenessListStatement hL cDep → ∀ (S : SExt) (Γ : GeoP), StepW Start (Has3 (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension (_root_.GlobalTheory.HeightCounting.Up.extensionWithList hL cDep) S Γ).s)) := by
+      _root_.GlobalTheory.HeightCounting.Up.ModuliPointsExistList' hL cDep → _root_.GlobalTheory.HeightCounting.Up.StrictHenselianAcyclicLevelNonempty hL → _root_.GlobalTheory.HeightCounting.Up.FinitenessListStatement hL cDep → ∀ (S : SExt), StepW Start (Has3 (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension (_root_.GlobalTheory.HeightCounting.Up.extensionWithList hL cDep) S).s)) := by
   intro hL cDep
   refine ⟨fun h => h.trans (StepW.of_all ?_), fun h => h.trans (StepW.of_all ?_), fun h => h.trans (StepW.of_all ?_), ?_⟩
   · intro K B f T w _ _ H P x l
@@ -1215,7 +1215,7 @@ theorem steps_pin_alt : ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, ∀ cDe
   · intro K B f T w _ _ H P x l
     obtain ⟨x', hx', -⟩ := H P x l
     exact ⟨x', hx'⟩
-  · intro hB hA hMt hRat hCu hB0 hB1 hB2 hC hFin S Γ
+  · intro hB hA hMt hRat hCu hB0 hB1 hB2 hC hFin S
     have h := hB.and (hA.and (hMt.and (hRat.and (hCu.and (hB0.and (hB1.and (hB2.and (hC.and hFin))))))))
     refine h.trans (StepW.of_all ?_)
     intro K B f T w _ _ H
@@ -1228,7 +1228,7 @@ theorem steps_pin_alt : ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, ∀ cDe
     obtain ⟨x3, ⟨l1⟩, p3⟩ := b1 P x2 l0
     obtain ⟨x4, ⟨l2⟩, p4⟩ := b2 P x3 l1
     obtain ⟨sc⟩ := c P x4 l2
-    obtain ⟨Z, v, -, -⟩ := fin P x4 { toStrictHenselianAcyclic := l2, c := sc } S Γ (p4 (p3 p2))
+    obtain ⟨Z, v, -, -⟩ := fin P x4 { toStrictHenselianAcyclic := l2, c := sc } S (p4 (p3 p2))
     exact ⟨Z, ⟨v⟩⟩
 end GlobalTheory.HeightCounting.UpPin
 end

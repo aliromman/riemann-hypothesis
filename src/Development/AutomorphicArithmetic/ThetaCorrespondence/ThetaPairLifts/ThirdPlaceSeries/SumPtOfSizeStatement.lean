@@ -97,7 +97,8 @@ theorem r_log_div_le (r t q : ℕ) (hr : 1 ≤ r) (ht : 1 ≤ t) (hq : 4 * t * r
   have ht' : (1:ℝ) ≤ t := by exact_mod_cast ht
   set Q : ℝ := 4 * t * r + 2 with hQ
   have hqQ : Q ≤ q := by rw [hQ]; exact_mod_cast (by omega : 4 * t * r + 2 ≤ q)
-  have hQ6 : (6:ℝ) ≤ Q := by rw [hQ]; nlinarith
+  have hQ6 : (6:ℝ) ≤ Q := by
+    rw [hQ]; have := one_le_mul_of_one_le_of_one_le ht' hr'; linarith
   have he : Real.exp 1 ≤ Q := by have := Real.exp_one_lt_d9; linarith
   have hant : Real.log q / q ≤ Real.log Q / Q :=
     Real.log_div_self_antitoneOn (Set.mem_Ici.2 he) (Set.mem_Ici.2 (he.trans hqQ)) hqQ
@@ -109,12 +110,16 @@ theorem r_log_div_le (r t q : ℕ) (hr : 1 ≤ r) (ht : 1 ≤ t) (hq : 4 * t * r
   have s2 : (r : ℝ) * Real.log q / ((q : ℝ) / 2) = 2 * r * (Real.log q / q) := by
     field_simp
   have s3 : 2 * (r : ℝ) * (Real.log Q / Q) ≤ 2 * Real.log Q := by
-    have hrQ : (r : ℝ) ≤ Q := by rw [hQ]; nlinarith
+    have hrQ : (r : ℝ) ≤ Q := by
+      rw [hQ]; have := le_mul_of_one_le_left (by linarith : (0:ℝ) ≤ r) ht'; linarith
     have hQ0 : (0:ℝ) < Q := by linarith
     rw [mul_div_assoc', div_le_iff₀ hQ0]
-    nlinarith
+    have := mul_le_mul_of_nonneg_right hrQ hlogQ; linarith
   have s4 : Real.log Q ≤ Real.log 6 + 2 * Real.log ((r : ℝ) + t) := by
-    have h6 : Q ≤ 6 * ((r : ℝ) + t) ^ 2 := by rw [hQ]; nlinarith
+    have h6 : Q ≤ 6 * ((r : ℝ) + t) ^ 2 := by
+      rw [hQ]
+      have hrt2 : (1 : ℝ) ≤ ((r : ℝ) + t) ^ 2 := one_le_pow₀ (by linarith)
+      linarith [sq_nonneg ((r : ℝ) - t), hrt2]
     calc Real.log Q ≤ Real.log (6 * ((r : ℝ) + t) ^ 2) := Real.log_le_log (by linarith) h6
       _ = Real.log 6 + 2 * Real.log ((r : ℝ) + t) := by
         rw [Real.log_mul (by norm_num) (by positivity), Real.log_pow]; push_cast; ring
@@ -131,7 +136,10 @@ theorem sq_le_dim (f r m : ℕ) (hf : 2 ≤ f) (hr : 2 ≤ r) (hm : 2 ≤ m) : r
     exact this.symm
   have h4 : 2 * (2 * (s + 2).choose 2) ≤ m * (f * (s + 2).choose 2) :=
     Nat.mul_le_mul hm (Nat.mul_le_mul hf le_rfl)
-  nlinarith
+  calc (s + 2) ^ 2 = (s + 2) * (s + 2) := sq _
+    _ ≤ (s + 2) * (2 * (s + 1)) := Nat.mul_le_mul_left _ (by omega)
+    _ = 2 * (2 * (s + 2).choose 2) := by linarith
+    _ ≤ m * (f * (s + 2).choose 2) := h4
 
 variable {D : D7} {L : SizeData₂ D}
 
@@ -179,7 +187,9 @@ theorem lenT_mul_le {P : ParameterChoice' D L} (T : ParamsT D L P) :
   rw [← T.Dp_eq] at hsq
   have hD1 : 1 ≤ T.Dp := by
     rcases Nat.eq_zero_or_pos T.Dp with h | h
-    · rw [h] at hsq; nlinarith
+    · rw [h, mul_zero] at hsq
+      have : 4 ≤ D.R.r ^ 2 := (by norm_num : 4 = 2 ^ 2) ▸ Nat.pow_le_pow_left hr2 2
+      omega
     · exact h
   have hsq' : (D.R.r : ℝ) ^ 2 ≤ D.R.m * T.Dp := by exact_mod_cast hsq
   have hD : (1 : ℝ) ≤ T.Dp := by exact_mod_cast hD1
@@ -246,7 +256,8 @@ theorem numAt {P : ParameterChoice' D L} (T : ParamsT D L P) (hll : 1 ≤ Real.l
     have c := Real.log_le_log (Real.log_pos (by linarith)) b
     rw [Real.log_mul (by linarith) hlx.ne'] at c
     have d := Real.log_le_sub_one_of_pos (by linarith : 0 < |L.Ct| + 1)
-    nlinarith
+    have hCl : |L.Ct| ≤ |L.Ct| * Real.log (Real.log L.sc.x) := le_mul_of_one_le_right hC hll
+    linarith
   · have hQ : (D.host.QS : ℝ) ≤ (D.R.f : ℝ) ^ 2 := by
       have := D.host.QS_le
       exact_mod_cast this.trans (Nat.pow_le_pow_left (by unfold Ranks.f; omega) 2)
@@ -257,7 +268,8 @@ theorem numAt {P : ParameterChoice' D L} (T : ParamsT D L P) (hll : 1 ≤ Real.l
     have h2' := Real.log_two_gt_d9
     unfold Formalism.MainNotions.DIV.Cons.vd2
     rw [Real.logb, div_le_iff₀ (by linarith)]
-    nlinarith
+    have := mul_le_mul_of_nonneg_left h2'.le (by linarith : (0 : ℝ) ≤ (|L.Ct| + 20) * L.sc.L)
+    linarith
   · exact (lenT_mul_le p i T).trans (mul_le_mul_of_nonneg_right (by linarith) (by linarith))
   · intro q hq
     have hq' : 4 * D.R.t * D.R.r + 1 < q := by
@@ -625,7 +637,7 @@ theorem inv_pred_le_of_sqrt_lt (y s p : ℕ) (hy : 2 ≤ y) (hs : y < (s + 1) * 
     push_cast at this
     exact this
   rw [div_mul_div_comm, div_le_div_iff₀ ha (by positivity)]
-  nlinarith [mul_le_mul_of_nonneg_right hL ha.le]
+  linarith [mul_le_mul_of_nonneg_right hL ha.le]
 
 theorem sum_inv_pred_le : ∀ y : ℕ, 3 ≤ y →
     ∑ p ∈ (Finset.range (y + 1)).filter Nat.Prime, 1 / ((p : ℝ) - 1)
@@ -663,7 +675,7 @@ theorem sum_inv_pred_le : ∀ y : ℕ, 3 ≤ y →
     have he : Real.exp 2 < 9 := by
       have := Real.exp_one_lt_d9
       have e2 : Real.exp 2 = Real.exp 1 * Real.exp 1 := by rw [← Real.exp_add]; norm_num
-      rw [e2]; nlinarith [Real.exp_pos 1]
+      rw [e2]; have := mul_lt_mul this this.le (Real.exp_pos 1) (by norm_num); linarith
     have h9 : (9:ℝ) ≤ y := by exact_mod_cast (by omega : 9 ≤ y)
     have := Real.log_lt_log (Real.exp_pos 2) (by linarith : Real.exp 2 < y)
     rwa [Real.log_exp] at this
@@ -761,7 +773,7 @@ theorem point_le (F N k m M : ℕ) (Mb Sm : ℝ) (vd : ℕ → ℝ) (large₂ : 
   have hm : (0:ℝ) ≤ m := Nat.cast_nonneg _
   have hN : (0:ℝ) ≤ N := Nat.cast_nonneg _
   have hX : 0 ≤ (F:ℝ) * m * Mb := by positivity
-  have hA : 0 ≤ ((F:ℝ) * m * Mb + Sm) * large₂ := by nlinarith
+  have hA : 0 ≤ ((F:ℝ) * m * Mb + Sm) * large₂ := mul_nonneg (by linarith) (by linarith)
   have hinv : 0 ≤ 1 / ((p:ℝ) - 1) := by positivity
   have hv := hvd p
   have hI2 : 0 ≤ (if p ∈ S₀ then ((F:ℝ) * m * Mb + Sm) * ((1 + vd p / 2) * Real.log p) else 0) := by
@@ -798,8 +810,9 @@ theorem point_le (F N k m M : ℕ) (Mb Sm : ℝ) (vd : ℕ → ℝ) (large₂ : 
       rw [e]
       have f1 : (F:ℝ) * Mb * (N * Real.log p / ((p:ℝ) - 1)) ≤ F * Mb * (m * large₂) :=
         mul_le_mul_of_nonneg_left (hRq p hR) (by positivity)
-      have f2 : Sm * (Real.log p / ((p:ℝ) - 1)) ≤ Sm * large₂ := by nlinarith
-      nlinarith
+      have f2 : Sm * (Real.log p / ((p:ℝ) - 1)) ≤ Sm * large₂ := mul_le_mul_of_nonneg_left (ht1.trans hLg) hSm
+      have hIR_eq : ((F:ℝ) * m * Mb + Sm) * large₂ = F * Mb * (m * large₂) + Sm * large₂ := by ring
+      linarith
     · rw [if_neg hR]
       simp only [h2, hR, ↓reduceIte, add_zero, zero_add] at hI2 hIR ⊢
       by_cases hk : m * p < k
@@ -815,7 +828,8 @@ theorem point_le (F N k m M : ℕ) (Mb Sm : ℝ) (vd : ℕ → ℝ) (large₂ : 
         rw [e, hlb]
         have g1 : (F:ℝ) * m * Mb / 2 * Real.log M * (1 / ((p:ℝ) - 1))
             ≤ F * m * Mb * large₂ / 2 * (1 / ((p:ℝ) - 1)) := by
-          have : (F:ℝ) * m * Mb / 2 * Real.log M ≤ F * m * Mb * large₂ / 2 := by nlinarith
+          have : (F:ℝ) * m * Mb / 2 * Real.log M ≤ F * m * Mb * large₂ / 2 := by
+            have := mul_le_mul_of_nonneg_left hLM (div_nonneg hX (by norm_num : (0:ℝ) ≤ 2)); linarith
           exact mul_le_mul_of_nonneg_right this hinv
         have hQ : 0 ≤ (F:ℝ) * (m + 1) * (N:ℝ) ^ 2 := by positivity
         have g2 : (F:ℝ) * (m + 1) * (N:ℝ) ^ 2 * (Real.log M + Real.log p)
@@ -867,7 +881,7 @@ theorem primeSum_eOf : ∀ (F N k m M : ℕ) (Mb Sm : ℝ) (vd : ℕ → ℝ) (l
   have hN : (0:ℝ) ≤ N := Nat.cast_nonneg _
   have hMn : (0:ℝ) ≤ M := Nat.cast_nonneg _
   have hX : 0 ≤ (F:ℝ) * m * Mb := by positivity
-  have hA : 0 ≤ ((F:ℝ) * m * Mb + Sm) * large₂ := by nlinarith
+  have hA : 0 ≤ ((F:ℝ) * m * Mb + Sm) * large₂ := mul_nonneg (by linarith) (by linarith)
   set A := ((F:ℝ) * m * Mb + Sm) * large₂ with hAdef
   set K := S.filter (fun q => m * q < k) with hK
   have step1 : ∑ q ∈ S, (if q.Prime then eOf F N k m Mb Sm vd M S₀ R q else 0) * Real.log q ≤
@@ -1006,7 +1020,7 @@ theorem UpperTheory.KR.small_vd_sum :
         have := Real.log_two_lt_d9
         linarith
       rw [le_div_iff₀ h2]
-      nlinarith
+      exact mul_le_of_le_one_right hl0 h2'.le
     calc ∑ p ∈ H.small, (1 + H.vdH p / 2) * Real.log p
         ≤ ∑ p ∈ H.small, 3 / 2 * ((padicValNat p H.QS : ℝ) * Real.log p) := by
           apply Finset.sum_le_sum
@@ -1017,7 +1031,7 @@ theorem UpperTheory.KR.small_vd_sum :
             exact_mod_cast (by simpa only [Nat.padicValNat_def] using one_le_padicValNat_of_dvd hQ0 hpd)
           have hvd := (hsm p hp).1
           have hlp : 0 ≤ Real.log p := Real.log_natCast_nonneg p
-          nlinarith [mul_nonneg (by linarith : (0 : ℝ) ≤ 3 / 2 * padicValNat p H.QS - 1 - H.vdH p / 2) hlp]
+          linarith [mul_nonneg (by linarith : (0 : ℝ) ≤ 3 / 2 * padicValNat p H.QS - 1 - H.vdH p / 2) hlp]
       _ = 3 / 2 * Real.log H.QS := by rw [hlogQ, Finset.mul_sum]
       _ ≤ 3 / 2 * Real.logb 2 H.QS := by linarith
   · intro r hr hrs hrq hrd hdvd
@@ -1052,11 +1066,11 @@ theorem len_mul_total_le {T F m q N B Sg b l x C₁ C₂ K U : ℝ} (hT : 1 ≤ 
     T * (40 * ((F * m * (B + 1) + F * (Sg + 2 * q * B)) * (K * l) * (K * x) + F * N ^ 3 * (K * l) + (2 * B + 1))) ≤
       40 * (4 * C₁ * K ^ 2 + C₂ * K + 2 * C₁) * C₂ * U := by
   have hcb : 0 ≤ C₁ * b := by positivity
-  have b1 : T * B ≤ C₁ * b := by nlinarith
+  have b1 : T * B ≤ C₁ * b := by linarith
   have b2 : q * (T * B) ≤ m * (C₁ * b) := mul_le_mul hq b1 (by positivity) (by positivity)
   have b3 : m * (T * (B + 1)) ≤ m * (C₁ * b) := mul_le_mul_of_nonneg_left a1 (by positivity)
   have b4 : C₁ * b ≤ m * (C₁ * b) := le_mul_of_one_le_left hcb hm
-  have b5 : T * (m * (B + 1) + (Sg + 2 * q * B)) ≤ 4 * (m * (C₁ * b)) := by nlinarith
+  have b5 : T * (m * (B + 1) + (Sg + 2 * q * B)) ≤ 4 * (m * (C₁ * b)) := by linarith
   have c1 : T * (m * (B + 1) + (Sg + 2 * q * B)) * (F * (K * l) * (K * x)) ≤
       4 * (m * (C₁ * b)) * (F * (K * l) * (K * x)) := mul_le_mul_of_nonneg_right b5 (by positivity)
   have hmx : 1 ≤ m * x := one_le_mul_of_one_le_of_one_le hm hx
@@ -1064,18 +1078,23 @@ theorem len_mul_total_le {T F m q N B Sg b l x C₁ C₂ K U : ℝ} (hT : 1 ≤ 
   have c3 : C₂ * b * (F * (K * l)) ≤ C₂ * b * (F * (K * l)) * (m * x) := le_mul_of_one_le_right (by positivity) hmx
   have hall : 1 ≤ F * l * (m * x) := one_le_mul_of_one_le_of_one_le (one_le_mul_of_one_le_of_one_le hF hl) hmx
   have c4 : C₁ * b ≤ C₁ * b * (F * l * (m * x)) := le_mul_of_one_le_right hcb hall
-  have c5 : T * (2 * B + 1) ≤ 2 * (C₁ * b) := by nlinarith
+  have c5 : T * (2 * B + 1) ≤ 2 * (C₁ * b) := by linarith
   have c6 : (4 * C₁ * K ^ 2 + C₂ * K + 2 * C₁) * (F * m * b * l * x) ≤ (4 * C₁ * K ^ 2 + C₂ * K + 2 * C₁) * (C₂ * U) :=
     mul_le_mul_of_nonneg_left a4 (by positivity)
-  nlinarith
+  have hR1 : (4 * C₁ * K ^ 2 + C₂ * K + 2 * C₁) * (F * m * b * l * x) =
+      4 * (m * (C₁ * b)) * (F * (K * l) * (K * x)) + C₂ * b * (F * (K * l)) * (m * x) + 2 * (C₁ * b * (F * l * (m * x))) := by ring
+  have hL1 : T * ((F * m * (B + 1) + F * (Sg + 2 * q * B)) * (K * l) * (K * x) + F * N ^ 3 * (K * l) + (2 * B + 1)) =
+      T * (m * (B + 1) + (Sg + 2 * q * B)) * (F * (K * l) * (K * x)) + T * N ^ 3 * (F * (K * l)) + T * (2 * B + 1) := by ring
+  linarith
 
 theorem log_top_le {T B b l C₁ C₂ : ℝ} (hT : 1 ≤ T) (hB : 0 ≤ B) (hb : 1 ≤ b) (hl : 1 ≤ l) (h1 : 0 ≤ C₁)
     (a1 : T * (B + 1) ≤ C₁ * b) (a2 : Real.log b ≤ C₂ * l) : Real.log (2 * B + 1) ≤ (2 * C₁ + C₂ + 1) * l := by
-  have b1 : B + 1 ≤ C₁ * b := by nlinarith
-  have b2 : Real.log (2 * B + 1) ≤ Real.log ((2 * C₁ + 1) * b) := Real.log_le_log (by positivity) (by nlinarith)
+  have b1 : B + 1 ≤ C₁ * b := (le_mul_of_one_le_left (by positivity) hT).trans a1
+  have b2 : Real.log (2 * B + 1) ≤ Real.log ((2 * C₁ + 1) * b) := Real.log_le_log (by positivity) (by linarith)
   rw [Real.log_mul (by positivity) (by positivity)] at b2
   have b3 : Real.log (2 * C₁ + 1) ≤ 2 * C₁ + 1 - 1 := Real.log_le_sub_one_of_pos (by positivity)
-  nlinarith
+  have h1l : 2 * C₁ ≤ 2 * C₁ * l := le_mul_of_one_le_right (by positivity) hl
+  linarith
 
 section Point
 
@@ -1115,7 +1134,7 @@ theorem sumAt_of_sizes {PP C₁ C₂ : ℝ} (h1 : 0 ≤ C₁) (h2 : 0 ≤ C₂) 
     (by push_cast; exact log_top_le hT1' hB hb hl h1 a1 n1) (n4.trans hKl)
     (hsum.trans (mul_le_mul_of_nonneg_left (n5.trans hKl) (by norm_num)))
     (n3.trans (mul_le_mul_of_nonneg_right hK2 (by linarith))) Finset.card_le_two
-    (fun q hq => (n7 q hq).trans (by nlinarith))
+    (fun q hq => (n7 q hq).trans (by linarith [mul_le_mul_of_nonneg_left hKl (by linarith : (0 : ℝ) ≤ D.R.m)]))
   refine ⟨_, _, _, hnum, ?_, fun q hqp _ => ?_⟩
   · push_cast
     exact len_mul_total_le hT1' hF hm hq hB hb hl hx h1 h2 (by linarith) a1 a2 n6 n2
@@ -1244,9 +1263,9 @@ theorem gap_num {PP T X h g f r : ℝ} (hT : 0 < T) (hX : 60 ≤ X) (hf : 1 ≤ 
     (h1 : PP * X * T ≤ h) (h2 : h ≤ 2 * T * g) : 2 * f * r * (2 * r + 8) + 8 + 1 ≤ g := by
   have a : PP * X ≤ 2 * g := le_of_mul_le_mul_right (by linarith) hT
   have b1 : 1 ≤ f * r := one_le_mul_of_one_le_of_one_le hf hr
-  have b2 : f * r ≤ f * r ^ 2 := by nlinarith
+  have b2 : f * r ≤ f * r ^ 2 := by rw [sq, ← mul_assoc]; exact le_mul_of_one_le_right (by positivity) hr
   have c : PP * 60 ≤ PP * X := mul_le_mul_of_nonneg_left hX (by linarith)
-  nlinarith
+  linarith
 
 variable {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotions.G.Inst D L} {Gl : Formalism.MainNotions.G.LatInst D} {Kc : Formalism.MainNotions.G.Consts}
   {Y0 : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Y0 cX} {Csz : ℝ} (p : PtAt ex Csz) (i : Fin D.R.m)
@@ -1300,8 +1319,14 @@ theorem wtAt_of_wtNum {PP : ℝ} (h : WtNum p i PP) (hP : (D.R.f : ℝ) * (D.R.r
   have hk' : (5 : ℝ) ≤ D.R.k := by exact_mod_cast (by omega : 5 ≤ D.R.k)
   have hr' : (D.R.k : ℝ) ≤ D.R.r := by exact_mod_cast (by omega : D.R.k ≤ D.R.r)
   have hD' : (1 : ℝ) ≤ GlobalTheory.CompHt.dimFlag (dat p i) := by exact_mod_cast hD
-  have hkP : (D.R.k : ℝ) ≤ PP := by nlinarith
-  have hTb : (T : ℝ) ≤ 4 * L.sc.b := by nlinarith
+  have hkP : (D.R.k : ℝ) ≤ PP := by
+    have h1 : (D.R.r : ℝ) ≤ D.R.r ^ 2 := le_self_pow₀ (by linarith) (by norm_num)
+    have h2 : (D.R.r : ℝ) ^ 2 ≤ D.R.f * D.R.r ^ 2 := le_mul_of_one_le_left (by positivity) (by linarith)
+    linarith
+  have hTb : (T : ℝ) ≤ 4 * L.sc.b := by
+    have : 20 * (T : ℝ) ≤ 20 * (D.R.r : ℝ) * T := by
+      rw [mul_assoc]; exact mul_le_mul_of_nonneg_left (le_mul_of_one_le_left (by positivity) (by linarith)) (by norm_num)
+    linarith
   have hb : 0 ≤ L.sc.b := by linarith
   refine ⟨⟨by omega, by omega, by omega, by omega, by omega, GlobalTheory.PinNum.finrank_host D⟩, by omega,
     ⌊8 * L.sc.b / T⌋₊, D.R.k * (S + 2 * D.R.r) / T, ⟨e4, fun τ a ha => e5 τ a (by omega), fun τ a b ha hb' => ?_,
@@ -1346,7 +1371,8 @@ theorem wtAt_of_wtNum {PP : ℝ} (h : WtNum p i PP) (hP : (D.R.f : ℝ) * (D.R.r
     linarith
 
 theorem le_PP {P : ParameterChoice' D L} (T : ParamsT D L P) : (D.R.f : ℝ) * (D.R.r : ℝ) ^ 2 ≤ T.PP := by
-  have h1 : D.R.f * D.R.r ^ 2 ≤ T.nWn := le_trans (by nlinarith [Nat.zero_le (D.R.f * D.R.r)]) T.nW_lo.1
+  have h1 : D.R.f * D.R.r ^ 2 ≤ T.nWn :=
+    le_trans (by rw [sq, ← mul_assoc]; exact Nat.mul_le_mul_left _ (Nat.le_succ _)) T.nW_lo.1
   exact le_trans (by exact_mod_cast h1) T.nW_le
 
 end GlobalTheory.RefSum.DivWt

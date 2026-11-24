@@ -1386,7 +1386,11 @@ theorem UpperTheory.Comparison₂.core_gm :
   rw [gmA_eq Λ φ H TT _ _ C ell hE hell] at hmain
   have hs := sigA_le Λ φ H TT _ _ C ell hx0 hE hell
   have h1 : Dd.x ^ ((1 : ℝ) / 2 + Dd.ε) ≤ Dd.x ^ ((1 : ℝ) / 2 + (eD + eL + 3 + 3) * Dd.ε) :=
-    Real.rpow_le_rpow_of_exponent_le w1 (by nlinarith)
+    Real.rpow_le_rpow_of_exponent_le w1 (by
+      have hfactor : (1 : ℝ) ≤ eD + eL + 3 + 3 := by linarith only [hE0]
+      have hεle : Dd.ε ≤ (eD + eL + 3 + 3) * Dd.ε :=
+        le_mul_of_one_le_left w2.le hfactor
+      exact add_le_add_right hεle _)
   have h2 : Dd.x ^ ((1 : ℝ) / 2 + (eD + eL + 7) * Dd.ε)
       = Dd.x ^ Dd.ε * Dd.x ^ ((1 : ℝ) / 2 + (eD + eL + 3 + 3) * Dd.ε) := by
     rw [← Real.rpow_add hx0]

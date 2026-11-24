@@ -101,7 +101,7 @@ private lemma dvd_pow_of_prime_dvd_imp (n k : ℕ) (h : ∀ p, p.Prime → p ∣
   · have h1 : 1 ≤ k.factorization p := (hp.1.dvd_iff_one_le_factorization hk).1 (h p hp.1 hp.2)
     have h2 : n.factorization p < n := Nat.factorization_lt p hn
     simp only [Finsupp.smul_apply, smul_eq_mul]
-    nlinarith
+    exact le_trans h2.le (Nat.le_mul_of_pos_right n h1)
   · have : n.factorization p = 0 := by
       by_cases hp' : p.Prime
       · exact Nat.factorization_eq_zero_of_not_dvd (fun hd => hp ⟨hp', hd⟩)
@@ -212,7 +212,7 @@ private lemma sum_inv_le_mul_sum_squarefree_inv_totient (Q q : ℕ) (hq : 1 ≤ 
             = ((f:ℝ) ^ (Q + 1) * (q:ℝ) ^ (Q + 1)) / (q.totient * f.totient) := by
           field_simp; ring
         rw [hrw, le_div_iff₀ (by positivity)]
-        nlinarith [hprod]
+        linarith [hprod]
 
 open Complex DirichletCharacter ArithmeticFunction MeasureTheory Filter Topology in
 private lemma coprime_mod_mul_iff (d p m : ℕ) : Nat.Coprime d (m % (d * p)) ↔ Nat.Coprime d m := by
@@ -391,9 +391,15 @@ private lemma sum_norm_sq_exp_sum_eq_mul_sum_residues (d : ℕ) (hd : 0 < d) (S 
               apply hrs
               have : j = 0 := by
                 rcases lt_trichotomy j 0 with h | h | h
-                · nlinarith
+                · have h1 : (d : ℤ) * j ≤ -(d : ℤ) := by
+                    have := mul_le_mul_of_nonneg_left (show j ≤ -1 by omega) (show (0 : ℤ) ≤ d by omega)
+                    linarith
+                  omega
                 · exact h
-                · nlinarith
+                · have h1 : (d : ℤ) ≤ (d : ℤ) * j := by
+                    have := mul_le_mul_of_nonneg_left (show (1 : ℤ) ≤ j by omega) (show (0 : ℤ) ≤ d by omega)
+                    linarith
+                  omega
               subst this; omega
             simp [this, hrs]
   rw [Finset.sum_comm]
@@ -440,7 +446,15 @@ private lemma norm_sum_sq_le_pred_mul_of_avoids_class (p : ℕ) (hp : p.Prime) (
           · exact Finset.erase_subset _ _
   have hB' : ∑ r ∈ Finset.range p, B r ^ 2 = ∑ r ∈ Finset.range p, ‖∑ n ∈ S.filter (fun n => n % p = r), b n‖ ^ 2 := rfl
   rw [← hB'] at hpar
-  nlinarith [hcs, hpar, sq_nonneg ‖∑ n ∈ S, b n‖]
+  have h1 : (p : ℝ) * ‖∑ n ∈ S, b n‖ ^ 2 ≤ (p - 1 : ℝ) * ((p : ℝ) * ∑ r ∈ Finset.range p, B r ^ 2) := by
+    have := mul_le_mul_of_nonneg_left hcs (by positivity : (0 : ℝ) ≤ p)
+    linarith
+  rw [← hpar] at h1
+  have h2 : (p - 1 : ℝ) * (‖∑ n ∈ S, b n‖ ^ 2 + ∑ a ∈ (Finset.range p).erase 0,
+      ‖∑ n ∈ S, b n * cexp (2 * ↑Real.pi * I * n * a / p)‖ ^ 2) =
+      (p : ℝ) * ‖∑ n ∈ S, b n‖ ^ 2 - ‖∑ n ∈ S, b n‖ ^ 2 + (p - 1 : ℝ) * ∑ a ∈ (Finset.range p).erase 0,
+      ‖∑ n ∈ S, b n * cexp (2 * ↑Real.pi * I * n * a / p)‖ ^ 2 := by ring
+  linarith
 
 open Complex DirichletCharacter ArithmeticFunction MeasureTheory Filter Topology in
 private lemma norm_sum_sq_le_totient_mul_of_avoids_classes (S : Finset ℕ) :
@@ -582,7 +596,8 @@ theorem _root_.GlobalTheory.arithmetic_large_sieve_one_class : ∀ (M N Q q : �
           mul_le_mul_of_nonneg_left hL hZ0
       _ ≤ (Q:ℝ) ^ 2 + 2 * Real.pi * N := by
           refine le_of_mul_le_mul_left ?_ hpos
-          nlinarith [hbig]
+          linarith [hbig, show Z * (Z * ∑ d ∈ D, (1:ℝ) / d.totient) = Z ^ 2 * ∑ d ∈ D, (1:ℝ) / d.totient by ring,
+            show Z * ((Q:ℝ) ^ 2 + 2 * Real.pi * N) = ((Q:ℝ) ^ 2 + 2 * Real.pi * N) * Z by ring]
 
 end GlobalTheory
 end -- clump:auto
@@ -655,11 +670,15 @@ theorem brun_titchmarsh_const : ∃ C : ℝ, 0 < C ∧ ∀ (q a : ℕ) (x y : �
   obtain ⟨Q, hQ⟩ : ∃ Q, Q = s + 1 := ⟨_, rfl⟩
   have hQ2 : (2 : ℝ) ≤ Q := by exact_mod_cast (by omega : 2 ≤ Q)
   have hQz : (Q : ℝ) ^ 2 ≤ 4 * z := by
-    have : Q ^ 2 ≤ 4 * ⌊z⌋₊ := by rw [hQ]; nlinarith
+    have : Q ^ 2 ≤ 4 * ⌊z⌋₊ := by
+      rw [hQ]
+      calc (s + 1) ^ 2 ≤ (2 * s) ^ 2 := Nat.pow_le_pow_left (by omega) 2
+        _ = 4 * (s * s) := by ring
+        _ ≤ 4 * ⌊z⌋₊ := Nat.mul_le_mul_left 4 hs2
     have : (Q : ℝ) ^ 2 ≤ 4 * ⌊z⌋₊ := by exact_mod_cast this
     linarith
   have hzQ : z ≤ (Q : ℝ) ^ 2 := by
-    have : ⌊z⌋₊ + 1 ≤ Q ^ 2 := by rw [hQ]; nlinarith
+    have : ⌊z⌋₊ + 1 ≤ Q ^ 2 := by rw [hQ, sq]; omega
     have : (⌊z⌋₊ : ℝ) + 1 ≤ (Q : ℝ) ^ 2 := by exact_mod_cast this
     linarith
   have hlz : 0 < Real.log z := Real.log_pos (by linarith)
@@ -678,11 +697,12 @@ theorem brun_titchmarsh_const : ∃ C : ℝ, 0 < C ∧ ∀ (q a : ℕ) (x y : �
     simp only [hP, primesIoc, Finset.mem_filter, Finset.mem_Ioc] at hp
     obtain ⟨⟨⟨⟨h1, h2⟩, h3⟩, h4⟩, h5⟩ := hp
     refine ⟨h3, h4, h5, (Nat.mul_div_le _ _).trans h1.le, ?_⟩
-    have h6 : (p : ℝ) ≤ x + y := (Nat.le_floor_iff (by nlinarith)).1 h2
+    have h6 : (p : ℝ) ≤ x + y := (Nat.le_floor_iff (by linarith)).1 h2
     have h7 : x < ⌊x⌋₊ + 1 := Nat.lt_floor_add_one x
     have h8 : ⌊x⌋₊ + 1 ≤ q * (⌊x⌋₊ / q + 1) := Nat.lt_mul_div_succ _ hq
     have h9 : (⌊x⌋₊ : ℝ) + 1 ≤ q * (((⌊x⌋₊ / q : ℕ) : ℝ) + 1) := by exact_mod_cast h8
-    have h10 : (p : ℝ) < q * (((⌊x⌋₊ / q : ℕ) : ℝ) + (⌊z⌋₊ + 2)) := by nlinarith
+    have hy1 : y < q * ((⌊z⌋₊ : ℝ) + 1) := by rw [hyz]; exact mul_lt_mul_of_pos_left hzfl hq0
+    have h10 : (p : ℝ) < q * (((⌊x⌋₊ / q : ℕ) : ℝ) + (⌊z⌋₊ + 2)) := by linarith
     exact_mod_cast h10)
   have hsmall : (P.filter fun p => ¬ Q < p).card ≤ Q := by
     calc _ ≤ (Finset.Icc 1 Q).card := Finset.card_le_card fun p hp => by
@@ -698,7 +718,10 @@ theorem brun_titchmarsh_const : ∃ C : ℝ, 0 < C ∧ ∀ (q a : ℕ) (x y : �
   push_cast at hbig
   have hpi := Real.pi_lt_four
   have hpi0 := Real.pi_pos
-  have h1 : B * ((q.totient : ℝ) / q * Real.log Q) ≤ 20 * z := by nlinarith
+  have h1 : B * ((q.totient : ℝ) / q * Real.log Q) ≤ 20 * z := by
+    have hpi2 : 2 * Real.pi * ((⌊z⌋₊ : ℝ) + 2) ≤ 2 * 4 * (2 * z) :=
+      mul_le_mul (by linarith) (by linarith) (by positivity) (by norm_num)
+    linarith
   have h2 : B * (q.totient * Real.log Q) ≤ 20 * y := by
     have := mul_le_mul_of_nonneg_left h1 hq0.le
     rw [hyz]
@@ -706,15 +729,17 @@ theorem brun_titchmarsh_const : ∃ C : ℝ, 0 < C ∧ ∀ (q a : ℕ) (x y : �
       _ ≤ _ := by linarith
   have h3 : B * (q.totient * Real.log z) ≤ 40 * y := by
     have := mul_le_mul_of_nonneg_left hlog (mul_nonneg hB0 hφ0.le)
-    nlinarith
-  have h4 : (Q : ℝ) * Real.log z ≤ 8 * z := by nlinarith
+    linarith
+  have h4 : (Q : ℝ) * Real.log z ≤ 8 * z := by
+    have hq1 : (Q : ℝ) * Real.log z ≤ Q * (2 * Q) := mul_le_mul_of_nonneg_left (by linarith) (by linarith)
+    linarith
   have h5 : (Q : ℝ) * (q.totient * Real.log z) ≤ 8 * y := by
     have : (q.totient : ℝ) * (Q * Real.log z) ≤ q * (8 * z) :=
       mul_le_mul hφq h4 (by positivity) hq0.le
-    rw [hyz]; nlinarith
+    rw [hyz]; linarith
   rw [le_div_iff₀ (by positivity)]
   have := mul_le_mul_of_nonneg_right hcard (by positivity : (0 : ℝ) ≤ q.totient * Real.log z)
-  nlinarith
+  linarith
 
 end GlobalTheory.Lin
 end -- clump:auto
@@ -802,7 +827,10 @@ theorem orth (q : ℕ) [NeZero q] (S : Finset ℕ) (a : ℕ → ℂ) (hS : ∀ n
       simp only [hg]; split_ifs <;> simp
     rw [norm_mul, norm_mul, this, Complex.norm_conj]
     have := hg0 n m
-    nlinarith [mul_nonneg this (sq_nonneg (‖a n‖ - ‖a m‖))]
+    have hsq := mul_nonneg this (sq_nonneg (‖a n‖ - ‖a m‖))
+    have heq : (‖a n‖ ^ 2 * g n m / 2 + ‖a m‖ ^ 2 * g n m / 2) - ‖a n‖ * ‖a m‖ * g n m =
+        g n m * (‖a n‖ - ‖a m‖) ^ 2 / 2 := by ring
+    linarith
   refine e2.trans (le_of_eq ?_)
   simp_rw [Finset.sum_add_distrib]
   rw [Finset.sum_comm (f := fun n m => ‖a m‖ ^ 2 * g n m / 2), ← Finset.sum_add_distrib]
@@ -840,7 +868,10 @@ theorem window (C : ℝ) (hC : 0 < C)
   have hqT : (q : ℝ) ≤ q * T := le_mul_of_one_le_right (by positivity) hT
   have hcop : ∀ n ∈ S, Nat.Coprime n q := fun n hn => by
     obtain ⟨hp, h1, -, -⟩ := hS n hn
-    have : (q : ℝ) < n := by nlinarith
+    have : (q : ℝ) < n := by
+      have h2 : (1 : ℝ) ≤ 2 * q * T := by linarith
+      have := le_self_pow₀ h2 (show 2 ≠ 0 by norm_num)
+      linarith
     have hlt : q < n := by exact_mod_cast this
     exact (Nat.Prime.coprime_iff_not_dvd hp).2 (Nat.not_dvd_of_pos_of_lt hq hlt)
   have e3 := Real.abs_exp_sub_one_le (x := 1 / T)
@@ -858,7 +889,10 @@ theorem window (C : ℝ) (hC : 0 < C)
   have hn3 : (n : ℝ) ≤ 3 * x := by linarith
   have hx3 : (2 * q * T) ^ 2 ≤ 3 * x := by linarith
   have hY : 2 * (q : ℝ) ≤ 2 * x / T := by
-    rw [le_div_iff₀ hT0]; nlinarith
+    rw [le_div_iff₀ hT0]
+    have h2 : (2 : ℝ) * (2 * q * T) ≤ (2 * q * T) ^ 2 := by
+      rw [sq]; exact mul_le_mul_of_nonneg_right (by linarith) (by positivity)
+    linarith
   have hb := hB q n x (2 * x / T) hq (hcop n hn) hx.le hY
   have hsub : S.filter (fun m => m ≡ n [MOD q]) ⊆
       (primesIoc x (x + 2 * x / T)).filter (fun p => p ≡ n [MOD q]) := by
@@ -873,9 +907,13 @@ theorem window (C : ℝ) (hC : 0 < C)
   have hlog : 0 < Real.log n := Real.log_pos hn1
   have hsq : (n : ℝ) ≤ (2 * x / T / q) ^ 2 := by
     rw [div_div, div_pow, le_div_iff₀ (by positivity)]
-    have h4 : (T * q) ^ 2 ≤ 3 * x / 4 := by nlinarith
+    have h4 : (T * q) ^ 2 ≤ 3 * x / 4 := by
+      have heq : (2 * (q : ℝ) * T) ^ 2 = 4 * (T * q) ^ 2 := by ring
+      linarith
     calc (n : ℝ) * (T * q) ^ 2 ≤ (3 * x) * (3 * x / 4) := by gcongr
-      _ ≤ (2 * x) ^ 2 := by nlinarith
+      _ ≤ (2 * x) ^ 2 := by
+        have heq : (2 * x) ^ 2 - 3 * x * (3 * x / 4) = 7 / 4 * x ^ 2 := by ring
+        linarith [sq_nonneg x]
   have hl : Real.log n / 2 ≤ Real.log (2 * x / T / q) := by
     have := Real.log_le_log (by linarith) hsq
     rw [Real.log_pow] at this

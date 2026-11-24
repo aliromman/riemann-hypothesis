@@ -91,7 +91,8 @@ import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
 import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.HaarEqSmul
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsUnitaryTorusScaleBesselCharacter
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadicalStatement
+import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadical
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.OnePlaceKF
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.MomentPieriNumericsOfSizeHyps
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.NormalizedBesselMapsAnyScalePieriConstants
@@ -1150,7 +1151,7 @@ theorem minor_line : GlobalTheory.GapIn.Hyp → GlobalTheory.GapIn.AmpKF0 → Ce
     · exact ⟨U, U', l₁, l₂, dg, S1, S2, Or.inr ⟨rfl, HEq.rfl, HEq.rfl, rfl⟩⟩
   have hNH : IsHaarOn (Nset D.R.k D.R.rS) W.μN := by
     rw [hW.2.2.2.2.2.2.2.2.2.2.2.1]
-    exact GlobalTheory.T.haarLie_isHaarOn_unipotentRadical _ _ _ (ENNReal.ofReal_pos.2 (by positivity)) ENNReal.ofReal_lt_top
+    exact _root_.GlobalTheory.haarLie_isHaarOn_Nset _ _ _ (ENNReal.ofReal_pos.2 (by positivity)) ENNReal.ofReal_lt_top
   have z1 := hW.2.2.1
   have z2 := hW.2.2.2.1
   have G1 : SideG D.R.k D.R.rS W.z W.π U W.μW W.μN W.μG W.νS :=

@@ -193,7 +193,6 @@ namespace UpperTheory.V.Z.J.UnitaryRankTwoFlags
 
 open UpperTheory.V.U3 UpperTheory.V.Base UpperTheory.V.Th.End3
 
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 attribute [local instance 10000] IsDiscreteValuationRing.toIsLocalRing
 
 private theorem block_triangular_diag_mul {k : Type} [CommRing k] {n : ℕ} (A B : Matrix (Fin n) (Fin n) k)
@@ -401,7 +400,6 @@ private alias lc_of_ker := _root_.UpperTheory.Reformulated.B.LocallyConstantOfKe
 
 end UpperTheory.V.Z.J.UnitaryRankTwoFlags
 
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 attribute [local instance 10000] IsDiscreteValuationRing.toIsLocalRing
 
 
@@ -604,7 +602,6 @@ section -- clump:auto
 
 
 section
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 section SlopeTestRemainingChoices
 open IsLocalRing UpperTheory.V UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.HV
 private theorem loc_of_int {O R A : Type} [CommRing O] [CommRing R] [IsLocalRing R] [Algebra O R] [CommRing A]

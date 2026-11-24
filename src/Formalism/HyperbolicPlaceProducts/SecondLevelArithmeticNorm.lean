@@ -90,7 +90,7 @@ theorem two_pow_length_primeFactorsList_le (j : ℕ) (hj : 1 ≤ j) :
     2 ^ (Nat.primeFactorsList j).length ≤ j := by
   have hprod := Nat.prod_primeFactorsList (show j ≠ 0 by omega)
   calc 2 ^ (Nat.primeFactorsList j).length ≤ (Nat.primeFactorsList j).prod :=
-        List.pow_card_le_prod _ _ (fun p hp => (Nat.prime_of_mem_primeFactorsList hp).two_le)
+        List.pow_length_le_prod _ _ (fun p hp => (Nat.prime_of_mem_primeFactorsList hp).two_le)
     _ = j := hprod
 
 theorem pow_primeFactors_length_le : Formalism.SLP.OmegaPow := by

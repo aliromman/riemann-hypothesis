@@ -23,7 +23,8 @@ public import Mathlib.MeasureTheory.Measure.Haar.OfBasis
 public import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IntegrableMonomialMulConjComplexGaussian
 public import Formalism.PeriodIntegrals.QuotInv
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DensityInChart
-public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadicalStatement
+public import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
+public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadical
 public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsHaarOnIffGroupsUnitaryUnipotent
 public import Formalism.FormalDegreeBessel.FinalBF
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.LongWeylElement
@@ -1504,7 +1505,7 @@ theorem mul_ringHom_units_ratio {C I a m b c d : ℝ≥0∞} (ha : a ≠ 0) (ha'
 
 theorem bigCell_integral : ∀ (k r : ℕ) (μG μb : Measure (Mt k r)) (c cb : ℝ), 0 < c → 0 < cb → IsHaarOn (GG k r) μG → HasDens (GG k r) μG (ENNReal.ofReal c) → IsHaarOn (Formalism.FourierDecayAlt.B2.UWb k r) μb → HasDens (Formalism.FourierDecayAlt.B2.UWb k r) μb (ENNReal.ofReal cb) → ∀ f : Mt k r → ℝ≥0∞, Measurable f → ∫⁻ g, f g ∂μG = ENNReal.ofReal (c / cb * 2 ^ r) * ∫⁻ x : Fin r → ℂ, ENNReal.ofReal (Formalism.FourierDecayAlt.B2.cWeight k r x) * ∫⁻ p : (Mt k r × Mt k r) × Mt k r, f ((Matrix.of p.1.1)⁻¹ * bigCell k r x 1 * Matrix.of p.2 * Matrix.of p.1.2) ∂(((haarLie (Nset k r) 1).prod (haarLie (Nset k r) 1)).prod μb) := by
   intro k r μG μb c cb hc hcb hG hdG hb hdb
-  have hN : IsHaarOn (Nset k r) (haarLie (Nset k r) 1) := GlobalTheory.T.haarLie_isHaarOn_unipotentRadical k r 1 one_pos ENNReal.one_lt_top
+  have hN : IsHaarOn (Nset k r) (haarLie (Nset k r) 1) := _root_.GlobalTheory.haarLie_isHaarOn_Nset k r 1 one_pos ENNReal.one_lt_top
   obtain ⟨C, -, hC⟩ := Formalism.FourierDecayAlt.P.iterated_integration_formula k r μG (haarLie (Nset k r) 1) μb
     ((GlobalTheory.HaarNotions.isHaarOn_iff_groups k r μG).1.1 hG)
     ((GlobalTheory.HaarNotions.isHaarOn_iff_groups k r _).2.1.1 hN)

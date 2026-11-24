@@ -75,35 +75,21 @@ theorem exists_factor_order {U : Set ℂ} {g : ℂ → ℂ} (hg : AnalyticOnNhd 
     (hw : w ∈ U) (hord : analyticOrderAt g w ≠ ⊤) :
     ∃ h : ℂ → ℂ, AnalyticOnNhd ℂ h U ∧
       (∀ z : ℂ, g z = (z - w) ^ analyticOrderNatAt g w * h z) ∧ h w ≠ (0 : ℂ) := by
-  classical
-  obtain ⟨h0, h0a, h0ne, hev⟩ := ((hg w hw).analyticOrderAt_ne_top).1 hord
-  set n := analyticOrderNatAt g w with hn
-  refine ⟨fun z => if z = w then h0 w else g z / (z - w) ^ n, ?_, ?_, ?_⟩
-  · intro z hz
-    by_cases hzw : z = w
-    · subst hzw
-      refine h0a.congr ?_
-      filter_upwards [hev] with y hy
-      by_cases hyz : y = z
-      · simp [hyz]
-      · have hne : (y - z) ^ n ≠ 0 := pow_ne_zero _ (sub_ne_zero.2 hyz)
-        simp only [hyz, if_false]
-        rw [hy, smul_eq_mul, mul_div_cancel_left₀ _ hne]
-    · have ha : AnalyticAt ℂ (fun y => g y / (y - w) ^ n) z :=
-        (hg z hz).div ((analyticAt_id.sub analyticAt_const).pow n)
-          (pow_ne_zero _ (sub_ne_zero.2 hzw))
-      refine ha.congr ?_
-      filter_upwards [isOpen_ne.mem_nhds hzw] with y hy
-      simp [hy]
-  · intro z
-    by_cases hzw : z = w
-    · subst hzw
-      have := hev.self_of_nhds
-      simpa using this
-    · have hne : (z - w) ^ n ≠ 0 := pow_ne_zero _ (sub_ne_zero.2 hzw)
-      simp only [hzw, if_false]
-      field_simp
-  · simpa using h0ne
+  obtain ⟨p, hp⟩ := hg w hw
+  have hp0 : p ≠ 0 := by
+    intro h
+    exact hord (analyticOrderAt_eq_top.mpr (hp.locally_zero_iff.mpr h))
+  have ha : ∀ n : ℕ, AnalyticOnNhd ℂ ((Function.swap dslope w)^[n] g) U := by
+    intro n
+    induction n with
+    | zero => exact hg
+    | succ n ih => simpa only [Function.iterate_succ_apply'] using ih.dslope w
+  have hne := hp.iterate_dslope_fslope_ne_zero hp0
+  have he := hp.eq_pow_order_mul_iterate_dslope
+  have hn : analyticOrderNatAt g w = p.order :=
+    ((hg w hw).analyticOrderNatAt_eq_iff hord).mpr
+      ⟨_, ha _ w hw, hne, Filter.Eventually.of_forall he⟩
+  exact ⟨_, ha _, fun z => by simpa only [hn, smul_eq_mul] using he z, hne⟩
 
 end GlobalTheory.FactorOrderExistence
 end -- clump:auto

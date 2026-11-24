@@ -103,6 +103,68 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachLatticeHei
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsWeakTopologyWachImageIsClosed, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.Xstab, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CyclotomicCocycleMemImageOfCrystalline, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.H1fClassFromWachPair, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HerrClassOfCocycleValues, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HerrCocycleOfWittTensorRelations, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HodgeTateJumpRestrictFiniteExt, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InvQPowNygaardExtComesFromBaseField, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.XNygaardExtComesFromBaseField, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.H1fClassWachPairJumps, Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.WeakIdealLattices, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemContinuousCocyclesRestrictLattice, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.H1fKsOntoUpToPow, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DefectTorsionSecondCohomologyKernel
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsWeakTopologyWachImageIsClosed =====
+-- Short-circuit expensive `Algebra`/`Module`/`HSMul` backtracking on `RW LL`, `RA LL`, and `TW`.
+public noncomputable local instance (priority := high) instAlgOLRW {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) :
+    Algebra ↥(Formalism.BasicNotions.Loc.OL LL) (Formalism.BasicNotions.Loc.RW LL) :=
+  Algebra.TensorProduct.leftAlgebra
+
+public noncomputable local instance (priority := high) instAlgOLRA {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) :
+    Algebra ↥(Formalism.BasicNotions.Loc.OL LL) (Formalism.BasicNotions.Loc.RA LL) :=
+  Algebra.TensorProduct.leftAlgebra
+
+public noncomputable local instance (priority := high) instModOLRW {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) :
+    Module ↥(Formalism.BasicNotions.Loc.OL LL) (Formalism.BasicNotions.Loc.RW LL) :=
+  TensorProduct.leftModule
+
+public noncomputable local instance (priority := high) instModOLRA {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) :
+    Module ↥(Formalism.BasicNotions.Loc.OL LL) (Formalism.BasicNotions.Loc.RA LL) :=
+  TensorProduct.leftModule
+
+public noncomputable local instance (priority := high) instAddCommGroupTensorRW {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (M : Type*) [AddCommGroup M]
+    [Module ↥(Formalism.BasicNotions.Loc.OL LL) M] :
+    AddCommGroup (TensorProduct ↥(Formalism.BasicNotions.Loc.OL LL) (Formalism.BasicNotions.Loc.RW LL) M) :=
+  TensorProduct.addCommGroup
+
+public noncomputable local instance (priority := high) instAddCommGroupTensorRA {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (M : Type*) [AddCommGroup M]
+    [Module ↥(Formalism.BasicNotions.Loc.OL LL) M] :
+    AddCommGroup (TensorProduct ↥(Formalism.BasicNotions.Loc.OL LL) (Formalism.BasicNotions.Loc.RA LL) M) :=
+  TensorProduct.addCommGroup
+
+public noncomputable local instance (priority := high) instModTensorRW {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (M : Type*) [AddCommGroup M]
+    [Module ↥(Formalism.BasicNotions.Loc.OL LL) M] :
+    Module (Formalism.BasicNotions.Loc.RW LL)
+      (TensorProduct ↥(Formalism.BasicNotions.Loc.OL LL) (Formalism.BasicNotions.Loc.RW LL) M) :=
+  TensorProduct.leftModule
+
+public noncomputable local instance (priority := high) instModTensorRA {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (M : Type*) [AddCommGroup M]
+    [Module ↥(Formalism.BasicNotions.Loc.OL LL) M] :
+    Module (Formalism.BasicNotions.Loc.RA LL)
+      (TensorProduct ↥(Formalism.BasicNotions.Loc.OL LL) (Formalism.BasicNotions.Loc.RA LL) M) :=
+  TensorProduct.leftModule
+
+public noncomputable local instance (priority := high) instHSMulTensorRW {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (M : Type*) [AddCommGroup M]
+    [Module ↥(Formalism.BasicNotions.Loc.OL LL) M] :
+    HSMul (Formalism.BasicNotions.Loc.RW LL)
+      (TensorProduct ↥(Formalism.BasicNotions.Loc.OL LL) (Formalism.BasicNotions.Loc.RW LL) M)
+      (TensorProduct ↥(Formalism.BasicNotions.Loc.OL LL) (Formalism.BasicNotions.Loc.RW LL) M) :=
+  @instHSMul _ _ TensorProduct.leftModule.toSMul
+
+public noncomputable local instance (priority := high) instHSMulTensorRA {l : ℕ} [Fact l.Prime]
+    (LL : Formalism.BasicNotions.Loc.FinExt l) (M : Type*) [AddCommGroup M]
+    [Module ↥(Formalism.BasicNotions.Loc.OL LL) M] :
+    HSMul (Formalism.BasicNotions.Loc.RA LL)
+      (TensorProduct ↥(Formalism.BasicNotions.Loc.OL LL) (Formalism.BasicNotions.Loc.RA LL) M)
+      (TensorProduct ↥(Formalism.BasicNotions.Loc.OL LL) (Formalism.BasicNotions.Loc.RA LL) M) :=
+  @instHSMul _ _ TensorProduct.leftModule.toSMul
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsWeakTopologyWachImageIsClosed", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NotFullBot\npublic import Formalism.SharpRestriction.LevelLetterCocycles.DeltaInvariantLattices\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ZlTowerGen\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CompactSpaceATop\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ContinuousGaloisOrbitWittTensorLatticeWeakTopolo\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ContinuousOneTmul\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ContinuousWittCbInclusionSmulWeakTopology\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EtaleComparisonPiWachLatticeClosedWeak\nimport Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsContinuousGaloisLatticeMatrixIntegral\nimport Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IntegersCompleteDVR\nimport Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.JDANEqRange\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
 @[expose] public section
@@ -933,7 +995,6 @@ open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.Basi
 namespace GlobalTheory.NL.CrystallineDescent
 
 
-set_option maxHeartbeats 60000000 in
 private theorem descend_of_eq_K0_of_isCrys (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (l : ℕ) [Fact l.Prime]
     (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL) (K' : FinExt l) (h' : Good K' s LL)
     (hle : K.1 ≤ K'.1) (hK0 : K0 K' = K0 K) (htop : ((HW l).W K' s LL h').GKs = ⊤)
@@ -990,7 +1051,6 @@ private theorem descend_of_eq_K0_of_isCrys (D : Formalism.BasicNotions.D7) (HW :
   exact ⟨y, z₀, hyz, hy.1, hz₀.1, c, c', hcl, hc'.1, hc.1⟩
 
 
-set_option maxHeartbeats 60000000 in
 private theorem wach_pow_smul_of_good_ext : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (Cm : CmpOf D.loc D.locA HW F) (l : ℕ) [Fact l.Prime] (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL), let W := (HW l).W K s LL h; let E := ((F l).E K s LL h).tie; let C := Cm l; ∀ T : Lt K LL, IsCrys ((D.loc l).PD K) T.ρ → ∀ (M hh : Let K → ℕ), JumpsLet W T M hh → ∀ κ ∈ H1fIntegralCyclotomicLayer W T, ∃ (c : ℕ) (y z : W.DD T) (hyz : (y, z) ∈ W.divisibleCocycles T), y ∈ invN W T (W.Q ^ mx M) ∧ z ∈ aN W T W.X ∧ W.cl T ⟨(y, z), hyz⟩ = (l ^ c : ℕ) • κ := by
   intro D HW F Cm l p K s LL h W E C T hT M hh hJ κ hκ
   refine (@base_setup l p D HW K s LL h).elim fun K' hK' =>

@@ -341,6 +341,138 @@ namespace GlobalTheory.DefPt.OrbitGeo
 open CategoryTheory NumberField IsDedekindDomain Module Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.Pj GlobalTheory.DualWeyl GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.CompHt GlobalTheory.DefPt ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD
 open scoped Matrix Classical
 
+section OrbitGeoInsts
+
+local instance (priority := high) instAlgebraTRing_OrbitGeo {K : Type} [Field K] (p : TRing K) :
+    Algebra K p.R :=
+  Ideal.Quotient.algebra K
+
+local instance (priority := high) instCommRingTRing_OrbitGeo {K : Type} [Field K] (p : TRing K) :
+    CommRing p.R :=
+  Ideal.Quotient.commRing p.I
+
+local instance (priority := high) instModuleTRing_OrbitGeo {K : Type} [Field K] (p : TRing K) :
+    Module K p.R :=
+  Algebra.toModule
+
+section RulCuspInsts
+variable {E : Type} [Field E] [NumberField E] [IsCMField E]
+  {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H} {l : Level H}
+
+local instance (priority := high) instAddCommGroupRul_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) :
+    AddCommGroup (Rul Xo c) :=
+  inferInstance
+
+local instance (priority := high) instModuleRul_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) :
+    Module c.F (Rul Xo c) :=
+  inferInstance
+
+local instance (priority := high) instSMulWithZeroRul_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) :
+    SMulWithZero c.F (Rul Xo c) :=
+  Module.toMulActionWithZero.toSMulWithZero
+
+local instance (priority := high) instSMulORul_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) :
+    SMul (𝓞 c.F) (Rul Xo c) :=
+  inferInstance
+
+local instance (priority := high) instModuleORul_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) :
+    Module (𝓞 c.F) (Rul Xo c) :=
+  inferInstance
+
+local instance (priority := high) instScalarTowerORul_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) :
+    IsScalarTower (𝓞 c.F) c.F (Rul Xo c) :=
+  inferInstance
+
+local instance (priority := high) instAddCommGroupCuspW_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    AddCommGroup ↥(cuspW Xo c U G) :=
+  Submodule.addCommGroup _
+
+local instance (priority := high) instModuleCuspW_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    Module c.F ↥(cuspW Xo c U G) :=
+  Submodule.module _
+
+local instance (priority := high) instSMulWithZeroCuspW_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    SMulWithZero c.F ↥(cuspW Xo c U G) :=
+  Module.toMulActionWithZero.toSMulWithZero
+
+local instance (priority := high) instDistribMulActionCuspW_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    DistribMulAction c.F ↥(cuspW Xo c U G) :=
+  Module.toDistribMulAction
+
+local instance (priority := high) instMulActionCuspW_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    MulAction c.F ↥(cuspW Xo c U G) :=
+  DistribMulAction.toMulAction
+
+local instance (priority := high) instSMulCuspW_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    SMul c.F ↥(cuspW Xo c U G) :=
+  Module.toDistribMulAction.toDistribSMul.toSMul
+
+local instance (priority := high) instHSMulCuspW_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    HSMul c.F ↥(cuspW Xo c U G) ↥(cuspW Xo c U G) :=
+  instHSMul
+
+local instance (priority := high) instSMulOCuspW_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    SMul (𝓞 c.F) ↥(cuspW Xo c U G) :=
+  Submodule.smul _
+
+local instance (priority := high) instHSMulOCuspW_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    HSMul (𝓞 c.F) ↥(cuspW Xo c U G) ↥(cuspW Xo c U G) :=
+  instHSMul
+
+local instance (priority := high) instModuleOCuspW_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    Module (𝓞 c.F) ↥(cuspW Xo c U G) :=
+  inferInstance
+
+local instance (priority := high) instScalarTowerOCuspW_OrbitGeo (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    IsScalarTower (𝓞 c.F) c.F ↥(cuspW Xo c U G) :=
+  ⟨fun x y z => Subtype.ext (smul_assoc x y (z : Rul Xo c))⟩
+
+local instance (priority := high) instAddCommGroupCuspOn_OrbitGeo {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (Z : Comp Xo c) (G : WTZ E) :
+    AddCommGroup ↥(cuspOn U Z G) :=
+  Submodule.addCommGroup _
+
+local instance (priority := high) instModuleCuspOn_OrbitGeo {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (Z : Comp Xo c) (G : WTZ E) :
+    Module c.F ↥(cuspOn U Z G) :=
+  Submodule.module _
+
+local instance (priority := high) instSMulWithZeroCuspOn_OrbitGeo {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (Z : Comp Xo c) (G : WTZ E) :
+    SMulWithZero c.F ↥(cuspOn U Z G) :=
+  Module.toMulActionWithZero.toSMulWithZero
+
+local instance (priority := high) instSMulCuspOn_OrbitGeo {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (Z : Comp Xo c) (G : WTZ E) :
+    SMul c.F ↥(cuspOn U Z G) :=
+  Module.toDistribMulAction.toDistribSMul.toSMul
+
+local instance (priority := high) instHSMulCuspOn_OrbitGeo {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (Z : Comp Xo c) (G : WTZ E) :
+    HSMul c.F ↥(cuspOn U Z G) ↥(cuspOn U Z G) :=
+  instHSMul
+
+local instance (priority := high) instModuleOCuspOn_OrbitGeo {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (Z : Comp Xo c) (G : WTZ E) :
+    Module (𝓞 c.F) ↥(cuspOn U Z G) :=
+  inferInstance
+
+local instance (priority := high) instScalarTowerOCuspOn_OrbitGeo {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (Z : Comp Xo c) (G : WTZ E) :
+    IsScalarTower (𝓞 c.F) c.F ↥(cuspOn U Z G) :=
+  ⟨fun x y z => Subtype.ext (smul_assoc x y (z : Rul Xo c))⟩
+
 section Points
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
@@ -752,6 +884,8 @@ theorem eigLat_slope : ∀ (D : D7) (H : ReciprocityTheory.ChartRestriction.G.Ge
     rw [← homN_idem_mul _ _ _ hz, e', homN_smul, norm_goodOf, hu, one_mul, e₂]
     exact (hnorm o σ x z' hz').trans hB
 
+end RulCuspInsts
+end OrbitGeoInsts
 end GlobalTheory.DefPt.OrbitGeo
 
 end

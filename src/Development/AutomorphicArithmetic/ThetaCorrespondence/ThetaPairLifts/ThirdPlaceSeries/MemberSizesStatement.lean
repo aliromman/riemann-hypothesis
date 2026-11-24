@@ -244,8 +244,6 @@ theorem three_L_le {s : Scale} {R : Ranks} (h : RankVal s R) (he : s.eps < 1 / 5
   show 3 * s.x ^ s.eps ≤ (R.m : ℝ) - 1
   nlinarith
 
-variable (hL : GlobalTheory.Published.LocalLanglandsGL) (p : Bl.Prm hL)
-
 end GlobalTheory.Fam.MemberFrame
 
 end

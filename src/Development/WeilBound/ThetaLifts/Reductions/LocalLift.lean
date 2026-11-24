@@ -128,13 +128,8 @@ theorem ph_apply (S : Eu l →L[ℝ] Eu l) (f : Sch l) (x : Eu l) :
     ring
   rw [ph, smulLeftCLM_apply_apply h3, smul_eq_mul]
 
-theorem ph_mul (S T : Eu l →L[ℝ] Eu l) : ph S * ph T = ph (S + T) := by
-  ext f x
-  simp only [ContinuousLinearMap.mul_apply, ph_apply, ← mul_assoc, ← Complex.exp_add, ContinuousLinearMap.add_apply,
-    inner_add_right]
-  congr 2
-  push_cast
-  ring
+theorem ph_mul (S T : Eu l →L[ℝ] Eu l) : ph S * ph T = ph (S + T) :=
+  CompanionTheory.ThKR.LL.ph_mul S T
 
 theorem ph_zero : ph (0 : Eu l →L[ℝ] Eu l) = 1 := by
   ext f x
@@ -147,14 +142,7 @@ theorem iso_ph (S : Eu l →L[ℝ] Eu l) : Iso (ph S) := iso_of_integral fun f =
   simp only [ph_apply, norm_mul, norm_exp_ofReal_mul_I, one_mul]
 
 theorem intw_ph {S : Eu l →L[ℝ] Eu l} (hS : ∀ x y, ⟪x, S y⟫ = ⟪y, S x⟫) (p q : Eu l) : Intw (ph S) p q p (q + S p) :=
-  fun f g h => by
-    funext x
-    simp only [rf, ph_apply, h, ← mul_assoc, ← Complex.exp_add]
-    congr 2
-    rw [← add_mul, ← add_mul, ← ofReal_add, ← ofReal_add]
-    congr 2
-    simp only [inner_add_left, inner_add_right, map_add (f := _), hS p x, real_inner_comm x (S p)]
-    ring
+  CompanionTheory.ThKR.LL.intw_ph hS p q
 
 
 open Classical in
@@ -223,25 +211,11 @@ theorem iso_fou : Iso (fou l) := fun f => norm_fourier_toL2_eq f
 theorem iso_fouInv : Iso (fouInv l) := fun f => by
   rw [← iso_fou (fouInv l f), ← ContinuousLinearMap.mul_apply, fou_mul_fouInv, ContinuousLinearMap.one_apply]
 
-theorem intw_fou (p q : Eu l) : Intw (fou l) p q (-q) p := fun f g h => by
-  funext x
-  simp only [fou_apply, fourier_coe, rf, h, Real.fourier_eq', smul_eq_mul]
-  rw [← integral_const_mul, ← integral_add_right_eq_self (μ := volume) (fun v => exp (((2 * π * ⟪p, x⟫ + π * ⟪-q, p⟫ : ℝ) : ℂ) * I) *
-    (exp (((-2 * π * ⟪v, x + -q⟫ : ℝ) : ℂ) * I) * f v)) p]
-  refine integral_congr_ae (.of_forall fun v => ?_)
-  simp only [← mul_assoc, ← Complex.exp_add]
-  congr 2
-  rw [← add_mul, ← add_mul, ← ofReal_add, ← ofReal_add]
-  congr 2
-  simp only [inner_add_left, inner_add_right, inner_neg_left, inner_neg_right, real_inner_comm q p, real_inner_comm q v]
-  ring
+theorem intw_fou (p q : Eu l) : Intw (fou l) p q (-q) p :=
+  CompanionTheory.ThKR.LL.intw_fou p q
 
-theorem intw_fouInv (p q : Eu l) : Intw (fouInv l) p q q (-p) := fun f g h => by
-  funext x
-  have h1 := congrFun (intw_fou p q f g h) (-x)
-  have e : ∀ (u : Sch l) y, fouInv l u y = fou l u (-y) := fun u y => rfl
-  rw [e, h1]
-  simp only [rf, e, inner_neg_left, inner_neg_right, neg_add]
+theorem intw_fouInv (p q : Eu l) : Intw (fouInv l) p q q (-p) :=
+  CompanionTheory.ThKR.LL.intw_fouInv p q
 
 def big (Ai B C : Eu l →L[ℝ] Eu l) (c : ℝ) : Sch l →L[ℂ] Sch l :=
   ph (C * Ai) * (((c : ℂ) • dil Ai) * (fou l * (ph (-(Ai * B)) * fouInv l)))
@@ -312,23 +286,8 @@ theorem LD.smul {U : ℝ → Sch l →L[ℂ] Sch l} {Q : Sch l → Sch l} {t₀ 
 
 theorem LD.mul {U W : ℝ → Sch l →L[ℂ] Sch l} {P Q : Sch l → Sch l} {t₀ : ℝ} (hU : LD U P t₀) (hW : LD W Q t₀)
     (hn : ∀ᶠ t in 𝓝 t₀, ∀ f, ‖schwartzToL2 l (U t f)‖ = ‖schwartzToL2 l f‖) :
-    LD (fun t => U t * W t) (fun f => P (W t₀ f) + U t₀ (Q f)) t₀ := fun f => by
-  have h1 : HasDerivAt (fun t => schwartzToL2 l (U t (W t f - W t₀ f - ((t - t₀ : ℝ) : ℂ) • Q f))) 0 t₀ := by
-    have h := (hW f).isLittleO
-    rw [hasDerivAt_iff_isLittleO]
-    refine Asymptotics.IsBigO.trans_isLittleO (Asymptotics.IsBigO.of_bound 1 ?_) h
-    filter_upwards [hn] with t ht
-    simp only [sub_self, ofReal_zero, zero_smul, map_zero, smul_zero, sub_zero, ht, one_mul]
-    simp only [map_sub, map_smul]
-    simp only [csmul, le_refl]
-  have h2 : HasDerivAt (fun t : ℝ => (t - t₀) • schwartzToL2 l (U t (Q f))) (schwartzToL2 l (U t₀ (Q f))) t₀ := by
-    simpa using ((hasDerivAt_id t₀).sub_const t₀).fun_smul (hU (Q f))
-  have h3 := (h1.fun_add h2).fun_add (hU (W t₀ f))
-  rw [zero_add, ← map_add (f := _), add_comm (U t₀ (Q f))] at h3
-  refine h3.congr_of_eventuallyEq (.of_forall fun t => ?_)
-  simp only [ContinuousLinearMap.mul_apply, map_sub, map_smul]
-  simp only [csmul]
-  abel
+    LD (fun t => U t * W t) (fun f => P (W t₀ f) + U t₀ (Q f)) t₀ :=
+  CompanionTheory.ThKR.LL.LD.mul (U := U) (W := W) (P := P) (Q := Q) hU hW hn
 
 variable [DecidableEq l]
 
@@ -416,21 +375,11 @@ variable {l : Type} [Fintype l]
 def mq (S : Eu l →L[ℝ] Eu l) : Sch l →L[ℂ] Sch l :=
   smulLeftCLM ℂ fun x : Eu l => ((-π * ⟪x, S x⟫ : ℝ) : ℂ) * I
 
-theorem mq_apply (S : Eu l →L[ℝ] Eu l) (f : Sch l) (x : Eu l) : mq S f x = ((-π * ⟪x, S x⟫ : ℝ) : ℂ) * I * f x := by
-  have h2 : Function.HasTemperateGrowth fun x : Eu l => -π * ⟪x, S x⟫ :=
-    (Function.HasTemperateGrowth.const _).mul (temperate_quad S)
-  have h3 : Function.HasTemperateGrowth fun x : Eu l => ((-π * ⟪x, S x⟫ : ℝ) : ℂ) * I :=
-    (ofRealCLM.hasTemperateGrowth.comp h2).mul (Function.HasTemperateGrowth.const _)
-  rw [mq, smulLeftCLM_apply_apply h3, smul_eq_mul]
+theorem mq_apply (S : Eu l →L[ℝ] Eu l) (f : Sch l) (x : Eu l) : mq S f x = ((-π * ⟪x, S x⟫ : ℝ) : ℂ) * I * f x :=
+  CompanionTheory.ThKR.LL.mq_apply S f x
 
-theorem norm_exp_sub_le (a b : ℝ) : ‖exp ((a : ℂ) * I) - exp ((b : ℂ) * I)‖ ≤ |a - b| := by
-  have : exp ((a : ℂ) * I) - exp ((b : ℂ) * I) = exp ((b : ℂ) * I) * (exp (I * ((a - b : ℝ) : ℂ)) - 1) := by
-    rw [mul_sub, mul_one, ← Complex.exp_add]
-    congr 2
-    push_cast
-    ring
-  rw [this, norm_mul, norm_exp_ofReal_mul_I, one_mul]
-  exact Real.norm_exp_I_mul_ofReal_sub_one_le
+theorem norm_exp_sub_le (a b : ℝ) : ‖exp ((a : ℂ) * I) - exp ((b : ℂ) * I)‖ ≤ |a - b| :=
+  CompanionTheory.ThKR.LL.norm_exp_sub_le a b
 
 theorem exists_lip {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F] {S : ℝ → F} {S' : F} {t₀ : ℝ}
     (h : HasDerivAt S S' t₀) : ∃ K : ℝ, 0 ≤ K ∧ ∀ᶠ t in 𝓝 t₀, ‖S t - S t₀‖ ≤ K * |t - t₀| := by
@@ -438,33 +387,8 @@ theorem exists_lip {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F] {S : �
   exact ⟨K, hK, h.bound⟩
 
 theorem ld_ph {S : ℝ → Eu l →L[ℝ] Eu l} {S' : Eu l →L[ℝ] Eu l} {t₀ : ℝ} (h : HasDerivAt S S' t₀) :
-    LD (fun t => ph (S t)) (fun f => mq S' (ph (S t₀) f)) t₀ := fun f => by
-  obtain ⟨K, hK, hb⟩ := exists_lip h
-  set N := Module.finrank ℝ (EuclideanSpace ℝ l) + 1 with hN
-  obtain ⟨C, hC, hf⟩ := exists_decay f (N + 2)
-  refine hasDerivAt_schwartz_to_L2 (C := π * K * C) (fun x => ?_) ?_
-  · simp only [ph_apply, mq_apply]
-    have h1 : HasDerivAt (fun t => S t x) (S' x) t₀ := by simpa using h.clm_apply (hasDerivAt_const t₀ x)
-    have h2 : HasDerivAt (fun t => ⟪x, S t x⟫) ⟪x, S' x⟫ t₀ := (innerSL ℝ x).hasFDerivAt.comp_hasDerivAt t₀ h1
-    exact (((h2.const_mul (-π)).ofReal_comp.mul_const I).cexp.mul_const (f x)).congr_deriv (by ring)
-  · filter_upwards [hb] with t ht x
-    rw [← hN]
-    simp only [ph_apply]
-    rw [← sub_mul, norm_mul]
-    have h1 : |-π * ⟪x, S t x⟫ - -π * ⟪x, S t₀ x⟫| ≤ π * ((1 + ‖x‖) ^ 2 * (K * |t - t₀|)) := by
-      rw [← mul_sub, ← inner_sub_right, abs_mul, abs_neg, abs_of_pos Real.pi_pos, ← ContinuousLinearMap.sub_apply]
-      refine mul_le_mul_of_nonneg_left ((abs_real_inner_le_norm _ _).trans ?_) Real.pi_pos.le
-      have h2 := (S t - S t₀).le_opNorm x
-      calc ‖x‖ * ‖(S t - S t₀) x‖ ≤ ‖x‖ * ((K * |t - t₀|) * ‖x‖) := by
-            refine mul_le_mul_of_nonneg_left (h2.trans ?_) (norm_nonneg _)
-            gcongr
-        _ = ‖x‖ ^ 2 * (K * |t - t₀|) := by ring
-        _ ≤ _ := by gcongr; simp
-    calc _ ≤ (1 + ‖x‖) ^ N * (π * ((1 + ‖x‖) ^ 2 * (K * |t - t₀|)) * ‖f x‖) := by
-          gcongr
-          exact (norm_exp_sub_le _ _).trans h1
-      _ = π * K * ((1 + ‖x‖) ^ (N + 2) * ‖f x‖) * |t - t₀| := by ring
-      _ ≤ _ := by gcongr; exact hf x
+    LD (fun t => ph (S t)) (fun f => mq S' (ph (S t₀) f)) t₀ :=
+  CompanionTheory.ThKR.LL.ld_ph h
 
 def vf (H : Eu l →L[ℝ] Eu l) (f : Sch l) : Sch l :=
   bilinLeftCLM (ContinuousLinearMap.id ℝ (Eu l →L[ℝ] ℂ)) H.hasTemperateGrowth (fderivCLM ℝ (Eu l) ℂ f)
@@ -487,16 +411,8 @@ theorem ld_big {Ai B C : ℝ → Eu l →L[ℝ] Eu l} {Ai' B' C' : Eu l →L[ℝ
     (hA : HasDerivAt Ai Ai' t₀) (hB : HasDerivAt B B' t₀) (hC : HasDerivAt C C' t₀) (hc : HasDerivAt c c' t₀)
     (h : ∀ᶠ t in 𝓝 t₀, IsUnit (Ai t) ∧ c t ^ 2 = |(Ai t).det|) :
     ∃ Q, LD (fun t => big (Ai t) (B t) (C t) (c t)) Q t₀ ∧ (Ai t₀ = 1 → B t₀ = 0 → C t₀ = 0 → c t₀ = 1 → ∀ f,
-      Q f = mq C' f + vf Ai' f + fou l (mq (-B') (fouInv l f)) + (c' : ℂ) • f) := by
-  have h1 := (ld_ph (hA.mul hB).neg).mul (LD.const (fouInv l) t₀) (.of_forall fun t => iso_ph _)
-  have h2 := (LD.const (fou l) t₀).mul h1 (.of_forall fun t => iso_fou)
-  have h3 := ((ld_dil hA h.self_of_nhds.1).smul hc.ofReal_comp).mul h2 (h.mono fun t ht => iso_dil ht.1 ht.2)
-  have h4 := (ld_ph (hC.mul hA)).mul h3 (.of_forall fun t => iso_ph _)
-  refine ⟨_, h4, fun e1 e2 e3 e4 f => ?_⟩
-  have e5 : fou l (fouInv l f) = f := by
-    rw [← ContinuousLinearMap.mul_apply, fou_mul_fouInv, ContinuousLinearMap.one_apply]
-  simp [e1, e2, e3, e4, ph_zero, dil_one, e5]
-  abel
+      Q f = mq C' f + vf Ai' f + fou l (mq (-B') (fouInv l f)) + (c' : ℂ) • f) :=
+  CompanionTheory.ThKR.LL.ld_big hA hB hC hc h
 
 end PositivityTheory.ThKR.LL
 end -- clump:auto
@@ -580,20 +496,8 @@ theorem sympl_exp {X : Matrix (l ⊕ l) (l ⊕ l) ℝ} (hX : X ∈ LieAlgebra.Sy
 theorem intw_of_sympl {g : Matrix (l ⊕ l) (l ⊕ l) ℝ} (hg : ∀ w w', sympl (g *ᵥ w) (g *ᵥ w') = sympl w w')
     (h : IsUnit (bl Sum.inl Sum.inl g)) (c : ℝ) (w : l ⊕ l → ℝ) :
     Intw (big (Ring.inverse (bl Sum.inl Sum.inl g)) (bl Sum.inl Sum.inr g) (bl Sum.inr Sum.inl g) c) (pPart w) (qPart w)
-      (pPart (g *ᵥ w)) (qPart (g *ᵥ w)) := by
-  have key : ∀ p q p' q' : Eu l, ⟪bl Sum.inl Sum.inl g p + bl Sum.inl Sum.inr g q,
-      bl Sum.inr Sum.inl g p' + bl Sum.inr Sum.inr g q'⟫ - ⟪bl Sum.inr Sum.inl g p + bl Sum.inr Sum.inr g q,
-      bl Sum.inl Sum.inl g p' + bl Sum.inl Sum.inr g q'⟫ = ⟪p, q'⟫ - ⟪q, p'⟫ := fun p q p' q' => by
-    have := hg (Sum.elim (fun i => p i) fun i => q i) (Sum.elim (fun i => p' i) fun i => q' i)
-    simp only [sympl, pPart_mulVec, qPart_mulVec] at this
-    exact this
-  rw [pPart_mulVec, qPart_mulVec]
-  refine intw_big h.ringInverse (fun x => ?_) (fun x => ?_) (fun y z => ?_) (fun y z => ?_) (fun y z => ?_) c _ _
-  · rw [← ContinuousLinearMap.mul_apply, Ring.mul_inverse_cancel _ h, ContinuousLinearMap.one_apply]
-  · rw [← ContinuousLinearMap.mul_apply, Ring.inverse_mul_cancel _ h, ContinuousLinearMap.one_apply]
-  · simpa [sub_eq_zero] using key y 0 z 0
-  · simpa [sub_eq_zero] using key 0 y 0 z
-  · simpa using key y 0 0 z
+      (pPart (g *ᵥ w)) (qPart (g *ᵥ w)) :=
+  CompanionTheory.ThKR.LL.intw_of_sympl (g := g) hg h c w
 
 theorem fou_mq_fouInv (B : Matrix l l ℝ) (f : Sch l) :
     fou l (mq (-(Matrix.toEuclideanCLM (𝕜 := ℝ) (n := l) B)) (fouInv l f)) =

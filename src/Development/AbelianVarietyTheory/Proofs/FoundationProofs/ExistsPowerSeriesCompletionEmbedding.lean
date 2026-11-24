@@ -248,14 +248,14 @@ noncomputable def serHom : A →ₐ[k] PowerSeries k where
 
 end Construction
 
-theorem exists_completion_embedding : ∀ (k A : Type) [Field k] [IsAlgClosed k] [CharZero k]
+theorem exists_completion_embedding : ∀ (k A : Type) [Field k] [IsAlgClosed k]
     [CommRing A] [IsDedekindDomain A] [Algebra k A] [Algebra.FiniteType k A] (Q : Ideal A),
     Q.IsMaximal → Q ≠ ⊥ → ∃ (σ : A →ₐ[k] PowerSeries k) (π : A), σ π = PowerSeries.X ∧
       Function.Injective σ ∧
       (∀ (m : ℕ) (u : A), u ∈ Q ^ m ↔ (PowerSeries.X : PowerSeries k) ^ m ∣ σ u) ∧
       ∀ (m : ℕ) (φ : PowerSeries k), ∃ u : A,
         (PowerSeries.X : PowerSeries k) ^ m ∣ φ - σ u := by
-  intro k A _ _ _ _ _ _ _ Q hQ hQ0
+  intro k A _ _ _ _ _ _ Q hQ hQ0
   haveI : Q.IsPrime := hQ.isPrime
   obtain ⟨π, hπ1, hπ2⟩ := SetLike.exists_of_lt (Ideal.pow_succ_lt_pow hQ0 1)
   have hπ : π ∈ Q := by simpa using hπ1

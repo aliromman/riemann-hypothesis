@@ -1,5 +1,6 @@
 module
 
+import Lemmata.CharpolySmul
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ShapeFacts
 import Formalism.LocalRingCardinality.SpanPowerMembership.NZLevD
 import Mathlib.Algebra.Order.Floor.Extended
@@ -46,17 +47,6 @@ import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FinalS
 @[expose] public section
 
 open Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial UpperTheory.V.Af UpperTheory.V.Sd
-
-private theorem charpoly_smul' {K : Type} [Field K] [CharZero K] {n : ℕ} (M : Matrix (Fin n) (Fin n) K) {c : K} (hc : c ≠ 0) :
-    (c • M).charpoly = M.charpoly.scaleRoots c := by
-  apply Polynomial.funext
-  intro x
-  obtain ⟨y, rfl⟩ : ∃ y, x = c * y := ⟨c⁻¹ * x, by field_simp⟩
-  rw [scaleRoots_eval_mul, Matrix.charpoly_natDegree_eq_dim, Matrix.eval_charpoly, Matrix.eval_charpoly,
-    ← Matrix.det_smul]
-  congr 1
-  ext i j
-  by_cases h : i = j <;> simp [Matrix.scalar_apply, h, mul_sub]
 
 private theorem scaleRoots_prod' {K ι : Type} [Field K] (m : Finset ι) (a : ι → K) (s : K) :
     (∏ j ∈ m, (X - C (a j))).scaleRoots s = ∏ j ∈ m, (X - C (a j * s)) := by
@@ -139,7 +129,7 @@ theorem UpperTheory.V.Sd.shapeFacts :
       rw [scaleRoots_prod']; simp
     have e2 : (∏ j, (X - C (χ j s : Qbar l))).natDegree = n := by
       rw [natDegree_prod_of_monic _ _ fun j _ => monic_X_sub_C _]; simp
-    rw [e1, tw_val, charpoly_smul' _ (Units.ne_zero _), coeff_scaleRoots, coeff_scaleRoots, e2,
+    rw [e1, tw_val, Matrix.charpoly_smul, coeff_scaleRoots, coeff_scaleRoots, e2,
       Matrix.charpoly_natDegree_eq_dim, Fintype.card_fin, ← sub_mul, norm_mul, norm_pow, hδ, one_pow, mul_one]
     exact h s i
   · intro χ χ' e hχ h hc s i

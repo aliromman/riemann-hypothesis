@@ -393,7 +393,7 @@ theorem hessCRestrict_thm : HessCRestrictStatement := by
       fderiv ℝ (fderiv ℝ φ) (Lc y) (Lc v) (Lc w) := by
     intro v w
     rw [hev.fderiv_eq, fderiv_clm_comp (c := fun y' => fderiv ℝ φ (Lc y')) (d := fun _ => Lc) hc
-      (differentiableAt_const Lc), fderiv_comp' y hd1 Lc.differentiableAt, Lc.fderiv]
+      (differentiableAt_const Lc), fderiv_fun_comp y hd1 Lc.differentiableAt, Lc.fderiv]
     simp
   refine Matrix.ext fun a b => ?_
   simp only [hessC, Matrix.submatrix_apply, hH, hs, hs1]

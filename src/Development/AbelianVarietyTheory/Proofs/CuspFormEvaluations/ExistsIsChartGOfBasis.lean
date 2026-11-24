@@ -644,27 +644,16 @@ open GlobalTheory.SqZero
 
 variable {R : Type} [CommRing R]
 
-theorem jetTruncR_surjective (κ : Type) (m : ℕ) : Function.Surjective (jetTruncR R κ m) := by
-  intro y
-  obtain ⟨p, rfl⟩ := Ideal.Quotient.mk_surjective y
-  exact ⟨Ideal.Quotient.mk _ p, rfl⟩
+theorem jetTruncR_surjective (κ : Type) (m : ℕ) : Function.Surjective (jetTruncR R κ m) :=
+  jetTruncate_surjective (R := R) κ (Nat.le_succ m)
 
 theorem jetAug_comp_jetTruncR (κ : Type) (m : ℕ) :
     (jetAug R κ m).comp (jetTruncR R κ m) = jetAug R κ (m + 1) :=
-  jet_ext fun j => by
-    rw [jetAug_zR]
-    exact jetAug_zR (R := R) m j
+  jetAug_comp_jetTruncate (R := R) κ (Nat.le_succ m)
 
 theorem ker_jetTruncR_isNilpotent (κ : Type) (m : ℕ) :
-    IsNilpotent (RingHom.ker (jetTruncR R κ m)) := by
-  have hle : RingHom.ker (jetTruncR R κ m) ≤ RingHom.ker (jetAug R κ (m + 1)) := by
-    intro a ha
-    have ha' : jetTruncR R κ m a = 0 := ha
-    change jetAug R κ (m + 1) a = 0
-    rw [← jetAug_comp_jetTruncR, AlgHom.comp_apply, ha', map_zero]
-  refine ⟨m + 1 + 1, ?_⟩
-  rw [Ideal.zero_eq_bot, ← le_bot_iff, ← ker_jetAug_pow (R := R) κ (m + 1)]
-  exact Ideal.pow_right_mono hle _
+    IsNilpotent (RingHom.ker (jetTruncR R κ m)) :=
+  ⟨2, (ker_jetTruncR_sq (R := R) κ m).trans Ideal.zero_eq_bot.symm⟩
 
 theorem jetZeroR_comp_jetTruncR (κ : Type) (m : ℕ) :
     (jetZeroR R κ m).comp (jetTruncR R κ m) = jetZeroR R κ (m + 1) :=

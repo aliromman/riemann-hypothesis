@@ -1,5 +1,7 @@
 module
 
+import Mathlib.NumberTheory.LSeries.Nonvanishing
+
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.NumberTheory.LSeries.DirichletContinuation
 public import Mathlib.MeasureTheory.Function.Floor
@@ -67,22 +69,54 @@ namespace GlobalTheory.LGrowth
 
 open Filter Topology Asymptotics
 
-theorem norm_partialSum_le (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (n : ℕ) :
-    ‖∑ k ∈ Finset.Icc 1 n, χ (k : ZMod q)‖ ≤ q := by
-  have hq : 0 < q := Nat.pos_of_ne_zero (NeZero.ne q)
-  have hper : ∀ m : ℕ, ∑ k ∈ Finset.range q, χ ((m + k : ℕ) : ZMod q) = 0 := by
-    intro m
-    have h0 : ∑ a : ZMod q, χ a = 0 := χ.sum_eq_zero_of_ne_one hχ
-    rw [← h0, ← Equiv.sum_comp (Equiv.addLeft (m : ZMod q))]
-    refine Finset.sum_bij (fun k _ => (k : ZMod q)) (fun _ _ => Finset.mem_univ _) ?_ ?_ ?_
-    · intro a ha b hb hab
-      have := (ZMod.natCast_eq_natCast_iff' a b q).1 hab
-      rwa [Nat.mod_eq_of_lt (Finset.mem_range.1 ha), Nat.mod_eq_of_lt (Finset.mem_range.1 hb)]
-        at this
-    · intro b _
-      exact ⟨b.val, Finset.mem_range.2 (ZMod.val_lt b), ZMod.natCast_zmod_val b⟩
-    · intro a _
-      simp
+private lemma sum_period_eq_zero (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q)
+    (hχ : χ ≠ 1) : ∀ m : ℕ, ∑ k ∈ Finset.range q, χ ((m + k : ℕ) : ZMod q) = 0 := by
+  intro m
+  have h0 : ∑ a : ZMod q, χ a = 0 := χ.sum_eq_zero_of_ne_one hχ
+  rw [← h0, ← Equiv.sum_comp (Equiv.addLeft (m : ZMod q))]
+  refine Finset.sum_bij (fun k _ => (k : ZMod q)) (fun _ _ => Finset.mem_univ _) ?_ ?_ ?_
+  · intro a ha b hb hab
+    have := (ZMod.natCast_eq_natCast_iff' a b q).1 hab
+    rwa [Nat.mod_eq_of_lt (Finset.mem_range.1 ha), Nat.mod_eq_of_lt (Finset.mem_range.1 hb)]
+      at this
+  · intro b _
+    exact ⟨b.val, Finset.mem_range.2 (ZMod.val_lt b), ZMod.natCast_zmod_val b⟩
+  · intro a _
+    simp
+
+
+private lemma sum_norm_eq_totient {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) :
+    ∑ a : ZMod q, ‖χ a‖ = (q.totient : ℝ) := by
+  have he : ∀ a : ZMod q, ‖χ a‖ = (1 : DirichletCharacter ℝ q) a := by
+    intro a
+    by_cases h : IsUnit a
+    · rw [MulChar.one_apply h]
+      exact χ.unit_norm_eq_one h.unit
+    · rw [χ.map_nonunit h, MulChar.map_nonunit _ h, norm_zero]
+  simp_rw [he]
+  rw [MulChar.sum_one_eq_card_units, ZMod.card_units_eq_totient]
+
+/-- Any subset of residues has character sum bounded by half the totient. -/
+theorem norm_sum_subset_le_totient_half {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q)
+    (hχ : χ ≠ 1) (S : Finset (ZMod q)) : ‖∑ a ∈ S, χ a‖ ≤ (q.totient : ℝ) / 2 := by
+  classical
+  have htotal : (∑ a ∈ S, χ a) + ∑ a ∈ Sᶜ, χ a = 0 := by
+    rw [Finset.sum_add_sum_compl]
+    exact χ.sum_eq_zero_of_ne_one hχ
+  have hfirst := norm_sum_le S (fun a => χ a)
+  have hlast := norm_sum_le Sᶜ (fun a => χ a)
+  rw [eq_neg_of_add_eq_zero_right htotal, norm_neg] at hlast
+  have hsum : (∑ a ∈ S, ‖χ a‖) + ∑ a ∈ Sᶜ, ‖χ a‖ = (q.totient : ℝ) := by
+    rw [Finset.sum_add_sum_compl, sum_norm_eq_totient]
+  linarith
+
+
+/-- A nonprincipal character sum is bounded by half the number of unit residues. -/
+theorem norm_partialSum_le_totient_half (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q)
+    (hχ : χ ≠ 1) (n : ℕ) : ‖∑ k ∈ Finset.Icc 1 n, χ (k : ZMod q)‖ ≤ (q.totient : ℝ) / 2 := by
+  classical
+  have hq : 0 < q := NeZero.pos q
+  have hper := sum_period_eq_zero q χ hχ
   have hI : ∀ n : ℕ, ∑ k ∈ Finset.Icc 1 n, χ (k : ZMod q)
       = ∑ k ∈ Finset.range n, χ ((1 + k : ℕ) : ZMod q) := by
     intro n
@@ -92,16 +126,75 @@ theorem norm_partialSum_le (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q) 
   induction n using Nat.strong_induction_on with
   | _ n ih =>
     rcases lt_or_ge n q with h | h
-    · refine (norm_sum_le _ _).trans ?_
-      refine (Finset.sum_le_sum fun k _ => χ.norm_le_one _).trans ?_
-      simp only [Finset.sum_const, Finset.card_range, nsmul_eq_mul, mul_one]
-      exact_mod_cast h.le
+    · have hinj : ∀ a ∈ Finset.range n, ∀ b ∈ Finset.range n,
+          ((1 + a : ℕ) : ZMod q) = ((1 + b : ℕ) : ZMod q) → a = b := by
+        intro a ha b hb hab
+        have hab' : (a : ZMod q) = (b : ZMod q) := by
+          simpa only [Nat.cast_add, Nat.cast_one, add_right_inj] using hab
+        have he := (ZMod.natCast_eq_natCast_iff' a b q).mp hab'
+        rwa [Nat.mod_eq_of_lt ((Finset.mem_range.mp ha).trans h),
+          Nat.mod_eq_of_lt ((Finset.mem_range.mp hb).trans h)] at he
+      have he : (∑ a ∈ (Finset.range n).image (fun k => ((1 + k : ℕ) : ZMod q)), χ a) =
+          ∑ k ∈ Finset.range n, χ ((1 + k : ℕ) : ZMod q) := Finset.sum_image hinj
+      rw [← he]
+      exact norm_sum_subset_le_totient_half χ hχ _
     · obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' h
       rw [Finset.sum_range_add]
       have := hper (1 + m)
       simp only [← add_assoc]
       rw [this, add_zero]
       exact ih m (by omega)
+
+
+/-- Bound a partial character sum by either side of the remaining period. -/
+theorem norm_partialSum_le_min (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (n : ℕ) :
+    ‖∑ k ∈ Finset.Icc 1 n, χ (k : ZMod q)‖ ≤ min ((n % q : ℕ) : ℝ) ((q - n % q : ℕ) : ℝ) := by
+  have hq : 0 < q := Nat.pos_of_ne_zero (NeZero.ne q)
+  have hper := sum_period_eq_zero q χ hχ
+  have hI : ∀ n : ℕ, ∑ k ∈ Finset.Icc 1 n, χ (k : ZMod q)
+      = ∑ k ∈ Finset.range n, χ ((1 + k : ℕ) : ZMod q) := by
+    intro n
+    rw [← Finset.Ico_add_one_right_eq_Icc, Finset.sum_Ico_eq_sum_range]
+    simp
+  rw [hI]
+  induction n using Nat.strong_induction_on with
+  | _ n ih =>
+    rcases lt_or_ge n q with h | h
+    · rw [Nat.mod_eq_of_lt h]
+      have hfirst : ‖∑ k ∈ Finset.range n, χ ((1 + k : ℕ) : ZMod q)‖ ≤ (n : ℝ) := by
+        refine (norm_sum_le _ _).trans ?_
+        simpa using Finset.sum_le_sum
+          (fun k (_ : k ∈ Finset.range n) => χ.norm_le_one ((1 + k : ℕ) : ZMod q))
+      have hlast : ‖∑ k ∈ Finset.range (q - n), χ ((1 + (n + k) : ℕ) : ZMod q)‖ ≤ (q - n : ℕ) := by
+        refine (norm_sum_le _ _).trans ?_
+        simpa using Finset.sum_le_sum
+          (fun k (_ : k ∈ Finset.range (q - n)) => χ.norm_le_one ((1 + (n + k) : ℕ) : ZMod q))
+      have hsplit : (∑ k ∈ Finset.range n, χ ((1 + k : ℕ) : ZMod q)) +
+          (∑ k ∈ Finset.range (q - n), χ ((1 + (n + k) : ℕ) : ZMod q)) = 0 := by
+        rw [← Finset.sum_range_add, Nat.add_sub_of_le h.le]
+        exact hper 1
+      refine le_min hfirst ?_
+      rw [eq_neg_of_add_eq_zero_left hsplit, norm_neg]
+      exact hlast
+    · obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' h
+      rw [Finset.sum_range_add]
+      have := hper (1 + m)
+      simp only [← add_assoc]
+      rw [this, add_zero]
+      simpa [Nat.add_mod] using ih m (by omega)
+
+/-- Completing the remaining part of a period bounds a nonprincipal character sum by half
+its modulus. -/
+theorem norm_partialSum_le_half (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q)
+    (hχ : χ ≠ 1) (n : ℕ) : ‖∑ k ∈ Finset.Icc 1 n, χ (k : ZMod q)‖ ≤ (q : ℝ) / 2 := by
+  refine (norm_partialSum_le_totient_half q χ hχ n).trans ?_
+  exact div_le_div_of_nonneg_right (by exact_mod_cast q.totient_le) (by norm_num)
+
+theorem norm_partialSum_le (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (n : ℕ) :
+    ‖∑ k ∈ Finset.Icc 1 n, χ (k : ZMod q)‖ ≤ q := by
+  refine (norm_partialSum_le_half q χ hχ n).trans ?_
+  have : (0 : ℝ) ≤ q := Nat.cast_nonneg q
+  linarith
 
 section General
 
@@ -128,40 +221,72 @@ theorem mellin_summatory (s : ℂ) :
   · intro t ht
     rw [summatory_eq_zero (not_le.1 ht.2), smul_zero]
 
-theorem differentiableAt_mellin_summatory (hC : ∀ n, ‖∑ k ∈ Finset.Icc 1 n, f k‖ ≤ C)
-    {s : ℂ} (hs : 0 < s.re) :
+/-- Power growth of the summatory function gives a Mellin transform to the right of its
+exponent. The exponent need not be nonnegative. -/
+theorem differentiableAt_mellin_summatory_of_rpow {a : ℝ}
+    (hC : ∀ t : ℝ, 1 ≤ t → ‖summatory f t‖ ≤ C * t ^ a)
+    {s : ℂ} (hs : a < s.re) :
     DifferentiableAt ℂ (fun z => mellin (summatory f) (-z)) s := by
+  have hmajorant : Continuous (fun t : ℝ => C * (max 1 t) ^ a) := by
+    refine continuous_const.mul ((continuous_const.max continuous_id).rpow_const ?_)
+    intro t
+    exact Or.inl (ne_of_gt (lt_of_lt_of_le zero_lt_one (le_max_left 1 t)))
   have h : DifferentiableAt ℂ (mellin (summatory f)) (-s) := by
-    refine mellin_differentiableAt_of_isBigO_rpow (a := 0) (b := -s.re - 1) ?_ ?_ ?_ ?_ ?_
+    refine mellin_differentiableAt_of_isBigO_rpow (a := -a) (b := -s.re - 1) ?_ ?_ ?_ ?_ ?_
     · refine LocallyIntegrable.locallyIntegrableOn ?_ _
-      refine (locallyIntegrable_const C).mono (measurable_summatory f).aestronglyMeasurable ?_
-      exact Eventually.of_forall fun t => (hC _).trans (Real.le_norm_self C)
-    · refine IsBigO.of_bound C (Eventually.of_forall fun t => ?_)
-      simpa [summatory] using hC ⌊t⌋₊
-    · simpa using hs
+      refine hmajorant.locallyIntegrable.mono (measurable_summatory f).aestronglyMeasurable ?_
+      refine Eventually.of_forall fun t => ?_
+      rcases lt_or_ge t 1 with ht | ht
+      · rw [summatory_eq_zero ht, norm_zero]
+        exact norm_nonneg _
+      · exact (hC t ht).trans (by rw [max_eq_right ht]; exact Real.le_norm_self _)
+    · refine IsBigO.of_bound C ?_
+      filter_upwards [eventually_ge_atTop (1 : ℝ)] with t ht
+      simpa [Real.norm_of_nonneg (Real.rpow_nonneg (by linarith : 0 ≤ t) a)] using hC t ht
+    · simp only [neg_re]
+      linarith
     · refine IsBigO.of_bound 0 ?_
       filter_upwards [mem_nhdsWithin_of_mem_nhds (Iio_mem_nhds (zero_lt_one' ℝ))] with t ht
       simp [summatory_eq_zero ht]
     · simp
   exact h.comp s differentiableAt_id.neg
 
-theorem norm_mellin_summatory_le (hC : ∀ n, ‖∑ k ∈ Finset.Icc 1 n, f k‖ ≤ C)
-    {s : ℂ} (hs : 0 < s.re) :
-    ‖mellin (summatory f) (-s)‖ ≤ C / s.re := by
+/-- The denominator is the distance from the growth exponent to the real part of `s`. -/
+theorem norm_mellin_summatory_le_of_rpow {a : ℝ}
+    (hC : ∀ t : ℝ, 1 ≤ t → ‖summatory f t‖ ≤ C * t ^ a)
+    {s : ℂ} (hs : a < s.re) :
+    ‖mellin (summatory f) (-s)‖ ≤ C / (s.re - a) := by
   rw [mellin_summatory]
-  have hlt : -(s.re + 1) < -1 := by linarith
-  refine (norm_integral_le_of_norm_le (g := fun t : ℝ => C * t ^ (-(s.re + 1)))
+  have hlt : a - (s.re + 1) < -1 := by linarith
+  refine (norm_integral_le_of_norm_le (g := fun t : ℝ => C * t ^ (a - (s.re + 1)))
     ((integrableOn_Ioi_rpow_of_lt hlt zero_lt_one).const_mul C) ?_).trans ?_
   · refine (ae_restrict_iff' measurableSet_Ioi).2 (Eventually.of_forall fun t ht => ?_)
     have ht0 : 0 < t := zero_lt_one.trans ht
     rw [norm_mul, norm_cpow_eq_rpow_re_of_pos ht0]
     simp only [neg_re, add_re, one_re]
-    exact mul_le_mul_of_nonneg_right (hC _) (Real.rpow_nonneg ht0.le _)
+    calc _ ≤ (C * t ^ a) * t ^ (-(s.re + 1)) :=
+          mul_le_mul_of_nonneg_right (hC t ht.le) (Real.rpow_nonneg ht0.le _)
+      _ = C * t ^ (a - (s.re + 1)) := by rw [sub_eq_add_neg, Real.rpow_add ht0]; ring
   · rw [integral_const_mul, integral_Ioi_rpow_of_lt hlt zero_lt_one, Real.one_rpow]
     refine le_of_eq ?_
-    have : -(s.re + 1) + 1 = -s.re := by ring
+    have : a - (s.re + 1) + 1 = -(s.re - a) := by ring
     rw [this]
     field_simp
+
+theorem differentiableAt_mellin_summatory (hC : ∀ n, ‖∑ k ∈ Finset.Icc 1 n, f k‖ ≤ C)
+    {s : ℂ} (hs : 0 < s.re) :
+    DifferentiableAt ℂ (fun z => mellin (summatory f) (-z)) s := by
+  apply differentiableAt_mellin_summatory_of_rpow (f := f) (C := C) (a := 0) (s := s) _ hs
+  intro t _
+  simpa [summatory] using hC ⌊t⌋₊
+
+theorem norm_mellin_summatory_le (hC : ∀ n, ‖∑ k ∈ Finset.Icc 1 n, f k‖ ≤ C)
+    {s : ℂ} (hs : 0 < s.re) :
+    ‖mellin (summatory f) (-s)‖ ≤ C / s.re := by
+  have h := norm_mellin_summatory_le_of_rpow (f := f) (C := C) (a := 0) (s := s) (by
+    intro t _
+    simpa [summatory] using hC ⌊t⌋₊) hs
+  simpa using h
 
 end General
 
@@ -187,13 +312,32 @@ theorem LFunction_eq_mul_mellin (q : ℕ) [NeZero q] (χ : DirichletCharacter �
   refine IsBigO.of_bound q (Eventually.of_forall fun n => ?_)
   simpa using hC n
 
+/-- The summatory integral carries the half-totient bound to the L-function. -/
+theorem norm_LFunction_le_totient_half (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q)
+    (hχ : χ ≠ 1) (s : ℂ) (hs : 0 < s.re) :
+    ‖LFunction χ s‖ ≤ ((q.totient : ℝ) / 2) * ‖s‖ / s.re := by
+  rw [LFunction_eq_mul_mellin q χ hχ hs, norm_mul]
+  refine (mul_le_mul_of_nonneg_left
+    (norm_mellin_summatory_le (norm_partialSum_le_totient_half q χ hχ) hs)
+    (norm_nonneg s)).trans ?_
+  exact le_of_eq (by ring)
+
+
+theorem norm_LFunction_le_half : ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q), χ ≠ 1 →
+    ∀ s : ℂ, 0 < s.re → ‖LFunction χ s‖ ≤ ((q : ℝ) / 2) * ‖s‖ / s.re := by
+  intro q _ χ hχ s hs
+  refine (norm_LFunction_le_totient_half q χ hχ s hs).trans ?_
+  apply div_le_div_of_nonneg_right _ hs.le
+  apply mul_le_mul_of_nonneg_right _ (norm_nonneg s)
+  exact div_le_div_of_nonneg_right (by exact_mod_cast q.totient_le) (by norm_num)
+
 theorem norm_LFunction_le : ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q), χ ≠ 1 →
     ∀ s : ℂ, 0 < s.re → ‖LFunction χ s‖ ≤ q * ‖s‖ / s.re := by
   intro q _ χ hχ s hs
-  rw [LFunction_eq_mul_mellin q χ hχ hs, norm_mul]
-  refine (mul_le_mul_of_nonneg_left
-    (norm_mellin_summatory_le (norm_partialSum_le q χ hχ) hs) (norm_nonneg s)).trans ?_
-  exact le_of_eq (by ring)
+  refine (norm_LFunction_le_half q χ hχ s hs).trans ?_
+  gcongr
+  have : (0 : ℝ) ≤ q := Nat.cast_nonneg q
+  linarith
 
 end GlobalTheory.LGrowth
 end -- clump:auto
@@ -289,6 +433,58 @@ theorem logDeriv_LFunction_local : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero 
     linarith
   calc _ ≤ C * (6 * Real.log X) := by gcongr
     _ = _ := by ring
+
+/-- Keeping the zero orders gives a bound for every finite subset of the local zero set.
+This form applies to complex zeros and retains multiplicities for exceptional real zeros. -/
+theorem neg_re_logDeriv_le_sum : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q),
+    χ ≠ 1 → ∀ (σ t : ℝ), 1 < σ → σ ≤ 2 → ∀ S : Finset ℂ,
+    (∀ w ∈ S, ‖w - (3/2 + t * I)‖ ≤ 5/6 ∧ LFunction χ w = 0) →
+    -(deriv (LFunction χ) (σ + t * I) / LFunction χ (σ + t * I)).re
+      ≤ C * Real.log (q * (|t| + 2)) - ∑ w ∈ S, (analyticOrderNatAt (LFunction χ) w : ℝ) *
+          (1 / ((σ : ℂ) + t * I - w)).re := by
+  obtain ⟨C, hC, hloc⟩ := logDeriv_LFunction_local
+  refine ⟨C, hC, fun q _ χ hχ σ t hσ hσ2 S hS => ?_⟩
+  have hdist : ‖((σ : ℂ) + t * I) - (3/2 + t * I)‖ ≤ 2/3 := by
+    rw [show ((σ : ℂ) + t * I) - (3/2 + t * I) = ((σ - 3/2 : ℝ) : ℂ) by push_cast; ring,
+      Complex.norm_real, Real.norm_eq_abs, abs_le]
+    constructor <;> linarith
+  have hre_s : ((σ : ℂ) + t * I).re = σ := by simp
+  have hLs : LFunction χ ((σ : ℂ) + t * I) ≠ 0 :=
+    LFunction_ne_zero_of_one_le_re χ (Or.inl hχ) (by rw [hre_s]; exact hσ.le)
+  obtain ⟨hfin, hbound⟩ := hloc q χ hχ t ((σ : ℂ) + t * I) hdist hLs
+  rw [finsum_mem_eq_finite_toFinset_sum _ hfin] at hbound
+  set A := deriv (LFunction χ) ((σ : ℂ) + t * I) / LFunction χ ((σ : ℂ) + t * I) with hA
+  set B := ∑ w ∈ hfin.toFinset,
+    (analyticOrderNatAt (LFunction χ) w : ℂ) / ((σ : ℂ) + t * I - w) with hB
+  have hAB : -A.re ≤ C * Real.log (q * (|t| + 2)) - B.re := by
+    have h := (Complex.abs_re_le_norm (A - B)).trans hbound
+    rw [Complex.sub_re, abs_le] at h
+    linarith [h.1]
+  have hpos : ∀ w, LFunction χ w = 0 → 0 ≤ (1 / ((σ : ℂ) + t * I - w)).re := by
+    intro w hw
+    have hw1 : w.re < 1 := by
+      by_contra h
+      exact LFunction_ne_zero_of_one_le_re χ (.inl hχ) (not_lt.mp h) hw
+    have hz : 0 < ((σ : ℂ) + t * I - w).re := by simp; linarith
+    rw [one_div, Complex.inv_re]
+    exact div_nonneg hz.le (Complex.normSq_nonneg _)
+  have hBre : B.re = ∑ w ∈ hfin.toFinset,
+      (analyticOrderNatAt (LFunction χ) w : ℝ) * (1 / ((σ : ℂ) + t * I - w)).re := by
+    rw [hB, Complex.re_sum]
+    refine Finset.sum_congr rfl fun w _ => ?_
+    rw [div_eq_mul_one_div, show ((analyticOrderNatAt (LFunction χ) w : ℕ) : ℂ) =
+      ((analyticOrderNatAt (LFunction χ) w : ℝ) : ℂ) by push_cast; rfl, Complex.re_ofReal_mul]
+  have hSsub : S ⊆ hfin.toFinset := by
+    intro w hw
+    rw [Set.Finite.mem_toFinset]
+    exact hS w hw
+  have hSle : ∑ w ∈ S, (analyticOrderNatAt (LFunction χ) w : ℝ) *
+      (1 / ((σ : ℂ) + t * I - w)).re ≤ B.re := by
+    rw [hBre]
+    refine Finset.sum_le_sum_of_subset_of_nonneg hSsub fun w hw _ => ?_
+    rw [Set.Finite.mem_toFinset] at hw
+    exact mul_nonneg (Nat.cast_nonneg _) (hpos w hw.2)
+  exact hAB.trans (sub_le_sub_left hSle _)
 
 end GlobalTheory.LLocal
 end -- clump:auto

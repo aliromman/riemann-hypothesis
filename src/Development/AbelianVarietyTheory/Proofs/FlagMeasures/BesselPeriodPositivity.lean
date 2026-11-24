@@ -4,16 +4,17 @@ public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.OnePl
 public import Development.AbelianVarietyTheory.Definitions.Jets.SideFam
 public import Formalism.SharpRestriction.CuspSpanNormBounds.NormalizedLocalScale
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CapParamOfIsHCTypeW
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsKFinNeZeroOfCwCont
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsUnitaryTorusScaleBesselCharacter
-public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadicalStatement
+public import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
+public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadical
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TorusNormaliserBessel
 public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselFunctionalSideGrowth
+public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.GapCoefficientDerivativeBound
+public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.QuotientMeasureAeMemAndMeasurableBesselModel
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsKFinNeZeroOfCwCont
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselGapDimensionFormula
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.DiscreteSeriesUnitarySmoothBasic
-public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.GapCoefficientDerivativeBound
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.HaarEqSmul
-public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.QuotientMeasureAeMemAndMeasurableBesselModel
 import Formalism.FormalDegreeBessel.FinalG
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LowerSmoothStability.ExistsFinStableOfMemSSup
 import Mathlib.Algebra.Order.Floor.Extended
@@ -101,7 +102,7 @@ theorem sideG_of {k r : ℕ} {Wp : Type} [NormedAddCommGroup Wp] [InnerProductSp
     ∃ U, SideG k r z π U μW (haarLie (Nset k r) κ) μG νq := by
   refine ⟨fun n => if h : n - 1 < k then u ⟨n - 1, h⟩ else 0, hz, hT, ⟨u, hπ⟩,
     GlobalTheory.ThA.capParam_of_isHCTypeW k r z u _ Wp π hz hT hπ (fun i => by simp), hW,
-    GlobalTheory.T.haarLie_isHaarOn_unipotentRadical k r κ (scale_pos hG.2.1 hq) hκ, hG, hq⟩
+    _root_.GlobalTheory.haarLie_isHaarOn_Nset k r κ (scale_pos hG.2.1 hq) hκ, hG, hq⟩
 
 theorem dsigW_eq {k r : ℕ} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     (σ : MatKR k r → (H →L[ℂ] H)) (w : List (MatKR k r)) (v : H) :

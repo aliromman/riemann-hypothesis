@@ -125,6 +125,91 @@ noncomputable section
 
 namespace GlobalTheory.HSApp
 
+section HSAppInsts
+
+local instance (priority := high) instAlgebraTRing_HSApp {K : Type} [Field K] (p : TRing K) :
+    Algebra K p.R :=
+  Ideal.Quotient.algebra K
+
+local instance (priority := high) instCommRingTRing_HSApp {K : Type} [Field K] (p : TRing K) :
+    CommRing p.R :=
+  Ideal.Quotient.commRing p.I
+
+local instance (priority := high) instModuleTRing_HSApp {K : Type} [Field K] (p : TRing K) :
+    Module K p.R :=
+  Algebra.toModule
+
+section RulCuspWInsts
+variable {E : Type} [Field E] [NumberField E] [IsCMField E]
+  {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H} {l : Level H}
+
+local instance (priority := high) instAddCommGroupRul_HSApp (Xo : Moduli Dw l) (c : Coeff l) :
+    AddCommGroup (Rul Xo c) :=
+  inferInstance
+
+local instance (priority := high) instModuleRul_HSApp (Xo : Moduli Dw l) (c : Coeff l) :
+    Module c.F (Rul Xo c) :=
+  inferInstance
+
+local instance (priority := high) instSMulWithZeroRul_HSApp (Xo : Moduli Dw l) (c : Coeff l) :
+    SMulWithZero c.F (Rul Xo c) :=
+  Module.toMulActionWithZero.toSMulWithZero
+
+local instance (priority := high) instAddCommGroupCuspW_HSApp (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    AddCommGroup ↥(GlobalTheory.AllWt.cuspW Xo c U G) :=
+  Submodule.addCommGroup _
+
+local instance (priority := high) instModuleCuspW_HSApp (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    Module c.F ↥(GlobalTheory.AllWt.cuspW Xo c U G) :=
+  Submodule.module _
+
+local instance (priority := high) instSMulWithZeroCuspW_HSApp (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    SMulWithZero c.F ↥(GlobalTheory.AllWt.cuspW Xo c U G) :=
+  Module.toMulActionWithZero.toSMulWithZero
+
+local instance (priority := high) instDistribMulActionCuspW_HSApp (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    DistribMulAction c.F ↥(GlobalTheory.AllWt.cuspW Xo c U G) :=
+  Module.toDistribMulAction
+
+local instance (priority := high) instMulActionCuspW_HSApp (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    MulAction c.F ↥(GlobalTheory.AllWt.cuspW Xo c U G) :=
+  DistribMulAction.toMulAction
+
+local instance (priority := high) instSMulCuspW_HSApp (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    SMul c.F ↥(GlobalTheory.AllWt.cuspW Xo c U G) :=
+  Module.toDistribMulAction.toDistribSMul.toSMul
+
+local instance (priority := high) instHSMulCuspW_HSApp (Xo : Moduli Dw l) (c : Coeff l) {r : ℕ}
+    (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (G : WTZ E) :
+    HSMul c.F ↥(GlobalTheory.AllWt.cuspW Xo c U G) ↥(GlobalTheory.AllWt.cuspW Xo c U G) :=
+  instHSMul
+
+local instance (priority := high) instAddCommGroupDeepV_HSApp {D : D7} {T : Core D} {j : ℕ}
+    (Y : Deep T j) (G : WTZ D.host.E) :
+    AddCommGroup ↥(Y.V G) :=
+  Submodule.addCommGroup _
+
+local instance (priority := high) instModuleDeepV_HSApp {D : D7} {T : Core D} {j : ℕ}
+    (Y : Deep T j) (G : WTZ D.host.E) :
+    Module Y.d.c₂.F ↥(Y.V G) :=
+  Submodule.module _
+
+local instance (priority := high) instSMulDeepV_HSApp {D : D7} {T : Core D} {j : ℕ}
+    (Y : Deep T j) (G : WTZ D.host.E) :
+    SMul Y.d.c₂.F ↥(Y.V G) :=
+  Module.toDistribMulAction.toDistribSMul.toSMul
+
+local instance (priority := high) instHSMulDeepV_HSApp {D : D7} {T : Core D} {j : ℕ}
+    (Y : Deep T j) (G : WTZ D.host.E) :
+    HSMul Y.d.c₂.F ↥(Y.V G) ↥(Y.V G) :=
+  instHSMul
+
 section Gen
 
 open MeasureTheory ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions.TH
@@ -255,6 +340,8 @@ theorem hasGram_nrm_of_good (D : D7) (T : Core D) (j : ℕ) (Y : Deep T j) (e : 
     exact congrArg (· • Classical.choose hex x) (congrArg (fun τ : Y.d.c₂.F →+* ℂ => τ a) (if_neg h))
 
 
+end RulCuspWInsts
+end HSAppInsts
 end GlobalTheory.HSApp
 end -- clump:auto
 end -- clump:auto

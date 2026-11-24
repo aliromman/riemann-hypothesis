@@ -674,7 +674,7 @@ theorem sum_log_norm {L : Type*} [Field L] [NumberField L] {x : L} (hx : x ≠ 0
     Real.norm_eq_abs]
 
 theorem isMultiHomog_X {T : Type} [Fintype T] (t : T) :
-    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (X ⟨(), t⟩ : MRing (fun _ : Unit => T)) (fun _ => 1) := by
+    IsMultiHomog (X ⟨(), t⟩ : MRing (fun _ : Unit => T)) (fun _ => 1) := by
   classical
   intro m hm k
   obtain ⟨⟩ := k

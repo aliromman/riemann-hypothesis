@@ -9,7 +9,8 @@ public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Matri
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ClosedSubgroupBesselUnitaryHaarUnique
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DensityInChart
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FlagUnipotentLebesgueMeasureIsHaarOn
-public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadicalStatement
+public import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
+public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadical
 public import Mathlib.Analysis.Calculus.Deriv.Star
 public import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
 public import Mathlib.MeasureTheory.Integral.Pi
@@ -639,7 +640,7 @@ theorem dens_one : HasDens (Nset k r) (haarLie (Nset k r) 1) 1 := by
 theorem haarLie_eq_lebN : ∀ k r : ℕ,
     haarLie (Nset k r) 1 = (2 ^ (r * (k + 1) + r * (r - 1)) : ℝ≥0∞) • lebN k r := by
   intro k r
-  have hH := GlobalTheory.T.haarLie_isHaarOn_unipotentRadical k r 1 one_pos ENNReal.one_lt_top
+  have hH := _root_.GlobalTheory.haarLie_isHaarOn_Nset k r 1 one_pos ENNReal.one_lt_top
   obtain ⟨c, -, -, hc⟩ := _root_.GlobalTheory.SgInf.haarOn_unique k r (Nset k r) _ _
     ⟨fun _ h => h.1, closed_N, (nSubgroup k r).1, (nSubgroup k r).2.1, (nSubgroup k r).2.2⟩ (_root_.GlobalTheory.Amp.NHaar.isHaarOn_lebN k r) hH
   have hT := _root_.GlobalTheory.ChartDensity.density_in_chart _ (Nset k r) _ 1 matGroup_N hH dens_one (EE k r) Phi (LL k r) Phi_zero

@@ -85,10 +85,6 @@ import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.FieldTheory.Galois.Profinite
 
--- This (transitively imported) instance makes typeclass search loop on goals like
--- `IsPrincipalIdealRing ℤ`; the project disables it locally in the same way elsewhere.
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
-
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.IneInclOntoUnits, Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.InertiaRamification.EmbDefY, Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.InertiaRamification.LocDiffY, Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.InertiaRamification.ComplY, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.ScalarIrreducibility.WtUnit, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.ScalarIrreducibility.PlaceFree
 

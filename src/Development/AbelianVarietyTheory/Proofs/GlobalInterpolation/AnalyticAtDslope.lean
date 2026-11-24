@@ -164,43 +164,47 @@ theorem order_ne_top {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) {ρ : 
   exact (analyticOff χ).analyticOrderAt_ne_top_of_isPreconnected hU
     (by norm_num : (2 : ℂ) ∈ ({1}ᶜ : Set ℂ)) hρ h2
 
+open scoped Classical in
+/-- At one, the logarithmic derivative has residue `-1` for every principal
+Dirichlet character and is analytic for every nonprincipal character. -/
+theorem logDeriv_LFunction_one {N : ℕ} [NeZero N] (χ : DirichletCharacter ℂ N) :
+    ∃ g : ℂ → ℂ, AnalyticAt ℂ g 1 ∧ ∀ᶠ s in 𝓝[≠] (1 : ℂ),
+      deriv (LFunction χ) s / LFunction χ s = (if χ = 1 then -1 else 0) / (s - 1) + g s := by
+  by_cases hχ : χ = 1
+  · subst χ
+    have hFa : AnalyticAt ℂ (LFunctionTrivChar₁ N) 1 :=
+      (differentiable_LFunctionTrivChar₁ N).analyticAt 1
+    have hF1 := LFunctionTrivChar₁_apply_one_ne_zero N
+    refine ⟨fun s => deriv (LFunctionTrivChar₁ N) s / LFunctionTrivChar₁ N s,
+      hFa.deriv.div hFa hF1, ?_⟩
+    filter_upwards [nhdsWithin_le_nhds (hFa.continuousAt.eventually_ne hF1),
+      self_mem_nhdsWithin] with s hFs hs
+    have hF : LFunctionTrivChar₁ N s = (s - 1) * LFunctionTrivChar N s := by
+      rw [LFunctionTrivChar₁, Function.update_of_ne hs]
+    have hLs : LFunctionTrivChar N s ≠ 0 := by
+      intro h
+      exact hFs (by rw [hF, h, mul_zero])
+    rw [ite_eq_left rfl]
+    change deriv (LFunctionTrivChar N) s / LFunctionTrivChar N s =
+      -1 / (s - 1) + deriv (LFunctionTrivChar₁ N) s / LFunctionTrivChar₁ N s
+    rw [deriv_LFunctionTrivChar₁_apply_of_ne_one N hs, hF]
+    field_simp [hLs, sub_ne_zero.mpr hs]
+    ring
+  · have hLa : AnalyticAt ℂ (LFunction χ) 1 := (differentiable_LFunction hχ).analyticAt 1
+    refine ⟨fun s => deriv (LFunction χ) s / LFunction χ s,
+      hLa.deriv.div hLa (LFunction_apply_one_ne_zero hχ), ?_⟩
+    exact Filter.Eventually.of_forall fun s => by simp only [hχ, ite_false, zero_div, zero_add]
+
 theorem logDeriv_one {N : ℕ} [NeZero N] {χ : DirichletCharacter ℂ N} (hχ : χ.IsPrimitive) :
     ∃ g : ℂ → ℂ, AnalyticAt ℂ g 1 ∧ ∀ᶠ s in 𝓝[≠] (1 : ℂ),
       deriv (LFunction χ) s / LFunction χ s = (if N = 1 then -1 else 0) / (s - 1) + g s := by
-  by_cases hN : N = 1
-  · subst hN
-    obtain rfl : χ = 1 := DirichletCharacter.level_one χ
-    have hZd := DirichletCharacter.differentiable_LFunctionTrivChar₁ 1
-    have hZa : AnalyticAt ℂ (DirichletCharacter.LFunctionTrivChar₁ 1) 1 := hZd.analyticAt 1
-    have hZ1 := DirichletCharacter.LFunctionTrivChar₁_apply_one_ne_zero 1
-    refine ⟨fun s => deriv (DirichletCharacter.LFunctionTrivChar₁ 1) s /
-      DirichletCharacter.LFunctionTrivChar₁ 1 s, hZa.deriv.div hZa hZ1, ?_⟩
-    have hne : ∀ᶠ s in 𝓝 (1 : ℂ), DirichletCharacter.LFunctionTrivChar₁ 1 s ≠ 0 :=
-      hZa.continuousAt.eventually_ne hZ1
-    filter_upwards [nhdsWithin_le_nhds hne, self_mem_nhdsWithin] with s hZs hs1
-    have hs1' : s - 1 ≠ 0 := sub_ne_zero.mpr hs1
-    have hLeq : LFunction (1 : DirichletCharacter ℂ 1) =ᶠ[𝓝 s]
-        fun z => DirichletCharacter.LFunctionTrivChar₁ 1 z / (z - 1) := by
-      filter_upwards [isOpen_compl_singleton.mem_nhds hs1] with z hz
-      have hz' : z - 1 ≠ 0 := sub_ne_zero.mpr hz
-      rw [DirichletCharacter.LFunctionTrivChar₁, Function.update_of_ne hz]
-      field_simp
-    have hd : HasDerivAt (fun z => DirichletCharacter.LFunctionTrivChar₁ 1 z / (z - 1))
-        ((deriv (DirichletCharacter.LFunctionTrivChar₁ 1) s * (s - 1) -
-          DirichletCharacter.LFunctionTrivChar₁ 1 s * 1) / (s - 1) ^ 2) s :=
-      (hZd s).hasDerivAt.div ((hasDerivAt_id' s).sub_const 1) hs1'
-    rw [hLeq.deriv_eq, hLeq.eq_of_nhds, hd.deriv, if_pos rfl]
-    field_simp
-    ring
-  · have hχ1 : χ ≠ 1 := by
-      rintro rfl
-      rw [DirichletCharacter.IsPrimitive, DirichletCharacter.conductor_one] at hχ
-      exact hN hχ.symm
-    have hLa : AnalyticAt ℂ (LFunction χ) 1 := (DirichletCharacter.differentiable_LFunction hχ1).analyticAt 1
-    have hL1 := DirichletCharacter.LFunction_apply_one_ne_zero hχ1
-    refine ⟨fun s => deriv (LFunction χ) s / LFunction χ s, hLa.deriv.div hLa hL1,
-      Filter.Eventually.of_forall fun s => ?_⟩
-    simp only [hN, if_false, zero_div, zero_add]
+  have h1 : χ = 1 ↔ N = 1 := by
+    constructor
+    · intro h
+      rw [IsPrimitive, h, conductor_one] at hχ
+      exact hχ.symm
+    · exact level_one' χ
+  simpa only [h1] using logDeriv_LFunction_one χ
 
 theorem residue_identity : ∀ (N : ℕ) [NeZero N] (χ : DirichletCharacter ℂ N), χ.IsPrimitive → ∀ (u c T : ℝ) (m : ℕ) (h : ℂ → ℂ), 1 < u → 1 < c → 0 < T → AnalyticAt ℂ h 0 → (∀ᶠ s in 𝓝[≠] (0 : ℂ), deriv (LFunction χ) s / LFunction χ s = (m : ℂ) / s + h s) → (∀ s : ℂ, -(1/2 : ℝ) ≤ s.re → s.re ≤ c → |s.im| = T → LFunction χ s ≠ 0) → (∀ s : ℂ, s.re = -(1/2 : ℝ) → LFunction χ s ≠ 0) → (∫ x : ℝ in (-(1/2 : ℝ))..c, (-(deriv (LFunction χ) ((x : ℂ) - T * I) / LFunction χ ((x : ℂ) - T * I)) * (u : ℂ) ^ ((x : ℂ) - T * I) / ((x : ℂ) - T * I))) - (∫ x : ℝ in (-(1/2 : ℝ))..c, (-(deriv (LFunction χ) ((x : ℂ) + T * I) / LFunction χ ((x : ℂ) + T * I)) * (u : ℂ) ^ ((x : ℂ) + T * I) / ((x : ℂ) + T * I))) + I * (∫ t : ℝ in (-T)..T, (-(deriv (LFunction χ) ((c : ℂ) + t * I) / LFunction χ ((c : ℂ) + t * I)) * (u : ℂ) ^ ((c : ℂ) + t * I) / ((c : ℂ) + t * I))) - I * (∫ t : ℝ in (-T)..T, (-(deriv (LFunction χ) (((-(1/2) : ℝ) : ℂ) + t * I) / LFunction χ (((-(1/2) : ℝ) : ℂ) + t * I)) * (u : ℂ) ^ (((-(1/2) : ℝ) : ℂ) + t * I) / (((-(1/2) : ℝ) : ℂ) + t * I))) = 2 * Real.pi * I * ((if N = 1 then (u : ℂ) else 0) - (∑ᶠ ρ ∈ {ρ : ℂ | 0 < ρ.re ∧ ρ.re < 1 ∧ |ρ.im| < T ∧ LFunction χ ρ = 0}, ((analyticOrderNatAt (LFunction χ) ρ : ℕ) : ℂ) * ((u : ℂ) ^ ρ / ρ)) - (m * (Real.log u : ℂ) + h 0)) := by
   intro N _ χ hχ u c T m h hu hc hT hh hφ0 hside hleft

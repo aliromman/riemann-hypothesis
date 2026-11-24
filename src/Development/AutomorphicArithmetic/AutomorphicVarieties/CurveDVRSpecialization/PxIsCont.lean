@@ -116,11 +116,6 @@ section -- clump:auto
 
 open IsLocalRing Matrix UpperTheory.V.Alg UpperTheory.V.U3 UpperTheory.V.Fr UpperTheory.V.Fr.PF
 
--- `IsCD.toIsDomain`/`IsCD.toIsDiscreteValuationRing` have an undetermined base ring, so every
--- `IsLocalRing _` search explores `CommRing ?O` without bound and times out; disable them here
--- (as done elsewhere in the project).
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
-
 section Sub
 
 variable {O R : Type} [CommRing O] [IsLocalRing O] [CommRing R] [Algebra O R] [IsCO O R] (A : Subalgebra O R)
@@ -381,9 +376,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option linter.overlappingInstances false
-
--- See the comment in the `TraceMem` section above.
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 
 open IsLocalRing Matrix UpperTheory.V.Alg UpperTheory.V.U3 UpperTheory.V.Fr UpperTheory.V
 

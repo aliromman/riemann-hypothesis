@@ -1266,7 +1266,9 @@ theorem classSumsSpan_of_pins_core (hR : GlobalTheory.Hk3.Core R F) (ht : TieIn 
     · refine (kernel_eq_shortVal hR ht O hP hio' hδ hcc _ hφ nab hnab h' Λ' N' d1 d2 d3 d4 w₀ hw₀ v g (dict_mem hT O g)
         (t g) (t1 g)).trans ?_
       have key : ∀ c a l m e t : ℂ, l ≠ 0 → c * a * m * e * t = c * l⁻¹ * e * (a * l * m) * t := fun c a l m e t hl => by
-        field_simp
+        calc
+          _ = (l⁻¹ * l) * (c * a * m * e * t) := by rw [inv_mul_cancel₀ hl, one_mul]
+          _ = _ := by ac_rfl
       exact key _ _ _ _ _ _ hl0
 
 end Main

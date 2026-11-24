@@ -332,8 +332,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-attribute [local instance 2000] UpperTheory.V.Alg.IsCO.toIsLocalRing
-
 open IsLocalRing Matrix UpperTheory.V.Alg UpperTheory.V.U3 UpperTheory.V.Fr
 
 namespace UpperTheory.V.Fr.PF
@@ -597,8 +595,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-attribute [local instance 2000] UpperTheory.V.Alg.IsCO.toIsLocalRing UpperTheory.V.Alg.IsCO.isLocalHom
-
 open IsLocalRing Matrix UpperTheory.V.Alg UpperTheory.V.U3 UpperTheory.V.Fr UpperTheory.V.W UpperTheory.V.CA
 
 namespace UpperTheory.V.Pr
@@ -850,7 +846,6 @@ private theorem mem_ker_iff (hn : 1 ≤ n) (g : G.G₀) : g ∈ (unt L r0).ker �
 include h0 hs in
 private theorem tame_ker [CharP (ResidueField O) l] (hj : Function.Injective j) (hn : 1 ≤ n) (u : G.St) (g : G.G₀)
     (hg : g ∈ G.Iu u) (hΨ : F.Ψ (L.π g) = 1) : g ∈ (unt L r0).ker := by
-  haveI : IsLocalRing C := IsCO.toIsLocalRing O (R := C)
   obtain ⟨m, hm, h1, h2⟩ := L.tame u g hg
   have hI : g ^ m ∈ r.Ip u := by
     refine ⟨pow_mem hg m, Subgroup.mem_iInf.2 fun i => ?_⟩
@@ -932,7 +927,6 @@ private theorem desc {M : Type} [Monoid M] (a : G.G₀ →* M) (h : L.π.ker ≤
 
 private theorem chi_ex : ∃ χ : ∀ v, Fin n → F.Gv v →* Cˣ, IsPsi O F n (fun v i g => (χ v i g : C)) ∧
     ∀ v i g, χ (L.e v) i (L.lam v g) * L.κA C (G.φ v g) = p.ψ v i g := by
-  haveI : IsLocalRing C := IsCO.toIsLocalRing O (R := C)
   have key : ∀ v : F.V, ∃ χ : Fin n → F.Gv v →* Cˣ, (∀ i, AdicCont (maximalIdeal C) (fun g => (χ i g : C)) ∧
       ∀ g, res O C (χ i g) = ((F.Ψ (F.loc v g) ^ w n i : (ResidueField O)ˣ) : ResidueField O)) ∧
       ∀ u (h : L.e u = v) i g, χ i (h ▸ L.lam u g) * L.κA C (G.φ u g) = p.ψ u i g := fun v => by

@@ -916,12 +916,12 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.HeightCounting.Up
 variable {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat B} {w : ColW B f T}
 theorem sFino_of_alt {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {cDep : ℝ} (h : _root_.GlobalTheory.HeightCounting.Up.FinitenessListStatement hL cDep) : _root_.GlobalTheory.HeightCounting.Up.SpectralFiniteness hL cDep := by
-  refine StepW.trans h (StepW.of_all fun K B f T w _ _ H P x l S Γ hl => ?_)
-  obtain ⟨Z, v, h1, h2⟩ := H P x l S Γ hl.1
+  refine StepW.trans h (StepW.of_all fun K B f T w _ _ H P x l S hl => ?_)
+  obtain ⟨Z, v, h1, h2⟩ := H P x l S hl.1
   exact ⟨Z, { g := v.g, coh := v.coh, Wt := v.Wt, p0 := v.p0, what₂ := v.what₂, rx := v.rx, nch := v.nch, n := v.n, xd := v.xd,
               chiT := v.chiT, nx := ⟨v.nx.1, v.nx.2, ⟨P, x, l, hl, h1, h2⟩⟩ }, h1, h2⟩
-theorem exists_pre_point_with_henselian_level {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {cDep : ℝ} {S : SExt} {Γ : GeoP} {Z : w.Lt} {c : V4.Core K (w.st Z) f T}
-    (b : Built (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension (_root_.GlobalTheory.HeightCounting.Up.extensionWithOrigin hL cDep) S Γ).s K w Z c) (e : ExportAt (w.st Z).toD7 c.O.nch c.O.xd) :
+theorem exists_pre_point_with_henselian_level {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {cDep : ℝ} {S : SExt} {Z : w.Lt} {c : V4.Core K (w.st Z) f T}
+    (b : Built (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension (_root_.GlobalTheory.HeightCounting.Up.extensionWithOrigin hL cDep) S).s K w Z c) (e : ExportAt (w.st Z).toD7 c.O.nch c.O.xd) :
     ∃ (P : Pre2 K w) (x : St P) (_ : _root_.GlobalTheory.HeightCounting.Up.StrictHenselianAcyclicLevel hL x), (ListSt cDep x ∧ SatU P) ∧ ∀ A, Nonempty (Seed (Dof x) A) := by
   obtain ⟨P, x, l, hl, hW, hk⟩ := b.nx.2.2.down
   have key := (TupTieW.tupTied_of_muIsW (w.st Z) f T c.Wt c.xi c.mu).1
@@ -1106,11 +1106,11 @@ theorem pairH1_id_bijective (rho : Representation R G M) (rho' : Representation 
   · obtain ⟨f, rfl⟩ := Submodule.Quotient.mk_surjective _ x
     simp only [pairH1DecompositionMap, Submodule.mapQ_apply]
     congr 1
-    exact Subtype.ext (funext fun g => by simp [compatiblePairCocycles1, h1])
+    exact Subtype.ext (funext fun g => congrArg f.1 (h1 g))
   · obtain ⟨f, rfl⟩ := Submodule.Quotient.mk_surjective _ x
     simp only [pairH1DecompositionMap, Submodule.mapQ_apply]
     congr 1
-    exact Subtype.ext (funext fun g => by simp [compatiblePairCocycles1, h2])
+    exact Subtype.ext (funext fun g => congrArg f.1 (h2 g))
 
 end General
 
@@ -1812,21 +1812,21 @@ theorem goodO_of_alt_alt (hP : _root_.GlobalTheory.HeightCounting.Up.PublishedIn
     (hs v₂) ((heq_of_eq e1).trans hQ) (e2.trans hk') ((heq_of_eq (congrFun l.c.psi_eq v₂)).trans hχ) fun z hz => ?_⟩
   rw [e2] at hz
   exact hT.1 v₂ z hz
-theorem has3_of_carried_levelB2 {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {cDep : ℝ} (hP : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt) (S : SExt) (Γ : GeoP) {B' : Base} {f' : Fr B'.toPre}
+theorem has3_of_carried_levelB2 {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {cDep : ℝ} (hP : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt) (S : SExt) {B' : Base} {f' : Fr B'.toPre}
     {T' : TwDat B'} {w' : ColW B' f' T'} (h : Enl B B') {P : Pre2 K w} (x : St P) {A} (σ : Seed (Dof x) A)
     (hA : ∀ i, avD (Dof x) (avDesign (Dof x)) i ⊆ A i) (hT : TwFrom (w.st x.o.Z) σ h T') {P' : Pre2 K w'}
     (hW : ∀ v', plUnder h v' ∈ P.Wt ↔ v' ∈ P'.Wt) {y : St P'} (l : _root_.GlobalTheory.HeightCounting.Up.ThirdIntermediateLevel hL y) (hc : Carried (Dof x) (Dof y)) (hl : ListSt cDep y ∧ SatU P')
     (ck : ∀ s : B'.places.Pl → (Dof y).ntw.Tw, (∀ v, ∃ b, ReadsAt (D := Dof y) (s v) b v) → (∀ v, s (B'.places.conj v) = s v) →
       ∃ c : _root_.GlobalTheory.HeightCounting.HeightCountingCharacterData l.mt l.b T'.k T'.psi, c.ch.twI = s)
-    (fin : ∀ (l : _root_.GlobalTheory.HeightCounting.Up.StrictHenselianAcyclicLevel hL y) (S : SExt) (Γ : GeoP), (ListSt cDep y ∧ SatU P') →
-      ∃ (Z : w'.Lt) (v : Lv3 (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension (_root_.GlobalTheory.HeightCounting.Up.extensionWithOrigin hL cDep) S Γ).s K w' Z), v.Wt = P'.Wt ∧ Kept l.c.ch v.nch) :
-    Has3 (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension (_root_.GlobalTheory.HeightCounting.Up.GeometricNormExtension hL cDep) S Γ).s K B' f' T' w' := by
+    (fin : ∀ (l : _root_.GlobalTheory.HeightCounting.Up.StrictHenselianAcyclicLevel hL y) (S : SExt), (ListSt cDep y ∧ SatU P') →
+      ∃ (Z : w'.Lt) (v : Lv3 (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension (_root_.GlobalTheory.HeightCounting.Up.extensionWithOrigin hL cDep) S).s K w' Z), v.Wt = P'.Wt ∧ Kept l.c.ch v.nch) :
+    Has3 (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension (_root_.GlobalTheory.HeightCounting.Up.GeometricNormExtension hL cDep) S).s K B' f' T' w' := by
   have eT : (Dof x).ntw.Tw = (Dof y).ntw.Tw := (same_basic hc.exp.gal hc.exp.set hc.exp.frm).1
   obtain ⟨c, hs⟩ := ck (fun v' => cast eT (σ.s (plUnder h v')))
     (fun v' => (σ.reads (plUnder h v')).imp fun b hb =>
       GlobalTheory.HeightCounting.Up.readsAt_of_plUnder (w.st x.o.Z) (w'.st y.o.Z) h hc v' _ _ b (cast_heq eT _).symm hb)
     (fun v' => congrArg (cast eT) ((congrArg σ.s (TwChar.plUnder_conj h v')).trans (σ.conj _)))
-  obtain ⟨Z, v, h1, h2⟩ := fin { toStrictHenselianAcyclic := l, c := c } S Γ hl
+  obtain ⟨Z, v, h1, h2⟩ := fin { toStrictHenselianAcyclic := l, c := c } S hl
   have hg : GoodO (w'.st Z).toD7 v.nch v.xd :=
     _root_.GlobalTheory.HeightCounting.Up.goodO_of_alt_alt hP h x σ hA hT hW { toStrictHenselianAcyclic := l, c := c } hc (fun v' => (heq_of_eq (congrFun hs v')).trans (cast_heq eT _)) h2
       v.nx.2.1.1.1.xd fun v' hv' => h1 ▸ ((TupTieW.tupTied_of_muIsW (w'.st Z) f' T' v.Wt w'.I.xi v.what₂.mu).1 v').1 hv'
@@ -1836,7 +1836,7 @@ theorem secondNo_of_sMt_sRat_sCusp_sFinl (hCo : GlobalTheory.Published.DiscreteS
     (hc : PhtCmp) {hL : _root_.UpperTheory.Zero.LLC.RecTExists} (hMt : SMt) (hRat : _root_.GlobalTheory.HeightCounting.Up.RationalityStatementThirdPlaceSeries hL) (hCu : _root_.GlobalTheory.HeightCounting.Up.CuspStatement' hL) {cDep : ℝ}
     (hF : _root_.GlobalTheory.HeightCounting.Up.FinitenessListStatement hL cDep) : _root_.GlobalTheory.HeightCounting.Up.SecondNonvanishing hL cDep := by
   classical
-  intro S Γ
+  intro S
   have h3 := GlobalTheory.Mem.R3.Rw.Second.exists_ext_twisted_places hP.greenC hD
   have h4 := (GlobalTheory.T.constructionStartingChoices_of_fine_adelicData GlobalTheory.weilRepresentationUnitaryPair hds hP.hc hP.decay hH).and ((_root_.GlobalTheory.T.bareK_of_discreteSeriesExists hP hds).and ((_root_.GlobalTheory.T.stageAExists_of_inputs_phtCmp hP hc hL).and
     (hMt.and (hRat.and (hCu.and ((_root_.GlobalTheory.T.moveToBase_of_inputs_serN hP hS hL).and ((_root_.GlobalTheory.T.stageCExists_of_casselmanWallach hCo hCW hHM hP hS hL).and (_root_.GlobalTheory.HeightCounting.Up.sFino_of_alt hF))))))))
@@ -1873,7 +1873,7 @@ theorem secondNo_of_sMt_sRat_sCusp_sFinl (hCo : GlobalTheory.Published.DiscreteS
   obtain ⟨y, ⟨l2⟩, hcar, hlist⟩ := mv B f T w h hf hSt epx esel eJ eδ P x l.toStrictHenselianAcyclic P' hExt x1
     { toLA := la, mt := imt, rat := irat, cusp := cu P' x1 la } (s0.trans s1)
   have hWt : ∀ v', plUnder h v' ∈ P.Wt ↔ v' ∈ P'.Wt := fun v' => eW ▸ g9 _ v' (below_plUnder h P.Z₀ Z' v')
-  exact ⟨w', hSt', _root_.GlobalTheory.HeightCounting.Up.has3_of_carried_levelB2 hP S Γ h x σ (fun i => Finset.subset_union_left) hTw hWt l2 hcar
+  exact ⟨w', hSt', _root_.GlobalTheory.HeightCounting.Up.has3_of_carried_levelB2 hP S h x σ (fun i => Finset.subset_union_left) hTw hWt l2 hcar
     ⟨hlist cDep hl.1, fun _ v₁ v₂ ho hv => (hWt v₂).1 (hl.2 hT _ _ (overOne_plUnder_of h P.Z₀ P'.Z₀ ho) ((hWt v₁).2 hv))⟩
     (ck P' y l2) (fin P' y)⟩
 theorem sFino_and_secondNo_of_rat_cusp_finl : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.CasselmanWallach → GlobalTheory.Published.HarishChandraModules → _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → SerN → DatExt → WeightCaseCondition → GlobalTheory.Published.DiscreteSeriesExists → PhtCmp →

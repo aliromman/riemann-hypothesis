@@ -94,7 +94,7 @@ lemma log_le_const_mul_rpow (δ : ℝ) (hδ : 0 < δ) :
   have hx0 : 0 < x := by linarith
   have h1 : 1 ≤ x ^ δ := Real.one_le_rpow hx hδ.le
   have h2 : Real.log x ≤ x ^ δ / δ := Real.log_le_rpow_div hx0.le hδ
-  have h4 : Real.log 3 ≤ Real.log 3 * x ^ δ := by nlinarith
+  have h4 : Real.log 3 ≤ Real.log 3 * x ^ δ := le_mul_of_one_le_right hl3.le h1
   have h5 : (Real.log 3 + 1 / δ) * x ^ δ = Real.log 3 * x ^ δ + x ^ δ / δ := by ring
   rw [Real.log_mul (by norm_num) hx0.ne', h5]
   linarith
@@ -221,7 +221,8 @@ lemma log_deriv_sub_exceptional_zeros {c₁ : ℝ} (hc₁ : 0 < c₁) {q : ℕ} 
   have hlog2 : (0.6931 : ℝ) < Real.log 2 := by have := Real.log_two_gt_d9; linarith
   set L := Real.log ((q : ℝ) * (|s.im| + 2)) with hLdef
   have hL2 : Real.log 2 ≤ L :=
-    Real.log_le_log (by norm_num) (by nlinarith [abs_nonneg s.im])
+    Real.log_le_log (by norm_num) (by calc (2 : ℝ) ≤ |s.im| + 2 := by linarith [abs_nonneg s.im]
+      _ ≤ (q : ℝ) * (|s.im| + 2) := le_mul_of_one_le_left (by linarith [abs_nonneg s.im]) hq1)
   have hLpos : 0 < L := by linarith
   have hLne : L ≠ 0 := hLpos.ne'
   have hfar : ∀ ρ ∈ Z, (∀ β ∈ B, ρ ≠ (β : ℂ)) → ‖1 / (s - ρ)‖ ≤ 3 * L / c₁ := by
@@ -240,14 +241,17 @@ lemma log_deriv_sub_exceptional_zeros {c₁ : ℝ} (hc₁ : 0 < c₁) {q : ℕ} 
       linarith
     set Lρ := Real.log ((q : ℝ) * (|ρ.im| + 2)) with hLρdef
     have hLρ2 : Real.log 2 ≤ Lρ :=
-      Real.log_le_log (by norm_num) (by nlinarith [abs_nonneg ρ.im])
+      Real.log_le_log (by norm_num) (by calc (2 : ℝ) ≤ |ρ.im| + 2 := by linarith [abs_nonneg ρ.im]
+        _ ≤ (q : ℝ) * (|ρ.im| + 2) := le_mul_of_one_le_left (by linarith [abs_nonneg ρ.im]) hq1)
     have hLρpos : 0 < Lρ := by linarith
     have hLρ : Lρ ≤ 6 / 5 * L := by
       have h1 : (q : ℝ) * (|ρ.im| + 2) ≤ (q : ℝ) * (|s.im| + 2) * (131 / 120) := by
         have h0 : |ρ.im| ≤ |s.im| + 11 / 60 := by
           have := abs_sub_abs_le_abs_sub ρ.im s.im
           linarith
-        nlinarith [abs_nonneg s.im]
+        have h0' : |ρ.im| + 2 ≤ (|s.im| + 2) * (131 / 120) := by linarith [abs_nonneg s.im]
+        calc (q : ℝ) * (|ρ.im| + 2) ≤ (q : ℝ) * ((|s.im| + 2) * (131 / 120)) := mul_le_mul_of_nonneg_left h0' (by linarith)
+          _ = (q : ℝ) * (|s.im| + 2) * (131 / 120) := by ring
       have h2 : Lρ ≤ L + Real.log (131 / 120) := by
         rw [hLρdef, hLdef, ← Real.log_mul (by positivity) (by norm_num)]
         exact Real.log_le_log (by positivity) h1
@@ -371,8 +375,8 @@ theorem log_deriv_in_zero_free_region : LogDerivRegionChiOf := by
   set L := Real.log ((q : ℝ) * (|s.im| + 2)) with hLdef
   have hL69 : 69 / 100 ≤ L := log_analytic_conductor_ge_const q s.im
   have hL : 1 / 2 ≤ L := by linarith
-  have hLsq : 1 ≤ 4 * L ^ 2 := by nlinarith
-  have hLsq' : L ≤ 2 * L ^ 2 := by nlinarith
+  have hLsq : 1 ≤ 4 * L ^ 2 := by have := mul_le_mul hL hL (by norm_num) (by linarith); linarith
+  have hLsq' : L ≤ 2 * L ^ 2 := by have := mul_le_mul_of_nonneg_right hL (by linarith : (0 : ℝ) ≤ L); linarith
   have hT1 : 0 ≤ 2880 / 11 * K₁ := by positivity
   have hT2 : 0 ≤ 3 * K₁ / (c₁ * Real.log 2) := by positivity
   have hβlt : ∀ β ∈ B, β < 1 := by
@@ -406,12 +410,12 @@ theorem log_deriv_in_zero_free_region : LogDerivRegionChiOf := by
     calc ‖negLD χ s + ∑ β ∈ B, 1 / (s - (β : ℂ))‖
         ≤ ‖negLD χ s‖ + ‖∑ β ∈ B, 1 / (s - (β : ℂ))‖ := norm_add_le _ _
       _ ≤ 20 + C₀ := by linarith
-      _ ≤ 4 * (20 + C₀) * L ^ 2 := by nlinarith
-      _ ≤ _ := by nlinarith
+      _ ≤ 4 * (20 + C₀) * L ^ 2 := by have := mul_le_mul_of_nonneg_left hLsq (by linarith : (0 : ℝ) ≤ 20 + C₀); linarith
+      _ ≤ _ := by linarith only [h3]
   · have hσ' : s.re < 11 / 10 := lt_of_not_ge hσ
     have hshift : c₁ / 2 / L ≤ 1 / 27 := by
       rw [div_le_iff₀ (by linarith)]
-      nlinarith
+      linarith [hc₁', hL69]
     have hσ1 : 26 / 27 ≤ s.re := by linarith
     have hfs : DirichletCharacter.LFunction χ s ≠ 0 := by
       intro h0
@@ -422,7 +426,9 @@ theorem log_deriv_in_zero_free_region : LogDerivRegionChiOf := by
     have hKL : 0 ≤ K₁ * L := by positivity
     have h4 : 0 ≤ 4 * (20 + C₀) * L ^ 2 := by positivity
     refine le_trans hmain ?_
-    nlinarith
+    have h5 : K₁ * L ≤ 2 * K₁ * L ^ 2 := by have := mul_le_mul_of_nonneg_left hLsq' (by positivity : (0 : ℝ) ≤ K₁); linarith
+    have h6 : 120 / 11 ≤ 480 / 11 * L ^ 2 := by linarith
+    linarith [h5, h6, h4]
 
 end Formalism.ZeroFreeDirichlet
 end -- clump:auto
@@ -732,7 +738,7 @@ lemma exp_neg_sqrt_log_mem_unit_interval {c₀ y : ℝ} (hc0 : 0 < c₀) :
     0 < Real.exp (-(c₀ / 2) * Real.sqrt (Real.log y)) ∧
       Real.exp (-(c₀ / 2) * Real.sqrt (Real.log y)) ≤ 1 := by
   refine ⟨Real.exp_pos _, Real.exp_le_one_iff.2 ?_⟩
-  nlinarith [mul_nonneg hc0.le (Real.sqrt_nonneg (Real.log y))]
+  linarith only [mul_nonneg hc0.le (Real.sqrt_nonneg (Real.log y))]
 
 lemma chebyshev_character_nonprincipal_bound {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) {c₁ : ℝ}
     (hc₁ : 0 < c₁) (hc₁' : c₁ ≤ 1 / 20) (B : Finset ℝ) (hB : ExcZeros c₁ χ B)
@@ -745,7 +751,7 @@ lemma chebyshev_character_nonprincipal_bound {q : ℕ} [NeZero q] (χ : Dirichle
   obtain ⟨hh0, hh1⟩ := exp_neg_sqrt_log_mem_unit_interval (y := y) hc0
   set h := Real.exp (-(c₀ / 2) * Real.sqrt (Real.log y)) with hh
   have hypos : 0 < y := by linarith
-  have hyY : y ≤ y * (1 + h) := by nlinarith
+  have hyY : y ≤ y * (1 + h) := le_mul_of_one_le_right hypos.le (by linarith)
   have hY0 : 0 ≤ y * (1 + h) := by positivity
 
   have hβ : ∀ β ∈ B, 1 / 2 ≤ β ∧ β < 1 := by
@@ -850,7 +856,7 @@ lemma chebyshev_principal_character_bound {q : ℕ} [NeZero q] {cg Kg c₀ y : �
   obtain ⟨hh0, hh1⟩ := exp_neg_sqrt_log_mem_unit_interval (y := y) hc0
   set h := Real.exp (-(c₀ / 2) * Real.sqrt (Real.log y)) with hh
   have hypos : 0 < y := by linarith
-  have hyY : y ≤ y * (1 + h) := by nlinarith
+  have hyY : y ≤ y * (1 + h) := le_mul_of_one_le_right hypos.le (by linarith)
   have hY0 : 0 ≤ y * (1 + h) := by positivity
   set f : ℕ → ℂ := fun n => ((Λ n : ℝ) : ℂ) with hf
   have hfb : ∀ n, ‖f n‖ ≤ Λ n := by
@@ -961,9 +967,10 @@ theorem chebyshev_character_bound_of : PsiChiBoundOf := by
       have : 0 ≤ z * Real.exp (-cg * Real.sqrt (Real.log z)) := by
         have : 0 ≤ z := by linarith
         positivity
-      nlinarith [le_max_left Kg 0]
+      have hle : Kg ≤ Kg' := le_max_left Kg 0
+      simpa [mul_assoc] using mul_le_mul_of_nonneg_right hle this
     have := chebyshev_principal_character_bound (q := q) hc0 hc01 hc0g hKg' hx hq hG'
-    nlinarith
+    linarith [this, mul_nonneg (by linarith : (0 : ℝ) ≤ 4 * Cs') he4]
   · rw [if_neg hχ, sub_zero]
     have hE : ∀ z : ℝ, x ≤ z →
         ‖Schi χ z - negLD χ 1 * z + ∑ β ∈ B, (z : ℂ) ^ (β : ℂ) / ((β : ℂ) * ((β : ℂ) - 1))‖ ≤
@@ -975,14 +982,16 @@ theorem chebyshev_character_bound_of : PsiChiBoundOf := by
           Real.sqrt_le_sqrt (Real.log_le_log (by linarith) hz)
         have h0 : 0 ≤ Real.sqrt (Real.log x) := Real.sqrt_nonneg _
         have h0' : 0 ≤ Real.sqrt (Real.log z) := Real.sqrt_nonneg _
-        nlinarith
+        have hle : c₀ / 4 ≤ cs := by linarith
+        exact mul_le_mul hle h1 h0 (by linarith)
       refine (hSm q χ B z hχ hB (by linarith) hqz).trans ?_
       have : 0 ≤ z * Real.exp (-cs * Real.sqrt (Real.log z)) := by
         have : 0 ≤ z := by linarith
         positivity
-      nlinarith [le_max_left Cs 0]
+      have hle : Cs ≤ Cs' := le_max_left Cs 0
+      simpa [mul_assoc] using mul_le_mul_of_nonneg_right hle this
     have := chebyshev_character_nonprincipal_bound χ hχ hc₁ hc₁' B hB hc0 hc01 hc0s hCs' hx hE
-    nlinarith
+    linarith [this, mul_nonneg (by linarith : (0 : ℝ) ≤ 4 * Kg' + 16) he4]
 
 end Formalism.ZeroFreeDirichlet
 end -- clump:auto
@@ -1007,7 +1016,8 @@ lemma log_analytic_conductor_pos (q : ℕ) [NeZero q] (t : ℝ) : 0 < Real.log (
     exact_mod_cast h1
   apply Real.log_pos
   have ht := abs_nonneg t
-  nlinarith
+  calc (1 : ℝ) < |t| + 2 := by linarith
+    _ ≤ (q : ℝ) * (|t| + 2) := le_mul_of_one_le_left (by linarith) hq
 
 lemma zero_free_region_mono {c c' : ℝ} (h : c ≤ c') {q : ℕ} [NeZero q] {s : ℂ} (hs : InRegion c q s) :
     InRegion c' q s := by
@@ -1027,7 +1037,8 @@ lemma half_le_of_real_in_region {c₁ : ℝ} (h : c₁ ≤ 1 / 20) {q : ℕ} [Ne
       have h1 : 1 ≤ q := Nat.one_le_iff_ne_zero.mpr (NeZero.ne q)
       exact_mod_cast h1
     have ht := abs_nonneg (β:ℂ).im
-    nlinarith
+    calc (2 : ℝ) ≤ |(β:ℂ).im| + 2 := by linarith
+      _ ≤ (q:ℝ) * (|(β:ℂ).im| + 2) := le_mul_of_one_le_left (by linarith) hq
   have hl2 : Real.log 2 ≤ Real.log ((q:ℝ) * (|(β:ℂ).im| + 2)) := Real.log_le_log (by norm_num) h2
   have hlt := Real.log_two_gt_d9
   have hc : c₁ / Real.log ((q:ℝ) * (|(β:ℂ).im| + 2)) ≤ 1 / 2 := by
@@ -1132,18 +1143,19 @@ lemma exceptional_zero_term_bound (x A q cE β : ℝ) (hx : 2 ≤ x) (hA : 0 < A
   have h4 : (β - 1) * Real.log x ≤ -cE * Real.sqrt (Real.log x) := by
     have hsq : Real.sqrt (Real.log x) * Real.sqrt (Real.log x) = Real.log x := Real.mul_self_sqrt hlog.le
     have h4a := (div_le_iff₀ hs).mp h3
-    nlinarith
+    have h4b := mul_le_mul_of_nonneg_right h4a hs.le
+    rw [mul_assoc, hsq] at h4b; linarith
   have h5 : x ^ β ≤ x * Real.exp (-cE * Real.sqrt (Real.log x)) := by
     have e1 : x * Real.exp (-cE * Real.sqrt (Real.log x)) =
         Real.exp (Real.log x + -cE * Real.sqrt (Real.log x)) := by
       rw [Real.exp_add, Real.exp_log hx0]
     rw [e1, Real.rpow_def_of_pos hx0]
     apply Real.exp_le_exp.mpr
-    nlinarith
+    linarith only [h4]
   have h6 : x ^ β / β ≤ 2 * x ^ β := by
     rw [div_le_iff₀ hβ0]
     have h6a := Real.rpow_pos_of_pos hx0 β
-    nlinarith
+    have := mul_le_mul_of_nonneg_left hβ1 h6a.le; linarith
   linarith [h5, h6]
 
 lemma bounded_of_exp_sqrt_lt_pow (A c : ℝ) (hA : 0 < A) (hc : 0 < c) :
@@ -1201,7 +1213,7 @@ theorem siegel_walfisz_character_of : SiegelWalfiszOf := by
     have he : 1 ≤ Real.exp (cf * Real.sqrt U) * Real.exp (-cf * Real.sqrt (Real.log x)) := by
       rw [← Real.exp_add]
       apply Real.one_le_exp
-      nlinarith
+      have := mul_le_mul_of_nonneg_left hsqU (le_min hc.le hcE.le); linarith
     have hxU : 0 ≤ x * (U + 1) := mul_nonneg hx0 (by linarith)
     have s1 : x * (Real.log x + 1) ≤ x * (U + 1) := mul_le_mul_of_nonneg_left (by linarith) hx0
     have s2 : x * (U + 1) ≤ x * (U + 1) * (Real.exp (cf * Real.sqrt U) * Real.exp (-cf * Real.sqrt (Real.log x))) :=
@@ -1231,12 +1243,12 @@ theorem siegel_walfisz_character_of : SiegelWalfiszOf := by
       apply Real.exp_le_exp.mpr
       have h1 : cf ≤ c := min_le_left _ _
       have h2 := Real.sqrt_nonneg (Real.log x)
-      nlinarith
+      have := mul_le_mul_of_nonneg_right h1 h2; linarith
     have e2 : Real.exp (-cE * Real.sqrt (Real.log x)) ≤ Real.exp (-cf * Real.sqrt (Real.log x)) := by
       apply Real.exp_le_exp.mpr
       have h1 : cf ≤ cE := min_le_right _ _
       have h2 := Real.sqrt_nonneg (Real.log x)
-      nlinarith
+      have := mul_le_mul_of_nonneg_right h1 h2; linarith
     have hC : C * x * Real.exp (-c * Real.sqrt (Real.log x)) ≤
         max C 0 * x * Real.exp (-cf * Real.sqrt (Real.log x)) := by
       calc C * x * Real.exp (-c * Real.sqrt (Real.log x))
@@ -1383,14 +1395,15 @@ theorem chebyshev_character_explicit_general (hP : PerronChi) (hRS : RectShiftCh
     exact_mod_cast hq
   have hL2 : Real.log 2 ≤ L := by
     rw [← hL]
-    exact Real.log_le_log (by norm_num) (by nlinarith)
+    exact Real.log_le_log (by norm_num) (by calc (2 : ℝ) ≤ T + 2 := by linarith
+      _ ≤ (q : ℝ) * (T + 2) := le_mul_of_one_le_left (by linarith) hq1)
   have hLh : (1:ℝ) / 2 < L := by linarith
   have hL0 : 0 < L := by linarith
   have hLne : L ≠ 0 := hL0.ne'
   have hc₁ne : c₁ ≠ 0 := hc₁.ne'
   have ha : 0 < c₁ / L := div_pos hc₁ hL0
   have haL : c₁ / L * L = c₁ := by field_simp
-  have ha' : c₁ / L ≤ 1 / 10 := by nlinarith
+  have ha' : c₁ / L ≤ 1 / 10 := by rw [div_le_iff₀ hL0]; linarith
   have e3 : c₁ / (3 * L) = c₁ / L / 3 := by rw [mul_comm 3 L, ← div_div]
   have e4 : c₁ / (4 * L) = c₁ / L / 4 := by rw [mul_comm 4 L, ← div_div]
   have e2 : c₁ / 2 / L = c₁ / L / 2 := div_right_comm c₁ 2 L
@@ -1412,7 +1425,7 @@ theorem chebyshev_character_explicit_general (hP : PerronChi) (hRS : RectShiftCh
   obtain ⟨σ₀, hσ₀e⟩ : ∃ σ₀ : ℝ, σ₀ = 1 + 1 / Real.log y := ⟨_, rfl⟩
   have hinv : 1 / Real.log y * Real.log y = 1 := by field_simp
   have hinvpos : 0 < 1 / Real.log y := div_pos one_pos hlogy
-  have hinv2 : 1 / Real.log y < 2 := by nlinarith
+  have hinv2 : 1 / Real.log y < 2 := by rw [div_lt_iff₀ hlogy]; linarith
   have hσ₀gt : 1 < σ₀ := by rw [hσ₀e]; linarith
   have hσσ : σ₁ ≤ σ₀ := by linarith
   have hσdiff : |σ₀ - σ₁| ≤ 3 := by
@@ -1519,12 +1532,12 @@ theorem chebyshev_character_explicit_general (hP : PerronChi) (hRS : RectShiftCh
     have hreg := (hBz β hβ.1).2.1
     unfold InRegion at hreg
     simp only [Complex.ofReal_im, Complex.ofReal_re, abs_zero, zero_add] at hreg
-    have hl2 : Real.log 2 ≤ Real.log ((q : ℝ) * 2) := Real.log_le_log (by norm_num) (by nlinarith)
+    have hl2 : Real.log 2 ≤ Real.log ((q : ℝ) * 2) := Real.log_le_log (by norm_num) (by linarith)
     have hlq : (1:ℝ) / 2 < Real.log ((q : ℝ) * 2) := by linarith
     have hlqne : Real.log ((q : ℝ) * 2) ≠ 0 := by linarith
     have hr : c₁ / Real.log ((q : ℝ) * 2) * Real.log ((q : ℝ) * 2) = c₁ := by field_simp
     have hrpos : 0 ≤ c₁ / Real.log ((q : ℝ) * 2) := div_nonneg hc₁.le (by linarith)
-    have hrh : c₁ / Real.log ((q : ℝ) * 2) ≤ 1 / 2 := by nlinarith
+    have hrh : c₁ / Real.log ((q : ℝ) * 2) ≤ 1 / 2 := by rw [div_le_iff₀ (by linarith)]; linarith
     have hβhalf : 1 / 2 ≤ β := by linarith
     have hom := real_zero_residue_term_bound y β σ₁ (c₁ / (4 * L)) hy1 hβhalf hβσ (div_pos hc₁ (by linarith)) hgap
     rw [h2ε] at hom
@@ -1579,8 +1592,8 @@ theorem perron_error_terms_sum_bound (C C₀ c₁ y T X L Pw Y ℓ : ℝ) (hc₁
       (2 * Real.pi * Real.exp 1 * (1 + C₀) + 6 * Real.exp 1 * (C + 1) +
         16 * (C / c₁ + 24 / c₁ ^ 2) + 8 / c₁) * Pw * (y * X + T * Y) := by
   have hT0 : 0 < T := by linarith
-  have hX0 : 0 < X := by nlinarith
-  have hX1 : X ≤ 1 := by nlinarith
+  have hX0 : 0 < X := by by_contra h; push_neg at h; have := mul_nonpos_of_nonneg_of_nonpos hT0.le h; linarith
+  have hX1 : X ≤ 1 := by have := le_mul_of_one_le_left hX0.le hT1; linarith
   have e1 : ∀ z : ℝ, z / T = z * X := fun z => by
     rw [div_eq_iff hT0.ne', mul_assoc, mul_comm X T, hTX, mul_one]
   have e2 : ∀ z : ℝ, z / T ^ 2 = z * X * X := fun z => by
@@ -1599,7 +1612,7 @@ theorem perron_error_terms_sum_bound (C C₀ c₁ y T X L Pw Y ℓ : ℝ) (hc₁
   have k3 : 0 ≤ 16 * (C / c₁ + 24 / c₁ ^ 2) := mul_nonneg (by norm_num) (add_nonneg hcC hc2)
   have h1 : 2 * Real.pi * ((ℓ + C₀) * (Real.exp 1 * y)) * X ≤
       2 * Real.pi * Real.exp 1 * (1 + C₀) * Pw * (y * X) := by
-    have hA : ℓ + C₀ ≤ (1 + C₀) * Pw := by nlinarith
+    have hA : ℓ + C₀ ≤ (1 + C₀) * Pw := by have := le_mul_of_one_le_right hC₀ hP1; linarith
     have hk : 0 ≤ 2 * Real.pi * Real.exp 1 * (y * X) := mul_nonneg (by positivity) hyX
     have := mul_le_mul_of_nonneg_left hA hk
     linarith
@@ -1624,10 +1637,10 @@ theorem perron_error_terms_sum_bound (C C₀ c₁ y T X L Pw Y ℓ : ℝ) (hc₁
     have hid : Y * (8 * L / c₁) = 8 / c₁ * L * Y := by ring
     rw [hid]
     have s1 : 8 / c₁ * L ≤ 8 / c₁ * Pw := mul_le_mul_of_nonneg_left hLP h8
-    have s2 : Y ≤ T * Y := by nlinarith
+    have s2 : Y ≤ T * Y := le_mul_of_one_le_left hY hT1
     calc 8 / c₁ * L * Y ≤ 8 / c₁ * Pw * Y := mul_le_mul_of_nonneg_right s1 hY
       _ ≤ 8 / c₁ * Pw * (T * Y) := mul_le_mul_of_nonneg_left s2 (mul_nonneg h8 hPw)
-  nlinarith [mul_nonneg (mul_nonneg k1 hPw) hTY, mul_nonneg (mul_nonneg k2 hPw) hTY,
+  linarith only [h1, h2, h3, h4, mul_nonneg (mul_nonneg k1 hPw) hTY, mul_nonneg (mul_nonneg k2 hPw) hTY,
     mul_nonneg (mul_nonneg k3 hPw) hyX, mul_nonneg (mul_nonneg h8 hPw) hyX]
 
 theorem exp_gain_from_zero_free_region (y s c₁ σ₁ L : ℝ) (hy0 : 0 < y) (hℓ : Real.log y = s ^ 2) (hs0 : 0 < s)
@@ -1639,18 +1652,24 @@ theorem exp_gain_from_zero_free_region (y s c₁ σ₁ L : ℝ) (hy0 : 0 < y) (h
   apply Real.exp_le_exp.mpr
   have h4L : 0 < 4 * L := by linarith
   have hq : c₁ ≤ c₁ / (4 * L) * s := by
-    rw [div_mul_eq_mul_div, le_div_iff₀ h4L]; nlinarith
+    rw [div_mul_eq_mul_div, le_div_iff₀ h4L]; exact mul_le_mul_of_nonneg_left hL4 hc₁.le
   have hc : c₁ ≤ (1 - σ₁) * s := by
-    nlinarith [mul_le_mul_of_nonneg_right (by linarith : c₁ / (4 * L) ≤ 1 - σ₁) hs0.le]
-  nlinarith [mul_le_mul_of_nonneg_right hc hs0.le]
+    linarith only [hq, mul_le_mul_of_nonneg_right (by linarith : c₁ / (4 * L) ≤ 1 - σ₁) hs0.le]
+  linarith only [mul_le_mul_of_nonneg_right hc hs0.le]
 
 theorem small_scale_exp_bounds (c₁ s : ℝ) (hc₁ : 0 < c₁) (hc₁' : c₁ ≤ 1 / 20) (hs : s < 10) :
     Real.exp (c₁ * s / 2) ≤ 3 ∧ 1 ≤ 3 * Real.exp (-(c₁ / 4) * s) := by
   constructor
-  · have h : c₁ * s / 2 ≤ 1 := by nlinarith
+  · have h : c₁ * s / 2 ≤ 1 := by
+      rcases le_or_gt 0 s with hs0 | hs0
+      · have := mul_le_mul hc₁' hs.le hs0 (by norm_num); linarith
+      · have := mul_nonpos_of_nonneg_of_nonpos hc₁.le hs0.le; linarith
     calc Real.exp (c₁ * s / 2) ≤ Real.exp 1 := Real.exp_le_exp.mpr h
       _ ≤ 3 := by have := Real.exp_one_lt_d9; norm_num at this; linarith
-  · have h : -(1 / 8 : ℝ) ≤ -(c₁ / 4) * s := by nlinarith
+  · have h : -(1 / 8 : ℝ) ≤ -(c₁ / 4) * s := by
+      rcases le_or_gt 0 s with hs0 | hs0
+      · have := mul_le_mul hc₁' hs.le hs0 (by norm_num); linarith
+      · have := mul_nonpos_of_nonneg_of_nonpos hc₁.le hs0.le; linarith
     have := Real.add_one_le_exp (-(c₁ / 4) * s)
     linarith
 
@@ -1681,8 +1700,8 @@ theorem cube_mul_exp_le_poly_bound (c₁ s y X : ℝ) (hc₁ : 0 < c₁) (hs0 : 
     have hs3 : s ^ 3 = (8 / (2 * c₁)) ^ 3 * (c₁ * s / 4) ^ 3 := by
       rw [← mul_pow, ← hsu]
     rw [hs3]
-    nlinarith [mul_le_mul_of_nonneg_left hu3 hK]
-  nlinarith [mul_le_mul_of_nonneg_right key (mul_pos (Real.exp_pos (-(c₁ * s / 4))) hy0).le]
+    linarith only [mul_le_mul_of_nonneg_left hu3 hK]
+  linarith only [mul_le_mul_of_nonneg_right key (mul_pos (Real.exp_pos (-(c₁ * s / 4))) hy0).le]
 
 end Formalism.ZeroFreeDirichlet
 end -- clump:auto

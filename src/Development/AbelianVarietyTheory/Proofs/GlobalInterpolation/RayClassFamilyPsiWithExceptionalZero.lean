@@ -89,7 +89,8 @@ lemma ell_le (𝓕 : LFam) (t u : ℝ) (h : |u - t| ≤ 3 / 5) : 𝓕.ell u ≤ 
   have hpos : 0 < 𝓕.B * (|u| + 2) := by positivity
   have hle : 𝓕.B * (|u| + 2) ≤ 𝓕.B * (|t| + 2) * (13 / 10) := by
     have : |u| + 2 ≤ (|t| + 2) * (13 / 10) := by linarith
-    nlinarith
+    have := mul_le_mul_of_nonneg_left this (by linarith : 0 ≤ 𝓕.B)
+    linarith
   have hlog : Real.log (𝓕.B * (|u| + 2)) ≤ Real.log (𝓕.B * (|t| + 2)) + Real.log (13 / 10) := by
     rw [← Real.log_mul (by positivity) (by norm_num)]
     exact Real.log_le_log hpos hle
@@ -156,15 +157,15 @@ theorem logDeriv_sub_exceptional_le : ∀ c₀ : ℝ, 0 < c₀ → c₀ ≤ 1 / 
   refine ⟨C₁ + 4 * C₁ / c₀ + 10 + K + 3, by positivity, ?_⟩
   intro 𝓕 χ Z hZ s hs1 hs3 hsZ
   have hℓ := 𝓕.two_lt_ell s.im
-  have hℓsq : 𝓕.ell s.im ≤ 𝓕.ell s.im ^ 2 := by nlinarith
-  have hℓ1 : 1 ≤ 𝓕.ell s.im ^ 2 := by nlinarith
+  have hℓsq : 𝓕.ell s.im ≤ 𝓕.ell s.im ^ 2 := le_self_pow₀ (by linarith) (by norm_num)
+  have hℓ1 : 1 ≤ 𝓕.ell s.im ^ 2 := one_le_pow₀ (by linarith)
   have hfinal : ∀ x : ℝ, x ≤ 10 → C₁ * 𝓕.ell s.im + C₁ * 𝓕.ell s.im * (4 * 𝓕.ell s.im / c₀) + x ≤
       (C₁ + 4 * C₁ / c₀ + 10 + K + 3) * 𝓕.ell s.im ^ 2 := by
     intro x hx
     have e : C₁ * 𝓕.ell s.im * (4 * 𝓕.ell s.im / c₀) = 4 * C₁ / c₀ * 𝓕.ell s.im ^ 2 := by ring
     have a1 : C₁ * 𝓕.ell s.im ≤ C₁ * 𝓕.ell s.im ^ 2 := mul_le_mul_of_nonneg_left hℓsq hC₁.le
     have a3 : 0 ≤ (K + 3) * 𝓕.ell s.im ^ 2 := by positivity
-    nlinarith
+    linarith
   have hreg : 1 - c₀ / 𝓕.ell s.im ≤ s.re := by
     have : c₀ / 2 / 𝓕.ell s.im ≤ c₀ / 𝓕.ell s.im :=
       div_le_div_of_nonneg_right (by linarith) (by linarith)
@@ -176,7 +177,7 @@ theorem logDeriv_sub_exceptional_le : ∀ c₀ : ℝ, 0 < c₀ → c₀ ≤ 1 / 
   have hsre : 3 / 4 ≤ s.re := by
     have : c₀ / 2 / 𝓕.ell s.im ≤ 1 / 4 := by
       rw [div_le_iff₀ (by linarith)]
-      nlinarith
+      linarith
     linarith
   by_cases hs74 : 7 / 4 ≤ s.re
   · obtain ⟨-, -, -, hL⟩ := _root_.GlobalTheory.Hk.LogDeriv.logDeriv_F 𝓕 χ s (by linarith)
@@ -204,7 +205,9 @@ theorem logDeriv_sub_exceptional_le : ∀ c₀ : ℝ, 0 < c₀ → c₀ ≤ 1 / 
       _ ≤ 4 / 3 + K + 4 / 3 := by linarith
       _ ≤ (C₁ + 4 * C₁ / c₀ + 10 + K + 3) * 𝓕.ell s.im ^ 2 := by
           have hA : 0 ≤ C₁ + 4 * C₁ / c₀ + 10 := by positivity
-          nlinarith
+          have h1 : (C₁ + 4 * C₁ / c₀ + 10 + K + 3) * 1 ≤ (C₁ + 4 * C₁ / c₀ + 10 + K + 3) * 𝓕.ell s.im ^ 2 :=
+            mul_le_mul_of_nonneg_left hℓ1 (by positivity)
+          linarith
   · push Not at hs74
     have hdisk : ‖s - (5 / 4 + s.im * I)‖ ≤ 1 / 2 := by
       have e : s - (5 / 4 + s.im * I) = ((s.re - 5 / 4 : ℝ) : ℂ) := by
@@ -234,7 +237,8 @@ theorem logDeriv_sub_exceptional_le : ∀ c₀ : ℝ, 0 < c₀ → c₀ ≤ 1 / 
         rw [Complex.sub_re]
         have h3 : 3 * c₀ / (4 * 𝓕.ell s.im) ≤ c₀ / 𝓕.ell w.im := by
           rw [div_le_div_iff₀ (by positivity) (by positivity)]
-          nlinarith [mul_le_mul_of_nonneg_left hℓw hc₀.le]
+          have := mul_le_mul_of_nonneg_left hℓw hc₀.le
+          linarith
         have e2 : c₀ / 2 / 𝓕.ell s.im = 2 * c₀ / (4 * 𝓕.ell s.im) := by
           field_simp
           ring
@@ -436,7 +440,7 @@ theorem truncated_perron_of_le_two_vonMangoldt : ∃ C : ℝ, 0 < C ∧ ∀ (c :
         split_ifs
         · exact w_nonneg _ hB _
         · exact le_rfl
-      nlinarith
+      linarith
     · push Not at hfar
       have h := near_term hu hT0 hC.le hE0 hK1 hK2 hfar.1 hfar.2
       have hmem : n ∈ Finset.range (⌊u⌋₊ + 1 + (⌊u⌋₊ + 1)) := by
@@ -447,7 +451,7 @@ theorem truncated_perron_of_le_two_vonMangoldt : ∃ C : ℝ, 0 < C ∧ ∀ (c :
           linarith [hfar.2]
         exact_mod_cast h2
       rw [if_pos hmem]
-      nlinarith)
+      linarith)
   refine hbound.trans ?_
   have hZ : ∑' n : ℕ, 1 / (n : ℝ) ^ (1 + 1 / (2 * Real.log u)) ≤ 1 + 2 * Real.log u := by
     have h := zeta_bound hp
@@ -471,7 +475,14 @@ theorem truncated_perron_of_le_two_vonMangoldt : ∃ C : ℝ, 0 < C ∧ ∀ (c :
   have key : 2 * (12 * (u / T) * Real.log u) * (1 + 2 * Real.log u)
       + 2 * (16 * Real.log u) * (2 + 2 * (u / T) * (2 * (1 + Real.log u)))
       ≤ 480 * ((u / T) * Real.log u ^ 2 + Real.log u) := by
-    nlinarith
+    have heq : 2 * (12 * (u / T) * Real.log u) * (1 + 2 * Real.log u)
+        + 2 * (16 * Real.log u) * (2 + 2 * (u / T) * (2 * (1 + Real.log u)))
+        = 176 * ((u / T) * Real.log u ^ 2) + 152 * ((u / T) * Real.log u) + 64 * Real.log u := by ring
+    have hint' : (u / T) * Real.log u ≤ 2 * ((u / T) * Real.log u ^ 2) := by
+      have : (u / T) * Real.log u * (2 * Real.log u - 1) =
+          2 * ((u / T) * Real.log u ^ 2) - (u / T) * Real.log u := by ring
+      linarith
+    linarith
   calc 2 * C * (12 * u * Real.log u / T) * ∑' n : ℕ, 1 / (n : ℝ) ^ (1 + 1 / (2 * Real.log u))
         + 2 * C * (16 * Real.log u)
           * ∑ n ∈ Finset.range (⌊u⌋₊ + 1 + (⌊u⌋₊ + 1)), w ⌊u⌋₊ (2 * u / T) n
@@ -517,7 +528,8 @@ theorem psi_le_two_mul_small {y : ℝ} (h0 : 0 ≤ y) (h : y ≤ 100) : Chebyshe
     linarith
   have h5 : (⌊y⌋₊ : ℝ) ≤ y := Nat.floor_le h0
   have h6 : (0 : ℝ) ≤ (⌊y⌋₊ : ℝ) := Nat.cast_nonneg _
-  nlinarith
+  have := mul_le_mul_of_nonneg_left h4 h6
+  linarith
 
 theorem psi_le_of_le_sqrt {C x : ℝ} (hC : 0 ≤ C) (hx : 1 ≤ x)
     (h : ∀ y : ℝ, 0 ≤ y → y ≤ √x → Chebyshev.psi y ≤ C * y) :
@@ -546,7 +558,8 @@ theorem psi_le_two_mul {y : ℝ} (h0 : 0 ≤ y) : Chebyshev.psi y ≤ 2 * y := b
   rcases le_total (√y) 100 with h' | h'
   · have := psi_le_of_le_sqrt (C := 2) (by norm_num) (by linarith : 1 ≤ y)
       (fun z hz hz' => psi_le_two_mul_small hz (hz'.trans h'))
-    nlinarith
+    have h6 : 10 * √y ≤ y := (mul_le_mul_of_nonneg_right h10 (Real.sqrt_nonneg _)).trans_eq hs
+    linarith
   · have h4 : Real.log 4 ≤ 2 := by
       have : Real.log 4 = 2 * Real.log 2 := by
         rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.log_pow]; norm_num
@@ -555,7 +568,8 @@ theorem psi_le_two_mul {y : ℝ} (h0 : 0 ≤ y) : Chebyshev.psi y ≤ 2 * y := b
     have := psi_le_of_le_sqrt (C := 6) (by norm_num) (by linarith : 1 ≤ y)
       (fun z hz _ => (Chebyshev.psi_le_const_mul_self hz).trans
         (mul_le_mul_of_nonneg_right (by linarith) hz))
-    nlinarith
+    have h6 : 100 * √y ≤ y := (mul_le_mul_of_nonneg_right h' (Real.sqrt_nonneg _)).trans_eq hs
+    linarith
 
 theorem sum_vonMangoldt_le_two_mul : ∀ y : ℝ, 0 ≤ y → ∑ n ∈ Icc 1 ⌊y⌋₊, Λ n ≤ 2 * y := by
   intro y hy
@@ -642,7 +656,8 @@ theorem shift (ψ : ℂ → ℂ) (S : Finset ℂ) (k : ℂ → ℂ) (u σ c T M 
     refine key.trans ?_
     have : |c - σ| ≤ 3 := by rw [abs_le]; constructor <;> linarith
     have h4 : 0 ≤ M * u / T := by positivity
-    nlinarith
+    have := mul_le_mul_of_nonneg_left this h4
+    linarith
   have left : ‖∫ t : ℝ in (-T)..T,
       (-(ψ ((σ : ℂ) + t * I)) * (u : ℂ) ^ ((σ : ℂ) + t * I) / ((σ : ℂ) + t * I))‖
       ≤ 4 * (T * M * u ^ σ) := by
@@ -694,8 +709,9 @@ theorem shift (ψ : ℂ → ℂ) (S : Finset ℂ) (k : ℂ → ℂ) (u σ c T M 
 theorem one_le_ell (𝓕 : LFam) (t : ℝ) : 1 ≤ 𝓕.ell t := by
   rw [LFam.ell, Real.le_log_iff_exp_le (by have := 𝓕.B_ge; positivity)]
   have := Real.exp_one_lt_d9
-  have := 𝓕.B_ge
-  nlinarith [abs_nonneg t]
+  have hB := 𝓕.B_ge
+  have : 4 * 2 ≤ 𝓕.B * (|t| + 2) := mul_le_mul hB (by linarith [abs_nonneg t]) (by norm_num) (by linarith)
+  linarith
 
 theorem ell_mono (𝓕 : LFam) {t T : ℝ} (h : |t| ≤ T) : 𝓕.ell t ≤ 𝓕.ell T := by
   have := 𝓕.B_ge
@@ -716,7 +732,7 @@ theorem norm_sum_le_of_card {Z : Finset ℝ} (hZ : Z.card ≤ 1) {f : ℝ → �
   refine (norm_sum_le _ _).trans ((Finset.sum_le_card_nsmul _ _ b h).trans ?_)
   have : (Z.card : ℝ) ≤ 1 := by exact_mod_cast hZ
   rw [nsmul_eq_mul]
-  nlinarith
+  exact mul_le_of_le_one_left hb this
 
 theorem exists_line {Z : Finset ℝ} (hZ : Z.card ≤ 1) {d : ℝ} (hd : 0 < d) :
     ∃ σ : ℝ, 1 - 4 * d ≤ σ ∧ σ ≤ 1 - 2 * d ∧ ∀ β ∈ Z, d ≤ |σ - β| := by
@@ -766,7 +782,8 @@ theorem contour (𝓕 : LFam) (χ : AddChar 𝓕.G ℂ) (Z : Finset ℝ) (c₀ C
     rw [Real.rpow_add hu0, Real.rpow_one, Real.rpow_def_of_pos hu0,
       mul_one_div_cancel (by linarith)]
     have := Real.exp_one_lt_d9
-    nlinarith
+    have := mul_le_mul_of_nonneg_left (by linarith : Real.exp 1 ≤ 3) hu0.le
+    linarith
   generalize 1 + 1 / Real.log u = c at *
   obtain ⟨hcard, hZ1, hZ2⟩ := hZ
   have hl := one_le_ell 𝓕 T
@@ -955,7 +972,8 @@ theorem rpow_le {c₀ u l W : ℝ} (hc₀ : 0 < c₀) (hu0 : 0 < u) (hl1 : 1 ≤
   have e : W ^ 2 * (2 * (c₀ / (8 * l))) = c₀ / 4 * W * W / l := by field_simp; ring
   rw [e, le_div_iff₀ (by linarith)]
   have := mul_le_mul_of_nonneg_left hl (mul_nonneg hc₀.le hW0)
-  nlinarith [mul_nonneg (mul_nonneg hc₀.le hW0) hW0]
+  have hnn : 0 ≤ c₀ * W * W := mul_nonneg (mul_nonneg hc₀.le hW0) hW0
+  linarith
 
 theorem total_le {δ P K M Y u T W : ℝ} (hδ0 : 0 < δ) (hP : 0 < P) (hK0 : 0 < K) (hM0 : 0 ≤ M)
     (hu0 : 0 < u) (hW1 : 1 ≤ W) (hW2 : W ^ 2 = Real.log u) (hT : T = Real.exp (δ * W))
@@ -977,12 +995,13 @@ theorem total_le {δ P K M Y u T W : ℝ} (hδ0 : 0 < δ) (hP : 0 < P) (hK0 : 0 
       _ = _ := by field_simp
   have t3 : Y ≤ W ^ 4 * (u / T) := by
     refine hpow.trans ((div_le_self (by positivity) (by linarith)).trans ?_)
-    nlinarith
+    exact le_mul_of_one_le_left (by positivity) hW4
   have t4 : u * Real.log u ^ 2 / T + Real.log u ≤ 2 * (W ^ 4 * (u / T)) := by
     have h2 : W ^ 2 ≤ W ^ 4 := pow_le_pow_right₀ hW1 (by norm_num)
     have e : u * Real.log u ^ 2 / T = W ^ 4 * (u / T) := by rw [← hW2]; ring
     rw [e, ← hW2]
-    nlinarith
+    have h3 : W ^ 4 ≤ W ^ 4 * (u / T) := le_mul_of_one_le_right (by positivity) hR1
+    linarith
   have t5 : W ^ 4 * (u / T) ≤ 24 * (2 / δ) ^ 4 * (u * Real.exp (-(δ / 2) * W)) := by
     have := mul_le_mul_of_nonneg_left (pow_four_mul_exp_le hδ0 hW0) hu0.le
     rw [Real.exp_neg, ← hT] at this
@@ -1031,16 +1050,20 @@ theorem psi_exceptional : ∀ c₀ : ℝ, 0 < c₀ → c₀ ≤ 1 / 20 → ∃ c
     have n6 : 1 / 2 ≤ Real.exp (-(δ / 2) * W) := by linarith
     have n7 := mul_le_mul_of_nonneg_left n6 hu0.le
     have n8 := mul_nonneg hQ (mul_pos hu0 hE).le
-    nlinarith
+    linarith
   have hδ1 : δ ≤ 1 := by linarith
-  have hW1 : 1 ≤ W := by nlinarith
+  have hW1 : 1 ≤ W := by
+    have := mul_le_mul_of_nonneg_right hδ1 hW0
+    linarith
   set T := Real.exp (δ * W) with hT
   have hT2 : 2 ≤ T := by
     have := Real.add_one_le_exp (δ * W)
     linarith
   have hTu : T ≤ u := by
     rw [hT, ← Real.le_log_iff_exp_le hu0, ← hW2]
-    nlinarith
+    have h1 : δ * W ≤ 1 * W := mul_le_mul_of_nonneg_right hδ1 (by linarith)
+    have h2 : W ≤ W ^ 2 := le_self_pow₀ hW1 (by norm_num)
+    linarith
   have hl1 := one_le_ell 𝓕 T
   have hl : 𝓕.ell T ≤ 3 * W := by
     have hB4 := 𝓕.B_ge
@@ -1052,7 +1075,8 @@ theorem psi_exceptional : ∀ c₀ : ℝ, 0 < c₀ → c₀ ≤ 1 / 20 → ∃ c
     rw [Real.log_mul (by positivity) (by positivity), Real.log_mul (by positivity) (by positivity),
       hT, Real.log_exp] at e
     have := Real.log_two_lt_d9
-    nlinarith
+    have h1 : δ * W ≤ 1 * W := mul_le_mul_of_nonneg_right hδ1 (by linarith)
+    linarith
   have A := HP (𝓕.lamChi χ) u T (_root_.GlobalTheory.Hk.LogDeriv.norm_lamChi_le 𝓕 χ) hT2 hTu
   have B := contour 𝓕 χ Z c₀ C u T _ hc₀ hc₁ hC hZ hu (by linarith) rfl (H 𝓕 χ Z hZ)
   have gen : ∀ a v m z : ℂ, ‖a - m + z‖ ≤ ‖a - v‖ + ‖v - m + z‖ := fun a v m z => by

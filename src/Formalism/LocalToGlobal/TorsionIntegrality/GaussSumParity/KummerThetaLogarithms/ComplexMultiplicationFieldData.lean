@@ -55,6 +55,7 @@ import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.FinalB
 import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.CubeThreeR
 import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.TwoTorsionU
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.TraceDualExists
+public import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.LubinTateLogIsArtinHasse
 
 @[expose] public section
 
@@ -67,33 +68,6 @@ namespace Formalism.L2.Th1.D
 open Formalism.DworkPowerSeriesWeights (Integral)
 open Formalism.InvariantFactorPaths.G7 (lgF at1 Simeq cob UnrOK IsLawOfLog)
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension cW wpNum wpDen uSer)
-
-theorem lubin_tate_log_is_artin_hasse : LtLogIsLgF := by
-  intro K _ l hl
-  ext n
-  unfold Formalism.L2.Th1.CM.ltLog lgF
-  rw [PowerSeries.coeff_mk, PowerSeries.coeff_mk]
-  have h1 : 1 < l ^ 2 := by nlinarith
-  split_ifs with h
-  · have hs := Nat.find_spec h
-    rw [Finset.sum_eq_single (Nat.find h)]
-    · rw [if_pos hs]
-    · intro j _ hj
-      rw [if_neg]
-      intro hj'
-      exact hj (Nat.pow_right_injective h1 (hj'.symm.trans hs))
-    · intro hn
-      exfalso
-      apply hn
-      rw [Finset.mem_range]
-      have h2 : Nat.find h < (l ^ 2) ^ Nat.find h := Nat.lt_pow_self h1
-      exact Nat.lt_succ_of_lt (lt_of_lt_of_eq h2 hs.symm)
-  · symm
-    apply Finset.sum_eq_zero
-    intro j _
-    rw [if_neg]
-    intro hj
-    exact h ⟨j, hj⟩
 
 namespace FAux
 

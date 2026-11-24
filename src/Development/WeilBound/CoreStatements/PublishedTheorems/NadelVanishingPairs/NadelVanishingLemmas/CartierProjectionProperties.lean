@@ -619,18 +619,6 @@ end GlobalTheory.CartierHomotopy
 
 namespace GlobalTheory.CartierHomotopy
 
-private theorem dDR_iota_dlog_eq_zero (K : Type) [Field K] (u : Kˣ) :
-    CechDR.dDR ℤ K (ExteriorAlgebra.ι K (dlog u)) = 0 := by
-  have h1 : (ExteriorAlgebra.ι K (dlog u) : CechDR.DR ℤ K) =
-      ((u : K)⁻¹) • CechDR.ι1 (KaehlerDifferential.D ℤ K (u : K)) := by
-    show ExteriorAlgebra.ι K (((u⁻¹ : Kˣ) : K) • KaehlerDifferential.D ℤ K (u : K)) = _
-    rw [map_smul, Units.val_inv_eq_inv_val]
-  rw [h1, CechDR.dDR_smul, CechDR.dDR_D, smul_zero, add_zero, Derivation.leibniz_inv, map_smul,
-    smul_mul_assoc]
-  have h2 : (CechDR.ι1 (KaehlerDifferential.D ℤ K (u : K)) : CechDR.DR ℤ K) *
-      CechDR.ι1 (KaehlerDifferential.D ℤ K (u : K)) = 0 := ExteriorAlgebra.ι_sq_zero _
-  rw [h2, smul_zero]
-
 private theorem dDR_prod_dlog_eq_zero_and_euler_contraction (K : Type) [Field K] {n : ℕ} (x : Fin n → Kˣ) (I : Finset (Fin n)) :
     extD K (logWedge x I) = 0 := by
   rw [extD_apply]
@@ -643,7 +631,7 @@ private theorem dDR_prod_dlog_eq_zero_and_euler_contraction (K : Type) [Field K]
     exact h
   | cons a l ih =>
     simp only [List.map_cons, List.prod_cons]
-    rw [CechDR.dDR_mul, ih, dDR_iota_dlog_eq_zero, mul_zero, zero_mul, add_zero]
+    rw [CechDR.dDR_mul, ih, GlobalTheory.dDR_iota_dlog_eq_zero, mul_zero, zero_mul, add_zero]
 
 private theorem exists_dual_basis_dlog_of_isCoord (K : Type) [Field K] {n : ℕ} (x : Fin n → Kˣ) (hx : IsCoord x) :
     ∃ φ : Fin n → Module.Dual K Ω[K⁄ℤ], (∀ i j, φ i (dlog (x j)) = if i = j then 1 else 0) ∧

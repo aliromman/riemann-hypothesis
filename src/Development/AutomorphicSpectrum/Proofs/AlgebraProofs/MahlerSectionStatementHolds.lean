@@ -105,7 +105,7 @@ theorem mahler_pow_mul {n e : ℕ} (h : HermNorm n) {q g : MvPolynomial (Fin e �
     push_cast
     ring
 
-theorem mahler_C_mul_prod_pow : ∀ (n e : ℕ) (h : HermNorm n) {ι : Type} (s : Finset ι) (q : ι → MvPolynomial (Fin e × Fin n) ℂ) (d : ι → ℕ) (a : ι → ℕ) (c : ℂ), c ≠ 0 → (∀ i ∈ s, q i ≠ 0 ∧ IsMultiHomog (d i) (q i)) → mahler h e (C c * ∏ i ∈ s, q i ^ a i) = Real.log ‖c‖ + ∑ i ∈ s, (a i : ℝ) * mahler h e (q i) := by
+theorem mahler_C_mul_prod_pow : ∀ (n e : ℕ) (h : HermNorm n) {ι : Type} (s : Finset ι) (q : ι → MvPolynomial (Fin e × Fin n) ℂ) (d : ι → ℕ) (a : ι → ℕ) (c : ℂ), c ≠ 0 → (∀ i ∈ s, q i ≠ 0 ∧ GroundTheory.Heights₂.Heights.IsMultiHomog (d i) (q i)) → mahler h e (C c * ∏ i ∈ s, q i ^ a i) = Real.log ‖c‖ + ∑ i ∈ s, (a i : ℝ) * mahler h e (q i) := by
   classical
   intro n e h ι s q d a c hc hq
   revert hq
@@ -113,7 +113,7 @@ theorem mahler_C_mul_prod_pow : ∀ (n e : ℕ) (h : HermNorm n) {ι : Type} (s 
   · intro _
     simp [mahler_C]
   · intro i s hi ih hq
-    have hrest : ∀ j ∈ s, q j ≠ 0 ∧ IsMultiHomog (d j) (q j) := fun j hj => hq j (Finset.mem_insert_of_mem hj)
+    have hrest : ∀ j ∈ s, q j ≠ 0 ∧ GroundTheory.Heights₂.Heights.IsMultiHomog (d j) (q j) := fun j hj => hq j (Finset.mem_insert_of_mem hj)
     have hne : C c * ∏ j ∈ s, q j ^ a j ≠ 0 :=
       mul_ne_zero (by simpa using hc) (Finset.prod_ne_zero_iff.2 fun j hj => pow_ne_zero _ (hrest j hj).1)
     rw [Finset.prod_insert hi, Finset.sum_insert hi, mul_left_comm (C c) (q i ^ a i),
@@ -147,7 +147,7 @@ theorem eq_zero_of_hermNorm_eq_zero {n : ℕ} (h : HermNorm n) {u : Fin n → �
   have := congrArg (fun w => h.mat⁻¹ *ᵥ w) hz
   simpa [Matrix.mulVec_mulVec, Matrix.nonsing_inv_mul _ h.isUnit_det] using this
 
-theorem eval_scale_groups {k n δ : ℕ} {q : MvPolynomial (Fin k × Fin n) ℂ} (hq : IsMultiHomog δ q)
+theorem eval_scale_groups {k n δ : ℕ} {q : MvPolynomial (Fin k × Fin n) ℂ} (hq : GroundTheory.Heights₂.Heights.IsMultiHomog δ q)
     (c : Fin k → ℂ) (v : Fin k × Fin n → ℂ) :
     eval (fun ij => c ij.1 * v ij) q = (∏ i, c i ^ δ) * eval v q := by
   classical
@@ -170,7 +170,7 @@ theorem eval_scale_groups {k n δ : ℕ} {q : MvPolynomial (Fin k × Fin n) ℂ}
   ring
 
 theorem eval_nrmGroups_ne_zero {k n δ : ℕ} (h : HermNorm n) {q : MvPolynomial (Fin k × Fin n) ℂ}
-    (hq : IsMultiHomog δ q) {v : Fin k × Fin n → ℂ} (hv : eval v q ≠ 0) :
+    (hq : GroundTheory.Heights₂.Heights.IsMultiHomog δ q) {v : Fin k × Fin n → ℂ} (hv : eval v q ≠ 0) :
     eval (nrmGroups h k v) q ≠ 0 := by
   classical
   have e : nrmGroups h k v =
@@ -211,7 +211,7 @@ theorem exists_poly_eval_coefRows {n e : ℕ} (h : HermNorm n) {q : MvPolynomial
   rw [map_zero, ← hv, ← key, hQ, map_zero]
 
 theorem ae_eval_nrmGroups_coefRows_ne_zero :
-    ∀ (n e δ : ℕ) (h : HermNorm n) (q : MvPolynomial (Fin e × Fin n) ℂ), q ≠ 0 → IsMultiHomog δ q →
+    ∀ (n e δ : ℕ) (h : HermNorm n) (q : MvPolynomial (Fin e × Fin n) ℂ), q ≠ 0 → GroundTheory.Heights₂.Heights.IsMultiHomog δ q →
       ∀ᵐ π : Fin (e + 1) → Fin n → ℂ, eval (nrmGroups h e (coefRows h π)) q ≠ 0 := by
   intro n e δ h q hq hδ
   obtain ⟨Q, hQ, key⟩ := exists_poly_eval_coefRows h hq
@@ -396,7 +396,7 @@ theorem eval_sectionPoly (g : MvPolynomial (Fin (e + 1) × Fin n) ℂ) (v : Fin 
     cases i using Fin.cases <;> simp [firstSub, consGroup]
 
 theorem sectionPoly_isHomogeneous {δ : ℕ} {g : MvPolynomial (Fin (e + 1) × Fin n) ℂ}
-    (hg : IsMultiHomog δ g) (v : Fin e × Fin n → ℂ) : (sectionPoly g v).IsHomogeneous δ := by
+    (hg : GroundTheory.Heights₂.Heights.IsMultiHomog δ g) (v : Fin e × Fin n → ℂ) : (sectionPoly g v).IsHomogeneous δ := by
   classical
   have hs : ∀ ij : Fin (e + 1) × Fin n,
       (firstSub v ij).IsHomogeneous (if ij.1 = 0 then 1 else 0) := by
@@ -447,7 +447,7 @@ open ModelDimension.ChowFactor in
 theorem ModelDimension.chow_form_product_formula :
     ∀ (n e δ : ℕ) (W : Ideal (MvPolynomial (Fin n) ℂ)) (g : MvPolynomial (Fin (e + 1) × Fin n) ℂ)
   (v : Fin e × Fin n → ℂ) (P : Finset (Fin n → ℂ)) (u₀ : Fin n → ℂ),
-  IsChowForm W (e + 1) g → IsMultiHomog δ g →
+  IsChowForm W (e + 1) g → GroundTheory.Heights₂.Heights.IsMultiHomog δ g →
   (∀ x ∈ P, x ≠ 0 ∧ (∀ q ∈ W, eval x q = 0) ∧ ∀ i, ∑ j, v (i, j) * x j = 0) →
   (∀ x ∈ P, ∀ x' ∈ P, ∀ t : ℂ, x' = t • x → x' = x) →
   P.card = δ → eval (consGroup u₀ v) g ≠ 0 →
@@ -502,7 +502,7 @@ open scoped ENNReal
 
 theorem _root_.GlobalTheory.CompanionTheory.Relay.chow_form_specialization_proportional : ∀ (n e δ : ℕ) (W : Ideal (MvPolynomial (Fin n) ℂ)) (g : MvPolynomial (Fin (e + 1) × Fin n) ℂ)
   (v : Fin e × Fin n → ℂ) (P : Finset (Fin n → ℂ)) (u₀ : Fin n → ℂ),
-  IsChowForm W (e + 1) g → IsMultiHomog δ g →
+  IsChowForm W (e + 1) g → GroundTheory.Heights₂.Heights.IsMultiHomog δ g →
   (∀ x ∈ P, x ≠ 0 ∧ (∀ q ∈ W, eval x q = 0) ∧ ∀ i, ∑ j, v (i, j) * x j = 0) →
   (∀ x ∈ P, ∀ x' ∈ P, ∀ t : ℂ, x' = t • x → x' = x) →
   P.card = δ → eval (consGroup u₀ v) g ≠ 0 →
@@ -554,7 +554,7 @@ end PositivityTheory.Xgn.A_xgz_chow_mahler_fibrefactor
 open PositivityTheory.Xgn.A_xgz_chow_mahler_fibrefactor in
 theorem PositivityTheory.Xgn.t_xgz_chow_mahler_fibrefactor : ∀ (n e δ : ℕ) (h : HermNorm n) (W : Ideal (MvPolynomial (Fin n) ℂ))
   (g : MvPolynomial (Fin (e + 1) × Fin n) ℂ) (π : Fin (e + 1) → Fin n → ℂ) (u₀ : Fin n → ℂ),
-  IsProjPrime W → IsChowForm W (e + 1) g → IsMultiHomog δ g →
+  IsProjPrime W → IsChowForm W (e + 1) g → GroundTheory.Heights₂.Heights.IsMultiHomog δ g →
   (fibrePts (coneSet h W) π).encard = δ →
   eval (consGroup u₀ (nrmGroups h e (coefRows h π))) g ≠ 0 →
     ∃ c : ℂ, c ≠ 0 ∧ ∀ u : Fin n → ℂ, eval (consGroup u (nrmGroups h e (coefRows h π))) g =
@@ -614,7 +614,7 @@ open scoped ENNReal
 
 theorem _root_.GlobalTheory.CompanionTheory.Relay.chow_form_fibre_specialization : ∀ (n e δ : ℕ) (h : HermNorm n) (W : Ideal (MvPolynomial (Fin n) ℂ))
   (g : MvPolynomial (Fin (e + 1) × Fin n) ℂ) (π : Fin (e + 1) → Fin n → ℂ) (u₀ : Fin n → ℂ),
-  IsProjPrime W → IsChowForm W (e + 1) g → IsMultiHomog δ g →
+  IsProjPrime W → IsChowForm W (e + 1) g → GroundTheory.Heights₂.Heights.IsMultiHomog δ g →
   (fibrePts (coneSet h W) π).encard = δ →
   eval (consGroup u₀ (nrmGroups h e (coefRows h π))) g ≠ 0 →
     ∃ c : ℂ, c ≠ 0 ∧ ∀ u : Fin n → ℂ, eval (consGroup u (nrmGroups h e (coefRows h π))) g =
@@ -1135,7 +1135,7 @@ theorem log_norm_sub_fsSum_eq {n e : ℕ} (h : HermNorm n) (u : Fin n → ℂ)
 
 theorem defect_eq_of_linForm_notMem : ∀ (n e δ : ℕ) (h : HermNorm n) (W : Ideal (MvPolynomial (Fin n) ℂ))
     (g : MvPolynomial (Fin (e + 1) × Fin n) ℂ) (u u' : Fin n → ℂ),
-    IsProjPrime W → IsChowForm W (e + 1) g → IsMultiHomog δ g → linForm u ∉ W → linForm u' ∉ W →
+    IsProjPrime W → IsChowForm W (e + 1) g → GroundTheory.Heights₂.Heights.IsMultiHomog δ g → linForm u ∉ W → linForm u' ∉ W →
       mahler h e (specFirst g u) - coneIntegral h W e (fsLog h u) =
         mahler h e (specFirst g u') - coneIntegral h W e (fsLog h u') := by
   intro n e δ h W g u u' hW hg hδ hu hu'
@@ -1191,7 +1191,7 @@ theorem mahlerDefect_eq_sum {n e δ : ℕ} (h : HermNorm n) {Z : ProjCycle ℂ n
     {f : MvPolynomial (Fin (e + 1) × Fin n) ℂ} (hd : IsChowCycleData Z e δ f) :
     ∃ (c : ℂ) (g : Ideal (MvPolynomial (Fin n) ℂ) → MvPolynomial (Fin (e + 1) × Fin n) ℂ)
       (d : Ideal (MvPolynomial (Fin n) ℂ) → ℕ),
-      (∀ W ∈ Z.support, IsChowForm W (e + 1) (g W) ∧ IsMultiHomog (d W) (g W)) ∧
+      (∀ W ∈ Z.support, IsChowForm W (e + 1) (g W) ∧ GroundTheory.Heights₂.Heights.IsMultiHomog (d W) (g W)) ∧
       ∀ u : Fin n → ℂ, IsAdmissible Z u →
         mahlerDefect h e Z f u = Real.log ‖c‖ + ∑ W ∈ Z.support, (Z W : ℝ) *
           (mahler h e (specFirst (g W) u) - coneIntegral h W e (fsLog h u)) := by
@@ -1199,13 +1199,13 @@ theorem mahlerDefect_eq_sum {n e δ : ℕ} (h : HermNorm n) {Z : ProjCycle ℂ n
   have hf0 : C c * ∏ W ∈ Z.support, g W ^ Z W ≠ 0 :=
     mul_ne_zero (C_ne_zero.mpr hc)
       (Finset.prod_ne_zero_iff.mpr fun W hW => pow_ne_zero _ (hg W hW).1)
-  have hhom : IsMultiHomog δ (C c * ∏ W ∈ Z.support, g W ^ Z W) := hf ▸ hd.homog
+  have hhom : GroundTheory.Heights₂.Heights.IsMultiHomog δ (C c * ∏ W ∈ Z.support, g W ^ Z W) := hf ▸ hd.homog
   obtain ⟨d, hdW, -⟩ := exists_degrees_of_chowFormCycle (Nat.succ_pos e) Z c g hg hhom hf0
   refine ⟨c, g, d, fun W hW => ⟨hg W hW, hdW W hW⟩, fun u hu => ?_⟩
   have hspec : specFirst f u = C c * ∏ W ∈ Z.support, specFirst (g W) u ^ Z W := by
     rw [hf]
     simp only [specFirst, map_mul, map_prod, map_pow, bind₁_C_right]
-  have hq : ∀ W ∈ Z.support, specFirst (g W) u ≠ 0 ∧ IsMultiHomog (d W) (specFirst (g W) u) :=
+  have hq : ∀ W ∈ Z.support, specFirst (g W) u ≠ 0 ∧ GroundTheory.Heights₂.Heights.IsMultiHomog (d W) (specFirst (g W) u) :=
     fun W hW => ⟨SpecFirstNe.full ℂ n e W (g W) u (hd.prime W hW) (hg W hW) (hu W hW),
       SpecFirstHomog.proof n e (d W) (g W) u (hdW W hW)⟩
   rw [mahlerDefect, hspec, _root_.GlobalTheory.CompanionTheory.Ar.Short.Crofton.mahler_C_mul_prod_pow n e h Z.support (fun W => specFirst (g W) u) d (fun W => Z W) c hc hq,

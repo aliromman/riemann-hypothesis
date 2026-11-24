@@ -97,56 +97,18 @@ theorem neg_re_logDeriv_le : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q] (χ
     (∀ w ∈ S, ‖w - (3/2 + t * I)‖ ≤ 5/6 ∧ LFunction χ w = 0) →
     -(deriv (LFunction χ) (σ + t * I) / LFunction χ (σ + t * I)).re
       ≤ C * Real.log (q * (|t| + 2)) - ∑ w ∈ S, (1 / ((σ : ℂ) + t * I - w)).re := by
-  obtain ⟨C, hC, hloc⟩ := GlobalTheory.LLocal.logDeriv_LFunction_local
+  obtain ⟨C, hC, hb⟩ := GlobalTheory.LLocal.neg_re_logDeriv_le_sum
   refine ⟨C, hC, fun q _ χ hχ σ t hσ hσ2 S hS => ?_⟩
-  have hdist : ‖((σ : ℂ) + t * I) - (3/2 + t * I)‖ ≤ 2/3 := by
-    rw [show ((σ : ℂ) + t * I) - (3/2 + t * I) = ((σ - 3/2 : ℝ) : ℂ) by push_cast; ring,
-      Complex.norm_real, Real.norm_eq_abs, abs_le]
-    constructor <;> linarith
-  have hre_s : ((σ : ℂ) + t * I).re = σ := by simp
-  have hLs : LFunction χ ((σ : ℂ) + t * I) ≠ 0 :=
-    LFunction_ne_zero_of_one_le_re χ (Or.inl hχ) (by rw [hre_s]; linarith)
-  obtain ⟨hfin, hbound⟩ := hloc q χ hχ t ((σ : ℂ) + t * I) hdist hLs
-  rw [finsum_mem_eq_finite_toFinset_sum _ hfin] at hbound
-  set A := deriv (LFunction χ) ((σ : ℂ) + t * I) / LFunction χ ((σ : ℂ) + t * I) with hA
-  set B := ∑ w ∈ hfin.toFinset,
-    (analyticOrderNatAt (LFunction χ) w : ℂ) / ((σ : ℂ) + t * I - w) with hB
-  have hAB : -A.re ≤ C * Real.log (q * (|t| + 2)) - B.re := by
-    have h := (Complex.abs_re_le_norm (A - B)).trans hbound
-    rw [Complex.sub_re, abs_le] at h
-    linarith [h.1]
-  have hpos : ∀ w, LFunction χ w = 0 → 0 ≤ (1 / ((σ : ℂ) + t * I - w)).re := by
-    intro w hw
-    have hw1 := re_lt_one hχ hw
+  refine (hb q χ hχ σ t hσ hσ2 S hS).trans (sub_le_sub_left ?_ _)
+  refine Finset.sum_le_sum fun w hw => ?_
+  have h1 : (1 : ℝ) ≤ analyticOrderNatAt (LFunction χ) w := by
+    exact_mod_cast one_le_order hχ (hS w hw).2
+  have h2 : 0 ≤ (1 / ((σ : ℂ) + t * I - w)).re := by
+    have hw1 := re_lt_one hχ (hS w hw).2
     have hz : 0 < ((σ : ℂ) + t * I - w).re := by simp; linarith
     rw [one_div, Complex.inv_re]
     exact div_nonneg hz.le (Complex.normSq_nonneg _)
-  have hBre : B.re = ∑ w ∈ hfin.toFinset,
-      (analyticOrderNatAt (LFunction χ) w : ℝ) * (1 / ((σ : ℂ) + t * I - w)).re := by
-    rw [hB, Complex.re_sum]
-    refine Finset.sum_congr rfl fun w _ => ?_
-    rw [div_eq_mul_one_div, show ((analyticOrderNatAt (LFunction χ) w : ℕ) : ℂ) =
-      ((analyticOrderNatAt (LFunction χ) w : ℝ) : ℂ) by push_cast; rfl, Complex.re_ofReal_mul]
-  have hSsub : S ⊆ hfin.toFinset := by
-    intro w hw
-    rw [Set.Finite.mem_toFinset]
-    exact hS w hw
-  have hSle : ∑ w ∈ S, (1 / ((σ : ℂ) + t * I - w)).re ≤ B.re := by
-    rw [hBre]
-    calc ∑ w ∈ S, (1 / ((σ : ℂ) + t * I - w)).re
-        ≤ ∑ w ∈ S, (analyticOrderNatAt (LFunction χ) w : ℝ) * (1 / ((σ : ℂ) + t * I - w)).re := by
-          refine Finset.sum_le_sum fun w hw => ?_
-          have hw0 := (hS w hw).2
-          have h1 : (1 : ℝ) ≤ analyticOrderNatAt (LFunction χ) w := by
-            exact_mod_cast one_le_order hχ hw0
-          have h2 := hpos w hw0
-          nlinarith
-      _ ≤ ∑ w ∈ hfin.toFinset,
-          (analyticOrderNatAt (LFunction χ) w : ℝ) * (1 / ((σ : ℂ) + t * I - w)).re := by
-          refine Finset.sum_le_sum_of_subset_of_nonneg hSsub fun w hw _ => ?_
-          rw [Set.Finite.mem_toFinset] at hw
-          exact mul_nonneg (Nat.cast_nonneg _) (hpos w hw.2)
-  linarith
+  exact le_mul_of_one_le_left h2 h1
 
 theorem re_one_div (a b : ℝ) : (1 / ((a : ℂ) + b * I)).re = a / (a ^ 2 + b ^ 2) := by
   rw [Complex.div_re, Complex.normSq_apply]

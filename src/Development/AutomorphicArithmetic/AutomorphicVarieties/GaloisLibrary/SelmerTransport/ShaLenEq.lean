@@ -240,7 +240,7 @@ theorem UpperTheory.V.Base.selTransport :
     congr 1
     apply Subtype.ext
     funext g
-    simp [compatiblePairCocycles1]
+    exact congrArg z.1 (e.apply_symm_apply g)
   have hFE : F ∘ₗ E = LinearMap.id := by
     apply LinearMap.ext
     intro x
@@ -249,7 +249,7 @@ theorem UpperTheory.V.Base.selTransport :
     congr 1
     apply Subtype.ext
     funext g
-    simp [compatiblePairCocycles1]
+    exact congrArg z.1 (e.symm_apply_apply g)
   let L : H1 A ≃ₗ[R] H1 B := LinearEquiv.ofLinear E F hEF hFE
   have hmap : (LocSel (ρ.comp φ : Representation R G' M) U' (Subgroup.comap φ '' 𝒟)).map
       (L : H1 A →ₗ[R] H1 B) = LocSel ρ U 𝒟 := by
@@ -263,12 +263,15 @@ theorem UpperTheory.V.Base.selTransport :
       obtain ⟨m, hm⟩ := hyp _ ⟨D, hD, rfl⟩
       refine ⟨m, fun u hu => ?_⟩
       have h1 := hm (e.symm u) (by rw [Subgroup.mem_comap, key]; exact hu)
+      change z.1 (e (e.symm u)) = _ at h1
+      rw [e.apply_symm_apply] at h1
       simpa [compatiblePairCocycles1, key] using h1
     · rintro hyp D' ⟨D, hD, rfl⟩
       obtain ⟨m, hm⟩ := hyp D hD
       refine ⟨m, fun u' hu' => ?_⟩
       have h1 := hm (e u') (by rw [he]; exact hu')
       rw [he] at h1
+      change z.1 (e u') = _
       simpa [compatiblePairCocycles1, he] using h1
   refine ⟨L.ofSubmodules _ _ hmap, ?_⟩
   intro z' z hz' hzz

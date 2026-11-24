@@ -1521,7 +1521,7 @@ theorem lev_good (M : Model l K) (m s : ℕ) : (homLev S hS m M s (_root_.Crysta
       o k := hS.dK m k
       tS n j x := rfl
       r n j x := nmHM_nmLevA_rHof_succ S hS hC M m s n j x
-      red n j z := _root_.GlobalTheory.CompanionTheory.RedPull.nmHM_redM _ l s none n j z
+      red := _root_.GlobalTheory.CompanionTheory.RedPull.nmHM_redM (nmLevA S hS m M) l s none
       b j z := nmHO_nmLevB_bMap S hS m M s _ _ j z
       μ j v := (nm_muB (nmLevB S hS m M) (Category.id_comp _) 1 s (hS.dK m) j v).trans (congrArg _ (pullR_id' M.q j v)) }
 

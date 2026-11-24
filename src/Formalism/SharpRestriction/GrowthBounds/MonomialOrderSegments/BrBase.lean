@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Presheaf
 import Std.Tactic.BVDecide.Normalize.Prop
+public import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.FockMonomialRight
 
 @[expose] public section
 
@@ -141,10 +142,6 @@ theorem geQ_nat_iff (S : Formalism.MainNotions.G.UniformizedDVR p O) (x : Formal
 
 theorem geZ_iff (x : WithTop ℤ) (t : ℝ) : Formalism.MainNotions.PlaneGramData.geZ x t ↔ ((t : ℝ) : WithTop ℝ) ≤ toR x := by
   cases x using WithTop.recTopCoe <;> simp [Formalism.MainNotions.PlaneGramData.geZ, toR]
-
-theorem fact_ne_zero' {σ : Type} (α : σ →₀ ℕ) : fact α ≠ 0 := by
-  unfold fact Finsupp.prod
-  exact Finset.prod_ne_zero_iff.mpr fun _ _ => Nat.factorial_ne_zero _
 
 theorem vBB_eq (hp : p.Prime) (S : Formalism.MainNotions.G.UniformizedDVR p O) {σ : Type} (F : MvPolynomial σ (Formalism.MainNotions.G.KK O)) :
     vBB (vQ p S) F = (Formalism.MainNotions.G.vBB (O := O) p F).map (fun q : ℚ => (q : ℝ)) := by

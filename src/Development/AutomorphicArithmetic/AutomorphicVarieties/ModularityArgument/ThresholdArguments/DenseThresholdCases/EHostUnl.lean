@@ -63,8 +63,6 @@ import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.Imports
 
 
 section
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing UpperTheory.V.Pr.IsCD.complete
-  UpperTheory.V.Pr.IsCD.fin UpperTheory.V.Pr.IsCD.isLocalHom
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.HV GlobalTheory.GalOfCusp UpperTheory.V.Th UpperTheory.V.Z.J UpperTheory.V.U3 UpperTheory.V.UnitaryThreeInertia UpperTheory.V.Alg UpperTheory.V.Aut
 section Local
 open Matrix IsLocalRing

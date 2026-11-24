@@ -8,7 +8,8 @@ public import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries
 public import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.BesselSettingUniformConstant
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselFunctionEqScalarSqNormalisedBesselTorusCon
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsIsType
-public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadicalStatement
+public import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
+public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarLieIsHaarOnUnipotentRadical
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.UniformBesselConstant
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Admissible
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DegVand
@@ -120,7 +121,7 @@ theorem lintegral_hsNormSq_amp_gap : GlobalTheory.GapIn.Hyp → GlobalTheory.Gap
   have hn : 0 < ‖α‖ := norm_pos_iff.2 hα
   have hGB := (HaarNotions.isHaarOn_iff_groups k r μG).1.1 hG
   have hNB : B.IsHaarOn (Nset k r) L.μN := (HaarNotions.isHaarOn_iff_groups k r L.μN).2.1.1
-    (GlobalTheory.T.haarLie_isHaarOn_unipotentRadical k r L.κN (pos_iff_ne_zero.2 hκ0) hκt.lt_top)
+    (_root_.GlobalTheory.haarLie_isHaarOn_Nset k r L.κN (pos_iff_ne_zero.2 hκ0) hκt.lt_top)
   have hW := ((HaarNotions.isHaarOn_iff_groups k r L.μW).2.2 L.z L.hz.1 L.hz.2 hk1).1 L.hμW.1
   have hW' := ((HaarNotions.isHaarOn_iff_groups k r L.μW').2.2 L.z' L.hz'.1 L.hz'.2 hk1).1 L.hμW'.1
   have hδ : 0 < ‖α‖ ^ B.kap k r := by positivity

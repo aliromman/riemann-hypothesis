@@ -106,7 +106,7 @@ structure IsChowCycleData (Z : ProjCycle ℂ n) (e δ : ℕ) (f : MvPolynomial (
 
   chow : IsChowFormCycle Z (e + 1) f
 
-  homog : IsMultiHomog δ f
+  homog : Heights.IsMultiHomog δ f
 
 def MahlerSectionDim (e : ℕ) : Prop :=
   ∀ (n δ : ℕ) (h : HermNorm n) (Z : ProjCycle ℂ n) (f : MvPolynomial (Fin (e + 1) × Fin n) ℂ)
@@ -139,12 +139,12 @@ def BallVolume.Statement : Prop :=
   ∀ (n : ℕ) (h : HermNorm n), 0 < volume (ballH h) ∧ volume (ballH h) < ⊤
 
 def MahlerAverageSplit.Statement : Prop :=
-  ∀ (n e δ : ℕ) (h : HermNorm n) (f : MvPolynomial (Fin (e + 1) × Fin n) ℂ), f ≠ 0 → IsMultiHomog δ f →
+  ∀ (n e δ : ℕ) (h : HermNorm n) (f : MvPolynomial (Fin (e + 1) × Fin n) ℂ), f ≠ 0 → Heights.IsMultiHomog δ f →
     IntegrableOn (fun v => mahler h e (specFirst f (nrmv h v))) (ballH h) ∧
       mahler h (e + 1) f = ⨍ v in ballH h, mahler h e (specFirst f (nrmv h v))
 
 def MahlerIntegrand.Statement : Prop :=
-  ∀ (n k δ : ℕ) (h : HermNorm n) (f : MvPolynomial (Fin k × Fin n) ℂ), f ≠ 0 → IsMultiHomog δ f →
+  ∀ (n k δ : ℕ) (h : HermNorm n) (f : MvPolynomial (Fin k × Fin n) ℂ), f ≠ 0 → Heights.IsMultiHomog δ f →
     IntegrableOn (fun u => Real.log ‖eval (nrmGroups h k u) f‖) (ballProd h k)
 
 def SphereMeanFubini.Statement : Prop :=
@@ -166,7 +166,7 @@ def CycleAverage.Statement : Prop :=
 def ConeAverage.Statement : Prop :=
   ∀ (n e δ : ℕ) (h : HermNorm n) (W : Ideal (MvPolynomial (Fin n) ℂ))
     (g : MvPolynomial (Fin (e + 1) × Fin n) ℂ),
-    IsProjPrime W → IsChowForm W (e + 1) g → IsMultiHomog δ g →
+    IsProjPrime W → IsChowForm W (e + 1) g → Heights.IsMultiHomog δ g →
       IntegrableOn (fun v => coneIntegral h W e (fsLog h (nrmv h v))) (ballH h) ∧
         ⨍ v in ballH h, coneIntegral h W e (fsLog h (nrmv h v)) = -(δ * (harmonic (n - 1) : ℝ)) / 2
 
@@ -209,11 +209,11 @@ def FsLogMeasurable.Statement : Prop :=
 
 def ChowDegreePos.Statement : Prop :=
   ∀ (n k δ : ℕ) (W : Ideal (MvPolynomial (Fin n) ℂ)) (g : MvPolynomial (Fin k × Fin n) ℂ),
-    0 < k → IsProjPrime W → IsChowForm W k g → IsMultiHomog δ g → 1 ≤ δ
+    0 < k → IsProjPrime W → IsChowForm W k g → Heights.IsMultiHomog δ g → 1 ≤ δ
 
 def SpecFirstHomog.Statement : Prop :=
   ∀ (n k δ : ℕ) (f : MvPolynomial (Fin (k + 1) × Fin n) ℂ) (u : Fin n → ℂ),
-    IsMultiHomog δ f → IsMultiHomog δ (specFirst f u)
+    Heights.IsMultiHomog δ f → Heights.IsMultiHomog δ (specFirst f u)
 
 def ChowFormAssoc.Statement : Prop :=
   ∀ (F : Type) [Field F] (n k : ℕ) (I : Ideal (MvPolynomial (Fin n) F))

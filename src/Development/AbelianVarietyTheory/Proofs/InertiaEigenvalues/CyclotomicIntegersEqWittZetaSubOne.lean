@@ -111,7 +111,7 @@ theorem norm_coeff_le (K : FinExt l) (N : ℕ) (π : Om l)
     apply Finset.sum_subset supp_subset_range_natDegree_succ
     intro i _ hi
     rw [notMem_support_iff.1 hi, zero_smul]
-  have h6 := IsUltrametricDist.nnnorm_sum_eq_sup_of_pairwise_ne hpw
+  have h6 := IsUltrametricDist.nnNorm_sum_eq_sup_of_pairwise_ne hpw
   rw [hs] at h6
   have h7 := Finset.le_sup (f := fun i => ‖p.coeff i • π ^ i‖₊) hj
   rw [← h6] at h7

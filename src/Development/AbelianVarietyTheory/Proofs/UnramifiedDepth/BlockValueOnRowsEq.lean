@@ -381,20 +381,7 @@ lemma diagMon_inl (n0 n L y : ℕ) (ρ c : Fin n) :
 
 lemma diagMon_inr (n0 n L y : ℕ) (ρ c : Fin n) :
     diagMon n0 n L y (Sum.inr (ρ, c)) = if n0 ≤ ρ.val ∧ c = ρ then y else 0 := by
-  rw [diagMon, Finsupp.finsetSum_apply]
-  by_cases hρ : n0 ≤ ρ.val
-  · rw [Finset.sum_eq_single ρ]
-    · by_cases hc : c = ρ
-      · subst hc; simp [hρ]
-      · simp [hc]
-    · intro b _ hb
-      simp [hb]
-    · intro h
-      exact absurd (Finset.mem_filter.2 ⟨Finset.mem_univ ρ, hρ⟩) h
-  · rw [if_neg (fun h => hρ h.1)]
-    refine Finset.sum_eq_zero fun b hb => ?_
-    have hb' : b ≠ ρ := fun h => hρ (h ▸ (Finset.mem_filter.1 hb).2)
-    simp [hb']
+  simpa [diagMon, Finsupp.single_apply] using diagMon_inl n0 n 1 y ρ c
 
 lemma diagMon_row {n0 n L y : ℕ} (x : PVar n) (hx : x ∈ (diagMon n0 n L y).support) :
     n0 ≤ (rowOf x).val := by

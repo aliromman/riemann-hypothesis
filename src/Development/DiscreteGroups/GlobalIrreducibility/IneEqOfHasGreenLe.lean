@@ -124,7 +124,7 @@ theorem ine_eq_of_isSC_le (b : ℕ) (S : Sys g) (teich : Formalism.CyclotomicNor
   obtain ⟨τ, φ, hs, hinj, heq, he⟩ := exists_simple_of_has S _ f h
   have hφ : (fixK1 ρ.2.ρ).subtype ∘ₗ φ ≠ 0 := fun e => by
     have h0 : ∀ u : τ, u = 0 := fun u => hinj (Subtype.ext (by simpa using LinearMap.congr_fun e u))
-    exact id_nonzero τ (by ext u; exact (h0 _).trans (h0 _).symm)
+    exact id_ne_zero τ (by ext u; exact (h0 _).trans (h0 _).symm)
   have hfix : fixK1 ρ.2.ρ ≠ ⊥ := fun e => hφ (LinearMap.ext fun u => (Submodule.eq_bot_iff _).1 e _ (φ u).2)
   refine h3 ρ hb hρ τ hs (fun c hc hc' u hu => hinj ?_) ⟨_, hφ, fun k w => ?_⟩ f he
   · rw [map_zero]

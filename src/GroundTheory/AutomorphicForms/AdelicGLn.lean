@@ -312,8 +312,156 @@ abbrev InfiniteAdelicGL : Type _ := GL (Fin n) (InfiniteAdeleRing K)
 
 abbrev FiniteAdelicGL : Type _ := GL (Fin n) (FiniteAdeleRing (𝓞 K) K)
 
-theorem locallyCompactSpace : LocallyCompactSpace (AdelicGL K n) :=
-  inferInstance
+instance (priority := high) locallyCompactSpace : LocallyCompactSpace (AdelicGL K n) :=
+  Units.instLocallyCompactSpaceOfT1SpaceOfContinuousMul
+
+instance (priority := high) locallyCompactSpace_finite :
+    LocallyCompactSpace (FiniteAdelicGL K n) :=
+  Units.instLocallyCompactSpaceOfT1SpaceOfContinuousMul
+
+instance (priority := high) locallyCompactSpace_infinite :
+    LocallyCompactSpace (InfiniteAdelicGL K n) :=
+  Units.instLocallyCompactSpaceOfT1SpaceOfContinuousMul
+
+instance (priority := high) weaklyLocallyCompactSpace :
+    WeaklyLocallyCompactSpace (AdelicGL K n) :=
+  instWeaklyLocallyCompactSpaceOfLocallyCompactSpace
+
+instance (priority := high) weaklyLocallyCompactSpace_finite :
+    WeaklyLocallyCompactSpace (FiniteAdelicGL K n) :=
+  instWeaklyLocallyCompactSpaceOfLocallyCompactSpace
+
+instance (priority := high) weaklyLocallyCompactSpace_infinite :
+    WeaklyLocallyCompactSpace (InfiniteAdelicGL K n) :=
+  instWeaklyLocallyCompactSpaceOfLocallyCompactSpace
+
+instance (priority := high) isTopologicalGroup : IsTopologicalGroup (AdelicGL K n) :=
+  Units.instIsTopologicalGroupOfContinuousMul
+
+instance (priority := high) isTopologicalGroup_finite :
+    IsTopologicalGroup (FiniteAdelicGL K n) :=
+  Units.instIsTopologicalGroupOfContinuousMul
+
+omit [NumberField K] in
+instance (priority := high) isTopologicalGroup_infinite :
+    IsTopologicalGroup (InfiniteAdelicGL K n) :=
+  Units.instIsTopologicalGroupOfContinuousMul
+
+instance (priority := high) t2Space : T2Space (AdelicGL K n) :=
+  Units.instT2Space
+
+instance (priority := high) t2Space_finite : T2Space (FiniteAdelicGL K n) :=
+  Units.instT2Space
+
+omit [NumberField K] in
+instance (priority := high) t2Space_infinite : T2Space (InfiniteAdelicGL K n) :=
+  Units.instT2Space
+
+instance (priority := high) t1Space : T1Space (AdelicGL K n) :=
+  T2Space.t1Space
+
+instance (priority := high) t1Space_finite : T1Space (FiniteAdelicGL K n) :=
+  T2Space.t1Space
+
+omit [NumberField K] in
+instance (priority := high) t1Space_infinite : T1Space (InfiniteAdelicGL K n) :=
+  T2Space.t1Space
+
+instance (priority := high) t0Space : T0Space (AdelicGL K n) :=
+  T1Space.t0Space
+
+instance (priority := high) t0Space_finite : T0Space (FiniteAdelicGL K n) :=
+  T1Space.t0Space
+
+omit [NumberField K] in
+instance (priority := high) t0Space_infinite : T0Space (InfiniteAdelicGL K n) :=
+  T1Space.t0Space
+
+instance (priority := high) r1Space : R1Space (AdelicGL K n) :=
+  T2Space.r1Space
+
+instance (priority := high) r1Space_finite : R1Space (FiniteAdelicGL K n) :=
+  T2Space.r1Space
+
+omit [NumberField K] in
+instance (priority := high) r1Space_infinite : R1Space (InfiniteAdelicGL K n) :=
+  T2Space.r1Space
+
+instance (priority := high) regularSpace : RegularSpace (AdelicGL K n) :=
+  IsTopologicalGroup.regularSpace _
+
+instance (priority := high) regularSpace_finite : RegularSpace (FiniteAdelicGL K n) :=
+  IsTopologicalGroup.regularSpace _
+
+omit [NumberField K] in
+instance (priority := high) regularSpace_infinite : RegularSpace (InfiniteAdelicGL K n) :=
+  IsTopologicalGroup.regularSpace _
+
+instance (priority := high) t3Space : T3Space (AdelicGL K n) :=
+  instT3Space
+
+instance (priority := high) t3Space_finite : T3Space (FiniteAdelicGL K n) :=
+  instT3Space
+
+omit [NumberField K] in
+instance (priority := high) t3Space_infinite : T3Space (InfiniteAdelicGL K n) :=
+  instT3Space
+
+instance (priority := high) secondCountableTopology [SecondCountableTopology 𝔸[K]] :
+    SecondCountableTopology (AdelicGL K n) := by
+  have : SecondCountableTopology (AdelicMatrix K n) :=
+    inferInstanceAs (SecondCountableTopology (Fin n → Fin n → 𝔸[K]))
+  have : SecondCountableTopology (AdelicMatrix K n)ᵐᵒᵖ :=
+    MulOpposite.opHomeomorph.symm.isEmbedding.secondCountableTopology
+  exact Units.isEmbedding_embedProduct.secondCountableTopology
+
+instance (priority := high) secondCountableTopology_finite
+    [SecondCountableTopology (FiniteAdeleRing (𝓞 K) K)] :
+    SecondCountableTopology (FiniteAdelicGL K n) := by
+  have : SecondCountableTopology (Matrix (Fin n) (Fin n) (FiniteAdeleRing (𝓞 K) K)) :=
+    inferInstanceAs (SecondCountableTopology (Fin n → Fin n → FiniteAdeleRing (𝓞 K) K))
+  have : SecondCountableTopology (Matrix (Fin n) (Fin n) (FiniteAdeleRing (𝓞 K) K))ᵐᵒᵖ :=
+    MulOpposite.opHomeomorph.symm.isEmbedding.secondCountableTopology
+  exact Units.isEmbedding_embedProduct.secondCountableTopology
+
+omit [NumberField K] in
+instance (priority := high) secondCountableTopology_infinite
+    [SecondCountableTopology (InfiniteAdeleRing K)] :
+    SecondCountableTopology (InfiniteAdelicGL K n) := by
+  have : SecondCountableTopology (Matrix (Fin n) (Fin n) (InfiniteAdeleRing K)) :=
+    inferInstanceAs (SecondCountableTopology (Fin n → Fin n → InfiniteAdeleRing K))
+  have : SecondCountableTopology (Matrix (Fin n) (Fin n) (InfiniteAdeleRing K))ᵐᵒᵖ :=
+    MulOpposite.opHomeomorph.symm.isEmbedding.secondCountableTopology
+  exact Units.isEmbedding_embedProduct.secondCountableTopology
+
+instance (priority := high) firstCountableTopology [SecondCountableTopology 𝔸[K]] :
+    FirstCountableTopology (AdelicGL K n) :=
+  TopologicalSpace.SecondCountableTopology.to_firstCountableTopology _
+
+instance (priority := high) firstCountableTopology_finite
+    [SecondCountableTopology (FiniteAdeleRing (𝓞 K) K)] :
+    FirstCountableTopology (FiniteAdelicGL K n) :=
+  TopologicalSpace.SecondCountableTopology.to_firstCountableTopology _
+
+omit [NumberField K] in
+instance (priority := high) firstCountableTopology_infinite
+    [SecondCountableTopology (InfiniteAdeleRing K)] :
+    FirstCountableTopology (InfiniteAdelicGL K n) :=
+  TopologicalSpace.SecondCountableTopology.to_firstCountableTopology _
+
+instance (priority := high) sigmaCompactSpace [SecondCountableTopology 𝔸[K]] :
+    SigmaCompactSpace (AdelicGL K n) :=
+  sigmaCompactSpace_of_locallyCompact_secondCountable
+
+instance (priority := high) sigmaCompactSpace_finite
+    [SecondCountableTopology (FiniteAdeleRing (𝓞 K) K)] :
+    SigmaCompactSpace (FiniteAdelicGL K n) :=
+  sigmaCompactSpace_of_locallyCompact_secondCountable
+
+instance (priority := high) sigmaCompactSpace_infinite
+    [SecondCountableTopology (InfiniteAdeleRing K)] :
+    SigmaCompactSpace (InfiniteAdelicGL K n) :=
+  sigmaCompactSpace_of_locallyCompact_secondCountable
 
 def det : AdelicGL K n →* (𝔸[K])ˣ :=
   Matrix.GeneralLinearGroup.det

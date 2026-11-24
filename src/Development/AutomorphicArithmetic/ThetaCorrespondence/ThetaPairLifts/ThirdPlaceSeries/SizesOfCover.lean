@@ -194,7 +194,7 @@ theorem ceil_mul_le_pow {y PP Dd k m : ℝ} (hy : 2 ≤ y) (hP0 : 0 ≤ PP) (hP 
   have h4 : 1 ≤ y ^ 7 := one_le_pow₀ (by linarith)
   have h5 : (⌈PP ^ 2 * Dd ^ 2 * k / m⌉₊ : ℝ) ≤ y ^ 8 := by
     have : y ^ 8 = y ^ 7 * y := by ring
-    nlinarith
+    have hmul : y ^ 7 * 2 ≤ y ^ 7 * y := mul_le_mul_of_nonneg_left hy (by linarith); linarith
   calc (⌈PP ^ 2 * Dd ^ 2 * k / m⌉₊ : ℝ) * PP ≤ y ^ 8 * y := by gcongr
     _ = y ^ 9 := by ring
 
@@ -234,7 +234,7 @@ theorem kapT_at {PP A : ℝ} (hH : HostNum D L PP A 18) (hW : WtNum p i PP) :
   have hn1' : (1 : ℝ) ≤ D.R.nV := by exact_mod_cast hn1
   have hkr' : (D.R.k : ℝ) ≤ D.R.r := by exact_mod_cast hkr
   have hm' : (1 : ℝ) ≤ D.R.m := by exact_mod_cast (by omega : 1 ≤ D.R.m)
-  have hfr : (8 : ℝ) ≤ (D.R.f : ℝ) * D.R.r := by nlinarith
+  have hfr : (8 : ℝ) ≤ (D.R.f : ℝ) * D.R.r := le_trans hf8 (le_mul_of_one_le_right (by linarith) hr1')
   have h10 : (D.R.f : ℝ) * D.R.r * 10 ≤ y := by
     refine le_trans ?_ hfy
     calc (D.R.f : ℝ) * D.R.r * 10 = (D.R.f : ℝ) * D.R.r * 1 * 10 := by ring
@@ -251,7 +251,10 @@ theorem kapT_at {PP A : ℝ} (hH : HostNum D L PP A 18) (hW : WtNum p i PP) :
       have e : Real.exp (2 * L.sc.L) = L.sc.b * L.sc.b := by
         unfold Scale.b; rw [← Real.exp_add]; ring_nf
       rw [e]
-      nlinarith
+      have h4b : (D.R.f : ℝ) * D.R.r * (4 * L.sc.b) ≤ L.sc.b * L.sc.b := by
+        have h4fr : (D.R.f : ℝ) * D.R.r * 4 ≤ L.sc.b := by linarith
+        have := mul_le_mul_of_nonneg_right h4fr hb0.le; linarith
+      linarith
     rcases hk0.eq_or_lt with h | h
     · rw [← h, Real.log_zero]; linarith
     · exact (Real.log_le_iff_le_exp h).2 hk2
@@ -259,10 +262,10 @@ theorem kapT_at {PP A : ℝ} (hH : HostNum D L PP A 18) (hW : WtNum p i PP) :
     have hD : (CompHt.dimFlag (dat p i) : ℝ) ≤ y ^ 2 := by
       rw [hW.dim]; push_cast
       calc (D.R.f : ℝ) * (D.R.r.choose 2 : ℝ) ≤ (D.R.f : ℝ) ^ 2 * (D.R.r : ℝ) ^ 2 := by
-            gcongr; nlinarith
+            gcongr; exact le_self_pow₀ (by linarith) (by norm_num)
         _ = ((D.R.f : ℝ) * D.R.r) ^ 2 := by ring
         _ ≤ y ^ 2 := by gcongr; linarith
-    have hky : (D.R.k : ℝ) ≤ y := by nlinarith
+    have hky : (D.R.k : ℝ) ≤ y := by have : (D.R.r : ℝ) ≤ (D.R.f : ℝ) * D.R.r := le_mul_of_one_le_left (by linarith) (by linarith); linarith
     have h9 := ceil_mul_le_pow hy2 hP0 hPy (Nat.cast_nonneg _) hD (Nat.cast_nonneg _) hky hm'
     refine h9.trans (Real.le_sqrt_of_sq_le ?_)
     calc (y ^ 9) ^ 2 = y ^ 18 := by ring
@@ -377,7 +380,8 @@ theorem abs_rem_le (ha : P.a ≤ Dw.p + Dw.q) (τ : Psi H) (i : Fin (Dw.p + Dw.q
   have hi := i.2
   have h3 : ((P.a : ℕ) : ℤ) * P.T₁ + ((i : ℕ) : ℤ) * P.T₁ ≤ 2 * ((Dw.p + Dw.q : ℕ) : ℤ) * P.T₁ := by
     have : ((P.a : ℕ) : ℤ) + ((i : ℕ) : ℤ) ≤ 2 * ((Dw.p + Dw.q : ℕ) : ℤ) := by push_cast; omega
-    nlinarith
+    have hT0 : 0 ≤ P.T₁ := (T₁_pos P).le
+    have := mul_le_mul_of_nonneg_right this hT0; linarith
   exact (h.trans (add_le_add h1 h2)).trans h3
 
 theorem T₁_mul_u₁_add_rem (ha : P.a < Dw.p + Dw.q) (τ : Psi H) (i : Fin (Dw.p + Dw.q)) :
@@ -437,7 +441,7 @@ theorem abs_wt_le (ha : P.a < Dw.p + Dw.q) {j : ℕ} (hj : j ≤ P.T) (la : AllW
       le_abs_self (la τ ⟨P.a, ha⟩ - w τ), neg_abs_le (la τ ⟨P.a, ha⟩ - w τ)]
   have a7 := abs_le.1 (h3.trans b1)
   rw [abs_le]
-  constructor <;> nlinarith [le_abs_self (la τ i), neg_abs_le (la τ i), le_abs_self (w τ), neg_abs_le (w τ),
+  constructor <;> linarith [le_abs_self (la τ i), neg_abs_le (la τ i), le_abs_self (w τ), neg_abs_le (w τ),
       le_abs_self (la τ ⟨P.a, ha⟩ - w τ), neg_abs_le (la τ ⟨P.a, ha⟩ - w τ), T₁_pos P]
 
 end GlobalTheory.CovTop.WtRun
@@ -468,8 +472,8 @@ theorem sum_abs_wt_le (ha : P.a < Dw.p + Dw.q) {j : ℕ} (hj : j ≤ P.T) (la : 
     have hl : |(la τ ⟨P.a, ha⟩ : ℝ)| ≤ ∑ i, |(la τ i : ℝ)| :=
       Finset.single_le_sum (f := fun i => |(la τ i : ℝ)|) (fun _ _ => abs_nonneg _) (Finset.mem_univ _)
     have hN : (0 : ℝ) ≤ ((Dw.p + Dw.q : ℕ) : ℝ) := Nat.cast_nonneg _
-    push_cast at hs hl ⊢
-    nlinarith
+    push_cast at hs hl hN ⊢
+    have := mul_le_mul_of_nonneg_left hl hN; linarith
   calc ∑ τ, ∑ i, |(P.wt j τ i : ℝ)|
       ≤ ∑ τ, ((((Dw.p + Dw.q : ℕ) : ℝ) + 1) * ∑ i, |(la τ i : ℝ)| + ((Dw.p + Dw.q : ℕ) : ℝ) * K) :=
         Finset.sum_le_sum fun τ _ => hτ τ
@@ -490,7 +494,7 @@ theorem numbers {f r Lr PP T Dd c0 kp b : ℝ} (hf : 8 ≤ f) (hr : 2 ≤ r) (hL
   have hf0 : 0 ≤ f := by linarith
   have hr0 : 0 ≤ r := by linarith
   have hL0 : 0 ≤ Lr := by linarith
-  have hfL : 80 ≤ f * Lr := by nlinarith
+  have hfL : 80 ≤ f * Lr := by have := mul_le_mul hf hL (by norm_num) (by linarith); linarith
   have hfL1 : 1 ≤ f * Lr := by linarith
   have hrZ : r ≤ f * r * Lr := by
     calc r = r * 1 := (mul_one r).symm
@@ -951,19 +955,21 @@ theorem arith (f r L PP b kap T D c : ℝ) (hf : 8 ≤ f) (hr : 1 ≤ r) (hL : 1
       (f * r * L) ^ 2 * (kap / T + 1) := by
   obtain ⟨Z, hZ⟩ : ∃ Z, Z = f * r * L := ⟨_, rfl⟩
   rw [← hZ] at hPP ⊢
-  have hfr : 8 ≤ f * r := by nlinarith
-  have hZ80 : 80 ≤ Z := by rw [hZ]; nlinarith
+  have hfr : 8 ≤ f * r := le_trans hf (le_mul_of_one_le_right (by linarith) hr)
+  have hZ80 : 80 ≤ Z := by rw [hZ]; have := mul_le_mul hfr hL (by norm_num) (by linarith); linarith
   have hZ1 : 1 ≤ Z := by linarith
-  have hfZ : f ≤ Z := by rw [hZ]; nlinarith
-  have hrZ : r ≤ Z := by rw [hZ]; nlinarith
-  have hfrZ : f * r ≤ Z := by rw [hZ]; nlinarith
+  have hfZ : f ≤ Z := by rw [hZ]; calc f ≤ f * r := le_mul_of_one_le_right (by linarith) hr
+    _ ≤ f * r * L := le_mul_of_one_le_right (by linarith) (by linarith)
+  have hrZ : r ≤ Z := by rw [hZ]; calc r ≤ f * r := le_mul_of_one_le_left (by linarith) (by linarith)
+    _ ≤ f * r * L := le_mul_of_one_le_right (by linarith) (by linarith)
+  have hfrZ : f * r ≤ Z := by rw [hZ]; exact le_mul_of_one_le_right (by linarith) (by linarith)
   have hZpow : ∀ n m : ℕ, n ≤ m → Z ^ n ≤ Z ^ m := fun n m h => pow_le_pow_right₀ hZ1 h
   have hPP1 : 1 ≤ PP := le_trans (one_le_pow₀ hZ1) hPP
   have hPPZ : Z ^ 12 ≤ PP := hPP
 
   have hb0 : 0 < b := lt_of_lt_of_le (by positivity) hb
   have hkap9 : PP ^ 9 ≤ kap := by
-    have : PP * PP ^ 9 ≤ PP * kap := by nlinarith [pow_succ' PP 9]
+    have : PP * PP ^ 9 ≤ PP * kap := by rw [← pow_succ']; exact hb.trans hk
     exact le_of_mul_le_mul_left this (by linarith)
   have hPPpow : ∀ n m : ℕ, n ≤ m → PP ^ n ≤ PP ^ m := fun n m h => pow_le_pow_right₀ hPP1 h
 
@@ -971,10 +977,11 @@ theorem arith (f r L PP b kap T D c : ℝ) (hf : 8 ≤ f) (hr : 1 ≤ r) (hL : 1
     have h1 : f * r * (c + 2 * r + 2) ≤ f * r * (26 * f ^ 2 * r ^ 4) := by
       apply mul_le_mul_of_nonneg_left _ (by positivity)
       have : 2 * r + 2 ≤ 4 * f ^ 2 * r ^ 4 := by
-        have : r ≤ r ^ 4 := by nlinarith [pow_le_pow_right₀ hr (show 1 ≤ 4 by norm_num), pow_one r]
-        have : 1 ≤ f ^ 2 := by nlinarith
-        have : r ^ 4 ≤ f ^ 2 * r ^ 4 := by nlinarith [pow_pos (by linarith : (0:ℝ) < r) 4]
-        nlinarith [pow_pos (by linarith : (0:ℝ) < r) 4]
+        have : r ≤ r ^ 4 := by simpa [pow_one] using pow_le_pow_right₀ hr (show 1 ≤ 4 by norm_num)
+        have : 1 ≤ f ^ 2 := one_le_pow₀ (by linarith)
+        have : r ^ 4 ≤ f ^ 2 * r ^ 4 := le_mul_of_one_le_left (by positivity) this
+        have hr4 : 1 ≤ r ^ 4 := one_le_pow₀ hr
+        linarith
       linarith
     have h2 : f * r * (26 * f ^ 2 * r ^ 4) ≤ 26 * Z ^ 5 := by
       have : f * r * (f ^ 2 * r ^ 4) ≤ Z ^ 5 := by
@@ -984,10 +991,11 @@ theorem arith (f r L PP b kap T D c : ℝ) (hf : 8 ≤ f) (hr : 1 ≤ r) (hL : 1
           _ = Z ^ 5 := by ring
       linarith
     have h3 : 26 * Z ^ 5 ≤ Z ^ 12 := by
-      have : 26 ≤ Z ^ 7 := by nlinarith [hZpow 1 7 (by norm_num), pow_one Z]
+      have : 26 ≤ Z ^ 7 := by have := hZpow 1 7 (by norm_num); rw [pow_one] at this; linarith
       have e : Z ^ 12 = Z ^ 7 * Z ^ 5 := by ring
-      rw [e]; nlinarith [pow_pos (by linarith : (0:ℝ) < Z) 5]
-    nlinarith [hPPpow 1 9 (by norm_num), pow_one PP]
+      rw [e]; exact mul_le_mul_of_nonneg_right this (by positivity)
+    have hPP9 : PP ≤ PP ^ 9 := by simpa [pow_one] using hPPpow 1 9 (by norm_num)
+    linarith
 
   have hT3 : T ≤ 2 * PP ^ 3 := by
     have h1 : (f * r ^ 2) ^ 2 * r ≤ Z ^ 5 := by
@@ -998,7 +1006,8 @@ theorem arith (f r L PP b kap T D c : ℝ) (hf : 8 ≤ f) (hr : 1 ≤ r) (hL : 1
     have h2 : Z ^ 5 ≤ PP := (hZpow 5 12 (by norm_num)).trans hPPZ
     have h3 : PP ^ 2 * ((f * r ^ 2) ^ 2 * r) ≤ PP ^ 2 * PP := by gcongr; linarith
     have h4 : 1 ≤ PP ^ 3 := one_le_pow₀ hPP1
-    nlinarith
+    have hPP3 : PP ^ 2 * PP = PP ^ 3 := by ring
+    linarith
   have hT0 : 0 < T := by linarith
   have hT₁ : T ≤ T + D + 1 := by linarith
 
@@ -1006,46 +1015,54 @@ theorem arith (f r L PP b kap T D c : ℝ) (hf : 8 ≤ f) (hr : 1 ≤ r) (hL : 1
     have hkap0 : 0 ≤ kap := le_trans (by positivity) hkap9
     have : (2 * kap + f * r * (c + 2 * r + 2)) / (T + D + 1) ≤ 3 * kap / T := by
       rw [div_le_div_iff₀ (by linarith) hT0]
-      nlinarith
+      have h1 : (2 * kap + f * r * (c + 2 * r + 2)) * T ≤ 3 * kap * T := mul_le_mul_of_nonneg_right (by linarith) hT0.le
+      have h2 : 3 * kap * T ≤ 3 * kap * (T + D + 1) := mul_le_mul_of_nonneg_left hT₁ (by linarith)
+      linarith
     have e : 3 * kap / T = 3 * (kap / T) := by ring
-    nlinarith
+    rw [e] at this
+    have := mul_le_mul_of_nonneg_left this (by linarith : (0 : ℝ) ≤ 2 * r); linarith
   have hq0 : 0 ≤ kap / T := div_nonneg (le_trans (by positivity) hkap9) hT0.le
-  have hfL : 12 ≤ f * L ^ 2 := by nlinarith
+  have hfL : 12 ≤ f * L ^ 2 := by
+    have hL2 : 100 ≤ L ^ 2 := by have := mul_le_mul hL hL (by norm_num) (by linarith); linarith
+    have := mul_le_mul hf hL2 (by norm_num) (by linarith); linarith
   have hfr2 : 0 ≤ f * r ^ 2 := by positivity
   have hZsq : Z ^ 2 = (f * L ^ 2) * (f * r ^ 2) := by rw [hZ]; ring
   have hmul : 12 * (f * r ^ 2) ≤ (f * L ^ 2) * (f * r ^ 2) := mul_le_mul_of_nonneg_right hfL hfr2
   have hZ2 : 2 * f * r ^ 2 ≤ Z ^ 2 := by
     rw [hZsq]; have : 0 ≤ f * r ^ 2 := hfr2; linarith
   have h6r : 6 * r ≤ Z ^ 2 / 2 := by
-    have : r ≤ f * r ^ 2 := by nlinarith
+    have : r ≤ f * r ^ 2 := by
+      calc r ≤ r * r := le_mul_of_one_le_right (by linarith) hr
+        _ = r ^ 2 := by ring
+        _ ≤ f * r ^ 2 := le_mul_of_one_le_left (by positivity) (by linarith)
     rw [hZsq]; linarith
 
   have hR : f * (2 * r * r * (T + D)) ≤ Z ^ 2 / 2 * (kap / T) := by
-    have h1 : f * (2 * r * r * (T + D)) ≤ 4 * f * r ^ 2 * T := by nlinarith [mul_pos (by linarith : (0:ℝ) < f) (by linarith : (0:ℝ) < r)]
+    have h1 : f * (2 * r * r * (T + D)) ≤ 4 * f * r ^ 2 * T := by have := mul_le_mul_of_nonneg_left (by linarith : T + D ≤ 2 * T) (by positivity : (0 : ℝ) ≤ 2 * f * r ^ 2); linarith
     have h2 : 4 * f * r ^ 2 * T ≤ kap / T := by
       rw [le_div_iff₀ hT0]
-      have hT2 : T * T ≤ 4 * PP ^ 6 := by nlinarith
+      have hT2 : T * T ≤ 4 * PP ^ 6 := by have := mul_le_mul hT3 hT3 hT0.le (by positivity); linarith
       have h16 : 16 * f * r ^ 2 ≤ PP := by
         have : 16 * f * r ^ 2 ≤ Z ^ 12 := by
           have : f * r ^ 2 ≤ Z ^ 3 := by
             calc f * r ^ 2 ≤ Z * Z ^ 2 := by gcongr
               _ = Z ^ 3 := by ring
-          have : 16 ≤ Z ^ 9 := by nlinarith [hZpow 1 9 (by norm_num), pow_one Z]
+          have : 16 ≤ Z ^ 9 := by have := hZpow 1 9 (by norm_num); rw [pow_one] at this; linarith
           have e : Z ^ 12 = Z ^ 9 * Z ^ 3 := by ring
-          rw [e]; nlinarith [pow_pos (by linarith : (0:ℝ) < Z) 3, mul_pos (by linarith : (0:ℝ) < f) (by positivity : (0:ℝ) < r ^ 2)]
+          rw [e, mul_assoc]; exact mul_le_mul this (by linarith) (by positivity) (by positivity)
         linarith
       have : 4 * f * r ^ 2 * T * T ≤ 4 * f * r ^ 2 * (4 * PP ^ 6) := by
         have : 0 ≤ 4 * f * r ^ 2 := by positivity
         rw [mul_assoc (4 * f * r ^ 2)]; exact mul_le_mul_of_nonneg_left hT2 this
-      have : 4 * f * r ^ 2 * (4 * PP ^ 6) ≤ PP * PP ^ 6 := by nlinarith [pow_pos (by linarith : (0:ℝ) < PP) 6]
+      have : 4 * f * r ^ 2 * (4 * PP ^ 6) ≤ PP * PP ^ 6 := by have := mul_le_mul_of_nonneg_right h16 (by positivity : (0 : ℝ) ≤ PP ^ 6); linarith
       have : PP * PP ^ 6 ≤ PP ^ 9 := by rw [← pow_succ']; exact hPPpow 7 9 (by norm_num)
       linarith
     have h3 : kap / T ≤ Z ^ 2 / 2 * (kap / T) := by
-      have : 1 ≤ Z ^ 2 / 2 := by nlinarith
-      nlinarith
+      have : 1 ≤ Z ^ 2 / 2 := by have := mul_le_mul hZ80 hZ80 (by norm_num) (by linarith); linarith
+      exact le_mul_of_one_le_left hq0 this
     linarith
   have a1 : 6 * r * (kap / T) ≤ Z ^ 2 / 2 * (kap / T) := mul_le_mul_of_nonneg_right h6r hq0
-  have a2 : Z ^ 2 / 2 * (kap / T) ≤ Z ^ 2 * (kap / T) := mul_le_mul_of_nonneg_right (by nlinarith) hq0
+  have a2 : Z ^ 2 / 2 * (kap / T) ≤ Z ^ 2 * (kap / T) := mul_le_mul_of_nonneg_right (by linarith [sq_nonneg Z]) hq0
   have e : Z ^ 2 * (kap / T + 1) = Z ^ 2 * (kap / T) + Z ^ 2 := by ring
   rw [e]
   refine ⟨by linarith, by linarith⟩
@@ -1105,7 +1122,7 @@ theorem at_pt (PP A A' : ℝ) (hi : (i : ℕ) + 1 < D.R.m) (hS : SizeAt p i PP A
       have b : PP ^ 2 * (CompHt.dimFlag (dat p i) : ℝ) ^ 2 * (D.R.k : ℝ) ≤ PP ^ 2 * ((D.R.f : ℝ) * (D.R.r : ℝ) ^ 2) ^ 2 * D.R.r := by
         gcongr
       have c : 0 ≤ PP ^ 2 * ((D.R.f : ℝ) * (D.R.r : ℝ) ^ 2) ^ 2 * D.R.r := by positivity
-      nlinarith
+      exact b.trans (le_mul_of_one_le_right c hm)
     unfold lenT
     linarith
   have hA := arith (D.R.f : ℝ) (D.R.r : ℝ) L.sc.L PP L.sc.b (kap p i) (lenT p i PP : ℝ) (FlagTan.dimFlag (dat p i) : ℝ)
@@ -1294,7 +1311,7 @@ theorem sizes_of_cover_alt : _root_.GlobalTheory.CovTop.CoversCondition fun Fm x
       Real.log_mul (hgpos 0).ne' (hgpos 1).ne', Real.log_pow]
     have g0 := hN.logg 0
     have g1 := hN.logg 1
-    nlinarith
+    have := mul_le_mul_of_nonneg_left h15 he0; linarith
   ·
     unfold fieldSz
     rw [hN.deg]
@@ -1302,15 +1319,15 @@ theorem sizes_of_cover_alt : _root_.GlobalTheory.CovTop.CoversCondition fun Fm x
     have h2f : Real.log ((2 * (Fm.D x ι).R.f : ℕ) : ℝ) ≤ (Fm.L x ι).sc.L := by
       refine le_trans ?_ hN.logfr.1
       push_cast
-      exact Real.log_le_log (by positivity) (by nlinarith)
+      exact Real.log_le_log (by positivity) (by have := mul_le_mul_of_nonneg_left hr2 hfpos.le; linarith)
     have hq : Real.log |(NumberField.discr (Fm.D x ι).host.E : ℝ)| / ((2 * (Fm.D x ι).R.f : ℕ) : ℝ) ≤
         2 * (Fm.L x ι).sc.L := by
       rw [div_le_iff₀ (by push_cast; positivity)]
       push_cast
-      nlinarith
+      have := mul_le_mul_of_nonneg_left hd (by linarith : (0 : ℝ) ≤ 2 * ((Fm.D x ι).R.f : ℝ)); linarith
     linarith
   ·
-    exact le_expL (by push_cast; nlinarith)
+    exact le_expL (by push_cast; have := mul_le_mul_of_nonneg_left hr2 hfpos.le; linarith)
   · intro k
     have hA := hN.poly.1
     have hxA : (Fm.L x ι).sc.x ≤ (Fm.L x ι).sc.x ^ C := by

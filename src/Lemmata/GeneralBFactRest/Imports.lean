@@ -13,9 +13,11 @@ universe u_1 u_2
 
 namespace Bl.general_b_fact_rest
 
-theorem goal1 {R : Type u_1} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
+/-- A regular element in the Jacobson radical of an associated prime produces a
+strictly larger associated prime after quotienting by its multiples. -/
+theorem exists_associatedPrime_quotSMulTop_of_mem_jacobson {R : Type u_1} [CommRing R] [IsNoetherianRing R]
     {M : Type u_2} [AddCommGroup M] [Module R M] [Module.Finite R M] {p : Ideal R}
-    (hp : p ∈ associatedPrimes R M) {x : R} (hx : x ∈ IsLocalRing.maximalIdeal R)
+    (hp : p ∈ associatedPrimes R M) {x : R} (hx : x ∈ p.jacobson)
     (hreg : IsSMulRegular M x) :
     ∃ q ∈ associatedPrimes R (QuotSMulTop x M), p < q ∧ x ∈ q ∧ x ∉ p := by
   open Pointwise in
@@ -37,9 +39,12 @@ theorem goal1 {R : Type u_1} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
       have hm'N : m' ∈ N := (hNmem m').mpr fun r hr =>
         hreg (show x • (r • m') = x • 0 by rw [smul_comm, hm', (hNmem n).mp hn r hr, smul_zero])
       exact hm' ▸ Submodule.smul_mem_smul (Ideal.mem_span_singleton_self x) hm'N
-    have hbot := Submodule.eq_bot_of_le_smul_of_le_jacobson (Ideal.span {x}) N
-      (IsNoetherian.noetherian N) hle
-      (by rw [IsLocalRing.ringJacobson_eq_maximalIdeal]; exact (Ideal.span_singleton_le_iff_mem _).2 hx)
+    have hbot : N = ⊥ := by
+      rw [Submodule.eq_smul_of_le_smul_of_le_jacobson
+        (IsNoetherian.noetherian N) hle ((Ideal.span_singleton_le_iff_mem _).2 hx)]
+      refine le_antisymm (Submodule.smul_le.mpr ?_) bot_le
+      intro r hr n hn
+      exact (hNmem n).1 hn r hr
     have hm0N : m0 ∈ N := (hNmem m0).mpr fun r hr => by
       simpa [Submodule.mem_colon_singleton] using hr
     exact hm0 ((Submodule.mem_bot R).1 (hbot ▸ hm0N))
@@ -55,5 +60,14 @@ theorem goal1 {R : Type u_1} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     rw [Submodule.mem_colon_singleton, Submodule.mem_bot, ← Submodule.Quotient.mk_smul,
       (hNmem n).1 hnN r hr, Submodule.Quotient.mk_zero]
   exact ⟨q, hq, lt_of_le_of_ne hpq fun h => hxp (h ▸ hxq), hxq, hxp⟩
+
+theorem goal1 {R : Type u_1} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
+    {M : Type u_2} [AddCommGroup M] [Module R M] [Module.Finite R M] {p : Ideal R}
+    (hp : p ∈ associatedPrimes R M) {x : R} (hx : x ∈ IsLocalRing.maximalIdeal R)
+    (hreg : IsSMulRegular M x) :
+    ∃ q ∈ associatedPrimes R (QuotSMulTop x M), p < q ∧ x ∈ q ∧ x ∉ p := by
+  apply exists_associatedPrime_quotSMulTop_of_mem_jacobson hp
+    (Ideal.ringJacobson_le_jacobson (I := p) ?_) hreg
+  rwa [IsLocalRing.ringJacobson_eq_maximalIdeal]
 
 end Bl.general_b_fact_rest

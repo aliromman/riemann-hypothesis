@@ -77,8 +77,6 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.M
 section -- clump:auto
 @[expose] public section
 
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
-
 
 
 section
@@ -297,7 +295,6 @@ section -- clump:auto
 
 
 section
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 section SlopeTestRemainingChoices
 open IsLocalRing UpperTheory.V UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.HV
 private alias int_of_norm := _root_.GlobalTheory.BlochKatoIntegralScalars.isIntegral_of_norm_le_one

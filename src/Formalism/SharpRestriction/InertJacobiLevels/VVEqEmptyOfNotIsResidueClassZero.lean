@@ -43,6 +43,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Formalism.LocalRingCardinality.DataForced
+public import Formalism.SharpRestriction.InertJacobiLevels.ExtraVal
 
 @[expose] public section
 
@@ -70,11 +71,6 @@ theorem natCast_mem_of_val_pos (w : D.what₂.places.Pl) (n : ℕ) (hn : n ≠ 0
   unfold vAdd at h
   rw [hv, WithZero.log_one, neg_zero] at h
   norm_num at h
-
-theorem resChar_mem (w : D.what₂.places.Pl) :
-    ((D.what₂.places.resChar w : ℕ) : 𝓞 D.what₂.LL) ∈ (D.plEq w).asIdeal := by
-  exact natCast_mem_of_val_pos D w _ (D.what₂.places.resChar_prime w).ne_zero
-    (by rw [D.what₂.places.val_resChar]; exact_mod_cast D.what₂.places.ramIdx_pos w)
 
 theorem eq_resChar_of_mem (w : D.what₂.places.Pl) (p : ℕ) (hp : p.Prime)
     (h : (p : 𝓞 D.what₂.LL) ∈ (D.plEq w).asIdeal) : D.what₂.places.resChar w = p := by

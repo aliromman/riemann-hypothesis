@@ -1073,28 +1073,25 @@ theorem zA_chi (σ : K.fixingSubgroup) (r : ℕ) :
   rw [Units.val_pow_eq_pow_val, map_pow]
   rfl
 
-variable (ht : TFil l) {e : E.EtFam l K} (he : EtP e)
-include he
-
-theorem h1_lift_add : ∀ {M : Model l K} {r j : ℕ} {v v' : M.T j} {x x' : Fam M r j},
+theorem h1_lift_add (ht : TFil l) {e : E.EtFam l K} (he : EtP e) : ∀ {M : Model l K} {r j : ℕ} {v v' : M.T j} {x x' : Fam M r j},
     IsLift ht e r v x → IsLift ht e r v' x' → IsLift ht e r (v + v') (x + x') :=
   fun {M r j v v' x x'} h h' => ⟨comp_add h.1 h'.1, fun n =>
     lin_add ((βMorF (B.schFn M.p) (okToOC l K) r n).pull j) ((tMor ht ((B.schFn M.p).pt (okToOC l K)) r n).pull j) (h.2 n) (h'.2 n)
       (map_add (e M n j) (v.lev n) (v'.lev n))⟩
 
-theorem h1_lift_smul : ∀ {M : Model l K} {r j : ℕ} {v : M.T j} {x : Fam M r j} (z : ℤ_[l]),
+theorem h1_lift_smul (ht : TFil l) {e : E.EtFam l K} (he : EtP e) : ∀ {M : Model l K} {r j : ℕ} {v : M.T j} {x : Fam M r j} (z : ℤ_[l]),
     IsLift ht e r v x → IsLift ht e r (z • v) (zA l z • x) :=
   fun {M r j v x} z h => ⟨comp_smul _ h.1, fun n =>
     lin_smul ((βMorF (B.schFn M.p) (okToOC l K) r n).pull j) ((tMor ht ((B.schFn M.p).pt (okToOC l K)) r n).pull j) (zA l z) (h.2 n)
       (e_smul e M j n z v)⟩
 
-theorem h1_lift_shift : ∀ {M : Model l K} {r r' j : ℕ} {v : M.T j} {x : Fam M r j} (k : ℕ) (h : r + k = r'),
+theorem h1_lift_shift (ht : TFil l) {e : E.EtFam l K} (he : EtP e) : ∀ {M : Model l K} {r r' j : ℕ} {v : M.T j} {x : Fam M r j} (k : ℕ) (h : r + k = r'),
     IsLift ht e r v x → IsLift ht e r' v (shS ht k h x) :=
   fun {M r r' j v x} k h hx => ⟨comp_sh ht k h hx.1, fun n =>
     (β_sh (B.schFn M.p) (okToOC l K) ht k h n j (x n)).trans
       ((congrArg ((shT ht ((B.schFn M.p).pt (okToOC l K)) k h n).pull j) (hx.2 n)).trans (shT_tMor ht _ k h n j _))⟩
 
-theorem h1_lift_galois : ∀ {M : Model l K} {r j : ℕ} {v : M.T j} {x : Fam M r j} (σ : K.fixingSubgroup), IsLift ht e r v x →
+theorem h1_lift_galois (ht : TFil l) {e : E.EtFam l K} (he : EtP e) : ∀ {M : Model l K} {r j : ℕ} {v : M.T j} {x : Fam M r j} (σ : K.fixingSubgroup), IsLift ht e r v x →
     IsLift ht e r (DeRhamTwist.Twist.chi0 l σ.1 ^ r • M.actT j σ v) (galS σ x) := by
   intro M r j v x σ hx
   refine ⟨comp_gal σ hx.1, fun n => ?_⟩
@@ -1113,7 +1110,7 @@ theorem h1_lift_galois : ∀ {M : Model l K} {r j : ℕ} {v : M.T j} {x : Fam M 
     hx.2 n, hgal, ← hz, ← hequi, ← LinearMap.map_smul,
     ← e_smul e M j n z (M.actT j σ v)]
 
-theorem h1_lift_naturality : ∀ {M N : Model l K} (u : M.X ⟶ N.X) (hu : u ≫ N.p = M.p) {r j : ℕ} {v : N.T j} {x : Fam N r j},
+theorem h1_lift_naturality (ht : TFil l) {e : E.EtFam l K} (he : EtP e) : ∀ {M N : Model l K} (u : M.X ⟶ N.X) (hu : u ≫ N.p = M.p) {r j : ℕ} {v : N.T j} {x : Fam N r j},
     IsLift ht e r v x → IsLift ht e r (Model.pullT u hu j v) (pullS u hu x) := by
   intro M N u hu r j v x hx
   refine ⟨comp_pull u hu hx.1, fun n => ?_⟩

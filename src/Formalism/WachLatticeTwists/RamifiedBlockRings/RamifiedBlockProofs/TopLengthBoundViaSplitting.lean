@@ -772,143 +772,27 @@ lemma collectAlt (t : ℕ) (ht : 1 ≤ t) (L : Fin (t + 1) → ℕ∞) (S : Fins
         rw [hA0, hB]
         ring
 
+section
 
+variable (hC : StatBlockChiCFull.{0, 0, 0, 0, 0, 0})
+  (hOne : StatBlockChiOneFull.{0, 0, 0, 0, 0, 0})
+variable (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
+  (A T' G : Type) [Ring A] [CommRing T'] [Algebra T' A] [Group G] (d : Type) [Fintype d]
+  [DecidableEq d] (ρ : A →+* Matrix d d O) [comm : SMulCommClass A O (LatQ O d ρ)]
+  [modT : Module T' (LatQ O d ρ)] [tower : IsScalarTower T' A (LatQ O d ρ)]
 
-theorem blockRhoLat : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
-    (A T' G : Type) [Ring A] [CommRing T'] [Algebra T' A] [Group G] (d : Type) [Fintype d] [DecidableEq d]
-    (ρ : A →+* Matrix d d O) [SMulCommClass A O (LatQ O d ρ)]
-    [Module T' (LatQ O d ρ)] [IsScalarTower T' A (LatQ O d ρ)]
-    (r : G →* A) (χ : G →* T'ˣ) (E e₁ : A) (δ : T') (δO : O) (ι : Type) [Fintype ι] [DecidableEq ι]
-    (ι' : Type) [DecidableEq ι'] (colIdx : ι → ι'), Function.Injective colIdx →
-    ∀ (D : ι' → Subgroup G) (j e' : ι' → ℕ) (Kc : ∀ l, Fin (j (colIdx l)) → G → A)
-      (k0 : ι → G → A) (ℓ : ℕ) (sE : Finset G) (tE : G → T'),
-    E = ∑ g ∈ sE, tE g • r g → E * E = δ • E →
-    (∀ m : LatQ O d ρ, E • m = 0) →
-    (∀ l g, ∃ a : A, k0 l g = a * E) →
-    (∀ m : LatQ O d ρ, δ • m = δO • m) →
-    (∀ m : LatQ O d ρ, (∑ g ∈ sE, tE g * ((χ g : T'ˣ) : T')) • m = δO • m) →
-    Nonempty (↥(LinearMap.range (DistribSMul.toLinearMap O (LatQ O d ρ) e₁)) ≃ₗ[O] KO O) →
-    (∀ l (s : Fin (j (colIdx l)) → (LatQ O d ρ)),
-      (∀ a, s a ∈ LinearMap.range (DistribSMul.toLinearMap O (LatQ O d ρ) e₁)) →
-      (fun g : D (colIdx l) => ∑ a, Kc l a g • s a) ∈
-        LinearMap.range (colDO (O := O) r χ (D (colIdx l))) →
-      ∀ a, ((ℓ : O) ^ e' (colIdx l)) • s a = 0) →
-    let ρM := uRep O (M := LatQ O d ρ) r χ
-    let Ψ := colPsi (O := O) (M := LatQ O d ρ) r χ E e₁ δ (fun l => D (colIdx l))
-      (fun l => j (colIdx l)) Kc k0
-    ∀ (what₂ : Finset ι') (F : ∀ w, Submodule O (H1z (resRep ρM (D w)))) (lenRow : ι' → ℕ∞)
-      (Q : Submodule O (H1z ρM)) (s : ℕ∞),
-    let cols : Finset ι' := univ.image colIdx
-    let eO : ℕ∞ := Module.length O (O ⧸ Ideal.span {(ℓ : O)})
-    let vδ : ℕ∞ := IsDiscreteValuationRing.addVal O δO
-    let N : ℕ∞ := Fintype.card d
-    let h0 : ι' → ℕ∞ := fun w => Module.length O (LinearMap.ker (colDO (O := O) (M := LatQ O d ρ) r χ (D w)))
-    (∀ w ∈ what₂, ∃ B : Submodule O (H1z (resRep ρM (D w))), F w ≤ B ∧
-      Module.length O (B ⧸ (F w).comap B.subtype) ≤ lenRow w ∧
-      ∀ h, resH1 ρM (D w) (Submodule.mkQ _ (Ψ h)) ∈ B) →
-    (∀ w ∈ cols, ∀ h, resH1 ρM (D w) (Submodule.mkQ _ (Ψ h)) ∈ F w) →
-    (∀ h, Submodule.mkQ _ (Ψ h) ∈ Q) →
-    Module.length O ↥(Q ⊓ ⨅ w ∈ what₂ ∪ cols, (F w).comap (resH1 ρM (D w))) ≤ s →
-    Module.length O (ColNNJ r χ E e₁ δ (fun l => D (colIdx l)) (fun l => j (colIdx l)) Kc k0 →ₗ[A]
-        (LatQ O d ρ)) ≤
-      ∑ w ∈ what₂, lenRow w + ∑ w ∈ cols, ((j w : ℕ∞) * (eO * (e' w : ℕ∞) + vδ) + h0 w) + s +
-        4 * N * ((cols.card : ℕ∞) + 1) * vδ := by
-  intro O _ _ _ A T' G _ _ _ _ d _ _ ρ _ _ _
-  letI : Module A (d → KO O) := (inferInstance : Module A (LatQ O d ρ))
-  letI : SMulCommClass A O (d → KO O) := (inferInstance : SMulCommClass A O (LatQ O d ρ))
-  letI : Module T' (d → KO O) := (inferInstance : Module T' (LatQ O d ρ))
-  letI : IsScalarTower T' A (d → KO O) := (inferInstance : IsScalarTower T' A (LatQ O d ρ))
-  exact blockRhoFull O A T' G d
+theorem blockRhoLat : BlockRhoBound.{0, 0} O A T' G d (LatQ O d ρ) :=
+  @blockRhoFull O _ _ _ A T' G _ _ _ _ d _ (inferInstance : Module A (LatQ O d ρ)) comm modT tower
 
+include hC in
+theorem blockChiCLat : BlockChiCBound.{0, 0} O A T' G d (LatQ O d ρ) :=
+  @hC O _ _ _ A T' G _ _ _ _ d _ (inferInstance : Module A (LatQ O d ρ)) comm modT tower
 
+include hOne in
+theorem blockChiOneLat : BlockChiOneBound.{0, 0} O A T' G d (LatQ O d ρ) :=
+  @hOne O _ _ _ A T' G _ _ _ _ d _ (inferInstance : Module A (LatQ O d ρ)) comm modT tower
 
-theorem blockChiCLat (hC : StatBlockChiCFull.{0, 0, 0, 0, 0, 0}) : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
-    (A T' G : Type) [Ring A] [CommRing T'] [Algebra T' A] [Group G] (d : Type) [Fintype d] [DecidableEq d]
-    (ρ : A →+* Matrix d d O) [SMulCommClass A O (LatQ O d ρ)]
-    [Module T' (LatQ O d ρ)] [IsScalarTower T' A (LatQ O d ρ)]
-    (r : G →* A) (χ : G →* T'ˣ) (E e₁ : A) (δ : T') (δO : O) (ι : Type) [Fintype ι] [DecidableEq ι]
-    (ι' : Type) [DecidableEq ι'] (colIdx : ι → ι'), Function.Injective colIdx →
-    ∀ (D : ι' → Subgroup G) (j : ι' → ℕ) (Kc : ∀ l, Fin (j (colIdx l)) → G → A)
-      (k0 : ι → G → A) (ℓ cB : ℕ) (sE : Finset G) (tE : G → T'),
-    Fintype.card d = 1 →
-    E = ∑ g ∈ sE, tE g • r g → E * E = δ • E →
-    (∀ m : LatQ O d ρ, e₁ • m = 0) → (∀ m : LatQ O d ρ, E • m = 0) →
-    (∀ l g, ∃ a : A, k0 l g = a * E) →
-    (∀ m : LatQ O d ρ, δ • m = δO • m) →
-    (∀ m : LatQ O d ρ, (∑ g ∈ sE, tE g * ((χ g : T'ˣ) : T')) • m = δO • m) →
-    let ρM := uRep O (M := LatQ O d ρ) r χ
-    let Ψ := colPsi (O := O) (M := LatQ O d ρ) r χ E e₁ δ (fun l => D (colIdx l))
-      (fun l => j (colIdx l)) Kc k0
-    ∀ (lrows qs : Finset ι') (F : ∀ w, Submodule O (H1z (resRep ρM (D w)))) (deg : ι' → ℕ)
-      (vζ : ι' → ℕ∞) (Q : Submodule O (H1z ρM)) (Sha H0 : ℕ∞),
-    let cols : Finset ι' := univ.image colIdx
-    let eO : ℕ∞ := Module.length O (O ⧸ Ideal.span {(ℓ : O)})
-    let vδ : ℕ∞ := IsDiscreteValuationRing.addVal O δO
-    (∀ w ∈ cols, Module.length O (LinearMap.ker (colDO (O := O) (M := LatQ O d ρ) r χ (D w))) ≤ H0) →
-    (∀ w ∈ lrows, ∃ B : Submodule O (H1z (resRep ρM (D w))), F w ≤ B ∧
-      Module.length O (B ⧸ (F w).comap B.subtype) ≤ eO * (cB : ℕ∞) * ((deg w : ℕ∞) + 2) ∧
-      ∀ h, resH1 ρM (D w) (Submodule.mkQ _ (Ψ h)) ∈ B) →
-    (∀ w ∈ qs, ∃ B : Submodule O (H1z (resRep ρM (D w))), F w ≤ B ∧
-      Module.length O (B ⧸ (F w).comap B.subtype) ≤ vζ w ∧
-      ∀ h, resH1 ρM (D w) (Submodule.mkQ _ (Ψ h)) ∈ B) →
-    (∀ w ∈ cols, ∀ h, resH1 ρM (D w) (Submodule.mkQ _ (Ψ h)) ∈ F w) →
-    (∀ h, Submodule.mkQ _ (Ψ h) ∈ Q) →
-    Module.length O ↥(Q ⊓ ⨅ w ∈ lrows ∪ qs ∪ cols, (F w).comap (resH1 ρM (D w))) ≤ Sha →
-    Module.length O (ColNNJ r χ E e₁ δ (fun l => D (colIdx l)) (fun l => j (colIdx l)) Kc k0 →ₗ[A]
-        (LatQ O d ρ)) ≤
-      Sha + eO * (cB : ℕ∞) * ∑ w ∈ lrows, ((deg w : ℕ∞) + 2) + 4 * ((cols.card : ℕ∞) + 1) * vδ +
-        (cols.card : ℕ∞) * H0 + ∑ w ∈ qs, vζ w := by
-  intro O _ _ _ A T' G _ _ _ _ d _ _ ρ _ _ _
-  letI : Module A (d → KO O) := (inferInstance : Module A (LatQ O d ρ))
-  letI : SMulCommClass A O (d → KO O) := (inferInstance : SMulCommClass A O (LatQ O d ρ))
-  letI : Module T' (d → KO O) := (inferInstance : Module T' (LatQ O d ρ))
-  letI : IsScalarTower T' A (d → KO O) := (inferInstance : IsScalarTower T' A (LatQ O d ρ))
-  exact hC O A T' G d
-
-
-
-theorem blockChiOneLat (hOne : StatBlockChiOneFull.{0, 0, 0, 0, 0, 0}) : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
-    (A T' G : Type) [Ring A] [CommRing T'] [Algebra T' A] [Group G] (d : Type) [Fintype d] [DecidableEq d]
-    (ρ : A →+* Matrix d d O) [SMulCommClass A O (LatQ O d ρ)]
-    [Module T' (LatQ O d ρ)] [IsScalarTower T' A (LatQ O d ρ)]
-    (r : G →* A) (χ : G →* T'ˣ) (E e₁ : A) (δ : T') (δO : O) (ι : Type) [Fintype ι] [DecidableEq ι]
-    (ι' : Type) [DecidableEq ι'] (colIdx : ι → ι'), Function.Injective colIdx →
-    ∀ (D : ι' → Subgroup G) (j e' : ι' → ℕ) (Kc : ∀ l, Fin (j (colIdx l)) → G → A)
-      (k0 : ι → G → A) (ℓ cB : ℕ),
-    Fintype.card d = 1 →
-    (∀ g (m : LatQ O d ρ), uElt r χ g • m = m) →
-    (∀ m : LatQ O d ρ, e₁ • m = 0) → (∀ m : LatQ O d ρ, E • m = δO • m) →
-    (∀ m : LatQ O d ρ, δ • m = δO • m) →
-    (∀ l, ∃ g ∈ D (colIdx l), ∃ c : O, IsUnit c ∧
-      ∀ m : LatQ O d ρ, k0 l g • m = ((ℓ : O) ^ e' (colIdx l) * δO * c) • m) →
-    let ρM := uRep O (M := LatQ O d ρ) r χ
-    let Ψ := colPsi (O := O) (M := LatQ O d ρ) r χ E e₁ δ (fun l => D (colIdx l))
-      (fun l => j (colIdx l)) Kc k0
-    ∀ (lrows qs : Finset ι') (F : ∀ w, Submodule O (H1z (resRep ρM (D w)))) (deg : ι' → ℕ)
-      (vζ : ι' → ℕ∞) (Q : Submodule O (H1z ρM)) (vhE : ℕ∞),
-    let cols : Finset ι' := univ.image colIdx
-    let eO : ℕ∞ := Module.length O (O ⧸ Ideal.span {(ℓ : O)})
-    let vδ : ℕ∞ := IsDiscreteValuationRing.addVal O δO
-    (∀ w ∈ lrows, ∃ B : Submodule O (H1z (resRep ρM (D w))), F w ≤ B ∧
-      Module.length O (B ⧸ (F w).comap B.subtype) ≤ eO * (cB : ℕ∞) * ((deg w : ℕ∞) + 2) ∧
-      ∀ h, resH1 ρM (D w) (Submodule.mkQ _ (Ψ h)) ∈ B) →
-    (∀ w ∈ qs, ∃ B : Submodule O (H1z (resRep ρM (D w))), F w ≤ B ∧
-      Module.length O (B ⧸ (F w).comap B.subtype) ≤ vζ w ∧
-      ∀ h, resH1 ρM (D w) (Submodule.mkQ _ (Ψ h)) ∈ B) →
-    (∀ w ∈ cols, ∀ h, resH1 ρM (D w) (Submodule.mkQ _ (Ψ h)) ∈ F w) →
-    (∀ h, Submodule.mkQ _ (Ψ h) ∈ Q) →
-    Module.length O ↥(Q ⊓ ⨅ w ∈ lrows ∪ qs ∪ cols, (F w).comap (resH1 ρM (D w))) ≤ vhE →
-    Module.length O (ColNNJ r χ E e₁ δ (fun l => D (colIdx l)) (fun l => j (colIdx l)) Kc k0 →ₗ[A]
-        (LatQ O d ρ)) ≤
-      vhE + ∑ w ∈ cols, (eO * (e' w : ℕ∞) + 2 * vδ) +
-        eO * (cB : ℕ∞) * ∑ w ∈ lrows, ((deg w : ℕ∞) + 2) + 4 * ((cols.card : ℕ∞) + 1) * vδ +
-        ∑ w ∈ qs, vζ w := by
-  intro O _ _ _ A T' G _ _ _ _ d _ _ ρ _ _ _
-  letI : Module A (d → KO O) := (inferInstance : Module A (LatQ O d ρ))
-  letI : SMulCommClass A O (d → KO O) := (inferInstance : SMulCommClass A O (LatQ O d ρ))
-  letI : Module T' (d → KO O) := (inferInstance : Module T' (LatQ O d ρ))
-  letI : IsScalarTower T' A (d → KO O) := (inferInstance : IsScalarTower T' A (LatQ O d ρ))
-  exact hOne O A T' G d
+end
 
 end Formalism.NG
 end -- clump:auto

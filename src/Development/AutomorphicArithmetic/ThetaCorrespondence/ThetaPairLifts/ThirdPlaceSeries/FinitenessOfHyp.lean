@@ -1007,11 +1007,11 @@ theorem lv3_of_third_alt_alt (hW : GlobalTheory.Published.WeilRepresentationUnit
     (hR : RowsAt P)
     (hE : _root_.GlobalTheory.CoefDuty.AutomorphicSideExists l.a.A l.mt.M l.c.ch l.c.tp.tup → _root_.GlobalTheory.CoefDuty.ForcedByAutomorphicSemisimpleData l.a.A l.mt.M l.c.ch l.c.tp.tup fun D' =>
       GlobalTheory.CoefDuty.Large D' ∧ ∀ j v, 1 ≤ j → j ≤ (Dof x).R.m → ∀ v' : D'.what₂.places.Pl, HEq v' v → D'.what₂.etaJ j v' = P.q.eta j v)
-    (hX : ∃ xd : ThData (Dof x), XdAll xd) (S : SExt) (Γ : GeoP) (N : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL)
+    (hX : ∃ xd : ThData (Dof x), XdAll xd) (S : SExt) (N : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL)
     (hN : ∀ Z p t nch n xd c, _root_.GlobalTheory.HeightCounting.Up.extensionWithLaw hL K B f T w Z P.Wt p t nch n xd c →
       (∀ cDep : ℝ, ListSt cDep x → ListPin (w.st Z).toD7 t.r.z.R.toRealDat.toLevCh cDep K.s.b) →
       Nonempty (N K B f T w Z P.Wt p t nch n xd c)) :
-    ∃ (Z : w.Lt) (v : Lv3 (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ).s K w Z), v.Wt = P.Wt ∧ Kept l.c.ch v.nch := by
+    ∃ (Z : w.Lt) (v : Lv3 (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S).s K w Z), v.Wt = P.Wt ∧ Kept l.c.ch v.nch := by
   have hB := _root_.GlobalTheory.HeightCounting.Fin3.builtEx_of_published_inputs' l hP
   obtain ⟨big, hbig⟩ := hE hB
   obtain ⟨L, hL'⟩ := hB big
@@ -1032,11 +1032,11 @@ theorem sFin_and_sFinl_of_theta_data_exists : GlobalTheory.Published.WeilReprese
   intro hW hD hP hL hA hE hX
   have h := _root_.GlobalTheory.HeightCounting.Fin3.start_at_all_pre2.and (StepW.and hE hX)
   refine ⟨h.trans (StepW.of_all ?_), fun cDep => h.trans (StepW.of_all ?_)⟩
-  · intro K B f T w _ _ H P x l S Γ
-    exact _root_.GlobalTheory.HeightCounting.Fin3.lv3_of_third_alt_alt l hW hD hP hA (H.1 P) (H.2.1 P x l) (H.2.2 P x ⟨l.toStrictHenselianAcyclic.toLI, l.b.toSeriesState⟩) S Γ (_root_.GlobalTheory.HeightCounting.Up.extensionWithLaw hL)
+  · intro K B f T w _ _ H P x l S
+    exact _root_.GlobalTheory.HeightCounting.Fin3.lv3_of_third_alt_alt l hW hD hP hA (H.1 P) (H.2.1 P x l) (H.2.2 P x ⟨l.toStrictHenselianAcyclic.toLI, l.b.toSeriesState⟩) S (_root_.GlobalTheory.HeightCounting.Up.extensionWithLaw hL)
       fun _ _ _ _ _ _ _ a _ => ⟨a⟩
-  · intro K B f T w _ _ H P x l S Γ hp
-    exact _root_.GlobalTheory.HeightCounting.Fin3.lv3_of_third_alt_alt l hW hD hP hA (H.1 P) (H.2.1 P x l) (H.2.2 P x ⟨l.toStrictHenselianAcyclic.toLI, l.b.toSeriesState⟩) S Γ (_root_.GlobalTheory.HeightCounting.Up.extensionWithList hL cDep)
+  · intro K B f T w _ _ H P x l S hp
+    exact _root_.GlobalTheory.HeightCounting.Fin3.lv3_of_third_alt_alt l hW hD hP hA (H.1 P) (H.2.1 P x l) (H.2.2 P x ⟨l.toStrictHenselianAcyclic.toLI, l.b.toSeriesState⟩) S (_root_.GlobalTheory.HeightCounting.Up.extensionWithList hL cDep)
       fun _ _ _ _ _ _ _ a b => ⟨(a, ⟨b cDep hp⟩)⟩
 end GlobalTheory.HeightCounting.Fin3
 end

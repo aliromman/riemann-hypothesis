@@ -271,7 +271,7 @@ theorem dimH_le_of_local_antilipschitz {n r : ℕ} (f : (Fin n → ℂ) → (Fin
     rw [Subtype.dist_eq, dist_eq_norm, dist_eq_norm]
     exact hKU a a.2 b b.2
   have e1 : dimH (S ∩ U) = dimH (Set.univ : Set (S ∩ U : Set (Fin n → ℂ))) := by
-    rw [← (isometry_subtype_coe).dimH_image Set.univ, Subtype.coe_image_univ]
+    rw [← (isometry_subtypeVal).dimH_image Set.univ, Subtype.coe_image_univ]
   have hfin : Module.finrank ℝ (Fin r → ℂ) = 2 * r := by
     rw [Module.finrank_pi_fintype, Complex.finrank_real_complex, Finset.sum_const,
       Finset.card_univ, Fintype.card_fin, smul_eq_mul, mul_comm]

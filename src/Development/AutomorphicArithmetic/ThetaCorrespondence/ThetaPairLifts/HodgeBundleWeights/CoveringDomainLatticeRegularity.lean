@@ -1847,9 +1847,9 @@ theorem weight_lattice_fg_on_domain : _root_.GlobalTheory.CovTop.PublishedHodgeB
       map_smul' := fun s F => ?_ }, mul_ne_zero hN hne, fun F hF => hint F.1 (GlobalTheory.AllWt.cuspW_le_secZ _ F.2) hF⟩
   · rw [← mul_add]
     exact congrArg _ (evalAt_add _ _ F.1 G.1 y)
-  · have e1 : evR Y.d.Xo₂ Y.d.c₂ (s • F).1 y = algebraMap Y.d.c₂.F z.K s * evR Y.d.Xo₂ Y.d.c₂ F.1 y :=
-      evalAt_smul _ _ s F.1 y
-    rw [e1, RingHom.id_apply, Algebra.smul_def, mul_left_comm]
+  · exact (congrArg (N * ·) (evalAt_smul _ _ s F.1 y)).trans <| by
+      rw [RingHom.id_apply, Algebra.smul_def, mul_left_comm]
+      rfl
 set_option maxHeartbeats 800000 in
 theorem weight_lattice_span_on_domain : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → ∀ (D : D7) (T : Core D) (j : ℕ) (Y : Deep T j) (e : ℕ) (o : ℝ),
     Y.Good e o → 2 < Module.finrank ℚ D.host.E / 2 → 1 ≤ (T.Q.Dw j).p → 1 ≤ (T.Q.Dw j).q → ∀ la : GlobalTheory.AllWt.Weight (T.Q.Dw j), (∀ τ, Antitone (la τ)) → (∀ τ, 1 ≤ gap (la τ) ((T.Q.Dw j).p - 1)) →

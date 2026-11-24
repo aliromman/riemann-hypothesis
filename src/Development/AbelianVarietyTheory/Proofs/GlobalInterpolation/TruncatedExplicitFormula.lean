@@ -1,5 +1,7 @@
 module
 
+import Mathlib.NumberTheory.Harmonic.ZetaAsymp
+
 public import Mathlib.Analysis.Analytic.Order
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.NumberTheory.LSeries.DirichletContinuation
@@ -167,31 +169,13 @@ theorem norm_sub_two_le {w : ℂ} (h1 : 0 ≤ w.re) (h2 : w.re < 1) (h3 : |w.im|
 
 theorem logDeriv_LFunction_near_zero : ∃ C : ℝ, 0 < C ∧ ∀ (N : ℕ) [NeZero N] (χ : DirichletCharacter ℂ N), χ.IsPrimitive → ∃ (m : ℕ) (h : ℂ → ℂ), m ≤ 1 ∧ AnalyticAt ℂ h 0 ∧ (∀ᶠ s in 𝓝[≠] (0 : ℂ), deriv (LFunction χ) s / LFunction χ s = (m : ℂ) / s + h s) ∧ ‖h 0‖ ≤ C * (Real.log (2 * N) + ∑ᶠ ρ ∈ {ρ : ℂ | 0 < ρ.re ∧ ρ.re < 1 ∧ |ρ.im| < 1 ∧ LFunction χ ρ = 0}, ((analyticOrderNatAt (LFunction χ) ρ : ℕ) : ℝ) / ‖ρ‖) := by
   obtain ⟨C₁, hC₁, H₁⟩ := GlobalTheory.LWide.logDeriv_LFunction_strip
-  obtain ⟨C₂, hC₂, H₂⟩ := GlobalTheory.ZetaWide.main
+  let C₂ : ℝ := ‖Complex.log (2 * (Real.pi : ℂ))‖ + 1
+  have hC₂ : 0 < C₂ := by dsimp [C₂]; positivity
   refine ⟨2 * C₁ + 2 * C₂ + 2, by positivity, fun N _ χ hχ => ?_⟩
   have han : AnalyticAt ℂ (LFunction χ) 0 := by
     refine DifferentiableOn.analyticAt (s := {1}ᶜ)
       (fun z hz => (differentiableAt_LFunction χ z (Or.inl hz)).differentiableWithinAt) ?_
     exact isOpen_compl_singleton.mem_nhds (by simp)
-  have hord : ∀ hL : LFunction χ 0 = 0, analyticOrderNatAt (LFunction χ) 0 = 1 := fun hL =>
-    (GlobalTheory.LFunction_zero_of_re_nonpos N χ hχ 0 (by simp) hL).2.1
-  have hm : analyticOrderNatAt (LFunction χ) 0 ≤ 1 := by
-    by_cases hL : LFunction χ 0 = 0
-    · exact (hord hL).le
-    · rw [analyticOrderNatAt, han.analyticOrderAt_eq_zero.mpr hL]; simp
-  have hne : ¬ ∀ᶠ s in 𝓝 (0 : ℂ), LFunction χ s = 0 := by
-    intro hz
-    have h1 := hord hz.self_of_nhds
-    rw [analyticOrderNatAt, analyticOrderAt_eq_top.mpr hz] at h1
-    simp at h1
-  have hbig : ∀ w : ℂ, LFunction χ w = 0 → w.re ≤ 0 → w ≠ 0 → 1 ≤ ‖w‖ := by
-    intro w hw hre h0
-    obtain ⟨n, rfl⟩ := (GlobalTheory.LFunction_zero_of_re_nonpos N χ hχ w hre hw).1
-    rw [norm_neg, Complex.norm_natCast]
-    have : n ≠ 0 := by rintro rfl; simp at h0
-    exact_mod_cast Nat.one_le_iff_ne_zero.mpr this
-  have hL2 : LFunction χ 2 ≠ 0 :=
-    LFunction_ne_zero_of_one_le_re χ (Or.inr (by norm_num)) (by simp)
   have hN : (1 : ℝ) ≤ N := by exact_mod_cast Nat.one_le_iff_ne_zero.mpr (NeZero.ne N)
   have hlog : 1 / 2 ≤ Real.log (2 * N) := by
     have h1 : Real.log 2 ≤ Real.log (2 * N) := Real.log_le_log (by norm_num) (by linarith)
@@ -206,25 +190,37 @@ theorem logDeriv_LFunction_near_zero : ∃ C : ℝ, 0 < C ∧ ∀ (N : ℕ) [NeZ
       exact hχ.symm
     subst hq
     have hf : LFunction χ = riemannZeta := LFunction_modOne_eq
-    rw [hf] at han hm hne hbig hL2 hnn ⊢
-    have A := H₂ 2 (by norm_num) (by simp) (by norm_num) hL2
-    simp only [im_ofNat, ofReal_zero, zero_mul, add_zero, abs_zero, zero_add] at A
-    obtain ⟨h, ha, hb, hc⟩ := exists_regular_part riemannZeta (fun s => 1 / (s - 1)) _
-      (C₂ * Real.log 2) A.1
-      (ContinuousAt.div continuousAt_const (continuousAt_id.sub continuousAt_const) (by simp))
-      han hne (fun h => ⟨norm_sub_two_le (by simp) (by simp) (by simp), by simp, h⟩)
-      (fun w hw => hw.2.2)
-      (fun w a b c d => ⟨norm_sub_two_le a.le b c, by rintro rfl; simp at b, d⟩)
-      (fun w hw => hbig w hw.2.2) A.2.1 (fun s hs0 hs1 hs => by
-        have B := (H₂ s (by simp; linarith) (by simp; linarith)
-          (by exact_mod_cast hs1.ne) hs).2.2
-        simpa only [ofReal_im, ofReal_zero, zero_mul, add_zero, abs_zero, zero_add] using B)
-    refine ⟨_, h, hm, ha, hb, hc.trans ?_⟩
-    simp only [Nat.cast_one, mul_one] at hlog ⊢
-    have e1 : ‖(1 : ℂ) / (0 - 1)‖ = 1 := by simp
-    rw [e1]
-    nlinarith [mul_nonneg hC₁.le hnn, mul_nonneg hC₂.le hnn]
-  · have A := H₁ N χ h1 2 (by norm_num) (by simp) hL2
+    rw [hf] at han hnn ⊢
+    refine ⟨0, fun s => deriv riemannZeta s / riemannZeta s, by norm_num,
+      han.deriv.div han (by norm_num [riemannZeta_zero]), ?_, ?_⟩
+    · exact Filter.Eventually.of_forall fun s => by simp
+    · simp only [Nat.cast_one, mul_one] at hlog ⊢
+      rw [deriv_riemannZeta_zero, riemannZeta_zero]
+      have he : (-Complex.log (2 * (Real.pi : ℂ)) / 2) / (-1 / 2) =
+          Complex.log (2 * (Real.pi : ℂ)) := by ring
+      rw [he]
+      have hc : ‖Complex.log (2 * (Real.pi : ℂ))‖ < C₂ := by dsimp [C₂]; linarith
+      nlinarith [mul_nonneg hC₁.le hnn, mul_nonneg hC₂.le hnn]
+  · have hord : ∀ hL : LFunction χ 0 = 0, analyticOrderNatAt (LFunction χ) 0 = 1 := fun hL =>
+      (GlobalTheory.LFunction_zero_of_re_nonpos N χ hχ 0 (by simp) hL).2.1
+    have hm : analyticOrderNatAt (LFunction χ) 0 ≤ 1 := by
+      by_cases hL : LFunction χ 0 = 0
+      · exact (hord hL).le
+      · rw [analyticOrderNatAt, han.analyticOrderAt_eq_zero.mpr hL]; simp
+    have hne : ¬ ∀ᶠ s in 𝓝 (0 : ℂ), LFunction χ s = 0 := by
+      intro hz
+      have h1 := hord hz.self_of_nhds
+      rw [analyticOrderNatAt, analyticOrderAt_eq_top.mpr hz] at h1
+      simp at h1
+    have hbig : ∀ w : ℂ, LFunction χ w = 0 → w.re ≤ 0 → w ≠ 0 → 1 ≤ ‖w‖ := by
+      intro w hw hre h0
+      obtain ⟨n, rfl⟩ := (GlobalTheory.LFunction_zero_of_re_nonpos N χ hχ w hre hw).1
+      rw [norm_neg, Complex.norm_natCast]
+      have : n ≠ 0 := by rintro rfl; simp at h0
+      exact_mod_cast Nat.one_le_iff_ne_zero.mpr this
+    have hL2 : LFunction χ 2 ≠ 0 :=
+      LFunction_ne_zero_of_one_le_re χ (Or.inr (by norm_num)) (by simp)
+    have A := H₁ N χ h1 2 (by norm_num) (by simp) hL2
     simp only [im_ofNat, ofReal_zero, zero_mul, add_zero, abs_zero, zero_add] at A
     obtain ⟨h, ha, hb, hc⟩ := exists_regular_part (LFunction χ) (fun _ => 0) _
       (C₁ * Real.log (N * 2)) A.1 continuousAt_const
@@ -269,12 +265,8 @@ private theorem half_le_norm_sub_of_re_eq_neg_half_of_LFunction_eq_zero {N : ℕ
 
 open Complex DirichletCharacter ArithmeticFunction MeasureTheory Filter Topology in
 private theorem LFunction_ne_zero_of_re_eq_neg_half {N : ℕ} [NeZero N]
-    (χ : DirichletCharacter ℂ N) (hχ : χ.IsPrimitive) {s : ℂ} (hs : s.re = -(1 / 2)) :
-    LFunction χ s ≠ 0 := by
-  intro h
-  have := half_le_norm_sub_of_re_eq_neg_half_of_LFunction_eq_zero χ hχ hs h
-  simp at this
-  linarith
+    (χ : DirichletCharacter ℂ N) {s : ℂ} (hs : s.re = -(1 / 2)) : LFunction χ s ≠ 0 :=
+  GlobalTheory.LFunction_ne_zero_of_re_eq_neg_half χ hs
 
 open Complex DirichletCharacter ArithmeticFunction MeasureTheory Filter Topology in
 private theorem norm_finsum_div_sub_le_two_mul_finsum_of_half_le_dist {S : Set ℂ} (hS : S.Finite) (k : ℂ → ℕ) (s : ℂ)
@@ -320,7 +312,7 @@ private theorem exists_norm_logDeriv_LFunction_neg_half_le_log_conductor :
     have hs1 : s ≠ 1 := by
       intro h; have := congrArg Complex.re h; rw [hre] at this; norm_num at this
     have hz : riemannZeta s ≠ 0 := by
-      have := LFunction_ne_zero_of_re_eq_neg_half (1 : DirichletCharacter ℂ 1) hχ hre
+      have := LFunction_ne_zero_of_re_eq_neg_half (1 : DirichletCharacter ℂ 1) hre
       rwa [LFunction_modOne_eq] at this
     obtain ⟨hfin, hcnt, hbd⟩ := H₂ s (by rw [hre]; norm_num) (by rw [hre]; norm_num) hs1 hz
     have hsum := norm_finsum_div_sub_le_two_mul_finsum_of_half_le_dist hfin (analyticOrderNatAt riemannZeta) s
@@ -346,7 +338,7 @@ private theorem exists_norm_logDeriv_LFunction_neg_half_le_log_conductor :
     rw [him] at key
     simp only [Nat.cast_one, one_mul]
     linarith [mul_nonneg hC₁.le (by linarith : (0:ℝ) ≤ Real.log (|t| + 2))]
-  · have hLs := LFunction_ne_zero_of_re_eq_neg_half χ hχ hre
+  · have hLs := LFunction_ne_zero_of_re_eq_neg_half χ hre
     obtain ⟨hfin, hcnt, hbd⟩ := H₁ N χ h1 s (by rw [hre]; norm_num) (by rw [hre]; norm_num) hLs
     rw [him] at hcnt hbd
     have hsum := norm_finsum_div_sub_le_two_mul_finsum_of_half_le_dist hfin (analyticOrderNatAt (LFunction χ)) s
@@ -493,7 +485,7 @@ theorem _root_.GlobalTheory.PerronShift.perron_shift : ∃ C : ℝ, 0 < C ∧ �
   have hc3 : c ≤ 5 / 2 := by linarith
   have hid := _root_.GlobalTheory.ExplicitRect.residue_identity N χ hχ u c T' m h hu1 hc1
     (by linarith) hh hev (fun s h1 h2 h3 => (hZ s h1 (by linarith) h3).1)
-    (fun s hs => LFunction_ne_zero_of_re_eq_neg_half χ hχ hs)
+    (fun s hs => LFunction_ne_zero_of_re_eq_neg_half χ hs)
   rw [inv_two_pi_mul_sub_add_eq_of_contour_identity _ _ _ _ _ _ _ hid]
   refine (norm_neg_add_inv_two_pi_mul_add_I_mul_sub_le _ _ _ _).trans ?_
   have hN : (1 : ℝ) ≤ N := by exact_mod_cast Nat.one_le_iff_ne_zero.mpr (NeZero.ne N)
@@ -613,13 +605,13 @@ open Complex DirichletCharacter ArithmeticFunction MeasureTheory Filter Topology
 namespace GlobalTheory.ExplicitFormula
 
 theorem truncated_explicit_formula : ∃ C : ℝ, 0 < C ∧ ∀ (N : ℕ) [NeZero N] (χ : DirichletCharacter ℂ N), χ.IsPrimitive → ∀ u T : ℝ, 2 ≤ T → T ≤ u → {ρ : ℂ | 0 < ρ.re ∧ ρ.re < 1 ∧ |ρ.im| < T ∧ LFunction χ ρ = 0}.Finite ∧ ‖psi0 χ u + ∑ᶠ ρ ∈ {ρ : ℂ | 0 < ρ.re ∧ ρ.re < 1 ∧ |ρ.im| < T ∧ LFunction χ ρ = 0}, ((analyticOrderNatAt (LFunction χ) ρ : ℕ) : ℂ) * ((u : ℂ) ^ ρ / ρ)‖ ≤ C * (u * Real.log (N * u * T) ^ 2 / T + Real.log (N * u) + ∑ᶠ ρ ∈ {ρ : ℂ | 0 < ρ.re ∧ ρ.re < 1 ∧ |ρ.im| < 1 ∧ LFunction χ ρ = 0}, ((analyticOrderNatAt (LFunction χ) ρ : ℕ) : ℝ) / ‖ρ‖) := by
-  obtain ⟨C₁, hC₁, h₁⟩ := GlobalTheory.PerronPsi.truncated_perron_psi
+  obtain ⟨C₁, hC₁, h₁⟩ := GlobalTheory.PerronPsi.truncated_perron_psi_of_one_le
   obtain ⟨C₂, hC₂, h₂⟩ := _root_.GlobalTheory.PerronShift.perron_shift
   obtain ⟨C₃, hC₃, h₃⟩ := GlobalTheory.ZeroBand.zeros_band
   refine ⟨C₁ + C₂ + C₃, by positivity, fun N _ χ hχ u T hT hTu => ?_⟩
   obtain ⟨T', hT1, hT2, hs⟩ := h₂ N χ hχ u T hT hTu
   obtain ⟨hfin, hb⟩ := h₃ N χ hχ u T T' hT hTu hT1 hT2
-  have hp := h₁ N χ u T' (by linarith) (by linarith) (by linarith)
+  have hp := h₁ N χ u T' (by linarith) (by linarith)
   refine ⟨hfin, ?_⟩
   have hN : (1 : ℝ) ≤ N := by exact_mod_cast Nat.one_le_iff_ne_zero.mpr (NeZero.ne N)
   have hiff : χ = 1 ↔ N = 1 := by

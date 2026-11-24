@@ -93,8 +93,6 @@ import Mathlib.Tactic.Linter.Style
 section -- clump:auto
 @[expose] public section
 
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
-
 open IsLocalRing UpperTheory.V UpperTheory.V.HV UpperTheory.V.Alg
 
 private theorem l_ne {l : ℕ} [Fact l.Prime] : ((l : ℕ) : PadicAlgCl l) ≠ 0 :=
@@ -615,7 +613,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 open NumberField Formalism.ConjugateSelfDual Formalism.WeaklyAdmissibleFiltrations Formalism.MainNotions.N Formalism.BasicNotions Formalism.BasicNotions.Loc ReciprocityTheory.Gal GlobalTheory.GalOfCusp IsLocalRing Topology UpperTheory.V UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Base UpperTheory.V.Af UpperTheory.V.Alg UpperTheory.V.W UpperTheory.V.Pr UpperTheory.V.Z.J UpperTheory.V.Loc
 
 private theorem crConj {l : ℕ} [Fact l.Prime] {D : Type} [Group D] [TopologicalSpace D] [IsTopologicalGroup D] (φ : D →* GQ l) (hφ : IsOpenEmbedding φ)

@@ -59,12 +59,8 @@ namespace GlobalTheory.HSCore
 
 structure Quoted : Prop where
   kv : GlobalTheory.Published.KawamataViehweg
-  gaga : GlobalTheory.Published.SerreHolomorphicSections
   nef : GlobalTheory.Published.NefNumerics
-  chow : GlobalTheory.Published.ChowFormExists
   chowInt : GlobalTheory.Published.ChowFormIntExists
-  chowCut : GlobalTheory.Published.ChowFormHyperplaneSection
-  len : GlobalTheory.Published.ProperIntersectionLength
 
 variable {F : Type} [Field F] [NumberField F]
 

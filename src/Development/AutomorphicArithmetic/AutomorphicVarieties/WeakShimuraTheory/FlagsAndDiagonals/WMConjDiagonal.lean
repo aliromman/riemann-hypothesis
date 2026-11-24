@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimuraTheory.SpaceMap
 
 @[expose] public section
 
@@ -66,8 +67,6 @@ theorem adj_mul (X Y : M4 R) : adj (X * Y) = adj Y * adj X := (grp R).1 X Y
 theorem adj_adj (X : M4 R) : adj (adj X) = X := (grp R).2.1 X
 
 theorem adj_one : adj (1 : M4 R) = 1 := (grp R).2.2.2.2.1
-
-theorem adj_map (f : R →+* R') (X : M4 R) : adj (X.map f) = (adj X).map f := (grp R).2.2.2.2.2.1 R' f X
 
 theorem gsp_mul {ν ν' : R} {g g' : M4 R} (h : IsGSp ν g) (h' : IsGSp ν' g') : IsGSp (ν * ν') (g * g') :=
   (grp R).2.2.2.2.2.2.2.1 ν ν' g g' h h'

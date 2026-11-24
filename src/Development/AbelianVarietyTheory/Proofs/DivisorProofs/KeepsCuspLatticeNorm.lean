@@ -241,13 +241,13 @@ structure CorePar (R : Nums E) : Type 1 where
   Dw : R.J → Datum H
   Xo : ∀ j, Moduli (Dw j) l
 
-  U : ∀ j (σ : c.F →+* ℂ), Formalism.L2.Pj.Unf (Xo j) c σ R.r
+  U : ∀ j (σ : c.F →+* ℂ), Formalism.L2.PjFree.Unf (Xo j) c σ R.r
 
   V : R.J → HSpace E R.r
 
-  dict : ∀ j (σ : c.F →+* ℂ), Formalism.L2.Pj.GoodEmb c σ → GA F (V j) → Σ k, Frame ((U j σ).X k).Ψ R.r
+  dict : ∀ j (σ : c.F →+* ℂ), Formalism.L2.PjFree.GoodEmb c σ → GA F (V j) → Σ k, Frame ((U j σ).X k).Ψ R.r
 
-  mu : ∀ j (σ : c.F →+* ℂ), Formalism.L2.Pj.GoodEmb c σ → GA F (V j) → ℂ
+  mu : ∀ j (σ : c.F →+* ℂ), Formalism.L2.PjFree.GoodEmb c σ → GA F (V j) → ℂ
 
   Kf : ∀ j, Subgroup (GA F (V j))
 

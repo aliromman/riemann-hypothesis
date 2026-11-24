@@ -129,18 +129,18 @@ theorem exists_rep_at {y : (Σ k, ι k) → Ω} {a : K → ℤ} {n : ℕ} {s : �
   · rw [eval_chartMon]
     exact Finset.prod_ne_zero_iff.mpr fun k _ => pow_ne_zero _ (hc k)
 
-theorem metric_ne {A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {P : Ideal (MRing ι)} {z : (Σ k, ι k) → ℂ} (hz : z ∈ mcPts P) (n : ℕ) :
+theorem metric_ne {A : HermLine ι} {P : Ideal (MRing ι)} {z : (Σ k, ι k) → ℂ} (hz : z ∈ mcPts P) (n : ℕ) :
     (A.h z : ℂ) ^ n ≠ 0 :=
   pow_ne_zero _ (Complex.ofReal_ne_zero.mpr (A.pos z hz.1).ne')
 
-def val (y : (Σ k, ι k) → Ω) (A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (n : ℕ) (s : Ω) (z : (Σ k, ι k) → ℂ) : ℂ := by
+def val (y : (Σ k, ι k) → Ω) (A : HermLine ι) (n : ℕ) (s : Ω) (z : (Σ k, ι k) → ℂ) : ℂ := by
   classical
   exact if hsz : s ∈ chartLat y A.a n ∧ z ∈ mcPts (mCoordIdeal y) then
     eval z (map (Int.castRingHom ℂ) (exists_rep_at hsz.1 hsz.2).choose.1) /
       (eval z (map (Int.castRingHom ℂ) (exists_rep_at hsz.1 hsz.2).choose.2) * (A.h z : ℂ) ^ n)
   else 0
 
-theorem val_spec {y : (Σ k, ι k) → Ω} {A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {n : ℕ} {s : Ω} (hs : s ∈ chartLat y A.a n)
+theorem val_spec {y : (Σ k, ι k) → Ω} {A : HermLine ι} {n : ℕ} {s : Ω} (hs : s ∈ chartLat y A.a n)
     {z : (Σ k, ι k) → ℂ} (hz : z ∈ mcPts (mCoordIdeal y)) {g h : MRing ι} (hr : IsRep y A.a n s g h) :
     eval z (map (Int.castRingHom ℂ) g) =
       val y A n s z * eval z (map (Int.castRingHom ℂ) h) * (A.h z : ℂ) ^ n := by
@@ -152,7 +152,7 @@ theorem val_spec {y : (Σ k, ι k) → Ω} {A : ReciprocityTheory.ChartRestricti
   rw [eq_comm, div_mul_eq_mul_div, div_mul_eq_mul_div, div_eq_iff (mul_ne_zero h1 h2)]
   linear_combination (-(A.h z : ℂ) ^ n) * hc
 
-theorem val_eq {y : (Σ k, ι k) → Ω} {A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {n : ℕ} {s : Ω} (hs : s ∈ chartLat y A.a n)
+theorem val_eq {y : (Σ k, ι k) → Ω} {A : HermLine ι} {n : ℕ} {s : Ω} (hs : s ∈ chartLat y A.a n)
     {z : (Σ k, ι k) → ℂ} (hz : z ∈ mcPts (mCoordIdeal y)) {g h : MRing ι} (hr : IsRep y A.a n s g h)
     (hh : eval z (map (Int.castRingHom ℂ) h) ≠ 0) :
     val y A n s z = eval z (map (Int.castRingHom ℂ) g) /
@@ -188,7 +188,7 @@ theorem rep_mul {y : (Σ k, ι k) → Ω} {a : K → ℤ} {n m : ℕ} {s t : Ω}
   · rw [map_mul, map_mul, hy₁, hy₂]
     ring
 
-def w (y : (Σ k, ι k) → Ω) (A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (n : ℕ) : chartLat y A.a n →+ (((Σ k, ι k) → ℂ) → ℂ) :=
+def w (y : (Σ k, ι k) → Ω) (A : HermLine ι) (n : ℕ) : chartLat y A.a n →+ (((Σ k, ι k) → ℂ) → ℂ) :=
   AddMonoidHom.mk' (fun s => val y A n s) fun s t => by
     funext z
     show val y A n ((s + t : chartLat y A.a n) : Ω) z = val y A n s z + val y A n t z
@@ -202,7 +202,7 @@ def w (y : (Σ k, ι k) → Ω) (A : ReciprocityTheory.ChartRestriction.G.Geo.He
       field_simp
     · simp [val, hz]
 
-theorem val_continuousOn {y : (Σ k, ι k) → Ω} {A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι}
+theorem val_continuousOn {y : (Σ k, ι k) → Ω} {A : HermLine ι}
     (hA : ContinuousOn A.h {z | ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0}) {n : ℕ} {s : Ω} (hs : s ∈ chartLat y A.a n) :
     ContinuousOn (val y A n s) (mcPts (mCoordIdeal y)) := by
   intro z₀ hz₀
@@ -222,7 +222,7 @@ theorem val_continuousOn {y : (Σ k, ι k) → Ω} {A : ReciprocityTheory.ChartR
   filter_upwards [nhdsWithin_le_nhds hopen, self_mem_nhdsWithin] with z hz hz'
   exact val_eq hs hz' r hz
 
-theorem secNormAt_eq {y : (Σ k, ι k) → Ω} {A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {n : ℕ} {s : Ω} (hs : s ∈ chartLat y A.a n)
+theorem secNormAt_eq {y : (Σ k, ι k) → Ω} {A : HermLine ι} {n : ℕ} {s : Ω} (hs : s ∈ chartLat y A.a n)
     {z : (Σ k, ι k) → ℂ} (hz : z ∈ mcPts (mCoordIdeal y)) : secNormAt y A n s z = ‖val y A n s z‖ := by
   have hT : 0 < A.h z := A.pos z hz.1
   have hnT : ‖(A.h z : ℂ) ^ n‖ = A.h z ^ n := by
@@ -239,7 +239,7 @@ theorem secNormAt_eq {y : (Σ k, ι k) → Ω} {A : ReciprocityTheory.ChartRestr
   rw [val_spec hs hz ⟨dg, dh, hg, hh, hd, hy⟩, norm_mul, norm_mul, hnT, mul_assoc, mul_assoc] at this
   exact le_of_mul_le_mul_right this (mul_pos (norm_pos_iff.mpr hne) (pow_pos hT n))
 
-theorem val_mul {y : (Σ k, ι k) → Ω} {A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {n m : ℕ} {s t st : Ω} (hs : s ∈ chartLat y A.a n)
+theorem val_mul {y : (Σ k, ι k) → Ω} {A : HermLine ι} {n m : ℕ} {s t st : Ω} (hs : s ∈ chartLat y A.a n)
     (ht : t ∈ chartLat y A.a m) (hst : st ∈ chartLat y A.a (n + m)) (he : st = s * t)
     {z : (Σ k, ι k) → ℂ} (hz : z ∈ mcPts (mCoordIdeal y)) :
     val y A (n + m) st z = val y A n s z * val y A m t z := by

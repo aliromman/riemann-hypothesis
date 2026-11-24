@@ -446,7 +446,9 @@ theorem exists_prod_abs_sub_ge_on_segment : ∀ (N : ℕ) (x : Fin N → ℝ) (a
     rw [this]; simp
   have hb : ∀ t ∈ Set.Icc (-1 : ℝ) 1, |P.eval t| ≤ 1 := by
     intro t ht
-    have h1 := hcon (a + δ / 2 + δ / 2 * t) (by nlinarith [ht.1]) (by nlinarith [ht.2])
+    have h1 := hcon (a + δ / 2 + δ / 2 * t)
+      (by have := mul_le_mul_of_nonneg_left ht.1 (by positivity : 0 ≤ δ / 2); linarith)
+      (by have := mul_le_mul_of_nonneg_left ht.2 (by positivity : 0 ≤ δ / 2); linarith)
     have h2 : |P.eval t| = (∏ i, |a + δ / 2 + δ / 2 * t - x i|) / m ^ N := by
       simp only [P, eval_prod, Finset.abs_prod]
       have : ∀ i : Fin N, |eval t (C (Real.exp 1) * X + C ((a + δ / 2 - x i) / m))|
@@ -528,7 +530,7 @@ lemma tendsto_inv_prod {κ : Type*} (a : κ → ℂ) (T : Finset κ) (ha : ∀ t
         linarith)
   have hq : ‖w‖ ≤ ‖w‖ ^ (M + 1) := le_self_pow₀ (by linarith) (by omega)
   apply inv_anti₀ (by linarith)
-  nlinarith
+  exact hq.trans (le_mul_of_one_le_right (by positivity) hp)
 
 lemma inv_pow_le_exp (N M : ℕ) (hN : 0 < N) (r : ℝ) (hr : 1 - (N : ℝ) / (2 * (M + N)) ≤ r) :
     1 ≤ r ^ M * Real.exp 1 ^ N := by
@@ -551,7 +553,11 @@ lemma inv_pow_le_exp (N M : ℕ) (hN : 0 < N) (r : ℝ) (hr : 1 - (N : ℝ) / (2
     rw [← Real.exp_nat_mul, ← Real.exp_nat_mul]
     apply Real.exp_le_exp.2
     rw [hu, mul_one, ← mul_div_assoc, div_le_iff₀ (by positivity)]
-    nlinarith [mul_nonneg hM' hN'.le]
+    have hMN : 0 ≤ (M : ℝ) * (N : ℝ) := mul_nonneg hM' hN'.le
+    have hN2 : 0 ≤ (N : ℝ) ^ 2 := sq_nonneg _
+    have : (N : ℝ) * (2 * (M : ℝ) + (N : ℝ)) - (M : ℝ) * (N : ℝ) =
+        (M : ℝ) * (N : ℝ) + (N : ℝ) ^ 2 := by ring
+    linarith
   calc (1 : ℝ) ≤ (r * Real.exp u) ^ M := one_le_pow₀ h2
     _ = r ^ M * Real.exp u ^ M := mul_pow _ _ _
     _ ≤ _ := mul_le_mul_of_nonneg_left h3 (by positivity)
@@ -617,8 +623,10 @@ lemma core (N M : ℕ) (z : Fin N → ℂ) (i₁ : Fin N) (h1 : ‖z i₁‖ = 1
       have e3 : 0 < ‖f w‖ := norm_pos_iff.2 (right_ne_zero_of_mul (hfne w hw.ge))
       rw [e1, norm_inv, norm_mul, norm_pow, hw, hG, inv_mul_eq_div, inv_eq_one_div,
         div_le_div_iff₀ (by positivity) (by positivity)]
-      have : 0 < r ^ (M + 1) := by positivity
-      nlinarith)
+      calc 1 * (r ^ (M + 1) * D) = r ^ (M + 1) * D := one_mul _
+        _ ≤ r ^ (M + 1) * (‖∏ t ∈ S, (w - z t)‖ * ‖f w‖) :=
+            mul_le_mul_of_nonneg_left e2 (by positivity)
+        _ = ‖∏ t ∈ S, (w - z t)‖ * (r ^ (M + 1) * ‖f w‖) := by ring)
   have key : (S.card : ℂ) = ∑ j, c j * ∑ i, z i ^ (M + 1 + (j : ℕ)) * f (z i) := by
     have e1 : ∑ j, c j * ∑ i, z i ^ (M + 1 + (j : ℕ)) * f (z i)
         = ∑ i, (z i ^ (M + 1) * f (z i)) * ∑ j, c j * z i ^ (j : ℕ) := by
@@ -778,7 +786,10 @@ theorem power_sum_large {C : ℝ} (hC : 1 ≤ C)
                     linarith
     exact_mod_cast this
   have hρ' : ρ ∈ Z.filter (fun w => ‖s - w‖ ≤ D) :=
-    Finset.mem_filter.2 ⟨hρ, hd.trans (by rw [hD]; nlinarith)⟩
+    Finset.mem_filter.2 ⟨hρ, hd.trans (by
+      rw [hD]
+      have := mul_le_mul_of_nonneg_right (show (2 : ℝ) ≤ 8 * C by linarith) hr.le
+      linarith)⟩
   have hK1 : 1 ≤ K :=
     hm.trans ((Finset.single_le_sum (fun _ _ => Nat.zero_le _) hρ').trans hcount)
   obtain ⟨j, h1, h2, h3⟩ := power_sum_mult hC hT _ m (fun w => 1 / (s - w)) K hcount ρ hρ' hm
@@ -789,7 +800,8 @@ theorem power_sum_large {C : ℝ} (hC : 1 ≤ C)
     simp only [one_div_pow, mul_one_div] at h3
     refine le_trans (pow_le_pow_left₀ (by positivity) ?_ _) h3
     rw [norm_div, norm_one, div_div]
-    exact one_div_le_one_div_of_le (by positivity) (by nlinarith)
+    exact one_div_le_one_div_of_le (by positivity)
+      (by have := mul_le_mul_of_nonneg_left hd (show 0 ≤ 2 * C by linarith); linarith)
   obtain ⟨i, rfl⟩ : ∃ i, j = i + 2 := ⟨j - 2, by omega⟩
   have h5 : ‖∑ w ∈ Z.filter (fun w => ¬ ‖s - w‖ ≤ D), (m w : ℂ) / (s - w) ^ (i + 2)‖
       ≤ 1 / 4 * (1 / (4 * C * r)) ^ (i + 2) := by
@@ -871,14 +883,19 @@ theorem exists_large_derSeries : ∃ A C r₀ : ℝ, 1 ≤ A ∧ 0 < C ∧ 0 < r
     by positivity, ?_⟩
   intro q _ χ τ r L K ρ hχ hL hLr hr0 hK hρ hd
   have hq : (1 : ℝ) ≤ q := by exact_mod_cast NeZero.one_le
-  have hlog : 0 < Real.log (q * (|τ| + 2)) := Real.log_pos (by nlinarith [abs_nonneg τ])
+  have hlog : 0 < Real.log (q * (|τ| + 2)) := Real.log_pos
+    (lt_of_lt_of_le (by linarith [abs_nonneg τ] : 1 < |τ| + 2) (le_mul_of_one_le_left (by positivity) hq))
   have hLp : 0 < L := hlog.trans_le hL
   have hr : 0 < r := lt_of_lt_of_le (by positivity) hLr
   have hTr : 8 * T * r ≤ 1 := by
     rw [le_div_iff₀ (by positivity)] at hr0; linarith
-  have hr8 : r ≤ 1 / 8 := by nlinarith
+  have hr8 : r ≤ 1 / 8 := by
+    have := mul_le_mul_of_nonneg_right hT1 hr.le
+    linarith
   have hrL : 1 ≤ r * L := by rwa [div_le_iff₀ hLp] at hLr
-  have hL1 : 1 ≤ L := by nlinarith
+  have hL1 : 1 ≤ L := by
+    have := mul_le_mul_of_nonneg_right hr8 hLp.le
+    linarith
   have hrL' : 1 / r ≤ L := by rw [div_le_iff₀ hr]; linarith
   set s : ℂ := ((1 + r : ℝ) : ℂ) + τ * I with hs
   have hfin := (H q χ (1 + r) τ 0 (by linarith) (by linarith)).1
@@ -908,7 +925,8 @@ theorem exists_large_derSeries : ∃ A C r₀ : ℝ, 1 ≤ A ∧ 0 < C ∧ 0 < r
     have e : S = (D - P + S) - D + P := by ring
     have := norm_add_le ((D - P + S) - D) P
     have := norm_sub_le (D - P + S) D
-    rw [e]; nlinarith
+    have : (1 + C₁) * L = L + C₁ * L := by ring
+    rw [e]; linarith
   have hD0 : ‖derSeries (fun n : ℕ => χ (n : ZMod q)) 0 s‖ ≤ 1 / r + C₁ := by
     refine (norm_derSeries_zero_le _ (fun n => χ.norm_le_one _) (1 + r) τ (by linarith)).trans ?_
     obtain ⟨hf, -, h⟩ := H 1 1 (1 + r) 0 0 (by linarith) (by linarith)
@@ -929,7 +947,7 @@ theorem exists_large_derSeries : ∃ A C r₀ : ℝ, 1 ≤ A ∧ 0 < C ∧ 0 < r
     have h4 : C₁ * Real.log (((1 : ℕ) : ℝ) * (|(0 : ℝ)| + 2)) / (1 + r) ^ 0 ≤ C₁ := by
       have := Real.log_two_lt_d9
       simp only [Nat.cast_one, abs_zero, zero_add, one_mul, pow_zero, div_one]
-      nlinarith
+      exact mul_le_of_le_one_right hC₁.le (by linarith)
     linarith
   have hB : ∑ w ∈ Z, (ord χ w : ℝ) / ‖s - w‖ ^ 2 ≤ (2 * C₁ + 2) * r * L / r ^ 2 := by
     have h1 : r * ∑ w ∈ Z, (ord χ w : ℝ) / ‖s - w‖ ^ 2 ≤ (2 * C₁ + 2) * L := by
@@ -939,9 +957,14 @@ theorem exists_large_derSeries : ∃ A C r₀ : ℝ, 1 ≤ A ∧ 0 < C ∧ 0 < r
       rw [Complex.re_sum] at h2
       rw [Finset.mul_sum]
       refine (Finset.sum_le_sum fun w hw => inv_sq_le_re _ (hre w hw)).trans (h2.trans ?_)
-      nlinarith
+      have hC1L : C₁ ≤ C₁ * L := le_mul_of_one_le_right hC₁.le hL1
+      have hring : (2 * C₁ + 2) * L = L + C₁ * L + (1 + C₁) * L := by ring
+      linarith
     rw [le_div_iff₀ (by positivity)]
-    nlinarith
+    calc (∑ w ∈ Z, (ord χ w : ℝ) / ‖s - w‖ ^ 2) * r ^ 2
+        = r * (r * ∑ w ∈ Z, (ord χ w : ℝ) / ‖s - w‖ ^ 2) := by ring
+      _ ≤ r * ((2 * C₁ + 2) * L) := mul_le_mul_of_nonneg_left h1 hr.le
+      _ = (2 * C₁ + 2) * r * L := by ring
   have hρ1 : ρ ≠ 1 := by
     rintro rfl
     rcases hχ with h | h
@@ -976,7 +999,8 @@ theorem exists_large_derSeries : ∃ A C r₀ : ℝ, 1 ≤ A ∧ 0 < C ∧ 0 < r
       mul_le_mul_of_nonneg_right (hK.trans a) (by linarith)
     have d : 0 ≤ (1 + C₁) * L := by positivity
     rw [pow_succ]
-    nlinarith
+    have := mul_le_mul_of_nonneg_right (show (128 : ℝ) ≤ 128 * T by linarith) d
+    linarith
   have h6 : 1 / (8 * T * r) ^ (k + 1) ≤ 1 / 2 * x ^ (k + 1) := by
     have e : 1 / (8 * T * r) = 1 / 2 * x := by rw [hx]; field_simp; ring
     rw [← one_div_pow, e, mul_pow]

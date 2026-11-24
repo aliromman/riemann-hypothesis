@@ -590,17 +590,8 @@ theorem join_chart {o : Type} [CommRing o] {Ω : Type} [Field Ω] [Algebra o Ω]
 
 theorem map_chRing {o : Type} [CommRing o] {Ω : Type} [Field Ω] [Algebra o Ω] {κ : Type} (x : κ → Ω)
     (Ω' : Type) [Field Ω'] [Algebra Ω Ω'] [Algebra o Ω'] [IsScalarTower o Ω Ω'] (c : κ) (a : Ω)
-    (ha : a ∈ chRing o x c) : algebraMap Ω Ω' a ∈ chRing o (fun k => algebraMap Ω Ω' (x k)) c := by
-  induction ha using Algebra.adjoin_induction with
-  | mem a h =>
-    obtain ⟨j, rfl⟩ := h
-    rw [map_div₀]
-    exact Algebra.subset_adjoin ⟨j, rfl⟩
-  | algebraMap r =>
-    rw [← IsScalarTower.algebraMap_apply]
-    exact Subalgebra.algebraMap_mem _ r
-  | add a b _ _ ha hb => rw [map_add]; exact add_mem ha hb
-  | mul a b _ _ ha hb => rw [map_mul]; exact mul_mem ha hb
+    (ha : a ∈ chRing o x c) : algebraMap Ω Ω' a ∈ chRing o (fun k => algebraMap Ω Ω' (x k)) c :=
+  PositivityTheory.HtPt.Mb.LFracExt.FracExt.algebraMap_mem_chRing x Ω' c ha
 
 theorem exists_of_mem_chRing {o : Type} [CommRing o] {Ω : Type} [Field Ω] [Algebra o Ω] {κ : Type} (x : κ → Ω)
     (Ω' : Type) [Field Ω'] [Algebra Ω Ω'] [Algebra o Ω'] [IsScalarTower o Ω Ω'] (c : κ) (a : Ω')

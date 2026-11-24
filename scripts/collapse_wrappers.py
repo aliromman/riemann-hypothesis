@@ -22,7 +22,7 @@ strict-implicit and instance arguments (parsed from their source by lean_signatu
 it cannot parse counts as a mismatch), when the wrapper file declares `variable`s, when `X` does
 not resolve to exactly one project declaration, when a caller
 mentions `N` in a way that might not be a reference (field notation, a local declaration of
-the same short name), when the wrapper is imported by a protected module, or when they are
+the same short name, a possible string literal), when the wrapper is imported by a protected module, or when they are
 listed in `scripts/collapse-wrappers-exclude.txt` (e.g. because a caller failed to compile).
 This is not reversible by a script.
 
@@ -208,6 +208,12 @@ def main():
             body = mods[c].body
             if last not in body:
                 continue
+            # Every string literal lies between the first and last double quote.
+            # Keep doubtful uses, including raw/interpolated strings, rather than
+            # rewrite their contents. This may also retain a use between strings.
+            if '"' in body and last in body[body.index('"'):body.rindex('"') + 1]:
+                ok = False
+                break
             if any(d.rsplit(".", 1)[-1] == last for d in mods[c].decls):
                 ok = False
                 break
