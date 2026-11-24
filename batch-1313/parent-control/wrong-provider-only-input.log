@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/private/tmp/rh-million-refactor.VIyB06/kernel-review/v3-base/base-1313/harness/ci/root-replay/compile_roots.py", line 130, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/private/tmp/rh-million-refactor.VIyB06/kernel-review/v3-base/base-1313/harness/ci/root-replay/compile_roots.py", line 65, in main
+    if digest(p)!=expected.get(m):raise ValueError('parent public image differs from the authenticated archive: '+m)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: parent public image differs from the authenticated archive: Lemmata.TracePi
