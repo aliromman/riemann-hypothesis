@@ -109,12 +109,7 @@ theorem bijective_of_injective (n : ℕ) [NeZero n] (X Y : Type) [AddCommGroup X
     [Module (ZMod n) X] [Finite X] [AddCommGroup Y] [Module (ZMod n) Y] [Finite Y]
     (B : Y →ₗ[ZMod n] X →ₗ[ZMod n] ZMod n) (hB : Function.Injective B)
     (hB' : Function.Injective B.flip) : Function.Bijective B := by
-  have : Finite (X →ₗ[ZMod n] ZMod n) := Finite.of_injective _ DFunLike.coe_injective
-  have hd : Nat.card (X →ₗ[ZMod n] ZMod n) = Nat.card X := GlobalTheory.ZModDual.card_dual_eq n X
-  have hd' : Nat.card (Y →ₗ[ZMod n] ZMod n) = Nat.card Y := GlobalTheory.ZModDual.card_dual_eq n Y
-  have : Finite (Y →ₗ[ZMod n] ZMod n) := Finite.of_injective _ DFunLike.coe_injective
-  have h1 : Nat.card X ≤ Nat.card Y := hd' ▸ Nat.card_le_card_of_injective _ hB'
-  exact hB.bijective_of_nat_card_le (hd ▸ h1)
+  exact (GlobalTheory.ZModDual.bijective_of_mutual_dual_injections n X Y B B.flip hB hB').1
 
 theorem card_annihilator_mul_card (n : ℕ) [NeZero n] (X Y : Type) [AddCommGroup X]
     [Module (ZMod n) X] [Finite X] [AddCommGroup Y] [Module (ZMod n) Y] [Finite Y]
@@ -163,7 +158,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AnnihilatorIntersectionCard =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CardComapEqCardKerMulCardRangeInf =====
--- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CardComapEqCardKerMulCardRangeInf", "h": "module\n\npublic import Mathlib.Algebra.Module.Submodule.Range\npublic import Mathlib.SetTheory.Cardinal.Finite\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.LinearAlgebra.Isomorphisms\n\n"}
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CardComapEqCardKerMulCardRangeInf", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CardEqCardKerMulCardRange\npublic import Mathlib.Algebra.Module.Submodule.Range\npublic import Mathlib.SetTheory.Cardinal.Finite\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.LinearAlgebra.Isomorphisms\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -183,9 +178,8 @@ theorem card_comap_eq_card_ker_mul_card_range_inf :
       right_inv := fun y => rfl }
   have hrange : LinearMap.range (f.domRestrict (U.comap f)) = LinearMap.range f ⊓ U := by
     rw [LinearMap.range_domRestrict, Submodule.map_comap_eq]
-  rw [Submodule.card_eq_card_quotient_mul_card (LinearMap.ker (f.domRestrict (U.comap f))),
-    Nat.card_congr hker, Nat.card_congr (f.domRestrict (U.comap f)).quotKerEquivRange.toEquiv,
-    hrange]
+  rw [card_eq_ker_mul_range_general (f.domRestrict (U.comap f)),
+    Nat.card_congr hker, hrange]
 
 end GlobalTheory.CompanionTheory.Counting
 end -- clump:auto
@@ -193,37 +187,11 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CardComapEqCardKerMulCardRangeInf =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DoubleAnnihilatorEqSelf =====
--- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DoubleAnnihilatorEqSelf", "h": "module\n\npublic import Mathlib.Algebra.Algebra.Basic\npublic import Mathlib.Data.ZMod.Defs\npublic import Mathlib.LinearAlgebra.BilinearMap\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\npublic import Mathlib.Analysis.Fourier.FiniteAbelian.PontryaginDuality\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\npublic import Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.Algebra.Group.AddChar\npublic import Mathlib.Algebra.Group.Subgroup.Finite\npublic import Mathlib.Analysis.Complex.Circle\n\n"}
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DoubleAnnihilatorEqSelf", "h": "module\n\npublic import Mathlib.Algebra.Algebra.Basic\npublic import Mathlib.Data.ZMod.Defs\npublic import Mathlib.LinearAlgebra.BilinearMap\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AnnihilatorIntersectionCard\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CardDualZmodModuleEqCard\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\npublic import Mathlib.Analysis.Fourier.FiniteAbelian.PontryaginDuality\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\npublic import Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.Algebra.Group.AddChar\npublic import Mathlib.Algebra.Group.Subgroup.Finite\npublic import Mathlib.Analysis.Complex.Circle\n\n"}
 section -- clump:auto
 @[expose] public section
 
 namespace GlobalTheory.CompanionTheory.FiniteDuality
-
-private theorem card_dual_zmod_le_card' (n : ℕ) [NeZero n] (M : Type) [AddCommGroup M]
-    [Module (ZMod n) M] [Finite M] :
-    Nat.card (M →ₗ[ZMod n] ZMod n) ≤ Nat.card M := by
-  classical
-  have := Fintype.ofFinite M
-  let φ : (M →ₗ[ZMod n] ZMod n) → AddChar M ℂ := fun f =>
-    Circle.coeHom.compAddChar ((ZMod.toCircle (N := n)).compAddMonoidHom f.toAddMonoidHom)
-  have hφ : Function.Injective φ := by
-    intro f g h
-    ext x
-    have hx := congrArg (fun ψ : AddChar M ℂ => ψ x) h
-    have hx' : Circle.coeHom (ZMod.toCircle (f x)) = Circle.coeHom (ZMod.toCircle (g x)) := hx
-    exact ZMod.injective_toCircle (Circle.ext hx')
-  calc Nat.card (M →ₗ[ZMod n] ZMod n) ≤ Nat.card (AddChar M ℂ) :=
-        Nat.card_le_card_of_injective φ hφ
-    _ = Nat.card M := by
-        rw [Nat.card_eq_fintype_card, Nat.card_eq_fintype_card, AddChar.card_eq]
-
-private theorem card_le_of_injective_pairing_zmod (n : ℕ) [NeZero n] (Z W : Type) [AddCommGroup Z]
-    [Module (ZMod n) Z] [AddCommGroup W] [Module (ZMod n) W] [Finite W]
-    (g : Z →ₗ[ZMod n] W →ₗ[ZMod n] ZMod n) (hg : Function.Injective g) :
-    Nat.card Z ≤ Nat.card W := by
-  have : Finite (W →ₗ[ZMod n] ZMod n) :=
-    Finite.of_injective (fun f : W →ₗ[ZMod n] ZMod n => (f : W → ZMod n)) DFunLike.coe_injective
-  exact (Nat.card_le_card_of_injective g hg).trans (card_dual_zmod_le_card' n W)
 
 theorem double_annihilator (n : ℕ) [NeZero n] (X Y : Type) [AddCommGroup X] [Module (ZMod n) X]
     [Finite X] [AddCommGroup Y] [Module (ZMod n) Y] [Finite Y]
@@ -243,42 +211,26 @@ theorem double_annihilator (n : ℕ) [NeZero n] (X Y : Type) [AddCommGroup X] [M
     rw [memW]
     intro y hy
     exact (memA y).1 hy x hx
-  let f1 : Y →ₗ[ZMod n] U →ₗ[ZMod n] ZMod n := B.compl₂ U.subtype
-  have hA1 : A ≤ LinearMap.ker f1 := by
-    intro y hy
-    rw [LinearMap.mem_ker]
-    ext u
-    simp [f1, (memA y).1 hy u u.2]
-  have hA1' : LinearMap.ker f1 ≤ A := by
-    intro y hy
-    rw [LinearMap.mem_ker] at hy
-    rw [memA]
-    intro x hx
-    have := LinearMap.congr_fun hy ⟨x, hx⟩
-    simpa [f1] using this
-  let P1 : (Y ⧸ A) →ₗ[ZMod n] U →ₗ[ZMod n] ZMod n := A.liftQ f1 hA1
-  have hP1 : Function.Injective P1 :=
-    LinearMap.ker_eq_bot.mp (Submodule.ker_liftQ_eq_bot A f1 hA1 hA1')
-  let f2 : Y →ₗ[ZMod n] W →ₗ[ZMod n] ZMod n := B.compl₂ W.subtype
-  have hA2 : A ≤ LinearMap.ker f2 := by
-    intro y hy
-    rw [LinearMap.mem_ker]
-    ext w
-    simp [f2, (memW w).1 w.2 y hy]
-  let P2 : (Y ⧸ A) →ₗ[ZMod n] W →ₗ[ZMod n] ZMod n := A.liftQ f2 hA2
-  have hP2 : Function.Injective P2.flip := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
-    intro w hw
-    have hz : B.flip (w : X) = 0 := by
-      ext y
-      have := LinearMap.congr_fun hw (Submodule.Quotient.mk y)
-      simpa [P2, f2] using this
-    have : (w : X) = 0 := hB' (by rw [hz, map_zero])
-    exact Subtype.ext this
-  have : Finite (Y ⧸ A) := Finite.of_surjective _ (Submodule.mkQ_surjective A)
-  have c1 : Nat.card (Y ⧸ A) ≤ Nat.card U := card_le_of_injective_pairing_zmod n _ _ P1 hP1
-  have c2 : Nat.card W ≤ Nat.card (Y ⧸ A) := card_le_of_injective_pairing_zmod n _ _ P2.flip hP2
-  have hle : Nat.card (W.toAddSubgroup) ≤ Nat.card (U.toAddSubgroup) := c2.trans c1
+  have hAU : Nat.card A * Nat.card U = Nat.card X :=
+    GlobalTheory.CompanionTheory.PairCount.card_annihilator_mul_card n X Y B hB hB' U
+  have hflip : Function.Injective B.flip.flip := by
+    rw [LinearMap.flip_flip]
+    exact hB
+  have hWA :=
+    GlobalTheory.CompanionTheory.PairCount.card_annihilator_mul_card n Y X B.flip hB' hflip A
+  rw [LinearMap.flip_flip] at hWA
+  change Nat.card W * Nat.card A = Nat.card Y at hWA
+  have hYX : Nat.card Y = Nat.card X :=
+    (GlobalTheory.ZModDual.bijective_of_mutual_dual_injections n X Y B B.flip hB hB').2.symm
+  -- The annihilator has positive cardinality, so the two cardinality identities cancel.
+  have hApos : 0 < Nat.card A := Nat.card_pos
+  have hcard : Nat.card W = Nat.card U := by
+    apply Nat.eq_of_mul_eq_mul_right hApos
+    calc
+      Nat.card W * Nat.card A = Nat.card Y := hWA
+      _ = Nat.card X := hYX
+      _ = Nat.card U * Nat.card A := by rw [mul_comm (Nat.card U), hAU]
+  have hle : Nat.card (W.toAddSubgroup) ≤ Nat.card (U.toAddSubgroup) := hcard.le
   exact (Submodule.toAddSubgroup_injective
     (AddSubgroup.eq_of_le_of_card_ge (show U.toAddSubgroup ≤ W.toAddSubgroup from hUW) hle)).symm
 
@@ -641,16 +593,10 @@ theorem card_sha2_mul_card_local_h2 : ∀ (F Ω : Type) [Field F] [NumberField F
   haveI : NeZero (l ^ r) := ⟨pow_ne_zero _ (Fact.out : Nat.Prime l).ne_zero⟩
   have hsha : Sha2 ρ (locFam S Av) (continuous_locFam S Av) = LinearMap.ker (loc2 S Av ρ) :=
     (_root_.GlobalTheory.CompanionTheory.GaloisCoh.selmer_sha_eq_comap_ker F Ω l r M S Av μ ρ hρ).2.2
-  have h1 := GlobalTheory.CompanionTheory.Counting.card_eq_card_ker_mul_card_range (ZMod (l ^ r)) _ _ (loc2 S Av ρ)
-  have h2 := GlobalTheory.CompanionTheory.Counting.card_eq_card_ker_mul_card_range (ZMod (l ^ r)) _ _ (tr2 S Av μ j ρ)
-  have hker : LinearMap.ker (tr2 S Av μ j ρ) = LinearMap.range (loc2 S Av ρ) := LinearMap.exact_iff.mp hex
-  have htop : LinearMap.range (tr2 S Av μ j ρ) = ⊤ := LinearMap.range_eq_top.mpr hsurj
-  have htopc : Nat.card ↥(⊤ : Submodule (ZMod (l ^ r)) (Module.Dual (ZMod (l ^ r)) ↥(H0 (twDual μ ρ)))) =
-      Nat.card (Module.Dual (ZMod (l ^ r)) ↥(H0 (twDual μ ρ))) :=
-    Nat.card_congr Submodule.topEquiv.toEquiv
-  have hD := _root_.GlobalTheory.ZModDual.card_dual_eq (l ^ r) ↥(H0 (twDual μ ρ))
-  rw [hsha, h2, hker, htop, htopc, hD, h1]
-  ring
+  have hcount := GlobalTheory.CompanionTheory.Counting.card_ker_mul_card_of_exact_surjective
+    (loc2 S Av ρ) (tr2 S Av μ j ρ) hex hsurj
+  rw [hsha, ← _root_.GlobalTheory.ZModDual.card_dual_eq (l ^ r) ↥(H0 (twDual μ ρ))]
+  exact hcount
 
 end GlobalTheory.CompanionTheory.PoitouTateCount
 end -- clump:auto
@@ -770,7 +716,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TateShafarevichDualityH1 =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GreenbergWilesOfPoitouTate =====
--- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GreenbergWilesOfPoitouTate", "h": "module\n\npublic import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.PoitouTateNormalised\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CardComapMulCardKerMulCardEq\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsPrimitiveRootOfIsAlgClosure\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteDualAll\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaloisCohomologyLocalGlobalDual\npublic import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.PoitouTateNineTermTransgressionZeroApply\npublic import Mathlib.Algebra.Algebra.ZMod\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaloisCohomologyLocalizationExact\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GreenbergWilesFormula\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalEulerPlaces\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PiPerpCondEqAnnihilatorSumPair\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PoitouTateNineTermExact\npublic import ReciprocityTheory.Hypotheses.GalCohDefs\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SelmerGroupDualExact\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SumLocalDegreesOverL\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SumPerfectApply\npublic import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.PairSums.SumPair\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TateShafarevichDualityH1\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PoitouTateEulerCharacteristic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GreenbergWilesOfPoitouTate", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CardEqCardKerMulCardRange\npublic import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.PoitouTateNormalised\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CardComapMulCardKerMulCardEq\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsPrimitiveRootOfIsAlgClosure\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteDualAll\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaloisCohomologyLocalGlobalDual\npublic import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.PoitouTateNineTermTransgressionZeroApply\npublic import Mathlib.Algebra.Algebra.ZMod\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaloisCohomologyLocalizationExact\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GreenbergWilesFormula\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalEulerPlaces\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PiPerpCondEqAnnihilatorSumPair\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PoitouTateNineTermExact\npublic import ReciprocityTheory.Hypotheses.GalCohDefs\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SelmerGroupDualExact\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SumLocalDegreesOverL\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SumPerfectApply\npublic import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.PairSums.SumPair\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TateShafarevichDualityH1\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PoitouTateEulerCharacteristic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -794,13 +740,8 @@ theorem arith {a s p1 b h1 lam p2 h2 h0' q0 h0 m arch : ℕ}
 
 theorem card_pi_submodule {R ι : Type} [Semiring R] [Fintype ι] {X : ι → Type}
     [∀ i, AddCommMonoid (X i)] [∀ i, Module R (X i)] (L : ∀ i, Submodule R (X i)) :
-    Nat.card (Submodule.pi Set.univ L) = ∏ i, Nat.card (L i) := by
-  rw [← Nat.card_pi]
-  exact Nat.card_congr
-    { toFun := fun x i => ⟨x.1 i, x.2 i (Set.mem_univ _)⟩
-      invFun := fun y => ⟨fun i => (y i).1, fun i _ => (y i).2⟩
-      left_inv := fun x => rfl
-      right_inv := fun y => rfl }
+    Nat.card (Submodule.pi Set.univ L) = ∏ i, Nat.card (L i) :=
+  GlobalTheory.CompanionTheory.Counting.card_pi_submodule_general L
 
 theorem greenbergWiles_of_poitouTate : PoitouTateNormalised → GlobalEulerChar → LocalTateDuality →
     LocalEulerChar → LocalFiniteness → GreenbergWiles := by
@@ -831,19 +772,19 @@ theorem greenbergWiles_of_poitouTate : PoitouTateNormalised → GlobalEulerChar 
     unfold sumPair; rw [LinearMap.coe_sum]; exact hB.1
   have hBf : Function.Injective (sumPair S Av μ (invAt S Av μ hμ inv) ρ hρ).flip := by
     unfold sumPair; exact hB.2
-  have hrange := _root_.GlobalTheory.CompanionTheory.PoitouTateGlue.range_localization_eq_annihilator F Ω l r M S Av μ ρ hρ (invAt S Av μ hμ inv) hnine
-  have count := GlobalTheory.CompanionTheory.Counting.card_comap_mul_card_ker_mul_card_eq (l ^ r) (H1 ρ)
+  have hLocalizationOrthogonality := _root_.GlobalTheory.CompanionTheory.PoitouTateGlue.range_localization_eq_annihilator F Ω l r M S Av μ ρ hρ (invAt S Av μ hμ inv) hnine
+  have hSelmerCount := GlobalTheory.CompanionTheory.Counting.card_comap_mul_card_ker_mul_card_eq (l ^ r) (H1 ρ)
     (H1 (twDual μ ρ)) (∀ v : S, H1 (ρ.comp (locFam S Av v)))
     (∀ v : S, H1 ((twDual μ ρ).comp (locFam S Av v)))
     (sumPair S Av μ (invAt S Av μ hμ inv) ρ hρ) hBi hBf (loc1 S Av ρ) (loc1 S Av (twDual μ ρ))
-    hrange (Submodule.pi Set.univ L)
+    hLocalizationOrthogonality (Submodule.pi Set.univ L)
   have hsel := GlobalTheory.CompanionTheory.GaloisCoh.selmer_sha_eq_comap_ker F Ω l r M S Av μ ρ hρ
   have hsel' := GlobalTheory.CompanionTheory.GaloisCoh.selmer_sha_eq_comap_ker F Ω l r (TDual (ZMod (l ^ r)) M) S Av μ
     (twDual μ ρ) hρ'
   rw [← GlobalTheory.CompanionTheory.Duality.pi_perpCond_eq_annihilator_sumPair F Ω l r M S Av μ ρ hρ _ hj L,
-    ← hsel.1 L, ← hsel'.1, ← hsel'.2.1, card_pi_submodule L, hsha.1.2.2.2] at count
-  have h5 := _root_.GlobalTheory.CompanionTheory.PoitouTateCount.card_sha2_mul_card_local_h2 F Ω l r M S Av μ ρ hρ (invAt S Av μ hμ inv) hLF hr hAv hnine hH2 hH0'
-  have h7 := hGEC F Ω l r M S ρ hr hS hρ c hc
+    ← hsel.1 L, ← hsel'.1, ← hsel'.2.1, card_pi_submodule L, hsha.1.2.2.2] at hSelmerCount
+  have hShaEuler := _root_.GlobalTheory.CompanionTheory.PoitouTateCount.card_sha2_mul_card_local_h2 F Ω l r M S Av μ ρ hρ (invAt S Av μ hμ inv) hLF hr hAv hnine hH2 hH0'
+  have hGlobalEuler := hGEC F Ω l r M S ρ hr hS hρ c hc
   have hdeg : ∑ v : S, (if ((l : ℕ) : 𝓞 F) ∈ v.1.asIdeal then locDeg v.1 else 0) =
       Module.finrank ℚ F := by
     rw [← _root_.GlobalTheory.CompanionTheory.GreenbergWiles.sum_locDeg_eq_finrank F l (S.filter fun v => ((l : ℕ) : 𝓞 F) ∈ v.asIdeal)
@@ -851,7 +792,7 @@ theorem greenbergWiles_of_poitouTate : PoitouTateNormalised → GlobalEulerChar 
       Finset.sum_filter]
     exact Finset.sum_coe_sort S (fun v => if ((l : ℕ) : 𝓞 F) ∈ v.asIdeal then locDeg v else 0)
   have hle := GlobalTheory.CompanionTheory.Gal.localEuler_places F Ω l r M S Av μ ρ hρ hLEC hr hAv
-  have h6 : Nat.card (∀ v : S, H1 (ρ.comp (locFam S Av v))) =
+  have hLocalEuler : Nat.card (∀ v : S, H1 (ρ.comp (locFam S Av v))) =
       (∏ v : S, Nat.card (H0 (ρ.comp (locFam S Av v)))) *
         Nat.card (∀ v : S, H2 (ρ.comp (locFam S Av v))) * Nat.card M ^ Module.finrank ℚ F := by
     have hv : ∀ v : S, Nat.card (H1 (ρ.comp (locFam S Av v))) =
@@ -863,7 +804,7 @@ theorem greenbergWiles_of_poitouTate : PoitouTateNormalised → GlobalEulerChar 
       · rw [pow_zero, mul_one]; exact (hle v).2 h
     rw [Nat.card_pi, Nat.card_pi, Finset.prod_congr rfl (fun v _ => hv v),
       Finset.prod_mul_distrib, Finset.prod_mul_distrib, Finset.prod_pow_eq_pow_sum, hdeg]
-  exact arith count h5 h6 h7 Nat.card_pos
+  exact arith hSelmerCount hShaEuler hLocalEuler hGlobalEuler Nat.card_pos
 
 end GlobalTheory.CompanionTheory.GreenbergWiles.Assembly
 end -- clump:auto

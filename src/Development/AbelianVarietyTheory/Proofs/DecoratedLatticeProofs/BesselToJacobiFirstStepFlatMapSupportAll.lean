@@ -176,18 +176,8 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.FinPl.DiagInt
 
 theorem finMul {D : D7} {x y : Af D.host.F ⊗[D.host.F] D.host.E} (hx : x ∈ intAE D) (hy : y ∈ intAE D) :
-    x * y ∈ intAE D := by
-  refine AddSubgroup.closure_induction₂ (p := fun x y _ _ => x * y ∈ intAE D) ?_ ?_ ?_ ?_ ?_ ?_ ?_ hx hy
-  · rintro _ _ ⟨a, ha, u, rfl⟩ ⟨b, hb, w, rfl⟩
-    refine AddSubgroup.subset_closure ⟨a * b, fun w' => ?_, u * w, ?_⟩
-    · rw [map_mul]; exact mul_mem (ha w') (hb w')
-    · rw [Algebra.TensorProduct.tmul_mul_tmul]; rfl
-  · intro x _; rw [zero_mul]; exact zero_mem _
-  · intro x _; rw [mul_zero]; exact zero_mem _
-  · intro x y z _ _ _ h1 h2; rw [add_mul]; exact add_mem h1 h2
-  · intro x y z _ _ _ h1 h2; rw [mul_add]; exact add_mem h1 h2
-  · intro x y _ _ h; rw [neg_mul]; exact neg_mem h
-  · intro x y _ _ h; rw [mul_neg]; exact neg_mem h
+    x * y ∈ intAE D :=
+  GlobalTheory.IwaPlace.DualIso.intAE_mul_mem' hx hy
 
 theorem intAt_add {D : D7} {v : Pl D} {a b : AE D} (ha : a ∈ intAt D (· = v)) (hb : b ∈ intAt D (· = v)) :
     a + b ∈ intAt D (· = v) :=
@@ -666,7 +656,6 @@ theorem idAt_eq_zero_of_AA (hAA : D.host.AA = 0) {V V₀ W W₀ : HSp D} {ρ : �
 
 end GlobalTheory.FinPl.RatioAA
 
-
 open GlobalTheory.FinPl.RatioAA in
 theorem GlobalTheory.FinPl.ratio_of_colsAt : ∀ (D : D7) (V V₀ W W₀ : HSp D) (ρ : ℕ) (dV : HypDec V V₀ ρ) (dW : HypDec W W₀ ρ) (LV : Lat V) (LV₀ : Lat V₀) (LW : Lat W) (LW₀ : Lat W₀) (v : Pl D), Tame D v → IsSelfDualC V LV → IsSelfDualC W LW → MonoAt dV LV LV₀ v → MonoAt dW LW LW₀ v → ColsAt dV dW.jX LV LW v → ∀ (i j : Fin ρ) (r : AE D), r ∈ idAt D (· = v) → (∀ a : AE D, colMul dV.jX j a ∈ latV V LV (· = v) → colMul dV.jX i (r * a) ∈ latV V LV (· = v)) → ∀ a ∈ idAt D (· = v), colMul dW.jX j a ∈ latV W LW (· = v) → colMul dW.jX i (r * a) ∈ latV W LW (· = v) := by
   intro D V V₀ W W₀ ρ dV dW LV LV₀ LW LW₀ v _ hsdV _ _ _ hC i j r hr H a ha hja
@@ -755,30 +744,8 @@ theorem mul_mem_intAt {v : Pl D} {a b : AE D} (ha : a ∈ intAt D (· = v)) (hb 
 
 theorem diag_inv {ρ : ℕ} (t : GL (Fin ρ) (AE D)) (ht : ∀ i j, i ≠ j → t.1 i j = 0) :
     t.1 = diagonal (fun k => t.1 k k) ∧ (t⁻¹).1 = diagonal (fun k => (t⁻¹).1 k k) ∧
-      ∀ k, t.1 k k * (t⁻¹).1 k k = 1 := by
-  have h1 : t.1 = diagonal (fun k => t.1 k k) := by
-    ext a b
-    by_cases h : a = b
-    · subst h; simp
-    · rw [diagonal_apply_ne _ h, ht a b h]
-  have hm : t.1 * (t⁻¹).1 = 1 := t.mul_inv
-  have h3 : ∀ a b, t.1 a a * (t⁻¹).1 a b = (1 : Matrix (Fin ρ) (Fin ρ) (AE D)) a b := by
-    intro a b
-    have := congrFun (congrFun hm a) b
-    rw [h1, diagonal_mul] at this
-    exact this
-  have h4 : ∀ k, t.1 k k * (t⁻¹).1 k k = 1 := fun k => by
-    have := h3 k k; rwa [one_apply_eq] at this
-  refine ⟨h1, ?_, h4⟩
-  ext a b
-  by_cases h : a = b
-  · subst h; simp
-  · rw [diagonal_apply_ne _ h]
-    have e := h3 a b
-    rw [one_apply_ne h] at e
-    calc (t⁻¹).1 a b = (t⁻¹).1 a a * (t.1 a a * (t⁻¹).1 a b) := by
-          rw [← mul_assoc, mul_comm ((t⁻¹).1 a a), h4, one_mul]
-      _ = 0 := by rw [e, mul_zero]
+      ∀ k, t.1 k k * (t⁻¹).1 k k = 1 :=
+  GlobalTheory.FinPl.InvStep.diag_inv t ht
 
 theorem conj_transv {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) (t : GL (Fin ρ) (AE D))
     (ht : ∀ i j, i ≠ j → t.1 i j = 0) {i j : Fin ρ} (hij : i ≠ j) (c : AE D) :
@@ -832,30 +799,9 @@ theorem upSum_transv {ρ : ℕ} {i j : Fin ρ} (hij : i ≠ j) (hj : j.1 = i.1 +
     · rfl
   · intro h; exact absurd (Finset.mem_univ _) h
 
-theorem mat_mem_idAt {P : Pl D → Prop} {m n k l : ℕ} (A : Mx D m n) (M : Mx D n k) (B : Mx D k l)
-    (hM : ∀ a b, M a b ∈ idAt D P) (i : Fin m) (j : Fin l) : (A ⬝ M ⬝ B) i j ∈ idAt D P := by
-  rw [Matrix.mul_apply]
-  refine Ideal.sum_mem _ fun b _ => Ideal.mul_mem_right _ _ ?_
-  rw [Matrix.mul_apply]
-  exact Ideal.sum_mem _ fun a _ => Ideal.mul_mem_left _ _ (hM a b)
-
 theorem levi_sub_one_mem {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) {P : Pl D → Prop} {t : GL (Fin ρ) (AE D)}
-    (ht : d.levi t ∈ grpAt S P) (i j : Fin ρ) : t.1 i j - (1 : Mx D ρ ρ) i j ∈ idAt D P := by
-  have hm : ∀ a b, (mt S (d.levi t) - 1) a b ∈ idAt D P := by
-    intro a b
-    have h := (MonoidHom.mem_ker).1 ht
-    have h2 := congrArg (fun u : GL (Fin S.rank) (AE D ⧸ idAt D P) => u.1 a b) h
-    simp only [Units.val_one] at h2
-    rw [Matrix.sub_apply, ← Ideal.Quotient.eq]
-    have e1 : ((Matrix.GeneralLinearGroup.map (Ideal.Quotient.mk (idAt D P))).comp (matHom S) (d.levi t)).1 =
-      (mt S (d.levi t)).map (Ideal.Quotient.mk (idAt D P)) := rfl
-    rw [e1, Matrix.map_apply] at h2
-    rw [h2, Matrix.one_apply, Matrix.one_apply]
-    split_ifs <;> simp
-  have e : t.1 - 1 = d.pX ⬝ (mt S (d.levi t) - 1) ⬝ d.jX := by
-    rw [Matrix.mul_sub, Matrix.sub_mul, Matrix.mul_one, d.pX_jX, Matrix.mul_assoc, ← blockX, blockX_levi]
-  rw [← Matrix.sub_apply, e]
-  exact mat_mem_idAt _ _ _ hm i j
+    (ht : d.levi t ∈ grpAt S P) (i j : Fin ρ) : t.1 i j - (1 : Mx D ρ ρ) i j ∈ idAt D P :=
+  GlobalTheory.FinPl.InvStep.levi_sub_one_mem d ht i j
 
 theorem opA_levi_one (ψ : AddChar (AF D.host.F) ℂ) {W W₀ V₀ A L : HSp D} {ρ : ℕ} (dW : HypDec W W₀ ρ)
     (o : OrthDec V₀ A L) (ζ : Fin L.rank → D.host.E) (om : Om V₀ W₀) {u : GL (Fin ρ) (AE D)} (hu : u ∈ UX D ρ)
@@ -871,8 +817,6 @@ theorem psiFlag_transv (ψ : AddChar (AF D.host.F) ℂ) {S S₀ : HSp D} {ρ : �
     (hij : i ≠ j) (hj : j.1 = i.1 + 1) (c : AE D) :
     psiFlag ψ d (d.levi (GlobalTheory.GLGen.transvGL hij c)) = psiE ψ c := by
   rw [psiFlag, blockX_levi, upSum_transv hij hj c]
-
-
 
 theorem psi_root {ψ : AddChar (AF D.host.F) ℂ} {ρ : ℕ} {B : BesLev D ρ} {J : JacLev D ρ} (s : StepBF ψ B J)
     {LV : Lat B.V} {LV₀ : Lat B.V₀} {LW : Lat J.W} {LW₀ : Lat J.W₀} {v : Pl D}
@@ -915,8 +859,6 @@ theorem psi_root {ψ : AddChar (AF D.host.F) ℂ} {ρ : ℕ} {B : BesLev D ρ} {
   simp only [Pi.smul_apply, smul_eq_mul, Pi.zero_apply] at h1 hw
   have h2 : star (psiE ψ c) = 1 := mul_right_cancel₀ hw (h1.symm.trans (one_mul _).symm)
   rw [← star_star (psiE ψ c), h2, star_one]
-
-
 
 theorem ratio_int : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (ρ : ℕ) (B : BesLev D ρ) (J : JacLev D ρ) (s : StepBF ψ B J) (LV : Lat B.V) (LV₀ : Lat B.V₀) (LW : Lat J.W) (LW₀ : Lat J.W₀) (v : Pl D), GoodBF ψ B J LV LV₀ LW LW₀ v → UnrAt s v → ∀ 𝔉, IsFlatBF s (· = v) 𝔉 → ∀ f, Vac ψ B.V J.W LV LW (· = v) f → ∀ t : GL (Fin ρ) (AE D), (∀ i j, i ≠ j → t.1 i j = 0) → J.d.levi t ∈ grpAt J.W (· = v) → 𝔉 (s.om (1, J.d.levi t) f) ≠ 0 → ∀ i j : Fin ρ, j.1 = i.1 + 1 → t.1 i i * (t⁻¹).1 j j - 1 ∈ intAt D (· = v) := by
   intro D ψ ρ B J s LV LV₀ LW LW₀ v hG hU 𝔉 hF f hf t htd ht hne i j hj

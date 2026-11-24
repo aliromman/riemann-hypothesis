@@ -25,7 +25,6 @@ public import Development.AutomorphicArithmetic.ShortNorms.ShortNorm
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NcardPrimesOverOfStabilizer
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormOneIffOfSqrt
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormOneModEqOneAndOfDvd
-public import Development.AutomorphicArithmetic.MeanSquareBounds.GaussSumFunctionEq
 public import Development.AutomorphicArithmetic.ShortNorms.levelData
 public import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
 import Mathlib.Algebra.Order.Floor.Extended
@@ -921,15 +920,9 @@ theorem UpperTheory.Top.realBox :
       PairGood M eps Y X H.q H.d →
       (∀ χ : PChar, H.IsCharE χ.χ → χ.IsReal → (H.q ∣ χ.N ∨ H.d ∣ χ.N) →
         ZeroBox (height M eps Y (if H.d ∣ χ.N then 1 else 0)) χ.χ ∧
-          (χ.N : ℝ) ≤ height (ordCompl[2] H.QS) eps Y (if H.d ∣ χ.N then 1 else 0)) ∧ RealBox H := by
+          (χ.N : ℝ) ≤ height (ordCompl[2] H.QS) eps Y (if H.d ∣ χ.N then 1 else 0)) := by
   intro M φ H eps Y X _ hpr hM hg
-  refine ⟨fun χ hχ hr hqd => UpperTheory.Top.realBox_main M φ H eps Y X hpr hM hg χ hχ hr hqd, ?_⟩
-  intro ψ hψ hr hqd β hβ
-  have h := (UpperTheory.Top.realBox_main M φ H eps Y X hpr hM hg ψ hψ hr hqd).1
-  refine h (β : ℂ) (by simpa using hβ) ?_
-  simp only [Complex.ofReal_im, abs_zero]
-  unfold height
-  positivity
+  exact fun χ hχ hr hqd => UpperTheory.Top.realBox_main M φ H eps Y X hpr hM hg χ hχ hr hqd
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.CharacterBoxes.RealBox =====
@@ -1436,7 +1429,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.ThickFrames.topsChoiceH =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.ShortNorms.hostOfFieldOf =====
--- clump-header: {"m": "Development.AutomorphicArithmetic.ShortNorms.hostOfFieldOf", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ThinScalesIffHostBound\npublic import Development.AutomorphicArithmetic.CharacterBoxes.Imports\npublic import Development.AutomorphicArithmetic.CharacterBoxes.PairGood\npublic import Development.AutomorphicArithmetic.ShortNorms.ShortNorm\npublic import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.ExplicitFormulaErrorOfHostConditions\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.KroneckerTwoNegEqJacobiSymTwo\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NcardPrimesOverOfStabilizer\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormOneIffOfSqrt\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormOneModEqOneAndOfDvd\npublic import Development.AutomorphicArithmetic.CharacterBoxes.PairRows\npublic import Development.AutomorphicArithmetic.CharacterBoxes.RealBox\npublic import Development.AutomorphicArithmetic.MeanSquareBounds.GaussSumFunctionEq\npublic import Development.AutomorphicArithmetic.ShortNorms.MulLogLeRpowEventually\npublic import Development.AutomorphicArithmetic.ShortNorms.levelData\npublic import Development.AutomorphicArithmetic.ThickFrames.ThickFrame2Large\npublic import Development.AutomorphicArithmetic.ThickFrames.topsChoiceH\npublic import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\npublic import Development.AutomorphicArithmetic.ThickFrames.MarkedLow\n\n"}
+-- clump-header: {"m": "Development.AutomorphicArithmetic.ShortNorms.hostOfFieldOf", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ThinScalesIffHostBound\npublic import Development.AutomorphicArithmetic.CharacterBoxes.Imports\npublic import Development.AutomorphicArithmetic.CharacterBoxes.PairGood\npublic import Development.AutomorphicArithmetic.ShortNorms.ShortNorm\npublic import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.ExplicitFormulaErrorOfHostConditions\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.KroneckerTwoNegEqJacobiSymTwo\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NcardPrimesOverOfStabilizer\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormOneIffOfSqrt\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormOneModEqOneAndOfDvd\npublic import Development.AutomorphicArithmetic.CharacterBoxes.PairRows\npublic import Development.AutomorphicArithmetic.CharacterBoxes.RealBox\npublic import Development.AutomorphicArithmetic.ShortNorms.MulLogLeRpowEventually\npublic import Development.AutomorphicArithmetic.ShortNorms.levelData\npublic import Development.AutomorphicArithmetic.ThickFrames.ThickFrame2Large\npublic import Development.AutomorphicArithmetic.ThickFrames.topsChoiceH\npublic import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\npublic import Development.AutomorphicArithmetic.ThickFrames.MarkedLow\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -1561,10 +1554,10 @@ private theorem hof_odd {Q k M : ℕ} (hQ : Q ≠ 0) (h : Q ∣ Nat.lcm (2 ^ k) 
   · exact ((Nat.coprime_ordCompl Nat.prime_two hQ).symm.pow_right k).dvd_of_dvd_mul_left ((Nat.ordCompl_dvd _ _).trans h')
 
 private theorem hof_box {R : Ranks} (H : Host R) {M : ℕ} {eps Y X : ℝ} (hM : 0 < M) (hQ : H.QS ∣ Nat.lcm (2 ^ (R.e + 2)) M)
-    (hG : PairGood M eps Y X H.q H.d) : BoxH H Y eps ∧ UpperTheory.Top.RealBox H.toHostRaw := by
+    (hG : PairGood M eps Y X H.q H.d) : BoxH H Y eps := by
   obtain ⟨h1, h2⟩ := hof_odd H.QS_pos.ne' hQ
-  obtain ⟨a, b⟩ := UpperTheory.Top.realBox M R.toFrame H.toHostRaw eps Y X hM h1 h2 hG
-  refine ⟨fun N _ χ hχ hr => ?_, b⟩
+  have a := UpperTheory.Top.realBox M R.toFrame H.toHostRaw eps Y X hM h1 h2 hG
+  refine fun N _ χ hχ hr => ?_
   have hle : ((ordCompl[2] H.QS : ℕ) : ℝ) ≤ M := by exact_mod_cast Nat.le_of_dvd hM h2
   have hmono : ∀ j, height (ordCompl[2] H.QS) eps Y j ≤ height M eps Y j := fun j => by
     unfold height
@@ -1594,18 +1587,16 @@ theorem UpperTheory.T3.hostOfFieldOf :
   intro hSN hSO eps C0 he he' hC0
   obtain ⟨C1, hC1, hL⟩ := UpperTheory.T3.levelData hSN hSO
   obtain ⟨xa, hL⟩ := hL eps he he'
-  obtain ⟨c6, hc6, hThin⟩ := QH.thinH
-  obtain ⟨xb, hThin⟩ := hThin C0 eps he he'
   obtain ⟨Cb, xc, hCb, hTops⟩ := UpperTheory.BernoulliSumsFrobeniusOrbits.topsChoiceH eps C0 he he'
   obtain ⟨xd, hP⟩ := UpperTheory.Top.pairRows eps C0 he he'
   obtain ⟨CT2, hT⟩ := hof_thick
   obtain ⟨xe, hT⟩ := hT eps C0 he he'
   obtain ⟨xf, hlog⟩ := hof_log_le_rpow eps 4 he (by norm_num)
   obtain ⟨xg, hbig⟩ := UpperTheory.T3.qdBig eps C0 he he'
-  refine ⟨CT2, max C0 C1, c6, Cb, max (max (max xa xb) (max xc xd)) (max (max xe xf) xg), le_max_left _ _, hc6, hCb,
-    fun s R H0 M Y hs hx hR hJ ho hQS hM hMC hQ hW hG hF hA => ?_⟩
+  refine ⟨CT2, max C0 C1, 1, Cb, max (max xa (max xc xd)) (max (max xe xf) xg), le_max_left _ _, one_pos, hCb,
+    fun s R H0 M Y hs hx hR hJ ho hQS hM _ hQ hW hG hF hA => ?_⟩
   simp only [max_le_iff] at hx
-  obtain ⟨⟨⟨ha, hb⟩, hc, hd⟩, ⟨hxe, hf⟩, hg⟩ := hx
+  obtain ⟨⟨ha, hc, hd⟩, ⟨hxe, hf⟩, hg⟩ := hx
   subst hs
   obtain ⟨hqd, h100⟩ := hbig s R Y H0.q H0.d rfl hg hR hJ hW hG.pair
   have hN : Real.log ((H0.QS : ℝ) * H0.q * H0.d) ≤ 2 * s.x ^ (s.eps / 5) * Real.log s.x ^ 2 := by
@@ -1646,12 +1637,12 @@ theorem UpperTheory.T3.hostOfFieldOf :
   obtain ⟨TT, tt1, tt2, hbad, hsh⟩ := hTops s R D rfl hc hR ⟨hJ, ho, hQS⟩ ⟨Y, hW, hrow⟩
   have hnorm := fun i => (GlobalTheory.Mem.An.normOne_iff_host R D _ _).1 (hgi i).2.2.2
   have hsplit := GlobalTheory.HostSplit.split_of_one_mod R D
-  obtain ⟨bH, bR⟩ := hof_box { D with TT := TT } hM hQ hG
+  have bH := hof_box { D with TT := TT } hM hQ hG
   have hC : C0 ≤ max C0 C1 := le_max_left _ _
   refine ⟨{ D with TT := TT }, q0, rfl, rfl, ⟨
     ⟨⟨Y, hW, hrow⟩, ⟨tt1, tt2⟩, t4, ⟨lp, lp'⟩, fun i => ⟨(hgi i).2.1, (hgi i).2.2.1⟩, e10, e8, ?_,
       hJ.trans hC, ho.trans hC, hQS.trans (mul_le_mul_of_nonneg_right hC (Nat.cast_nonneg _))⟩,
-    ⟨fun i => ?_, hgm, ⟨?_, ?_⟩, fun l hl => ?_⟩, ?_, ?_, hq, ⟨Y, hW, hrow, hbox, bH⟩, ?_, ?_, hbad, hdisj,
+    ⟨fun i => ?_, hgm, ⟨?_, ?_⟩, fun l hl => ?_⟩, ?_, ?_, hq, ⟨Y, hW, hrow, hbox, bH⟩, ?_, hbad, hdisj,
     hnorm, ⟨mp, mp'⟩, ⟨hq0, mq0, lq0, hq0p, hq0p'⟩, e7⟩, hsh⟩
   · exact (Nat.floor_le_floor (hW.rpow_ez_le (by norm_num))).trans e3.ge
   · obtain ⟨π, h1, h2, -⟩ := hnorm i
@@ -1672,15 +1663,6 @@ theorem UpperTheory.T3.hostOfFieldOf :
   · rw [← e10] at t5
     exact t5
   · exact (hof_abs_dlogH_le { D with TT := TT } hq).trans (hlog s.x hf)
-  · refine (thinScales_iff_hostBound s c6 _).2 (hThin s.x hb R.toFrame D.toHostRaw ?_ ?_ bR)
-    · have h1 : ((ordCompl[2] D.QS : ℕ) : ℝ) ≤ M := by exact_mod_cast Nat.le_of_dvd hM (hof_odd D.QS_pos.ne' hQ).2
-      exact h1.trans hMC
-    · have h1 : (D.condN : ℝ) = (D.QS : ℝ) * D.q * D.d := by
-        rw [show D.condN = D.QS * D.q * D.d from rfl]
-        push_cast
-        rfl
-      rw [h1]
-      exact hN
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.ShortNorms.hostOfFieldOf =====

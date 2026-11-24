@@ -403,7 +403,7 @@ theorem par_topleft_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) (p
     rw [incM_mul']
     congr 1
     ext i j
-    cases i <;> simp [DC, diagCols, incM, Matrix.one_apply, apply_ite] <;> split_ifs <;> simp_all
+    cases i <;> simp [DC, diagCols, incM, Matrix.one_apply, apply_ite] <;> split_ifs
   have hb : incM F d.b.1 * E1 = DC * incM F tb.1 := h1.trans ((congrArg (incM F) htb').trans h2)
   have hTb : incM F tb.1 * incM F (tb⁻¹).1 = 1 := by
     rw [← incM_mul', Units.mul_inv]

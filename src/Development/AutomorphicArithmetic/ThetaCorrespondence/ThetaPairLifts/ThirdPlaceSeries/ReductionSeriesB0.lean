@@ -842,13 +842,6 @@ theorem sideEv_smul (b : Bool) (a : K) (f : V b) (y : Σ b', Fin (n b')) :
   · subst h; simp
   · simp [sideEv_other iC e h]
 
-theorem sideEv_inj (b : Bool) : Function.Injective (sideEv iC e b) := by
-  intro f g hfg
-  apply (e b).repr.injective
-  ext t
-  have := congrFun hfg ⟨b, t⟩
-  exact iC.injective (by simpa using this)
-
 def sideU (b : Bool) (T : Module.End K (V b)) (c y : Σ b', Fin (n b')) : C :=
   if h : c.1 = b then sideEv iC e b (T (e b (h ▸ c.2))) y else 0
 
@@ -886,26 +879,7 @@ theorem exists_nth_of_fg_full : ∀ (D : D7) (tw : NTw D.R D.host D.what₂ D.LL
   choose iC hiC using hi
   have hex := fun i j b =>
     exists_basis_coord_lattice (ex.Bsup i j b) (hB i j b).1 (hB i j b).2
-  choose n e he using hex
-  have hsup : ∀ i j b, {f : ex.Fm i j b | f ∈ (⊤ : AddSubgroup (ex.Fm i j b)) ∧
-      ∀ y, ‖sideEv (iC i) (e i j) b f y‖ ≤ 1} = (ex.Bsup i j b : Set (ex.Fm i j b)) := by
-    intro i j b
-    ext f
-    simp only [Set.mem_ofPred_eq, AddSubgroup.mem_top, true_and, SetLike.mem_coe]
-    rw [he i j b f]
-    constructor
-    · intro h t
-      have := h ⟨b, t⟩
-      rw [sideEv_same] at this
-      exact (hiC i _).1 this
-    · intro h y
-      obtain ⟨b', t⟩ := y
-      by_cases hb : b' = b
-      · subst hb
-        rw [sideEv_same]
-        exact (hiC i _).2 (h t)
-      · rw [sideEv_other _ _ hb]
-        simp
+  choose n e _ using hex
   exact ⟨{
     iC := iC
     iC_int := hiC
@@ -915,7 +889,6 @@ theorem exists_nth_of_fg_full : ∀ (D : D7) (tw : NTw D.R D.host D.what₂ D.LL
     Pt := fun i j => Σ b, Fin (n i j b)
     ev := fun i j b => sideEv (iC i) (e i j) b
     ev_smul := fun i j b a f y => sideEv_smul _ _ b a f y
-    ev_inj := fun i j b => sideEv_inj _ _ b
     Lt := fun _ _ => PUnit
     acgLt := fun _ _ => inferInstance
     modLt := fun _ _ => inferInstance
@@ -953,9 +926,7 @@ theorem exists_nth_of_fg_full : ∀ (D : D7) (tw : NTw D.R D.host D.what₂ D.LL
     FmUr := fun _ _ _ => ⊤
     FmUr_smul := fun _ _ _ _ _ _ _ => AddSubgroup.mem_top _
     FmUr_span := fun i j b => by
-      rw [AddSubgroup.coe_top, Submodule.span_univ]
-    Bsup_def := fun i j b => by
-      rw [hsup i j b, Submodule.span_eq] }⟩
+      rw [AddSubgroup.coe_top, Submodule.span_univ] }⟩
 
 end GlobalTheory.HeightCounting
 

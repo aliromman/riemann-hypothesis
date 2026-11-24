@@ -371,7 +371,7 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.exists_standardAuxiliaryFrames_allRowGrids : All fun {_} _ _ _ {G} _ _ => ∃ F : GlobalTheory.Asc.Frames G, Std F := by
-  first | exact @GlobalTheory.AscFin.exists_std_frames | exact GlobalTheory.AscFin.exists_std_frames | (intros; apply GlobalTheory.AscFin.exists_std_frames <;> assumption)
+  first | exact @GlobalTheory.AscFin.exists_std_frames
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.BesPerHaarScale
@@ -730,7 +730,7 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.standardAuxiliaryFrames_fit_grid_ends : All fun {_} _ _ _ {G} W M => ∀ (v : CoreVol G) (F : GlobalTheory.Asc.Frames G), Std F → F.Ends v W M := by
-  first | exact @GlobalTheory.AscFin.EndsPf.ends | exact GlobalTheory.AscFin.EndsPf.ends | (intros; apply GlobalTheory.AscFin.EndsPf.ends <;> assumption)
+  first | exact @GlobalTheory.AscFin.EndsPf.ends
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsGoodGridFramesOfDepthFixed

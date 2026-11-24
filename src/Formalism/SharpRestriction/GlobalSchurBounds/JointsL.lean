@@ -1137,10 +1137,11 @@ theorem tuSize_fam {eps : ℝ} (Fm : FamP eps) (C x0 : ℝ)
     (hC : C ≤ Fm.CTu) : TuSize Fm :=
   tuSize_of Fm (max 5 (Fm.CYL + 1)) C x0 h ⟨3, fun x h3 hx i => ⟨_, _, JDB.dataB_fam Fm x h3 hx i⟩⟩ hC
 
-theorem _root_.Formalism.MainNotions.flipTwoThree.stabiliser_family_of_column_lemma {eps : ℝ} (Fm : FamP eps) (C₄ C₅ : ℝ) (h : UnusedSlot33.ConclusionOnFamily Fm C₄ C₅)
+theorem _root_.Formalism.MainNotions.flipTwoThree.stabiliser_family_of_column_lemma {eps : ℝ} (Fm : FamP eps)
+    (h : ∀ x, Fm.x1 < x → ∀ i : Fm.Ix x, UnusedSlot33.division_rows_rational_lattice (Fm.D x i))
     (hP : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), StandardLattice.Conclusion4p (Fm.D x i) (Fm.ex x hx i).lev) :
     flipTwoThree.admF3 Fm :=
-  flipTwoThree.stabiliser_family_of_definite Fm C₄ C₅ h (fun _ _ => gram0Def _) hP ⟨3, fun x h3 hx i => JDB.gBig_fam Fm x h3 hx i⟩
+  flipTwoThree.stabiliser_family_of_definite Fm h (fun _ _ => gram0Def _) hP ⟨3, fun x h3 hx i => JDB.gBig_fam Fm x h3 hx i⟩
 
 theorem two_lt_level_prime (D : D7) (u : D.what₂.Word) (h : product_first_zeroth_parts.HidaSetting D u) : 2 < (D.mem u).A.T := by
   have h1 := h.1

@@ -47,6 +47,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsSumFrame
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.JointSmooth
+public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.MixedCoordinates
 
 @[expose] public section
 
@@ -108,7 +109,7 @@ theorem weilRep_rankZeroWittEmbedding_valueAtZero : ∀ (D : D7) (ψ : AddChar (
   have hF := GlobalTheory.T.mixedModelFormulasWittSource_proof D ψ S S₀ T 0 d χS χT om om₀ hom hom₀ μ 𝓕 hμ
   have H1 := (hF (om (1, h) f) (hom.om_pres _ _ hf)).core g₀ 0
   have H2 := (hF f hf).target h 0
-  have hS : ∀ F x, _root_.I195MixedCoordinates_a63f0715cbf334f1e52c5d7b.source d T ψ μ 𝓕 F x =
+  have hS : ∀ F x, _root_.I195MixedCoordinates.source d T ψ μ 𝓕 F x =
       fun w => F (d.ext0 T w) := mixS_rankZero ψ S S₀ T d μ 𝓕 hμ
   simp only [hS] at H1 H2
   rw [H2] at H1
@@ -142,9 +143,9 @@ theorem om_flatBF_rankZero : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (B : 
   have hv := GlobalTheory.T.mixedCoordinates_of_thetaFunction_are_thetaFunctions D
   rw [hflat, GlobalTheory.Unf.EvalCont.om_evalBF s hd hm hv hΨ h₀ g₀]
   unfold evalBF evalZero evalAt
-  have hT : ∀ F y, _root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.target J.d B.V₀ ψ s.vT.μ s.vT.𝓕 F y =
+  have hT : ∀ F y, _root_.I195MixedCoordinates.target J.d B.V₀ ψ s.vT.μ s.vT.𝓕 F y =
       fun w => F (J.d.inc0 B.V₀ w) := mixT_rankZero ψ _ _ _ J.d s.vT.μ s.vT.𝓕 s.vT.covol
-  have hS : ∀ F x, _root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.source B.d J.W ψ s.vS.μ s.vS.𝓕 F x =
+  have hS : ∀ F x, _root_.I195MixedCoordinates.source B.d J.W ψ s.vS.μ s.vS.𝓕 F x =
       fun w => F (B.d.ext0 J.W w) := mixS_rankZero ψ _ _ _ B.d s.vS.μ s.vS.𝓕 s.vS.covol
   rw [hT, hS]
   simp only [map_zero]

@@ -243,17 +243,12 @@ theorem main_twist_bound (m₀ s a₀ : ℕ) [NeZero (m₀ * s)] (hm : 0 < m₀)
       rw [← Finset.mul_sum] at hre
       have hgcd : Int.gcd (u : ℤ) s = 1 := by rw [Int.gcd_natCast_natCast]; exact hus
       have hc1 : (((jacobiSym (u : ℤ) s : ℝ)) : ℂ) * χ (u : ZMod (m₀ * s)) ≠ 1 := by
-        rcases jacobiSym.eq_one_or_neg_one hgcd with h | h
-        · rw [h] at hne ⊢
-          intro hh
-          apply hne
-          push_cast at hh ⊢
-          simpa using hh
-        · rw [h] at hne ⊢
-          intro hh
-          apply hne
-          push_cast at hh ⊢
-          linear_combination -hh
+        intro h
+        apply hne
+        have hsq : ((jacobiSym (u : ℤ) s : ℤ) : ℂ) ^ 2 = 1 := by
+          rw [← Int.cast_pow, jacobiSym.sq_one hgcd, Int.cast_one]
+        push_cast at h
+        linear_combination ((jacobiSym (u : ℤ) s : ℤ) : ℂ) * h - χ (u : ZMod (m₀ * s)) * hsq
       have hT : ∑ b ∈ clsB m₀ s a₀, (((jacobiSym (b : ℤ) s : ℝ)) : ℂ) * χ (b : ZMod (m₀ * s)) = 0 := by
         have h0 : ((((jacobiSym (u : ℤ) s : ℝ)) : ℂ) * χ (u : ZMod (m₀ * s)) - 1) *
             ∑ b ∈ clsB m₀ s a₀, (((jacobiSym (b : ℤ) s : ℝ)) : ℂ) * χ (b : ZMod (m₀ * s)) = 0 := by

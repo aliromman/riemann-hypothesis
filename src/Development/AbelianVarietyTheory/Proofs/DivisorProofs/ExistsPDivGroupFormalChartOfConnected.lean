@@ -1286,7 +1286,7 @@ end GlobalTheory.FinProjComplete
 
 open GlobalTheory.FinProjComplete in
 theorem GlobalTheory.FinProjComplete.isAdicComplete_span_natCast : ∀ (p : ℕ) (O A : Type) [CommRing O] [CommRing A] [Algebra O A] [Module.Finite O A] [Module.Projective O A] [IsAdicComplete (Ideal.span {(p : O)}) O], IsAdicComplete (Ideal.span {(p : A)}) A := by
-  apply GlobalTheory.FinProjComplete.isAdicComplete_span_natCast_of_finite_projective <;> assumption
+  apply GlobalTheory.FinProjComplete.isAdicComplete_span_natCast_of_finite_projective
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SurjectiveEvalTmul

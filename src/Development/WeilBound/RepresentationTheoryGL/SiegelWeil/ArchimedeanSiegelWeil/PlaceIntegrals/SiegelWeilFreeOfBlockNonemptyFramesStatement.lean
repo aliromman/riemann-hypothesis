@@ -456,17 +456,8 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E]
 
 theorem linearIndependent_mulVec {M n : ℕ} (A : GL (Fin M) E) {X : Fin n → Fin M → E}
     (hX : LinearIndependent E X) :
-    LinearIndependent E (fun a => (A : Matrix (Fin M) (Fin M) E) *ᵥ X a) := by
-  have hinj : Function.Injective (Matrix.mulVecLin (A : Matrix (Fin M) (Fin M) E)) := by
-    intro x y hxy
-    have h : ∀ z : Fin M → E,
-        ((A⁻¹ : GL (Fin M) E) : Matrix (Fin M) (Fin M) E) *ᵥ ((A : Matrix (Fin M) (Fin M) E) *ᵥ z) = z := by
-      intro z
-      rw [Matrix.mulVec_mulVec, ← Units.val_mul]
-      simp
-    have hxy' : (A : Matrix (Fin M) (Fin M) E) *ᵥ x = (A : Matrix (Fin M) (Fin M) E) *ᵥ y := hxy
-    rw [← h x, ← h y, hxy']
-  exact hX.map' (Matrix.mulVecLin (A : Matrix (Fin M) (Fin M) E)) (LinearMap.ker_eq_bot.2 hinj)
+    LinearIndependent E (fun a => (A : Matrix (Fin M) (Fin M) E) *ᵥ X a) :=
+  GlobalTheory.CompanionTheory.WeilSiegel.HypStep.Unf.Basic.linearIndependent_mulVec_GL A hX
 
 theorem linearIndependent_gact (σ : E →ₐ[F] E) {M n : ℕ} {J : Matrix (Fin M) (Fin M) E}
     (g : UJ (σ : E →+* E) J) {X : Fin n → Fin M → E} (hX : LinearIndependent E X) :
@@ -567,8 +558,6 @@ theorem tsum_block_frames (σ : E →ₐ[F] E) {M n : ℕ} (J : Matrix (Fin M) (
   rfl
 
 end Tuples
-
-
 
 theorem theta_stage_frames : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → ∀ (M : ℕ) (J : Matrix (Fin M) (Fin M) E), IsHermND σ J → ∀ t : F, t ≠ 0 → ∀ (n : ℕ) (T : Matrix (Fin n) (Fin n) E) (μ : Measure (HA (AF F) σ (blockOne (algebraMap F E t) J))) 𝓕, IsHaarH F E σ (M + 1) _ μ → IsFDH F E σ (M + 1) _ μ 𝓕 → ∀ (μ₁ : Measure (HA (AF F) σ J)) 𝓕₁, IsHaarH F E σ M J μ₁ → IsFDH F E σ M J μ₁ 𝓕₁ → ∀ (Φ : (Fin (n + 1) → Fin (M + 1) → AF F ⊗[F] E) → ℝ≥0∞) (Ψ : (Fin 1 → Fin (M + 1) → AF F ⊗[F] E) → ℝ≥0∞), Measurable Φ → Measurable Ψ → (∀ h : HA (AF F) σ (blockOne (algebraMap F E t) J), Ψ (actW (AF F) σ _ h (fun _ => Fin.cons 1 (fun _ => 0))) = ∫⁻ X, Φ (actW (AF F) σ _ h (consTup X)) ∂(thetaMeas σ J μ₁ 𝓕₁ (framesE σ J T))) → ∫⁻ X, Φ X ∂(thetaMeas σ _ μ 𝓕 (framesE σ (blockOne (algebraMap F E t) J) (blockOne (algebraMap F E t) T))) = ∫⁻ y, Ψ y ∂(thetaMeas σ _ μ 𝓕 {y : Fin 1 → Fin (M + 1) → E | gramE σ (blockOne (algebraMap F E t) J) y = fun _ _ => algebraMap F E t}) := by
   intro F E _ _ _ _ _ σ hσ M J hJ t ht n T μ 𝓕 hμ h𝓕 μ₁ 𝓕₁ hμ₁ h𝓕₁ Φ Ψ hΦ hΨ hyp
@@ -780,12 +769,8 @@ theorem free_v {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] 
     (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) (hJ : IsHermND σ J)
     {d : ℕ} (b : Module.Basis (Fin d) F E) (v : HeightOneSpectrum (𝓞 F)) (lam : Measure (Fv F v))
     (hlam : lam.IsAddHaarMeasure) (n : ℕ) :
-    ∃ m, IsGramFibFree (Fv F v) σ J n (coordW (Fv F v) b lam n M) (coordHerm (Fv F v) σ b lam n) m := by
-  have := PI.VolStabS.secondCountable_Fv F v
-  have := PI.VolStabS.locallyCompact_Fv F v
-  have hB : BorelSpace (Fv F v) := ⟨rfl⟩
-  obtain ⟨-, hW, hH⟩ := _root_.GlobalTheory.CompanionTheory.SW.coord_measures_haar F E σ hCM (Fv F v) _ b lam hlam
-  exact PI.OmFibreUniq.W.gram_map_fibre_existence σ J v n hCM hJ _ _ (hW n M) (hH n)
+    ∃ m, IsGramFibFree (Fv F v) σ J n (coordW (Fv F v) b lam n M) (coordHerm (Fv F v) σ b lam n) m :=
+  GlobalTheory.CompanionTheory.WeilSiegel.HypStep.fam_fin σ hCM J hJ b v lam hlam n
 
 theorem good_mass_free : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → ∀ (M : ℕ) (J : Matrix (Fin M) (Fin M) E), IsHermND σ J → ∀ t : F, t ≠ 0 → ∀ (n : ℕ) (T : Matrix (Fin n) (Fin n) E) (hT : ∀ a b, σ (T b a) = T a b) (hT' : ∀ a b, σ (blockOne (algebraMap F E t) T b a) = blockOne (algebraMap F E t) T a b) (d : ℕ) (b : Module.Basis (Fin d) F E), ∀ᶠ v : HeightOneSpectrum (𝓞 F) in Filter.cofinite, ∀ lam : Measure (Fv F v), lam.IsAddHaarMeasure → ∀ m m₁ m', IsGramFibFree (Fv F v) σ (blockOne (algebraMap F E t) J) (n + 1) (coordW (Fv F v) b lam (n + 1) (M + 1)) (coordHerm (Fv F v) σ b lam (n + 1)) m → IsGramFib (Fv F v) σ (blockOne (algebraMap F E t) J) 1 (coordW (Fv F v) b lam 1 (M + 1)) (coordHerm (Fv F v) σ b lam 1) m₁ → IsGramFibFree (Fv F v) σ J n (coordW (Fv F v) b lam n M) (coordHerm (Fv F v) σ b lam n) m' → ∀ c : ℝ≥0, (coordK (Fv F v) b lam).map (fun y => inclR (Fv F v) (algebraMap F E t) * y) = c • coordK (Fv F v) b lam → m (hermOf (Fv F v) σ _ hT') (latV b v) = (c : ℝ≥0∞) ^ n * (m' (hermOf (Fv F v) σ T hT) (latV b v) * m₁ (hermScal (Fv F v) σ (algebraMap F (Fv F v) t)) (latV b v)) := by
   intro F E _ _ _ _ _ σ hCM M J hJ t ht n T hT hT' d b
@@ -1033,7 +1018,6 @@ theorem fibre_transport {μ : Measure V} {ν : Measure X} {f f' : V → Y} {ι :
       rw [e2]
       exact h2.const_smul (a : ℝ)
 
-
 omit [BorelSpace V] in
 theorem fibre_scale {μ : Measure V} {ν : Measure X} {f : V → Y} {ι : X → Y} {U : Set V}
     {B : Set X} {fib : X → Measure V} (a k r : ℝ≥0) (hr : r * k = a)
@@ -1065,7 +1049,6 @@ section Loc
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-
 omit [NumberField F] [NumberField E] in
 theorem gramR_conj (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) {M n : ℕ}
     (J : Matrix (Fin M) (Fin M) E) (g : GL (Fin M) E) (X : Fin n → Fin M → R ⊗[F] E) :
@@ -1074,7 +1057,6 @@ theorem gramR_conj (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) {M
   funext a b
   simp only [gramR, hR, actTup]
   rw [GlobalTheory.CompanionTheory.SW.HIsom.JR_conj R σ J g, hform_conj]
-
 
 omit [Field F] [NumberField F] [NumberField E] [Algebra F E] in
 theorem li_mulVec {A : Type} [CommRing A] {M n : ℕ} (G : GL (Fin M) A) {X : Fin n → Fin M → A}
@@ -1151,49 +1133,14 @@ theorem local_rescale (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) {M : ℕ} (J :
     (m : HermR R σ n → Measure (Fin n → Fin M → R ⊗[F] E))
     (hm : IsGramFibFree R σ J n (coordW R b lam n M) (coordHerm R σ b lam n) m) :
     ∃ r : ℝ≥0, r ≠ 0 ∧
-      IsGramFibFree R σ J n (coordW R b' lam n M) (coordHerm R σ b' lam n) (fun S => r • m S) := by
-  have h1 := haar_of_loc σ hCM R hR b lam hlam n M
-  have h2 := haar_of_loc σ hCM R hR b' lam hlam n M
-  obtain ⟨r1, r2, r3, r4, -⟩ := hR
-  haveI := r1
-  haveI := r2
-  haveI := r3
-  haveI := r4
-  obtain ⟨t1, t2, t3, t4, -, -, -, t8, t9, -⟩ := GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hCM R
-  haveI := t1
-  haveI := t2
-  haveI := t3
-  haveI := t4
-  haveI : BorelSpace (Fin n → Fin M → R ⊗[F] E) := t8 n M
-  haveI : BorelSpace (HermR R σ n) := ⟨rfl⟩
-  haveI : LocallyCompactSpace (Matrix (Fin n) (Fin n) (R ⊗[F] E)) :=
-    inferInstanceAs (LocallyCompactSpace (Fin n → Fin n → R ⊗[F] E))
-  haveI : SecondCountableTopology (Matrix (Fin n) (Fin n) (R ⊗[F] E)) :=
-    inferInstanceAs (SecondCountableTopology (Fin n → Fin n → R ⊗[F] E))
-  haveI : LocallyCompactSpace (HermR R σ n) :=
-    (t9 n).isClosedEmbedding_subtypeVal.locallyCompactSpace
-  haveI : SecondCountableTopology (HermR R σ n) :=
-    (t9 n).isClosedEmbedding_subtypeVal.isEmbedding.secondCountableTopology
-  haveI := h1.1
-  haveI := h1.2
-  haveI := h2.1
-  haveI := h2.2
-  set a := Measure.addHaarScalarFactor (coordW R b' lam n M) (coordW R b lam n M) with ha
-  set k := Measure.addHaarScalarFactor (coordHerm R σ b' lam n) (coordHerm R σ b lam n) with hk
-  have ea : coordW R b' lam n M = a • coordW R b lam n M := Measure.isAddLeftInvariant_eq_smul _ _
-  have ek : coordHerm R σ b' lam n = k • coordHerm R σ b lam n := Measure.isAddLeftInvariant_eq_smul _ _
-  have a0 : a ≠ 0 := (Measure.addHaarScalarFactor_pos_of_isAddHaarMeasure _ _).ne'
-  have k0 : k ≠ 0 := (Measure.addHaarScalarFactor_pos_of_isAddHaarMeasure _ _).ne'
-  refine ⟨a / k, div_ne_zero a0 k0, ?_⟩
-  rw [ea, ek]
-  exact fibre_scale a k (a / k) (div_mul_cancel₀ a k0) hm
+      IsGramFibFree R σ J n (coordW R b' lam n M) (coordHerm R σ b' lam n) (fun S => r • m S) :=
+  GlobalTheory.CompanionTheory.WeilSiegel.Free.Scale.coord_rescale σ hCM J R hR b b' lam hlam n m hm
 
 end Loc
 
 section Lat
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E]
-
 
 omit [NumberField F] in
 theorem repr_scaled (R : Type) [CommRing R] [Algebra F R] {d : ℕ} (b b' : Module.Basis (Fin d) F E) (c : F)
@@ -1259,12 +1206,10 @@ section Theta
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-
 omit [NumberField F] [NumberField E] in
 theorem ratAct_li_iff {M n : ℕ} (g : GL (Fin M) E) (X : Fin n → Fin M → E) :
     LinearIndependent E (ratAct (g : Matrix (Fin M) (Fin M) E) X) ↔ LinearIndependent E X :=
   li_mulVec_iff g X
-
 
 omit [NumberField F] [NumberField E] in
 def framesEquiv (σ : E →ₐ[F] E) {M n : ℕ} (J : Matrix (Fin M) (Fin M) E) (g : GL (Fin M) E)

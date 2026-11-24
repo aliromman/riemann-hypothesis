@@ -221,14 +221,12 @@ theorem PhiData.ContD_eq_of_X (h : O⟦X⟧ →ₐ[O] O⟦X⟧) (hX : h X = P.φ
   · rw [P.ContD_map_phiX]
     exact P.constantCoeff_residue_u_X_pow
   · intro N
-    have hdvd : (X : O⟦X⟧) ^ N ∣ f - (PowerSeries.trunc N f : O⟦X⟧) := by
-      rw [PowerSeries.X_pow_dvd_iff]
-      intro m hm
-      simp [PowerSeries.coeff_trunc, hm]
-    obtain ⟨r, hr⟩ := hdvd
-    have hf : f = (PowerSeries.trunc N f : O⟦X⟧) + X ^ N * r := by rw [← hr]; ring
-    rw [hf, map_add (f := _), map_add (f := _), map_mul, map_mul, map_pow, map_pow, hX, hpoly]
-    exact ⟨h r - P.φ r, by ring⟩
+    let r := PowerSeries.mk fun i => coeff (i + N) f
+    have hf : f = X ^ N * r + (PowerSeries.trunc N f : O⟦X⟧) :=
+      eq_X_pow_mul_shift_add_trunc N f
+    rw [hf]
+    simp only [map_add, map_mul, map_pow, hX, hpoly, add_sub_add_right_eq_sub, ← mul_sub]
+    exact dvd_mul_right _ _
 
 theorem PhiData.exists_retraction :
     ∃ lam : O⟦X⟧ →ₗ[O] O⟦X⟧, (∀ a b : O⟦X⟧, lam (P.φ a * b) = a * lam b) ∧ (∀ a, lam (P.φ a) = a) := by

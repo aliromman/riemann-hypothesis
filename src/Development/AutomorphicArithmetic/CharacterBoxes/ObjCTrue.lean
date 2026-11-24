@@ -1633,7 +1633,7 @@ theorem has_withDuty_wall_and_choices {Q : PtProp} {C : FC} {cD ch C8 C5 c6 Cb :
     (hV : Val C cD ch p.L) (hF : p.From H a b c u0) (hI : CanonInst p.ta.Gx) (hQ : p.Has Q) :
     p.Has ((withDuty Q).and WallPt) ∧ ThickSetLowerBound p.L ∧ ChBad_at p.ta.Gx Cb ∧ ChQD_at p.D p.L.sc.x p.L.sc.eps C5 := by
   have hw := GlobalTheory.EX.wreq_of_wok C cD ch p R H a b M c u0 hC hV hF hI h0 hW
-  obtain ⟨hv, -, hT2, -, hQD, hBox, -, -, hBad, -, -, -, ⟨hp, hmod, -, hne, hne'⟩, hlev⟩ := hH
+  obtain ⟨hv, -, hT2, -, hQD, hBox, -, hBad, -, -, -, ⟨hp, hmod, -, hne, hne'⟩, hlev⟩ := hH
   have hb := GlobalTheory.EX.chBad_of_from C p R H a b M c u0 Cb hF hI hBad
   have eS := hF.QS_eq
   have hBW := hF.boxesW hBox
@@ -1718,7 +1718,7 @@ theorem kitS : ∀ (Q : Par → PtProp) (la : ℝ) (G : FReq), DC.HostWW la G.re
     have hqp : (0 : ℝ) < H.q := by exact_mod_cast H.hyp.1.pos
     have hdp : (0 : ℝ) < H.d := by exact_mod_cast H.hyp.2.1.pos
     have hn' : (0 : ℝ) < H.QS := by exact_mod_cast H.QS_pos
-    exact hq s _ q0 hs hxq (by positivity) hH.1.log_cond_le hH.2.2.2.2.2.2.2.2.2.2.2.2.1.2.2.1
+    exact hq s _ q0 hs hxq (by positivity) hH.1.log_cond_le hH.2.2.2.2.2.2.2.2.2.2.2.1.2.2.1
   choose pt hsc hval har hfrom hcan hhas using
     fun i : Fin R.n => hObj s R H q0 a b _ c i.1 hs hxO hRV hHT' (by show HostGood s C.P.Cpde C5 c6 Cb H q0; rw [hP]; exact hH) hqH hWin rfl hc i.2
   choose eW heW using fun i => (hfrom i).words
@@ -1812,7 +1812,7 @@ theorem UpperTheory.Top.hostQ :
   obtain ⟨CT2, C8, C5, c6, Cb, x0, h8, h5, h6, hb, S, hH⟩ := hH eps he he'
   have hC : C8 ≤ (3 + 2 * C8) * A := by nlinarith
   refine ⟨CT2, (3 + 2 * C8) * A, C5, c6, Cb, x0, h8.trans hC, h5, h6, hb, S, fun s hs hx hm => ?_⟩
-  obtain ⟨R, H, q0, hR, hT, ⟨hv, har, g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, -, -⟩, hG⟩ := hH s hs hx hm
+  obtain ⟨R, H, q0, hR, hT, ⟨hv, har, g1, g2, g3, g4, g5, g7, g8, g9, g10, -, -⟩, hG⟩ := hH s hs hx hm
   have hc : H.ccK = ⊤ := hv.2.2.2.2.2.2.1
   have h0 : Nat.Coprime (q0H H) H.QS := by
     have h1 : q0H H ≡ 1 [MOD H.QS * H.q * H.d] := by
@@ -1841,7 +1841,7 @@ theorem UpperTheory.Top.hostQ :
     · exact har.2.2.2 _ H.pde_level.1
     · exact har.2.2.2 _ H.pde_level.2
     · exact (GlobalTheory.HostSplit.split_of_one_mod R H _ (globalTwisting_spec_fact H).1 (mod_cond H)).2
-  exact ⟨R, PolynomialHostPrimeBound.relevel H hc (q0H H) h0, q0H H, hR, hT, ⟨hv', har', g1, g2, g3, g4, g5, g6, g7, g8, g9, g10,
+  exact ⟨R, PolynomialHostPrimeBound.relevel H hc (q0H H) h0, q0H H, hR, hT, ⟨hv', har', g1, g2, g3, g4, g5, g7, g8, g9, g10,
     ⟨(globalTwisting_spec_fact H).1, mod_cond H, hq, q0H_ne_pde_and_ne_pde' H⟩, rfl⟩, globalTwisting_congr_fact _ rfl rfl rfl rfl rfl rfl, hG⟩
 end -- clump:auto
 end -- clump:auto

@@ -1044,6 +1044,9 @@ lemma lip_triv (A w w' : ℝ) (hA : 0 < A) (hw : 0 < w) (hw' : 0 < w') :
 
 end AN
 
+/-- Uniform weight-Lipschitz bound for both trivial (`Gz`) and nontrivial (`GPsi`) character
+prime-sum functions: changing the weight `w` to `w'` shifts `w * GPsi (A / w)` by at most
+`O(A / min w w' * |w - w'|)`. -/
 theorem lipschitz_weight_all : LipWAll := by
   intro H _ _ _ D ell ψ A w w' hA hw hw'
   by_cases hψ : ψ = 0
@@ -1053,6 +1056,9 @@ theorem lipschitz_weight_all : LipWAll := by
     exact AN.lip_triv A w w' hA hw hw'
   · exact AN.lip_char D ell ψ hψ A w w' hA hw hw'
 
+/-- Uniform Lipschitz bound on `GPsi` and `Gz` in the cutoff argument `y`, combining the Mertens
+bound for nontrivial characters (`deriv_char`) with `zetaPrimeSumErrorLipschitz` for the trivial
+character. -/
 theorem derivative_integral_all : DerivIntAll := by
   obtain ⟨K, hK⟩ := Formalism.zetaPrimeSumErrorLipschitz
   have hl4 : 0 ≤ Real.log 4 := Real.log_nonneg (by norm_num)

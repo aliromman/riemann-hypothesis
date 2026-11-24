@@ -105,23 +105,6 @@ def PointsLemma (D : D7) : Prop :=
         (D.R.h h ≠ 0 → Even (addOrderOf h)))
 
 
-open Classical in
-def Conclusion4 (D : D7) (C : ℝ) : Prop :=
-  (∀ l : ℕ, l.Prime → l ≠ 2 → ∀ j : ℕ, j ≤ D.R.e →
-    ((2 ^ j : ℕ) • hOf D.R.e l = 0 ↔
-      ((l : ZMod (4 * 2 ^ D.R.e / 2 ^ j)) = 1 ∨ (l : ZMod (4 * 2 ^ D.R.e / 2 ^ j)) = -1))) ∧
-  (∀ J : ℝ, 1 ≤ J → ∀ l : ℕ, l.Prime → l ≠ 2 → (ordH (hOf D.R.e l) : ℝ) ≤ J →
-    4 * ((2 ^ D.R.e : ℕ) : ℝ) / J - 1 ≤ l) ∧
-  (∀ J : ℝ, 1 ≤ J → ∀ S : Finset ℕ,
-    (∀ l ∈ S, l.Prime ∧ l ≠ 2 ∧ (ordH (hOf D.R.e l) : ℝ) ≤ J) →
-    ∑ l ∈ S, Real.log l / (l : ℝ) ^ 2 ≤
-      C * J ^ 2 * Real.log ((2 ^ D.R.e : ℕ) : ℝ) / ((2 ^ D.R.e : ℕ) : ℝ) ^ 2) ∧
-  (∀ J : ℝ, 1 ≤ J → ∀ Y : ℝ,
-    ∑ l ∈ (Finset.range (⌊Y⌋₊ + 1)).filter
-        (fun l => l.Prime ∧ l ≠ 2 ∧ (ordH (hOf D.R.e l) : ℝ) ≤ J),
-      Real.log l / (l : ℝ) ≤
-      C * J * Real.log (((2 ^ D.R.e : ℕ) : ℝ) * Y) ^ 2 / ((2 ^ D.R.e : ℕ) : ℝ))
-
 def transl {φ : Formalism.HC.Frame} (T : Finset ℕ) (u₀ : φ.A) : Set φ.A := {x | ∃ s ∈ T, x = φ.dig s + u₀}
 
 def coset {G : Type} [AddCommGroup G] (t h : G) : Set G := {x | ∃ i : ℤ, x = t + i • h}
@@ -295,12 +278,6 @@ def Conclusion8 (D : D7) : Prop :=
         ∀ σ τ : D.host.E ≃ₐ[ℚ] D.host.E, τ ∈ MulAction.stabilizer (D.host.E ≃ₐ[ℚ] D.host.E) P →
           (D.host.galE (σ * τ) ∈ D.R.Psi ↔
             D.host.galE σ ∈ D.R.Psi))
-
-def Conclusion₂ (D : D7) (C₄ C₅ : ℝ) (sc : Scale) : Prop :=
-  Conclusion1 D ∧ Conclusion2 D ∧ PointsLemma D ∧ Conclusion4 D C₄ ∧ Conclusion5 D C₅ ∧ TorusPairsWithVariant D ∧ Conclusion6 D sc ∧ division_rows_rational_lattice D ∧ Conclusion8 D
-
-def ConclusionOnFamily {eps : ℝ} (Fm : Formalism.MainNotions.FamP eps) (C₄ C₅ : ℝ) : Prop :=
-  ∀ x : ℝ, Fm.x1 < x → ∀ i : Fm.Ix x, Conclusion₂ (Fm.D x i) C₄ C₅ (Fm.L x i).sc
 
 end Formalism.MainNotions.UnusedSlot33
 

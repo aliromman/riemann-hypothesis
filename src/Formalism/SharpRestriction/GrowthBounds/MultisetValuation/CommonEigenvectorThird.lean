@@ -1165,15 +1165,6 @@ theorem restGc : RestGc p :=
 
 variable {p}
 
-theorem restGcA (X : Sys p) : RestGcA X :=
-  restGcA_of (X := X) (restGc p)
-
-theorem theta_kernel_expansion (D : Formalism.BasicNotions.D7) (X : Sys p) (Y : Pend X) (hA : admitted D X Y) : Conclusion1 D X Y :=
-  baseChange_preserves_unitary_of D X Y hA (restBeta p) (restGc p)
-
-theorem expansions_multiply (D : Formalism.BasicNotions.D7) (X : Sys p) (Y : Pend X) (hA : admitted D X Y) : ExpansionsMultiply D X Y :=
-  expansion_all_places_of_computation D X Y hA (restBeta p) (restGcA X)
-
 end Formalism.MainNotions.FormalGroupSystem.Pf
 end -- clump:auto
 end -- clump:auto

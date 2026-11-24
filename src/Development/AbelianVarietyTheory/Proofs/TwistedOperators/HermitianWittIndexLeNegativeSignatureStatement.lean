@@ -98,7 +98,7 @@ theorem le_of_isotropic {n : Type} [Fintype n] [DecidableEq n] {q p r : ℕ} (J 
     have h := key X Y
     rw [hxy, ← hZdef, ← hWdef] at h
     have h2 := congrArg conjTranspose h
-    simpa [conjTranspose_mul, _root_.GlobalTheory.FockCompare.CartanRel.J_conjTranspose, Matrix.mul_assoc] using h2
+    simpa [conjTranspose_mul, Formalism.UG.Jpq, fromBlocks_conjTranspose, Matrix.mul_assoc] using h2
   let L : (Fin r → ℂ) →ₗ[ℂ] (Fin p → ℂ) := (Z.submatrix Sum.inr id).mulVecLin
   have hinj : Function.Injective L := by
     rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']

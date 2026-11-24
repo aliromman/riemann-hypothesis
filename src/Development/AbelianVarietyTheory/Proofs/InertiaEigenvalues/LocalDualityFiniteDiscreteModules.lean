@@ -206,8 +206,6 @@ theorem exists_dual_equiv {n : ℕ} [NeZero n] {k : Type} [Field k] [Finite k]
     have := hf y (a • x)
     rw [hy, map_smul P, LinearMap.smul_apply, smul_eq_mul] at this
     exact this.symm
-  have c1 : Nat.card (TDual (ZMod n) M) = Nat.card M := GlobalTheory.ZModDual.card_dual_eq n M
-  have : Finite (TDual (ZMod n) M) := Nat.finite_of_card_ne_zero (by rw [c1]; exact Nat.card_pos.ne')
   have c2 : Nat.card (Module.Dual k M') = Nat.card M' :=
     Nat.card_congr (Module.finBasis k M').toDualEquiv.symm.toEquiv
   have : Finite (Module.Dual k M') := Nat.finite_of_card_ne_zero (by rw [c2]; exact Nat.card_pos.ne')
@@ -216,7 +214,7 @@ theorem exists_dual_equiv {n : ℕ} [NeZero n] {k : Type} [Field k] [Finite k]
     refine Nat.card_le_card_of_injective (P : M → Module.Dual k M') ?_
     set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
     exact fun x hx => h1 x fun y => by rw [hx]; rfl
-  exact ⟨AddEquiv.ofBijective f (inj.bijective_of_nat_card_le (c1 ▸ c3)), hf⟩
+  exact ⟨AddEquiv.ofBijective f (GlobalTheory.ZModDual.bijective_of_injective_into_dual n M M' f inj c3), hf⟩
 
 theorem form_val_mul {n : ℕ} [NeZero n] {k : Type} [Field k] (t : k →+ ZMod n) (c : ZMod n) (a : k) :
     t ((c.val : k) * a) = c * t a := by

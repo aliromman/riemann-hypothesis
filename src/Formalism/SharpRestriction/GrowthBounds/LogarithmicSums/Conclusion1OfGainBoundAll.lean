@@ -61,22 +61,8 @@ theorem sc_b'_nonneg (s : Scale) : 0 ≤ s.b' := by
   unfold Scale.b'
   exact div_nonneg (by linarith [sc_one_lt_a s]) (Real.exp_pos _).le
 
-theorem sc_w''_nonneg (s : Scale) (n : ℕ) : 0 ≤ s.w'' n := by
-  simpa [Scale.w''] using div_nonneg (sc_b'_nonneg s) (mul_nonneg (sc_x_pos s).le (Nat.cast_nonneg n))
-
 theorem sc_delta1_pos (s : Scale) : 0 < s.delta1 := by
   simpa [Scale.delta1] using Real.rpow_pos_of_pos (sc_x_pos s) _
-
-theorem X'_le_X'' (s : Scale) (n : ℕ) (hn : 1 ≤ n) : s.X' ≤ s.X'' n := by
-  have hX' : 0 < s.X' := Real.exp_pos _
-  have ha : 0 < s.a := by linarith [sc_one_lt_a s]
-  have hx := sc_x_pos s
-  have hn' : (1 : ℝ) ≤ n := by exact_mod_cast hn
-  have h : s.X'' n = s.x * n * s.X' := by
-    unfold Scale.X'' Scale.w'' Scale.b'
-    field_simp
-  rw [h]
-  exact le_mul_of_one_le_left hX'.le (one_le_mul_of_one_le_of_one_le s.one_lt_alt.le hn')
 
 theorem cand_of_VV_ne (X : Inst D L) (K : Consts) (a b : HH D → ℤ) (p : ℕ) (h : VV X K a b p ≠ ∅) :
     Cand D L K p := by

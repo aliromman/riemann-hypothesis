@@ -321,8 +321,6 @@ theorem weighted_homogeneous_cancel {σ : Type} {n : ℕ} (w : σ → Fin n → 
       have hxy' : x + y = e := by
         first
           | simpa using hxy
-          | exact Finset.mem_antidiagonal.mp hxy
-          | exact Finsupp.mem_antidiagonal.mp hxy
       dsimp only
       rw [coeff_weightedHomogeneousComponent]
       split_ifs with hy
@@ -339,8 +337,6 @@ theorem weighted_homogeneous_cancel {σ : Type} {n : ℕ} (w : σ → Fin n → 
       have hxy' : x + y = e := by
         first
           | simpa using hxy
-          | exact Finset.mem_antidiagonal.mp hxy
-          | exact Finsupp.mem_antidiagonal.mp hxy
       dsimp only
       rw [coeff_weightedHomogeneousComponent]
       split_ifs with hy

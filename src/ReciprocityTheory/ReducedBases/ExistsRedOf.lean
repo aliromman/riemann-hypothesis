@@ -323,21 +323,6 @@ lemma span_tri {R M : Type*} [Ring R] [AddCommGroup M] [Module R M] {d : ℕ} (v
     · rw [hW i l (not_lt.mp hl), zero_smul]
       exact Submodule.zero_mem _
 
-private lemma span_gs_Iio_le_orthogonal {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {d : ℕ}
-    (b : Fin d → E) (j : Fin d) : span ℝ (gs b '' Set.Iio j) ≤ (ℝ ∙ gs b j)ᗮ := by
-  rw [Submodule.span_le]
-  rintro _ ⟨i, hi, rfl⟩
-  exact Submodule.mem_orthogonal_singleton_iff_inner_right.mpr
-    (gramSchmidt_orthogonal (𝕜 := ℝ) (f := b) (ne_of_lt hi).symm)
-
-private lemma sub_gs_mem_span_gs_Iio {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {d : ℕ}
-    (b : Fin d → E) (j : Fin d) : b j - gs b j ∈ span ℝ (gs b '' Set.Iio j) := by
-  have h := gramSchmidt_def'' (𝕜 := ℝ) (f := b) (n := j)
-  nth_rewrite 1 [h]
-  rw [add_sub_cancel_left]
-  exact Submodule.sum_mem _ fun i hi =>
-    Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, Finset.mem_Iio.mp hi, rfl⟩)
-
 private lemma gs_sub_sum_lower_smul {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {d : ℕ}
     (b : Fin d → E) (c : Fin d → Fin d → ℝ) (hc : ∀ i l, i ≤ l → c i l = 0) :
     gs (fun i => b i - ∑ l, c i l • b l) = gs b := by
@@ -345,31 +330,18 @@ private lemma gs_sub_sum_lower_smul {E : Type*} [NormedAddCommGroup E] [InnerPro
   funext n
   have hV : span ℝ (b' '' Set.Iio n) = span ℝ (b '' Set.Iio n) :=
     (span_tri b c hc (Set.Iio n) (fun i hi l hl => lt_trans hl hi)).symm
-  have hV' : span ℝ (gs b' '' Set.Iio n) = span ℝ (gs b '' Set.Iio n) := by
-    rw [span_gramSchmidt_Iio, span_gramSchmidt_Iio, hV]
-  have hu : gs b n - gs b' n ∈ span ℝ (gs b '' Set.Iio n) := by
-    have e1 : gs b n - gs b' n = (b' n - gs b' n) - (b n - gs b n) + (b n - b' n) := by abel
-    rw [e1]
-    refine add_mem (sub_mem ?_ (sub_gs_mem_span_gs_Iio b n)) ?_
-    · rw [← hV']
-      exact sub_gs_mem_span_gs_Iio b' n
-    · rw [span_gramSchmidt_Iio]
-      show b n - (b n - ∑ l, c n l • b l) ∈ span ℝ (b '' Set.Iio n)
-      rw [sub_sub_cancel]
-      refine Submodule.sum_mem _ fun l _ => ?_
-      by_cases hl : l < n
-      · exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨l, hl, rfl⟩)
-      · rw [hc n l (not_lt.mp hl), zero_smul]
-        exact Submodule.zero_mem _
-  have hu' : gs b n - gs b' n ∈ span ℝ (gs b' '' Set.Iio n) := by
-    rw [hV']
-    exact hu
-  have hu1 := Submodule.mem_orthogonal_singleton_iff_inner_right.mp (span_gs_Iio_le_orthogonal b n hu)
-  have hu2 := Submodule.mem_orthogonal_singleton_iff_inner_right.mp (span_gs_Iio_le_orthogonal b' n hu')
-  have h3 := inner_sub_left (𝕜 := ℝ) (gs b n) (gs b' n) (gs b n - gs b' n)
-  rw [hu1, hu2, sub_zero] at h3
-  have h4 := inner_self_eq_zero.mp h3
-  exact (sub_eq_zero.mp h4).symm
+  apply gs_eq_of
+  · rw [hV]
+    change b n - (∑ l, c n l • b l) - gs b n ∈ _
+    rw [sub_right_comm]
+    refine sub_mem (b_sub_gs_mem b n) (Submodule.sum_mem _ fun l _ => ?_)
+    by_cases hl : l < n
+    · exact Submodule.smul_mem _ _ (subset_span ⟨l, hl, rfl⟩)
+    · simp [hc n l (not_lt.mp hl)]
+  · intro j hj
+    apply inner_gs_span b n
+    rw [← hV]
+    exact subset_span ⟨j, hj, rfl⟩
 
 private lemma exists_basis_sub_sum_lower {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {d : ℕ}
     (f : (Fin d → ℤ) →ₗ[ℤ] E)
