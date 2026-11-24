@@ -28,3 +28,15 @@ Six original individual sources had changed inputs. Each used a warm-up pair and
 The four-module workload included both root theorems and their complete project dependencies. Each trial started with empty project build output. All twelve builds, including the warm-up pair, compiled all four project modules. The raw archive and verified record contain the individual observations, regressions, pair order, ranges and runner details.
 
 The original Actions ZIP has SHA-256 `6d460c55a57c971b4babaf5a8ea04ddcdcb73f1c42c1c5bb1942ced715b7197c`. This is a bounded test. The complete nine-target default build and the full five-claim sandbox comparison remain separate community checks. [Exact tested harness](https://github.com/aliromman/riemann-hypothesis/tree/3aadb31f965c5b7c0e2cf704c789480b4c555cad/ci/stock-batch-1266)
+
+## Actual upstream merge preview
+
+GitHub identifies `963ebea3bb3d7c2c5738946fca45317b8084f972` as the actual PR head. The public merge preview `0a0cea8dabaa01267133c0c5933c01ad67dc0825` has community parent `307cef33f046955ee79dba47e0d828d06496d75f`. Its complete bounded project cone has the same 239 ordered module inputs and the same ten fixed compiler, package and proof files as the Linux job. The record checks all 239 parent and candidate Git blobs and the authenticated archive rows against the original stock ZIP. Earlier timed measurements retain the machine and scope specified above. [Complete current Git and archive binding](canonical.json)
+
+Upstream reported success for its PR label check and success for its frozen challenge files. [Upstream label check](https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45450127788/job/138644620626) [Upstream challenge files check](https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45450128141/job/138644621624)
+
+The public donor has a successful receipt. Of the nine author, merge and whole-input routes, 9 returned HTTP 404. The complete parent public module, IR signature and IR data alone occupy 10,626,355,376 bytes for 59,883 modules. The ordinary Linux runner reported 80 GiB free after bounded Mathlib hydration. The fork had 0 registered self-hosted runners and upstream reported READ permission. The complete default build requires separate community verification. [Measured disk and archive scope](capacity.json)
+
+The changed named theorem was also built from all three project sources with stock default Bubblewrap, with all current input hashes checked. [Default sandbox](https://github.com/aliromman/riemann-hypothesis/tree/ec29eed2be2f35a51f82053da385d6ca8ec328c7/ci/source-sandbox/results/45446517890/)
+
+The complete 59,884-file source and all scripts match the full-checkout planner experiment and the 314 community, 14 included focused and 60 native tests. [Complete CLI timings](https://github.com/aliromman/riemann-hypothesis/tree/21715e52f9d8e4253902b9022d821b1a9ab3135d/ci/clump-cli/results/45446832028/) [Unit tests and four compiler diagnostics](https://github.com/aliromman/riemann-hypothesis/tree/411cc705750daef09bc51cb2b446ea6d97d46e54/ci/clump-diagnostics/results/45448060512/)
