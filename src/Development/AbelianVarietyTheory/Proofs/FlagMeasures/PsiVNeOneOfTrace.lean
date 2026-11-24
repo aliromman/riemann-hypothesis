@@ -65,16 +65,6 @@ theorem trace_int_iff (a : F) : (∀ r : 𝓞 F, ∃ k : ℤ, Algebra.trace ℚ 
     ∀ d ∈ differentIdeal ℤ (𝓞 F), ∃ r : 𝓞 F, (r : F) = a * d := by
   apply _root_.GlobalTheory.SnMass.Inhab.trace_int_iff
 
-theorem integral_iff (x : F) : (∀ v : HeightOneSpectrum (𝓞 F), algebraMap F (Af F) x v ∈ v.adicCompletionIntegers F) ↔
-    ∃ r : 𝓞 F, (r : F) = x := by
-  constructor
-  · intro h
-    have hx := (GlobalTheory.AdLat.mem_adelicIdeal_one_iff_integral F _).2 h
-    rwa [GlobalTheory.Idele.algebraMap_mem_adelicIdeal (GlobalTheory.AdLat.one_ne_zero_fracIdeal F),
-      FractionalIdeal.mem_one_iff] at hx
-  · rintro ⟨r, rfl⟩ v
-    exact HeightOneSpectrum.coe_mem_adicCompletionIntegers v r
-
 theorem fin_conductor (χ : Af F → ℂ) (hc : Continuous χ) (hadd : ∀ x y, χ (x + y) = χ x * χ y)
     (hrat : ∀ a : F, χ (algebraMap F (Af F) a) =
       Complex.exp (2 * Real.pi * Complex.I * ((Algebra.trace ℚ F (-a) : ℚ) : ℂ))) (z : Af F) :

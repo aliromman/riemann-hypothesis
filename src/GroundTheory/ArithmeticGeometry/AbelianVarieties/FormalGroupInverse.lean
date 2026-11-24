@@ -11,54 +11,10 @@ public import Mathlib.RingTheory.RegularLocalRing.Defs
 public import Mathlib.RingTheory.SimpleRing.Principal
 public import GroundTheory.LocalFields.FormalGroups.Basics
 import GroundTheory.LocalFields.FormalGroups.Truncation
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.Order.CompletePartialOrder
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.AffineMonoid.Basic
 import Mathlib.RingTheory.PicardGroup
-import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.RingTheory.PowerSeries.NoZeroDivisors
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -149,18 +105,6 @@ theorem map_formalW {S : Type*} [CommRing S] (f : R →+* S) :
     (formalW W).map f = formalW (W.map f) := by
   simp [formalW, map_formalV]
 
-theorem coeff_subst_X {σ : Type*} [DecidableEq σ] (i : σ) (f : PowerSeries R) (d : σ →₀ ℕ) :
-    MvPowerSeries.coeff d (PowerSeries.subst (MvPowerSeries.X i : MvPowerSeries σ R) f) =
-      if d = Finsupp.single i (d i) then PowerSeries.coeff (d i) f else 0 := by
-  rw [PowerSeries.coeff_subst (PowerSeries.HasSubst.X i)]
-  simp_rw [MvPowerSeries.X_pow_eq, MvPowerSeries.coeff_monomial, smul_eq_mul, mul_ite, mul_one,
-    mul_zero]
-  rw [finsum_eq_single _ (d i)]
-  intro n hn
-  rw [if_neg]
-  rintro rfl
-  simp at hn
-
 def divDiff (f : PowerSeries R) : MvPowerSeries (Fin 2) R :=
   fun d => PowerSeries.coeff (d 0 + d 1 + 1) f
 
@@ -185,7 +129,7 @@ theorem X_sub_X_mul_divDiff (f : PowerSeries R) :
       PowerSeries.subst (MvPowerSeries.X 1 : MvPowerSeries (Fin 2) R) f -
         PowerSeries.subst (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) R) f := by
   ext d
-  rw [sub_mul, map_sub, map_sub, coeff_subst_X, coeff_subst_X, MvPowerSeries.X, MvPowerSeries.X,
+  rw [sub_mul, map_sub, map_sub, PowerSeries.coeff_subst_single, PowerSeries.coeff_subst_single, MvPowerSeries.X, MvPowerSeries.X,
     MvPowerSeries.coeff_monomial_mul, MvPowerSeries.coeff_monomial_mul]
   simp only [single_le_fin_two_iff, fin_two_eq_single_one_iff, fin_two_eq_single_zero_iff,
     coeff_divDiff, Finsupp.tsub_apply, one_mul]
@@ -382,7 +326,7 @@ theorem two_le_order_wAt_X (i : Fin 2) :
     (2 : ℕ∞) ≤ MvPowerSeries.order (wAt W (MvPowerSeries.X i : MvPowerSeries (Fin 2) R)) := by
   refine MvPowerSeries.nat_le_order fun d hd => ?_
   have hd2 : d.degree < 2 := by exact_mod_cast hd
-  rw [wAt, coeff_subst_X]
+  rw [wAt, PowerSeries.coeff_subst_single]
   split_ifs with h
   · have : d i ≤ d.degree := by
       rw [degree_fin_two]; fin_cases i <;> simp

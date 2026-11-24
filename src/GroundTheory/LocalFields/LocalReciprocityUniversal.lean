@@ -4,55 +4,12 @@ public import GroundTheory.LocalFields.AbstractLocalReciprocity.NormGroups
 public import Mathlib.Topology.Algebra.Group.TopologicalAbelianization
 public import GroundTheory.LocalFields.LocalReciprocityFinite
 import GroundTheory.LocalFields.AbstractLocalReciprocity.Isomorphism
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Algebra.ClopenNhdofOne
 import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Topology.InductiveDimension.Functions
 import Mathlib.Topology.Separation.Connected
 import GroundTheory.LocalFields.AbstractLocalReciprocity.Functoriality
-import Mathlib.Topology.Sheaves.Init
-import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.LocalFields.AbstractLocalReciprocity.ReciprocityAbelianizationRestrictReciprocityLimi, GroundTheory.LocalFields.LocalReciprocityLimitAbstract, GroundTheory.LocalFields.LocalReciprocityUniversal
@@ -463,12 +420,6 @@ section Group
 
 variable {G : Type*} [Group G] {M : Type*} [Group M] [IsMulCommutative M]
 
-theorem commutator_le_ker_of_isMulCommutative (f : G →* M) : commutator G ≤ f.ker := by
-  rw [commutator, Subgroup.commutator_le]
-  intro a _ b _
-  rw [MonoidHom.mem_ker, map_commutatorElement, commutatorElement_eq_one_iff_mul_comm]
-  exact mul_comm' _ _
-
 end Group
 
 variable {K : Type*} [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]
@@ -547,7 +498,7 @@ omit [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K] in
 theorem topologicalClosure_commutator_le_ker_restrictNormalHom :
     (commutator (Ω ≃ₐ[K] Ω)).topologicalClosure ≤
       (AlgEquiv.restrictNormalHom (F := K) (K₁ := Ω) L).ker := by
-  refine Subgroup.topologicalClosure_minimal _ (commutator_le_ker_of_isMulCommutative _) ?_
+  refine Subgroup.topologicalClosure_minimal _ (Abelianization.commutator_le_ker _) ?_
   rw [ker_restrictNormalHom]
   exact Subgroup.isClosed_of_isOpen _ (L.fixingSubgroup_isOpen)
 
@@ -564,7 +515,7 @@ theorem abelianRestrict_mk (σ : Ω ≃ₐ[K] Ω) :
 theorem isAbelianExtension_fixingOpenSubgroup : IsAbelianExtension ⊤ (fixingOpenSubgroup L) := by
   refine ⟨le_top, ?_⟩
   rw [← ker_restrictTop]
-  exact commutator_le_ker_of_isMulCommutative _
+  exact Abelianization.commutator_le_ker _
 
 theorem abelianRestrict_topAbelianizationEquiv
     (y : TopologicalAbelianization ((⊤ : OpenSubgroup (Ω ≃ₐ[K] Ω)) : Subgroup (Ω ≃ₐ[K] Ω))) :
@@ -709,7 +660,7 @@ theorem unramifiedDegree_of_mk_eq_localReciprocityLimit {x : Kˣ} {g : Ω ≃ₐ
     exact (multiples n).zero_mem
   have hL : IsAbelianExtension ⊤ (unramifiedOpenSubgroup K Ω n) := by
     refine ⟨le_top, fun y hy => ?_⟩
-    have h := commutator_le_ker_of_isMulCommutative
+    have h := Abelianization.commutator_le_ker
       ((unramifiedDegree K Ω).comp (Subgroup.subtype _)) hy
     rw [MonoidHom.mem_ker, MonoidHom.comp_apply, Subgroup.coe_subtype] at h
     rw [Subgroup.mem_subgroupOf, mem_unramifiedOpenSubgroup, h, toAdd_one]

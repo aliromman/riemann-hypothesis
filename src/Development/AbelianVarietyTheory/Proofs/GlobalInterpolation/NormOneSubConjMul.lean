@@ -113,26 +113,18 @@ theorem norm_logDeriv_le {r R K : ℝ} (hr : 0 < r) (hrR : r < R) (hK : 0 < K) {
   obtain ⟨h, hh0, hh⟩ := hd.isExactOn_ball.with_val_at 0 0
   have hhd : DifferentiableOn ℂ h (Metric.ball 0 R) :=
     fun u hu => (hh u hu).differentiableAt.differentiableWithinAt
-  have hc : ∀ u ∈ Metric.ball (0 : ℂ) R, g u * cexp (-h u) = g 0 := by
+  have hlog : Set.EqOn (logDeriv g) (logDeriv (fun u => cexp (h u))) (Metric.ball 0 R) := by
     intro u hu
-    have hD : ∀ v ∈ Metric.ball (0 : ℂ) R, HasDerivAt (fun v => g v * cexp (-h v)) 0 v := by
-      intro v hv
-      have h1 := (hg.differentiableAt (Metric.isOpen_ball.mem_nhds hv)).hasDerivAt
-      have h2 := h1.mul (hh v hv).neg.cexp
-      have := h0 v hv
-      refine HasDerivAt.congr_deriv h2 ?_
-      simp only [Pi.neg_apply]
-      field_simp
-      ring
-    have := Metric.isOpen_ball.is_const_of_deriv_eq_zero (𝕜 := ℂ) (f := fun v => g v * cexp (-h v))
-      (convex_ball (0 : ℂ) R).isPreconnected
-      (fun v hv => (hD v hv).differentiableAt.differentiableWithinAt)
-      (fun v hv => (hD v hv).deriv) hu (Metric.mem_ball_self hR)
-    simpa [hh0] using this
+    rw [logDeriv_apply, logDeriv_apply, (hh u hu).cexp.deriv]
+    field_simp
+  obtain ⟨a, -, heq⟩ := (logDeriv_eqOn_iff hg hhd.cexp Metric.isOpen_ball
+    (convex_ball (0 : ℂ) R).isPreconnected (fun u _ => Complex.exp_ne_zero (h u)) h0).mp hlog
+  have ha : a = g 0 := by
+    simpa [Pi.smul_apply, smul_eq_mul, hh0] using (heq (Metric.mem_ball_self hR)).symm
   have hre : Set.MapsTo h (Metric.ball 0 R) {z | z.re ≤ K} := by
     intro u hu
     have e : g u = g 0 * cexp (h u) := by
-      rw [← hc u hu, mul_assoc, ← Complex.exp_add]; simp
+      simpa [ha, Pi.smul_apply, smul_eq_mul] using heq hu
     have h1 := hb u hu
     rw [e, norm_mul, Complex.norm_exp] at h1
     have hp : 0 < ‖g 0‖ := norm_pos_iff.2 (h0 0 (Metric.mem_ball_self hR))

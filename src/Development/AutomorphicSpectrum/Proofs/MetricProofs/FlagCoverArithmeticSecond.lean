@@ -70,11 +70,6 @@ theorem mCoordIdeal_eq_of_sameOrbit {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit
     mCoordIdeal z = mCoordIdeal z' :=
   le_antisymm (mCoordIdeal_le_of_sameOrbit (Cj.sameOrbit_symm h)) (mCoordIdeal_le_of_sameOrbit h)
 
-theorem coord_ne_of_X_notMem {z : (Σ k, ι k) → ℂ} {q : Σ k, ι k} (h : (X q : MRing ι) ∉ mCoordIdeal z) :
-    z q ≠ 0 := fun e => h (by
-  show mConeMap z (X q) = 0
-  rw [mConeMap, aeval_X, e, map_zero, zero_mul])
-
 end Orbit
 
 section Proj
@@ -147,7 +142,7 @@ theorem isImg_unique : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fint
   obtain ⟨bs', fr', fl'⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.CPts.main K' ι' Φ' y' Ψ N j M'
   obtain ⟨F', hF', hG'⟩ := fr' _ (bs' z hz)
   have hne : ∀ k : NonPluckerBlocks M'.blk, basePart M'.blk z ⟨k, F'.c k⟩ ≠ 0 := fun k =>
-    coord_ne_of_X_notMem (hG'.1 k)
+    GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.coord_ne (hG'.1 k)
   let c : K' → ℂ := fun k =>
     if h : ∀ p, M'.blk p ≠ some k then (basePart M'.blk z ⟨⟨k, h⟩, F'.c ⟨k, h⟩⟩)⁻¹ else 1
   have hcb : ∀ k : NonPluckerBlocks M'.blk, c k.1 = (basePart M'.blk z ⟨k, F'.c k⟩)⁻¹ := fun k => dif_pos k.2

@@ -60,26 +60,9 @@ namespace GlobalTheory.DStepSuppSecond
 
 variable {D : D7}
 
-theorem mem_congGrp {V : HSp D} {I : Ideal (AE D)} {g : GA D V} :
-    g ∈ congGrp V I ↔ ∀ i j, mt V g i j - (1 : Matrix (Fin V.rank) (Fin V.rank) (AE D)) i j ∈ I := by
-  unfold congGrp
-  rw [MonoidHom.mem_ker]
-  constructor
-  · intro h i j
-    have := congrArg (fun x : GL (Fin V.rank) (AE D ⧸ I) => x.1 i j) h
-    rw [← Ideal.Quotient.eq]
-    simp [Formalism.L2.Theta.mt, Matrix.one_apply] at this ⊢
-    exact this
-  · intro h
-    ext i j
-    have := h i j
-    rw [← Ideal.Quotient.eq] at this
-    simp [Formalism.L2.Theta.mt, Matrix.one_apply] at this ⊢
-    exact this
-
 theorem grpAt_inter {V : HSp D} {P P' R : Pl D → Prop} (h : ∀ p, P p → P' p → R p) {g : GA D V}
     (hg : g ∈ grpAt V P) (hg' : g ∈ grpAt V P') : g ∈ grpAt V R := by
-  rw [grpAt, mem_congGrp] at hg hg' ⊢
+  rw [grpAt, GlobalTheory.FinPl.PlacesAdeles.mem_congGrp] at hg hg' ⊢
   intro i j
   have h1 := hg i j
   have h2 := hg' i j
@@ -94,8 +77,8 @@ theorem grpAt_mono {V : HSp D} {P R : Pl D → Prop} (h : ∀ p, P p → R p) {g
 
 theorem grpAt_off {V : HSp D} {P R : Pl D → Prop} (h : ∀ p, P p → ¬ R p) {g : GA D V}
     (hg : g ∈ grpAt V P) : g ∈ grpOff V R := by
-  rw [grpAt, mem_congGrp] at hg
-  rw [grpOff, mem_congGrp]
+  rw [grpAt, GlobalTheory.FinPl.PlacesAdeles.mem_congGrp] at hg
+  rw [grpOff, GlobalTheory.FinPl.PlacesAdeles.mem_congGrp]
   intro i j
   have h1 := hg i j
   simp only [idAt, idOff, Submodule.mem_inf, Submodule.mem_iInf] at h1 ⊢

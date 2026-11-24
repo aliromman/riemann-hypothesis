@@ -92,7 +92,6 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasBa
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.WeightSetResidueCharacteristic
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUnlocalizedSaturatedState
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdelicDataExtendLargerFieldsOfPublishedStatement
-public import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.AdmissibleCoefficientsAnalytic
 public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HarishChandraFinite
 public import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.CuspDiscreteDecompositionOfTraceClass
 public import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.ExistsFactorisationCuspidal
@@ -1375,7 +1374,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.CompatibleSystemWeightOneSaturated =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.TwistedLocalMultiplicityEq =====
--- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.TwistedLocalMultiplicityEq", "h": "module\n\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.AdmissibleCoefficientsAnalytic\npublic import Development.AbelianVarietyTheory.PublishedTheorems.DiscreteSeriesUnitary₂.DiscreteSeriesClassificationIff\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HarishChandraFinite\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.CuspDiscreteDecompositionOfTraceClass\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.ExistsFactorisationCuspidal\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.ExistsCellOfIsSubquotient\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HoldsUIff\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsBare\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LargeCoefficientFieldContainsTwistValuesStatement\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StandardLatticesDiagonal\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqualMultiplicitiesRowTestOfSameGroupTransferStatement\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GoodTypesOfTypesTrue\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.TwistedMultiplicityOne\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\npublic import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.WeakCharInertPartRealAdelicDataTransport\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CopyLIntegral\n\n"}
+-- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.TwistedLocalMultiplicityEq", "h": "module\n\npublic import Development.AbelianVarietyTheory.PublishedTheorems.DiscreteSeriesUnitary₂.DiscreteSeriesClassificationIff\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HarishChandraFinite\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.CuspDiscreteDecompositionOfTraceClass\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.ExistsFactorisationCuspidal\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.ExistsCellOfIsSubquotient\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HoldsUIff\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsBare\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LargeCoefficientFieldContainsTwistValuesStatement\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StandardLatticesDiagonal\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqualMultiplicitiesRowTestOfSameGroupTransferStatement\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GoodTypesOfTypesTrue\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.TwistedMultiplicityOne\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\npublic import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.WeakCharInertPartRealAdelicDataTransport\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CopyLIntegral\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -1387,12 +1386,12 @@ noncomputable section
 namespace GlobalTheory.Mem.R3.Rw.MultAt
 open GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.R3.Rw
 
-theorem twisted_local_multiplicity_eq : GlobalTheory.Published.HarishChandraAnalyticity → GlobalTheory.Published.DiscreteSeriesClassification → GlobalTheory.Published.CuspRapidDecay →
+theorem twisted_local_multiplicity_eq : GlobalTheory.Published.DiscreteSeriesClassification → GlobalTheory.Published.CuspRapidDecay →
     GlobalTheory.Published.HarishChandraFinite → GlobalTheory.Published.CuspTraceClass → GlobalTheory.Published.DixmierMalliavinFactorisation →
-    GlobalTheory.Published.FlathFactorisation → GlobalTheory.Published.ZelevinskyPolynomialRing →
+    GlobalTheory.Published.ZelevinskyPolynomialRing →
     GlobalTheory.Published.GeometricLemma → GlobalTheory.Published.GreenCuspidal →
     AtDat fun _ _ _ _ _ _ _ _ z => GlobalTheory.CuspMult.MultEq z.R.toRealDat := by
-  intro h1 h2 h3 h4 h5 h6 h7 h12 h13 hG
+  intro h2 h3 h4 h5 h6 h12 h13 hG
   have e1 := (evG_of_ev LedRec.ev_exists_sizeData).inter (evG_of_ev GlobalTheory.Mem.HostFrames.hostHyp_frames_ev)
   have s1 : Step KPx (fun _ _ _ _ => True) _ := Step.of_evLgG (evLgG_of_evLg GlobalTheory.T.valsIn_and_fam3_ok_of_coefficientField)
   refine s1.trans (Step.of_evG (e1.imp ?_))
@@ -1408,7 +1407,7 @@ theorem twisted_local_multiplicity_eq : GlobalTheory.Published.HarishChandraAnal
     have hT : TypesTrue (w.st Z').toD7.ntypes y.R.C.P y.R.C.W := by
       rw [y.lev.C, w.C_eq]
       exact g1'
-    exact _root_.GlobalTheory.MultEqFinal.twisted_multiplicity_eq h1 h2 h3 h4 h5 h6 h7 h12 h13 hG y.R y.F
+    exact _root_.GlobalTheory.MultEqFinal.twisted_multiplicity_eq h2 h3 h4 h5 h6 h12 h13 hG y.R y.F
       ((hOk w.px w.I hX w.ok w.C_eq w.xi_range).2 _ y.Xg y.tr y.good.irr) hch hEx' hhost ⟨L, hpar⟩ B.ccK_top
       y.pins.keep.guard (GlobalTheory.LiftRows.Inh.goodTypes_of_typesTrue hch.base.lev hT)
   exact (GlobalTheory.T.equalMultiplicities_rowTest_of_sameGroupTransfer
@@ -1517,7 +1516,7 @@ namespace GlobalTheory.Mem
 theorem member_hodgeHyp_of_localInputs_rationalWeights : _root_.GlobalTheory.Mem.LiteralAutomorphy.MemberHypotheses → GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.CasselmanWallach → GlobalTheory.Published.WeilSiegelFormulaUnitary → GlobalTheory.Published.SiegelWeilUnitarySchrodinger → GlobalTheory.Published.SiegelEisensteinContinuation → _root_.GlobalTheory.Published.UnusedSlot72 → GlobalTheory.Published.UnramifiedDoublingGL → GlobalTheory.Published.BernsteinZelevinskyFiniteness → GlobalTheory.Published.SchurOrthogonalitySquareIntegrable → RowRatW → _root_.GlobalTheory.Mem.Top.Bl.MultiplicityCoverHypotheses :=
   fun m hm dc cw ws sw e1 e2 ud bz so r =>
     _root_.GlobalTheory.Mem.LiteralAutomorphy.condition_of_memberHypotheses dc (_root_.GlobalTheory.twisted_siegel_weil_identity_of_siegel_weil_formula GlobalTheory.Hk3.howeUnram_holds m.m3 m.m4 hm dc cw ws sw e1 e2 ud bz m.m14 so) GlobalTheory.Published.HeckeLPartialContinuation_holds
-      (_root_.GlobalTheory.Mem.R3.Rw.MultAt.twisted_local_multiplicity_eq m.m1 m.m2 m.m3 m.m4 m.m5 m.m6 m.m7 m.m12 m.m13 m.m14) r
+      (_root_.GlobalTheory.Mem.R3.Rw.MultAt.twisted_local_multiplicity_eq m.m2 m.m3 m.m4 m.m5 m.m6 m.m12 m.m13 m.m14) r
 end GlobalTheory.Mem
 end
 
@@ -1575,7 +1574,7 @@ theorem exists_weilBlock_ne_at_member_alt : _root_.GlobalTheory.Mem.Top.Bl.HypAA
   intro ha hh pm hL N A hb hs
   exact _root_.GlobalTheory.Mem.Top.Bl.exBL_isLinked_prmR_alt pm.m14 hh.cover ha.a5 ha.a7 ha.a8 ha.a9 ha.a10 ha.a6 ha.a22 ha.a23 ha.a1 hL (_root_.GlobalTheory.Mem.LiteralAutomorphy.extensionWithAtProperty hL N A) _ rfl
     (fun K B f T w Z Wt p0 t nch n xd c e => hb K B f T w Z Wt p0 t nch n xd c e.1) (_root_.GlobalTheory.Mem.LiteralAutomorphy.slot_mv_extension_with_at_property A hs)
-    (_root_.GlobalTheory.Mem.Top.Bl.MultQClose.multiplicative_closure_prime_mem_alt pm.m1 pm.m2 pm.m3 pm.m4 pm.m5 pm.m6 pm.m7 pm.m12 pm.m13 pm.m14 hL _ _)
+    (_root_.GlobalTheory.Mem.Top.Bl.MultQClose.multiplicative_closure_prime_mem_alt pm.m2 pm.m3 pm.m4 pm.m5 pm.m6 pm.m12 pm.m13 pm.m14 hL _ _)
 end GlobalTheory.Mem.LiteralAutomorphy
 end
 end
@@ -1684,17 +1683,17 @@ theorem member_bundles_large_unramified_exponents_alt : _root_.GlobalTheory.Fc.S
     P.harishChandraModules P.cuspRapidDecay P.casselmanWallach P.harishChandraFinite
     P.discreteSeriesClassification P.discreteSeriesCoverExists
     P.formalDegreeCompactDual sw
-  have hPM : _root_.GlobalTheory.Mem.LiteralAutomorphy.MemberHypotheses := ⟨P.harishChandraAnalyticity, P.discreteSeriesClassification, P.cuspRapidDecay,
-    P.harishChandraFinite, P.cuspTraceClass, P.dixmierMalliavinFactorisation, P.flathFactorisation,
+  have hPM : _root_.GlobalTheory.Mem.LiteralAutomorphy.MemberHypotheses := ⟨P.discreteSeriesClassification, P.cuspRapidDecay,
+    P.harishChandraFinite, P.cuspTraceClass, P.dixmierMalliavinFactorisation,
     P.zelevinskyPolynomialRing, P.geometricLemma, P.greenCuspidal⟩
   have hH := _root_.GlobalTheory.Mem.member_hodgeHyp_of_localInputs_rationalWeights hPM P.harishChandraModules P.discreteSeriesCover P.casselmanWallach
     P.weilSiegelFormulaUnitary P.siegelWeilUnitarySchrodinger P.siegelEisensteinContinuation
     P.siegelEisensteinSimplePole P.unramifiedDoublingGL P.bernsteinZelevinskyFiniteness
     P.schurOrthogonalitySquareIntegrable hR
   have hW := _root_.GlobalTheory.HeightCounting.Up.weightOne_saturated_of_hypotheses hA hH
-  have hM := _root_.GlobalTheory.Mem.Top.Bl.MultQClose.multiplicative_closure_prime_mem_alt P.harishChandraAnalyticity P.discreteSeriesClassification
+  have hM := _root_.GlobalTheory.Mem.Top.Bl.MultQClose.multiplicative_closure_prime_mem_alt P.discreteSeriesClassification
     P.cuspRapidDecay P.harishChandraFinite P.cuspTraceClass P.dixmierMalliavinFactorisation
-    P.flathFactorisation P.zelevinskyPolynomialRing P.geometricLemma
+    P.zelevinskyPolynomialRing P.geometricLemma
     P.greenCuspidal hL (_root_.GlobalTheory.HeightCounting.Up.extensionWithOrigin hL cDep) SExt.none
   obtain ⟨hE, -, -, hL', hN⟩ := _root_.GlobalTheory.MemberClose.exists_hyp_n_of_geometric_galois_compat P.litN P.toHypothesesX
   have hMember :=

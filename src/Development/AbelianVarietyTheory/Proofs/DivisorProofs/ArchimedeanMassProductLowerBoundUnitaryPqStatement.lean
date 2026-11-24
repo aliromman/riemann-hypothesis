@@ -328,9 +328,9 @@ theorem exp_box {p q : ℕ} (a₀ : Fin p ⊕ Fin q) {n : ℝ} (hn : n = ((p + q
   have herr : ∀ a b, ‖(UpqT.mat u - 1 - X.1) a b‖ ≤ ε / 40 := by
     intro a b
     rw [hu]
-    refine (H X.1 (by nlinarith) a b).trans ?_
+    refine (H X.1 (by linarith [mul_le_mul_of_nonneg_left (show 9 / 10 * ε ≤ ε by linarith) hn2.le]) a b).trans ?_
     calc 1 / (40 * n ^ 2) * ∑ i, ∑ j, ‖X.1 i j‖ ≤ 1 / (40 * n ^ 2) * (n ^ 2 * ε) :=
-          mul_le_mul_of_nonneg_left (by nlinarith) (by positivity)
+          mul_le_mul_of_nonneg_left (by linarith [mul_le_mul_of_nonneg_left (show 9 / 10 * ε ≤ ε by linarith) hn2.le]) (by positivity)
       _ = ε / 40 := by field_simp
   have hent : ∀ a b, ‖X.1 a b‖ < 9 / 10 * ε := fun a b => (hX a b).trans_le (rad_le a₀ hn1 (by positivity) a b)
   have hent' : ∀ a b, ‖(UpqT.mat u - 1) a b‖ < ε := by
@@ -402,7 +402,7 @@ theorem num_ge (N : ℕ) (hN : 1 ≤ N) (ε K : ℝ) (hε : 0 < ε) (hK : 3 / (4
     obtain ⟨M, rfl⟩ := Nat.exists_eq_add_of_le' hN
     have : 2 * k ≤ (M + 1) * (M + 1 - 1) := Nat.mul_div_le _ _
     rw [Nat.add_sub_cancel] at this
-    nlinarith
+    grind
   obtain ⟨M, hM⟩ : ∃ M, N ^ 2 = M + 1 := ⟨N ^ 2 - 1, by omega⟩
   have h2 : 3 / 2 * (2 : ℝ) ^ k ≤ (3 / 2) ^ (M + 1) := by
     calc 3 / 2 * (2 : ℝ) ^ k ≤ 3 / 2 * ((3 / 2 : ℝ) ^ 2) ^ k := by gcongr; norm_num
@@ -434,7 +434,7 @@ theorem le_measure_sMat_near : ∀ (p q : ℕ) (a₀ : Fin p ⊕ Fin q) (m : Mea
         intro a b
         unfold rad
         generalize (if a = b ∧ a ≠ a₀ then n⁻¹ else 1) = w
-        nlinarith [mul_nonneg (sq_nonneg (ε * w)) (sub_nonneg.2 Real.pi_gt_three.le), sq_nonneg (ε * w)])
+        linarith [mul_nonneg (sq_nonneg (ε * w)) (sub_nonneg.2 Real.pi_gt_three.le), sq_nonneg (ε * w)])
     rwa [prod_rad, Fintype.card_sum, Fintype.card_fin, Fintype.card_fin] at this
   have hT := tendsto_of_density m hH lam hlam.1 _ ht (fun ε => box (rad a₀ n (9 / 10 * ε)))
     (fun _ => measurableSet_box _)
@@ -443,7 +443,7 @@ theorem le_measure_sMat_near : ∀ (p q : ℕ) (a₀ : Fin p ⊕ Fin q) (m : Mea
       have h1 := sum_le_of_mem_box a₀ hn hn1 (by linarith [hr.1]) hX
       have h2 := hr.2
       rw [lt_div_iff₀ hn2] at h2
-      exact h1.trans_lt (by nlinarith [mul_pos hr.1 hn2]))
+      exact h1.trans_lt (by linarith [mul_pos hr.1 hn2]))
     (by
       filter_upwards [self_mem_nhdsWithin] with r hr
       have hr' : 0 < r := hr
@@ -490,7 +490,7 @@ theorem le_measure_sMat_near : ∀ (p q : ℕ) (a₀ : Fin p ⊕ Fin q) (m : Mea
       have h3 : (i : ℝ) + 1 ≤ j := by exact_mod_cast hij
       have h4 := h1.2
       have h5 := h2.1
-      nlinarith [mul_le_mul_of_nonneg_right h3 (show 0 ≤ 4 * ε by positivity)]
+      linarith [mul_le_mul_of_nonneg_right h3 (show 0 ≤ 4 * ε by positivity)]
     intro i _ j _ hij
     rcases lt_or_gt_of_ne hij with h | h
     · exact (key i j h).aedisjoint
@@ -512,9 +512,9 @@ theorem le_measure_sMat_near : ∀ (p q : ℕ) (a₀ : Fin p ⊕ Fin q) (m : Mea
     have hdet : (UpqT.mat (d * u)).det = Complex.exp (((θ + t : ℝ) : ℂ) * Complex.I) := by
       rw [GlobalTheory.CartanInt.mat_mul, hd, Matrix.det_mul, det_dg, ht2, ← Complex.exp_add]
       congr 1; push_cast; ring
-    have hpos : 0 < θ + t := by nlinarith [mul_nonneg hk0 hε.le]
+    have hpos : 0 < θ + t := by linarith [mul_nonneg hk0 (show 0 ≤ 4 * ε by positivity)]
     have hpi : θ + t < Real.pi := by
-      nlinarith [mul_le_mul_of_nonneg_right hk' (show 0 ≤ 4 * ε by positivity)]
+      linarith [mul_le_mul_of_nonneg_right hk' (show 0 ≤ 4 * ε by positivity)]
     refine ⟨?_, fun a b => ?_, ?_⟩
     · show (UpqT.mat (d * u)).det.arg ∈ Set.Ioo ((k : ℝ) * (4 * ε)) (((k : ℝ) + 1) * (4 * ε))
       rw [hdet, Complex.exp_mul_I, Complex.arg_cos_add_sin_mul_I ⟨by linarith [Real.pi_pos], hpi.le⟩]
@@ -716,7 +716,7 @@ theorem exists_conj_bound (Ψ : Finset (E →+* ℂ)) (x : Frame Ψ r) (hx : ∀
   calc ‖X‖ = ‖Lc Y‖ := by rw [hLY]
     _ ≤ ‖Lc‖ * ‖Y‖ := Lc.le_opNorm Y
     _ ≤ ‖Lc‖ * t := by gcongr
-    _ ≤ (‖Lc‖ + 1) * t := by nlinarith
+    _ ≤ (‖Lc‖ + 1) * t := by rw [add_mul, one_mul]; linarith
 
 section Exp
 
@@ -784,7 +784,7 @@ theorem riemHaar_frBall_ge : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     have hCε : C * ε < δ := by rw [lt_div_iff₀ hC] at hεC; linarith
     calc ‖X‖ = ‖X.1‖ := rfl
       _ ≤ C * (ε / 2) := h
-      _ < δ := by nlinarith
+      _ < δ := by linarith [mul_pos hC hε]
   have himg : GlobalTheory.SUVol.DensOne.chartExp Ψ G hG '' s ⊆ frBall Ψ G x ε := by
     rintro _ ⟨X, hX, rfl⟩ τ a b
     change ‖((mat x τ)⁻¹ * NormedSpace.exp (Matrix.of (X.1 τ)) * mat x τ - 1) a b‖ < ε
@@ -925,7 +925,7 @@ theorem constant_bound : ∀ (f r : ℕ) (ε : ℝ), 1 ≤ f → 1 ≤ r → 0 <
   intro f r ε hf hr hε
   have hf' : (1 : ℝ) ≤ f := by exact_mod_cast hf
   have hr' : (1 : ℝ) ≤ r := by exact_mod_cast hr
-  have hN : 1 ≤ f * r ^ 2 := by have := Nat.one_le_pow 2 r hr; nlinarith
+  have hN : 1 ≤ f * r ^ 2 := Nat.mul_pos hf (Nat.one_le_pow 2 r hr)
   have hnN : f * (r ^ 2 - 1) ≤ f * r ^ 2 := Nat.mul_le_mul_left _ (Nat.sub_le _ _)
   have hL : ((200 * (r : ℝ)) ^ (r ^ 2) * ε ^ (r ^ 2 - 1)) ^ f =
       (200 * (r : ℝ)) ^ (f * r ^ 2) * ε ^ (f * (r ^ 2 - 1)) := by
@@ -934,7 +934,7 @@ theorem constant_bound : ∀ (f r : ℕ) (ε : ℝ), 1 ≤ f → 1 ≤ r → 0 <
   generalize hN' : f * r ^ 2 = N at hN hnN
   generalize hn' : f * (r ^ 2 - 1) = n at hnN
   have hr2 : (1 : ℝ) ≤ (r : ℝ) ^ 2 := one_le_pow₀ hr'
-  have ha1 : (1 : ℝ) ≤ 2 * ((f : ℝ) * (r : ℝ) ^ 2) := by nlinarith
+  have ha1 : (1 : ℝ) ≤ 2 * ((f : ℝ) * (r : ℝ) ^ 2) := by linarith [one_le_mul_of_one_le_of_one_le hf' hr2]
   generalize ha : 2 * ((f : ℝ) * (r : ℝ) ^ 2) = a at ha1
   have ha0 : 0 < a := by linarith
   have e1 : 1000 * (f : ℝ) * (r : ℝ) ^ 3 = (5 / 2) * (200 * (r : ℝ) * a) := by rw [← ha]; ring
@@ -947,7 +947,7 @@ theorem constant_bound : ∀ (f r : ℕ) (ε : ℝ), 1 ≤ f → 1 ≤ r → 0 <
   have key : (200 * (r : ℝ)) ^ N * a ^ N * 2 ≤ (1000 * (f : ℝ) * (r : ℝ) ^ 3) ^ N := by
     rw [e1, mul_pow (5 / 2 : ℝ), ← mul_pow (200 * (r : ℝ)) a N]
     have hp : 0 ≤ (200 * (r : ℝ) * a) ^ N := pow_nonneg hq _
-    nlinarith
+    linarith [mul_le_mul_of_nonneg_right h52 hp]
   have hεn : 0 < ε ^ n := pow_pos hε _
   have han0 : 0 < a ^ n := pow_pos ha0 _
   have hw : 0 ≤ ε ^ n / a ^ n / 2 := by positivity

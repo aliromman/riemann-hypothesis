@@ -90,7 +90,6 @@ open Matrix
 
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {W : G.Weil} {U : Set T}
 
-
 variable (G) in
 theorem givenLevel_inner (t : T) (w : Pl D.host.E) : ∀ X : ℕ × ℕ, 1 ≤ X.1 → 1 ≤ X.2 →
     givenLevel G t w X = GlobalTheory.SplitWeil.KO (Kw w) _
@@ -162,12 +161,12 @@ theorem moves_of_hat (V : HSp D) (g : GA D V) (Λ : Lat V)
   constructor
   · intro h1
     refine GlobalTheory.HatLatV.mem_latV_of_hatL D V Λ _ _ hy' ?_
-    rw [GlobalTheory.Core.Mi.FrameMove.finE_mulVec_hat]
+    rw [GlobalTheory.FinPl.GlobImage.finE_mulVec]
     exact (h _).1 (GlobalTheory.LatVHat.latV_mem_hatL D V Λ _ y h1)
   · intro h1
     refine GlobalTheory.HatLatV.mem_latV_of_hatL D V Λ _ _ hy ?_
     have h2 := GlobalTheory.LatVHat.latV_mem_hatL D V Λ _ _ h1
-    rw [GlobalTheory.Core.Mi.FrameMove.finE_mulVec_hat] at h2
+    rw [GlobalTheory.FinPl.GlobImage.finE_mulVec] at h2
     exact (h _).2 h2
 
 theorem moves_neg (V : HSp D) (g : GA D V) (Λ : Lat V) {P : GlobalTheory.FinPl.Pl D → Prop} (h : Moves V g Λ Λ P) :

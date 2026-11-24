@@ -409,6 +409,7 @@ open GlobalTheory.LevDesc (TypeFrame grpHR grpGHR latN levDet secRing transl pul
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelAut)
 open GlobalTheory.BadCount
 open scoped TensorProduct
+open scoped GlobalTheory.CompHt
 namespace GlobalTheory.TwistDeg
 open GlobalTheory.FlatTw GlobalTheory.FlatLine GlobalTheory.IndefiniteRowSideFullHecke.DifferentConjugateDefects
 theorem degree_twist_ge : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → ∃ C : ℝ, 0 ≤ C ∧ ∀ (D : D7) (T : CoreJ D), LawsJ T → ∀ j : ℕ, 1 ≤ (T.Q.Dw j).p → 1 ≤ (T.Q.Dw j).q → 2 < Module.finrank ℚ D.host.E / 2 → InR D j → ∀ (Y : Deep T.toCore j) (e : ℕ) (o : ℝ), Y.Good e o → ∀ Lb : ℝ, 1 ≤ Lb → Real.log Y.d.l₂.M ≤ 30 * Lb → fieldSz D.host.E ≤ 3 * Lb → Real.log (D.R.f * D.R.r) ≤ Lb → o ≤ 391 * (D.R.f * D.R.r * Lb) ^ 2 → ∀ c₁ : ℝ, GlobalTheory.FlatLine.FlatExistsAt Y.U (xiR D) c₁ → |c₁| ≤ 9 * D.R.r * Lb → ∀ (la : AllWt.Weight (T.Q.Dw j)) (w : Psi T.Q.H → ℤ) Z, (∀ τ, |w τ| ≤ 3 * (D.R.r : ℤ)) → GoodOn Y.U (xiR D) (fun _ => D.sp.W j) Y.dict Z (wtOf (T.Q.Dw j) la 0) → Y.degC la Z - Y.rkC la Z * (C * ((D.R.f : ℝ) * D.R.r * Lb) ^ 2) ≤ Y.degC (la + GlobalTheory.FlatLine.parWt (T.Q.Dw j) w) Z := by
@@ -486,13 +487,13 @@ noncomputable section
 namespace GlobalTheory.CovTop.ShortRoad
 
 theorem hilbertSamuel_of_component_estimates_alt : GlobalTheory.CovTop.HypothesesX → _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.GrothendieckDeformation → GlobalTheory.HSCore.Quoted →
-    GlobalTheory.Published.SiegelToroidalIntegral → GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.SemiAbelianLieSeminegative → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.CoverDegree →
+    GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.SemiAbelianLieSeminegative → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.CoverDegree →
     _root_.GlobalTheory.CovTop.ShareCondition → _root_.GlobalTheory.CovTop.CoverHeightSum := by
-  intro hX h2 hGD hQd hSi hTo hSA hDG hS hF hDe hSh
+  intro hX h2 hGD hQd hTo hSA hDG hS hF hDe hSh
   obtain ⟨Cp, hCp, htw⟩ := _root_.GlobalTheory.TwistDeg.degree_twist_ge h2
   have hrk := _root_.GlobalTheory.TwistRank.flat_twist_rank_eq h2
   have hgood := _root_.GlobalTheory.CovTop.GoodDom.covering_regular_at_domain h2
-  refine Closed.imp (((((((_root_.GlobalTheory.HSShortRun.hsClaim_short_alt_alt hX h2 hGD hQd hSi hTo hSA hDG hS hF).and (_root_.GlobalTheory.CovTop.CovSz.size_rows_alt hS)).and (_root_.GlobalTheory.QuoWt.weights_at_point_alt hS)).and hS).and hF).and
+  refine Closed.imp (((((((_root_.GlobalTheory.HSShortRun.hsClaim_short_alt_alt hX h2 hGD hQd hTo hSA hDG hS hF).and (_root_.GlobalTheory.CovTop.CovSz.size_rows_alt hS)).and (_root_.GlobalTheory.QuoWt.weights_at_point_alt hS)).and hS).and hF).and
     hDe).and hSh) ?_
   intro eps Fm CH _ H
   obtain ⟨⟨⟨⟨⟨⟨⟨_, _, hR⟩, _, _, hZ⟩, _, _, hQu⟩, CS, _, hSz⟩, _, _, hFl⟩, _, _, hDg⟩, _, _, hSr⟩ := H

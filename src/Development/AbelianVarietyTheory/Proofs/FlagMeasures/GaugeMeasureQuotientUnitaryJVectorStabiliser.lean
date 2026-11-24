@@ -356,23 +356,21 @@ theorem add_le_mul_pow_of_sq_le_of_le_mul {t η R W : ℝ} (ht : 1 < t) (hη : �
   have h3 : 0 < 3 * t := by linarith
   have hη0 : 0 ≤ η := by rw [hη]; exact div_nonneg (by linarith) h3.le
   have key : η * (3 * t) = t - 1 := by rw [hη]; field_simp
-  have hηt : η < 1 / 3 := by nlinarith
+  have hηt : η < 1 / 3 := by rw [hη, div_lt_iff₀ h3]; linarith
   constructor
   ·
     have hW' : (1 - η) * R ≤ W := by linarith
-    have hsq : ((1 - η) * R) ^ 2 ≤ W ^ 2 := pow_le_pow_left₀ (by nlinarith) hW' 2
-    have hge : 1 ≤ t * (1 - η) ^ 2 := by nlinarith
-    nlinarith [mul_le_mul_of_nonneg_left hsq (by linarith : (0 : ℝ) ≤ t), sq_nonneg R]
+    have hsq : ((1 - η) * R) ^ 2 ≤ W ^ 2 := pow_le_pow_left₀ (mul_nonneg (by linarith) hR) hW' 2
+    have hge : 1 ≤ t * (1 - η) ^ 2 := by nlinarith [mul_nonneg (by linarith : (0 : ℝ) ≤ t) (sq_nonneg η)]
+    linarith [mul_le_mul_of_nonneg_left hsq (by linarith : (0 : ℝ) ≤ t), mul_le_mul_of_nonneg_right hge (sq_nonneg R)]
   ·
     have hW' : W ≤ (1 + η) * R := by linarith
     have hsq : W ^ 2 ≤ ((1 + η) * R) ^ 2 := pow_le_pow_left₀ hW hW' 2
-    have hle : (1 + η) ^ 2 ≤ t := by nlinarith
-    nlinarith [mul_le_mul_of_nonneg_right hle (sq_nonneg R)]
+    have hle : (1 + η) ^ 2 ≤ t := by nlinarith [le_mul_of_one_le_right hη0 ht.le, mul_nonneg hη0 (by linarith : (0 : ℝ) ≤ 1 - η)]
+    linarith [mul_le_mul_of_nonneg_right hle (sq_nonneg R)]
 
-private lemma le_of_sq_le_sq_of_nonneg {a b : ℝ} (hb : 0 ≤ b) (h : a ^ 2 ≤ b ^ 2) : a ≤ b := by
-  by_contra hab
-  rw [not_le] at hab
-  nlinarith
+private lemma le_of_sq_le_sq_of_nonneg {a b : ℝ} (hb : 0 ≤ b) (h : a ^ 2 ≤ b ^ 2) : a ≤ b :=
+  le_of_sq_le_sq h hb
 
 theorem hsDist_section_mul_block : ∀ (P Q P' Q' : ℕ) (e : Option (Fin P' ⊕ Fin Q') ≃ (Fin P ⊕ Fin Q)) (j : UpqT P' Q' → UpqT P Q), IsBlockEmb e j → ∀ t : ℝ, 1 < t → ∃ δ : ℝ, 0 < δ ∧ ∀ (y : Sp P Q) (a : UpqT P Q), ptSq e y < δ → act a (baseVec e) = y → (∀ b, ‖UpqT.mat a (e none) (e (some b))‖ = ‖y (e (some b))‖) → (∀ i b, ‖(UpqT.mat a - 1) (e (some i)) (e (some b))‖ = ‖y (e (some i))‖ * ‖y (e (some b))‖ / ‖1 + y (e none)‖) → ∀ g : UpqT P' Q', ptSq e y + hsDist g ≤ t * hsDist (a * j g) ∧ hsDist (a * j g) ≤ t * (ptSq e y + hsDist g) := by
   intro P Q P' Q' e j hj t ht
@@ -396,13 +394,12 @@ theorem hsDist_section_mul_block : ∀ (P Q P' Q' : ℕ) (e : Option (Fin P' ⊕
   set S : ℝ := ∑ i, ‖y (e (some i))‖ ^ 2 with hS
   have hS0 : 0 ≤ S := by positivity
   have hpt : ptSq e y = ‖y (e none) - 1‖ ^ 2 + 2 * S := rfl
-  have hSpt : S ≤ ptSq e y := by nlinarith [sq_nonneg ‖y (e none) - 1‖]
+  have hSpt : S ≤ ptSq e y := by linarith [sq_nonneg ‖y (e none) - 1‖]
   have hSc : S < c ^ 2 := lt_of_le_of_lt hSpt hyc
   have hS1 : S < 1 := lt_of_le_of_lt hSpt hy1
 
   have hn1 : 1 ≤ ‖1 + y (e none)‖ := by
-    have h1 : ‖y (e none) - 1‖ < 1 := by
-      nlinarith [norm_nonneg (y (e none) - 1), sq_nonneg ‖y (e none) - 1‖]
+    have h1 : ‖y (e none) - 1‖ < 1 := lt_of_pow_lt_pow_left₀ 2 zero_le_one (by linarith)
     have h2 : (2 : ℂ) = (1 + y (e none)) - (y (e none) - 1) := by ring
     have h3 : ‖(2 : ℂ)‖ ≤ ‖1 + y (e none)‖ + ‖y (e none) - 1‖ := by
       rw [h2]; exact norm_sub_le _ _
@@ -434,7 +431,7 @@ theorem hsDist_section_mul_block : ∀ (P Q P' Q' : ℕ) (e : Option (Fin P' ⊕
     have hp : 0 ≤ (‖y (e (some i))‖ * ‖y (e (some b))‖) ^ 2 := sq_nonneg _
     calc (‖y (e (some i))‖ * ‖y (e (some b))‖) ^ 2 / ‖1 + y (e none)‖ ^ 2
         ≤ (‖y (e (some i))‖ * ‖y (e (some b))‖) ^ 2 / 1 :=
-          div_le_div_of_nonneg_left hp one_pos (by nlinarith)
+          div_le_div_of_nonneg_left hp one_pos (one_le_pow₀ hn1)
       _ = (‖y (e (some i))‖ * ‖y (e (some b))‖) ^ 2 := div_one _
   have hM2 : ‖M - 1‖ ^ 2 = ptSq e y + ‖Ep‖ ^ 2 := by
     rw [frob_split e (M - 1), hEp2, hpt]
@@ -791,12 +788,12 @@ theorem gauss_fibre : ∀ (P Q : ℕ) (fib : ℝ → Measure (Sp P Q)) (β d : �
     gcongr with y
     rw [gaussSp_smul, Real.sq_sqrt ht0.le, gaussSp]
     have : 0 ≤ ∑ i, ‖y i‖ ^ 2 := by positivity
-    exact Real.exp_le_exp.2 (by nlinarith)
+    exact Real.exp_le_exp.2 (neg_le_neg (le_mul_of_one_le_left this ht))
   · rw [_root_.GlobalTheory.FibreScaling.lintegral_fibre_scale P Q fib β t h hβ ht _ hg]
     gcongr with y
     rw [gaussSp_smul, Real.sq_sqrt ht.le, gaussSp]
     have : 0 ≤ ∑ i, ‖y i‖ ^ 2 := by positivity
-    exact Real.exp_le_exp.2 (by nlinarith)
+    exact Real.exp_le_exp.2 (neg_le_neg (mul_le_of_le_one_left this ht1))
 
 end GlobalTheory.GaussFibre
 end -- clump:auto
@@ -827,10 +824,10 @@ theorem sq_compare_left {T S N r s : ℝ} (hT : 0 ≤ T) (hS : 0 ≤ S) (hN : 0 
 
   have hr2 : 0 < r ^ 2 := by positivity
   have hs : s < 1 := by linarith
-  have hsr : s * r ^ 2 < r ^ 2 := by nlinarith
-  have hS2 : 2 * S < r ^ 2 := by nlinarith
-  have hT2 : T ^ 2 < r ^ 2 := by nlinarith
-  have hTr : T < r := by nlinarith
+  have hsr : s * r ^ 2 < r ^ 2 := mul_lt_of_lt_one_left hr2 hs
+  have hS2 : 2 * S < r ^ 2 := by linarith [sq_nonneg T]
+  have hT2 : T ^ 2 < r ^ 2 := by linarith
+  have hTr : T < r := (sq_lt_sq₀ hT hr0.le).1 hT2
   have hN2 : N * N ≤ (T + S) * (T + S) := mul_self_le_mul_self hN h1
   have a1 : T * S ≤ r * S := mul_le_mul_of_nonneg_right hTr.le hS
   have a2 : r * (2 * S) ≤ r * r ^ 2 := mul_le_mul_of_nonneg_left hS2.le hr0.le
@@ -838,7 +835,7 @@ theorem sq_compare_left {T S N r s : ℝ} (hT : 0 ≤ T) (hS : 0 ≤ S) (hN : 0 
   have a4 : r * r ^ 2 * r ≤ r * r ^ 2 * (1 / 2) :=
     mul_le_mul_of_nonneg_left hr1.le (by positivity)
   have a5 : 3 * r * r ^ 2 < (1 - s) * r ^ 2 := mul_lt_mul_of_pos_right hr hr2
-  nlinarith [mul_pos hr0 hr2]
+  grind
 
 theorem sq_compare_right {T S N E r s : ℝ} (hT : 0 ≤ T) (hS : 0 ≤ S) (hN : 0 ≤ N)
     (hr0 : 0 < r) (hr1 : r < 1 / 2) (hr : 11 * r < s - 1) (h1 : E ≤ N + S) (h2 : T ≤ 2 * E)
@@ -846,16 +843,16 @@ theorem sq_compare_right {T S N E r s : ℝ} (hT : 0 ≤ T) (hS : 0 ≤ S) (hN :
     (h : N ^ 2 + 2 * S < r ^ 2) : T ^ 2 + 2 * S < s * r ^ 2 := by
 
   have hr2 : 0 < r ^ 2 := by positivity
-  have hS2 : 2 * S < r ^ 2 := by nlinarith
-  have hNr : N < r := by nlinarith
-  have hrr : r ^ 2 < r / 2 := by nlinarith [mul_pos hr0 (sub_pos.mpr hr1)]
+  have hS2 : 2 * S < r ^ 2 := by linarith [sq_nonneg N]
+  have hNr : N < r := (sq_lt_sq₀ hN hr0.le).1 (by linarith)
+  have hrr : r ^ 2 < r / 2 := by rw [sq]; linarith [mul_lt_mul_of_pos_left hr1 hr0]
   have hT3r : T ≤ 3 * r := by linarith
   have hTE : T - T ^ 3 / 16 ≤ E := h3 (by linarith)
   have hc1 : T * T ≤ 3 * r * (3 * r) := mul_self_le_mul_self hT hT3r
   have hc2 : T * T * T ≤ 3 * r * (3 * r) * (3 * r) := mul_le_mul hc1 hT3r hT (by positivity)
   have hr3 : r ^ 2 * r ≤ r ^ 2 * (1 / 2) := mul_le_mul_of_nonneg_left hr1.le (sq_nonneg r)
   have hb0 : 0 ≤ S + T ^ 3 / 16 := by positivity
-  have hb2 : S + T ^ 3 / 16 ≤ 2 * r ^ 2 := by nlinarith
+  have hb2 : S + T ^ 3 / 16 ≤ 2 * r ^ 2 := by grind
   have hTNb : T ≤ N + (S + T ^ 3 / 16) := by linarith
   have hT2 : T * T ≤ (N + (S + T ^ 3 / 16)) * (N + (S + T ^ 3 / 16)) :=
     mul_self_le_mul_self hT hTNb
@@ -875,8 +872,8 @@ theorem polar_sq_compare : ∀ (P Q P' Q' : ℕ) (e : Option (Fin P' ⊕ Fin Q')
   have hA : 0 < 1 - t⁻¹ ^ 2 := by
     have h1 : t⁻¹ < 1 := inv_lt_one_of_one_lt₀ ht
     have h2 : 0 < t⁻¹ := inv_pos.mpr ht0
-    nlinarith
-  have hB : 0 < t ^ 2 - 1 := by nlinarith
+    linarith [mul_lt_mul'' h1 h1 h2.le h2.le, sq t⁻¹]
+  have hB : 0 < t ^ 2 - 1 := by linarith [mul_lt_mul'' ht ht zero_le_one zero_le_one, sq t]
   have hc : 0 < min (1 / 2 : ℝ) (min ((1 - t⁻¹ ^ 2) / 3) ((t ^ 2 - 1) / 11)) :=
     lt_min (by norm_num) (lt_min (div_pos hA (by norm_num)) (div_pos hB (by norm_num)))
   filter_upwards [inter_mem_nhdsWithin (Set.Ioi (0 : ℝ)) (Iio_mem_nhds hc)] with r hr
@@ -1041,7 +1038,7 @@ private theorem tendsto_gauge_ratio_volume_ball {n : ℕ} {ε : Fin n → Bool} 
     have h1r : 0 < 1 - r := by linarith [hr.2]
     have hBfin : B r ≠ ⊤ := ne_top_of_le_ne_top hAr (hBA r hr0)
     have hle : (A ((1 - r) * r)).toReal ≤ (B r).toReal :=
-      ENNReal.toReal_mono hBfin (hAB r _ hr0 (by nlinarith))
+      ENNReal.toReal_mono hBfin (hAB r _ hr0 (mul_lt_of_lt_one_left hr0 (by linarith)))
     have hne1 : (1 - r) ^ (n ^ 2) ≠ 0 := pow_ne_zero _ h1r.ne'
     have hne2 : r ^ (n ^ 2) ≠ 0 := pow_ne_zero _ hr0.ne'
     have heq : (1 - r) ^ (n ^ 2) * (c * (A ((1 - r) * r)).toReal / ((1 - r) * r) ^ (n ^ 2)) =
@@ -1156,7 +1153,7 @@ theorem tanBall_ne (r : ℝ) (hr : 0 < r) :
       have := Finset.single_le_sum (f := fun i => ‖x.2 i‖ ^ 2) (fun i _ => by positivity)
         (Finset.mem_univ i)
       unfold tanSq at hx'
-      nlinarith [sq_nonneg x.1]
+      linarith [sq_nonneg x.1]
     rw [Metric.mem_closedBall, dist_zero_right, Prod.norm_def, max_le_iff]
     refine ⟨?_, ?_⟩
     · rw [Real.norm_eq_abs]
@@ -1215,7 +1212,7 @@ theorem tendsto_fibSq (e : Option (Fin P' ⊕ Fin Q') ≃ (Fin P ⊕ Fin Q)) (he
     have hs : 0 ≤ ∑ i, ‖y (e (some i))‖ ^ 2 := Finset.sum_nonneg fun i _ => by positivity
     unfold ptSq at hy'
     rw [h0, zero_sub, norm_neg, norm_one] at hy'
-    nlinarith
+    linarith [mul_lt_mul'' hr1 hr1 hr0'.le hr0'.le, sq r]
   have hlim := ENNReal.Tendsto.const_mul (a := (2 : ℝ≥0∞) ^ (P' + Q')) hAV (Or.inr (ENNReal.pow_ne_top (by norm_num : (2 : ℝ≥0∞) ≠ ⊤)))
   rw [mul_one] at hlim
   refine hlim.congr' ?_
@@ -1322,7 +1319,7 @@ theorem const_eq_one (e : Option (Fin P' ⊕ Fin Q') ≃ (Fin P ⊕ Fin Q)) (he 
     rw [h1, show (-1 : ℂ) - 1 = -2 by norm_num, norm_neg] at hy
     have h2 : ‖(2 : ℂ)‖ = 2 := by simp
     rw [h2] at hy
-    nlinarith
+    linarith
   have hd1 : Tendsto (fun ρ : ℝ => fib (sg (e none)) {y | ptSq e y < ρ} /
       (volume : Measure (ℝ × Sp P' Q')) {x | tanSq x < ρ}) (𝓝[>] 0)
       (𝓝 ((2 : ℝ≥0∞) ^ (P' + Q'))) :=
@@ -1381,7 +1378,7 @@ theorem const_eq_one (e : Option (Fin P' ⊕ Fin Q') ≃ (Fin P ⊕ Fin Q)) (he 
     have htp : 0 < t := by linarith
     have hti : t⁻¹ < 1 := inv_lt_one_of_one_lt₀ ht
     have htip : 0 < t⁻¹ := inv_pos.2 htp
-    have ht2 : 1 < t ^ 2 := by nlinarith
+    have ht2 : 1 < t ^ 2 := by linarith [mul_lt_mul'' ht ht zero_le_one zero_le_one, sq t]
     have ht2p : 0 < t ^ 2 := pow_pos htp 2
     obtain ⟨δ, hδ0, hδ⟩ := _root_.GlobalTheory.SectionHsCompare.hsDist_section_mul_block P Q P' Q' e j hj (t ^ 2) ht2
     have hm : 0 < min δ 1 / 2 := half_pos (lt_min hδ0 one_pos)

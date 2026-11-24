@@ -81,12 +81,6 @@ def evAt {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
     {Y : Spc F E n} (x : G2 σ Y) : modFun σ Y →ₗ[ℂ] ℂ :=
   (LinearMap.proj x).comp (modFun σ Y).subtype
 
-theorem isGrowForm_evAt {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
-    {n : ℕ} {Y : Spc F E n} (x : G2 σ Y) : IsGrowForm (evAt x) := by
-  intro N
-  refine ⟨(ht2 x : ℝ) ^ N, fun f hf => ?_⟩
-  simpa [evAt] using hf x
-
 end PositivityTheory.SiegelWeilFormula.Aeis
 
 end

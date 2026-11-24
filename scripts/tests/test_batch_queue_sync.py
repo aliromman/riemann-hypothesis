@@ -20,6 +20,7 @@ NOW = datetime.datetime(2026, 11, 23, 4, 12, 30, tzinfo=datetime.timezone.utc)
 T0 = datetime.datetime(2026, 11, 23, 3, 0, 0, tzinfo=datetime.timezone.utc)
 FIRST = "batch/2026-11-23-041230"
 QUEUED, BUILDING, BOT = batch.QUEUED, batch.BUILDING, batch.BOT
+PRIORITY = batch.PRIORITY
 
 
 def sha(name):
@@ -43,6 +44,8 @@ class Fake(batch.GitHub):
         self.inside = {MAIN: set()}
         self.commits = {MAIN: {"message": "main", "parents": []}}
         self.conflicting, self.allow_pulls, self.writes, self.after_merge = set(), True, [], None
+        # Commits that cannot be merged into a branch that already holds one of the others.
+        self.clashes = {}
         self.reads = []
         self.clock, self.left, self.comment_ids = 0, None, 0
         # How long after the latest change a run happens. An hour: everything has settled.
@@ -196,7 +199,7 @@ class Fake(batch.GitHub):
 
     def _merge(self, payload):
         base, head = self.refs[payload["base"]], payload["head"]
-        if head in self.conflicting:
+        if head in self.conflicting or self.clashes.get(head, set()) & (self.inside[base] | {base}):
             return 409, {"message": "Merge conflict"}
         if head == base or head in self.inside[base]:
             return 204, None
@@ -300,6 +303,13 @@ def queue(gh, *numbers):
             gh.add_pull(number, f"head{number}")
         gh.say(number, f"<!-- batch-queue-approved {gh.pulls[number]['sha']} -->\nQueued at this commit.")
         gh.label(number, add=QUEUED)
+
+
+def clash(gh, *numbers):
+    """The heads of these pull requests conflict: none can be merged where another one already is."""
+    heads = {gh.pulls[number]["sha"] for number in numbers}
+    for head in heads:
+        gh.clashes[head] = heads - {head}
 
 
 def unqueue(gh, number):
@@ -1130,6 +1140,41 @@ class StackedOnABatchByHand(unittest.TestCase):
         self.assertIn("#1018, which this batch is built on, and the pull requests added before it.", said[1])
         sync(gh)
         self.assertEqual(len(gh.said(13)), 2)
+
+
+class Priority(unittest.TestCase):
+    """Pull requests labelled `priority` go into a batch before the others."""
+
+    def test_it_goes_in_first_and_the_one_it_conflicts_with_is_left_out(self):
+        gh = Fake()
+        queue(gh, 11, 12, 13)
+        clash(gh, 11, 12)
+        gh.label(12, add=PRIORITY, login="maintainer")
+        sync(gh)
+        self.assertEqual(merges(gh), [sha("head12"), sha("head11"), sha("head13")])
+        body = batch_pull(gh)["body"]
+        self.assertIn(f"In this batch:\n\n- #12 at `{short('head12')}`\n- #13 at `{short('head13')}`\n", body)
+        self.assertIn("Left out, because GitHub could not merge them into this branch: #11.", body)
+
+    def test_labelled_after_it_was_left_out_it_goes_first_once_the_batch_is_rebuilt(self):
+        gh = Fake()
+        queue(gh, 11, 12)
+        clash(gh, 11, 12)
+        sync(gh)
+        self.assertIn("Left out, because GitHub could not merge them into this branch: #12.", batch_pull(gh)["body"])
+        gh.label(12, add=PRIORITY, login="maintainer")
+        gh.writes = []
+        sync(gh)
+        self.assertEqual(merges(gh), [])
+        # A batch assembled by hand is opened, and the batch is rebuilt on top of it.
+        gh.add_pull(10, "head10")
+        by_hand(gh, 10)
+        gh.writes = []
+        sync(gh)
+        self.assertEqual(merges(gh), [sha("head12"), sha("head11")])
+        body = batch_pull(gh)["body"]
+        self.assertIn(f"In this batch:\n\n- #12 at `{short('head12')}`\n", body)
+        self.assertIn("Left out, because GitHub could not merge them into this branch: #11.", body)
 
 
 class ClosedPullRequests(unittest.TestCase):

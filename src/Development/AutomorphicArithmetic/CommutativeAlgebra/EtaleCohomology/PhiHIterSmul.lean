@@ -1348,18 +1348,12 @@ private lemma iterate_natCast {A : Type} [CommRing A] (φ : A →+* A) (n m : �
   | succ m ih =>
     exact (Function.iterate_succ_apply' _ _ _).trans ((congrArg φ ih).trans (map_natCast φ n))
 
-private lemma phi_iter_l {l : ℕ} [Fact l.Prime] (m : ℕ) : (phiA l)^[m] (l : Acris l) = (l : Acris l) :=
-  iterate_natCast (phiA l) l m
-
 private lemma iterate_period {A : Type} [CommRing A] (φ : A →+* A) (n : ℕ) (t : A)
     (ht : φ t = (n : A) * t) (m : ℕ) : (φ : A → A)^[m] t = (n : A) ^ m * t := by
   induction m with
   | zero => simp only [Function.iterate_zero_apply, pow_zero, one_mul]
   | succ m ih =>
     rw [Function.iterate_succ_apply', ih, map_mul, map_pow, map_natCast, ht, ← mul_assoc, ← pow_succ]
-
-private lemma phiA_iterate_tA_of_prime {l : ℕ} [Fact l.Prime] (m : ℕ) : (phiA l)^[m] (tA l) = (l : Acris l) ^ m * tA l :=
-  iterate_period (phiA l) l (tA l) phiTL m
 
 private lemma iterate_smul_semilinear {A : Type} [CommRing A] {H : Type 1} [AddCommGroup H] [Module A H]
     (φ : A →+* A) (Φ : H →ₛₗ[φ] H) (m : ℕ) (c : A) (x : H) :
@@ -1368,24 +1362,12 @@ private lemma iterate_smul_semilinear {A : Type} [CommRing A] {H : Type 1} [AddC
   | zero => rfl
   | succ m ih => simp only [Function.iterate_succ_apply', ih, LinearMap.map_smulₛₗ]
 
-private lemma phiH_iter_smul {l : ℕ} [Fact l.Prime] (P : PAlg l ⥤ Type) (n j m : ℕ) (c : Acris l) (x : MH P n j) :
-    (phiH P n j)^[m] (c • x) = ((phiA l)^[m] c) • (phiH P n j)^[m] x :=
-  iterate_smul_semilinear (phiA l) ((phiMor P n).pull j) m c x
-
 private lemma iterate_eval {A : Type} [CommRing A] {H : Type 1} [AddCommGroup H] [Module A H]
     (φ : A →+* A) (Φ : H →ₛₗ[φ] H) {ι : Type} [Fintype ι] (v : ι → H) (hv : ∀ k, Φ (v k) = v k)
     (c : ι → A) (m : ℕ) : (Φ : H → H)^[m] (∑ k, c k • v k) = ∑ k, (φ : A → A)^[m] (c k) • v k := by
   induction m with
   | zero => rfl
   | succ m ih => simp only [Function.iterate_succ_apply', ih, map_sum, LinearMap.map_smulₛₗ, hv]
-
-variable {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l] (PadicAlgCl l)}
-
-private lemma phiH_evE {e : E.EtFam l K} (he : e.Good) (M : Model l K) (j lev : ℕ) {ι : Type} [Fintype ι] (v : ι → M.T j)
-    (c : ι → Acris l) (m : ℕ) :
-    (phiH M.P lev j)^[m] (evE e M j lev v c) = evE e M j lev v (fun k => (phiA l)^[m] (c k)) :=
-  iterate_eval (phiA l) ((phiMor M.P lev).pull j) (fun k => e M lev j ((v k).lev lev))
-    (fun k => he.phi M lev j ((v k).lev lev)) c m
 
 private lemma scale_iterated_relation {A : Type} [CommRing A] {H : Type 1} [AddCommGroup H] [Module A H]
     (φ : A →+* A) (Φ : H → H) (p t : A) {E E' Y : H} {a u r m d M0 : ℕ} (hM : m + d = M0)
@@ -1404,20 +1386,6 @@ private lemma scale_iterated_relation {A : Type} [CommRing A] {H : Type 1} [AddC
       p ^ (d * (u + r)) * (p ^ m * t) ^ (u + r) := by ring
   exact scaleAbs _ q1 q2 (eqAbs Φ _ hs hX c1 c2 hE rfl)
 
-private lemma eqI {e : E.EtFam l K} (he : e.Good) (M : Model l K) (j lev : ℕ) {ι : Type} [Fintype ι] (v : ι → M.T j)
-    (c c' : ι → Acris l) (Y : M.MH lev j) (a u r m d M0 : ℕ) (hM : m + d = M0)
-    (hc : (fun k => (phiA l)^[m] (c k)) = c')
-    (hX : ((l : Acris l) ^ a * tA l ^ u) • evE e M j lev v c = tA l ^ (u + r) • Y) :
-    (((l : Acris l) ^ (a + M0 * u) * tA l ^ u) * (l : Acris l) ^ (d * r)) • evE e M j lev v c' =
-      ((l : Acris l) ^ (M0 * (u + r)) * tA l ^ (u + r)) • (phiH M.P lev j)^[m] Y := by
-  subst c'
-  exact scale_iterated_relation (H := MH M.P lev j) (phiA l) ((phiH M.P lev j)^[m]) (l : Acris l) (tA l)
-    (a := a) (u := u) (r := r) hM (phiH_iter_smul M.P lev j m) (phi_iter_l m) (phiA_iterate_tA_of_prime m)
-    (phiH_evE he M j lev v c m) hX
-
-private def eLev (e : E.EtFam l K) (M : Model l K) (j lev : ℕ) : M.T j →+ M.MH lev j :=
-  AddMonoidHom.mk' (fun x => e M lev j (x.lev lev)) fun x y => map_add (e M lev j) (x.lev lev) (y.lev lev)
-
 private lemma natS {A : Type} [CommRing A] {H : Type 1} [AddCommGroup H] [Module A H] (n b : ℕ) (x : H) :
     (n ^ b : ℕ) • x = ((n : A) ^ b) • x := by
   exact (Nat.cast_smul_eq_nsmul A (n ^ b) x).symm.trans
@@ -1434,18 +1402,6 @@ private lemma h1A {A : Type} [CommRing A] {TW H : Type 1} [AddCommGroup TW] [Add
   rw [natS (A := A), natS (A := A)] at h'
   exact h'
 
-private lemma natE {e : E.EtFam l K} (he : e.Good) (W M : Model l K) (u : W.X ⟶ M.X) (hu : u ≫ M.p = W.p) (j lev : ℕ) (y : M.T j) :
-    eLev e W j lev (Model.pullT u hu j y) = pullH (pxMap (okToOC l K) u hu) lev j (e M lev j (y.lev lev)) :=
-  he.nat W M u hu lev j (y.lev lev)
-
-private lemma h1L {e : E.EtFam l K} (he : e.Good) (W M : Model l K) (π : W.X ⟶ M.X) (hπ : π ≫ M.p = W.p) (j lev s b : ℕ)
-    {d : ℕ} (τ : Fin d → (W.X ⟶ M.X)) (hτ : ∀ a, τ a ≫ M.p = W.p) (w y : M.T j)
-    (h : (l ^ b : ℕ) • Model.pullT π hπ j w = (l ^ (s + b) : ℕ) • ∑ a, Model.pullT (τ a) (hτ a) j y) :
-    ((l : Acris l) ^ b) • pullH (pxMap (okToOC l K) π hπ) lev j (e M lev j (w.lev lev)) =
-      ((l : Acris l) ^ (s + b)) • ∑ a, pullH (pxMap (okToOC l K) (τ a) (hτ a)) lev j (e M lev j (y.lev lev)) := by
-  exact h1A (A := Acris l) (H := MH W.P lev j) (eLev e W j lev) _ _ _ _ h (natE he W M π hπ j lev w)
-    fun a => natE he W M (τ a) (hτ a) j lev y
-
 private lemma finA {A : Type} [CommRing A] {H : Type 1} [AddCommGroup H] [Module A H] {Q : Type} [Fintype Q] (C : ℕ)
     (Ev : Q → H) (c : Q → A) (L tt κ : A) (hk : tt * κ = (C : A) * L)
     (h : C • (L • ∑ q, c q • Ev q) = 0) : tt • ∑ q, (κ * c q) • Ev q = 0 := by
@@ -1460,41 +1416,51 @@ private lemma cast_scale {A : Type} [CommRing A] (C l a b : ℕ) (t : A) :
   simp only [Nat.cast_mul, Nat.cast_pow]
   ring
 
-private lemma levZero {e : E.EtFam l K} (he : e.Good) (M W : Model l K) (π : W.X ⟶ M.X) (hπ : π ≫ M.p = W.p)
-    (j n f N0 N1 r s b a u C : ℕ) {d : Fin (n + 1) → ℕ} (τ : ∀ i, Fin (d i) → (W.X ⟶ M.X)) (hτ : ∀ i x, τ i x ≫ M.p = W.p)
-    {ι : Type} [Fintype ι] (v : ι → M.T j) (c : ι → Acris l) (w : Fin (n + 1) → ι → M.T j) (σ : Fin (n + 1) → ℤ)
-    (Y : ∀ lev, MH M.P lev j)
-    (hAvg : ∀ lev (x : MH M.P lev j), pullH (pxMap (okToOC l K) π hπ) lev j x = 0 → C • x = 0)
-    (h3 : ∀ lev, ∑ x : Σ i, Fin (d i), σ x.1 • pullH (pxMap (okToOC l K) (τ x.1 x.2) (hτ x.1 x.2)) lev j
-      ((phiH M.P lev j)^[f * (n - x.1 + N0)] (Y lev)) = 0)
-    (hX : ∀ lev, ((l : Acris l) ^ a * tA l ^ u) • evE e M j lev v (fun k => (phiA l)^[f * N1] (c k)) = tA l ^ (u + r) • Y lev)
-    (hw2 : ∀ i k, (l ^ b : ℕ) • Model.pullT π hπ j (w i k) = (l ^ (s + b) : ℕ) • ∑ x, Model.pullT (τ i x) (hτ i x) j (v k))
-    (lev : ℕ) :
-    tA l ^ u • evE e M j lev (fun q : Fin (n + 1) × ι => w q.1 q.2)
-      (fun q => ((C * l ^ (a + f * (n + N0) * u) * l ^ b : ℕ) : Acris l) *
-        (((σ q.1 : ℤ) : Acris l) * (l : Acris l) ^ (f * (q.1 : ℕ) * r) * (phiA l)^[f * (n - q.1 + (N0 + N1))] (c q.2))) = 0 := by
-  have h2 : ∀ i : Fin (n + 1), (((l : Acris l) ^ (a + f * (n + N0) * u) * tA l ^ u) * (l : Acris l) ^ (f * (i : ℕ) * r)) •
-      evE e M j lev v (fun k => (phiA l)^[f * (n - i + (N0 + N1))] (c k)) =
-      ((l : Acris l) ^ (f * (n + N0) * (u + r)) * tA l ^ (u + r)) • (phiH M.P lev j)^[f * (n - i + N0)] (Y lev) := by
+private lemma levZero_abs {A : Type} [CommRing A] {H H' TW : Type 1}
+    [AddCommGroup H] [Module A H] [AddCommGroup H'] [Module A H'] [AddCommGroup TW]
+    (φ : A →+* A) (Φ : H →ₛₗ[φ] H) (G : H →ₗ[A] H')
+    (l n f N0 N1 r s b a u C : ℕ) (t : A) (ht : φ t = (l : A) * t)
+    {d : Fin (n + 1) → ℕ} (P : ∀ i, Fin (d i) → (H →ₗ[A] H'))
+    {ι : Type} [Fintype ι] (Ev : ι → H) (Wc : Fin (n + 1) → ι → H)
+    (c : ι → A) (σ : Fin (n + 1) → ℤ) (Y : H)
+    (hEv : ∀ k, Φ (Ev k) = Ev k)
+    (hAvg : ∀ x : H, G x = 0 → C • x = 0)
+    (h3 : ∑ x : Σ i, Fin (d i), σ x.1 • P x.1 x.2 ((Φ : H → H)^[f * (n - x.1 + N0)] Y) = 0)
+    (hX : ((l : A) ^ a * t ^ u) • ∑ k, (φ : A → A)^[f * N1] (c k) • Ev k = t ^ (u + r) • Y)
+    (Ψ : TW → H') (hΨ : ∀ x y, Ψ (x + y) = Ψ x + Ψ y)
+    (pW : Fin (n + 1) → ι → TW) (qW : ∀ i, Fin (d i) → ι → TW)
+    (hw2 : ∀ i k, (l ^ b : ℕ) • pW i k = (l ^ (s + b) : ℕ) • ∑ x, qW i x k)
+    (hpW : ∀ i k, Ψ (pW i k) = G (Wc i k))
+    (hqW : ∀ i x k, Ψ (qW i x k) = P i x (Ev k)) :
+    t ^ u • ∑ q : Fin (n + 1) × ι,
+      (((C * l ^ (a + f * (n + N0) * u) * l ^ b : ℕ) : A) *
+        (((σ q.1 : ℤ) : A) * (l : A) ^ (f * (q.1 : ℕ) * r) * (φ : A → A)^[f * (n - q.1 + (N0 + N1))] (c q.2))) • Wc q.1 q.2 = 0 := by
+  have h2 : ∀ i : Fin (n + 1), (((l : A) ^ (a + f * (n + N0) * u) * t ^ u) * (l : A) ^ (f * (i : ℕ) * r)) •
+      ∑ k, (φ : A → A)^[f * (n - i + (N0 + N1))] (c k) • Ev k =
+      ((l : A) ^ (f * (n + N0) * (u + r)) * t ^ (u + r)) • (Φ : H → H)^[f * (n - i + N0)] Y := by
     intro i
     have hi : (i : ℕ) ≤ n := Nat.lt_succ_iff.1 i.2
     have hM : f * (n - i + N0) + f * i = f * (n + N0) := by
       rw [← Nat.mul_add, Nat.add_right_comm, Nat.sub_add_cancel hi]
-    have hI : (fun k => (phiA l)^[f * (n - i + (N0 + N1))] (c k)) = fun k => (phiA l)^[f * (n - i + N0)] ((phiA l)^[f * N1] (c k)) := by
+    have hI : (fun k => (φ : A → A)^[f * (n - i + (N0 + N1))] (c k)) = fun k => (φ : A → A)^[f * (n - i + N0)] ((φ : A → A)^[f * N1] (c k)) := by
       rw [← Nat.add_assoc, Nat.mul_add]
       exact funext fun k => Function.iterate_add_apply _ _ _ (c k)
-    exact eqI he M j lev v (fun k => (phiA l)^[f * N1] (c k)) _ (Y lev) a u r (f * (n - i + N0)) (f * i) _ hM hI.symm (hX lev)
-  let G : MH M.P lev j →ₗ[Acris l] MH W.P lev j := pullH (pxMap (okToOC l K) π hπ) lev j
-  have S := UpperTheory.linear_combination_transfer_of_projector_relations (A := Acris l) (H := MH M.P lev j) (H' := MH W.P lev j) (J := Fin (n + 1)) (ι := ι) (I := fun i => Fin (d i))
-    G (fun i x => pullH (pxMap (okToOC l K) (τ i x) (hτ i x)) lev j)
-    (fun k => e M lev j ((v k).lev lev)) (fun i k => e M lev j ((w i k).lev lev))
-    ((l : Acris l) ^ b) ((l : Acris l) ^ (s + b)) ((l : Acris l) ^ (a + f * (n + N0) * u) * tA l ^ u)
-    ((l : Acris l) ^ (f * (n + N0) * (u + r)) * tA l ^ (u + r)) σ (fun i => (l : Acris l) ^ (f * (i : ℕ) * r))
-    (fun i k => (phiA l)^[f * (n - i + (N0 + N1))] (c k)) (fun i => (phiH M.P lev j)^[f * (n - i + N0)] (Y lev))
-    (fun i k => h1L he W M π hπ j lev s b (τ i) (hτ i) (w i k) (v k) (hw2 i k)) h2 (h3 lev)
-  have A1 := hAvg lev _ ((G.map_smul _ _).trans S)
-  exact finA (A := Acris l) (H := MH M.P lev j) C (fun q : Fin (n + 1) × ι => e M lev j ((w q.1 q.2).lev lev)) _
-    (((l : Acris l) ^ (a + f * (n + N0) * u) * tA l ^ u) * (l : Acris l) ^ b) _ _ (cast_scale C l _ b _) A1
+    have hE : (Φ : H → H)^[f * (n - i + N0)] (∑ k, (φ : A → A)^[f * N1] (c k) • Ev k) =
+        ∑ k, (φ : A → A)^[f * (n - i + (N0 + N1))] (c k) • Ev k := by
+      rw [iterate_eval φ Φ Ev hEv _ _]
+      exact Finset.sum_congr rfl fun k _ => by rw [congrFun hI k]
+    exact scale_iterated_relation φ ((Φ : H → H)^[f * (n - i + N0)]) (l : A) t (a := a) (u := u) (r := r) hM
+      (iterate_smul_semilinear φ Φ _) (iterate_natCast φ l _) (iterate_period φ l t ht _) hE hX
+  let Ψh : TW →+ H' := AddMonoidHom.mk' Ψ hΨ
+  have S := UpperTheory.linear_combination_transfer_of_projector_relations (A := A) (H := H) (H' := H')
+    (J := Fin (n + 1)) (ι := ι) (I := fun i => Fin (d i))
+    G P Ev Wc ((l : A) ^ b) ((l : A) ^ (s + b)) ((l : A) ^ (a + f * (n + N0) * u) * t ^ u)
+    ((l : A) ^ (f * (n + N0) * (u + r)) * t ^ (u + r)) σ (fun i => (l : A) ^ (f * (i : ℕ) * r))
+    (fun i k => (φ : A → A)^[f * (n - i + (N0 + N1))] (c k)) (fun i => (Φ : H → H)^[f * (n - i + N0)] Y)
+    (fun i k => h1A (A := A) (H := H') Ψh _ _ _ _ (hw2 i k) (hpW i k) (fun x => hqW i x k)) h2 h3
+  have A1 := hAvg _ ((G.map_smul _ _).trans S)
+  exact finA (A := A) (H := H) C (fun q : Fin (n + 1) × ι => Wc q.1 q.2) _
+    (((l : A) ^ (a + f * (n + N0) * u) * t ^ u) * (l : A) ^ b) _ _ (cast_scale C l _ b _) A1
 
 end UpperTheory.Ru.crystallineComparison
 
@@ -1528,10 +1494,22 @@ theorem UpperTheory.Ru.crystallineComparison.top : UpperTheory.Ru.crystallineCom
     (fun x => σ x.1) (fun x => pxMap (okToOC l K) (τ x.1 x.2) (hτ x.1 x.2))
     (fun x => n - x.1 + N0) (ha ▸ hZ)
   let C := Fintype.card (∀ i, Equiv.Perm (Fin (T i).d))
-  have hV := levZero he M W D.π rfl j n f N0 N1 r s b a u C τ hτ v c w σ
-    (fun lev => pullH ρ lev j (X lev))
-    (fun lev y hy => avgMH l W.P M.P (pxMap (okToOC l K) D.π rfl) _ gp hgp lev j y hy)
-    (fun lev => hS lev j (X lev) (hX lev).1) (fun lev => (hX lev).2) hw.2
+  have hV : ∀ lev, tA l ^ u • evE e M j lev (fun q : Fin (n + 1) × ι => w q.1 q.2)
+      (fun q => ((C * l ^ (a + f * (n + N0) * u) * l ^ b : ℕ) : Acris l) *
+        (((σ q.1 : ℤ) : Acris l) * (l : Acris l) ^ (f * (q.1 : ℕ) * r) * (phiA l)^[f * (n - q.1 + (N0 + N1))] (c q.2))) = 0 :=
+    fun lev => levZero_abs (A := Acris l) (H := MH M.P lev j) (H' := MH W.P lev j) (TW := W.T j)
+      (phiA l) ((phiMor M.P lev).pull j) (pullH (pxMap (okToOC l K) D.π rfl) lev j)
+      l n f N0 N1 r s b a u C (tA l) phiTL
+      (fun i x => pullH (pxMap (okToOC l K) (τ i x) (hτ i x)) lev j)
+      (fun k => e M lev j ((v k).lev lev)) (fun i k => e M lev j ((w i k).lev lev))
+      c σ (pullH ρ lev j (X lev))
+      (fun k => he.phi M lev j ((v k).lev lev))
+      (fun y hy => avgMH l W.P M.P (pxMap (okToOC l K) D.π rfl) _ gp hgp lev j y hy)
+      (hS lev j (X lev) (hX lev).1) (hX lev).2
+      (fun y => e W lev j (y.lev lev)) (fun x y => map_add (e W lev j) (x.lev lev) (y.lev lev))
+      (fun i k => Model.pullT D.π rfl j (w i k)) (fun i x k => Model.pullT (τ i x) (hτ i x) j (v k))
+      hw.2 (fun i k => he.nat W M D.π rfl lev j ((w i k).lev lev))
+      (fun i x k => he.nat W M (τ i x) (hτ i x) lev j ((v k).lev lev))
   have h0 := hInj (Fin (n + 1) × ι) (fun q => w q.1 q.2) _ u hV
   have hκ : C * l ^ (a + f * (n + N0) * u) * l ^ b ≠ 0 :=
     mul_ne_zero (mul_ne_zero Fintype.card_ne_zero (pow_ne_zero _ (Fact.out : l.Prime).ne_zero)) (pow_ne_zero _ (Fact.out : l.Prime).ne_zero)

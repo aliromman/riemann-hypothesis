@@ -145,7 +145,7 @@ theorem cap_act (v : InfinitePlace F) (u : ℂ) (o : TR.Op F a) : TR.act o * TR.
     have h : ∀ v' i j, Commute (TR.Eop (a := a) v' i j) (TR.cap v u) := fun v' i j => by
       by_cases e : v' = v
       · subst e; exact (TR.cap_comm _ _ _ _).symm
-      · exact GlobalTheory.CapAdInv.qdet_semiconj _ _ _ (fun k l => TR.Eop_comm e _ _ _ _) _
+      · exact GlobalTheory.CapAdInv.qdet_semiconj (TR.Eop (a := a) v) (TR.Eop (a := a) v) (TR.Eop (a := a) v' i j) (fun k l => TR.Eop_comm e i j k l) _
     change Commute (TR.lie F a (TR.toL (Matrix.of X))) _
     rw [lie_eq_sum]
     exact Commute.sum_left _ _ _ fun v' _ => Commute.sum_left _ _ _ fun i _ => Commute.sum_left _ _ _ fun j _ =>

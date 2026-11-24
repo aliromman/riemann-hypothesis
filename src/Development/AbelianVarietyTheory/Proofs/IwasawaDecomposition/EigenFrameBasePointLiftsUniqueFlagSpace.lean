@@ -87,7 +87,7 @@ private theorem coord_unique' {R R' : Type} [CommRing R] [IsLocalRing R] [CommRi
     (h₁ : f.Coord ψ₁ g M₁) (h₂ : f.Coord ψ₂ g M₂) : M₁ = M₂ := by
   subst hψ
   obtain ⟨hx, hφ, -⟩ := id h₁
-  exact ((GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible _ _ _ _ _ _ _ _ _ _ _ _ f _ _ _ ψ₁ inferInstance
+  exact ((GlobalTheory.ShFam.EigCoord.coord_spec _ _ _ _ _ _ _ _ _ _ _ _ f _ _ _ ψ₁ inferInstance
     (_root_.GlobalTheory.ShFam.EigStable.stable_of_isLocalRing _ _ _ _ _ _ _ _ _ _ _ _ f inferInstance) hx hφ).1 g).1.unique h₁ h₂
 
 private theorem coord_comp' {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] [IsLocalRing R'']
@@ -101,7 +101,7 @@ private theorem exists_coord_unit_det_of_baseChange {R R' : Type} [CommRing R] [
     {φ : c.F →+* R} {φ' : c.F →+* R'} {x : Sp R ⟶ Z.X} {x' : Sp R' ⟶ Z.X} (f : EigFrame Z φ x)
     (ψ : R →+* R') (hx : x' = spMap ψ ≫ x) (hφ : φ' = ψ.comp φ) (g : EigFrame Z φ' x') :
     ∃ M : Mat Dw.mult R', f.Coord ψ g M ∧ ∀ τ, IsUnit (M τ).det := by
-  have H := (GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible _ _ _ _ _ _ _ _ _ _ _ _ f _ _ _ ψ inferInstance
+  have H := (GlobalTheory.ShFam.EigCoord.coord_spec _ _ _ _ _ _ _ _ _ _ _ _ f _ _ _ ψ inferInstance
     (_root_.GlobalTheory.ShFam.EigStable.stable_of_isLocalRing _ _ _ _ _ _ _ _ _ _ _ _ f inferInstance) hx hφ).1 g
   obtain ⟨M, hM, -⟩ := H.1
   exact ⟨M, hM, H.2 M hM⟩

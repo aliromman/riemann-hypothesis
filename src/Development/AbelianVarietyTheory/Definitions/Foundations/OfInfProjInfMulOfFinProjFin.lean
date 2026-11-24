@@ -660,9 +660,6 @@ def archEquiv (h : IsCMExt F E σ) (τ : EmbOver E w) : GArch σ J w ≃* UJ (st
     left_inv := fun g => HA_ext σ J fun r s => e.symm_apply_apply _
     right_inv := fun g => Subtype.ext (Units.ext (Matrix.ext fun r s => e.apply_symm_apply _)) }
 
-theorem archEquiv_val (h : IsCMExt F E σ) (τ : EmbOver E w) (g : GArch σ J w) :
-    (archEquiv J h τ g).1.1 = (matHom _ σ J g).1.map (infEmb τ) := rfl
-
 def infProj (τ : EmbOver E w) : Ainf F ⊗[F] E →+* ℂ :=
   (infEmb τ).comp (Algebra.TensorProduct.map (evW w) (AlgHom.id F E)).toRingHom
 

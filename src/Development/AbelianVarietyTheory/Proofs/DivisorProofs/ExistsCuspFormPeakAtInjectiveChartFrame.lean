@@ -508,7 +508,7 @@ theorem exists_limit {n : ℕ} {U : Set (V n)} (hU : IsOpen U) (K : ℕ → Set 
           have h4 : ‖F k z‖ ^ 2 ≤ (N + ‖F0 z - F k z‖) ^ 2 := by gcongr
           have h5 : ‖F0 z - F k z‖ ^ 2 * 1 ≤
               ‖F0 z - F k z‖ ^ 2 * (Real.exp M * Real.exp (-φ k z)) := by gcongr
-          nlinarith [sq_nonneg (N - ‖F0 z - F k z‖)]
+          linarith [sq_nonneg (N - ‖F0 z - F k z‖)]
       _ ≤ _ := by
           rw [lintegral_add_left measurable_const, setLIntegral_const,
             lintegral_const_mul' _ _ ENNReal.ofReal_ne_top]
@@ -623,9 +623,7 @@ theorem hormander_peak : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [Field E] [Numb
   have hcard : (1 : ℝ) ≤ X.Ψ.card := by
     have : 0 < X.Ψ.card := Finset.card_pos.2 ⟨t0.1, t0.2⟩
     exact_mod_cast this
-  have hfr : 1 ≤ (X.Ψ.card : ℝ) * r := by
-    have : (2 : ℝ) ≤ r := by exact_mod_cast hr2
-    nlinarith
+  have hfr : 1 ≤ (X.Ψ.card : ℝ) * r := one_le_mul_of_one_le_of_one_le hcard (by exact_mod_cast (show 1 ≤ r by omega))
   set S : ℝ := (∑ τ, ∑ a, |(la τ a : ℝ)|) + ((X.Ψ.card : ℝ) * r) ^ 8 with hSdef
   have hf8 : 1 ≤ ((X.Ψ.card : ℝ) * r) ^ 8 := one_le_pow₀ hfr
   have hS1 : 1 ≤ S := by
@@ -634,10 +632,10 @@ theorem hormander_peak : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [Field E] [Numb
     linarith
   have hgap' : ∀ τ (a b : Fin r), (b : ℕ) = a + 1 → (b : ℕ) ≠ X.p0 →
       C1 * ((X.Ψ.card : ℝ) * r) ^ 8 ≤ (la τ a : ℝ) - la τ b :=
-    fun τ a b h1 h2 => le_trans (by nlinarith) (hgap τ a b h1 h2)
+    fun τ a b h1 h2 => le_trans (mul_le_mul_of_nonneg_right (by linarith) (by positivity)) (hgap τ a b h1 h2)
   have hbar' : ∀ τ (a b : Fin r), (a : ℕ) = 0 → (b : ℕ) = r - 1 →
       C1 * ((X.Ψ.card : ℝ) * r) ^ 8 ≤ (la τ b : ℝ) - la τ a :=
-    fun τ a b h1 h2 => le_trans (by nlinarith) (hbar τ a b h1 h2)
+    fun τ a b h1 h2 => le_trans (mul_le_mul_of_nonneg_right (by linarith) (by positivity)) (hbar τ a b h1 h2)
   obtain ⟨ρ, c, F0, ψ, φ, h, hρ, hρR, hc, hcb, hfin, hF0s, hF01, hF00, hF0n, hψm, hψB, hψΓ, hψ0,
     hφeq, hφs, hφl, hφmono, hhm, hdb, hhint, hsup, hpoleψ, hpoleφ⟩ :=
     hW E r X la x hp0 hp0r ho hgap' hbar' hinj
@@ -668,7 +666,7 @@ theorem hormander_peak : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [Field E] [Numb
     have h1 : 1 ≤ Real.exp (-ψ 0 (cpt X x z)) := Real.one_le_exp (by linarith [hψ0 0 (cpt X x z)])
     have h0 : 0 ≤ Real.exp (-phla X la (cpt X x z)) * Real.exp (bb * rhF X x z) * densF X x z :=
       mul_nonneg (by positivity) (IW.densF_pos X x hz).le
-    nlinarith
+    exact le_mul_of_one_le_right h0 h1
 
   have hball2 : Metric.ball (0 : V (nd X)) (ρ / 2) ⊆ OmF X x := fun z hz =>
     hcb (Metric.mem_closedBall.2 (le_trans (Metric.mem_ball.1 hz).le (by linarith)))
@@ -769,7 +767,7 @@ theorem hormander_peak : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [Field E] [Numb
       calc ENNReal.ofReal (‖F z‖ ^ 2 * E0)
           ≤ ENNReal.ofReal (2 * ‖F0 z‖ ^ 2 * E0 + 2 * (‖F0 z - F z‖ ^ 2 * E0)) := by
             apply ENNReal.ofReal_le_ofReal
-            nlinarith
+            linarith [mul_le_mul_of_nonneg_right hsq hE0n]
         _ = ENNReal.ofReal (2 * ‖F0 z‖ ^ 2 * E0) + 2 * ENNReal.ofReal (‖F0 z - F z‖ ^ 2 * E0) := by
             rw [ENNReal.ofReal_add (by positivity) (by positivity),
               ENNReal.ofReal_mul (p := (2 : ℝ)) (q := ‖F0 z - F z‖ ^ 2 * E0) (by norm_num), ENNReal.ofReal_ofNat]
@@ -778,15 +776,11 @@ theorem hormander_peak : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [Field E] [Numb
             · by_cases hzb : z ∈ Metric.ball (0 : V (nd X)) ρ
               · rw [Set.indicator_of_mem hzb, ← ENNReal.ofReal_mul (by positivity)]
                 apply ENNReal.ofReal_le_ofReal
-                have h1 : ‖F0 z‖ ^ 2 ≤ 1 := by
-                  have := hF0n z
-                  nlinarith [norm_nonneg (F0 z)]
+                have h1 : ‖F0 z‖ ^ 2 ≤ 1 := by simpa using pow_le_pow_left₀ (norm_nonneg (F0 z)) (hF0n z) 2
                 have h2 : E0 ≤ Real.exp (C1 * S) * densF X x z := by
                   rw [hE0def]
                   exact mul_le_mul_of_nonneg_right (hsup z hzb) (IW.densF_pos X x hz).le
-                have h3 : 0 ≤ Real.exp (C1 * S) * densF X x z :=
-                  mul_nonneg (Real.exp_pos _).le (IW.densF_pos X x hz).le
-                nlinarith [sq_nonneg ‖F0 z‖]
+                linarith [mul_le_mul h1 h2 hE0n zero_le_one]
               · have hz0 : F0 z = 0 := hF00 z (by
                   rw [Metric.mem_ball, dist_zero_right, not_lt] at hzb
                   exact hzb)
@@ -827,9 +821,9 @@ theorem hormander_peak : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [Field E] [Numb
             have h1 : S + 1 ≤ Real.exp S := Real.add_one_le_exp S
             have h2 : Real.exp (2 * S) = Real.exp S * Real.exp S := by
               rw [← Real.exp_add]; ring_nf
-            nlinarith
+            linarith [mul_le_mul (by linarith : (2 : ℝ) ≤ Real.exp S) (by linarith : (2 : ℝ) ≤ Real.exp S) (by norm_num) (Real.exp_pos _).le]
           rw [show (C1 + 2) * S = C1 * S + 2 * S by ring, Real.exp_add]
-          nlinarith [Real.exp_pos (C1 * S)]
+          linarith [mul_le_mul_of_nonneg_left h4 (Real.exp_pos (C1 * S)).le]
   have hfinI : ∫⁻ z, ENNReal.ofReal (‖F z‖ ^ 2 / kaF X x bb z) *
       IW.Wpsi X la (fun _ => 0) (cpt X x z) ∂muF X x < ⊤ :=
     hmain.trans_lt (ENNReal.mul_lt_top ENNReal.ofReal_lt_top hfin)
@@ -848,7 +842,7 @@ theorem hormander_peak : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [Field E] [Numb
     have h1 : 1 ≤ Real.exp (bb * rhF X x z) :=
       Real.one_le_exp (mul_nonneg hbb0 (ExF.rhF_nonneg X x ho hz))
     have h2 : 0 ≤ ‖F z‖ ^ 2 * Real.exp (-phla X la (cpt X x z)) := by positivity
-    nlinarith
+    linarith [le_mul_of_one_le_right h2 h1]
   obtain ⟨P0, hBE, hPF⟩ := extFStatement_holds r X x ho la F hFd hext
 
   set Ψw : Frame X.Ψ r → ℝ≥0∞ := fun y => ⨆ k, ENNReal.ofReal (Real.exp (-ψ k y)) with hΨdef
@@ -879,7 +873,7 @@ theorem hormander_peak : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [Field E] [Numb
       Real.one_le_exp (mul_nonneg hbb0 (ExF.rhF_nonneg X x ho hz))
     have h2 : 0 ≤ ‖F0 z - F z‖ ^ 2 * Real.exp (-phla X la (cpt X x z)) * densF X x z *
       Real.exp (-ψ k (cpt X x z)) := by positivity
-    nlinarith
+    linarith [le_mul_of_one_le_right h2 h1]
   refine ⟨F, P0, hFd, hBE, hPF, ?_, ?_, hfinI, hmain⟩
   · have h0 := hPF 0 (IW.zero_mem_OmF X x ho)
     rw [IW.cpt_zero] at h0
@@ -929,7 +923,7 @@ theorem nat_bound (f r n : ℕ) (hf : 1 ≤ f) (hr : 1 ≤ r) (hn : n ≤ f * (r
   have h1 : 2 * n * (200 * r ^ 3 * f) ≤ 400 * a ^ 8 := by
     have e : 2 * n * (200 * r ^ 3 * f) ≤ 400 * ((a * a) * (a ^ 3 * a)) := by
       have := Nat.mul_le_mul hna (Nat.mul_le_mul (Nat.pow_le_pow_left hra 3) hfa)
-      nlinarith
+      grind
     refine e.trans (Nat.mul_le_mul_left _ ?_)
     calc a * a * (a ^ 3 * a) = a ^ 6 := by ring
       _ ≤ a ^ 8 := Nat.pow_le_pow_right ha1 (by norm_num)
@@ -947,8 +941,7 @@ theorem real_bound (f r n : ℕ) (hf : 1 ≤ f) (hr : 1 ≤ r) (hn : n ≤ f * (
   have hf' : (1 : ℝ) ≤ f := by exact_mod_cast hf
   have hr' : (1 : ℝ) ≤ r := by exact_mod_cast hr
   have hK1 : 1 ≤ K := by
-    have : (1 : ℝ) ≤ (r : ℝ) ^ 3 := one_le_pow₀ hr'
-    rw [hK]; nlinarith
+    rw [hK]; linarith [one_le_mul_of_one_le_of_one_le (one_le_pow₀ (n := 3) hr') hf']
   have hKpos : 0 < K := by linarith
 
   have hδ : Real.exp (-K) ≤ 1 / K := by
@@ -1006,7 +999,7 @@ theorem ballvol : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [Field E] [NumberField
     refine one_div_le_one_div_of_le (by positivity) ?_
     have h3 : (r : ℝ) ^ 2 ≤ (r : ℝ) ^ 3 := pow_le_pow_right₀ hr1 (by norm_num)
     have h4 : (r : ℝ) ^ 3 ≤ (r : ℝ) ^ 3 * (X.Ψ.card : ℝ) := le_mul_of_one_le_right (by positivity) hf1
-    nlinarith
+    rw [mul_assoc]; linarith [sq_nonneg (r : ℝ)]
   have hnear : ∀ z : V (nd X), ‖z‖ ≤ δ → cpt X x z ∈ X.dom ∧
       Real.exp (-(1 / 20)) ≤ X.nfac la (cpt X x z) ^ 2 ∧ Real.exp (-(1 / 10)) ≤ densF X x z :=
     fun z hz => GlobalTheory.ChartNearOne.chart_near_one E r X la w x hr hx le_rfl z hz
@@ -1106,7 +1099,7 @@ theorem norm_le_one_of_hc {p q : ℕ} {v : Fin p × Fin q → ℂ} (hv : toMat v
   rw [e, Complex.zero_lt_real] at h
   have h2 : ‖v x‖ ^ 2 ≤ ∑ a, ‖v (a, x.2)‖ ^ 2 :=
     Finset.single_le_sum (f := fun a => ‖v (a, x.2)‖ ^ 2) (fun _ _ => by positivity) (Finset.mem_univ x.1)
-  nlinarith [norm_nonneg (v x)]
+  exact le_of_sq_le_sq (by linarith : ‖v x‖ ^ 2 ≤ 1 ^ 2) zero_le_one
 
 end GlobalTheory.KernelIntegral
 
@@ -1292,13 +1285,13 @@ theorem bound_num (r j f : ℕ) (hj : j ≤ r) :
           exact mul_le_mul (one_div_flagConst_le j) (one_div_flagConst_le k)
             (one_div_pos.2 (flagConst_pos k)).le (pow_pos Real.pi_pos _).le
       _ = Real.pi ^ (j * j + k * k + j * k) := by rw [pow_add, pow_add]
-      _ ≤ Real.pi ^ ((j + k) * (j + k)) := pow_le_pow_right₀ hπ1 (by nlinarith)
+      _ ≤ Real.pi ^ ((j + k) * (j + k)) := pow_le_pow_right₀ hπ1 (by grind)
   have hn : ((j + k) * (j + k) * f : ℕ) ≤ (f * (j + k)) ^ 8 := by
     rcases Nat.eq_zero_or_pos (f * (j + k)) with h | h
     · rcases Nat.mul_eq_zero.1 h with h' | h' <;> simp [h']
     · calc (j + k) * (j + k) * f ≤ (f * (j + k)) ^ 2 := by
             have hf : 1 ≤ f := Nat.pos_of_ne_zero fun h0 => by simp [h0] at h
-            nlinarith
+            exact (Nat.le_mul_of_pos_right _ hf).trans_eq (by ring)
         _ ≤ (f * (j + k)) ^ 8 := Nat.pow_le_pow_right h (by norm_num)
   calc (1 / (flagConst j * flagConst k) * Real.pi ^ (j * k)) ^ f
       ≤ (Real.pi ^ ((j + k) * (j + k))) ^ f := pow_le_pow_left₀
@@ -1327,7 +1320,7 @@ theorem lintegral_kaF_le : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [Field E] [Nu
     have hr : (r : ℝ) ≤ (r : ℝ) ^ 2 := by
       have : r ≤ r * r := Nat.le_mul_self r
       rw [sq]; exact_mod_cast this
-    nlinarith [sq_nonneg (r : ℝ)]
+    linarith [le_mul_of_one_le_left (sq_nonneg (r : ℝ)) hf]
   have hka : kaF X y (4 * (X.Ψ.card : ℝ) * (r : ℝ) ^ 2 + 1) =
       kaF X (x0F X) (4 * (X.Ψ.card : ℝ) * (r : ℝ) ^ 2 + 1) := by
     funext z
@@ -1426,7 +1419,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ}
 
 theorem norm_lminor_Gw_ge (X : Data E r) (w : V (nd X)) (τ : X.Ψ) (hw : 3 * (r : ℝ) * ‖w‖ ≤ 1 / 2) :
     (1 / 2 : ℝ) ^ r ≤ ‖lminor (Gw X w τ) (i0 X)‖ := by
-  have hw0 : (r : ℝ) * ‖w‖ ≤ 1 := by nlinarith [norm_nonneg w]
+  have hw0 : (r : ℝ) * ‖w‖ ≤ 1 := by linarith [show 0 ≤ (r : ℝ) * ‖w‖ by positivity]
   have hp : X.p0 ≤ r := X.p0_le
   have key := (_root_.GlobalTheory.det_near_one_bounds X.p0 ((Gw X w τ).submatrix (Fin.castLE X.p0_le) (Fin.castLE X.p0_le))
     (3 * ‖w‖) (fun i j => ?_) ?_).1
@@ -1440,8 +1433,7 @@ theorem norm_lminor_Gw_ge (X : Data E r) (w : V (nd X)) (τ : X.Ψ) (hw : 3 * (r
       · rfl
     rw [Matrix.submatrix_apply, ← hJ]
     exact _root_.GlobalTheory.GramChartNear.gw_sub_jd_le E r X w τ _ _ hw0
-  · have : (X.p0 : ℝ) ≤ r := by exact_mod_cast hp
-    nlinarith [norm_nonneg w]
+  · linarith [mul_le_mul_of_nonneg_right (by exact_mod_cast hp : (X.p0 : ℝ) ≤ r) (show 0 ≤ 3 * ‖w‖ by positivity)]
 
 theorem rhY_cpt_le (X : Data E r) {x0 x : Frame X.Ψ r} (hx0 : IsOrth X x0) (hx : IsOrth X x)
     (hr : 0 < r) (w : V (nd X)) (hw : ‖w‖ ≤ 1 / (100 * (r : ℝ) ^ 2)) :
@@ -1450,7 +1442,7 @@ theorem rhY_cpt_le (X : Data E r) {x0 x : Frame X.Ψ r} (hx0 : IsOrth X x0) (hx 
   have hrw : 100 * (r : ℝ) ^ 2 * ‖w‖ ≤ 1 := by
     rw [le_div_iff₀ (by positivity)] at hw; linarith
   have hp : (X.p0 : ℝ) ≤ r := by exact_mod_cast X.p0_le
-  have hw3 : 3 * (r : ℝ) * ‖w‖ ≤ 1 / 2 := by nlinarith [norm_nonneg w]
+  have hw3 : 3 * (r : ℝ) * ‖w‖ ≤ 1 / 2 := by linarith [mul_le_mul_of_nonneg_right (le_self_pow₀ hr1 two_ne_zero) (norm_nonneg w)]
   have hterm : ∀ τ : X.Ψ, -(Real.log ‖dmin X.Gm (cpt X x w) τ (i0 X)‖ -
       2 * Real.log ‖lminor (gM X x0 (cpt X x w) τ) (i0 X)‖) ≤
         -(Real.log ‖dmin X.Gm x τ (i0 X)‖ - 2 * Real.log ‖lminor (gM X x0 x τ) (i0 X)‖) +
@@ -1469,7 +1461,7 @@ theorem rhY_cpt_le (X : Data E r) {x0 x : Frame X.Ψ r} (hx0 : IsOrth X x0) (hx 
       rw [det_lowerBlock_eq_conj_minor, Complex.norm_conj]; rfl
     have hPP := _root_.GlobalTheory.det_near_one_bounds X.p0 (((Mq X x0 x τ).toBlocks₂₂)⁻¹ * (Mq X x0 x τ).toBlocks₂₁ *
         (Nw X w τ).toBlocks₁₂ + (Nw X w τ).toBlocks₂₂) (((r : ℝ) + 1) * ‖w‖)
-        (fun i j => pert_entry X hx0 hx w τ i j) (by nlinarith [norm_nonneg w])
+        (fun i j => pert_entry X hx0 hx w τ i j) (by linarith [mul_le_mul_of_nonneg_right (mul_le_mul hp (by linarith : (r : ℝ) + 1 ≤ 2 * r) (by positivity) (by positivity)) (norm_nonneg w)])
     have hP := hPP.2
     have h0 : 0 < ‖(((Mq X x0 x τ).toBlocks₂₂)⁻¹ * (Mq X x0 x τ).toBlocks₂₁ *
         (Nw X w τ).toBlocks₁₂ + (Nw X w τ).toBlocks₂₂).det‖ := lt_of_lt_of_le (by positivity) hPP.1
@@ -1482,7 +1474,7 @@ theorem rhY_cpt_le (X : Data E r) {x0 x : Frame X.Ψ r} (hx0 : IsOrth X x0) (hx 
           (Nw X w τ).toBlocks₁₂ + (Nw X w τ).toBlocks₂₂).det‖ ≤ X.p0 * Real.log 2 := by
         rw [← Real.log_pow]; exact Real.log_le_log h0 hP
       have hl2 : 0 ≤ Real.log 2 := Real.log_nonneg (by norm_num)
-      nlinarith
+      linarith [mul_le_mul_of_nonneg_right hp hl2]
     rw [hd1, Real.log_one]
     linarith
   unfold rhY
@@ -1580,7 +1572,7 @@ theorem const_le (f r : ℕ) : (4 * (f : ℝ) * (r : ℝ) ^ 2 + 1) * ((f : ℝ) 
   have hf1 : (1 : ℝ) ≤ f := by exact_mod_cast hf
   have hr1 : (1 : ℝ) ≤ r := by exact_mod_cast hr
   set a : ℝ := (f : ℝ) * r with ha
-  have ha1 : 1 ≤ a := by nlinarith
+  have ha1 : 1 ≤ a := one_le_mul_of_one_le_of_one_le hf1 hr1
   have h3 : a ^ 3 ≤ a ^ 8 := pow_le_pow_right₀ ha1 (by norm_num)
   have h1 : a ≤ a ^ 8 := by
     calc a = a ^ 1 := (pow_one a).symm
@@ -1889,15 +1881,15 @@ theorem GlobalTheory.PeakThick.peak : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [F
   have hcard : (1 : ℝ) ≤ X.Ψ.card := by
     exact_mod_cast Finset.card_pos.mpr ⟨τ0.1, τ0.2⟩
   have hr : (1 : ℝ) ≤ r := by exact_mod_cast (show 1 ≤ r by omega)
-  have hN : (1 : ℝ) ≤ (X.Ψ.card : ℝ) * r := by nlinarith
+  have hN : (1 : ℝ) ≤ (X.Ψ.card : ℝ) * r := one_le_mul_of_one_le_of_one_le hcard hr
   have hN8 : (1 : ℝ) ≤ ((X.Ψ.card : ℝ) * r) ^ 8 := one_le_pow₀ hN
   have hS0 : 0 ≤ ∑ τ, ∑ a, |(la τ a : ℝ)| := by positivity
   have hgapH : ∀ τ (a b : Fin r), (b : ℕ) = a + 1 → (b : ℕ) ≠ X.p0 →
       CH * ((X.Ψ.card : ℝ) * r) ^ 8 ≤ (la τ a : ℝ) - la τ b := fun τ a b h1 h2 =>
-    le_trans (by nlinarith) (hgap τ a b h1 h2)
+    le_trans (mul_le_mul_of_nonneg_right (by linarith) (by positivity)) (hgap τ a b h1 h2)
   have hpairH : ∀ τ (a b : Fin r), (a : ℕ) = 0 → (b : ℕ) = r - 1 →
       CH * ((X.Ψ.card : ℝ) * r) ^ 8 ≤ (la τ b : ℝ) - la τ a := fun τ a b h1 h2 =>
-    le_trans (by nlinarith) (hpair τ a b h1 h2)
+    le_trans (mul_le_mul_of_nonneg_right (by linarith) (by positivity)) (hpair τ a b h1 h2)
   obtain ⟨F, P0, hFd, hP0, hagree, hP0x, hvan, hInAt, hbound⟩ :=
     hH E r X la x hp0 hp0r hx hgapH hpairH hinj
   have hInv : IsInvFn X (fun _ : Frame X.Ψ r => (0 : ℝ)) := fun _ _ _ _ _ _ => rfl
@@ -1910,10 +1902,10 @@ theorem GlobalTheory.PeakThick.peak : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [F
   have hSS : poin X la P0 ∈ X.SS la := by
     refine cuspStatement_holds r X la τ0 hp0 hp0r (fun i j h1 h2 => ?_) (fun i0 i1 h1 h2 => ?_) _ hbdd
     · have := hgap τ0 i j h1 h2
-      have h3 : ((la τ0 j : ℤ) : ℝ) ≤ la τ0 i := by nlinarith
+      have h3 : ((la τ0 j : ℤ) : ℝ) ≤ la τ0 i := by linarith [one_le_mul_of_one_le_of_one_le (by linarith : (1 : ℝ) ≤ CH + CS + 1) hN8]
       exact_mod_cast h3
     · have := hpair τ0 i0 i1 h1 h2
-      have h3 : ((la τ0 i0 : ℤ) : ℝ) < la τ0 i1 := by nlinarith
+      have h3 : ((la τ0 i0 : ℤ) : ℝ) < la τ0 i1 := by linarith [one_le_mul_of_one_le_of_one_le (by linarith : (1 : ℝ) ≤ CH + CS + 1) hN8]
       exact_mod_cast h3
   have hchi1 : X.χ la 1 = 1 := by
     have h1 := X.χ_mul la 1 X.Γ.one_mem 1 X.Γ.one_mem
@@ -1965,7 +1957,7 @@ theorem GlobalTheory.PeakThick.peak : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [F
     _ ≤ 1 * muF X x0 FF := by
         gcongr
         rw [← Real.exp_add, ← Real.exp_add, ENNReal.ofReal_le_one, Real.exp_le_one_iff]
-        nlinarith
+        linarith [mul_nonneg hCS hS0]
     _ = muF X x0 FF := one_mul _
 end -- clump:auto
 end -- clump:auto

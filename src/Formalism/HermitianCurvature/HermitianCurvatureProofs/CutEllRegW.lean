@@ -599,7 +599,7 @@ lemma derivL1Norm_rescaled_difference_le {d : ℕ} (ψ : E d → ℂ) (hψ : Con
     · subst hk0
       rw [norm_iteratedFDeriv_zero]
       have h1 := gr_zero b hb (max L0 0) hL x0 y r hr
-      nlinarith [mul_le_mul_of_nonneg_left hAL (mul_nonneg hr.le hy), mul_nonneg hr.le hA0]
+      linarith [mul_le_mul_of_nonneg_left hAL (mul_nonneg hr.le hy), mul_nonneg hr.le hA0]
     · have h1 := gr_pos b hb k hk0 (M k) (hM k) x0 y r hr
       have hrk : r ^ k ≤ r * (max 1 r0) ^ k := by
         calc r ^ k = r * r ^ (k - 1) := by rw [← pow_succ', Nat.sub_add_cancel hk0]
@@ -611,7 +611,7 @@ lemma derivL1Norm_rescaled_difference_le {d : ℕ} (ψ : E d → ℂ) (hψ : Con
         calc M k * r ^ k ≤ M k * (r * (max 1 r0) ^ k) := mul_le_mul_of_nonneg_left hrk (hM0 k)
           _ = r * (M k * (max 1 r0) ^ k) := by ring
           _ ≤ r * A := mul_le_mul_of_nonneg_left (hAk k hk) hr.le
-      nlinarith [mul_nonneg (mul_nonneg hr.le hA0) hy]
+      exact (h1.trans h2).trans (le_mul_of_one_le_right (mul_nonneg hr.le hA0) (by linarith))
   have hpt : ∀ j ∈ Finset.range (n + 1), ∀ y,
       ‖iteratedFDeriv ℝ j (fun y => ψ y * (b (x0 + r • y) - b x0)) y‖ ≤ r * A * h j y := by
     intro j hj y
@@ -930,7 +930,7 @@ theorem moments_integrable_of_nrm {d : ℕ} (F : E d → ℂ) (hF : Continuous F
     linarith
   refine (hA.add hB).mono' ((continuous_norm.pow n).mul (continuous_norm.comp hF)).aestronglyMeasurable ?_
   refine Filter.Eventually.of_forall (fun v => ?_)
-  have ht1 : (1 : ℝ) ≤ 1 + ‖v‖ ^ 2 := by nlinarith [sq_nonneg ‖v‖]
+  have ht1 : (1 : ℝ) ≤ 1 + ‖v‖ ^ 2 := by linarith [sq_nonneg ‖v‖]
   have ht0 : (0 : ℝ) < 1 + ‖v‖ ^ 2 := by linarith
   have hBv : B v = ((1 + ‖v‖ ^ 2) ^ (d + 1))⁻¹ := by
     simp only [B]
@@ -949,7 +949,7 @@ theorem moments_integrable_of_nrm {d : ℕ} (F : E d → ℂ) (hF : Continuous F
   have hx0 : 0 ≤ ‖v‖ ^ n * ‖F v‖ := by positivity
   rw [Real.norm_of_nonneg hx0]
   show ‖v‖ ^ n * ‖F v‖ ≤ A v + B v
-  nlinarith [sq_nonneg (A v - B v), mul_nonneg hA0 hB0]
+  exact le_of_sq_le_sq (by linarith [sq_nonneg (A v - B v), mul_nonneg hA0 hB0] : (‖v‖ ^ n * ‖F v‖) ^ 2 ≤ (A v + B v) ^ 2) (add_nonneg hA0 hB0)
 
 theorem smoothOfSobolevAll : MomentsSmooth := by
   intro d g hg hgc hs
@@ -1476,18 +1476,15 @@ lemma base (c : ℝ) (x y : E d) :
   have hx := norm_nonneg x
   have hc := sq_nonneg c
   have hsq : ‖x‖ ^ 2 ≤ 2 * ‖x - y‖ ^ 2 + 2 * ‖y‖ ^ 2 := by
-    nlinarith [sq_nonneg (‖x - y‖ - ‖y‖), mul_le_mul h1 h1 hx (add_nonneg ha hb)]
-  nlinarith [mul_le_mul_of_nonneg_left hsq hc,
-    mul_nonneg (mul_nonneg hc hc) (mul_nonneg (sq_nonneg ‖x - y‖) (sq_nonneg ‖y‖))]
+    linarith [pow_le_pow_left₀ hx h1 2, sq_nonneg (‖x - y‖ - ‖y‖)]
+  linarith [mul_le_mul_of_nonneg_left hsq hc, mul_nonneg (mul_nonneg hc hc) (mul_nonneg (sq_nonneg ‖x - y‖) (sq_nonneg ‖y‖))]
 
 lemma cmp1 (c : ℝ) (hc : c ^ 2 ≤ 1) (x y v : E d) (hv : ‖x - y‖ ≤ ‖v‖) :
     1 + c ^ 2 * ‖x‖ ^ 2 ≤ (2 * (1 + ‖v‖ ^ 2)) * (1 + c ^ 2 * ‖y‖ ^ 2) := by
   have h := base c x y
   have ha := norm_nonneg (x - y)
-  have hv2 : ‖x - y‖ ^ 2 ≤ ‖v‖ ^ 2 := by
-    nlinarith [mul_le_mul hv hv ha (norm_nonneg v)]
-  have h3 : c ^ 2 * ‖x - y‖ ^ 2 ≤ ‖v‖ ^ 2 := by
-    nlinarith [mul_nonneg (sub_nonneg.2 hc) (sq_nonneg ‖x - y‖)]
+  have hv2 : ‖x - y‖ ^ 2 ≤ ‖v‖ ^ 2 := pow_le_pow_left₀ ha hv 2
+  have h3 : c ^ 2 * ‖x - y‖ ^ 2 ≤ ‖v‖ ^ 2 := (mul_le_of_le_one_left (sq_nonneg _) hc).trans hv2
   have hy : 0 ≤ 1 + c ^ 2 * ‖y‖ ^ 2 := by positivity
   calc 1 + c ^ 2 * ‖x‖ ^ 2 ≤ 2 * (1 + c ^ 2 * ‖x - y‖ ^ 2) * (1 + c ^ 2 * ‖y‖ ^ 2) := h
     _ ≤ (2 * (1 + ‖v‖ ^ 2)) * (1 + c ^ 2 * ‖y‖ ^ 2) := by
@@ -1497,10 +1494,10 @@ lemma cmp1 (c : ℝ) (hc : c ^ 2 ≤ 1) (x y v : E d) (hv : ‖x - y‖ ≤ ‖v
 lemma om_shift (s M ε : ℝ) (hM : 0 ≤ M) (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1) (ζ η v : E d)
     (hv : ‖ζ - η‖ ≤ ‖v‖) :
     om s M ε ζ ≤ (2 * (1 + ‖v‖ ^ 2)) ^ (|s / 2| + M / 2) * om s M ε η := by
-  have hA1 : (1 : ℝ) ≤ 2 * (1 + ‖v‖ ^ 2) := by nlinarith [sq_nonneg ‖v‖]
+  have hA1 : (1 : ℝ) ≤ 2 * (1 + ‖v‖ ^ 2) := by linarith [sq_nonneg ‖v‖]
   have hA0 : (0 : ℝ) < 2 * (1 + ‖v‖ ^ 2) := by linarith
   have hv' : ‖η - ζ‖ ≤ ‖v‖ := by rw [norm_sub_rev]; exact hv
-  have hε2 : ε ^ 2 ≤ 1 := by nlinarith
+  have hε2 : ε ^ 2 ≤ 1 := by simpa using pow_le_pow_left₀ hε0 hε1 2
   have hone : (1 : ℝ) ^ 2 ≤ 1 := by norm_num
   have P1 := cmp1 1 hone ζ η v hv
   have P2 := cmp1 1 hone η ζ v hv'
@@ -1526,10 +1523,7 @@ private theorem abs_mul_sub_le_of_sq_eq_one_add_sq (g t s M e r b V : ℝ) (hg :
     |t * (s * r⁻¹ - M * e * r * b⁻¹)| ≤ (|s| + M) * V := by
   subst hb
   have hb0 : 0 < 1 + e * g ^ 2 := add_pos_of_pos_of_nonneg one_pos (mul_nonneg he0 (sq_nonneg g))
-  have hgr : g ≤ r := by
-    by_contra hcon
-    have hlt := not_le.mp hcon
-    nlinarith [mul_lt_mul'' hlt hlt hr0.le hr0.le]
+  have hgr : g ≤ r := le_of_sq_le_sq (by linarith [hr2]) hr0.le
   have hgr' : g * r⁻¹ ≤ 1 := by
     calc g * r⁻¹ ≤ r * r⁻¹ := mul_le_mul_of_nonneg_right hgr (inv_nonneg.2 hr0.le)
       _ = 1 := mul_inv_cancel₀ hr0.ne'
@@ -1537,11 +1531,8 @@ private theorem abs_mul_sub_le_of_sq_eq_one_add_sq (g t s M e r b V : ℝ) (hg :
     have h := mul_nonneg (mul_nonneg he0 (sq_nonneg g)) (by linarith : (0 : ℝ) ≤ 2 - e)
     have h' : (g * e * r) ^ 2 = g ^ 2 * e ^ 2 * r ^ 2 := by ring
     rw [h', hr2]
-    nlinarith
-  have hX : g * e * r ≤ 1 + e * g ^ 2 := by
-    by_contra hcon
-    have hlt := not_le.mp hcon
-    nlinarith [mul_lt_mul'' hlt hlt hb0.le hb0.le]
+    linarith
+  have hX : g * e * r ≤ 1 + e * g ^ 2 := le_of_sq_le_sq hsq hb0.le
   have hgb : g * (e * r * (1 + e * g ^ 2)⁻¹) ≤ 1 := by
     calc g * (e * r * (1 + e * g ^ 2)⁻¹) = (g * e * r) * (1 + e * g ^ 2)⁻¹ := by ring
       _ ≤ (1 + e * g ^ 2) * (1 + e * g ^ 2)⁻¹ := mul_le_mul_of_nonneg_right hX (inv_nonneg.2 hb0.le)
@@ -1554,8 +1545,7 @@ private theorem abs_mul_sub_le_of_sq_eq_one_add_sq (g t s M e r b V : ℝ) (hg :
     rw [abs_mul, abs_of_pos (inv_pos.2 hr0), abs_of_nonneg hpos] at h
     have e' : M * e * r * (1 + e * g ^ 2)⁻¹ = M * (e * r * (1 + e * g ^ 2)⁻¹) := by ring
     linarith
-  have hsum : |s| * (g * r⁻¹) + M * (g * (e * r * (1 + e * g ^ 2)⁻¹)) ≤ |s| + M := by
-    nlinarith [mul_le_mul_of_nonneg_left hgr' (abs_nonneg s), mul_le_mul_of_nonneg_left hgb hM]
+  have hsum : |s| * (g * r⁻¹) + M * (g * (e * r * (1 + e * g ^ 2)⁻¹)) ≤ |s| + M := add_le_add (mul_le_of_le_one_right (abs_nonneg s) hgr') (mul_le_of_le_one_right hM hgb)
   rw [abs_mul]
   calc |t| * |s * r⁻¹ - M * e * r * (1 + e * g ^ 2)⁻¹|
       ≤ (g * V) * (|s| * r⁻¹ + M * (e * r * (1 + e * g ^ 2)⁻¹)) :=
@@ -1571,7 +1561,7 @@ lemma deriv_bound (s M ε : ℝ) (hM : 0 ≤ M) (hε0 : 0 ≤ ε) (hε1 : ε ≤
     ≤ (|s| + M) * ‖v‖ * om (s - 1) M ε γ := by
   have ha : (0 : ℝ) < 1 + ‖γ‖ ^ 2 := by positivity
   have hb : (0 : ℝ) < 1 + ε ^ 2 * ‖γ‖ ^ 2 := by positivity
-  have hε2 : ε ^ 2 ≤ 1 := by nlinarith
+  have hε2 : ε ^ 2 ≤ 1 := by simpa using pow_le_pow_left₀ hε0 hε1 2
   obtain ⟨r, hr⟩ : ∃ r : ℝ, r = Real.sqrt (1 + ‖γ‖ ^ 2) := ⟨_, rfl⟩
   have hr0 : 0 < r := by rw [hr]; exact Real.sqrt_pos.2 ha
   have hr2 : r ^ 2 = 1 + ‖γ‖ ^ 2 := by rw [hr]; exact Real.sq_sqrt ha.le
@@ -1662,7 +1652,7 @@ theorem sobolevWeightLipschitz : WeightDiff := by
       2 ^ (|(s - 1) / 2| + M / 2) * (1 + ‖ξ - η‖) ^ (2 * (|(s - 1) / 2| + M / 2)) := by
     rw [Real.rpow_mul (by linarith : (0 : ℝ) ≤ 1 + ‖ξ - η‖), Real.rpow_two,
       ← Real.mul_rpow (by norm_num : (0 : ℝ) ≤ 2) (by positivity : (0 : ℝ) ≤ (1 + ‖ξ - η‖) ^ 2)]
-    exact Real.rpow_le_rpow (by positivity) (by nlinarith) hN0
+    exact Real.rpow_le_rpow (by positivity) (by linarith [norm_nonneg (ξ - η)]) hN0
   have hW0 : 0 ≤ om (s - 1) M ε η := by unfold om; positivity
   calc |om s M ε ξ - om s M ε η|
       ≤ (|s| + M) * ‖ξ - η‖ *
@@ -1777,18 +1767,14 @@ private theorem sq_one_add_rpow_mul_rpow_le_max_mul_rpow (s M ε t : ℝ) (hε :
       max ((min 1 (ε ^ 2)) ^ (-M)) ((max 1 (ε ^ 2)) ^ (-M)) * (1 + t) ^ (-M) := by
     rcases le_total 0 M with hM | hM
     · have hle : min 1 (ε ^ 2) * (1 + t) ≤ 1 + ε ^ 2 * t := by
-        have e1 : min 1 (ε ^ 2) ≤ 1 := min_le_left _ _
-        have e2 : min 1 (ε ^ 2) * t ≤ ε ^ 2 * t := mul_le_mul_of_nonneg_right (min_le_right _ _) ht
-        nlinarith
+        rw [mul_add, mul_one]; exact add_le_add (min_le_left _ _) (mul_le_mul_of_nonneg_right (min_le_right _ _) ht)
       calc (1 + ε ^ 2 * t) ^ (-M) ≤ (min 1 (ε ^ 2) * (1 + t)) ^ (-M) :=
             rpow_le_rpow_of_le_of_exponent_nonpos (mul_pos ha hA) hle (by linarith)
         _ = (min 1 (ε ^ 2)) ^ (-M) * (1 + t) ^ (-M) := Real.mul_rpow ha.le hA.le
         _ ≤ max ((min 1 (ε ^ 2)) ^ (-M)) ((max 1 (ε ^ 2)) ^ (-M)) * (1 + t) ^ (-M) :=
             mul_le_mul_of_nonneg_right (le_max_left _ _) hAp
     · have hle : 1 + ε ^ 2 * t ≤ max 1 (ε ^ 2) * (1 + t) := by
-        have e1 : 1 ≤ max 1 (ε ^ 2) := le_max_left _ _
-        have e2 : ε ^ 2 * t ≤ max 1 (ε ^ 2) * t := mul_le_mul_of_nonneg_right (le_max_right _ _) ht
-        nlinarith
+        rw [mul_add, mul_one]; exact add_le_add (le_max_left _ _) (mul_le_mul_of_nonneg_right (le_max_right _ _) ht)
       calc (1 + ε ^ 2 * t) ^ (-M) ≤ (max 1 (ε ^ 2) * (1 + t)) ^ (-M) :=
             Real.rpow_le_rpow hB.le hle (by linarith)
         _ = (max 1 (ε ^ 2)) ^ (-M) * (1 + t) ^ (-M) := Real.mul_rpow hb.le hA.le

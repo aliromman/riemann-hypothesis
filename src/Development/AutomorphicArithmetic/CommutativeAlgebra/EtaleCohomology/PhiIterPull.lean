@@ -235,17 +235,6 @@ private theorem pull_self {R : Type} [CommRing R] {C : Type 1} [Category.{0} C] 
   obtain ⟨z, rfl⟩ := Submodule.mkQ_surjective _ x
   exact congrArg (Submodule.Quotient.mk (p := ((CH.cx F).B j).submoduleOf ((CH.cx F).Z j))) (Subtype.ext (h z.1))
 
-private theorem pullH_comp {P P' P'' : PAlg l ⥤ Type} (u : P ⟶ P') (v : P' ⟶ P'') (n j : ℕ) (x : MH P'' n j) :
-    pullH (u ≫ v) n j x = pullH u n j (pullH v n j x) :=
-  pull_tri (pullMor v n) (pullMor u n) (pullMor (u ≫ v) n) j (fun _ => funext fun _ => rfl) x
-
-private theorem pullH_id (P : PAlg l ⥤ Type) (n j : ℕ) (x : MH P n j) : pullH (𝟙 P) n j x = x :=
-  pull_self (pullMor (𝟙 P) n) j (fun _ => funext fun _ => rfl) x
-
-private theorem phi_pull' {P P' : PAlg l ⥤ Type} (u : P ⟶ P') (n j : ℕ) (x : MH P' n j) :
-    phiH P n j (pullH u n j x) = pullH u n j (phiH P' n j x) :=
-  (frEx l ℤ (Spec (CommRingCat.of ℤ)) (𝟙 _) (Int.castRingHom _) (Int.castRingHom _) 0 0 (fun _ => by simp)).2.2 P P' u n j x
-
 private theorem iter_semi {A B : Type*} (p : B → B) (r : A → A) (h : A → B) (e : ∀ x, p (h x) = h (r x))
     (m : ℕ) (x : A) : p^[m] (h x) = h (r^[m] x) := by
   induction m with
@@ -255,24 +244,26 @@ private theorem iter_semi {A B : Type*} (p : B → B) (r : A → A) (h : A → B
 private theorem iter_step {A : Type*} (p : A → A) (f k : ℕ) (x : A) : p^[f * (k + 1)] x = p^[f * k] (p^[f] x) := by
   rw [Nat.mul_succ, Function.iterate_add_apply]
 
-private theorem phi_iter_pull {P P' : PAlg l ⥤ Type} (u : P ⟶ P') (n j m : ℕ) (x : MH P' n j) :
-    (phiH P n j)^[m] (pullH u n j x) = pullH u n j ((phiH P' n j)^[m] x) :=
-  iter_semi _ _ (pullH u n j) (phi_pull' u n j) m x
-
-private theorem itE_succ {P : PAlg l ⥤ Type} (F : P ⟶ P) (k : ℕ) : itE F (k + 1) = F ≫ itE F k := by
-  unfold itE
-  rw [pow_succ]
-  rfl
-
-private theorem phi_iter_itE {P : PAlg l ⥤ Type} (F : P ⟶ P) (f n j : ℕ) (x : MH P n j)
-    (hx : (phiH P n j)^[f] x = pullH F n j x) (k : ℕ) :
-    (phiH P n j)^[f * k] x = pullH (itE F k) n j x := by
-  induction k with
-  | zero => exact (pullH_id P n j x).symm
-  | succ k ih =>
-    refine (iter_step (phiH P n j) f k x).trans ((congrArg _ hx).trans ((phi_iter_pull F n j (f * k) x).trans
-      ((congrArg (pullH F n j) ih).trans ?_)))
-    exact (pullH_comp F (itE F k) n j x).symm.trans (congrArg (fun w : P ⟶ P => pullH w n j x) (itE_succ F k).symm)
+private theorem siteAnn_term_abs {Obj : Type*} [Category Obj] {H : Obj → Type*}
+    (pull : ∀ {A B : Obj}, (A ⟶ B) → H B → H A) (phi : ∀ A : Obj, H A → H A)
+    (hpull_comp : ∀ {A B C : Obj} (u : A ⟶ B) (v : B ⟶ C) (x : H C), pull (u ≫ v) x = pull u (pull v x))
+    (hpull_id : ∀ {A : Obj} (x : H A), pull (𝟙 A) x = x)
+    (hphi_pull : ∀ {A B : Obj} (u : A ⟶ B) (x : H B), phi A (pull u x) = pull u (phi B x))
+    {Q P R : Obj} (t : Q ⟶ P) (ρ : P ⟶ R) (F : R ⟶ R) (itF : ℕ → (R ⟶ R))
+    (hit0 : itF 0 = 𝟙 R) (hitS : ∀ k, itF (k + 1) = F ≫ itF k) (f k : ℕ) (x : H R)
+    (hx : (phi R)^[f] x = pull F x) :
+    pull t ((phi P)^[f * k] (pull ρ x)) = pull (t ≫ ρ ≫ itF k) x := by
+  have h2 : (phi R)^[f * k] x = pull (itF k) x := by
+    induction k with
+    | zero => exact (hpull_id x).symm.trans (congrArg (fun w => pull w x) hit0.symm)
+    | succ k ih =>
+      refine (iter_step (phi R) f k x).trans ((congrArg _ hx).trans ((iter_semi _ _ (pull F) (hphi_pull F) (f * k) x).trans
+        ((congrArg (pull F) ih).trans ?_)))
+      exact (hpull_comp F (itF k) x).symm.trans (congrArg (fun w => pull w x) (hitS k).symm)
+  have h1 : (phi P)^[f * k] (pull ρ x) = pull ρ ((phi R)^[f * k] x) :=
+    iter_semi _ _ (pull ρ) (hphi_pull ρ) (f * k) x
+  exact (congrArg (pull t) (h1.trans (congrArg (pull ρ) h2))).trans
+    ((congrArg (pull t) (hpull_comp ρ (itF k) x).symm).trans (hpull_comp t (ρ ≫ itF k) x).symm)
 
 end UpperTheory.Ru.crystallineComparison
 
@@ -280,12 +271,14 @@ open UpperTheory.Ru.crystallineComparison in
 theorem UpperTheory.Ru.crystallineComparison.siteAnn :
     UpperTheory.Ru.crystallineComparison.SiteAnn := by
   intro l _ O _ Y q g Q P ρ F f I _ a t k hT n j x hx
+  have hphi := (frEx l ℤ (Spec (CommRingCat.of ℤ)) (𝟙 _) (Int.castRingHom _) (Int.castRingHom _) 0 0 (fun _ => by simp)).2.2
   refine Eq.trans (Finset.sum_congr rfl fun i _ => ?_) (sumMH l Q (PQ q g) I a (fun i => t i ≫ ρ ≫ itE F (k i)) hT n j x)
-  refine congrArg (a i • ·) ?_
-  refine (congrArg (pullH (t i) n j) ((phi_iter_pull ρ n j (f * k i) x).trans
-    (congrArg (pullH ρ n j) (phi_iter_itE F f n j x hx (k i))))).trans ?_
-  exact ((congrArg (pullH (t i) n j) (pullH_comp ρ (itE F (k i)) n j x).symm).trans
-    (pullH_comp (t i) (ρ ≫ itE F (k i)) n j x).symm)
+  exact congrArg (a i • ·) (siteAnn_term_abs (Obj := PAlg l ⥤ Type)
+    (H := fun A => MH A n j) (fun u y => pullH u n j y) (fun A y => phiH A n j y)
+    (fun u v y => pull_tri (pullMor v n) (pullMor u n) (pullMor (u ≫ v) n) j (fun _ => funext fun _ => rfl) y)
+    (fun y => pull_self (pullMor (𝟙 _) n) j (fun _ => funext fun _ => rfl) y)
+    (fun u y => hphi _ _ u n j y)
+    (t i) ρ F (itE F) rfl (fun m => by unfold itE; rw [pow_succ]; rfl) f (k i) x hx)
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

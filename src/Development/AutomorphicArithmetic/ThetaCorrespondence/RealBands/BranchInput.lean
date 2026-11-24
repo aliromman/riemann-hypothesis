@@ -164,7 +164,7 @@ theorem thrStar_lt {N : ℕ} (ε : Fin N → Bool) {M : ℝ} (hNM : (N : ℝ) �
   have hq00 : (0 : ℝ) ≤ ReciprocityTheory.ChartRestriction.DS.S7.q0 ε := Nat.cast_nonneg _
   have hs : Real.sqrt (2 * (ReciprocityTheory.ChartRestriction.DS.S7.q0 ε : ℝ)) ≤ 2 * (ReciprocityTheory.ChartRestriction.DS.S7.q0 ε : ℝ) + 1 := by
     calc Real.sqrt (2 * (ReciprocityTheory.ChartRestriction.DS.S7.q0 ε : ℝ))
-        ≤ Real.sqrt ((2 * (ReciprocityTheory.ChartRestriction.DS.S7.q0 ε : ℝ) + 1) ^ 2) := Real.sqrt_le_sqrt (by nlinarith)
+        ≤ Real.sqrt ((2 * (ReciprocityTheory.ChartRestriction.DS.S7.q0 ε : ℝ) + 1) ^ 2) := Real.sqrt_le_sqrt (by linarith [sq_nonneg (2 * (ReciprocityTheory.ChartRestriction.DS.S7.q0 ε : ℝ))])
       _ = 2 * (ReciprocityTheory.ChartRestriction.DS.S7.q0 ε : ℝ) + 1 := Real.sqrt_sq (by linarith)
   have hN0 : (0 : ℝ) ≤ N := Nat.cast_nonneg _
   have hp0 : (0 : ℝ) ≤ ReciprocityTheory.ChartRestriction.DS.pOf ε := Nat.cast_nonneg _
@@ -173,8 +173,8 @@ theorem thrStar_lt {N : ℕ} (ε : Fin N → Bool) {M : ℝ} (hNM : (N : ℝ) �
     gcongr
   have h2 : 16 * (N : ℝ) * (ReciprocityTheory.ChartRestriction.DS.S7.q0 ε : ℝ) ≤ 16 * M * M := by
     gcongr
-  have hM2 : M ≤ M ^ 2 := by nlinarith
-  have hM3 : M ^ 2 ≤ M ^ 3 := by nlinarith
+  have hM2 : M ≤ M ^ 2 := le_self_pow₀ (by linarith) (by norm_num)
+  have hM3 : M ^ 2 ≤ M ^ 3 := pow_le_pow_right₀ (by linarith) (by norm_num)
   have hMM : M * M * M = M ^ 3 := by ring
   have hMM2 : 16 * M * M = 16 * M ^ 2 := by ring
   delta ReciprocityTheory.ChartRestriction.DS.thrStar
@@ -182,8 +182,8 @@ theorem thrStar_lt {N : ℕ} (ε : Fin N → Bool) {M : ℝ} (hNM : (N : ℝ) �
       (16 * (N : ℝ) * (ReciprocityTheory.ChartRestriction.DS.S7.q0 ε : ℝ) + 8 * Real.sqrt (2 * (ReciprocityTheory.ChartRestriction.DS.S7.q0 ε : ℝ))) <
       1000 * M ^ 3 - 2 := by
     refine max_lt ?_ ?_
-    · nlinarith
-    · nlinarith
+    · linarith
+    · linarith
   linarith
 
 theorem fdeg_const (N : ℕ) (ε : Fin N → Bool) : ∃ c : ℝ, 0 < c ∧ ∀ (lam : Fin N → ℝ) (h : ℝ),
@@ -461,8 +461,8 @@ theorem gap_ok {m : ℕ} (hm : 1 ≤ m) (ε : Fin m → Bool) :
   have h2 : (m : ℝ) ^ ((3 : ℝ) / 2) ≤ (m : ℝ) ^ (2 : ℝ) :=
     Real.rpow_le_rpow_of_exponent_le hm1 (by norm_num)
   rw [Real.rpow_two] at h2
-  have h3 : 0 ≤ (m : ℝ) := by positivity
-  nlinarith [mul_le_mul_of_nonneg_left (h1.trans h2) (by positivity : (0 : ℝ) ≤ 120 * m)]
+  have h3 : 0 ≤ (m : ℝ) ^ 3 := by positivity
+  linarith [mul_le_mul_of_nonneg_left (h1.trans h2) (by positivity : (0 : ℝ) ≤ 120 * m), show 120 * (m : ℝ) * (m : ℝ) ^ 2 = 120 * (m : ℝ) ^ 3 by ring]
 
 end GlobalTheory.SepReal.PowDec
 
@@ -505,21 +505,20 @@ theorem decPow : DecPow := by
     have hqm : (q : ℝ) ≤ m := by exact_mod_cast rkR_le ε
     have hm3 : (3 : ℝ) ≤ m := by exact_mod_cast hm
     have hsq : Real.sqrt (2 * (q : ℝ)) ≤ m := by
-      rw [Real.sqrt_le_left (by positivity)]; nlinarith
+      rw [Real.sqrt_le_left (by positivity)]; linarith [mul_le_mul_of_nonneg_right (show (2 : ℝ) ≤ m by linarith) (by linarith : (0 : ℝ) ≤ m), sq (m : ℝ)]
     have hsq0 : 0 < Real.sqrt (2 * (q : ℝ)) := Real.sqrt_pos.2 (by positivity)
 
     have hkey : t - 1 ≤ (m : ℝ) * min (t ^ 2) (t / Real.sqrt (2 * (q : ℝ))) := by
       rcases le_total t 1 with h1 | h1
       · have : 0 ≤ min (t ^ 2) (t / Real.sqrt (2 * (q : ℝ))) := le_min (by positivity) (by positivity)
-        nlinarith
-      · have a1 : t ≤ (m : ℝ) * t ^ 2 := by nlinarith
+        linarith [mul_nonneg hm0 this]
+      · have a1 : t ≤ (m : ℝ) * t ^ 2 := (le_self_pow₀ h1 (by norm_num)).trans (le_mul_of_one_le_left (by positivity) hm1)
         have a2 : t ≤ (m : ℝ) * (t / Real.sqrt (2 * (q : ℝ))) := by
-          rw [mul_div_assoc', le_div_iff₀ hsq0]; nlinarith
+          rw [mul_div_assoc', le_div_iff₀ hsq0]; linarith [mul_le_mul_of_nonneg_left hsq ht0]
         rcases min_choice (t ^ 2) (t / Real.sqrt (2 * (q : ℝ))) with e | e <;> rw [e] <;> linarith
     have hL' : Real.log (hsn g) * A ≤ 20 * (m : ℝ) ^ 3 + 40 * (m : ℝ) ^ 2 * t := by
       rw [hA]
-      nlinarith [mul_le_mul_of_nonneg_left hlogm (by positivity : (0 : ℝ) ≤ (m : ℝ) ^ 2),
-        mul_le_mul_of_nonneg_left hL (by positivity : (0 : ℝ) ≤ 20 * (m : ℝ) ^ 2)]
+      linarith [mul_le_mul_of_nonneg_left hlogm (by positivity : (0 : ℝ) ≤ (m : ℝ) ^ 2), mul_le_mul_of_nonneg_left hL (by positivity : (0 : ℝ) ≤ 20 * (m : ℝ) ^ 2), show (m : ℝ) ^ 2 * m = (m : ℝ) ^ 3 by ring]
     have hk2 := mul_le_mul_of_nonneg_left hkey (by positivity : (0 : ℝ) ≤ 125 * (m : ℝ) ^ 2)
     nlinarith
 
@@ -730,7 +729,7 @@ theorem taylor_der (f f1 f2 : ℝ → ℂ) (τ M : ℝ) (hf : ∀ t, HasDerivAt 
     calc _ ≤ ‖f τ - f 0‖ + ‖(f τ - (τ : ℂ) * f1 0) - (f 0 - ((0 : ℝ) : ℂ) * f1 0)‖ := norm_sub_le _ _
       _ ≤ (‖f τ‖ + ‖f 0‖) + M * τ * (τ - 0) := by gcongr; exact norm_sub_le _ _
       _ ≤ _ := by linarith
-  have : τ * ‖f1 0‖ ≤ τ * ((2 + M) * τ) := by nlinarith
+  have : τ * ‖f1 0‖ ≤ τ * ((2 + M) * τ) := by linarith [show τ ^ 2 + τ ^ 2 + M * τ * (τ - 0) = τ * ((2 + M) * τ) by ring]
   exact le_of_mul_le_mul_left this hτ0
 
 theorem coef_hasDerivAt {m : ℕ} {ε : Fin m → Bool} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
@@ -842,11 +841,11 @@ theorem const_le (C₀ : ℝ) (hC₀ : 0 < C₀) (m L R : ℝ) (hm : 4 ≤ m) (h
     rw [e]
     have h1 : 1 ≤ R ^ 4 := one_le_pow₀ hR1
     have h2 : 7 ^ 4 ≤ L ^ 4 := pow_le_pow_left₀ (by norm_num) hL7 4
-    have h3 : 1 ≤ L ^ 4 * R ^ 4 := by nlinarith
+    have h3 : 1 ≤ L ^ 4 * R ^ 4 := one_le_mul_of_one_le_of_one_le (by linarith) h1
     have h4 : L ^ 5 * R ^ 4 = L * (L ^ 4 * R ^ 4) := by ring
     have h5 : (L ^ 2 * R ^ 2) ^ 2 = L ^ 4 * R ^ 4 := by ring
     rw [h4, h5]
-    nlinarith
+    linarith [mul_le_mul_of_nonneg_right (by linarith : (3 : ℝ) ≤ L) (by linarith : 0 ≤ L ^ 4 * R ^ 4)]
 
   have hb0 : 0 < (Real.sqrt m + 3) * R ^ 2 := by positivity
   have hF2 : ((Real.sqrt m + 3) * R ^ 2) ^ (20 * m ^ 2) ≤ Real.exp ((l + 2 * r) * (20 * m ^ 2)) := by
@@ -857,17 +856,15 @@ theorem const_le (C₀ : ℝ) (hC₀ : 0 < C₀) (m L R : ℝ) (hm : 4 ≤ m) (h
     have hs : Real.sqrt m + 3 ≤ L := by
       have : Real.sqrt m ≤ m := by
         rw [Real.sqrt_le_left (by linarith)]
-        nlinarith
+        exact le_self_pow₀ (by linarith) (by norm_num)
       linarith
     have := Real.log_le_log (by positivity) hs
     push_cast
     linarith
-  have hm2 : 10 * (m - 1) ^ 2 ≤ 10 * m ^ 2 * l := by nlinarith
-  have hm3 : 50 * m ^ 3 ≤ 50 * m ^ 3 * l := by
-    have : 0 ≤ m ^ 3 := by positivity
-    nlinarith
-  have hp1 : 5 + 30 * m ^ 2 + 50 * m ^ 3 ≤ 100 * m ^ 4 := by nlinarith
-  have hp2 : 4 * m + 40 * m ^ 3 ≤ 50 * m ^ 4 := by nlinarith
+  have hm2 : 10 * (m - 1) ^ 2 ≤ 10 * m ^ 2 * l := by linarith [pow_le_pow_left₀ (by linarith) (show m - 1 ≤ m by linarith) 2, le_mul_of_one_le_right (sq_nonneg m) hl1]
+  have hm3 : 50 * m ^ 3 ≤ 50 * m ^ 3 * l := le_mul_of_one_le_right (by positivity) hl1
+  have hp1 : 5 + 30 * m ^ 2 + 50 * m ^ 3 ≤ 100 * m ^ 4 := by linarith [one_le_pow₀ (n := 4) (by linarith : (1 : ℝ) ≤ m), pow_le_pow_right₀ (by linarith : (1 : ℝ) ≤ m) (show 2 ≤ 4 by norm_num), pow_le_pow_right₀ (by linarith : (1 : ℝ) ≤ m) (show 3 ≤ 4 by norm_num)]
+  have hp2 : 4 * m + 40 * m ^ 3 ≤ 50 * m ^ 4 := by linarith [le_self_pow₀ (by linarith : (1 : ℝ) ≤ m) (by norm_num : 4 ≠ 0), pow_le_pow_right₀ (by linarith : (1 : ℝ) ≤ m) (show 3 ≤ 4 by norm_num)]
   have hq1 := mul_le_mul_of_nonneg_right hp1 (by linarith : (0 : ℝ) ≤ l)
   have hq2 := mul_le_mul_of_nonneg_left hp2 (by positivity : (0 : ℝ) ≤ C₀ * l)
   have hr4 : 4 * r ≤ 4 * (C₀ * m * l) := by linarith
@@ -948,7 +945,7 @@ theorem derBounds_of : EmbLaws → PowInt → DecPow → LieBound → DerBounds 
   have hB1 : 1 ≤ B := by
     have : (4 : ℝ) ^ 3 ≤ m ^ 3 := pow_le_pow_left₀ (by norm_num) hm4 3
     linarith
-  have hLm : m + 3 ≤ 8 * m * B := by nlinarith
+  have hLm : m + 3 ≤ 8 * m * B := by linarith [le_mul_of_one_le_right (by linarith : (0 : ℝ) ≤ 8 * m) hB1]
   have hM2 : ‖d2‖ ≤ ((8 * m * B) ^ 2 * R ^ 2) ^ 2 := by
     set X'' := g₀⁻¹ * X' * g₀ with hX''def
     have hX'' : X'' ∈ lieOf (Jm ε) := GlobalTheory.SmLinSub.conj_mem_lie hJ hg₀ hX'
@@ -990,7 +987,7 @@ theorem derBounds_of : EmbLaws → PowInt → DecPow → LieBound → DerBounds 
     have hbn : hsn (umat h) ≤ hsn b := by
       have := hsnH (umat h)
       have h0 : 0 ≤ hsn b := Real.sqrt_nonneg _
-      nlinarith
+      rw [← sq_le_sq₀ hhpos.le h0]; linarith
     have hbpos : 0 < hsn b := hhpos.trans_le hbn
     set E := Real.exp (50 * m ^ 3) * (hsn b / K0) ^ (-A) with hEdef
     have hE0 : 0 < E := by positivity
@@ -1082,7 +1079,7 @@ theorem derBounds_of : EmbLaws → PowInt → DecPow → LieBound → DerBounds 
     have h1 : Continuous (fun h : UJ ε' => π (embH e (umat h)) v) :=
       (hU.2.2 v).comp_continuous (hcont.comp hum) (fun h => hmapH _ h.2)
     exact continuous_const.inner h1
-  have hAn : 4 * (n : ℝ) ^ 2 + 1 ≤ A := by rw [hAdef, hm]; nlinarith
+  have hAn : 4 * (n : ℝ) ^ 2 + 1 ≤ A := by rw [hAdef, hm]; linarith [sq_nonneg (n : ℝ), Nat.cast_nonneg (α := ℝ) n]
   obtain ⟨hInt, hIle⟩ := hP n ε' A (by omega) hAn
   have hIntK : Integrable (fun h : UJ ε' => K1 * hsn (umat h) ^ (-A)) (muG ε') := hInt.const_mul K1
   refine ⟨hIntK.mono' hcontF.aestronglyMeasurable (ae_of_all _ hpt), ?_⟩
@@ -1206,7 +1203,7 @@ theorem real_bound (n : ℕ) {x c s β : ℝ} (hc : 1 ≤ c) (hxc : c ≤ x) (hs
   have hc0 : 0 < c := by linarith
   have hx0 : 0 < x := by linarith
   have hA0 : 0 ≤ A := by positivity
-  have hR0 : 0 ≤ R := by rw [hR, hA]; nlinarith [sq_nonneg (n : ℝ)]
+  have hR0 : 0 ≤ R := by rw [hR, hA]; linarith [sq_nonneg (n : ℝ), Nat.cast_nonneg (α := ℝ) n]
   have hsplit : x ^ (-(40 * ((n : ℝ) + 1) ^ 2)) = x ^ (-A) * x ^ (-R) := by
     rw [← Real.rpow_add hx0]; congr 1; rw [hR]; ring
   have h1 : x ^ (-A) ≤ s ^ (-A) * β ^ A := by
@@ -1222,12 +1219,12 @@ theorem real_bound (n : ℕ) {x c s β : ℝ} (hc : 1 ≤ c) (hxc : c ≤ x) (hs
       rw [← Real.rpow_two, ← Real.rpow_mul hc0.le]; congr 1; ring
     rw [e1, e2, ← Real.mul_rpow (by positivity) (by positivity)]
     apply Real.rpow_le_rpow (by positivity) _ (by positivity)
-    have : 1 ≤ c ^ 2 := by nlinarith
-    nlinarith
+    have : 1 ≤ c ^ 2 := one_le_pow₀ hc
+    linarith [mul_le_mul_of_nonneg_left this (by positivity : (0 : ℝ) ≤ (n : ℝ) + 1), mul_le_mul_of_nonneg_right (Nat.cast_nonneg (α := ℝ) n) (by positivity : (0 : ℝ) ≤ c ^ 2)]
   have h4 : c ^ A * c ^ (-R) ≤ c ^ (-(2 * (n : ℝ) + 7)) := by
     rw [← Real.rpow_add hc0]
     apply Real.rpow_le_rpow_of_exponent_le hc
-    rw [hR, hA]; nlinarith [sq_nonneg (n : ℝ)]
+    rw [hR, hA]; linarith [sq_nonneg (n : ℝ), Nat.cast_nonneg (α := ℝ) n]
   have hsA : 0 ≤ s ^ (-A) := by positivity
   calc x ^ (-(40 * ((n : ℝ) + 1) ^ 2)) = x ^ (-A) * x ^ (-R) := hsplit
     _ ≤ (s ^ (-A) * β ^ A) * c ^ (-R) := by gcongr
@@ -1247,12 +1244,12 @@ theorem const_bound (n : ℕ) {C₀ B G : ℝ} (hC₀ : 0 < C₀) (hB : 1 ≤ B)
   have hL : 1 ≤ L := by
     rw [hLdef, Real.le_log_iff_exp_le (by positivity)]
     have := Real.exp_one_lt_d9
-    nlinarith
+    linarith [one_le_mul_of_one_le_of_one_le hm hB]
   have ha0 : 0 ≤ Real.log G := Real.log_nonneg hG1
   have haL : Real.log G ≤ C₀ * m * L := by
     calc Real.log G ≤ Real.log ((8 * m * B) ^ (C₀ * m)) := Real.log_le_log (by linarith) hG
       _ = C₀ * m * L := by rw [Real.log_rpow (by positivity)]
-  have h3L : Real.log (3 * m) ≤ L := Real.log_le_log (by positivity) (by nlinarith)
+  have h3L : Real.log (3 * m) ≤ L := Real.log_le_log (by positivity) (by linarith [le_mul_of_one_le_right (by linarith : (0 : ℝ) ≤ 8 * m) hB])
   have h30 : 0 ≤ Real.log (3 * m) := Real.log_nonneg (by linarith)
   rw [Real.rpow_def_of_pos (by linarith : (0 : ℝ) < G), Real.rpow_def_of_pos (by positivity : (0 : ℝ) < 3 * m),
     ← Real.exp_add, ← Real.exp_add, ← Real.exp_add]
@@ -1262,11 +1259,11 @@ theorem const_bound (n : ℕ) {C₀ B G : ℝ} (hC₀ : 0 < C₀) (hB : 1 ≤ B)
   have hm4L : m ^ 4 ≤ m ^ 4 * L := le_mul_of_one_le_right (by positivity) hL
   have t2 : Real.log G * (80 * m ^ 2) ≤ C₀ * m * L * (80 * m ^ 2) := mul_le_mul_of_nonneg_right haL (by positivity)
   have t2' : C₀ * L * m ^ 3 ≤ C₀ * L * m ^ 4 := mul_le_mul_of_nonneg_left hm3 (by positivity)
-  have hA : (4 * (n : ℝ) ^ 2 + 1) / 2 ≤ 2 * m ^ 2 := by rw [hmdef]; nlinarith
+  have hA : (4 * (n : ℝ) ^ 2 + 1) / 2 ≤ 2 * m ^ 2 := by rw [hmdef]; linarith
   have t3 : Real.log (3 * m) * ((4 * (n : ℝ) ^ 2 + 1) / 2) ≤ L * (2 * m ^ 2) :=
     mul_le_mul h3L hA (by positivity) (by linarith)
   have t3' : L * m ^ 2 ≤ L * m ^ 4 := mul_le_mul_of_nonneg_left hm2 (by linarith)
-  have hn2 : (n : ℝ) ^ 2 ≤ m ^ 2 := by rw [hmdef]; nlinarith
+  have hn2 : (n : ℝ) ^ 2 ≤ m ^ 2 := by rw [hmdef]; linarith
   nlinarith
 
 end GlobalTheory.SepReal.IntBd
@@ -1314,7 +1311,7 @@ theorem intBounds_of (hE : EmbLaws) (hBo : Boost) (hP : PowInt) (hD : DecPow) : 
   · refine (hdec X hX).trans ?_
     rw [← mul_assoc]
     apply mul_le_mul_of_nonneg_left _ (mul_nonneg (Real.exp_pos _).le (Real.rpow_nonneg (hsn_nonneg _) _))
-    exact Real.rpow_le_rpow_of_exponent_le (hone X hX) (by nlinarith [sq_nonneg ((n : ℝ) + 1)])
+    exact Real.rpow_le_rpow_of_exponent_le (hone X hX) (by linarith [sq_nonneg ((n : ℝ) + 1)])
   obtain ⟨hgi, hgr, hgl, hgii⟩ := inv_facts hg
   obtain ⟨h₁, hh₁, b, hb, hgb, hbn⟩ := hBo n e ε ε' hp.signs g⁻¹ hgi
   rw [hgii] at hbn
@@ -1346,7 +1343,7 @@ theorem intBounds_of (hE : EmbLaws) (hBo : Boost) (hP : PowInt) (hD : DecPow) : 
       rw [humul, ← hbX]; exact hsub _ _
     have e2 : hsn (umat (u₁⁻¹ * y)) ≤ hsn (embH e (umat (u₁⁻¹ * y))) := by
       have := hEsq (umat (u₁⁻¹ * y))
-      nlinarith [hsn_nonneg (umat (u₁⁻¹ * y)), hsn_nonneg (embH e (umat (u₁⁻¹ * y)))]
+      rw [← sq_le_sq₀ (hsn_nonneg _) (hsn_nonneg _)]; linarith
     have hrb := real_bound n hc1 (by rw [← hcol g (umat y)]; exact hcolle _) (hsn_pos (by omega) hz)
       (by linarith : (0 : ℝ) < hsn b) (e2.trans e1) hbn
     calc Real.exp (100 * ((n : ℝ) + 1) ^ 3) * (hsn g₀ ^ (80 * ((n : ℝ) + 1) ^ 2) *
@@ -1444,13 +1441,13 @@ private theorem two_le_big_one (n : ℕ) {B : ℝ} (hB : 1 ≤ B) : 2 ≤ big 1 
   have hn : (1 : ℝ) ≤ (n : ℝ) + 1 := by
     have := Nat.cast_nonneg (α := ℝ) n
     linarith
-  have h8 : (2 : ℝ) ≤ 8 * ((n : ℝ) + 1) * B := by nlinarith
+  have h8 : (2 : ℝ) ≤ 8 * ((n : ℝ) + 1) * B := by linarith [one_le_mul_of_one_le_of_one_le hn hB]
   have hlog : Real.log 2 ≤ Real.log (8 * ((n : ℝ) + 1) * B) := Real.log_le_log (by norm_num) h8
   have hlog0 : 0 ≤ Real.log (8 * ((n : ℝ) + 1) * B) := le_trans (Real.log_nonneg (by norm_num)) hlog
   have hp : (1 : ℝ) ≤ ((n : ℝ) + 1) ^ 4 := one_le_pow₀ hn
   have hx : Real.log 2 ≤ 1 * ((n : ℝ) + 1) ^ 4 * Real.log (8 * ((n : ℝ) + 1) * B) := by
     rw [one_mul]
-    nlinarith
+    exact hlog.trans (le_mul_of_one_le_left hlog0 hp)
   calc (2 : ℝ) = Real.exp (Real.log 2) := (Real.exp_log (by norm_num)).symm
     _ ≤ _ := Real.exp_le_exp.2 hx
 

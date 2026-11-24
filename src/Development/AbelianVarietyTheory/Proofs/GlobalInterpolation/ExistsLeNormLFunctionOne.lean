@@ -1,5 +1,7 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LogDerivDirichletLFunctionLocalZeroSum
+
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.NumberTheory.LSeries.Nonvanishing
 public import Mathlib.Analysis.Normed.Group.Tannery
@@ -31,19 +33,18 @@ theorem abel_bound (a : ℕ → ℂ) (b : ℕ → ℝ) (M : ℝ) (hA : ∀ N, �
   rw [← sub_add_cancel (∑ n ∈ Finset.range N, a n * (b n : ℂ)) (A N * (b N : ℂ))]
   exact (norm_add_le _ _).trans ((add_le_add (key N) (hm N (hb0 N))).trans_eq (by ring))
 
+theorem char_sum_bound_totient_half {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q)
+    (hχ : χ ≠ 1) (N : ℕ) :
+    ‖∑ n ∈ Finset.range N, χ ((n + 1 : ℕ) : ZMod q)‖ ≤ (q.totient : ℝ) / 2 := by
+  simpa [← Finset.Ico_add_one_right_eq_Icc, Finset.sum_Ico_eq_sum_range, Nat.add_comm] using
+    GlobalTheory.LGrowth.norm_partialSum_le_totient_half q χ hχ N
+
 theorem char_sum_bound {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (N : ℕ) :
     ‖∑ n ∈ Finset.range N, χ ((n + 1 : ℕ) : ZMod q)‖ ≤ q := by
-  have h1 : ∑ n ∈ Finset.range q, χ ((n + 1 : ℕ) : ZMod q) = 0 := by
-    rw [← MulChar.sum_eq_zero_of_ne_one hχ]
-    refine Finset.sum_nbij' (fun n => ((n + 1 : ℕ) : ZMod q)) (fun a => (a - 1).val)
-      (by simp) (fun _ _ => Finset.mem_range.2 (ZMod.val_lt _)) (fun n hn => ?_) (by simp) (by simp)
-    simpa using ZMod.val_cast_of_lt (Finset.mem_range.1 hn)
-  have hk (k : ℕ) : ∑ n ∈ Finset.range (q * k), χ ((n + 1 : ℕ) : ZMod q) = 0 := by
-    induction k with | zero => simp | succ k ih =>
-      rw [Nat.mul_succ, Finset.sum_range_add, ih, zero_add]; simpa using h1
-  rw [← Nat.div_add_mod N q, Finset.sum_range_add, hk, zero_add]
-  exact (norm_sum_le _ _).trans ((Finset.sum_le_card_nsmul _ _ 1 fun _ _ => χ.norm_le_one _).trans
-    (by simpa using (Nat.mod_lt N (NeZero.pos q)).le))
+  refine (char_sum_bound_totient_half χ hχ N).trans ?_
+  have h := q.totient_le
+  have : (q.totient : ℝ) ≤ q := by exact_mod_cast h
+  linarith [Nat.cast_nonneg (α := ℝ) q]
 
 noncomputable def wt (x : ℝ) : ℝ := x⁻¹ - (Real.exp x - 1)⁻¹
 theorem wt_nonneg {x : ℝ} (hx : 0 < x) : 0 ≤ wt x :=
@@ -159,10 +160,12 @@ private theorem term_norm_le {q : ℕ} (χ : DirichletCharacter ℂ q) {α ε : 
   rw [norm_mul, Complex.norm_real, norm_mul, Real.norm_of_nonneg (by positivity)]
   exact (mul_le_of_le_one_left (by positivity) (χ.norm_le_one _)).trans (mul_le_of_le_one_left
     (by positivity) (Real.rpow_le_one_of_one_le_of_nonpos (by simp) (neg_nonpos.2 hε.le)))
-theorem compare_right {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) {α ε : ℝ}
+theorem compare_right_of_sum_bound {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) {B α ε : ℝ}
+    (hB : ∀ N, ‖∑ n ∈ Finset.range N, χ ((n + 1 : ℕ) : ZMod q)‖ ≤ B)
     (hα : 0 < α) (hε : 0 < ε) :
     ‖LFunction χ (1 + ε) * ((α⁻¹ : ℝ) : ℂ) - ∑' d : ℕ, χ ((d + 1 : ℕ) : ZMod q) *
-      (((((d + 1 : ℕ) : ℝ) ^ (-ε) * (Real.exp (((d + 1 : ℕ) : ℝ) * α) - 1)⁻¹ : ℝ)) : ℂ)‖ ≤ q := by
+      (((((d + 1 : ℕ) : ℝ) ^ (-ε) * (Real.exp (((d + 1 : ℕ) : ℝ) * α) - 1)⁻¹ : ℝ)) : ℂ)‖ ≤ B := by
+  have hB0 : 0 ≤ B := by simpa using hB 0
   have hs : 1 < (1 + (ε : ℂ)).re := by simpa using hε
   have h2 := ((hasSum_nat_add_iff' 1).2 (LFunction_eq_LSeries χ hs ▸
     (LSeriesSummable_of_one_lt_re χ hs).LSeriesHasSum)).mul_right ((α⁻¹ : ℝ) : ℂ)
@@ -187,13 +190,21 @@ theorem compare_right {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ 
       (wt_antitoneOn (hw m) (hw n) (mul_le_mul_of_nonneg_right hc hα.le))
       (wt_nonneg (hw n)) (by positivity)
   exact le_of_tendsto' h4.tendsto_sum_nat.norm fun N =>
-    (abel_bound _ b q (char_sum_bound χ hχ) hb (fun d => mul_nonneg (by positivity)
+    (abel_bound _ b B hB hb (fun d => mul_nonneg (by positivity)
       (wt_nonneg (hw d))) N).trans (mul_le_of_le_one_right (by positivity)
         (by simpa [b] using wt_le_one (hw 0)))
-theorem compare_one {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) {α : ℝ}
+
+theorem compare_right {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) {α ε : ℝ}
+    (hα : 0 < α) (hε : 0 < ε) :
+    ‖LFunction χ (1 + ε) * ((α⁻¹ : ℝ) : ℂ) - ∑' d : ℕ, χ ((d + 1 : ℕ) : ZMod q) *
+      (((((d + 1 : ℕ) : ℝ) ^ (-ε) * (Real.exp (((d + 1 : ℕ) : ℝ) * α) - 1)⁻¹ : ℝ)) : ℂ)‖ ≤ q := by
+  exact compare_right_of_sum_bound χ (char_sum_bound χ hχ) hα hε
+
+theorem compare_one_of_sum_bound {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) {B α : ℝ}
+    (hB : ∀ N, ‖∑ n ∈ Finset.range N, χ ((n + 1 : ℕ) : ZMod q)‖ ≤ B)
     (hα : 0 < α) :
     ‖LFunction χ 1 * ((α⁻¹ : ℝ) : ℂ) - ∑' d : ℕ, χ ((d + 1 : ℕ) : ZMod q) *
-      (((Real.exp (((d + 1 : ℕ) : ℝ) * α) - 1)⁻¹ : ℝ) : ℂ)‖ ≤ q := by
+      (((Real.exp (((d + 1 : ℕ) : ℝ) * α) - 1)⁻¹ : ℝ) : ℂ)‖ ≤ B := by
   have hc1 : Continuous fun ε : ℝ => LFunction χ (1 + ε) :=
     (differentiable_LFunction hχ).continuous.comp (by fun_prop)
   have h1 : Tendsto (fun ε : ℝ => LFunction χ (1 + ε)) (𝓝[>] 0) (𝓝 (LFunction χ 1)) := by
@@ -207,18 +218,37 @@ theorem compare_one {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : 
       fun_prop (disch := positivity)
     simpa using (hc.tendsto 0).mono_left (nhdsWithin_le_nhds (s := Set.Ioi 0))
   · filter_upwards [self_mem_nhdsWithin] with ε hε d using term_norm_le χ hε d
-  · filter_upwards [self_mem_nhdsWithin] with ε hε using compare_right χ hχ hα hε
+  · filter_upwards [self_mem_nhdsWithin] with ε hε using compare_right_of_sum_bound χ hB hα hε
+
+theorem compare_one {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) {α : ℝ}
+    (hα : 0 < α) :
+    ‖LFunction χ 1 * ((α⁻¹ : ℝ) : ℂ) - ∑' d : ℕ, χ ((d + 1 : ℕ) : ZMod q) *
+      (((Real.exp (((d + 1 : ℕ) : ℝ) * α) - 1)⁻¹ : ℝ) : ℂ)‖ ≤ q := by
+  exact compare_one_of_sum_bound χ hχ (char_sum_bound χ hχ) hα
+
+/-- A totient-sensitive lower bound for the value at one of a nonprincipal real character. -/
+theorem inv_totient_le_norm_LFunction_one {q : ℕ} [NeZero q]
+    (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (h2 : χ ^ 2 = 1) :
+    1 / (18 * (q.totient : ℝ)) ≤ ‖LFunction χ 1‖ := by
+  have hφ : 0 < q.totient := Nat.totient_pos.mpr (NeZero.pos q)
+  have h3 := compare_one_of_sum_bound χ hχ (char_sum_bound_totient_half χ hχ)
+    (α := (((3 * q.totient : ℕ) : ℝ) ^ 2)⁻¹) (by positivity)
+  rw [norm_sub_rev] at h3
+  have h4 := (sub_le_sub_right (lambert_lower h2 (M := 3 * q.totient) (by positivity)) _).trans
+    ((norm_sub_norm_le _ _).trans h3)
+  rw [norm_mul, Complex.norm_real, inv_inv, Real.norm_of_nonneg (by positivity)] at h4
+  push_cast at h4
+  rw [div_le_iff₀ (by positivity)]
+  nlinarith [show (0 : ℝ) < q.totient by exact_mod_cast hφ]
+
 theorem inv_le_norm_LFunction_one {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1)
     (h2 : χ ^ 2 = 1) : 1 / (36 * (q : ℝ)) ≤ ‖LFunction χ 1‖ := by
-  have hq : 0 < q := NeZero.pos q
-  have h3 := compare_one χ hχ (α := (((6 * q : ℕ) : ℝ) ^ 2)⁻¹) (by positivity)
-  rw [norm_sub_rev] at h3
-  have h4 := (sub_le_sub_right (lambert_lower h2 (M := 6 * q) (by omega)) _).trans
-    ((norm_sub_norm_le _ _).trans h3)
-  rw [norm_mul, Complex.norm_real, inv_inv, Real.norm_of_nonneg (by positivity)] at h4; push_cast at h4
-  have heq : ‖LFunction χ 1‖ * (6 * (q : ℝ)) ^ 2 = ‖LFunction χ 1‖ * (36 * q) * q := by ring
-  rw [div_le_iff₀ (by positivity)]
-  exact le_of_mul_le_mul_right (by linarith : 1 * (q : ℝ) ≤ ‖LFunction χ 1‖ * (36 * q) * q) (mod_cast hq)
+  refine le_trans ?_ (inv_totient_le_norm_LFunction_one χ hχ h2)
+  have hφ : 0 < q.totient := Nat.totient_pos.mpr (NeZero.pos q)
+  apply one_div_le_one_div_of_le (by positivity)
+  have h : (q.totient : ℝ) ≤ q := by exact_mod_cast q.totient_le
+  linarith [Nat.cast_nonneg (α := ℝ) q]
+
 theorem exists_le_norm_LFunction_one : ∃ c : ℝ, 0 < c ∧ ∀ (q : ℕ) [NeZero q]
     (χ : DirichletCharacter ℂ q), χ ≠ 1 → χ ^ 2 = 1 →
       c / (q : ℝ) ^ ((3 : ℝ) / 2) ≤ ‖LFunction χ 1‖ := by
