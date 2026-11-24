@@ -3,6 +3,7 @@ module
 import Mathlib
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
+import Mathlib.Tactic.Basify
 public import Development.AbelianVarietyTheory.Definitions.PlaceAdaptation.AdaptStd
 public import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.BaseChangeHomTopBijective
 public import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ExistsCdvrFiniteExtension
