@@ -1,0 +1,20 @@
+{
+  "879": {
+    "parent": "c6d67c05b648be9f1993aa84bd32c29ea9d2fb72",
+    "head": "9e72b7b093ae4dabd1bb89f14fc9e8885c5aad5c",
+    "src": "95fe38ceaf8f51ec5628d748d55bd7127e1e6447"
+  },
+  "977": {
+    "parent": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca",
+    "head": "f3e19bf8371ab5dd383b81e008ec14c4b0331811",
+    "src": "445477315d15f0c5eaea8c076b18063ebd7a17a6"
+  },
+  "merged_tree": "dfa50642cb20149b07d1f5702f822ff867b685d0",
+  "unchanged_merged_src": "d5f28ef5488aa438c872dd8bd1825b93f17be82b",
+  "previous_integrated_content": "75ad49eb2f59eb838f6b495d0eb84d7ad02dfab3",
+  "base_unchanged_src": "fd6cca42e515165d98659a81ff24b5c84b71ece6",
+  "upstream_metadata_checks": {
+    "label": 45393892762,
+    "frozen": 45393892788
+  }
+}

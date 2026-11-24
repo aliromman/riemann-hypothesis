@@ -1,18 +1,26 @@
 {
-  "snapshot_utc": "2026-11-24T11:52Z",
-  "open_count": 158,
-  "independent_peers": 156,
-  "parent": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca",
-  "queue_only_main_at_snapshot": "5f2c8594adf1f48032d37583118512cd7bbf3afa",
-  "first": "87b887f70183a19b577c6b084a8865f04ecb69e4",
-  "second": "70e09b0994fce225e678b4808941de89c27a763b",
+  "snapshot_utc": "2026-11-24T12:30:38Z",
+  "open_count": 189,
+  "independent_peers": 187,
+  "per_pr_base": {
+    "879": "c6d67c05b648be9f1993aa84bd32c29ea9d2fb72",
+    "977": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca"
+  },
+  "current_upstream": "c6d67c05b648be9f1993aa84bd32c29ea9d2fb72",
+  "first": "9e72b7b093ae4dabd1bb89f14fc9e8885c5aad5c",
+  "second": "f3e19bf8371ab5dd383b81e008ec14c4b0331811",
   "peer_prs_by_overlap": {
-    "879": 34,
-    "977": 36
+    "879": 51,
+    "977": 55
   },
   "additional_git_conflicts_relative_to_parent": {
     "879": {
       "1057": 373,
+      "1101": 1,
+      "1082": 4,
+      "1078": 5,
+      "1077": 13,
+      "1067": 19,
       "1058": 14,
       "1039": 2,
       "669": 447,
@@ -22,6 +30,11 @@
     "977": {
       "1057": 208,
       "988": 11580,
+      "1101": 1,
+      "1082": 3,
+      "1078": 12,
+      "1077": 5,
+      "1067": 18,
       "1058": 18,
       "1045": 2,
       "1039": 2,
@@ -31,5 +44,5 @@
       "97": 5513
     }
   },
-  "record_sha256": "7fe5a4b0c8a61dbe8681dfa58ebcce6c1dfd917a1e0bc5c487f6bb0811c883bc"
+  "record_sha256": "8449879be24961e0921fe595d48898ac2a493ad8468fa0dc60243ea86eef3564"
 }
