@@ -11,9 +11,12 @@ The file lists the members in dependency order. Short comments mark their Lean
 scopes. Members with the same initial namespace opens can share those opens.
 The table at the end of the file contains the original import headers.
 
-`clump.py unclump` reads both this layout and the earlier paired seam markers.
-It returns the original files byte for byte when their bodies have not changed.
+The command also reads the earlier layout with a marker before and after each member.
 Edits to a shared open apply to each member in that group.
+
+`clump.py unclump` splits clump files back into the original files, byte for byte, provided
+the member bodies were not edited.  If they were, it still restores the edited bodies; the
+original import headers are restored as recorded.
 
 Usage:
     clump.py plan   ROOT [--max-lines N] [--out plan.json]
@@ -287,8 +290,10 @@ def is_clump_file(mod):
 
 
 def member_start(line):
-    code, marker, name = line.partition(MEMBER_TAG)
-    if marker and code in MEMBER_PREFIXES:
+    if MEMBER_TAG not in line:
+        return None
+    code, _, name = line.partition(MEMBER_TAG)
+    if code in MEMBER_PREFIXES:
         return code.rstrip(), name
     return None
 
@@ -299,7 +304,7 @@ def has_own_scope(body, closings):
         return False
     # Lean closes an anonymous scope with a bare end. A named end can only
     # close named scopes. Keep the wrapper for all other spellings.
-    return all(NAMED_END.fullmatch(line) for line in body if END_WORD.search(line))
+    return all(NAMED_END.fullmatch(line) for line in body if "end" in line and END_WORD.search(line))
 
 
 def simple_open(line):
@@ -318,7 +323,8 @@ def leading_opens(body):
             continue
         # A namespace list can continue on an indented line. A comment can
         # also separate an open from its continuation or from a trailing in.
-        if line[0].isspace() or line.startswith(("--", "/-", "(", "hiding ", "renaming ")) or line.split()[0] == "in":
+        if (line[0].isspace() or line.startswith(("--", "/-", "(")) or
+                line.split()[0] in ("in", "hiding", "renaming")):
             last = previous
         break
     return tuple(body[1:last + 1])
@@ -377,16 +383,6 @@ def render_members(out, order, mods):
         bodies.append(mod.body.removesuffix("\n").split("\n"))
         headers.append(HEADER_TAG + json.dumps(info, ensure_ascii=False))
 
-    # A source can already contain one of the new comment markers.
-    if any(member_start(s) or s.startswith(HEADER_TAG) or
-           s in (SHARED_OPENS, "section " + SHARED_OPENS, END_SHARED)
-           for body in bodies for s in body):
-        for name, body, header in zip(order, bodies, headers):
-            out.extend([SEAM_BEGIN + name + " =====", header, "section" + AUTO, *body])
-            out.extend(closers(open_scopes("\n".join(body))))
-            out.extend(["end" + AUTO, SEAM_END + name + " =====", ""])
-        return
-
     groups = shared_open_groups(bodies)
     opens = ()
     group_end = None
@@ -396,7 +392,7 @@ def render_members(out, order, mods):
             marker = SHARED_OPENS if group_end + 1 == len(order) else "section " + SHARED_OPENS
             out.extend([marker, *opens, ""])
         body = original if not opens else original[:1] + original[1 + len(opens):]
-        closing = closers(open_scopes("\n".join(original)))
+        closing = closers(open_scopes(mods[name].body))
         final = i + 1 == len(order)
         borrow = has_own_scope(body, closing)
         if (final or borrow) and body and body[0] in PUBLIC_SECTIONS:
@@ -434,7 +430,28 @@ def render(root, order, mods):
     out += ["import " + x for x in privs]
     out += ["", CLUMP_MARK]
     out += ["-- Members: " + ", ".join(order), ""]
-    render_members(out, order, by)
+    # Preserve literal markers in member source with the paired layout.
+    if not any(tag in mod.body for mod in by.values()
+               for tag in (MEMBER_TAG, HEADER_TAG, SHARED_OPENS)):
+        render_members(out, order, by)
+        return "\n".join(out)
+    for m in order:
+        mod = by[m]
+        body = mod.body
+        trailing_nl = body.endswith("\n")
+        if trailing_nl:
+            body = body[:-1]
+        info = {"m": m, "h": mod.header}
+        if not trailing_nl:
+            info["nonl"] = True
+        out.append(SEAM_BEGIN + m + " =====")
+        out.append(HEADER_TAG + json.dumps(info, ensure_ascii=False))
+        out.append("section" + AUTO)
+        out.append(body)
+        out += closers(open_scopes(body))
+        out.append("end" + AUTO)
+        out.append(SEAM_END + m + " =====")
+        out.append("")
     return "\n".join(out)
 
 
@@ -454,12 +471,14 @@ def apply(root, clumps):
 
 def read_scope_members(lines):
     """Restore each compact member and insert the namespace opens for its group."""
-    table = next((i for i, line in enumerate(lines) if line.startswith(HEADER_TAG)), len(lines))
-    if any(line.strip() and not line.startswith(HEADER_TAG) for line in lines[table:]):
-        raise ValueError("unexpected text after the clump header table")
-    headers = [json.loads(line[len(HEADER_TAG):]) for line in lines[table:] if line.strip()]
     marks = []
-    for i, line in enumerate(lines[:table]):
+    table = len(lines)
+    for i, line in enumerate(lines):
+        if "-- clump" not in line:
+            continue
+        if line.startswith(HEADER_TAG):
+            table = i
+            break
         start = member_start(line)
         if start:
             marks.append((i, "member", start))
@@ -467,8 +486,14 @@ def read_scope_members(lines):
             marks.append((i, "open", None))
         elif line == END_SHARED:
             marks.append((i, "close", None))
+    footer = [line for line in lines[table:] if line.strip()]
+    if any(not line.startswith(HEADER_TAG) for line in footer):
+        raise ValueError("unexpected text after the clump header table")
+    headers = [json.loads(line[len(HEADER_TAG):]) for line in footer]
     names = [value[1] for _, kind, value in marks if kind == "member"]
-    if not names or names != [info["m"] for info in headers] or len(set(names)) != len(names):
+    if len(set(names)) != len(names):
+        raise ValueError("duplicate clump member in the header table")
+    if not names or names != [info["m"] for info in headers]:
         raise ValueError("clump member names differ from the header table")
     start = lines.index(CLUMP_MARK)
     preamble = [line for line in lines[start + 1:marks[0][0]] if line.strip()]
