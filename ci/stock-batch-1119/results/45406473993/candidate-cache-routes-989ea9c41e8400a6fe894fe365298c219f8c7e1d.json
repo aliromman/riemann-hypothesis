@@ -1,0 +1,46 @@
+{
+  "utc": "2026-11-24T14:12:43.776669+00:00",
+  "author_head": "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
+  "github_merge": "e970187f4b8eb7e3bf5882413fecc5f44785ab7a",
+  "effective_main": "5ba3d66a2a5acdcd70e2482d73e05b41d7116186",
+  "current_source_fingerprint": "82557395c8b55a74f2a5e0686f825bf07f8f11f398a764c6f217f67fa54105d9",
+  "current_parent_receipt_sha256": "25054c8bc44d82e7d368631c7e844d2a4f7fd0e2ff0fccca00c4d84b0a60b41e",
+  "public_candidates": {
+    "matching_input_fingerprint": {
+      "url": "https://rh-cache.taucetiproject.org/ci/inputs/82557395c8b55a74f2a5e0686f825bf07f8f11f398a764c6f217f67fa54105d9.json",
+      "status": 404
+    },
+    "author_receipt": {
+      "url": "https://rh-cache.taucetiproject.org/ci/revisions/989ea9c41e8400a6fe894fe365298c219f8c7e1d.json",
+      "status": 404
+    },
+    "author_fragment_map": {
+      "url": "https://rh-cache.taucetiproject.org/rh-buildq/maps/989ea9c41e8400a6fe894fe365298c219f8c7e1d.jsonl",
+      "status": 404
+    },
+    "author_portable_revision": {
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/tc/leanprover--lean4---v4.37.0-rc1/989ea9c41e8400a6fe894fe365298c219f8c7e1d.jsonl",
+      "status": 404
+    },
+    "author_platform_revision": {
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/pt/x86_64-unknown-linux-gnu/tc/leanprover--lean4---v4.37.0-rc1/989ea9c41e8400a6fe894fe365298c219f8c7e1d.jsonl",
+      "status": 404
+    },
+    "merge_receipt": {
+      "url": "https://rh-cache.taucetiproject.org/ci/revisions/e970187f4b8eb7e3bf5882413fecc5f44785ab7a.json",
+      "status": 404
+    },
+    "merge_fragment_map": {
+      "url": "https://rh-cache.taucetiproject.org/rh-buildq/maps/e970187f4b8eb7e3bf5882413fecc5f44785ab7a.jsonl",
+      "status": 404
+    },
+    "merge_portable_revision": {
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/tc/leanprover--lean4---v4.37.0-rc1/e970187f4b8eb7e3bf5882413fecc5f44785ab7a.jsonl",
+      "status": 404
+    },
+    "merge_platform_revision": {
+      "url": "https://rh-cache.taucetiproject.org/revisions/leanprover-community/riemann-hypothesis/pt/x86_64-unknown-linux-gnu/tc/leanprover--lean4---v4.37.0-rc1/e970187f4b8eb7e3bf5882413fecc5f44785ab7a.jsonl",
+      "status": 404
+    }
+  }
+}
