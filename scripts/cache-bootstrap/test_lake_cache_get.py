@@ -21,7 +21,7 @@ else:
 """
 
 
-def run_wrapper(version):
+def run_wrapper(version, **env):
     """Run a copy of the wrapper whose PATH holds a fake `lake` and a fake `python3`, or no `python3`.
 
     The fake `lake` records its arguments and exits 7.
@@ -41,8 +41,8 @@ def run_wrapper(version):
         for name, body in programs.items():
             (tools / name).write_text("#!/bin/sh\n" + body)
             (tools / name).chmod(0o755)
-        result = subprocess.run([shutil.which("bash"), str(scripts / WRAPPER.name), "get"],
-                                env={"PATH": str(tools)}, capture_output=True, text=True)
+        result = subprocess.run([shutil.which("bash"), f"scripts/{WRAPPER.name}", "get"], cwd=scripts.parent,
+                                env={"PATH": str(tools), **env}, capture_output=True, text=True)
         return result, called.read_text().strip() if called.exists() else None
 
 
@@ -61,6 +61,11 @@ class PythonVersionCheck(unittest.TestCase):
 
     def test_python_3_11_reaches_the_mathlib_fetch(self):
         result, lake = run_wrapper((3, 11, 0))
+        self.assertEqual(result.returncode, 7, result.stderr)
+        self.assertEqual(lake, "exe mathlib/cache get")
+
+    def test_relative_wrapper_with_cdpath_reaches_lake(self):
+        result, lake = run_wrapper((3, 11, 0), CDPATH=".")
         self.assertEqual(result.returncode, 7, result.stderr)
         self.assertEqual(lake, "exe mathlib/cache get")
 
