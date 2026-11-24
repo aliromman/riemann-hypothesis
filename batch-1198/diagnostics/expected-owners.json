@@ -1,0 +1,34 @@
+{
+  "ordinary module": {
+    "reported": {
+      "before": [
+        "Examples.Wrong"
+      ],
+      "after": []
+    },
+    "compiler_error": "error: src/Examples/Plain.lean:6:28: Type mismatch",
+    "source": "theorem ordinary : False := True.intro"
+  },
+  "archive preface": {
+    "reported": {
+      "before": [
+        "Examples.Wrong"
+      ],
+      "after": []
+    },
+    "compiler_error": "error: src/Examples/Main.lean:6:19: Type mismatch",
+    "source": "example : False := True.intro"
+  },
+  "archived member": {
+    "reported": {
+      "before": [
+        "Examples.Leaf"
+      ],
+      "after": [
+        "Examples.Leaf"
+      ]
+    },
+    "compiler_error": "error: src/Examples/Main.lean:12:24: Type mismatch",
+    "source": "theorem leaf : False := True.intro"
+  }
+}

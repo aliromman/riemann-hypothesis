@@ -1,0 +1,18 @@
+{
+  "previous_head": "c0228c0ae22d9cbf3e5466760718fd19111058ac",
+  "head": "f6177155e8e440c0a831d4c15de4c74341de0a93",
+  "parent": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/QEqColPer.lean",
+  "parent_blob": "30cdc8f929c71a4b6ac402a43b30eb1b176ec1a0",
+  "old_blob": "b2866071ef5aa52ddf561f10f3cf92ed4a34f369",
+  "new_blob": "b6f94924a42f4a8f4ff6488447ea528d62c94d0e",
+  "before_sha256": "3bb91ed95cc2d32e619662984872639f7034e1515af2d0381c2dfcac542fc212",
+  "after_sha256": "331d96991cd168519a8835ddd5a95fa72f158a97ab326de4dd42a438903389b1",
+  "new_src": "a908624cdba9bc8f9a5ce5268f6947a8ba2cd505",
+  "previous_src": "3944961f74ce15f369676a6052f0a6586707750d",
+  "files_changed": [
+    "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/QEqColPer.lean"
+  ],
+  "extra_blank_lines": 1,
+  "extra_nonblank_lines": 0
+}

@@ -1,0 +1,50 @@
+{
+  "previous": "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
+  "current": "be239239d08c7bf865ba618cf6515891b4596c84",
+  "compiler": "Lake version 5.0.0-src+0b77e12 (Lean version 4.37.0-rc1)",
+  "command": "lake build +Examples.Plain +Examples.Main",
+  "control_build_status": 1,
+  "verified_cases": {
+    "ordinary module": {
+      "reported": {
+        "before": [
+          "Examples.Wrong"
+        ],
+        "after": []
+      },
+      "compiler_error": "error: src/Examples/Plain.lean:6:28: Type mismatch",
+      "source": "theorem ordinary : False := True.intro"
+    },
+    "archive preface": {
+      "reported": {
+        "before": [
+          "Examples.Wrong"
+        ],
+        "after": []
+      },
+      "compiler_error": "error: src/Examples/Main.lean:6:19: Type mismatch",
+      "source": "example : False := True.intro"
+    },
+    "archived member": {
+      "reported": {
+        "before": [
+          "Examples.Leaf"
+        ],
+        "after": [
+          "Examples.Leaf"
+        ]
+      },
+      "compiler_error": "error: src/Examples/Main.lean:12:24: Type mismatch",
+      "source": "theorem leaf : False := True.intro"
+    }
+  },
+  "previous_extraction_error": "clump member names differ from the header table",
+  "current_archive_roundtrip": true,
+  "files": {
+    "stock-lake.log": "9cf0e9b0b097d8405f03df6c8b06c3ce46553c86a93f405bc8566b892565c3a9",
+    "originals.json": "7a08fccc34c238a5da375f2e873c25e2727095944dd16a3e0b7671f010230821",
+    "expected-owners.json": "1346988a75d14e9b45b22b96f0478981dd731899e98c018dd76ac609271e210e",
+    "Plain.lean": "bfacb4674fa69288d8348040108ce8e8ad6b403208bb65ce22109f3157b8f8d3",
+    "Main.lean": "832a3b155693b6cbe1673568e0514b50adf2bd6a64bd5f8e323bf292b3f40d9d"
+  }
+}
