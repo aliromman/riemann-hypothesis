@@ -1,0 +1,53 @@
+{
+  "job": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45430700016/job/138574895166",
+  "run": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45430700016",
+  "source": "c0228c0ae22d9cbf3e5466760718fd19111058ac",
+  "lean_sources": "3944961f74ce15f369676a6052f0a6586707750d",
+  "workflow": "a81a848dd42b7b6d24ea9c37ac27b40b175e25a3",
+  "original_zip_sha256": "0706a34540ebf3d1962400789eecb3d51f0ae99f898b671ca56bbf24c7afa0fa",
+  "counts": {
+    "native": {
+      "ran": 60,
+      "skipped": 0,
+      "seconds": 0.419
+    },
+    "clump": {
+      "ran": 13,
+      "skipped": 0,
+      "seconds": 0.047
+    },
+    "scripts": {
+      "ran": 313,
+      "skipped": 0,
+      "seconds": 8.202
+    }
+  },
+  "earlier": "be239239d08c7bf865ba618cf6515891b4596c84",
+  "byte_identical_git_entries": {
+    "scripts/clump.py": "a79e5b81d13dee8647636e5ff1d033aea5ca3066",
+    "scripts/clump-exclude.txt": "9033b1fdb8cd775f0dddcde1ecf3cfcdccc30695",
+    "scripts/tests/test_clump_scopes.py": "754c93d97a699561cc92c8468c9d49aaa4bf70c9",
+    "scripts/ci-publisher-requirements.txt": "5d3fab7575e8d5031bb185c6f412c4b54619e18a",
+    "tools/ci_native": "00f74fdb2124d83fab44c73b0f9f9cf2c4200701",
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05"
+  },
+  "updated_community_test_files": [
+    "scripts/tests/test_batch_queue_sync.py",
+    "scripts/tests/test_ci_runner.py",
+    "scripts/tests/test_quick_check.py"
+  ],
+  "package_versions": [
+    "Python 3.12.16",
+    "PyYAML 6.0.2",
+    "boto3 1.44.9 botocore 1.44.9",
+    "cp (GNU coreutils) 9.4",
+    "Copyright (C) 2023 Free Software Foundation, Inc.",
+    "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.",
+    "This is free software: you are free to change and redistribute it.",
+    "There is NO WARRANTY, to the extent permitted by law.",
+    "",
+    "Written by Torbj\u00f6rn Granlund, David MacKenzie, and Jim Meyering.",
+    "Lean (version 4.37.0-rc1, x86_64-unknown-linux-gnu, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+    "Lake version 5.0.0-src+0b77e12 (Lean version 4.37.0-rc1)"
+  ]
+}
