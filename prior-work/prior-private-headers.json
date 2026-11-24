@@ -1,14 +1,14 @@
 {
-  "base": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
-  "head": "c4b66990077a462b2e2d35777fe0f55644463e87",
-  "current_modules": 39159,
-  "current_gross_deletions": 1019845,
+  "base": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+  "head": "c2c7fc890448cf0c8eab464f115e5e370129697a",
+  "current_modules": 39137,
+  "current_gross_deletions": 1019288,
   "prior": {
     "4": {
       "base": "bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef",
       "head": "50100c586985687aa29344fc0e792c008036ff8b",
       "current_deletions_present_in_prior_base": 0,
-      "present_on_both_prior_sides": 39159,
+      "present_on_both_prior_sides": 39137,
       "same_import_deleted_at_same_path": 0,
       "paths_with_a_common_deletion": 0
     },
@@ -16,10 +16,10 @@
       "base": "ab0b7522a5ccc9b8530edf475af5088f8f6464aa",
       "head": "c9b3e57f0fe987012d32c2523635387bfe56d5a5",
       "current_deletions_present_in_prior_base": 0,
-      "present_on_both_prior_sides": 32550,
+      "present_on_both_prior_sides": 32529,
       "same_import_deleted_at_same_path": 0,
       "paths_with_a_common_deletion": 0,
-      "path_removed_or_moved_in_prior_head": 6609,
+      "path_removed_or_moved_in_prior_head": 6608,
       "current_deletions_present_before_path_removal": 0
     }
   }

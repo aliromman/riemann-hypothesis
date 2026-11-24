@@ -1,16 +1,205 @@
 {
   "before": "c4b66990077a462b2e2d35777fe0f55644463e87",
+  "intermediate": "b880abd478236b392db065624391b785ad648b36",
   "main": "cb4dc6e23a6187db392c96664295415c55b6b01e",
-  "head": "b880abd478236b392db065624391b785ad648b36",
-  "tree": "303e91df78e5efeab9c3b9e26851340feabff837",
+  "head": "c2c7fc890448cf0c8eab464f115e5e370129697a",
+  "tree": "4a04249b1ba74ed4740591a6d864145ab47c187d",
   "holds": {
     "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/SymmetricPowerTransfer/TraceFormulaEigenvalues/TraceBlocks.lean": {
       "proposal": 1010,
       "parent_conflict": false,
       "change": "text"
+    },
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/SiegelWeilAvacIwaC.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "8c2032a70416f2c06d78436a0e784a282ecb114a",
+      "previous_candidate_blob": "b1882ad8edcef2fae863b53aad770829aa7b3225",
+      "previously_removed_imports": 26,
+      "previously_added_imports": 0
+    },
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/SiegelWeilKwhitMeasTop.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "fff69a73917393246d77881ae9f92873e95e458f",
+      "previous_candidate_blob": "374bfd3667b4c4632ef997ff5b5a8ca2b52d202a",
+      "previously_removed_imports": 23,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/AdelicDilations/COneLawPf.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "7e951b6decb7a5f2e6b3f700d8d1d9669c1449d3",
+      "previous_candidate_blob": "e1495340b3694ffd4d7f35083971953153a64e7d",
+      "previously_removed_imports": 25,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/DarbouxCharts/DarbouxAnti.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "49114fd6ac6c5e07052f1e7b240f27b999c0ae73",
+      "previous_candidate_blob": "3db61d5d9b2c71d64952103e8eb512ea07dcf8bc",
+      "previously_removed_imports": 23,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/FockVacuumBounds/MainEq.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "cef80cdae4a09fd3d8d1185d5f278cc0555490bf",
+      "previous_candidate_blob": "02b68bd00e4e77227ba9c081659df397e376c8ab",
+      "previously_removed_imports": 23,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/FockVacuumBounds/VacLin.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "58d458630fe139c144d12e34e0081205ac4afdd9",
+      "previous_candidate_blob": "4ee4930e9f0d433e417b43cf732c4fd5016d146b",
+      "previously_removed_imports": 23,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/LagrangianDecomposition/FinOneOneMem.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "8d7e96a4c341b7d18dae8d12fa01ce57d98b684e",
+      "previous_candidate_blob": "94f69152394e2d6799c7ef280ab7cb63be800bbf",
+      "previously_removed_imports": 23,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/LocalOperatorBlocks/GoodSigPq.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "5ab865e04a4c03b7d073d12d499840c5195def4e",
+      "previous_candidate_blob": "fc7259c9013d03da1896e49be3101189413aa169",
+      "previously_removed_imports": 27,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/LocalWeilOperators/LocForm.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "7f70b73447a3c0385fea0bbca1bbc0002ffcaaeb",
+      "previous_candidate_blob": "82d93a98070425f2a19ff3e3e3b30aaf80caf173",
+      "previously_removed_imports": 23,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/LocalWeilOperators/LocNbar.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "5eef8a813de73a683fd0ce4bce7112b01659a1c5",
+      "previous_candidate_blob": "1544b2b2738f0c37ed1aa4b2d78b65192ebd38b2",
+      "previously_removed_imports": 27,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/LocalWeilOperators/LocalOperatorLongWeylIntegral.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "8a8049f2a6edceb9df4913fb333c2ff3e0dccd59",
+      "previous_candidate_blob": "151afb9385c2eacf5d4a8325dda5028c83683f66",
+      "previously_removed_imports": 27,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/LocalWeilOperators/PsiZeroGram.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "d9c653ef992d925d65c1b680d19babc530e50701",
+      "previous_candidate_blob": "70041d2c9b4cff25d49e3d48c0bee6df0c9d2ecb",
+      "previously_removed_imports": 31,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/SchrodingerCommutation/DetWeylBlockNeZero.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "0a710d879ed84b8df26af435be6d42913b6f4d40",
+      "previous_candidate_blob": "ff8754620cff850737e95672d1a83a4273b3efba",
+      "previously_removed_imports": 26,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/ThetaPlaces/Frames.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "1b07658f53b595ce935d43d92034b98332ecdd29",
+      "previous_candidate_blob": "f2297ecf0f6cb0958d87ded553bca87be3d64406",
+      "previously_removed_imports": 25,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/ThetaPlaces/NormInvMulSelf.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "d7cdacb29ca776783420b87ad2a399ed6acbd9cb",
+      "previous_candidate_blob": "63a53f5c79efe65864bc671f3a10366d8f30e261",
+      "previously_removed_imports": 27,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/ThetaPlaces/ProjInf.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "6c47568c3b05dafe14e9a3a1c157ff303a77c33c",
+      "previous_candidate_blob": "b17b2bc1d851b07c646217f7a3182b66c8c17c6c",
+      "previously_removed_imports": 23,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/ThetaPlaces/RelReal.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "c91202ca7f1ad3cdc7e722eeea1066e5d2f0fb52",
+      "previous_candidate_blob": "e44a52e50b084add9b24a733031f4ce34f520a8b",
+      "previously_removed_imports": 25,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/ThetaSchwartzSums/HolValueAtFinsum.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "adb659243b188c63bc44a03b9177ec7cb61bf631",
+      "previous_candidate_blob": "671859461903aff9fb6014fa3cdeef0466e9d463",
+      "previously_removed_imports": 23,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/WeylIntegralCovariance/IntegralCovGen.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "6a2ce0749422f295477a6ffb221567f7c12d584c",
+      "previous_candidate_blob": "b00b6096d72554a92ec61eb384f9831c9b935ea0",
+      "previously_removed_imports": 23,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/WhittakerCovolume/DictAsm.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "c462a5a07cb957765f8a32bcae4a5fa01c6b0ec1",
+      "previous_candidate_blob": "4d1241fe932c80b79a00b3cada0d5185aa53d476",
+      "previously_removed_imports": 25,
+      "previously_added_imports": 0
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/WhittakerCovolume/ParabolicLowerBlockZero.lean": {
+      "proposal": 798,
+      "parent_conflict": false,
+      "change": "three-way merge",
+      "parent_blob": "bde6d14c75546e716e447f395e3cffa04def8198",
+      "previous_candidate_blob": "117b00eebfb0b0baee36fab1efca9363c07433ca",
+      "previously_removed_imports": 27,
+      "previously_added_imports": 0
     }
   },
-  "parent_blob": "f90caeba99afa630f4fa0aaf1793d9387bd274fb",
-  "previous_candidate_blob": "d7ddfcddd40023957d5e999201f04fe47d5bf64b",
-  "source_paths": 39158
+  "clean_798_merge_tree": "e4afcb97d3f11d46d8e08e678300f92767156e40",
+  "source_paths": 39137
 }

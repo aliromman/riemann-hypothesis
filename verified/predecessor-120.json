@@ -1,0 +1,23 @@
+{
+  "head": "fbb0941754dee95d15639f3d4d5596a3f508648b",
+  "closed": "2026-11-24T10:44:09Z",
+  "merged": false,
+  "toolchain": "leanprover/lean4:v4.36.0",
+  "sample": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PadicHodgeTheory/Bundle0001.lean",
+  "blob": "1df652513b9e54456cb5d41632736a14345b2890",
+  "sha256": "05889651510b07a773ec9f7b5c13fb00b44009cd9cab8eb434dd2fd59b013dfc",
+  "sample_lines": 249,
+  "explicit_sections": [
+    8,
+    108,
+    211,
+    221
+  ],
+  "bare_ends": [
+    105,
+    208,
+    228,
+    248
+  ],
+  "source_url": "https://github.com/leanprover-community/riemann-hypothesis/blob/fbb0941754dee95d15639f3d4d5596a3f508648b/src/Development/AutomorphicArithmetic/AutomorphicVarieties/PadicHodgeTheory/Bundle0001.lean"
+}
