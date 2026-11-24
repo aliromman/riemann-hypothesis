@@ -859,7 +859,8 @@ theorem line_of_tens (hH : GlobalTheory.GapIn.Hyp) (hKF : GlobalTheory.GapIn.Amp
       (M * s * η / d) • (DminN W.z W.z' g₀ l * (d : ℂ)) • amp R B B' w0 ν₀ g₀ := by
     simp only [smul_smul]
     congr 1
-    field_simp
+    rw [div_mul_eq_mul_div, eq_div_iff hdc]
+    ring
   have key' : (DminN W.z W.z' g₀ l * (d : ℂ)) • amp R B B' w0 ν₀ g₀ =
       ∑ I, ((ep I : ℂ) * κ₁ I * star (κ₀ I) * (PI.BesselPeriodGGP.fdegH W.μG (RI I).σ (wI I) : ℂ)) •
         amp (RI I) (BI I) (BI' I) (wI I) ν₀ g₀ := by
@@ -875,9 +876,10 @@ theorem line_of_tens (hH : GlobalTheory.GapIn.Hyp) (hKF : GlobalTheory.GapIn.Amp
       rpow_ratio hK hc hd0 (hdI0 I)]
     simp only [smul_smul]
     congr 1
-    have := hη0 I hI
+    have hηI0 := hη0 I hI
     push_cast
-    field_simp
+    calc _ = _ * (ηI I / ηI I) := by rw [div_self hηI0, mul_one]
+      _ = _ := by ring
   · rw [if_neg hI]
     rcases hz I hI with h0 | h0 <;> simp only [h0, mul_zero, zero_mul, star_zero, zero_smul, smul_zero]
 

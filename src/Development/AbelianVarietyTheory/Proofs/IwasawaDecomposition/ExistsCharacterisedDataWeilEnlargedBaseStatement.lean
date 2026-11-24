@@ -126,6 +126,80 @@ private theorem types (X X' : Stages) (h : X'.B.toPre = X.B.toPre) (i : Fin X.to
 
 end GlobalTheory.Mem.R3.Rw.WeilExt.RefType
 
+namespace GlobalTheory.Mem.R3.Rw.WeilExt
+
+private structure RSideWFields {B B' : Base} {f : Fr B.toPre} {f' : Fr B'.toPre} {T : TwDat B} {T' : TwDat B'}
+    {w : ColW B f T} {w' : ColW B' f' T'} {Z : w.Lt} {Z' : w'.Lt} {hX : B.fields.Ok} {hX' : B'.fields.Ok}
+    {Wt : Set B.places.Pl} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks (w'.st Z').toD7.what₂.LL]
+    {Xg : Finset (Gc B' w'.px → B'.LL)} {tr : TrI B' w'.px}
+    (z : Dat (w.st Z) w.I hX T Wt) (Wt' : Set B'.places.Pl)
+    (R' : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks) : Prop where
+  psi : HEq R'.ψ z.R.ψ
+  theta : HEq R'.θ z.R.θ
+  betaW : HEq R'.βW z.R.βW
+  nW : HEq R'.nW z.R.nW
+  betaV : HEq R'.βV z.R.βV
+  lamV : HEq R'.ΛV z.R.ΛV
+  lamW : HEq R'.ΛW z.R.ΛW
+  pg : HEq R'.Pg z.R.Pg
+  eG : HEq R'.eG z.R.eG
+  cV_W : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' → HEq (R'.cV i').W (z.R.cV i).W
+  cV_rho : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' → HEq (R'.cV i').ρ (z.R.cV i).ρ
+  cV_nW : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' → HEq (R'.cV i').nW (z.R.cV i).nW
+  cV_iW : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' → HEq (R'.cV i').iW (z.R.cV i).iW
+  vacP : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' → HEq (R'.vacP i') (z.R.vacP i)
+  ioP : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' → HEq (R'.ioP i') (z.R.ioP i)
+  BV : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' → HEq (R'.BV i') (z.R.BV i)
+  mwTie : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' →
+    LiftExt.DSTie (R'.MW i' (w'.st Z').toD7.what₂.embLL) (z.R.MW i (w.st Z).toD7.what₂.embLL)
+  hwEmb : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' →
+    HEq (R'.HW i' (w'.st Z').toD7.what₂.embLL) (z.R.HW i (w.st Z).toD7.what₂.embLL)
+  nuW : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' → HEq (R'.νW i') (z.R.νW i)
+  fdW : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' → HEq (R'.fdW i') (z.R.fdW i)
+  mwAt : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' →
+    ∀ (ι : (w.st Z).toD7.what₂.LL →+* (w'.st Z').toD7.what₂.LL),
+      (∀ x, (w'.st Z').toD7.what₂.embLL (ι x) = (w.st Z).toD7.what₂.embLL x) →
+      ∀ σ' : (w'.st Z').toD7.what₂.LL →+* ℂ,
+        LiftExt.DSTie (R'.MW i' σ') (z.R.MW i (σ'.comp ι)) ∧ HEq (R'.HW i' σ') (z.R.HW i (σ'.comp ι)) ∧
+          HEq (R'.gW i' σ') (z.R.gW i (σ'.comp ι)) ∧
+          ∀ x x', CrdOver ι x x' → HEq ((R'.FW i').j σ' x') ((z.R.FW i).j (σ'.comp ι) x)
+  fwChi : ∀ (i : Fin (w.st Z).toD7.R.m) (i' : Fin (w'.st Z').toD7.R.m), (i : ℕ) = i' →
+    ∀ (ι : (w.st Z).toD7.what₂.LL →+* (w'.st Z').toD7.what₂.LL),
+      (∀ x, (w'.st Z').toD7.what₂.embLL (ι x) = (w.st Z).toD7.what₂.embLL x) →
+      ∀ g' g, HEq g' g → (((R'.FW i').chi g' : (w'.st Z').toD7.what₂.LLˣ) : (w'.st Z').toD7.what₂.LL) =
+        ι (((z.R.FW i).chi g : (w.st Z).toD7.what₂.LLˣ) : (w.st Z).toD7.what₂.LL)
+
+private theorem rSideWFields {B B' : Base} {f : Fr B.toPre} {f' : Fr B'.toPre} {T : TwDat B} {T' : TwDat B'}
+    {w : ColW B f T} {w' : ColW B' f' T'} {Z : w.Lt} {Z' : w'.Lt} {hX : B.fields.Ok} {hX' : B'.fields.Ok}
+    {Wt : Set B.places.Pl} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks (w'.st Z').toD7.what₂.LL]
+    {Xg : Finset (Gc B' w'.px → B'.LL)} {tr : TrI B' w'.px}
+    {z : Dat (w.st Z) w.I hX T Wt} {Wt' : Set B'.places.Pl}
+    {R' : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks}
+    (h : RSideW z Wt' R') : RSideWFields z Wt' R' :=
+  let h5 := h.2.2.2.2.2
+  let h9 := h5.2.2.2.2
+  let hAt := h9.2.2.2.1
+  ⟨h.1, h.2.1, h.2.2.1, h5.1, h5.2.1, h5.2.2.1, h5.2.2.2.1, h9.1, h9.2.1,
+    fun i i' hi => (hAt i i' hi).1,
+    fun i i' hi => (hAt i i' hi).2.1,
+    fun i i' hi => (hAt i i' hi).2.2.1,
+    fun i i' hi => (hAt i i' hi).2.2.2.1,
+    fun i i' hi => (hAt i i' hi).2.2.2.2.1,
+    fun i i' hi => (hAt i i' hi).2.2.2.2.2.1,
+    fun i i' hi => (hAt i i' hi).2.2.2.2.2.2.1,
+    fun i i' hi => let m := (hAt i i' hi).2.2.2.2.2.2.2;
+      ⟨m.1, m.2.1, m.2.2.1, m.2.2.2.1, m.2.2.2.2.1, m.2.2.2.2.2.1, m.2.2.2.2.2.2.1⟩,
+    fun i i' hi => (hAt i i' hi).2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1,
+    fun i i' hi => (hAt i i' hi).2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1,
+    fun i i' hi => (hAt i i' hi).2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1,
+    fun i i' hi ι hι σ' =>
+      let s := ((hAt i i' hi).2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2 ι hι).1 σ'
+      let m := s.1
+      ⟨⟨m.1, m.2.1, m.2.2.1, m.2.2.2.1, m.2.2.2.2.1, m.2.2.2.2.2.1, m.2.2.2.2.2.2.1⟩, s.2.1, s.2.2.1, s.2.2.2⟩,
+    fun i i' hi ι hι => ((hAt i i' hi).2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2 ι hι).2.2.1⟩
+
+end GlobalTheory.Mem.R3.Rw.WeilExt
+
 open GlobalTheory.Mem.R3.Rw.WeilExt.RefType in
 
 theorem _root_.GlobalTheory.T.exists_copies_reference_objects_over_enlarged_base : ∀ {B B' : Base} {f : Fr B.toPre} {f' : Fr B'.toPre} {T : TwDat B} {T' : TwDat B'} {w : ColW B f T} {w' : ColW B' f' T'}
@@ -140,11 +214,13 @@ theorem _root_.GlobalTheory.T.exists_copies_reference_objects_over_enlarged_base
     HEq ω (z.R.ωP i (mu0F (X := B.fields) (tuOf w.I (usedOf w.I T Wt)))) ∧ HEq v (z.R.vP i (mu0F (X := B.fields) (tuOf w.I (usedOf w.I T Wt)))) ∧ HEq H (z.R.HV i (mu0F (X := B.fields) (tuOf w.I (usedOf w.I T Wt)))) ∧ HEq th (z.R.thF i (mu0F (X := B.fields) (tuOf w.I (usedOf w.I T Wt)))) ∧
     HEq g (z.R.thG i (mu0F (X := B.fields) (tuOf w.I (usedOf w.I T Wt)))) ∧ HEq ν (z.R.νV i (mu0F (X := B.fields) (tuOf w.I (usedOf w.I T Wt)))) ∧ HEq fd (z.R.fdV i (mu0F (X := B.fields) (tuOf w.I (usedOf w.I T Wt)))) := by
   intro B B' f f' T T' w w' Z Z' hX hX' Wt Ks _ _ _ Xg tr z Wt' R' hE hR i i' hi
-  have hR' := hR.2.2.2.2.2.2.2.2.2.2.2.2.1 i i' hi
-  obtain ⟨hC, -, hnc, hic, -, -, -, hH, hna, hip, hσ, -, -, hfr, -, hHW, -⟩ := hR'
+  have hF := rSideWFields hR
+  have hM := hF.mwTie i i' hi
   obtain ⟨t1, t2, t3, t4, t5, t6, t7, t8, t9⟩ := types (w.st Z) (w'.st Z') hE.1 i i' hi
   have key := mid (z.R.cV i) (R'.cV i') (z.R.MW i) (R'.MW i') (z.R.HW i) (R'.HW i')
-    (sgAt_mk _ z.R.hv0) (sgAt_mk _ R'.hv0) t1 t2 t3 t4 t5 hC hnc hic hH hna hip hσ hfr hHW
+    (sgAt_mk _ z.R.hv0) (sgAt_mk _ R'.hv0) t1 t2 t3 t4 t5
+    (hF.cV_W i i' hi) (hF.cV_nW i i' hi) (hF.cV_iW i i' hi)
+    hM.1 hM.2.1 hM.2.2.1 hM.2.2.2.1 hM.2.2.2.2.2.2 (hF.hwEmb i i' hi)
     (z.R.HV i (mu0F (X := B.fields) (tuOf w.I (usedOf w.I T Wt)))) (z.R.thF i _) (z.R.thG i _)
   obtain ⟨K, th, g, h1, h2, h3⟩ := key
   exact ⟨cast t6 (z.R.ωP i _), cast t7 (z.R.vP i _), K, th, g, cast t8 (z.R.νV i _), cast t9 (z.R.fdV i _), cast_heq _ _, cast_heq _ _,
@@ -172,21 +248,13 @@ section Move
 variable {B B' : Base} {f : Fr B.toPre} {f' : Fr B'.toPre} {T : TwDat B} {T' : TwDat B'} {w : ColW B f T} {w' : ColW B' f' T'}
   {Z : w.Lt} {Z' : w'.Lt}
 
-theorem m_eq (hP : B'.toPre = B.toPre) : (w'.st Z').toD7.R.m = (w.st Z).toD7.R.m := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  exact (by with_unfolding_all exact ((Eq.refl (w.st Z).toD7.R.m) :))
+theorem m_eq (hP : B'.toPre = B.toPre) : (w'.st Z').toD7.R.m = (w.st Z).toD7.R.m :=
+  congrArg (fun P => P.R.m) hP
 
 theorem gc_eq (hP : B'.toPre = B.toPre) {px : PreX B.toPre} {px' : PreX B'.toPre} (hpx : HEq px' px) : Gc B' px' = Gc B px := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  ( (
-  have e : @Eq (type_of% (px')) ((by with_unfolding_all exact ((px) :))) (px') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (px')) (px') (((px))) (((hpx)))).symm : _))
-  clear (hpx)
-  subst e))
-  exact (by with_unfolding_all exact ((Eq.refl (Gc B px)) :))
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl := eq_of_heq hpx
+  rfl
 
 theorem prod_move (hP : B'.toPre = B.toPre) {px : PreX B.toPre} {px' : PreX B'.toPre} (hpx : HEq px' px)
     {Pg : Finset (Pl (w.st Z).toD7.host.E)} {Pg' : Finset (Pl (w'.st Z').toD7.host.E)} (hPg : HEq Pg' Pg)
@@ -195,29 +263,13 @@ theorem prod_move (hP : B'.toPre = B.toPre) {px : PreX B.toPre} {px' : PreX B'.t
     (hχ : ∀ PP' PP, HEq PP' PP → PP ∈ Pg → HEq (χ' PP') (χ PP)) {g : Gc B px} {g' : Gc B' px'} (hg : HEq g' g) :
     ∏ PP : Pg', ((χ' PP (Matrix.GeneralLinearGroup.det (eG' g' PP)) : ℂˣ) : ℂ) =
       ∏ PP : Pg, ((χ PP (Matrix.GeneralLinearGroup.det (eG g PP)) : ℂˣ) : ℂ) := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  ( (
-  have e : @Eq (type_of% (px')) ((by with_unfolding_all exact ((px) :))) (px') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (px')) (px') (((px))) (((hpx)))).symm : _))
-  clear (hpx)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (Pg')) ((by with_unfolding_all exact ((Pg) :))) (Pg') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (Pg')) (Pg') (((Pg))) (((hPg)))).symm : _))
-  clear (hPg)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (eG')) ((by with_unfolding_all exact ((eG) :))) (eG') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (eG')) (eG') (((eG))) (((heG)))).symm : _))
-  clear (heG)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (g')) ((by with_unfolding_all exact ((g) :))) (g') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (g')) (g') (((g))) (((hg)))).symm : _))
-  clear (hg)
-  subst e))
-  have e : ∀ PP : Pl (w.st Z).toD7.host.E, PP ∈ Pg → HEq (χ' ((by with_unfolding_all exact (PP :)))) (χ PP) :=
-    fun PP hm => hχ ((by with_unfolding_all exact (PP :))) PP ((by with_unfolding_all exact ((HEq.refl PP) :))) hm
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl := eq_of_heq hpx
+  obtain rfl := eq_of_heq hPg
+  obtain rfl := eq_of_heq heG
+  obtain rfl := eq_of_heq hg
   refine Finset.prod_congr rfl fun PP _ => ?_
-  exact congrArg (fun c : ℂˣ => (c : ℂ)) (DFunLike.congr_fun (eq_of_heq (e PP.1 PP.2)) _)
+  exact congrArg (fun c : ℂˣ => (c : ℂ)) (DFunLike.congr_fun (eq_of_heq (hχ PP.1 PP.1 HEq.rfl PP.2)) _)
 
 end Move
 
@@ -230,24 +282,17 @@ theorem grp_chiW_ext : ∀ {B B' : Base} {f : Fr B.toPre} {f' : Fr B'.toPre} {T 
   (R' : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks), Enl0 B B' → HEq w'.px w.px → RSideW z Wt' R' → LevSame z Wt' R' → R'.toRealDat.grp_chiW := by
   intro B B' f f' T T' w w' Z Z' hX hX' Wt Ks _ _ _ Xg tr z Wt' R' hE hpx hS hL
   have hc := z.pins.char.base.grp.chiW
-  let ι : (w.st Z).toD7.what₂.LL →+* (w'.st Z').toD7.what₂.LL :=
-    (B'.embLL.rangeRestrictFieldEquiv.symm : B'.embLL.fieldRange →+* B'.LL).comp
-      (B.embLL.codRestrict B'.embLL.fieldRange fun x => hE.2.2.2 ⟨x, rfl⟩)
-  have hι : ∀ x, (w'.st Z').toD7.what₂.embLL (ι x) = (w.st Z).toD7.what₂.embLL x := fun x =>
-    congrArg Subtype.val (B'.embLL.rangeRestrictFieldEquiv.apply_symm_apply ⟨B.embLL x, hE.2.2.2 ⟨x, rfl⟩⟩)
+  obtain ⟨ι, hι⟩ := exists_iota_comp B.embLL B'.embLL hE.2.2.2
   intro i' g'
   have hm := m_eq (w := w) (w' := w') (Z := Z) (Z' := Z') hE.1
   let i : Fin (w.st Z).toD7.R.m := ⟨i', by have := i'.2; omega⟩
   have hi : (i : ℕ) = i' := rfl
   let g : Gc B w.px := cast (gc_eq hE.1 hpx) g'
   have hg : HEq g' g := (cast_heq _ _).symm
-  have hS' := hS
-  obtain ⟨-, -, -, -, -, -, -, -, -, hPg, heG, -, hW, -⟩ := hS'
-  have hWi := hW i i' hi
-  obtain ⟨-, -, -, -, -, -, -, -, -, -, -, -, -, -, -, -, -, -, hWι⟩ := hWi
-  have hch := (hWι ι hι).2.2.1 g' g hg
-  rw [hch, hι, hc i g]
-  exact (prod_move hE.1 hpx hPg heG (fun PP' PP h hm => (hL.1 i i' hi).2 PP' PP h hm) hg).symm
+  have hF := rSideWFields hS
+  rw [hF.fwChi i i' hi ι hι g' g hg]
+  exact (hι _).trans ((hc i g).trans
+    (prod_move hE.1 hpx hF.pg hF.eG (fun PP' PP h hm => (hL.1 i i' hi).2 PP' PP h hm) hg).symm)
 
 end GlobalTheory.Mem.R3.Rw.ChiWExt
 end -- clump:auto
@@ -305,37 +350,23 @@ private theorem is_of (hP : B'.toPre = B.toPre) (hW : HEq W' W) (h : DSTie M' M)
     {U : Submodule ℂ (MMap M)} {U' : Submodule ℂ (MMap M')} (hU : HEq U' U)
     {ν : Measure (GA a.D W)} {ν' : Measure (GA a'.D W')} (hν : HEq ν' ν) {fd : Set (GA a.D W)} {fd' : Set (GA a'.D W')}
     (hfd : HEq fd' fd) (c : ℂ) (h0 : X.Is U fun T T' => c * ipM M ν fd T T') : X'.Is U' fun T T' => c * ipM M' ν' fd' T T' := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have : W' = W := by with_unfolding_all exact eq_of_heq hW
-  subst W'
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl := eq_of_heq hW
   rcases M with @⟨H, nacg, ips, σ, lam, ε, fr, enum, ds, fu, fg⟩
   rcases M' with @⟨H', nacg', ips', σ', lam', ε', fr', enum', ds', fu', fg'⟩
   rcases h with ⟨h1, h2, h3, h4, h5, h6, h7⟩
-  have : H' = H := by with_unfolding_all exact eq_of_heq h1
-  subst H'
-  have : nacg' = nacg := by with_unfolding_all exact eq_of_heq h2
-  subst nacg'
-  have : ips' = ips := by with_unfolding_all exact eq_of_heq h3
-  subst ips'
-  have : σ' = σ := by with_unfolding_all exact eq_of_heq h4
-  subst σ'
-  have : lam' = lam := by with_unfolding_all exact eq_of_heq h5
-  subst lam'
-  have : ε' = ε := by with_unfolding_all exact eq_of_heq h6
-  subst ε'
-  have : fr' = fr := by with_unfolding_all exact eq_of_heq h7
-  subst fr'
-  have : X' = X := by with_unfolding_all exact eq_of_heq hX
-  subst X'
-  have : U' = U := by with_unfolding_all exact eq_of_heq hU
-  subst U'
-  have : ν' = ν := by with_unfolding_all exact eq_of_heq hν
-  subst ν'
-  have : fd' = fd := by with_unfolding_all exact eq_of_heq hfd
-  subst fd'
-  exact (by with_unfolding_all exact (h0 :))
+  obtain rfl := eq_of_heq h1
+  obtain rfl := eq_of_heq h2
+  obtain rfl := eq_of_heq h3
+  obtain rfl := eq_of_heq h4
+  obtain rfl := eq_of_heq h5
+  obtain rfl := eq_of_heq h6
+  obtain rfl := eq_of_heq h7
+  obtain rfl := eq_of_heq hX
+  obtain rfl := eq_of_heq hU
+  obtain rfl := eq_of_heq hν
+  obtain rfl := eq_of_heq hfd
+  exact h0
 
 private theorem act_of (hP : B'.toPre = B.toPre) (hW : HEq W' W) (h : DSTie M' M)
     {X : HMod (MMap M)} {X' : HMod (MMap M')} (hX : HEq X' X)
@@ -345,35 +376,22 @@ private theorem act_of (hP : B'.toPre = B.toPre) (hW : HEq W' W) (h : DSTie M' M
     (h0 : ∀ g x, X.e (ρ g x) = postOn M (L g) (X.e x)) : ∀ g x, X'.e (ρ' g x) = postOn M' (L' g) (X'.e x) := by
   subst hG
   obtain rfl := eq_of_heq hi
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have : W' = W := by with_unfolding_all exact eq_of_heq hW
-  subst W'
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl := eq_of_heq hW
   rcases M with @⟨H, nacg, ips, σ, lam, ε, fr, enum, ds, fu, fg⟩
   rcases M' with @⟨H', nacg', ips', σ', lam', ε', fr', enum', ds', fu', fg'⟩
   rcases h with ⟨h1, h2, h3, h4, h5, h6, h7⟩
-  have : H' = H := by with_unfolding_all exact eq_of_heq h1
-  subst H'
-  have : nacg' = nacg := by with_unfolding_all exact eq_of_heq h2
-  subst nacg'
-  have : ips' = ips := by with_unfolding_all exact eq_of_heq h3
-  subst ips'
-  have : σ' = σ := by with_unfolding_all exact eq_of_heq h4
-  subst σ'
-  have : lam' = lam := by with_unfolding_all exact eq_of_heq h5
-  subst lam'
-  have : ε' = ε := by with_unfolding_all exact eq_of_heq h6
-  subst ε'
-  have : fr' = fr := by with_unfolding_all exact eq_of_heq h7
-  subst fr'
-  have : X' = X := by with_unfolding_all exact eq_of_heq hX
-  subst X'
-  have : ρ' = ρ := by with_unfolding_all exact eq_of_heq hρ
-  subst ρ'
-  have : L' = L := by with_unfolding_all exact eq_of_heq hL
-  subst L'
-  exact (by with_unfolding_all exact (h0 :))
+  obtain rfl := eq_of_heq h1
+  obtain rfl := eq_of_heq h2
+  obtain rfl := eq_of_heq h3
+  obtain rfl := eq_of_heq h4
+  obtain rfl := eq_of_heq h5
+  obtain rfl := eq_of_heq h6
+  obtain rfl := eq_of_heq h7
+  obtain rfl := eq_of_heq hX
+  obtain rfl := eq_of_heq hρ
+  obtain rfl := eq_of_heq hL
+  exact h0
 
 end Comparison₂
 
@@ -390,18 +408,12 @@ private theorem actL_heq (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin a
     HEq (fun g => Links.actL _ (β' i') (LiftExt.datW i' Pg') (eG' g)) (fun g => Links.actL _ (β i) (LiftExt.datW i Pg) (eG g)) := by
   subst hG
   obtain rfl := eq_of_heq hi
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have : i' = i := by with_unfolding_all exact Fin.ext h.symm
-  subst i'
-  have : β' = β := by with_unfolding_all exact eq_of_heq hβ
-  subst β'
-  have : Pg' = Pg := by with_unfolding_all exact eq_of_heq hPg
-  subst Pg'
-  have : eG' = eG := by with_unfolding_all exact eq_of_heq he
-  subst eG'
-  exact (by with_unfolding_all exact ((HEq.refl (fun g => Links.actL _ (β i) (LiftExt.datW i Pg) (eG g))) :))
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl : i' = i := Fin.ext h.symm
+  obtain rfl := eq_of_heq hβ
+  obtain rfl := eq_of_heq hPg
+  obtain rfl := eq_of_heq he
+  exact HEq.rfl
 
 private theorem meas_of (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin a'.D.R.m} (h : (i : ℕ) = i')
     {β : ∀ i, GL (Fin (Wc a.D i).rank) (Lev.EAf a.D)} {β' : ∀ i, GL (Fin (Wc a'.D i).rank) (Lev.EAf a'.D)} (hβ : HEq β' β)
@@ -410,34 +422,23 @@ private theorem meas_of (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin a'
     {fd : Set (GA a.D (Wc a.D i))} {fd' : Set (GA a'.D (Wc a'.D i'))} (hfd : HEq fd' fd)
     (h0 : IsMeasFD (Wc a.D i) (lev a.D.sp.cm (Wc a.D i).gram (β i) (LiftExt.datW i Pg)) ν fd) :
     IsMeasFD (Wc a'.D i') (lev a'.D.sp.cm (Wc a'.D i').gram (β' i') (LiftExt.datW i' Pg')) ν' fd' := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have : i' = i := by with_unfolding_all exact Fin.ext h.symm
-  subst i'
-  have : β' = β := by with_unfolding_all exact eq_of_heq hβ
-  subst β'
-  have : Pg' = Pg := by with_unfolding_all exact eq_of_heq hPg
-  subst Pg'
-  have : ν' = ν := by with_unfolding_all exact eq_of_heq hν
-  subst ν'
-  have : fd' = fd := by with_unfolding_all exact eq_of_heq hfd
-  subst fd'
-  exact (by with_unfolding_all exact (h0 :))
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl : i' = i := Fin.ext h.symm
+  obtain rfl := eq_of_heq hβ
+  obtain rfl := eq_of_heq hPg
+  obtain rfl := eq_of_heq hν
+  obtain rfl := eq_of_heq hfd
+  exact h0
 
 private theorem onb_of (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin a'.D.R.m} (h : (i : ℕ) = i')
     {BV : a.D.what₂.Tau → Matrix (Fin (Vc a.D i).rank) (Fin (Vc a.D i).rank) ℂ}
     {BV' : a'.D.what₂.Tau → Matrix (Fin (Vc a'.D i').rank) (Fin (Vc a'.D i').rank) ℂ} (hBV : HEq BV' BV)
     (h0 : ∀ τ, IsONBasis (gramAt a.D (Vc a.D i) τ) 1 (BV τ) (Vc a.D i).rank) :
     ∀ τ, IsONBasis (gramAt a'.D (Vc a'.D i') τ) 1 (BV' τ) (Vc a'.D i').rank := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have : i' = i := by with_unfolding_all exact Fin.ext h.symm
-  subst i'
-  have : BV' = BV := by with_unfolding_all exact eq_of_heq hBV
-  subst BV'
-  exact (by with_unfolding_all exact (h0 :))
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl : i' = i := Fin.ext h.symm
+  obtain rfl := eq_of_heq hBV
+  exact h0
 
 private theorem labE_heq (hP : B'.toPre = B.toPre) (ι : a.D.what₂.LL →+* a'.D.what₂.LL)
     (hι : ∀ x, a'.D.what₂.embLL (ι x) = a.D.what₂.embLL x) (σ' : a'.D.what₂.LL →+* ℂ) :
@@ -449,18 +450,8 @@ private theorem labE_heq (hP : B'.toPre = B.toPre) (ι : a.D.what₂.LL →+* a'
   generalize labLL a.D = l at e ⊢
   generalize a'.D.what₂.embLL = j' at e' hι
   generalize a.D.what₂.embLL = j at e hι
-  have ht : HEq (tauE a'.D) (tauE a.D) := by
-    clear e e' hι
-    rcases B' with ⟨P'⟩
-    change P' = B.toPre at hP
-    subst hP
-    exact (by with_unfolding_all exact ((HEq.refl (tauE a.D)) :))
-  rw [← e, ← e'] at ht
-  clear e e'
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have ht' := eq_of_heq ht
+  cases B; cases B'; dsimp only at hP; subst hP
+  have ht' : (fun τ => j'.comp (l' τ)) = fun τ => j.comp (l τ) := e'.trans e.symm
   refine heq_of_eq (funext fun τ => RingHom.ext fun x => ?_)
   have k := DFunLike.congr_fun (congrFun ht' τ) x
   exact congrArg σ' (j'.injective (k.trans (hι _).symm))
@@ -471,13 +462,9 @@ private theorem dim_eq (hP : B'.toPre = B.toPre) {W : HSp a.D} {W' : HSp a'.D} (
   unfold kapAt lab
   generalize labE (D := a'.D) σ' = l' at hl ⊢
   generalize labE (D := a.D) σ = l at hl ⊢
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have : W' = W := by with_unfolding_all exact eq_of_heq hW
-  subst W'
-  have : l' = l := by with_unfolding_all exact eq_of_heq hl
-  subst l'
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl := eq_of_heq hW
+  obtain rfl := eq_of_heq hl
   exact rfl
 
 variable {G G' : Type} [iG : Group G] [Fintype G] [iG' : Group G'] [Fintype G'] {Pl0 T0 Pl0' T0' : Type}
@@ -495,10 +482,16 @@ private theorem hw_of (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin a'.D
   have hl := lev_heq hP h hβ hPg
   have hd := dim_eq hP hW (labE_heq hP ι hι σ')
   have f0 : (R.HW i (σ'.comp ι)).Is (Mult R.θ _ (levS _ (R.βW i) (LiftExt.datW i R.Pg)) (levChi _ (R.βW i) (LiftExt.datW i R.Pg)))
-      fun T T' => (∏ ρ, ((dimK _ _ (kapAt (Wc a.D i) (σ'.comp ι) ρ) : ℚ) : ℂ)) * ipM (R.MW i (σ'.comp ι)) (R.νW i) (R.fdW i) T T' := (by with_unfolding_all exact ((h0 i (σ'.comp ι)) :))
+      fun T T' => (∏ ρ, ((dimK _ _ (kapAt (Wc a.D i) (σ'.comp ι) ρ) : ℚ) : ℂ)) * ipM (R.MW i (σ'.comp ι)) (R.νW i) (R.fdW i) T T' := by
+    have h0' := h0 i (σ'.comp ι)
+    dsimp only [RealDat.Wall, Links.ipAt, LevCh.datWp, LevCh.triv] at h0'
+    dsimp only [LiftExt.datW]
+    exact h0'
   rw [← hd] at f0
   have k := is_of hP hW hM hH (mult_heq hP hW hM hθ hl.1 hl.2) hν hfd _ f0
-  exact (by with_unfolding_all exact (k :))
+  dsimp only [RealDat.Wall, Links.ipAt, LevCh.datWp, LevCh.triv]
+  dsimp only [LiftExt.datW] at k
+  exact k
 
 private theorem gw_of (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin a'.D.R.m} (h : (i : ℕ) = i')
     (hG : G' = G) (hi : HEq iG' iG) (hβ : HEq R'.βW R.βW) (hPg : HEq R'.Pg R.Pg) (he : HEq R'.eG R.eG)
@@ -509,17 +502,29 @@ private theorem gw_of (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin a'.D
       postOn _ (Links.actL (Wc a'.D i') (R'.βW i') (R'.datWp i' R'.triv) (R'.eG g)) ((R'.HW i' σ').e x) := by
   have hW := wc_heq hP h
   have f0 : ∀ g x, (R.HW i σ).e (R.gW i σ g x) =
-      postOn _ ((fun g => Links.actL _ (R.βW i) (LiftExt.datW i R.Pg) (R.eG g)) g) ((R.HW i σ).e x) := (by with_unfolding_all exact ((h0 i σ) :))
+      postOn _ ((fun g => Links.actL _ (R.βW i) (LiftExt.datW i R.Pg) (R.eG g)) g) ((R.HW i σ).e x) := by
+    have h0' := h0 i σ
+    dsimp only [LevCh.datWp, LevCh.triv] at h0'
+    dsimp only [LiftExt.datW]
+    exact h0'
   have k := act_of hP hW hM hH hG hi hg (actL_heq hP h hβ hPg hG hi he) f0
-  exact (by with_unfolding_all exact (k :))
+  dsimp only [LevCh.datWp, LevCh.triv]
+  dsimp only [LiftExt.datW] at k
+  exact k
 
 private theorem nu_of (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin a'.D.R.m} (h : (i : ℕ) = i')
     (hβ : HEq R'.βW R.βW) (hPg : HEq R'.Pg R.Pg) (hν : HEq (R'.νW i') (R.νW i)) (hfd : HEq (R'.fdW i') (R.fdW i))
     (h0 : R.models_νW) :
     IsMeasFD (Wc a'.D i') (lev a'.D.sp.cm (Wc a'.D i').gram (R'.βW i') (R'.datWp i' R'.triv)) (R'.νW i') (R'.fdW i') := by
-  have f0 : IsMeasFD (Wc a.D i) (lev a.D.sp.cm (Wc a.D i).gram (R.βW i) (LiftExt.datW i R.Pg)) (R.νW i) (R.fdW i) := (by with_unfolding_all exact ((h0 i) :))
+  have f0 : IsMeasFD (Wc a.D i) (lev a.D.sp.cm (Wc a.D i).gram (R.βW i) (LiftExt.datW i R.Pg)) (R.νW i) (R.fdW i) := by
+    have h0' := h0 i
+    dsimp only [LevCh.datWp, LevCh.triv] at h0'
+    dsimp only [LiftExt.datW]
+    exact h0'
   have k := meas_of hP h hβ hPg hν hfd f0
-  exact (by with_unfolding_all exact (k :))
+  dsimp only [LevCh.datWp, LevCh.triv]
+  dsimp only [LiftExt.datW] at k
+  exact k
 
 private theorem modW_of (hP : B'.toPre = B.toPre) (hG : G' = G) (hi : HEq iG' iG)
     (hθ : HEq R'.θ R.θ) (hβ : HEq R'.βW R.βW) (hPg : HEq R'.Pg R.Pg) (he : HEq R'.eG R.eG) (ι : a.D.what₂.LL →+* a'.D.what₂.LL)
@@ -553,22 +558,16 @@ theorem _root_.GlobalTheory.T.modW_of_rSideW : ∀ {B B' : Base} {f : Fr B.toPre
   (z : Dat (w.st Z) w.I hX T Wt) (Wt' : Set B'.places.Pl)
   (R' : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks), Enl0 B B' → HEq w'.px w.px → RSideW z Wt' R' → ModW R'.toRealDat := by
   intro B B' f f' T T' w w' Z Z' hX hX' Wt Ks _ _ _ Xg tr z Wt' R' hE hpx hS
-  letI := z.alg
+  let := z.alg
   have hP : B'.toPre = B.toPre := hE.1
   have hG := LiftExt.gc_eq hP hpx
   have hb := z.pins.char.base.models
-  let ι : (w.st Z).toD7.what₂.LL →+* (w'.st Z').toD7.what₂.LL :=
-    (B'.embLL.rangeRestrictFieldEquiv.symm : B'.embLL.fieldRange →+* B'.LL).comp
-      (B.embLL.codRestrict B'.embLL.fieldRange fun x => hE.2.2.2 ⟨x, rfl⟩)
-  have hι : ∀ x, (w'.st Z').toD7.what₂.embLL (ι x) = (w.st Z).toD7.what₂.embLL x := fun x =>
-    congrArg Subtype.val (B'.embLL.rangeRestrictFieldEquiv.apply_symm_apply ⟨B.embLL x, hE.2.2.2 ⟨x, rfl⟩⟩)
-  clear_value ι
-  obtain ⟨-, hθ, hβ, -, -, -, -, -, -, hPg, he, -, h1, -⟩ := hS
-  refine modW_of (a := Z) (a' := Z') (R := z.R.toRealDat) (R' := R'.toRealDat) hP hG.1 hG.2 hθ hβ hPg he ι hι (fun i i' h => ?_) hb
-  obtain ⟨-, -, -, -, -, -, hBV, -, -, -, -, -, -, -, -, -, hν, hfd, h2⟩ := h1 i i' h
-  refine ⟨hBV, hν, hfd, fun σ' => ?_⟩
-  obtain ⟨⟨m1, m2, m3, m4, m5, m6, m7, -⟩, hH, hg, -⟩ := (h2 ι hι).1 σ'
-  exact ⟨⟨m1, m2, m3, m4, m5, m6, m7⟩, hH, hg⟩
+  obtain ⟨ι, hι⟩ := exists_iota_comp B.embLL B'.embLL hE.2.2.2
+  have hF := rSideWFields hS
+  refine modW_of (a := Z) (a' := Z') (R := z.R.toRealDat) (R' := R'.toRealDat) hP hG.1 hG.2
+    hF.theta hF.betaW hF.pg hF.eG ι hι (fun i i' h =>
+      ⟨hF.BV i i' h, hF.nuW i i' h, hF.fdW i i' h, fun σ' =>
+        let hσ := hF.mwAt i i' h ι hι σ'; ⟨hσ.1, hσ.2.1, hσ.2.2.1⟩⟩) hb
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FormGroupsModelsActionsMeasuresBasesCharacterise =====
@@ -596,7 +595,10 @@ theorem idemSame_of_keep : ∀ {B B' : Base} {f : Fr B.toPre} {f' : Fr B'.toPre}
   (R' : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks), Enl0 B B' → HEq f' f → HEq w'.px w.px → GrpTrue Z.N f → GrpTrue Z'.N f' → RSideW z Wt' R' →
   ∀ cG : G0 R'.Pg (w'.st Z').toD7.R.r ≃* G0g (w'.st Z').toD7.nd, Keep R'.toRealDat (face0 (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr).lv2 cG → IdemSame z Xg := by
   intro B B' f f' T T' w w' Z Z' hX hX' Wt Ks _ _ _ Xg tr z Wt' R' hE hf hp hG hG' hR cG hK g' g hg
-  obtain ⟨-, -, -, -, -, -, -, -, -, hPg, heG, -⟩ := hR
+  have hF := rSideWFields hR
+  have hPg := hF.pg
+  have heG := hF.eG
+  clear hR hF
   have hB := hE.1
   cases B
   cases B'
@@ -791,9 +793,9 @@ theorem _root_.GlobalTheory.T.rationalDefiniteForms_largerField_combination_smal
     ((Formalism.L2.Col.mtKGSD (Pr := B'.primes w'.px) B'.wts w'.I.Ch w'.I.sel (mu0F (X := B'.fields) (tuOf w'.I (usedOf w'.I T' Wt'))).1 ((i' : ℕ) + 1)).res (Formalism.L2.Col.mtKOk _ _ _ _ hX' _))
     B'.embLL (z.R.cV i).nW (R'.cV i').nW (z.R.cV i).iW (R'.cV i').iW (GlobalTheory.Mem.R3.Rw.JSpanPf.gf_eq Z Z' hE.1 i i' hii)
     (eq_of_heq hc.1) hc.2.2.1 hc.2.2.2.1
-    (fun x => z.R.B.jL i (mu0F (X := B.fields) (tuOf w.I (usedOf w.I T Wt))) ((by with_unfolding_all exact (x :))))
-    ((by with_unfolding_all exact (R'.B.jL i' (mu0F (X := B'.fields) (tuOf w'.I (usedOf w'.I T' Wt'))) :))) ((by with_unfolding_all exact (hj :))) ((by with_unfolding_all exact (x' :)))
-  exact (by with_unfolding_all exact (key :))
+    (fun x => z.R.B.jL i (mu0F (X := B.fields) (tuOf w.I (usedOf w.I T Wt))) x)
+    (R'.B.jL i' (mu0F (X := B'.fields) (tuOf w'.I (usedOf w'.I T' Wt')))) hj x'
+  exact key
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RationalDefiniteFormsLargerFieldCombinationSmall =====
@@ -903,70 +905,29 @@ private theorem mv_of (hP : B'.toPre = B.toPre) {V : HSp a.D} {V' : HSp a'.D} (h
     {H H'} (hH : HEq H' H) {ν ν'} (hν : HEq ν' ν) {fd fd'} (hfd : HEq fd' fd)
     (h0 : MV V c β (datC V hr Pg Q chi xi) y H ν fd) : MV V' c' β' (datC V' hr' Pg' Q' chi' xi') y' H' ν' fd' := by
   subst hQ hQ'
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  ( (
-  have e : @Eq (type_of% (V')) ((by with_unfolding_all exact ((V) :))) (V') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (V')) (V') (((V))) (((hV)))).symm : _))
-  clear (hV)
-  subst e))
-  obtain ⟨W₁, ρ₁⟩ := c'
-  rename_i nW' iW' _
-  dsimp only at c1 c2 c3 c4
-  ( (
-  have e : @Eq (type_of% (W₁)) ((by with_unfolding_all exact ((c.W) :))) (W₁) := (by with_unfolding_all exact ((@eq_of_heq (type_of% (W₁)) (W₁) (((c.W))) (((c1)))).symm : _))
-  clear (c1)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (nW')) ((by with_unfolding_all exact ((c.nW) :))) (nW') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (nW')) (nW') (((c.nW))) (((c3)))).symm : _))
-  clear (c3)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (iW')) ((by with_unfolding_all exact ((c.iW) :))) (iW') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (iW')) (iW') (((c.iW))) (((c4)))).symm : _))
-  clear (c4)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (ρ₁)) ((by with_unfolding_all exact ((c.ρ) :))) (ρ₁) := (by with_unfolding_all exact ((@eq_of_heq (type_of% (ρ₁)) (ρ₁) (((c.ρ))) (((c2)))).symm : _))
-  clear (c2)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (β')) ((by with_unfolding_all exact ((β) :))) (β') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (β')) (β') (((β))) (((hβ)))).symm : _))
-  clear (hβ)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (Pg')) ((by with_unfolding_all exact ((Pg) :))) (Pg') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (Pg')) (Pg') (((Pg))) (((hPg)))).symm : _))
-  clear (hPg)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (H')) ((by with_unfolding_all exact ((H) :))) (H') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (H')) (H') (((H))) (((hH)))).symm : _))
-  clear (hH)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (ν')) ((by with_unfolding_all exact ((ν) :))) (ν') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (ν')) (ν') (((ν))) (((hν)))).symm : _))
-  clear (hν)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (fd')) ((by with_unfolding_all exact ((fd) :))) (fd') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (fd')) (fd') (((fd))) (((hfd)))).symm : _))
-  clear (hfd)
-  subst e))
-  have e : ∀ PP : Pl a.D.host.E, PP ∈ Pg → HEq (chi' ((by with_unfolding_all exact (PP :)))) (chi PP) :=
-    fun PP hm => hchi ((by with_unfolding_all exact (PP :))) PP ((by with_unfolding_all exact ((HEq.refl PP) :))) hm
-  exact (by with_unfolding_all exact ((mv_move V c hc β hr Pg chi xi ((by with_unfolding_all exact (chi' :))) ((by with_unfolding_all exact (xi' :))) (fun PP hm => eq_of_heq ((by with_unfolding_all exact ((e PP hm) :)))) y (I' := I') ((by with_unfolding_all exact (y' :))) hy ((by with_unfolding_all exact (hy' :))) H ν fd h0) :))
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl := eq_of_heq hV
+  rcases c with @⟨W₀, nW₀, iW₀, fW₀, ρ₀⟩
+  rcases c' with @⟨W₁, nW₁, iW₁, fW₁, ρ₁⟩
+  obtain rfl := eq_of_heq c1
+  obtain rfl := eq_of_heq c3
+  obtain rfl := eq_of_heq c4
+  obtain rfl := eq_of_heq c2
+  obtain rfl := eq_of_heq hβ
+  obtain rfl := eq_of_heq hPg
+  obtain rfl := eq_of_heq hH
+  obtain rfl := eq_of_heq hν
+  obtain rfl := eq_of_heq hfd
+  exact mv_move V' ⟨W₁, ρ₁⟩ hc β' hr Pg' chi xi chi' xi' (fun PP hm => eq_of_heq (hchi PP PP HEq.rfl hm))
+    y (I' := I') y' hy hy' H' ν' fd' h0
 
 private theorem beta_heq (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin a'.D.R.m} (h : (i : ℕ) = i')
     {β : ∀ i, GL (Fin (Vc a.D i).rank) (Lev.EAf a.D)} {β' : ∀ i, GL (Fin (Vc a'.D i).rank) (Lev.EAf a'.D)} (hβ : HEq β' β) :
     HEq (β' i') (β i) := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have e : @Eq (type_of% i') ((by with_unfolding_all exact (i :))) i' := (by with_unfolding_all exact ((Fin.ext h : @Eq (type_of% i') ((by with_unfolding_all exact (i :))) i') :))
-  clear h
-  subst e
-  ( (
-  have e : @Eq (type_of% (β')) ((by with_unfolding_all exact ((β) :))) (β') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (β')) (β') (((β))) (((hβ)))).symm : _))
-  clear (hβ)
-  subst e))
-  exact (by with_unfolding_all exact ((HEq.refl (β i)) :))
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl : i' = i := Fin.ext h.symm
+  obtain rfl := eq_of_heq hβ
+  exact HEq.rfl
 
 variable {G G' : Type} [iG : Group G] [Fintype G] [iG' : Group G'] [Fintype G'] {Pl0 T0 Pl0' T0' : Type}
   {A : FamIn a.D.what₂.LL G Pl0 T0 a.D.R.m} {A' : FamIn a'.D.what₂.LL G' Pl0' T0' a'.D.R.m}
@@ -1001,16 +962,16 @@ theorem _root_.GlobalTheory.T.referenceTuple_hilbertModel_definiteForms_enlarged
   (z : Dat (w.st Z) w.I hX T Wt) (Wt' : Set B'.places.Pl)
   (R' : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks), Enl0 B B' → R'.toRealDat.Pre0 (face0 (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr).lv2 → RSide z Wt' R' → LevSame z Wt' R' → ModVAt R'.toRealDat (mu0F (X := B'.fields) (tuOf w'.I (usedOf w'.I T' Wt'))) := by
   intro B B' f f' T T' w w' Z Z' hX hX' Wt Ks _ _ _ Xg tr z Wt' R' hE _ hS hL i'
-  letI := z.alg
+  let := z.alg
   have hP : B'.toPre = B.toPre := hE.1
   have hm := LiftExt.m_eq (a := Z) (a' := Z') hP
   let i : Fin (w.st Z).toD7.R.m := Fin.cast hm i'
   have h : (i : ℕ) = i' := rfl
-  obtain ⟨⟨-, -, -, -, -, -, hβ, -, -, hPg, -, -, h1, -⟩, h2⟩ := hS
-  obtain ⟨c1, c2, c3, c4, -⟩ := h1 i i' h
-  obtain ⟨-, -, hHV, -, -, hν, hfd⟩ := h2 i i' h
-  exact ModVExt.modV_of (a := Z) (a' := Z') (R := z.R.toRealDat) (R' := R'.toRealDat) hP h hβ hPg hL.2.2.2 hL.2.2.1 c1 c2 c3 c4
-    (hL.1 i i' h).2 hHV hν hfd z.pins.char.base.models
+  have hF := rSideWFields hS.1
+  have h2i := hS.2 i i' h
+  exact ModVExt.modV_of (a := Z) (a' := Z') (R := z.R.toRealDat) (R' := R'.toRealDat) hP h
+    hF.betaV hF.pg hL.2.2.2 hL.2.2.1 (hF.cV_W i i' h) (hF.cV_rho i i' h) (hF.cV_nW i i' h) (hF.cV_iW i i' h)
+    (hL.1 i i' h).2 h2i.2.2.1 h2i.2.2.2.2.2.1 h2i.2.2.2.2.2.2 z.pins.char.base.models
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ReferenceTupleHilbertModelDefiniteFormsEnlarged =====
@@ -1050,81 +1011,29 @@ private theorem comb_of (hP : B'.toPre = B.toPre) (hV : HEq V' V) (hW : HEq W' W
     {X : HMod (MMap M)} {X' : HMod (MMap M')} (hX : HEq X' X) {g : Y.H →ₗ[ℂ] X.H} {g' : Y'.H →ₗ[ℂ] X'.H} (hg : HEq g' g)
     (hinj : Function.Injective Y.e) (v : Y'.H) {n : ℕ} (s : Fin n → ℂ) (u : Fin n → Y.H)
     (hv : HEq (Y'.e v) (∑ k, s k • Y.e (u k))) (p : Fin n → X'.H) (hp : ∀ k, HEq (p k) (g (u k))) : ∑ k, s k • p k = g' v := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  ( (
-  have e : @Eq (type_of% (W')) ((by with_unfolding_all exact ((W) :))) (W') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (W')) (W') (((W))) (((hW)))).symm : _))
-  clear (hW)
-  subst e))
-  obtain ⟨H', s', l', ε', f', _, _, _, _⟩ := M'
-  rename_i n' i' _ _ _ _
-  obtain ⟨h1, h2, h3, h4, h5, h6, h7⟩ := h
-  dsimp only at h1 h2 h3 h4 h5 h6 h7
-  ( (
-  have e : @Eq (type_of% (H')) ((by with_unfolding_all exact ((M.H) :))) (H') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (H')) (H') (((M.H))) (((h1)))).symm : _))
-  clear (h1)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (n')) ((by with_unfolding_all exact ((M.nacg) :))) (n') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (n')) (n') (((M.nacg))) (((h2)))).symm : _))
-  clear (h2)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (i')) ((by with_unfolding_all exact ((M.ips) :))) (i') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (i')) (i') (((M.ips))) (((h3)))).symm : _))
-  clear (h3)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (s')) ((by with_unfolding_all exact ((M.σ) :))) (s') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (s')) (s') (((M.σ))) (((h4)))).symm : _))
-  clear (h4)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (l')) ((by with_unfolding_all exact ((M.lam) :))) (l') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (l')) (l') (((M.lam))) (((h5)))).symm : _))
-  clear (h5)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (ε')) ((by with_unfolding_all exact ((M.ε) :))) (ε') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (ε')) (ε') (((M.ε))) (((h6)))).symm : _))
-  clear (h6)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (f')) ((by with_unfolding_all exact ((M.fr) :))) (f') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (f')) (f') (((M.fr))) (((h7)))).symm : _))
-  clear (h7)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (V')) ((by with_unfolding_all exact ((V) :))) (V') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (V')) (V') (((V))) (((hV)))).symm : _))
-  clear (hV)
-  subst e))
-  obtain ⟨W₁, ρ₁⟩ := c'
-  rename_i nW' iW' _
-  dsimp only at c1 c2 c3 c4
-  ( (
-  have e : @Eq (type_of% (W₁)) ((by with_unfolding_all exact ((c.W) :))) (W₁) := (by with_unfolding_all exact ((@eq_of_heq (type_of% (W₁)) (W₁) (((c.W))) (((c1)))).symm : _))
-  clear (c1)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (nW')) ((by with_unfolding_all exact ((c.nW) :))) (nW') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (nW')) (nW') (((c.nW))) (((c3)))).symm : _))
-  clear (c3)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (iW')) ((by with_unfolding_all exact ((c.iW) :))) (iW') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (iW')) (iW') (((c.iW))) (((c4)))).symm : _))
-  clear (c4)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (ρ₁)) ((by with_unfolding_all exact ((c.ρ) :))) (ρ₁) := (by with_unfolding_all exact ((@eq_of_heq (type_of% (ρ₁)) (ρ₁) (((c.ρ))) (((c2)))).symm : _))
-  clear (c2)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (Y')) ((by with_unfolding_all exact ((Y) :))) (Y') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (Y')) (Y') (((Y))) (((hY)))).symm : _))
-  clear (hY)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (X')) ((by with_unfolding_all exact ((X) :))) (X') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (X')) (X') (((X))) (((hX)))).symm : _))
-  clear (hX)
-  subst e))
-  ( (
-  have e : @Eq (type_of% (g')) ((by with_unfolding_all exact ((g) :))) (g') := (by with_unfolding_all exact ((@eq_of_heq (type_of% (g')) (g') (((g))) (((hg)))).symm : _))
-  clear (hg)
-  subst e))
-  exact (by with_unfolding_all exact ((comb_gen Y X g hinj ((v)) s u ((hv)) ((p)) ((hp))) : _))
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl := eq_of_heq hW
+  rcases M with @⟨H, nacg, ips, σ, lam, ε, fr, enum, ds, fu, fg⟩
+  rcases M' with @⟨H', nacg', ips', σ', lam', ε', fr', enum', ds', fu', fg'⟩
+  rcases h with ⟨h1, h2, h3, h4, h5, h6, h7⟩
+  obtain rfl := eq_of_heq h1
+  obtain rfl := eq_of_heq h2
+  obtain rfl := eq_of_heq h3
+  obtain rfl := eq_of_heq h4
+  obtain rfl := eq_of_heq h5
+  obtain rfl := eq_of_heq h6
+  obtain rfl := eq_of_heq h7
+  obtain rfl := eq_of_heq hV
+  rcases c with @⟨W₀, nW₀, iW₀, fW₀, ρ₀⟩
+  rcases c' with @⟨W₁, nW₁, iW₁, fW₁, ρ₁⟩
+  obtain rfl := eq_of_heq c1
+  obtain rfl := eq_of_heq c3
+  obtain rfl := eq_of_heq c4
+  obtain rfl := eq_of_heq c2
+  obtain rfl := eq_of_heq hY
+  obtain rfl := eq_of_heq hX
+  obtain rfl := eq_of_heq hg
+  exact comb_gen Y' X' g' hinj v s u hv p hp
 
 end Comparison₂
 
@@ -1173,7 +1082,7 @@ private theorem rat_of (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin a'.
     (fun k => R.jV i t (x k)) ?_ (fun k => (R'.FW i').j (sg0 a'.D A') (GeoFW.crdMap ι hn0 (y k))) fun k => ?_
   · refine (heq_of_eq hv).trans (hx.trans (heq_of_eq ?_))
     refine Finset.sum_congr rfl fun k _ => ?_
-    exact (by with_unfolding_all exact ((congrArg₂ (fun (c : ℂ) (q : Bridge.Gf (Vc a.D i) → (R.cV i).W) => c • q) (DFunLike.congr_fun s' (b k)) (hjV (x k)).symm) :))
+    exact congrArg₂ (fun (c : ℂ) (q : Bridge.Gf (Vc a.D i) → (R.cV i).W) => c • q) (DFunLike.congr_fun s' (b k)) (hjV (x k)).symm
   · exact ((hj _ _ _ (GeoFW.crdOver_crdMap ι hn0 (y k))).trans (hmv _ _ hc _)).trans (heq_of_eq (hy k))
 
 end Fields
@@ -1187,23 +1096,20 @@ theorem _root_.GlobalTheory.T.referenceTuple_rationalForm_lifts_algebraic_enlarg
   (z : Dat (w.st Z) w.I hX T Wt) (Wt' : Set B'.places.Pl)
   (R' : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks), Enl0 B B' → RSide z Wt' R' → JSpan z Wt' R' → RatAt z.R.toRealDat (mu0F (X := B.fields) (tuOf w.I (usedOf w.I T Wt))) → RatAt R'.toRealDat (mu0F (X := B'.fields) (tuOf w'.I (usedOf w'.I T' Wt'))) := by
   intro B B' f f' T T' w w' Z Z' hX hX' Wt Ks _ _ _ Xg tr z Wt' R' hE hS hJ hr i' x' v hv
-  letI := z.alg
+  let := z.alg
   have hP : B'.toPre = B.toPre := hE.1
   have hm := LiftExt.m_eq (a := Z) (a' := Z') hP
   let i : Fin (w.st Z).toD7.R.m := Fin.cast hm i'
   have h : (i : ℕ) = i' := rfl
-  let ι : (w.st Z).toD7.what₂.LL →+* (w'.st Z').toD7.what₂.LL :=
-    (B'.embLL.rangeRestrictFieldEquiv.symm : B'.embLL.fieldRange →+* B'.LL).comp
-      (B.embLL.codRestrict B'.embLL.fieldRange fun x => hE.2.2.2 ⟨x, rfl⟩)
-  have hι : ∀ x, (w'.st Z').toD7.what₂.embLL (ι x) = (w.st Z).toD7.what₂.embLL x := fun x =>
-    congrArg Subtype.val (B'.embLL.rangeRestrictFieldEquiv.apply_symm_apply ⟨B.embLL x, hE.2.2.2 ⟨x, rfl⟩⟩)
-  obtain ⟨⟨-, -, -, -, -, hn, -, -, -, -, -, -, h1, -⟩, h2⟩ := hS
-  obtain ⟨c1, c2, c3, c4, -, -, -, m1, m2, m3, m4, m5, m6, m7, -, hHW, -, -, hWι⟩ := h1 i i' h
-  obtain ⟨-, -, hHV, -, hg, -, -⟩ := h2 i i' h
+  obtain ⟨ι, hι⟩ := exists_iota_comp B.embLL B'.embLL hE.2.2.2
+  have hF := rSideWFields hS.1
+  have h2i := hS.2 i i' h
   obtain ⟨n, b, x, hx⟩ := hJ i i' h x'
   have hb := z.pins.char.base.models
-  exact RatExt.rat_of (a := Z) (a' := Z') (R := z.R.toRealDat) (R' := R'.toRealDat) hP h c1 c2 c3 c4
-    ⟨m1, m2, m3, m4, m5, m6, m7⟩ hHW hHV hg hn ι hι (fun σ' => ((hWι ι hι).1 σ').2.2.2) (hb.HV i _).1 (hb.jV i _) hr x' b x hx v hv
+  exact RatExt.rat_of (a := Z) (a' := Z') (R := z.R.toRealDat) (R' := R'.toRealDat) hP h
+    (hF.cV_W i i' h) (hF.cV_rho i i' h) (hF.cV_nW i i' h) (hF.cV_iW i i' h)
+    (hF.mwTie i i' h) (hF.hwEmb i i' h) h2i.2.2.1 h2i.2.2.2.2.1 hF.nW ι hι
+    (fun σ' => (hF.mwAt i i' h ι hι σ').2.2.2) (hb.HV i _).1 (hb.jV i _) hr x' b x hx v hv
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ReferenceTupleRationalFormLiftsAlgebraicEnlarged =====
@@ -1227,67 +1133,6 @@ namespace GlobalTheory.Mem.R3.Rw.WeilAtExt
 open Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.WeilFull GlobalTheory.Mem.R3.Rw.LiftExt
 
 
-section Leaves
-
-variable {B B' : Base} {C : Cols B} {C' : Cols B'} (a : Late B C) (a' : Late B' C')
-
-private theorem thetaFun_heq (hP : B'.toPre = B.toPre) : HEq (@IsThetaFunO a'.D) (@IsThetaFunO a.D) := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have e : @Eq (type_of% (@IsThetaFunO a.D)) ((by with_unfolding_all exact ((@IsThetaFunO a'.D) :))) (@IsThetaFunO a.D) := by
-    funext ψ S T f
-    refine propext ⟨fun h => ?_, fun h => ?_⟩
-    · have h' : @IsThetaFunO a'.D ((by with_unfolding_all exact (ψ :))) ((by with_unfolding_all exact (S :))) ((by with_unfolding_all exact (T :))) ((by with_unfolding_all exact (f :))) := (by with_unfolding_all exact (h :))
-      exact ⟨(by with_unfolding_all exact (h'.quasi :)), (by with_unfolding_all exact (h'.level :)), (by with_unfolding_all exact (h'.cont :)), (by with_unfolding_all exact (h'.smooth :))⟩
-    · have h' : @IsThetaFunO a'.D ((by with_unfolding_all exact (ψ :))) ((by with_unfolding_all exact (S :))) ((by with_unfolding_all exact (T :))) ((by with_unfolding_all exact (f :))) := ⟨(by with_unfolding_all exact (h.quasi :)), (by with_unfolding_all exact (h.level :)), (by with_unfolding_all exact (h.cont :)), (by with_unfolding_all exact (h.smooth :))⟩
-      exact (by with_unfolding_all exact (h' :))
-  exact (by with_unfolding_all exact ((heq_of_eq e) :))
-
-private theorem vacuum_heq (hP : B'.toPre = B.toPre) : HEq (@IsVacuum a'.D) (@IsVacuum a.D) := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have e : @Eq (type_of% (@IsVacuum a.D)) ((by with_unfolding_all exact ((@IsVacuum a'.D) :))) (@IsVacuum a.D) := by
-    funext m n x1 x2 x3 x4 x5 x6 x7
-    refine propext ⟨fun h => ?_, fun h => ?_⟩
-    · have h' : @IsVacuum a'.D m n ((by with_unfolding_all exact (x1 :))) ((by with_unfolding_all exact (x2 :))) ((by with_unfolding_all exact (x3 :))) ((by with_unfolding_all exact (x4 :))) ((by with_unfolding_all exact (x5 :))) ((by with_unfolding_all exact (x6 :))) ((by with_unfolding_all exact (x7 :))) := (by with_unfolding_all exact (h :))
-      exact ⟨(by with_unfolding_all exact (h'.inf :)), (by with_unfolding_all exact (h'.theta :)), (by with_unfolding_all exact (h'.lat :)), (by with_unfolding_all exact (h'.fock :)), (by with_unfolding_all exact (h'.norm :))⟩
-    · have h' : @IsVacuum a'.D m n ((by with_unfolding_all exact (x1 :))) ((by with_unfolding_all exact (x2 :))) ((by with_unfolding_all exact (x3 :))) ((by with_unfolding_all exact (x4 :))) ((by with_unfolding_all exact (x5 :))) ((by with_unfolding_all exact (x6 :))) ((by with_unfolding_all exact (x7 :))) :=
-        ⟨(by with_unfolding_all exact (h.inf :)), (by with_unfolding_all exact (h.theta :)), (by with_unfolding_all exact (h.lat :)), (by with_unfolding_all exact (h.fock :)), (by with_unfolding_all exact (h.norm :))⟩
-      exact (by with_unfolding_all exact (h' :))
-  exact (by with_unfolding_all exact ((heq_of_eq e) :))
-
-private theorem placeModel_heq (hP : B'.toPre = B.toPre) : HEq (@IsPlaceModel a'.D) (@IsPlaceModel a.D) := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have e : @Eq (type_of% (@IsPlaceModel a.D)) ((by with_unfolding_all exact ((@IsPlaceModel a'.D) :))) (@IsPlaceModel a.D) := by
-    funext m n x1 x2 x3 x4 x5 x6 x7 x8
-    refine propext ⟨fun h => ?_, fun h => ?_⟩
-    · have h' : @IsPlaceModel a'.D m n ((by with_unfolding_all exact (x1 :))) ((by with_unfolding_all exact (x2 :))) ((by with_unfolding_all exact (x3 :))) ((by with_unfolding_all exact (x4 :))) ((by with_unfolding_all exact (x5 :))) ((by with_unfolding_all exact (x6 :))) ((by with_unfolding_all exact (x7 :))) ((by with_unfolding_all exact (x8 :))) := (by with_unfolding_all exact (h :))
-      exact ⟨(by with_unfolding_all exact (h'.trans :)), (by with_unfolding_all exact (h'.modul :)), (by with_unfolding_all exact (h'.vac :))⟩
-    · have h' : @IsPlaceModel a'.D m n ((by with_unfolding_all exact (x1 :))) ((by with_unfolding_all exact (x2 :))) ((by with_unfolding_all exact (x3 :))) ((by with_unfolding_all exact (x4 :))) ((by with_unfolding_all exact (x5 :))) ((by with_unfolding_all exact (x6 :))) ((by with_unfolding_all exact (x7 :))) ((by with_unfolding_all exact (x8 :))) :=
-        ⟨(by with_unfolding_all exact (h.trans :)), (by with_unfolding_all exact (h.modul :)), (by with_unfolding_all exact (h.vac :))⟩
-      exact (by with_unfolding_all exact (h' :))
-  exact (by with_unfolding_all exact ((heq_of_eq e) :))
-
-private theorem pairSetup_heq (hP : B'.toPre = B.toPre) : HEq (@Fock.Sk.PairSetup a'.D) (@Fock.Sk.PairSetup a.D) := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have e : @Eq (type_of% (@Fock.Sk.PairSetup a.D)) ((by with_unfolding_all exact ((@Fock.Sk.PairSetup a'.D) :))) (@Fock.Sk.PairSetup a.D) := by
-    funext x1 x2 x3 x4 x5 x6 x7 x8 x9 x10
-    refine propext ⟨fun h => ?_, fun h => ?_⟩
-    · have h' : @Fock.Sk.PairSetup a'.D ((by with_unfolding_all exact (x1 :))) ((by with_unfolding_all exact (x2 :))) ((by with_unfolding_all exact (x3 :))) ((by with_unfolding_all exact (x4 :))) ((by with_unfolding_all exact (x5 :))) ((by with_unfolding_all exact (x6 :))) ((by with_unfolding_all exact (x7 :))) ((by with_unfolding_all exact (x8 :))) ((by with_unfolding_all exact (x9 :))) ((by with_unfolding_all exact (x10 :))) := (by with_unfolding_all exact (h :))
-      exact ⟨(by with_unfolding_all exact (h'.std :)), (by with_unfolding_all exact (h'.inf :)), (by with_unfolding_all exact (h'.cartS :)), (by with_unfolding_all exact (h'.cartT :)), (by with_unfolding_all exact (h'.onbS :)), (by with_unfolding_all exact (h'.onbT :))⟩
-    · have h' : @Fock.Sk.PairSetup a'.D ((by with_unfolding_all exact (x1 :))) ((by with_unfolding_all exact (x2 :))) ((by with_unfolding_all exact (x3 :))) ((by with_unfolding_all exact (x4 :))) ((by with_unfolding_all exact (x5 :))) ((by with_unfolding_all exact (x6 :))) ((by with_unfolding_all exact (x7 :))) ((by with_unfolding_all exact (x8 :))) ((by with_unfolding_all exact (x9 :))) ((by with_unfolding_all exact (x10 :))) :=
-        ⟨(by with_unfolding_all exact (h.std :)), (by with_unfolding_all exact (h.inf :)), (by with_unfolding_all exact (h.cartS :)), (by with_unfolding_all exact (h.cartT :)), (by with_unfolding_all exact (h.onbS :)), (by with_unfolding_all exact (h.onbT :))⟩
-      exact (by with_unfolding_all exact (h' :))
-  exact (by with_unfolding_all exact ((heq_of_eq e) :))
-
-end Leaves
-
 section Comparison₂
 
 variable {B B' : Base} {C : Cols B} {C' : Cols B'} {a : Late B C} {a' : Late B' C'}
@@ -1297,36 +1142,31 @@ private theorem weilFull_of (hP : B'.toPre = B.toPre) (hV : HEq V' V) (hW : HEq 
     {ψ : AddChar (AF a.D.host.F) ℂ} {ψ' : AddChar (AF a'.D.host.F) ℂ} (hψ : HEq ψ' ψ)
     {μ η : (AE a.D)ˣ →* Circle} {μ' η' : (AE a'.D)ˣ →* Circle} (hμ : HEq μ' μ) (hη : HEq η' η)
     {ω ω'} (hω : HEq ω' ω) (h : IsWeilFull ψ V W μ (μ * η⁻¹) ω) : IsWeilFull ψ' V' W' μ' (μ' * η'⁻¹) ω' := by
-  have k1 := thetaFun_heq a a' hP
-  have k2 := pairSetup_heq a a' hP
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have : V' = V := by with_unfolding_all exact eq_of_heq hV
-  subst V'
-  have : W' = W := by with_unfolding_all exact eq_of_heq hW
-  subst W'
-  have : ψ' = ψ := by with_unfolding_all exact eq_of_heq hψ
-  subst ψ'
-  have : μ' = μ := by with_unfolding_all exact eq_of_heq hμ
-  subst μ'
-  have : η' = η := by with_unfolding_all exact eq_of_heq hη
-  subst η'
-  have : ω' = ω := by with_unfolding_all exact eq_of_heq hω
-  subst ω'
-  have e1 : @Eq (type_of% (@IsThetaFunO a'.D)) (@IsThetaFunO a'.D) ((by with_unfolding_all exact (@IsThetaFunO a.D :))) := by
-    with_unfolding_all exact (eq_of_heq k1 : _)
-  have e2 : @Eq (type_of% (@Fock.Sk.PairSetup a'.D)) (@Fock.Sk.PairSetup a'.D) ((by with_unfolding_all exact (@Fock.Sk.PairSetup a.D :))) := by
-    with_unfolding_all exact (eq_of_heq k2 : _)
-  refine ⟨⟨(by with_unfolding_all exact (h.datum.std :)), (by with_unfolding_all exact (h.datum.hecS :)), (by with_unfolding_all exact (h.datum.hecT :)), (by with_unfolding_all exact (h.datum.resS :)), (by with_unfolding_all exact (h.datum.resT :)), ?_, ?_, ?_, ?_, ?_, ?_⟩, ?_, ?_⟩
-  · rewrite [e1]; exact (by with_unfolding_all exact (h.datum.om_pres :))
-  · rewrite [e1]; exact (by with_unfolding_all exact (h.datum.om_heis :))
-  · rewrite [e1]; exact (by with_unfolding_all exact (h.datum.om_aut :))
-  · rewrite [e1]; exact (by with_unfolding_all exact (h.datum.om_cont :))
-  · rewrite [e1]; exact (by with_unfolding_all exact (h.datum.om_unit :))
-  · rewrite [e1]; exact (by with_unfolding_all exact (h.datum.om_split :))
-  · delta SphInertAtO; rewrite [e1]; exact (by with_unfolding_all exact (h.inert :))
-  · delta RealAtO; rewrite [e2, e1]; exact (by with_unfolding_all exact (h.real :))
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl := eq_of_heq hV
+  obtain rfl := eq_of_heq hW
+  obtain rfl := eq_of_heq hψ
+  obtain rfl := eq_of_heq hμ
+  obtain rfl := eq_of_heq hη
+  obtain rfl := eq_of_heq hω
+  have toA : ∀ {f}, IsThetaFunO (D := a'.D) ψ' V' W' f → IsThetaFunO (D := a.D) ψ' V' W' f :=
+    fun hf => ⟨hf.quasi, hf.level, hf.cont, hf.smooth⟩
+  have ofA : ∀ {f}, IsThetaFunO (D := a.D) ψ' V' W' f → IsThetaFunO (D := a'.D) ψ' V' W' f :=
+    fun hf => ⟨hf.quasi, hf.level, hf.cont, hf.smooth⟩
+  refine ⟨⟨h.datum.std, h.datum.hecS, h.datum.hecT, h.datum.resS, h.datum.resT,
+      fun p f hf => ofA (h.datum.om_pres p f (toA hf)),
+      fun g h' w₀ f hf => h.datum.om_heis g h' w₀ f (toA hf),
+      fun γ hγ γ' hγ' f hf => h.datum.om_aut γ hγ γ' hγ' f (toA hf),
+      fun f hf => h.datum.om_cont f (toA hf),
+      fun μ₀ 𝓕 hμ₀ h𝓕 p f hf => h.datum.om_unit μ₀ 𝓕 hμ₀ h𝓕 p f (toA hf),
+      fun e he g h' hg hh x y hx hy => ?_⟩, ?_, ?_⟩
+  · obtain ⟨r, hr, H⟩ := h.datum.om_split e he g h' hg hh x y hx hy
+    exact ⟨r, hr, fun ℓ hℓ f hf => H ℓ (fun u hu f' hf' => hℓ u hu f' (ofA hf')) f (toA hf)⟩
+  · intro h1 h2 ΛS ΛT h3 h4 βS βT h5 h6 v ε h7 h8 h9 h10 h11 g h' h12 h13 h14 h15 f hf
+    exact h.inert h1 h2 ΛS ΛT h3 h4 βS βT h5 h6 v ε h7 h8 h9 h10 h11 g h' h12 h13 h14 h15 f (toA hf)
+  · intro hL θ sS sT BS BT pS pT hP' τ αS αT hαS hαT XS XT hXS hXT f hf
+    exact h.real hL θ sS sT BS BT pS pT ⟨hP'.std, hP'.inf, hP'.cartS, hP'.cartT, hP'.onbS, hP'.onbT⟩
+      τ αS αT hαS hαT XS XT hXS hXT f (toA hf)
 
 private theorem thPVec_empty {D : D7} {ψ θ} {S T : HSp D} {sS sT ΛS ΛT βS βT Pg ξ} (ξ') {f₀ f}
     (h : IsThPVecOf ψ θ S T sS sT ΛS ΛT βS βT Pg ∅ ξ f₀ f) : IsThPVecOf ψ θ S T sS sT ΛS ΛT βS βT Pg ∅ ξ' f₀ f := by
@@ -1346,73 +1186,41 @@ private theorem thPVec_of (hP : B'.toPre = B.toPre) (hV : HEq V' V) (hW : HEq W'
     {f₀ f₀'} (h₀ : HEq f₀' f₀) {f f'} (hf : HEq f' f)
     (h : IsThPVecOf ψ θ V W (fun _ => 1) s ΛV ΛW βV βW Pg ∅ (fun _ => 1) f₀ f) :
     IsThPVecOf ψ' θ' V' W' (fun _ => 1) s' ΛV' ΛW' βV' βW' Pg' ∅ (fun _ => 1) f₀' f' := by
-  have k1 := thetaFun_heq a a' hP
-  have k2 := vacuum_heq a a' hP
-  have k3 := placeModel_heq a a' hP
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have : V' = V := by with_unfolding_all exact eq_of_heq hV
-  subst V'
-  have : W' = W := by with_unfolding_all exact eq_of_heq hW
-  subst W'
-  have : ψ' = ψ := by with_unfolding_all exact eq_of_heq hψ
-  subst ψ'
-  have : θ' = θ := by with_unfolding_all exact eq_of_heq hθ
-  subst θ'
-  have : s' = s := by with_unfolding_all exact eq_of_heq hs
-  subst s'
-  have : ΛV' = ΛV := by with_unfolding_all exact eq_of_heq hΛV
-  subst ΛV'
-  have : ΛW' = ΛW := by with_unfolding_all exact eq_of_heq hΛW
-  subst ΛW'
-  have : βV' = βV := by with_unfolding_all exact eq_of_heq hβV
-  subst βV'
-  have : βW' = βW := by with_unfolding_all exact eq_of_heq hβW
-  subst βW'
-  have : Pg' = Pg := by with_unfolding_all exact eq_of_heq hPg
-  subst Pg'
-  have : f₀' = f₀ := by with_unfolding_all exact eq_of_heq h₀
-  subst f₀'
-  have : f' = f := by with_unfolding_all exact eq_of_heq hf
-  subst f'
-  have e1 : @Eq (type_of% (@IsThetaFunO a'.D)) (@IsThetaFunO a'.D) ((by with_unfolding_all exact (@IsThetaFunO a.D :))) := by
-    with_unfolding_all exact (eq_of_heq k1 : _)
-  have e2 : @Eq (type_of% (@IsVacuum a'.D)) (@IsVacuum a'.D) ((by with_unfolding_all exact (@IsVacuum a.D :))) := by
-    with_unfolding_all exact (eq_of_heq k2 : _)
-  have e3 : @Eq (type_of% (@IsPlaceModel a'.D)) (@IsPlaceModel a'.D) ((by with_unfolding_all exact (@IsPlaceModel a.D :))) := by
-    with_unfolding_all exact (eq_of_heq k3 : _)
-  delta IsThPVecOf IsVacO IsThetaAt
-  rewrite [e1, e2, e3]
-  exact (by with_unfolding_all exact (h :))
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl := eq_of_heq hV
+  obtain rfl := eq_of_heq hW
+  obtain rfl := eq_of_heq hψ
+  obtain rfl := eq_of_heq hθ
+  obtain rfl := eq_of_heq hs
+  obtain rfl := eq_of_heq hΛV
+  obtain rfl := eq_of_heq hΛW
+  obtain rfl := eq_of_heq hβV
+  obtain rfl := eq_of_heq hβW
+  obtain rfl := eq_of_heq hPg
+  obtain rfl := eq_of_heq h₀
+  obtain rfl := eq_of_heq hf
+  obtain ⟨⟨hStd, hVac⟩, e, he, ⟨T0, hT0⟩, hAll⟩ := h
+  refine ⟨⟨hStd, ⟨hVac.inf, ⟨hVac.theta.quasi, hVac.theta.level, hVac.theta.cont, hVac.theta.smooth⟩,
+    hVac.lat, hVac.fock, hVac.norm⟩⟩,
+    e, he, ⟨T0, ⟨hT0.trans, hT0.modul, hT0.vac⟩⟩, fun T hT => hAll T ⟨hT.trans, hT.modul, hT.vac⟩⟩
 
 variable {S : a.D.what₂.Tau → SPar} {S' : a'.D.what₂.Tau → SPar} {M : DSModel W S} {M' : DSModel W' S'}
 
 
 private theorem cart_heq (hP : B'.toPre = B.toPre) (hW : HEq W' W) (h : DSTie M' M) : HEq (cart M') (cart M) := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have : W' = W := by with_unfolding_all exact eq_of_heq hW
-  subst W'
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl := eq_of_heq hW
   rcases M with @⟨H, nacg, ips, σ, lam, ε, fr, enum, ds, fu, fg⟩
   rcases M' with @⟨H', nacg', ips', σ', lam', ε', fr', enum', ds', fu', fg'⟩
   rcases h with ⟨h1, h2, h3, h4, h5, h6, h7⟩
-  have : H' = H := by with_unfolding_all exact eq_of_heq h1
-  subst H'
-  have : nacg' = nacg := by with_unfolding_all exact eq_of_heq h2
-  subst nacg'
-  have : ips' = ips := by with_unfolding_all exact eq_of_heq h3
-  subst ips'
-  have : σ' = σ := by with_unfolding_all exact eq_of_heq h4
-  subst σ'
-  have : lam' = lam := by with_unfolding_all exact eq_of_heq h5
-  subst lam'
-  have : ε' = ε := by with_unfolding_all exact eq_of_heq h6
-  subst ε'
-  have : fr' = fr := by with_unfolding_all exact eq_of_heq h7
-  subst fr'
-  with_unfolding_all rfl
+  obtain rfl := eq_of_heq h1
+  obtain rfl := eq_of_heq h2
+  obtain rfl := eq_of_heq h3
+  obtain rfl := eq_of_heq h4
+  obtain rfl := eq_of_heq h5
+  obtain rfl := eq_of_heq h6
+  obtain rfl := eq_of_heq h7
+  exact HEq.rfl
 
 private theorem ioW_of (hP : B'.toPre = B.toPre) (hV : HEq V' V) (hW : HEq W' W) (h : DSTie M' M)
     {θ : InfFam a.D} {θ' : InfFam a'.D} (hθ : HEq θ' θ)
@@ -1421,56 +1229,33 @@ private theorem ioW_of (hP : B'.toPre = B.toPre) (hV : HEq V' V) (hW : HEq W' W)
     {BV BV'} (hBV : HEq BV' BV) {io io'} (hio : HEq io' io) {ω ω'} (hω : HEq ω' ω) {v v'} (hv : HEq v' v) {Δ Δ'} (hΔ : HEq Δ' Δ)
     (h0 : IsIoW θ M c ω (pureTensorO ψ θ V W (fun _ => 1) (cart M) BV (onb M) v) Δ io) :
     IsIoW θ' M' c' ω' (pureTensorO ψ' θ' V' W' (fun _ => 1) (cart M') BV' (onb M') v') Δ' io' := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have : W' = W := by with_unfolding_all exact eq_of_heq hW
-  subst W'
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl := eq_of_heq hW
   rcases M with @⟨H, nacg, ips, σ, lam, ε, fr, enum, ds, fu, fg⟩
   rcases M' with @⟨H', nacg', ips', σ', lam', ε', fr', enum', ds', fu', fg'⟩
   rcases h with ⟨h1, h2, h3, h4, h5, h6, h7⟩
-  have : H' = H := by with_unfolding_all exact eq_of_heq h1
-  subst H'
-  have : nacg' = nacg := by with_unfolding_all exact eq_of_heq h2
-  subst nacg'
-  have : ips' = ips := by with_unfolding_all exact eq_of_heq h3
-  subst ips'
-  have : σ' = σ := by with_unfolding_all exact eq_of_heq h4
-  subst σ'
-  have : lam' = lam := by with_unfolding_all exact eq_of_heq h5
-  subst lam'
-  have : ε' = ε := by with_unfolding_all exact eq_of_heq h6
-  subst ε'
-  have : fr' = fr := by with_unfolding_all exact eq_of_heq h7
-  subst fr'
-  have : V' = V := by with_unfolding_all exact eq_of_heq hV
-  subst V'
-  obtain ⟨W₁, ρ₁⟩ := c'
-  rename_i nW' iW' _
-  dsimp only at c1 c2 c3 c4
-  have : W₁ = c.W := by with_unfolding_all exact eq_of_heq c1
-  subst W₁
-  have : nW' = c.nW := by with_unfolding_all exact eq_of_heq c3
-  subst nW'
-  have : iW' = c.iW := by with_unfolding_all exact eq_of_heq c4
-  subst iW'
-  have : ρ₁ = c.ρ := by with_unfolding_all exact eq_of_heq c2
-  subst ρ₁
-  have : θ' = θ := by with_unfolding_all exact eq_of_heq hθ
-  subst θ'
-  have : ψ' = ψ := by with_unfolding_all exact eq_of_heq hψ
-  subst ψ'
-  have : BV' = BV := by with_unfolding_all exact eq_of_heq hBV
-  subst BV'
-  have : io' = io := by with_unfolding_all exact eq_of_heq hio
-  subst io'
-  have : ω' = ω := by with_unfolding_all exact eq_of_heq hω
-  subst ω'
-  have : v' = v := by with_unfolding_all exact eq_of_heq hv
-  subst v'
-  have : Δ' = Δ := by with_unfolding_all exact eq_of_heq hΔ
-  subst Δ'
-  exact (by with_unfolding_all exact (h0 :))
+  obtain rfl := eq_of_heq h1
+  obtain rfl := eq_of_heq h2
+  obtain rfl := eq_of_heq h3
+  obtain rfl := eq_of_heq h4
+  obtain rfl := eq_of_heq h5
+  obtain rfl := eq_of_heq h6
+  obtain rfl := eq_of_heq h7
+  obtain rfl := eq_of_heq hV
+  rcases c with @⟨W₀, nW₀, iW₀, fW₀, ρ₀⟩
+  rcases c' with @⟨W₁, nW₁, iW₁, fW₁, ρ₁⟩
+  obtain rfl := eq_of_heq c1
+  obtain rfl := eq_of_heq c3
+  obtain rfl := eq_of_heq c4
+  obtain rfl := eq_of_heq c2
+  obtain rfl := eq_of_heq hθ
+  obtain rfl := eq_of_heq hψ
+  obtain rfl := eq_of_heq hBV
+  obtain rfl := eq_of_heq hio
+  obtain rfl := eq_of_heq hω
+  obtain rfl := eq_of_heq hv
+  obtain rfl := eq_of_heq hΔ
+  exact h0
 
 end Comparison₂
 
@@ -1481,14 +1266,9 @@ variable {B B' : Base} {C : Cols B} {C' : Cols B'} {a : Late B C} {a' : Late B' 
 
 private theorem delta_heq (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin a'.D.R.m} (h : (i : ℕ) = i') :
     HEq (RealDat.Delta i') (RealDat.Delta i) := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have hi : i' = i := by
-    apply Fin.ext
-    exact h.symm
-  subst i'
-  exact (by with_unfolding_all exact ((HEq.refl (RealDat.Delta i)) :))
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl : i' = i := Fin.ext h.symm
+  exact HEq.rfl
 
 private theorem frames_heq (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin a'.D.R.m} (h : (i : ℕ) = i')
     {ΛV : ∀ i, Submodule (𝓞 a.D.host.E) (Fin (Vc a.D i).rank → a.D.host.E)}
@@ -1498,22 +1278,13 @@ private theorem frames_heq (hP : B'.toPre = B.toPre) {i : Fin a.D.R.m} {i' : Fin
     {βV : ∀ i, GL (Fin (Vc a.D i).rank) (Lev.EAf a.D)} {βV' : ∀ i, GL (Fin (Vc a'.D i).rank) (Lev.EAf a'.D)} (hβV : HEq βV' βV)
     {βW : ∀ i, GL (Fin (Wc a.D i).rank) (Lev.EAf a.D)} {βW' : ∀ i, GL (Fin (Wc a'.D i).rank) (Lev.EAf a'.D)} (hβW : HEq βW' βW) :
     HEq (ΛV' i') (ΛV i) ∧ HEq (ΛW' i') (ΛW i) ∧ HEq (βV' i') (βV i) ∧ HEq (βW' i') (βW i) := by
-  rcases B' with ⟨P'⟩
-  change P' = B.toPre at hP
-  subst hP
-  have hi : i' = i := by
-    apply Fin.ext
-    exact h.symm
-  subst i'
-  have : ΛV' = ΛV := by with_unfolding_all exact eq_of_heq hΛV
-  subst ΛV'
-  have : ΛW' = ΛW := by with_unfolding_all exact eq_of_heq hΛW
-  subst ΛW'
-  have : βV' = βV := by with_unfolding_all exact eq_of_heq hβV
-  subst βV'
-  have : βW' = βW := by with_unfolding_all exact eq_of_heq hβW
-  subst βW'
-  exact (by with_unfolding_all exact ((And.intro (HEq.refl (ΛV i)) (And.intro (HEq.refl (ΛW i)) (And.intro (HEq.refl (βV i)) (HEq.refl (βW i))))) :))
+  cases B; cases B'; dsimp only at hP; subst hP
+  obtain rfl : i' = i := Fin.ext h.symm
+  obtain rfl := eq_of_heq hΛV
+  obtain rfl := eq_of_heq hΛW
+  obtain rfl := eq_of_heq hβV
+  obtain rfl := eq_of_heq hβW
+  exact ⟨HEq.rfl, HEq.rfl, HEq.rfl, HEq.rfl⟩
 
 variable {G G' : Type} [Group G] [Fintype G] [Group G'] [Fintype G'] {Pl0 T0 Pl0' T0' : Type}
   {A : FamIn a.D.what₂.LL G Pl0 T0 a.D.R.m} {A' : FamIn a'.D.what₂.LL G' Pl0' T0' a'.D.R.m}
@@ -1563,18 +1334,19 @@ theorem _root_.GlobalTheory.T.referenceTuple_weilDatum_vector_polynomialMap_enla
   (z : Dat (w.st Z) w.I hX T Wt) (Wt' : Set B'.places.Pl)
   (R' : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks), Enl0 B B' → z.R.toRealDat.ExAt → RSide z Wt' R' → LevSame z Wt' R' → WeilAt R'.toRealDat (mu0F (X := B'.fields) (tuOf w'.I (usedOf w'.I T' Wt'))) := by
   intro B B' f f' T T' w w' Z Z' hX hX' Wt Ks _ _ _ Xg tr z Wt' R' hE hEx hS hL i'
-  letI := z.alg
+  let := z.alg
   have hP : B'.toPre = B.toPre := hE.1
   have hm := LiftExt.m_eq (a := Z) (a' := Z') hP
   let i : Fin (w.st Z).toD7.R.m := Fin.cast hm i'
   have h : (i : ℕ) = i' := rfl
-  obtain ⟨⟨hψ, hθ, hβW, -, -, -, hβV, hΛV, hΛW, hPg, -, -, h1, -⟩, h2⟩ := hS
-  obtain ⟨c1, c2, c3, c4, hvac, hio, hBV, m1, m2, m3, m4, m5, m6, m7, -⟩ := h1 i i' h
-  obtain ⟨hω, hv, -⟩ := h2 i i' h
-  obtain ⟨hμ, hη, hQ', hQ⟩ := hL
+  have hF := rSideWFields hS.1
+  have h2i := hS.2 i i' h
   have hb := RealDat.thP_of_weak z.pins.char.base.thP hEx
-  exact exists_isOrbQuot_of_isHaarOn (a := Z) (a' := Z') (R := z.R.toRealDat) (R' := R'.toRealDat) hP h hψ hθ hβW hβV hΛV hΛW hPg c1 c2 c3 c4 hvac hio hBV
-    ⟨m1, m2, m3, m4, m5, m6, m7⟩ hω hv (hμ i i' h).1 hη hQ' hQ ⟨z.pins.char.fullP i _, hb.vP i _, hb.ioP i _⟩
+  exact exists_isOrbQuot_of_isHaarOn (a := Z) (a' := Z') (R := z.R.toRealDat) (R' := R'.toRealDat) hP h
+    hF.psi hF.theta hF.betaW hF.betaV hF.lamV hF.lamW hF.pg
+    (hF.cV_W i i' h) (hF.cV_rho i i' h) (hF.cV_nW i i' h) (hF.cV_iW i i' h)
+    (hF.vacP i i' h) (hF.ioP i i' h) (hF.BV i i' h) (hF.mwTie i i' h)
+    h2i.1 h2i.2.1 (hL.1 i i' h).1 hL.2.1 hL.2.2.1 hL.2.2.2 ⟨z.pins.char.fullP i _, hb.vP i _, hb.ioP i _⟩
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ReferenceTupleWeilDatumVectorPolynomialMapEnlarg =====
@@ -1666,6 +1438,115 @@ theorem m_eq (hE : Enl0 B B') : (w'.st Z').toD7.R.m = (w.st Z).toD7.R.m :=
 
 
 
+private theorem brgStd_updM {X : Stages} {px : PreX X.B.toPre} {I : Col2.ColIn X.B px} {hX : X.B.fields.Ok}
+    {U : Set I.ι} {Xg : Finset (Gc X.B px → X.B.LL)} {tr : TrI X.B px}
+    {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks X.toD7.what₂.LL]
+    {R : RealDat X.toD7 (famR X I hX U Xg tr).A Ks} (h : BrgStd X I hX U Xg tr R)
+    (HX HV HE gE jX jV νY fdY ν0 fd0 νX fdX νV fdV ωP vP thF thG) :
+    BrgStd X I hX U Xg tr (updM R HX HV HE gE jX jV νY fdY ν0 fd0 νX fdX νV fdV ωP vP thF thG) :=
+  ⟨h.1, h.2⟩
+
+private theorem sameAt_trans_tail {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T0 : Type}
+    {A : FamIn D.what₂.LL G Pl0 T0 D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL]
+    {R₁ R₂ : RealDat D A Ks} {t : T0} {i' : Fin D.R.m}
+    {α₁ α₂ α₄ α₅ α₆ α₇ : Type} {α₃ : Type 1} {x₁ : α₁} {x₂ : α₂} {x₃ : α₃} {x₄ : α₄} {x₅ : α₅} {x₆ : α₆} {x₇ : α₇}
+    (hSame : SameAt R₁ R₂ t)
+    (hRef : HEq (R₁.ωP i' t) x₁ ∧ HEq (R₁.vP i' t) x₂ ∧ HEq (R₁.HV i' t) x₃ ∧ HEq (R₁.thF i' t) x₄ ∧
+      HEq (R₁.thG i' t) x₅ ∧ HEq (R₁.νV i' t) x₆ ∧ HEq (R₁.fdV i' t) x₇) :
+    HEq (R₂.ωP i' t) x₁ ∧ HEq (R₂.vP i' t) x₂ ∧ HEq (R₂.HV i' t) x₃ ∧ HEq (R₂.thF i' t) x₄ ∧
+      HEq (R₂.thG i' t) x₅ ∧ HEq (R₂.νV i' t) x₆ ∧ HEq (R₂.fdV i' t) x₇ :=
+  let s := hSame i'
+  ⟨(heq_of_eq s.1).trans hRef.1, (heq_of_eq s.2.1).trans hRef.2.1, s.2.2.1.trans hRef.2.2.1,
+    s.2.2.2.1.trans hRef.2.2.2.1, s.2.2.2.2.1.trans hRef.2.2.2.2.1,
+    (heq_of_eq s.2.2.2.2.2.1).trans hRef.2.2.2.2.2.1, (heq_of_eq s.2.2.2.2.2.2).trans hRef.2.2.2.2.2.2⟩
+
+private theorem rSideW_congr (z : Dat (w.st Z) w.I hX T Wt) (Wt' : Set B'.places.Pl)
+    {tr₁ tr₂ : TrI B' w'.px}
+    {R₁ : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr₁) Ks}
+    {R₂ : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr₂) Ks}
+    (h : RSideW z Wt' R₁)
+    (hL : R₂.toRealDat.toLevCh = R₁.toRealDat.toLevCh)
+    (hψ : R₂.ψ = R₁.ψ) (hθ : R₂.θ = R₁.θ) (hnW : R₂.nW = R₁.nW)
+    (heG : HEq R₂.eG R₁.eG) (hSb : R₂.Sb = R₁.Sb)
+    (hcV : R₂.cV = R₁.cV) (hvacP : R₂.vacP = R₁.vacP)
+    (hioP : ∀ i', HEq (R₂.ioP i') (R₁.ioP i')) (hBV : R₂.BV = R₁.BV)
+    (hMW : R₂.MW = R₁.MW) (hHW : HEq R₂.HW R₁.HW) (hνW : R₂.νW = R₁.νW) (hfdW : R₂.fdW = R₁.fdW)
+    (hgW : HEq R₂.gW R₁.gW) (hFW : HEq R₂.FW R₁.FW)
+    (hjL : ∀ i' x, HEq (R₂.B.jL i' (mu0F (X := B'.fields) (tuOf w'.I (usedOf w'.I T' Wt'))) x)
+                       (R₁.B.jL i' (mu0F (X := B'.fields) (tuOf w'.I (usedOf w'.I T' Wt'))) x)) :
+    RSideW z Wt' R₂ := by
+  have h13 := h.2.2.2.2.2.2.2.2.2.2.2.2.1
+  have h14 := h.2.2.2.2.2.2.2.2.2.2.2.2.2
+  refine ⟨hψ ▸ h.1, hθ ▸ h.2.1, congrArg LevCh.βW hL ▸ h.2.2.1, congrArg LevCh.βY hL ▸ h.2.2.2.1,
+    congrArg LevCh.ΛY hL ▸ h.2.2.2.2.1, hnW ▸ h.2.2.2.2.2.1, congrArg LevCh.βV hL ▸ h.2.2.2.2.2.2.1,
+    congrArg LevCh.ΛV hL ▸ h.2.2.2.2.2.2.2.1, congrArg LevCh.ΛW hL ▸ h.2.2.2.2.2.2.2.2.1,
+    congrArg LevCh.Pg hL ▸ h.2.2.2.2.2.2.2.2.2.1, heG.trans h.2.2.2.2.2.2.2.2.2.2.1,
+    hSb ▸ h.2.2.2.2.2.2.2.2.2.2.2.1, ?_, fun i i' hi ok ok' φ φ' hφ => (hjL i' _).trans (h14 i i' hi ok ok' φ φ' hφ)⟩
+  intro i i' hi
+  have hi0 := h13 i i' hi
+  have hcVi : R₂.cV i' = R₁.cV i' := congrFun hcV i'
+  have hMWi : ∀ σ, R₂.MW i' σ = R₁.MW i' σ := fun σ => congrFun (congrFun hMW i') σ
+  have hEnum : ∀ {σ} {M₁ M₂ : Mult.DSModel (Wc (w'.st Z').toD7 i') (parAt (Wc (w'.st Z').toD7 i') σ)}
+      (e : M₂ = M₁) {α : Prop} {x : α}, HEq M₁.enum x → HEq M₂.enum x := by
+    intro σ M₁ M₂ e α x h; subst e; exact h
+  have hM0 := hi0.2.2.2.2.2.2.2
+  have hM1 := hM0.2.2.2.2.2.2.2.2
+  refine ⟨hcVi ▸ hi0.1, hcVi ▸ hi0.2.1, hcVi ▸ hi0.2.2.1, hcVi ▸ hi0.2.2.2.1,
+    congrFun hvacP i' ▸ hi0.2.2.2.2.1, (hioP i').trans hi0.2.2.2.2.2.1,
+    congrFun hBV i' ▸ hi0.2.2.2.2.2.2.1,
+    hMWi _ ▸ hM0.1, hMWi _ ▸ hM0.2.1, hMWi _ ▸ hM0.2.2.1, hMWi _ ▸ hM0.2.2.2.1,
+    hMWi _ ▸ hM0.2.2.2.2.1, hMWi _ ▸ hM0.2.2.2.2.2.1, hMWi _ ▸ hM0.2.2.2.2.2.2.1,
+    hEnum (hMWi _) hM0.2.2.2.2.2.2.2.1, ?_, congrFun hνW i' ▸ hM1.2.1, congrFun hfdW i' ▸ hM1.2.2.1, ?_⟩
+  · have hH0 := hM1.1
+    clear h h13 h14 hi0 hM0 hM1 hjL hL hψ hθ hnW heG hSb hcV hvacP hioP hBV hgW hFW hνW hfdW hcVi hMWi hEnum
+    generalize R₂.toRealDat.HW = HW₂ at hHW ⊢; generalize R₁.toRealDat.HW = HW₁ at hHW hH0
+    generalize R₂.toRealDat.MW = MW₂ at HW₂ hMW hHW ⊢; generalize R₁.toRealDat.MW = MW₁ at HW₁ hMW hHW hH0
+    subst hMW; obtain rfl := eq_of_heq hHW; exact hH0
+  · intro ι hι
+    have hι0 := hM1.2.2.2 ι hι
+    refine ⟨fun σ' => ?_, ?_⟩
+    · have hs := hι0.1 σ'
+      have hm := hs.1
+      refine ⟨⟨hMWi σ' ▸ hm.1, hMWi σ' ▸ hm.2.1, hMWi σ' ▸ hm.2.2.1, hMWi σ' ▸ hm.2.2.2.1,
+        hMWi σ' ▸ hm.2.2.2.2.1, hMWi σ' ▸ hm.2.2.2.2.2.1, hMWi σ' ▸ hm.2.2.2.2.2.2.1,
+        hEnum (hMWi σ') hm.2.2.2.2.2.2.2⟩, ?_⟩
+      have hRest := hs.2
+      clear h h13 h14 hi0 hM0 hM1 hι0 hs hm hjL hL hψ hθ heG hSb hcV hvacP hioP hBV hνW hfdW hcVi hMWi hEnum
+      generalize R₂.toRealDat.FW = FW₂ at hFW ⊢; generalize R₁.toRealDat.FW = FW₁ at hFW hRest
+      generalize R₂.toRealDat.gW = gW₂ at hgW ⊢; generalize R₁.toRealDat.gW = gW₁ at hgW hRest
+      generalize R₂.toRealDat.HW = HW₂ at gW₂ FW₂ hHW hgW hFW ⊢; generalize R₁.toRealDat.HW = HW₁ at gW₁ FW₁ hHW hgW hFW hRest
+      generalize R₂.toRealDat.nW = nW₂ at FW₂ hnW hFW ⊢; generalize R₁.toRealDat.nW = nW₁ at FW₁ hnW hFW hRest
+      generalize R₂.toRealDat.MW = MW₂ at HW₂ gW₂ FW₂ hMW hHW hgW hFW ⊢; generalize R₁.toRealDat.MW = MW₁ at HW₁ gW₁ FW₁ hMW hHW hgW hFW hRest
+      subst hnW hMW; obtain rfl := eq_of_heq hHW; obtain rfl := eq_of_heq hgW; obtain rfl := eq_of_heq hFW; exact hRest
+    · have hf0 := hι0.2
+      clear h h13 h14 hi0 hM0 hM1 hι0 hjL hL hψ hθ heG hSb hcV hvacP hioP hBV hgW hνW hfdW hcVi hMWi hEnum
+      generalize R₂.toRealDat.FW = FW₂ at hFW ⊢; generalize R₁.toRealDat.FW = FW₁ at hFW hf0
+      generalize R₂.toRealDat.HW = HW₂ at FW₂ hHW hFW ⊢; generalize R₁.toRealDat.HW = HW₁ at FW₁ hHW hFW hf0
+      generalize R₂.toRealDat.nW = nW₂ at FW₂ hnW hFW ⊢; generalize R₁.toRealDat.nW = nW₁ at FW₁ hnW hFW hf0
+      generalize R₂.toRealDat.MW = MW₂ at HW₂ FW₂ hMW hHW hFW ⊢; generalize R₁.toRealDat.MW = MW₁ at HW₁ FW₁ hMW hHW hFW hf0
+      subst hnW hMW; obtain rfl := eq_of_heq hHW; obtain rfl := eq_of_heq hFW; exact hf0
+
+private theorem rSideW_of_toRealDat (z : Dat (w.st Z) w.I hX T Wt) (Wt' : Set B'.places.Pl)
+    {tr₁ tr₂ : TrI B' w'.px}
+    {R₁ : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr₁) Ks}
+    {R₂ : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr₂) Ks}
+    (h : RSideW z Wt' R₁) (hEq : R₂.toRealDat = R₁.toRealDat) : RSideW z Wt' R₂ :=
+  rSideW_congr z Wt' h
+    (congrArg RealDat.toLevCh hEq) (congrArg RealDat.ψ hEq) (congrArg RealDat.θ hEq) (congrArg RealDat.nW hEq)
+    (by rw [hEq]) (congrArg RealDat.Sb hEq) (congrArg RealDat.cV hEq) (congrArg RealDat.vacP hEq)
+    (fun i' => by rw [hEq]; exact HEq.rfl) (congrArg RealDat.BV hEq) (congrArg RealDat.MW hEq) (by rw [hEq])
+    (congrArg RealDat.νW hEq) (congrArg RealDat.fdW hEq) (by rw [hEq]) (by rw [hEq])
+    (fun i' x => by rw [hEq]; exact HEq.rfl)
+
+private theorem rSideW_updM (z : Dat (w.st Z) w.I hX T Wt) (Wt' : Set B'.places.Pl)
+    (R₀ : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks)
+    (h : RSideW z Wt' R₀)
+    (HX HV HE gE jX jV νY fdY ν0 fd0 νX fdX νV fdV ωP vP thF thG) :
+    RSideW z Wt' (⟨updM R₀.toRealDat HX HV HE gE jX jV νY fdY ν0 fd0 νX fdX νV fdV ωP vP thF thG,
+      R₀.plI, R₀.SF, R₀.phs, R₀.lam3⟩ :
+      RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks) :=
+  rSideW_congr z Wt' h rfl rfl rfl rfl HEq.rfl rfl rfl rfl (fun _ => HEq.rfl) rfl rfl HEq.rfl rfl rfl HEq.rfl HEq.rfl (fun _ _ => HEq.rfl)
+
 theorem exists_rSide (z : Dat (w.st Z) w.I hX T Wt) (Wt' : Set B'.places.Pl)
     (R₀ : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks) (hE : Enl0 B B') (h : RSideW z Wt' R₀) :
     ∃ HV νV fdV ωP vP thF thG, RSide z Wt' (⟨updM R₀.toRealDat R₀.HX HV R₀.HE R₀.gE R₀.jX (fun _ _ => 0) R₀.νY R₀.fdY R₀.ν0 R₀.fd0
@@ -1674,12 +1555,11 @@ theorem exists_rSide (z : Dat (w.st Z) w.I hX T Wt) (Wt' : Set B'.places.Pl)
   have key := fun i' : Fin (w'.st Z').toD7.R.m => GlobalTheory.T.exists_copies_reference_objects_over_enlarged_base z Wt' R₀ hE h (Fin.cast (m_eq hE) i') i' rfl
   choose ω v H th g ν fd k using key
   refine ⟨fun i _ => H i, fun i _ => ν i, fun i _ => fd i, fun i _ => ω i, fun i _ => v i, fun i _ => th i, fun i _ => g i, ?_, ?_⟩
-  · delta RSideW at h ⊢
-    with_unfolding_all exact (h :)
+  · exact rSideW_updM z Wt' R₀ h _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
   · intro i i' e
     have e' : i = Fin.cast (m_eq hE) i' := Fin.ext e
     subst e'
-    exact (by with_unfolding_all exact (k i' :))
+    exact k i'
 
 end
 
@@ -1716,9 +1596,9 @@ theorem exists_pins_rSide : GlobalTheory.Published.DiscreteSeriesCover → Globa
   intro h1 h2 h3 h4 h5 h6 h7
   refine (stepW_host_rank Pinned).trans (StepW.of_all ?_)
   intro K B' f' T' w' _ _ H B f T w hE hf _ hpx Z hX Wt z hG _ hFine hHolds Z' hX' hG' _ _ core' alg' _ _ _ _ _ _ _ _
-  intro Xg tr₀ R₀ cG hyp
+    Xg tr₀ R₀ cG hyp
   obtain ⟨hLev, hId, hGood, hMu, hIdem, hPre, hIn, hTup, hAll, hKeep, hBrg, hSide⟩ := hyp
-  letI := alg'
+  let := alg'
   generalize {v | B'.places.resChar v ∈ T'.pl} = Wt' at *
   have hHH := (H (w'.st Z') rfl).1
   have hn := (H (w.st Z) hE.1.symm).2
@@ -1741,8 +1621,8 @@ theorem exists_pins_rSide : GlobalTheory.Published.DiscreteSeriesCover → Globa
     · exact hGood
     · exact hMu
     · exact hAll
-    · delta BrgStd at hBrg ⊢
-      exact hBrg
+    · exact brgStd_updM hBrg R₀.HX HV R₀.HE R₀.gE R₀.jX (fun _ _ => 0) R₀.νY R₀.fdY R₀.ν0 R₀.fd0
+        R₀.νX R₀.fdX νV fdV ωP vP thF thG
   clear hR₁ hLev hId hGood hMu hPre hIn hTup hAll hKeep hBrg hSide
   obtain ⟨cG₁, hLev, hId, hGood, hMu, hPre, hIn, hTup, hAll, hKeep, hBrg⟩ := move
   have hSide₁ := hS.1
@@ -1754,36 +1634,21 @@ theorem exists_pins_rSide : GlobalTheory.Published.DiscreteSeriesCover → Globa
       (fun R hP hc ht => GlobalTheory.ExAtAssembly.exAt_holds h1 h2 h3 h4 _ _ _ _ _ _ R hP.1.lev hP.1.fam hP.2 hP.1.record hHH hc ht)
       (fun R => RSideW z Wt' (⟨R, R₁.plI, R₁.SF, R₁.phs, R₁.lam3⟩ :
         RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr₀) core'.Q.c.F))
-      (fun _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ s => by
-        delta RSideW at s ⊢
-        with_unfolding_all exact (s :))
-      (fun _ _ _ _ _ _ _ _ _ _ _ _ s => by
-        delta RSideW at s ⊢
-        with_unfolding_all exact (s :))
-      (fun _ _ _ s => by
-        delta RSideW at s ⊢
-        with_unfolding_all exact (s :))
-      (by with_unfolding_all exact (hSide₁ :)) hPre hIn hTup hAll hKeep hBrg
+      (fun _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ s =>
+        rSideW_congr z Wt' s rfl rfl rfl rfl HEq.rfl rfl rfl rfl (fun _ => HEq.rfl) rfl rfl HEq.rfl rfl rfl HEq.rfl HEq.rfl (fun _ _ => HEq.rfl))
+      (fun _ _ _ _ _ _ _ _ _ _ _ _ s =>
+        rSideW_congr z Wt' s rfl rfl rfl rfl HEq.rfl rfl rfl rfl (fun _ => HEq.rfl) rfl rfl HEq.rfl rfl rfl HEq.rfl HEq.rfl (fun _ _ => HEq.rfl))
+      (fun _ _ _ s =>
+        rSideW_congr z Wt' s rfl rfl rfl rfl HEq.rfl rfl rfl rfl (fun _ => HEq.rfl) rfl rfl HEq.rfl rfl rfl HEq.rfl HEq.rfl (fun _ _ => HEq.rfl))
+      hSide₁ hPre hIn hTup hAll hKeep hBrg
       (GlobalTheory.T.finiteGroupCharacter_eq_product_residualCharacters_enlarged z Wt' R₁ hE hpx hSide₁ hL) (GlobalTheory.T.modW_of_rSideW z Wt' R₁ hE hpx hSide₁) (GlobalTheory.T.referenceTuple_weilDatum_vector_polynomialMap_enlarged z Wt' R₁ hE hFine.1 hS hL)
       (GlobalTheory.T.referenceTuple_hilbertModel_definiteForms_enlarged z Wt' R₁ hE hPre hS hL) (GlobalTheory.T.thetaLift_at_reference_tuple_over_enlarged_base z Wt' R₁ hE hpx hFine.1 hS hI)
       (GlobalTheory.T.referenceTuple_rationalForm_lifts_algebraic_enlarged z Wt' R₁ hE hS (GlobalTheory.T.rationalDefiniteForms_largerField_combination_smallerField z Wt' R₁ hE hf hpx hSide₁) hz)
   have hPg : R.Pg = R₁.Pg := congrArg LevCh.Pg hLevEq
-  refine ⟨tr, R, cG', hPins, hLevEq ▸ hLev, isIdG_of_heq _ R.eG R₁.eG hPg hEG hId, ?_, ?_, hBrg', hEx, ?_, fun i i' e => ?_⟩
+  refine ⟨tr, R, cG', hPins, hLevEq ▸ hLev, isIdG_of_heq _ R.eG R₁.eG hPg hEG hId, ?_, ?_, hBrg', hEx,
+    rSideW_of_toRealDat z Wt' hS' rfl, fun i i' e => sameAt_trans_tail hSame (hS.2 i i' e)⟩
   · rw [trans_eq_of_heq _ R.eG R₁.eG cG' cG₁ hPg hEG hCG]; exact hGood
   · rw [hmu, htw]; exact hMu
-  · delta RSideW at hS' ⊢
-    with_unfolding_all exact (hS' :)
-  · -- Project the conjuncts directly to avoid large eliminators in this dependent goal.
-    have hRef := hS.2 i i' e
-    have hSameAt := hSame i'
-    refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
-    · exact (heq_of_eq hSameAt.1).trans hRef.1
-    · exact (heq_of_eq hSameAt.2.1).trans hRef.2.1
-    · exact hSameAt.2.2.1.trans hRef.2.2.1
-    · exact hSameAt.2.2.2.1.trans hRef.2.2.2.1
-    · exact hSameAt.2.2.2.2.1.trans hRef.2.2.2.2.1
-    · exact (heq_of_eq hSameAt.2.2.2.2.2.1).trans hRef.2.2.2.2.2.1
-    · exact (heq_of_eq hSameAt.2.2.2.2.2.2).trans hRef.2.2.2.2.2.2
 
 end GlobalTheory.Mem.R3.Rw.WeilExt
 

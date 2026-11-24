@@ -1288,12 +1288,27 @@ theorem sharesAt_ownNorm {ka wL wF : WeightFamilies.Wt D j} (G : GlobalFamilyDat
 
 
 
+/-- `gd2Xplus` does not change what `InBasis`, `InContainMR` and the rank bound of `ShareRhoR` see
+at a place `la`. The three facts are stated together so that the kernel unfolds the common
+definitions once. -/
+private theorem xplus_la {ka wL wF : WeightFamilies.Wt D j} (G : GlobalFamilyData X ka wL wF)
+    (la : HeightOneSpectrum (𝓞 B.KO)) :
+    (InBasis (gd2Xplus G E hM) la ↔ InBasis G la) ∧
+    (∀ S CRm T c, InContainMR (gd2Xplus G E hM) la S CRm T c ↔ InContainMR G la S CRm T c) ∧
+    ∀ S T, (Module.finrank (Kp (xplus X E hM) la (gd2Xplus G E hM).N)
+        ↥(Submodule.span (Kp (xplus X E hM) la (gd2Xplus G E hM).N)
+          (zAll (gd2Xplus G E hM) la S T)) : ℝ) =
+      Module.finrank (Kp X la G.N) ↥(Submodule.span (Kp X la G.N) (zAll G la S T)) :=
+  ⟨Iff.rfl, fun _ _ _ _ => Iff.rfl, fun _ _ => rfl⟩
+
 theorem sharesAt_of_xplus {ka wL wF : WeightFamilies.Wt D j} (G : GlobalFamilyData X ka wL wF) (S : Scal B) (Tn : ℕ) (c : ℝ)
     (Sh : Set (B.Cusp j wF)) (h : SharesAt (gd2Xplus G E hM) S Tn c Sh) : SharesAt G S Tn c Sh := by
   obtain ⟨del, th', h1, h2⟩ := h
   refine ⟨del, th', h1, fun rz alz th0 zc rq th iet et => ?_⟩
   obtain ⟨a, b, c, d, e⟩ := h2 rz alz th0 zc rq th iet et
-  exact ⟨fun la => a la, b, c, d, fun la => e la⟩
+  have T := xplus_la X E hM (FamilyHypotheses.refill G del th' rz alz th0 zc rq th iet et)
+  exact ⟨fun la => (T la).1.1 (a la), b, fun la => ((T la).2.2 S Tn).symm.trans_le (c la), d,
+    fun la => ((T la).2.1 _ _ _ _).1 (e la)⟩
 
 
 
@@ -1373,7 +1388,11 @@ theorem baseIn_xplus {large₂ : SizeData₂ D} {K : KAdm} {H : KHyp} {Ch Ah Cq 
 
 theorem famIn_xplus {large₂ : SizeData₂ D} {K : KAdm} {H : KHyp} {Ch Ah Cq Aq C2 A2 CR : ℝ} {S : Scal B} {Tn : ℕ}
     {G : GlobalFamilyData X ka wL wF} {Gc PH Prw Pet Pd : ℝ} (h : FamIn large₂ K H Ch Ah Cq Aq C2 A2 CR S Tn G Gc PH Prw Pet Pd) :
-    FamIn large₂ K H Ch Ah Cq Aq C2 A2 CR S Tn (gd2Xplus G E hM) Gc PH Prw Pet Pd := h
+    FamIn large₂ K H Ch Ah Cq Aq C2 A2 CR S Tn (gd2Xplus G E hM) Gc PH Prw Pet Pd := by
+  have T := GlobalTheory.RunJoin.xplus_la X E hM G
+  obtain ⟨h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11, h12⟩ := h
+  exact ⟨h1, h2, h3, h4, h5, h6, h7, fun la => ((T la).2.2 S Tn).trans_le (h8 la), h9, h10,
+    fun la => (T la).1.2 (h11 la), fun la => ((T la).2.1 _ _ _ _).2 (h12 la)⟩
 
 end Transfer
 

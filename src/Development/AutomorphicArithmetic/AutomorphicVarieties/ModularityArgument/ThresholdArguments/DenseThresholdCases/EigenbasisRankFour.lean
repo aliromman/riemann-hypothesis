@@ -415,7 +415,6 @@ private theorem vb_coeff {K : Type} [NormedField K] [IsUltrametricDist K] (a : K
     · rw [norm_mul, norm_sub_rev]
       exact (mul_le_of_le_one_right (norm_nonneg _) (ih' i).2).trans_lt hta
 
-attribute [-instance] UpperTheory.V.UnitaryThreeInertia.Coef.isLocalRing in
 theorem UpperTheory.V.Ws.Eb.inertia_trivial_of_charpoly_roots_near_character :
     ∀ {p l : ℕ} [Fact p.Prime] [Fact l.Prime], p ≠ l → ∀ {H : Type} [Group H] [TopologicalSpace H] [IsTopologicalGroup H] [CompactSpace H] (φ : H →* Formalism.BasicNotions.Loc.GQ p), Topology.IsOpenEmbedding φ → ∀ (c : Coef l) (κ : H →* (ResidueField c.O)ˣ), (∀ g, φ g ∈ Loc.Iq p → κ g = 1) → (∃ g, residue c.O (Loc.cycA p l c.O (φ g) : c.O) ≠ 1) →
         ∀ {n : ℕ} (ρ : H →* GL (Fin n) (PadicAlgCl l)), Continuous ρ → (∀ g (a : c.O), residue c.O a = κ g → ∀ t ∈ (W.mat ρ g).charpoly.roots, ‖t - (a : PadicAlgCl l)‖ < 1) → ∀ g, φ g ∈ Loc.Iq p → ρ g = 1 := by

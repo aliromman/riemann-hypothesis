@@ -981,7 +981,7 @@ theorem UpperTheory.Ru.crystallineComparison.joinQ :
     intro l _ P AI hT E Ω _ _ _ Gw O _ _ _ Bw f q n ϑ a r₀ r _ hgr hin
     obtain ⟨V, _, _, _, ρ, T, b, hcr, hann, hb, hbg, hbT⟩ := hin
     obtain ⟨c, hc⟩ := hgr
-    obtain ⟨d, v, M, hM, hMg, hMT⟩ := coords ρ T Bw.e ϑ (fun g => (r₀ g : Matrix (Fin a) (Fin a) (Om l))) b hb hbg hbT
+    obtain ⟨d, v, M, hM, hMg, hMT⟩ := coords ρ T Bw.e ϑ (fun g => (r₀ g).1) b hb hbg hbT
     let entExt (L : FinExt l) {d a : ℕ} (M : Matrix (Fin d) (Fin a) (Om l)) : FinExt l :=
       ⟨L.1 ⊔ IntermediateField.adjoin ℚ_[l] (Set.range fun p : Fin d × Fin a => M p.1 p.2),
         haveI := L.2
@@ -1018,24 +1018,24 @@ theorem UpperTheory.Ru.crystallineComparison.joinQ :
       fun g => (LinearMap.toMatrix v v (ρ g)).map (algebraMap ℚ_[l] ↥L.1)
     have hRφ : ∀ g, (RL g).map φ = (LinearMap.toMatrix v v (ρ g)).map (algebraMap ℚ_[l] (Om l)) := fun g => by
       simp only [RL, Matrix.map_map]; congr 1
-    have hr₀ : ∀ g, (r₀ g : Matrix (Fin a) (Fin a) (Om l)) = (N * RL (Bw.e g) * M').map φ := fun g => by
+    have hr₀ : ∀ g, (r₀ g).1 = (N * RL (Bw.e g) * M').map φ := fun g => by
       rw [Matrix.map_mul, Matrix.map_mul, hRφ, hM', Matrix.mul_assoc, hMg, ← Matrix.mul_assoc, ← hM', ← Matrix.map_mul, hN,
         Matrix.map_one φ (map_zero φ) (map_one φ), Matrix.one_mul]
-    have hmem₀ : ∀ g i j, (r₀ g : Matrix (Fin a) (Fin a) (Om l)) i j ∈ L.1 := fun g i j => by
+    have hmem₀ : ∀ g i j, (r₀ g).1 i j ∈ L.1 := fun g i j => by
       rw [hr₀ g]; exact ((N * RL (Bw.e g) * M') i j).2
-    have hmem : ∀ g i j, (r g : Matrix (Fin a) (Fin a) (Om l)) i j ∈ L.1 := fun g i j => by
+    have hmem : ∀ g i j, (r g).1 i j ∈ L.1 := fun g i j => by
       rw [((hc g).2 i j)]; split_ifs
       · exact hmem₀ g i j
       · exact L.1.zero_mem
     have exists_model_of_mem {Γ : Type} [Group Γ] {a : ℕ} (r : Γ →* GL (Fin a) (Om l)) (L : FinExt l)
-        (hL : ∀ g i j, (r g : Matrix (Fin a) (Fin a) (Om l)) i j ∈ L.1) :
+        (hL : ∀ g i j, (r g).1 i j ∈ L.1) :
         ∃ ρ : Γ →* GL (Fin a) ↥L.1, Formalism.MainNotions.N.mapRep (algebraMap ↥L.1 (Om l)) ρ = r := by
       let f : ↥L.1 →+* Om l := algebraMap ↥L.1 (Om l)
       let M : Γ → Matrix (Fin a) (Fin a) ↥L.1 :=
-        fun g => Matrix.of fun i j => ⟨(r g : Matrix (Fin a) (Fin a) (Om l)) i j, hL g i j⟩
+        fun g => Matrix.of fun i j => ⟨(r g).1 i j, hL g i j⟩
       have hinj : Function.Injective (f.mapMatrix : Matrix (Fin a) (Fin a) ↥L.1 →+* Matrix (Fin a) (Fin a) (Om l)) :=
         fun A B h => Matrix.ext fun i j => f.injective (by simpa using congrFun (congrFun h i) j)
-      have hM : ∀ g, f.mapMatrix (M g) = (r g : Matrix (Fin a) (Fin a) (Om l)) := fun g => Matrix.ext fun i j => rfl
+      have hM : ∀ g, f.mapMatrix (M g) = (r g).1 := fun g => Matrix.ext fun i j => rfl
       let ρ : Γ →* GL (Fin a) ↥L.1 :=
         { toFun := fun g => ⟨M g, M g⁻¹,
             hinj (by rw [map_mul, hM, hM, map_one, ← Units.val_mul, ← map_mul, mul_inv_cancel, map_one, Units.val_one]),
@@ -1047,13 +1047,13 @@ theorem UpperTheory.Ru.crystallineComparison.joinQ :
       exact ⟨ρ, MonoidHom.ext fun g => Units.ext (hM g)⟩
     obtain ⟨s₀, hs₀⟩ := exists_model_of_mem r₀ L hmem₀
     obtain ⟨s, hs⟩ := exists_model_of_mem r L hmem
-    have hs₀g : ∀ g, ((s₀ g : GL (Fin a) ↥L.1) : Matrix (Fin a) (Fin a) ↥L.1).map φ = (r₀ g : Matrix (Fin a) (Fin a) (Om l)) :=
+    have hs₀g : ∀ g, (s₀ g).1.map φ = (r₀ g).1 :=
       fun g => by rw [← hs₀]; rfl
-    have hsg : ∀ g, ((s g : GL (Fin a) ↥L.1) : Matrix (Fin a) (Fin a) ↥L.1).map φ = (r g : Matrix (Fin a) (Fin a) (Om l)) :=
+    have hsg : ∀ g, (s g).1.map φ = (r g).1 :=
       fun g => by rw [← hs]; rfl
     have hinjMap : ∀ {m k : ℕ}, Function.Injective (fun X : Matrix (Fin m) (Fin k) ↥L.1 => X.map φ) :=
       fun {m k} X Y h => Matrix.ext fun i j => φ.injective (congrFun (congrFun h i) j)
-    have hintL : ∀ g, RL (Bw.e g) * M' = M' * (s₀ g : Matrix (Fin a) (Fin a) ↥L.1) := fun g =>
+    have hintL : ∀ g, RL (Bw.e g) * M' = M' * (s₀ g).1 := fun g =>
       hinjMap (by simp only [Matrix.map_mul]; rw [hs₀g, hRφ, hM']; exact hMg g)
     have hTL : ∀ j ≤ n, (LinearMap.toMatrix v v (T j)).map (algebraMap ℚ_[l] ↥L.1) * M' = ϑ' j • M' := fun j hj =>
       hinjMap (by
@@ -1067,7 +1067,7 @@ theorem UpperTheory.Ru.crystallineComparison.joinQ :
         rfl)
     let ρU := Bw.repE L s₀
     let ρW := Bw.repE L s
-    obtain ⟨i, hi, hiG, hiT⟩ := descend v ρ T ρU (fun g => (s₀ (Bw.e.symm g) : Matrix (Fin a) (Fin a) ↥L.1))
+    obtain ⟨i, hi, hiG, hiT⟩ := descend v ρ T ρU (fun g => (s₀ (Bw.e.symm g)).1)
       (fun _ _ => rfl) M' ϑ' hinjM' (fun g => by have := hintL (Bw.e.symm g); rwa [MulEquiv.apply_symm_apply] at this) hTL
     have hAcr : admitted (σCr P Bw.Kw) (finrank ℚ_[l] ↥(K0 Bw.Kw)) ρ := admissible_of_crystalline l P Bw.Kw V ρ hcr
     obtain ⟨hBst, hcm⟩ := boundSt_holds l P AI hT Bw.Kw L
@@ -1077,13 +1077,13 @@ theorem UpperTheory.Ru.crystallineComparison.joinQ :
       ((annExt_of dinvExt_of) ℚ_[l] _ _ (σCr P Bw.Kw) (ψCr P f) ↥L.1 V ρ).1 (finrank ℚ_[l] ↥(K0 Bw.Kw)) hAcr
     have hAU : admitted (σCr P Bw.Kw) (finrank ℚ_[l] ↥(K0 Bw.Kw)) ρU :=
       (admissible_sequence_exact ℚ_[l] _ _ (σCr P Bw.Kw) ↥L.1 (finrank ℚ_[l] ↥(K0 Bw.Kw)) hBcr (Fin a → ↥L.1) (↥L.1 ⊗[ℚ_[l]] V) ρU (extRep ↥L.1 ρ) i hiG).1 hi hAL
-    have hGr : ∀ g, ((s₀ (Bw.e.symm g) : Matrix (Fin a) (Fin a) ↥L.1)).BlockTriangular c ∧
-        ∀ i j, (s (Bw.e.symm g) : Matrix (Fin a) (Fin a) ↥L.1) i j =
-          if c i = c j then (s₀ (Bw.e.symm g) : Matrix (Fin a) (Fin a) ↥L.1) i j else 0 := by
+    have hGr : ∀ g, (s₀ (Bw.e.symm g)).1.BlockTriangular c ∧
+        ∀ i j, (s (Bw.e.symm g)).1 i j =
+          if c i = c j then (s₀ (Bw.e.symm g)).1 i j else 0 := by
       intro g
-      have hx : ∀ (h : ↥Gw) i j, φ ((s₀ h : Matrix (Fin a) (Fin a) ↥L.1) i j) = (r₀ h : Matrix (Fin a) (Fin a) (Om l)) i j :=
+      have hx : ∀ (h : ↥Gw) i j, φ ((s₀ h).1 i j) = (r₀ h).1 i j :=
         fun h i j => congrFun (congrFun (hs₀g h) i) j
-      have hy : ∀ (h : ↥Gw) i j, φ ((s h : Matrix (Fin a) (Fin a) ↥L.1) i j) = (r h : Matrix (Fin a) (Fin a) (Om l)) i j :=
+      have hy : ∀ (h : ↥Gw) i j, φ ((s h).1 i j) = (r h).1 i j :=
         fun h i j => congrFun (congrFun (hsg h) i) j
       refine ⟨fun i j hij => φ.injective ?_, fun i j => φ.injective ?_⟩
       · rw [hx, map_zero]; exact (hc _).1 hij
@@ -1091,8 +1091,8 @@ theorem UpperTheory.Ru.crystallineComparison.joinQ :
         split_ifs
         · rw [hx]
         · rw [map_zero]
-    obtain ⟨I, _, _, C, _, _, _, _, ρC, Eq, hE, hS⟩ := blocks ℚ_[l] c (fun g => (s₀ (Bw.e.symm g) : Matrix (Fin a) (Fin a) ↥L.1))
-      (fun g => (s (Bw.e.symm g) : Matrix (Fin a) (Fin a) ↥L.1)) ρU ρW (fun _ _ => rfl) (fun _ _ => rfl)
+    obtain ⟨I, _, _, C, _, _, _, _, ρC, Eq, hE, hS⟩ := blocks ℚ_[l] c (fun g => (s₀ (Bw.e.symm g)).1)
+      (fun g => (s (Bw.e.symm g)).1) ρU ρW (fun _ _ => rfl) (fun _ _ => rfl)
       (fun g => (hGr g).1) (fun g => (hGr g).2)
     have hAC : ∀ t, admitted (σCr P Bw.Kw) (finrank ℚ_[l] ↥(K0 Bw.Kw)) (ρC t) := fun t =>
       (nilSubq_of admissible_sequence_exact nilEmb_of ℚ_[l] _ _ (σCr P Bw.Kw) (ψCr P f) ↥L.1 (finrank ℚ_[l] ↥(K0 Bw.Kw)) hBcr _ _ ρU (ρC t) (hS t) hAU).1

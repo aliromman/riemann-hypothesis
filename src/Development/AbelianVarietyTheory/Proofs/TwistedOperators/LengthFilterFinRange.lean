@@ -222,7 +222,7 @@ theorem nonempty_piTensor_detRep_equiv (R β : Type) [CommRing R] [Fintype β] (
   refine ⟨LocGL.equivOfBijective
     ⟨(PiTensorProduct.constantBaseRingEquiv β ℂ).toLinearMap, fun g => ?_⟩
     (PiTensorProduct.constantBaseRingEquiv β ℂ).bijective⟩
-  ext x
+  ext
   simp [leviChar_apply, detRep]
 
 end GlobalTheory.SmGL.Exponents

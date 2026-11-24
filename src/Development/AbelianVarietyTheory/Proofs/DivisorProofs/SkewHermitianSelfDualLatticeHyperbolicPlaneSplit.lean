@@ -189,7 +189,7 @@ theorem exists_isotropic_skew : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
     simp only [ReciprocityTheory.ChartRestriction.G.FD.cc, AlgHom.coe_toRingHom, hcc]
   obtain ⟨P, d, hP, hPg, hdfix, -⟩ := GlobalTheory.HermDiag.exists_congr_diagonal_herm hh
   have hPg' : Pᵀ * G * P.map σ = Matrix.diagonal d := by
-    rw [← hPg]; congr 2; ext a b; simp [ReciprocityTheory.ChartRestriction.G.FD.cc, hcc]
+    rw [← hPg]; congr 2; ext a; simp [ReciprocityTheory.ChartRestriction.G.FD.cc, hcc]
   have hdσ : ∀ i, σ (d i) = d i := fun i => by
     rw [hcc]; exact hdfix i
   have hdiag : ∀ i, GlobalTheory.UTrans.hf (σ : E →+* E) G (fun a => P a i) (fun a => P a i) = d i := fun i => by

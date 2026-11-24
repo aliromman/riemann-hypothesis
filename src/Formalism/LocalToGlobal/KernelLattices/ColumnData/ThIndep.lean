@@ -107,7 +107,9 @@ theorem sE_hom_gen {N N' : ℕ} (L : Submodule (𝓞 D.host.E) (Fin N → D.host
     intro x hx
     rw [← Matrix.mulVec_mulVec]
     exact hBs_mem _ (hA x hx)
-  have h := _root_.Bl.general_b_fact_third_bis.goal1 D.host.φ₀ L hL.1 hL.2.1 (Bs * A) hM
+  have hInt := _root_.Bl.general_b_fact_third_bis.isIntegral_of_preserves_span
+    (L.restrictScalars ℤ) hL.1.restrictScalars hL.2.1 (Bs * A) hM
+  have h := _root_.Bl.general_b_fact_third_bis.isIntegral_trace_of_isIntegral D.host.φ₀ (Bs * A) hInt
   have htr : (Bs * A).trace = sE D A B := by
     simp only [Matrix.trace, Matrix.diag, Matrix.mul_apply, sE, hBs, Matrix.of_apply]
     rw [Finset.sum_comm]

@@ -686,7 +686,7 @@ theorem trace_mulLeft_baseChange_eq_zero : ∀ (O : Type) [Ring O] [Module.Free 
     ∀ Y : R ⊗[ℤ] O, LinearMap.trace R (R ⊗[ℤ] O) (LinearMap.mulLeft R ((1 ⊗ₜ x) * Y)) = 0 := by
   intro O _ _ _ R _ x hx Y
   have hb : ∀ z : O, LinearMap.mulLeft R ((1 : R) ⊗ₜ[ℤ] z) = (LinearMap.mulLeft ℤ z).baseChange R := by
-    intro z; ext c w; simp
+    intro z; ext c; simp
   induction Y using TensorProduct.induction_on with
   | zero => simp
   | add a b ha hb' =>

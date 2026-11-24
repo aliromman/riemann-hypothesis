@@ -414,11 +414,6 @@ private theorem spanForms_le_of_mem_closure_smul {K : Type} [Field K] (M : Set K
   rintro _ ⟨c, hc, v, hv, rfl⟩
   exact key a c hc v (fun i => hH _ (hv i))
 
-private theorem dlog_pow' {K : Type} [Field K] (u : Kˣ) (k : ℕ) : dlog (u ^ k) = k • dlog u := by
-  induction k with
-  | zero => simp [_root_.GlobalTheory.LogDR.StabD.dlog_one]
-  | succ k ih => rw [pow_succ, _root_.GlobalTheory.LogDR.ChartStalk.dlog_mul, ih, succ_nsmul]
-
 private theorem dlog_prod_zpow {K : Type} [Field K] {n : ℕ} (s : Finset (Fin n)) (x : Fin n → Kˣ) (m : Fin n → ℤ) :
     dlog (∏ j ∈ s, x j ^ m j) = ∑ j ∈ s, m j • dlog (x j) := by
   classical

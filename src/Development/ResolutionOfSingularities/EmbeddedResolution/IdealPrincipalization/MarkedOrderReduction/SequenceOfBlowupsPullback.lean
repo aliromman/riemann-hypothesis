@@ -1066,12 +1066,6 @@ private theorem mem_toSequenceOfBlowups_center_support {Y : Scheme.{u}} (d : Blo
   rw [BlowupSequenceData.toSequenceOfBlowups_center]
   exact hw
 
-private theorem eqToHom_comp_projectionToBase_length_add_zero {Y : Scheme.{u}} (s : BlowupSequenceData Y)
-    (t : BlowupSequenceData (s.obj s.length))
-    (h1 : (s.append t).obj (s.length + 0) = s.obj (s.length + 0))
-    (h2 : (s.append t).obj (s.length + 0) = s.obj s.length) :
-    eqToHom h1 ≫ s.projectionToBase (s.length + 0) = eqToHom h2 ≫ s.projectionToBase s.length := rfl
-
 private theorem append_projectionToBase_ne_of_forall_concatIndex_ne (s : BlowupSequenceData X) (t : BlowupSequenceData (s.obj s.length))
     (s' : BlowupSequenceData X') (t' : BlowupSequenceData (s'.obj s'.length))
     (c : SequenceOfBlowupsPullback φ s'.toSequenceOfBlowups s.toSequenceOfBlowups)

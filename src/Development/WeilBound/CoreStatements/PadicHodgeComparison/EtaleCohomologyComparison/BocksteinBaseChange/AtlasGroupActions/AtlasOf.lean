@@ -75,59 +75,68 @@ variable (Amp : ∀ M : Model l K, E.LineData M.X → Prop)
 
 def bβ (hC : B.Compat l) {M : Model l K} (a : (dat Amp).Ch M) (j : ℕ) :
     ((dat Amp).H a).N j →ₗ[(per l K).A] ((dat Amp).A a).N j :=
-  (show Sys.Hom (M.HS false j) (M.MS j) (RingHom.id _) from
-    βS hC (B.schFn M.p) (okToOC l K) false j).lim
+  @Eq.rec (PAlg l ⥤ Type) ((B.schFn M.p).pt (okToOC l K))
+    (fun P _ => (M.HS false j).lim →ₗ[Acris l] (MSys P j).lim)
+    (βS hC (B.schFn M.p) (okToOC l K) false j).lim
+    M.P rfl
 
 def bβ' (hC : B.Compat l) {M : Model l K} (a : (dat Amp).Ch M) (j : ℕ) :
     ((dat Amp).H' a).N j →ₗ[(per l K).A] ((dat Amp).A a).N j :=
-  (show Sys.Hom (M.HS true j) (M.MS j) (RingHom.id _) from
-    βS hC (B.schFn M.p) (okToOC l K) true j).lim
+  @Eq.rec (PAlg l ⥤ Type) ((B.schFn M.p).pt (okToOC l K))
+    (fun P _ => (M.HS true j).lim →ₗ[Acris l] (MSys P j).lim)
+    (βS hC (B.schFn M.p) (okToOC l K) true j).lim
+    M.P rfl
 
-private theorem limit_bounds (hMain : B.Main l) (hC : B.Compat l)
-    {O : Type} [CommRing O] (F : B.Fn O) (κ : O →+* OC l)
-    (hAtlas : ∃ d, Nonempty (F.Atlas d)) (j : ℕ) (t : Acris l)
-    (hPeriod : ∃ ε : B.Eps l, ∃ u : Acris l, IsUnit u ∧ t = ε.μ * u) :
-    ∃ n : ℕ, (∀ k, UpTo (t ^ n) (βS hC F κ k j).lim) ∧
-      ∀ y : (MSys (F.pt κ) j).lim, ∃ x : (B.HcSys F κ false j).lim,
-        (∀ i, x.1 i ∈ B.HcFil F κ false i n j) ∧ (βS hC F κ false j).lim x = t ^ n • y := by
-  refine hAtlas.elim fun d hA => hA.elim fun A =>
-    hPeriod.elim fun ε hε => hε.elim fun u hu => (hMain d j).elim fun N hN => ?_
-  have hLevel := hN F κ ε A
-  refine ⟨2 * N, ?_, ?_⟩
-  · intro k
-    let φ := βS hC F κ k j
-    have hUpTo (n : ℕ) := (hLevel n).1 k
-    exact ⟨GlueBL.lim_inj φ ε.μ u t N hu.2 hUpTo, GlueBL.lim_surj φ ε.μ u t N hu.2 hUpTo⟩
-  · exact GlueBL.lim_surj_fil (βS hC F κ false j) ε.μ u t N hu.2
-      (fun n r => B.HcFil F κ false n r j)
-      (fun n r => hC.smul_fil F κ false n r j ε.μ (ε.μ_mem false (PAlg.base l) n))
-      (fun n => ((hLevel n).1 false).1) (fun n => (hLevel n).2)
-
--- The same exponent works for both comparison maps and the filtered lift.
-private theorem model_bounds (hMain : B.Main l) (hC : B.Compat l) {M : Model l K}
-    (a : (dat Amp).Ch M) (hM : M.Sm) (j : ℕ) :
-    ∃ n : ℕ, UpTo ((per l K).t ^ n) (bβ Amp hC a j) ∧
-      UpTo ((per l K).t ^ n) (bβ' Amp hC a j) ∧
-      ∀ y, ∃ x, (dat Amp).fil a j n x ∧ bβ Amp hC a j x = (per l K).t ^ n • y := by
-  obtain ⟨n, hb, hf⟩ := limit_bounds hMain hC (B.schFn M.p) (okToOC l K) (atlas_of hM) j
-    (per l K).t (GlueBE.exists_eps_period_t_unit l K)
-  exact ⟨n, hb false, hb true, hf⟩
+private theorem f_bounds (hMain : B.Main l) (hC : B.Compat l) {M : Model l K} (a : (dat Amp).Ch M) (hM : M.Sm) (j : ℕ) :
+    (∃ n : ℕ, ∀ x, bβ Amp hC a j x = 0 → (per l K).t ^ n • x = 0) ∧
+    (∃ n : ℕ, ∀ x, bβ' Amp hC a j x = 0 → (per l K).t ^ n • x = 0) ∧
+    (∃ n : ℕ, ∀ y, ∃ x, bβ' Amp hC a j x = (per l K).t ^ n • y) ∧
+    (∃ n : ℕ, ∀ y, ∃ x, (dat Amp).fil a j n x ∧ bβ Amp hC a j x = (per l K).t ^ n • y) := by
+  have aux : ∀ (P : PAlg l ⥤ Type) (hP : (B.schFn M.p).pt (okToOC l K) = P)
+      (t : Acris l) (_ : ∃ ε : B.Eps l, ∃ u : Acris l, IsUnit u ∧ t = ε.μ * u),
+      ∃ n : ℕ,
+        (∀ k, UpTo (t ^ n)
+          (@Eq.rec (PAlg l ⥤ Type) ((B.schFn M.p).pt (okToOC l K))
+            (fun Q _ => (M.HS k j).lim →ₗ[Acris l] (MSys Q j).lim)
+            (βS hC (B.schFn M.p) (okToOC l K) k j).lim P hP)) ∧
+        (∀ y : (MSys P j).lim, ∃ x : (M.HS false j).lim,
+          (∀ i, x.1 i ∈ B.HcFil (B.schFn M.p) (okToOC l K) false i n j) ∧
+          (@Eq.rec (PAlg l ⥤ Type) ((B.schFn M.p).pt (okToOC l K))
+            (fun Q _ => (M.HS false j).lim →ₗ[Acris l] (MSys Q j).lim)
+            (βS hC (B.schFn M.p) (okToOC l K) false j).lim P hP) x = t ^ n • y) := by
+    intro P hP t hPeriod
+    subst hP
+    refine (atlas_of hM).elim fun d hA => hA.elim fun A =>
+      hPeriod.elim fun ε hε => hε.elim fun u hu => (hMain d j).elim fun N hN => ?_
+    have hLevel := hN (B.schFn M.p) (okToOC l K) ε A
+    refine ⟨2 * N, ?_, ?_⟩
+    · intro k
+      let φ := βS hC (B.schFn M.p) (okToOC l K) k j
+      have hUpTo (n : ℕ) := (hLevel n).1 k
+      exact ⟨GlueBL.lim_inj φ ε.μ u t N hu.2 hUpTo, GlueBL.lim_surj φ ε.μ u t N hu.2 hUpTo⟩
+    · exact GlueBL.lim_surj_fil (βS hC (B.schFn M.p) (okToOC l K) false j) ε.μ u t N hu.2
+        (fun n r => B.HcFil (B.schFn M.p) (okToOC l K) false n r j)
+        (fun n r => hC.smul_fil (B.schFn M.p) (okToOC l K) false n r j ε.μ (ε.μ_mem false (PAlg.base l) n))
+        (fun n => ((hLevel n).1 false).1) (fun n => (hLevel n).2)
+  have h := aux M.P rfl (per l K).t (GlueBE.exists_eps_period_t_unit l K)
+  exact ⟨h.imp fun _ hn => (hn.1 false).1, h.imp fun _ hn => (hn.1 true).1,
+    h.imp fun _ hn => (hn.1 true).2, h.imp fun _ hn => hn.2⟩
 
 theorem f_inj (hMain : B.Main l) (hC : B.Compat l) {M : Model l K} (a : (dat Amp).Ch M) (hM : M.Sm) (j : ℕ) :
     ∃ n : ℕ, ∀ x, bβ Amp hC a j x = 0 → (per l K).t ^ n • x = 0 :=
-  (model_bounds Amp hMain hC a hM j).imp fun _ h => h.1.1
+  (f_bounds Amp hMain hC a hM j).1
 
 theorem f_inj' (hMain : B.Main l) (hC : B.Compat l) {M : Model l K} (a : (dat Amp).Ch M) (hM : M.Sm) (j : ℕ) :
     ∃ n : ℕ, ∀ x, bβ' Amp hC a j x = 0 → (per l K).t ^ n • x = 0 :=
-  (model_bounds Amp hMain hC a hM j).imp fun _ h => h.2.1.1
+  (f_bounds Amp hMain hC a hM j).2.1
 
 theorem f_surj' (hMain : B.Main l) (hC : B.Compat l) {M : Model l K} (a : (dat Amp).Ch M) (hM : M.Sm) (j : ℕ) :
     ∃ n : ℕ, ∀ y, ∃ x, bβ' Amp hC a j x = (per l K).t ^ n • y :=
-  (model_bounds Amp hMain hC a hM j).imp fun _ h => h.2.1.2
+  (f_bounds Amp hMain hC a hM j).2.2.1
 
 theorem f_surj (hMain : B.Main l) (hC : B.Compat l) {M : Model l K} (a : (dat Amp).Ch M) (hM : M.Sm) (j : ℕ) :
     ∃ n : ℕ, ∀ y, ∃ x, (dat Amp).fil a j n x ∧ bβ Amp hC a j x = (per l K).t ^ n • y :=
-  (model_bounds Amp hMain hC a hM j).imp fun _ h => h.2.2
+  (f_bounds Amp hMain hC a hM j).2.2.2
 
 end GlueB'
 
