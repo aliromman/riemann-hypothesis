@@ -11,6 +11,7 @@ permissions:
 env:
   LEAN_ABORT_ON_PANIC: '1'
   LEAN_NUM_THREADS: '1'
+  RUST_MIN_STACK: '33554432'
   MATHLIB_CACHE_GET_URL: https://cache.mathlib.org/mathlib4
 
 jobs:
@@ -90,6 +91,8 @@ jobs:
         working-directory: parent
         run: |
           root="$GITHUB_WORKSPACE/harness/ci/root-replay"
+          export RH_LTAR_MANIFEST="$RUNNER_TEMP/rh-screen-cache/metadata/7ef75c550561a6f21d27bb76c9a53fcf6a9a6fe5d5d481f2cdb56e9b1262589d.jsonl.gz"
+          export RH_LTAR_DIAGNOSTICS="$RUNNER_TEMP/root-report/leantar-diagnostics.jsonl"
           python3 -u "$root/stage.py" --request "$root/request" --parent . --candidate ../candidate \
             --cache "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-root" \
             --bin "$(dirname "$(elan which lean)")" --rebuilder "$RUNNER_TEMP/build-public"

@@ -19,6 +19,7 @@ from native import Blobs,file_sha,git,header,hosted_batch,ls,tree
 HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE.parent/'import-screen'))
 from lake_imports import import_levels
+from runtime.decode import unpack
 from prepare import GRAPH,MANIFEST,PARENT,SOURCE_TREE,canonical,graph_from_source,load,metadata,pin,source_path
 from reuse_gate import check as check_reuse
 
@@ -81,8 +82,7 @@ def restore_batch(names,index,shas,cache,leantar,rebuilder,baseline,images,reade
         folder.mkdir()
         directories[n]=folder
         jobs.append({'file':str(tar),'hash':key,'base':[str(folder),str(folder)]})
-    subprocess.run([leantar,'--jobs','2','-f','-x','-j','-'],input=json.dumps(jobs),text=True,check=True,
-        env=os.environ|{'RUST_MIN_STACK':'33554432'})
+    unpack(leantar,['--jobs','2','-f','-x','-j','-'],jobs)
     parents=BatchParents(directories)
     opt=SimpleNamespace(out=batchdir,rebuilder=rebuilder,audit_ir=True,plan_only=False,ir_results={})
     new_jobs=[]
