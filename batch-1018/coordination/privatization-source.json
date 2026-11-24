@@ -1,0 +1,27 @@
+{
+  "parent": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca",
+  "import_proposal": "87b887f70183a19b577c6b084a8865f04ecb69e4",
+  "scope_proposal": "70e09b0994fce225e678b4808941de89c27a763b",
+  "peer": "8d31233f27d0057692856ad9263fd7899b457f03",
+  "peer_pr": 1057,
+  "unique_intersecting_sources": 971,
+  "import_paths": 968,
+  "scope_paths": 219,
+  "textual_conflicts": {
+    "879": 373,
+    "977": 208
+  },
+  "reconciliation": {
+    "import_files": 968,
+    "removed_imports": 25301,
+    "added_imports": 16,
+    "scope_files": 219,
+    "members": 1193,
+    "fusions": 207,
+    "tidied": 12,
+    "scope_commands_saved": 1736,
+    "both": 216
+  },
+  "unresolved": {},
+  "scope": "Source reconstruction only. The peer changes public declarations and project imports. An integrated build must verify that change."
+}
