@@ -1,0 +1,29 @@
+{
+  "stock": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+  "candidate": "e05737b0d310930177bc746e7cf64f12d7731438",
+  "modules": 5,
+  "fullModules": 1587,
+  "targets": [
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.ImportsSide",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TOrdVan"
+  ],
+  "verifiedSourceFiles": {
+    "stock": 11874,
+    "candidate": 11874
+  },
+  "totals": {
+    "public": 230,
+    "rawTypes": 226,
+    "definitions": 96,
+    "rawDefinitions": 96,
+    "theorems": 124,
+    "rawProofs": 114,
+    "axiomRecords": 230
+  },
+  "kernelComparisonModules": 2,
+  "expandedProofFields": 0,
+  "failedModules": []
+}

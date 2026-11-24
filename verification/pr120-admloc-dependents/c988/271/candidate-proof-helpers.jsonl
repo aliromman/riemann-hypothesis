@@ -1,0 +1,3 @@
+{"declaration":"UpperTheory.V.Hi.HSet.IsJ","environment":"candidate","expandedConversion":"defeq","field":"definition","module":"Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.IsTheta","originalToExpanded":"defeq"}
+{"declaration":"UpperTheory.V.Hi.HSet.IsMap","environment":"candidate","expandedConversion":"defeq","field":"definition","module":"Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.IsTheta","originalToExpanded":"defeq"}
+{"declaration":"UpperTheory.V.Z.Ord.CoreOrd","environment":"candidate","expandedConversion":"defeq","field":"definition","module":"Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.OrdinaryJacquetModules.CoreOrdAlt","originalToExpanded":"defeq"}

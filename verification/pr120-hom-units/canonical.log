@@ -1,0 +1,2 @@
+'canonicalHomNumeral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'canonicalHomUnit' depends on axioms: [propext, Classical.choice, Quot.sound]

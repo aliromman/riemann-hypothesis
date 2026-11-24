@@ -1,0 +1,21 @@
+{
+  "merge": "92e91959e3fbd8a3533172cffdb6272143341d1f",
+  "lean": "Lean (version 4.36.0, arm64-apple-darwin24.6.0, commit 611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9, Release)",
+  "projectInputs": 16,
+  "module": "GroundTheory.AutomorphicForms.AdelicGLn",
+  "build": {
+    "exit": 0,
+    "sha256": "1b31e203f31530166211070f61b5080c3213a58885097108ab91e520e92e8e6e",
+    "last": [
+      "  Subgroup.isClosed_of_discreteT\u0332o\u0332p\u0332o\u0332l\u0332o\u0332g\u0332y\u0332",
+      "All targets up-to-date (18281 jobs)."
+    ]
+  },
+  "kernel": {
+    "exit": 0,
+    "sha256": "62841b08b66098f483569e580165b6b93c052de36809ecf54249cb7353df0c89",
+    "last": [
+      "replaying GroundTheory.AutomorphicForms.AdelicGLn"
+    ]
+  }
+}

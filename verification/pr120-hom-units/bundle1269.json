@@ -1,0 +1,226 @@
+{
+  "baseline": "2d20aa9035becfe380b9fe619e3d3fc968cf3400",
+  "repair": "75dd653aaa59d745e7f4794cfb4c6da5d1f73455",
+  "integration": "92e91959e3fbd8a3533172cffdb6272143341d1f",
+  "original": "c7791603122c0328f79e49f6be5d7d4402effc53",
+  "module": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1269",
+  "results": {
+    "originalInputs": 771,
+    "physicalInputs": 20764,
+    "arms": {
+      "original": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "a24cf30972385a8d57473ec8592f744cebe4625db18305a3f233a8fcdfe70f96",
+        "line": 117,
+        "sourceSHA256": "1cb2f6118deeab8811ee32bc672a99e41cb4a08c566e857db8272ab4ce5b6341",
+        "atRewrite": [],
+        "kernel": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "e4401ef1f44c0397f916f479d1687163724f8d6c75b95eb5238f8546fa4439b8"
+        }
+      },
+      "before": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "48c2b35d3cb260c4893681dabd616e52190fea7f1d49708d0c333b9182e15ba7",
+        "line": 115,
+        "sourceSHA256": "b9fefcec08af23f249d45c21caec5bea3cd15c73318ae49391ff923bb835a28a",
+        "atRewrite": [],
+        "kernel": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "e4401ef1f44c0397f916f479d1687163724f8d6c75b95eb5238f8546fa4439b8"
+        }
+      },
+      "after-with-rfl": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "37c66ba13a68318b2da23fb4c3dc7b859158d9a9c0d2274e8f2d17abc52a8613",
+        "line": 118,
+        "sourceSHA256": "a77c4a6ecf3ea89c34420cbdf2bf05388c2e4555fe715634543be488595d22c0",
+        "atRewrite": [],
+        "kernel": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "e4401ef1f44c0397f916f479d1687163724f8d6c75b95eb5238f8546fa4439b8"
+        }
+      },
+      "expanded-before": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "4a4b247cbe589e83306dad866270a4da9e85ba61664849e45fe6760416045386",
+        "line": 160,
+        "sourceSHA256": "a65ea0b4532b38d55230e12e53385f57255c832fd871a45146dce3c1e50ddc58",
+        "atRewrite": [],
+        "kernel": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "f914abad93ade5d0438b97f2e6d6e0dd985e53a4d3737a4bed19c6b0dd39b7f9"
+        }
+      },
+      "expanded-after": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "6eddceface38c6ea4d6c23b28c919635d3cf4213f02f4ea56c4cfdc90856f10a",
+        "line": 162,
+        "sourceSHA256": "371c633276a5d2a814b2fb5ce7473f4d018042646dbe66b451fc7ebb12f001ba",
+        "atRewrite": [],
+        "kernel": {
+          "exit": 0,
+          "error_count": 0,
+          "first_error": [],
+          "log_sha256": "f914abad93ade5d0438b97f2e6d6e0dd985e53a4d3737a4bed19c6b0dd39b7f9"
+        }
+      }
+    },
+    "unchangedIntegratedMember": true,
+    "beforeBlob": "24f0eb0c4c4ba2fa5f90123fb5696e004af34cd4d1a5bee3e61ed9abce5eb35e",
+    "afterBlob": "7ea13e18f73878e3b257a300ef400413aea961013b3de2c4965bf804334ce29a",
+    "expandedHeaderInputs": 4478,
+    "logicalDirect": [
+      "Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.MorphismsSpreadOutToFgSubalgebra",
+      "Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.AbelianSchemeLawsUnconditional",
+      "Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.PrincipalPolarisationUniqueSection",
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.FourierSeriesProductEqProductSeries",
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsFractionRingOfForallDiv",
+      "Development.AbelianVarietyTheory.Proofs.DegenerationProofs.SemistableExtensionMultiplesOfSemistable",
+      "Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.IsAbelianSchemeAndExtendOfGenericHoms",
+      "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsThetaConstantsLocallyOnBase",
+      "Development.AbelianVarietyTheory.Proofs.ModuliProofs.FinitePointsOfIsOpenImmersion",
+      "Development.AbelianVarietyTheory.Proofs.ModuliProofs.HomExtensionSemiAbelianDiscreteValuationRing",
+      "Development.AbelianVarietyTheory.Proofs.ModuliProofs.KTrivOfGeometricPointsAndTangents",
+      "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSubgroupEqRangeOfLists",
+      "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsUniqueSectionOfDense",
+      "Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsUniqueSectionOfLocallyRegular",
+      "Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IsIsoIffBijectiveOverAlgClosed",
+      "Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.FormallyUnramifiedOfTangentMapInjective",
+      "Development.AbelianVarietyTheory.Proofs.ModuliProofs.OActDescendOfGenerators",
+      "Development.AbelianVarietyTheory.Proofs.ModuliProofs.PrimeToPartLevelExistsUniqueMono",
+      "Development.AbelianVarietyTheory.Proofs.ModuliProofs.QuotientDescendGrpObj",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledSpaceFrameColBlocksEq",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.EnvelopingRepresentationInjective",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqZeroOfFrameNormEqZero",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleOfFinrankLeCardAlgHomAlgebraicClosure",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBasePointOfFiniteEtaleOverAlgClosed",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLagrangianSkewHermitianCompletionTensorStatement",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAbelianEndomorphismSpreadSpecialise",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelSquareRootWeilPairingStandard",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpreadEndomorphismTorsionSectionEqSpecialisation",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SubstitutionInverseTransposeMaximalMinorProduct",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SubstitutionMaximalMinorProductEqSumCauchyBinet",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumSqNormEqDot",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorPolynomialsToProductVariablesCompMulLeftX",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorPolynomialsToProductVariablesCompPderiv",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TprodConstantPolynomialsNeZero",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryAdelicPlaceDecompositionStatement",
+      "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsCoordAtPoints",
+      "Development.AbelianVarietyTheory.Definitions.Divisors.HermSysHypOneLeLambdaZero",
+      "ReciprocityTheory.SemistableReduction.SemiDegG",
+      "ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTotallyRealEvenNegPlacesLocalNorm",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExtremalVectorEvalMultiplicitySpaceOntoHolomorph",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FilMonoOfKerRes",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FilSpaceVEqSpaceP",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FilVSymVKer",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteTranslatesSmoothFunctionOfCompact",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinsumLogISupInt",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockAct2DiagonalOne",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDimensionalOfCommutingFiniteAlgebraJointEi",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteKottwitzClassesPerMinpolyAEqOne",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockHeisenbergOperatorOfCoordsEqSumMulLeftPderiv",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockHeisenbergOperatorOfCoordsRealISmulSignConjO",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockVectorIsThetaFunctionDefinitePair",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussAbsEqISup",
+      "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDefiniteDatumGoodObj"
+    ]
+  },
+  "exactMembers": {
+    "before": {
+      "sourceSHA256": "b9fefcec08af23f249d45c21caec5bea3cd15c73318ae49391ff923bb835a28a",
+      "compile": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "0660f0950279b565059e1ca8188aa2e9e8d4684a322a2eb471526f2f34bb8e15"
+      },
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "e4401ef1f44c0397f916f479d1687163724f8d6c75b95eb5238f8546fa4439b8"
+      },
+      "interface": {
+        "public": 9,
+        "identicalStoredTypes": 9,
+        "definitions": 0,
+        "theorems": 9,
+        "matchingProofs": 6,
+        "axiomRecords": 9
+      }
+    },
+    "after": {
+      "sourceSHA256": "9494871d2b78aa28b85814965e3ccf263934c5976cd1ac9a72e59247c4e592aa",
+      "compile": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "235223254e6c6e556b0be37c77a8e60434a8695be0b57f0629f72246dc623e6b"
+      },
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "e4401ef1f44c0397f916f479d1687163724f8d6c75b95eb5238f8546fa4439b8"
+      },
+      "interface": {
+        "public": 9,
+        "identicalStoredTypes": 9,
+        "definitions": 0,
+        "theorems": 9,
+        "matchingProofs": 5,
+        "axiomRecords": 9
+      }
+    }
+  },
+  "providerControls": [
+    {
+      "providers": 0,
+      "inputs": 771,
+      "exit": 0,
+      "errors": 0,
+      "sourceSHA256": "b9fefcec08af23f249d45c21caec5bea3cd15c73318ae49391ff923bb835a28a"
+    },
+    {
+      "providers": 26,
+      "inputs": 2054,
+      "exit": 0,
+      "errors": 0,
+      "sourceSHA256": "0532680b3fdaf269eaa4419f08ffd0914e4dad6f228b07bc817a14ad7065ebbd"
+    },
+    {
+      "providers": 343,
+      "inputs": 5093,
+      "exit": 0,
+      "errors": 0,
+      "sourceSHA256": "7e79784bd29ce9783bd1aede2b3b9d63e7ab2ed03d7dc4108422e9a35a5a5fc1"
+    },
+    {
+      "providers": 1317,
+      "inputs": 8815,
+      "exit": 0,
+      "errors": 0,
+      "sourceSHA256": "e941e6afeb5dc60fae13bc135c990456f8c69dd6042fc0f38f1329ff46d6406b"
+    }
+  ]
+}
