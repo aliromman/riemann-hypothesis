@@ -1,0 +1,171 @@
+{
+  "parent": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "parent_src": "980141067b4eec00e78e2d490134c6299613cdef",
+  "donor": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+  "module_manifest": "edc38df9198228480080821adb772f6c4109fdba7404a04be28bc49a250cb487",
+  "config_blobs": {
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294"
+  },
+  "mathlib": [
+    "Mathlib.Algebra.Category.CommAlgCat.Basic",
+    "Mathlib.Algebra.Order.Floor.Extended",
+    "Mathlib.Algebra.Order.Floor.Semifield",
+    "Mathlib.Algebra.Order.Interval.Basic",
+    "Mathlib.Algebra.Order.Star.Real",
+    "Mathlib.Analysis.Complex.UpperHalfPlane.Basic",
+    "Mathlib.Analysis.Normed.Algebra.GelfandRadius",
+    "Mathlib.Analysis.SpecialFunctions.Bernstein",
+    "Mathlib.Analysis.SpecialFunctions.Gamma.Basic",
+    "Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp",
+    "Mathlib.Basic.Real.Basic",
+    "Mathlib.CategoryTheory.Monoidal.Mon",
+    "Mathlib.Combinatorics.Enumerative.DyckWord",
+    "Mathlib.Combinatorics.Quiver.ReflQuiver",
+    "Mathlib.Combinatorics.SimpleGraph.Triangle.Removal",
+    "Mathlib.Data.NNRat.Floor",
+    "Mathlib.Data.Nat.Choose.Multinomial",
+    "Mathlib.Dynamics.Ergodic.Action.Regular",
+    "Mathlib.Geometry.Euclidean.Volume.Basic",
+    "Mathlib.LinearAlgebra.Alternating.Uncurry.Fin",
+    "Mathlib.LinearAlgebra.ExteriorAlgebra.Basis",
+    "Mathlib.LinearAlgebra.ExteriorPower.Basic",
+    "Mathlib.LinearAlgebra.PiTensorProduct.Generators",
+    "Mathlib.LinearAlgebra.Quotient.Bilinear",
+    "Mathlib.MeasureTheory.Group.Defs",
+    "Mathlib.MeasureTheory.Group.FundamentalDomain",
+    "Mathlib.MeasureTheory.Group.LIntegral",
+    "Mathlib.MeasureTheory.Group.Measure",
+    "Mathlib.MeasureTheory.Integral.Lebesgue.Basic",
+    "Mathlib.MeasureTheory.Measure.Haar.Unique",
+    "Mathlib.NumberTheory.Chebyshev",
+    "Mathlib.NumberTheory.Height.NumberField",
+    "Mathlib.NumberTheory.Height.Projectivization",
+    "Mathlib.NumberTheory.LucasLehmer",
+    "Mathlib.NumberTheory.SelbergSieve",
+    "Mathlib.RingTheory.Kaehler.Basic",
+    "Mathlib.RingTheory.PiTensorProduct",
+    "Mathlib.RingTheory.Radical.NatInt",
+    "Mathlib.RingTheory.RingHom.StandardSmooth",
+    "Mathlib.RingTheory.WittVector.IsPoly",
+    "Mathlib.Tactic.Basify",
+    "Mathlib.Tactic.ENatToNat",
+    "Mathlib.Tactic.Echelon.Zsqrtd",
+    "Mathlib.Tactic.Inclusion.Extension.Core.Core",
+    "Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit",
+    "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp",
+    "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses",
+    "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic",
+    "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses",
+    "Mathlib.Tactic.Linter.HaveILetI",
+    "Mathlib.Tactic.Linter.Style",
+    "Mathlib.Tactic.NormNum.Irrational",
+    "Mathlib.Tactic.NormNum.IsCoprime",
+    "Mathlib.Tactic.NormNum.IsSquare",
+    "Mathlib.Tactic.NormNum.LegendreSymbol",
+    "Mathlib.Tactic.NormNum.ModEq",
+    "Mathlib.Tactic.NormNum.NatFib",
+    "Mathlib.Tactic.NormNum.NatLog",
+    "Mathlib.Tactic.NormNum.NatSqrt",
+    "Mathlib.Tactic.NormNum.Ordinal",
+    "Mathlib.Tactic.NormNum.Parity",
+    "Mathlib.Tactic.NormNum.Prime",
+    "Mathlib.Tactic.NormNum.RealSqrt",
+    "Mathlib.Tactic.Polynomial.Basic",
+    "Mathlib.Tactic.ReduceModChar",
+    "Mathlib.Tactic.TypeStar",
+    "Mathlib.Topology.Sheaves.Init"
+  ],
+  "pulls": {
+    "879": {
+      "author": "ac3ff4bec1bf43a091eb6721e12eaf40a592cb9d",
+      "tested_merge": "4db316c45c8e1d40f99c60396f58951e7ae2a22f",
+      "src": "7225a26844ccbc8d12877c062c1fe5330ec78ad1",
+      "stock_workflow": "f3aae0655526a12e1fa18a8e8c3a4ac29efc3f78",
+      "theorems": [
+        {
+          "module": "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne",
+          "name": "GlobalTheory.CatCoh.commAlgFunctorCoboundaryZero_mem_cocyclesOne",
+          "sha256": "00615d0ad579cd5a3309866b1d7e5861bfa4d6b206bf92d861a0d9b542eee332",
+          "bytes": 4888069,
+          "project_closure": [
+            "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne"
+          ]
+        },
+        {
+          "module": "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange",
+          "name": "GlobalTheory.TopForm.isBaseChange_exteriorPower",
+          "sha256": "2dcae760dcc362b23a2aec4c37f91947c52936d0274a4d81e8d65c82812ae24e",
+          "bytes": 52581161,
+          "project_closure": [
+            "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange",
+            "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.AlternatingMapSumSmulEqDetSmul"
+          ]
+        }
+      ],
+      "source_sha256": {
+        "Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCoboundaryZeroMemCocyclesOne": {
+          "parent": "14370c67b950b186f54a74f6200bbb48bcb849664f4006de37158e90e0addf04",
+          "candidate": "5da538ce39fe3a0e9de338a2536246613d05aa2086af382ffe4a2e8334b1ebd4"
+        },
+        "Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange": {
+          "parent": "cc3c0a380d13991803c810c5b3cfb23a9bd6fd68caa4a522e9737bed85591684",
+          "candidate": "68844441ce8b7f390ca829157de13b201b9f4c287862699e6a3e5378134a2cc6"
+        },
+        "Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.AlternatingMapSumSmulEqDetSmul": {
+          "parent": "aeb72ff6bc8bfcbbf1e3d164d8da6bb81c1beafffb1255442365a6e1d0918eb0",
+          "candidate": "33931b49abf21ce46ce52ec994c274ee376feb7194f78cb7c1abdf920e5dae3e"
+        }
+      }
+    },
+    "977": {
+      "author": "c0228c0ae22d9cbf3e5466760718fd19111058ac",
+      "tested_merge": "19beb187eef5fd39b78be2d7bd81855b2b5a4327",
+      "src": "3944961f74ce15f369676a6052f0a6586707750d",
+      "stock_workflow": "907cdb7d158ed2af3ab7579b5e2271be094eced7",
+      "theorems": [
+        {
+          "module": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+          "name": "GlobalTheory.CompanionTheory.SW.Averaging.bijective_pair",
+          "sha256": "31bf90c0ba09af45d2a9f9f99cc93265e87b6cd3824bb11016d34544ef565bf3",
+          "bytes": 3149696,
+          "project_closure": [
+            "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular",
+            "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+            "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat"
+          ]
+        },
+        {
+          "module": "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters",
+          "name": "Formalism.LatticeBaseChangeAlt.four_term_sum_bound_of_parameters",
+          "sha256": "9bf232ca29179dce903c72e3121754f9e639887a77f3072e88ef1ce68638c35b",
+          "bytes": 50380642,
+          "project_closure": [
+            "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters"
+          ]
+        }
+      ],
+      "source_sha256": {
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteCovolumeUnimodular": {
+          "parent": "08651606886f625d8bd0b4ee559d94f9d8e222beb962777a1defff31badff61a",
+          "candidate": "08651606886f625d8bd0b4ee559d94f9d8e222beb962777a1defff31badff61a"
+        },
+        "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower": {
+          "parent": "a768e7e8759ab147b97a2b7d7088d136de9596b390db6b5a735699aa0b5029c8",
+          "candidate": "069277b98f07eca8ff4074ae0a81f39e79eb7a947e65726c9b30d87a946ce193"
+        },
+        "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters": {
+          "parent": "e1e9b2a0cdfa356ebbce7c18314d5a83273ad6dea18c991dd9ec09db9d8e6937",
+          "candidate": "d453baf5a27f27a0001da3d9425f3c985adc466035c4a72dbe1942a4a794ff02"
+        },
+        "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat": {
+          "parent": "345c180c387372089ca2ae461869e76752bddebff6e7ed97abf84bb8cba0704c",
+          "candidate": "d5ec7fe423b9d8eba168c857c657df98423afd7953157d75ba9adbb43c2d3150"
+        }
+      }
+    }
+  }
+}

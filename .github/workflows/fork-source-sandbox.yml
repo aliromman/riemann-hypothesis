@@ -1,0 +1,55 @@
+name: Compare four Lean theorem sources inside Bubblewrap
+on:
+  push:
+    branches: [ci/batch-1198/source-sandbox]
+    paths: [ci/source-sandbox/plan.json]
+permissions:
+  contents: read
+jobs:
+  check:
+    if: github.repository == 'aliromman/riemann-hypothesis'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout: ci/source-sandbox
+      - name: Probe ordinary unprivileged Bubblewrap
+        run: |
+          mkdir -p "$RUNNER_TEMP/proof-logs"
+          if ! command -v bwrap; then
+            sudo apt-get -qq update
+            sudo apt-get -qy --no-install-recommends install bubblewrap
+          fi
+          python3 ci/source-sandbox/check.py probe
+      - name: Bind the parent and actual GitHub PR merge sources
+        run: python3 ci/source-sandbox/check.py sources
+      - name: Install the pinned Lean toolchain
+        run: |
+          curl -fsSL --retry 3 https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          "$HOME/.elan/bin/elan" toolchain install "$(cat "$RUNNER_TEMP/proof-project/lean-toolchain")"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch Mathlib dependencies for the seven project sources
+        run: |
+          cd "$RUNNER_TEMP/proof-project"
+          mapfile -t imports < "$RUNNER_TEMP/proof-logs/mathlib.txt"
+          export MATHLIB_CACHE_DIR="$RUNNER_TEMP/mathlib-cache"
+          lake exe mathlib/cache get "${imports[@]}"
+      - name: Run stock Comparator with source and default sandbox
+        run: |
+          ci="$PWD/ci/source-sandbox/check.py"
+          cd "$RUNNER_TEMP/proof-project"
+          lean="$(elan which lean)"
+          export PATH="${lean%/*}:$PATH"
+          export LEAN_NUM_THREADS=1
+          python3 "$ci" compare
+      - name: Retain original sandbox reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: source-sandbox-${{ github.sha }}
+          path: ${{ runner.temp }}/proof-logs
+          if-no-files-found: error
+          retention-days: 7
