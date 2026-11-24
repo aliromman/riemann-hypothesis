@@ -1,0 +1,347 @@
+{
+  "parent": "1c5f0accc9a1e44d4166867f5452c8bc68440979",
+  "repair": "fa785cee0bec564a80e9020765bd516c68aec60c",
+  "project_sources": 623,
+  "source_manifest_sha256": {
+    "parent": "ad9f0ab6bede567d903af19ae5603a3a83e7ad7b09ca31c77820d8f5b087c080",
+    "repair": "e7023836b3752a9d37735592c30fa6dbb1cac7a559633d9b1079e57e985db1c4"
+  },
+  "parent_diagnostic": "error: src/Development/AutomorphicArithmetic/AutomorphicVarieties/CurveDVRSpecialization/Bundle0008.lean:192:57: failed to synthesize\n  IsLocalRing L.R\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached",
+  "candidate_result": "Build completed successfully (19495 jobs).",
+  "targets": [
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.Bundle0003",
+      "kernel": "pass",
+      "dependency_hash": "0b7fa68cfb3cd181",
+      "exported_axiom_records": 77
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.Bundle0004",
+      "kernel": "pass",
+      "dependency_hash": "846d38d387651c3c",
+      "exported_axiom_records": 72
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.Bundle0006",
+      "kernel": "pass",
+      "dependency_hash": "1ec27aca87d817f9",
+      "exported_axiom_records": 7
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.Bundle0007",
+      "kernel": "pass",
+      "dependency_hash": "c9655a817c418ff3",
+      "exported_axiom_records": 4
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.ComponentsGoodRankTwo",
+      "kernel": "pass",
+      "dependency_hash": "bbdbc7258d1e2698",
+      "exported_axiom_records": 1
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.FinCrit",
+      "kernel": "pass",
+      "dependency_hash": "5ea8525c23e2fd94",
+      "exported_axiom_records": 1
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.FinLamOf",
+      "kernel": "pass",
+      "dependency_hash": "6555b7da7af251e5",
+      "exported_axiom_records": 5
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.FinPtOf",
+      "kernel": "pass",
+      "dependency_hash": "c98c49ef36809e88",
+      "exported_axiom_records": 1
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.IsUnitOrIsUnitOfAddOne",
+      "kernel": "pass",
+      "dependency_hash": "f09869fbf2ed23ed",
+      "exported_axiom_records": 37
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.PointEx",
+      "kernel": "pass",
+      "dependency_hash": "facbd1b7cf870105",
+      "exported_axiom_records": 10
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.PropagationTheoremGL3",
+      "kernel": "pass",
+      "dependency_hash": "2d688067139eccf1",
+      "exported_axiom_records": 1
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.PxIsCont",
+      "kernel": "pass",
+      "dependency_hash": "de491fa3eb5a4998",
+      "exported_axiom_records": 1
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.SeedOf",
+      "kernel": "pass",
+      "dependency_hash": "aa74196a2ff95e72",
+      "exported_axiom_records": 2
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.ThickOf",
+      "kernel": "pass",
+      "dependency_hash": "1823b607b14a7b20",
+      "exported_axiom_records": 2
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.UniversalDiagonalOfTriangularPoints",
+      "kernel": "pass",
+      "dependency_hash": "ef2f8a8789501947",
+      "exported_axiom_records": 3
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.Bundle0008",
+      "kernel": "pass",
+      "dependency_hash": "bc22a72132865324",
+      "exported_axiom_records": 3
+    }
+  ],
+  "unmasked_controls": [
+    {
+      "arm": "old",
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.FinCrit",
+      "source_sha256": "91ff9e120a9a1933536ff898c464e860c49f98fdf5a87323d267925f7483311b",
+      "exit": 1,
+      "errors": [
+        {
+          "pos": {
+            "column": 48,
+            "line": 19
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 76,
+            "line": 19
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 53,
+            "line": 22
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 44,
+            "line": 23
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 4,
+            "line": 31
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 57,
+            "line": 31
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 8,
+            "line": 34
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 4,
+            "line": 41
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 12,
+            "line": 40
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 0,
+            "line": 14
+          },
+          "first": "(deterministic) timeout at `whnf`, maximum number of heartbeats (4000000) has been reached"
+        },
+        {
+          "pos": {
+            "column": 0,
+            "line": 14
+          },
+          "first": "linter Mathlib.Linter.declTypeLinter failed: failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 16,
+            "line": 45
+          },
+          "first": "(kernel) unknown constant '_private.Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.FinCrit.0.fc_abs'"
+        },
+        {
+          "pos": {
+            "column": 0,
+            "line": 45
+          },
+          "first": "linter Mathlib.Linter.declTypeLinter failed: failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 39,
+            "line": 70
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 33,
+            "line": 137
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 36,
+            "line": 146
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 14,
+            "line": 150
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 28,
+            "line": 151
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 65,
+            "line": 152
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 34,
+            "line": 178
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 67,
+            "line": 182
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 10,
+            "line": 191
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 30,
+            "line": 202
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 46,
+            "line": 205
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 11,
+            "line": 205
+          },
+          "first": "Tactic `rcases` failed: `x✝ : ?m.1024` is not an inductive datatype"
+        },
+        {
+          "pos": {
+            "column": 15,
+            "line": 231
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 67,
+            "line": 236
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 27,
+            "line": 237
+          },
+          "first": "failed to synthesize"
+        },
+        {
+          "pos": {
+            "column": 0,
+            "line": 122
+          },
+          "first": "(deterministic) timeout at `whnf`, maximum number of heartbeats (4000000) has been reached"
+        }
+      ],
+      "timeouts": 27
+    },
+    {
+      "arm": "old",
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.PxIsCont",
+      "source_sha256": "c3573c623dde8089f9698f6adc40e76cccc079821aad957236a6722b15016a9f",
+      "exit": 0,
+      "errors": [],
+      "timeouts": 0
+    },
+    {
+      "arm": "field",
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.FinCrit",
+      "source_sha256": "91ff9e120a9a1933536ff898c464e860c49f98fdf5a87323d267925f7483311b",
+      "exit": 0,
+      "errors": [],
+      "timeouts": 0
+    },
+    {
+      "arm": "field",
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.PxIsCont",
+      "source_sha256": "c3573c623dde8089f9698f6adc40e76cccc079821aad957236a6722b15016a9f",
+      "exit": 0,
+      "errors": [],
+      "timeouts": 0
+    }
+  ]
+}
