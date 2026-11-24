@@ -1,0 +1,22 @@
+{
+  "pr": 977,
+  "head": "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
+  "source_tree": "a598d19cccf798deb6e2bea9700cbac2ff050e11",
+  "parent": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+  "actual_sources": 11575,
+  "declaration_occurrences": 533869,
+  "distinct_names": 528927,
+  "raw_ordinary_output_checks": 34725,
+  "authenticated_parent_facets_compared": {
+    ".olean": 11575,
+    ".olean.server": 11575,
+    ".ir.sig": 11575,
+    ".ir": 11575,
+    ".olean.private": 8792
+  },
+  "comparison_modes": {
+    "fresh_against_current_official_parent": 7824,
+    "same_original_candidate_and_checked_compiler_inputs": 3751
+  },
+  "warning_occurrences": 134109
+}

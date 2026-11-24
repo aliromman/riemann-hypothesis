@@ -1,0 +1,15 @@
+{
+  "base": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+  "head": "989ea9c41e8400a6fe894fe365298c219f8c7e1d",
+  "src": "a598d19cccf798deb6e2bea9700cbac2ff050e11",
+  "source_pairs_sha256": "2b9494b35d8aca1b999b7e54d2b794faddcc260b42e082bae1aa2399b104917e",
+  "modules": 11575,
+  "scores": [
+    383351,
+    251766
+  ],
+  "signed_native_plan_head": "2b481024a8665bd5b24ca40d28fe90cb4fb86ce0",
+  "signed_native_plan_base": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+  "number_withdrawn_from_signed_plan": 0,
+  "withdrawn_from_signed_plan": []
+}

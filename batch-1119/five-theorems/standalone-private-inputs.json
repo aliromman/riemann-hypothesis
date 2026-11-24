@@ -1,0 +1,14 @@
+{
+  "available_bytes_now": 1892352000,
+  "distinct_raw_private_bytes_lower_bound": 26218121696,
+  "distinct_trusted_private_digests": 18183,
+  "failed_stock_unrestricted_import_log_sha256": "7438cf644cc663361ce210674c3f0743d789bc481334cb5f476575c4f6fbeeab",
+  "known_private_sizes": 18183,
+  "lexical_project_modules_including_Main": 60100,
+  "method": "Start at Main and follow all imports. Count only earlier actual private-image lengths bound to the same whole current archive or to the current raw private SHA-256. Each SHA-256 contributes once.",
+  "no_same_size_local_copy_for_this_member_in_specified_libraries_distinct_hashes": 17997,
+  "no_same_size_local_copy_for_this_member_in_specified_libraries_raw_bytes": 26110164952,
+  "ref": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+  "source_graph_sha256": "01d91c9ce10ee65f89757377e3cf3767ccc71c3ae05ab776c0008dcc9abfb86b",
+  "searched_local_libraries": 8
+}
