@@ -34,6 +34,107 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 
+-- This file was produced by scripts/clump.py from the modules listed below.
+-- Members: PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductor, PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductorBound
+
+-- ===== clump member: PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductor =====
+-- clump-header: {"m": "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductor", "h": "module\n\npublic import PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.NonzeroLeviEigenvectorExists\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open scoped Classical
+
+open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL ValuativeRel Matrix
+
+namespace UpperTheory.TNZ
+
+namespace Grp
+
+namespace CharacterConductor
+
+variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
+
+def CS (ψ : 𝒪[k]ˣ →* ℂˣ) : Set ℕ :=
+  {c | ∀ u : 𝒪[k]ˣ, (u : 𝒪[k]) - 1 ∈ IsLocalRing.maximalIdeal 𝒪[k] ^ c → ψ u = 1}
+
+theorem cond_eq (ψ : 𝒪[k]ˣ →* ℂˣ) : cond ψ = sInf (CS ψ) := rfl
+
+theorem CS_mono (ψ : 𝒪[k]ˣ →* ℂˣ) {c d : ℕ} (hc : c ∈ CS ψ) (hcd : c ≤ d) : d ∈ CS ψ := by
+  intro u hu
+  exact hc u (Ideal.pow_le_pow_right hcd hu)
+
+theorem CS_inv (ψ : 𝒪[k]ˣ →* ℂˣ) : CS ψ⁻¹ = CS ψ := by
+  ext c
+  simp only [CS, Set.mem_setOf_eq, MonoidHom.inv_apply, inv_eq_one]
+
+theorem cond_one : cond (1 : 𝒪[k]ˣ →* ℂˣ) = 0 := by
+  rw [cond_eq]
+  apply Nat.sInf_eq_zero.mpr
+  left
+  intro u _
+  rfl
+
+theorem res_div_swap {s : ℕ} (μ : Fin s → kˣ →* ℂˣ) (a b : Fin s) :
+    res (μ b / μ a) = (res (μ a / μ b))⁻¹ := by
+  ext u
+  simp [res, MonoidHom.div_apply, inv_div]
+
+theorem res_div_mul {s : ℕ} (μ : Fin s → kˣ →* ℂˣ) (a b c : Fin s) (u : 𝒪[k]ˣ) :
+    res (μ a / μ c) u = res (μ a / μ b) u * res (μ b / μ c) u := by
+  simp [res, MonoidHom.div_apply]
+
+theorem cc_self {s : ℕ} (μ : Fin s → kˣ →* ℂˣ) (a : Fin s) : cc μ a a = 0 := by
+  unfold cc
+  rw [div_self']
+  exact cond_one
+
+theorem cc_comm {s : ℕ} (μ : Fin s → kˣ →* ℂˣ) (a b : Fin s) : cc μ a b = cc μ b a := by
+  unfold cc
+  rw [res_div_swap μ a b, cond_eq, cond_eq, CS_inv]
+
+theorem cc_ultra {s : ℕ} (μ : Fin s → kˣ →* ℂˣ) (a b c : Fin s)
+    (hab : (CS (res (μ a / μ b))).Nonempty) (hbc : (CS (res (μ b / μ c))).Nonempty) :
+    cc μ a c ≤ max (cc μ a b) (cc μ b c) := by
+  have h1 : cc μ a b ∈ CS (res (μ a / μ b)) := Nat.sInf_mem hab
+  have h2 : cc μ b c ∈ CS (res (μ b / μ c)) := Nat.sInf_mem hbc
+  have h3 : max (cc μ a b) (cc μ b c) ∈ CS (res (μ a / μ c)) := by
+    intro u hu
+    rw [res_div_mul μ a b c u,
+      CS_mono _ h1 (le_max_left _ _) u hu, CS_mono _ h2 (le_max_right _ _) u hu, one_mul]
+  exact Nat.sInf_le h3
+
+theorem step_ccBasic_of_cond :
+    ∀ (s : ℕ) (μ : Fin s → kˣ →* ℂˣ),
+      (∀ a b : Fin s, ∃ c : ℕ, ∀ u : 𝒪[k]ˣ, (u : 𝒪[k]) - 1 ∈ IsLocalRing.maximalIdeal 𝒪[k] ^ c →
+        res (μ a / μ b) u = 1) →
+      ∀ a b c : Fin s, cc μ a a = 0 ∧ cc μ a b = cc μ b a ∧ cc μ a c ≤ max (cc μ a b) (cc μ b c) := by
+  intro s μ hμ a b c
+  refine ⟨cc_self μ a, cc_comm μ a b, cc_ultra μ a b c ?_ ?_⟩
+  · obtain ⟨c0, h⟩ := hμ a b
+    exact ⟨c0, h⟩
+  · obtain ⟨c0, h⟩ := hμ b c
+    exact ⟨c0, h⟩
+
+end CharacterConductor
+
+variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
+
+theorem step_ccBasic : CompactConductorBasicProp (k := k) :=
+  CharacterConductor.step_ccBasic_of_cond
+
+end Grp
+
+end UpperTheory.TNZ
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductor =====
+
+-- ===== clump member: PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductorBound =====
+-- clump-header: {"m": "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductorBound", "h": "module\n\npublic import PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.NonzeroLeviEigenvectorExists\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
+section -- clump:auto
 @[expose] public section
 
 noncomputable section
@@ -142,3 +243,7 @@ theorem step_ccBound {n : ℕ} (G : Grp k n) : CompactConductorBoundProp G := by
 end Grp
 
 end UpperTheory.TNZ
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.CharacterConductorBound =====

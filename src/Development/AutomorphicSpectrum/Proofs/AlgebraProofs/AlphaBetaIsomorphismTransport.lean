@@ -5,7 +5,6 @@ public import Development.WeilBound.CoreStatements.HodgeTatePoints.GermCompOneAs
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.FirstPowerZeroAt
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FormalBilinearTermProduct
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FormalIsomorphismTransport
-public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MultiplicationByPFactorsFrobenius
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PowOneSeriesPFormula
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PowerSeriesPowPFrobenius
 import Mathlib.Algebra.Order.Floor.Extended

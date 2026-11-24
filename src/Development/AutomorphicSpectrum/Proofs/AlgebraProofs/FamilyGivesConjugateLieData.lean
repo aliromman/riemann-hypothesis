@@ -4,7 +4,6 @@ public import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.Ger
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.FirstPowerZeroAt
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.ConstantCoeffEv
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FormalBilinearTermProduct
-public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MultiplicationByPFactorsFrobenius
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PowOneSeriesPFormula
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PowerSeriesPowPFrobenius
 public import Mathlib.Data.Matrix.Mul

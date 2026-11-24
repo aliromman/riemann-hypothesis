@@ -4,7 +4,6 @@ public import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StArchCovolume
 public import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StCoordEmbedBasis
 public import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StIntegralFormCovolume
 public import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StTraceHermNondegenerate
-public import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StDualLatticeMultiple
 public import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StCoordLatticeFullRank
 public import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StatementsDoubleCoset
 public import Mathlib.MeasureTheory.Measure.Haar.Basic

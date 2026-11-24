@@ -6,7 +6,6 @@ public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvAboveTop
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvAboveTopGeneral
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvIdealComponent
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvIdealRepresentation
-public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvMonomialReduction
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvPolynomialReduction
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvStaircaseComponent
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvStaircaseDegree

@@ -9,9 +9,14 @@ public import Development.EtaleCohomology.CohomologicalPurity.LeafPickPf
 public import Development.EtaleCohomology.CohomologicalPurity.LeafPolyPf
 public import Development.EtaleCohomology.CohomologicalPurity.LeafRankPf
 public import Development.EtaleCohomology.CohomologicalPurity.LeafSecPf
-public import Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf
 public import Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf
 
+-- This file was produced by scripts/clump.py from the modules listed below.
+-- Members: Development.EtaleCohomology.CohomologicalPurity.FinLeafChart
+
+-- ===== clump member: Development.EtaleCohomology.CohomologicalPurity.FinLeafChart =====
+-- clump-header: {"m": "Development.EtaleCohomology.CohomologicalPurity.FinLeafChart", "h": "module\n\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafChartCut\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafCoordPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafEtPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafLocPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafNbhdPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafPickPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafPolyPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafRankPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafSecPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf\npublic import Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf\n\n"}
+section -- clump:auto
 @[expose] public section
 
 namespace LateralTheory.Fin.LeafChart
@@ -48,3 +53,6 @@ theorem etale_coordinate_chart_existence : LateralTheory.CohomologicalPurity.Lea
 alias intersectionNumber_baseChange := _root_.LateralTheory.Fin.LeafChart.etale_coordinate_chart_existence
 
 end LateralTheory.Fin.LeafChart
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.CohomologicalPurity.FinLeafChart =====

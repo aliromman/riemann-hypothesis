@@ -23,7 +23,6 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsLCRes
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsLogUnique
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitOneSubPow
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KapSurjective
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KapZero
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LineMapExists
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemBasicOpenOfIsUnitSub
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NatDegreeLgLe

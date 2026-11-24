@@ -12,7 +12,6 @@ public import Mathlib.LinearAlgebra.Dual.Lemmas
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.StatementsCoinv
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvIdealComponent
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvIdealRepresentation
-public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvMonomialReduction
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvPolynomialReduction
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvStaircaseComponent
 public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvStaircaseDegree

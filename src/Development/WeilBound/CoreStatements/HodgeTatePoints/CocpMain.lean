@@ -4,7 +4,6 @@ public import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.Ger
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.Comp1IdentityLeft
 public import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.GermPointsNoConstantTermFirstZero
 public import Mathlib.RingTheory.MvPowerSeries.Expand
-public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MultiplicationByPFactorsFrobenius
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PowOneSeriesPFormula
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PowerSeriesPowPFrobenius
 public import Mathlib.CategoryTheory.Monoidal.Cartesian.Over
