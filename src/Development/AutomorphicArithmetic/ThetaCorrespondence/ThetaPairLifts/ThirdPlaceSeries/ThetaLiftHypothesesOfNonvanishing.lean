@@ -1284,9 +1284,7 @@ namespace GlobalTheory.ArchFromLit
 theorem archimedean_local_langlands_compatibility_alt : _root_.GlobalTheory.Mem.LiteralAutomorphy.LocalRepresentationTheoryHypothesesAlt → _root_.GlobalTheory.Mem.LiteralAutomorphy.GlobalAutomorphicGaloisHypotheses' → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.ArchimedeanComparison' hL := by
   intro hLoc hAut hL
   exact
-    { pht := GlobalTheory.PhtCompare.phtCmp
-      lp := fun _ _ => ⟨⟨⟩⟩
-      cg := fun _ _ _ => ⟨⟨⟩⟩ }
+    { pht := GlobalTheory.PhtCompare.phtCmp }
 end GlobalTheory.ArchFromLit
 end
 end

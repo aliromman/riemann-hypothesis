@@ -6,6 +6,8 @@ public import Formalism.GradedWeylDivisibility.FinalD
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Lemma
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Wlocal
+import Lemmata.GeneralBFactFurther.Imports
+import Mathlib.RingTheory.MvPolynomial.Localization
 
 @[expose] public section
 
@@ -82,27 +84,17 @@ private lemma clear_den {O K : Type} [CommRing O] [IsDomain O] [IsDiscreteValuat
     [Algebra O K] [IsFractionRing O K] (w : O) (hw : Irreducible w) {σ : Type} (G : MvPolynomial σ K) :
     ∃ n : ℕ, ∃ G0 : MvPolynomial σ O,
       MvPolynomial.map (algebraMap O K) G0 = algebraMap O K (w ^ n) • G := by
-  obtain ⟨b, hb⟩ := IsLocalization.exist_integer_multiples_of_finset (nonZeroDivisors O) G.coeffs
-  have hb0 : (b : O) ≠ 0 := nonZeroDivisors.coe_ne_zero b
-  obtain ⟨n, u, hu⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hb0 hw
-  refine ⟨n, ?_⟩
-  have hr : algebraMap O K (w ^ n) • G ∈ Set.range (MvPolynomial.map (algebraMap O K)) := by
-    rw [MvPolynomial.mem_range_map_iff_coeffs_subset]
-    intro x hx
-    rw [Finset.mem_coe, MvPolynomial.mem_coeffs_iff] at hx
-    obtain ⟨d, hd, rfl⟩ := hx
-    rw [MvPolynomial.coeff_smul, smul_eq_mul]
-    have hd' : G.coeff d ≠ 0 := by
-      intro h0
-      apply MvPolynomial.mem_support_iff.1 hd
-      rw [MvPolynomial.coeff_smul, h0, smul_zero]
-    obtain ⟨y, hy⟩ := hb _ (MvPolynomial.coeff_mem_coeffs _ hd')
-    have hu1 : algebraMap O K (↑u⁻¹ : O) * algebraMap O K (↑u : O) = 1 := by
-      rw [← map_mul, Units.inv_mul, map_one]
-    refine ⟨(↑u⁻¹ : O) * y, ?_⟩
-    rw [map_mul, hy, Algebra.smul_def, hu, map_mul]
-    linear_combination (algebraMap O K (w ^ n) * G.coeff d) * hu1
-  simpa using hr
+  let : IsLocalization.Away w (FractionRing O) := Bl.general_b_fact_further.goal1 hw
+  let : IsLocalization.Away w K :=
+    IsLocalization.isLocalization_of_algEquiv (Submonoid.powers w)
+      (IsLocalization.algEquiv (nonZeroDivisors O) (FractionRing O) K)
+  let := MvPolynomial.algebraMvPolynomial (R := O) (S := K) (σ := σ)
+  obtain ⟨⟨G0, b, hb⟩, h⟩ := IsLocalization.surj
+    ((Submonoid.powers w).map (MvPolynomial.C : O →+* MvPolynomial σ O)) G
+  obtain ⟨_, ⟨n, rfl⟩, rfl⟩ := hb
+  refine ⟨n, G0, ?_⟩
+  simpa only [MvPolynomial.algebraMap_def, MvPolynomial.map_C,
+    MvPolynomial.smul_eq_C_mul, mul_comm] using h.symm
 
 theorem goal1 :
   ∀ {O K : Type} [inst : CommRing.{0} O] [inst_1 : IsDomain.{0} O] [IsDiscreteValuationRing.{0} O] [inst_3 : Field.{0} K]

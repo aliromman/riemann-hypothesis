@@ -53,39 +53,77 @@ namespace GlobalTheory.Mem.SRe
 variable (D : D7) (Z : New D) (X : HidaSetting D) (Y : Full X) (u u' : D.what₂.Word) (t : RT Y u u')
 
 
-theorem re_termIsId : Formalism.L2.SG.FourParts.termIsId t ↔ Formalism.L2.SG.FourParts.termIsId (eRT Z Y u u' t) := Iff.rfl
+private theorem choose_eq_of_iff {α : Type*} {p q : α → Prop} (hp : ∃ x, p x) (hq : ∃ x, q x)
+    (h : ∀ x, p x ↔ q x) : hp.choose = hq.choose := by
+  have hpq : p = q := funext fun x => propext (h x)
+  subst hpq
+  rfl
+
+theorem re_termIsId : Formalism.L2.SG.FourParts.termIsId t ↔ Formalism.L2.SG.FourParts.termIsId (eRT Z Y u u' t) := by rfl
 
 
-theorem re_termInS : Formalism.L2.SG.FourParts.termInS t ↔ Formalism.L2.SG.FourParts.termInS (eRT Z Y u u' t) := Iff.rfl
+theorem re_termInS : Formalism.L2.SG.FourParts.termInS t ↔ Formalism.L2.SG.FourParts.termInS (eRT Z Y u u' t) := by rfl
 
 
-theorem re_relevant : t.relevant ↔ (eRT Z Y u u' t).relevant := Iff.rfl
+theorem re_relevant : t.relevant ↔ (eRT Z Y u u' t).relevant := by rfl
 
 
-theorem re_FeqF : t.FeqF ↔ (eRT Z Y u u' t).FeqF := Iff.rfl
+theorem re_FeqF : t.FeqF ↔ (eRT Z Y u u' t).FeqF := by rfl
 
 
-theorem re_generic : t.generic ↔ (eRT Z Y u u' t).generic := Iff.rfl
+theorem re_generic : t.generic ↔ (eRT Z Y u u' t).generic := by rfl
 
 
 theorem re_G : t.G = (eRT Z Y u u' t).G := (by with_unfolding_all exact (Eq.refl t.G :))
 
 
-theorem re_termBBne : ∀ p, Formalism.L2.SG.Saturated.termBBne t p ↔ Formalism.L2.SG.Saturated.termBBne (eRT Z Y u u' t) p := fun _ => Iff.rfl
+theorem re_termBBne : ∀ p, Formalism.L2.SG.Saturated.termBBne t p ↔ Formalism.L2.SG.Saturated.termBBne (eRT Z Y u u' t) p := fun _ => by rfl
 
 
-theorem re_ptOf : Formalism.L2.SG.PairVal.ptOf t = Formalism.L2.SG.PairVal.ptOf (eRT Z Y u u' t) := rfl
+private theorem re_atPt (w : Formalism.MainNotions.S.Point D.host.E (D.R.rS + 1)) :
+    t.atPt w ↔ (eRT Z Y u u' t).atPt w := by rfl
+
+theorem re_ptOf : Formalism.L2.SG.PairVal.ptOf t = Formalism.L2.SG.PairVal.ptOf (eRT Z Y u u' t) := by
+  unfold Formalism.L2.SG.PairVal.ptOf
+  have hiff : ∀ w, (t.atPt w ∧ t.relevant) ↔ ((eRT Z Y u u' t).atPt w ∧ (eRT Z Y u u' t).relevant) :=
+    fun w => and_congr (re_atPt D Z X Y u u' t w) (re_relevant D Z X Y u u' t)
+  exact dite_congr (propext (exists_congr hiff)) (fun h => choose_eq_of_iff _ h hiff) (fun _ => rfl)
 
 
-theorem re_massTerm : Formalism.L2.SG.PairVal.massTerm t = Formalism.L2.SG.PairVal.massTerm (eRT Z Y u u' t) := rfl
+theorem re_massTerm : Formalism.L2.SG.PairVal.massTerm t = Formalism.L2.SG.PairVal.massTerm (eRT Z Y u u' t) := by rfl
 
+
+private theorem re_phaseAt (w : Formalism.MainNotions.S.Point D.host.E (D.R.rS + 1)) :
+    Formalism.L2.SG.PairVal.phaseAt t w = Formalism.L2.SG.PairVal.phaseAt (eRT Z Y u u' t) w := by
+  unfold Formalism.L2.SG.PairVal.phaseAt
+  refine dite_congr (propext (exists_congr fun _ => by rfl)) (fun h => ?_) (fun _ => rfl)
+  rw [choose_eq_of_iff _ h (fun _ => by rfl)]
+  rfl
+
+private theorem re_vRdef :
+    Formalism.L2.SG.PairVal.vRdef D u u' (X.Fu u) (Y.what₂ u) Y.δ Y.M t =
+      Formalism.L2.SG.PairVal.vRdef (reD D Z) (wd Z u) (wd Z u') ((reX Z X).Fu (wd Z u))
+        ((reY Z Y).what₂ (wd Z u)) (reY Z Y).δ (reY Z Y).M (eRT Z Y u u' t) := by
+  unfold Formalism.L2.SG.PairVal.vRdef
+  refine dite_congr
+    (propext (and_congr (re_relevant D Z X Y u u' t)
+      (and_congr (re_generic D Z X Y u u' t) (exists_congr fun _ => by rfl))))
+    (fun h => ?_) (fun _ => rfl)
+  rw [choose_eq_of_iff _ h.2.2 (fun _ => by rfl)]
+  rfl
 
 theorem re_cTerm : Formalism.L2.SG.PairVal.cTerm (Formalism.L2.SG.PairVal.vRdef D u u' (X.Fu u) (Y.what₂ u) Y.δ Y.M) t = Formalism.L2.SG.PairVal.cTerm (Formalism.L2.SG.PairVal.vRdef (reD D Z) (wd Z u) (wd Z u') ((reX Z X).Fu (wd Z u)) ((reY Z Y).what₂ (wd Z u)) (reY Z Y).δ (reY Z Y).M) (eRT Z Y u u' t) := by
-  rfl
+  unfold Formalism.L2.SG.PairVal.cTerm Formalism.L2.SG.PairVal.cAt
+  exact dite_congr (propext (exists_congr (re_atPt D Z X Y u u' t)))
+    (fun h => congrArg₂ (fun (a : ℂ) (b : ℝ) => a * (b : ℂ))
+      ((congrArg (Formalism.L2.SG.PairVal.phaseAt t) (choose_eq_of_iff _ h (re_atPt D Z X Y u u' t))).trans
+        (re_phaseAt D Z X Y u u' t _))
+      (re_vRdef D Z X Y u u' t))
+    (fun _ => rfl)
 
 omit t in
 
-theorem re_meanCount : ∀ w, Formalism.L2.SG.PairVal.meanCount D u u' (X.Fu u) (Y.what₂ u) w = Formalism.L2.SG.PairVal.meanCount (reD D Z) (wd Z u) (wd Z u') ((reX Z X).Fu (wd Z u)) ((reY Z Y).what₂ (wd Z u)) w := fun _ => rfl
+theorem re_meanCount : ∀ w, Formalism.L2.SG.PairVal.meanCount D u u' (X.Fu u) (Y.what₂ u) w = Formalism.L2.SG.PairVal.meanCount (reD D Z) (wd Z u) (wd Z u') ((reX Z X).Fu (wd Z u)) ((reY Z Y).what₂ (wd Z u)) w := fun _ => by rfl
 
 
 omit t in

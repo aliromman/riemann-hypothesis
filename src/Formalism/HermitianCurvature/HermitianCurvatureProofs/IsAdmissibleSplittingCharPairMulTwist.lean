@@ -4047,7 +4047,7 @@ theorem weightRatio : WeightRatioQ := by
       fun Z => Finset.prod_congr rfl fun t _ => by ring
     rw [e1, e1]
     convert h using 3
-    ring
+    ring_nf
   have hqr : qp P Y ≤ Real.exp 6 * qp P (Y + s) := by
     rw [qp_abs P hT Y (hqp Y hYI), qp_abs P hT (Y + s) (hqp (Y + s) hYsI)]
     have h1 := prodRatio (Finset.Icc 1 P.k) (fun t => 1 / 2 + P.u t) α β Lb Y s (by linarith) hru hLpos.le hcardq

@@ -93,21 +93,8 @@ theorem le_of_homog_le_sup {m : ℕ} {V W : Ideal (MvPolynomial (Fin m) ℂ)} {t
   exact Ideal.sum_mem _ fun d _ => ChartDehomog.proof ℂ m W t _ d hW hWh ht
     (homogeneousComponent_isHomogeneous d f) (hle (hV f hf d))
 
-theorem eq_of_add_one_eq {x : WithBot ℕ∞} {e : ℕ} (h : x + 1 = (e : WithBot ℕ∞) + 1) : x = e := by
-  induction x using WithBot.recBotCoe with
-  | bot =>
-    rw [WithBot.bot_add, ← Nat.cast_succ] at h
-    exact absurd h (WithBot.bot_ne_natCast _)
-  | coe x =>
-    induction x using ENat.recTopCoe with
-    | top =>
-      have h' : ((⊤ + 1 : ℕ∞) : WithBot ℕ∞) = ((e + 1 : ℕ∞) : WithBot ℕ∞) := by exact_mod_cast h
-      rw [WithBot.coe_inj, top_add] at h'
-      exact absurd h' (by exact_mod_cast (ENat.top_ne_natCast (e + 1)))
-    | coe x =>
-      have h' : ((x + 1 : ℕ) : WithBot ℕ∞) = ((e + 1 : ℕ) : WithBot ℕ∞) := by exact_mod_cast h
-      have h'' : x + 1 = e + 1 := by exact_mod_cast h'
-      exact_mod_cast (show x = e by omega)
+theorem eq_of_add_one_eq {x : WithBot ℕ∞} {e : ℕ} (h : x + 1 = (e : WithBot ℕ∞) + 1) : x = e :=
+  ENat.WithBot.add_one_cancel.mp h
 
 end GoodChartDim
 

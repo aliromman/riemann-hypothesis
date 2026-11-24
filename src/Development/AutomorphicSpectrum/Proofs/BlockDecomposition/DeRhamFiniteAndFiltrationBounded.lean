@@ -248,7 +248,18 @@ theorem gr_fin (hSerre : KH.GlobSerreSt) (hAff : KH.GrAff) (hCech : KH.GrCechFin
   refine hSerre (sq (thFil (smFun X q) r) (thFil (smFun X q) ((r : ℤ) + 1))) (TF 1 s) U.U 𝒮 n fun a b _ => ?_
   by_cases hb : b = r
   · subst hb
-    exact (h𝒮 _).2 (hCech 1 s (tfBase K s hs) q U b hr a)
+    have h1 := (h𝒮 _).2 (hCech 1 s (tfBase K s hs) q U b hr a)
+    have hkey : ∀ (C : Type 1) [Category.{0} C] (F : C ⥤ ModuleCat.{0} (infBase K).R)
+        (Q : U.ι → ObjectProperty C)
+        (C' : Type 1) [Category.{0} C'] (F' : C' ⥤ ModuleCat.{0} (infBase K).R)
+        (Q' : U.ι → ObjectProperty C'),
+        𝒮.P ((cechH F Q b).cx.H a) →
+        C = C' → HEq (inferInstance : Category.{0} C) (inferInstance : Category.{0} C') →
+        HEq F F' → HEq Q Q' →
+        𝒮.P ((cechH F' Q' b).cx.H a) := by
+      rintro C instC F Q _ instC' F' Q' h rfl hinst hF hQ
+      cases hinst; cases hF; cases hQ; exact h
+    exact hkey _ _ _ _ _ _ h1 rfl HEq.rfl HEq.rfl HEq.rfl
   · refine 𝒮.zero _ (cx_H_subsingleton _ a ⟨fun x y => funext fun i => ?_⟩)
     have h := hAff q _ (U.inter (Finset.univ.image i) ⟨i 0, Finset.mem_image_of_mem i (Finset.mem_univ _)⟩) s r b hr hb
     have e := capT_eq (K := K) (X := X) (q := q) (TF 1 s) U.U i

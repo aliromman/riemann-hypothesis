@@ -59,10 +59,6 @@ namespace GlobalTheory.UPoinc.LocSpread
 
 set_option backward.isDefEq.respectTransparency false
 
-#check ExtUnique.isIso_of_isPullback
-#check exists_lbIso_of_isLimit
-#check pull_isLB
-#check PolPull.isAbelianScheme_of_isGrpPullback
 section Loc
 
 variable {R K : Type} [CommRing R] [CommRing K]

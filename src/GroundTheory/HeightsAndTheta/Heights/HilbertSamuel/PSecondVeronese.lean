@@ -93,17 +93,8 @@ theorem isConjInvariant_metric (D : ℕ) : IsConjInvariant (metric D) := by
   exact ProjLine.isConjInvariant_fs (scale D z)
 
 theorem eval_smul_homog {ι : Type*} {φ : MvPolynomial ι ℂ} {n : ℕ} (hφ : φ.IsHomogeneous n) (c : ℂ)
-    (z : ι → ℂ) : eval (c • z) φ = c ^ n * eval z φ := by
-  classical
-  rw [eval_eq, eval_eq, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun d hd => ?_
-  have hdeg : d.degree = n := by
-    by_contra h
-    exact (mem_support_iff.mp hd) (hφ.coeff_eq_zero h)
-  simp only [Pi.smul_apply, smul_eq_mul, mul_pow, Finset.prod_mul_distrib, Finset.prod_pow_eq_pow_sum]
-  have hs : d.degree = ∑ i ∈ d.support, d i := rfl
-  rw [← hdeg, hs]
-  ring
+    (z : ι → ℂ) : eval (c • z) φ = c ^ n * eval z φ :=
+  hφ.eval_smul c z
 
 theorem pairVal_smul {D n : ℕ} {b b' : MvPolynomial (Ix (Idx D)) ℚ}
     (hb : ∃ f : MvPolynomial (Ix (Idx D)) ℤ, f.IsHomogeneous n ∧ b = MvPolynomial.map (Int.castRingHom ℚ) f)

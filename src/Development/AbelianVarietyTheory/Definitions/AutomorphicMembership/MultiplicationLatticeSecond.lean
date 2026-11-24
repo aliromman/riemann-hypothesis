@@ -98,6 +98,8 @@ end Free
 
 variable {D : D7} {A : Amb D} {N j : ℕ}
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure At (S : Sig A N j) (κ : Lv A) (p : ℕ) : Type where
   hp : p.Prime
   W : ValuationSubring ℂ
@@ -211,6 +213,8 @@ end GIso
 
 end At
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure LawSt (ct : At S κ p) : Prop where
   nrm_nonneg : ∀ {Z : ct.Mdl} (F : ct.Sh Z) (f : ct.Sec F) (y : ct.Pt Z), 0 ≤ ct.nrm F f y
   norm_le_one_of_mem_sections : ∀ {Z : ct.Mdl} (F : ct.Sh Z) (f : ct.Sec F), f ∈ ct.H0 F → ∀ y, ct.nrm F f y ≤ 1
@@ -221,6 +225,8 @@ structure LawSt (ct : At S κ p) : Prop where
   phi_conj : ∀ {Z : ct.Mdl} (y : ct.Pt Z) (c c' : 𝓞 D.host.E),
     (c' : D.host.E) = D.host.conj (c : D.host.E) → ∀ a : ct.Ylat y, ct.phi y (c' • a) = c • ct.phi y a
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure MotSt (ct : At S κ p) : Type 1 where
   be : ∀ {Z : ct.Mdl} (y : ct.Pt Z), ct.Ylat y →ₗ[ℤ] ct.Ylat y →ₗ[ℤ] ℝ
   be_symm : ∀ {Z : ct.Mdl} (y : ct.Pt Z) (a b : ct.Ylat y), be y a b = be y b a
@@ -245,6 +251,8 @@ structure MotSt (ct : At S κ p) : Type 1 where
   dimB_add : ∀ y, dimB y + Module.finrank ℤ (ct.Ylat y) = D.R.f * N
   be_eq : ∀ {Z : ct.Mdl} (y : ct.Pt Z) (u v : ct.Ylat y), be y u v = (ct.dat y).beta u v
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure ShfSt (ct : At S κ p) : Type 1 where
   vrat : ∀ {Z : ct.Mdl} {F₁ F₂ : ct.Sh Z}, ct.GIso F₁ F₂ → ct.Pt Z → ℝ
   SES : ct.Mdl → Type
@@ -262,12 +270,16 @@ structure ShfSt (ct : At S κ p) : Type 1 where
   secOf : ∀ {F : ct.Sh ct.Xm}, ct.GIso oX F → ct.Sec F
   nrm_secOf : ∀ {F : ct.Sh ct.Xm} (φ : ct.GIso oX F) y, ct.nrm F (secOf φ) y = (p : ℝ) ^ (-(vrat φ y))
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure FlgSt (ct : At S κ p) : Type 1 where
   FlagData : ct.Mdl → Type
   flagCl : ∀ Z, FlagData Z → ct.Mdl
   allFlags : FlagData ct.Xm
   YY_eq : ct.YY = flagCl ct.Xm allFlags
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure FrmSt (ct : At S κ p) : Type 1 where
   nrmRef : ∀ l, ct.Sec (ct.Lb l) → ct.Pt ct.YY → ℝ
   LieV : ct.Pt ct.YY → Type
@@ -286,6 +298,8 @@ structure FrmSt (ct : At S κ p) : Type 1 where
 
 attribute [instance] FrmSt.lvAdd FrmSt.lvMod
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure ChtSt (ct : At S κ p) : Type 1 where
   DVP : Type
   dvRho : DVP → ℕ
@@ -317,6 +331,8 @@ structure ChtSt (ct : At S κ p) : Type 1 where
   yEta : ∀ {Z}, ct.Gen Z → ct.Pt Z
   yEta_good : ∀ {Z} (η : ct.Gen Z), Subsingleton (ct.Ylat (yEta η)) ↔ ct.abAt η
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure TorSt (ct : At S κ p) : Type 1 where
   PL : Type
   phiAt : PL → ∀ {Z : ct.Mdl}, ct.Pt Z → ℝ
@@ -325,15 +341,21 @@ structure TorSt (ct : At S κ p) : Type 1 where
   IvD : Option ℕ → Type
   jIdl : ∀ b, IvD b → ct.Idl ((ct.B.X b))
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure FJSt (ct : At S κ p) : Type 1 where
   FJd : Type
   Chr : FJd → Type
   fjN : ∀ l, ct.Sec (ct.Lb l) → (t : FJd) → Chr t → ℝ
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure UniSt (ct : At S κ p) : Type 1 where
   Unim : Type
   latStd : ℕ → Unim
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure ThbSt (ct : At S κ p) (un : UniSt ct) : Type 1 where
   LBG : un.Unim → Type
   LBGq : un.Unim → Type
@@ -356,11 +378,15 @@ structure ThbSt (ct : At S κ p) (un : UniSt ct) : Type 1 where
   dg_res : ∀ {La} (P : StrictHenselianAcyclic La), resQ (dg P) = dgq (res2 P)
   PPq_def : ∀ La, PPq La = dgq (PoiQ La)
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure KeySt (ct : At S κ p) : Type 1 where
   piPP : ct.Sh ct.Xm
   keySh : ℕ → ct.Sh ct.Xm
   keySh_inv : ct.IsInv piPP → ∀ c, ct.IsInv (keySh c)
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure BdySt (ct : At S κ p) : Type 1 where
   BPt : Type
   Rl : BPt → Type
@@ -397,6 +423,8 @@ structure BdySt (ct : At S κ p) : Type 1 where
 
 attribute [instance] BdySt.iRr BdySt.iRd BdySt.iRl BdySt.iRn BdySt.iRi BdySt.iRc BdySt.iYa BdySt.iYm BdySt.iXa BdySt.iXm BdySt.iSg BdySt.iSk BdySt.iSm BdySt.iSt
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure ThgSt (ct : At S κ p) (un : UniSt ct) : Type 1 where
   Tors : ct.Pt ct.Xm → un.Unim → ℕ → Type
   [atAdd : ∀ y La n, AddCommGroup (Tors y La n)]
@@ -431,6 +459,8 @@ structure ThgSt (ct : At S κ p) (un : UniSt ct) : Type 1 where
 
 attribute [instance] ThgSt.atAdd ThgSt.atFin ThgSt.thGrp ThgSt.snAdd ThgSt.snMod
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure JetSt (ct : At S κ p) (un : UniSt ct) (tg : ThgSt ct un) : Type 1 where
   Jet : ct.Pt ct.Xm → un.Unim → ℕ → ℕ → Type
   [jAdd : ∀ y La n DF, AddCommGroup (Jet y La n DF)]
@@ -456,6 +486,8 @@ structure JetSt (ct : At S κ p) (un : UniSt ct) (tg : ThgSt ct un) : Type 1 whe
 
 attribute [instance] JetSt.jAdd JetSt.jMod JetSt.fbAdd JetSt.fbMod
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure EvlSt (ct : At S κ p) : Type 1 where
   LieGt : ct.Pt ct.Xm → PsiT D × Bool → Type
   LieB : ct.Pt ct.Xm → PsiT D × Bool → Type
@@ -474,6 +506,8 @@ structure EvlSt (ct : At S κ p) : Type 1 where
 
 attribute [instance] EvlSt.lgAdd EvlSt.lbAdd EvlSt.ltAdd
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure HTpSt (ct : At S κ p) : Type 1 where
   Tp : ∀ {Z : ct.Mdl}, ct.Pt Z → Type
   [tpAdd : ∀ {Z : ct.Mdl} (y : ct.Pt Z), AddCommGroup (Tp y)]
@@ -496,6 +530,8 @@ structure HTpSt (ct : At S κ p) : Type 1 where
 
 attribute [instance] HTpSt.tpAdd HTpSt.omAdd HTpSt.omMod HTpSt.tcAdd HTpSt.tcMod
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure HTmSt (ct : At S κ p) (sh : ShfSt ct) (hq : HTpSt ct) : Type 1 where
   IsHTBlowup : ct.Mdl → ct.Mdl → Prop
   eOmP : ∀ Z : ct.Mdl, Bool → PsiT D → ct.Sh Z
@@ -528,6 +564,8 @@ structure HTmSt (ct : At S κ p) (sh : ShfSt ct) (hq : HTpSt ct) : Type 1 where
 
 attribute [instance] HTmSt.obAdd HTmSt.obMod
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure CrDSt (ct : At S κ p) : Type 1 where
   nefQ : (PsiT D → ℕ → ℝ) → Prop
   Crv : Type
@@ -549,6 +587,8 @@ structure CrDSt (ct : At S κ p) : Type 1 where
   Pm_head : ∀ CC τ i, 1 ≤ i → i ≤ j → ∑ k ∈ Finset.Icc 1 i, degGrD CC τ k ≤ Pm CC
   Pm_tail : ∀ CC τ i, j ≤ i → i ≤ N → -∑ k ∈ Finset.Icc (i + 1) N, degGrD CC τ k ≤ Pm CC
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure CrHSt (ct : At S κ p) (fg : FlgSt ct) : Type 1 where
   nefHT : ct.Mdl → (PsiT D → ℕ → ℝ) → Prop
   descK : ct.Mdl → (PsiT D → ℕ → ℤ) → Prop
@@ -571,6 +611,8 @@ structure CrHSt (ct : At S κ p) (fg : FlgSt ct) : Type 1 where
   nefHT_def : ∀ Z (l : PsiT D → ℕ → ℝ), nefHT Z l ↔
     ∀ C : CrvS Z, 0 ≤ -∑ᶠ τ, ∑ i ∈ Finset.Icc 1 N, l τ i * (degGr C τ i : ℝ)
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure Stages (ct : At S κ p) : Type 1 where
   lw : LawSt ct
   mo : MotSt ct

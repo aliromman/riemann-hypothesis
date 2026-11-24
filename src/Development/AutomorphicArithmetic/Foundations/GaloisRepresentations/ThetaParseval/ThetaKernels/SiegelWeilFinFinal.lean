@@ -856,7 +856,7 @@ theorem cLawEx_k : _root_.PositivityTheory.SiegelWeilFormula.Act.CLawEx_k := by
       · rw [mul_assoc, smul_one_mul, smul_one_mul, smul_assoc, mul_smul]
     · rw [hsc2, hrm, ← Real.exp_neg, neg_neg, ← Real.exp_nat_mul, ← _root_.PositivityTheory.SiegelWeilFormula.Atop.LD.n_succ_k L]
       congr 2
-      push_cast; ring
+      push_cast; ring_nf
   · simp
   · rw [hw₁']; simp [CL.wM, map_intCast, map_one, he_def]
 end PositivityTheory.SiegelWeilFormula.Act

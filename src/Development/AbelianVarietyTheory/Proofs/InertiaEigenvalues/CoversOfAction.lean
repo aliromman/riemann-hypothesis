@@ -104,7 +104,7 @@ theorem emb_sigma_pow {O : Type} [CommRing O] [Algebra ℤ_[l] O] (t : Wq l a �
     rw [pow_succ, AlgEquiv.mul_apply, ih, emb_sigma]
     congr 1
     push_cast
-    ring
+    ring_nf
 
 theorem kummer_mem_resSub (ϖ : PiSys l e) {k : GQ l} (hk : k ∈ ϖ.GKinf) {ζ : Om l}
     (hζ : k (ϖ.seq 0) = ζ * ϖ.seq 0) (he : e + 1 = l ^ a) : ϖ.kummer k ∈ resSub l a := by

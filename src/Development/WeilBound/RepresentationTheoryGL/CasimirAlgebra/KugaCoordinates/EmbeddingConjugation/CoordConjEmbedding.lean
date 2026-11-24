@@ -42,6 +42,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+public import Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.KugaCoordinates.CompactUnitaryGroups.IsCompactUnitaryGroup
 
 @[expose] public section
 
@@ -60,10 +61,6 @@ omit [NumberField E] in
 theorem atEmb_embedding (w : InfinitePlace E) (z : ℂ) : atEmb w.embedding z = (Pi.single w z : Cinf E) := by
   unfold atEmb; split_ifs <;> simp_all
 
-
-omit [NumberField E] in
-theorem coord_embedding (w : InfinitePlace E) (c : Cinf E) : coord w.embedding c = c w := by
-  unfold coord; split_ifs <;> simp_all
 
 theorem coord_conj_embedding [_root_.NumberField.IsTotallyComplex E] (w : InfinitePlace E) (c : Cinf E) :
     coord (ComplexEmbedding.conjugate w.embedding) c = starRingEnd ℂ (c w) := by

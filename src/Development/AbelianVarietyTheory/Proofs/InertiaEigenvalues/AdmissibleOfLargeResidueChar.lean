@@ -790,7 +790,7 @@ theorem twist_locOC (C : TruncatedSeriesCountingIdentities.CoefExt D i w hw) (θ
   ext p q
   simp only [twistM, MonoidHom.coe_mk, OneHom.coe_mk, locOC_apply, Matrix.smul_apply, Matrix.map_apply,
     smul_eq_mul, map_mul]
-  ring
+  ring_nf
 
 theorem chiOC_val (C : TruncatedSeriesCountingIdentities.CoefExt D i w hw) (χ : GE D.nd →* (D.nd.O i)ˣ) (g : Br.G D.nbr i w hw) :
     ((chiOC C χ g : (↥(OL C.LL))ˣ) : ↥(OL C.LL)) =

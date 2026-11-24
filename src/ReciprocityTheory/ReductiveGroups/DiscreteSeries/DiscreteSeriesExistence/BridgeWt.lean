@@ -53,7 +53,7 @@ theorem bwt_diag_mem_Kset (ε : Fin n → Bool) (θ : Fin n → ℝ) :
     simp only [Pi.star_apply]
     rw [Complex.star_def, ← Complex.exp_conj, map_mul, Complex.conj_ofReal, Complex.conj_I,
       ← Complex.exp_add]
-    ring
+    ring_nf
     simp
   · rw [Formalism.REAL.Jm, Matrix.diagonal_mul_diagonal, Matrix.diagonal_mul_diagonal]
     congr 1

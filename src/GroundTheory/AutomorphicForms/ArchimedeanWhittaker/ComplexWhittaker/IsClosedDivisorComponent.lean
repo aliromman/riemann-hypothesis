@@ -171,7 +171,7 @@ theorem map_tC_Q (n : ℕ) (q : ℤ) {i : ℕ} (hi : i ≤ n) (a b : ℝ) (x : H
   congr 2
   simp only [map_mul, conj_I, Complex.conj_ofReal]
   push_cast
-  ring
+  ring_nf
 
 theorem conj_exp_mul_exp (r s : ℝ) :
     conj (Complex.exp (I * r)) * Complex.exp (I * s) = Complex.exp (I * ((s - r : ℝ) : ℂ)) := by

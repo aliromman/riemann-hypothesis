@@ -261,13 +261,6 @@ structure DivisorReductionTerminationProperties (hres : FunctorialResolution.Blo
               (i + 1)).comap
             (DivisorReduction.embeddingIntoAmbient hres hno T j hj (DivisorReduction.lowerIdealAfterBlowup T j hj)
               (DivisorReduction.lowerBoundaryAfterBlowup T j hj) s hpr i) = s.ideal i
-  preIdeal_baseChange : ∀ (T : MarkedIdealWithBoundary.{u}), T.IsAdmissible →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L), (T.baseChange L f).IsAdmissible →
-    ∀ (j : ℕ) (hj : j < T.boundary.length)
-      (hj' : j < (T.baseChange L f).boundary.length),
-      DivisorReduction.containedComponentsIdeal (T.baseChange L f) j hj' =
-        (DivisorReduction.containedComponentsIdeal T j hj).comap
-          (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
   preIdeal_pullbackAlong : ∀ (T : MarkedIdealWithBoundary.{u}), T.IsAdmissible →
     ∀ (Y : Scheme.{u}) (q : Y ⟶ Spec (CommRingCat.of T.base)) (h : Y ⟶ T.scheme)
       [AlgebraicGeometry.Smooth h], h ≫ T.structMap = q →

@@ -102,31 +102,6 @@ theorem pullbackAlong_boundary (T : MarkedIdealWithBoundary.{u}) (Y : Scheme.{u}
     (q : Y ⟶ Spec (CommRingCat.of T.base)) (h : Y ⟶ T.scheme) :
     (T.pullbackAlong Y q h).boundary = T.boundary.map (fun D => D.comap h) := rfl
 
-def baseChange (T : MarkedIdealWithBoundary.{u}) (L : Type u) [Field L] (f : T.base →+* L) :
-    MarkedIdealWithBoundary.{u} where
-  base := L
-  scheme := pullback T.structMap (specMapOfFieldHom T.base L f)
-  structMap := pullback.snd T.structMap (specMapOfFieldHom T.base L f)
-  ideal := T.ideal.comap (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-  mult := T.mult
-  boundary :=
-    T.boundary.map (fun D => D.comap (pullback.fst T.structMap (specMapOfFieldHom T.base L f)))
-
-@[simp] theorem baseChange_mult (T : MarkedIdealWithBoundary.{u}) (L : Type u) [Field L]
-    (f : T.base →+* L) : (T.baseChange L f).mult = T.mult := rfl
-
-theorem baseChange_structureMorphism (T : MarkedIdealWithBoundary.{u}) (L : Type u) [Field L] (f : T.base →+* L) :
-    (T.baseChange L f).structMap = pullback.snd T.structMap (specMapOfFieldHom T.base L f) := rfl
-
-theorem baseChange_ideal (T : MarkedIdealWithBoundary.{u}) (L : Type u) [Field L] (f : T.base →+* L) :
-    (T.baseChange L f).ideal =
-      T.ideal.comap (pullback.fst T.structMap (specMapOfFieldHom T.base L f)) := rfl
-
-theorem baseChange_boundary (T : MarkedIdealWithBoundary.{u}) (L : Type u) [Field L] (f : T.base →+* L) :
-    (T.baseChange L f).boundary =
-      T.boundary.map
-        (fun D => D.comap (pullback.fst T.structMap (specMapOfFieldHom T.base L f))) := rfl
-
 def withSchemeIdealBoundary (T : MarkedIdealWithBoundary.{u}) (Y : Scheme.{u}) (q : Y ⟶ Spec (CommRingCat.of T.base))
     (J : Y.IdealSheafData) (E : List Y.IdealSheafData) : MarkedIdealWithBoundary.{u} where
   base := T.base
@@ -308,22 +283,6 @@ structure IsMaxOrderReduction (P : ℕ → Prop) (A B : PrincipalizationAssignme
   orderRed_equiv : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc →
     T.boundary = [] → T.IsOrderBoundedByMult →
     (A T).toSequenceOfBlowups.Isomorphic (B T).toSequenceOfBlowups
-  base_change : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-      (E' : List (T.baseChange L f).scheme.IdealSheafData),
-      MarkedIdealWithBoundary.SameNontrivialBoundary (T.baseChange L f).boundary E' →
-      ((T.baseChange L f).withBoundary E').IsAdmissible →
-      P ((T.baseChange L f).withBoundary E').krullDimSucc →
-      IsPullbackBlowupSequence (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-        (A ((T.baseChange L f).withBoundary E')).toSequenceOfBlowups (A T).toSequenceOfBlowups
-  base_change_strict : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-      (E' : List (T.baseChange L f).scheme.IdealSheafData),
-      MarkedIdealWithBoundary.SameNontrivialBoundary (T.baseChange L f).boundary E' →
-      ((T.baseChange L f).withBoundary E').IsAdmissible →
-      P ((T.baseChange L f).withBoundary E').krullDimSucc →
-      IsStrictPullbackBlowupSeq (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-        (A ((T.baseChange L f).withBoundary E')).toSequenceOfBlowups (A T).toSequenceOfBlowups
   center_nonempty : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc →
     ∀ i, i < (A T).toSequenceOfBlowups.length →
       (((A T).toSequenceOfBlowups.center i).support : Set ↥((A T).toSequenceOfBlowups.schemeAt i)).Nonempty
@@ -361,10 +320,6 @@ theorem IsMaxOrderReduction.mono {P : ℕ → Prop} {A B : PrincipalizationAssig
     exact hs.cert T hV (hQP _ hQ)
   · intro T hV hQ
     exact hs.orderRed_equiv T hV (hQP _ hQ)
-  · intro T hV hQ L _ _ f E' hBE hV' hQ'
-    exact hs.base_change T hV (hQP _ hQ) L f E' hBE hV' (hQP _ hQ')
-  · intro T hV hQ L _ _ f E' hBE hV' hQ'
-    exact hs.base_change_strict T hV (hQP _ hQ) L f E' hBE hV' (hQP _ hQ')
   · intro T hV hQ
     exact hs.center_nonempty T hV (hQP _ hQ)
   · intro T hV hQ
@@ -394,47 +349,11 @@ theorem IsMaxOrderReduction.isStrictPullbackBlowupSeq_of_smooth_surjective {P : 
   exact hs.smooth_pullback_strict T hV hP Y q h hq (T.pullbackAlong Y q h).boundary
     (MarkedIdealWithBoundary.SameNontrivialBoundary.refl _) hV' hP'
 
-theorem IsMaxOrderReduction.isPullbackBlowupSequence_baseChange {P : ℕ → Prop} {A B : PrincipalizationAssignment.{u}}
-    (hs : IsMaxOrderReduction P A B) (T : MarkedIdealWithBoundary.{u}) (hV : T.IsAdmissible) (hP : P T.krullDimSucc)
-    (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-    (hV' : (T.baseChange L f).IsAdmissible) (hP' : P (T.baseChange L f).krullDimSucc) :
-    IsPullbackBlowupSequence (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-      (A (T.baseChange L f)).toSequenceOfBlowups (A T).toSequenceOfBlowups := by
-  exact hs.base_change T hV hP L f (T.baseChange L f).boundary
-    (MarkedIdealWithBoundary.SameNontrivialBoundary.refl _) hV' hP'
-
-theorem IsMaxOrderReduction.isStrictPullbackBlowupSeq_baseChange {P : ℕ → Prop}
-    {A B : PrincipalizationAssignment.{u}} (hs : IsMaxOrderReduction P A B) (T : MarkedIdealWithBoundary.{u})
-    (hV : T.IsAdmissible) (hP : P T.krullDimSucc) (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-    (hV' : (T.baseChange L f).IsAdmissible) (hP' : P (T.baseChange L f).krullDimSucc) :
-    IsStrictPullbackBlowupSeq (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-      (A (T.baseChange L f)).toSequenceOfBlowups (A T).toSequenceOfBlowups := by
-  exact hs.base_change_strict T hV hP L f (T.baseChange L f).boundary
-    (MarkedIdealWithBoundary.SameNontrivialBoundary.refl _) hV' hP'
-
 structure IsOrderReduction (P : ℕ → Prop) (A B : PrincipalizationAssignment.{u}) : Prop where
   cert : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc → T.IsOrderBoundedByMult →
     ∀ i, i < (A T).toSequenceOfBlowups.length →
       OrderCertificate ((A T).toSequenceOfBlowups.schemeAt i) ((A T).projectionToSpec i) ((A T).ideal i) T.mult
         ((A T).boundaryLocus i) ((A T).toSequenceOfBlowups.center i)
-  base_change : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc → T.IsOrderBoundedByMult →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-      (E' : List (T.baseChange L f).scheme.IdealSheafData),
-      MarkedIdealWithBoundary.SameNontrivialBoundary (T.baseChange L f).boundary E' →
-      ((T.baseChange L f).withBoundary E').IsAdmissible →
-      P ((T.baseChange L f).withBoundary E').krullDimSucc →
-      ((T.baseChange L f).withBoundary E').IsOrderBoundedByMult →
-      IsPullbackBlowupSequence (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-        (A ((T.baseChange L f).withBoundary E')).toSequenceOfBlowups (A T).toSequenceOfBlowups
-  base_change_strict : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc → T.IsOrderBoundedByMult →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-      (E' : List (T.baseChange L f).scheme.IdealSheafData),
-      MarkedIdealWithBoundary.SameNontrivialBoundary (T.baseChange L f).boundary E' →
-      ((T.baseChange L f).withBoundary E').IsAdmissible →
-      P ((T.baseChange L f).withBoundary E').krullDimSucc →
-      ((T.baseChange L f).withBoundary E').IsOrderBoundedByMult →
-      IsStrictPullbackBlowupSeq (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-        (A ((T.baseChange L f).withBoundary E')).toSequenceOfBlowups (A T).toSequenceOfBlowups
   pushforward : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc → T.IsOrderBoundedByMult →
     T.boundary = [] → T.mult = 1 →
     ∀ (Y : Scheme.{u}) (q : Y ⟶ Spec (CommRingCat.of T.base)) (e : Y ⟶ T.scheme)
@@ -463,46 +382,10 @@ structure IsOrderReduction (P : ℕ → Prop) (A B : PrincipalizationAssignment.
       ((T.pullbackAlong Y q h).withBoundary E').IsOrderBoundedByMult →
       IsPullbackBlowupSequence h (A ((T.pullbackAlong Y q h).withBoundary E')).toSequenceOfBlowups
         (A T).toSequenceOfBlowups
-  smooth_pullback_strict : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc → T.IsOrderBoundedByMult →
-    ∀ (Y : Scheme.{u}) (q : Y ⟶ Spec (CommRingCat.of T.base)) (h : Y ⟶ T.scheme)
-      [AlgebraicGeometry.Smooth h] [AlgebraicGeometry.Surjective h], h ≫ T.structMap = q →
-    ∀ E' : List Y.IdealSheafData,
-      MarkedIdealWithBoundary.SameNontrivialBoundary (T.pullbackAlong Y q h).boundary E' →
-      ((T.pullbackAlong Y q h).withBoundary E').IsAdmissible →
-      P ((T.pullbackAlong Y q h).withBoundary E').krullDimSucc →
-      ((T.pullbackAlong Y q h).withBoundary E').IsOrderBoundedByMult →
-      IsStrictPullbackBlowupSeq h (A ((T.pullbackAlong Y q h).withBoundary E')).toSequenceOfBlowups
-        (A T).toSequenceOfBlowups
   trivial_of_coSupport_empty : ∀ T : MarkedIdealWithBoundary.{u}, T.IsAdmissible → P T.krullDimSucc → T.IsOrderBoundedByMult →
     orderAtLeastLocus T.ideal T.mult = ∅ → (A T).toSequenceOfBlowups.length = 0
 
 structure IsBoundaryDivisorReduction (P : ℕ → Prop) (j : ℕ) (A B : PrincipalizationAssignment.{u}) : Prop where
-  base_change : ∀ (T : MarkedIdealWithBoundary.{u}) (hV : T.IsAdmissible), P T.krullDimSucc → T.IsOrderBoundedByMult →
-    T.IsBalanced hV.locallyOfFiniteType → j < T.boundary.length →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-      (E' : List (T.baseChange L f).scheme.IdealSheafData),
-      MarkedIdealWithBoundary.SameNontrivialBoundary (T.baseChange L f).boundary E' →
-      E'.take (j + 1) = (T.baseChange L f).boundary.take (j + 1) →
-    ∀ hV' : ((T.baseChange L f).withBoundary E').IsAdmissible,
-      P ((T.baseChange L f).withBoundary E').krullDimSucc →
-      ((T.baseChange L f).withBoundary E').IsOrderBoundedByMult →
-      ((T.baseChange L f).withBoundary E').IsBalanced hV'.locallyOfFiniteType →
-      j < ((T.baseChange L f).withBoundary E').boundary.length →
-      IsPullbackBlowupSequence (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-        (A ((T.baseChange L f).withBoundary E')).toSequenceOfBlowups (A T).toSequenceOfBlowups
-  base_change_strict : ∀ (T : MarkedIdealWithBoundary.{u}) (hV : T.IsAdmissible), P T.krullDimSucc → T.IsOrderBoundedByMult →
-    T.IsBalanced hV.locallyOfFiniteType → j < T.boundary.length →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-      (E' : List (T.baseChange L f).scheme.IdealSheafData),
-      MarkedIdealWithBoundary.SameNontrivialBoundary (T.baseChange L f).boundary E' →
-      E'.take (j + 1) = (T.baseChange L f).boundary.take (j + 1) →
-    ∀ hV' : ((T.baseChange L f).withBoundary E').IsAdmissible,
-      P ((T.baseChange L f).withBoundary E').krullDimSucc →
-      ((T.baseChange L f).withBoundary E').IsOrderBoundedByMult →
-      ((T.baseChange L f).withBoundary E').IsBalanced hV'.locallyOfFiniteType →
-      j < ((T.baseChange L f).withBoundary E').boundary.length →
-      IsStrictPullbackBlowupSeq (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-        (A ((T.baseChange L f).withBoundary E')).toSequenceOfBlowups (A T).toSequenceOfBlowups
   order_le : ∀ (T : MarkedIdealWithBoundary.{u}) (hV : T.IsAdmissible), P T.krullDimSucc → T.IsOrderBoundedByMult →
     T.IsBalanced hV.locallyOfFiniteType → j < T.boundary.length →
     ∀ i, i ≤ (A T).toSequenceOfBlowups.length →
@@ -602,34 +485,6 @@ theorem IsBoundaryDivisorReduction.isPullbackBlowupSequence_of_smooth {P : ℕ �
     (hj' : j < (T.pullbackAlong Y q h).boundary.length) :
     IsPullbackBlowupSequence h (A (T.pullbackAlong Y q h)).toSequenceOfBlowups (A T).toSequenceOfBlowups := by
   exact hs.smooth_pullback T hV hP hO hD hj Y q h hq (T.pullbackAlong Y q h).boundary
-    (MarkedIdealWithBoundary.SameNontrivialBoundary.refl _) rfl hV' hP' hO' hD' hj'
-
-theorem IsBoundaryDivisorReduction.isStrictPullbackBlowupSeq_of_smooth_surjective {P : ℕ → Prop} {j : ℕ}
-    {A B : PrincipalizationAssignment.{u}} (hs : IsBoundaryDivisorReduction P j A B) (T : MarkedIdealWithBoundary.{u})
-    (hV : T.IsAdmissible) (hP : P T.krullDimSucc) (hO : T.IsOrderBoundedByMult)
-    (hD : T.IsBalanced hV.locallyOfFiniteType) (hj : j < T.boundary.length)
-    (Y : Scheme.{u}) (q : Y ⟶ Spec (CommRingCat.of T.base)) (h : Y ⟶ T.scheme)
-    [AlgebraicGeometry.Smooth h] [AlgebraicGeometry.Surjective h] (hq : h ≫ T.structMap = q)
-    (hV' : (T.pullbackAlong Y q h).IsAdmissible) (hP' : P (T.pullbackAlong Y q h).krullDimSucc)
-    (hO' : (T.pullbackAlong Y q h).IsOrderBoundedByMult)
-    (hD' : (T.pullbackAlong Y q h).IsBalanced hV'.locallyOfFiniteType)
-    (hj' : j < (T.pullbackAlong Y q h).boundary.length) :
-    IsStrictPullbackBlowupSeq h (A (T.pullbackAlong Y q h)).toSequenceOfBlowups (A T).toSequenceOfBlowups := by
-  exact hs.smooth_pullback_strict T hV hP hO hD hj Y q h hq (T.pullbackAlong Y q h).boundary
-    (MarkedIdealWithBoundary.SameNontrivialBoundary.refl _) rfl hV' hP' hO' hD' hj'
-
-theorem IsBoundaryDivisorReduction.isStrictPullbackBlowupSeq_baseChange {P : ℕ → Prop} {j : ℕ}
-    {A B : PrincipalizationAssignment.{u}} (hs : IsBoundaryDivisorReduction P j A B) (T : MarkedIdealWithBoundary.{u})
-    (hV : T.IsAdmissible) (hP : P T.krullDimSucc) (hO : T.IsOrderBoundedByMult)
-    (hD : T.IsBalanced hV.locallyOfFiniteType) (hj : j < T.boundary.length)
-    (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-    (hV' : (T.baseChange L f).IsAdmissible) (hP' : P (T.baseChange L f).krullDimSucc)
-    (hO' : (T.baseChange L f).IsOrderBoundedByMult)
-    (hD' : (T.baseChange L f).IsBalanced hV'.locallyOfFiniteType)
-    (hj' : j < (T.baseChange L f).boundary.length) :
-    IsStrictPullbackBlowupSeq (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
-      (A (T.baseChange L f)).toSequenceOfBlowups (A T).toSequenceOfBlowups := by
-  exact hs.base_change_strict T hV hP hO hD hj L f (T.baseChange L f).boundary
     (MarkedIdealWithBoundary.SameNontrivialBoundary.refl _) rfl hV' hP' hO' hD' hj'
 
 structure IsBoundaryPositionInvariant (P : ℕ → Prop) (A : ℕ → PrincipalizationAssignment.{u}) : Prop where

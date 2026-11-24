@@ -236,13 +236,6 @@ theorem exists_isClosed_singleton_of_isAffineOpen {X : Scheme.{u}} (U : X.Opens)
   obtain ⟨x0, hx0⟩ := hne
   exact exists_isClosed_singleton_of_isAffine U.toScheme ⟨x0, hx0⟩
 
-theorem exists_mem_isClosed_singleton_of_isAffineOpen {X : Scheme.{u}} (U : X.Opens)
-    (hU : IsAffineOpen U) (hne : (U : Set X).Nonempty) :
-    ∃ x : X, ∃ hx : x ∈ U, IsClosed ({(⟨x, hx⟩ : U.toScheme)} : Set U.toScheme) := by
-  obtain ⟨x, hx⟩ := exists_isClosed_singleton_of_isAffineOpen U hU hne
-  obtain ⟨y, hy⟩ := x
-  exact ⟨y, hy, hx⟩
-
 private theorem topologicalKrullDim_spec_le_ringKrullDim (R : CommRingCat.{u}) :
     topologicalKrullDim ↥(Spec R) ≤ ringKrullDim ↥R := by
   have h : topologicalKrullDim (PrimeSpectrum ↥R) = ringKrullDim ↥R :=

@@ -448,15 +448,11 @@ theorem t2Space_kq {p : ℕ} [Fact p.Prime] (K : IntermediateField ℚ_[p] (Padi
 end GlobalTheory.LKMid
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharpolyFormGroupToPadicPointsComponent
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharpolyFormGroupToPadicPointsComponent
 
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount GlobalTheory.LKCx
 open scoped TensorProduct Classical
 
-
-#check GlobalTheory.IntBasisKQ.exists_basis_intKQ
-
-noncomputable section
 
 open scoped Pointwise
 
@@ -688,7 +684,6 @@ theorem charpoly_formGroupToPadicPoints_component (G : HTGroup p) (β : G.Cˣ) (
   rfl
 
 end GlobalTheory.FinAtP
-end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

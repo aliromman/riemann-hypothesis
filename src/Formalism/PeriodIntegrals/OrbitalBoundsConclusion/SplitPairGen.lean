@@ -1484,7 +1484,7 @@ lemma sg_hf_smul_left (A : Matrix ι ι R) (c : R) (x y : ι → R) :
     hf A (c • x) y = star c * hf A x y := by
   simp only [hf, dotProduct, mulVec, Pi.star_apply, Pi.smul_apply, smul_eq_mul, star_mul', Finset.mul_sum]
   refine Finset.sum_congr rfl fun i _ => ?_
-  ring
+  ring_nf
 
 lemma sg_hf_smul_right (A : Matrix ι ι R) (c : R) (x y : ι → R) :
     hf A x (c • y) = c * hf A x y := by

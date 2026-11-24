@@ -84,7 +84,7 @@ theorem serMul_serMul (P Q : PowerSeries LL) {F : ℤ → V'} {m₀ : ℤ} (hF :
     rw [mul_smul]
     congr 2
     push_cast
-    ring
+    ring_nf
   rw [Finset.sum_congr rfl hL]
   have hR : ∀ s ∈ Finset.range N, PowerSeries.coeff s (P * Q) • F (i - s) =
       ∑ k ∈ Finset.Ico 0 (s + 1), (PowerSeries.coeff k P * PowerSeries.coeff (s - k) Q) • F (i - s) := by

@@ -151,7 +151,7 @@ theorem hermHb_self (v : Fin (k + 1) → ℂ) :
   rw [dotProduct, Fin.sum_univ_castSucc]
   simp only [Hb, Matrix.mulVec_diagonal, Fin.castSucc_ne_last, if_false, if_true, Pi.star_apply, Complex.star_def]
   push_cast [Complex.normSq_eq_conj_mul_self]
-  ring
+  ring_nf
 
 theorem emb_mulVec_out (μ : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ) (v : Fin (2 * r + k + 1) → ℂ)
     (i : Fin (2 * r + k + 1)) (hi : i.val < r ∨ r + k < i.val) : (embWb k r μ *ᵥ v) i = v i := by

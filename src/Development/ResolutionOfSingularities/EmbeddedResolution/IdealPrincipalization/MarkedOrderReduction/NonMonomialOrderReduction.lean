@@ -58,28 +58,10 @@ namespace FunctorialResolution.EmbeddedResolution
 
 section
 
-theorem list_map_comap_id (B : Scheme.{u}) (E : List B.IdealSheafData) :
-    List.map (fun D : B.IdealSheafData => D.comap (𝟙 B)) E = E := by
-  have h : ∀ D : B.IdealSheafData, D.comap (𝟙 B) = D := fun D => by simp
-  induction E with
-  | nil => rfl
-  | cons D E ih => rw [List.map_cons, h D, ih]
-
 theorem orderAtLeastLocus_comap_eqToHom {A B : Scheme.{u}} (h : A = B) (J : B.IdealSheafData) (c : ℕ) :
     orderAtLeastLocus (J.comap (eqToHom h)) c = (eqToHom h).base ⁻¹' orderAtLeastLocus J c := by
   subst h
   simp
-
-theorem isAdmissible_congr {k : Type u} [Field k] {A : Scheme.{u}}
-    {p q : A ⟶ Spec (CommRingCat.of k)} {I J : A.IdealSheafData} {m n : ℕ}
-    {E F : List A.IdealSheafData} (hp : p = q) (hI : I = J) (hm : m = n) (hE : E = F)
-    (h : (MarkedIdealWithBoundary.mk k A p I m E).IsAdmissible) :
-    (MarkedIdealWithBoundary.mk k A q J n F).IsAdmissible := by
-  subst hp
-  subst hI
-  subst hm
-  subst hE
-  exact h
 
 end
 

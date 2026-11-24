@@ -443,8 +443,6 @@ namespace GroundTheory.LocalField.FormalGroup
 
 open MvPowerSeries
 
-#print prefix GroundTheory.LocalField.FormalGroup.Hom
-
 section Composition
 
 variable {A : Type*} [CommRing A] {σ τ : Type*}

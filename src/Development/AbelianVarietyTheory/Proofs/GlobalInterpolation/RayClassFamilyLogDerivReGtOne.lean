@@ -87,34 +87,11 @@ lemma logMul_div {l : ℕ → ℂ} (h1 : l 1 = 0) {n : ℕ} (hn : n ≠ 0) :
       exact Complex.ofReal_ne_zero.mpr (Real.log_pos (by exact_mod_cast hn2)).ne'
     field_simp
 
-private lemma norm_div_log_natCast_le_norm_div_log_two (x : ℂ) (n : ℕ) : ‖x / Complex.log n‖ ≤ ‖x‖ / Real.log 2 := by
-  have hl2 : 0 < Real.log 2 := Real.log_pos one_lt_two
-  rcases lt_or_ge n 2 with hn | hn
-  · have h0 : Complex.log (n : ℂ) = 0 := by
-      interval_cases n <;> simp
-    rw [h0, div_zero, norm_zero]
-    exact div_nonneg (norm_nonneg _) hl2.le
-  · have hge : Real.log 2 ≤ Real.log n := Real.log_le_log (by norm_num) (by exact_mod_cast hn)
-    rw [← Complex.natCast_log, norm_div, Complex.norm_of_nonneg (hl2.le.trans hge)]
-    exact div_le_div_of_nonneg_left (norm_nonneg _) hl2 hge
-
-private lemma LSeriesSummable_div_log_of_LSeriesSummable {l : ℕ → ℂ} (hl : ∀ s : ℂ, 1 < s.re → LSeriesSummable l s)
-    {s : ℂ} (hs : 1 < s.re) : LSeriesSummable (fun n => l n / Complex.log n) s := by
-  refine Summable.of_norm_bounded (g := fun n => ‖LSeries.term l s n‖ / Real.log 2)
-    ((summable_norm_iff.mpr (hl s hs)).div_const _) (fun n => ?_)
-  simp only [LSeries.norm_term_eq]
-  split_ifs
-  · simp
-  · rw [div_right_comm]
-    gcongr
-    exact norm_div_log_natCast_le_norm_div_log_two _ _
-
 lemma absc_div_lt {l : ℕ → ℂ} (h1 : l 1 = 0) (hl : ∀ s : ℂ, 1 < s.re → LSeriesSummable l s)
     {s : ℂ} (hs : 1 < s.re) : abscissaOfAbsConv (fun n => l n / Complex.log n) < s.re := by
-  have h : abscissaOfAbsConv (fun n => l n / Complex.log n) ≤ ((1 : ℝ) : EReal) :=
-    LSeries.abscissaOfAbsConv_le_of_forall_lt_LSeriesSummable fun y hy =>
-      LSeriesSummable_div_log_of_LSeriesSummable hl (by simpa using hy)
-  exact lt_of_le_of_lt h (EReal.coe_lt_coe_iff.mpr hs)
+  rw [← LSeries.abscissaOfAbsConv_logMul,
+    LSeries.abscissaOfAbsConv_congr (fun {n} hn => logMul_div h1 hn)]
+  exact absc_lt hl hs
 
 lemma eq_exp_of_conv {a l : ℕ → ℂ} (ha : ∀ s : ℂ, 1 < s.re → LSeriesSummable a s)
     (hl : ∀ s : ℂ, 1 < s.re → LSeriesSummable l s) (a1 : a 1 = 1) (l1 : l 1 = 0)

@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Lemmata.TracePi
 
 @[expose] public section
 
@@ -251,27 +252,12 @@ theorem finsum_sig {I : Type} {A : I → Type} (F : (Σ i, A i) → ℂ) (h : (F
 theorem trace_blocks {Q : Type} [Fintype Q] [FiniteDimensional ℂ V] (E : Q → Q → Module.End ℂ V) (L : Module.End ℂ (Q → V))
     (h : ∀ w o', L w o' = ∑ o, E o' o (w o)) : LinearMap.trace ℂ _ L = ∑ o, LinearMap.trace ℂ V (E o o) := by
   classical
-  have hL : L = ∑ o', ∑ o, LinearMap.single ℂ (fun _ : Q => V) o' ∘ₗ (E o' o ∘ₗ LinearMap.proj o) := by
-    refine LinearMap.ext fun w => funext fun p => ?_
-    simp only [h, LinearMap.sum_apply, Finset.sum_apply, LinearMap.comp_apply, LinearMap.coe_proj,
-      Function.eval, LinearMap.coe_single, Pi.single_apply]
-    rw [Finset.sum_comm]
-    simp
-
-  rw [hL, map_sum]
-  refine Finset.sum_congr rfl fun o' _ => ?_
-
-  rw [map_sum]
-  have hterm : ∀ o, LinearMap.trace ℂ (Q → V)
-      (LinearMap.single ℂ (fun _ : Q => V) o' ∘ₗ (E o' o ∘ₗ LinearMap.proj o)) =
-      if o = o' then LinearMap.trace ℂ V (E o' o) else 0 := by
-    intro o
-    rw [LinearMap.trace_comp_comm', LinearMap.comp_assoc]
-    split_ifs with hoo
-    · subst hoo
-      rw [LinearMap.proj_comp_single_same, LinearMap.comp_id]
-    · rw [LinearMap.proj_comp_single_ne ℂ _ _ _ hoo, LinearMap.comp_zero, map_zero]
-  simp only [hterm, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  rw [LinearMap.trace_pi]
+  refine Finset.sum_congr rfl fun i _ => congrArg (LinearMap.trace ℂ V) ?_
+  ext x
+  change L (Pi.single i x) i = E i i x
+  rw [h]
+  simp [Pi.single_apply, apply_ite]
 
 theorem finsum_triv (Γ₀ : Subgroup Γ) (h0 : ∀ z ∈ Γ₀, ∀ y : Y, z • y = y) (k : Y → V) (hk : (Function.support k).Finite) :
     {b : orbitRel.Quotient Γ₀ Y | k b.out ≠ 0}.Finite ∧

@@ -742,7 +742,7 @@ theorem analyticAt_of_norm_iteratedFDeriv_le {f : E → F} {x₀ : E} {r C M : �
       refine p.le_radius_of_bound (|C|) fun k ↦ ?_
       rw [Real.coe_toNNReal _ hρpos.le]
       calc ‖p k‖ * ρ ^ k ≤ |C| * M' ^ k * ρ ^ k := by gcongr; exact hp k
-        _ = |C| * (M' * ρ) ^ k := by ring
+        _ = |C| * (M' * ρ) ^ k := by ring_nf
         _ ≤ |C| * 1 := by
           gcongr
           exact pow_le_one₀ (by positivity) (by linarith)

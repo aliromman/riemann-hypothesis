@@ -155,7 +155,7 @@ private theorem evS_algebraMap (y : CxPts s' (RingHom.id ℂ)) {V : Y.Opens} (h 
   rw [evS_apply]
   exact CxPts.ev_algX h a
 
-private theorem res_app_res (c : Y ⟶ Z) (hc : c ≫ s = s') {U U₂ : Z.Opens} (hU : U₂ ≤ U) {V V₂ : Y.Opens} (hV : V ≤ c ⁻¹ᵁ U)
+private theorem res_app_res (c : Y ⟶ Z) {U U₂ : Z.Opens} (hU : U₂ ≤ U) {V V₂ : Y.Opens} (hV : V ≤ c ⁻¹ᵁ U)
     (hV₂ : V₂ ≤ c ⁻¹ᵁ U₂) (hVV : V₂ ≤ V) (t : Sec s U) :
     Sec.res s' hV₂ (appSec s s' c U₂ (Sec.res s hU t)) = Sec.res s' hVV (Sec.res s' hV (appSec s s' c U t)) := by
   change (Z.presheaf.map (homOfLE hU).op ≫ c.app U₂ ≫ Y.presheaf.map (homOfLE hV₂).op).hom t =
@@ -259,8 +259,8 @@ private theorem shrink {d : ℕ} {c1 c2 : Y ⟶ Z} (h1 : c1 ≫ s = s') (h2 : c2
     funext fun b => (evS_apply y hy₂ b).symm
   rw [E₀] at hw'
   have key := Wit.loc (B := Sec s' V) (B' := Sec s' (Y.basicOpen g)) (Submonoid.powers (show Sec s' V from g)) (evS y hy) (evS y hy₂) he (evS_algebraMap y hy₂) hw'
-  rw [E, funext fun l => res_app_res c1 h1 hU₂ hV1 hV₁ hVV (t l),
-    funext fun l => res_app_res c2 h2 hU₂ hV2 hV₂ hVV (t l)]
+  rw [E, funext fun l => res_app_res c1 hU₂ hV1 hV₁ hVV (t l),
+    funext fun l => res_app_res c2 hU₂ hV2 hV₂ hVV (t l)]
   exact key
 
 private theorem wit_iff {d : ℕ} (FinalForm : Z.Opens) (Wo : Y.Opens) {c1 c2 : Y ⟶ Z} {c1' c2' : Wo.toScheme ⟶ FinalForm.toScheme}

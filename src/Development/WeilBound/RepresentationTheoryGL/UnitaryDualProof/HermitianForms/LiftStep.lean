@@ -319,7 +319,7 @@ theorem locB (L : LC h ψ π s B B' C A₀ ν) {ζ : V1 k m} (hζ : ζ ≠ 0) (v
     exact (continuous_fst.matrix_mulVec continuous_snd).comp_continuousOn (h2.prodMk continuous_snd.continuousOn)
   obtain ⟨M₂, hM₂, hKM₂⟩ := lat_over hKc
   refine ⟨M₁ ⊔ M₂, isLat_sup hM₁ hM₂, fun ξ hξ => ?_⟩
-  have hξS : ξ ∈ Sc := ⟨ξ - ζ, ann_anti le_sup_left hξ, by abel⟩
+  have hξS : ξ ∈ Sc := ⟨ξ - ζ, ann_anti le_sup_left hξ, by abel_nf⟩
   obtain ⟨hhv, hhd⟩ := hSH ξ hξS; have hζh : ζ ᵥ* gmat (f ξ) = ξ := hfN ξ (hSN hξS)
   have hg'ξ : xi0 k m ᵥ* gmat ((f ξ)⁻¹ * sect ζ)⁻¹ = ξ := by
     rw [_root_.mul_inv_rev, inv_inv, gmat, val_mul, ← vecMul_vecMul, sect_spec hζ, hζh]

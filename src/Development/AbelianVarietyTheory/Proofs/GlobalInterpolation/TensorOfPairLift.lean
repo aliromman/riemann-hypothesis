@@ -617,7 +617,7 @@ theorem tensor_of_pairLift {D : Formalism.BasicNotions.D7} (h : admitted D → R
   have hCU : RestCountUp := upper_count_of_top_rows hCD hNB top_rows_bound_holds
   have hMU : RestMatchUp := restMatchUp_of (restFirstRows_of (restSTopRows_of top_rows_bound_holds))
   have hCL : RestCountLow := restCountLow_of'' hCD hT hMU keptBlocks
-  closed_of_bounds hA.2.2.1 (restUp_of hB hY charZeroAt hCU) (restLow_of hB hY charZeroAt hCL) partners_to_factors_holds
+  closed_of_bounds hA.2.2.1 (restUp_of hB hY hCU) (restLow_of hB hY hCL) partners_to_factors_holds
     (restLift_of (restLiftVec_of hPL))
 
 theorem tensor_closed (D : Formalism.BasicNotions.D7) : ExtendedClosedForm D :=

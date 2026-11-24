@@ -242,7 +242,7 @@ theorem lattice_contains_power_local (Pt : ZMod n → LL → (K →ₐ[Qp] LL) �
   rw [← smulLA_mul', ← smulLA_mul']
   congr 1
   rw [show 3 * h' = h' + 2 * h' by ring, pow_add]
-  ring
+  ring_nf
 
 end Local
 

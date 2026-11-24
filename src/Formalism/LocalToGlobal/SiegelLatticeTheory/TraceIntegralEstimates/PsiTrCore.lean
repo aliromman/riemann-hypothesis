@@ -105,7 +105,7 @@ theorem intAf_le_congSub (n : ℤ) (hn : n ≠ 0) : IntAf F E ≤ congSub n := b
       rw [← Algebra.TensorProduct.includeRight_apply, map_intCast]
     refine ⟨algebraMap (𝓞 F) (𝓞 E) b, (1 : E) ⊗ₜ[F] c', one_tmul_mem c' hc'int, ?_⟩
     rw [hB, hn', Algebra.TensorProduct.tmul_mul_tmul, one_mul, key, ← TensorProduct.tmul_add]
-    abel
+    abel_nf
 
 private lemma sum_embedding_eq_trace_of_totallyReal {K : Type} [Field K] [NumberField K]
     (hK : NumberField.IsTotallyReal K) (a : K) :

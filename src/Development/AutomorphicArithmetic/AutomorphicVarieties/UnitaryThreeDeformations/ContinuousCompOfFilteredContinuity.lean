@@ -166,7 +166,7 @@ private theorem unit_diff {O : Type} [CommRing O] (p : Oˣ) (hp : IsUnit ((p : O
     first
     | exact absurd rfl hab
     | assumption
-    | (rw [← neg_sub, IsUnit.neg_iff]; assumption)
+    | rwa [← neg_sub, IsUnit.neg_iff]
 
 private theorem red_diag {O R D : Type} [CommRing O] [IsLocalRing O] [CommRing R] [IsLocalRing R] [Algebra O R]
     [Group D] {η : D →* ℤˣ} {Ψ : D →* Oˣ} {r : D →* GG (m := 3) (R := R)} (hr : Red η Ψ r) {x : D}

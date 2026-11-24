@@ -198,7 +198,7 @@ theorem mFourierCoeff_torusFunC (e : Module.Basis ι ℝ V) (G : V → ℂ) (hG 
   rw [torusFun_proj e G hper, mFourier_torusProj e (-m) t, mul_comm, hneg, inner_neg_left]
   congr 1
   push_cast
-  ring
+  ring_nf
 
 end Formalism.H
 end -- clump:auto

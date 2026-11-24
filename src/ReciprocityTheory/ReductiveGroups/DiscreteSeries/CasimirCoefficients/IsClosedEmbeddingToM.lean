@@ -1,9 +1,9 @@
 module
 
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DefsRep
+public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.MeasureTheory.Measure.Haar.Basic
 public import Mathlib.Topology.Algebra.Group.Units
-public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.IsClosedEmbeddingToM
 import Mathlib.Tactic.Lemma
 
 @[expose] public section
@@ -39,10 +39,10 @@ def UJ (ε : Fin n → Bool) : Subgroup (Matrix (Fin n) (Fin n) ℂ)ˣ where
   mul_mem' := by
     intro g h hg hh
     simp only [Set.mem_ofPred_eq, inUJ, Units.val_mul, Matrix.conjTranspose_mul] at *
-    calc (h : Matrix (Fin n) (Fin n) ℂ)ᴴ * (g : Matrix (Fin n) (Fin n) ℂ)ᴴ * Jm ε *
-          ((g : Matrix (Fin n) (Fin n) ℂ) * h)
-        = (h : Matrix (Fin n) (Fin n) ℂ)ᴴ * ((g : Matrix (Fin n) (Fin n) ℂ)ᴴ * Jm ε * g) * h := by
-          simp only [Matrix.mul_assoc]
+    let A : Matrix (Fin n) (Fin n) ℂ := g
+    let B : Matrix (Fin n) (Fin n) ℂ := h
+    calc Bᴴ * Aᴴ * Jm ε * (A * B)
+        = Bᴴ * (Aᴴ * Jm ε * A) * B := by simp only [Matrix.mul_assoc]
       _ = Jm ε := by rw [hg, hh]
   one_mem' := by
     simp only [Set.mem_ofPred_eq, inUJ, Units.val_one, Matrix.conjTranspose_one, Matrix.one_mul,
@@ -50,19 +50,13 @@ def UJ (ε : Fin n → Bool) : Subgroup (Matrix (Fin n) (Fin n) ℂ)ˣ where
   inv_mem' := by
     intro g hg
     simp only [Set.mem_ofPred_eq, inUJ] at *
-    have h1 : ((g⁻¹ : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ)ᴴ *
-        (g : Matrix (Fin n) (Fin n) ℂ)ᴴ = 1 := by
-      rw [← Matrix.conjTranspose_mul, Units.mul_inv, Matrix.conjTranspose_one]
-    have h2 : (g : Matrix (Fin n) (Fin n) ℂ) * ((g⁻¹ : (Matrix (Fin n) (Fin n) ℂ)ˣ) :
-        Matrix (Fin n) (Fin n) ℂ) = 1 := Units.mul_inv g
-    calc ((g⁻¹ : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ)ᴴ * Jm ε *
-          ((g⁻¹ : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ)
-        = ((g⁻¹ : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ)ᴴ *
-          ((g : Matrix (Fin n) (Fin n) ℂ)ᴴ * Jm ε * g) *
-          ((g⁻¹ : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ) := by rw [hg]
-      _ = Jm ε := by
-          rw [show ∀ A B C D E : Matrix (Fin n) (Fin n) ℂ, A * (B * C * D) * E = (A * B) * C * (D * E)
-            from fun A B C D E => by simp only [Matrix.mul_assoc], h1, h2, Matrix.one_mul, Matrix.mul_one]
+    let A : Matrix (Fin n) (Fin n) ℂ := g
+    let B : Matrix (Fin n) (Fin n) ℂ := ↑g⁻¹
+    have hAB : A * B = 1 := Units.mul_inv g
+    calc Bᴴ * Jm ε * B
+        = Bᴴ * (Aᴴ * Jm ε * A) * B := by rw [hg]
+      _ = (A * B)ᴴ * Jm ε * (A * B) := by simp only [Matrix.conjTranspose_mul, Matrix.mul_assoc]
+      _ = Jm ε := by simp [hAB]
 
 abbrev toM {ε : Fin n → Bool} (g : UJ ε) : Matrix (Fin n) (Fin n) ℂ :=
   ((g : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ)
@@ -76,7 +70,7 @@ lemma toM_inv (ε : Fin n → Bool) (g : UJ ε) : toM g⁻¹ = Jm ε * (toM g)�
   Units.inv_eq_of_mul_eq_one_left (left_inv_of_inUJ ε _ g.2)
 
 lemma continuous_toM (ε : Fin n → Bool) : Continuous (fun g : UJ ε => toM g) :=
-  Units.continuous_val.comp continuous_subtype_val
+  Units.continuous_val.comp continuous_subtypeVal
 
 lemma isClosed_inUJ (ε : Fin n → Bool) : IsClosed {g : Matrix (Fin n) (Fin n) ℂ | inUJ ε g} := by
   unfold inUJ
@@ -91,8 +85,24 @@ lemma range_toM (ε : Fin n → Bool) : Set.range (fun g : UJ ε => toM g) = {g 
     have h2 := left_inv_of_inUJ ε g hg
     exact ⟨⟨⟨g, Jm ε * gᴴ * Jm ε, mul_eq_one_comm.mp h2, h2⟩, hg⟩, rfl⟩
 
+/-- The inclusion `UJ ε → Matrix (Fin n) (Fin n) ℂ` is a closed embedding, since the inverse in
+`UJ ε` is given continuously by `A ↦ Jm ε * Aᴴ * Jm ε`. -/
 lemma isClosedEmbedding_toM (ε : Fin n → Bool) : IsClosedEmbedding (fun g : UJ ε => toM g) := by
-  first | exact UpperTheory.Reformulated.B.Qk16.isClosedEmbedding_toM ..
+  refine ⟨?_, by rw [range_toM]; exact isClosed_inUJ ε⟩
+  let F : Matrix (Fin n) (Fin n) ℂ → Matrix (Fin n) (Fin n) ℂ × (Matrix (Fin n) (Fin n) ℂ)ᵐᵒᵖ :=
+    fun A => (A, MulOpposite.op (Jm ε * Aᴴ * Jm ε))
+  have hF : Continuous F :=
+    continuous_id.prodMk (MulOpposite.continuous_op.comp
+      ((continuous_const.matrix_mul continuous_id.matrix_conjTranspose).matrix_mul
+        continuous_const))
+  refine IsEmbedding.of_comp (continuous_toM ε) hF ?_
+  have heq : F ∘ (fun g : UJ ε => toM g) =
+      Units.embedProduct (Matrix (Fin n) (Fin n) ℂ) ∘ Subtype.val := by
+    funext g
+    simp only [Function.comp_apply, F, Units.embedProduct_apply, ← toM_inv]
+    rfl
+  rw [heq]
+  exact Units.isEmbedding_embedProduct.comp IsEmbedding.subtypeVal
 
 instance (ε : Fin n → Bool) : LocallyCompactSpace (UJ ε) := by
   have : LocallyCompactSpace (Matrix (Fin n) (Fin n) ℂ) :=

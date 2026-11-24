@@ -108,7 +108,7 @@ lemma re_term_vonMangoldt {n : ℕ} (hn : n ≠ 0) (σ y : ℝ) :
     Complex.mul_re, Complex.mul_im, Complex.neg_re, Complex.neg_im, Complex.add_re, Complex.add_im,
     Complex.ofReal_re, Complex.ofReal_im, Complex.I_re, Complex.I_im, mul_zero, sub_zero,
     zero_mul, add_zero, mul_one]
-  rw [mul_assoc, ← Real.cos_neg]; congr 2 <;> ring
+  rw [mul_assoc, ← Real.cos_neg]; congr 2 <;> ring_nf
 
 lemma hasSum_re_L {σ : ℝ} (hσ : 1 < σ) (y : ℝ) :
     HasSum (fun n => (LSeries.term (fun m => (Λ m : ℂ)) ((σ : ℂ) + y * I) n).re)

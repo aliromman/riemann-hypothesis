@@ -262,6 +262,6 @@ theorem NE_q_le {H' : Type*} [NormedAddCommGroup H'] [InnerProductSpace ℂ H'] 
         exact mul_le_mul_of_nonneg_left (NT_mono E (by omega) f) (by positivity)
     _ = _ := by
         rw [sum_const, card_univ, Fintype.card_fun, Fintype.card_prod, Fintype.card_fin, nsmul_eq_mul]
-        simp only [Fintype.card_fin]; push_cast; ring
+        simp only [Fintype.card_fin]; push_cast; ring_nf
 
 end ReciprocityTheory.ChartRestriction.DS.DecInf

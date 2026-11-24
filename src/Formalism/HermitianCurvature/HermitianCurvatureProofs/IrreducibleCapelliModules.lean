@@ -216,13 +216,13 @@ theorem shf_up {n : ℕ} (β : ℂ) (M : Fin n → ℤ) (i : Fin n) :
     Function.update (shf β M) i (shf β M i + 1) = shf β (Function.update M i (M i + 1)) := by
   rw [← shf_update]
   simp [shf]
-  ring
+  ring_nf
 
 theorem shf_down {n : ℕ} (β : ℂ) (M : Fin n → ℤ) (i : Fin n) :
     Function.update (shf β M) i (shf β M i - 1) = shf β (Function.update M i (M i - 1)) := by
   rw [← shf_update]
   simp [shf]
-  ring
+  ring_nf
 
 theorem sdec_shf {n : ℕ} (β : ℂ) {L : Fin n → ℤ} (hL : StrictAnti L) : SDec (shf β L) := by
   intro a b hab

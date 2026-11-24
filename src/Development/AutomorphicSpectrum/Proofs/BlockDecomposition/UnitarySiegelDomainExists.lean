@@ -830,7 +830,7 @@ theorem hgt_line [IsTotallyReal F] (ha : IsTorus σ J X Y a) {ω : GAd σ J} (h�
   simp only [Pi.neg_apply]
   simp only [smul_smul]
   congr 1
-  ring
+  ring_nf
 
 theorem hgt_pair [IsTotallyReal F] (ha : IsTorus σ J X Y a) {ω : GAd σ J}
     {B : Matrix (Fin (r + 1)) (Fin (r + 1)) (AF F ⊗[F] E)} (hB : B.BlockTriangular id)

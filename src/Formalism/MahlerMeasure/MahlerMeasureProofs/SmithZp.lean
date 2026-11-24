@@ -197,7 +197,7 @@ theorem smith_form_p_adic_integers : SmithZp := by
     simp only [Matrix.mulVec, dotProduct, Pi.smul_apply, smul_eq_mul] at h1
     rw [Matrix.mul_diagonal, Matrix.mul_apply]
     simp only [Q, P, std, Module.Basis.toMatrix_apply, Pi.basisFun_repr]
-    rw [h1]; ring
+    rw [h1]; ring_nf
   refine ⟨P, V, a, Matrix.isUnit_det_of_right_inverse hPW, Matrix.isUnit_det_of_left_inverse hQV, ?_⟩
   calc M = M * (Q * V) := by rw [hQV, Matrix.mul_one]
     _ = (M * Q) * V := by rw [Matrix.mul_assoc]

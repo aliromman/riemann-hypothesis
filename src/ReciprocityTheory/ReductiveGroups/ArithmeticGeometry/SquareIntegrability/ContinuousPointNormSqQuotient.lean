@@ -257,7 +257,7 @@ theorem term_shift (γ : X.L) (c : Qc X I) (v : Vsp X.dim) :
   have hK := hK_of hI
   congr 1
   · simp only [wc, map_sub, uQ_mk, uc_add]
-    congr 3; abel
+    congr 3; abel_nf
   · set c' := c - Submodule.Quotient.mk γ
     have hcl : (Quotient.out c' : X.L) - ((Quotient.out c : X.L) - γ) ∈ NIp X I := by
       rw [← Submodule.Quotient.eq]

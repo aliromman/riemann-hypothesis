@@ -215,7 +215,7 @@ lemma glAct_freezeSub (LL : Letters N) (n : ℕ) (ρ c : Fin r) (hc : c ≠ ρ) 
   by_cases hv : LL.vec i <;> by_cases hc0 : c0 = ρ <;>
 
     simp [freezeSub, hv, hc0, glAct_mul, glAct_X, map_sum, map_sub, Ne.symm hc, mul_ite,
-    Finset.sum_add_distrib, Finset.sum_ite_eq'] <;> ring
+    Finset.sum_add_distrib, Finset.sum_ite_eq'] <;> ring_nf
 
 lemma glAct_aeval_freezeSub (LL : Letters N) (n : ℕ) (ρ c : Fin r) (hc : c ≠ ρ)
     (f : MvPolynomial (Fin N × Fin r) ℚ_[p]) :

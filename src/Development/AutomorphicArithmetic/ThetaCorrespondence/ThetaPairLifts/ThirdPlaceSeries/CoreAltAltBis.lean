@@ -66,7 +66,6 @@ structure SpectralDataCompatible {p : _root_.GlobalTheory.Mem.Top.Bl.Parameters 
   twGood : DQ.GoodAllAt (q.w.D q.Z) q.O.ex.nch S.twIn
   chr : (⟨S.n.cf, S.n.tp⟩ : Σ c : CharFrame (q.w.D q.Z), TupTied (q.w.D q.Z) c q.O.ex.nch) = ⟨TC.cf q.w.I q.w.l q.Z, q.x.n.tp⟩
   gal : S.n.gal = q.core_data_of_point.a.all.gal
-  nn : S.n.n = q.core_data_of_point.a.all.n
   exp : S.n.exp = q.core_data_of_point.a.all.exp
   chiD : S.n.chiD = q.core_data_of_point.a.all.chiD
   twF : S.n.twF = q.core_data_of_point.a.all.twF

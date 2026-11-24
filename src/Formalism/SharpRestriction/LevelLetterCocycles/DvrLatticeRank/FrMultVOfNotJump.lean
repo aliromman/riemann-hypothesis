@@ -72,7 +72,7 @@ theorem tele (f : ℤ → ℤ) (m : ℤ) (d : ℕ) :
       omega
     rw [hI, Finset.sum_insert (by simp), ih]
     push_cast
-    ring
+    ring_nf
 
 section Fil
 

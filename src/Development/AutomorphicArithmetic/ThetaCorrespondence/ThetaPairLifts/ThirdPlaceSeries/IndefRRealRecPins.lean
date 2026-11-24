@@ -55,7 +55,7 @@ variable {Rc : _root_.Formalism.L2.RecTAlt ex} {P : RowSideFamily ex} {Dcf : ∀
   {S : _root_.Formalism.L2.SG.SpectralTiesReal.STiesRAlt Rc} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL]
 structure IndefiniteRealisationCompatible {Q : _root_.Formalism.IndefR.IndefiniteRealisation Rc P Dcf Spf Zscf S Ks} (Qp : _root_.Formalism.IndefR.IndefiniteRealisationNormalisation Q) (Qr : _root_.Formalism.IndefR.IndefiniteRealisationRecursion Q) : Prop where
   stdPsi : Formalism.IndefR.principalLevelFrame.StdPsi Qp.hF Qr.PY ∧ ∀ i, Formalism.IndefR.principalLevelFrame.StdPsi Qp.hF (Qr.PW i)
-  rowLoc : _root_.Formalism.IndefR.principalLevelFrame.RowLocPinAlt Rc.T.n.gal.lp Q.Rl.θ Qr.PY (Q.Rl.MY 0)
+  rowLoc : _root_.Formalism.IndefR.principalLevelFrame.RowLocPinAlt Q.Rl.θ Qr.PY (Q.Rl.MY 0)
     (fun b => levS _ (Q.Rl.βY 0) (Q.Rl.dat0 (Q.Rl.toRealDat.levR Q.F.lv2 b)))
     (fun b => Formalism.IndefR.Lev.levChi _ (Q.Rl.βY 0) (Q.Rl.dat0 (Q.Rl.toRealDat.levR Q.F.lv2 b))) (fun _ => Q.Rl.e0) Qr.eFT
 end Formalism.IndefR

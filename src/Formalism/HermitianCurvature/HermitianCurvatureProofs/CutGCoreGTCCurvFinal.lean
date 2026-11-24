@@ -135,7 +135,7 @@ theorem curv_K_nab (hRel : d.Rel) : curvK d * d.L.nab = d.L.nab * curvK d +
     simp only [mul_add, add_mul, mul_assoc]
     rw [← mul_assoc (algebraMap ℂ A (P.TT : ℂ)) d.L.ζb, hζ.eq]
     simp only [mul_assoc]
-    abel
+    abel_nf
   rw [this]
   abel
 

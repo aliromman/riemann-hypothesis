@@ -65,11 +65,6 @@ structure PrincipalizationGeometryHypotheses : Prop where
       Blowup.exceptionalIdeal π Z ^ c * J' = J.comap π →
     ∀ C' : Set ↥X', IsIrreducibleComponentOf C' (↑(Blowup.exceptionalIdeal π Z).support : Set ↥X') →
       ¬ C' ⊆ (↑J'.support : Set ↥X')
-  orderAt_baseChange : ∀ (T : MarkedIdealWithBoundary.{u}), T.IsAdmissible →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L)
-      (I : T.scheme.IdealSheafData) (y : ↥(T.baseChange L f).scheme),
-      orderAt (I.comap (pullback.fst T.structMap (specMapOfFieldHom T.base L f))) y =
-        orderAt I ((pullback.fst T.structMap (specMapOfFieldHom T.base L f)).base y)
   controlledTransform_orderAt_le : ∀ (T : MarkedIdealWithBoundary.{u}), T.IsAdmissible →
     ∀ Z : T.scheme.IdealSheafData,
       AlgebraicGeometry.Smooth (Z.subschemeι ≫ T.structMap) →
@@ -80,14 +75,6 @@ structure PrincipalizationGeometryHypotheses : Prop where
     ∀ J' : X'.IdealSheafData,
       Blowup.exceptionalIdeal π Z ^ c * J' = J.comap π →
     ∀ x' : ↥X', x' ∈ (Blowup.exceptionalIdeal π Z).support → orderAt J' x' ≤ (c : ℕ∞)
-  splitting_baseChange : ∀ (T : MarkedIdealWithBoundary.{u}), T.IsAdmissible →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L),
-      (T.baseChange L f).IsAdmissible →
-    ∀ M N : T.scheme.IdealSheafData,
-      IsMonomialSplitting T.boundary T.ideal M N →
-      IsMonomialSplitting (T.baseChange L f).boundary (T.baseChange L f).ideal
-        (M.comap (pullback.fst T.structMap (specMapOfFieldHom T.base L f)))
-        (N.comap (pullback.fst T.structMap (specMapOfFieldHom T.base L f)))
   splitting_smooth_pullback : ∀ (T : MarkedIdealWithBoundary.{u}), T.IsAdmissible →
     ∀ (Y : Scheme.{u}) (q : Y ⟶ Spec (CommRingCat.of T.base)) (h : Y ⟶ T.scheme)
       [AlgebraicGeometry.Smooth h], h ≫ T.structMap = q →

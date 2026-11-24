@@ -1207,20 +1207,6 @@ theorem compPh : CompPh := by
   simp only [key]
   split_ifs <;> rfl
 
-private theorem fdig_eq_sum_C_coeff_mul_prod_of_support_subset {p : ℕ} {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] {r J : ℕ}
-    (Dt : SignedChainData p O r J) (rho : (ZMod J × Fin r) × Fin r → ℕ)
-    (F : MvPolynomial (TL J Dt.nL r × Fin r) (KK O)) (S : Finset (TL J Dt.nL r × Fin r →₀ ℕ))
-    (hS : F.support ⊆ S) :
-    Dt.Fdig rho F = ∑ mo ∈ S with Dt.digOK rho mo,
-      C (AddMonoidAlgebra.coeff F mo) * ∏ v ∈ mo.support, X (Dt.liftVar v) ^ Dt.liftExp mo v := by
-  unfold SignedChainData.Fdig
-  refine Finset.sum_subset (Finset.filter_subset_filter _ hS) ?_
-  intro mo h1 h2
-  have h0 : AddMonoidAlgebra.coeff F mo = 0 := by
-    by_contra h
-    exact h2 (Finset.mem_filter.2 ⟨mem_support_iff.2 h, (Finset.mem_filter.1 h1).2⟩)
-  simp [h0]
-
 theorem fdigSum : FdigSum := by
   intro p O _ _ _ r J Dt rho α s f
   classical
@@ -1256,11 +1242,6 @@ theorem digOK_phExp (hP : ∀ j m, 0 < Dt.P j m) (rho : (ZMod J × Fin r) × Fin
 theorem liftMon_notin (mo : TL J Dt.nL r × Fin r →₀ ℕ) (w : ML J Dt.nL r × Fin r)
     (hw : w ∉ Set.range Dt.liftVar) : liftMon Dt mo w = 0 :=
   Finsupp.mapDomain_notin_range _ _ hw
-
-private theorem liftE_apply_eq_liftExp {p : ℕ} {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
-    {r J : ℕ} (Dt : SignedChainData p O r J) (γ : TL J Dt.nL r × Fin r →₀ ℕ) (v : TL J Dt.nL r × Fin r) :
-    liftE Dt γ v = Dt.liftExp γ v := by
-  rcases v with ⟨⟨j, l | m⟩, a⟩ <;> simp [liftE, Pof, SignedChainData.liftExp]
 
 theorem liftMon_phExp (hP : ∀ j m, 0 < Dt.P j m) (β : TL J Dt.nL r × Fin r →₀ ℕ) (M : ML J Dt.nL r × Fin r →₀ ℕ)
     (hM : ∀ v ∈ M.support, IsLW v.1) : liftMon Dt (β + phExp Dt M) = liftMon Dt β + M := by

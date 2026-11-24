@@ -1358,7 +1358,7 @@ theorem vacuum_sum_selfDual_fixed : ∀ (L : Type) [Field L] [CharZero L] [Value
       exact hdiff
     rw [hcomb u v hu hv]
     calc ρ (u * A + v * A) s = ρ (v' * A + (u + v - v') * A) s := by
-          congr 1; rw [Matrix.sub_mul, Matrix.add_mul]; abel
+          congr 1; rw [Matrix.sub_mul, Matrix.add_mul]; abel_nf
       _ = ρ (v' * A) (ρ ((u + v - v') * A) s) := (hcomb v' _ hv' hw s).symm
       _ = ρ (v' * A) s := by rw [hl]
   choose! f hfZ hf hfd using key

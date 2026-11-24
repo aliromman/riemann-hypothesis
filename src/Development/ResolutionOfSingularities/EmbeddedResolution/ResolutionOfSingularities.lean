@@ -141,23 +141,6 @@ def IsPullbackBlowupSequence {X X' : Scheme.{u}} (φ : X' ⟶ X) (s' : SequenceO
       s'.center i
         = (s.center (r i)).comap ((e i hi.le).hom ≫ pullback.snd φ (s.projectionToBase (r i))))
 
-abbrev specMapAlgebraMap (k K : Type u) [Field k] [Field K] [Algebra k K] :
-    Spec (CommRingCat.of K) ⟶ Spec (CommRingCat.of k) :=
-  Spec.map (CommRingCat.ofHom (algebraMap k K))
-
-abbrev baseChange {X : Scheme.{u}} {k : Type u} [Field k] (p : X ⟶ Spec (CommRingCat.of k))
-    (K : Type u) [Field K] [Algebra k K] : Scheme.{u} :=
-  pullback p (specMapAlgebraMap k K)
-
-abbrev baseChangeProjection {X : Scheme.{u}} {k : Type u} [Field k] (p : X ⟶ Spec (CommRingCat.of k))
-    (K : Type u) [Field K] [Algebra k K] : baseChange p K ⟶ X :=
-  pullback.fst p (specMapAlgebraMap k K)
-
-abbrev baseChangeToSpec {X : Scheme.{u}} {k : Type u} [Field k]
-    (p : X ⟶ Spec (CommRingCat.of k)) (K : Type u) [Field K] [Algebra k K] :
-    baseChange p K ⟶ Spec (CommRingCat.of K) :=
-  pullback.snd p (specMapAlgebraMap k K)
-
 abbrev ResolutionRule : Type (u + 1) :=
   ∀ (k : Type u) [Field k] [CharZero k] (X : Scheme.{u})
     (f : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.LocallyOfFiniteType f]
@@ -186,18 +169,9 @@ def IsCompatibleWithSmoothMorphisms (R : ResolutionRule.{u}) : Prop :=
     (φ : X' ⟶ X) (r : ℕ) [AlgebraicGeometry.SmoothOfRelativeDimension r φ],
     φ ≫ f = f' → IsPullbackBlowupSequence φ (R k X' f') (R k X f)
 
-def IsCompatibleWithFieldExtension (R : ResolutionRule.{u}) : Prop :=
-  ∀ (k : Type u) [Field k] [CharZero k] (X : Scheme.{u})
-    (f : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.LocallyOfFiniteType f]
-    [AlgebraicGeometry.QuasiCompact f] [AlgebraicGeometry.IsReduced X]
-    (K : Type u) [Field K] [CharZero K] [Algebra k K]
-    [AlgebraicGeometry.IsReduced (baseChange f K)],
-    IsPullbackBlowupSequence (baseChangeProjection f K)
-      (R K (baseChange f K) (baseChangeToSpec f K)) (R k X f)
-
 def StrongResolutionOfSingularitiesCharZero : Prop :=
   ∃ R : ResolutionRule.{u},
-    IsStrongResolutionRule R ∧ IsCompatibleWithSmoothMorphisms R ∧ IsCompatibleWithFieldExtension R
+    IsStrongResolutionRule R ∧ IsCompatibleWithSmoothMorphisms R
 
 end FunctorialResolution.EmbeddedResolution
 

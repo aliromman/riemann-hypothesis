@@ -148,17 +148,6 @@ def LebHaar : Prop :=
   ∀ (D : D7) (X : HidaSetting D) (u : D.what₂.Word),
     ∃ lam : Measure X.B.I.Ginf, IsHaarOnSet X.B.I (X.NinfU u) lam ∧ lam.map (kap X u) = volume
 
-private lemma measure_inter_eq_of_compl_null {α : Type*} [MeasurableSpace α] (μ : Measure α) {N : Set α}
-    (hN : μ Nᶜ = 0) (P : Set α) : μ (P ∩ N) = μ P := by
-  refine le_antisymm (measure_mono Set.inter_subset_left) ?_
-  calc μ P ≤ μ ((P ∩ N) ∪ Nᶜ) := by
-        refine measure_mono fun s hs => ?_
-        by_cases h : s ∈ N
-        · exact Or.inl ⟨hs, h⟩
-        · exact Or.inr h
-    _ ≤ μ (P ∩ N) + μ Nᶜ := measure_union_le _ _
-    _ = μ (P ∩ N) := by rw [hN, add_zero]
-
 theorem coordHaar_of (hU : HaarUnique) (hL : LebHaar) : CoordHaar := by
   intro D X u μ hμ
   obtain ⟨lam, hlam, hmap⟩ := hL D X u
@@ -172,7 +161,7 @@ theorem coordHaar_of (hU : HaarUnique) (hL : LebHaar) : CoordHaar := by
     first
       | (rw [volume_pi, Measure.pi_pi]; simp [Real.volume_Ico])
   have hbox : lam (boxN X u) = 1 := by
-    rw [boxN_eq, Set.inter_comm, measure_inter_eq_of_compl_null lam hlam.2.2.1,
+    rw [boxN_eq, Set.inter_comm, measure_inter_conull hlam.2.2.1,
       ← Measure.map_apply hkm hbm, hmap, hvol]
   rw [Measure.map_smul c hkm.aemeasurable, hmap, Measure.smul_apply, hbox, smul_eq_mul, mul_one]
 
@@ -189,13 +178,13 @@ theorem covolN_of_four (hInj : KapInj) (hU : HaarUnique) (hL : LebHaar) (hC : Co
       exact ht
     · intro hs
       exact Set.mem_inter (Set.mem_image_of_mem _ hs) hs.2
-  have h2 := measure_inter_eq_of_compl_null μ hμ.2.2.1 (kap X u ⁻¹' (kap X u '' (FdN ∩ X.NinfU u)))
+  have h2 := measure_inter_conull (s := kap X u ⁻¹' (kap X u '' (FdN ∩ X.NinfU u))) hμ.2.2.1
   rw [hpre] at h2
   have h3 : μ.map (kap X u) (kap X u '' (FdN ∩ X.NinfU u)) = μ (FdN ∩ X.NinfU u) := by
     rw [Measure.map_apply hkm hAm]
     exact h2.symm
   rw [hH, Measure.smul_apply, hAv, smul_eq_mul] at h3
-  rw [← measure_inter_eq_of_compl_null μ hμ.2.2.1 FdN, ← h3]
+  rw [← measure_inter_conull (s := FdN) hμ.2.2.1, ← h3]
   exact mul_comm _ _
 
 end Formalism.L2.SG.Pf.LsNc5

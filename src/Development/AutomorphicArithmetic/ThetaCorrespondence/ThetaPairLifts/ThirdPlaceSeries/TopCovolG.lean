@@ -1615,7 +1615,7 @@ theorem topCovolG_alt_alt : _root_.SelfIntersectionVolumeEstimates.VolumeEstimat
   intro hSB hX hP hGD hQ hD
   have hK := hX.ks
   have hN := hX.lie
-  have gram := _root_.GlobalTheory.CovTop.covering_gram_matrix_of_local_traces_alt hP
+  have gram := _root_.GlobalTheory.CovTop.covering_gram_matrix_of_local_traces_alt
   have size := _root_.GlobalTheory.CovTop.SizeRows.size_alt_bis
   have meas := _root_.GlobalTheory.CovTop.MeasRd.covering_measure_reduction_alt hP
   have anc := _root_.GlobalTheory.CovTop.anchor_holds_alt
@@ -1627,8 +1627,8 @@ theorem topCovolG_alt_alt : _root_.SelfIntersectionVolumeEstimates.VolumeEstimat
   have ht := _root_.SelfIntersectionVolumeEstimates.height_lower_bound_general_alt hSB hX hGD hQ hP hD dg size deg fd
   have hs := _root_.GlobalTheory.CovTop.ShortRoad.hilbertSamuel_of_component_estimates_alt hX hP hGD hQ hK hN dg size fd deg sh
   have ul := _root_.GlobalTheory.CovTop.FromComp.u_low_of_cover_hyps dg size deg sh ht hs (_root_.GlobalTheory.CovTop.sumC_of_deepGood_alt dg)
-  have low := _root_.GlobalTheory.CovTop.LowCover.low_of_cover_hypotheses size (_root_.GlobalTheory.CovTop.DefLow.covering_low_defect_alt hP gram anc) dex dg (_root_.GlobalTheory.CovTop.RingStep.ring_of_covering_descent_alt hP gram dg) (_root_.GlobalTheory.CovTop.DescentMaps.covering_descent_maps_compatible_alt hP hGD hQ hK hN gram dg size fd) (_root_.GlobalTheory.CovTop.covering_rank_of_descent_steps_alt hX hP hGD hQ hK hN dg size fd deg sh) (_root_.GlobalTheory.CovGminTop.covering_gmin_of_gram_deep_size hP gram dg size) (_root_.GlobalTheory.FlatSplit.flat_alt_alt hP dg fd anc) ul
-  exact _root_.GlobalTheory.CovTop.Assembly.covolX_of_lift_bounds_and_coreLe gram (_root_.GlobalTheory.CovTop.liftRecursive_of_gram gram) (_root_.GlobalTheory.CovTop.covering_cut_of_local_traces_alt hP) (_root_.GlobalTheory.CovTop.covering_bad_locus_of_descent_steps_alt hX hP hGD hQ hK hN hX.green gram dex dg size fd deg sh) (_root_.GlobalTheory.CovTop.LamAll.covering_lambda_all_places_alt hP gram meas) size (_root_.GlobalTheory.CoreSlope.coreLe_of_gram_meas_rat_alt gram meas (_root_.GlobalTheory.CovTop.covering_rational_of_local_traces_alt hP)) low
+  have low := _root_.GlobalTheory.CovTop.LowCover.low_of_cover_hypotheses size (_root_.GlobalTheory.CovTop.DefLow.covering_low_defect_alt hP gram anc) dex dg (_root_.GlobalTheory.CovTop.RingStep.ring_of_covering_descent_alt gram dg) (_root_.GlobalTheory.CovTop.DescentMaps.covering_descent_maps_compatible_alt hP hGD hQ hK hN gram dg size fd) (_root_.GlobalTheory.CovTop.covering_rank_of_descent_steps_alt hX hP hGD hQ hK hN dg size fd deg sh) (_root_.GlobalTheory.CovGminTop.covering_gmin_of_gram_deep_size hP gram dg size) (_root_.GlobalTheory.FlatSplit.flat_alt_alt hP dg fd anc) ul
+  exact _root_.GlobalTheory.CovTop.Assembly.covolX_of_lift_bounds_and_coreLe gram (_root_.GlobalTheory.CovTop.liftRecursive_of_gram gram) (_root_.GlobalTheory.CovTop.covering_cut_of_local_traces_alt) (_root_.GlobalTheory.CovTop.covering_bad_locus_of_descent_steps_alt hX hP hGD hQ hK hN hX.green gram dex dg size fd deg sh) (_root_.GlobalTheory.CovTop.LamAll.covering_lambda_all_places_alt hP gram meas) size (_root_.GlobalTheory.CoreSlope.coreLe_of_gram_meas_rat_alt gram meas (_root_.GlobalTheory.CovTop.covering_rational_of_local_traces_alt hP)) low
 end SelfIntersectionVolumeEstimates
 end
 end

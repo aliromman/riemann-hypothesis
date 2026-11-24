@@ -2,6 +2,7 @@ module
 
 public import Mathlib.RingTheory.DiscreteValuationRing.Basic
 public import Mathlib.RingTheory.LocalRing.ResidueField.Defs
+public import Mathlib.Topology.LocallyConstant.Basic
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.LocalRingsCompletion.nakayama
 import Mathlib.Algebra.Order.Floor.Extended
@@ -450,3 +451,120 @@ theorem UpperTheory.V.Pa.solCnt :
       _ ≤ Nat.card (B.map (Ideal.span {t ^ (m0 + j)} • ⊤ : Submodule A C).mkQ) * N :=
           Nat.mul_le_mul_left _ (Finset.card_image₂_le _ _ _)
       _ ≤ _ := Nat.mul_le_mul_left _ ((Nat.le_add_right N P).trans hNP)
+
+private theorem nonempty_equiv_map_mkQ_image {A C D : Type} [CommRing A] [AddCommGroup C] [Module A C] [AddCommGroup D] [Module A D]
+    (R : C →ₗ[A] D) (T S : Submodule A C) (h : LinearMap.ker R = T) : Nonempty (S.map T.mkQ ≃ (R '' S : Set D)) := by
+  have hi : Function.Injective (T.liftQ R h.ge) := by
+    rw [← LinearMap.ker_eq_bot]; exact Submodule.ker_liftQ_eq_bot _ _ _ h.le
+  have e := Submodule.equivMapOfInjective _ hi (S.map T.mkQ)
+  rw [← Submodule.map_comp, Submodule.liftQ_mkQ] at e
+  exact ⟨e.toEquiv⟩
+
+/-- At every level `m`, the solution count is at most the size of `Bm m` times a fixed
+power of the residue-field cardinality. -/
+theorem UpperTheory.V.Pa.exists_ncard_le_mul_pow_of_adic_reduction (A P G ι : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
+    [Finite (IsLocalRing.ResidueField A)] [AddCommGroup P] [Module A P] [TopologicalSpace G] (t : A)
+    (Pm : ℕ → Type) [∀ m, AddCommGroup (Pm m)] [∀ m, Module A (Pm m)] (red : ∀ m, P →ₗ[A] Pm m)
+    (Φ : (G → P) →ₗ[A] (ι → P)) (B : Submodule A (G → P)) (Z Bm : ∀ m, Set (G → Pm m))
+    (ht : Irreducible t) (hA : IsAdicComplete (Ideal.span {t}) A)
+    (hsurj : ∀ m, Function.Surjective (red m)) (hker : ∀ m p, red m p = 0 ↔ ∃ p', t ^ m • p' = p)
+    (htf : ∀ p : P, t • p = 0 → p = 0) (hsep : ∀ p, (∀ m, red m p = 0) → p = 0)
+    (hcomp : ∀ u : ℕ → P, (∀ m n, m ≤ n → red m (u m) = red m (u n)) → ∃ L, ∀ m, red m (u m) = red m L)
+    (hZ : ∀ m (f : G → P), (red m ∘ f) ∈ Z m ↔ IsLocallyConstant (red m ∘ f) ∧ ∀ i, red m (Φ f i) = 0)
+    (hZ1 : (Z 1).Finite) (hBm : ∀ m, (Bm m).Finite)
+    (hB : ∀ b ∈ B, Φ b = 0 ∧ ∀ m, red m ∘ b ∈ Bm m)
+    (hdet : ∀ f : G → P, (∀ m, IsLocallyConstant (red m ∘ f)) → Φ f = 0 → ∃ s : ℕ, t ^ s • f ∈ B) :
+    ∃ e : ℕ, ∀ m, (Z m).ncard ≤ (Bm m).ncard * Nat.card (IsLocalRing.ResidueField A) ^ e := by
+  have htf' : ∀ (n : ℕ) (y : P), t ^ n • y = 0 → y = 0 := by
+    intro n
+    induction n with
+    | zero => intro y hy; simpa using hy
+    | succ n ih => exact fun y hy => htf y (ih _ (by rw [smul_smul, ← pow_succ, hy]))
+  let C : Submodule A (G → P) :=
+    { carrier := {f | ∀ m, IsLocallyConstant (red m ∘ f)}
+      add_mem' := fun {a b} ha hb m => by
+        have : red m ∘ (a + b) = red m ∘ a + red m ∘ b := by funext g; simp
+        rw [this]; exact (ha m).add (hb m)
+      zero_mem' := fun m => by
+        have : red m ∘ (0 : G → P) = fun _ => 0 := by funext g; simp
+        rw [this]; exact IsLocallyConstant.const _
+      smul_mem' := fun c a ha m => by
+        have : red m ∘ (c • a) = (fun y => c • y) ∘ (red m ∘ a) := by funext g; simp
+        rw [this]; exact (ha m).comp _ }
+  have mC' : ∀ m (y : ι → P), y ∈ (Ideal.span {t ^ m} • ⊤ : Submodule A (ι → P)) ↔ ∀ i, red m (y i) = 0 := by
+    intro m y
+    rw [sc_mem]
+    simp only [hker]
+    exact ⟨fun ⟨c, hc⟩ i => ⟨c i, congrFun hc i⟩, fun h => by choose c hc using h; exact ⟨c, funext hc⟩⟩
+  have mC : ∀ m (f : C), f ∈ (Ideal.span {t ^ m} • ⊤ : Submodule A C) ↔ ∀ g, red m (f.1 g) = 0 := by
+    intro m f
+    rw [sc_mem]
+    simp only [hker]
+    refine ⟨fun ⟨c, hc⟩ i => ⟨c.1 i, congrFun (congrArg Subtype.val hc) i⟩, fun h => ?_⟩
+    choose c hc using h
+    refine ⟨⟨c, fun N => ?_⟩, Subtype.ext (funext hc)⟩
+    have h1 := f.2 (m + N)
+    rw [IsLocallyConstant.iff_eventually_eq] at h1 ⊢
+    refine fun g => (h1 g).mono fun g' e => ?_
+    simp only [Function.comp] at e ⊢
+    rw [← sub_eq_zero, ← map_sub, hker] at e ⊢
+    obtain ⟨p, hp⟩ := e
+    refine ⟨p, sub_eq_zero.1 (htf' m _ ?_)⟩
+    rw [smul_sub, smul_sub, hc, hc, smul_smul, ← pow_add, hp, sub_self]
+  let R : ∀ m, C →ₗ[A] (G → Pm m) := fun m => ((red m).compLeft G).comp C.subtype
+  have hR : ∀ m, LinearMap.ker (R m) = (Ideal.span {t ^ m} • ⊤ : Submodule A C) := fun m => by
+    ext f
+    rw [mC, LinearMap.mem_ker, funext_iff]
+    rfl
+  have hS : ∀ m, R m '' ((Ideal.span {t ^ m} • ⊤ : Submodule A (ι → P)).comap (Φ.comp C.subtype) : Submodule A C)
+      = Z m := fun m => by
+    ext h
+    constructor
+    · rintro ⟨f, hf, rfl⟩
+      exact (hZ m f.1).2 ⟨f.2 m, (mC' m _).1 hf⟩
+    · intro hh
+      obtain ⟨s, hs⟩ := (hsurj m).hasRightInverse
+      have e : red m ∘ (s ∘ h) = h := funext fun g => hs _
+      have h2 := (hZ m (s ∘ h)).1 (by rw [e]; exact hh)
+      rw [e] at h2
+      exact ⟨⟨s ∘ h, fun N => h2.1.comp (red N ∘ s)⟩, (mC' m _).2 h2.2, e⟩
+  have hH : IsHausdorff (Ideal.span {t}) C := ⟨fun f hf => Subtype.ext (funext fun g => hsep _ fun m => by
+    have := hf m
+    rw [SModEq.sub_mem, Ideal.span_singleton_pow, sub_zero, mC] at this
+    exact this g)⟩
+  have hH' : IsHausdorff (Ideal.span {t}) (ι → P) := ⟨fun f hf => funext fun g => hsep _ fun m => by
+    have := hf m
+    rw [SModEq.sub_mem, Ideal.span_singleton_pow, sub_zero, mC'] at this
+    exact this g⟩
+  have hP : IsPrecomplete (Ideal.span {t}) C := ⟨fun u hu => by
+    have h1 : ∀ g, ∃ L, ∀ m, red m ((u m).1 g) = red m L := fun g => hcomp _ fun m n hmn => by
+      have := hu hmn
+      rw [SModEq.sub_mem, Ideal.span_singleton_pow, mC] at this
+      rw [← sub_eq_zero, ← map_sub]
+      exact this g
+    choose L hL using h1
+    refine ⟨⟨L, fun m => ?_⟩, fun m => ?_⟩
+    · have : red m ∘ L = red m ∘ (u m).1 := funext fun g => (hL g m).symm
+      rw [this]; exact (u m).2 m
+    · rw [SModEq.sub_mem, Ideal.span_singleton_pow, mC]
+      intro g
+      exact (map_sub _ _ _).trans (sub_eq_zero.2 (hL g m))⟩
+  obtain ⟨-, e, he⟩ := solCnt A C (ι → P) t (Φ.comp C.subtype) (B.comap C.subtype) ht
+    (fun y hy => Subtype.ext (funext fun g => htf _ (congrFun (congrArg Subtype.val hy) g)))
+    (fun y hy => funext fun g => htf _ (congrFun hy g)) hA {} hH'
+    (by
+      obtain ⟨e⟩ := nonempty_equiv_map_mkQ_image (R 1) _
+        ((Ideal.span {t ^ 1} • ⊤ : Submodule A (ι → P)).comap (Φ.comp C.subtype)) (hR 1)
+      rw [hS, pow_one] at e
+      have := hZ1.to_subtype
+      exact Finite.of_equiv _ e.symm)
+    (fun b hb => (hB _ hb).1) (fun z hz => hdet z.1 z.2 hz)
+  refine ⟨e, fun m => ?_⟩
+  obtain ⟨e1⟩ := nonempty_equiv_map_mkQ_image (R m) _
+    ((Ideal.span {t ^ m} • ⊤ : Submodule A (ι → P)).comap (Φ.comp C.subtype)) (hR m)
+  obtain ⟨e2⟩ := nonempty_equiv_map_mkQ_image (R m) _ (B.comap C.subtype) (hR m)
+  have h3 := (he m).2
+  rw [Nat.card_congr e1, Nat.card_congr e2, hS, Nat.card_coe_set_eq, Nat.card_coe_set_eq] at h3
+  refine h3.trans (Nat.mul_le_mul_right _ (Set.ncard_le_ncard ?_ (hBm m)))
+  rintro _ ⟨b, hb, rfl⟩
+  exact (hB _ hb).2 m

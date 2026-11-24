@@ -30,7 +30,7 @@ open Formalism.BasicNotions Formalism.ConjugateSelfDual ReciprocityTheory.Gal Re
 
 namespace Formalism.L2
 
-structure AUTied (D : D7) (L : LPTiedPlaceholder D) (M : MtFam D) (A : AVTied D M) where
+structure AUTied (D : D7) (M : MtFam D) (A : AVTied D M) where
 
   cls : ∀ j, 1 ≤ j → j ≤ D.R.m → NG.AutRep D.host.E D.R.nV → D.nbc.AU j
   surj : ∀ j h1 h2, Function.Surjective (cls j h1 h2)
@@ -56,11 +56,10 @@ structure AUTied (D : D7) (L : LPTiedPlaceholder D) (M : MtFam D) (A : AVTied D 
 
 structure NGalTied (D : D7) where
   fr : OmFrame D
-  lp : LPTiedPlaceholder D
   mt : MtFam D
   hecke : HeckeTied D mt
   av : AVTied D mt
-  au : AUTied D lp mt av
+  au : AUTied D mt av
 
   rational : HeckeRational D mt
 
@@ -107,8 +106,6 @@ namespace Formalism.L2
 structure NormalizedTwistCompatibility (D : D7) (C : NChoice D) (I : TwIn D) where
 
   gal : NGalTied D
-
-  n : NormalizedHeckeDataPlaceholder D
 
   loc : LocTied D
 

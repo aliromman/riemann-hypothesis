@@ -230,7 +230,7 @@ theorem principalisationCharZero_of (H : FPrinc) (hB : GBoundary) (hC : _root_.P
   have : Smooth g := SmoothOfRelativeDimension.smooth d g
   have : QuasiCompact g := hqc
   obtain ⟨L, hL, hLE⟩ := hB k X g E hEsnc
-  obtain ⟨R, hR, -, -⟩ := H
+  obtain ⟨R, hR, -⟩ := H
   have hs := hR k X g I hI L hL
   obtain ⟨E', hseq⟩ := isSncBlowupSeq_of_principalizing hC gTransform g E I L hLE _ hs
   obtain ⟨h1, h2, h3⟩ := hE k X g I L _ hI hL hs
@@ -265,7 +265,7 @@ theorem principalisationCharZero_bot (hC : _root_.PositivityTheory.ResPlug.Blowu
       (FunctorialResolution.hasSimpleNormalCrossings_of_inStrictNormalCrossingPosition
         (EmbeddedResolution.inStrictNormalCrossingPosition_nil g)).2 x
     exact ⟨U, hx, m, c, h1, h2, a, h3, h4, h5⟩⟩
-  obtain ⟨R, hR, -, -⟩ := fPrinc
+  obtain ⟨R, hR, -⟩ := fPrinc
   have hs := hR k X g I hI [] hL
   obtain ⟨E', hseq⟩ := isSncBlowupSeq_of_principalizing hC gTransform g ⊥ I [] (by simp) _ hs
   obtain ⟨h1, h2, h3⟩ := hE k X g I [] _ hI hL hs

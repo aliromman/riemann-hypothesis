@@ -249,7 +249,7 @@ theorem three_level_le_eps_prime {C0 Cde CE1 CE2 : ℝ} {X : Loc} (St : Std C0 C
   linarith
 
 theorem m1num_of_std {C0 Cde CE1 CE2 : ℝ} {X : Loc} (St : Std C0 Cde CE1 CE2 1 X) (mm : ℝ)
-    (hmm : mm = 0 ∨ mm = 12 * (X.c : ℝ)) (n : ℕ) (_hn1 : 1 ≤ n) (hnc : n ≤ X.c)
+    (hmm : mm = 0 ∨ mm = 12 * (X.c : ℝ)) (n : ℕ) (hnc : n ≤ X.c)
     (j : Fin (numSeg X.TT)) (b : SegBlock (segS X.TT j) X.m)
     (hb : BLk C0 Cde CE1 CE2 X (((X.c - n : ℕ) : ℝ) * ka1 X) j b) :
     (∑ l : Fin (segS X.TT j), (if (l : ℕ) < (X.seg C0 CE1 CE2 j).sigma then (b.sg l : ℤ) else 0)) ≤
@@ -364,8 +364,8 @@ theorem m1num_of_std {C0 Cde CE1 CE2 : ℝ} {X : Loc} (St : Std C0 Cde CE1 CE2 1
     linarith
 
 theorem column_numerics_holds : ColumnNumericsBeyond :=
-  TransportedAlt.mono (fun _ _ _ _ _ _ _ _ _ _ h X hD hH hc mm hmm n hn1 hnc j b hb =>
-    m1num_of_std (h X hD hH hc) mm hmm n hn1 hnc j b hb) threshold_standard_one
+  TransportedAlt.mono (fun _ _ _ _ _ _ _ _ _ _ h X hD hH hc mm hmm n _ hnc j b hb =>
+    m1num_of_std (h X hD hH hc) mm hmm n hnc j b hb) threshold_standard_one
 
 end Formalism.MainNotions.ColumnSystems.Pf.GenusGluing
 end -- clump:auto

@@ -436,7 +436,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace ResidueKilled.Tr
 
 theorem posSum_growth' (D : D7) (V : HSp D) (hV : 0 < V.rank) (a : GL (Fin V.rank) (AE D)) (ha : IsMaj V a)
-    (hI : HasIwasawa D.sp.cm.sig (dblSp V).gram (Khat V a)) (p : GA D (dblSp V)) (c : ℝ≥0) (hc : 0 < c)
+    (hI : HasIwasawa D.sp.cm.sig (dblSp V).gram (Khat V a)) (p : GA D (dblSp V)) (c : ℝ≥0)
     (h : GA D (dblSp V) → ℝ) (hh : ∀ x, h x = Real.log (hgt V a (x * p⁻¹)) + Real.log c) (t : ℝ)
     (ht : (V.rank : ℝ) < t) : ∃ (C : ℝ) (N : ℕ), ∀ g,
       ‖GlobalTheory.Eis.cosetSum (siegel V) (GQ (dblSp V)) (fun x => (Real.exp (t * h x) : ℂ)) g‖ ≤
@@ -619,9 +619,9 @@ theorem tTop : TTop := by
     have b3 := min_le_right (-r - 1) (-1)
     have b4 := min_le_right (-R - 1) (min (-r - 1) (-1))
     obtain ⟨M, hM⟩ := hHb A₁ B₁ (by linarith) (by linarith)
-    obtain ⟨C₁, N₁, h₁⟩ := posSum_growth' D V hV a ha hI (p : GA D (dblSp V)) c hc (fun x => η (Φ x)) hηx A₁
+    obtain ⟨C₁, N₁, h₁⟩ := posSum_growth' D V hV a ha hI (p : GA D (dblSp V)) c (fun x => η (Φ x)) hηx A₁
       (by linarith)
-    obtain ⟨C₂, N₂, h₂⟩ := posSum_growth' D V hV a ha hI (p : GA D (dblSp V)) c hc (fun x => η (Φ x)) hηx
+    obtain ⟨C₂, N₂, h₂⟩ := posSum_growth' D V hV a ha hI (p : GA D (dblSp V)) c (fun x => η (Φ x)) hηx
       ((Fintype.card (Fin V.rank) : ℝ) - B₁) (by rw [Fintype.card_fin]; linarith)
     refine ⟨|M| * (|C₁| + |C₂|), N₁ + N₂, fun z hz g => ?_⟩
     have hre := abs_le.1 ((Complex.abs_re_le_norm z).trans hz)

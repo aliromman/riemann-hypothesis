@@ -931,7 +931,7 @@ theorem err_deg (c : ℝ) : ∀ d : ℕ, ∀ s : Ix m n →₀ ℕ, s.degree = d
     have e : err c s = (2 * c : ℂ) • (X (flp k) * err c s') - pderiv k (Sm c s' + err c s') := by
       rw [err, hrec, cr_apply, hsplit, Sm_succ, err]
       simp only [mul_sub, smul_sub]
-      abel
+      abel_nf
     rw [e]
     refine DegLT.sub (DegLT.smul _ (DegLT.X_mul _ (ih s' hd'))) (DegLT.pderiv _ (DegLT.add ?_ ((ih s' hd').mono (by omega))))
     have := Sm_deg c s'

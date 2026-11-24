@@ -1197,18 +1197,6 @@ theorem poincareLelong_of_leaves (hAbs : GroundTheory.Heights₂.Heights.Inter.P
     (hReg : GroundTheory.Heights₂.Heights.RegMassNearSmall.Statement) : GlobalTheory.CompanionTheory.Ar.Pub.PoincareLelong :=
   poincareLelong_of hAbs hSCI hCDC (lelongPolyLimit (lelongLimit hBr hLim hOrd hReg))
 
-theorem poincareLelongInv_of_leaves (hAbs : GroundTheory.Heights₂.Heights.Inter.PtsAbsIntegrable.Statement)
-    (hSCI : GroundTheory.Heights₂.Heights.SegreChartIntegral.Statement)
-    (hCDC : GroundTheory.Heights₂.Heights.Targets.ChartDivisorCompare.Statement)
-    (hBr : GroundTheory.Heights₂.Heights.DivisorGeneralPointBranches.Statement)
-    (hLim : GroundTheory.Heights₂.Heights.LelongLimitAtBranches.Statement)
-    (hOrd : GroundTheory.Heights₂.Heights.LocalOrder.Statement)
-    (hReg : GroundTheory.Heights₂.Heights.RegMassNearSmall.Statement) : GlobalTheory.CompanionTheory.Hypotheses₂.PoincareLelongInv := by
-  intro K _ ι _ P n L A B s hP hL hA hB _ _ _ hB0 hs
-  have h : ReciprocityTheory.ChartRestriction.G.Geo.ArithmeticPoincareLelongFormula :=
-    poincareLelong_of_leaves hAbs hSCI hCDC hBr hLim hOrd hReg
-  exact h K ι P n L A B s hP hL hA hB hB0 hs
-
 end PositivityTheory.Tls2.Pl
 end -- clump:auto
 
@@ -1224,12 +1212,6 @@ theorem ptsAbsIntegrable : GroundTheory.Heights₂.Heights.Inter.PtsAbsIntegrabl
 
 theorem poincareLelong : GlobalTheory.CompanionTheory.Ar.Pub.PoincareLelong :=
   poincareLelong_of_leaves ptsAbsIntegrable GlobalTheory.CompanionTheory.Ar.SegreChart.Chart.SegreChartIntegral
-    GlobalTheory.CompanionTheory.Ar.chartDivisorCompare GlobalTheory.CompanionTheory.ComplexSets.divisorGeneralPointBranches
-    GlobalTheory.CompanionTheory.Ar.Lelong.lelongLimitAtBranches GlobalTheory.CompanionTheory.Heights.BranchOrder.localOrder
-    GlobalTheory.CompanionTheory.VarLelong.regMassNearSmall
-
-theorem poincareLelongInv : GlobalTheory.CompanionTheory.Hypotheses₂.PoincareLelongInv :=
-  poincareLelongInv_of_leaves ptsAbsIntegrable GlobalTheory.CompanionTheory.Ar.SegreChart.Chart.SegreChartIntegral
     GlobalTheory.CompanionTheory.Ar.chartDivisorCompare GlobalTheory.CompanionTheory.ComplexSets.divisorGeneralPointBranches
     GlobalTheory.CompanionTheory.Ar.Lelong.lelongLimitAtBranches GlobalTheory.CompanionTheory.Heights.BranchOrder.localOrder
     GlobalTheory.CompanionTheory.VarLelong.regMassNearSmall

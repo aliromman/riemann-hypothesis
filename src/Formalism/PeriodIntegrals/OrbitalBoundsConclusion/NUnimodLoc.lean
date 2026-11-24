@@ -410,8 +410,6 @@ theorem transfer_holds : Transfer := by
 
 end PI.NUnimodLoc.UnitaryGroupMassFormula.TR
 
-open PI.NUnimodLoc.UnitaryGroupMassFormula.TR in
-#print axioms transfer_holds
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.NUnimodLoc

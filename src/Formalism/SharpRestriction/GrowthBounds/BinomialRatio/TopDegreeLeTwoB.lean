@@ -647,7 +647,7 @@ theorem ord_all {C0 Cde CE1 CE2 H Ct : ℝ} {X : Loc} (St : Std C0 Cde CE1 CE2 H
     push_cast
     exact Finset.sum_le_sum fun j _ => hseg j
   have h2 : (∑ j : Fin (numSeg X.TT), ((segS X.TT j : ℝ) + 1)) ≤ (X.TT.card : ℝ) := by
-    have h := sum_segS X.TT St.seg2
+    have h := sum_segS X.TT
     have e : (∑ j : Fin (numSeg X.TT), ((segS X.TT j : ℝ) + 1)) = (((∑ j, segS X.TT j) + numSeg X.TT : ℕ) : ℝ) := by
       push_cast
       rw [Finset.sum_add_distrib]

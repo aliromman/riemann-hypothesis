@@ -283,13 +283,6 @@ structure DivisorReductionStepProperties (hres : FunctorialResolution.Blowup.Str
               (i + 1)).comap
             (DivisorReduction.embeddingIntoAmbient hres hno T j hj (DivisorReduction.lowerIdealAfterBlowup T j hj)
               (DivisorReduction.lowerBoundaryAfterBlowup T j hj) s hpr i) = s.ideal i
-  preIdeal_baseChange : ∀ (T : MarkedIdealWithBoundary.{u}), T.IsAdmissible →
-    ∀ (L : Type u) [Field L] [CharZero L] (f : T.base →+* L), (T.baseChange L f).IsAdmissible →
-    ∀ (j : ℕ) (hj : j < T.boundary.length)
-      (hj' : j < (T.baseChange L f).boundary.length),
-      DivisorReduction.containedComponentsIdeal (T.baseChange L f) j hj' =
-        (DivisorReduction.containedComponentsIdeal T j hj).comap
-          (pullback.fst T.structMap (specMapOfFieldHom T.base L f))
   preIdeal_pullbackAlong : ∀ (T : MarkedIdealWithBoundary.{u}), T.IsAdmissible →
     ∀ (Y : Scheme.{u}) (q : Y ⟶ Spec (CommRingCat.of T.base)) (h : Y ⟶ T.scheme)
       [AlgebraicGeometry.Smooth h], h ≫ T.structMap = q →
@@ -339,7 +332,6 @@ theorem DivisorReductionStepProperties.toDivisorReductionTerminationProperties {
       isStrictPullbackSeq_ambientTower := h.isStrictPullbackSeq_ambientTower
       comap_ctrlIdeal_top := h.comap_ctrlIdeal_top
       comap_ctrlIdeal_pre := h.comap_ctrlIdeal_pre
-      preIdeal_baseChange := h.preIdeal_baseChange
       preIdeal_pullbackAlong := h.preIdeal_pullbackAlong
       preIdeal_eq_top_of_imageIdeal := h.preIdeal_eq_top_of_imageIdeal
       isOpen_preLocus := isOpen_setOf_connectedComponent_subset_orderAtLeastLocus

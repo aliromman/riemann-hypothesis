@@ -184,37 +184,8 @@ private theorem gi (k L : Type) [Field k] [IsAlgClosed k] [Field L] [Algebra k L
 
 theorem UpperTheory.isCurve_pullback_of_isCurve_baseChange :
     ∀ (k L : Type) [Field k] [IsAlgClosed k] [Field L] [Algebra k L] {C : Scheme.{0}} (c : C ⟶ Sp k), IsCurve c → IsCurve (pullback.snd c (Spec.map (CommRingCat.ofHom (algebraMap k L)))) := by
-  intro k L _ _ _ _ C c hc
-  obtain ⟨h1, h2, h3⟩ := hc
+  intro k L _ _ _ _ C c ⟨_, _, _⟩
   haveI := gi k L
-  set g := Spec.map (CommRingCat.ofHom (algebraMap k L)) with hg
-  set p := pullback.fst c g with hp
-  haveI : GeometricallyIrreducible p := inferInstance
-  haveI : GeometricallyReduced p := inferInstance
-  haveI : Flat p := inferInstance
-  haveI : Finite (irreducibleComponents C) := by
-    rw [irreducibleComponents_eq_singleton]
-    infer_instance
-  haveI hred : IsReduced (pullback c g) :=
-    GeometricallyReduced.isReduced_of_flat_of_finite_irreducibleComponents p
-  have hgen : GeneralizingMap p := Flat.generalizingMap p
-  set η := genericPoint C
-  let ξ : ↥(pullback c g) := p.fiberι η (genericPoint (p.fiber η))
-  have hall : ∀ q : ↥(pullback c g), ξ ⤳ q := by
-    intro q
-    have h0 : η ⤳ p q := genericPoint_specializes _
-    obtain ⟨q', hq', hpq'⟩ := hgen h0
-    have hmem : q' ∈ Set.range (p.fiberι η) := by
-      rw [p.range_fiberι]
-      exact hpq'
-    obtain ⟨r, rfl⟩ := hmem
-    exact ((genericPoint_specializes r).map (p.fiberι η).continuous).trans hq'
-  haveI hirr : IrreducibleSpace ↥(pullback c g) := by
-    rw [irreducibleSpace_def]
-    have hcl : closure ({ξ} : Set ↥(pullback c g)) = Set.univ :=
-      Set.eq_univ_of_forall fun q => specializes_iff_mem_closure.mp (hall q)
-    rw [Set.top_eq_univ, ← hcl]
-    exact isIrreducible_singleton.closure
-  haveI := smoothOfRelativeDimension_isStableUnderBaseChange 1
-  refine ⟨isIntegral_of_irreducibleSpace_of_isReduced _, inferInstance, ?_⟩
-  exact MorphismProperty.of_isPullback (P := @SmoothOfRelativeDimension 1) (IsPullback.of_hasPullback c g) h3
+  haveI : IsLocallyNoetherian C := LocallyOfFiniteType.isLocallyNoetherian c
+  exact ⟨GeometricallyIntegral.isIntegral_of_isLocallyNoetherian (pullback.fst c _),
+    inferInstance, inferInstance⟩
