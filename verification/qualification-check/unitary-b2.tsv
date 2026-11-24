@@ -1,0 +1,13 @@
+module	line	column	token	historical	compiled	providers	result
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	180	12	cT	Formalism.UG.cT	PI.cT	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	182	15	_root_.Formalism.UG.cT	Formalism.UG.cT	Formalism.UG.cT	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	185	21	cT	Formalism.UG.cT	PI.cT	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	190	13	cT	Formalism.UG.cT	PI.cT	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	194	42	_root_.Formalism.UG.cT	Formalism.UG.cT	Formalism.UG.cT	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	198	33	cT	Formalism.UG.cT	PI.cT	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.Bundle0009	371	13	_root_.Formalism.UG.IsHerm	Formalism.UG.IsHerm	Formalism.UG.IsHerm	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.Bundle0009	412	13	_root_.Formalism.UG.IsHerm	Formalism.UG.IsHerm	Formalism.UG.IsHerm	Formalism.SatakeDualWeyl.Statement	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassFiniteness.AdelicBounds	37	12	_root_.PI.UJClassFin.cT	PI.UJClassFin.cT	PI.UJClassFin.cT	Formalism.PeriodIntegrals.UJClassFin	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.Bundle0003	197	11	_root_.PI.UJClassFin.UJ	PI.UJClassFin.UJ	PI.UJClassFin.UJ	Formalism.PeriodIntegrals.UJClassFin	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.Bundle0003	209	12	_root_.PI.UJClassFin.UJ	PI.UJClassFin.UJ	PI.UJClassFin.UJ	Formalism.PeriodIntegrals.UJClassFin	original
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.PSurjS	21	12	_root_.PI.UJClassFin.UJ	PI.UJClassFin.UJ	PI.UJClassFin.UJ	Formalism.PeriodIntegrals.UJClassFin	original

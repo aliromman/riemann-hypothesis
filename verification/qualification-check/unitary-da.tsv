@@ -1,0 +1,13 @@
+module	line	column	token	historical	compiled	providers	result
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	180	12	cT	Formalism.UG.cT	PI.cT	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	182	15	cT	Formalism.UG.cT	PI.cT	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	185	21	cT	Formalism.UG.cT	PI.cT	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	190	13	cT	Formalism.UG.cT	PI.cT	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	194	42	cT	Formalism.UG.cT	PI.cT	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.Bundle0003	198	33	cT	Formalism.UG.cT	PI.cT	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.Bundle0009	371	13	IsHerm	Formalism.UG.IsHerm	PI.IsHerm	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.Bundle0009	412	13	IsHerm	Formalism.UG.IsHerm	PI.IsHerm	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassFiniteness.AdelicBounds	37	12	cT	PI.UJClassFin.cT	PI.cT	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.Bundle0003	197	11	UJ	PI.UJClassFin.UJ	PI.UJ	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.Bundle0003	209	12	UJ	PI.UJClassFin.UJ	PI.UJ	Formalism.PeriodIntegrals.Bundle0011	captured
+Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.PSurjS	21	12	UJ	PI.UJClassFin.UJ	PI.UJ	Formalism.PeriodIntegrals.Bundle0011	captured
