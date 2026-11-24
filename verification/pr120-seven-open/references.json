@@ -1,0 +1,130 @@
+{
+  "revision": "74f1320f2e1acc6c67f74c62afa04791ac354457",
+  "base": "c7791603122c0328f79e49f6be5d7d4402effc53",
+  "rows": [
+    {
+      "path": "Development/AbelianVarietyTheory/Proofs/FoundationProofs/Bundle0295.lean",
+      "line": 335,
+      "original_module": "Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsSplitPart",
+      "original_line": 29,
+      "source_commit": "49e1f27896a2c63048f9a8e61e91441478c5f346",
+      "author": "maugomez77",
+      "bindings": [
+        {
+          "original_token": "sd_of_moves",
+          "canonical": "GlobalTheory.VacuumScalar.sd_of_moves",
+          "current_token": "GlobalTheory.VacuumScalar.sd_of_moves",
+          "exact_qualification": true
+        },
+        {
+          "original_token": "sd_of_moves",
+          "canonical": "GlobalTheory.VacuumScalar.sd_of_moves",
+          "current_token": "GlobalTheory.VacuumScalar.sd_of_moves",
+          "exact_qualification": true
+        }
+      ]
+    },
+    {
+      "path": "Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/SupercuspidalSupportUniqueGL.lean",
+      "line": 290,
+      "original_module": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SupercuspidalSupportUniqueGL",
+      "original_line": 294,
+      "source_commit": "0d13ce91fd7be21523f26ff8c4d58d0bd7a04874",
+      "author": "mr.Shu",
+      "bindings": [
+        {
+          "original_token": "twist",
+          "canonical": "GlobalTheory.SmGL.twist",
+          "current_token": "GlobalTheory.SmGL.twist",
+          "exact_qualification": true
+        }
+      ]
+    },
+    {
+      "path": "Development/WeilBound/CoreStatements/HodgeTatePoints/Bundle0058.lean",
+      "line": 26,
+      "original_module": "Development.WeilBound.CoreStatements.HodgeTatePoints.CdChart",
+      "original_line": 24,
+      "source_commit": "2ba21946b8ab9b68bfd321279c224f5c5c9c194c",
+      "author": "Vladimir Zhilin",
+      "bindings": [
+        {
+          "original_token": "smT_zero_ovT",
+          "canonical": "GlobalTheory.FrameTangent.smT_zero_ovT",
+          "current_token": "GlobalTheory.FrameTangent.smT_zero_ovT",
+          "exact_qualification": true
+        }
+      ]
+    },
+    {
+      "path": "Formalism/LocalToGlobal/KernelLattices/ColumnData/SelfDual.lean",
+      "line": 196,
+      "original_module": "Formalism.LocalToGlobal.KernelLattices.ColumnData.SelfDual",
+      "original_line": 196,
+      "source_commit": "6338e4ef1499cca0cffbd8952ae56c1730a73d7b",
+      "author": "Petyrrrrr",
+      "bindings": [
+        {
+          "original_token": "embT",
+          "canonical": "Formalism.L2.Ker.Cd.TaylorLogMetric.embT",
+          "current_token": "Formalism.L2.Ker.Cd.TaylorLogMetric.embT",
+          "exact_qualification": true
+        }
+      ]
+    },
+    {
+      "path": "Formalism/LocalToGlobal/SiegelLatticeTheory/CokernelGLCounts/RankPointCounts/DualFamilyCounting/Bundle0018.lean",
+      "line": 244,
+      "original_module": "Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.FibPNeZeroOfGenus",
+      "original_line": 64,
+      "source_commit": "edc94ca5ba43d79493d9f9cf397623350421a767",
+      "author": "Lev Khoroshansky",
+      "bindings": [
+        {
+          "original_token": "locF",
+          "canonical": "Formalism.HermitianLattices.Ext.L3.locF",
+          "current_token": "Formalism.HermitianLattices.Ext.L3.locF",
+          "exact_qualification": true
+        },
+        {
+          "original_token": "locF",
+          "canonical": "Formalism.HermitianLattices.Ext.L3.locF",
+          "current_token": "Formalism.HermitianLattices.Ext.L3.locF",
+          "exact_qualification": true
+        }
+      ]
+    },
+    {
+      "path": "Formalism/LocalToGlobal/SiegelLatticeTheory/FlagStabilizerTensors/RootLatticeThresholds/Bundle0025.lean",
+      "line": 469,
+      "original_module": "Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.LoopBFrame",
+      "original_line": 20,
+      "source_commit": "925afc9c3db8f7ae23fdaf9038ab5cc8972597b6",
+      "author": "Nolan Andrews",
+      "bindings": [
+        {
+          "original_token": "sOf",
+          "canonical": "Formalism.L2.SG.PackageTie2.sOf",
+          "current_token": "Formalism.L2.SG.PackageTie2.sOf",
+          "exact_qualification": true
+        }
+      ]
+    },
+    {
+      "path": "Formalism/LocalToGlobal/SiegelLatticeTheory/FlagStabilizerTensors/RootLatticeThresholds/LoopsTies.lean",
+      "line": 207,
+      "original_module": "Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.LoopsTies",
+      "original_line": 207,
+      "source_commit": "925afc9c3db8f7ae23fdaf9038ab5cc8972597b6",
+      "author": "Nolan Andrews",
+      "bindings": [
+        {
+          "original_token": "sOf",
+          "canonical": "Formalism.L2.SG.PackageTie2.sOf",
+          "current_token": "Formalism.L2.SG.PackageTie2.sOf",
+          "exact_qualification": true
+        }
+      ]
+    }
+  ]
+}
