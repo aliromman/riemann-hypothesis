@@ -1,0 +1,7 @@
+# Source comparison after community batch 1018
+
+The community parent is `bb9476b875a219608a9068f8f18d8c56b4e7f1ca`. The proposed commit is `87b887f70183a19b577c6b084a8865f04ecb69e4` with source tree `95fe38ceaf8f51ec5628d748d55bd7127e1e6447`. Community PR #1018 merged 121 proposals. It changed 1,621 existing Lean sources, removed 147 and added ten. The pins remain Lean 4.37.0-rc1 and Mathlib `31ce06eaadf4`. The official parent lists 60,492 project modules. The source directory also contains the independent Challenge module. [Community batch](https://github.com/leanprover-community/riemann-hypothesis/pull/1018) · [Official parent receipt](https://rh-cache.taucetiproject.org/ci/revisions/bb9476b875a219608a9068f8f18d8c56b4e7f1ca.json)
+
+The new upstream tree changes 634 edited owners. Each keeps the upstream proof body byte for byte. The normal clump reader recovers exactly the same 58,990 originals from its 9,281 edited clumps. The import list loses 1,019,288 commands and gains 382 narrower imports. This gives 1,018,906 fewer source lines. The two PRs compose exactly across their intersection of 9,179 files and together change 41,537 distinct sources. The full merged tree has 13,543,460 nonblank Lean lines under `src`, down from 14,945,828. [Current source trees](source-trees.json)
+
+The preceding proof and timing records are under `verified/` at immutable revisions. Their recorded compiler inputs predate this mathematical update. The current source, native and root comparisons have separate records.
