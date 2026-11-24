@@ -5,6 +5,7 @@ import gzip
 import hashlib
 import json
 from pathlib import Path
+from typing import NamedTuple
 import shutil
 import subprocess
 import sys
@@ -18,12 +19,24 @@ BASE='343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf'
 TREE='70327238ca7c4189479eee72f3c22812f1922329'
 MANIFEST='18bf99f19a3357168a83dd5bb70bfb1836134646fb27bac2419611778c15bb2a'
 GRAPH='1eea63e656493b1d5f30ab34bd8b913ab3edadc2d615e2313e471196749941a4'
+class Authority(NamedTuple):
+    base: str
+    tree: str
+    manifest: str
+    graph: str
+
+    @classmethod
+    def read(cls, path):
+        return cls(**json.loads(path.read_bytes()))
+
+DEFAULT = Authority(BASE, TREE, MANIFEST, GRAPH)
+
 def sha(data):return hashlib.sha256(data).hexdigest()
-def published(parent,cache,remote):
+def published(parent,cache,remote,authority=DEFAULT):
     api=load(parent/'scripts/ci-cache-get.py','community')
-    if api.git(parent,'rev-parse','HEAD')!=BASE:raise ValueError('incorrect parent revision')
+    if api.git(parent,'rev-parse','HEAD')!=authority.base:raise ValueError('incorrect parent revision')
     identity=api.current_identity(parent)
-    if identity['source_tree']!=TREE or identity['toolchain']!='leanprover/lean4:v4.37.0-rc1':
+    if identity['source_tree']!=authority.tree or identity['toolchain']!='leanprover/lean4:v4.37.0-rc1':
         raise ValueError('parent source or toolchain differs')
     meta=cache/'metadata';meta.mkdir(exist_ok=True,parents=True)
     def get(key,limit):
@@ -33,17 +46,17 @@ def published(parent,cache,remote):
             if data is None:raise ValueError('missing official cache input: '+key)
             path.write_bytes(data)
         return path.read_bytes()
-    receipt=get('ci/revisions/'+BASE+'.json',api.MAX_RECEIPT)
+    receipt=get('ci/revisions/'+authority.base+'.json',api.MAX_RECEIPT)
     record=api.matching_record(receipt,identity)
-    if not record or record['candidate_head']!=BASE or record['module_manifest_sha256']!=MANIFEST:
+    if not record or record['candidate_head']!=authority.base or record['module_manifest_sha256']!=authority.manifest:
         raise ValueError('published manifest does not certify the stock parent')
     _,hashes,rows=api.validated_blobs(record,identity,fetcher=get)
     return api,{r[0]:r for r in rows},hashes
 
-def seed(parent,cache):
-    api,rows,hashes=published(parent,cache,True)
+def seed(parent,cache,authority=DEFAULT):
+    api,rows,hashes=published(parent,cache,True,authority)
     graph=canonical(graph_from_source(parent,rows))
-    if sha(graph)!=GRAPH:raise ValueError('stock source graph differs')
+    if sha(graph)!=authority.graph:raise ValueError('stock source graph differs')
     (cache/'metadata/current-headers.json').write_bytes(graph)
     accepted={r[2] for r in rows.values()}
     archives=cache/'artifacts';archives.mkdir(exist_ok=True)
@@ -58,10 +71,10 @@ def seed(parent,cache):
         upstream.downloads(cache,{key:archive for _,key,archive in batch},hashes)
     print('verified full parent archive set',len(accepted),flush=True)
 
-def restore(parent,cache,work,roots,leantar):
-    api,rows,hashes=published(parent,cache,False)
+def restore(parent,cache,work,roots,leantar,authority=DEFAULT):
+    api,rows,hashes=published(parent,cache,False,authority)
     data=(cache/'metadata/current-headers.json').read_bytes()
-    if sha(data)!=GRAPH:raise ValueError('invalid authenticated project graph')
+    if sha(data)!=authority.graph:raise ValueError('invalid authenticated project graph')
     graph=json.loads(data)
     parents=set(roots);deep=set()
     for root in roots:
@@ -92,4 +105,5 @@ def restore(parent,cache,work,roots,leantar):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--parent',type=Path,required=True);p.add_argument('--cache',type=Path,required=True)
-    a=p.parse_args();seed(a.parent.resolve(),a.cache.resolve())
+    p.add_argument('--authority',type=Path)
+    a=p.parse_args();seed(a.parent.resolve(),a.cache.resolve(),Authority.read(a.authority) if a.authority else DEFAULT)
