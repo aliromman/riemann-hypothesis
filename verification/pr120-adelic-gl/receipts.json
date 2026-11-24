@@ -1,0 +1,178 @@
+{
+  "port": {
+    "parent": "2d20aa9035becfe380b9fe619e3d3fc968cf3400",
+    "commit": "2cc9602ef874fbdf9f913545c8bc895c3e9cb812",
+    "origin": "f6d5ee4d401a2f52932d71426854f0110ada926b",
+    "patchId": "0cdd3d8e2bf7cba016a08742ce1bb25d3ca1ca7d",
+    "author": "Brian Zhou",
+    "inputs": 16
+  },
+  "native": {
+    "parent": "2d20aa9035becfe380b9fe619e3d3fc968cf3400",
+    "portOf": "f6d5ee4d401a2f52932d71426854f0110ada926b",
+    "sourceInputs": 16,
+    "stock": {
+      "sourceSha256": "96168cf83bb4c927bc535025b9c04e0746aa504d09120bf5fe34aef8777b1da8",
+      "build": {
+        "exit": 0,
+        "sha256": "4c4db5c020c5f0d0d7d031a134f01e96f2cad29ce8dd044305cc6ef0b4b03427",
+        "last": [
+          "Build completed successfully (18281 jobs)."
+        ]
+      },
+      "kernel": {
+        "exit": 0,
+        "sha256": "62841b08b66098f483569e580165b6b93c052de36809ecf54249cb7353df0c89",
+        "last": [
+          "replaying GroundTheory.AutomorphicForms.AdelicGLn"
+        ]
+      }
+    },
+    "candidate": {
+      "sourceSha256": "60014282dd13b52689cc3474715f5146fd26a6fdcce2f7836a69de9aa8249d5e",
+      "build": {
+        "exit": 0,
+        "sha256": "48ade9262bd755fe979241081a696464cda6f7c8b5f3621f82b1d78bf32bb205",
+        "last": [
+          "\u2714 [18280/18281] Built GroundTheory.AutomorphicForms.AdelicGLn (6.2s)",
+          "Build completed successfully (18281 jobs)."
+        ]
+      },
+      "kernel": {
+        "exit": 0,
+        "sha256": "62841b08b66098f483569e580165b6b93c052de36809ecf54249cb7353df0c89",
+        "last": [
+          "replaying GroundTheory.AutomorphicForms.AdelicGLn"
+        ]
+      },
+      "comparison": {
+        "exit": 0,
+        "sha256": "193ddfedb30c0bfde99857bf48536695179b809e7e1f2df1ee306a5d7f21330e",
+        "last": [
+          "existing 39 candidate 74 proposition-valued instances 36"
+        ]
+      }
+    }
+  },
+  "original": "c7791603122c0328f79e49f6be5d7d4402effc53",
+  "originalProjectInputs": 161,
+  "addedImports": [
+    "Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup",
+    "Development.AbelianVarietyTheory.Definitions.Divisors.LineOppositeParabolicUnitaryLeviSectionEq"
+  ],
+  "fullProof": {
+    "original": {
+      "exit": 0,
+      "errors": [],
+      "sourceSHA256": "54e0608187c5c7ec304dba5c374df9c42f4d3c3e36f5b62ac1b8a37742892a76",
+      "compilerLogSHA256": "ad5b59eb6bfecb59e15ac478aef6ab51c097d665b8b3b3fe85adcb6f8eb75aa5"
+    },
+    "stock": {
+      "exit": 1,
+      "errors": [
+        {
+          "line": 81,
+          "column": 37,
+          "message": "failed to synthesize\n  SFinite (\u03bc.restrict Q)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached"
+        },
+        {
+          "line": 86,
+          "column": 42,
+          "message": "failed to synthesize\n  T2Space (AdelicGLn.AdelicGL K n)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached"
+        },
+        {
+          "line": 85,
+          "column": 110,
+          "message": "unsolved goals\nK : Type\ninst\u271d\u00b2 : Field K\ninst\u271d\u00b9 : NumberField K\nn : \u2115\n\u03bc : Measure (AdelicGLn.AdelicGL K n)\ninst\u271d : \u03bc.IsHaarMeasure\n\u03c6 : AdelicGLn.AdelicGL K n \u2192 \u2102\nh\u03c6 : Continuous \u03c6\nr : \u2115\nt : \u211d\nD : Set (UPos n r \u2192 AdeleRing (\ud835\udcde K) K)\nhD : IsCompact D\nhD0 : unipFundamentalDomain K n r \u2286 D\nQ : Set (AdelicGLn.AdelicGL K n)\nhQ : IsCompact Q\nhS : MeasurableSet (sset K n r t D Q)\nhc : \u00ac(unipMeasure K n r).real (unipFundamentalDomain K n r) = 0\nh\u03bd0 : (unipMeasure K n r) (unipFundamentalDomain K n r) \u2260 0\nh\u03bdt : (unipMeasure K n r) (unipFundamentalDomain K n r) \u2260 \u221e\nhpt :\n  \u2200 (g : AdelicGLn.AdelicGL K n),\n    \u2016An.ctn r \u03c6 g\u2016\u2091 ^ 2 * (unipMeasure K n r) (unipFundamentalDomain K n r) \u2264\n      \u222b\u207b (X : UPos n r \u2192 AdeleRing (\ud835\udcde K) K) in unipFundamentalDomain K n r, \u2016\u03c6 (unipGL X * g)\u2016\u2091 ^ 2 \u2202unipMeasure K n r\nhcont : Measurable fun p => \u2016\u03c6 (unipGL p.2 * (An.aR K n r t * p.1))\u2016\u2091 ^ 2\nX : UPos n r \u2192 AdeleRing (\ud835\udcde K) K\nhX : X \u2208 unipFundamentalDomain K n r\n\u22a2 \u222b\u207b (g : AdelicGLn.AdelicGL K n) in Q, \u2016\u03c6 (unipGL X * (An.aR K n r t * g))\u2016\u2091 ^ 2 \u2202\u03bc \u2264\n    \u222b\u207b (g : AdelicGLn.AdelicGL K n),\n      (sset K n r t D Q).indicator (fun x => \u2016\u03c6 x\u2016\u2091 ^ 2) (unipGL X * An.aR K n r t * g) \u2202\u03bc"
+        },
+        {
+          "line": 181,
+          "column": 16,
+          "message": "failed to synthesize\n  SigmaCompactSpace (AdelicGLn.AdelicGL K n)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached"
+        },
+        {
+          "line": 188,
+          "column": 25,
+          "message": "failed to synthesize\n  SigmaCompactSpace (AdelicGLn.AdelicGL K n)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached"
+        },
+        {
+          "line": 189,
+          "column": 26,
+          "message": "failed to synthesize\n  SigmaCompactSpace (AdelicGLn.AdelicGL K n)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached"
+        },
+        {
+          "line": 129,
+          "column": 50,
+          "message": "unsolved goals\ncase refine_1\nhCount : An.Count\nhEsc : An.Escape\nK : Type\ninst\u271d\u00b2 : Field K\ninst\u271d\u00b9 : NumberField K\nn r : \u2115\nhr : 0 < r\nhrn : r < n\n\u03bc : Measure (AdelicGLn.AdelicGL K n)\ninst\u271d : \u03bc.IsHaarMeasure\n\u03c6 : AdelicGLn.AdelicGL K n \u2192 \u2102\nF : Set (AdelicGLn.AdelicGL K n)\nh\u03c6 : Continuous \u03c6\nhinv : \u2200 \u03b3 \u2208 An.lat K n, \u2200 (g : AdelicGLn.AdelicGL K n), \u03c6 (\u03b3 * g) = \u03c6 g\nhF : IsFundamentalDomain (\u21a5(An.lat K n)) F \u03bc\nhfin : \u222b\u207b (g : AdelicGLn.AdelicGL K n) in F, \u2016\u03c6 g\u2016\u2091 ^ 2 \u2202\u03bc < \u221e\nQ : Set (AdelicGLn.AdelicGL K n)\nhQ : IsCompact Q\nD : Set (UPos n r \u2192 AdeleRing (\ud835\udcde K) K)\nhD : IsCompact D\nhD0 : unipFundamentalDomain K n r \u2286 D\nC : \u211d\nhC :\n  \u2200 (t : \u211d),\n    0 \u2264 t \u2192\n      \u2200 (x : AdelicGLn.AdelicGL K n),\n        {\u03b3 | \u2191\u03b3 * x \u2208 l2glue.sset K n r t D Q}.encard \u2264 \u2191\u2308C * Real.exp (2 * An.rho K n r * t)\u2309\u208a\nhhm : Measurable fun x => \u2016\u03c6 x\u2016\u2091 ^ 2\nh\u03c1 : 0 \u2264 An.rho K n r\nhC\u2081 : 0 < max C 0 + 1\nkey :\n  \u2200 (T : Set (AdelicGLn.AdelicGL K n)),\n    IsCompact T \u2192\n      \u2200\u1da0 (t : \u211d) in atTop,\n        Real.exp (-(2 * An.rho K n r * t)) *\n            \u222b (g : AdelicGLn.AdelicGL K n) in Q, \u2016An.ctn r \u03c6 (An.aR K n r t * g)\u2016 ^ 2 \u2202\u03bc \u2264\n          (max C 0 + 1) * (\u222b\u207b (x : AdelicGLn.AdelicGL K n) in F \\ T, \u2016\u03c6 x\u2016\u2091 ^ 2 \u2202\u03bc).toReal\n\u22a2 SigmaCompactSpace (AdelicGLn.AdelicGL K n)"
+        }
+      ],
+      "sourceSHA256": "e5f06b99e35ada55d4ceaa433bf48a85ef9e8e40e72ac3763450aa3b679f5587",
+      "compilerLogSHA256": "99f2e0b4afa487cfb94939c18cec740e9048ee73c3971e95373b13fe801fd3b3"
+    },
+    "low": {
+      "exit": 1,
+      "errors": [
+        {
+          "line": 86,
+          "column": 42,
+          "message": "failed to synthesize\n  T2Space (AdelicGLn.AdelicGL K n)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached"
+        },
+        {
+          "line": 85,
+          "column": 110,
+          "message": "unsolved goals\nK : Type\ninst\u271d\u00b2 : Field K\ninst\u271d\u00b9 : NumberField K\nn : \u2115\n\u03bc : Measure (AdelicGLn.AdelicGL K n)\ninst\u271d : \u03bc.IsHaarMeasure\n\u03c6 : AdelicGLn.AdelicGL K n \u2192 \u2102\nh\u03c6 : Continuous \u03c6\nr : \u2115\nt : \u211d\nD : Set (UPos n r \u2192 AdeleRing (\ud835\udcde K) K)\nhD : IsCompact D\nhD0 : unipFundamentalDomain K n r \u2286 D\nQ : Set (AdelicGLn.AdelicGL K n)\nhQ : IsCompact Q\nhS : MeasurableSet (sset K n r t D Q)\nhc : \u00ac(unipMeasure K n r).real (unipFundamentalDomain K n r) = 0\nh\u03bd0 : (unipMeasure K n r) (unipFundamentalDomain K n r) \u2260 0\nh\u03bdt : (unipMeasure K n r) (unipFundamentalDomain K n r) \u2260 \u221e\nhpt :\n  \u2200 (g : AdelicGLn.AdelicGL K n),\n    \u2016An.ctn r \u03c6 g\u2016\u2091 ^ 2 * (unipMeasure K n r) (unipFundamentalDomain K n r) \u2264\n      \u222b\u207b (X : UPos n r \u2192 AdeleRing (\ud835\udcde K) K) in unipFundamentalDomain K n r, \u2016\u03c6 (unipGL X * g)\u2016\u2091 ^ 2 \u2202unipMeasure K n r\nhcont : Measurable fun p => \u2016\u03c6 (unipGL p.2 * (An.aR K n r t * p.1))\u2016\u2091 ^ 2\nX : UPos n r \u2192 AdeleRing (\ud835\udcde K) K\nhX : X \u2208 unipFundamentalDomain K n r\n\u22a2 \u222b\u207b (g : AdelicGLn.AdelicGL K n) in Q, \u2016\u03c6 (unipGL X * (An.aR K n r t * g))\u2016\u2091 ^ 2 \u2202\u03bc \u2264\n    \u222b\u207b (g : AdelicGLn.AdelicGL K n),\n      (sset K n r t D Q).indicator (fun x => \u2016\u03c6 x\u2016\u2091 ^ 2) (unipGL X * An.aR K n r t * g) \u2202\u03bc"
+        }
+      ],
+      "sourceSHA256": "e5f06b99e35ada55d4ceaa433bf48a85ef9e8e40e72ac3763450aa3b679f5587",
+      "compilerLogSHA256": "bfdc860337e0321a04cabf0a58ea77311a3e7d802ea1b1e449c06f55e1390e13"
+    },
+    "brian696": {
+      "exit": 0,
+      "errors": [],
+      "sourceSHA256": "e5f06b99e35ada55d4ceaa433bf48a85ef9e8e40e72ac3763450aa3b679f5587",
+      "compilerLogSHA256": "50f12fe77cd962345fb263b8df7ea58fe96129996c088d46091b43e3188a38cb",
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "37827d94ba0421be1aa050d2b136cfcd8e749092543b269318920ffe09b3e55f"
+      }
+    }
+  },
+  "fullProofComparison": {
+    "public": 12,
+    "exactTypes": 12,
+    "definitions": 1,
+    "theorems": 11,
+    "exactProofTerms": 8,
+    "matchingAxiomRecords": 12
+  },
+  "fiveProbes": {
+    "original": {
+      "exit": 1,
+      "error_count": 4,
+      "first_error": [
+        [
+          {
+            "column": 58,
+            "line": 17
+          },
+          "failed to synthesize\n  LocallyCompactSpace (AdelicGLn.AdelicGL K n)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached\n\nNote: Use `set_option synthInstance.maxHeartbeats <num>` to set the limit.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command."
+        ]
+      ],
+      "log_sha256": "a8d67b1db1e78788ad06f53abdb62a310fcdc4c362afc34d77f8094936d7c043"
+    },
+    "ported": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "a20fc0f4759654a3a75c4b24fe969dccc942b8b2d035028a36c48111bd33784c"
+    }
+  }
+}
