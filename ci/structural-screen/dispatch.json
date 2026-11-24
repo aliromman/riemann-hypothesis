@@ -1,6 +1,21 @@
 {
   "groups": [
-    "canary-1",
-    "canary-2"
-  ]
+    "large-00",
+    "large-01",
+    "scope-00",
+    "scope-01",
+    "scope-02",
+    "scope-03",
+    "scope-04",
+    "scope-05",
+    "scope-06",
+    "scope-07",
+    "scope-08",
+    "scope-09",
+    "scope-10",
+    "scope-11",
+    "scope-12",
+    "scope-13"
+  ],
+  "verified_canary_run": 45352244637
 }
