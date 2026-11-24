@@ -1,0 +1,272 @@
+{
+  "revision": "376bacf238f6f3a7a4f120aeb01c89d124ea7a66",
+  "members": {
+    "Ea": [
+      "Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.AllRowsES",
+      "Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.ContinuousAdjugate",
+      "Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.KppCharN",
+      "Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.RMeasP"
+    ],
+    "Kpp": [
+      "Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.AllRowsKpp"
+    ],
+    "Flag": [
+      "Development.AbelianVarietyTheory.Proofs.FlagMeasures.ScalarCorankOnePairsTrans",
+      "Development.AbelianVarietyTheory.Proofs.FlagMeasures.SumSeriesIdempotentCoeffRightTranslation"
+    ]
+  },
+  "arms": {
+    "Ea-original": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "5d36a12faf51626ff04f42b878fa8767172c15a947c02829b1b215e4472d60b1",
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "59c2911d24ee1f31ca7a6cba319ef2bccb6d86d6279c127420fa35605726b14b"
+      },
+      "source_sha256": "1b7702b149386d6c3d31c00e745464a71c49a23106d0097a758d31ef4333bbb7"
+    },
+    "Ea-exposed": {
+      "exit": 1,
+      "error_count": 1,
+      "first_error": [
+        [
+          {
+            "column": 28,
+            "line": 72
+          },
+          "Application type mismatch: The argument\n  rfl\nhas type\n  ?m.178 = ?m.178\nbut is expected to have type\n  Finset.univ = Finset.univ\nin the application\n  Finset.sum_congr rfl"
+        ]
+      ],
+      "log_sha256": "3b46dad930f5a0b2ff214a7b80d5461bec6386e12f58558f722f43df3d83bdb3",
+      "source_sha256": "bc4b264b4fb54ceaf69533c773413822f1093a70d8a2e63fa398c4f91bc7331d"
+    },
+    "Ea-canonical": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "1177ebc8c90b547dd2c4093f1d644d4f3b2b2fb7561b45e7530e7bf99ea6d165",
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "59c2911d24ee1f31ca7a6cba319ef2bccb6d86d6279c127420fa35605726b14b"
+      },
+      "source_sha256": "bc4b264b4fb54ceaf69533c773413822f1093a70d8a2e63fa398c4f91bc7331d"
+    },
+    "Kpp-original": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "da6f578ccb2cf9f96f69f60abf89095d2dfee857826d4fea562de476b165b4be",
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "59c2911d24ee1f31ca7a6cba319ef2bccb6d86d6279c127420fa35605726b14b"
+      },
+      "source_sha256": "d7a207f3614fb3f4963874cc33bef5156e879ef9891acc67c0beeb66f12d4060"
+    },
+    "Kpp-exposed": {
+      "exit": 1,
+      "error_count": 1,
+      "first_error": [
+        [
+          {
+            "column": 83,
+            "line": 194
+          },
+          "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  Fintype.card ((i : ?m.39) \u2192 ?m.40 i)\nin the target expression\n  Fintype.card (G0g D.nd) = \u220f kv, Nat.card (GL (Fin D.R.r) (ZMod (D.host.g kv.fst)))\n\nD : D7\n\u22a2 Fintype.card (G0g D.nd) = \u220f kv, Nat.card (GL (Fin D.R.r) (ZMod (D.host.g kv.fst)))"
+        ]
+      ],
+      "log_sha256": "2e77845ae5a33f9162b07e089e2885cf09e419e5a42724dfdf84f1f4e969d8e9",
+      "source_sha256": "4c9e2a2af032577a0e7ec60468a146091fc145645989c86fc58e5be390838263"
+    },
+    "Kpp-canonical": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "9bbdc19fb1559d9f11d2f350ec3c34110e4a6ecf45667f8ee6e2d80f50ebc755",
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "59c2911d24ee1f31ca7a6cba319ef2bccb6d86d6279c127420fa35605726b14b"
+      },
+      "source_sha256": "4c9e2a2af032577a0e7ec60468a146091fc145645989c86fc58e5be390838263"
+    },
+    "Flag-original": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "03710842b9bb65fdf7148d99ab186a985db3547df4b8c5dff248c5dc99fcff70",
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "59c2911d24ee1f31ca7a6cba319ef2bccb6d86d6279c127420fa35605726b14b"
+      },
+      "source_sha256": "ff493753e32ae0ad62ebae1461a4dbdbae6ffaef9468b8438a5da4533c09cd19"
+    },
+    "Flag-exposed": {
+      "exit": 1,
+      "error_count": 1,
+      "first_error": [
+        [
+          {
+            "column": 2,
+            "line": 295
+          },
+          "Type mismatch\n  Eq.trans hfin h1\nhas type\n  \u2211 \u03b3 \u2208 @Finset.univ ((i : (k : Fin 2) \u00d7 D.nd.PlG k) \u2192 GL (Fin D.R.r) (ZMod (D.host.g i.fst))) Pi.instFintype,\n      (\u220f i, (D.ntypes.eSer i.fst (\u03c4 i.fst i.snd)).coeff (\u03b3 i)) \u2022 (Formalism.L2.NG.rt D.host.E D.R.r (lf \u03b3)) \u03c6 =\n    \u03c6\nbut is expected to have type\n  \u2211 i \u2208 @Finset.univ (G0g D.nd) (IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype D),\n      serCoef \u03c4 i \u2022 (Formalism.L2.NG.rt D.host.E D.R.r (lf i)) \u03c6 =\n    \u03c6\n\nNote: The following definitions were not unfolded because their definition is not exposed:\n  Complex.mulAux \u21a6 36"
+        ]
+      ],
+      "log_sha256": "cd4a40101b7c2696398367f33fb89610550576837f9ef0a6b1e39836030add0f",
+      "source_sha256": "48683e634ddb4de8347d90db2a2b561e0d21e6dd6c1a5c835f3461c4e8170c98"
+    },
+    "Flag-canonical": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "ed28b94c8ff747cd853a9dd68c441fe214e7de0e547873bb1c480f4b01a26673",
+      "kernel": {
+        "exit": 0,
+        "error_count": 0,
+        "first_error": [],
+        "log_sha256": "59c2911d24ee1f31ca7a6cba319ef2bccb6d86d6279c127420fa35605726b14b"
+      },
+      "source_sha256": "48683e634ddb4de8347d90db2a2b561e0d21e6dd6c1a5c835f3461c4e8170c98"
+    }
+  },
+  "equality": {
+    "stock": {
+      "exit": 1,
+      "error_count": 1,
+      "first_error": [
+        [
+          {
+            "column": 73,
+            "line": 8
+          },
+          "Type mismatch\n  rfl\nhas type\n  ?m.3 = ?m.3\nbut is expected to have type\n  finiteLevelGroupFintype D = finiteReductionGroup D"
+        ]
+      ],
+      "log_sha256": "c6f08e99f0aacc1b3d91b734c46c4ec988d2e669ab1c943ee93c5cbe45c44b9a"
+    },
+    "canonical": {
+      "exit": 0,
+      "error_count": 0,
+      "first_error": [],
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "physical436": {
+    "revision": "376bacf238f6f3a7a4f120aeb01c89d124ea7a66",
+    "source_count": 3198,
+    "targets": [
+      "Development.AbelianVarietyTheory.BlockTheory.DivisorBase.UnipotentLatticeMembership"
+    ],
+    "arms": {
+      "stock": {
+        "source_sha256": "417312f5a450f5804d277f4199c01df820b49b2132565eefc45371dded9c6821",
+        "build": {
+          "exit": 0,
+          "sha256": "12e73119afb54ea00271a6fd77a3681da146ceca82ceb84b1ba749a757b1fd79",
+          "errors": [],
+          "last": [
+            "Build completed successfully (24645 jobs)."
+          ]
+        },
+        "Development.AbelianVarietyTheory.BlockTheory.DivisorBase.UnipotentLatticeMembership": {
+          "exit": 0,
+          "sha256": "2375a21f0abfc521aa6842e6ee2c9016700abc2b1feefa2a64214600fef6a4a2",
+          "errors": [],
+          "last": []
+        }
+      },
+      "canonical": {
+        "source_sha256": "b712fc1592507d76720928de79b400b95e74893c03e60aa1a5527b04bea4c7f2",
+        "build": {
+          "exit": 0,
+          "sha256": "12e73119afb54ea00271a6fd77a3681da146ceca82ceb84b1ba749a757b1fd79",
+          "errors": [],
+          "last": [
+            "Build completed successfully (24645 jobs)."
+          ]
+        },
+        "Development.AbelianVarietyTheory.BlockTheory.DivisorBase.UnipotentLatticeMembership": {
+          "exit": 0,
+          "sha256": "2375a21f0abfc521aa6842e6ee2c9016700abc2b1feefa2a64214600fef6a4a2",
+          "errors": [],
+          "last": []
+        }
+      }
+    }
+  },
+  "physical437": {
+    "revision": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+    "source_count": 619,
+    "targets": [
+      "Development.AbelianVarietyTheory.BlockTheory.DivisorBase.UnipotentLatticeMembership",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCentralIdempotentOfGoodSeriesIdempotent"
+    ],
+    "arms": {
+      "stock": {
+        "source_sha256": "29f0c885c36249a1ab81ba036bca263da92f296f8055df83217b6b21a5cfb090",
+        "build": {
+          "exit": 0,
+          "sha256": "befb3591157041de9f85939258738b6c9b2097cbc29b21fe6908beb4aed247f4",
+          "errors": [],
+          "last": [
+            "Build completed successfully (11453 jobs)."
+          ]
+        },
+        "Development.AbelianVarietyTheory.BlockTheory.DivisorBase.UnipotentLatticeMembership": {
+          "exit": 0,
+          "sha256": "2375a21f0abfc521aa6842e6ee2c9016700abc2b1feefa2a64214600fef6a4a2",
+          "errors": [],
+          "last": []
+        },
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCentralIdempotentOfGoodSeriesIdempotent": {
+          "exit": 0,
+          "sha256": "9507358e63353ed6c59fa064171e60c4d7918a218efe497677fd154da3a5d2fe",
+          "errors": [],
+          "last": []
+        }
+      },
+      "canonical": {
+        "source_sha256": "975feb6e1e1934b4c7a7841fa1b5bde8d3e3e0c7be44d4af6ffb23c675f70678",
+        "build": {
+          "exit": 0,
+          "sha256": "c6569a49e45320b6252edfeba005d38defff0f92a1a0cb6bae7237d4388d0411",
+          "errors": [],
+          "last": [
+            "Build completed successfully (11453 jobs)."
+          ]
+        },
+        "Development.AbelianVarietyTheory.BlockTheory.DivisorBase.UnipotentLatticeMembership": {
+          "exit": 0,
+          "sha256": "2375a21f0abfc521aa6842e6ee2c9016700abc2b1feefa2a64214600fef6a4a2",
+          "errors": [],
+          "last": []
+        },
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCentralIdempotentOfGoodSeriesIdempotent": {
+          "exit": 0,
+          "sha256": "9507358e63353ed6c59fa064171e60c4d7918a218efe497677fd154da3a5d2fe",
+          "errors": [],
+          "last": [],
+          "public": {
+            "exit": 0,
+            "sha256": "c447ee7828d8ef8bfdc741ab1d7cc48eec79d2bdb12dc4f1c0832e66c64b28cf",
+            "errors": [],
+            "last": [
+              "16\t16\t8\t5\t5\t16"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,381 @@
+[
+  {
+    "module": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFourLeviGL2RootIndexOfCardSq",
+    "original_sources": [
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFourLeviGL2CartanDoubleCosets",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFourLeviGL2RootIndexOfCardSq"
+    ],
+    "interface_exit": 0,
+    "public_names": 17,
+    "identical_raw_types": 10,
+    "definitions": 2,
+    "theorems": 15,
+    "matching_proof_terms": 15,
+    "axiom_records": 17,
+    "kernel_exit": 0
+  },
+  {
+    "module": "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNwtGlue",
+    "original_sources": [
+      "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNormSpec",
+      "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNwtAgree",
+      "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNwtGlue"
+    ],
+    "interface_exit": 0,
+    "public_names": 4,
+    "identical_raw_types": 4,
+    "definitions": 0,
+    "theorems": 4,
+    "matching_proof_terms": 2,
+    "axiom_records": 4,
+    "kernel_exit": 0
+  },
+  {
+    "module": "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaJ",
+    "original_sources": [
+      "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaI",
+      "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaJ"
+    ],
+    "interface_exit": 0,
+    "public_names": 2,
+    "identical_raw_types": 2,
+    "definitions": 0,
+    "theorems": 2,
+    "matching_proof_terms": 2,
+    "axiom_records": 2,
+    "kernel_exit": 0
+  },
+  {
+    "module": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LineMapExists",
+    "original_sources": [
+      "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KapZero",
+      "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LineMapExists"
+    ],
+    "interface_exit": 0,
+    "public_names": 22,
+    "identical_raw_types": 17,
+    "definitions": 5,
+    "theorems": 17,
+    "matching_proof_terms": 17,
+    "axiom_records": 22,
+    "kernel_exit": 0
+  },
+  {
+    "module": "Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf",
+    "original_sources": [
+      "Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf",
+      "Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf"
+    ],
+    "interface_exit": 0,
+    "public_names": 6,
+    "identical_raw_types": 5,
+    "definitions": 0,
+    "theorems": 6,
+    "matching_proof_terms": 5,
+    "axiom_records": 6,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StLocDensContOnOpen",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StListMonoRaise",
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StListMonoDens",
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StLocDensContOnOpen"
+    ],
+    "interface_exit": 0,
+    "public_names": 3,
+    "identical_raw_types": 3,
+    "definitions": 3,
+    "theorems": 0,
+    "matching_proof_terms": 0,
+    "axiom_records": 3,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntMonoOfDensLe",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntegrableOfDensLe",
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntMonoOfDensLe"
+    ],
+    "interface_exit": 0,
+    "public_names": 2,
+    "identical_raw_types": 2,
+    "definitions": 2,
+    "theorems": 0,
+    "matching_proof_terms": 0,
+    "axiom_records": 2,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsDimensionInequalitySteps",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsDimensionInequality",
+      "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsDimensionInequalitySteps"
+    ],
+    "interface_exit": 0,
+    "public_names": 5,
+    "identical_raw_types": 5,
+    "definitions": 5,
+    "theorems": 0,
+    "matching_proof_terms": 0,
+    "axiom_records": 5,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StCoordLatticeFullRank",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StDualLatticeMultiple",
+      "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StCoordLatticeFullRank"
+    ],
+    "interface_exit": 0,
+    "public_names": 2,
+    "identical_raw_types": 0,
+    "definitions": 2,
+    "theorems": 0,
+    "matching_proof_terms": 0,
+    "axiom_records": 2,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelTorsionBound",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelChartPoly",
+      "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelOneStep",
+      "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelTorsionBound"
+    ],
+    "interface_exit": 0,
+    "public_names": 3,
+    "identical_raw_types": 3,
+    "definitions": 3,
+    "theorems": 0,
+    "matching_proof_terms": 0,
+    "axiom_records": 3,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvPolynomialReduction",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvMonomialReduction",
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvPolynomialReduction"
+    ],
+    "interface_exit": 0,
+    "public_names": 3,
+    "identical_raw_types": 3,
+    "definitions": 0,
+    "theorems": 3,
+    "matching_proof_terms": 2,
+    "axiom_records": 3,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralPermute",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralAntisymmetrize",
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralPermute"
+    ],
+    "interface_exit": 0,
+    "public_names": 4,
+    "identical_raw_types": 4,
+    "definitions": 0,
+    "theorems": 4,
+    "matching_proof_terms": 4,
+    "axiom_records": 4,
+    "kernel_exit": 0
+  },
+  {
+    "module": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitarySatakeWeylInvariant",
+    "original_sources": [
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitarySatakeWeylInvariant"
+    ],
+    "interface_exit": 0,
+    "public_names": 7,
+    "identical_raw_types": 7,
+    "definitions": 0,
+    "theorems": 7,
+    "matching_proof_terms": 7,
+    "axiom_records": 7,
+    "kernel_exit": 0
+  },
+  {
+    "module": "Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnitarySatakeEqOfSameUnramifiedBaseChange",
+    "original_sources": [
+      "Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnitarySatakeEqOfSameUnramifiedBaseChange"
+    ],
+    "interface_exit": 0,
+    "public_names": 4,
+    "identical_raw_types": 4,
+    "definitions": 0,
+    "theorems": 4,
+    "matching_proof_terms": 4,
+    "axiom_records": 4,
+    "kernel_exit": 0
+  },
+  {
+    "module": "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.IsolateSpecHolds",
+    "original_sources": [
+      "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.IsolateSpecHolds"
+    ],
+    "interface_exit": 0,
+    "public_names": 142,
+    "identical_raw_types": 142,
+    "definitions": 0,
+    "theorems": 142,
+    "matching_proof_terms": 142,
+    "axiom_records": 142,
+    "kernel_exit": 0
+  },
+  {
+    "module": "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.HomogeneousPowerSumDecomposition",
+    "original_sources": [
+      "Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.HomogeneousPowerSumDecomposition"
+    ],
+    "interface_exit": 0,
+    "public_names": 4,
+    "identical_raw_types": 4,
+    "definitions": 0,
+    "theorems": 4,
+    "matching_proof_terms": 4,
+    "axiom_records": 4,
+    "kernel_exit": 0
+  },
+  {
+    "module": "Development.EtaleCohomology.CohomologicalPurity.FinLeafChart",
+    "original_sources": [
+      "Development.EtaleCohomology.CohomologicalPurity.FinLeafChart"
+    ],
+    "interface_exit": 0,
+    "public_names": 12,
+    "identical_raw_types": 12,
+    "definitions": 0,
+    "theorems": 12,
+    "matching_proof_terms": 12,
+    "axiom_records": 12,
+    "kernel_exit": 0
+  },
+  {
+    "module": "Development.EtaleCohomology.CohomologicalPurity.FinLeafCl",
+    "original_sources": [
+      "Development.EtaleCohomology.CohomologicalPurity.FinLeafCl"
+    ],
+    "interface_exit": 0,
+    "public_names": 69,
+    "identical_raw_types": 69,
+    "definitions": 0,
+    "theorems": 69,
+    "matching_proof_terms": 69,
+    "axiom_records": 69,
+    "kernel_exit": 0
+  },
+  {
+    "module": "Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.KummerCupProducts.EtaleChernClassEqKummerClass",
+    "original_sources": [
+      "Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.KummerCupProducts.EtaleChernClassEqKummerClass"
+    ],
+    "interface_exit": 0,
+    "public_names": 145,
+    "identical_raw_types": 145,
+    "definitions": 3,
+    "theorems": 142,
+    "matching_proof_terms": 142,
+    "axiom_records": 145,
+    "kernel_exit": 0
+  },
+  {
+    "module": "Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FramePfDat",
+    "original_sources": [
+      "Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FramePfDat"
+    ],
+    "interface_exit": 0,
+    "public_names": 94,
+    "identical_raw_types": 94,
+    "definitions": 8,
+    "theorems": 80,
+    "matching_proof_terms": 80,
+    "axiom_records": 94,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.AssemblyDimensionInequality",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.AssemblyDimensionInequality"
+    ],
+    "interface_exit": 0,
+    "public_names": 12,
+    "identical_raw_types": 12,
+    "definitions": 0,
+    "theorems": 12,
+    "matching_proof_terms": 12,
+    "axiom_records": 12,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.OfUnfolding",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.OfUnfolding"
+    ],
+    "interface_exit": 0,
+    "public_names": 66,
+    "identical_raw_types": 66,
+    "definitions": 5,
+    "theorems": 61,
+    "matching_proof_terms": 61,
+    "axiom_records": 66,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.OrbitLimits.MoriwakiHSClosed",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.OrbitLimits.MoriwakiHSClosed"
+    ],
+    "interface_exit": 0,
+    "public_names": 28,
+    "identical_raw_types": 28,
+    "definitions": 3,
+    "theorems": 25,
+    "matching_proof_terms": 25,
+    "axiom_records": 28,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.Imports",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.Imports"
+    ],
+    "interface_exit": 0,
+    "public_names": 175,
+    "identical_raw_types": 175,
+    "definitions": 0,
+    "theorems": 175,
+    "matching_proof_terms": 175,
+    "axiom_records": 175,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.RestAt",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.RestAt"
+    ],
+    "interface_exit": 0,
+    "public_names": 23,
+    "identical_raw_types": 23,
+    "definitions": 1,
+    "theorems": 22,
+    "matching_proof_terms": 22,
+    "axiom_records": 23,
+    "kernel_exit": 0
+  },
+  {
+    "module": "GroundTheory.HeightsAndTheta.Heights.SemipositiveHeights.TailBound",
+    "original_sources": [
+      "GroundTheory.HeightsAndTheta.Heights.SemipositiveHeights.TailBound"
+    ],
+    "interface_exit": 0,
+    "public_names": 44,
+    "identical_raw_types": 44,
+    "definitions": 0,
+    "theorems": 44,
+    "matching_proof_terms": 44,
+    "axiom_records": 44,
+    "kernel_exit": 0
+  }
+]

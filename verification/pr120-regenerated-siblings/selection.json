@@ -1,0 +1,55 @@
+{
+  "groups": {
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFourLeviGL2RootIndexOfCardSq": [
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFourLeviGL2CartanDoubleCosets",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFourLeviGL2RootIndexOfCardSq"
+    ],
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNwtGlue": [
+      "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNormSpec",
+      "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNwtAgree",
+      "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.PNwtGlue"
+    ],
+    "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaJ": [
+      "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaI",
+      "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaJ"
+    ],
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LineMapExists": [
+      "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KapZero",
+      "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LineMapExists"
+    ],
+    "Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf": [
+      "Development.EtaleCohomology.CohomologicalPurity.LeafShrinkPf",
+      "Development.EtaleCohomology.CohomologicalPurity.LeafSpanPf"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StLocDensContOnOpen": [
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StListMonoRaise",
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StListMonoDens",
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StLocDensContOnOpen"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntMonoOfDensLe": [
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntegrableOfDensLe",
+      "GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StMIntMonoOfDensLe"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsDimensionInequalitySteps": [
+      "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsDimensionInequality",
+      "GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsDimensionInequalitySteps"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StCoordLatticeFullRank": [
+      "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StDualLatticeMultiple",
+      "GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StCoordLatticeFullRank"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelTorsionBound": [
+      "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelChartPoly",
+      "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelOneStep",
+      "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsRelTorsionBound"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvPolynomialReduction": [
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvMonomialReduction",
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvPolynomialReduction"
+    ],
+    "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralPermute": [
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralAntisymmetrize",
+      "GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PFlagIntegralPermute"
+    ]
+  }
+}

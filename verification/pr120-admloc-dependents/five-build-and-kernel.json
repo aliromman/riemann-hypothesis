@@ -1,0 +1,73 @@
+{
+  "revision": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+  "stage": "all",
+  "policy": "scoped",
+  "source_count": 11870,
+  "targets": [
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TOrdVan",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.HidaOrdinaryHecke.CtrlMu",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.ImportsSide",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth"
+  ],
+  "builds": {
+    "stock": {
+      "exit": 0,
+      "log_sha256": "de2942f3ad5426e8e8807b9936eca2940a59b121fc7aad0f4da8a010bae8301e"
+    },
+    "fixed": {
+      "exit": 0,
+      "log_sha256": "b21d4961e8781b040e59634f3d3f6eedec2f61c62dcafe18aa97ff664bc9999e"
+    }
+  },
+  "checks": {
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle": {
+      "interface": 0,
+      "counts": [
+        170,
+        170,
+        95,
+        65,
+        65,
+        170
+      ],
+      "kernel": 0
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato": {
+      "interface": 1,
+      "kernel": 0
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TOrdVan": {
+      "interface": 1,
+      "kernel": 0
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.HidaOrdinaryHecke.CtrlMu": {
+      "interface": 1,
+      "kernel": 0
+    },
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.ImportsSide": {
+      "interface": 0,
+      "counts": [
+        7,
+        7,
+        0,
+        7,
+        6,
+        7
+      ],
+      "kernel": 0
+    },
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth": {
+      "interface": 0,
+      "counts": [
+        8,
+        8,
+        0,
+        8,
+        6,
+        8
+      ],
+      "kernel": 0
+    }
+  }
+}
