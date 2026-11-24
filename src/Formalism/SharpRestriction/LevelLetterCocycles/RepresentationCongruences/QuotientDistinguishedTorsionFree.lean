@@ -6,10 +6,7 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongr
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.CoeffEqZeroOfSumEqZero, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.QuotientDistinguishedTorsionFree
 
--- ===== clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.CoeffEqZeroOfSumEqZero =====
--- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.CoeffEqZeroOfSumEqZero", "h": "module\n\npublic import Mathlib.RingTheory.PowerSeries.WeierstrassPreparation\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.EqZeroOfForallMemCoeffFiltration\nimport Mathlib.Tactic.TypeStar\n\n"}
-section -- clump:auto
-@[expose] public section
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.CoeffEqZeroOfSumEqZero
 
 namespace Formalism.MainNotions.N.FrobeniusPowerSeries.WeierD
 
@@ -165,13 +162,8 @@ theorem exists_decomp (hD : 1 ≤ wd g) (h : O⟦X⟧ →ₐ[O] O⟦X⟧) (hX : 
 
 end Formalism.MainNotions.N.FrobeniusPowerSeries.WeierD
 end -- clump:auto
-end -- clump:auto
--- ===== end clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.CoeffEqZeroOfSumEqZero =====
 
--- ===== clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.QuotientDistinguishedTorsionFree =====
--- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.QuotientDistinguishedTorsionFree", "h": "module\n\npublic import Mathlib.RingTheory.DiscreteValuationRing.Basic\npublic import Mathlib.RingTheory.LocalRing.ResidueField.Defs\npublic import Mathlib.RingTheory.PowerSeries.Order\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.CoeffEqZeroOfSumEqZero\nimport Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.EqZeroOfForallMemCoeffFiltration\nimport Mathlib.Tactic.TypeStar\n\n"}
-section -- clump:auto
-@[expose] public section
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.QuotientDistinguishedTorsionFree
 
 namespace Formalism.MainNotions.N.FrobeniusPowerSeries
 
@@ -194,6 +186,6 @@ theorem exists_weierstrass_substitution (g : O⟦X⟧) (hg : IsDist g) (hD : 1 �
   exact ⟨c, hc, fun c' hc' => WeierD.decomp_unique (g := g) hg h hX c' c (hc'.symm.trans hc)⟩
 
 end Formalism.MainNotions.N.FrobeniusPowerSeries
-end -- clump:auto
-end -- clump:auto
--- ===== end clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.QuotientDistinguishedTorsionFree =====
+
+-- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.CoeffEqZeroOfSumEqZero", "h": "module\n\npublic import Mathlib.RingTheory.PowerSeries.WeierstrassPreparation\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.EqZeroOfForallMemCoeffFiltration\nimport Mathlib.Tactic.TypeStar\n\n"}
+-- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.QuotientDistinguishedTorsionFree", "h": "module\n\npublic import Mathlib.RingTheory.DiscreteValuationRing.Basic\npublic import Mathlib.RingTheory.LocalRing.ResidueField.Defs\npublic import Mathlib.RingTheory.PowerSeries.Order\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.CoeffEqZeroOfSumEqZero\nimport Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.EqZeroOfForallMemCoeffFiltration\nimport Mathlib.Tactic.TypeStar\n\n"}
