@@ -1,6 +1,6 @@
 module
 
-public import CompanionTheory.AutomorphicTheory.ThetaDilations.IsOpenCoset
+public import Development.WeilBound.CoreStatements.ThetaDilations.IsOpenCoset
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -59,6 +59,10 @@ open scoped ENNReal ComplexConjugate MatrixGroups
 noncomputable section
 
 namespace CompanionTheory.PlacePermOperatorBicommutantSpan
+
+open PositivityTheory.PlacePermOperatorBicommutantSpan
+  (CO chi_sym co_cpt co_perp fou_add fou_sb fou_smul ind ind_add ind_of_mem ind_of_not isOpen_coset
+    perpG planch sb_add sb_chi sb_homeo sb_ind sb_mul sb_smul sb_span schur)
 
 open GlobalTheory.CompanionTheory.SW.Core
 

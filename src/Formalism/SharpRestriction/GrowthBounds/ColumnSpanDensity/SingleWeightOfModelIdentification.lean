@@ -222,22 +222,6 @@ theorem harProj_eq_zero_iff {K : Type} [Field K] [CharZero K] {k : ℕ} (hk : 1 
 private theorem mem_PolAB_iff_xDeg_yDeg {K : Type} [Field K] {k A B : ℕ} {f : Formalism.CountingSumsFrames.PolXY K k} :
     f ∈ Formalism.CountingSumsFrames.PolAB K k A B ↔ ∀ m ∈ f.support, Formalism.CountingSumsFrames.xDeg m = A ∧ Formalism.CountingSumsFrames.yDeg m = B := Iff.rfl
 
-private theorem X_inl_mem_PolAB_one_zero {K : Type} [Field K] {k : ℕ} (i : Fin k) :
-    (X (Sum.inl i) : Formalism.CountingSumsFrames.PolXY K k) ∈ Formalism.CountingSumsFrames.PolAB K k 1 0 := by
-  rw [mem_PolAB_iff_xDeg_yDeg]
-  intro m hm
-  rw [support_X, Finset.mem_singleton] at hm
-  subst hm
-  simp [Formalism.CountingSumsFrames.xDeg, Formalism.CountingSumsFrames.yDeg, Finsupp.single_apply]
-
-private theorem X_inr_mem_PolAB_zero_one {K : Type} [Field K] {k : ℕ} (i : Fin k) :
-    (X (Sum.inr i) : Formalism.CountingSumsFrames.PolXY K k) ∈ Formalism.CountingSumsFrames.PolAB K k 0 1 := by
-  rw [mem_PolAB_iff_xDeg_yDeg]
-  intro m hm
-  rw [support_X, Finset.mem_singleton] at hm
-  subst hm
-  simp [Formalism.CountingSumsFrames.xDeg, Formalism.CountingSumsFrames.yDeg, Finsupp.single_apply]
-
 private theorem hXY_pow_mem_PolAB {K : Type} [Field K] {k : ℕ} (j : ℕ) :
     Formalism.CountingSumsFrames.hXY K k ^ j ∈ Formalism.CountingSumsFrames.PolAB K k j j := by
   induction j with

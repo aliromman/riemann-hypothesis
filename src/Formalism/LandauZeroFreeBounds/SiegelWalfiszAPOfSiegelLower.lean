@@ -1016,8 +1016,7 @@ lemma log_analytic_conductor_pos (q : ℕ) [NeZero q] (t : ℝ) : 0 < Real.log (
     exact_mod_cast h1
   apply Real.log_pos
   have ht := abs_nonneg t
-  calc (1 : ℝ) < |t| + 2 := by linarith
-    _ ≤ (q : ℝ) * (|t| + 2) := le_mul_of_one_le_left (by linarith) hq
+  nlinarith
 
 lemma zero_free_region_mono {c c' : ℝ} (h : c ≤ c') {q : ℕ} [NeZero q] {s : ℂ} (hs : InRegion c q s) :
     InRegion c' q s := by
@@ -1660,16 +1659,10 @@ theorem exp_gain_from_zero_free_region (y s c₁ σ₁ L : ℝ) (hy0 : 0 < y) (h
 theorem small_scale_exp_bounds (c₁ s : ℝ) (hc₁ : 0 < c₁) (hc₁' : c₁ ≤ 1 / 20) (hs : s < 10) :
     Real.exp (c₁ * s / 2) ≤ 3 ∧ 1 ≤ 3 * Real.exp (-(c₁ / 4) * s) := by
   constructor
-  · have h : c₁ * s / 2 ≤ 1 := by
-      rcases le_or_gt 0 s with hs0 | hs0
-      · have := mul_le_mul hc₁' hs.le hs0 (by norm_num); linarith
-      · have := mul_nonpos_of_nonneg_of_nonpos hc₁.le hs0.le; linarith
+  · have h : c₁ * s / 2 ≤ 1 := by nlinarith
     calc Real.exp (c₁ * s / 2) ≤ Real.exp 1 := Real.exp_le_exp.mpr h
       _ ≤ 3 := by have := Real.exp_one_lt_d9; norm_num at this; linarith
-  · have h : -(1 / 8 : ℝ) ≤ -(c₁ / 4) * s := by
-      rcases le_or_gt 0 s with hs0 | hs0
-      · have := mul_le_mul hc₁' hs.le hs0 (by norm_num); linarith
-      · have := mul_nonpos_of_nonneg_of_nonpos hc₁.le hs0.le; linarith
+  · have h : -(1 / 8 : ℝ) ≤ -(c₁ / 4) * s := by nlinarith
     have := Real.add_one_le_exp (-(c₁ / 4) * s)
     linarith
 

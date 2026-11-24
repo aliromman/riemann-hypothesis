@@ -1385,6 +1385,10 @@ variable {K : FiniteSubfield} (S : Set (HeightOneSpectrum (𝓞 K.1))) [Fintype 
 
 attribute [local irreducible] GsBaseBijective gsCompactInv compactCores compactCupRes
 
+-- `linter.unusedSectionVars` checks each automatically included section variable against the
+-- proof term with `Expr.containsFVar`, which does not share work between repeated subterms. For
+-- this proof that check takes about 35 s; the proof itself takes well under a second.
+set_option linter.unusedSectionVars false in
 include hℓ hnk hS in
 theorem gsBaseBijective_of_fixing (hP : GsPairingInput n ℓ)
     (hcores : ∀ U : OpenSubgroup (galUnramifiedOutside K.1 ℚ̄ S),

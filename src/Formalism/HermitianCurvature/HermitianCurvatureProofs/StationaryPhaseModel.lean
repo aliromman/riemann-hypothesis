@@ -1046,10 +1046,7 @@ theorem D_norm_sq_le_nsq (d : ℕ) (x : Fin d → ℂ) : ‖x‖ ^ 2 ≤ D_nsq d
 
 theorem D_exp_decay (n : ℕ) (s : ℝ) (hs : 0 ≤ s) :
     (1 + s) ^ (2 * n) * Real.exp (-s ^ 2) ≤ 2 ^ n * n.factorial * Real.exp 1 := by
-  have h1 : (1 + s) ^ 2 ≤ 2 * (1 + s ^ 2) := by
-    have := sq_nonneg (1 - s)
-    have : (1 + s) ^ 2 = 2 * (1 + s ^ 2) - (1 - s) ^ 2 := by ring
-    linarith
+  have h1 : (1 + s) ^ 2 ≤ 2 * (1 + s ^ 2) := by grind [sq_nonneg (1 - s)]
   have h3 : (1 + s ^ 2) ^ n ≤ n.factorial * Real.exp (1 + s ^ 2) := by
     rw [mul_comm]
     exact (div_le_iff₀ (by positivity)).1

@@ -564,8 +564,7 @@ theorem _root_.GlobalTheory.arithmetic_large_sieve_one_class : ∀ (M N Q q : �
           mul_le_mul_of_nonneg_left hL hZ0
       _ ≤ (Q:ℝ) ^ 2 + 2 * Real.pi * N := by
           refine le_of_mul_le_mul_left ?_ hpos
-          linarith [hbig, show Z * (Z * ∑ d ∈ D, (1:ℝ) / d.totient) = Z ^ 2 * ∑ d ∈ D, (1:ℝ) / d.totient by ring,
-            show Z * ((Q:ℝ) ^ 2 + 2 * Real.pi * N) = ((Q:ℝ) ^ 2 + 2 * Real.pi * N) * Z by ring]
+          grind
 
 end GlobalTheory
 end -- clump:auto
@@ -795,10 +794,7 @@ theorem orth (q : ℕ) [NeZero q] (S : Finset ℕ) (a : ℕ → ℂ) (hS : ∀ n
       simp only [hg]; split_ifs <;> simp
     rw [norm_mul, norm_mul, this, Complex.norm_conj]
     have := hg0 n m
-    have hsq := mul_nonneg this (sq_nonneg (‖a n‖ - ‖a m‖))
-    have heq : (‖a n‖ ^ 2 * g n m / 2 + ‖a m‖ ^ 2 * g n m / 2) - ‖a n‖ * ‖a m‖ * g n m =
-        g n m * (‖a n‖ - ‖a m‖) ^ 2 / 2 := by ring
-    linarith
+    nlinarith [mul_nonneg this (sq_nonneg (‖a n‖ - ‖a m‖))]
   refine e2.trans (le_of_eq ?_)
   simp_rw [Finset.sum_add_distrib]
   rw [Finset.sum_comm (f := fun n m => ‖a m‖ ^ 2 * g n m / 2), ← Finset.sum_add_distrib]

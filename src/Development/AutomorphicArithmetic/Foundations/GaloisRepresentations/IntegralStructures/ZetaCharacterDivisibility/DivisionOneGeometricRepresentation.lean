@@ -384,7 +384,7 @@ theorem UpperTheory.Gal.Int.Div.divDet_of :
       ((ψ g : (Qbar l)ˣ) : Qbar l) :=
     Units.continuous_val.comp hψ.1
   have hdense := ((hD E Ω l a d hd U hU X).inter_of_isOpen_right hVd hVo).preimage
-    (Homeomorph.inv (Formalism.ConjugateSelfDual.G E Ω)).isOpenMap
+    (Homeomorph.inv (G E Ω)).isOpenMap
   refine congrFun (Continuous.ext_on hdense hc1 hc2 ?_) g
   rintro x ⟨⟨w, hwX, hUs, hl, ⟨B, hB⟩, A, hA, hFr⟩, hxV⟩
   have hx : (x⁻¹)⁻¹ = x := inv_inv x
@@ -492,7 +492,7 @@ theorem UpperTheory.Gal.Int.Div.divOne_of :
     hde.preimage (Homeomorph.inv (Formalism.ConjugateSelfDual.G E Ω)).isOpenMap, ?_⟩, hin, hco⟩
   intro w hw hu hl B hB A hA
   have hE := hX w hw hu hl B hB A hA
-  have hF := hIn (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) a dd r ρ hin
+  have hF := hIn (G E Ω) (Qbar l) a dd r ρ hin
   refine ⟨fun s hs' => hF.2.1 s (hE.1 s hs'), fun s hf hsV => ?_⟩
   obtain ⟨q1, q2, -, q4⟩ := satPol_facts ι (algSat a (normV w) B)
   rw [hcard w B hB] at q2
@@ -527,12 +527,12 @@ theorem UpperTheory.Gal.Int.Div.divSet_of :
   have : CompactSpace (Formalism.ConjugateSelfDual.G E Ω) :=
     inferInstanceAs (CompactSpace (Ω ≃ₐ[E] Ω))
   obtain ⟨K', _, _, _, X, hX, hroots⟩ := hsen E Ω l dd a ρ hρ (hlac E Ω l a dd ρ hHT)
-  let T : Formalism.ConjugateSelfDual.G E Ω → (Qbar l)[X] → Prop := fun g Q => Q.Monic ∧ Q.natDegree = a ∧
+  let T : G E Ω → (Qbar l)[X] → Prop := fun g Q => Q.Monic ∧ Q.natDegree = a ∧
     aeval (ρ g : Matrix (Fin dd) (Fin dd) (Qbar l)) Q = 0 ∧
       ((ψ g : (Qbar l)ˣ) : Qbar l) = (-1) ^ a * Q.coeff 0
   let P : Formalism.ConjugateSelfDual.G E Ω → (Qbar l)[X] := fun g =>
     if h : ∃ Q, T g Q then h.choose else 1
-  have hP : ∀ s ∈ {g : Formalism.ConjugateSelfDual.G E Ω | ∃ Q, T g Q}, T s (P s) := by
+  have hP : ∀ s ∈ {g : G E Ω | ∃ Q, T g Q}, T s (P s) := by
     intro s hs
     have e : P s = (show ∃ Q, T s Q from hs).choose := dif_pos hs
     rw [e]
@@ -542,8 +542,8 @@ theorem UpperTheory.Gal.Int.Div.divSet_of :
     obtain ⟨W', h1, h2⟩ := hss W hW
     exact ⟨W', h2, h1⟩
   obtain ⟨r, hrc, hrss, hin, hco, -, -, -, hopen, hdense, -, -⟩ :=
-    hcore (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) K' dd a ρ (Units.continuous_val.comp hρ) hss'
-      {g : Formalism.ConjugateSelfDual.G E Ω | ∃ Q, T g Q} hD P
+    hcore (G E Ω) (Qbar l) K' dd a ρ (Units.continuous_val.comp hρ) hss'
+      {g : G E Ω | ∃ Q, T g Q} hD P
       (fun s hs => ⟨(hP s hs).1, (hP s hs).2.1⟩) (fun s hs => (hP s hs).2.2.1)
       X hX hroots ψ (Units.continuous_val.comp hψ) (fun s hs => (hP s hs).2.2.2)
   refine ⟨r, ?_, ?_, hin, hco, hopen, hdense⟩
@@ -583,7 +583,7 @@ theorem UpperTheory.Gal.Int.Div.divUniq_of :
   have hS := hD E Ω l a d hd U hU (X ∪ X')
   have hI := (hS.inter_of_isOpen_right hVd hVo).inter_of_isOpen_right hVd' hVo'
   refine GlobalTheory.SplitAttUniq.repIso_of_dense r r' hc hc' hs hs' _
-    (hI.preimage (Homeomorph.inv (Formalism.ConjugateSelfDual.G E Ω)).isOpenMap) ?_
+    (hI.preimage (Homeomorph.inv (G E Ω)).isOpenMap) ?_
   rintro g ⟨⟨⟨w, hw, hus, hl, ⟨B, hB⟩, A, hP, hF⟩, hV⟩, hV'⟩
   have hwX : w ∉ X := fun hx => hw (Finset.mem_union_left _ hx)
   have hwX' : w ∉ X' := fun hx => hw (Finset.mem_union_right _ hx)
@@ -917,18 +917,18 @@ theorem UpperTheory.Gal.Int.Div.jumpSeed_of :
     CoverIn → SSBlock → SubLoc → LocConj → JumpCard → JumpCondition := by
   intro h1 h2 h3 h4 h5 E Ω _ _ _ _ _ _ l _ ι a dd U r ρ hss hcov w hcrys hocc P AI hT A hA O _ _ _ Bw hj
   have hc := hcrys P AI hT A hA O Bw hj
-  have hdr := ((h4 l P AI hT E Ω A O Bw a (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).1 hc).1
+  have hdr := ((h4 l P AI hT E Ω A O Bw a (r.comp (Dec (F := E) A).subtype) (r.comp (Dec (F := E) A).subtype)).1 hc).1
   refine ⟨hc, hdr, ?_⟩
   intro τ LL' τ' hτ lam J hw hJ
   obtain ⟨Jr, hJr, hcard⟩ := h5 l P AI hT E Ω A O Bw a _ hdr τ LL' τ' hτ
   obtain ⟨J', hJ', hsub⟩ := hocc P AI hT A hA O Bw hj τ LL' τ' hτ lam J hw hJ
   obtain ⟨m, n, e, hin⟩ := h1 _ _ a dd r ρ hcov
   have hR := h2 _ _ a m n e r hss
-  have hcomp : (blockRep (a := fun _ : Fin m => a) e fun _ => r).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype =
-      blockRep (a := fun _ : Fin m => a) e fun _ => r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype := by
+  have hcomp : (blockRep (a := fun _ : Fin m => a) e fun _ => r).comp (Dec (F := E) A).subtype =
+      blockRep (a := fun _ : Fin m => a) e fun _ => r.comp (Dec (F := E) A).subtype := by
     ext g i j
     rfl
-  have hjR : IsJumpsAt P Bw ((blockRep (a := fun _ : Fin m => a) e fun _ => r).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ
+  have hjR : IsJumpsAt P Bw ((blockRep (a := fun _ : Fin m => a) e fun _ => r).comp (Dec (F := E) A).subtype) τ
       (∑ _ : Fin m, Jr) := by
     rw [hcomp]
     exact GlobalTheory.BlockSum.isJumpsAt_blockRep P Bw e hτ fun _ => hJr
@@ -1045,7 +1045,7 @@ private theorem isdRAt_of_isCrysAt {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI
 theorem UpperTheory.Gal.Int.Div.locConj_of :
     LocConj := by
   intro l _ P AI hT E Ω _ _ _ _ _ A O _ _ _ Bw a r r'
-  have pst : ∀ {s : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) (Qbar l)}, IsCrysAt P Bw s → IsPstAt P Bw s := fun {s} h =>
+  have pst : ∀ {s : ↥(Dec (F := E) A) →* GL (Fin a) (Qbar l)}, IsCrysAt P Bw s → IsPstAt P Bw s := fun {s} h =>
     GlobalTheory.GalCut.IwaTwist.isPstAt_of_isSstAt P AI hT Bw s
       (GlobalTheory.CrysSst.isSstAt_of_isCrysAt l P AI hT E Ω _ O Bw a s h)
   refine ⟨fun h => ⟨isdRAt_of_isCrysAt P AI hT h, pst h⟩, fun hiso => ?_⟩
@@ -1581,23 +1581,23 @@ theorem UpperTheory.Gal.Int.Div.subLoc_of :
   obtain ⟨had, -, -⟩ := hI _ _ a d r ρ hin
   obtain ⟨b, rfl⟩ := Nat.exists_eq_add_of_le had
   obtain ⟨s, g, hg⟩ := hS _ _ a b r ρ hss hin
-  have e : (sumRep r s).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype =
-      sumRep (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
+  have e : (sumRep r s).comp (Dec (F := E) A).subtype =
+      sumRep (r.comp (Dec (F := E) A).subtype) (s.comp (Dec (F := E) A).subtype) := by
     ext; rfl
-  have hiso : RepIso (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
-      (sumRep (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)) := by
+  have hiso : RepIso (ρ.comp (Dec (F := E) A).subtype)
+      (sumRep (r.comp (Dec (F := E) A).subtype) (s.comp (Dec (F := E) A).subtype)) := by
     refine ⟨g, fun x => ?_⟩
     rw [← e]
     exact hg x
-  have hconj := (hC l P AI hT E Ω A O Bw (a + b) (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) _).2 hiso
-  have hsum := hL l P AI hT E Ω A O Bw a b (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
+  have hconj := (hC l P AI hT E Ω A O Bw (a + b) (ρ.comp (Dec (F := E) A).subtype) _).2 hiso
+  have hsum := hL l P AI hT E Ω A O Bw a b (r.comp (Dec (F := E) A).subtype) (s.comp (Dec (F := E) A).subtype)
   refine ⟨fun hc => ?_, fun τ J J' h1 h2 => hsum.2 τ J J' (hconj.2.2.1 τ J h1) h2⟩
   have hcS := hconj.1 hc
   obtain ⟨cr, cs⟩ := hsum.1 hcS
   refine ⟨cr, fun x => ?_⟩
-  have pr := ((hC l P AI hT E Ω A O Bw a _ (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).1 cr).2
-  have ps := ((hC l P AI hT E Ω A O Bw b _ (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).1 cs).2
-  have pT := ((hC l P AI hT E Ω A O Bw (a + b) _ (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).1 hcS).2
+  have pr := ((hC l P AI hT E Ω A O Bw a _ (r.comp (Dec (F := E) A).subtype)).1 cr).2
+  have ps := ((hC l P AI hT E Ω A O Bw b _ (s.comp (Dec (F := E) A).subtype)).1 cs).2
+  have pT := ((hC l P AI hT E Ω A O Bw (a + b) _ (ρ.comp (Dec (F := E) A).subtype)).1 hcS).2
   have hw := _root_.GlobalTheory.Pst.SumParam.wdAt_sumRep l P AI hT ι E Ω A w O Bw h hj a b _ _ pr ps pT
   rw [← hconj.2.2.2 ι w h hj hc, hw, (UpperTheory.Gal.TP.Sub.wDFacts_holds E Ω A w h _ _).2.1 x]
   exact Dvd.intro _ rfl

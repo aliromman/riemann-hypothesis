@@ -11,7 +11,7 @@ import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.For
 import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.HasTraceDistrOfAdmissible
 import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Prelims.LevelSmulSmul
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.BernsteinZelevinskyGL.TopAdm
-import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.WhittakerCuspidal.UnipBEqUnipotent
+import CompanionTheory.RealGroups.GeneralUnitaryRepresentations.WhittakerModels.UnipBEqUnipotent
 import GroundTheory.AutomorphicForms.GLnLocal
 import GroundTheory.AutomorphicForms.LocallyProfinite
 import GroundTheory.AutomorphicForms.MeasuresGL
@@ -678,7 +678,7 @@ public theorem thmB : ThmA k → ThmB k := by
       fun B hB => formD_faithful Measure.haar hadm h2 h3 Pr hPr B hB⟩
   intro n V _ _ π hs hirr B hB β hβ
   obtain ⟨c, hc⟩ := kirillovForm_of_theoremA' k hThmA hForm n V π B
-    ((PositivityTheory.rg.gu.whit.isAdmissible_iff π).1
+    ((CompanionTheory.rg.gu.whit.isAdmissible_iff π).1
       (PositivityTheory.Tls2.BZGL.irreducibleAdmissibleGL_top k (n + 1) V π hs hirr))
     hirr hB.1 hB.2.1 hB.2.2 β hβ
   exact ⟨c, fun v w => by rw [hc]; rfl⟩

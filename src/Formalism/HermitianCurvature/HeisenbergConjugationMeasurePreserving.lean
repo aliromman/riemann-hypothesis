@@ -1092,9 +1092,7 @@ theorem theta_power_bound : ThetaPower := by
   have hkM : (Real.pi * Ct * C * A0) ^ 2 ≤ k := by linarith
   have hkC : 40 * C * Real.pi ≤ k := by linarith
   have hke : Real.exp (2 / Cb) ≤ k := by linarith
-  have hk4 : (4:ℝ) ≤ k := by
-    have := mul_le_mul hC Real.pi_gt_three.le (by norm_num) (by linarith)
-    linarith
+  have hk4 : (4:ℝ) ≤ k := by grind
   have hk1 : (1:ℝ) ≤ k := by linarith
   have hkpos : (0:ℝ) < k := by linarith
   have hk1N : 1 ≤ k := by exact_mod_cast hk1

@@ -898,7 +898,7 @@ section -- clump:auto
 section
 noncomputable section
 open UpperTheory.V UpperTheory.V.Af UpperTheory.V.Br
-open Neutral.B1 hiding G IsPlaceOver
+open Neutral.B1
 namespace UpperTheory.GalN.V.Win.N
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial

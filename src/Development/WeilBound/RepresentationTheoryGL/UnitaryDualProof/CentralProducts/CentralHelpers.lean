@@ -8,7 +8,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSmoothIterPhi
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictionMirabolicTwistedKernel
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedJacquetPhiMinusEquiv
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.MirabolicDerivatives.UnipotentDerivatives.DerUnipLeUnipB
-import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.WhittakerCuspidal.UnipBEqUnipotent
+import CompanionTheory.RealGroups.GeneralUnitaryRepresentations.WhittakerModels.UnipBEqUnipotent
 import GroundTheory.AutomorphicForms.AdmissibleFiniteLength
 import GroundTheory.AutomorphicForms.AdmissibleInduction
 import GroundTheory.AutomorphicForms.CuspidalAdmissible
@@ -226,7 +226,7 @@ public theorem lfDeriv (ψ : AddChar k Circle) {n j : ℕ} (π : GRep k (n + j))
   cases j with
   | zero =>
     intro v
-    have hF := (PositivityTheory.rg.gu.whit.isAdmissible_iff π.ρ).1 hA
+    have hF := (CompanionTheory.rg.gu.whit.isAdmissible_iff π.ρ).1 hA
     obtain ⟨m, -, hm⟩ := (hasBasis_nhds_one k n).mem_iff.1 ((hA.1 v).mem_nhds (by show π.ρ 1 v = v; rw [map_one]; rfl))
     let K := congruenceSubgroup k n m
     exact ⟨fixedVectors π.ρ K, hF.2 K (isCompact_congruenceSubgroup k n m) (isOpen_congruenceSubgroup k n m),
@@ -236,7 +236,7 @@ public theorem lfDeriv (ψ : AddChar k Circle) {n j : ℕ} (π : GRep k (n + j))
     obtain ⟨p, hp, hpk, hpi⟩ := GlobalTheory.CompanionTheory.BZMirJac.iterPhi_quotient ψ n j (resM k π.ρ)
     obtain ⟨v, rfl⟩ := hp a
     let N := n + (j + 1); let β := bb n N
-    have hAdj := isAdmissible_jacquetRep (β := β) ((PositivityTheory.rg.gu.whit.isAdmissible_iff π.ρ).1 hA)
+    have hAdj := isAdmissible_jacquetRep (β := β) ((CompanionTheory.rg.gu.whit.isAdmissible_iff π.ρ).1 hA)
     let J := jacquetAction k N β π.ρ
     let p' : π.V →ₗ[ℂ] (derivB ψ (j + 1) π).V := p
     have hpu : ∀ u : unipotentRadical k N β, p' ∘ₗ (π.ρ.comp (unipotentRadical k N β).subtype) u = p' :=

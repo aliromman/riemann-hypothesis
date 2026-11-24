@@ -816,16 +816,6 @@ theorem coarse_degree_prefix_sum {C0 Cde CE1 CE2 H : ℝ} {X : Loc} (hs : Std C0
     have hinv : (X.p : ℝ) ^ 2 * ((X.p : ℝ) ^ 2)⁻¹ = 1 := mul_inv_cancel₀ hp0.ne'
     have hinv0 : ((X.p : ℝ) ^ 2)⁻¹ ≤ 1 / 25 := by
       simpa [one_div] using inv_anti₀ (by norm_num) hp
-    have hstep' : (clA C0 CE1 CE2 X j rz ry ⟨i, by omega⟩ : ℝ) ≤
-        2 * (clA C0 CE1 CE2 X j rz ry ⟨i + 1, hi⟩ : ℝ) * ((X.p : ℝ) ^ 2)⁻¹ := by
-      have h1 := mul_le_mul_of_nonneg_right hstep (inv_nonneg.mpr hp0.le)
-      linarith [show (X.p : ℝ) ^ 2 * (clA C0 CE1 CE2 X j rz ry ⟨i, by omega⟩ : ℝ) * ((X.p : ℝ) ^ 2)⁻¹ =
-          (clA C0 CE1 CE2 X j rz ry ⟨i, by omega⟩ : ℝ) * ((X.p : ℝ) ^ 2 * ((X.p : ℝ) ^ 2)⁻¹) by ring,
-        show (clA C0 CE1 CE2 X j rz ry ⟨i, by omega⟩ : ℝ) * ((X.p : ℝ) ^ 2 * ((X.p : ℝ) ^ 2)⁻¹) =
-          (clA C0 CE1 CE2 X j rz ry ⟨i, by omega⟩ : ℝ) by rw [hinv, mul_one]]
-    have h4 : 4 * (clA C0 CE1 CE2 X j rz ry ⟨i, by omega⟩ : ℝ) * ((X.p : ℝ) ^ 2)⁻¹ ≤
-        4 * (clA C0 CE1 CE2 X j rz ry ⟨i, by omega⟩ : ℝ) * (1 / 25) :=
-      mul_le_mul_of_nonneg_left hinv0 (by linarith)
-    linarith
+    nlinarith [inv_pos.mpr hp0]
 
 end Formalism.MainNotions.ColumnSystems.Pf

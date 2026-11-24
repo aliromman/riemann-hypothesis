@@ -1869,10 +1869,10 @@ theorem core [MeasurableSpace (A F)] [BorelSpace (A F)] {lf : Measure (A F)}
       exact ⟨h0, by rw [hf0, ht0, ht0, mul_zero]⟩
     | insert a t ha ih =>
       obtain ⟨ihs, ihe⟩ := ih
-      have hca := _root_.CompanionTheory.PlacePermOperatorBicommutantSpan.sb_smul (c a) (hI a)
+      have hca := _root_.PositivityTheory.PlacePermOperatorBicommutantSpan.sb_smul (c a) (hI a)
       simp only [Finset.sum_insert ha]
-      refine ⟨_root_.CompanionTheory.PlacePermOperatorBicommutantSpan.sb_add hca ihs, ?_⟩
-      rw [_root_.CompanionTheory.PlacePermOperatorBicommutantSpan.fou_add hV hca ihs, theta_add (hsum hτ' (hsb hca)) (hsum hτ' (hsb ihs)),
+      refine ⟨_root_.PositivityTheory.PlacePermOperatorBicommutantSpan.sb_add hca ihs, ?_⟩
+      rw [_root_.PositivityTheory.PlacePermOperatorBicommutantSpan.fou_add hV hca ihs, theta_add (hsum hτ' (hsb hca)) (hsum hτ' (hsb ihs)),
         theta_add (hsum hτ hca) (hsum hτ ihs), mul_add, ihe, fou_smul, theta_smul, theta_smul]
       congr 1
       rw [← base hl h1 hψ hQ hV a hN hτ]

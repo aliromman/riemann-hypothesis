@@ -271,8 +271,7 @@ theorem sizesSup : PBC.SizesSup := by
       have e : (1 + (R * thr S b n v / S.g) ^ 2) * (S.g : ℝ) ^ 2 =
           (S.g : ℝ) ^ 2 + R ^ 2 * thr S b n v ^ 2 := by field_simp
       rw [e]
-      have hrhs : 2 * thr S b n v ^ 2 * R ^ 2 = 2 * (R ^ 2 * thr S b n v ^ 2) := by ring
-      linarith
+      grind
     calc x ^ 2 * (S6.rd E * (S.g : ℝ) ^ 3 / 2) * (Cs * (1 + (R * thr S b n v / S.g) ^ 2)) / R ^ 2
         = x ^ 2 * (S6.rd E * (S.g : ℝ) ^ 3 / 2) * Cs * ((1 + (R * thr S b n v / S.g) ^ 2) / R ^ 2) := by ring
       _ ≤ x ^ 2 * (S6.rd E * (S.g : ℝ) ^ 3 / 2) * Cs * (2 * thr S b n v ^ 2 / (S.g : ℝ) ^ 2) :=
@@ -477,9 +476,7 @@ theorem mfac_shift0 (K : ℕ) {L δ : ℝ} (hL : 0 ≤ L) (hδ : 0 < δ) {a : �
     · apply min_le_min_left
       apply pow_le_pow_left₀ (div_nonneg hL ha)
       rw [div_le_div_iff₀ hapos had]
-      have hdiff : (L + δ) * a - L * (a + δ) = δ * (a - L) := by ring
-      have hnn : 0 ≤ δ * (a - L) := mul_nonneg hδ.le (by linarith)
-      linarith
+      nlinarith
 
 theorem gauss_norm (m n : ℤ) (h : (m : ℂ) + (n : ℂ) * Complex.I ≠ 0) :
     1 ≤ ‖(m : ℂ) + (n : ℂ) * Complex.I‖ := by

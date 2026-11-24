@@ -145,25 +145,6 @@ theorem darboux_real_coordsF {F E : Type} [Field F] [NumberField F] [Field E] [N
     rw [hQ, RingEquiv.symm_apply_apply]
     exact Prod.ext rfl (hsnd t i).2
 
-
-
-theorem contDiff_thetaTr_realF : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E),
-    B.IsGood σ → IsStdCharF (fun w : InfinitePlace F => (B.emb w).1) B.ψ (-1) →
-    ∀ (nS nT : ℕ) (JS : Matrix (Fin nS) (Fin nS) E) (JT : Matrix (Fin nT) (Fin nT) E),
-      IsHermND σ JS → IsHermND σ JT → ∀ ξ₀ : E, ξ₀ ≠ 0 → σ ξ₀ = -ξ₀ →
-      ∀ (JA : Matrix (Fin nT) (Fin nT) E) (JB : Matrix (Fin nS) (Fin nS) E) (ξ : AF F ⊗[F] E), JA = JTᵀ →
-        ξ • incM F JB = incM F (ξ₀ • JS⁻¹) →
-        ∀ (κ : Type) [Fintype κ] (co : Darboux (symp (cA σ) ξ (incM F JA) (incM F JB)) κ),
-          (∀ x : Matrix (Fin nT) (Fin nS) E, ∃ y z : κ → F,
-            co.e (incM F x) = (fun i => algebraMap F (AF F) (y i), fun i => algebraMap F (AF F) (z i))) →
-          ∀ Φ ∈ schA F κ, ∀ (k : ℕ) (L : (Fin k → ℝ) →+ WOF F E nS nT), Continuous L →
-            (∀ t, (L t).map (finPartF F E) = 0) → ∀ w, ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) fun t => GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ Φ (w + L t) := by
-  intro F E _ _ _ _ _ σ B hgood hψ nS nT JS JT hJS hJT ξ₀ hξ₀ hσξ JA JB ξ hJA hJB
-    κ _ co hrat Φ hΦ k L hLc hLf w
-  obtain ⟨P, Q, hPQ⟩ := darboux_real_coordsF (F := F) (E := E) nS nT κ co.e k L hLc hLf
-  obtain ⟨Λ, hΛ⟩ := psiInf_eq_exp_linearF _ B.ψ hψ
-  exact GlobalTheory.ThetaSmooth.contDiff_thetaTr_of_real_coords co B.ψ hψ.1.2.1 hΛ L hPQ hΦ w
-
 end GlobalTheory.ThetaSmoothF
 
 end

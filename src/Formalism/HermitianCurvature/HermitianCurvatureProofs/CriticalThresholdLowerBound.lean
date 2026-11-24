@@ -281,11 +281,9 @@ theorem tcritWords_of (hVW : VandWords) : TcritWords := by
     have u2 := mul_le_mul_of_nonneg_right hL1 ht0.le
     constructor
     · apply Real.exp_le_exp.mpr
-      have hmul : (c.k : ℝ) / 4 * (1 / (c.k : ℝ)) = 1 / 4 := by rw [div_mul_eq_mul_div, ht]
-      linarith
+      grind
     · apply Real.exp_le_exp.mpr
-      have hmul : -(c.k : ℝ) / 4 * (1 / (c.k : ℝ)) = -(1 / 4) := by rw [div_mul_eq_mul_div, neg_mul, ht, neg_div]
-      linarith
+      grind
 
 lemma E_le : Real.exp (1/4) ≤ 1.3 := by
   have h1 : Real.exp (1/4) ^ 4 = Real.exp 1 := by
@@ -681,8 +679,7 @@ lemma key_top (hTp : VandTop) (c : Cfg) (bb : ℝ) (de : ℕ → ℝ) (h : c.Ok)
     linarith
   have hK2 : (c.k:ℝ) * c.Del ≤ c.a / 4 := by linarith
   have hK4 : (4:ℝ) ≤ (c.k:ℝ) * c.Del := by
-    calc (4 : ℝ) = 4 * 1 := by norm_num
-      _ ≤ (c.k : ℝ) * c.Del := mul_le_mul hkR hD (by norm_num) (by linarith)
+    grind [mul_nonneg (sub_nonneg.mpr hkR) (sub_nonneg.mpr hD)]
   have hq : ((c.k:ℝ) * c.Del) ^ 2 * (c.a + c.bp) ≤ c.a ^ 2 * c.bp ^ 2 := by
     have s1 := mul_le_mul_of_nonneg_right (mul_self_le_mul_self hK0.le hK1) ha0.le
     have s3 := mul_le_mul_of_nonneg_right (mul_self_le_mul_self hK0.le hK2)
@@ -693,18 +690,7 @@ lemma key_top (hTp : VandTop) (c : Cfg) (bb : ℝ) (de : ℕ → ℝ) (h : c.Ok)
     have s4 : 0 ≤ c.a ^ 2 * c.bp * (c.bp / 2 - 1 / 16) := by
       apply mul_nonneg (mul_nonneg (sq_nonneg _) (by linarith))
       linarith
-    have hsq : ((c.k : ℝ) * c.Del) ^ 2 * (c.a + c.bp) =
-        ((c.k : ℝ) * c.Del) * ((c.k : ℝ) * c.Del) * c.a + ((c.k : ℝ) * c.Del) * ((c.k : ℝ) * c.Del) * c.bp := by
-      ring
-    have s2' : c.bp / 40 * (c.bp / 40) * c.a ≤ c.a ^ 2 * c.bp ^ 2 / 2 := by
-      have : c.a ^ 2 * c.bp ^ 2 / 2 - c.bp / 40 * (c.bp / 40) * c.a = c.bp ^ 2 * c.a * (c.a / 2 - 1 / 1600) := by
-        ring
-      linarith
-    have s4' : c.a / 4 * (c.a / 4) * c.bp ≤ c.a ^ 2 * c.bp ^ 2 / 2 := by
-      have : c.a ^ 2 * c.bp ^ 2 / 2 - c.a / 4 * (c.a / 4) * c.bp = c.a ^ 2 * c.bp * (c.bp / 2 - 1 / 16) := by
-        ring
-      linarith
-    linarith
+    grind
   have hsplit : Vand c.k (c.u de) =
       (∏ i ∈ Icc 2 c.k, (c.a - c.u de i)) * Vand (c.k - 1) (fun i => c.u de (i + 1)) := by
     have hk1 : c.k = (c.k - 1) + 1 := by omega

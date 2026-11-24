@@ -53,16 +53,11 @@ open Formalism.MainNotions.G
 
 theorem poly_upper_bound_delta {de ε : ℝ} (hε : 0 ≤ ε) (h40 : 40 * ε ≤ de) (h6 : de < 1 / 6) :
     (1 - de / 2) * (1 - de / 4) ≤ (1 - de / 2 + 17 * ε) * (1 - de / 4 - ε) - ε := by
-  have h0 : 0 ≤ ε * (15 - 15 / 4 * de - 17 * ε) := mul_nonneg hε (by linarith)
-  linarith [show (1 - de / 2 + 17 * ε) * (1 - de / 4 - ε) - ε - (1 - de / 2) * (1 - de / 4) =
-    ε * (15 - 15 / 4 * de - 17 * ε) by ring]
+  grind [mul_nonneg hε (by linarith : 0 ≤ 15 - 15 / 4 * de - 17 * ε)]
 
 theorem poly_lower_bound_delta {de : ℝ} (h0 : 0 ≤ de) (h6 : de < 1 / 6) : 1 ≤ (1 + 2 * de) * ((1 - de / 2) * (1 - de / 4)) := by
   have h1 : 0 ≤ 5 / 4 - 11 / 8 * de := by linarith
-  have h2 : 0 ≤ de * (5 / 4 - 11 / 8 * de) := mul_nonneg h0 h1
-  have h3 : 0 ≤ de ^ 3 := pow_nonneg h0 3
-  linarith [show (1 + 2 * de) * ((1 - de / 2) * (1 - de / 4)) - 1 =
-    de * (5 / 4 - 11 / 8 * de) + 1 / 4 * de ^ 3 by ring]
+  grind [mul_nonneg h0 h1, mul_nonneg (mul_nonneg h0 h0) h0]
 
 theorem upper_real_bound {b' d ε t P c A La k g be : ℝ} (hb : 0 < b') (hP0 : 0 < P) (hε0 : 0 ≤ ε) (h40 : 40 * ε ≤ d)
     (hd0 : 0 ≤ d) (hd6 : d < 1 / 6) (htb : t * (1 + 2 * d) < b') (hcap : P * c ≤ t + ε * b')
@@ -146,9 +141,7 @@ theorem SegHyp.geo (H : SegHyp p S b' de be aS Q) : ∑ i : Fin s, 1 / (p : ℝ)
         rw [pow_one, div_le_iff₀ (by linarith)]
         have : 5 / 4 / (p : ℝ) = 5 / 4 * x := by rw [hx]; ring
         rw [this]
-        have hmul : (1 : ℝ) * x ≤ (5 / 4 * (1 - x)) * x :=
-          mul_le_mul_of_nonneg_right (by linarith) hx0
-        linarith [show (5 / 4 * (1 - x)) * x = 5 / 4 * x * (1 - x) by ring]
+        nlinarith
 
 variable {C0 Cde CE1 CE2 : ℝ} {X : Loc}
 

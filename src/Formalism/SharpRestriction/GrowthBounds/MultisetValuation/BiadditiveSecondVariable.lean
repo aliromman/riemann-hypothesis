@@ -82,15 +82,6 @@ theorem sx_logF_const : PowerSeries.constantCoeff (logF p) = 0 := by
 def sx_lX {σ : Type} (i : σ) : MvPowerSeries σ (K0 p) :=
   PowerSeries.subst (MvPowerSeries.X i : MvPowerSeries σ (K0 p)) (logF p)
 
-private theorem constantCoeff_subst_X_logF_eq_zero {σ : Type} (i : σ) :
-    MvPowerSeries.constantCoeff (PowerSeries.subst (MvPowerSeries.X i : MvPowerSeries σ (K0 p)) (logF p)) = 0 := by
-  rw [PowerSeries.constantCoeff_subst (PowerSeries.HasSubst.of_constantCoeff_zero (by simp))]
-  apply finsum_eq_zero_of_forall_eq_zero
-  intro d
-  rcases Nat.eq_zero_or_pos d with rfl | hd
-  · simp [sx_logF_const]
-  · simp [MvPowerSeries.constantCoeff_X, zero_pow hd.ne']
-
 theorem sx_inParam_X {σ : Type} [Finite σ] (i : σ) : inParam p (MvPowerSeries.X i) = sx_lX p i := by
   unfold inParam sx_lX
   exact MvPowerSeries.subst_X (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.th_hasSubst_lX p) i

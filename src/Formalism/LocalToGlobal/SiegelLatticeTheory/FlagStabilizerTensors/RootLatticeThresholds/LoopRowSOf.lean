@@ -219,12 +219,10 @@ def wOf : WittDat X := Classical.choice (Formalism.L2.SG.Pf.WittFlags.WittExists
 
 theorem hOf : TieHyp (wOf X) hI :=
   { lat := Formalism.L2.SG.Pf.WittFlags.LatIso_holds D
-    idG := fun u u' => identityCell_vanishes u u'
     atSome := fun u u' => Formalism.L2.SG.LeadingMinorsNonvanishing.atSomeAll_holds _ _ Y u u'
     autFin := fun u => Formalism.L2.SG.Pf.autFin_of (_root_.PI.AutLzFinite.SlopeTestRemainingChoices.autLzFin_main D) (D.sp.Y_sig 0)
       (Formalism.MainNotions.BridgeLemma.tie_Tu_pos D u)
       (Formalism.L2.SG.Pf.WittFlags.RowRepsIso_holds D ((wOf X).δ u) ((wOf X).isom u) (X.Fu u) (Y.what₂ u) (Y.rowsOK u))
-    dim := fun u => Formalism.L2.SG.Pf.dimTie X u
     pairs := Formalism.L2.SG.Pf.pairTiesAll_holds _ _ Y hF (wOf X) hI }
 
 def aOf : AmpDat X := Classical.choose (Formalism.L2.SG.Pf.KernelOfEmbedding.pvalForm_holds (wOf X) hI hCT.2.2.2.2.1)
