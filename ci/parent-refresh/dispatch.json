@@ -1,9 +1,30 @@
 {
-  "request": "scope-direct-1266",
+  "request": "imports-1266",
   "groups": [
-    "scope-direct-1266-large-1",
-    "scope-direct-1266-ordinary-1",
-    "scope-direct-1266-ordinary-2"
+    "imports-1266-large-1",
+    "imports-1266-large-2",
+    "imports-1266-ordinary-1",
+    "imports-1266-ordinary-10",
+    "imports-1266-ordinary-11",
+    "imports-1266-ordinary-12",
+    "imports-1266-ordinary-13",
+    "imports-1266-ordinary-14",
+    "imports-1266-ordinary-2",
+    "imports-1266-ordinary-3",
+    "imports-1266-ordinary-4",
+    "imports-1266-ordinary-5",
+    "imports-1266-ordinary-6",
+    "imports-1266-ordinary-7",
+    "imports-1266-ordinary-8",
+    "imports-1266-ordinary-9",
+    "imports-1266-ordinary-tail-1",
+    "imports-1266-ordinary-tail-2",
+    "imports-1266-ordinary-tail-3",
+    "imports-1266-ordinary-tail-4",
+    "imports-1266-ordinary-tail-5",
+    "imports-1266-ordinary-tail-6",
+    "imports-1266-ordinary-tail-7",
+    "imports-1266-ordinary-tail-8"
   ],
   "seed_run": 45445328947
 }
