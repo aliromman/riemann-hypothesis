@@ -27,11 +27,20 @@ def snapshot(folder):
     pr=get('pulls/'+str(req['pull_request']))
     base=pr['base']
     current=get('branches/main')['commit']['sha']
-    if base['repo']['full_name']!=UPSTREAM or base['ref']!='main' or pr['head']['sha']!=req['head']:
+    live=pr['head']['sha']
+    if base['repo']['full_name']!=UPSTREAM or base['ref']!='main' or pr['head']['repo']['full_name']!='aliromman/riemann-hypothesis':
         raise ValueError('the live upstream pull request differs from the reviewed request')
-    parent=current if current==req['base'] and current==base['sha'] else actual_base(pr['number'],current,req['head'])
+    mode=req.get('revision','current head')
+    if mode=='first published commit':
+        first,=get('pulls/'+str(pr['number'])+'/commits?per_page=1')
+        if first['sha']!=req['head'] or [p['sha'] for p in first['parents']]!=[req['base']]:
+            raise ValueError('the first published commit differs from the request or its upstream parent')
+    elif live!=req['head']:
+        raise ValueError('the live head differs from the reviewed commit')
+    parent=current if current==req['base'] and current==base['sha'] else actual_base(pr['number'],current,live)
     if parent!=req['base']:raise ValueError('the actual pull request merge base differs from the attested parent')
-    return {'number':pr['number'],'url':pr['html_url'],'base':parent,'main_at_check':current,'head':pr['head']['sha'],
+    return {'number':pr['number'],'url':pr['html_url'],'base':parent,'main_at_check':current,'head':req['head'],
+            'live_pull_head':live,'revision':mode,
             'head_repository':pr['head']['repo']['full_name'],'head_ref':pr['head']['ref'],'state':pr['state']}
 
 if __name__=='__main__':

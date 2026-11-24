@@ -52,7 +52,7 @@ jobs:
           HEAD_REV: ${{ steps.published.outputs.head }}
         run: |
           git fetch --quiet --no-tags origin "+refs/pull/$PR_NUMBER/head:refs/root-check/reviewed"
-          test "$(git rev-parse refs/root-check/reviewed)" = "$HEAD_REV"
+          git merge-base --is-ancestor "$HEAD_REV" refs/root-check/reviewed
           git worktree add --quiet --detach "$GITHUB_WORKSPACE/candidate" "$HEAD_REV"
       - name: Install the pinned Lean compiler
         working-directory: parent

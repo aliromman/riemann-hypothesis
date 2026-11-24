@@ -33,6 +33,8 @@ def read_request(folder):
     req=json.loads((folder/'request.json').read_bytes())
     if req['schema']!=1 or type(req['pull_request']) is not int or req['pull_request']<=0:
         raise ValueError('invalid pull request identity')
+    if req.get('revision','current head') not in {'current head','first published commit'}:
+        raise ValueError('invalid pull request revision')
     if any(not COMMIT.fullmatch(req[k]) for k in ('base','head','base_src','head_src')):
         raise ValueError('invalid reviewed Git identity')
     packed=(folder/'native.jsonl.gz').read_bytes()
@@ -46,7 +48,7 @@ def read_request(folder):
         raise ValueError('native input table size mismatch')
     return req,inputs
 
-def package(stage, number, out):
+def package(stage, number, out, first_commit=False):
     summary=stage/'bound.json'
     if not summary.is_file():summary=stage/'plan.json'
     bound=json.loads(summary.read_bytes())
@@ -70,6 +72,7 @@ def package(stage, number, out):
         base_src=bound['before_src_tree'],head_src=bound['after_src_tree'],changed=len(inputs),
         bundle_sha256=sha(packed),source_provenance_sha256=sha(data),ir_table_sha256=sha(audit),
         stage_report_sha256=sha(summary.read_bytes()))
+    request['revision']='first published commit' if first_commit else 'current head'
     out.mkdir(parents=True,exist_ok=True)
     (out/'native.jsonl.gz').write_bytes(packed)
     (out/'request.json').write_text(json.dumps(request,indent=2)+'\n')
@@ -81,5 +84,6 @@ if __name__=='__main__':
     p.add_argument('--stage',type=Path,required=True)
     p.add_argument('--pr',type=int,required=True)
     p.add_argument('--out',type=Path,required=True)
+    p.add_argument('--first-commit',action='store_true')
     opts=p.parse_args()
-    print(json.dumps(package(opts.stage,opts.pr,opts.out),indent=2))
+    print(json.dumps(package(opts.stage,opts.pr,opts.out,opts.first_commit),indent=2))
