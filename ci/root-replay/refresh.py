@@ -62,10 +62,11 @@ def published_parent(repo, state, req):
     return api, index, hashes
 
 
-def current_group(raw, report, ref, mode):
+def current_group(raw, report, ref, mode, *, authority=None):
+    base, source, graph, manifest = authority or (BASE, TREE, GRAPH, MANIFEST)
     scope = report['scope']
     if (scope['parent'], scope['tree'], scope['donor'], scope['graph'], scope['manifest'], scope['task'], scope['group']) != (
-            BASE, TREE, BASE, GRAPH, MANIFEST, mode, ref['group']):
+            base, source, base, graph, manifest, mode, ref['group']):
         raise ValueError('fresh native job has a different source or compiler parent')
     if (scope['source_head'], scope['candidate_tree'], scope['source_transitions_sha256']) != (
             ref['source_head'], ref['candidate_tree'], ref['source_transitions_sha256']):
@@ -80,11 +81,11 @@ def current_group(raw, report, ref, mode):
     return exact
 
 
-def current_record(row, origin, mode):
+def current_record(row, origin, mode, *, parent=TREE):
     if row['status'] != 'pass':
         raise ValueError('selected native result did not pass: ' + row['module'])
     if mode == 'structural':
-        return structural.receipt(row, origin) | {'parent': TREE}
+        return structural.receipt(row, origin) | {'parent': parent}
     digests = [*row['parent_public_ir'].values(), *row['projected_public_ir'].values(),
                *row['facets'].values(), row['parent_ltar_sha256'], row['old_warning_sha256']]
     if (set(row['parent_public_ir']) != set(structural.ORDINARY) or set(row['projected_public_ir']) != set(structural.ORDINARY) or
@@ -95,7 +96,7 @@ def current_record(row, origin, mode):
             row['candidateNames'] != row['parentNames'] or row['old_warnings'] != row['new_warnings'] or
             row['old_warning_sha256'] != row['new_warning_sha256']):
         raise ValueError('native private-import declaration or raw output differences: ' + row['module'])
-    return {'module': row['module'], 'kind': 'fresh', 'parent': TREE, 'origin': origin,
+    return {'module': row['module'], 'kind': 'fresh', 'parent': parent, 'origin': origin,
             'parent_source': row['source'], 'head_source': row['candidate'], 'facets': row['facets'],
             'parent_blob': row['parent_blob'], 'candidate_blob': row['candidate_blob'],
             'parent_ltar_sha256': row['parent_ltar_sha256'], 'parent_public_ir': row['parent_public_ir'],

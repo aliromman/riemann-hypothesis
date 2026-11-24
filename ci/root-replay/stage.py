@@ -150,19 +150,24 @@ def main():
     args=p.parse_args()
     for k,v in vars(args).items():setattr(args,k,v.resolve())
     req,inputs=read_request(args.request)
-    import current_reuse, refresh
+    import current_reuse, refresh, batch_1018
+    newest = req['base_src'] == batch_1018.TREE
     refreshed=req['base_src']==refresh.TREE
     latest=req['base_src']==current_reuse.TREE
     structural=req.get('source_mode')=='clump-scopes'
-    if structural and not (latest or refreshed):raise ValueError('the structural source refactor has a different compiler baseline')
-    if not (latest or refreshed) and (req['base']!=PARENT or req['base_src']!=SOURCE_TREE):
+    if structural and not (latest or refreshed or newest):raise ValueError('the structural source refactor has a different compiler baseline')
+    if not (latest or refreshed or newest) and (req['base']!=PARENT or req['base_src']!=SOURCE_TREE):
         raise ValueError('this cache does not certify the approved base revision')
     args.work.mkdir(parents=True,exist_ok=True)
     baseline=args.work/'baseline';images=args.work/'images'
     if baseline.exists() or images.exists():raise ValueError('use a fresh root staging directory')
     candidate=args.candidate
     old_sources,source_count,source_bytes=actual_diff(candidate,req,inputs)
-    if refreshed:
+    if newest:
+        api,index,shas=batch_1018.published_parent(args.parent,args.cache,req)
+        graph_digest,manifest=batch_1018.GRAPH,batch_1018.MANIFEST
+        graph_file=args.cache/'metadata/current-headers.json'
+    elif refreshed:
         api,index,shas=refresh.published_parent(args.parent,args.cache,req)
         graph_digest,manifest=refresh.GRAPH,refresh.MANIFEST
         graph_file=args.cache/'metadata/current-headers.json'
@@ -190,9 +195,10 @@ def main():
     validation={}
     cache_tools=current_reuse.vetted_helpers(args.parent,args.cache) if latest else args.parent/'scripts'
     dl=load(cache_tools/'ci-prepare.py','root_download')
-    if refreshed:
+    if refreshed or newest:
         mode='structural' if structural else 'private'
-        validation.update(refresh.certify(args.parent,args.cache,api,graph,index,shas,inputs,req,args.bin/'leantar',dl,mode))
+        engine = batch_1018 if newest else refresh
+        validation.update(engine.certify(args.parent,args.cache,api,graph,index,shas,inputs,req,args.bin/'leantar',dl,mode))
     elif structural:
         from structural_gate import check_actions
         validation.update(check_actions(req,inputs))
@@ -201,7 +207,7 @@ def main():
         validation.update(check_artifacts(req,inputs))
     if reused and latest:
         validation.update(current_reuse.check(args.parent,args.cache,api,graph,index,shas,reused,req['head'],args.bin/'leantar',dl))
-    elif reused and not refreshed:
+    elif reused and not refreshed and not newest:
         from csv import DictReader
         check_reuse(args.parent,args.cache,HERE.parent/'import-screen',api,graph,index,shas,source_path,canonical)
         meta=json.loads((HERE.parent/'import-screen/reuse-meta.json').read_bytes())
