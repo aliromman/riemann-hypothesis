@@ -1,0 +1,109 @@
+{
+  "github": {
+    "run": 45341835674,
+    "url": "https://github.com/aliromman/riemann-hypothesis/actions/runs/45341835674",
+    "workflow": "a55cfdcfd72fd684d561fe9de5622ea271ec9f9c",
+    "conclusion": "success",
+    "attempt": 1,
+    "artifact": 14897580814,
+    "name": "five-roots-21baf112ac31f7376204339a3dd01f56d9f6a867-1",
+    "sha256": "sha256:119ef1d46c946a71e9bda76849f33e68491abaf097833938a666a1aa22adb2dc"
+  },
+  "snapshots": [
+    {
+      "number": 879,
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/879",
+      "base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+      "main_at_check": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+      "head": "21baf112ac31f7376204339a3dd01f56d9f6a867",
+      "live_pull_head": "21baf112ac31f7376204339a3dd01f56d9f6a867",
+      "revision": "first published commit",
+      "head_repository": "aliromman/riemann-hypothesis",
+      "head_ref": "codex/prune-development-mathlib-imports",
+      "state": "open"
+    },
+    {
+      "number": 879,
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/879",
+      "base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+      "main_at_check": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+      "head": "21baf112ac31f7376204339a3dd01f56d9f6a867",
+      "live_pull_head": "21baf112ac31f7376204339a3dd01f56d9f6a867",
+      "revision": "first published commit",
+      "head_repository": "aliromman/riemann-hypothesis",
+      "head_ref": "codex/prune-development-mathlib-imports",
+      "state": "open"
+    }
+  ],
+  "results": {
+    "base": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+    "head": "21baf112ac31f7376204339a3dd01f56d9f6a867",
+    "head_source": "2b2127750c4fda555377ba2654f4015bfeabf8cc",
+    "changed": 39352,
+    "checked_parent_public": 21124,
+    "changed_visible_to_Main": 38991,
+    "candidate_visible_and_parent": 60115,
+    "decls": {
+      "candidateNames": 5,
+      "different": 0,
+      "examples": [],
+      "kernelImage": true,
+      "parentNames": 5,
+      "proofChanges": 0,
+      "publicImage": true,
+      "publicImports": true
+    },
+    "kernel_accepted": [
+      "riemannHypothesis",
+      "riemannZeta_eq_zero_re",
+      "LFunction_ne_zero_of_half_lt_re",
+      "LFunction_eq_zero_re",
+      "LFunction_eq_zero_re_of_isPrimitive"
+    ],
+    "negative_control": "negative control: while replaying declaration 'riemannHypothesis':",
+    "axioms": {
+      "riemannHypothesis": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "riemannZeta_eq_zero_re": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "LFunction_ne_zero_of_half_lt_re": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "LFunction_eq_zero_re": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "LFunction_eq_zero_re_of_isPrimitive": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "challenge": {
+      "expected": "bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60",
+      "sha256": "bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60",
+      "bytes": 363237517,
+      "seconds": 32.05
+    },
+    "challenge_statement_and_definition_results": [
+      "claim riemannHypothesis",
+      "claim riemannZeta_eq_zero_re",
+      "claim LFunction_ne_zero_of_half_lt_re",
+      "claim LFunction_eq_zero_re",
+      "claim LFunction_eq_zero_re_of_isPrimitive",
+      "definition RiemannZetaZerosOnLine  exact=true  alphaEquivalent=true",
+      "definition DirichletLNonvanishingRightOfHalf  exact=false  alphaEquivalent=true",
+      "definition DirichletLZerosOnLine  exact=false  alphaEquivalent=true",
+      "definition PrimitiveDirichletLZerosOnLine  exact=false  alphaEquivalent=true"
+    ]
+  }
+}
