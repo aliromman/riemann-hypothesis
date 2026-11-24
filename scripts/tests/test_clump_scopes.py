@@ -1,11 +1,15 @@
 """Check scope boundaries and the two supported clump layouts."""
 
+import importlib.util
 import json
 import tempfile
 import unittest
 from pathlib import Path
 
-import clump
+SCRIPT = Path(__file__).resolve().parents[1] / "clump.py"
+spec = importlib.util.spec_from_file_location("clump", SCRIPT)
+clump = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(clump)
 
 
 class ClumpScopesTest(unittest.TestCase):
@@ -21,9 +25,14 @@ end A"""
         self.assertEqual(declarations, {"A.B.inB", "A.inA"})
 
     def test_named_scopes_can_share_one_end(self):
-        source = "section\nnamespace A.«B.C»\nnamespace D"
-        self.assertEqual(clump.closers(clump.open_scopes(source)),
-                         ["end A.«B.C».D" + clump.AUTO, "end" + clump.AUTO])
+        for name in ("«B.C»", "«B C»", "«B--C»"):
+            with self.subTest(name=name):
+                source = f"section\nnamespace A.{name}-- a comment\nnamespace D"
+                self.assertEqual(clump.closers(clump.open_scopes(source)),
+                                 [f"end A.{name}.D" + clump.AUTO, "end" + clump.AUTO])
+                scopes, names = clump.scan(source + f"\nend {name}.D\ntheorem t : True := .intro")
+                self.assertEqual(scopes, [("section", None), ("namespace", "A")])
+                self.assertEqual(names, {"A.t"})
 
     def test_existing_clump_after_a_preamble_is_protected(self):
         _, text = self.make_group()

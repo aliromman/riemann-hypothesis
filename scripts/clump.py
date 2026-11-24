@@ -49,7 +49,6 @@ END_WORD = re.compile(r"\bend\b")
 NAMED_END = re.compile(r"end [A-Z][\w'.]*(?:\s*--.*)?\Z")
 NAME = r"[^\W\d][\w'.]*"
 OPEN_NAMES = re.compile(rf"open (?:scoped )?{NAME}(?: +{NAME})*\Z")
-NAME_PART = re.compile(r"(?:«[^»]*»|[^.«»]+)+")
 CLUMP_MARK = "-- This file was produced by scripts/clump.py from the modules listed below."
 
 # Modules in these libraries are never clumped (protected statement / solution files).
@@ -206,10 +205,12 @@ def linearise(root, mem, deps):
 # ---------------------------------------------------------------------------
 # Scope tracking: which sections / namespaces does a body leave open?
 
+NAME_PART = re.compile(r"(?:«[^»]*»|[^\s.«»-])+")
+SCOPE_NAME = rf"({NAME_PART.pattern}(?:\.{NAME_PART.pattern})*)"
 SECTION_RE = re.compile(
-    r"^(?:@\[[^\]]*\]\s*)?(?:(?:public|private|noncomputable|meta)\s+)*section(?:\s+([^\s-]\S*))?\s*(?:--.*)?$")
-NAMESPACE_RE = re.compile(r"^namespace\s+(\S+)\s*(?:--.*)?$")
-END_RE = re.compile(r"^end(?:\s+([^\s-]\S*))?\s*(?:--.*)?$")
+    rf"^(?:@\[[^\]]*\]\s*)?(?:(?:public|private|noncomputable|meta)\s+)*section(?:\s+{SCOPE_NAME})?\s*(?:--.*)?$")
+NAMESPACE_RE = re.compile(rf"^namespace\s+{SCOPE_NAME}\s*(?:--.*)?$")
+END_RE = re.compile(rf"^end(?:\s+{SCOPE_NAME})?\s*(?:--.*)?$")
 MUTUAL_RE = re.compile(r"^mutual\s*(?:--.*)?$")
 
 
@@ -394,8 +395,8 @@ def render_members(out, order, mods):
         body = original if not opens else original[:1] + original[1 + len(opens):]
         closing = closers(open_scopes(mods[name].body))
         final = i + 1 == len(order)
-        borrow = has_own_scope(body, closing)
-        if (final or borrow) and body and body[0] in PUBLIC_SECTIONS:
+        borrow = final or has_own_scope(body, closing)
+        if borrow and body and body[0] in PUBLIC_SECTIONS:
             out.extend([body[0] + " " + MEMBER_TAG + name, *body[1:]])
         elif final:
             out.extend([MEMBER_TAG + name, *body])
