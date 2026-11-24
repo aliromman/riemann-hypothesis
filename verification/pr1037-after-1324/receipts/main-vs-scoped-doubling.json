@@ -1,0 +1,238 @@
+{
+  "archive": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+  "module": "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SingleBlockDoublingIntegralValue",
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "archived_source_sha256": "47443cd611cbe42477381fb1621eb12d910d6f78b39a33403c11e12d3c89617d",
+  "historical_support": [
+    "HistoricalQLoc",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CardResidueRingCompletionChosenUniformiser",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAddHaarCompletionIntegralMatricesVolOne",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHaarGLCompletionIntegersVolOne",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsNrm",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsLocalAtCompletionIntegersChosenUniformiser"
+  ],
+  "results": {
+    "before": {
+      "HistoricalQLoc": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "8a375ddd5de220b50063232dde10eb997db4e406ed746722c2d3dc9cc73c50d1"
+      },
+      "CardResidueRingCompletionChosenUniformiser": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "373cb9de21877739bcfe6e75d3a9c8417923caaf0a933d786d70ed52ca332b57"
+      },
+      "ExistsAddHaarCompletionIntegralMatricesVolOne": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "295ca3466194fe30ca46ea2ebd95c041564c720c7e1194cdee95308a3600df8f"
+      },
+      "ExistsHaarGLCompletionIntegersVolOne": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "1e9fd65611271cbe7d274c72c52194dd3a29488aa1ba023674bd9b1d80456118"
+      },
+      "ExistsIsNrm": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "a568cf60b219d992e06c24c810061d2d2c061d13f66388681d1b54b62f40ab9c"
+      },
+      "IsLocalAtCompletionIntegersChosenUniformiser": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "d073e11d9b3949e83afe488af1b61aee338ea0bc308ba621b20de3830dae8160"
+      },
+      "localZ_map-foundation-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "dd0db579926126add1714b099db16172e2644e635051de3840e5c1cd1128af39"
+      },
+      "whole-foundation-first": {
+        "exit": 1,
+        "errors": [
+          {
+            "line": 207,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  \u222b (y : ?m.101), ?f y \u2202Measure.map \u21d1?e ?m.100\nin the target expression\n  \u222b (x : Matrix (Fin (r + t)) (Fin r) F), omegaS \u03c7 nrm g \u03a6 x * (starRingEnd \u2102) (\u03a6 x) \u2202Measure.map (\u21d1(rowEqM r t)) m =\n    \u222b (x : Matrix (Fin r \u2295 Fin t) (Fin r) F),\n      omegaS \u03c7 nrm g (\u03a6 \u2218 \u21d1(rowEq r t)) x * (starRingEnd \u2102) ((\u03a6 \u2218 \u21d1(rowEq r t)) x) \u2202m\n\ncase e_f.e_a\nF : Type\ninst\u271d\u00b2 : Field F\ninst\u271d\u00b9 : MeasurableSpace F\ninst\u271d : TopologicalSpace F\nr t : \u2115\n\u03bc : Measure (GL (Fin r) F)\nm : Measure (Matrix (Fin r \u2295 Fin t) (Fin r) F)\n\u03c7 : F\u02e3 \u2192* \u2102\u02e3\nnrm : AbsoluteValue F \u211d\n\u03a6 : Matrix (Fin (r + t)) (Fin r) F \u2192 \u2102\nc : GL (Fin r) F \u2192 \u2102\ng : GL (Fin r) F\n\u22a2 \u222b (x : Matrix (Fin (r + t)) (Fin r) F), omegaS \u03c7 nrm g \u03a6 x * (starRingEnd \u2102) (\u03a6 x) \u2202Measure.map (\u21d1(rowEqM r t)) m =\n    \u222b (x : Matrix (Fin r \u2295 Fin t) (Fin r) F),\n      omegaS \u03c7 nrm g (\u03a6 \u2218 \u21d1(rowEq r t)) x * (starRingEnd \u2102) ((\u03a6 \u2218 \u21d1(rowEq r t)) x) \u2202m\n\nNote: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.\nFull error:\n  Application type mismatch: The argument\n    m\n  has type\n    @Measure (Matrix (Fin r \u2295 Fin t) (Fin r) F) instMeasurableSpace\n  but is expected to have type\n    @Measure (Matrix (Fin r \u2295 Fin t) (Fin r) F) instMeasMat\n  in the application\n    integral m"
+          },
+          {
+            "line": 384,
+            "message": "failed to synthesize instance of type class\n  \u03bd\u2081.IsAddLeftInvariant\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+          },
+          {
+            "line": 387,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  \u03bd\u2081 (intMat (OP P) r r)\nin the target expression\n  \u03bd\u2081 (Jset (GLint (OP P) r)) * \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) ^ (r * r) =\n    \u2191(Nat.card (GL (Fin r) (kF (OP P) \u2191(piP P) \u22ef))) * \u03bd\u2081 (intMat (OP P) r r)\n\nL : Type\ninst\u271d\u2074 : Field L\ninst\u271d\u00b3 : NumberField L\nP : HeightOneSpectrum (\ud835\udcde L)\nr : \u2115\ninst\u271d\u00b2 : MeasurableSpace (HeightOneSpectrum.adicCompletion L P)\ninst\u271d\u00b9 : BorelSpace (HeightOneSpectrum.adicCompletion L P)\n\u03bd\u2081 : Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P))\ninst\u271d : \u03bd\u2081.IsAddLeftInvariant\nh1 : \u03bd\u2081 (intMat (OP P) r r) = 1\nthis\u271d\u00b9 : (Ideal.span {\u27e8\u2191(piP P), \u22ef\u27e9}).IsMaximal\nthis\u271d : Field (kF (OP P) \u2191(piP P) \u22ef) := Ideal.Quotient.field (Ideal.span {\u27e8\u2191(piP P), \u22ef\u27e9})\nthis : Fintype (kF (OP P) \u2191(piP P) \u22ef) := Fintype.ofFinite (kF (OP P) \u2191(piP P) \u22ef)\nhc : Nat.card (kF (OP P) \u2191(piP P) \u22ef) = qP P\nh :\n  \u03bd\u2081 (Jset (GLint (OP P) r)) * \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) ^ (r * r) =\n    \u2191(Nat.card (GL (Fin r) (kF (OP P) \u2191(piP P) \u22ef))) * \u03bd\u2081 (intMat (OP P) r r)\n\u22a2 (\u03bd\u2081 (Jset (GLint (OP P) r))).toReal = Formalism.MainNotions.ZetaProductPairs.qE (\u2191(qP P)) 1 r\n\nNote: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.\nFull error:\n  Application type mismatch: The argument\n    \u03bd\u2081\n  has type\n    @Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P)) instMeasurableSpace\n  but is expected to have type\n    @Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P)) instMeasMat\n  in the application\n    \u21d1\u03bd\u2081"
+          },
+          {
+            "line": 402,
+            "message": "failed to synthesize instance of type class\n  \u03bd\u2082.IsAddLeftInvariant\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+          },
+          {
+            "line": 404,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  \u03bd\u2082 (intMat (OP P) t r)\nin the target expression\n  \u03bd\u2082 (IIset (OP P) \u2191(piP P)) * \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) ^ (t * r) = \u03bd\u2082 (intMat (OP P) t r)\n\nL : Type\ninst\u271d\u2074 : Field L\ninst\u271d\u00b3 : NumberField L\nP : HeightOneSpectrum (\ud835\udcde L)\nr t : \u2115\ninst\u271d\u00b2 : MeasurableSpace (HeightOneSpectrum.adicCompletion L P)\ninst\u271d\u00b9 : BorelSpace (HeightOneSpectrum.adicCompletion L P)\n\u03bd\u2082 : Measure (Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\ninst\u271d : \u03bd\u2082.IsAddLeftInvariant\nh2 : \u03bd\u2082 (intMat (OP P) t r) = 1\nhq : \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) = \u2191(qP P)\nh : \u03bd\u2082 (IIset (OP P) \u2191(piP P)) * \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) ^ (t * r) = \u03bd\u2082 (intMat (OP P) t r)\n\u22a2 (\u03bd\u2082 (IIset (OP P) \u2191(piP P))).toReal = \u2191(qP P) ^ (-\u2191(t * r))"
+          },
+          {
+            "line": 472,
+            "message": "failed to synthesize instance of type class\n  MeasurableAdd (Matrix (Fin (r + t)) (Fin r) (HeightOneSpectrum.adicCompletion L P))\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+          },
+          {
+            "line": 482,
+            "message": "failed to synthesize instance of type class\n  SFinite \u03bd\u2081\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+          },
+          {
+            "line": 490,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  localZ ?\u03bc ?m ?\u03c7 ?nrm (?\u03a6 \u2218 \u21d1(rowEq ?m.1068 ?m.1069)) (?\u03a6 \u2218 \u21d1(rowEq ?m.1068 ?m.1069)) ?c\nin the target expression\n  localZ \u03bc (Measure.map (fun p => p.1.fromRows p.2) (\u03bd\u2081.prod \u03bd\u2082)) (\u03bd * \u03b4) nrm\n      (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t)) (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t))\n      (mcoef (OP P) \u03bc fun x => 1) =\n    \u2191((\u03bc \u2191(GLint (OP P) r)).toReal * (\u03bd\u2081 (Jset (GLint (OP P) r))).toReal * (\u03bd\u2082 (IIset (OP P) \u2191(piP P))).toReal) *\n      (starRingEnd \u2102) (mcoef (OP P) \u03bc (fun x => 1) 1)\n\ncase refine_4\nL : Type\ninst\u271d\u00b9 : Field L\ninst\u271d : NumberField L\nP : HeightOneSpectrum (\ud835\udcde L)\na\u271d\u00b9 : Deg1 P\n\u03b4 \u03bd : (HeightOneSpectrum.adicCompletion L P)\u02e3 \u2192* \u2102\u02e3\nh\u03b4 : IsDel P \u03b4\nh\u03bd : IsNu P \u03bd\nr t : \u2115\na\u271d : 1 \u2264 t\nnrm : AbsoluteValue (HeightOneSpectrum.adicCompletion L P) \u211d\nhnrm : IsNrm P nrm\nthis\u271d\u2074 : MeasurableSpace (HeightOneSpectrum.adicCompletion L P) := borel (HeightOneSpectrum.adicCompletion L P)\nthis\u271d\u00b3 : BorelSpace (HeightOneSpectrum.adicCompletion L P)\nhchar :\n  \u2200 (k : \u21a5(GLint (OP P) r)),\n    \u2191((\u03bd * \u03b4) (GeneralLinearGroup.det \u2191k)) * \u2191(nrm \u2191(GeneralLinearGroup.det \u2191k) ^ (\u2191(r + t) / 2)) *\n          \u2191((\u03b4.comp (GeneralLinearGroup.det.comp (GLint (OP P) r).subtype))\u207b\u00b9 k) *\n        (starRingEnd \u2102) \u2191(1 k) =\n      1\n\u03bc : Measure (GL (Fin r) (HeightOneSpectrum.adicCompletion L P))\nh\u03bc : \u03bc.IsMulLeftInvariant\nh\u03bc1 : \u03bc \u2191(GLint (OP P) r) = 1\n\u03bd\u2081 : Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nh\u03bd\u2081 : \u03bd\u2081.IsAddLeftInvariant\nhs\u2081 : SFinite \u03bd\u2081\nh\u03bd\u20811 : \u03bd\u2081 (intMat (OP P) r r) = 1\n\u03bd\u2082 : Measure (Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nh\u03bd\u2082 : \u03bd\u2082.IsAddLeftInvariant\nhs\u2082 : SFinite \u03bd\u2082\nh\u03bd\u20821 : \u03bd\u2082 (intMat (OP P) t r) = 1\nthis\u271d\u00b2 : \u03bd\u2081.IsAddLeftInvariant\nthis\u271d\u00b9 : \u03bd\u2082.IsAddLeftInvariant\nthis\u271d : SFinite \u03bd\u2081\nthis : SFinite \u03bd\u2082\nhA1 : MeasurableAdd (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhA2 : MeasurableAdd (Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhA3 : MeasurableAdd (Matrix (Fin (r + t)) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhA4 :\n  MeasurableAdd\n    (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P) \u00d7\n      Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhc : \u2200 (g : GL (Fin r) (HeightOneSpectrum.adicCompletion L P)), mcoef (OP P) \u03bc (fun x => 1) g = 1\nhlam :\n  \u2200 (g : GL (Fin r) (HeightOneSpectrum.adicCompletion L P)) (k : \u21a5(GLint (OP P) r)),\n    mcoef (OP P) \u03bc (fun x => 1) (g * \u2191k) = \u2191(1 k) * mcoef (OP P) \u03bc (fun x => 1) g\nh\u03c1 : \u2200 (k : \u21a5(GLint (OP P) r)), \u2016\u2191((\u03b4.comp (GeneralLinearGroup.det.comp (GLint (OP P) r).subtype))\u207b\u00b9 k)\u2016 = 1\nkey :\n  localZ \u03bc (Measure.map (fun p => p.1.fromRows p.2) (\u03bd\u2081.prod \u03bd\u2082)) (\u03bd * \u03b4) nrm\n      (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t)) (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t))\n      (mcoef (OP P) \u03bc fun x => 1) =\n    \u2191((\u03bc \u2191(GLint (OP P) r)).toReal * (\u03bd\u2081 (Jset (GLint (OP P) r))).toReal * (\u03bd\u2082 (IIset (OP P) \u2191(piP P))).toReal) *\n      (starRingEnd \u2102) (mcoef (OP P) \u03bc (fun x => 1) 1)\nh\u03a6 :\n  phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t) =\n    phiU (OP P) (\u2191(piP P)) (GLint (OP P) r) (\u03b4.comp (GeneralLinearGroup.det.comp (GLint (OP P) r).subtype))\u207b\u00b9\n\u22a2 \u2191(zVal1 (\u2191(qP P)) r t) =\n    localZ \u03bc (Measure.map (\u21d1(rowsH r t)) (\u03bd\u2081.prod \u03bd\u2082)) ((fun x => \u03bd) 1 * \u03b4) nrm (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0)\n      (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0) (mcoef (OP P) \u03bc fun x => 1)\n\nNote: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.\nFull error:\n  Application type mismatch: The argument\n    \u03bd\u2081\n  has type\n    @Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P)) instMeasurableSpace\n  but is expected to have type\n    @Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P)) instMeasMat\n  in the application\n    \u03bd\u2081.prod"
+          }
+        ],
+        "source_sha256": "dbd4cb94ee6bd85007952e210984bc8e44df3c4ac5a512a0bd7053fbf8c4278d"
+      },
+      "localZ_map-double-first": {
+        "exit": 1,
+        "errors": [
+          {
+            "line": 49,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  \u222b (y : ?m.101), ?f y \u2202Measure.map \u21d1?e ?m.100\nin the target expression\n  \u222b (x : Matrix (Fin (r + t)) (Fin r) F), omegaS \u03c7 nrm g \u03a6 x * (starRingEnd \u2102) (\u03a6 x) \u2202Measure.map (\u21d1(rowEqM r t)) m =\n    \u222b (x : Matrix (Fin r \u2295 Fin t) (Fin r) F),\n      omegaS \u03c7 nrm g (\u03a6 \u2218 \u21d1(rowEq r t)) x * (starRingEnd \u2102) ((\u03a6 \u2218 \u21d1(rowEq r t)) x) \u2202m\n\ncase e_f.e_a\nF : Type\ninst\u271d\u00b2 : Field F\ninst\u271d\u00b9 : MeasurableSpace F\ninst\u271d : TopologicalSpace F\nr t : \u2115\n\u03bc : Measure (GL (Fin r) F)\nm : Measure (Matrix (Fin r \u2295 Fin t) (Fin r) F)\n\u03c7 : F\u02e3 \u2192* \u2102\u02e3\nnrm : AbsoluteValue F \u211d\n\u03a6 : Matrix (Fin (r + t)) (Fin r) F \u2192 \u2102\nc : GL (Fin r) F \u2192 \u2102\ng : GL (Fin r) F\n\u22a2 \u222b (x : Matrix (Fin (r + t)) (Fin r) F), omegaS \u03c7 nrm g \u03a6 x * (starRingEnd \u2102) (\u03a6 x) \u2202Measure.map (\u21d1(rowEqM r t)) m =\n    \u222b (x : Matrix (Fin r \u2295 Fin t) (Fin r) F),\n      omegaS \u03c7 nrm g (\u03a6 \u2218 \u21d1(rowEq r t)) x * (starRingEnd \u2102) ((\u03a6 \u2218 \u21d1(rowEq r t)) x) \u2202m\n\nNote: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.\nFull error:\n  Application type mismatch: The argument\n    m\n  has type\n    @Measure (Matrix (Fin r \u2295 Fin t) (Fin r) F) SplitWeil.matrixMeasurableSpace\n  but is expected to have type\n    @Measure (Matrix (Fin r \u2295 Fin t) (Fin r) F) instMeasMat\n  in the application\n    integral m"
+          }
+        ],
+        "source_sha256": "b93931d0abddee230ba7c4a43d4d868223151ea7be56e0b5dc700c5dc8470b39"
+      },
+      "whole-double-first": {
+        "exit": 1,
+        "errors": [
+          {
+            "line": 207,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  \u222b (y : ?m.101), ?f y \u2202Measure.map \u21d1?e ?m.100\nin the target expression\n  \u222b (x : Matrix (Fin (r + t)) (Fin r) F), omegaS \u03c7 nrm g \u03a6 x * (starRingEnd \u2102) (\u03a6 x) \u2202Measure.map (\u21d1(rowEqM r t)) m =\n    \u222b (x : Matrix (Fin r \u2295 Fin t) (Fin r) F),\n      omegaS \u03c7 nrm g (\u03a6 \u2218 \u21d1(rowEq r t)) x * (starRingEnd \u2102) ((\u03a6 \u2218 \u21d1(rowEq r t)) x) \u2202m\n\ncase e_f.e_a\nF : Type\ninst\u271d\u00b2 : Field F\ninst\u271d\u00b9 : MeasurableSpace F\ninst\u271d : TopologicalSpace F\nr t : \u2115\n\u03bc : Measure (GL (Fin r) F)\nm : Measure (Matrix (Fin r \u2295 Fin t) (Fin r) F)\n\u03c7 : F\u02e3 \u2192* \u2102\u02e3\nnrm : AbsoluteValue F \u211d\n\u03a6 : Matrix (Fin (r + t)) (Fin r) F \u2192 \u2102\nc : GL (Fin r) F \u2192 \u2102\ng : GL (Fin r) F\n\u22a2 \u222b (x : Matrix (Fin (r + t)) (Fin r) F), omegaS \u03c7 nrm g \u03a6 x * (starRingEnd \u2102) (\u03a6 x) \u2202Measure.map (\u21d1(rowEqM r t)) m =\n    \u222b (x : Matrix (Fin r \u2295 Fin t) (Fin r) F),\n      omegaS \u03c7 nrm g (\u03a6 \u2218 \u21d1(rowEq r t)) x * (starRingEnd \u2102) ((\u03a6 \u2218 \u21d1(rowEq r t)) x) \u2202m\n\nNote: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.\nFull error:\n  Application type mismatch: The argument\n    m\n  has type\n    @Measure (Matrix (Fin r \u2295 Fin t) (Fin r) F) instMeasurableSpace\n  but is expected to have type\n    @Measure (Matrix (Fin r \u2295 Fin t) (Fin r) F) instMeasMat\n  in the application\n    integral m"
+          },
+          {
+            "line": 384,
+            "message": "failed to synthesize instance of type class\n  \u03bd\u2081.IsAddLeftInvariant\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+          },
+          {
+            "line": 387,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  \u03bd\u2081 (intMat (OP P) r r)\nin the target expression\n  \u03bd\u2081 (Jset (GLint (OP P) r)) * \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) ^ (r * r) =\n    \u2191(Nat.card (GL (Fin r) (kF (OP P) \u2191(piP P) \u22ef))) * \u03bd\u2081 (intMat (OP P) r r)\n\nL : Type\ninst\u271d\u2074 : Field L\ninst\u271d\u00b3 : NumberField L\nP : HeightOneSpectrum (\ud835\udcde L)\nr : \u2115\ninst\u271d\u00b2 : MeasurableSpace (HeightOneSpectrum.adicCompletion L P)\ninst\u271d\u00b9 : BorelSpace (HeightOneSpectrum.adicCompletion L P)\n\u03bd\u2081 : Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P))\ninst\u271d : \u03bd\u2081.IsAddLeftInvariant\nh1 : \u03bd\u2081 (intMat (OP P) r r) = 1\nthis\u271d\u00b9 : (Ideal.span {\u27e8\u2191(piP P), \u22ef\u27e9}).IsMaximal\nthis\u271d : Field (kF (OP P) \u2191(piP P) \u22ef) := Ideal.Quotient.field (Ideal.span {\u27e8\u2191(piP P), \u22ef\u27e9})\nthis : Fintype (kF (OP P) \u2191(piP P) \u22ef) := Fintype.ofFinite (kF (OP P) \u2191(piP P) \u22ef)\nhc : Nat.card (kF (OP P) \u2191(piP P) \u22ef) = qP P\nh :\n  \u03bd\u2081 (Jset (GLint (OP P) r)) * \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) ^ (r * r) =\n    \u2191(Nat.card (GL (Fin r) (kF (OP P) \u2191(piP P) \u22ef))) * \u03bd\u2081 (intMat (OP P) r r)\n\u22a2 (\u03bd\u2081 (Jset (GLint (OP P) r))).toReal = Formalism.MainNotions.ZetaProductPairs.qE (\u2191(qP P)) 1 r\n\nNote: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.\nFull error:\n  Application type mismatch: The argument\n    \u03bd\u2081\n  has type\n    @Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P)) instMeasurableSpace\n  but is expected to have type\n    @Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P)) instMeasMat\n  in the application\n    \u21d1\u03bd\u2081"
+          },
+          {
+            "line": 402,
+            "message": "failed to synthesize instance of type class\n  \u03bd\u2082.IsAddLeftInvariant\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+          },
+          {
+            "line": 404,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  \u03bd\u2082 (intMat (OP P) t r)\nin the target expression\n  \u03bd\u2082 (IIset (OP P) \u2191(piP P)) * \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) ^ (t * r) = \u03bd\u2082 (intMat (OP P) t r)\n\nL : Type\ninst\u271d\u2074 : Field L\ninst\u271d\u00b3 : NumberField L\nP : HeightOneSpectrum (\ud835\udcde L)\nr t : \u2115\ninst\u271d\u00b2 : MeasurableSpace (HeightOneSpectrum.adicCompletion L P)\ninst\u271d\u00b9 : BorelSpace (HeightOneSpectrum.adicCompletion L P)\n\u03bd\u2082 : Measure (Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\ninst\u271d : \u03bd\u2082.IsAddLeftInvariant\nh2 : \u03bd\u2082 (intMat (OP P) t r) = 1\nhq : \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) = \u2191(qP P)\nh : \u03bd\u2082 (IIset (OP P) \u2191(piP P)) * \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) ^ (t * r) = \u03bd\u2082 (intMat (OP P) t r)\n\u22a2 (\u03bd\u2082 (IIset (OP P) \u2191(piP P))).toReal = \u2191(qP P) ^ (-\u2191(t * r))"
+          },
+          {
+            "line": 472,
+            "message": "failed to synthesize instance of type class\n  MeasurableAdd (Matrix (Fin (r + t)) (Fin r) (HeightOneSpectrum.adicCompletion L P))\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+          },
+          {
+            "line": 482,
+            "message": "failed to synthesize instance of type class\n  SFinite \u03bd\u2081\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+          },
+          {
+            "line": 490,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  localZ ?\u03bc ?m ?\u03c7 ?nrm (?\u03a6 \u2218 \u21d1(rowEq ?m.1068 ?m.1069)) (?\u03a6 \u2218 \u21d1(rowEq ?m.1068 ?m.1069)) ?c\nin the target expression\n  localZ \u03bc (Measure.map (fun p => p.1.fromRows p.2) (\u03bd\u2081.prod \u03bd\u2082)) (\u03bd * \u03b4) nrm\n      (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t)) (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t))\n      (mcoef (OP P) \u03bc fun x => 1) =\n    \u2191((\u03bc \u2191(GLint (OP P) r)).toReal * (\u03bd\u2081 (Jset (GLint (OP P) r))).toReal * (\u03bd\u2082 (IIset (OP P) \u2191(piP P))).toReal) *\n      (starRingEnd \u2102) (mcoef (OP P) \u03bc (fun x => 1) 1)\n\ncase refine_4\nL : Type\ninst\u271d\u00b9 : Field L\ninst\u271d : NumberField L\nP : HeightOneSpectrum (\ud835\udcde L)\na\u271d\u00b9 : Deg1 P\n\u03b4 \u03bd : (HeightOneSpectrum.adicCompletion L P)\u02e3 \u2192* \u2102\u02e3\nh\u03b4 : IsDel P \u03b4\nh\u03bd : IsNu P \u03bd\nr t : \u2115\na\u271d : 1 \u2264 t\nnrm : AbsoluteValue (HeightOneSpectrum.adicCompletion L P) \u211d\nhnrm : IsNrm P nrm\nthis\u271d\u2074 : MeasurableSpace (HeightOneSpectrum.adicCompletion L P) := borel (HeightOneSpectrum.adicCompletion L P)\nthis\u271d\u00b3 : BorelSpace (HeightOneSpectrum.adicCompletion L P)\nhchar :\n  \u2200 (k : \u21a5(GLint (OP P) r)),\n    \u2191((\u03bd * \u03b4) (GeneralLinearGroup.det \u2191k)) * \u2191(nrm \u2191(GeneralLinearGroup.det \u2191k) ^ (\u2191(r + t) / 2)) *\n          \u2191((\u03b4.comp (GeneralLinearGroup.det.comp (GLint (OP P) r).subtype))\u207b\u00b9 k) *\n        (starRingEnd \u2102) \u2191(1 k) =\n      1\n\u03bc : Measure (GL (Fin r) (HeightOneSpectrum.adicCompletion L P))\nh\u03bc : \u03bc.IsMulLeftInvariant\nh\u03bc1 : \u03bc \u2191(GLint (OP P) r) = 1\n\u03bd\u2081 : Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nh\u03bd\u2081 : \u03bd\u2081.IsAddLeftInvariant\nhs\u2081 : SFinite \u03bd\u2081\nh\u03bd\u20811 : \u03bd\u2081 (intMat (OP P) r r) = 1\n\u03bd\u2082 : Measure (Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nh\u03bd\u2082 : \u03bd\u2082.IsAddLeftInvariant\nhs\u2082 : SFinite \u03bd\u2082\nh\u03bd\u20821 : \u03bd\u2082 (intMat (OP P) t r) = 1\nthis\u271d\u00b2 : \u03bd\u2081.IsAddLeftInvariant\nthis\u271d\u00b9 : \u03bd\u2082.IsAddLeftInvariant\nthis\u271d : SFinite \u03bd\u2081\nthis : SFinite \u03bd\u2082\nhA1 : MeasurableAdd (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhA2 : MeasurableAdd (Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhA3 : MeasurableAdd (Matrix (Fin (r + t)) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhA4 :\n  MeasurableAdd\n    (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P) \u00d7\n      Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhc : \u2200 (g : GL (Fin r) (HeightOneSpectrum.adicCompletion L P)), mcoef (OP P) \u03bc (fun x => 1) g = 1\nhlam :\n  \u2200 (g : GL (Fin r) (HeightOneSpectrum.adicCompletion L P)) (k : \u21a5(GLint (OP P) r)),\n    mcoef (OP P) \u03bc (fun x => 1) (g * \u2191k) = \u2191(1 k) * mcoef (OP P) \u03bc (fun x => 1) g\nh\u03c1 : \u2200 (k : \u21a5(GLint (OP P) r)), \u2016\u2191((\u03b4.comp (GeneralLinearGroup.det.comp (GLint (OP P) r).subtype))\u207b\u00b9 k)\u2016 = 1\nkey :\n  localZ \u03bc (Measure.map (fun p => p.1.fromRows p.2) (\u03bd\u2081.prod \u03bd\u2082)) (\u03bd * \u03b4) nrm\n      (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t)) (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t))\n      (mcoef (OP P) \u03bc fun x => 1) =\n    \u2191((\u03bc \u2191(GLint (OP P) r)).toReal * (\u03bd\u2081 (Jset (GLint (OP P) r))).toReal * (\u03bd\u2082 (IIset (OP P) \u2191(piP P))).toReal) *\n      (starRingEnd \u2102) (mcoef (OP P) \u03bc (fun x => 1) 1)\nh\u03a6 :\n  phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t) =\n    phiU (OP P) (\u2191(piP P)) (GLint (OP P) r) (\u03b4.comp (GeneralLinearGroup.det.comp (GLint (OP P) r).subtype))\u207b\u00b9\n\u22a2 \u2191(zVal1 (\u2191(qP P)) r t) =\n    localZ \u03bc (Measure.map (\u21d1(rowsH r t)) (\u03bd\u2081.prod \u03bd\u2082)) ((fun x => \u03bd) 1 * \u03b4) nrm (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0)\n      (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0) (mcoef (OP P) \u03bc fun x => 1)\n\nNote: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.\nFull error:\n  Application type mismatch: The argument\n    \u03bd\u2081\n  has type\n    @Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P)) instMeasurableSpace\n  but is expected to have type\n    @Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P)) instMeasMat\n  in the application\n    \u03bd\u2081.prod"
+          }
+        ],
+        "source_sha256": "b3548fdf4c00291d48b07c9367caaaca82ff83c29ac8890c8751ad4cba944e58"
+      },
+      "whole-original-widening": {
+        "exit": 1,
+        "errors": [
+          {
+            "line": 206,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  \u222b (y : ?m.101), ?f y \u2202Measure.map \u21d1?e ?m.100\nin the target expression\n  \u222b (x : Matrix (Fin (r + t)) (Fin r) F), omegaS \u03c7 nrm g \u03a6 x * (starRingEnd \u2102) (\u03a6 x) \u2202Measure.map (\u21d1(rowEqM r t)) m =\n    \u222b (x : Matrix (Fin r \u2295 Fin t) (Fin r) F),\n      omegaS \u03c7 nrm g (\u03a6 \u2218 \u21d1(rowEq r t)) x * (starRingEnd \u2102) ((\u03a6 \u2218 \u21d1(rowEq r t)) x) \u2202m\n\ncase e_f.e_a\nF : Type\ninst\u271d\u00b2 : Field F\ninst\u271d\u00b9 : MeasurableSpace F\ninst\u271d : TopologicalSpace F\nr t : \u2115\n\u03bc : Measure (GL (Fin r) F)\nm : Measure (Matrix (Fin r \u2295 Fin t) (Fin r) F)\n\u03c7 : F\u02e3 \u2192* \u2102\u02e3\nnrm : AbsoluteValue F \u211d\n\u03a6 : Matrix (Fin (r + t)) (Fin r) F \u2192 \u2102\nc : GL (Fin r) F \u2192 \u2102\ng : GL (Fin r) F\n\u22a2 \u222b (x : Matrix (Fin (r + t)) (Fin r) F), omegaS \u03c7 nrm g \u03a6 x * (starRingEnd \u2102) (\u03a6 x) \u2202Measure.map (\u21d1(rowEqM r t)) m =\n    \u222b (x : Matrix (Fin r \u2295 Fin t) (Fin r) F),\n      omegaS \u03c7 nrm g (\u03a6 \u2218 \u21d1(rowEq r t)) x * (starRingEnd \u2102) ((\u03a6 \u2218 \u21d1(rowEq r t)) x) \u2202m\n\nNote: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.\nFull error:\n  Application type mismatch: The argument\n    m\n  has type\n    @Measure (Matrix (Fin r \u2295 Fin t) (Fin r) F) SplitWeil.matrixMeasurableSpace\n  but is expected to have type\n    @Measure (Matrix (Fin r \u2295 Fin t) (Fin r) F) instMeasMat\n  in the application\n    integral m"
+          },
+          {
+            "line": 383,
+            "message": "failed to synthesize instance of type class\n  \u03bd\u2081.IsAddLeftInvariant\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+          },
+          {
+            "line": 386,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  \u03bd\u2081 (intMat (OP P) r r)\nin the target expression\n  \u03bd\u2081 (Jset (GLint (OP P) r)) * \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) ^ (r * r) =\n    \u2191(Nat.card (GL (Fin r) (kF (OP P) \u2191(piP P) \u22ef))) * \u03bd\u2081 (intMat (OP P) r r)\n\nL : Type\ninst\u271d\u2074 : Field L\ninst\u271d\u00b3 : NumberField L\nP : HeightOneSpectrum (\ud835\udcde L)\nr : \u2115\ninst\u271d\u00b2 : MeasurableSpace (HeightOneSpectrum.adicCompletion L P)\ninst\u271d\u00b9 : BorelSpace (HeightOneSpectrum.adicCompletion L P)\n\u03bd\u2081 : Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P))\ninst\u271d : \u03bd\u2081.IsAddLeftInvariant\nh1 : \u03bd\u2081 (intMat (OP P) r r) = 1\nthis\u271d\u00b9 : (Ideal.span {\u27e8\u2191(piP P), \u22ef\u27e9}).IsMaximal\nthis\u271d : Field (kF (OP P) \u2191(piP P) \u22ef) := Ideal.Quotient.field (Ideal.span {\u27e8\u2191(piP P), \u22ef\u27e9})\nthis : Fintype (kF (OP P) \u2191(piP P) \u22ef) := Fintype.ofFinite (kF (OP P) \u2191(piP P) \u22ef)\nhc : Nat.card (kF (OP P) \u2191(piP P) \u22ef) = qP P\nh :\n  \u03bd\u2081 (Jset (GLint (OP P) r)) * \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) ^ (r * r) =\n    \u2191(Nat.card (GL (Fin r) (kF (OP P) \u2191(piP P) \u22ef))) * \u03bd\u2081 (intMat (OP P) r r)\n\u22a2 (\u03bd\u2081 (Jset (GLint (OP P) r))).toReal = Formalism.MainNotions.ZetaProductPairs.qE (\u2191(qP P)) 1 r\n\nNote: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.\nFull error:\n  Application type mismatch: The argument\n    \u03bd\u2081\n  has type\n    @Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P)) SplitWeil.matrixMeasurableSpace\n  but is expected to have type\n    @Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P)) instMeasMat\n  in the application\n    \u21d1\u03bd\u2081"
+          },
+          {
+            "line": 401,
+            "message": "failed to synthesize instance of type class\n  \u03bd\u2082.IsAddLeftInvariant\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+          },
+          {
+            "line": 403,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  \u03bd\u2082 (intMat (OP P) t r)\nin the target expression\n  \u03bd\u2082 (IIset (OP P) \u2191(piP P)) * \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) ^ (t * r) = \u03bd\u2082 (intMat (OP P) t r)\n\nL : Type\ninst\u271d\u2074 : Field L\ninst\u271d\u00b3 : NumberField L\nP : HeightOneSpectrum (\ud835\udcde L)\nr t : \u2115\ninst\u271d\u00b2 : MeasurableSpace (HeightOneSpectrum.adicCompletion L P)\ninst\u271d\u00b9 : BorelSpace (HeightOneSpectrum.adicCompletion L P)\n\u03bd\u2082 : Measure (Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\ninst\u271d : \u03bd\u2082.IsAddLeftInvariant\nh2 : \u03bd\u2082 (intMat (OP P) t r) = 1\nhq : \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) = \u2191(qP P)\nh : \u03bd\u2082 (IIset (OP P) \u2191(piP P)) * \u2191(Nat.card (kF (OP P) \u2191(piP P) \u22ef)) ^ (t * r) = \u03bd\u2082 (intMat (OP P) t r)\n\u22a2 (\u03bd\u2082 (IIset (OP P) \u2191(piP P))).toReal = \u2191(qP P) ^ (-\u2191(t * r))"
+          },
+          {
+            "line": 471,
+            "message": "failed to synthesize instance of type class\n  MeasurableAdd\n    (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P) \u00d7\n      Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+          },
+          {
+            "line": 473,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (Measure.map \u21d1(rowsH r t) ?m.743) (intMat (OP P) (r + t) r)\nin the target expression\n  (Measure.map (\u21d1(rowsH r t)) (\u03bd\u2081.prod \u03bd\u2082)) (intMat (OP P) (r + t) r) = 1\n\ncase refine_3\nL : Type\ninst\u271d\u00b9 : Field L\ninst\u271d : NumberField L\nP : HeightOneSpectrum (\ud835\udcde L)\na\u271d\u00b9 : Deg1 P\n\u03b4 \u03bd : (HeightOneSpectrum.adicCompletion L P)\u02e3 \u2192* \u2102\u02e3\nh\u03b4 : IsDel P \u03b4\nh\u03bd : IsNu P \u03bd\nr t : \u2115\na\u271d : 1 \u2264 t\nnrm : AbsoluteValue (HeightOneSpectrum.adicCompletion L P) \u211d\nhnrm : IsNrm P nrm\nthis\u271d\u2074 : MeasurableSpace (HeightOneSpectrum.adicCompletion L P) := borel (HeightOneSpectrum.adicCompletion L P)\nthis\u271d\u00b3 : BorelSpace (HeightOneSpectrum.adicCompletion L P)\nhchar :\n  \u2200 (k : \u21a5(GLint (OP P) r)),\n    \u2191((\u03bd * \u03b4) (GeneralLinearGroup.det \u2191k)) * \u2191(nrm \u2191(GeneralLinearGroup.det \u2191k) ^ (\u2191(r + t) / 2)) *\n          \u2191((\u03b4.comp (GeneralLinearGroup.det.comp (GLint (OP P) r).subtype))\u207b\u00b9 k) *\n        (starRingEnd \u2102) \u2191(1 k) =\n      1\n\u03bc : Measure (GL (Fin r) (HeightOneSpectrum.adicCompletion L P))\nh\u03bc : \u03bc.IsMulLeftInvariant\nh\u03bc1 : \u03bc \u2191(GLint (OP P) r) = 1\n\u03bd\u2081 : Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nh\u03bd\u2081 : \u03bd\u2081.IsAddLeftInvariant\nhs\u2081 : SFinite \u03bd\u2081\nh\u03bd\u20811 : \u03bd\u2081 (intMat (OP P) r r) = 1\n\u03bd\u2082 : Measure (Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nh\u03bd\u2082 : \u03bd\u2082.IsAddLeftInvariant\nhs\u2082 : SFinite \u03bd\u2082\nh\u03bd\u20821 : \u03bd\u2082 (intMat (OP P) t r) = 1\nthis\u271d\u00b2 : \u03bd\u2081.IsAddLeftInvariant\nthis\u271d\u00b9 : \u03bd\u2082.IsAddLeftInvariant\nthis\u271d : SFinite \u03bd\u2081\nthis : SFinite \u03bd\u2082\nhA1 : MeasurableAdd (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhA2 : MeasurableAdd (Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhA3 : MeasurableAdd (Matrix (Fin (r + t)) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhA4 :\n  MeasurableAdd\n    (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P) \u00d7\n      Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhc : \u2200 (g : GL (Fin r) (HeightOneSpectrum.adicCompletion L P)), mcoef (OP P) \u03bc (fun x => 1) g = 1\n\u22a2 (Measure.map (\u21d1(rowsH r t)) (\u03bd\u2081.prod \u03bd\u2082)) (intMat (OP P) (r + t) r) = 1"
+          },
+          {
+            "line": 481,
+            "message": "failed to synthesize instance of type class\n  SFinite \u03bd\u2081\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+          },
+          {
+            "line": 489,
+            "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  localZ ?\u03bc ?m ?\u03c7 ?nrm (?\u03a6 \u2218 \u21d1(rowEq ?m.1045 ?m.1046)) (?\u03a6 \u2218 \u21d1(rowEq ?m.1045 ?m.1046)) ?c\nin the target expression\n  localZ \u03bc (Measure.map (fun p => p.1.fromRows p.2) (\u03bd\u2081.prod \u03bd\u2082)) (\u03bd * \u03b4) nrm\n      (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t)) (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t))\n      (mcoef (OP P) \u03bc fun x => 1) =\n    \u2191((\u03bc \u2191(GLint (OP P) r)).toReal * (\u03bd\u2081 (Jset (GLint (OP P) r))).toReal * (\u03bd\u2082 (IIset (OP P) \u2191(piP P))).toReal) *\n      (starRingEnd \u2102) (mcoef (OP P) \u03bc (fun x => 1) 1)\n\ncase refine_4\nL : Type\ninst\u271d\u00b9 : Field L\ninst\u271d : NumberField L\nP : HeightOneSpectrum (\ud835\udcde L)\na\u271d\u00b9 : Deg1 P\n\u03b4 \u03bd : (HeightOneSpectrum.adicCompletion L P)\u02e3 \u2192* \u2102\u02e3\nh\u03b4 : IsDel P \u03b4\nh\u03bd : IsNu P \u03bd\nr t : \u2115\na\u271d : 1 \u2264 t\nnrm : AbsoluteValue (HeightOneSpectrum.adicCompletion L P) \u211d\nhnrm : IsNrm P nrm\nthis\u271d\u2074 : MeasurableSpace (HeightOneSpectrum.adicCompletion L P) := borel (HeightOneSpectrum.adicCompletion L P)\nthis\u271d\u00b3 : BorelSpace (HeightOneSpectrum.adicCompletion L P)\nhchar :\n  \u2200 (k : \u21a5(GLint (OP P) r)),\n    \u2191((\u03bd * \u03b4) (GeneralLinearGroup.det \u2191k)) * \u2191(nrm \u2191(GeneralLinearGroup.det \u2191k) ^ (\u2191(r + t) / 2)) *\n          \u2191((\u03b4.comp (GeneralLinearGroup.det.comp (GLint (OP P) r).subtype))\u207b\u00b9 k) *\n        (starRingEnd \u2102) \u2191(1 k) =\n      1\n\u03bc : Measure (GL (Fin r) (HeightOneSpectrum.adicCompletion L P))\nh\u03bc : \u03bc.IsMulLeftInvariant\nh\u03bc1 : \u03bc \u2191(GLint (OP P) r) = 1\n\u03bd\u2081 : Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nh\u03bd\u2081 : \u03bd\u2081.IsAddLeftInvariant\nhs\u2081 : SFinite \u03bd\u2081\nh\u03bd\u20811 : \u03bd\u2081 (intMat (OP P) r r) = 1\n\u03bd\u2082 : Measure (Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nh\u03bd\u2082 : \u03bd\u2082.IsAddLeftInvariant\nhs\u2082 : SFinite \u03bd\u2082\nh\u03bd\u20821 : \u03bd\u2082 (intMat (OP P) t r) = 1\nthis\u271d\u00b2 : \u03bd\u2081.IsAddLeftInvariant\nthis\u271d\u00b9 : \u03bd\u2082.IsAddLeftInvariant\nthis\u271d : SFinite \u03bd\u2081\nthis : SFinite \u03bd\u2082\nhA1 : MeasurableAdd (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhA2 : MeasurableAdd (Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhA3 : MeasurableAdd (Matrix (Fin (r + t)) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhA4 :\n  MeasurableAdd\n    (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P) \u00d7\n      Matrix (Fin t) (Fin r) (HeightOneSpectrum.adicCompletion L P))\nhc : \u2200 (g : GL (Fin r) (HeightOneSpectrum.adicCompletion L P)), mcoef (OP P) \u03bc (fun x => 1) g = 1\nhlam :\n  \u2200 (g : GL (Fin r) (HeightOneSpectrum.adicCompletion L P)) (k : \u21a5(GLint (OP P) r)),\n    mcoef (OP P) \u03bc (fun x => 1) (g * \u2191k) = \u2191(1 k) * mcoef (OP P) \u03bc (fun x => 1) g\nh\u03c1 : \u2200 (k : \u21a5(GLint (OP P) r)), \u2016\u2191((\u03b4.comp (GeneralLinearGroup.det.comp (GLint (OP P) r).subtype))\u207b\u00b9 k)\u2016 = 1\nkey :\n  localZ \u03bc (Measure.map (fun p => p.1.fromRows p.2) (\u03bd\u2081.prod \u03bd\u2082)) (\u03bd * \u03b4) nrm\n      (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t)) (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t))\n      (mcoef (OP P) \u03bc fun x => 1) =\n    \u2191((\u03bc \u2191(GLint (OP P) r)).toReal * (\u03bd\u2081 (Jset (GLint (OP P) r))).toReal * (\u03bd\u2082 (IIset (OP P) \u2191(piP P))).toReal) *\n      (starRingEnd \u2102) (mcoef (OP P) \u03bc (fun x => 1) 1)\nh\u03a6 :\n  phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0 \u2218 \u21d1(rowEq r t) =\n    phiU (OP P) (\u2191(piP P)) (GLint (OP P) r) (\u03b4.comp (GeneralLinearGroup.det.comp (GLint (OP P) r).subtype))\u207b\u00b9\n\u22a2 \u2191(zVal1 (\u2191(qP P)) r t) =\n    localZ \u03bc (Measure.map (\u21d1(rowsH r t)) (\u03bd\u2081.prod \u03bd\u2082)) ((fun x => \u03bd) 1 * \u03b4) nrm (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0)\n      (phiQ (OP P) (\u2191(piP P)) \u03b4 r t 0) (mcoef (OP P) \u03bc fun x => 1)\n\nNote: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.\nFull error:\n  Application type mismatch: The argument\n    \u03bd\u2081\n  has type\n    @Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P)) instMeasurableSpace\n  but is expected to have type\n    @Measure (Matrix (Fin r) (Fin r) (HeightOneSpectrum.adicCompletion L P)) instMeasMat\n  in the application\n    \u03bd\u2081.prod"
+          }
+        ],
+        "source_sha256": "4363cb512e62e993bd5361342ed7717832bb4d16367e396d7df92f5437a27f55"
+      }
+    },
+    "after": {
+      "HistoricalQLoc": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "8a375ddd5de220b50063232dde10eb997db4e406ed746722c2d3dc9cc73c50d1"
+      },
+      "CardResidueRingCompletionChosenUniformiser": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "373cb9de21877739bcfe6e75d3a9c8417923caaf0a933d786d70ed52ca332b57"
+      },
+      "ExistsAddHaarCompletionIntegralMatricesVolOne": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "295ca3466194fe30ca46ea2ebd95c041564c720c7e1194cdee95308a3600df8f"
+      },
+      "ExistsHaarGLCompletionIntegersVolOne": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "1e9fd65611271cbe7d274c72c52194dd3a29488aa1ba023674bd9b1d80456118"
+      },
+      "ExistsIsNrm": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "a568cf60b219d992e06c24c810061d2d2c061d13f66388681d1b54b62f40ab9c"
+      },
+      "IsLocalAtCompletionIntegersChosenUniformiser": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "d073e11d9b3949e83afe488af1b61aee338ea0bc308ba621b20de3830dae8160"
+      },
+      "localZ_map-foundation-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "dd0db579926126add1714b099db16172e2644e635051de3840e5c1cd1128af39"
+      },
+      "whole-foundation-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "dbd4cb94ee6bd85007952e210984bc8e44df3c4ac5a512a0bd7053fbf8c4278d"
+      },
+      "localZ_map-double-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "b93931d0abddee230ba7c4a43d4d868223151ea7be56e0b5dc700c5dc8470b39"
+      },
+      "whole-double-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "b3548fdf4c00291d48b07c9367caaaca82ff83c29ac8890c8751ad4cba944e58"
+      },
+      "whole-original-widening": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "4363cb512e62e993bd5361342ed7717832bb4d16367e396d7df92f5437a27f55"
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "stock": {
+    "exit": 0,
+    "messages": [
+      "Formalism.DoubleCosetMeasures.instMeasGL 2",
+      "Formalism.DoubleCosetMeasures.instBorelGL 2"
+    ]
+  },
+  "minimal": {
+    "exit": 0,
+    "messages": [
+      "Formalism.DoubleCosetMeasures.instMeasGL 2",
+      "Formalism.DoubleCosetMeasures.instBorelGL 2"
+    ]
+  },
+  "candidate": {
+    "exit": 0,
+    "messages": [
+      "Formalism.DoubleCosetMeasures.instMeasGL 2",
+      "Formalism.DoubleCosetMeasures.instBorelGL 2"
+    ]
+  },
+  "stack-before": {
+    "exit": 0,
+    "messages": [
+      "Formalism.DoubleCosetMeasures.instMeasGL 2",
+      "Formalism.DoubleCosetMeasures.instBorelGL 2"
+    ]
+  },
+  "stack-after": {
+    "exit": 0,
+    "messages": [
+      "Formalism.DoubleCosetMeasures.instMeasGL 2",
+      "Formalism.DoubleCosetMeasures.instBorelGL 2"
+    ]
+  }
+}

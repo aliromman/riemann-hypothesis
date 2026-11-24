@@ -1,0 +1,10 @@
+{
+  "main": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "scoped": "7b92c9c688b240646a4e41302f2988e28d6518bc",
+  "draft": "9e3763eda12bcd2e82c4a7d6b0378b6a4c3feb10",
+  "batch": "10b741f004e9878adc2b5f8b5adc915df4b94f6a",
+  "parent": "e25f3cf39817ed5293a05ac1655867fb7e6b2f3f",
+  "candidate": "e851a5d2c500ad1c04eb4ddae9706205fd194dbb",
+  "followup": "eb1a7892994ce07f281da1c8338298944e6d04b7",
+  "toolchain": "leanprover/lean4:v4.37.0-rc1"
+}
