@@ -1,30 +1,10 @@
 {
-  "request": "imports-1313",
+  "request": "clumps-1313-early",
   "groups": [
-    "imports-1313-large-1",
-    "imports-1313-large-2",
-    "imports-1313-ordinary-1",
-    "imports-1313-ordinary-10",
-    "imports-1313-ordinary-11",
-    "imports-1313-ordinary-12",
-    "imports-1313-ordinary-13",
-    "imports-1313-ordinary-14",
-    "imports-1313-ordinary-2",
-    "imports-1313-ordinary-3",
-    "imports-1313-ordinary-4",
-    "imports-1313-ordinary-5",
-    "imports-1313-ordinary-6",
-    "imports-1313-ordinary-7",
-    "imports-1313-ordinary-8",
-    "imports-1313-ordinary-9",
-    "imports-1313-ordinary-tail-1",
-    "imports-1313-ordinary-tail-2",
-    "imports-1313-ordinary-tail-3",
-    "imports-1313-ordinary-tail-4",
-    "imports-1313-ordinary-tail-5",
-    "imports-1313-ordinary-tail-6",
-    "imports-1313-ordinary-tail-7",
-    "imports-1313-ordinary-tail-8"
+    "clumps-1313-ordinary-1",
+    "clumps-1313-ordinary-2",
+    "clumps-1313-ordinary-6",
+    "clumps-1313-ordinary-9"
   ],
   "seed_run": 45460415396
 }
