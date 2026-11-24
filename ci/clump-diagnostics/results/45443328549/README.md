@@ -1,0 +1,9 @@
+# Clump planner tests and compiler diagnostics
+
+The Linux job tested revision `8d792c7fd2c0f411f215762a82145a4484ea29dd` from the fork ref `refs/heads/ci/clump-scopes/scope-scan-reuse-candidate`. Relative to the preceding pull-request revision `e7127ce8136d8ed36e610884d8578de1cffadd19`, this update changes `scripts/clump.py` and its focused tests. Ubuntu passed 314 repository script tests, 14 included clump tests and 60 native CI tests, with zero skips. It used the repository's pinned Lean 4.37.0-rc1, boto3 and botocore 1.44.9, PyYAML 6.0.2, Python 3.12 and GNU cp. [Actual job](https://github.com/aliromman/riemann-hypothesis/actions/runs/45443328549/job/138620213332)
+
+Four stock Lake errors exercised the ordinary, pre-banner, compact-member and literal-marker legacy cases. Every compiled fixture, error line, owner list and recovered input exactly matched its earlier control. The tests compiled the new planner output and ran the real clump CLI for each case. [Fixtures and owners](diagnostic-control.json) [Original compiler and unit-test logs](ubuntu-python.zip)
+
+The complete Lean source tree is `a908624cdba9bc8f9a5ce5268f6947a8ba2cd505`. Its compiler and package pins, frozen challenge files and proof settings match the earlier stock and sandbox checks. Those proof compilations and timings remain on their original Linux jobs. [Original stock verification](https://github.com/aliromman/riemann-hypothesis/tree/e02e84368fb09613e5f8068cb16b3acbd087c275/ci/stock-batch-1198/results/45430568327/) [Original default-sandbox verification](https://github.com/aliromman/riemann-hypothesis/tree/ee7f370bbee5adeae169f6d268734be1390cdf0d/ci/source-sandbox/results/45431323026/)
+
+The original Actions ZIP has SHA-256 `a4f240b1377956b75b9a993abe92fb0863785ace8af7b28b27a729ba423c72bb`. [Exact source and environment](verified.json)
