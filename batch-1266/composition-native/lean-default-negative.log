@@ -1,0 +1,5 @@
+Lean default kernel rejects the solution: while replaying declaration 'Nat.zero_add':
+(kernel) declaration type mismatch, 'Nat.zero_add' has type
+  Nat
+but it is expected to have type
+  ∀ (n : Nat), Eq (HAdd.hAdd 0 n) n

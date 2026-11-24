@@ -26,3 +26,7 @@ At 2026-11-24T17:25:13Z there were 145 open proposals. Of the 143 other proposal
 | [#1149](https://github.com/leanprover-community/riemann-hypothesis/pull/1149) | 1 |
 
 The earlier pruning, consolidation and proof changes in #45, #55, #63, #68, #87 and #120 are covered by the source comparison. #45 and #68 merged. #55, #63, #87 and #120 closed without merging. [Latest status and Git IDs](current-precedents.json) · [Prior source comparison](https://github.com/aliromman/riemann-hypothesis/tree/4ff4a916dea1434b564f83253d729595fcd019d6/prior-work)
+
+## Preview of community batch 8
+
+An additional snapshot found 151 open PRs. It includes the new file-name proposal #1314 and the 46-PR community batch #1313. On the latter's draft `dda69e8303156955dfaddbc0e7192c9ceff81855`, this proposal shares 120 files. The source preview honors all 8 upstream deletions and reconstructs all 112 retained files. It projects 250,639 fewer code lines. In one import header, the community batch added a new instance of an existing line. The preview keeps the new import and the complete revised proof body. These numbers cover the source on an unmerged draft. [Full file comparison](batch8-peer-sources.jsonl.gz) · [Totals](batch8-peer-sources.json) · [Concurrent import and proof edits](batch8-concurrent-imports.json) · [Changed peer heads](incremental-pr-coordination.json)

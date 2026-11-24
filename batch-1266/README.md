@@ -17,7 +17,7 @@ The project graph has 367,957 imports. Among untouched files, 9,881 import an ed
 
 Together the two proposals change 41,403 Lean sources. On each of the 9,152 shared paths the joint tree combines the import proposal's header and the scope proposal's body. The combined tree has 12,898,659 nonblank Lean lines, 1,398,124 fewer than community main. [Combined tree](composition.json) · [Complete shared-path comparison](composition-source.jsonl.gz)
 
-The full default-target Lake build and the full sandboxed five-theorem solution export require community infrastructure. Whole-project compilation time is unmeasured.
+The official parent cache restored all 59,883 modules on an Apple silicon Mac. The complete candidate Lake build and the full sandboxed five-theorem solution export remain outstanding. Whole-project compilation time is unmeasured. [Ordinary Lake build](ordinary-lake)
 
 The plan command reads the full project and retains just imports, declaration names, sizes and exclusion flags. The apply command reads only the members in its saved plan. The real stock tool used for the previous whole-checkout measurements has the same two Python source blobs as this proposal. The current source census rechecked every planner input. [Planner source binding](planner/source-binding.json) · [Current inputs and output digests](planner/input-equality.json)
 

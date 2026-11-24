@@ -1,0 +1,16 @@
+✔ [3/6] Built scripts.Cache (155ms)
+✔ [5/6] Built scripts.Cache:c.o (225ms)
+✔ [6/6] Built cache:exe (221ms)
+Fetching Mathlib cache...
+Current branch: HEAD
+Using cache from origin: (some leanprover-community/mathlib4)
+No files to download
+Already decompressed 9133 file(s)
+warning: unable to find all commit-graph files
+warning: unable to find all commit-graph files
+Fetching successful CI cache 1fe9f67d517acae353e96c8059f2dcb79e794dc8 for current build inputs: 59883 modules, 59883 not yet registered...
+fetch-artifacts: 59883 mapped, 28792 missing locally
+fetch-artifacts: pass 1: downloaded 28792/28792 (curl exit 0; 0 failed SHA-256 verification)
+warning: unable to find all commit-graph files
+Unpacking 59883 modules with stock leantar (24 workers)...
+Checking with lake build --no-build...
