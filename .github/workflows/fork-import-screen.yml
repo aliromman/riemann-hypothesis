@@ -15,11 +15,12 @@ jobs:
   prepare:
     if: github.repository == 'aliromman/riemann-hypothesis' && github.event.repository.private == false
     runs-on: ubuntu-24.04
-    timeout-minutes: 100
+    timeout-minutes: 210
     outputs:
       groups: ${{ steps.scope.outputs.groups }}
       cache: ${{ steps.scope.outputs.cache }}
       math: ${{ steps.scope.outputs.math }}
+      parallel: ${{ steps.scope.outputs.parallel }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -39,7 +40,7 @@ jobs:
         name: Select the reviewed panel and cache keys
         working-directory: harness/ci/import-screen
         env:
-          INPUT_HASH: ${{ hashFiles('harness/ci/import-screen/plans/*.txt', 'harness/ci/import-screen/prepare.py', 'harness/ci/import-screen/lake_imports.py') }}
+          INPUT_HASH: ${{ hashFiles('harness/ci/import-screen/plans/*.txt', 'harness/ci/import-screen/prepare.py', 'harness/ci/import-screen/lake_imports.py', 'harness/ci/import-screen/panels.py', 'harness/ci/import-screen/catalog.json') }}
         run: |
           python3 - <<'PY'
           import json, os
@@ -48,7 +49,8 @@ jobs:
           phase = Path('phase').read_text().strip()
           with open(os.environ['GITHUB_OUTPUT'],'a') as output:
               print('groups='+json.dumps(groups(phase)),file=output)
-              print('cache=rh-screen-v1-'+phase+'-'+MANIFEST+'-'+os.environ['INPUT_HASH'],file=output)
+              print('parallel='+str(12 if phase in ('rest','rest-tail') else 8 if phase=='full' else 4),file=output)
+              print('cache=rh-screen-v2-'+phase.split('-',1)[0]+'-'+MANIFEST+'-'+os.environ['INPUT_HASH'],file=output)
               print('math=rh-screen-math-v1-linux-x64-31ce06eaadf4a200c0e1407c5f10953cf606b8f8',file=output)
           PY
       - name: Restore the shared authenticated project archives
@@ -57,6 +59,10 @@ jobs:
         with:
           path: ${{ runner.temp }}/rh-screen-cache
           key: ${{ steps.scope.outputs.cache }}
+          restore-keys: |
+            rh-screen-v2-full-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
+            rh-screen-v1-full-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
+            rh-screen-v1-pilot-db681d77faedbe9dd13afdd6e0a4076e63539302dba3ee98d48f6e072e103855-
       - name: Bind the community cache to the pinned source and fetch each missing archive once
         run: |
           trial=harness/ci/import-screen
@@ -94,7 +100,7 @@ jobs:
     timeout-minutes: 335
     strategy:
       fail-fast: false
-      max-parallel: 8
+      max-parallel: ${{ fromJSON(needs.prepare.outputs.parallel) }}
       matrix:
         group: ${{ fromJSON(needs.prepare.outputs.groups) }}
     steps:
@@ -148,15 +154,30 @@ jobs:
           trial="$GITHUB_WORKSPACE/harness/ci/import-screen"
           lean -R "$trial" -c "$RUNNER_TEMP/CheckInterface.c" "$trial/CheckInterface.lean"
           leanc -O2 -o "$RUNNER_TEMP/check-interface" "$RUNNER_TEMP/CheckInterface.c"
+      - name: Recover authenticated results for this exact group and verification code
+        id: checkpoint
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-screen-receipts
+          key: rh-receipts-v1-${{ matrix.group }}-${{ hashFiles('harness/ci/import-screen/*.py', 'harness/ci/import-screen/*.lean', 'harness/ci/import-screen/catalog.json', 'harness/ci/import-screen/targets.txt') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            rh-receipts-v1-${{ matrix.group }}-${{ hashFiles('harness/ci/import-screen/*.py', 'harness/ci/import-screen/*.lean', 'harness/ci/import-screen/catalog.json', 'harness/ci/import-screen/targets.txt') }}-
       - name: Check candidate source and compare its compiled output to the parent
+        id: screen
         working-directory: parent
         run: |
-          python3 -u ../harness/ci/import-screen/screen.py --parent .             --state "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-results"             --bin "$(dirname "$(elan which lean)")" --judge "$RUNNER_TEMP/check-interface"
+          python3 -u ../harness/ci/import-screen/screen.py --parent .             --state "$RUNNER_TEMP/rh-screen-cache" --work "$RUNNER_TEMP/rh-results"             --bin "$(dirname "$(elan which lean)")" --judge "$RUNNER_TEMP/check-interface" --resume "$RUNNER_TEMP/rh-screen-receipts"
+      - name: Save a resumable source-bound group checkpoint
+        if: always() && (steps.screen.outcome == 'success' || steps.screen.outcome == 'failure' || steps.screen.outcome == 'cancelled') && steps.checkpoint.outputs.cache-hit != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/rh-screen-receipts
+          key: ${{ steps.checkpoint.outputs.cache-primary-key }}
       - name: Save the per-module results, hashes and coverage
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: import-screen-${{ matrix.group }}-${{ github.sha }}
+          name: import-screen-${{ matrix.group }}-${{ github.run_id }}-${{ github.run_attempt }}
           retention-days: 3
           if-no-files-found: warn
           path: |

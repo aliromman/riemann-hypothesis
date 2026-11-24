@@ -6,8 +6,10 @@ import importlib.util
 import json
 from pathlib import Path
 import subprocess
+import shutil
 
 from lake_imports import import_levels
+from panels import digest_roots, first_panels, remaining_panels
 
 PARENT = '362d9476fbd4548dead48ed7b6a54600879e1e17'
 SOURCE_TREE = '40e3cf4d94bd95ec57949a01b570b2ece95e4ceb'
@@ -101,15 +103,35 @@ def graph_from_source(parent, rows):
         graph[name] = edges
     return graph
 
+def catalog():
+    return json.loads((HERE/'catalog.json').read_bytes())
+
 def groups(phase):
     if phase == 'pilot':
         return ['pilot']
     if phase == 'full':
-        return sorted(p.stem for p in (HERE/'plans').glob('group-*.txt'))
-    raise ValueError('phase must be pilot or full')
+        return sorted(first_panels())
+    if phase in ('rest','rest-early','rest-tail'):
+        rules=catalog()
+        all_rest=sorted(k for k in rules if k.startswith('rest-'))
+        early=set(sorted(all_rest,key=lambda k: -rules[k]['public_bytes'])[:4])
+        if phase=='rest-early':
+            return [k for k in all_rest if k in early]
+        if phase=='rest-tail':
+            return [k for k in all_rest if k not in early]
+        return all_rest
+    raise ValueError('phase must be pilot, full, rest, rest-early, or rest-tail')
 
-def scope(group, graph):
-    candidates = (HERE/'plans'/(group+'.txt')).read_text().splitlines()
+def root_lists(phase, graph):
+    if phase.startswith('rest'):
+        # All rest subwaves share one complete, immutable parent archive cache.
+        return remaining_panels(graph,first_panels())
+    return {group: (HERE/'plans'/(group+'.txt')).read_text().splitlines() for group in groups(phase)}
+
+def scope(group, graph, candidates):
+    rule=catalog()[group]
+    if len(candidates)!=rule['count'] or digest_roots(candidates)!=rule['roots_sha']:
+        raise ValueError(f'root list differs from reviewed panel {group}')
     if (not 1 <= len(candidates) <= 2500 or len(set(candidates)) != len(candidates)
             or any(n not in graph or not n.startswith('Development.') for n in candidates)):
         raise ValueError('invalid set of Development roots')
@@ -119,9 +141,10 @@ def scope(group, graph):
         levels = import_levels(name, graph)
         ancestors.update(levels)
         private.update(n for n,flags in levels.items() if flags & 1)
-    if len(ancestors) > 8000:
-        raise ValueError('group exceeds its bounded project scope')
-    return candidates, sorted(ancestors), private
+    ordered = sorted(ancestors)
+    if len(ordered)!=rule['modules'] or digest_roots(ordered)!=rule['closure_sha']:
+        raise ValueError(f'project import closure differs from reviewed panel {group}')
+    return candidates, ordered, private
 
 def seed(args, api, rows, shas):
     graph = graph_from_source(args.parent, rows)
@@ -130,8 +153,11 @@ def seed(args, api, rows, shas):
         raise ValueError('source-derived project graph differs from the pinned inventory')
     (args.state/'metadata/headers.json').write_bytes(data)
     needed = set()
-    for group in groups(args.group):
-        _, ancestors, _ = scope(group, graph)
+    root_directory = args.state/'metadata/root-sets'
+    root_directory.mkdir(exist_ok=True)
+    for group, members in root_lists(args.group,graph).items():
+        _, ancestors, _ = scope(group, graph, members)
+        (root_directory/(group+'.txt')).write_text('\n'.join(members)+'\n')
         needed.update(ancestors)
     selected = [rows[n] for n in sorted(needed)]
     if args.dry_run:
@@ -149,7 +175,9 @@ def restore(args, api, rows, shas):
     if hashlib.sha256(raw).hexdigest() != GRAPH:
         raise ValueError('cached project graph mismatch')
     graph = json.loads(raw)
-    roots, ancestors, private = scope(args.group, graph)
+    root_list=args.state/'metadata/root-sets'/(args.group+'.txt')
+    roots, ancestors, private = scope(args.group, graph, root_list.read_text().splitlines())
+    rule=catalog()[args.group]
     sparse = ['/scripts/','/lakefile.toml','/lake-manifest.json','/lean-toolchain']
     sparse += ['/'+str(source_path(name)) for name in ancestors]
     subprocess.run(['git','-C',str(args.parent),'sparse-checkout','set','--no-cone','--stdin'],
@@ -158,6 +186,18 @@ def restore(args, api, rows, shas):
     if build.exists():
         raise ValueError('expected empty project build directory')
     chosen = [rows[n] for n in ancestors]
+    # The fork cache is immutable. Reclaim sibling panels' files from this VM's copy.
+    keep={archive for _,_,archive in chosen}
+    for path in (args.state/'artifacts').iterdir():
+        if path.name.endswith('.ltar') and path.name not in keep:
+            path.unlink()
+    # The public-facet estimate is measured on these exact parent artifacts.
+    # Keep 10 GiB for Mathlib and 2 GiB for native compiler and unpacking scratch.
+    free=shutil.disk_usage(args.work.parent).free
+    reserve=12 * (1 << 30)
+    required=rule['public_bytes']+reserve
+    if free < required:
+        raise OSError(f'runner disk limit for {args.group}: {free} free, {required} required')
     # Every worker verifies every cached archive that enters its own baseline.
     for _,_,archive in chosen:
         path = args.state/'artifacts'/archive
@@ -168,6 +208,8 @@ def restore(args, api, rows, shas):
                 raise ValueError(f'archive SHA-256 differs: {archive}')
     jobs = api.unpack_jobs(args.parent, args.state, chosen)
     for offset in range(0,len(jobs),32):
+        if shutil.disk_usage(args.work.parent).free < 2 * (1 << 30):
+            raise OSError('less than 2 GiB remains before the next bounded leantar batch')
         batch = jobs[offset:offset+32]
         subprocess.run([args.leantar,'--jobs','2','-f','-x','-j','-'],input=json.dumps(batch),text=True,check=True)
         for name, _, _ in chosen[offset:offset+len(batch)]:
@@ -184,7 +226,11 @@ def restore(args, api, rows, shas):
     (args.work/'index.json').write_bytes(canonical(index))
     (args.work/'roots.txt').write_text('\n'.join(roots)+'\n')
     total = sum((args.state/'artifacts'/r[2]).stat().st_size for r in chosen)
-    receipt = dict(parent=PARENT,tree=SOURCE_TREE,donor=DONOR,manifest=MANIFEST,graph=GRAPH,
+    if total!=rule['archive_bytes']:
+        raise ValueError('project archive bytes differ from authenticated inventory')
+    receipt = dict(disk_free_before_unpack=free,disk_required_before_unpack=required,
+                   expected_parent_public_bytes=rule['public_bytes'],disk_free_after_unpack=shutil.disk_usage(args.work).free,
+                   parent=PARENT,tree=SOURCE_TREE,donor=DONOR,manifest=MANIFEST,graph=GRAPH,
                    group=args.group,roots=len(roots),archives=len(ancestors),archive_bytes=total,private_parents=len(private))
     (args.work/'scope.json').write_text(json.dumps(receipt,indent=2)+'\n')
     print(receipt,flush=True)
