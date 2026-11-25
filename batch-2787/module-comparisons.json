@@ -11,13 +11,20 @@
       "warnings": 2505,
       "declaration_occurrences_counted": 10141,
       "ordinary and official declarations compared directly": 186
+    },
+    "focus-completed": {
+      "modules": 796,
+      "edited": 792,
+      "warnings": 9027,
+      "declaration_occurrences_counted": 38727,
+      "ordinary and official declarations compared directly": 796
     }
   },
   "distinct_union": {
-    "modules": 186,
-    "edited_modules": 186,
-    "declaration_occurrences": 10141,
-    "warnings": 2505
+    "modules": 937,
+    "edited_modules": 933,
+    "declaration_occurrences": 46919,
+    "warnings": 11154
   },
   "private_import_check": "pending at this checkpoint",
   "full_build": "pending at this checkpoint",
