@@ -128,8 +128,6 @@ import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.Thir
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.EigenAtInertStatement
 
-alias GlobalTheory.T.theta_eigen_compatibility_second_alt :=
-  GlobalTheory.EigInert.eigen_at_inert_alt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RowModelOfPointModels
@@ -1549,7 +1547,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ValInertStatement
 
-alias GlobalTheory.T.good_place_split_condition_alt := GlobalTheory.ValInert.val_inert_alt
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.UbcStringO

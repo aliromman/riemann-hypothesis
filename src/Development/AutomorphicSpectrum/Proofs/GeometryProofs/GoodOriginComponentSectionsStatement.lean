@@ -167,7 +167,6 @@ open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalT
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompLawsRootModelRelay
 
-alias _root_.GlobalTheory.CompanionTheory.Relay.comp_laws_root_model_relay := _root_.ModelDimension.component_laws_unif_frame
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompLawsRootModelRelayStatement
