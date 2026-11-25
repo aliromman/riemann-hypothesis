@@ -6,25 +6,29 @@
   },
   "groups": {
     "completed": {
-      "modules": 181,
-      "edited": 99,
-      "warnings": 816,
-      "declaration_occurrences_counted": 10662,
-      "ordinary and official declarations compared directly": 181
+      "stock_lake_replayed": 557,
+      "modules": 999,
+      "edited": 365,
+      "warnings": 4973,
+      "declaration_occurrences_counted": 43517,
+      "ordinary and official declarations compared directly": 999,
+      "stock_lake_built": 442
     },
     "focus-completed": {
-      "modules": 42,
-      "edited": 26,
-      "warnings": 253,
-      "declaration_occurrences_counted": 2349,
-      "ordinary and official declarations compared directly": 42
+      "stock_lake_built": 127,
+      "modules": 409,
+      "edited": 142,
+      "warnings": 2235,
+      "declaration_occurrences_counted": 19142,
+      "ordinary and official declarations compared directly": 409,
+      "stock_lake_replayed": 282
     }
   },
   "distinct_union": {
-    "modules": 192,
-    "edited_modules": 102,
-    "declaration_occurrences": 10805,
-    "warnings": 837
+    "modules": 1021,
+    "edited_modules": 380,
+    "declaration_occurrences": 43984,
+    "warnings": 4988
   },
   "private_import_check": "pending at this checkpoint",
   "full_build": "pending at this checkpoint",

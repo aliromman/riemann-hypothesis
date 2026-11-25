@@ -59,8 +59,8 @@
       {
         "id": 139197398074,
         "name": "pr-summary",
-        "status": "in_progress",
-        "conclusion": null,
+        "status": "completed",
+        "conclusion": "success",
         "html_url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45611925639/job/139197398074"
       },
       {
