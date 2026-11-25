@@ -1,0 +1,41 @@
+{
+  "merge": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+  "tree": "5aaf227d22e4db7fc59dd9ae4d279fed43eecfa6",
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "started": "2026-11-25T16:52:58.575707+00:00",
+  "finished": "2026-11-25T16:53:21.141806+00:00",
+  "exit": 0,
+  "program_sha256": "fb69b0939d762b6766f61b3df58458456cea570cdbd344ed4284badc792481ae",
+  "setup_sha256": "8bd509c657bd44350da6a088174794e22baa747574f7ba6e9bac33a14c038210",
+  "setup_entries": 64710,
+  "main_facets": {
+    "Main.olean": "7979dcd40052b769498bb09e7396305fdf9056b75381b01353e1ec3ce8eaf5d5",
+    "Main.olean.server": "6014235d7a00752ad6bc47c53b0b7fbfd5a2a7a1ab1fa453dfd7aa7b1db48128",
+    "Main.olean.private": "be02db6d620b419c8d3f469a46b4e918ff15360798acab8be3df3cccf99b05f4"
+  },
+  "log": "kernel.log",
+  "log_sha256": "44fb4f8873e3305b52856e823ba53c7264d0dc3dc11027b75b154b6b19573ddc",
+  "accepted": [
+    "riemannHypothesis",
+    "riemannZeta_eq_zero_re",
+    "LFunction_ne_zero_of_half_lt_re",
+    "LFunction_eq_zero_re",
+    "LFunction_eq_zero_re_of_isPrimitive"
+  ],
+  "negative_control": "True.intro rejected for riemannHypothesis",
+  "trust_level": 0,
+  "standalone_attempt": {
+    "command": [
+      "lake",
+      "--no-cache",
+      "env",
+      "leanchecker",
+      "-v",
+      "Statements",
+      "Main"
+    ],
+    "exit": 1,
+    "error": "Too many open files in system",
+    "log_sha256": "400f5b076bdc2c22875208107b773ce176150d3613d9f08cfe5b87d09b5f3905"
+  }
+}

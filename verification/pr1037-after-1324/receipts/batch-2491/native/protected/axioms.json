@@ -1,0 +1,68 @@
+{
+  "merge": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+  "tree": "5aaf227d22e4db7fc59dd9ae4d279fed43eecfa6",
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "started": "2026-11-25T16:47:52.371150+00:00",
+  "main_olean_sha256": "7979dcd40052b769498bb09e7396305fdf9056b75381b01353e1ec3ce8eaf5d5",
+  "challenge_blob": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+  "fixture_sha256": "1198d8f1a4476681568ab42c5f03bf865441aa194f80621c1d7bcf88f696192e",
+  "runs": [
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "lean",
+        "ProtectedStatements.lean"
+      ],
+      "exit": 0,
+      "log": "axioms.log.gz",
+      "sha256": "6464b9a2dd5cea9af8725eea89f7becb019dee89ae21db77b278d613302922d4",
+      "finished": "2026-11-25T16:49:14.327563+00:00"
+    }
+  ],
+  "axioms": {
+    "riemannHypothesis": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "riemannZeta_eq_zero_re": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "LFunction_ne_zero_of_half_lt_re": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "LFunction_eq_zero_re": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "LFunction_eq_zero_re_of_isPrimitive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "protected_types": {
+    "riemannHypothesis": "RiemannHypothesis",
+    "riemannZeta_eq_zero_re": "RiemannZetaZerosOnLine",
+    "LFunction_ne_zero_of_half_lt_re": "DirichletLNonvanishingRightOfHalf",
+    "LFunction_eq_zero_re": "DirichletLZerosOnLine",
+    "LFunction_eq_zero_re_of_isPrimitive": "PrimitiveDirichletLZerosOnLine"
+  },
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "definition_equalities": [
+    "RiemannZetaZerosOnLine",
+    "DirichletLNonvanishingRightOfHalf",
+    "DirichletLZerosOnLine",
+    "PrimitiveDirichletLZerosOnLine"
+  ]
+}

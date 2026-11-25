@@ -1,0 +1,24 @@
+{
+  "merge": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+  "challenge_git_blob": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+  "challenge_sha256": "a3cebbf30be6b9268a0ed413c9bbc256dfa9f4bfa04f1a75f144d135da5e21a5",
+  "fixture_sha256": "1198d8f1a4476681568ab42c5f03bf865441aa194f80621c1d7bcf88f696192e",
+  "alias_bodies": [
+    "RiemannZetaZerosOnLine",
+    "DirichletLNonvanishingRightOfHalf",
+    "DirichletLZerosOnLine",
+    "PrimitiveDirichletLZerosOnLine"
+  ],
+  "types": {
+    "riemannHypothesis": "RiemannHypothesis",
+    "riemannZeta_eq_zero_re": "RiemannZetaZerosOnLine",
+    "LFunction_ne_zero_of_half_lt_re": "DirichletLNonvanishingRightOfHalf",
+    "LFunction_eq_zero_re": "DirichletLZerosOnLine",
+    "LFunction_eq_zero_re_of_isPrimitive": "PrimitiveDirichletLZerosOnLine"
+  },
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}
