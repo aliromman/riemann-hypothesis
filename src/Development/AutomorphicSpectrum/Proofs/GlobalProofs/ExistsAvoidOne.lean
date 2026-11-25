@@ -146,10 +146,6 @@ open Polynomial
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
 
-theorem exists_large_prime_dvd_eval (f : ℤ[X]) (hf : 0 < f.natDegree) (N : ℕ) :
-    ∃ (p : ℕ) (m : ℤ), p.Prime ∧ N < p ∧ (p : ℤ) ∣ f.eval m :=
-  _root_.UpperTheory.Reformulated.B.P6.LargePrimeDivisors.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.exists_large_prime_dvd_eval f hf N
-
 theorem exists_exponent_ne_zero (F : Type) [Field F] [NumberField F] :
     ∃ θ : 𝓞 F, RingOfIntegers.exponent θ ≠ 0 := by
   obtain ⟨α, hα⟩ := Field.exists_primitive_element ℚ F

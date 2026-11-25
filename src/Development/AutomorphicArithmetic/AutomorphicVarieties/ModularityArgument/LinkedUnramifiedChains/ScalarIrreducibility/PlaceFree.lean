@@ -91,7 +91,6 @@ import Mathlib.FieldTheory.Galois.Profinite
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.IneInclOntoUnits
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Polynomial ValuativeRel GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.PsType
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.PsType
 

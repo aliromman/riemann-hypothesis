@@ -211,26 +211,6 @@ theorem nc_loc (X : Formalism.MainNotions.G.Inst D L) (Y : Formalism.MainNotions
   exact ⟨nc_gU_eq X Y hT hL u w hg t0 ht0 K j, growth_exclusion_sum_eq X Y hT hL u w hg t0 ht0 K j,
     hal, hal0, hcap, hcap0, fun s _ e he => nc_excl X Y hT hL u w hg t0 ht0 s e he⟩
 
-def nc_Need2 (C₀ : ℝ) : Prop :=
-  ∀ (D : Formalism.BasicNotions.D7) (L : SizeData₂ D) (X : Formalism.MainNotions.G.Inst D L) (Y : Formalism.MainNotions.G.LatInst D) (K : Formalism.MainNotions.G.Consts),
-    C₀ ≤ K.dl1 → C₀ ≤ K.dl2 → C₀ ≤ K.Pr1 → (Formalism.MainNotions.G.rG L.sc < D.R.k ∧ 2 ≤ L.sc.x) → Formalism.MainNotions.SizesAt L →
-    ∀ hT : GatTies D, Formalism.MainNotions.G.LatTied hT X Y → ∀ (u : D.what₂.Word) (w : D.what₂.places.Pl)
-      (hg : GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w)),
-      1 ≤ Real.logb (D.what₂.places.resChar w) (2 * L.sc.a) →
-      ∀ t0 ∈ Formalism.MainNotions.G.reps X (D.what₂.places.resChar w), ∀ j ∈ SizeData₂.lifts D,
-        nc_De D L X Y K u w hg t0 j ∧
-        Formalism.MainNotions.FormalGroupSystem.Pr (Y.Fl u w hg).t (D.gat u w hg).P.r ((D.gat u w hg).P.lam0 (Y.vOf u w hg t0))
-          ((Y.Fl u w hg).w (Y.vOf u w hg t0)) j ≤
-          Formalism.MainNotions.G.Pr X K (Formalism.MainNotions.G.bL L) (D.what₂.places.resChar w) j t0
-
-theorem nc_need_of (C₀ : ℝ) (h : nc_Need2 C₀) : nc_Need C₀ := by
-  intro D L X Y K h1 h2 h3 h4 h5 hT hL u w hg hlog t0 ht0 j hj
-  obtain ⟨hde, hpr⟩ := h D L X Y K h1 h2 h3 h4 h5 hT hL u w hg hlog t0 ht0 j hj
-  exact ⟨nc_loc X Y K hT hL u w hg t0 ht0 j hj, hde, hpr⟩
-
-theorem numerical_closed_of_need (C₀ : ℝ) (h : nc_Need2 C₀) : Formalism.MainNotions.FormalGroupSystem.NumericalComparisonUniform :=
-  stmtNumE_of C₀ (nc_need_of C₀ h)
-
 end Formalism.MainNotions.FormalGroupSystem.Pf
 
 -- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.MultisetValuation.GrowthExclusionSumEq", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.NcIotaInj\npublic import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.StmtNumEOf\npublic import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.NcTsumOdd\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}

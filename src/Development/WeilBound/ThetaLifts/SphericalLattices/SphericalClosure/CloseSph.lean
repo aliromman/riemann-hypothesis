@@ -129,61 +129,13 @@ public import Development.WeilBound.ThetaLifts.CTKernel
 public import Development.WeilBound.ThetaLifts.FrameEstimates.HodgeTateFromSandwich
 public import Development.WeilBound.ThetaLifts.LatticeBasics.LocUnr
 public import Development.WeilBound.ThetaLifts.LocalTheory.ConeShifts.ContinuousFc
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqOfComponentTensorAdelicFunctionEq
 import Development.WeilBound.ThetaLifts.ConeHypotheses.PureEqPureA
 import GroundTheory.GlobalFields.LocalFieldAtPlace
 import GroundTheory.LocalFields.LocalFourierHaar
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFactorPureTensorComponentAtPlace
 import Development.WeilBound.ThetaLifts.CartanFactorisation.TensOfEval
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Algebra.AffineMonoid.UniqueSums
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.Polynomial.Basic
 import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
-import Std.Tactic.BVDecide.Normalize.Prop
 import Development.WeilBound.ThetaLifts.EigenvalueEndgame.EigenKilling.PolRange
 import Development.WeilBound.ThetaLifts.LatticeBasics.LeviEx
 import Development.WeilBound.ThetaLifts.LatticeBasics.LocMeas
@@ -202,11 +154,10 @@ import Development.WeilBound.ThetaLifts.TowerModels.TowerCodimensionTwoOf
 import Development.WeilBound.ThetaLifts.WeilDomination.DomWeilOf
 import Development.WeilBound.ThetaLifts.WeilDomination.MatchEx
 
--- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.WeilBound.ThetaLifts.Reductions.ArchimedeanMatchedMapsCompare, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PolReOf2T, Development.WeilBound.ThetaLifts.CartanFactorisation.ExistsEnlarge, Development.WeilBound.ThetaLifts.CartanFactorisation.InjPure, Development.WeilBound.ThetaLifts.CartanFactorisation.PolCountFinal, Development.WeilBound.ThetaLifts.LatticeBasics.BadFin, Development.WeilBound.ThetaLifts.LeviDeterminants.ThetaEvaluationZeroCone, Development.WeilBound.ThetaLifts.LocalTheory.LocAOf, Development.WeilBound.ThetaLifts.LocalTheory.LocBOf, Development.WeilBound.ThetaLifts.LocalTheory.ToralCohomology.DarbouxExt, Development.WeilBound.ThetaLifts.LocalTheory.UnramifiedCohomology.UnramifiedDeterminedBySphericalHolds, Development.WeilBound.ThetaLifts.SmallCones.SplitInv, Development.WeilBound.ThetaLifts.WeilDomination.ExistsUnitChrWNe, Development.WeilBound.ThetaLifts.WeilDomination.SwAnisoXOf, Development.WeilBound.ThetaLifts.SphericalLattices.SphericalClosure.CloseSph
+section -- clump:auto
+@[expose] public section
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.Reductions.ArchimedeanMatchedMapsCompare
-
+noncomputable section
 
 namespace PositivityTheory.ThKF
 
@@ -282,10 +233,14 @@ theorem archimedean_matched_maps_compare (hH : PositivityTheory.ThKR.JoinTri) (h
 
 end PositivityTheory.ThKF
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PolReOf2T
+section -- clump:auto
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.ThetaK
 
@@ -387,10 +342,14 @@ theorem polRe_of2T (hH : PositivityTheory.ThKR.JoinTri) (hM : MaxFinT) (hO : Arc
 
 end GlobalTheory.CompanionTheory.ThetaK
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.CartanFactorisation.ExistsEnlarge
+section -- clump:auto
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.ThKF
 
@@ -522,10 +481,14 @@ theorem anAll_of (hW : WeilConv) (hC : KCoinv) (hI : ILeft) : AnAll := by
 
 end PositivityTheory.ThKF
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.CartanFactorisation.InjPure
+section -- clump:auto
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.ThKF
 
@@ -536,9 +499,12 @@ theorem iLeft (hT : ThetaBasic) : ILeft := fun _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 end PositivityTheory.ThKF
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.WeilBound.ThetaLifts.CartanFactorisation.PolCountFinal
+section -- clump:auto
+@[expose] public section
 
 namespace PositivityTheory.ThKF
 
@@ -547,8 +513,10 @@ theorem polCount_of_derEx (h : GlobalTheory.RealLift.DerEx) : PolCount :=
 
 end PositivityTheory.ThKF
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public section -- clump member: Development.WeilBound.ThetaLifts.LatticeBasics.BadFin
+section -- clump:auto
+@[expose] public section
 
 namespace GlobalTheory.ThK.Dbl
 
@@ -556,14 +524,19 @@ theorem badFactor : BadFactor := badFactor_of dblX PositivityTheory.ThKG.Tow.sta
 
 end GlobalTheory.ThK.Dbl
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public section -- clump member: Development.WeilBound.ThetaLifts.LeviDeterminants.ThetaEvaluationZeroCone
+section -- clump:auto
+@[expose] public section
 
 theorem PositivityTheory.ThKF0.evaluation_at_zero_and_cone : GlobalTheory.ThK.EvZero ∧ GlobalTheory.ThK.EvCone := ⟨PositivityTheory.ThKF0.evZero, PositivityTheory.ThKF0.evCone⟩
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LocalTheory.LocAOf
+section -- clump:auto
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.ThKG.Loc
 
@@ -738,10 +711,14 @@ theorem locA_of (H : Hyp) (J : Hyp2) (hC : ConeFacA) (hS : StdA) : LocA' := by
 
 end PositivityTheory.ThKG.Loc
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LocalTheory.LocBOf
+section -- clump:auto
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.ThKG.Loc
 
@@ -992,10 +969,14 @@ theorem locB_of (H : Hyp) (J : Hyp2) (hC : ConeFacB) (hS : StdB) : LocB' := by
 
 end PositivityTheory.ThKG.Loc
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LocalTheory.ToralCohomology.DarbouxExt
+section -- clump:auto
+@[expose] public section
 
+noncomputable section
 
 open scoped TensorProduct Matrix Classical
 open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK Matrix
@@ -1254,10 +1235,14 @@ theorem realUniq : Loc.RealUniq := by
 
 end PositivityTheory.ThKG.CayleyTransformDarboux
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LocalTheory.UnramifiedCohomology.UnramifiedDeterminedBySphericalHolds
+section -- clump:auto
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.ThKG.Loc
 
@@ -1409,12 +1394,16 @@ theorem unramifiedProportional_holds : UnramifiedMultiplicityOneProportional := 
 
 end PositivityTheory.ThKG.Loc
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.SmallCones.SplitInv
+section -- clump:auto
+@[expose] public section
 
 set_option linter.unusedSectionVars false
 
+noncomputable section
 
 namespace PositivityTheory.ThKCT
 
@@ -1495,9 +1484,13 @@ theorem splitInv2_of (hU : UnipEx) (hS : StabDec) (hT : ThetaBasic) (hP : Triple
 
 end PositivityTheory.ThKCT
 end -- clump:auto
+end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.WeilDomination.ExistsUnitChrWNe
+section -- clump:auto
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.ThK.Close
 
@@ -1547,8 +1540,11 @@ theorem facNe : GlobalTheory.ThK.FacNe := by
 
 end PositivityTheory.ThK.Close
 end -- clump:auto
+end -- clump:auto
+end -- clump:auto
 
-@[expose] public section -- clump member: Development.WeilBound.ThetaLifts.WeilDomination.SwAnisoXOf
+section -- clump:auto
+@[expose] public section
 
 namespace PositivityTheory.ThKClose
 
@@ -1559,8 +1555,10 @@ theorem swAnisoX_of (h1 : SiegelWeilStd) (h2 : FrameConj) (hL : FinLevel) (hC : 
 
 end PositivityTheory.ThKClose
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public section -- clump member: Development.WeilBound.ThetaLifts.SphericalLattices.SphericalClosure.CloseSph
+section -- clump:auto
+@[expose] public section
 
 theorem PositivityTheory.Sph.Tr.closeSph
     (hKCo : PositivityTheory.KCo.DictSt → GlobalTheory.ThK.KCoinv)
@@ -1727,19 +1725,5 @@ theorem PositivityTheory.Sph.Tr.closeSph
   have h_Weil6_ThKG_EndB_ : PositivityTheory.ThKG.EndB' := (PositivityTheory.ThKG.endB'_of h_GlobalTheory_ThK_EndB)
   have h_Weil6_ThKG_Leaves : PositivityTheory.ThKG.Leaves := ⟨h_GlobalTheory_ThK_EvZero, h_GlobalTheory_ThK_EvCone, h_GlobalTheory_ThK_StabEx, h_GlobalTheory_ThK_TowerA, h_GlobalTheory_ThK_TowerB, h_GlobalTheory_ThK_FacNe, h_GlobalTheory_ThK_MatchEx, h_Weil6_ThKG_LeviEx, h_Weil6_ThKG_PolDense, h_GlobalTheory_ThK_WeilConv, h_GlobalTheory_ThK_SoCont, h_GlobalTheory_ThK_SplitEx, h_GlobalTheory_ThK_CTBigZero, h_GlobalTheory_ThK_CTSmallZero, h_GlobalTheory_ThK_CTBigCone, h_GlobalTheory_ThK_CTSmallCone, h_GlobalTheory_ThK_AnAll, h_GlobalTheory_ThK_PolRe, h_GlobalTheory_ThK_NonZeroAn, h_GlobalTheory_ThK_PolZero, h_Weil6_ThKG_LocA_, h_Weil6_ThKG_LocB_, h_Weil6_ThKG_EndA_, h_Weil6_ThKG_EndB_, h_GlobalTheory_ThK_KReal, h_GlobalTheory_ThK_KFin⟩
   exact PositivityTheory.ThKG.agree_of_leaves h_Weil6_ThKG_Leaves h_GlobalTheory_ThK_KDecay h_GlobalTheory_ThK_KCoinv
-
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.Reductions.ArchimedeanMatchedMapsCompare", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.Reductions.JoinDef\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.CartanConj\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.PolCountDef\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.CountableCompactOpen\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.RealTrans\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.CommuteConj\n\n"}
--- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PolReOf2T", "h": "module\n\npublic import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.HoweMaximalTori.MaxSplit\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.Factor\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.PolCountDef\npublic import Development.WeilBound.ThetaLifts.Reductions.JoinDef\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqOfComponentTensorAdelicFunctionEq\npublic import Development.WeilBound.CoreStatements.LocalThetaKernels.Locrep\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.ActsComp\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.CountableCompactOpen\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.RealTrans\nimport Development.WeilBound.ThetaLifts.ConeHypotheses.PureEqPureA\npublic import Development.WeilBound.ThetaLifts.Reductions.ArchimedeanMatchedMapsCompare\nimport GroundTheory.GlobalFields.LocalFieldAtPlace\nimport GroundTheory.LocalFields.LocalFourierHaar\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.InertDef\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.CartanFactorisation.ExistsEnlarge", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.Factor\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqOfComponentTensorAdelicFunctionEq\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFactorPureTensorComponentAtPlace\nimport Development.WeilBound.ThetaLifts.CartanFactorisation.TensOfEval\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.CartanFactorisation.InjPure", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.Factor\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.ExistsBeta\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.Unimod\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.CartanFactorisation.PolCountFinal", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFockMap\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.PolCountDef\npublic import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.RLFock\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.PolCount\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.LatticeBasics.BadFin", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.HodgeTateFromSandwich\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.BadFactor\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.NearUnits\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.PresDOf\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.RatEquiv\npublic import Development.WeilBound.ThetaLifts.TowerModels.StabEx\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.LeviDeterminants.ThetaEvaluationZeroCone", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone\npublic import Development.WeilBound.ThetaLifts.LeviDeterminants.EvCone\npublic import Development.WeilBound.ThetaLifts.LeviDeterminants.EvZero\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.LocalTheory.LocAOf", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.LocalTheory.StepFacEq\npublic import Development.WeilBound.ThetaLifts.LocalTheory.AdmissiblePureTensorSchwartz\nimport Development.WeilBound.ThetaLifts.ConeHypotheses.PureEqPureA\npublic import Development.WeilBound.ThetaLifts.LocalTheory.MemPolData\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.LocalTheory.LocBOf", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.LocalTheory.StepFacEq\npublic import Development.WeilBound.ThetaLifts.LocalTheory.AdmissiblePureTensorSchwartz\nimport Development.WeilBound.ThetaLifts.ConeHypotheses.PureEqPureA\npublic import Development.WeilBound.ThetaLifts.LocalTheory.MemPolData\nimport Mathlib.Algebra.Module.StablyFree.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.LocalTheory.ToralCohomology.DarbouxExt", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.LocalTheory.UnramifiedDeterminedBySpherical\npublic import Development.WeilBound.ThetaLifts.LocalTheory.ToralCohomology.ExistsTorus\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdelicSchwartzNeZeroAtOrigin\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDiagonalLagrangianInvariantForm\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryDoubledBlockDiagOne\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProductFunctionOnSumCoordsMemAdelicSchwartzSpace\npublic import Development.WeilBound.ThetaLifts.LeviDeterminants.EqZeroOfTheta\nimport Mathlib.Algebra.AffineMonoid.UniqueSums\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Etale.Weakly\nimport Mathlib.RingTheory.Finiteness.ModuleFinitePresentation\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.LocalTheory.UnramifiedCohomology.UnramifiedDeterminedBySphericalHolds", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.LocalTheory.UnramifiedMultiplicityOneProportional\npublic import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.Vaceigen\npublic import Development.WeilBound.CoreStatements.LocalThetaKernels.IwasMain\npublic import Development.WeilBound.CoreStatements.LocalThetaKernels.Locrep\npublic import Development.WeilBound.ThetaLifts.LocalTheory.UnramifiedCohomology.MemLatWIff\npublic import Development.WeilBound.ThetaLifts.TowerModels.LeviAd\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts\npublic import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.InertDef\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.SmallCones.SplitInv", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.SmallCones.HodgeTateFromSandwich\npublic import Development.WeilBound.ThetaLifts.LocalTheory.SplitInv2\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasCompactSupportFinprodSchwartzBruhatFiniteAdel\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLocallyConstantFinprodSchwartzBruhatFiniteAdel\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.IntegrableOnRight\npublic import Development.WeilBound.ThetaLifts.SmallCones.ThetaKernelGeneralIdentity\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.WeilDomination.ExistsUnitChrWNe", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsSplitChartOne\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.RamificationIdxEqOneOfIsSquare\npublic import Development.WeilBound.ThetaLifts.WeilDomination.FacNeGauss\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.WeilDomination.SwAnisoXOf", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.ContinuousFlat\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.HypothesesS\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.SecondFromFirstStatement\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.SiegelWeilAnisoOf\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.SphericalLattices.SphericalClosure.CloseSph", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFockMap\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsSmoothModerateOfIsAutFunSm\npublic import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.FinSplit\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.RightOnto\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.CartanConj\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.HypothesesS\npublic import Development.WeilBound.ThetaLifts.LocalTheory.UnramifiedDeterminedBySpherical\npublic import Development.WeilBound.ThetaLifts.SphericalLattices.HoweInert\npublic import Development.WeilBound.ThetaLifts.TowerModels.PlaneHerm\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeLEntireAndNonzeroAtOneHolds\npublic import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.LinearAct\npublic import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.SiegelTransport\npublic import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.EvIHalfTrace\npublic import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.KRealAsm\npublic import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.RLLieH\npublic import Development.WeilBound.CoreStatements.LocalThetaKernels.Locpair\npublic import Development.WeilBound.CoreStatements.LocalThetaKernels.LocpairU\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDictSec\npublic import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.HoweMaximalTori.MaxSplit\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.Factor\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.PolCountDef\npublic import Development.WeilBound.ThetaLifts.Reductions.JoinDef\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PolReOf2T\npublic import Development.WeilBound.ThetaLifts.AgreeOfLeaves\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.ArchimedeanEvaluationVector\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.Cartan\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.ExistsEnlarge\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.FockSecondActionMatrixUnitEq\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.InjPure\npublic import Development.WeilBound.ThetaLifts.CartanFactorisation.PolCountFinal\npublic import Development.WeilBound.ThetaLifts.FrameEstimates.BlockForm\npublic import Development.WeilBound.ThetaLifts.FrameEstimates.FundamentalDomainFiniteVolume\npublic import Development.WeilBound.ThetaLifts.FrameEstimates.GrpTop\npublic import Development.WeilBound.ThetaLifts.FrameEstimates.InitialPairs.TriplePairHolds\npublic import Development.WeilBound.ThetaLifts.FrameEstimates.IsCompactIntV\npublic import Development.WeilBound.ThetaLifts.FrameEstimates.LatCpt\npublic import Development.WeilBound.ThetaLifts.FrameEstimates.SiegelAll\npublic import Development.WeilBound.ThetaLifts.FrameEstimates.WeilConv\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.BadFin\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.BotAsm\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.BoxSec\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.CartanBound2\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.ConvOfCpt\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.EisCont\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.EulerHalf\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.ExistsIsGauss\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.FinLevel\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.FrameConj\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.HgtInt\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.LocUnrInert\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.LocUnrSplit\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.NormZeta\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.PolDense\npublic import Development.WeilBound.ThetaLifts.LeviDeterminants.ActsEx\npublic import Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.MCPure\npublic import Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.MixWClosed\npublic import Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.MixXClosed\npublic import Development.WeilBound.ThetaLifts.LeviDeterminants.ThetaBasic\npublic import Development.WeilBound.ThetaLifts.LeviDeterminants.ThetaEvaluationZeroCone\npublic import Development.WeilBound.ThetaLifts.LocalTheory.ArchimedeanBumps.ArchHeisOf\npublic import Development.WeilBound.ThetaLifts.LocalTheory.ArchimedeanBumps.BumpAFin\npublic import Development.WeilBound.ThetaLifts.LocalTheory.ArchimedeanBumps.SlicePol\npublic import Development.WeilBound.ThetaLifts.LocalTheory.ConeShifts.FubMain\npublic import Development.WeilBound.ThetaLifts.LocalTheory.ConeShifts.IdealId0\npublic import Development.WeilBound.ThetaLifts.LocalTheory.ConeShifts.VacShiftOf\npublic import Development.WeilBound.ThetaLifts.LocalTheory.HypOf\npublic import Development.WeilBound.ThetaLifts.LocalTheory.LocAOf\npublic import Development.WeilBound.ThetaLifts.LocalTheory.LocBOf\npublic import Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ExistsVol\npublic import Development.WeilBound.ThetaLifts.LocalTheory.ToralCohomology.ArchimedeanMultiplicityOneOfLie\npublic import Development.WeilBound.ThetaLifts.LocalTheory.ToralCohomology.DarbouxExt\npublic import Development.WeilBound.ThetaLifts.LocalTheory.UnramifiedCohomology.FLocBOf\npublic import Development.WeilBound.ThetaLifts.LocalTheory.UnramifiedCohomology.UnramifiedDeterminedBySphericalHolds\npublic import Development.WeilBound.ThetaLifts.Reductions.JoinTriOf\npublic import Development.WeilBound.ThetaLifts.Reductions.TopPolarZero.PolZero\npublic import Development.WeilBound.ThetaLifts.Reductions.WeightConstants.ConstOfGood\npublic import Development.WeilBound.ThetaLifts.SmallCones.IwaExOf\npublic import Development.WeilBound.ThetaLifts.SmallCones.KFinDataOf\npublic import Development.WeilBound.ThetaLifts.SmallCones.Leaves\npublic import Development.WeilBound.ThetaLifts.SmallCones.LinExOf\npublic import Development.WeilBound.ThetaLifts.SmallCones.MixABOf\npublic import Development.WeilBound.ThetaLifts.SmallCones.NormLeSum\npublic import Development.WeilBound.ThetaLifts.SmallCones.SchInt\npublic import Development.WeilBound.ThetaLifts.SmallCones.SliceSummable\npublic import Development.WeilBound.ThetaLifts.SmallCones.SoZeroAOf\npublic import Development.WeilBound.ThetaLifts.SmallCones.SplitInv\npublic import Development.WeilBound.ThetaLifts.SmallCones.SplitLatMap\npublic import Development.WeilBound.ThetaLifts.SmallCones.StabDec\npublic import Development.WeilBound.ThetaLifts.SmallCones.ThetaExp\npublic import Development.WeilBound.ThetaLifts.SphericalLattices.SphericalClosure.EndCore\npublic import Development.WeilBound.ThetaLifts.SphericalLattices.ThetaKillsCuspFormsSpherical\npublic import Development.WeilBound.ThetaLifts.WeilDomination.ExistsUnitChrWNe\npublic import Development.WeilBound.ThetaLifts.WeilDomination.SwAnisoXOf\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.LmOfLinBar\npublic import Development.WeilBound.ThetaLifts.CTKernel\npublic import Development.WeilBound.ThetaLifts.FrameEstimates.HodgeTateFromSandwich\npublic import Development.WeilBound.ThetaLifts.LatticeBasics.LocUnr\npublic import Development.WeilBound.ThetaLifts.LocalTheory.AdmissiblePureTensorSchwartz\npublic import Development.WeilBound.ThetaLifts.LocalTheory.ConeShifts.ContinuousFc\npublic import Development.WeilBound.ThetaLifts.SmallCones.HodgeTateFromSandwich\nimport Development.WeilBound.ThetaLifts.CartanFactorisation.Unimod\nimport Development.WeilBound.ThetaLifts.EigenvalueEndgame.EigenKilling.PolRange\nimport Development.WeilBound.ThetaLifts.LatticeBasics.LeviEx\nimport Development.WeilBound.ThetaLifts.LatticeBasics.LocMeas\nimport Development.WeilBound.ThetaLifts.LatticeBasics.NonZero\nimport Development.WeilBound.ThetaLifts.LatticeBasics.RatEquiv\nimport Development.WeilBound.ThetaLifts.LatticeBasics.RealInv\nimport Development.WeilBound.ThetaLifts.LocalTheory.ArchimedeanBumps.TracePiReal\nimport Development.WeilBound.ThetaLifts.LocalTheory.ConeShifts.PresOfHat\nimport Development.WeilBound.ThetaLifts.SmallCones.SoStab\nimport Development.WeilBound.ThetaLifts.SmallCones.UnipEx\nimport Development.WeilBound.ThetaLifts.SphericalLattices.ThetaSubSup\nimport Development.WeilBound.ThetaLifts.TowerModels.LeviEx\nimport Development.WeilBound.ThetaLifts.TowerModels.ModelEx\nimport Development.WeilBound.ThetaLifts.TowerModels.PlaneSkew\nimport Development.WeilBound.ThetaLifts.TowerModels.StabEx\nimport Development.WeilBound.ThetaLifts.TowerModels.TowerCodimensionTwo\nimport Development.WeilBound.ThetaLifts.TowerModels.TowerCodimensionTwoOf\nimport Development.WeilBound.ThetaLifts.WeilDomination.DomWeilOf\nimport Development.WeilBound.ThetaLifts.WeilDomination.MatchEx\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+end -- clump:auto
+end -- clump:auto

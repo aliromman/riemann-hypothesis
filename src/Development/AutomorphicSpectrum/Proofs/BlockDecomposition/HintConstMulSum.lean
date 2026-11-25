@@ -55,8 +55,6 @@ open scoped Classical TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AvgEqLevel
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 
 namespace GlobalTheory.CompanionTheory.AvgLevel
 
@@ -73,8 +71,6 @@ end GlobalTheory.CompanionTheory.AvgLevel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HintConstMulSum
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 
 namespace GlobalTheory.CompanionTheory.DiagAvg

@@ -1452,7 +1452,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SymDist
 
-theorem symDist_of : PI.ExpTri → PI.SymDist := PI.SymDistWork.symDist_of
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedVolumeStatements.LevelSubgroupProperties

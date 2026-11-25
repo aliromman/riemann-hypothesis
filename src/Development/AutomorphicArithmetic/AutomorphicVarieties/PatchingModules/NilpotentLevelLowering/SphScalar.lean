@@ -231,7 +231,6 @@ open UpperTheory.V.Alg UpperTheory.V.W UpperTheory.V.Hi UpperTheory.V.AlgebraToo
 open scoped TensorProduct
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.NilpotentLevelLowering.SphLine
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 private theorem sphLine_eig {T V : Type} [AddCommGroup V] [Module ℂ V] (U : Submodule ℂ V) [FiniteDimensional ℂ U]
     (hU : U ≠ ⊥) (θ : T → Module.End ℂ V) (hθ : ∀ t, ∀ v ∈ U, θ t v ∈ U)
@@ -338,7 +337,6 @@ theorem UpperTheory.V.Pa.Lev.sphLine :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.NilpotentLevelLowering.SphScalar
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 private theorem sphScalar_ev {G M M' : Type} [Group G] [AddCommGroup M] [Module ℂ M] [AddCommGroup M'] [Module ℂ M']
     (ρ : Representation ℂ G M) (ρ' : Representation ℂ G M') (I : Subgroup G) (hI : HeckePair I)

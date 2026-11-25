@@ -52,8 +52,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasInfCharIn
 open NumberField IsDedekindDomain Matrix
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 namespace DiscreteGroups.T1.G
 
 open PositivityTheory.Rg.BcB.F PositivityTheory.Rg.BcB.Desc

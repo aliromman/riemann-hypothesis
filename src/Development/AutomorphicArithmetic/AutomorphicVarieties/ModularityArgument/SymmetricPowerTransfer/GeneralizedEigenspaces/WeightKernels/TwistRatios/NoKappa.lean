@@ -61,8 +61,6 @@ open UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd UpperTheory.V.Z.Sym UpperTh
 open UpperTheory.V.W (Plc Lp)
 open scoped Matrix
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 private theorem trace_sym4M {k : Type} [Field k] (g : Matrix (Fin 2) (Fin 2) k) :
     Matrix.trace (UpperTheory.V.Z.Sym.Ga.symmetricFourthPowerMatrix k g) = g.trace ^ 4 - 3 * g.trace ^ 2 * g.det + g.det ^ 2 := by
   simp only [UpperTheory.V.Z.Sym.Ga.symmetricFourthPowerMatrix, MonoidHom.coe_mk, OneHom.coe_mk, Matrix.trace, Matrix.diag,
@@ -88,8 +86,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.WeightKernels.TwistRatios.NoKappa
 open UpperTheory.V.W (Plc Lp)
 open scoped Matrix
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 private def phiB {k : Type} [Field k] {H : Type} [Group H] (a b : H →* GL (Fin 3) k) :
     H →* (Matrix (Fin 3) (Fin 3) k × Matrix (Fin 3) (Fin 3) k × k) where

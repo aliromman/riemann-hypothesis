@@ -57,7 +57,6 @@ open IsDedekindDomain NumberField Matrix GlobalTheory.ChiGrid GlobalTheory.FunOb
 section -- clump member: Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.ParBdGeneric
 @[expose] public section
 open Formalism.DivisionValues (vw lw)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section
 open GlobalTheory.SignedHC
@@ -221,7 +220,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.WtBdWtOf
 @[expose] public section
 open Formalism.DivisionValues (vw lw)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section
 open GlobalTheory.SignedHC
@@ -295,7 +293,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.KerLe
 open Formalism.DivisionValues (vw lw)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 private theorem bigN_le_sc_b {D : D7} {large₂ : SizeData₂ D} {Pm : ParameterChoice' D large₂} (P : ParamsT D large₂ Pm)
     (hf : 1 ≤ D.R.f) (hm : 1 ≤ D.R.m) : (bigN D : ℝ) ≤ large₂.sc.b := by

@@ -62,10 +62,6 @@ open UpperTheory.V.Hi UpperTheory.V.Hi.CaseU
 open UpperTheory.V.Z.J.D
 open scoped Matrix TensorProduct
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
-
-
 section Abstract
 
 variable {M : Type} [AddCommGroup M] [Module ℂ M] {J : Type} [Fintype J]
@@ -403,10 +399,6 @@ open UpperTheory.V.Hi UpperTheory.V.Hi.CaseU
 open UpperTheory.V.Z.J.D
 open UpperTheory.V.Z.Desc.V0
 open scoped Matrix TensorProduct
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
-
 
 section Abstract
 

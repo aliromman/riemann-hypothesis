@@ -46,10 +46,8 @@ import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.Ha
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HasCohomologyTransport, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.WignerHighestWeights.CohTransport
 
-section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HasCohomologyTransport
-@[expose] public section
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HasCohomologyTransport
 
-noncomputable section
 
 namespace GlobalTheory.ConjCoh
 
@@ -126,17 +124,7 @@ variable [NumberField E] [_root_.NumberField.IsTotallyComplex E]
 
 end GlobalTheory.ConjCoh
 
-end
 
-namespace GlobalTheory.ConjCoh
-
-open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
-open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open GlobalTheory.Published GlobalTheory.ContraPair
-
-end GlobalTheory.ConjCoh
-end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.WignerHighestWeights.CohTransport

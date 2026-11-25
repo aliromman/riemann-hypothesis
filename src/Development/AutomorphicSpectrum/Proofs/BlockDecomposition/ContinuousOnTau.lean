@@ -67,10 +67,9 @@ open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L GlobalTheory.CompanionTheory.MuC
+open IsDedekindDomain NumberField
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CellConditionsOfSmulEq
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open IsDedekindDomain NumberField
 
 namespace GlobalTheory.CompanionTheory.MuC
 
@@ -165,8 +164,6 @@ end GlobalTheory.CompanionTheory.MuC
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousUnipotentBlockFamily
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open IsDedekindDomain NumberField
 
 namespace GlobalTheory.CompanionTheory.MuC
 
@@ -201,8 +198,6 @@ end GlobalTheory.CompanionTheory.MuC
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsBUnique
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open IsDedekindDomain NumberField
 
 namespace GlobalTheory.CompanionTheory.MuC
 
@@ -224,8 +219,6 @@ end GlobalTheory.CompanionTheory.MuC
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsNMapAdd
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open IsDedekindDomain NumberField
 
 namespace GlobalTheory.CompanionTheory.MuC
 
@@ -241,8 +234,6 @@ end GlobalTheory.CompanionTheory.MuC
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LowerDiagonalOfUpperTriangularBlock
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open IsDedekindDomain NumberField
 
 namespace GlobalTheory.CompanionTheory.MuC.LeftCell
 
@@ -305,8 +296,6 @@ end GlobalTheory.CompanionTheory.MuC.LeftCell
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MulNBlockInr
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open IsDedekindDomain NumberField
 
 namespace GlobalTheory.CompanionTheory.MuC
 
@@ -358,8 +347,6 @@ end GlobalTheory.CompanionTheory.MuC
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StandardSymplecticFormSqNegOne
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open IsDedekindDomain NumberField
 
 namespace GlobalTheory.CompanionTheory.MuC
 
@@ -730,7 +717,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L PositivityTheory.Rg.Rsw.Cell
 open IsDedekindDomain NumberField
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.CellTop
 
@@ -762,8 +748,6 @@ end Adelic
 end GlobalTheory.CompanionTheory.CellTop
 
 noncomputable section
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.CellTop
 
@@ -810,7 +794,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L PositivityTheory.Rg.Rsw.Cell
 open IsDedekindDomain NumberField
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.CellTop
 
