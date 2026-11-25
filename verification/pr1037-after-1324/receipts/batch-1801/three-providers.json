@@ -1,0 +1,12 @@
+{
+  "base": "c40250a50104b7e02e7d74f658d00fa7b1f4827c",
+  "previous": "41596f52921c716692c643accdcb210ef1e470d0",
+  "tree": "781448c88d471397401665374872ddaff169ae20",
+  "candidate": "3f92115a04171a97aad0f171003d63392912282a",
+  "unchanged_patch": true,
+  "changed": [
+    "src/Development/AbelianVarietyTheory/Definitions/Foundations/MatrixMeasurableSpace.lean",
+    "src/Formalism/DoubleCosetMeasures/StatementZ.lean",
+    "src/GroundTheory/AutomorphicForms/GL2/GJMatrixCoord.lean"
+  ]
+}

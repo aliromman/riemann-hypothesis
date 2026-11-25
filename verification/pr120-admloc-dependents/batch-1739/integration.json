@@ -1,0 +1,16 @@
+{
+  "base": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+  "previous": "e05737b0d310930177bc746e7cf64f12d7731438",
+  "candidate": "de4bda63f26e11fc0b312f4a890dd46fd05d6217",
+  "tree": "5ab784c821f6e26a832059b267d9e6aa37b78adc",
+  "changed": [
+    "src/Development/AbelianVarietyTheory/Definitions/NonGaloisDescent/MkMemAdmissibleAtIffCocycle.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/UnramifiedEnlargementCutCocyclesBlochKato.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/TOrdVan.lean",
+    "src/Development/AutomorphicArithmetic/Foundations/Convolution/RealGroupAnalysis/WeilRepresentation/ImportsSide.lean",
+    "src/Development/AutomorphicArithmetic/Foundations/Convolution/RealGroupAnalysis/WeilRepresentation/Smooth.lean"
+  ],
+  "conflict": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/TOrdVan.lean",
+  "preserved_upstream_removal": "attribute [local instance 2000] UpperTheory.V.W.coefLocal",
+  "removed_by_topic": "attribute [-instance] GlobalTheory.AdmLoc.modFun"
+}

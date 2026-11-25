@@ -27,6 +27,8 @@ def main():
                         help="Test the GL scope introduced by community PR #1324.")
     parser.add_argument("--require-canonical-borel", action="store_true",
                         help="Require the same selected Borel witness as a Mathlib-only import.")
+    parser.add_argument("--expect-project-borel-on-parent", action="store_true",
+                        help="Check the project Borel witness on an already buildable parent.")
     args = parser.parse_args()
     baseline, candidate, binary, out = (p.resolve() for p in (args.before, args.after, args.bin, args.output))
     out.mkdir(parents=True, exist_ok=True)
@@ -96,7 +98,15 @@ def main():
         if after["exit"] or (not tag.startswith("proof-") and (not after["borel"] or
                 args.require_canonical_borel and after["borel"] != results["after/mathlib-only"]["borel"])):
             raise ValueError("The candidate did not select the Mathlib instances: " + tag)
-    if not any(results["before/" + tag]["errors"] for tag in cases):
+    if args.expect_project_borel_on_parent:
+        if any(results["before/" + tag]["exit"] for tag in cases):
+            raise ValueError("A proof failed on the buildable parent.")
+        for tag in ("coordinates", "combined"):
+            if results["before/" + tag]["borel"] != ["GroundTheory.Automorphic.GJMatrix.borelSpace_matrix"]:
+                raise ValueError("The parent did not select the project Borel witness: " + tag)
+            if results["after/" + tag]["borel"] != results["after/mathlib-only"]["borel"]:
+                raise ValueError("The candidate did not select the canonical Borel witness: " + tag)
+    elif not any(results["before/" + tag]["errors"] for tag in cases):
         raise ValueError("The control did not reproduce an error.")
 
 

@@ -1,0 +1,9 @@
+{
+  "revision": "ed3b762f1eff6e462338b47b37b1e2c8c5cdfc59",
+  "source_files": 59790,
+  "source_bytes": 1042373254,
+  "hits": 0,
+  "git_grep_exit": 1,
+  "git_blob_sha1_checked": 59790,
+  "pattern": "(?<![A-Za-z0-9_])(instMeasMat|matrixMeasurableSpace|measurableSpace_matrix|borelSpace_matrix)(?![A-Za-z0-9_])"
+}

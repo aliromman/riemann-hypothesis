@@ -1,0 +1,59 @@
+{
+  "parent": "0c252f795aa6a96b7dd3c21896114f0611428594",
+  "candidate": "55063f9d44ec148652b5d5b997d1c0dda1b996f5",
+  "targets": [
+    "Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.HostPins",
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+    "Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.IsAdicCompleteAndCardQuotientAdicCompletionInteg",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationDetBlocks",
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsCompactKH",
+    "Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MeasureRealValuedLeExp",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CardGLFiniteFieldEqPowMulProd",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HaarModulusProductFormulaTotallyReal",
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.LocalZetaFunctionalUniqueness",
+    "Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.ExistsUpperProjectionInverseTranspose",
+    "Formalism.DoubleCosetMeasures.LatticeCoset",
+    "Formalism.DoubleCosetMeasures.LowerUnipotentOrbits.IsClosedLowUni",
+    "Formalism.DoubleCosetMeasures.LowerUnipotentOrbits.LemmaU",
+    "Formalism.DoubleCosetMeasures.StatementZ",
+    "Formalism.HermitianCurvature.HermitianCurvatureProofs.CutTypeNormMeas",
+    "Formalism.LocalRingCardinality.SpanPowerMembership.Adelic",
+    "Formalism.LocalToGlobal.Divisibility.QLocTied",
+    "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoAF",
+    "Formalism.SharpRestriction.Divisibility.ZetaProductPairs",
+    "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi",
+    "GroundTheory.AutomorphicForms.GL2.GJFELevi",
+    "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+    "ReciprocityTheory.GeneralLinearIntegers.AlgebraMapIntMemOint"
+  ],
+  "modules": 1065,
+  "removed": {
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace": [
+      "GlobalTheory.SplitWeil.matrixMeasurableSpace"
+    ],
+    "Formalism.DoubleCosetMeasures.StatementZ": [
+      "Formalism.DoubleCosetMeasures.instMeasMat"
+    ],
+    "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord": [
+      "GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix",
+      "GroundTheory.Automorphic.GJMatrix.borelSpace_matrix"
+    ]
+  },
+  "counts": {
+    "public_before": 35661,
+    "surviving_public": 35657,
+    "raw_types": 35551,
+    "raw_definitions": 17550,
+    "raw_proofs": 16316,
+    "definition": 31,
+    "type": 106,
+    "proof": 103
+  },
+  "kernel_fields": 480,
+  "failures": [],
+  "scan_sha256": "ab578b312174eb6fcf6a29078df1309a3f3533350d011f60d0af816e5ac562c9",
+  "reverse_scan_sha256": "1a822b3d45ed0c730a61bc1c78e58d1d5875858e44e71380d3ba1773799d7603",
+  "audit_sha256": "a62096a50f5044c8f56c5c3e585804d5ff9469e479641cd87e55a99a609ab350",
+  "compare_sha256": "30d1968ec1f731582239dd72fe46c72d37b4ddeeb1f7b76857f9a329eafcea6d"
+}

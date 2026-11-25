@@ -1,0 +1,24 @@
+{
+  "base": "c7791603122c0328f79e49f6be5d7d4402effc53",
+  "author_head": "7a66470d6d00595ab65413a1ddec0d76fe1e3b70",
+  "src_lean_before": 149397,
+  "src_lean_after": 47885,
+  "difference": 101512,
+  "added": 20260,
+  "deleted": 121772,
+  "unchanged_inputs": [
+    "src/Challenge.lean",
+    "comparator.json",
+    "export-targets.txt",
+    "lean-toolchain"
+  ],
+  "board": {
+    "document_revision": "d43ca16a908c30cc9fb7d482d255876da03a96e4",
+    "shard_head": "7a66470d6d00595ab65413a1ddec0d76fe1e3b70",
+    "open": 42,
+    "compiled": 41892,
+    "compiled_total": 47885,
+    "updated_utc": "2026-11-25T02:29:00Z",
+    "url": "https://github.com/rohanarun/alpoge-rh-replay/blob/d43ca16a908c30cc9fb7d482d255876da03a96e4/PR120-BUGS.md"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "revision": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+  "targets": [
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato",
+    "Development.AbelianVarietyTheory.Proofs.SatakeParameters.DmulMulDRight",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.ImportsSide",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth"
+  ],
+  "source_count": 2068,
+  "lake_exit": 0,
+  "matching_cones": {
+    "batch1739-control": 1590,
+    "batch1739-merge": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "revision": "c40250a50104b7e02e7d74f658d00fa7b1f4827c",
+  "targets": [
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationDetBlocks",
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+    "Formalism.DoubleCosetMeasures.StatementZ",
+    "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord"
+  ],
+  "project_modules": 229,
+  "lake_exit": 0
+}

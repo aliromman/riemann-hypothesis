@@ -1,0 +1,20 @@
+{
+  "revision": "3f92115a04171a97aad0f171003d63392912282a",
+  "targets": [
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationDetBlocks",
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+    "Formalism.DoubleCosetMeasures.StatementZ",
+    "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord"
+  ],
+  "source_count": 229,
+  "lake_exit": 0,
+  "matching_cones": {
+    "batch1801-stock": 210,
+    "batch1739-control": 0,
+    "batch1739-admloc-stock": 0,
+    "batch1739-merge": 16,
+    "batch1739-admloc": 0,
+    "batch1739-cleanup": 0
+  }
+}

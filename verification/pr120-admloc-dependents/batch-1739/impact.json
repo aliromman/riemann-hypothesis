@@ -1,0 +1,40 @@
+{
+  "base": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+  "candidate": "de4bda63f26e11fc0b312f4a890dd46fd05d6217",
+  "provider": "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+  "affected": 1585,
+  "prior_count": 1587,
+  "added": [],
+  "removed": [
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsLatticeOfPowMem",
+    "Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.DefiniteNHolds"
+  ],
+  "direct": 269,
+  "terminals": [
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.ExistsOrdinaryCharactersHeckeAlgebra",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantReductionEqResidual",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantSatisfiesDeformationRelations",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.LevelUR2OrdPt",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ShortLatticeUnitarize.CompactBoxLattices.CentChar",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.GaloisRepresentationTypes.CoreOf",
+    "Main"
+  ],
+  "dependencies": 59771,
+  "tested_targets": [
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato",
+    "Development.AbelianVarietyTheory.Proofs.SatakeParameters.DmulMulDRight",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.ImportsSide",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth"
+  ],
+  "stock_needed": 478,
+  "outside_main": [
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.ExistsOrdinaryCharactersHeckeAlgebra",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantReductionEqResidual",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantSatisfiesDeformationRelations",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.LevelUR2OrdPt",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ShortLatticeUnitarize.CompactBoxLattices.CentChar",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.GaloisRepresentationTypes.CoreOf",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.OrdVan2"
+  ]
+}

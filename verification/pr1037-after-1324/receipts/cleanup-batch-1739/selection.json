@@ -1,0 +1,112 @@
+{
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "proof": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+  "proof_sha256": "a090b0a12832a782d7b58580f139ba5dad3547d32c2a52f46c5a8c4d6ea1b771",
+  "opened_double_coset_scope": true,
+  "cases": {
+    "before/mathlib-only": {
+      "source_sha256": "2c939a31ce8f9ec60b479a677b1708bb6e25a15c7502615cd9e29b664a4239d6",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "before/foundation": {
+      "source_sha256": "741a08ce3074f98a6206195e4d162f36b9fcd650cab5c06014f60d3fce82e6af",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "before/coordinates": {
+      "source_sha256": "d2b5f104b7a022761cc59f1bdc8f70439715e51b1a322ef256870d36eb689782",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "GroundTheory.Automorphic.GJMatrix.borelSpace_matrix"
+      ]
+    },
+    "before/double": {
+      "source_sha256": "2ef848f191e04400aba982f7597ca58b397154af3406437b37f53fd2b7dc494d",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "before/combined": {
+      "source_sha256": "8236fbee2229baec31a2dc8e778841ad55c81303c65e2a0097794c84cc42facc",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "GroundTheory.Automorphic.GJMatrix.borelSpace_matrix"
+      ]
+    },
+    "before/proof-forward": {
+      "source_sha256": "df97aee38f871e231760b6c630049e389c6865ff1585bb1960e34ad4732ed82c",
+      "exit": 0,
+      "errors": [],
+      "borel": []
+    },
+    "before/proof-reverse": {
+      "source_sha256": "f0af4a45b0d651c322afab1ed468ab0a6ac307fd973e8f20c55177457e01d66e",
+      "exit": 0,
+      "errors": [],
+      "borel": []
+    },
+    "after/mathlib-only": {
+      "source_sha256": "2c939a31ce8f9ec60b479a677b1708bb6e25a15c7502615cd9e29b664a4239d6",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "after/foundation": {
+      "source_sha256": "741a08ce3074f98a6206195e4d162f36b9fcd650cab5c06014f60d3fce82e6af",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "after/coordinates": {
+      "source_sha256": "d2b5f104b7a022761cc59f1bdc8f70439715e51b1a322ef256870d36eb689782",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "after/double": {
+      "source_sha256": "2ef848f191e04400aba982f7597ca58b397154af3406437b37f53fd2b7dc494d",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "after/combined": {
+      "source_sha256": "8236fbee2229baec31a2dc8e778841ad55c81303c65e2a0097794c84cc42facc",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "after/proof-forward": {
+      "source_sha256": "df97aee38f871e231760b6c630049e389c6865ff1585bb1960e34ad4732ed82c",
+      "exit": 0,
+      "errors": [],
+      "borel": []
+    },
+    "after/proof-reverse": {
+      "source_sha256": "f0af4a45b0d651c322afab1ed468ab0a6ac307fd973e8f20c55177457e01d66e",
+      "exit": 0,
+      "errors": [],
+      "borel": []
+    }
+  }
+}
