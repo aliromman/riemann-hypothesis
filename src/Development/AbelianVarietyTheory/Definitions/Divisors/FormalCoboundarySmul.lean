@@ -3,6 +3,32 @@ module
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ToSpanSingletonConstGenInjective
 public import Mathlib.RingTheory.MvPowerSeries.Substitution
 public import Mathlib.RingTheory.WittVector.Teichmuller
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -238,14 +264,8 @@ variable {p d e : ℕ} {G H : _root_.GlobalTheory.PDivGroup p k} (c : _root_.Glo
 theorem _root_.GlobalTheory.Katz.Chart.nil₂ (n : ℕ) (i : Fin d ⊕ Fin d) :
     IsNilpotent (c.x₂ n i) := by
   rcases i with i | i
-  · obtain ⟨m, hm⟩ := c.nil n i
-    exact ⟨m, by
-      simp only [_root_.GlobalTheory.Katz.Chart.x₂, Sum.elim_inl]
-      rw [Algebra.TensorProduct.tmul_pow, hm, one_pow, TensorProduct.zero_tmul]⟩
-  · obtain ⟨m, hm⟩ := c.nil n i
-    exact ⟨m, by
-      simp only [_root_.GlobalTheory.Katz.Chart.x₂, Sum.elim_inr]
-      rw [Algebra.TensorProduct.tmul_pow, hm, one_pow, TensorProduct.tmul_zero]⟩
+  · exact (c.nil n i).map (Algebra.TensorProduct.includeLeft (R := k) (S := k) (B := G.A n))
+  · exact (c.nil n i).map (Algebra.TensorProduct.includeRight (R := k) (A := G.A n))
 
 def ev₂ (n : ℕ) : MvPowerSeries (Fin d ⊕ Fin d) k →ₐ[k] G.A n ⊗[k] G.A n :=
   evA k (c.x₂ n) (c.nil₂ n)

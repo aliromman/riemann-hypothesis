@@ -7,18 +7,6 @@ public import Mathlib.LinearAlgebra.Dimension.Basic
 public import Formalism.LocalRingCardinality.DataHost
 import Mathlib.Analysis.CStarAlgebra.Classes
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.MatchingAdjoints
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsIwasawaOfIsCompact
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.HermitianOrthogonalExtensionData
@@ -46,29 +34,6 @@ open GlobalTheory.SquareComm
 namespace GlobalTheory
 
 open Polynomial
-
-theorem dixmier_aeval_injective {V : Type} [AddCommGroup V] [Module ℂ V] (T : Module.End ℂ V)
-    (hT : ∀ c : ℂ, Function.Injective ⇑(T - c • (1 : Module.End ℂ V))) (p : ℂ[X]) (hp : p ≠ 0) :
-    Function.Injective (aeval T p) := by
-  have hs := C_leadingCoeff_mul_prod_multiset_X_sub_C (p := p) IsAlgClosed.card_roots_eq_natDegree
-  have hlin : ∀ a : ℂ, aeval T (X - C a) = T - a • 1 := by
-    intro a; simp [Algebra.algebraMap_eq_smul_one]
-  have key : ∀ m : Multiset ℂ, Function.Injective (aeval T (m.map fun a => X - C a).prod) := by
-    intro m
-    induction m using Multiset.induction_on with
-    | empty =>
-      simp only [Multiset.map_zero, Multiset.prod_zero, map_one, Module.End.one_eq_id, LinearMap.id_coe]
-      exact Function.injective_id
-    | cons a m ih =>
-      rw [Multiset.map_cons, Multiset.prod_cons, map_mul, Module.End.mul_eq_comp, LinearMap.coe_comp]
-      refine Function.Injective.comp ?_ ih
-      rw [hlin]; exact hT a
-  rw [← hs, map_mul, Module.End.mul_eq_comp, LinearMap.coe_comp]
-  refine Function.Injective.comp ?_ (key _)
-  rw [aeval_C, Algebra.algebraMap_eq_smul_one]
-  intro x y hxy
-  simp only [LinearMap.smul_apply, Module.End.one_apply] at hxy
-  exact smul_right_injective V (leadingCoeff_ne_zero.mpr hp) hxy
 
 theorem dixmier_commutant_scalar (ι V : Type) [AddCommGroup V] [Module ℂ V] (ρ : ι → Module.End ℂ V)
     (hrank : Module.rank ℂ V ≤ Cardinal.aleph0)

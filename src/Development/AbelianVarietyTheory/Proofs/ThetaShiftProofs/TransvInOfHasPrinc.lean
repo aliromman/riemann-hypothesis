@@ -3,18 +3,6 @@ module
 public import Development.AbelianVarietyTheory.Definitions.RegularCharts.BaseNorm
 public import Development.AbelianVarietyTheory.Definitions.ArchimedeanThetaValues.IsThetaL2NormSquared
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.SmulMemOfIsIntegral
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.ArchimedeanThetaValues.ModelsAt
 import Development.AbelianVarietyTheory.Definitions.CMLattices.LamLetters
 import Formalism.LocalToGlobal.CMDeterminantIdeals.DetIdeal

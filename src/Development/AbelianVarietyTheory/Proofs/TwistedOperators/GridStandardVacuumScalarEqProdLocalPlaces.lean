@@ -10,9 +10,31 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.RamificationIdxE
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ParahoricLevelLiftsExist
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.VecOfEqIntertwiner
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilLatticeVacuumEqProdSplitPlaceFactorsStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -93,7 +115,7 @@ theorem GlobalTheory.RowVacScalar.vacScalar_eq_prod : ∀ {D : D7} {T : Type} {L
   have hW := W.om_is (.chi i D.R.m) hp
   have sd := GlobalTheory.RowVertexInv.FactorTheta.selfDual S hi
   have hv := (S.Z.vac_is (.chi i D.R.m) ⟨hi, rfl⟩).2
-  have key := GlobalTheory.T.weilLatticeVacuum_eq_prod_splitPlace_factors hW sd.1 sd.2 (locPl G t) (fun w hw => isIdemAt_idemAt hL G t hw)
+  have key := GlobalTheory.LatStabScalar.om_eq_prod_splitFac hW sd.1 sd.2 (locPl G t) (fun w hw => isIdemAt_idemAt hL G t hw)
     (Good.under_injOn hL G t) (fun v hv' => by
       have hχ := chi_charUnramAt G (k := D.R.m - i) (by omega) (by omega) (notMem_S0_of_no_place_above G t hv')
       exact ⟨attChr_charUnramAt hχ (eta_charUnramAt hL v) _, attChr_charUnramAt hχ (eta_charUnramAt hL v) _⟩)

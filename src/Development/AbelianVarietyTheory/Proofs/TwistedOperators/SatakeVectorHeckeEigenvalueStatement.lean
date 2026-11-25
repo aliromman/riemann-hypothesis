@@ -7,18 +7,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeltaHalfMul
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SatakeParametersOfTwist
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SphericalHeckeValuesSameParameters
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasSumHeckeEigenvalueGeneratingSeriesGLStatement
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.RealLowestKTypeCoeffSquareIntegrable
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.InnerProductFormula
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ConstMemBddAut
@@ -140,7 +128,7 @@ theorem hasSum_twisted_hecke_eigenvalues : GlobalTheory.Published.UnramifiedDoub
   have hc' : ∀ d, heckeVec (twistRep ρ z) (KGL w (n := r)) (dosetInd ℂ (KGL w (n := r)) (T d)) x =
       ((z : ℂ) ^ (∑ i, d i) * c d) • x := fun d => by
     rw [heckeVec_twistRep, hc d, ordDet_of_diagonal hϖ (hT d), smul_smul]
-  obtain ⟨δ, h0, h⟩ := GlobalTheory.T.hasSum_heckeEigenvalue_generatingSeries_GL hP E w r V (twistRep ρ z) x _ (isSatVecGL_twistRep hx z) ϖ hϖ T hT _ hc'
+  obtain ⟨δ, h0, h⟩ := GlobalTheory.FinZeta.GLSeries.hasSum_hecke_eigenvalues hP E w r V (twistRep ρ z) x _ (isSatVecGL_twistRep hx z) ϖ hϖ T hT _ hc'
   refine ⟨δ, h0, fun X h1 h2 => ?_⟩
   have := h X h1 h2
   rw [Multiset.map_map] at this

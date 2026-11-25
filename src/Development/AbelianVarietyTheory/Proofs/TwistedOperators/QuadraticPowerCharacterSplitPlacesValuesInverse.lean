@@ -3,6 +3,28 @@ module
 public import Development.AbelianVarietyTheory.Definitions.Foundations.NotIsSplitOfIsInertAt
 public import Development.AbelianVarietyTheory.Definitions.Foundations.T2SpaceTensorProductFiniteExtension
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsSplitChartOfBasis
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -16,6 +38,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.Definitions.Foundations.NonemptyAlgHomOfNotIsField
 
 @[expose] public section
@@ -97,13 +120,6 @@ theorem single_apply_ne (x : (w.adicCompletion E)ˣ) {u : HeightOneSpectrum (�
         (x : w.adicCompletion E)) u = 1
      exact RestrictedProduct.mulSingle_eq_of_ne _ _ hu)
 
-private lemma cmval_single_apply_self (x : (w.adicCompletion E)ˣ) :
-    (GlobalTheory.CMVal.single w x : FiniteAdeleRing (𝓞 E) E) w = x := by
-  classical
-  first
-  | (change (Pi.mulSingle w (x : w.adicCompletion E) : ∀ u : HeightOneSpectrum (𝓞 E), u.adicCompletion E) w = x
-     exact Pi.mulSingle_eq_same _ _)
-
 theorem sigR_single (hE : IsCMExt F E σ) (h : w.under (𝓞 F) = v) (h' : w'.under (𝓞 F) = v) (hne : w ≠ w')
     (a : (Fv F v)ˣ) :
     Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Af F) σ ((finAdEquiv F E).symm
@@ -119,7 +135,7 @@ theorem sigR_single (hE : IsCMExt F E σ) (h : w.under (𝓞 F) = v) (h' : w'.un
       ((finAdEquiv F E).symm (GlobalTheory.CMVal.single w (Units.map (complMap h).toMonoidHom a) : FiniteAdeleRing (𝓞 E) E)))
       = (a : Fv F v) := by
     apply (complMap h).injective
-    rw [← GlobalTheory.LFun.ConjPlace.toCompl_eq hE h hτ, ← finAdEquiv_apply h, RingEquiv.apply_symm_apply, cmval_single_apply_self]
+    rw [← GlobalTheory.LFun.ConjPlace.toCompl_eq hE h hτ, ← finAdEquiv_apply h, RingEquiv.apply_symm_apply, GlobalTheory.CMVal.single_self]
     rfl
   have hz2 : GlobalTheory.AdelicU.splitProj (τ.comp σ) (Algebra.TensorProduct.map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.evalV F v) (AlgHom.id F E)
       ((finAdEquiv F E).symm (GlobalTheory.CMVal.single w (Units.map (complMap h).toMonoidHom a) : FiniteAdeleRing (𝓞 E) E)))
@@ -144,7 +160,7 @@ theorem sigR_single (hE : IsCMExt F E σ) (h : w.under (𝓞 F) = v) (h' : w'.un
         hz2, map_one]
       exact (single_apply_ne _ hne).symm
     · rw [huw, finAdEquiv_apply h', evalV_sigR, GlobalTheory.LFun.ConjPlace.toCompl_eq hE h' hτ',
-        GlobalTheory.AdelicU.splitProj_comp_sigR hE τ, hz1, cmval_single_apply_self]
+        GlobalTheory.AdelicU.splitProj_comp_sigR hE τ, hz1, GlobalTheory.CMVal.single_self]
       rfl
   · have h1 := map_evalV_eq_of_finAdEquiv_eq (v' := u.under (𝓞 F))
       (y₁ := (finAdEquiv F E).symm (GlobalTheory.CMVal.single w (Units.map (complMap h).toMonoidHom a) : FiniteAdeleRing (𝓞 E) E))

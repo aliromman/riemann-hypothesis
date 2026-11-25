@@ -7,6 +7,32 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsHomNmulOfI
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCommFormalGroupLawMapNatMultiple
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalGroupLawCoboundaryTwoCoboundaryOne
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapCoboundarySwapPullbackCommute
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -256,13 +282,6 @@ section -- clump:auto
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup
 
-namespace GlobalTheory.NMulHom
-
-theorem isHom_nmul : ∀ (R : Type) [CommRing R] (d : ℕ) (μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) R),
-    IsLaw μ → ∀ n, IsHom μ μ (nmul μ n) :=
-  GlobalTheory.NMulEndo.isHom_nmul
-
-end GlobalTheory.NMulHom
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFormalGroupLawHomFormalGroupLawNatMultiple =====
@@ -293,7 +312,7 @@ theorem cob1_defect_and_defect_mul_of_isLaw : ∀ (O E : Type) [CommRing O] [Com
   refine ⟨?_, ?_⟩
   · unfold defect
     rw [hsub, formalCoboundary_smul hc, hup n]
-    rw [_root_.GlobalTheory.Katz.CobPull.cob1_subst_eq_pull2_of_isHom_formal E d (up E μ) (up E μ) (nmul (up E μ) n) hc hc (_root_.GlobalTheory.NMulHom.isHom_nmul E d (up E μ) hL n) f]
+    rw [_root_.GlobalTheory.Katz.CobPull.cob1_subst_eq_pull2_of_isHom_formal E d (up E μ) (up E μ) (nmul (up E μ) n) hc hc (_root_.GlobalTheory.NMulEndo.isHom_nmul E d (up E μ) hL n) f]
   · have hcomp : subst (up E (nmul μ n)) (subst (up E (nmul μ m)) f) = subst (up E (nmul μ (m * n))) f := by
       rw [subst_comp_subst_apply (hk m) (hk n)]
       congr 1

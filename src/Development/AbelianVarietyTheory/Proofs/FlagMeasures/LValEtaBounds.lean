@@ -1,15 +1,42 @@
 module
 
 public import Formalism.HermitianLattices.StatementMass
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 public import Mathlib.Analysis.PSeries
 public import Mathlib.Analysis.Real.Pi.Bounds
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 public import Mathlib.Analysis.SpecialFunctions.Log.Summable
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 public import Mathlib.NumberTheory.EulerProduct.Basic
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 public import Mathlib.NumberTheory.ZetaValues
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -22,6 +49,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -49,8 +78,7 @@ theorem zeta_le_two (M : ℕ) (hM : 2 ≤ M) : ∑' m : ℕ, 1 / ((m : ℝ) + 1)
 
 theorem multipliable_pos_abs_log_le (K : Type) [Field K] [NumberField K] [StarRing K]
     (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (M : ℕ) (hM : 2 ≤ M) :
-    Multipliable (fun P : {P : Ideal (𝓞 K) // P.IsMaximal} => Formalism.HermitianLatticesTheory.eulerFac K M P.1) ∧
-      0 < Formalism.HermitianLatticesTheory.lValEta K M ∧
+    0 < Formalism.HermitianLatticesTheory.lValEta K M ∧
       |Real.log (Formalism.HermitianLatticesTheory.lValEta K M)| ≤ (Formalism.HermitianLatticesTheory.fDeg K : ℝ) * Real.log 2 := by
   classical
   let PrimeIdeal := {P : Ideal (𝓞 K) // P.IsMaximal}
@@ -243,7 +271,7 @@ theorem multipliable_pos_abs_log_le (K : Type) [Field K] [NumberField K] [StarRi
   have hprod : Real.exp (∑' P : {P : Ideal (𝓞 K) // P.IsMaximal},
       Real.log (Formalism.HermitianLatticesTheory.eulerFac K M P.1)) = Formalism.HermitianLatticesTheory.lValEta K M :=
     Real.rexp_tsum_eq_tprod hpos hsum
-  refine ⟨Real.multipliable_of_summable_log hpos hsum, ?_, ?_⟩
+  refine ⟨?_, ?_⟩
   · rw [← hprod]; exact Real.exp_pos _
   · rw [← hprod, Real.log_exp]
     have hz : 0 < ∑' m : ℕ, 1 / ((m : ℝ) + 1) ^ M :=
@@ -258,7 +286,7 @@ theorem multipliable_pos_abs_log_le (K : Type) [Field K] [NumberField K] [StarRi
 
 theorem lValEta_bounds : ∀ (K : Type) [Field K] [NumberField K] [StarRing K], Formalism.HermitianLatticesTheory.IsCMUnram K → ∀ i : ℕ, 2 ≤ i → ((2 : ℝ) ^ (Formalism.HermitianLatticesTheory.fDeg K))⁻¹ ≤ Formalism.HermitianLatticesTheory.lValEta K i ∧ Formalism.HermitianLatticesTheory.lValEta K i ≤ 2 ^ (Formalism.HermitianLatticesTheory.fDeg K) := by
   intro K _ _ _ hK i hi
-  obtain ⟨-, h0, h1⟩ := multipliable_pos_abs_log_le K hK i hi
+  obtain ⟨h0, h1⟩ := multipliable_pos_abs_log_le K hK i hi
   rw [abs_le] at h1
   have h2 : (0 : ℝ) < 2 ^ Formalism.HermitianLatticesTheory.fDeg K := by positivity
   constructor

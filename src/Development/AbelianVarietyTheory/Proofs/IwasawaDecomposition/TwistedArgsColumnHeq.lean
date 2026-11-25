@@ -1,17 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.TwArgs
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PlaceModelImp
 
 @[expose] public section
@@ -27,7 +16,7 @@ theorem twArgs_lev : ∀ (K : Ctx) (B : Base) (f : Fr B.toPre) (T : TwDat B) (w 
   cases a with
   | mk Dc Sp Zsc lam err lam_eq x pack intersectionNumber_baseChange hκ hv hfw htup htupT hjA hjA0 heMt hPY hPW heFT hIL heE heW hjW heRR =>
   cases x with
-  | mk G Pl0 I0 T' A3 core R F cG geo pins err' Y Z' C' sEE div JA amb0 JM mjH =>
+  | mk G Pl0 I0 T' A3 core R F cG geo pins err' Y Z' C' sEE div JM mjH =>
   cases pack
   have hT' : Y.tupT = t.r.Y.tupT := eq_of_heq htupT
   refine ⟨?_, ?_, ?_, ?_⟩

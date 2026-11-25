@@ -6,7 +6,10 @@ public import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.Binar
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Algebra.Order.Archimedean.Real.Hom
 import Mathlib.Tactic.Linter.HaveILetI
 
@@ -183,7 +186,7 @@ private lemma key {F : Type} [Field F] [NumberField F] [NumberField.IsTotallyRea
     _ = (4 * B * N) ^ n := by rw [hC]; ring_nf
 
 theorem UpperTheory.Reformulated.B.GaloisBoundSecond.main :
-    ∀ {F : Type} [inst : Field F] [inst_1 : NumberField F] [NumberField.IsTotallyReal F] (N : ℕ),
+    ∀ {F : Type} [Field F] [NumberField F] [NumberField.IsTotallyReal F] (N : ℕ),
       (0 : ℕ) < N →
         ∀ (I : Ideal (NumberField.RingOfIntegers F)),
           I ≠ ⊥ →

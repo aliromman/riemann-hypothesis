@@ -14,18 +14,6 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnitaryQu
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WittAnisotropicGroupNormalizesFlagUnipotent
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsMulRightInvariantOfFundamentalDomain
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemElt
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.CmHostImaginaryGeneratorNeZero
 import Development.AbelianVarietyTheory.Definitions.Divisors.NatCastSmulMemHatL
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.OffQOfSizeRows
@@ -218,7 +206,6 @@ open scoped TensorProduct NNReal
 
 variable {D : D7}
 
-
 open Classical in
 def nInf (w : InfinitePlace D.host.F) (z : AE D) : ℝ≥0 :=
   Finset.univ.sup fun τ : EmbOver D.host.E w => ‖infEmb τ (compInf D.host.F D.host.E w z)‖₊
@@ -395,7 +382,7 @@ open GlobalTheory.Asc
 theorem quotHeight_le_pow (D : D7) (S S₀ : HSp D) (ρ : ℕ) (d : HypDec S S₀ ρ) : ∃ (C : ℝ) (a : ℕ), ∀ n ∈ flagN d,
     ∀ h : GA D S₀, quotHeight S₀ h ≤ C * quotHeight S (n * d.emb0 h) ^ a := by
   obtain ⟨C₁, b, hM⟩ := GlobalTheory.T.unitaryQuotientHeight_le_of_no_short_vector D S₀
-  obtain ⟨c, C, hc, hP⟩ := exists_le_vsize d (GlobalTheory.T.le_adelicVectorSizeProduct_mul_unitaryQuotientHeight_pow D S)
+  obtain ⟨c, C, hc, hP⟩ := exists_le_vsize d (GlobalTheory.SeenSize.le_vsize_mul_quotHeight D S)
   have hK : 0 < max C c := lt_max_of_lt_right hc
   refine ⟨C₁ * (max C c / c) ^ b, (ρ + 1) * b, fun n hn h => ?_⟩
   have hH : 1 ≤ quotHeight S (n * d.emb0 h) ^ (ρ + 1) := one_le_pow₀ (one_le_quotHeight S _)

@@ -7,18 +7,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LiftMatrixCo
 import Formalism.LocalToGlobal.Divisibility.LiftLatLemmas
 import Formalism.LocalToGlobal.IndefiniteReal.CxLemmas
 import Formalism.LocalToGlobal.IndefiniteReal.NormalDecomposition.UnitaryTwoPackage
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasLab
 
 @[expose] public section
@@ -129,10 +117,7 @@ theorem orth_ker_eq_span [NumberField K] [StarRing K] {V W : Type} [NormedAddCom
   obtain ⟨a, ha, b, hb, rfl⟩ := htop y
   have hb' : b ∈ Rᗮ := by
     have h := Rᗮ.sub_mem hy (hUR ha); rwa [add_sub_cancel_left] at h
-  have hb0 : b = 0 := by
-    have h : b ∈ R ⊓ Rᗮ := Submodule.mem_inf.2 ⟨hb, hb'⟩
-    rw [Submodule.inf_orthogonal_eq_bot] at h
-    exact (Submodule.mem_bot ℂ).1 h
+  have hb0 : b = 0 := Submodule.disjoint_def.1 R.orthogonal_disjoint b hb hb'
   rw [hb0, add_zero]; exact ha
 
 

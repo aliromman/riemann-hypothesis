@@ -3,18 +3,6 @@ module
 public import Development.AbelianVarietyTheory.Definitions.Divisors.KernelNormConstantSpec
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitVacuumStandardLatticesDefinitePair
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MeasurePreservingMulRight
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilActionNegPairPureTensorFock
@@ -67,13 +55,6 @@ theorem defNode_cart_onb {μ0 : T} (hL : L.Is μ0) (W : G.Weil) (X : Node) (hX :
     ext i j
     simp [Matrix.mul_diagonal]
 
-theorem defNode_cart_onb_all : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {μ0 : T}, L.Is μ0 →
-    ∀ (W : G.Weil) (X : Node), DefNode D.R.m X → ∀ ρ,
-    IsCartanInv (gramAt D (G.V X) ρ) (W.cart X ρ) ∧ IsONBasis (gramAt D (G.V X) ρ) (W.cart X ρ) (W.onb X ρ) (G.V X).rank ∧
-    IsCartanInv (gramAt D (negSp (G.V X)) ρ) (-W.cart X ρ) ∧
-      IsONBasis (gramAt D (negSp (G.V X)) ρ) (-W.cart X ρ) (W.onb X ρ) 0 :=
-  fun hL W X hX ρ => defNode_cart_onb hL W X hX ρ
-
 end DefOnb
 
 end GlobalTheory.RowReal
@@ -97,7 +78,7 @@ theorem _root_.GlobalTheory.T.definiteNode_cartan_orthonormalBasis_allPlaces : �
     IsCartanInv (gramAt D (G.V X) ρ) (W.cart X ρ) ∧ IsONBasis (gramAt D (G.V X) ρ) (W.cart X ρ) (W.onb X ρ) (G.V X).rank ∧
     IsCartanInv (gramAt D (negSp (G.V X)) ρ) (-W.cart X ρ) ∧
       IsONBasis (gramAt D (negSp (G.V X)) ρ) (-W.cart X ρ) (W.onb X ρ) 0 := by
-  first | exact @GlobalTheory.RowReal.defNode_cart_onb_all
+  first | exact @GlobalTheory.RowReal.defNode_cart_onb
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.DefiniteNodeCartanOrthonormalBasisAllPlacesStatement =====

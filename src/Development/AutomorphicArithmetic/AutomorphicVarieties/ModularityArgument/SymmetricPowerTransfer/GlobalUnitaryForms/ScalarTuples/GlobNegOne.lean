@@ -6,10 +6,37 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AbelianVarietyTheory.PublishedTheorems.Landherr₂.ExistsNormTensor
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.LocalOrbitCounts.NormEx
 import Mathlib.Algebra.QuadraticAlgebra.Basic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -22,6 +49,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.NormIndexQuadratic, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.ScalarTuples.GlobNegOne
@@ -36,12 +66,12 @@ section -- clump:auto
     fun (F : Type) [Field F] ↦ IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers F)
 
 @[reducible] noncomputable def UpperTheory.Reformulated.B.NormIndexQuadratic.Kv :
-    {F : Type} → [inst : Field F] → [NumberField F] → UpperTheory.Reformulated.B.NormIndexQuadratic.Pl F → Type :=
+    {F : Type} → [Field F] → [NumberField F] → UpperTheory.Reformulated.B.NormIndexQuadratic.Pl F → Type :=
     fun {F : Type} [Field F] [NumberField F] (v : UpperTheory.Reformulated.B.NormIndexQuadratic.Pl F) ↦
       IsDedekindDomain.HeightOneSpectrum.adicCompletion F v
 
 @[reducible] noncomputable def UpperTheory.Reformulated.B.NormIndexQuadratic.cv :
-    {F : Type} → [inst : Field F] → [inst_1 : NumberField F] → (v : UpperTheory.Reformulated.B.NormIndexQuadratic.Pl F) → F →+* UpperTheory.Reformulated.B.NormIndexQuadratic.Kv v :=
+    {F : Type} → [Field F] → [NumberField F] → (v : UpperTheory.Reformulated.B.NormIndexQuadratic.Pl F) → F →+* UpperTheory.Reformulated.B.NormIndexQuadratic.Kv v :=
     fun {F : Type} [Field F] [NumberField F] (v : UpperTheory.Reformulated.B.NormIndexQuadratic.Pl F) ↦ Algebra.algebraMap F (UpperTheory.Reformulated.B.NormIndexQuadratic.Kv v)
 
 open IsDedekindDomain NumberField Module
@@ -67,13 +97,13 @@ private lemma exists_quad {K : Type} [Field K] [NumberField K] {θ : K} (h : ¬ 
 end UpperTheory.Reformulated.B.NormIndexQuadratic
 
 theorem UpperTheory.Reformulated.B.NormIndexQuadratic.glob_neg_one :
-    ∀ {F : Type} [inst : Field F] [inst_1 : NumberField F] {Δ d : F},
+    ∀ {F : Type} [Field F] [NumberField F] {Δ d : F},
       Δ ≠ (0 : F) →
         (∀ (v : UpperTheory.Reformulated.B.NormIndexQuadratic.Pl F),
             ∃ (a : UpperTheory.Reformulated.B.NormIndexQuadratic.Kv v) (b : UpperTheory.Reformulated.B.NormIndexQuadratic.Kv v),
               (-1 : UpperTheory.Reformulated.B.NormIndexQuadratic.Kv v) =
                 a ^ (2 : ℕ) - (UpperTheory.Reformulated.B.NormIndexQuadratic.cv v : F → UpperTheory.Reformulated.B.NormIndexQuadratic.Kv v) Δ * b ^ (2 : ℕ)) →
-          ∀ (σ₀ : F →+* ℝ),
+          ∀ (_ : F →+* ℝ),
             (∀ (σ : F →+* ℝ), (σ : F → ℝ) d < (0 : ℝ)) →
               ∃ (p₀ : F) (p₁ : F) (q₀ : F) (q₁ : F),
                 p₀ ^ (2 : ℕ) + d * p₁ ^ (2 : ℕ) - Δ * (q₀ ^ (2 : ℕ) + d * q₁ ^ (2 : ℕ)) = (-1 : F) ∧ p₀ * p₁ = Δ * q₀ * q₁ := by

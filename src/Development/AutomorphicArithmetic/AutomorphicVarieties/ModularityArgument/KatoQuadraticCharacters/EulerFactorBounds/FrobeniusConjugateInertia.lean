@@ -44,6 +44,29 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AbelianVarietyTheory.Definitions.Foundations.IsLocallyConstantCycMod
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.EulerFactorBounds.SInteg
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LevelHyperspecialTrivialCharacterSplitsOffPlaces
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -56,14 +79,23 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.GroupTheory.Nilpotent
 import Mathlib.RingTheory.Ideal.AssociatedPrime.Finiteness
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExpUpper
 import Mathlib.Tactic.TypeStar
 import Mathlib.Tactic.Linter.Style
@@ -552,7 +584,6 @@ private theorem exists_orderOf_eq_pred_sl2_zmod (p : ℕ) [Fact p.Prime] :
     · exact H
     · change ((γ⁻¹ : (ZMod p)ˣ) : ZMod p) ^ n = 1
       rw [← Units.val_pow_eq_pow_val, inv_pow, hγn, inv_one, Units.val_one]
-
 
 open scoped MatrixGroups TensorProduct in
 open Matrix in
@@ -1102,17 +1133,9 @@ def levSub (X : Tower Ω ε) (M : ℕ) : Subfield X.K where
   neg_mem' := fun ha γ hγ => by rw [map_neg, ha γ hγ]
   inv_mem' := fun a ha γ hγ => by rw [map_inv₀, ha γ hγ]
 
-theorem lev_sl (X : Tower Ω ε) {M : ℕ} {f : X.K} (hf : Lev X M f) (γ : SL(2, ℤ)) :
-    Lev X M (X.sl (ofSL γ) f) := by
-  intro δ hδ
-  have h := hf _ ((CongruenceSubgroup.Gamma_normal M).conj_mem δ hδ γ)
-  rw [← X.sl_mul, ← map_mul]
-  conv_rhs => rw [← h]
-  rw [← X.sl_mul, ← map_mul, inv_mul_cancel_right]
-
 noncomputable def levAct (X : Tower Ω ε) (M : ℕ) (γ : SL(2, ℤ)) : levSub X M →+* levSub X M :=
   RingHom.codRestrict ((X.sl (ofSL γ) : X.K →+* X.K).comp (levSub X M).subtype) (levSub X M)
-    fun a => lev_sl X a.2 γ
+    fun a => GlobalTheory.KZ.ES.RootGal.lev_sl X a.2 γ
 
 theorem coe_levAct (X : Tower Ω ε) (M : ℕ) (γ : SL(2, ℤ)) (a : levSub X M) :
     (levAct X M γ a : X.K) = X.sl (ofSL γ) a := rfl
@@ -1221,7 +1244,6 @@ theorem exists_dvd_pow_mul_coprime (M : ℕ) (hM : 0 < M) :
     exact Nat.mul_dvd_mul (Nat.gcd_dvd_left M N) hdiv
 
 end GlobalTheory.KZ.ES.DescInv
-
 
 open GlobalTheory.KZ.ES.DescInv in
 theorem GlobalTheory.KZ.ES.desc_pow_four : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (X : Tower Ω ε),

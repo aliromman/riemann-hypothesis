@@ -18,6 +18,31 @@ import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.Eventual
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsLinearMapMultilinearMapBaseChange
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.IsFiniteLengthOfIsArtinianRingAnnihilator
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IsProjOverIffIsProperAndExistsIsAmpleLB
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -59,21 +84,8 @@ theorem length_stalk_pushforward_generic {X : Scheme.{0}} (Z : Closeds X)
       (GlobalTheory.VB.genRank G : ℕ∞) :=
   _root_.GlobalTheory.StalkLength.length_stalk_pushforward_genericPoint X Z G
 
-theorem lt_of_add_one_le_natCast {a : WithBot ℕ∞} {n : ℕ} (h : a + 1 ≤ n) : a < n := by
-  induction a using WithBot.recBotCoe with
-  | bot => exact WithBot.bot_lt_coe _
-  | coe a =>
-    induction a using ENat.recTopCoe with
-    | top =>
-      exfalso
-      have e : ((⊤ : ℕ∞) : WithBot ℕ∞) + 1 = ((⊤ + 1 : ℕ∞) : WithBot ℕ∞) := rfl
-      rw [e, top_add] at h
-      have : ((⊤ : ℕ∞)) ≤ (n : ℕ∞) := by exact_mod_cast h
-      exact ENat.natCast_ne_top n (top_le_iff.1 this)
-    | coe m =>
-      have : ((m + 1 : ℕ) : WithBot ℕ∞) ≤ n := by exact_mod_cast h
-      have : m + 1 ≤ n := by exact_mod_cast this
-      exact_mod_cast (by omega : m < n)
+theorem lt_of_add_one_le_natCast {a : WithBot ℕ∞} {n : ℕ} (h : a + 1 ≤ n) : a < n :=
+  _root_.GlobalTheory.VB.lt_of_add_one_le_natCast h
 
 open QCoh
 

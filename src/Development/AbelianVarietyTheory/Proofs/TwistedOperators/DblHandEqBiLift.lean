@@ -9,18 +9,6 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Fla
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaGridLastRowColumnCharactersDifferStatement
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsWeilDatumHermitianPair
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.DblHandOfChars, Development.AbelianVarietyTheory.Proofs.TwistedOperators.DblHandEqBiLift
@@ -140,7 +128,7 @@ theorem dbl_hand_eq_biLift : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Const
               (besDecAt G (j + 1 + 1) σ (by omega))).om (h₁, h₂) Φ₂))) := by
   intro D T L sc G Wl t M hM σ j hj vN
 
-  obtain ⟨χz, hz, hzr, -, hEven, hOdd⟩ := GlobalTheory.T.thetaGrid_lastRow_column_characters_differ G Wl t
+  obtain ⟨χz, hz, hzr, -, hEven, hOdd⟩ := GlobalTheory.RowChars.rowChars G Wl t
 
   have hjOdd : (D.R.m - 1 - j) % 2 = 1 := by omega
   have hjEven : (D.R.m - 1 - (j + 1)) % 2 = 0 := by omega
