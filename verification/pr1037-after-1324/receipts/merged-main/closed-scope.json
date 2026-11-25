@@ -1,0 +1,155 @@
+{
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "proof": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+  "proof_sha256": "2710431e9c047d716a2e2af39357c3a1f820af3d0d67367c3b4d9805b3d7acb1",
+  "opened_double_coset_scope": false,
+  "cases": {
+    "before/mathlib-only": {
+      "source_sha256": "2c939a31ce8f9ec60b479a677b1708bb6e25a15c7502615cd9e29b664a4239d6",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "before/foundation": {
+      "source_sha256": "741a08ce3074f98a6206195e4d162f36b9fcd650cab5c06014f60d3fce82e6af",
+      "exit": 1,
+      "errors": [
+        {
+          "severity": "error",
+          "line": 7,
+          "message": "Tactic `rfl` failed: The left-hand side\n  inferInstance\nis not definitionally equal to the right-hand side\n  Matrix.instMeasurableSpace\n\nm n X : Type\ninst\u271d : MeasurableSpace X\n\u22a2 inferInstance = Matrix.instMeasurableSpace"
+        },
+        {
+          "severity": "error",
+          "line": 8,
+          "message": "failed to synthesize\n  BorelSpace (Matrix (Fin 2) (Fin 3) \u211d)\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command."
+        }
+      ],
+      "borel": []
+    },
+    "before/coordinates": {
+      "source_sha256": "d2b5f104b7a022761cc59f1bdc8f70439715e51b1a322ef256870d36eb689782",
+      "exit": 1,
+      "errors": [
+        {
+          "severity": "error",
+          "line": 7,
+          "message": "Tactic `rfl` failed: The left-hand side\n  inferInstance\nis not definitionally equal to the right-hand side\n  Matrix.instMeasurableSpace\n\nm n X : Type\ninst\u271d : MeasurableSpace X\n\u22a2 inferInstance = Matrix.instMeasurableSpace"
+        }
+      ],
+      "borel": [
+        "GroundTheory.Automorphic.GJMatrix.borelSpace_matrix"
+      ]
+    },
+    "before/double": {
+      "source_sha256": "899194d23689b6d5dfb91793df9f3883be3c63f99547b9ec8194ffa1c2b76553",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "before/combined": {
+      "source_sha256": "75b4f3f2a88197133942e5f123deb1253aabce3a0fcb11dcfebff077a48ab81e",
+      "exit": 1,
+      "errors": [
+        {
+          "severity": "error",
+          "line": 9,
+          "message": "Tactic `rfl` failed: The left-hand side\n  inferInstance\nis not definitionally equal to the right-hand side\n  Matrix.instMeasurableSpace\n\nm n X : Type\ninst\u271d : MeasurableSpace X\n\u22a2 inferInstance = Matrix.instMeasurableSpace"
+        }
+      ],
+      "borel": [
+        "GroundTheory.Automorphic.GJMatrix.borelSpace_matrix"
+      ]
+    },
+    "before/proof-forward": {
+      "source_sha256": "0efcce3c682e6a06220a646360565d87a28ac2241535bbfa199f3a586bf81779",
+      "exit": 1,
+      "errors": [
+        {
+          "severity": "error",
+          "line": 119,
+          "message": "failed to synthesize instance of type class\n  IsFiniteMeasureOnCompacts (volM \u03bd b a)\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+        },
+        {
+          "severity": "error",
+          "line": 106,
+          "message": "unsolved goals\ncase refine_1\nk : Type\ninst\u271d\u2078 : Field k\ninst\u271d\u2077 : ValuativeRel k\ninst\u271d\u2076 : TopologicalSpace k\ninst\u271d\u2075 : IsNonarchimedeanLocalField k\na b : Type\ninst\u271d\u2074 : Fintype a\ninst\u271d\u00b3 : Fintype b\ninst\u271d\u00b2 : MeasurableSpace k\ninst\u271d\u00b9 : BorelSpace k\n\u03bd : Measure k\ninst\u271d : \u03bd.IsAddHaarMeasure\n\u03a6 : Matrix b a k \u2192 \u2102\nh0 : ip \u03bd \u03a6 \u03a6 = 0\nhl : IsLocallyConstant \u03a6\nhK : HasCompactSupport \u03a6\nh2 : SecondCountableTopology k\nht : T2Space k\nthis\u271d : BorelSpace (Matrix b a k)\nthis : (volM \u03bd b a).IsAddHaarMeasure\nhc : Continuous fun x => Complex.normSq (\u03a6 x)\nhs : HasCompactSupport fun x => Complex.normSq (\u03a6 x)\ne : \u222b (x : Matrix b a k), Complex.normSq (\u03a6 x) \u2202volM \u03bd b a = 0\n\u22a2 IsFiniteMeasureOnCompacts (volM \u03bd b a)"
+        }
+      ],
+      "borel": []
+    },
+    "before/proof-reverse": {
+      "source_sha256": "929fb099771851292494d1c0150db04f300d62495a63f4b52e71375493b2f925",
+      "exit": 1,
+      "errors": [
+        {
+          "severity": "error",
+          "line": 119,
+          "message": "failed to synthesize instance of type class\n  IsFiniteMeasureOnCompacts (volM \u03bd b a)\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+        },
+        {
+          "severity": "error",
+          "line": 106,
+          "message": "unsolved goals\ncase refine_1\nk : Type\ninst\u271d\u2078 : Field k\ninst\u271d\u2077 : ValuativeRel k\ninst\u271d\u2076 : TopologicalSpace k\ninst\u271d\u2075 : IsNonarchimedeanLocalField k\na b : Type\ninst\u271d\u2074 : Fintype a\ninst\u271d\u00b3 : Fintype b\ninst\u271d\u00b2 : MeasurableSpace k\ninst\u271d\u00b9 : BorelSpace k\n\u03bd : Measure k\ninst\u271d : \u03bd.IsAddHaarMeasure\n\u03a6 : Matrix b a k \u2192 \u2102\nh0 : ip \u03bd \u03a6 \u03a6 = 0\nhl : IsLocallyConstant \u03a6\nhK : HasCompactSupport \u03a6\nh2 : SecondCountableTopology k\nht : T2Space k\nthis\u271d : BorelSpace (Matrix b a k)\nthis : (volM \u03bd b a).IsAddHaarMeasure\nhc : Continuous fun x => Complex.normSq (\u03a6 x)\nhs : HasCompactSupport fun x => Complex.normSq (\u03a6 x)\ne : \u222b (x : Matrix b a k), Complex.normSq (\u03a6 x) \u2202volM \u03bd b a = 0\n\u22a2 IsFiniteMeasureOnCompacts (volM \u03bd b a)"
+        }
+      ],
+      "borel": []
+    },
+    "after/mathlib-only": {
+      "source_sha256": "2c939a31ce8f9ec60b479a677b1708bb6e25a15c7502615cd9e29b664a4239d6",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "after/foundation": {
+      "source_sha256": "741a08ce3074f98a6206195e4d162f36b9fcd650cab5c06014f60d3fce82e6af",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "after/coordinates": {
+      "source_sha256": "d2b5f104b7a022761cc59f1bdc8f70439715e51b1a322ef256870d36eb689782",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "GroundTheory.Automorphic.GJMatrix.borelSpace_matrix"
+      ]
+    },
+    "after/double": {
+      "source_sha256": "899194d23689b6d5dfb91793df9f3883be3c63f99547b9ec8194ffa1c2b76553",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology (Fin 2) (Fin 3) \u211d"
+      ]
+    },
+    "after/combined": {
+      "source_sha256": "75b4f3f2a88197133942e5f123deb1253aabce3a0fcb11dcfebff077a48ab81e",
+      "exit": 0,
+      "errors": [],
+      "borel": [
+        "GroundTheory.Automorphic.GJMatrix.borelSpace_matrix"
+      ]
+    },
+    "after/proof-forward": {
+      "source_sha256": "0efcce3c682e6a06220a646360565d87a28ac2241535bbfa199f3a586bf81779",
+      "exit": 0,
+      "errors": [],
+      "borel": []
+    },
+    "after/proof-reverse": {
+      "source_sha256": "929fb099771851292494d1c0150db04f300d62495a63f4b52e71375493b2f925",
+      "exit": 0,
+      "errors": [],
+      "borel": []
+    }
+  }
+}

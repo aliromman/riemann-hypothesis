@@ -1,0 +1,20 @@
+{
+  "base": "b2f365a68500e2bde98cd60a2324263fc62fba10",
+  "candidate": "5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b",
+  "proposed_merge": "5446ee0fd9a7c0a2301ccd1a3b476b482896df14",
+  "tree": "550b6b254bff48daa7e5515d38db0535d1d9c6c7",
+  "delta": [
+    "src/Development/AbelianVarietyTheory/Definitions/Foundations/MatrixMeasurableSpace.lean",
+    "src/Formalism/DoubleCosetMeasures/StatementZ.lean",
+    "src/GroundTheory/AutomorphicForms/GL2/GJMatrixCoord.lean"
+  ],
+  "protected_blobs": {
+    "src/Main.lean": "67c65badc15f80a1db65df1c84dc7a4928fc410f",
+    "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    "comparator/FormalConjecturesChallenge.lean": "290a2c6270f8da3852c7051d7da0f30032a70421",
+    "comparator/formal-conjectures.json": "e3afddc98129d1d1183ff217d434165fd893a0fe",
+    "comparator/formal-conjectures-export-targets.txt": "80bbbf91461783bb8e7f0bb8061b792668d4140a"
+  }
+}

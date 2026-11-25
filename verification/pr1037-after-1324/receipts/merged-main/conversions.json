@@ -1,0 +1,50 @@
+[
+  {
+    "declaration": "GlobalTheory.SplitWeil.matrixMeasurableSpace",
+    "definitionallyEqual": true,
+    "expandedAuxiliary": false,
+    "newHeight": 12,
+    "oldHeight": 10,
+    "side": "stock"
+  },
+  {
+    "declaration": "GlobalTheory.SplitWeil.matrixMeasurableSpace",
+    "definitionallyEqual": true,
+    "expandedAuxiliary": false,
+    "newHeight": 12,
+    "oldHeight": 10,
+    "side": "candidate"
+  },
+  {
+    "declaration": "Formalism.DoubleCosetMeasures.instMeasMat",
+    "definitionallyEqual": true,
+    "expandedAuxiliary": true,
+    "newHeight": 12,
+    "oldHeight": 11,
+    "side": "stock"
+  },
+  {
+    "declaration": "Formalism.DoubleCosetMeasures.instMeasMat",
+    "definitionallyEqual": true,
+    "expandedAuxiliary": true,
+    "newHeight": 12,
+    "oldHeight": 11,
+    "side": "candidate"
+  },
+  {
+    "declaration": "GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix",
+    "definitionallyEqual": true,
+    "expandedAuxiliary": true,
+    "newHeight": 12,
+    "oldHeight": 11,
+    "side": "stock"
+  },
+  {
+    "declaration": "GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix",
+    "definitionallyEqual": true,
+    "expandedAuxiliary": true,
+    "newHeight": 12,
+    "oldHeight": 11,
+    "side": "candidate"
+  }
+]
