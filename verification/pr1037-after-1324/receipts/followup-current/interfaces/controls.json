@@ -1,0 +1,18 @@
+{
+  "reversed_owner_objects_exit": 1,
+  "reversed_owner_objects_rejected": true,
+  "existing_call_exit": 0,
+  "existing_call_identical_to_original_checker": true,
+  "control": {
+    "declaration": "GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting.SplitModel",
+    "environment": "stock",
+    "expandedConversion": "defeq",
+    "field": "definition",
+    "module": "Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HalfLinearCocycle",
+    "originalToExpanded": "defeq"
+  },
+  "default_scan_matches_original": true,
+  "proof_scan_matches_final": true,
+  "default_scan_sha256": "809ab0dde8c5855980d4ad92211a450958778f8cb374593a5a1316ede9071cc3",
+  "checker_sha256": "30d1968ec1f731582239dd72fe46c72d37b4ddeeb1f7b76857f9a329eafcea6d"
+}

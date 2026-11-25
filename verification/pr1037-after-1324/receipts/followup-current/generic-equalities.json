@@ -1,0 +1,13 @@
+{
+  "parent": "5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b",
+  "candidate": "63e4077100de67259780b159cc7c528e9046ab29",
+  "parent_eqs": 4,
+  "parent_fixture_sha256": "b267dedd1c469334f403b58cc14b8c348c1efea50392a787f2c80ea662874f55",
+  "candidate_selected": [
+    "Matrix.instMeasurableSpace",
+    "Matrix.instBorelSpaceOfCountableOfSecondCountableTopology m n X"
+  ],
+  "candidate_fixture_sha256": "b060628f75afc5d55ce1646c0f4ae49646a4f81c1e13baa21cc1ff4d6d85f008",
+  "parent_exit": 0,
+  "candidate_exit": 0
+}

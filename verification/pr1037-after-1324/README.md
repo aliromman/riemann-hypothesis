@@ -14,6 +14,8 @@ Lean 4.37.0-rc1 can select three project instances for the measurable space on m
 | Proposed GitHub merge of these two revisions | `5446ee0fd9a7c0a2301ccd1a3b476b482896df14` |
 | Fork cleanup updated on top of #1037 | `63e4077100de67259780b159cc7c528e9046ab29` |
 
+Community batch #1739 has since advanced main to `4a5b4a2d2a51`. The current three-file #1037 head is `41596f52921c` and its GitHub merge is `0c252f795aa6`. Both have tree `170c9f4d04faf7a2042cc2d1c580b6e800bf842e`. The patch and seven protected blobs match the previous integration. The figures for `5446ee0fd9a7` below apply to that earlier revision. [Updated runner handoff](https://github.com/leanprover-community/riemann-hypothesis/issues/599#issuecomment-7149979729).
+
 ## Results
 
 The two columns for each proof are separate compilations of the same proof body. Each cell gives the diagnostic count for one import order.
@@ -52,7 +54,13 @@ Both Git revisions also passed `lake build Challenge` and `lake env leanexport C
 
 The updated cleanup at `63e4077100de` removes four instance declarations and 60 local attribute commands in 28 files. It also removes two local measurable-space witnesses and one Borel-space witness. It retains main’s changes to the local instance list in `SumOKEx` and the theorem reference `PI.WUN.exp_mem_UH` in `AtChoice`. Two other overlapping files had upstream edits to comments and matrix priority commands that the cleanup deletes. A Git search and a SHA-checked scan of all 59,823 project source blobs found zero uses of the four names. [Change from the #1037 head](https://github.com/aliromman/riemann-hypothesis/compare/5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b..63e4077100de67259780b159cc7c528e9046ab29).
 
-This revision passed the 25 targets in `followup-port-25.txt`, with 2,959 distinct source modules. This includes the two explicit GL comap proofs, `LocalZetaFunctionalUniqueness`, and `SumOKEx`. The matrix probes selected Mathlib’s Borel witness, and both import orders passed for the live and archived proof bodies. Lean selected both original scoped GL names. The eight candidate modules in `kernel-targets.txt` passed kernel replay. Nine of the 28 changed files occur in the tested source closure. Eleven more terminal targets cover the other 19. The complete changed-file closure contains 17,360 modules. The optional cleanup stays on the fork while these checks are open.
+This revision passed the 25 targets in `followup-port-25.txt`, with 2,959 distinct source modules. This includes the two explicit GL comap proofs, `LocalZetaFunctionalUniqueness`, and `SumOKEx`. The matrix probes selected Mathlib’s Borel witness, and both import orders passed for the live and archived proof bodies. Lean selected both original scoped GL names. The eight candidate modules in `kernel-targets.txt` passed kernel replay. Nine of the 28 changed files occur in the tested source closure. Eleven further terminal targets cover the other 19. The complete changed-file closure contains 17,360 modules.
+
+A second native build on `63e4077100de` passed 30 targets with 3,835 distinct project modules and 16 of the 28 changed files. It included `ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement` after removal of its local measurable and Borel witnesses. The lists and results are in `receipts/followup-current`.
+
+A third native build on the same cleanup commit passed the 31 targets in `followup-31-targets.txt`. It covered 6,994 project modules and 17 of the 28 edited files. Both witness-removal sites, including `VolLevelWtConstStatement`, compiled. The remaining 5 terminal targets cover the other 11 edited files. The parent also compiled `NamedMatrixEqualities.lean`, which proves equality with the Mathlib witnesses for all supported dimensions and coefficient types. On the cleanup, `CanonicalMatrixSelection.lean` selected both Mathlib instances with symbolic types and dimensions in the open DoubleCosetMeasures scope.
+
+For the 24 original targets, the object comparison covers 1,065 project modules. The #1037 head has 35,759 public declarations in these modules. The cleanup removes the four named declarations. All 35,755 surviving axiom records agree. For the surviving declarations, 35,649 types, 17,603 definition bodies and 16,361 theorem proofs agree in the structural check. All 106 other types, all 31 other definition bodies and all 103 other theorem proofs passed conversion in both kernels. This gives 480 kernel checks over 240 fields. The checker unfolds each retired provider from the parent object. It also unfolds private proof helpers owned by a retired provider. The parent kernel checks each expansion against its original term. The candidate kernel checks both normalized terms in the actual consumer module. [Kernel and interface receipts](receipts/followup-current/interfaces)
 
 The generator reads source files directly from Git. It verifies each changed file against the expected commit before it writes any output. It can use either the merged main parent or the three-file #1037 head to produce the same 28 files. Run this command from a repository that has both commits. Set `EVIDENCE` to this directory and `OUT` to a directory for the results.
 
@@ -60,6 +68,15 @@ The generator reads source files directly from Git. It verifies each changed fil
 python3 "$EVIDENCE/regenerate_cleanup.py" --repo . \
   --base 5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b \
   --expected 63e4077100de67259780b159cc7c528e9046ab29 --output "$OUT/cleanup-src"
+```
+
+To repeat the cleanup interface check, build the targets in `targets.txt` on the #1037 head and on the cleanup commit. Set `BEFORE` and `AFTER` to those two checkouts. Set `EVIDENCE` to this directory and `BIN` to the Lean toolchain’s `bin` directory.
+
+```sh
+python3 "$EVIDENCE/verify_cleanup_interfaces.py" --repo "$BEFORE" --before "$BEFORE" --after "$AFTER" \
+  --parent 5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b --candidate 63e4077100de67259780b159cc7c528e9046ab29 \
+  --targets "$EVIDENCE/targets.txt" --bin "$BIN" --audit "$EVIDENCE/../pr120-admloc-dependents/AuditPublic.lean" \
+  --compare "$EVIDENCE/../pr120-admloc-dependents/CompareAuxProofs.lean" --output "$OUT/interfaces"
 ```
 
 ## Reproduce

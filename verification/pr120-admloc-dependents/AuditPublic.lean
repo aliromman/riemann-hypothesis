@@ -97,7 +97,7 @@ private def difference (env : Option Environment) (n : Name) (field : String) (a
   Json.mkObj [("declaration", toJson n.toString), ("field", toJson field),
     ("conversion", toJson (env.map (fun e => conversion e a b) |>.getD "pending"))]
 
-private unsafe def audit (mod oldPath newPath : String) (env : Option Environment) : IO Unit := do
+private unsafe def audit (mod oldPath newPath : String) (env : Option Environment) (includeProofs : Bool) : IO Unit := do
   let oldParts ← readParts oldPath
   let newParts ← readParts newPath
   let some (oldData, _) := oldParts[0]? | throw <| IO.userError "missing original public data"
@@ -133,6 +133,7 @@ private unsafe def audit (mod oldPath newPath : String) (env : Option Environmen
       thms := thms + 1
       if ax.isNone then bad := bad.push s!"missing theorem axiom record: {name}"
       if equalExpr x.value y.value then rawProofs := rawProofs + 1
+      else if includeProofs then terms := terms.push (difference env name "proof" x.value y.value)
     | .defnInfo .., .defnInfo .. | .opaqueInfo .., .opaqueInfo .. =>
       defs := defs + 1
       let some x := a.value? (allowOpaque := true) | throw <| IO.userError s!"missing original body {name}"
@@ -151,13 +152,13 @@ private unsafe def audit (mod oldPath newPath : String) (env : Option Environmen
     ("terms", Json.arr terms)]
 
 public unsafe def main (args : List String) : IO Unit := do
-  let [mode, manifest] := args | throw <| IO.userError "expected scan or kernel, then a tab-separated manifest"
-  unless mode == "scan" || mode == "kernel" do throw <| IO.userError "unknown mode"
+  let [mode, manifest] := args | throw <| IO.userError "expected scan, scan-proofs or kernel, then a tab-separated manifest"
+  unless mode == "scan" || mode == "scan-proofs" || mode == "kernel" do throw <| IO.userError "unknown mode"
   initSearchPath (← findSysroot)
   for line in ← IO.FS.lines manifest do
     let [mod, before, after] := line.splitOn "\t" | throw <| IO.userError "expected module, original object, candidate object"
     if mode == "kernel" then
       withImportModules #[{module := mod.toName, importAll := true}] {} fun env =>
-        audit mod before after (some env)
+        audit mod before after (some env) false
     else
-      audit mod before after none
+      audit mod before after none (mode == "scan-proofs")
