@@ -1,0 +1,29 @@
+test_clump_records_are_not_part_of_the_header (test_clump.ClumpTests.test_clump_records_are_not_part_of_the_header)
+A caller's header is rebuilt from its imports by collapse_wrappers.py, so a clump ... ok
+test_comment_glued_to_an_import (test_clump.ClumpTests.test_comment_glued_to_an_import) ... ok
+test_commented_import_all_still_prevents_clumping (test_clump.ClumpTests.test_commented_import_all_still_prevents_clumping) ... ok
+test_comments_after_the_last_import_stay_in_the_body (test_clump.ClumpTests.test_comments_after_the_last_import_stay_in_the_body) ... ok
+test_standalone_import_comments_remain_in_header (test_clump.ClumpTests.test_standalone_import_comments_remain_in_header) ... ok
+test_trailing_import_comments_remain_in_header (test_clump.ClumpTests.test_trailing_import_comments_remain_in_header) ... ok
+test_unclump_recreates_absorbed_directories_byte_for_byte (test_clump.ClumpTests.test_unclump_recreates_absorbed_directories_byte_for_byte) ... ok
+test_apply_reads_only_the_modules_in_the_plan (test_clump_scopes.ClumpScopesTest.test_apply_reads_only_the_modules_in_the_plan) ... ok
+test_blame_marks_the_shared_group_and_each_member (test_clump_scopes.ClumpScopesTest.test_blame_marks_the_shared_group_and_each_member) ... ok
+test_dotted_namespace_can_close_one_component_at_a_time (test_clump_scopes.ClumpScopesTest.test_dotted_namespace_can_close_one_component_at_a_time) ... ok
+test_existing_clump_after_a_preamble_is_protected (test_clump_scopes.ClumpScopesTest.test_existing_clump_after_a_preamble_is_protected) ... ok
+test_markers_outside_the_archive_are_comments (test_clump_scopes.ClumpScopesTest.test_markers_outside_the_archive_are_comments) ... ok
+test_named_scopes_can_share_one_end (test_clump_scopes.ClumpScopesTest.test_named_scopes_can_share_one_end) ... ok
+test_old_layout (test_clump_scopes.ClumpScopesTest.test_old_layout) ... ok
+test_original_comment_can_use_the_new_marker (test_clump_scopes.ClumpScopesTest.test_original_comment_can_use_the_new_marker) ... ok
+test_plan_keeps_existing_clumps_separate (test_clump_scopes.ClumpScopesTest.test_plan_keeps_existing_clumps_separate) ... refused 0 folds because of clashing declaration names
+refused 0 folds because of clashing declaration names
+ok
+test_remove_all_shared_opens (test_clump_scopes.ClumpScopesTest.test_remove_all_shared_opens) ... ok
+test_separator_is_optional (test_clump_scopes.ClumpScopesTest.test_separator_is_optional) ... ok
+test_shared_namespace_opens_round_trip (test_clump_scopes.ClumpScopesTest.test_shared_namespace_opens_round_trip) ... ok
+test_temporary_open_stays_with_its_command (test_clump_scopes.ClumpScopesTest.test_temporary_open_stays_with_its_command) ... ok
+test_unassigned_text_is_reported (test_clump_scopes.ClumpScopesTest.test_unassigned_text_is_reported) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.290s
+
+OK

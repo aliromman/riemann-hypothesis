@@ -1,0 +1,19 @@
+{
+  "pr": "977",
+  "branch": "codex/simplify-clump-scopes",
+  "head": "734178695efaf86734e2eca8503fad4062a062a1",
+  "base": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+  "old": "f498439153b72cf74f39a892245141c1b0849e61",
+  "src": "f67e7b6ac5adffd12ec2195cadd18e388737a1ad",
+  "tree": "7b1a76d6b9b69637c517fdd5e0a7c91325622126",
+  "published_at": "2026-11-25T07:39:51.758915+00:00",
+  "raw_upstream_fetch_before_sync": false,
+  "raw_fetch_error": "fatal: remote error: upload-pack: not our ref 734178695efaf86734e2eca8503fad4062a062a1",
+  "source_reference": "refs/heads/ci/batch-2318/pr-977-published",
+  "merge_base_at_readback": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+  "merge_tree_at_readback": "7b1a76d6b9b69637c517fdd5e0a7c91325622126",
+  "mergeable": true,
+  "github_merge": "fa932b9bf8fb49358d289dc311f0eb761293c1aa",
+  "draft": true,
+  "validated": "2026-11-25T07:41:03.038322+00:00"
+}
