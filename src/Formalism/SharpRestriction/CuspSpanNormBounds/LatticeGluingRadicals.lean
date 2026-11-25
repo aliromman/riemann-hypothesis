@@ -1279,10 +1279,6 @@ theorem lemma_one_det_index_le_gram (D : D7) (Λ : VanishingOnXAndXPlusGluing.La
   · have hi' : 0 < (iIdx Λ g F F' : ℝ) := by exact_mod_cast hi
     have hle : (iIdx Λ g F F' : ℝ) ≤
         (Nat.card (BQ Λ F F') : ℝ) / NE (E := D.host.E) g ^ (D.R.rS + 1) := h1.trans h2
-    have hNpos : 0 < NE (E := D.host.E) g ^ (D.R.rS + 1) := by
-      rcases hN.lt_or_eq with h | h
-      · exact h
-      · rw [← h, div_zero] at hle; linarith
     have e1 : NG Λ F F' / ((Nat.card (BQ Λ F F') : ℝ) * (iIdx Λ g F F' : ℝ)) * (iIdx Λ g F F' : ℝ) ^ 2 =
         NG Λ F F' * ((iIdx Λ g F F' : ℝ) / (Nat.card (BQ Λ F F') : ℝ)) := by
       field_simp

@@ -11,6 +11,27 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Fixed
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FiniteCosetsHeckeSetAtSplitPlaceOutsideLevel
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsotypicPartSpannedBySplitPlaceLocalComponentStatement
 import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -24,6 +45,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TraceEqSumLocalTracesAbovePrime
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ValuationLtOneIffTendsto
 
 @[expose] public section
 
@@ -45,28 +70,14 @@ variable {K K' : Type} [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarc
   [Field K'] [ValuativeRel K'] [TopologicalSpace K'] [IsNonarchimedeanLocalField K']
 
 theorem tendsto_pow_zero {x : K} (h : valuation K x < 1) : Tendsto (fun n : ℕ => x ^ n) atTop (𝓝 0) := by
-  rw [(IsValuativeTopology.hasBasis_nhds_zero' K).tendsto_right_iff]
-  intro γ hγ
-  have : MulArchimedean (ValueGroupWithZero K) :=
-    ValuativeRel.isRankLeOne_iff_mulArchimedean.mp inferInstance
-  obtain ⟨n, hn⟩ := exists_pow_lt₀ h (Units.mk0 γ hγ)
-  filter_upwards [eventually_ge_atTop n] with m hm
-  rw [map_pow]
-  exact lt_of_le_of_lt (pow_le_pow_right_of_le_one' h.le hm) hn
+  apply _root_.GlobalTheory.LocalTraceSum.tendsto_pow <;> assumption
 
 theorem lt_one_mem_nhds : {y : K' | valuation K' y < 1} ∈ 𝓝 (0 : K') := by
   refine (IsValuativeTopology.hasBasis_nhds_zero' K').mem_iff.2 ⟨1, one_ne_zero, fun y hy => hy⟩
 
 theorem lt_one_of_map (i : K →+* K') (hi : Continuous i) {x : K} (h : valuation K x < 1) :
     valuation K' (i x) < 1 := by
-  have h1 : Tendsto (fun n : ℕ => i x ^ n) atTop (𝓝 0) := by
-    have := (hi.tendsto 0).comp (tendsto_pow_zero h)
-    simpa [Function.comp_def, map_pow] using this
-  obtain ⟨N, hN⟩ := (h1.eventually lt_one_mem_nhds).exists
-  by_contra hc
-  push Not at hc
-  have : 1 ≤ valuation K' (i x ^ N) := by rw [map_pow]; exact one_le_pow₀ hc
-  exact absurd hN (not_lt.2 this)
+  apply _root_.GlobalTheory.TypeRec.TwistInert.valuation_lt_one_map <;> assumption
 
 theorem le_one_of_map (i : K →+* K') (hi : Continuous i) {y : K} (h : valuation K' (i y) ≤ 1) :
     valuation K y ≤ 1 := by

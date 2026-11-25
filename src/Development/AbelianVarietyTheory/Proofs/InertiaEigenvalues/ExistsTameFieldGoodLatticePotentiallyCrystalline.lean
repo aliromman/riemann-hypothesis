@@ -17,34 +17,16 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InerDec
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertiaQlLeInertiaOfFiniteExtension
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PotentiallyCrystallineModuleEqCrystallineRestric
 public import Mathlib.LinearAlgebra.Eigenspace.Minpoly
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ClassFieldTheory.LocalClassField.GalBasic
 import ReciprocityTheory.ClassFieldTheory.LocalClassField.NormSubEqOneOfPowEqOne
 import ReciprocityTheory.ClassFieldTheory.LocalClassField.UnrExtC
 import ReciprocityTheory.ClassFieldTheory.LocalClassField.UnrExtE
-import Mathlib.Algebra.Order.Star.Int
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.InvertibleSpanSingleton
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NormPowLeNormFactorial
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.RealisesUnitPow
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.PicardGroup
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ResEqIff
-import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFrobInvMulMemIner, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertiaConjMem, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AevalRootOfUnityMulKummerRootMinpoly, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsGaloisFixingMaxUnramifiedMapConj, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsPrimePowFixingNormalOfNear, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertiaCharOpenKerTrivialFixingNormal, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertiaFixingKummerRootMovesLess, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemInertiaQlIffResidueTrivial, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TameInertiaCharactersPowersOfOmega, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsTameFieldGoodLatticePotentiallyCrystalline

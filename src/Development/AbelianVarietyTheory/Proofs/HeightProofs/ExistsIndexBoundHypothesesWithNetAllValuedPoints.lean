@@ -62,6 +62,28 @@ public import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsPrimeDa
 public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.CombinedBoundForRunScalars
 public import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.CuspFormBasisSharesDefiniteLiftIndex
 public import Development.AbelianVarietyTheory.Proofs.TorusSplitting.ExistsScalarWeightAuxiliaryFormOfRunConditions
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -76,8 +98,15 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.SharpRestriction.Divisibility.AbelianOpenPart.AbelianAt
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Algebra.MvPolynomial.Funext
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.ArchimedeanThetaValues.IsFramedPointChangedByLetters
 import Development.AbelianVarietyTheory.Definitions.CMLattices.LamLetters
 import Development.AbelianVarietyTheory.Proofs.ToricGeometry.ShiftSingleInt
@@ -92,6 +121,7 @@ import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.Rationality.QuotSt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 import Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.TieLDB
 import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
 import Formalism.SharpRestriction.CuspSpanNormBounds.Point
@@ -1152,7 +1182,7 @@ theorem GlobalTheory.Shares.exists_anFacts_record : ∀ (D : D7) (T : Top D) (h 
     _root_.GlobalTheory.Shares.LeadDeep.main D T h j hj n R e hR N wL wF w Tn _ A t Fl _ xs en hxs,
     _root_.GlobalTheory.UpperRecord.upper D T h j hj n R e hR N wL wF w Tn _ A t Fl _ xs en hxs,
     _root_.GlobalTheory.LowerBound.lower_bound D T h j hj n R e hR N wL wF w Tn _ A t Fl _ xs en hxs CR c rfl hM,
-    _root_.GlobalTheory.Containment.main D T h j hj n R e hR N wL wF w Tn _ A t Fl _ xs en hxs hOn CR c rfl ?_⟩
+    _root_.GlobalTheory.Containment.main D T h j hj n R e hR N wL wF w Tn _ A t Fl _ xs en hxs hOn CR c ?_⟩
   · intro Q hQ
     have hσ : R.σ = T.σ₀ := RingHom.ext hR.1
     rw [hσ]

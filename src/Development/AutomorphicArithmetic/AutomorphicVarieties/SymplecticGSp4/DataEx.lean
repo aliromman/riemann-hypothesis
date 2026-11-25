@@ -1,5 +1,6 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.DecInf
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.UnramifiedCocycleIsCoboundaryOfBernoulliUnit
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.DecompSigmaOrd
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.HcSpKer
@@ -38,6 +39,29 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomo
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.Th1Facts
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.TwoPowLtSqMulOfPrimitiveCharPowEqOne
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.DvrFacts
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -51,6 +75,15 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Topology.Separation.Connected
@@ -513,18 +546,7 @@ private theorem re_two {Γ M : Type} [Group Γ] [Monoid M] (a b : Γ →* M) :
   · exact ⟨1, fun h1 h2 => absurd ⟨h1, h2⟩ h⟩
 
 private theorem re_unit (l : ℕ) [hl : Fact l.Prime] : ∃ u : ℤ_[l]ˣ, ¬ IsOfFinOrder u := by
-  have hu : IsUnit ((l + 1 : ℕ) : ℤ_[l]) := by
-    rw [PadicInt.isUnit_iff, PadicInt.norm_natCast_eq_one_iff]
-    simp
-  refine ⟨hu.unit, fun h => ?_⟩
-  obtain ⟨n, hn, e⟩ := isOfFinOrder_iff_pow_eq_one.1 h
-  have h1 : ((l + 1 : ℕ) : ℤ_[l]) ^ n = 1 := by
-    have := congrArg Units.val e
-    rwa [Units.val_pow_eq_pow_val, IsUnit.unit_spec, Units.val_one] at this
-  have h2 : (l + 1) ^ n = 1 := by exact_mod_cast h1
-  have h3 := hl.out.pos
-  rw [pow_eq_one_iff_left hn.ne'] at h2
-  omega
+  apply _root_.exists_unit <;> assumption
 
 section
 

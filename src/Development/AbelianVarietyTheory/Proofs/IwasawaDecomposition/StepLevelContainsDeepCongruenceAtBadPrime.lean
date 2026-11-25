@@ -1,12 +1,35 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsPosNatMemOpenAdeleSubgroup
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LiftsInvOne
 public import Formalism.LocalToGlobal.Columns.RecLevelTop
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TrueColumnSpacesStandardInFrameCoords
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralAtOfComponentZeroUnderPrime
 public import Formalism.LocalToGlobal.Columns.RecLevelLocP
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsScale
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -20,6 +43,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -34,21 +59,7 @@ open Filter Topology
 
 theorem tendsto_fact_loc (F : Type) [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F)) :
     Tendsto (fun n : ℕ => ((n.factorial : ℕ) : v.adicCompletion F)) atTop (𝓝 0) := by
-  have hle : ∀ m : ℕ, ‖(m : v.adicCompletion F)‖ ≤ 1 := fun m => by
-    have := FinitePlace.norm_le_one F v (m : 𝓞 F)
-    simpa using this
-  set M := Ideal.absNorm v.asIdeal with hM
-  have hlt : ‖(M : v.adicCompletion F)‖ < 1 := by
-    have := (FinitePlace.norm_lt_one_iff_mem F v (M : 𝓞 F)).2 (Ideal.absNorm_mem _)
-    simpa using this
-  have hM0 : 0 < M := lt_trans one_pos (NumberField.HeightOneSpectrum.one_lt_absNorm v)
-  rw [Metric.tendsto_atTop]
-  intro ε hε
-  obtain ⟨k, hk⟩ := exists_pow_lt_of_lt_one hε hlt
-  refine ⟨M ^ k, fun n hn => ?_⟩
-  obtain ⟨c, hc⟩ := Nat.dvd_factorial (pow_pos hM0 k) hn
-  rw [dist_zero_right, hc, Nat.cast_mul, Nat.cast_pow, norm_mul, norm_pow]
-  exact lt_of_le_of_lt (mul_le_of_le_one_right (by positivity) (hle c)) hk
+  first | exact _root_.GlobalTheory.AdelicFactorial.tendsto_factorial_adicCompletion | exact @_root_.GlobalTheory.AdelicFactorial.tendsto_factorial_adicCompletion | apply _root_.GlobalTheory.AdelicFactorial.tendsto_factorial_adicCompletion <;> assumption
 
 theorem tendsto_fact (F : Type) [Field F] [NumberField F] :
     Tendsto (fun n : ℕ => ((n.factorial : ℕ) : FiniteAdeleRing (𝓞 F) F)) atTop (𝓝 0) := by

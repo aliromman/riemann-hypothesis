@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ActPMemLocPNabStdOfIsBasisAt
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ReadsDeco
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HcParameterEAddHalfShiftLeBSucc
 public import Formalism.LocalToGlobal.Columns.BaseLemmas
@@ -25,7 +26,29 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InvRe
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RowFormLevelPrimesIsSplitSet
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RowLevelCharacterTranslationEqFlagCharacterStatement
 public import Formalism.LocalToGlobal.Columns.InputsGenus
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -38,13 +61,18 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalToGlobal.HilbertRowConditions.CenterIdempotentAction
 import Formalism.LocalToGlobal.IndefiniteReal.RecTie
 import Formalism.LocalToGlobal.Columns.AdelicLemmas
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LBidetLemmas
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.Tactic.NormNum.Parity
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StableIffCarrierEq
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
@@ -435,20 +463,7 @@ theorem degree_of_colWeight {ν : Fin n → ℕ} (m : Fin n × Fin n →₀ ℕ)
 theorem rowAct_smul_of_weight {R : Type} [CommRing R] {ν : Fin n → ℕ} (c : R) (g : Matrix (Fin n) (Fin n) R)
     (f : MvPolynomial (Fin n × Fin n) R) (hf : IsWeightedHomogeneous (Formalism.GradedWeylDivisibility.colW n n) f ν) :
     Formalism.GradedWeylDivisibility.rowAct R (c • g) f = c ^ (∑ j, ν j) • Formalism.GradedWeylDivisibility.rowAct R g f := by
-  classical
-  conv_lhs => rw [f.as_sum]
-  conv_rhs => rw [f.as_sum]
-
-  rw [map_sum, map_sum, Finset.smul_sum]
-  refine Finset.sum_congr rfl fun m hm => ?_
-  rw [← degree_of_colWeight m (hf (mem_support_iff.mp hm))]
-  have h1 : ∀ v : Fin n × Fin n, (∑ b : Fin n, C ((c • g) v.1 b) * X (b, v.2) : MvPolynomial (Fin n × Fin n) R) =
-      C c * ∑ b : Fin n, C (g v.1 b) * X (b, v.2) := by
-    intro v
-    simp only [Matrix.smul_apply, smul_eq_mul, C_mul, Finset.mul_sum, mul_assoc]
-  simp only [Formalism.GradedWeylDivisibility.rowAct, aeval_monomial, h1, Finsupp.prod, Finsupp.sum, mul_pow, Finset.prod_mul_distrib,
-    Finset.prod_pow_eq_pow_sum, smul_eq_C_mul, C_pow]
-  ring
+  first | exact _root_.GlobalTheory.NabStab.rowAct_smul | exact @_root_.GlobalTheory.NabStab.rowAct_smul | apply _root_.GlobalTheory.NabStab.rowAct_smul <;> assumption
 
 def totDeg (lam : ι → DomWeight n) : ℕ := ∑ τ, ∑ j, (lam τ).natW j
 

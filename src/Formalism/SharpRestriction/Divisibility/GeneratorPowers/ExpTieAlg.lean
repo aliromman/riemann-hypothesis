@@ -102,11 +102,6 @@ private theorem subst_C_lemma {σ τ : Type} {a : σ → MvPowerSeries τ S} (ha
     rw [smul_eq_C_mul, mul_one]
   rw [hc, ← coe_substAlgHom ha, map_smul, map_one, smul_eq_C_mul, mul_one]
 
-private theorem subst_X_lemma_2 {σ : Type} (g : MvPowerSeries σ S) :
-    subst (X : σ → MvPowerSeries σ S) g = g := by
-  first
-  | (rw [subst_self]; rfl)
-
 private theorem subst_zero_lemma_3 {σ τ : Type} [Finite σ] (g : MvPowerSeries σ S) :
     subst (fun _ : σ => (0 : MvPowerSeries τ S)) g = C (constantCoeff g) := by
   classical
@@ -178,7 +173,8 @@ theorem subst_sz_cpy (b : Fin 2) (g : MvPowerSeries (Fin 1 × Fin N) S) :
   · have hX : (fun r : Fin 1 × Fin N => if b = 0 then (X r : MvPowerSeries (Fin 1 × Fin N) S) else 0) = X := by
       funext r
       simp [hb]
-    rw [hX, if_pos hb, subst_X_lemma_2]
+    rw [hX, if_pos hb, subst_self]
+    rfl
   · have hZ : (fun r : Fin 1 × Fin N => if b = 0 then (X r : MvPowerSeries (Fin 1 × Fin N) S) else 0) =
         fun _ => 0 := by
       funext r

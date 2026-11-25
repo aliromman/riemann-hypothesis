@@ -9,10 +9,34 @@ public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLif
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypePartBase
 public import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAtOfSubsingleton
 public import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.InfClassAt
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Ideal.Norm.RelNorm
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -26,11 +50,13 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GridFirstColumnSpaceRankSignatureSelfDual
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 import Formalism.SharpRestriction.GlobalSchurBounds.ThickPlacesCorollaryOfAnyTranslate
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Polynomial.Basic
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OneCosetOfIsTensor
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumOKEx
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationLeOneOfMem
@@ -745,13 +771,6 @@ theorem card_kCosets_theta : _root_.GlobalTheory.FunPr.ThetaLocalInputs → CosK
 end GlobalTheory.CosCount
 end
 end
-
-section
-open GlobalTheory.SumCount GlobalTheory.SumSize
-
-theorem _root_.GlobalTheory.T.theta_kCoset_count_formula : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.SumCount.CosK := by
-  first | exact @_root_.GlobalTheory.CosCount.card_kCosets_theta
-end
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.ThetaKCosetCountFormula =====
@@ -765,15 +784,8 @@ section
 open GlobalTheory.SumSize GlobalTheory.RowClaim
 namespace GlobalTheory.SumCount
 theorem archimedean_sum_count_bound : _root_.GlobalTheory.FunPr.ThetaLocalInputs → DepthK → InfCountK := fun hP hD =>
-  infCountK_of _root_.GlobalTheory.SumCount.DataCount.dataK (_root_.GlobalTheory.T.theta_kCoset_count_formula hP) (GlobalTheory.T.pureTensorCountBound_of_cosetDepthBound hD)
+  infCountK_of _root_.GlobalTheory.SumCount.DataCount.dataK (_root_.GlobalTheory.CosCount.card_kCosets_theta hP) (GlobalTheory.T.pureTensorCountBound_of_cosetDepthBound hD)
 end GlobalTheory.SumCount
-end
-
-section
-open GlobalTheory.SumSize GlobalTheory.RowClaim
-
-theorem _root_.GlobalTheory.T.sum_count_bound_archimedean : _root_.GlobalTheory.FunPr.ThetaLocalInputs → DepthK → InfCountK := by
-  first | exact @_root_.GlobalTheory.SumCount.archimedean_sum_count_bound
 end
 end -- clump:auto
 end -- clump:auto

@@ -36,6 +36,28 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TameFunct
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TameFunctionalVacuumIrreducibilityStatement
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilActionNegPairPureTensorFock
 public import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.SymplOHSmulRight
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -50,6 +72,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.LocalToGlobal.Divisibility.DefGroupLemmas
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsThetaFam
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.CovolOneIntegralAdd
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsHeightLeTwoMulQuotHeight
@@ -58,6 +81,8 @@ import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.OffQOfS
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.WittSmallGroupEmbeddingMemPointwiseStabilizerIso
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemCompletedGridArrowLatticeIffIntegralFrameMatr
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MemHomLatticeCompletionIffSupportedMaps
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SymplOHEqZeroOfHO
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.MemHomLatticeIffIntegralMatrixSplitChart
@@ -827,12 +852,12 @@ theorem fockTot : FockTot := by
       rw [hfock]
       simp only [conjFun]
       rw [cj_eq_star, hkill κ P, map_zero]
-    have h := GlobalTheory.T.tameFunctional_kills_fockVacuum_realTranslates D W.ψ W.θ hψ W.θ_is _ _ A B (conjFun ℓ) (tame_conjFun hψ hℓ) _ hv hk w hw
+    have h := _root_.GlobalTheory.FockTransl.tame_kills_real_translates D W.ψ W.θ hψ W.θ_is _ _ A B (conjFun ℓ) (tame_conjFun hψ hℓ) _ hv hk w hw
     simp only [conjFun] at h
     rw [cj_heisO (S := G.V (.grid (i.1 + 1) 0)) hψ, map_eq_zero, cj_eq_star] at h
     exact h
   obtain ⟨hne₀, -, hVac₀, hspan₀⟩ := cos default
-  refine GlobalTheory.T.tame_functional_vacuum_irreducibility D W.ψ hψ _ _ (latRow G i.1) ℓ hℓ (star (W.cosVec i.1 default)) hVac₀ ?_ ?_ f hf
+  refine _root_.GlobalTheory.Irr.irr D W.ψ hψ _ _ (latRow G i.1) ℓ hℓ (star (W.cosVec i.1 default)) hVac₀ ?_ ?_ f hf
   · intro h0
     apply hne₀
     have := congrArg star h0
@@ -897,7 +922,6 @@ section -- clump:auto
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links MeasureTheory IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Unf GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.SepRows
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Asc
 
 end -- clump:auto

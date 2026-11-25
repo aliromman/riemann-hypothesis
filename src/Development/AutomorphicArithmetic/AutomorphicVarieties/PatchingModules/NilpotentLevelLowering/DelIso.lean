@@ -3,10 +3,38 @@ module
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HeckePairTop
 public import Mathlib.RingTheory.SimpleRing.Principal
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwMemIwC
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwMemIwC
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsSubquotientDetRepParInd
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.NilpotentLevelLowering.ActUVariableEqPow
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -20,6 +48,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwIwQuot, Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.NilpotentLevelLowering.DelIso
@@ -39,12 +68,7 @@ variable {R n : Type} [CommRing R] [Fintype n] [DecidableEq n] [LinearOrder n]
 
 private theorem q_diag_mul {a b : GL n R} (ha : a ∈ borel R n) (hb : b ∈ borel R n) (i : n) :
     ((a * b : GL n R) : Matrix n n R) i i = (a : Matrix n n R) i i * (b : Matrix n n R) i i := by
-  rw [Units.val_mul, Matrix.mul_apply, Finset.sum_eq_single i]
-  · intro l _ hl
-    rcases lt_or_gt_of_ne hl with h | h
-    · rw [(mem_borel R).1 ha i l h, zero_mul]
-    · rw [(mem_borel R).1 hb l i h, mul_zero]
-  · simp
+  apply _root_.UpperTheory.V.AlgebraTools.diag_mul <;> assumption
 
 private theorem q_exD : ∃ D : borel R n →* (n → Rˣ),
     ∀ (g : borel R n) (i : n), (D g i : R) = ((g : GL n R) : Matrix n n R) i i := by
@@ -56,12 +80,7 @@ private theorem q_exD : ∃ D : borel R n →* (n → Rˣ),
 
 private theorem q_map_diagT {S : Type} [CommRing S] (f : R →+* S) (d : n → Rˣ) :
     GeneralLinearGroup.map (n := n) f (diagT R n d) = diagT S n fun i => Units.map f.toMonoidHom (d i) := by
-  ext i j
-  show f ((diagT R n d : Matrix n n R) i j) = _
-  rw [val_diagT, val_diagT, diagonal_apply, diagonal_apply]
-  split_ifs
-  · rfl
-  · simp
+  apply _root_.UpperTheory.V.AlgebraTools.map_diagT <;> assumption
 
 end Ring
 

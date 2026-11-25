@@ -771,33 +771,13 @@ private theorem frGL_mul_intGL (β : GL (Fin n) (E ⊗[F] Formalism.L2.Herm.Af F
 
 theorem St_mul_intGL (β : GL (Fin n) (E ⊗[F] Formalism.L2.Herm.Af F)) (y : GL (Fin n) (Formalism.L2.Herm.intAf F E)) :
     St (β * intGL F E n y) = St β := by
-  ext x
-  show x ∈ (frGL (β * intGL F E n y)).range ↔ x ∈ (frGL β).range
-  simp only [MonoidHom.mem_range]
-  constructor
-  · rintro ⟨z, rfl⟩
-    exact ⟨y * z * y⁻¹, (frGL_mul_intGL β y z).symm⟩
-  · rintro ⟨z, rfl⟩
-    refine ⟨y⁻¹ * z * y, ?_⟩
-    rw [frGL_mul_intGL]
-    congr 1
-    group
+  first | exact _root_.GlobalTheory.SeeConjReord.St_mul_int | exact @_root_.GlobalTheory.SeeConjReord.St_mul_int | apply _root_.GlobalTheory.SeeConjReord.St_mul_int <;> assumption
 
 theorem redFn_mul_intGL (β : GL (Fin n) (E ⊗[F] Formalism.L2.Herm.Af F)) (y : GL (Fin n) (Formalism.L2.Herm.intAf F E))
     (PP : Pl E) (x : GL (Fin n) (E ⊗[F] Formalism.L2.Herm.Af F)) :
     redFn (β * intGL F E n y) PP x =
       (Formalism.UG.bc (resS F PP) y)⁻¹ * redFn β PP x * Formalism.UG.bc (resS F PP) y := by
-  by_cases hx : x ∈ St β
-  · obtain ⟨z, rfl⟩ := MonoidHom.mem_range.1 hx
-    have h1 : frGL β z = frGL (β * intGL F E n y) (y⁻¹ * z * y) := by
-      rw [frGL_mul_intGL]
-      congr 1
-      group
-    conv_lhs => rw [h1]
-    rw [redFn_frGL, redFn_frGL]
-    rw [map_mul, map_mul, map_inv]
-  · have hx' : x ∉ St (β * intGL F E n y) := by rwa [St_mul_intGL]
-    simp only [redFn, ext1, dif_neg hx, dif_neg hx', mul_one, inv_mul_cancel]
+  first | exact _root_.GlobalTheory.SeeConjReord.redFn_mul_int | exact @_root_.GlobalTheory.SeeConjReord.redFn_mul_int | apply _root_.GlobalTheory.SeeConjReord.redFn_mul_int <;> assumption
 
 theorem frGL_mul (β : GL (Fin n) (E ⊗[F] Formalism.L2.Herm.Af F)) (y : GL (Fin n) (Formalism.L2.Herm.intAf F E)) :
     frGL β y * β = β * intGL F E n y := by

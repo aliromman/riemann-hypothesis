@@ -1,7 +1,29 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsHasCls
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -14,6 +36,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TorusElementCharpolyRegularCentralizer
 
 @[expose] public section
 
@@ -85,32 +111,7 @@ theorem comm_of_alpha (f : (k ⊗[F] Fld P) →ₗ[k ⊗[F] E] (k ⊗[F] Fld P))
   exact h2 z y
 
 theorem trBase_perfect [NumberField E] (w : k ⊗[F] Fld P) (hw : ∀ y, trBase P k (w * y) = 0) : w = 0 := by
-  classical
-  let b := Module.finBasis E (Fld P)
-  have hB := traceForm_nondegenerate E (Fld P)
-  let d := (Algebra.traceForm E (Fld P)).dualBasis hB b
-  have key : ∀ z : k ⊗[F] Fld P,
-      ∑ i, algebraMap (k ⊗[F] E) (k ⊗[F] Fld P) (trBase P k (z * ((1 : k) ⊗ₜ b i))) * ((1 : k) ⊗ₜ d i) = z := by
-    intro z
-    induction z using TensorProduct.induction_on with
-    | zero => simp
-    | add u v hu hv =>
-      simp only [add_mul, map_add (f := _), Finset.sum_add_distrib, hu, hv]
-    | tmul a l =>
-      have hl : ∑ i, Algebra.trace E (Fld P) (l * b i) • d i = l := by
-        conv_rhs => rw [← d.sum_repr l]
-        refine Finset.sum_congr rfl fun i _ => ?_
-        rw [LinearMap.BilinForm.dualBasis_repr_apply, Algebra.traceForm_apply]
-      have e : ∀ i, algebraMap (k ⊗[F] E) (k ⊗[F] Fld P) (trBase P k (a ⊗ₜ l * ((1 : k) ⊗ₜ b i))) *
-          ((1 : k) ⊗ₜ d i) = a ⊗ₜ (Algebra.trace E (Fld P) (l * b i) • d i) := by
-        intro i
-        rw [Algebra.TensorProduct.tmul_mul_tmul, mul_one]
-        simp only [trBase, LinearMap.lTensor_tmul, LinearMap.restrictScalars_apply]
-        rw [algBase_tmul, Algebra.TensorProduct.tmul_mul_tmul, mul_one, Algebra.smul_def]
-      simp_rw [e]
-      rw [← TensorProduct.tmul_sum, hl]
-  rw [← key w]
-  exact Finset.sum_eq_zero fun i _ => by rw [hw, map_zero, zero_mul]
+  apply _root_.GlobalTheory.TrEll.GamAlg.eq_zero_of_trBase <;> assumption
 
 theorem hform_eq_vecMul {A : Type} [CommRing A] (s : A →+* A) (G : Matrix (Fin n) (Fin n) A) (a b : Fin n → A) :
     Formalism.UG.hform s G a b = Matrix.vecMul (fun i => s (a i)) G ⬝ᵥ b := by

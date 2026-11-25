@@ -8,6 +8,29 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdeleCharact
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnderEqOfMapEq
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnitOpenAndCongrOpen
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -22,7 +45,9 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Algebra.Group.Units
+import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FinAfMemIntUIff
 
 @[expose] public section
 
@@ -261,17 +286,7 @@ theorem map_inertAt {ξ : HChar E} (ht : ∀ P, ξ.TameAt P) {v : HeightOneSpect
 
 theorem afIso_one_tmul {a : FiniteAdeleRing (𝓞 F) F} {k : F} {P : HeightOneSpectrum (𝓞 E)}
     (h : a (P.under (𝓞 F)) = algebraMap F _ k) : afIso F E (1 ⊗ₜ[F] a) P = algebraMap E _ (algebraMap F E k) := by
-  have h1 : ∀ n : ℕ, Valued.v (afIso F E (1 ⊗ₜ[F] a) P - algebraMap E _ (algebraMap F E k)) ≤ WithZero.exp (-(n : ℤ)) :=
-    fun n => (GlobalTheory.AdeleBaseChange.exists_finiteAdele_baseChange_equiv F E).choose_spec.2.2.2 a k P n
-      (by rw [h, sub_self, map_zero]; exact zero_le')
-  by_contra hne
-  have h0 : Valued.v (afIso F E (1 ⊗ₜ[F] a) P - algebraMap E _ (algebraMap F E k)) ≠ 0 := by
-    rw [Valuation.ne_zero_iff]
-    exact sub_ne_zero.2 hne
-  have h2 := h1 (1 - WithZero.log (Valued.v (afIso F E (1 ⊗ₜ[F] a) P - algebraMap E _ (algebraMap F E k)))).toNat
-  conv_lhs at h2 => rw [← WithZero.exp_log h0]
-  rw [WithZero.exp_le_exp] at h2
-  omega
+  apply _root_.GlobalTheory.Mem.ReadTwist.afIso_one_tmul <;> assumption
 
 
 variable (F E) in

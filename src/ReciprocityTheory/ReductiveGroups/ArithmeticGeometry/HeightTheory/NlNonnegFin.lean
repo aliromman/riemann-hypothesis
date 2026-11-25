@@ -45,6 +45,7 @@ import Mathlib.RingTheory.PicardGroup
 import Mathlib.Algebra.Order.Star.Real
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HPlaces
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.IntNsg
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.GeneratorNeZeroOfHeight
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.FiniteHeightFractionRepr, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.LogHeightDivMultihomogeneous, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.SphereMeanSubArchimedean, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.DiscProduct, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.Hartogs, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.UnitAtIntAt, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.FprodNeZero, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.OmPoly, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HDiscB, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.NlNonnegFin
@@ -990,35 +991,7 @@ namespace Data
 variable (d : Data K ι Ω WT A)
 
 private theorem gen_ne_zero_of_mem_htOne_heightData {p : Ideal (KTp K d.D d.N)} (hp : p ∈ d.HtOne) : d.gen p ≠ 0 := by
-  obtain ⟨hpr, hht⟩ := hp
-  have hne : p ≠ ⊥ := by
-    rintro rfl
-    first
-      | (simp at hht; done)
-  obtain ⟨q, hqp, hq⟩ := hpr.exists_mem_prime_of_ne_bot hne
-  have hqi : (Ideal.span {q}).IsPrime := (Ideal.span_singleton_prime hq.ne_zero).mpr hq
-  have hle : Ideal.span {q} ≤ p := (Ideal.span_singleton_le_iff_mem p).mpr hqp
-  have hbot : (⊥ : Ideal (KTp K d.D d.N)) < Ideal.span {q} :=
-    bot_lt_iff_ne_bot.mpr (by simpa using hq.ne_zero)
-  haveI := hpr
-  haveI := hqi
-  have hspan : Ideal.span {q} = p := by
-    by_contra hne'
-    have hlt : Ideal.span {q} < p := lt_of_le_of_ne hle hne'
-    have h3 : (Ideal.span {q}).height < 1 := by
-      have hp1 : p.height ≤ (1 : ℕ) := by rw [hht]; rfl
-      exact (Ideal.height_le_iff.mp hp1) _ hqi hlt
-    have h0 : (Ideal.span {q}).height ≤ (0 : ℕ) := by
-      rw [ENat.lt_one_iff_eq_zero] at h3
-      rw [h3]; rfl
-    have h2 := (Ideal.height_le_iff.mp h0) ⊥ Ideal.isPrime_bot hbot
-    first
-      | (simp at h2; done)
-  have hprin : p.IsPrincipal := ⟨⟨q, hspan.symm⟩⟩
-  haveI := hprin
-  simp only [Data.gen, dif_pos hprin]
-  intro h0
-  exact hne ((Submodule.IsPrincipal.eq_bot_iff_generator_eq_zero p).mpr h0)
+  apply _root_.ReciprocityTheory.ChartRestriction.G.T0.Data.generator_ne_zero_of_height <;> assumption
 
 theorem fprod_ne_zero (E : Ideal (KTp K d.D d.N) → ℤ) (hE : {q | q ∈ d.HtOne ∧ E q ≠ 0}.Finite) :
     (∏ᶠ (q : Ideal (KTp K d.D d.N)) (_ : q ∈ d.HtOne),

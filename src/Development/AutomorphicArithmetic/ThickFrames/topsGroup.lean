@@ -5,7 +5,6 @@ public import Formalism.SubspaceCounting.GoodOrbitIntervalTileCondition
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ChoiceOfTops
 public import Development.AutomorphicArithmetic.ThickFrames.expectationSpec
 public import Development.AutomorphicArithmetic.ThickFrames.MarkedGe
-import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.Basic.Real.Basic
 public import Mathlib.GroupTheory.Index
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
@@ -16,21 +15,7 @@ public import Mathlib.Analysis.Complex.ExponentialBounds
 public import Mathlib.Algebra.Order.Field.GeomSum
 public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 public import Mathlib.Algebra.BigOperators.Field
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.Order.Star.Real
 import Formalism.SubspaceCounting.Statement
-import Mathlib.Tactic.Lemma
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.

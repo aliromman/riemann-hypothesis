@@ -30,8 +30,6 @@ namespace PositivityTheory.Mix
 open NumberField IsDedekindDomain Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK PositivityTheory.KCo
   GlobalTheory.LatVac
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 variable {F : Type} [Field F] [NumberField F] {κ : Type} [Fintype κ] {v : Pl F}
 
 def liftW (v : Pl F) (y : (κ → Fv F v) × (κ → Fv F v)) : (κ → AF F) × (κ → AF F) :=

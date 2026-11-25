@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsPointOfRationalUnitaryAdelicMul
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExtMCastSuccLast
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TrueColumnSpacesStandardInFrameCoords
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExtUHInjective
@@ -11,6 +12,30 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ValDe
 import Formalism.LocalRingCardinality.SpanPowerMembership.LocAtA
 import Formalism.LocalToGlobal.Columns.CoefColLemmas
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.InclusionInjective
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -24,6 +49,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -146,35 +173,8 @@ theorem mem_hatL_gmap (γ : UF E n) (L : Submodule (𝓞 E) (Sp E n)) (x : Fin n
 theorem isPtOf_rat {hc : Formalism.BasicNotions.CMData F E} {ST SG Q : Finset (HeightOneSpectrum (𝓞 E))}
     {g : GL (Fin n) (AfE F E)} {p : DecoF E n ST SG Q} (h : IsPtOf hc g p) (γ : UF E n) :
     IsPtOf hc (ratAd F γ * g) (((γ, 1, 1) : UF E n × GLG (E := E) (n := n) (SG := SG) × GLQ E n Q) • p) := by
-  refine ⟨?_, fun x => ?_, fun P x hx i hi => ?_, fun w x hx i => ?_, fun P i j => ?_⟩
-  · refine mul_mem ?_ h.uni
-    have hg : ufGL E n γ ∈ UJ (hc.sig : E →+* E) (1 : Matrix (Fin n) (Fin n) E) := by
-      show cT _ _ * 1 * _ = 1
-      rw [mul_one]
-      exact GlobalTheory.Mem.Col2.StepOk.ufGL_conjTranspose_mul γ
-    exact Formalism.UG.P.bc_mem (hc.sig : E →+* E) (sigR hc.sig (FiniteAdeleRing (𝓞 F) F)) (inclE (F := F) (FiniteAdeleRing (𝓞 F) F))
-      (by ext a; simp [sigR, inclE]) 1 _ hg
-  · have e : ((ratAd F γ * g)⁻¹ : GL (Fin n) (AfE F E)).1 *ᵥ x = (g⁻¹ : GL (Fin n) (AfE F E)).1 *ᵥ (((ratAd F γ)⁻¹ : GL (Fin n) (AfE F E)).1 *ᵥ x) := by
-      rw [_root_.mul_inv_rev, Units.val_mul, Matrix.mulVec_mulVec]
-    rw [e, ← h.lat]
-    exact mem_hatL_gmap γ p.deco.1.N x
-  · rw [pullV_rat]
-    exact h.f P _ ((mem_gmap _ _ _).1 hx) i hi
-  · rw [pullV_rat]
-    have e : (((γ, 1, 1) : UF E n × GLG (E := E) (n := n) (SG := SG) × GLQ E n Q) • p).deco.1.be w x = p.deco.1.be w (γ⁻¹.1 x) := by
-      show ((1 : GLG (E := E) (n := n) (SG := SG)) w).1.mulVec _ = _
-      simp
-      rfl
-    rw [e]
-    exact h.be w _ ((mem_gmap _ _ _).1 hx) i
-  · have e : (((γ, 1, 1) : UF E n × GLG (E := E) (n := n) (SG := SG) × GLQ E n Q) • p).fr P (Pi.single j 1) = γ.1 (p.fr P (Pi.single j 1)) := by
-      show (γ.1 * p.1.2 P * (((1 : GLQ E n Q) P)⁻¹).1) _ = _
-      simp
-      rfl
-
-    rw [e, ← ufGL_mulVec', Units.val_mul, Matrix.mul_apply, map_sum]
-
-    simp only [Matrix.mulVec, dotProduct, map_sum, map_mul, ratAd_val, Matrix.map_apply, adAt_inclE, h.fr]
+  intros
+  apply _root_.GlobalTheory.Mem.Col2.RatMove.isPtOf_ratAd <;> assumption
 
 end GenR
 

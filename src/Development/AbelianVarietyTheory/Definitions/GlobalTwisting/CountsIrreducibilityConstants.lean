@@ -11,17 +11,6 @@ public import Formalism.SharpRestriction.GlobalSchurBounds.WeightVectorSmallShar
 public import Formalism.SharpRestriction.LevelLetterCocycles.TwAllF
 public import Formalism.LocalToGlobal.IndefiniteReal.PrimitivePackageFullHecke
 public import Formalism.SharpRestriction.MuTuOfTuSize
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 

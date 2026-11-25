@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsDefiniteOfAllPlus
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ColLieApply
 public import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsWeightedHomogeneousOfMemOrbitSpan
 public import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsEqMulProdMinors
@@ -33,7 +34,30 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ChainStep
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsFockVacAtOfIsThetaAt
 import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.RowAddGenericRowAddTerm
 import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.Sl2NonnegWeightOfHighestWeightVector
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.Order.Interval.Finset.Box
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -46,8 +70,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.RingTheory.Derivation.Lie
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.LocalToGlobal.GlobalTheory.GL5.FamilyMassVolumeIdentityOfClassDecomp
 import Mathlib.Dynamics.Ergodic.Action.Regular
@@ -55,6 +83,11 @@ import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
@@ -1542,16 +1575,7 @@ open scoped TensorProduct InnerProductSpace
 
 theorem allPlus_of_le {D : D7} {V : HSp D} (P : TPar D) {j : ℕ} (hj : D.R.m - 1 ≤ j) (M : DSModel V (parB P j)) :
     AllPlus M := by
-  intro τ a
-  obtain ⟨-, q, -, hq⟩ := M.enum τ
-  have h : (q a, M.ε τ a) ∈ parB P j τ := hq ▸ Finset.mem_image_of_mem _ (Finset.mem_univ a)
-  simp only [parB, dualPar, TPar.Dpar, Finset.mem_image, Finset.mem_union, Finset.mem_biUnion, Prod.mk.injEq] at h
-  obtain ⟨_, ⟨x, hx, rfl⟩, -, h⟩ := h
-  rw [← h]
-  rcases hx with (⟨i, -, rfl⟩ | ⟨i, -, rfl⟩) | ⟨i, -, y, -, rfl⟩
-  · rfl
-  · exact decide_eq_true (Or.inl (by have := i.2; omega))
-  · rfl
+  apply _root_.GlobalTheory.DefiniteMult.allPlus_parB <;> assumption
 
 theorem isFockVacAt_stepVec {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} {S T : HSp D} {sS sT ΛS ΛT βS βT LS χj Q ξ}
     {f₀ f : WO S T → ℂ} (h : IsStepVecOf ψ θ S T sS sT ΛS ΛT βS βT LS χj Q ξ f₀ f) (hf : IsThetaFunO ψ S T f) (τ) :

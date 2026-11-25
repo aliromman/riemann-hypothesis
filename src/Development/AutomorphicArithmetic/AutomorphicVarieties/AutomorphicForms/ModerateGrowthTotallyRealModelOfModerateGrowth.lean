@@ -1,8 +1,32 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.ArchimedeanCompact.GrpEqMemArchCompact
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.SiegelHeights.SiegelHeight
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.SiegelSetHeightBound
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.SiegelSetInterTranslateFinite
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -15,6 +39,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.AdelicHeightGeArchOpNorm, Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.ModerateGrowthTotallyRealModelOfModerateGrowth
@@ -28,17 +53,7 @@ open NumberField Matrix GlobalTheory.CuspRep GroundTheory.Automorphic GroundTheo
 
 private theorem loc_le_height {E : Type} [Field E] [NumberField E] {a : ℕ} (g : GA E a) (w : InfinitePlace E) :
     locHeight (Reduction.infAt w g) ≤ AutomorphicForm.height g := by
-  classical
-  have h1 : locHeight (Reduction.infAt w g) ≤ locHeight (Reduction.infAt w g) ^ w.mult :=
-    le_self_pow₀ (one_le_locHeight _) InfinitePlace.mult_pos.ne'
-  have h2 : locHeight (Reduction.infAt w g) ^ w.mult ≤
-      ∏ w : InfinitePlace E, locHeight (Reduction.infAt w g) ^ w.mult := by
-    rw [← Finset.mul_prod_erase _ _ (Finset.mem_univ w)]
-    refine le_mul_of_one_le_right (pow_nonneg (locHeight_pos _).le _) ?_
-    exact Finset.prod_induction _ (fun x : ℝ => 1 ≤ x)
-      (fun _ _ hx hy => one_le_mul_of_one_le_of_one_le hx hy) le_rfl fun _ _ => one_le_pow₀ (one_le_locHeight _)
-  exact h1.trans (h2.trans (le_mul_of_one_le_right (zero_le_one.trans (one_le_prod_locHeight g))
-    (one_le_finprod_locHeight g)))
+  apply _root_.UpperTheory.V.Cm.loc_le_height <;> assumption
 
 private theorem norm_le_height {E : Type} [Field E] [NumberField E] [IsTotallyReal E] {a : ℕ} (g : GA E a) :
     ‖TR.toL (GeneralLinearGroup.map (TR.pInf E) g).val‖ ≤ AutomorphicForm.height g := by

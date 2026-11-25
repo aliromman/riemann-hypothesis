@@ -11,20 +11,7 @@ public import Mathlib.LinearAlgebra.TensorProduct.Lift
 public import Mathlib.RingTheory.Finiteness.Defs
 public import Mathlib.Algebra.Module.ZLattice.Basic
 public import Development.AbelianVarietyTheory.Definitions.Divisors.Uniformised
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDimEqOne
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsRootSelectionUnitaryRankOne
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsCyclotomicExtensionQI
@@ -36,13 +23,10 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.ToSpanSingletonCons
 import Development.AbelianVarietyTheory.Definitions.Divisors.TwOrbMEqTwOrbUOfNormal
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsAddEquivOfSurjectiveOfKerIff
 import Development.AutomorphicArithmetic.RealSpanData.RealData
-import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ClassFieldTheory.LocalClassField.HerbrandA
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SymplecticGenerators.StTransl
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
-import Mathlib.Algebra.Module.StablyFree.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsSumBaseChangeOfCommuteBaseChange, Development.AutomorphicArithmetic.CommutativeAlgebra.CommutantEqRangeActOnAndInjective, Development.AutomorphicArithmetic.CommutativeAlgebra.LiftBaseChangeRealBijectiveOfLattice, Development.AutomorphicArithmetic.PAdicLatticeApproximation.ExistsRealPeriodIsoOfPolarizedLattice

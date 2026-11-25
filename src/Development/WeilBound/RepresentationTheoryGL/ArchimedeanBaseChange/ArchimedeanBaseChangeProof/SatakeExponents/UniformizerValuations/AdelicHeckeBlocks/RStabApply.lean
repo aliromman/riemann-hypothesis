@@ -18,8 +18,6 @@ open scoped Classical
 
 namespace PositivityTheory.Rg.BcB.F
 
-attribute [local instance] borelG borelF borelH
-
 namespace Hint
 
 theorem relIndex_ne_zero {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] {H K : Subgroup G}

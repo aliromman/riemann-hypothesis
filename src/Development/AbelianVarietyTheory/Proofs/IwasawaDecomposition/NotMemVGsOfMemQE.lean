@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.StabCardOfStabTie
 public import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.SandwichNormalForm
 public import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.LatticeNormalFormUnipotent
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.UnipotentCharacterArgumentMulStabilizer
@@ -31,9 +32,35 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StepD
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TameHeckeCharLocalEqInvTypeCharacter
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AbsNormEqOfSplitFactor
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PhiMapsAndOmegaLaw
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -46,10 +73,14 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.RedPEqZeroOfDiv
@@ -1072,21 +1103,8 @@ variable {E : Type} [Field E] [NumberField E]
 
 theorem isUnit_of_reduction_mul {K : Type} [Field K] {P : HeightOneSpectrum (𝓞 E)} (ξ : (𝓞 E ⧸ P.asIdeal)ˣ →* Kˣ)
     {a b c : E} (h : redP P c = redP P a * redP P b) : LocE.unitV ξ c = LocE.unitV ξ a * LocE.unitV ξ b := by
-  unfold LocE.unitV
-  by_cases hc : IsUnit (redP P c)
-  · have hab := hc
-    rw [h] at hab
-    have ha : IsUnit (redP P a) := isUnit_of_mul_isUnit_left hab
-    have hb : IsUnit (redP P b) := isUnit_of_mul_isUnit_right hab
-    rw [dite_eq_left ha, dite_eq_left hb, dite_eq_left hc, ← Units.val_mul, ← map_mul]
-    have : hc.unit = ha.unit * hb.unit := Units.ext (by simpa using h)
-    rw [this]
-  · rw [dite_eq_right hc]
-    by_cases ha : IsUnit (redP P a)
-    · by_cases hb : IsUnit (redP P b)
-      · exact absurd (h ▸ ha.mul hb) hc
-      · rw [dite_eq_right hb, mul_zero]
-    · rw [dite_eq_right ha, zero_mul]
+  intros
+  apply _root_.GlobalTheory.SymLevelMul.unitV_mul <;> assumption
 
 variable [StarRing E]
 
@@ -1624,23 +1642,8 @@ variable {X : Fields} {Pr : Primes X} {R : Ranks}
 theorem notMem_vGs_of_mem_QE (hX : X.Ok) (hPr : Pr.Ok) {sel : HeightOneSpectrum (𝓞 X.F) → HeightOneSpectrum (𝓞 X.E)}
     (hsel : IsSel X sel) {S : Set ℕ} (hS : ∀ i, Pr.g i ∈ S) (mu : Tup X.F X.E X.K S) {P : HeightOneSpectrum (𝓞 X.E)}
     (hP : P ∈ QE sel (mu : Chr X.F X.E X.K)) : P ∉ Pr.vGs := by
-  classical
-  intro hG
-  obtain ⟨i, hi⟩ : ∃ i, P ∈ Pr.vG i := by
-    unfold Primes.vGs at hG
-    rcases Finset.mem_union.1 hG with h | h
-    exacts [⟨0, h⟩, ⟨1, h⟩]
-  unfold QE at hP
-  split_ifs at hP with h
-  · obtain ⟨v, hv, rfl⟩ := Finset.mem_image.1 hP
-    rw [Set.Finite.mem_toFinset] at hv
-    have hg : GoodPl X.E S v := by_contra fun hg => hv
-      (Subgroup.mem_iInf.1 (Subgroup.mem_iInf.1 (Subgroup.mem_inf.1 mu.2).2 v) hg)
-    have h3 := (ColPeriod.absNorm_eq_of_splitAt hX.rankE hg.1 hg.2.1 (hsel v)).1
-    apply hg.2.2
-    rw [ColPeriod.plc_eq_absNorm hg.2.1.1, ← h3, hPr.vG_norm i _ hi]
-    exact hS i
-  · simp at hP
+  intros
+  apply _root_.GlobalTheory.KFormsCmp.disj <;> assumption
 
 variable {Ch : Chars X Pr R.m} {sel : HeightOneSpectrum (𝓞 X.F) → HeightOneSpectrum (𝓞 X.E)} {S : Set ℕ}
   {mu : Tup X.F X.E X.K S} {cst : LocCst X (rowSG Pr sel mu)}

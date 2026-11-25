@@ -1,5 +1,6 @@
 module
 
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.LocDensIdxC
 public import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.LocVol
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
@@ -438,16 +439,7 @@ theorem sigma_sq_of_cm (σ : E →ₐ[F] E) (h : IsCMExt F E σ) (x : E) : σ (�
   rw [hτ, hτ, star_star]
 
 theorem exists_moved_of_cm (σ : E →ₐ[F] E) (h : IsCMExt F E σ) : ∃ y, σ y ≠ y := by
-  obtain ⟨-, hC, -, hτ⟩ := h
-  by_contra hno
-  push Not at hno
-  let τ : E →+* ℂ := Classical.arbitrary _
-  have hR : ComplexEmbedding.IsReal τ := by
-    rw [ComplexEmbedding.isReal_iff]
-    ext x
-    exact ((hτ τ x).symm.trans (congrArg τ (hno x)) : _)
-  exact (InfinitePlace.not_isReal_iff_isComplex.2 (hC.isComplex (InfinitePlace.mk τ)))
-    (InfinitePlace.isReal_mk_iff.2 hR)
+  apply _root_.PI.VolStabS.IdxHW.sigma_ne_id <;> assumption
 
 end CM
 

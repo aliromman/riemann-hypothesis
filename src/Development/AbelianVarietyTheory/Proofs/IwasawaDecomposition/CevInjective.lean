@@ -1,10 +1,33 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ClassSumPosHerm
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LatAtLattice
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.BaseFieldsDefiniteLaws
 import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
 import Formalism.LocalToGlobal.Columns.CoefficientsModP.PairingNondegenerateHolds
 import Formalism.LocalToGlobal.Columns.PolyFnLemmas
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -17,6 +40,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -78,15 +102,8 @@ theorem ipVal_cev (P : Pol ℂ ι n) (w : Fr emb σ n → ℂ) :
   rw [ipVal, ipFr_apply, polOf_cev, nfAll_conj]
 
 theorem ipVal_pos {z : Fr emb σ n → ℂ} (hz : z ∈ ValC (Gr emb σ n) lam) (h0 : z ≠ 0) : 0 < ipVal emb σ lam z z := by
-  obtain ⟨P, -, rfl⟩ := exists_cev emb σ lam hz
-  rw [ipVal, ipFr_apply, polOf_cev, nfAll]
-  have hP : MvPolynomial.map (starRingEnd ℂ) P ≠ 0 := by
-    intro h
-    apply h0
-    have : P = 0 := MvPolynomial.map_injective _ (starRingEnd ℂ).injective (by rw [h, map_zero])
-    rw [this, map_zero]
-  exact div_pos (ps_fockF_pos _ hP)
-    (Finset.prod_pos fun τ _ => ps_fockF_pos _ (Formalism.GradedWeylDivisibility.hwNe ℂ n n le_rfl _))
+  intros
+  apply _root_.GlobalTheory.Mem.Col2.ClassSumPos.ipVal_pos <;> assumption
 
 theorem cev_act [StarRing E] (hE : ∀ τ x, embAt σ emb τ (star x) = starRingEnd ℂ (embAt σ emb τ x)) (γ : GL (Fin n) E)
     (hγ : (γ : Matrix (Fin n) (Fin n) E)ᴴ * (γ : Matrix (Fin n) (Fin n) E) = 1) (c : Kˣ) (hc : ∃ m : ℕ, 0 < m ∧ c ^ m = 1)

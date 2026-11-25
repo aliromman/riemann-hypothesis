@@ -1,5 +1,6 @@
 module
 
+import GroundTheory.GlobalFields.TateThesis.GlobalZetaFinite
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.GammaLaurentFactors.LaurentBlockInduction.LdDefs
 import Development.AbelianVarietyTheory.Definitions.Divisors.LineOppositeParabolicUnitaryLeviSectionEq
 import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup
@@ -8,6 +9,33 @@ public import GroundTheory.AutomorphicForms.AffineBruhat
 import GroundTheory.AutomorphicForms.GL2.ExistsEqPowMulOfValuationLe
 import GroundTheory.AutomorphicForms.GL2.GJInducedZeta
 import GroundTheory.AutomorphicForms.WhittakerGroups
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -22,9 +50,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Topology.Separation.Connected
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -66,16 +97,8 @@ end UpperTheory.V.Z.Gam
 private theorem lc_lemma {G β : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [TopologicalSpace β] (K : Subgroup G) (hK : IsOpen (K : Set G)) (f : G → β)
     (hf : ∀ x, ∀ y ∈ K, f (x * y) = f x) : Continuous f := by
-  rw [continuous_iff_continuousAt]
-  intro x
-  have h1 : (K : Set G) ∈ nhds (1 : G) := hK.mem_nhds K.one_mem
-  have h2 : Filter.Tendsto (fun y => x⁻¹ * y) (nhds x) (nhds 1) := by
-    simpa using (continuous_const_mul x⁻¹).tendsto x
-  have h3 : ∀ᶠ y in nhds x, f y = f x := by
-    filter_upwards [h2 h1] with y hy
-    have := hf x (x⁻¹ * y) hy
-    simpa using this
-  exact tendsto_nhds_of_eventually_eq h3
+  intros
+  apply _root_.GroundTheory.Global.continuous_of_forall_mul_eq <;> assumption
 
 private theorem continuous_ordDet {F : Type*} [Field F] [ValuativeRel F] [TopologicalSpace F]
     [IsNonarchimedeanLocalField F] {n : ℕ} : Continuous (ordDet : GL (Fin n) F → ℤ) :=

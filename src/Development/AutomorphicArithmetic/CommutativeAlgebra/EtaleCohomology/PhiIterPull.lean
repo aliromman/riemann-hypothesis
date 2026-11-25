@@ -10,22 +10,7 @@ public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomolo
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.TheoryEx
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.VecZero
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.NatCastQb
-import Mathlib.Algebra.Category.Grp.Abelian
-import Mathlib.CategoryTheory.Abelian.FunctorCategory
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.SumSecEqZero, Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.SumTransportAlt, Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.PhiIterPull

@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FockPolynomialVectorBasisChangeEqSubstitution
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HalfLinearCocycle
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousMovPair
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RestrictedTensorBasePointNormSq
@@ -41,6 +42,28 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsUni
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LocalFactorStableUnitaryGroupsAtPlaceStatement
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.PureTensorInnerProductEqFinprodLocalInnerProductStatement
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ComplexEmbeddingHermitianQuadrupleSum
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -55,9 +78,14 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Compactness.Paracompact
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsInverseChart
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.WeilRepresentationOneParameterGenerator
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EqTopOfTranslates
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsRealPlaceSymplecticFormPositiveComplexStru
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.RealSymplecticFormAlternatingInvariantDefinite
@@ -649,37 +677,13 @@ open Classical in
 theorem dRho_dir_add (τ : D.what₂.Tau) (z z' : Matrix (Fin T.rank) (Fin S.rank) ℂ) {f : WO S T → ℂ}
     (hf : IsThetaFunO ψ S T f) :
     Formalism.IndefR.Datum.dRho (heisO ψ S T) θ τ (z + z') f = Formalism.IndefR.Datum.dRho (heisO ψ S T) θ τ z f + Formalism.IndefR.Datum.dRho (heisO ψ S T) θ τ z' f := by
-  obtain ⟨σ, h⟩ := GlobalTheory.RealLineAt.exists_inverse_chart hθ
-  have hE : ∀ z g, Formalism.IndefR.Datum.dRho (heisO ψ S T) θ τ z g =
-      FockCompare.hD (iotaW σ T S) (piW θ T S) (omO S T) (piW θ T S (lineAt θ τ z 1)) g := fun z g =>
-    dLine_eq_hD h hψ (isRealDir_lineAt hθ τ z) g
-  have hs := theta_sm h hf
-  have e : piW θ T S (lineAt θ τ (z + z') 1) = piW θ T S (lineAt θ τ z 1) + piW θ T S (lineAt θ τ z' 1) := by
-    rw [piW_lineAt hθ, piW_lineAt hθ, piW_lineAt hθ, Pi.single_add]
-    rfl
-  funext w
-  rw [Pi.add_apply, hE, hE, hE, e, hD_eq_fderiv _ _ _ _ hs, hD_eq_fderiv _ _ _ _ hs, hD_eq_fderiv _ _ _ _ hs,
-    LinearMap.map_add, ContinuousLinearMap.map_add]
-  push_cast
-  ring
+  first | exact _root_.GlobalTheory.FockBaseChange.dRho_dir_add | exact @_root_.GlobalTheory.FockBaseChange.dRho_dir_add | apply _root_.GlobalTheory.FockBaseChange.dRho_dir_add <;> assumption
 
 open Classical in
 theorem dRho_dir_smul (τ : D.what₂.Tau) (t : ℝ) (z : Matrix (Fin T.rank) (Fin S.rank) ℂ) {f : WO S T → ℂ}
     (hf : IsThetaFunO ψ S T f) :
     Formalism.IndefR.Datum.dRho (heisO ψ S T) θ τ ((t : ℂ) • z) f = (t : ℂ) • Formalism.IndefR.Datum.dRho (heisO ψ S T) θ τ z f := by
-  obtain ⟨σ, h⟩ := GlobalTheory.RealLineAt.exists_inverse_chart hθ
-  have hE : ∀ z g, Formalism.IndefR.Datum.dRho (heisO ψ S T) θ τ z g =
-      FockCompare.hD (iotaW σ T S) (piW θ T S) (omO S T) (piW θ T S (lineAt θ τ z 1)) g := fun z g =>
-    dLine_eq_hD h hψ (isRealDir_lineAt hθ τ z) g
-  have hs := theta_sm h hf
-  have e : piW θ T S (lineAt θ τ ((t : ℂ) • z) 1) = t • piW θ T S (lineAt θ τ z 1) := by
-    rw [piW_lineAt hθ, piW_lineAt hθ, Pi.single_smul]
-    rfl
-  funext w
-  rw [Pi.smul_apply, hE, hE, e, hD_eq_fderiv _ _ _ _ hs, hD_eq_fderiv _ _ _ _ hs,
-    LinearMap.map_smul, ContinuousLinearMap.map_smul, smul_eq_mul, smul_eq_mul, Complex.real_smul]
-  push_cast
-  ring
+  first | exact _root_.GlobalTheory.FockBaseChange.dRho_dir_smul | exact @_root_.GlobalTheory.FockBaseChange.dRho_dir_smul | apply _root_.GlobalTheory.FockBaseChange.dRho_dir_smul <;> assumption
 
 end Laws
 

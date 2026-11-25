@@ -1,7 +1,35 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.DefCoc
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -15,6 +43,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 public import Mathlib.RingTheory.Ideal.BigOperators
 
 @[expose] public section
@@ -37,21 +68,11 @@ private theorem entIn_mul_right (A : Matrix (Fin m) (Fin m) C) {X : Matrix (Fin 
 
 private theorem entIn_thetaLie {X : Matrix (Fin m) (Fin m) C}
     (hX : EntIn I X) : EntIn I (thetaLie X) := by
-  intro a b
-  have h1 : EntIn I (Jmat C m * Xᵀ) := entIn_mul_left _ (fun a b => hX b a)
-  have h2 : EntIn I (Jmat C m * Xᵀ * Jmat C m) := entIn_mul_right _ h1
-  unfold thetaLie
-  rw [Matrix.neg_apply]
-  exact I.neg_mem (h2 a b)
+  apply _root_.entIn_thetaLie <;> assumption
 
 private theorem entIn_mul_zero (hI : I * I = ⊥) {X Y : Matrix (Fin m) (Fin m) C}
     (hX : EntIn I X) (hY : EntIn I Y) : X * Y = 0 := by
-  ext a b
-  rw [Matrix.mul_apply, Matrix.zero_apply]
-  refine Finset.sum_eq_zero fun c _ => ?_
-  have hm : X a c * Y c b ∈ I * I := Ideal.mul_mem_mul (hX a c) (hY c b)
-  rw [hI] at hm
-  exact (Submodule.mem_bot C).1 hm
+  apply _root_.mul_eq_zero_of_entIn <;> assumption
 
 private def onePlus (X : Matrix (Fin m) (Fin m) C) (h : X * X = 0) : GL (Fin m) C where
   val := 1 + X

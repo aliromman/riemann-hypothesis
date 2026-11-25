@@ -4,23 +4,9 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.RayPrimes
 public import Mathlib.NumberTheory.NumberField.Discriminant.Defs
 public import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 public import Mathlib.RingTheory.Frobenius
-import Mathlib.Algebra.Order.Star.Int
 import Mathlib.FieldTheory.Galois.IsGaloisGroup
 public import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
 public import Mathlib.NumberTheory.Harmonic.ZetaAsymp
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.SharpRestriction.CuspSpanNormBounds.Point
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 

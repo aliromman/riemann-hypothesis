@@ -501,9 +501,6 @@ theorem valBd_of (hM : MFH p Fr TT L₁ L₂ N₁ G' deg d Y (r + K) cP)
           omega
         rw [hpos] at hmg
         unfold slU
-        have hcp : (0 : ℝ) ≤ 128 * (cP : ℝ) := by positivity
-        have hmg' : (128 * (cP : ℝ)) ≤ ((sl p Fr deg Y (r + K) (segZ j) (posU Fr (Dt.nL j) (segZ j) u) : ℤ) : ℝ) := by
-          exact_mod_cast hmg
         linarith
       intro k hk
       rw [hk] at h2
@@ -514,8 +511,6 @@ theorem valBd_of (hM : MFH p Fr TT L₁ L₂ N₁ G' deg d Y (r + K) cP)
       rw [hthL j _ hmm2, hc] at h3
       simp only [hu'] at h3
       unfold tauU
-      have h5 := vb_arith2 (thStar Fr p deg Y (r + K) (mStar p Fr (r + K) N₁ (p ^ G') cP) Dt.nL K ka j u)
-        (slU Fr p deg Y (r + K) Dt.nL j u) (cP : ℝ) hs
       have h6 : (k' : ℝ) ≤ (k : ℝ) := by exact_mod_cast h4
       linarith
   · intro j u hu

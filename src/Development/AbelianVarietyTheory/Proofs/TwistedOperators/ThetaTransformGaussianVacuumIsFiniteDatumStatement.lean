@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealPlaceComponentArchLineComplexStructureStatement
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdelicSchwartzNeZeroAtOrigin
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.UnitaryConjugation
@@ -18,6 +19,28 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsThetaFunct
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsRationalDarbouxOrientedPairTransportStatement
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeisenbergDerivativeRealPlacePureDatumStatement
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsSchrodingerThetaDatumAddAdelicSchwartz
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -30,6 +53,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsArchSchwartzDerivativeHeisenbergLine
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.EqZeroOfLintegralEqZero
@@ -262,26 +290,7 @@ variable {D : D7}
 
 theorem cart_herm {V : HSp D} (A : Fr V) (τ : D.what₂.Tau) :
     (A.cart τ)ᴴ * gramAt D V τ = gramAt D V τ * A.cart τ := by
-  have hJ : (Formalism.REAL.Jm (A.ε τ))ᴴ = Formalism.REAL.Jm (A.ε τ) := by
-    unfold Formalism.REAL.Jm
-    rw [Matrix.diagonal_conjTranspose]
-    congr 1; funext a; by_cases h : A.ε τ a = true <;> simp [h]
-  have hJJ : Formalism.REAL.Jm (A.ε τ) * Formalism.REAL.Jm (A.ε τ) = 1 := by
-    unfold Formalism.REAL.Jm
-    rw [Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-    congr 1; funext a; split_ifs <;> norm_num
-  have hdet : IsUnit (A.fr τ).det := (Matrix.isUnit_iff_isUnit_det _).1 (A.fr_unit τ)
-  have h1 : A.fr τ * (A.fr τ)⁻¹ = 1 := Matrix.mul_nonsing_inv _ hdet
-  have h2 : ((A.fr τ)⁻¹)ᴴ * (A.fr τ)ᴴ = 1 := by
-    rw [← Matrix.conjTranspose_mul, h1, Matrix.conjTranspose_one]
-  have k1 : ∀ M : Matrix (Fin V.rank) (Fin V.rank) ℂ, ((A.fr τ)⁻¹)ᴴ * ((A.fr τ)ᴴ * M) = M := fun M => by
-    rw [← Matrix.mul_assoc, h2, Matrix.one_mul]
-  have k2 : ∀ M : Matrix (Fin V.rank) (Fin V.rank) ℂ, A.fr τ * ((A.fr τ)⁻¹ * M) = M := fun M => by
-    rw [← Matrix.mul_assoc, h1, Matrix.one_mul]
-  have k3 : ∀ M : Matrix (Fin V.rank) (Fin V.rank) ℂ, Formalism.REAL.Jm (A.ε τ) * (Formalism.REAL.Jm (A.ε τ) * M) = M :=
-    fun M => by rw [← Matrix.mul_assoc, hJJ, Matrix.one_mul]
-  rw [← A.fr_gram τ]
-  simp only [Fr.cart, Matrix.conjTranspose_mul, hJ, Matrix.mul_assoc, k1, k2, k3]
+  apply _root_.GlobalTheory.CartanLinTransfer.cartH_gram <;> assumption
 
 theorem cart_herm_conj {V : HSp D} (A : Fr V) (τ : D.what₂.Tau) :
     (A.cart τ)ᵀ * (gramAt D V τ).map (starRingEnd ℂ) = (gramAt D V τ).map (starRingEnd ℂ) * (A.cart τ).map (starRingEnd ℂ) := by
@@ -294,16 +303,7 @@ theorem cart_herm_conj {V : HSp D} (A : Fr V) (τ : D.what₂.Tau) :
 
 theorem cart_frSgn' (ε : Bool) {V : HSp D} (A : Fr V) (τ : D.what₂.Tau) :
     (frSgn ε A).cart τ = (if ε then -1 else 1 : ℂ) • A.cart τ := by
-  cases ε
-  · simp [Fr.cart, frSgn]
-  · have h : Formalism.REAL.Jm (fun a => xor true (A.ε τ a)) = -Formalism.REAL.Jm (A.ε τ) := by
-      ext a b
-      by_cases hab : a = b
-      · subst hab; cases h : A.ε τ a <;> simp [Formalism.REAL.Jm, h]
-      · simp [Formalism.REAL.Jm, hab]
-    show (A.fr τ)⁻¹ * Formalism.REAL.Jm (fun a => xor true (A.ε τ a)) * A.fr τ = _
-    rw [h, Matrix.mul_neg, Matrix.neg_mul]
-    simp [Fr.cart]
+  apply _root_.GlobalTheory.CartanLinTransfer.cart_frSgn' <;> assumption
 
 theorem det_ne (ε : Bool) (S : HSp D) (τ : D.what₂.Tau) :
     IsUnit (((if ε then -1 else 1 : D.host.E) • S.gram).map ((starRingEnd ℂ).comp (tauE D τ))).det := by
@@ -495,7 +495,6 @@ open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.Ind
 open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 
 theorem _root_.GlobalTheory.T.realPlaceLines_related_and_vanish_off_place : ∀ (D : D7) (θ : InfFam D), IsInfFam θ →
@@ -644,7 +643,6 @@ open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.Ind
 open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 
 theorem _root_.GlobalTheory.T.gaussianVacuum_heisenbergDerivative_complexStructure_cancel : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D), IsInfFam θ →

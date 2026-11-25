@@ -6,26 +6,11 @@ public import GroundTheory.AutomorphicForms.HarishChandraRegularity.CartanBasis
 public import Development.AutomorphicArithmetic.Foundations.Convolution.PowerSumTraces.CuspidalMultiplicityOneTotallyComplex
 public import GroundTheory.AutomorphicForms.AutomorphicFormSpaces.GKStableCartan
 public import Mathlib.RingTheory.Complex
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import GroundTheory.AutomorphicForms.AutomorphicFormSpaces.Archimedean
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.Counting
 import GroundTheory.AutomorphicForms.QuotientMeasure
 import GroundTheory.AutomorphicForms.ReductionBlock
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.TypeStar
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 

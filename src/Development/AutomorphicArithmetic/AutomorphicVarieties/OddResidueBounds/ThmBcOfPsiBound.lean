@@ -67,36 +67,15 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibra
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ActEx
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.KillPow
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.StickelbergerCharacterEval.MemZpowersIff
 import Development.AutomorphicArithmetic.AutomorphicVarieties.StickelbergerElements.CoefMapSingle
-import Mathlib.RingTheory.PicardGroup
 import Mathlib.Tactic.Linter.Style
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.GaloisCohomologyLength.LevelInertiaLeLevelDec
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1
 import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.InertiaRamification.CycInertia
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Formalism.ConjugateSelfDual.Statement
 import ReciprocityTheory.GaloisValuations.GlobalA
-import Mathlib.Algebra.AffineMonoid.Basic
 import Mathlib.RingTheory.Ideal.Int
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.Analysis.CStarAlgebra.Classes
 import Mathlib.Analysis.Real.Pi.Bounds
 import Mathlib.NumberTheory.MulChar.Duality
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Parity

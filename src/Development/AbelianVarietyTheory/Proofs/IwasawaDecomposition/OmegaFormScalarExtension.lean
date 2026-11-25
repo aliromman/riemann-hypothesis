@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.HostElementIdempotentModTwo
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsHolPeriods
 public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.HolomorphicHomDetermined
 public import Formalism.LocalRingCardinality.Params
@@ -41,6 +42,31 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Ortho
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SymplecticBasesMatched
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.WeilVacuumFiniteSelfDualLatticeSplittingStatement
 public import Formalism.LocalToGlobal.ProjectiveLattices.FamilyUniformisationBasePointOrthogonal
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -82,6 +108,10 @@ import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.TensorL
 import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.ExistsIntMulIntegral
 import Mathlib.Algebra.Order.Archimedean.Real.Hom
 import Mathlib.MeasureTheory.Integral.Pi
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.DatEqZero
 import Mathlib.MeasureTheory.Measure.HasOuterApproxClosedProd
@@ -93,6 +123,7 @@ import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ThetaKe
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsStabForm
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.FockPolynomialVectorTestThetaZeroEqThetaSeries
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.RationalSchwartzBruhatAlgebraIntegralLinear
@@ -1092,13 +1123,7 @@ theorem om_compact (C : GlobalTheory.Ker.Ctx S T) {χS χT η : (AE D)ˣ →* Ci
 theorem th_ne_zero (C : GlobalTheory.Ker.Ctx S T) {x : Frame C.X.Ψ T.rank}
     (hx : x ∈ C.X.dom) {φ : TF S.rank C.g} (hφ : GlobalTheory.SW.IsSB φ)
     (h0 : φ ≠ 0) : C.Th x φ ≠ 0 := by
-  intro h
-  obtain ⟨l1, l2, -⟩ := GlobalTheory.Ker.Ctx.th_laws D S T C x hx φ hφ
-  have h3 : GlobalTheory.SW.IsSB ((0 : ℂ) • φ) := by
-    rw [zero_smul]
-    exact GlobalTheory.SW.isSB_zero
-  refine h0 (((l1 _ h3).2 ?_).trans (zero_smul ℂ φ))
-  rw [l2, h, smul_zero]
+  apply _root_.GlobalTheory.FrameEquiv.RealChar.Th_ne_zero <;> assumption
 
 theorem th_zero (C : GlobalTheory.Ker.Ctx S T) {x : Frame C.X.Ψ T.rank}
     (hx : x ∈ C.X.dom) : C.Th x (0 : TF S.rank C.g) = 0 := by
@@ -1294,19 +1319,7 @@ theorem thR_smul {E : Type} [Field E] [NumberField E] [IsCMField E] {r g n : ℕ
 
 theorem isRelTraceOneIdempotentModTwo_hostElement {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Geo.Tor.Host E) :
     GlobalTheory.Ker.IdemTwo (H.w0 : E) := by
-  obtain ⟨k, hk⟩ : ∃ k, H.d = 16 * k + 7 := ⟨H.d / 16, by have := H.d_mod; omega⟩
-  have h1 := _root_.GlobalTheory.Dict.ThRead.cmHost_idempotent_trace_eq_one H
-  have h2 : 2 * (H.w0 : E) = 1 + (H.rt : E) := by
-    have := congrArg (algebraMap (𝓞 E) E) H.two_weight_eq_one_add_root
-    rwa [map_mul, map_add, map_one, map_ofNat] at this
-  have h3 : (H.rt : E) ^ 2 = -(16 * k + 7) := by
-    have := congrArg (algebraMap (𝓞 E) E) H.rt_sq
-    rw [map_pow, map_neg, map_natCast, hk] at this
-    exact this.trans (by push_cast; rfl)
-  refine ⟨((2 * k + 1 : ℕ) : E), isIntegral_natCast _, ?_⟩
-  rw [eq_sub_of_add_eq' h1]
-  push_cast
-  linear_combination (-(1 / 4 : E)) * h3 - (1 / 4 : E) * (2 * (H.w0 : E) - 1 + (H.rt : E)) * h2
+  apply _root_.GlobalTheory.Ker.AtRecord.isRelTraceOneIdempotentModTwo_hostElement <;> assumption
 
 theorem finUnit_one : FinUnit (1 : (AE D)ˣ) := by
   have : finPart D (1 : AE D) ∈ intAE D := by

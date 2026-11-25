@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsWeilDatumGeneratorRealOneParamGroup
 public import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsWeakOfDatum
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GelfConstSmul
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsQuadOfPlane
@@ -8,6 +9,29 @@ import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsInverse
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousOneP
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCcrOperatorsThetaFunctionsStatement
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasDerivAtWeilRepRealOneParamAdelicPointStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -21,6 +45,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -92,17 +118,7 @@ theorem hasDerivAt_comp (hθ : IsInfFam θ) {V : HSp D} {τ : D.what₂.Tau} {X 
     (hX : X ∈ lieAt V τ) (τ' : D.what₂.Tau) (i j : Fin V.rank) :
     HasDerivAt (fun t : ℝ => compAt θ τ' (Formalism.L2.Theta.mt V (oneP θ V τ X t)) i j)
       ((Pi.single τ X : D.what₂.Tau → _) τ' i j) 0 := by
-  by_cases h : τ' = τ
-  · subst h
-    have e : ∀ t : ℝ, compAt θ τ' (Formalism.L2.Theta.mt V (oneP θ V τ' X t)) = NormedSpace.exp (t • X) :=
-      fun t => (isAtTau_oneP hθ hX t).2.1
-    have := hasDerivAt_exp_entry X 0 i j
-    rw [zero_smul, NormedSpace.exp_zero, Matrix.one_mul] at this
-    simpa only [e, Pi.single_eq_same] using this
-  · have e : ∀ t : ℝ, compAt θ τ' (Formalism.L2.Theta.mt V (oneP θ V τ X t)) = 1 :=
-      fun t => (isAtTau_oneP hθ hX t).2.2 τ' h
-    simp only [e, Pi.single_eq_of_ne h]
-    exact hasDerivAt_const _ _
+  apply _root_.GlobalTheory.DefLift.Gen.hasDerivAt_comp <;> assumption
 
 theorem oneP_inv (hθ : IsInfFam θ) {V : HSp D} {τ : D.what₂.Tau} {X : Matrix (Fin V.rank) (Fin V.rank) ℂ}
     (hX : X ∈ lieAt V τ) (t : ℝ) : (oneP θ V τ X t)⁻¹ = oneP θ V τ (-X) t := by

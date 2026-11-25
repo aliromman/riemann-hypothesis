@@ -44,6 +44,30 @@ public import Development.WeilBound.ThetaLifts.LeviDeterminants.ThetaBasic
 public import Development.AutomorphicArithmetic.LocalEmbeddings.ReBaseMain
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitPlaceCharacterComponentSmoothUnitaryConductStatement
 import Development.WeilBound.ThetaLifts.LocalTheory.ToralCohomology.ExistsTorus
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -57,9 +81,17 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.RingTheory.WittVector.IsPoly
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledUnitaryCharacterTrivialOfSiegelStatement
 import Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdelicSchwartzNeZeroAtOrigin
@@ -1352,7 +1384,7 @@ theorem real_maps_unique : _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (F
       _ = R.p (D i g) := hρ i g hg
     rw [Module.End.mul_apply, Module.End.mul_apply, lhs, rhs]
   have hrank : Module.rank ℂ R.Pi ≤ Cardinal.aleph0 :=
-    (LinearMap.rank_le_of_surjective π hπ).trans (_root_.GlobalTheory.T.polarization_rank_le_dim hKP _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ hPV)
+    (LinearMap.rank_le_of_surjective π hπ).trans (_root_.GlobalTheory.ThK.PolRank.polarization_rank_le hKP _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ hPV)
   obtain ⟨c, hc⟩ := _root_.GlobalTheory.dixmier_schur_of_rank_le_aleph0 R.Pi ι ρ T hR.nontriv hrank irrρ comm
   have hT : ∀ x, T x = c • x := fun x => by rw [hc]; rfl
   refine ⟨ψ, c, ?_, hψ, fun f hf => ?_⟩

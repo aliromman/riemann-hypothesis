@@ -368,7 +368,6 @@ theorem pow_mul_o_le (hp : 0 < p) (hr : 0 < r) (ha : 0 ≤ X.a) (j x : ℤ) :
     (p : ℝ) ^ X.F.dist j x * X.o p K j x ≤ B1 X p K := by
   unfold Dat.o B1
   have hp' : (0:ℝ) < p := by exact_mod_cast hp
-  have hpd : (0:ℝ) < (p:ℝ) ^ X.F.dist j x := pow_pos hp' _
   have hk := (k_pos K hr).ne'
   have hz : (p:ℝ) ^ X.F.dist j x * (p:ℝ) ^ (-((X.L₁:ℤ) + (X.F.dist j x : ℤ))) = (p:ℝ) ^ (-(X.L₁:ℤ)) := by
     rw [← zpow_natCast, ← zpow_add₀ hp'.ne']
@@ -489,8 +488,6 @@ theorem label_bound (hX : X.Hyp p K) (l : Fin n' × Fin (r + K) →₀ ℕ) (hl 
             have hw : (wtVS (t, c) : ℝ) ≤ 1 := by
               unfold wtVS
               split_ifs <;> norm_num
-            have hw0 : (0:ℝ) ≤ (wtVS (t, c) : ℝ) := Nat.cast_nonneg _
-            have hl0 : (0:ℝ) ≤ (l (t, c) : ℝ) := Nat.cast_nonneg _
             nlinarith [hc t ht c]
         _ = Dat.k (r := r) K * X.Q := by
             rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]

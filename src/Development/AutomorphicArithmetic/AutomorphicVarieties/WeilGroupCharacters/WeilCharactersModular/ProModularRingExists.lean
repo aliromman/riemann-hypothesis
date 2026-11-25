@@ -1,5 +1,7 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.PairMap
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.AutomorphicDetection.LiftPt
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.UniversalOrdinaryDeterminantRing
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoQuot
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.CoCoprod
@@ -10,6 +12,32 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.Commutative
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.LocCFTAll
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.ArithmeticPointClassicality
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.DvrFacts
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -24,6 +52,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.IsLocalHom
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -81,55 +110,17 @@ variable {O : Type} [CommRing O] [IsLocalRing O] {R R' : Type} [CommRing R] [Alg
 
 private theorem adic_map {Γ : Type} [TopologicalSpace Γ] {u : Γ → R} (hu : AdicCont (maximalIdeal R) u) :
     AdicCont (maximalIdeal R') fun g => f (u g) := by
-  intro N
-  have hm : maximalIdeal R ≤ (maximalIdeal R').comap (f : R →+* R') := by
-    intro x hx
-    rw [Ideal.mem_comap, ← res_eq_zero_iff O R']
-    change res O R' (f x) = 0
-    rw [res_map, res_eq_zero_iff O R]
-    exact hx
-  have hN : maximalIdeal R ^ N ≤ (maximalIdeal R' ^ N).comap (f : R →+* R') := by
-    rw [← Ideal.map_le_iff_le_comap, Ideal.map_pow]
-    exact Ideal.pow_right_mono (Ideal.map_le_iff_le_comap.mpr hm) N
-  have hc := (hu N).comp (Ideal.quotientMap (maximalIdeal R' ^ N) (f : R →+* R') hN)
-  convert hc using 1
-  funext g
-  simp [Ideal.quotientMap_mk]
+  apply _root_.adic_map <;> assumption
 
 private theorem def_map {n : ℕ} {G : Type} [Group G] [TopologicalSpace G] {Dbar : GDet n (ResidueField O) G}
     {D : GDet n R G} (h : IsDef O Dbar D) : IsDef O Dbar (D.map (f : R →+* R')) := by
-  refine ⟨?_, ?_⟩
-  · have hc := h.cont
-    unfold GDet.IsCont at hc ⊢
-    intro i
-    have e : ∀ g : G, (D.map (f : R →+* R')).lam i (MonoidAlgebra.single g 1) = f (D.lam i (MonoidAlgebra.single g 1)) := by
-      intro g
-      have := ((d_gmap D).2.2.1 (f : R →+* R') (MonoidAlgebra.single g 1)).2 i
-      simpa [MonoidAlgebra.mapRingHom_single] using this
-    simp only [e]
-    exact adic_map f (hc i)
-  · rw [(d_gmap D).2.1]
-    have e : ((res O R' : R' →ₐ[O] ResidueField O) : R' →+* ResidueField O).comp (f : R →+* R') = (res O R : R →+* ResidueField O) := by
-      ext x
-      exact res_map f x
-    rw [e]
-    exact h.red
+  apply _root_.def_map <;> assumption
 
 variable {l : ℕ} [Fact l.Prime] {F : GFrame l} [Algebra ℤ_[l] O] {n : ℕ} (r : Resid F O n)
 
 private theorem psi_map {v : F.Vl} {i : Fin n} {ψ : F.Gv v →* Rˣ} (h : r.IsPsi v i ψ) :
     r.IsPsi v i (pushCh (f : R →+* R') ψ) := by
-  refine ⟨?_, ?_, ?_⟩
-  · exact adic_map f h.cont
-  · intro g
-    have := h.red g
-    simp only [pushCh, MonoidHom.coe_comp, Function.comp_apply, Units.coe_map, MonoidHom.coe_coe]
-    rw [← this]
-    exact res_map f _
-  · intro g
-    simp only [pushCh, MonoidHom.coe_comp, Function.comp_apply, Units.coe_map, MonoidHom.coe_coe]
-    rw [h.mu g]
-    exact f.commutes _
+  apply _root_.psi_map <;> assumption
 
 omit [IsLocalRing O] [IsCO O R] [IsCO O R'] in
 private theorem star_map (g : F.G₀) :

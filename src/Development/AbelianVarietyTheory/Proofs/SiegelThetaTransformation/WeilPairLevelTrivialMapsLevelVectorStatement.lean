@@ -1030,7 +1030,6 @@ open GlobalTheory.SW hiding Level
 open GlobalTheory.Dict (hx pv)
 open ReciprocityTheory.ChartRestriction.G.I2 (polyDeriv)
 open scoped TensorProduct ComplexConjugate Real Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 end -- clump:auto

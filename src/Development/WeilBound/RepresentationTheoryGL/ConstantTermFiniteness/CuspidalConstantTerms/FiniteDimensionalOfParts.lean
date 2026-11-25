@@ -163,8 +163,6 @@ open Formalism.UG (cT)
 
 noncomputable section
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace GlobalTheory.CompanionTheory.LeviGen
 
 open GlobalTheory.Published GlobalTheory.Published.AutFin GlobalTheory.StdPar GlobalTheory.ThK.SmoothLev GlobalTheory.CompanionTheory.Hypotheses₂.ConstFin GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart
@@ -207,8 +205,6 @@ end GlobalTheory.CompanionTheory.LeviGen
 
 
 noncomputable section
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.LeviGen
 
@@ -274,8 +270,6 @@ end GlobalTheory.CompanionTheory.LeviGen
 
 
 noncomputable section
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.LeviGen
 
@@ -355,8 +349,6 @@ end GlobalTheory.CompanionTheory.LeviGen
 
 
 noncomputable section
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.LeviGen
 
@@ -438,8 +430,6 @@ end GlobalTheory.CompanionTheory.LeviGen
 
 
 noncomputable section
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.LeviGen
 
@@ -588,8 +578,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open scoped TensorProduct ComplexOrder
 
 noncomputable section
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open GlobalTheory.Published GlobalTheory.Published.AutFin
 
@@ -885,7 +873,6 @@ section -- clump:auto
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Published GlobalTheory.Published.AutFin GlobalTheory.StdPar GlobalTheory.ThK.SmoothLev GlobalTheory.CompanionTheory.Hypotheses₂.ConstFin GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart
 open GlobalTheory.UAut GlobalTheory.AdelicU GlobalTheory.SiegelSet
 
@@ -1010,8 +997,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open scoped TensorProduct
 
 noncomputable section
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart.Rg
 

@@ -4,27 +4,7 @@ public import Development.AbelianVarietyTheory.Definitions.AbelianSchemeLaws.Fir
 public import Mathlib.FieldTheory.RatFunc.Valuation
 public import Mathlib.RingTheory.SimpleRing.Principal
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
-import Mathlib.Algebra.AffineMonoid.UniqueSums
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.RingTheory.Artinian.Instances
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 

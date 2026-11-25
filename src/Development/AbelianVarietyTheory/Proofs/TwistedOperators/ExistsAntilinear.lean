@@ -1,8 +1,31 @@
 module
 
+import Development.AbelianVarietyTheory.Counterexamples.TwistSurvey.ConjModelCast
 public import Formalism.LocalToGlobal.IndefiniteReal.FWExist
 public import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 public import Formalism.LocalToGlobal.LatticeGeometry.CmTypeMeetsConjugatePair
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -16,6 +39,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -25,25 +50,7 @@ namespace GlobalTheory.ConjEval
 
 theorem exists_label {D : D7} (σ : D.what₂.LL →+* ℂ) (ρ : D.what₂.Tau) :
     ∃ τ, labE σ τ = tauE D ρ ∨ labE σ τ = (starRingEnd ℂ).comp (tauE D ρ) := by
-  obtain ⟨g, hg⟩ := (factEmb D.R D.host).1.2 (σ.comp D.embE)
-  have key : ∀ (t : D.R.GG) (ht : t ∈ D.R.Psi),
-      labE σ (D.eTau.symm ⟨t, ht⟩) = D.host.emb (g * t) := fun t ht => by
-    refine RingHom.ext fun x => ?_
-    have h1 : D.host.sigmaOf (g * t) = D.host.sigmaOf g * D.host.sigmaOf t :=
-      map_mul (D.host.gal).symm g t
-    show (σ.comp D.embE) (D.host.sigmaOf (D.eTau (D.eTau.symm ⟨t, ht⟩)).1 x) = D.host.φ₀ (D.host.sigmaOf (g * t) x)
-    rw [Equiv.apply_symm_apply, ← hg, h1]
-    rfl
-  by_cases h : g⁻¹ * (D.eTau ρ).1 ∈ D.R.Psi
-  · refine ⟨D.eTau.symm ⟨_, h⟩, Or.inl ?_⟩
-    rw [key, mul_inv_cancel_left]
-    rfl
-  · have h' : g⁻¹ * (D.eTau ρ).1 * D.R.cc ∈ D.R.Psi := by
-      by_contra h2
-      exact h ((Formalism.L2.Geo.mem_Psi_iff_mul_cc_notMem _).2 h2)
-    refine ⟨D.eTau.symm ⟨_, h'⟩, Or.inr ?_⟩
-    rw [key, mul_assoc, mul_inv_cancel_left, Formalism.L2.Geo.emb_mul_cc_comp]
-    exact RingHom.ext fun x => D.host.conjE_apply (tauE D ρ) x
+  first | exact _root_.GlobalTheory.ConjReading.lab_exists | exact @_root_.GlobalTheory.ConjReading.lab_exists | apply _root_.GlobalTheory.ConjReading.lab_exists <;> assumption
 
 theorem conj_comp_eq_iff {E : Type} [Field E] (a b : E →+* ℂ) :
     (starRingEnd ℂ).comp a = b ↔ a = (starRingEnd ℂ).comp b := by

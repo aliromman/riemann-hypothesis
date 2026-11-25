@@ -445,8 +445,6 @@ open MeasureTheory Topology Filter Metric NumberField Formalism.BasicNotions For
   Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.SG.Sub Formalism.L2.SG.TypedSets Formalism.L2.SG.Pf.NcReal Formalism.MainNotions.S Formalism.L2.SG.AdBridge
 open scoped TensorProduct Matrix
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 def gramH {D : D7} (X : HidaSetting D) (u' : D.what₂.Word) : Matrix (Fin (D.R.rS + 1 + D.R.rS)) (Fin (D.R.rS + 1 + D.R.rS)) D.host.E :=
   Matrix.of fun i j => (VS D).hT (wF X u' i) (wF X u' j)
 
@@ -1343,8 +1341,6 @@ open scoped InnerProductSpace ComplexConjugate
 open Matrix Finset
 
 namespace PI.AprimeInfW
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem wV_idx {D : D7} (X : HidaSetting D) (u' : D.what₂.Word) (v : InfinitePlace X.B.I.F)
     (b : Fin (D.R.rS + 1 + D.R.rS)) : wV X u' v b = rv X.B.I v (X.crd (wF X u' b)) := by

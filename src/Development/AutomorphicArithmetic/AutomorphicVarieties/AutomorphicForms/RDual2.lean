@@ -1,10 +1,36 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.RDualC
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.RTwist
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.RInv2
 public import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.AntisymmetrizedProductEqFactorialSmulQdet
 import Formalism.RealPlaceAnalysis.RealPlaceTaylor.ShiftedGeneratorEqIteSmulAdd
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -18,6 +44,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 
 @[expose] public section
@@ -108,14 +137,7 @@ theorem Eop_dualFn (τ : InfinitePlace E) (i j : Fin a) (φ : Sm E a) :
 private theorem qdet_conj {V : Type} [AddCommGroup V] [Module ℂ V] (e : V ≃ₗ[ℂ] V) (X Y : Fin a → Fin a → Module.End ℂ V)
     (h : ∀ i j φ, X i j (e φ) = e (Y i j φ)) (u : ℂ) (φ : V) :
     Formalism.REAL.qdet X u (e φ) = e (Formalism.REAL.qdet Y u φ) := by
-  have h0 : ∀ (z : Module.End ℂ V) ψ, (e.conjAlgEquiv ℂ).toAlgHom z (e ψ) = e (z ψ) := fun z ψ =>
-    congrArg (fun x => e (z x)) (e.symm_apply_apply ψ)
-  have e1 : (fun i j => (e.conjAlgEquiv ℂ).toAlgHom (Y i j)) = X := by
-    funext i j
-    refine LinearMap.ext fun ψ => ?_
-    obtain ⟨ψ, rfl⟩ := e.surjective ψ
-    rw [h0, h]
-  rw [← h0, map_qdet, e1]
+  apply _root_.UpperTheory.V.TC.qdet_conj <;> assumption
 
 open Formalism.REAL Finset in
 private theorem qdet_dual {V : Type} [AddCommGroup V] [Module ℂ V] (e : V ≃ₗ[ℂ] V) (X : Fin a → Fin a → Module.End ℂ V)

@@ -39,7 +39,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG
 open scoped Classical
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 end -- clump:auto
 end -- clump:auto
@@ -52,7 +51,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG
 open scoped Classical
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.CompanionTheory.RootsDistinctVal
 
@@ -82,7 +80,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG
 open scoped Classical
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.roots_eq_of_distinct_valuations : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicative ℤ))] (n : ℕ) (y : Fin n → ℤ), Function.Injective y → ∀ u u' : Fin n → L, (∀ i, ordL (u i) = y i) → (∀ i, ordL (u' i) = y i) → ∏ i, (X - C (u i)) = ∏ i, (X - C (u' i)) → u = u' := by
   first | exact @GlobalTheory.CompanionTheory.RootsDistinctVal.roots_eq_of_distinct_ord
@@ -100,8 +97,6 @@ noncomputable section
 open NumberField IsDedekindDomain Polynomial Matrix
 open GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG GlobalTheory.CuspRep
 open scoped Classical
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace PositivityTheory.Rg.Bc.ArchbcB.B.M4
 
@@ -340,8 +335,6 @@ open NumberField IsDedekindDomain Polynomial Matrix
 open GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG
 open scoped Classical
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 namespace PositivityTheory.Rg.Bc.ArchbcB.B.M4
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
@@ -376,8 +369,6 @@ noncomputable section
 open NumberField IsDedekindDomain Polynomial Matrix
 open GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG
 open scoped Classical
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace PositivityTheory.Rg.Bc.ArchbcB.B.M4
 
@@ -524,7 +515,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG
 open scoped Classical
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 noncomputable section
 
@@ -599,8 +589,6 @@ open NumberField IsDedekindDomain Polynomial Matrix
 open GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG
 open scoped Classical
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 namespace PositivityTheory.Rg.Bc.ArchbcB.B.M4
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
@@ -636,8 +624,6 @@ noncomputable section
 open NumberField IsDedekindDomain Polynomial Matrix
 open GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG
 open scoped Classical
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace PositivityTheory.Rg.Bc.ArchbcB.B.M4
 

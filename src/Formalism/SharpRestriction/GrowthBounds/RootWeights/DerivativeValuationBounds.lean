@@ -396,21 +396,7 @@ theorem flt_gL_mul_gLinv (R : Type*) [CommRing R] (n : ℕ) : gL R n * gLinv R n
   apply Formalism.MainNotions.G.Joints.genericMatrix_mul_inverse_eq_one
 
 theorem flt_gLinv_mul_gL (R : Type*) [CommRing R] (n : ℕ) : gLinv R n * gL R n = 1 := by
-  have key : ∀ a b, (gLinv R n * gL R n) a b = LaurentPolynomial.C
-      (IsLocalization.Away.invSelf (genMat R n).det *
-        algebraMap _ (GLCoord R n) (((genMat R n).adjugate * genMat R n) a b)) := by
-    intro a b
-
-    simp only [gL, gLinv, Matrix.mul_apply, Matrix.map_apply, ← _root_.map_mul, _root_.map_sum, Finset.mul_sum]
-    refine Finset.sum_congr rfl fun c _ => ?_
-    congr 1
-    rw [_root_.map_mul]
-    ring
-  ext a b
-  rw [key, Matrix.adjugate_mul, Matrix.smul_apply, Matrix.one_apply, Matrix.one_apply]
-  split_ifs
-  · rw [smul_eq_mul, mul_one, mul_comm, IsLocalization.Away.mul_invSelf, _root_.map_one]
-  · rw [smul_zero, _root_.map_zero, mul_zero, _root_.map_zero]
+  apply _root_.Formalism.MainNotions.G.Joints.gLinv_mul_gL <;> assumption
 
 theorem flt_twistMat_mul (R : Type*) [CommRing R] (n : ℕ) (j : Fin n) (k : ℤ) :
     twistMat R n j k * twistMat R n j (-k) = 1 := by

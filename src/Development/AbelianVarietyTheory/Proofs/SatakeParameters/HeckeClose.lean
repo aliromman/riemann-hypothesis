@@ -12,7 +12,7 @@ public import Formalism.LocalToGlobal.IndefiniteReal.BaseLiftsPackageOfPrimitive
 public import Formalism.LocalToGlobal.Divisibility.InertPartitionLePartF
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdjointInjectiveOnPart
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPartnerCombinationGoodInertLiftStatement
-public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSeparatingInertPassageCarriedByFormsStatement
+public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSeparatingInertPassageCarriedByForms
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchurConstantsExistOnChainOfCuspRapidDecay
 public import Mathlib.Algebra.Module.Submodule.Lattice
 public import Mathlib.Basic.Complex.Basic
@@ -196,7 +196,7 @@ theorem typesSep3_of_pin : GlobalTheory.Published.CuspRapidDecay → HoweUnram �
   have hSchur : SchurAll R.toRealDat := schurAll_of_cuspRapidDecay hP R.toRealDat
   have hTwo := GlobalTheory.T.exists_partner_combination_good_inert_lift hH R F hL hCW hEx hSchur
   have hAdj := GlobalTheory.AdjPart.adjoint_injective_on_part R hPos hB
-  have hTr := GlobalTheory.T.exists_separating_inertPassage_carried_by_forms R F hL hOk hCW hEx hSchur hTwo hJ hAdj
+  have hTr := GlobalTheory.exists_inert_passage_separating R F hL hOk hCW hEx hSchur hTwo hJ hAdj
   have hI := (hPin hTr).2
   exact A3.fam3.typesSep3_of (hOk.ok2.what₂ A3.fam3.F.μ0).comm
     (GlobalTheory.FamSep.typesSep_of_ok_isFam R.toRealDat hOk.ok2 hCW.base.fam) hI
@@ -777,7 +777,6 @@ open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionVa
 open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx
 open scoped TensorProduct InnerProductSpace
 open GlobalTheory.Hk3
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_baseLevel_vector_in_goodAlgebraicForms_span : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type} {A3 : FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat3 D A3 Ks) (F : Face3 D A3), R.WeakCharacterisation F → R.toRealDat.ExAt → SchurAll R.toRealDat → ∀ s, A3.fam3.Ok3 s → GoodGeneric A3.A.X F.P0 F.ψ0⁻¹ → R.toRealDat.LUnif → ∀ j c, R.Wc' j c ≠ ⊥ → ∃ w ∈ R.Wc' j c, w ≠ 0 ∧ w ∈ R.toRealDat.WS F.lv2 false j (sg0 D A3.A) := by
   first | exact @GlobalTheory.Hk3.exists_part_level_vector

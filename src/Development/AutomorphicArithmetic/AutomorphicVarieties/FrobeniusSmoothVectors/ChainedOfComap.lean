@@ -1335,11 +1335,7 @@ open IsLocalRing Matrix UpperTheory.V.Alg UpperTheory.V.U3 UpperTheory.V.Fr
 
 private theorem dim_comap {A R : Type} [CommRing A] [CommRing R] (p : A →+* R) (hp : Function.Surjective p)
     (P : Ideal R) : ringKrullDim (A ⧸ P.comap p) = ringKrullDim (R ⧸ P) := by
-  have h : RingHom.ker ((Ideal.Quotient.mk P).comp p) = P.comap p := by
-    ext a; simp [RingHom.mem_ker, Ideal.Quotient.eq_zero_iff_mem]
-  rw [← h]
-  exact ringKrullDim_eq_of_ringEquiv
-    (RingHom.quotientKerEquivOfSurjective (Ideal.Quotient.mk_surjective.comp hp))
+  apply _root_.UpperTheory.V.Fr.detsec_dim <;> assumption
 
 private theorem chained_of_comap {A R : Type} [CommRing A] [CommRing R] (p : A →+* R) (hp : Function.Surjective p)
     (I : Ideal R) (D : ℕ) (h : Chained (I.comap p) D) : Chained I D := by

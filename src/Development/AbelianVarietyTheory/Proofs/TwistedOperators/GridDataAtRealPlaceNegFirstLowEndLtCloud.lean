@@ -2,7 +2,31 @@ module
 
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CartFrSgn
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.CuspAlongSmoothRows
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -16,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasChr
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContragredientThetaParamsRemoveBlockArrow
 
 @[expose] public section
 
@@ -318,21 +343,7 @@ theorem odd_sLen : Odd (sLen D) := by
   exact ⟨a + 3, by unfold sLen; omega⟩
 
 theorem odd_rkV_iff (i j : ℕ) : Odd (rkV D i j) ↔ ¬ Odd (i + j) := by
-  have hr := _root_.Formalism.L2.Theta.r_odd D
-  have ht := D.R.t_odd
-  have hs := odd_sLen D
-  obtain ⟨a, ha⟩ := hr
-  obtain ⟨b, hb⟩ := ht
-  obtain ⟨c, hc⟩ := hs
-  unfold rkV
-  rw [hc, hb, ha]
-  have e1 : j * (2 * b + 1) = 2 * (j * b) + j := by ring
-  have e2 : i * (2 * c + 1) = 2 * (i * c) + i := by ring
-  rw [e1, e2]
-  generalize j * b = A
-  generalize i * c = B
-  simp only [Nat.odd_iff]
-  omega
+  apply _root_.GlobalTheory.RemoveBlock.odd_rkV <;> assumption
 
 end GlobalTheory.GridParD
 

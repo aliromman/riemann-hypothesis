@@ -4,6 +4,30 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.StrictInt
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.LevelPlusSubgroup
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.OffQOfSizeRows
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ProjExists
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -16,10 +40,13 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.BitVec
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.DepthPays
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsHeightLeTwoMulQuotHeight
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsVacFOfIsVacVec
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Algebra.Order.Star.Rat
 import Std.Tactic.BVDecide.Normalize.Prop
@@ -1009,13 +1036,7 @@ open Formalism.L2.Theta
 namespace GlobalTheory.SignedHC.GridData
 
 theorem v_bounds_of_mem (G : GridData) {i : ℕ} (h2 : 2 ≤ i) (hk : i ≤ G.k) : G.v G.k ≤ G.v i ∧ G.v i ≤ G.v 2 := by
-  constructor
-  · rcases eq_or_lt_of_le hk with h | h
-    · rw [h]
-    · exact le_of_lt (G.v_anti i G.k h2 h le_rfl)
-  · rcases eq_or_lt_of_le h2 with h | h
-    · rw [← h]
-    · exact le_of_lt (G.v_anti 2 i le_rfl h hk)
+  apply _root_.GlobalTheory.SignedHC.GridData.v_le_v_two <;> assumption
 
 theorem b_bounds_of_mem (G : GridData) {l : ℕ} (h1 : 1 ≤ l) (hm : l ≤ G.m) : G.b 1 ≤ G.b l ∧ G.b l ≤ G.b G.m := by
   constructor
@@ -1213,7 +1234,6 @@ open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheor
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelPlusSubgroup (coefPlus Cols SizeRows)
 open GlobalTheory.ChainFr GlobalTheory.SepRows GlobalTheory.SepPer Matrix
 open scoped TensorProduct InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 end -- clump:auto

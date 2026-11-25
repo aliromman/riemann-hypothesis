@@ -615,7 +615,7 @@ theorem evO_hypO_alt : HeckeStdPlain → ∀ (D : D7) (cf : CharFrame D) (jE : D
     exact hz
   have hOk' := bigOk_cast (L.X.nd.w_l i) hOk
   obtain ⟨K, hK, -, -⟩ := _root_.GlobalTheory.Proof.CoefField.coefField_range (withLoc L).nd (withLoc L).naut i
-  have hcont := (_root_.GlobalTheory.T.contains_after_localization_alt D cf jE A M C tp.tup big L hB' i).1
+  have hcont := (_root_.GlobalTheory.CoefDuty.MemberO.member_duties_alt D cf jE A M C tp.tup big L hB' i).1
   have hKbig : ∀ z ∈ big (L.X.nd.w i), (qCast (L.X.nd.w_l i) (A.pl.ι (L.X.nd.w i))).symm z ∈ K := by
     intro z hz
     obtain ⟨y, hy⟩ := hcont z hz
@@ -1687,7 +1687,7 @@ section -- clump:auto
 section
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX NumberField IsDedekindDomain GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3 GlobalTheory.Mem.R3.Rw GlobalTheory.HeightCounting GlobalTheory.HeightCounting.Up
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.TypeRec.factG
+attribute [local instance] GlobalTheory.TypeRec.factG
 noncomputable section
 namespace GlobalTheory.EtaMem
 open GlobalTheory.CoefDuty GlobalTheory.HeightCounting.Up

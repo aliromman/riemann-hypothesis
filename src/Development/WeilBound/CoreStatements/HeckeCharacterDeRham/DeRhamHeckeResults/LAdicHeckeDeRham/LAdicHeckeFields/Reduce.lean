@@ -101,8 +101,6 @@ open NumberField IsDedekindDomain Neutral.B1 Formalism.ConjugateSelfDual Recipro
 open GlobalTheory.HeckeGal GlobalTheory.Pst GlobalTheory.TripleGal
 open scoped Classical
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 namespace GlobalTheory.CompanionTheory.HeckeSmooth
 
 theorem exists_open_unit_subgroup_ker : ∀ {E : Type} [Field E] [NumberField E] (χ : HChar E)

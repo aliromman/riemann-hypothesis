@@ -1,5 +1,7 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.StarMulSelfOfPair
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DualWeylLatticeExistsNatPowSmulMem
 public import Formalism.LocalToGlobal.IndefiniteReal.BridgeTie
 public import Formalism.LocalToGlobal.IndefiniteReal.FrameExistence.FramesExistOfDiagonalTypePlaces
 public import Formalism.LocalToGlobal.IndefiniteReal.SubgroupCharExtensionOneApply
@@ -15,6 +17,27 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Defin
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExtLvlFormMemCutSp
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeDoubleCosetOperatorsStandardFacts
 public import Formalism.LocalToGlobal.Columns.CoefModAt
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -28,10 +51,16 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.LocalToGlobal.Columns.CoefColLemmas
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.Automorphisms.PlaceA
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdempotentMulEqZeroOfOrthogonal
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemRationalGLOfUnitaryGroupGramUnitGram
@@ -362,15 +391,8 @@ variable {E : Type} [Field E] [NumberField E] {ι : Type} [Fintype ι] {n : ℕ}
 
 theorem lat_tauLat_comm (τ : ι) {L L' : Submodule (𝓞 E) (Fin n → E)} {q : ℕ} (h : ∀ x ∈ L, (q : 𝓞 E) • x ∈ L') :
     ∀ y ∈ tauLat emb τ L, (q : 𝓞 K) • y ∈ tauLat emb τ L' := by
-  intro y hy
-  have hle : tauLat emb τ L ≤ (tauLat emb τ L').comap (LinearMap.lsmul (𝓞 K) (Fin n → K) (q : 𝓞 K)) := by
-    refine Submodule.span_le.2 ?_
-    rintro _ ⟨x, hx, rfl⟩
-    show (q : 𝓞 K) • (fun a => emb τ (x a)) ∈ tauLat emb τ L'
-    refine Submodule.subset_span ⟨(q : 𝓞 E) • x, h x hx, ?_⟩
-    funext a
-    simp [Algebra.smul_def]
-  exact hle hy
+  intros
+  apply _root_.GlobalTheory.NabScale.tauLat_smul_mem <;> assumption
 
 theorem localized_nabla_eq_of_commensurable (lam : ι → DomWeight n) (w : HeightOneSpectrum (𝓞 K)) {L L' : Submodule (𝓞 E) (Fin n → E)}
     (hL : Submodule.IsFullLattice E L) (hL' : Submodule.IsFullLattice E L') {q : ℕ} (h1 : ∀ x ∈ L, (q : 𝓞 E) • x ∈ L')
@@ -513,31 +535,8 @@ theorem swap_toGf {V : HSp D} (P : principalLevelFrame.RowPsi V V.rank) (hU : Un
 
 theorem hLat_full (V : HSp D) (hV : Seed.FrmC.StdLat V) (h : Bridge.Gf V) :
     Submodule.IsFullLattice D.host.E (Bridge.hLat V h) := by
-  letI := (GlobalTheory.HLatStd.hLat_props D V hV).1 h
-  obtain ⟨N, hN, hNm⟩ := GlobalTheory.PlaceDatum.exists_den_matrix
-    (GlobalTheory.StdFrameExist.SI D) GlobalTheory.PlaceDatum.exists_den_adele
-    (GlobalTheory.HLatStd.invM h)
-  have hNE : (N : D.host.E) ≠ 0 := Nat.cast_ne_zero.2 hN.ne'
-  have hsingle : ∀ i : Fin V.rank, (N : D.host.E) • Pi.single i (1 : D.host.E) ∈ Bridge.hLat V h := by
-    intro i
-    apply GlobalTheory.HLatStd.mem_hLat_of hV h
-    rw [GlobalTheory.HLatStd.iv_natCast_smul, GlobalTheory.HLatStd.mulVec_natCast_smul]
-    exact GlobalTheory.StdFrameExist.intV hNm
-      (GlobalTheory.HLatStd.iv_mem_of_int (by
-        classical
-        intro j
-        by_cases hj : j = i <;> simp [Pi.single_apply, hj, isIntegral_one, isIntegral_zero]))
-  refine { span_eq_top := ?_ }
-  · apply top_unique
-    intro x _
-    rw [pi_eq_sum_univ' x]
-    apply Submodule.sum_mem
-    intro i _
-    have hi : (N : D.host.E) • Pi.single i (1 : D.host.E) ∈
-        Submodule.span D.host.E (Bridge.hLat V h : Set (Fin V.rank → D.host.E)) := Submodule.subset_span (hsingle i)
-    have hi' := Submodule.smul_mem (Submodule.span D.host.E (Bridge.hLat V h : Set (Fin V.rank → D.host.E)))
-      ((x i) * (N : D.host.E)⁻¹) hi
-    simpa [smul_smul, mul_assoc, hNE] using hi'
+  intros
+  apply _root_.GlobalTheory.CoefUniq.isFullLattice_hLat <;> assumption
 
 theorem localization_nabAtr_eq' {V : HSp D} (hV : Seed.FrmC.StdLat V)
     (lam : D.what₂.Tau → DomWeight V.rank) (w : HeightOneSpectrum (𝓞 D.what₂.LL)) {p : ℕ} (hp : (p : 𝓞 D.what₂.LL) ∉ w.asIdeal)

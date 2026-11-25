@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsThetaPForms
 public import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
 public import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.ThetaKernelFiring
@@ -56,6 +57,28 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Mixed
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.WeilFiniteVectorFixedPrincipalLevelCoeffSpaceStatement
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CompAtMtOfMemGfC
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsFockVacAtOfIsThetaAt
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -68,9 +91,16 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.AdelicUnitaryRealPointsStructureRealPlacesStatement
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsSigmaList
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Topology.Separation.CompletelyRegular
 import Formalism.LocalToGlobal.Divisibility.CoefMod
@@ -165,24 +195,7 @@ theorem exists_isThetaP (ν : Measure H') (𝓕 : Set H') (th : G' → H' → S'
     (io : TK →ₗ[ℂ] Tau →ₗ[ℂ] Sinf) (A : Submodule ℂ (H' → Tau))
     (hint : ∀ f : A, ∀ e g, IntegrableOn (fun h => th g h (pt (io e ((f : H' → Tau) h)))) 𝓕 ν) :
     ∃ thP, Lift.IsThetaP ν 𝓕 (fun g h s => th g h s) (fun s => pt s) io A thP := by
-  refine ⟨LinearMap.mk₂ ℂ (fun f e g => ∫ h in 𝓕, th g h (pt (io e ((f : H' → Tau) h))) ∂ν) ?_ ?_ ?_ ?_, hint,
-    fun f e g => rfl⟩
-  · intro f f' e
-    funext g
-    simp only [Submodule.coe_add, Pi.add_apply, map_add (f := _)]
-    exact integral_add (hint f e g) (hint f' e g)
-  · intro c f e
-    funext g
-    simp only [Submodule.coe_smul, Pi.smul_apply, map_smul]
-    exact integral_smul c _
-  · intro f e e'
-    funext g
-    simp only [Pi.add_apply, map_add (f := _), LinearMap.add_apply]
-    exact integral_add (hint f e g) (hint f e' g)
-  · intro c f e
-    funext g
-    simp only [Pi.smul_apply, map_smul, LinearMap.smul_apply]
-    exact integral_smul c _
+  apply _root_.GlobalTheory.ThetaIntegralLinear.exists_isThetaP_of_integrable <;> assumption
 
 theorem exists_isThetaP' (ν : Measure H') (𝓕 : Set H') (th : G' → H' → S' → ℂ) (pt : Sinf → S')
     (thL : G' → H' → S' →ₗ[ℂ] ℂ) (ptL : Sinf →ₗ[ℂ] S') (h1 : ∀ g h s, th g h s = thL g h s) (h2 : ∀ s, pt s = ptL s)

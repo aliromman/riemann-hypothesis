@@ -1,5 +1,6 @@
 module
 
+import Formalism.SharpRestriction.LevelLetterCocycles.UniversalGeneralOfRestriction
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ExistsPhiBridge
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.GammaPi0EqPi0MulUnit
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcLengthFourCostBound
@@ -271,16 +272,7 @@ theorem repVV_smulA {T : LocLat G Qp LL O} {c' : ZMod n} {e M : ℕ} {Λ : LetA 
     {b : Fin d → W.DD T} {sol : Fin d → ℕ → Fin d → LL} {x : W.DD T} {f : Fin d → W.EE}
     (a : LetA O n) (ha : a ∈ W.AΔ) (h : RepVV W T c' e M Λ b sol x f) :
     RepVV W T c' e M Λ b sol (a • x) (fun k => algebraMap (LetA O n) W.EE a * f k) := by
-  obtain ⟨κ, κ', Hh, a', hH, ha', hF⟩ := h
-  refine ⟨κ, κ', Hh, fun k => a * a' k, hH, fun k => ⟨W.AΔ.mul_mem ha (ha' k).1, ?_⟩, ?_⟩
-  · rw [map_mul, ← (ha' k).2, mul_left_comm]
-  · have := Formalism.MainNotions.UnusedSlot80.Relay2.inMultiple_smul (W := W) T c' e (W.π₀ * Λ ^ 2) ha hF
-    convert this using 1
-    simp only [smul_sub, Finset.smul_sum, smul_smul]
-    congr 1
-    · congr 1; ring
-    · refine Finset.sum_congr rfl fun k _ => ?_
-      congr 1; ring
+  apply _root_.Formalism.MainNotions.UnusedSlot80.UnivF.repVV_smul <;> assumption
 
 end Dv
 

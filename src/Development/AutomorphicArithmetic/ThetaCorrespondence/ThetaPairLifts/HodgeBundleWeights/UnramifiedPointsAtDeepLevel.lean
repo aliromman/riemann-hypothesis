@@ -27,6 +27,28 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompositumIn
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFramedPointLiesOnComponentCmCurveField
 public import Development.AbelianVarietyTheory.Definitions.Divisors.HtValOnSubset
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComplexUniformizationLawsOfGoodDeepCover
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -44,6 +66,8 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.TupleReadBaseTupleE
 import Development.AbelianVarietyTheory.Definitions.Foundations.NonnegOfMemCStarSet
 import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.DedekindZetaEqSumRealEisenstein
 import Mathlib.NumberTheory.NumberField.Discriminant.Different
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.SchurLatticeConjugates
 import Formalism.LocalToGlobal.Columns.StdLatUnimodular
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsLatticeEmbeddingLiftDatumHermitianSpace
@@ -290,13 +314,6 @@ theorem unramified_points_at_deep_level : _root_.GlobalTheory.CovTop.PublishedHo
   exact _root_.GlobalTheory.UnramCM.unramified_points_of_CMDatum hP _ T.Q.H (T.Q.Dw j) Y.d.l₂ Y.d.Xo₂ Y.d.c₂ (by omega)
     (Or.inr (Or.inr ⟨by omega, hLaws.line⟩)) hLaws.good
 end GlobalTheory.UnramCover
-end
-
-section
-open GlobalTheory.IndefiniteRowSideFullHecke.DifferentConjugateDefects NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.FlatTw GlobalTheory.SlopeRec GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.RefSum
-
-theorem _root_.GlobalTheory.T.unramified_points_of_deep_cover : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → ∀ (D : D7) (T : CoreJ D) (j : ℕ) (Y : Deep T.toCore j) (e : ℕ) (o : ℝ), LawsJ T → InR D j → Y.Good e o → UnramPts Y.d.Xo₂ Y.d.c₂ (badPrimes T.Q.H Y.d.l₂) := by
-  first | exact @_root_.GlobalTheory.UnramCover.unramified_points_at_deep_level
 end
 end -- clump:auto
 end -- clump:auto

@@ -988,7 +988,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.ThetaGL UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem UpperTheory.Gal.TP.Loc.separates :
     UpperTheory.Gal.TP.Loc.Separates := by

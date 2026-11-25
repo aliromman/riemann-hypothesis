@@ -1,6 +1,28 @@
 module
 
 public import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -13,6 +35,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -34,21 +57,6 @@ structure Laws (R : RealDat D A Ks) (F : Face D A) : Prop where
   fam : R.IsFam
   models : R.IsModels
   thP : R.IsThP
-
-def IsRaw (R : RealDat D A Ks) (i : Fin D.R.m) (t : T) (th : (R.HV i t).H →ₗ[ℂ] (R.HW i (sg0 D A)).H) : Prop :=
-  ∀ x, (R.HW i (sg0 D A)).e (th x) = R.thF i t x
-
-def UpInj (R : RealDat D A Ks) (i : Fin D.R.m) (t : T) : Prop :=
-  ∀ th, IsRaw R i t th → Function.Injective (LinearMap.adjoint th)
-
-def part (R : RealDat D A Ks) (i : Fin D.R.m) (S : Finset (HeightOneSpectrum (𝓞 D.host.F)))
-    (c : HeightOneSpectrum (𝓞 D.host.E) → List ℤ → ℂ) : Submodule ℂ (R.HW i (sg0 D A)).H :=
-  (partFull R.θ (R.MW i (sg0 D A)) (levS _ (R.βW i) (R.datWp i R.triv)) (levChi _ (R.βW i) (R.datWp i R.triv)) S c).comap
-    (R.HW i (sg0 D A)).e
-
-def InnerNe (R : RealDat D A Ks) (i : Fin D.R.m) (t : T) (S : Finset (HeightOneSpectrum (𝓞 D.host.F))) : Prop :=
-  ∀ th, IsRaw R i t th → ∀ c, ∃ l : ℂ, l ≠ 0 ∧ ∀ x ∈ part R i S c, ∀ y,
-    ⟪LinearMap.adjoint th x, LinearMap.adjoint th y⟫_ℂ = l * ⟪x, y⟫_ℂ
 
 def thetaIP {S T' : HSp D} (μ : Measure (WO S T')) (𝓕 : Set (WO S T')) (f f' : WO S T' → ℂ) : ℂ :=
   ∫ w in 𝓕, star (f w) * f' w ∂μ
@@ -72,10 +80,6 @@ def RallisConv (D : D7) : Prop :=
         Integrable (fun g => thetaIP μ 𝓕 (om (1, g) f₂) f₁ * ∫ x in 𝓖, star (φ₁ x) * φ₂ (x * g) ∂νW) νW ∧
         ∫ h in 𝓗, star (upLift om νW 𝓖 f₁ φ₁ h) * upLift om νW 𝓖 f₂ φ₂ h ∂νV =
           ((νV 𝓗).toReal : ℂ) * ∫ g, thetaIP μ 𝓕 (om (1, g) f₂) f₁ * (∫ x in 𝓖, star (φ₁ x) * φ₂ (x * g) ∂νW) ∂νW
-
-theorem Laws.posDef {R : RealDat D A Ks} {F : Face D A} (h : Laws R F) (i : Fin D.R.m) :
-    (Vc D i).SigOK ∧ (Vc D i).IsPosDef :=
-  ⟨D.sp.V_sig _, h.models.vpos i⟩
 
 
 

@@ -1,11 +1,35 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFinUMulInfU
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ContinuousMapPFin
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NonemptyEquivLocProdTriv
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DefiniteUnitaryClassSetFiniteStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +43,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.RingTheory.PicardGroup
 
 @[expose] public section
@@ -32,25 +57,7 @@ namespace GlobalTheory.DefU.admitted
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ}
 
 theorem exists_fin_mul_inf (y : UA E n) : ∃ a ∈ finU (E := E) (n := n), ∃ b ∈ infU E n, y = a * b := by
-  let yi := GeneralLinearGroup.map (pInf E) y.1
-  have hyi : yi.valᴴ * yi.val = 1 := by
-    have hy : cT (conjAd E) y.1.val * 1 * y.1.val = 1 := y.2
-    have h3 : (cT (conjAd E) y.1.val).map (pInf E) = yi.valᴴ := by
-      ext1 i j
-      rw [Matrix.conjTranspose_apply]
-      exact (infEq E).symm_apply_apply _
-    have h := congrArg (pInf E).mapMatrix hy
-    rw [map_mul, map_mul, map_one, mul_one, RingHom.mapMatrix_apply, h3] at h
-    exact h
-  let b : UA E n := ⟨infGL E n yi, infGL_mem_UA yi hyi⟩
-  have hb : b ∈ infU E n := MonoidHom.mem_ker.2 (pFin_infGL yi)
-  have ha : b⁻¹ * y ∈ finU (E := E) (n := n) := by
-    refine MonoidHom.mem_ker.2 ?_
-    rw [map_mul, map_inv]
-    have : cInf b = cInf y := pInf_infGL yi
-    rw [this, inv_mul_cancel]
-  refine ⟨b⁻¹ * y, ha, b, hb, ?_⟩
-  rw [fin_mul_inf ha hb, mul_inv_cancel_left]
+  first | exact _root_.GlobalTheory.DefU.exists_finU_mul_infU | exact @_root_.GlobalTheory.DefU.exists_finU_mul_infU | apply _root_.GlobalTheory.DefU.exists_finU_mul_infU <;> assumption
 
 def X (φ : UA E n → ℂ) : Submodule ℂ (UA E n → ℂ) := Submodule.span ℂ (Set.range fun k : infU E n => RU E n k φ)
 

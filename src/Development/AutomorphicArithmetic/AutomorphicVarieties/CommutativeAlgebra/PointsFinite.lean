@@ -1,5 +1,6 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.TactVanish
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.Graded
 public import Mathlib.FieldTheory.IsAlgClosed.Basic
 public import Mathlib.RingTheory.DiscreteValuationRing.Basic
@@ -9,17 +10,43 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsUniqueFixe
 public import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsAbsoluteValueOfIsDiscreteValuationRing
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.Carver
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.PartSpan
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.Analysis.Normed.Unbundled.SpectralNorm
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.HopfAlgebra.Basic
 public import Mathlib.RingTheory.MvPowerSeries.Inverse
 import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -33,6 +60,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -144,32 +174,12 @@ private theorem pf_prod {X σ S : Type} [AddCommGroup X] [CommRing S] (wt : σ �
     (t : Multiplicative X →* Sˣ) (x : σ → S) (d : σ →₀ ℕ) :
     (d.prod fun i k => ((t (Multiplicative.ofAdd (wt i)) : S) * x i) ^ k) =
       (t (Multiplicative.ofAdd (Finsupp.weight wt d)) : S) * d.prod fun i k => x i ^ k := by
-  induction d using Finsupp.induction_linear with
-  | zero => simp
-  | add f g hf hg =>
-    rw [Finsupp.prod_add_index' (by simp) (fun _ _ _ => pow_add _ _ _),
-      Finsupp.prod_add_index' (by simp) (fun _ _ _ => pow_add _ _ _), hf, hg, map_add (f := _), ofAdd_add,
-      map_mul, Units.val_mul]
-    ring
-  | single i k =>
-    rw [Finsupp.prod_single_index (by simp), Finsupp.prod_single_index (by simp),
-      Finsupp.weight_single, ofAdd_nsmul, map_pow, Units.val_pow_eq_pow_val, mul_pow]
+  apply _root_.tact_prod <;> assumption
 
 private theorem pf_approx {O X σ : Type} [CommRing O] [AddCommGroup X] [Finite σ] (wt : σ → X)
     (F : MvPowerSeries σ O) (n : ℕ) :
     ∃ s : Finset X, (n : ℕ∞) ≤ (F - ∑ j ∈ s, wcomp O wt j F).order := by
-  classical
-  refine ⟨(truncTotal n F).support.image (Finsupp.weight wt), nat_le_order fun d hd => ?_⟩
-
-  rw [map_sub, map_sum]
-  simp only [coeff_wcomp]
-  rw [Finset.sum_ite_eq]
-  split_ifs with h
-  · exact sub_self _
-  · rw [sub_zero]
-    by_contra h0
-    refine h (Finset.mem_image_of_mem _ (MvPolynomial.mem_support_iff.2 ?_))
-    rwa [coeff_truncTotal _ hd]
+  apply _root_.tact_approx <;> assumption
 
 private theorem pf_vanish {O X σ S : Type} [CommRing O] [AddCommGroup X] [Finite σ] [CommRing S]
     [Algebra O S] (wt : σ → X) (J : Ideal S) [IsHausdorff J S] (φ : MvPowerSeries σ O →ₐ[O] S)

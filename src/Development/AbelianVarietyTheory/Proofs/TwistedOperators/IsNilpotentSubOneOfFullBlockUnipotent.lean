@@ -1,5 +1,6 @@
 module
 
+import Development.WeilBound.CoreStatements.AbelianHeightsDuality.PublishedTheoremStatements.BridgesAut
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FactTypePrime
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ColLieApply
 public import Mathlib.NumberTheory.NumberField.Basic
@@ -408,16 +409,7 @@ theorem isClass_of_isChar {G : Type} [Group G] {χ : G → ℂ} (h : IsChar χ) 
   rw [← hV, ← hV, FDRep.char_conj]
 
 theorem wh_one_zero (ψ : AddChar (ZMod g) ℂ) : wh ψ (fun _ : Gn g 0 => (1 : ℂ)) = 1 := by
-  haveI : Subsingleton (Gn g 0) := ⟨fun a b => Units.ext (Subsingleton.elim _ _)⟩
-  unfold wh tr
-  rw [Fintype.sum_subsingleton _ 1, eU, coeff_eDat, mul_one]
-  have hU : ∀ u : Gn g 0, IsUniUp u.val := fun u a => a.elim0
-  have hc : Nat.card {u : GG g 0 // IsUniUp u.val} = 1 := by
-    haveI : Nonempty {u : GG g 0 // IsUniUp u.val} := ⟨⟨1, hU 1⟩⟩
-    exact Nat.card_unique
-  unfold eps
-  rw [if_pos (hU 1), hc]
-  simp
+  first | exact _root_.GlobalTheory.GreenSeries.wh_zero_one | exact @_root_.GlobalTheory.GreenSeries.wh_zero_one | apply _root_.GlobalTheory.GreenSeries.wh_zero_one <;> assumption
 
 theorem wh_const_mul (ψ : AddChar (ZMod g) ℂ) {n : ℕ} (c : ℂ) (χ : Gn g n → ℂ) :
     wh ψ (fun x => c * χ x) = c * wh ψ χ := by

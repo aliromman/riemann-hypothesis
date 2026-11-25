@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemHeightOneIdealIffAdditiveValuationPos
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.BrgStdR
 public import Formalism.LocalToGlobal.IndefiniteReal.FrameExistence.FramesExistOfDiagonalTypePlaces
 public import Formalism.LocalToGlobal.IndefiniteReal.FrameExistence.InitialDataUntwistedOfModelChoice
@@ -29,6 +30,27 @@ public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFiniteGroupGoodSetLevelsCharactersStatement
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NatPrimeNotMem
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TupleTwistRamifiedIffChosenPrimeOrConjHost
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -41,14 +63,19 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ValBasic
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.Tactic.NormNum.Parity
 import Formalism.LocalRingCardinality.SpanPowerMembership.Adelic
 import Formalism.LocalRingCardinality.SpanPowerMembership.LocAtA
 import Mathlib.Algebra.Algebra.Field
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StableIffCarrierEq
 import Formalism.LocalToGlobal.HilbertRowConditions.CenterIdempotentAction
 import Formalism.LocalToGlobal.IndefiniteReal.RecTie
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCharOfTrace
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FinAfMemIntUIff
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsUnitaryOfOrderDvd
@@ -123,23 +150,7 @@ theorem mem_heightOneSpectrum_iff_additiveValuation_pos {K : Type} [Field K] [Nu
 
 theorem plEq_conjPl (D : D7) (w : D.what₂.places.Pl) :
     D.plEq (D.what₂.places.conj w) = Formalism.DivisionValues.conjPl (D.plEq w) := by
-  apply HeightOneSpectrum.ext
-  ext x
-  have key : ∀ y : 𝓞 D.what₂.LL, y ∈ (D.plEq (D.what₂.places.conj w)).asIdeal ↔
-      Formalism.DivisionValues.cO D.what₂.LL y ∈ (D.plEq w).asIdeal := by
-    intro y
-    by_cases hy : y = 0
-    · subst hy; simp
-    · rw [mem_heightOneSpectrum_iff_additiveValuation_pos _ y hy, mem_heightOneSpectrum_iff_additiveValuation_pos _ _ ((map_ne_zero_iff _ (Formalism.DivisionValues.cO D.what₂.LL).injective).2 hy),
-        additiveValuation_conjugatePlace_eq_star, Formalism.DivisionValues.ValuationRepresentative.cO_apply]
-  rw [key]
-  change _ ↔ x ∈ (D.plEq w).asIdeal.map (Formalism.DivisionValues.cO D.what₂.LL)
-  rw [Ideal.mem_map_of_equiv]
-  constructor
-  · intro h
-    exact ⟨_, h, Formalism.DivisionValues.ValuationRepresentative.cO_cO x⟩
-  · rintro ⟨y, hy, rfl⟩
-    rwa [Formalism.DivisionValues.ValuationRepresentative.cO_cO]
+  first | exact _root_.GlobalTheory.TypeLoss.plEq_conj | exact @_root_.GlobalTheory.TypeLoss.plEq_conj | apply _root_.GlobalTheory.TypeLoss.plEq_conj <;> assumption
 
 end UnitConjugation
 

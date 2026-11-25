@@ -12,6 +12,7 @@ public import Formalism.SharpRestriction.ValuationFrobeniusEpsilon.LeastPrimeTwi
 public import Formalism.SharpRestriction.ValuationFrobeniusEpsilon.LeastPrimeTwists.QuotientShiftIrreducible.UZGen
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.GradedModulesLength.AdmissibleMonoIdeal
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.GradedModulesLength.AdmissibleMonoIdeal
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.GradedModulesLength.TwoSigned
 public import Formalism.SharpRestriction.ValuationFrobeniusEpsilon.LeastPrimeTwists.QuotientShiftIrreducible.NoetherianQuotientCalc.RuleUB
 public import Formalism.FormalGroupWitt.FormalGroupWittProofs.SolveV
@@ -260,15 +261,7 @@ section
 variable {B A : Type} [CommRing B] [CommRing A] [Algebra B A] {k : ℕ} (N : Fin k → Submodule B A)
 
 private theorem coef_hom (J : Ideal A) : (GMod.self (reesGr N)).IsHomSub (coefIdeal N J) := by
-  classical
-  refine le_antisymm (fun p hp => ?_) (Submodule.span_le.2 fun x hx => hx.1)
-  rw [eq_sum_mono N p]
-  refine Submodule.sum_mem _ fun μ _ => Submodule.subset_span ⟨fun n => ?_, _, mono_mem N μ _ _⟩
-  show AddMonoidAlgebra.coeff (MvPolynomial.monomial μ _) n ∈ J
-  rw [MvPolynomial.coeff_monomial]
-  split_ifs
-  · exact hp μ
-  · exact J.zero_mem
+  apply _root_.coef_hom <;> assumption
 
 private theorem coeff_alg (b : B) (p : rees N) (n : Fin k →₀ ℕ) :
     AddMonoidAlgebra.coeff (algebraMap B (rees N) b * p).1 n =

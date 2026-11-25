@@ -6,9 +6,34 @@ public import Mathlib.Basic.Complex.Basic
 public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.SurjectiveOfLocallySurjective
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.ChowProduct
 public import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperFiniteness
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.ExteriorPower.Basis
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -59,7 +84,7 @@ private theorem finiteType_sec {Z : Scheme.{0}} (s : Z ⟶ Sp ℂ) [LocallyOfFin
 private theorem isCoherent_Omega {Z : Scheme.{0}} (s : Z ⟶ Sp ℂ) [LocallyOfFiniteType s] (a : ℕ) :
     GroundTheory.Arith.SchemeCoh.IsCoherent (Omega s a) := by
   refine ⟨inferInstance, fun U hU => ?_⟩
-  haveI := finiteType_sec s hU
+  have := finiteType_sec s hU
   have h : Module.Finite (CechDR.Sec s U) (CechDR.OmU s U a) := inferInstance
   have h' : Module.Finite (CechDR.Sec s U) Γ(Omega s a, U) := Module.Finite.equiv (toOmEquiv s a hU)
   exact h'
@@ -68,14 +93,14 @@ theorem UpperTheory.finiteDimensional_hodgeCohomology_of_smooth_proj :
     ∀ (Z : Scheme.{0}) [IsIntegral Z] (s : Z ⟶ Sp ℂ) (d : ℕ) [SmoothOfRelativeDimension d s], IsProjOver s → ∀ a b : ℕ, FiniteDimensional ℂ (hodgeH s a b) := by
   intro Z _ s d _ hp a b
   obtain ⟨N, i, hi, his⟩ := hp
-  haveI : IsProper (PSpace.str ℂ N) :=
+  have : IsProper (PSpace.str ℂ N) :=
     inferInstanceAs (IsProper (GroundTheory.Arith.SchemeCoh.ProjSpace.toSpecBase ℂ N))
-  haveI : IsProper s := by rw [← his]; infer_instance
-  letI : Z.Over (Spec (.of ℂ)) := ⟨s⟩
-  haveI : IsProper (Z ↘ Spec (.of ℂ)) := inferInstanceAs (IsProper s)
+  have : IsProper s := by rw [← his]; infer_instance
+  let : Z.Over (Spec (.of ℂ)) := ⟨s⟩
+  have : IsProper (Z ↘ Spec (.of ℂ)) := inferInstanceAs (IsProper s)
   have hc : GroundTheory.Arith.SchemeCoh.IsCoherent (Omega s a) := isCoherent_Omega s a
   have h := @GroundTheory.Arith.SchemeCoh.finite_H_of_isProper ℂ _ _ Z _ _ (Omega s a) hc b
-  letI := algΓ s
+  let := algΓ s
   have h' : Module.Finite ℂ (coh (Omega s a) b) :=
     finite_of_addEquiv h (coh.toH (Omega s a) b) fun r x => by
       have hx := coh.toH_map ℂ (smulHom (Omega s a) (algebraMap ℂ Γ(Z, ⊤) r)) b x

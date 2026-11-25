@@ -1,5 +1,6 @@
 module
 
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.ClauseAOfIdentityFlag
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RelevantCarrierNonempty.InSCarrierNonempty
 public import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.CellDef
 
@@ -113,12 +114,7 @@ theorem geo_e_mem_Xa (F : FlagG S r T) (i : Fin r) (a : ℕ) (h : i.val < a) : F
   exact Submodule.subset_span ⟨i, h, rfl⟩
 
 theorem geo_Xa_mono (F : FlagG S r T) {a b : ℕ} (h : a ≤ b) : F.Xa a ≤ F.Xa b := by
-  unfold FlagG.Xa
-  apply Submodule.span_mono
-  apply Set.image_mono
-  intro i hi
-  simp only [Set.mem_setOf_eq] at hi ⊢
-  omega
+  apply _root_.Formalism.MainNotions.BridgeLemma.tie_Xa_mono <;> assumption
 
 theorem geo_Xa_le_X (F : FlagG S r T) (a : ℕ) : F.Xa a ≤ F.X := by
   unfold FlagG.Xa FlagG.X

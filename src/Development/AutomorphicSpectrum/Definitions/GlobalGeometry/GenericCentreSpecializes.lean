@@ -5,6 +5,8 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsGener
 public import Mathlib.RingTheory.AlgebraicIndependent.Basic
 public import Mathlib.RingTheory.Valuation.ValuationSubring
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ProjectiveLinePlaceTrivialOnConstants
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ZarhinBundleKernelFirstCoordEquations
 import Mathlib.RingTheory.GradedAlgebra.HomogeneousLocalization
 
@@ -91,23 +93,5 @@ theorem numTrivMod_of_gen {ξ : Spec (CommRingCat.of Ω) ⟶ X} {L : Lat ξ Ω} 
     (ϖ : Ω) : NumTrivMod L ϖ := fun Γ => Γ.hasDeg_zero_of_gen (he _) fun _ => he _
 
 end General
-
-namespace FibLine
-
-open ProjectiveLinePlaces Crv.Inhab
-
-section Proj
-
-open MvPolynomial HomogeneousLocalization ProjCoord
-
-attribute [local instance] MvPolynomial.gradedAlgebra
-
-variable {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω]
-
-end Proj
-
-attribute [local instance] MvPolynomial.gradedAlgebra
-
-end FibLine
 
 end GlobalTheory.CompanionTheory.Ar.Flat

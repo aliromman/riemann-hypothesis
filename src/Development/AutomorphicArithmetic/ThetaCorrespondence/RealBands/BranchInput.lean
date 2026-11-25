@@ -1389,7 +1389,6 @@ theorem intBounds_of (hE : EmbLaws) (hBo : Boost) (hP : PowInt) (hD : DecPow) : 
       mul_le_mul_of_nonneg_right hcb (mul_nonneg hvol hcr)
     _ = _ := by ring
 
-theorem intBounds_main : EmbLaws → Boost → PowInt → DecPow → IntBounds := intBounds_of
 
 end GlobalTheory.SepReal
 end -- clump:auto
@@ -1469,7 +1468,7 @@ theorem UpperTheory.Lit.Branch.realInputE :
   intro hPL hEM
   unfold ProjLarge at hPL
   unfold EigMap at hEM
-  obtain ⟨C1, hC1, hIB⟩ := _root_.GlobalTheory.SepReal.intBounds_main _root_.GlobalTheory.SepReal.embLaws (_root_.GlobalTheory.SepReal.boost_of_embLaws _root_.GlobalTheory.SepReal.embLaws)
+  obtain ⟨C1, hC1, hIB⟩ := _root_.GlobalTheory.SepReal.intBounds_of _root_.GlobalTheory.SepReal.embLaws (_root_.GlobalTheory.SepReal.boost_of_embLaws _root_.GlobalTheory.SepReal.embLaws)
     (_root_.GlobalTheory.SepReal.powInt_of_volBall _root_.GlobalTheory.SepReal.volBall) _root_.GlobalTheory.SepReal.decPow 10 (by norm_num)
   obtain ⟨C3, hC3, hDB⟩ := _root_.GlobalTheory.SepReal.DerInt.derBounds_of _root_.GlobalTheory.SepReal.embLaws (_root_.GlobalTheory.SepReal.powInt_of_volBall _root_.GlobalTheory.SepReal.volBall)
     _root_.GlobalTheory.SepReal.decPow _root_.GlobalTheory.SepReal.lieBound 10 (by norm_num)

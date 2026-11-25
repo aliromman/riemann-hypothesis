@@ -1,6 +1,33 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.HomogSpan
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.EntryMem
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -26,25 +53,7 @@ open MvPowerSeries
 private theorem wcomp_mul_homog (O : Type) [CommRing O] {σ X : Type} [AddCommGroup X] (wt : σ → X)
     {w : X} {e : MvPowerSeries σ O} (he : e ∈ wtPart O wt w) (G : MvPowerSeries σ O) (j : X) :
     wcomp O wt j (G * e) = wcomp O wt (j - w) G * e := by
-  classical
-  ext n
-  rw [coeff_wcomp, coeff_mul, coeff_mul]
-  split_ifs with h
-  · refine Finset.sum_congr rfl fun p hp => ?_
-    have hp' := Finset.HasAntidiagonal.mem_antidiagonal.1 hp
-    by_cases h2 : Finsupp.weight wt p.2 = w
-    · rw [coeff_wcomp, if_pos]
-      rw [← h, ← hp', map_add (f := _), h2, add_sub_cancel_right]
-    · rw [he _ h2, mul_zero, mul_zero]
-  · symm
-    refine Finset.sum_eq_zero fun p hp => ?_
-    have hp' := Finset.HasAntidiagonal.mem_antidiagonal.1 hp
-    by_cases h2 : Finsupp.weight wt p.2 = w
-    · rw [coeff_wcomp, if_neg, zero_mul]
-      intro h1
-      apply h
-      rw [← hp', map_add (f := _), h1, h2, sub_add_cancel]
-    · rw [he _ h2, mul_zero]
+  apply _root_.wcomp_mul_homog <;> assumption
 
 private theorem span_coeffs {O R X κ N : Type} [CommRing O] [CommRing R] [Algebra O R] [AddCommGroup X]
     (W : WPres O X R) [Fintype κ] (g : κ → R) (c : κ → X) (hg : ∀ i, g i ∈ W.part (c i)) (u : N → X)

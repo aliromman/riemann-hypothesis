@@ -100,36 +100,12 @@ public import Development.EtaleCohomology.EtaleSheaves.PointEvaluationWitness
 public import Development.EtaleCohomology.EtaleSheaves.ResZeroOfRange
 public import Development.EtaleCohomology.EtaleSheaves.StrictHenselianLocalization
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleDescentPicardGroupStatement
-import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.Tactic.TypeStar
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.RingTheory.KrullDimension.Polynomial
-import Mathlib.RingTheory.Unramified.LocalStructure
-import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.AlgebraicGeometry.SpreadingOut
-import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.AlgebraicGeometry.Artinian
 import Aesop.Frontend.Tactic
 import Aesop.Main
-import Mathlib.RingTheory.KrullDimension.Field
 import Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.IsOpenOfMemIrreducibleComponentsOfFinite
-import Mathlib.AlgebraicGeometry.QuasiAffine
 import Development.EtaleCohomology.EtaleSheaves.PropertyDescent.BaseChange
 
 -- This file was produced by scripts/clump.py from the modules listed below.

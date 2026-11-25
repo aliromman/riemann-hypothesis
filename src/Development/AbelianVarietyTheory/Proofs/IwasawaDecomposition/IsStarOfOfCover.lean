@@ -4,6 +4,29 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsBar
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsStrictIff
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NonnegSumSmulIntBilinFormToRealMemPsdCone
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PullLinInjective
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -17,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HomExtNormalSt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIntLinearFormCuttingSubcell
 
 @[expose] public section
 
@@ -66,14 +90,7 @@ theorem inCone_of_strict {m' n : ℕ} {σ : Fin m' → LinearMap.BilinForm ℤ X
 omit [Module O X] [Module.Finite O X] in
 theorem inRCone_of_nsmul {m : ℕ} {σ : Fin m → LinearMap.BilinForm ℤ X} {β : LinearMap.BilinForm ℤ X} {k : ℕ}
     {d : Fin m → ℕ} (hk : 0 < k) (h : k • β = ∑ j, d j • σ j) : InRCone σ β := by
-  refine ⟨fun j => (d j : ℝ) / k, fun j => by positivity, LinearMap.ext₂ fun a b => ?_⟩
-  have e := LinearMap.congr_fun₂ h a b
-  simp only [LinearMap.smul_apply, LinearMap.sum_apply, nsmul_eq_mul] at e
-  have e' : (k : ℝ) * (β a b : ℝ) = ∑ j, (d j : ℝ) * (σ j a b : ℝ) := by exact_mod_cast e
-  have hk' : (k : ℝ) ≠ 0 := by positivity
-  simp only [toReal_apply, LinearMap.sum_apply, LinearMap.smul_apply, smul_eq_mul]
-  rw [show (β a b : ℝ) = (∑ j, (d j : ℝ) * (σ j a b : ℝ)) / k by rw [← e']; field_simp, Finset.sum_div]
-  exact Finset.sum_congr rfl fun j _ => by ring
+  apply _root_.GlobalTheory.PolFan.inRCone_of_nat_rel <;> assumption
 
 end GlobalTheory.PolFan.StarCells
 

@@ -1054,7 +1054,6 @@ section -- clump:auto
 
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor CrystallineSemistableComparison.Pb
-attribute [local instance] MvPolynomial.gradedAlgebra
 
 alias _root_.GlobalTheory.T.torus_coordinate_isUnit := _root_.GlobalTheory.CompanionTheory.GeoUnit.tV_isUnit
 end -- clump:auto

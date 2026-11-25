@@ -6,6 +6,28 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Hecke
 public import Development.AbelianVarietyTheory.BlockTheory.AdelicCMFields.UnitaryHeckeCharacterIdele
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCmAdeleUnitCharacterReadingHeckeChar
 public import Formalism.LocalToGlobal.LatticeGeometry.CmTypeMeetsConjugatePair
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -18,12 +40,14 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.EqOrConjOfPlaceOf
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsTotallyComplexOfI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeCharacterIdeleCharacterMatchUniqueStatement, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMkTauE
@@ -115,14 +139,7 @@ end General
 
 theorem conjugate_emb {R : Ranks} (H : Host R) (g : R.GG) :
     ComplexEmbedding.conjugate (H.emb g) = H.emb (g * R.cc) := by
-  rw [Formalism.L2.Geo.emb_mul_cc_comp]
-  refine RingHom.ext fun x => ?_
-  have hcm := H.isCMField_hostE
-  have h : IsCMField.complexConj H.E x = H.conj x := by
-    apply H.φ₀.injective
-    rw [IsCMField.complexEmbedding_complexConj, Formalism.HC.HostAx.conjE_apply]
-  show starRingEnd ℂ (H.emb g x) = H.emb g (H.conj x)
-  rw [← h, IsCMField.complexEmbedding_complexConj]
+  apply _root_.GlobalTheory.Mem.BaseEx.conjugate_emb <;> assumption
 
 theorem exists_mk_tauE (D : D7) (w : InfinitePlace D.host.E) : ∃ τ, InfinitePlace.mk (tauE D τ) = w := by
   obtain ⟨g, hg⟩ := (factEmb D.R D.host).1.2 w.embedding

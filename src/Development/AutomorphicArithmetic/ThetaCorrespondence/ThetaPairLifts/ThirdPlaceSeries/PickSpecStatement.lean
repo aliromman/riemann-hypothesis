@@ -547,11 +547,6 @@ theorem twistEx : GlobalTheory.Published.GlobalArtinReciprocity → ∀ (D : D7)
       ∃ ρ : G D.host.E D.nd.Om →* GL (Fin D.R.r) (Qbar l),
         IsRepOf D l ι (D.naut.tw π D.naut.etaTinv) ((1 - (D.R.nV : ℝ)) / 2) ρ := _root_.GlobalTheory.HeightCounting.TwistAny.exists_isRepOf_tw
 
-theorem conjIntegral : ∀ (l : ℕ) [Fact l.Prime] (Γ : Type) [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ]
-    [CompactSpace Γ] [T2Space Γ] (a : ℕ) (ρ : Γ →* GL (Fin a) (PadicAlgCl l)),
-    Continuous (fun g => ((ρ g : GL (Fin a) (PadicAlgCl l)) : Matrix (Fin a) (Fin a) (PadicAlgCl l))) →
-    ∃ (L : Loc.FinExt l) (P : GL (Fin a) (PadicAlgCl l)), ∀ g i k,
-      ((P⁻¹ * ρ g * P : GL (Fin a) (PadicAlgCl l)) : Matrix (Fin a) (Fin a) (PadicAlgCl l)) i k ∈ Formalism.L2.TwC.intOf l L.1 := _root_.GlobalTheory.IntegralConjFinExt.exists_finExt_conj_intOf
 
 end GlobalTheory.HeightCounting.RowRhoInt
 
@@ -573,7 +568,7 @@ theorem core (hA : GlobalTheory.Published.GlobalArtinReciprocity) (D : D7) (cf :
   obtain ⟨ι₀, hι₀⟩ := GlobalTheory.exists_padicAlgCl_ringEquiv_complex_comp_eq l ↥D.LL0 j (embLL0 D)
   have h0 : ∀ x, ι₀ (j x) = embLL0 D x := fun x => RingHom.congr_fun hι₀ x
   obtain ⟨ρG, hρG⟩ := twistEx hA D cf jE A hG l ι₀ π₀ hc₀ hr₀
-  obtain ⟨L, P, hP⟩ := conjIntegral l (G D.host.E D.nd.Om) D.R.r ρG hρG.1
+  obtain ⟨L, P, hP⟩ := _root_.GlobalTheory.IntegralConjFinExt.exists_finExt_conj_intOf l (G D.host.E D.nd.Om) D.R.r ρG hρG.1
   let ρ : G D.host.E D.nd.Om →* GL (Fin D.R.r) (PadicAlgCl l) := (MulAut.conj P⁻¹).toMonoidHom.comp ρG
   have hρ : ∀ g, ρ g = P⁻¹ * ρG g * P := fun g => by simp [ρ]
   have hρ0 : IsRepOf D l ι₀ (D.naut.tw π₀ D.naut.etaTinv) ((1 - (D.R.nV : ℝ)) / 2) ρ :=
@@ -751,7 +746,7 @@ theorem core_data_of_point (hA : GlobalTheory.Published.GlobalArtinReciprocity) 
   obtain ⟨ι₀, hι₀⟩ := GlobalTheory.exists_padicAlgCl_ringEquiv_complex_comp_eq l ↥D.LL0 j (embLL0 D)
   have h0 : ∀ x, ι₀ (j x) = embLL0 D x := fun x => RingHom.congr_fun hι₀ x
   obtain ⟨ρG, hρG⟩ := _root_.GlobalTheory.HeightCounting.TwistAny.exists_isRepOf_tw_alt hA D cf jE A hG l ι₀ π₀ hc₀ hr₀
-  obtain ⟨L, P, hP⟩ := conjIntegral l (Formalism.ConjugateSelfDual.G D.host.E D.nd.Om) D.R.r ρG hρG.1
+  obtain ⟨L, P, hP⟩ := _root_.GlobalTheory.IntegralConjFinExt.exists_finExt_conj_intOf l (Formalism.ConjugateSelfDual.G D.host.E D.nd.Om) D.R.r ρG hρG.1
   let ρ : Formalism.ConjugateSelfDual.G D.host.E D.nd.Om →* GL (Fin D.R.r) (PadicAlgCl l) := (MulAut.conj P⁻¹).toMonoidHom.comp ρG
   have hρ : ∀ g, ρ g = P⁻¹ * ρG g * P := fun g => by simp [ρ]
   have hρ0 : IsRepOf D l ι₀ (D.naut.tw π₀ D.naut.etaTinv) ((1 - (D.R.nV : ℝ)) / 2) ρ :=

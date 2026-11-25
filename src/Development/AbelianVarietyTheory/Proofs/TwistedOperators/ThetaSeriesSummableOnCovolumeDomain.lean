@@ -245,15 +245,7 @@ variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} {V W : HSp D}
 
 theorem heisO_comm (a b : WO V W) (g : WO V W → ℂ) :
     heisO ψ V W a (heisO ψ V W b g) = ψ (symplO V W a b) • heisO ψ V W b (heisO ψ V W a g) := by
-  have h2 : algebraMap D.host.F (AF D.host.F) (1 / 2) * 2 = 1 := by
-    rw [← map_ofNat (algebraMap D.host.F (AF D.host.F)) 2, ← map_mul]; norm_num
-  have e : symplOH V W a b = symplO V W a b + symplOH V W b a := by
-    unfold symplOH
-    rw [symplO_skew a b]
-    have : symplO V W a b = algebraMap D.host.F (AF D.host.F) (1 / 2) * 2 * symplO V W a b := by rw [h2, one_mul]
-    nth_rewrite 2 [this]
-    ring
-  rw [heisO_heisO, heisO_heisO, add_comm b a, smul_smul, ← ψ.map_add_eq_mul, ← e]
+  apply _root_.GlobalTheory.SplitScalar.heisO_comm <;> assumption
 
 theorem integral_dLine_eq_zero (hθ : IsInfFam θ) (hψ : IsStdChar D ψ (-1)) {L : ℝ →+ WO V W} (hL : Formalism.L2.Theta.IsRealDir W V L)
     {X : Type} [TopologicalSpace X] [MeasurableSpace X] [OpensMeasurableSpace X] (ν : Measure X) [IsFiniteMeasure ν]

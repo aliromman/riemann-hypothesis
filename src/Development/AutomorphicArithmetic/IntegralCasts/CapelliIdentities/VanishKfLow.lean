@@ -4,18 +4,6 @@ public import Mathlib.Basic.Complex.Basic
 public import Mathlib.LinearAlgebra.Multilinear.Basic
 public import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -82,8 +70,6 @@ noncomputable def UpperTheory.Reformulated.B.LowTypeThetaMapVanishing.KfLow :
         {w : ↥(M.sm τ) |
           ∃ g ∈ Formalism.QuantumDeterminants.UH (Formalism.BasicNotions.TH.gramAt D V τ),
             ∃ (w0 : ↥(Formalism.IndefR.Links.lowT M τ)), (↑w : M.H τ) = (M.rep τ g : M.H τ → M.H τ) (↑(↑w0 : ↥(M.sm τ)) : M.H τ)}
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open Classical in
 private theorem UpperTheory.Reformulated.B.LowTypeThetaMapVanishing.equiv_of_mem

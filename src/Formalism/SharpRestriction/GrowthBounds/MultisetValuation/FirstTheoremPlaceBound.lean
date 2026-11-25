@@ -696,7 +696,6 @@ theorem nm_extG {K : Type} [Field K] (N : AbsoluteValue K ℝ) (hna : ∀ x y, N
     ∃ (K' : Type) (_ : NormedField K') (_ : Algebra K K'), IsUltrametricDist K' ∧ IsAlgClosed K' ∧
       ∀ x, ‖algebraMap K K' x‖ = N x := by
   let nK : NormedField K := N.toNormedField
-  have hnorm : ∀ x : K, ‖x‖ = N x := fun _ => rfl
   have hnatK : ∀ n : ℕ, N (n : K) ≤ 1 := by
     intro n
     induction n with

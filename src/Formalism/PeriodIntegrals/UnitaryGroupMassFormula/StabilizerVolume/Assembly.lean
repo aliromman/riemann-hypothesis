@@ -61,6 +61,7 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.SWeqOm
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.SdDual
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TensAll
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoNuFin
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.PushSupp
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.EventuallyStruct, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.ExChar, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.ExFDStabFin, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.PosTest, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.RestrProdAlt, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.SdTestInf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoFibInv, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoMuInv, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.Unfold, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.LintFibre, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnfoldAbsAlt, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnfoldMain, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnimodStab, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnfoldFin, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.VolStabFromSWOf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.Assembly
@@ -620,15 +621,7 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E] [FiniteDimensional F E]
 
 theorem gramR_smul (h : HA R σ J) (X : Fin a → Fin M → R ⊗[F] E) :
     gramR R σ J (h • X) = gramR R σ J X := by
-  have hg : Formalism.UG.cT (sigR R σ) ((HA.mat R σ J h : GL (Fin M) (R ⊗[F] E)) :
-      Matrix (Fin M) (Fin M) _) * JR R J *
-      ((HA.mat R σ J h : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) _) = JR R J := h.2
-  funext x y
-  change hR R σ J (((HA.mat R σ J h : GL (Fin M) (R ⊗[F] E)) :
-      Matrix (Fin M) (Fin M) _) *ᵥ X x) (((HA.mat R σ J h : GL (Fin M) (R ⊗[F] E)) :
-      Matrix (Fin M) (Fin M) _) *ᵥ X y) = hR R σ J (X x) (X y)
-  rw [hR, TopoGram.hform_mulVec, hg]
-  rfl
+  apply _root_.PI.AprimeInfW.gramR_smul <;> assumption
 
 theorem linIndep_mulVec {A : Type} [CommRing A] (G : GL (Fin M) A) (X : Fin a → Fin M → A) :
     LinearIndependent A (fun x => (G : Matrix (Fin M) (Fin M) A) *ᵥ X x) ↔ LinearIndependent A X := by

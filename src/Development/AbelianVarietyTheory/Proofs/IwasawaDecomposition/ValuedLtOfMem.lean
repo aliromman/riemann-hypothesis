@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.Columns.InputsGenus
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ReferenceCharactersFactorTame
 public import Formalism.LocalToGlobal.Columns.Inputs
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsFiniteAdelicPointLatticeEqSelfDual
@@ -9,9 +10,32 @@ public import Formalism.LocalToGlobal.Columns.AdelicLemmas
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsApprox
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsEasy
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsSpan
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -25,6 +49,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 import Mathlib.RingTheory.PicardGroup
 
@@ -128,35 +155,8 @@ theorem adAt_glue (hQ : ∀ P ∈ Q, conjPrime₂ P ∉ Q) (z : AfE F E) (a b : 
   · by_cases h' : conjPrime₂ w ∈ Q <;> simp [h, h']
 
 theorem unimodGenus (n : ℕ) [NeZero n] : UnimodGenus hc n := by
-  intro N hN hU
-  have hs : ∀ e, (hc.sig : E →+* E) ((hc.sig : E →+* E) e) = e := fun e => star_star e
-  have hfix : ∀ e : E, hc.sig e = e → ∃ a : F, algebraMap F E a = e := fun e he => (hc.fixed e).1 he
-  let h : (Fin n → E) →ₗ⋆[E] (Fin n → E) →ₗ[E] E := Formalism.UG.CS.formJ (hc.sig : E →+* E) hs 1 1
-  obtain ⟨hsym, hap⟩ := Formalism.UG.P.hermitian_form_symmetry_holds E _ hs (Fin n) 1 1 (map_one _) (by
-    ext i j
-    simp [Formalism.UG.cT, Matrix.one_apply, eq_comm])
-  replace hsym : h.IsSymm := hsym
-  replace hap : ∀ x y, h x y = Formalism.UG.hform (starRingEnd E) 1 x y := fun x y => (hap x y).trans (one_mul _)
-  have he : h = hStd E n := by
-    refine LinearMap.ext fun x => LinearMap.ext fun y => ?_
-    rw [hap, Formalism.UG.hform]
-    show _ = ∑ i, star (x i) * y i
-    simp [Matrix.one_apply, starRingEnd_apply]
-  have hr : ∀ y, (∀ x, h x y = 0) → y = 0 := fun y hy => funext fun i => by
-    have := hy (Pi.single i 1)
-    rwa [he, hStd_single_left] at this
-  have hn : h.Nondegenerate := ⟨fun x hx => hr x fun y => by rw [← hsym.eq, hx, map_zero], hr⟩
-  exact GlobalTheory.Mass.Genus.exists_globLat_eq (J := 1) hs hfix (Module.Finite.iff_fg.2 stdLat_lattice.fg)
-    (by
-      apply top_unique
-      intro v _
-      have hv : v = ∑ i, v i • (Pi.single i (1 : E) : Fin n → E) := by
-        funext j
-        simp [Finset.sum_apply, Pi.single_apply]
-      rw [hv]
-      exact Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _
-        (Submodule.subset_span (by simpa using single_mem_stdLat (E := E) i 1))) N (GlobalTheory.SelfDualPoint.mem_genus h hc.cmUnram hsym hn stdLat_lattice hN
-      (he ▸ stdLat_unimodular) (he ▸ hU))
+  intros
+  apply _root_.Formalism.L2.Col.unimodGenus_holds <;> assumption
 
 variable {hc Q} {n : ℕ}
 

@@ -1,5 +1,7 @@
 module
 
+
+import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.EvaluationLemmaForNablaLevels
 public import Mathlib.Algebra.Ring.Pi
 public import Mathlib.Data.Fintype.Defs
 public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
@@ -11,6 +13,33 @@ public import Mathlib.RingTheory.Spectrum.Prime.RingHom
 public import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IsReducedAlgebraOfSmoothOfIsNoetherianRing
 public import Mathlib.RingTheory.TensorProduct.IncludeLeftSubRight
 public import Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.FibrePushforward
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -23,6 +52,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.FieldTheory.PurelyInseparable.Exponent
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Henselian
@@ -36,7 +68,6 @@ import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsPoint
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsIsCan
 import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.NonzeroLocus
-
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFactorThroughProjection, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFunctionOfSmoothLocalDescentReduced
 
@@ -104,15 +135,7 @@ namespace GlobalTheory.SmoothLocalDescent
 
 theorem eq_of_forall_geom {R : Type} [CommRing R] [_root_.IsReduced R] (a b : R)
     (h : ∀ (k : Type) [Field k] [IsAlgClosed k] (χ : R →+* k), χ a = χ b) : a = b := by
-  rw [← sub_eq_zero]
-  apply IsNilpotent.eq_zero
-  rw [nilpotent_iff_mem_prime]
-  intro J hJ
-  have := h (AlgebraicClosure J.ResidueField)
-    ((algebraMap J.ResidueField _).comp (algebraMap R J.ResidueField))
-  rw [← sub_eq_zero, ← map_sub, RingHom.comp_apply, map_eq_zero,
-    Ideal.algebraMap_residueField_eq_zero] at this
-  exact this
+  first | exact _root_.GlobalTheory.CoverDescent.eq_of_geometric_points | exact @_root_.GlobalTheory.CoverDescent.eq_of_geometric_points | apply _root_.GlobalTheory.CoverDescent.eq_of_geometric_points <;> assumption
 
 open scoped TensorProduct in
 theorem exists_lift_geom (R S : Type) [CommRing R] [CommRing S] [Algebra R S]
@@ -146,17 +169,7 @@ theorem exists_preimage_of_geom (R S : Type) [CommRing R] [CommRing S] [Algebra 
     (h : ∀ (k : Type) [Field k] [IsAlgClosed k] (χ₁ χ₂ : S →+* k),
       χ₁.comp (algebraMap R S) = χ₂.comp (algebraMap R S) → χ₁ w = χ₂ w) :
     ∃ u : R, algebraMap R S u = w := by
-  haveI := GlobalTheory.isReduced_algebra_of_smooth_of_isReduced R S
-  haveI := GlobalTheory.isReduced_algebra_of_smooth_of_isReduced S (S ⊗[R] S)
-  have key : w ⊗ₜ[R] (1 : S) = (1 : S) ⊗ₜ[R] w := by
-    refine eq_of_forall_geom _ _ fun k _ _ χ => ?_
-    refine h k (χ.comp Algebra.TensorProduct.includeLeftRingHom)
-      (χ.comp (Algebra.TensorProduct.includeRight (R := R) (A := S) (B := S)).toRingHom) ?_
-    ext x
-    change χ (algebraMap R S x ⊗ₜ[R] (1 : S)) = χ ((1 : S) ⊗ₜ[R] algebraMap R S x)
-    rw [Algebra.algebraMap_eq_smul_one, TensorProduct.smul_tmul]
-  exact (Algebra.IsEffective.of_faithfullyFlat R S w).1 (by
-    rw [Algebra.TensorProduct.includeLeftSubRight_apply, key, sub_self])
+  first | exact _root_.GlobalTheory.CoverDescent.exists_preimage_of_geometric | exact @_root_.GlobalTheory.CoverDescent.exists_preimage_of_geometric | apply _root_.GlobalTheory.CoverDescent.exists_preimage_of_geometric <;> assumption
 
 end GlobalTheory.SmoothLocalDescent
 

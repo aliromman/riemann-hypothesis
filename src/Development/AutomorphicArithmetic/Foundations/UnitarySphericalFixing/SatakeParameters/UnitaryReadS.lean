@@ -87,8 +87,6 @@ noncomputable section
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.LocGL GlobalTheory.WeilDeligne GlobalTheory.LocLanglands
 open GlobalTheory.CuspRep GlobalTheory.HeightCounting
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 namespace GlobalTheory.RecT
 
 abbrev RecFam : Type 1 :=

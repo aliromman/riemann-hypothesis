@@ -39,7 +39,33 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHei
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilRepresentationIntegralAction
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.ArchimedeanThetaFamilyExistsSmooth
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsArchSchwartzDerivativeHeisenbergLine
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -52,7 +78,13 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Algebra.Order.Archimedean.Real.Hom
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Tactic.Polynomial.Basic
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHasDerivAtZeroOfMapAddMul
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsAdmissibleFiniteFactorArchimedeanSchwartz
 import Mathlib.RingTheory.PiTensorProduct
@@ -558,7 +590,7 @@ theorem oscillator_deriv_along_line_quadratic : _root_.GlobalTheory.FunPr.ThetaL
         ∀ y, HasDerivAt (fun t => F₁ t y) (∑ i, c i * g₂ i y + c₀ * f y) 0 := by
   classical
   intro hP F E _ _ _ _ _ σ n d X W M ψ χX χW om hCM hψ hW γ hγ
-  obtain ⟨T, hT, hadd, h0⟩ := _root_.GlobalTheory.T.archimedean_theta_family_exists_smooth hP M ψ χX χW om hCM hψ hW γ hγ
+  obtain ⟨T, hT, hadd, h0⟩ := _root_.GlobalTheory.ArchFamily.exists_archimedean_theta_family hP M ψ χX χW om hCM hψ hW γ hγ
   obtain ⟨A, hAc, hA⟩ := _root_.GlobalTheory.ArchFam.schr_equiv M ψ χX χW om hψ hW γ hγ T hT
   haveI : BorelSpace (Fin n × Fin d → mixedEmbedding.mixedSpace F) := Pi.borelSpace
   let μ : Measure (Fin n × Fin d → mixedEmbedding.mixedSpace F) := Measure.addHaar
@@ -623,21 +655,6 @@ theorem oscillator_deriv_along_line_quadratic : _root_.GlobalTheory.FunPr.ThetaL
 end GlobalTheory.OscQuad
 end
 end
-
-section
-open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun
-
-theorem _root_.GlobalTheory.T.oscillator_lie_action_quadratic : _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
-    {n d : ℕ} {X : Spc F E n} {W : Spc F E d} (M : Model σ X W) (ψ : AddChar (AF F) ℂ) (χX χW : Chr F E) (om : Rep σ X W),
-    IsCMExt F E σ → IsStd ψ → M.IsWeil ψ χX χW om →
-    ∀ γ ∈ Lines σ W, ∃ (m : ℕ) (u v : Fin m → Matrix (Fin n) (Fin d) (AE F E)) (c : Fin m → ℂ) (c₀ : ℂ),
-      (∀ i, At (evI F) (u i) ∧ At (evI F) (v i)) ∧
-      ∀ (f : SInf F (Fin n × Fin d)) (g₁ g₂ : Fin m → SInf F (Fin n × Fin d)),
-        (∀ i, ActsD (evI F) (M.heisLine ψ (v i)) f (g₁ i)) → (∀ i, ActsD (evI F) (M.heisLine ψ (u i)) (g₁ i) (g₂ i)) →
-        ∀ F₁ : ℝ → SInf F (Fin n × Fin d), (∀ t, Acts (evI F) (om (1, γ (Multiplicative.ofAdd t))) f (F₁ t)) →
-        ∀ y, HasDerivAt (fun t => F₁ t y) (∑ i, c i * g₂ i y + c₀ * f y) 0 := by
-  first | exact @_root_.GlobalTheory.OscQuad.oscillator_deriv_along_line_quadratic
-end
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.OscillatorDerivAlongLineQuadratic =====
@@ -664,7 +681,7 @@ theorem polarization_pair_derivation (hP : _root_.GlobalTheory.FunPr.ThetaLocalI
     ∀ γ ∈ Lines σ W, ∃ δ : SInf F (Fin n × Fin d) →ₗ[ℂ] SInf F (Fin n × Fin d), ∀ f ∈ M.Pol ψ τ,
       δ f ∈ M.Pol ψ τ ∧ ActsD (evI F) (fun t => om (1, γ (Multiplicative.ofAdd t))) f (δ f) := by
   intro γ hγ
-  obtain ⟨m, u, v, c, c₀, hat, hQ⟩ := _root_.GlobalTheory.T.oscillator_lie_action_quadratic hP M ψ χX χW om hcm hψ hW γ hγ
+  obtain ⟨m, u, v, c, c₀, hat, hQ⟩ := _root_.GlobalTheory.OscQuad.oscillator_deriv_along_line_quadratic hP M ψ χX χW om hcm hψ hW γ hγ
   choose Du hDu using fun i => _root_.GlobalTheory.HeisDeriv.exists_actsD_heisLine M ψ hψ (u i) (hat i).1
   choose Dv hDv using fun i => _root_.GlobalTheory.HeisDeriv.exists_actsD_heisLine M ψ hψ (v i) (hat i).2
   have closed : ∀ w, At (evI F) w → ∀ D : SInf F (Fin n × Fin d) →ₗ[ℂ] SInf F (Fin n × Fin d),

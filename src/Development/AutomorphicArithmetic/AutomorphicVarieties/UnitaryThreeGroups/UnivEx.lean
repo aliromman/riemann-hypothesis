@@ -1,12 +1,40 @@
 module
 
+import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BoxDefs
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.GRepresents
 public import Mathlib.RingTheory.DiscreteValuationRing.Basic
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoQuot
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.UnivLift
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -26,6 +54,7 @@ public import Mathlib.Topology.Algebra.ClopenNhdofOne
 import Mathlib.Topology.Algebra.ProperAction.Basic
 import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Topology.Separation.Connected
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.DirichletPrimeToLPartMulLPowerPart
 public import Formalism.SharedLemmas.TotDiscQuot
@@ -140,21 +169,8 @@ omit [IsTopologicalGroup Γ] in
 private theorem lc_mod (hη : IsLocallyConstant η) {R : Type} [CommRing R] [Algebra O R] [IsCO O R]
     (s : GLift O η Ψ R) (n : ℕ) :
     IsLocallyConstant fun g => GG.map (Ideal.Quotient.mk (maximalIdeal R ^ n)) (s.hom g) := by
-  apply lc_gg
-  · have hfun : (fun g => (GG.map (Ideal.Quotient.mk (maximalIdeal R ^ n)) (s.hom g)).right) = fun g => η g := by
-      funext g
-      rw [GG.map_right]
-      exact s.hasMult g
-    rw [hfun]
-    exact hη
-  · intro a b
-    have hfun : (fun g => (GG.map (Ideal.Quotient.mk (maximalIdeal R ^ n)) (s.hom g)).mat a b) =
-        fun g => Ideal.Quotient.mk (maximalIdeal R ^ n) ((s.hom g).mat a b) := by
-      funext g
-      rw [GG.map_mat]
-      rfl
-    rw [hfun]
-    exact s.cont a b n
+  intros
+  apply _root_.UpperTheory.V.U3.GLift.locConst <;> assumption
 
 omit [IsTopologicalGroup Γ] in
 private theorem ker_closed {G : Type*} [Group G] (φ : Γ →* G) (h : IsLocallyConstant φ) :

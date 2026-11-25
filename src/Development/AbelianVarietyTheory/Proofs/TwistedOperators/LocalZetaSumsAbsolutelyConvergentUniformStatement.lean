@@ -15,7 +15,31 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDua
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsSatVecUOfDiag
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NoExcludedParameterOfLiftParameters
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TendstoOneOfSummable
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -28,9 +52,13 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.RealLowestKTypeCoeffSquareIntegrable
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.InnerProductFormula
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.Tactic.TypeStar
 import Development.AbelianVarietyTheory.Definitions.Divisors.EqOfHasValueAtInfinite
 import Development.AbelianVarietyTheory.Definitions.Foundations.EventuallyNormFinLeOne
@@ -348,20 +376,7 @@ theorem norm_prod_sub_one_le (c : ℝ) (M : Multiset ℂ) (h : ∀ z ∈ M, ‖z
     nlinarith
 
 theorem norm_inv_one_sub_sub_one_le {y : ℂ} (hy : ‖y‖ ≤ 1 / 2) : ‖(1 - y)⁻¹ - 1‖ ≤ 2 * ‖y‖ := by
-  have h1 : 1 / 2 ≤ ‖1 - y‖ := by
-    have := norm_sub_norm_le (1 : ℂ) y
-    rw [norm_one] at this
-    linarith
-  have hne : (1 - y) ≠ 0 := by
-    intro h0
-    rw [h0, norm_zero] at h1
-    norm_num at h1
-  have hm : (1 - y) * (1 - y)⁻¹ = 1 := mul_inv_cancel₀ hne
-  have e : (1 - y)⁻¹ - 1 = y * (1 - y)⁻¹ := by linear_combination hm
-  rw [e, norm_mul, norm_inv]
-  have hpos : 0 < ‖1 - y‖ := by linarith
-  rw [mul_inv_le_iff₀ hpos]
-  nlinarith [norm_nonneg y]
+  first | exact _root_.GlobalTheory.GLZetaBound.norm_inv_one_sub_sub_one_le | exact @_root_.GlobalTheory.GLZetaBound.norm_inv_one_sub_sub_one_le | apply _root_.GlobalTheory.GLZetaBound.norm_inv_one_sub_sub_one_le <;> assumption
 
 theorem one_add_pow_sub_one_le {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) (n : ℕ) :
     (1 + c) ^ n - 1 ≤ (2 ^ n - 1) * c := by

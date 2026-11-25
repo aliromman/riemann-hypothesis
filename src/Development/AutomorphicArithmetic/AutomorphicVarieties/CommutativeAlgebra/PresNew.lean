@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ManyIndependentProductsInFunctionField
 public import Mathlib.RingTheory.LocalRing.MaximalIdeal.Defs
 public import Mathlib.RingTheory.MvPowerSeries.Inverse
 public import Mathlib.RingTheory.Ideal.Operations
@@ -9,6 +10,32 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.Commutative
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoMvps
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoSurj
 public import Mathlib.RingTheory.AdicCompletion.Completeness
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -21,9 +48,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 
@@ -56,28 +85,8 @@ theorem UpperTheory.Reformulated.B.PreservedCoefficient.pres_new_coeff :
       ∀ (a : σ →₀ ℕ),
         (MvPowerSeries.coeff a : MvPowerSeries σ O → O) h ∈
           IsLocalRing.maximalIdeal O ^ (N - (Finsupp.degree : (σ →₀ ℕ) → ℕ) a) := by
-  intro O σ _ _ N
-  classical
-  induction N with
-  | zero =>
-    intro h _ a
-    rw [Nat.zero_sub, pow_zero, Ideal.one_eq_top]
-    exact Submodule.mem_top
-  | succ N ih =>
-    intro h hh
-    rw [pow_succ] at hh
-    refine Submodule.mul_induction_on hh ?_ ?_
-    · intro f hf g hg a
-      rw [MvPowerSeries.coeff_mul]
-      refine Submodule.sum_mem _ fun p hp => ?_
-      have hsum : Finsupp.degree p.1 + Finsupp.degree p.2 = Finsupp.degree a := by
-        rw [← map_add (f := _), Finset.HasAntidiagonal.mem_antidiagonal.1 hp]
-      have hmul := Ideal.mul_mem_mul (ih f hf p.1) (coeff_mem_of_mem_maximalIdeal hg p.2)
-      rw [← pow_add] at hmul
-      exact Ideal.pow_le_pow_right (by omega) hmul
-    · intro f g hf hg a
-      rw [map_add (f := _)]
-      exact Submodule.add_mem _ (hf a) (hg a)
+  intros
+  apply _root_.GlobalTheory.PowerSeriesIdealPowers.coeff_mem_of_mem_pow <;> assumption
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.PreservedCoefficient =====

@@ -19,29 +19,8 @@ public import Development.AutomorphicArithmetic.ShortNorms.ShortNorm
 public import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ZerosDisc
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.PrimesAPIntervalOfPrimesRel
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.PrimesInProgressionsRelativeError
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsBasisEmbedding
-import Mathlib.Algebra.Order.Star.Rat
-import Mathlib.Data.Finsupp.Pointwise
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Analysis.Complex.ExponentialBounds
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ConvRealChar, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.FiniteIdealsIn, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SumLamIdealLe, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsImagQuadIntegers, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsLFamRay, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.NormPrimesImagQuadShortIntervalLowerBound, Development.AutomorphicArithmetic.ShortNorms.SmallOneOf, Development.AutomorphicArithmetic.ShortNorms.Primes

@@ -1,5 +1,6 @@
 module
 
+import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualLatticeIndex
 public import Formalism.SharpRestriction.CuspSpanNormBounds.CntPartners
 public import Formalism.SharpRestriction.CuspSpanNormBounds.IsPrimitiveSub
 public import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
@@ -1063,15 +1064,7 @@ theorem relIndex_piF (K : Fin e → Ideal (𝓞 E)) :
   exact PI.InvIdealIdxPiWork.relIndex_pi_idS K
 
 theorem fg_piF (J : Fin e → FractionalIdeal (𝓞 E)⁰ E) : (piF J).FG := by
-  set C := diagC (fun j => algebraMap (𝓞 E) E ((J j).den : 𝓞 E)) fun j => den_ne (J j)
-  have hm := map_diag_piF J
-  have hfg : (piF (fun j => (((J j).num : Ideal (𝓞 E)) : FractionalIdeal (𝓞 E)⁰ E))).FG :=
-    g_fg_le jLat_piF_one.1 (piF_mono fun _ => FractionalIdeal.coeIdeal_le_one)
-  rw [← hm] at hfg
-  have h2 := hfg.map (((C.symm : (Fin e → E) ≃ₗ[E] (Fin e → E)) : (Fin e → E) →ₗ[E] (Fin e → E)).restrictScalars (𝓞 E))
-  rwa [← Submodule.map_comp, show ((((C.symm : (Fin e → E) ≃ₗ[E] (Fin e → E)) : (Fin e → E) →ₗ[E] (Fin e → E)).restrictScalars
-      (𝓞 E)).comp (((C : (Fin e → E) ≃ₗ[E] (Fin e → E)) : (Fin e → E) →ₗ[E] (Fin e → E)).restrictScalars (𝓞 E))) =
-      LinearMap.id by ext x; simp, Submodule.map_id] at h2
+  apply _root_.GroundTheory.Heights₂.Heights.KLinesIdealLatticeFG.fg <;> assumption
 
 theorem jdel_piF {J : Fin e → FractionalIdeal (𝓞 E)⁰ E} (hJ : j_Lat (piF J)) :
     j_del (piF J) = (∏ j, FractionalIdeal.absNorm (J j)) *

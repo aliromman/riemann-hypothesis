@@ -4,8 +4,32 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.PointShiftSt
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsIndexIdeal
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IsGramOneZero
 public import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.DetIdealSelfDualLatticeAndInterStandard
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -164,12 +188,8 @@ theorem span_eq_of_latRank_eq [FiniteDimensional K V] {N L : Submodule (𝓞 K) 
 
 
 omit [IsScalarTower (𝓞 K) K V] in
-theorem fg_of_le_fg' {N L : Submodule (𝓞 K) V} (hNL : N ≤ L) (hL : L.FG) : N.FG := by
-  have : IsNoetherian (𝓞 K) L := isNoetherian_of_fg_of_noetherian L hL
-  have hfg := IsNoetherian.noetherian (N.comap L.subtype)
-  have e : (N.comap L.subtype).map L.subtype = N := by
-    rw [Submodule.map_comap_subtype, inf_eq_right.2 hNL]
-  exact e ▸ hfg.map _
+theorem fg_of_le_fg' {N L : Submodule (𝓞 K) V} (hNL : N ≤ L) (hL : L.FG) : N.FG :=
+  hL.of_le hNL
 
 theorem relIndex_eq_absNorm_idx [FiniteDimensional K V] {N L : Submodule (𝓞 K) V} (hNL : N ≤ L) (hL : L.FG)
     (hrL : latRank K L = m) (hrN : latRank K N = m) :

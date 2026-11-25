@@ -14,18 +14,6 @@ public import Formalism.LocalToGlobal.KernelLattices.AdaptedEnt
 public import Formalism.LocalToGlobal.UnitaryNorms.MemFIffReal
 public import Formalism.LocalToGlobal.BesselHermitianTheta.MinfDensity
 public import Formalism.LocalToGlobal.GlobalTheory.LinkTiesOm
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.LatticeFrames.HtPsiLeIffExists, Development.AbelianVarietyTheory.Definitions.LatticeFrames.TrueColumnTupleTrivialEqOne
@@ -87,8 +75,6 @@ def RootsG (D : D7) : Prop :=
   ∀ i, (∃ ζ : D.what₂.LL, IsPrimitiveRoot ζ (D.host.g i)) ∧ ∃ ζ : D.what₂.LL, IsPrimitiveRoot ζ (D.host.g i - 1)
 
 variable {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : G.Inst D L} {Gl : G.LatInst D} {K : G.Consts} {Y : DivX D} {cX : ExtraC}
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {ex : Extra D L hT Gi Gl K Y cX}
 

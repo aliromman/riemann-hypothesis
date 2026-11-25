@@ -1,6 +1,31 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.UnitStripIntegralEqIterated
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.AutomorphicRankinSelberg.StripInt
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -14,6 +39,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -37,29 +65,7 @@ private theorem volume_restrict_strip_eq_map_withDensity (hV : UpperTheory.V.Af.
       Measure.map (fun p : ℝ × ℝ => UpperTheory.V.Af.Rs.pt p.1 p.2)
       ((((volume : Measure ℝ).restrict (Ico 0 1)).prod (volume.restrict (Ioi 0))).withDensity
         fun p => ENNReal.ofReal (1 / p.2 ^ 2)) := by
-  obtain ⟨hf, hvol⟩ := hV
-  have hs : MeasurableSet ((fun p : ℝ × ℝ => UpperTheory.V.Af.Rs.pt p.1 p.2) ⁻¹' UpperTheory.V.Af.Rs.strip) :=
-    hf measurableSet_strip'
-  have hset : (fun p : ℝ × ℝ => UpperTheory.V.Af.Rs.pt p.1 p.2) ⁻¹' UpperTheory.V.Af.Rs.strip ∩ (univ ×ˢ Ioi 0)
-      = Ico (0:ℝ) 1 ×ˢ Ioi 0 := by
-    ext ⟨x, y⟩
-    simp only [mem_inter_iff, mem_preimage, mem_prod, mem_univ, true_and, mem_Ioi, mem_Ico,
-      UpperTheory.V.Af.Rs.strip, mem_setOf_eq]
-    constructor
-    · rintro ⟨h, hy⟩
-      rw [(pt_re_im x y hy).1] at h
-      exact ⟨h, hy⟩
-    · rintro ⟨h, hy⟩
-      rw [(pt_re_im x y hy).1]
-      exact ⟨h, hy⟩
-  have h0 : (volume : Measure ℝ).prod (volume.restrict (Ioi (0:ℝ))) =
-      ((volume : Measure ℝ).prod volume).restrict (univ ×ˢ Ioi 0) := by
-    rw [← Measure.prod_restrict, Measure.restrict_univ]
-  have hbase : ((volume : Measure ℝ).prod (volume.restrict (Ioi (0:ℝ)))).restrict
-      ((fun p : ℝ × ℝ => UpperTheory.V.Af.Rs.pt p.1 p.2) ⁻¹' UpperTheory.V.Af.Rs.strip) =
-      ((volume : Measure ℝ).restrict (Ico 0 1)).prod (volume.restrict (Ioi 0)) := by
-    rw [h0, Measure.restrict_restrict hs, hset, ← Measure.prod_restrict]
-  rw [hvol, Measure.restrict_map hf measurableSet_strip', restrict_withDensity hs, hbase]
+  apply _root_.GlobalTheory.EisM.restrict_strip_eq_map <;> assumption
 
 theorem UpperTheory.V.Af.Rs.stripIm :
     UpperTheory.V.Af.Rs.VolMap → UpperTheory.V.Af.Rs.StripIm := by

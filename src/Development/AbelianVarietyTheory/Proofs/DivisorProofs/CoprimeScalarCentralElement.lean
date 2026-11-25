@@ -6,6 +6,28 @@ public import Formalism.LocalToGlobal.ProjectiveLattices.FamilyUniformisationBas
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MulVecMemLatGHat
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FinCongMemLevEnv
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.OmegaFormNonvanishing
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -51,14 +73,8 @@ theorem scalGL_comm {n : ℕ} {S : Type} [CommRing S] {m : ℤ} (h : IsUnit (m :
     x * scalGL n h = scalGL n h * x :=
   Units.ext (by rw [Units.val_mul, Units.val_mul, scalGL_val, mul_smul_comm, smul_mul_assoc, mul_one, one_mul])
 
-theorem isUnit_of_coprime {S : Type} [CommRing S] {m M : ℤ} (h : IsCoprime m M) (h0 : (M : S) = 0) : IsUnit (m : S) := by
-  obtain ⟨a, b, e⟩ := h
-  have e' : (m : S) * (a : S) = 1 := by
-    have := congrArg (Int.cast : ℤ → S) e
-    push_cast at this
-    rw [h0, mul_zero, add_zero, mul_comm] at this
-    exact this
-  exact ⟨⟨m, a, e', by rw [mul_comm]; exact e'⟩, rfl⟩
+theorem isUnit_of_coprime {S : Type} [CommRing S] {m M : ℤ} (h : IsCoprime m M) (h0 : (M : S) = 0) : IsUnit (m : S) :=
+  isCoprime_zero_right.1 (h0 ▸ h.intCast)
 
 theorem map_int_one {n : ℕ} {S S' : Type} [CommRing S] [CommRing S'] (f : S →+* S') (m : ℤ) (i j : Fin n) :
     f ((m • (1 : Matrix (Fin n) (Fin n) S)) i j) = (m • (1 : Matrix (Fin n) (Fin n) S')) i j := by

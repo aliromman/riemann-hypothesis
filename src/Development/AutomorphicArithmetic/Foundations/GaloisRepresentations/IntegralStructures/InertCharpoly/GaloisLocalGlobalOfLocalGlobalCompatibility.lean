@@ -564,14 +564,11 @@ theorem st5 : St5 := by
   have hCF := hτ s d e (unipotent_radical_ne_bot (exists_block_lt_of_ne_bot hne))
   let S : Submodule ℂ π.V := Submodule.span ℂ {v | ∃ h x, v = π.ρ h (j x)}
   have hSst : ∀ h v, v ∈ S → π.ρ h v ∈ S := by
-    intro h v hv
-    induction hv using Submodule.span_induction with
-    | mem v hv =>
-      obtain ⟨h', x, rfl⟩ := hv
-      exact Submodule.subset_span ⟨h * h', x, by rw [map_mul, mul_apply_eq_comp]⟩
-    | zero => simp
-    | add a b _ _ ha hb => rw [map_add]; exact add_mem ha hb
-    | smul c a _ ha => rw [map_smul]; exact Submodule.smul_mem _ c ha
+    intro h
+    show S ≤ S.comap (π.ρ h)
+    refine Submodule.span_le.2 ?_
+    rintro _ ⟨h', x, rfl⟩
+    exact Submodule.subset_span ⟨h * h', x, by rw [map_mul, mul_apply_eq_comp]⟩
   have hS0 : S ≠ ⊥ := by
     obtain ⟨x, hx⟩ := exists_ne (0 : W)
     intro hb
@@ -587,9 +584,8 @@ theorem st5 : St5 := by
     exact twKer_le_comap π.ρ _ p (parab_le_normalizer k e p.2) (lift_mem_twisted_kernel τ π.ρ j hj.2 hCF _)
   have htop : S = ⊤ := by
     let S' : Subrepresentation π.ρ := ⟨S, fun x v hv => hSst x v hv⟩
-    rcases π.irr.eq_bot_or_eq_top S' with h | h
-    · exact absurd (congrArg Subrepresentation.toSubmodule h) hS0
-    · exact congrArg Subrepresentation.toSubmodule h
+    exact congrArg Subrepresentation.toSubmodule
+      ((π.irr.eq_bot_or_eq_top S').resolve_left fun h => hS0 (congrArg Subrepresentation.toSubmodule h))
   rw [htop, top_le_iff] at hST
   show Subsingleton (_ ⧸ twKer π.ρ (unipRad k e) 1)
   rw [Submodule.Quotient.subsingleton_iff]

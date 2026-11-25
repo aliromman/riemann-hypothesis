@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LengthSumHeightOneDisjointDivisors
 public import Formalism.SharpRestriction.ValuationFrobeniusEpsilon.LeastPrimeTwists.QuotientShiftIrreducible.NoetherianQuotientCalc.EulerVanishingBelowDimension
 public import Formalism.SharpRestriction.ValuationFrobeniusEpsilon.LeastPrimeTwists.QuotientShiftIrreducible.NoetherianQuotientCalc.RuleFin
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.GradedModulesLength.ToDegInjective
@@ -439,17 +440,8 @@ private theorem len_mid {R M N P : Type} [CommRing R] [AddCommGroup M] [Module R
     [AddCommGroup N] [Module R N] [AddCommGroup P] [Module R P] (f : M →ₗ[R] N) (h : N →ₗ[R] P)
     (e : Function.Exact f h) :
     Module.length R N = Module.length R (LinearMap.range f) + Module.length R (LinearMap.range h) := by
-  refine Module.length_eq_add_of_exact (LinearMap.range f).subtype h.rangeRestrict
-    (Submodule.injective_subtype _) h.surjective_rangeRestrict ?_
-  intro n
-  rw [Subtype.ext_iff, ZeroMemClass.coe_zero]
-  change h n = 0 ↔ _
-  rw [e n]
-  constructor
-  · rintro ⟨m, rfl⟩
-    exact ⟨⟨f m, m, rfl⟩, rfl⟩
-  · rintro ⟨⟨_, m, rfl⟩, rfl⟩
-    exact ⟨m, rfl⟩
+  intros
+  apply _root_.GlobalTheory.ScalarSnakeLength.length_mid <;> assumption
 
 private def tmap {R M N : Type} [CommRing R] [AddCommGroup M] [Module R M]
     [AddCommGroup N] [Module R N] (g : R) (f : M →ₗ[R] N) :

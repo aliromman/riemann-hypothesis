@@ -481,11 +481,6 @@ theorem dS_zero (B : Base) {A A' : Type} (T : Fn B A → Fn B A') (u : Fn B A) :
 
 theorem ds_zero {B : Base} (S : Step B) (Y : ℝ) : S.ds Y 0 = S.gX Y := dS_zero B _ _
 
-theorem meas_iterDeriv {Ω : Type} [MeasurableSpace Ω] (F : ℝ → Ω → ℂ)
-    (hsm : ∀ ω, ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fun s => F s ω)) (hm : ∀ s, Measurable (F s)) :
-    ∀ (p : ℕ) (s : ℝ), Measurable (fun ω => iteratedDeriv p (fun s => F s ω) s) := by
-  apply Formalism.FourierDecayAlt.P.LEx2.A3.meas_iterDeriv <;> assumption
-
 theorem dsMeas : DsMeas := by
   apply Formalism.FourierDecayAlt.P.LEx2.A3.dsMeas
 

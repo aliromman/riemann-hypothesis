@@ -1,5 +1,6 @@
 module
 
+import Formalism.SharpRestriction.GrowthBounds.PathWeight.DvDegOtherMono
 public import Formalism.SharpRestriction.GrowthBounds.TwistedSubstitution.PlaneCoeff
 import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.IsMultiHom
 import Formalism.SharpRestriction.GrowthBounds.PathWeight.GeneratorImageIsSymbol
@@ -108,15 +109,7 @@ theorem fr_mem_letters (hV : Fr.Valid L₁ N₁) (hr : 1 ≤ r) (j : ℤ) (i : �
 
 theorem w_mem_letters (hV : Fr.Valid L₁ N₁) (hr : 1 ≤ r) (j : ℤ) (i : ℕ) (hi : i < r) :
     Fr.fr (j - 1) i ∈ Fr.letters j := by
-  have hm0 := fr_le_fr_of_le_of_valid hV (j - 1)
-  have hm := fr_le_fr_of_le_of_valid hV j
-  have hgap : Fr.fr (j - 1) (r - 1) < Fr.fr j 0 := by
-    have h1 := hV.2.2.2.1 (j - 1)
-    rwa [sub_add_cancel] at h1
-  simp only [Frames.letters, Finset.mem_filter, Finset.mem_Icc]
-  refine ⟨⟨hm0 0 i (Nat.zero_le _) hi, ?_⟩, (hV.2.2.2.2.1 (j - 1) i hi).1⟩
-  exact (hm0 i (r - 1) (by omega) (by omega)).trans
-    (hgap.le.trans (hm 0 (r - 1) (Nat.zero_le _) (by omega)))
+  apply _root_.Formalism.MainNotions.G.symbolGeneratorData.dv_frame_letter <;> assumption
 
 end Ord
 

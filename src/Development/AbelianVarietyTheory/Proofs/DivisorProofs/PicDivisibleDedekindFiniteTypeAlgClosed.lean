@@ -304,21 +304,6 @@ open Polynomial
 
 namespace GlobalTheory.CurveCompletionG
 
-alias residue_exists := _root_.GlobalTheory.CurveCompletion.residue_exists
-alias pow_le_span_sup := _root_.GlobalTheory.CurveCompletion.pow_le_span_sup
-alias pow_not_mem := _root_.GlobalTheory.CurveCompletion.pow_not_mem
-alias aeval_mem_of_dvd := _root_.GlobalTheory.CurveCompletion.aeval_mem_of_dvd
-alias dvd_of_aeval_mem := _root_.GlobalTheory.CurveCompletion.dvd_of_aeval_mem
-alias aeval_mem_iff := _root_.GlobalTheory.CurveCompletion.aeval_mem_iff
-alias coe_dvd_iff := _root_.GlobalTheory.CurveCompletion.coe_dvd_iff
-alias eq_of_forall_dvd := _root_.GlobalTheory.CurveCompletion.eq_of_forall_dvd
-noncomputable abbrev approx := @_root_.GlobalTheory.CurveCompletion.approx
-alias approx_spec := _root_.GlobalTheory.CurveCompletion.approx_spec
-noncomputable abbrev ser := @_root_.GlobalTheory.CurveCompletion.ser
-alias ser_sub_approx := _root_.GlobalTheory.CurveCompletion.ser_sub_approx
-alias mem_iff_dvd := _root_.GlobalTheory.CurveCompletion.mem_iff_dvd
-alias ser_eq := _root_.GlobalTheory.CurveCompletion.ser_eq
-noncomputable abbrev serHom := @_root_.GlobalTheory.CurveCompletion.serHom
 alias exists_completion_embedding := _root_.GlobalTheory.CurveCompletion.exists_completion_embedding
 
 end GlobalTheory.CurveCompletionG

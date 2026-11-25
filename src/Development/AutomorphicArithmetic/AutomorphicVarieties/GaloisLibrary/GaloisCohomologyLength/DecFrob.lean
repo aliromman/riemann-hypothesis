@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalRingCardinality.SpanPowerMembership.NDLocA
 public import ReciprocityTheory.GaloisValuations.Global
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.GaloisCohomologyLength.IneFixRoots
 import Mathlib.Tactic.Linter.Style
@@ -42,24 +43,7 @@ private theorem val_intCast_le_one (A : ValuationSubring Ω) (n : ℤ) : A.valua
 
 private theorem val_intCast_lt_one_iff (A : ValuationSubring Ω) (hA : A.valuation ((l : ℕ) : Ω) < 1) (n : ℤ) :
     A.valuation (n : Ω) < 1 ↔ ((l : ℕ) : ℤ) ∣ n := by
-  constructor
-  · intro h
-    by_contra hn
-    have hirr : Irreducible ((l : ℕ) : ℤ) := (Nat.prime_iff_prime_int.mp hl.out).irreducible
-    obtain ⟨a, b, hab⟩ := hirr.coprime_iff_not_dvd.mpr hn
-    have h1 : A.valuation (((a * ((l : ℕ) : ℤ) + b * n : ℤ)) : Ω) < 1 := by
-      push_cast
-      apply Valuation.map_add_lt
-      · rw [Valuation.map_mul]
-        exact lt_of_le_of_lt (mul_le_of_le_one_left' (val_intCast_le_one A a)) (by exact_mod_cast hA)
-      · rw [Valuation.map_mul]
-        exact lt_of_le_of_lt (mul_le_of_le_one_left' (val_intCast_le_one A b)) h
-    rw [hab] at h1
-    simp at h1
-  · rintro ⟨k, rfl⟩
-    push_cast
-    rw [Valuation.map_mul]
-    exact lt_of_le_of_lt (mul_le_of_le_one_right' (val_intCast_le_one A k)) (by exact_mod_cast hA)
+  apply _root_.Formalism.BasicNotions.Examples₂.LB.val_intCast_lt_one_iff <;> assumption
 
 private theorem isPlaceOver_vQ [Algebra ℚ Ω] (A : ValuationSubring Ω) (hA : A.valuation ((l : ℕ) : Ω) < 1) :
     IsPlaceOver (F := ℚ) A (vQ l) := by

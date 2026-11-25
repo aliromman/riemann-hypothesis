@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MaximalCompactActsOnFockVectorsBySubstitution
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HalfLinearCocycle
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CompactSubgroupsActOnFockVectorsAllSignatures
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.EqZeroOfAeFundamentalDomain
@@ -7,6 +8,29 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Exist
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilDatumRealPlacesFockVacuumCharacterStatement
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnitaryOnTheta
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplittingHeckeCharExistsArchimedeanExponent
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -19,8 +43,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.BitVec
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUnramifiedHeckeCharHalfExponentRestrictQua
+import Mathlib.Tactic.ENatToNat
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RestrictedTensorBasePointNormSq
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -159,29 +186,8 @@ theorem onb_mul_inv {k p : ℕ} {G s B : Matrix (Fin k) (Fin k) ℂ} (h : IsONBa
 
 theorem comm_of_onb {k p : ℕ} {G s B κ : Matrix (Fin k) (Fin k) ℂ} (h : IsONBasis G s B p) (hk : IsKMat p κ) :
     s * (B * κ * B⁻¹) = B * κ * B⁻¹ * s := by
-  have hB := onb_mul_inv h
-  have hB' : B⁻¹ * B = 1 := mul_eq_one_comm.1 hB
-  obtain ⟨ε, hε, -, h2⟩ := h
-  have hs : s = B * diagonal (fun a => (ε a : ℂ)) * B⁻¹ := by
-    rw [← h2, Matrix.mul_assoc, hB, Matrix.mul_one]
-  have hc : diagonal (fun a => (ε a : ℂ)) * κ = κ * diagonal (fun a => (ε a : ℂ)) := by
-    ext i j
-    rw [diagonal_mul, mul_diagonal]
-    by_cases hij : (i.val < p ↔ j.val < p)
-    · have e : ε i = ε j := by
-        rcases hε i with ⟨a1, a2⟩ | ⟨a1, a2⟩ <;> rcases hε j with ⟨b1, b2⟩ | ⟨b1, b2⟩
-        · rw [a1, b1]
-        · exact absurd (hij.1 a2) (by omega)
-        · exact absurd (hij.2 b2) (by omega)
-        · rw [a1, b1]
-      rw [e, mul_comm]
-    · rw [hk.2 i j hij, mul_zero, zero_mul]
-  rw [hs]
-  calc B * diagonal (fun a => (ε a : ℂ)) * B⁻¹ * (B * κ * B⁻¹)
-        = B * (diagonal (fun a => (ε a : ℂ)) * (B⁻¹ * B) * κ) * B⁻¹ := by simp only [Matrix.mul_assoc]
-    _ = B * (κ * (B⁻¹ * B) * diagonal (fun a => (ε a : ℂ))) * B⁻¹ := by
-        rw [hB', Matrix.mul_one, Matrix.mul_one, hc]
-    _ = B * κ * B⁻¹ * (B * diagonal (fun a => (ε a : ℂ)) * B⁻¹) := by simp only [Matrix.mul_assoc]
+  intros
+  apply _root_.GlobalTheory.FockCompact.comm_of_onb <;> assumption
 
 theorem alg {A B C E : ℂ} (cS cT : ℤ) (pS qS pT qT : ℕ) (hA : A ≠ 0) (hB : B ≠ 0) (hC : C ≠ 0) (hE : E ≠ 0) :
     ((A * B) ^ cT)⁻¹ * (C * E) ^ cS * (C ^ pS * E ^ qS * (A ^ pT)⁻¹ * (B ^ qT)⁻¹) =

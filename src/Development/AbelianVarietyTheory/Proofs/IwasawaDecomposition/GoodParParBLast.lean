@@ -8,7 +8,32 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForm
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HolomorphicShapeIntegralWeightGoodEmbedding
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GridFirstColumnSpaceRankSignatureSelfDual
 public import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasSign
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -21,6 +46,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.LevelCuspCharacters
 import Formalism.LocalRingCardinality.DataTheta
 import Formalism.LocalToGlobal.BesselHermitianTheta.NoncompactGapAtLeastRange
@@ -30,8 +56,11 @@ import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
 import Formalism.LocalToGlobal.IndefiniteReal.SubgroupCharExtensionOneApply
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GapAtLeast
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
+import Mathlib.Tactic.Basify
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.Tactic.ENatToNat
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HcParameterEAddHalfShiftLeBSucc
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GoodParameterFirstSpace, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GoodParDualPar, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GoodParParBLast
@@ -49,31 +78,10 @@ namespace GlobalTheory.ContragredientPar
 open Finset GlobalTheory.SignedHC
 
 theorem v_strictAnti {R : Ranks} (P : HCParam R) : StrictAnti P.v := by
-  have hs : ∀ (a : ℕ) (h : a + 1 < R.k - 1), P.v ⟨a + 1, h⟩ < P.v ⟨a, by omega⟩ :=
-    fun a h => (P.u_gt_v ⟨a + 1, h⟩).trans (P.v_gt_u ⟨a, by omega⟩)
-  have hA : ∀ (d a : ℕ) (h : a + d + 1 < R.k - 1), P.v ⟨a + d + 1, h⟩ < P.v ⟨a, by omega⟩ := by
-    intro d
-    induction d with
-    | zero => exact hs
-    | succ d ih => intro a h; exact (hs (a + d + 1) h).trans (ih a (by omega))
-  rintro ⟨a, ha⟩ ⟨c, hc⟩ hac
-  obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_lt (show a < c from hac)
-  exact hA d a hc
+  apply _root_.GlobalTheory.ForcedWeights.v_strictAnti <;> assumption
 
 theorem b_strictMono {R : Ranks} (P : HCParam R) : StrictMono P.b := by
-  have hs : ∀ (a : ℕ) (h : a + 1 < R.m), P.b ⟨a, by omega⟩ < P.b ⟨a + 1, h⟩ := fun a h => by
-    have h1 := P.gap_be ⟨a, by omega⟩
-    have h2 := P.gap_eb ⟨a, by omega⟩ h
-    have h3 : (0 : ℚ) ≤ R.t := by positivity
-    linarith
-  have hA : ∀ (d a : ℕ) (h : a + d + 1 < R.m), P.b ⟨a, by omega⟩ < P.b ⟨a + d + 1, h⟩ := by
-    intro d
-    induction d with
-    | zero => exact hs
-    | succ d ih => intro a h; exact (ih a (by omega)).trans (hs (a + d + 1) h)
-  rintro ⟨a, ha⟩ ⟨c, hc⟩ hac
-  obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_lt (show a < c from hac)
-  exact hA d a hc
+  apply _root_.GlobalTheory.ForcedWeights.b_strictMono <;> assumption
 
 theorem neg_v_lt_b {R : Ranks} (P : HCParam R) (i : Fin (R.k - 1)) (j : Fin R.m) : -P.v i < P.b j := by
   have hk := R.m_add_three_le_k

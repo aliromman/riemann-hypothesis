@@ -24,8 +24,6 @@ theorem div_mul_sub_le_div_sub_div (n s P Q ee kk rr : ℕ) (hP : 0 < P) (hQ : 0
     exact_mod_cast Nat.lt_div_mul_add hQ
   have hns : (n : ℤ) - s ≤ ((n - s : ℕ) : ℤ) := by omega
   have hue : (((n - s) / P : ℕ) : ℤ) - ee ≤ ((((n - s) / P - ee : ℕ)) : ℤ) := by omega
-  have hs' : (s : ℤ) < kk * P := by exact_mod_cast hs
-  have he' : (ee : ℤ) < rr * Q := by exact_mod_cast he
   have hP' : (0 : ℤ) < P := by exact_mod_cast hP
   have hQ' : (1 : ℤ) ≤ Q := by exact_mod_cast hQ
   set A : ℤ := ((n / (P * Q) : ℕ) : ℤ)

@@ -821,7 +821,6 @@ open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism
   Formalism.L2.SG.LocWSOf Formalism.L2.SG.KappaOffDiagonal
 
 namespace GlobalTheory.TypeAsm.FramePf
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem L_ratIso : ∀ {K V : Type} [Field K] [StarRing K] [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     (H : Formalism.HermitianLatticeCounting.S6.HermSpace K V) {r : ℕ} (e f e' f' : Fin r → V) (z z' : V),

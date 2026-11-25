@@ -38,31 +38,10 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThre
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.Graded
 import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ConjTor
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.DirichletPrimeToLPartMulLPowerPart
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.RingTheory.AdicCompletion.Noetherian
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.RingTheory.Henselian
 import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.ExistsUniqueIsPtHom
-import Mathlib.Algebra.Order.Star.Int
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsPtHomAct, Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.NormBoundOfIntegralValues, Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.NormTwoEqOne, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.PrecompleteOfPowLe, Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.PrecompleteOfPowLe, Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.PtSign, Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.ConjugatePreservesWeightFiltration, Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.TangentCoordEqZeroOfNonposWeight, Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.UnitEqOneOfPowEqOneOfResidueOne, Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AbstractCount

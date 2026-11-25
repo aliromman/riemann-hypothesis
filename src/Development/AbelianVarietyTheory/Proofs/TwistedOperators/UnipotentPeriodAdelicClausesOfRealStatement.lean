@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.PoincareSeriesIdentityTermDominatesStatement
 public import Formalism.LocalToGlobal.BesselHermitianTheta.IsAutFunDef
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.UnitaryAdelicInfFinSplitPeriodsUnimodular
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.LevelPlusSubgroup
@@ -12,6 +13,30 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsUniqueIsPr
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemElt
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.TopoAF
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -25,6 +50,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.CmHostImaginaryGeneratorNeZero
 import Development.AbelianVarietyTheory.Definitions.Divisors.NatCastSmulMemHatL
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsHeightLeTwoMulQuotHeight
@@ -39,6 +65,8 @@ import Formalism.LocalRingCardinality.SpanPowerMembership.LocAtA
 import Aesop.Main
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousOnAtTau
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnitaryEmbeddingContinuousMulRational
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.AdelicUnitaryHaarEqMapProdRealFinite, Development.AbelianVarietyTheory.Proofs.TwistedOperators.CongruencePreimageVolumeFinite, Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemIdealSmulAdelicPointRationalLattice, Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemIdealSmulAdelicPointRationalLatticeStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnipotentPeriodAdelicClausesOfReal, Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnipotentPeriodAdelicClausesOfRealStatement
@@ -408,17 +436,7 @@ theorem finE_mulVec {V : HSp D} (g : GA D V) {y y' : Fin V.rank → D.host.E} (h
 theorem cmp_mulVec (θ : InfFam D) (hθ : IsInfFam θ) {V : HSp D} (g : GA D V) {y y' : Fin V.rank → D.host.E}
     (h : mt V g *ᵥ ratV y = ratV y') (τ : D.what₂.Tau) :
     cmp θ τ g *ᵥ (fun i => tauE D τ (y i)) = fun i => tauE D τ (y' i) := by
-  let φ : AE D →+* ℂ := (θ τ).comp (Algebra.TensorProduct.map (fstA D.host.F) (AlgHom.id D.host.F D.host.E)).toRingHom
-  have e1 : cmp θ τ g = (mt V g).map φ := by
-    show (((matHom V g).1.map _).map _) = _
-    rw [Matrix.map_map]; rfl
-  have e2 : ∀ x : D.host.E, φ (incA D x) = tauE D τ x := fun x => by
-    show θ τ (Algebra.TensorProduct.map (fstA D.host.F) (AlgHom.id D.host.F D.host.E) ((1 : AF D.host.F) ⊗ₜ[D.host.F] x)) = _
-    rw [Algebra.TensorProduct.map_tmul, map_one]
-    exact (hθ τ).1 x
-  have := map_mulVec_ratV g h φ
-  simp only [e2] at this
-  rw [e1]; exact this
+  first | exact _root_.GlobalTheory.SepPer.MajDom.cmp_mulVec | exact @_root_.GlobalTheory.SepPer.MajDom.cmp_mulVec | apply _root_.GlobalTheory.SepPer.MajDom.cmp_mulVec <;> assumption
 
 end GlobalTheory.SepPer.AdelicFromReal
 
@@ -709,7 +727,6 @@ open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheor
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelPlusSubgroup (coefPlus Cols SizeRows)
 open GlobalTheory.ChainFr GlobalTheory.SepRows GlobalTheory.SepPer Matrix
 open scoped TensorProduct InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 end -- clump:auto

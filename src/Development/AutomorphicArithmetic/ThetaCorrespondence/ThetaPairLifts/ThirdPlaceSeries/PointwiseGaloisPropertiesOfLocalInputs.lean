@@ -59,6 +59,27 @@ public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLif
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ThetaDataExists
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.GaloisRepIsGeometricAtAllPlaces
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PrvZrOfInputsRowsStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -73,13 +94,18 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NStageTrivialCharacterCoeffEqAlt
 import Formalism.LocalToGlobal.IndefiniteReal.DoubleCosetOperators.GoodPartLeTypeSubspace
 import Formalism.LocalToGlobal.GaloisLevelStructure.Checks
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NotBaseCondFalse
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PositionOfIntro
 import Mathlib.Tactic.NormNum.Parity
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.EtaJUntw
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StableIffCarrierEq
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FunKilled
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsQuadOfPlane
 import Formalism.AlgebraicWeights.IsAlgWeight
 import Formalism.LocalToGlobal.SiegelLatticeTheory.PtEquivApply
@@ -319,9 +345,6 @@ theorem ordinary_idempotent_third_component_alt : OrdinaryIdempotentThirdCompone
 
 end GlobalTheory.HeightCounting.Up.ThirdTied
 
-theorem _root_.GlobalTheory.T.ordinary_idempotent_third_component_of_cmDatum_alt :
-    GlobalTheory.HeightCounting.Up.ThirdTied.OrdinaryIdempotentThirdComponent :=
-  GlobalTheory.HeightCounting.Up.ThirdTied.ordinary_idempotent_third_component_alt
 
 end
 end -- clump:auto
@@ -736,7 +759,7 @@ theorem third_place_linked_data_exists : ∀ hL : _root_.UpperTheory.Zero.LLC.Re
   intro hL hP hX
   have agreement := StepW.and
     (ThirdAgree.third_components_agree_alt hL hP hX)
-    (GlobalTheory.T.ordinary_idempotent_third_component_of_cmDatum_alt hL hP hX)
+    (_root_.GlobalTheory.HeightCounting.Up.ThirdTied.ordinary_idempotent_third_component_alt hL hP hX)
   have readingInputs := StepW.and
     (ThirdTied.third_component_hecke_character_tuple_alt hL hP hX)
     (StepW.and (GlobalTheory.HeightCounting.Fin.finite_types_with_local_conditions_alt hL hP hX)

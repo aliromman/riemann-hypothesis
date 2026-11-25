@@ -419,7 +419,6 @@ theorem clExp_eq (j l : ℕ) (hl : l ≤ r) :
 theorem tail_nonneg (h : Std p n' k1 t m c r TT a b lam0 w) (j l : ℕ) :
     0 ≤ ((n' / 2 : ℕ) : ℤ) * l * ((NN k1 t (j + 1) : ℤ) - 2 * r + l - t) := by
   have hr := h.two_r
-  have hr' : (2 * r : ℤ) ≤ k1 + 1 := by exact_mod_cast hr
   apply mul_nonneg (mul_nonneg (by positivity) (by positivity))
   unfold NN
   push_cast

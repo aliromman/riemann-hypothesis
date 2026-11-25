@@ -20,8 +20,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 open TrivSqZeroExt hiding map lift
 open scoped Classical
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.FlagTan
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}

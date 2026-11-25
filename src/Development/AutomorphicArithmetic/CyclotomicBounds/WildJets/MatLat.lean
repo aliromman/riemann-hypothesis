@@ -12,27 +12,11 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Transport
 public import Formalism.MirabolicMackeyTheory.MirabolicMackeyProofs.ThreeForms
 public import Formalism.PairingDivisors.PairingDivisorProofs.ValAdd
 import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ValBasic
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
 import Formalism.GradedWeylDivisibility.FinalD
 import Formalism.LocalToGlobal.Columns.CoefficientsModP.FkMapInitMinor
 import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.IdxChange
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.LatCoordA, Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.LatCoordB, Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.MatLat
@@ -209,7 +193,6 @@ section -- clump:auto
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
 open IsDedekindDomain NumberField Matrix GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.RowClaim GlobalTheory.TestLat GlobalTheory.SumSize
 open Formalism.DivisionValues (vw lw)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section SlopeTestRemainingChoices
 

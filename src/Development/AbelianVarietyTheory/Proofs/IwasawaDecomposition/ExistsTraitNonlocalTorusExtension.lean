@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCommonFieldExtension
 public import Mathlib.RingTheory.DiscreteValuationRing.Basic
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.AbelianSchemeQuotients.IsAbelianScheme
@@ -56,16 +57,7 @@ namespace GlobalTheory.NonlocalTrait
 
 theorem exists_common_ext {F L₁ L₂ : Type} [Field F] [Field L₁] [Field L₂] (a : F →+* L₁) (b : F →+* L₂) :
     ∃ (L : Type) (_ : Field L) (i : L₁ →+* L) (j : L₂ →+* L), i.comp a = j.comp b := by
-  letI := a.toAlgebra
-  letI := b.toAlgebra
-  obtain ⟨m, hm⟩ := Ideal.exists_maximal (TensorProduct F L₁ L₂)
-  letI := Ideal.Quotient.field m
-  refine ⟨TensorProduct F L₁ L₂ ⧸ m, inferInstance,
-    (Ideal.Quotient.mk m).comp Algebra.TensorProduct.includeLeftRingHom,
-    (Ideal.Quotient.mk m).comp (Algebra.TensorProduct.includeRight (R := F) (A := L₁) (B := L₂)).toRingHom, ?_⟩
-  rw [RingHom.comp_assoc, RingHom.comp_assoc]
-  congr 1
-  exact Algebra.TensorProduct.includeLeftRingHom_comp_algebraMap
+  first | exact _root_.GlobalTheory.exists_common_field_extension | exact @_root_.GlobalTheory.exists_common_field_extension | apply _root_.GlobalTheory.exists_common_field_extension <;> assumption
 
 theorem torusExtension_iterate {K : Type} [Field K] {S S₁ : Scheme.{0}} (a : S₁ ⟶ S)
     (b : Spec (CommRingCat.of K) ⟶ S₁) (G : Over S) [GrpObj G]

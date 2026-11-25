@@ -32,6 +32,32 @@ public import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BadPartDimLeSumLocalSharesWhittaker
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LocalShareCountLeExp
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExistsLiftAtDefiniteBadPlaces
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -44,6 +70,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.CuspIso
 import Development.AbelianVarietyTheory.Definitions.Divisors.GenRatios
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsRightActFunPull
@@ -62,7 +89,11 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ActLevIffLevelAc
 import Development.AutomorphicArithmetic.LocalEmbeddings.RootInCore
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Definitions.Divisors.Multiplier
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Polynomial.Basic
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SizesOfCoverStatement
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -904,11 +935,11 @@ theorem regular_embeddings_cover_bad_embedding_locus_alt : GlobalTheory.CovTop.H
   first
     | have ua0 := _root_.GlobalTheory.T.orbits_separated_by_regular_cusp hP hGD hQ hT hSA
   first
-    | have sg := _root_.GlobalTheory.T.covering_shift_preserves_goodAt hP
+    | have sg := _root_.GlobalTheory.CovTop.ShiftGood.covering_goodAt_shift hP
   have h3 := _root_.GlobalTheory.T.size_bounds_for_family_alt hSz
   unfold _root_.GlobalTheory.CovTop.DeepGoodness _root_.GlobalTheory.CovTop.CoversCondition at hDG
   unfold _root_.GlobalTheory.CovTop.CoversCondition at h3 h4 ⊢
-  refine _root_.GlobalTheory.BadEmb.lifts_of_four_quantitative_conditions hDG _root_.GlobalTheory.T.weight_conditions_at_index' h3 h4 ?_
+  refine _root_.GlobalTheory.BadEmb.lifts_of_four_quantitative_conditions hDG _root_.GlobalTheory.CovTop.HodgeGapBounds.reading_alt h3 h4 ?_
   clear hDG h3 h4
   intro eps Fm x hx ι p i PP _ _ _ _ b1 b2 b3 b4 hi Y hY fr π ρ χ Pb lamb H hPb hH hρ k
   have g0 := (b1 hi Y hY).1

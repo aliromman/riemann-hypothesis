@@ -1,5 +1,6 @@
 module
 
+import Formalism.SharpRestriction.GrowthBounds.ScaleEdges.EdgeLatticeMulOfWeightSum
 public import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.CloudADef
 public import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.OneMemDualWeyl
 public import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.CcDualWtAnti
@@ -154,12 +155,7 @@ theorem last_ne_zero'' (m : ℕ) (hm : 1 ≤ m) : Fin.last m ≠ 0 := by
 
 theorem lamAt_add' {n' m : ℕ} (X Y : Fin n' → Fin (m + 1) → ℤ) (s : Fin n') :
     lamAt (X + Y) s = lamAt X s + lamAt Y s := by
-  unfold lamAt
-  split_ifs
-  · rfl
-  · funext i
-    simp only [Pi.add_apply]
-    ring
+  apply _root_.Formalism.MainNotions.Pf14.lamAt_add <;> assumption
 
 theorem lamAt_sub' {n' m : ℕ} (X Y : Fin n' → Fin (m + 1) → ℤ) (s : Fin n') :
     lamAt (X - Y) s = lamAt X s - lamAt Y s := by

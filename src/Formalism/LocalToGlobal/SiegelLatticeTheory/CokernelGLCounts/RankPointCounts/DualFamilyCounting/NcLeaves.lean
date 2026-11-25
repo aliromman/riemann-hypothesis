@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.GlobalTheory.BlockActions.HformSmulRightB
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.Analysis.SpecialFunctions.Pow.Continuity
 public import Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.MassLandSt
@@ -514,14 +515,7 @@ def ctau (S : HSpace E) (τ : E →+* ℂ) (x : S.V) : Fin S.rank → ℂ := fun
 
 theorem hT_coord (S : HSpace E) (x y : S.V) :
     S.hT x y = ∑ i, ∑ j, star (S.frame.repr x i) * (S.gram i j * S.frame.repr y j) := by
-  conv_lhs => rw [← S.frame.sum_repr x, ← S.frame.sum_repr y]
-
-  simp only [map_sum, LinearMap.sum_apply, LinearMap.map_smulₛₗ, LinearMap.smul_apply, smul_eq_mul,
-  Finset.mul_sum, starRingEnd_apply]
-  conv_lhs => rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  simp only [HSpace.gram, RingHom.id_apply]
-  ring
+  apply _root_.Formalism.L2.GlobalTheoryTheory.TraceIntegrality.hT_expand <;> assumption
 
 theorem tau_hT (S : HSpace E) (τ : E →+* ℂ) (hτ : ∀ a, τ (star a) = starRingEnd ℂ (τ a)) (x y : S.V) :
     τ (S.hT x y) = star (ctau S τ x) ⬝ᵥ ((S.gram.map τ) *ᵥ ctau S τ y) := by

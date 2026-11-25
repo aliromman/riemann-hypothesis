@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFinsetDefiniteUnitaryDoubleCosets
 public import Development.AbelianVarietyTheory.Definitions.Foundations.ClassMassEqSumOfBijective
 public import Development.AbelianVarietyTheory.Definitions.Foundations.NotIsSplitOfIsInertAt
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
@@ -7,6 +8,30 @@ public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.HeightOneSpectrumPlacesOverFiniteSet
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsUniqueIsConjAt
 import Formalism.SatakeDualWeyl.KpqSubgroupCompact
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -19,8 +44,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -85,21 +113,7 @@ theorem continuous_adMap : Continuous (GlobalTheory.AdeleBaseChange.adMap F E) :
     fun w => InertChart.continuous_complMap (rfl : w.under (𝓞 F) = _)
 
 theorem continuous_finAdEquiv : Continuous (finAdEquiv F E) := by
-  haveI : Module.Finite F E := Module.Finite.of_restrictScalars_finite ℚ F E
-  haveI : IsModuleTopology 𝔸ᶠ[F] (𝔸ᶠ[F] ⊗[F] E) := ⟨rfl⟩
-  letI : Algebra 𝔸ᶠ[F] (FiniteAdeleRing (𝓞 E) E) := (GlobalTheory.AdeleBaseChange.adMap F E).toAlgebra
-  haveI : ContinuousSMul 𝔸ᶠ[F] (FiniteAdeleRing (𝓞 E) E) := continuousSMul_of_algebraMap _ _ continuous_adMap
-  let f : 𝔸ᶠ[F] ⊗[F] E →ₗ[𝔸ᶠ[F]] FiniteAdeleRing (𝓞 E) E :=
-    { toFun := finAdEquiv F E
-      map_add' := map_add _
-      map_smul' := fun r y => by
-        induction y using TensorProduct.induction_on with
-        | zero => simp only [smul_zero, map_zero]
-        | add a b ha hb => simp only [smul_add, map_add (f := _), ha, hb]
-        | tmul a x =>
-          change toFinAd F E ((r * a) ⊗ₜ[F] x) = GlobalTheory.AdeleBaseChange.adMap F E r * toFinAd F E (a ⊗ₜ[F] x)
-          rw [toFinAd_tmul, toFinAd_tmul, map_mul, mul_assoc] }
-  exact IsModuleTopology.continuous_of_linearMap f
+  first | exact _root_.GlobalTheory.UnitaryBC.ClassTransport.continuous_finAdEquiv | exact @_root_.GlobalTheory.UnitaryBC.ClassTransport.continuous_finAdEquiv | apply _root_.GlobalTheory.UnitaryBC.ClassTransport.continuous_finAdEquiv <;> assumption
 
 end Base
 

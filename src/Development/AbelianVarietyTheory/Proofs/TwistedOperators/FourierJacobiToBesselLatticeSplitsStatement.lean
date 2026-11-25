@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PrimeIdempotentOfIdempotentSumPlaceSplit
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsAuxiliaryVectorWittDec
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.DepthLatticeGridRowStableWittTargetProjections
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MxAtOfMemDepLat
@@ -25,6 +26,30 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Psi
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsSumFrame
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HomLatticeCompletionSelfAnnihilatorAtPlaces
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.DepthLatticeGridRowLeSelfDualHomLatticeShiftStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -37,7 +62,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCharOfTrace
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdempotentMulEqZeroOfOrthogonal
@@ -517,15 +544,7 @@ theorem val_cpt_le_one {𝔪 : Ideal (𝓞 D.host.E)} (h𝔪 : 𝔪 ≠ ⊥) {Q 
 
 theorem cpt_idemSum_of_mem {e : AE D} {P : Finset (Formalism.L2.DIV.Pl D.host.E)} (he : IsIdemSum e P)
     {Q : Formalism.L2.DIV.Pl D.host.E} (hQ : Q ∈ P) : GlobalTheory.StdFrames.cpt (D := D) Q (toEAf D e) = 1 := by
-  obtain ⟨⟨es, hes, rfl⟩, -⟩ := he
-
-  rw [show toEAf D (∑ PP ∈ P, es PP) = ∑ PP ∈ P, toEAf D (es PP) from
-    map_sum (toEAf D).toAddMonoidHom (fun PP => es PP) P,
-  show GlobalTheory.StdFrames.cpt (D := D) Q (∑ PP ∈ P, toEAf D (es PP)) = ∑ PP ∈ P, GlobalTheory.StdFrames.cpt (D := D) Q (toEAf D (es PP)) from
-    map_sum (GlobalTheory.StdFrames.cpt (D := D) Q).toAddMonoidHom (fun PP => toEAf D (es PP)) P, Finset.sum_eq_single Q]
-  · exact (GlobalTheory.StdFrames.cpt_of_isIdemAt (hes Q hQ)).1
-  · intro b hb hbQ; exact (GlobalTheory.StdFrames.cpt_of_isIdemAt (hes b hb)).2 Q (Ne.symm hbQ)
-  · intro h; exact absurd hQ h
+  apply _root_.GlobalTheory.IdemSumBranch.cpt_idemSum <;> assumption
 
 theorem cpt_idemSum_of_not_mem {e : AE D} {P : Finset (Formalism.L2.DIV.Pl D.host.E)} (he : IsIdemSum e P)
     {Q : Formalism.L2.DIV.Pl D.host.E} (hQ : Q ∉ P) : GlobalTheory.StdFrames.cpt (D := D) Q (toEAf D e) = 0 := by
@@ -1035,8 +1054,6 @@ open GlobalTheory.FinPl (Lat idAt idOff intAt grpAt grpOff MxAt latV latA InK Mo
 open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
-theorem _root_.GlobalTheory.T.fourierJacobiToBessel_lattice_splits : OnStd fun {D} _ _ {sc} {G} W F => ∀ σ (h : 2 * (σ + 1) + 2 ≤ D.R.m) (h' : 2 * σ + 2 ≤ D.R.m), Splits (F.dJ (σ + 1) h) (F.dB σ h') (pcFB W F σ h h') (xFB F σ h') 0 W.ψ (latRow G (2 * σ + 2)) := by
-  first | exact @GlobalTheory.AscFin.SplitsFB.splits_FB
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FourierJacobiToBesselLatticeSplitsStatement =====

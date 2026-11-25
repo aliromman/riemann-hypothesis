@@ -64,7 +64,6 @@ theorem column_first_coefficient_bound {a b' E0 Q Qj k N Y c N1 eps A0 : ℝ} (h
     have a2 : 2 * (k ^ 3 * Q ^ 4 * c) ≤ N * (k ^ 3 * Q ^ 4 * c) := mul_le_mul_of_nonneg_right hN2 a5
     have a6 : 0 ≤ N * (k ^ 3 * Q ^ 4 * c) := by positivity
     have a3 : N * (k ^ 3 * Q ^ 4 * c) * 1 ≤ N * (k ^ 3 * Q ^ 4 * c) * Y := mul_le_mul_of_nonneg_left hY1 a6
-    have a4 : 1 * k ^ 3 * N * Q ^ 4 * c * Y = N * (k ^ 3 * Q ^ 4 * c) * Y := by ring
     linarith
   have h8 : k * (2 * (k ^ 3 * Q ^ 4 * c)) ≤ k * b' := mul_le_mul_of_nonneg_left hb2 hk0.le
   have h9 : (k ^ 4 * Q ^ 3 * c) * Q < A0 * Q := by
@@ -89,8 +88,6 @@ theorem column_first_coefficient_bound {a b' E0 Q Qj k N Y c N1 eps A0 : ℝ} (h
   have hkQc : 0 ≤ k * Q * c := by positivity
   have h17 : N1 ^ 2 * (k * Q * c) ≤ (k / 2) ^ 2 * (k * Q * c) := mul_le_mul_of_nonneg_right hN12 hkQc
   have e3 : 13 * k * N1 ^ 2 * Q * c = 13 * (N1 ^ 2 * (k * Q * c)) := by ring
-  have e4 : (k / 2) ^ 2 * (k * Q * c) = (k ^ 3 * c * Q) / 4 := by ring
-  have e5 : k ^ 3 * Q ^ 3 * c = k ^ 3 * c * Q ^ 3 := by ring
   refine ⟨hA0p, ?_⟩
   rw [e3]
   linarith
@@ -109,9 +106,7 @@ theorem column_lower_ratio {b' gl gi Al Ai Pl Pi p k Q be : ℝ} (hb : 0 < b') (
     (hkQ : 2 * (k * Q) ≤ b') : Al * p ≤ 3 * Ai := by
   have h1 : Al * (p * Pi) ≤ Al * Pl := mul_le_mul_of_nonneg_left hP hAl0
   have h2 : b' * (1 + be) ≤ b' * (13 / 12) := mul_le_mul_of_nonneg_left (by linarith) hb.le
-  have h3 : b' * (11 / 12) ≤ b' * (1 - be) := mul_le_mul_of_nonneg_left (by linarith) hb.le
   have h4 : k * Pi ≤ k * Q := mul_le_mul_of_nonneg_left hPQ hk0
-  have h5 : b' * (5 / 12) < Ai * Pi := by linarith
   have h6 : Al * p * Pi ≤ 3 * Ai * Pi := by
     have e : Al * p * Pi = Al * (p * Pi) := by ring
     have e' : 3 * Ai * Pi = 3 * (Ai * Pi) := by ring
@@ -128,7 +123,6 @@ theorem column_second_goal {W S mu NE eps de A0 Ai B T N1 p : ℝ} (hW : W ≤ A
     (hp0 : 0 < p) (hN1p : 3 * N1 ≤ eps * p) (hAi0 : 0 ≤ Ai)
     (hS : S ≤ 2 * (eps * A0) + NE) (hmu : mu + NE ≤ B) (hB : B ≤ 4 * (eps * A0)) (heps0 : 0 ≤ eps)
     (h40 : 40 * eps ≤ de) (hde6 : de < 1 / 6) (hA0 : 0 ≤ A0) (hdich : Ai * (1 + de) < A0) : W + S + mu ≤ A0 := by
-  have hde0 : 0 ≤ de := by linarith
   have h1 : N1 * T ≤ eps * Ai := by
     have a1 : N1 * T * p ≤ eps * Ai * p := by
       have e : N1 * T * p = 3 * N1 * Ai := by
@@ -206,7 +200,6 @@ theorem three_level_le_eps_prime {C0 Cde CE1 CE2 : ℝ} {X : Loc} (St : Std C0 C
   have a3 : eps X C0 * X.k ^ 2 ≤ eps X C0 * X.p := mul_le_mul_of_nonneg_left a2 heps0
   have a4 : (X.N1 : ℝ) * X.k ≤ eps X C0 * X.k * X.k := mul_le_mul_of_nonneg_right a1 hk0.le
   have a5 : (X.N1 : ℝ) * 5 ≤ (X.N1 : ℝ) * X.k := mul_le_mul_of_nonneg_left hk5 (by linarith)
-  have e2 : eps X C0 * X.k * X.k = eps X C0 * X.k ^ 2 := by ring
   linarith
 
 theorem m1num_of_std {C0 Cde CE1 CE2 : ℝ} {X : Loc} (St : Std C0 Cde CE1 CE2 1 X) (mm : ℝ)
@@ -550,7 +543,6 @@ theorem ph_seg {C0 Cde CE1 CE2 mu E : ℝ} {X : Loc} [NeZero X.m] {β : GlobalTh
     rw [hvec] at hi
     simp only [decide_eq_true_eq] at hi
     refine (y.1.1.dom i.succ (Fin.zero_le b)).trans ?_
-    have hi2 := i.2
     by_cases h1 : i.val = 2 * segS X.TT j
     · have hk := hy (Fin.last (X.seg C0 CE1 CE2 j).t)
       change ((y.1.1.mu (finPos _ ((BDk C0 CE1 CE2 mu X β j).T.J (Fin.last (X.seg C0 CE1 CE2 j).t))) 0 : ℤ) : WithTop ℤ) ≤

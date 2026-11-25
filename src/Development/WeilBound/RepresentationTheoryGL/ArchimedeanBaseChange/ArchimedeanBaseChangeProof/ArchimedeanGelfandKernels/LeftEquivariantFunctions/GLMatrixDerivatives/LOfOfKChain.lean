@@ -30,8 +30,6 @@ namespace PositivityTheory.RgBcC.LfSt.UnitaryConjTransposeTrace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.LfSt
 open PositivityTheory.RgTw (Mat G th tw hb)
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 variable {n : ℕ}
 
 theorem contOn_inv : ContinuousOn (fun y : Mat n => y⁻¹) (GLs n) := by

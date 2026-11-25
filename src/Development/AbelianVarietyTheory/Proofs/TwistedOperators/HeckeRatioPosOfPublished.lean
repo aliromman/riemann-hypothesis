@@ -1,5 +1,8 @@
 module
 
+
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsIsPrimeIdemOfComp
+import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.ThetaAdjointScalarParts
 public import Mathlib.NumberTheory.NumberField.InfinitePlace.TotallyRealComplex
 public import Mathlib.RingTheory.Flat.Basic
 public import Formalism.UnipotentAdelicQuotients.ThmBInHecke
@@ -14,9 +17,36 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.NotIsSpli
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ContinuousInfiniteAdeleMap
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeCharacterInfinityExponentGroupLaws
 public import Formalism.LocalToGlobal.IndefiniteReal.HeckeNonvanishing.InputsHecke
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -29,11 +59,15 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.NumberTheory.NumberField.CanonicalEmbedding.Basic
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.TypeStar
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.OneSubRePosOfNormLeHalf
 import Std.Tactic.BVDecide.Normalize.Prop
-
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.MemRangeAlgebraMapOfConjFixed, Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.CmCharacterConjugateInverse, Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.CmCharacterConjugationSymmetry, Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsPrimeIdempotentCMField, Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.PrimeIdempotentEqIndicatorPrime, Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.CmLocalCharacterValueBounded, Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.RealPosAtOneOfRight, Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeRatioPosOfPublished
 
@@ -185,16 +219,7 @@ namespace GlobalTheory.PrimeIdemExists
 
 theorem exists_indicator (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K)) :
     ∃ a : FiniteAdeleRing (𝓞 K) K, a v = 1 ∧ ∀ w, w ≠ v → a w = 0 := by
-  refine ⟨(⟨fun w => if w = v then 1 else 0, ?_⟩ :
-    RestrictedProduct (fun w : HeightOneSpectrum (𝓞 K) => w.adicCompletion K)
-      (fun w => (w.adicCompletionIntegers K : Set (w.adicCompletion K))) Filter.cofinite), ?_, ?_⟩
-  · refine Filter.Eventually.of_forall fun w => ?_
-    beta_reduce
-    by_cases h : w = v
-    · rw [if_pos h]; exact one_mem (w.adicCompletionIntegers K)
-    · rw [if_neg h]; exact zero_mem (w.adicCompletionIntegers K)
-  · exact if_pos rfl
-  · intro w hw; exact if_neg hw
+  first | exact _root_.GlobalTheory.CMPrimeIdele.exists_single | exact @_root_.GlobalTheory.CMPrimeIdele.exists_single | apply _root_.GlobalTheory.CMPrimeIdele.exists_single <;> assumption
 
 theorem cA_algebraMap {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
     (σ : E →ₐ[F] E) (ε : AF F) :
@@ -659,17 +684,7 @@ variable {D : D7}
 
 theorem offS_iff (S : Finset (HeightOneSpectrum (𝓞 D.host.F))) (w : HeightOneSpectrum (𝓞 D.host.E)) :
     OffS D S w ↔ w.under (𝓞 D.host.F) ∉ S := by
-  constructor
-  · intro h hw
-    obtain ⟨x, hx, hy⟩ := h _ hw
-    exact hy (algebraMap _ _ x) rfl hx
-  · intro h u hu
-    have : ¬ u.asIdeal ≤ (w.under (𝓞 D.host.F)).asIdeal := fun hle =>
-      h (HeightOneSpectrum.ext (u.isMaximal.eq_of_le (w.under _).isPrime.ne_top hle) ▸ hu)
-    obtain ⟨x, hx, hx'⟩ := SetLike.not_le_iff_exists.1 this
-    refine ⟨x, hx, fun y hy hw => hx' ?_⟩
-    obtain rfl : y = algebraMap _ _ x := RingOfIntegers.ext hy
-    exact hw
+  first | exact _root_.GlobalTheory.IndefiniteRowSideFullHecke.ThetaAdjointScalarOnComponents.offS_iff | exact @_root_.GlobalTheory.IndefiniteRowSideFullHecke.ThetaAdjointScalarOnComponents.offS_iff | apply _root_.GlobalTheory.IndefiniteRowSideFullHecke.ThetaAdjointScalarOnComponents.offS_iff <;> assumption
 
 theorem isPrimeIdem_eq : IsPrimeIdem (D := D) = HeckeCharacterZeroLocus.ThmBIn.IsPrimeIdem D.sp.cm.sig := rfl
 

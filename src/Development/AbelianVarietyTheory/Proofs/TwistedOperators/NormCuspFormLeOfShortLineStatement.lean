@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.AllRowsOf
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.DepthPays
 public import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.UnimodInst
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LayerProd
@@ -262,15 +263,7 @@ theorem kg_one (I : AutInst) (m : ℕ) : (1 : I.Gf) ∈ I.Kg m :=
 
 open Formalism.L2.SG.Pf.unitaryCongruence in
 theorem kg_mul (I : AutInst) (m : ℕ) {x y : I.Gf} (hx : x ∈ I.Kg m) (hy : y ∈ I.Kg m) : x * y ∈ I.Kg m := by
-  refine ⟨K_mul I hx.1 hy.1, fun v hv => ?_⟩
-  obtain ⟨z, hz, hyz⟩ := hy.2 v hv
-  obtain ⟨z', hz', hxz⟩ := hx.2 v hv
-  refine ⟨I.fmat x *ᵥ z + z', add_mem (K_mv I hx.1 hz) hz', ?_⟩
-  have e : (I.fmat (x * y) - 1) *ᵥ v = I.fmat x *ᵥ ((I.fmat y - 1) *ᵥ v) + (I.fmat x - 1) *ᵥ v := by
-    rw [fmat_mul, Matrix.sub_mulVec, Matrix.sub_mulVec, Matrix.sub_mulVec, Matrix.mulVec_sub, Matrix.mulVec_mulVec,
-      Matrix.one_mulVec]
-    abel
-  rw [e, hyz, hxz, Matrix.mulVec_smul, smul_add]
+  apply _root_.Formalism.L2.SG.AllRowsOf.Kg_mul' <;> assumption
 
 
 open Formalism.L2.SG.Pf.unitaryCongruence in
@@ -1159,7 +1152,6 @@ open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheor
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelPlusSubgroup (coefPlus Cols SizeRows)
 open GlobalTheory.ChainFr GlobalTheory.SepRows GlobalTheory.SepPer Matrix
 open scoped TensorProduct InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 end -- clump:auto

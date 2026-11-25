@@ -26,6 +26,28 @@ public import Formalism.LocalToGlobal.ProjectiveLattices.CuspidalL2Subspace
 public import Formalism.LocalToGlobal.ProjectiveLattices.HalfOneAddSqrtNegIsIntegral
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RightTranslationLiftEqLevelMoveUnitConst
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.AdelicUnitaryLatticeSelfDualTraceForm
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -38,8 +60,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.IndefiniteReal.ExistsChosenExtremalVector
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.AdelicCompletionRationalPointsAndApproximation
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Mathlib.Tactic.Linter.HaveILetI
@@ -661,26 +687,7 @@ theorem smul_mem_hat (D : D7) {n : ℕ} (L : Submodule (𝓞 D.host.E) (Fin n �
     {a : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E} (ha : a ∈ intAE D)
     {y : Fin n → GlobalTheory.AdLat.RA D.host.F D.host.E} (hy : y ∈ GlobalTheory.AdLat.hat D.host.F (L : Set (Fin n → D.host.E))) :
     a • y ∈ GlobalTheory.AdLat.hat D.host.F (L : Set (Fin n → D.host.E)) := by
-  induction ha using AddSubgroup.closure_induction with
-  | mem a' ha' =>
-    obtain ⟨b, hb, x, rfl⟩ := ha'
-    induction hy using AddSubgroup.closure_induction with
-    | mem z hz =>
-      obtain ⟨c, hc, w, hw, rfl⟩ := hz
-      apply AddSubgroup.subset_closure
-      refine ⟨b * c, fun v => ?_, x • w, L.smul_mem x hw, ?_⟩
-      · have hbv := hb v
-        simp only [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.evalV] at hbv
-        exact mul_mem hbv (hc v)
-      · funext i
-        simp only [Pi.smul_apply, smul_eq_mul, Algebra.TensorProduct.tmul_mul_tmul]
-        rfl
-    | zero => rw [smul_zero]; exact zero_mem _
-    | add y₁ y₂ _ _ h₁ h₂ => rw [smul_add]; exact add_mem h₁ h₂
-    | neg y _ h => rw [smul_neg]; exact neg_mem h
-  | zero => rw [zero_smul]; exact zero_mem _
-  | add a₁ a₂ _ _ h₁ h₂ => rw [add_smul]; exact add_mem h₁ h₂
-  | neg a _ h => rw [neg_smul]; exact neg_mem h
+  apply _root_.GlobalTheory.HeckeLocMatrix.smul_mem_hat <;> assumption
 
 
 
@@ -864,23 +871,7 @@ theorem int_smul_mem_hat (D : D7) {n : ℕ} (L : Submodule (𝓞 D.host.E) (Fin 
     {a : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E} (ha : a ∈ intAE D)
     {y : Fin n → GlobalTheory.AdLat.RA D.host.F D.host.E} (hy : y ∈ GlobalTheory.AdLat.hat D.host.F (L : Set (Fin n → D.host.E))) :
     a • y ∈ GlobalTheory.AdLat.hat D.host.F (L : Set (Fin n → D.host.E)) := by
-  induction ha using AddSubgroup.closure_induction generalizing y with
-  | mem w hw =>
-    obtain ⟨b, hb, x, rfl⟩ := hw
-    induction hy using AddSubgroup.closure_induction with
-    | mem z hz =>
-      obtain ⟨c, hc, m, hm, rfl⟩ := hz
-      refine AddSubgroup.subset_closure ⟨b * c, fun v => ?_, x • m, L.smul_mem x hm, ?_⟩
-      · exact mul_mem (hb v) (hc v)
-      · funext i
-        simp [Algebra.TensorProduct.tmul_mul_tmul]
-        rfl
-    | zero => rw [smul_zero]; exact zero_mem _
-    | add z z' _ _ h h' => rw [smul_add]; exact add_mem h h'
-    | neg z _ h => rw [smul_neg]; exact neg_mem h
-  | zero => rw [zero_smul]; exact zero_mem _
-  | add a b _ _ h h' => rw [add_smul]; exact add_mem (h hy) (h' hy)
-  | neg a _ h => rw [neg_smul]; exact neg_mem (h hy)
+  first | exact _root_.GlobalTheory.HatLocalChart.smul_mem_hat | exact @_root_.GlobalTheory.HatLocalChart.smul_mem_hat | apply _root_.GlobalTheory.HatLocalChart.smul_mem_hat <;> assumption
 
 theorem mem_Ov_iff {F : Type} [Field F] [NumberField F] {v : HeightOneSpectrum (𝓞 F)} (t : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Fv F v) :
     t ∈ Formalism.UG.Ov F v ↔ Valued.v t ≤ 1 := Iff.rfl

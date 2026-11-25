@@ -12,7 +12,32 @@ public import Mathlib.FieldTheory.IntermediateField.Adjoin.Algebra
 public import Mathlib.RingTheory.IntegralClosure.IntegrallyClosed
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.PrimeLevelLocalization.PrimeProj
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicHensel.PCjMem
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -25,6 +50,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Definitions.Divisors.DiagHermitianTrivialOfSumFourSquares
@@ -32,8 +58,13 @@ import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ApartAllEmpty
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicHensel.PadicUnitNorm
 import Mathlib.Data.Nat.Prime.Factorial
 import Mathlib.NumberTheory.Padics.Hensel
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DefiniteUnitaryClassSetFinite
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -311,9 +342,8 @@ open UpperTheory.Gal.W2.Seed
 namespace UpperTheory.Gal.G1
 
 alias exists_auxiliary_prime := _root_.UpperTheory.Gal.G1.exists_auxiliary_prime_cmDatum
-theorem ArithK_holds : ArithK := pArithK BarEx_holds QuadEx_holds CEx_holds UnitMod_holds CodiffGen_holds CodiffUnit_holds IdemEx_holds RealGen_holds PosGen_holds DeltaEx_holds PerfOf_holds
+theorem ArithK_holds : ArithK := pArithK BarEx_holds QuadEx_holds CEx_holds _root_.UpperTheory.Gal.W2.Seed.pUnitMod _root_.UpperTheory.Gal.W2.Seed.pCodiffGen CodiffUnit_holds _root_.UpperTheory.Gal.W2.Seed.pIdemEx RealGen_holds PosGen_holds DeltaEx_holds _root_.UpperTheory.Gal.W2.Seed.pPerfOf
 theorem ScOf_holds : ScOf := pScOf SetupBasic_holds
-theorem RootAt_holds : RootAt := pRootAt
 
 end UpperTheory.Gal.G1
 end -- clump:auto
@@ -624,7 +654,7 @@ namespace UpperTheory.Gal.Int.Geo.Pl
 
 theorem datEx_holds : DatEx := datEx_of exists_auxiliary_prime ArithK_holds SetupEx_holds ScOf_holds PerfCof_holds
 
-theorem sides_holds : Sides := pSides pCjMem (pBarAdj pDiscInt) (pKeyK pDiscInt) RootAt_holds
+theorem sides_holds : Sides := pSides pCjMem (pBarAdj pDiscInt) (pKeyK pDiscInt) _root_.UpperTheory.Gal.G1.pRootAt
 
 end UpperTheory.Gal.Int.Geo.Pl
 end -- clump:auto

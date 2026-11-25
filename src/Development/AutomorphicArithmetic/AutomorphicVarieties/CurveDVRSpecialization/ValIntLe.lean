@@ -1,10 +1,32 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.CharacterLevelBounds.LocUnr
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.EveryPointSatisfiesFrameCondition
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ShapeFacts
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.ClassFieldRamification.IneAbs
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.ClassFieldRamification.UnramIff
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.Places
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -54,18 +76,7 @@ private theorem val_prime (A : ValuationSubring Ω) (n : ℕ) (hn : n ≠ 0) (h 
 
 private theorem val_cop (A : ValuationSubring Ω) {a b : ℕ} (h : a.Coprime b) (ha : A.valuation (a : Ω) < 1) :
     ¬ A.valuation (b : Ω) < 1 := by
-  intro hb
-  obtain ⟨u, v, e⟩ := Nat.isCoprime_iff_coprime.2 h
-  have e' : (a : Ω) * (u : Ω) + (b : Ω) * (v : Ω) = 1 := by
-    have := congrArg (Int.cast : ℤ → Ω) e
-    push_cast at this
-    rw [← this]; ring
-  have h1 : A.valuation ((a : Ω) * (u : Ω) + (b : Ω) * (v : Ω)) < 1 := by
-    refine Valuation.map_add_lt _ ?_ ?_ <;> rw [map_mul]
-    · exact mul_lt_one_of_lt_of_le ha (val_int_le A u)
-    · exact mul_lt_one_of_lt_of_le hb (val_int_le A v)
-  rw [e', map_one] at h1
-  exact lt_irrefl _ h1
+  apply _root_.not_both <;> assumption
 
 variable [CharZero Ω] [IsAlgClosure ℚ Ω]
 

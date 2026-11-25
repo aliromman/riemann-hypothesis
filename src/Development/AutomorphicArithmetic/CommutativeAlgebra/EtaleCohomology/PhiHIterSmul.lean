@@ -26,36 +26,9 @@ public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCoh
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.MapUSharp
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.PhiIterPull
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.SplitPointGeneric
-import Mathlib.Algebra.Category.Grp.Abelian
-import Mathlib.CategoryTheory.Abelian.FunctorCategory
-import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.AlgebraicGeometry.Morphisms.SchemeTheoreticallyDominant
-import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
-import Mathlib.AlgebraicGeometry.Sites.Fpqc
-import Mathlib.CategoryTheory.ExtremalEpi
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.TypeStar
-import Mathlib.Algebra.Order.Star.Real
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.GenericMulOfProd
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.InstAddCommGroup
 import GroundTheory.PAdicHodge.LogPowSeries
-import Mathlib.Topology.Sheaves.Presheaf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.SumTransport, Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.AveragingTransferKills, Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.SplitOnOfDisj, Development.AutomorphicArithmetic.EtaleIdempotents.CrystallineExpansionRelationOfScaledEndomorphism, Development.AutomorphicArithmetic.EtaleIdempotents.ExistsCrystallineLatticeExpansion, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsKill, Development.AutomorphicArithmetic.EtaleIdempotents.HeckeCorrespondenceProduct, Development.AutomorphicArithmetic.EtaleIdempotents.LinearCombinationTransferOfProjectorRelations, Development.AutomorphicArithmetic.EtaleIdempotents.NatCastPrimeNeZeroAndNotIsUnitIntegers, Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.PhiHIterSmul

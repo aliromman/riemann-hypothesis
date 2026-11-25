@@ -27,36 +27,13 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.LengthEqAdd
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ActConj
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ActEx
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.GaloisCohomologyLength.LevelInertiaLeLevelDec
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1
 import Formalism.ConjugateSelfDual.Statement
 import Formalism.GaloisCohomology.Statement
 import ReciprocityTheory.GaloisValuations.GlobalA
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Analysis.CStarAlgebra.Classes
 import Mathlib.Analysis.Real.Pi.Bounds
-import Mathlib.Algebra.Order.Star.Rat
-import Mathlib.Algebra.Ring.IsFormallyReal
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.

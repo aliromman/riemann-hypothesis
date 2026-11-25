@@ -176,9 +176,6 @@ theorem oldest_far (hV : Fr.Valid L₁ N₁) (hr : 1 ≤ r) (j : ℤ) (i : ℕ) 
   classical
   have hfg := first_gap hV hr j
   have hcard : r ≤ (Fr.LLset j).card := (hV.2.2.2.2.2.2.1 j).1
-  have hsep' : Fr.fr (j - 1) (r - 1) < Fr.fr j 0 := by
-    have h := hV.2.2.2.1 (j - 1)
-    rwa [sub_add_cancel] at h
   dsimp only [Frames.oldest]
   apply lt_sort_getD_of_le_card_filter_gt _ _ r hr
   have hsub : (Finset.range r).image (llPos Fr j) ⊆

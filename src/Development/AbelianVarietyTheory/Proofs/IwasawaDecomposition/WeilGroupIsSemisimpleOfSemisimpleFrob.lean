@@ -2,9 +2,38 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MonodromyZeroOfWeilDeligneRepClassIff
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsPowEqPowOfWeilDegreeEqSmooth
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Eigenspace.Minpoly
 import Mathlib.LinearAlgebra.Eigenspace.Semisimple
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -17,7 +46,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -82,37 +113,7 @@ open NumberField IsDedekindDomain Polynomial Module in
 private theorem isSemisimple_of_isUnit_of_pow_isSemisimple {V : Type*} [AddCommGroup V]
     [Module ℂ V] [FiniteDimensional ℂ V] {f : End ℂ V} (hf : IsUnit f) {m : ℕ} (hm : 0 < m)
     (hfm : (f ^ m).IsSemisimple) : f.IsSemisimple := by
-  have hint : IsIntegral ℂ (f ^ m) := Algebra.IsIntegral.isIntegral _
-  have hX : ¬ X ∣ minpoly ℂ (f ^ m) := by
-    rintro ⟨q, hq⟩
-    have h0 : aeval (f ^ m) q = 0 := by
-      have h1 := minpoly.aeval ℂ (f ^ m)
-      rw [hq, map_mul, aeval_X] at h1
-      exact (hf.pow m).mul_right_eq_zero.1 h1
-    have hq0 : q ≠ 0 := by
-      rintro rfl
-      exact minpoly.ne_zero hint (by simpa using hq)
-    have hdeg := natDegree_le_of_dvd (minpoly.dvd ℂ (f ^ m) h0) hq0
-    rw [hq, natDegree_mul X_ne_zero hq0, natDegree_X] at hdeg
-    omega
-  have hsep : (minpoly ℂ (f ^ m)).Separable :=
-    PerfectField.separable_iff_squarefree.2 hfm.minpoly_squarefree
-  have hXe : ¬ X ∣ expand ℂ m (minpoly ℂ (f ^ m)) := by
-    rw [X_dvd_iff, coeff_expand hm]
-    rw [X_dvd_iff] at hX
-    simpa using hX
-  have hunit : IsUnit ((m : ℂ[X])) := by
-    rw [← map_natCast C]
-    exact isUnit_C.2 (Ne.isUnit (by exact_mod_cast hm.ne'))
-  have hP : (expand ℂ m (minpoly ℂ (f ^ m))).Separable := by
-    rw [separable_def, derivative_expand]
-    refine IsCoprime.mul_right
-      (((separable_def _).1 hsep).map (expand ℂ m).toRingHom) (IsCoprime.mul_right ?_ ?_)
-    · exact isCoprime_one_right.of_isCoprime_of_dvd_right (hunit.dvd)
-    · exact IsCoprime.pow_right ((Irreducible.coprime_iff_not_dvd irreducible_X).2 hXe).symm
-  apply Module.End.isSemisimple_of_squarefree_aeval_eq_zero hP.squarefree
-  rw [expand_aeval]
-  exact minpoly.aeval ℂ (f ^ m)
+  apply _root_.GlobalTheory.WeilDeligne.FrobSemisimple.isSemisimple_of_pow <;> assumption
 
 
 open NumberField IsDedekindDomain Polynomial Module in

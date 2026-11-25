@@ -112,6 +112,7 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ThetaPairingIn
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdempotentMulEqZeroOfOrthogonal
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsRationalApproxFinitePointVacuumLevel
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsPrincipalLevelSubgroupOpen
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsWeilDatumPowersUnramifiedEtaTilde
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.CongruentPairsFixVacuumWeilDatum, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsAlgebraicInvariantFormVacuumSplitPlace, Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsDvdCoprimeMulPow, Development.AbelianVarietyTheory.Proofs.TwistedOperators.FiniteUnitaryPointsMemOfLevelAndSplitPlace, Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeCharFiniteIdelesIsAlgebraicOfResEta, Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeCharFiniteIdelesIsAlgebraicOfResEtaStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.VacuumSelfDualLattices, Development.AbelianVarietyTheory.Proofs.TwistedOperators.VacuumSelfDualLatticesStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemGfCOfSuppAt
@@ -1447,14 +1448,7 @@ def algGroup : Subgroup (GA D S × GA D T) where
 omit hv hS hT hcS hcT hW in
 theorem mem_GfC_of_suppAt {e : Formalism.L2.Theta.AE D} (he : IsSplitIdem D e) {V : HSp D} {g : GA D V}
     (hg : Formalism.L2.Theta.SuppAt e V g) : g ∈ GfC V := by
-  have h1 := GlobalTheory.SplitScalar.infPart_splitIdem he
-  have h2 := GlobalTheory.PlaceDatum.infPart_cA h1
-  refine MonoidHom.mem_ker.2 (Units.ext ?_)
-  change (Formalism.L2.Theta.mt V g).map (infPart D) = 1
-  rw [← sub_eq_zero]
-  ext i j
-  rw [← GlobalTheory.SplitCharTrivial.map_sub_one, ← hg i j, RingHom.map_mul, RingHom.map_add (f := _), h1, h2, add_zero, zero_mul]
-  rfl
+  apply _root_.GlobalTheory.WeilProduct.mem_GfC_of_suppAt <;> assumption
 
 theorem split_alg {e : Formalism.L2.Theta.AE D} (he : IsSplitIdem D e) {g : GA D S} {h : GA D T}
     (hg : Formalism.L2.Theta.SuppAt e S g) (hh : Formalism.L2.Theta.SuppAt e T h) : IsAlgComb ψ S T v (om (g, h) v) := by

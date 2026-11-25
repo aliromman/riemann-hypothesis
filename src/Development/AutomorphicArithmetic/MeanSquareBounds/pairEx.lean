@@ -14,23 +14,7 @@ public import Mathlib.NumberTheory.Primorial
 public import Development.AutomorphicArithmetic.MeanSquareBounds.StagePow
 public import Development.AutomorphicArithmetic.CharacterBoxes.PairGood
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.GL3MeanSquares.GenusMeanAsymptotics.JacobiCharacterSums.MeanSquareHypWIff
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.NumberTheory.MulChar.Duality
-import Mathlib.RingTheory.SimpleRing.Principal
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.MeanSquareBounds.IndDrop, Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.mertensUpper, Development.AutomorphicArithmetic.MeanSquareBounds.ExistsCoprimePrimePairSetSecondEqPPset, Development.AutomorphicArithmetic.MeanSquareBounds.LogOddM, Development.AutomorphicArithmetic.MeanSquareBounds.CharOf, Development.AutomorphicArithmetic.MeanSquareBounds.Stage1Succ, Development.AutomorphicArithmetic.MeanSquareBounds.PairShare, Development.AutomorphicArithmetic.MeanSquareBounds.RowsOfMem, Development.AutomorphicArithmetic.MeanSquareBounds.PairExists, Development.AutomorphicArithmetic.MeanSquareBounds.pairEx

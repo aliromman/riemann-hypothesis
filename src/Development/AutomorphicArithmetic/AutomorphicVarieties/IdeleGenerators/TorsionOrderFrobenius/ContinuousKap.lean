@@ -1,11 +1,37 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.EqOneOfMemLev
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsRationalUnitaryDeterminantMapRationalUnitaryTo
 public import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
 public import Mathlib.NumberTheory.NumberField.Discriminant.Defs
 public import Mathlib.NumberTheory.NumberField.InfinitePlace.TotallyRealComplex
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.TorsionOrderFrobenius.NotDvdTorsionOrder
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.CharZeroAdicCompletion
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +45,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsUniqueHcharOfFiniteOrder
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IntegralFiniteAdeleCompleteSeparated
@@ -26,6 +54,7 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.PsiTrC
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
 import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.HeckeCharacterChoice.ExtAlg
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Algebra.Group.Units
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHeckeCharTrivOnRealSubfieldInfinityType
@@ -175,19 +204,7 @@ open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.Conjuga
 
 private theorem glue {G H : Type*} [CommGroup G] [CommGroup H] (p : G →* H)
     (f : G →* ℂˣ) (h : ∀ x, p x = 1 → f x = 1) : ∃ F : H →* ℂˣ, ∀ x, F (p x) = f x := by
-  have hker : p.rangeRestrict.ker ≤ f.ker := by
-    intro c hc
-    rw [MonoidHom.ker_rangeRestrict, MonoidHom.mem_ker] at hc
-    rw [MonoidHom.mem_ker]
-    exact h c hc
-  let ω' : p.range →* ℂˣ :=
-    p.rangeRestrict.liftOfSurjective p.rangeRestrict_surjective ⟨f, hker⟩
-  have hω' : ∀ c, ω' (p.rangeRestrict c) = f c := fun c =>
-    MonoidHom.liftOfRightInverse_comp_apply _ _ _ _ c
-  obtain ⟨F, hF⟩ := KStar.Choice.isDiv_complex_circle.1.exists_extension p.range ω'
-  refine ⟨F, fun c => ?_⟩
-  rw [← hω', ← hF]
-  rfl
+  apply _root_.GlobalTheory.HeckeUnrExt.glue <;> assumption
 
 private def lev (K : Type) [Field K] [NumberField K] (N : ℕ) : Subgroup (Ideles K) where
   carrier := {a | a ∈ GlobalTheory.Mem.Chr.unitIdl K ∧ ∀ v : HeightOneSpectrum (𝓞 K),
@@ -216,34 +233,7 @@ private def lev (K : Type) [Field K] [NumberField K] (N : ℕ) : Subgroup (Idele
 
 private theorem lev_mem_nhds (K : Type) [Field K] [NumberField K] {N : ℕ} (hN : N ≠ 0) :
     (lev K N : Set (Ideles K)) ∈ nhds (1 : Ideles K) := by
-  have hO : IsOpen {a : FiniteAdeleRing (𝓞 K) K | ∀ v, a v ∈ v.adicCompletionIntegers K} :=
-    RestrictedProduct.isOpen_forall_mem
-      (A := fun v : HeightOneSpectrum (𝓞 K) => (v.adicCompletionIntegers K : Set (v.adicCompletion K)))
-      fun _ => Valued.isOpen_valuationSubring _
-  have h1 : Continuous fun x : Ideles K => x.val.2 := continuous_snd.comp Units.continuous_val
-  have h2 : Continuous fun x : Ideles K => (x⁻¹).val.2 := h1.comp continuous_inv
-  have h3 : Continuous fun x : Ideles K =>
-      (x.val.2 - 1) * algebraMap K (FiniteAdeleRing (𝓞 K) K) (N : K)⁻¹ :=
-    (h1.sub continuous_const).mul continuous_const
-  have hU := ((hO.preimage h1).inter (hO.preimage h2)).inter (hO.preimage h3)
-  refine Filter.mem_of_superset (hU.mem_nhds ⟨⟨fun v => one_mem _, fun v => one_mem _⟩, fun v => ?_⟩) ?_
-  · have : ((1 : Ideles K).val.2 - 1) = 0 := sub_self _
-    simp only [this, zero_mul]
-    exact zero_mem _
-  · rintro y ⟨⟨hy, hy'⟩, hy''⟩
-    refine ⟨fun v => ?_, fun v => ?_⟩
-    · have e : y.val.2 v * (y⁻¹).val.2 v = 1 :=
-        congrArg (fun a : AdeleRing (𝓞 K) K => a.2 v) y.mul_inv
-      have e' := congrArg Valued.v e
-      rw [map_mul, map_one] at e'
-      exact eq_one_of_one_le_mul_left (hy v) (hy' v) e'.ge
-    · have e : Valued.v ((y.val.2 v - 1) * algebraMap K (v.adicCompletion K) (N : K)⁻¹) ≤ 1 := hy'' v
-      haveI : CharZero (v.adicCompletion K) := charZero_of_injective_algebraMap (algebraMap K _).injective
-      have h0 : Valued.v (N : v.adicCompletion K) ≠ 0 := by
-        rw [Valuation.ne_zero_iff]
-        exact Nat.cast_ne_zero.2 hN
-      rw [map_inv₀, map_natCast, map_mul, map_inv₀, mul_inv_le_iff₀ (zero_lt_iff.2 h0), one_mul] at e
-      exact e
+  apply _root_.GlobalTheory.HeckeUnrExt.lev_mem_nhds <;> assumption
 
 private noncomputable def crd (K : Type) [Field K] [NumberField K] (w : InfinitePlace K) : Ideles K →* ℂˣ :=
   Units.map ((InfinitePlace.Completion.extensionEmbedding w).comp
@@ -272,18 +262,7 @@ private theorem continuous_kap (K : Type) [Field K] [NumberField K] (a : ℤ) : 
 
 private theorem coe_infDiag' {E : Type} [Field E] [NumberField E] (k : Eˣ) :
     (infDiag k : AdeleRing (𝓞 E) E) = (algebraMap E (InfiniteAdeleRing E) k, 1) := by
-  classical
-  rw [infDiag, MonoidHom.finsetProd_apply, Units.coe_prod]
-  let p1 : AdeleRing (𝓞 E) E →+* InfiniteAdeleRing E := RingHom.fst _ _
-  let p2 : AdeleRing (𝓞 E) E →+* FiniteAdeleRing (𝓞 E) E := RingHom.snd _ _
-  refine Prod.ext ?_ ?_
-  · change p1 _ = _
-    rw [map_prod]
-    change ∏ w : InfinitePlace E, Pi.mulSingle w (algebraMap E w.Completion (k : E)) = _
-    exact Finset.univ_prod_mulSingle _
-  · change p2 _ = _
-    rw [map_prod]
-    exact Finset.prod_eq_one fun _ _ => rfl
+  apply _root_.GlobalTheory.HeckeUnrExt.coe_infDiag' <;> assumption
 
 private theorem kap_of_fst {K : Type} [Field K] [NumberField K] (a : ℤ) (x : Ideles K) (k : K)
     (h : x.val.1 = algebraMap K (InfiniteAdeleRing K) k) :

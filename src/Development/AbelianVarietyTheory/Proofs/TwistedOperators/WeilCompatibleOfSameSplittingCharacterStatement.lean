@@ -834,43 +834,9 @@ theorem res_om_rat {V V' W : HSp D} {r : ℕ} {C : Matrix (Fin V.rank) (Fin r) D
       (hPQ : P * Q = 1) (hQP : Q * P = 1) (φ : Mx D m n → ℂ)
       (hφ : ∀ g ∈ GlobalTheory.MixModel.ratMx D m n, ∀ a, φ (g + a) = φ a) :
       ∫ a in 𝓨, φ (P * a) ∂μ = ∫ a in 𝓨, φ a ∂μ := by
-    obtain ⟨i1, i2, i3, i4, i5, -⟩ := GlobalTheory.MixModel.lattice_Mx D m n
-    have : BorelSpace (Mx D m n) := ⟨rfl⟩
-    let eA : Mx D m n ≃+ Mx D m n :=
-      { toFun := fun a => P * a
-        invFun := fun a => Q * a
-        left_inv := fun a => by show Q * (P * a) = a; rw [← Matrix.mul_assoc, hQP, Matrix.one_mul]
-        right_inv := fun a => by show P * (Q * a) = a; rw [← Matrix.mul_assoc, hPQ, Matrix.one_mul]
-        map_add' := fun a b => Matrix.mul_add P a b }
-    have hc : Continuous (fun a : Mx D m n => P * a) := continuous_const.matrix_mul continuous_id
-    have hc' : Continuous (fun a : Mx D m n => Q * a) := continuous_const.matrix_mul continuous_id
-    let eH : Mx D m n ≃ₜ Mx D m n := ⟨eA.toEquiv, hc, hc'⟩
-    let eM : Mx D m n ≃ᵐ Mx D m n := eH.toMeasurableEquiv
-    have := h.1
-    have hHaar : (μ.map eM).IsAddHaarMeasure := AddEquiv.isAddHaarMeasure_map μ eA hc hc'
-    have hmp : MeasurePreserving eM μ (μ.map eM) := ⟨eM.measurable, rfl⟩
-    have hmp' : MeasurePreserving eM.symm (μ.map eM) μ := MeasurePreserving.symm eM hmp
-    let eG : GlobalTheory.MixModel.ratMx D m n → GlobalTheory.MixModel.ratMx D m n :=
-      fun g => ⟨P * (g : Mx D m n), GlobalTheory.MixModel.ratMx_mul hP g.2⟩
-    have hbij : Function.Bijective eG := by
-      refine ⟨fun g g' hg => ?_, fun g => ⟨⟨Q * (g : Mx D m n), GlobalTheory.MixModel.ratMx_mul hQ g.2⟩, ?_⟩⟩
-      · have e := congrArg (fun x : GlobalTheory.MixModel.ratMx D m n => Q * (x : Mx D m n)) hg
-        simp only [eG, ← Matrix.mul_assoc, hQP, Matrix.one_mul] at e
-        exact Subtype.ext e
-      · apply Subtype.ext
-        show P * (Q * (g : Mx D m n)) = g
-        rw [← Matrix.mul_assoc, hPQ, Matrix.one_mul]
-    have hF : IsAddFundamentalDomain (GlobalTheory.MixModel.ratMx D m n) (eM.symm ⁻¹' 𝓨) (μ.map eM) := by
-      refine h.2.1.preimage_of_equiv hmp'.quasiMeasurePreserving hbij fun g x => ?_
-      show Q * (P * (g : Mx D m n) + x) = (g : Mx D m n) + Q * x
-      rw [Matrix.mul_add, ← Matrix.mul_assoc, hQP, Matrix.one_mul]
-    have hpre : eM ⁻¹' (eM.symm ⁻¹' 𝓨) = 𝓨 := by
-      ext a; simp
-    have hvol : (μ.map eM) (eM.symm ⁻¹' 𝓨) = 1 := by
-      rw [MeasurableEquiv.map_apply, hpre]; exact h.2.2
-    have e1 := hmp.setIntegral_preimage_emb eM.measurableEmbedding φ (eM.symm ⁻¹' 𝓨)
-    rw [hpre] at e1
-    exact e1.trans (GlobalTheory.MixModel.covolOne_integral_eq h ⟨hHaar, hF, hvol⟩ φ hφ)
+    first
+    | exact _root_.GlobalTheory.TwistEquiRat.integral_mul_left
+    | apply _root_.GlobalTheory.TwistEquiRat.integral_mul_left <;> assumption
   exact integral_mul_left μ 𝓨 hμ _ _ ((GlobalTheory.MixModel.mem_GQ_iff W γ⁻¹).1 (inv_mem hγ))
     ((GlobalTheory.MixModel.mem_GQ_iff W γ).1 hγ) hPQ hQP
     (fun a => f (isoPart V W C a + midPart V V' W B (Formalism.L2.Theta.mt W γ⁻¹ * x))) hper

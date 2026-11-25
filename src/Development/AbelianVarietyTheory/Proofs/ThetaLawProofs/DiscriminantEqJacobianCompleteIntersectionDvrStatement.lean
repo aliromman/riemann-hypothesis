@@ -34,10 +34,35 @@ public import Mathlib.RingTheory.LocalRing.ResidueField.Basic
 public import Mathlib.RingTheory.AdicCompletion.Functoriality
 public import Mathlib.LinearAlgebra.Basis.VectorSpace
 public import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsFactorAssociatedJacobian
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -50,10 +75,16 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.Basify
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Mathlib.RingTheory.PiTensorProduct
@@ -165,7 +196,7 @@ open EtBaseChange ClosedApprox
 theorem exists_comb_sub_mem_sup_pow : Out.Laws → ∀ (O : Type) [CommRing O] [IsLocalRing O] [IsNoetherianRing O] (K : Type) [Field K] [IsAlgClosed K] (f : O →+* K) (x : KeyIn O) (n l : ℕ) (s : Fin x.P.g → RR x n) (b : ∀ j, Fin ((l - j * n) ^ x.P.g) → RR x (l - j * n)) (m) (Y : Type) (θ : Y → (Sp (MvPowerSeries (Fin x.P.g) O) ⟶ x.P.A.left)) (c : Y → x.P.L.ι), RingHom.ker f = IsLocalRing.maximalIdeal O → 1 ≤ n → x.P.g * n < l → (∀ j ≤ x.P.g, IsBasis x (b j)) → IsMul x l s b m → FinZ x s → (∀ y, θ y ≫ x.P.A.hom = spMap (algebraMap O (MvPowerSeries (Fin x.P.g) O))) → (∀ y, (∃ (V : x.P.A.left.Opens) (t : Fin x.P.g → Γ(x.P.A.left, V)), ⊤ ≤ (θ y) ⁻¹ᵁ V ∧ ∀ i, valT (T := (MvPowerSeries (Fin x.P.g) O)) (θ y) V (t i) = MvPowerSeries.X i)) → (∀ y, ⊤ ≤ (θ y) ⁻¹ᵁ x.P.L.U (c y)) → Function.Injective (fun y => θ y (IsLocalRing.closedPoint (MvPowerSeries (Fin x.P.g) O))) → (∀ y i, θ y (IsLocalRing.closedPoint (MvPowerSeries (Fin x.P.g) O)) ∉ Out.nonzeroLocus (s i)) → ∀ (r : ℕ) (G : Y → MvPowerSeries (Fin x.P.g) K), ∃ v : Fin ((l - 0 * n) ^ x.P.g) → K, ∀ y, G y - ∑ k, v k • MvPowerSeries.map f (valT (T := (MvPowerSeries (Fin x.P.g) O)) (θ y) (x.P.L.U (c y)) ((b 0 k).f (c y))) ∈ Ideal.span (Set.range fun i => MvPowerSeries.map f (valT (T := (MvPowerSeries (Fin x.P.g) O)) (θ y) (x.P.L.U (c y)) ((s i).f (c y)))) ⊔ Ideal.span (Set.range MvPowerSeries.X) ^ r := by
   intro hL O _ _ _ K _ _ f x n l s b m Y θ c hf hn hl hb hm hZ hθ hco hc hinj hz r G
   obtain ⟨x', φ, w, hg, s', b', m', ⟨_, _, _, hp, -⟩, hs', hb', hB', hm', -, hZ'⟩ :=
-    GlobalTheory.T.exists_keyData_baseChange_sections_matrices hL O K f x n l s b m hl hb hm
+    _root_.GlobalTheory.KeyBaseChangeData.exists_baseChange_data hL O K f x n l s b m hl hb hm
   replace hZ' := hZ' (inferInstanceAs (Finite (PrimeSpectrum K))) hZ
   let F : MvPowerSeries (Fin x.P.g) O →+* MvPowerSeries (Fin x.P.g) K := MvPowerSeries.map f
   have hF : IsLocalHom F := isLocalHom_map f hf
@@ -835,7 +866,7 @@ theorem transport {O K : Type} [CommRing O] [CommRing K] (f : O →+* K) {g g' :
 theorem main : Out.Laws → ∀ (O : Type) [CommRing O] [IsLocalRing O] [IsNoetherianRing O] (k : Type) [Field k] (f : O →+* k) (x : KeyIn O) (n l : ℕ) (s : Fin x.P.g → RR x n) (b : ∀ j, Fin ((l - j * n) ^ x.P.g) → RR x (l - j * n)) (m), 1 ≤ n → x.P.g * n < l → (∀ j ≤ x.P.g, IsBasis x (b j)) → IsMul x l s b m → FinZ x s → (∀ v : KIx x.P.g 0 (fun j => (l - j * n) ^ x.P.g) → k, (kosD (fun i j j' => (m i j j').map f) (fun _ => 0)).mulVec v = 0 → ∃ w, ∀ p, p.1 ≠ ∅ → v (.inl p) = (kosD (d := 0) (fun i j j' => (m i j j').map f) (fun _ => 0)).mulVec w (.inl p)) := by
   intro hL O _ _ _ k _ f x n l s b m hn hl hb hm hZ
   obtain ⟨x', φ, w, hg, s', b', m', -, -, -, hb', hm', hmm, hZ'⟩ :=
-    GlobalTheory.T.exists_keyData_baseChange_sections_matrices hL O (AlgebraicClosure k) ((algebraMap k (AlgebraicClosure k)).comp f) x n l s b m hl hb hm
+    _root_.GlobalTheory.KeyBaseChangeData.exists_baseChange_data hL O (AlgebraicClosure k) ((algebraMap k (AlgebraicClosure k)).comp f) x n l s b m hl hb hm
   have hfin : Finite (Sp (AlgebraicClosure k)) :=
     inferInstanceAs (Finite (PrimeSpectrum (AlgebraicClosure k)))
   have hc : ∀ y : x'.P.A.left, ∃ i, y ∈ x'.P.L.U i := fun y => exists_chart x'.P.isLB y
@@ -965,7 +996,7 @@ theorem exact_kosD_map {O K : Type} [CommRing O] [CommRing K] (f : O →+* K) {g
 theorem kosD_exact_generic : Out.Laws → ∀ (O : Type) [CommRing O] [IsDomain O] [IsLocalRing O] [IsNoetherianRing O] (K : Type) [Field K] (f : O →+* K) (x : KeyIn O) (n l : ℕ) (s : Fin x.P.g → RR x n) (b : ∀ j, Fin ((l - j * n) ^ x.P.g) → RR x (l - j * n)) (m) (d : ℕ) (z : Fin d → Pt x) (ch : Fin d → x.P.L.ι), Function.Injective f → 1 ≤ n → x.P.g * n < l → (∀ j ≤ x.P.g, IsBasis x (b j)) → IsMul x l s b m → (∀ a, ⊤ ≤ (z a).left ⁻¹ᵁ x.P.L.U (ch a)) → (∀ a i, valT (T := O) (z a).left (x.P.L.U (ch a)) ((s i).f (ch a)) = 0) → (∀ a, jac x s (z a) (ch a) ≠ 0) → Function.Injective z → (∀ y : x.P.A.left, (∃ q : Sp K, spMap f q = x.P.A.hom y) → (∀ i, y ∉ Out.nonzeroLocus (s i)) → ∃ a, ∃ p : Sp O, (z a).left p = y) → ∀ v, ((kosD (N := (fun j => (l - j * n) ^ x.P.g)) m (fun j => Matrix.of fun a k => valT (T := O) (z a).left (x.P.L.U (ch a)) ((b j k).f (ch a)))).map f).mulVec v = 0 → ∃ w, ((kosD (N := (fun j => (l - j * n) ^ x.P.g)) m (fun j => Matrix.of fun a k => valT (T := O) (z a).left (x.P.L.U (ch a)) ((b j k).f (ch a)))).map f).mulVec w = v := by
   intro hL O _ _ _ _ K _ f x n l s b m d z ch hf hn hl hb hmul hz0 hs0 hjac hzi hcov v hv
   obtain ⟨x', φ, w, hg, s', b', m', hkv, hsv, hbv, hb', hmul', hm', -⟩ :=
-    GlobalTheory.T.exists_keyData_baseChange_sections_matrices hL O K f x n l s b m hl hb hmul
+    _root_.GlobalTheory.KeyBaseChangeData.exists_baseChange_data hL O K f x n l s b m hl hb hmul
   obtain ⟨z', ch', u, het, hval⟩ :=
     _root_.GlobalTheory.KeyKa.etZ_of_jac_ne_zero O K x x' f φ w n d hg s s' z ch hf hkv hsv hz0 hs0 hjac hzi hcov
   have hl' : x'.P.g * n < l := by rw [hg]; exact hl

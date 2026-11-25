@@ -1,5 +1,6 @@
 module
 
+import Formalism.SharpRestriction.LevelLetterCocycles.UniversalGeneralOfRestriction
 public import Formalism.SharpRestriction.LevelLetterCocycles.AdmBoundsBOfAdm
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcGamLiftCore
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.GammaPi0EqPi0MulUnit
@@ -504,19 +505,7 @@ variable (W : LocWach PD LL O v n) {T : LocLat G Qp LL O} {c' : ZMod n} {e M : �
 theorem RepVV_smulA {a₀ : LetA O n} (ha₀ : a₀ ∈ W.AΔ) {x : W.DD T} {f : Fin d → W.EE}
     (h : RepVV W T c' e M Λ b sol x f) :
     RepVV W T c' e M Λ b sol (a₀ • x) (fun k => algebraMap (LetA O n) W.EE a₀ * f k) := by
-  obtain ⟨κ, κ', Hh, a, hH, ha, y, hy, hxy⟩ := h
-  refine ⟨κ, κ', Hh, fun k => a₀ * a k, hH, fun k => ⟨W.AΔ.mul_mem ha₀ (ha k).1, ?_⟩,
-    a₀ • y, Formalism.MainNotions.N.FrobeniusPowerSeries.TypesA.Pp_smul W ha₀ hy, ?_⟩
-  · rw [map_mul, ← (ha k).2]
-    ring
-  · have hsum : ∑ k, (a₀ * a k) • ((W.φD T) ^ e) (Hh k) = a₀ • ∑ k, a k • ((W.φD T) ^ e) (Hh k) := by
-      rw [Finset.smul_sum]
-      simp only [smul_smul]
-    rw [hsum]
-    have e1 : lA W ^ κ' • (lA W ^ κ • Λ • a₀ • x - a₀ • ∑ k, a k • ((W.φD T) ^ e) (Hh k)) =
-        a₀ • (lA W ^ κ' • (lA W ^ κ • Λ • x - ∑ k, a k • ((W.φD T) ^ e) (Hh k))) := by
-      rw [smul_comm Λ a₀ x, smul_comm (lA W ^ κ) a₀, ← smul_sub, smul_comm (lA W ^ κ') a₀]
-    rw [e1, hxy, smul_comm]
+  apply _root_.Formalism.MainNotions.UnusedSlot80.UnivF.repVV_smul <;> assumption
 
 theorem RepVV_smulO (o : O) {x : W.DD T} {f : Fin d → W.EE} (h : RepVV W T c' e M Λ b sol x f) :
     RepVV W T c' e M Λ b sol (o • x) (fun k => algebraMap O W.EE o * f k) := by

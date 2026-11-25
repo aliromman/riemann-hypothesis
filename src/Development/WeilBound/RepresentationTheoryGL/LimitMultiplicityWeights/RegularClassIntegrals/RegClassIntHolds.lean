@@ -59,7 +59,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData PPol Tor Phi PhiOK PhiReal ellKernel Gap NoFixed IsLatticeConj GeomExpansion EllipticPart TraceEq)
 open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Chamber GlobalTheory.TruncKer GlobalTheory.Cusp
 open Matrix
 open scoped Pointwise
@@ -176,7 +175,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData PPol Tor Phi PhiOK PhiReal ellKernel Gap NoFixed IsLatticeConj GeomExpansion EllipticPart TraceEq)
 open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Chamber GlobalTheory.TruncKer GlobalTheory.Cusp
 open Matrix
 open scoped Pointwise
@@ -200,7 +198,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData PPol Tor Phi PhiOK PhiReal ellKernel Gap NoFixed IsLatticeConj GeomExpansion EllipticPart TraceEq)
 open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Chamber GlobalTheory.TruncKer GlobalTheory.Cusp
 
 namespace GlobalTheory.CompanionTheory.AutCover
@@ -254,7 +251,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData PPol Tor Phi PhiOK PhiReal ellKernel Gap NoFixed IsLatticeConj GeomExpansion EllipticPart TraceEq)
 open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Chamber GlobalTheory.TruncKer GlobalTheory.Cusp
 open Matrix
 open scoped Pointwise
@@ -319,7 +315,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData PPol Tor Phi PhiOK PhiReal ellKernel Gap NoFixed IsLatticeConj GeomExpansion EllipticPart TraceEq)
 open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Chamber GlobalTheory.TruncKer GlobalTheory.Cusp
 open Matrix
 open scoped Pointwise
@@ -345,7 +340,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData PPol Tor Phi PhiOK PhiReal ellKernel Gap NoFixed IsLatticeConj GeomExpansion EllipticPart TraceEq)
 open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Chamber GlobalTheory.TruncKer GlobalTheory.Cusp
 open Matrix
 open scoped Pointwise
@@ -641,7 +635,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData PPol Tor Phi PhiOK PhiReal ellKernel Gap NoFixed IsLatticeConj GeomExpansion EllipticPart TraceEq)
 open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Chamber GlobalTheory.TruncKer GlobalTheory.Cusp
 open Matrix
 open scoped Pointwise
@@ -666,7 +659,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData PPol Tor Phi PhiOK PhiReal ellKernel Gap NoFixed IsLatticeConj GeomExpansion EllipticPart TraceEq)
 open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Chamber GlobalTheory.TruncKer GlobalTheory.Cusp
 open Matrix
 open scoped Pointwise
@@ -1078,7 +1070,6 @@ open GlobalTheory.AdelicU GlobalTheory.OpTrace GlobalTheory.Orb GlobalTheory.Aut
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.IndefR.Mult
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData NoFixed)
 open GlobalTheory.TrMult GlobalTheory.TruncKer
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace MainStatements.WeightKernel
 

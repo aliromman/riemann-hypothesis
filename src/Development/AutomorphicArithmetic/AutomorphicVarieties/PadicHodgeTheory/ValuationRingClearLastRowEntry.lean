@@ -1,15 +1,43 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.UpperTriangularPlaces.OrdinaryFlagThree
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IsInertiaInfiniteCyclotomic
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.CommutingUpperTriangularDistinct
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ConjStable
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CrystallineOrdinaryIdeals.OrdinaryComponentUniquePrimeDimThirteenNearBase
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.LocalProperties.Reduced
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TensorProduct.Nontrivial
 import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -24,6 +52,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -62,12 +93,7 @@ private theorem triangular_form_of_injective_map {φ : A →+* C} {h : GL (Fin 3
 
 private theorem triangular_mul_diag {X Y : Matrix (Fin 3) (Fin 3) C} (hX : X.BlockTriangular id) (hY : Y.BlockTriangular id)
     (a : Fin 3) : (X * Y) a a = X a a * Y a a := by
-  rw [Matrix.mul_apply, Finset.sum_eq_single a]
-  · intro b _ hb
-    rcases lt_or_gt_of_ne hb with h | h
-    · rw [hX h, zero_mul]
-    · rw [hY h, mul_zero]
-  · simp
+  apply _root_.UpperTheory.V.Z.Keep.OrdinaryFlagThree.diag_mul_of_tri <;> assumption
 
 private theorem triangular_form_borel_change {φ : A →+* C} {h : GL (Fin 3) C} (hT : T ⊆ S) (H : TriangularForm M d S T φ h) (k : GL (Fin 3) C)
     (hk : ((k * h : GL (Fin 3) C) : Matrix (Fin 3) (Fin 3) C).BlockTriangular id) : TriangularForm M d S T φ k⁻¹ := by

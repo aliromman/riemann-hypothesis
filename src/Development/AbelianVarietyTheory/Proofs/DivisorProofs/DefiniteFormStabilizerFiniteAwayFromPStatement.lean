@@ -13,6 +13,34 @@ public import GroundTheory.Brauer.TensorSimple
 public import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.TraceDefinitePairsEqAutomorphicTrace
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntOfDenLe
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardAdelicCharacter
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -26,10 +54,14 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsRootSelectionUnitaryRankOne
 import Development.AbelianVarietyTheory.Definitions.Divisors.PointsNonemptyUnitaryRankOne
 import Development.AbelianVarietyTheory.Definitions.Divisors.TwOrbMEqTwOrbUOfNormal
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
@@ -225,7 +257,7 @@ variable {p : ℕ} [Fact p.Prime] in
 private theorem mem_span_range_psi {p : ℕ} [Fact p.Prime] (G : _root_.GlobalTheory.LKTrip.HTGroup p)
     (v : InfinitePlace G.F) (M : Matrix (Fin G.n) (Fin G.n) ℂ) :
     M ∈ Submodule.span ℂ (Set.range (G.psi v)) := by
-  letI : Algebra G.F ℂ := v.embedding.toAlgebra
+  let : Algebra G.F ℂ := v.embedding.toAlgebra
   have hsc : ∀ f : G.F, algebraMap G.F (Matrix (Fin G.n) (Fin G.n) ℂ) f =
       Matrix.scalar (Fin G.n) (v.embedding f) := by
     intro f; ext i j
@@ -480,9 +512,9 @@ theorem isTest_indicator_comm (G : HTGroup p) (K' : Subgroup (Gr G 1))
         rw [e]; exact K'.mul_mem (K'.mul_mem hk h) (K'.inv_mem hk))
       simp [hg, h']
   · set K₀ := KHT p G.m G.n 1 G.Fw
-    haveI : (K₀.subgroupOf K').FiniteIndex := Subgroup.isFiniteRelIndex_iff_finiteIndex.mp hK.2
-    haveI : Finite (K' ⧸ K₀.subgroupOf K') := Subgroup.finite_quotient_of_finiteIndex
-    haveI : Fintype (K' ⧸ K₀.subgroupOf K') := Fintype.ofFinite _
+    have : (K₀.subgroupOf K').FiniteIndex := Subgroup.isFiniteRelIndex_iff_finiteIndex.mp hK.2
+    have : Finite (K' ⧸ K₀.subgroupOf K') := Subgroup.finite_quotient_of_finiteIndex
+    have : Fintype (K' ⧸ K₀.subgroupOf K') := Fintype.ofFinite _
     refine ⟨Finset.univ.image fun q : K' ⧸ K₀.subgroupOf K' => ((Quotient.out q : K') : Gr G 1), fun g hg => ?_⟩
     have hgK : g ∈ K' := by
       by_contra hn; exact hg (by simp [Set.indicator_apply, hn])

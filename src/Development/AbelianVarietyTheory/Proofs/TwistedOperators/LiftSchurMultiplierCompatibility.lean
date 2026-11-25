@@ -1,5 +1,7 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ChainProjectionLevelCharacter
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PlacesApart
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsRationalUnitaryDeterminantMapRationalUnitaryTo
 public import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsTopologicalRingAE
@@ -21,6 +23,30 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaLift
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Formalism.LocalToGlobal.UnitaryNorms.CharUniq
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FrameTransport.InstIsModTopTens
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -34,6 +60,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -103,18 +132,7 @@ theorem lifts_chain {T : Type} (L : LevCh D T) (μ0 : T) (h : L.Is μ0) (t : T) 
 theorem multT_value {V : HSp D} {S : D.what₂.Tau → SPar} (θ : InfFam D) (M : DSModel V S) (J : Set (GA D V)) (χ : GA D V → ℂ)
     (u : SmT M →ₗ[ℂ] (GA D V → ℂ)) (hu : u ∈ MultT θ M J χ) (v : SmT M) :
     (∀ γ ∈ GQ V, ∀ g, u v (γ * g) = u v g) ∧ ∀ k ∈ J, ∀ g, u v (g * k) = χ k * u v g := by
-  have h0 := GlobalTheory.mult_value_left_cont_level θ M J χ _ ((mem_multT θ M J χ u).1 hu)
-  induction v using PiTensorProduct.induction_on with
-  | smul_tprod r f =>
-    have h1 := h0 f
-    simp only [PiTensorProduct.lift_symm, LinearMap.compMultilinearMap_apply] at h1
-    refine ⟨fun γ hγ g => ?_, fun k hk g => ?_⟩
-    · simp only [map_smul, Pi.smul_apply, h1.1 γ hγ g]
-    · simp only [map_smul, Pi.smul_apply, h1.2.2 k hk g, smul_eq_mul]; ring
-  | add x y hx hy =>
-    refine ⟨fun γ hγ g => ?_, fun k hk g => ?_⟩
-    · simp only [map_add (f := _), Pi.add_apply, hx.1 γ hγ g, hy.1 γ hγ g]
-    · simp only [map_add (f := _), Pi.add_apply, hx.2 k hk g, hy.2 k hk g]; ring
+  first | exact _root_.GlobalTheory.StepLevelP.IoLevPf.multT_val | exact @_root_.GlobalTheory.StepLevelP.IoLevPf.multT_val | apply _root_.GlobalTheory.StepLevelP.IoLevPf.multT_val <;> assumption
 
 theorem integral_shift_lift (V : HSp D) (β : GL (Fin V.rank) (Lev.EAf D)) (L : LevDat D.host.E ℂ V.rank) (g0 : G0 L.Pg L.r)
     (κ : GA D V) (hκ : IsLevelLift V β L g0 κ) (ν : Measure (GA D V)) (hν : ν.IsHaarMeasure) (𝓕 : Set (GA D V))

@@ -1,5 +1,6 @@
 module
 
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RelativeEquivalence.DCRelEquivAllHolds
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.TermDef
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedVolumeStatements.GenericRatioOfBoundHolds
 public import Formalism.SharpRestriction.CuspSpanNormBounds.IsPrimitiveSub
@@ -172,17 +173,7 @@ theorem xsp_eq_map (hfr : ∀ a, frame F₂ a = g (frame F₁ a)) :
 
 theorem orth_mem (hfr : ∀ a, frame F₂ a = g (frame F₁ a)) (hiso : g ∈ Formalism.HermitianLatticesTheory.isom S.hT)
     (y : S.V) : y ∈ orth S (Xsp F₂) ↔ g.symm y ∈ orth S (Xsp F₁) := by
-  have hi : ∀ x y, S.hT (g x) (g y) = S.hT x y := hiso
-  rw [mem_orth_iff, mem_orth_iff, xsp_eq_map hfr]
-  constructor
-  · intro h x hx
-    have := h (g x) ⟨x, hx, rfl⟩
-    rw [← hi x (g.symm y)]
-    simpa using this
-  · rintro h _ ⟨x, hx, rfl⟩
-    have := h x hx
-    rw [← hi x (g.symm y)] at this
-    simpa using this
+  apply _root_.PI.DCRelEquiv.UnitaryGroupMassFormula.orth_mem_transport <;> assumption
 
 theorem nlam_conj (hg : IsAutLam S Λ g) (hfr : ∀ a, frame F₂ a = g (frame F₁ a))
     (s : S.V ≃ₗ[E] S.V) : s ∈ NLam Λ F₂ ↔ g⁻¹ * s * g ∈ NLam Λ F₁ := by

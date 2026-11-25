@@ -835,7 +835,6 @@ section Fin
 open NumberField IsDedekindDomain GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open PositivityTheory.KCo PositivityTheory.ThK
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 attribute [local instance] PositivityTheory.ThK.SplitAsm.measFv PositivityTheory.ThK.SplitAsm.borelFv
 
 theorem finRam_of (hR : RamMaps) (hRN : RamNonzero) (hI : IndIrredNarrow) (hD : Dict) (hAU : ActsUniq) (hC : ChrFacts) :
@@ -1084,8 +1083,6 @@ theorem irrF (NB : NarrowBernstein) {ν α : kˣ →* ℂˣ} (hnd : n ≤ d) (h�
 end Local
 
 open NumberField IsDedekindDomain GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.SplitFlip
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem soCoinv_of (NB : NarrowBernstein) (hD : DictSt) (hK : GlobalTheory.ThK.KFin) :
     PositivityTheory.ThKF.SoCoinv := by

@@ -63,6 +63,27 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ChoiceS
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ClassSumsConjugateTwistsConjugateExpansionsStatement
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TwistedPlaceIndexMemFirstPairOfCompatibleChoice
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExistsLocalTupleAtState
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -80,8 +101,11 @@ import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.Strict
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsRepsOfFiniteIndex
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TwistingCharacterAdmissibleGaloisTwistGood
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLatticeCongruenceInLevelCharacterOne
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsSplitOfMemAdmissibleConjugatePairPlaces
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.UnivOfNotLinearIndependent
@@ -94,6 +118,7 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PrincipalLevel
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SpecialisedUniversalSeriesEqTwistedThetaSeries
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.OmPureTensorOOfFinite
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeCharacterIdeleCharacterMatchUnique
 import Mathlib.RingTheory.TotallySplit
 import Development.AutomorphicArithmetic.PrimeDiscriminants.RamDiscr
@@ -556,7 +581,7 @@ theorem rdE_injective_lattice : ∀ (D : D7) (c : NChoice D) (w : D.what₂.plac
     refine injective_of_indep (rdE T hε) _ (span_one_tmul (K := FractionRing (D.ntw.Ok (c.twI w) (c.k' w))) hE
       (Subtype.val : s → _) (by rw [Subtype.range_coe]; exact hspan)) ?_
     have h1 := indep_fieldRange _ (T.rdV_inj _ _ _ hok) hli
-    have h2 := GlobalTheory.T.linearIndependent_complex_of_subfield_coeffLattice D _ _ _ (hρ.base (c.twI w) j (c.sd w)) _ _ _ _ (hρ.isCoefRing_k (c.twI w) (c.sd w) (c.k' w))
+    have h2 := _root_.GlobalTheory.PlaceIndep.linearIndependent_complex D _ _ _ (hρ.base (c.twI w) j (c.sd w)) _ _ _ _ (hρ.isCoefRing_k (c.twI w) (c.sd w) (c.k' w))
       (ρ.ek (c.twI w) (c.sd w) (c.k' w)).fieldRange (by rintro _ ⟨x, rfl⟩; exact ⟨_, rfl⟩) _ _
       (fun a h => ((Base.mem_mtLat _ _ _ _).1 ((T.rdV_mem hok).1 (hs a.2))).2 h) h1
     simpa only [rdE_tmul, map_one, one_smul] using h2
@@ -566,7 +591,7 @@ theorem rdE_injective_lattice : ∀ (D : D7) (c : NChoice D) (w : D.what₂.plac
       refine ⟨algebraMap _ _ x, ?_⟩
       rw [← hε.apply, IsScalarTower.algebraMap_apply (D.ntw.Ok (c.twI w) (c.k' w)) (c.Oe w) (KE c w)]
       rfl
-    have hbc := GlobalTheory.T.thetaSeriesIntegralForms_eq_span_dedekindCoefRing D _ _ _ (hρ.base (c.twI w) j (c.sd w)) _ hg hadm _ _ _ _ _
+    have hbc := _root_.GlobalTheory.FormsBaseChange.mtLat_eq_span D _ _ _ (hρ.base (c.twI w) j (c.sd w)) _ hg hadm _ _ _ _ _
       (ρ.eOk_injective (c.twI w) (c.sd w) (c.k' w)) (hρ.isCoefRing_k (c.twI w) (c.sd w) (c.k' w))
       (levLam_mem_eOk hr T hok) _ hle
     have hsm : ∀ (a : c.Oe w) (y : Tgt c w (j.1 + 1)), rdE T hε (a • y) = ε (algebraMap _ _ a) • rdE T hε y := fun a y => by

@@ -1,10 +1,35 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.HolomorphicIrreducibility.ConstSmall
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ConstSmall
 public import Mathlib.Analysis.Calculus.SmoothSeries
 public import Mathlib.Analysis.Normed.Group.Tannery
 public import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.HolomorphicIrreducibility.TsumNormEisensteinTranslate
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -18,8 +43,12 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.SpecialFunctions.Bernstein
 import Mathlib.NumberTheory.ModularForms.EisensteinSeries.IsBoundedAtImInfty
 import Mathlib.NumberTheory.TsumDivisorsAntidiagonal
 import Mathlib.Order.Interval.Finset.Box
@@ -40,18 +69,7 @@ namespace UpperTheory.V.Sd
 
 private lemma lk_hasDerivAt (m : ℕ) (x : ℂ) (hx : x ≠ 1) :
     ∃ d : ℂ, HasDerivAt (fun w : ℂ => Lk (m + 1) w) d x ∧ x * d = Lk (m + 2) x := by
-  have hx' : (1 : ℂ) - x ≠ 0 := sub_ne_zero.mpr (Ne.symm hx)
-  have hN := Polynomial.hasDerivAt_aeval (numL (m + 1)) x
-  have hD := ((hasDerivAt_id x).const_sub (1 : ℂ)).pow (m + 1)
-  have h := hN.div hD (pow_ne_zero (m + 1) hx')
-  refine ⟨_, h, ?_⟩
-  have e2 : numL (m + 2) = X * (derivative (numL (m + 1)) * (1 - X) + C ((m : ℤ) + 1) * numL (m + 1)) := by
-    rw [numL.eq_3]
-  simp only [Lk, e2, map_mul, map_add (f := _), map_sub, map_one, Polynomial.aeval_X, Polynomial.aeval_C,
-    id, Nat.add_sub_cancel, Pi.pow_apply]
-  field_simp
-  push_cast
-  ring
+  apply _root_.UpperTheory.V.Sd.lk_deriv <;> assumption
 
 private lemma lk_hasSum_succ (m : ℕ) : ∀ x : ℂ, ‖x‖ < 1 →
     HasSum (fun e : ℕ => ((e : ℂ) + 1) ^ m * x ^ (e + 1)) (Lk (m + 1) x) := by

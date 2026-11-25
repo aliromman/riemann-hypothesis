@@ -1,8 +1,36 @@
 module
 
+import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.EqZeroOfNegEq
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.StmtFields
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 public import Mathlib.NumberTheory.Cyclotomic.Gal
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -16,6 +44,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -30,21 +59,8 @@ private theorem lift_coprime {n N b : ℕ} [NeZero N] (h : n ∣ N) (hb : b.Copr
 
 private theorem exists_aut {N a : ℕ} [NeZero N] (ha : a.Coprime N) :
     ∃ τ : CyclotomicField N ℚ ≃ₐ[ℚ] CyclotomicField N ℚ, ∀ x : CyclotomicField N ℚ, x ^ N = 1 → τ x = x ^ a := by
-  haveI : NeZero ((N : ℕ) : ℚ) := ⟨by exact_mod_cast NeZero.ne N⟩
-  haveI : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
-  have hirr := Polynomial.cyclotomic.irreducible_rat (NeZero.pos N)
-  have hζ := IsCyclotomicExtension.zeta_spec N ℚ (CyclotomicField N ℚ)
-  set ζ := IsCyclotomicExtension.zeta N ℚ (CyclotomicField N ℚ)
-  set τ := (IsCyclotomicExtension.autEquivPow (CyclotomicField N ℚ) hirr).symm (ZMod.unitOfCoprime a ha) with hτdef
-  refine ⟨τ, ?_⟩
-  have hτ : hζ.autToPow ℚ τ = ZMod.unitOfCoprime a ha :=
-    (IsCyclotomicExtension.autEquivPow (CyclotomicField N ℚ) hirr).apply_symm_apply (ZMod.unitOfCoprime a ha)
-  have hτζ : τ ζ = ζ ^ a := by
-    rw [← hζ.autToPow_spec ℚ τ, hτ, ZMod.coe_unitOfCoprime, ZMod.val_natCast]
-    conv_rhs => rw [← Nat.mod_add_div a N, pow_add, pow_mul, hζ.pow_eq_one, one_pow, mul_one]
-  intro x hx
-  obtain ⟨i, -, rfl⟩ := hζ.eq_pow_of_pow_eq_one hx
-  rw [map_pow, hτζ, ← pow_mul, ← pow_mul, mul_comm]
+  intros
+  apply _root_.Formalism.FrobeniusOrbits.Cond.aut <;> assumption
 
 private theorem ker_congr (A : AbF) {a b : ℕ} (h : a ≡ b [MOD A.m]) (hb : A.ker b) : A.ker a := by
   obtain ⟨u, hu, e⟩ := hb

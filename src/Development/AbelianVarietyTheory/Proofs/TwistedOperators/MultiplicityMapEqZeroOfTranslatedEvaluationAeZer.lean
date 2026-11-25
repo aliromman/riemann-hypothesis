@@ -1,5 +1,7 @@
 module
 
+
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalUnitaryPointsDiscreteFundamentalDomain
 public import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MultiplicitySpaceEqZeroOfLowestKTypes
 public import Formalism.LocalToGlobal.IndefiniteReal.AutomorphicEvaluation
@@ -10,6 +12,28 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AdelicUnitary
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PostOnGaLMemGoodPart
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ComplexConjugationMapsMultiplicitySpace
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContDiffDerivSnoc
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -22,13 +46,15 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LevelGroupActionIsAction
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowLevelMatch
-
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqZeroOfOrbit, Development.AbelianVarietyTheory.Proofs.TwistedOperators.MultiplicityMapEqZeroOfTranslatedEvaluationAeZer
 
@@ -78,24 +104,7 @@ section Count
 
 
 theorem gfset_countable (I : AutInst) : I.GFset.Countable := by
-  classical
-  haveI : Countable I.E := (Module.finBasis ℚ I.E).equivFun.injective.countable
-  haveI : Countable (Matrix (Fin I.n) (Fin I.n) I.E) :=
-    inferInstanceAs (Countable (Fin I.n → Fin I.n → I.E))
-  haveI : Countable (GL (Fin I.n) I.E) :=
-    Function.Injective.countable (f := (Units.val : GL (Fin I.n) I.E → Matrix (Fin I.n) (Fin I.n) I.E)) fun _ _ h => Units.ext h
-
-  let W : GL (Fin I.n) I.E → Set I.GA := fun γ =>
-    {x | (∀ v, uMat (x.1 v) = (I.P v)⁻¹ * (γ : Matrix (Fin I.n) (Fin I.n) I.E).map (I.φ v) * I.P v) ∧
-      I.fmat x.2 = (γ : Matrix (Fin I.n) (Fin I.n) I.E).map (Formalism.UG.inclE (F := I.F) (Af I.F))}
-  have hsub : I.GFset ⊆ ⋃ γ, W γ := by
-    rintro x ⟨γ, -, h1, h2⟩
-    exact Set.mem_iUnion.2 ⟨γ, h1, h2⟩
-  refine Set.Countable.mono hsub (Set.countable_iUnion fun γ => Set.Subsingleton.countable ?_)
-  rintro x ⟨hx1, hx2⟩ y ⟨hy1, hy2⟩
-  refine Prod.ext (funext fun v => ?_) ?_
-  · exact Subtype.ext (Units.ext ((hx1 v).trans (hy1 v).symm))
-  · exact Subtype.ext (Units.ext (hx2.trans hy2.symm))
+  first | exact _root_.GlobalTheory.RatDiscrete.countable_GFset | exact @_root_.GlobalTheory.RatDiscrete.countable_GFset | apply _root_.GlobalTheory.RatDiscrete.countable_GFset <;> assumption
 
 theorem eq_zero_of_ae_fund (I : AutInst) (μf : Measure I.Gf) [μf.IsHaarMeasure] [SigmaFinite μf] {fund : Set I.GA}
     (hfund : I.IsFundDom (I.muA μf) fund) {φ : I.GA → ℂ} (hc : Continuous φ)

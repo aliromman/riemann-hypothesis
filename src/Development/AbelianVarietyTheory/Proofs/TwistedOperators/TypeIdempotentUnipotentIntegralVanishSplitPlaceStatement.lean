@@ -762,9 +762,6 @@ open GlobalTheory.AutomorphicL2Unitary (starFn)
 open GlobalTheory.IndefiniteRowSideFullHecke.RadicalNoFixedVectors (HypH)
 open GlobalTheory.IndefiniteRowSideFullHecke.ConstantTermVanishing
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

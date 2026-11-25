@@ -1,5 +1,6 @@
 module
 
+import Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.PChain
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.WignerHighestWeights.IsAlgIsoRefl
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CapCommuteRtInfGL
 
@@ -12,24 +13,7 @@ private theorem qdet_intertw {M M' : Type} [AddCommGroup M] [Module ℂ M] [AddC
     (R : M →ₗ[ℂ] M') (X : Fin k → Fin k → Module.End ℂ M) (Y : Fin k → Fin k → Module.End ℂ M')
     (h : ∀ p q, R ∘ₗ X p q = Y p q ∘ₗ R) (v : ℂ) :
     R ∘ₗ Formalism.REAL.qdet X v = Formalism.REAL.qdet Y v ∘ₗ R := by
-  let S : Subalgebra ℂ (Module.End ℂ M × Module.End ℂ M') :=
-    { carrier := {z | R ∘ₗ z.1 = z.2 ∘ₗ R}
-      mul_mem' := fun {x y} hx hy => by
-        change R ∘ₗ (x.1 ∘ₗ y.1) = (x.2 ∘ₗ y.2) ∘ₗ R
-        rw [← LinearMap.comp_assoc, hx, LinearMap.comp_assoc, hy, LinearMap.comp_assoc]
-      add_mem' := fun {x y} hx hy => by
-        change R ∘ₗ (x.1 + y.1) = (x.2 + y.2) ∘ₗ R
-        rw [LinearMap.comp_add, LinearMap.add_comp, hx, hy]
-      algebraMap_mem' := fun c => by
-        change R ∘ₗ (algebraMap ℂ (Module.End ℂ M) c) = (algebraMap ℂ (Module.End ℂ M') c) ∘ₗ R
-        ext φ; simp }
-  let Z : Fin k → Fin k → S := fun p q => ⟨(X p q, Y p q), h p q⟩
-  have e1 : ((Formalism.REAL.qdet Z v : S) : Module.End ℂ M × Module.End ℂ M').1 = Formalism.REAL.qdet X v :=
-    map_qdet ((AlgHom.fst ℂ _ _).comp S.val) Z v
-  have e2 : ((Formalism.REAL.qdet Z v : S) : Module.End ℂ M × Module.End ℂ M').2 = Formalism.REAL.qdet Y v :=
-    map_qdet ((AlgHom.snd ℂ _ _).comp S.val) Z v
-  rw [← e1, ← e2]
-  exact (Formalism.REAL.qdet Z v).2
+  apply _root_.PositivityTheory.Rg.Cz.ChainP.qdet_comp <;> assumption
 
 set_option synthInstance.maxHeartbeats 100000 in
 theorem UpperTheory.V.AlgRepEndIrreducible.tensA :

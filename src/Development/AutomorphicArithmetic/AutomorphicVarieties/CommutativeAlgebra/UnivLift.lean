@@ -1,5 +1,6 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimuraTheory.FibreTraces.ComplOfNil
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
 public import Mathlib.RingTheory.Ideal.Quotient.Index
 public import Mathlib.Algebra.DualNumber
@@ -84,21 +85,7 @@ open IsLocalRing MvPowerSeries UpperTheory.V.Alg
 
 private theorem complete_of_pow {R : Type} [CommRing R] (I : Ideal R) (N : ℕ) (h : I ^ N = ⊥) :
     IsAdicComplete I R := by
-  have hb : (I ^ N • ⊤ : Submodule R R) = ⊥ := by rw [h, Submodule.bot_smul]
-  have key : ∀ x y : R, x ≡ y [SMOD (I ^ N • ⊤ : Submodule R R)] → x = y := by
-    intro x y hxy
-    rw [hb, SModEq.sub_mem, Submodule.mem_bot, sub_eq_zero] at hxy
-    exact hxy
-  refine { haus' := ?_, prec' := ?_ }
-  · intro x hx
-    exact key x 0 (hx N)
-  · intro f hf
-    refine ⟨f N, fun n => ?_⟩
-    rcases le_total n N with hn | hn
-    · exact hf hn
-    · have e := key _ _ (hf hn)
-      rw [SModEq.sub_mem, e, sub_self]
-      exact Submodule.zero_mem _
+  apply _root_.compl_of_nil <;> assumption
 
 private theorem mk_inj {R : Type} [CommRing R] (I : Ideal R) (h : I = ⊥) :
     Function.Injective (Ideal.Quotient.mk I) := by

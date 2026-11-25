@@ -1,7 +1,30 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HeckeCharOnIdMulSqrtAbsNormInvMemSubring
 public import Formalism.LocalToGlobal.IndefiniteReal.ThPinsR
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsGaloisGe
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -14,6 +37,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -31,15 +56,7 @@ variable {L : Type} [Field L] [NumberField L]
 
 theorem onId_mul (χ : HChar L) {I J : FractionalIdeal (𝓞 L)⁰ L} (hI : I ≠ 0) (hJ : J ≠ 0) :
     χ.onId (I * J) = χ.onId I * χ.onId J := by
-  have hf : ∀ K : FractionalIdeal (𝓞 L)⁰ L,
-      (Function.mulSupport fun v : HeightOneSpectrum (𝓞 L) => χ.val v ^ FractionalIdeal.count L v K).Finite := fun K => by
-    refine (FractionalIdeal.finite_factors (K := L) K).subset fun v hv h => hv ?_
-    have h' : FractionalIdeal.count L v K = 0 := h
-    simp [h']
-  unfold HChar.onId
-  rw [← finprod_mul_distrib (hf I) (hf J)]
-  refine finprod_congr fun v => ?_
-  rw [FractionalIdeal.count_mul L v hI hJ, _root_.zpow_add]
+  apply _root_.GlobalTheory.HeckeIdealValue.onId_mul <;> assumption
 
 theorem onId_one (χ : HChar L) : χ.onId 1 = 1 := by
   unfold HChar.onId

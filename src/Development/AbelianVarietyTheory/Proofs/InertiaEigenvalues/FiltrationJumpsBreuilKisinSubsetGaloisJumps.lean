@@ -11,26 +11,11 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemComp
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.CrisToODToOCr
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DeRhamJumpDescent
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.CrystallinePeriods.RingBasics
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CanonicalAcrisToBdRPlusUniqueEquivariantApprox
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PeriodRingsGaloisActionLawsFrobeniusComm
-import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BreuilKisinXiExtMemRigidTensorIff
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.PowerSeries.Inverse
 
 attribute [-instance]
   NormedSpace.toModule Submodule.normedSpace Submodule.seminormedAddCommGroup

@@ -2,6 +2,31 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.HermSysHypOneLeLambdaZero
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProductOfVectorMultiplicationsMemFiltrationLatti
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -14,6 +39,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
 
 @[expose] public section
 
@@ -58,19 +84,11 @@ theorem ofFn_prod_comm : ∀ (n : ℕ) (g' : Fin n → Module.End E A') (g : Fin
       ih _ _ (fun i => hg i.succ), hg 0]
 
 theorem pow_comm (f' : Module.End E A') (f : Module.End F A) (h : ∀ x, f' (ι x) = ι (f x)) :
-    ∀ (n : ℕ) x, (f' ^ n) (ι x) = ι ((f ^ n) x) := by
-  intro n
-  induction n with
-  | zero => intro x; simp
-  | succ n ih => intro x; rw [pow_succ, pow_succ, mul_apply_eq_comp, mul_apply_eq_comp, h, ih]
+    ∀ (n : ℕ) x, (f' ^ n) (ι x) = ι ((f ^ n) x) := fun n x =>
+  LinearMap.congr_fun (Module.End.commute_pow_left_of_commute (f := ι) (g := f) (g₂ := f') (LinearMap.ext h) n) x
 
-theorem mem_span_image (Y : Set A) : ∀ y ∈ Submodule.span F Y, ι y ∈ Submodule.span E (ι '' Y) := by
-  intro y hy
-  induction hy using Submodule.span_induction with
-  | mem x hx => exact Submodule.subset_span ⟨x, hx, rfl⟩
-  | zero => simp
-  | add x y _ _ hx hy => rw [map_add]; exact add_mem hx hy
-  | smul c x _ hx => rw [map_smulₛₗ]; exact Submodule.smul_mem _ _ hx
+theorem mem_span_image (Y : Set A) : ∀ y ∈ Submodule.span F Y, ι y ∈ Submodule.span E (ι '' Y) :=
+  fun y hy => Submodule.image_span_subset_span ι Y ⟨y, hy, rfl⟩
 
 end Inter
 

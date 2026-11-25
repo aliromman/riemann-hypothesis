@@ -1,5 +1,7 @@
 module
 
+import Formalism.LocalToGlobal.Columns.DGamAut
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.UnipotentTypeLevelCharacterFiniteOrderRootsOfUni
 public import Formalism.LocalToGlobal.HermitianColumns.SymAll
 public import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 public import Formalism.LocalToGlobal.Columns.DecoFin
@@ -19,6 +21,30 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ColsR
 public import Formalism.LocalToGlobal.GroupLattices.TiedFamilies.TieTrF
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PositionOfIntro
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -32,6 +58,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CmQuadraticFormEqAlternatingForm
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.SetUnipotentTranslate
 import Development.AutomorphicArithmetic.PrimeDiscriminants.Scales
@@ -39,6 +66,7 @@ import Formalism.SharpRestriction.InertJacobiLevels.AsmIface
 import Mathlib.RingTheory.TotallySplit
 import Mathlib.RingTheory.PicardGroup
 import Formalism.LocalToGlobal.Columns.HeckeSpCount
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -309,20 +337,7 @@ namespace GlobalTheory.Mem.Col2
 open NumberField Formalism.BasicNotions Formalism.L2.Col
 
 theorem le_N_of_mem_gamRanks (R : Ranks) {n : ℕ} (hn : n ∈ gamRanks R) : n ≤ R.N R.m := by
-  have hY : ∀ j, j ≤ R.m → R.rankY j ≤ R.N R.m := by
-    intro j hj
-    have : j * R.t ≤ R.m * R.t := Nat.mul_le_mul_right _ hj
-    unfold Ranks.rankY Ranks.r Ranks.N
-    rw [mul_add, mul_one]
-    omega
-  have hm := R.two_le_m
-  simp only [gamRanks, Finset.mem_union, Finset.mem_image, Finset.mem_Icc, Finset.mem_insert,
-    Finset.mem_singleton] at hn
-  rcases hn with ⟨j, hj, rfl⟩ | rfl | rfl | rfl
-  · exact Nat.add_le_add_left (Nat.mul_le_mul_right _ hj.2) _
-  · exact hY _ le_rfl
-  · exact hY _ (Nat.sub_le _ _)
-  · simpa [Ranks.rankY, Ranks.nV] using hY 1 (by omega)
+  apply _root_.Formalism.L2.Col.dGamRanks_le <;> assumption
 
 theorem DGam_dvd_of_minkMult : ∀ {X : Fields} (R : Ranks), X.Ok →
     ∀ M, Formalism.MainNotions.MinkMult (2 * X.f * R.N R.m) M → DGam X.E R ∣ M := by
@@ -355,17 +370,7 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Fo
 
 theorem natCast_kv_eq_zero (F : Type) [Field F] [NumberField F]
     (v : HeightOneSpectrum (𝓞 F)) (p : ℕ) (h : (p : 𝓞 F) ∈ v.asIdeal) : (p : kv F v) = 0 := by
-
-  have hval : Valued.v ((algebraMap (𝓞 F) (v.adicCompletionIntegers F) (p : 𝓞 F) :
-      v.adicCompletion F)) < 1 := by
-    rw [HeightOneSpectrum.algebraMap_adicCompletionIntegers_apply,
-      HeightOneSpectrum.valuedAdicCompletion_eq_valuation']
-    exact (v.valuation_lt_one_iff_mem (K := F) _).2 h
-  have hmax : algebraMap (𝓞 F) (v.adicCompletionIntegers F) (p : 𝓞 F) ∈
-      IsLocalRing.maximalIdeal (v.adicCompletionIntegers F) :=
-    (Valuation.mem_maximalIdeal_iff _ Valued.v).2 hval
-  have hres := (IsLocalRing.residue_eq_zero_iff _).2 hmax
-  simpa using hres
+  apply _root_.GlobalTheory.natCast_residueField_completion_eq_zero <;> assumption
 
 theorem mem_range_of_pow_g (B : Base) (i : Fin 2) (z : ℂ) (hz : z ^ B.host.g i = 1) : ∃ r : B.LL, B.embLL r = z := by
   have hp : (B.host.g i).Prime := B.host.g_prime i

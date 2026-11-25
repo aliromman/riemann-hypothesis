@@ -1,5 +1,6 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ObsClass
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
 public import Mathlib.RingTheory.Filtration
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.FrobeniusSmoothVectors.PresDefs
@@ -20,19 +21,7 @@ open IsLocalRing Matrix UpperTheory.V.Alg UpperTheory.V.U3 UpperTheory.V.Fr
 
 private theorem inf_pow_bot (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] (I : Ideal R)
     (h : maximalIdeal R * I = ⊥) : ∃ N : ℕ, ∀ x ∈ I, x ∈ maximalIdeal R ^ N → x = 0 := by
-  obtain ⟨k, hk⟩ := Ideal.exists_pow_inf_eq_pow_smul (maximalIdeal R) (I : Submodule R R)
-  refine ⟨k + 1, fun x hxI hxm => ?_⟩
-  have hx : x ∈ maximalIdeal R ^ (k + 1) • (⊤ : Submodule R R) ⊓ (I : Submodule R R) := by
-    refine ⟨?_, hxI⟩
-    rw [Ideal.smul_eq_mul, Ideal.mul_top]
-    exact hxm
-  rw [hk (k + 1) (by omega), Nat.add_sub_cancel_left, pow_one] at hx
-  have hle : maximalIdeal R • (maximalIdeal R ^ k • (⊤ : Submodule R R) ⊓ (I : Submodule R R))
-      ≤ maximalIdeal R • (I : Submodule R R) :=
-    Submodule.smul_mono le_rfl inf_le_right
-  have hx' := hle hx
-  rw [Ideal.smul_eq_mul, h] at hx'
-  exact (Submodule.mem_bot R).1 hx'
+  apply _root_.inf_pow_bot <;> assumption
 
 theorem UpperTheory.V.Fr.pr_sec :
     ∀ (O : Type) [CommRing O] [IsLocalRing O], ∀ (C' : Type) [CommRing C'] [Algebra O C'] [IsCO O C'] (C : Type) [CommRing C] [Algebra O C] [IsCO O C] (p : C' →ₐ[O] C), Function.Surjective p → maximalIdeal C' * RingHom.ker p = ⊥ → ∀ (Γ : Type) [TopologicalSpace Γ] (x : Γ → C), AdicCont (maximalIdeal C) x → ∃ y : Γ → C', AdicCont (maximalIdeal C') y ∧ ∀ g, p (y g) = x g := by

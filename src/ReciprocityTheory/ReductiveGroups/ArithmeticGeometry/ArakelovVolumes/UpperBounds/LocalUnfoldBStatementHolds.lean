@@ -53,6 +53,7 @@ import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.TypeStar
 import ReciprocityTheory.L2DbarEstimates.LeviForms.OfRealNormSqSumMul
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.BoundedSectionAlgebra
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.LocalUnfoldStatementPf, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.OntoWeightStatementPfC, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.OntoWeightStatementPf, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.UpDivStatementPfB, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.UpDivStatementPfC, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.UpDivStatementPfE, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.UpDivStatementPfF, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.UpDivStatementPf, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.LocalUnfoldBStatementHolds
@@ -329,14 +330,9 @@ theorem Gf_lact (Xa : ArchInM X) (Fl : FlatM X Xa) {g : Frame X.Ψ r → ℂ}
   rw [(WSk_metric Xa Fl).2.2 γ hγ x hx, hg.2.2 γ hγ x hx, norm_mul, OntoE.chi_norm X _ hγ, one_mul]
 
 private lemma nfac_pos_of_mem_dom {x : Frame X.Ψ r} (hx : x ∈ X.dom) (la : Wt X.Ψ r) : 0 < X.nfac la x := by
-  have hd : ∀ τ j, dmin X.Gm x τ j ≠ 0 := by
-    intro τ j h
-    have h' := (hx τ).2 j
-    rw [h] at h'
-    simp at h'
-  unfold Data.nfac
-  exact Finset.prod_pos fun τ _ => Finset.prod_pos fun i _ =>
-    Real.rpow_pos_of_pos (norm_pos_iff.mpr (div_ne_zero (hd τ _) (hd τ _))) _
+  first
+    | exact _root_.ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.nfac_pos
+    | apply _root_.ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.nfac_pos <;> first | assumption | rfl | infer_instance
 
 private lemma nfac_add_nsmul {x : Frame X.Ψ r} (hx : x ∈ X.dom) (la L : Wt X.Ψ r) (T : ℕ) :
     X.nfac (la + T • L) x = X.nfac la x * X.nfac L x ^ T := by

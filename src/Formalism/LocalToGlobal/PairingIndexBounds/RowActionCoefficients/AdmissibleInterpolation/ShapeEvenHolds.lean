@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.CardFilterValLt
 public import Formalism.LocalToGlobal.PairingIndexBounds.RowActionCoefficients.WeylComplementInDetCoeffSpan
 
 @[expose] public section
@@ -49,16 +50,7 @@ theorem lt_colH_iff (hν : Antitone ν) (k : ℕ) (t : Fin n) : t.val < colH ν 
 end Heights
 
 theorem card_fin_lt (c m : ℕ) (hm : m ≤ c) : (Finset.univ.filter fun k : Fin c => k.val < m).card = m := by
-  have e : (Finset.univ.filter fun k : Fin c => k.val < m).map Fin.valEmbedding = Finset.range m := by
-    ext x
-    simp only [Finset.mem_map, Finset.mem_filter, Finset.mem_univ, true_and, Fin.valEmbedding_apply,
-      Finset.mem_range]
-    constructor
-    · rintro ⟨k, hk, rfl⟩
-      exact hk
-    · intro hx
-      exact ⟨⟨x, by omega⟩, hx, rfl⟩
-  rw [← Finset.card_map Fin.valEmbedding, e, Finset.card_range]
+  apply _root_.Formalism.L2.G.Pend.card_filter_val_lt <;> assumption
 
 theorem kap_antitone {n : ℕ} {μ : Fin n → ℕ} (hμ : Antitone μ) (c : ℕ) : Antitone fun t : Fin n => c - μ t.rev := by
   intro s t hst

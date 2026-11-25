@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsThetaFunOOfThetaAt
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsHolRepOfIsTau
 public import Formalism.LocalToGlobal.IndefiniteReal.BridgeTie
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsPolynomialModelCoefficientSpaceRealPoints
@@ -21,6 +22,28 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CompAtMtE
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsFockVacAtOfIsThetaAt
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.InfinityTypes
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ComplexEmbeddingHermitianQuadrupleSum
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -37,6 +60,9 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FockPolynomi
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ThetaWeightArithmeticAtPlaceProofStatement
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.InfPartOneSubEInfSmul
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLowestKTypeFockMapThetaVectors
@@ -57,41 +83,7 @@ theorem isThetaFunO_of_isThetaAt {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {θ :
     (hθ : IsInfFam θ) {S T : HSp D} {e : AE D} {Λ : AddSubgroup (WO S T)} {c : ℂ} {f₀ Φ f : WO S T → ℂ}
     (h : IsThetaAt ψ (symplO S T) (heisO ψ S T) e Λ c f₀ Φ f) (h₀ : IsThetaFunO ψ S T f₀) :
     IsThetaFunO ψ S T f := by
-  let U : Submodule ℂ (WO S T → ℂ) :=
-    { carrier := {g | IsThetaFunO ψ S T g}
-      add_mem' := fun ha hb => GlobalTheory.OrientedHeis.theta_add ha hb
-      zero_mem' := GlobalTheory.OrientedHeis.theta_zero
-      smul_mem' := fun c _ hg => GlobalTheory.OrientedHeis.theta_smul c hg }
-  show f ∈ U
-  rw [← Subspace.forall_mem_dualAnnihilator_apply_eq_zero_iff]
-  intro l hl
-  let A : (WO S T → ℂ) →ₗ[ℂ] (WO S T → ℂ) :=
-    LinearMap.pi fun w => l ∘ₗ GlobalTheory.SplitScalar.heisL ψ S T w
-  have hA0 : ∀ g w, A g w = l (heisO ψ S T w g) := fun _ _ => rfl
-  have hA : ∀ u g, A (heisO ψ S T u g) = heisO ψ S T u (A g) := fun u g => by
-    funext w
-    rw [hA0, GlobalTheory.OrientedHeis.heisO_heisO, map_smul]
-    rfl
-  have hf0 : A f₀ = 0 := by
-    funext w
-    exact (Submodule.mem_dualAnnihilator l).1 hl _ ((GlobalTheory.ThetaClosed.thetaClosed ψ θ hψ hθ S T f₀ h₀).1 w)
-  obtain ⟨⟨Tm, hT⟩, hall⟩ := h
-  have hT' : IsPlaceModel ψ (symplO S T) (heisO ψ S T) e Λ c f₀ (Tm + A ∘ₗ Tm) :=
-    { trans := fun Φ hΦ x hx => by
-        rw [LinearMap.add_apply, LinearMap.add_apply, LinearMap.comp_apply, LinearMap.comp_apply,
-          hT.trans Φ hΦ x hx, hA x]
-        exact ((GlobalTheory.SplitScalar.heisL ψ S T x).map_add _ _).symm
-      modul := fun Φ hΦ y hy => by
-        rw [LinearMap.add_apply, LinearMap.add_apply, LinearMap.comp_apply, LinearMap.comp_apply,
-          hT.modul Φ hΦ y hy, hA y]
-        exact ((GlobalTheory.SplitScalar.heisL ψ S T y).map_add _ _).symm
-      vac := by
-        rw [LinearMap.add_apply, LinearMap.comp_apply, hT.vac, hf0, add_zero] }
-  have e1 : f = Tm Φ := hall Tm hT
-  have e2 : f = (Tm + A ∘ₗ Tm) Φ := hall _ hT'
-  rw [LinearMap.add_apply, LinearMap.comp_apply, ← e1] at e2
-  have e3 := congrFun (left_eq_add.1 e2) 0
-  rwa [hA0, GlobalTheory.OrientedHeis.heisO_zero] at e3
+  first | exact _root_.GlobalTheory.VecTheta.isThetaFunO_of_thetaAt | exact @_root_.GlobalTheory.VecTheta.isThetaFunO_of_thetaAt | apply _root_.GlobalTheory.VecTheta.isThetaFunO_of_thetaAt <;> assumption
 
 theorem compAt_mt_one' {D : D7} (θ : InfFam D) (τ : D.what₂.Tau) (V : HSp D) :
     compAt θ τ (Formalism.L2.Theta.mt V 1) = 1 :=

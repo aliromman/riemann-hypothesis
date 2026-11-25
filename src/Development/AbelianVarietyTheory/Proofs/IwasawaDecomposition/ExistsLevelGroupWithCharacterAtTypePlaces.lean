@@ -1,7 +1,30 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExponentAndTwistData
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.GroupTheory.Nilpotent
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -16,7 +39,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.Automorphisms.PlaceA
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SplitPlaceProjMemIntegersOfIntegral
 
 @[expose] public section
 
@@ -32,22 +58,7 @@ variable {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ}
 
 theorem proj_int (s : SplitPlace L) {z : AL L} (hz : z ∈ ALint L) :
     s.proj z ∈ s.v.adicCompletionIntegers (maximalRealSubfield L) := by
-  have key : ALint L ≤ ((s.v.adicCompletionIntegers (maximalRealSubfield L)).toSubring).comap s.proj := by
-    rw [ALint, Subring.closure_le]
-    rintro y (⟨o, rfl⟩ | ⟨a, ha, rfl⟩)
-    · show s.proj _ ∈ (s.v.adicCompletionIntegers (maximalRealSubfield L)).toSubring
-      have e : s.proj ((o : L) ⊗ₜ[maximalRealSubfield L] (1 : AFplus L)) = s.i (o : L) := by
-        simp [SplitPlace.proj]
-      rw [e]
-      exact s.split_le_one o
-    · show s.proj _ ∈ (s.v.adicCompletionIntegers (maximalRealSubfield L)).toSubring
-      have e : s.proj ((1 : L) ⊗ₜ[maximalRealSubfield L] a) = a s.v := by
-        simp only [SplitPlace.proj, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Algebra.TensorProduct.lift_tmul, map_one,
-          one_mul]
-        rfl
-      rw [e]
-      exact ha s.v
-  exact key hz
+  apply _root_.GlobalTheory.splitPlace_proj_mem_integers_of_integral <;> assumption
 
 theorem locM_int (s : SplitPlace L) {κ : GAf L n} (h : κ ∈ Umax L n) (a b : Fin n) :
     NX.locM s κ a b ∈ s.v.adicCompletionIntegers (maximalRealSubfield L) := proj_int s (h a b)

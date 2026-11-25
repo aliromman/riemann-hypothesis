@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HeisOAdd
 public import Formalism.LocalToGlobal.IndefiniteReal.SubgroupCharExtensionOneApply
 public import Formalism.LocalToGlobal.IndefiniteReal.DatumVec
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.IsSelfDualCLatFrame
@@ -15,8 +16,32 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Schroding
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TameHeckeIntegralUnitsEqResidueCharProduct
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsGlob
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.InclusionInjective
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 public import Mathlib.Analysis.Fourier.FiniteAbelian.PontryaginDuality
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -31,6 +56,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsInvariantForm
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TypePlacesLocalDatumBlockTriangularLaw
 
@@ -489,17 +517,8 @@ private theorem isThetaFunO_zero_twisted_operators : IsThetaFunO ψ S T (0 : WO 
 
 private theorem isThetaFunO_add_twisted_operators {f g : WO S T → ℂ} (hf : IsThetaFunO ψ S T f) (hg : IsThetaFunO ψ S T g) :
     IsThetaFunO ψ S T (f + g) := by
-  obtain ⟨U, hU, hUf⟩ := hf.level
-  obtain ⟨V, hV, hVg⟩ := hg.level
-  constructor
-  case quasi => intro γ w; simp only [Pi.add_apply, hf.quasi γ w, hg.quasi γ w, mul_add]
-  case level =>
-    refine ⟨U ⊓ V, ?_, fun u hu h0 => ?_⟩
-    · rw [AddSubgroup.coe_inf]; exact hU.inter hV
-    · rw [← GlobalTheory.SplitScalar.heisL_apply, map_add (f := _), GlobalTheory.SplitScalar.heisL_apply, GlobalTheory.SplitScalar.heisL_apply,
-        hUf u hu.1 h0, hVg u hu.2 h0]
-  case cont => exact hf.cont.add hg.cont
-  case smooth => intro k L hL hL0 w; exact (hf.smooth k L hL hL0 w).add (hg.smooth k L hL hL0 w)
+  intros
+  apply _root_.GlobalTheory.DownLift.GenFinite.theta_add <;> assumption
 
 private theorem isThetaFunO_smul_twisted_operators (c : ℂ) {f : WO S T → ℂ} (hf : IsThetaFunO ψ S T f) :
     IsThetaFunO ψ S T (c • f) := by

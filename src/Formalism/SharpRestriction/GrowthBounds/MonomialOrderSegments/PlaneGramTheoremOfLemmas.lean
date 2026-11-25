@@ -121,12 +121,7 @@ theorem Dm_nonneg' {p : ℕ} (hp : 2 ≤ p) (hr : 1 ≤ D.r) {C0 : ℝ} (h1 : 1 
   exact Finset.sum_nonneg fun j _ => by positivity
 
 theorem Dl_nonneg' {p : ℕ} (hp : 2 ≤ p) (hr : 1 ≤ D.r) {C0 : ℝ} (h1 : 1 ≤ C0) : 0 ≤ D.Dl p C0 := by
-  unfold Dl
-  have := D.eC_nonneg' hp hr h1
-  have h2 : (0 : ℝ) ≤ (D.r : ℝ) - 1 := by
-    have : (1 : ℝ) ≤ D.r := by exact_mod_cast hr
-    linarith
-  positivity
+  apply _root_.Formalism.MainNotions.PlaneGram.TwistData.Dl_nonneg <;> assumption
 
 theorem kapD_nonneg' {p : ℕ} (hp : 2 ≤ p) (hr : 1 ≤ D.r) : 0 ≤ D.kapD p := by
   unfold kapD

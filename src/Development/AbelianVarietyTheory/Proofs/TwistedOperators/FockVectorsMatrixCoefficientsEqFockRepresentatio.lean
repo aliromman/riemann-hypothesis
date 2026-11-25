@@ -5,9 +5,33 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AnalyticOnNh
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoverUpqClosureExpTopAndCartan
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockDerivedActionsTensorMembers
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.AnalyticOnNhdOrbitOfDerivSeqNormEq
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 public import Mathlib.Analysis.InnerProductSpace.Calculus
 import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -21,7 +45,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HasDerivAtLogCosh
 
 @[expose] public section
 
@@ -325,21 +353,7 @@ private theorem hasDerivAt_fockData_expt_smul {p q r s : ℕ} {T₀ : GrpData (p
     {T₂ : GrpData r s} (F : FockData T₀ T₁ T₂) {Y : Mat p q} (hY : Y ∈ upq p q) (w : Pol p q r s) (t : ℝ) :
     HasDerivAt (fun x : ℝ => F.π (T₁.expt (x • Y), 1) (F.ι w))
       (F.π (T₁.expt (t • Y), 1) (F.ι (fockAct1 p q r s Y w))) t := by
-  obtain ⟨-, hder, -⟩ := GlobalTheory.FockEmbExp.fock_derived p q r s T₀ T₁ T₂ F
-  have hmul : ∀ s t : ℝ, F.π (T₁.expt ((s + t) • Y), 1) = F.π (T₁.expt (s • Y), 1) * F.π (T₁.expt (t • Y), 1) := by
-    intro s t
-    rw [T₁.expt_add Y hY, ← map_mul, Prod.mk_mul_mk, mul_one]
-  have h1' : HasDerivAt (fun x : ℝ => F.π (T₁.expt (x • Y), 1) (F.ι w)) (F.ι (fockAct1 p q r s Y w)) (t - t) := by
-    rw [sub_self]
-    exact hder Y hY w
-  have h2 := ((F.π (T₁.expt (t • Y), 1)).restrictScalars ℝ).hasFDerivAt.comp_hasDerivAt t (h1'.comp_sub_const t t)
-  have hfun : (fun x : ℝ => F.π (T₁.expt (x • Y), 1) (F.ι w)) = fun x => F.π (T₁.expt (t • Y), 1)
-      (F.π (T₁.expt ((x - t) • Y), 1) (F.ι w)) := by
-    funext x
-    have hx : t + (x - t) = x := by ring
-    rw [← ContinuousLinearMap.mul_apply, ← hmul, hx]
-  rw [hfun]
-  exact h2
+  apply _root_.GlobalTheory.FockDecay.hasDerivAt_pi_at <;> assumption
 
 end Hilbert
 

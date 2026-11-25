@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.TransportedWeylLatticeHermitianDuality
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.Skeleton
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.ModLatticeAbsoluteValue
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.PositiveWeightHolds
@@ -84,26 +85,7 @@ theorem mem_localization_of_smul_mem' (p : Ideal (𝓞 E)) [p.IsPrime] (L : Subm
 
 theorem mem_of_locP (N : Submodule (𝓞 E) V) (x : V)
     (h : ∀ P : HeightOneSpectrum (𝓞 E), x ∈ (haveI := P.isPrime; Formalism.HermitianLatticesTheory.localization₂ P.asIdeal N)) : x ∈ N := by
-
-  let I : Ideal (𝓞 E) := Submodule.comap (LinearMap.toSpanSingleton (𝓞 E) V x) N
-  have hmem : ∀ r : 𝓞 E, r ∈ I ↔ r • x ∈ N := fun r => by
-    show (LinearMap.toSpanSingleton (𝓞 E) V x) r ∈ N ↔ r • x ∈ N
-    rw [LinearMap.toSpanSingleton_apply]
-  by_contra hx
-  have hIt : I ≠ ⊤ := by
-    intro hI
-    apply hx
-    have h1 : (1 : 𝓞 E) ∈ I := by rw [hI]; exact Submodule.mem_top
-    have h2 := (hmem 1).1 h1
-    rwa [one_smul] at h2
-  obtain ⟨M, hM, hIM⟩ := Ideal.exists_le_maximal I hIt
-  have hMb : M ≠ ⊥ := by
-    intro hb
-    rw [hb] at hM
-    exact NumberField.RingOfIntegers.not_isField E (Ring.isField_iff_maximal_bot.mpr hM)
-  obtain ⟨s, hs, hsx⟩ : ∃ s ∈ M.primeCompl, s • x ∈ N :=
-    h ⟨M, hM.isPrime, hMb⟩
-  exact hs (hIM ((hmem s).2 hsx))
+  apply _root_.GlobalTheory.TransDual.mem_of_forall_locP <;> assumption
 
 end Loc
 

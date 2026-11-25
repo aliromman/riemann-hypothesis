@@ -2,6 +2,7 @@ module
 
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdjointInverseTranslate.HkConjTranspose
 import Mathlib.Tactic.Linter.Style
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdjointInverseTranslate.OperatorsCommuteTranslationsOfLeftRight
 
 @[expose] public section
 
@@ -61,12 +62,7 @@ theorem lf_bvec_apply {n : ℕ} (j t : Fin n) : bvec j t = if t = j then 1 else 
 
 theorem lf_inUH_mul {n : ℕ} {H a b : Matrix (Fin n) (Fin n) ℂ} (ha : inUH H a) (hb : inUH H b) :
     inUH H (a * b) := by
-  have ha' : aᴴ * H * a = H := ha
-  have hb' : bᴴ * H * b = H := hb
-  show (a * b)ᴴ * H * (a * b) = H
-  rw [Matrix.conjTranspose_mul]
-  calc bᴴ * aᴴ * H * (a * b) = bᴴ * (aᴴ * H * a) * b := by simp only [Matrix.mul_assoc]
-    _ = H := by rw [ha', hb']
+  apply _root_.AAInvW.inUH_mul <;> assumption
 
 theorem lf_det_ne_zero (k r : ℕ) {g : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ}
     (hg : inUH (Hpk k r) g) : g.det ≠ 0 := by

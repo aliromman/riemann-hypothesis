@@ -516,9 +516,7 @@ theorem Vsp_bot (K : Type) [Field K] {n' m : ℕ} (lam0 : Fin n' → Fin (m + 1)
     · intro ha
       apply hs
       intro a b hab
-      have h1 := ha (Fin.rev_le_rev.2 hab)
-      simp only [Fin.rev_rev] at h1
-      exact neg_le_neg_iff.1 h1
+      simpa only [Fin.rev_rev, neg_le_neg_iff] using ha (Fin.rev_le_rev.2 hab)
   unfold Vsp tensorLat
   rw [Submodule.span_eq_bot]
   rintro _ ⟨F, hF, rfl⟩

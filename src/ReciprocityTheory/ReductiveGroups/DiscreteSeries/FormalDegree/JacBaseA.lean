@@ -454,10 +454,7 @@ theorem shc_pos (u : ℝ) : 0 < shc u := by
     · exact div_pos (Real.sinh_pos_iff.2 hu) hu
 
 theorem shc_neg (u : ℝ) : shc (-u) = shc u := by
-  unfold shc
-  by_cases h : u = 0
-  · simp [h]
-  · rw [if_neg (neg_ne_zero.2 h), if_neg h, Real.sinh_neg, neg_div_neg_eq]
+  apply _root_.ReciprocityTheory.ChartRestriction.DS.dpb_shc_neg <;> assumption
 
 section U
 variable {ε : Fin n → Bool} (y : PCoord ε → ℂ)

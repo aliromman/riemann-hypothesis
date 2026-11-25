@@ -651,9 +651,6 @@ namespace GlobalTheory.CompanionTheory.Ar.Sl.Reg
 
 section Helpers
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
-
 open ReciprocityTheory.ChartRestriction.G.Out in
 theorem exists_root_through {V : Type} [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]
     (G : Over (Sp V)) [GrpObj G] [IsCommMonObj G] [Smooth G.hom] [IsSeparated G.hom] [QuasiCompact G.hom]

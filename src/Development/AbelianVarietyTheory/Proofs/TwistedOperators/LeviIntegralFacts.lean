@@ -1,9 +1,36 @@
 module
 
+import Development.AbelianVarietyTheory.Definitions.Divisors.EqOfHasValueAtInfinite
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsSubquotientDetRepParInd
 public import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup
 import Development.AbelianVarietyTheory.Definitions.Foundations.SecondCountableAndT2LocalField
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsLocallyConstantModulus
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -16,6 +43,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -32,25 +60,7 @@ theorem _root_.GlobalTheory.SmGL.LeviInt.nabs_det_eq_one {k : Type} [Field k] [V
     [IsNonarchimedeanLocalField k] {n : Type} [Fintype n] [DecidableEq n] {g : GL n k}
     (hg : g ∈ _root_.GlobalTheory.SplitWeil.KO k n) :
     _root_.GlobalTheory.SplitWeil.nabs k (GeneralLinearGroup.det g) = 1 := by
-  obtain ⟨h1, h2⟩ := (_root_.GlobalTheory.SplitFlip.mem_KO_iff g).1 hg
-  have hdet : ∀ M : Matrix n n k, (∀ i j, M i j ∈ (valuation k).integer) →
-      M.det ∈ (valuation k).integer := by
-    intro M hM
-    rw [Matrix.det_apply]
-    refine sum_mem fun σ _ => ?_
-    rw [Units.smul_def]
-    exact zsmul_mem (prod_mem fun i _ => hM _ _) _
-  apply _root_.GlobalTheory.SmGL.nabs_eq_one
-  have hd1 : valuation k ((GeneralLinearGroup.det g : kˣ) : k) ≤ 1 := by
-    rw [← Valuation.mem_integer_iff, Matrix.GeneralLinearGroup.val_det_apply]
-    exact hdet _ h1
-  have hd2 : valuation k (((GeneralLinearGroup.det g)⁻¹ : kˣ) : k) ≤ 1 := by
-    rw [← map_inv, ← Valuation.mem_integer_iff, Matrix.GeneralLinearGroup.val_det_apply]
-    exact hdet _ h2
-  have hprod : valuation k ((GeneralLinearGroup.det g : kˣ) : k) *
-      valuation k (((GeneralLinearGroup.det g)⁻¹ : kˣ) : k) = 1 := by
-    rw [← map_mul, Units.mul_inv, map_one]
-  exact le_antisymm hd1 (hprod ▸ mul_le_of_le_one_right' hd2)
+  first | exact _root_.GlobalTheory.LGrp.nabs_det_of_mem_KO | exact @_root_.GlobalTheory.LGrp.nabs_det_of_mem_KO | apply _root_.GlobalTheory.LGrp.nabs_det_of_mem_KO <;> assumption
 
 
 open MeasureTheory Topology in

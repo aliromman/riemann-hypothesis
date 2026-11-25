@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FockPolynomialVectorBasisChangeEqSubstitution
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ColLieApply
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsStepWeil
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.PureTensorLIntertwine
@@ -8,7 +9,31 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PureTensorOM
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousOnAtTau
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.FockPolynomialVectorLaws
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.OmPureTensorOOfFinite
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -21,6 +46,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -35,17 +62,7 @@ open GlobalTheory.AdTh.SourceBasis GlobalTheory.OrientedHeis
 
 theorem unitMap_mul_mul {m n : ℕ} (B U : Matrix (Fin n) (Fin n) ℂ) (B' H : Matrix (Fin m) (Fin m) ℂ) (i : Fin m)
     (j : Fin n) : unitMap (B * U) (B' * H) i j = ∑ i', ∑ c, (H i' i * U⁻¹ j c) • unitMap B B' i' c := by
-  have e : H * Matrix.single i j (1 : ℂ) * U⁻¹ = ∑ i', ∑ c, (H i' i * U⁻¹ j c) • Matrix.single i' c (1 : ℂ) := by
-    conv_lhs => rw [Matrix.matrix_eq_sum_single (H * Matrix.single i j (1 : ℂ) * U⁻¹)]
-    refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => ?_
-    rw [Matrix.smul_single, smul_eq_mul, mul_one]
-    congr 1
-    rw [Matrix.mul_apply, Finset.sum_eq_single j (fun c _ hc => by simp [Matrix.mul_single_apply_of_ne, hc]) (by simp)]
-    simp
-  unfold unitMap
-  calc _ = B' * (H * Matrix.single i j (1 : ℂ) * U⁻¹) * B⁻¹ := by
-        rw [Matrix.mul_inv_rev]; simp only [Matrix.mul_assoc]
-    _ = _ := by simp only [e, Matrix.mul_sum, Matrix.sum_mul, Matrix.mul_smul, Matrix.smul_mul]
+  first | exact _root_.GlobalTheory.FockBaseChange.unitMap_mul | exact @_root_.GlobalTheory.FockBaseChange.unitMap_mul | apply _root_.GlobalTheory.FockBaseChange.unitMap_mul <;> assumption
 
 variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} {V W : HSp D}
 

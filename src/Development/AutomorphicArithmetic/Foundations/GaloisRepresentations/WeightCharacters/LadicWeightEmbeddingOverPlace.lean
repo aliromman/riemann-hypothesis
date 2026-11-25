@@ -1740,7 +1740,7 @@ private theorem isOpen_subgroupOf {E : Type} [Field E] [NumberField E] [IsCMFiel
 theorem twistBd_of : Twist → TwistBd := by
   intro hT E _ _ _ l _ ι a C hC ℓ hℓ W f X b hb
   classical
-  obtain ⟨C₀, hC₀, hf⟩ := UpperTheory.Gal.Gen.levelEx_holds E a W f
+  obtain ⟨C₀, hC₀, hf⟩ := _root_.UpperTheory.Gal.Gen.levelEx_pf E a W f
   have hHo := isOpen_subgroupOf hC hC₀
   haveI : CompactSpace C := isCompact_iff_compactSpace.1 hC.compact
   haveI : Finite (C ⧸ C₀.subgroupOf C) := Subgroup.quotient_finite_of_isOpen _ hHo

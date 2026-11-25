@@ -689,14 +689,7 @@ variable {D : Formalism.BasicNotions.D7} {u u' : D.what₂.Word} {F0 : FlagG (VS
 
 theorem omRep_repF (γ : TermDef.Term D u u' F0 what₂) :
     Rep γ.lam (lf D F0) (PD D γ.lam (lf D F0) u') γ.cls (repF γ) := by
-  unfold repF
-  split
-  · rename_i x hx
-    unfold nrep at hx
-    split_ifs at hx with h
-    cases hx
-    exact h.choose_spec.1
-  · exact ⟨(Quot.out γ.cls).2, Quot.out_eq _⟩
+  apply _root_.Formalism.L2.SG.Pf.FrameGlobalPatching.FStar.starRepF_rep <;> assumption
 
 variable (u u' F0 what₂)
 

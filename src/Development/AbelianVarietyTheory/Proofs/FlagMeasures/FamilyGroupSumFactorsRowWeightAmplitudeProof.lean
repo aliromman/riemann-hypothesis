@@ -1622,7 +1622,7 @@ theorem squaredGroupSum_classDoubleCoset_eq_rowWeight : ∀ (D : D7) (X : HidaSe
     have hJne : ‖Formalism.L2.SG.PackageTie.hsEmb (Jw Y u u' ν w1)‖ ≠ 0 := by
       intro h0
       obtain ⟨ρ1, U1, U1', hmv1⟩ := GlobalTheory.T.term_moves_to_baseFrames_up_to_unitriangular D X Y u u' hSt w1 F00 F'0 Fm.FP hZ hGv hBase t1 hat1'
-      obtain ⟨T, hT, hamp1⟩ := GlobalTheory.T.rowTerm_amplitude_eq_mass_mul_phase D X Y u u' hSt hk w1 F00 F'0 Fm.FP hZ hGv hBase G cc ν hνP t1 ρ1 U1 U1'
+      obtain ⟨T, hT, hamp1⟩ := _root_.GlobalTheory.AmpTerm.amp_eq_mass_phase D X Y u u' hSt hk w1 F00 F'0 Fm.FP hZ hGv hBase G cc ν hνP t1 ρ1 U1 U1'
         hmv1 hrel1 hpt1
       have he := hamp1 t1 1 1 rfl ⟨_root_.GlobalTheory.HL.NmlCoset.one_mem _, _root_.GlobalTheory.HL.NmlCoset.one_mem _, by simp⟩
       have hT0 : Formalism.L2.SG.PackageTie.hsEmb T = 0 := norm_eq_zero.1 (hT.trans h0)

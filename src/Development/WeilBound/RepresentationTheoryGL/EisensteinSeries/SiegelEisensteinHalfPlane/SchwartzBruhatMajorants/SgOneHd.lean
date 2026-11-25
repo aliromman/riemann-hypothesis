@@ -1358,16 +1358,7 @@ theorem conj_apply (t : Rˣ) (g : GL (ι ⊕ ι) R) (m n : ι ⊕ ι) :
 theorem det_two (i : ι) (hi : ∀ x, x = i) (M : Matrix (ι ⊕ ι) (ι ⊕ ι) R) :
     M.det = M (Sum.inl i) (Sum.inl i) * M (Sum.inr i) (Sum.inr i) -
       M (Sum.inl i) (Sum.inr i) * M (Sum.inr i) (Sum.inl i) := by
-  let e : Fin 2 ≃ ι ⊕ ι :=
-    { toFun := ![Sum.inl i, Sum.inr i]
-      invFun := Sum.elim (fun _ => 0) (fun _ => 1)
-      left_inv := fun a => by fin_cases a <;> rfl
-      right_inv := fun a => by
-        rcases a with a | a
-        · rw [hi a]; rfl
-        · rw [hi a]; rfl }
-  rw [← Matrix.det_submatrix_equiv_self e M, Matrix.det_fin_two]
-  rfl
+  apply _root_.GlobalTheory.CompanionTheory.RgEis.Cover.det_two <;> assumption
 
 theorem det_dg (i : ι) (hi : ∀ x, x = i) (x : Rˣ) :
     Matrix.GeneralLinearGroup.det (dg ι x) = x := by

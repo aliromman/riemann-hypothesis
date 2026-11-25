@@ -9,7 +9,31 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockHarmonicVa
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HarmonicPolynomialEqZeroOfFunctionStatement
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsGlob
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -22,6 +46,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StrictHenselianAcyclic
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ConjTupRefl
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsSplitOfMemAdmissibleConjugatePairPlaces
@@ -330,7 +356,7 @@ theorem mtLat_eq_span : ∀ (D : D7) (S T : HSp D) (B : Base S T), B.Good → �
         exact (HarmLattice.harmLat_fg_span D _ _ _ _ _ _ _ _ _ hB.wt (pq_le hB) hc
           (by infer_instance)).1)
       (fun γ g k P hP => Base.act_mem_coefLat hB.frame hc γ g k (Base.mem_St_of_mem_levJ k.2) hP)
-      (fun I F hF hi => GlobalTheory.T.linearIndependent_complex_of_subfield_coeffLattice D S T B hB K σ emb φ.range hc (Subfield.closure (φ.range : Set ℂ)) Subfield.subset_closure I F
+      (fun I F hF hi => _root_.GlobalTheory.PlaceIndep.linearIndependent_complex D S T B hB K σ emb φ.range hc (Subfield.closure (φ.range : Set ℂ)) Subfield.subset_closure I F
         (fun a g => hF a g trivial) (indep_closure hi))
       (fun i => finPt S (y i)) (fun g => by
         obtain ⟨c, ⟨γ, k, e⟩, -⟩ := hy.reps g
@@ -371,10 +397,6 @@ open GlobalTheory.PlaceRead
 open GlobalTheory.HeightCounting.Up (PrN)
 
 
-theorem _root_.GlobalTheory.T.thetaSeriesIntegralForms_eq_span_dedekindCoefRing : ∀ (D : D7) (S T : HSp D) (B : Base S T), B.Good → ∀ ψ : Twist D Circle, ψ.Good → B.admitted ψ.Q → ∀ (K : Type) [Field K] [NumberField K] (σ : K →+* ℂ) (emb : D.what₂.Tau → (D.host.E →+* K)) (R : Type) [CommRing R] [IsDedekindDomain R] (φ : R →+* ℂ), Function.Injective φ → IsCoefRing σ emb φ.range →
-  (∀ k : B.levJ ψ, ((B.levLam ψ k : ℂˣ) : ℂ) ∈ φ.range) → ∀ O : Subring ℂ, φ.range ≤ O →
-  B.mtLat σ emb O ψ = Submodule.span O (B.mtLat σ emb φ.range ψ : Set (Bridge.Gf S → PolF D T.rank S.rank)) := by
-  first | exact @GlobalTheory.FormsBaseChange.mtLat_eq_span
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ThetaSeriesIntegralFormsEqSpanDedekindCoefRingStatement =====

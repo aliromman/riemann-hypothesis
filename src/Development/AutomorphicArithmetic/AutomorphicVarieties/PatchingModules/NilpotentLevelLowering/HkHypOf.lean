@@ -1,5 +1,6 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwBernDom
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HkDefs
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HkDedekind
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.SwapOne
@@ -872,19 +873,7 @@ private theorem iw_le : iwC k n ⊤ ≤ KO k (Fin n) := by
   exact iwahori_le_KO k (Fin n)
 
 private theorem dom_fund {x : kˣ} (hx : IsUnif x) (m : ℕ) : Dom (fun j : Fin n => x ^ fund n m j) := by
-  have hx1 : valuation k (x : k) ≤ 1 := by
-    obtain ⟨p, -, hp⟩ := hx
-    rw [← hp]
-    exact p.2
-  intro j l hjl
-  have hjl' : (j : ℕ) ≤ (l : ℕ) := hjl
-  simp only [fund]
-  by_cases h1 : (l : ℕ) < m
-  · have h2 : (j : ℕ) < m := lt_of_le_of_lt hjl' h1
-    simp [h1, h2]
-  · by_cases h2 : (j : ℕ) < m
-    · simpa [h1, h2] using hx1
-    · simp [h1, h2]
+  apply _root_.dom_fund <;> assumption
 
 private theorem fund_split {T : Type} [CommGroup T] (x : T) (i : Fin n) : (fun j : Fin n => x ^ fund n ((i : ℕ) + 1) j)
     = Pi.mulSingle i x * (fun j : Fin n => x ^ fund n (i : ℕ) j) := by

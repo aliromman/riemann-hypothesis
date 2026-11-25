@@ -4,6 +4,31 @@ public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.OmegaP
 public import Mathlib.Basic.Complex.Basic
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FormResFormPullFormPull
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HodgePullHodgePull
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -110,17 +135,17 @@ private theorem secTrace_eq_sum {s : Z ⟶ Sp k} {s' : Y ⟶ Sp k} {c : Y ⟶ Z}
     (hU : IsAffineOpen U) (b' : Sec s' (c ⁻¹ᵁ U)) :
     secTrace s s' hU b' = ∑ m, secTrace (f := (W m).ι ≫ c) s ((W m).ι ≫ s') hU
       (appSec s' ((W m).ι ≫ s') (W m).ι (c ⁻¹ᵁ U) b') := by
-  letI := secAlg s s' c U
-  letI inst : ∀ m, Algebra (Sec s U) (Sec ((W m).ι ≫ s') (((W m).ι ≫ c) ⁻¹ᵁ U)) :=
+  let := secAlg s s' c U
+  let inst : ∀ m, Algebra (Sec s U) (Sec ((W m).ι ≫ s') (((W m).ι ≫ c) ⁻¹ᵁ U)) :=
     fun m ↦ secAlg s ((W m).ι ≫ s') ((W m).ι ≫ c) U
-  haveI := sec_finite (s := s) (s' := s') (f := c) hU
-  haveI := sec_etale (s := s) (s' := s') (f := c) hU
-  haveI := projective_of_etale (Sec s U) (Sec s' (c ⁻¹ᵁ U))
-  haveI : ∀ m, Module.Finite (Sec s U) (Sec ((W m).ι ≫ s') (((W m).ι ≫ c) ⁻¹ᵁ U)) :=
+  have := sec_finite (s := s) (s' := s') (f := c) hU
+  have := sec_etale (s := s) (s' := s') (f := c) hU
+  have := projective_of_etale (Sec s U) (Sec s' (c ⁻¹ᵁ U))
+  have : ∀ m, Module.Finite (Sec s U) (Sec ((W m).ι ≫ s') (((W m).ι ≫ c) ⁻¹ᵁ U)) :=
     fun m ↦ sec_finite (s := s) (s' := (W m).ι ≫ s') (f := (W m).ι ≫ c) hU
-  haveI : ∀ m, Algebra.Etale (Sec s U) (Sec ((W m).ι ≫ s') (((W m).ι ≫ c) ⁻¹ᵁ U)) :=
+  have : ∀ m, Algebra.Etale (Sec s U) (Sec ((W m).ι ≫ s') (((W m).ι ≫ c) ⁻¹ᵁ U)) :=
     fun m ↦ sec_etale (s := s) (s' := (W m).ι ≫ s') (f := (W m).ι ≫ c) hU
-  haveI : ∀ m, Module.Projective (Sec s U) (Sec ((W m).ι ≫ s') (((W m).ι ≫ c) ⁻¹ᵁ U)) :=
+  have : ∀ m, Module.Projective (Sec s U) (Sec ((W m).ι ≫ s') (((W m).ι ≫ c) ⁻¹ᵁ U)) :=
     fun m ↦ projective_of_etale _ _
   let r : ∀ m, Sec s' (c ⁻¹ᵁ U) →ₐ[Sec s U] Sec ((W m).ι ≫ s') (((W m).ι ≫ c) ⁻¹ᵁ U) := fun m ↦
     { appSec s' ((W m).ι ≫ s') (W m).ι (c ⁻¹ᵁ U) with
@@ -207,8 +232,8 @@ private theorem hodgeTrace_eq_sum {s : Z ⟶ Sp k} {s' : Y ⟶ Sp k} {c : Y ⟶ 
     (hg : ∀ m, ((W m).ι ≫ c) ≫ s = (W m).ι ≫ s') (a b : ℕ) (w : hodgeH s' a b) :
     hodgeTrace h a b w = ∑ m, hodgeTrace (f := (W m).ι ≫ c) (hg m) a b
       (hodgePull (f := (W m).ι) rfl a b w) := by
-  letI := algΓ s
-  letI := algΓ s'
+  let := algΓ s
+  let := algΓ s'
   obtain ⟨y, rfl⟩ := (coh.pushforwardEquiv k (appTop_algebraMap h) (Omega s' a) b).surjective w
   have e1 : hodgeTrace h a b (coh.pushforwardEquiv k (appTop_algebraMap h) (Omega s' a) b y) =
       cohOn.map k (omegaTrace h a) ⊤ b y :=
@@ -216,7 +241,7 @@ private theorem hodgeTrace_eq_sum {s : Z ⟶ Sp k} {s' : Y ⟶ Sp k} {c : Y ⟶ 
       ((coh.pushforwardEquiv k (appTop_algebraMap h) (Omega s' a) b).symm_apply_apply y)
   rw [e1, omegaTrace_eq_sum h W hd hc hg a, cohOn.map_sum_hom, LinearMap.sum_apply]
   refine Finset.sum_congr rfl fun m _ ↦ ?_
-  letI := algΓ ((W m).ι ≫ s')
+  let := algΓ ((W m).ι ≫ s')
   rw [cohOn.map_comp, LinearMap.comp_apply]
   change _ = cohOn.map k (omegaTrace (hg m) a) ⊤ b
     ((coh.pushforwardEquiv k (appTop_algebraMap (hg m)) (Omega ((W m).ι ≫ s') a) b).symm _)
@@ -240,6 +265,6 @@ end UpperTheory.TrSum
 theorem UpperTheory.Cb.hodgeTrace_eq_sum_clopen_decomposition :
     ∀ (Z Y : Scheme.{0}) (s : Z ⟶ Sp ℂ) (s' : Y ⟶ Sp ℂ) (c : Y ⟶ Z) [IsFinite c] [Etale c] (h : c ≫ s = s') (M : Type) [Fintype M] (W : M → Y.Opens), (∀ i j, i ≠ j → W i ⊓ W j = ⊥) → iSup W = ⊤ → ∀ (hf : ∀ m, IsFinite ((W m).ι ≫ c)) (he : ∀ m, Etale ((W m).ι ≫ c)) (a b : ℕ) (w : hodgeH s' a b), hodgeTrace h a b w = ∑ m, (haveI := hf m; haveI := he m; hodgeTrace (f := (W m).ι ≫ c) (s' := (W m).ι ≫ s') (by rw [Category.assoc, h]) a b (hodgePull (f := (W m).ι) rfl a b w)) := by
   intro Z Y s s' c _ _ h M _ W hd hc hf he a b w
-  haveI := hf
-  haveI := he
+  have := hf
+  have := he
   exact UpperTheory.TrSum.hodgeTrace_eq_sum h W hd hc _ a b w

@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DKerHasCompactSupport
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LinMulti
 public import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ISmulOneMemUnitaryLie
 public import Mathlib.Analysis.Calculus.InverseFunctionTheorem.ContDiff
@@ -8,9 +9,34 @@ public import Development.AbelianVarietyTheory.BlockTheory.SiegelWeilLocal.Orbit
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LayerProd
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LowestKTypeInfinitesimalCharLargeGap
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.SmoothOfMemLowKSub
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -24,6 +50,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LowestKTypeMultiplicityOneLargeGaps
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Linter.HaveILetI
@@ -62,19 +91,7 @@ theorem mul_mem_UH {G a b : Matrix (Fin n) (Fin n) ℂ} (ha : a ∈ Formalism.Qu
 
 theorem exp_mem {G X : Matrix (Fin n) (Fin n) ℂ} (hG : IsUnit G) (hX : X ∈ lieOf G) (t : ℝ) :
     NormedSpace.exp (t • X) ∈ Formalism.QuantumDeterminants.UH G := by
-  have hX0 : Xᴴ * G + G * X = 0 := hX
-  show (NormedSpace.exp (t • X))ᴴ * G * NormedSpace.exp (t • X) = G
-  have hd : IsUnit G.det := (Matrix.isUnit_iff_isUnit_det G).1 hG
-  have h1 : (t • X)ᴴ = G * (-(t • X)) * G⁻¹ := by
-    have h2 : Xᴴ = G * (-X) * G⁻¹ := by
-      rw [Matrix.mul_neg, ← eq_neg_of_add_eq_zero_left hX0, Matrix.mul_assoc, Matrix.mul_nonsing_inv _ hd,
-        Matrix.mul_one]
-    rw [conjTranspose_smul, h2]
-    simp
-  rw [← Matrix.exp_conjTranspose, h1, Matrix.exp_conj _ _ hG, Matrix.exp_neg]
-  have hu : IsUnit (NormedSpace.exp (t • X)).det := (Matrix.isUnit_iff_isUnit_det _).1 (Matrix.isUnit_exp _)
-  rw [Matrix.mul_assoc (G * _), Matrix.nonsing_inv_mul _ hd, Matrix.mul_one, Matrix.mul_assoc,
-    Matrix.nonsing_inv_mul _ hu, Matrix.mul_one]
+  apply _root_.GlobalTheory.SmLinSub.exp_mem <;> assumption
 
 theorem oneProd_mem {G : Matrix (Fin n) (Fin n) ℂ} (hG : IsUnit G) :
     ∀ {d : ℕ} (Y : Fin d → Matrix (Fin n) (Fin n) ℂ), (∀ i, Y i ∈ lieOf G) → ∀ t : Fin d → ℝ,

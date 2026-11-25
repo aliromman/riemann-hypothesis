@@ -1,5 +1,6 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.FrobeniusSmoothVectors.AlgTwist
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight
 public import Mathlib.RingTheory.Ideal.BigOperators
@@ -21,23 +22,7 @@ open IsLocalRing Matrix UpperTheory.V.Alg UpperTheory.V.U3 UpperTheory.V.Fr
 
 private theorem jconj_apply {R : Type} [CommRing R] {n : ℕ} (M : Matrix (Fin n) (Fin n) R) (i j : Fin n) :
     (Jmat (R := R) n * Mᵀ * Jmat (R := R) n) i j = M j.rev i.rev := by
-  have h1 : ∀ k, (Jmat (R := R) n * Mᵀ) i k = M k i.rev := by
-    intro k
-    rw [Matrix.mul_apply, Finset.sum_eq_single i.rev]
-    · simp [Jmat]
-    · intro b _ hb
-      simp [Jmat, hb]
-    · simp
-  rw [Matrix.mul_apply, Finset.sum_eq_single j.rev]
-  · rw [h1]
-    simp [Jmat]
-  · intro b _ hb
-    have : j ≠ b.rev := by
-      intro h
-      apply hb
-      rw [h, Fin.rev_rev]
-    simp [Jmat, this]
-  · simp
+  apply _root_.J_apply <;> assumption
 
 theorem UpperTheory.V.Fr.pr_norm2 :
     ∀ (O : Type) [CommRing O] [IsLocalRing O], ∀ (C' : Type) [CommRing C'] [Algebra O C'] [IsCO O C'] (C : Type) [CommRing C] [Algebra O C] (p : C' →ₐ[O] C) (n : ℕ) (Z : Matrix (Fin n) (Fin n) C'), maximalIdeal C' * RingHom.ker p = ⊥ → RingHom.ker p ≤ maximalIdeal C' → thetaLie Z = Z → (∀ i j, i ≠ j → p (Z i j) = 0) → (∀ i j, i ≠ j → res O C' (Z i i) ≠ res O C' (Z j j)) → ∃ h : GL (Fin n) C', (h : Matrix (Fin n) (Fin n) C').map p = 1 ∧ theta h = h ∧ ∀ i j, i ≠ j → ((h : Matrix (Fin n) (Fin n) C') * Z * ((h⁻¹ : GL (Fin n) C') : Matrix (Fin n) (Fin n) C')) i j = 0 := by

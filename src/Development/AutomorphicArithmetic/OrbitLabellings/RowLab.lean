@@ -6,25 +6,9 @@ public import Formalism.LocalToGlobal.Divisibility.Numbers
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsMulInvolutionAddOneMemPow
 public import Formalism.LocalToGlobal.CharacterGerms.CartesianBoundOnCurves
 public import Formalism.LocalToGlobal.CharacterGerms.RowTieLab
-import Mathlib.Algebra.Order.Star.Real
 public import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
 public import Mathlib.NumberTheory.NumberField.Discriminant.Different
-import Mathlib.RingTheory.KrullDimension.PID
-import Mathlib.RingTheory.Valuation.Integral
-import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Mathlib.NumberTheory.NumberField.Discriminant.Basic

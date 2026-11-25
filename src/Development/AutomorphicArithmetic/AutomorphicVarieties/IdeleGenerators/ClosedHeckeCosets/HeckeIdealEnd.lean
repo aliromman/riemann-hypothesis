@@ -1,11 +1,35 @@
 module
 
+import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.EulerFactorBounds.FrobeniusConjugateInertia.FrobConjIne
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.Adelise
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.HolomorphicIrreducibility.UopSum
 public import GroundTheory.GlobalFields.LocalAtPlace
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.WeightChange
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsUnitaryOfCharIff
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.DcSumEqOfMk
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -18,6 +42,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.FiniteCosetsInDoset
 import Formalism.SatakeDualWeyl.KpqSubgroupCompact
 import Mathlib.Algebra.Order.Star.Int
@@ -375,18 +401,7 @@ theorem mem_iff (v : Pl ℚ) (n : ℕ) : (n : 𝓞 ℚ) ∈ v.asIdeal ↔ normV 
   exact Ideal.mul_mem_right _ _ (Ideal.absNorm_mem _)
 
 theorem normV_prime (v : Pl ℚ) : (normV v).Prime := by
-  have h1 : 1 < normV v := by
-    rw [normV_eq]
-    exact NumberField.HeightOneSpectrum.one_lt_absNorm v
-  refine Nat.prime_def.2 ⟨h1, fun m hm => ?_⟩
-  obtain ⟨c, hc⟩ := hm
-  have h2 := (mem_iff v _).2 dvd_rfl
-  rw [hc, Nat.cast_mul] at h2
-  rcases v.isPrime.mem_or_mem h2 with h | h
-  · exact Or.inr (Nat.dvd_antisymm ⟨c, hc⟩ ((mem_iff v _).1 h))
-  · have h3 := Nat.dvd_antisymm (Dvd.intro_left m hc.symm) ((mem_iff v _).1 h)
-    rw [h3] at hc
-    exact Or.inl (Nat.eq_of_mul_eq_mul_right (by omega) (hc.symm.trans (one_mul _).symm))
+  apply _root_.UpperTheory.V.Z.Kato.Nb.normV_prime <;> assumption
 
 theorem mem_iff_eq (v : Pl ℚ) {l : ℕ} (hl : l.Prime) : (l : 𝓞 ℚ) ∈ v.asIdeal ↔ normV v = l := by
   rw [mem_iff, Nat.prime_dvd_prime_iff_eq (normV_prime v) hl]

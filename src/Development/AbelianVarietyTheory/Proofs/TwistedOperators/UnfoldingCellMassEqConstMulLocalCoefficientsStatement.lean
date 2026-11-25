@@ -22,7 +22,31 @@ import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.PeriodIdea
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagonalBlockDetBlockTriangular
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemElt
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -35,11 +59,19 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealLineOfPeriodsOnLine
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WittAnisotropicGroupNormalizesFlagUnipotent
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WittAnisotropicProjectionUnitaryInvEq
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdelicUnitaryTopology
@@ -309,18 +341,7 @@ variable {D : D7}
 
 theorem eq_zero_of_places {e : AE D} {P : Finset (Pl D.host.E)} (he : IsIdemSum e P) {a : AE D}
     (ha : (e + cA D e) * a = a) (h1 : ∀ w ∈ P, piAt w a = 0) (h2 : ∀ w ∈ P, piAt w (cA D a) = 0) : a = 0 := by
-  obtain ⟨e0, -, e2⟩ := GlobalTheory.FunObj.Comparison₂.cpt_idemSum he
-  replace e2 : ∀ w ∉ P, piAt w e = 0 := e2
-  have key : ∀ x : AE D, (∀ w ∈ P, piAt w x = 0) → e * x = 0 := fun x hx =>
-    ae_ext (by rw [map_mul, e0, zero_mul, map_zero]) fun w => by
-      change piAt w (e * x) = piAt w 0
-      rw [map_mul, map_zero]
-      by_cases h : w ∈ P
-      · rw [hx w h, mul_zero]
-      · rw [e2 w h, zero_mul]
-  have h3 := congrArg (cA D) (key _ h2)
-  rw [map_mul, SeeSaw.cA_cA, map_zero] at h3
-  rw [← ha, add_mul, key a h1, h3, add_zero]
+  apply _root_.GlobalTheory.PrLevel.ae_zero <;> assumption
 
 theorem adj_blk (S : HSp D) (g : GA D S) {p q : ℕ} (J : Mx D S.rank p) (J' : Mx D S.rank q) :
     adj (blk (HMul.hMul (adj J) (gA S)) (mt S g - 1) J') = blk (HMul.hMul (adj J') (gA S)) (mt S g⁻¹ - 1) J := by
