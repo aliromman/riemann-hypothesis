@@ -87,8 +87,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechHyperCohomologyCoverRefinement
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CechDR
 
 theorem restrict_cover_affine_bijective : ∀ (R : Type) [CommRing R] (X : Scheme.{0}) (s : X ⟶ Sp R) (J : Type) (U : J → X.Opens), ⨆ i, U i = ⊤ → Function.Bijective (pullHyp1 (CoefMap.restrict (OAff s) (Monotone.functor (f := (Subtype.val : {V : X.affineOpens // ∃ i, V.1 ≤ U i} → X.affineOpens)) fun _ _ h ↦ h).op)) := by
@@ -333,8 +331,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BijectiveLiftSemiMOm
-
-set_option autoImplicit false
 
 
 open TensorProduct GlobalTheory.CechDR GlobalTheory.DeRham
@@ -864,8 +860,6 @@ theorem _root_.GlobalTheory.T.primitiveCrystalline_baseChange_nilpotent_thickeni
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PTaylor0
-
-set_option autoImplicit false
 
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj Filter Topology TopologicalSpace TensorProduct

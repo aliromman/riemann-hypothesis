@@ -55,8 +55,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MonoSpMapRin
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsBasisNear
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.LieLocFrame
 
@@ -124,8 +122,6 @@ end GlobalTheory.LieLocFrame
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAffineEigenframeFlag
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory Limits NumberField ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.BasicNotions Formalism.L2.Pj GlobalTheory.Toroidal GlobalTheory.Cartier GlobalTheory.ShFam GlobalTheory.ShFam.BdArc Filter Topology

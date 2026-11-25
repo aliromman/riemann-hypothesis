@@ -64,8 +64,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.DeRhamFormTraceProjectionFormula
 
-set_option autoImplicit false
-
 
 open GlobalTheory.W1 GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 

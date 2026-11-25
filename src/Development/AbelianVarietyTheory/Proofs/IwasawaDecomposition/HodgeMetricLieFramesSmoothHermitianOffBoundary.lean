@@ -56,7 +56,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsStalkF
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.BasicNotions Formalism.L2.Pj GlobalTheory GlobalTheory.Toroidal GlobalTheory.ShFam GlobalTheory.ProjVar GlobalTheory.FlagBundle GlobalTheory.LieBase GlobalTheory.CxPts GlobalTheory.Cartier
 open Filter Topology
 open scoped Matrix
-set_option autoImplicit false
 
 namespace GlobalTheory.LieBase.GramSmooth
 
@@ -198,8 +197,6 @@ theorem GlobalTheory.LieBase.cInfAt_gramOf : ∀ (E : Type) [Field E] [NumberFie
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HodgeMetricLieFramesSmoothHermitianOffBoundary
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory Limits NumberField Matrix

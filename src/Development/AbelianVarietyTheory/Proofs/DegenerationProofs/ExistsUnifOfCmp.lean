@@ -107,8 +107,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 open GlobalTheory.LN
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.UnifDescent
 

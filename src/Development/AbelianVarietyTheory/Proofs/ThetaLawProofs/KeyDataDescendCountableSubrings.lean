@@ -294,8 +294,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KeyDataDescendCountableSubrings
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.KeyCountableDescent
 

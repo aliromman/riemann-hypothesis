@@ -49,8 +49,6 @@ import Development.AbelianVarietyTheory.Definitions.TwoChartAtlas.AdditionLawSec
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.InvariantPolyOperatorCopiesTransportedLaw
 
-set_option autoImplicit false
-
 
 open MvPowerSeries Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.TB
 open ReciprocityTheory.ChartRestriction.G.TB.WickVanishing GlobalTheory.ChartTrans GlobalTheory.NabCol

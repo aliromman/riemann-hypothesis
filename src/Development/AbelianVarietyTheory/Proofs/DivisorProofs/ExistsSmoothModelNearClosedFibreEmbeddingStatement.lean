@@ -647,7 +647,7 @@ theorem affineSpace_smooth (S : Scheme.{0}) (n : ℕ) : Smooth (𝔸(Fin n; S) �
       HasRingHomProperty.Spec_iff (P := @SmoothOfRelativeDimension n)]
     refine RingHom.locally_of RingHom.isStandardSmoothOfRelativeDimension_respectsIso _ ?_
     exact (RingHom.isStandardSmoothOfRelativeDimension_algebraMap n).2
-      (_root_.GlobalTheory.isStandardSmoothOfRelativeDimension_mvPolynomial_fin (ULift ℤ) n)
+      (Algebra.IsStandardSmoothOfRelativeDimension.mvPolynomial_fin (R := ULift ℤ) (n := n))
   exact SmoothOfRelativeDimension.smooth n _
 
 end GlobalTheory.Mum.EtChart

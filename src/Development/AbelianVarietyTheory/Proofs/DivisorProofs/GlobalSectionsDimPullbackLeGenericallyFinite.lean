@@ -70,7 +70,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace Limits Filter
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier
 
-set_option autoImplicit false
 
 namespace GlobalTheory.FunctionFieldCoords
 
@@ -135,8 +134,6 @@ theorem GlobalTheory.functionField_coords : ∀ (M W : Scheme.{0}) [IsIntegral M
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalDenominator
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite
@@ -273,7 +270,6 @@ open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOpenTraceCoefficientsNonvanishing
 
-set_option autoImplicit false
 
 namespace GlobalTheory.ProperDenom
 
@@ -399,7 +395,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankSectionsPullbackLeMulTwistDominant
 
-set_option autoImplicit false
 
 namespace GlobalTheory.Cartier.PullCount
 
@@ -534,8 +529,6 @@ end GlobalTheory.Cartier.PullCount
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GlobalSectionsDimPullbackLeGenericallyFinite
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.GlobalSectionsPullback

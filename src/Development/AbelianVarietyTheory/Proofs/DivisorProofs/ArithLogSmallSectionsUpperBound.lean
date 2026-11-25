@@ -157,8 +157,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EncardSeminormBallLePowMulSmaller
 open GlobalTheory GlobalTheory.VolBr
 
-set_option autoImplicit false
-
 namespace GlobalTheory.VolBr
 
 theorem finrank_span_finset_le_of_indep {G : Type} [AddCommGroup G] [IsAddTorsionFree G] (T : Finset G) (r : ℕ)
@@ -501,8 +499,6 @@ open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier Glo
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FubiniStudySubfamilyLeShiftFubiniStudyFamily
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HSNef
 
@@ -614,8 +610,6 @@ end GlobalTheory.HSNef
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RankLeGeometricDegreeOfIsNef
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HSNef.RankNef
 
@@ -733,8 +727,6 @@ end GlobalTheory.HSNef
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BoxFamilyMovingPartsChainBound
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HSNef
@@ -869,8 +861,6 @@ open Formalism.BasicNotions.DV Formalism.MainNotions.WeightThresholdDefs GlobalT
 open Formalism.MainNotions.DIV.Cons (intO)
 open GlobalTheory.ArLieBase
 
-set_option autoImplicit false
-
 namespace GlobalTheory.BlowArith
 
 theorem exists_isArithVar_effCartier_isIso (k : Type) [CommRing k] (X : Scheme.{0}) (p : X ⟶ Sp k)
@@ -953,8 +943,6 @@ end GlobalTheory.HSNef
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBlowupModelRegularFunctionOrInverse
-
-set_option autoImplicit false
 
 namespace GlobalTheory.RegOrInvModel
 
@@ -1109,8 +1097,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBirationalModelIdAndComp
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology
@@ -1306,8 +1292,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeometricDegreePullBirationalModel
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HSNef
 
@@ -1357,8 +1341,6 @@ open NumberField MvPolynomial Filter Topology Formalism.BasicNotions Formalism.M
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.ArInt
 open scoped Classical
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CovTest.GeoSwap
 
@@ -1387,8 +1369,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RatFnFamilySmallPullbackBirationalModel
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HSNef
 
@@ -1430,8 +1410,6 @@ end GlobalTheory.HSNef
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NefHermitianSmallSectionsKeyInequality
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HSNefCore
@@ -1501,8 +1479,6 @@ end GlobalTheory.HSNefCore
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmallSectionsPairSumRatFnFamilyTensor
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HSNef

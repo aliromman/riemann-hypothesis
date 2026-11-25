@@ -44,8 +44,6 @@ public import Mathlib.Algebra.MvPolynomial.Funext
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.G.PullbackSections

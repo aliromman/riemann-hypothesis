@@ -279,11 +279,6 @@ theorem relIndex_smul_ne_zero (N : Submodule (𝓞 K) M) (hN : N.FG) (d : 𝓞 K
 private theorem absNorm_eq_index_dual_family_counting (I : Ideal (𝓞 K)) : Ideal.absNorm I = I.toAddSubgroup.index := by
   rw [absNorm_eq_card_quotient, card_quotient_eq_index]
 
-private theorem relIndex_mul_relIndex_of_le_of_le {G : Type*} [AddGroup G] {H J L : AddSubgroup G} (h1 : H ≤ J) (h2 : J ≤ L) :
-    H.relIndex J * J.relIndex L = H.relIndex L := by
-  first
-  | exact AddSubgroup.relIndex_mul_relIndex H J L h1 h2
-
 theorem relIndex_principal (N : Submodule (𝓞 K) M) (hN : N.FG) (n : ℕ) (ι : (Fin n → 𝓞 K) →ₗ[𝓞 K] M)
     (hι : Function.Injective ι) (hιN : LinearMap.range ι ≤ N) (d : 𝓞 K) (hd : d ≠ 0)
     (hdN : Ideal.span {d} • N ≤ LinearMap.range ι) (π : 𝓞 K) (hπ : π ≠ 0) :
@@ -297,8 +292,8 @@ theorem relIndex_principal (N : Submodule (𝓞 K) M) (hN : N.FG) (n : ℕ) (ι 
     first
     | exact Submodule.smul_mono le_rfl hιN hx
   have hAB : (Ideal.span {π} • N).toAddSubgroup ≤ N.toAddSubgroup := fun x hx => Submodule.smul_le_right hx
-  have e1 := relIndex_mul_relIndex_of_le_of_le hDC hCB
-  have e2 := relIndex_mul_relIndex_of_le_of_le hDA hAB
+  have e1 := AddSubgroup.relIndex_mul_relIndex _ _ _ hDC hCB
+  have e2 := AddSubgroup.relIndex_mul_relIndex _ _ _ hDA hAB
   have e3 : (Ideal.span {π} • LinearMap.range ι).toAddSubgroup.relIndex (Ideal.span {π} • N).toAddSubgroup =
       (LinearMap.range ι).toAddSubgroup.relIndex N.toAddSubgroup := by
     rw [smul_toAddSubgroup π (LinearMap.range ι), smul_toAddSubgroup π N,
@@ -307,7 +302,7 @@ theorem relIndex_principal (N : Submodule (𝓞 K) M) (hN : N.FG) (n : ℕ) (ι 
     | rw [AddSubgroup.comap_map_eq_self_of_injective (smul_inj π hπ)]
   have hCB0 : (LinearMap.range ι).toAddSubgroup.relIndex N.toAddSubgroup ≠ 0 := by
     have hdC : (Ideal.span {d} • N).toAddSubgroup ≤ (LinearMap.range ι).toAddSubgroup := fun x hx => hdN hx
-    have e4 := relIndex_mul_relIndex_of_le_of_le hdC hCB
+    have e4 := AddSubgroup.relIndex_mul_relIndex _ _ _ hdC hCB
     intro h0
     rw [h0, mul_zero] at e4
     exact relIndex_smul_ne_zero N hN d hd e4.symm
@@ -418,7 +413,7 @@ private theorem relIndex_smul_le_absNorm_pow_of_hDep (n k : ℕ) : ∀ (𝔞 : I
       rw [ideal_mul_smul_submodule 𝔭 𝔟 N]
       have hle1 : (𝔭 • 𝔟 • N).toAddSubgroup ≤ (𝔟 • N).toAddSubgroup := fun x hx => Submodule.smul_le_right hx
       have hle2 : (𝔟 • N).toAddSubgroup ≤ N.toAddSubgroup := fun x hx => Submodule.smul_le_right hx
-      rw [← relIndex_mul_relIndex_of_le_of_le hle1 hle2, mul_pow]
+      rw [← AddSubgroup.relIndex_mul_relIndex _ _ _ hle1 hle2, mul_pow]
       exact Nat.mul_le_mul
         (relIndex_prime_le 𝔭 n (𝔟 • N) (fg_smul 𝔟 N hN) (hD.mono Submodule.smul_le_right))
         (ih 𝔟 hbk h𝔟0 N hN hD)
@@ -447,7 +442,7 @@ theorem relIndex_eq (n : ℕ) (𝔞 : Ideal (𝓞 K)) (h𝔞 : 𝔞 ≠ ⊥) (N 
   have hle2 : (𝔞 • N).toAddSubgroup ≤ N.toAddSubgroup := fun x hx => Submodule.smul_le_right hx
   have hprod : (𝔟 • 𝔞 • N).toAddSubgroup.relIndex (𝔞 • N).toAddSubgroup *
       (𝔞 • N).toAddSubgroup.relIndex N.toAddSubgroup = Ideal.absNorm 𝔟 ^ n * Ideal.absNorm 𝔞 ^ n := by
-    rw [relIndex_mul_relIndex_of_le_of_le hle1 hle2, ← ideal_mul_smul_submodule, ← h𝔟',
+    rw [AddSubgroup.relIndex_mul_relIndex _ _ _ hle1 hle2, ← ideal_mul_smul_submodule, ← h𝔟',
       relIndex_principal N hN n ι hι hιN d hd hdN π hπ0, ← Ideal.absNorm_span_singleton, h𝔟',
       map_mul, mul_pow]
   have hB : 0 < Ideal.absNorm 𝔟 ^ n :=

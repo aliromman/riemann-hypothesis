@@ -63,7 +63,6 @@ import Mathlib.RingTheory.HopfAlgebra.Basic
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.StepA
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -139,7 +138,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.MkDat
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -177,7 +175,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.SurjOfCore
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -245,7 +242,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.CastTRfl
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -345,8 +341,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.GenPb
 
-set_option autoImplicit false
-
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris
 
@@ -401,7 +395,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.T2a
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -508,7 +501,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.RhsF
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -582,7 +574,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.Tgt
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -684,7 +675,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.OntoOf3Pf
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

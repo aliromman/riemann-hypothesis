@@ -93,8 +93,6 @@ import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.FirstChernClassMemHodgeFiltration
 
-set_option autoImplicit false
-
 
 open CategoryTheory
 
@@ -511,7 +509,6 @@ section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecompositi
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry Polynomial DividedPowers GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
 
@@ -844,7 +841,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PowDvdFactorialMul
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry Polynomial DividedPowers GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
@@ -1029,7 +1025,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PreimageOpenTopOfJacobsonSurjection
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory AlgebraicGeometry Polynomial DividedPowers GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B

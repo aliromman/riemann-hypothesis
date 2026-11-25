@@ -67,8 +67,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.ExistsFilEqBot
 
-set_option autoImplicit false
-
 
 open DividedPowers GlobalTheory.Cris GlobalTheory.PDA
 
@@ -187,13 +185,13 @@ theorem isDPMorphism_sup (κ : DividedPowers I) (δ : DividedPowers J) (f : R �
 end FubiniStudyChowHeightFormula₂.Adr
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.IsDPMorphismId
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 
 open CategoryTheory AlgebraicGeometry DividedPowers
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.PDA
+
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.IsDPMorphismId
 
 namespace FubiniStudyChowHeightFormula₂.Adr
 
@@ -432,12 +430,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.ExistsAdjOne
 
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry DividedPowers
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.PDA
-
 namespace FubiniStudyChowHeightFormula₂.Adr
 
 variable {R : Type} [CommRing R] {I : Ideal R} {X : Scheme.{0}} {κ : DividedPowers I} {s : X ⟶ Sp R}
@@ -591,24 +583,12 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.ExistsAdj
 
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry DividedPowers
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.PDA
-
 namespace FubiniStudyChowHeightFormula₂.Adr
 
 end FubiniStudyChowHeightFormula₂.Adr
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.IsNilpotentOfIsNilDP
-
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry DividedPowers
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.PDA
 
 namespace FubiniStudyChowHeightFormula₂.Adr
 
@@ -881,12 +861,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.TagIso
 
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry DividedPowers
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.PDA
-
 namespace FubiniStudyChowHeightFormula₂.Adr
 
 universe v u v' u' v'' u''
@@ -1116,12 +1090,6 @@ end FubiniStudyChowHeightFormula₂.Adr
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.CrystallineDeRham
-
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry DividedPowers
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.PDA
 
 namespace FubiniStudyChowHeightFormula₂.Adr
 

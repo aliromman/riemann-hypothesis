@@ -54,8 +54,6 @@ open NumberField IsDedekindDomain
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormLeOneIffIntegralAtPadicEmbeddingPlace
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FrameRead
 
 theorem norm_map_le_one_of_isIntegral_int {F C : Type} [CommRing F] [NormedField C] [IsUltrametricDist C] (f : F →+* C) {x : F}

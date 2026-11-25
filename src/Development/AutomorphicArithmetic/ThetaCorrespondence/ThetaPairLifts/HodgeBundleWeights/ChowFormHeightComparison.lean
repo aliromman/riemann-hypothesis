@@ -116,8 +116,6 @@ import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.Assembly
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HomogeneousNonvanishing.VuSelfA
 
-set_option autoImplicit false
-
 
 open MvPolynomial NumberField MeasureTheory GlobalTheory.ChowHt GlobalTheory.HeightUnique ReciprocityTheory.MultiplicativeHeights
 
@@ -199,8 +197,6 @@ end PositivityTheory.UnitarySelfGeneration.FrameHeightScaling
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HomogeneousNonvanishing.VuSelfB
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace
@@ -850,8 +846,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.HomogeneousNonvanishing.MulEqOneOfComb
 
-set_option autoImplicit false
-
 open CategoryTheory AlgebraicGeometry TopologicalSpace NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
@@ -926,8 +920,6 @@ end PositivityTheory.UnitarySelfGeneration.UnitProductCombination
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.HomogeneousNonvanishing.ValFFromSpecStalk
-
-set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -1217,8 +1209,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.DescEval
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace NumberField MvPolynomial

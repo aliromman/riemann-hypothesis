@@ -79,7 +79,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BesselPeriodRightTranslateSobolevSepContinuous
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
 
 namespace GlobalTheory.Core.Mi.SepPer
 

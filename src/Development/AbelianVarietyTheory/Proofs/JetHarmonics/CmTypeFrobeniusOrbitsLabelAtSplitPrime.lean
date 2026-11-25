@@ -59,8 +59,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.ImaginaryRootConj
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.RowChartCounterexample
 
@@ -120,8 +118,6 @@ end GlobalTheory.RowChartCounterexample
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsFrobAllEmbeddings
-
-set_option autoImplicit false
 
 
 open scoped BigOperators TensorProduct

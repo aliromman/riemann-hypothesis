@@ -168,8 +168,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChowFormZeroSetExtensionFieldIffCommonConeZero
 
-set_option autoImplicit false
-
 
 open MvPolynomial
 open GlobalTheory GlobalTheory.ChowHt GlobalTheory.HSChoice

@@ -52,8 +52,6 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsFracOfAdjoinEqTop
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.PD.Model
 
@@ -142,8 +140,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardAffineOpenRingPolynomialEquiv
 
 open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
-
-set_option autoImplicit false
 
 namespace GlobalTheory.PD
 

@@ -123,7 +123,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.PolynomialChartSpans.BlowBC
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

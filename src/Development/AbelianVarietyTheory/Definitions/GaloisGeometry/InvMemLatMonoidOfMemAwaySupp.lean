@@ -115,8 +115,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.InvMemLatMonoidOfMemAwaySupp
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.W2
 

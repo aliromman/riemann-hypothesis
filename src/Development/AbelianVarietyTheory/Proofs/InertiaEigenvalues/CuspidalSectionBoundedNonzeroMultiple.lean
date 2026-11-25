@@ -115,8 +115,6 @@ import Mathlib.Tactic.ENatToNat
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj GlobalTheory.GoodPts GlobalTheory.GoodTransfer
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.GoodTransfer
 
@@ -313,8 +311,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SectionIntegralEqualCharAbelianLocus
 
-set_option autoImplicit false
-
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj GlobalTheory.GoodPts GlobalTheory.GoodTransfer
@@ -490,8 +486,6 @@ end GlobalTheory.EqCharGood
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CuspFormIntegralValuesEqualCharacteristic
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.EqCharCusp
@@ -947,8 +941,6 @@ end -- clump:auto
 open AlgebraicGeometry CategoryTheory NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CuspReg
 
@@ -1000,8 +992,6 @@ end -- clump:auto
 
 open AlgebraicGeometry CategoryTheory NumberField IsDedekindDomain MvPolynomial
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj GlobalTheory.GoodPts
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CuspBound

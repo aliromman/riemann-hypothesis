@@ -47,8 +47,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.IndexBoundConstantLePagePolynomialOfRunCondition
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FinalJoin
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.DIV.Cons Formalism.MainNotions.Gaps Formalism.MainNotions.Gaps.EtaleWeightGaps Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.RunJoin GlobalTheory.RunIn GlobalTheory.FinalJoin
@@ -155,8 +153,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ThreeLeDFOfPageRun
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FinalJoin
 
@@ -215,8 +211,6 @@ end GlobalTheory.FinalJoin
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.RunNumericalConditionsOfIndexBoundBeyondThreshol
-
-set_option autoImplicit false
 
 namespace GlobalTheory.FinalJoin
 

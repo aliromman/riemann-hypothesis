@@ -51,8 +51,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.SumExpSt
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ParameterLargeAllPoints
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj Formalism.IndefR Formalism.IndefR.Links GlobalTheory.BigTop GlobalTheory.BigOn
   GlobalTheory.ExpTie
@@ -155,7 +153,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj Formalism.IndefR Formalism.IndefR.Links GlobalTheory.BigTop GlobalTheory.BigOn
   GlobalTheory.ExpTie

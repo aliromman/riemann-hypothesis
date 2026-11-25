@@ -49,8 +49,6 @@ import Mathlib.Tactic.Polynomial.Basic
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NefNumericsOfRiemannRoch
 
-set_option autoImplicit false
-
 namespace GlobalTheory.Published
 
 theorem nefNumerics_of_product_of_riemannRoch
@@ -130,8 +128,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NefNumerics.NefRiemannRoch.NefLineBundleNumericalTheoremsProof
-
-set_option autoImplicit false
 
 namespace GlobalTheory
 

@@ -59,12 +59,12 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.ChooseFac, Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.DpOfPre, Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.ExistsLiftAndAug, Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.ExistsDividedPowersAug
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.ChooseFac
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 
 open DividedPowers GlobalTheory.Cris GlobalTheory.PDA
+
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.ChooseFac
 
 namespace FubiniStudyChowHeightFormula₂.Adr
 
@@ -267,11 +267,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.DpOfPre
 
-set_option autoImplicit false
-
-
-open DividedPowers GlobalTheory.Cris GlobalTheory.PDA
-
 namespace FubiniStudyChowHeightFormula₂.Adr
 
 theorem dp_of_pre : ∀ (B : Type) [CommRing B] (J : Ideal B) (γ : ℕ → B → B) (s : Set B), IsPreDP J γ → J = Ideal.span s → (∀ x ∈ s, ∀ m n : ℕ, n ≠ 0 → γ m (γ n x) = (m.uniformBell n : B) * γ (m * n) x) → ∃ δ : DividedPowers J, δ.dpow = γ :=
@@ -284,11 +279,6 @@ end FubiniStudyChowHeightFormula₂.Adr
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.ExistsLiftAndAug
-
-set_option autoImplicit false
-
-
-open DividedPowers GlobalTheory.Cris GlobalTheory.PDA
 
 namespace FubiniStudyChowHeightFormula₂.Adr
 
@@ -324,11 +314,6 @@ end FubiniStudyChowHeightFormula₂.Adr
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DividedPowerAlgebras.ExistsDividedPowersAug
-
-set_option autoImplicit false
-
-
-open DividedPowers GlobalTheory.Cris GlobalTheory.PDA
 
 namespace FubiniStudyChowHeightFormula₂.Adr
 

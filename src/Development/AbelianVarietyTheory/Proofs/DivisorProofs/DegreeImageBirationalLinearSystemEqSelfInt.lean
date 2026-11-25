@@ -116,8 +116,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RankGrowthLineBundleSectionsLeImageForms
 
-set_option autoImplicit false
-
 
 open NumberField MvPolynomial GlobalTheory GlobalTheory.ChowHt GlobalTheory.Adelic GlobalTheory.CompHt
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -318,8 +316,6 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 
 open AlgebraicGeometry Filter GlobalTheory.CompHt
 open scoped ENNReal
-
-set_option autoImplicit false
 
 namespace GlobalTheory.ImageDegree
 

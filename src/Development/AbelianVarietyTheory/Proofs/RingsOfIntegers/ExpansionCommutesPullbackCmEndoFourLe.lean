@@ -71,8 +71,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers
 attribute [local instance] Over.cartesianMonoidalCategory
 open scoped CategoryTheory.Obj
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.GenericUnitValue
 

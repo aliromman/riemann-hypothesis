@@ -630,7 +630,6 @@ end -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.ArcQ GlobalTheory.Frames GlobalTheory.Reg GlobalTheory.GoodPts GlobalTheory.GoodTransfer
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 400000
 
 namespace GlobalTheory.GoodRefine
@@ -964,8 +963,6 @@ end GlobalTheory.GoodDefinite
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CuspFormBoundGoodPointsExtendsAllPoints
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.GoodTransfer

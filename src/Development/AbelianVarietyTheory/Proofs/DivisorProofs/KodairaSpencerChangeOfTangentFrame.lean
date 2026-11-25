@@ -100,8 +100,6 @@ open GlobalTheory.OrbitSep
 attribute [local instance] Over.cartesianMonoidalCategory
 open MonoidalCategory CartesianMonoidalCategory MonObj
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.LogKSDiv
@@ -210,8 +208,6 @@ open GlobalTheory.CompHt (hodgeWt)
 open GlobalTheory.LevDesc (TypeFrame grpHR grpGHR levDet secRing move)
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelAut)
 open GlobalTheory.OrbitSep
-
-set_option autoImplicit false
 
 noncomputable section
 

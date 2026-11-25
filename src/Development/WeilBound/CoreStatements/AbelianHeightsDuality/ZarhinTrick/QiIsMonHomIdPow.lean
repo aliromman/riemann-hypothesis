@@ -100,8 +100,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EpiOfFiniteFlat
 
-set_option autoImplicit false
-
 open CategoryTheory AlgebraicGeometry
 
 namespace GlobalTheory.CompanionTheory.Dblock
@@ -118,8 +116,6 @@ end GlobalTheory.CompanionTheory.Dblock
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorThroughFiniteFlat
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
@@ -177,8 +173,6 @@ end GlobalTheory.CompanionTheory.FlatFactor
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteOfFiniteFibres
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
@@ -269,8 +263,6 @@ end GlobalTheory.CompanionTheory.FlatFib
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelFiniteFlat
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
@@ -391,8 +383,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiPtsA
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi
@@ -477,15 +467,15 @@ theorem mulPt_onePt' (hs : IsFinFlatSub G F h) (φ : F →ₐ[R] S) : mulPt hs �
 end PositivityTheory.PrwZar.QiP
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.KilledAnyOf
-
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
 open GlobalTheory.CechPic GlobalTheory.AbDual
+
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.KilledAnyOf
 
 attribute [local instance] Over.cartesianMonoidalCategory
 
@@ -648,14 +638,6 @@ end PositivityTheory.PrwZar
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.KerMemKL
-
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj CategoryTheory.MonObj
-open GlobalTheory.CechPic GlobalTheory.AbDual
 open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqToBase toBase)
 
 attribute [local instance] Over.cartesianMonoidalCategory
@@ -692,14 +674,6 @@ end PositivityTheory.PrwZar.Z2
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.PfiFRangeFiniteClosed
-
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj CategoryTheory.MonObj
-open GlobalTheory.CechPic GlobalTheory.AbDual
 open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqToBase toBase)
 
 attribute [local instance] Over.cartesianMonoidalCategory
@@ -805,14 +779,6 @@ end PositivityTheory.PrwZar.Z2
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.SurjOfFiniteDimS
-
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj CategoryTheory.MonObj
-open GlobalTheory.CechPic GlobalTheory.AbDual
 open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqToBase toBase)
 
 attribute [local instance] Over.cartesianMonoidalCategory
@@ -895,14 +861,6 @@ end PositivityTheory.PrwZar.Z2
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.PolFibreIsogAny
-
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj CategoryTheory.MonObj
-open GlobalTheory.CechPic GlobalTheory.AbDual
 open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqToBase toBase)
 
 attribute [local instance] Over.cartesianMonoidalCategory
@@ -931,12 +889,14 @@ theorem polFibreIsogAny : PositivityTheory.PrwZar.PolFibreIsogAny := by
 end PositivityTheory.PrwZar.Z2
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiCartier
+end -- clump: shared namespace opens
 
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 
 open TensorProduct
+
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiCartier
 
 namespace PositivityTheory.PrwZar.Qi
 
@@ -1098,11 +1058,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.CompLmulMapId
 
-set_option autoImplicit false
-
-
-open TensorProduct
-
 namespace PositivityTheory.PrwZar.Qi
 
 variable {K H : Type} [Field K] [CommRing H] [Algebra K H]
@@ -1190,11 +1145,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiCharP
 
-set_option autoImplicit false
-
-
-open TensorProduct
-
 namespace PositivityTheory.PrwZar.Qi
 
 variable {K H : Type} [Field K] [CommRing H] [Algebra K H]
@@ -1232,11 +1182,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiIdem
 
-set_option autoImplicit false
-
-
-open TensorProduct
-
 namespace PositivityTheory.PrwZar.Qi
 
 theorem idem_eq_zero {K H : Type} [Field K] [IsAlgClosed K] [CommRing H] [Algebra K H] [FiniteDimensional K H]
@@ -1273,11 +1218,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiStab
 
-set_option autoImplicit false
-
-
-open TensorProduct
-
 namespace PositivityTheory.PrwZar.Qi
 
 theorem exists_stable_pow {K H : Type} [Field K] [CommRing H] [Algebra K H] [FiniteDimensional K H]
@@ -1298,11 +1238,6 @@ end PositivityTheory.PrwZar.Qi
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiCore
-
-set_option autoImplicit false
-
-
-open TensorProduct
 
 namespace PositivityTheory.PrwZar.Qi
 
@@ -1364,9 +1299,9 @@ theorem killedCore : KilledCore := by
 end PositivityTheory.PrwZar.Qi
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiIsMonHomIdPow
+end -- clump: shared namespace opens
 
-set_option autoImplicit false
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiIsMonHomIdPow
 
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj

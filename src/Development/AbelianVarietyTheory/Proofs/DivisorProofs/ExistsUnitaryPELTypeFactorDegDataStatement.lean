@@ -837,7 +837,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.JetSurvey.PremisesInhabited
 
-set_option autoImplicit false
 namespace GlobalTheory.LatticeBoundTests
 open NumberField
 
@@ -912,7 +911,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
-set_option autoImplicit false
 namespace GlobalTheory.TraceLattice
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host E)

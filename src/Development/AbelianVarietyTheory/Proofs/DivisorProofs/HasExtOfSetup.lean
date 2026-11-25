@@ -1193,8 +1193,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularAndUnitPreservedByFunctionFieldCompatible
 
-set_option autoImplicit false
-
 namespace GlobalTheory.Desc.StalkMap
 
 variable {X : Scheme.{0}}

@@ -58,8 +58,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.FormalFamilyConstantCoeffZeroZeroSecondVar
 
-set_option autoImplicit false
-
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
@@ -226,8 +224,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.ConstantCoeffPrim
 
-set_option autoImplicit false
-
 
 open MvPowerSeries
 
@@ -298,8 +294,6 @@ end GlobalTheory.FormalLog
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.PderivSecondEvFirstPointEqZero
-
-set_option autoImplicit false
 
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.TB

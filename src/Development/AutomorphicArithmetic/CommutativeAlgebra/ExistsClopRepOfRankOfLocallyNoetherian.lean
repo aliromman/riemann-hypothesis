@@ -925,8 +925,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsHilbertSchemeRepresentableOfIso
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HilbertSch
 
@@ -1009,8 +1007,6 @@ end GlobalTheory.HilbertSch
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertFunctorLocalRepresentingDataOfRestrict
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HilbGlue
@@ -1136,8 +1132,6 @@ end -- clump:auto
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits GlobalTheory.HilbertSch GlobalTheory.HilbGlue
 
-set_option autoImplicit false
-
 namespace GlobalTheory.HilbGlue
 
 theorem idealSheaf_ext_of_openImmersions {P : Scheme.{0}} {ι : Type*} {X : ι → Scheme.{0}}
@@ -1176,8 +1170,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertPointGlueOpenCover
 @[expose] public noncomputable section
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits GlobalTheory.HilbertSch GlobalTheory.HilbGlue
@@ -1348,8 +1340,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsHilbertSchemeRepresentableOfOpenCover
 
-set_option autoImplicit false
-
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits GlobalTheory.HilbertSch GlobalTheory.HilbGlue Opposite
 
 theorem GlobalTheory.HilbGlue.isSheaf_hilbFunctor {S Z : Scheme.{0}} (z : Z ⟶ S) (r : ℕ) :
@@ -1407,8 +1397,6 @@ theorem _root_.GlobalTheory.T.isHilbertSchemeRepresentable_of_open_cover : ∀ (
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertSchemeFiniteLocallyFreeRepresentablePrope
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HilbertSch

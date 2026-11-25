@@ -104,7 +104,7 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BialgHomCotangentPullbackInjectiveOfSq, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CotangentMapInjectiveOfSquarePresentationAtPoint, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPresentationSquareAtPointOfLocalFactor, Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerInfMapLeMapMulKerOfFlatTarget, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeSupKerMulOfLeSupMaximalMulSection, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftSquarePresentationOfFlat, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalFactorAtAugmentationCounitalComul, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MulPFlatStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.NatCastSmulMemAugIdealSqSupMapMulPStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.PDivGroupMulPUnitFibreEqLevelOne, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDerivationsDualToFamilyOfNilpotentAug, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGeneratorsDualPointDerivationsAugmented, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSquarePresentationOfTower, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusSubalgebraCounitalComul, Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerAevalTruncatedPolynomialPresentation, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TruncatedMonomialsLinearIndependentOverConstants, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SquarePresentationOfCounitalComul, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MulPMemSqCounitKer, Development.AbelianVarietyTheory.Proofs.DivisorProofs.PDivGroupOmegaNoPTorsionOfCotangentInjective, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPowEqOfIntegers
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open scoped TensorProduct
 
@@ -768,8 +768,6 @@ theorem _root_.GlobalTheory.T.natCast_smul_mem_augIdealSq_sup_map_mulP : ∀ (p 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PDivGroupMulPUnitFibreEqLevelOne
-
-set_option autoImplicit false
 
 
 open TensorProduct Coalgebra Bialgebra GlobalTheory.PDiv
@@ -1702,13 +1700,7 @@ theorem omega_eq_zero_of_p_smul_eq_zero :
 end GlobalTheory
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPowEqOfIntegers
-
-set_option autoImplicit false
-
-open scoped TensorProduct
 
 namespace GlobalTheory.PDiv
 

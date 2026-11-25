@@ -156,8 +156,6 @@ end -- clump:auto
 
 open CategoryTheory GlobalTheory.AV GlobalTheory.AV.AbVar NumberField Polynomial
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.AV.AbVar.DegNorm
 

@@ -69,8 +69,6 @@ import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsHolFormC
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHolUnifPullAlongGroupHomStatement
 
-set_option autoImplicit false
-
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi
@@ -91,8 +89,6 @@ theorem _root_.GlobalTheory.T.exists_holUnif_pull_along_groupHom : ∀ (A B : Ov
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeHomFiniteImageOfTrivialOnMultiples
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory
@@ -137,8 +133,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RiemannTheoremNonprincipalPolarisedTorus
-
-set_option autoImplicit false
 
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory

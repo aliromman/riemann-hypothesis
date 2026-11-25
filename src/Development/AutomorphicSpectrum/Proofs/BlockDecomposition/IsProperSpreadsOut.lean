@@ -62,8 +62,6 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsFiniteAffineCover
 
-set_option autoImplicit false
-
 
 open Filter
 
@@ -520,8 +518,6 @@ end GlobalTheory.CompanionTheory.Ultra
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsProperSpreadsOut
-
-set_option autoImplicit false
 
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry Filter

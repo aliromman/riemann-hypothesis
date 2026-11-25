@@ -832,8 +832,6 @@ end -- clump:auto
 section -- clump member: Development.WeilBound.CoreStatements.HomogeneousNonvanishing.FormHeightGen
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace PositivityTheory.UnitarySelfGeneration.UnitProductCombination.XB
@@ -991,8 +989,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.HomogeneousNonvanishing.TotalDegreeLinSubstLe
 
-set_option autoImplicit false
-
 open MvPolynomial GlobalTheory.ChowHt GlobalTheory.CompHt
 
 private theorem totalDegree_aeval_le_of_totalDegree_le_one {K : Type} [Field K] {σ τ : Type} (L : σ → MvPolynomial τ K)
@@ -1124,8 +1120,6 @@ theorem PositivityTheory.UnitarySelfGeneration.UnitProductCombination.irreducibl
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.FormHeightOneEq
-
-set_option autoImplicit false
 
 
 open MvPolynomial NumberField Matrix GlobalTheory.ChowHt GroundTheory.Heights₂.Heights

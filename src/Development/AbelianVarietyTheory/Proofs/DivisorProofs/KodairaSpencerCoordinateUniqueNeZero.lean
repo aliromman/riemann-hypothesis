@@ -68,8 +68,6 @@ open GlobalTheory.FlagMod (FlagCover)
 open GlobalTheory.FlagTan (dimFlag psiSet TIx IsTanFrame)
 open scoped Classical
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.TopForm
@@ -276,8 +274,6 @@ open GlobalTheory.FlagMod (FlagCover)
 open GlobalTheory.FlagTan (dimFlag psiSet TIx IsTanFrame)
 open scoped Classical
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.ModifLift
@@ -349,8 +345,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniversalFirstOrderDeformation
-
-set_option autoImplicit false
 
 
 
@@ -486,8 +480,6 @@ theorem GlobalTheory.FlagTan.KSIso.tanFrame_of_universal_injective : ∀ {E : Ty
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KodairaSpencerCoordinateUniqueNeZero
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CompHS

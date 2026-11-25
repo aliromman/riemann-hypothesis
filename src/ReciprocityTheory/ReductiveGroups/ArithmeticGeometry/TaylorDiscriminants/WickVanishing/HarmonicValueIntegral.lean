@@ -53,8 +53,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
@@ -63,11 +61,6 @@ namespace ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.Val
 
 open ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.Nab
 
-
-private theorem hasSubst_lemma {σ τ k : Type} [CommRing k] [Finite σ] {a : σ → MvPowerSeries τ k}
-    (ha : ∀ s, constantCoeff (a s) = 0) : HasSubst a := by
-  first
-  | exact MvPowerSeries.hasSubst_of_constantCoeff_zero ha
 
 private theorem mvPowerSeries_subst_C {σ τ k : Type} [CommRing k] {a : σ → MvPowerSeries τ k} (hs : HasSubst a) (c : k) :
     subst a (C c : MvPowerSeries σ k) = (C c : MvPowerSeries τ k) := by
@@ -78,7 +71,7 @@ private theorem mvPowerSeries_subst_C {σ τ k : Type} [CommRing k] {a : σ → 
 
 theorem const_subst {σ τ k : Type} [CommRing k] [Finite σ] {a : σ → MvPowerSeries τ k}
     (ha : ∀ s, constantCoeff (a s) = 0) (G : MvPowerSeries σ k) : constantCoeff (subst a G) = constantCoeff G := by
-  have hs : HasSubst a := hasSubst_lemma ha
+  have hs : HasSubst a := MvPowerSeries.hasSubst_of_constantCoeff_zero ha
   have h0 : constantCoeff (G - C (constantCoeff G)) = 0 := by simp
   have h1 : constantCoeff (subst a (G - C (constantCoeff G))) = 0 := by
     first
@@ -110,8 +103,8 @@ theorem bE_const (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] h = 0) : ∀ t
 
 theorem E_liftX (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] h = 0) (f : PS k 1 d) :
     subst (bE k h) (liftX k f) = f := by
-  have hb : HasSubst (bE k h) := hasSubst_lemma (bE_const k h hax)
-  have hl : HasSubst (fun p : Fin 1 × Fin d => (X (Sum.inl p.2) : AA k d)) := hasSubst_lemma (fun p => by simp)
+  have hb : HasSubst (bE k h) := MvPowerSeries.hasSubst_of_constantCoeff_zero (bE_const k h hax)
+  have hl : HasSubst (fun p : Fin 1 × Fin d => (X (Sum.inl p.2) : AA k d)) := MvPowerSeries.hasSubst_of_constantCoeff_zero (fun p => by simp)
   unfold liftX
   first
   | rw [subst_comp_subst_apply hl hb]
@@ -308,7 +301,7 @@ theorem E_foldr (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
 theorem E_nablaPoly (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] h = 0) (m : ℕ) {ι : Type}
     [Fintype ι] (u : ι → Fin d → k) (P : MvPolynomial ι k) (G : AA k d) :
     subst (bE k h) (nablaPoly k B h m u P G) = DpolyOf (B.FK k) u P (subst (bE k h) G) := by
-  have hb : HasSubst (bE k h) := hasSubst_lemma (bE_const k h hax)
+  have hb : HasSubst (bE k h) := MvPowerSeries.hasSubst_of_constantCoeff_zero (bE_const k h hax)
   unfold nablaPoly DpolyOf DmonOf
 
   rw [← coe_substAlgHom hb, map_sum]

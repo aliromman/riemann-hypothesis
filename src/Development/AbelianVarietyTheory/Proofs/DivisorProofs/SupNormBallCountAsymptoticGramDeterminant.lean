@@ -75,9 +75,11 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntNearOfClosureShort, Development.AbelianVarietyTheory.Proofs.DivisorProofs.VolumeEqLintegral, Development.AbelianVarietyTheory.Proofs.DivisorProofs.VolumeSumSqBallPosLtTop, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogLatticePointsQuadraticBallEstimate, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetReLePowMulDetRe, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RealPartPosDefLogDetBoundOfConjugateComparable, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogCardSupNormBallLeGramDet, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SupNormBallCountAsymptoticGramDeterminant
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntNearOfClosureShort
+section -- clump: shared namespace opens
 
 open Filter Topology MeasureTheory GlobalTheory.HSAmp
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntNearOfClosureShort
 open scoped ComplexOrder Matrix
 
 namespace GlobalTheory.HSAmp
@@ -190,10 +192,6 @@ end GlobalTheory.HSAmp
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.VolumeEqLintegral
-
-set_option autoImplicit false
-
-open Filter Topology MeasureTheory GlobalTheory.HSAmp
 open scoped ComplexOrder Matrix
 
 namespace GlobalTheory.HSAmp.EllCount
@@ -361,8 +359,6 @@ end GlobalTheory.HSAmp
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.VolumeSumSqBallPosLtTop
-
-open Filter Topology MeasureTheory GlobalTheory.HSAmp
 open scoped ComplexOrder Matrix MatrixOrder
 
 namespace GlobalTheory.HSAmp
@@ -445,12 +441,8 @@ theorem volume_ellipsoid : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (A : Ma
 end GlobalTheory.HSAmp
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open Filter Topology MeasureTheory GlobalTheory.HSAmp
-open scoped ComplexOrder Matrix
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogLatticePointsQuadraticBallEstimate
+open scoped ComplexOrder Matrix
 
 namespace GlobalTheory.HSAmp
 
@@ -517,6 +509,7 @@ end GlobalTheory.HSAmp
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetReLePowMulDetRe
+open scoped ComplexOrder Matrix
 namespace GlobalTheory.HSAmp
 
 theorem star_mulVec_single_dot (ι : Type) [Fintype ι] [DecidableEq ι]
@@ -583,6 +576,7 @@ end GlobalTheory.HSAmp
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RealPartPosDefLogDetBoundOfConjugateComparable
+open scoped ComplexOrder Matrix
 
 namespace GlobalTheory.RealPartDet
 
@@ -706,8 +700,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSAmp
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogCardSupNormBallLeGramDet
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.BallGram

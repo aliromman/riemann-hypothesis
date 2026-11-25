@@ -64,7 +64,6 @@ open scoped CategoryTheory.Obj
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundleLocalSectionFamilyUnitAtPoint
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 
 namespace GlobalTheory.Pinch.SemiLoc
 
@@ -211,7 +210,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalUnitGeneratorOfLineBundleLocalSection
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 namespace GlobalTheory.Pinch
 
 theorem gm_id_val_germ {X : Scheme.{0}} (x : X) (U : X.Opens) (h : x ∈ U) (a : Γ(X, U)ˣ) :
@@ -293,7 +291,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleLocalSectionFamilyUnitAtFinitePoints
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 
 namespace GlobalTheory.Pinch
 
@@ -361,7 +358,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundleLocalGeneratorNearFiniteSet
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 
 namespace GlobalTheory.Pinch.Semiloc
 

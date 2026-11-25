@@ -140,8 +140,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
-set_option autoImplicit false
-
 namespace GlobalTheory.UPoinc.USum
 
 theorem ptSecT_comp_whisker {B : Scheme.{0}} {A : Over B} [GrpObj A] {T T' : Over B} (c : T' ⟶ T) (y : T ⟶ A) :

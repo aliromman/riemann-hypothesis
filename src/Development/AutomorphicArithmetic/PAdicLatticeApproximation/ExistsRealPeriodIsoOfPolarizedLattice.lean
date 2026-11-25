@@ -77,9 +77,7 @@ import Mathlib.Algebra.Module.StablyFree.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsSumBaseChangeOfCommuteBaseChange, Development.AutomorphicArithmetic.CommutativeAlgebra.CommutantEqRangeActOnAndInjective, Development.AutomorphicArithmetic.CommutativeAlgebra.LiftBaseChangeRealBijectiveOfLattice, Development.AutomorphicArithmetic.PAdicLatticeApproximation.ExistsRealPeriodIsoOfPolarizedLattice
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsSumBaseChangeOfCommuteBaseChange
-
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField Matrix
@@ -87,6 +85,8 @@ open IsDedekindDomain
 open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct Classical ComplexOrder
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.DiscreteGroups.LocalClassField
 open GlobalTheory GlobalTheory.AV GlobalTheory.AV.AbVar GlobalTheory.PDivGroup GlobalTheory.Dieu GlobalTheory.UPel.HT GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKGeo GlobalTheory.LKCx GlobalTheory.PELU
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsSumBaseChangeOfCommuteBaseChange
 attribute [local instance] Over.cartesianMonoidalCategory
 open UpperTheory.ComplexUniformization
 
@@ -166,15 +166,6 @@ theorem UpperTheory.exists_sum_baseChange_of_commute_baseChange :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.CommutantEqRangeActOnAndInjective
-
-set_option autoImplicit false
-
-
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField Matrix
-open IsDedekindDomain
-open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct Classical ComplexOrder
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.DiscreteGroups.LocalClassField
-open GlobalTheory GlobalTheory.AV GlobalTheory.AV.AbVar GlobalTheory.PDivGroup GlobalTheory.Dieu GlobalTheory.UPel.HT GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKGeo GlobalTheory.LKCx GlobalTheory.PELU
 attribute [local instance] Over.cartesianMonoidalCategory
 open UpperTheory.ComplexUniformization
 
@@ -246,15 +237,6 @@ theorem UpperTheory.commutant_eq_range_actOn_and_injective :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.LiftBaseChangeRealBijectiveOfLattice
-
-set_option autoImplicit false
-
-
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField Matrix
-open IsDedekindDomain
-open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct Classical ComplexOrder
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.DiscreteGroups.LocalClassField
-open GlobalTheory GlobalTheory.AV GlobalTheory.AV.AbVar GlobalTheory.PDivGroup GlobalTheory.Dieu GlobalTheory.UPel.HT GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKGeo GlobalTheory.LKCx GlobalTheory.PELU
 attribute [local instance] Over.cartesianMonoidalCategory
 open UpperTheory.ComplexUniformization
 
@@ -301,6 +283,8 @@ theorem UpperTheory.liftBaseChange_real_bijective_of_lattice :
         _ ≤ _ := LinearMap.finrank_range_le _
   exact ⟨(LinearMap.injective_iff_surjective_of_finrank_eq_finrank hdim).mpr hsurj, hsurj⟩
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.PAdicLatticeApproximation.ExistsRealPeriodIsoOfPolarizedLattice
 

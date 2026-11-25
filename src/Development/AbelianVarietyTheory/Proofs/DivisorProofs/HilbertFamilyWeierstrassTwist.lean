@@ -62,11 +62,11 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.TorsTransport
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertLatticeTwistByMatrixModNMulSL2Z, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinLatticeJetSl2IntSmul, Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuasiPeriodNormalisedJetModularTransform, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertTwistedLatticeJetsModularFamily, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeierstrassModularTransformationLevel, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertFamilyWeierstrassTwist
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertLatticeTwistByMatrixModNMulSL2Z
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 open NumberField UpperHalfPlane GlobalTheory.HilbFam GlobalTheory.QFam
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertLatticeTwistByMatrixModNMulSL2Z
 open scoped Classical MatrixGroups nonZeroDivisors
 
 namespace GlobalTheory.HilbFam.TwistSL
@@ -101,16 +101,10 @@ theorem twist_mul_sl : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F
 end GlobalTheory.HilbFam.TwistSL
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open NumberField UpperHalfPlane GlobalTheory.HilbFam GlobalTheory.QFam
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinLatticeJetSl2IntSmul
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization (Emb Frac latM qPow upperHalf cK omegaFactor IsPartialZeta HasExpansion)
 open GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates (iterD partialD)
 open scoped Classical MatrixGroups nonZeroDivisors
-
-set_option autoImplicit false
 
 noncomputable section
 

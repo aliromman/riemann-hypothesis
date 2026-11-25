@@ -108,8 +108,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClassZeroCocycleTensorCoboundary
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CompanionTheory.Axis
 
 theorem rTensor_cocycle_eq_coboundary_of_class_eq_zero :
@@ -146,8 +144,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CocycleOnProductFromSecondFactor
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TensorProduct Opposite MonoidalCategory CartesianMonoidalCategory MonObj
@@ -244,8 +240,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CocycleTensorCoboundaryClassZero
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CompanionTheory.Axis.KFlat
@@ -366,8 +360,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsUniqueConstantOfCompatibleFamily
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CompanionTheory.Axis
 
@@ -457,8 +449,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlatCocycleTensorRepresentation
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CompanionTheory.Axis
@@ -570,8 +560,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProductFirstCohomologyComparison
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TensorProduct Opposite MonoidalCategory CartesianMonoidalCategory MonObj
@@ -933,8 +921,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FirstCohomologyOfBaseZero
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TensorProduct Opposite MonoidalCategory CartesianMonoidalCategory MonObj

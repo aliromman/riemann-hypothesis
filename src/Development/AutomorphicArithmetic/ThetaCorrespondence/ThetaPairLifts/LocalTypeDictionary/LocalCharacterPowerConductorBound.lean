@@ -735,7 +735,6 @@ end -- clump:auto
 
 open MeasureTheory GlobalTheory.SplitFlip GlobalTheory.SplitWeil ValuativeRel Matrix
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 
 namespace GlobalTheory.ConjSize
 

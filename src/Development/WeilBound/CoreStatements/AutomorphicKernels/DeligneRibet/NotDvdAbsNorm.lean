@@ -340,8 +340,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RayClassParametrizationExists
 
-set_option autoImplicit false
-
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
@@ -365,8 +363,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeSeriesSpecialValueRational
-
-set_option autoImplicit false
 
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
@@ -437,8 +433,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeightedSumDecompositionDenominators
-
-set_option autoImplicit false
 
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
@@ -635,7 +629,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeZetaSpecialValueDenominatorBound
 
-set_option autoImplicit false
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
@@ -730,8 +723,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RayClassPartialZetaIntegrality
-
-set_option autoImplicit false
 
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
@@ -898,12 +889,12 @@ theorem rayRel_mono_powMod_anti (F : Type) [Field F] [NumberField F] :
 end GlobalTheory.CompanionTheory.RayFacts
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.DeligneRibet.WeightedSummability.WeightedSummable
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
+
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.DeligneRibet.WeightedSummability.WeightedSummable
 
 namespace PositivityTheory.PfDR.h_smooth
 
@@ -1057,11 +1048,6 @@ end PositivityTheory.PfDR.h_smooth
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.DeligneRibet.NotDvdAbsNorm
-
-set_option autoImplicit false
-
-
-open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
 namespace PositivityTheory.PfDRL
 

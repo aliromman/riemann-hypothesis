@@ -60,8 +60,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.ThetaValues.PowEqOneOfIsFullLev
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.EtaForm.Model
 
@@ -110,8 +108,6 @@ end -- clump:auto
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.EtaForm
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.NullValue

@@ -51,8 +51,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.AbelianSchemeLaw.SectionsGroupRank
 
-set_option autoImplicit false
-
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj
   AlgebraicGeometry

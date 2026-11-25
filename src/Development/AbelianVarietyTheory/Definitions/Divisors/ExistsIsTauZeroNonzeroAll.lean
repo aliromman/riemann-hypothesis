@@ -76,8 +76,6 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIsLevWithGeometric
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.ThetaConst
 
@@ -490,8 +488,6 @@ end GlobalTheory.ThetaConst
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIsTauZeroNonzeroAll
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.ThetaConst

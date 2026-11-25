@@ -68,8 +68,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CechStructureSheafComparison
 @[expose] public noncomputable section
 
-set_option autoImplicit false
-
 
 open CategoryTheory Limits AlgebraicGeometry Opposite
 
@@ -244,8 +242,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CochainCohomologyNerveHomologyEquiv
 
-set_option autoImplicit false
-
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.CompanionTheory.Hodge.Nerve
 
@@ -331,8 +327,6 @@ end GlobalTheory.CompanionTheory.Hodge.Nerve.Low
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinducedCechAcyclic
-
-set_option autoImplicit false
 
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.CompanionTheory.Hodge.Nerve
@@ -468,8 +462,6 @@ theorem _root_.GlobalTheory.T.coinduced_cech_acyclic : ∀ {R : Type} [CommRing 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinducedNerveAcyclic
-
-set_option autoImplicit false
 
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.CompanionTheory.Hodge.Nerve
@@ -647,8 +639,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NaturalDegreeZeroHomologyIso
 
-set_option autoImplicit false
-
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.CompanionTheory.Hodge.Nerve
 
@@ -796,8 +786,6 @@ end GlobalTheory.CompanionTheory.Hodge.DimShift
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NerveCechDegreeZeroCompatible
-
-set_option autoImplicit false
 
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.CompanionTheory.Hodge.Nerve
@@ -1013,8 +1001,6 @@ end GlobalTheory.CompanionTheory.Hodge.Nerve.DegZero
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsToCoindShortExact
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TensorProduct Opposite MonoidalCategory CartesianMonoidalCategory MonObj Limits

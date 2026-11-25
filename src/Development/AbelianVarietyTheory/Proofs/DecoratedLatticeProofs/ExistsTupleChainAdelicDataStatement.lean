@@ -156,8 +156,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TameOnBaseCharacter
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.MuLift
 

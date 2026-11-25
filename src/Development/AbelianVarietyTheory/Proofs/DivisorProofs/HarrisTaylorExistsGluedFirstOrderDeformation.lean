@@ -104,8 +104,6 @@ open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystalGluedHodgeGraphIsotropicOfDirections
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HTGlueIso
 
@@ -818,8 +816,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorLiftHodgeSummandAdmissibleStable
 
-set_option autoImplicit false
-
 
 attribute [local instance] Over.cartesianMonoidalCategory
 
@@ -855,8 +851,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorLiftHodgeSummandCrystallineLie
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HTLiftLie
 
@@ -899,7 +893,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorLiftHodgeSummandIsotropic
 
 attribute [local instance] Over.cartesianMonoidalCategory
-set_option autoImplicit false
 open IsLocalRing GlobalTheory.AbDual
 
 namespace GlobalTheory.HTLiftIso

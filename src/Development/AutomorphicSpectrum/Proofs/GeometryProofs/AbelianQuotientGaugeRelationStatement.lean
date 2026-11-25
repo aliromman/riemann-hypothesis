@@ -64,8 +64,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.PsJetTwistedSeriesOfLeOne
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FrameTwistCompare
 

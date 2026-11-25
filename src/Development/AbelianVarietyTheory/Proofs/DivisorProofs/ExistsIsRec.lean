@@ -59,8 +59,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.TiedRecordExistsOfActionPin
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.OnTies
 
@@ -321,8 +319,6 @@ end GlobalTheory.ScalarOfRun
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsRec
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain Module

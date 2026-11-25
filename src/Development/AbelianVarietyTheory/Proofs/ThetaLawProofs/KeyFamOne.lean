@@ -55,8 +55,6 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.FamHomogOfHomog
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.KeyFamHomog
 
@@ -80,8 +78,6 @@ end GlobalTheory.KeyFamHomog
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ValueMemValuationSubring
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.KeyGenInt

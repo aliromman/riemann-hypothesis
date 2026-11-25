@@ -56,8 +56,6 @@ import Mathlib.RingTheory.PiTensorProduct
 section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.PullTotMemBTot
 @[expose] public noncomputable section
 
-set_option autoImplicit false
-
 
 open CategoryTheory KaehlerDifferential
 
@@ -251,8 +249,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ConeClZeroBijective
-
-set_option autoImplicit false
 
 
 open CategoryTheory KaehlerDifferential
@@ -494,8 +490,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ToPtIdPtBijective
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential Opposite
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -697,8 +691,6 @@ end GlobalTheory.HodgeCoh
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.InstFintypeHodgeBidegree
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential

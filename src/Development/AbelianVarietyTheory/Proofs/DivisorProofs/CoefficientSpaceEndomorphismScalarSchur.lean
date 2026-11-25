@@ -63,11 +63,12 @@ import Formalism.LocalToGlobal.IndefiniteReal.IndefiniteWeightData
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualWeylModuleLeSpanExtremalTranslates, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeightSpaceCoefficientSpaceEqExtremalTensorLine, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeylTensorCoefSpaceEndomorphismPreservesTorusWei, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeylTensorCoefSpaceLeSpanPureTensors, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoefficientSpaceEndomorphismScalarSchur
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualWeylModuleLeSpanExtremalTranslates
+section -- clump: shared namespace opens
 
-set_option autoImplicit false
 open MvPolynomial Formalism.BasicNotions Formalism.L2.DIV
 open scoped Matrix
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualWeylModuleLeSpanExtremalTranslates
 
 namespace GlobalTheory
 
@@ -150,10 +151,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeightSpaceCoefficientSpaceEqExtremalTensorLine
-
-set_option autoImplicit false
-open MvPolynomial Formalism.BasicNotions Formalism.L2.DIV
-open scoped Matrix
 
 namespace GlobalTheory.CoefWtLine
 
@@ -262,10 +259,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeylTensorCoefSpaceEndomorphismPreservesTorusWei
 
-set_option autoImplicit false
-open MvPolynomial Formalism.BasicNotions Formalism.L2.DIV
-open scoped Matrix
-
 namespace GlobalTheory.CoefTorusWeight
 
 theorem coeff_aeval_scale {K σ : Type} [Field K] [Fintype σ] (c : σ → K) (F : MvPolynomial σ K)
@@ -360,10 +353,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeylTensorCoefSpaceLeSpanPureTensors
 
-set_option autoImplicit false
-open MvPolynomial Formalism.BasicNotions Formalism.L2.DIV
-open scoped Matrix
-
 namespace GlobalTheory
 
 theorem multilinear_mem_span_of_mem_span {K ι M N : Type} [Field K] [Fintype ι]
@@ -427,9 +416,10 @@ theorem coefSpace_le_span_pure_tensors (K : Type) [Field K] {ι : Type} [Fintype
 end GlobalTheory
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoefficientSpaceEndomorphismScalarSchur
 
-set_option autoImplicit false
 open NumberField Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Theta Formalism.IndefR
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 

@@ -84,8 +84,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteSetDimDropClosed
 
-set_option autoImplicit false
-
 open TopologicalSpace
 
 namespace GlobalTheory
@@ -225,8 +223,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModuleLengthDisjointSupport
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory
 
@@ -308,8 +304,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.QCoh GlobalTheory.CechPic GlobalTheory.Vert GlobalTheory.Twist
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullbackTwistedSectionIso
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CutPull
@@ -459,7 +453,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyPullbackStructureModuleIso
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

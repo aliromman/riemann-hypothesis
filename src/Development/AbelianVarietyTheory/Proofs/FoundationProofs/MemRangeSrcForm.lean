@@ -63,8 +63,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.InjAndRatOfLi
 
-set_option autoImplicit false
-
 
 open Formalism.IndefR.Bridge Formalism.L2.DIV NumberField GlobalTheory.PresBasic
 
@@ -257,8 +255,6 @@ end GlobalTheory.TraceIncl
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemRangeSrcForm
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain MeasureTheory Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.IndefR.Lev GlobalTheory.OnTies

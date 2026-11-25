@@ -51,8 +51,6 @@ import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsFrameOfBijectiveStalk
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -231,7 +229,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsIsoGenResMapSmulHom
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

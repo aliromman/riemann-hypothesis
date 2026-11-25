@@ -47,8 +47,6 @@ import Mathlib.Topology.Sheaves.Presheaf
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HigherFormsOneCocycleCoboundaryOfRestrict
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential GlobalTheory.CatCoh GlobalTheory.CechDR
 

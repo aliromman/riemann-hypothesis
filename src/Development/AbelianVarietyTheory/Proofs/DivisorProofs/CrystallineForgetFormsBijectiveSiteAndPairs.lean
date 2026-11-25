@@ -54,8 +54,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoefficientsAcyclicOfTwoSectionsRetraction
 
-set_option autoImplicit false
-
 open CategoryTheory GlobalTheory.CxCoh
 
 namespace GlobalTheory
@@ -126,14 +124,14 @@ theorem coef_acyclic_of_two_sections (C : Type 1) [Category.{0} C] (M : Coef C) 
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OneFormQuotientClassEqOfRelDifferences
-
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential DividedPowers TrivSqZeroExt
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.CxCoh GlobalTheory.PDA GlobalTheory.PDForm
 open GlobalTheory.CrysConn
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OneFormQuotientClassEqOfRelDifferences
 
 namespace GlobalTheory.PDForm.Nbhd
 
@@ -507,13 +505,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDiagonalFirstNeighbourhoodRetractionForms
 
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry KaehlerDifferential DividedPowers TrivSqZeroExt
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.CxCoh GlobalTheory.PDA GlobalTheory.PDForm
-open GlobalTheory.CrysConn
-
 namespace GlobalTheory.PDForm.Nbhd
 
 open GlobalTheory.SmoothLift
@@ -602,6 +593,8 @@ theorem exists_retraction : ∀ (R : Type) [CommRing R] (I : Ideal R) (κ : Divi
 
 end GlobalTheory.PDForm.Nbhd
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ForgetPositiveH1Bijective
 
@@ -758,8 +751,6 @@ end GlobalTheory.CxCoh -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystallineForgetFormsBijectiveSiteAndPairs
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential DividedPowers ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.CxCoh GlobalTheory.PDA GlobalTheory.PDForm GlobalTheory.SmoothLift

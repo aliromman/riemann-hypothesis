@@ -129,8 +129,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.BasicNotions Formali
 open Formalism.DegreeFormula Formalism.MJ GlobalTheory.HodgeDomain GlobalTheory.TrueCx
 open ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.AR.Inst ReciprocityTheory.ChartRestriction.G.AR.Up GlobalTheory.FramePairGram
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FramePairGram.Comb
 

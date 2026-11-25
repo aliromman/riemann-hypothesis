@@ -45,11 +45,11 @@ import Mathlib.Algebra.Order.Star.Real
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EncardSeminormBallMulLeConvexity, Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallyLogNcardSeminormBallOneGe
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EncardSeminormBallMulLeConvexity
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 open Filter Topology GlobalTheory.VolBr
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EncardSeminormBallMulLeConvexity
 
 namespace GlobalTheory.VolBr
 
@@ -137,8 +137,6 @@ end GlobalTheory.VolBr
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallyLogNcardSeminormBallOneGe
-
-open Filter Topology GlobalTheory.VolBr
 
 namespace GlobalTheory.VolBr
 

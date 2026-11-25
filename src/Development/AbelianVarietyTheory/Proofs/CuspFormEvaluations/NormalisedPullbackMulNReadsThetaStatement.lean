@@ -52,8 +52,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.NormalisedPullbackMulNReadsTheta
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.AnVal
 

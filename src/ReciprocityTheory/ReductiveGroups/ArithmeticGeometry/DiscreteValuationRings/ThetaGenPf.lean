@@ -66,8 +66,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Cha
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenRank
 
-set_option autoImplicit false
-
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj
@@ -376,7 +374,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenFibre
 
-set_option autoImplicit false
 set_option linter.overlappingInstances false
 
 
@@ -509,7 +506,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenPf
 
-set_option autoImplicit false
 set_option linter.overlappingInstances false
 
 

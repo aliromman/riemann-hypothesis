@@ -64,8 +64,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjEqNegOfSqEqNegNat
 
-set_option autoImplicit false
-
 namespace GlobalTheory.ConjugateNegativeSquare
 
 open NumberField
@@ -401,8 +399,6 @@ end -- clump:auto
 open GlobalTheory.IndefiniteRowSideFullHecke.TypedPartSplitPrimes (IsIntHom IsOrbit FrobOnType embX primeBelow SplitInK InertInK)
 open GlobalTheory.IndefiniteRowSideFullHecke.BigBlockCharacters (HasChars)
 open GlobalTheory.IndefiniteRowSideFullHecke.FactorDepthInertBounds (boundAll boundInert boundFine)
-
-set_option autoImplicit false
 
 noncomputable section
 

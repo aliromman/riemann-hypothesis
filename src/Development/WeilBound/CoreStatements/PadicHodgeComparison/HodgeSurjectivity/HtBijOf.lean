@@ -105,7 +105,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CocycleZeroAlt
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -311,8 +310,6 @@ end -- clump:auto
 
 open CrystallineSemistableComparison.Onto
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CompanionTheory.OntoDLog
 
 variable {K A : Type} [CommRing K] [CommRing A] [Algebra K A]
@@ -391,7 +388,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapHEmptyBij
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -582,7 +578,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OneResOfOneLow
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -775,7 +770,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.HodgeTateDimensionEquality
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -894,7 +888,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.OntoLow
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1108,7 +1101,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.Retract
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1166,7 +1158,6 @@ end -- clump:auto
 section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.EtaleChartBaseChange.DivisorCoverOfChartLaws
 @[expose] public noncomputable section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -1358,7 +1349,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.Faithful
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -1462,7 +1452,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.FormCup
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1627,7 +1616,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.RelLiftOf
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -1722,7 +1710,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.ZarRelOf
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

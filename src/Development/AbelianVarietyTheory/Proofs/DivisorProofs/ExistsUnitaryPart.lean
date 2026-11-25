@@ -82,8 +82,6 @@ import Formalism.LocalToGlobal.Columns.StdLatUnimodular
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralAdelicCoordinatesLatticeMod
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.GeoActCompare
 
@@ -448,8 +446,6 @@ theorem _root_.GlobalTheory.T.exists_integral_adelic_coordinates_lattice_mod : â
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeoLevelActionIffGeoAct
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.GeoActCompare
@@ -874,8 +870,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MulEqOneOfCovolumeIdentity
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.UnifEvery
 
@@ -1163,8 +1157,6 @@ end GlobalTheory.UnifEvery
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryPart
-
-set_option autoImplicit false
 
 
 

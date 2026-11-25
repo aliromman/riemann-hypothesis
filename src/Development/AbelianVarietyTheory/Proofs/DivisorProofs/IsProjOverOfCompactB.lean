@@ -280,8 +280,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLieCoordinatesOnFieldFibresLocalRing
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.LieCoordFibre
 
@@ -990,7 +988,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToricPartFibreLieAlgebraCharacters
 
-set_option autoImplicit false
 
 namespace GlobalTheory.TorLie
 

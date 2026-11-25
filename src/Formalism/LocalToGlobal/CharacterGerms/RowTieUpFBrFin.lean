@@ -78,8 +78,6 @@ import Formalism.LocalToGlobal.CharacterGerms.RowTieTop
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.NatCastMulTmul
 
-set_option autoImplicit false
-
 
 open TensorProduct IsLocalRing
 
@@ -267,8 +265,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.CompleteOfBasis
 
-set_option autoImplicit false
-
 
 open TensorProduct IsLocalRing Polynomial
 
@@ -293,8 +289,6 @@ end Formalism.L2.FormalSeriesBounds.UpFBr.Pl
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.DetNeZeroOfChars
-
-set_option autoImplicit false
 
 
 namespace Formalism.L2.FormalSeriesBounds.UpFBr.Pl
@@ -380,8 +374,6 @@ end Formalism.L2.FormalSeriesBounds.UpFBr.Pl
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrPlP
-
-set_option autoImplicit false
 
 
 open TensorProduct IsLocalRing Polynomial
@@ -754,8 +746,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrEF
 
-set_option autoImplicit false
-
 
 open scoped BigOperators
 open Classical
@@ -917,8 +907,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrPlB
 
-set_option autoImplicit false
-
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -937,8 +925,6 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrRP
-
-set_option autoImplicit false
 
 
 open Classical
@@ -1246,8 +1232,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrSfI
 
-set_option autoImplicit false
-
 
 open scoped BigOperators
 open Classical
@@ -1536,8 +1520,6 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrFin
-
-set_option autoImplicit false
 
 
 namespace Formalism.L2.FormalSeriesBounds

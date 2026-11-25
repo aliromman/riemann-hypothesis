@@ -49,8 +49,6 @@ import Mathlib.Tactic.ReduceModChar
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.SectionBaseChange
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.SectionBaseChangeTests
 
@@ -79,8 +77,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.SectionBaseChangeTests
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.SecBCIffSecBCTest
-
-set_option autoImplicit false
 
 
 
@@ -126,8 +122,6 @@ end GlobalTheory.SecFieldCompare
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.ThetaValues.IoOverLeftUnique
-
-set_option autoImplicit false
 
 
 

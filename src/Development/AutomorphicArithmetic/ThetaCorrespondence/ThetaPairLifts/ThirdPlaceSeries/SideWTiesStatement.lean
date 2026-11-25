@@ -251,8 +251,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContainsRayFieldSub
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Host GlobalTheory.NT GlobalTheory.Mem GlobalTheory.Mem.Fld GlobalTheory.FieldSize
 open scoped IntermediateField
@@ -499,8 +497,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.HostXiOrderBounds
 
-set_option autoImplicit false
-
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj GlobalTheory.Mem GlobalTheory.FinalJoin GlobalTheory.FinalJoin2 GlobalTheory.FieldSize
 open scoped IntermediateField
 
@@ -590,8 +586,6 @@ end -- clump:auto
 open NumberField IsDedekindDomain GlobalTheory.FieldSize
 open scoped IntermediateField nonZeroDivisors
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FieldSize.Capit
 
@@ -673,8 +667,6 @@ end -- clump:auto
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Host GlobalTheory.NT GlobalTheory.Mem GlobalTheory.Mem.Fld GlobalTheory.FieldSize
 open scoped IntermediateField nonZeroDivisors
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FieldSize.KummerSize
@@ -885,8 +877,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.AbelianUnramIn
 
-set_option autoImplicit false
-
 open NumberField IsDedekindDomain GlobalTheory.FieldSize
 
 namespace GlobalTheory.FieldSize.WeberUnram
@@ -913,8 +903,6 @@ end GlobalTheory.FieldSize.WeberUnram
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsIsRayIntermediateField
-
-set_option autoImplicit false
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj GlobalTheory.Mem GlobalTheory.FinalJoin GlobalTheory.FinalJoin2 GlobalTheory.FieldSize
 open scoped IntermediateField
@@ -947,8 +935,6 @@ end GlobalTheory.FieldSize
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.WeberSetSubsetRayField
-
-set_option autoImplicit false
 
 open NumberField IsDedekindDomain Polynomial GlobalTheory.FieldSize
 open scoped IntermediateField
@@ -1253,8 +1239,6 @@ end -- clump:auto
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Host GlobalTheory.NT GlobalTheory.Mem GlobalTheory.Mem.Fld GlobalTheory.FieldSize
 open scoped IntermediateField
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FieldSize

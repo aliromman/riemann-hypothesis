@@ -61,8 +61,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 section -- clump member: Development.AbelianVarietyTheory.Definitions.AbelianSchemeLaws.SpecMapAwayFnEquivAwayChart
 @[expose] public noncomputable section
 
-set_option autoImplicit false
-
 
 open AlgebraicGeometry CategoryTheory TopologicalSpace Opposite
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap resG constFn)
@@ -339,8 +337,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AbelianSchemeLaws.ExistsUniqueEqConstMulOriginSec
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory Limits TopologicalSpace Opposite

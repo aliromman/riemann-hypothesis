@@ -198,8 +198,6 @@ end -- clump:auto
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct DirectSum GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Onto CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT GlobalTheory.CompanionTheory.KunGlue
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CompanionTheory.KunGlue
 
@@ -371,7 +369,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethProductLocalCoords
 @[expose] public noncomputable section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 

@@ -75,8 +75,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.CrystallineTowers.SpecOf
 
-set_option autoImplicit false
-
 
 open CategoryTheory Limits AlgebraicGeometry
 

@@ -1004,7 +1004,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGeneratorAlgebraisationReductions
 
-set_option autoImplicit false
 namespace GlobalTheory.FormalAlg
 
 theorem res_compat_of_gm {Z B : Scheme.{0}} {N : LB B} (b : Z ⟶ B) (s : ∀ i : N.ι, Γ(Z, b ⁻¹ᵁ N.U i)ˣ)
@@ -1154,13 +1153,7 @@ theorem lbIso_pw_cross : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (I : I
 end GlobalTheory.FormalAlg
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlgebraisationProperFormalSchemeAmpleBundle
-
-set_option autoImplicit false
-open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.FormalAlg GlobalTheory.Degen.FormalEmb
 
 namespace GlobalTheory.FormalAlg
 
@@ -1238,6 +1231,8 @@ theorem formalAlgebraisation_schemes : GlobalTheory.Published.FormalAlgebraisati
 
 end GlobalTheory.FormalAlg
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalAlgebraisation
 

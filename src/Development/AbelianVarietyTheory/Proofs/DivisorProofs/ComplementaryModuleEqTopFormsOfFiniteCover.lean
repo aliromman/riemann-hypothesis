@@ -92,7 +92,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComplementaryModuleEqTopFormsOfFiniteCover
 
-set_option autoImplicit false
 set_option maxHeartbeats 1000000
 set_option synthInstance.maxHeartbeats 200000
 

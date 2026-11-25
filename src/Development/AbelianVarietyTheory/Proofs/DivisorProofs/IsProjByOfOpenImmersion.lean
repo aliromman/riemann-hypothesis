@@ -117,8 +117,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.NonemptyHomFixRepTr
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsL2OnDiagonalOfIsL2Metric
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry Set Matrix MeasureTheory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -161,8 +159,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianVarietyCechVanishingAboveDegree
 
-set_option autoImplicit false
-
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AmpleGen
 open scoped CategoryTheory.Obj
@@ -196,8 +192,6 @@ end GlobalTheory.AmpleGen
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianVarietySquareLinearEndomorphismFiniteLoca
-
-set_option autoImplicit false
 
 
 open CategoryTheory MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
@@ -309,8 +303,6 @@ theorem _root_.GlobalTheory.T.abelianVarietySquareLinearEndomorphism_finiteLocal
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechPicardPullbackZpowEqMumfordFormula
-
-set_option autoImplicit false
 
 
 open CategoryTheory MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
@@ -786,8 +778,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechNonvanishingInvMixPairKunnethIsogeny
 
-set_option autoImplicit false
-
 
 section Lemmas
 open CategoryTheory MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
@@ -984,8 +974,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.PrimitiveGermFrames
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.PrimitiveGermFrames
 
@@ -1020,8 +1008,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.PrimitiveGermFrames
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsGermGIffExistsFrame
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.GermSectionCompare
@@ -1142,8 +1128,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechNonvanishingLineBundleInvMixOneZero
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AmpleGen
 open scoped CategoryTheory.Obj
@@ -1183,8 +1167,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelativelyAcyclicOfCechVanishingAllCovers
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AmpleGen
 open scoped CategoryTheory.Obj
@@ -1216,8 +1198,6 @@ end GlobalTheory.AmpleGen
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SerreVanishingLineBundleInvMixFixedDifference
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry Filter
@@ -1273,8 +1253,6 @@ end GlobalTheory.AmpleGen
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AmpleVanishing
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry

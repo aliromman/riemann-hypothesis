@@ -55,8 +55,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.LevelGroupExamples.JetTruncNotInjective
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.JetTest
 
@@ -115,8 +113,6 @@ theorem _root_.GlobalTheory.T.exists_universalJetCoordinates_pullback : ∀ (V V
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsFormalGroupJetsChart
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory NumberField IsDedekindDomain IsLocalRing

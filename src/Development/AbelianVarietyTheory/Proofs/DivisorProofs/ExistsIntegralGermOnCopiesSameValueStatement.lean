@@ -73,8 +73,6 @@ import Development.AbelianVarietyTheory.Definitions.PlaceAdaptation.AdaptStd
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ActionLinearLogCoordinatesIntegral
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IsoTriv
 
@@ -140,8 +138,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CanonGaugeBiadditiveOfLogSumActionLinear
 @[expose] public noncomputable section
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.IsoTriv.GaugeBiadd
@@ -294,8 +290,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ColumnInclusionIntegralOfLimitSteps
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IsoTriv.Incl
 
@@ -395,8 +389,6 @@ end GlobalTheory.IsoTriv.Incl
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ColumnInclusionRetractionOfLimitSteps
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.IsoTriv
@@ -516,8 +508,6 @@ end GlobalTheory.IsoTriv
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstCoeffOperatorLinearSubstitutionProof
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.IsoTriv.LinChange
@@ -668,8 +658,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrameSeriesExpSumOfActionLinearLogUnit
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IsoTriv
 
@@ -771,8 +759,6 @@ end GlobalTheory.IsoTriv
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaugeHermitianCombinationOfSteps
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.IsoTriv.HermRead
@@ -885,8 +871,6 @@ end GlobalTheory.IsoTriv.HermRead
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LimitActionIntegralPointOfSteps
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.IsoTriv
@@ -1041,8 +1025,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LimitIsotropicFrameIntegralOfSteps
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IsoTriv
 
@@ -1155,8 +1137,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogIntegralUnitsSubgroupExpHomProof
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IsoTriv
 
@@ -1241,8 +1221,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogarithmSumIntegralAdditive
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IsoTriv
 
@@ -1322,8 +1300,6 @@ end GlobalTheory.IsoTriv
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NablaOperatorFrameSeriesOfSteps
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.IsoTriv
@@ -1523,8 +1499,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SeriesCoeffUniformlyContinuousInCoeffsProof
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IsoTriv.CoeffCont
 
@@ -1633,8 +1607,6 @@ end GlobalTheory.IsoTriv
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralGermOnCopiesSameValue
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.ColumnGerm

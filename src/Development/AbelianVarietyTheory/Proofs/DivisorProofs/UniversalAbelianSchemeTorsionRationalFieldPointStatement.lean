@@ -69,8 +69,6 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.AbelianLawCounterexamples.WeilIsUniqueOfLocal
 
-set_option autoImplicit false
-
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
   TopologicalSpace
@@ -97,8 +95,6 @@ end GlobalTheory.ThetaGroupTest
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFullSymplecticLevelStructureOfTateIso
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FullLevel
@@ -248,8 +244,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFullSymplecticLevelStructureUniqueOfLevels
 
-set_option autoImplicit false
-
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor NumberField GlobalTheory.FullLevel
 
 namespace GlobalTheory.FullLevel.Uniq
@@ -383,8 +377,6 @@ end GlobalTheory.FullLevel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniqueFullLevel
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FullLevel

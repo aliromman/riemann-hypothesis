@@ -58,7 +58,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeSectionsLinearSimilitudeMemKernelPolarization
 
-set_option autoImplicit false
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UPel.HT.Hecke.KerPol

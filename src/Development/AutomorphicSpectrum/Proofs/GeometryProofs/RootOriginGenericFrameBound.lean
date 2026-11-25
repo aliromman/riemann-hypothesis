@@ -82,8 +82,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.P
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.FirstFormIffSecondForm
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.ThetaValueIdentityCompare
 

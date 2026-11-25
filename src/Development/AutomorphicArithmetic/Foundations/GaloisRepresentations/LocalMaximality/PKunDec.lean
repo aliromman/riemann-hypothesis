@@ -59,8 +59,6 @@ import Mathlib.RingTheory.SimpleRing.Principal
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.BicechCohomologyKunnethDecomposition
 
-set_option autoImplicit false
-
 
 open GlobalTheory.PD
 open scoped TensorProduct

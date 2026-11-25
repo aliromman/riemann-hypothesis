@@ -56,8 +56,6 @@ import Mathlib.Tactic.Basify
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Jets.NotRunTiesZeroSteps
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.RunDepth.Model
 
@@ -166,8 +164,6 @@ theorem UpperTheory.cmDatum_smallPrimes_log_bounds_of_params :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThreeLeScaleOfPowBound
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.IndexAssembly

@@ -72,8 +72,6 @@ open scoped InnerProductSpace
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.GenApplyZero
 
-set_option autoImplicit false
-
 
 namespace Formalism.L2.SG.Pf.admitted
 
@@ -239,8 +237,6 @@ end Formalism.L2.SG.Pf.admitted
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.IntegralSumCoef
-
-set_option autoImplicit false
 
 
 namespace Formalism.L2.SG.Pf.admitted
@@ -409,8 +405,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.KavgFixRange
 
-set_option autoImplicit false
-
 
 namespace Formalism.L2.SG.Pf.admitted
 
@@ -498,8 +492,6 @@ end Formalism.L2.SG.Pf.admitted
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.OneParamHasDerivAt
-
-set_option autoImplicit false
 
 
 namespace Formalism.L2.SG.Pf.admitted.SkewDerivative
@@ -852,8 +844,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.SgCases
 
-set_option autoImplicit false
-
 
 namespace Formalism.L2.SG.Pf.admitted
 
@@ -965,8 +955,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.KFinSmooth
-
-set_option autoImplicit false
 
 namespace Formalism.L2.SG.Pf.admitted
 

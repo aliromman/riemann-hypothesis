@@ -57,8 +57,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRationalUnitaryMoveSelfDualToSplit
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.SplitMove
 

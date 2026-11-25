@@ -194,7 +194,6 @@ open GlobalTheory.SplitFlip GlobalTheory.SplitWeil GlobalTheory.StdPairLoc Globa
 open scoped Matrix
 
 section
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL Formalism.DoubleCosetMeasures.instMeasMat
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
   [MeasurableSpace k] [BorelSpace k]

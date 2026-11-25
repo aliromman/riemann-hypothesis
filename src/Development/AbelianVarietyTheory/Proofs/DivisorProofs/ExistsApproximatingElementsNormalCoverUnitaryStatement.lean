@@ -379,8 +379,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.USep
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.DefOverIntegral
 

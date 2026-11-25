@@ -55,8 +55,6 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinJetAddDirection
 
-set_option autoImplicit false
-
 
 open NumberField UpperHalfPlane GlobalTheory.HilbFam GlobalTheory.QFam
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization (Emb Frac latM qPow upperHalf cK omegaFactor IsPartialZeta HasExpansion)
@@ -137,8 +135,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates (iterD partialD
 open scoped Classical MatrixGroups nonZeroDivisors
 open GlobalTheory.LatVal (Sz)
 open GlobalTheory.LatJet (EisExp IsEis FR)
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HilbFam
 

@@ -51,8 +51,6 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.IsPrimeToPLat
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IsogParam
 
@@ -63,8 +61,6 @@ end GlobalTheory.IsogParam
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.HasDivPlace
-
-set_option autoImplicit false
 
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField Matrix

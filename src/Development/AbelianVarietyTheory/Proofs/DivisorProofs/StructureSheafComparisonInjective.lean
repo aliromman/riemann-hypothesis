@@ -46,8 +46,6 @@ import Mathlib.AlgebraicGeometry.Modules.Sheaf
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecFunctionsEqOfRestrictionsOnPairs
 
-set_option autoImplicit false
-
 open CategoryTheory AlgebraicGeometry Opposite ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.CechDR.AffLoc
 
 namespace GlobalTheory.CechDR.AffLoc
@@ -78,8 +76,6 @@ end GlobalTheory.CechDR.AffLoc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CochainValueOnThickeningHomEqSubOfGlued
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry Opposite
@@ -179,8 +175,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CocycleLocalSectionsRestrictCompatibly
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry Opposite ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh
   GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.CechDR.AffLoc
@@ -243,8 +237,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGlueFunctionsSpecFromPairs
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry Opposite ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.CechDR.AffLoc
 
@@ -299,8 +291,6 @@ end GlobalTheory.CechDR.AffLoc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.StructureSheafComparisonInjective
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry Opposite

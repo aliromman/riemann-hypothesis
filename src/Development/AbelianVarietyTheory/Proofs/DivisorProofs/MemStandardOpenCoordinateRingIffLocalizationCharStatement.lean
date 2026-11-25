@@ -55,8 +55,6 @@ open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemStandardOpenCoordinateRingIffLocalizationChar
 
-set_option autoImplicit false
-
 namespace GlobalTheory.PD.Loc
 
 variable {k : Type} [Field k] {F : Type} [Field F] [Algebra k F] {d : ℕ} {x : Fin (d + 1) → F}

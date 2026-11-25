@@ -51,8 +51,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.PrimitiveStructureS
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpanInvariantOneFormsAffineOpenAbelianSchemeEqTo
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped TensorProduct

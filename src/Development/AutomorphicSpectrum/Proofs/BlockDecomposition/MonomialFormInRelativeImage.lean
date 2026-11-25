@@ -53,7 +53,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MonomialMemExceptionalIdeal
 
-set_option autoImplicit false
 namespace GlobalTheory.CompanionTheory.SurjectionOntoH4
 open CrystallineSemistableComparison.Onto
 
@@ -121,7 +120,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MonomialFormInRelativeImage
 
-set_option autoImplicit false
 open CrystallineSemistableComparison.Onto GlobalTheory.CompanionTheory.SurjectionOntoH4 GlobalTheory.CompanionTheory.SurjectionOntoH4.LaurentD
 
 namespace GlobalTheory.CompanionTheory.SurjectionOntoH4.RelSup

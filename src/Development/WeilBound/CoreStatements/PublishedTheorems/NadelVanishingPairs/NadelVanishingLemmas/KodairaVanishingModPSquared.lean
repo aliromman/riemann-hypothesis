@@ -82,8 +82,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace Limits
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.LogDR
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Cartier.Presents
 
@@ -218,8 +216,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeltaTopPartEqZero
 
-set_option autoImplicit false
-
 open GlobalTheory GlobalTheory.DI
 
 namespace GlobalTheory.DI
@@ -307,8 +303,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.CechVanishingFrobeniusDescent
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.LogDR GlobalTheory.LogPair
 
-set_option autoImplicit false
-
 namespace GlobalTheory.LogDR
 
 theorem descend_vanishing : ∀ (p : ℕ) [Fact p.Prime] (X : Scheme.{0}) [IsIntegral X] [CharP X.functionField p] {C : Type} [Fintype C] (E : C → CartierDiv X) {n : ℕ} {ι : Type} [LinearOrder ι] (𝒜 : SncAtlas E n ι) (G : ℕ → CartierDiv X), Decomp p 𝒜 → (∀ e, ∃ ρ : C → ℕ, (∀ c, ρ c < p) ∧ G (e + 1) = p • G e + ∑ c, ρ c • E c) → ∀ e₀ : ℕ, (∀ a b : ℕ, n < a + b → DI.CechZero (cechFam 𝒜 (G e₀) a) b) → ∀ a b : ℕ, n < a + b → DI.CechZero (cechFam 𝒜 (G 0) a) b := by
@@ -391,8 +385,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeModelUniqueInjective
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.LogDR
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.LogDR
@@ -514,8 +506,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyLatModelTwist
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.LogDR
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.LogDR
@@ -668,8 +658,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmulMemSpanFormsOfMulMem
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.LogDR
 
-set_option autoImplicit false
-
 namespace GlobalTheory.LogDR
 
 theorem smul_mem_spanForms_of_mul_mem {K : Type} [Field K] {M M' : Set K} {H : Set Ω[K⁄ℤ]} {a : ℕ} (g : K)
@@ -719,8 +707,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLatticeModel
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.LogDR
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.LogDR.LatSheaf
@@ -898,8 +884,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeModelFiniteQuasicoherent
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.LogDR
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.LogDR.LatFinite
 
@@ -984,8 +968,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.LogFormsLatticeFinite
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.LogDR
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.LogDR
@@ -1079,8 +1061,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.SerreVanishingSncAtlas
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.LogDR GlobalTheory.LogPair
 
-set_option autoImplicit false
-
 namespace GlobalTheory.LogDR
 
 open GlobalTheory.Twist GlobalTheory.LB GlobalTheory.QCoh
@@ -1162,7 +1142,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.TopLogFormsCanonicalGenerator
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.LogDR GlobalTheory.LogPair
 
-set_option autoImplicit false
 namespace GlobalTheory.LogDR
 open TopForm
 variable {k K : Type} [CommRing k] [Field K]
@@ -1658,8 +1637,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.SubsingletonCohOfDecomp
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.LogDR GlobalTheory.LogPair
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CharPVanish

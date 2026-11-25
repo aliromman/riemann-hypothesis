@@ -99,7 +99,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegerMemLatticeSubBound
 open Polynomial
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

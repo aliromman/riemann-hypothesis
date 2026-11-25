@@ -66,8 +66,6 @@ import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.RealCubicMeans.Log
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HyperplaneSectionVanishingShift
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
@@ -177,8 +175,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GlobalSectionRankLowerBoundOfHilbertSamuel
 
-set_option autoImplicit false
-
 namespace GlobalTheory.HSCore.RankBound
 
 theorem topologicalKrullDim_le_of_smooth {k : Type} [Field k] {Y : Scheme.{0}} [IsIntegral Y] (p : Y ⟶ Sp k) (D : ℕ)
@@ -242,8 +238,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChooseMulComponentDegreeLeDimension
 open Formalism.L2.Pj Formalism.NormVectorIdentities.Items
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HSCore.CompShare
 

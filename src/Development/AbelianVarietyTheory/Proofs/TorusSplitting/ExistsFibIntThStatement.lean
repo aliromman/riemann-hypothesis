@@ -50,8 +50,6 @@ import Formalism.SharpRestriction.Divisibility.AbelianOpenPart.AbelianAt
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TorusSplitting.ExistsFibIntTh
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.EtaVal
 

@@ -50,8 +50,6 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHomJet
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.SquareLiftLemmas
 
@@ -130,8 +128,6 @@ end GlobalTheory.SquareLiftLemmas
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsJetExtensionSquareZero
-
-set_option autoImplicit false
 
 
 open CategoryTheory GlobalTheory.CatCoh GlobalTheory.AnPer GlobalTheory.AnPer.Charts TopologicalSpace

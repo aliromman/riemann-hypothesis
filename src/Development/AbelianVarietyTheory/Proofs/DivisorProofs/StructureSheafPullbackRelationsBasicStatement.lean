@@ -60,8 +60,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.StructureSheafPullbackRelationsBasic
 @[expose] public noncomputable section
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped TensorProduct

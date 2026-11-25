@@ -85,7 +85,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.MemLevEigenIffTransl
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 400000
 
 

@@ -55,8 +55,6 @@ import Mathlib.Tactic.ReduceModChar
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.BlockProductLattices
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.BlockProductLattices
 
@@ -86,8 +84,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.BlockProductLattices
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.BlockHarmLevOfBlockHarm
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.ShortLawsCompare

@@ -54,8 +54,6 @@ open CategoryTheory AlgebraicGeometry KaehlerDifferential GlobalTheory.CatCoh Gl
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CommaFirstOrderCocycleLift
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CechDR
 

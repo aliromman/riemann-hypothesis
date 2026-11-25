@@ -79,8 +79,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField Recipr
 open GlobalTheory.FlagMod
 open GlobalTheory.FlagTan (dimFlag)
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CompHS
@@ -167,8 +165,6 @@ open GlobalTheory.FlagMod GlobalTheory.TopForm
 open GlobalTheory.FlagTan (dimFlag psiSet TIx HIx VIx IsTanFrame IsDef IsVert KSIso kap)
 open GlobalTheory.AllWt (exOf)
 open scoped Classical
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -264,8 +260,6 @@ theorem _root_.GlobalTheory.T.derivative_along_vertical_deformation_lift : ∀ {
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetEqProdDiagOfHeight
-
-set_option autoImplicit false
 
 
 
@@ -392,8 +386,6 @@ end GlobalTheory.FlagTan
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetDerivativesBorelFrameChangeCanonicalWeight
-
-set_option autoImplicit false
 
 
 
@@ -557,8 +549,6 @@ open GlobalTheory.FlagTan (dimFlag psiSet TIx HIx VIx IsTanFrame IsDef IsVert KS
 open GlobalTheory.AllWt (exOf)
 open scoped Classical
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CompHS
@@ -640,8 +630,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTangentVectorsFunctionsInvertibleDerivs
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.CompHS GlobalTheory.TangentOrigin
@@ -814,8 +802,6 @@ open GlobalTheory.FlagTan (dimFlag psiSet TIx HIx VIx IsTanFrame IsDef IsVert KS
 open GlobalTheory.AllWt (exOf)
 open scoped Classical
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CompHS
@@ -982,8 +968,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRegularKodairaSpencerCoordinateAffineOffBo
-
-set_option autoImplicit false
 
 namespace GlobalTheory.CompHS
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.CompHS GlobalTheory.TangentOrigin
@@ -1168,8 +1152,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KodairaSpencerCoordsTwoChartsTransition
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CompHS
 
@@ -1339,8 +1321,6 @@ theorem GlobalTheory.CompHS.ksRel_change : ∀ {E : Type} [Field E] [NumberField
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyKodairaSpencerIdentificationOffBoundary
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CompHS

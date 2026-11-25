@@ -151,8 +151,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlgebraiseSystemInAlgebraisingClosedSubscheme
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FormalAlg
 
@@ -205,7 +203,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BaseIdealSheafOfIdealSpecBijectiveCalculus
 
-set_option autoImplicit false
 namespace GlobalTheory.FormalAlg
 
 theorem baseIdeal_sup {R : Type} [CommRing R] {W : Scheme.{0}} (f : W ⟶ Spec (CommRingCat.of R))
@@ -466,10 +463,12 @@ theorem inf_sup_pow_eq_of_torsion : ∀ (B : Type) [CommRing B] [IsNoetherianRin
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapComapIdealSheafEqOfIsIsoRestrict
+section -- clump: shared namespace opens
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.AbLaw GlobalTheory.FormalAlg
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapComapIdealSheafEqOfIsIsoRestrict
 
 namespace GlobalTheory.MapComapIso
 
@@ -523,11 +522,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapComapInfSupPowEq
 
-open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
-open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.AbLaw GlobalTheory.FormalAlg
-
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FormalAlg
 
@@ -566,11 +560,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapInfEqOfReductionsJacobsonInduction
 
-set_option autoImplicit false
-
-open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
-open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.AbLaw GlobalTheory.FormalAlg
-
 namespace GlobalTheory.FormalAlg
 
 theorem eq_of_sup_baseIdeal_pow_eq {C : Type} [CommRing C] [IsNoetherianRing C] {J : Ideal C}
@@ -597,6 +586,8 @@ theorem map_inf_eq_of_reductions : ∀ (C : Type) [CommRing C] [IsNoetherianRing
 
 end GlobalTheory.FormalAlg
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ComapMulIdealSheaf
 
@@ -631,7 +622,6 @@ open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.AbLaw GlobalTheory.Fo
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdealSheafEqOfReductionAgreeOnAffineOpen
 
-set_option autoImplicit false
 
 namespace GlobalTheory.FormalAlg
 
@@ -896,8 +886,6 @@ end GlobalTheory.FormalAlg
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalClosedSubschemesAlgebraiseClosedImmersion
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FormalAlg
@@ -1187,8 +1175,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GrothendieckExistenceClosedSubschemesSeparated
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FormalAlg
 
@@ -1466,7 +1452,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsClosedImmersionOfProperClosedImmersionModIdeal
 
-set_option autoImplicit false
 namespace GlobalTheory.ClosedLev
 
 theorem exists_nhd (R : Type) [CommRing R] (I : Ideal R) (X Z : Scheme.{0}) (φ : X ⟶ Z)
@@ -1534,14 +1519,7 @@ theorem isIso_of_isIso_reductions : ∀ (R : Type) [CommRing R] [IsNoetherianRin
 end GlobalTheory.FormalAlg
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MorphismEqOfEqOnThickenings
-
-set_option autoImplicit false
-
-open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
-open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.AbLaw GlobalTheory.FormalAlg
 
 namespace GlobalTheory.FormalAlg
 
@@ -1571,12 +1549,12 @@ theorem hom_eq_of_reductions_eq : ∀ (R : Type) [CommRing R] [IsNoetherianRing 
 end GlobalTheory.FormalAlg
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalAlgebraisationMorphisms
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.FormalAlg
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FormalAlgMorphisms

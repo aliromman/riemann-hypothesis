@@ -19,6 +19,7 @@ import Mathlib.Tactic.TypeStar
 
 
 open MeasureTheory
+open scoped Formalism.DoubleCosetMeasures
 open scoped ENNReal
 
 namespace Formalism.L2.SG.Pf.NcReal.JX

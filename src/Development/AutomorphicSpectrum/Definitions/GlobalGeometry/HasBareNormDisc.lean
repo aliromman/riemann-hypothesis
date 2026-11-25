@@ -49,8 +49,6 @@ import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsLineGenOn
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.DivisorBase.GeometricComponentEmbedding
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.EigenbasisGramSquares
 

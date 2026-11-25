@@ -101,8 +101,6 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsCombAtIffIsDer
 
 open NumberField AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
-set_option autoImplicit false
-
 namespace GlobalTheory.HeckeKerIdx
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
@@ -251,8 +249,6 @@ theorem GlobalTheory.heckeKer_lattice_bounds : ∀ (E : Type) [Field E] [NumberF
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsCosetFrBorOfLift
-
-set_option autoImplicit false
 
 
 section Adelic
@@ -1059,8 +1055,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHeckeKernelCosetFramedPoint
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open NumberField
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HeckeExist
 

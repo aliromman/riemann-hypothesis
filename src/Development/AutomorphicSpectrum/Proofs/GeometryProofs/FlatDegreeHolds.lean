@@ -347,8 +347,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.PointShiftStOfPlaceShiftSt
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FlatCM.PlaceShiftModel
 
 open NumberField IsDedekindDomain GlobalTheory.CompHt GlobalTheory.HTLat

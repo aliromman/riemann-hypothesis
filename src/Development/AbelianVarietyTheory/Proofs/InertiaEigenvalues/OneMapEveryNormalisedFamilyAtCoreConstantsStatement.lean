@@ -77,8 +77,6 @@ import Development.AbelianVarietyTheory.Definitions.ThetaValues.ExistsRootNotMem
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.OneMapEveryNormalisedFamilyAtCoreConstants
 
-set_option autoImplicit false
-
 
 
 namespace GlobalTheory.SerAll

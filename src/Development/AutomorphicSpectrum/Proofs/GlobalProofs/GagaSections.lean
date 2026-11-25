@@ -74,8 +74,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.ProjectiveValuations.CompactSpaceOfIsProper
 
-set_option autoImplicit false
-
 
 namespace DifferentiableLines.Cpt
 
@@ -293,8 +291,6 @@ end -- clump:auto
 
 open CategoryTheory.Limits ReciprocityTheory.ChartRestriction.G.DVR.FlatBC
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CompanionTheory.Gaga
 
@@ -459,8 +455,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.HolomorphicSectionModerateGrowth
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Set Filter Topology

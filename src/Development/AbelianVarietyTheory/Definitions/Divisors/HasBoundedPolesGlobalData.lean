@@ -50,8 +50,6 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.SecondCounta
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace NumberField

@@ -60,8 +60,6 @@ import Mathlib.Tactic.ENatToNat
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.MapDifferentLeDifferentSupIntermediateField
 
-set_option autoImplicit false
-
 open NumberField IsDedekindDomain
 open scoped IntermediateField nonZeroDivisors
 
@@ -196,8 +194,6 @@ end -- clump:auto
 
 open NumberField IsDedekindDomain GlobalTheory.FieldSize
 open scoped IntermediateField nonZeroDivisors
-
-set_option autoImplicit false
 
 namespace GlobalTheory.FieldSize
 

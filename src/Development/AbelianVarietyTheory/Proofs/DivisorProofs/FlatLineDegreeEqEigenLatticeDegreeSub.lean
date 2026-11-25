@@ -634,8 +634,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomogeneousNormFactorFlatLineOrthonormalFrame
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.OrthoFlatFac
 
@@ -680,8 +678,6 @@ end GlobalTheory.OrthoFlatFac
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormDiagonalTorusCharacterFlatLineWeight
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CompHS.FlatDiag

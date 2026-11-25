@@ -77,7 +77,6 @@ import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.DatEqZero
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.LevelGroupExamples.TransformIndicator
 
-set_option autoImplicit false
 namespace GlobalTheory.ClassSumProbe
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor NumberField Formalism.L2.Pj MvPolynomial
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}

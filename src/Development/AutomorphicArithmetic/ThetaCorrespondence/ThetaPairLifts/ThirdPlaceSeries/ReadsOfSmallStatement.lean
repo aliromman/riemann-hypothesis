@@ -109,8 +109,6 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsLatticeRat
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicPointIntegralRelativeLocalBasis
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain
 open scoped TensorProduct
@@ -299,8 +297,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualWeylTensorLiftEquivariant
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FrameRead.LiftEquiv
 
@@ -445,8 +441,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDualWeylTensorLiftCoefficientSpace
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain
@@ -624,8 +618,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntermediateFieldPadicIntegersEqNormLeOne
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FrameOf
@@ -839,8 +831,6 @@ open GlobalTheory.FrameRead
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsPhiOfFrameInjectiveShift
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FrameRead
 
@@ -861,8 +851,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinIndOfBasis
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain
@@ -1072,8 +1060,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalBasisIntegralRelativeAdelicPoint
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain
 open scoped TensorProduct
@@ -1235,8 +1221,6 @@ end -- clump:auto
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpFrame GlobalTheory.ExpTie GlobalTheory.FrameOf
 open scoped TensorProduct
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.EvLocal
 
@@ -1296,8 +1280,6 @@ end GlobalTheory.EvLocal
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnimodularMatricesPreserveFrameLattices
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain
@@ -1369,8 +1351,6 @@ theorem _root_.GlobalTheory.T.unimodular_matrices_preserve_frame_lattices : ∀ 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ReadsAtSmallPlace
-
-set_option autoImplicit false
 
 
 
@@ -1706,7 +1686,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 
 
 noncomputable section

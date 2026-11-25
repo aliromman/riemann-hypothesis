@@ -255,8 +255,6 @@ end -- clump:auto
 
 open GlobalTheory.ShFam.Hor
 
-set_option autoImplicit false
-
 namespace GlobalTheory.LogDescent
 
 open Complex Topology
@@ -1350,8 +1348,6 @@ open MonoidalCategory CartesianMonoidalCategory MonObj GlobalTheory.ShFam.Hor.Lo
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PeriodMatrixBoundaryExtensionMonodromyPosSemidef
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.ShFam.Hor.LogCh.PerExt

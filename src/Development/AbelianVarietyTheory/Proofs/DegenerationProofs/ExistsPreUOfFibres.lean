@@ -80,11 +80,13 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.P
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyBiTrivOfIsIntegrallyClosed, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyFormalUniformisationTower, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyFormalUniformisationTowerStatement, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsPreUOfFibres
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyBiTrivOfIsIntegrallyClosed
+-- clump: shared namespace opens
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyBiTrivOfIsIntegrallyClosed
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
@@ -132,12 +134,6 @@ end GlobalTheory.BiextTriv
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyFormalUniformisationTower
-
-set_option autoImplicit false
-
-open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 open GlobalTheory.LN
@@ -346,12 +342,6 @@ theorem nonempty_towerR : Laws → Laws2 → ∀ (R : Type) [CommRing R] [IsDoma
 end GlobalTheory.FormalTower
 
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyFormalUniformisationTowerStatement
 attribute [local instance] Over.cartesianMonoidalCategory

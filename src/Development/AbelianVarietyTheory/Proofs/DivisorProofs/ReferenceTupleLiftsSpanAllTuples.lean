@@ -68,7 +68,6 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsLatticeEmb
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LiftsSpanOfClassSumsSpan
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 200000
 
 

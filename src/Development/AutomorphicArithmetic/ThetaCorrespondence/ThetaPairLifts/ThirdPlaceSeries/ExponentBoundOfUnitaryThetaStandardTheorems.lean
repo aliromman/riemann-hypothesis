@@ -91,8 +91,6 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsLatticeRat
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExponentDatumLeOfPrimePowerLatticeInclusion
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain
 
@@ -207,8 +205,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrimePowerLatticeInclusionOfLocalModels
 
-set_option autoImplicit false
-
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds
 
 namespace GlobalTheory.ExpTie
@@ -235,8 +231,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExpansionOfNumericsModel
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.ExpTie.Asm
@@ -321,7 +315,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 section
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.ExpTie.Asm
 open Formalism.L2.Indef Formalism.L2.Indef.Tree
@@ -370,8 +363,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ParameterHeightLtGenus
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj Formalism.IndefR Formalism.IndefR.Links GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie
@@ -441,7 +432,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj Formalism.IndefR Formalism.IndefR.Links GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie
 namespace GlobalTheory.ExpTie
@@ -470,8 +460,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftWeightRhoBlockConstantCentred
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links GlobalTheory.ExpTie GlobalTheory.ExpTie.Lift
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.ExpTie.Lift
@@ -513,8 +501,6 @@ end GlobalTheory.ExpTie.Lift
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftWeightRhoEntriesLeFloorHeight
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links GlobalTheory.ExpTie GlobalTheory.ExpTie.Lift
@@ -622,8 +608,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftWeightRhoEntryValues
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links GlobalTheory.ExpTie GlobalTheory.ExpTie.Lift
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.ExpTie.Lift
@@ -749,8 +733,6 @@ end GlobalTheory.ExpTie.Lift
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftWeightRhoLowsDistanceBounds
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links GlobalTheory.ExpTie GlobalTheory.ExpTie.Lift
@@ -906,8 +888,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftWeightRhoThickPlaceCentreWindow
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.ExpTie.Lift
 
@@ -988,7 +968,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj Formalism.IndefR Formalism.IndefR.Links GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie
 namespace GlobalTheory.ExpTie.Lift
@@ -1029,7 +1008,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Indef Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx
@@ -1105,8 +1083,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumExpansionStatement
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.SumExpAt
@@ -1238,7 +1214,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 section
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.SumExpAt
 end GlobalTheory.SumExpAt
@@ -1279,7 +1254,6 @@ end -- clump:auto
 
 section
 section
-set_option autoImplicit false
 namespace GlobalTheory.BigOn
 theorem exponent_bound_of_unitaryThetaStandardTheorems_alt :
     GlobalTheory.Published.ClozelCohomological →

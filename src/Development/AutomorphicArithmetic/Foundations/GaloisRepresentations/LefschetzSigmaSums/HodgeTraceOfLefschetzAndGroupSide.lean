@@ -214,8 +214,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PAltLin
 
-set_option autoImplicit false
-
 
 open AlgebraicGeometry CategoryTheory GlobalTheory.HodgeCoh
 
@@ -435,8 +433,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PCoeffOcc
 
-set_option autoImplicit false
-
 open Polynomial
 
 namespace UpperTheory.Gal.LocalSmoothExtension
@@ -475,8 +471,6 @@ end UpperTheory.Gal.LocalSmoothExtension
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PFnDecomp
-
-set_option autoImplicit false
 
 
 namespace UpperTheory.Gal.LocalSmoothExtension.FunctionDecomposition
@@ -624,8 +618,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PGeoStep
 
-set_option autoImplicit false
-
 
 open AlgebraicGeometry CategoryTheory Limits NumberField
 open GlobalTheory.HodgeCoh
@@ -710,8 +702,6 @@ end UpperTheory.Gal.LocalSmoothExtension
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PHExpInj
-
-set_option autoImplicit false
 
 namespace UpperTheory.Gal.LocalSmoothExtension
 
@@ -844,8 +834,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PHodgeTr
 
-set_option autoImplicit false
-
 open AlgebraicGeometry CategoryTheory Limits NumberField
 open GlobalTheory.HodgeCoh GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCx GlobalTheory.LKDef GlobalTheory.RootSumWeights GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen
 open UpperTheory.Gal.Int.Geo (KS Lv Sc)
@@ -940,8 +928,6 @@ theorem UpperTheory.Gal.LocalSmoothExtension.homEx_of :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PHopWord
-
-set_option autoImplicit false
 
 
 open UpperTheory.Gal.LocalSmoothExtension
@@ -1104,8 +1090,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PLefSum
 
-set_option autoImplicit false
-
 
 open Matrix Polynomial
 open UpperTheory.Gal.W2 (lefTerm)
@@ -1138,8 +1122,6 @@ end UpperTheory.Gal.LocalSmoothExtension
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PLegBc
-
-set_option autoImplicit false
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen GlobalTheory.LKTrip GlobalTheory.LKGeo

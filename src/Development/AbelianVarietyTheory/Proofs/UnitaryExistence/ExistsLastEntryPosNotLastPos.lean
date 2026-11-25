@@ -57,8 +57,6 @@ import Formalism.LocalToGlobal.ProjectiveLattices.JFDFree
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.JetRangeLevelFactor
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.JetRangeLevelFactor
 
@@ -85,8 +83,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.JetRangeLevelFactor
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsLastEntryPosNotLastPos
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.ThetaClaimsCompare

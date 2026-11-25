@@ -51,8 +51,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.Lie
 
 @[expose] public section
 
-set_option autoImplicit false
-
 
 noncomputable section
 

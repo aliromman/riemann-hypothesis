@@ -705,8 +705,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OscillatorModelUnitValues
 
-set_option autoImplicit false
-
 
 
 open NumberField Matrix Complex MeasureTheory IsDedekindDomain

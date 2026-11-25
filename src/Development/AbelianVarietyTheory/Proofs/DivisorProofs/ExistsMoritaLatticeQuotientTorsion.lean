@@ -374,7 +374,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrderSurjectsMatrixAlgebraModPrimePower
 
-set_option autoImplicit false
 open NumberField GlobalTheory.UPel.HT GlobalTheory.UPel.HT.EtLev
 open scoped TensorProduct
 

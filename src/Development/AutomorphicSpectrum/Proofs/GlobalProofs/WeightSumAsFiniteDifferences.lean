@@ -72,12 +72,12 @@ import Mathlib.Algebra.Order.Star.Real
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDifferenceConeTermEq, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HighDifferenceVanishesNegativeInteger, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ConeSeriesDerivativeGrowthBound, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ConeSeriesRealDerivativeFormula, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ShintaniValuesNegativeIntegersRational, Development.AutomorphicSpectrum.Proofs.GlobalProofs.SizePowerLeInverseSquareProduct, Development.AutomorphicSpectrum.Proofs.GlobalProofs.SummableInverseSquareProduct, Development.AutomorphicSpectrum.Proofs.GlobalProofs.WeightSumAsFiniteDifferences
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDifferenceConeTermEq
-
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
+
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDifferenceConeTermEq
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
@@ -107,11 +107,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.HighDifferenceVanishesNegativeInteger
 
-set_option autoImplicit false
-
-
-open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
-
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
 theorem coneTerm_differentiable_in_s_alt {ι : Type} [Fintype ι] {r : ℕ} {a : ι → Fin r → ℝ} {b : ι → ℝ}
@@ -140,11 +135,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ConeSeriesDerivativeGrowthBound
-
-set_option autoImplicit false
-
-
-open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
@@ -266,11 +256,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ConeSeriesRealDerivativeFormula
 
-set_option autoImplicit false
-
-
-open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
-
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.DerivDLR
 
 variable {ι : Type} [Fintype ι] [DecidableEq ι] {r : ℕ}
@@ -386,11 +371,13 @@ theorem hasDerivAt_DLR_Fr (ι : Type) [Fintype ι] [DecidableEq ι] (r : ℕ) (a
 end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.DerivDLR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ShintaniValuesNegativeIntegersRational
+end -- clump: shared namespace opens
+
+-- clump: shared namespace opens
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
-set_option autoImplicit false
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ShintaniValuesNegativeIntegersRational
 
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.DiffDecay
@@ -491,8 +478,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.SizePowerLeInverseSquareProduct
 
-open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
-
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
 theorem sizeE_zpow_le_prod_inv_sq (r n B N : ℕ) (cs : List (Fin r)) (m : Fin r → ℕ)
@@ -568,8 +553,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.SummableInverseSquareProduct
 
-open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
-
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
 theorem summable_inv_one_add_sq :
@@ -596,10 +579,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.WeightSumAsFiniteDifferences
-
-set_option autoImplicit false
-
-open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 

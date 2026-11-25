@@ -689,7 +689,6 @@ end -- clump:auto
 open GlobalTheory.AbDual GlobalTheory.CechPic GlobalTheory.DualCon
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 
 namespace GlobalTheory.AbDual
 
@@ -735,7 +734,6 @@ end -- clump:auto
 open GlobalTheory.AbDual GlobalTheory.CechPic GlobalTheory.DualCon
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 
 namespace GlobalTheory.KerAxes
 
@@ -1080,8 +1078,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.NotWeilIsGrpPullbackNoncomm
-
-set_option autoImplicit false
 
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField

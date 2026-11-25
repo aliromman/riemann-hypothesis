@@ -51,12 +51,12 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.PrismaticDieudonnePerfd, Development.AbelianVarietyTheory.Definitions.Divisors.PrismaticDieudonnePerfdIff
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.PrismaticDieudonnePerfd
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 
 open CategoryTheory WittVector Ideal
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.PrismaticDieudonnePerfd
 
 namespace GlobalTheory.Published
 
@@ -97,11 +97,6 @@ end GlobalTheory.Published
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.PrismaticDieudonnePerfdIff
-
-set_option autoImplicit false
-
-
-open CategoryTheory WittVector Ideal
 
 namespace GlobalTheory.PerfdLat
 

@@ -71,8 +71,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedRationalOfOneMapOverL
 
-set_option autoImplicit false
-
 
 open NumberField
 open scoped TensorProduct

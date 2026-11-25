@@ -58,8 +58,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TsumNatCastEq
 
-set_option autoImplicit false
-
 
 open NumberField
 open scoped nonZeroDivisors
@@ -151,8 +149,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinFourierExpansionSupport
 
-set_option autoImplicit false
-
 
 open NumberField
 open scoped nonZeroDivisors
@@ -242,8 +238,6 @@ end GlobalTheory.HilbFam
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsHilbertEisensteinLatticeValueOfEisensteinSerie
-
-set_option autoImplicit false
 
 
 open NumberField UpperHalfPlane GlobalTheory.HilbFam GlobalTheory.QFam

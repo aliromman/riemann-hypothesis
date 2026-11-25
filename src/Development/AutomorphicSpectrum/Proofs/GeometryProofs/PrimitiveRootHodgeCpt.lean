@@ -61,7 +61,6 @@ import Mathlib.Tactic.ReduceModChar
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectiveModuleModNBasis
 
-set_option autoImplicit false
 
 namespace GlobalTheory.CompanionTheory.ModFree
 

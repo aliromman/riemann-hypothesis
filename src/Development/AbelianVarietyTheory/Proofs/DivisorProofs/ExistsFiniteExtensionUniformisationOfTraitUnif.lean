@@ -874,7 +874,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
-set_option autoImplicit false
 
 namespace GlobalTheory.GenEqual
 

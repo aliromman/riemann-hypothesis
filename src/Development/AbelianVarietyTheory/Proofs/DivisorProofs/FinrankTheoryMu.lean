@@ -76,8 +76,6 @@ import Mathlib.RingTheory.SimpleRing.Principal
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleDieudonneTransposeAbsFrobeniusApplyF
 
-set_option autoImplicit false
-
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu GlobalTheory.Dieu.EtFromConn
 
@@ -133,8 +131,6 @@ end GlobalTheory.Dieu.EtFromConn
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleDieudonneTransposeComp
-
-set_option autoImplicit false
 
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu GlobalTheory.Dieu.EtFromConn
@@ -298,8 +294,6 @@ theorem GlobalTheory.Dieu.EtFromConn.isTr_comp : ∀ (p : ℕ) [Fact p.Prime] (B
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleDieudonneTransposeEqRigidifiedExtensionPull
-
-set_option autoImplicit false
 
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu GlobalTheory.Dieu.EtFromConn
@@ -471,8 +465,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEtDualOfConn
-
-set_option autoImplicit false
 
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu GlobalTheory.Dieu.EtFromConn
@@ -665,8 +657,6 @@ end -- clump:auto
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Dieu
 
@@ -751,8 +741,6 @@ open CategoryTheory GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
 
 open TensorProduct Coalgebra Bialgebra WithConv
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory
 
@@ -812,8 +800,6 @@ end -- clump:auto
 open CategoryTheory GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
 
 open TensorProduct Coalgebra Bialgebra WithConv
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.PDivGroup
@@ -888,8 +874,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDieudonneFunctorGluedConnectedEtale
 
 open CategoryTheory GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Dieu.Glue
@@ -1140,8 +1124,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsVerschiebungOfDieudonneFunctorBase
 
-set_option autoImplicit false
-
 open CategoryTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
 
 namespace GlobalTheory.Dieu
@@ -1249,8 +1231,6 @@ end GlobalTheory.Dieu
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankTheoryMu
-
-set_option autoImplicit false
 
 
 open CategoryTheory GlobalTheory.PDiv GlobalTheory.PDivGroup

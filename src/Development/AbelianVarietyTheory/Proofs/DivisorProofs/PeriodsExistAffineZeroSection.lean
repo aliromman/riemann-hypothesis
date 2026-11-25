@@ -58,8 +58,6 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InvariantCochainOneConstOnDegree
 
-set_option autoImplicit false
-
 
 open CategoryTheory GlobalTheory.CatCoh GlobalTheory.AnPer GlobalTheory.AnPer.Charts TopologicalSpace
 
@@ -187,8 +185,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPeriodCohomologyClassOfRichBased
 
-set_option autoImplicit false
-
 
 open CategoryTheory GlobalTheory.CatCoh GlobalTheory.AnPer GlobalTheory.AnPer.Charts TopologicalSpace
 
@@ -238,8 +234,6 @@ end GlobalTheory.AnPer.Charts
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PeriodsExistAffineZeroSection
-
-set_option autoImplicit false
 
 
 open TopologicalSpace CategoryTheory AlgebraicGeometry GlobalTheory.CatCoh GlobalTheory.Cris

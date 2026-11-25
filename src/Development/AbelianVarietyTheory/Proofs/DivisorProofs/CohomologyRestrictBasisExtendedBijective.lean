@@ -62,8 +62,6 @@ import Mathlib.RingTheory.Coalgebra.CoassocSimps
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsUnitMpTenExtIff
 
-set_option autoImplicit false
-
 
 open CategoryTheory GlobalTheory.CatCoh
 open scoped TensorProduct
@@ -200,8 +198,6 @@ end GlobalTheory.Obs.TenExt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CohomologyRestrictBasisExtendedBijective
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj

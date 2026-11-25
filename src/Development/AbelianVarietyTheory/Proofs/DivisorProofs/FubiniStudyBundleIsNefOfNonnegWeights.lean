@@ -53,8 +53,6 @@ import ReciprocityTheory.L2DbarEstimates.LeviForms.OfRealNormSqSumMul
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsNefHermitianTwistingSheaf
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -117,8 +115,6 @@ open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier Glo
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsNefOfSemiPosGeneratedBySmallSections
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.GenNef
 
@@ -139,8 +135,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemiPosOfIsFubiniStudyOfRatFnFamily
 open GlobalTheory.Points GlobalTheory.ChartGlue GlobalTheory.CechPic
 open ReciprocityTheory.L2DbarEstimates (V leviV)
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -205,8 +199,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FubiniStudyBundleIsNefOfNonnegWeights
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology

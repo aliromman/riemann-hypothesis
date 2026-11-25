@@ -61,8 +61,6 @@ import Mathlib.RingTheory.PiTensorProduct
 
 open Filter Topology MvPolynomial GlobalTheory.HSAmp
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HSAmp.HomInj
 
@@ -173,8 +171,6 @@ end GlobalTheory.HSAmp
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArithHilbertSamuelLowerBoundCountRankAmple
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology MeasureTheory

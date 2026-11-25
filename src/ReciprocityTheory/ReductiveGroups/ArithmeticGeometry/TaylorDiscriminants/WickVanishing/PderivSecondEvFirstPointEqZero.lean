@@ -56,8 +56,6 @@ import Mathlib.Tactic.Polynomial.Basic
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.LogPoinc
 
-set_option autoImplicit false
-
 
 open MvPowerSeries
 
@@ -134,8 +132,6 @@ end ReciprocityTheory.ChartRestriction.G.TB.LogPf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.PderivSecondEvFirstPointEqZero
-
-set_option autoImplicit false
 
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ

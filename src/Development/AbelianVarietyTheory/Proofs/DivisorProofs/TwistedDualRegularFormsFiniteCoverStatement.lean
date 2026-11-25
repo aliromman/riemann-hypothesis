@@ -59,8 +59,6 @@ import Mathlib.RingTheory.SimpleRing.Principal
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemRegularFormsOfWedgePairingPerfect
 
-set_option autoImplicit false
-
 
 open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 

@@ -60,8 +60,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.NonemptyValExtOfOve
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 
-set_option autoImplicit false
-
 
 attribute [local instance] Over.cartesianMonoidalCategory
 
@@ -238,8 +236,6 @@ end -- clump:auto
 
 open AlgebraicGeometry CategoryTheory Limits NumberField MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LogKS Formalism.L2.Pj
-
-set_option autoImplicit false
 
 
 attribute [local instance] Over.cartesianMonoidalCategory

@@ -109,8 +109,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.RationalLaws.RationalAdjointLaw
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD
@@ -150,7 +148,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.OneMapTypingsEquiv
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 200000
 
 

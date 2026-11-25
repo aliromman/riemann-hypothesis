@@ -81,8 +81,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.ThetaValues.GalRulGalRul
 
-set_option autoImplicit false
-
 
 
 namespace GlobalTheory.GalTw.Test
@@ -112,8 +110,6 @@ end GlobalTheory.GalTw.Test
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsRootOfUnityCoverFunctionReferenceTuple
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.GalRef
@@ -332,7 +328,7 @@ theorem exists_root_galRul_isSum : Formalism.MainNotions.ModuliIntegralCharts.H1
 end GlobalTheory.GalRef
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice IsDedekindDomain NumberField Matrix Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.FWT Formalism.L2.Pj
 open scoped TensorProduct
@@ -350,7 +346,6 @@ end -- clump:auto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.ConjTwist GlobalTheory.GalTw ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Classical
-set_option autoImplicit false
 
 namespace GlobalTheory.ConjRefLift
 
@@ -460,14 +455,7 @@ theorem _root_.GlobalTheory.T.referenceTuple_lifts_equivariant_rootOfUnity : For
   first | exact @GlobalTheory.ConjRefLift.conjFun_lifts_root
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConjFunBaseRoot
-
-set_option autoImplicit false
-
-open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice IsDedekindDomain NumberField Matrix Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.FWT Formalism.L2.Pj
-open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.ConjTwist GlobalTheory.GalTw ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Classical

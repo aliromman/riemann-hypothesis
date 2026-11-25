@@ -83,7 +83,6 @@ import Development.AbelianVarietyTheory.Definitions.ThetaValues.ExistsRootNotMem
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.EqZeroOfMul
 
-set_option autoImplicit false
 namespace GlobalTheory.LFCompare
 open Polynomial
 
@@ -328,8 +327,6 @@ end GlobalTheory.LFCompare
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsIoLFRecIff
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.LFCompare
@@ -917,8 +914,6 @@ end GlobalTheory.LFCompare
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoefficientMapCommutesFieldAutomorphism
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.IoConj

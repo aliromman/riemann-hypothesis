@@ -337,8 +337,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalModelAtComplexPoint
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FieldPair
 
@@ -396,8 +394,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsResidueToComplexOfRationalResidue
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FieldPair
 
 theorem exists_residue_complex : ∀ {K : Type} [Field K] [Algebra ℂ K] (R : Subring K) (h : IsLocModel (algebraMap ℂ K) R),
@@ -430,8 +426,6 @@ end GlobalTheory.FieldPair
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCommonDominatingVarietyPointNoTrBasis
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CommonPoint
@@ -668,8 +662,6 @@ open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFractionRingOfInjective
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FieldPair.TensorTower
 
@@ -833,7 +825,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AngehrnSiuNotKltAtSeveralPoints
 
-set_option autoImplicit false
 set_option maxHeartbeats 800000
 
 namespace GlobalTheory.LocalHeart

@@ -69,8 +69,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.GramFormPhiStatement
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1
 
@@ -95,8 +93,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhiCMinR
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.PhiCMin
@@ -233,8 +229,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1.PhiCMin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhiCMinE
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.PhiCMin
@@ -400,8 +394,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1.PhiCMin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhiCMinI
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.PhiCMin
@@ -660,8 +652,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhiCTie
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1
 
@@ -821,8 +811,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhiCMinK
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.PhiCMin
@@ -1090,8 +1078,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhiCMinD
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.PhiCMin
 
@@ -1148,8 +1134,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1.PhiCMin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhiCMinima
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1
@@ -1297,8 +1281,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.GramSpace
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1

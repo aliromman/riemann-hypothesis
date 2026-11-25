@@ -375,8 +375,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RigidifiedSymmetricLineBundleGroupPullback
 
-set_option autoImplicit false
-
 
 attribute [local instance] Over.cartesianMonoidalCategory
 

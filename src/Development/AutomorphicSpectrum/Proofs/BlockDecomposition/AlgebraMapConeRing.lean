@@ -54,8 +54,6 @@ import Mathlib.Tactic.ReduceModChar
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.NLeA
 
-set_option autoImplicit false
-
 
 namespace CrystallineSemistableComparison.Onto
 
@@ -107,7 +105,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AlgebraMapConeRing
 
-set_option autoImplicit false
 namespace GlobalTheory.CompanionTheory.SurjectionOntoH4
 open CrystallineSemistableComparison.Onto
 

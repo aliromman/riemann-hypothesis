@@ -72,7 +72,6 @@ open GlobalTheory.LatJet (EisExp IsEis FR)
 open GlobalTheory.CMVal (OF Af lattice IsCMType)
 open GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates (IsDefSum IsEisValue polydisc)
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.HilbFam.EBasis
 
@@ -117,8 +116,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeformedLatticeValueEqHilbertEisensteinValue
-
-set_option autoImplicit false
 
 
 open NumberField UpperHalfPlane GlobalTheory.HilbFam GlobalTheory.QFam
@@ -291,9 +288,11 @@ theorem isGVal_of_isEisValue : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
 end GlobalTheory.HilbFam.BrVal
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IterDEqOfEventuallyEq
+-- clump: shared namespace opens
 
 open NumberField UpperHalfPlane GlobalTheory.HilbFam GlobalTheory.QFam
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IterDEqOfEventuallyEq
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization (Emb Frac latM qPow upperHalf cK omegaFactor IsPartialZeta HasExpansion)
 open GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates (iterD partialD)
 open scoped Classical MatrixGroups nonZeroDivisors
@@ -318,10 +317,6 @@ end GlobalTheory.HilbFam
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IteratedDerivativeEqHilbertEisensteinJet
-
-set_option autoImplicit false
-
-open NumberField UpperHalfPlane GlobalTheory.HilbFam GlobalTheory.QFam
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization (Emb Frac latM qPow upperHalf cK omegaFactor IsPartialZeta HasExpansion)
 open GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates (iterD partialD)
 open scoped Classical MatrixGroups nonZeroDivisors
@@ -356,8 +351,6 @@ end GlobalTheory.HilbFam
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeformedLatticeSumDerivativesEqEisensteinJets
-
-open NumberField UpperHalfPlane GlobalTheory.HilbFam GlobalTheory.QFam
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization (Emb Frac latM qPow upperHalf cK omegaFactor IsPartialZeta HasExpansion)
 open GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates (iterD partialD)
 open scoped Classical MatrixGroups nonZeroDivisors

@@ -129,8 +129,6 @@ open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystalGluedHodgeGraphFiltrationIsotropicPolaris
 @[expose] public noncomputable section
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HTGlueIsoPol
 

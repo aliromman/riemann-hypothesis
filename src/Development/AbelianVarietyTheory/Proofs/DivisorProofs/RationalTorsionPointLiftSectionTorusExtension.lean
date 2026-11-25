@@ -73,8 +73,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.FlatTorsionIff
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.TorsionFormCompare
 

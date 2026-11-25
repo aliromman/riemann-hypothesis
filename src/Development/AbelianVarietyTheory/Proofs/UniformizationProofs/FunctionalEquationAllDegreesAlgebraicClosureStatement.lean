@@ -602,8 +602,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationP
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
-set_option autoImplicit false
-
 namespace GlobalTheory.UU.TorMul
 
 variable {R : Type} [CommRing R] [IsDomain R] {I : Ideal R} {D : DegPre R}
@@ -941,8 +939,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.AdicSumRel
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
-
-set_option autoImplicit false
 
 namespace GlobalTheory.UU
 

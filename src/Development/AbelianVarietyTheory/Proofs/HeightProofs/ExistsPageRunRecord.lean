@@ -247,8 +247,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.N0LeNs
 
-set_option autoImplicit false
-
 namespace GlobalTheory.RunJoin.InhAll
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.Gaps Formalism.MainNotions.Gaps.EtaleWeightGaps Formalism.MainNotions.Gaps.EtaleWeightGaps.Num GlobalTheory.RunJoin GlobalTheory.RunJoin.Inh
 
@@ -739,8 +737,6 @@ end GlobalTheory.RunJoin.InhAll
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsPageRunRecord
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FinalJoin.RecordRun

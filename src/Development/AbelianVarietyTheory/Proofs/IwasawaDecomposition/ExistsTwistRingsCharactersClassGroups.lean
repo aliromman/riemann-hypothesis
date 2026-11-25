@@ -323,8 +323,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsRingEquivAlgClosedOverNumberFieldCompEq
 
-set_option autoImplicit false
-
 namespace GlobalTheory.AlgClosedIsoOverNumberField
 
 open Cardinal

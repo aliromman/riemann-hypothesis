@@ -47,12 +47,12 @@ import Mathlib.Data.Nat.Choose.Multinomial
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.IsValueOfGeneric, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.FamUnit
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.IsValueOfGeneric
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.IsValueOfGeneric
 open GlobalTheory.KeyCl GlobalTheory.KeyPow GlobalTheory.KeySmoothBase
 
 namespace GlobalTheory.KeySpec
@@ -113,9 +113,6 @@ end GlobalTheory.KeySpec
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.FamUnit
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.KeyCl
 
 namespace GlobalTheory.KeyFamUnit

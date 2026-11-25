@@ -707,7 +707,6 @@ open GlobalTheory.LocM (KeyAt)
 open GlobalTheory.FlagMod (GChart ev tau tau_le le_preimage_comp)
 open scoped LaurentSeries
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.PowerSeriesUniformiser
 
@@ -754,8 +753,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SpMapClosedPointOfSurjective
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory Limits NumberField TopologicalSpace
@@ -851,8 +848,6 @@ end GlobalTheory.ArcIntegral
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralOfArcsAndGoodReductionPoints
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory Limits NumberField

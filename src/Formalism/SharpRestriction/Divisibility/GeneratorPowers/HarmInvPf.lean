@@ -60,8 +60,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.HarmInvB
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.HarmInvB
 
@@ -298,8 +296,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.HarmInvC
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.HarmInvC
 
@@ -446,8 +442,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1.HarmInvC
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.HarmInvPf
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1

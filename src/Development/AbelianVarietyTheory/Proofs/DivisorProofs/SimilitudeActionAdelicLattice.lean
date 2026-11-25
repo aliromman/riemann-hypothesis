@@ -233,8 +233,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompactSpaceIntegers
 
-set_option autoImplicit false
-
 
 open IsDedekindDomain
 open scoped TensorProduct
@@ -478,7 +476,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGroupAlgebraActionOfCommuteOrder
 open scoped TensorProduct
 
-set_option autoImplicit false
 
 namespace GlobalTheory.LKGeo.CommBC
 

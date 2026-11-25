@@ -204,8 +204,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoboundaryFrobeniusCommuteModPQuasiLog
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FrobCongr
 
@@ -457,8 +455,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusCongruenceCombinationOverIntegers
 
-set_option autoImplicit false
-
 namespace GlobalTheory.SmallSecond.ToO
 
 theorem frob_eq_expand {Q τ : Type} [CommRing Q] (p : ℕ) (hp : p ≠ 0) (s : Q →+* Q)
@@ -598,8 +594,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusLinearCombinationZeroLeftAinfFrame
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FrobComb
 
@@ -659,8 +653,6 @@ theorem GlobalTheory.frob_comb_zero_left : ∀ (p : ℕ) [Fact p.Prime] (O : Typ
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NotIsUnitCoeffOfCoboundarySmall
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Katz.SmallDeriv
@@ -927,8 +919,6 @@ open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuasiLogarithmBasisTransitionMatricesInverse
 
-set_option autoImplicit false
-
 namespace GlobalTheory.BasisTrans
 
 variable {B Q : Type} [CommRing B] [CommRing Q] [Algebra B Q] {σ : Type}
@@ -993,8 +983,6 @@ end GlobalTheory.BasisTrans
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentVectorQuasiLogarithmOfCongruentCombinatio
-
-set_option autoImplicit false
 
 namespace GlobalTheory.TangentComb
 

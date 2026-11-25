@@ -92,8 +92,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.EvRSumSmulFin
 
-set_option autoImplicit false
-
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.FieldBC
 
 namespace GlobalTheory

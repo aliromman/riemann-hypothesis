@@ -82,8 +82,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilCharSurjectiveA
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.DivisorBase.GradedDifferentComparison
 
-set_option autoImplicit false
-
 
 open scoped NNReal NumberField Classical
 open GlobalTheory.HTLat GlobalTheory.EigenSplit
@@ -201,15 +199,15 @@ end PadicComplex
 end GlobalTheory.IndefiniteRowSideFullHecke.GradedDifferentComparison
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagNeZeroOfLinearIndependent
-
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open NumberField IsDedekindDomain
 open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct NNReal
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Pdiv ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Formalism.L2.Pj GlobalTheory.HTLat GlobalTheory.EigenSplit GlobalTheory.Frames GlobalTheory.AllWt GlobalTheory.CompHt
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagNeZeroOfLinearIndependent
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompHt
@@ -254,14 +252,6 @@ end GlobalTheory.CompHt
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdaptedBasis
-
-set_option autoImplicit false
-
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open NumberField IsDedekindDomain
-open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct NNReal
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Pdiv ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open Formalism.L2.Pj GlobalTheory.HTLat GlobalTheory.EigenSplit GlobalTheory.Frames GlobalTheory.AllWt GlobalTheory.CompHt
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompHt.FlagBasis
@@ -344,9 +334,9 @@ theorem exists_adapted_basis : ∀ (O C U : Type) [CommRing O] [Field C] [Algebr
 end GlobalTheory.CompHt.FlagBasis
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLieTieOfFrMap
+end -- clump: shared namespace opens
 
-set_option autoImplicit false
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLieTieOfFrMap
 
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
@@ -493,15 +483,15 @@ theorem exists_lieTie_of_frMap : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
 end GlobalTheory.CompHt.TieFrame
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPolAVFibre
-
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open NumberField IsDedekindDomain
 open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct NNReal
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Pdiv ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Formalism.L2.Pj GlobalTheory.HTLat GlobalTheory.EigenSplit GlobalTheory.Frames GlobalTheory.AllWt GlobalTheory.CompHt
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPolAVFibre
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompHt
@@ -615,19 +605,13 @@ end GlobalTheory.CompHt
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HodgeTateInclusionRaynaudExtensionAlgebraicPointStatement
-
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open NumberField IsDedekindDomain
-open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct NNReal
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Pdiv ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open Formalism.L2.Pj GlobalTheory.HTLat GlobalTheory.EigenSplit GlobalTheory.Frames GlobalTheory.AllWt GlobalTheory.CompHt
 attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsHTFrameCpAndNonempty
+end -- clump: shared namespace opens
 
-set_option autoImplicit false
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsHTFrameCpAndNonempty
 
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
@@ -698,8 +682,6 @@ end GlobalTheory.CompHt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumAbsExOfLe
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry NumberField IsDedekindDomain
@@ -1086,7 +1068,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 @[expose] public section
 
 section
-set_option autoImplicit false
 noncomputable section
 open CategoryTheory AlgebraicGeometry NumberField IsDedekindDomain
 open scoped TensorProduct NNReal
@@ -1127,7 +1108,6 @@ end -- clump:auto
 
 section
 section
-set_option autoImplicit false
 
 noncomputable section
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.BasicNotions.TH Formalism.L2.Theta ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.AllWt GlobalTheory.CompHt GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.CovHt

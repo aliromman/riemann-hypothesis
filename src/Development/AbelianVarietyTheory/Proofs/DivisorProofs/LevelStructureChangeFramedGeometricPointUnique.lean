@@ -66,8 +66,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapEqZeroOfCommuteDoubling
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.LieFaithful
 

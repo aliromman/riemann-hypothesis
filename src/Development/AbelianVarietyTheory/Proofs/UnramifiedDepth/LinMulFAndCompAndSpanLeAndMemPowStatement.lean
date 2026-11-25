@@ -54,8 +54,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.LinMulFAndCompAndSpanLeAndMemPow
 @[expose] public noncomputable section
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.ChF
 

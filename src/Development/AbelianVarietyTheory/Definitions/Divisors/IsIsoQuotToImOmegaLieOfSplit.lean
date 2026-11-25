@@ -50,8 +50,6 @@ import Mathlib.Tactic.Basify
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ToBidualDualMapEigenImageInclusion
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits
 open scoped TensorProduct
@@ -339,8 +337,6 @@ end GlobalTheory.LieVB
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsIsoQuotToImOmegaLieOfSplit
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits MonoidalCategory

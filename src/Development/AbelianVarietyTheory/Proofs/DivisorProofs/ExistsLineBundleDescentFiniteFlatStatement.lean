@@ -83,8 +83,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LBDescent
 
-set_option autoImplicit false
-
 namespace GlobalTheory.LBDescent
 
 private theorem alg {G : Type*} [CommGroup G] (a P b G₁ G₃ : G) :
@@ -221,8 +219,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LBDescent
 
-set_option autoImplicit false
-
 namespace GlobalTheory.LBDescent
 
 private theorem ratio_eq {G : Type} [CommGroup G] (A B C D g : G) (h1 : A = g * B) (h2 : C = g * D) :
@@ -339,7 +335,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LBDescent
 
-set_option autoImplicit false
 namespace GlobalTheory.LBDescent
 
 theorem exists_smul_mem_span_away {R S M : Type} [CommRing R] [CommRing S] [Algebra R S]
@@ -494,7 +489,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LBDescent
 open TensorProduct
 
-set_option autoImplicit false
 
 namespace GlobalTheory.LBDescent
 
@@ -952,8 +946,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LBDescent
 open TensorProduct
 
-set_option autoImplicit false
-
 namespace GlobalTheory.LBDescent
 
 theorem coboundary_locally_of_cocycle : ∀ {X Y : Scheme.{0}} (f : X ⟶ Y) [IsFinite f] [Flat f] [Surjective f] [IsLocallyNoetherian Y]
@@ -1011,7 +1003,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LBDescent
 
-set_option autoImplicit false
 namespace GlobalTheory.LBDescent
 
 theorem twist_frame_descent : ∀ {X Y : Scheme.{0}} (f : X ⟶ Y) (L : LB X) (φ : ∀ i j, Γ(pullback f f, chart f L i j)ˣ)
@@ -1077,8 +1068,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundleDescentFiniteFlat
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 namespace GlobalTheory.LBDescent
 

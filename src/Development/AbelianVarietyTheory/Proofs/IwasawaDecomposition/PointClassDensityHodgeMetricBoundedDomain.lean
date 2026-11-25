@@ -309,8 +309,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CurvatureFormMatrixBoundedDomainModelMetricAtZer
 
-set_option autoImplicit false
-
 
 open Matrix MvPolynomial Filter Topology ComplexConjugate
 open GlobalTheory.HermFrame
@@ -414,8 +412,6 @@ end -- clump:auto
 
 open MvPolynomial ReciprocityTheory.PGsh GlobalTheory.CayleyBlock
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CayleyBlock
 
 theorem dList_append' {σ : Type} [DecidableEq σ] (l₁ l₂ : List σ) :
@@ -453,8 +449,6 @@ end GlobalTheory.CayleyBlock
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CoeffComposedPartialDerivListOfNodup
-
-set_option autoImplicit false
 
 open MvPolynomial ReciprocityTheory.PGsh GlobalTheory.CayleyBlock
 
@@ -527,8 +521,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TopDegreeFormCoeffRenameCayleyBlockSymbolEmbeddi
-
-set_option autoImplicit false
 
 
 open MvPolynomial ReciprocityTheory.PGsh GlobalTheory.CayleyBlock
@@ -646,8 +638,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TopDegreeFormCoeffBlockSymbolDetPowCayley
 
-set_option autoImplicit false
-
 
 open MvPolynomial ReciprocityTheory.PGsh
 
@@ -727,8 +717,6 @@ theorem GlobalTheory.topCoeff_blockSym_det_pow : ∀ (p q : ℕ) (h1 : Fintype.c
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TopDegreeFormCoeffProdBlockSymbolDetPow
-
-set_option autoImplicit false
 
 
 open MvPolynomial
@@ -966,8 +954,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ChernTopDensityModelMetricOrigin
 
-set_option autoImplicit false
-
 open Formalism.DegreeFormula MvPolynomial GlobalTheory.GoodMetric GlobalTheory.DomainDens
 
 
@@ -1089,8 +1075,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EventuallyLieEigenspaceFrameAtUniformisation
 open Filter Topology
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.UnifFrame
 
@@ -1208,8 +1192,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAnalyticFlagDomainSectionFlatCoordinates
 open Filter Topology
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FrameLift
 
@@ -1259,8 +1241,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHolomorphicFrameChangeAlongAnalyticLift
 open Filter Topology
 open GlobalTheory.PointChern
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.UnifFrameChange
@@ -1419,17 +1399,7 @@ theorem GlobalTheory.UnifFrameChange.exists_holomorphic_frame_change : ∀ (E : 
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HodgeMetricUniformisationGramLocalHolomorphic
-
-set_option autoImplicit false
-
-open AlgebraicGeometry CategoryTheory MvPolynomial NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.Toroidal GlobalTheory.ShFam GlobalTheory.ProjVar GlobalTheory.FlagBundle GlobalTheory.GoodMetric GlobalTheory.LieBase
-open Classical
-open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts GlobalTheory.ChartGlue GlobalTheory.FlagBundle GlobalTheory.HermFrame
-open MeasureTheory Formalism.DegreeFormula GlobalTheory.TrueCx
-open scoped Matrix
 
 namespace GlobalTheory.HodgeUnifFrame
 
@@ -1484,6 +1454,8 @@ theorem lieGram_unif_local : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
 
 end GlobalTheory.HodgeUnifFrame
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 -- clump: shared namespace opens
 

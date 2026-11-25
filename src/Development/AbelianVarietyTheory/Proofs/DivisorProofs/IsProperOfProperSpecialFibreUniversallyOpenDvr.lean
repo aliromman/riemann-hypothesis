@@ -67,8 +67,6 @@ import Mathlib.RingTheory.AdicCompletion.AsTensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecialFibreConnectedOfProper
 
-set_option autoImplicit false
-
 
 open CategoryTheory Limits AlgebraicGeometry
 
@@ -178,8 +176,6 @@ end GlobalTheory.AlgConn
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsClosedImageClosureCompleteDVRSpecialFibre
-
-set_option autoImplicit false
 
 
 open CategoryTheory Limits AlgebraicGeometry

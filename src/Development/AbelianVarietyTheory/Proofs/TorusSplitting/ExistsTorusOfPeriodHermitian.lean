@@ -86,8 +86,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TorusSplitting.ExistsTorusOfPeriodHermitian
 
-set_option autoImplicit false
-
 namespace GlobalTheory.PeriodTorus
 
 section LinAlg

@@ -89,8 +89,6 @@ import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GramRePosDefAdjointPeriod
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.PELU
 

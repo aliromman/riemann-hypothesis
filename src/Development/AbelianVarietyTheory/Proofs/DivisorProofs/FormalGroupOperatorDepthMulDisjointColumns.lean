@@ -62,8 +62,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalGroupDifferentialOperatorDepthEqIInfMonomi
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.DepthDegree
 

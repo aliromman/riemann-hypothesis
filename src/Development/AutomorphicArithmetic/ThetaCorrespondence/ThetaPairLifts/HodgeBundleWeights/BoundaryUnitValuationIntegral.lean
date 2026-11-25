@@ -68,8 +68,6 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsFlatSecRan
 open NumberField IsDedekindDomain Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AllWt GlobalTheory.BdryUnit
 open AlgebraicGeometry CategoryTheory Limits
 
-set_option autoImplicit false
-
 
 open MonObj MonoidalCategory CartesianMonoidalCategory
 open scoped CategoryTheory.Obj
@@ -205,8 +203,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RuleSectionNowhereVanishingReal
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain Module Formalism.BasicNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.CompHt GlobalTheory.FlatCore GlobalTheory.BdryUnit
 open AlgebraicGeometry CategoryTheory Limits
@@ -269,7 +265,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.BoundaryUnitValuationIntegral
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain Module Formalism.BasicNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.CompHt GlobalTheory.FlatCore GlobalTheory.BdryUnit
 open AlgebraicGeometry CategoryTheory Limits

@@ -313,8 +313,6 @@ open MonObj
 open scoped CategoryTheory.MonObj
 open ReciprocityTheory.ChartRestriction.G.Pdiv ReciprocityTheory.ChartRestriction.G.Pdiv.AvDefs
 
-set_option autoImplicit false
-
 namespace GlobalTheory.TorusFibre
 
 open GlobalTheory.SplitTorus (torusMap bcIso)
@@ -378,8 +376,6 @@ open Formalism.BasicNotions ReciprocityTheory.ChartRestriction.G ReciprocityTheo
 open scoped CategoryTheory.Obj ComplexOrder
 open GlobalTheory GlobalTheory.LieMet GlobalTheory.LieHt GlobalTheory.LocM.Frm GlobalTheory.ShFam GlobalTheory.ShFam.Pad GlobalTheory.ShFam.Hor GlobalTheory.ShFam.Hor.LogCh GlobalTheory.Toroidal GlobalTheory.CovTop GlobalTheory.CovHt
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 namespace GlobalTheory.TorusFibreImm
 

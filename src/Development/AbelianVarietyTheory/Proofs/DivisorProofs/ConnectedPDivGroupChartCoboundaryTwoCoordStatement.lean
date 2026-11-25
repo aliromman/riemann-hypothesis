@@ -53,8 +53,6 @@ open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv G
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConnectedPDivGroupChartCoboundaryTwoCoord
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Katz.CobCoord
 

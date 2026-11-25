@@ -51,8 +51,6 @@ import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.IsThetaPtOverOf
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.CMModuli.FirstOrderRigidityLevel
 
-set_option autoImplicit false
-
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi
 attribute [local instance] Over.cartesianMonoidalCategory
@@ -88,8 +86,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.FirstOrderRigidityLevel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.RosatiNormLEOfStarNormLE
-
-set_option autoImplicit false
 
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry

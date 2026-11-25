@@ -51,8 +51,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MeasurableChernPolyTopDensity
 
-set_option autoImplicit false
-
 
 open MvPolynomial GlobalTheory GlobalTheory.FlagBundle GlobalTheory.HermFrame GlobalTheory.GoodMetric
 open ReciprocityTheory.L2DbarEstimates (V)
@@ -148,7 +146,6 @@ open AlgebraicGeometry MvPolynomial GlobalTheory GlobalTheory.Cartier GlobalTheo
 open ReciprocityTheory.L2DbarEstimates (V)
 open MeasureTheory Filter Topology
 open scoped ENNReal Matrix
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.GoodMetric.ChernLin

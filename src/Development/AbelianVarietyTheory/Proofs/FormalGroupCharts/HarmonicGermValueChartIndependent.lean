@@ -60,8 +60,6 @@ import Formalism.SharpRestriction.Divisibility.GeneratorPowers.PsiCover
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Counterexamples.JetSurvey.BalancedPairs
 
-set_option autoImplicit false
-
 namespace GlobalTheory.ChartJoints
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
@@ -97,8 +95,6 @@ end GlobalTheory.ChartJoints
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Counterexamples.JetSurvey.FrTruncFixIff
-
-set_option autoImplicit false
 
 namespace GlobalTheory.BalancedTwist
 

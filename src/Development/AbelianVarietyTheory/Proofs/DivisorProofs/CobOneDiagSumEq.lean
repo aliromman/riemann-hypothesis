@@ -47,8 +47,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConnectingSumMultDiag
 
-set_option autoImplicit false
-
 
 open TensorProduct Coalgebra Bialgebra CategoryTheory WithConv
 
@@ -108,8 +106,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CobOneDiagSumEq
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct WithConv

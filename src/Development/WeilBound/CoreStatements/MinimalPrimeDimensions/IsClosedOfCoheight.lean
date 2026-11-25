@@ -82,8 +82,6 @@ import Mathlib.Tactic.Polynomial.Basic
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.IsProjPrimeOfRelComps
 
-set_option autoImplicit false
-
 
 open MvPolynomial NumberField IsDedekindDomain
 open GroundTheory.Heights₂.Heights
@@ -247,8 +245,6 @@ end ChowFormHeightComparison₂.CF.M
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.LeDimQuotientHorizontal
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TensorProduct ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.ProjVar GlobalTheory.TrueGeo GlobalTheory.ShFam.Pad
@@ -420,8 +416,6 @@ end ChowFormHeightComparison₂.CF
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.IsClosedOfCoheight
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry NumberField MvPolynomial IsDedekindDomain TopologicalSpace

@@ -458,8 +458,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsConstantsThetaComparisonAllTuples
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.RealGeo.RowAll
 

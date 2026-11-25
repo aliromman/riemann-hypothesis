@@ -53,8 +53,6 @@ import Development.AbelianVarietyTheory.Definitions.ThetaValues.ExistsRootNotMem
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GaloisConjClassScalarsAndVolume
 
-set_option autoImplicit false
-
 namespace GlobalTheory.ConjScalar
 
 section Ideals

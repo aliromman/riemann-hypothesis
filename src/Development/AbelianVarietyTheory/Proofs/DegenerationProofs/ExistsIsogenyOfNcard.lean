@@ -78,14 +78,14 @@ import Mathlib.Tactic.Basify
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsGenOfMemKL, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.FiniteMulKTriv, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.MemKLOfHom, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.RelAmpleOfFiniteEtaleIsogeny, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsIsogenyOfNcard
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsGenOfMemKL
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.SS
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsGenOfMemKL
 
 namespace GlobalTheory.CyclicDescent
 
@@ -279,13 +279,6 @@ theorem exists_descent : ∀ (k : Type) [Field k] [IsAlgClosed k] (A B : Over (S
 
 end GlobalTheory.CyclicDescent
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open scoped CategoryTheory.Obj
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory.SS
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.FiniteMulKTriv
 

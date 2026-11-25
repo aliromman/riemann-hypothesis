@@ -80,8 +80,6 @@ import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.DetCharacterReductionInvariant
 
-set_option autoImplicit false
-
 namespace GlobalTheory
 
 open scoped TensorProduct
@@ -179,8 +177,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.TwistTrivialOnRational
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.TraceLattice

@@ -55,7 +55,6 @@ import Mathlib.Algebra.Order.Star.Int
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.FlagDomainConjHostXiEqNeg
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -149,7 +148,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.MulQExact
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -202,7 +200,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.DesUnOne
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

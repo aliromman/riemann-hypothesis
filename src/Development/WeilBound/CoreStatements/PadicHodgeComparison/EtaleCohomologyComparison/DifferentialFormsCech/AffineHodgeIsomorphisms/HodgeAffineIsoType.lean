@@ -626,7 +626,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OmMapEqMOm
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -749,7 +748,6 @@ end -- clump:auto
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers
 
-set_option autoImplicit false
 set_option linter.unusedVariables false
 
 
@@ -1290,7 +1288,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeFormPullbackCompat
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -1500,7 +1497,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.AffineHodgeIsomorphisms.AsmOnto
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1576,7 +1572,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.AffineHodgeIsomorphisms.HdgAffIsoOnto
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1602,7 +1597,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.AffineHodgeIsomorphisms.HodgeAffineIsoType
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

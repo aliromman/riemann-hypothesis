@@ -73,12 +73,6 @@ open GlobalTheory.StdAtPrime
 
 namespace GlobalTheory.StdAtPrime
 
-theorem natCast_adicCompletion_v_le_one {E : Type} [Field E] [NumberField E]
-    (Q : HeightOneSpectrum (𝓞 E)) (k : ℕ) : Valued.v ((k : Q.adicCompletion E)) ≤ 1 := by
-  have h := HeightOneSpectrum.coe_mem_adicCompletionIntegers (K := E) (v := Q) (k : 𝓞 E)
-  rw [HeightOneSpectrum.mem_adicCompletionIntegers] at h
-  simpa using h
-
 theorem exists_coprime_natCast_mul_v_le_one {E : Type} [Field E] [NumberField E]
     (p : ℕ) (hp : p.Prime) (Q : HeightOneSpectrum (𝓞 E)) (hpQ : (p : 𝓞 E) ∉ Q.asIdeal)
     (x : Q.adicCompletion E) :

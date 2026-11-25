@@ -64,7 +64,6 @@ import Mathlib.AlgebraicGeometry.Morphisms.Finite
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.EtaleChartBaseChange.ChartLawsA
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -341,8 +340,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.EtaleChartBaseChange.CLBAlg
 
-set_option autoImplicit false
-
 
 open CategoryTheory Limits AlgebraicGeometry
 
@@ -491,8 +488,6 @@ end -- clump:auto
 
 set_option linter.style.haveILetI false
 
-set_option autoImplicit false
-
 
 open CategoryTheory Limits AlgebraicGeometry
 
@@ -620,7 +615,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.EtaleChartBaseChange.CLBKer
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -719,7 +713,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.EtaleChartBaseChange.ChartLawsB
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

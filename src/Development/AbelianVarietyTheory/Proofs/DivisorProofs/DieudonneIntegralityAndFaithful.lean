@@ -76,8 +76,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqCounitOfHeightOneCotangentPullbackZero
 
-set_option autoImplicit false
-
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
 
@@ -143,8 +141,6 @@ open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PDivGroupIsConnOfIsogeny
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Dieu
 
@@ -203,8 +199,6 @@ end GlobalTheory.Dieu
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFactorThroughIsogenyOfDieudonneRangeLe
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Dieu
@@ -323,8 +317,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigidifiedExtensionPullbackDualHomEqZeroOfIsEt
 
-set_option autoImplicit false
-
 namespace GlobalTheory
 
 namespace PDivGroup
@@ -357,8 +349,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DieudonneIntegralityAndFaithful
-
-set_option autoImplicit false
 
 namespace GlobalTheory.Dieu.Integrality
 

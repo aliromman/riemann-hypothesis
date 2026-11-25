@@ -70,8 +70,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Non
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.SumPosOfTensorPos
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.PointStepCompare
 
@@ -233,8 +231,6 @@ end GlobalTheory.PointStepCompare
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsPosHermOfPositive
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.PointStepCompare

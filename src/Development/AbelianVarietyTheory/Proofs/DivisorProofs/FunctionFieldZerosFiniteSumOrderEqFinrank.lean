@@ -67,8 +67,6 @@ open GlobalTheory.Nef
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniquePlaceOrdEqOne
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Nef
 

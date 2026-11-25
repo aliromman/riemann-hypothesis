@@ -75,8 +75,6 @@ import Mathlib.Algebra.AffineMonoid.UniqueSums
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralWeylBasisSpanningAllRings
 
-set_option autoImplicit false
-
 open Formalism.GradedWeylDivisibility MvPolynomial
 
 namespace GlobalTheory.WeylBasis
@@ -162,8 +160,6 @@ theorem _root_.GlobalTheory.T.exists_integral_weylBasis_spanning_all_rings : ∀
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemWeylLatticeAddIffDetPowMul
-
-set_option autoImplicit false
 
 
 open Formalism.GradedWeylDivisibility MvPolynomial
@@ -336,8 +332,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemLocalisedStandardWeylOfLiftMem
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FrameRead.DelStd

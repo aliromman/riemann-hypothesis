@@ -54,8 +54,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.LevelCoverLargerCoeffFieldLyingOver
 
-set_option autoImplicit false
-
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.FieldBC
 
 namespace GlobalTheory.FieldBC
@@ -88,8 +86,6 @@ end -- clump:auto
 
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.FieldBC
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FieldBC
 
 theorem totalDegree_map_inj {σ R S : Type*} [CommSemiring R] [CommSemiring S] (f : R →+* S)
@@ -113,8 +109,6 @@ end GlobalTheory.FieldBC
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ShortValAtBc
-
-set_option autoImplicit false
 
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.FieldBC
 
@@ -166,8 +160,6 @@ end GlobalTheory.FieldBC
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.IsThClsDDdBCIff
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.FieldBC
@@ -267,7 +259,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoeffRoots
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 200000
 
 
@@ -440,8 +431,6 @@ end GlobalTheory.OneMapAll
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PinsMerge
-
-set_option autoImplicit false
 
 
 

@@ -70,8 +70,6 @@ import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecialFibreNotInClosureOfValuationRing
 
-set_option autoImplicit false
-
 open scoped TensorProduct
 
 namespace GlobalTheory.WeilIntegral

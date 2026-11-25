@@ -255,8 +255,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HolAtlasIntegralFinSumCompact
 
-set_option autoImplicit false
-
 
 open Set Matrix MeasureTheory
 open GlobalTheory.HermFrame
@@ -382,8 +380,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralEqEuclideanIntegralOfSupportInChart
 
-set_option autoImplicit false
-
 
 open Set MeasureTheory Filter Topology
 open ReciprocityTheory.L2DbarEstimates (V)
@@ -490,8 +486,6 @@ end GlobalTheory.CxForm.HolAtlas
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralDbarCutoffMulFormEqZeroLocalStokes
-
-set_option autoImplicit false
 
 
 open Set Filter Topology Matrix MeasureTheory
@@ -637,8 +631,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HolomorphicDelOperatorAtSumSmulLeibniz
 
-set_option autoImplicit false
-
 
 open ReciprocityTheory.L2DbarEstimates (V)
 open GlobalTheory.GoodMetric (coordVec)
@@ -675,8 +667,6 @@ end GlobalTheory.CxForm.DelForm
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HolomorphicDelPullbackFderivFormEqZero
-
-set_option autoImplicit false
 
 
 open ReciprocityTheory.L2DbarEstimates (V)
@@ -817,8 +807,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HolomorphicDifferentialOneFormCompHolomorphic
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CxForm.DelForm
 
@@ -856,8 +844,6 @@ open GlobalTheory.HermFrame
 open ReciprocityTheory.L2DbarEstimates (V)
 open GlobalTheory.GoodMetric (coordVec)
 open scoped ComplexOrder ContDiff ComplexConjugate
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -925,8 +911,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralDelFnMulEqZeroOfIsForm
-
-set_option autoImplicit false
 
 
 open Set Filter Topology Matrix MeasureTheory
@@ -1119,8 +1103,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralDelChartSupportedMulFormEqZero
 
-set_option autoImplicit false
-
 open Set Matrix MeasureTheory
 open GlobalTheory.HermFrame
 open scoped ComplexOrder
@@ -1219,8 +1201,6 @@ open ReciprocityTheory.L2DbarEstimates (V)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts GlobalTheory.FlagBundle GlobalTheory.HermFrame GlobalTheory.GoodMetric GlobalTheory.CxForm GlobalTheory.LineForm GlobalTheory.ChernCalc
 open scoped Matrix ContDiff ComplexOrder
 
-set_option autoImplicit false
-
 namespace GlobalTheory.ChernCalc
 
 theorem integral_evalF_of_dbarCoh : ∀ (M : Type) [TopologicalSpace M] [T2Space M] [SecondCountableTopology M] [CompactSpace M] [MeasurableSpace M] [BorelSpace M] (n : ℕ) (A : HolAtlas M n) (ι : Type) (w w' : ι → A.Pt → Ev n), (∀ i, DbarCoh A (w i) (w' i)) → ∀ P : MvPolynomial ι ℝ, A.integral (evalF A w P) = A.integral (evalF A w' P) := by
@@ -1262,8 +1242,6 @@ end -- clump:auto
 open ReciprocityTheory.L2DbarEstimates (V)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts GlobalTheory.FlagBundle GlobalTheory.HermFrame GlobalTheory.GoodMetric GlobalTheory.CxForm GlobalTheory.LineForm GlobalTheory.ChernCalc
 open scoped Matrix ContDiff ComplexOrder
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1327,7 +1305,6 @@ open ReciprocityTheory.L2DbarEstimates (V)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts GlobalTheory.FlagBundle GlobalTheory.HermFrame GlobalTheory.GoodMetric GlobalTheory.CxForm GlobalTheory.LineForm GlobalTheory.ChernCalc
 open scoped Matrix ContDiff ComplexOrder
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.ChernCalc
 

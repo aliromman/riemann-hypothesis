@@ -228,7 +228,7 @@ theorem gC_mat_mem (B : Ker.Base D cc δ) (i j : Fin 4 × D.what₂.Tau) :
 theorem kerTransAlg_of (B : Ker.Base D cc δ) (hcc : Formalism.MainNotions.TaylorLogMetric.IsCurveIdeal D cc)
     (hδ : Formalism.MainNotions.TaylorLogMetric.IsDiscriminantTwelfthRootOfIdealLattice D cc δ) (h1 : PeriodPairTranscendence B.L B.ω₀) : KerTransAlg B := by
   intro t ht
-  have hS : B.StdOK := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.SO.stdOK B hcc hδ
+  have hS : B.StdOK := GlobalTheory.FourthRootStd.stdOK B hcc hδ
   have sd := hS
   obtain ⟨S, hSr⟩ := (Formalism.L2.Th1.H.repsExist _ _ _ sd.idx₁).1
   have hshape := Formalism.L2.Th1.H.quadraticSemicharacter_identity_reformulated₂ B.L B.ω₀ D.what₂.Tau (Ker.hOne B.L D.what₂.Tau) B.lamM _ _ B.gC hS
@@ -260,7 +260,7 @@ theorem kerTransAlg_of (B : Ker.Base D cc δ) (hcc : Formalism.MainNotions.Taylo
     refine AddSubgroup.mem_map.2 ⟨(m : ℂ) • (fun w : Fin 4 × D.what₂.Tau => t w.2), fun a => hmt, ?_⟩
     show B.gC ((m : ℂ) • fun w : Fin 4 × D.what₂.Tau => t w.2) = (m : ℂ) • v
     rw [map_smul]
-  obtain ⟨N1, hN1, hup⟩ := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.SO.up B
+  obtain ⟨N1, hN1, hup⟩ := GlobalTheory.FourthRootStd.up B
   have htor : ∀ x ∈ S, ∀ w, ∃ N : ℕ, 0 < N ∧ (N : ℂ) * (v w + x w) ∈ B.L.lattice := by
     intro x hx w
     have ha := ((AddSubgroup.mem_pi Set.univ).1 (hup _ hmv)) w (Set.mem_univ _)

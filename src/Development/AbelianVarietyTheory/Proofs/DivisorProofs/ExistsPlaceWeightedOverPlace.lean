@@ -74,8 +74,6 @@ open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFreeGeneratorTopFormsTensorLocalizationOrd
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.GraphLocal
 
@@ -315,8 +313,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsUnitMulZpowUniformiserTmul
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.GraphLocal
 
@@ -354,8 +350,6 @@ end GlobalTheory.GraphLocal
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GraphJetsMemPowSupUniformiser
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.GraphLocal
@@ -545,8 +539,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PlaceGraphIdealTensorNeTop
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.GraphLocal
 
@@ -691,8 +683,6 @@ end GlobalTheory.GraphLocal
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatAevalDvrPlaceRingUniformiserResidueLifts
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.GraphLocal.FlatPlace
@@ -893,7 +883,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatTensorSubalgebraMvPolynomialEvalOfFlatAeval
 
-set_option autoImplicit false
 namespace GlobalTheory.GraphLocal
 
 theorem flat_polyMap_of_flat_aeval : ∀ {K κ' : Type} [Field K] [Field κ'] [Algebra ℂ K] [Algebra ℂ κ'] (A : Subalgebra ℂ K)
@@ -921,7 +910,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RingKrullDimLocalizationGraphIdealMinimalPrime
 
-set_option autoImplicit false
 namespace GlobalTheory.GraphLocal
 
 theorem height_ge_of_X_sub_C_mem : ∀ {F : Type} [Field F] (m : ℕ) (c : Fin m → F) (P : Ideal (MvPolynomial (Fin m) F))
@@ -1094,8 +1082,6 @@ end GlobalTheory.GraphLocal
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRegularLocalModelGraphOfPlace
-
-set_option autoImplicit false
 
 theorem GlobalTheory.GraphLocal.exists_locModel_graph : ∀ {K κ κ' L : Type} [Field K] [Field κ] [Field κ'] [Field L] [Algebra ℂ K] [Algebra ℂ κ] [Algebra ℂ κ'] [Algebra ℂ L]
     [Algebra (K ⊗[ℂ] κ') L] [IsScalarTower ℂ (K ⊗[ℂ] κ') L] [IsFractionRing (K ⊗[ℂ] κ') L]

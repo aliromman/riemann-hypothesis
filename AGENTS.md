@@ -78,6 +78,10 @@ Drop the part from `---` on if the pull request depends on no other.
 - report the results of your own builds or Comparator runs in a pull request. Check that your
   change compiles, but don't write that it builds on your machine; maintainers build pull
   requests themselves.
+- add references to the literature, in docstrings or in `docs/references.bib`. Many of the
+  references agents have added were wrong: the wrong title, no theorem number in a long book, or
+  a result credited to a paper that doesn't prove it. A wrong reference is worse than none. We
+  will say here when we have a way to check them.
 
 ## Mistakes we keep seeing
 

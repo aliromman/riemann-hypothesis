@@ -99,8 +99,6 @@ import Mathlib.RingTheory.Coalgebra.IsFrobenius
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.CmFrameExponentialJetsIsChart
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.AnVal
 
@@ -248,8 +246,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.AnalyticFrameExponentialImmersionAtOrigin
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FrameImm
 
@@ -349,8 +345,6 @@ theorem _root_.GlobalTheory.T.cubical_reading_one_analyticFrame : ∀ (E : Type)
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.AnalyticFrameFirstPartialLawTrivial
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.AnValPh1
@@ -601,8 +595,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.AnalyticFrameSecondPartialLawTrivial
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.AnValSecondLaw
 
@@ -836,8 +828,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.AnalyticFrameSymmetryTrivial
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.AnVal.Sym
 
@@ -919,8 +909,6 @@ theorem _root_.GlobalTheory.T.analyticFrame_symmetry_trivial : ∀ (E : Type) [F
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.AnalyticLineBundleFrameEqAppellHumbert
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.AnValEL

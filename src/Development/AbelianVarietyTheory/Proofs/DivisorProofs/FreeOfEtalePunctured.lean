@@ -662,8 +662,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteFreeEtaleLift
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.EtaleLiftQuot
 

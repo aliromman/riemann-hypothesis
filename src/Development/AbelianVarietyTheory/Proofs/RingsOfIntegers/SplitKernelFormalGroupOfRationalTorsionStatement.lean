@@ -63,8 +63,6 @@ import Mathlib.RingTheory.MvPolynomial
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.SplitKernelFormalGroupOfRationalTorsion
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.SplitKernel
 

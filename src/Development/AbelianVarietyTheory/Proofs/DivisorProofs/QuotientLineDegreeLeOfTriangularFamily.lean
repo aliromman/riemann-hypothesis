@@ -89,8 +89,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 open scoped IntermediateField Polynomial RatFunc
 open GlobalTheory.Nef Polynomial
 
-set_option autoImplicit false
-
 namespace GlobalTheory.Nef
 
 theorem symMat_upperTriangular {R : Type} [CommRing R] (m : ℕ) (A : Matrix (Fin 2) (Fin 2) R) :
@@ -159,8 +157,6 @@ end -- clump:auto
 open scoped IntermediateField Polynomial RatFunc
 
 open GlobalTheory.Nef Polynomial
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Nef
@@ -393,14 +389,12 @@ theorem exists_ne_zero_comb_mem_ker :
 end GlobalTheory
 end -- clump:auto
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open scoped IntermediateField Polynomial RatFunc
-open GlobalTheory.Nef
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FunctionFieldPlaceLocalIndexColength
-
-set_option autoImplicit false
+open GlobalTheory.Nef
 
 namespace GlobalTheory.Nef.LocalIndex
 
@@ -575,6 +569,7 @@ theorem GlobalTheory.Nef.local_index : ∀ (k F : Type) [Field k] [IsAlgClosed k
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FunctionFieldPlaceLocalIndexScaledUniformiser
+open GlobalTheory.Nef
 
 namespace GlobalTheory.Nef
 
@@ -642,8 +637,7 @@ end GlobalTheory.Nef
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsManyBoundedByPow
-
-set_option autoImplicit false
+open GlobalTheory.Nef
 
 
 namespace GlobalTheory.Nef.PolesOfT
@@ -834,13 +828,7 @@ theorem exists_many_bounded_by_pow : ∀ (k F : Type) [Field k] [IsAlgClosed k] 
 end GlobalTheory.Nef
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RiemannInequalityCofinalFunctionField
-
-open scoped IntermediateField Polynomial RatFunc
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Nef
@@ -1065,11 +1053,7 @@ end GlobalTheory.Nef
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSectionOfLargeAdelicDegree
-
-open scoped IntermediateField Polynomial RatFunc
 open GlobalTheory.Nef
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Nef
@@ -1183,10 +1167,6 @@ end GlobalTheory.Nef
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NrmCoeffProdLinear
-
-set_option autoImplicit false
-
-open scoped IntermediateField Polynomial RatFunc
 open GlobalTheory.Nef
 
 namespace GlobalTheory.Nef
@@ -1276,12 +1256,8 @@ theorem nrm_coeff_prod_linear : ∀ (k F : Type) [Field k] [Field F] [Algebra k 
 end GlobalTheory.Nef
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open scoped IntermediateField Polynomial RatFunc
-open GlobalTheory.Nef Polynomial
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussLemmaSymPowMatrixUpperTriangularPlaceOrder
+open GlobalTheory.Nef Polynomial
 
 namespace GlobalTheory.Nef
 
@@ -1353,6 +1329,7 @@ end GlobalTheory.Nef
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineDegreeEqSumOfScalarSplit
+open GlobalTheory.Nef Polynomial
 
 namespace GlobalTheory.Nef
 
@@ -1383,8 +1360,7 @@ end GlobalTheory.Nef
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineDegreeGeOfTwistedSection
-
-set_option autoImplicit false
+open GlobalTheory.Nef Polynomial
 
 namespace GlobalTheory.Nef.LineBound
 
@@ -1446,13 +1422,7 @@ theorem GlobalTheory.Nef.degLine_ge_of_twist : ∀ (k F : Type) [Field k] [IsAlg
   omega
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicMatrixDegreeLeTwoMulOfUpperTriangular
-
-set_option autoImplicit false
-
-open scoped IntermediateField Polynomial RatFunc
 open GlobalTheory.Nef Polynomial
 
 theorem GlobalTheory.Nef.deg_le_two_mul_of_triangular : ∀ (k F : Type) [Field k] [IsAlgClosed k] [CharZero k] [Field F] [Algebra k F], IsFF k F →
@@ -1554,11 +1524,7 @@ theorem GlobalTheory.Nef.deg_le_two_mul_of_triangular : ∀ (k F : Type) [Field 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuotientLineDegreeLeOfTriangularFamily
-
-open scoped IntermediateField Polynomial RatFunc
 open GlobalTheory.Nef Matrix
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Nef.QuotLine

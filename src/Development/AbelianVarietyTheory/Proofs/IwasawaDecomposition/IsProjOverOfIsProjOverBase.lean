@@ -74,8 +74,6 @@ import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IsProjOverIffIsPro
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemBasicOpenOfMemClosure
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits
 

@@ -49,9 +49,6 @@ private theorem krullDim_le_height_lemma_3 {α β : Type*} [Preorder α] [Preord
   have h := Order.length_le_height (p := s.map f hf) (x := b) (hb s.last)
   exact_mod_cast h
 
-private theorem height_le_krullDim_lemma_6 {α : Type*} [Preorder α] (a : α) :
-    (Order.height a : WithBot ℕ∞) ≤ Order.krullDim α := Order.height_le_krullDim a
-
 theorem ringKrullDim_localization_quotient_eq_height {P : Type*} [CommRing P] (p q : Ideal P)
     [p.IsPrime] [q.IsPrime] (hpq : p ≤ q) :
     ringKrullDim (Localization.AtPrime q ⧸ p.map (algebraMap P (Localization.AtPrime q))) =
@@ -140,7 +137,7 @@ theorem ringKrullDim_localization_quotient_eq_height {P : Type*} [CommRing P] (p
         ≤ (Order.height (h ⟨⟨q.map (Ideal.Quotient.mk p), hQ⟩, Set.mem_Iic.mpr le_rfl⟩) :
           WithBot ℕ∞) :=
           WithBot.coe_le_coe.mpr (height_le_height_Iic_lemma_2 _ h hh)
-      _ ≤ Order.krullDim (PrimeSpectrum (Localization.AtPrime q ⧸ p.map (algebraMap P (Localization.AtPrime q)))) := height_le_krullDim_lemma_6 _
+      _ ≤ Order.krullDim (PrimeSpectrum (Localization.AtPrime q ⧸ p.map (algebraMap P (Localization.AtPrime q)))) := Order.height_le_krullDim _
 
 private theorem height_map_atPrime_lemma_5 {R : Type*} [CommRing R] (p q : Ideal R) [p.IsPrime]
     [q.IsPrime] (hpq : p ≤ q) [hp' : (p.map (algebraMap R (Localization.AtPrime q))).IsPrime] :

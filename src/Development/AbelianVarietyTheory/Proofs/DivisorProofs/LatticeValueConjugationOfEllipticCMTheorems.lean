@@ -122,8 +122,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertLatticeTwist
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoordInEqOfJet
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.LatVal GlobalTheory.LatJet
 open GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates (IsDefSum iterD cWt risingFactor DerivFormula)
@@ -1121,8 +1119,6 @@ end GlobalTheory.WpFamGL
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeValueConjugationOfEllipticCMTheorems
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain UpperHalfPlane GlobalTheory.CMVal GlobalTheory.LatVal GlobalTheory.HilbFam GlobalTheory.QFam GlobalTheory.WpFam

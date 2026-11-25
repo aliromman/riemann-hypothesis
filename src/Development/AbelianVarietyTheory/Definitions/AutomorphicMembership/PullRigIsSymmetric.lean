@@ -53,8 +53,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Cha
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.UniformisationCharts.PowerGroupDatum
 
-set_option autoImplicit false
-
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj
   AlgebraicGeometry
@@ -116,8 +114,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.PowerGroupDatum
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.RestrictLineBundleSymmetryUnitsEquivIsoApply
-
-set_option autoImplicit false
 
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj

@@ -70,7 +70,6 @@ import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AcrisMemLatticeSub
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option maxSynthPendingDepth 1
 
@@ -170,7 +169,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsUniquePeriodOfCompatible
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -271,8 +269,6 @@ section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecompositi
 @[expose] public section
 
 open DividedPowers CrystallineSemistableComparison.Pb
-
-set_option autoImplicit false
 
 namespace GlobalTheory.CompanionTheory.LatIdeal
 
@@ -441,8 +437,6 @@ end -- clump:auto
 
 open DividedPowers CrystallineSemistableComparison.Pb
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CompanionTheory.LatDP
 
 variable {B : Type} [CommRing B] [Algebra ℚ B]
@@ -519,7 +513,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FontaineLatticeDpowClosed
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -545,7 +538,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaloisPreservesLatticeSub
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -594,8 +586,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaloisPreservesTPowerSpan
 
-set_option autoImplicit false
-
 
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
 
@@ -631,8 +621,6 @@ end -- clump:auto
 
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CompanionTheory.LatLevel
 
 theorem dk_fk (l : ℕ) [Fact l.Prime] (k : ℕ) (w : Ainf l) :
@@ -664,7 +652,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelFiltrationSpanTPow
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -886,7 +873,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelGaloisIsDPMorphism
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -964,7 +950,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelIotaLamEqToB
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -994,7 +979,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelLamGaloisEquivariant
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1059,7 +1043,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelSystemTransitionGaloisA
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1104,7 +1087,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelSystemTransitionIsDPMorphism
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1232,7 +1214,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelToBGaloisEquivariant
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1288,7 +1269,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelXiMemIdealAndThetaCompat
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1350,7 +1330,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LevelChainValuations.LatFinal
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -1378,7 +1357,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.LatLink
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

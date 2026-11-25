@@ -79,13 +79,13 @@ end GlobalTheory.ThetaSpanObj
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FramePinSmul
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 
 open NumberField IsDedekindDomain
 open scoped TensorProduct
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FramePinSmul
 
 namespace GlobalTheory.Unframe
 
@@ -320,12 +320,6 @@ end GlobalTheory.Unframe
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsGeoHalfMove
-
-set_option autoImplicit false
-
-
-open NumberField IsDedekindDomain
-open scoped TensorProduct
 
 namespace GlobalTheory.Unframe
 

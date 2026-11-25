@@ -191,8 +191,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCartierDivClosure
 
-set_option autoImplicit false
-
 namespace GlobalTheory.Desc.ExtDiv
 
 open TopologicalSpace CartierDiv
@@ -604,8 +602,6 @@ end GlobalTheory.GenericFibreChart
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsDominantOfGen
-
-set_option autoImplicit false
 
 namespace GlobalTheory.Desc.PullOpen
 

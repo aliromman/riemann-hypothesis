@@ -253,8 +253,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharpolyDeRhamHomologyAbelianVarietyCharZero
 open scoped TensorProduct CategoryTheory.Obj
 
-set_option autoImplicit false
-
 namespace GlobalTheory.DeRhamCharpolyZero
 
 open GlobalTheory.AV
@@ -469,8 +467,6 @@ end GlobalTheory.DeRhamCharpolyZero
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharpolyDeRhamHomologyEndomorphismEqMapLadic
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.DeRham

@@ -60,9 +60,11 @@ import Mathlib.Order.CompletePartialOrder
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CartierPropertyAtSignMulFactorialScaling, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechAntisymmetrizedCupProductLeadingTerm, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechAntisymmetrizedCupProductVanishAboveDegree, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.CechVanishingAlongFiltration, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.TotalDifferentialCupProduct, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.CupProductFiltrationBound, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.ExistsFrobeniusSplittingDatum, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.AlternatingProductCocycle, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.FrobeniusSplittingClosed, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExteriorFormsSpanOfSetsMulSmulMono, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExteriorFormsSpanOfSetsMulSmulMonoStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlternatingProductIntegral, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.SplittingIntegralFormsBound, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.SplittingLocalIntegrality
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CartierPropertyAtSignMulFactorialScaling
+section -- clump: shared namespace opens
 
 open GlobalTheory GlobalTheory.DI
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CartierPropertyAtSignMulFactorialScaling
 
 namespace GlobalTheory.DI
 
@@ -115,10 +117,6 @@ end GlobalTheory.DI
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechAntisymmetrizedCupProductLeadingTerm
-
-open GlobalTheory GlobalTheory.DI
-
-set_option autoImplicit false
 
 namespace GlobalTheory.DI.PhiLead
 variable {K : Type} [CommRing K] {V : Type} [AddCommGroup V] [Module K V] {ι : Type} [LinearOrder ι]
@@ -181,8 +179,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechAntisymmetrizedCupProductVanishAboveDegree
 
-open GlobalTheory GlobalTheory.DI
-
 namespace GlobalTheory.DI
 
 theorem prodL_eq_zero_of_card {K : Type} [CommRing K] {V : Type} [AddCommGroup V] [Module K V] {ι : Type}
@@ -228,10 +224,6 @@ end GlobalTheory.DI
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.CechVanishingAlongFiltration
-
-set_option autoImplicit false
-
-open GlobalTheory GlobalTheory.DI
 
 namespace GlobalTheory.DI.FiltVanish
 
@@ -506,10 +498,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.TotalDifferentialCupProduct
 
-set_option autoImplicit false
-
-open GlobalTheory GlobalTheory.DI
-
 namespace GlobalTheory.DI
 
 theorem Dtot_cup : ∀ {ι : Type} [LinearOrder ι] {E : Type} [AddCommGroup E] (d : E →+ E)
@@ -537,8 +525,6 @@ end GlobalTheory.DI
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.CupProductFiltrationBound
-
-open GlobalTheory GlobalTheory.DI
 
 namespace GlobalTheory.DI
 
@@ -642,8 +628,6 @@ end GlobalTheory.DI
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.ExistsFrobeniusSplittingDatum
-
-open GlobalTheory GlobalTheory.DI
 
 namespace GlobalTheory.DI
 
@@ -751,10 +735,6 @@ end GlobalTheory.DI
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.AlternatingProductCocycle
-
-set_option autoImplicit false
-
-open GlobalTheory GlobalTheory.DI
 
 namespace GlobalTheory.DI.AltClosed
 
@@ -1057,8 +1037,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.FrobeniusSplittingClosed
 
-open GlobalTheory GlobalTheory.DI
-
 namespace GlobalTheory.DI.PhiClosed
 
 variable {K : Type} [CommRing K] {V : Type} [AddCommGroup V] [Module K V] {ι : Type} [LinearOrder ι]
@@ -1138,10 +1116,10 @@ theorem GlobalTheory.DI.phi_closed : ∀ {K : Type} [CommRing K] {V : Type} [Add
   exact ⟨fun x => by simpa using (key x 1).1, fun x => by simpa using (key x 1).2⟩
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExteriorFormsSpanOfSetsMulSmulMono
 @[expose] public section
-
-set_option autoImplicit false
 
 namespace GlobalTheory.DI
 
@@ -1225,17 +1203,15 @@ end GlobalTheory.DI
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExteriorFormsSpanOfSetsMulSmulMonoStatement
+-- clump: shared namespace opens
 
 open GlobalTheory GlobalTheory.DI
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExteriorFormsSpanOfSetsMulSmulMonoStatement
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlternatingProductIntegral
-
-set_option autoImplicit false
-
-open GlobalTheory GlobalTheory.DI
 
 namespace GlobalTheory.DI
 
@@ -1317,10 +1293,6 @@ theorem alt_mem_forms : ∀ {K : Type} [CommRing K] {V : Type} [AddCommGroup V] 
 
 end GlobalTheory.DI
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open GlobalTheory GlobalTheory.DI
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.SplittingIntegralFormsBound
 

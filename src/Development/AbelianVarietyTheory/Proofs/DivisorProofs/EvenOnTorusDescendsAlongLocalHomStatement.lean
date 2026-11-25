@@ -299,8 +299,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
-set_option autoImplicit false
-
 namespace GlobalTheory.UU.ClosedFib
 
 theorem le_comap_max {R W : Type} [CommRing R] [IsLocalRing R] [CommRing W] [IsLocalRing W] (φ : R →+* W)

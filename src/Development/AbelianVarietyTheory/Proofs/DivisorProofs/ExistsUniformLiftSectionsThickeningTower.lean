@@ -89,8 +89,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsStandardChartsFormalTowerOfVeryAmple
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FormalAlg.ChartsEx
 
@@ -298,8 +296,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHomogeneousFormOfOverlapIdealPowThickening
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FormalAlg.JFrac
 
@@ -376,8 +372,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomogeneousFormKilledByPowerOfTripleChartProduct
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FormalAlg.TripleKill
 
 alias rs_rs := _root_.GlobalTheory.AbLaw.rs_rs
@@ -416,8 +410,6 @@ end GlobalTheory.FormalAlg.TripleKill
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftedRatiosEvalIdealMulEqZeroSucc
-
-set_option autoImplicit false
 
 namespace GlobalTheory.FormalAlg.JStep
 
@@ -857,7 +849,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThickeningTowerCechH1Uniform
 
-set_option autoImplicit false
 namespace GlobalTheory.FormalAlg.TowerH1
 variable {R : Type} [CommRing R] {I : Ideal R}
   {Y : ∀ e : ℕ, Over (Spec (CommRingCat.of (R ⧸ I ^ (e + 1))))}
@@ -1305,8 +1296,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThickeningTowerChartsPreimageAndGermPullback
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FormalAlg
 
 theorem Charts.tower_preimage_germ : ∀ (R : Type) [CommRing R] (I : Ideal R) (Y : ∀ e : ℕ, Over (Spec (CommRingCat.of (R ⧸ I ^ (e + 1))))) (β : ∀ e, (Y e).left ⟶ (Y (e + 1)).left) (n : ℕ) (C : Charts I Y β n) (γ : ∀ e, (Y 0).left ⟶ (Y e).left), γ 0 = 𝟙 _ → (∀ e, γ e ≫ β e = γ (e + 1)) → ∀ (e : ℕ) (i : Fin (n + 1)), γ e ⁻¹ᵁ C.D e i = C.D 0 i ∧ ∀ (j : Fin (n + 1)) (z : (Y 0).left), z ∈ C.D 0 i → gs (γ e) z (C.D e i) (C.ρ e i j) = gs (𝟙 _) z (C.D 0 i) (C.ρ 0 i j) := by
@@ -1410,8 +1399,6 @@ theorem GlobalTheory.FormalAlg.exists_chart_cocycle_of_pull : ∀ (R : Type) [Co
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftSectionsNextThickeningStandardCharts
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FormalAlg.LiftCech

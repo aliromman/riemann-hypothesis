@@ -63,8 +63,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoboundaryCup0
 
-set_option autoImplicit false
-
 
 open CategoryTheory TensorProduct GlobalTheory.CatCoh MainStatements.Hodge GlobalTheory.CompanionTheory.HodgeCx GlobalTheory.CompanionTheory.HopfLe
 
@@ -112,8 +110,6 @@ end GlobalTheory.CompanionTheory.HopfLe
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoboundaryCup1
-
-set_option autoImplicit false
 
 
 open CategoryTheory TensorProduct GlobalTheory.CatCoh MainStatements.Hodge GlobalTheory.CompanionTheory.HodgeCx GlobalTheory.CompanionTheory.HopfLe
@@ -373,8 +369,6 @@ end GlobalTheory.CompanionTheory.HopfLe
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SlantProductSecondAction
-
-set_option autoImplicit false
 
 
 open CategoryTheory TensorProduct GlobalTheory.CatCoh MainStatements.Hodge GlobalTheory.CompanionTheory.HodgeCx
@@ -778,8 +772,6 @@ end -- clump:auto
 
 open CategoryTheory TensorProduct GlobalTheory.CatCoh MainStatements.Hodge GlobalTheory.CompanionTheory.HodgeCx GlobalTheory.CompanionTheory.HopfLe
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CompanionTheory.HopfLe.PrismComb
 
 def stepMap (q n : ℕ) : Fin (q + 2) →o Fin 2 :=
@@ -978,8 +970,6 @@ end GlobalTheory.CompanionTheory.HopfLe.PrismComb
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Cup1BoundaryOfBoundary
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TensorProduct Opposite MonoidalCategory CartesianMonoidalCategory MonObj

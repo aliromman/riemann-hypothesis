@@ -53,8 +53,6 @@ import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.ExampleSatisfiesCo
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.EntriesOfGaps
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.RunWeightTest
 
@@ -173,8 +171,6 @@ end GlobalTheory.RunWeightTest
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.JetSurvey.ThetaMemLattice
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.DepthBoundTest

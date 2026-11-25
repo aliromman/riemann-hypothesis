@@ -62,8 +62,6 @@ import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomology
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Ls CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.LsG
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CompanionTheory.FlatLevel
 
@@ -143,7 +141,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MkOfMemB
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -371,7 +368,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LseqOfFlatTower
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -754,7 +750,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.QuotientReductionBijectiveOfFlat
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1074,7 +1069,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LocalSystemQuotients.LsSeqEq
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

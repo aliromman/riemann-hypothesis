@@ -82,7 +82,6 @@ import Mathlib.RingTheory.SimpleRing.Principal
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExactA
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -293,7 +292,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExactC
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -539,7 +537,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExactB
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -696,7 +693,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExact
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -820,7 +816,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidChartPf
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -964,7 +959,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ChartExt
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -976,7 +970,6 @@ end -- clump:auto
 section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.InfinityCoordAlgebraicIndependent
 @[expose] public noncomputable section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1308,7 +1301,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidResPf
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1479,7 +1471,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResR
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1490,7 +1481,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidStmt
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -1611,7 +1601,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.PowTop
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

@@ -61,8 +61,6 @@ open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalKaehlerDBasisSmoothSubalgebra
 
-set_option autoImplicit false
-
 namespace GlobalTheory.PD
 
 

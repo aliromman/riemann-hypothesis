@@ -90,8 +90,6 @@ end -- clump:auto
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.AlgConn
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.AlgConn
 

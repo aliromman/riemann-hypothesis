@@ -59,8 +59,6 @@ import Mathlib.AlgebraicGeometry.Sites.Fpqc
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HomeomorphZeroSet
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry Topology Filter
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp)
@@ -161,8 +159,6 @@ end -- clump:auto
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KerEvalComplexPointLeSpanJacobian
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.JacSpan
@@ -337,7 +333,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.AlgebraicSardShiftedFunctionsRegularZeros
 
-set_option autoImplicit false
 open TopologicalSpace Set Filter Topology MeasureTheory
 open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
 open ReciprocityTheory.L2DbarEstimates (V)
@@ -402,8 +397,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.EqTopOfForallComplexPointsMemOpens
 
 open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -484,8 +477,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.FiniteComplexPointsTransversalZeros
 
 open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -594,8 +585,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsFormsTransversalAtComplexPoints
-
-set_option autoImplicit false
 
 
 attribute [local instance] MvPolynomial.gradedAlgebra

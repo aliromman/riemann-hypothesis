@@ -82,8 +82,6 @@ import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.Embedd
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.WittStart
 
@@ -266,8 +264,6 @@ end GlobalTheory.WittStart
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdditiveTwoCocycleCoeffRelationsOnePair
-
-set_option autoImplicit false
 
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
@@ -631,8 +627,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymmetricCocycleAdditiveEqCoboundaryAdd
 
-set_option autoImplicit false
-
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
 
@@ -866,9 +860,11 @@ theorem symmetricCocycle_additive_eq_coboundary_add_alt (R : Type) [CommRing R] 
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomogeneousCocycleAdditiveLawReductionCoboundary
+-- clump: shared namespace opens
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomogeneousCocycleAdditiveLawReductionCoboundary
 
 
 
@@ -1034,10 +1030,6 @@ end GlobalTheory.LazardHomog
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LazardAdditiveLawWittVectorFractionFieldModP
-
-open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Katz.LazardModP
@@ -1215,10 +1207,6 @@ end GlobalTheory.Katz
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuasiLogarithmSuccessiveApproximationStep
-
-open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
-
-set_option autoImplicit false
 
 namespace GlobalTheory.Katz
 
@@ -1401,10 +1389,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsQuasiLogRed
 
-set_option autoImplicit false
-
-open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
-
 namespace GlobalTheory
 
 namespace Katz
@@ -1475,10 +1459,6 @@ end Katz
 end GlobalTheory
 end -- clump:auto
 
--- clump: shared namespace opens
-
-open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KatzQuasiIntegralCriterion
 
 namespace GlobalTheory.Katz
@@ -1544,8 +1524,6 @@ end GlobalTheory.Katz
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuasiLogarithmEqPSmulAddIntegral
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Katz

@@ -47,13 +47,13 @@ import Mathlib.Tactic.NormNum.RealSqrt
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.FirstJetEqProdTangent, Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.JetPointAddSqZeroEqProdMulTangent
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.FirstJetEqProdTangent
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 
 open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.ChartRestriction.G.Chart
 open scoped CategoryTheory.MonObj
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.FirstJetEqProdTangent
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp epsR IsTangent IsLieComb IsLieBasis)
 attribute [local instance] Over.cartesianMonoidalCategory
 
@@ -151,12 +151,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.JetPointAddSqZeroEqProdMulTangent
-
-set_option autoImplicit false
-
-
-open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.ChartRestriction.G.Chart
-open scoped CategoryTheory.MonObj
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp epsR IsTangent IsLieComb IsLieBasis)
 attribute [local instance] Over.cartesianMonoidalCategory
 

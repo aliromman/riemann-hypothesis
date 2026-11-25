@@ -74,7 +74,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsUniqueTopGradedRep
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb GlobalTheory.CompanionTheory.ConeLocal
 open GlobalTheory.CatH (face toLast)
 
@@ -514,7 +513,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TopGradedRepDerivationCompat
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb GlobalTheory.CompanionTheory.ConeLocal
 open GlobalTheory.CatH (face toLast)
 open GlobalTheory.CompanionTheory.CupRep GlobalTheory.CompanionTheory.CocProd
@@ -751,7 +749,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TopGradedRepRestrict
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb GlobalTheory.CompanionTheory.ConeLocal
 open GlobalTheory.CatH (face toLast)
 
@@ -1079,7 +1076,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TopRepresentativeAdd
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
 namespace GlobalTheory.CompanionTheory.ConeLocal.XdtAdd
@@ -1179,7 +1175,6 @@ section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecompositi
 @[expose] public noncomputable section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris ReciprocityTheory.ChartRestriction.G.Geo.Tor CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
 namespace GlobalTheory.CompanionTheory.ConeTransfer
@@ -1418,7 +1413,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ConeTransfer
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

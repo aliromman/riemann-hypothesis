@@ -75,7 +75,6 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InOpenFiniteInf
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AffineCoverHigherCohomologyVanishes
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -872,7 +871,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.GlobalSerreRelations.gr_aff
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

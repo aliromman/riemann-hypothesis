@@ -77,8 +77,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 
 open GlobalTheory GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.PD.ResEv
 
@@ -223,8 +221,6 @@ open GlobalTheory GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.TraceEvalOriginEqFibreTrace
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.PD.TraceOrigin
 
@@ -297,8 +293,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.TraceFibreRingEqFinsumFibrePoints
 open scoped TensorProduct
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.PD.FibTrace
 
@@ -346,8 +340,6 @@ end -- clump: shared namespace opens
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.TraceCechCochainFractionEqSumFibre
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.CechDR GlobalTheory.PD KaehlerDifferential
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.PD

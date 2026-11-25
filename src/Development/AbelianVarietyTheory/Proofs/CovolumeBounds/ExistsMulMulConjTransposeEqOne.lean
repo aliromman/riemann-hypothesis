@@ -145,18 +145,14 @@ private theorem range_quotHom (hs : ∃ a : K, star a ≠ a) :
       Units.val_mk0]
     rw [div_eq_iff h2, h]
 
-private theorem card_ker_mul_card_range {G H : Type*} [Group G] [Group H] (f : G →* H) :
-    Nat.card f.ker * Nat.card f.range = Nat.card G := by
-  rw [← Subgroup.index_ker, Subgroup.card_mul_index]
-
 private theorem range_normHom [Finite K] (hs : ∃ a : K, star a ≠ a) :
     (normHom K).range = (quotHom K).ker := by
   apply Subgroup.eq_of_le_of_card_ge
   · rintro _ ⟨z, rfl⟩
     rw [mem_ker_quotHom]
     simp [normHom, mul_comm]
-  · have h1 := card_ker_mul_card_range (normHom K)
-    have h2 := card_ker_mul_card_range (quotHom K)
+  · have h1 := Subgroup.card_ker_mul_card_range (normHom K)
+    have h2 := Subgroup.card_ker_mul_card_range (quotHom K)
     rw [range_quotHom hs, ← h1, mul_comm] at h2
     exact (Nat.eq_of_mul_eq_mul_left Nat.card_pos h2).le
 
@@ -184,7 +180,7 @@ theorem two_le_of_card_eq_sq {K : Type*} [Field K] [Finite K] {q : ℕ} (hq : Na
 
 theorem card_norm_eq_one [Finite K] {q : ℕ} (hq : Nat.card K = q ^ 2) (hs : ∃ a : K, star a ≠ a) :
     Nat.card {u : K // u * star u = 1} = q + 1 := by
-  have h2 := card_ker_mul_card_range (quotHom K)
+  have h2 := Subgroup.card_ker_mul_card_range (quotHom K)
   rw [range_quotHom hs, Nat.card_units, hq] at h2
   have e1 : Nat.card (quotHom K).ker = q - 1 := by
     rw [← card_selfAdjoint hq hs, ← Nat.card_units]
@@ -583,7 +579,7 @@ theorem card_specialUnitaryGroup_mul [Finite K] {q : ℕ} (hq : Nat.card K = q ^
     · change (Matrix.diagonal (Function.update 1 i (u : K))).det = u
       rw [Matrix.det_diagonal, Finset.prod_update_of_mem (Finset.mem_univ i)]
       simp
-  rw [← card_ker_mul_card_range d, hd, Subgroup.card_top, ← card_norm_eq_one hq hs]
+  rw [← Subgroup.card_ker_mul_card_range d, hd, Subgroup.card_top, ← card_norm_eq_one hq hs]
   congr 1
   · refine Nat.card_congr (Equiv.ofBijective (fun A => ⟨⟨A.1, A.2.1⟩, Subtype.ext A.2.2⟩) ⟨?_, ?_⟩)
     · intro A B h
@@ -644,7 +640,7 @@ theorem card_specialLinearGroup_mul (ι : Type*) [Fintype ι] [DecidableEq ι] [
       rw [Matrix.det_diagonal, Finset.prod_update_of_mem (Finset.mem_univ i)]
       simp
     exact ⟨Matrix.GeneralLinearGroup.mkOfDetNeZero _ (this.trans_ne u.ne_zero), Units.ext this⟩
-  rw [← card_ker_mul_card_range (Matrix.GeneralLinearGroup.det : GL ι F →* Fˣ), hd,
+  rw [← Subgroup.card_ker_mul_card_range (Matrix.GeneralLinearGroup.det : GL ι F →* Fˣ), hd,
     Subgroup.card_top, Nat.card_units]
   congr 1
   refine Nat.card_congr (Equiv.ofBijective

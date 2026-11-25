@@ -75,8 +75,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.JetSurvey.UnimodularStandardLattice
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Survey.UnimodularStandardLattice
 
@@ -208,8 +206,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMatrixDetNotMem
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain Formalism.L2.Pj GlobalTheory.IndefiniteRowSideFullHecke.UnitaryAdjointCongruence ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor

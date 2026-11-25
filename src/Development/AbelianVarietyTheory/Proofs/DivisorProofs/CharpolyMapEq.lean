@@ -161,8 +161,6 @@ end -- clump:auto
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Dieu
 
@@ -322,8 +320,6 @@ end -- clump:auto
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Dieu.ColengthHtOne
 
@@ -430,8 +426,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KernelDegreeLeDieudonneColength
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Dieu.ColengthDegree
@@ -668,8 +662,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 open scoped CategoryTheory.MonObj
 attribute [local instance] CategoryTheory.Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Dieu
 
@@ -753,8 +745,6 @@ open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.HTLat GlobalTheory.Published.AbVarRed GlobalTheory.CechPic GlobalTheory.AV GlobalTheory.AV.AbVar
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.AV.KerInv
@@ -852,8 +842,6 @@ attribute [local instance] CategoryTheory.Over.cartesianMonoidalCategory
 
 open Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Dieu.AbVarDieu
@@ -1456,8 +1444,6 @@ attribute [local instance] CategoryTheory.Over.cartesianMonoidalCategory
 
 open Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Dieu.CharpolyAV

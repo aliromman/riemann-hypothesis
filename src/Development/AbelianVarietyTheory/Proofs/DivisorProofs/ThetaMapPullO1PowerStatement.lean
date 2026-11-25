@@ -167,8 +167,6 @@ end -- clump: shared namespace opens
 open CategoryTheory Limits AlgebraicGeometry IsLocalRing TensorProduct
 open GlobalTheory GlobalTheory.QCoh GlobalTheory.Vert GlobalTheory.PerfdLat GlobalTheory.Published
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.BplusDescent
 
@@ -276,8 +274,6 @@ open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNormalizationModelFiniteExtension
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.NormCover

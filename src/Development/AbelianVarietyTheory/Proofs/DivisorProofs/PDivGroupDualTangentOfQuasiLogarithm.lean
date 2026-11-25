@@ -68,8 +68,6 @@ open TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantCoeffUpNmul
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.DefectComp
 
@@ -303,8 +301,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EvAtNmulPowSelf
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.EvTor
 
@@ -450,8 +446,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalGroupLawCoboundaryOneSubstOfEndomorphism
-
-set_option autoImplicit false
 
 
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog
@@ -631,8 +625,6 @@ open TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAdicCompleteRingOfModule
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.EvP
 
@@ -683,7 +675,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PDivGroupDualTangentOfQuasiLogarithm
 
-set_option autoImplicit false
 
 namespace GlobalTheory.QLogTangent
 

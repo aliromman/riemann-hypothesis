@@ -57,8 +57,6 @@ open Classical
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FullFlagBundlePointAtGenericLiftImage
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FlagBundle
 
 theorem exists_spMap_fromSpecResidueField {Z : Scheme.{0}} (y : Z) {K : Type} [Field K] (p : Sp K ⟶ Z)
@@ -113,8 +111,6 @@ theorem GlobalTheory.FlagBundle.conclusion : ∀ (F : Type) [Field F] (ι : Type
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FullFlagLiftGenericPointSpecializesResidue
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FlagBundle
@@ -203,8 +199,6 @@ end GlobalTheory.FlagBundle
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFunctionFieldMapFullFlagGenericPoint
-
-set_option autoImplicit false
 
 theorem GlobalTheory.FlagBundle.exists_fieldMap_coBear_generic (F : Type) [Field F] (ι : Type) [Fintype ι] (m : ι → ℕ)
     (X Y₁ Y₂ : Var F) (Eb : Fr (ratOf X) m 0) (S₁ : Fr (ratOf Y₁) m m) (φ₁ : X.Fn →ₐ[F] Y₁.Fn) (f₁ : Y₁.X ⟶ X.X)

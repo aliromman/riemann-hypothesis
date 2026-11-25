@@ -547,8 +547,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.CartierProjectionProperties
 
-set_option autoImplicit false
-
 
 open GlobalTheory GlobalTheory.LogDR
 

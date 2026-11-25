@@ -87,8 +87,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsMeasurePreservingFrameChangeProportionalHe
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.PeterssonFrameChange
 
@@ -789,8 +787,6 @@ end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.UnitFrameRealUnitaryOrbitGramRigid
 
-set_option autoImplicit false
-
 open MeasureTheory Topology Matrix NumberField ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHaarVolume
 open scoped ENNReal
 
@@ -919,8 +915,6 @@ end GlobalTheory.PeterssonRigid
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.DetNeZeroOfOrth
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.PeterssonCompare
@@ -1163,8 +1157,6 @@ end GlobalTheory.PeterssonCompare
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.CuspSquareIntegrableIffUnfolded
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.PeterssonCompare

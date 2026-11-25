@@ -350,8 +350,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.LeafTW1OfAllConjugatesGood
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.TwistIndex
 
@@ -782,8 +780,6 @@ end GlobalTheory.TwistIndex
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.SingleIndexPlacesAreTwisted
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain

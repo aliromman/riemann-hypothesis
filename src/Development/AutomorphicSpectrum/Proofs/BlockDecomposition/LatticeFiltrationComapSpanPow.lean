@@ -56,8 +56,6 @@ import Mathlib.Tactic.ReduceModChar
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeXiMulDpowSucc
 
-set_option autoImplicit false
-
 
 open DividedPowers CrystallineSemistableComparison.Pb
 

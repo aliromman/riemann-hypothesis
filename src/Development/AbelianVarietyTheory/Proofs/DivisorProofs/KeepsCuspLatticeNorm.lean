@@ -792,8 +792,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KeepsCuspLatticeNorm
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.LevelIsometry

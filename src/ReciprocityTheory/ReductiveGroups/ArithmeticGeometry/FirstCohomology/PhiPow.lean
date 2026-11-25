@@ -55,8 +55,6 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomolo
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.G.H1

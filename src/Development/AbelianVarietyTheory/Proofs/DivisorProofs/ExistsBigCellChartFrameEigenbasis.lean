@@ -64,8 +64,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCellOfIsFrameMat
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
@@ -159,8 +157,6 @@ end GlobalTheory.LogPole
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCellOfLeadingMinors
-
-set_option autoImplicit false
 
 namespace GlobalTheory.ShFam.Cell
 
@@ -354,14 +350,14 @@ theorem exists_perm_isUnit_leading_minors_localRing :
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrameVectorIsCombinationEigenbasisFlagSpacePoint
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.CompHS
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrameVectorIsCombinationEigenbasisFlagSpacePoint
 open GlobalTheory.FlagMod (ev frX frVec)
 open GlobalTheory.FlagTan (psiSet HIx VIx TIx IsDef IsVert KSIso)
 open ReciprocityTheory.ChartRestriction.G.PullbackSections (tv)
@@ -450,13 +446,6 @@ end GlobalTheory.LogPole
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsUnitDetFrameEigenbasisBlockAtPoint
-
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
-open GlobalTheory GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.CompHS
 open GlobalTheory.FlagMod (ev frX frVec)
 open GlobalTheory.FlagTan (psiSet HIx VIx TIx IsDef IsVert KSIso)
 open ReciprocityTheory.ChartRestriction.G.PullbackSections (tv)
@@ -516,13 +505,6 @@ end GlobalTheory.LogPole
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBigCellChartFrameEigenbasis
-
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
-open GlobalTheory GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.CompHS
 open GlobalTheory.FlagMod (ev frX frVec)
 open GlobalTheory.FlagTan (psiSet HIx VIx TIx IsDef IsVert KSIso)
 open ReciprocityTheory.ChartRestriction.G.PullbackSections (tv)

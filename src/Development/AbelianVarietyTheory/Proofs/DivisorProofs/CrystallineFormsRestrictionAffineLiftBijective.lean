@@ -251,8 +251,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.VerticalH2InjectiveAllUniverses
 
-set_option autoImplicit false
-
 
 open CategoryTheory
 
@@ -346,7 +344,6 @@ end -- clump:auto
 
 open CategoryTheory GlobalTheory.CxCoh
 
-set_option autoImplicit false
 namespace GlobalTheory.CxCoh.VertSurjTwo
 universe a b
 variable {C' : Type b} [Category.{0} C']
@@ -472,7 +469,6 @@ end -- clump:auto
 
 open CategoryTheory GlobalTheory.CxCoh
 
-set_option autoImplicit false
 namespace GlobalTheory.CxCoh.Collapse
 
 theorem bij_of_two {A B X Y : Type*} (r : A → B) (w : B → X) (s : X → Y) (U : A → X) (E : B → Y)
@@ -611,8 +607,6 @@ theorem GlobalTheory.CxCoh.collapse_resMap_bij : ∀ (C : Type 1) [Category.{0} 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystallineFormsRestrictionAffineLiftBijective
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential DividedPowers ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi

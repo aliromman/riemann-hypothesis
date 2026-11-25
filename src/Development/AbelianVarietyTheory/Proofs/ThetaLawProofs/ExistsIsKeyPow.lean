@@ -54,12 +54,12 @@ import Mathlib.Tactic.NormNum.RealSqrt
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KTrivBoxLBPowObj, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsIsKeyPow
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KTrivBoxLBPowObj
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KTrivBoxLBPowObj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
@@ -74,9 +74,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsIsKeyPow
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.KeyPow

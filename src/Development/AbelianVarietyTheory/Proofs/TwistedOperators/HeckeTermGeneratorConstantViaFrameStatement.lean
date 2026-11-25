@@ -184,8 +184,6 @@ open scoped Matrix
 open GlobalTheory.HkFam (admitted)
 noncomputable section
 
-set_option autoImplicit false
-
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.HeckeLiftScalar
@@ -255,8 +253,6 @@ open GlobalTheory.FrameNorm (IsUnitFr)
 open scoped Matrix
 open GlobalTheory.HkFam (admitted)
 noncomputable section
-
-set_option autoImplicit false
 
 attribute [local instance] Over.cartesianMonoidalCategory
 

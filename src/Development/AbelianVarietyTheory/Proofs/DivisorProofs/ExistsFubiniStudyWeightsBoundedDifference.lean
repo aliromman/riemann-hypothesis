@@ -58,8 +58,6 @@ open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier Glo
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComplexPointsSmoothAtFubiniStudyLogSumWeight
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HSAmp.CanSmooth
 
@@ -215,8 +213,6 @@ end GlobalTheory.HSAmp
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFubiniStudyWeightsBoundedDifference
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HSAmp

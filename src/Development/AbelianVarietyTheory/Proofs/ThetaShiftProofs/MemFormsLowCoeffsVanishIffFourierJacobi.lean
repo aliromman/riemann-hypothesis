@@ -418,8 +418,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.MemFormsLowCoeffsVanishIffFourierJacobi
 
-set_option autoImplicit false
-
 namespace GlobalTheory.LowCoeff
 
 section Free

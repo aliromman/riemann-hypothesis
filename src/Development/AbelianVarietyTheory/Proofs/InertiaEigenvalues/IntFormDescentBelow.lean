@@ -848,7 +848,6 @@ end GlobalTheory.TowerDifferent
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BaseSectionsValuesIntegralAtCoverLift
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CoverLiftVal
@@ -971,8 +970,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TraceIntegralOfSmallAtOtherPlaces
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain Formalism.L2.Pj
@@ -1203,8 +1200,6 @@ end GlobalTheory.TraceIdem
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IntFormDescentBelow
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.XiIntSteps

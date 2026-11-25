@@ -59,8 +59,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeOnMemGo
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open NumberField IsDedekindDomain

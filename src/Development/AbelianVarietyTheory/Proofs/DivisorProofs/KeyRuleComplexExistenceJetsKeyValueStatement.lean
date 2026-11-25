@@ -733,8 +733,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw GlobalTheory.KeyCl GlobalTheory.LocM
 open Filter Topology Matrix
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.WeilStd
 

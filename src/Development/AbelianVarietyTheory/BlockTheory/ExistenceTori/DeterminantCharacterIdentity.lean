@@ -46,8 +46,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.AdelicNormWeight
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.AdelicNormWeight
 
@@ -175,8 +173,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.AdelicNormWeight
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.DeterminantCharacterIdentity
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.DeterminantCharacterIdentity

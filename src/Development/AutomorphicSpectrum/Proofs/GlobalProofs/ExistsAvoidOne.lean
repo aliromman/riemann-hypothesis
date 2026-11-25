@@ -187,11 +187,11 @@ alias GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.exists_large_prime_dvd
 end UpperTheory.Reformulated.B.P6.LargePrimeDivisors
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsPrimeDegreeOneAvoiding
-
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsPrimeDegreeOneAvoiding
 open Polynomial
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
@@ -309,8 +309,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PartialZetaMeromorphicFromTwists
-
-open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.TwoRelations
 
@@ -550,10 +548,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PartialZetaPrimeTwistSummable
 
-set_option autoImplicit false
-
-open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
-
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
 
 theorem classWeight_relation (F : Type) [Field F] [NumberField F] (𝔣 𝔠 A B : Ideal (𝓞 F)) (hc : (Ideal.absNorm 𝔠).Prime)
@@ -623,13 +617,11 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PartialZetaPrimeTwistSummableStatement
 
-open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
-
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PartialZetaRayClassSummable
+end -- clump: shared namespace opens
 
-set_option autoImplicit false
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PartialZetaRayClassSummable
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta
 
@@ -659,8 +651,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.RayClassPrimeMultiplicationPermutation
-
-set_option autoImplicit false
 
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
@@ -716,7 +706,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsAvoidOne
 
-set_option autoImplicit false
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani

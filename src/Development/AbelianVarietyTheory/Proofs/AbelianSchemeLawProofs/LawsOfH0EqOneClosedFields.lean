@@ -107,12 +107,12 @@ import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.WeilIsIffC
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.IsFieldGlobalFnsSpec, Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.IsUnitIffMem, Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.NatCardEqOfEquivPiField, Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.UnramExtLaw, Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.LawsOfH0EqOneClosedFields
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.IsFieldGlobalFnsSpec
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.IsFieldGlobalFnsSpec
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
@@ -185,9 +185,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.IsUnitIffMem
 @[expose] public noncomputable section
-
-open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi
 attribute [local instance] Over.cartesianMonoidalCategory
 
 
@@ -598,11 +595,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.NatCardEqOfEquivPiField
-
-set_option autoImplicit false
-
-open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
@@ -678,11 +670,6 @@ theorem mulN_of_decomposition :
 
 end GlobalTheory
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.UnramExtLaw
 attribute [local instance] Over.cartesianMonoidalCategory

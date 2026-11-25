@@ -62,8 +62,6 @@ open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier Glo
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallyPowMulMemHermPairSections
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HSAmp.ExtPow
 
@@ -166,8 +164,6 @@ theorem GlobalTheory.HSAmp.eventually_pow_mul_mem_H : ∀ (k : Type) [CommRing k
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFunctionFieldBasisOfSections
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HSAmp.FBasis

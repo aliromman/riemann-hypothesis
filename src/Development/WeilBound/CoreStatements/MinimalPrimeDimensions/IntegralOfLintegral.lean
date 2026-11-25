@@ -79,8 +79,6 @@ import Mathlib.Topology.Connected.Separation
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.DifferentiableOnSheet
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry NumberField MvPolynomial
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -586,8 +584,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.MemMinimalPrimesOfMemSupport
 
-set_option autoImplicit false
-
 
 open MvPolynomial MeasureTheory GroundTheory.Heights₂.Heights
 
@@ -723,8 +719,6 @@ end ChowFormHeightComparison₂.CF.C
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.IntegralOfLintegral
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry NumberField MvPolynomial

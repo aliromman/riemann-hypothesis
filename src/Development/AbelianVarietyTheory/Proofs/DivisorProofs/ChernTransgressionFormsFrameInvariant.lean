@@ -53,8 +53,6 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MdbarZeroOfHolo
 
-set_option autoImplicit false
-
 
 open Filter Topology Matrix
 open ReciprocityTheory.L2DbarEstimates (V)
@@ -131,8 +129,6 @@ end GlobalTheory.ChernCalc.FrameChange
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChernTransgressionFormsFrameInvariant
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry MvPolynomial MeasureTheory Filter Topology

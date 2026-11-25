@@ -111,7 +111,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIsEffAddNsmulDiv
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

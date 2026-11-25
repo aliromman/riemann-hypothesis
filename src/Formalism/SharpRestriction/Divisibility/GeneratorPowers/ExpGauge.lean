@@ -66,8 +66,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpSActPS
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGK
 
@@ -145,8 +143,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGK
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.CocChart
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGL
@@ -295,8 +291,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGL
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGJAd
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGJ
@@ -457,8 +451,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGJ
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGOPf
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGO
@@ -689,8 +681,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhTwoValHolds
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGJPh2
 
@@ -874,8 +864,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.SubstCoeRename
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGJPh1
 
@@ -1044,8 +1032,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGJPh1
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGauge
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGauge

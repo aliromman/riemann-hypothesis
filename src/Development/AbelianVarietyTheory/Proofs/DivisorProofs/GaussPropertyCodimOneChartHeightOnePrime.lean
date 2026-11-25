@@ -73,8 +73,6 @@ open GlobalTheory.Desc
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoheightLeOneOfFlat
 
-set_option autoImplicit false
-
 namespace GlobalTheory.Desc.GaussPt
 
 section Top
@@ -526,8 +524,6 @@ end -- clump:auto
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussAtCompAlg
 @[expose] public section
 
-set_option autoImplicit false
-
 namespace GlobalTheory.Desc.GaussComp
 
 theorem exists_indep {T M I : Type} [CommRing T] [IsDomain T] [IsPrincipalIdealRing T] [AddCommGroup M] [Module T M]
@@ -842,8 +838,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussPropertyCodimOneChartHeightOnePrime
-
-set_option autoImplicit false
 
 namespace GlobalTheory.Desc.GaussPt
 

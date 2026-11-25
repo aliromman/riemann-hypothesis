@@ -736,8 +736,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LocalMaximality.PKapInd
 
-set_option autoImplicit false
-
 namespace UpperTheory.Gal.productCup_of_system
 
 private theorem wd_apply' {ι E : Type} [LinearOrder ι] [AddCommGroup E] [Module ℂ E]

@@ -904,8 +904,6 @@ end -- clump: shared namespace opens
 section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.MemNonzeroLocusOfVia
 @[expose] public section
 
-set_option autoImplicit false
-
 section
 
 open Polynomial TensorProduct

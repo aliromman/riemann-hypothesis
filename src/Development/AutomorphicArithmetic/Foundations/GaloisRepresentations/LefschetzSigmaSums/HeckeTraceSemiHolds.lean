@@ -63,8 +63,6 @@ import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.Spher
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PConjRep
 
-set_option autoImplicit false
-
 
 namespace UpperTheory.Gal.LocalSmoothExtension
 
@@ -136,8 +134,6 @@ end UpperTheory.Gal.LocalSmoothExtension
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PCxFlat
-
-set_option autoImplicit false
 
 
 open Matrix NumberField Polynomial GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCx GlobalTheory.LKDef GlobalTheory.RootSumWeights GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen
@@ -717,8 +713,6 @@ end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PInvPolProps
 
-set_option autoImplicit false
-
 open Polynomial
 
 namespace UpperTheory.Gal.LocalSmoothExtension
@@ -860,8 +854,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PMarkRoots
 
-set_option autoImplicit false
-
 
 open NumberField Polynomial GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCx GlobalTheory.LKDef GlobalTheory.RootSumWeights GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen
 open UpperTheory.Gal.W2 (rts)
@@ -916,8 +908,6 @@ end UpperTheory.Gal.LocalSmoothExtension
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PPolyFnConj
-
-set_option autoImplicit false
 
 
 open UpperTheory.Gal.CertificateRingHomMap (wop wmul wmap)

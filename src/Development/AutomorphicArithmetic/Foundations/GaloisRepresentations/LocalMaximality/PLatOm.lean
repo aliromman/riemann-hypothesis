@@ -159,8 +159,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KahlerFormsOverSubalgebraComapSpanEqTop
 
-set_option autoImplicit false
-
 
 open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
@@ -423,8 +421,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularFormsIsBundleProjectiveCover
-
-set_option autoImplicit false
 
 
 open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential

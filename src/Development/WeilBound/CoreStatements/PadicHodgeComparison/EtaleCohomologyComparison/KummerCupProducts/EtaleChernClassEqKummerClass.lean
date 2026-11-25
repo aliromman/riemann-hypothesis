@@ -1223,7 +1223,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SignCancel
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

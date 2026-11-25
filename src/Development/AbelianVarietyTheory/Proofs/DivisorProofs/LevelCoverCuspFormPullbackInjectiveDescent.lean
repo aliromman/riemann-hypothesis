@@ -172,8 +172,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleFaithfullyFlatDescentGeometricPoints
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.EtaleGeomDescent
 
@@ -220,8 +218,6 @@ open AlgebraicGeometry CategoryTheory Limits NumberField ReciprocityTheory.Chart
 open MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi
 open scoped CategoryTheory.Obj TensorProduct
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CoverGood
@@ -481,8 +477,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SectionConstantOnFibresDescends
 
-set_option autoImplicit false
-
 
 local instance (priority := high) instAlgebraTRing_CoverDesc {K : Type} [Field K] (p : Formalism.L2.Pj.TRing K) :
     Algebra K p.R :=
@@ -738,7 +732,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LinearIndependentRulBC
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 200000
 
 

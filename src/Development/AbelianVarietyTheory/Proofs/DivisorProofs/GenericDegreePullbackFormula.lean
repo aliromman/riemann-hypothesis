@@ -61,8 +61,6 @@ import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OfSwap2
 
-set_option autoImplicit false
-
 
 
 open CategoryTheory AlgebraicGeometry NumberField MvPolynomial
@@ -88,8 +86,6 @@ open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G Recip
 open scoped Classical
 open MeasureTheory GlobalTheory.CxPts GlobalTheory.ChartGlue GlobalTheory.Points
 open scoped ENNReal
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.GdegPullProof

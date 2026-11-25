@@ -62,8 +62,6 @@ import Formalism.SharpRestriction.GlobalSchurBounds.ShortIntervalPrimes
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.StepIdentity
 
@@ -238,8 +236,6 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.StepIdentity
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ConeSeriesDifferentiableLeftStrip
-
-set_option autoImplicit false
 
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel

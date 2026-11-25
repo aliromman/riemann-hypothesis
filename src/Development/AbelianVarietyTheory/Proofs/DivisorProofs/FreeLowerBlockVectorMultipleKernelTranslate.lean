@@ -76,8 +76,6 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IntValuationEqOf
 
 @[expose] public section
 
-set_option autoImplicit false
-
 
 
 noncomputable section

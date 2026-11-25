@@ -71,8 +71,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.IsTanAtOfGenericFibre
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IntFramesCompare
 

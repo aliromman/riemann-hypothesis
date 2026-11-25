@@ -53,8 +53,6 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.GeometricLiftsOf
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.ShortRuleRepresentationChange
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.RamifiedCoverPairIsomorphism
 
@@ -116,8 +114,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.RamifiedCoverPairIsomorphism
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ShortSpanUnitOfExactValues
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.ShortSpanCompare

@@ -208,8 +208,6 @@ end -- clump:auto
 open ReciprocityTheory.ChartRestriction.G.FD (Data Frame Bor rmul lact mat col dmin Wt)
 open scoped CategoryTheory.MonObj
 
-set_option autoImplicit false
-
 noncomputable section
 
 open GlobalTheory.ShFam.Hor.LogCh

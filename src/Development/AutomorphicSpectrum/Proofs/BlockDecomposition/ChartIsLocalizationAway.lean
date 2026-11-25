@@ -52,7 +52,6 @@ open CrystallineSemistableComparison CrystallineSemistableComparison.Onto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InterEqBasicOpen
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris
@@ -323,7 +322,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartIsLocalizationAway
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris
 namespace GlobalTheory.CompanionTheory.ChartBijOf

@@ -62,7 +62,6 @@ open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier Glo
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAmpleSectionClearingRationalFunctionDenomi
 
-set_option autoImplicit false
 
 namespace GlobalTheory.HSNef.DenOne
 
@@ -154,8 +153,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPosNonzeroPairSectionOfAmple
 
-set_option autoImplicit false
-
 namespace GlobalTheory.HSNef
 
 theorem exists_pos_nonzero_mem_H : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ),
@@ -194,8 +191,6 @@ end GlobalTheory.HSNef
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsClearDenominatorsAmpleHermLineBundle
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HSNef.Den
 

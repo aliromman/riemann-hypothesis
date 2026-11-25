@@ -583,8 +583,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.TypeSliceAlt
 
-set_option autoImplicit false
-
 
 open MeasureTheory Matrix GlobalTheory.PRep GlobalTheory.SmGL
 

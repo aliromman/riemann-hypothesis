@@ -133,7 +133,6 @@ open NumberField IsDedekindDomain MeasureTheory Polynomial GroundTheory.Automorp
 open GroundTheory.Automorphic.GodementJacquet GroundTheory.Automorphic.GJStandardL
 open scoped NNReal Classical ValuativeRel
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 theorem UpperTheory.V.Z.Gam.gamLocOf :
     UpperTheory.V.Z.Gam.GamLocOf := by
@@ -198,7 +197,6 @@ section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.
 @[expose] public noncomputable section
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 namespace UpperTheory.V.Z.Gam
 
@@ -373,7 +371,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.GammaLaurentFactors.LocalEmbeddingNorms.MatchBCOf
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 namespace UpperTheory.V.Z.Gam
 
@@ -713,7 +710,6 @@ open NumberField IsDedekindDomain MeasureTheory Polynomial Formalism.L2.Host Glo
 open GroundTheory.Automorphic GroundTheory.Automorphic.AutomorphicForm GroundTheory.Automorphic.GJStandardL GroundTheory.Automorphic.GodementJacquet
 open GroundTheory.Automorphic.GLnLocal GroundTheory.Automorphic.GJStandardLCuspidal UpperTheory.V UpperTheory.V.Z.Inf UpperTheory.V.Z.Gam
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 private theorem eval_quot (N D : ℂ[X]) (x : ℂ) (hD : D.eval x ≠ 0) :
     (algebraMap ℂ[X] (RatFunc ℂ) N / algebraMap ℂ[X] (RatFunc ℂ) D).eval (RingHom.id ℂ) x = N.eval x / D.eval x := by
@@ -963,7 +959,6 @@ open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.Loc
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 namespace UpperTheory.V.Z.Gam
 
@@ -1084,7 +1079,6 @@ open GroundTheory.Automorphic.GLnLocal (integralGL mem_integralGL_iff)
 open GroundTheory.Automorphic.Parabolic (levi parabolicInd mem_levi leviUnipotent)
 open scoped Classical
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 namespace UpperTheory.V.Z.Gam
 
@@ -1352,7 +1346,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 namespace UpperTheory.V.Z.Gam
 

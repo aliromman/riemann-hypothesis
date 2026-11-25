@@ -55,8 +55,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.LieLift
 

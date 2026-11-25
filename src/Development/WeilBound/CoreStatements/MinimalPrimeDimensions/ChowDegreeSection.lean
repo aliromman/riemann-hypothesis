@@ -155,7 +155,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.RangeOfMemSupportPush
 
-set_option autoImplicit false
 set_option linter.style.haveILetI false
 
 
@@ -363,7 +362,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.DimClosureAddOneLe
 
-set_option autoImplicit false
 set_option linter.style.haveILetI false
 
 
@@ -543,7 +541,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.ChowDegreeSection
 
-set_option autoImplicit false
 set_option linter.style.haveILetI false
 
 

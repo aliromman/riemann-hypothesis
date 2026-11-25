@@ -767,7 +767,7 @@ theorem thetaVectorUpToUnits_thZero_of_even : ∀ (D : D7) (cc : Ideal (𝓞 D.h
   obtain ⟨n', hn'⟩ := hN'
   obtain rfl : N = n * 2 := by omega
   obtain rfl : N' = n' * 2 := by omega
-  have hS : B.StdOK := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.SO.stdOK B hcc hδ
+  have hS : B.StdOK := GlobalTheory.FourthRootStd.stdOK B hcc hδ
   refine ⟨bas B n n', B.kappa ^ (n' * n), _root_.GlobalTheory.BaseVacuum.onB_bas D cc δ B n n', _root_.GlobalTheory.KappaPowMod.kappa_pow_mod1All D cc δ B _, ?_⟩
   funext z
   obtain ⟨hsc', hF0', hidx', hprod⟩ := _root_.GlobalTheory.BaseVacuum.prod_blk_inter B.L B.ω₀ B.cq (Fin n' × Fin n) (Fin 4 × D.what₂.Tau)

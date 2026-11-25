@@ -60,7 +60,6 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TensTransfer
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
-set_option autoImplicit false
 set_option linter.unusedVariables false
 
 
@@ -182,8 +181,6 @@ end -- clump:auto
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CompanionTheory.LocBC
 
@@ -282,7 +279,6 @@ end -- clump:auto
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
-set_option autoImplicit false
 set_option linter.unusedVariables false
 
 

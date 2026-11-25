@@ -63,8 +63,6 @@ import Mathlib.Tactic.TypeStar
 
 open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
-set_option autoImplicit false
-
 namespace GlobalTheory.PD
 
 theorem wedge_pairing_sep {K V : Type} [Field K] [AddCommGroup V] [Module K V] {p q : ℕ}

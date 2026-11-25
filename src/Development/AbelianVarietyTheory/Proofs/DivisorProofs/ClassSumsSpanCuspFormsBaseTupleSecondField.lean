@@ -358,8 +358,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ClassSumsSpan
 
-set_option autoImplicit false
-
 
 
 open NumberField Matrix IsDedekindDomain
@@ -866,8 +864,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ClassSumsSpanCuspFormsBaseTupleSecondField
-
-set_option autoImplicit false
 
 
 

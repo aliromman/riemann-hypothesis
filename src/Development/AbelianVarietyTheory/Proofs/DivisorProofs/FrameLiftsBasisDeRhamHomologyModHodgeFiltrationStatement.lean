@@ -61,7 +61,6 @@ open AlgebraicGeometry CategoryTheory GlobalTheory.DeRham GlobalTheory.Cris
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrameLiftsBasisDeRhamHomologyModHodgeFiltration
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 open GlobalTheory ReciprocityTheory.ChartRestriction.G.Semi
 
 namespace GlobalTheory.LieBasis

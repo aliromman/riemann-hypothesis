@@ -187,8 +187,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegersApproximatingRootOfUnityTwists
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.PrimePart
 
@@ -326,8 +324,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalGroupDetPowDepthLeOfIntegralLogHom
 
-set_option autoImplicit false
-
 
 open NumberField MvPowerSeries IsLocalRing ReciprocityTheory.PGsh ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.FGDepth GlobalTheory.CharDepth GlobalTheory.FactorDepth GlobalTheory.IndefiniteRowSideFullHecke.TypedPartSplitPrimes GlobalTheory.PrimePart ReciprocityTheory.ChartRestriction.G.Sh
 
@@ -428,8 +424,6 @@ end GlobalTheory.DepthMono
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusActsOnTypeAtValuation
-
-set_option autoImplicit false
 
 namespace GlobalTheory.PrimePart
 
@@ -590,8 +584,6 @@ theorem _root_.GlobalTheory.T.frobenius_acts_on_type_at_valuation : ∀ (E : Typ
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegersActIntegralChartEigenDirections
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.ChartAct
@@ -766,8 +758,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIntegralLogHomDiagonalOfLimit
 
-set_option autoImplicit false
-
 open NumberField MvPowerSeries IsLocalRing ReciprocityTheory.PGsh ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.FGDepth GlobalTheory.CharDepth GlobalTheory.FactorDepth GlobalTheory.IndefiniteRowSideFullHecke.TypedPartSplitPrimes GlobalTheory.PrimePart
 
 namespace GlobalTheory.DiagLimit
@@ -905,8 +895,6 @@ end GlobalTheory.IntInv
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogarithmicGroupLawSplitByIdempotent
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.IdemImage
@@ -1251,8 +1239,6 @@ end GlobalTheory.FrobOrbit
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalGroupRootsOfUnityTypedLieRanks
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.PrimePart

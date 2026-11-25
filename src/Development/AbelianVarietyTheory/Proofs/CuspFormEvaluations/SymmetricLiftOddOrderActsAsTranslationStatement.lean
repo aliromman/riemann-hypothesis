@@ -75,8 +75,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsThetaConstantOfThetaGroup
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.AnVal
 
@@ -316,8 +314,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ThetaConstSymmetricSquareEqOne
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.AnValSym
@@ -571,8 +567,6 @@ end -- clump: shared namespace opens
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ThetaConstantPowEqOneOfPowerTrivial
 @[expose] public noncomputable section
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.AnValThPow

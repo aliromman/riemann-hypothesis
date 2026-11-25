@@ -56,8 +56,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.OneFormMapEqKaehler
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullbackPreservesFormType
 
-set_option autoImplicit false
-
 
 open GlobalTheory.CxForm
 open ReciprocityTheory.L2DbarEstimates (V)
@@ -118,8 +116,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.BasSingleMulSelf
 
-set_option autoImplicit false
-
 
 open MeasureTheory
 open ReciprocityTheory.L2DbarEstimates (V)
@@ -146,8 +142,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsTorusActionRot
 
-set_option autoImplicit false
-
 
 open MeasureTheory
 open ReciprocityTheory.L2DbarEstimates (V)
@@ -164,8 +158,6 @@ end GlobalTheory.CxForm.HolAtlas
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.DifferentiableAtDirD
-
-set_option autoImplicit false
 
 
 open GlobalTheory.GoodMetric (coordVec)
@@ -540,8 +532,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExactFormsLeClosedForms
 
-set_option autoImplicit false
-
 
 open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ContDiff
@@ -781,8 +771,6 @@ end GlobalTheory.CxForm.HolAtlas
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsAffCoverSpec
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential GlobalTheory.CechDR GlobalTheory.CxForm GlobalTheory.CxPts

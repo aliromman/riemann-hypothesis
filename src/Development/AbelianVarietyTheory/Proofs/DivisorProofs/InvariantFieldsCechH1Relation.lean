@@ -99,8 +99,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.TanBasisDim
@@ -345,8 +343,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechOneCochainToPosetCochainCoboundaryExists
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry Opposite
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -415,8 +411,6 @@ end -- clump:auto
 open GlobalTheory.KS (rsT IsCoc IsCob)
 open GlobalTheory.CatCoh GlobalTheory.CechDR GlobalTheory.CechCmp
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CechCmp
@@ -470,8 +464,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCechOneCocyclePosetOneCochainToCechCochain
 open GlobalTheory.KS (rsT IsCoc IsCob)
 open GlobalTheory.CatCoh GlobalTheory.CechDR GlobalTheory.CechCmp
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -570,8 +562,6 @@ end -- clump:auto
 open GlobalTheory.KS (rsT IsCoc IsCob)
 open GlobalTheory.CatCoh GlobalTheory.CechDR GlobalTheory.CechCmp
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CechCmp
 
 theorem toCech_toPos : ∀ (I : Type) [Finite I] (X : Scheme.{0}) (R : Type) [CommRing R] (s : X ⟶ Sp R) (U : I → X.Opens) (hU : ∀ i, IsAffineOpen (U i)) (hinf : ∀ V W : X.Opens, IsAffineOpen V → IsAffineOpen W → IsAffineOpen (V ⊓ W)), ∀ c : GlobalTheory.KS.C1 U, IsCoc U c → toCech s U hU hinf (toPos s U hU hinf c) = c := by
@@ -608,8 +598,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianCechH1BasisCocycles
-
-set_option autoImplicit false
 
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField IsLocalRing
@@ -752,7 +740,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.DlogBasis
 
@@ -938,7 +925,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.CoverRefinementPullback
 

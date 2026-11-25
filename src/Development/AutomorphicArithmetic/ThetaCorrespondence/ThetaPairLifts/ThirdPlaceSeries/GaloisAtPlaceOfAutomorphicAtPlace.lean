@@ -110,8 +110,6 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.AbsNormPrimeIffI
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisStatementOfSmall
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FrameGal
 
@@ -979,7 +977,6 @@ end -- clump:auto
 
 section
 section
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.FrameGal
 section Side

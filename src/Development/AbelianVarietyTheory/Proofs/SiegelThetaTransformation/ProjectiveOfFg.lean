@@ -72,8 +72,6 @@ import Mathlib.RingTheory.Coalgebra.IsFrobenius
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsTautologicalMarking
 
-set_option autoImplicit false
-
 open NumberField MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 
 namespace GlobalTheory.Jets.TautMarking
@@ -182,8 +180,6 @@ end GlobalTheory.Jets.TautMarking
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsLiftHermitianIsometryModLevelSelfDual
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.IsomLift
@@ -519,8 +515,6 @@ theorem _root_.GlobalTheory.T.exists_lift_hermitianIsometryModLevel_selfDual : â
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ProjectiveOfFg
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain GlobalTheory.AdLat Formalism.L2.Pj GlobalTheory.IndefiniteRowSideFullHecke.UnitaryAdjointCongruence

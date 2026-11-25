@@ -46,9 +46,11 @@ import Mathlib.Tactic.Basify
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EncardSeminormBallPowLeRadiusChange, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLogNcardSeminormBallExpSmallLe
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EncardSeminormBallPowLeRadiusChange
+-- clump: shared namespace opens
 
 open Filter Topology GlobalTheory.VolBr
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EncardSeminormBallPowLeRadiusChange
 
 namespace GlobalTheory.VolBr
 
@@ -182,10 +184,6 @@ end GlobalTheory.VolBr
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLogNcardSeminormBallExpSmallLe
-
-set_option autoImplicit false
-
-open Filter Topology GlobalTheory.VolBr
 
 namespace GlobalTheory.VolBr
 

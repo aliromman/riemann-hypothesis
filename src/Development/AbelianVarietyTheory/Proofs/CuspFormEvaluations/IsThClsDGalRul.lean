@@ -62,8 +62,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.IsNabTwist
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.GalTw
 
@@ -82,8 +80,6 @@ end GlobalTheory.GalTw
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.JetGauges.HarmonicChartValues
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.HarmonicSystemChartValues
@@ -115,8 +111,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.HarmonicSystemChartValues
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.XLaterHarmonicNotMemSpan
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.NabUniqCompare
@@ -262,8 +256,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ShortSeriesValueTwistedEqConjugateValue
 
-set_option autoImplicit false
-
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.GalTw
 
 namespace GlobalTheory.GalTw
@@ -329,8 +321,6 @@ end GlobalTheory.GalTw
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.IsThClsDGalRul
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.GalTw

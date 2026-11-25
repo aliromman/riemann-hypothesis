@@ -46,8 +46,6 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.IsQuasiRegul
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CompHS

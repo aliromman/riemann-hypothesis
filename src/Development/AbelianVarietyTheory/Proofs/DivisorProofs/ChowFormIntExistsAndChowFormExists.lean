@@ -57,8 +57,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
 
-set_option autoImplicit false
-
 namespace GlobalTheory.ChowExists
 
 open MvPolynomial GlobalTheory.ChowHt GlobalTheory.CompHt

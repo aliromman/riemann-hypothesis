@@ -369,7 +369,6 @@ open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
 open scoped TensorProduct
 open GlobalTheory.AbDual GlobalTheory.AbLaw GlobalTheory.CechPic
 
-set_option autoImplicit false
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.HTPerf
@@ -619,7 +618,6 @@ open scoped TensorProduct
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeRhamHomologyClosedFibreSurjectiveKernel
 attribute [local instance] Functor.grpObjObj
 
-set_option autoImplicit false
 namespace GlobalTheory.HdRFibre
 
 
@@ -669,8 +667,6 @@ end -- clump: shared namespace opens
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProjectiveTensorOfFibreProjective
 
 open scoped TensorProduct
-
-set_option autoImplicit false
 
 
 open scoped TensorProduct
@@ -911,7 +907,6 @@ open scoped TensorProduct
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystalProjectiveOverTensorRingOfIntegers
 attribute [local instance] Functor.grpObjObj
 
-set_option autoImplicit false
 
 namespace GlobalTheory.HTSummand
 
@@ -1001,7 +996,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCrysForm
 attribute [local instance] Over.cartesianMonoidalCategory
-set_option autoImplicit false
 open IsLocalRing GlobalTheory.AbDual GlobalTheory.Published.GrothendieckMessing
 
 namespace GlobalTheory.HTDefLift
@@ -1043,8 +1037,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorExistsIsotropicStableSummand
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField

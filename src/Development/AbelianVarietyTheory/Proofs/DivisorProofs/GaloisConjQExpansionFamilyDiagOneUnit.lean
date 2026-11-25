@@ -64,7 +64,7 @@ import Mathlib.Tactic.Lemma
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AutEmbInjective, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitLatticeLevelTraceDenominator, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinFourierCoeffRingEquivConj, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinSeriesRingEquivConj, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertSplitLatticeTwistDiagonalCoprime, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinJetGaloisConjCoefficients, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertLatticeTwistByMatrixModNMul, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisConjQExpansionFamilyDiagOneUnit
 
-section -- clump: shared namespace opens
+-- clump: shared namespace opens
 
 open NumberField UpperHalfPlane GlobalTheory.HilbFam GlobalTheory.QFam
 
@@ -353,13 +353,7 @@ theorem twist_split_diagonal : ∀ (F : Type) [Field F] [NumberField F] [IsTotal
 end GlobalTheory.HilbFam
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinJetGaloisConjCoefficients
-
-set_option autoImplicit false
-
-open NumberField UpperHalfPlane GlobalTheory.HilbFam GlobalTheory.QFam
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization (Emb Frac latM qPow upperHalf cK omegaFactor IsPartialZeta HasExpansion)
 open GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates (iterD partialD)
 open scoped Classical MatrixGroups nonZeroDivisors
@@ -393,10 +387,6 @@ theorem qConj_hfun_twist : EisExp → ∀ (F : Type) [Field F] [NumberField F] [
 
 end GlobalTheory.HilbFam
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open NumberField UpperHalfPlane GlobalTheory.HilbFam GlobalTheory.QFam
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertLatticeTwistByMatrixModNMul
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization (Emb Frac latM qPow upperHalf cK omegaFactor IsPartialZeta HasExpansion)

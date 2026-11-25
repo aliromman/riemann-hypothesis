@@ -48,8 +48,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.RowsOfPageFix
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FinalRows
 
@@ -112,8 +110,6 @@ end GlobalTheory.FinalRows
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RunNumericalConditionsHoldAlongFamily
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain

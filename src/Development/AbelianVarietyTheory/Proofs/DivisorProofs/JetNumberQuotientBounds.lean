@@ -53,8 +53,6 @@ import Development.AbelianVarietyTheory.Definitions.PlaceAdaptation.AdaptStd
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MultAddMultConj
 
-set_option autoImplicit false
-
 namespace GlobalTheory.ConjugateMultiplicitySum
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor

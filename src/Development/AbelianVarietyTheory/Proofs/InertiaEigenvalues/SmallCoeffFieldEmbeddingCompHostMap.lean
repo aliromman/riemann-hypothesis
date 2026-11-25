@@ -311,8 +311,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RayClassFieldInfModulusEqSup
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain
 

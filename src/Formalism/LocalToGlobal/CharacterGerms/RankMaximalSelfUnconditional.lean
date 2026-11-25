@@ -75,13 +75,13 @@ import Formalism.LocalToGlobal.CharacterGerms.RowTiePLSmallMain
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.CharacterGerms.ConstantZeroMultiplicationPair, Formalism.LocalToGlobal.CharacterGerms.ConstantZeroCompCoordinate, Formalism.LocalToGlobal.CharacterGerms.LinearPartUnitFrobenius, Formalism.LocalToGlobal.CharacterGerms.UncurryLinearCombination, Formalism.LocalToGlobal.CharacterGerms.RankMaximalSelfCore, Formalism.LocalToGlobal.CharacterGerms.MmOfUnitMul, Formalism.LocalToGlobal.CharacterGerms.RankMaximalSelfOfProjection, Formalism.LocalToGlobal.CharacterGerms.RankMaximalSelfUnconditional
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.ConstantZeroMultiplicationPair
-
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 
 open scoped BigOperators
 open Classical
+
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.ConstantZeroMultiplicationPair
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -512,12 +512,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.ConstantZeroCompCoordinate
 
-set_option autoImplicit false
-
-
-open scoped BigOperators
-open Classical
-
 namespace Formalism.L2.FormalSeriesBounds
 
 open Formalism.IncomingBounds ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
@@ -846,12 +840,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.LinearPartUnitFrobenius
 
-set_option autoImplicit false
-
-
-open scoped BigOperators
-open Classical
-
 namespace Formalism.L2.FormalSeriesBounds
 
 namespace PairPointEvaluation
@@ -1116,12 +1104,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.UncurryLinearCombination
 
-set_option autoImplicit false
-
-
-open scoped BigOperators
-open Classical
-
 namespace Formalism.L2.FormalSeriesBounds
 
 open Formalism.IncomingBounds ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
@@ -1247,12 +1229,6 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RankMaximalSelfCore
-
-set_option autoImplicit false
-
-
-open scoped BigOperators
-open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -1497,12 +1473,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.MmOfUnitMul
 
-set_option autoImplicit false
-
-
-open scoped BigOperators
-open Classical
-
 namespace Formalism.L2.FormalSeriesBounds
 
 namespace SelfLinear
@@ -1730,9 +1700,9 @@ theorem noLin_self (hAdj : ALinAdjSt) (hPL : ProjLieSelfSt) {C : Type} [Field C]
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
-@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RankMaximalSelfOfProjection
+end -- clump: shared namespace opens
 
-set_option autoImplicit false
+@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RankMaximalSelfOfProjection
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -1751,8 +1721,6 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RankMaximalSelfUnconditional
-
-set_option autoImplicit false
 
 namespace Formalism.L2.FormalSeriesBounds
 

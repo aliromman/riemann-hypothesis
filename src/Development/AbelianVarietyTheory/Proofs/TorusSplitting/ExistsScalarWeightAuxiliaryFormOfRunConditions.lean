@@ -107,8 +107,6 @@ import Mathlib.Tactic.Lemma
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.JetSurvey.FormAtOfClause
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.EtaValuationTest
 
@@ -272,8 +270,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TorusSplitting.PhiCLeNormalizedValuationProductFormAlgebraic
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsLocalRing IsDedekindDomain

@@ -80,8 +80,6 @@ import Mathlib.Algebra.AffineMonoid.UniqueSums
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComplexifyStatement
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
@@ -101,8 +99,6 @@ end GlobalTheory.HilbertSamuel.Data
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormalizedPointHeightLatticeSmul
-
-set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry NumberField GlobalTheory.ChowHt GlobalTheory.Adelic
 
@@ -188,8 +184,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.VecHeightSmulAlgebraMap
 
-set_option autoImplicit false
-
 open CategoryTheory AlgebraicGeometry NumberField GlobalTheory.ChowHt GlobalTheory.Adelic
 
 namespace GlobalTheory.Adelic
@@ -231,15 +225,15 @@ theorem vecHeight_smul_algebraMap (F K : Type) [Field F] [NumberField F] [Field 
 end GlobalTheory.Adelic
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsCoordAtPoints
-
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 
 open CategoryTheory AlgebraicGeometry NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
 open GlobalTheory.CechPic GlobalTheory.CxPts GlobalTheory.HermTools GlobalTheory.Vanishing GlobalTheory.Adelic GlobalTheory.HilbertSamuel GlobalTheory.ChowHt GlobalTheory.TangentOrigin
 open GlobalTheory.IndefiniteRowSideFullHecke.RadicalPowers
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsCoordAtPoints
 
 namespace GlobalTheory.HSCore
 
@@ -466,14 +460,6 @@ end GlobalTheory.HSCore
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoordinatesSpecialisedFormProdLinearForms
-
-set_option autoImplicit false
-
-
-open CategoryTheory AlgebraicGeometry NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
-open GlobalTheory.CechPic GlobalTheory.CxPts GlobalTheory.HermTools GlobalTheory.Vanishing GlobalTheory.Adelic GlobalTheory.HilbertSamuel GlobalTheory.ChowHt GlobalTheory.TangentOrigin
-open GlobalTheory.IndefiniteRowSideFullHecke.RadicalPowers
 open GlobalTheory.HSCore GlobalTheory.QCoh
 open GlobalTheory
 open GlobalTheory.HSShort GlobalTheory.HSChoice MvPolynomial
@@ -541,6 +527,8 @@ theorem exists_coord_spec_eq : ∀ (F : Type) [Field F] [NumberField F] (G : Geo
 end GlobalTheory.HSShort.SplitCoord
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 section -- clump: shared namespace opens
 
 open CategoryTheory AlgebraicGeometry NumberField
@@ -551,8 +539,6 @@ open GlobalTheory.HSCore GlobalTheory.QCoh
 open GlobalTheory
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FilMonoOfKerRes
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HSCore
 
@@ -607,8 +593,6 @@ end GlobalTheory.HSCore
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLiftSectionsZeroSchemeRegularSequenceLineB
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HSCore.RegSeqGlue
@@ -806,8 +790,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalLiftSectionsOnClosedSubscheme
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Vanishing
 
@@ -844,7 +826,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.VanishesToOneOfStalkMap
 
-set_option autoImplicit false
 
 namespace GlobalTheory.HSResOnto
 
@@ -984,7 +965,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertSamuelDegreeZeroResiduesRangeEqTop
 open GlobalTheory.HSShort GlobalTheory.HSChoice MvPolynomial
 
-set_option autoImplicit false
 
 namespace GlobalTheory.HSShort
 
@@ -1006,8 +986,6 @@ end GlobalTheory.HSShort
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralLiftSymbol
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HSCore.IntLift
 
@@ -1032,7 +1010,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDataOfPositivity
 
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry TopologicalSpace NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
@@ -1071,8 +1048,6 @@ open GlobalTheory
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProductOfVectorMultiplicationsGlobalResidues
 open GlobalTheory.HSShort GlobalTheory.HSChoice MvPolynomial
 
-set_option autoImplicit false
-
 namespace GlobalTheory.HSShort.GlobWord
 
 theorem shift_single {K : Type} [Field K] [NumberField K] (G : Geo K) (j : ℕ) (u : Fin G.N → K) (m : G.Sec j) :
@@ -1109,8 +1084,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertSamuelFiltrationSymbolMonomialProduct
 open GlobalTheory.HSShort GlobalTheory.HSChoice MvPolynomial
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HSShort
 
@@ -1175,8 +1148,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertSamuelSectionBaseChangeProperties
 open GlobalTheory.HSShort GlobalTheory.HSChoice MvPolynomial
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HSShort
@@ -1257,8 +1228,6 @@ end GlobalTheory.HSShort
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FilSpaceVEqSpaceP
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HSCore
@@ -1357,18 +1326,7 @@ theorem mulPow_mem_and_spaceV_le : ∀ (K : Type) [Field K] [NumberField K] (X :
 end GlobalTheory.HSCore
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertSamuelVanishingFiltrationDeepestStepSpan
-
-set_option autoImplicit false
-
-open CategoryTheory AlgebraicGeometry NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
-open GlobalTheory.CechPic GlobalTheory.CxPts GlobalTheory.HermTools GlobalTheory.Vanishing GlobalTheory.Adelic GlobalTheory.HilbertSamuel GlobalTheory.ChowHt GlobalTheory.TangentOrigin
-open GlobalTheory.IndefiniteRowSideFullHecke.RadicalPowers
-open GlobalTheory.HSCore GlobalTheory.QCoh
-open GlobalTheory
 open GlobalTheory.HSShort GlobalTheory.HSChoice MvPolynomial
 
 namespace GlobalTheory.HSShort
@@ -1398,9 +1356,9 @@ theorem totFil_deepest : FilMono → ∀ (K : Type) [Field K] [NumberField K] (X
 end GlobalTheory.HSShort
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemSubPtsIffOfToBaseEq
+end -- clump: shared namespace opens
 
-set_option autoImplicit false
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemSubPtsIffOfToBaseEq
 
 
 open CategoryTheory AlgebraicGeometry NumberField

@@ -110,8 +110,6 @@ open Matrix MvPolynomial GlobalTheory.GoodMetric GlobalTheory.HermFrame GlobalTh
 open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ComplexOrder Topology
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.PointFormSign
@@ -173,8 +171,6 @@ end -- clump:auto
 open Matrix MvPolynomial GlobalTheory.GoodMetric GlobalTheory.HermFrame GlobalTheory.PointFormSign
 open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ComplexOrder Topology
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -313,8 +309,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsNegHermitianSquareCurvatureOfHolomorphicFrameC
 
-set_option autoImplicit false
-
 open Matrix MvPolynomial GlobalTheory.GoodMetric GlobalTheory.HermFrame GlobalTheory.PointFormSign
 open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ComplexOrder Topology
@@ -378,8 +372,6 @@ open scoped Topology
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EventuallyDifferentiableAtOfForms
 open ReciprocityTheory.L2DbarEstimates (V)
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -537,8 +529,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AlgebraicEigenvectorCoordinatesHolomorphicUnifor
 open ReciprocityTheory.L2DbarEstimates (V)
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Limits MonoidalCategory CartesianMonoidalCategory MonObj Filter
@@ -681,8 +671,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ComplexPointStalkFrameVectorsEq
 open ReciprocityTheory.L2DbarEstimates (V)
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.LieBase
@@ -736,8 +724,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAffineOpenSpreadStalkLieEigenspaceFrame
 open ReciprocityTheory.L2DbarEstimates (V)
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -818,8 +804,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAffineLieEigenFrameNearComplexPoint
 open ReciprocityTheory.L2DbarEstimates (V)
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -903,8 +887,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHoloCoordFrameAt
 open ReciprocityTheory.L2DbarEstimates (V)
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1146,8 +1128,6 @@ open scoped ComplexOrder Topology
 open ReciprocityTheory.L2DbarEstimates (V)
 open ReciprocityTheory.ChartRestriction.G.FD (Frame mat)
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.UnifSlice
@@ -1229,8 +1209,6 @@ end -- clump:auto
 open ReciprocityTheory.L2DbarEstimates (V)
 open ReciprocityTheory.ChartRestriction.G.FD (Frame mat)
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.LieBase
@@ -1302,8 +1280,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHoloFrameChart
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory MvPolynomial NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.Toroidal GlobalTheory.ShFam GlobalTheory.ProjVar GlobalTheory.FlagBundle GlobalTheory.GoodMetric GlobalTheory.LieBase
@@ -1397,8 +1373,6 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open scoped ComplexOrder Topology
 open GlobalTheory.PointFormSign Matrix
 open ReciprocityTheory.L2DbarEstimates (V)
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1524,8 +1498,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TopDegreeFormCoeffProdDetHermitianSquarePowNonne
-
-set_option autoImplicit false
 
 
 open Matrix MvPolynomial GlobalTheory.GoodMetric GlobalTheory.HermFrame GlobalTheory.PointFormSign

@@ -38,8 +38,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.ExpFrame
@@ -81,8 +79,6 @@ theorem exists_intHom {F E : Type} [Field F] [NumberField F] [Field E] [NumberFi
 end GlobalTheory.ExpFrame
 
 end
-
-set_option autoImplicit false
 
 noncomputable section
 

@@ -60,8 +60,6 @@ import Formalism.SharpRestriction.LevelLetterCocycles.DataN
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ReductionUniformizerPoint
 
-set_option autoImplicit false
-
 
 open CategoryTheory Limits AlgebraicGeometry
 
@@ -215,8 +213,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.GaloisActionWeightSpectralE1Apply
 
-set_option autoImplicit false
-
 
 open CategoryTheory Limits AlgebraicGeometry
 
@@ -288,8 +284,6 @@ end GlobalTheory.EtC.WSS
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.GoodCoverEigenspaces.CoverOfPf
-
-set_option autoImplicit false
 
 
 open CategoryTheory Limits AlgebraicGeometry NumberField IsDedekindDomain

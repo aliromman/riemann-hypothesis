@@ -47,8 +47,6 @@ import Mathlib.RingTheory.PiTensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrimeSpectrumTrivSqZeroExtEq
 
-set_option autoImplicit false
-
 
 
 namespace GlobalTheory.CompHS.FunDer
@@ -232,8 +230,6 @@ open GlobalTheory.AllWt (exOf)
 open scoped Classical
 
 open GlobalTheory.Frames
-
-set_option autoImplicit false
 
 
 noncomputable section

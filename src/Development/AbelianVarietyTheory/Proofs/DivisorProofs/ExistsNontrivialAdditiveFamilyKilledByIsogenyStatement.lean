@@ -353,8 +353,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CharKer
 
 theorem gm_of_isPullGen {X Y Z : Scheme.{0}} {p : X ⟶ Y} {M : LB Y} {e : ∀ k, Γ(X, p ⁻¹ᵁ M.U k)ˣ}
@@ -422,8 +420,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleTrivialOfInvariantPullbackGenerator
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CharKer
@@ -542,8 +538,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CharKer.PmapTwo
 
 variable {S : Scheme.{0}}
@@ -606,8 +600,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CharKer
 
 theorem isAdditive_of_isEquivGen : ∀ (K : Type) [Field K] [IsAlgClosed K] (A A' N T : Over (Sp K)) [GrpObj A] [GrpObj A'] [GrpObj N] (i : N ⟶ A) (q : A ⟶ A') (χ : Γ((N ⊗ T).left, ⊤)ˣ) (M : LB (A' ⊗ T).left) (e : ∀ k, Γ((A ⊗ T).left, (pmap q T).left ⁻¹ᵁ M.U k)ˣ), IsAbelianScheme A → IsAbelianScheme A' → IsMonHom i → IsMonHom q → IsFinite q.left → Flat q.left → Surjective q.left → IsPullback i (toUnit N) q η[A'] → IsCharacter χ → M.IsLB → IsEquivGen i q χ M e → IsAdditive M := by
@@ -641,8 +633,6 @@ open scoped CategoryTheory.Obj
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsKernelActionTripleOverlap
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CharKer
@@ -959,7 +949,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
-set_option autoImplicit false
 
 namespace GlobalTheory.CharKer
 
@@ -1093,8 +1082,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CharKer
 
@@ -1131,7 +1118,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
-set_option autoImplicit false
 namespace GlobalTheory.CharKer
 
 theorem pmap_eq_whiskerRight {S : Scheme.{0}} {A A' : Over S} (q : A ⟶ A') (T : Over S) : pmap q T = q ▷ T := by
@@ -1224,8 +1210,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNontrivialAdditiveFamilyKilledByIsogeny
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CharKer

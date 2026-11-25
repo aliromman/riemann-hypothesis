@@ -69,8 +69,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.AnalyticFrameOfAppellHumbertFramePeriodFamily
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.AnVal
 
@@ -309,8 +307,6 @@ end GlobalTheory.AnVal
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.FockLaws
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.AnVal

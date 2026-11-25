@@ -69,7 +69,6 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHeightOneValuationsControlSubgroup
 
-set_option autoImplicit false
 
 namespace GlobalTheory.HtVal
 

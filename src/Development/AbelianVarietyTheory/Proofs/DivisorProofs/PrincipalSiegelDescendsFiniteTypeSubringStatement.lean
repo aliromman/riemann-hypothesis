@@ -175,8 +175,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelAmpleDiagonalBundleDescendsSubring
 
-set_option autoImplicit false
-
 
 attribute [local instance] Over.cartesianMonoidalCategory
 
@@ -232,8 +230,6 @@ end GlobalTheory.AmpleDiagSubring
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigidSymmetricBundleDescendsToSubringFinset
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.RigSymDescent
@@ -1228,8 +1224,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSymplecticOfSubring
 
 open GlobalTheory.EighthPower GlobalTheory.CechPic GlobalTheory.MatrixBundle GlobalTheory.ZM
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.SympDescent

@@ -63,8 +63,6 @@ import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.GermExpAddAndEvConst
 
-set_option autoImplicit false
-
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.TB
 
 namespace GlobalTheory
@@ -83,8 +81,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.SecondOrderMonomial
 @[expose] public noncomputable section
-
-set_option autoImplicit false
 
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.TB
@@ -175,8 +171,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.WickVanishOfHalf
-
-set_option autoImplicit false
 
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.TB

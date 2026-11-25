@@ -765,8 +765,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsPullbackOfForallIsPushoutApp
 
-set_option autoImplicit false
-
 namespace GlobalTheory.PushoutSquare
 
 theorem isPullback_of_forall_isPushout_app :
@@ -842,8 +840,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatFerrandPushoutOverFibreProduct
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FerrandFlat
 
 theorem flat_of_appLE {Y : Scheme.{0}} {P : CommRingCat.{0}} (y : Y ⟶ Spec P) (h : ∀ V : Y.Opens, IsAffineOpen V → (y.appLE ⊤ V (fun _ _ => trivial)).hom.Flat) : Flat y :=
@@ -864,7 +860,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GlueFlatOverPullbackOfSubsingleton
 
-set_option autoImplicit false
 
 namespace GlobalTheory.PinchDeg
 
@@ -947,8 +942,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsNilpotentKerApp
 
-set_option autoImplicit false
-
 namespace GlobalTheory.NilThicken
 
 theorem ker_inl_le_map_ker_of_isPushout {A B C D : CommRingCat.{0}} {a : A ⟶ B} {c : A ⟶ C}
@@ -1028,8 +1021,6 @@ open GlobalTheory.ZM GlobalTheory.SiegLev GlobalTheory.SiegelTor
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FerrandGlueFlatArtinianFibreProduct
-
-set_option autoImplicit false
 
 namespace GlobalTheory.FerrandGlue
 
@@ -1288,7 +1279,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FibreProductSpecFieldPointFactors
 
-set_option autoImplicit false
 
 namespace GlobalTheory.SpecFibreProduct
 
@@ -1533,8 +1523,6 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.CechPic GlobalTheory.PrincipalIntegral
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.ArtinPrinc
 
@@ -1618,8 +1606,6 @@ end GlobalTheory.ArtinPrinc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPrincipalSiegelObjectGlueArtinFibreProduct
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.ArtinGlue

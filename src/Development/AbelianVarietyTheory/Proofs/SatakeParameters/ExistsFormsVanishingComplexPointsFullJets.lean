@@ -64,8 +64,6 @@ open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.T
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.AlgebraMapBasicOpen
 
-set_option autoImplicit false
-
 
 attribute [local instance] MvPolynomial.gradedAlgebra
 
@@ -254,8 +252,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsGenericForms
 
-set_option autoImplicit false
-
 
 open TopologicalSpace
 
@@ -361,8 +357,6 @@ end GlobalTheory.EtProj.Generic
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsFormsVanishingComplexPointsFullJets
-
-set_option autoImplicit false
 
 
 attribute [local instance] MvPolynomial.gradedAlgebra

@@ -163,8 +163,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped Matrix
 
-set_option autoImplicit false
-
 attribute [local instance] Over.cartesianMonoidalCategory
 
 

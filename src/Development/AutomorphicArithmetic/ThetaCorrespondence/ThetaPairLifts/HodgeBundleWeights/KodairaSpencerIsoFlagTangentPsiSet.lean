@@ -48,7 +48,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 @[expose] public section
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open AlgebraicGeometry CategoryTheory

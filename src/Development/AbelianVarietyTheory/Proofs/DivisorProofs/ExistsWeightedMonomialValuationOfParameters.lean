@@ -474,8 +474,6 @@ open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsWeightedMonomialPlace
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory
 
@@ -624,7 +622,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsWeightedMonomialValuationOfParameters
 
-set_option autoImplicit false
 
 namespace GlobalTheory.MonoVal
 

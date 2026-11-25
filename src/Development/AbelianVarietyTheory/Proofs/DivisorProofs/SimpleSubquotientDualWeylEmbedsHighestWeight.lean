@@ -74,8 +74,6 @@ import Formalism.LocalToGlobal.Columns.CoefficientsModP.FkMapInitMinor
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie GlobalTheory.ExpFrame Formalism.CohomologicalDescent.DepthNonnegative Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds Formalism.CohomologicalDescent.LD Formalism.RankGapBounds.FormsTensorLocalization
 
-set_option autoImplicit false
-
 
 open MvPolynomial Formalism.GradedWeylDivisibility
 
@@ -241,7 +239,6 @@ end -- clump:auto
 
 open MvPolynomial Formalism.GradedWeylDivisibility GlobalTheory.GenCoef
 
-set_option autoImplicit false
 namespace GlobalTheory.RowDivMem
 variable {O : Type} [CommRing O] {N : ℕ}
 
@@ -484,8 +481,6 @@ end GlobalTheory.GenCoef
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GenericGaussFactorisationCoeffSmulInjective
-
-set_option autoImplicit false
 
 
 open MvPolynomial Formalism.GradedWeylDivisibility GlobalTheory.GenCoef
@@ -751,8 +746,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TotalDegreeAevalLeOfDegLeOne
 
-set_option autoImplicit false
-
 open NumberField MvPolynomial
 
 
@@ -778,11 +771,11 @@ theorem totalDegree_aeval_le_of_deg_le_one {σ τ F E : Type} [CommRing F] [Comm
 end GlobalTheory.SZShift
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GenericRowSubstitutionCoeffExponentLeDegree
-
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 open MvPolynomial Formalism.GradedWeylDivisibility GlobalTheory.GenCoef
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GenericRowSubstitutionCoeffExponentLeDegree
 
 namespace GlobalTheory.GenSubDeg
 
@@ -810,13 +803,7 @@ theorem genSub_coeff_le : ∀ (O : Type) [CommRing O] (N : ℕ) (D : ℕ) (f : M
 end GlobalTheory.GenSubDeg
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open MvPolynomial Formalism.GradedWeylDivisibility GlobalTheory.GenCoef
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MatrixRowSubstitutionPolyDiagonalEqSumComponents
-
-set_option autoImplicit false
 
 namespace GlobalTheory.DiagRowSubst
 
@@ -877,8 +864,6 @@ end GlobalTheory.DiagRowSubst
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MatrixRowSubstitutionPolyEqEvalGenericRowSubstit
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.GenCoef.RowSubstSum
@@ -1154,7 +1139,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RowSubstDualWeylExpressibleMatrixMulClosed
 
-set_option autoImplicit false
 namespace GlobalTheory.GenCoef
 
 theorem rowSubst_mul_comp (O : Type) [CommRing O] (N : ℕ) (R : Type) [CommRing R] [Algebra O R]
@@ -1239,8 +1223,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GenericRowCoefMemCoefAlgebraOfDomain
-
-set_option autoImplicit false
 
 
 open MvPolynomial Formalism.GradedWeylDivisibility
@@ -1495,8 +1477,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HighestWeightBaseChange
 
-set_option autoImplicit false
-
 
 open MvPolynomial
 open Formalism.GradedWeylDivisibility
@@ -1545,8 +1525,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.JointRowWeightBoundsDualWeylModule
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie GlobalTheory.ExpFrame Formalism.CohomologicalDescent.DepthNonnegative Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds Formalism.CohomologicalDescent.LD Formalism.RankGapBounds.FormsTensorLocalization
-
-set_option autoImplicit false
 
 open MvPolynomial Formalism.GradedWeylDivisibility
 
@@ -1695,8 +1673,6 @@ end GlobalTheory.HighWt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SimpleSubquotientDualWeylEmbedsHighestWeight
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie GlobalTheory.ExpFrame Formalism.CohomologicalDescent.DepthNonnegative Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds Formalism.CohomologicalDescent.LD Formalism.RankGapBounds.FormsTensorLocalization

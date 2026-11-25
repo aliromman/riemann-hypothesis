@@ -96,8 +96,6 @@ import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.Thir
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SignAtBasePlaceEqEmbedding
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.OnCoord
 
@@ -134,8 +132,6 @@ end GlobalTheory.OnCoord
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankInfRangeAddInfKer
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain Module
@@ -259,7 +255,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 set_option synthInstance.maxHeartbeats 200000
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain Module
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx Formalism.IndefR.FWT
@@ -339,8 +334,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeafShareIOfShareW
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain Module
@@ -470,7 +463,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain Module
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx Formalism.IndefR.FWT
@@ -510,8 +502,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankEqOfSemilinear
-
-set_option autoImplicit false
 
 
 open Module
@@ -828,7 +818,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open Module
 namespace GlobalTheory.ShareOn.Alg
@@ -874,8 +863,6 @@ end -- clump:auto
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx Formalism.IndefR.FWT
 open GlobalTheory.BigTop GlobalTheory.BigOn
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.BigOn.TwistBoundAtPlace
@@ -934,7 +921,6 @@ section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx Formalism.IndefR.FWT
 open GlobalTheory.BigTop GlobalTheory.BigOn
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.BigOn.TwistBoundAtPlace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

@@ -740,8 +740,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.F
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj TensorProduct
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.FiniteKilled

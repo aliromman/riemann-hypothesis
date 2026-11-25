@@ -63,7 +63,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComplexHessianLogOneAddNormSq
 
-set_option autoImplicit false
 
 namespace GlobalTheory.FubiniStudyHessian
 

@@ -59,8 +59,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsNilDPOfCube
 @[expose] public noncomputable section
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential DividedPowers
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi
@@ -388,8 +386,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ComparisonMemCechHodgeFiltration
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential Opposite

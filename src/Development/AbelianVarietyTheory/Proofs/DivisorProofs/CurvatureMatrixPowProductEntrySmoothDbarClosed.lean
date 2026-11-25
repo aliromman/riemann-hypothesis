@@ -82,8 +82,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DbarCurvatureMatrixEvenFormsEqZero
 
-set_option autoImplicit false
-
 open Filter Topology
 open ReciprocityTheory.L2DbarEstimates (V)
 open GlobalTheory GlobalTheory.HermFrame GlobalTheory.GoodMetric GlobalTheory.CxForm GlobalTheory.ChernCalc

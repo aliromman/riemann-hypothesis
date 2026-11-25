@@ -54,8 +54,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MulMemOmAOfMemRA
 
-set_option autoImplicit false
-
 open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
 namespace GlobalTheory.PD

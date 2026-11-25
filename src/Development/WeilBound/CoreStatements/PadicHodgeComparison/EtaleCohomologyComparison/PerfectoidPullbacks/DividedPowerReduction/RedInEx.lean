@@ -242,7 +242,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.DividedPowerReduction.RedInEx
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

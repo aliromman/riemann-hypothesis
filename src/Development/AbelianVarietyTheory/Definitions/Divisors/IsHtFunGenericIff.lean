@@ -49,8 +49,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.FirstChernLeviEqCon
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ReferenceMetricMulDualEqOne
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry Limits NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M
@@ -107,8 +105,6 @@ end GlobalTheory.Mean4O
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsHtFunGenericIff
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry NumberField MvPolynomial Filter Topology TopologicalSpace

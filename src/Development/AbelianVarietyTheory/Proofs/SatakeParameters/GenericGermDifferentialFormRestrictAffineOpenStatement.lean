@@ -46,8 +46,6 @@ open CategoryTheory AlgebraicGeometry KaehlerDifferential GlobalTheory GlobalThe
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.GenericGermDifferentialFormRestrictAffineOpen
 
-set_option autoImplicit false
-
 namespace GlobalTheory.HodgeCoh
 
 theorem formGermI_res : ∀ (Z : Scheme.{0}) [IsIntegral Z] (p : Z ⟶ Sp ℂ),

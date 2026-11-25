@@ -232,8 +232,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
-set_option autoImplicit false
-
 namespace GlobalTheory.TranslCP
 
 open GlobalTheory.CubTransport GlobalTheory.UU
@@ -520,8 +518,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEvenCubicalTrivTranslateOrderTwo
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
-
-set_option autoImplicit false
 
 namespace GlobalTheory.TranslateEvenTriv
 open GlobalTheory.UU

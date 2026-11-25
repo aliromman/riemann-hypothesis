@@ -140,7 +140,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FormAlternating
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 set_option linter.unusedVariables false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 

@@ -636,7 +636,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AcrTeichProd
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry DividedPowers GroundTheory.PAdicHodge GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.PAlg CrystallineSemistableComparison.B
 
 namespace GlobalTheory.CompanionTheory.TestZar
@@ -1641,7 +1640,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.ZariskiEtaleLifting.SubsingletonH
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

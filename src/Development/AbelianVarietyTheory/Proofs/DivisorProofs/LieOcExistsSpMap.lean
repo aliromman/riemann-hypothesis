@@ -810,8 +810,6 @@ end -- clump:auto
 
 open Matrix TensorProduct
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.IdemRankStalk
 

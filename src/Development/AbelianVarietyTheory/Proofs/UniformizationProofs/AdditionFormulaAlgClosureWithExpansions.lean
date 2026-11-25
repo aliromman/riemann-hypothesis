@@ -836,8 +836,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
-set_option autoImplicit false
-
 namespace GlobalTheory.UU
 
 theorem exists_cubical_addition_factor_generator {S : Scheme.{0}} {G : Over S} [GrpObj G] [IsCommMonObj G] (P : CP G) {Y : Over S}
@@ -1049,8 +1047,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsIntegralAdditionFormulaGroup
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
-
-set_option autoImplicit false
 
 namespace GlobalTheory.UU
 

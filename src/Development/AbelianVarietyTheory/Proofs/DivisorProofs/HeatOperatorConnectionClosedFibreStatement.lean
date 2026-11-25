@@ -74,7 +74,6 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.HeatConn
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.HeatConn
 open GlobalTheory.KS.DlogPol (gs_rsT gs_pbT gs_one gs_sub)
@@ -211,8 +210,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.HeatConn
 open GlobalTheory.KS.GlueDer (rsT_eq res_app pre_mono)
 open GlobalTheory.KS.DlogPol (gs_rsT gs_pbT gs_sub)
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -383,7 +380,6 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.HeatConn
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.HeatConn
 open GlobalTheory.KS.DlogPol (gs_rsT gs_pbT gs_one gs_sub)
@@ -570,8 +566,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.HeatConn
 open GlobalTheory.HeatConn
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.HeatConn.LogDerDesc
@@ -629,8 +623,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.HeatConn
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HeatConn.CoordWt
 
@@ -707,8 +699,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.HeatConn
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -869,8 +859,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.HeatConn
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1094,7 +1082,6 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.HeatConn
 
-set_option autoImplicit false
 noncomputable section
 
 open GlobalTheory.KS.DlogPol (gs_pbT gs_sub)
@@ -1309,8 +1296,6 @@ open GlobalTheory.LogKS (IsField)
 open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 noncomputable section
 

@@ -305,8 +305,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.UniformisationCharts.UniformizationBaseChange
 
-set_option autoImplicit false
-
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory
   CartesianMonoidalCategory MonObj
 
@@ -442,8 +440,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.UniformizationBaseChange
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.UnifPullSubsingleton
-
-set_option autoImplicit false
 
 namespace GlobalTheory.UnifPullCompare
 

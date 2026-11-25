@@ -99,11 +99,11 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankRigidExtensi
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConnectedPDivGroupChartSemilinearHomIsFormalGrou, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantCoeffSubstOfZero, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantCoeffSubstZero, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRigidifiedExtensionOfSeriesPair, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniquePowerSeriesSemilinearPDivGroupHomCha, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniquePowerSeriesSemilinearPDivGroupHomChaStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCommFormalGroupLawMap, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCommFormalGroupLawOfIsLawOf, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapExists, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapFormalGroupLawQuasiLogarithms, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModNoPTorsion, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigidifiedExtensionPresentationNaturalSemilinear, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigidifiedExtensionPresentationNaturalSemilinearStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigidifiedExtensionPresentationOfSeriesPairs, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemilinearPDivGroupHomChartConstantCoeffSubst, Development.AbelianVarietyTheory.Proofs.SatakeParameters.WittFrobeniusPowEqOne, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WittModuleFreeFiniteOfReduction, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsConnectedDieudonneFunctorQuasiLogarithms, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsConnectedDieudonneFunctorQuasiLogarithmsStatement
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConnectedPDivGroupChartSemilinearHomIsFormalGrou
-
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConnectedPDivGroupChartSemilinearHomIsFormalGrou
 
 namespace GlobalTheory.Katz
 
@@ -133,13 +133,8 @@ theorem isHom_map_of_semiHom_ev (p : ℕ) (k k' : Type) [CommRing k] [CommRing k
 end GlobalTheory.Katz
 end -- clump:auto
 
-section -- clump: shared namespace opens
-
-open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
-
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantCoeffSubstOfZero
 
-set_option autoImplicit false
 namespace GlobalTheory
 namespace Katz
 namespace WittHaus
@@ -241,8 +236,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantCoeffSubstZero
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Katz.PullQuasiLog
@@ -467,8 +460,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCommFormalGroupLawOfIsLawOf
 
-set_option autoImplicit false
-
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
 
@@ -559,7 +550,6 @@ end -- clump:auto
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
 
-set_option autoImplicit false
 namespace GlobalTheory.Katz.ModHom
 
 variable (p : ℕ) [Fact p.Prime] {k : Type} [Field k] [CharP k p]
@@ -610,8 +600,6 @@ theorem GlobalTheory.Katz.ModHom.map_exists : ∀ (p : ℕ) [Fact p.Prime] (k : 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapFormalGroupLawQuasiLogarithms
-
-set_option autoImplicit false
 
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
@@ -824,8 +812,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemilinearPDivGroupHomChartConstantCoeffSubst
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Katz
 
@@ -985,8 +971,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsConnectedDieudonneFunctorQuasiLogarithms
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory

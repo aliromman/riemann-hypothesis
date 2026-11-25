@@ -49,7 +49,7 @@ noncomputable section
 
 open scoped Classical ComplexConjugate TensorProduct
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Matrix Formalism.L2.SG.TermOp Formalism.L2.SG.HidaSetting
-  PI.UnitaryDimensionFormula.unitaryCongruence
+  Formalism.L2.SG.Pf.unitaryCongruence
 
 namespace PI.UnitaryDimensionFormula.NormCutK
 

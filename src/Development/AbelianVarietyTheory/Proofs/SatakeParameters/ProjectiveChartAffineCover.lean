@@ -56,8 +56,6 @@ open CategoryTheory AlgebraicGeometry KaehlerDifferential GlobalTheory GlobalThe
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.PairwiseDisjointTriangularCells
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.PD.XCover
 

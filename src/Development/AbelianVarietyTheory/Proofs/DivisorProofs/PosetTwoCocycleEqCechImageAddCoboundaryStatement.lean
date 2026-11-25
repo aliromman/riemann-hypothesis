@@ -57,8 +57,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CechPoset
 

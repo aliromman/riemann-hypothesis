@@ -402,8 +402,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIdempotentConstPart
 
-set_option autoImplicit false
-
 
 open TensorProduct Coalgebra Bialgebra WithConv
 
@@ -820,8 +818,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankRangeBaseChangeOfIdem
 open TensorProduct Coalgebra Bialgebra GlobalTheory.PDiv
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.PDivGroup.IdemSplit

@@ -52,8 +52,6 @@ open MeasureTheory Filter Topology GlobalTheory GlobalTheory.Cartier GlobalTheor
 open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ContDiff Matrix
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.GoodTop
@@ -89,8 +87,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TopFormIntegralOfSupportInHolomorphicChart
 open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ContDiff Matrix
-
-set_option autoImplicit false
 
 noncomputable section
 

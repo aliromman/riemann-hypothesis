@@ -377,8 +377,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.TendstoFinrankVeryAmple
 
-set_option autoImplicit false
-
 open MvPolynomial Filter Topology
 open GroundTheory.Heights₂.Heights GroundTheory.Heights₂.Heights.HilbertSamuel
 open ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.ArakelovGeometry

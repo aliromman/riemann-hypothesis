@@ -533,8 +533,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsPullOfMoveInv
 
-set_option autoImplicit false
-
 namespace GlobalTheory.LevPullModel
 
 open NumberField Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LevPull

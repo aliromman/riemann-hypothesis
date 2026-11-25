@@ -4077,9 +4077,6 @@ abbrev jr_I (G : GAtP p) (v : Fin G.P.nV) (s : Fin (G.P.n' v)) : Type :=
 instance jr_fin (G : GAtP p) (v : Fin G.P.nV) (s : Fin (G.P.n' v)) : Finite (jr_I G v s) :=
   (sSIdxFinite (G.P.m + 1) (G.P.m + 1) (nuOf (lamAt (G.P.lam0 v) s))).to_subtype
 
-theorem jr_KK (K : Type) [Field K] : IsFractionRing K K :=
-  IsLocalization.of_le_isUnit (fun x hx => IsUnit.mk0 x (nonZeroDivisors.ne_zero hx))
-
 theorem jr_Vsp (G : GAtP p) (v : Fin G.P.nV) : Vsp G.Kf (G.P.lam0 v) = tensorLat G.Kf G.Kf
     (fun s => dualWeyl G.Kf (G.P.m + 1) (G.P.m + 1) (nuOf (lamAt (G.P.lam0 v) s))) := by
   unfold Vsp
@@ -4118,7 +4115,7 @@ theorem jr_dim (G : GAtP p) (v : Fin G.P.nV) :
   classical
   have hb := fun s : Fin (G.P.n' v) => sSBasis G.Kf (G.P.m + 1) (G.P.m + 1) (nuOf (lamAt (G.P.lam0 v) s))
   choose b hb1 _ using hb
-  have := jr_KK G.Kf
+  have := instIsFractionRing (R := G.Kf)
   obtain ⟨hli, hsp⟩ := tensorBasis G.Kf G.Kf (Fin (G.P.n' v)) (G.P.m + 1) (G.P.m + 1)
     (fun s => jr_I G v s)
     (fun s => dualWeyl G.Kf (G.P.m + 1) (G.P.m + 1) (nuOf (lamAt (G.P.lam0 v) s))) b
@@ -4165,7 +4162,7 @@ theorem jr_tuple (G : GAtP p) (v0 : Fin G.P.nV) (L : G.P.Tup) (hL : G.P.IsLatTup
   classical
   have hB := fun v => jr_loc G v (L v) (hL v)
   choose B b3 b4 bH using hB
-  have := jr_KK G.Kf
+  have := instIsFractionRing (R := G.Kf)
   obtain ⟨hli, -⟩ := tensorBasis G.Kf G.Kf (jr_S G) (G.P.m + 1) (G.P.m + 1)
     (fun x => jr_I G x.1 x.2)
     (fun x => dualWeyl G.Kf (G.P.m + 1) (G.P.m + 1) (nuOf (lamAt (G.P.lam0 x.1) x.2)))

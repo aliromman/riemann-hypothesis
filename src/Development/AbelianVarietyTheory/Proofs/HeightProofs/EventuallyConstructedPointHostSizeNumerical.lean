@@ -60,8 +60,6 @@ import Development.AbelianVarietyTheory.Definitions.HeightFunctions.RunsAlong
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.XLeZBaseOfPowLeN
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FinalJoin2
 

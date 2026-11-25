@@ -93,8 +93,6 @@ open TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AssocEval
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Chart.Assoc
 
@@ -724,8 +722,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCompatiblePDivGroupLevelCoordinates
 
-set_option autoImplicit false
-
 open GlobalTheory GlobalTheory.PDivGroup
 open scoped TensorProduct
 
@@ -1016,8 +1012,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoordinatesOfIsConnected
 
-set_option autoImplicit false
-
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 open scoped TensorProduct
 
@@ -1290,8 +1284,6 @@ theorem GlobalTheory.FinProjComplete.isAdicComplete_span_natCast : ∀ (p : ℕ)
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SurjectiveEvalTmul
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.SurjTens

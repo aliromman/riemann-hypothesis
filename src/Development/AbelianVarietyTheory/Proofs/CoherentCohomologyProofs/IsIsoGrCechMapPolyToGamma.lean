@@ -71,8 +71,6 @@ import Mathlib.RingTheory.TotallySplit
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.NonemptyBasisPolyGrading
 
-set_option autoImplicit false
-
 open CategoryTheory CategoryTheory.Limits DirectSum MvPolynomial
 
 
@@ -289,8 +287,6 @@ end GlobalTheory.ProjCoh
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.IsIsoGrCechMapPolyToGamma
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Filter DirectSum

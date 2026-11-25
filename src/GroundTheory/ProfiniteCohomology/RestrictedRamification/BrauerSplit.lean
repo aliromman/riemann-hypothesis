@@ -229,7 +229,7 @@ theorem gsToQuotient_comp (hE : ∀ x ∈ E.1, x ∈ maxUnramifiedOutside K.1 �
 
 theorem continuous_gsToQuotient (hE : ∀ x ∈ E.1, x ∈ maxUnramifiedOutside K.1 ℚ̄ S) :
     Continuous (gsToQuotient K S hE) := by
-  have : T2Space (galUnramifiedOutside K.1 ℚ̄ S) := galois_t2Space K.1 (maxUnramifiedOutside K.1 ℚ̄ S)
+  have : T2Space (galUnramifiedOutside K.1 ℚ̄ S) := krullTopology_t2 (K := K.1) (L := maxUnramifiedOutside K.1 ℚ̄ S)
   have hq : Topology.IsQuotientMap (gsRestrict K S) :=
     ((continuous_gsRestrict K S).isClosedMap).isQuotientMap (continuous_gsRestrict K S)
       (gsRestrict_gsLift K S).surjective

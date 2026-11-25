@@ -68,8 +68,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.KchMul
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsOverLaOfNotCharZero
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain IsLocalRing
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi

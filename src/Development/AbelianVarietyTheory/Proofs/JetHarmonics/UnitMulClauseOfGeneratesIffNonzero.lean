@@ -62,8 +62,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.Leve
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.JetGauges.ThetaSectionsClosedFibre
 
-set_option autoImplicit false
-
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory
   CartesianMonoidalCategory MonObj
@@ -98,8 +96,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.ThetaSectionsClosedFibre
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.UnitMulClauseOfGeneratesIffNonzero
-
-set_option autoImplicit false
 
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing

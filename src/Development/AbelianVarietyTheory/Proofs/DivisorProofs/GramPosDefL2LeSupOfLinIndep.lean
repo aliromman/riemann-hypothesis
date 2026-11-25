@@ -60,8 +60,6 @@ open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier Glo
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearIndependentComplexSectionValuesOfInt
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HSAmp.IndepCx
 

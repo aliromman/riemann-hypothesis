@@ -254,7 +254,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KummerAlgebraFiniteProjectiveFaithfullyFlat
 
-set_option autoImplicit false
 namespace GlobalTheory.KummerAlg
 
 open MvPolynomial
@@ -494,7 +493,6 @@ end -- clump:auto
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KummerAlgebraZmodTorsorBijective
 @[expose] public noncomputable section
 
-set_option autoImplicit false
 namespace GlobalTheory.KummerTorsor
 
 open GlobalTheory.KummerAlg
@@ -824,7 +822,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PicardTorsionTrivialOfTorsorsHaveSections
 
-set_option autoImplicit false
 namespace GlobalTheory.KummerStep
 
 open GlobalTheory.KummerAlg

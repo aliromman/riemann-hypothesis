@@ -915,7 +915,6 @@ section -- clump member: Development.AutomorphicArithmetic.LocalEmbeddings.FlipI
 @[expose] public section
 
 open GlobalTheory.SplitFlip GlobalTheory.SplitWeil
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instMeasMat
 attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 noncomputable section

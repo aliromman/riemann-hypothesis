@@ -116,8 +116,6 @@ import Mathlib.Algebra.Ring.IsFormallyReal
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndexIdealMulConjEqGramDetSelfDual
 
-set_option autoImplicit false
-
 
 open NumberField
 
@@ -437,9 +435,11 @@ theorem idx_mul_map_bar_eq : ∀ (E : Type) [Field E] [NumberField E] (bar : �
 end GlobalTheory.SelfDualIndex
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ColonOneSpanImageEqMap
+section -- clump: shared namespace opens
 
 open NumberField
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ColonOneSpanImageEqMap
 open scoped nonZeroDivisors
 
 namespace GlobalTheory
@@ -535,8 +535,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ColonPowMulCancelFgFractional
 
-open NumberField
-
 namespace GlobalTheory.ColonPowCancel
 
 theorem exists_inv {K : Type} [Field K] [NumberField K] (𝔟 : Submodule (𝓞 K) K)
@@ -590,9 +588,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeDeterminantIndexIdealMapInjectiveEqColon
 
-set_option autoImplicit false
-open NumberField
-
 namespace GlobalTheory.IdxMap
 
 theorem dets_eq_detSpan (F : Type) [Field F] [NumberField F] (p : ℕ) (L : Submodule (𝓞 F) (Fin p → F)) :
@@ -631,10 +626,6 @@ theorem idx_map_eq_colon_dets : ∀ {F V : Type} [Field F] [NumberField F] [AddC
 
 end GlobalTheory.IdxMap
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open NumberField
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeDeterminantSpanSpanEqGeneratorDets
 
@@ -876,8 +867,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndexIdealRankOneTensorImageEqMap
-
-set_option autoImplicit false
 
 
 open NumberField

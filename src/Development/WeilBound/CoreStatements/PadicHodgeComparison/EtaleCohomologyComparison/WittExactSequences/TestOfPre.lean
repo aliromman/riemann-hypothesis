@@ -135,12 +135,12 @@ theorem exists_lift_of_surj_ker
 end GlobalTheory.CompanionTheory.ColimLift
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.ColimLift
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 open TensorProduct CrystallineSemistableComparison.D
 open scoped LaurentPolynomial
+
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.ColimLift
 
 namespace CrystallineSemistableComparison.D
 
@@ -156,11 +156,6 @@ end CrystallineSemistableComparison.D
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.PerfectoidProd
-
-set_option autoImplicit false
-
-open TensorProduct CrystallineSemistableComparison.D
-open scoped LaurentPolynomial
 
 namespace CrystallineSemistableComparison.D
 
@@ -317,11 +312,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.SpanMap
 
-set_option autoImplicit false
-
-open TensorProduct CrystallineSemistableComparison.D
-open scoped LaurentPolynomial
-
 namespace CrystallineSemistableComparison.D
 
 open MvPolynomial (X C)
@@ -403,11 +393,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.TowerSeq
 
-set_option autoImplicit false
-
-open TensorProduct CrystallineSemistableComparison.D
-open scoped LaurentPolynomial
-
 namespace CrystallineSemistableComparison.D
 
 structure St (p : ℕ) {A : Type} [CommRing A] (r : ℕ → A) : Type 1 where
@@ -464,9 +449,6 @@ end CrystallineSemistableComparison.D
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.TestOfPre
-
-open TensorProduct CrystallineSemistableComparison.D
-open scoped LaurentPolynomial
 namespace CrystallineSemistableComparison.D.Leaf
 
 end CrystallineSemistableComparison.D.Leaf

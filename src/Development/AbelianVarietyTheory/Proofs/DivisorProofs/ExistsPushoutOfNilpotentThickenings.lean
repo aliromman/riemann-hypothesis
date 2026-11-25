@@ -826,7 +826,6 @@ open AlgebraicGeometry CategoryTheory CategoryTheory.Limits
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsPullbackAppOfIsBasisOpens
 
-set_option autoImplicit false
 
 namespace GlobalTheory.PinchBasis
 
@@ -940,7 +939,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsPushoutThickeningsOfIsPullbackSections
 
-set_option autoImplicit false
 
 namespace GlobalTheory.ThickPush
 

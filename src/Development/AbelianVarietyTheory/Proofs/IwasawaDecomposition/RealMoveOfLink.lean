@@ -339,8 +339,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LinkedStatesFockPolynomialsAgree
 
-set_option autoImplicit false
-
 
 section Lemmas
 

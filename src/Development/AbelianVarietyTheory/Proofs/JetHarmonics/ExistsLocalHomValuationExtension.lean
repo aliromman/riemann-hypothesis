@@ -113,8 +113,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsLocalHomValuationExtension
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CharDepth
 
 open IsLocalRing Formalism.L2.Pj

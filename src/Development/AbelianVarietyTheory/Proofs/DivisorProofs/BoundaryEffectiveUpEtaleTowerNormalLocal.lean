@@ -170,8 +170,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy GlobalTheory.FieldPair
 open scoped TensorProduct
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FieldPair
 
 theorem Place.ord_eq_zero_iff_isUnit {L : Type} [Field L] {cL : ℂ →+* L} (P : Place cL) {u : P.ring}
@@ -365,8 +363,6 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrep
 open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DvrPlaceOrdEqAlongEtaleTower
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FieldPair.UnramOrd
@@ -623,8 +619,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormallyEtalePolynomialPlaceToPlace
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FieldPair.PolyPlaceEt
 
@@ -713,8 +707,6 @@ end -- clump: shared namespace opens
 open GlobalTheory GlobalTheory.TopForm
 open scoped TensorProduct
 
-set_option autoImplicit false
-
 namespace GlobalTheory.TopFormAppend
 
 theorem dForm_append_eq_smul : ∀ {k K L : Type} [CommRing k] [CommRing K] [CommRing L] (cK : k →+* K) (cL : k →+* L)
@@ -764,7 +756,6 @@ open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormOrderWedgeEqOfEtaleTowerHeightOnePrime
 
-set_option autoImplicit false
 
 namespace GlobalTheory.FieldPair
 
@@ -872,8 +863,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlgebraicIndependentEtaleTowerCoordinates
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FieldPair
 
 theorem etTower_coords_algebraicIndependent {K L : Type} [Field K] [Field L] (cK : ℂ →+* K)
@@ -926,8 +915,6 @@ end GlobalTheory.FieldPair
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAlgebraicMvPolynomialEvalAdjoinEtaleTowerCoord
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FieldPair.TowerTrdeg
@@ -993,8 +980,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy GlobalTheory.FieldPair
 open scoped TensorProduct
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FieldPair
@@ -1130,8 +1115,6 @@ open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFreeGenTopFormEtaleTowerTranscendenceBasis
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FieldPair
 
@@ -1201,7 +1184,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrderDifferentialFormEtTower
 
-set_option autoImplicit false
 
 namespace GlobalTheory.FieldPair.EtForm
 
@@ -1513,8 +1495,6 @@ end GlobalTheory.FieldPair
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BoundaryEffectiveUpEtaleTowerNormalLocal
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FieldPair

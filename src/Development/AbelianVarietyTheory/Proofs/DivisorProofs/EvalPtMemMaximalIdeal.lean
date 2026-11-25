@@ -67,8 +67,6 @@ open GlobalTheory.FlagTan (dimFlag)
 open GlobalTheory.HSApp
 open scoped LaurentSeries
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CompHS
 
 theorem exists_generisation_of_mem_closure {T : Type} [TopologicalSpace T] [NoetherianSpace T] [QuasiSober T]
@@ -120,8 +118,6 @@ end GlobalTheory.CompHS
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EigenframeBaseChangeLocalRings
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits NumberField

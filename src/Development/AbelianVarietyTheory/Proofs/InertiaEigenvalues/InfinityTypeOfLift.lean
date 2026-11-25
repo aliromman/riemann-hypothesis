@@ -89,10 +89,6 @@ def tinv (B : GL (Fin n) ℂ) : GL (Fin n) ℂ :=
   ⟨(B⁻¹ : GL (Fin n) ℂ).valᵀ, B.valᵀ, by rw [← transpose_mul, Units.mul_inv, transpose_one],
     by rw [← transpose_mul, Units.inv_mul, transpose_one]⟩
 
-omit [NumberField L] [IsCMField L] in
-theorem conj_conj (τ : L →+* ℂ) : ComplexEmbedding.conjugate (ComplexEmbedding.conjugate τ) = τ := by
-  ext x; simp
-
 theorem evPt_eq_tinv (τ : L →+* ℂ) (B : GL (Fin n) ℂ) :
     evPt τ B = evPt (ComplexEmbedding.conjugate τ) (tinv B) := by
   have hne := _root_.GlobalTheory.AlgWtHW.conjugate_ne_self τ
@@ -104,7 +100,7 @@ theorem evPt_eq_tinv (τ : L →+* ℂ) (B : GL (Fin n) ℂ) :
   · by_cases h2 : σ = ComplexEmbedding.conjugate τ
     · subst h2
       simp [NG.evPt, tinv, hne]
-    · have h3 : σ ≠ ComplexEmbedding.conjugate (ComplexEmbedding.conjugate τ) := by rwa [conj_conj]
+    · have h3 : σ ≠ ComplexEmbedding.conjugate (ComplexEmbedding.conjugate τ) := by rwa [GlobalTheory.CMLattice.conjugate_conjugate]
       simp [NG.evPt, h1, h2]
 
 theorem inv_upper {B : GL (Fin n) ℂ} (hB : B.val.BlockTriangular id) : (B⁻¹).val.BlockTriangular id := by

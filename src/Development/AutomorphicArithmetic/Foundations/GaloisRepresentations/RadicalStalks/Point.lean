@@ -559,7 +559,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.ExistsStalkFactor
 open scoped CategoryTheory.Obj
 
-set_option autoImplicit false
 
 namespace UpperTheory.Gal.Ord.CntStalk
 
@@ -1565,8 +1564,6 @@ open GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
 open GlobalTheory.DeRham (spOver)
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.AbelianTower
@@ -1629,8 +1626,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCorrFormPullTensorForm
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing

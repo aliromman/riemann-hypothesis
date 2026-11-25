@@ -66,14 +66,14 @@ theorem _root_.GlobalTheory.T.relAmple_externalTensorPower_groupPower : ∀ (S :
   first | exact @GlobalTheory.relAmple_boxLB
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.RigidifiedSymBoxLB
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out
 open scoped CategoryTheory.Obj
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.RigidifiedSymBoxLB
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.BoxSymLoc
@@ -152,13 +152,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.IsPowPolAVPowPolOf
-
-set_option autoImplicit false
-
-
-open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out
-open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory

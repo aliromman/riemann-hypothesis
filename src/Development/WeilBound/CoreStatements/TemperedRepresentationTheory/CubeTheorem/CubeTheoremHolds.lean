@@ -81,8 +81,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAdditiveSwapOfTri
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CubeOfIsLocallyNoetherian
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
@@ -115,8 +113,6 @@ end GlobalTheory.CubeModel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CubeTheoremOfPerfect
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.CompanionTheory.CubePerf
@@ -231,8 +227,6 @@ end GlobalTheory.CompanionTheory.CubePerf
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.TemperedRepresentationTheory.CubeTheorem.CubeTheoremHolds
-
-set_option autoImplicit false
 
 namespace GlobalTheory.SpreadingModels
 

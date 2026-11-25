@@ -67,13 +67,13 @@ import Formalism.LocalToGlobal.CharacterGerms.RowTieCartAdd
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.CharacterGerms.ChartHypothesisOfCharacters, Formalism.LocalToGlobal.CharacterGerms.ConstantCoeffPderivUncurry, Formalism.LocalToGlobal.CharacterGerms.RowTieCharS, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrSf
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.ChartHypothesisOfCharacters
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 
 open scoped BigOperators
 open Classical
+
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.ChartHypothesisOfCharacters
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -106,12 +106,6 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.ConstantCoeffPderivUncurry
-
-set_option autoImplicit false
-
-
-open scoped BigOperators
-open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -298,12 +292,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieCharS
 
-set_option autoImplicit false
-
-
-open scoped BigOperators
-open Classical
-
 namespace Formalism.L2.FormalSeriesBounds
 
 open Formalism.IncomingBounds ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
@@ -421,12 +409,6 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrSf
-
-set_option autoImplicit false
-
-
-open scoped BigOperators
-open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 

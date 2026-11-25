@@ -60,8 +60,6 @@ open GlobalTheory GlobalTheory.CxForm GlobalTheory.GoodMetric
 open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ContDiff ComplexConjugate Topology
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CxForm.PullDelClosed
@@ -174,7 +172,6 @@ end -- clump:auto
 open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ContDiff ComplexConjugate Topology
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.CxForm.PullChain
 

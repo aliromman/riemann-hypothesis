@@ -631,8 +631,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearIndependentFrameFormsBaseChange
 
-set_option autoImplicit false
-
 
 open GlobalTheory.ExpFrame Formalism.CohomologicalDescent.DepthNonnegative
 
@@ -755,8 +753,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModuleFiniteFrameLatticeForms
 
-set_option autoImplicit false
-
 open GlobalTheory.ExpFrame Formalism.CohomologicalDescent.DepthNonnegative Formalism.UG Formalism.GradedWeylDivisibility Formalism.CohomologicalDescent Formalism.CohomologicalDescent.LD
 
 namespace GlobalTheory.ExpFrame
@@ -790,7 +786,6 @@ end -- clump:auto
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie GlobalTheory.ExpFrame Formalism.CohomologicalDescent.DepthNonnegative Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds Formalism.CohomologicalDescent.LD Formalism.RankGapBounds.FormsTensorLocalization
 
-set_option autoImplicit false
 open MvPolynomial
 namespace GlobalTheory.ExpFrame.Eigenform
 

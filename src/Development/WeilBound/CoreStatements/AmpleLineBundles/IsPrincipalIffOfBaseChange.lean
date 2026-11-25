@@ -63,8 +63,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AmpleLineBundles.ExistsSecOfFlatPull
 
-set_option autoImplicit false
-
 
 open TensorProduct
 

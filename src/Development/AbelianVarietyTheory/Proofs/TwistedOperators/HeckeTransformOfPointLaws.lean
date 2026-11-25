@@ -155,8 +155,6 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.EtaleLinearHomFramedPointEigenbases
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HeckePointLawRing
 
@@ -1073,7 +1071,6 @@ open GlobalTheory.ThetaTrace GlobalTheory.HkFam GlobalTheory.Frames GlobalTheory
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeKernelValueSumWeightTriangularFrame
 open GlobalTheory.IndefiniteRowSideFullHecke.FibrePushforwardExistenceTori (IsLinHom IsLieImg IsThGen IsHeckeIsog)
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.HeckeWeight
 attribute [local instance] Over.cartesianMonoidalCategory
@@ -1399,8 +1396,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeTransformOfPointLaws
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HeckeEx

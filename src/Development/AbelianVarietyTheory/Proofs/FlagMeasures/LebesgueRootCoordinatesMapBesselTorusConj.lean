@@ -167,9 +167,6 @@ theorem circle_subgroup : B2.IsClosedSubgroup (aT k r '' Metric.sphere (0 : ℂ)
   · rintro _ ⟨a, ha, rfl⟩
     exact aT_unit (ne_zero_of_mem_unit_sphere ⟨a, ha⟩)
 
-theorem conj_cont (a : B.Mat k r) : Continuous (conjM a : Mt k r → Mt k r) :=
-  (continuous_const.matrix_mul (continuous_id (X := B.Mat k r))).matrix_mul continuous_const
-
 theorem conj_conj (a b : B.Mat k r) : (conjM a : Mt k r → Mt k r) ∘ conjM b = conjM (a * b) := by
   funext x
   show (a * (b * Matrix.of x * b⁻¹) * a⁻¹ : B.Mat k r) = a * b * Matrix.of x * (a * b)⁻¹
@@ -188,7 +185,7 @@ theorem haar_map_conj (μ : Measure (Mt k r)) (hμ : B.IsHaarOn (Nset k r) μ) (
       ?_ hμ _ ⟨_, hu, rfl⟩
     rintro _ ⟨a, ha, rfl⟩ u hu
     exact conj_mem (ne_zero_of_mem_unit_sphere ⟨a, ha⟩) hu
-  rw [e, ← conj_conj, ← Measure.map_map (conj_cont _).measurable (conj_cont _).measurable, h1]
+  rw [e, ← conj_conj, ← Measure.map_map (Formalism.FourierDecayAlt.P.B2x2.conjM_cont _).measurable (Formalism.FourierDecayAlt.P.B2x2.conjM_cont _).measurable, h1]
   exact Formalism.FourierDecayAlt.Final.dilation_jacobian_formula k r μ hμ _ hp
 
 theorem muN_map_conj : ∀ (k r : ℕ) (α : ℂ), α ≠ 0 →

@@ -353,8 +353,6 @@ end -- clump:auto
 open MvPolynomial GlobalTheory.ChowHt GlobalTheory.CompHt GlobalTheory.DegCmp Filter
 open scoped ENNReal
 
-set_option autoImplicit false
-
 namespace GlobalTheory.DegCmp
 
 theorem X_pow_mul_C_mem_coneAlg {K V Ω : Type} [Field K] [AddCommGroup V] [Module K V] [Field Ω] [Algebra K Ω]
@@ -421,8 +419,6 @@ end GlobalTheory.DegCmp
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConeDegreeGrowthChowFormIntegrality
-
-set_option autoImplicit false
 
 namespace GlobalTheory.ConeDeg
 

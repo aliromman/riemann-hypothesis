@@ -586,8 +586,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHomogeneousCorrectionNextThickening
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FormalAlg
 

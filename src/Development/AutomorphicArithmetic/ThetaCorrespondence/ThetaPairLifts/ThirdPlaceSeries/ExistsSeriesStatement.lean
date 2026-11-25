@@ -91,8 +91,6 @@ end -- clump:auto
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelCharacterFiniteOrderDefiniteForms
 @[expose] public noncomputable section
 
-set_option autoImplicit false
-
 
 open Formalism.L2.DIV NumberField
 open scoped TensorProduct
@@ -155,8 +153,6 @@ theorem _root_.GlobalTheory.T.exists_split_supported_rep_finite_unitary_class : 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BaseUpperBound
-
-set_option autoImplicit false
 
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice IsDedekindDomain NumberField Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR
@@ -462,7 +458,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice IsDedekindDomain NumberField Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR
 open Formalism.IndefR.Links Formalism.IndefR.Datum Formalism.IndefR.FWT Formalism.L2.Pj
@@ -653,8 +648,8 @@ theorem realBase_le_baseLat_of_fit_can (hr : p.PointConditions') (hm : RecTies p
       rw [← algebraMap_smul (FractionRing (ex.nch.Oe w)) o, ho]
       exact rd.map_smulₛₗ (a : D.what₂.LL) y
     exact e1 ▸ Submodule.smul_mem _ o hy
-theorem baseLe_of_cusp_decay_and_ray_class_field : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.Published.RayClassFieldSt → _root_.GlobalTheory.BigOn.Exp.BaseUpperBound₂ :=
-  fun _ _ _ => _root_.GlobalTheory.BigOn.Exp.TwistConditions.of_forall fun _ _ _ _ _ hr hm _ hw _ _ _ _ _ hf hcan => _root_.GlobalTheory.BigOn.Exp.realBase_le_baseLat_of_fit_can hr hm.2.2 hw hf hcan
+theorem baseLe_holds : _root_.GlobalTheory.BigOn.Exp.BaseUpperBound₂ :=
+  _root_.GlobalTheory.BigOn.Exp.TwistConditions.of_forall fun _ _ _ _ _ hr hm _ hw _ _ _ _ _ hf hcan => _root_.GlobalTheory.BigOn.Exp.realBase_le_baseLat_of_fit_can hr hm.2.2 hw hf hcan
 end GlobalTheory.BigOn.Exp
 end
 end

@@ -82,8 +82,6 @@ import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.FormalGroupCocycleLthPowerCoboundaryModMaximal
 
-set_option autoImplicit false
-
 
 open scoped BigOperators
 open Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds GlobalTheory.RowLaw GlobalTheory.RowAt GlobalTheory.RowVal GlobalTheory.RowVal.EndCalc ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.Nab
@@ -482,8 +480,6 @@ end GlobalTheory.CocyclePow
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.IntegralSmulCurveCoeffSeriesOfChartHOfLinearLog
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.GaugeCoef

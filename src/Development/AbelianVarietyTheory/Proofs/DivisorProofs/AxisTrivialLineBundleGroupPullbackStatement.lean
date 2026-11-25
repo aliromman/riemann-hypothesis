@@ -56,8 +56,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GrpPullbackId
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OneCompOfIsGrpPullback
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -93,8 +91,6 @@ open scoped CategoryTheory.Obj TensorProduct
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AxisTrivialLineBundleGroupPullback
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.PolRoot
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.AxisTriv

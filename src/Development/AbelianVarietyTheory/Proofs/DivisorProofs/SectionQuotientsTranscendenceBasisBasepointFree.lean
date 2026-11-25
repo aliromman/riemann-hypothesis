@@ -53,8 +53,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularNonvanishing
 
 open Filter Topology MvPolynomial GlobalTheory.HSAmp
 
-set_option autoImplicit false
-
 namespace GlobalTheory.HSAmp.TrBasis
 
 variable {K : Type} [Field K]

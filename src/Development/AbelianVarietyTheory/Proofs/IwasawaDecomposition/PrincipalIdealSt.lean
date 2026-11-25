@@ -74,8 +74,6 @@ import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FixedC
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSmulEqZeroOfCrossed
 
-set_option autoImplicit false
-
 open scoped TensorProduct
 
 namespace GlobalTheory.TransferCommutator
@@ -210,8 +208,6 @@ end GlobalTheory.TransferCommutator
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeIdealMapEqTransfer
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain GlobalTheory.NT GlobalTheory.Mem.Fld GlobalTheory.Published

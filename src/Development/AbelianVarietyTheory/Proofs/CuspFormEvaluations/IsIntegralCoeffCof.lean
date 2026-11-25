@@ -143,8 +143,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.FrameReadingLeadingMinorProductExtremal
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FrameReadHw
 
@@ -441,8 +439,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.HodgeWeightDominanceCondition
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FrameRead
 
@@ -478,8 +474,6 @@ end -- clump:auto
 
 open NumberField MvPolynomial ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.BasicNotions Formalism.L2.DIV GlobalTheory.FrameRead
 open scoped Classical
-
-set_option autoImplicit false
 
 namespace GlobalTheory.FrameRead
 
@@ -523,8 +517,6 @@ end GlobalTheory.FrameRead
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.LeadingMinorProductHarmonicGenerates
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FrameRead

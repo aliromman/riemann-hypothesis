@@ -57,8 +57,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChartCharacterIsLogarithm
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CharLogOfChar
 
@@ -303,8 +301,6 @@ open NumberField IsDedekindDomain Formalism.L2.Pj ReciprocityTheory.PGsh Recipro
 open GlobalTheory.IndefiniteRowSideFullHecke.TypedPartSplitPrimes (IsIntHom IsOrbit FrobOnType embX primeBelow SplitInK InertInK)
 open GlobalTheory.IndefiniteRowSideFullHecke.BigBlockCharacters (HasChars)
 open GlobalTheory.IndefiniteRowSideFullHecke.FactorDepthInertBounds (boundAll boundInert boundFine)
-
-set_option autoImplicit false
 
 noncomputable section
 

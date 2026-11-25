@@ -77,12 +77,10 @@ import Mathlib.Order.CompletePartialOrder
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegrableHaarVolOfLintegral, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LintegralAbsPowIntegersFinite, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LintegralAbsPowIntegersFiniteStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LintegralAffineAbsPowBound, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LintegralMatrixFirstRowColumn, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LintegralDetPowIntegerMatricesFinite, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegrableDetPowIndicatorIntegerGl, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegrableZetaIntegralMatrixSchwartz, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ZetaIntegralEquivariantNonzero, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ShellSumEquivariantNonzero, Development.AutomorphicArithmetic.DivisorFrames.SetIntegralMemAddSubgroupOfOpenSubgroupInvariant, Development.AutomorphicArithmetic.DivisorFrames.IntegralMemAddSubgroupOfRamifiedTwistedInvariant
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegrableHaarVolOfLintegral
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegrableHaarVolOfLintegral
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.SplitFlip GlobalTheory.KSplit Classical
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
-noncomputable section
 namespace GlobalTheory.GJTransfer
 
 theorem det_mem_integer {k : Type} [Field k] [ValuativeRel k] {n : ℕ} (X : Matrix (Fin n) (Fin n) k)
@@ -145,7 +143,7 @@ theorem integrable_volGL_of_lintegral {k : Type} [Field k] [ValuativeRel k] [Top
     _ = ∫⁻ X, I X ∂(((volM μ (Fin n) (Fin n)).comap fun g : GL (Fin n) k => g.val).map
           fun g : GL (Fin n) k => g.val) := (hE.lintegral_map I).symm
     _ = ∫⁻ X, I X ∂((volM μ (Fin n) (Fin n)).restrict (Set.range fun g : GL (Fin n) k => g.val)) := by
-        erw [hE.map_comap]; rfl
+        erw [hE.map_comap]
     _ ≤ ∫⁻ X, I X ∂(volM μ (Fin n) (Fin n)) := lintegral_mono' Measure.restrict_le_self le_rfl
     _ < ⊤ := hI
 
@@ -165,7 +163,6 @@ theorem integrable_haarVol_of_lintegral {k : Type} [Field k] [ValuativeRel k] [T
   exact (integrable_volGL_of_lintegral _ n σ s hs hI).smul_measure_nnreal
 
 end GlobalTheory.GJTransfer
-end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -583,13 +580,11 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegrableDetPowIndicatorIntegerGl
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegrableDetPowIndicatorIntegerGl
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.SplitFlip GlobalTheory.KSplit Classical
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
-noncomputable section
 namespace GlobalTheory.GJTransfer
 
 theorem integrable_indicator_intM_mul_nabs_rpow : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] [MeasurableSpace k] [BorelSpace k] (n : ℕ) (σ : ℝ), (n : ℝ) - 1 < σ →
@@ -605,7 +600,6 @@ theorem integrable_indicator_intM_mul_nabs_rpow : ∀ (k : Type) [Field k] [Valu
 
 end GlobalTheory.GJTransfer
 end -- clump:auto
-end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegrableZetaIntegralMatrixSchwartz
 
@@ -613,7 +607,6 @@ open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.Split
 
 namespace GlobalTheory.GJIntegrable
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
@@ -730,7 +723,6 @@ open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.Split
 
 namespace GlobalTheory.GJForm
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
   [MeasurableSpace k] [BorelSpace k]
@@ -824,13 +816,11 @@ theorem isEqv_integral_and_ne_zero : ∀ (k : Type) [Field k] [ValuativeRel k] [
 end GlobalTheory.GJForm
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ShellSumEquivariantNonzero
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ShellSumEquivariantNonzero
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.SplitFlip GlobalTheory.KSplit
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
-noncomputable section
 namespace GlobalTheory.ShellSumEqv
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -1104,7 +1094,6 @@ end Main
 
 end GlobalTheory.ShellSumEqv
 end -- clump:auto
-end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -1174,7 +1163,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.DivisorFrames.IntegralMemAddSubgroupOfRamifiedTwistedInvariant
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instMeasMat
 
 section SlopeTestRemainingChoices
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]

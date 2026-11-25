@@ -57,7 +57,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LevelChainValuations.ValuationChainProofs.QbLePf
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 
 
@@ -92,7 +91,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LevelChainValuations.ValuationChainProofs.CgBasis
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 set_option linter.unusedVariables false
 
 
@@ -237,7 +235,6 @@ section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparis
 @[expose] public noncomputable section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 
 
@@ -288,7 +285,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LevelChainValuations.InstSt
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 
 

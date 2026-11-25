@@ -52,8 +52,6 @@ import Mathlib.RingTheory.PiTensorProduct
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.QLog.Chart
 
@@ -126,8 +124,6 @@ end GlobalTheory.QLog.Chart
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFormalChartQuotientByIdealWithPrimePow
-
-set_option autoImplicit false
 
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup

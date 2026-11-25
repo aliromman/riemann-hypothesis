@@ -97,8 +97,6 @@ import Mathlib.Tactic.Linter.Style
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ArithmeticGroupCongruenceSubgroupProperty
 
-set_option autoImplicit false
-
 
 open NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.UPel.HT GlobalTheory.LKTrip GlobalTheory.LKGeo
@@ -186,8 +184,6 @@ theorem UpperTheory.Reformulated.B.Qi54.card_pow :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.BaseExtensionHolds
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain
@@ -346,8 +342,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.CongruenceCRTOfLatticeGen
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.UPel.HT.EtLev GlobalTheory.LKTrip GlobalTheory.LKGeo
@@ -358,11 +352,6 @@ namespace UpperTheory.Gal.Int.Geo.CRT
 
 variable {p : ℕ} [Fact p.Prime] {D : Datum p} {G : HTGroup p}
 
-private theorem isInt_one' : IsIntAf (1 : AfP p) := fun v => by
-  rw [map_one]; exact one_mem _
-
-private theorem inAf_mem' (x : D.La) : inAf D x ∈ LaHat D :=
-  AddSubgroup.subset_closure ⟨1, x, isInt_one', rfl⟩
 
 private theorem mulF_tmul (c : 𝓞 D.F) (a : AfP p) (t : ℚ) (x : D.La) :
     mulF D c (a ⊗ₜ (t ⊗ₜ x)) = a ⊗ₜ (t ⊗ₜ (algebraMap (𝓞 D.F) D.O c • x)) := by
@@ -446,9 +435,6 @@ private theorem actOn_comm (L : Link D G) (y : AfP p ⊗[ℚ] G.C) (b : D.O) :
       exact this
     rw [e, smul_mul_assoc, mul_smul_comm, h2]
 
-private theorem actG_mulF (L : Link D G) (g : G.GAf) (c : 𝓞 D.F) (v : AfP p ⊗[ℚ] VQ D) :
-    L.actG g (mulF D c v) = mulF D c (L.actG g v) :=
-  LinearMap.congr_fun (actOn_comm L _ (algebraMap (𝓞 D.F) D.O c)) v
 
 private theorem wSub_inAf {𝔞 : Ideal (𝓞 D.F)} {y : D.La} (hy : y ∈ wSub D 𝔞 1) : inAf D y ∈ idHat D 𝔞 := by
   have key : ∀ b : D.O, inAf D (b • y) ∈ idHat D 𝔞 := by
@@ -460,7 +446,7 @@ private theorem wSub_inAf {𝔞 : Ideal (𝓞 D.F)} {y : D.La} (hy : y ∈ wSub 
       have e : b • algebraMap (𝓞 D.F) D.O c • z' = algebraMap (𝓞 D.F) D.O c • b • z' := by
         rw [smul_smul, smul_smul, Algebra.commutes]
       rw [e, ← mulF_inAf]
-      exact mem_idHat hc (inAf_mem' _)
+      exact mem_idHat hc (MultScale.inAf_mem D _)
     | zero =>
       intro b
       rw [smul_zero]
@@ -544,9 +530,9 @@ private theorem gen_part (hLG : LatGen) (L : Link D G) (𝔞 : Ideal (𝓞 D.F))
     exact ⟨z, by rw [← hz, _root_.mul_comm]⟩
   constructor
   · intro h y
-    obtain ⟨w, hw, ew⟩ := div_of_idHat hax (h _ (inAf_mem' y))
+    obtain ⟨w, hw, ew⟩ := div_of_idHat hax (h _ (MultScale.inAf_mem D y))
     refine ⟨w, hw, ?_⟩
-    rw [map_sub, ← actG_mulF, mulF_inAf] at ew
+    rw [map_sub, ← TorsionCardinalitySetup.actG_mulF, mulF_inAf] at ew
     rw [← ew]; abel
   · intro h
     have step1 : ∀ v ∈ LaHat D, ∃ w ∈ LaHat D, mulF D a (L.actG g v - v) = N • w := fun v hv => by
@@ -554,7 +540,7 @@ private theorem gen_part (hLG : LatGen) (L : Link D G) (𝔞 : Ideal (𝓞 D.F))
       obtain ⟨v₁, hv₁, e₁⟩ := h x
       refine ⟨v₁ + mulF D a (L.actG g w' - w'), add_mem hv₁ (mulF_mem a (sub_mem (hg _ hw') hw')), ?_⟩
       have e₂ : mulF D a (L.actG g (inAf D x) - inAf D x) = N • v₁ := by
-        rw [map_sub, ← actG_mulF, mulF_inAf, e₁]; abel
+        rw [map_sub, ← TorsionCardinalitySetup.actG_mulF, mulF_inAf, e₁]; abel
       have e₃ : L.actG g (inAf D x + N • w') - (inAf D x + N • w') =
           (L.actG g (inAf D x) - inAf D x) + N • (L.actG g w' - w') := by
         rw [map_add (f := _), map_nsmul, smul_sub]; abel
@@ -664,8 +650,6 @@ theorem UpperTheory.group_scheme_pullback_exists :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.HeckeLiftExistsOfQuotientLevel
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
@@ -804,8 +788,6 @@ theorem UpperTheory.hecke_lift_exists_of_quotient_level :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.HeckeLiftSeparatedOfLatticeCongruence
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
@@ -1115,11 +1097,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen GlobalTheory.UPel.HT.EtLev GlobalTheory.LKTrip GlobalTheory.LKGeo
 open UpperTheory.Gal.Int.Geo
 
-private theorem isIntAf_one' {p : ℕ} [Fact p.Prime] : IsIntAf (1 : AfP p) := fun v => by
-  rw [map_one]; exact one_mem _
-
-private theorem inAf_mem' {p : ℕ} [Fact p.Prime] {D : Datum p} (y : D.La) : inAf D y ∈ LaHat D :=
-  AddSubgroup.subset_closure ⟨1, y, isIntAf_one', rfl⟩
 
 
 theorem UpperTheory.quotient_invariant_of_trace_unit_crt :
@@ -1140,7 +1117,7 @@ theorem UpperTheory.quotient_invariant_of_trace_unit_crt :
   have hC := hCRTu.1.mp (by have h1 := ((hLev u).mp hu).2; rwa [S.lev] at h1)
   have hEta : ∀ y : D.La, (T.M N').univ.eta ((c * t) • y) ≫ W.ψ = W.o.eta (c • y) := by
     intro y
-    obtain ⟨v, hv, ev⟩ := hC.1 _ (inAf_mem' y)
+    obtain ⟨v, hv, ev⟩ := hC.1 _ (MultScale.inAf_mem D y)
     exact hTrEta p D G L E gb u _ _ N' N (T.M N').univ W.o W.ψ W.trans S.N₀ (c * t) c hN'c hNc y y ⟨v, hv, ev⟩
   obtain ⟨hIso, hLB⟩ := hTrUnit p D G L E gb u _ _ N' N (T.M N').univ W.o W.ψ W.trans hu1
   obtain ⟨qC, hqC⟩ := (hQComp q _ _ _ _ _ _ _ _ _ _ _ _ _ _ (T.M N).univ S.Y.univ S.Y.univ C.j (𝟙 _)).2.2.2
@@ -1174,8 +1151,6 @@ open UpperTheory.Gal.Int.Geo
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen GlobalTheory.UPel.HT.EtLev GlobalTheory.LKTrip GlobalTheory.LKGeo
 
-private theorem inAf_mem {p : ℕ} [Fact p.Prime] (D : Datum p) (x : D.La) : inAf D x ∈ LaHat D :=
-  AddSubgroup.subset_closure ⟨1, x, fun v => by rw [map_one]; exact one_mem _, rfl⟩
 
 theorem UpperTheory.quotient_separated_of_trace_unit_crt :
     GPull → QComp → QIso → QUniq → TrEta → TrEtaPt → TrUnit → CongCRT → BaseSep := by
@@ -1207,7 +1182,7 @@ theorem UpperTheory.quotient_separated_of_trace_unit_crt :
     intro y'
     refine hTE p D G L E gb u (T.M N).X (T.M N).s N N (T.M N).univ W.o W.ψ W.trans S.N₀ c c hNum.1 hNum.1
       y' y' ?_
-    exact huN.1 _ (inAf_mem D y')
+    exact huN.1 _ (MultScale.inAf_mem D y')
   obtain ⟨nI, hnI⟩ := hQI q (datAt S.atq S.sp) (Ow w) E S.b gb N N S.N₀ c c _ _ _ _ (T.M N).univ W.o S.Y.univ _ W.ψ hiso W.trans.1
     W.trans.2.1 hlb heta nW
   obtain ⟨nA, hnA⟩ := (hQC q (datAt S.atq S.sp) (Ow w) E S.b gb N S.N₀ c _ _ _ _ _ _ (T.M N).univ S.Y.univ S.Y.univ C.j (𝟙 _)).2.2.2
@@ -1274,8 +1249,6 @@ theorem UpperTheory.rational_splitting_exists :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.SiteExistsOfSplittingAndPowerProjector
-
-set_option autoImplicit false
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.UPel.HT.EtLev
@@ -1367,8 +1340,6 @@ theorem UpperTheory.tower_covering_congruence_of_hecke_lies :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.TowerFiniteEtaleOfTrivialPowerCartesian
-
-set_option autoImplicit false
 
 open AlgebraicGeometry CategoryTheory Limits
 open UpperTheory.Gal.Int.Geo
@@ -1522,13 +1493,13 @@ theorem UpperTheory.tower_point_count_statement :
   exact (Finset.sum_eq_sum_iff_of_le (fun ξ _ => bound ξ)).mp hsum ζ (Finset.mem_univ _)
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.TowerSeparatedOfTrivialPowerCartesian
-
-set_option autoImplicit false
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen GlobalTheory.UPel.HT.EtLev GlobalTheory.LKTrip GlobalTheory.LKGeo
 open UpperTheory.Gal.Int.Geo
+
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.TowerSeparatedOfTrivialPowerCartesian
 
 private theorem kn_conj {p : ℕ} [Fact p.Prime] {D : Datum p} {G : HTGroup p} (L : Link D G) {N : ℕ} {k u : G.GAf}
     (hk : k ∈ L.KN 1) (hu : u ∈ L.KN N) : k * u * k⁻¹ ∈ L.KN N := by
@@ -1628,11 +1599,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.TraceEtaPointwise
 
-set_option autoImplicit false
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen GlobalTheory.UPel.HT.EtLev GlobalTheory.LKTrip GlobalTheory.LKGeo
-open UpperTheory.Gal.Int.Geo
-
 theorem UpperTheory.trace_eta_pointwise : TrEtaPt := by
   intro p _ D G L R _ _ gb h X s N' N o' o ψ hT Ω _ _ z x
   obtain ⟨-, -, -, -, hgeo⟩ := hT
@@ -1661,6 +1627,8 @@ theorem UpperTheory.trace_eta_pointwise : TrEtaPt := by
     rw [← e1, hxy]
     exact h2 y
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.CovMain
 

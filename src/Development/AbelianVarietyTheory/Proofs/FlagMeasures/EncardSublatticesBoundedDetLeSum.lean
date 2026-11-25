@@ -67,8 +67,6 @@ import Mathlib.Algebra.Order.Star.Real
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsSquareCardOfInvolution
 
-set_option autoImplicit false
-
 namespace GlobalTheory.InertSquareNorm
 
 open NumberField Module IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions.S.Lat

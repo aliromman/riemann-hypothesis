@@ -94,8 +94,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EssFiniteTypeOfLocalRingOfVarietyPoint
 
-set_option autoImplicit false
-
 namespace GlobalTheory
 
 theorem essFiniteType_of_isLocModel : ∀ {K : Type} [Field K] [Algebra ℂ K] (R : Subring K),
@@ -170,8 +168,6 @@ end -- clump: shared namespace opens
 open CategoryTheory AlgebraicGeometry TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy GlobalTheory.FieldPair
-
-set_option autoImplicit false
 
 
 open TensorProduct
@@ -452,8 +448,6 @@ open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GraphLocalRingRegularParamsAndDim
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.DiagLoc
 
@@ -603,8 +597,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLocalRingOfVarietyPointTensorGraphLocalization
 
-set_option autoImplicit false
-
 namespace GlobalTheory.DiagLoc
 
 theorem isLocModel_loc : ∀ {K κ' L : Type} [Field K] [Field κ'] [Field L] [Algebra ℂ K] [Algebra ℂ κ']
@@ -646,8 +638,6 @@ end GlobalTheory.DiagLoc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalRingGraphGenericPointOfInjective
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FieldPair
@@ -756,8 +746,6 @@ end GlobalTheory.FieldPair
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTrBasis
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FieldPair.GraphPlace

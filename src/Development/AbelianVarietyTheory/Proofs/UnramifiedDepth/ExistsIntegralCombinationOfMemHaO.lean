@@ -122,8 +122,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.MemHHaOfCoeffFunctional
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CoeffFunctional
 

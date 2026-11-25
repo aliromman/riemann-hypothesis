@@ -82,8 +82,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasTangentOfSingleAffineChart
 
-set_option autoImplicit false
-
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -218,8 +216,6 @@ open GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.QCoh GlobalThe
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GenericFormalPathEqScalingValuationRingPath
 open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -549,8 +545,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsRatOfHankelEventuallyZero
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.Nef.Kron
 
@@ -731,8 +725,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsRationalPowerSeriesOfAdelicIntegralPositiveRad
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.RatCrit
 
@@ -881,8 +873,6 @@ open GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.QCoh GlobalThe
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsRationalFormalPathOfIntegralAllPlaces
 open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
-
-set_option autoImplicit false
 
 namespace GlobalTheory.Nef
 
@@ -1192,8 +1182,6 @@ open GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.QCoh GlobalThe
 open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Nef
@@ -1460,8 +1448,6 @@ open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
 open ReciprocityTheory.ChartRestriction.G.Semi.Rosenlicht
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Nef
@@ -1531,8 +1517,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RationalSquaringPathsRigidOfTorusExtension
 open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1655,8 +1639,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentConstantPathEqZero
 open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
-
-set_option autoImplicit false
 
 namespace GlobalTheory.Nef
 

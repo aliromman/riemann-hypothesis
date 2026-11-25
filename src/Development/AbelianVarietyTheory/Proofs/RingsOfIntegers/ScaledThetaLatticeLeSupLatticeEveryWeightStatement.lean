@@ -49,8 +49,6 @@ import Mathlib.Tactic.ReduceModChar
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ScaledThetaLatticeLeSupLatticeEveryWeight
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.PlaceTop
 

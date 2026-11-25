@@ -46,13 +46,13 @@ import Mathlib.RingTheory.MvPolynomial.Ideal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.JetGauges.OriginChartMultiplication, Development.AbelianVarietyTheory.Proofs.JetHarmonics.NotIsUnitNatCastOfIsLocalHom
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.JetGauges.OriginChartMultiplication
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 
 open AlgebraicGeometry CategoryTheory MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.JetGauges.OriginChartMultiplication
 open scoped TensorProduct
 
 attribute [local instance] Over.cartesianMonoidalCategory
@@ -92,12 +92,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.OriginChartMultiplication
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.NotIsUnitNatCastOfIsLocalHom
-
-set_option autoImplicit false
-
-
-open AlgebraicGeometry CategoryTheory MonoidalCategory CartesianMonoidalCategory MonObj
-open ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 open ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF GlobalTheory.IndefiniteRowSideFullHecke.OriginChartMultiplication
 open scoped TensorProduct
 

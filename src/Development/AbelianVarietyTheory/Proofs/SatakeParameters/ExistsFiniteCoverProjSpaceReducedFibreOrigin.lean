@@ -80,8 +80,6 @@ open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.T
 
 open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.MaxPt
@@ -341,8 +339,6 @@ open CategoryTheory AlgebraicGeometry KaehlerDifferential GlobalTheory GlobalThe
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.AlgebraicIndependentPulledBackProjCoordinateRati
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential GlobalTheory GlobalTheory.PD ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.PD.XCover
@@ -622,7 +618,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.GenericGermChartInterIntegralCoordinateRatios
 
-set_option autoImplicit false
 open MvPolynomial
 open scoped GlobalTheory.ProjSpace
 namespace GlobalTheory.PD.XCover.Integ
@@ -761,8 +756,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsSmoothFiniteCoverOfFormsNoCommonZero
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.CechDR GlobalTheory.PD
@@ -932,7 +925,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsFiniteCoverProjSpaceReducedFibreOrigin
 
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.CechDR GlobalTheory.PD KaehlerDifferential
 
 namespace GlobalTheory.PD.FibRed

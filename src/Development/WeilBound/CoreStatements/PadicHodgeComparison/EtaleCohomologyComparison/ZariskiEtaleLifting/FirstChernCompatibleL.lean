@@ -62,8 +62,6 @@ import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomology
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry DividedPowers GroundTheory.PAdicHodge GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.PAlg CrystallineSemistableComparison.B
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.CompanionTheory.CrisOne
 
@@ -91,7 +89,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OmMorImg
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

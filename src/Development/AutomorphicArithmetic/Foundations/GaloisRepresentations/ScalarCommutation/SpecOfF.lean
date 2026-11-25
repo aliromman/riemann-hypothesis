@@ -69,8 +69,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGDatumOneOneO
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.ClsMove
 
-set_option autoImplicit false
-
 
 open MeasureTheory Matrix NumberField Polynomial GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCx GlobalTheory.LKDef
 open UpperTheory.Gal.LocalSmoothExtension
@@ -250,8 +248,6 @@ end UpperTheory.Gal.Spc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.CommOfOpen
-
-set_option autoImplicit false
 
 
 open Formalism.UG GlobalTheory.LKDef
@@ -492,8 +488,6 @@ theorem UpperTheory.Gal.Spc.opAlg :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.CuspIdeal
-
-set_option autoImplicit false
 
 
 open MeasureTheory Matrix
@@ -1091,8 +1085,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.VanForms
 
-set_option autoImplicit false
-
 
 open MeasureTheory Matrix NumberField Polynomial GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCx GlobalTheory.LKDef GlobalTheory.LKCount
   GlobalTheory.LKCount.OrbKProd GlobalTheory.BCT UpperTheory.Gal.LocalSmoothExtension
@@ -1278,8 +1270,6 @@ theorem UpperTheory.Gal.Spc.vanForms :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.SpecOfF
-
-set_option autoImplicit false
 
 
 open MeasureTheory Matrix NumberField Polynomial GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCx GlobalTheory.LKDef GlobalTheory.RootSumWeights GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen

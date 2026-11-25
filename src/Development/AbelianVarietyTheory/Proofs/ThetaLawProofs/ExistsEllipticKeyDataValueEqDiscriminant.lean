@@ -63,8 +63,6 @@ import Development.AbelianVarietyTheory.Definitions.KeyFormula.KaRuleK
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsKeyInIsoElliptic
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.KeyPow
 

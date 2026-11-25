@@ -50,8 +50,6 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTopDegreeCoefficientFormAndEqOnTopForms
 
-set_option autoImplicit false
-
 
 open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 

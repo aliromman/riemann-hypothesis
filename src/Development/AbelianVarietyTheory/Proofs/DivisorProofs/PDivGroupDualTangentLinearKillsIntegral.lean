@@ -65,8 +65,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PDivGroupDualTangentLinearKillsIntegral
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.LieLin
 

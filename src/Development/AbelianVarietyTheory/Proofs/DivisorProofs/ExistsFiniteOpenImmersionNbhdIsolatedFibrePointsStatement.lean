@@ -728,7 +728,6 @@ end -- clump:auto
 
 open AlgebraicGeometry CategoryTheory Limits Scheme.AffineZariskiSite
 
-set_option autoImplicit false
 
 namespace GlobalTheory
 

@@ -59,12 +59,12 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TorusSplitting.NormGenEqConstMul, Development.AbelianVarietyTheory.Proofs.TorusSplitting.NormNullValEqNormTheta, Development.AbelianVarietyTheory.Proofs.TorusSplitting.NormNullValEqNormThetaStatement
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TorusSplitting.NormGenEqConstMul
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj Formalism.L2.PjFree GlobalTheory.EtaForm GlobalTheory.EtaAn GlobalTheory.ArcQ
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TorusSplitting.NormGenEqConstMul
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ConstNorm
@@ -242,11 +242,6 @@ theorem norm_gen_eq_const_mul : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
 
 end GlobalTheory.ConstNorm
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj Formalism.L2.PjFree GlobalTheory.EtaForm GlobalTheory.EtaAn GlobalTheory.ArcQ
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TorusSplitting.NormNullValEqNormTheta
 attribute [local instance] Over.cartesianMonoidalCategory

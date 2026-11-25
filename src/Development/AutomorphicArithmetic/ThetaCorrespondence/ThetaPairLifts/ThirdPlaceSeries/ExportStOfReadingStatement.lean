@@ -103,8 +103,6 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.AdelicUnitaryEqR
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdaptedExistence
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal
 open Formalism.BasicNotions Formalism.MainNotions Formalism.IndefR.Links Formalism.L2.Host GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.BigOn.Exp GlobalTheory.SeriesTie
@@ -291,7 +289,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal
 open Formalism.BasicNotions Formalism.MainNotions Formalism.IndefR.Links Formalism.L2.Host GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.BigOn.Exp GlobalTheory.SeriesTie
@@ -321,8 +318,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CanonicalExistence
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain
@@ -549,7 +544,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx
@@ -726,7 +720,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 section
 open GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.BigOn.Exp
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links
-set_option autoImplicit false
 noncomputable section
 open scoped TensorProduct
 
@@ -788,7 +781,6 @@ open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx
 open Formalism.IndefR.FWT GlobalTheory.BigTop GlobalTheory.OntoChain GlobalTheory.RealIndexBound GlobalTheory.OnTies GlobalTheory.SeriesTie GlobalTheory.BigOn GlobalTheory.BigOn.Exp
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.UnframePt
 open GlobalTheory.RealGeo GlobalTheory.Unframe Formalism.IndefR.FWT
@@ -852,7 +844,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx
@@ -920,7 +911,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain Neutral.B1 ReciprocityTheory.Neutral.Bridge.HCFR Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host GlobalTheory.HeckeGal
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.BigOn.Exp GlobalTheory.SeriesTie
@@ -952,8 +942,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistUpperBound
 
-set_option autoImplicit false
-
 namespace GlobalTheory.BigOn.Exp.TupLe
 
 end GlobalTheory.BigOn.Exp.TupLe
@@ -966,7 +954,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx
@@ -1038,7 +1025,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Datum IsDedekindDomain
 open NumberField Matrix GlobalTheory.ExportSeries GlobalTheory.SeriesTie
@@ -1069,7 +1055,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx
@@ -1112,7 +1097,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 open GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.BigOn.Exp
 namespace GlobalTheory.BigOn.Exp
 theorem exportSt_of_hypotheses_alt (hC : GlobalTheory.Published.CuspRapidDecay) (hA : GlobalTheory.Published.GlobalArtinReciprocity)
@@ -1122,7 +1106,7 @@ theorem exportSt_of_hypotheses_alt (hC : GlobalTheory.Published.CuspRapidDecay) 
   have tC := _root_.GlobalTheory.TwistChr.twChr_of_twAdm_alt hA tA
   have row := _root_.GlobalTheory.BigOn.Exp.rowAt_of_alt hC hA hR hS _root_.GlobalTheory.BigOn.Exp.lowAt_holds_alt tA
   _root_.GlobalTheory.BigOn.Exp.InductionConditions.exportSt ⟨_root_.GlobalTheory.BigOn.Exp.canEx_holds_alt, _root_.GlobalTheory.BigOn.Exp.canProj_alt, tA, row, _root_.GlobalTheory.BigOn.Exp.tieRat_of_alt tA row, _root_.GlobalTheory.BigOn.Exp.recSide_of_twAdm_alt tA, _root_.GlobalTheory.BigOn.Exp.adaptEx_alt,
-    _root_.GlobalTheory.BigOn.Exp.conjBase_of_cusp_decay_and_reciprocity hC hA hR hS, _root_.GlobalTheory.BigOn.Exp.TwConj.conj_tw_of_prints hC hA hR hD hW hS tA tC, _root_.GlobalTheory.BigOn.Exp.baseLe_of_cusp_decay_and_ray_class_field hC hA hR, _root_.GlobalTheory.BigOn.Exp.baseGe_of_alt hC hA hR hS,
+    _root_.GlobalTheory.BigOn.Exp.conjBase_of_cusp_decay_and_reciprocity hC hA hR hS, _root_.GlobalTheory.BigOn.Exp.TwConj.conj_tw_of_prints hC hA hR hD hW hS tA tC, _root_.GlobalTheory.BigOn.Exp.baseLe_holds, _root_.GlobalTheory.BigOn.Exp.baseGe_of_alt hC hA hR hS,
     _root_.GlobalTheory.BigOn.Exp.TupLe.twLe_alt hC hA hR tA tC, _root_.GlobalTheory.BigOn.Exp.twGe_alt hC hA hR hS tA tC⟩
 end GlobalTheory.BigOn.Exp
 end

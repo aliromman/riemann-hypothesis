@@ -90,8 +90,6 @@ import Mathlib.Tactic.Lemma
 
 open CategoryTheory AlgebraicGeometry Module ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.HodgeCoh
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HodgeFin
 
@@ -261,8 +259,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.FiniteFiberOfFiniteTypeParameterRing
 
 open GlobalTheory GlobalTheory.PD
-
-set_option autoImplicit false
 
 
 namespace UpperTheory
@@ -960,7 +956,6 @@ end -- clump:auto
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.HodgeCoh GlobalTheory.CechDR GlobalTheory.PD GlobalTheory.WH GlobalTheory.W1 KaehlerDifferential
 open scoped TensorProduct
-set_option autoImplicit false
 
 namespace UpperTheory.EvaluationRestriction
 

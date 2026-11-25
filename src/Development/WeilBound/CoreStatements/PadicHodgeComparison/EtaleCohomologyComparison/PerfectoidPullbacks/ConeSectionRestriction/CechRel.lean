@@ -58,7 +58,6 @@ import Mathlib.Tactic.ENatToNat
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NegOneSmulCancel
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -366,7 +365,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeZigzagCompat
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -488,7 +486,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Mk2EqZeroIffMemS
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 
@@ -603,7 +600,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GradedCoverVanishingInduction
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -831,7 +827,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.CechRel
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 

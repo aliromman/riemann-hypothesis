@@ -355,8 +355,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.FacCont
 
-set_option autoImplicit false
-
 open NumberField IsDedekindDomain Matrix GlobalTheory.UPel.HT GlobalTheory.LKTrip GlobalTheory.LKGeo GlobalTheory.LKMid GlobalTheory.LKDef
 open GlobalTheory.CuspRep (pLoc)
 open UpperTheory.Gal.CertificateRingHomMap (GUf Plc GLw mat)
@@ -845,8 +843,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.FrameTh
 
-set_option autoImplicit false
-
 
 open NumberField IsDedekindDomain Matrix GlobalTheory.UPel.HT GlobalTheory.LKTrip GlobalTheory.LKGeo GlobalTheory.LKMid GlobalTheory.LKDef GlobalTheory.CuspRep GlobalTheory.UnitaryBC
 open UpperTheory.Gal.CertificateRingHomMap (GUf Plc comp cj lev GLw Gam0 rat sim mat th th0 invT_val mem_lev comp_th sim_th th_rat)
@@ -1094,8 +1090,6 @@ theorem UpperTheory.Gal.W2.Seed.pTfMulCen :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.MemComm
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain Matrix GlobalTheory.UPel.HT GlobalTheory.LKTrip GlobalTheory.LKGeo GlobalTheory.LKMid GlobalTheory.LKDef GlobalTheory.CuspRep GlobalTheory.UnitaryBC
@@ -1567,8 +1561,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.SplitC
 
-set_option autoImplicit false
-
 namespace UpperTheory.Gal.Spc
 
 open UpperTheory.Gal.W2.Seed GlobalTheory.LKTrip GlobalTheory.UPel.HT
@@ -1620,8 +1612,6 @@ end UpperTheory.Gal.Spc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.SpecData
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain Matrix GlobalTheory.UPel.HT GlobalTheory.LKTrip GlobalTheory.LKGeo GlobalTheory.LKMid GlobalTheory.LKDef GlobalTheory.CuspRep GlobalTheory.UnitaryBC

@@ -143,8 +143,6 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open GlobalTheory.FlagFibre (Low)
 open scoped Matrix ContDiff ComplexOrder ENNReal Classical
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.FlagCell2.TopPow
@@ -825,8 +823,6 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open GlobalTheory.FlagFibre (Low)
 open scoped Matrix ContDiff ComplexOrder ENNReal Classical
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FlagCell2
 
 theorem upU_row_eq {s : ℕ} (y y' : Low s → ℂ) (i : Fin s)
@@ -995,8 +991,6 @@ end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DensMulPullHeadL
 
-set_option autoImplicit false
-
 open Set MeasureTheory
 open ReciprocityTheory.L2DbarEstimates (V)
 open GlobalTheory.CxForm
@@ -1045,8 +1039,6 @@ open ReciprocityTheory.L2DbarEstimates (V)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts GlobalTheory.FlagBundle GlobalTheory.HermFrame GlobalTheory.GoodMetric GlobalTheory.CxForm GlobalTheory.LineForm GlobalTheory.ChernCalc GlobalTheory.FlagCell2
 open GlobalTheory.FlagFibre (Low)
 open scoped Matrix ContDiff ComplexOrder ENNReal Classical
-
-set_option autoImplicit false
 
 namespace GlobalTheory.FlagCell2.BaseVol
 
@@ -1127,8 +1119,6 @@ end GlobalTheory.FlagCell2.BaseVol
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TopDegreeDensityBlockTriangularDiagonalBlocks
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry MvPolynomial MeasureTheory Filter Topology

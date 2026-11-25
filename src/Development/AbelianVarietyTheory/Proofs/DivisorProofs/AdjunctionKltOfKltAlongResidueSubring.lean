@@ -64,8 +64,6 @@ import Mathlib.Algebra.Order.Star.Rat
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsFreeGenOfFormallyEtale
 
-set_option autoImplicit false
-
 
 open GlobalTheory.TopForm
 
@@ -153,8 +151,6 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrep
 open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqUnitMulZpowRegularLocalModelDimTwo
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FieldPair.AdjUnit
@@ -297,7 +293,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsResiduePlaceOfTwoDimLocalModel
 
-set_option autoImplicit false
 
 namespace GlobalTheory.FieldPair
 
@@ -534,8 +529,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFreeModuleGeneratorKaehlerWedgeRegularPairCons
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FieldPair
 
@@ -709,8 +702,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTranscendenceBasisResidueFieldUniformiserCons
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FieldPair.ResidueTrBasis
 
@@ -845,8 +836,6 @@ end GlobalTheory.FieldPair.ResidueTrBasis
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrdQMapDomainResiduePlaceTransport
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FieldPair.ResidueTransport
@@ -994,8 +983,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ResiduePlaceEvalNeZeroInvMemOfIsUnit
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FieldPair
 
 theorem eval₂_residue_ne_zero_and_inv_mem_of_isUnit :
@@ -1025,8 +1012,6 @@ end GlobalTheory.FieldPair
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ResidueTopFormAlongPrimeDivisorAdjunction
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.Residue
@@ -1213,8 +1198,6 @@ end GlobalTheory.Residue
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwoDimLocalModelPrimePlacesAlongParameters
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.FieldPair.LocModelTwo

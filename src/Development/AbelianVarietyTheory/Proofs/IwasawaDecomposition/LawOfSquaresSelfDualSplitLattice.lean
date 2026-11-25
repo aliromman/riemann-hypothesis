@@ -102,7 +102,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCommonIndexIdealInfSupLattices
 
-set_option autoImplicit false
 namespace GlobalTheory.BetaEx
 open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 
@@ -179,8 +178,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsSquareAbsNormConjInvariantMovedPrimesIdeal
 
-set_option autoImplicit false
-
 namespace GlobalTheory.SquareNorm
 
 open NumberField IsDedekindDomain Formalism.L2.Pj
@@ -242,8 +239,6 @@ end GlobalTheory.SquareNorm
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LawOfSquaresSelfDualSplitLattice
-
-set_option autoImplicit false
 
 namespace GlobalTheory.LawOfSquares
 

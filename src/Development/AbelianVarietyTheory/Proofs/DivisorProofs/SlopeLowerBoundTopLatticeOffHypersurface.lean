@@ -293,8 +293,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetIsMultiHomogeneous
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HSShort.DetHom
 
@@ -612,8 +610,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetRationalSectionsEqPowProductLinearForms
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.HSShort
 
@@ -755,8 +751,6 @@ end GlobalTheory.HSShort
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermFamComplexTensorNormColumnUnitSpheresLe
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HSShort.ColNorm
@@ -938,8 +932,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogGaussAbsSupportFinite
 
-set_option autoImplicit false
-
 
 open NumberField MvPolynomial ReciprocityTheory.MultiplicativeHeights GlobalTheory.ChowHt GlobalTheory.Adelic GlobalTheory.HSCore GlobalTheory.HSChoice
 open Polynomial (nthRootsFinset)
@@ -989,8 +981,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoeffLeOfBounded
 
-set_option autoImplicit false
-
 
 open NumberField MvPolynomial ReciprocityTheory.MultiplicativeHeights GlobalTheory.ChowHt GlobalTheory.Adelic GlobalTheory.HSCore GlobalTheory.HSChoice
 open Polynomial (nthRootsFinset)
@@ -1028,8 +1018,6 @@ end GlobalTheory.HSFloor
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogEvalSubLeBlockSphereMeanMultidegree
-
-set_option autoImplicit false
 
 
 open NumberField MvPolynomial ReciprocityTheory.MultiplicativeHeights ReciprocityTheory.GeometryOfNumbersTheory
@@ -1079,8 +1067,6 @@ end GlobalTheory.LelongBlocksMulti
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MultiformHeightLowerBound
-
-set_option autoImplicit false
 
 
 open NumberField MvPolynomial ReciprocityTheory.MultiplicativeHeights ReciprocityTheory.GeometryOfNumbersTheory
@@ -1240,8 +1226,6 @@ open GlobalTheory GlobalTheory.ChowHt GlobalTheory.Adelic GlobalTheory.HermTools
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PowDvdOfSpecialisations
 
-set_option autoImplicit false
-
 namespace GlobalTheory.HSShortDiv
 
 variable {F : Type} [Field F] {D N : ℕ}
@@ -1369,8 +1353,6 @@ end GlobalTheory.HSShortDiv
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SlopeLowerBoundTopLatticeOffHypersurface
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.HSShort.SlopeTop

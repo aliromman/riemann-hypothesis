@@ -63,8 +63,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VecMulMapEqZero
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmFieldAbelianTameIff
 
-set_option autoImplicit false
-
 open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.IndefiniteRowSideFullHecke GlobalTheory.HostModel
 
 namespace GlobalTheory.HostRamif
@@ -230,8 +228,6 @@ end GlobalTheory.HostRamif
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsAbelianGaloisHost
-
-set_option autoImplicit false
 
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain

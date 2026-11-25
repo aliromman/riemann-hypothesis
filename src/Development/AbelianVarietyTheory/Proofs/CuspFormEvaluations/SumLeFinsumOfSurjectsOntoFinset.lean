@@ -106,10 +106,12 @@ import Mathlib.Analysis.Calculus.ContDiff.WithLp
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.DatumNsmulEqZero, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsTorusOfRows, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.HmEqDiagonal, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.IsPiActLOfIsTorusOf, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.IsRepsLevelTranslates, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.IsTorusAtOfIsTorusOf, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.PolyDerivLevelSqEqAlpha, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.PolyDerivProdFockEqTranslate, Development.AbelianVarietyTheory.Proofs.TorusSplitting.ExistsShortIntegersSpan, Development.AbelianVarietyTheory.Proofs.TorusSplitting.CharStatementHolds, Development.AbelianVarietyTheory.Proofs.TorusSplitting.GCauchyHolds, Development.AbelianVarietyTheory.Proofs.TorusSplitting.SemicharUnitFrame, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.SumLeFinsumOfSurjectsOntoFinset
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.DatumNsmulEqZero
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.PullbackSections Formalism.L2.Pj Formalism.MainNotions.ModuliIntegralCharts.H1 GlobalTheory.AnVal GlobalTheory.BlockTh GlobalTheory.EtaAn
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.DatumNsmulEqZero
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AnVal
@@ -143,11 +145,6 @@ end GlobalTheory.AnVal
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsTorusOfRows
-
-set_option autoImplicit false
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.PullbackSections Formalism.L2.Pj Formalism.MainNotions.ModuliIntegralCharts.H1 GlobalTheory.AnVal GlobalTheory.BlockTh GlobalTheory.EtaAn
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ScalarTorus
@@ -356,11 +353,6 @@ theorem exists_torusOf_rows : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
 
 end GlobalTheory.ScalarTorus
 end -- clump:auto
-
-section -- clump: shared namespace opens
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.PullbackSections Formalism.L2.Pj Formalism.MainNotions.ModuliIntegralCharts.H1 GlobalTheory.AnVal GlobalTheory.BlockTh GlobalTheory.EtaAn
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.HmEqDiagonal
 attribute [local instance] Over.cartesianMonoidalCategory
@@ -616,8 +608,6 @@ end -- clump:auto
 section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.IsRepsLevelTranslates
 @[expose] public section
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 namespace GlobalTheory
 
@@ -991,8 +981,6 @@ end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.PolyDerivLevelSqEqAlpha
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.AlphaChain
 
@@ -1244,8 +1232,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TorusSplitting.SemicharUnitFrame
 
-set_option autoImplicit false
-
 namespace GlobalTheory
 
 theorem semichar_unit_frame : ReciprocityTheory.ChartRestriction.G.PullbackSections.PPSemicharSt := by
@@ -1262,8 +1248,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.SumLeFinsumOfSurjectsOntoFinset
-
-set_option autoImplicit false
 
 
 namespace GlobalTheory.ThetaLower
