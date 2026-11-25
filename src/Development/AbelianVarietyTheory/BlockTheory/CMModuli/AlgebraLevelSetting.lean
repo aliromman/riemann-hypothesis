@@ -2,6 +2,32 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Uniformization.WCompat
 public import Development.AbelianVarietyTheory.Definitions.Uniformization.ExistsUniqueTorusCompat
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -14,6 +40,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -90,12 +118,6 @@ def Step.Compat {L₁ : Level P X f₁ G₁ F₁ h₁} {L₂ : Level P X f₂ G�
     ∀ (Z : Scheme.{0}) (y : Z ⟶ L₁.Q.B.left) (z : Z) (j : M.L.L.ι) (k₂ : L₂.D.M.L.L.ι) (k₁ : L₁.D.M.L.L.ι),
       (y ≫ r₁.toB) z ∈ M.L.L.U j → (y ≫ s.β) z ∈ L₂.D.M.L.L.U k₂ → y z ∈ L₁.D.M.L.L.U k₁ →
       gw r₁.a y z j k₁ = gw r₂.a (y ≫ s.β) z j k₂ * gw s.u y z k₂ k₁
-
-namespace Level.Red
-
-variable {L₁ : Level P X f₁ G₁ F₁ h₁} {M : CP B} (r : L₁.Red M)
-
-end Level.Red
 
 end Levels
 

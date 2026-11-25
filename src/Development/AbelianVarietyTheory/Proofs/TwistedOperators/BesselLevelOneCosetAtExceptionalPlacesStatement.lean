@@ -114,8 +114,6 @@ private theorem mulVec_col_eq_single_of_mul_eq_one {k m n : Type} [Field k] [Fin
   funext i
   show ∑ l, b' i l * b l j = _
   rw [← Matrix.mul_apply, hb, Matrix.one_apply, Pi.single_apply]
-private theorem cA_incA_eq_incA_sig (D : D7) (x : D.host.E) :
-    cA D (incA D x) = incA D ((D.sp.cm.sig : D.host.E →+* D.host.E) x) := rfl
 end GlobalTheory.FrameZero
 
 theorem GlobalTheory.FrameZero.xclauses : OnStd fun {D} _ _ {sc} {G} W F => ∀ σ (h : 2 * (σ + 1) + 2 ≤ D.R.m), ∀ v ∈ G.pl.S0, ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -166,7 +164,7 @@ theorem GlobalTheory.FrameZero.xclauses : OnStd fun {D} _ _ {sc} {G} W F => ∀ 
           fun i => (p.pr.comp (incA D)) ((D.sp.cm.sig : D.host.E →+* D.host.E)
             ((G.colDec (2 * (σ + 1) + 1) (by omega) (by omega)).a i ⟨q.1, by omega⟩)) := by
       funext i
-      rw [hx, cA_incA_eq_incA_sig]
+      rw [hx, GlobalTheory.ConjSplit.sigR_incA]
       simp only [Pi.smul_apply, smul_eq_mul, map_mul, map_pow, RingHom.comp_apply]
     have key : ∀ r : Fin (2 * (σ + 1) + 1 - 1), ∑ j, p.pr (incA D ((Formalism.UG.cT (D.sp.cm.sig : D.host.E →+* D.host.E)
           (G.colDec (2 * (σ + 1) + 1) (by omega) (by omega)).a * (G.V (.grid (2 * (σ + 1) + 1) 0)).gram)

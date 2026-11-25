@@ -6,18 +6,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteDimens
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FontaineParameterInvariantUnderConjugation
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsPotentiallySemistableCoefficientFieldEnlarge
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.WdConjAbove
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemFiniteCocyclesIffBcrisTensorCoboundary
 
 @[expose] public section
@@ -110,11 +98,5 @@ theorem wdAt_conj [NumberField E] [IsAlgClosure E Ω] (ι : Om l ≃+* ℂ) {A :
       hr (isPstAt_conj P Bw p⁻¹ (fun g => by rw [hc]; group) hr')]
 
 end GlobalTheory.AboveL.RepConj
-
-namespace GlobalTheory.AboveL
-
-open GlobalTheory.AboveL.RepConj
-
-end GlobalTheory.AboveL
 
 end

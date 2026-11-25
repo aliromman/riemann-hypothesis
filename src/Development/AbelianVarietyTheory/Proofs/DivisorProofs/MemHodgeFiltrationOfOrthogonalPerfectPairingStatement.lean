@@ -11,18 +11,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPointw
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPointwiseLineBundleGeneratorOfTrivialPullbStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HodgeFiltrationsOrthogonalLineBundlePairingProduStatement
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDatNeZero
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemHodgeFiltrationOfOrthogonalPerfectPairing, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemHodgeFiltrationOfOrthogonalPerfectPairingStatement
@@ -43,9 +31,9 @@ theorem mem_fil_of_orth : GlobalTheory.Published.AbelianHodgeDeRham → ∀ (R :
   intro hH R _ _ A B _ _ g hA hB hgA hgB P hP φ hφ y hy
   have hL := hP.isLB
 
-  obtain ⟨v, hv, -⟩ := ((GlobalTheory.T.abelianSchemeDeRham_free_hodgeSequence_baseChange hH).2.1 R B g hB hgB).1.1 y
+  obtain ⟨v, hv, -⟩ := ((GlobalTheory.abelianDeRham_free_hodge_baseChange hH).2.1 R B g hB hgB).1.1 y
 
-  have horth := GlobalTheory.T.hodgeFiltrations_orthogonal_lineBundlePairing_product hH R A B g hA hB hgA hgB P hL φ hφ
+  have horth := GlobalTheory.PtExt.HodgeOrth.fil_orthogonal hH R A B g hA hB hgA hgB P hL φ hφ
   obtain ⟨j, hj⟩ := GlobalTheory.T.exists_isChartChoiceForPoints_of_nontrivial R A B P hL
 
   have hpairZero (h : HdR A) (hh : h ∈ Fil A) : φ h y = h (0 : primDR A) :=
@@ -63,7 +51,7 @@ theorem mem_fil_of_orth : GlobalTheory.Published.AbelianHodgeDeRham → ∀ (R :
 
   obtain ⟨s, hs⟩ := GlobalTheory.T.exists_pointwiseLineBundleGenerator_of_trivial_pullback R (A ⊗ B) A P hL (AbDual.inl A B) hP.zero_right
 
-  obtain ⟨T, hT⟩ := GlobalTheory.T.exists_dualNumberGenerator_of_torsorCoboundary R A B P hL v hv.1 j hj s hs k hk'
+  obtain ⟨T, hT⟩ := GlobalTheory.PtExt.exists_isEpsGen_of_isCob R A B P hL v hv.1 j hj s hs k hk'
   obtain ⟨t, ht⟩ := GlobalTheory.T.exists_pointwiseGenerator_of_dualNumberLineBundleGenerator R A B P hL v hv.1 T hT
   have htriv := GlobalTheory.T.cechLineBundle_pull_trivial_of_pointwiseGenerator R (A ⊗ B) (A ⊗ epsR R) P hL _ t ht
 

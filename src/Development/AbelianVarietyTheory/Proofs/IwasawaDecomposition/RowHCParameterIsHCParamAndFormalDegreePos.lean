@@ -2,20 +2,7 @@ module
 
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselGapDimensionFormula
 public import Development.AbelianVarietyTheory.Definitions.Foundations.CdScaleTieIff
-import Mathlib.Algebra.Order.Star.Rat
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -91,14 +78,10 @@ theorem lamSH_isHCParam (R : Ranks) (P : HCParam R) : Formalism.QuantumDetermina
     rw [hk]
     ring
 
-theorem fdegHC_pos_of_injective {n : ℕ} (lam : Fin n → ℝ) (hlam : Function.Injective lam) :
-    0 < Formalism.QuantumDeterminants.fdegHC lam := by
-  apply GlobalTheory.BesselNorm.fdegHC_pos <;> assumption
-
 theorem lamSH_isHCParam_and_trueDsig_pos :
     ∀ (R : Ranks) (P : HCParam R), Formalism.QuantumDeterminants.IsHCParam (lamSH R P) ∧ 0 < trueDsig R P := by
   intro R P
   refine ⟨lamSH_isHCParam R P, ?_⟩
-  exact fdegHC_pos_of_injective _ (lamSH_isHCParam R P).1.injective
+  exact GlobalTheory.BesselNorm.fdegHC_pos _ (lamSH_isHCParam R P).1.injective
 
 end GlobalTheory.Mem.Vol

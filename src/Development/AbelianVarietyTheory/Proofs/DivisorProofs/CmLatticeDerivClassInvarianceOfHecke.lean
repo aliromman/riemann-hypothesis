@@ -712,10 +712,6 @@ theorem exists_equiv (E : Type) [Field E] [NumberField E] [IsCMField E] (I : Typ
       exact (hk i (Or.inr h.symm)).trans (hk j (Or.inl rfl)).symm
   · intro f
     let fc : F →+* ℂ := Complex.ofRealHom.comp f
-    have hfc : ComplexEmbedding.IsReal fc := by
-      rw [ComplexEmbedding.isReal_iff]
-      ext a
-      simp [fc]
     let w : InfinitePlace E := (IsCMField.equivInfinitePlace E).symm (InfinitePlace.mk fc)
     obtain ⟨i, hi, _⟩ := hφ w.embedding
     have hmk : InfinitePlace.mk (φ i) = w := by
@@ -887,9 +883,6 @@ theorem defCoord_eq (φ : I → E →+* ℂ) (e : I ≃ Emb (maximalRealSubfield
     defCoord φ z ((a : E) + (b : E) * θ) i =
       (1 + z i) / (2 * (Real.pi : ℂ) * Complex.I) * latPt (modPt φ e θ z) (a, b) (e i) := by
   have h1 := one_add_ne_zero hz i
-  have hπ : (2 * (Real.pi : ℂ) * Complex.I) ≠ 0 := by
-    have : (Real.pi : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
-    exact mul_ne_zero (mul_ne_zero two_ne_zero this) Complex.I_ne_zero
   simp only [defCoord, latPt, modPt, Equiv.symm_apply_apply, map_add (f := _), map_mul, he, Complex.conj_ofReal]
   field_simp
   ring

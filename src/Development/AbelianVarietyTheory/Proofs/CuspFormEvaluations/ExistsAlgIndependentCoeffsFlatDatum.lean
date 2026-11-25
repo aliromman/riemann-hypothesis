@@ -847,7 +847,7 @@ theorem eventually_split {r : ℕ} (X : Data E r) {x : Frame X.Ψ r} (hx : x ∈
   have hb : ∀ᶠ y in 𝓝 x, LUPf.zF X x y ∈ Metric.closedBall (0 : V (nd X)) δ :=
     hc.preimage_mem_nhds (by rw [hz0]; exact Metric.closedBall_mem_nhds _ hδ)
   filter_upwards [hn, hb] with y hy hyb
-  refine ⟨hy.1, _, hyb, _, LUPf.bF_mem hy.1 hy.2, ?_⟩
+  refine ⟨hy.1, _, hyb, _, LUPf.bF_mem hy.2, ?_⟩
   funext τ
   show y τ = (mat x τ * mat (nmat X (LUPf.zF X x y)) τ *
     (LUPf.Lm (LUPf.Mx X x y τ) * LUPf.Mx X x y τ) : Matrix (Fin r) (Fin r) ℂ)

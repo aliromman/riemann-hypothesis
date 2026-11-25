@@ -2,19 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FiniteDimensionalWdSpace
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ResEqIff
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.RingTheory.PicardGroup
 
 @[expose] public section
 
@@ -38,7 +25,7 @@ theorem exists_idem {LL U D R : Type} [Field LL] [Field U] [AddCommGroup D] [Mod
     have := congrArg π hae
     rwa [map_add, RingHom.mem_ker.1 ha, zero_add, map_one] at this
   have hinj : Function.Injective ((Algebra.linearMap R F) ∘ₗ q.subtype) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     have : (y : R) ∈ RingHom.ker π ⊓ q := ⟨hy, y.2⟩
     rw [hq.inf_eq_bot] at this

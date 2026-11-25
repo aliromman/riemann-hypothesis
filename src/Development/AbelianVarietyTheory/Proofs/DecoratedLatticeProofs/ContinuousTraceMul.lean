@@ -1,18 +1,6 @@
 module
 
 public import Formalism.LocalToGlobal.BesselHermitianTheta.DefsReal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.SphericalVolumeLift
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.SphericalZero
 import Development.AbelianVarietyTheory.Definitions.Foundations.AestronglyMeasurableQuotMeasureIffLift
@@ -57,11 +45,5 @@ open GlobalTheory.Core.Rk.SW GlobalTheory.Core.Rk.SWQ
 open Formalism.UG (IsUnifV qV Ov ordL diagJ)
 open GlobalTheory.LFun (KGL toCompl IsSplitChart IsSatVecGL satEig)
 open scoped Classical
-
-namespace GlobalTheory.Core.Rk.SplitPsi
-
-variable {D : D7} {q : FinPl D} {w : HeightOneSpectrum (𝓞 D.host.E)}
-
-end GlobalTheory.Core.Rk.SplitPsi
 
 end

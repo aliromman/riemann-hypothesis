@@ -250,12 +250,6 @@ section Place
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
   (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) (v : HeightOneSpectrum (𝓞 F))
 
-theorem mem_stabVec (x : Fin M → Ev F E v) (g : HA (Fv F v) σ J) :
-    g ∈ stabVec σ J v x ↔ act σ J v g x = x := by
-  unfold stabVec
-  rw [MulAction.mem_stabilizer_iff]
-  exact ⟨fun h => congrFun h 0, fun h => funext fun _ => h⟩
-
 theorem mem_stabLat (L : Submodule (OEv F E v) (Fin M → Ev F E v)) (g : HA (Fv F v) σ J) :
     g ∈ stabLat σ J v L ↔ ∀ y, y ∈ L ↔ act σ J v g y ∈ L := Iff.rfl
 
@@ -300,7 +294,7 @@ theorem stabLat_inf_stabVec : ∀ (F E : Type) [Field F] [NumberField F] [Field 
   ext g
   rw [Subgroup.mem_inf, Subgroup.mem_inf]
   refine and_congr_left fun hg => ?_
-  rw [mem_stabVec] at hg
+  rw [GlobalTheory.UnitVectorStabiliser.mem_stabVec] at hg
   have hh : ∀ y, hR (Fv F v) σ J x (act σ J v g y) = hR (Fv F v) σ J x y := by
     intro y
     rw [← hR_act σ J v g x y, hg]

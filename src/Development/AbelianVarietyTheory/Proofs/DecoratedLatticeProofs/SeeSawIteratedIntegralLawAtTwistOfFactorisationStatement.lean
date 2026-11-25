@@ -259,9 +259,6 @@ def combL (c : WO S T →₀ ℂ) : (WO S T → ℂ) →ₗ[ℂ] (WO S T → ℂ
     simp only [comb, heisO, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, RingHom.id_apply, Finset.mul_sum]
     exact Finset.sum_congr rfl fun _ _ => by ring
 
-theorem comb_single (y : WO S T) (f : WO S T → ℂ) : comb ψ S T (Finsupp.single y 1) f = heisO ψ S T y f := by
-  rw [GlobalTheory.HeisComb.comb_eq_sum, Finsupp.sum_single_index (zero_smul ℂ (heisO ψ S T y f)), one_smul]
-
 theorem model_comb (hψ : IsStdChar D ψ (-1)) {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] (p : Place D k) {Y Y' : Type} [Fintype Y] [DecidableEq Y] [Fintype Y'] [DecidableEq Y']
     (FS : Frame k S.rank Y') (FT : Frame k T.rank Y) (hc : cA D (p.e + cA D p.e) = p.e + cA D p.e)
@@ -273,7 +270,7 @@ theorem model_comb (hψ : IsStdChar D ψ (-1)) {k : Type} [Field k] [ValuativeRe
     hO, rfl⟩
   · exact (GlobalTheory.HeisComb.main D ψ S T).2.2.1 c f hf (fun u hu => (h u hu).2) hψ
   · change comb ψ S T c (heisO ψ S T y f) = heisO ψ S T y (comb ψ S T c f)
-    rw [← comb_single, ← comb_single]
+    rw [← GlobalTheory.DisjComb.comb_single, ← GlobalTheory.DisjComb.comb_single]
     refine ((GlobalTheory.HeisComb.main D ψ S T).2.1 _ c (fun x hx z hz => ?_) f).symm
     obtain rfl := Finset.mem_singleton.1 (Finsupp.support_single_subset hx)
     exact symplO_off S T hc he hy (h z hz)
@@ -1041,18 +1038,7 @@ variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {σ : ℕ} {S : Dbl2 ψ σ}
 
 theorem conv_nil' {G : Type} [Monoid G] : conv ([] : List (G →₀ ℂ)) = Finsupp.single 1 1 := rfl
 
-theorem aconv_singleton' {G : Type} [AddMonoid G] (c : G →₀ ℂ) : aconv [c] = c := by
-  simp only [aconv, List.foldr_cons, List.foldr_nil]
-  conv_rhs => rw [← Finsupp.sum_single c]
-  refine Finsupp.sum_congr fun g _ => ?_
-  rw [Finsupp.sum_single_index (by simp)]
-  simp
-
 theorem aconv_nil' {G : Type} [AddMonoid G] : aconv ([] : List (G →₀ ℂ)) = Finsupp.single 0 1 := rfl
-
-theorem comb_single_zero' (S' T : HSp D) (u : WO S' T → ℂ) :
-    comb ψ S' T (Finsupp.single 0 1) u = u := by
-  simp [comb, heisO_zero_eq]
 
 theorem trc_single_one' {V : HSp D} (u : GA D V → ℂ) : trc (Finsupp.single 1 1) u = u := by
   simp only [trc, Finsupp.support_single_ne_zero (1 : GA D V) (one_ne_zero (α := ℂ)), Finset.sum_singleton, Finsupp.single_eq_same, one_smul]
@@ -1064,9 +1050,9 @@ theorem value_zero_eq (Q : Fin 0 → QStep S) (c₁ : WO S.B.A S.J.W₀ →₀ �
     (f₁ : WO S.B.V S.J.W → ℂ) (f₂ : WO S.J.W S.B'.V → ℂ) (φ : GA D S.B.A → ℂ) (f : GA D S.B'.V → ℂ)
     (g : GA D S.B.V) (h₁ : GA D S.J.W) (h₂ : GA D S.B'.V) :
     value Q c₁ c₂ f₁ f₂ φ f g h₁ h₂ = integrand Q c₁ c₂ f₁ f₂ φ f g h₁ h₂ 1 1 := by
-  simp only [value, integrand, List.ofFn_zero, conv_nil', aconv_singleton', trc_single_one']
+  simp only [value, integrand, List.ofFn_zero, conv_nil', GlobalTheory.TriStep.aconv_single_list, trc_single_one']
   rw [GlobalTheory.PosOne.comb, Finsupp.sum_single_index (by simp)]
-  simp [aconv_nil', comb_single_zero']
+  simp [aconv_nil', GlobalTheory.QLawPf.comb_single_zero]
 end
 
 end GlobalTheory.QVal

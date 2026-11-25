@@ -24,11 +24,37 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDesc
 public import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.HomBaseChangeBijectiveOfLeNilradical
 public import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.IsAbelianSchemeAndExtendOfGenericHoms
 public import Mathlib.AlgebraicGeometry.Morphisms.QuasiFinite
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.AlgebraicGeometry.Morphisms.SchemeTheoreticallyDominant
 import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
 import Mathlib.AlgebraicGeometry.Sites.Fpqc
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 import Mathlib.CategoryTheory.ExtremalEpi
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -45,11 +71,16 @@ import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.TranslateM
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.CategoryTheory.Limits.Shapes.Connected
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.FlatOfIsFiniteOfFlatGeometricFibres
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Tactic.Basify
 import Development.AbelianVarietyTheory.Definitions.Uniformization.IsCPPullback
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.AppCompatGeneric
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.LBLocal
@@ -600,7 +631,7 @@ theorem lTensor_injective_of_le_range {I : Ideal A} (hrel : RelationsLift I M)
     (hI : Function.Injective (I.subtype.lTensor M)) {F : Type} [AddCommGroup F] [Module A F]
     (f : F →ₗ[A] A) (hf : Function.Injective f) (hle : I ≤ range f) :
     Function.Injective (f.lTensor M) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ := hrel F f x (by rw [hx]; simp)
   let e₀ : Submodule.comap f I →ₗ[A] I := f.restrict fun _ h => h
@@ -634,7 +665,7 @@ theorem lTensor_injective_of_pow_le [IsNoetherianRing A] {I : Ideal A} (hrel : R
       obtain ⟨j, hj, c, hc, rfl⟩ := Submodule.mem_sup.mp hb
       obtain ⟨c, rfl⟩ := Ideal.mem_span_singleton'.mp hc
       exact ⟨(⟨j, hj⟩, c), rfl⟩
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have hfx : f.lTensor M x = 0 := by
       apply h'
@@ -644,7 +675,7 @@ theorem lTensor_injective_of_pow_le [IsNoetherianRing A] {I : Ideal A} (hrel : R
     have hinj : Function.Injective
         ((snd A J A ∘ₗ (ker (f.coprod g)).subtype).lTensor M) := by
       refine lTensor_injective_of_le_range hrel hI _ ?_ fun i hi => ?_
-      · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      · rw [injective_iff_map_eq_zero]
         rintro ⟨⟨j, c⟩, hjc⟩ hc
         have hc' : c = 0 := hc
         subst hc'
@@ -1624,7 +1655,7 @@ theorem kernelOf : ∀ (S : Scheme.{0}) [IsLocallyNoetherian S] (P : Over S) [Gr
   have := hP.smooth
   have := hP.separated
   have := hP.quasiCompact
-  have := _root_.GlobalTheory.CompanionTheory.Ar.BT.flat_mul_semiAbelian S P hP N hN
+  have := _root_.PositivityTheory.HtPt.Twhopf.mul_flat S P hP N hN
   have := _root_.GlobalTheory.CompanionTheory.Ar.BT.locallyQuasiFinite_pow_semiAbelian S P hP N hN
   have hp : IsPullback (pullback.fst ((𝟙 P) ^ N) η[P]) (toUnit (pullback ((𝟙 P) ^ N) η[P])) ((𝟙 P) ^ N) η[P] := by
     have h := IsPullback.of_hasPullback ((𝟙 P) ^ N) η[P]

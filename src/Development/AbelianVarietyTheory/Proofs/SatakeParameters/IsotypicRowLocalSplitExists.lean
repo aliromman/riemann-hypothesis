@@ -6,20 +6,6 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsIrr
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FinTypInvariantFormOfIsotIn
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Connected.Separation
-import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import ReciprocityTheory.Automorphisms.PlaceA
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -579,22 +565,6 @@ end GlobalTheory.RowLocal
 
 namespace GlobalTheory.RowLocal
 
-section Asm
-variable {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ}
-
-theorem isLocS_of_irr (π : NG.FinTyp L n) (s : SplitPlace L) (W : Submodule ℂ (GAf L n → ℂ)) (hWS : W ≤ π.S)
-    (hW0 : W ≠ ⊥) (hst : ∀ x : GAf L n, TrivOutside {s.v} x → ∀ f ∈ W, NG.rt L n x f ∈ W)
-    (hirr : ∀ W' : Submodule ℂ (GAf L n → ℂ), W' ≤ W →
-      (∀ x : GAf L n, TrivOutside {s.v} x → ∀ f ∈ W', NG.rt L n x f ∈ W') → W' = ⊥ ∨ W' = W) :
-    ∃ τ, IsLocS π.S s τ := by
-  first
-  | (apply _root_.GlobalTheory.blockFieldPairProjections.exists_local_component <;> assumption)
-
-end Asm
-end GlobalTheory.RowLocal
-
-namespace GlobalTheory.RowLocal
-
 theorem finTyp_exists_isLocS : ∀ (D : D7) (rep : D.what₂.FT → NG.FinTyp D.host.E D.R.r) (j : ℕ) (_ : RowMod D rep j) (σ : D.what₂.FT), D.what₂.isot j σ ≠ ⊥ → ∀ s : SplitPlace D.host.E, ∃ τ, IsLocS (rep σ).S s τ := by
   intro D rep j X σ hσ s
   have hB00 : X.B 0 0 = 0 := by
@@ -613,7 +583,7 @@ theorem finTyp_exists_isLocS : ∀ (D : D7) (rep : D.what₂.FT → NG.FinTyp D.
   obtain ⟨B', hlin, hherm, hpos, hinv⟩ := GlobalTheory.finTyp_invariant_form_of_isotIn D D.R.r X.A X.ρ X.C X.B X.lin X.herm X.pos
     X.stab X.inv (rep σ) hne
   obtain ⟨W, hWS, hW0, hst, hirr⟩ := GlobalTheory.T.exists_irreducible_subspace_trivialOutside_splitPlace D.host.E D.R.r (rep σ) B' hlin hherm hpos hinv (finTyp_fixed_finiteDimensional D rep j X σ hne) s
-  exact isLocS_of_irr (rep σ) s W hWS hW0 hst hirr
+  exact GlobalTheory.blockFieldPairProjections.exists_local_component (rep σ) s W hWS hW0 hst hirr
 
 end GlobalTheory.RowLocal
 

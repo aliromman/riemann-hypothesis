@@ -46,7 +46,6 @@ theorem rpow_digitSum_le (p : ℕ) (hp : 2 ≤ p) (n : ℕ) :
         exact_mod_cast Nat.mod_add_div n p
       have hlt : ((n % p : ℕ) : ℝ) + 1 ≤ p := by
         exact_mod_cast (Nat.mod_lt n (by omega : 0 < p))
-      have hm0 : (0 : ℝ) ≤ ((n / p : ℕ) : ℝ) := Nat.cast_nonneg _
       calc (p : ℝ) ^ (((n % p : ℕ) : ℝ) / ((p : ℝ) - 1)) *
             (p : ℝ) ^ ((((Nat.digits p (n / p)).sum : ℕ) : ℝ) / ((p : ℝ) - 1))
           ≤ (((n % p : ℕ) : ℝ) + 1) * (((n / p : ℕ) : ℝ) + 1) :=
@@ -96,7 +95,6 @@ theorem content_detPow_bounds : ∀ (C : Type) [Field C] [CharZero C] (v : AddVa
   classical
   obtain ⟨-, hint, hdiag, hrows⟩ := _root_.GlobalTheory.DetPowShape.detPow_shape C i c
   have hp1 : (1 : ℝ) < p := by exact_mod_cast hp.one_lt
-  have hpos : (0 : ℝ) < (p : ℝ) - 1 := by linarith
   have key : ∀ α ∈ (detPow C i c).support,
       (∑ k, ((α k : ℕ) : ℝ)) = (i : ℝ) * c ∧ ∀ k, α k ≤ c := by
     intro α hα

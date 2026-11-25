@@ -334,10 +334,3 @@ theorem stdFst_mem {ν : (AE D)ˣ →* Circle} (hν : Continuous ν) {e : AE D} 
   · exact zero_mem _
 
 end GlobalTheory.BotFourier
-
-namespace GlobalTheory.BotFourier
-
-open GlobalTheory.PlaceModel GlobalTheory.AlgWave
-
-
-end GlobalTheory.BotFourier

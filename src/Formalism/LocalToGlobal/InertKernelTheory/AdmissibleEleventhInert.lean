@@ -330,8 +330,7 @@ theorem pair_mem_W2pair {α : WW p} (hα : (Formalism.MainNotions.FormalGroupSys
   set S := ∑ i ∈ Finset.Iic n, WittVector.teichmuller p
     (((_root_.frobeniusEquiv (kb p) p).symm ^ i) (α.coeff i)) * (p : WW p) ^ i with hS
   refine ⟨pairHom p S, ?_, ?_⟩
-  · set_option synthInstance.maxHeartbeats 100000 in
-    rw [hS, map_sum]
+  · rw [hS, map_sum]
     refine Subring.sum_mem _ fun i _ => ?_
     rw [map_mul, map_pow, map_natCast]
     refine Subring.mul_mem _ (teich_mem ?_) (Subring.pow_mem _ (natCast_mem _ p) i)

@@ -1187,10 +1187,6 @@ theorem latRank_iSup {K V ι : Type} [Field K] [NumberField K] [AddCommGroup V] 
 
 end GlobalTheory.FlatCore.CMDiff
 
-namespace GlobalTheory.FlatCore.CMDiff
-
-end GlobalTheory.FlatCore.CMDiff
-
 end
 end -- clump:auto
 end -- clump:auto

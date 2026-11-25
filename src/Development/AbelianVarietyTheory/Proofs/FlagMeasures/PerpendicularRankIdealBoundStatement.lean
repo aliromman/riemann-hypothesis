@@ -6,6 +6,34 @@ public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.RowMi
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DefiniteLatticeDiscriminantModuleCardDetSq
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.StandardBaseFlagComplementIntegralLattice
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.StandardBaseFlagComplementIntegralLatticeStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -18,12 +46,14 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Formalism.HermitianLattices.HermitianLatticesProofs.DualLattice
 import Formalism.SharpRestriction.CuspSpanNormBounds.AbsoluteAmplitudeSecondOfSource
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Presheaf
 import Mathlib.RingTheory.PicardGroup
 
@@ -92,8 +122,6 @@ theorem span_inf_eq {K : Type} [Field K] [NumberField K] {V : Type} [AddCommGrou
       rw [← algebraMap_smul K d v, smul_smul, inv_mul_cancel₀ hd', one_smul]
     rw [this]
     exact Submodule.smul_mem _ _ (Submodule.subset_span hmem)
-
-alias main := _root_.GlobalTheory.SpanInfEq.span_inf_eq
 
 end GlobalTheory.SpanInfEq
 end -- clump:auto
@@ -243,11 +271,6 @@ theorem isCompl_perp (h : V →ₗ⋆[K] V →ₗ[K] K) (ha : ∀ x, h x x = 0 �
   have h5 := (A ⊔ T).finrank_le
   refine ⟨hd, codisjoint_iff.2 (Submodule.eq_top_of_finrank_eq (by omega))⟩
 
-omit [StarRing K] [FiniteDimensional K V] in
-theorem span_inf (L : Submodule (𝓞 K) V) (hL : Submodule.IsFullLattice K L) (T : Submodule K V) :
-    Submodule.span K ((L ⊓ T.restrictScalars (𝓞 K) : Submodule (𝓞 K) V) : Set V) = T := by
-  exact _root_.GlobalTheory.SpanInfEq.main L hL T
-
 theorem key (h : V →ₗ⋆[K] V →ₗ[K] K) (hs : h.IsSymm) (hn : h.Nondegenerate) (ha : ∀ x, h x x = 0 → x = 0)
     (L P : Submodule (𝓞 K) V) (hL : Submodule.IsFullLattice K L) (hi : Formalism.HermitianLatticesTheory.IsIntegralLat h L)
     (hP : P ≤ L) (I₁ I₂ : Ideal (𝓞 K)) (h1 : I₁ • dualInH h L ≤ L)
@@ -295,7 +318,7 @@ theorem key (h : V →ₗ⋆[K] V →ₗ[K] K) (hs : h.IsSymm) (hn : h.Nondegene
   rw [← hdd, mem_dual]
   intro y hy
   have hspan : Submodule.span K (L : Set V) = ⊤ := by
-    simpa using span_inf L hL (⊤ : Submodule K V)
+    simpa using GlobalTheory.SpanInfEq.span_inf_eq L hL (⊤ : Submodule K V)
   have hy' : y ∈ dualInH h L := ⟨hy, by change y ∈ Submodule.span K _; rw [hspan]; trivial⟩
   have hay : a • y ∈ I₂ • L := by
     have := Submodule.smul_mem_smul haI hy'

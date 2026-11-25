@@ -720,7 +720,6 @@ theorem sizes : ∀ ε : ℝ, ∃ Cx x₁ : ℝ, ∀ (D : Formalism.BasicNotions
       one_le_mul_of_one_le_of_one_le (one_le_mul_of_one_le_of_one_le hm1 hf1) (one_le_pow₀ hN)
     exact (le_mul_of_one_le_left (by linarith) h1).trans hmfNd
   have hlogd : Real.log D.host.d ≤ large₂.sc.L := hbL ▸ Real.log_le_log (by linarith) hdb
-  have hlogd0 : 0 ≤ Real.log D.host.d := Real.log_nonneg hd1
   have hdl : |large₂.logDerivativeAtOne| ≤ large₂.sc.L := hR.dlog
 
   have hdF : |(discr (maximalRealSubfield D.host.E) : ℝ)| = (2 * D.host.v) ^ D.R.f := by
@@ -740,7 +739,6 @@ theorem sizes : ∀ ε : ℝ, ∃ Cx x₁ : ℝ, ∀ (D : Formalism.BasicNotions
   set b := large₂.sc.b
   set L := large₂.sc.L
   set F : ℝ := (D.R.f : ℝ) with hF
-  have hb0 : 0 ≤ b := by linarith
   have hk : ((2 * s : ℕ) : ℝ) ≤ 2 * b := by push_cast; linarith
   have hk1 : (1 : ℝ) ≤ ((2 * s : ℕ) : ℝ) := by exact_mod_cast (show 1 ≤ 2 * s by omega)
 
@@ -779,7 +777,6 @@ theorem sizes : ∀ ε : ℝ, ∃ Cx x₁ : ℝ, ∀ (D : Formalism.BasicNotions
     refine (Finset.sum_le_sum fun τ _ => hκ τ).trans ?_
     rw [Finset.sum_const, Finset.card_univ, hcard, nsmul_eq_mul]
     linarith
-  have hsumκ0 : (0 : ℝ) ≤ Formalism.PairingDivisionLocalBalance.absK (kap D 1 i j s) := Nat.cast_nonneg _
   have T3 : (Formalism.PairingDivisionLocalBalance.absK (kap D 1 i j s) : ℝ) * 8 ≤ 40 * (F * b * L) := by
     have : F * b ≤ F * b * L := le_mul_of_one_le_right (by positivity) hL1
     linarith
@@ -801,7 +798,6 @@ theorem sizes : ∀ ε : ℝ, ∃ Cx x₁ : ℝ, ∀ (D : Formalism.BasicNotions
   have e : 200 * (D.R.f : ℝ) * b * (L + Real.log large₂.sc.x) = 200 * (F * b * L) + 200 * (F * b * Real.log large₂.sc.x) := by
     rw [hF]; ring
   rw [e]
-  have hP : 0 ≤ F * b * L := by positivity
   linarith
 
 end GlobalTheory.SizesArch

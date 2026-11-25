@@ -1,22 +1,8 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -154,17 +140,6 @@ theorem pullHQ_bijective {E E' : Spc} (f : E ⟶ E') (n i : ℤ)
   exact (e.baseChange ℤ_[l] ℚ_[l] _ _).bijective
 
 end Adic
-
-end GlobalTheory.GenusTwoPureComparison.Cmp
-
-namespace GlobalTheory.GenusTwoPureComparison.Cmp
-
-open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC
-
-section Main
-variable {T : Type} [CommRing T] [IsDomain T] [IsLocalRing T] (l : ℕ) [Fact l.Prime]
-
-end Main
 
 end GlobalTheory.GenusTwoPureComparison.Cmp
 

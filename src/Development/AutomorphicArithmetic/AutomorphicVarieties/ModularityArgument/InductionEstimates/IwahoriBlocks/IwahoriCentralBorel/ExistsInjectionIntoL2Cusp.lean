@@ -12,7 +12,28 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.PowerSum
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.AdeleLC
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilStabilizerVolume.TopoAF
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilStabilizerVolume.UnfoldAbs
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.MeasureTheory.Function.AEEqOfIntegral
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -26,6 +47,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Compactness.Paracompact
 import PositivityTheory.AutomorphicForms.PublishedInputs.CyclicBaseChange.PSConjSpaceR
@@ -60,8 +82,6 @@ private theorem integ_of {Y E : Type*} [TopologicalSpace Y] [MeasurableSpace Y] 
   rwa [IntegrableOn, Measure.restrict_eq_self_of_ae_mem hs] at h
 
 variable (μ) in
-set_option maxHeartbeats 1000000 in
-set_option synthInstance.maxHeartbeats 200000 in
 private theorem avg_rep {Y : Type*} [TopologicalSpace Y] [T2Space Y] [SecondCountableTopology Y] [MeasurableSpace Y] [BorelSpace Y]
     (ν : Measure Y) [IsFiniteMeasure ν] {C : Set Y} (hC : IsCompact C) (hs : ∀ᵐ k ∂ν, k ∈ C)
     {j : Y → G1 K n} (hj : Continuous j) {c : Y → ℂ} (hc : Continuous c) {w : L2 μ} {F : G1 K n → ℂ}
@@ -299,8 +319,6 @@ private theorem fixed_of (D : TypeDat K n) {κ : Measure (archCompact K n)} {e :
   simp only [inner_smul_right]
   simpa using hfix
 
-set_option maxHeartbeats 1000000 in
-set_option synthInstance.maxHeartbeats 200000 in
 private theorem rep_in {τ : Submodule ℂ (L2 μ)} (hcl : IsClosed (τ : Set (L2 μ)))
     (hinv : ∀ g, ∀ v ∈ τ, rightRegularRep (Gam K n) μ g v ∈ τ) (D : TypeDat K n)
     (E : Submodule ℂ (G1 K n → ℂ)) [FiniteDimensional ℂ E] (hE : ∀ φ ∈ E, ∃ v : L2 μ, IsContRep μ v φ)

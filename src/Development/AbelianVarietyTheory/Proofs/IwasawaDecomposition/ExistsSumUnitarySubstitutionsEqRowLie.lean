@@ -2,19 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ColLieApply
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.RowActCoefPolyAndUnitaryDense
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -86,8 +73,7 @@ theorem exists_poly_rowSubst_coef (τ : ι) (k l : Fin m) (f : Pol ι m n) (φ :
     · subst h
       choose P hP hP' using fun b : Fin m => hp (φ ∘ₗ LinearMap.mulRight ℂ (X (ρ, b, c)))
       refine ⟨∑ b, X (b, j) * P b, fun g => ?_, ?_⟩
-      · set_option synthInstance.maxHeartbeats 100000 in
-          rw [map_mul, rowSubst_X_self, Finset.mul_sum, map_sum, map_sum]
+      · rw [map_mul, rowSubst_X_self, Finset.mul_sum, map_sum, map_sum]
         refine Finset.sum_congr rfl fun b _ => ?_
         rw [mul_smul_comm, map_smul, map_mul (eval _), eval_X, ← hP b g]
         rfl

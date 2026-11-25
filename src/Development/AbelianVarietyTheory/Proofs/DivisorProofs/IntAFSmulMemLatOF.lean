@@ -4,6 +4,28 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.InfPartFPlac
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsHeisTrivial
 public import Formalism.SharpRestriction.GlobalSchurBounds.StandardLattice
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeisenbergCMRealLineAddNoPhase
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -17,6 +39,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -140,10 +164,10 @@ variable (σ JS JT) in
 def rhoFF : GAF σ JS × GAF σ JT →* Module.End (𝓞 E) (XFF F E nS nT) where
   toFun p :=
     { toFun := fun x => XFF.mk (actOF σ JS JT p.1 p.2 x) (actOF_mem_finSubF _ _ x.fin)
-      map_add' := fun x y => XFF.ext (actOF_add _ _ _ _)
-      map_smul' := fun r x => XFF.ext (actOF_smul _ _ _ _) }
-  map_one' := LinearMap.ext fun x => XFF.ext (actOF_one _)
-  map_mul' p q := LinearMap.ext fun x => XFF.ext (GlobalTheory.WeilPartsF.actOF_mul p.1 q.1 p.2 q.2 _)
+      map_add' := fun _ _ => XFF.ext (actOF_add _ _ _ _)
+      map_smul' := fun _ _ => XFF.ext (actOF_smul _ _ _ _) }
+  map_one' := LinearMap.ext fun _ => XFF.ext (actOF_one _)
+  map_mul' p q := LinearMap.ext fun _ => XFF.ext (GlobalTheory.WeilPartsF.actOF_mul p.1 q.1 p.2 q.2 _)
 
 theorem coe_rhoFF (p : GAF σ JS × GAF σ JT) (x : XFF F E nS nT) :
     (rhoFF σ JS JT p x : WOF F E nS nT) = actOF σ JS JT p.1 p.2 x := rfl

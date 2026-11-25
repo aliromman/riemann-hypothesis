@@ -4,8 +4,36 @@ public import Development.AbelianVarietyTheory.Definitions.AdelicHermitianForms.
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.MatrixKroneckerPowerTensorActionAlgebra
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.TensorActionHermitianExpFixedOfMinNorm
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.TensorPowerSumRightActionNormAndContinuity
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 public import Mathlib.Analysis.Matrix.Order
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +47,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 public import Mathlib.Algebra.BigOperators.Field
 public import Mathlib.Algebra.Star.UnitaryStarAlgAut
 
@@ -139,15 +170,8 @@ private lemma unitary_conj_exp_zero_diagonal_eq_one {ι : Type} [Fintype ι] [De
 open Matrix in
 open scoped Kronecker ComplexOrder TensorProduct MatrixOrder in
 private lemma posSemidef_eq_of_mul_self_eq {ι : Type} [Fintype ι] [DecidableEq ι]
-    (X Y : Matrix ι ι ℂ) (hX : X.PosSemidef) (hY : Y.PosSemidef) (h : X * X = Y * Y) : X = Y := by
-  have hX2 : (0 : Matrix ι ι ℂ) ≤ X * X := by
-    rw [Matrix.nonneg_iff_posSemidef]
-    have := Matrix.posSemidef_conjTranspose_mul_self X
-    rwa [hX.1.eq] at this
-  have hY2 : (0 : Matrix ι ι ℂ) ≤ Y * Y := h ▸ hX2
-  have h1 := (CFC.sqrt_eq_iff (X * X) X hX2 hX.nonneg).mpr rfl
-  have h2 := (CFC.sqrt_eq_iff (Y * Y) Y hY2 hY.nonneg).mpr rfl
-  rw [← h1, ← h2, h]
+    (X Y : Matrix ι ι ℂ) (hX : X.PosSemidef) (hY : Y.PosSemidef) (h : X * X = Y * Y) : X = Y :=
+  (CFC.mul_self_eq_mul_self_iff X Y hX.nonneg hY.nonneg).mp h
 
 open Matrix in
 open scoped Kronecker ComplexOrder TensorProduct MatrixOrder in

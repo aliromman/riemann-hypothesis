@@ -711,7 +711,7 @@ theorem isSSRep_of_mem_twList (Pa : List (Part D.naut.CG))
     (hR : ∀ k, UpperTheory.GalS.IsStringRepN D i (Pa.get k) (R k)) : ∀ p ∈ twList D i Pa R, IsSSRep p.2 := by
   intro p hp
   obtain ⟨k, a, -, rfl⟩ := mem_twList D i hp
-  exact ss_twGL _ _ (hR k).2.1
+  exact GlobalTheory.TwistLG.isSSRep_twGL _ _ (hR k).2.1
 
 end GlobalTheory.EigenPoint
 end -- clump:auto

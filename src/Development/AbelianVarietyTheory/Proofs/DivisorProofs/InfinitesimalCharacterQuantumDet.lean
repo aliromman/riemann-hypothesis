@@ -2,6 +2,29 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.Tpr
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.IsTemperedGLOfIsUnitaryLSeg
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -14,6 +37,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.WignerVanishingGL
 
 @[expose] public section
@@ -31,15 +55,15 @@ def keep (π : CuspSub E a) : Subalgebra ℂ (Module.End ℂ (Sm E a)) where
   carrier := {z | ∀ φ ∈ π.V, z φ ∈ π.V}
   mul_mem' := fun hx hy φ h => hx _ (hy φ h)
   add_mem' := fun hx hy φ h => π.V.add_mem (hx φ h) (hy φ h)
-  algebraMap_mem' := fun c φ h => π.V.smul_mem c h
+  algebraMap_mem' := fun c _ h => π.V.smul_mem c h
 
 def res (π : CuspSub E a) : keep π →ₐ[ℂ] Module.End ℂ π.V where
   toFun z := z.1.restrict z.2
-  map_one' := LinearMap.ext fun φ => Subtype.ext rfl
-  map_mul' _ _ := LinearMap.ext fun φ => Subtype.ext rfl
-  map_zero' := LinearMap.ext fun φ => Subtype.ext rfl
-  map_add' _ _ := LinearMap.ext fun φ => Subtype.ext rfl
-  commutes' _ := LinearMap.ext fun φ => Subtype.ext rfl
+  map_one' := LinearMap.ext fun _ => Subtype.ext rfl
+  map_mul' _ _ := LinearMap.ext fun _ => Subtype.ext rfl
+  map_zero' := LinearMap.ext fun _ => Subtype.ext rfl
+  map_add' _ _ := LinearMap.ext fun _ => Subtype.ext rfl
+  commutes' _ := LinearMap.ext fun _ => Subtype.ext rfl
 
 theorem Eop_mem (π : CuspSub E a) (τ : E →+* ℂ) (i j : Fin a) : Eop τ i j ∈ keep π := by
   have h : ∀ X, lie E a X ∈ keep π := fun X φ hφ => π.stable (.lie X) φ hφ

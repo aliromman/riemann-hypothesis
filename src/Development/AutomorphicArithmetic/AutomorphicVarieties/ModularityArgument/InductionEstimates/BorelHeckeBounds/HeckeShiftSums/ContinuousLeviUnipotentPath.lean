@@ -20,7 +20,31 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.UnipotentBlockMatrices.ClosedKernelMinors.BochnerOfLintegral
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ScatteringLimits.ConvolutionSpectra.ConvAdj
 public import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.RopAdj
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -33,6 +57,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ScatteringLimits.Carries
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Topology.Compactness.Paracompact
@@ -45,6 +71,7 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument
 import GroundTheory.GlobalFields.Adele.Topology
 import Mathlib.CategoryTheory.Countable
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.UnipotentBlockMatrices.ClosedKernelMinors.ThBasic
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.SummandsContRep
 import Mathlib.Analysis.Convolution
@@ -322,7 +349,6 @@ private theorem bd (G : G1 K (2 + 2) → ℂ) (B R : ℝ) (hB : ∀ g, ‖G g‖
   have := norm_setIntegral_le_of_norm_le_const (μ := unipMeasure K (2 + 2) 2) (f := fun X => G (w0 K * nn X * (nn Y * lv a b t * k))) hfin (fun X _ => hB _)
   rwa [Measure.real, hAm] at this
 
-set_option synthInstance.maxHeartbeats 400000 in
 private theorem fco {n : ℕ} : FirstCountableTopology (G1 K n) := by
   haveI := secondCountableTopology_normOneGL (K := K) (n := n)
   infer_instance
@@ -390,7 +416,6 @@ private theorem aeKG (D : TypeDat K (2 + 2)) : ∀ᵐ k ∂D.ν, k ∈ KG K (2 +
   filter_upwards [D.supp] with k hk
   exact ((hOU k).1 hk).2
 
-set_option synthInstance.maxHeartbeats 400000 in
 private theorem fixL (D : TypeDat K (2 + 2)) (w : ℝ → ℂ) (f : G1 K (2 + 2) → ℂ) (hwc : Continuous w) (hfc : Continuous f)
     (hfix : D.Fix f) (B R : ℝ) (hB : ∀ g, ‖w (HH g) * f g‖ ≤ B) (hR : ∀ g, w (HH g) * f g ≠ 0 → |HH g| ≤ R)
     (x : G1 K (2 + 2)) :
@@ -719,8 +744,7 @@ private theorem lineTerm [_root_.NumberField.IsTotallyComplex K] (μ : Measure (
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [hF, Complex.ofReal_one, one_mul]
     ring
-  · set_option synthInstance.maxHeartbeats 100000 in
-      rw [map_sum, Finset.sum_apply]
+  · rw [map_sum, Finset.sum_apply]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [hq]
 
@@ -954,7 +978,6 @@ private theorem bdAll {E : Type} [NormedAddCommGroup E] (U : ℝ → E) (hU : Co
   have : s ∈ closure {x : ℝ | ‖U x‖ ≤ B} := hd s
   rwa [hc.closure_eq] at this
 
-set_option synthInstance.maxHeartbeats 400000 in
 private theorem exK (K : Type) [Field K] [NumberField K] : ∃ κ : Measure (KG K (2 + 2)), κ.IsHaarMeasure := by
   haveI : CompactSpace (KG K (2 + 2)) := isCompact_iff_compactSpace.1 ((blkLaws (K := K)).2.2.2.2.2.2.2.2.2.2.2 (2 + 2)).1
   exact ⟨Measure.haar, inferInstance⟩

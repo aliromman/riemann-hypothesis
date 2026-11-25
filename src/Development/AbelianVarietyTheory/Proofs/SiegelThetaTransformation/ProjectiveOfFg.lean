@@ -11,18 +11,6 @@ public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.Unitar
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.AdelicCompletionFractionalIdealDivisibleEqZero
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsMulMemOfMemSpan
 import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.FiniteResidueFieldAdicCompletionIntegers
 import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ExistsUnitaryOfSelfDual
 import Mathlib.RingTheory.Henselian
@@ -523,7 +511,7 @@ def inc (E : Type) [Field E] [NumberField E] (n : ℕ) : (Fin n → 𝓞 E) →�
 
 theorem inc_apply (x : Fin n → 𝓞 E) (j : Fin n) : (inc E n x : Fin n → E) j = x j := rfl
 
-theorem inc_injective : Function.Injective (inc E n) := fun x y h =>
+theorem inc_injective : Function.Injective (inc E n) := fun _ _ h =>
   funext fun j => RingOfIntegers.ext (congrFun (congrArg Subtype.val h) j)
 
 theorem inc_surjective : Function.Surjective (inc E n) := fun v => by

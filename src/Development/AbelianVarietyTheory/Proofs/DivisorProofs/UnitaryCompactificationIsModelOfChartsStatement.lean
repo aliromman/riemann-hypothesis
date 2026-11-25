@@ -934,7 +934,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto
 open scoped CategoryTheory.Obj
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.OpenPartUnit
 
@@ -961,7 +960,6 @@ section -- clump:auto
 open AlgebraicGeometry CategoryTheory Limits
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.VerticalUnit
 
@@ -1121,7 +1119,6 @@ section -- clump:auto
 open AlgebraicGeometry CategoryTheory Limits
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.VerticalUnit
 

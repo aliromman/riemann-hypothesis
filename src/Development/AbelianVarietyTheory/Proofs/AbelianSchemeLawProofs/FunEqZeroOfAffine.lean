@@ -6,19 +6,6 @@ public import Mathlib.Tactic.ENatToNat
 public import Mathlib.Tactic.ReduceModChar
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ValCalc
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.SectionArithmetic
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.AbelianSchemeLaw.SectionsGroupRank, Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.FunEqZeroOfAffine
@@ -290,22 +277,6 @@ end Twist
 theorem exists_isActOf (hL : L.IsLB) {k : ℤ} {T : Over S} (θ : ThetaGrp A L k T)
     (s : LB.Sec (LPow A L k T)) : ∃ s', IsActOf A L k θ s s' :=
   exists_isTwistPull A hL θ.isGen s
-
-section Pull
-
-variable {A} {a : ℤ} {T T' T'' : Over S}
-
-end Pull
-
-section VV
-
-variable (P : PolAV S) (N m : ℕ) {T T' : Over S}
-
-variable {κ : Type} [Fintype κ]
-
-variable {P N m}
-
-end VV
 
 variable (P : PolAV S) (N m : ℕ)
 

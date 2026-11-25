@@ -1,6 +1,32 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TraceOpen
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -14,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import Mathlib.Topology.MetricSpace.Contracting
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -26,7 +53,6 @@ theorem sqOpen_of_two_ne_zero : ∀ (K : Type) [NormedField K] [CompleteSpace K]
   intro K _ _ h2 V hV
   obtain ⟨ε, hε, hball⟩ := Metric.mem_nhds_iff.1 hV
   set c := ‖(2:K)⁻¹‖ with hc
-  have hc0 : 0 ≤ c := norm_nonneg _
   set ρ := min (ε / 2) (1 / (4 * c + 1)) with hρ
   have hρ0 : 0 < ρ := lt_min (by linarith) (by positivity)
   have hρε : ρ < ε := lt_of_le_of_lt (min_le_left _ _) (by linarith)
@@ -61,8 +87,6 @@ theorem sqOpen_of_two_ne_zero : ∀ (K : Type) [NormedField K] [CompleteSpace K]
     have a2 : ‖1 - μ₂‖ ≤ ρ := by
       rw [norm_sub_rev]; simpa [hs, dist_eq_norm] using h2'
     have a3 : ‖(1 - μ₁) + (1 - μ₂)‖ ≤ 2 * ρ := (norm_add_le _ _).trans (by linarith)
-    have a4 : 0 ≤ ‖μ₁ - μ₂‖ := norm_nonneg _
-    have a5 : 0 ≤ ‖(1 - μ₁) + (1 - μ₂)‖ := norm_nonneg _
     calc ‖μ₁ - μ₂‖ * ‖(1 - μ₁) + (1 - μ₂)‖ * c ≤ ‖μ₁ - μ₂‖ * (2 * ρ) * c := by gcongr
       _ = ‖μ₁ - μ₂‖ * (2 * ρ * c) := by ring
       _ ≤ ‖μ₁ - μ₂‖ * (1 / 2) := by gcongr

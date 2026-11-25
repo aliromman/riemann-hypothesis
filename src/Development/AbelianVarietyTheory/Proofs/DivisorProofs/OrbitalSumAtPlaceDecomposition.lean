@@ -3,18 +3,6 @@ module
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArithIntersectionDivisorSupport
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToVInjective
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianPositivityInvariant
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -162,9 +150,5 @@ theorem cxF_pairOfDat (wt : Polynomial G.F → ℂ) (f : G.GAf → ℂ) (hf : �
         k.2⁻¹ * (d.1.2⁻¹ * toP1 G β y * d.1.2) * k.2 := by group
     rw [e1, e2, hf _ hk.1, hf' _ hk.2]
   · rfl
-
-end GlobalTheory.CxUnfold.OrbitSumGen
-
-namespace GlobalTheory.CxUnfold.OrbitSumGen
 
 end GlobalTheory.CxUnfold.OrbitSumGen

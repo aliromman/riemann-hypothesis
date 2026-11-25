@@ -1,21 +1,8 @@
 module
 
 public import Mathlib.MeasureTheory.Measure.Haar.DistribChar
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -99,7 +86,6 @@ private lemma map_transvection_mulVec_addHaar_eq_self {R : Type} [CommRing R] [T
   have hT' : transvection i j (-c) * transvection i j c = 1 := by
     rw [transvection_mul_transvection_same (h := hij), neg_add_cancel, transvection_zero]
   have hconj : D * transvection i j c * D = transvection i j (-c) := by
-    have hji : j ≠ i := Ne.symm hij
     clear hD hT hT'
     ext a b
     simp only [hD0, Matrix.mul_diagonal, Matrix.diagonal_mul, transvection, Matrix.add_apply,

@@ -7,6 +7,32 @@ public import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods
 public import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.MapEqPadicPowCyclotomicCharacter
 public import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.Action
 import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.EqZeroOfPMulEqZero
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -19,15 +45,13 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-namespace CrisToPeriodApply
-section
-
-end
-end CrisToPeriodApply
 namespace PeriodMapApply
 section
 
@@ -36,11 +60,6 @@ theorem Bridge.aB_apply : ∀ (l : ℕ) [Fact l.Prime] (a : (Reformulated.AutPer
 
 end
 end PeriodMapApply
-namespace PeriodGeneratorApply
-section
-
-end
-end PeriodGeneratorApply
 namespace TeichmullerAction
 section
 
@@ -68,11 +87,6 @@ theorem Bridge.thetaD_of_mem_FilP : ∀ (l : ℕ) [Fact l.Prime] {y : (Reformula
 
 end
 end ThetaOfFiltration
-namespace SigmaEqMap
-section
-
-end
-end SigmaEqMap
 namespace IsUnitOfGenerator
 section
 
@@ -108,11 +122,6 @@ theorem Bridge.sigC_cont : ∀ (l : ℕ) [Fact l.Prime] (g : (PadicAlgCl l ≃�
 
 end
 end ContinuousGalois
-namespace FiltrationMem
-section
-
-end
-end FiltrationMem
 namespace AlgebraMemThetaKernel
 section
 
@@ -123,11 +132,6 @@ theorem Bridge.alg_mem_kerP : ∀ (l : ℕ) [Fact l.Prime] {a : (Reformulated.Au
 
 end
 end AlgebraMemThetaKernel
-namespace CrisEquivExists
-section
-
-end
-end CrisEquivExists
 namespace DividedPowerFiltrationIff
 section
 
@@ -172,16 +176,6 @@ theorem Bridge.bcris_ext : ∀ (l : ℕ) [Fact l.Prime] {R : Type} [CommRing R] 
 
 end
 end PeriodRingExt
-namespace DeRhamFiltrationNeg
-section
-
-end
-end DeRhamFiltrationNeg
-namespace FrobeniusEqMap
-section
-
-end
-end FrobeniusEqMap
 namespace DividedPowerApply
 section
 
@@ -190,11 +184,6 @@ theorem Bridge.pD_apply : ∀ (l : ℕ) [Fact l.Prime] (a : (Reformulated.AutPer
 
 end
 end DividedPowerApply
-namespace CrisGeneratorB
-section
-
-end
-end CrisGeneratorB
 namespace ScalarTowerAlt
 section
 
@@ -204,21 +193,6 @@ theorem Bridge.tower : ∀ (l : ℕ) [Fact l.Prime] (x : (Reformulated.AutPerF.A
 
 end
 end ScalarTowerAlt
-namespace DeRhamGeneratorApply
-section
-
-end
-end DeRhamGeneratorApply
-namespace CrisToComplexAlgebra
-section
-
-end
-end CrisToComplexAlgebra
-namespace CrisZeroDividedPowerMem
-section
-
-end
-end CrisZeroDividedPowerMem
 namespace SigmaCoeffA
 section
 
@@ -228,11 +202,6 @@ theorem Bridge.sigA_coeff : ∀ (l : ℕ) [Fact l.Prime] (g : (PadicAlgCl l ≃�
 
 end
 end SigmaCoeffA
-namespace CrisGeneratorA
-section
-
-end
-end CrisGeneratorA
 namespace GeneratorRelation
 section
 
@@ -314,11 +283,6 @@ theorem Bridge.exists_of_mem_FilD_nat : ∀ (l : ℕ) [Fact l.Prime] {n : ℕ} {
 
 end
 end FiltrationNatExists
-namespace CrisZeroLe
-section
-
-end
-end CrisZeroLe
 namespace ThetaDeRhamAlgebra
 section
 
@@ -347,21 +311,6 @@ theorem Bridge.padicIntMap_eq_algebraMap_comp : ∀ (l : ℕ) [Fact l.Prime] (z 
 
 end
 end GeneratorAlgebraRelation
-namespace PeriodCrisZeroAlgebra
-section
-
-end
-end PeriodCrisZeroAlgebra
-namespace DividedPowerFiltration
-section
-
-end
-end DividedPowerFiltration
-namespace DividedPowerCrisAlgebra
-section
-
-end
-end DividedPowerCrisAlgebra
 namespace DeRhamFiltrationZero
 section
 
@@ -419,16 +368,6 @@ theorem Bridge.acris0_le : ∀ (l : ℕ) [Fact l.Prime] (S : Subalgebra ((Reform
 
 end
 end CrisZeroLeAlt
-namespace CrisToPeriodAlgebra
-section
-
-end
-end CrisToPeriodAlgebra
-namespace FrobeniusGeneratorB
-section
-
-end
-end FrobeniusGeneratorB
 namespace CrisZeroLeThird
 section
 
@@ -451,16 +390,6 @@ theorem Bridge.dividedPower_mem_Acris0 : ∀ (l : ℕ) [Fact l.Prime] (x : (Refo
 
 end
 end DividedPowerInCrisZero
-namespace PeriodGeneratorImage
-section
-
-end
-end PeriodGeneratorImage
-namespace DividedPowerMemCrisZero
-section
-
-end
-end DividedPowerMemCrisZero
 namespace EvaluationDividedPower
 section
 
@@ -480,11 +409,6 @@ theorem Bridge.CrisMaps.φB_algebraMap : ∀ (l : ℕ) [Fact l.Prime] (x : (Refo
 
 end
 end FrobeniusPeriodAlgebraMap
-namespace DeRhamFraction
-section
-
-end
-end DeRhamFraction
 namespace CrisRootNeOne
 section
 
@@ -656,11 +580,6 @@ theorem Bridge.RingBasics.awayMap_algebraMap₂ : ∀ (l : ℕ) [Fact l.Prime] (
 
 end
 end ExtensionAlgebra
-namespace FrobeniusGeneratorA
-section
-
-end
-end FrobeniusGeneratorA
 namespace UntiltFrobenius
 section
 
@@ -705,26 +624,6 @@ theorem Bridge.RingBasics.p_ne_zero : ∀ (l : ℕ) [Fact l.Prime] , ((l : ℕ) 
 
 end
 end PrimeNeZero
-namespace FactorialMulPartial
-section
-
-end
-end FactorialMulPartial
-namespace AdicLevelCompat
-section
-
-end
-end AdicLevelCompat
-namespace AdicEvaluationMk
-section
-
-end
-end AdicEvaluationMk
-namespace DeRhamHomExt
-section
-
-end
-end DeRhamHomExt
 namespace GaloisNormAlt
 section
 
@@ -735,11 +634,6 @@ theorem Bridge.RingBasics.norm_gal : ∀ (l : ℕ) [Fact l.Prime] (g : (PadicAlg
 
 end
 end GaloisNormAlt
-namespace AdicEvaluationMap
-section
-
-end
-end AdicEvaluationMap
 namespace RootConstantCoeffNeZero
 section
 
@@ -760,11 +654,6 @@ theorem Bridge.AdicMaps.adicMap_alg : ∀ {R S : Type} [CommRing R] [CommRing S]
 
 end
 end AdicMapAlgebra
-namespace AdicSpanLeComap
-section
-
-end
-end AdicSpanLeComap
 namespace FrobeniusComplexOne
 section
 
@@ -806,16 +695,6 @@ theorem Bridge.RingBasics.isUnit_nat :
 
 end
 end NatIsUnit
-namespace AdicLevelMap
-section
-
-end
-end AdicLevelMap
-namespace FactorPowerEval
-section
-
-end
-end FactorPowerEval
 namespace CrisToDeRhamInjective
 section
 
@@ -914,16 +793,6 @@ theorem Bridge.CrisLoc.bcris_hom_ext : ∀ (l : ℕ) [Fact l.Prime] {R : Type} [
 
 end
 end CrisHomExt
-namespace UnitOfGenerator
-section
-
-end
-end UnitOfGenerator
-namespace PadicIntHomExt
-section
-
-end
-end PadicIntHomExt
 namespace WittFrobeniusLift
 section
 

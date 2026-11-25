@@ -1427,7 +1427,7 @@ private theorem Phi_hkS {l : ℕ} [Fact l.Prime] (ι : Qbar l ≃+* ℂ) {k : �
   rw [fT_Phi ι φ h, Phi_eq ι (hkS hk1 c hω w φ) hd]
 private theorem Phi_inj {l : ℕ} [Fact l.Prime] (ι : Qbar l ≃+* ℂ) {k : ℕ} (hk1 : 1 ≤ k) (c : Pl F → ℕ) {ω : HChar F}
     (hω : IsOfFinOrder ω) : Function.Injective (Phi ι k c ω) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro φ h0
   obtain ⟨_, h⟩ := cf_spec φ
   refine Subtype.ext (expInj F k hk1 c ω hω φ.1 φ.2.1 _ _ h fun 𝔪 h𝔪 => ?_)

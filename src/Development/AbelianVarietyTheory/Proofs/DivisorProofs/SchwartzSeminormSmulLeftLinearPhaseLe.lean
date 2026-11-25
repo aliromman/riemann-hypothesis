@@ -4,18 +4,6 @@ public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
 public import Mathlib.Analysis.Calculus.ContDiff.Bounds
 import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Mathlib.Analysis.Calculus.Deriv.Mul
 public import Mathlib.Analysis.Complex.RealDeriv
 public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
@@ -95,9 +83,7 @@ theorem seminorm_smulLeft_phase_le : ∀ {V : Type} [NormedAddCommGroup V] [Norm
   refine ⟨(n + 1) * B, fun t ht f => ?_⟩
   rw [phase_eq L c t]
   set S := ∑ m ∈ Finset.range (n + 1), SchwartzMap.seminorm ℂ k m f with hS
-  have hS0 : 0 ≤ S := Finset.sum_nonneg fun m _ => apply_nonneg _ _
   have hL0 : 0 ≤ 2 * Real.pi * ‖L‖ := by positivity
-  have hB0 : 0 ≤ B := by positivity
   refine SchwartzMap.seminorm_le_bound ℂ k n _ (by positivity) fun x => ?_
   have happ : (⇑(SchwartzMap.smulLeftCLM ℂ (phaseLine c t ∘ ⇑L) f))
       = fun y => (phaseLine c t ∘ ⇑L) y * f y := by

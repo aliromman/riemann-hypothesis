@@ -10,20 +10,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RowTy
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntAtNatCast
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.TwistedK1BlockDecomposition
 public import Formalism.LocalToGlobal.Columns.QthExistsBound
-import Mathlib.RingTheory.Coalgebra.CoassocSimps
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.RedPEqZeroOfDiv
 
 @[expose] public section
@@ -293,9 +280,3 @@ theorem extE_cong_mem {X : Fields} {Pr : Primes X} {R : Ranks} {Ch : Chars X Pr 
     simpa [lamYat] using c1 x hx
 
 end GlobalTheory.TwU.MidIndep
-
-namespace GlobalTheory.TwU
-
-open GlobalTheory.CongLevel GlobalTheory.TwU.MidIndep
-
-end GlobalTheory.TwU

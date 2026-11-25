@@ -1,25 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.DualRestrictSurjectiveOfIsTorsionFreeQuotient
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Mathlib.LinearAlgebra.Determinant
 
@@ -368,7 +349,10 @@ theorem exists_isSymm_isUnit_add_mul [Finite (MaximalSpectrum R)] {A B C D : Mat
       rw [← hf, heq', IsUnit.mul_iff, IsUnit.mul_iff]
       refine ⟨⟨isUnit_of_invertible _, ?_⟩, ?_⟩
       · nth_rw 1 [Y_def, heq, ← (f Q).fromBlocks_toBlocks, hBlocks.2]
-        simpa [hf, fromBlocks_multiply, fromBlocks_add] using hUnit₂₂
+        simp only [hf] at hUnit₂₂
+        simp [hf, fromBlocks_multiply, fromBlocks_add]
+        rw [isUnit_iff_isUnit_det, det_fromBlocks_zero₁₂, det_one, one_mul]
+        exact (isUnit_iff_isUnit_det _).1 hUnit₂₂
       · exact f_unit <| isUnit_nonsing_inv_iff.2 hU
   have key : ∀ p : MaximalSpectrum R, ∃ Y : Matrix l l (R ⧸ p.asIdeal), Y.IsSymm ∧
       IsUnit (A.map (Ideal.Quotient.mk p.asIdeal) + Y * C.map (Ideal.Quotient.mk p.asIdeal)) := by

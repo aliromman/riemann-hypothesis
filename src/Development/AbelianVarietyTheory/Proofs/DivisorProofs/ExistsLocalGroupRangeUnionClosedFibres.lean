@@ -27,6 +27,32 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFieldP
 public import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.IsIntegralOfSmoothFieldOfConnectedSpace
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GrpLawAndUnitAgreeOfOpenInDescentModel
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitMemIdentityComponents
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -55,6 +81,10 @@ import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsAd
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.CanonGenIsGen
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SymplecticGenerators.StTransl
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Presheaf
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.AlgebraicGeometry.Morphisms.LocalFlatDescent
@@ -437,7 +467,6 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.Toroidal GlobalTheory.LocM G
 open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.Desc
 
@@ -1391,7 +1420,6 @@ theorem Emb.exists_locGrp : ∀ (σ : Setup) (E : Emb σ), σ.Common → ∀ x :
     ((HasRingHomProperty.Spec_iff (P := @Flat)).2 (σ.flat x))
   obtain ⟨V, hs, hq, hA, hU, e, he, pb⟩ := exists_open σ E hC x ξ' hξ
   have := E.sep
-  have hιA : IsOpenImmersion E.ιA := MorphismProperty.of_isPullback (P := @IsOpenImmersion) E.cartA.flip inferInstance
   let i : σ.A.left ⟶ V.toScheme := IsOpenImmersion.lift V.ι E.ιA (by rwa [Scheme.Opens.range_ι])
   have hi : i ≫ V.ι = E.ιA := IsOpenImmersion.lift_fac _ _ _
   have pA : IsPullback i σ.A.hom (V.ι ≫ E.p) (awayMap σ.f) := isPullback_of_mono (hi ▸ E.cartA)
@@ -1439,10 +1467,6 @@ noncomputable section
 
 namespace GlobalTheory.SemiStableId
 
-end GlobalTheory.SemiStableId
-
-namespace GlobalTheory.SemiStableId
-
 variable {S : Scheme.{0}} {G G₀ : Over S} [GrpObj G] (j : G₀ ⟶ G)
 
 abbrev RangeIsId : Prop := ∀ x : G.left, x ∈ Set.range j.left ↔
@@ -1475,17 +1499,6 @@ theorem isConnected_fibre [IsOpenImmersion j.left] (hr : RangeIsId j) (s : S) :
 
 end GlobalTheory.SemiStableId
 
-namespace GlobalTheory.SemiStableId
-
-end GlobalTheory.SemiStableId
-
-namespace GlobalTheory.SemiStableId
-
-end GlobalTheory.SemiStableId
-
-namespace GlobalTheory.SemiStableId
-
-end GlobalTheory.SemiStableId
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

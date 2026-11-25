@@ -5,6 +5,7 @@ public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 public import Mathlib.NumberTheory.Padics.RingHoms
 public import Mathlib.Topology.LocallyConstant.Basic
 import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.NumberTheory.Padics.ProperSpace
 import Mathlib.Tactic.Linter.HaveILetI
@@ -54,7 +55,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry Polynomial DividedPowers GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
 
 namespace GlobalTheory.CompanionTheory.PadicShift

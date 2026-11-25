@@ -24,6 +24,33 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TateTwistLoc
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.EtaleAxioms.EquivalenceQuasiAffine
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.EtaleAxioms.HenselianIdempotents
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.SpecAbsolutelyIntegrallyClosedCohomology
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -41,6 +68,7 @@ import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Development.EtaleCohomology.EtaleSheaves.CechLevels
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.TypeStar
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Lemma
 import Mathlib.CategoryTheory.Abelian.GrothendieckCategory.EnoughInjectives
 import Mathlib.Tactic.Linter.Style
@@ -359,12 +387,6 @@ def FreeSingleHomotopyEquivDiscreteChains : Prop := ∀ (R : Type) [CommRing R],
 
 variable {R : Type} [CommRing R]
 
-theorem cpull_comp {K L M : Cx R} (f : K ⟶ L) (g : L ⟶ M) (I : Cx R) (n : ℤ) (x : CohomologyClass M I n) :
-    cpull (f ≫ g) I n x = cpull f I n (cpull g I n x) := by
-  obtain ⟨x, rfl⟩ := x.mk_surjective
-  refine congrArg CohomologyClass.mk (Cocycle.ext ?_)
-  simp [zcomp, Cochain.ofHom_comp]
-
 theorem sq_iff {A B C D : Type*} {a : B → D} {b : A → B} {c : C → D} {d : A → C}
     (w : ∀ x, a (b x) = c (d x)) (ha : Function.Bijective a) (hd : Function.Bijective d) :
     (Function.Bijective b ↔ Function.Bijective c) ∧ (Function.Injective b ↔ Function.Injective c) := by
@@ -405,10 +427,10 @@ theorem LevelIdent_of (hS : FreeSingleHomotopyEquivDiscreteChains) : LateralTheo
     rw [← S.map_comp, ← S.map_comp, chains_f]; simp [g]
   have w1 : ∀ x, cpull (S.map (chainsXIso R E p).hom) (res R F) j (cpull (S.map ((free R).map g)) (res R F) j x) =
       cpull (S.map (((chains R).map f).f (-(p : ℤ)))) (res R F) j (cpull (S.map (chainsXIso R E' p).hom) (res R F) j x) := by
-    intro x; rw [← cpull_comp, ← cpull_comp, sq1]
+    intro x; rw [← GlobalTheory.EtC.ZcFun.cpull_comp, ← GlobalTheory.EtC.ZcFun.cpull_comp, sq1]
   have w2 : ∀ x, cpull (e (E.obj (op (SimplexCategory.mk p)))).hom (res R F) j (pull R (disc.map g) F j x) =
       cpull (S.map ((free R).map g)) (res R F) j (cpull (e (E'.obj (op (SimplexCategory.mk p)))).hom (res R F) j x) := by
-    intro x; rw [pull_eq, ← cpull_comp, ← cpull_comp, he g]
+    intro x; rw [pull_eq, ← GlobalTheory.EtC.ZcFun.cpull_comp, ← GlobalTheory.EtC.ZcFun.cpull_comp, he g]
   obtain ⟨b1, i1⟩ := sq_iff w1 (cpull_isoHom_bij (S.mapIso (chainsXIso R E p)) _ _)
     (cpull_isoHom_bij (S.mapIso (chainsXIso R E' p)) _ _)
   obtain ⟨b2, i2⟩ := sq_iff w2 (GlobalTheory.EtC.LevelCmp.cpull_bij_of_heq _ _ _) (GlobalTheory.EtC.LevelCmp.cpull_bij_of_heq _ _ _)
@@ -542,7 +564,6 @@ lemma trd (i j : ℕ) :
   simp only [HomologicalComplex.stupidTruncXIso_rfl, HomologicalComplex.stupidTrunc,
     (K.restriction (E M)).extend_d_eq (E M) (i := i) (j := j) rfl rfl,
     Category.assoc, Iso.inv_hom_id, Category.comp_id, HomologicalComplex.restriction_d]
-
 
 open Classical in
 def iotaf (p : ℤ) : (K.stupidTrunc (E M)).X p ⟶ K.X p :=

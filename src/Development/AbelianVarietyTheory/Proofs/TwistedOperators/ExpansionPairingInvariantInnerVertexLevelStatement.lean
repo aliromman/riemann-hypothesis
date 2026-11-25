@@ -164,7 +164,6 @@ open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheor
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
 open Matrix
 
-alias _root_.GlobalTheory.T.idempotentCut_mem_latticeStabilizer_of_productLevel := _root_.GlobalTheory.CutProdLev.cutGL_mem_St_of_mem_prodLev
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IdempotentCutMemLatticeStabilizerOfProductLevelStatement =====
@@ -344,7 +343,7 @@ theorem keep_stdLatO : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G 
     simp only [Matrix.map_apply, Matrix.add_apply, Matrix.smul_apply, smul_eq_mul]
     linear_combination h3
   have hK : GlobalTheory.UnitaryIdemCut.cutGL b hb (finG (G.V (.top (j + 1))) k) ∈ St (S.βp (j + 1)) :=
-    GlobalTheory.T.idempotentCut_mem_latticeStabilizer_of_productLevel _ _ _ _ _ hk b hb fun w ⟨PP, hPP, hw⟩ => by
+    GlobalTheory.CutProdLev.cutGL_mem_St_of_mem_prodLev _ _ _ _ _ hk b hb fun w ⟨PP, hPP, hw⟩ => by
       rw [hcb]
       rcases GlobalTheory.IdemSupport.eq_or_eq_cP hw with rfl | rfl
       · rw [(hca _).1 (Or.inl hPP)]; ring

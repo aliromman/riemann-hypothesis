@@ -13,27 +13,10 @@ public import Development.AbelianVarietyTheory.Proofs.CharacterTheory.EssFiniteT
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNormalFiniteTypeSubringInValuationSubring
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIsLocModelIsPrimeOf
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EssFiniteTypeOfLocalizationFiniteTypeComplex
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteIntegralClosureOfEssFiniteTypeField
-import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.Valuation.LocalSubring
-import Mathlib.RingTheory.Ideal.KrullsHeightTheorem
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.FieldTheory.PurelyInseparable.Exponent
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SpanFinrankMaximalIdealLeNcardOfLeSupSq
@@ -656,9 +639,7 @@ theorem exists_place_dominating : ∀ {κ : Type} [Field κ] [Algebra ℂ κ] (O
   rw [← hY] at hf
   obtain ⟨w, hw, efw⟩ := hspan f hf
   have hw0 : w ≠ 0 := by rintro rfl; exact hf0 (by rw [efw, mul_zero])
-  have haW : (a : κ) ∈ W := hRW a'
   have hainv : (a : κ)⁻¹ ∉ W := hninvW a' haQ ha'0
-  have h1 : 0 ≤ F.ord (a : κ) := (F.ord_nonneg_iff ha0).2 haW
   have h2 : ¬ 0 ≤ F.ord ((a : κ)⁻¹) := fun h => hainv ((F.ord_nonneg_iff (inv_ne_zero ha0)).1 h)
   have h3 : 0 ≤ F.ord w := (F.ord_nonneg_iff hw0).2 hw
   rw [F.ord_inv] at h2
@@ -858,7 +839,7 @@ theorem Place.exists_smooth_subalgebra : ∀ {κ' : Type} [Field κ'] [Algebra �
     rw [map_mul, hφ, hφ] at this
     exact this
   have hinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨⟨a, s, hs⟩, e⟩ := IsLocalization.surj (Submonoid.powers g) x
     have h1 := congrArg φ e

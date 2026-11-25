@@ -601,8 +601,7 @@ private lemma gc_span [IsDomain O] [FaithfulSMul O E] {n : ℕ} (W : WPres O Y R
       exact zero_mem _
     · rw [AlgHom.commutes, AlgHom.commutes, hC]
       exact zero_mem _
-    · set_option synthInstance.maxHeartbeats 100000 in
-        rw [map_sum, map_sum, map_sum]
+    · rw [map_sum, map_sum, map_sum]
       refine Submodule.sum_mem _ (fun k _ => ?_)
       rw [map_smul, map_smul, hlinO]
       exact Submodule.smul_mem _ _ (hv k)
@@ -1071,7 +1070,7 @@ theorem UpperTheory.V.Loc.liftChart :
   · classical
     rw [← Submodule.range_subtype (wtDer W.part (W.origin h) E j), ← LinearMap.range_comp, Submodule.range_subtype,
       LinearMap.finrank_range_of_inj]
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro δ hδ
     refine Subtype.ext ((der_extend O R X W h E).2 δ.1 (hO _ δ.2.1) fun s => ?_)
     obtain ⟨g, a, b, e, -⟩ := hWz s

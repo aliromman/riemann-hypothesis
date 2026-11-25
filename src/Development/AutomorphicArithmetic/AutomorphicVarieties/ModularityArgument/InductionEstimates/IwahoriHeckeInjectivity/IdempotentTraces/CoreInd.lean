@@ -1131,7 +1131,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.secFD :
   let pts : (Fin a × Fin a) × (Fin b × Fin b) × s × (Fin c × Fin c) → G1 K (2 + 2) := fun p =>
     lv (x p.1.1 p.1.2) (y p.2.1.1 p.2.1.2) 0 * (p.2.2.1 : G1 K (2 + 2)) * (z p.2.2.2.1 p.2.2.2.2 : G1 K (2 + 2))
   refine FiniteDimensional.of_injective ((LinearMap.funLeft ℂ ℂ pts).comp S.subtype) ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   rintro ⟨f, a1, a2, a3, a4, a5, a6⟩ hf
   have h0 : ∀ p, f (pts p) = 0 := fun p => congrFun hf p
   have h1 : ∀ i p j q, ∀ k ∈ KG K (2 + 2), f (lv (x i p) (y j q) 0 * k) = 0 := by

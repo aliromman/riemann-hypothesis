@@ -4,19 +4,6 @@ public import Development.AbelianVarietyTheory.BlockTheory.ThetaLiftGeometry.Ker
 public import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsTraceCompatibleTorusEmbeddingStandardTorus
 import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.FamilyLogGammaSmallHolds
-import Mathlib.RingTheory.Valuation.Integral
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DifferentiableComb
 
 @[expose] public section
@@ -104,11 +91,5 @@ theorem applyAt0_comb {ι : Type} (s : Finset ι) (c : ι → ℂ) (f : ι → V
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun α _ => by ring
 
 end GlobalTheory.LiftTypePrime.Jets
-
-namespace GlobalTheory.LiftTypePrime
-
-open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.GL3Theta GlobalTheory.IndefiniteRowSideFullHecke.IntegralityWeylConditions GlobalTheory.GalTheta Jets
-
-end GlobalTheory.LiftTypePrime
 
 end

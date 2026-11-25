@@ -1352,9 +1352,6 @@ end Assembly
 
 end Formalism.L2.SG.Pf.ThSomePf
 
-namespace Formalism.L2.SG.Pf
-
-end Formalism.L2.SG.Pf
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

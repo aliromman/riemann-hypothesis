@@ -9,6 +9,31 @@ import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsUniqueCons
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.LieImgIffIsLieComb
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.PmapsOfGenRelR
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.CubicalSymmetryTransport
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -21,6 +46,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.UniversalCharts.UnivChartLoc
 import Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.ArcLineFunctions.ArcSPin
 
@@ -268,14 +294,12 @@ theorem comb_iff_coeff (U : Fin m → Fin g → A) (cf : Fin m → PowerSeries A
 theorem eig_const_iff (N : Matrix (Fin g) (Fin g) A) (r : A) (z : Fin g → A) :
     (fun j => PowerSeries.C (R := A) (z j)) ᵥ* N.map (PowerSeries.C (R := A)) =
       PowerSeries.C (R := A) r • (fun j => PowerSeries.C (R := A) (z j)) ↔ z ᵥ* N = r • z := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp only [funext_iff, vecMul, dotProduct, map_apply, Pi.smul_apply, smul_eq_mul, ← map_mul, ← map_sum,
     PowerSeries.C_injective.eq_iff]
 
 theorem comb_const_iff (U : Fin m → Fin g → A) (cf : Fin m → A) (z : Fin g → A) :
     ((fun j => PowerSeries.C (R := A) (z j)) =
       ∑ k, PowerSeries.C (R := A) (cf k) • fun j => PowerSeries.C (R := A) (U k j)) ↔ z = ∑ k, cf k • U k := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp only [funext_iff, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, ← map_mul, ← map_sum,
     PowerSeries.C_injective.eq_iff]
 

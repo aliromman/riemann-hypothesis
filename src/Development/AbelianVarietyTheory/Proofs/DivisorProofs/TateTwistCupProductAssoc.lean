@@ -13,6 +13,33 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Hypercohomol
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTateTwistResolutionTensorFlat
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TateTwistResolutionMapExistsUniqueHomotopyStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TateTwistResolutionPairingSpecAndCupUnique
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -230,16 +257,11 @@ theorem res_smul' {F : Shv R} {V U : Scheme.{0}} (g : V ⟶ U) (r : ULift.{1} R)
     Sec.res g (r • a) = r • Sec.res g a := map_smul _ _ _
 
 theorem res_map' {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (a : Sec F U) :
-    Sec.res g (Sec.map φ a) = Sec.map φ (Sec.res g a) := by
-  have := congrArg (fun f => f.hom a) (φ.hom.naturality g.op)
-  simpa [Sec.res, Sec.map] using this.symm
+    Sec.res g (Sec.map φ a) = Sec.map φ (Sec.res g a) := GlobalTheory.EtC.CupSpec.map_res φ g a
 
 theorem lift_nat (τ : Pair I J T) {V U : Scheme.{0}} (g : V ⟶ U) (st : ℤ) (x : Tens I J U st) :
     Sec.res g (τ.lift U st x) = τ.lift V st (Tens.res g st x) := by
-  induction x using tens_ind with
-  | h0 => simp
-  | hadd x y hx hy => rw [map_add (f := _), res_add', hx, hy, map_add (f := _), map_add (f := _)]
-  | hof p a b => rw [lift_lof, GlobalTheory.EtC.TensEx.res_lof, lift_lof, τ.nat]
+  exact (GlobalTheory.EtC.Pair.lift_tensRes τ g st x).symm
 
 theorem B_nat (μ' : Pair J K M) (ν' : Pair I M L) (st u w : ℤ) (h : st + u = w) {V U : Scheme.{0}} (g : V ⟶ U)
     (c : Sec (K.X u) U) (x : Tens I J U st) :

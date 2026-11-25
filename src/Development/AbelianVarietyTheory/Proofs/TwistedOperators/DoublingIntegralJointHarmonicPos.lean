@@ -826,12 +826,6 @@ theorem sameBlock_of_posC {p q : ℕ} {a b : Ix p q} (h : posC a b) : sameBlock 
 theorem sameBlock_refl {p q : ℕ} (a : Ix p q) : sameBlock a a := by
   cases a <;> exact True.intro
 
-private theorem mem_hwSub_iff' {p q : ℕ} {V0 : Type} [AddCommGroup V0] [Module ℂ V0]
-    (f : Mat p q →ₗ[ℂ] Module.End ℂ V0) (μ : Ix p q → ℚ) (z : V0) :
-    z ∈ hwSub f μ ↔ (∀ a, f (Eab a a) z = (μ a : ℂ) • z) ∧ ∀ a b, posC a b → f (Eab a b) z = 0 := by
-  simp only [hwSub, wtSub, Submodule.mem_inf, Submodule.mem_iInf, LinearMap.mem_ker, LinearMap.sub_apply,
-    LinearMap.smul_apply, LinearMap.id_apply, sub_eq_zero]
-
 theorem inner_eq_of_irreducible (p q : ℕ) (M : GKMod p q) (H₁ : Type) [NormedAddCommGroup H₁]
     [InnerProductSpace ℂ H₁] (H₂ : Type) [NormedAddCommGroup H₂] [InnerProductSpace ℂ H₂]
     (j₁ : M.V →ₗ[ℂ] H₁) (j₂ : M.V →ₗ[ℂ] H₂)
@@ -865,7 +859,7 @@ theorem inner_eq_of_irreducible (p q : ℕ) (M : GKMod p q) (H₁ : Type) [Norme
     intro w
     rw [h₁, h₂, hz]
   obtain ⟨hv0, hvmem⟩ : v ≠ 0 ∧ v ∈ hwSub M.act μ := hv
-  have hmem := (mem_hwSub_iff' M.act μ v).mp hvmem
+  have hmem := (GlobalTheory.LowGen.mem_hwSub M.act μ v).mp hvmem
 
   let A : ({ab : Ix p q × Ix p q // posC ab.1 ab.2} ⊕ Ix p q) → Module.End ℂ M.V :=
     Sum.elim (fun ab => M.act (Eab ab.1.1 ab.1.2)) (fun c => M.act (Eab c c) - (μ c : ℂ) • LinearMap.id)
@@ -890,7 +884,7 @@ theorem inner_eq_of_irreducible (p q : ℕ) (M : GKMod p q) (H₁ : Type) [Norme
   have hline : ∀ z, (∀ i, A i z = 0) → ∃ c : ℂ, c • v = z := by
     intro z hz0
     have hzmem : z ∈ hwSub M.act μ := by
-      rw [mem_hwSub_iff']
+      rw [GlobalTheory.LowGen.mem_hwSub]
       refine ⟨fun c => ?_, fun a b hab => hz0 (Sum.inl ⟨(a, b), hab⟩)⟩
       have hc0 := hz0 (Sum.inr c)
       simp only [A, Sum.elim_inr, LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.id_apply,

@@ -2,6 +2,28 @@ module
 
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.OrbitLatticeUnimodularAndPrimitive
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HbApply
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -15,6 +37,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -53,12 +78,10 @@ theorem dual_symm (hh : ∀ x y, star (h x y) = h y x) {e c : Fin r → V}
 
 theorem pair_sum_e {e c : Fin r → V} (hd : ∀ a b, h (c a) (e b) = if a = b then 1 else 0)
     (s : Fin r → K) (b : Fin r) : h (c b) (∑ a, s a • e a) = s b := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp [map_sum, map_smul, hd, Finset.sum_ite_eq]
 
 theorem pair_sum_zero {x : V} {c : Fin r → V} (H : ∀ a, h x (c a) = 0) (s : Fin r → K) :
     h x (∑ a, s a • c a) = 0 := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp [map_sum, map_smul, H]
 
 theorem coord {e c : Fin r → V} (hd : ∀ a b, h (c a) (e b) = if a = b then 1 else 0) {v : V}
@@ -88,7 +111,6 @@ variable {K V : Type} [Field K] [StarRing K] [AddCommGroup V] [Module K V]
 
 theorem pair_first (s : Fin r → K) (e : Fin r → V) (y : V) :
     h (∑ a, s a • e a) y = ∑ a, star (s a) * h (e a) y := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp [map_sum, LinearMap.map_smulₛₗ, starRingEnd_apply]
 
 theorem P_iso (hh : ∀ x y, star (h x y) = h y x) {e : Fin r → V} (hee : ∀ a b, h (e a) (e b) = 0)

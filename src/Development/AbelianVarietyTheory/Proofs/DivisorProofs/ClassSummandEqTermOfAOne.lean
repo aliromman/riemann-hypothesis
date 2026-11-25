@@ -122,9 +122,6 @@ theorem local_class_scalar_norm_sep : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup 
       inC G ℚ_[ℓ] (((c⁻¹ : G.Cˣ) : G.C) * β * sh G ((c⁻¹ : G.Cˣ) : G.C) * ((β⁻¹ : G.Cˣ) : G.C)) = algebraMap ℚ_[ℓ] (ℚ_[ℓ] ⊗[ℚ] G.C) (u : ℚ_[ℓ]) * ((z : ℚ_[ℓ] ⊗[ℚ] G.C) * inC G ℚ_[ℓ] (β : G.C) *
         (starT G.star ℚ_[ℓ] (z : ℚ_[ℓ] ⊗[ℚ] G.C)).unop * inC G ℚ_[ℓ] ((β⁻¹ : G.Cˣ) : G.C)) := by
   intro p _ G L f hf β x t hx hβ y₀ hsep hdeg
-  have hcomm : ∀ a b : G.C, Commute a (((y₀ : G.Cˣ × ℚˣ).1 : G.Cˣ) : G.C) →
-      Commute b (((y₀ : G.Cˣ × ℚˣ).1 : G.Cˣ) : G.C) → Commute a b :=
-    fun a b ha hb => GlobalTheory.LKCx.ClsReg.commute_of_commute_of_separable G _ hsep hdeg a b ha hb
   obtain ⟨Ω, hΩc, hΩ⟩ := _root_.GlobalTheory.FinClsLoc.support_subset_compact p G L f hf
   have hev := eventually_compL_mem_intPts p G Ω hΩc
   have hlat := _root_.GlobalTheory.FinClsLoc.SepLat.kottwitz_lattice_sep p G (y₀ : G.Cˣ × ℚˣ).1 hsep hdeg
@@ -1016,7 +1013,6 @@ theorem valued_snd_eq_one {p : ℕ} [Fact p.Prime] (G : HTGroup p) (K : Subgroup
   have h1 := hle k hk
   have h2 := hle k⁻¹ (K.inv_mem hk)
   have h3 : F k⁻¹ * F k = 1 := by rw [← hmul, inv_mul_cancel, hone]
-  have h0 : 0 ≤ F k⁻¹ := norm_nonneg _
   have h0' : 0 ≤ F k := norm_nonneg _
   have hk1 : F k = 1 := by nlinarith
   have hle1 : Valued.v (AfP.eval w (((k : (AfP p ⊗[ℚ] G.C)ˣ × (AfP p)ˣ).2 : (AfP p)ˣ) : AfP p)) ≤ 1 :=
@@ -1046,7 +1042,6 @@ theorem glOneUnramifiedEntryNorm_eq_one_of_integral (p : ℕ) [Fact p.Prime] {k 
   have h1 := glOneUnramifiedEntryNorm_le_one_of_integral p hk
   have h2 := glOneUnramifiedEntryNorm_le_one_of_integral p ((GlobalTheory.LKLoc.Kint p (Q0 p) 1 1).inv_mem hk)
   have h3 : nu1 p k⁻¹ * nu1 p k = 1 := by rw [← glOneUnramifiedEntryNorm_mul, inv_mul_cancel, glOneUnramifiedEntryNorm_one]
-  have h0 : 0 ≤ nu1 p k⁻¹ := norm_nonneg _
   have h0' : 0 ≤ nu1 p k := norm_nonneg _
   nlinarith
 
@@ -1343,9 +1338,6 @@ theorem class_summand_eq_term_of_a_one : ∀ (p : ℕ) [Fact p.Prime] (G : HTGro
 
 end GlobalTheory.LKCx.CxReg
 
-namespace GlobalTheory.LKCx
-
-end GlobalTheory.LKCx
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

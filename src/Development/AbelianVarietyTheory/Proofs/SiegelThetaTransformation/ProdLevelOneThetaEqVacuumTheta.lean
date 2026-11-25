@@ -4,18 +4,6 @@ public import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsSt
 public import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.LevelOneThetaEqSmulOfSelfDualLattice
 public import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.HasSumPolyDerivMulProdAddMatrix
 public import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsSymplOfSelfDual
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ThetaIdealLatticeEqSumLevelTranslates
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.PeriodCoordinateThetaOfSignedHeisenbergVacuumStatement
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.TensorLatticeSelfDualSemicharacterIndex
@@ -43,11 +31,6 @@ open GlobalTheory.Dict
 namespace GlobalTheory.Dict.VacProd
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r g : ℕ} {X : Data E r}
-
-theorem thetaSignExpEF_add_selfDual_lattice {L : Lt E r} (hL : SelfD X L) {w : E} (hw : IsIntegral ℤ w) (hw1 : w + cc w = 1)
-    {u v : Fin r → E} (hu : u ∈ L) (hv : v ∈ L) :
-    eps1 X w (u + v) = eps1 X w u * eps1 X w v * cexp (-(Real.pi * I * ((EF X u v : ℚ) : ℂ))) := by
-  apply GlobalTheory.Dict.ThetaEig.thetaSignExpEF_add_selfDual_lattice <;> assumption
 
 private theorem bilinForm_sum_smul_eq_neg_omegaStd {V : Type} [AddCommGroup V] [Module ℚ V] (B : LinearMap.BilinForm ℚ V)
     {b : Fin g ⊕ Fin g → V}
@@ -137,7 +120,7 @@ theorem thetaSign_mul_canonicalTheta_multiplier {L : Lt E r} (hL : SelfD X L) {w
       have hs : ∑ j, (m + m') j • b j = ∑ j, m j • b j + ∑ j, m' j • b j := by
         simp only [Pi.add_apply, add_smul, Finset.sum_add_distrib]
       rw [hs]
-      exact thetaSignExpEF_add_selfDual_lattice hL hw hw1 (hbL' m) (hbL' m')
+      exact GlobalTheory.Dict.ThetaEig.thetaSignExpEF_add_selfDual_lattice hL hw hw1 (hbL' m) (hbL' m')
     have h2 : GlobalTheory.CanTh.canMult a₁ a₂ (fun i => (m + m') (Sum.inl i)) (fun i => (m + m') (Sum.inr i)) =
         GlobalTheory.CanTh.canMult a₁ a₂ (fun i => m (Sum.inl i)) (fun i => m (Sum.inr i)) *
         GlobalTheory.CanTh.canMult a₁ a₂ (fun i => m' (Sum.inl i)) (fun i => m' (Sum.inr i)) *

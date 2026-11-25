@@ -15,6 +15,7 @@ import Mathlib.RingTheory.KrullDimension.Polynomial
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.AffineSpaceJacobson, Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StalkKrullDimension
@@ -353,7 +354,6 @@ private theorem exists_ltSeries_of_isMaximal_mvPolynomial (k : Type u) [Field k]
     intro M hM
     have := hM
     have hJ : IsJacobsonRing (MvPolynomial (Fin n) k) := by
-      have : Algebra.FiniteType k (MvPolynomial (Fin n) k) := inferInstance
       exact isJacobsonRing_of_finiteType (A := k)
     let φ : MvPolynomial (Fin (n + 1)) k ≃+* Polynomial (MvPolynomial (Fin n) k) :=
       (MvPolynomial.finSuccEquiv k n).toRingEquiv

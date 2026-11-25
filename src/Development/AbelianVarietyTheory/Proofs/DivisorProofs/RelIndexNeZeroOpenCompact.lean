@@ -2,21 +2,7 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.PointSide
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinsumFiberwiseOfFiniteSupportComplex
-import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.Order.Star.Rat
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralProductGroup
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -33,12 +19,6 @@ namespace GlobalTheory.ConjugateFold
 
 variable {G : Type} [Group G]
 
-end GlobalTheory.ConjugateFold
-
-namespace GlobalTheory.ConjugateFold
-
-variable {G : Type} [Group G]
-
 noncomputable def foldMap (Γ' T K : Subgroup G) (hΓT : Γ' ≤ T) (y : G)
     (p : DoubleCoset.Quotient ((Γ'.subgroupOf T : Subgroup T) : Set T)
       (((T ⊓ K.map (MulAut.conj y).toMonoidHom).subgroupOf T : Subgroup T) : Set T)) :
@@ -49,12 +29,6 @@ noncomputable def foldMap (Γ' T K : Subgroup G) (hΓT : Γ' ≤ T) (y : G)
     rw [he, DoubleCoset.eq]
     refine ⟨(g * ((Quotient.out p : T) : G))⁻¹, T.inv_mem (T.mul_mem (hΓT hg) (Quotient.out p).2),
       k⁻¹, K.inv_mem hk, by group⟩⟩
-
-end GlobalTheory.ConjugateFold
-
-namespace GlobalTheory.ConjugateFold
-
-variable {G : Type} [Group G]
 
 end GlobalTheory.ConjugateFold
 

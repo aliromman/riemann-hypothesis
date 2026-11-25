@@ -7,18 +7,6 @@ import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.StalkMapInjectiv
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.TauBimultOfIsPullDeg
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ValuesNatural
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.LBLocal
 import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
@@ -114,11 +102,7 @@ alias spMap_comp_spMap' := _root_.GlobalTheory.spMap_comp_ring
 
 theorem gam_comm (σ : R₁ →+* R₂) (gam : FractionRing R₁ →+* FractionRing R₂)
     (hg : ∀ r, gam (algebraMap R₁ _ r) = algebraMap R₂ _ (σ r)) : spMap gam ≫ jK R₁ = jK R₂ ≫ spMap σ := by
-  have e₁ : jK R₁ = spMap (algebraMap R₁ (FractionRing R₁)) := rfl
-  have e₂ : jK R₂ = spMap (algebraMap R₂ (FractionRing R₂)) := rfl
-  rw [e₁, e₂, spMap_comp_spMap', spMap_comp_spMap']
-  congr 1
-  exact RingHom.ext hg
+  exact GlobalTheory.LN.ArcExtends.spMap_jK hg
 
 theorem exists_kappa (ρ : R →+* R₁) (σ : R₁ →+* R₂) (gam : FractionRing R₁ →+* FractionRing R₂)
     (hg : ∀ r, gam (algebraMap R₁ _ r) = algebraMap R₂ _ (σ r)) (hρ : Function.Injective ρ) :

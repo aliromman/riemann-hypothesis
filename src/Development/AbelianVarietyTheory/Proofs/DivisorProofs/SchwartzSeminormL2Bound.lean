@@ -15,19 +15,6 @@ public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 public import Mathlib.MeasureTheory.Integral.IntegralEqImproper
 public import Mathlib.Analysis.Calculus.ContDiff.Defs
 public import Mathlib.Analysis.Normed.Module.HahnBanach
-import Mathlib.RingTheory.Flat.TorsionFree
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.RingTheory.SimpleRing.Principal
@@ -299,7 +286,6 @@ theorem rayAvg_inner {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [Fini
   · rw [← mul_assoc, ← ENNReal.ofReal_mul (abs_nonneg _)]
     congr 2
     rw [abs_of_pos (inv_pos.mpr (pow_pos ht _))]
-    have htne := ht.ne'
     rw [div_pow]
     field_simp
     ring
@@ -638,7 +624,6 @@ theorem weighted_lintegral_sobolev_pointwise : ∀ {E : Type} [NormedAddCommGrou
             have h0 : φ x = ‖x‖ := by simpa using hφx
             linarith
           have hpow : ‖x‖ ^ k ≤ ‖x + t • v‖ ^ k := pow_le_pow_left₀ (norm_nonneg _) hmono k
-          have hfac : (0:ℝ) < m.factorial := by exact_mod_cast Nat.factorial_pos m
           have hP : 0 ≤ t ^ m / (m.factorial : ℝ) *
               (‖v‖ ^ (m + 1) * ‖iteratedFDeriv ℝ (m + 1) G (x + t • v)‖) := by positivity
           have hA : 0 ≤ t ^ m * ‖v‖ ^ (m + 1) := by positivity

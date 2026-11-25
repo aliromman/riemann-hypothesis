@@ -272,7 +272,6 @@ private theorem totalDegree_sum_C_mul_X_le_one {σ : Type} [Fintype σ] (A : Mat
 theorem totalDegree_linSub_le {σ : Type} [Fintype σ] (A : Matrix σ σ ℂ) (P : MvPolynomial σ ℂ) :
     (sub A P).totalDegree ≤ P.totalDegree := by
   classical
-  set_option synthInstance.maxHeartbeats 100000 in
     conv_lhs => rw [P.as_sum, map_sum]
   refine (totalDegree_finsetSum _ _).trans (Finset.sup_le fun m hm => ?_)
   rw [sub, aeval_monomial, algebraMap_eq]
@@ -1198,7 +1197,7 @@ theorem nonempty_equiv_polyRep (n n' : ℕ) :
   have hΦ : ∀ i v, Φ (DirectSum.lof ℂ _ _ i v) = φ i v := fun i v =>
     DirectSum.toModule_lof ℂ (φ := fun i => (φ i).toLinearMap) i v
   have hinj : Function.Injective Φ.toLinearMap := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     refine GlobalTheory.directSum_eq_zero_of_toModule_eq_zero _ _ hirr hdis Φ ?_ (DFinsupp.support x) x
       (fun j hj => DFinsupp.notMem_support_iff.1 hj) hx

@@ -7,6 +7,27 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsChernExistsUnique
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KodairaSpencerMatrixUnique
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsAbelianSchemeOfIsGrpPullback
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ObjIsAbelianSchemeDimRigidifiedSym
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -18,6 +39,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 @[expose] public section
@@ -90,8 +112,8 @@ def epsFunctor (hs : s' = s ≫ DeRham.epsRed R) : Thick (dp0 R) s ⥤ Thick (ep
       comm := fun b ↦ (f.comm _).trans (congrArg T'.π (fst_epsMap (f.φ : T.B →+* T'.B) b).symm)
       dp := isDPMorphism_extMap f.dp _
       pt := f.pt }
-  map_id T := Thick.hom_ext fun b ↦ TrivSqZeroExt.ext (fst_epsMap _ _) (snd_epsMap _ _)
-  map_comp f g := Thick.hom_ext fun b ↦ TrivSqZeroExt.ext
+  map_id _ := Thick.hom_ext fun _ ↦ TrivSqZeroExt.ext (fst_epsMap _ _) (snd_epsMap _ _)
+  map_comp _ _ := Thick.hom_ext fun _ ↦ TrivSqZeroExt.ext
     ((fst_epsMap _ _).trans ((congrArg _ (fst_epsMap _ _)).symm.trans (fst_epsMap _ _).symm))
     ((snd_epsMap _ _).trans ((congrArg _ (snd_epsMap _ _)).symm.trans (snd_epsMap _ _).symm))
 

@@ -78,13 +78,6 @@ noncomputable section
 
 namespace GlobalTheory.NormSum.LocAgree
 
-theorem exists_int_mul (D : D7) {N : ℕ} (q : ℕ) (k : GA D N) (h : TrivAt D q (k : GL (Fin N) (AE D))) :
-    ∃ s : ℕ, Nat.Coprime s q ∧
-      (∀ i j, (s : AE D) * ((k : GL (Fin N) (AE D)) : Matrix (Fin N) (Fin N) (AE D)) i j ∈ OhE D) ∧
-      ∀ i j, (s : AE D) * (((k : GL (Fin N) (AE D))⁻¹ : GL (Fin N) (AE D)) :
-        Matrix (Fin N) (Fin N) (AE D)) i j ∈ OhE D := by
-  apply GlobalTheory.InertParity.LengthSign.exists_int_mul <;> assumption
-
 theorem pt_nsmul (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) {N N' : ℕ} (m : ℕ)
     (z : Matrix (Fin N') (Fin N) D.host.E) :
     pt D (tor0 D cc δ) δ ((m : D.host.E) • z) = m • pt D (tor0 D cc δ) δ z := by
@@ -137,8 +130,8 @@ end GlobalTheory.NormSum.LocAgree
 open GlobalTheory.NormSum.LocAgree in
 theorem GlobalTheory.NormSum.La_agree_of_trivAt : ∀ (D : D7), admG1 D → ∀ (cc : Ideal (𝓞 D.host.K)) (δ : ℂ), cc ≠ ⊥ → ∀ (N N' q : ℕ) (h k : GA D N) (h' k' : GA D N') (L₁ L₂ : Submodule (𝓞 D.host.E) (Fin N → D.host.E)) (L₁' L₂' : Submodule (𝓞 D.host.E) (Fin N' → D.host.E)), TrivAt D q (k : GL (Fin N) (AE D)) → TrivAt D q (k' : GL (Fin N') (AE D)) → Moves D (h : GL (Fin N) (AE D)) L₁ → Moves D (h' : GL (Fin N') (AE D)) L₁' → Moves D ((h * k : GA D N) : GL (Fin N) (AE D)) L₂ → Moves D ((h' * k' : GA D N') : GL (Fin N') (AE D)) L₂' → (∀ x ∈ La D (tor0 D cc δ) L₁ L₁', ∃ m : ℕ, Nat.Coprime m q ∧ m • x ∈ La D (tor0 D cc δ) L₂ L₂') ∧ (∀ x ∈ La D (tor0 D cc δ) L₂ L₂', ∃ m : ℕ, Nat.Coprime m q ∧ m • x ∈ La D (tor0 D cc δ) L₁ L₁') := by
   intro D hG cc δ hc N N' q h k h' k' L₁ L₂ L₁' L₂' hk hk' h₁ h₁' h₂ h₂'
-  obtain ⟨s, hsq, hs, hsi⟩ := exists_int_mul D q k hk
-  obtain ⟨s', hsq', hs', hsi'⟩ := exists_int_mul D q k' hk'
+  obtain ⟨s, hsq, hs, hsi⟩ := GlobalTheory.InertParity.LengthSign.exists_int_mul D q k hk
+  obtain ⟨s', hsq', hs', hsi'⟩ := GlobalTheory.InertParity.LengthSign.exists_int_mul D q k' hk'
   refine ⟨fun x hx => ⟨s * s', Nat.Coprime.mul_left hsq hsq', ?_⟩,
     fun x hx => ⟨s * s', Nat.Coprime.mul_left hsq hsq', ?_⟩⟩
   · refine smul_mem_La D hG cc δ hc h (h * k) h' (h' * k') h₁ h₁' h₂ h₂' s s' ?_ ?_ x hx

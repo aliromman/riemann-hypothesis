@@ -220,7 +220,7 @@ theorem vertexExact (D : D7) : VertexExact D := by
     rwa [val_FFStar'] at this
   let v' : caSub B.A := ⟨_, hFF P⟩
   let x : Pair k n → SB (Matrix n (n' ⊕ Fin 1) k) := fun Q' =>
-    col (phiOne P Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P Q') (charInd (resChar χ hχ q) Q') (charInd_mem' _ Q')
+    col (phiOne P Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P Q') (charInd (resChar χ hχ q) Q') (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q')
   let xv : Pair k n' → Pair k n → SB (Matrix n (n' ⊕ Fin 1) k) := fun A Q' =>
     col (phiOne A Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem A Q') (vecInd Q.lat) hvec
   let yd : Pair k n → SB (Matrix (n'' ⊕ Fin 1) n k) := fun Q'' =>
@@ -244,7 +244,7 @@ theorem vertexExact (D : D7) : VertexExact D := by
 
   have t0 : ∀ Q' ∈ withLat Q.lat, (Θ v' (x Q') y₀).1 = 0 := fun Q' hQ' => by
     have := key v' (phiOne P Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P Q') (latInd Q.lat R.ker) (latInd_mem_SB _ _)
-      (charInd (resChar χ hχ q) Q') (vecInd Q.lat) (dualInd Q.lat) (dualInd Q.lat) (charInd_mem' _ Q') hvec hdual hdual
+      (charInd (resChar χ hχ q) Q') (vecInd Q.lat) (dualInd Q.lat) (dualInd Q.lat) (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q') hvec hdual hdual
     have hf := _root_.GlobalTheory.FinPl.Comm.fpair_charInd_dualInd k n q χ hχ e he μ Q'
     rw [mem_withLat.1 hQ'] at hf
     rw [hf, zero_smul] at this
@@ -258,14 +258,14 @@ theorem vertexExact (D : D7) : VertexExact D := by
     rw [Finset.sum_eq_single_of_mem (ε • Q') hmem]
     · have := key v' (phiOne P Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P Q') (phiOne (ε • Q') R)
         (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem _ R) (charInd (resChar χ hχ q) Q') (vecInd Q.lat)
-        (cosetInd q (ε • Q').lat (ε • Q').red) (dualInd Q.lat) (charInd_mem' _ Q') hvec (_root_.GlobalTheory.FinPl.CosetSB.cosetInd_mem_SB k n q _ _) hdual
+        (cosetInd q (ε • Q').lat (ε • Q').red) (dualInd Q.lat) (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q') hvec (_root_.GlobalTheory.FinPl.CosetSB.cosetInd_mem_SB k n q _ _) hdual
       rw [(_root_.GlobalTheory.FinPl.CosetPairing.fpair_charInd_cosetInd k n q χ hχ e ε hεe μ Q' (ε • Q') (by rw [Pair.dia_lat])).1 rfl, hQ'l] at this
       exact smul_right_injective _ I0 this
     · intro Q'' hQ'' hne
       have hQ''l : Q''.lat = Q.lat := mem_withLat.1 hQ''
       have := key v' (phiOne P Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P Q') (phiOne Q'' R)
         (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem _ R) (charInd (resChar χ hχ q) Q') (vecInd Q.lat)
-        (cosetInd q Q''.lat Q''.red) (dualInd Q.lat) (charInd_mem' _ Q') hvec (_root_.GlobalTheory.FinPl.CosetSB.cosetInd_mem_SB k n q _ _) hdual
+        (cosetInd q Q''.lat Q''.red) (dualInd Q.lat) (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q') hvec (_root_.GlobalTheory.FinPl.CosetSB.cosetInd_mem_SB k n q _ _) hdual
       rw [(_root_.GlobalTheory.FinPl.CosetPairing.fpair_charInd_cosetInd k n q χ hχ e ε hεe μ Q' Q'' (hQ''l.trans hQ'l.symm)).2 hne, zero_smul] at this
       exact (smul_eq_zero.1 this).resolve_left I0
 
@@ -891,12 +891,6 @@ theorem bl_contr (hCL : ContrLaw D) {c : Comm D} (v : VCom c) (t : Tup c) (hW : 
     (t.kom (j + 1)) omz' e1 e2 w1 w2 w3 w4 φ Ξ₁ Ξ₂ hφ h₁ h₂).2.2 g
   rw [hand0, this]
   rfl
-
-end GlobalTheory.LevPrimeMid
-
-namespace GlobalTheory.LevPrimeMid
-
-variable {D : D7}
 
 end GlobalTheory.LevPrimeMid
 

@@ -529,28 +529,6 @@ open GlobalTheory.UnitDiscAlg
 
 namespace GlobalTheory.ValDecomp
 
-section Abstract
-variable {R : Type*} [CommRing R]
-
-end Abstract
-end GlobalTheory.ValDecomp
-
-namespace GlobalTheory.ValDecomp
-section Abstract2
-variable {R : Type*} [CommRing R]
-
-end Abstract2
-end GlobalTheory.ValDecomp
-
-namespace GlobalTheory.ValDecomp
-section Mat
-variable {E : Type} [NontriviallyNormedField E] [IsUltrametricDist E] {n : ℕ}
-
-end Mat
-end GlobalTheory.ValDecomp
-
-namespace GlobalTheory.ValDecomp
-
 variable {E : Type} [NontriviallyNormedField E] [IsUltrametricDist E] {n : ℕ} in
 private theorem exists_pow_smul_entries_norm_le_one {ϖ : E} (h1 : ‖ϖ‖ < 1)
     (c : Matrix (Fin n) (Fin n) E) : ∃ k : ℕ, ∀ i j, ‖(ϖ ^ k • c) i j‖ ≤ 1 := by
@@ -1160,9 +1138,7 @@ theorem unit_split {E : Type} [NontriviallyNormedField E] [IsUltrametricDist E]
     he, ?_, ?_⟩
   · rw [sub_mul, mul_sub, h2N, Matrix.mul_assoc, ha'N, ← Matrix.mul_assoc, hyN, Matrix.mul_assoc]
   ·
-    have hye : y * e = e * y := hcomm y e hyN heN
     have hze : z * e = e * z := hcomm z e hzN heN
-    have hyz' : y * z = z * y := hcomm y z hyN hzN
     have hprod : (y * e + (1 - e)) * (z * e + (1 - e)) = 1 + ϖ • (a₃ + y * z * a' - a') := by
       have e1 : e = x + ϖ • a' := by rw [← hea]; abel
       have e2 : y * z * x = x + ϖ • a₃ := by rw [← hyz]; abel

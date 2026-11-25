@@ -2,8 +2,33 @@ module
 
 import CompanionTheory.RealGroups.UnitaryAdmissibility.ArchimedeanUnitaryDual.ArchimedeanDenseStabilizers.DenseRangeOfNotIsReal
 public import Formalism.LocalRingCardinality.DataSpaces
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 public import Mathlib.Analysis.Matrix.Order
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -16,6 +41,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 public import Mathlib.Analysis.Matrix.Hermitian
 
 @[expose] public section
@@ -26,10 +53,6 @@ namespace GlobalTheory.Proof.GenusMassSignature
 
 open NumberField Formalism.BasicNotions Matrix
 open scoped ComplexOrder MatrixOrder
-
-theorem denseRange_of_not_isReal {K : Type} [Field K] (σ : K →+* ℂ)
-    (h : ¬ ComplexEmbedding.IsReal σ) : DenseRange σ := by
-  apply CompanionTheory.Rg.FlCls.denseRange_of_not_isReal <;> assumption
 
 theorem hasSignature_of_posDef {n : ℕ} {J : Matrix (Fin n) (Fin n) ℂ} (h : J.PosDef) :
     Formalism.UG.HasSignature J n 0 := by
@@ -92,7 +115,7 @@ theorem pos_iff_posDef (htc : IsTotallyComplex E)
   · intro h
     have hH := gram_isHermitian hst W τ
     have hd : DenseRange τ :=
-      denseRange_of_not_isReal τ (IsTotallyComplex.complexEmbedding_not_isReal τ)
+      CompanionTheory.Rg.FlCls.denseRange_of_not_isReal τ (IsTotallyComplex.complexEmbedding_not_isReal τ)
     have hdn : DenseRange fun (l : Fin W.rank → E) => (fun i => τ (l i)) :=
       DenseRange.piMap (fun _ : Fin W.rank => hd)
     have hco : ∀ l : Fin W.rank → E, τ (W.hD (W.frame.equivFun.symm l) (W.frame.equivFun.symm l)) =

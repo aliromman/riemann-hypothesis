@@ -4,8 +4,31 @@ public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.
 public import GroundTheory.GlobalFields.Adele.IntegersLattice
 public import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemElt
 import Formalism.LocalToGlobal.ProjectiveLattices.HalfOneAddSqrtNegIsIntegral
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +42,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 public import Mathlib.Analysis.Calculus.BumpFunction.Basic
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.SelfDualLatticePairingDual
 
@@ -36,8 +61,6 @@ open GlobalTheory.AscFin
 namespace GlobalTheory.AscFinInhab
 
 variable {D : D7}
-
-alias upSum_add' := _root_.GlobalTheory.MixPer.upSum_add
 
 theorem upSum_one' {ρ : ℕ} : upSum (1 : Mx D ρ ρ) = 0 := by
   refine Finset.sum_eq_zero fun i _ => Finset.sum_eq_zero fun j _ => ?_
@@ -83,7 +106,7 @@ theorem _root_.GlobalTheory.AscFin.cond_one (hp : p.Is dV dW x ψ) (y : Mx D V�
         rw [hN, Matrix.mul_add, Matrix.mul_one, add_sub_cancel_left]; exact h3)
     have e : psiUni ψ (⟨hu.unit, hm⟩ : UX D ρ).1 = psiE ψ (upSum N) := by
       show psiE ψ (upSum (1 + N)) = _
-      rw [upSum_add', upSum_one', zero_add]
+      rw [GlobalTheory.MixPer.upSum_add, upSum_one', zero_add]
     rw [← e]; exact key
   · intro ξ _ ξ' _ h
     rw [mt_one_, Matrix.one_mul] at h
@@ -443,7 +466,3 @@ theorem _root_.GlobalTheory.AscFin.exists_bump_le {m n : ℕ} (x : Mx D m n) (A 
     exact hball (by rw [mem_ball, dist_eq_norm]; exact h1)
 
 end GlobalTheory.AscFinInhab
-
-namespace GlobalTheory.AscFin
-
-end GlobalTheory.AscFin

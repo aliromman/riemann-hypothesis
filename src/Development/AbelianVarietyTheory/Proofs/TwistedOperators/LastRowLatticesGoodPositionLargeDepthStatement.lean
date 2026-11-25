@@ -584,7 +584,7 @@ theorem coords_of_eq {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) {x : Fin
     {z : Fin S₀.rank → D.host.E} (hx : x = d.e *ᵥ w + d.i₀ *ᵥ z + d.e' *ᵥ w') :
     d.qX *ᵥ x = w ∧ d.q0 *ᵥ x = z ∧ d.qY *ᵥ x = w' := by
   subst hx
-  simp only [Matrix.mulVec_add, Matrix.mulVec_mulVec, SplitLat.qX_e, SplitLat.qX_i₀, SplitLat.qX_e', SplitLat.wittDecomposition_coreProj_mul_e_eq_zero,
+  simp only [Matrix.mulVec_add, Matrix.mulVec_mulVec, GlobalTheory.MixPer.qX_e, SplitLat.qX_i₀, SplitLat.qX_e', SplitLat.wittDecomposition_coreProj_mul_e_eq_zero,
     SplitLat.wittDecomposition_coreProj_mul_core_eq_one, SplitLat.wittZeroProjection_mul_dualBasis_eq_zero, SplitLat.qY_e, SplitLat.qY_i₀, SplitLat.qY_e', Matrix.one_mulVec, Matrix.zero_mulVec,
     add_zero, zero_add, and_self]
 
@@ -794,7 +794,7 @@ theorem mono_at_lattice_of_column_frames {A B : HSp D} {c ρ : ℕ} {ε : D.host
   have ha := cols_mul_coeff_eq_reflected_sum t.a hc hρ r s hr hs
   rw [← he, ← he'] at ha
   have hX : d.qX * t.a = cfR c r := by
-    rw [ha, Matrix.mul_add, ← Matrix.mul_assoc, ← Matrix.mul_assoc, GlobalTheory.SeeSaw.SplitLat.qX_e, GlobalTheory.SeeSaw.SplitLat.qX_e',
+    rw [ha, Matrix.mul_add, ← Matrix.mul_assoc, ← Matrix.mul_assoc, GlobalTheory.MixPer.qX_e, GlobalTheory.SeeSaw.SplitLat.qX_e',
       Matrix.one_mul, Matrix.zero_mul, add_zero]
   have hY : d.qY * t.a = cfE' c s := by
     rw [ha, Matrix.mul_add, ← Matrix.mul_assoc, ← Matrix.mul_assoc, GlobalTheory.SeeSaw.SplitLat.qY_e, GlobalTheory.SeeSaw.SplitLat.qY_e',
@@ -1174,8 +1174,6 @@ theorem adj_rat {m n : ℕ} (M : Matrix (Fin m) (Fin n) D.host.E) : adj (rat M :
   ext i j
   simp [adj, rat, Matrix.conjTranspose_apply, GlobalTheory.DualPairCheck.cA_incA]
 
-alias rat_smul' := _root_.GlobalTheory.MixModel.rat_smul
-
 theorem kap_gen {L L'' : HSp D} (τ : Matrix (Fin L.rank) (Fin L''.rank) D.host.E) {c0 : D.host.E} (hτ : ∀ i k, τ i k = c0)
     (V : HSp D) (p : AF D.host.F) (a : D.host.E) (s : Fin V.rank → D.host.E)
     (t : Fin L''.rank → D.host.E) :
@@ -1197,7 +1195,7 @@ theorem kap_gen {L L'' : HSp D} (τ : Matrix (Fin L.rank) (Fin L''.rank) D.host.
   rw [rat_mul (Matrix.vecMulVec (fun i => a * t i) (star s)) V.gram, ← Matrix.mul_assoc (rat τ), ← rat_mul τ,
     show (rat V.gram : Mx D V.rank V.rank) = gA V from rfl, adj_mul, adj_gA, adj_rat, Matrix.smul_mul, Matrix.mul_smul,
     Matrix.mul_assoc, giA_gA_cancel, show gA L = (rat L.gram : Mx D L.rank L.rank) from rfl, ← rat_mul, smul_comm,
-    ← rat_smul']
+    ← GlobalTheory.MixModel.rat_smul]
   congr 2
   ext i j
   simp only [Matrix.smul_apply, Matrix.mul_apply, Matrix.conjTranspose_apply, Matrix.vecMulVec_apply, hτ,
@@ -1619,13 +1617,6 @@ section Main
 
 variable {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc}
 
-theorem tiltSc_ne_zero (j : ℕ) (p : Fin (D.R.m - 1 - j)) : GlobalTheory.RowShape.tiltSc D j p ≠ 0 := by
-  unfold GlobalTheory.RowShape.tiltSc
-  split_ifs
-  · exact inv_ne_zero (pow_ne_zero _ cmHost_imaginaryGenerator_ne_zero)
-  · exact star_ne_zero.2 (pow_ne_zero _ cmHost_imaginaryGenerator_ne_zero)
-  · exact one_ne_zero
-
 theorem moves_idx (t : T) (B : Frames G) (b : Pts G) (hb : IsBase t B b) (j : ℕ) (hj : j ∈ idx D) :
     Moves _ (b j) (G.Λ (.grid D.R.m j)) (GlobalTheory.RowShape.rowN G j) fun _ => True := by
   have hj' : 1 ≤ j ∧ j < 1 + (D.R.m - 2) := List.mem_range'_1.1 hj
@@ -1645,7 +1636,7 @@ theorem moves_idx (t : T) (B : Frames G) (b : Pts G) (hb : IsBase t B b) (j : �
       rw [← Matrix.mul_assoc, hinv, Matrix.one_mul]
     have hdd : diagonal t * diagonal (fun p => (t p)⁻¹) = 1 := by
       rw [Matrix.diagonal_mul_diagonal,
-        show (fun p => t p * (t p)⁻¹) = fun _ => (1 : D.host.E) from funext fun p => mul_inv_cancel₀ (tiltSc_ne_zero j p)]
+        show (fun p => t p * (t p)⁻¹) = fun _ => (1 : D.host.E) from funext fun p => mul_inv_cancel₀ (GlobalTheory.RowShape.tiltSc_ne_zero j p)]
       exact Matrix.diagonal_one
     have ha' : (γ⁻¹).val * (G.rowDec j hjm).a = (G.rowDec j hjm).a * diagonal (fun p => (t p)⁻¹) := by
       calc (γ⁻¹).val * (G.rowDec j hjm).a
@@ -1659,7 +1650,7 @@ theorem moves_idx (t : T) (B : Frames G) (b : Pts G) (hb : IsBase t B b) (j : �
       exact FractionalIdeal.mul_mem_mul (FractionalIdeal.mem_spanSingleton_self _ _) hu
     · refine sumLat_mulVec _ _ _ _ _ _ (fun p => (t p)⁻¹) h0' ha' fun p u hu => ?_
       obtain ⟨z, hz, rfl⟩ := (FractionalIdeal.mem_singleton_mul).1 hu
-      rw [← mul_assoc, inv_mul_cancel₀ (tiltSc_ne_zero j p), one_mul]
+      rw [← mul_assoc, inv_mul_cancel₀ (GlobalTheory.RowShape.tiltSc_ne_zero j p), one_mul]
       exact hz
   · have h1 : δ = 1 := hδ.2.1 (Nat.not_odd_iff_even.1 hodd)
     subst h1

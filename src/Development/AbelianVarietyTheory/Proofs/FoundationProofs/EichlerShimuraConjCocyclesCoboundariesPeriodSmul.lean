@@ -1,31 +1,16 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.Foundations.IsDCReps
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Geometry.Manifold.StructureGroupoid
 
 @[expose] public section
 
 open GlobalTheory.HeckeFamilyMatrices Polynomial UpperHalfPlane
 open scoped MatrixGroups ModularForm
-open scoped Manifold
 
 namespace GlobalTheory.HeckeFamilyMatrices
 
 theorem polySlash_map_conj (w : ℕ) (g : Matrix (Fin 2) (Fin 2) ℤ) (p : ℂ[X]) :
     (slP w g p).map (starRingEnd ℂ) = slP w g (p.map (starRingEnd ℂ)) := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp only [slP, LinearMap.sum_apply, LinearMap.comp_apply,
     LinearMap.toSpanSingleton_apply, lcoeff_apply, Polynomial.map_sum, Polynomial.map_smul,
     Polynomial.map_mul, Polynomial.map_pow, Polynomial.map_add, Polynomial.map_X, map_intCast, coeff_map, Polynomial.map_intCast]

@@ -27,18 +27,6 @@ import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
 import Mathlib.Algebra.Order.Star.Int
 import Formalism.GaussIdealIdentity.GaussIdealPrimality.GaussLocalizationLengthHolds
@@ -913,7 +901,7 @@ theorem exists_equiv_pts_places_baseChange : ∀ (R R' F F' : Type) [CommRing R]
       exact ⟨⟨(a, g), ha⟩, rfl⟩
     · intro z
       change residue (Loc ζ) (algebraMap (As R' A) (Loc ζ) z.1.1) = 0 ↔ residue (vRing w) z.1.2 = 0
-      rw [residue_eq_zero_iff, residue_eq_zero_iff, mem_maximalIdeal_vRing,
+      rw [residue_eq_zero_iff, residue_eq_zero_iff, ReciprocityTheory.ChartRestriction.G.T0.ValuationResidueLemmas.mem_max_iff,
         IsLocalization.AtPrime.to_map_mem_maximal_iff (Loc ζ) ζ.asIdeal, ← CoverPlaces.ord_pos_iff hϖ, hord, ← hι]
       refine ⟨pos_of_sub_pos u ?_, pos_of_sub_pos u (hT z)⟩
       rw [← neg_sub, u.map_neg]

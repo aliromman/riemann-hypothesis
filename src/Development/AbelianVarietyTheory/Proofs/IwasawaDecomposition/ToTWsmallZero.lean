@@ -502,7 +502,6 @@ variable {A : Type} [Ring A] [Algebra ℂ A] {n : ℕ}
 
 theorem map_gelfA {B : Type} [Ring B] (f : A →+* B) (E : Fin n → Fin n → A) (k : ℕ) :
     f (gelfA E k) = gelfA (fun a b => f (E a b)) k := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp only [gelfA, map_sum, map_list_prod, List.map_ofFn, Function.comp_def]
 
 theorem gelfA_mem {S : Type} [SetLike S A] [SubsemiringClass S A] (s : S) {E : Fin n → Fin n → A}

@@ -16,6 +16,32 @@ public import Development.ResolutionOfSingularities.EmbeddedResolution.StrongRes
 public import Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.EmbeddedBlowupSequence
 public import Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.StrongResolution
 public import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.AffineResolutionRuleCompatibility
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -36,6 +62,8 @@ import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Order.CompletePartialOrder
 import Development.ResolutionOfSingularities.Foundations.Schemes.SchemeMorphismProperties
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.SubordinateAffineCover, Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.StandardSmoothCharts, Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.DisjointUnionOfOpensPullback, Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.GluedBlowupSequenceExistence, Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.AffineResolutionCenterNeTop, Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.LocalResolutionCenters, Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.LocalResolutionDense, Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.LocalResolutionProper, Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.LocalResolutionSmooth, Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.LocalResolutionStrictNormalCrossings, Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.SmoothLocusIsomorphism, Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.GlobalResolutionFromAffine
@@ -322,7 +350,6 @@ private theorem exists_sigma_ι_base_eq {J : Type u} (f : J → Scheme.{u}) (x :
 
 private theorem quasiCompact_of_compactSpace_to_spec_field {k : Type u} [Field k] {V : Scheme.{u}}
     [CompactSpace ↥V] (f : V ⟶ Spec (CommRingCat.of k)) : QuasiCompact f := by
-  have : Subsingleton ↥(Spec (CommRingCat.of k)) := inferInstance
   refine ⟨fun W hW hW' => ?_⟩
   rcases Set.eq_empty_or_nonempty W with rfl | ⟨z, hz⟩
   · simp
@@ -388,8 +415,6 @@ theorem compactSpace_pullback_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type u} [Fin
     (W' : Scheme.{u}) (g' : W' ⟶ Y) [QuasiCompact g'] :
     CompactSpace ↥(pullback g' (sigmaOpensDesc Y U)) := by
   have : IsAffine (sigmaOpens Y U) := isAffine_sigmaOpens Y U hU
-  have : CompactSpace ↥(sigmaOpens Y U) := inferInstance
-  have : QuasiCompact (pullback.snd g' (sigmaOpensDesc Y U)) := inferInstance
   constructor
   have hcp := QuasiCompact.isCompact_preimage (f := pullback.snd g' (sigmaOpensDesc Y U))
     Set.univ isOpen_univ isCompact_univ
@@ -411,8 +436,6 @@ theorem exists_affine_etale_cover_pullback_sigmaOpensDesc {k : Type u} [Field k]
     isReduced_pullback_sigmaOpensDesc Y U W' g'
   have : CompactSpace ↥(pullback g' (sigmaOpensDesc Y U)) :=
     compactSpace_pullback_sigmaOpensDesc Y U hU W' g'
-  have : LocallyOfFiniteType (pullback.fst g' (sigmaOpensDesc Y U)) := inferInstance
-  have : LocallyOfFiniteType (pullback.fst g' (sigmaOpensDesc Y U) ≫ q) := inferInstance
   have : QuasiCompact (pullback.fst g' (sigmaOpensDesc Y U) ≫ q) :=
     quasiCompact_of_compactSpace_to_spec_field _
   obtain ⟨V, s, r, h1, h2, h3, h4, h5, h6, h7⟩ :=
@@ -424,14 +447,12 @@ theorem etale_comp_fst_pullback_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type u} (U
     (W' : Scheme.{u}) (g' : W' ⟶ Y) (V : Scheme.{u})
     (r : V ⟶ pullback g' (sigmaOpensDesc Y U)) [Etale r] :
     Etale (r ≫ pullback.fst g' (sigmaOpensDesc Y U)) := by
-  have : Etale (pullback.fst g' (sigmaOpensDesc Y U)) := inferInstance
   infer_instance
 
 theorem etale_comp_snd_pullback_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type u} (U : ι → Y.Opens)
     (W' : Scheme.{u}) (g' : W' ⟶ Y) [Etale g'] (V : Scheme.{u})
     (r : V ⟶ pullback g' (sigmaOpensDesc Y U)) [Etale r] :
     Etale (r ≫ pullback.snd g' (sigmaOpensDesc Y U)) := by
-  have : Etale (pullback.snd g' (sigmaOpensDesc Y U)) := inferInstance
   infer_instance
 
 theorem surjective_comp_fst_pullback_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type u}
@@ -440,7 +461,6 @@ theorem surjective_comp_fst_pullback_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type 
     (r : V ⟶ pullback g' (sigmaOpensDesc Y U)) [Surjective r] :
     Surjective (r ≫ pullback.fst g' (sigmaOpensDesc Y U)) := by
   have := surjective_sigmaOpensDesc Y U hU
-  have : Surjective (pullback.fst g' (sigmaOpensDesc Y U)) := inferInstance
   infer_instance
 
 theorem surjective_comp_snd_pullback_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type u}
@@ -448,7 +468,6 @@ theorem surjective_comp_snd_pullback_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type 
     (W' : Scheme.{u}) (g' : W' ⟶ Y) [Surjective g'] (V : Scheme.{u})
     (r : V ⟶ pullback g' (sigmaOpensDesc Y U)) [Surjective r] :
     Surjective (r ≫ pullback.snd g' (sigmaOpensDesc Y U)) := by
-  have : Surjective (pullback.snd g' (sigmaOpensDesc Y U)) := inferInstance
   infer_instance
 
 theorem comp_fst_comp_eq_comp_snd_comp_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type u}
@@ -519,11 +538,9 @@ theorem existsGluedBlowupSequence_of_center_ne_top (R : AffineResolutionRule.{u}
     ExistsGluedBlowupSequence R := by
   intro hcover k hk hk0 Y p hpft hpqc hpred
   have : AlgebraicGeometry.IsLocallyNoetherian Y := LocallyOfFiniteType.isLocallyNoetherian p
-  have : CompactSpace ↥(Spec (CommRingCat.of k)) := inferInstance
   have : CompactSpace ↥Y := QuasiCompact.compactSpace_of_compactSpace p
   obtain ⟨ι, hι, U, hUaff, hUtop⟩ := exists_finite_affine_cover Y
   have : AlgebraicGeometry.IsAffine (sigmaOpens Y U) := isAffine_sigmaOpens Y U hUaff
-  have : CompactSpace ↥(sigmaOpens Y U) := inferInstance
   have : AlgebraicGeometry.Surjective (sigmaOpensDesc Y U) :=
     surjective_sigmaOpensDesc Y U hUtop
   obtain ⟨V, sV, r, hVaff, hVred, hsft, hsqc, hret, hrsurj, hrq⟩ :=
@@ -1281,8 +1298,6 @@ private theorem respectsIso_smoothOfRelativeDimension (r : ℕ) :
     constructor
     intro X Y Z i hi f hf
     have : CategoryTheory.IsIso i := hi
-    have : AlgebraicGeometry.IsOpenImmersion i := inferInstance
-    have : AlgebraicGeometry.SmoothOfRelativeDimension 0 i := inferInstance
     have := hf
     exact smoothOfRelativeDimension_zero_comp i f r
   have hR : MorphismProperty.RespectsRight
@@ -1291,8 +1306,6 @@ private theorem respectsIso_smoothOfRelativeDimension (r : ℕ) :
     constructor
     intro X Y Z i hi f hf
     have : CategoryTheory.IsIso i := hi
-    have : AlgebraicGeometry.IsOpenImmersion i := inferInstance
-    have : AlgebraicGeometry.SmoothOfRelativeDimension 0 i := inferInstance
     have := hf
     exact smoothOfRelativeDimension_comp_zero f i r
   exact ⟨⟩
@@ -1332,7 +1345,6 @@ private theorem isZariskiLocalAtSource_smoothOfRelativeDimension (r : ℕ) :
   refine AlgebraicGeometry.IsZariskiLocalAtSource.mk' ?_ ?_
   · intro X Y f U hf
     have := hf
-    have : AlgebraicGeometry.SmoothOfRelativeDimension 0 U.ι := inferInstance
     exact smoothOfRelativeDimension_zero_comp U.ι f r
   · intro X Y f ι U hU H
     exact smoothOfRelativeDimension_of_iSup_eq_top r f U hU H
@@ -1346,8 +1358,6 @@ theorem smoothOfRelativeDimension_opensCoprodMapOfRefinement {X' X : Scheme.{u}}
   have h : ∀ a : κ, AlgebraicGeometry.SmoothOfRelativeDimension r
       (φ.resLE (U (β a)) (V a) (hβ a) ≫ Sigma.ι (fun i => (U i).toScheme) (β a)) := by
     intro a
-    have : AlgebraicGeometry.SmoothOfRelativeDimension 0
-        (Sigma.ι (fun i => (U i).toScheme) (β a)) := inferInstance
     exact smoothOfRelativeDimension_comp_zero _ _ r
   exact AlgebraicGeometry.IsZariskiLocalAtSource.sigmaDesc h
 
@@ -1377,8 +1387,6 @@ theorem exists_affine_etale_cover_of_smoothOfRelativeDimension {k : Type u} [Fie
   have : Finite κ := hκ
   have hWaff : AlgebraicGeometry.IsAffine (sigmaOpens X U) := isAffine_sigmaOpens X U hUaff
   have hW'aff : AlgebraicGeometry.IsAffine (sigmaOpens X' V) := isAffine_sigmaOpens X' V hVaff
-  have hcW : CompactSpace ↥(sigmaOpens X U) := inferInstance
-  have hcW' : CompactSpace ↥(sigmaOpens X' V) := inferInstance
   exact ⟨sigmaOpens X U, sigmaOpensDesc X U ≫ f, sigmaOpensDesc X U,
     sigmaOpens X' V, sigmaOpensDesc X' V ≫ f', sigmaOpensDesc X' V,
     opensCoprodMapOfRefinement φ U V β hβ,
@@ -1420,9 +1428,6 @@ theorem isCompatibleWithSmoothMorphisms_of_isInducedByAffineRule (B : AffineReso
     AlgebraicGeometry.SmoothOfRelativeDimension.smooth r φ
   have hsmψ : AlgebraicGeometry.Smooth ψ :=
     AlgebraicGeometry.SmoothOfRelativeDimension.smooth r ψ
-  have hflatφ : AlgebraicGeometry.Flat φ := inferInstance
-  have hflatψ : AlgebraicGeometry.Flat ψ := inferInstance
-  have hflatc' : AlgebraicGeometry.Flat c' := inferInstance
   have hcs : ∀ y : ↥X, ∃ w, c w = y := fun y => hcsurj.surj y
   have hc's : ∀ y : ↥X', ∃ w, c' w = y := fun y => hc'surj.surj y
   have hA : IsStrictPullbackBlowupSeq c (B k W q) (R k X f) := hR k X f W q c hcq hcs
@@ -1471,7 +1476,6 @@ private theorem isStrongResolution_of_isInducedByAffineRule_of_isAffine (B : Aff
   have := hqqc
   have := hget
   have := hgsurj
-  have : AlgebraicGeometry.Flat g := inferInstance
   have hsurj : ∀ y : ↥Y, ∃ w, g w = y := fun y => hgsurj.surj y
   have h1 : IsStrictPullbackBlowupSeq g (B k W q) s := hc W q g hgq hsurj
   have h2 : IsStrictPullbackBlowupSeq g (B k W q) (B k Y p) := hetale k Y W p q g hgq hsurj
@@ -1511,7 +1515,6 @@ private theorem isStrongResolution_of_isInducedByAffineRule (B : AffineResolutio
       AlgebraicGeometry.QuasiCompact (X.affineCover.f i ≫ f) := by
     intro i
     have := hA i
-    have : CompactSpace ↥(X.affineCover.X i) := inferInstance
     exact quasiCompact_of_compactSpace_of_subsingleton (X.affineCover.f i ≫ f)
   have hCharts : ∀ i : X.affineCover.I₀,
       AlgebraicGeometry.SmoothOfRelativeDimension 0 (X.affineCover.f i) := by

@@ -480,28 +480,16 @@ section Ops
 
 variable {X : Fields} (A : Amb X) {a b : ℕ}
 
-theorem exp_int (n : ℤ) : Complex.exp (-(2 * (Real.pi : ℂ)) * Complex.I * ((n : ℝ) : ℂ)) = 1 := by
-  rw [← Complex.exp_int_mul_two_pi_mul_I (-n)]
-  congr 1
-  push_cast
-  ring
-
 theorem Wx_mul (x : HomE X.E a b) (c : ℂ) (F : VCx X.Tau a b → ℂ) :
     Wx A x (fun z => c * F z) = fun z => c * Wx A x F z := by
   funext z
   simp only [Wx, opU]
   ring
 
-theorem Wx_Wx_of_int {x y : HomE X.E a b} (h : ∃ n : ℤ, coc A x y = n) (F : VCx X.Tau a b → ℂ) :
-    Wx A x (Wx A y F) = Wx A (x + y) F := by
-  obtain ⟨n, hn⟩ := h
-  rw [(_root_.GlobalTheory.MomT.Heis.calculus X A a b).1, hn, exp_int]
-  simp
-
 theorem Wx_neg_add {y₁ y₂ : HomE X.E a b} (t : HomE X.E a b) (h : ∃ n : ℤ, coc A y₁ y₂ = n) (F : VCx X.Tau a b → ℂ) :
     Wx A (-t) (Wx A (y₁ + y₂) F) = fun z =>
       Complex.exp (-(2 * (Real.pi : ℂ)) * Complex.I * (coc A (-t) y₂ : ℂ)) * brkE A y₁ (-t) * Wx A y₁ (Wx A (y₂ - t) F) z := by
-  rw [← Wx_Wx_of_int A h, (_root_.GlobalTheory.MomT.Heis.calculus X A a b).2.1, (_root_.GlobalTheory.MomT.Heis.calculus X A a b).1 (-t), Wx_mul, neg_add_eq_sub]
+  rw [← GlobalTheory.MomT.ThShape.Wx_mul A h, (_root_.GlobalTheory.MomT.Heis.calculus X A a b).2.1, (_root_.GlobalTheory.MomT.Heis.calculus X A a b).1 (-t), Wx_mul, neg_add_eq_sub]
   funext z
   ring
 
@@ -1285,11 +1273,6 @@ theorem neg_one_zpow_round (q : ℝ)
   have hq' : q = n := by exact_mod_cast hq
   rw [hq, hq', round_intCast, mul_comm, Complex.exp_int_mul, Complex.exp_pi_mul_I]
 
-theorem isHerm_HV {ι : Type} [Fintype ι] {a b : ℕ} (sc : ℝ) : IsHerm (HV (ι := ι) (a := a) (b := b) sc) := by
-  intro x y
-
-  simp [Formalism.L2.Ker.HV, map_sum, mul_comm]
-
 theorem embH_inj {E : Type} [Field E] [NumberField E] [StarRing E] {ι : Type} [Fintype ι] [Nonempty ι] {a b : ℕ}
     (emb : ι → E →+* ℂ) {δ : ℂ} (hδ : δ ≠ 0) : Function.Injective (embH (a := a) (b := b) emb δ) := by
   intro x y h
@@ -1351,7 +1334,7 @@ theorem move : ∀ (D : D7) (X : Fields) (s : Seam D X) (cc : Ideal (𝓞 D.host
         (fun τ => z (s.iT.symm τ))) (by
       intro x hx l hl hl'
       rw [hW _ (add_mem hx hl), hW _ hx]
-      exact op_add _ (isHerm_HV _) _ _ (hL N N'' hN hN'').2.1 (hL N N'' hN hN'').2.2 _ _ _ ((t1 N N'' x).1 hx)
+      exact op_add _ (Formalism.L2.Ker.herm_HV _) _ _ (hL N N'' hN hN'').2.1 (hL N N'' hN hN'').2.2 _ _ _ ((t1 N N'' x).1 hx)
         ((t1 N N'' l).1 hl) ((hL N N' hN hN').1 _ ((t1 N N' l).1 hl')) z)
   unfold TaylorLogMetric.Iop
   refine congrArg₂ (· * ·) ?_ (e2.trans (Finset.sum_congr rfl fun y hy => ?_))
@@ -1816,7 +1799,7 @@ theorem latticeFactsAll : GlobalTheory.MomT.LatticeFactsAll := by
       (fun x hx => by
         obtain ⟨m, hm⟩ := hq a b _ _ (hadm N N' h h') (reidx s a b x) ((hlam a b N N' x).1 hx)
         exact alV_eq s B x hm)
-      (isHerm_formV _ _ _ _) (hL.1 a b _ _ (hadm N N' h h')).1 (hL.1 a b _ _ (hadm N N' h h')).2).1
+      (GlobalTheory.ThetaMove.Moved.isHerm_formV _ _ _ _) (hL.1 a b _ _ (hadm N N' h h')).1 (hL.1 a b _ _ (hadm N N' h h')).2).1
     exact ⟨h3 (B.eNat χ a b (s.lat N) (s.lat N')) (hVm a b _ _ (hadm N N' h h')).1.2, h1, h2⟩
   · have hd : ContDiff ℂ (k : WithTop ℕ∞) (B.eNat χ a b (s.lat N) (s.lat N')) :=
       GlobalTheory.SCV.contDiff_of_differentiable (hVm a b _ _ (hadm N N' h h')).1.1 _

@@ -449,10 +449,6 @@ lemma evC_ltr (g y : Matrix ι ι ℂ) (f : MvPolynomial (ι × ι) ℂ) : evC (
     congr 1
     simp [evC, ltr, Matrix.mul_apply]
 
-omit [Fintype ι] [DecidableEq ι] in
-alias evC_map := _root_.GlobalTheory.ClassFin.evC_map_rat
-
-
 omit [DecidableEq ι] in
 lemma exists_fg_rtr (f : MvPolynomial (ι × ι) ℂ) :
     ∃ V : Submodule ℂ (MvPolynomial (ι × ι) ℂ), V.FG ∧ ∀ g, rtr g f ∈ V := by
@@ -565,9 +561,9 @@ theorem GlobalTheory.ClassFin.exists_evC_blk_of_fibre_const : ∀ (ι : Type) [F
     obtain ⟨z, hz⟩ := exists_common_zero _ hD
     have hzp : z ∈ pts (blk e '' Γ) ℂ := by
       intro p hp
-      rw [← evC_map]
+      rw [← GlobalTheory.ClassFin.evC_map_rat]
       refine hz _ fun g _ => ⟨0, fun x hx => ?_⟩
-      rw [evC_map, hp _ ⟨x, hx, rfl⟩]
+      rw [GlobalTheory.ClassFin.evC_map_rat, hp _ ⟨x, hx, rfl⟩]
       simp [evC]
     have hx₀p : blk e x₀ ∈ pts (blk e '' Γ) ℂ := fun p hp => hp _ ⟨x₀, hx₀, rfl⟩
     have := _root_.GlobalTheory.ClassFin.evC_eq_zero_of_mem_pts_of_stable ι _ hpre.aut_mem (ltr z b₀) (by

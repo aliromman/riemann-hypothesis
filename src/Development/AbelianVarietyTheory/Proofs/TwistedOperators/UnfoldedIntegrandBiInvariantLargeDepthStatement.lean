@@ -803,7 +803,7 @@ theorem flatBF_source {ρ : ℕ} {B : BesLev D ρ} {J : JacLev D ρ} (s : StepBF
   have hmul : ∀ v : UX D ρ, psiUni ψ (v * u').1 = psiUni ψ v.1 * psiUni ψ u := fun v => by
     rw [← ThLaws.psiFlag_levi ψ J.d, ← ThLaws.psiFlag_levi ψ J.d, ← ThLaws.psiFlag_levi ψ J.d, Subgroup.coe_mul, map_mul,
       psiFlag_mul J.d ψ (J.d.levi_mem_NFlag v.2) (J.d.levi_mem_NFlag hu)]
-  have hu1 : psiUni ψ u * star (psiUni ψ u) = 1 := mul_star_psi hψ _
+  have hu1 : psiUni ψ u * star (psiUni ψ u) = 1 := GlobalTheory.ThetaSchur.mul_star_psi hψ _
   funext w
   rw [hfl]
   simp only [Pi.smul_apply, smul_eq_mul]
@@ -891,7 +891,7 @@ theorem hand_left {σ : ℕ} {B : BesLev D (σ + 1)} {J : JacLev D (σ + 1)} {B'
       Chain.hand s₁ s₂ l vL Φ₁ Φ₂ φ g h₁ h₂ := by
   have hΞ := (GlobalTheory.Unf.FlatTheta.flat_isThetaFun D (GlobalTheory.T.flatThetaMaps_converge_thetaFunctions D) ψ).1 _ B J s₁ _ (s₁.weil.om_pres (g, h₁) Φ₁ hΦ₁)
   unfold Chain.hand
-  rw [flatBF_bes s₁ hΦ₁ hn, handBF_move s₁ l hφ hΞ (psiBes ψ B.d 1 (vecB B.o B.ζ) n) (mul_star_psi s₁.weil.std _)]
+  rw [flatBF_bes s₁ hΦ₁ hn, handBF_move s₁ l hφ hΞ (psiBes ψ B.d 1 (vecB B.o B.ζ) n) (GlobalTheory.ThetaSchur.mul_star_psi s₁.weil.std _)]
 
 theorem biLift_last {V₀ A L S X T L'' : HSp D} (o : OrthDec V₀ A L) (o'' : OrthDec X T L'')
     (τ : Matrix (Fin L.rank) (Fin L''.rank) D.host.E) {χA χz χS : (AE D)ˣ →* Circle} {om₁ : Om V₀ S} {oma : Om A S} {omz : Om L S}
@@ -1073,7 +1073,7 @@ theorem even_second (Φ : SchDown G t) (hΦ : ∀ j, IsThetaFunO W.ψ _ _ (Φ j)
       (volAt hM (.top (j + 1)) (by show j + 1 ≤ D.R.m; omega)) hφ.1 hΞ
       (fun w => castSch G (show j + 1 + 1 = D.R.m by omega) (Φ ⟨j + 1, by omega⟩)
         ((rowJac G (j + 1) (by omega) 0 (by omega)).ext0 _ w))
-      (psiBes W.ψ B.d 1 (vecB B.o B.ζ) n) (GlobalTheory.FinPl.HandInvPf.mul_star_psi W.ψ_std _) a
+      (psiBes W.ψ B.d 1 (vecB B.o B.ζ) n) (GlobalTheory.ThetaSchur.mul_star_psi W.ψ_std _) a
     erw [← k] at k'
     exact k'
   · obtain ⟨i1, i2, i3, i4, i5, i6, i7⟩ := GlobalTheory.Mem.AdelicGroupTop.adelic_unitary_topology D (G.V (.top j))

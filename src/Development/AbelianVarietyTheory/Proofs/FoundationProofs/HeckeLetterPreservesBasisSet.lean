@@ -10,7 +10,34 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IntMatrix
 public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IntMatrixPrimeDetCosetRepresentatives
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ModularFunctionTowerIntegrality
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -24,7 +51,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsDiamondMatrixChosenDiamondMatrixGamma1Gamma0, Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeckeLetterPreservesBasisSet
@@ -120,8 +152,6 @@ theorem act_act (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (m m' : Matrix (Fin 2
   congr 2
   ext f
   simp [X.sl_mul]
-
-alias polAct := _root_.GlobalTheory.KZ.PolAct.act_mem_pol
 
 theorem coset (q : ℕ) (hq : q.Prime) (m : Matrix (Fin 2) (Fin 2) ℤ) (hm : m.det = q) :
     (∃ g : Matrix (Fin 2) (Fin 2) ℤ, g * !![(q : ℤ), 0; 0, 1] = m) ∨
@@ -430,7 +460,7 @@ theorem op_BSet (X : Tower Ω ε) [Fact l.Prime]
     have hσ := _root_.GlobalTheory.KZ.isDiam_sgD_of_prime N l q hl hN hNl hqN
     show X.heckeT N l q b ∈ X.BSet N l w
     refine ⟨?_, ?_⟩
-    · rw [heckeT_eq]; exact Pol_sum X l w _ _ (fun o _ => polAct X l w _ (hA _) b hb.1)
+    · rw [heckeT_eq]; exact Pol_sum X l w _ _ (fun o _ => GlobalTheory.KZ.PolAct.act_mem_pol X l w _ (hA _) b hb.1)
     · intro γ hγ
       rw [heckeT_eq]
       exact sum_act_inv X l N (repT q (sgD N l q)) (fun o => by rw [det_repT]; exact_mod_cast hq.pos) γ
@@ -438,7 +468,7 @@ theorem op_BSet (X : Tower Ω ε) [Fact l.Prime]
   | U =>
     show X.heckeU l b ∈ X.BSet N l w
     refine ⟨?_, ?_⟩
-    · rw [heckeU_eq]; exact Pol_sum X l w _ _ (fun j _ => polAct X l w _ (hA _) b hb.1)
+    · rw [heckeU_eq]; exact Pol_sum X l w _ _ (fun j _ => GlobalTheory.KZ.PolAct.act_mem_pol X l w _ (hA _) b hb.1)
     · intro γ hγ
       rw [heckeU_eq]
       exact sum_act_inv X l N (repU l) (fun j => by simp [repU, Matrix.det_fin_two]; exact hl.pos) γ
@@ -446,7 +476,7 @@ theorem op_BSet (X : Tower Ω ε) [Fact l.Prime]
   | D d =>
     have hσ := _root_.GlobalTheory.KZ.isDiam_sgD_of_prime N l d hl hN hNl hT
     show X.act l (sgD N l d : Matrix (Fin 2) (Fin 2) ℤ) b ∈ X.BSet N l w
-    refine ⟨polAct X l w _ (hA _) b hb.1, ?_⟩
+    refine ⟨GlobalTheory.KZ.PolAct.act_mem_pol X l w _ (hA _) b hb.1, ?_⟩
     intro γ hγ
     obtain ⟨h1, h2, h3, h4⟩ := diam_facts hσ
     have hPγ := congruenceCondition_of_mem hγ

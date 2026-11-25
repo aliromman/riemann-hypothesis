@@ -819,10 +819,6 @@ theorem thue_normSq (d e : ℕ) (he : d + 1 = 4 * e) (u v : ℤ) :
   push_cast
   linear_combination ((v : ℝ) ^ 2 / 4) * hs + ((v : ℝ) ^ 2 / 4) * he'
 
-theorem thue_norm_zc {q : ℕ} [Fact q.Prime] (a : ℤ_[q]) : ‖zc a‖ = ‖a‖ := by
-  unfold zc
-  rw [norm_algebraMap', PadicInt.padic_norm_e_of_padicInt]
-
 theorem thue_pigeon {q : ℕ} [Fact q.Prime] (a : ℤ_[q]) (k : ℕ) :
     ∃ u v : ℤ, (u ≠ 0 ∨ v ≠ 0) ∧ u ^ 2 ≤ (q : ℤ) ^ k ∧ v ^ 2 ≤ (q : ℤ) ^ k ∧
       ‖(u : ℤ_[q]) + (v : ℤ_[q]) * a‖ ≤ (q : ℝ) ^ (-(k : ℤ)) := by
@@ -884,7 +880,7 @@ theorem exists_small_in_prime_pow : ∀ (d q : ℕ) [Fact q.Prime] (ι : ℂ ≃
   · have : ι ((u : ℂ) + (v : ℂ) * wK d) = zc ((u : ℤ_[q]) + (v : ℤ_[q]) * a) := by
       rw [map_add (f := _), map_mul, ha]
       simp [zc]
-    rw [this, thue_norm_zc]
+    rw [this, GlobalTheory.MomOne.MulSeries.norm_zc]
     exact hn
   · rw [Complex.mul_conj, hN, hNe]
     simp

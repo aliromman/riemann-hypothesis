@@ -3,18 +3,6 @@ module
 public import Development.AbelianVarietyTheory.PublishedTheorems.SiegelWeil₂.SiegelWeilUnitarySchrodinger
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.EventuallyAlgebraMapMemIntegers
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.HeckeFormNSOfHeckeForm
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MixSDblDecZero
 import Development.AbelianVarietyTheory.PublishedTheorems.SiegelWeil₂.AdelicConjTransposeBlockMatrixTwoByTwoFin
@@ -37,15 +25,9 @@ theorem lower_eq_zero {p : G D n} (hp : p ∈ P D n) (i j : Fin n) :
   apply _root_.GlobalTheory.StdUnn.Model.lower_eq_zero <;> assumption
 
 theorem blkA_mul {p q : G D n} (hq : q ∈ P D n) : blkA (mat (p * q)) = blkA (mat p) * blkA (mat q) := by
-  ext i j
-  have e : mat (p * q) = mat p * mat q := rfl
-  simp only [e, blkA, Matrix.toBlocks₁₁, Matrix.of_apply, Matrix.submatrix_apply, Matrix.mul_apply]
-  rw [← finSumFinEquiv.sum_comp, Fintype.sum_sum_type]
-  simp only [lower_eq_zero hq, mul_zero, Finset.sum_const_zero, add_zero]
+  exact GlobalTheory.StdUnn.Model.blkA_mul hq
 
-theorem blkA_one : blkA (mat (1 : G D n)) = 1 := by
-  have e : mat (1 : G D n) = 1 := rfl
-  rw [e, blkA, Matrix.submatrix_one_equiv, ← Matrix.fromBlocks_one, Matrix.toBlocks_fromBlocks₁₁]
+theorem blkA_one : blkA (mat (1 : G D n)) = 1 := GlobalTheory.StdUnn.Model.blkA_one
 
 def leviBlock : P D n →* GL (Fin n) (AE D) :=
   MonoidHom.toHomUnits ⟨⟨fun p => blkA (mat p.1), blkA_one⟩, fun p q => blkA_mul q.2⟩
@@ -67,9 +49,7 @@ theorem continuous_detGL : Continuous (Matrix.GeneralLinearGroup.det : GL (Fin n
   refine ⟨Units.continuous_val.matrix_det, (Units.continuous_coe_inv.matrix_det).congr fun g => ?_⟩
   rw [← map_inv]; rfl
 
-theorem isCompact_K : IsCompact (K D n : Set (G D n)) :=
-  haveI := isLattice_stdLattice (E := D.host.E) (n := n + n)
-  isCompact_levelAll (isCMExt_host D) _ _ _
+theorem isCompact_K : IsCompact (K D n : Set (G D n)) := GlobalTheory.StdUnn.Model.isCompact_K
 
 theorem isClosed_P : IsClosed (P D n : Set (G D n)) := by
   apply _root_.GlobalTheory.StdUnn.Model.isClosed_P <;> assumption

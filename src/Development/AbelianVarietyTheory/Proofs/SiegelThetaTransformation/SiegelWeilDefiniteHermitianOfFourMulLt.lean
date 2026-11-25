@@ -1327,13 +1327,11 @@ theorem abs_norm_eq (h : IsType Ψ) (t : E) :
   · intro a _; exact star_star a
   · intro a _; simp only [ComplexEmbedding.conjugate_coe_eq, Complex.norm_conj]
 
-alias isSB_of_adm := _root_.GlobalTheory.SW.SwdHeat.isSB_member
-
 theorem bounded_of_adm {M R : ℕ} {φ : Fam E n N} (h : admitted M R φ) :
     ∃ B : ℝ, 0 ≤ B ∧ ∀ Λ ∈ Vset E n M, ∀ x, ‖φ Λ x‖ ≤ B := by
   haveI : Finite (Cls E n M) := (finite_cls_and_stab E n M h.pos.1).1
   have h1 : ∀ c : Cls E n M, ∃ B : ℝ, ∀ x, ‖φ (Quot.out c).1 x‖ ≤ B := fun c => by
-    obtain ⟨S, hS, hl⟩ := isSB_of_adm h (Quot.out c).2
+    obtain ⟨S, hS, hl⟩ := GlobalTheory.SW.SwdHeat.isSB_member h (Quot.out c).2
     exact (ip_self_nonneg_and_bounds E _ _ S _ hS hl).2.2.2.2.1
   choose b hb using h1
   obtain ⟨B, hB⟩ := (Set.finite_range b).bddAbove
@@ -1420,8 +1418,8 @@ theorem twist_swd_bounded : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
   refine ⟨max C₁ 0 ^ ((n : ℝ) / 2) * (C₂ * B), fun 𝔛 hfg hag Z hZ => ?_⟩
   obtain ⟨a, ha, hidx, hadm⟩ := h1 n M R φ 𝔛 hφ hfg hag
   obtain ⟨-, -, -, hpos, ⟨R', hR'⟩, -⟩ := twist_admissible E n (N + 1) M R φ 𝔛 hφ hfg hag
-  obtain ⟨Z', hZ', e1, e2⟩ := exists_moved hΨ hn hN hφ.pos.1 (fun Λ hΛ => isSB_of_adm hR' hΛ) ha
-    (fun Λ hΛ => isSB_of_adm hadm hΛ) hZ
+  obtain ⟨Z', hZ', e1, e2⟩ := exists_moved hΨ hn hN hφ.pos.1 (fun Λ hΛ => GlobalTheory.SW.SwdHeat.isSB_member hR' hΛ) ha
+    (fun Λ hΛ => GlobalTheory.SW.SwdHeat.isSB_member hadm hΛ) hZ
   have h3 := h2 _ hadm B (fun Λ hΛ x => by
     unfold twist
     split_ifs

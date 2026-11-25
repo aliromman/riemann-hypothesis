@@ -4,7 +4,29 @@ public import Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsUniqueIsProdMeasureFinAway
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsTopologicalRingAE
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroup
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 public import Mathlib.MeasureTheory.Measure.Decomposition.RadonNikodym
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -18,7 +40,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.MemberDatumOfFlagTie
 
 @[expose] public section
@@ -127,9 +151,6 @@ theorem mx_facts (D : D7) (a b : ℕ) : LocallyCompactSpace (Mx D a b) ∧ Secon
     inferInstanceAs (T2Space (Fin a → Fin b → AE D)),
     inferInstanceAs (IsTopologicalAddGroup (Fin a → Fin b → AE D)), ⟨rfl⟩⟩
 
-theorem mt_mul (V : HSp D) (g h : GA D V) : Formalism.L2.Theta.mt V (g * h) = Formalism.L2.Theta.mt V g * Formalism.L2.Theta.mt V h := by
-  simp [Formalism.L2.Theta.mt, map_mul]
-
 theorem mt_one (V : HSp D) : Formalism.L2.Theta.mt V 1 = 1 := by
   simp [Formalism.L2.Theta.mt, map_one]
 
@@ -150,7 +171,7 @@ def gS (V : HSp D) (e : AE D) : Subgroup (GA D V) where
   mul_mem' := by
     intro g h hg hh
     change e • (Formalism.L2.Theta.mt V (g * h) - 1) = Formalism.L2.Theta.mt V (g * h) - 1
-    rw [mt_mul]
+    rw [GlobalTheory.BesselCompare.mt_mul]
     exact smul_sub_one_mul e _ _ hg hh
   one_mem' := by
     change e • (Formalism.L2.Theta.mt V 1 - 1) = Formalism.L2.Theta.mt V 1 - 1
@@ -158,7 +179,7 @@ def gS (V : HSp D) (e : AE D) : Subgroup (GA D V) where
   inv_mem' := by
     intro h hh
     change e • (Formalism.L2.Theta.mt V h⁻¹ - 1) = Formalism.L2.Theta.mt V h⁻¹ - 1
-    exact smul_sub_one_inv e (Formalism.L2.Theta.mt V h) _ (by rw [← mt_mul, inv_mul_cancel, mt_one]) hh
+    exact smul_sub_one_inv e (Formalism.L2.Theta.mt V h) _ (by rw [← GlobalTheory.BesselCompare.mt_mul, inv_mul_cancel, mt_one]) hh
 
 theorem isClosed_gS (V : HSp D) (e : AE D) : IsClosed (gS V e : Set (GA D V)) := by
   obtain ⟨h1, h2, h3, h4, h5⟩ := mx_facts D V.rank V.rank
@@ -237,8 +258,6 @@ theorem qmp_prodMap {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y] {μ : 
 end GlobalTheory.CompanionTheory.OrbUniq
 
 namespace GlobalTheory.CompanionTheory.OrbUniq
-
-
 
 theorem uniq_of_trans : IdemEx → NullSing → Trans → Uniq := by
   intro hI hN hT D r t V b₀ hb S e he ν ν' hν hν' hne

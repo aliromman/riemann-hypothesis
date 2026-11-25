@@ -245,11 +245,9 @@ theorem addCvSelf_of (hG : GermIAllSt) : AddCvSelfSt := by
   · intro v hv
     rw [Y.rawSelf_sg p v, hsum _ hcv, hsum γ hγ, hsum γ' hγ', ← Finset.sum_sub_distrib, ← Finset.sum_sub_distrib]
     refine ⟨?_, fun n => ?_⟩
-    · set_option synthInstance.maxHeartbeats 100000 in
-        rw [map_sum]
+    · rw [map_sum]
       exact Finset.sum_eq_zero fun c _ => (hGsg c _ (fun i => hv (c, i))).1
-    · set_option synthInstance.maxHeartbeats 100000 in
-        rw [map_sum]
+    · rw [map_sum]
       exact VF.Ge.sum fun c _ => (hGsg c _ (fun i => hv (c, i))).2 n
 
 theorem cartesian_self_conj_of_germs (hPT : PTSelfSt) (hG : GermIAllSt) (hStab : HStabSelfSt) : CartSelfSt := cartSelf_of hPT (addCvSelf_of hG) hStab

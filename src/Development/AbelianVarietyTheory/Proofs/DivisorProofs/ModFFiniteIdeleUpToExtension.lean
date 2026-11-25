@@ -4,18 +4,6 @@ public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.LatticeNo
 import Mathlib.NumberTheory.RamificationInertia.Inertia
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.TorsTransport
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedTransport
 
@@ -49,10 +37,6 @@ theorem valued_finiteCompletionMap (w : HeightOneSpectrum (𝓞 E)) (x : (w.unde
   · rw [map_zero, map_zero, map_zero, zero_pow he]
   have hx0 : Valued.v x ≠ 0 := by simpa using hx
   obtain ⟨π, hπ⟩ := HeightOneSpectrum.valuation_exists_uniformizer K (w.under (𝓞 K))
-  have hπ0 : π ≠ 0 := by
-    rintro rfl
-    rw [map_zero] at hπ
-    exact WithZero.exp_ne_zero hπ.symm
   set m := WithZero.log (Valued.v x)
   set k : K := π ^ (-m)
   have hvk : (w.under (𝓞 K)).valuation K k = Valued.v x := by

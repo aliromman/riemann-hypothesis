@@ -3,7 +3,30 @@ module
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsConjugateUnitaryKTypeSameWeight
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.PosPartUnitaryMul
 public import Formalism.RealPlaceAnalysis.RealPlaceTaylor.IndefiniteUnitaryPreservesForm
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -18,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LayerProd
 
 @[expose] public section
@@ -30,34 +54,22 @@ namespace GlobalTheory.Dec.FormF
 variable {n : ℕ}
 
 lemma map_star_mul (a b : Matrix (Fin n) (Fin n) ℂ) : (a * b).map star = a.map star * b.map star := by
-  ext i j
-  simp only [Matrix.map_apply, Matrix.mul_apply, star_sum, star_mul']
+  exact GlobalTheory.ConjugateType.map_star_mul a b
 
 lemma map_star_star (a : Matrix (Fin n) (Fin n) ℂ) : (a.map star).map star = a := by
-  ext i j
-  simp
+  exact GlobalTheory.ConjugateType.map_star_star a
 
 lemma map_star_one : (1 : Matrix (Fin n) (Fin n) ℂ).map star = 1 := by
-  ext i j
-  simp only [Matrix.map_apply, Matrix.one_apply]
-  split_ifs <;> simp
+  exact GlobalTheory.ConjugateType.map_star_one
 
 lemma map_star_ct (a : Matrix (Fin n) (Fin n) ℂ) : (a.map star)ᴴ = aᴴ.map star := by
-  ext i j
-  simp
+  exact GlobalTheory.ConjugateType.map_star_conjTranspose a
 
 lemma Jm_star (ε : Fin n → Bool) : (Jm ε).map star = Jm ε := by
-  ext i j
-  simp only [Matrix.map_apply, Formalism.REAL.Jm, Matrix.diagonal_apply]
-  split_ifs <;> simp
+  exact GlobalTheory.ConjugateType.map_star_Jm ε
 
 lemma UJ_star {ε : Fin n → Bool} {g : Matrix (Fin n) (Fin n) ℂ} (h : g ∈ UJset ε) : g.map star ∈ UJset ε := by
-  have h' : gᴴ * Formalism.REAL.Jm ε * g = Formalism.REAL.Jm ε := h
-  show (g.map star)ᴴ * Formalism.REAL.Jm ε * g.map star = Formalism.REAL.Jm ε
-  have e := congrArg (fun m : Matrix (Fin n) (Fin n) ℂ => m.map star) h'
-  simp only [map_star_mul, Jm_star] at e
-  rw [map_star_ct]
-  exact e
+  exact GlobalTheory.ConjugateType.map_star_mem_UJ h
 
 lemma K_star {ε : Fin n → Bool} {g : Matrix (Fin n) (Fin n) ℂ} (h : g ∈ Kset ε) : g.map star ∈ Kset ε := by
   first | exact _root_.GlobalTheory.ConjugateType.map_star_mem_K | exact @_root_.GlobalTheory.ConjugateType.map_star_mem_K | apply _root_.GlobalTheory.ConjugateType.map_star_mem_K <;> assumption

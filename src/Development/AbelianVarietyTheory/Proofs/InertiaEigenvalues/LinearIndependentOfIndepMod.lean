@@ -44,14 +44,10 @@ noncomputable section
 namespace GlobalTheory.PhiGam
 open scoped LaurentSeries PowerSeries
 
-private theorem coe_powerSeries_smul_eq_smul {k : Type} [Field k] {V : Type} [AddCommGroup V] [Module k⸨X⸩ V]
-    [Module k⟦X⟧ V] [IsScalarTower k⟦X⟧ k⸨X⸩ V] (a : k⟦X⟧) (x : V) : (a : k⸨X⸩) • x = a • x := by
-  rw [← algebraMap_smul (k⸨X⸩) a x, LaurentSeries.coe_algebraMap]
-
 private theorem powerSeries_smul_mem_of_mem {k : Type} [Field k] {V : Type} [AddCommGroup V] [Module k⸨X⸩ V]
     [Module k⟦X⟧ V] [IsScalarTower k⟦X⟧ k⸨X⸩ V] (N : Submodule k⟦X⟧ V) {x : V} (hx : x ∈ N)
     (a : k⟦X⟧) : (a : k⸨X⸩) • x ∈ N := by
-  rw [coe_powerSeries_smul_eq_smul]; exact N.smul_mem a hx
+  rw [GlobalTheory.Models.CharSign.coe_smul]; exact N.smul_mem a hx
 
 private theorem mem_of_gmult_eq_zero_of_sub_mem {k U : Type} [Field k] [AddCommGroup U] [Module k U]
     (T : Module.End k U) (P Q : Submodule k U) (x : k) (s : Set U) (hs : s.Finite)
@@ -112,7 +108,7 @@ private theorem exists_finite_span_sup_shift_of_isLat {k : Type} [Field k] {V : 
         rw [← algebraMap_smul (k⟦X⟧) (PowerSeries.constantCoeff a) y]; rfl
       rw [hc]; exact Submodule.smul_mem _ _ hy
     · rw [Submodule.restrictScalars_mem, mem_sh_iff_exists]
-      exact ⟨a' • y, N.smul_mem a' hyN, by rw [zpow_one, vv_eq_coe_X, coe_powerSeries_smul_eq_smul]⟩
+      exact ⟨a' • y, N.smul_mem a' hyN, by rw [zpow_one, vv_eq_coe_X, GlobalTheory.Models.CharSign.coe_smul]⟩
 
 private theorem vv_pow_smul_mem_of_sen_eq_zero {k : Type} [Field k] {l : ℕ} (R : RingPG k l) {V : Type} [AddCommGroup V]
     [Module k⸨X⸩ V] [Module k⟦X⟧ V] [Module k V] [IsScalarTower k⟦X⟧ k⸨X⸩ V] [IsScalarTower k k⸨X⸩ V]

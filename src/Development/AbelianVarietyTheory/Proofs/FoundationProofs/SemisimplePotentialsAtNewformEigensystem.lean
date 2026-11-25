@@ -142,18 +142,6 @@ open scoped MatrixGroups
 
 namespace GlobalTheory.KZ.H3
 
-theorem polySlash_one_of_mem (w : ℕ) (p : Polynomial ℂ) (hp : p ∈ Polynomial.degreeLT ℂ (w + 1)) :
-    GlobalTheory.HeckeFamilyMatrices.slP w (1 : Matrix (Fin 2) (Fin 2) ℤ) p = p := by
-  simp [GlobalTheory.HeckeFamilyMatrices.slP]
-  rw [Polynomial.mem_degreeLT] at hp
-  have hn : p.natDegree < w + 1 := by
-    by_cases h0 : p = 0
-    · simp [h0]
-    · exact (Polynomial.natDegree_lt_iff_degree_lt h0).2 hp
-  conv_rhs => rw [p.as_sum_range' (w + 1) hn]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  rw [Polynomial.smul_X_eq_monomial]
-
 theorem eichlerShimuraCocycle_eq_zero_of_closure (Γ : Subgroup SL(2, ℤ)) (w : ℕ) (z : GlobalTheory.HeckeFamilyMatrices.Z1 Γ w) (S : Set Γ)
     (hS : Subgroup.closure S = ⊤) (hz : ∀ s ∈ S, (z : Γ → Polynomial ℂ) s = 0) :
     (z : Γ → Polynomial ℂ) = 0 := by
@@ -164,7 +152,7 @@ theorem eichlerShimuraCocycle_eq_zero_of_closure (Γ : Subgroup SL(2, ℤ)) (w :
     have hid : GlobalTheory.HeckeFamilyMatrices.slP w (GlobalTheory.HeckeFamilyMatrices.mat (1 : Γ)) ((z : Γ → Polynomial ℂ) 1) = (z : Γ → Polynomial ℂ) 1 := by
       have : GlobalTheory.HeckeFamilyMatrices.mat ((1 : Γ) : SL(2, ℤ)) = 1 := by simp [GlobalTheory.HeckeFamilyMatrices.mat]
       rw [this]
-      exact polySlash_one_of_mem w _ (hdeg 1)
+      exact GlobalTheory.HeckeFamilyMatrices.CocBound.polySlash_one w _ (hdeg 1)
     rw [hid] at h
     have : (z : Γ → Polynomial ℂ) 1 + (z : Γ → Polynomial ℂ) 1 - (z : Γ → Polynomial ℂ) 1 = 0 := by
       rw [← h]; ring
@@ -942,11 +930,6 @@ open CongruenceSubgroup
 theorem cj_sub {Γ : Type} (u v : Γ → ℂ[X]) : cj (u - v) = cj u - cj v := by
   funext γ
   simp [cj, Polynomial.map_sub]
-
-theorem intCast_of_dvd {m n : ℕ} (h : m ∣ n) {x a : ℤ} (hx : ((x : ℤ) : ZMod n) = a) :
-    ((x : ℤ) : ZMod m) = a := by
-  have := congrArg (ZMod.castHom h (ZMod m)) hx
-  simpa using this
 
 theorem gamma_le_lev (N l : ℕ) : Gamma (N * l) ≤ Lev N l :=
   _root_.GlobalTheory.HeckeFamilyMatrices.EisT.gamma_le_lev N l

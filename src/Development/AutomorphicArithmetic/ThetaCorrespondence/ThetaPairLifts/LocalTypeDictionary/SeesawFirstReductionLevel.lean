@@ -1333,7 +1333,7 @@ theorem hT_sum (S : HSp D) (u v : S.V) :
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 
 theorem isomEmb_inj {S S₁ : HSp D} {ι : S₁.V →ₗ[D.host.E] S.V} (h : HSpace.IsIsomEmb S₁ S ι) : Function.Injective ι := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro u hu
   exact S₁.nondeg.1 u fun v => by rw [← h, hu, map_zero, LinearMap.zero_apply]
 

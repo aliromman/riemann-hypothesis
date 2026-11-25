@@ -1,21 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConvUAbsU
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasBoundedSumsOne
 
 @[expose] public section
@@ -117,7 +102,6 @@ theorem cellU_rankOne_shape : ∀ (L : Type) [Field L] [Valued L (WithZero (Mult
   rw [hs] at hy
   have hab : ((lo k).rev).val = (lo k).val + 1 := by
     obtain ⟨m, rfl⟩ := he
-    have hk2 := k.isLt
     simp only [Fin.val_rev, lo, Fin.coe_castLE]
     omega
   rw [cellU, Subgroup.mem_subgroupOf]

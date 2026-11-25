@@ -13,6 +13,29 @@ public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.TranslateThet
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.UniversalStatementStatement
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ValCongr
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.AllUniformizationLawsHold
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -25,6 +48,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 @[expose] public section
@@ -39,19 +63,7 @@ open ReciprocityTheory.ChartRestriction.G.TB (colM dAct)
 namespace GlobalTheory.PtTie
 
 theorem addVal_eq_zero_of_pow_eq_one {F : Type} [Field F] (v : AddValuation F (WithTop ℚ)) (u : F) (m : ℕ) (hm : 0 < m)
-    (hu : u ^ m = 1) : v u = 0 := by
-  have hu0 : u ≠ 0 := by
-    rintro rfl
-    rw [zero_pow hm.ne'] at hu
-    exact zero_ne_one hu
-  have h1 : m • v u = 0 := by rw [← AddValuation.map_pow, hu, AddValuation.map_one]
-  have ht : v u ≠ ⊤ := by rwa [Ne, AddValuation.top_iff]
-  lift v u to ℚ using ht with q hq
-  have h3 : m • q = 0 := by exact_mod_cast h1
-  rw [nsmul_eq_mul] at h3
-  rcases mul_eq_zero.mp h3 with h | h
-  · exact absurd h (by exact_mod_cast hm.ne')
-  · rw [h]; rfl
+    (hu : u ^ m = 1) : v u = 0 := GlobalTheory.ColumnSplit.val_eq_zero_of_pow_eq_one v hm hu
 
 theorem addVal_prod_eq_zero {F : Type} [Field F] (v : AddValuation F (WithTop ℚ)) {K : Type} (s : Finset K) (u : K → F)
     (hu : ∀ i, v (u i) = 0) : v (∏ i ∈ s, u i) = 0 := by

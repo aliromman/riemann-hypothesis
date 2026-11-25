@@ -5,18 +5,6 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDo
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PeriodFrameLimitsOfOrbit
 import Formalism.LocalToGlobal.ProjectiveLattices.FnDefC
 import Formalism.LocalToGlobal.ProjectiveLattices.UnifFrDet
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.PointwiseNormInvarianceHolds
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.LminorSubmatrixCastSucc
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.OrthogonalFrameDomain
@@ -194,7 +182,6 @@ theorem nfac_inv_le_pow_of_isOrbit_of_perBound : ∀ (E : Type) [Field E] [Numbe
   set S : ℕ := ∑ τ, ∑ i, (la τ i).natAbs with hSdef
   have hCp0 : 0 ≤ Cp := Finset.sum_nonneg fun _ _ => le_max_right _ _
   have hDQ0 : 0 ≤ DQ := Finset.sum_nonneg fun τ _ => Finset.sum_nonneg fun d _ => hD0' τ d
-  have hK0 : 0 ≤ K := Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => norm_nonneg _
   set A : ℝ := C + N * N * K * Cp * DQ with hA
   have hpowB : ∀ d, Bq d ≤ Bp := fun d =>
     Finset.single_le_sum (f := Bq) (fun _ _ => Nat.zero_le _) (Finset.mem_univ d)

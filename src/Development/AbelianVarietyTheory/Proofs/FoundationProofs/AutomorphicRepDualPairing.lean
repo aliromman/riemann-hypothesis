@@ -3,18 +3,6 @@ module
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DefiniteUnitaryClassSetFinite
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ContinuousMapPFin
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasBlockOfOccurs
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSystemOf
 import Formalism.PieriBlockIdeals.BlockIdealBound5Derived
@@ -186,10 +174,6 @@ theorem rep_fd (ρ : Representation ℂ (infU E n) S) (K : Subgroup (finU (E := 
     exact LinearMap.congr_fun (congrArg Subtype.val h1) v)
   exact LinearEquiv.finiteDimensional
     (Submodule.equivMapOfInjective _ (forms ρ).injective_subtype _).symm
-
-end GlobalTheory.FrameAut.VecProj
-
-namespace GlobalTheory.FrameAut.VecProj
 
 end GlobalTheory.FrameAut.VecProj
 

@@ -673,17 +673,6 @@ private theorem ge_coeff_rename_inr {C : Type} [Field C] (V : VF C) {ι ι' : Ty
   rw [Finsupp.degree_eq_sum, ← hν]
   simp [Finsupp.mapDomain_apply_of_injective Sum.inr_injective]
 
-private theorem constantCoeff_linPull_eq_zero {C : Type} [Field C] {σ ι : Type} [Fintype σ]
-    [Fintype ι] (e : ι → σ → C) (F : MvPowerSeries σ C)
-    (h : MvPowerSeries.constantCoeff F = 0) :
-    MvPowerSeries.constantCoeff (linPull e F) = 0 := by
-  unfold linPull
-  apply MvPowerSeries.constantCoeff_subst_eq_zero
-  · exact MvPowerSeries.hasSubst_of_constantCoeff_zero (fun x => by simp)
-  · intro x
-    simp
-  · exact h
-
 private theorem pderiv_inr_mainM_one {C : Type} [Field C] (V : VF C) {ι ι' : Type} [Fintype ι]
     [Fintype ι'] (Φ : ι' → ι → C) (b : ι') :
     MvPowerSeries.pderiv (R := C) (Sum.inr b) (mainM V 1 Φ) =
@@ -776,10 +765,10 @@ theorem mPlus_of_good_tangents : ∀ (C : Type) [Field C] (V : VF C) (d : ℕ) [
       rcases h2 j g with rfl | rfl
       · simp only
         rw [h91.1, MvPowerSeries.constantCoeff_rename]
-        exact constantCoeff_linPull_eq_zero _ _ ((hT j).1 x)
+        exact GlobalTheory.MainTermWeight.constantCoeff_linPull _ _ ((hT j).1 x)
       · simp only
         rw [h91.2, MvPowerSeries.constantCoeff_rename]
-        exact constantCoeff_linPull_eq_zero _ _ ((hT (1 - g)).1 x)
+        exact GlobalTheory.MainTermWeight.constantCoeff_linPull _ _ ((hT (1 - g)).1 x)
     · rintro ⟨j, x⟩ ν hP
       rcases h2 j g with rfl | rfl
       · simp only
@@ -890,22 +879,6 @@ theorem mm_sum {C : Type} [Field C] {V : VF C} {ι : Type} (s : Finset ι) (f : 
     rw [Finset.sum_insert ha]
     exact mm_add (h a (Finset.mem_insert_self a s)) (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
 
-theorem mm_of_tan {C : Type} [Field C] {V : VF C} {d : ℕ} {I J : Type} [Fintype I] [Fintype J]
-    {G : Cart V d I J} (S : Sys G) (w : I → C) (h : ∀ k, V.MM (∑ c, w c * S.tan c k)) (c : I) :
-    V.MM (w c) := by
-  have h1 : S.U * S.U⁻¹ = 1 := Matrix.mul_nonsing_inv _ (isUnit_iff_ne_zero.mpr S.U_det_ne)
-  have e : w c = ∑ k, (∑ b, w b * S.tan b k) * S.U⁻¹ k c := by
-    simp only [Finset.sum_mul]
-    rw [Finset.sum_comm]
-    have : ∀ b, ∑ k, w b * S.tan b k * S.U⁻¹ k c = w b * (S.U * S.U⁻¹) b c := by
-      intro b
-      rw [Matrix.mul_apply, Finset.mul_sum]
-      exact Finset.sum_congr rfl fun k _ => by simp only [Sys.U, Matrix.of_apply]; ring
-    simp only [this, h1, Matrix.one_apply]
-    simp
-  rw [e]
-  exact mm_sum _ _ fun k _ => mm_mul_int (h k) (inv_int S.U S.U_int S.unimod k c)
-
 theorem indepMod_first_coeff : ∀ (C : Type) [Field C] (V : VF C) (d : ℕ) [NeZero d] (I J : Fin 2 → Type) [∀ g, Fintype (I g)] [∀ g, Fintype (J g)] (X : RowData C V d I J), X.Alt → ∀ (g : Fin 2) (a : ZMod d), X.big g a → ∀ (i : ℕ) (S : Sys (X.G g)) (Z : Type) (D : Formalism.BaseCaseIdentities.Data C Z (I g)), Adapted S D a i → ∀ s : ℕ, s < Formalism.BaseCaseIdentities.Kn i → ∀ (m : ℕ) (y : Fin m → I g → C), (∀ δ c, V.Ge 0 (y δ c)) → IndepMod V (fun δ c => if D.lev c = s then y δ c else 0) → IndepMod V (fun δ (κ : J g) => ∑ c ∈ Finset.univ.filter (fun c => D.lev c = s), y δ c ^ V.l * ((V.l : C) * S.be c 1 κ)) := by
   intro C _ V d _ I J _ _ X hA g a ha i S Z D hD s hs m y hy hind co hco hsum
   have mm_add : ∀ {a b : C}, V.MM a → V.MM b → V.MM (a + b) :=
@@ -990,7 +963,7 @@ theorem indepMod_first_coeff : ∀ (C : Type) [Field C] (V : VF C) (d : ℕ) [Ne
     simp only [mul_pow, hr, sub_mul, Finset.sum_mul, mul_assoc, sub_add_cancel]
     rfl)
   have hwm : ∀ c, V.MM (if D.lev c = s then w c else 0) := by
-    refine mm_of_tan S _ fun k => ?_
+    refine GlobalTheory.ChainStep.mm_of_tan S _ fun k => ?_
     convert hR k using 1
     simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, hT, Finset.sum_filter, ite_mul, zero_mul]
   intro δ

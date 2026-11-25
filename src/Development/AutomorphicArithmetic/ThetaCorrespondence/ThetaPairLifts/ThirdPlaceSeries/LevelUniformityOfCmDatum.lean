@@ -417,7 +417,7 @@ theorem _root_.GlobalTheory.T.complex_typePlaceCharacter_eq_superdiag_addChar_mu
   obtain ⟨h1, h2, h3, y, hy, hry⟩ := GlobalTheory.XUniRead.loc_read s (n := D.R.nV) (Nat.le_add_right D.R.r D.R.t : D.R.r ≤ D.R.nV)
     (D.host.g_prime kv0.1) red x hx
   unfold NX.gVal
-  erw [dite_eq_left h2]
+  rw [dite_eq_left h2]
   rw [map_mul, hτ, he, hξ _ h2 uu (huu.trans h3.symm)]
   congr 1
   generalize hM : NX.redMat s.v red (NX.topR (Nat.le_add_right D.R.r D.R.t : D.R.r ≤ D.R.nV) x.val) = M

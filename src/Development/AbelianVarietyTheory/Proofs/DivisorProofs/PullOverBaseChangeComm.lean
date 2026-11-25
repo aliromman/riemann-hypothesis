@@ -2,18 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.AxesVanishingStructureSheafDegOne
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StructureSheafCohomologyPullbackCompCupIdStatement
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -26,7 +14,7 @@ theorem pull_over_baseChange_comm : ∀ (R R' : Type) [CommRing R] [CommRing R']
   intro R R' _ _ σ A Y A' Y' f f' φ ψ hA hY hcomm
   have hχ : (ψ ≫ f.left) ≫ A.hom = Y'.hom ≫ spMap σ := by
     rw [Category.assoc, Over.w f, hY]
-  have H := (GlobalTheory.T.structureSheafCohomology_pullback_comp_cup_id).1
+  have H := (GlobalTheory.AbCoh.pull_comp_cup_id).1
   refine ⟨fun x ↦ ?_, fun x ↦ ?_⟩
   · have e1 := (H R R A.left Y.left A.hom Y.hom (RingHom.id R) f.left (ovw f) R'
       Y'.left Y'.hom σ ψ hY σ (ψ ≫ f.left) hχ rfl (fun _ ↦ rfl)).1 x

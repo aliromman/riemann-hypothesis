@@ -3,22 +3,8 @@ module
 public import Development.AbelianVarietyTheory.Definitions.Divisors.FlatTensorVacuum
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IwasawaBlockTriangular
 import Development.AbelianVarietyTheory.Definitions.Foundations.SimpleSumRowCol
-import Mathlib.RingTheory.Henselian
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Lemma
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsKOOfDet, Development.AbelianVarietyTheory.Proofs.DivisorProofs.OneCosetOfIsTensor
@@ -306,13 +292,11 @@ theorem moveArgs_add (g : G.VertexGroup) (z z' : G.Args) :
 theorem tgt_eq (hs : 1 ≤ G.s) (j : Fin (G.m - 1)) :
     topRank G (j + 1) + (G.m - 2 - j) = G.rank (G.m, j + 1) := by
   have h1 := topRank_add hs ((j : ℕ) + 1)
-  have h2 := j.isLt
   omega
 
 theorem src_eq (hs : 1 ≤ G.s) (j : Fin (G.m - 1)) :
     topRank G j + (G.m - 2 - j + 1) = G.rank (G.m, j) := by
   have h1 := topRank_add hs (j : ℕ)
-  have h2 := j.isLt
   omega
 
 theorem downMap_eq (hs : 1 ≤ G.s) (x : ColArgs G) (e : Vars G) (j : Fin (G.m - 1)) : downMap hs x e j =
@@ -536,8 +520,6 @@ theorem step_form [ν.IsAddHaarMeasure] (hs : 1 ≤ G.s) (hψ : HasConductor ψ 
           · simp [M, Matrix.mul_apply]
           · by_cases hsi : s = i.succ
             · subst hsi
-              have hx1 : ((frameGL (tgt_eq hs j') (g (G.m, ↑j' + 1))).val *ᵥ y') (.inr i) *
-                  (((ϖ ^ (e * (i.val + 1)) : kˣ) : k))⁻¹ ≠ 0 := mul_ne_zero ha0 (inv_ne_zero hd)
               have hent : ((((frameGL (tgt_eq hs j') (g (G.m, ↑j' + 1)))⁻¹).val * M) r (.inr i.succ)) *
                   ((Sum.elim (fun _ : Fin (topRank G ↑j') => (1 : kˣ)) (fun p : Fin (G.m - 2 - ↑j' + 1) => ϖ ^ (e * (p.val + 1))) (.inr i.succ) : kˣ) : k) =
                   (y'' / (((frameGL (tgt_eq hs j') (g (G.m, ↑j' + 1))).val *ᵥ y') (.inr i) *

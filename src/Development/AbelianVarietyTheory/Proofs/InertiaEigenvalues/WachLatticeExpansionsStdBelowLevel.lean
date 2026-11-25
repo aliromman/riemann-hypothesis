@@ -7,6 +7,31 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Unra
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CrystallineFrobeniusBijOnLettersDirectSum
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachLatticeEqStdPowerSeriesAtZero
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachLevelExpansionAtRootOfUnity
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -19,6 +44,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -32,19 +59,17 @@ section Series
 
 variable {L M : Type} [Field L] [AddCommGroup M] [Module L M]
 
-alias conv_eq_sum := _root_.GlobalTheory.NL.FullDown.conv_eq_sum
-
 theorem conv_mul (a b : PowerSeries L) {u : ℤ → M} {m : ℤ} (hm : ∀ k < m, u k = 0) :
     conv (a * b) u = conv a (conv b u) := by
   funext k
   set N := (k - m).toNat + 1 with hN
-  rw [conv_eq_sum _ hm k N (by omega), conv_eq_sum _ (_root_.GlobalTheory.NL.FullDown.conv_low b hm) k N (by omega)]
+  rw [GlobalTheory.NL.FullDown.conv_eq_sum _ hm k N (by omega), GlobalTheory.NL.FullDown.conv_eq_sum _ (_root_.GlobalTheory.NL.FullDown.conv_low b hm) k N (by omega)]
   have h1 : ∀ i ∈ Finset.range N, PowerSeries.coeff i a • conv b u (k - (i : ℤ)) =
       ∑ j ∈ Finset.range (N - i), (PowerSeries.coeff i a * PowerSeries.coeff j b) •
         u (k - ((i + j : ℕ) : ℤ)) := by
     intro i hi
     have := Finset.mem_range.1 hi
-    rw [conv_eq_sum _ hm _ (N - i) (by omega), Finset.smul_sum]
+    rw [GlobalTheory.NL.FullDown.conv_eq_sum _ hm _ (N - i) (by omega), Finset.smul_sum]
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [smul_smul]
     congr 2
@@ -75,7 +100,7 @@ theorem tw_conv {c : L} (hc : c ≠ 0) (Φ : M →ₗ[L] M) (a : PowerSeries L) 
   funext k
   set N := (k - m).toNat + 1 with hN
 
-  rw [tw_apply, conv_eq_sum _ hm k N (by omega), conv_eq_sum _ (tw_van c Φ hm) k N (by omega),
+  rw [tw_apply, GlobalTheory.NL.FullDown.conv_eq_sum _ hm k N (by omega), GlobalTheory.NL.FullDown.conv_eq_sum _ (tw_van c Φ hm) k N (by omega),
   map_sum, Finset.smul_sum]
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [tw_apply, map_smul, smul_smul, smul_smul, PowerSeries.coeff_rescale, zpow_sub₀ hc, zpow_natCast]

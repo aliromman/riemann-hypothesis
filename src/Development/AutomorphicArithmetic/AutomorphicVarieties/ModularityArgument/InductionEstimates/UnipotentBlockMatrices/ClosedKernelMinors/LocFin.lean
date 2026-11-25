@@ -8,6 +8,32 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.UnipotentBlockMatrices.ClosedKernelMinors.UnipBlocks
 import GroundTheory.GlobalFields.IdeleGroups.NormOneCompact
 import GroundTheory.GlobalFields.IdeleGroups.UnitBound
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -20,6 +46,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -30,18 +58,6 @@ open GroundTheory.Automorphic.AutomorphicForm GroundTheory.Automorphic.CuspidalS
 open PositivityTheory.Rg.Tf.Core PositivityTheory.Rg.Tf.Adel PositivityTheory.Rg.Tf.IntegralApplyAeEq
 open scoped ENNReal NumberField.AdeleRing InnerProductSpace ComplexConjugate
 open UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial
-
-private theorem lf_fin {K : Type} [Field K] [NumberField K] {S : Set 𝔸[K]} (hS : IsCompact S) :
-    {k : K | algebraMap K 𝔸[K] k ∈ S}.Finite := by
-  have h1 := GroundTheory.Global.discreteTopology_principalSubgroup K
-  have h2 := GroundTheory.Global.isClosed_principalSubgroup K
-  have h3 : IsCompact ((Subtype.val : NumberField.AdeleRing.principalSubgroup (𝓞 K) K → 𝔸[K]) ⁻¹' S) :=
-    h2.isClosedEmbedding_subtypeVal.isCompact_preimage hS
-  have h4 := h3.finite_of_discrete
-  refine Set.Finite.of_finite_image (f := algebraMap K 𝔸[K]) ((h4.image Subtype.val).subset ?_)
-    (NumberField.AdeleRing.algebraMap_injective (𝓞 K) K).injOn
-  rintro _ ⟨k, hk, rfl⟩
-  exact ⟨⟨_, k, rfl⟩, hk, rfl⟩
 
 private theorem lf_ray (K : Type) [Field K] [NumberField K] (T : ℝ) :
     ∃ Z : Set 𝔸[K], IsCompact Z ∧ ∀ t, T ≤ t →
@@ -98,7 +114,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.locFin :
     ((Units.continuous_val.comp continuous_fst).mul continuous_snd.fst).mul
       ((hmn c).comp (continuous_snd.snd.fst.mul continuous_snd.snd.snd.inv))
   have hfin : ∀ c, {k : K | algebraMap K 𝔸[K] k ∈ Φ c '' (D ×ˢ Z ×ˢ (KG K (2 + 2) : Set (G1 K (2 + 2))) ×ˢ C)}.Finite :=
-    fun c => lf_fin ((hD.prod (hZ.prod (hK.prod hC))).image (hΦ c))
+    fun c => finite_setOf_algebraMap_mem ((hD.prod (hZ.prod (hK.prod hC))).image (hΦ c))
   have hrat : ∀ q : Cos K, ∃ γ : GL (Fin (2 + 2)) K, AdelicGLn.diagonal K (2 + 2) γ =
       ((q.out : G1 K (2 + 2)) : AdelicGLn.AdelicGL K (2 + 2)) := fun q => q.out.2
   choose γ hγ using hrat

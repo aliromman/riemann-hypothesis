@@ -278,18 +278,11 @@ namespace GlobalTheory.LevCong
 
 variable {D : D7}
 
-theorem toAf_mem_hatV {k : ℕ} {L : Lt D.host.E k} {x : Fin k → D.host.E} (hx : x ∈ L) :
-    toAf (D := D) x ∈ hatV L :=
-  AddSubgroup.subset_closure ⟨1, GlobalTheory.TensLatMove.intAf_one, x, hx, rfl⟩
-
 theorem hatV_mono {k : ℕ} {L L' : Lt D.host.E k} (h : L ≤ L') : hatV (D := D) L ≤ hatV L' :=
   AddSubgroup.closure_mono fun _ ⟨a, ha, x, hx, e⟩ => ⟨a, ha, x, h hx, e⟩
 
 theorem toAf_add {k : ℕ} (x y : Fin k → D.host.E) : toAf (D := D) (x + y) = toAf x + toAf y := by
   funext i; simp [toAf, TensorProduct.tmul_add]
-
-theorem toAf_sub {k : ℕ} (x y : Fin k → D.host.E) : toAf (D := D) (x - y) = toAf x - toAf y := by
-  funext i; simp [toAf, TensorProduct.tmul_sub]
 
 theorem toAf_zero {k : ℕ} : toAf (D := D) (0 : Fin k → D.host.E) = 0 := by
   funext i; simp [toAf]
@@ -340,11 +333,11 @@ theorem mem_of_smul {r : ℕ} (Λ : Lt D.host.E r) (𝔪 I : Ideal (𝓞 D.host.
   intro t ht
   refine Submodule.smul_induction_on ht ?_ ?_
   · intro p hp y hy
-    have h1 : m *ᵥ toAf (D := D) y ∈ hatV Λ := (hmov _).2 ⟨_, toAf_mem_hatV hy, rfl⟩
+    have h1 : m *ᵥ toAf (D := D) y ∈ hatV Λ := (hmov _).2 ⟨_, GlobalTheory.Ker.LevEig.toAf_mem hy, rfl⟩
     rw [fsmul]
     rw [smul_sub]
     refine sub_mem (smul_mem_hatV p (fun x hx => Submodule.smul_mem_smul (h𝔪I hp) hx) h1) ?_
-    rw [← toAf_smul]; exact toAf_mem_hatV (Submodule.smul_mem_smul (h𝔪I hp) hy)
+    rw [← toAf_smul]; exact GlobalTheory.Ker.LevEig.toAf_mem (Submodule.smul_mem_smul (h𝔪I hp) hy)
   · intro x y hx hy; rw [fadd]; exact add_mem hx hy
 
 theorem mem_of_span {r : ℕ} (Λ : Lt D.host.E r) (β : Fin r → Fin r → D.host.E) (𝔪 I : Ideal (𝓞 D.host.E))
@@ -359,10 +352,10 @@ theorem mem_of_span {r : ℕ} (Λ : Lt D.host.E r) (β : Fin r → Fin r → D.h
     obtain ⟨i, rfl⟩ := hx
     have e : m *ᵥ toAf (D := D) (β i) - toAf (β i) = (m *ᵥ toAf (β i) - toAf (∑ j, κ' j i • β j)) +
         toAf (∑ j, (κ' j i - (1 : Matrix (Fin r) (Fin r) (𝓞 D.host.E)) j i) • β j) := by
-      rw [sum_sub_one, toAf_sub, sub_add_sub_cancel]
+      rw [sum_sub_one, GlobalTheory.Ker.LevEig.toAf_sub, sub_add_sub_cancel]
     rw [e]
     exact add_mem (hatV_mono (Submodule.smul_mono_left h𝔪I) (hfr i))
-      (toAf_mem_hatV (sum_mem fun j _ => Submodule.smul_mem_smul (hκ j i) (hβ j)))
+      (GlobalTheory.Ker.LevEig.toAf_mem (sum_mem fun j _ => Submodule.smul_mem_smul (hκ j i) (hβ j)))
   | zero => rw [toAf_zero, Matrix.mulVec_zero, sub_zero]; exact zero_mem _
   | add x y _ _ hx hy => rw [fadd]; exact add_mem hx hy
   | smul c x _ hx =>

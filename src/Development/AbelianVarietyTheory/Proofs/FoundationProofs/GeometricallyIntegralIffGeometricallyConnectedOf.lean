@@ -102,8 +102,6 @@ end Morphisms
 
 section Products
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 variable {S : Scheme.{u}}
 
 theorem smooth_tensorObj_hom (G H : Over S) [Smooth G.hom] [Smooth H.hom] :
@@ -221,8 +219,6 @@ end Local
 
 section Groups
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 open ReciprocityTheory.ChartRestriction.G.Semi
 
 variable {S : Scheme.{u}}
@@ -254,8 +250,6 @@ theorem isIntegral_left_of_isSemiAbelian (G : Over S) [GrpObj G] [h : IsSemiAbel
 end Groups
 
 section Main
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 

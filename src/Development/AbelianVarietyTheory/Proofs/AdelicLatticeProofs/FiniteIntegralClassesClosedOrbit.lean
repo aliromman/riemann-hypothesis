@@ -12,8 +12,36 @@ public import Mathlib.Algebra.BigOperators.Field
 public import Mathlib.Algebra.Star.UnitaryStarAlgAut
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsRealTranslateIsMinNormTensorInOrbit
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.SiegelCover
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -26,6 +54,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.TensorPowerSumRightActionNormAndContinuity
 import Mathlib.RingTheory.PiTensorProduct
@@ -286,9 +317,6 @@ theorem act_one' {ι : Type} [Fintype ι] [DecidableEq ι] {m : ℕ} (d : Fin m 
   simp only [act]
   rw [tpow_one', Matrix.vecMul_one]
 
-theorem norm_sq_le_nsq {κ : Type} [Fintype κ] (v : κ → ℂ) (k : κ) : ‖v k‖ ^ 2 ≤ nsq v :=
-  Finset.single_le_sum (f := fun k => ‖v k‖ ^ 2) (fun _ _ => by positivity) (Finset.mem_univ k)
-
 theorem continuous_nsq {κ : Type} [Fintype κ] : Continuous (nsq : (κ → ℂ) → ℝ) := by
   unfold nsq
   fun_prop
@@ -303,7 +331,7 @@ theorem exists_isMinVec_of_isClosed (ι : Type) [Fintype ι] [DecidableEq ι] (m
     intro w hw
     rw [mem_closedBall_zero_iff, pi_norm_le_iff_of_nonneg (Real.sqrt_nonneg _)]
     intro k
-    exact Real.le_sqrt_of_sq_le ((norm_sq_le_nsq w k).trans hw.2)
+    exact Real.le_sqrt_of_sq_le ((GlobalTheory.ClassFin.SiegelBound.sq_le_nsq w k).trans hw.2)
   have hcomp : IsCompact K := Metric.isCompact_of_isClosed_isBounded hKc hKb
   obtain ⟨w, hwK, hmin⟩ := hcomp.exists_isMinOn ⟨v, hv, le_refl (nsq v)⟩ continuous_nsq.continuousOn
   refine ⟨w, hwK.1, ?_⟩
@@ -446,12 +474,6 @@ lemma tpow_mul' (n : ℕ) (y z : Matrix ι ι ℂ) : tpow n (y * z) = tpow n y *
   rw [Finset.prod_univ_sum]
   simp [Finset.prod_mul_distrib]
 
-lemma tpow_one' (n : ℕ) : tpow n (1 : Matrix ι ι ℂ) = 1 := by
-  ext a b
-  simp only [tpow, Matrix.of_apply, Matrix.one_apply]
-  rw [Finset.prod_ite_zero]
-  simp [funext_iff]
-
 variable {m : ℕ} (d : Fin m → ℕ)
 
 omit [DecidableEq ι] in
@@ -459,10 +481,6 @@ lemma act_mul' (t : TIdx ι d → ℂ) (y z : Matrix ι ι ℂ) :
     act d t (y * z) = act d (act d t y) z := by
   funext k
   simp only [act, tpow_mul', ← Matrix.vecMul_vecMul]
-
-lemma act_one' (t : TIdx ι d → ℂ) : act d t 1 = t := by
-  funext k
-  simp [act, tpow_one']
 
 omit [DecidableEq ι] in
 lemma continuous_act_right (t : TIdx ι d → ℂ) : Continuous (act d t) := by
@@ -549,7 +567,7 @@ lemma locally_box (v : TIdx ι d → ℂ) (hX : IsClosed (orb d v)) (w : TIdx ι
       by rw [Matrix.det_mul, Matrix.det_mul, det_adj hy, hy₀, hz]; simp, (act_mul' d v _ _).symm⟩
     refine ⟨_, hM a ha, ?_⟩
     simp only at hav
-    rw [act_mul', hav, ← act_mul', mul_assoc, ← mul_assoc y₀, mul_adj hy₀, one_mul, adj_mul hy, act_one']
+    rw [act_mul', hav, ← act_mul', mul_assoc, ← mul_assoc y₀, mul_adj hy₀, one_mul, adj_mul hy, GlobalTheory.ClassFin.MinVec.act_one']
 
 lemma isCompact_nsq {κ : Type} [Fintype κ] (C : ℝ) : IsCompact {w : κ → ℂ | nsq w ≤ C} := by
   refine Metric.isCompact_of_isClosed_isBounded ?_ ?_
@@ -583,7 +601,7 @@ theorem GlobalTheory.ClassFin.orbit_proper_of_isClosed : ∀ (ι : Type) [Fintyp
   refine ⟨N, fun y hy hC => ?_⟩
   obtain ⟨a, ha, hav⟩ := hN (a := act d v y) ⟨⟨y, hy, rfl⟩, hC⟩
   refine ⟨a * y.adjugate, by rw [Matrix.det_mul, ha.1, det_adj hy, one_mul], ?_, ?_⟩
-  · rw [act_mul', hav, ← act_mul', mul_adj hy, act_one']
+  · rw [act_mul', hav, ← act_mul', mul_adj hy, GlobalTheory.ClassFin.MinVec.act_one']
   · rw [mul_assoc, adj_mul hy, mul_one]
     exact ha.2
 end -- clump:auto

@@ -450,8 +450,7 @@ theorem flag_back {F : FrameData ι Ψ N M.Ω M.blk} (hF : M.IsFrame F) {z : (Σ
         · show _ = φL _ * algebraMap S L D * φL _
           ring
         · rfl
-      · set_option synthInstance.maxHeartbeats 100000 in
-          rw [map_sum, hz m, inv_mul_cancel_left₀ ha]
+      · rw [map_sum, hz m, inv_mul_cancel_left₀ ha]
         refine Finset.sum_congr rfl fun I _ => ?_
         rw [map_mul, ← minorIJ_map, hρ]
         congr 1

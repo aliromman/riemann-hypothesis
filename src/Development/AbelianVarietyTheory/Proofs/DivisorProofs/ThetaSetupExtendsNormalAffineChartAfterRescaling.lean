@@ -381,7 +381,6 @@ variable {S' : Scheme.{0}} {f : S' ⟶ S} {P : PolAV S} {P' : PolAV S'} {φ : P'
 theorem univBasis_of_rel (hw : w.IsGen) {b₀ : κ → SecM P.A P.L n T} (hb₀ : UnivBasis P n b₀)
     {b : κ → SecM P'.A P'.L n (baseOver S')} (hb : ∀ i, Rel hp τ hτ w (b i) (b₀ i)) : UnivBasis P' n b := by
   intro T' hT h
-  have hh : h.left = T'.hom := (Category.comp_id _).symm.trans (Over.w h)
   let h₀ : Over.mk (T'.hom ≫ f) ⟶ T := Over.homMk (h.left ≫ τ) (by
     change (h.left ≫ τ) ≫ T.hom = T'.hom ≫ f
     rw [Category.assoc, hτ, ← Category.assoc, Over.w h])

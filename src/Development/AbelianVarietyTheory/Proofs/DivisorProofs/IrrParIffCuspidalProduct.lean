@@ -3,7 +3,33 @@ module
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDimensionalOfIrr
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.BlockProductIsomorphism
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.BlockEmbeddingFactors
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RepresentationTheory.Maschke
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -17,6 +43,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -33,9 +60,7 @@ variable {G V W W' : Type} [Group G] [AddCommGroup V] [Module ℂ V] [AddCommGro
   [AddCommGroup W'] [Module ℂ W']
 
 theorem nontrivial_of_irr (τ : Representation ℂ G V) (h : τ.IsIrreducible) : Nontrivial V := by
-  by_contra hV
-  rw [not_nontrivial_iff_subsingleton] at hV
-  exact bot_ne_top (α := Subrepresentation τ) (Subrepresentation.ext (Subsingleton.elim _ _))
+  exact GlobalTheory.FinGL.IrrProduct.nontrivial_of_irr h
 
 theorem finiteDimensional_of_irr [Finite G] (τ : Representation ℂ G V) (h : τ.IsIrreducible) :
     FiniteDimensional ℂ V := by
@@ -184,7 +209,6 @@ def diagBlock (b : Fin r → ℕ) (c : ℕ) : blockTri (κ := F) b →* Matrix (
     split_ifs with h
     · rfl
     · have hi := i.2
-      have hk := k.2
       rcases lt_or_gt_of_ne h with h1 | h1
       · rw [mem_blockTri.1 p.2 i l (by omega), zero_mul]
       · rw [mem_blockTri.1 q.2 l k (by omega), mul_zero]

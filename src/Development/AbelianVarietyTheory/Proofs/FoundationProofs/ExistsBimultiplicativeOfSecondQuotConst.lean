@@ -1,21 +1,6 @@
 module
 
 public import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 public import Mathlib.Topology.Algebra.Module.FiniteDimensionBilinear
 public import Mathlib.Algebra.Order.Floor.Defs
 public import Mathlib.Algebra.Order.Floor.Ring
@@ -24,6 +9,8 @@ public import Mathlib.Analysis.Normed.Module.Basic
 public import Mathlib.Order.Filter.AtTopBot.Archimedean
 public import Mathlib.Topology.Algebra.Module.FiniteDimension
 public import Mathlib.Topology.Algebra.Order.Floor
+public import Mathlib.RingTheory.TensorProduct.Finite
+public import Mathlib.Analysis.Normed.Operator.BoundedLinearMaps
 
 @[expose] public section
 
@@ -117,7 +104,8 @@ section Definite
 private theorem continuous_quadraticForm {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
     [FiniteDimensional ℝ V] (Q : QuadraticForm ℝ V) : Continuous Q := by
   have h : Continuous fun v => (QuadraticMap.associated Q).toContinuousBilinearMap v v := by
-    fun_prop
+    exact (QuadraticMap.associated Q).toContinuousBilinearMap.continuous₂.comp
+      (continuous_id.prodMk continuous_id)
   exact h.congr fun v => QuadraticMap.associated_eq_self_apply ℝ Q v
 
 theorem posDef_of_tendsto_intCast {ι : Type*} [Finite ι] (Q : QuadraticForm ℝ (ι → ℝ))

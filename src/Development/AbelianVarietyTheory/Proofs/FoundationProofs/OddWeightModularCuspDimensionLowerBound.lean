@@ -1123,17 +1123,13 @@ theorem qParam_pow_bigO {h : ℝ} (hh : 0 < h) {m M : ℕ} (hm : (M : ℝ) * h �
   rw [e1, e2]
   nlinarith [Real.pi_pos]
 
-theorem norm_bigO {F : Type*} [FunLike F ℍ ℂ] {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k]
-    [Γ.IsArithmetic] (f : F) : (ModularForm.norm 𝒮ℒ f : ℍ → ℂ) =O[atImInfty] (f : ℍ → ℂ) := by
-  apply GlobalTheory.EisM.modularFormNorm_isBigO_self_atImInfty
-
 theorem sturm {Γ : Subgroup (GL (Fin 2) ℝ)} [Γ.IsArithmetic] {h : ℝ} (hh : 0 < h)
     (hΓ : h ∈ Γ.strictPeriods) (k : ℤ) :
     ∃ m : ℕ, ∀ f : ModularForm Γ k, (∀ n < m, (qExpansion h f).coeff n = 0) → f = 0 := by
   set M := (k * Nat.card (𝒮ℒ ⧸ (Γ.subgroupOf 𝒮ℒ))).toNat / 12 + 1
   refine ⟨⌈(M : ℝ) * h⌉₊, fun f hf => ?_⟩
   have h1 := GlobalTheory.EisM.qExpansion_coeff_zero_of_isBigO_qParam_pow one_mem_strictPeriods_SL (ModularForm.norm 𝒮ℒ f) M
-    ((norm_bigO f).trans ((bigO_qParam_pow hh hΓ f _ hf).trans (qParam_pow_bigO hh (Nat.le_ceil _))))
+    ((GlobalTheory.EisM.modularFormNorm_isBigO_self_atImInfty f).trans ((bigO_qParam_pow hh hΓ f _ hf).trans (qParam_pow_bigO hh (Nat.le_ceil _))))
   have h2 : ModularForm.norm 𝒮ℒ f = 0 := by
     apply ModularForm.sturm_bound_levelOne
     refine lt_of_lt_of_le ?_ (PowerSeries.nat_le_order _ _ h1)

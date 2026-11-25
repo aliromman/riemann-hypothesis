@@ -5,18 +5,6 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExpLogNea
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.LamBallULe
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UpqLocallyCompactGroup
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.PolyGrowthStatementPfB
 
 @[expose] public section
@@ -116,7 +104,6 @@ theorem entry_lt {ι : Type} [DecidableEq ι] (a₀ : ι) {c z : ℂ} {ε : ℝ}
 theorem num_le (n ε C : ℝ) (N : ℕ) (hn : 1 ≤ n) (hN : 1 ≤ N) (hε : 0 < ε) (hC : C ≤ 9 / ε) :
     C * (2 * (18 / 5 * (11 / 5 * n ^ 2 * ε) / n) ^ N) ≤ (200 * n) ^ N * ε ^ (N - 1) := by
   obtain ⟨M, rfl⟩ := Nat.exists_eq_add_of_le' hN
-  have hn0 : 0 < n := by linarith
   have e : 18 / 5 * (11 / 5 * n ^ 2 * ε) / n = 198 / 25 * n * ε := by field_simp; ring
   rw [e, Nat.add_sub_cancel]
   have key : C * (2 * (198 / 25 * n * ε) ^ (M + 1)) ≤ 9 / ε * (2 * (198 / 25 * n * ε) ^ (M + 1)) :=

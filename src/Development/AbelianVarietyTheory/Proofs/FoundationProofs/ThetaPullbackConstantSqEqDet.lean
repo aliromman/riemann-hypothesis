@@ -80,11 +80,6 @@ theorem exists_basis_lamOf (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) (hC 
   refine ⟨L.ω₁, L.ω₂, L.indep, AddSubgroup.ext fun z => ?_⟩
   rw [hL, PeriodPair.lattice, ← Submodule.span_int_eq_addSubgroupClosure, Submodule.mem_toAddSubgroup]
 
-theorem exists_orthonormal_basis_family (Λ : AddSubgroup ℂ) (ω t : ℂ) (G : ℂ → ℂ) (z : ℂ) :
-    U1 Λ ω (U1 Λ t G) z =
-      Complex.exp (-(Real.pi : ℂ) * Complex.I * (gl3FieldFirst Λ ω (2 * t) : ℂ)) * U1 Λ t (U1 Λ ω G) z := by
-  apply GlobalTheory.HalfPeriodTheta.exists_orthonormal_basis_family
-
 theorem even_im_hermitian_sub (Λ : AddSubgroup ℂ) (w₁ w₂ : ℂ) (hi : LinearIndependent ℝ ![w₁, w₂])
     (hΛ : Λ = AddSubgroup.closure {w₁, w₂})
     (hsd : ∀ z : ℂ, z ∈ Λ ↔ ∀ w ∈ Λ, ∃ m : ℤ, gl3FieldFirst Λ z w = m)
@@ -145,7 +140,7 @@ theorem theta_signed_translation : ∀ (D : D7), ∀ (cc : Ideal (𝓞 D.host.K)
       split_ifs with h
       · rw [(hpar.2 h).neg_one_zpow]; simp
       · rw [(Int.not_even_iff_odd.1 (mt hpar.1 h)).neg_one_zpow]; simp
-    rw [e1, exists_orthonormal_basis_family, hn, e2, e3]
+    rw [e1, GlobalTheory.HalfPeriodTheta.exists_orthonormal_basis_family, hn, e2, e3]
     simp only [GL3Theta.th0]
     linear_combination (U1 Λ t0 (sgStar Λ) z / U1 Λ t0 (sgStar Λ) 0) * e4
 

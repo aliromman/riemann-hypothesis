@@ -72,14 +72,6 @@ open Filter Topology
 
 namespace GlobalTheory
 
-theorem norm_root_monic_le (n : ℕ) (s : Fin n → ℂ) (y : ℂ)
-    (hy : y ^ n + ∑ j, s j * y ^ (j : ℕ) = 0) : ‖y‖ ≤ 1 + ∑ j, ‖s j‖ := by
-  apply GlobalTheory.monic_root_norm_le_one_add_sum <;> assumption
-
-end GlobalTheory
-
-namespace GlobalTheory
-
 theorem quotient_integral_holomorphic : ∀ (U : Set ℂ) (n : ℕ) (A D : ℂ → ℂ) (s : Fin n → ℂ → ℂ), IsOpen U → IsPreconnected U → DifferentiableOn ℂ A U → DifferentiableOn ℂ D U → (∀ j, DifferentiableOn ℂ (s j) U) → (∃ z ∈ U, D z ≠ 0) → (∀ z ∈ U, A z ^ n + ∑ j, s j z * A z ^ (j : ℕ) * D z ^ (n - j) = 0) → ∃ h : ℂ → ℂ, DifferentiableOn ℂ h U ∧ (∀ z ∈ U, A z = h z * D z) ∧ ∀ z ∈ U, h z ^ n + ∑ j, s j z * h z ^ (j : ℕ) = 0 := by
   intro U n A D s hU hUc hA hD hs ⟨z₁, hz₁U, hz₁⟩ heq
   classical
@@ -144,7 +136,7 @@ theorem quotient_integral_holomorphic : ∀ (U : Set ℂ) (n : ℕ) (A D : ℂ �
       have hbd : BddAbove (norm ∘ (fun w => A w / D w) '' (Metric.ball z₀ r \ {z₀})) := by
         refine ⟨1 + ∑ j, (‖s j z₀‖ + 1), ?_⟩
         rintro _ ⟨w, hw, rfl⟩
-        have := GlobalTheory.norm_root_monic_le n (fun j => s j w) (A w / D w) (hroot w (hsub w hw.1) (hne w hw.1 hw.2))
+        have := GlobalTheory.monic_root_norm_le_one_add_sum n (fun j => s j w) (A w / D w) (hroot w (hsub w hw.1) (hne w hw.1 hw.2))
         show ‖A w / D w‖ ≤ _
         refine this.trans ?_
         gcongr with j

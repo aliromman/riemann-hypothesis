@@ -18,18 +18,6 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.PostOnMemGood
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContDiffSetIntegralNat
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RePosOfIsMultIP
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnitaryCongruenceConjContainsCongruenceStatement
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.LocalToGlobal.HilbertRowConditions.CenterIdempotentAction
 import Formalism.LocalToGlobal.IndefiniteReal.RecTie
 import Formalism.LocalToGlobal.GaloisLevelStructure.Checks
@@ -146,7 +134,6 @@ theorem GlobalTheory.decomp_kernels_isotIn : ∀ (D : D7) (n : ℕ) (A : Type) [
           rw [zero_add] at this
           rw [this, hB0 u huC, ha.2]; simp⟩ }
     have hsum : ∑ c' ∈ t, O i (y c') = 0 := by
-      set_option synthInstance.maxHeartbeats 100000 in
         rw [← map_sum, ← hxy]; exact hOx i
     have hrest : ∑ c' ∈ t.erase c, O i (y c') ∈ Z := by
       refine Submodule.sum_mem _ fun c' hc' => ?_

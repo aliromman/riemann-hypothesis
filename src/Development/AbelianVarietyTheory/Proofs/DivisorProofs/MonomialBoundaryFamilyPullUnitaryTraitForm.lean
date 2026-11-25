@@ -6,18 +6,6 @@ import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsPelUnifP
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.AllUniformizationLawsHold
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsPelUnifPsiCoord
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 @[expose] public section
@@ -52,7 +40,6 @@ theorem trait_pull {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host 
   obtain ⟨t', m₀, P', hD, -, -, -, -, hlin, -⟩ := GlobalTheory.ArcDataDescent.exists_pelUnif_pull h3.cubePull h1.polBaseChange
     h4.unifBaseChange h5 hR.1 hWa C.t C.P ρ hinj hI
   let e : P'.D.toPre.X ≃ₗ[𝓞 E] C.P.D.toPre.X := { hD.xe with map_smul' := hlin }
-  have he : ∀ y, e y = hD.xe y := fun _ => rfl
   refine ⟨t', P', e, ∑ i, (w i : ℤ) • pull e.toLinearMap ((l.M' : ℤ) • C.δ i), ⟨m₀⟩, ?_, rfl, ?_, ?_, ?_⟩
   · intro κ hκ
     obtain ⟨tKR, ⟨n1⟩, ⟨n2⟩⟩ := C.gen

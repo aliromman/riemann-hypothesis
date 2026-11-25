@@ -1184,7 +1184,6 @@ theorem relLen_lin_filKer : ∀ (C : Type) [Field C] (v : AddValuation C (WithTo
   let n := finrank (Int0 v) K
   let b : Basis (Fin n) (Int0 v) K := Module.finBasis _ _
   let T : K →ₗ[Int0 v] K := (mulR a N (lin a τ)).restrict (fun x hx => mulR_mem_filKer τ hx)
-  have hT : ∀ x : K, (T x : Fin N → RS a) = mulR a N (lin a τ) x := fun x => rfl
   let g : K →ₗ[Int0 v] (Fin N → RS a) := (mulR a N (lin a τ)).comp K.subtype
   have hg : Function.Injective g := by
     rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']

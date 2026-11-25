@@ -12,8 +12,33 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.TateProductR
 public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.PullQkSurjective
 public import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.LocallyOfFiniteTypeKer
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLabelsFinExt
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -342,7 +367,6 @@ theorem goodLab_move [CharZero R] [IsAlgClosed F] [IsAlgClosed F'] (ha : IsFib �
     (f : ∀ k, QkPt D.toPre F k → (TFK (R := R) F ⟶ A.A)) (f' : ∀ k, QkPt D' F' k → (TFK (R := W) F' ⟶ A'.A))
     (hf : ∀ k, 1 ≤ k → ∀ p, (f' k (tr hD c em hB' p)).left ≫ a = spMap em.toRingHom ≫ (f k p).left) :
     GoodLab D.toPre A F f ↔ GoodLab D' A' F' f' := by
-  have hB := D.tau_bimult
   obtain ⟨ε, hε, iε, oε, wε⟩ := exists_ptHom ha c em
   have e : ∀ k, 1 ≤ k → ∀ p, f' k (tr hD c em hB' p) = ε (f k p) := fun k hk p => (hε _ _).2 (hf k hk p)
   have s : ∀ k, 1 ≤ k → ∀ p' : QkPt D' F' k, ∃ p, tr hD c em hB' p = p' := fun k hk => (tr_bij hD c em hB' hk).2

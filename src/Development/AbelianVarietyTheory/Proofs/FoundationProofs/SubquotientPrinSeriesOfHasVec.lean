@@ -117,12 +117,6 @@ section Blocks
 
 variable {r t : ℕ}
 
-theorem castAdd_eq_stdSum (i : Fin r) : Fin.castAdd t i = stdSum (rfl : r + t = r + t) (Sum.inl i) := by
-  ext; simp
-
-theorem natAdd_eq_stdSum (j : Fin t) : Fin.natAdd r j = stdSum (rfl : r + t = r + t) (Sum.inr j) := by
-  ext; simp
-
 theorem emb₂_std_apply (a : GL (Fin r) k) (b : GL (Fin t) k) (x y : Fin r ⊕ Fin t) :
     (emb₂ k (stdSum (rfl : r + t = r + t)) (a, b)).val (stdSum rfl x) (stdSum rfl y) =
       fromBlocks a.val 0 0 b.val x y := by
@@ -189,9 +183,9 @@ theorem emb₂_mem_grp_iff (ψ : Fin (r + t) → kˣ →* ℂˣ) (a : GL (Fin r)
   · rintro ⟨⟨ha, hb⟩, h⟩
     refine ⟨⟨ha, fun i j hij => ?_⟩, ⟨hb, fun i j hij => ?_⟩⟩
     · have := h (Fin.castAdd t i) (Fin.castAdd t j) (Fin.lt_def.2 (Fin.lt_def.1 hij))
-      rwa [castAdd_eq_stdSum i, castAdd_eq_stdSum j, emb₂_std_apply, fromBlocks_apply₁₁] at this
+      rwa [GlobalTheory.PsType.BlockTheta.castAdd_eq i, GlobalTheory.PsType.BlockTheta.castAdd_eq j, emb₂_std_apply, fromBlocks_apply₁₁] at this
     · have := h (Fin.natAdd r i) (Fin.natAdd r j) ((Fin.natAdd_lt_natAdd_iff r).2 hij)
-      rwa [natAdd_eq_stdSum i, natAdd_eq_stdSum j, emb₂_std_apply, fromBlocks_apply₂₂] at this
+      rwa [GlobalTheory.PsType.BlockTheta.natAdd_eq i, GlobalTheory.PsType.BlockTheta.natAdd_eq j, emb₂_std_apply, fromBlocks_apply₂₂] at this
   · rintro ⟨⟨ha, ha'⟩, ⟨hb, hb'⟩⟩
     refine ⟨⟨ha, hb⟩, fun p q hpq => ?_⟩
     obtain ⟨x, rfl⟩ := (stdSum (rfl : r + t = r + t)).surjective p
@@ -200,10 +194,10 @@ theorem emb₂_mem_grp_iff (ψ : Fin (r + t) → kˣ →* ℂˣ) (a : GL (Fin r)
     rcases x with x | x <;> rcases y with y | y
     · rw [fromBlocks_apply₁₁]
       have hxy : x < y := by
-        rw [← castAdd_eq_stdSum, ← castAdd_eq_stdSum] at hpq
+        rw [← GlobalTheory.PsType.BlockTheta.castAdd_eq, ← GlobalTheory.PsType.BlockTheta.castAdd_eq] at hpq
         exact Fin.lt_def.2 (Fin.lt_def.1 hpq)
       have := ha' x y hxy
-      rwa [castAdd_eq_stdSum x, castAdd_eq_stdSum y] at this
+      rwa [GlobalTheory.PsType.BlockTheta.castAdd_eq x, GlobalTheory.PsType.BlockTheta.castAdd_eq y] at this
     · rw [fromBlocks_apply₁₂, Matrix.zero_apply]; exact triv_zero' _
     · exfalso
       have := Fin.lt_def.1 hpq
@@ -211,10 +205,10 @@ theorem emb₂_mem_grp_iff (ψ : Fin (r + t) → kˣ →* ℂˣ) (a : GL (Fin r)
       omega
     · rw [fromBlocks_apply₂₂]
       have hxy : x < y := by
-        rw [← natAdd_eq_stdSum, ← natAdd_eq_stdSum] at hpq
+        rw [← GlobalTheory.PsType.BlockTheta.natAdd_eq, ← GlobalTheory.PsType.BlockTheta.natAdd_eq] at hpq
         exact (Fin.natAdd_lt_natAdd_iff r).1 hpq
       have := hb' x y hxy
-      rwa [natAdd_eq_stdSum x, natAdd_eq_stdSum y] at this
+      rwa [GlobalTheory.PsType.BlockTheta.natAdd_eq x, GlobalTheory.PsType.BlockTheta.natAdd_eq y] at this
 
 end Blocks
 

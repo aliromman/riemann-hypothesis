@@ -9,18 +9,6 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Under
 public import Formalism.LocalToGlobal.GaloisLevelStructure.LevelQ
 import Formalism.LocalToGlobal.ProjectiveLattices.HalfOneAddSqrtNegIsIntegral
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NStageTrivialCharacterCoeffEqAlt
 import Formalism.LocalToGlobal.IndefiniteReal.DoubleCosetOperators.Objects
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.TypesDefs
@@ -87,9 +75,5 @@ theorem not_mem_bad (D : D7) (cf : CharFrame D) (C : NChoice D) (tp : TupTied D 
       simp only [Host.CharFrame.delAt, hl, ↓reduceIte]
       change cf.del.loc w' x * (tp.psi w0).loc w' x = 1
       rw [hd x hx, hpsi x hx, one_mul]
-
-end GlobalTheory.SphNonSplit
-
-namespace GlobalTheory.SphNonSplit
 
 end GlobalTheory.SphNonSplit

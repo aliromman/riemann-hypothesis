@@ -642,7 +642,7 @@ theorem core (h : FH (II D) g e0 f0 z0 bw bwd ew) (hβ : IsFrame β (II D).L) (h
   have hv : ((II D).fmat y - 1) *ᵥ s ∈ (II D).Lf := K_sub_mv (II D) hy hsL
   intro h1
   rw [(GlobalTheory.T.hermitianForm_dualFlag_eq_reduced_frame_coordinates g e0 f0 z0 bw bwd ew h β PP w hβ hl _ hv).1 p h1]
-  obtain ⟨hadd, -, hmul⟩ := GlobalTheory.T.residueCoordinatesInFrame_linear_stabiliser β (II D).L hβ PP
+  obtain ⟨hadd, -, hmul⟩ := GlobalTheory.SeeConjGroup.redV_add_smul_stab β (II D).L hβ PP
   have hsH := (mem_hat (II D).L s).1 hsL
   have hvH := (mem_hat (II D).L _).1 hv
   have e1 := hadd _ hvH _ hsH

@@ -1604,7 +1604,6 @@ theorem latticeLink_of_blockFor : GlobalTheory.Published.BhattScholzeCrystalline
       simp only [labels, glue_inc hH, Wts.U, Formalism.CohomologicalDescent.UnitNormBounds.UN]
       omega
     · intro a b hab
-      have hab' : (a : ℕ) < b := hab
       have h1 := (hLk τ').1 hab.le
       simp only [Formalism.CohomologicalDescent.LD.res] at h1
       simp only [labels, glue_inc hH, Formalism.CohomologicalDescent.UnitNormBounds.UN]

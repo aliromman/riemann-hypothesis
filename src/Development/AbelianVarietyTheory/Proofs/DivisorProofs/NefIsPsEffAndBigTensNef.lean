@@ -5,18 +5,6 @@ import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsLi
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IsProjOverIffIsProperAndExistsIsAmpleLB
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPowLeGlobalSectionsDimLineBundlePow
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -66,8 +54,6 @@ theorem IsBig.of_cls_eq_add_nef (h : Published.NefNumerics) (hp : IsProjOver (st
     (hb : IsBig k B) (hB : IsNef k B) (hN : IsNef k N) (hP : P.IsLB)
     (e : cls P hP = cls B hB.isLB + cls N hN.isLB) : IsBig k P := by
   obtain ⟨D, hD, -⟩ := hb.growth
-  have hf := algebraMap_eq_strHom k X
-  have hT : (CechPic.tens B N).IsLB := CechPic.isLB_tens hB.isLB hN.isLB
   have hTn : IsNef k (CechPic.tens B N) := IsNef.tens_of_isProjOver hB hN hp
   have hPn : IsNef k P := hTn.of_cls_eq hP (by rw [e, CechPic.cls_tens hB.isLB hN.isLB])
   have hle := IsNef.topSelf_le_of_cls_eq_add h.1 hp hD hB hN hP e

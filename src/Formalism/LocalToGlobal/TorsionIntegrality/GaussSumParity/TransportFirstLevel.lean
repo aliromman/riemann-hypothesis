@@ -854,10 +854,6 @@ theorem theta_integer_is_theta_log : ThetaInZIsThetaLog := by
   rw [CohomologyFunctoriality₂.log_coord l ν r0 r1 _ _ ϖ μ x hϖ hμ0 hμ] at h
   exact h
 
-namespace CohomologyFunctoriality₂
-
-end CohomologyFunctoriality₂
-
 theorem kernel_of_f : KernelOfF := by
   intro p _ K0 _ _ _ _ σ hU hζ F hF be hF1 hF2 K _ _ _ j ν r0 r1 _ hj hϖ om oms hO hT U0 Φ hU0 hΦ0
     hΦ TT colN hts hp I n

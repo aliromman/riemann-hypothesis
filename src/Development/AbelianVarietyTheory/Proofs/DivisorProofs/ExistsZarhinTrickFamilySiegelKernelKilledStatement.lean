@@ -521,7 +521,6 @@ variable {S : Scheme.{0}}
 theorem mulA_flat_surjective_qc (A : Over S) [GrpObj A] (hA : IsAbelianScheme A) (n : ℕ) (hn : 1 ≤ n) :
     Flat ((𝟙 A) ^ n : A ⟶ A).left ∧ Surjective ((𝟙 A) ^ n : A ⟶ A).left ∧
       QuasiCompact ((𝟙 A) ^ n : A ⟶ A).left := by
-  have hc := hA.comm
   obtain ⟨h1, h2⟩ := GlobalTheory.AbTorsionAnyBase.isFinite_and_flat_mulA S A hA n hn
   have e : ((𝟙 A) ^ n : A ⟶ A) = ReciprocityTheory.ChartRestriction.G.Out.mulA A n := rfl
   rw [e]

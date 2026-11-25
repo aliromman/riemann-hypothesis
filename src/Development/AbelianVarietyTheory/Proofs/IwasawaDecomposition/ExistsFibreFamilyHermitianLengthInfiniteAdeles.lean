@@ -6,26 +6,8 @@ public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.Hermit
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousDistribHaarCharUnits
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsNiceLocalFieldProductRingInfiniteAdelesComplet
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroup
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Compactness.Paracompact
-import Mathlib.Topology.Separation.CompletelyRegular
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -375,7 +357,6 @@ theorem exists_line [Nontrivial R] (h : IsCMExt F E σ) (hM : 1 ≤ M) (hJ : IsH
   have hs : ∀ e : E, sigR R σ (inclR R e) = inclR R (σ e) := fun e => rfl
   have hyy : hR R σ J y y = algebraMap R (R ⊗[F] E) (algebraMap F R a) := by
     have : hR R σ J y y = inclR R (hE σ J y0 y0) := by
-      set_option synthInstance.maxHeartbeats 100000 in
         simp only [hR, hE, Formalism.UG.hform, map_sum, map_mul, y, hs, JR, Matrix.map_apply,
         RingHom.coe_coe]
     rw [this, hy0, ← IsScalarTower.algebraMap_apply]

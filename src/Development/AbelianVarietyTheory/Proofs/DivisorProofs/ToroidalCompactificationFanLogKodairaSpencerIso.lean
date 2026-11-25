@@ -44,6 +44,32 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqZeroOfFora
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogKodairaSpencerInjectiveModMaximalIdealStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymmetricBalancedTensorsFiniteProjectiveRankDimStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigidBoundaryChartsForFanUnitaryDatumStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -58,8 +84,12 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasDefect
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasRigidChart
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.LieBridgeB
@@ -134,9 +164,9 @@ theorem bijective_of_injective_mod_maximal
     have key : (⊤ : Submodule R (N ⧸ LinearMap.range f)) = ⊥ := by
       apply eq_bot_of_forall_le_smul _ Module.Finite.fg_top
       intro m hm y _
-      letI := Ideal.Quotient.field m
+      let := Ideal.Quotient.field m
       have hi : Function.Injective (f.baseChange (R ⧸ m)) := by
-        set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+        rw [injective_iff_map_eq_zero]
         intro z hz
         obtain ⟨x, rfl⟩ := exists_one_tmul m z
         rw [LinearMap.baseChange_tmul, one_tmul_eq_zero_iff] at hz
@@ -634,7 +664,7 @@ theorem exists_res_eq {X : Scheme.{0}} (U W : X.affineOpens) (V : X.Opens) (hW :
     · obtain ⟨g, hgW, hxg⟩ := U.2.exists_basicOpen_le (V := W.1) ⟨U.2.fromSpec p, hW ▸ ⟨hxU, hxV⟩⟩ hxU
       have hgm : g ∉ m := (hxf g).1 hxg
       apply hgm
-      haveI := U.2.isLocalization_basicOpen g
+      have := U.2.isLocalization_basicOpen g
       obtain ⟨⟨s, ⟨_, N, rfl⟩⟩, hs⟩ := IsLocalization.surj (Submonoid.powers g)
         ((X.presheaf.map (homOfLE hgW).op).hom θ)
       have hbo : X.basicOpen (ρ g) ≤ X.basicOpen g := by
@@ -661,7 +691,7 @@ theorem exists_der_res {X : Scheme.{0}} (U W : X.affineOpens) (hW : W.1 ≤ U.1)
     ∃ DW : Derivation ℤ Γ(X, W.1) Γ(X, W.1), ∀ r, DW ((X.presheaf.map (homOfLE hW).op).hom r) =
       (X.presheaf.map (homOfLE hW).op).hom (D r) := by
   set ρ := (X.presheaf.map (homOfLE hW).op).hom with hρ
-  letI : Algebra Γ(X, U.1) Γ(X, W.1) := ρ.toAlgebra
+  let : Algebra Γ(X, U.1) Γ(X, W.1) := ρ.toAlgebra
   have h1 : IsOpenImmersion (chart W) := W.2.isOpenImmersion_fromSpec
   have e : Spec.map (CommRingCat.ofHom (algebraMap Γ(X, U.1) Γ(X, W.1))) ≫ chart U = chart W :=
     _root_.GlobalTheory.LogKSLoc.spMap_res_chart U W hW
@@ -678,7 +708,7 @@ theorem exists_der_res {X : Scheme.{0}} (U W : X.affineOpens) (hW : W.1 ≤ U.1)
       map_zero' := by ext <;> simp
       map_add' := fun a b => by ext <;> simp
       map_mul' := fun a b => by ext <;> simp [Derivation.leibniz] <;> ring }
-  letI : Algebra Γ(X, U.1) (DualNumber Γ(X, W.1)) := g.toAlgebra
+  let : Algebra Γ(X, U.1) (DualNumber Γ(X, W.1)) := g.toAlgebra
   let π : DualNumber Γ(X, W.1) →ₐ[Γ(X, U.1)] Γ(X, W.1) :=
     { (TrivSqZeroExt.fstHom Γ(X, W.1) Γ(X, W.1) Γ(X, W.1)).toRingHom with
       commutes' := fun r => by simp [g, RingHom.algebraMap_toAlgebra] }
@@ -751,22 +781,22 @@ theorem finite_projective_of_locally_free : ∀ (R : Type) [CommRing R] (M : Typ
     exact hr (hsm (Ideal.subset_span hP))
   have hg : ∀ g : s, g.1 ∈ s := fun g => g.2
   choose F iA iM iL iT iFin iFree ϕ hϕ using hg
-  letI := iA
-  letI := iM
-  letI := iL
-  haveI := iT
-  haveI := iFin
-  haveI := iFree
-  haveI := hϕ
-  haveI (g : s) : Module.Flat R (F g) := by
-    haveI : Module.Flat R (Localization.Away g.1) :=
+  let := iA
+  let := iM
+  let := iL
+  have := iT
+  have := iFin
+  have := iFree
+  have := hϕ
+  have (g : s) : Module.Flat R (F g) := by
+    have : Module.Flat R (Localization.Away g.1) :=
       IsLocalization.flat _ (Submonoid.powers g.1)
     exact Module.Flat.trans R (Localization.Away g.1) (F g)
-  haveI hfp : Module.FinitePresentation R M :=
+  have hfp : Module.FinitePresentation R M :=
     Module.FinitePresentation.of_localizationSpan' s hs (Mₚ := F)
       (Rₚ := fun g : s => Localization.Away g.1) ϕ
       fun _ => Module.finitePresentation_of_projective _ _
-  haveI : Module.Flat R M :=
+  have : Module.Flat R M :=
     Module.flat_of_isLocalized_span R M s hs F ϕ fun _ => inferInstance
   exact ⟨inferInstance, Module.Flat.projective_of_finitePresentation⟩
 
@@ -811,12 +841,12 @@ theorem isLocalizedModule_res : ∀ {k R S : Type} [Field k] [CommRing R] [CommR
 
 theorem finrank_fibre : ∀ {R M : Type} [CommRing R] [AddCommGroup M] [Module R M] (f : R) (d : ℕ) (ϕ : M →ₗ[R] (Fin d → Localization.Away f)), IsLocalizedModule (Submonoid.powers f) ϕ → ∀ m : Ideal R, m.IsMaximal → f ∉ m → Module.finrank (R ⧸ m) ((R ⧸ m) ⊗[R] M) = d := by
   intro R M _ _ _ f d ϕ hϕ m hm hf
-  letI := Ideal.Quotient.field m
+  let := Ideal.Quotient.field m
   have hu : IsUnit (algebraMap R (R ⧸ m) f) := by
     rw [isUnit_iff_ne_zero, Ne, Ideal.Quotient.algebraMap_eq, Ideal.Quotient.eq_zero_iff_mem]
     exact hf
-  letI : Algebra (Localization.Away f) (R ⧸ m) := (IsLocalization.Away.lift f hu).toAlgebra
-  haveI : IsScalarTower R (Localization.Away f) (R ⧸ m) := IsScalarTower.of_algebraMap_eq fun r => by
+  let : Algebra (Localization.Away f) (R ⧸ m) := (IsLocalization.Away.lift f hu).toAlgebra
+  have : IsScalarTower R (Localization.Away f) (R ⧸ m) := IsScalarTower.of_algebraMap_eq fun r => by
     rw [RingHom.algebraMap_toAlgebra, IsLocalization.Away.lift, IsLocalization.lift_eq]
   have hbc : IsBaseChange (Localization.Away f) ϕ := IsLocalizedModule.isBaseChange (Submonoid.powers f) _ ϕ
   let e1 := hbc.equiv
@@ -831,8 +861,8 @@ end GlobalTheory.LogDerProj
 
 theorem GlobalTheory.LogDerProj.main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (Y : Model Xo c (RingHom.id c.F)), 1 ≤ Dw.p + Dw.q → SmoothOfRelativeDimension Dw.dim (genStr Y) → ReciprocityTheory.AnForm.R.FinalTheorems.Snc (genBdIdeal Y) → ∀ U : Y.X.affineOpens, Module.Finite Γ(Y.X, U.1) (logDer Y.s (Scheme.IdealSheafData.vanishingIdeal (interior Y).compl) U) ∧ Module.Projective Γ(Y.X, U.1) (logDer Y.s (Scheme.IdealSheafData.vanishingIdeal (interior Y).compl) U) ∧ ∀ m : Ideal Γ(Y.X, U.1), m.IsMaximal → Module.finrank (Γ(Y.X, U.1) ⧸ m) ((Γ(Y.X, U.1) ⧸ m) ⊗[Γ(Y.X, U.1)] (logDer Y.s (Scheme.IdealSheafData.vanishingIdeal (interior Y).compl) U)) = Dw.dim := by
   intro E _ _ _ H Dw l Xo c Y h1 hsm hsnc U
-  haveI : SmoothOfRelativeDimension Dw.dim Y.s := smooth_gen_iff.1 hsm
-  haveI : Smooth Y.s := SmoothOfRelativeDimension.smooth Dw.dim _
+  have : SmoothOfRelativeDimension Dw.dim Y.s := smooth_gen_iff.1 hsm
+  have : Smooth Y.s := SmoothOfRelativeDimension.smooth Dw.dim _
   set I := Scheme.IdealSheafData.vanishingIdeal (interior Y).compl with hI
   let φ : c.F →+* Γ(Y.X, U.1) := ReciprocityTheory.ChartRestriction.G.DVR.FlatBC.algX Y.s U.1
   have hφ : φ.FiniteType := by
@@ -856,12 +886,12 @@ theorem GlobalTheory.LogDerProj.main : ∀ (E : Type) [Field E] [NumberField E] 
       have : q ∈ hU.fromSpec ⁻¹ᵁ Y.X.basicOpen f := by rw [← hWf]; exact hxW
       rw [hU.fromSpec_preimage_basicOpen] at this
       exact this
-    letI : Algebra Γ(Y.X, U.1) Γ(Y.X, W.1) := (Y.X.presheaf.map (homOfLE hW).op).hom.toAlgebra
+    let : Algebra Γ(Y.X, U.1) Γ(Y.X, W.1) := (Y.X.presheaf.map (homOfLE hW).op).hom.toAlgebra
     have hloc : ∀ (V : Y.X.Opens) (hV : V ≤ U.1), V = Y.X.basicOpen f →
         letI := (Y.X.presheaf.map (homOfLE hV).op).hom.toAlgebra; IsLocalization.Away f Γ(Y.X, V) := by
       rintro V hV rfl
       exact U.2.isLocalization_basicOpen f
-    haveI : IsLocalization.Away f Γ(Y.X, W.1) := hloc W.1 hW hWf
+    have : IsLocalization.Away f Γ(Y.X, W.1) := hloc W.1 hW hWf
     have hc : ∀ a, algebraMap Γ(Y.X, U.1) Γ(Y.X, W.1) (φ a) = constFn Y.s W.1 a :=
       fun a => congr(($(Scheme.Hom.appLE_map Y.s (U := ⊤) (V := U.1) (fun _ _ => trivial) (homOfLE hW).op)).hom
         ((Scheme.ΓSpecIso (CommRingCat.of c.F)).inv.hom a))
@@ -875,7 +905,7 @@ theorem GlobalTheory.LogDerProj.main : ∀ (E : Type) [Field E] [NumberField E] 
     let b' := b.map (LinearEquiv.ofEq _ _ hN)
     let e := (b'.equivFun.restrictScalars Γ(Y.X, U.1)).trans (LinearEquiv.piCongrRight fun _ =>
       (IsLocalization.algEquiv (Submonoid.powers f) Γ(Y.X, W.1) (Localization.Away f)).toLinearEquiv)
-    haveI := GlobalTheory.LogDerProj.isLocalizedModule_res (S := Γ(Y.X, W.1)) f φ hφ (I.ideal U)
+    have := GlobalTheory.LogDerProj.isLocalizedModule_res (S := Γ(Y.X, W.1)) f φ hφ (I.ideal U)
     exact ⟨f, hq, e.toLinearMap ∘ₗ GlobalTheory.LogDerProj.res (S := Γ(Y.X, W.1)) f φ (I.ideal U),
       IsLocalizedModule.of_linearEquiv (Submonoid.powers f) (GlobalTheory.LogDerProj.res (S := Γ(Y.X, W.1)) f φ (I.ideal U)) e⟩
   rw [hM]

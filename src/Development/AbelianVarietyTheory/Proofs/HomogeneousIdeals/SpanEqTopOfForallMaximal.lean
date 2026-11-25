@@ -28,8 +28,6 @@ open ReciprocityTheory.ChartRestriction.G.Chart (sp spMap spMap_left spMap_comp 
 
 namespace GlobalTheory.SqZero
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 variable {R : Type} [CommRing R]
 
 section Away

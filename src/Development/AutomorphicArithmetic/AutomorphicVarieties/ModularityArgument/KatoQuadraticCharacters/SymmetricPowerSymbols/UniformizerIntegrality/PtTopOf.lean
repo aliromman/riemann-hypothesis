@@ -1,8 +1,32 @@
 module
 
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SymmetricPowerSymbols.IsSymb
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -15,6 +39,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -56,12 +81,6 @@ def EdgeGeo : Prop :=
     GlobalTheory.KEdge.CobOn Δ x y η → (∀ g ∈ Δ, ∀ h ∈ Δ, GlobalTheory.KEdge.edge x y η g h = 0) ∧
       ∀ σ : Γ, (∀ h ∈ Δ, σ * h * σ⁻¹ ∈ Δ) → ∀ g ∈ Δ, ∀ h ∈ Δ,
         GlobalTheory.KEdge.edge x y η σ (g * h) = GlobalTheory.KEdge.edge x y η σ g + GlobalTheory.KEdge.edge x y η σ h
-
-def TopWEx : Prop :=
-  ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (X : Tower Ω ε) (l n M : ℕ), l.Prime → 0 < M → l ^ n ∣ M → ∀ u v : X.K, IsU X u → IsU X v → u ∈ topF X M → v ∈ topF X M →
-    ∀ η, IsTopEta X M (topChar X M l n u) (topChar X M l n v) η → ∀ s ∈ fixMu Ω M,
-      IsTopW (K := topL X M) (topZeta X M l n) (topChar X M l n u) (topChar X M l n v) η (topLift X M s)⁻¹
-        (topW (K := topL X M) (topZeta X M l n) (topChar X M l n u) (topChar X M l n v) η (topLift X M s)⁻¹)
 
 def CjB : Prop :=
   ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (X : Tower Ω ε) (M : ℕ) (e : topBar X M ≃+* Kb X), IsIso X M e →

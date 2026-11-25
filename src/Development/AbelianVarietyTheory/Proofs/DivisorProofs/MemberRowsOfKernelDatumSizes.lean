@@ -26,37 +26,18 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LastMapNorm
 public import Formalism.LocalToGlobal.Divisibility.NumbersLink
 public import Development.AbelianVarietyTheory.Definitions.Divisors.KerSizes
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Presheaf
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TopPlaceLogTheta
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IsClassSumPairingFormsLat
 import Formalism.LocalToGlobal.Divisibility.FramesLemmas
 import Formalism.LocalToGlobal.GlobalTheory.HLatOpsP
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
 import Formalism.LocalToGlobal.Columns.AlgebraMapMemMaximalIdealPowIff
 import Formalism.LocalToGlobal.Divisibility.CoefMod
 import Formalism.LocalToGlobal.KernelLattices.XiIndCClass
-import Mathlib.RingTheory.PicardGroup
 import Formalism.LocalToGlobal.IndefiniteForms.IndefSide
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Algebra.Order.Star.Rat
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.BranchSandwichDivisors.DivFromPassageAndNorm
 import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LClosedeqLemmas
-import Mathlib.Algebra.Ring.IsFormallyReal
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ColsInIsometry, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DatFramedOfGramPosDef, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHtNumsOfKerSideLastSide, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsInvFrameOfPosDef, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FamFramedOfPos, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCbData, Development.AbelianVarietyTheory.Proofs.DivisorProofs.OpNormAtPairingSqLeOfValueBound, Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerChainMatricesWithNormBounds, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LastSideLogBound, Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrthNormLogBound, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LastMapHalfRecNumsOfLogLevelPrimeLe, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ColumnsMemberRowsOfLogLevelLe, Development.AbelianVarietyTheory.Proofs.DivisorProofs.OfNumReads, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemberRowsOfKernelDatumSizes
