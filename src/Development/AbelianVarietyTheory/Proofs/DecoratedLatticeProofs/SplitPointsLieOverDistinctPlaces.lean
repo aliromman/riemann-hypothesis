@@ -17,6 +17,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.JointSmooth
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SupportedSubgroupSplitCommutePrimeIdempotents
 
 @[expose] public section
 
@@ -33,14 +34,7 @@ variable {D : D7}
 
 theorem placeIdem_unique {v : HeightOneSpectrum (𝓞 D.host.F)} {ε ε' : AF D.host.F}
     (h : IsPlaceIdem D v ε) (h' : IsPlaceIdem D v ε') : ε = ε' := by
-  obtain ⟨α, rfl, h1, h2⟩ := h
-  obtain ⟨α', rfl, h1', h2'⟩ := h'
-  congr 1
-  refine RestrictedProduct.ext _ _ fun u => ?_
-  by_cases hu : u = v
-  · subst hu
-    exact h1.trans h1'.symm
-  · exact (h2 u hu).trans (h2' u hu).symm
+  apply _root_.GlobalTheory.IdemSupport.placeIdem_unique <;> assumption
 
 theorem finPart_idem_int {e : AE D} {w : HeightOneSpectrum (𝓞 D.host.E)} (h : Formalism.L2.NTheta.IsIdemAt e w) :
     finPart D e ∈ intAE D := by

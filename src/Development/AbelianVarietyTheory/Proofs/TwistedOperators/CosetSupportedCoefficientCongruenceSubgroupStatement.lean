@@ -955,7 +955,6 @@ noncomputable section
 
 namespace GlobalTheory.CongAssemble
 
-open Matrix
 
 variable {D : D7}
 

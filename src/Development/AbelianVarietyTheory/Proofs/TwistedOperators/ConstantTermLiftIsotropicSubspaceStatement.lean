@@ -667,7 +667,6 @@ namespace GlobalTheory.IsoTermMean
 end GlobalTheory.IsoTermMean
 
 namespace GlobalTheory.IsoTermMean
-open GlobalTheory.IndefiniteRowSideFullHecke.AdjointIsotropicDecomposition
 variable {D : D7}
 
 theorem map_frame_decomp (V V' : HSp D) {r : ℕ} (C C' : Matrix (Fin V.rank) (Fin r) D.host.E)
@@ -718,7 +717,6 @@ theorem decomp (V V' W : HSp D) {r s : ℕ} (C C' : Matrix (Fin V.rank) (Fin r) 
 end GlobalTheory.IsoTermMean
 
 namespace GlobalTheory.IsoTermMean
-open GlobalTheory.IndefiniteRowSideFullHecke.AdjointIsotropicDecomposition
 variable {D : D7}
 
 theorem term_eq_aux (V V' W : HSp D) (r : ℕ) (C C' : Matrix (Fin V.rank) (Fin r) D.host.E)
@@ -766,7 +764,6 @@ theorem term_eq_aux (V V' W : HSp D) (r : ℕ) (C C' : Matrix (Fin V.rank) (Fin 
 end GlobalTheory.IsoTermMean
 
 namespace GlobalTheory.IsoTermMean
-open GlobalTheory.IndefiniteRowSideFullHecke.AdjointIsotropicDecomposition
 variable {D : D7}
 
 theorem iso_read_periodic (V' W : HSp D) (ψ : AddChar (AF D.host.F) ℂ) {s : ℕ} (L : Matrix (Fin W.rank) (Fin s) D.host.E)

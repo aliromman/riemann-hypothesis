@@ -174,7 +174,6 @@ open scoped TensorProduct InnerProductSpace
 open GlobalTheory.LiftRows
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues GlobalTheory.AdelicScalar
-open Formalism.L2.DIV (kP Pl LevelP)
 
 
 
@@ -324,7 +323,6 @@ open scoped TensorProduct InnerProductSpace
 open GlobalTheory.LiftRows
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues GlobalTheory.AdelicScalar
-open Formalism.L2.DIV (kP Pl LevelP)
 
 
 theorem _root_.GlobalTheory.T.latticeLevel_eq_unitary_inf_frame_stabilizer : ∀ (D : D7) (V : HSp D) (β : GL (Fin V.rank) (Lev.EAf D)) (Λ : Submodule (𝓞 D.host.E) (Fin V.rank → D.host.E)), Formalism.IndefR.Lev.IsBaseFrame V β Λ 1 → GlobalTheory.Mass.Levels.latLev V = Formalism.L2.DIV.UA D.sp.cm V.gram ⊓ Formalism.L2.DIV.St β := by
@@ -345,7 +343,6 @@ open scoped TensorProduct InnerProductSpace
 open GlobalTheory.LiftRows
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues GlobalTheory.AdelicScalar
-open Formalism.L2.DIV (kP Pl LevelP)
 
 open Classical
 
@@ -412,7 +409,6 @@ open scoped TensorProduct InnerProductSpace
 open GlobalTheory.LiftRows
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues GlobalTheory.AdelicScalar
-open Formalism.L2.DIV (kP Pl LevelP)
 
 open Classical
 
@@ -435,7 +431,6 @@ open scoped TensorProduct InnerProductSpace
 open GlobalTheory.LiftRows
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues GlobalTheory.AdelicScalar
-open Formalism.L2.DIV (kP Pl LevelP)
 
 noncomputable section
 

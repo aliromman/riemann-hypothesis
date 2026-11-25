@@ -34,7 +34,6 @@ open GlobalTheory.RowEx
 
 namespace GlobalTheory.RowEx.CarryWeil
 
-open GlobalTheory.ChiGrid GlobalTheory.FunObj
 open scoped ComplexOrder
 
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts}

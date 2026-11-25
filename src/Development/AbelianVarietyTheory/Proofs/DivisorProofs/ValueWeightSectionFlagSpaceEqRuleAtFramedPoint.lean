@@ -35,7 +35,6 @@ open Filter Topology
 open GlobalTheory.ShFam GlobalTheory.ShFam.BdArc GlobalTheory.Toroidal
 
 open MonoidalCategory CartesianMonoidalCategory MonObj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompHS.BridgeValue
 

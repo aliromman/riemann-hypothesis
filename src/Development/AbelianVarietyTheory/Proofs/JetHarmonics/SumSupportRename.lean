@@ -2,8 +2,7 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Jets.JetsOnCopiesCompatibleFrames
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.GaugeTrans
-public import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.EqCOfPderivZero
-public import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.InvariantDerivationsCommuteFormalConnection
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.DofComm
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -104,7 +103,7 @@ theorem inCol_C (b : Fin n) (r : k) : inCol b (C r : PS k 1 d) = C r := by
 theorem pderiv_inCol (b c : Fin n) (j : Fin d) (f : PS k 1 d) :
     pderiv (c, j) (inCol b f) = if b = c then inCol b (pderiv ((0 : Fin 1), j) f) else 0 := by
   unfold inCol ev
-  rw [FormalLog.pderiv_subst (a := fun p : Fin 1 × Fin d => (![pt k d b] : Fin 1 → Pt k n d) p.1 p.2)
+  rw [LogPf.pderiv_subst (a := fun p : Fin 1 × Fin d => (![pt k d b] : Fin 1 → Pt k n d) p.1 p.2)
     (fun p => gp b p.1 p.2)]
   have e : ∀ p : Fin 1 × Fin d, (![pt k d b] : Fin 1 → Pt k n d) p.1 p.2 = X (b, p.2) := by
     rintro ⟨a, i⟩
@@ -295,7 +294,7 @@ theorem nabValN_boxSer : NabColSt := by
   congr 1
   rw [dmonN_prod, map_prod]
   refine Finset.prod_congr rfl fun b _ => ?_
-  rw [cc_inCol, fo_col (B.FK k) (fun v w g => FormalConnection.invariantDerivations_commute_formal_connection R d O k B v w g) e cp u u' hcp hu]
+  rw [cc_inCol, fo_col (B.FK k) (fun v w g => Nab.invariantDerivations_commute_formal_connection R d O k B v w g) e cp u u' hcp hu]
   unfold FB.nabVal DpolyOf
 
   simp only [map_sum, map_mul, constantCoeff_C]

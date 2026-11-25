@@ -1,6 +1,6 @@
 module
 
-public import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.ConstantCoeffEv
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.ConstantCoeffEv
 public import Mathlib.RingTheory.MvPolynomial.Ideal
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -24,7 +24,7 @@ open MvPowerSeries
 
 namespace GlobalTheory.FrameBiextId
 
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ GlobalTheory.FormalLog
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.TB.LogPf
 
 variable {k : Type} [CommRing k] {d : ℕ}
 
