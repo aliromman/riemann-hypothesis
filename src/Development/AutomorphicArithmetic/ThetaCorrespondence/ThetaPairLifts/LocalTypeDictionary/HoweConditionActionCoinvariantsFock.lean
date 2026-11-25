@@ -817,7 +817,8 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilModelCharacterMatch
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilModelCharacterMatch
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues
@@ -829,6 +830,7 @@ open GlobalTheory.SquareComm
 open scoped ComplexConjugate
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun
 
+noncomputable section
 
 namespace GlobalTheory.CompactStable
 
@@ -945,8 +947,8 @@ theorem mem_closure_elt {V : HSp D} (B : Fr V) {a : GA D V} (ha : a ∈ GinfC V)
   have hu : ∀ s : Finset D.what₂.Tau, Eqv.IsUnitFam D V (fun τ => if τ ∈ s then gs τ else 1) := by
     intro s τ
     by_cases hτ : τ ∈ s
-    · simp only [hτ, if_true]; exact hgs τ
-    · simp only [hτ, if_false]; simp
+    · simp only [hτ, ite_true]; exact hgs τ
+    · simp only [hτ, ite_false]; simp
   have key : ∀ s : Finset D.what₂.Tau, Eqv.famH D V _ (hu s) ∈
       Submonoid.closure {x | ∃ τ, ∃ k ∈ Formalism.REAL.Kset (B.ε τ), x = B.elt (Eqv.thetaC D) τ k} := by
     intro s
@@ -1137,6 +1139,8 @@ theorem tens_inj {F : Type} [Field F] [NumberField F] {κ : Type} {r : (κ → A
 
 end GlobalTheory.CompactStable
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.ThetaSubspaceStableMaximalCompact

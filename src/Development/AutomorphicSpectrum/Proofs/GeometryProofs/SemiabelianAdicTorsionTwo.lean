@@ -17,10 +17,11 @@ import Development.WeilBound.CoreStatements.HodgeTatePoints.TwhopfSec
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.HodgeTatePoints.GiResAlg, Development.WeilBound.CoreStatements.HodgeTatePoints.GiResGeo, Development.WeilBound.CoreStatements.HodgeTatePoints.ExistsIncl, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiabelianAdicTorsionTwo
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.GiResAlg
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.GiResAlg
 
 open GlobalTheory.CompanionTheory.Ar.BT
 
+noncomputable section
 
 namespace PositivityTheory.HtPt.Gi
 
@@ -120,7 +121,7 @@ theorem res_iff_abs (hB : IsHopfOrder B) (hB' : IsHopfOrder B') (hl : IsLoc H B)
     have hrep : ∀ t0 : T, ((ι (rep (ι t0 : T' ⧸ H')) : T') : T' ⧸ H') = (ι t0 : T' ⧸ H') := by
       intro t0
       have hc : ∃ t : T, (ι t : T' ⧸ H') = (ι t0 : T' ⧸ H') := ⟨t0, rfl⟩
-      simp only [rep, dif_pos hc]
+      simp only [rep, dite_eq_left hc]
       exact hc.choose_spec
     let F : T' ⧸ H' → T' → R := fun c s => fr (rep c) ((ι (rep c))⁻¹ * s)
     refine ⟨∑ c, cosetInd R H' c * F c, ?_, ?_⟩
@@ -218,7 +219,7 @@ theorem ker_abs {N : ℕ} (hB' : IsHopfOrder B') (hl' : IsLoc H' B') (hN : ∀ t
           simp [h0, cosetInd, QuotientGroup.mk_pow, hx]
         have e2 : h0 1 = 0 := by
           simp only [h0, cosetInd]
-          rw [if_neg]
+          rw [ite_eq_right]
           intro h1
           apply hs
           rw [← QuotientGroup.mk_pow] at h1
@@ -230,6 +231,7 @@ theorem ker_abs {N : ℕ} (hB' : IsHopfOrder B') (hl' : IsLoc H' B') (hN : ∀ t
     exact Ideal.mul_mem_left _ _ hGJ
 
 end PositivityTheory.HtPt.Gi
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.GiResGeo

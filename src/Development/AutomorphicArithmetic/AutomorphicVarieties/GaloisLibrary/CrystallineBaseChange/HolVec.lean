@@ -167,8 +167,9 @@ end UpperTheory.V.Br
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.CrystallineBaseChange.HolVec
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.CrystallineBaseChange.HolVec
 
+noncomputable section
 
 open NumberField UpperTheory.V UpperTheory.V.Af Complex
 
@@ -280,7 +281,7 @@ theorem UpperTheory.V.Br.holVec :
   have hBC : ∀ x, E 0 1 (E 1 0 x) = E 1 0 (E 0 1 x) + (2 : ℂ) • E 0 0 x := fun x => by
     refine Subtype.ext ?_
     have h := hrel 0 1 1 0 x.1
-    simp only [if_true, LinearMap.sub_apply, Module.End.mul_apply, hD _ x.2] at h
+    simp only [ite_true, LinearMap.sub_apply, Module.End.mul_apply, hD _ x.2] at h
     simp only [Submodule.coe_add, Submodule.coe_smul, hE]
     linear_combination (norm := module) h
   have key := low_of (E 0 0) (E 0 1) (E 1 0) (π.op (.cpt eps)) H k hk ?_ ?_ hBC ?_ hH.definite (hadj 0 0) (hadj 0 1)

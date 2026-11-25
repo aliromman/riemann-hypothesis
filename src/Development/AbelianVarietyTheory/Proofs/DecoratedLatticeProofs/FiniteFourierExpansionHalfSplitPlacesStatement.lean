@@ -123,9 +123,9 @@ theorem brk_sum_reps_orth : ∀ (V : Type) [AddCommGroup V] [Module ℂ V] (H : 
   have hΛint := (Formalism.L2.Th1.H.semicharacterBasic V H hH Λ α hΛ).2.2
   have hwΛ : w ∈ Λ := (AddSubgroup.mem_inf.1 hw).1
   by_cases hwB : w ∈ B
-  · rw [if_pos hwB, Finset.sum_congr rfl fun y hy => brk_one_of_int H (hBint hwB y (hSB.1 y hy))]
+  · rw [ite_eq_left hwB, Finset.sum_congr rfl fun y hy => brk_one_of_int H (hBint hwB y (hSB.1 y hy))]
     simp
-  · rw [if_neg hwB]
+  · rw [ite_eq_right hwB]
     have hnd : w ∉ Formalism.L2.Th1.H.dualLat H B := by rw [sdB]; exact hwB
     have hex : ∃ y₀ ∈ B, ¬ ∃ m : ℤ, Formalism.L2.Th1.H.altE H w y₀ = (m : ℝ) := by
       by_contra! hcon
@@ -838,7 +838,7 @@ theorem xi_add_halfB {E : Type} [Field E] [NumberField E] [StarRing E] {a b : �
   have h1 : (c : E)⁻¹ • β ∈ Formalism.L2.Col.homAt SS N N' := by
     refine hH _ fun P hP => ?_
     have h2 := (Formalism.L2.Ker.mem_twO M c _ β).1 hβ P
-    have h3 : expS SS P = 1 := by unfold expS; rw [if_pos hP]
+    have h3 : expS SS P = 1 := by unfold expS; rw [ite_eq_left hP]
     rwa [h3, zpow_one] at h2
   have h4 := hΞ2 x _ h1
   rwa [smul_smul, mul_inv_cancel₀ hcE, one_smul] at h4
@@ -885,9 +885,9 @@ theorem fin_sum {V : Type} [AddCommGroup V] [Module ℂ V] (H : Formalism.L2.Th1
     exact Finset.sum_congr rfl fun s _ => Finset.sum_congr rfl fun y _ => by ring
   rw [h1, Finset.sum_congr rfl fun s hs => by rw [horth (v - s) (sub_mem hv (hRA.1 s hs))]]
   rw [Finset.sum_eq_single s0 (fun s hs hne' => by
-      rw [if_neg (fun h => hne' (hRA.2.1 s hs s0 hs0 (by
+      rw [ite_eq_right (fun h => hne' (hRA.2.1 s hs s0 hs0 (by
         have h2 : s - s0 = (v - s0) - (v - s) := by abel
-        rw [h2]; exact sub_mem hvs0 h))), mul_zero]) (fun h => absurd hs0 h), if_pos hvs0, hcard]
+        rw [h2]; exact sub_mem hvs0 h))), mul_zero]) (fun h => absurd hs0 h), ite_eq_left hvs0, hcard]
   have : (SB.card : ℂ) ≠ 0 := Nat.cast_ne_zero.2 hne
   field_simp
 
@@ -988,7 +988,7 @@ theorem four_expand : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam
     intro x _ h
     have h0 : halfInd e Λ (t + eXm S T e (px x)) = 0 := by
       unfold halfInd
-      rw [if_neg]
+      rw [ite_eq_right]
       rintro ⟨h1, h3⟩
       rcases h with h | h
       exacts [h h1, h h3]
@@ -1022,7 +1022,7 @@ theorem four_expand : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam
       have h1 : k • t = e • (k • t) := by
         ext i j
         rw [Matrix.smul_apply, Matrix.smul_apply, Matrix.smul_apply, smul_eq_mul, nsmul_eq_mul, mul_left_comm, ht i j]
-      rw [h1, htM, smul_add, heF, smul_add, hkeX k M, if_neg hk.ne', hsn, hns3]
+      rw [h1, htM, smul_add, heF, smul_add, hkeX k M, ite_eq_right hk.ne', hsn, hns3]
     have hΦg : Φ t = Ξ (Matrix.toLin' ((k : D.host.E)⁻¹ • M)) := by
       rw [hteq, hinv _ (nsmul_mem (hΛe u hu) c) (hhs c _ (hhe u)), hΦ']
     have hg1 := hΞ1 _ (hΦg ▸ h0)
@@ -1050,7 +1050,7 @@ theorem four_expand : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam
       · exact hloc Q hQ
       · have h6 := (Formalism.L2.Ker.mem_twO _ c _ _).1 hA Q
         unfold expS at h6
-        rw [if_neg hQ] at h6
+        rw [ite_eq_right hQ] at h6
         split_ifs at h6 with hQ'
         · have hcE : (c : D.host.E) ≠ 0 := Nat.cast_ne_zero.2 hc.ne'
           have h7 := Formalism.L2.Ker.nat_smul_mem _ c h6
@@ -1073,7 +1073,7 @@ theorem four_expand : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam
     rw [Matrix.add_apply, mul_add, ht i j, heX _ i j]
   have hI : halfInd e Λ (t + eXm S T e (px x0)) = 1 := by
     unfold halfInd
-    rw [if_pos ⟨hu0, huh⟩]
+    rw [ite_eq_left ⟨hu0, huh⟩]
   simp only [hI, mul_one]
   obtain ⟨M, hM, u', hu', huM⟩ := GlobalTheory.DatumFourier.approx_mod (Nat.mul_pos hk hc) hu0
   have hueq : t + eXm S T e (px x0) = eXm S T e (Matrix.toLin' M) + k • (c • (e • u')) := by
@@ -1121,7 +1121,6 @@ end GlobalTheory.AdForm.DatumFour
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FiniteFourierExpansionHalfSplitPlacesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BrkSumRepsOrth", "h": "module\n\npublic import Formalism.LocalToGlobal.KernelLattices.XiIndCClass\npublic import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.AlternatingFormStandardHermitian\nimport Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.MatrixFormFourfoldBlock\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsDiscriminantTwelfthRootOfIdealLatticeIffDelta1\nimport Development.AbelianVarietyTheory.Definitions.Foundations.ValuedAlgebraMapEqOne\nimport Development.AbelianVarietyTheory.Definitions.LatticeFrames.FiniteDimensionalMram\nimport Development.AbelianVarietyTheory.Definitions.LatticeFrames.MidChart\nimport Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.WittSmallGroupEmbeddingMemPointwiseStabilizerIso\nimport Formalism.LocalRingCardinality.DataTheta\nimport Formalism.LocalToGlobal.BesselHermitianTheta.NoncompactGapAtLeastRange\nimport Formalism.LocalToGlobal.IndefiniteReal.IndefiniteWeightData\nimport Formalism.LocalToGlobal.IndefiniteReal.LinksDefs\nimport Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction\nimport Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GapAtLeast\nimport Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes\n\n"}

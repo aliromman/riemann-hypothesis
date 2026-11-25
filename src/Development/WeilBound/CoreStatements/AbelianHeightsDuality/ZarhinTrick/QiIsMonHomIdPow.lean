@@ -71,14 +71,13 @@ theorem epiOfFF : PositivityTheory.Tls2.Zar3.Ch1.EpiOfFF := by
 end GlobalTheory.CompanionTheory.Dblock
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorThroughFiniteFlat
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorThroughFiniteFlat
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open ReciprocityTheory.ChartRestriction.G.Chart (sp)
 
@@ -127,14 +126,14 @@ theorem factorThroughFF : PositivityTheory.Tls2.Zar3.Ch1.FactorThroughFF := by
 
 end GlobalTheory.CompanionTheory.FlatFactor
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteOfFiniteFibres
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteOfFiniteFibres
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompanionTheory.AbFibre
 
@@ -206,6 +205,7 @@ theorem finiteOfFibres : PositivityTheory.Tls2.Zar3.Ch1.FiniteOfFibres := by
 
 end GlobalTheory.CompanionTheory.AbFibre
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlatOfFibresFinite
 
@@ -218,16 +218,15 @@ theorem flatOfFibresFinite : PositivityTheory.Tls2.Zar3.Ch1.FlatOfFibresFinite :
 end GlobalTheory.CompanionTheory.FlatFib
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelFiniteFlat
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelFiniteFlat
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
 open ReciprocityTheory.ChartRestriction.G.Chart (sp spMap)
 open GlobalTheory.CompanionTheory.Ar.GR
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompanionTheory.Ar.KerFF
 
@@ -336,15 +335,15 @@ theorem kernelFinFlat : PositivityTheory.Tls2.Zar3.Ch1.KernelFinFlat := by
 
 end GlobalTheory.CompanionTheory.Ar.KerFF
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiPtsA
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiPtsA
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open ReciprocityTheory.ChartRestriction.G.Chart (sp spMap)
 open GlobalTheory.CompanionTheory.Ar.GR
@@ -422,18 +421,16 @@ theorem mulPt_onePt' (hs : IsFinFlatSub G F h) (φ : F →ₐ[R] S) : mulPt hs �
 
 end PositivityTheory.PrwZar.QiP
 end -- clump:auto
+end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.KilledAnyOf
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
 open GlobalTheory.CechPic GlobalTheory.AbDual
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.KilledAnyOf
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open ReciprocityTheory.ChartRestriction.G.Chart (sp spMap)
 
@@ -592,11 +589,17 @@ theorem killedAny_of (hc : Qi.KilledCore) : KilledAny := by
 
 end PositivityTheory.PrwZar
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.KerMemKL
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.KerMemKL
+
+noncomputable section
+
+open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open scoped CategoryTheory.Obj CategoryTheory.MonObj
+open GlobalTheory.CechPic GlobalTheory.AbDual
 open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqToBase toBase)
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open ReciprocityTheory.ChartRestriction.G.Chart (sp spMap)
 
@@ -628,11 +631,17 @@ theorem ker_memKL {S : Scheme.{0}} {A B : Over S} [GrpObj A] [GrpObj B] {P : LB 
 
 end PositivityTheory.PrwZar.Z2
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.PfiFRangeFiniteClosed
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.PfiFRangeFiniteClosed
+
+noncomputable section
+
+open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open scoped CategoryTheory.Obj CategoryTheory.MonObj
+open GlobalTheory.CechPic GlobalTheory.AbDual
 open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqToBase toBase)
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open ReciprocityTheory.ChartRestriction.G.Chart (sp spMap)
 
@@ -733,11 +742,17 @@ theorem isFinite_of_ker {Ω : Type} [Field Ω] [IsAlgClosed Ω] {G G' : Over (Sp
 
 end PositivityTheory.PrwZar.Z2
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.SurjOfFiniteDimS
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.SurjOfFiniteDimS
+
+noncomputable section
+
+open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open scoped CategoryTheory.Obj CategoryTheory.MonObj
+open GlobalTheory.CechPic GlobalTheory.AbDual
 open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqToBase toBase)
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open ReciprocityTheory.ChartRestriction.G.Chart (sp spMap)
 
@@ -815,11 +830,17 @@ theorem flat_surj_of_finite {Ω : Type} [Field Ω] [IsAlgClosed Ω] {G G' : Over
 
 end PositivityTheory.PrwZar.Z2
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.PolFibreIsogAny
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.PolFibreIsogAny
+
+noncomputable section
+
+open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open scoped CategoryTheory.Obj CategoryTheory.MonObj
+open GlobalTheory.CechPic GlobalTheory.AbDual
 open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqToBase toBase)
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open ReciprocityTheory.ChartRestriction.G.Chart (sp spMap)
 
@@ -844,8 +865,7 @@ theorem polFibreIsogAny : PositivityTheory.PrwZar.PolFibreIsogAny := by
 
 end PositivityTheory.PrwZar.Z2
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 section -- clump: shared namespace opens
 
@@ -1257,15 +1277,14 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiIsMonHomIdPow
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiIsMonHomIdPow
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
 open GlobalTheory.CechPic GlobalTheory.AbDual
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open ReciprocityTheory.ChartRestriction.G.Chart (sp spMap)
 

@@ -12,8 +12,7 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 open CategoryTheory CategoryTheory.Limits GlobalTheory.HomStab
 
-section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.HomologicalStability.LinkExactnessStability.QuillenStaircaseStepSurjective
-@[expose] public section
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.HomologicalStability.LinkExactnessStability.QuillenStaircaseStepSurjective
 
 namespace GlobalTheory
 
@@ -46,9 +45,6 @@ theorem homStab_step : ∀ (k G : Type) [CommRing k] [Group G] (C₃ C₂ Z₁ C
 
 end GlobalTheory
 
-section
-end
-end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.HomologicalStability.LinkExactnessStability.SurjectiveHMapZeroOfStaircase

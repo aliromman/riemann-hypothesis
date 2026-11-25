@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DKerHasCompactSupport
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LinMulti
 public import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ISmulOneMemUnitaryLie
 public import Mathlib.Analysis.Calculus.InverseFunctionTheorem.ContDiff
@@ -59,8 +60,9 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SmoothVectorsLieIff, Development.AbelianVarietyTheory.Proofs.TwistedOperators.LowestKTypeLieWordNormBound
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SmoothVectorsLieIff
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SmoothVectorsLieIff
 
+noncomputable section
 
 open MeasureTheory Matrix Formalism.MainNotions.S GlobalTheory.Ell Filter
 open scoped InnerProductSpace ContDiff Topology
@@ -86,19 +88,7 @@ theorem mul_mem_UH {G a b : Matrix (Fin n) (Fin n) ℂ} (ha : a ∈ Formalism.Qu
 
 theorem exp_mem {G X : Matrix (Fin n) (Fin n) ℂ} (hG : IsUnit G) (hX : X ∈ lieOf G) (t : ℝ) :
     NormedSpace.exp (t • X) ∈ Formalism.QuantumDeterminants.UH G := by
-  have hX0 : Xᴴ * G + G * X = 0 := hX
-  show (NormedSpace.exp (t • X))ᴴ * G * NormedSpace.exp (t • X) = G
-  have hd : IsUnit G.det := (Matrix.isUnit_iff_isUnit_det G).1 hG
-  have h1 : (t • X)ᴴ = G * (-(t • X)) * G⁻¹ := by
-    have h2 : Xᴴ = G * (-X) * G⁻¹ := by
-      rw [Matrix.mul_neg, ← eq_neg_of_add_eq_zero_left hX0, Matrix.mul_assoc, Matrix.mul_nonsing_inv _ hd,
-        Matrix.mul_one]
-    rw [conjTranspose_smul, h2]
-    simp
-  rw [← Matrix.exp_conjTranspose, h1, Matrix.exp_conj _ _ hG, Matrix.exp_neg]
-  have hu : IsUnit (NormedSpace.exp (t • X)).det := (Matrix.isUnit_iff_isUnit_det _).1 (Matrix.isUnit_exp _)
-  rw [Matrix.mul_assoc (G * _), Matrix.nonsing_inv_mul _ hd, Matrix.mul_one, Matrix.mul_assoc,
-    Matrix.nonsing_inv_mul _ hu, Matrix.mul_one]
+  apply _root_.GlobalTheory.SmLinSub.exp_mem <;> assumption
 
 theorem oneProd_mem {G : Matrix (Fin n) (Fin n) ℂ} (hG : IsUnit G) :
     ∀ {d : ℕ} (Y : Fin d → Matrix (Fin n) (Fin n) ℂ), (∀ i, Y i ∈ lieOf G) → ∀ t : Fin d → ℝ,
@@ -178,6 +168,7 @@ theorem smV_of_smoothOnH {G : Matrix (Fin n) (Fin n) ℂ} (hG : IsUnit G)
 end Sup
 
 end GlobalTheory.SmChart
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LowestKTypeLieWordNormBound

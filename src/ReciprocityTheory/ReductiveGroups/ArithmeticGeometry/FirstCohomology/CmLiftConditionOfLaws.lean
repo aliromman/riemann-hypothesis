@@ -33,6 +33,7 @@ import Mathlib.Algebra.Order.Star.Rat
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Lemma
 import Mathlib.Topology.Sheaves.Presheaf
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.FamMod
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.CanonicalLiftFiniteOrder, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.QkActPf, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.CanonLiftPf, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.AlphaBarEnum, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.IntegralRingEmbedding, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.OneCPf, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.OneCFinal, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.CmLiftConditionOfLaws
@@ -702,8 +703,9 @@ end Core
 end ReciprocityTheory.ChartRestriction.G.H1.IntegralRingEmbedding
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.OneCPf
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.OneCPf
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory
   CartesianMonoidalCategory MonObj IsLocalRing NumberField
@@ -730,22 +732,7 @@ private theorem oneC_of_lemma_3 (F : Type) [Field F] (c : (Γ(Sp F, ⊤))ˣ) : �
 private theorem oneC_of_lemma_4 {R : Type} [CommRing R] [IsDomain R] (D : DegPre R) (F : Type) [Field F]
     [Algebra (FractionRing R) F] (k : ℕ) (s s' : Fam D F k)
     (h : ∀ α j, (s.s α).f j = (s'.s α).f j) : s = s' := by
-  obtain ⟨s, hs⟩ := s
-  obtain ⟨s', hs'⟩ := s'
-  have key : ∀ α, s α = s' α := by
-    intro α
-    have hab : (s α).f = (s' α).f := funext (h α)
-    revert hab
-    generalize s α = a
-    generalize s' α = b
-    cases a
-    cases b
-    intro hab
-    cases hab
-    rfl
-  have e : s = s' := funext key
-  subst e
-  rfl
+  apply _root_.ReciprocityTheory.ChartRestriction.G.DVR.fam_ext <;> assumption
 
 private theorem oneC_of_lemma_5 {R : Type} [CommRing R] [IsDomain R] (D : DegPre R) (F : Type) [Field F]
     [Algebra (FractionRing R) F] (k : ℕ) (ζ : F) (s s' : Fam D F k) (h : Fam.IsSmul D F ζ s s') :
@@ -881,6 +868,7 @@ theorem oneC_of (hL : Laws) (hΦ : PhiFunStatement) (h1c : PositiveValuationMaxi
     fun i => ⟨Φ i θα, (hΦb i θα _).mpr rfl, oneC_of_lemma _ _ _ _ _⟩, ha0, hsa⟩
 
 end ReciprocityTheory.ChartRestriction.G.H1
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.OneCFinal

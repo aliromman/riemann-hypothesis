@@ -148,8 +148,9 @@ theorem hJ_conj (v : InfinitePlace I.F) (a b : Fin I.n → ℂ) :
 end Formalism.L2.SG.Pf.MeasInfW
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.InfiniteMeasureTransfer.NilpotentMeasureRecursion
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.InfiniteMeasureTransfer.NilpotentMeasureRecursion
 
+noncomputable section
 
 open NumberField Matrix Formalism.L2.SG.AdBridge Formalism.L2.SG.HidaSetting
 open scoped TensorProduct Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
@@ -349,7 +350,7 @@ theorem nsub_iff {r : ℕ} (g : HI I) (e f : Fin r → Fin I.n → I.E) (z : Fin
           exact hu a
         · simp [Bv]
       have h3 := (mem_spanR_iff (I := I) e _ _).1 (h2 _ hx) v
-      rw [thV_lin_sub, hw v, if_pos rfl, span_univ_eq] at h3
+      rw [thV_lin_sub, hw v, ite_eq_left rfl, span_univ_eq] at h3
       exact h3
   · intro h
     refine (show _ ∧ _ from ⟨fun b => ?_, fun w hw => ?_⟩)

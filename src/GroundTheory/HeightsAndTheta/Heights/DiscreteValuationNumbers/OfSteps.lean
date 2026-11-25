@@ -30,7 +30,8 @@ import Mathlib.Tactic.Lemma
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.CycEvalEqAddMulOfCycle, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.ImportsAlt, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PCutByEffectiveDivisor, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PEffectiveShift, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PIntNumAddFirstField, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.OfSteps
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.CycEvalEqAddMulOfCycle
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.CycEvalEqAddMulOfCycle
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -38,6 +39,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial
 
+noncomputable section
 
 universe u
 
@@ -145,9 +147,9 @@ theorem ShiftByUniformiser.proof (h₁ : DivCycleMul.Statement.{u})
         else cycEval (fun G => vNum G L) (ratDiv W (C ϖ) 1)) (divCycle P s) := by
     refine cycEval_eq_add_mul_of_fun (n : ℤ) (hfin P s) fun W hW => ?_
     by_cases hϖW : (C ϖ : MRing ι O) ∈ W
-    · simp only [if_pos hϖW, vNum_vecCons_zero]
+    · simp only [ite_eq_left hϖW, vNum_vecCons_zero]
       ring
-    · simp only [if_neg hϖW]
+    · simp only [ite_eq_right hϖW]
       have hV := hH W hW hϖW
       have hWp : W.IsPrime := by
         unfold divCycle at hW
@@ -159,8 +161,10 @@ theorem ShiftByUniformiser.proof (h₁ : DivCycleMul.Statement.{u})
   rw [hR, hI₂] at hI₁
   linarith
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.ImportsAlt

@@ -9,12 +9,10 @@ import Formalism.SharpRestriction.GrowthBounds.CovariantDegrees
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.RootWeights.V2conSumApply, Formalism.SharpRestriction.GrowthBounds.RootWeights.PolynomialOperatorsGlRelations
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.V2conSumApply
 
 
 open MvPolynomial Finset
-
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.V2conSumApply
 
 namespace Formalism.MainNotions.G.GLWeightTheory
 
@@ -62,7 +60,11 @@ theorem v2con_der_X {R : Type*} [CommRing R] {ι : Type*} [Fintype ι] {n : ℕ}
 end Formalism.MainNotions.G.GLWeightTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.PolynomialOperatorsGlRelations
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.PolynomialOperatorsGlRelations
+
+noncomputable section
+
+open MvPolynomial Finset
 
 namespace Formalism.MainNotions.G.GLWeightTheory
 
@@ -86,10 +88,10 @@ theorem v2con_bracket {R : Type*} [CommRing R] {ι : Type*} [Fintype ι] {n : �
   have k6 : (a = d) = (d = a) := propext eq_comm
   by_cases hS : l ∈ S
   · by_cases hv : LL.vec l = true
-    · simp only [hS, hv, if_true]
+    · simp only [hS, hv, ite_true]
       by_cases h3 : e = d <;> by_cases h4 : e = b <;> by_cases h5 : b = c <;> by_cases h6 : d = a <;>
         simp_all [v2con_der_X]
-    · simp only [hS, hv, if_true]
+    · simp only [hS, hv, ite_true]
       by_cases h3 : e = c <;> by_cases h4 : e = a <;> by_cases h5 : b = c <;> by_cases h6 : d = a <;>
         simp_all [v2con_der_X]
   · simp [hS]

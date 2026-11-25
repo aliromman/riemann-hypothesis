@@ -43,17 +43,16 @@ import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.GinfCSecondCo
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntOffOfSmul, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousMulLeftFin, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousSmulH, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermScaleMain, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapEqOne, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurableSetBox, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurableRight, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousIpFst, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TestAlg, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OrbEx, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TopX, Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.HermitianCellMeasures.EisMeasTop
 
-section -- clump: shared namespace opens
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntOffOfSmul
+@[expose] public section
+
+noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology SchwartzMap
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntOffOfSmul
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L PositivityTheory.Rg.Rsw.Em
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.AlgRich
 
@@ -233,43 +232,43 @@ theorem good_zero : Good S e (fun _ : Mx D a n => (0 : ℂ)) := fun x => by simp
 
 theorem good_add {Φ Ψ : Mx D a n → ℂ} (h₁ : Good S e Φ) (h₂ : Good S e Ψ) : Good S e (fun x => Φ x + Ψ x) := fun x => by
   by_cases h : IntOff S x
-  · simp only [if_pos h]
-    rw [h₁ x, h₂ x, if_pos h, if_pos h]
-  · simp only [if_neg h]
-    rw [h₁ x, h₂ x, if_neg h, if_neg h, add_zero]
+  · simp only [ite_eq_left h]
+    rw [h₁ x, h₂ x, ite_eq_left h, ite_eq_left h]
+  · simp only [ite_eq_right h]
+    rw [h₁ x, h₂ x, ite_eq_right h, ite_eq_right h, add_zero]
 
 theorem good_smul {Φ : Mx D a n → ℂ} (c : ℂ) (h₁ : Good S e Φ) : Good S e (fun x => c * Φ x) := fun x => by
   by_cases h : IntOff S x
-  · simp only [if_pos h]
-    rw [h₁ x, if_pos h]
-  · simp only [if_neg h]
-    rw [h₁ x, if_neg h, mul_zero]
+  · simp only [ite_eq_left h]
+    rw [h₁ x, ite_eq_left h]
+  · simp only [ite_eq_right h]
+    rw [h₁ x, ite_eq_right h, mul_zero]
 
 theorem good_factor {M B : Mx D a n → ℂ} (hM : ∀ x, M (e • x) = M x) (h₁ : Good S e B) :
     Good S e (fun x => M x * B x) := fun x => by
   by_cases h : IntOff S x
-  · simp only [if_pos h]
-    rw [h₁ x, if_pos h, hM]
-  · simp only [if_neg h]
-    rw [h₁ x, if_neg h, mul_zero]
+  · simp only [ite_eq_left h]
+    rw [h₁ x, ite_eq_left h, hM]
+  · simp only [ite_eq_right h]
+    rw [h₁ x, ite_eq_right h, mul_zero]
 
 theorem good_mul {Φ Ψ : Mx D a n → ℂ} (h₁ : Good S e Φ) (h₂ : Good S e Ψ) : Good S e (fun x => Φ x * Ψ x) := fun x => by
   by_cases h : IntOff S x
-  · simp only [if_pos h]
-    rw [h₁ x, h₂ x, if_pos h, if_pos h]
-  · simp only [if_neg h]
-    rw [h₁ x, if_neg h, zero_mul]
+  · simp only [ite_eq_left h]
+    rw [h₁ x, h₂ x, ite_eq_left h, ite_eq_left h]
+  · simp only [ite_eq_right h]
+    rw [h₁ x, ite_eq_right h, zero_mul]
 
 theorem good_conj {Φ : Mx D a n → ℂ} (h₁ : Good S e Φ) : Good S e (fun x => conj (Φ x)) := fun x => by
   by_cases h : IntOff S x
-  · simp only [if_pos h]
-    rw [h₁ x, if_pos h]
-  · simp only [if_neg h]
-    rw [h₁ x, if_neg h, map_zero]
+  · simp only [ite_eq_left h]
+    rw [h₁ x, ite_eq_left h]
+  · simp only [ite_eq_right h]
+    rw [h₁ x, ite_eq_right h, map_zero]
 
 theorem intOff_of_smul (hid : IsIdem S e) {x : Mx D a n} (hx : e • x = x) : IntOff S x := by
   intro v hv i j
-  have h0 : cv D v e = 0 := by rw [hid.2 v, if_neg hv]
+  have h0 : cv D v e = 0 := by rw [hid.2 v, ite_eq_right hv]
   have : x i j = e * x i j := by
     conv_lhs => rw [← hx]
     rfl
@@ -284,22 +283,22 @@ theorem good_row {Φ : Mx D a n → ℂ} {φ : Mx D 1 n → ℂ} (h₁ : Good S 
     have a2 : IntOff S (x.submatrix (fun _ : Fin 1 => Fin.last a) id) := fun v hv i j => h v hv _ _
     have b1 := h₁ (x.submatrix Fin.castSucc id)
     have b2 := h₂ (x.submatrix (fun _ : Fin 1 => Fin.last a) id)
-    rw [if_pos a1] at b1
-    rw [if_pos a2] at b2
-    rw [if_pos h]
+    rw [ite_eq_left a1] at b1
+    rw [ite_eq_left a2] at b2
+    rw [ite_eq_left h]
     exact congrArg₂ (· * ·) b1 b2
-  · rw [if_neg h]
+  · rw [ite_eq_right h]
     simp only [IntOff, not_forall] at h
     obtain ⟨v, hv, i, j, hij⟩ := h
     refine Fin.lastCases (motive := fun i => cv D v (x i j) ∉ intLoc D.host.F D.host.E v → _) (fun hij => ?_) (fun i hij => ?_) i hij
     · have a2 : ¬ IntOff S (x.submatrix (fun _ : Fin 1 => Fin.last a) id) := fun h' => hij (h' v hv 0 j)
       have b2 := h₂ (x.submatrix (fun _ : Fin 1 => Fin.last a) id)
-      rw [if_neg a2] at b2
+      rw [ite_eq_right a2] at b2
       show _ * φ _ = 0
       rw [b2, mul_zero]
     · have a1 : ¬ IntOff S (x.submatrix Fin.castSucc id) := fun h' => hij (h' v hv i j)
       have b1 := h₁ (x.submatrix Fin.castSucc id)
-      rw [if_neg a1] at b1
+      rw [ite_eq_right a1] at b1
       show Φ _ * _ = 0
       rw [b1, zero_mul]
 
@@ -318,7 +317,7 @@ theorem row_prod {θ : InfFam D} : ∀ (a : ℕ) (η : Fin a → Mx D 1 n → �
     rw [e1]
     refine ⟨GlobalTheory.CompanionTheory.ThTot.one_mem_schwartzA_zero θ, fun x => ?_, ?_⟩
     · have : IntOff S x := fun v _ i => i.elim0
-      rw [if_pos this]
+      rw [ite_eq_left this]
     · haveI : Subsingleton (Mx D 0 n) := GlobalTheory.CompanionTheory.ThTot.mx_zero_subsingleton
       exact (Set.subsingleton_of_subsingleton).isCompact
   | succ a ih =>
@@ -341,13 +340,20 @@ end GoodSec
 
 end GlobalTheory.CompanionTheory.AlgRich
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousMulLeftFin
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousMulLeftFin
+@[expose] public section
+
+noncomputable section
+
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology SchwartzMap
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L PositivityTheory.Rg.Rsw.Em
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.AlgRich
 
@@ -541,18 +547,16 @@ theorem algRich : IdemEx → BumpEx → TopX → AlgRich := by
 
 end GlobalTheory.CompanionTheory.AlgRich
 
+end
+end -- clump:auto
 end -- clump:auto
 
-end -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousSmulH
 
-section -- clump: shared namespace opens
-
+noncomputable section
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousSmulH
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC
 
 namespace GlobalTheory.CompanionTheory.HermSc
@@ -684,9 +688,14 @@ end Main
 
 end GlobalTheory.CompanionTheory.HermSc
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermScaleMain
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermScaleMain
+
+noncomputable section
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC
 
 namespace GlobalTheory.CompanionTheory.HermSc
@@ -744,20 +753,16 @@ end Main
 
 end GlobalTheory.CompanionTheory.HermSc
 end -- clump:auto
+end -- clump:auto
 
-end -- clump: shared namespace opens
-
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapEqOne
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
-
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapEqOne
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open PositivityTheory.Rg.Rsw.Em
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.AlgStab
 
@@ -846,7 +851,7 @@ theorem GlobalTheory.CompanionTheory.AlgStab.algStab : IdemEx → AlgStab := by
   refine ⟨schw θ h g hΦ, fun X => ?_, ?_⟩
   · have hI : IntOff S (mm (mm h.1 X) g.1) ↔ IntOff S X := by
       refine forall_congr' fun v => forall_congr' fun hv => ?_
-      have h0 : cv D v e = 0 := by rw [he.2 v, if_neg hv]
+      have h0 : cv D v e = 0 := by rw [he.2 v, ite_eq_right hv]
       have : (h.1 * X * g.1).map (cv D v) = X.map (cv D v) := by
         rw [Matrix.map_mul, Matrix.map_mul, map_eq_one _ h0 hh, map_eq_one _ h0 hg, Matrix.one_mul, Matrix.mul_one]
       refine forall_congr' fun i => forall_congr' fun j => ?_
@@ -856,24 +861,28 @@ theorem GlobalTheory.CompanionTheory.AlgStab.algStab : IdemEx → AlgStab := by
       rw [Matrix.mul_smul, Matrix.smul_mul]
     have := hG (mm (mm h.1 X) g.1)
     by_cases hX : IntOff S X
-    · rw [if_pos (hI.2 hX), hs] at this
-      rw [if_pos hX]
+    · rw [ite_eq_left (hI.2 hX), hs] at this
+      rw [ite_eq_left hX]
       exact this
-    · rw [if_neg (fun c => hX (hI.1 c))] at this
-      rw [if_neg hX]
+    · rw [ite_eq_right (fun c => hX (hI.1 c))] at this
+      rw [ite_eq_right hX]
       exact this
   · haveI : IsTopologicalRing (AE D) := by first | infer_instance | exact isTopologicalRing_tens
     exact hC.comp_homeomorph (twoSide h.1 h.2 g.1 g.2 h.3 h.4 g.3 g.4)
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurableSetBox
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurableSetBox
+
+noncomputable section
+
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L PositivityTheory.Rg.Rsw.Em
 open GlobalTheory.CompanionTheory.ColumnSplitting
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.SigL
 
@@ -978,8 +987,8 @@ theorem exists_box (S : Finset (Pl D)) {e : AE D} (hS : IsIdem S e) (a b : ℕ) 
   have hL : ∀ v : Pl D, IsCompact (if v ∈ S then ({0} : Set (Fv D.host.F v ⊗[D.host.F] D.host.E))
       else (intLoc D.host.F D.host.E v : Set (Fv D.host.F v ⊗[D.host.F] D.host.E))) := fun v => by
     by_cases h : v ∈ S
-    · rw [if_pos h]; exact isCompact_singleton
-    · rw [if_neg h]; exact (GlobalTheory.ThK.isCompact_isOpen_intLoc v).1
+    · rw [ite_eq_left h]; exact isCompact_singleton
+    · rw [ite_eq_right h]; exact (GlobalTheory.ThK.isCompact_isOpen_intLoc v).1
   have hfin : ∀ᶠ v : Pl D in Filter.cofinite, (if v ∈ S then ({0} : Set (Fv D.host.F v ⊗[D.host.F] D.host.E))
       else (intLoc D.host.F D.host.E v : Set (Fv D.host.F v ⊗[D.host.F] D.host.E))) ⊆
         (intLoc D.host.F D.host.E v : Set (Fv D.host.F v ⊗[D.host.F] D.host.E)) := by
@@ -987,7 +996,7 @@ theorem exists_box (S : Finset (Pl D)) {e : AE D} (hS : IsIdem S e) (a b : ℕ) 
     by_contra h
     apply hv
     have h' : v ∉ S := h
-    rw [if_neg h']
+    rw [ite_eq_right h']
   obtain ⟨K, hK, hz⟩ := GlobalTheory.IdeleCyl.exists_isCompact_box D.host.F D.host.E (fun _ => {0}) _
     (fun _ => isCompact_singleton) hL hfin
   refine ⟨{x | ∀ i j, x i j ∈ K}, ?_, fun x hx i j => ?_⟩
@@ -1003,11 +1012,11 @@ theorem exists_box (S : Finset (Pl D)) {e : AE D} (hS : IsIdem S e) (a b : ℕ) 
     · change cv D v ((1 - e) * x i j) ∈ _
       have hv := hS.2 v
       by_cases h : v ∈ S
-      · rw [if_pos h] at hv
-        rw [rh_one _ hv, if_pos h]
+      · rw [ite_eq_left h] at hv
+        rw [rh_one _ hv, ite_eq_left h]
         exact rfl
-      · rw [if_neg h] at hv
-        rw [rh_zero _ hv, if_neg h]
+      · rw [ite_eq_right h] at hv
+        rw [rh_zero _ hv, ite_eq_right h]
         exact hx v h i j
 
 theorem measurable_toX {e : AE D} (he : e * e = e) : Measurable (toX (a := a) (r := r) (t := t) he) := by
@@ -1019,15 +1028,21 @@ theorem measurable_toX {e : AE D} (he : e * e = e) : Measurable (toX (a := a) (r
 
 end GlobalTheory.CompanionTheory.SigL
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurableRight
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurableRight
+@[expose] public section
+
+noncomputable section
+
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L PositivityTheory.Rg.Rsw.Em
 open GlobalTheory.CompanionTheory.ColumnSplitting
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.SigL
 
@@ -1153,7 +1168,7 @@ theorem cv_of_idem {S : Finset (Pl D)} {e : AE D} (hS : IsIdem S e) {v : Pl D} (
     (h : e • x = x) (i : Fin a) (j : Fin b) : cv D v (x i j) = 0 := by
   have h0 : cv D v e = 0 := by
     have := hS.2 v
-    rwa [if_neg hv] at this
+    rwa [ite_eq_right hv] at this
   exact rh_of_idem _ h0 (congrFun (congrFun h i) j)
 
 theorem cv_left {S : Finset (Pl D)} {e : AE D} (hS : IsIdem S e) {v : Pl D} (hv : v ∉ S) {M : Mx D a a}
@@ -1336,14 +1351,21 @@ theorem main : IdemEx → TopX → SigLaw := by
 
 end GlobalTheory.CompanionTheory.SigL
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousIpFst
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousIpFst
+@[expose] public section
+
+noncomputable section
+
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L PositivityTheory.Rg.Rsw.Em
 open IsDedekindDomain NumberField
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.OrbExist
 
@@ -1442,23 +1464,24 @@ theorem absA_ne (D : D7) (u : (AE D)ˣ) : absA D u ≠ 0 := by
 
 end GlobalTheory.CompanionTheory.OrbExist
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TestAlg
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TestAlg
+
+noncomputable section
+
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open IsDedekindDomain NumberField
 
 namespace GlobalTheory.CompanionTheory.EisM
-
-section Abstract
-
-variable {X H : Type}
-
-end Abstract
 
 variable {D : D7} {N r t n : ℕ}
 
@@ -1558,13 +1581,19 @@ def liftG {e : AE D} (N r : ℕ) (g : GL (Fin t) (AE D)) : XS e N r t ≃ₜ XS 
 
 end GlobalTheory.CompanionTheory.EisM
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OrbEx
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OrbEx
+@[expose] public section
+
+noncomputable section
+
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L PositivityTheory.Rg.Rsw.Em
 open IsDedekindDomain NumberField
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.OrbExist
 
@@ -1717,11 +1746,17 @@ theorem orbEx : IdemEx → ApproxId → Dens → TopX → AlgRich → AlgStab �
 
 end GlobalTheory.CompanionTheory.OrbExist
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TopX
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TopX
+
+noncomputable section
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.RswEmTop
 
@@ -1756,8 +1791,7 @@ theorem topX : PositivityTheory.Rg.Rsw.Em.TopX := by
 
 end GlobalTheory.CompanionTheory.RswEmTop
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.HermitianCellMeasures.EisMeasTop
 

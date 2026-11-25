@@ -181,8 +181,9 @@ end Loc
 end PI.OmVd
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ValuationLocalVolumes.OmVBadTOfThreeX
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ValuationLocalVolumes.OmVBadTOfThreeX
 
+noncomputable section
 
 namespace PI.OmVd
 
@@ -248,7 +249,7 @@ theorem primDual_of (a : ℕ) (hB : Red.OBas1 σ J ψ v Λ) (hLI : LeftInvO σ J
   · have h2 : ∀ k, hR (Fv F v) σ J (∑ l, sigR (Fv F v) σ (N j l) • e l) (e k) = N j k := by
       intro k
       rw [hR_sum_smul_left]
-      simp only [hee, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      simp only [hee, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
       exact PI.VolStabSW.sigR_invol (Fv F v) σ hσ (N j k)
     rw [hyM i, hR_sum_smul_right]
     simp only [h2]

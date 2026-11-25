@@ -359,8 +359,9 @@ theorem iwahori_compact_open_galois : PositivityTheory.Rg.Tf.Loc.I0 := by
 end GlobalTheory.CompanionTheory.TfLoc.Iw
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VLtOneOfOrdLEqOne
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VLtOneOfOrdLEqOne
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG
 open scoped Classical
@@ -441,7 +442,7 @@ theorem contr_id : PositivityTheory.Rg.Bc.ArchbcB.B.M4.Tw.P_contr_id := by
   intro E _ _ _ w ϖ hϖ n y hy δ hδ
   have hδ' : ∃ x ∈ iwGL n w, ∃ z ∈ iwGL n w, δ = x * tdiag ϖ y * z := by
     by_contra h
-    exact hδ (if_neg h)
+    exact hδ (ite_eq_right h)
   obtain ⟨a, ha, b, hb, hab⟩ := hδ'
   obtain ⟨⟨U, hU⟩, -, hcpt, -⟩ := GlobalTheory.CompanionTheory.TfLoc.Iw.iwahori_compact_open_galois.1 (w.adicCompletion E) n
   have hcomp : (Valued.v : Valuation (w.adicCompletion E) (WithZero (Multiplicative ℤ))).Compatible :=

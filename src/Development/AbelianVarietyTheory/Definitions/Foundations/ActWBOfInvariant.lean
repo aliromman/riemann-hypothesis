@@ -19,8 +19,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.Foundations.IsScalarTowerMdlOm, Development.AbelianVarietyTheory.Definitions.Foundations.ActWBOfInvariant
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Foundations.IsScalarTowerMdlOm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Foundations.IsScalarTowerMdlOm
 
+noncomputable section
 
 open scoped MatrixGroups TensorProduct
 open Matrix
@@ -45,14 +46,6 @@ def unitOf (X : Tower Ω ε) (a : X.K) : X.Kˣ :=
 
 def clsHat (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (a : X.K) : X.Khat l :=
   AdicCompletion.of (idl l) (X.Kl l) ((1 : ℤ_[l]) ⊗ₜ Additive.ofMul (unitOf X a))
-
-def cR (l N : ℕ) (r₀ : ZMod l) : ℤ := (N : ℤ) * ((-r₀ * (N : ZMod l)⁻¹).val : ℤ)
-
-def gR (l N : ℕ) (r₀ : ZMod l) : SL(2, ℤ) :=
-  ⟨!![1, 0; cR l N r₀, 1], by simp [Matrix.det_fin_two]⟩
-
-
-
 
 open scoped MatrixGroups TensorProduct in
 open Matrix in
@@ -89,6 +82,7 @@ theorem _root_.GlobalTheory.ZetaB.unitOf_zero (X : _root_.GlobalTheory.KZ.Tower 
   rw [dite_eq_left rfl]
 
 end GlobalTheory.ZetaB
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Foundations.ActWBOfInvariant

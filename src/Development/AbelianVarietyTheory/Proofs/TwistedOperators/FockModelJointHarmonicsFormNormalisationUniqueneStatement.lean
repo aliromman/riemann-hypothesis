@@ -52,8 +52,10 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockModelJointHarmonicsFormNormalisationUniquene, Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockModelJointHarmonicsFormNormalisationUniqueneStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockModelJointHarmonicsFormNormalisationUniquene
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockModelJointHarmonicsFormNormalisationUniquene
+@[expose] public section
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH MvPolynomial Matrix
 open GlobalTheory.ArchRec GlobalTheory.FockDeg GlobalTheory.FockAlg.HarmStable
@@ -105,7 +107,7 @@ theorem minusPart_eq_zero_of_raise {σ : Type} (a : TH.Mat p q →ₗ[ℂ] Modul
   intro e
   rw [homogeneousComponent_of_mem (show Φ ∈ homogeneousSubmodule σ ℂ d from hΦ)]
   split_ifs with he
-  · rw [homogeneousComponent_of_mem hm, if_neg (by omega)]
+  · rw [homogeneousComponent_of_mem hm, ite_eq_right (by omega)]
   · simp
 
 theorem raise_of_minusPart {M : Matrix (Ln p q r s) (Ln p q r s) ℂ}
@@ -117,7 +119,7 @@ theorem raise_of_minusPart {M : Matrix (Ln p q r s) (Ln p q r s) ℂ}
 
 theorem isKC_Eab {a b : Ix p q} (hab : sameBlock a b) : IsKC (Eab a b) := by
   intro c d hcd
-  rw [Eab, Matrix.single_apply, if_neg]
+  rw [Eab, Matrix.single_apply, ite_eq_right]
   rintro ⟨rfl, rfl⟩
   exact hcd hab
 
@@ -211,6 +213,8 @@ theorem joint_harmonics : ∀ (X : ProvA) (p q r s : ℕ) (μ : Ix p q → ℚ) 
 
 end GlobalTheory.ArchRec.Joint
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockModelJointHarmonicsFormNormalisationUniqueneStatement
@@ -225,7 +229,6 @@ open GlobalTheory.Chain (signed)
 open GlobalTheory.Chain.RealIt (LPol locS locT IsPolyIso)
 open MeasureTheory Matrix
 open scoped TensorProduct InnerProductSpace ComplexConjugate
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.ArchRec
 
 

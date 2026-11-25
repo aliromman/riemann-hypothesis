@@ -98,7 +98,8 @@ import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PChangeOfLatticeNested
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PBlockDefectMetricChange, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PBlockMetricChange, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PBlockResolutionDegree, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PBlockResolutionMixedIntegral, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PComplexGramMetricChange, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PDefectMetricChange, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PFrameChange, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PHilbertSamuelProjective, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PMetricToFS, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PReductionToProjective, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PReductionToProjectiveBlock, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PResolutionMixedIntegral, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PTheoremHSMBlock, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PTopPullFS, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PTwoBlockPieceCycle, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PTwoBlockStepLocal, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PTwoBlockTop, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PVeroneseChi, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PVeroneseTop, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.AssemblyConditional
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PBlockDefectMetricChange
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PBlockDefectMetricChange
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -106,6 +107,7 @@ namespace GroundTheory.Heights₂.Heights.HilbertSamuel
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.ArakelovGeometry ReciprocityTheory.GeometryOfNumbersTheory Filter Asymptotics MeasureTheory
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -201,16 +203,16 @@ theorem blockTeleFam_succAbove (A A' : HermLine ι) (D i : ℕ) (hi : i < D + 1)
   · have h' : Fin.castSucc j < (⟨i, hi⟩ : Fin (D + 1)) := by
       rw [Fin.lt_def]
       exact h
-    rw [Fin.succAbove_of_castSucc_lt _ _ h', if_pos (show (Fin.castSucc j).val < k by
+    rw [Fin.succAbove_of_castSucc_lt _ _ h', ite_eq_left (show (Fin.castSucc j).val < k by
       show j.val < k
-      omega), if_pos h]
+      omega), ite_eq_left h]
   · have h' : (⟨i, hi⟩ : Fin (D + 1)) ≤ Fin.castSucc j := by
       rw [Fin.le_def]
       show i ≤ j.val
       omega
-    rw [Fin.succAbove_of_le_castSucc _ _ h', if_neg (show ¬ (Fin.succ j).val < k by
+    rw [Fin.succAbove_of_le_castSucc _ _ h', ite_eq_right (show ¬ (Fin.succ j).val < k by
       show ¬ j.val + 1 < k
-      omega), if_neg h]
+      omega), ite_eq_right h]
 
 theorem blockTeleFam_smooth {A A' : HermLine ι} (hA : IsSmoothHerm A) (hA' : IsSmoothHerm A') (N i : ℕ)
     (j : Fin N) : IsSmoothHerm (blockTeleFam A A' N i j) := by
@@ -342,8 +344,10 @@ theorem BlockDefectMetricChange.proof (hR : BlockRealGramComparison.Statement)
   field_simp
   ring
 
+end
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PBlockMetricChange
@@ -715,7 +719,8 @@ theorem DefectMetricChange.proof (hR : RealGramComparison.Statement)
 end GroundTheory.Heights₂.Heights.HilbertSamuel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PFrameChange
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PFrameChange
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -723,6 +728,7 @@ namespace GroundTheory.Heights₂.Heights.HilbertSamuel
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.ArakelovGeometry ReciprocityTheory.GeometryOfNumbersTheory Filter Asymptotics
 
+noncomputable section
 
 namespace FrameChange
 
@@ -754,7 +760,7 @@ theorem matAct_scaleMat {D : ℕ} (e : Fin (D + 1) → J) (m : ℕ) (y : J → �
   funext i
   simp only [matAct, scaleMat, Matrix.diagonal_apply]
   rw [Finset.sum_eq_single i (fun j _ hj => by simp [Ne.symm hj]) (by simp)]
-  rw [if_pos rfl]
+  rw [ite_eq_left rfl]
   unfold scaleOff
   split_ifs <;> simp
 
@@ -793,8 +799,10 @@ theorem proof (hN : RatNoetherFrame.Statement) (hT : HSMTransport.Statement) (hI
 
 end FrameChange
 
+end
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PHilbertSamuelProjective

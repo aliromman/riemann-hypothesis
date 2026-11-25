@@ -675,12 +675,12 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.oneCoset :
   rfl
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.SumCoset
+
+noncomputable section
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets
 open scoped Classical ENNReal
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.SumCoset
 
 open PositivityTheory.Rg.Tf.Loc UpperTheory.V.Z.Tf.Orb
 
@@ -784,12 +784,16 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.sumCoset :
     · simp
     · intro b _ hb
       simp only [Set.indicator_apply, Set.mem_setOf_eq]
-      rw [if_neg (fun h => hb h.symm)]
+      rw [ite_eq_right (fun h => hb h.symm)]
     · intro hn
       exact absurd (hfin.mem_toFinset.2 (hkey g hg)) hn
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.OrbSum
+
+open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets
+open scoped Classical ENNReal
 
 namespace UpperTheory.Gal.InertialTypesAlt.L
 
@@ -904,6 +908,9 @@ end UpperTheory.Gal.InertialTypesAlt.L
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.MatchOfSum
+
+open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets
+open scoped Classical ENNReal
 
 namespace UpperTheory.Gal.InertialTypesAlt.L
 
@@ -1040,8 +1047,6 @@ theorem matchOfSum : MatchOfSum := by
 
 end UpperTheory.Gal.InertialTypesAlt.L
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.TraceRangeEq
 

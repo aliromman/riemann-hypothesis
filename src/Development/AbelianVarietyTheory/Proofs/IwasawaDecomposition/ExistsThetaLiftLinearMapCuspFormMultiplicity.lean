@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsThetaPForms
 public import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
 public import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.ThetaKernelFiring
@@ -194,24 +195,7 @@ theorem exists_isThetaP (ν : Measure H') (𝓕 : Set H') (th : G' → H' → S'
     (io : TK →ₗ[ℂ] Tau →ₗ[ℂ] Sinf) (A : Submodule ℂ (H' → Tau))
     (hint : ∀ f : A, ∀ e g, IntegrableOn (fun h => th g h (pt (io e ((f : H' → Tau) h)))) 𝓕 ν) :
     ∃ thP, Lift.IsThetaP ν 𝓕 (fun g h s => th g h s) (fun s => pt s) io A thP := by
-  refine ⟨LinearMap.mk₂ ℂ (fun f e g => ∫ h in 𝓕, th g h (pt (io e ((f : H' → Tau) h))) ∂ν) ?_ ?_ ?_ ?_, hint,
-    fun f e g => rfl⟩
-  · intro f f' e
-    funext g
-    simp only [Submodule.coe_add, Pi.add_apply, map_add (f := _)]
-    exact integral_add (hint f e g) (hint f' e g)
-  · intro c f e
-    funext g
-    simp only [Submodule.coe_smul, Pi.smul_apply, map_smul]
-    exact integral_smul c _
-  · intro f e e'
-    funext g
-    simp only [Pi.add_apply, map_add (f := _), LinearMap.add_apply]
-    exact integral_add (hint f e g) (hint f e' g)
-  · intro c f e
-    funext g
-    simp only [Pi.smul_apply, map_smul, LinearMap.smul_apply]
-    exact integral_smul c _
+  apply _root_.GlobalTheory.ThetaIntegralLinear.exists_isThetaP_of_integrable <;> assumption
 
 theorem exists_isThetaP' (ν : Measure H') (𝓕 : Set H') (th : G' → H' → S' → ℂ) (pt : Sinf → S')
     (thL : G' → H' → S' →ₗ[ℂ] ℂ) (ptL : Sinf →ₗ[ℂ] S') (h1 : ∀ g h s, th g h s = thL g h s) (h2 : ∀ s, pt s = ptL s)

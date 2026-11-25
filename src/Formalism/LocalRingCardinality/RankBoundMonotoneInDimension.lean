@@ -111,8 +111,9 @@ theorem final_gaussOp : GaussOp := gaussOp_eq
 end Formalism.ThetaLiftIndependence
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
+@[expose] public section -- clump member: Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 
+noncomputable section
 
 namespace Formalism.BasicNotions
 
@@ -463,7 +464,7 @@ theorem factNatW : FactNatW := by
     intro i
     have hi := i.2
     have hN : 0 < N := by omega
-    simp only [DomWeight.detShift, dif_pos hN]
+    simp only [DomWeight.detShift, dite_eq_left hN]
     exact lam.anti (show i ≤ ⟨N - 1, by omega⟩ from Fin.le_iff_val_le_val.mpr (show i.val ≤ N - 1 by omega))
   refine ⟨?_, ?_, ?_⟩
   · intro i j hij
@@ -474,7 +475,7 @@ theorem factNatW : FactNatW := by
     simp only [DomWeight.natW]
     omega
   · intro h
-    simp only [DomWeight.natW, DomWeight.detShift, dif_pos h]
+    simp only [DomWeight.natW, DomWeight.detShift, dite_eq_left h]
     simp
 
 theorem bridge_sigRank_holds : Spaces.bridge_sigRank := by
@@ -609,7 +610,7 @@ theorem factClassFrob : FactClassFrob := by
     exact (Nat.coprime_primes H.d_prime hpr).mpr (Ne.symm hpd)
   have hJd := jacobiSym.eq_one_or_neg_one cop
   have hJq := H.psAt_eq_one_or (hpr.coprime_iff_not_dvd.2 hp)
-  simp only [Host.cls, primeClass, if_neg hps, if_neg hpq, if_neg hpd]
+  simp only [Host.cls, primeClass, ite_eq_right hps, ite_eq_right hpq, ite_eq_right hpd]
   rcases hJd with h1 | h1 <;> rcases hJq with h2 | h2 <;> simp [h1, h2] at hc ⊢ <;> tauto
 
 theorem factFrobGeom : FactFrobGeom := by
@@ -782,7 +783,7 @@ theorem factVSig : FactVSig R F E := by
   · have hw : (Matrix.of fun a b => (S.V j).hT (e a) (e b)) = -1 := by
       ext a b
       have := horth a b
-      rw [if_pos hneg] at this
+      rw [ite_eq_left hneg] at this
       simp only [LinearMap.neg_apply] at this
       rw [Matrix.of_apply, Matrix.neg_apply, Matrix.one_apply, ← this, neg_neg]
     have hsig : Formalism.UG.HasSignature ((Matrix.of fun a b => (S.V j).hT (e a) (e b)).map τ) 0 R.nV := by
@@ -793,12 +794,12 @@ theorem factVSig : FactVSig R F E := by
       simpa using Formalism.UG.P.stdform_sig_neg_one (n := Fin R.nV)
     have k := (sig_family (S.V j) τ hτ e hsig hs).2
     rw [hr] at k
-    rw [if_pos hneg]
+    rw [ite_eq_left hneg]
     exact Prod.ext (by simp only; omega) (by simp only; omega)
   · have hw : (Matrix.of fun a b => (S.V j).hT (e a) (e b)) = 1 := by
       ext a b
       have := horth a b
-      rw [if_neg hneg] at this
+      rw [ite_eq_right hneg] at this
       rw [Matrix.of_apply, Matrix.one_apply, this]
     have hsig : Formalism.UG.HasSignature ((Matrix.of fun a b => (S.V j).hT (e a) (e b)).map τ) R.nV 0 := by
       rw [hw]
@@ -808,7 +809,7 @@ theorem factVSig : FactVSig R F E := by
       simpa using Formalism.UG.P.stdform_sig_one (n := Fin R.nV)
     have k := (sig_family (S.V j) τ hτ e hsig hs).1
     rw [hr] at k
-    rw [if_neg hneg]
+    rw [ite_eq_right hneg]
     exact Prod.ext (by simp only; omega) (by simp only; omega)
 
 end sig
@@ -1089,13 +1090,13 @@ theorem factUnitNormalisation : FactUnitNormalisation := by
   obtain ⟨S, hS⟩ := finite_places_over (K := K) p hp
   rw [finsum_eq_sum_of_support_subset _ (s := S) ?h]
   · calc _ = ∑ w ∈ S, 2 * (lw K w * (eWL K w : ℝ)) :=
-          Finset.sum_congr rfl fun w hw => by rw [if_pos ((hS w).mp hw), mul_assoc]
+          Finset.sum_congr rfl fun w hw => by rw [ite_eq_left ((hS w).mp hw), mul_assoc]
       _ = 2 * Real.log p := by rw [← Finset.mul_sum, sum_lw_e p hp S hS]
   · intro w hw
     rw [Function.mem_support] at hw
     rw [Finset.mem_coe, hS]
     by_contra h
-    exact hw (if_neg h)
+    exact hw (ite_eq_right h)
 
 theorem resChar_mem (D : D7) (w : D.what₂.places.Pl) :
     ((D.what₂.places.resChar w : ℕ) : 𝓞 D.what₂.LL) ∈ (D.plEq w).asIdeal := by
@@ -1303,6 +1304,7 @@ end principal
 
 end Formalism.BasicNotions
 
+end
 
 -- clump-header: {"m": "Formalism.ThetaLiftIndependence.ThetaOrbitSums.GaussOp", "h": "module\n\npublic import Formalism.ThetaLiftIndependence.Statement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\npublic import Mathlib.NumberTheory.LegendreSymbol.AddCharacter\n\n"}
 -- clump-header: {"m": "Formalism.ThetaLiftIndependence.FinalThetaLiftAMFKIndep", "h": "module\n\npublic import Formalism.ThetaLiftIndependence.Statement\npublic import Formalism.ThetaLiftIndependence.ThetaOrbitSums.GaussOp\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

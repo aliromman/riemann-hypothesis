@@ -79,7 +79,7 @@ theorem MCBounds.re_det_ofReal_smul {k : ℕ} (s : ℝ) (H : Matrix (Fin k) (Fin
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.Regularisation.PHodgeDerivative
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.Regularisation.PHodgeDerivative
 
 set_option maxSynthPendingDepth 1
 
@@ -89,6 +89,7 @@ open Metric Filter Topology Matrix
 open GroundTheory.Heights₂.Heights.MCBounds GroundTheory.Heights₂.Heights.MCDet
 open scoped ComplexOrder
 
+noncomputable section
 
 namespace HodgeDerivative
 
@@ -111,9 +112,9 @@ theorem logLift_mem {n a : ℕ} (h : a ≤ n) {z : Fin n → ℂ}
   refine ⟨fun i => ?_, fun k hk => ?_⟩
   · have hi : (Fin.castLE h i).val < a := i.isLt
     have h0 : z (Fin.castLE h i) ≠ 0 := hz.2 i
-    simp only [logLift, if_pos hi, Complex.log_re]
+    simp only [logLift, ite_eq_left hi, Complex.log_re]
     exact Real.log_neg (norm_pos_iff.mpr h0) (norm_coord_lt hz.1 _)
-  · simp only [logLift, if_neg (not_lt.mpr hk)]
+  · simp only [logLift, ite_eq_right (not_lt.mpr hk)]
     exact norm_coord_lt hz.1 k
 
 theorem expCover_logLift {n a : ℕ} (h : a ≤ n) {z : Fin n → ℂ} (hz : ∀ j, cuspCoord h z j ≠ 0) :
@@ -124,8 +125,8 @@ theorem expCover_logLift {n a : ℕ} (h : a ≤ n) {z : Fin n → ℂ} (hz : ∀
     have h0 : z k ≠ 0 := by
       have := hz ⟨k.val, hk⟩
       rwa [cuspCoord, e] at this
-    simp only [expCover, logLift, if_pos hk, Complex.exp_log h0]
-  · simp only [expCover, logLift, if_neg hk]
+    simp only [expCover, logLift, ite_eq_left hk, Complex.exp_log h0]
+  · simp only [expCover, logLift, ite_eq_right hk]
 
 theorem imTau_eq {n a g : ℕ} (P : PeriodPolydisc n a g) {T0 : (Fin n → ℂ) → Matrix (Fin g) (Fin g) ℂ}
     (hT : P.IsTau0Ext T0) {z : Fin n → ℂ} (hz : z ∈ puncturedChart P.a_le (ball (0 : Fin n → ℂ) 1)) :
@@ -143,7 +144,7 @@ theorem imTau_eq {n a g : ℕ} (P : PeriodPolydisc n a g) {T0 : (Fin n → ℂ) 
   congr 1
   refine Finset.sum_congr rfl fun i _ => ?_
   have hi : (Fin.castLE P.a_le i).val < a := i.isLt
-  simp only [logLift, if_pos hi, Complex.mul_im, Complex.intCast_re, Complex.intCast_im, mul_zero,
+  simp only [logLift, ite_eq_left hi, Complex.mul_im, Complex.intCast_re, Complex.intCast_im, mul_zero,
     zero_add, im_div_two_pi_I, Complex.log_re, cuspTime, cuspCoord, Real.log_inv]
   ring
 
@@ -439,6 +440,7 @@ theorem HodgeDerivative.proof (h0 : ImTauBounds.Statement) (h1 : Tau0Holomorphic
         _ ≤ _ := mul_le_mul_of_nonneg_right
             (mul_le_mul hCf hrk hrk0 (by linarith)) (Real.exp_pos _).le
 
+end
 
 end GroundTheory.Heights₂.Heights.Regular
 

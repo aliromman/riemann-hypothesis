@@ -23,8 +23,9 @@ import Mathlib.Tactic.Lemma
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.LatticeGeometry.GeometryDefinitions.SingleFacts, Formalism.LocalToGlobal.GlobalTheory.GL4.MemDualCrdLat
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.LatticeGeometry.GeometryDefinitions.SingleFacts
+@[expose] public section -- clump member: Formalism.LocalToGlobal.LatticeGeometry.GeometryDefinitions.SingleFacts
 
+noncomputable section
 
 open Module Matrix NumberField Formalism.BasicNotions Formalism.HN
 
@@ -33,14 +34,6 @@ namespace Formalism.L2.Geo.Def.G1
 section Line
 
 variable {K : Type} [Field K] [NumberField K] [StarRing K] [_root_.NumberField.IsTotallyComplex K]
-
-section Single
-
-variable {V ι : Type} [AddCommGroup V] [Module K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] [Fintype ι]
-  [DecidableEq ι]
-
-
-end Single
 
 theorem lcv_eq_mu {n : ℕ} (hn : 0 < n) (Y : InfinitePlace K → Matrix (Fin n) (Fin n) ℂ) (hY : ∀ v, IsUnit (Y v).det)
     (T : Submodule (𝓞 K) (Fin n → K)) (hfg : T.FG) (hrk : rkK T = n) :
@@ -63,6 +56,7 @@ theorem lcv_eq_mu {n : ℕ} (hn : 0 < n) (Y : InfinitePlace K → Matrix (Fin n)
 end Line
 
 end Formalism.L2.Geo.Def.G1
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.MemDualCrdLat

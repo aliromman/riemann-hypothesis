@@ -170,8 +170,9 @@ end GlobalTheory.CompanionTheory.LbElem.JPredDom
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IwahoriFactorisation.TwistedConjugationNorms.HilbertNinetyNorms.IwFacts
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IwahoriFactorisation.TwistedConjugationNorms.HilbertNinetyNorms.IwFacts
 
+noncomputable section
 
 open GlobalTheory.PRep GlobalTheory.SmGL ValuativeRel PositivityTheory.Lbc Matrix
 open GlobalTheory.CompanionTheory.LbElem.JPredDom (torEmb_diag up_entries lo_entries ratio_lt_one exists_contract exists_value_subset
@@ -416,8 +417,6 @@ end General
 section Completion
 
 open NumberField IsDedekindDomain GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 

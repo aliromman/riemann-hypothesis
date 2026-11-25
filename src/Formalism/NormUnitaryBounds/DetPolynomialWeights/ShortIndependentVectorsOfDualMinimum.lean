@@ -17,8 +17,9 @@ import Mathlib.Tactic.TypeStar
 
 open Module Submodule
 
-@[expose] public noncomputable section -- clump member: Formalism.NormUnitaryBounds.DetPolynomialWeights.ExistsNeZeroNormLeRankDivOfDualMinimum
+@[expose] public section -- clump member: Formalism.NormUnitaryBounds.DetPolynomialWeights.ExistsNeZeroNormLeRankDivOfDualMinimum
 
+noncomputable section
 
 namespace Formalism.NormUnitaryCountingLemmas
 
@@ -111,7 +112,7 @@ theorem exists_ne_zero_norm_le_rank_div_of_dualMinimum (Q : Submodule ℤ E) [hQ
     have h1 := congrArg (fun y => inner ℝ (v l) y) hg
     simp only [inner_sum, inner_zero_right] at h1
     simp only [← Int.cast_smul_eq_zsmul ℝ, real_inner_smul_right, hbi, mul_ite, mul_one, mul_zero,
-      Finset.sum_ite_eq, Finset.mem_univ, if_true] at h1
+      Finset.sum_ite_eq, Finset.mem_univ, ite_true] at h1
     exact_mod_cast h1
   let bw := Basis.span hli
   have hcovD : Formalism.F.covol D = Real.sqrt (Matrix.gram ℝ w).det := by
@@ -161,6 +162,7 @@ theorem exists_ne_zero_norm_le_rank_div_of_dualMinimum (Q : Submodule ℤ E) [hQ
     _ = k := hsk
 
 end Formalism.NormUnitaryCountingLemmas
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.NormUnitaryBounds.DetPolynomialWeights.ShortIndependentVectorsOfDualMinimum

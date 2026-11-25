@@ -51,15 +51,13 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.ThetaLiftGeometry.IntegralJetEntries, Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsRBasisOfLocBasis
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ThetaLiftGeometry.IntegralJetEntries
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ThetaLiftGeometry.IntegralJetEntries
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G
 
+noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.IntegralJetEntries
-
-def JetsIntegral {σ : Type} {l : ℕ} [Fact l.Prime] (F : MvPowerSeries σ ℂ_[l]) : Prop :=
-  ∀ a : σ →₀ ℕ, ‖(a.prod fun _ n => (n.factorial : ℂ_[l])) * MvPowerSeries.coeff a F‖ ≤ 1
 
 def IsRBasis (D : D7) {l : ℕ} [Fact l.Prime] (ρ : D.host.E → ℂ_[l]) {N : ℕ}
     (L : Submodule (𝓞 D.host.E) (Fin N → D.host.E)) (g : Matrix (Fin N) (Fin N) ℂ_[l]) : Prop :=
@@ -69,6 +67,7 @@ def IsRBasis (D : D7) {l : ℕ} [Fact l.Prime] (ρ : D.host.E → ℂ_[l]) {N : 
 
 
 end GlobalTheory.IndefiniteRowSideFullHecke.IntegralJetEntries
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsRBasisOfLocBasis

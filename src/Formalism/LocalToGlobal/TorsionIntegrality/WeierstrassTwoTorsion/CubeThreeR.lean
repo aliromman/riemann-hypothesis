@@ -12,10 +12,11 @@ import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.FglInvar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.WeierstrassSubstitution.BridgeK, Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.CubeThreeR
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.WeierstrassSubstitution.BridgeK
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.WeierstrassSubstitution.BridgeK
 
 open PowerSeries
 
+noncomputable section
 
 namespace Formalism.L2.Th1.A
 
@@ -66,8 +67,8 @@ theorem cW_succ (hS : WpShape.{0}) (hR : WpRecursion.{0}) {K : Type} [Field K] [
       · rw [cW_eq]
         simp [h4]
     · have hrec := hR K W k hk
-      rw [cW_eq, if_neg (show k + 1 ≠ 2 by omega), if_neg (show k + 1 ≠ 3 by omega),
-        if_pos (show 4 ≤ k + 1 by omega)]
+      rw [cW_eq, ite_eq_right (show k + 1 ≠ 2 by omega), ite_eq_right (show k + 1 ≠ 3 by omega),
+        ite_eq_left (show 4 ≤ k + 1 by omega)]
       have hsum : (∑ m : Fin (k + 1 - 3), cW (g₂ W) (g₃ W) (m.val + 2) * cW (g₂ W) (g₃ W) (k + 1 - (m.val + 2)))
           = ∑ i ∈ Finset.Icc 1 (k - 2), coeff (2 * i) (wpReg W) * coeff (2 * (k - 1 - i)) (wpReg W) := by
         rw [Fin.sum_univ_eq_sum_range (fun m => cW (g₂ W) (g₃ W) (m + 2) * cW (g₂ W) (g₃ W) (k + 1 - (m + 2)))
@@ -127,13 +128,13 @@ theorem wpNumEq_of (hS : WpShape.{0}) (hR : WpRecursion.{0}) : WpNumEq := by
       · interval_cases j
         simp
       · obtain ⟨i, rfl⟩ : ∃ i, j = i + 1 := ⟨j - 1, by omega⟩
-        rw [if_neg (show 2 * (i + 1) ≠ 0 by omega), if_pos (even_two_mul (i + 1)),
-          if_neg (show 2 * (i + 1) ≠ 0 by omega), if_pos (show 2 ≤ 2 * (i + 1) by omega),
+        rw [ite_eq_right (show 2 * (i + 1) ≠ 0 by omega), ite_eq_left (even_two_mul (i + 1)),
+          ite_eq_right (show 2 * (i + 1) ≠ 0 by omega), ite_eq_left (show 2 ≤ 2 * (i + 1) by omega),
           Nat.mul_div_cancel_left (i + 1) (by norm_num : 0 < 2),
           show 2 * (i + 1) - 2 = 2 * i by omega, cW_succ hS hR W i, zero_add]
-    · rw [if_neg (show 2 * j + 1 ≠ 0 by omega),
-        if_neg (Nat.not_even_iff_odd.mpr (odd_two_mul_add_one j)),
-        if_neg (show 2 * j + 1 ≠ 0 by omega), zero_add]
+    · rw [ite_eq_right (show 2 * j + 1 ≠ 0 by omega),
+        ite_eq_right (Nat.not_even_iff_odd.mpr (odd_two_mul_add_one j)),
+        ite_eq_right (show 2 * j + 1 ≠ 0 by omega), zero_add]
       split_ifs with h
       · rw [show 2 * j + 1 - 2 = 2 * (j - 1) + 1 by omega, hodd _ (odd_two_mul_add_one (j - 1))]
       · rfl
@@ -145,16 +146,16 @@ theorem wpNumEq_of (hS : WpShape.{0}) (hR : WpRecursion.{0}) : WpNumEq := by
     · rcases Nat.lt_or_ge j 2 with hj | hj
       · interval_cases j <;> simp
       · obtain ⟨i, rfl⟩ : ∃ i, j = i + 1 + 1 := ⟨j - 2, by omega⟩
-        rw [if_neg (show 2 * (i + 1 + 1) ≠ 0 by omega), if_pos (even_two_mul (i + 1 + 1)),
-          if_neg (show 2 * (i + 1 + 1) ≠ 0 by omega), if_pos (show 3 ≤ 2 * (i + 1 + 1) by omega),
+        rw [ite_eq_right (show 2 * (i + 1 + 1) ≠ 0 by omega), ite_eq_left (even_two_mul (i + 1 + 1)),
+          ite_eq_right (show 2 * (i + 1 + 1) ≠ 0 by omega), ite_eq_left (show 3 ≤ 2 * (i + 1 + 1) by omega),
           Nat.mul_div_cancel_left (i + 1 + 1) (by norm_num : 0 < 2),
           show 2 * (i + 1 + 1) - 3 = 2 * i + 1 by omega, coeff_derivative,
           show 2 * i + 1 + 1 = 2 * (i + 1) by ring, cW_succ hS hR W (i + 1)]
         push_cast
         ring
-    · rw [if_neg (show 2 * j + 1 ≠ 0 by omega),
-        if_neg (Nat.not_even_iff_odd.mpr (odd_two_mul_add_one j)),
-        if_neg (show 2 * j + 1 ≠ 0 by omega)]
+    · rw [ite_eq_right (show 2 * j + 1 ≠ 0 by omega),
+        ite_eq_right (Nat.not_even_iff_odd.mpr (odd_two_mul_add_one j)),
+        ite_eq_right (show 2 * j + 1 ≠ 0 by omega)]
       split_ifs with h
       · rw [show 2 * j + 1 - 3 = 2 * (j - 1) by omega, coeff_derivative,
           hodd _ (odd_two_mul_add_one (j - 1))]
@@ -204,6 +205,7 @@ theorem uSerEq_of (hS : WpShape.{0}) (hR : WpRecursion.{0}) : USerEq := by
   linear_combination -(C (1 / 2 : K) : K⟦X⟧) * hps + (expSer W - X - X ^ 3 * wpReg W) * hab
 
 end Formalism.L2.Th1.A
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.CubeThreeR

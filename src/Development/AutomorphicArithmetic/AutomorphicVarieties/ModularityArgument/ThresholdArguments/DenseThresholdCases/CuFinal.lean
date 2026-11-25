@@ -745,8 +745,9 @@ theorem UpperTheory.V.Cu.torusY : UpperTheory.V.Cu.TorusY := by
     exact zero_mem E
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalTwists.PYCoin
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalTwists.PYCoin
 
+noncomputable section
 
 open UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws
 
@@ -871,7 +872,7 @@ theorem UpperTheory.V.Cu.yCoin : YCoin := by
   by_contra hc
   rw [not_or] at hc
   obtain ⟨h1, h2⟩ := hc
-  push_neg at h1 h2
+  push Not at h1 h2
   obtain ⟨x, hx, hx'⟩ := h1
   obtain ⟨y, hy, hy'⟩ := h2
   obtain ⟨-, -, ex⟩ := hpt x hx
@@ -896,6 +897,7 @@ theorem UpperTheory.V.Cu.yCoin : YCoin := by
   · apply hy'
     have : (P.ψ v 1 y - P.ψ v 3 y) * P.ψ v 1 x = 0 := by linear_combination h - P.ψ v 3 y * hx3
     exact sub_eq_zero.mp ((mul_eq_zero.mp this).resolve_right hx1)
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalTwists.PChainIV
@@ -929,15 +931,6 @@ section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws
 namespace UpperTheory.V.Ws.Chn
-section Abs
-variable {O Γ k : Type} [CommRing O] [Group Γ] [TopologicalSpace Γ] [Field k] {Φ : Fr O Γ} {a : O →+* k}
-end Abs
-section In
-variable {ι Γ R : Type} [Group Γ] [CommRing R] {P P' : PD ι Γ R}
-end In
-section Map
-variable {O Γ R R' : Type} [CommRing O] [Group Γ] [CommRing R] [CommRing R'] {Φ : Fr O Γ} {a : O →+* R}
-end Map
 section Gal
 variable {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] {l : ℕ} [Fact l.Prime] {c : Coef l} {D : Raw Ω c}
 theorem seed_res_alt (T : Tower D) (𝔞 : Amb l) {ι : PadicAlgCl l ≃+* ℂ} {c₁ : Coef l} {h : c.O ≤ c₁.O}

@@ -18,8 +18,9 @@ import Mathlib.RingTheory.SimpleRing.Principal
 open NumberField IsDedekindDomain Matrix
 open scoped TensorProduct
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.Columns.TiedGlSplit
+@[expose] public section -- clump member: Formalism.LocalToGlobal.Columns.TiedGlSplit
 
+noncomputable section
 
 namespace Formalism.L2.Col
 
@@ -40,14 +41,8 @@ theorem gls_trace_mem (a : 𝓞 E) : ∃ b : 𝓞 F, algebraMap (𝓞 F) (𝓞 E
 
 end Tr
 
-section Ex
-
-variable {X : Fields} {Pr : Primes X} (hc : Formalism.BasicNotions.CMData X.F X.E) (hPr : Pr.Ok)
-
-
-end Ex
-
 end Formalism.L2.Col
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.Columns.TwQSplit

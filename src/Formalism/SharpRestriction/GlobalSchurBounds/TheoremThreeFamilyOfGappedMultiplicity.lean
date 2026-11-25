@@ -32,8 +32,10 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.GlobalTheory.GL5.TheoremThreeAllUnitary, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalDegreeGap.DimensionBoundOfGapUniform, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalDegreeGap.DimensionFamilyOfWeylMultiplicity, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalDegreeGap.HCFdegRGap, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalDegreeGap.HCFdegRGapHolds, Formalism.SharpRestriction.CuspSpanNormBounds.DiscreteSeriesExistence.LowKMultOneG, Formalism.SharpRestriction.GlobalSchurBounds.TheoremThreeFamilyOfGappedMultiplicity
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL5.TheoremThreeAllUnitary
+section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL5.TheoremThreeAllUnitary
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.L2.GlobalTheoryTheory.GenusMassVolumes
 
@@ -61,8 +63,8 @@ theorem ncPairs_card_le {N : ℕ} (s : Fin N → Bool) :
           obtain ⟨x1, x2⟩ := x
           obtain ⟨y1, y2⟩ := y
           dsimp only at hx hy hxy
-          cases h1 : s x1 <;> cases h2 : s y1 <;> simp only [h1, h2, Bool.false_eq_true, if_false,
-            if_true, Prod.mk.injEq] at hxy
+          cases h1 : s x1 <;> cases h2 : s y1 <;> simp only [h1, h2, Bool.false_eq_true, ite_false,
+            ite_true, Prod.mk.injEq] at hxy
           · rw [hxy.1, hxy.2]
           · exact absurd (hxy.1 ▸ hxy.2 ▸ hx.1 : y2 < y1) (lt_asymm hy.1)
           · exact absurd (hxy.1 ▸ hxy.2 ▸ hx.1 : y2 < y1) (lt_asymm hy.1)
@@ -207,6 +209,8 @@ theorem fdegHC_nonneg {N : ℕ} (lam : Fin N → ℝ) (hlam : Formalism.QuantumD
 
 end Formalism.L2.GlobalTheoryTheory.GenusMassVolumes
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalDegreeGap.DimensionBoundOfGapUniform

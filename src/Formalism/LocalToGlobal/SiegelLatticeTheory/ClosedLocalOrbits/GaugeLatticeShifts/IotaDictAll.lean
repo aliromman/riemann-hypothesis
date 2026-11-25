@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.InHHGamUnipKu
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.IotaDictPf
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.IotaBridgeHalves
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.BridgeRat
@@ -13,12 +14,10 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLattic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.BridgeAd, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.BridgeAR, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.IotaDictAll
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.BridgeAd
 
 
 open scoped Classical ComplexConjugate TensorProduct
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.BridgeAd
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Matrix Formalism.L2.SG.TermOp Formalism.L2.SG.HidaSetting
   Formalism.L2.SG.Pf.unitaryCongruence Formalism.L2.SG.NormCut
 
@@ -109,7 +108,11 @@ theorem adFull_of_adTriv {δ : X.B.I.Gf} (hK : δ ∈ X.B.I.Kset) (hN : NCong X 
 end Formalism.L2.SG.Pf.BridgeAd
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.BridgeAR
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.BridgeAR
+
+noncomputable section
+
+open scoped Classical ComplexConjugate TensorProduct
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Matrix Formalism.L2.SG.TermOp Formalism.L2.SG.HidaSetting
   Formalism.L2.SG.Pf.unitaryCongruence Formalism.L2.SG.NormCut Formalism.L2.SG.Pf.BridgeRat
 
@@ -120,29 +123,7 @@ variable {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D)
 theorem Z_of_coprime {t : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F} (ht : t ∈ IntAf X.B.I.F X.B.I.E) {c : ℕ}
     (hc : Nat.Coprime c X.B.g) (hZ : ZMod' X.B.I X.B.g ((c : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) * t)) :
     ZMod' X.B.I X.B.g t := by
-  obtain ⟨s, hs, hcs⟩ := hZ
-  have hb := Nat.gcd_eq_gcd_ab c X.B.g
-  rw [hc.gcd_eq_one, Nat.cast_one] at hb
-  have hb' : (1 : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) =
-      (c : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) * (Nat.gcdA c X.B.g : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) +
-        (X.B.g : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) * (Nat.gcdB c X.B.g : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) := by
-    have h1 := congrArg (Int.cast : ℤ → X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) hb
-    push_cast at h1
-    exact h1
-  refine ⟨(Nat.gcdA c X.B.g : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) * s +
-    (Nat.gcdB c X.B.g : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) * t, ?_, ?_⟩
-  · exact (IntAf X.B.I.F X.B.I.E).add_mem
-      ((IntAf X.B.I.F X.B.I.E).mul_mem (intCast_mem _ _) hs)
-      ((IntAf X.B.I.F X.B.I.E).mul_mem (intCast_mem _ _) ht)
-  · calc t = 1 * t := (one_mul t).symm
-      _ = ((c : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) * t) * (Nat.gcdA c X.B.g : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) +
-          (X.B.g : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) *
-            ((Nat.gcdB c X.B.g : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) * t) := by
-        rw [hb']
-        ring
-      _ = _ := by
-        rw [hcs]
-        ring
+  apply +allowSynthFailures _root_.Formalism.L2.SG.PoincareInHH.Cut.GU.zmod_cancel <;> assumption
 
 end Formalism.L2.SG.Pf.BridgeAR
 
@@ -191,8 +172,12 @@ theorem iotaBridgeARC_holds : IotaBridgeARC := by
 
 end Formalism.L2.SG.Pf
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.IotaDictAll
+
+
+open scoped Classical ComplexConjugate TensorProduct
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Matrix Formalism.L2.SG.TermOp Formalism.L2.SG.HidaSetting
   Formalism.L2.SG.NormCut
 

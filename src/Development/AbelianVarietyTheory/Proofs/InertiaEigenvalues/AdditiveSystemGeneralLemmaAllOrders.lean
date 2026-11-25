@@ -873,8 +873,10 @@ end GlobalTheory.PMonE
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdditiveSystemIntegralSolutionCountOfOrderOne
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdditiveSystemIntegralSolutionCountOfOrderOne
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.PMonE.LinCount
 
@@ -907,7 +909,7 @@ theorem lin_normal (K : ℕ) (M : ℕ → Matrix m m F) (h : Normal (K + 1) M) :
   · intro n hn r c
     have h0 : n ≠ 0 := by omega
     have h1 : n ≠ 1 := by omega
-    simp only [lin, h0, h1, if_false]
+    simp only [lin, h0, h1, ite_false]
     split_ifs
     · exact h.small _ (by omega) _ _
     · simp
@@ -1029,6 +1031,8 @@ theorem glCount_of_one : ∀ N : ℕ, 1 ≤ N → GLCount 1 → GLCount N := by
 
 end GlobalTheory.PMonE.LinCount
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdditiveSystemIntegralSurjectivityOfOne

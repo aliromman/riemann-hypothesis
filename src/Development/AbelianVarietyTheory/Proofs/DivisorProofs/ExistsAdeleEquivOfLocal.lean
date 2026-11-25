@@ -47,11 +47,12 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.DivisorBase.AdelicScalarMultiplier, Development.AbelianVarietyTheory.BlockTheory.DivisorBase.IdeleNormTraceForm, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdeleEquivOfLocal
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.DivisorBase.AdelicScalarMultiplier
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.DivisorBase.AdelicScalarMultiplier
 
 open scoped TensorProduct NumberField
 open IsDedekindDomain
 
+noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.AdelicScalarMultiplier
 
@@ -67,36 +68,17 @@ def zHat : Subring Af where
 
 abbrev Idele (K : Type) [Field K] [NumberField K] : Type := (Af ⊗[ℚ] K)ˣ
 
-section Herm
-
-variable {E : Type} [Field E] [NumberField E] [NumberField.IsCMField E]
-  {W : Type} [AddCommGroup W] [Module ℚ W] [Module E W]
-
-
-
-end Herm
-
-section Groups
-
-variable {E : Type} [Field E] [NumberField E]
-  {W : Type} [AddCommGroup W] [Module ℚ W] [Module E W] [IsScalarTower ℚ E W]
-
-
-variable [Module (𝓞 E) W]
-
-
-
-end Groups
-
 end GlobalTheory.IndefiniteRowSideFullHecke.AdelicScalarMultiplier
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain TensorProduct
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.DivisorBase.IdeleNormTraceForm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.DivisorBase.IdeleNormTraceForm
 
+noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.IdeleNormTraceForm
 
@@ -112,26 +94,13 @@ def Zhat : Subring Af where
 
 abbrev Adelic (V : Type) [AddCommGroup V] [Module ℚ V] : Type := Af ⊗[ℚ] V
 
-section Groups
-
-variable (E : Type) [Field E] [NumberField E]
-variable {W : Type} [AddCommGroup W] [Module ℚ W] [Module E W] [IsScalarTower ℚ E W]
-
-def IsHermitian [IsCMField E] (h : W →ₗ[ℚ] W →ₗ[ℚ] E) : Prop :=
-  (∀ (a : E) (x y : W), h (a • x) y = a * h x y) ∧
-    ∀ x y : W, h y x = IsCMField.complexConj E (h x y)
-
-
-
-variable [Module (𝓞 E) W] [IsScalarTower (𝓞 E) E W]
-
-end Groups
-
 end GlobalTheory.IndefiniteRowSideFullHecke.IdeleNormTraceForm
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdeleEquivOfLocal
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdeleEquivOfLocal
 
+noncomputable section
 
 namespace GlobalTheory.NormLevelCompare
 
@@ -225,63 +194,6 @@ theorem exists_adele_equiv :
   exact exists_adele_equiv_of_local primeCorr e he
 
 end Adeles
-
-section Transport
-
-variable {A A' : Type} [CommRing A] [Algebra ℚ A] [CommRing A'] [Algebra ℚ A'] (e : A ≃ₐ[ℚ] A')
-
-variable {V V' : Type} [AddCommGroup V] [Module ℚ V] [AddCommGroup V'] [Module ℚ V']
-
-end Transport
-
-section Adelic
-
-variable (e : IndefiniteRowSideFullHecke.IdeleNormTraceForm.Af ≃ₐ[ℚ] IndefiniteRowSideFullHecke.AdelicScalarMultiplier.Af)
-  (he : ∀ a, e a ∈ IndefiniteRowSideFullHecke.AdelicScalarMultiplier.zHat ↔ a ∈ IndefiniteRowSideFullHecke.IdeleNormTraceForm.Zhat)
-
-
-
-section Ideles
-
-variable {K : Type} [Field K] [NumberField K]
-
-
-
-
-end Ideles
-
-section Groups
-
-variable {E : Type} [Field E] [NumberField E]
-  {W : Type} [AddCommGroup W] [Module ℚ W] [Module E W] [IsScalarTower ℚ E W]
-
-
-include he
-
-
-
-variable [Module (𝓞 E) W] [IsScalarTower (𝓞 E) E W]
-
-end Groups
-
-end Adelic
-
-section Hypotheses
-
-variable {K : Type} [Field K] [NumberField K] {d : ℕ} {δ : K}
-
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] [Algebra K E]
-
-
-
-variable {W : Type} [AddCommGroup W] [Module ℚ W] [Module E W] [IsScalarTower ℚ E W]
-  [Module (𝓞 E) W] [IsScalarTower (𝓞 E) E W]
-
-
-
-
-
-end Hypotheses
 
 end GlobalTheory.NormLevelCompare
 

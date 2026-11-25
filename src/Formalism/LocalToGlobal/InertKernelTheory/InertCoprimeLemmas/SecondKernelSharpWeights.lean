@@ -9,23 +9,15 @@ import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.CoeffProdRename
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.InertKernelTheory.DefsSharp, Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.SecondKernelSharpWeights
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.InertKernelTheory.DefsSharp
 
+noncomputable section
 
 open Formalism.MainNotions.G Formalism.MainNotions.FormalGroupSystem Finset
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.InertKernelTheory.DefsSharp
 
 namespace Formalism.L2.KerInert.SecondKernelSharpWeights
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Formalism.L2.KerInert.K2 Formalism.L2.KerInert.SecondKernelInstances
-
-section Gen
-
-variable {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : G.Inst D L} {Gl : G.LatInst D} {Kc0 : G.Consts} {Dx : DivX D}
-  {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc0 Dx cX}
-
-end Gen
 
 def SharpWtIs : Prop :=
   ∀ (D : D7) (Tw : TwForms D) (u : D.what₂.Word) (μ : D.what₂.Tup) (j : ℕ), j < D.R.m →
@@ -35,8 +27,12 @@ def SharpWtIs : Prop :=
 
 end Formalism.L2.KerInert.SecondKernelSharpWeights
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.SecondKernelSharpWeights
+
+
+open Formalism.MainNotions.G Formalism.MainNotions.FormalGroupSystem Finset
 
 namespace Formalism.L2.KerInert.SecondKernelSharpWeights
 

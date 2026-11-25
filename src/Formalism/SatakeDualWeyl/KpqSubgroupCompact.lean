@@ -373,8 +373,9 @@ theorem covolume_of_dual_holds : Formalism.UG.CS.CovolOfDual := by
 end Formalism.UG.P
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsTrace
+@[expose] public section -- clump member: Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsTrace
 
+noncomputable section
 
 open NumberField
 
@@ -470,10 +471,11 @@ theorem trace_form_positive : Formalism.UG.CS.TracePos := by
         mul_self_pos.mpr ((map_ne_zero_iff _ ι.injective).mpr hqF)
       rw [hc, map_mul, map_mul, map_mul]
       nlinarith [mul_pos hs hq2]
-  · push_neg at hx
+  · push Not at hx
     refine ⟨1, one_ne_zero, fun x hx' => absurd (hx x) hx'⟩
 
 end Formalism.UG.P
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.SatakeDualWeyl.AdelicIwasawaHecke.ClassSet
@@ -506,10 +508,11 @@ theorem satake_transform_hecke_operator_Tj : Formalism.UG.SatakeTj := satake_Tj_
 end Formalism.UG.P
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SatakeDualWeyl.AdelicIwasawaHecke.FSatake
+@[expose] public section -- clump member: Formalism.SatakeDualWeyl.AdelicIwasawaHecke.FSatake
 
 open Formalism.UG
 
+noncomputable section
 
 namespace Formalism.UG.P
 
@@ -539,7 +542,7 @@ theorem finsum_mul_eq_sum_over_classes {X Y : Type} (S : Finset X) (g φv : X �
     obtain ⟨x, hxS, hx⟩ := Finset.exists_ne_zero_of_sum_ne_zero hne
     refine Set.mem_biUnion (Finset.mem_coe.mpr hxS) ?_
     by_contra hP
-    exact hx (if_neg hP)
+    exact hx (ite_eq_right hP)
   rw [finsum_eq_sum_of_support_subset _ hsl]
   simp only [hin]
   rw [hout, Finset.sum_mul]
@@ -551,19 +554,19 @@ theorem finsum_mul_eq_sum_over_classes {X Y : Type} (S : Finset X) (g φv : X �
     have hy0T : y0 ∈ hTfin.toFinset := by
       rw [Set.Finite.mem_toFinset]
       exact Set.mem_biUnion (Finset.mem_coe.mpr hxS) hy0
-    rw [Finset.sum_eq_single y0, if_pos hy0, hφ x y0 hy0]
+    rw [Finset.sum_eq_single y0, ite_eq_left hy0, hφ x y0 hy0]
     · ring
     · intro y _ hy
-      rw [if_neg (fun h => hy (huniq x y y0 h hy0))]
+      rw [ite_eq_right (fun h => hy (huniq x y y0 h hy0))]
       ring
     · intro h
       exact absurd hy0T h
-  · push_neg at hex
+  · push Not at hex
     rw [hnone x hex, mul_zero]
     symm
     apply Finset.sum_eq_zero
     intro y _
-    rw [if_neg (hex y)]
+    rw [ite_eq_right (hex y)]
     ring
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))] {σ : L →+* L} {n : ℕ}
@@ -675,6 +678,7 @@ theorem satake_transform_multiplicative (hSphericalExistsU : Formalism.UG.Spheri
   rw [this]
 
 end Formalism.UG.P
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Fcompose

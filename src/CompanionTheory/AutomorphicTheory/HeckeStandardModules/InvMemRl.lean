@@ -197,8 +197,9 @@ end -- clump:auto
 
 open NumberField IsDedekindDomain ReciprocityTheory.Aut Formalism.UG Formalism.L2 CompanionTheory.Split CompanionTheory.HeckeA
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.HeckeStandardModules.IntegralOfModule
+@[expose] public section -- clump member: CompanionTheory.AutomorphicTheory.HeckeStandardModules.IntegralOfModule
 
+noncomputable section
 
 namespace CompanionTheory.L3H
 
@@ -378,13 +379,8 @@ theorem tSet_same (s s' : SplitPlace L) (hv : s'.v = s.v) {ϖ' : s'.v.adicComple
 
 end Same
 
-section Int
-
-variable {R : Type} [CommRing R] [Algebra R ℂ]
-
-end Int
-
 end CompanionTheory.L3H
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.HeckeStandardModules.InvMemRl

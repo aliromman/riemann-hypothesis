@@ -293,8 +293,9 @@ end GKTensor
 end GroundTheory.Automorphic
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.TensorProductTheorem.GeneralLinearIntegers
+@[expose] public section -- clump member: GroundTheory.AutomorphicForms.TensorProductTheorem.GeneralLinearIntegers
 
+noncomputable section
 
 universe u
 
@@ -403,13 +404,6 @@ def adelicTensorRep {W : HeightOneSpectrum (𝓞 K) → Type*} [∀ v, AddCommGr
     Representation ℂ (FiniteAdelicGL K n) (restrictedTensor ξ) :=
   (restrictedTensorRep π ξ hξ).comp (toRestricted K n)
 
-section Local
-
-variable {W : HeightOneSpectrum (𝓞 K) → Type*} [∀ v, AddCommGroup (W v)] [∀ v, Module ℂ (W v)]
-  {π : ∀ v, Representation ℂ (GL (Fin n) (v.adicCompletion K)) (W v)} {ξ : ∀ v, W v}
-
-end Local
-
 variable {V : Type u} [AddCommGroup V] [Module ℂ V]
 
 
@@ -464,6 +458,7 @@ end TensorDecomposition
 end AdelicGLn
 
 end GroundTheory.Automorphic
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.TensorProductTheorem.NonemptyAdelicDecomposition

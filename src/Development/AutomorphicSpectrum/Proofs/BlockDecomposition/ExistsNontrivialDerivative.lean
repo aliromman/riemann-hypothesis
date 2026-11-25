@@ -158,7 +158,14 @@ theorem exists_mem_twKer_box (k : Type) [Field k] [ValuativeRel k] [TopologicalS
 end GlobalTheory.CompanionTheory.MirFourier
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedKernelOfSmallBoxCharacter
+end -- clump: shared namespace opens
+
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedKernelOfSmallBoxCharacter
+@[expose] public section
+
+noncomputable section
+
+open GlobalTheory.PRep GlobalTheory.BZMir GroundTheory.LocalField Matrix GlobalTheory.CompanionTheory.MirFourier
 
 namespace GlobalTheory.CompanionTheory.MirFourier.FiniteInversion
 
@@ -307,7 +314,7 @@ theorem exists_chi_ne_one (hψ : Continuous ψ) (hψ1 : ψ ≠ 1) {n : ℕ} {N :
     rw [isTrivialOn_mulShift_iff_mem hψ hψ1, sub_sub_cancel]
     exact hi
   unfold IsTrivialOn at hnt
-  push_neg at hnt
+  push Not at hnt
   obtain ⟨y, hy, hψy⟩ := hnt
   refine ⟨Multiplicative.ofAdd (Pi.single i y : Fin n → k), ?_, ?_⟩
   · show ∀ j, (Multiplicative.toAdd (Multiplicative.ofAdd (Pi.single i y : Fin n → k))) j ∈
@@ -390,9 +397,9 @@ theorem fourier_finite : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalS
 
 end GlobalTheory.CompanionTheory.MirFourier.FiniteInversion
 
+end
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformTwistedInvarianceOnBall
 

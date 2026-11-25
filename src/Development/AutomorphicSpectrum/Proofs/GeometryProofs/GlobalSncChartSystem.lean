@@ -88,13 +88,11 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DetLatticeLineBundle, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeFramesAwayPrime, Development.AutomorphicSpectrum.Proofs.GeometryProofs.VerticalDivisorDegree, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GlobalSncChartSystem
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DetLatticeLineBundle
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.SncBase GlobalTheory.CompanionTheory.Ar.GeoModel
 open GroundTheory.Heights₂.Heights.LowerBoundFree
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DetLatticeLineBundle
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.DetLine
 
@@ -169,7 +167,13 @@ theorem isVB_detLat : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω �
 end GlobalTheory.CompanionTheory.Ar.Cusp.DetLine
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeFramesAwayPrime
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeFramesAwayPrime
+
+noncomputable section
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.SncBase GlobalTheory.CompanionTheory.Ar.GeoModel
+open GroundTheory.Heights₂.Heights.LowerBoundFree
 
 namespace GlobalTheory.CompanionTheory.Ar.GeoModel.DeltaLine
 
@@ -275,13 +279,13 @@ variable {Li : Type} [AddCommGroup Li] [Module Ω Li] {I : Type} [Fintype I] {r 
 
 theorem deltaLat_off {q : Cpt ξ} (hq : ¬ InFibre ξ p q) :
     deltaLat ξ r V W p q = Submodule.span (regAt ξ q) {1} := by
-  simp only [deltaLat, if_neg hq]
+  simp only [deltaLat, ite_eq_right hq]
 
 theorem deltaLat_fibre {q : Cpt ξ} (hq : InFibre ξ p q) {b b' : ∀ i, Fin (r i) → Li}
     {T : ∀ i, Matrix (Fin (r i)) (Fin (r i)) Ω} (hb : ∀ i, (V i).IsFrameAt (b i) q)
     (hb' : ∀ i, (W i).IsFrameAt (b' i) q) (hT : ∀ i k, b' i k = ∑ k', T i k' k • b i k') :
     deltaLat ξ r V W p q = Submodule.span (regAt ξ q) {∏ i, (T i).det} := by
-  simp only [deltaLat, if_pos hq]
+  simp only [deltaLat, ite_eq_left hq]
   apply le_antisymm
   · refine Submodule.span_le.2 ?_
     rintro t ⟨b₂, b₂', T₂, h1, h2, h3, rfl⟩
@@ -469,8 +473,15 @@ theorem exists_delta : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] [CharZero Ω]
 
 end GlobalTheory.CompanionTheory.Ar.GeoModel.DeltaLine
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.VerticalDivisorDegree
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.SncBase GlobalTheory.CompanionTheory.Ar.GeoModel
+open GroundTheory.Heights₂.Heights.LowerBoundFree
 
 namespace GlobalTheory.CompanionTheory.Ar.VertForm
 
@@ -704,11 +715,7 @@ theorem GlobalTheory.CompanionTheory.Ar.VertForm.exists_vertical : ∀ (X : Sche
   · rw [hfg, mul_div_cancel_right₀ _ hg0]
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GlobalSncChartSystem
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.SncBase
 open GroundTheory.Heights₂.Heights.LowerBoundFree
 

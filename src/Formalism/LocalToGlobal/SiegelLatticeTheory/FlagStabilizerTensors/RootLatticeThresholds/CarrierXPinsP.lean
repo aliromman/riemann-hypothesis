@@ -162,12 +162,11 @@ theorem zhatTr_carrierOf (e : InfinitePlace D.host.E ≃ D.what₂.Tau) (he : Pl
 end Formalism.L2.SG.Pf.Carrier
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CarrierJointPinNorm
 
+noncomputable section
 
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CarrierJointPinNorm
 open scoped ENNReal
 
 namespace Formalism.L2.SG.Pf.Carrier.JointPinNorm
@@ -393,7 +392,7 @@ theorem relDiag_holds : RelDiag := by
     rw [ptEntry_ones, Matrix.diagonal_apply]
     by_cases h : i = j
     · subst h
-      simp only [if_true]
+      simp only [ite_true]
       rw [List.getD_eq_getElem _ _ (by simp; omega), List.getElem_ofFn]
     · simp [h, Fin.val_inj]
 
@@ -460,8 +459,13 @@ theorem normBridge_of_two (P : Parts X u u') (hr : P.S.G.r = D.R.rS) (hSt : StOn
 
 end Formalism.L2.SG.Pf.Carrier.JointPinNorm
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CarrierJointPinNormSt
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CarrierJointPinNormSt
+
+noncomputable section
+
+open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S
 open scoped ComplexConjugate Matrix
 
 namespace Formalism.L2.SG.Pf.Carrier.JointPinNormSt
@@ -498,8 +502,8 @@ theorem recon (e u : Fin r → Fin n → ℂ) (κ : Fin r → ℂ) (hκ : ∀ d,
   | mem x hx =>
     obtain ⟨b, hb, rfl⟩ := hx
     rw [Finset.sum_eq_single b]
-    · rw [hue, if_pos rfl, div_self (hκ b), one_smul]
-    · intro c _ hcb; rw [hue, if_neg hcb, zero_div, zero_smul]
+    · rw [hue, ite_eq_left rfl, div_self (hκ b), one_smul]
+    · intro c _ hcb; rw [hue, ite_eq_right hcb, zero_div, zero_smul]
     · intro h; exact absurd hb h
   | zero => simp [hJ_zero_r]
   | add x y _ _ hx hy =>
@@ -545,7 +549,7 @@ theorem st_one_lin (e : Fin r → Fin n → ℂ) (z z' : Fin n → ℂ) (G Gi M 
     rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_conj, hZ]
     by_cases h : c = d
     · subst h; simp
-    · rw [if_neg h, if_neg (Ne.symm h), map_zero]
+    · rw [ite_eq_right h, ite_eq_right (Ne.symm h), map_zero]
   have hu2 : ∀ d c, hJ ε (Gi *ᵥ e d) (e c) = if d = c then cv d else 0 := by
     intro d c
     rw [← hJ_unit ε G hG, hGGi, hZ]
@@ -593,13 +597,13 @@ theorem st_one_lin (e : Fin r → Fin n → ℂ) (z z' : Fin n → ℂ) (G Gi M 
       intro d
       rw [hv1, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, hS1, hS2, hJ_sum_r, hJ_sum_r]
       simp only [hJ_smul_r, hee, mul_zero, Finset.sum_const_zero, sub_zero, hZ]
-      rw [Finset.sum_eq_single d (fun c _ hc => by rw [if_neg (Ne.symm hc), mul_zero]) (by simp), if_pos rfl,
+      rw [Finset.sum_eq_single d (fun c _ hc => by rw [ite_eq_right (Ne.symm hc), mul_zero]) (by simp), ite_eq_left rfl,
         div_mul_cancel₀ _ (hcv d), sub_self]
     have ho2 : ∀ d, hJ ε (G *ᵥ e d) v1 = 0 := by
       intro d
       rw [hv1, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, hS1, hS2, hJ_sum_r, hJ_sum_r]
       simp only [hJ_smul_r, hGe, mul_zero, Finset.sum_const_zero, sub_zero, hu1]
-      rw [Finset.sum_eq_single d (fun c _ hc => by rw [if_neg (Ne.symm hc), mul_zero]) (by simp), if_pos rfl,
+      rw [Finset.sum_eq_single d (fun c _ hc => by rw [ite_eq_right (Ne.symm hc), mul_zero]) (by simp), ite_eq_left rfl,
         div_mul_cancel₀ _ (hk1 d), sub_self]
     have hv : v = v1 + S1 + S2 := by rw [hv1]; abel
     clear_value v1 S1 S2
@@ -674,6 +678,12 @@ theorem normBridge_of_zhat {X : Formalism.L2.SG.HidaSetting.HidaSetting D} {u u'
 
 end Formalism.L2.SG.Pf.Carrier.JointPinNormSt
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.EnergyCompactTestBound
 open scoped Matrix

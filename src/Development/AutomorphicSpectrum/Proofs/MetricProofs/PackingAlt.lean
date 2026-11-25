@@ -48,7 +48,8 @@ import Development.AutomorphicSpectrum.Definitions.MetricPeriods.HasMultiplier
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.NormFormGaussBoundHolds, Development.WeilBound.CoreStatements.RationalSupMetrics.PullRatiosAlgebraic, Development.AutomorphicSpectrum.Proofs.MetricProofs.PackingAlt
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.NormFormGaussBoundHolds
+section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.NormFormGaussBoundHolds
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -56,6 +57,7 @@ namespace GlobalTheory.CompanionTheory.Ar.Giv
 
 open MvPolynomial GroundTheory.Heights₂.Heights.HilbertSamuel
 
+noncomputable section
 
 theorem isIntegral_pow_mul_of_subring {A Ω : Type*} [CommRing A] [CommRing Ω] [Algebra A Ω] (R : Subring Ω)
     (w : Ω) (hw : ∃ r, algebraMap A Ω r = w)
@@ -124,7 +126,7 @@ theorem normFormGaussBound : NormFormGaussBound.Statement := by
     · simp
     · intro b hb hbn
       have : b < n := lt_of_le_of_ne (Nat.lt_succ_iff.mp (Finset.mem_range.mp hb)) hbn
-      rw [if_neg (by omega)]
+      rw [ite_eq_right (by omega)]
     · intro h
       simp at h
 
@@ -286,8 +288,10 @@ theorem normFormGaussBound : NormFormGaussBound.Statement := by
     push_cast at hv ⊢
     linarith
 
+end
 
 end GlobalTheory.CompanionTheory.Ar.Giv
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.RationalSupMetrics.PullRatiosAlgebraic

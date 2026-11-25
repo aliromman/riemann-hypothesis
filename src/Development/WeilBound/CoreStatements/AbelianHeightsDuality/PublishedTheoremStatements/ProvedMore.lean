@@ -983,8 +983,9 @@ theorem sum_addChar_ofMul_mul_ofMul_inv (G : Type) [CommGroup G] [Fintype G] [De
 end GlobalTheory.CompanionTheory.PartialZeta
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PartialZetaFunctionalEquation
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PartialZetaFunctionalEquation
 
+noncomputable section
 
 open NumberField GroundTheory.Global GroundTheory.Global.IdeleGroup GlobalTheory.CompanionTheory.PartialZeta
 open scoped nonZeroDivisors
@@ -1071,9 +1072,9 @@ theorem isPartialZeta_zetaOfClass (C : ClassGroup (𝓞 F)) :
   rw [e]
   constructor
   · intro h
-    rw [if_pos h, inv_mul_cancel₀ card_classGroup_ne_zero]
+    rw [ite_eq_left h, inv_mul_cancel₀ card_classGroup_ne_zero]
   · intro h
-    rw [if_neg h, mul_zero]
+    rw [ite_eq_right h, mul_zero]
 
 theorem isPartialZeta_zetaOfClassInv (C : ClassGroup (𝓞 F)) :
     GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.IsPartialZeta C (zetaOfClassInv C) := by
@@ -1089,9 +1090,9 @@ theorem isPartialZeta_zetaOfClassInv (C : ClassGroup (𝓞 F)) :
   rw [e]
   constructor
   · intro h
-    rw [if_pos h.symm, inv_mul_cancel₀ card_classGroup_ne_zero]
+    rw [ite_eq_left h.symm, inv_mul_cancel₀ card_classGroup_ne_zero]
   · intro h
-    rw [if_neg (Ne.symm h), mul_zero]
+    rw [ite_eq_right (Ne.symm h), mul_zero]
 
 theorem functionalEquation_classHecke [IsTotallyReal F] (ψ : AddChar (Additive (ClassGroup (𝓞 F))) ℂ)
     (D : (Ideal (𝓞 F))⁰) (hD : (D : Ideal (𝓞 F)) = differentIdeal ℤ (𝓞 F))
@@ -1124,6 +1125,7 @@ theorem GlobalTheory.CompanionTheory.Hypotheses₂.partialZetaFunctionalEquation
     _ = _ := by
       rw [h, ← e]
       ring
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.DixmierMalliavin.DixmierMalliavinFactorisationHolds

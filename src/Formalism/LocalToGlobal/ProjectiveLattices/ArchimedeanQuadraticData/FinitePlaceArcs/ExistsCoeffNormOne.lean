@@ -10,8 +10,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.FinitePlaceArcs.FinKey, Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.FinitePlaceArcs.ExistsCoeffNormOne
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.FinitePlaceArcs.FinKey
+@[expose] public section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.FinitePlaceArcs.FinKey
 
+noncomputable section
 
 namespace Formalism.L2.Pj.QAt
 
@@ -39,15 +40,16 @@ theorem subA_sum {K : Type} [Field K] (A : ∀ τ : E →+* ℂ, Matrix (Fin (Dw
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun k _ => ?_
   rw [Finset.sum_eq_single ⟨y.1, y.2.1, k⟩]
-  · rw [if_pos rfl]
+  · rw [ite_eq_left rfl]
   · intro b _ hb
-    rw [if_neg hb, map_zero, zero_mul]
+    rw [ite_eq_right hb, map_zero, zero_mul]
   · intro h
     exact absurd (Finset.mem_univ _) h
 
 end FinKey
 
 end Formalism.L2.Pj.QAt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.FinitePlaceArcs.ExistsCoeffNormOne

@@ -7,12 +7,12 @@ import GroundTheory.GlobalFields.LocalFieldAtPlace
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallyMemKGL, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.DoubleSumFinprodFactor
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallyMemKGL
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallyMemKGL
 
 open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT
 open scoped Classical TensorProduct
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
+noncomputable section
 
 namespace GlobalTheory.EulerTw.Fact
 
@@ -40,9 +40,11 @@ theorem eventually_mem_KGL (x : GL (Fin n) (FiniteAdeleRing (𝓞 E) E)) :
 
 end GlobalTheory.EulerTw.Fact
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.DoubleSumFinprodFactor
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.DoubleSumFinprodFactor
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.BCT PositivityTheory.Rg.BcB.E PositivityTheory.RgBcC PositivityTheory.Rg.BcB.CG PositivityTheory.Rg.BcB.G8
@@ -52,8 +54,6 @@ open PositivityTheory.Rg.BcN.F2 (mconv)
 open scoped Classical
 
 namespace PositivityTheory.Rg.BcB.F
-
-attribute [local instance] borelG borelF borelH
 
 namespace Fm
 
@@ -199,7 +199,7 @@ theorem fmTr (h3 : Slots) : FmTr := by
       (fun j => by cases j <;> exact hL.1 _ _) _ (fun w => ?_) ?_
     · by_cases hw : w ∈ P
       · refine ⟨κ w × κ w, inferInstance, fun p => some ⟨⟨w, hw⟩, p⟩, fun p => N w p.2 p.1, ?_⟩
-        simp only [LM.tr, if_pos hw, Option.elim_some, LM.ent, dif_pos hw, Function.update_self]
+        simp only [LM.tr, ite_eq_left hw, Option.elim_some, LM.ent, dite_eq_left hw, Function.update_self]
         exact (Fintype.sum_prod_type' (fun x y => N w y x • L.m w x y)).symm
       · refine ⟨Unit, inferInstance, fun _ => none, fun _ => 1, ?_⟩
         simp [LM.tr, hw, LM.ent]
@@ -222,7 +222,7 @@ theorem fmTr (h3 : Slots) : FmTr := by
       if IsSplitAt (i : Pl E) then L.t i (atW (i : Pl E) (thP E B.a B.b h)) else 1)
     (fun i x y => N i y x) (fun X Y => fac (L.ent P X Y) L.t h) (fun X Y i hi => by simp [fac, LM.ent, hi])
     (fun X Y i => by simp [fac, LM.ent, i.2]) _ (fun i hi => by simp [fac, LM.tr, hi]) (fun i => ?_)
-  simp only [fac, LM.tr, if_pos i.2, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Finset.sum_mul]
+  simp only [fac, LM.tr, ite_eq_left i.2, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Finset.sum_mul]
   exact Finset.sum_congr rfl fun x _ => Finset.sum_congr rfl fun y _ => by ring
 
 open Fm in
@@ -271,7 +271,7 @@ theorem fmAlg (h1 : FinConv) (h3 : Slots) : FmAlg := by
       (fun Z => fac (fun w => mconv (L.ent P (e x) Z w) (L'.ent P Z (e y) w)) (fun w => mconv (L.t w) (L'.t w)) g)
       (fun Z i hi => by simp [fac, LM.ent, hi]) (fun Z i => by simp [fac, LM.ent, i.2]) _
       (fun i hi => by simp [fac, LM.ent, LM.mul, hi]) (fun i => ?_)
-    simp only [fac, LM.ent, dif_pos i.2, LM.mul, Finset.sum_apply, Finset.sum_mul]
+    simp only [fac, LM.ent, dite_eq_left i.2, LM.mul, Finset.sum_apply, Finset.sum_mul]
   · funext x y g
     simp only [adjF, fm, map_mul, map_inv₀, vol_conj]
     congr 1
@@ -282,6 +282,7 @@ theorem fmAlg (h1 : FinConv) (h3 : Slots) : FmAlg := by
 
 end PositivityTheory.Rg.BcB.F
 
+end
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallyMemKGL", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.SimpleTwistedTraceFormulaStable\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.DoubleSumFinprodFactor", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelRep\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallyMemKGL\nimport GroundTheory.GlobalFields.LocalFieldAtPlace\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\n\n"}

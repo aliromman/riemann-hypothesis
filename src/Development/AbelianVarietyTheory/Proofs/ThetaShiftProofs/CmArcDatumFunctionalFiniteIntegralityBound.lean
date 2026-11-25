@@ -111,7 +111,9 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Counterexamples.UniformisationSurvey.EquivIffOfIsEmpty, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.AbelianLetterIntegral, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ArcDatumArcLieBasis, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.DiscrMulXiIntegral, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsArcInOverValuationRing, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsKeyIntegral, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.MemRangeOfLetBC, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.LocalArcIntegralityOfCmNormalisedTrivialisation, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.CmArcDatumFunctionalFiniteIntegralityBound
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.UniformisationSurvey.EquivIffOfIsEmpty
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Counterexamples.UniformisationSurvey.EquivIffOfIsEmpty
+
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out
@@ -135,15 +137,10 @@ theorem isPull_unique {T T' : Over (Spec (CommRingCat.of R))} {h : T'.left ⟶ T
   ext_val (Over.OverMorphism.ext (H.1.trans H'.1.symm)) fun χ _ _ hJ =>
     (Geo.Tor.val_corr hJ (H.2 χ) (𝟙 _)).trans (Geo.Tor.val_corr hJ (H'.2 χ) (𝟙 _)).symm
 
-section Empty
-
-variable {T : Over (Spec (CommRingCat.of R))} [IsEmpty T.left]
-
-end Empty
-
 variable {W : (Spec (CommRingCat.of R)).Opens} (ψW : PsiOn D W) (k : ℕ) (T : Over W.toScheme) [IsEmpty T.left]
 
 end GlobalTheory.TorsionPairTest
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.AbelianLetterIntegral

@@ -25,12 +25,10 @@ def ExpAdd : Prop :=
 end Formalism.IncomingBounds
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.IncomingBounds.FlowDegreeBounds.ThmPExp
 
 open scoped BigOperators
 open MvPowerSeries Finset
-
-@[expose] public noncomputable section -- clump member: Formalism.IncomingBounds.FlowDegreeBounds.ThmPExp
 
 namespace Formalism.IncomingBounds
 
@@ -152,7 +150,11 @@ theorem expSeriesAdd : ExpAdd := by
 end Formalism.IncomingBounds
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.DropLevelBounds.ConstantCoeffVanishing.UbintConstantCoeffEqZero
+@[expose] public section -- clump member: Formalism.DropLevelBounds.ConstantCoeffVanishing.UbintConstantCoeffEqZero
+
+noncomputable section
+open scoped BigOperators
+open MvPowerSeries Finset
 
 namespace Formalism.UnitaryBoundIntegral
 
@@ -189,19 +191,6 @@ theorem ubint_mvExp_sum [CharZero C] {ι : Type} (s : Finset ι) (f : ι → MvP
       expSeriesAdd C σ (f a) _ (hf a (Finset.mem_insert_self a s)) h0, ih hs]
 
 end UBIntLemmas
-
-section UBIntRows
-
-variable {C : Type} [Field C] {n0 : ℕ}
-
-
-end UBIntRows
-
-section UBIntMain
-
-variable {C : Type} [Field C] {n0 : ℕ}
-
-end UBIntMain
 
 end Formalism.UnitaryBoundIntegral
 

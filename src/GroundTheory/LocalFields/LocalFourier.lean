@@ -17,8 +17,9 @@ import Mathlib.RingTheory.Henselian
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.LocalFields.LocalFourierSchwartz, GroundTheory.LocalFields.LocalFourier
 
-@[expose] public noncomputable section -- clump member: GroundTheory.LocalFields.LocalFourierSchwartz
+@[expose] public section -- clump member: GroundTheory.LocalFields.LocalFourierSchwartz
 
+noncomputable section
 
 namespace GroundTheory.LocalField
 
@@ -240,7 +241,7 @@ theorem localFourier_localFourier {f : K → ℂ} (hf : f ∈ schwartzBruhat K) 
     · have ht : IsTrivialOn (ψ.mulShift (x + z)) (addCharConductor ψ - N) := by
         rw [isTrivialOn_mulShift_iff_mem hψ hψ1]
         simpa using hxz
-      rw [if_pos ht, Set.indicator_of_mem (show x + z ∈ (valBall K N : Set K) from hxz)]
+      rw [ite_eq_left ht, Set.indicator_of_mem (show x + z ∈ (valBall K N : Set K) from hxz)]
       have : f x = f (-z) := by
         have := hN (-z) (x + z) hxz
         rw [show -z + (x + z) = x by ring] at this
@@ -249,7 +250,7 @@ theorem localFourier_localFourier {f : K → ℂ} (hf : f ∈ schwartzBruhat K) 
     · have ht : ¬ IsTrivialOn (ψ.mulShift (x + z)) (addCharConductor ψ - N) := by
         rw [isTrivialOn_mulShift_iff_mem hψ hψ1]
         simpa using hxz
-      rw [if_neg ht, Set.indicator_of_notMem (show x + z ∉ (valBall K N : Set K) from hxz),
+      rw [ite_eq_right ht, Set.indicator_of_notMem (show x + z ∉ (valBall K N : Set K) from hxz),
         mul_zero]
   rw [hA, hB, integral_integral_swap hG]
   simp only [hinner]
@@ -272,6 +273,7 @@ theorem localFourier_localFourier {f : K → ℂ} (hf : f ∈ schwartzBruhat K) 
 end Fourier
 
 end GroundTheory.LocalField
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.LocalFields.LocalFourier

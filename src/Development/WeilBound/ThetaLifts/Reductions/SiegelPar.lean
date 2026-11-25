@@ -15,10 +15,12 @@ import Formalism.LocalToGlobal.ProjectiveLattices.UnifDom
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.ThetaLifts.Reductions.SiegelParMod, Development.WeilBound.ThetaLifts.Reductions.SiegelPar
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.Reductions.SiegelParMod
+section -- clump member: Development.WeilBound.ThetaLifts.Reductions.SiegelParMod
+@[expose] public section
 
 set_option linter.unusedSectionVars false
 
+noncomputable section
 
 open scoped TensorProduct NNReal ENNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
@@ -199,7 +201,7 @@ theorem minPar_of_eich {k : ℕ} (hk : k ≤ r) {R : Type} [CommRing R] (A : Mat
     exact this
   refine ⟨1 - Matrix.of fun l m => if hl : l.val < k then C ⟨l.val, hl⟩ m else 0, fun l m hlm => ?_, ?_⟩
   · have hne : l ≠ m := fun e => (lt_irrefl _ (e ▸ hlm))
-    simp only [Matrix.sub_apply, Matrix.one_apply, Matrix.of_apply, if_neg hne]
+    simp only [Matrix.sub_apply, Matrix.one_apply, Matrix.of_apply, ite_eq_right hne]
     split_ifs with hl
     · have hm : m.val < k := lt_trans (Fin.lt_iff_val_lt_val.1 hlm) hl
       have := hC ⟨l.val, hl⟩ ⟨m.val, hm⟩
@@ -469,6 +471,8 @@ theorem map_mul_torus_of (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittF
 
 end PositivityTheory.ThKR.PMod
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.Reductions.SiegelPar

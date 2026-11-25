@@ -12,8 +12,9 @@ import Mathlib.RingTheory.PiTensorProduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MassComputations.MapSubOneMulVec, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MassComputations.NfinOfRatN, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MassComputations.NRatBridgeHolds
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MassComputations.MapSubOneMulVec
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MassComputations.MapSubOneMulVec
 
+noncomputable section
 
 open scoped TensorProduct
 open Matrix
@@ -72,7 +73,7 @@ theorem down_span (hψ : Function.Injective ψ) (e K : Fin r → Fin n → E)
         rw [this]; split_ifs <;> simp
       simp only [h1, ite_smul, one_smul, zero_smul]
       rw [Finset.sum_ite_eq' T c]
-      rw [if_pos (by simp [hT, hc])]
+      rw [ite_eq_left (by simp [hT, hc])]
     | zero => simp
     | add x y _ _ hx hy =>
       conv_lhs => rw [hx, hy]
@@ -122,7 +123,7 @@ theorem perp_up (M : Matrix (Fin n) (Fin n) E) (e f K : Fin r → Fin n → E)
         intro b
         rw [← hKf a b, Finset.mul_sum]
         refine Finset.sum_congr rfl fun i _ => by ring
-      simp only [this, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+      simp only [this, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     rw [h1, h2, sub_self]
   have hy' : y = ∑ j, y j • (fun i => ψ (p j i)) := by
     funext i
@@ -150,6 +151,7 @@ theorem perp_up (M : Matrix (Fin n) (Fin n) E) (e f K : Fin r → Fin n → E)
 end Gen
 
 end MassDataMassesW.NRatW
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

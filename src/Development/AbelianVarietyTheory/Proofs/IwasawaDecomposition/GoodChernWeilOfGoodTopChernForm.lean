@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContDiffAtHolomorphicComplexChartOfSmoothAt
 public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.InterPolyProdSum
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsGradedLineDivisorsFullFlag
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SmoothOfAlgClosedUnif
@@ -938,8 +939,9 @@ theorem lie_sum {ι : Type} [Fintype ι] {m : ι → ℕ} (ρ σ : PolyRep m) {R
 end GlobalTheory.GoodMetric.PolyRep
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TracePowEqSumSmulCoeffCharpolyRevPow
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TracePowEqSumSmulCoeffCharpolyRevPow
 
+noncomputable section
 
 open Polynomial
 
@@ -1035,7 +1037,6 @@ theorem coeff_logTrunc_charpolyRev {S : Type} [CommRing S] [Algebra ℝ S] {N : 
 
 end LogTrace
 
-
 open LogTrace in
 theorem trace_pow_eq_sum_smul_coeff_charpolyRev_pow :
     ∀ n : ℕ, 1 ≤ n → ∃ c : ℕ → ℝ, ∀ (S : Type) [CommRing S] [Algebra ℝ S] (N : ℕ)
@@ -1072,6 +1073,7 @@ theorem trace_pow_eq_sum_smul_coeff_charpolyRev_pow :
         linear_combination (-1 : S) ^ m * key + (L ^ (m + 1)).trace * hsq
 
 end GlobalTheory
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -1193,10 +1195,10 @@ theorem ptr_mul_trProd_mem_reach (n : ℕ) (S : Type) [CommRing S] [Algebra ℝ 
         rw [← hσ A (r + i - a) (by omega), Finset.mul_sum]
         exact Finset.sum_congr rfl fun j _ => (mul_smul_comm _ _ _).symm
       rw [Finset.sum_congr rfl e, Finset.sum_eq_single r]
-      · rw [if_pos (by omega), Algebra.smul_def, map_natCast, mul_assoc]
+      · rw [ite_eq_left (by omega), Algebra.smul_def, map_natCast, mul_assoc]
       · intro a ha har
         rw [Finset.mem_range] at ha
-        rw [if_neg (by omega), mul_zero]
+        rw [ite_eq_right (by omega), mul_zero]
       · intro h
         exact absurd (Finset.mem_range.2 (by omega)) h
     simp only [Pi.smul_apply, Finset.sum_apply]
@@ -1324,8 +1326,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TopDegreeFormCoeffChernPolyEqSumRepresentations
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TopDegreeFormCoeffChernPolyEqSumRepresentations
 
+noncomputable section
 
 open AlgebraicGeometry MvPolynomial GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts GlobalTheory.ChartGlue GlobalTheory.FlagBundle GlobalTheory.HermFrame
   GlobalTheory.GoodMetric
@@ -1333,11 +1336,6 @@ open ReciprocityTheory.L2DbarEstimates (V)
 open scoped Matrix
 
 namespace GlobalTheory.GoodMetric.ChernSpan
-
-theorem topCoeff_sum' {n : ℕ} {κ : Type} (s : Finset κ) (P : κ → MvPolynomial (Fin n × Fin n) ℂ) :
-    topCoeff (∑ i ∈ s, P i) = ∑ i ∈ s, topCoeff (P i) := by
-  simp only [topCoeff, coeff_sum, Finset.mul_sum]
-  exact Finset.sum_comm
 
 theorem topCoeff_real_smul {n : ℕ} (r : ℝ) (P : MvPolynomial (Fin n × Fin n) ℂ) :
     topCoeff (r • P) = (r : ℂ) * topCoeff P := by
@@ -1365,12 +1363,12 @@ theorem topCoeff_chern_eq_sum_rep : ∀ (ι : Type) [Fintype ι] (m : ι → ℕ
   have e1 : topCoeff (aeval c R) = ∑ d ∈ R.support, topCoeff (aeval c (monomial d (AddMonoidAlgebra.coeff R d))) := by
     conv_lhs => rw [R.as_sum]
 
-    rw [map_sum, topCoeff_sum']
+    rw [map_sum, GlobalTheory.GoodMetric.LinSubst.topCoeff_sum]
   have e2 : topCoeff (aeval c (weightedHomogeneousComponent (Prod.snd : ι × ℕ → ℕ) n R)) =
       ∑ d ∈ R.support with Finsupp.weight (Prod.snd : ι × ℕ → ℕ) d = n,
         topCoeff (aeval c (monomial d (AddMonoidAlgebra.coeff R d))) := by
 
-    rw [weightedHomogeneousComponent_apply, map_sum, topCoeff_sum']
+    rw [weightedHomogeneousComponent_apply, map_sum, GlobalTheory.GoodMetric.LinSubst.topCoeff_sum]
   have e3 : topCoeff (aeval c R) = topCoeff (aeval c (weightedHomogeneousComponent (Prod.snd : ι × ℕ → ℕ) n R)) := by
     rw [e1, e2, Finset.sum_filter]
     refine Finset.sum_congr rfl fun d _ => ?_
@@ -1379,15 +1377,17 @@ theorem topCoeff_chern_eq_sum_rep : ∀ (ι : Type) [Fintype ι] (m : ι → ℕ
     · exact key d h
   have hval := congrFun hfg A
   simp only [Finset.sum_apply, Pi.smul_apply] at hval
-  rw [e3, ← hval, topCoeff_sum']
+  rw [e3, ← hval, GlobalTheory.GoodMetric.LinSubst.topCoeff_sum]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [topCoeff_real_smul, ← hρ i]
 
 end GlobalTheory.GoodMetric.ChernSpan
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GoodChernWeilOfGoodTopChernForm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GoodChernWeilOfGoodTopChernForm
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology MvPolynomial
 open ReciprocityTheory.L2DbarEstimates (V)
@@ -1401,17 +1401,8 @@ variable {F : Type} [Field F] {X : Var F} {σ : F →+* ℂ}
 theorem CInfAt.contDiffAt_holoChart {f : CxPts X.str σ → ℝ} {y : CxPts X.str σ} (h : CInfAt f y)
     {e : OpenPartialHomeomorph (CxPts X.str σ) (V X.dim)} (he : IsHoloChart e) (hy : y ∈ e.source) :
     ContDiffAt ℝ ∞ (fun v => f (e.symm v)) (e y) := by
-  obtain ⟨W, κ, _, g, G, O, h₁, h₂, h₃, h₄, h₅⟩ := h
-  have ho := isOpen_over e (isOpen_ptsIn (p := X.str) (σ := σ) W)
-  have hl := e.left_inv hy
-  have hg : ContDiffAt ℝ ∞ (fun w a => ev X.str σ W (g a) (e.symm w)) (e y) :=
-    contDiffAt_pi.2 fun a => (contDiffOn_real ho (he W (g a))).contDiffAt (ho.mem_nhds (mem_over e hy h₁))
-  have h₆ : ContDiffAt ℝ ∞ G (fun a => ev X.str σ W (g a) (e.symm (e y))) := by
-    rw [hl]; exact h₄.contDiffAt (h₂.mem_nhds h₃)
-  refine (h₆.comp (e y) hg).congr_of_eventuallyEq ?_
-  have := e.continuousAt_symm (e.map_source hy)
-  rw [ContinuousAt, hl] at this
-  exact this.eventually h₅
+  intros
+  apply _root_.GlobalTheory.GoodTop.contDiffAt_holoChart <;> assumption
 
 theorem IsMetricOn.mContDiffAt_two {ι : Type} {m : ι → ℕ} {E : Fr (ratOf X) m 0} {O : X.X.Opens}
     {H : Mat m X.Fn → CxPts X.str σ → Mat m ℂ} (hH : IsMetricOn E O H) {y : CxPts X.str σ}

@@ -19,13 +19,12 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedVolumeStatements.Generi
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RelCharPf, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RelCharPfRat
 
--- clump: shared namespace opens
+section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RelCharPf
+@[expose] public section
 
+noncomputable section
 
 open scoped Classical ComplexConjugate
-
-section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RelCharPf
-@[expose] public noncomputable section
 open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Pf.UnipB Formalism.L2.SG.Pf.Unip
 open Formalism.L2.SG.Pf Formalism.L2.SG.Pf.Vanish2 Formalism.L2.SG.Pf.Level Formalism.L2.SG.TermOp Formalism.L2.SG.TermOp.Vanish
 
@@ -75,7 +74,7 @@ theorem lamU_one (w : D.what₂.Word) (v : InfinitePlace X.B.I.F) : lamU X w v 1
   rw [Matrix.mul_one, Bv_mul_Bv', Matrix.one_mulVec]
   unfold nxt
   split_ifs with h
-  · rw [hfe_v, if_neg]
+  · rw [hfe_v, ite_eq_right]
     intro h'
     have := congrArg Fin.val h'
     simp at this
@@ -267,8 +266,12 @@ end Main
 end Formalism.L2.SG.Pf.RelChar
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RelCharPfRat
+
+
+open scoped Classical ComplexConjugate
 open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Pf.UnipB Formalism.L2.SG.Pf.Unip
 open Formalism.L2.SG.Pf Formalism.L2.SG.Pf.Level Formalism.L2.SG.TermOp Formalism.L2.SG.TermOp.Vanish Formalism.L2.SG.NonRelPf
 

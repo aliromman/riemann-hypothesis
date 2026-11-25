@@ -53,8 +53,10 @@ import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFunctionalPure, Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilModelProjectionFactorisation
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFunctionalPure
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFunctionalPure
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Filter
 
@@ -135,7 +137,7 @@ def finAd (T : Finset (HeightOneSpectrum (𝓞 F))) (y : ∀ v : HeightOneSpectr
     FiniteAdeleRing (𝓞 F) F :=
   ⟨fun v => if v ∈ T then y v else 0, by
     filter_upwards [T.eventually_cofinite_notMem] with v hv
-    simp only [hv, if_false]
+    simp only [hv, ite_false]
     exact zero_mem _⟩
 
 def adPt {κ : Type} (T : Finset (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F))) (x : κ → mixedEmbedding.mixedSpace F)
@@ -165,7 +167,7 @@ theorem pure_apply {κ : Type} [Fintype κ] (f : GlobalTheory.IndefiniteRowSideF
   rw [finprod_eq_prod_of_mulSupport_subset _ (s := T)]
   · refine Finset.prod_congr rfl fun v hv => ?_
     rw [h2 v]
-    simp only [if_pos hv]
+    simp only [ite_eq_left hv]
   · intro v hv
     by_contra hvT
     have hvT' : v ∉ T := by simpa using hvT
@@ -249,6 +251,8 @@ theorem exists_functional_pure {F : Type} [Field F] [NumberField F] {κ : Type} 
 
 end GlobalTheory.FiniteAdelicPoints
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilModelProjectionFactorisation

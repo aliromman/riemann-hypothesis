@@ -1,16 +1,16 @@
 module
 
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DimFormC
+import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedVolumeStatements.WuDefiniteHolds
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.GammaOneEqProd, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.DimFormCOfSteps
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.GammaOneEqProd
 
+noncomputable section
 
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.GammaOneEqProd
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.TermOp Formalism.L2.SG.Full
   Formalism.MainNotions.S.Cnt
 
@@ -76,17 +76,7 @@ theorem card_classes_eq (hK : X.LevelSubgroupCharacter) (cs : ColSys X u what₂
 
 theorem classFin_of (hK : X.LevelSubgroupCharacter) (cs : ColSys X u what₂) (hR : ColReps hK cs) :
     Formalism.L2.SG.PoincareInHH.Cut.ClassFin X u hK := by
-  have hs : Function.Surjective
-      (fun ρ : cs.Cl => DoubleCoset.mk (iotaF X u).range (Ku X u hK) (cs.h ρ)) := by
-    intro q
-    induction q using Quotient.inductionOn' with
-    | h h =>
-      obtain ⟨ρ, ⟨γ, κ, hh⟩, _⟩ := hR h
-      refine ⟨ρ, ?_⟩
-      show DoubleCoset.mk _ _ _ = DoubleCoset.mk _ _ _
-      rw [DoubleCoset.eq]
-      exact ⟨iotaF X u γ, ⟨γ, rfl⟩, κ, κ.2, hh⟩
-  exact Finite.of_surjective _ hs
+  apply _root_.Formalism.L2.SG.Closed.ClassFin_holds <;> assumption
 
 theorem duC_eq (Y : Full X) (u : D.what₂.Word) (hN : Formalism.L2.SG.PoincareInHH.Cut.NeatKu X u Y.hK) :
     Formalism.L2.SG.RowsConc.duC X Y u = Formalism.L2.SG.KappaOffDiagonal.dpiC X u * (Fintype.card (Y.cs u).Cl : ℝ) := by
@@ -128,8 +118,12 @@ theorem dimFormC_of (h4 : FibreBound) : Formalism.L2.SG.KappaOffDiagonal.DimForm
 
 end PI.UnitaryDimensionFormula
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.DimFormCOfSteps
+
+
+open scoped Classical
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.TermOp
   Formalism.L2.SG.Full Formalism.MainNotions.S.Cnt
 

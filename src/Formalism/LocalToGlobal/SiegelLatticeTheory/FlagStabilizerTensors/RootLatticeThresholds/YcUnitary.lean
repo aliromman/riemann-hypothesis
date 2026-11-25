@@ -10,12 +10,10 @@ import Mathlib.RingTheory.PiTensorProduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.RankUpdateMul, Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.ZeroOfBlk, Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.YcUnitary
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.RankUpdateMul
 
 
 open Matrix
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.RankUpdateMul
 
 namespace Formalism.L2.S.L6.UnitaryStandardVectors
 
@@ -78,7 +76,11 @@ theorem Ymat_unitary (J : Matrix n n ℂ) (hJ : Jᴴ = J) (W : Matrix n ι ℂ) 
 end Formalism.L2.S.L6.UnitaryStandardVectors
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.ZeroOfBlk
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.ZeroOfBlk
+
+noncomputable section
+
+open Matrix
 
 namespace Formalism.L2.S.L6.UnitaryStandardVectors
 
@@ -152,12 +154,12 @@ def Zi : Matrix (Fin m) (Fin m) ℂ := Matrix.of fun b c => if b = π c then (Z 
 theorem Z_mul_Zi : Z * Zi π Z = 1 := by
   refine Matrix.ext fun i k => ?_
   rw [Matrix.mul_apply, Matrix.one_apply]
-  simp only [Zi, of_apply, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [Zi, of_apply, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   by_cases hik : i = k
   · subst hik
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
     exact mul_inv_cancel₀ (Z_ne' π hπ Z hZ i)
-  · rw [if_neg hik]
+  · rw [ite_eq_right hik]
     have h0 : Z i (π k) = 0 := by
       by_contra hne
       have h1 := (hZ i (π k)).mp hne
@@ -173,7 +175,7 @@ theorem conj_apply (X : Matrix (Fin m) (Fin m) ℂ) (j i : Fin m) :
     (Z * X * Z⁻¹) j i = Z j (π j) * X (π j) (π i) * (Z i (π i))⁻¹ := by
   rw [Z_inv_eq π hπ Z hZ]
   simp only [Matrix.mul_apply, Zi, of_apply, mul_ite, mul_zero, Finset.sum_ite_eq',
-    Finset.mem_univ, if_true]
+    Finset.mem_univ, ite_true]
   congr 1
   rw [Finset.sum_eq_single (π j)]
   · intro l _ hl
@@ -234,9 +236,9 @@ theorem gram_last {blk : Fin (m + 1) → ℕ} {A : Matrix (Fin (m + 1)) (Fin (m 
   have hrow : ∀ j, A (Fin.last m) j = if j = Fin.last m then 1 else 0 := by
     intro j
     by_cases hj : j = Fin.last m
-    · rw [if_pos hj, hj]
+    · rw [ite_eq_left hj, hj]
       exact hA.1 _
-    · rw [if_neg hj]
+    · rw [ite_eq_right hj]
       exact hA.zero_of_lt (lt_of_le_of_ne (Fin.le_last j) hj)
   ext i j
   simp only [Matrix.mul_apply, conjTranspose_apply]
@@ -248,9 +250,9 @@ theorem gram_last {blk : Fin (m + 1) → ℕ} {A : Matrix (Fin (m + 1)) (Fin (m 
         · subst hi
           subst hj
           simp
-        · rw [if_neg hj, hΓ i j (Or.inr hj)]
+        · rw [ite_eq_right hj, hΓ i j (Or.inr hj)]
           simp
-      · rw [if_neg hi, hΓ i j (Or.inl hi)]
+      · rw [ite_eq_right hi, hΓ i j (Or.inl hi)]
         simp
     · intro k _ hk
       rw [hΓ k (Fin.last m) (Or.inl hk), mul_zero]
@@ -263,8 +265,13 @@ theorem gram_last {blk : Fin (m + 1) → ℕ} {A : Matrix (Fin (m + 1)) (Fin (m 
 
 end Formalism.L2.S.L6.UnitaryStandardVectors
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.YcUnitary
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.YcUnitary
+
+noncomputable section
+
+open Matrix
 
 namespace Formalism.L2.S.L6.UnitaryStandardVectors
 
@@ -345,7 +352,7 @@ theorem Yc_unitary {C : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ} (hC : IsUB blk C
   have hL : ∀ t : ℂ, ∀ i j : Fin (r + 1), i ≠ Fin.last r ∨ j ≠ Fin.last r → lastDiag t i j = 0 := by
     intro t i j h
     simp only [lastDiag, of_apply]
-    rw [if_neg]
+    rw [ite_eq_right]
     tauto
   unfold Yc
   refine Ymat_unitary _ (Jm_herm ε) _ _ (gram_unit ε F G T T' π hFF hGG hπ hZ hgap) ?_

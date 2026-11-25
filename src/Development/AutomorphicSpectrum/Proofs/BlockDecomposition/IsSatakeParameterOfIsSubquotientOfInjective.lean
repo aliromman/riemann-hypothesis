@@ -16,14 +16,13 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InducedInPrincipalSeries, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SubquotientPrincipalSeriesBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSatakeParameterOfIsSubquotientOfInjective
 
--- clump: shared namespace opens
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InducedInPrincipalSeries
+@[expose] public section
 
+noncomputable section
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.Published GlobalTheory.SplitWeil
 open GroundTheory.Automorphic.Spherical
-
-section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InducedInPrincipalSeries
-@[expose] public noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SphSupp.PsBridge
 
@@ -113,7 +112,7 @@ theorem paramChar_leviProj (α : Fin n → ℂˣ) (p : blockUpper k n (id : Fin 
           (GLnLocal.uniformizer k : k) ^ (-l i) := by
         simp only [e, Units.val_mul, Units.val_zpow_eq_zpow_val, coe_uniformizerUnit]
         rfl
-      rw [if_pos rfl, if_pos rfl, he', mul_left_comm, ← zpow_add₀ hϖ, add_neg_cancel, zpow_zero,
+      rw [ite_eq_left rfl, ite_eq_left rfl, he', mul_left_comm, ← zpow_add₀ hϖ, add_neg_cancel, zpow_zero,
         mul_one]
     · simp [h]
   have hu : (u : GL (Fin n) k) ∈ GLnLocal.integralGL k n := by
@@ -179,6 +178,13 @@ theorem indSp_mem_principalSeriesSpace : ∀ (k : Type) [Field k] [ValuativeRel 
 end GlobalTheory.CompanionTheory.SphSupp.PsBridge
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.Published GlobalTheory.SplitWeil
+open GroundTheory.Automorphic.Spherical
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SubquotientPrincipalSeriesBound
 

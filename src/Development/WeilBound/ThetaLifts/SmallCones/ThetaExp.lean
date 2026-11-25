@@ -266,10 +266,12 @@ end PositivityTheory.ThKCT.Ker
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.SmallCones.ContinuousEvI
+section -- clump member: Development.WeilBound.ThetaLifts.SmallCones.ContinuousEvI
+@[expose] public section
 
 set_option linter.unusedSectionVars false
 
+noncomputable section
 
 namespace PositivityTheory.ThKCT.Ker
 
@@ -343,7 +345,7 @@ theorem theta_unif {κ : Type} [Fintype κ] {ψ : AddChar (AF F) ℂ} (hψ : IsS
     by_cases h0 : g (fun i => ((y + k) i).2) = 0
     · rw [h0, mul_zero, norm_zero]
       exact mul_nonneg (by positivity) (hw0 _)
-    have hm : wt η = (PositivityTheory.ThKCT.sz y ^ N)⁻¹ := if_pos ⟨(_, k), ⟨subset_tsupport g h0, hkK⟩, by
+    have hm : wt η = (PositivityTheory.ThKCT.sz y ^ N)⁻¹ := ite_eq_left ⟨(_, k), ⟨subset_tsupport g h0, hkK⟩, by
       funext i
       change (y i).2 + (k i).2 - (k i).2 = _
       rw [add_sub_cancel_right]⟩
@@ -417,6 +419,8 @@ theorem slice_unif (hS : Slice) (hB : B.IsGood σ) (hM : M.IsGood B.ψ) (hM₁ :
 
 end PositivityTheory.ThKCT.Ker
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.SmallCones.Kernel

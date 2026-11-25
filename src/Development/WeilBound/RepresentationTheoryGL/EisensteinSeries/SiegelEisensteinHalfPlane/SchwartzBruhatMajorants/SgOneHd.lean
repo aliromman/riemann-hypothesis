@@ -1057,13 +1057,11 @@ theorem jtop : JTop := by
 end GlobalTheory.CompanionTheory.EisSo
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapMemKGL
 
 
 open NumberField Matrix
 open scoped NumberField.AdeleRing
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapMemKGL
 open PositivityTheory.RgEis PositivityTheory.RgEis.So
 
 namespace GlobalTheory.CompanionTheory.RgEisSo.JIwaAd
@@ -1244,7 +1242,12 @@ end Main
 end GlobalTheory.CompanionTheory.RgEisSo.JIwaAd
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapScalarVal
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapScalarVal
+
+noncomputable section
+
+open NumberField Matrix
+open scoped NumberField.AdeleRing
 
 namespace GlobalTheory.CompanionTheory.RgEisJRat
 
@@ -1285,16 +1288,7 @@ theorem conj_apply (t : Rˣ) (g : GL (ι ⊕ ι) R) (m n : ι ⊕ ι) :
 theorem det_two (i : ι) (hi : ∀ x, x = i) (M : Matrix (ι ⊕ ι) (ι ⊕ ι) R) :
     M.det = M (Sum.inl i) (Sum.inl i) * M (Sum.inr i) (Sum.inr i) -
       M (Sum.inl i) (Sum.inr i) * M (Sum.inr i) (Sum.inl i) := by
-  let e : Fin 2 ≃ ι ⊕ ι :=
-    { toFun := ![Sum.inl i, Sum.inr i]
-      invFun := Sum.elim (fun _ => 0) (fun _ => 1)
-      left_inv := fun a => by fin_cases a <;> rfl
-      right_inv := fun a => by
-        rcases a with a | a
-        · rw [hi a]; rfl
-        · rw [hi a]; rfl }
-  rw [← Matrix.det_submatrix_equiv_self e M, Matrix.det_fin_two]
-  rfl
+  apply _root_.GlobalTheory.CompanionTheory.RgEis.Cover.det_two <;> assumption
 
 theorem det_dg (i : ι) (hi : ∀ x, x = i) (x : Rˣ) :
     Matrix.GeneralLinearGroup.det (dg ι x) = x := by
@@ -1538,8 +1532,13 @@ end Main
 
 end GlobalTheory.CompanionTheory.RgEisJRat
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemStabLine
+
+
+open NumberField Matrix
+open scoped NumberField.AdeleRing
 open PositivityTheory.RgEis PositivityTheory.RgEis.So
 
 namespace GlobalTheory.CompanionTheory.EisJ
@@ -1678,8 +1677,6 @@ theorem jPar : JPar := by
 
 end GlobalTheory.CompanionTheory.EisJ
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinHalfPlane.SchwartzBruhatMajorants.BlgOfDict
 

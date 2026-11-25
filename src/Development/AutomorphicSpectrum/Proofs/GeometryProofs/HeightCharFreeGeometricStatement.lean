@@ -287,9 +287,9 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SmoothQ
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SmoothQ
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.LieSeq
 
 section Sm
@@ -312,11 +312,12 @@ end Sm
 
 end GlobalTheory.CompanionTheory.Ar.LieSeq
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientLattice
-@[expose] public noncomputable section
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.LieSeq
 
 theorem exists_stalkTo {R : Type} [CommRing R] [IsLocalRing R] {Y : Scheme.{0}} (u : Sp R ⟶ Y) (z : Y)
@@ -811,9 +812,9 @@ theorem lie_seq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Ho
 end GlobalTheory.CompanionTheory.Ar.LieSeq
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientLatticeStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.abelian_quotient_lattice : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) [StarRing (𝓞 E)], (∀ a : 𝓞 E, star a = H.bar a) → ∀ (X : Scheme.{0}) (t : SAB H X) (k : Type) [Field k] [IsAlgClosed k] (p : ℕ) [Fact p.Prime] [CharP k p] (x : Sp k ⟶ X) (Q : AbQuot t x) (d d' : ℕ) (g : GermAt t x d) (gB : GermAt Q.tB (𝟙 (Sp k)) d'), ∃ (Λ : Type) (_ : AddCommGroup Λ) (_ : Module (𝓞 E) Λ) (_ : Module.Free ℤ Λ) (_ : Module.Finite ℤ Λ) (P : Matrix (Fin d') (Fin d) k) (j : TensorProduct ℤ k Λ →ₗ[k] (Fin d → k)), Q.IsDiff g gB P ∧ Function.Surjective P.mulVec ∧ Function.Injective j ∧ (∀ u, P.mulVec u = 0 ↔ u ∈ LinearMap.range j) ∧ (∀ a, P * rho g.B a = rho gB.B a * P) ∧ ∀ a v, j (LinearMap.baseChange k ((LinearMap.lsmul (𝓞 E) Λ a).restrictScalars ℤ) v) = (rho g.B a).mulVec (j v) := by
   first | exact @GlobalTheory.CompanionTheory.Ar.LieSeq.lie_seq
@@ -832,8 +833,9 @@ theorem _root_.GlobalTheory.T.picard_class_trivial_by_seesaw : ∀ (k : Type) [F
   first | exact @GlobalTheory.CompanionTheory.TorusPic.pic_inj
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientOfPowerFns
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientOfPowerFns
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.AbQ
 
@@ -841,8 +843,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open GlobalTheory.CechPic
 open scoped CategoryTheory.Obj
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem exists_desc {k : Type} [Field k] {G : Over (Sp k)} [GrpObj G] (T : TorusExtension G)
     {Y : Over (Sp k)} [GrpObj Y] (f : G ⟶ Y) [IsMonHom f] (hf : T.i ≫ f = 1) :
@@ -954,13 +954,13 @@ theorem exists_abQuot : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
 
 end GlobalTheory.CompanionTheory.Ar.AbQ
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientOfPowerFnsStatement
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.abelian_quotient_of_power_fns : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (X : Scheme.{0}) (t : SAB H X), PowFns t → ∀ (k : Type) [Field k] [IsAlgClosed k] (p : ℕ) [Fact p.Prime] [CharP k p] (x : Sp k ⟶ X), GeomPF t x → Nonempty (AbQuot t x) := by
   first | exact @GlobalTheory.CompanionTheory.Ar.AbQ.exists_abQuot
@@ -992,15 +992,15 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProperHasPowerFns
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProperHasPowerFns
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Conj.ProperPowFns
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem powFns_of_proper_algClosed : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (k : Type) [Field k] [IsAlgClosed k] (tB : SAB H (Sp k)), IsProper tB.G.hom → PowFns tB :=
   fun _ _ _ _ _ _ _ _ tB hp n =>
@@ -1008,6 +1008,7 @@ theorem powFns_of_proper_algClosed : ∀ (E : Type) [Field E] [NumberField E] [I
     AbelianSchemeGerms.globalFns_powObj GlobalTheory.globalFns_holds tB.G tB.semi n
 
 end GlobalTheory.CompanionTheory.Ar.Conj.ProperPowFns
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens
@@ -1017,15 +1018,14 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProperHasPowerFnsStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.proper_has_power_fns : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (k : Type) [Field k] [IsAlgClosed k] (tB : SAB H (Sp k)), IsProper tB.G.hom → PowFns tB := by
   first | exact @GlobalTheory.CompanionTheory.Ar.Conj.ProperPowFns.powFns_of_proper_algClosed
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HeightCharFreeGeometric
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HeightCharFreeGeometric
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.LemFGeo
 
@@ -1299,9 +1299,9 @@ theorem hfree_geom : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
 
 end GlobalTheory.CompanionTheory.Ar.Flat
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HeightCharFreeGeometricStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.height_char_free_geometric : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) [StarRing (𝓞 E)], (∀ a : 𝓞 E, star a = H.bar a) → ∀ (X : Scheme.{0}) (t : SAB H X), PowFns t → ∀ (k : Type) [Field k] [IsAlgClosed k] (p : ℕ) [Fact p.Prime] [CharP k p] (x : Sp k ⟶ X), GeomPF t x → ∀ (d r : ℕ) (g : GermAt t x d), HChar g.B r → HFree g.B r := by
   first | exact @GlobalTheory.CompanionTheory.Ar.Flat.hfree_geom

@@ -60,8 +60,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.Leve
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.JetGauges.ThetaSectionsClosedFibre, Development.AbelianVarietyTheory.Proofs.JetHarmonics.UnitMulClauseOfGeneratesIffNonzero
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.JetGauges.ThetaSectionsClosedFibre
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.JetGauges.ThetaSectionsClosedFibre
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory
   CartesianMonoidalCategory MonObj
@@ -82,15 +83,8 @@ def Generates (s : LB.Sec N) : Prop :=
 
 end General
 
-section Theta
-
-variable {R : Type} [CommRing R] [IsDomain R] {I : Ideal R} {D : DegData R I}
-  {A : PolAV (Spec (CommRingCat.of (FractionRing R)))}
-  {G : Over (Spec (CommRingCat.of R))} [GrpObj G] [IsCommMonObj G]
-
-end Theta
-
 end GlobalTheory.IndefiniteRowSideFullHecke.ThetaSectionsClosedFibre
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.UnitMulClauseOfGeneratesIffNonzero

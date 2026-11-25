@@ -53,8 +53,9 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.Laplace
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.CoordinateEqPartialSumDifference, ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.DualKTypeOfStandardKType, ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.CasimirValueSubSingle, ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.QuotM, ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.EvalMF, ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SumGammaNnMinus, ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.StepDown
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.CoordinateEqPartialSumDifference
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.CoordinateEqPartialSumDifference
 
+noncomputable section
 
 open Finset
 
@@ -109,7 +110,7 @@ def weightHeightFunctional : (Fin n → ℝ) →ₗ[ℝ] ℝ := ∑ c : Fin n, (
 theorem k3vdHt_root (a b : Fin n) : weightHeightFunctional (root a b) = ((b : ℕ) : ℝ) - (a : ℕ) := by
   simp only [weightHeightFunctional, LinearMap.sum_apply, LinearMap.smul_apply, LinearMap.proj_apply,
     root, Pi.sub_apply, Pi.single_apply, smul_eq_mul, mul_sub, Finset.sum_sub_distrib, mul_ite, mul_one,
-    mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   ring
 
 theorem root_cone_height_natural {β : Fin n → ℝ} (hβ : InRootCone β) : ∃ N : ℕ, weightHeightFunctional β = N := by
@@ -214,6 +215,7 @@ theorem rho_consecutive_compact_pair (ε : Fin n → Bool) (a b : Fin n) (hb : b
 
 end ReciprocityTheory.ChartRestriction.DS.Lap.LemK
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.DualKTypeOfStandardKType
 
@@ -257,8 +259,9 @@ theorem k1Vd (n : ℕ) : LowestKTypeEulerTensorDual n :=
 end ReciprocityTheory.ChartRestriction.DS.Lap.LemK
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.CasimirValueSubSingle
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.CasimirValueSubSingle
 
+noncomputable section
 
 open Finset Polynomial
 
@@ -409,10 +412,10 @@ theorem k3Vd (n : ℕ) : QuotientHighestWeightTensorDual n := by
       rw [tensor_dual_action_apply_component, Pi.smul_apply] at this
       by_cases hca : c = a
       · subst hca
-        simp only [if_true] at this
+        simp only [ite_true] at this
         rw [sub_eq_iff_eq_add] at this
         rw [this]; simp [add_smul, Pi.add_apply]
-      · simp only [hca, if_false, sub_zero] at this
+      · simp only [hca, ite_false, sub_zero] at this
         rw [this]; simp [Pi.add_apply, Ne.symm hca]
     obtain ⟨w1, hw1V, hw10, hw1⟩ := hV.2.2.2
     intro k
@@ -529,10 +532,10 @@ theorem k3Vd (n : ℕ) : QuotientHighestWeightTensorDual n := by
       have := Fin.lt_def.1 hab
       have hνk := hνbd k
       by_cases h1 : (a : ℕ) < k <;> by_cases h2 : (b : ℕ) < k
-      · simp only [h1, h2, if_true]; linarith
-      · simp only [h1, h2, if_true, if_false]; linarith
+      · simp only [h1, h2, ite_true]; linarith
+      · simp only [h1, h2, ite_true, ite_false]; linarith
       · omega
-      · simp only [h1, h2, if_false]; linarith
+      · simp only [h1, h2, ite_false]; linarith
     have hmin := Nat.find_min' hQ ⟨_, hw0Y, hy'0, μ', hy'μ, hbd', hN'⟩
     have e : μ' - lowK ε (lam - Pi.single s 1) = (ν - lowK ε (lam - Pi.single s 1)) - root a b := by
       rw [hμ']; abel
@@ -556,14 +559,13 @@ theorem k3Vd (n : ℕ) : QuotientHighestWeightTensorDual n := by
 
 end ReciprocityTheory.ChartRestriction.DS.Lap.LemK
 end -- clump:auto
+end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.QuotM
 
 
 open Matrix MeasureTheory
 open scoped InnerProductSpace
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.QuotM
 
 namespace ReciprocityTheory.ChartRestriction.DS.Lap
 
@@ -691,6 +693,10 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.EvalMF
 
+
+open Matrix MeasureTheory
+open scoped InnerProductSpace
+
 namespace ReciprocityTheory.ChartRestriction.DS.Lap
 
 open ReciprocityTheory.ChartRestriction.DS
@@ -772,7 +778,12 @@ end ConjugateTransportSingles
 end ReciprocityTheory.ChartRestriction.DS.Lap
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SumGammaNnMinus
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SumGammaNnMinus
+
+noncomputable section
+
+open Matrix MeasureTheory
+open scoped InnerProductSpace
 
 namespace ReciprocityTheory.ChartRestriction.DS.Lap
 
@@ -810,13 +821,13 @@ theorem gamma_formula {k r : ℕ} (P : Mat k r) (z : Fin (2 * r + k + 1) → ℂ
     simp [Formalism.QuantumDeterminants.bvec]
   by_cases hr : r = 0
   · refine ⟨_, by exact_mod_cast (Real.sqrt_pos.mpr hTz).ne', key ((Real.sqrt (Formalism.QuantumDeterminants.Tz k r z) : ℝ) : ℂ) _ ?_⟩
-    rw [if_pos hr, xOne, if_pos hr]
+    rw [ite_eq_left hr, xOne, ite_eq_left hr]
     have e2 : Fin.last (2 * r + k) = Formalism.QuantumDeterminants.wI k r (Fin.last k) :=
       Fin.ext (by simp [Formalism.QuantumDeterminants.wI]; omega)
     rw [e2]
     exact hg₀.2.2
   · refine ⟨1, one_ne_zero, key 1 _ ?_⟩
-    rw [if_neg hr, xOne, if_neg hr, one_smul]
+    rw [ite_eq_right hr, xOne, ite_eq_right hr, one_smul]
     exact (hg₀.2.1 ⟨0, Nat.pos_of_ne_zero hr⟩).1
 
 open CapelliMinorRestriction in
@@ -949,7 +960,7 @@ theorem evalM : EvalMStatement := by
     exact hu j (by linarith)
   have hvL : lin ⟨(v : D), hv⟩ ≠ 0 := hne
   by_cases hr : r = 0
-  · have hj : j₀ = Fin.last _ := by rw [hj₀, if_pos hr]
+  · have hj : j₀ = Fin.last _ := by rw [hj₀, ite_eq_left hr]
     rw [hj]
     have hk0 : k + 1 = 2 * r + k + 1 := by omega
     have hinj0 : Function.Injective (Fin.cast hk0) := Fin.cast_injective hk0
@@ -983,7 +994,7 @@ theorem evalM : EvalMStatement := by
     refine smul_ne_zero (Finset.prod_ne_zero_iff.mpr fun j _ => ?_) hvL
     have := hfac j
     simpa [hr] using this
-  · have hj : j₀ = 0 := by rw [hj₀, if_neg hr]
+  · have hj : j₀ = 0 := by rw [hj₀, ite_eq_right hr]
     rw [hj]
     have hrp : 0 < r := Nat.pos_of_ne_zero hr
     have hl : ∀ a b, Capelli.blk k r a < Capelli.blk k r b →
@@ -1019,8 +1030,13 @@ theorem evalM : EvalMStatement := by
 
 end ReciprocityTheory.ChartRestriction.DS.Lap
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.StepDown
+
+
+open Matrix MeasureTheory
+open scoped InnerProductSpace
 
 namespace ReciprocityTheory.ChartRestriction.DS.Lap
 

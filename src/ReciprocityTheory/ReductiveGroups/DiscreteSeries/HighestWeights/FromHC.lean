@@ -13,12 +13,11 @@ import Mathlib.Tactic.Lemma
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.FromHCA, ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.FromHC
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.FromHCA
 
+noncomputable section
 
 open Matrix
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.FromHCA
 
 namespace ReciprocityTheory.ChartRestriction.DS.HW
 
@@ -81,12 +80,6 @@ lemma fhSig_isURepOn (τ : KG ε →* unitary (V →L[ℂ] V)) (hτ : Continuous
     rw [fhSig_of_mem τ x.2]
 
 end Sig
-
-section InK
-
-variable {n : ℕ} {ε : Fin n → Bool}
-
-end InK
 
 section Coef
 
@@ -187,8 +180,12 @@ end Coef2
 
 end ReciprocityTheory.ChartRestriction.DS.HW
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.FromHC
+
+
+open Matrix
 
 namespace ReciprocityTheory.ChartRestriction.DS.HW
 

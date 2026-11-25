@@ -185,8 +185,9 @@ end GlobalTheory.HodgeCoh
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ConeClZeroBijective
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ConeClZeroBijective
 
+noncomputable section
 
 open CategoryTheory KaehlerDifferential
 
@@ -226,17 +227,13 @@ variable {T₀ : C} (hb : Function.Bijective (e T₀))
 
 end Cone
 
-section Low
-
-variable {R : Type} [CommRing R] {C : Type u} [Category.{v} C] (F : C ⥤ CommAlgCat.{0} R)
-
-end Low
-
 end GlobalTheory.HodgeCoh
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ToPtIdPtBijective
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ToPtIdPtBijective
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential Opposite
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -291,18 +288,6 @@ def OPt (s : X ⟶ Sp k) : AffPt s ⥤ CommAlgCat.{0} k where
 
 abbrev HdR (s : X ⟶ Sp k) (n : ℕ) : Type 1 := Hyp (OPt s) n
 
-section Pull
-
-variable {s : X ⟶ Sp k} {s' : X' ⟶ Sp k'} {s'' : X'' ⟶ Sp k''} {σ : k →+* k'} {τ : k' →+* k''}
-
-end Pull
-
-section Aff
-
-variable (s : X ⟶ Sp k)
-
-end Aff
-
 section Fil
 
 variable (s : X ⟶ Sp k)
@@ -322,6 +307,7 @@ variable {k B}
 end Affine
 
 end GlobalTheory.HodgeCoh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.InstFintypeHodgeBidegree

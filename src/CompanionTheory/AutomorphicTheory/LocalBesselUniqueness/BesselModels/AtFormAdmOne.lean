@@ -15,11 +15,13 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.BesselDecayBounds.S
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.AtFormAdm, CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.DDForm, CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.AtFormAdmOne
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.AtFormAdm
+section -- clump member: CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.AtFormAdm
+@[expose] public section
 
 open MeasureTheory Matrix
 open scoped InnerProductSpace ENNReal
 
+noncomputable section
 
 
 namespace Formalism.FourierDecayAlt.P
@@ -65,7 +67,7 @@ theorem smooth_admissible_form_one_side : CompanionTheory.Lime.BM.AtFormAdmOneOf
     refine DDSmoothness.l2_norm_scaling _ _ (l v) _ _ hNv (hae.mono fun g hg => ?_)
     rw [hI v hv _ (PI.UnitaryGroupMassFormula.CapelliEig.smooth_right_action k r ε lam H σ hσ x hx _ hg)]
     simp only [ContinuousLinearMap.smulRight_apply, innerSL_apply_apply]
-  · push_neg at hnz
+  · push Not at hnz
     have h0 := hZ hIn k r ε lam h H σ w0 Wp z c u π μW μN μG νq hS hnz
     have h0D := hZD hIn k r ε lam h H σ w0 Wp z c u π μW μN μG νq hS hnz
     refine ⟨fun _ => 0, DDSmoothness.bessel_zero, fun x hx v hv => ⟨hBC1 x hx v hv, ?_⟩,
@@ -84,13 +86,17 @@ end UnipotentHaarMeasurability
 
 end Formalism.FourierDecayAlt.P
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.DDForm
+section -- clump member: CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.DDForm
+@[expose] public section
 
 open MeasureTheory Matrix
 open scoped InnerProductSpace ENNReal ComplexConjugate
 
+noncomputable section
 
 
 namespace Formalism.FourierDecayAlt.P.DDSmoothness
@@ -123,7 +129,7 @@ theorem discrete_form_one_side : CompanionTheory.Lime.BM.DDFormOneOfSteps := by
     refine l2_norm_scaling _ _ (l v) _ _ hNv (hae.mono fun g hg => ?_)
     rw [hid _ (PI.UnitaryGroupMassFormula.CapelliEig.smooth_right_action k r ε lam H σ hσ x (hsm x hx) _ hg) v hv]
     simp only [ContinuousLinearMap.smulRight_apply, innerSL_apply_apply]
-  · push_neg at hnz
+  · push Not at hnz
     refine ⟨fun _ => 0, bessel_zero, fun x hx v hv => ⟨hBC1 x (hsm x hx) v (Or.inl hv), ?_⟩,
       fun x _ _ v _ => by simp⟩
     show be z c π σ μW μN x v = _
@@ -134,6 +140,8 @@ end BM
 
 end Formalism.FourierDecayAlt.P.DDSmoothness
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.AtFormAdmOne

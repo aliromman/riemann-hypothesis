@@ -14,18 +14,14 @@ public import Mathlib.LinearAlgebra.Semisimple
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.KillingFormDiffCartanInvolution, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsMulRightInvariantOfCenter
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.KillingFormDiffCartanInvolution
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.KillingFormDiffCartanInvolution
 
 open Matrix MeasureTheory Topology
 open scoped Kronecker ContDiff
 
+noncomputable section
 
 namespace GlobalTheory.Tw
-
-section Alg
-variable {a b : ℕ} {R : Type} [CommRing R] [StarRing R]
-
-end Alg
 
 variable {a b : ℕ}
 
@@ -66,6 +62,7 @@ theorem isCompact_unitary_GL (n : ℕ) : IsCompact {k : GL (Fin n) ℂ | k.val �
   exact isCompact_range hφ
 
 end GlobalTheory.Tw
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsMulRightInvariantOfCenter

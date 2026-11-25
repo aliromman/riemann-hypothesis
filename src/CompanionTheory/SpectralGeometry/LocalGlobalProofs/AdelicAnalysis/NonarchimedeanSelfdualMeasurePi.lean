@@ -16,9 +16,10 @@ import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology
 open scoped TensorProduct ENNReal NNReal Matrix
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.HarrisTaylorCardKilledByIdealEqAbsNormPow
+@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.HarrisTaylorCardKilledByIdealEqAbsNormPow
 open Classical
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SW.FourierPi
 
@@ -180,11 +181,11 @@ theorem integral_ann_eq (lam : Measure R) [lam.IsAddHaarMeasure] (L P : AddSubgr
     ∫ t in (P : Set R), ψ (s * t) ∂lam = if s ∈ L then (lam.real (P : Set R) : ℂ) else 0 := by
   simp_rw [mul_comm s]
   by_cases h : s ∈ L
-  · rw [if_pos h]
+  · rw [ite_eq_left h]
     exact integral_subgroup_eq_real lam _ hPm s fun x hx => by
       rw [mul_comm]
       exact hLP s h x hx
-  · rw [if_neg h]
+  · rw [ite_eq_right h]
     have : ∃ a ∈ P, ψ (a * s) ≠ 1 := by
       by_contra! hcon
       exact h (hPL s hcon)
@@ -387,6 +388,7 @@ theorem selfDual_pi : ∀ (R : Type) [CommRing R] [TopologicalSpace R] [IsTopolo
 end Main
 
 end GlobalTheory.CompanionTheory.SW.FourierPi
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.NonarchimedeanSelfdualMeasurePi

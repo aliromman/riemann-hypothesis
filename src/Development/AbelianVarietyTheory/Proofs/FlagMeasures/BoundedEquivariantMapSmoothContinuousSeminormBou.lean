@@ -692,11 +692,12 @@ theorem sobolev_at_one_compact : ∀ (n : ℕ) (ε : Fin n → Bool), ∃ (S : L
 end GlobalTheory.SobolevHaar
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SobolevInequalityAtIdentityBesselModelUnitaryGro
+@[expose] public section
+
+noncomputable section
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SobolevInequalityAtIdentityBesselModelUnitaryGro
 open scoped InnerProductSpace ContDiff ENNReal
 
 namespace GlobalTheory.SobAtOne
@@ -757,7 +758,7 @@ theorem sobolev_at_one_G : ∀ (k r : ℕ) (μG : Measure (Mt k r)), IsHaarOn (G
   have hfin : IsFiniteMeasureOnCompacts μG := by
     obtain ⟨hG, -⟩ := closedSub_groups k r (bvec (wI k r (Fin.last k))) (fun i hi => by
       simp only [bvec, wI]
-      rw [Pi.single_apply, if_neg]
+      rw [Pi.single_apply, ite_eq_right]
       intro h; rw [h] at hi; simp at hi) (by
       have h : herm (Hpk k r) (bvec (wI k r (Fin.last k))) (bvec (wI k r (Fin.last k))) =
           Hpk k r (wI k r (Fin.last k)) (wI k r (Fin.last k)) := by
@@ -861,7 +862,13 @@ theorem sobolev_at_one_G : ∀ (k r : ℕ) (μG : Measure (Mt k r)), IsHaarOn (G
 
 end GlobalTheory.SobAtOne
 
+end
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TendstoAverageL2Compact
 open scoped InnerProductSpace ENNReal Topology

@@ -782,8 +782,9 @@ theorem tr_lt_finrank_cyclotomic : ∀ (D : D7), EmbeddingTypeJumps.Conclusion1 
 end GlobalTheory.CycDegRam
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RowPlacesSatisfyRowHypothesisAtQAndD
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RowPlacesSatisfyRowHypothesisAtQAndD
 
+noncomputable section
 
 namespace GlobalTheory.RowBoundB
 
@@ -831,7 +832,7 @@ theorem jump_windows (η Sc b : ℝ) (t : ℕ) (hη : 0 < η) (hS : 0 < Sc) (ht 
       refine ⟨p, key _ _ hS.le ?_⟩
       push_cast at q ⊢; linarith
     refine ⟨false, (s + 1).toNat, by omega, fun a ha => ?_, fun a ha hj => ?_⟩
-    · simp only [ElementDenominator.deep, Bool.false_eq_true, if_false, Set.mem_union, Set.mem_Icc]
+    · simp only [ElementDenominator.deep, Bool.false_eq_true, ite_false, Set.mem_union, Set.mem_Icc]
       rcases ha with ha | ha | ha
       · have := hc' a ha
         omega
@@ -847,7 +848,7 @@ theorem jump_windows (η Sc b : ℝ) (t : ℕ) (hη : 0 < η) (hS : 0 < Sc) (ht 
       refine ⟨q, key _ _ hS.le ?_⟩
       push_cast at p ⊢; linarith
     refine ⟨true, (s - 1).toNat, by omega, fun a ha => ?_, fun a ha hj => ?_⟩
-    · simp only [ElementDenominator.deep, if_true, Set.mem_union, Set.mem_Icc]
+    · simp only [ElementDenominator.deep, ite_true, Set.mem_union, Set.mem_Icc]
       rcases ha with ha | ha | ha
       · have := hc' a ha
         omega
@@ -991,6 +992,7 @@ theorem row_bound : ∀ (D : D7) (r : ∀ i : D.nd.Loc, D.nd.X i → (GE D.nd �
     exact hbd.trans (Int.le_ceil _)
 
 end GlobalTheory.RowBoundB
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TheoremBLocalDegreeSumBounds
@@ -1243,10 +1245,11 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdmJumpSetup
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdmJumpSetup
 
 open NumberField IsDedekindDomain Formalism Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations GlobalTheory.NLink
 
+noncomputable section
 
 namespace GlobalTheory.HostJumpWin
 
@@ -1331,10 +1334,10 @@ theorem mem_JJ (up : Bool) (j : ℕ) (ρ : D.what₂.Tau) (a : ℤ) : (a : ℚ) 
     (a : ℚ) ∈ cloudT D up j ρ ∨ (a : ℚ) ∈ lowT D up j ρ ∨ (0 ≤ a ∧ a < D.R.t) := by
   cases up
   · rw [← mem_reflS_blockJ]
-    simp only [JJ, cloudT, lowT, Bool.false_eq_true, if_false, Jm, Jp, reflS, Set.mem_setOf_eq, Set.mem_union]
+    simp only [JJ, cloudT, lowT, Bool.false_eq_true, ite_false, Jm, Jp, reflS, Set.mem_setOf_eq, Set.mem_union]
     tauto
   · rw [← _root_.GlobalTheory.JumpSets.block_mem_iff]
-    simp only [JJ, cloudT, lowT, if_true, Jp, Set.mem_union]
+    simp only [JJ, cloudT, lowT, ite_true, Jp, Set.mem_union]
     tauto
 
 theorem sz_bounds (L : SizeData₂ D) (P : ParameterChoice' D L) (hP : AdmPar L) (j : ℕ) (hj1 : 1 ≤ j) (hj2 : j ≤ D.R.m)
@@ -1411,7 +1414,7 @@ theorem typeU_of_emb (i : D.nd.Loc) {w : HeightOneSpectrum (𝓞 D.host.E)}
   have hgg : g = g' := (factEmb D.R D.host).1.1 (RingHom.ext hemb)
   subst hgg
   cases e
-  · simp only [EmbeddingTypeJumps.EmbTypeUe, Bool.false_eq_true, if_false] at h0
+  · simp only [EmbeddingTypeJumps.EmbTypeUe, Bool.false_eq_true, ite_false] at h0
     obtain ⟨-, φ, hφ, hφr⟩ := h0
     show (g ∈ D.R.Psi ↔ false = true)
     simp only [Bool.false_eq_true, iff_false]
@@ -1431,7 +1434,7 @@ theorem typeU_of_emb (i : D.nd.Loc) {w : HeightOneSpectrum (𝓞 D.host.E)}
     have him := congrArg Complex.im hv
     simp at him
     linarith
-  · simp only [EmbeddingTypeJumps.EmbTypeUe, if_true] at h0
+  · simp only [EmbeddingTypeJumps.EmbTypeUe, ite_true] at h0
     show (g ∈ D.R.Psi ↔ true = true)
     simp only [iff_true]
     exact hU.1 h0
@@ -1556,6 +1559,7 @@ theorem key_sets (L : SizeData₂ D) (hJb : CloudCentreDistance L) (hJc : jcCond
 
 
 end GlobalTheory.HostJumpWin
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ImportsFurtherSide

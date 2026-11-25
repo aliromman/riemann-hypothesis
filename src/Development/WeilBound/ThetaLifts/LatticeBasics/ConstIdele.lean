@@ -17,8 +17,10 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.ThetaLifts.LatticeBasics.ConstHecke, Development.WeilBound.ThetaLifts.LatticeBasics.ConstIdele
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LatticeBasics.ConstHecke
+section -- clump member: Development.WeilBound.ThetaLifts.LatticeBasics.ConstHecke
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.ThK.Dbl
 
@@ -77,7 +79,7 @@ theorem hchar_eq_one (H : GlobalTheory.Published.HeckeLEntireAndNonzeroAtOne) (�
           · rw [norm_one]; exact Real.exp_le_one_iff.2 (by linarith [x0 w])
       · push Not at hw
         have hl := h w (by simpa using hw.2) (not_not.1 hw.1)
-        rw [Set.indicator_of_notMem hw.1, Set.indicator_of_notMem hw.2, eulerFactor, if_pos (show χ.UnrAt w from fun y _ => hl y),
+        rw [Set.indicator_of_notMem hw.1, Set.indicator_of_notMem hw.2, eulerFactor, ite_eq_left (show χ.UnrAt w from fun y _ => hl y),
           show χ.val w = 1 from hl _, xc]
         simpa using exp_le_inv (x1 w)
     refine le_trans (Real.exp_le_exp.2 ?_) (le_of_tendsto_of_tendsto' s1.rexp (hP s hs).norm fun T =>
@@ -126,6 +128,8 @@ theorem closed_eq_top [_root_.NumberField.IsTotallyComplex K] (H : GlobalTheory.
 
 end GlobalTheory.ThK.Dbl
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LatticeBasics.ConstIdele

@@ -197,8 +197,9 @@ theorem gam_rat : ∀ (D : D7) (X : HidaSetting D) (u : D.what₂.Word) (γ : Ga
 end GlobalTheory.GamRat
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalUnitaryExtendByIdentityOnFixSet
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalUnitaryExtendByIdentityOnFixSet
 
+noncomputable section
 namespace GlobalTheory.St
 
 theorem col_mul_eq_mulVec {A : Type} [CommRing A] {n ι κ : Type} [Fintype n] [Fintype ι]
@@ -232,7 +233,7 @@ theorem rational_unitary_extend_by_identity : ∀ (D : D7) (X : HidaSetting D) (
       rw [col_mul_eq_mulVec, hMQ]
       funext i
       erw [Matrix.mul_apply, Fintype.sum_sum_type]
-      simp only [Matrix.fromBlocks_apply₁₂, Matrix.fromBlocks_apply₂₂, Matrix.zero_apply, mul_zero, Finset.sum_const_zero, zero_add, Matrix.one_apply, mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      simp only [Matrix.fromBlocks_apply₁₂, Matrix.fromBlocks_apply₂₂, Matrix.zero_apply, mul_zero, Finset.sum_const_zero, zero_add, Matrix.one_apply, mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     rcases hx with (⟨a, rfl⟩ | ⟨a, rfl⟩) | hz'
     · have := key (Sum.inl a)
       have e : (fun i => Q i (Sum.inr (Sum.inl a))) = X.eR a := funext fun i => he a i
@@ -256,6 +257,7 @@ theorem rational_unitary_extend_by_identity : ∀ (D : D7) (X : HidaSetting D) (
     exact Finset.sum_congr rfl fun i _ => mul_comm _ _
 
 end GlobalTheory.St
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalUnitaryFixingActsOnComplementFrame

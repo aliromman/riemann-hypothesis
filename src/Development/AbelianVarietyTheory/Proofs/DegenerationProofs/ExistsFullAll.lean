@@ -67,11 +67,11 @@ import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open scoped CategoryTheory.Obj BigOperators
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsLevelOfFull
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.Ex
 
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsLevelOfFull
+
+noncomputable section
 
 namespace GlobalTheory.FullLevel
 
@@ -171,27 +171,24 @@ theorem exists_level_of_full : Laws → ∀ (E : Type) [Field E] [NumberField E]
 
 end GlobalTheory
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsLevelOfFullStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.Ex
 
 theorem _root_.GlobalTheory.T.exists_level_of_full' : Laws → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H), ∀ (g : ℕ) (bas : (Fin (2 * g) → ℤ) ≃ₗ[ℤ] D.La), (∀ i j, D.EF (bas (Pi.single i 1)) (bas (Pi.single j 1)) = stdSymp g i j) → ∀ (K : Type) [Field K] [IsAlgClosed K] (o : Full D K) (M : ℕ), 0 < M → ∃ (hg : o.P.g = g) (lev : Out.Level o.P M (unitOn (o.I.ζ M))), (∀ i, levelBasis lev hg i = o.I.ev M (bas (Pi.single i 1))) ∧ ∀ c : Fin (2 * g) → ℤ, levelPoint lev hg (fun i => (c i : ZMod M)) = o.I.ev M (bas c) := by
   first | exact @GlobalTheory.exists_level_of_full
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsLimitPointTateIsoSequenceStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.Ex
 
 theorem _root_.GlobalTheory.T.exists_limitPoint_tateIso_sequence : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H), ∀ (k : Type) [Field k] (Q : Type) [Group Q] (act : 𝓞 E → Q → Q) (e : ℕ → Q → Q → kˣ → Prop) (I : ℕ → TateIso D k Q act e), ∃ I' : TateIso D k Q act e, ∀ M, 0 < M → ∀ j₀, ∃ j, j₀ ≤ j ∧ I'.ev M = (I j).ev M ∧ I'.ζ M = (I j).ζ M := by
   first | exact @GlobalTheory.Ex.TateLimit.exists_limit
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsTateIsoMove
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.Ex
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsTateIsoMove
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.FullMove
 
@@ -250,27 +247,23 @@ theorem exists_tateIso_move : Laws → ∀ (E : Type) [Field E] [NumberField E] 
 
 end GlobalTheory.FullMove
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsTateIsoMoveStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.Ex
 
 theorem _root_.GlobalTheory.T.exists_tateIso_of_isPolIso : Laws → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H), ∀ (K : Type) [Field K] [IsAlgClosed K] (o o' : Full D K) (φ : o.P.A ≅ o'.P.A), IsPolIso o.P o'.P φ → (letI := H.starRing; ∀ x, o.oa.act x ≫ φ.hom = φ.hom ≫ o'.oa.act x) → ∃ I' : (letI := H.starRing; TateIso D K (baseOver (Sp K) ⟶ o'.P.A) (fun a g => g ≫ o'.oa.act a) (fun n g g' c => WeilIs o'.P.A o'.P.L n g g' (unitOn c))), I'.ζ = o.I.ζ ∧ (∀ M a, I'.ev M a = o.I.ev M a ≫ φ.hom) ∧ ∀ m v, o.Theta m v → Full.Theta { o' with I := I' } m v := by
   first | exact @GlobalTheory.FullMove.exists_tateIso_move
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsThetaPtDownStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.Ex
 
 theorem _root_.GlobalTheory.T.isThetaPt_pow_of_isThetaPt_mul : Laws → ∀ (K : Type) [Field K] [IsAlgClosed K] (P : PolAV (Sp K)) (n m : ℕ) (Ix : Type) (x : Ix → (baseOver (Sp K) ⟶ P.A)) (v : Ix → Γ((baseOver (Sp K)).left, ⊤)), (∀ i, (x i ^ n) ^ m ^ 2 = 1) → IsThetaPt P (n * m) x v → IsThetaPt P m (fun i => x i ^ n) v := by
   first | exact @GlobalTheory.ThetaNest.isThetaPt_down
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsFullAll
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.Ex
 
 namespace GlobalTheory.Ex.AllLevels
 

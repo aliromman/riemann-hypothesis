@@ -96,7 +96,10 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ResCharConj
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SpacesNormHasFrame, Development.AbelianVarietyTheory.Proofs.FoundationProofs.StandardFrameOfDiagonalStages, Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsBaseJointFld, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CmTypeNormGeneratorOfKummerFieldLe, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RayFieldLeAndExistsBase, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.KsCondExact, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PinsCoordPre, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsPrePin, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PassStepCongr, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EvLgCanonical, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMemPvSet, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHalfSelectionSplitPlacesBase, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHalfSelectionSplitPlacesBaseStatement, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StepPinned, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMemberOfConstructionStepsSecondPass, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMemberOfConstructionStepsSecondPassStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SpacesNormHasFrame
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SpacesNormHasFrame
+@[expose] public section
+
+noncomputable section
 
 namespace GlobalTheory.Mem.DiagSp
 
@@ -132,14 +135,14 @@ theorem planeVec_planeVec (N n h p : ℕ) (hN : n + 2 * h ≤ N) (hp : p = n + h
   simp only [planeVec, map_add (f := _), LinearMap.add_apply, diag_single_single, c1, c2]
   have e1 : ¬ (n + (i : ℕ) = n + h + j) := by omega
   have e2 : ¬ (n + h + (i : ℕ) = n + j) := by omega
-  rw [if_neg e1, if_neg e2]
+  rw [ite_eq_right e1, ite_eq_right e2]
   by_cases hij : i = j
   · subst hij
     simp [sgn, sub_eq_add_neg]
   · have h' : (i : ℕ) ≠ j := fun e => hij (Fin.ext e)
     have e3 : ¬ (n + (i : ℕ) = n + j) := by omega
     have e4 : ¬ (n + h + (i : ℕ) = n + h + j) := by omega
-    rw [if_neg e3, if_neg e4, if_neg hij]
+    rw [ite_eq_right e3, ite_eq_right e4, ite_eq_right hij]
     simp
 
 theorem ext_planeVec (N n h : ℕ) (hN : n + 2 * h ≤ N) (neg : Fin N → Bool) (x : Fin n → E) (a b : E)
@@ -152,7 +155,7 @@ theorem single_planeVec (N n h : ℕ) (hN : n + 2 * h ≤ N) (neg : Fin N → Bo
     (hl : n + 2 * h ≤ l) (c a b : E) (i : Fin h) :
     diagForm N neg (Pi.single l c) (planeVec N n h hN a b i) = 0 := by
   have hi := i.isLt
-  rw [planeVec, map_add (f := _), diag_single_single, diag_single_single, if_neg, if_neg, add_zero]
+  rw [planeVec, map_add (f := _), diag_single_single, diag_single_single, ite_eq_right, ite_eq_right, add_zero]
   · simp only; omega
   · simp only; omega
 
@@ -180,7 +183,7 @@ theorem top_line_norm :
       (Pi.single (⟨R.rankY R.m, by rw [N_top]; omega⟩ : Fin (R.N R.m)) pz)
       (Pi.single (⟨R.rankY R.m, by rw [N_top]; omega⟩ : Fin (R.N R.m)) pz) = (T : E) := by
   refine (diag_single_single _ (fun _ => false) _ _ pz pz).trans ?_
-  rw [if_pos rfl, ← hpz]
+  rw [ite_eq_left rfl, ← hpz]
   simp [sgn]
 
 def spacesNorm : Spaces R F E :=
@@ -217,7 +220,7 @@ theorem spacesNorm_hasFrame (j : ℕ) (hj : j < R.m) : HasHyperbolicAuxiliaryFra
     refine (diag_single_single _ (cut _ (pY R j)) _ _ pz pz).trans ?_
     have c : cut (R.rankY j) (pY R j) ⟨_, hl⟩ = true := by
       simp only [cut, decide_eq_true_eq]; omega
-    rw [if_pos rfl, c]
+    rw [ite_eq_left rfl, c]
     change _ = -(T : E)
     rw [← hpz]
     simp [sgn]
@@ -247,6 +250,8 @@ end Main
 
 end GlobalTheory.Mem.DiagSp
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.StandardFrameOfDiagonalStages

@@ -9,8 +9,10 @@ import Formalism.LocalToGlobal.GlobalTheory.GL6.Statement
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.SeenZero, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.NatNotMemPv, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.IntInvOfLoc
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.SeenZero
+section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegralityAtPrimeLattices.SeenZero
+@[expose] public section
 
+noncomputable section
 
 open NumberField Ideal
 
@@ -49,7 +51,7 @@ theorem seen_pos (A : AtTTied u) (w : D.what₂.places.Pl) (hw : Formalism.MainN
     exact Iff.rfl
   have hπ : 0 < ν (A.piU : D.host.E) := by
     have := A.seenP w hw' ((D.fm u).tauOf w v)
-    rw [if_pos hseen] at this
+    rw [ite_eq_left hseen] at this
     exact this
   have hpb : A.res v (cO A.piU) ≠ 0 := A.res_conj v (cO A.piU) rfl
   have hπb : ν ((cO A.piU : 𝓞 D.host.E) : D.host.E) = 0 := by
@@ -109,6 +111,8 @@ theorem seen_mem (A : AtTTied u) (w : D.what₂.places.Pl) (hw : Formalism.MainN
 
 end PI.UnitaryGroupMassFormula.IAT
 
+end
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

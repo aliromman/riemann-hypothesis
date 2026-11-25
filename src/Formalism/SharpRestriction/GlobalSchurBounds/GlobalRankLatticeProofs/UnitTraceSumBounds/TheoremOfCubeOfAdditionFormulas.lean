@@ -111,8 +111,10 @@ end PI.CubicExponentialFactor.Wk
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CubicExponentialFactor.ExpMvAddC
+section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CubicExponentialFactor.ExpMvAddC
+@[expose] public section
 
+noncomputable section
 
 namespace PI.CubicExponentialFactor.Wk
 
@@ -242,31 +244,31 @@ theorem main : Lemma := by
     exact PI.FglShared.subst_ne_zero hex0 hinv hy0 hy
   have e0 : MvPowerSeries.coeff (Finsupp.single (0 : Fin 3) k) (lg l x0) = PowerSeries.coeff k l := by
     have h := hcoef 0 0
-    rw [if_pos rfl] at h
+    rw [ite_eq_left rfl] at h
     exact h
   have e1 : MvPowerSeries.coeff (Finsupp.single (0 : Fin 3) k) (lg l x1) = 0 := by
     have h := hcoef 0 1
-    rw [if_neg (by decide)] at h
+    rw [ite_eq_right (by decide)] at h
     exact h
   have e2 : MvPowerSeries.coeff (Finsupp.single (0 : Fin 3) k) (lg l x2) = 0 := by
     have h := hcoef 0 2
-    rw [if_neg (by decide)] at h
+    rw [ite_eq_right (by decide)] at h
     exact h
   have f1 : MvPowerSeries.coeff (Finsupp.single (1 : Fin 3) k) (lg l x1) = PowerSeries.coeff k l := by
     have h := hcoef 1 1
-    rw [if_pos rfl] at h
+    rw [ite_eq_left rfl] at h
     exact h
   have f2 : MvPowerSeries.coeff (Finsupp.single (1 : Fin 3) k) (lg l x2) = 0 := by
     have h := hcoef 1 2
-    rw [if_neg (by decide)] at h
+    rw [ite_eq_right (by decide)] at h
     exact h
   have g2 : MvPowerSeries.coeff (Finsupp.single (2 : Fin 3) k) (lg l x2) = PowerSeries.coeff k l := by
     have h := hcoef 2 2
-    rw [if_pos rfl] at h
+    rw [ite_eq_left rfl] at h
     exact h
   have g0 : MvPowerSeries.coeff (Finsupp.single (2 : Fin 3) k) (lg l x0) = 0 := by
     have h := hcoef 2 0
-    rw [if_neg (by decide)] at h
+    rw [ite_eq_right (by decide)] at h
     exact h
   have hs0 : s ≠ 0 := by
     have hs' : s = pt ex (lg l x0 + lg l x1 + lg l x2) := by
@@ -359,14 +361,15 @@ theorem main : Lemma := by
 
 end PI.CubicExponentialFactor.Wk
 
+end
+end -- clump:auto
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupChords.DerivativeFlog
 
+noncomputable section
 
 open Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupChords.DerivativeFlog
 
 namespace PI.FglChordFactor.Wk
 
@@ -463,13 +466,13 @@ theorem dX_eq (f : PowerSeries ℂ_[p]) : dX f = PowerSeries.derivative (R := �
 theorem derivative_flog' (W : WeierstrassCurve ℂ_[p]) (wq : PowerSeries ℂ_[p]) :
     PowerSeries.derivative (R := ℂ_[p]) (flog W wq) = omegaW W wq := by
   ext n
-  rw [PowerSeries.coeff_derivative, flog, PowerSeries.coeff_mk, if_neg (Nat.succ_ne_zero n), Nat.add_sub_cancel]
+  rw [PowerSeries.coeff_derivative, flog, PowerSeries.coeff_mk, ite_eq_right (Nat.succ_ne_zero n), Nat.add_sub_cancel]
   push_cast
   exact div_mul_cancel₀ _ (Nat.cast_add_one_ne_zero n)
 
 theorem flog_const (W : WeierstrassCurve ℂ_[p]) (wq : PowerSeries ℂ_[p]) :
     PowerSeries.constantCoeff (flog W wq) = 0 := by
-  rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, flog, PowerSeries.coeff_mk, if_pos rfl]
+  rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, flog, PowerSeries.coeff_mk, ite_eq_left rfl]
 
 theorem omega_mul {W : WeierstrassCurve ℂ_[p]} {wq : PowerSeries ℂ_[p]} (h : IsWq W wq) :
     omegaW W wq * (wq * (algebraMap ℂ_[p] (PowerSeries ℂ_[p]) W.a₁ * PowerSeries.X +
@@ -567,8 +570,12 @@ theorem iW_mem {S : Subring ℂ_[p]} {W : WeierstrassCurve ℂ_[p]} {wq : PowerS
 
 end PI.FglChordFactor.Wk
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupChords.SubstBivariateSeriesDifferencePair
+
+
+open Classical
 
 namespace PI.FglChordFactor.Wk
 
@@ -730,6 +737,9 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupChords.NormDeltaWc
 
+
+open Classical
+
 namespace PI.FglChordFactor.Wk
 
 theorem isWq_bridge {p : ℕ} [Fact p.Prime] {W : WeierstrassCurve ℂ_[p]} {wq : PowerSeries ℂ_[p]}
@@ -739,6 +749,9 @@ end PI.FglChordFactor.Wk
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupChords.FormalGroupChordFactor
+
+
+open Classical
 
 namespace PI.FglChordFactor.Wk
 
@@ -927,10 +940,9 @@ theorem formal_group_chord_factor : PI.FglChordFactor.Lemma := by
 end PI.FglChordFactor.Wk
 end -- clump:auto
 
-end -- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupTriangles.LogThirdPointSum
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupTriangles.LogThirdPointSum
-
+noncomputable section
 
 namespace PI.FglTriFactor.Wk
 
@@ -941,7 +953,7 @@ variable {p : ℕ} [Fact p.Prime]
 theorem cc_flog (W : WeierstrassCurve ℂ_[p]) (wq : PowerSeries ℂ_[p]) :
     PowerSeries.constantCoeff (flog W wq) = 0 := by
   first
-  | (rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, flog, PowerSeries.coeff_mk, if_pos rfl])
+  | (rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, flog, PowerSeries.coeff_mk, ite_eq_left rfl])
 
 theorem abel' {W : WeierstrassCurve ℂ_[p]} {wq : PowerSeries ℂ_[p]} (h : IsWq W wq) :
     lg (flog W wq) (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) ℂ_[p]) + lg (flog W wq) (MvPowerSeries.X 1) +
@@ -1066,6 +1078,7 @@ theorem add_factor {S : Subring ℂ_[p]} {W : WeierstrassCurve ℂ_[p]} {wq ex :
   rw [← cc_subst_eq Hz (zc_const (p := p)) u, e', map_one]
 
 end PI.FglTriFactor.Wk
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupTriangles.CcPrEq

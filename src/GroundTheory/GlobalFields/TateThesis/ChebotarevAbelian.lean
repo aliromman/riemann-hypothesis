@@ -285,7 +285,8 @@ end HeckeCharacter
 end GroundTheory.Global
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.TateThesis.RayClassDensity
+section -- clump member: GroundTheory.GlobalFields.TateThesis.RayClassDensity
+@[expose] public section
 
 open NumberField IsDedekindDomain Topology Filter Set
 
@@ -293,6 +294,7 @@ namespace GroundTheory.Global
 
 open IdeleGroup
 
+noncomputable section
 
 section FiniteCharacters
 
@@ -478,8 +480,8 @@ theorem card_mul_primeIdealZetaSum_uniformizerClass_eq (c : G) {s : ℝ} (hs : 1
         ((Ideal.absNorm v.asIdeal : ℂ) ^ (s : ℂ))⁻¹ := by
       rw [Complex.ofReal_cpow hN, Complex.ofReal_neg, Complex.cpow_neg, Complex.ofReal_natCast]
     by_cases hc : uniformizerClass q v = c
-    · rw [indicator_of_mem (show v ∈ S from ⟨hv, hc⟩), if_pos hc, hcard, hpow]
-    · rw [indicator_of_notMem (show v ∉ S from fun h ↦ hc h.2), if_neg hc]
+    · rw [indicator_of_mem (show v ∈ S from ⟨hv, hc⟩), ite_eq_left hc, hcard, hpow]
+    · rw [indicator_of_notMem (show v ∉ S from fun h ↦ hc h.2), ite_eq_right hc]
       simp
 
 theorem exists_norm_tsum_goodTerm_le (hqs : Function.Surjective q) {φ : AddChar (Additive G) ℂ}
@@ -609,11 +611,13 @@ theorem hasDirichletDensity_setOf_map_eq (hqs : Function.Surjective q) (c : G) :
 
 end Density
 
+end
 
 end GroundTheory.Global
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.TateThesis.ChebotarevAbelian
+@[expose] public section -- clump member: GroundTheory.GlobalFields.TateThesis.ChebotarevAbelian
 
 open NumberField IsDedekindDomain Topology Filter Set GroundTheory.LocalField
 
@@ -623,6 +627,7 @@ namespace GroundTheory.Global
 
 open IdeleGroup SemiLocal ValuativeRel
 
+noncomputable section
 
 universe u
 
@@ -669,15 +674,6 @@ theorem finite_setOf_exists_ramificationIdx_ne_one :
   exact hw.over.symm
 
 end Ramified
-
-section Chebotarev
-
-variable {K L : Type*} [Field K] [NumberField K] [Field L] [NumberField L] [Algebra K L]
-  [IsGalois K L] [IsMulCommutative Gal(L/K)]
-
-attribute [local instance] galCommGroup
-
-end Chebotarev
 
 section ChebotarevDensity
 
@@ -728,6 +724,7 @@ theorem hasDirichletDensity_setOf_arithFrobAt_eq (σ : Gal(L/K)) :
 
 end ChebotarevDensity
 
+end
 
 end GroundTheory.Global
 

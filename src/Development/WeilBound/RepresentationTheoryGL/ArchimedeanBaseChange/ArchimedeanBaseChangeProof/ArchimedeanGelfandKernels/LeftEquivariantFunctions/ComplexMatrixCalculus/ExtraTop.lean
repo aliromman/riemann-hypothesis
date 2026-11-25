@@ -86,13 +86,12 @@ theorem isLefK_of (hGT : GamTrace) (hlam : Antitone lam) : Real.IsLefK lam (lefE
 end PositivityTheory.RgBcC
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.MultiDiagonalTraces.MtEqToMatrix
 
+noncomputable section
 
 open Matrix
 open scoped ComplexConjugate
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.MultiDiagonalTraces.MtEqToMatrix
 
 namespace PositivityTheory.RgBcC.Cxi
 
@@ -124,7 +123,7 @@ theorem hbB_apply [Nonempty (Md n)] (m : Md n) : hbB n m = hbM m := by
 theorem hbB_repr [Nonempty (Md n)] (X : Mat n) (m : Md n) : (hbB n).repr X m = (X * hbM m).trace := by
   conv_rhs => rw [← (hbB n).sum_repr X]
   simp only [Finset.sum_mul, Matrix.smul_mul, Matrix.trace_sum, Matrix.trace_smul, hbB_apply, trace_hbM_mul_hbM_eq_ite,
-    smul_eq_mul, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    smul_eq_mul, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
 def phiL (y : Mat n) : Mat n →ₗ[ℂ] Mat n where
   toFun X := y * X * yᴴ
@@ -174,8 +173,13 @@ theorem toMatrix_stdB (w : Fin n → ℂ) : LinearMap.toMatrix (stdB n) (stdB n)
 
 end PositivityTheory.RgBcC.Cxi
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.MultiDiagonalTraces.TraceGamDiag
+
+
+open Matrix
+open scoped ComplexConjugate
 
 namespace PositivityTheory.RgBcC.Cxi
 
@@ -246,6 +250,10 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.MultiDiagonalTraces.GamTrace
 
+
+open Matrix
+open scoped ComplexConjugate
+
 namespace PositivityTheory.RgBcC
 
 open PositivityTheory.RgBcC.Cxi
@@ -313,8 +321,6 @@ theorem gamTrace : GamTrace := by
 
 end PositivityTheory.RgBcC
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.ExtraTop
 

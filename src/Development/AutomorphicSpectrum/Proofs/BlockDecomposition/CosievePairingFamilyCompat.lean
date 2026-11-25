@@ -554,11 +554,12 @@ theorem sh_desc : ∀ {K : Type} [Field K] {ι : Type} [DecidableEq ι] (ς : �
 end GlobalTheory.CompanionTheory.KunGlue.ShDesc
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShiftSumDifferentialCompat
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShiftSumDifferentialCompat
 
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct DirectSum GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Onto CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT GlobalTheory.CompanionTheory.KunGlue
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.KunGlue.MvSum
 
@@ -596,11 +597,11 @@ def psi (n : ℕ) : (Sh ς k C).X n →ₗ[K] D.X n where
 theorem psi_eq {m n : ℕ} (h : m + k = n) (w : (Sh ς k C).X n) : psi ς g n w = g h (w ⟨m, h⟩) := by
   obtain rfl : m = n - k := by omega
   have hk : k ≤ n := by omega
-  simp only [psi, LinearMap.coe_mk, AddHom.coe_mk, dif_pos hk]
+  simp only [psi, LinearMap.coe_mk, AddHom.coe_mk, dite_eq_left hk]
 
 theorem psi_zero {n : ℕ} (h : n < k) (w : (Sh ς k C).X n) : psi ς g n w = 0 := by
   have hk : ¬ k ≤ n := by omega
-  simp only [psi, LinearMap.coe_mk, AddHom.coe_mk, dif_neg hk]
+  simp only [psi, LinearMap.coe_mk, AddHom.coe_mk, dite_eq_right hk]
 
 theorem psi_comm
     (hg : ∀ {m n : ℕ} (h : m + k = n) (h' : m + 1 + k = n + 1) (x : C.X m),
@@ -703,13 +704,13 @@ theorem reG_reF : reG k ς C n ∘ₗ reF k ς C n = LinearMap.id := by
   have h' : m + k u = n := h
   obtain rfl : m = n - k u := by omega
   have hk : k u ≤ n := by omega
-  simp only [reF, reG, LinearMap.comp_apply, DirectSum.toModule_lof, LinearEquiv.coe_coe, dif_pos hk,
+  simp only [reF, reG, LinearMap.comp_apply, DirectSum.toModule_lof, LinearEquiv.coe_coe, dite_eq_left hk,
     LinearEquiv.symm_apply_apply, LinearMap.id_apply]
 
 theorem reF_reG : reF k ς C n ∘ₗ reG k ς C n = LinearMap.id := by
   refine DirectSum.linearMap_ext K fun u => LinearMap.ext fun y => ?_
   by_cases hk : k u ≤ n
-  · simp only [reF, reG, LinearMap.comp_apply, DirectSum.toModule_lof, LinearEquiv.coe_coe, dif_pos hk,
+  · simp only [reF, reG, LinearMap.comp_apply, DirectSum.toModule_lof, LinearEquiv.coe_coe, dite_eq_left hk,
       LinearEquiv.apply_symm_apply, LinearMap.id_apply]
   · have : Subsingleton ((Sh (ς u) (k u) (C u)).H n) := (_root_.GlobalTheory.CompanionTheory.KunGlue.ShiftCoh.main (ς u) (k u) (C u) n).1 (by omega)
     rw [Subsingleton.elim y 0, map_zero, map_zero]
@@ -819,6 +820,7 @@ theorem mvSum : MVBij → ∀ {K : Type} [Field K] {ι : Type} [DecidableEq ι] 
     (_root_.GlobalTheory.CompanionTheory.KunGlue.SumDesc.sum_desc _ fun u => _root_.GlobalTheory.CompanionTheory.KunGlue.ShDesc.sh_desc _ _ _ (hA u)) hT (fun S hS n => (hiff S n).2 (hE S hS n)) n)
 
 end GlobalTheory.CompanionTheory.KunGlue.MvSum
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TensorDirectSumBasisEquiv

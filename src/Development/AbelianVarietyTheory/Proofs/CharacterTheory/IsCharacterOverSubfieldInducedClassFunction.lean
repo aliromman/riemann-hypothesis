@@ -62,7 +62,8 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.BI
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.CharacterTheory.IsCharacterFinsumConjSubgroupFunctionExtendByZer
-@[expose] public noncomputable section
+@[expose] public section
+noncomputable section
 namespace GlobalTheory.BI
 
 private theorem trace_block_permutation (K : Type) [Field K] (X : Type) [Fintype X] [DecidableEq X]
@@ -164,12 +165,13 @@ theorem isChar_finsum_conj_ext0_of_isChar :
   · have hm : q.out⁻¹ * g * q.out ∈ H := (inv_smul_eq_iff_conj_mem H g q).mp h
     have he : (⟨q.out⁻¹ * g * q.out, hm⟩ : H) = cosetCocycle H g q :=
       Subtype.ext (by simp [cosetCocycle, h])
-    rw [if_pos h, ext0, dite_eq_left hm, hσ, he]
+    rw [ite_eq_left h, ext0, dite_eq_left hm, hσ, he]
     rfl
   · have hm : q.out⁻¹ * g * q.out ∉ H := fun hm => h ((inv_smul_eq_iff_conj_mem H g q).mpr hm)
-    rw [if_neg h, ext0, dite_eq_right hm, map_zero]
+    rw [ite_eq_right h, ext0, dite_eq_right hm, map_zero]
 
 end GlobalTheory.BI
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

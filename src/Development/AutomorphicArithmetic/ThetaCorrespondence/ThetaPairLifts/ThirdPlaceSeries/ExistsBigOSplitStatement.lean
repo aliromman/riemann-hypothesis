@@ -100,10 +100,12 @@ import Mathlib.Tactic.ENatToNat
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DenseFrobSet, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousRingHomFiniteDvrToPadicAlgClosure, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsConstituentImage, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLeftInverseRestrictStableSubmoduleMatrixRe, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ImageFiniteMemSubring, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AbsIrrSubOfIsIrrSubMap, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MatrixSystemNonzeroSolutionDescends, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsAbsolutelyIrreducibleSplitRepOfConstituentMode, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LiftRepOfEntriesInImage, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFiniteSplittingSetFrobeniusPolynomials, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteExceptionalPlacesOverPrime, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GaloisFamilyLocalGlobal, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PtSysFinite, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExistsBigOSplit, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExistsBigOSplitStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DenseFrobSet
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DenseFrobSet
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX GlobalTheory.HeightCounting NumberField IsDedekindDomain Polynomial
 
+noncomputable section
 
 namespace GlobalTheory.OSplitBig
 
@@ -136,11 +138,13 @@ theorem heckePol_map (D : D7) (L : LocAll (lay0 D)) (i : (withLoc L).nd.Loc) (x 
   Polynomial.map_mul, Polynomial.map_C]
   congr 1
   refine Finset.sum_congr rfl fun k hk => ?_
-  simp only [GlobalTheory.CoefDuty.ptSys, if_pos (hgen k hk), map_mul, map_pow, map_neg, map_one, map_natCast]
+  simp only [GlobalTheory.CoefDuty.ptSys, ite_eq_left (hgen k hk), map_mul, map_pow, map_neg, map_one, map_natCast]
   rfl
 
 end GlobalTheory.OSplitBig
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -881,10 +885,12 @@ theorem finite_exceptional : ∀ (D : D7) (l : ℕ), l.Prime → ∃ F : Finset 
 end GlobalTheory.PlacesExc
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GaloisFamilyLocalGlobal
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GaloisFamilyLocalGlobal
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX GlobalTheory.HeightCounting NumberField IsDedekindDomain Polynomial
 
+noncomputable section
 
 namespace GlobalTheory.SysFin
 
@@ -941,8 +947,8 @@ theorem eigSet_restrict {μ : D.what₂.Tup} {j : ℕ} (X : MtReal D μ j) (l : 
     {c : PlE D.host → ℕ → ℂ} (hc : c ∈ EigSet X l Q) :
     (fun v k => if GenAt D l Q' v k then c v k else 0) ∈ EigSet X l Q' := by
   obtain ⟨-, y, hy, hy'⟩ := hc
-  refine ⟨fun v k hg => if_neg hg, y, hy, fun v k s ϖ hg hcj hu => ?_⟩
-  simp only [if_pos hg]
+  refine ⟨fun v k hg => ite_eq_right hg, y, hy, fun v k s ϖ hg hcj hu => ?_⟩
+  simp only [ite_eq_left hg]
   exact hy' v k s ϖ (genAt_mono hQ hg) hcj hu
 
 theorem eigSet_transport (M : MtFam D) {μ μ' : D.what₂.Tup} {j j' : ℕ} (hμ : μ = μ') (hj : j = j')
@@ -955,6 +961,8 @@ end Eig
 
 end GlobalTheory.SysFin
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PtSysFinite
@@ -967,12 +975,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 noncomputable section
 namespace GlobalTheory.SysFin
 open GlobalTheory.CoefDuty
-section Places
-variable {R : Ranks} {H : Host R}
-end Places
-section Eig
-variable {D : D7}
-end Eig
 
 
 open Classical in
@@ -1041,7 +1043,7 @@ theorem ptSys_finite_alt : ∀ (D : D7) (cf : CharFrame D) (jE : D.host.E →+* 
     split_ifs with hg
     · rfl
     · unfold ptSys
-      rw [if_neg]
+      rw [ite_eq_right]
       intro hg'
       apply hg
       have hg2 : GenAt D l (C.Q w) v k := by rw [← hl, ← hQ]; exact hg'
@@ -1121,7 +1123,7 @@ theorem exists_big_oSplit_alt : ∀ (D : D7) (cf : CharFrame D) (jE : D.host.E �
       rfl
     refine (congrArg (fun f => (heckePol (withLoc L).nd i x hex.choose).map f) hio).trans ?_
     rw [heckePol_map D L i x _ hSO]
-    simp only [pw, dif_pos hex, sysPol]
+    simp only [pw, dite_eq_left hex, sysPol]
     congr 1
     refine Finset.sum_congr rfl fun k _ => ?_
     rw [hc _ hvA k]

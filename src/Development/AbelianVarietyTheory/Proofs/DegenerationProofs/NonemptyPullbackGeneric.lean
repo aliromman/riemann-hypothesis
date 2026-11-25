@@ -63,13 +63,13 @@ import Mathlib.RingTheory.Henselian
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.CrossIdentity, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.HomExtOfIntegralRatios, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyPullbackGeneric
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.CrossIdentity
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.CrossIdentity
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 open GlobalTheory.FormalGeneric GlobalTheory.SectionRingIso GlobalTheory.FormalPoint in
@@ -109,6 +109,7 @@ theorem GlobalTheory.GenericIso.cross_identity : ∀ (R : Type) [CommRing R] [Is
     exact key _ _ _ _ _ _ H₁ H₂
   exact (pr σ τ' Z ρ z).symm.trans ((congrArg (gs ρ z ⊤) E).trans (pr τ σ' Z ρ z))
 end -- clump:auto
+end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -116,9 +117,9 @@ open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCate
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.HomExtOfIntegralRatios
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.HomExtOfIntegralRatios
 
+noncomputable section
 
 namespace GlobalTheory.RatioExt
 
@@ -233,10 +234,11 @@ theorem hom_ext_of_integral_ratios : Laws → ∀ (R : Type) [CommRing R] [IsDom
 
 end GlobalTheory
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyPullbackGeneric
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyPullbackGeneric
 
+noncomputable section
 
 namespace GlobalTheory.GenericIso
 

@@ -326,8 +326,9 @@ theorem homology_nerveCx :
 end GlobalTheory.CompanionTheory.Hodge.Nerve.Low
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinducedCechAcyclic
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinducedCechAcyclic
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.CompanionTheory.Hodge.Nerve
 
@@ -370,22 +371,22 @@ def prj (e : κ → P) (M : P → ModuleCat.{0} R) (b : P) (s : Finset κ) :
     (show AV e M s from x) ⟨hs⟩ ⟨b, Finset.le_inf' hs e h.down⟩ else 0
   map_add' x y := funext fun h ↦ by
     by_cases hs : s.Nonempty
-    · simp only [dif_pos hs]; rfl
-    · simp only [dif_neg hs]; exact (add_zero _).symm
+    · simp only [dite_eq_left hs]; rfl
+    · simp only [dite_eq_right hs]; exact (add_zero _).symm
   map_smul' r x := funext fun h ↦ by
     by_cases hs : s.Nonempty
-    · simp only [dif_pos hs]; rfl
-    · simp only [dif_neg hs]; show (0 : M b) = r • (0 : M b); exact (smul_zero r).symm
+    · simp only [dite_eq_left hs]; rfl
+    · simp only [dite_eq_right hs]; show (0 : M b) = r • (0 : M b); exact (smul_zero r).symm
 
 theorem prj_apply (e : κ → P) (M : P → ModuleCat.{0} R) (b : P) {s : Finset κ} (hs : s.Nonempty)
     (x : (cubeOf e (coind M)).obj s) (h : PLift (∀ j ∈ s, b ≤ e j)) :
     (show BV e M b s from prj e M b s x) h =
       (show AV e M s from x) ⟨hs⟩ ⟨b, Finset.le_inf' hs e h.down⟩ :=
-  dif_pos hs
+  dite_eq_left hs
 
 theorem prj_empty (e : κ → P) (M : P → ModuleCat.{0} R) (b : P) {s : Finset κ} (hs : ¬ s.Nonempty)
     (x : (cubeOf e (coind M)).obj s) : prj e M b s x = 0 :=
-  funext fun _ ↦ dif_neg hs
+  funext fun _ ↦ dite_eq_right hs
 
 def prjHom (e : κ → P) (M : P → ModuleCat.{0} R) (b : P) : cubeOf e (coind M) ⟶ cubeB e M b :=
   Cube.homMk κ R (prj e M b) fun {s t} h x ↦ by
@@ -449,6 +450,7 @@ theorem isZero_homology (e : κ → P) (he : Function.Surjective e) (M : P → M
     ((cechComplex_exactAt_succ_iff (cubeOf e (coind M)) n).2 (exact_d e he M n))
 
 end GlobalTheory.CompanionTheory.Hodge.Nerve.Acyc
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinducedCechAcyclicStatement

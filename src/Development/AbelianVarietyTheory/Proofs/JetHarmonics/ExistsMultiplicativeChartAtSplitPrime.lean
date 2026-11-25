@@ -81,15 +81,13 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.JetGauges.NodalSeriesPeriods, Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsFormalGroupAdd, Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsSmallInPrimePow, Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsUnitCoeffMulSeriesLeNorm, Development.AbelianVarietyTheory.Proofs.JetHarmonics.FormalGroupPadicMulIntegralVanishingOrder, Development.AbelianVarietyTheory.Proofs.JetHarmonics.HeightOneOfSplit, Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsMultiplicativeChartAtSplitPrime
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.JetGauges.NodalSeriesPeriods
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.JetGauges.NodalSeriesPeriods
 
 open PowerSeries
 
+noncomputable section
+
 namespace GlobalTheory.IndefiniteRowSideFullHecke.NodalSeriesPeriods
-
-abbrev Qbar : Type := ↥(algebraicClosure ℚ ℂ)
-
-abbrev Place (p : ℕ) [Fact p.Prime] : Type := Qbar →+* ℂ_[p]
 
 abbrev incl (p : ℕ) [Fact p.Prime] : 𝓞_ℂ_[p] →+* ℂ_[p] := algebraMap 𝓞_ℂ_[p] ℂ_[p]
 
@@ -184,6 +182,7 @@ theorem _root_.GlobalTheory.IndefiniteRowSideFullHecke.NodalSeriesPeriods.wSer_e
 end Expansion
 
 end GlobalTheory.IndefiniteRowSideFullHecke.NodalSeriesPeriods
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsFormalGroupAdd
@@ -785,12 +784,10 @@ end Model
 end GlobalTheory.MomOne.ChordLaw
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsSmallInPrimePow
 
 open PowerSeries GlobalTheory.MomOne
 open scoped ComplexConjugate BigOperators Topology
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsSmallInPrimePow
 
 namespace GlobalTheory.MomOne
 
@@ -885,7 +882,11 @@ theorem exists_small_in_prime_pow : ∀ (d q : ℕ) [Fact q.Prime] (ι : ℂ ≃
 end GlobalTheory.MomOne
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsUnitCoeffMulSeriesLeNorm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsUnitCoeffMulSeriesLeNorm
+
+noncomputable section
+open PowerSeries GlobalTheory.MomOne
+open scoped ComplexConjugate BigOperators Topology
 
 namespace GlobalTheory.MomOne.MulDegree
 
@@ -1140,7 +1141,7 @@ theorem norm_le_of_bdT (xs : ℂ_[q]⟦X⟧) (k : ℕ) (c : ℕ → ℂ_[q]) (B 
     have h1 := hB (2 * n) (by omega)
 
     rw [← Finset.add_sum_erase _ _ (Finset.mem_range.mpr (Nat.lt_succ_of_le hj)), map_add (f := _), map_sum, mul_assoc,
-    coeff_C_mul, coeff_X_pow_mul', if_pos (by omega), hn, Nat.sub_self, coeff_zero_eq_constantCoeff] at h1
+    coeff_C_mul, coeff_X_pow_mul', ite_eq_left (by omega), hn, Nat.sub_self, coeff_zero_eq_constantCoeff] at h1
     have h2 : ‖∑ l ∈ (Finset.range (k + 1)).erase j, coeff (2 * n) (C (c l) * X ^ (2 * (k - l)) * xs ^ l)‖ ≤ B := by
       refine IsUltrametricDist.norm_sum_le_of_forall_le_of_nonneg hB0 ?_
       intro l hl
@@ -1288,6 +1289,12 @@ theorem exists_unit_coeff : ∀ (q : ℕ) [Fact q.Prime] (M : Mdl q) (ℓ : ℂ_
 
 end GlobalTheory.MomOne.MulDegree
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open PowerSeries GlobalTheory.MomOne
+open scoped ComplexConjugate BigOperators Topology
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.FormalGroupPadicMulIntegralVanishingOrder
 
@@ -1582,7 +1589,7 @@ theorem padic_multiplications : ∀ (q : ℕ) [Fact q.Prime] (F : FormalGroup �
       rw [hW]
       linear_combination hT + ((d⁄dX U).subst ℓ : ℂ_[q]⟦X⟧) * hh'
     have := hbd (m + N)
-    rw [e, map_add (f := _), map_add (f := _), coeff_X_pow_mul, coeff_X, if_neg (by omega), coeff_X_pow_mul', if_neg (by omega)] at this
+    rw [e, map_add (f := _), map_add (f := _), coeff_X_pow_mul, coeff_X, ite_eq_right (by omega), coeff_X_pow_mul', ite_eq_right (by omega)] at this
     simpa using this
   have hq1 : ‖(q : ℂ_[q])‖ < 1 := by
     rw [← zc_natCast, norm_zc, PadicInt.norm_p]

@@ -18,9 +18,10 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsQuadOfPlan
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta MeasureTheory Matrix
 open scoped TensorProduct Topology InnerProductSpace
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.DerivativeSkewAdjointCuspForms
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.DerivativeSkewAdjointCuspForms
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.HCCusp
 open GlobalTheory.Cusp GlobalTheory.Mem.AutSpace GlobalTheory.Mem.Lift ComplexConjugate
 
@@ -100,6 +101,8 @@ theorem inner_io_der_skew : ∀ (D : D7) (θ : GlobalTheory.Mem.Th.InfF D) (hθ 
   exact setIntegral_der_mul_conj h𝓕 hθ τ hX χ ψ
 
 end GlobalTheory.CompanionTheory.HCCusp
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.DerivativeSkewAdjointCuspFormsStatement

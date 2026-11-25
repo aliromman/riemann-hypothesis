@@ -30,11 +30,12 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.ConvolutionNonnegOfDivisors, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.BqCoeff, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.BqEntire, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.BqGrowth, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.IteratedDerivInvSubOneAtTwo, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.IteratedDerivLseriesAlternatingNonneg, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.BqKeyOf, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.CharExists, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.LFunctionOneUpperBound, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.LRealPos, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.SameCharacterLFunctionOne, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.SiegelProductCharacterInequality, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.SiegelOf, Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.ZetaNegReal, Formalism.LandauZeroFreeBounds.FinalSiegel
 
-@[expose] public noncomputable section -- clump member: Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.ConvolutionNonnegOfDivisors
+@[expose] public section -- clump member: Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.ConvolutionNonnegOfDivisors
 
 open Complex ArithmeticFunction
 open scoped ComplexOrder LSeries.notation
 
+noncomputable section
 
 namespace Formalism.ZeroFreeDirichlet
 
@@ -60,7 +61,7 @@ lemma character_convolution_eq {N N' M : ℕ} (χ : DirichletCharacter ℂ N) (�
   have hi0 : i ≠ 0 := (Nat.pos_of_mem_divisors hi).ne'
   have hni : n / i ≠ 0 :=
     (Nat.div_pos (Nat.le_of_dvd (Nat.pos_of_ne_zero hn) hdvd) (Nat.pos_of_ne_zero hi0)).ne'
-  simp only [toArithmeticFunction, coe_mk, hi0, hni, if_false]
+  simp only [toArithmeticFunction, coe_mk, hi0, hni, ite_false]
   rw [hψ i]
   calc χ' ((n / i : ℕ) : ZMod N') * (χ (i : ZMod N) * χ' (i : ZMod N'))
       = (χ' ((n / i : ℕ) : ZMod N') * χ' (i : ZMod N')) * χ (i : ZMod N) := by ring
@@ -101,6 +102,7 @@ lemma prime_power_coefficient_nonneg {N N' M : ℕ} {χ : DirichletCharacter ℂ
         norm_num
 
 end Formalism.ZeroFreeDirichlet
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.BqCoeff
@@ -1104,8 +1106,9 @@ theorem siegel_product_character_inequality (hP : ProdCharExists) (hS : SameChar
 end Formalism.ZeroFreeDirichlet
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.SiegelOf
+@[expose] public section -- clump member: Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.SiegelOf
 
+noncomputable section
 
 namespace Formalism.ZeroFreeDirichlet
 
@@ -1139,7 +1142,7 @@ theorem siegel_theorem_of : SiegelOf := by
     intro q _ χ ψ _ _ _ _
     simp [Fbq, hzero]
   ·
-    push_neg at hex
+    push Not at hex
     obtain ⟨q₁, hq₁, χ₁, h1sq, h1ne⟩ := hR
     have hnz : ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q), χ ^ 2 = 1 → χ ≠ 1 →
         ∀ σ : ℝ, σ₀ ≤ σ → DirichletCharacter.LFunction χ σ ≠ 0 := by
@@ -1167,6 +1170,7 @@ theorem siegel_theorem_of : SiegelOf := by
     nlinarith
 
 end Formalism.ZeroFreeDirichlet
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.ZetaNegReal

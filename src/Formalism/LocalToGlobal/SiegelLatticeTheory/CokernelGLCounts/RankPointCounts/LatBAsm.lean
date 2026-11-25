@@ -20,12 +20,10 @@ import Mathlib.Algebra.Ring.IsFormallyReal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.StabilizerLatticeCoordinatesOf, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LatBAsm
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.StabilizerLatticeCoordinatesOf
 
 
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.StabilizerLatticeCoordinatesOf
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2
   Formalism.L2.SG.NGCut.SplitEmbedding
 
@@ -305,7 +303,11 @@ theorem covolOne3C_of (hC : ChartC) (hL : StabilizerLatticeCoordinates) : Formal
 end Formalism.L2.SG.NGCut.StabilizerCovolume
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LatBAsm
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LatBAsm
+
+noncomputable section
+
+open scoped Classical
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.Pf.StabIntSh Formalism.L2.SG.Pf.StabIntLat
 
@@ -468,10 +470,10 @@ theorem Λq_le (q : Formalism.L2.SG.RealObj.FreeE w) :
     Λq w q ≤ ((Iq w q : Submodule (𝓞 D.host.E) D.host.E)).toAddSubgroup := by
   by_cases hs : selfP w q
   · have hI : Iq w q = ddPow D (hgt w q) := by simp [Iq, hs]
-    rw [hI, Λq, if_pos hs]
+    rw [hI, Λq, ite_eq_left hs]
     intro z hz
     exact hz.1
-  · rw [Λq, if_neg hs]
+  · rw [Λq, ite_eq_right hs]
 
 theorem relIndex_Λq (q : Formalism.L2.SG.RealObj.FreeE w) :
     (Λq w q).relIndex ((Iq w q : Submodule (𝓞 D.host.E) D.host.E)).toAddSubgroup =
@@ -482,9 +484,9 @@ theorem relIndex_Λq (q : Formalism.L2.SG.RealObj.FreeE w) :
       unfold sgq
       rw [← pow_add]
       exact neg_one_pow_eq_or _ _
-    rw [if_pos hs, hI, Λq, if_pos hs]
+    rw [ite_eq_left hs, hI, Λq, ite_eq_left hs]
     exact sLat_relIndex (hgt w q) (sgq w q) (sgq_conj w q) hpm
-  · rw [if_neg hs, Λq, if_neg hs]
+  · rw [ite_eq_right hs, Λq, ite_eq_right hs]
     exact AddSubgroup.relIndex_self _
 
 end Norms
@@ -546,10 +548,10 @@ private theorem cfac_mul_cfac_qbar_eq_one (q : Formalism.L2.SG.RealObj.FreeE w) 
         exact lt_of_le_of_ne (not_lt.mp h) hne
     by_cases hq : upperM w q
     · have h3 := hu.mp hq
-      simp only [cfac, hs, hs', hq, h3, if_false, if_true]
+      simp only [cfac, hs, hs', hq, h3, ite_false, ite_true]
       exact mul_inv_cancel₀ hgS
     · have h3 : upperM w (qbar w q) := not_not.mp (fun h => hq (hu.mpr h))
-      simp only [cfac, hs, hs', hq, h3, if_false, if_true]
+      simp only [cfac, hs, hs', hq, h3, ite_false, ite_true]
       exact inv_mul_cancel₀ hgS
 
 theorem prod_cfac : ∏ q, cfac w q = 1 := by

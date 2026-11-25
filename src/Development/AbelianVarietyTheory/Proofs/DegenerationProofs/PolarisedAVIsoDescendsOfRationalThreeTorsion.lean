@@ -63,10 +63,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Cha
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open scoped CategoryTheory.Obj BigOperators
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Trait
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsDescOfSmoothOfGeometricPoints
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Trait
 
 namespace GlobalTheory
 
@@ -91,8 +90,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.PolarisedAVIsoDescendsOfRationalThreeTorsion
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Trait
 
 set_option backward.isDefEq.respectTransparency false
 

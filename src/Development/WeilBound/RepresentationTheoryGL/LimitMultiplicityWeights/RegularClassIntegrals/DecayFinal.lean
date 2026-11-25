@@ -45,9 +45,10 @@ open MeasureTheory Set Filter NumberField IsDedekindDomain Matrix
 open GlobalTheory.AdelicU GlobalTheory.Orb GlobalTheory.AutomorphicL2Unitary Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.SiegelSet GlobalTheory.CompanionTheory.RapidDecay GlobalTheory.CompanionTheory.RegInt
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta GlobalTheory.TruncKer GlobalTheory.Cusp
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DBridge
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DBridge
+@[expose] public section
 
+noncomputable section
 
 namespace MainStatements.WeightKernel.Dec
 
@@ -58,11 +59,13 @@ theorem bridge : Bridge := by
 
 end MainStatements.WeightKernel.Dec
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DDecay
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DDecay
 
+noncomputable section
 
 namespace MainStatements.WeightKernel.Dec
 
@@ -106,6 +109,7 @@ theorem decay : Core → Bridge → Decay := by
   exact h1
 
 end MainStatements.WeightKernel.Dec
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens
@@ -263,8 +267,6 @@ theorem hasDerivAt_integral_cpt {𝕜 : Type} [RCLike 𝕜] [NormedSpace 𝕜 �
     · rw [Set.indicator_of_notMem hy, (h0 t ht y hy).2, norm_zero]
   · exact (integrable_indicator_iff hC.measurableSet).2 (integrableOn_const hC.measure_lt_top.ne)
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 section Abstract
 
 variable {G H : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [Group H] {N : ℕ}
@@ -304,9 +306,9 @@ open MeasureTheory Set Filter NumberField IsDedekindDomain Matrix
 open GlobalTheory.AdelicU GlobalTheory.Orb GlobalTheory.AutomorphicL2Unitary Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.SiegelSet GlobalTheory.CompanionTheory.RapidDecay GlobalTheory.CompanionTheory.RegInt
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta GlobalTheory.TruncKer GlobalTheory.Cusp
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DDerVan
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DDerVan
 
+noncomputable section
 
 namespace MainStatements.WeightKernel.Dec.DDerVan
 
@@ -348,10 +350,12 @@ theorem MainStatements.WeightKernel.Dec.derVan : MainStatements.WeightKernel.Dec
     have := GlobalTheory.UAut.ConstAut.hasDerivAt_foldr h hs (l := []) (by simp) hb (x * ↑m * y) t
     simpa [mul_assoc] using this
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DLevel
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DLevel
+@[expose] public section
 
+noncomputable section
 
 namespace MainStatements.WeightKernel.Dec.DLevel
 
@@ -383,13 +387,15 @@ theorem MainStatements.WeightKernel.Dec.level : MainStatements.WeightKernel.Dec.
   intro F E _ _ _ _ _ σ _ n J _ f hf
   exact MainStatements.WeightKernel.Dec.DLevel.level_of_mem hf
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DNearCusp
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DNearCusp
 open PositivityTheory.ThKR GlobalTheory.CompanionTheory.RapidDecay.NearCusp
 open scoped Topology
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+noncomputable section
 
 namespace MainStatements.WeightKernel.Dec
 
@@ -443,6 +449,7 @@ theorem nearCusp : NearCusp := by
 
 end MainStatements.WeightKernel.Dec
 end -- clump:auto
+end -- clump:auto
 
 end -- clump: shared namespace opens
 
@@ -488,9 +495,10 @@ open MeasureTheory Set Filter NumberField IsDedekindDomain Matrix
 open GlobalTheory.AdelicU GlobalTheory.Orb GlobalTheory.AutomorphicL2Unitary Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.SiegelSet GlobalTheory.CompanionTheory.RapidDecay GlobalTheory.CompanionTheory.RegInt
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta GlobalTheory.TruncKer GlobalTheory.Cusp
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DSmOfb
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DSmOfb
+@[expose] public section
 
+noncomputable section
 
 namespace MainStatements.WeightKernel.Dec
 
@@ -501,12 +509,15 @@ theorem smOf : SmOf := by
 
 end MainStatements.WeightKernel.Dec
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DSumSm
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DSumSm
+@[expose] public section
 open scoped ContDiff Topology
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+noncomputable section
 
 namespace MainStatements.WeightKernel.Dec.DSumSm
 
@@ -590,11 +601,13 @@ theorem sumSm : SmOf → SumSm := by
 
 end MainStatements.WeightKernel.Dec
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DVariationb
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DVariationb
 
+noncomputable section
 
 namespace MainStatements.WeightKernel.Dec
 
@@ -675,11 +688,12 @@ theorem variation : Variation := by
 
 end MainStatements.WeightKernel.Dec
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.NcardBiUnionLe
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.NcardBiUnionLe
 open scoped Pointwise
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+noncomputable section
 
 namespace MainStatements.WeightKernel.Dec.DBase
 
@@ -788,11 +802,12 @@ theorem base : Base := by
 
 end MainStatements.WeightKernel.Dec
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.NsumLevel
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.NsumLevel
 open PositivityTheory.ThKR
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+noncomputable section
 
 namespace MainStatements.WeightKernel.Dec.DCore
 
@@ -903,6 +918,7 @@ theorem core : DerMem → DerVan → Level → SumSm → Variation → NearCusp 
       linarith
 
 end MainStatements.WeightKernel.Dec
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens

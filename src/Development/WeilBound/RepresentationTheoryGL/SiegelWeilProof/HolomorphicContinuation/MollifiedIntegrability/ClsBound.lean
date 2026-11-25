@@ -19,8 +19,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.ClsBoundB, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.ClsBound
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.ClsBoundB
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.ClsBoundB
 
+noncomputable section
 
 open Matrix
 
@@ -98,7 +99,7 @@ theorem dirC_eval {ι : Type} [Fintype ι] [DecidableEq ι] (φ : ι → E n →
       · simp [hx]; ring
     simp only [map_mul, MvPolynomial.eval_X]
     rw [dirC_mul (hd p) (hdi j), hp]
-    simp only [hs, add_mul, Finset.sum_add_distrib, ite_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    simp only [hs, add_mul, Finset.sum_add_distrib, ite_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     rw [Finset.mul_sum, add_comm]
     congr 1
     exact Finset.sum_congr rfl fun x _ => by ring
@@ -128,7 +129,7 @@ theorem mul_single_apply' (M : Matrix (Fin n) (Fin n) ℂ) (a c k l : Fin n) :
 theorem entry_mul_single_mul (M : Matrix (Fin n) (Fin n) ℂ) (a b k l : Fin n) :
     (M * Matrix.single l k (1 : ℂ) * M) a b = M a l * M k b := by
   rw [Matrix.mul_apply]
-  simp only [mul_single_apply', ite_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+  simp only [mul_single_apply', ite_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
 theorem contDiff_det_of {M : E n → Matrix (Fin n) (Fin n) ℂ} (h : ∀ a b, ContDiff ℝ (⊤ : ℕ∞) (fun y => M y a b)) :
     ContDiff ℝ (⊤ : ℕ∞) (fun y => (M y).det) := by
@@ -258,9 +259,11 @@ theorem dirC_vM {s : ℂ} (hs : s = 1 ∨ s = -1) (y : E n) (a b k l : Fin n) :
 
 end PositivityTheory.Rg.Sw.WR.B
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.ClsBound
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.ClsBound
 
+noncomputable section
 
 open Matrix MvPolynomial
 
@@ -496,7 +499,7 @@ theorem dirC_cls {s : ℂ} (hs : s = 1 ∨ s = -1) (z : ℂ) (p q : ℕ) (R : Mv
     dirC_pow (diffAt_of (contDiff_detV hs) y) q _ (-(Complex.I * s * vM s y k l)) (by rw [dirC_detV hs]; ring),
     dirC_evUV hs]
   simp only [cls, dR, evUV_eq, map_add (f := _), map_mul, map_sub, eval_C, eval_X, ent]
-  simp only [Bool.false_eq_true, if_false, if_true]
+  simp only [Bool.false_eq_true, ite_false, ite_true]
   ring
 
 theorem norm_eval_le {σ : Type} (x : σ → ℂ) (hx : ∀ i, ‖x i‖ ≤ 1) (R : MvPolynomial σ ℂ) :

@@ -46,10 +46,11 @@ def HostFiniteOrder : Prop :=
 end Formalism.FrobeniusOrbits
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.Orbits
+@[expose] public section -- clump member: Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.Orbits
 
 open Polynomial
 
+noncomputable section
 
 namespace Formalism.FrobeniusOrbits
 
@@ -137,13 +138,13 @@ theorem hostOrbitsPlaces : HostOrbitsPlaces := by
       · rw [h]; ext <;> simp [hi.neg_one_pow]
     have hp : placeOf (φ ^ i * τ) = φ ^ i * τ := by
       unfold placeOf
-      rw [if_pos]
+      rw [ite_eq_left]
       simp [Prod.pow_fst, hc, hτ2]
     rw [hp]
     refine ⟨by simp, fun _ => by simp [hc], fun _ => by simp [hc, hi]⟩
   · have hp : placeOf (φ ^ i * τ) = cc e * (φ ^ i * τ) := by
       unfold placeOf
-      rw [if_neg]
+      rw [ite_eq_right]
       rcases hφ with h | h
       · simp [h, c0, hi.neg_one_pow, hτ2, hne]
       · simp [h, hi.neg_one_pow, hτ2, hne]
@@ -176,6 +177,7 @@ theorem hostFiniteOrder : HostFiniteOrder := by
   rwa [Galois.finrank_cmField hqd h] at this
 
 end Formalism.FrobeniusOrbits
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts

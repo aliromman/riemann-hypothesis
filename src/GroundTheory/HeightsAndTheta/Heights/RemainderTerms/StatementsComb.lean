@@ -8,14 +8,14 @@ public import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.AltCoeff
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.Lattice, GroundTheory.HeightsAndTheta.Heights.RemainderTerms.StatementsComb
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.Lattice
-
-set_option maxSynthPendingDepth 1
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.Lattice
+@[expose] public section
 
 namespace GroundTheory.Heights₂.Heights.RestTerms.Comb
 
 open MvPolynomial Finset Equiv
 
+noncomputable section
 
 open scoped Classical
 
@@ -35,7 +35,7 @@ theorem pcnt_castSucc_snoc {n : ℕ} (w : Fin n → Fin m) (a : Fin m) (t : ℕ)
   unfold pcnt
   rw [Finset.card_filter, Finset.card_filter, Fin.sum_univ_castSucc]
   simp only [Fin.snoc_castSucc, Fin.val_castSucc, Fin.snoc_last, Fin.val_last]
-  rw [if_neg (by omega), add_zero]
+  rw [ite_eq_right (by omega), add_zero]
 
 theorem pcnt_snoc_last {n : ℕ} (w : Fin n → Fin m) (a : Fin m) (i : Fin m) :
     pcnt (Fin.snoc w a : Fin (n + 1) → Fin m) (n + 1) i = pcnt w n i + if a = i then 1 else 0 := by
@@ -140,18 +140,19 @@ theorem latticeWords_eq_empty_of_not_antitone (n : ℕ) (lam : Fin m → ℕ) (h
   rw [← hw.2 i, ← hw.2 j]
   exact hw.1 n le_rfl i j hij
 
+end
 
 end GroundTheory.Heights₂.Heights.RestTerms.Comb
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.StatementsComb
-
-set_option maxSynthPendingDepth 1
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.StatementsComb
 
 namespace GroundTheory.Heights₂.Heights.RestTerms
 
 open MvPolynomial Finset Equiv
 
+noncomputable section
 
 namespace Comb
 
@@ -288,6 +289,7 @@ def CombCfBound.Statement : Prop :=
   ∀ (m : ℕ) (ρ : List ℕ), (∀ q ∈ ρ, 1 ≤ q) → ∀ lam : Fin m → ℕ, Antitone lam →
     |cf (fun i => lam i + stair m i) (alternantPsum m ρ)| ≤ ((latticeWords ρ.sum lam).card : ℚ)
 
+end
 
 end GroundTheory.Heights₂.Heights.RestTerms
 

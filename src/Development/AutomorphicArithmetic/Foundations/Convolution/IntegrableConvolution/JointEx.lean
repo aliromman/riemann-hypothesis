@@ -10,11 +10,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JointNe, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JointEx
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JointNe
 
 open GroundTheory.Automorphic UpperTheory.ConvolutionTheory.C
-
-@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JointNe
 open scoped InnerProductSpace
 
 namespace UpperTheory.ConvolutionTheory.L1
@@ -188,7 +186,11 @@ theorem UpperTheory.ConvolutionTheory.L1.jointNe :
   exact fun j => (hmemZ j w).2 ⟨hw, hwA j (Finset.mem_univ j)⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JointEx
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JointEx
+
+noncomputable section
+
+open GroundTheory.Automorphic UpperTheory.ConvolutionTheory.C
 
 namespace UpperTheory.ConvolutionTheory.L1
 
@@ -386,7 +388,7 @@ private lemma spectral_ne {T : H →L[ℂ] H} (hT : IsCompactOperator T) (hsa : 
   · obtain ⟨j, hj⟩ := hl
     exact ⟨l j, b j, hj, b.orthonormal.ne_zero j, hb j⟩
   · exfalso
-    push_neg at hl
+    push Not at hl
     apply hu
     rw [← (hsum u).tsum_eq]
     simp [hl]

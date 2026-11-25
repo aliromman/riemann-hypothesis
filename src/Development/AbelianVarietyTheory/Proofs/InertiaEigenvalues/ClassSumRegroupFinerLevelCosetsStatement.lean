@@ -13,10 +13,10 @@ import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Datum IsDedekindDomain NumberField GlobalTheory.ExportSeries
 open scoped TensorProduct
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ClassSumRegroupFinerLevelCosets
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ClassSumRegroupFinerLevelCosets
 
 
+noncomputable section
 
 namespace GlobalTheory.ClassRefineBridge
 
@@ -73,9 +73,9 @@ theorem sum_isReps_refine : ∀ {G Γ : Type} [Group G] [Group Γ] (ι : Γ →*
 
 end GlobalTheory.ClassRefineBridge
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ClassSumRegroupFinerLevelCosetsStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

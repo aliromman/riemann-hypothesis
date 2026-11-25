@@ -47,8 +47,9 @@ theorem exists_pair_of_between (L L' : PeriodPair) (S : Submodule ℤ ℂ)
 end PI.GoodTwo.ChainBetweenPairs
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DyadicStableLattices.ChainPC
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DyadicStableLattices.ChainPC
 
+noncomputable section
 open scoped ComplexConjugate
 
 namespace PI.GoodTwo.ChainBetweenPairs
@@ -88,9 +89,9 @@ theorem chain_core (d : ℕ) (L : PeriodPair) (hd : d % 8 = 7) (hL : HasCMBy d L
     intro i z
     by_cases hi : i = 0
     · subst hi
-      simp only [M, if_pos rfl, mem_S, pow_zero, one_mul]
+      simp only [M, ite_eq_left rfl, mem_S, pow_zero, one_mul]
       exact ⟨fun hz => ⟨stπ z hz, hz⟩, fun hz => hz.2⟩
-    · simp only [M, if_neg hi]
+    · simp only [M, ite_eq_right hi]
       exact hP i z
 
   have claimA : ∀ i u v, u ∈ S L π (i + 1) → v ∈ S L π (i + 1) → u ∉ S L π i → v ∉ S L π i →

@@ -9,10 +9,11 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.ProfiniteCohomology.PoincarePairs.ConjHomotopyFunCupCochainZeroRight, GroundTheory.ProfiniteCohomology.PoincarePairs.MackeyCup
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoincarePairs.ConjHomotopyFunCupCochainZeroRight
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.PoincarePairs.ConjHomotopyFunCupCochainZeroRight
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
@@ -47,7 +48,7 @@ theorem seqProd_prismSeq_of_ge (g : Γ) {i r : ℕ} (hr : r ≤ i) (F : ℕ → 
   | zero => rfl
   | succ r ih =>
     rw [seqProd_succ, seqProd_succ, ih (by omega)]
-    simp only [prismSeq, if_pos (show r < i by omega)]
+    simp only [prismSeq, ite_eq_left (show r < i by omega)]
 
 theorem seqProd_prismSeq_of_le (g : Γ) {i r : ℕ} (hi : i ≤ r) (F : ℕ → Γ) :
     seqProd (prismSeq g i F) (r + 1) = seqProd F r * g := by
@@ -58,7 +59,7 @@ theorem seqProd_prismSeq_of_le (g : Γ) {i r : ℕ} (hi : i ≤ r) (F : ℕ → 
   | succ r ih =>
     rcases Nat.lt_or_ge i (r + 1) with h | h
     · rw [seqProd_succ, ih (by omega), seqProd_succ]
-      simp only [prismSeq, if_neg (show ¬ r + 1 < i by omega), if_neg (show r + 1 ≠ i by omega),
+      simp only [prismSeq, ite_eq_right (show ¬ r + 1 < i by omega), ite_eq_right (show r + 1 ≠ i by omega),
         Nat.add_sub_cancel]
       group
     · obtain rfl : i = r + 1 := by omega
@@ -89,8 +90,8 @@ theorem cupCochain_seqTuple_prismSeq_of_le (g : Γ) {r s n : ℕ} (h : r + 1 + s
   congr 2
   funext l
   change prismSeq g i Y (r + 1 + l) = g⁻¹ * Y (r + l) * g
-  simp only [prismSeq, if_neg (show ¬ r + 1 + l < i by omega),
-    if_neg (show r + 1 + (l : ℕ) ≠ i by omega)]
+  simp only [prismSeq, ite_eq_right (show ¬ r + 1 + l < i by omega),
+    ite_eq_right (show r + 1 + (l : ℕ) ≠ i by omega)]
   congr 3
   omega
 
@@ -102,7 +103,7 @@ theorem cupCochain_seqTuple_prismSeq_add (g : Γ) {r s n : ℕ} (h : r + (s + 1)
   rw [cupCochain_seqTuple, seqProd_prismSeq_of_ge g (by omega)]
   congr 1
   · congr 1
-    exact seqTuple_congr fun l hl => by simp only [prismSeq, if_pos (show l < r + j by omega)]
+    exact seqTuple_congr fun l hl => by simp only [prismSeq, ite_eq_left (show l < r + j by omega)]
   · congr 2
     refine seqTuple_congr fun l hl => ?_
     simp only [prismSeq]
@@ -166,6 +167,7 @@ theorem conjHomotopyFun_cupCochain_zero_right (g : Γ) {r m : ℕ} (h : r + 1 + 
 end Leibniz
 
 end GroundTheory.ProfCoh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoincarePairs.MackeyCup

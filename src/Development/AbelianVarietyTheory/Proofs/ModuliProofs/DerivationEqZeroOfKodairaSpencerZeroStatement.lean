@@ -97,8 +97,9 @@ open scoped CategoryTheory.Obj TensorProduct ContDiff
 open GlobalTheory.KS
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.HolomorphicLiftRegularOfPeriodsZero
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.KS.ZeroClass
 open VertReg
 
@@ -216,25 +217,25 @@ theorem exists_periodic_vector (hu : GoodU u Hm χ) (hp : Smooth p) (hm : IsPull
 
 private theorem valAt'_sub' {X : Scheme.{0}} (x : Sp ℂ ⟶ X) (U : X.Opens) (hx : ⊤ ≤ x ⁻¹ᵁ U)
     (a b : Γ(X, U)) : valAt' x U (a - b) = valAt' x U a - valAt' x U b := by
-  simp only [valAt', dif_pos hx, valAt, map_sub]
+  simp only [valAt', dite_eq_left hx, valAt, map_sub]
 
 private theorem valAt'_add_of_top_le {X : Scheme.{0}} (x : Sp ℂ ⟶ X) (U : X.Opens) (hx : ⊤ ≤ x ⁻¹ᵁ U)
     (a b : Γ(X, U)) : valAt' x U (a + b) = valAt' x U a + valAt' x U b := by
-  simp only [valAt', dif_pos hx, valAt, map_add (f := _)]
+  simp only [valAt', dite_eq_left hx, valAt, map_add (f := _)]
 
 private theorem valAt'_mul_of_top_le {X : Scheme.{0}} (x : Sp ℂ ⟶ X) (U : X.Opens) (hx : ⊤ ≤ x ⁻¹ᵁ U)
     (a b : Γ(X, U)) : valAt' x U (a * b) = valAt' x U a * valAt' x U b := by
-  simp only [valAt', dif_pos hx, valAt, map_mul]
+  simp only [valAt', dite_eq_left hx, valAt, map_mul]
 
 private theorem valAt'_finset_sum {X : Scheme.{0}} (x : Sp ℂ ⟶ X) (U : X.Opens) (hx : ⊤ ≤ x ⁻¹ᵁ U)
     {κ : Type} (s : Finset κ) (F : κ → Γ(X, U)) : valAt' x U (∑ i ∈ s, F i) = ∑ i ∈ s, valAt' x U (F i) := by
 
-  simp only [valAt', dif_pos hx, valAt, map_sum]
+  simp only [valAt', dite_eq_left hx, valAt, map_sum]
 
 private theorem valAt'_resG_of_top_le {X : Scheme.{0}} (x : Sp ℂ ⟶ X) {U V : X.Opens} (h : V ≤ U) (hx : ⊤ ≤ x ⁻¹ᵁ V)
     (a : Γ(X, U)) : valAt' x V (resG X h a) = valAt' x U a := by
   have hx' : ⊤ ≤ x ⁻¹ᵁ U := fun p hp => h (hx hp)
-  rw [valAt', dif_pos hx, valAt', dif_pos hx', valAt, valAt, resG]
+  rw [valAt', dite_eq_left hx, valAt', dite_eq_left hx', valAt, valAt, resG]
   congr 1
   exact congrArg (fun φ => φ.hom a) (x.map_appLE hx (homOfLE h).op)
 
@@ -301,6 +302,7 @@ theorem regular_of_periods_zero : Out.Laws → ∀ (P₀ : Out.PolAV (Sp ℂ)) (
   rw [valAt'_mul_of_top_le _ _ hzW, valAt'_resG_of_top_le _ hW' hzW, hee b z hz0, hv, efn]
 
 end GlobalTheory.KS
+end
 end -- clump:auto
 end -- clump:auto
 

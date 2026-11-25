@@ -63,8 +63,10 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyKa
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KeyInvariantBaseChange
+section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KeyInvariantBaseChange
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.KaBaseChange
 
 theorem torsSq_diag {R Ix : Type} [CommRing R] [Fintype Ix] [DecidableEq Ix] (deg : Ix → ℕ) (D : Matrix Ix Ix R)
@@ -109,7 +111,7 @@ theorem torsSq_kosD_map {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R'
     · by_cases hI : I = ∅
       · subst hI
         have e := hev a k
-        simp only [kosD, if_true, Sum.elim_inl, Sum.elim_inr, inv_one, Units.val_one, _root_.mul_one]
+        simp only [kosD, ite_true, Sum.elim_inl, Sum.elim_inr, inv_one, Units.val_one, _root_.mul_one]
         exact ((Units.eq_mul_inv_iff_mul_eq _).2 e).trans (_root_.mul_comm _ _)
       · simp [kosD, hI]
     · simp [kosD]
@@ -199,6 +201,8 @@ theorem kaVal_baseChange : Out.Laws → ∀ (R R' : Type) [CommRing R] [IsLocalR
     exact (kaForm_map _ _ _ _ _ _ _ _ _ _).trans H.symm
 
 end GlobalTheory.KaBaseChange
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KeyInvariantBaseChangeStatement

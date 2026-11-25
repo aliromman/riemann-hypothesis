@@ -102,10 +102,11 @@ import Mathlib.Algebra.Module.StablyFree.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.OneTmul, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.DiffMem, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.FirstChernCocycleAllLevels, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.FirstChernHodgeTateCompat, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.GTSmul, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.SmulMorPull, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.NmAMem, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.RhoExA, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.SmulAbs, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.SumCoord, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.HtOf
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.OneTmul
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.OneTmul
 
 set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open TensorProduct
 
@@ -187,7 +188,7 @@ theorem co_abs {W : Type 1} [AddCommGroup W] [Module B W] {m r : ℕ} (hr : r < 
         rw [AddEquiv.symm_apply_eq, hg, he a ha n b y hn]
       show coT (g.symm (b • μ a y)) a φ = _
       rw [hw]
-      simp only [coT, AddMonoidHom.coe_mk, ZeroHom.coe_mk, dif_pos ha, Pi.single_eq_same, one_tmul, h3 _ n b hn]
+      simp only [coT, AddMonoidHom.coe_mk, ZeroHom.coe_mk, dite_eq_left ha, Pi.single_eq_same, one_tmul, h3 _ n b hn]
     · intro a' ha' a hne b y
       obtain ⟨n, hn⟩ := h2 ⟨r - a', by omega⟩ b
       have hw : g.symm (b • μ a' y) = Pi.single (⟨r - a', by omega⟩ : Fin m) (n ⊗ₜ e a' ha' y) := by
@@ -208,6 +209,7 @@ theorem co_abs {W : Type 1} [AddCommGroup W] [Module B W] {m r : ℕ} (hr : r < 
       rw [dite_eq_right (by omega)]
 
 end CrystallineSemistableComparison.HT.CoA
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.DiffMem

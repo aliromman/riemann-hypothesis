@@ -8,7 +8,8 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersecti
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsDiagR, GroundTheory.HeightsAndTheta.Heights.Intersections.PZeroSetNull
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsDiagR
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsDiagR
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -16,6 +17,7 @@ namespace GroundTheory.Heights₂.Heights.Inter
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI ReciprocityTheory.ChartRestriction.G.AI.I2 ReciprocityTheory.ChartRestriction.G.AI.I4
 
+noncomputable section
 
 section Statements
 
@@ -28,12 +30,10 @@ def ZeroSetNull.Statement : Prop :=
 
 end Statements
 
-section Inhabit
-
-end Inhabit
-
+end
 
 end GroundTheory.Heights₂.Heights.Inter
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.Intersections.PZeroSetNull

@@ -14,7 +14,7 @@ import Mathlib.Algebra.Order.Star.Real
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.DiscreteSeriesExhaustion.MatrixCoefficientDecay.HilbertSchmidtDecay.RightKTypes.BaseAct, CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.DiscreteSeriesExhaustion.MatrixCoefficientDecay.HilbertSchmidtDecay.RightKTypes.KlfStepCoefApply, CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.DiscreteSeriesExhaustion.MatrixCoefficientDecay.HilbertSchmidtDecay.RightKTypes.RightExp, CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.DiscreteSeriesExhaustion.MatrixCoefficientDecay.HilbertSchmidtDecay.RightKTypes.CommuteOmTensRho, CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.DiscreteSeriesExhaustion.MatrixCoefficientDecay.HilbertSchmidtDecay.RightKTypes.StepCoefApply, CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.DiscreteSeriesExhaustion.MatrixCoefficientDecay.HilbertSchmidtDecay.RightKTypes.KrDom
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 
 open Finset Matrix
@@ -420,8 +420,15 @@ theorem rightExp {ε : Fin n → Bool} {X : GMod n} (A : KAct ε X) (x : X.V) :
 end CompanionTheory.RgExh.Dec.L.WyKR
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 section -- clump member: CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.DiscreteSeriesExhaustion.MatrixCoefficientDecay.HilbertSchmidtDecay.RightKTypes.CommuteOmTensRho
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
+
+open Finset Matrix
+open scoped InnerProductSpace
 
 namespace CompanionTheory.RgExh.Dec.L.WyKR
 
@@ -476,7 +483,7 @@ private theorem sum_toMK_mul_conjTranspose_smul_eq_smul {M : Type} [AddCommGroup
     congr 1
     exact Finset.sum_congr rfl fun i _ => by ring
   simp only [h, kr_one_apply, mul_ite, mul_one, mul_zero, ite_smul, zero_smul, Finset.sum_ite_eq,
-    Finset.mem_univ, if_true]
+    Finset.mem_univ, ite_true]
 
 theorem commute_om_tensRho (A : KAct ε X) (k : S7.KG ε) : Commute (om X) (tensRho A k) := by
   refine LinearMap.ext fun u => funext fun b => ?_
@@ -500,7 +507,7 @@ private theorem sum_conjTranspose_toMK_smul_tensRho_eq (A : KAct ε X) (k : S7.K
     rw [← Finset.sum_smul, ← kr_one_apply' k b i, Finset.mul_sum]
     congr 1
     exact Finset.sum_congr rfl fun d _ => by ring
-  simp only [h, mul_ite, mul_one, mul_zero, ite_smul, zero_smul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+  simp only [h, mul_ite, mul_one, mul_zero, ite_smul, zero_smul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
 theorem tensRho_compat (A : KAct ε X) (k : S7.KG ε) (a b : Fin n) (u : Fin n → X.V) :
     tensRho A k (tensE X a b u) =
@@ -519,7 +526,7 @@ theorem tensRho_compat (A : KAct ε X) (k : S7.KG ε) (a b : Fin n) (u : Fin n �
     congr 1
     simp only [smul_ite, smul_zero]
     rw [Finset.sum_comm]
-    simp only [Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    simp only [Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     exact sum_conjTranspose_toMK_smul_tensRho_eq A k u b _
   rw [e1, e2]
   congr 1
@@ -574,6 +581,13 @@ end
 end CompanionTheory.RgExh.Dec.L.WyKR
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open Finset Matrix
+open scoped InnerProductSpace
 
 section -- clump member: CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.DiscreteSeriesExhaustion.MatrixCoefficientDecay.HilbertSchmidtDecay.RightKTypes.StepCoefApply
 @[expose] public noncomputable section

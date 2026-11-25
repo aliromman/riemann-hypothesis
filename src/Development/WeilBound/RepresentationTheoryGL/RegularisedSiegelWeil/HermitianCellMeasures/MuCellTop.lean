@@ -41,7 +41,10 @@ import Mathlib.Topology.Algebra.Valued.WithZeroMulInt
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArtinianFields, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CellFormulaOfInvM, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousDivRp, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousSmulQuot, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsClosedHermSMx, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MatrixEqBlockDecomposition, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsRhoRight, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NpowHalfAddHalf, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NullCOfInvM, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RingHomMulSubEqZero, Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.HermitianCellMeasures.MuCellOf, Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.HermitianCellMeasures.MuCellTop
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArtinianFields
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArtinianFields
+@[expose] public section
+
+noncomputable section
 
 open scoped TensorProduct
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta GlobalTheory.AdelicU PositivityTheory.Rg.Rsw.L
@@ -119,7 +122,7 @@ theorem crit (S : Finset (HeightOneSpectrum (𝓞 F))) (e : AF F ⊗[F] E) (h1 :
   have he : ∀ k, φ k e = 1 := hφ e (by
     rintro (w | ⟨v, hv⟩)
     · exact h1 w
-    · exact (h2 v).trans (if_pos hv))
+    · exact (h2 v).trans (ite_eq_left hv))
   refine ⟨m, Ω, fld, φ, he, fun z => ⟨fun h k => ?_, fun h => ?_⟩⟩
   · have h' := h.map (φ k)
     rw [map_add (f := _), map_sub, map_mul, map_one, he, sub_self, zero_add, one_mul] at h'
@@ -128,15 +131,15 @@ theorem crit (S : Finset (HeightOneSpectrum (𝓞 F))) (e : AF F ⊗[F] E) (h1 :
     have hI : ∀ w, IsUnit (compInf F E w z) := fun w => hz (.inl w)
     have hS : ∀ v (h : v ∈ S), IsUnit (compFin F E v z) := fun v h => hz (.inr ⟨v, h⟩)
     obtain ⟨x, hxf, hxi⟩ := exists_adele (E := E) S
-      (fun v => if h : v ∈ S then (hS v h).unit⁻¹ else 1) (fun v hv => dif_neg hv) (fun w => (hI w).unit⁻¹)
+      (fun v => if h : v ∈ S then (hS v h).unit⁻¹ else 1) (fun v hv => dite_eq_right hv) (fun w => (hI w).unit⁻¹)
     refine isUnit_iff_exists_inv.2 ⟨x, GlobalTheory.AdelicU.Supp.adTens_eq_one' (fun w => ?_) fun v => ?_⟩
     · rw [map_mul, map_add (f := _), map_sub, map_mul, map_one, h1, hxi, sub_self, zero_add, one_mul]
       exact (hI w).mul_val_inv
     · rw [map_mul, map_add (f := _), map_sub, map_mul, map_one, h2, hxf]
       by_cases hv : v ∈ S
-      · simp only [if_pos hv, dif_pos hv, sub_self, zero_add, one_mul]
+      · simp only [ite_eq_left hv, dite_eq_left hv, sub_self, zero_add, one_mul]
         exact (hS v hv).mul_val_inv
-      · simp [if_neg hv, dif_neg hv]
+      · simp [ite_eq_right hv, dite_eq_right hv]
 
 end Glue
 
@@ -145,6 +148,8 @@ theorem unitCrit : PositivityTheory.Rg.Rsw.L.IdemEx → PositivityTheory.Rg.Rsw.
 
 end GlobalTheory.CompanionTheory.UnitCell
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CellFormulaOfInvM
@@ -458,7 +463,10 @@ theorem riesz : Riesz := by
 end GlobalTheory.CompanionTheory.RswCell
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousSmulQuot
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousSmulQuot
+@[expose] public section
+
+noncomputable section
 
 open MeasureTheory Filter Topology
 open scoped ENNReal NNReal
@@ -544,19 +552,7 @@ theorem continuous_smul_quot {P : Subgroup G} (x : G) : Continuous fun q : G ⧸
 
 theorem compact_quot' {P : Subgroup G}
     (hco : ∃ C : Set G, IsCompact C ∧ ∀ g, ∃ q ∈ P, ∃ c ∈ C, g = q * c) : CompactSpace (G ⧸ P) := by
-  obtain ⟨C, hC, hcov⟩ := hco
-  have hK : IsCompact ((fun g : G => (QuotientGroup.mk g⁻¹ : G ⧸ P)) '' C) :=
-    hC.image (QuotientGroup.continuous_mk.comp continuous_inv)
-  refine ⟨?_⟩
-  convert hK using 1
-  symm
-  refine Set.eq_univ_of_forall fun x => ?_
-  obtain ⟨y, rfl⟩ := QuotientGroup.mk_surjective x
-  obtain ⟨q, hq, c, hc, hqc⟩ := hcov y⁻¹
-  refine ⟨c, hc, ?_⟩
-  have : y = (q * c)⁻¹ := by rw [← hqc, inv_inv]
-  rw [this, QuotientGroup.eq]
-  simpa using hq
+  apply _root_.GlobalTheory.CompanionTheory.RswCell.compact_quot <;> assumption
 
 theorem integral_translate {P : Subgroup G} [MeasurableSpace (G ⧸ P)] {h : G → ℝ} {mu : (G → ℂ) → ℂ}
     (S : Setup P h mu) {ν : Measure (G ⧸ P)} (hR : Repr P h mu ν) {x : G} (hx : Inv P h mu x)
@@ -623,17 +619,17 @@ theorem invM : InvM := by
 
 end GlobalTheory.CompanionTheory.RswCellInv
 
+end
+end -- clump:auto
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsClosedHermSMx
 
+noncomputable section
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsClosedHermSMx
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.RswTop
 
@@ -644,11 +640,17 @@ theorem topC : PositivityTheory.Rg.Rsw.Cell.TopC := by
 
 end GlobalTheory.CompanionTheory.RswTop
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MatrixEqBlockDecomposition
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MatrixEqBlockDecomposition
+@[expose] public section
+
+noncomputable section
+
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L PositivityTheory.Rg.Rsw.Cell
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.CellFew
 
@@ -916,11 +918,16 @@ theorem fewC : PositivityTheory.Rg.Rsw.L.IdemEx → PositivityTheory.Rg.Rsw.Cell
 
 end GlobalTheory.CompanionTheory.CellFew
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsRhoRight
+
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L GlobalTheory.CompanionTheory.MuC
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open IsDedekindDomain NumberField
 
 namespace GlobalTheory.CompanionTheory.MuC
@@ -935,10 +942,15 @@ theorem isRho_right {D : D7} {p : ℕ} {f : G D p → ℂ} (hf : IsRho f) (x : G
 end GlobalTheory.CompanionTheory.MuC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NpowHalfAddHalf
-open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L PositivityTheory.Rg.Rsw.Cell
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NpowHalfAddHalf
+@[expose] public section
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+noncomputable section
+
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
+open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L PositivityTheory.Rg.Rsw.Cell
 
 namespace GlobalTheory.CompanionTheory.SetCell
 
@@ -1044,9 +1056,9 @@ theorem setC : HtExist → PositivityTheory.Rg.Rsw.Cell.SetC := by
 
 end GlobalTheory.CompanionTheory.SetCell
 
+end
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NullCOfInvM
 
@@ -1253,15 +1265,16 @@ theorem nullC_of_invM : InvM → NullC := by
 end GlobalTheory.CompanionTheory.RswCell.NullCompl
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RingHomMulSubEqZero
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RingHomMulSubEqZero
+@[expose] public section
+
+noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open IsDedekindDomain NumberField
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.SmallRatCell
 
@@ -1336,7 +1349,7 @@ def finS (S : Finset (HeightOneSpectrum (𝓞 F))) (q : F) :
     rw [Filter.eventually_principal]
     intro v hv
     have hv' : v ∉ S := by simpa using hv
-    simp only [if_neg hv']
+    simp only [ite_eq_right hv']
     exact zero_mem _⟩
 
 theorem cofinite_le (S : Finset (HeightOneSpectrum (𝓞 F))) :
@@ -1357,10 +1370,10 @@ theorem tendsto_sAd (S : Finset (HeightOneSpectrum (𝓞 F))) (q : ℕ → F)
     intro v
     by_cases hv : v ∈ S
     · refine (hf v hv).congr fun k => ?_
-      exact (if_pos hv).symm
+      exact (ite_eq_left hv).symm
     · refine tendsto_const_nhds.congr fun k => ?_
       show (0 : v.adicCompletion F) = _
-      exact (if_neg hv).symm
+      exact (ite_eq_right hv).symm
   have h2 := ((RestrictedProduct.continuous_inclusion (cofinite_le S)).tendsto 0).comp h1
   refine Tendsto.prodMk_nhds (tendsto_pi_nhds.2 hi) h2
 
@@ -1386,13 +1399,13 @@ theorem tensor_key {E : Type} [Field E] [Algebra F E] (S : Finset (HeightOneSpec
     exact one_tmul_algebraMap (A := w.Completion) _
   · refine ring_hom_mul_sub_eq_zero (compFin F E v) _ _ _ _ (hf v) ?_
     by_cases hv : v ∈ S
-    · rw [if_pos hv, mul_one]
-      have h : evFin F v (sAd S q) = algebraMap F (v.adicCompletion F) q := if_pos hv
+    · rw [ite_eq_left hv, mul_one]
+      have h : evFin F v (sAd S q) = algebraMap F (v.adicCompletion F) q := ite_eq_left hv
       show (1 : v.adicCompletion F) ⊗ₜ[F] _ = evFin F v (sAd S q) ⊗ₜ[F] (1 : E)
       rw [h]
       exact one_tmul_algebraMap _
-    · rw [if_neg hv, mul_zero]
-      have h : evFin F v (sAd S q) = 0 := if_neg hv
+    · rw [ite_eq_right hv, mul_zero]
+      have h : evFin F v (sAd S q) = 0 := ite_eq_right hv
       show 0 = evFin F v (sAd S q) ⊗ₜ[F] (1 : E)
       rw [h, TensorProduct.zero_tmul]
 
@@ -1438,16 +1451,19 @@ theorem smallRat : PositivityTheory.Rg.Rsw.L.IdemEx → PositivityTheory.Rg.Rsw.
 
 end GlobalTheory.CompanionTheory.SmallRatCell
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.HermitianCellMeasures.MuCellOf
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.HermitianCellMeasures.MuCellOf
+@[expose] public section
+
+noncomputable section
 
 open scoped Matrix NNReal ENNReal Topology
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace PositivityTheory.Rg.Rsw.Cell
 
@@ -1513,6 +1529,8 @@ theorem muCell_of (hR : Riesz) (hN : NullC) (hF : CellFormula) (hA : CellAlg) (h
 
 end PositivityTheory.Rg.Rsw.Cell
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.HermitianCellMeasures.MuCellTop

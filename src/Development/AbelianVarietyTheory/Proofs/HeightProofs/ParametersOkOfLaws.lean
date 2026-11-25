@@ -49,8 +49,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Counterexamples.LevelGroupExamples.PiTwistNegation, Development.AbelianVarietyTheory.Proofs.JetHarmonics.HalfEXIffOriented, Development.AbelianVarietyTheory.Proofs.HeightProofs.ParametersOkOfLaws
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.LevelGroupExamples.PiTwistNegation
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Counterexamples.LevelGroupExamples.PiTwistNegation
 
+noncomputable section
 namespace GlobalTheory.Survey.PiTwistNegation
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
@@ -78,7 +79,7 @@ theorem halfEX_iff_le (T : Core D) (h : LawsM T) (X : ErrX D) :
   · by_contra hb
     have hp : piOf T X i = X.piG i := by
       classical
-      unfold piOf; rw [if_neg hb]
+      unfold piOf; rw [ite_eq_right hb]
 
     have h1 : T.Q.l.Mb.map (T.Q.H.bar : 𝓞 D.host.E →+* 𝓞 D.host.E) ≤ Ideal.span {barE D (X.piG i)} := by
       rw [← hp, ← bar_core T, span_bar_piOf T h]; exact Ideal.map_mono (hle i)
@@ -91,6 +92,7 @@ theorem halfEX_iff_le (T : Core D) (h : LawsM T) (X : ErrX D) :
     rw [← span_piOf T h X i, hp, Ideal.span_singleton_eq_top]; exact hu
 
 end GlobalTheory.Survey.PiTwistNegation
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.HalfEXIffOriented

@@ -448,7 +448,9 @@ end GlobalTheory.PlaceCut
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RowTestMemFourierJacobiGroupOfSumFrameSymmetric
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RowTestMemFourierJacobiGroupOfSumFrameSymmetric
+@[expose] public section
+noncomputable section
 open GlobalTheory.RootEx GlobalTheory.RowRep
 
 namespace GlobalTheory.RowRepLoc
@@ -544,10 +546,10 @@ theorem mem_jac {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace
     · rintro (a | i | i)
       · rfl
       · show (if i.val < σ then i.val + 1 else i.val + 2) = i.val + 1
-        rw [if_pos i.isLt]
+        rw [ite_eq_left i.isLt]
       · show (if 2 * σ - 1 - i.val < σ then 2 * σ - 1 - i.val + 1 else 2 * σ - 1 - i.val + 2) = 2 * σ - i.val + 1
         have := i.isLt
-        rw [if_neg (by omega)]
+        rw [ite_eq_right (by omega)]
         omega
     · intro r s hrs
       have hq' : GlobalTheory.RootEx.InN p' q := hq
@@ -585,6 +587,8 @@ theorem GlobalTheory.RowRepLoc.mem_jacGrp_of_symR : ∀ {D : D7} {A B : HSp D} {
   · rw [hπ]; exact hΓ2
   · rw [hπ]; exact hΓ g
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RowTestMemFourierJacobiGroupOfSumFrameSymmetricStatement
@@ -754,14 +758,15 @@ theorem _root_.GlobalTheory.T.isRowFlagTilt_unique : ∀ {D : D7} {T : Type} {L 
   first | exact @GlobalTheory.TiltUnique.tilt_unique
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TiltedPointsCoveredByRepresentativeCells
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TiltedPointsCoveredByRepresentativeCells
+noncomputable section
 
 namespace GlobalTheory.RowVal
 
 theorem eltAt {k : Type} [Field k] {Gr : GlobalTheory.SplitFlip.Grid k} {hs : 1 ≤ Gr.s} {J : Gr.Level} (ρ : Reps hs J)
     (β : Cosets hs J) (i : ℕ) (hi : i < Gr.m - 2) : ρ.elt β (Gr.m, i + 1) = ρ.rep ⟨i, hi⟩ (β ⟨i, hi⟩) := by
   rw [Reps.elt, onColumn_apply]
-  simp only [dif_pos hi]
+  simp only [dite_eq_left hi]
 
 
 
@@ -826,6 +831,7 @@ theorem cover_at : Big fun ch => ∀ s, CoverAt ch s := by
   simp only [mul_assoc, inv_mul_cancel_left]
 
 end GlobalTheory.RowVal
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegrandSupportedOnCellsLargeDepth
@@ -919,13 +925,13 @@ theorem suppOn_of_cover (s : ℤˣ) (hC : CoverAt ch s) (hF : FlatAt ch s) (hO :
   have hp : IsRealPt p := by
     refine ⟨fun j => ?_, fun j hj => by simp [p, hj]⟩
     by_cases hj : j ∈ idx D
-    · simp only [p, if_pos hj]; exact ha' j hj
-    · simp only [p, if_neg hj]; exact one_mem _
+    · simp only [p, ite_eq_left hj]; exact ha' j hj
+    · simp only [p, ite_eq_right hj]; exact one_mem _
   have hmove : tot ch.W hM P τ (colFn ch a) (formTop ch t y) h = tot ch.W hM P τ (colFn ch a) (formTop ch t y) (p * b β) := by
     refine biInv_eq_of_cells (idx D) (hI t a τ hτ M hM P y) h (p * b β) (fun j hj => ?_) (fun j hj => ?_)
     · simp [p, hj, h1 j hj, (hb β).1 j hj]
     · refine ⟨r j, hr j hj, k j, hk j hj, ?_⟩
-      simp only [Pi.mul_apply, p, if_pos hj, e j hj, mul_assoc]
+      simp only [Pi.mul_apply, p, ite_eq_left hj, e j hj, mul_assoc]
   rw [hmove]
 
   have hexp : ch.S.IsExpansion t (ch.Phi a) β 0 := by

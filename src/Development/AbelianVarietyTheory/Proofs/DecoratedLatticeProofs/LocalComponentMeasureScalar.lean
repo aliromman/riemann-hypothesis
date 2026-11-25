@@ -151,8 +151,10 @@ theorem besz_pairings : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topo
 end GlobalTheory.BesPair
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsJacFramePairing
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsJacFramePairing
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.JacFramePair
 
 variable {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -228,15 +230,19 @@ theorem isJacFrame_pairing : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] 
         exact zero_mem _
       · rw [inrHi j (by omega), Valuation.mem_integer_iff, map_mul, vt, one_mul]
         split_ifs <;> simp
-  · rw [inrHi _ (by simp only; omega), map_mul, vt, one_mul, if_pos (Fin.ext (by simp only; omega)), map_one]
+  · rw [inrHi _ (by simp only; omega), map_mul, vt, one_mul, ite_eq_left (Fin.ext (by simp only; omega)), map_one]
 
 end GlobalTheory.JacFramePair
+end
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MonoAtOfSplitW
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MonoAtOfSplitW
+@[expose] public section
 
+noncomputable section
 
 section General
 
@@ -321,7 +327,7 @@ theorem colProj_map {S : HSp D} {ρ m : ℕ} (q : Matrix (Fin ρ) (Fin m) D.host
     (colProj q f i).map (prE p) *ᵥ x = f.map (prE p) *ᵥ Pi.single i ((q.map (prE p) *ᵥ x) i) := by
   funext l
   simp only [colProj, Matrix.mulVec, dotProduct, Matrix.map_apply, Matrix.of_apply, Pi.single_apply, mul_ite, mul_zero,
-    Finset.sum_ite_eq', Finset.mem_univ, if_true, Finset.mul_sum, mul_assoc, RingHom.map_mul]
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true, Finset.mul_sum, mul_assoc, RingHom.map_mul]
 
 theorem map_mulVec {l m n : ℕ} (A : Matrix (Fin l) (Fin m) D.host.E) (B : Matrix (Fin m) (Fin n) D.host.E) (x : Fin n → k) :
     A.map (prE p) *ᵥ (B.map (prE p) *ᵥ x) = (A * B).map (prE p) *ᵥ x := by
@@ -494,6 +500,8 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Form
 open GlobalTheory.RootEx GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.SplitWeil GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Unf GlobalTheory.SeeSaw GlobalTheory.StepData GlobalTheory.SymChain GlobalTheory.LocMod GlobalTheory.MiS GlobalTheory.MiTop GlobalTheory.Fam ValuativeRel
 open scoped TensorProduct Classical
 
+end
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

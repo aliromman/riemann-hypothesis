@@ -1145,8 +1145,9 @@ end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.SumFilterSmul
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.L2.SG.Pf.TemperedBoundGL3
 
@@ -1233,11 +1234,11 @@ theorem rebaseAt_of (hS : IsHermSemilocal S) (hπ : IsUnif S π)
       rw [zero_mul]
       exact S.zero_mem
     · by_cases hi : e i = e i₀
-      · rw [if_pos hi, sub_self, zero_mul]
+      · rw [ite_eq_left hi, sub_self, zero_mul]
         show (0 : K) * π⁻¹ ∈ S
         rw [zero_mul]
         exact S.zero_mem
-      · rw [if_neg hi, star_zero, zero_mul, zero_mul, zero_sub, neg_mul]
+      · rw [ite_eq_right hi, star_zero, zero_mul, zero_mul, zero_sub, neg_mul]
         exact Dv.neg (hterm i hi)
   have hYu : IsUnitIn S (h (∑ i ∈ Finset.univ.filter (fun i => e i = e i₀), x i • b i)
       (∑ i ∈ Finset.univ.filter (fun i => e i = e i₀), x i • b i) * (π ^ e i₀)⁻¹) := by
@@ -1260,6 +1261,7 @@ theorem rebaseAt_of (hS : IsHermSemilocal S) (hπ : IsUnif S π)
 end
 
 end Formalism.L2.SG.Pf.TemperedBoundGL3
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

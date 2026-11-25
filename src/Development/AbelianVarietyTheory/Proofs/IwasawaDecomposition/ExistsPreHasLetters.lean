@@ -58,8 +58,10 @@ import Mathlib.RingTheory.PicardGroup
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsColsRowsRestPos, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsPreHasLetters
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsColsRowsRestPos
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsColsRowsRestPos
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.Mem.RowsModel
 
@@ -179,8 +181,8 @@ def model (n : C.Tup → ℕ) (D : ℕ)
   ft0 _ := ()
   Amb μ := Euc (n μ)
   Mult μ j := Euc (if j = 0 then D else n μ)
-  multZero _ := eucCast (if_pos rfl)
-  multTop _ := eucCast (if_neg (by have := B.R.two_le_m; omega))
+  multZero _ := eucCast (ite_eq_left rfl)
+  multTop _ := eucCast (ite_eq_right (by have := B.R.two_le_m; omega))
   io _ _ := Matrix.toEuclideanLin (Matrix.of fun a b => if (a : ℕ) = (b : ℕ) then 1 else 0)
   Mtilde μ := stdOLat _ _ (n μ)
   eOp _ := LinearMap.id
@@ -228,7 +230,7 @@ def model (n : C.Tup → ℕ) (D : ℕ)
   Bu_linR _ φ := ⟨fun F G => by simp [Finset.sum_add_distrib, mul_add],
     fun a F => by simp [← Finset.mul_sum, mul_left_comm]⟩
   eMtTw := eTw
-  perCol_tie u μ h φ F := dif_neg h
+  perCol_tie u μ h φ F := dite_eq_right h
   eMu_isom := heM
 
 end GlobalTheory.Mem.RowsModel
@@ -246,6 +248,8 @@ theorem RowsModel.ipC_cols (B : Base) (u : B.Word)
 
 end GlobalTheory.Mem
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsPreHasLetters

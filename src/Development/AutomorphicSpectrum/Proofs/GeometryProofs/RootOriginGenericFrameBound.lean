@@ -39,16 +39,15 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.P
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.FirstFormIffSecondForm, Development.WeilBound.CoreStatements.AdicCompleteSpans.MinorC, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginGenericFrameBound
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.FirstFormIffSecondForm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.FirstFormIffSecondForm
 
+noncomputable section
 
 namespace GlobalTheory.ThetaValueIdentityCompare
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.L2.Pj
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.PullbackSections
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 section Valuations
 
@@ -75,16 +74,8 @@ variable {W L : Type} [CommRing W] [IsDomain W] [IsDiscreteValuationRing W] [Fie
 
 end Valuations
 
-section Clauses
-
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
-  {Xo : Moduli Dw l} {c : Coeff l}
-
-variable [StarRing (𝓞 E)]
-
-end Clauses
-
 end GlobalTheory.ThetaValueIdentityCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AdicCompleteSpans.MinorC

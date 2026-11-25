@@ -573,7 +573,8 @@ theorem DualLineConj.proof : DualLineConj.Statement := by
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualPointLineDegree
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualPointLineDegree
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -582,6 +583,7 @@ namespace GroundTheory.Heights₂.Heights
 open ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I2 MvPolynomial Matrix NumberField
 open scoped ComplexOrder
 
+noncomputable section
 
 namespace DualPointLineDegreeAlt
 
@@ -605,7 +607,7 @@ theorem isMultiHomog_X {T : Type} [Fintype T] (t : T) :
   rw [Finset.sum_eq_single t]
   · simp
   · intro c _ hc
-    rw [Finsupp.single_apply, if_neg]
+    rw [Finsupp.single_apply, ite_eq_right]
     intro h
     exact hc (sigma_mk_injective h).symm
   · simp
@@ -712,8 +714,10 @@ theorem DualPointLineDegree.proof (hPt : DualCurvePoint.Statement) (hPos : Point
   rw [hdeg, hR', neg_div, ← neg_div, div_eq_div_iff hn.ne' hd.ne']
   linear_combination key
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualTopBound

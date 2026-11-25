@@ -31,12 +31,10 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.WeightedGaugeFactors.FactsDS
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: CompanionTheory.AutomorphicTheory.UniformLocalFormulas.HilbertSchmidtDiagonalInvariant, CompanionTheory.AutomorphicTheory.UniformLocalFormulas.UniformRestrictionOfEnergy
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.UniformLocalFormulas.HilbertSchmidtDiagonalInvariant
 
 
 open scoped Classical ENNReal
-
-@[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.UniformLocalFormulas.HilbertSchmidtDiagonalInvariant
 open MeasureTheory Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.LocWSOf Formalism.L2.SG.RealObj
   Formalism.L2.SG.RealObj.EnergyCut Formalism.L2.SG.Pf Formalism.L2.SG.Pf.LocJEq Formalism.L2.SG.Pf.Carrier
 
@@ -236,7 +234,11 @@ theorem kpl_pos (D : D7) : 0 < Kpl D :=
 end Formalism.MainStatements.RowRest
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.UniformLocalFormulas.UniformRestrictionOfEnergy
+@[expose] public section -- clump member: CompanionTheory.AutomorphicTheory.UniformLocalFormulas.UniformRestrictionOfEnergy
+
+noncomputable section
+
+open scoped Classical ENNReal
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.LocWSOf
   Formalism.L2.SG.RealObj Formalism.L2.SG.Pf Formalism.L2.SG.Pf.Carrier Formalism.L2.SG.NGCut Formalism.L2.SG.NGAnalytic Formalism.L2.SG.Pf.ThmBChain6
 
@@ -311,7 +313,7 @@ theorem uniform_restriction_of_energy (hF : LoopBCovN.CovNFormula) (hU : UniqOfP
   have hIC : B.IntC = IntC X u u' 1 := by
     show IntC X u u' 1 / MassDataConc.kapN D * kapU D = _
     unfold kapU
-    rw [if_pos hκ, div_mul_cancel₀ _ hκ.ne']
+    rw [ite_eq_left hκ, div_mul_cancel₀ _ hκ.ne']
   rw [hIC] at hF1
   rw [hv] at hF2 hrdb
   have hrd := _root_.Formalism.MainNotions.S.rdE_pos D

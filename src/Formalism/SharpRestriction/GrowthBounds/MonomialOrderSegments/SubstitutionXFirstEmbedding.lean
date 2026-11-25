@@ -9,12 +9,11 @@ import Mathlib.Topology.Sheaves.Presheaf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.SecondEmbeddingTangentIndex, Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.ExistsMonomialOrder, Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.SubstitutionXFirstEmbedding
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.SecondEmbeddingTangentIndex
 
+noncomputable section
 
 open MvPolynomial Finset
-
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.SecondEmbeddingTangentIndex
 
 namespace Formalism.MainNotions.PlaneGram
 
@@ -51,9 +50,9 @@ theorem cnt_eq (o : Finset (Fin (D.nB j + D.r))) (i : D.ML) (l0 : Fin (D.nB j + 
     (h : D.fk j o l0 = i) : D.cnt j o i = if l0 ∈ o then 1 else 0 := by
   unfold cnt
   rw [Finset.sum_eq_single l0]
-  · rw [if_pos h]
+  · rw [ite_eq_left h]
   · intro l _ hl
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h2
     exact hl (D.fk_inj j o (h2.trans h.symm))
   · intro h2; exact absurd (Finset.mem_univ _) h2
@@ -61,14 +60,14 @@ theorem cnt_eq (o : Finset (Fin (D.nB j + D.r))) (i : D.ML) (l0 : Fin (D.nB j + 
 theorem cnt_zero (o : Finset (Fin (D.nB j + D.r))) (i : D.ML) (h : ∀ l, D.fk j o l ≠ i) :
     D.cnt j o i = 0 := by
   unfold cnt
-  exact Finset.sum_eq_zero fun l _ => if_neg (h l)
+  exact Finset.sum_eq_zero fun l _ => ite_eq_right (h l)
 
 theorem cnt_le_one (o : Finset (Fin (D.nB j + D.r))) (i : D.ML) : D.cnt j o i ≤ 1 := by
   by_cases h : ∃ l, D.fk j o l = i
   · obtain ⟨l0, h0⟩ := h
     rw [D.cnt_eq j o i l0 h0]
     split_ifs <;> simp
-  · push_neg at h
+  · push Not at h
     rw [D.cnt_zero j o i h]; exact Nat.zero_le _
 
 theorem first_embedding_ne_tangent (l : Fin (D.nB j + D.r)) (t : D.Tau) : D.e0 j l ≠ D.mtp t := by
@@ -108,17 +107,17 @@ theorem cnt_lab_add_tp (o : Finset (Fin (D.nB j + D.r))) (m : Fin D.r) :
     D.cnt j o (D.mlab (j, m)) + D.cnt j o (D.mtp (j, m)) =
       if Fin.natAdd (D.nB j) (Fin.rev m) ∈ o then 1 else 0 := by
   by_cases hM : D.Marked j o
-  · have hf : D.fk j o = D.e1 j := by unfold fk; rw [if_pos hM]
+  · have hf : D.fk j o = D.e1 j := by unfold fk; rw [ite_eq_left hM]
     by_cases h0 : m.val = 0
     · rw [D.cnt_eq j o (D.mlab (j, m)) (Fin.natAdd (D.nB j) (Fin.rev m))
-        (by rw [hf, second_embedding_natAdd, Fin.rev_rev, if_pos h0]),
+        (by rw [hf, second_embedding_natAdd, Fin.rev_rev, ite_eq_left h0]),
         D.cnt_zero j o (D.mtp (j, m)) (by
           intro l hl; rw [hf] at hl; exact (D.second_embedding_tangent_index j l m hl).1 h0), add_zero]
     · rw [D.cnt_eq j o (D.mtp (j, m)) (Fin.natAdd (D.nB j) (Fin.rev m))
-        (by rw [hf, second_embedding_natAdd, Fin.rev_rev, if_neg h0]),
+        (by rw [hf, second_embedding_natAdd, Fin.rev_rev, ite_eq_right h0]),
         D.cnt_zero j o (D.mlab (j, m)) (by
           intro l hl; rw [hf] at hl; exact h0 (D.second_embedding_label_index_zero j l m hl)), zero_add]
-  · have hf : D.fk j o = D.e0 j := by unfold fk; rw [if_neg hM]
+  · have hf : D.fk j o = D.e0 j := by unfold fk; rw [ite_eq_right hM]
     rw [D.cnt_eq j o (D.mlab (j, m)) (Fin.natAdd (D.nB j) (Fin.rev m))
         (by rw [hf, first_embedding_natAdd, Fin.rev_rev]),
         D.cnt_zero j o (D.mtp (j, m)) (by
@@ -139,7 +138,7 @@ theorem cnt_tp_le (o : Finset (Fin (D.nB j + D.r))) (m : Fin D.r) :
   · obtain ⟨l, hl, hln⟩ := hM
     refine le_trans (D.cnt_le_one j o _) ?_
     have : (if Fin.castAdd D.r (⟨l.val, hln⟩ : Fin (D.nB j)) ∈ o then 1 else 0 : ℕ) = 1 := by
-      rw [if_pos]
+      rw [ite_eq_left]
       have : Fin.castAdd D.r (⟨l.val, hln⟩ : Fin (D.nB j)) = l := by ext; simp
       rw [this]; exact hl
     have h2 := Finset.single_le_sum (f := fun a : Fin (D.nB j) => if Fin.castAdd D.r a ∈ o then 1 else 0)
@@ -150,7 +149,7 @@ theorem cnt_tp_le (o : Finset (Fin (D.nB j + D.r))) (m : Fin D.r) :
     · exact Nat.zero_le _
     · intro l hl
       unfold fk at hl
-      rw [if_neg hM] at hl
+      rw [ite_eq_right hM] at hl
       exact D.first_embedding_ne_tangent j l _ hl
 
 theorem cnt_not_segL (o : Finset (Fin (D.nB j + D.r))) (i : D.ML) (hi : ¬ D.SegL j i) :
@@ -213,8 +212,12 @@ end TwistData
 
 end Formalism.MainNotions.PlaneGram
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.ExistsMonomialOrder
+
+
+open MvPolynomial Finset
 
 namespace Formalism.MainNotions.PlaneGram
 
@@ -384,7 +387,11 @@ theorem integral_prod_rename {ι : Type} [Fintype ι] (col : ι → MvPolynomial
 end Formalism.MainNotions.PlaneGram
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.SubstitutionXFirstEmbedding
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.SubstitutionXFirstEmbedding
+
+noncomputable section
+
+open MvPolynomial Finset
 
 namespace Formalism.MainNotions.PlaneGram
 
@@ -479,12 +486,12 @@ theorem PsiP_val {nc : ℕ} (col : Fin nc → MvPolynomial (Fin (D.nB j + D.r) �
   rw [WithTop.coe_sum]
   refine Finset.sum_le_sum fun k _ => ?_
   by_cases hM : D.Marked j (occ k)
-  · have hf : D.fk j (occ k) = D.e1 j := by unfold fk; rw [if_pos hM]
+  · have hf : D.fk j (occ k) = D.e1 j := by unfold fk; rw [ite_eq_left hM]
     rw [hf, valS_rename (D.e1 j) (D.second_embedding_injective j), YP_preimage1]
     have : D.msg ∘ D.e1 j = D.msg ∘ D.e0 j := funext fun l => D.second_embedding_mark_eq_first j l
     rw [this]
     exact h16 k
-  · have hf : D.fk j (occ k) = D.e0 j := by unfold fk; rw [if_neg hM]
+  · have hf : D.fk j (occ k) = D.e0 j := by unfold fk; rw [ite_eq_right hM]
     rw [hf, valS_rename (D.e0 j) (D.index_embedding_injective j)]
     have h0 : (0 : WithTop ℤ) ≤ valS (D.msg ∘ D.e0 j)
         ((D.YPset j m).preimage (D.e0 j) (D.index_embedding_injective j).injOn) (col k) := by
@@ -493,7 +500,7 @@ theorem PsiP_val {nc : ℕ} (col : Fin nc → MvPolynomial (Fin (D.nB j + D.r) �
       have hlt := D.YP_preimage0 j m i hi
       have hi2 : i ∉ occ k := fun h => hM ⟨i, h, hlt⟩
       have hd := (mem_PolK_iff _ _).mp (hcol k) α hα i
-      rw [if_neg hi2] at hd
+      rw [ite_eq_right hi2] at hd
       unfold ldeg at hd
       exact (Finset.sum_eq_zero_iff.mp hd) a (Finset.mem_univ a)
     refine le_trans ?_ h0
@@ -504,10 +511,10 @@ theorem PsiP_val {nc : ℕ} (col : Fin nc → MvPolynomial (Fin (D.nB j + D.r) �
         have h2 := D.card_unmarked j (occ k) hM m
         have h3 : ¬ (1 ≤ cidx k ∧ hts k = D.r) := by
           rintro ⟨-, h⟩; omega
-        rw [if_neg h3]
+        rw [ite_eq_right h3]
         split_ifs <;> simp
       · have h3 : ¬ (1 ≤ cidx k ∧ hts k = D.r) := fun h => hc h.1
-        rw [if_neg h3]
+        rw [ite_eq_right h3]
         split_ifs <;> simp
     exact_mod_cast this
 

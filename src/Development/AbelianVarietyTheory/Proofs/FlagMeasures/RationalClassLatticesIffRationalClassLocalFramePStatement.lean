@@ -519,13 +519,13 @@ private lemma exists_intValuation_sub_one_le_and_le_elsewhere (D : D7) (p : PlF 
     (fun q => if (q : PlF D) = p then 1 else 0)
   refine ⟨y, ?_, ?_⟩
   · have h := hy p (Finset.mem_insert_self _ _)
-    simp only [if_true] at h
+    simp only [ite_true] at h
     rw [p.intValuation_eq_exp_neg_multiplicity hr]
     exact (p.intValuation_le_pow_iff_mem _ _).2 h
   · intro q hq
     by_cases hqs : r ∈ q.asIdeal
     · have h := hy q (Finset.mem_insert_of_mem (hfin.mem_toFinset.2 hqs))
-      simp only [hq, if_false, sub_zero] at h
+      simp only [hq, ite_false, sub_zero] at h
       rw [q.intValuation_eq_exp_neg_multiplicity hr]
       exact (q.intValuation_le_pow_iff_mem _ _).2 h
     · rw [IsDedekindDomain.HeightOneSpectrum.intValuation_eq_one_iff.2 hqs]
@@ -1000,9 +1000,11 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.NonGenericDatumLatticeEqPerpQuotientImageTerm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.NonGenericDatumLatticeEqPerpQuotientImageTerm
 
 open ValuativeRel Formalism.MainNotions.S Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG
+
+noncomputable section
 
 namespace GlobalTheory.InnerRead
 
@@ -1103,14 +1105,14 @@ lemma prF_e (v : V) (b : Fin r) : H.h (Fr.prF v) (Fr.e b) = 0 := by
   unfold FrameD.prF
   rw [GlobalTheory.Unfold.StdDual.h_sub_left, GlobalTheory.Unfold.StdDual.h_sub_left, Formalism.L2.SG.Pf.ScalarFramePf.h_sum_left, Formalism.L2.SG.Pf.ScalarFramePf.h_sum_left]
   simp only [H.h_smul_left, h_ee, h_es_e, mul_zero, Finset.sum_const_zero, mul_ite, mul_one,
-    Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   ring
 
 lemma prF_es (v : V) (b : Fin r) : H.h (Fr.prF v) (Fr.es b) = 0 := by
   unfold FrameD.prF
   rw [GlobalTheory.Unfold.StdDual.h_sub_left, GlobalTheory.Unfold.StdDual.h_sub_left, Formalism.L2.SG.Pf.ScalarFramePf.h_sum_left, Formalism.L2.SG.Pf.ScalarFramePf.h_sum_left]
   simp only [H.h_smul_left, h_e_es, Fr.h_ss, mul_zero, Finset.sum_const_zero, mul_ite, mul_one,
-    Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   ring
 
 lemma prF_add (x y : V) : Fr.prF (x + y) = Fr.prF x + Fr.prF y := by
@@ -1223,6 +1225,7 @@ theorem datum_eq_Lset : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSp
 
 end GlobalTheory.InnerRead
 end -- clump:auto
+end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -1235,7 +1238,6 @@ namespace GlobalTheory.Unfold.InnerDict
 
 theorem lset_eq_of_lsub_eq : ∀ (D : D7) (Z : LocDat D) (p : PlF D) {T : D.host.E} (G : LFlag (D.sp.Y 0) D.R.rS T) (Fr : LocNG.FrameD (locH Z p) D.R.rS), Fr.f = (fun a => frFac Z.δ p a • baseChange₂ D p (frame G a)) → ∀ Λ₁ Λ₂ : LV D, Submodule.IsLattice D.host.E Λ₁ → Submodule.IsLattice D.host.E Λ₂ → Lsub Λ₁ G = Lsub Λ₂ G → (locH Z p).Lset (lattice₂ D Z.M p Λ₁) Fr.f = (locH Z p).Lset (lattice₂ D Z.M p Λ₂) Fr.f := GlobalTheory.T.localInnerLattice_eq_of_innerPreimage_eq
 
-theorem lsub_eq_of_lset_eq : ∀ (D : D7) (Z : LocDat D) {T : D.host.E} (G : LFlag (D.sp.Y 0) D.R.rS T) (Fr : ∀ p : PlF D, LocNG.FrameD (locH Z p) D.R.rS), (∀ p, (Fr p).f = (fun a => frFac Z.δ p a • baseChange₂ D p (frame G a))) → ∀ Λ₁ Λ₂ : LV D, Submodule.IsLattice D.host.E Λ₁ → Submodule.IsLattice D.host.E Λ₂ → (∀ p, (locH Z p).Lset (lattice₂ D Z.M p Λ₁) (Fr p).f = (locH Z p).Lset (lattice₂ D Z.M p Λ₂) (Fr p).f) → Lsub Λ₁ G = Lsub Λ₂ G := GlobalTheory.T.innerPreimage_eq_of_local_innerLattice_eq
 
 theorem datum_ext {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E] {M : Loc.Model F E} {V : Type} [AddCommGroup V] [Module E V] {H : Loc.HermSp M V} {r : ℕ} {P : LocNG.FPair H r} (d d' : LocNG.Datum P) (h1 : d.L = d'.L) (h2 : d.L' = d'.L') (h3 : d.io = d'.io) : d = d' := by
   cases d; cases d'; simp only at h1 h2 h3; subst h1 h2 h3; rfl
@@ -1276,10 +1278,10 @@ theorem gdat_eq_iff : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.wh
   · intro hy
     subst hy
     have hF : Lsub Λ₁ F = Lsub Λ₂ F :=
-      lsub_eq_of_lset_eq D Z F (fun p => (FP p).A) (fun p => (hB p).1) Λ₁ Λ₂ h₁.1 h₂.1
+      _root_.GlobalTheory.Unfold.LsubG.lsub_eq_of_local D Z F (fun p => (FP p).A) (fun p => (hB p).1) Λ₁ Λ₂ h₁.1 h₂.1
         (fun p => (hL Λ₁ y₁ h₁ p).1.symm.trans (hL Λ₂ y₁ h₂ p).1)
     have hF' : Lsub Λ₁ F' = Lsub Λ₂ F' :=
-      lsub_eq_of_lset_eq D Z F' (fun p => (FP p).B) (fun p => (hB p).2.1) Λ₁ Λ₂ h₁.1 h₂.1
+      _root_.GlobalTheory.Unfold.LsubG.lsub_eq_of_local D Z F' (fun p => (FP p).B) (fun p => (hB p).2.1) Λ₁ Λ₂ h₁.1 h₂.1
         (fun p => (hL Λ₁ y₁ h₁ p).2.1.symm.trans (hL Λ₂ y₁ h₂ p).2.1)
     have hΓ := _root_.GlobalTheory.Unfold.IotaGlob.graph_eq_of_local_iota D Z FP _ _ F F' hB Λ₁ Λ₂ h₁.1 h₂.1 hF hF'
       (fun p g hs => ((hL Λ₁ y₁ h₁ p).2.2 g hs).symm.trans ((hL Λ₂ y₁ h₂ p).2.2 g hs))

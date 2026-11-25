@@ -72,11 +72,11 @@ import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.BiextensionHypo
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KvalGeOrbitGainWithoutOperator, Development.AbelianVarietyTheory.Proofs.SatakeParameters.AddCoordExponentIntegralJetsUnramified, Development.AbelianVarietyTheory.Proofs.SatakeParameters.StandardOrbitSeriesValuationBoundZero, Development.AbelianVarietyTheory.Proofs.SatakeParameters.WordFreeNumberLeOrbitBound, Development.AbelianVarietyTheory.Proofs.SatakeParameters.OrbitBoundStandardSeriesInertPlaces
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KvalGeOrbitGainWithoutOperator
+
+noncomputable section
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd Classical
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KvalGeOrbitGainWithoutOperator
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 open Formalism.L2.Th1.D (F1 F2 OwOK TrDual addC thetaInZ sumE)
 open Formalism.InvariantFactorPaths.G7 (UnrOK IsLawOfLog cob alG capG lsG deLoss dSet lgN DivAB)
@@ -193,9 +193,9 @@ theorem kvalGe_gainA : ∀ (Lc : product_zeroth_first_parts.Loc) (ep : ℂ_[Lc.l
     funext s
     unfold alG alLoc
     by_cases hs : s ∈ TT
-    · rw [if_pos hs, if_pos (show s ∈ Lc.TT from hs)]
+    · rw [ite_eq_left hs, ite_eq_left (show s ∈ Lc.TT from hs)]
       exact card_height_one _
-    · rw [if_neg hs, if_neg (show s ∉ Lc.TT from hs)]
+    · rw [ite_eq_right hs, ite_eq_right (show s ∉ Lc.TT from hs)]
   have hcap : capG TT (fun s => (nu s).rowLen 0) (fun s c => (nu s).colLen c) = Lc.cap := by
     funext s
     unfold capG
@@ -203,10 +203,10 @@ theorem kvalGe_gainA : ∀ (Lc : product_zeroth_first_parts.Loc) (ep : ℂ_[Lc.l
     unfold alLoc product_zeroth_first_parts.Loc.cap
     have hle : (nu s).rowLen 1 ≤ (nu s).rowLen 0 := (nu s).rowLen_anti 0 1 (Nat.zero_le _)
     by_cases hs : s ∈ Lc.TT
-    · rw [if_pos hs, if_pos hs]
+    · rw [ite_eq_left hs, ite_eq_left hs]
       show (nu s).rowLen 0 - ((nu s).rowLen 0 - (nu s).rowLen 1) = (nu s).rowLen 1
       omega
-    · rw [if_neg hs, if_neg hs]
+    · rw [ite_eq_right hs, ite_eq_right hs]
       rfl
   have hls : lsG TT (fun s => (nu s).rowLen 0) (fun s c => (nu s).colLen c) = fun s => Lc.size s - alLoc Lc s := by
     funext s
@@ -218,17 +218,20 @@ theorem kvalGe_gainA : ∀ (Lc : product_zeroth_first_parts.Loc) (ep : ℂ_[Lc.l
   unfold excessGain gainA deLoss
   congr 1
   refine Finset.sum_congr rfl fun s _ => ?_
-  rw [← tsum_odd _ (fun e he => if_neg (fun h => he h.1))]
+  rw [← tsum_odd _ (fun e he => ite_eq_right (fun h => he h.1))]
   refine tsum_congr fun e => ?_
   have ho : Odd (2 * e + 1) := ⟨e, rfl⟩
   by_cases h : 2 * e + 1 ∈ dSet TT s
-  · rw [if_pos h, if_neg (fun h' => h'.2 ((mem_dSet TT s e).1 h))]
-  · rw [if_neg h, if_pos ⟨ho, fun h' => h ((mem_dSet TT s e).2 h')⟩]
+  · rw [ite_eq_left h, ite_eq_right (fun h' => h'.2 ((mem_dSet TT s e).1 h))]
+  · rw [ite_eq_right h, ite_eq_left ⟨ho, fun h' => h ((mem_dSet TT s e).2 h')⟩]
 
 end GlobalTheory.KerGaussA
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.AddCoordExponentIntegralJetsUnramified
+
+open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd Classical
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 open Formalism.L2.Th1.D (F1 F2 OwOK TrDual addC thetaInZ sumE)
 open Formalism.InvariantFactorPaths.G7 (UnrOK IsLawOfLog cob)
@@ -620,7 +623,7 @@ theorem hur_addC (l : ℕ) (σ : K →+* K) (hU : Formalism.InvariantFactorPaths
   by_cases hz : n 0 = 0 ∨ n 1 = 0
   · rw [hDiv n hz, mul_zero]
     exact (ball K).zero_mem
-  · push_neg at hz
+  · push Not at hz
     by_cases h2' : 2 ≤ n 0
     · have e1 := decomp n 0 hz.1
       have hm : (n - Finsupp.single 0 1 : Fin 2 →₀ ℕ) 0 ≠ 0 := by simp; omega
@@ -675,7 +678,11 @@ end GlobalTheory.AddJet
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.StandardOrbitSeriesValuationBoundZero
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.StandardOrbitSeriesValuationBoundZero
+
+noncomputable section
+
+open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd Classical
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 open Formalism.L2.Th1.D (F1 F2 OwOK TrDual addC thetaInZ sumE expF xOfZ)
 open Formalism.InvariantFactorPaths.G7 (UnrOK IsLawOfLog cob lgF at1)
@@ -705,7 +712,7 @@ theorem coeff_one_lgF {l : ℕ} (hl : 2 ≤ l) : PowerSeries.coeff 1 (lgF K l) =
   rw [PowerSeries.coeff_mk, Finset.sum_eq_single 0]
   · simp
   · intro j _ hj
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h
     have h1 : 1 < (l ^ 2) ^ j := Nat.one_lt_pow hj (Nat.one_lt_pow two_ne_zero (by omega))
     omega
@@ -1046,8 +1053,13 @@ theorem kvalGe_zero : ∀ (Lc : product_zeroth_first_parts.Loc) (ep : ℂ_[Lc.l]
 
 end GlobalTheory.KerZero
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.WordFreeNumberLeOrbitBound
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.WordFreeNumberLeOrbitBound
+
+noncomputable section
+
+open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd Classical
 open Formalism.InvariantFactorPaths.G7 (lgN)
 open Formalism.MainNotions.OrbitPlaces (Pl orbMap orbLoc Ent Shape OrbOK)
 open PI.OrbBoundFW
@@ -1075,7 +1087,7 @@ theorem sum_topsOn (X : Inst D L) {p : ℕ} (hc : IsResidueClassZero D p) {t0 : 
     (TT : Finset (ZMod (nP D p))) (hTT : ∀ s, s ∈ TT ↔ IsTopPl D (orbMap D p (false, t0) s))
     (F : HH D → ℝ) :
     ∑ t ∈ topsOn X p t0, F t = ∑ s ∈ TT, F (orbMap D p (false, t0) s).2 := by
-  have hst : stepP D p = hP D p := if_neg (not_signal hc)
+  have hst : stepP D p = hP D p := ite_eq_right (not_signal hc)
   have hb0 : X.bs (hP D p) t0 = t0 := by
     unfold reps at ht0
     rw [hst] at ht0
@@ -1218,7 +1230,7 @@ theorem wordFreeNumber_le_orbitBound : ∀ (D : D7) (L : SizeData₂ D) (X : Ins
     have hom : orbMap D p (false, t0) s = (false, (orbMap D p (false, t0) s).2) :=
       Prod.ext ((hTT s).1 hs).1 rfl
     unfold alLoc
-    rw [if_pos hs, natSub_cast, ← hom]
+    rw [ite_eq_left hs, natSub_cast, ← hom]
     rfl
   have hcard : (Nv X p t0 : ℝ) = ((orbLoc E p h u i (false, t0) Th).TT.card : ℝ) := by
     have := sum_topsOn X hc ht0 _ hTT (fun _ => 1)
@@ -1239,7 +1251,7 @@ theorem wordFreeNumber_le_orbitBound : ∀ (D : D7) (L : SizeData₂ D) (X : Ins
       · rw [halTop s hs]
         exact hα u i hi _ ((hTT s).1 hs).2
       · unfold alLoc
-        rw [if_neg hs]
+        rw [ite_eq_right hs]
         push_cast
         linarith)
     (fun s => hS.sizeA u i hi (orbMap D p (false, t0) s))
@@ -1272,7 +1284,7 @@ theorem wordFreeNumber_le_orbitBound : ∀ (D : D7) (L : SizeData₂ D) (X : Ins
         have hT0 := (hTT _).1 h2
         have hT : IsTopPl D (partner D p t e) := by rw [← hpart e]; exact hT0
         exact he.2 (excl_of_top t he.1 h1 hT)
-      rw [if_pos he, if_pos ⟨he.1, hne⟩, max_comm]
+      rw [ite_eq_left he, ite_eq_left ⟨he.1, hne⟩, max_comm]
       refine max_le_max ?_ le_rfl
       have hal := hS.alG u i hi t htT
       have hcap := hS.capG u i hi (orbMap D p (false, t0) (s + (e : ZMod (nP D p))))
@@ -1281,7 +1293,7 @@ theorem wordFreeNumber_le_orbitBound : ∀ (D : D7) (L : SizeData₂ D) (X : Ins
       rw [hl, hrow]
       unfold capU
       exact sub_le_sub (div_le_div_of_nonneg_right hal hpe.le) hcap
-    · rw [if_neg he]
+    · rw [ite_eq_right he]
       split_ifs
       · exact le_max_right _ _
       · exact le_refl 0
@@ -1289,8 +1301,11 @@ theorem wordFreeNumber_le_orbitBound : ∀ (D : D7) (L : SizeData₂ D) (X : Ins
 
 end GlobalTheory.KerStd.WordFree
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.OrbitBoundStandardSeriesInertPlaces
+
+open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd Classical
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 open Formalism.L2.Th1.D (F1 F2 OwOK TrDual addC thetaInZ sumE)
 open Formalism.InvariantFactorPaths.G7 (UnrOK IsLawOfLog cob)
@@ -1311,7 +1326,7 @@ theorem orbit_bound_rec : ∀ (D : D7) (L : SizeData₂ D) (X : Inst D L) (K : C
   have hEv : HEv D (D.what₂.places.resChar w) := by
     have he := h.even
     unfold nP at he
-    rw [if_neg (GlobalTheory.KerStd.WordFree.not_signal hC0)] at he
+    rw [ite_eq_right (GlobalTheory.KerStd.WordFree.not_signal hC0)] at he
     exact he
   obtain ⟨hep, hbe⟩ := hBe w (Or.inl ⟨hC0, hEv⟩)
   have hs : Ee.sg w (false, t0) = -1 := by rw [hsg]

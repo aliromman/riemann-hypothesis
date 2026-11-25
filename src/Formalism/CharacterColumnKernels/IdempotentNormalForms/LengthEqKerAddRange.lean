@@ -12,20 +12,15 @@ import Mathlib.Tactic.Lemma
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.CharacterColumnKernels.StatementMF, Formalism.CharacterColumnKernels.IdempotentNormalForms.RightMulEpsAlgebraMap, Formalism.CharacterColumnKernels.IdempotentNormalForms.LengthEqKerAddRange
 
-@[expose] public noncomputable section -- clump member: Formalism.CharacterColumnKernels.StatementMF
+@[expose] public section -- clump member: Formalism.CharacterColumnKernels.StatementMF
 
 open Finset
 
+noncomputable section
 
 namespace Formalism.NG
 
 universe u
-
-section EpsDual
-variable (O OO Q : Type*) [CommRing O] [Ring OO] [Algebra O OO] [AddCommGroup Q] [Module O Q]
-  (ε : OO)
-
-end EpsDual
 
 def StatMatlis : Prop :=
   ∀ (O N : Type*) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [AddCommGroup N]
@@ -33,6 +28,7 @@ def StatMatlis : Prop :=
     Module.length O (N →ₗ[O] KO O) = Module.length O N
 
 end Formalism.NG
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.CharacterColumnKernels.IdempotentNormalForms.RightMulEpsAlgebraMap

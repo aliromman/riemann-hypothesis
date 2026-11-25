@@ -20,36 +20,18 @@ import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.RingKrul
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.ModuliSpaces.ExistsRetractTensorTriple, Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIsEffAddNsmulDiv
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.ModuliSpaces.ExistsRetractTensorTriple
+section -- clump member: Development.AbelianVarietyTheory.Definitions.ModuliSpaces.ExistsRetractTensorTriple
+@[expose] public section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj TensorProduct Pointwise
 
+noncomputable section
 
 namespace GlobalTheory.Models
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
-
-section Amp
-
-variable {D : Datum H} {Xo : ∀ l : Level H, Moduli D l}
-
-end Amp
-
-section Refl
-
-variable {U : Scheme.{0}} {F O : Type} [Field F] [CommRing O] {c : U ⟶ Sp F} {t₀ : SAB H U} {β : O →+* F}
-
-end Refl
-
-section Abelian
-
-variable {O F : Type} [CommRing O] [Field F] (β : O →+* F) {X : Scheme.{0}} (s : X ⟶ Sp O) (t : SAB H X)
-
-variable (A : Over X) [GrpObj A] [IsCommMonObj A] (hA : IsAbelianScheme A)
-
-end Abelian
 
 theorem flat_projSpace (R : Type) [CommRing R] (N : ℕ) : Flat (PSpace.str R N) :=
   haveI : IsZariskiLocalAtSource @Flat.{0} := HasRingHomProperty.instIsZariskiLocalAtSource
@@ -60,6 +42,8 @@ theorem flat_projSpace (R : Type) [CommRing R] (N : ℕ) : Flat (PSpace.str R N)
 
 end GlobalTheory.Models
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIsEffAddNsmulDiv

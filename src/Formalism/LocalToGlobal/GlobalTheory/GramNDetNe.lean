@@ -8,29 +8,15 @@ import Formalism.SharpRestriction.GlobalSchurBounds.FlipTwoThree
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.GlobalTheory.GL4.PCoordH, Formalism.LocalToGlobal.GlobalTheory.GramNDetNe
 
--- clump: shared namespace opens
+section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.PCoordH
+@[expose] public section
 
+noncomputable section
 
 open NumberField Matrix
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.PCoordH
 open scoped ComplexOrder
 
 namespace Formalism.L2.GlobalTheoryTheory.TraceIntegrality.Cc
-
-section Norm
-
-variable {E : Type} [Field E] [NumberField E]
-
-end Norm
-
-section Had
-
-variable {E : Type} [Field E] [NumberField E] [StarRing E]
-
-open Formalism.BasicNotions
-
-end Had
 
 section Coord
 
@@ -69,9 +55,14 @@ end Coord
 
 end Formalism.L2.GlobalTheoryTheory.TraceIntegrality.Cc
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GramNDetNe
+
+
+open NumberField Matrix
 
 namespace Formalism.L2.GlobalTheoryTheory.ColValS
 

@@ -17,8 +17,9 @@ import Mathlib.Analysis.SpecialFunctions.Log.Summable
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.HermHalfRight, Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.SgStar, Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.QuasiPeriodConstUnique
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.HermHalfRight
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.HermHalfRight
 
+noncomputable section
 open scoped BigOperators ComplexConjugate
 
 namespace Formalism.L2.Th1.F
@@ -96,7 +97,7 @@ theorem th0Basic_of (hb : SgStarBasic) (hq : SgStarQuasi) (hi : AltEInt) : Theta
   rw [h2] at hn ⊢
   have hs : sgStar L t ≠ 0 := fun h0 => hn (((hb L).2.2.1 t).1 h0)
   have hχ : semiChar L (t + t) = -1 := by
-    rw [semiChar, if_neg (by rw [h2]; exact hn)]
+    rw [semiChar, ite_eq_right (by rw [h2]; exact hn)]
   refine ⟨?_, ?_, ?_, ?_, ?_⟩
   · have hd := (hb L).1
     show Differentiable ℂ (fun z => opU L t (sgStar L) z / opU L t (sgStar L) 0)
@@ -177,9 +178,11 @@ theorem th0LogDeriv_of (hl : SigmaLogDeriv) (he : EtaSplit) (hzq : ZetaQuasi)
 
 end Formalism.L2.Th1.F
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.SgStar
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.SgStar
 
+noncomputable section
 open scoped BigOperators ComplexConjugate
 open Filter
 
@@ -332,7 +335,7 @@ theorem sigmaTaylorLow_of (he : SigmaEntire) (hs : SigmaSummable) :
     intro n hn hn1
     have h0 := iteratedDeriv_eq_zero_of_bound hd hr hb n hn
     rw [iteratedDeriv_fun_sub ((he L).contDiff.contDiffAt) (contDiff_fun_id.contDiffAt),
-      iteratedDeriv_fun_id_zero, if_neg hn1, sub_zero] at h0
+      iteratedDeriv_fun_id_zero, ite_eq_right hn1, sub_zero] at h0
     exact h0
   exact ⟨key 2 (by norm_num) (by norm_num), key 3 (by norm_num) (by norm_num)⟩
 
@@ -375,6 +378,7 @@ theorem sgStarBasic_of (he : SigmaEntire) (ho : SigmaOdd) (hz : SigmaZero) (h1 :
     norm_num [Nat.choose]
 
 end Formalism.L2.Th1.F
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.QuasiPeriodConstUnique

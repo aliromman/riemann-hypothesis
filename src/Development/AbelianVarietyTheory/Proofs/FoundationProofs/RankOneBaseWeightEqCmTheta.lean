@@ -79,8 +79,9 @@ theorem levelPb_iff (D : D7) (pb : Fin 2 → HeightOneSpectrum (𝓞 D.host.K)) 
 end GlobalTheory.ParAtCompare
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.RankOneBaseWeightEqCmTheta
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.RankOneBaseWeightEqCmTheta
 
+noncomputable section
 
 namespace GlobalTheory.HalfOnRecord
 
@@ -96,13 +97,6 @@ def designLevel (P : PiBar D.host) : Level (hostOfRecord D) :=
 
 theorem designLevel_Mb (P : PiBar D.host) :
     (designLevel P).Mb = ∏ k, (P.pb k).asIdeal.map (algebraMap (𝓞 D.host.K) (𝓞 D.host.E)) := rfl
-
-section Rec
-
-variable {G : Type} [Group G] [Fintype G] {Pl0 T0 : Type} {A : FamIn D.what₂.LL G Pl0 T0 D.R.m}
-  {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL]
-
-end Rec
 
 end GlobalTheory.HalfOnRecord
 

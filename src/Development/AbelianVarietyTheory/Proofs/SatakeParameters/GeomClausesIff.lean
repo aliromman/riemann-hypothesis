@@ -54,13 +54,11 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.AssocSetApplyOfPointwise, Development.AbelianVarietyTheory.Proofs.SatakeParameters.GeomClausesIff
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.AssocSetApplyOfPointwise
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry Opposite Matrix
-
-section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.AssocSetApplyOfPointwise
-@[expose] public noncomputable section
 
 namespace GlobalTheory.Et.Rel
 
@@ -75,11 +73,6 @@ structure RActPre (X : Scheme.{0}) (Γ : Type) [Group Γ] where
 variable {X : Scheme.{0}} (E : Type) [CommRing E] [TopologicalSpace E] [IsTopologicalRing E]
   {ι : Type} [Fintype ι] [DecidableEq ι] {Γ : Type} [Group Γ]
 
-section
-variable {E} (Q : RActPre X Γ) (ξ : Γ →* GL ι E)
-
-end
-
 end GlobalTheory.Et.Rel
 
 namespace GlobalTheory.Et.Rel
@@ -92,6 +85,9 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.GeomClausesIff
+
+
+open CategoryTheory Limits AlgebraicGeometry Opposite Matrix
 
 namespace GlobalTheory.Et.Rel
 

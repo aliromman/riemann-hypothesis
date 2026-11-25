@@ -3,17 +3,17 @@ module
 public import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.IsSingTest
 public import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.LocOpSt
 import Mathlib.Tactic.Linter.Style
+import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.InGBlocks
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.DecompA, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.DecompB, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.Decomp
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.DecompA
 
+noncomputable section
 
 open Matrix
 open scoped ComplexOrder
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.DecompA
 
 namespace PositivityTheory.Rg.Sw.Glob.DecH
 
@@ -28,17 +28,7 @@ theorem jj_mul_jj : JJ n * JJ n = -1 := by
   simp
 
 theorem inG_dual {g : M2 n} (h : InG g) : g * JJ n * gᴴ = JJ n := by
-  have h' : gᴴ * (JJ n * g) = JJ n := by
-    rw [← Matrix.mul_assoc]
-    exact h
-  have hK : (-(JJ n * gᴴ * JJ n)) * g = 1 := by
-    simp only [Matrix.neg_mul, Matrix.mul_assoc, h', jj_mul_jj, neg_neg]
-  have hK' : g * (-(JJ n * gᴴ * JJ n)) = 1 := mul_eq_one_comm.mp hK
-  calc g * JJ n * gᴴ = g * JJ n * gᴴ * (-(JJ n * JJ n)) := by
-        rw [jj_mul_jj, neg_neg, Matrix.mul_one]
-    _ = (g * -(JJ n * gᴴ * JJ n)) * JJ n := by
-        simp only [Matrix.mul_neg, Matrix.neg_mul, Matrix.mul_assoc]
-    _ = JJ n := by rw [hK', Matrix.one_mul]
+  apply _root_.PositivityTheory.Rg.Sw.AbsSt.IwaPf.inG_rows <;> assumption
 
 theorem inG_blocks {A B C D : Matrix (Fin n) (Fin n) ℂ} (h : InG (fromBlocks A B C D)) :
     Aᴴ * C = Cᴴ * A ∧ Aᴴ * D - Cᴴ * B = 1 ∧ Bᴴ * D = Dᴴ * B := by
@@ -72,6 +62,13 @@ theorem inG_blocks_dual {A B C D : Matrix (Fin n) (Fin n) ℂ} (h : InG (fromBlo
 
 end PositivityTheory.Rg.Sw.Glob.DecH
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open Matrix
+open scoped ComplexOrder
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.DecompB
 

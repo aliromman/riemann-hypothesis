@@ -75,15 +75,16 @@ import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.PureEqPureA
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SchwartzHeisLine, Development.AutomorphicSpectrum.Proofs.AdelicProofs.SchurTranslationsCharacters, Development.WeilBound.ThetaLifts.SchwartzMoments.PolynomialFunctionalEvalContinuous
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SchwartzHeisLine
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SchwartzHeisLine
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues
 open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
 open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints GlobalTheory.SquareComm
 open scoped TensorProduct ComplexConjugate GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.AgreeO.Sys.HeisD
 
@@ -152,6 +153,8 @@ namespace GlobalTheory.CompanionTheory.AgreeO.Sys
 
 end GlobalTheory.CompanionTheory.AgreeO.Sys
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AdelicProofs.SchurTranslationsCharacters
@@ -346,15 +349,15 @@ theorem schur_translations_characters (V : Type) [AddCommGroup V] [TopologicalSp
 end GlobalTheory.CompanionTheory.SW.SchurChar
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.SchwartzMoments.PolynomialFunctionalEvalContinuous
+@[expose] public section -- clump member: Development.WeilBound.ThetaLifts.SchwartzMoments.PolynomialFunctionalEvalContinuous
 
 open NumberField IsDedekindDomain MeasureTheory Filter Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun
 open scoped TensorProduct
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.CompanionTheory.Ar.RT.Inj
 
 open scoped SchwartzMap LineDeriv
 
+noncomputable section
 
 namespace PositivityTheory.ThKOwn.KPol
 

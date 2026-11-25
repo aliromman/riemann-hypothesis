@@ -21,17 +21,14 @@ import Mathlib.Topology.UniformSpace.Uniformizable
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.SingToDiffB, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.SingToDiffC, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.SingToDiff
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.SingToDiffB
 
+noncomputable section
 
 open MeasureTheory Matrix Filter Topology Function
 open scoped ContDiff
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.SingToDiffB
-
 namespace PositivityTheory.Rg.Sw.LVs
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 namespace STD
 
@@ -143,6 +140,13 @@ end STD
 
 end PositivityTheory.Rg.Sw.LVs
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open MeasureTheory Matrix Filter Topology Function
+open scoped ContDiff
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.SingToDiffC
 

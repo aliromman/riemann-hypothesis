@@ -35,10 +35,11 @@ import Development.WeilBound.ThetaLifts.LocalTheory.ToralCohomology.PiInfUnitNe
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorIrreducibleModules, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreLM, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.KRealAsmOne, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.KRealAsm
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorIrreducibleModules
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorIrreducibleModules
 
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
+noncomputable section
 
 namespace GlobalTheory.TensIrr
 
@@ -194,9 +195,9 @@ theorem exists_prodForm_ne (y : ⨂[ℂ] i, V i) (hy : y ≠ 0) : ∃ ℓ : ∀ 
     by_cases h : β = α
     · subst h; simp
     · obtain ⟨i, hi⟩ := Function.ne_iff.1 h
-      rw [Finsupp.single_apply, if_neg h]
+      rw [Finsupp.single_apply, ite_eq_right h]
       symm
-      exact Finset.prod_eq_zero (Finset.mem_univ i) (by rw [Finsupp.single_apply, if_neg hi])
+      exact Finset.prod_eq_zero (Finset.mem_univ i) (by rw [Finsupp.single_apply, ite_eq_right hi])
   rw [← e]
   simpa using hα
 
@@ -271,6 +272,7 @@ theorem tensor_irr : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (R S : ℕ) (
   exact stable_all (V := fun i => (M i).V) w (fun Z => (M w).act Z) (hM w).1.2 (hM w).2 N (hgl w) f y hy
 
 end GlobalTheory.TensIrr
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreLM

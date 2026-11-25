@@ -296,7 +296,10 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RegularLocalOfDepthZero
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RegularLocalOfDepthZero
+@[expose] public section
+
+noncomputable section
 
 namespace GlobalTheory.RegType
 
@@ -346,7 +349,7 @@ theorem eSerC_mul_zIdem {r : ℕ} (ρ : FDRep ℂ (GL (Fin r) (ZMod g))) (hρ : 
       rw [← h, GlobalTheory.SerOSys.eSerO_eq_sum, Finset.mul_sum]
       refine Finset.sum_eq_zero fun z hz => ?_
       have hz' := (GlobalTheory.SerOSys.Zl_finite O r f).mem_toFinset.1 hz
-      rw [GlobalTheory.SerOSys.mul_of_mem ⟨ρ, hρ, rfl⟩ (GlobalTheory.SerOSys.Zl_sub O r f hz'), if_neg]
+      rw [GlobalTheory.SerOSys.mul_of_mem ⟨ρ, hρ, rfl⟩ (GlobalTheory.SerOSys.Zl_sub O r f hz'), ite_eq_right]
       rintro e
       exact hm (e ▸ hz')
     rw [h0, mul_zero]
@@ -456,6 +459,8 @@ end GlobalTheory.RegType
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT NumberField IsDedekindDomain Polynomial GlobalTheory.HeightCounting GlobalTheory.RowTie GlobalTheory.SplitRead GlobalTheory.NPin GlobalTheory.PendOf
 
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.DiscreteGroups.GlobalIrreducibility.RegularLocalOfDepthZero

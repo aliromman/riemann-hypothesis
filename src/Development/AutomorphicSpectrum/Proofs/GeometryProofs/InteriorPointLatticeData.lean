@@ -41,9 +41,10 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField Matrix Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.PeriodRiemannLatticeFibre
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.PeriodRiemannLatticeFibre
 open GroundTheory.Heights₂.Heights.LowerBoundFree GroundTheory.Heights₂.Heights.NineStatements GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp GlobalTheory.CompanionTheory.Ar.Cusp.FamEx
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.FamEx.PeriodConj
 
@@ -142,10 +143,11 @@ theorem period_lattice_fibre_and_conj : ∀ (E : Type) [Field E] [NumberField E]
       finrank_eigSp_conj R.B (s.comp (algebraMap (𝓞 E) E))
     rw [h1, hrk, (FU.sig i).1, (FU.sig i).2]
     by_cases h : s (H.rt : E) = H.rt0
-    · rw [if_pos h, if_neg (fun h' => (conj_rt_iff H s).1 h' h)]
-    · rw [if_neg h, if_pos ((conj_rt_iff H s).2 h)]
+    · rw [ite_eq_left h, ite_eq_right (fun h' => (conj_rt_iff H s).1 h' h)]
+    · rw [ite_eq_right h, ite_eq_left ((conj_rt_iff H s).2 h)]
 
 end GlobalTheory.CompanionTheory.Ar.Cusp.FamEx
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RiemannLatticeOverPoint

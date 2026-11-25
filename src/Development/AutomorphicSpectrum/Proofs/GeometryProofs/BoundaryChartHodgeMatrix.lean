@@ -128,7 +128,6 @@ theorem _root_.GlobalTheory.T.family_exp_derivative_lie : ∀ (R : Type) [CommRi
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GroupPointsEquivCommonCover
-attribute [local instance] Over.cartesianMonoidalCategory
 open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.CompanionTheory.Ar.MarkFibre

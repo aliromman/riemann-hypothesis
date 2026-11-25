@@ -18,10 +18,12 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.GroupGeneratedByExp
 
 open Matrix Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.P.QrD
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreKLLieGrpGeo
+section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreKLLieGrpGeo
+@[expose] public section
 
 namespace Formalism.FourierDecayAlt.P.CutMP.Gauge.GC
 
+noncomputable section
 
 namespace KLG
 
@@ -102,9 +104,9 @@ theorem stab_exp {z e : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (hT : 0 <
     rcases i with i | _ <;> rcases j with j | _
     · simp only [cvec2, cvec2', Sum.elim_inl, Sum.inl.injEq]
       exact gram_CC hz hzz i j
-    · simp only [cvec2, cvec2', Sum.elim_inl, Sum.elim_inr, reduceCtorEq, if_false]
+    · simp only [cvec2, cvec2', Sum.elim_inl, Sum.elim_inr, reduceCtorEq, ite_false]
       exact gram_CV hE 0 i
-    · simp only [cvec2, cvec2', Sum.elim_inl, Sum.elim_inr, reduceCtorEq, if_false]
+    · simp only [cvec2, cvec2', Sum.elim_inl, Sum.elim_inr, reduceCtorEq, ite_false]
       exact gram_VC hE 0 j
     · simp [cvec2, cvec2', hee]
   have hJ : Fintype.card (JJ r ⊕ Unit) ≤ Fintype.card (Fin (2 * r + k + 1)) := by
@@ -135,8 +137,10 @@ theorem stab_exp {z e : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (hT : 0 <
 
 end KLG
 
+end
 
 end Formalism.FourierDecayAlt.P.CutMP.Gauge.GC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreKLLieGrp

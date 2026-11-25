@@ -23,15 +23,14 @@ import PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusK
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.ContinuousPInfApply, PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.ContinuousPInfCoord, PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.IdeleModuleSectionMul, PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.InvMulVecScalarMul
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.ContinuousPInfApply
 
+noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial
 open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V.Af UpperTheory.V.Base
 open scoped Matrix SchwartzMap nonZeroDivisors Classical
 open MeasureTheory GroundTheory.Global GroundTheory.Global.IdeleGroup UpperTheory.V.Sd UpperTheory.V.Published NumberField.mixedEmbedding
-
-@[expose] public noncomputable section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.ContinuousPInfApply
 
 namespace UpperTheory.HilbertEisensteinWeightOne.EisensteinIntegrability
 
@@ -209,7 +208,7 @@ theorem dom_gen {Kc : Set (Matrix (Fin 2) (Fin 2) (Ad F))} (hK : IsCompact Kc) {
       · exact Or.inl ⟨_, ⟨⟨hy.1, hy.2⟩, hA⟩, rfl⟩
       · exact Or.inr ⟨_, ⟨⟨hy.1, hy.2⟩, hA⟩, rfl⟩
     exact hmem
-  rw [norm_gJ_invN, norm_gJ_invN, if_pos (hfin 0), if_pos (hfin 1), mul_one, mul_one, ← Real.exp_add]
+  rw [norm_gJ_invN, norm_gJ_invN, ite_eq_left (hfin 0), ite_eq_left (hfin 1), mul_one, mul_one, ← Real.exp_add]
   refine (arch_norm_le _ _).trans (Real.exp_le_exp.2 ?_)
   simp_rw [pInf_vecMul]
   rw [Finset.mul_sum, Finset.mul_sum, Finset.mul_sum, ← Finset.sum_add_distrib]
@@ -230,8 +229,15 @@ theorem dom_gen {Kc : Set (Matrix (Fin 2) (Fin 2) (Ad F))} (hK : IsCompact Kc) {
 
 end UpperTheory.HilbertEisensteinWeightOne.EisensteinIntegrability
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.ContinuousPInfCoord
+
+
+open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial
+open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V.Af UpperTheory.V.Base
+open scoped Matrix SchwartzMap nonZeroDivisors Classical
+open MeasureTheory GroundTheory.Global GroundTheory.Global.IdeleGroup UpperTheory.V.Sd UpperTheory.V.Published NumberField.mixedEmbedding
 
 namespace UpperTheory.HilbertEisensteinWeightOne.EisensteinIntegrability
 
@@ -374,7 +380,14 @@ theorem measurable_eisInt {ω : HChar F} {c : HeightOneSpectrum (𝓞 F) → ℕ
 end UpperTheory.HilbertEisensteinWeightOne.EisensteinIntegrability
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.IdeleModuleSectionMul
+@[expose] public section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.IdeleModuleSectionMul
+
+noncomputable section
+
+open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial
+open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V.Af UpperTheory.V.Base
+open scoped Matrix SchwartzMap nonZeroDivisors Classical
+open MeasureTheory GroundTheory.Global GroundTheory.Global.IdeleGroup UpperTheory.V.Sd UpperTheory.V.Published NumberField.mixedEmbedding
 
 namespace UpperTheory.HilbertEisensteinWeightOne.EisensteinIntegrability
 
@@ -415,10 +428,10 @@ theorem pair_sum {α : Type*} [Zero α] {f : α → ℝ} (hf0 : ∀ x, 0 ≤ f x
         fin_cases i
         · exact h0
         · exact h1
-      have : f' (ξ.1 1) = f (ξ.1 1) := by simp only [f', if_neg h1]
+      have : f' (ξ.1 1) = f (ξ.1 1) := by simp only [f', ite_eq_right h1]
       rw [this]
       linarith [mul_nonneg (hf'0 (ξ.1 0)) (hf0 (ξ.1 1))]
-    · have : f' (ξ.1 0) = f (ξ.1 0) := by simp only [f', if_neg h0]
+    · have : f' (ξ.1 0) = f (ξ.1 0) := by simp only [f', ite_eq_right h0]
       rw [this]
       linarith [mul_nonneg (hf0 (ξ.1 0)) (hf'0 (ξ.1 1))]
   have hQs : Summable (fun ξ : {ξ : Fin 2 → α // ξ ≠ 0} => g (e ξ.1)) := hQ.subtype _
@@ -489,11 +502,11 @@ theorem integrable_bound : Integrable (fun t : {r : ℝ // 0 < r} => (1 + Real.l
 
 end UpperTheory.HilbertEisensteinWeightOne.EisensteinIntegrability
 end -- clump:auto
+end -- clump:auto
 
-end -- clump: shared namespace opens
+@[expose] public section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.InvMulVecScalarMul
 
-@[expose] public noncomputable section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.InvMulVecScalarMul
-
+noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial
 open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V.Af UpperTheory.V.Base
@@ -566,8 +579,8 @@ theorem thetaS_bound {ω : HChar F} {c : HeightOneSpectrum (𝓞 F) → ℕ} (H 
     by_cases h2 : pFin F (y 0) ∈ idealFiniteAdeles (Jc c) ∧ pFin F (y 1) - 1 ∈ idealFiniteAdeles (Jc c)
     · have h3 : pFin F (y 0) ∈ L ∧ pFin F (y 1) ∈ L :=
         ⟨Or.inl h2.1, Or.inr (mem_vadd_idealFiniteAdeles.2 h2.2)⟩
-      rw [if_pos h2, if_pos h3, norm_one]
-    · rw [if_neg h2, norm_zero]
+      rw [ite_eq_left h2, ite_eq_left h3, norm_one]
+    · rw [ite_eq_right h2, norm_zero]
       split_ifs <;> norm_num
   have hsumPhi : Summable fun ξ : {ξ : Fin 2 → F // ξ ≠ 0} =>
       ‖Phi c (rowA ξ.1 ᵥ* (h : Matrix (Fin 2) (Fin 2) (Ad F)))‖ :=

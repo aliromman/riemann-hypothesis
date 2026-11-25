@@ -100,13 +100,15 @@ theorem peetre (r : ℝ) (ξ η : E) :
 end GroundTheory.Automorphic.Sobolev
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.PartialDifferential.SobolevRellich
+section -- clump member: GroundTheory.AutomorphicForms.PartialDifferential.SobolevRellich
+@[expose] public section
 
 namespace GroundTheory.Automorphic.Sobolev
 
 open TemperedDistribution MeasureTheory FourierTransform
 open scoped SchwartzMap ENNReal ContDiff
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -122,23 +124,11 @@ theorem fourier_char_smul (χ : 𝓢(E, ℂ)) (η ξ : E) :
     ← AddChar.map_add_eq_mul, inner_sub_right]
   congr 3; ring
 
-section Kernel
 
-variable (s N : ℝ) (χ : 𝓢(E, ℂ))
-
-variable {s N}
-
-end Kernel
-
-section Identity
-
-variable {s N : ℝ} (χ : 𝓢(E, ℂ))
-
-end Identity
-
-
+end
 
 end GroundTheory.Automorphic.Sobolev
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.PartialDifferential.SobolevMultiplication

@@ -297,8 +297,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatFirstFromResolutionAndGaga
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatFirstFromResolutionAndGaga
 
+noncomputable section
 
 namespace GlobalTheory.UPel.HT.PTors
 
@@ -429,7 +430,7 @@ theorem card_ker_eq_det {S : Scheme.{0}} (A : Over S) [GrpObj A] (hA : IsAbelian
     rfl
   have hiso : IsIsogeny (A := B) (B := B) (-f) := by
     by_contra h
-    rw [deg, if_neg h] at hdeg
+    rw [deg, ite_eq_right h] at hdeg
     exact hφ (Int.natAbs_eq_zero.1 hdeg.symm)
   have hneg : ∀ (T : Over (Sp k)) (y : T ⟶ B.X), y ≫ Hom.hom (-f) = 1 ↔ y ≫ f.hom = 1 := fun T y => by
     rw [neg_hom, GrpObj.comp_inv, inv_eq_one]
@@ -645,6 +646,7 @@ theorem exists_ev_pow : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [C
     (fun j => I.ker _ (pow_pos hl.pos j) (hco j)) (fun j => I.onto _ (pow_pos hl.pos j) (hco j))
 
 end GlobalTheory.UPel.HT.PTors
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLevelEvaluationHom

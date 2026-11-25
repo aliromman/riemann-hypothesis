@@ -29,8 +29,9 @@ open Matrix Finset MeasureTheory
 open scoped ComplexConjugate
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.FirstDerivativeAtNormalSet
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.PBG
 
@@ -74,10 +75,10 @@ theorem first_derivative_at_normal_set {k r : ℕ} {E : Type} [NormedAddCommGrou
     exact hR _ p q hpq
   cases b
   · have := letter_minus_component_one_eq_smul_component_zero hDo z z' i0 s hs hj hh τ hdet hτ x₁ hx₁ hx₁G hnf hnfy _ hK' hR' Y
-    simp only [cLift, Bool.false_eq_true, if_false]
+    simp only [cLift, Bool.false_eq_true, ite_false]
     exact this
   · have := letter_plus_component_one_eq_smul_component_zero hDo z z' i0 s hs hj hh τ hdet hτ x₁ hx₁ hnf _ hK' hR' Y
-    simp only [cLift, if_true]
+    simp only [cLift, ite_true]
     exact this
 
 theorem vLet_congr_level {k r : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]
@@ -97,7 +98,7 @@ theorem coeff_recover {V : Type} [AddCommGroup V] [Module ℂ V] (n : ℕ) (C : 
   simp only [Finset.smul_sum, smul_smul]
   rw [Finset.sum_comm]
   simp only [← Finset.sum_smul]
-  simp only [vand_row _ hτ l, ite_smul, one_smul, zero_smul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+  simp only [vand_row _ hτ l, ite_smul, one_smul, zero_smul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
 section core
 
@@ -182,7 +183,7 @@ theorem liftDeg_core {k r : ℕ} (T : D.LevTower k r Wp Wq) (F : B.Mat k r → (
     obtain ⟨c₀, hc₀l, hc₀⟩ := vLet_poly (E := Wq →L[ℂ] Wp) (j := i0) (by omega) z z' KG (sx x * x₁) (hyG x) hDi
       (hloc G hG _ (hyG x) (hyD x)) b 0
     obtain ⟨c', hc'l, hsh⟩ := poly_shift i0 c₀ (δ : ℂ)
-    refine ⟨c', by rw [hc'l, hc₀l, if_pos rfl], fun Y => ?_⟩
+    refine ⟨c', by rw [hc'l, hc₀l, ite_eq_left rfl], fun Y => ?_⟩
     rw [hc₀ (Y + δ), ← hsh (Y : ℂ)]
     push_cast
     rfl
@@ -191,8 +192,8 @@ theorem liftDeg_core {k r : ℕ} (T : D.LevTower k r Wp Wq) (F : B.Mat k r → (
     unfold cLift
     refine mul_ne_zero (pow_ne_zero _ (by norm_num)) ?_
     cases b
-    · simp only [Bool.false_eq_true, if_false]; exact inv_ne_zero ((map_ne_zero _).2 hτ)
-    · simp only [if_true]; exact inv_ne_zero hτ
+    · simp only [Bool.false_eq_true, ite_false]; exact inv_ne_zero ((map_ne_zero _).2 hτ)
+    · simp only [ite_true]; exact inv_ne_zero hτ
 
   have hnode : ∀ (x : X) (Y : ℝ), D.vLet k r z z' i0 (by omega) (b, Y) 0 KG (sx x * x₁) =
       (cLift s τ b)⁻¹ • Kr T.base (D.uwG k r z z' F j hj ((b, Y) :: w') (Fin.cons 1 a')) (sx x * x₁) := by
@@ -251,9 +252,11 @@ end core
 end Formalism.FourierDecayAlt.P.PBG
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.DegLiftOfParts
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.DegLiftOfParts
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.PBG
 
@@ -290,14 +293,14 @@ theorem liftDegAll_of (hLF : LeftFubiniLemmas.LeftFubini) (hNF : LeftFubiniLemma
   · intro a₀ q ha₀
     rw [hxi a₀ q (by rw [hsz]; exact ha₀)]
     by_cases hq : q.val < D.ptSize h + s
-    · rw [dite_eq_left (by rw [hsz]; exact hq), if_pos hq]
+    · rw [dite_eq_left (by rw [hsz]; exact hq), ite_eq_left hq]
       exact hmat_zb h s τ hl a₀.val q.val _ _
-    · rw [dite_eq_right (by rw [hsz]; exact hq), if_neg hq]
+    · rw [dite_eq_right (by rw [hsz]; exact hq), ite_eq_right hq]
   · intro a₀ q ha₀
     rw [hy a₀ q (by rw [hsz]; exact ha₀)]
     by_cases hq : P.r + P.k < q.val ∧ 2 * P.r + P.k - q.val < D.ptSize h + s
-    · rw [dite_eq_left (by rw [hsz]; exact hq), if_pos hq, hmat_zb h s τ hl a₀.val _ _ _]
-    · rw [dite_eq_right (by rw [hsz]; exact hq), if_neg hq]
+    · rw [dite_eq_left (by rw [hsz]; exact hq), ite_eq_left hq, hmat_zb h s τ hl a₀.val _ _ _]
+    · rw [dite_eq_right (by rw [hsz]; exact hq), ite_eq_right hq]
   · intro w e
     refine ⟨fun x hxG hxD => uwG_mem (E := Wq →L[ℂ] Wp) p.T.base.z p.T.base.z' j hj hF.1 w e x hxD hxG, ?_⟩
     obtain ⟨R, hR⟩ := hF.2.1

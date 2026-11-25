@@ -87,7 +87,6 @@ end GlobalTheory.ConjSlot
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ResidueSupportSinglePlaceToConjugatePairSlotStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 alias _root_.GlobalTheory.T.residueSupport_single_place_to_conjugatePair_position := _root_.GlobalTheory.ConjSlot.intersection_update_fsHerm_neg_one
 

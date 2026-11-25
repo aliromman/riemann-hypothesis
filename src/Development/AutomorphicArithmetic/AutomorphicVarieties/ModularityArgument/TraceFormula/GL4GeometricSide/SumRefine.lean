@@ -201,8 +201,9 @@ theorem exists_avg {K : Type*} {M : Type*} [Group K] [AddCommGroup M] [Module �
 end UpperTheory.Reformulated.B.ExistsAverage
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GL4GeometricSide.SumRefine
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GL4GeometricSide.SumRefine
 
+noncomputable section
 
 open NumberField Matrix Finset
 open GlobalTheory.CuspRep
@@ -268,7 +269,7 @@ private theorem core (π : CuspSub E n) (K : Subgroup (GL (Fin n) (Af E))) (hKc 
       rw [h, Submodule.mem_bot] at h1
       exact hψ (Subtype.ext h1)
     rw [mem] at hn
-    push_neg at hn
+    push Not at hn
     obtain ⟨g, hg⟩ := hn
     refine ⟨P (π.finPart g ψ), hg, fun k hk => hPinv _ ⟨k, hk⟩, fun T c hT hc => ?_⟩
     rw [hcomm T hT, hT, hc, map_smul, map_smul]

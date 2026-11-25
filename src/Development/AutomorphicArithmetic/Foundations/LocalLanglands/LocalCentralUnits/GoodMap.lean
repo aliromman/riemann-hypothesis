@@ -327,13 +327,13 @@ end UpperTheory.Zero.LLC
 
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.CentralUnit
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.GLq
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.CentralUnit
 
 namespace UpperTheory.Zero.LLC
 
@@ -347,10 +347,6 @@ private theorem eta_apply {I K : Type} [Group I] [Field K] (g n : ℕ) (R : I �
   simp [eta, MonoidHom.pow_apply]
 
 end Pure
-
-section Scalars
-
-end Scalars
 
 theorem parEx : ParEx := by
   intro E Ω _ _ _ _ _ A w h a ha g _ i hi y hy hdz
@@ -516,9 +512,15 @@ theorem parEx : ParEx := by
 
 end UpperTheory.Zero.LLC
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.GoodMap
+
+
+open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.GLq
+open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
 
 namespace UpperTheory.Zero.LLC
 

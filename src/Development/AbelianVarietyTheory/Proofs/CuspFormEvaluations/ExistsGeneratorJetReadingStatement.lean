@@ -47,8 +47,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.Hol
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsGeneratorJetReading, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsGeneratorJetReadingStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsGeneratorJetReading
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsGeneratorJetReading
 
+noncomputable section
 
 namespace GlobalTheory.AnValJetEx
 
@@ -214,7 +215,7 @@ theorem exists_gen_jetRd : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsCommM
     Φ.fr_ne j _ (top_le_of_mem h)
   have hu0 : ∀ k j, (Φ.e (Λ k (colsOf n g 0))).left cpt ∈ L.L.U j → (u0 k j).val = jetOf m (F k j) := fun k j h => by
     have hu : IsUnit (jetOf m (F k j)) := isUnit_of_jetAug _ (by rw [jetAug_jetOf]; exact hF0 k j h)
-    simp only [u0, dif_pos hu, IsUnit.unit_spec]
+    simp only [u0, dite_eq_left hu, IsUnit.unit_spec]
   let ρ : (Jet ℂ (Fin 1 × Fin (n * g)) m)ˣ →* Γ(Sp (Jet ℂ (Fin n × Fin g) m), ⊤)ˣ :=
     Units.map ((toΓ (Jet ℂ (Fin n × Fin g) m)).comp r).toMonoidHom
   have hρ : ∀ a, (ρ a).val = toΓ _ (r a.val) := fun _ => rfl
@@ -246,6 +247,7 @@ theorem exists_gen_jetRd : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsCommM
     (jetOf_zpow m (contDiffAt_fr Φ (Λ k) _ (hm k)) (hF0 k _ (hm k)) _ (hu0 k _ (hm k)) _).symm
 
 end GlobalTheory.AnValJetEx
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsGeneratorJetReadingStatement

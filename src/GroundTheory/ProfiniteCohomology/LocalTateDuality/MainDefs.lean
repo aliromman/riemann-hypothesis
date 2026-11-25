@@ -21,16 +21,15 @@ import GroundTheory.LocalFields.LocalAxiomDictionary
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.ProfiniteCohomology.LocalTateDuality.KummerCup, GroundTheory.ProfiniteCohomology.LocalTateDuality.NormCharacters, GroundTheory.ProfiniteCohomology.LocalTateDuality.EqZeroOfForallCupPairingZmodMulEqZeroLeft, GroundTheory.ProfiniteCohomology.LocalTateDuality.MainDefs
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.LocalTateDuality.KummerCup
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.LocalTateDuality.KummerCup
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open CategoryTheory MonoidalCategory IntermediateField
-
-attribute [local instance 2000] Rep.hV2
 
 attribute [local irreducible] localClassFormationOfIsSepClosure
 
@@ -316,6 +315,7 @@ end Local
 
 end GroundTheory.ProfCoh
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.LocalTateDuality.NormCharacters
 
@@ -456,16 +456,15 @@ theorem exists_zmod_char_not_norm {n : ℕ} (hn : (n : F) ≠ 0) (a : Fˣ) (ha :
 end GroundTheory.ProfCoh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.LocalTateDuality.EqZeroOfForallCupPairingZmodMulEqZeroLeft
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.LocalTateDuality.EqZeroOfForallCupPairingZmodMulEqZeroLeft
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open CategoryTheory IntermediateField
-
-attribute [local instance 2000] Rep.hV2
 
 attribute [local irreducible] localClassFormationOfIsSepClosure
 
@@ -577,19 +576,19 @@ theorem isPerfectPairing_localInvRootsOfUnity (hn : (n : K) ≠ 0) (U : OpenSubg
 
 end GroundTheory.ProfCoh
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.LocalTateDuality.MainDefs
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.LocalTateDuality.MainDefs
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open CategoryTheory MonoidalCategory IntermediateField GroundTheory.LocalField
 
 universe u
-
-attribute [local instance 2000] Rep.hV2
 
 section Top
 

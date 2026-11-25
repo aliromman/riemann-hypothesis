@@ -168,13 +168,11 @@ end -- clump:auto
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.AveragingProjection
 
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter BoundedContinuousFunction
 open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL GlobalTheory.AutomorphicL2Unitary GlobalTheory.UnitaryBC GlobalTheory.DiscSpec GlobalTheory.LFun Formalism.UG Formalism.L2.Host
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.AveragingProjection
 
 namespace PositivityTheory.jumpWindows
 
@@ -302,6 +300,10 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.BoundedInvariantL2
 
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter BoundedContinuousFunction
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL GlobalTheory.AutomorphicL2Unitary GlobalTheory.UnitaryBC GlobalTheory.DiscSpec GlobalTheory.LFun Formalism.UG Formalism.L2.Host
+
 namespace PositivityTheory.jumpWindows
 
 namespace BoundedInvariantL2
@@ -374,7 +376,13 @@ end PositivityTheory.jumpWindows
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.CornerGLContinuity
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.CornerGLContinuity
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter BoundedContinuousFunction
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL GlobalTheory.AutomorphicL2Unitary GlobalTheory.UnitaryBC GlobalTheory.DiscSpec GlobalTheory.LFun Formalism.UG Formalism.L2.Host
 
 namespace PositivityTheory.jumpWindows
 
@@ -420,7 +428,7 @@ theorem map_pLoc_prod (g : GA E a) (v : Pl E) : ∀ l : List (Pl E), l.Nodup →
     rw [List.map_cons, List.prod_cons, map_mul, map_pLoc_prod g v l (List.nodup_cons.1 h).2]
     by_cases hv : v = w
     · subst hv
-      rw [pLoc_locGL, if_neg (List.nodup_cons.1 h).1, mul_one]
+      rw [pLoc_locGL, ite_eq_right (List.nodup_cons.1 h).1, mul_one]
       simp
     · rw [pLoc_locGL_of_ne hv, one_mul]
       simp [hv]
@@ -477,19 +485,19 @@ theorem standard_stabiliser_bound : G0 := by
       rw [map_mul, pInf_infGL, pInf_finGL, mul_one]
     · intro w hw
       rw [cLoc_eq, map_mul, map_mul, pFin_infGL, pFin_finGL, map_one, one_mul,
-        map_pLoc_prod g w _ S.nodup_toList, if_pos (Finset.mem_toList.2 hw)]
+        map_pLoc_prod g w _ S.nodup_toList, ite_eq_left (Finset.mem_toList.2 hw)]
     · intro w hw
       rw [cLoc_eq, map_mul, map_mul, pFin_infGL, pFin_finGL, map_one, one_mul,
-        map_pLoc_prod g w _ S.nodup_toList, if_neg (fun h => hw (Finset.mem_toList.1 h))]
+        map_pLoc_prod g w _ S.nodup_toList, ite_eq_right (fun h => hw (Finset.mem_toList.1 h))]
   · exact continuous_glmap _ hpInf
   · exact continuous_glmap _ ((hpLoc w).comp continuous_snd)
   · exact hfin.comp (continuous_cornerGL' _ (CuspSub.continuous_sLoc w))
 
 end PositivityTheory.jumpWindows
 
+end
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.ExistsLogarithmLinear
 
@@ -730,13 +738,11 @@ end -- clump:auto
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.InductionG11
 
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter BoundedContinuousFunction
 open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL GlobalTheory.AutomorphicL2Unitary GlobalTheory.UnitaryBC GlobalTheory.DiscSpec GlobalTheory.LFun Formalism.UG Formalism.L2.Host
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.InductionG11
 
 namespace PositivityTheory.jumpWindows
 
@@ -801,6 +807,10 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.InfiniteFiniteFactorization
 
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter BoundedContinuousFunction
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL GlobalTheory.AutomorphicL2Unitary GlobalTheory.UnitaryBC GlobalTheory.DiscSpec GlobalTheory.LFun Formalism.UG Formalism.L2.Host
+
 namespace PositivityTheory.jumpWindows
 
 namespace InfiniteFiniteFactorization
@@ -858,7 +868,13 @@ end PositivityTheory.jumpWindows
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeetOfSteps
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeetOfSteps
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter BoundedContinuousFunction
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL GlobalTheory.AutomorphicL2Unitary GlobalTheory.UnitaryBC GlobalTheory.DiscSpec GlobalTheory.LFun Formalism.UG Formalism.L2.Host
 open PositivityTheory.jumpWindows
 
 namespace GlobalTheory.CompanionTheory.ClosedInvariantMeet
@@ -970,8 +986,8 @@ theorem meet_of_steps : S2 → MirabolicColumnBlock → G0 → G1 → AlmostEver
     · obtain ⟨Z', -, -, hZ'⟩ := hG2c E a w (B w) (hcard w hw)
       exact ⟨Z', hZ'⟩
     · by_cases hw : w ∈ S
-      · simpa only [if_pos hw] using hg.2 w hw
-      · simp only [if_neg hw]
+      · simpa only [ite_eq_left hw] using hg.2 w hw
+      · simp only [ite_eq_right hw]
         rw [hi w hw]
         exact (hS10 _ a 0).2.2.1
   subst heq
@@ -989,9 +1005,9 @@ theorem meet_of_steps : S2 → MirabolicColumnBlock → G0 → G1 → AlmostEver
 
 end GlobalTheory.CompanionTheory.ClosedInvariantMeet
 
+end
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.MeetOf
 
@@ -1089,8 +1105,10 @@ end PositivityTheory.jumpWindows
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.PositiveMatrixBlocks
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.PositiveMatrixBlocks
+@[expose] public section
 
+noncomputable section
 
 open MeasureTheory Matrix GlobalTheory.CuspGeneric Topology
 open scoped ContDiff
@@ -1114,9 +1132,9 @@ theorem posM_mul_apply {ι : Type} [Fintype ι] (p : ι → Fin a × Fin a) (y :
   by_cases h : (p s).1 = i
   · subst h
     simp [Matrix.single_mul_apply_same]
-  · rw [if_neg h, Matrix.mul_apply]
+  · rw [ite_eq_right h, Matrix.mul_apply]
     refine Finset.sum_eq_zero fun j _ => ?_
-    rw [Matrix.single_apply, if_neg (fun e => h e.1), zero_mul]
+    rw [Matrix.single_apply, ite_eq_right (fun e => h e.1), zero_mul]
 
 theorem mul_posM_apply {ι : Type} [Fintype ι] (p : ι → Fin a × Fin a) (y : ι → R)
     (M : Matrix (Fin a) (Fin a) R) (i k : Fin a) :
@@ -1126,9 +1144,9 @@ theorem mul_posM_apply {ι : Type} [Fintype ι] (p : ι → Fin a × Fin a) (y :
   by_cases h : (p s).2 = k
   · subst h
     simp [Matrix.mul_single_apply_same]
-  · rw [if_neg h, Matrix.mul_apply]
+  · rw [ite_eq_right h, Matrix.mul_apply]
     refine Finset.sum_eq_zero fun j _ => ?_
-    rw [Matrix.single_apply, if_neg (fun e => h e.2), mul_zero]
+    rw [Matrix.single_apply, ite_eq_right (fun e => h e.2), mul_zero]
 
 theorem posM_mul_row (m : ℕ) (y : UnipotentBlockColumnIndex a m m → R) (M : Matrix (Fin a) (Fin a) R)
     (hM : ∀ j k : Fin a, (j : ℕ) = m → M j k = (1 : Matrix (Fin a) (Fin a) R) j k) :
@@ -1147,7 +1165,7 @@ theorem mul_posM_blk (m : ℕ) (y : UnipotentBlockColumnIndex a m m → R) (h : 
   rw [mul_posM_apply, posM_col]
   split_ifs with hc
   · refine Finset.sum_congr rfl fun s _ => ?_
-    rw [if_pos (Fin.ext (by have := s.2; omega))]
+    rw [ite_eq_left (Fin.ext (by have := s.2; omega))]
   · refine Finset.sum_eq_zero fun s _ => ?_
     split_ifs with hs
     · have h2 := s.2
@@ -1207,7 +1225,7 @@ theorem positive_matrix_block_product : MirabolicColumnBlock := by
     show (1 + posM Subtype.val y) i l = _
     rw [Matrix.add_apply, posM, Matrix.sum_apply, Finset.sum_eq_zero, add_zero]
     intro t _
-    rw [Matrix.single_apply, if_neg]
+    rw [Matrix.single_apply, ite_eq_right]
     rintro ⟨e1, e2⟩
     have := t.2
     rw [← e1, ← e2] at hil
@@ -1223,6 +1241,8 @@ theorem positive_matrix_block_product : MirabolicColumnBlock := by
 
 end PositivityTheory.jumpWindows
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.PsiDeterminantFlag

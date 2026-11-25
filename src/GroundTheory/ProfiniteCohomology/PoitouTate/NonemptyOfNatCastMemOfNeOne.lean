@@ -73,7 +73,8 @@ import GroundTheory.ProfiniteCohomology.RealPlaces.VanishingPrimes
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenLevel, GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenTau, GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenCoind, GroundTheory.ProfiniteCohomology.RealPlaces.Devissage, GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenHyp, GroundTheory.ProfiniteCohomology.PoitouTate.NonemptyOfNatCastMemOfNeOne
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenLevel
+section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenLevel
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -81,8 +82,7 @@ namespace GroundTheory.ProfCoh
 
 open IsDedekindDomain NumberField CategoryTheory MonoidalCategory GroundTheory.Global
 
-
-attribute [local instance 2000] Rep.hV2
+noncomputable section
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 
@@ -274,20 +274,21 @@ theorem bijective_compactZmodDualityMap_gsOpenSubgroup_of_surjective
 
 end OpenSubgroup
 
+end
 
 end GroundTheory.ProfCoh
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenTau
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenTau
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open IsDedekindDomain NumberField CategoryTheory GroundTheory.Global
-
-attribute [local instance 2000] Rep.hV2
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 
@@ -328,17 +329,17 @@ theorem gsTauBijective_gsOpenSubgroup {L : FiniteSubfield} [Fact (K ≤ L)]
 
 end GroundTheory.ProfCoh
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenCoind
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenCoind
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open CategoryTheory MonoidalCategory Limits
-
-attribute [local instance 2000] Rep.hV2
 
 variable {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
   {ι : Type} {Hv : ι → Type} [∀ v, Group (Hv v)] [∀ v, TopologicalSpace (Hv v)]
@@ -526,19 +527,19 @@ end Cores
 
 end GroundTheory.ProfCoh
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.RealPlaces.Devissage
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.RealPlaces.Devissage
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open CategoryTheory MonoidalCategory Limits
 
 universe u
-
-attribute [local instance 2000] Rep.hV2
 
 section Core
 
@@ -821,19 +822,19 @@ end Main
 
 end GroundTheory.ProfCoh
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenHyp
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenHyp
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open IsDedekindDomain NumberField CategoryTheory GroundTheory.Global
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
-
-attribute [local instance 2000] Rep.hV2
 
 variable {K : FiniteSubfield} (S : Set (HeightOneSpectrum (𝓞 K.1)))
   (ιr : ∀ v : {v : InfinitePlace K.1 // v.IsReal}, ℚ̄ →ₐ[K.1] AlgebraicClosure v.1.Completion)
@@ -937,17 +938,17 @@ end Hypotheses
 
 end GroundTheory.ProfCoh
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.NonemptyOfNatCastMemOfNeOne
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.NonemptyOfNatCastMemOfNeOne
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open IsDedekindDomain NumberField CategoryTheory GroundTheory.Global
-
-attribute [local instance 2000] Rep.hV2
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 

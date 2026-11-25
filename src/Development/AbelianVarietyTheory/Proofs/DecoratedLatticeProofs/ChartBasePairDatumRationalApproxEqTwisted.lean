@@ -73,8 +73,9 @@ import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.PhiTTransp
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BeforeLastStepDatumTransportBadPrime, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BeforeLastStepDatumTransportBadPrimeStatement, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsInvOfNear, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.EntryDatumTransportBadPrimeAnyTuple, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.EntryDatumTransportBadPrimeAnyTupleStatement, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IntMOfMulRight, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LastStepDatumTransportBadPrime, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LastStepDatumTransportBadPrimeStatement, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ChartBasePairDatumRationalApproxEqTwisted
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BeforeLastStepDatumTransportBadPrime
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BeforeLastStepDatumTransportBadPrime
 
+noncomputable section
 
 namespace GlobalTheory.Transport.TwistCpl
 
@@ -143,13 +144,14 @@ theorem GlobalTheory.Transport.TwistCpl.psiAt_transport_tw : ∀ {B : Base} {X :
     have h1 : y₁ ∈ cosetIn p' P := ⟨_, p'.repY_mem hm', by simp [hy₁]⟩
     rw [← hc] at h1
     obtain ⟨z, hz, h2⟩ := h1
-    rw [if_neg hP] at h2
+    rw [ite_eq_right hP] at h2
     have h3 := add_mem h2 ((GlobalTheory.TopLaw.coset_sub q'.1.1 (q'.mem_ybSet hm') hz (q'.repY_mem hm') P).2 hP)
     rw [← smul_add, sub_add_sub_cancel] at h3
     have h4 := hL.psiInv al P x₂ y₂ (y₁ - y₂) fun j => by
-      rw [if_neg hP]
+      rw [ite_eq_right hP]
       open Formalism.L2.Col Formalism.L2.DIV GlobalTheory.TopStep in exact mem_stdAt.1 h3 j
     rwa [add_sub_cancel] at h4
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BeforeLastStepDatumTransportBadPrimeStatement
@@ -541,9 +543,9 @@ section -- clump: shared namespace opens
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.Forms Formalism.UG
 open NumberField IsDedekindDomain Matrix MeasureTheory GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.MixPer GlobalTheory.Core.Rk GlobalTheory.AdForm
 open scoped TensorProduct Classical
+open Formalism.L2.Ker
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.EntryDatumTransportBadPrimeAnyTuple
-open Formalism.L2.Ker
 
 namespace GlobalTheory.Transport.EntryAny
 
@@ -571,7 +573,7 @@ theorem entry_transport_any : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X) (hI
     obtain ⟨U, U', hU, hU', h⟩ := H M₀ hM₀ x x₀ hx
     have hu := exp_le_val_qOf (GlobalTheory.UnfoldTwoSided.degOne_bad hX.ok l.pr hI.sel_ok P)
     unfold Formalism.L2.Col.frsF
-    simp only [dif_pos hP]
+    simp only [dite_eq_left hP]
     refine (eq_of_near (P := P.1) _ hq0 (val_qOf_lt_one P.1) (pow_ne_zero (I.cst a).B hq0) (fun κ κ' hκ hκ' z => ?_)
       (hL.xiInv i (by omega) al be P) _ _ U U' (hU.mono hu) (hU'.mono hu) h).symm
     refine xiAt_inFr hX l.pr hI.ch_ok hI.sel_ok hL (by omega) al be P κ κ' ?_ ?_ z
@@ -603,8 +605,6 @@ end GlobalTheory.Transport.EntryAny
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.EntryDatumTransportBadPrimeAnyTupleStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.L2.Ker
 
 theorem _root_.GlobalTheory.T.entryDatum_transport_badPrime_anyTuple : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X) (hI : I.Ok) (l : I.Laws) (u : B.Word) (a : I.ι) (i : ℕ) (hm : i + 2 < B.R.m) (al : (I.idx a).β i) (be : (I.idx a).β (i + 1)) (P : Formalism.L2.Col.rowSG (B.primes X) I.sel (I.tup a))
     (p q : PtAt B.R I.sel (I.tup a) (I.cst a) u (i)) (p' q' : PtAt B.R I.sel (I.tup a) (I.cst a) u (i + 1))
@@ -623,12 +623,13 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IntMOfMulRight
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IntMOfMulRight
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.Forms Formalism.L2.Ker Formalism.UG
 open NumberField IsDedekindDomain Matrix MeasureTheory GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.MixPer GlobalTheory.Core.Rk GlobalTheory.AdForm
 open scoped TensorProduct Classical
 
+noncomputable section
 
 namespace GlobalTheory.Transport.Last
 
@@ -894,7 +895,7 @@ theorem locTop_shift (hc : cst.Ok) {P : rowSG Pr sel mu} (hP : P.1 ∈ Pr.vGs)
   congr 1
   generalize atNL X.E (R.N R.m) (R.N R.m - 1) ∘ₗ y = η
   unfold ftY
-  rw [if_pos hP, if_pos hP]
+  rw [ite_eq_left hP, ite_eq_left hP]
   split_ifs with h
   · have ev : ∀ z : Sp X.E (R.N (m2 + 1)), η z = ∑ j, z j * η (Pi.single j 1) := fun z => by
       conv_lhs => rw [pi_eq_sum_univ' z]
@@ -923,12 +924,12 @@ theorem rep_sub_int {u : Pr.Word} {j : ℕ} (h : j + 1 = R.m) (p q : PtAt R sel 
     ⟨_, p.repY_mem h, by rw [sub_self, smul_zero]; exact zero_mem _⟩
   rw [← e] at h1
   obtain ⟨z, hz1, h2⟩ := h1
-  rw [if_pos hP, pow_zero, inv_one, one_smul] at h2
+  rw [ite_eq_left hP, pow_zero, inv_one, one_smul] at h2
   have h3 := q.repY_mem h
   obtain ⟨y, -, hY⟩ := q.mem_ybSet h
   have h4 := (mem_locLat _ _ _ _).1 ((Set.ext_iff.1 hY _).1 hz1) P
   have h5 := (mem_locLat _ _ _ _).1 ((Set.ext_iff.1 hY _).1 h3) P
-  simp only [if_pos hP, zpow_zero, inv_one, one_smul] at h4 h5
+  simp only [ite_eq_left hP, zpow_zero, inv_one, one_smul] at h4 h5
   have h6 : z - repY q.1.2 ∈ q.1.1.deco.1.at P.1 := by
     have := sub_mem h4 h5
     rwa [sub_sub_sub_cancel_right] at this
@@ -963,6 +964,7 @@ end Top
 
 end GlobalTheory.Transport.Last
 end -- clump:auto
+end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -970,9 +972,10 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open NumberField IsDedekindDomain Matrix MeasureTheory GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.MixPer GlobalTheory.Core.Rk GlobalTheory.AdForm
 open scoped TensorProduct Classical
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LastStepDatumTransportBadPrime
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LastStepDatumTransportBadPrime
 open Formalism.L2.Ker
 
+noncomputable section
 
 namespace GlobalTheory.Transport.LastTw
 
@@ -993,7 +996,7 @@ theorem locTop_shiftQ (hc : cst.Ok) {P : rowSG Pr sel mu} (hP : P.1 ∉ Pr.vGs) 
   congr 1
   generalize atNL X.E (R.N R.m) (R.N R.m - 1) ∘ₗ y = η
   unfold ftY
-  rw [if_neg hP, if_neg hP]
+  rw [ite_eq_right hP, ite_eq_right hP]
   split_ifs with h
   · congr 1
     have ev : ∀ z : Sp X.E (R.N (m2 + 1)), η z = ∑ j, z j * η (Pi.single j 1) := fun z => by
@@ -1068,7 +1071,7 @@ theorem locTop_congQ (hm : R.m = m2 + 2) (hc : cst.Ok) {P : rowSG Pr sel mu} (hP
         ring
       · exact congQ_zero
     unfold PhiTop
-    rw [if_neg hP]
+    rw [ite_eq_right hP]
     unfold LocE.PhiQ
     refine @if_congr _ _ _ (_) (_) _ _ _ _ ?_ ?_ rfl
     · simp only [(he _ _).1, (he _ _).2.1, (he _ _).div_iff]
@@ -1078,8 +1081,8 @@ theorem locTop_congQ (hm : R.m = m2 + 2) (hc : cst.Ok) {P : rowSG Pr sel mu} (hP
         ∑ j, a j * w (Pi.single j 1) (Br.iL (N_m_succ R)) := fun w => by
       rw [LinearMap.comp_apply, atNL_last, apply_eq_sum]
     have he : IntAt P.1 ((epsSg : ℤ) : X.E) := intCast_mem (intRing P.1) _
-    rw [if_neg hP, if_neg hP, if_pos (fun i => by rw [LinearMap.comp_apply, atNL_last]; exact (hy _).2),
-      if_pos (fun i => by rw [LinearMap.comp_apply, atNL_last]; exact (hz _).2), ev, ev]
+    rw [ite_eq_right hP, ite_eq_right hP, ite_eq_left (fun i => by rw [LinearMap.comp_apply, atNL_last]; exact (hy _).2),
+      ite_eq_left (fun i => by rw [LinearMap.comp_apply, atNL_last]; exact (hz _).2), ev, ev]
     congr 1
     have hd : IntAt P.1 ((epsSg : X.E) * ∑ j, ((qOf P.1 : X.E) ^ cst.M * a j) * ((qOf P.1 : X.E) * t j (Br.iL (N_m_succ R)))) :=
       he.mul (intAt_sum _ fun j _ => (ha j).mul ((intAt_nat _).mul (ht _ _)))
@@ -1108,12 +1111,12 @@ theorem rep_sub_intQ {u : Pr.Word} {j : ℕ} (h : j + 1 = R.m) (p q : PtAt R sel
     ⟨_, p.repY_mem h, by rw [sub_self, smul_zero]; exact zero_mem _⟩
   rw [← e] at h1
   obtain ⟨z, hz1, h2⟩ := h1
-  rw [if_neg hP] at h2
+  rw [ite_eq_right hP] at h2
   have h3 := q.repY_mem h
   obtain ⟨y, -, hY⟩ := q.mem_ybSet h
   have h4 := (mem_locLat _ _ _ _).1 ((Set.ext_iff.1 hY _).1 hz1) P
   have h5 := (mem_locLat _ _ _ _).1 ((Set.ext_iff.1 hY _).1 h3) P
-  simp only [if_neg hP, zpow_natCast] at h4 h5
+  simp only [ite_eq_right hP, zpow_natCast] at h4 h5
   have h6 : ((qOf P.1 : X.E) ^ cst.M)⁻¹ • (z - repY q.1.2) ∈ q.1.1.deco.1.at P.1 := by
     have := sub_mem h4 h5
     rwa [← smul_sub, sub_sub_sub_cancel_right] at this
@@ -1155,7 +1158,7 @@ theorem locTop_transport_tw : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X) (l 
       simp only [GlobalTheory.Transport.Last.locM, GlobalTheory.Transport.Last.ratM, Matrix.sub_apply, Matrix.mul_apply, Matrix.map_apply, map_sub,
       map_sum, map_mul, adAt_inclE])
     have f1 : ∀ {j : ℕ} (r : Formalism.L2.Col.ChPt (R := B.R) I.sel (I.tup a) u j),
-        Formalism.L2.Col.frsF I.sel (I.tup a) r P = r.deco.1.liftFr ⟨P.1, hP⟩ := fun r => dif_pos hP
+        Formalism.L2.Col.frsF I.sel (I.tup a) r P = r.deco.1.liftFr ⟨P.1, hP⟩ := fun r => dite_eq_left hP
     rw [← f1, ← f1, ← f1, ← f1] at H
     have hq1 := GlobalTheory.TopStep.repY_int q.1.1 (q.mem_ybSet h) hP
     rw [GlobalTheory.Transport.Last.locTop_shift hc hP _ hq1 (GlobalTheory.Transport.Last.rep_sub_int h p q e hP)]
@@ -1195,9 +1198,9 @@ theorem locTop_transport_tw : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X) (l 
 
 end GlobalTheory.Transport.LastTw
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LastStepDatumTransportBadPrimeStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open Formalism.L2.Ker
 
 theorem _root_.GlobalTheory.T.lastStep_datum_transport_badPrime : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X) (l : I.Laws) (ok : I.Ok) (u : B.Word) (a : I.ι) (n : ℕ) (h : n + 1 + 1 = B.R.m) (P : Formalism.L2.Col.rowSG (B.primes X) I.sel (I.tup a))

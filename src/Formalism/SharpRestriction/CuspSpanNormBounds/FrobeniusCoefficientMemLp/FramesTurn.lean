@@ -377,10 +377,11 @@ end Formalism.MainNotions.S.Pv.Frames
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.FramesTurn
+@[expose] public section -- clump member: Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.FramesTurn
 
 set_option linter.unusedVariables false
 
+noncomputable section
 
 namespace Formalism.MainNotions.S.Pv.Frames
 
@@ -445,13 +446,13 @@ theorem frame_conj_fix {z : Fin (2 * r + k + 1) → ℂ} {g : Mx k r} (hg : IsFr
     rw [Matrix.mul_apply] at hE
     simp only [hgHq] at hE
     rw [Finset.sum_eq_single i] at hE
-    · rw [hHrow q i hqo, if_pos (by omega), one_mul] at hE
+    · rw [hHrow q i hqo, ite_eq_left (by omega), one_mul] at hE
       rw [hE, hHrow q j hqo]
       by_cases hji : j = i
-      · rw [hji, hb1, if_pos (by omega)]
-      · rw [hb0 i j hji, if_neg (by intro h; apply hji; ext; omega)]
+      · rw [hji, hb1, ite_eq_left (by omega)]
+      · rw [hb0 i j hji, ite_eq_right (by intro h; apply hji; ext; omega)]
     · intro b _ hb
-      rw [hHrow q b hqo, if_neg (by intro h; apply hb; ext; omega), zero_mul]
+      rw [hHrow q b hqo, ite_eq_right (by intro h; apply hb; ext; omega), zero_mul]
     · intro h; exact absurd (Finset.mem_univ i) h
   have hg_comm : tT k r * g = g * tT k r := by
     ext i j
@@ -465,7 +466,7 @@ theorem frame_conj_fix {z : Fin (2 * r + k + 1) → ℂ} {g : Mx k r} (hg : IsFr
       · rw [hcol j hj i]
         have hij : i ≠ j := fun h => hi (by rw [h]; exact hj)
         rw [hb0 j i hij, mul_zero, zero_mul]
-      · push_neg at hi hj
+      · push Not at hi hj
         rw [dT_mid i hi.1 hi.2, dT_mid j hj.1 hj.2, mul_comm]
   have hB_comm : tT k r * blockW k r h = blockW k r h * tT k r := by
     have h1 : tT k r * blockW k r h * tTi k r = blockW k r h := conj_eq_self (fun i j hne => blockW_dT h i j hne)
@@ -690,7 +691,7 @@ theorem flagMat_conjI {z : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (x : M
       (if i.val < r then star (Complex.I ^ i.val) * Complex.I ^ j.val else 1) * flagMat k r z x i j := by
   unfold flagMat fvec
   by_cases hi : i.val < r
-  · rw [dite_eq_left hi, dite_eq_left hi, if_pos hi]
+  · rw [dite_eq_left hi, dite_eq_left hi, ite_eq_left hi]
     have hv : tT k r *ᵥ (if h : j.val < r then bvec (eI k r ⟨j.val, h⟩) else z) =
         Complex.I ^ j.val • (if h : j.val < r then bvec (eI k r ⟨j.val, h⟩) else z) := by
       by_cases hj : j.val < r
@@ -705,7 +706,7 @@ theorem flagMat_conjI {z : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (x : M
     rw [← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec, hv, Matrix.mulVec_smul]
     simp only [tTi, Matrix.mulVec_diagonal, dT_eI, Pi.smul_apply, smul_eq_mul]
     ring
-  · rw [dite_eq_right hi, dite_eq_right hi, if_neg hi, one_mul]
+  · rw [dite_eq_right hi, dite_eq_right hi, ite_eq_right hi, one_mul]
 
 theorem continuous_rootCoordsS {z : Fin (2 * r + k + 1) → ℂ} (S : Finset (Fin (r + 1) × Fin (r + 1))) :
     Continuous (fun (x : Mt k r) (q : S) => flagMat k r z (Matrix.of x) q.1.1 q.1.2) := by
@@ -759,6 +760,7 @@ theorem isPtRep_turn (L : LocBessel k r) (ka : ℝ) {p : Point ℂ (r + 1)} {g :
 
 end Formalism.MainNotions.S.Pv.Frames
 
+end
 
 -- clump-header: {"m": "Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.FramesMeas", "h": "module\n\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.SpanMemOfImage\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.FramesTor\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.BigCellConjI\nimport Mathlib.Algebra.Order.Archimedean.Real.Hom\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.Normed.Algebra.MatrixExponential\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.FramesTurn", "h": "module\n\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.FramesMeas\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.FramesPt\nimport Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.BigCellConjI\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.LocallyConvex.AbsConvexOpen\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.CategoryTheory.Countable\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\npublic import Mathlib.RingTheory.Complex\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

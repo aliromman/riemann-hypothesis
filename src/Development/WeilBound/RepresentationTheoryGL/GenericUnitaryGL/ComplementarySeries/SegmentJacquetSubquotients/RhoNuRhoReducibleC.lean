@@ -107,8 +107,9 @@ import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.Zelevin
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.BoundB, Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.Compact, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SesquilinearFlipConj, Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.ComplementaryOf, Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.PiTensorTwist, Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.PosMkIff, Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.SegmentJacquetSubquotients.RhoNuRhoOfC, Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.SomeRed, Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.ThetaContra, Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.SegmentJacquetSubquotients.RhoNuRhoReducibleC
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.BoundB
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.BoundB
 
+noncomputable section
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.SplitWeil ValuativeRel Matrix
 
@@ -461,7 +462,7 @@ theorem bound_main : Bound k := by
     exact hu (hf1.symm.trans h1)
   have hni : ¬ Function.Injective S := fun hi => hns (LinearMap.injective_iff_surjective.1 hi)
   rw [injective_iff_map_eq_zero] at hni
-  push_neg at hni
+  push Not at hni
   obtain ⟨y, hSy, hy0⟩ := hni
   have hAy : A y = μ • (y : IndSp (blk2 d) τ) := by
     have := congrArg Subtype.val hSy
@@ -489,6 +490,7 @@ theorem boundB (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNon
     Bound k := BoundB.bound_main
 
 end PositivityTheory.RgGu.NR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.Compact
@@ -817,12 +819,13 @@ theorem complementary_of (h : Signature) : Complementary := by
 end PositivityTheory.RgGu.NR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.PiTensorTwist
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.PiTensorTwist
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
   GlobalTheory.LocGL GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.Published
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace PositivityTheory.RgGu.NR
 
@@ -836,6 +839,8 @@ theorem cuspUnit (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsN
 
 end PositivityTheory.RgGu.NR
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.PosMkIff

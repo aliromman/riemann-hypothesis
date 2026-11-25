@@ -385,7 +385,7 @@ end LocE
 end GroundTheory.Heights₂.Heights.Kleiman
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PTildeVanish
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PTildeVanish
 
 set_option maxSynthPendingDepth 1
 
@@ -393,6 +393,7 @@ namespace GroundTheory.Heights₂.Heights.Kleiman
 
 open MvPolynomial
 
+noncomputable section
 
 universe u v w
 
@@ -431,7 +432,7 @@ def liftCochain {i : ℕ} (t : Cech.Cochain (fun I : Chart x => ↥((M.tildeSys 
 theorem liftCochain_of {i : ℕ} (t : Cech.Cochain (fun I : Chart x => ↥((M.tildeSys c).sub I)) i)
     (J : Cech.Idx (Finset.univ : Finset (Fin (N + 1))) i) (hJ : J.1.1 ⊆ support x) :
     liftCochain M c t J = liftTilde M c J.1 hJ (t ⟨⟨J.1.1, J.1.2.1, hJ⟩, J.2⟩) :=
-  dif_pos hJ
+  dite_eq_left hJ
 
 theorem liftCochain_mem {i : ℕ} (t : Cech.Cochain (fun I : Chart x => ↥((M.tildeSys c).sub I)) i) :
     liftCochain M c t ∈ Cech.Cdeg (locSys S N M.coneSubE) (degLoc M.coneGradedE c) i := by
@@ -535,6 +536,7 @@ theorem TildeVanish.proof (h : SerreVanish.Statement.{u, v}) : TildeVanish.State
   obtain ⟨k, rfl⟩ : ∃ k, i = k + 1 := ⟨i - 1, by omega⟩
   exact tildeSys_H_subsingleton M c k (hc₀ (k + 1) hi c hc)
 
+end
 
 end GroundTheory.Heights₂.Heights.Kleiman
 

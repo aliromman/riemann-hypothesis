@@ -99,10 +99,11 @@ theorem evGSD_ok_of_eq_one : ∀ (X : Fields) [_root_.NumberField.IsTotallyCompl
 end GlobalTheory.CoreHt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.NormOneDetIdealTransportedLattice
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.NormOneDetIdealTransportedLattice
 
 open NumberField IsDedekindDomain nonZeroDivisors
 
+noncomputable section
 
 namespace GlobalTheory.CharValCompare
 
@@ -159,21 +160,6 @@ theorem pull_norm (c : E → E) (c' : E' → E') (h : ∀ x, e (c x) = c' (e x))
     simpa using h1 1 (hIJ ▸ Submodule.mem_one.2 ⟨1, map_one _⟩)
 
 end Pull
-
-section Vp
-
-variable {E : Type} [Field E] [NumberField E] [StarRing E]
-
-
-end Vp
-
-section Val
-
-variable {K : Type} [Field K] [NumberField K] (σ : K →+* ℂ)
-
-
-
-end Val
 
 section Chi
 
@@ -256,11 +242,13 @@ end Parts
 
 end GlobalTheory.CharValCompare
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TwistedNormalForms
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TwistedNormalForms
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Col Formalism.L2.DIV
 
+noncomputable section
 
 namespace GlobalTheory.Proof.TwistedNormalForms
 
@@ -277,7 +265,7 @@ theorem sum_ite_zero_eq_atN {n c : ℕ} (y : Fin (n + c) → E) :
   | succ c =>
     rw [Fin.sum_univ_succ]
     have h0 : ∀ i : Fin c, ¬ ((Fin.succ i).1 = 0) := fun i => by simp
-    simp only [Fin.val_zero, if_true, h0, if_false, Finset.sum_const_zero, add_zero]
+    simp only [Fin.val_zero, ite_true, h0, ite_false, Finset.sum_const_zero, add_zero]
     unfold Loc.atN
     rw [dite_eq_left (by omega)]
     congr 1
@@ -358,6 +346,7 @@ theorem twNF_imp_matNF : ∀ (X : Fields) (Pr : Primes X) (R : Ranks) (j : ℕ) 
       exact hs i
 
 end GlobalTheory.Proof.TwistedNormalForms
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EvaluationDatumOkBaseTuple

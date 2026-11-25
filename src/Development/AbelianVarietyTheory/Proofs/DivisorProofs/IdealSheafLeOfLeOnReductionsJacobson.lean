@@ -96,8 +96,9 @@ theorem krull_inter_ideal_local (B : Type) [CommRing B] [IsNoetherianRing B] (I 
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdealSheafLeOfLeOnReductionsJacobson
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdealSheafLeOfLeOnReductionsJacobson
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.AbLaw GlobalTheory.FormalAlg
@@ -129,7 +130,7 @@ theorem le_of_le_reductions : ∀ (R : Type) [CommRing R] (I : Ideal R), I ≤ I
     intro x hx
     obtain ⟨U, hU⟩ := _root_.GlobalTheory.UU.BiLift.exists_affine_mem x
     rw [Scheme.IdealSheafData.mem_support_iff_of_mem hU, Scheme.mem_zeroLocus_iff] at hx
-    push_neg at hx
+    push Not at hx
     obtain ⟨f, hf, hxf⟩ := hx
     exact ⟨⟨V.affineBasicOpen f, ideal_le_on_basicOpen a a' U f fun s _ => Ideal.mul_mem_right _ _ hf⟩, hxf⟩
   have h2 : ∀ x : V, I ≤ (p x).asIdeal → ∃ U : S, x ∈ U.1.1 := by

@@ -22,7 +22,6 @@ import Development.AbelianVarietyTheory.Proofs.HermitianTraceForms.IsLocallyCons
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ChTor
 
 namespace GlobalTheory.ChTor
@@ -100,14 +99,14 @@ theorem exists_weil_function : ∀ (C : Type) [Field C] [IsAlgClosed C] [CharZer
 end GlobalTheory.ChTor
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.MapSmulOfIsHausdorff
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.MapSmulOfIsHausdorff
 
+noncomputable section
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.PDiv GlobalTheory.ChTor GlobalTheory.EigenSplit
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.HTLat
 

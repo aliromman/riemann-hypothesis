@@ -51,11 +51,10 @@ import Mathlib.Tactic.Polynomial.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CupGradedCommOfIsFlip, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CupGradedCommOfIsFlipStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TateTwistCupProductGradedComm
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CupGradedCommOfIsFlip
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CupGradedCommOfIsFlip
 
 namespace GlobalTheory.EtC.CupFlip
 open GlobalTheory.EtC.CupSpec
@@ -160,19 +159,19 @@ theorem d_pv_cyc (α : Cocycle ((chains R).obj E) I n) (β : Cocycle ((chains R)
   by_cases h : (-(p : ℤ) + n) + (-(r : ℤ) + m) = w
   · rw [d_pv μ rfl rfl α.1 β.1 w w' hw p r y z h, Cocycle.δ_eq_zero, Cocycle.δ_eq_zero, pv_zero_left, pv_zero_right,
       zero_sub, zero_sub, smul_neg, ← sub_eq_add_neg]
-  · have h0 : pv μ α.1 β.1 w p r y z = 0 := dif_neg h
+  · have h0 : pv μ α.1 β.1 w p r y z = 0 := dite_eq_right h
     have hL : bdL (pv μ α.1 β.1 w') p r y z = 0 := by
       cases p with
       | zero => rfl
       | succ p =>
         refine Finset.sum_eq_zero fun i _ => ?_
-        rw [pv, dif_neg (by push_cast at h ⊢; omega), smul_zero]
+        rw [pv, dite_eq_right (by push_cast at h ⊢; omega), smul_zero]
     have hR : bdR (pv μ α.1 β.1 w') p r y z = 0 := by
       cases r with
       | zero => simp [bdR]
       | succ r =>
         refine Finset.sum_eq_zero fun i _ => ?_
-        rw [pv, dif_neg (by push_cast at h ⊢; omega), smul_zero]
+        rw [pv, dite_eq_right (by push_cast at h ⊢; omega), smul_zero]
     rw [h0, hL, hR]
     simp
 
@@ -281,6 +280,11 @@ theorem GlobalTheory.EtC.Pair.cup_flip : ∀ (R : Type) [CommRing R] {I J K : Cx
   rw [δ_smul, key, smul_smul, sg_sq, one_smul]
   rfl
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CupGradedCommOfIsFlipStatement
 

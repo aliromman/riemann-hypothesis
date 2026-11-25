@@ -20,8 +20,9 @@ import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.AbsNormTG, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.NormBound, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FramesMem, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.NmlIntHolds
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.AbsNormTG
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.AbsNormTG
 
+noncomputable section
 
 open scoped Classical
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat
@@ -80,7 +81,7 @@ theorem yv_orth_X {T T' : D.host.E} (F : FlagG (VS D) D.R.rS T) (F' : FlagG (VS 
       simp [Zhat, brS, FlagG.fvec, Fin.snoc_castSucc]
     have hm := congrFun (congrFun (Matrix.mul_adjugate (Zhat F F')) a.castSucc) (Fin.last _)
     rw [Matrix.mul_apply] at hm
-    simp only [Matrix.smul_apply, Matrix.one_apply, Fin.castSucc_ne_last, if_false, smul_zero] at hm
+    simp only [Matrix.smul_apply, Matrix.one_apply, Fin.castSucc_ne_last, ite_false, smul_zero] at hm
     unfold NormalVectorPairings.yv NormalVectorPairings.omp
 
     rw [map_add (f := _), map_smul, map_smul, F.z_orth a, smul_zero, add_zero, map_sum]
@@ -147,6 +148,7 @@ theorem abs_norm_TG (n : ℕ) (g : D.host.E) :
   rw [abs_mul, abs_pow, Nat.abs_cast]
 
 end Formalism.L2.SG.NGCut.NormalIntegrality
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.NormBound

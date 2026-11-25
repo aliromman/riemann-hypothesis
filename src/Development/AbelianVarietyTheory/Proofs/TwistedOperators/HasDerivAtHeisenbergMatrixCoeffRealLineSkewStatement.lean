@@ -134,7 +134,6 @@ end GlobalTheory.MatrixCoeffDeriv
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasDerivAtHeisenbergMatrixCoeffRealLineSkewStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

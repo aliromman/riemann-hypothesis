@@ -634,8 +634,9 @@ open MvPolynomial ReciprocityTheory.AnForm.R GlobalTheory.CompanionTheory.Ar.Cmp
 theorem _root_.GlobalTheory.T.snc_chart_regular_with_boundary_choice : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (P D : Ideal (MvPolynomial (Σ k, ι k) ℂ)) (e : ℕ) (p : (k : K) → ι k) (x : SncRes.Pts P) (r : Fin e → MvPolynomial (Fin (Fintype.card (Σ k, ι k))) ℂ) (Jf : Finset (Fin e)) (σ : Fin e → Option (Fin (SncRes.rc P D))), IsMultiHomogIdeal P → IsMultiHomogIdeal D → x ∈ SncRes.src P p → (∀ h ∈ (SncRes.ideal P p), eval (SncRes.coord P p x) h = 0) → IsRegularLocalRing (locRing (SncRes.ideal P p) (SncRes.coord P p x)) → ringKrullDim (locRing (SncRes.ideal P p) (SncRes.coord P p x)) = e → Ideal.span (Set.range fun l => algebraMap _ (locRing (SncRes.ideal P p) (SncRes.coord P p x)) (r l)) = Ideal.map (algebraMap _ (locRing (SncRes.ideal P p) (SncRes.coord P p x))) (ptIdeal (SncRes.coord P p x)) → (∀ l, σ l = none ↔ l ∉ Jf) → (∀ l k, σ l = some k → SncRes.ideal (SncRes.compIdeal P D k) p = SncRes.Par.chPrime (SncRes.ideal P p) (SncRes.coord P p x) (r l)) → (∀ k, (∀ g ∈ SncRes.compIdeal P D k, eval (SncRes.rep x) g = 0) → ∃ l ∈ Jf, σ l = some k) → ∃ O : Set (SncRes.Pts P), IsOpen O ∧ x ∈ O ∧ O ⊆ SncRes.src P p ∧ ∀ k, SncRes.comp P D k ∩ O = {x' ∈ O | ∃ l, σ l = some k ∧ eval (SncRes.coord P p x') (r l) = 0} := @_root_.GlobalTheory.CompanionTheory.Ar.Cmp.SncRes.NearComp.comp_eq_near
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.SymbolicPowerFromAffineChart
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.SymbolicPowerFromAffineChart
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Cmp.SncRes.Dehom
 
@@ -682,7 +683,7 @@ theorem isMultiHomog_part (b : K → ℕ) (s : MvPolynomial (Σ k, ι k) ℂ) :
   intro m hm k
   rw [mem_support_iff, coeff_part] at hm
   by_contra hk
-  refine hm (if_neg fun h => hk ?_)
+  refine hm (ite_eq_right fun h => hk ?_)
   exact congrFun h k
 
 alias isMultiHomog_mul := _root_.GlobalTheory.CompanionTheory.Ar.Cmp.SncRes.Dict.isMultiHomog_mul
@@ -714,16 +715,16 @@ theorem part_mul_mem [DecidableEq K] {I : Ideal (MvPolynomial (Σ k, ι k) ℂ)}
     by_cases hm : mdeg m = b + a
     · have e : ∀ k ∈ (Finset.univ : Finset K), ∑ i, m ⟨k, i⟩ = (b + a) k :=
         fun k _ => congrFun hm k
-      rw [if_pos e]
+      rw [ite_eq_left e]
       have hr : ∀ m' ∈ (s - part b s).support, mdeg m' ≠ b := by
         intro m' hm' hb
-        rw [mem_support_iff, MvPolynomial.coeff_sub, coeff_part, if_pos hb, sub_self] at hm'
+        rw [mem_support_iff, MvPolynomial.coeff_sub, coeff_part, ite_eq_left hb, sub_self] at hm'
         exact hm' rfl
       have e2 : s * f = part b s * f + (s - part b s) * f := by ring
       rw [e2, MvPolynomial.coeff_add, coeff_mul_eq_zero hr hf hm, add_zero]
     · have e : ¬ ∀ k ∈ (Finset.univ : Finset K), ∑ i, m ⟨k, i⟩ = (b + a) k :=
         fun h' => hm (funext fun k => h' k (Finset.mem_univ k))
-      rw [if_neg e]
+      rw [ite_eq_right e]
       by_contra hne
       exact hm (funext fun k => isMultiHomog_mul (isMultiHomog_part b s) hf m
         (mem_support_iff.2 (Ne.symm hne)) k)
@@ -818,6 +819,7 @@ theorem relation_dehom : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fi
     exact (sup_le_sup (Ideal.pow_right_mono (map_deh_le Q p) n) (map_deh_le P p)) h1
 
 end GlobalTheory.CompanionTheory.Ar.Cmp.SncRes.Dehom
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.SymbolicPowerInAffineChart

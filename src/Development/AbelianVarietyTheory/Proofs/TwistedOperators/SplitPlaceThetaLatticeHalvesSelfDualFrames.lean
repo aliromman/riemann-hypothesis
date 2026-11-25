@@ -355,8 +355,10 @@ theorem honto : ∀ (D : D7) (S T : HSp D) (ΛS : Submodule (𝓞 D.host.E) (Fin
 end GlobalTheory.SplitHomOnto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitPlaceHomLatticeEntriesBoundedByIdealValuati
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitPlaceHomLatticeEntriesBoundedByIdealValuati
+@[expose] public section
 
+noncomputable section
 
 
 
@@ -369,27 +371,7 @@ theorem mul_mem_latHat {n : ℕ} (Λ : Submodule (𝓞 D.host.E) (Fin n → D.ho
     (hw : w ∈ intAE D) {x : Fin n → D.host.E} (hx : x ∈ Λ) :
     (fun i => w * ((1 : Af D.host.F) ⊗ₜ[D.host.F] x i)) ∈
       Formalism.MainNotions.StandardLattice.latHat D.host.F D.host.E (Λ : Set (Fin n → D.host.E)) := by
-  unfold Formalism.MainNotions.StandardLattice.latHat
-  induction hw using AddSubgroup.closure_induction with
-  | mem w hw =>
-    obtain ⟨b, hb, o, rfl⟩ := hw
-    refine AddSubgroup.subset_closure ⟨b, hb, o • x, Λ.smul_mem o hx, ?_⟩
-    funext i
-    rw [Algebra.TensorProduct.tmul_mul_tmul, mul_one, Pi.smul_apply, Algebra.smul_def]
-  | zero =>
-    have h0 : (fun i => (0 : Af D.host.F ⊗[D.host.F] D.host.E) * ((1 : Af D.host.F) ⊗ₜ[D.host.F] x i)) = 0 := by
-      funext i; simp
-    rw [h0]; exact zero_mem _
-  | add w₁ w₂ _ _ h₁ h₂ =>
-    have h3 : (fun i => (w₁ + w₂) * ((1 : Af D.host.F) ⊗ₜ[D.host.F] x i)) =
-        (fun i => w₁ * ((1 : Af D.host.F) ⊗ₜ[D.host.F] x i)) + (fun i => w₂ * ((1 : Af D.host.F) ⊗ₜ[D.host.F] x i)) := by
-      funext i; simp [add_mul]
-    rw [h3]; exact add_mem h₁ h₂
-  | neg w _ h =>
-    have h3 : (fun i => (-w) * ((1 : Af D.host.F) ⊗ₜ[D.host.F] x i)) =
-        -(fun i => w * ((1 : Af D.host.F) ⊗ₜ[D.host.F] x i)) := by
-      funext i; simp [neg_mul]
-    rw [h3]; exact neg_mem h
+  first | exact _root_.GlobalTheory.SplitAdjBound.mul_latHat_mem | exact @_root_.GlobalTheory.SplitAdjBound.mul_latHat_mem | apply _root_.GlobalTheory.SplitAdjBound.mul_latHat_mem <;> assumption
 
 theorem rdA_pairA_tmul {v : FinPl D} (φ : SplitProj D v) (α : Af D.host.F) (m : D.host.E) :
     rdA φ (pairA D.host.F 0 α ⊗ₜ[D.host.F] m) = evalV D.host.F v α * rdQ φ m := by
@@ -493,6 +475,8 @@ theorem hbound : ∀ (D : D7) (S T : HSp D) (ΛS : Submodule (𝓞 D.host.E) (Fi
 
 end GlobalTheory.SplitHomBound
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitPlaceThetaLatticeHalvesSelfDualFrames

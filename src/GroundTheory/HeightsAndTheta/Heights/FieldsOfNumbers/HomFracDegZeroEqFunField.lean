@@ -7,7 +7,8 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PfContractedHypothesesExample, GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.HomFracDegZeroEqFunField
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PfContractedHypothesesExample
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PfContractedHypothesesExample
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -15,6 +16,7 @@ namespace GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.FieldNumber
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR
 
+noncomputable section
 
 universe u u' v v' w
 
@@ -29,12 +31,10 @@ def HasRelDim {F : Type u} [Field F] {K : Type v} [Fintype K] {ι : K → Type w
 end Objects
 
 
-section Examples
-
-end Examples
-
+end
 
 end GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.FieldNumbers
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.HomFracDegZeroEqFunField

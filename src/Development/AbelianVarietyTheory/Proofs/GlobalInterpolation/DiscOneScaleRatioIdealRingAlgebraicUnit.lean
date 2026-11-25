@@ -69,8 +69,9 @@ import Formalism.LocalToGlobal.KernelLattices.LateralTheory
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.WeierstrassPSuperlatticeHalfPeriodProd, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.NormDiscriminantSuperlatticeOddIndexEq, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DiscOneScaleRatioIdealRingAlgebraicUnit
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.WeierstrassPSuperlatticeHalfPeriodProd
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.WeierstrassPSuperlatticeHalfPeriodProd
 
+noncomputable section
 open Filter Topology
 
 namespace GlobalTheory.HalfPeriodProduct
@@ -129,7 +130,7 @@ lemma order_sub (L : PeriodPair) {a : ℂ} (ha : a ∉ L.lattice) (z₀ : ℂ) :
   rw [meromorphicOrderAt_congr heq, meromorphicOrderAt_mul (((MeromorphicAt.const c z₀).mul (m a)).mul (m (-a)))
     ((m 0).pow 2).inv, meromorphicOrderAt_mul ((MeromorphicAt.const c z₀).mul (m a)) (m (-a)),
     meromorphicOrderAt_mul (MeromorphicAt.const c z₀) (m a), meromorphicOrderAt_inv,
-    meromorphicOrderAt_pow (m 0), meromorphicOrderAt_const, if_neg hc, order_sigma, order_sigma, order_sigma]
+    meromorphicOrderAt_pow (m 0), meromorphicOrderAt_const, ite_eq_right hc, order_sigma, order_sigma, order_sigma]
   rw [show ((2 : ℕ) : WithTop ℤ) * ((ind L (z₀ + 0) : ℤ) : WithTop ℤ) = ((2 * ind L (z₀ + 0) : ℤ) : WithTop ℤ) by
     norm_cast, zero_add, ← WithTop.LinearOrderedAddCommGroup.coe_neg, ← WithTop.coe_add, ← WithTop.coe_add]
   congr 1
@@ -347,6 +348,7 @@ theorem wp_half_period_prod (L L' : PeriodPair) (T : Finset ℂ) (w : ℂ) (hLL 
     exact (div_eq_one_iff_eq hBz).1 this
 
 end GlobalTheory.HalfPeriodProduct
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.NormDiscriminantSuperlatticeOddIndexEq

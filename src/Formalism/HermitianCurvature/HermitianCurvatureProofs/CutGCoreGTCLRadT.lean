@@ -288,10 +288,12 @@ theorem radial_torus_of_jets_taylor : GTCLRadTOfCut := by
 end Formalism.FourierDecayAlt.P.CutMP.Gauge.GC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCLRadTJet
+section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCLRadTJet
+@[expose] public section
 
 namespace Formalism.FourierDecayAlt.P.CutMP.Gauge.GC
 
+noncomputable section
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
@@ -408,13 +410,13 @@ theorem jetT_Top {N : ℕ} {f : Q.Mx k r → E} {g₀ : Q.Mx k r} (u : ℂ) (a b
   · have he : Top (Q.EH k r) u (Q.posL k r (Fin.last r) a) (Q.posL k r (Fin.last r) b) f =
         fun g => u • f g + Q.EH k r (Q.posL k r (Fin.last r) a) (Q.posL k r (Fin.last r) b) f g := by
       funext g
-      simp only [Formalism.QuantumDeterminants.Top, hab, if_true]
+      simp only [Formalism.QuantumDeterminants.Top, hab, ite_true]
     rw [he]
     exact jetT_add (jetT_smul u (jetT_mono (Nat.le_succ N) h)) (jetT_EH a b h)
   · have he : Top (Q.EH k r) u (Q.posL k r (Fin.last r) a) (Q.posL k r (Fin.last r) b) f =
         Q.EH k r (Q.posL k r (Fin.last r) a) (Q.posL k r (Fin.last r) b) f := by
       funext g
-      simp only [Formalism.QuantumDeterminants.Top, hab, if_false, zero_add]
+      simp only [Formalism.QuantumDeterminants.Top, hab, ite_false, zero_add]
     rw [he]
     exact jetT_EH a b h
 
@@ -496,8 +498,10 @@ theorem jet_finite_order_along_level : GTCLRJetT := by
     · rw [hq _ _ _ (Nat.sub_le _ _), smul_zero]
     · rfl
 
+end
 
 end Formalism.FourierDecayAlt.P.CutMP.Gauge.GC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCLRadTJetRad
@@ -854,7 +858,7 @@ theorem taylor_expansion_holds : GTCLRTaylor := by
     · exact absurd h2.symm h1
     · rw [smul_zero]
   rw [Finset.sum_congr rfl hterm, Finset.sum_ite_eq' (Finset.range (N + 1)) i,
-    if_pos (Finset.mem_range.2 (Nat.lt_succ_of_le hi))]
+    ite_eq_left (Finset.mem_range.2 (Nat.lt_succ_of_le hi))]
   have hs : ∀ σ : Equiv.Perm (Fin i), iteratedFDeriv ℝ i ψ ζ₀ (v ∘ σ) = iteratedFDeriv ℝ i ψ ζ₀ v :=
     fun σ => symm_iter i V ψ U hU hψ ζ₀ hζ σ v
   rw [Finset.sum_congr rfl (fun σ _ => hs σ), Finset.sum_const, Finset.card_univ, Fintype.card_perm,

@@ -48,8 +48,9 @@ import Mathlib.Topology.Sheaves.Init
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SmallCornerOfHeisenbergDuality, Development.AbelianVarietyTheory.Proofs.TwistedOperators.SmallCornerOfHeisenbergDualityStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SmallCornerOfHeisenbergDuality
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SmallCornerOfHeisenbergDuality
 
+noncomputable section
 
 open Formalism.UG Matrix GlobalTheory.SatakeWeyl
 
@@ -109,7 +110,7 @@ theorem hermJ_mulVec (g : GU σ N) (x y : Fin N → L) :
     _ = ∑ k : Fin N, σ (x k) * y k.rev := by
         refine Finset.sum_congr rfl fun k _ => ?_
         simp only [hinner, Matrix.one_apply, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ,
-          if_true]
+          ite_true]
 
 theorem sigma_mem_intL {x : L} (hσ : ∀ x, Valued.v (σ x) = Valued.v x) (h : x ∈ intL L) : σ x ∈ intL L := by
   change Valued.v (σ x) ≤ 1
@@ -188,6 +189,7 @@ theorem smallCorner_of_heis_dual : Heis → Dual → SmallCorner := by
     exact Subring.mul_mem _ (Subring.mul_mem _ hτint (Subring.pow_mem _ hϖint _)) (Subring.sub_mem _ i₁ i₂)
 
 end GlobalTheory.InertZeta
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SmallCornerOfHeisenbergDualityStatement

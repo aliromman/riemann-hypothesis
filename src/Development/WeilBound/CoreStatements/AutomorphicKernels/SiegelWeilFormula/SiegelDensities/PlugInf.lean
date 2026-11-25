@@ -701,11 +701,12 @@ end PositivityTheory.SiegelWeilFormula.Densx
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlockOneStepConst
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlockOneStepConst
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology
 open scoped TensorProduct ENNReal NNReal Matrix
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SW.StepC
 
@@ -731,18 +732,18 @@ theorem theta_hypothesis_c : ∀ (F E : Type) [Field F] [NumberField F] [Field E
   simp_rw [hi]
   have hmψ : ∀ v, Measurable (fun Y : Fin n → Fin M → Fv F v ⊗[F] E => if v ∈ S then φ v (actW (Fv F v) σ _ (g v) (consTup Y)) else (latV b v).indicator 1 (actW (Fv F v) σ _ (g v) (consTup Y))) := fun v => by
     by_cases hv : v ∈ S
-    · simp only [hv, if_true]; exact (hφ v).comp (hmv v)
-    · simp only [hv, if_false]; exact (measurable_one.indicator (hlatm v)).comp (hmv v)
+    · simp only [hv, ite_true]; exact (hφ v).comp (hmv v)
+    · simp only [hv, ite_false]; exact (measurable_one.indicator (hlatm v)).comp (hmv v)
   have hsplit : ∏ v ∈ S ∪ Sh, ∫⁻ X, (if v ∈ S then φ v (actW (Fv F v) σ _ (g v) (consTup X)) else (latV b v).indicator 1 (actW (Fv F v) σ _ (g v) (consTup X))) ∂(m v) =
       (∏ v ∈ S, Ψ v (actW (Fv F v) σ _ (g v) (fun _ : Fin 1 => Fin.cons 1 (fun _ => 0)))) *
         ((∏ v ∈ Sh \ S, (latV b v).indicator 1 (actW (Fv F v) σ _ (g v) (fun _ : Fin 1 => Fin.cons 1 (fun _ => 0)))) * ∏ v ∈ Sh \ S, m v (latV b v)) := by
     rw [Finset.union_comm, ← Finset.sdiff_union_self_eq_union, Finset.prod_union Finset.sdiff_disjoint, mul_comm, ← Finset.prod_mul_distrib]
     congr 1
     · refine Finset.prod_congr rfl fun v hv => ?_
-      simp only [hv, if_true]; exact (hΨ v (g v)).symm
+      simp only [hv, ite_true]; exact (hΨ v (g v)).symm
     · refine Finset.prod_congr rfl fun v hv => ?_
       have hvS : v ∉ S := (Finset.mem_sdiff.1 hv).2
-      simp only [hvS, if_false]
+      simp only [hvS, ite_false]
       have e1 : ∫⁻ X, (latV b v).indicator 1 (actW (Fv F v) σ _ (g v) (consTup X)) ∂(m v) =
           m v {X | actW (Fv F v) σ _ (g v) (consTup X) ∈ latV b v} := by
         have : (fun X : Fin n → Fin M → Fv F v ⊗[F] E => (latV b v).indicator (1 : (Fin (n + 1) → Fin (M + 1) → Fv F v ⊗[F] E) → ℝ≥0∞) (actW (Fv F v) σ _ (g v) (consTup X))) =
@@ -764,6 +765,7 @@ theorem theta_hypothesis_c : ∀ (F E : Type) [Field F] [NumberField F] [Field E
   ring
 
 end GlobalTheory.CompanionTheory.SW.StepC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelDensities.SmulIndicatorMass

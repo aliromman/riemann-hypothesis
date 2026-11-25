@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AlternatingWordHypothesesEveryLatticeSurjection
 public import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.SmulSAddLeft
 public import Formalism.SharpRestriction.LevelLetterCocycles.CoprimeFrobeniusUniformizerPowers
 public import Formalism.SharpRestriction.LevelLetterCocycles.ExistsSmulPowEqSumOfInFNc
@@ -17,8 +18,9 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.VanishOfXU, Formalism.SharpRestriction.LevelLetterCocycles.FrobeniusPowerZeroEqQ, Formalism.SharpRestriction.LevelLetterCocycles.LevelZeroMembershipOfHorizontal, Formalism.SharpRestriction.LevelLetterCocycles.ExistsPrimOfGood
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.VanishOfXU
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.VanishOfXU
 
+noncomputable section
 
 open Classical
 
@@ -37,7 +39,7 @@ theorem smulS_delta (g : PowerSeries LL) (w : V) (j : ℕ) :
   rw [Finset.sum_eq_single j]
   · simp
   · intro b _ hb
-    rw [if_neg (by omega)]
+    rw [ite_eq_right (by omega)]
     simp
   · intro hj
     simp at hj
@@ -79,6 +81,7 @@ theorem vanish_of_XU {U : PowerSeries LL} (hU : constantCoeff U ≠ 0) {m : ℤ}
   simpa using this
 
 end Formalism.MainNotions.UnusedSlot80.CrC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.FrobeniusPowerZeroEqQ
@@ -373,8 +376,9 @@ theorem level_zero_membership_of_horizontal (C : Formalism.MainNotions.UnusedSlo
 end Formalism.MainNotions.UnusedSlot80.CrC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.ExistsPrimOfGood
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.ExistsPrimOfGood
 
+noncomputable section
 
 open Classical TensorProduct
 
@@ -406,15 +410,7 @@ open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.Basi
 
 theorem exists_prim_of_good (D : D7) {l : ℕ} [Fact l.Prime] {K LL : FinExt l} (hG : Good K 1 LL) :
     ∃ ζ : ↥LL.1, IsPrimitiveRoot ζ l := by
-  have hmem : (D.loc l).ζQ 1 ∈ Ks K 1 := by
-    apply (le_sup_right : IntermediateField.adjoin ℚ_[l] {x : Om l | x ^ (l ^ 1) = 1} ≤ Ks K 1)
-    apply IntermediateField.subset_adjoin
-    show (D.loc l).ζQ 1 ^ (l ^ 1) = 1
-    rw [pow_one, (D.loc l).ζQ_succ 0, (D.loc l).ζQ_zero]
-  have hLL : (D.loc l).ζQ 1 ∈ LL.1 := hG.2.2.2 (Ks K 1).val ⟨_, hmem⟩
-  refine ⟨⟨_, hLL⟩, ?_⟩
-  exact IsPrimitiveRoot.of_map_of_injective (f := LL.1.val) (hf := Subtype.val_injective)
-    (LevR.root_of_unity_primitive D l)
+  apply _root_.GlobalTheory.HTW.RecS.exists_primitiveRoot_of_good <;> assumption
 
 theorem lev0MpL_of_from (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (Cm : CmpOf D.loc D.locA HW F)
     (hAdm : AdmArcA D HW F Cm) (h4 : Formalism.MainNotions.DeltaInvariantLattices.P4 D HW F Cm) (h9 : Formalism.MainNotions.DeltaInvariantLattices.P9 D HW F)

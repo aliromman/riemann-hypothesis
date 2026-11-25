@@ -14,8 +14,10 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.CuspSpanNormBounds.MinorCosetSumOfLatticeIndexHypOfTieOK, Formalism.SharpRestriction.CuspSpanNormBounds.KTwoCosetCount, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.KloostermanCosetSumLe
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.CuspSpanNormBounds.MinorCosetSumOfLatticeIndexHypOfTieOK
+section -- clump member: Formalism.SharpRestriction.CuspSpanNormBounds.MinorCosetSumOfLatticeIndexHypOfTieOK
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.KTwoCosetCount
 
@@ -136,18 +138,16 @@ theorem final_arith {L Cl CH rd : ℝ} {r m f n j : ℕ} (hL : 1 < L) (hCl : 0 <
 
 end G
 
-section H
-
-variable {D : D7}
-
-end H
-
 end Formalism.MainNotions.KTwoCosetCount
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.CuspSpanNormBounds.KTwoCosetCount
+section -- clump member: Formalism.SharpRestriction.CuspSpanNormBounds.KTwoCosetCount
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.KTwoCosetCount
 
@@ -283,18 +283,15 @@ theorem sum_prod_le {ι α : Type*} [DecidableEq ι] [DecidableEq α] (S : Finse
 
 end C
 
-section Dsum
-
-variable {D : D7}
-
-end Dsum
-
 end Formalism.MainNotions.KTwoCosetCount
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.KloostermanCosetSumLe
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.KloostermanCosetSumLe
 
+noncomputable section
 
 open scoped Classical
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt Formalism.L2.SG.HidaSetting Formalism.L2.SG.TermOp
@@ -462,9 +459,9 @@ theorem labFacts_conc (t : GTu Y u) :
     · exact minorInt_conc t l (le_trans hl (Nat.sub_le _ _))
     · exact isIntegral_zero
   · unfold labT
-    rw [if_neg (not_le.mpr (by unfold jT at hl; exact hl))]
+    rw [ite_eq_right (not_le.mpr (by unfold jT at hl; exact hl))]
   · unfold labT
-    rw [if_pos (Nat.zero_le _)]
+    rw [ite_eq_left (Nat.zero_le _)]
     unfold Dl leadMinorE
     first
       | exact Matrix.det_isEmpty

@@ -6,13 +6,12 @@ import Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTr
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.SpnRel, Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.SpnAdj
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.SpnRel
 
+noncomputable section
 
 open Matrix Finset
 open scoped InnerProductSpace ComplexConjugate
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.SpnRel
 open PositivityTheory.RgTw (Mat)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD UpperTheory.RealTr
 open Formalism.REAL (GlRel IsWeight KHighest Cas)
@@ -78,7 +77,7 @@ theorem UpperTheory.RealTr.spnRel :
   simp_rw [leib, spn_comm c hc]
   simp only [sub_mul, mul_sub, ite_mul, mul_ite, zero_mul, mul_zero, Finset.sum_add_distrib,
     Finset.sum_sub_distrib]
-  simp only [Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ, if_true, Finset.sum_ite_irrel,
+  simp only [Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ, ite_true, Finset.sum_ite_irrel,
     Finset.sum_const_zero]
   unfold spn
   by_cases hbg : b = g <;> by_cases hha : h = a
@@ -90,8 +89,13 @@ theorem UpperTheory.RealTr.spnRel :
     abel
   · simp [hbg, hha]
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.SpnAdj
+
+
+open Matrix Finset
+open scoped InnerProductSpace ComplexConjugate
 open PositivityTheory.RgTw (Mat)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD UpperTheory.RealTr
 open Formalism.REAL (GlRel IsWeight KHighest Cas)

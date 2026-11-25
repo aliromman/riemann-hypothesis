@@ -759,8 +759,10 @@ theorem UpperTheory.Gal.Mod.valLiftB :
     simpa [φ, ψ, RingHom.algebraMap_toAlgebra, IsLocalRing.ResidueField.map_residue] using hz
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.BasicOpenSections.PWtVal
+section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.BasicOpenSections.PWtVal
+@[expose] public section
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry
 open UpperTheory.Gal.TranscendenceTraces (gp pt Wt fib IsWt)
 open UpperTheory.Gal.crystallineComparison (resPt)
@@ -794,8 +796,8 @@ theorem wtVal : FibExt → SecGen → ClopenAt → WtVal := by
     convert h using 1
     funext x
     by_cases hx : x ∈ U
-    · exact (if_pos hx).trans ((LocallyConstant.charFn_eq_one (Y := ℤ) x hU).2 hx).symm
-    · exact (if_neg hx).trans ((LocallyConstant.charFn_eq_zero (Y := ℤ) x hU).2 hx).symm
+    · exact (ite_eq_left hx).trans ((LocallyConstant.charFn_eq_one (Y := ℤ) x hU).2 hx).symm
+    · exact (ite_eq_right hx).trans ((LocallyConstant.charFn_eq_zero (Y := ℤ) x hU).2 hx).symm
   obtain ⟨ψ, hψ, hsum⟩ : ∃ ψ : Spec (CommRingCat.of V) → ℤ, IsLocallyConstant ψ ∧
       ∀ (Ω : Type) [Field Ω] [IsAlgClosed Ω] (x : gp Ω ⟶ Spec (CommRingCat.of V)),
         ψ (pt x) = ∑ᶠ z ∈ fib r x, w Ω (z ≫ v) * φ (pt z) := hw.1 (TranscendenceTraces.Sq.of T.p y) φ hφ
@@ -892,6 +894,8 @@ theorem wtVal : FibExt → SecGen → ClopenAt → WtVal := by
 
 end UpperTheory.Gal.Mod
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.BasicOpenSections.PullHQComp

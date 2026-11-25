@@ -18,15 +18,14 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.FiniteAdelicEstimatesHolds, Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.MCGlue, Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.MCReal, Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.TraceNondeg, Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.AdelicEstimatesHolds
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.FiniteAdelicEstimatesHolds
+@[expose] public section -- clump member: Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.FiniteAdelicEstimatesHolds
 
+noncomputable section
 
 namespace PositivityTheory.Mix
 
 open NumberField IsDedekindDomain Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK PositivityTheory.KCo
   GlobalTheory.LatVac
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 variable {F : Type} [Field F] [NumberField F] {κ : Type} [Fintype κ] {v : Pl F}
 
@@ -193,14 +192,16 @@ theorem finite_adelic_estimates_holds : FinSt := by
         fun i => zero_mem _)] at this
       exact one_ne_zero this
     change c v • ι v (s v) = _
-    rw [show c v = (ι v (s v) 0)⁻¹ from if_neg h0, inv_smul_eq_iff₀ h0]
+    rw [show c v = (ι v (s v) 0)⁻¹ from ite_eq_right h0, inv_smul_eq_iff₀ h0]
     exact h
 
 end PositivityTheory.Mix
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.MCGlue
+@[expose] public section -- clump member: Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.MCGlue
 
+noncomputable section
 
 namespace PositivityTheory.Mix
 
@@ -298,7 +299,7 @@ theorem rel_fin (ev : ∀ v : Pl F, ((κ → Fv F v) → ℂ) →ₗ[ℂ] ((κ �
           unfold tens r GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure
           rw [funext hprod, finprod_mul_distrib ht hsupport,
             finprod_eq_single t v (fun w e => ite_eq_right e)]
-          simp only [t, if_true]
+          simp only [t, ite_true]
           ac_rfl
         funext x
         have hs : (fun y => pure g θ (repl v x y)) = r x • θ v := by
@@ -372,6 +373,7 @@ theorem adelSt_of (hP : PureSt) (hF : FinSt) (hI : InfSt) : AdelSt := by
     exact ad_heis ψ (S w) hw' (ev v φ)
 
 end PositivityTheory.Mix
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.MCReal

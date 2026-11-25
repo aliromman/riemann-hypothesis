@@ -7,14 +7,14 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.HeightKernels.AltPush, GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PLemmaB
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.AltPush
-
-set_option maxSynthPendingDepth 1
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.AltPush
+@[expose] public section
 
 namespace GroundTheory.Heights₂.Heights
 
 open MvPolynomial Finset
 
+noncomputable section
 
 namespace KAlt
 
@@ -96,18 +96,19 @@ theorem antisym_rename_mul_rename (α : Fin r → ℕ) (β : Fin s → ℕ) :
 
 end KAlt
 
+end
 
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PLemmaB
-
-set_option maxSynthPendingDepth 1
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PLemmaB
 
 namespace GroundTheory.Heights₂.Heights.RestTerms
 
 open MvPolynomial Finset
 
+noncomputable section
 
 theorem antisymmetrize_C_mul (f N : ℕ) (k : ℚ) (H : RootRing f N) :
     antisymmetrize f N (C k * H) = C k * antisymmetrize f N H := by
@@ -157,6 +158,7 @@ theorem LemmaB.proof (h1 : SchAevalSignedRename.Statement) (h2 : SchAntisymmetri
     ring
   · rw [h5 r a lam hlam hcont, map_zero, smul_zero, mul_zero, map_zero, zero_div]
 
+end
 
 end GroundTheory.Heights₂.Heights.RestTerms
 

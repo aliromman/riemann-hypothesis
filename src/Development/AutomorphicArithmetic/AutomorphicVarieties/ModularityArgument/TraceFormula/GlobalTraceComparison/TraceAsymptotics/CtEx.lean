@@ -64,14 +64,12 @@ import GroundTheory.LocalFields.PadicLogSeries
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.CtUnit, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.DetDiagJ, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.HintConstMul, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.IsHeckeConstMul, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.SatSum, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.SupportTranslate, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.CtEx
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.CtUnit
 
 
 open NumberField IsDedekindDomain Matrix Polynomial Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT GlobalTheory.LFun
 open PositivityTheory.Rg.BcB.G8
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.CtUnit
 open UpperTheory.V.Af.Bc (cPl)
 open scoped Classical
 
@@ -346,7 +344,13 @@ theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.ctUnit :
     rw [hu, hint_zero, mul_zero, Set.indicator_of_notMem (show m ∉ (K2 a b w : Set _) from hm)]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.DetDiagJ
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.DetDiagJ
+
+noncomputable section
+
+open NumberField IsDedekindDomain Matrix Polynomial Filter Topology
+open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT GlobalTheory.LFun
+open PositivityTheory.Rg.BcB.G8
 open UpperTheory.V.Af.Bc (cPl)
 open scoped Classical
 
@@ -360,8 +364,8 @@ private theorem prod_lt {R : Type} [CommMonoid R] (p : R) (j : ℕ) :
   | succ n ih =>
     rw [Finset.prod_range_succ, ih]
     by_cases h : n < j
-    · rw [if_pos h, min_eq_left h.le, min_eq_left (Nat.succ_le_of_lt h), pow_succ]
-    · rw [if_neg h, mul_one, min_eq_right (not_lt.1 h), min_eq_right (by omega)]
+    · rw [ite_eq_left h, min_eq_left h.le, min_eq_left (Nat.succ_le_of_lt h), pow_succ]
+    · rw [ite_eq_right h, mul_one, min_eq_right (not_lt.1 h), min_eq_right (by omega)]
 
 private theorem det_diagJ {L : Type} [Field L] (n : ℕ) (p : L) {i : ℕ} (hi : i ≤ n) : (diagJ n p i).det = p ^ i := by
   rw [diagJ, det_diagonal, Fin.prod_univ_eq_prod_range (fun k => if k < i then p else 1) n, prod_lt, min_eq_right hi]
@@ -433,6 +437,14 @@ theorem muTw : MuTw := by
 
 end UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+
+open NumberField IsDedekindDomain Matrix Polynomial Filter Topology
+open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT GlobalTheory.LFun
+open PositivityTheory.Rg.BcB.G8
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.HintConstMul
 open UpperTheory.V.Af.Bc (cPl)
@@ -616,8 +628,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.SatSum
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.SatSum
 
+noncomputable section
 
 namespace UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm
 
@@ -636,7 +649,7 @@ theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.satSum :
     intro i hi
     have hs : i.1 + i.2 = j := (Finset.mem_filter.1 hi).2
     have hsc : (j : ℂ) = (i.1 : ℂ) + i.2 := by exact_mod_cast hs.symm
-    rw [if_pos hs, _root_.GlobalTheory.SphGal.satEig_map_mul, _root_.GlobalTheory.SphGal.satEig_map_mul]
+    rw [ite_eq_left hs, _root_.GlobalTheory.SphGal.satEig_map_mul, _root_.GlobalTheory.SphGal.satEig_map_mul]
     have e : ((j : ℂ) * (((a + b : ℕ) : ℂ) - j) - i.1 * (a - i.1) - i.2 * (b - i.2)) / 2 =
         (((i.1 : ℂ)) * ((b : ℂ) - i.2) + ((i.2 : ℂ)) * ((a : ℂ) - i.1)) / 2 := by
       rw [hsc]; push_cast; ring
@@ -656,6 +669,7 @@ theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.satSum :
   refine Finset.sum_congr rfl fun x _ => ?_
   rw [← Fin.sum_univ_eq_sum_range (fun y => G ((x : ℕ), y))]
   rfl
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.SupportTranslate

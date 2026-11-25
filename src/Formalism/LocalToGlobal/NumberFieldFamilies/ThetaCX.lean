@@ -34,13 +34,13 @@ end Formalism.L2.Theta
 
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump member: Formalism.LocalToGlobal.NumberFieldFamilies.ThetaC
+@[expose] public section
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open scoped TensorProduct ContDiff
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.NumberFieldFamilies.ThetaC
 
 namespace Formalism.L2.Fam.ThC
 
@@ -96,8 +96,6 @@ structure Free {ψ : AddChar (AF D.host.F) ℂ} (_Om : WeilC ψ) : Type 1 where
   adelicDataRowMeasureScale_trivialTuple : ∀ j, mY D.what₂.mu0 j = 1
   mY_zero : ∀ μ, mY μ 0 = 1
 
-attribute [instance] Free.fjAdd Free.fjMod
-
 variable {ψ : AddChar (AF D.host.F) ℂ}
 
 section Ties
@@ -108,9 +106,15 @@ end Ties
 
 end Formalism.L2.Fam.ThC
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.NumberFieldFamilies.ThetaCX
+
+
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
+open scoped TensorProduct ContDiff
 
 namespace Formalism.L2.Fam.ThC
 

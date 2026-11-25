@@ -82,11 +82,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsPowerDecompositionOfRootOfUnity, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsTwoChartQuotientOfFiniteCoord, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsSectionLiftOfEtaleOfHenselian, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsCommonZeroOfJacobianIsUnitHenselian, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsZeroOfLinearFormJacobianHenselian, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsFactorizationNearRootOfUnityHenselian, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsMonicLaurentPolynomialNearRootOfUnity, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsTwoChartAdjoinRootLaurent, Development.AutomorphicArithmetic.CommutativeAlgebra.RootsOfUnityLiftModNilpotentUnique, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsNearRootOfUnityProductDecomposition
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsPowerDecompositionOfRootOfUnity
 
 open IsLocalRing UpperTheory.Et
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsPowerDecompositionOfRootOfUnity
 
 namespace UpperTheory.LineDecomposition
 
@@ -295,7 +293,11 @@ theorem UpperTheory.exists_power_decomposition_of_root_of_unity :
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsTwoChartQuotientOfFiniteCoord
+section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsTwoChartQuotientOfFiniteCoord
+@[expose] public section
+
+noncomputable section
+open IsLocalRing UpperTheory.Et
 
 private theorem coord_mem_of_mem {A D ι : Type} [CommRing A] [CommRing D] [Algebra A D]
     (β : Module.Basis ι A D) (I : Ideal A) {x : D} (hx : x ∈ I.map (algebraMap A D)) (i : ι) :
@@ -407,9 +409,9 @@ theorem UpperTheory.exists_twoChart_quotient_of_finite_coord :
     · refine Ideal.Quotient.eq.2 (mem_map_of_coord β I (fun i => ?_))
       rw [map_sub, Finsupp.sub_apply, hrx, hf, Finsupp.filter_apply]
       by_cases hi : i ∈ V j
-      · rw [if_pos hi, sub_self]
+      · rw [ite_eq_left hi, sub_self]
         exact I.zero_mem
-      · rw [if_neg hi, zero_sub]
+      · rw [ite_eq_right hi, zero_sub]
         have hw0 : β.repr (T.t ^ j * c) i = 0 := Finsupp.notMem_support_iff.1 (fun h => hi (hwV h))
         have hci := hcoord i
         rw [map_sub, Finsupp.sub_apply, hw0, sub_zero] at hci
@@ -430,9 +432,13 @@ theorem UpperTheory.exists_twoChart_quotient_of_finite_coord :
     rw [hC0]
     exact mem_smul_span_of_coord β I (V 0) hxs (coord_mem_of_mem β I hxJ)
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsSectionLiftOfEtaleOfHenselian
+
+open IsLocalRing UpperTheory.Et
 
 theorem UpperTheory.exists_section_lift_of_etale_of_henselian :
     ∀ (A E : Type) [CommRing A] [HenselianLocalRing A] [CommRing E] [Algebra A E] [Algebra.Etale A E] (π : E →ₐ[A] ResidueField A), ∃ σ : E →ₐ[A] A, ∀ x, residue A (σ x) = π x := by
@@ -482,6 +488,8 @@ theorem UpperTheory.exists_section_lift_of_etale_of_henselian :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsCommonZeroOfJacobianIsUnitHenselian
+
+open IsLocalRing UpperTheory.Et
 
 private theorem etale_away_jacobian (A : Type) [CommRing A] (n : ℕ)
     (F : Fin n → MvPolynomial (Fin n) A) :
@@ -571,7 +579,11 @@ theorem UpperTheory.exists_common_zero_of_jacobian_isUnit_henselian :
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsZeroOfLinearFormJacobianHenselian
+section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsZeroOfLinearFormJacobianHenselian
+@[expose] public section
+
+noncomputable section
+open IsLocalRing UpperTheory.Et
 
 private lemma UpperTheory.eval_zero_pderiv {R : Type} [CommRing R] {n : ℕ} (j : Fin n)
     (P : MvPolynomial (Fin n) R) :
@@ -583,7 +595,7 @@ private lemma UpperTheory.eval_zero_pderiv {R : Type} [CommRing R] {n : ℕ} (j 
     by_cases hs : s = Finsupp.single j 1
     · subst hs
       simp
-    · rw [if_neg hs]
+    · rw [ite_eq_right hs]
       split_ifs with h
       · by_cases hsj : s j = 0
         · simp [hsj]
@@ -670,10 +682,15 @@ theorem UpperTheory.exists_zero_of_linear_form_jacobian_henselian :
   rw [← key i x Φ]
   exact hx i
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsFactorizationNearRootOfUnityHenselian
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
+open IsLocalRing UpperTheory.Et
 
 namespace UpperTheory.LinearFiltration
 
@@ -742,7 +759,7 @@ private lemma coord_setup (T : TC A D) (hC : T.Coord) (j : ℕ) :
     rw [Module.Basis.repr_self, Finsupp.single_apply]
     by_cases h : i = k
     · subst h; simp
-    · rw [if_neg, if_neg h]
+    · rw [ite_eq_right, ite_eq_right h]
       intro h'
       exact h (F.equivFin.symm.injective (Subtype.ext h'.symm))
   · intro x hx hL
@@ -935,8 +952,13 @@ theorem UpperTheory.exists_factorization_near_root_of_unity_henselian :
             congr 1
             linear_combination ω * st_pow T m
 
+end
 end -- clump:auto
 end -- clump:auto
+
+-- clump: shared namespace opens
+
+open IsLocalRing UpperTheory.Et
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsMonicLaurentPolynomialNearRootOfUnity
 

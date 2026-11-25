@@ -14,7 +14,8 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.I
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSegreFlagCutChartSectionChart, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSegreFlagCutChartSection
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSegreFlagCutChartSectionChart
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSegreFlagCutChartSectionChart
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -22,6 +23,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo GenericProjClosureDivisor
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -288,7 +290,7 @@ theorem chart_data (y : (Σ k, ι k) → Ω) (B₁ : ChartBundle O (segreVec y) 
     rcases hi.lt_or_eq with h | h
     · have hfc : flagCoord w e t (k + 1) i = 0 := by
         unfold flagCoord
-        rw [if_neg (by omega)]
+        rw [ite_eq_right (by omega)]
       have hw0 : w.repr (w₁ ⟨k, hk⟩) i = 0 := hsame _ _ (by rw [Fin.lt_def]; exact h)
       simp only [c'', hfc, hwr, hw0, mul_zero, map_zero, zero_sub, neg_zero]
     · have hi' : i = ⟨k, hk⟩ := Fin.ext h.symm
@@ -331,11 +333,13 @@ end Chart
 
 end SegreFlagCutChartSection
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSegreFlagCutChartSection
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSegreFlagCutChartSection
 
 set_option maxSynthPendingDepth 1
 
@@ -343,13 +347,14 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo GenericProjClosureDivisor SegreFlagCutChartSection
 
+noncomputable section
 
 theorem SegreFlagCutChartSection.proof : SegreFlagCutChartSection.Statement := by
   intro O _ _ _ ϖ hϖ Ω _ _ K _ _ ι _ y d hV N E _ _ B B' hB w w' x x' f g hfl M M' a₀ a₀' φ φ' hφ hφ'
     Φ _ _ _ _ e t ht k hk c hc
   classical
   have hsame₀ : ∀ i j : Fin N, i < j → w.repr (w i) j = 0 := fun i j h => by
-    rw [Module.Basis.repr_self, Finsupp.single_apply, if_neg (ne_of_lt h)]
+    rw [Module.Basis.repr_self, Finsupp.single_apply, ite_eq_right (ne_of_lt h)]
   constructor
   · obtain ⟨β, δ, lam, Y, c'', hβ0, hlam, hlamv, hYh, hYs, hYv, hc''⟩ :=
       chart_data (O := O) y B w w e x hfl.flag hsame₀ a₀ φ hφ φ φ' t k hk c hc (some none)
@@ -438,6 +443,7 @@ theorem SegreFlagCutChartSection.proof : SegreFlagCutChartSection.Statement := b
         rw [hpt]
         exact aeval_flagProjPt_eq_zero _ y w e φ φ' ht k hq t'
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
 

@@ -56,12 +56,13 @@ import GroundTheory.HeightsAndTheta.Heights.Intersections.ProjLineRankTwoPushfor
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PluriharmonicCharts.LognormOrbit, Development.WeilBound.CoreStatements.PluriharmonicCharts.ExistsPositivePeriodLine, Development.WeilBound.CoreStatements.PluriharmonicCharts.XCWLine, Development.WeilBound.CoreStatements.PluriharmonicCharts.WCoZero, Development.WeilBound.CoreStatements.PluriharmonicCharts.XCSwap, Development.WeilBound.CoreStatements.PluriharmonicCharts.IsMultiHomogMonoX, Development.WeilBound.CoreStatements.PluriharmonicCharts.XCWSec, Development.WeilBound.CoreStatements.PluriharmonicCharts.XCSqsys, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverRealisationPullback
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PluriharmonicCharts.LognormOrbit
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PluriharmonicCharts.LognormOrbit
 
 open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I2 ReciprocityTheory.ChartRestriction.G.AI.I4 GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights GroundTheory.Heights₂.Heights.LowerBoundFree
 open scoped ComplexOrder Classical
 open GlobalTheory.CompanionTheory.Ar.PB.WSq GlobalTheory.CompanionTheory.Ar.PB.CovMap GlobalTheory.CompanionTheory.Ar.PB.CovGraph GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg PositivityTheory.Xgp.c_algsq
 
+noncomputable section
 namespace PositivityTheory.Xgp.c_sqsys
 
 section Fac
@@ -204,11 +205,11 @@ theorem lognorm_orbit {τ : Ψ} {a : Fin N} {k₀ : K} {g h : MRing fun o : Opti
     rw [e2, ← Finset.sum_sub_distrib, Finset.mul_sum]
     simp only [← sub_mul, hd]
     rw [Fintype.sum_option, add_assoc, ← Finset.sum_add_distrib, Finset.sum_eq_single k₀]
-    · simp only [Option.elim, hxi, κ₁_self, if_true]
+    · simp only [Option.elim, hxi, κ₁_self, ite_true]
       push_cast
       ring
     · intro k _ hk
-      simp only [Option.elim, κ₁_ne hk, if_neg (Ne.symm hk)]
+      simp only [Option.elim, κ₁_ne hk, ite_eq_right (Ne.symm hk)]
       push_cast
       ring
     · simp
@@ -240,7 +241,7 @@ theorem log_A (M : FlagModel y Ψ N j) {F : FrameData ι Ψ N M.Ω M.blk} {z : (
     obtain ⟨h1, h2, h3⟩ := hG.2.2 _ hn
     have h4 := val_ne_zero hz h1 h2 h3
     have h5 := mfac_ne a i hh hd
-    simp only [if_neg hp, FlagModel.upsLog, hn, Option.elim, norm_mul]
+    simp only [ite_eq_right hp, FlagModel.upsLog, hn, Option.elim, norm_mul]
     exact ⟨mul_ne_zero h4 h5, Real.log_mul (norm_ne_zero_iff.2 h4) (norm_ne_zero_iff.2 h5)⟩
 
 variable {K' : Type} [Fintype K'] {ι' : K' → Type} [∀ k, Fintype (ι' k)] {Φ' : Type} [Field Φ'] {y' : (Σ k, ι' k) → Φ'}
@@ -357,6 +358,7 @@ theorem norm_pt (CR : CovReal FA Cv) (S' : Sw M' τ a b k₀' ca cb) (hy' : IsAr
   linarith
 
 end PositivityTheory.Xgp.c_sqsys
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PluriharmonicCharts.ExistsPositivePeriodLine
@@ -557,9 +559,10 @@ theorem PositivityTheory.Xgp.t_c_w_line : ∀ (K : Type) [Fintype K] (ι : K →
   exact fun G => PositivityTheory.Xgp.W.line_pen Fr G
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PluriharmonicCharts.WCoZero
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PluriharmonicCharts.WCoZero
 open GlobalTheory.CompanionTheory.Ar.PB.WSq
 
+noncomputable section
 namespace PositivityTheory.Xgp.c_algsq
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
@@ -632,10 +635,11 @@ def mkAlg (M : FlagModel y Ψ N j) {d : ℕ} {τ : Ψ} {a b : Fin N} {k₀ : K} 
       simp only [Option.elim, hk, Option.some.injEq]
       by_cases e : k = k₀
       · subst e; simp [hxi]
-      · rw [if_neg e, if_neg (Ne.symm e)]; ring
+      · rw [ite_eq_right e, ite_eq_right (Ne.symm e)]; ring
   div_eq := hdiv
 
 end PositivityTheory.Xgp.c_algsq
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PluriharmonicCharts.XCSwap
@@ -659,7 +663,7 @@ theorem PositivityTheory.Xgp.t_c_swap : ∀ (K : Type) [Fintype K] (ι : K → T
     by_cases hp : p = (τ, a)
     · subst hp
       simp [hk₀]
-    · rw [if_neg hp, if_neg]
+    · rw [ite_eq_right hp, ite_eq_right]
       intro h
       exact hp (M.blk_inj p (τ, a) k₀ h hk₀)
   have hlast : lastCol N j a < N ∧ lastCol N j a + 1 < N ∧
@@ -667,19 +671,20 @@ theorem PositivityTheory.Xgp.t_c_swap : ∀ (K : Type) [Fintype K] (ι : K → T
     unfold lastCol
     split_ifs with h <;> omega
   refine ⟨k₀, ⟨lastCol N j a, hlast.1⟩, ⟨lastCol N j a + 1, hlast.2.1⟩, hk₀, rfl, rfl, hlast.2.2, ?_, ?_⟩
-  · simp only [hdy, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  · simp only [hdy, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     simp [xiCoef]
   · intro p hp
-    rw [hdy p, if_neg hp]
+    rw [hdy p, ite_eq_right hp]
 end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PluriharmonicCharts.IsMultiHomogMonoX
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PluriharmonicCharts.IsMultiHomogMonoX
 
 open MvPolynomial Matrix ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I4 GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights GroundTheory.Heights₂.Heights.LowerBoundFree
 open scoped Classical
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -729,17 +734,17 @@ theorem div_eq_of_local {P Δ : Ideal (MRing ι)} (hPp : P.IsPrime) (hΔp : Δ.I
   rw [mul_comm h g] at hch
   rw [Finsupp.add_apply, hcg, hch, Finsupp.single_apply]
   by_cases hW : W ∈ divSupp P (g * h)
-  · rw [if_pos hW, if_pos hW]
+  · rw [ite_eq_left hW, ite_eq_left hW]
     have hWp : W.IsPrime := hW.1.1.1
     by_cases hWΔ : Δ = W
-    · rw [if_pos hWΔ, ← hWΔ, hone, DiagonalOrder.multAt_eq_zero_of_not_le hΔp
+    · rw [ite_eq_left hWΔ, ← hWΔ, hone, DiagonalOrder.multAt_eq_zero_of_not_le hΔp
         (fun hle => hhΔ (hle (Ideal.mem_sup_right (Ideal.mem_span_singleton_self h))))]
-    · rw [if_neg hWΔ, add_zero]
+    · rw [ite_eq_right hWΔ, add_zero]
       have hPW : P ≤ W := le_sup_left.trans hW.1.1.2
       have hΔW : ¬ Δ ≤ W := fun hle => hWΔ (le_antisymm hle (hW.1.2 ⟨hΔp, hJΔ⟩ hle))
       obtain ⟨u, v, hu, hv, hm⟩ := key W hWp hW.2 hPW hΔW
       exact DiagonalOrder.multAt_sup_span_eq hWp hPW hu hv hm
-  · rw [if_neg hW, if_neg hW, if_neg (fun h' : Δ = W => hW (h' ▸ hΔ)), add_zero]
+  · rw [ite_eq_right hW, ite_eq_right hW, ite_eq_right (fun h' : Δ = W => hW (h' ▸ hΔ)), add_zero]
 
 theorem exists_point (W : Ideal (MRing ι)) (hW : W.IsPrime) :
     ∃ (E : Type) (_ : Field E) (z : (Σ k, ι k) → E), ∀ f : MRing ι, aeval z f = 0 ↔ f ∈ W := by
@@ -930,7 +935,7 @@ theorem local_data {z : (Σ o : Option K, ι (o.getD k₀)) → L}
           split_ifs with h
           · subst h; rw [zpow_one]
           · rw [zpow_zero]
-        simp only [this, Finset.prod_mul_distrib, Finset.prod_ite_eq', Finset.mem_univ, if_true]
+        simp only [this, Finset.prod_mul_distrib, Finset.prod_ite_eq', Finset.mem_univ, ite_true]
     have h1 : φ (chartMono y (fun k => c (some k)) e) ≠ 0 := (map_ne_zero φ).2 (chartMono_ne hcy e)
     have h2 : φ (y ⟨k₀, c (some k₀)⟩) ≠ 0 := (map_ne_zero φ).2 (hcy k₀)
     rw [e1]
@@ -1131,6 +1136,7 @@ theorem sec_pen (h0 : ∀ k, ∃ i, y ⟨k, i⟩ ≠ 0)
     exact mul_ne_zero (mul_ne_zero (mul_ne_zero (mul_ne_zero Fr'.sv_ne hU₀) hVv) (chartMono_ne hc'' _)) hu hu'.symm
 
 end PositivityTheory.Xgp.W
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

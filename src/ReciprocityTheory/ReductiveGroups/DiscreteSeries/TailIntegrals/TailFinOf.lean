@@ -300,8 +300,9 @@ end J2
 end ReciprocityTheory.ChartRestriction.DS.Xi
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.GaugeSplittingAlgebra
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.GaugeSplittingAlgebra
 
+noncomputable section
 open MeasureTheory
 open scoped ENNReal
 
@@ -389,7 +390,7 @@ lemma lsq_scl {p m : ℕ} (a0 : ℂ) (r : ℝ) (hr : 1 + ‖a0‖ ^ 2 = r ^ 2) (
     Lsq (tailPt (sclPt a0 r x)) i.succ = r ^ 2 * Lsq x i := by
   simp only [Lsq, tailPt, sclPt, Fin.sum_univ_succ, Fin.cons_zero, Fin.cons_succ, Fin.val_zero,
     Fin.val_succ, Pi.smul_apply, norm_smul, Real.norm_eq_abs, mul_pow, sq_abs]
-  simp only [Nat.zero_lt_succ, if_true, add_lt_add_iff_right, mul_add, Finset.mul_sum, mul_ite, mul_zero]
+  simp only [Nat.zero_lt_succ, ite_true, add_lt_add_iff_right, mul_add, Finset.mul_sum, mul_ite, mul_zero]
   linarith
 
 lemma rhoSq_scl {p m : ℕ} (a0 : ℂ) (r : ℝ) (hr : 1 + ‖a0‖ ^ 2 = r ^ 2) (x : Xp p m) (i : Fin (p + 1)) :
@@ -461,6 +462,7 @@ lemma cont_tailPt {p m : ℕ} :
 
 end J2
 end ReciprocityTheory.ChartRestriction.DS.Xi
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.CriticalExponentSucc
@@ -726,13 +728,13 @@ lemma cond_step {p : ℕ} (ν : Fin (p + 2) → ℝ) (h : CHCond (p + 1) ν) :
     have hA : ∀ l : Fin (p + 1), ∑ j ∈ Finset.Iic l, (ν j.succ + if j = 0 then ν 0 else 0) =
         ∑ j ∈ Finset.Iic l.succ, ν j := by
       intro l
-      rw [Finset.sum_add_distrib, Finset.sum_ite_eq', if_pos (Finset.mem_Iic.2 (Fin.zero_le l)),
+      rw [Finset.sum_add_distrib, Finset.sum_ite_eq', ite_eq_left (Finset.mem_Iic.2 (Fin.zero_le l)),
         iic_succ]
       ring
     have hB : ∀ l : Fin (p + 1), ∑ j ∈ Finset.Ioi l, (ν j.succ + if j = 0 then ν 0 else 0) =
         ∑ j ∈ Finset.Ioi l.succ, ν j := by
       intro l
-      rw [Finset.sum_add_distrib, Finset.sum_ite_eq', if_neg (by simp), ioi_succ, add_zero]
+      rw [Finset.sum_add_distrib, Finset.sum_ite_eq', ite_eq_right (by simp), ioi_succ, add_zero]
     refine ⟨fun l => ?_, fun l hl => ?_⟩
     · beta_reduce
       rw [hA]

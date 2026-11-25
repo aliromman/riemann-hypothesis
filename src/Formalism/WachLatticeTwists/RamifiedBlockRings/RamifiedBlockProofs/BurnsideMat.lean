@@ -20,10 +20,11 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.CharacterColumnKernels.IdempotentNormalForms.IdemNormalForm, Formalism.WachLatticeTwists.RamifiedBlockRings.RamifiedBlockProofs.BurnsideMat
 
-@[expose] public noncomputable section -- clump member: Formalism.CharacterColumnKernels.IdempotentNormalForms.IdemNormalForm
+@[expose] public section -- clump member: Formalism.CharacterColumnKernels.IdempotentNormalForms.IdemNormalForm
 
 open Module
 
+noncomputable section
 
 namespace Formalism.NG
 
@@ -78,14 +79,14 @@ private theorem idem_normal_form [IsLocalRing O] (e : Matrix r r O) (he : IsIdem
     rcases σ.symm j with k | k
     · have hk : (b0 (Sum.inl k) : r → O) = (bp k : r → O) := by
         simp [b0, Basis.map_apply, Basis.prod_apply]
-      simp only [Sum.isLeft_inl, if_true, one_smul, hk]
+      simp only [Sum.isLeft_inl, ite_true, one_smul, hk]
       obtain ⟨y, hy⟩ := (bp k).2
       rw [← hy]
       show (f * f) y = f y
       rw [hf]
     · have hk : (b0 (Sum.inr k) : r → O) = (bq k : r → O) := by
         simp [b0, Basis.map_apply, Basis.prod_apply]
-      simp only [Sum.isLeft_inr, Bool.false_eq_true, if_false, zero_smul, hk]
+      simp only [Sum.isLeft_inr, Bool.false_eq_true, ite_false, zero_smul, hk]
       exact LinearMap.mem_ker.mp (bq k).2
   have hdiag : LinearMap.toMatrix b b f =
       Matrix.diagonal fun i => if (σ.symm i).isLeft then (1 : O) else 0 := by
@@ -133,6 +134,7 @@ private theorem rank_map_conj {F : Type*} [Field F] (f : O →+* F) (P Q : Matri
 end RankMod
 
 end Formalism.NG
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.WachLatticeTwists.RamifiedBlockRings.RamifiedBlockProofs.BurnsideMat

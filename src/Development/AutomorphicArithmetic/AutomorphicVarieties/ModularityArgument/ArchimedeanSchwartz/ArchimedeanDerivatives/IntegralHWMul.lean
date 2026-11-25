@@ -51,8 +51,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.Divisors.LocPoly, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetDIsTestAndIntegralParts, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ArchimedeanSchwartz.ArchimedeanDerivatives.IntegralHWMul
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.LocPoly
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.LocPoly
 
+noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Polynomial GroundTheory.Automorphic UpperTheory.V
 open GlobalTheory.CuspRep (GA Af Ad ratGL finGL locGL pFin)
@@ -60,12 +61,6 @@ open UpperTheory.V.TR (Rinf Lie chart infGL pInf toL rmul invSet CuspSub)
 open scoped ContDiff
 
 namespace GlobalTheory.HenQ
-
-section Fin
-
-variable {K : Type} [Field K] [NumberField K] {n : ℕ}
-
-end Fin
 
 section Inf
 
@@ -87,6 +82,7 @@ variable [IsTotallyReal K]
 end Inf
 
 end GlobalTheory.HenQ
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetDIsTestAndIntegralParts

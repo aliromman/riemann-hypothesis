@@ -40,10 +40,11 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.StrictUpperNeg
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkTopKr, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkTopCut, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMTB, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMTC, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkTopBump, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutMKTop, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkTop
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkTopKr
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkTopKr
 
 open Matrix MeasureTheory
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.PBQ
 
@@ -61,7 +62,7 @@ theorem upper_inj {p : ℕ} {u u' : G.UT p → ℂ} (h : G.upper u = G.upper u')
   funext p
   have h1 := congrFun (congrFun h p.1.1) p.1.2
   simp only [G.upper, G.strictUpper, Matrix.add_apply, Matrix.of_apply, Matrix.one_apply_ne (ne_of_lt p.2),
-    zero_add, dif_pos p.2] at h1
+    zero_add, dite_eq_left p.2] at h1
   exact h1
 
 theorem kr_eq_integral_krI_psiR {k p ρ : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
@@ -166,6 +167,7 @@ theorem kr_eq_integral_krI_psiR {k p ρ : ℕ} {Wp Wq : Type} [NormedAddCommGrou
 
 end Formalism.FourierDecayAlt.P.PBQ
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkTopCut
 
@@ -195,8 +197,9 @@ end Formalism.FourierDecayAlt.P.CutEXMT
 end -- clump:auto
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMTB
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 open Matrix
 open scoped ContDiff
@@ -281,13 +284,13 @@ theorem cd_Wm (i j : Fin n) :
     ContDiffOn ℝ ∞ (fun Z : Fin n → Fin n → ℂ => Wm (Matrix.of Z) i j) {Z | (Matrix.of Z).det ≠ 0} := by
   simp only [Wm, blkJ, Matrix.of_apply]
   by_cases hij : (i : ℕ) < j
-  · simp only [dif_pos hij, Matrix.mulVec, dotProduct]
+  · simp only [dite_eq_left hij, Matrix.mulVec, dotProduct]
     have hg : ContDiff ℝ ∞ (fun Z : Fin n → Fin n → ℂ => fun a b : Fin j =>
         gram (Matrix.of Z) (Fin.castLE j.isLt.le a) (Fin.castLE j.isLt.le b)) :=
       contDiff_pi.2 fun a => contDiff_pi.2 fun b => cd_gram _ _
     refine ContDiffOn.neg (ContDiffOn.sum fun c _ => ContDiffOn.mul ?_ (cd_gram _ _).contDiffOn)
     exact (cd_inv (m := j) ⟨i, hij⟩ c).comp hg.contDiffOn fun Z hZ => det_gram_castLE_ne_zero_of_det_ne_zero Z hZ j j.isLt.le
-  · simp only [dif_neg hij]
+  · simp only [dite_eq_right hij]
     split_ifs <;> exact contDiffOn_const
 
 theorem cd_Sm (i j : Fin n) :
@@ -300,6 +303,7 @@ theorem cd_Sm (i j : Fin n) :
 end wm
 
 end Formalism.FourierDecayAlt.P.CutEXMT
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 
@@ -536,8 +540,9 @@ theorem mkTop_of_avgs (hR : RightAvg) (hL : LeftAvg) : CutEX.MkTop := mkTop_of_l
 end Formalism.FourierDecayAlt.P.CutMK
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkTop
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkTop
 
+noncomputable section
 
 open Matrix MeasureTheory Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.P.LeftFubiniLemmas
 open scoped ContDiff
@@ -736,7 +741,7 @@ theorem left_average_formula : Formalism.FourierDecayAlt.P.CutMK.LeftAvg := by
     have hh := hx.1
     have uh : IsUnit (Matrix.of x.1.1 : B.Mat k 0).det := hWs.unit _ hh
     unfold PBQ.pbI PBQ.sP PBQ.cP
-    rw [if_pos hx, hν, inv_one, Matrix.mul_one, Formalism.FourierDecayAlt.P.Dx2.MN.castM_rfl, hK _ hh x.2,
+    rw [ite_eq_left hx, hν, inv_one, Matrix.mul_one, Formalism.FourierDecayAlt.P.Dx2.MN.castM_rfl, hK _ hh x.2,
       Formalism.FourierDecayAlt.P.Qx5.psi_one Bj.z_mem, one_mul]
     have e : (Bj.π (Matrix.of x.1.1)).comp (Bj.π (Matrix.of x.1.1)⁻¹) = ContinuousLinearMap.id ℂ Wp := by
       rw [← Bj.π_rep.2 _ hh _ (hWs.inv_mem _ hh), Matrix.mul_nonsing_inv _ uh, Bj.π_rep.1]

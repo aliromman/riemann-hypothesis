@@ -279,7 +279,10 @@ section -- clump: shared namespace opens
 open NumberField IsDedekindDomain
 open scoped Classical
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsProdLocalComponentsEqPrimePart
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsProdLocalComponentsEqPrimePart
+@[expose] public section
+
+noncomputable section
 
 namespace GlobalTheory.PrimePart
 
@@ -353,8 +356,8 @@ theorem finQ_sum_idem {q : ℕ} (hq : q.Prime) (S : Finset (HeightOneSpectrum (�
     rw [hS, natCast_mem_under, ← Nat.prime_dvd_prime_iff_eq (pr_prime _) hq, pr_dvd_iff, natCast_mem_under]
   rw [GlobalTheory.ZeroAtPlaces.comp_base, hev, hr]
   by_cases h : Q.under (𝓞 D.host.F) ∈ S
-  · rw [if_pos h, if_pos (hiff.1 h), map_one, map_one]
-  · rw [if_neg h, if_neg (fun e => h (hiff.2 e)), map_zero, map_zero]
+  · rw [ite_eq_left h, ite_eq_left (hiff.1 h), map_one, map_one]
+  · rw [ite_eq_right h, ite_eq_right (fun e => h (hiff.2 e)), map_zero, map_zero]
 
 theorem exists_prod_eq_part : ∀ {D : Formalism.BasicNotions.D7} (V : Formalism.BasicNotions.TH.HSp D) (hG : V.gram = 1) (q : ℕ), q.Prime → ∀ g : Formalism.L2.Theta.GA D V, ∃ l : List (Formalism.L2.Theta.GA D V), (∀ h ∈ l, ∃ (v : HeightOneSpectrum (𝓞 D.host.F)) (ε : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF D.host.F), Formalism.L2.Theta.IsPlaceIdem D v ε ∧ (q : 𝓞 D.host.F) ∈ v.asIdeal ∧ GlobalTheory.WeilParts.SuppPl ε V h) ∧ GlobalTheory.BotClassDict.finStd V hG l.prod = GlobalTheory.NormSum.VacInt.part D (fun p => p = q) (GlobalTheory.BotClassDict.finStd V hG g) := by
   intro D V hG q hq g
@@ -384,6 +387,8 @@ theorem exists_prod_eq_part : ∀ {D : Formalism.BasicNotions.D7} (V : Formalism
 
 end GlobalTheory.PrimePart
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertSupportedUnitaryPointIntegralCofinite

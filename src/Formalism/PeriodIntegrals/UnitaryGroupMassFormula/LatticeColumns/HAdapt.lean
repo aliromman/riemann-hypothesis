@@ -283,8 +283,9 @@ end Split
 end PIW.MassDataColumns
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.HAdapt
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.HAdapt
 
+noncomputable section
 
 namespace PIW.MassDataColumns
 
@@ -430,17 +431,6 @@ theorem mem_range_hEmbGL_map (ι : O →+* K) (hι : Function.Injective ι) (M :
 end Red
 
 variable {D : D7}
-
-def SplitBasisAdaptedFrame (X : HidaSetting D) (u : D.what₂.Word) (p : TypX X) : Prop :=
-  ∃ θ : TpX X p ≃ₐ[FpX X p] FpX X p × FpX X p, IsSplitEquiv X p θ ∧
-    ∃ (Q : GL (Idx D.R.rS D.R.k) (FpX X p)) (l : Idx D.R.rS D.R.k → FpX X p), (∀ s, ¬ IsW s → l s ≠ 0) ∧
-      (∀ s, ¬ IsW s → ((Q⁻¹ : GL (Idx D.R.rS D.R.k) (FpX X p)) : Matrix (Idx D.R.rS D.R.k) (Idx D.R.rS D.R.k) (FpX X p)) *ᵥ
-        (pr1 θ (ratV (F := X.B.I.F) (FpX X p) (vecAt (frameOf X u) s)) ∘ (idxEquiv X).symm) = Pi.single s 1) ∧
-      (∀ s, ¬ IsW s → (Q : Matrix (Idx D.R.rS D.R.k) (Idx D.R.rS D.R.k) (FpX X p))ᵀ *ᵥ
-        ((Matrix.reindex (idxEquiv X) (idxEquiv X) (jm1 X.B.I.J θ))ᵀ *ᵥ
-          (pr2 θ (ratV (F := X.B.I.F) (FpX X p) (vecAt (frameOf X u) s)) ∘ (idxEquiv X).symm)) =
-        l s • Pi.single (dlH s) 1) ∧
-      LatBasis X p θ (reindex₂ X p Q)
 
 theorem reindex_mulVec_comp {R n ι : Type} [CommRing R] [Fintype n] [DecidableEq n] [Fintype ι] [DecidableEq ι]
     (e : n ≃ ι) (M : Matrix n n R) (v : n → R) :

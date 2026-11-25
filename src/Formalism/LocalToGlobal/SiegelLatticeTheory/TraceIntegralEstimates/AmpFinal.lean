@@ -11,11 +11,12 @@ import Formalism.FormalDegreeBessel.FormalDegreeRatio.UnitaryWeylNormalHolds
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.AmpCell, Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.AmpFinal
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.AmpCell
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.AmpCell
 
 open MeasureTheory Matrix
 open scoped ENNReal
 
+noncomputable section
 
 namespace Formalism.L2.S.Pv.AmpCell
 
@@ -90,12 +91,12 @@ theorem zhat_monomial {z z' : Fin (2 * r + k + 1) → ℂ} {g₀ : Matrix (Fin (
   simp only [Formalism.L2.SG.PtCell.mono, Formalism.FourierDecayAlt.C2.monoP, Matrix.of_apply, Function.Involutive.coe_toPerm]
   by_cases h : a = Formalism.L2.SG.PtCell.pinv p i
   · have h2 : i = Formalism.L2.SG.PtCell.pinv p a := by rw [h, hinv]
-    rw [if_pos h]
-    simp only [h2, if_true]
+    rw [ite_eq_left h]
+    simp only [h2, ite_true]
     ring
   · have h2 : ¬ i = Formalism.L2.SG.PtCell.pinv p a := fun e => h (by rw [e, hinv])
-    rw [if_neg h]
-    simp only [h2, if_false]
+    rw [ite_eq_right h]
+    simp only [h2, ite_false]
     ring
 
 theorem cell_representation : Formalism.MainNotions.S.Pv.LemmaJ.CellRep := by
@@ -128,6 +129,7 @@ theorem cell_representation : Formalism.MainNotions.S.Pv.LemmaJ.CellRep := by
   exact hq
 
 end Formalism.L2.S.Pv.AmpCell
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.AmpFinal

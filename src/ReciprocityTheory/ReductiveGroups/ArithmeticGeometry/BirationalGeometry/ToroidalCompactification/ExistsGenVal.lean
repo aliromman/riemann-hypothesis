@@ -19,8 +19,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.MoveQkCore, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ExistsGenVal
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.MoveQkCore
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.MoveQkCore
 
+noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
@@ -35,14 +36,8 @@ theorem gm_cU {F : Type} [Field F] (u : F) (hu : u ≠ 0) (z : Sp F) : (gm (𝟙
   simp [gm, cU, toStk, pullU]
   rfl
 
-section Move
-
-variable {R R' : Type} [CommRing R] [IsDomain R] [CommRing R'] [IsDomain R'] {φ : R →+* R'} {D : DegPre R} {D' : DegPre R'}
-  {Φ : D'.P.A.left ⟶ D.P.A.left}
-
-end Move
-
 end ReciprocityTheory.ChartRestriction.G.Geo.Tor
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ExistsGenVal

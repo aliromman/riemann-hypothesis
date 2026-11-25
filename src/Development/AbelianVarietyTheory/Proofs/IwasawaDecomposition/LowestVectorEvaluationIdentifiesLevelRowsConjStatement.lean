@@ -994,10 +994,11 @@ theorem _root_.GlobalTheory.T.exists_rowLevel_translatedEvaluation_of_conj_row :
   @GlobalTheory.Mem.SRe.exists_multR_eval_of_star_mem
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TranslatedEvaluationSquareIntegrableNormAllRows
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TranslatedEvaluationSquareIntegrableNormAllRows
 
 open scoped InnerProductSpace
 
+noncomputable section
 
 namespace GlobalTheory.EvalAllRows
 
@@ -1008,7 +1009,7 @@ theorem eq_zero_of_units {D : D7} {V : HSp D} {S : D.what₂.Tau → SPar} (M : 
   by_cases hz : ∃ τ, v τ = 0
   · obtain ⟨τ, hτ⟩ := hz
     exact T.map_coord_zero τ hτ
-  · push_neg at hz
+  · push Not at hz
     have hn : ∀ τ, ‖(v τ : M.H τ)‖ ≠ 0 := fun τ e => hz τ (Subtype.ext (norm_eq_zero.1 e))
     let u : M.Vec := fun τ => ((‖(v τ : M.H τ)‖⁻¹ : ℝ) : ℂ) • v τ
     have hu : ∀ τ, ‖(u τ : M.H τ)‖ = 1 := fun τ => by
@@ -1053,6 +1054,7 @@ theorem GlobalTheory.EvalAllRows.evalTranslate_norm_all : GlobalTheory.Dec.DSInf
   have hp := Formalism.IndefR.PeterssonHilbertSpace.petPos (D.sp.Y 0) R.ν0 R.fd0 hνH hν0.2 (S v) (hcont S hS v).1 (hcont S hS v).2 hne hint
   rw [← hre, h0] at hp
   exact lt_irrefl _ hp
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TranslatedEvaluationSquareIntegrableNormAllRowsStatement

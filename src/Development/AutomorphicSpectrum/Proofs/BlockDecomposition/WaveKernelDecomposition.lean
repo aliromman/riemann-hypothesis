@@ -31,7 +31,9 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EventuallyEqOfA
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralDoubleSum, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GelfandOperatorPairingAdjoint, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WavePairingTimeSymmetry, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelDecomposition
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralDoubleSum
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralDoubleSum
+
+noncomputable section
 
 open MeasureTheory Matrix Finset Filter Topology
 open scoped ContDiff ComplexConjugate InnerProductSpace
@@ -46,12 +48,6 @@ open GlobalTheory.CompanionTheory.WaveSpd (val_mem_GLs)
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
-
-section Expand
-
-variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V]
-
-end Expand
 
 section Pairing
 
@@ -79,6 +75,7 @@ theorem integrable_inner (hL : LgFacts) {u v : Mat n → V} (hu : ContDiffOn ℝ
 end Pairing
 
 end GlobalTheory.CompanionTheory.WaveK.Sym
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GelfandOperatorPairingAdjoint

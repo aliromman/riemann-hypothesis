@@ -170,8 +170,9 @@ theorem normOne_mod : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (M 
 end GlobalTheory.UCls.NormOneMod
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormOneTorusClassNumberBoundProof
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormOneTorusClassNumberBoundProof
 
+noncomputable section
 
 open NumberField Matrix GlobalTheory.AdLat GlobalTheory.UCls ReciprocityTheory.ChartRestriction.G.FD
 open scoped TensorProduct
@@ -201,7 +202,7 @@ theorem torusBound : TorusBound := by
     obtain ⟨g, hg, hdet⟩ := GlobalTheory.UCls.Det.exists_isKM_det_eq E hE r M G Λ hr hM hΛ k' hk'TA hk'1
     have hmem : s * s' ∈ T := Finset.mem_image.2 ⟨(s, s'), Finset.mem_product.2 ⟨hs, hs'⟩, rfl⟩
     refine ⟨⟨s * s', hmem⟩, ?_⟩
-    simp only [φ, dif_pos (hTA s s' hsTA hs'TA)]
+    simp only [φ, dite_eq_left (hTA s s' hsTA hs'TA)]
     refine Quot.sound ⟨u, hu, g, hg, ?_⟩
     rw [hdet]
     ring

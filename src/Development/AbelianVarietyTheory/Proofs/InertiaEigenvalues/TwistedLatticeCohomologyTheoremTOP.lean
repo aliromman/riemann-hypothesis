@@ -927,8 +927,9 @@ theorem stmt_of_real : ∀ {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI : LocAi
 end GlobalTheory.TopSteps.CharVanish
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ToAmbCoefH1EqCoefAmbToAmb
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ToAmbCoefH1EqCoefAmbToAmb
 
+noncomputable section
 namespace GlobalTheory.AdmFinite
 open GlobalTheory.PhiGam GlobalTheory.AdmLoc GlobalTheory.Models GlobalTheory.TopSteps Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc TensorProduct
 open scoped LaurentSeries PowerSeries
@@ -1004,7 +1005,7 @@ theorem indep_cons [IsLocalRing O] {lam : O} (hl : Ideal.span {lam} = IsLocalRin
     simp only [map_add (f := _), map_smul, map_sum, hF, LinearMap.rTensor_tmul, map_zero] at h1
     simp only [Submodule.projectionOnto_apply_left, lid_tmul, smul_zero, zero_add, Module.Basis.coord_apply,
       Module.Basis.repr_self, Finsupp.single_apply, ite_smul, one_smul, zero_smul, smul_ite, Finset.sum_ite_eq',
-      Finset.mem_univ, if_true] at h1
+      Finset.mem_univ, ite_true] at h1
     rw [← Ideal.mem_span_singleton, ← Ideal.Quotient.eq_zero_iff_mem, ← h1, Algebra.smul_def, mul_one]
     rfl
 
@@ -1191,6 +1192,7 @@ theorem cls_eq_H1fX : ∀ {l : ℕ} [Fact l.Prime] {P : LocPrime l} (S : TopSit 
     hsum.1 hsum.2 hfree.2 (fun X _ _ _ => (h0 X).2.2) (fun X _ _ _ => (h0 X).1) hfin hres X
 
 end GlobalTheory.AdmFinite
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.VanishOfLattice

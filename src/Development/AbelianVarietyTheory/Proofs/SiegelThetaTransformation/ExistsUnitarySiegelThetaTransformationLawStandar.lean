@@ -302,10 +302,11 @@ theorem _root_.GlobalTheory.SW.FourierJ.tsum_level_eq_sum_cosets : ∀ (κ ι : 
 end GlobalTheory.SW.FourierJ
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsUnitarySiegelThetaTransformationLawStandar
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsUnitarySiegelThetaTransformationLawStandar
 
 namespace GlobalTheory.SW.FourierJ
 
+noncomputable section
 
 theorem prodsum_fin (α : Type) (n : ℕ) (f : Fin n → α → ℂ) (hf : ∀ k, Summable fun a => ‖f k a‖) :
     (Summable fun m : Fin n → α => ‖∏ k, f k (m k)‖) ∧
@@ -389,7 +390,7 @@ theorem sum_ech_rep : ∀ (κ ι : Type) [Fintype κ] [Fintype ι] [DecidableEq 
   · obtain ⟨k, hk⟩ := Function.ne_iff.1 hab
     obtain ⟨i, hi⟩ := Function.ne_iff.1 hk
     exact Finset.prod_eq_zero (Finset.mem_univ k)
-      (Finset.prod_eq_zero (Finset.mem_univ i) (if_neg hi))
+      (Finset.prod_eq_zero (Finset.mem_univ i) (ite_eq_right hi))
 
 variable {κ ι : Type} [Fintype κ] [Fintype ι]
 
@@ -543,7 +544,7 @@ theorem plancherel {R : ℕ} (hR : 0 < R) {φ ψ : Matrix κ ι ℚ → ℂ} (h 
   refine Finset.sum_congr rfl fun a _ => ?_
   rw [Finset.sum_comm]
   simp only [← Finset.mul_sum, sum_ech_rep κ ι R hR, ← hV, mul_ite, mul_zero, Finset.sum_ite_eq,
-    Finset.mem_univ, if_true]
+    Finset.mem_univ, ite_true]
   field_simp
 
 theorem thS_eq [DecidableEq ι] (φ : Matrix κ ι ℚ → ℂ) (τ : Matrix ι ι ℂ) (ζ : κ → ι → ℂ) :
@@ -654,6 +655,7 @@ theorem exists_trans_J : ∀ (κ ι : Type) [Fintype κ] [Fintype ι] [Decidable
   refine plancherel (Nat.mul_pos hR hS) (level_mul h S) (by rw [mul_comm]; exact level_mul h' R) _ ?_
   rw [map_pow, ← mul_pow]; simp
 
+end
 
 end GlobalTheory.SW.FourierJ
 

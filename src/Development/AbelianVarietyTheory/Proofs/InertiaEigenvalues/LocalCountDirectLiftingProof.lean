@@ -121,10 +121,12 @@ end GlobalTheory.Pass.LocDirect
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DualLatticeRankBound
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DualLatticeRankBound
+@[expose] public section
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 1000000
 
+noncomputable section
 
 namespace GlobalTheory.Pass.LocDirect
 
@@ -142,7 +144,7 @@ theorem isDualLat1_dual : ∀ (D : D7) (i : D.nd.Loc) (w : HeightOneSpectrum (�
       (y : Fin k → Br.LL D.nbr i w hw) = y a
     simp [GlobalTheory.BKLatticeCochain.incl_apply, dotProduct, Pi.single_apply,
       apply_ite (algebraMap (Br.OLL D.nbr i w hw) (Br.LL D.nbr i w hw))]
-    exact (Finset.sum_ite_eq' _ _ _).trans (if_pos (Finset.mem_univ a))
+    exact (Finset.sum_ite_eq' _ _ _).trans (ite_eq_left (Finset.mem_univ a))
 
 theorem isCrys_dual : ∀ (D : D7), FontaineAtPlacesOverL (D := D) → ∀ (i : D.nd.Loc) (w : HeightOneSpectrum (𝓞 D.host.E)) (hw : w ∈ placesOver D.host.E (D.nd.l i)) {k : ℕ} (M : GE D.nd →* Matrix (Fin k) (Fin k) (D.nd.O i)) (hM : Continuous fun g => M g) (K' : FinExt (D.nd.l i)) (h : (D.nbr i w hw).Kw.1 ≤ K'.1), IsCrys ((D.loc (D.nd.l i)).PD K') ((GlobalTheory.Pass.LocDirect.ModuleGaloisRepresentation i w hw M hM).ρ.comp (Subgroup.inclusion (GK_le h))) → IsCrys ((D.loc (D.nd.l i)).PD K') ((GlobalTheory.Pass.LocDirect.Udual i w hw M hM).ρ.comp (Subgroup.inclusion (GK_le h))) := by
   intro D hF i w hw k M hM K' h hcrys
@@ -224,6 +226,8 @@ theorem dualLat_rank : ∀ (D : D7), FontaineAtPlacesOverL (D := D) → admBK (D
 
 end GlobalTheory.Pass.LocDirect
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsMergedModulePushoutsContainBoth

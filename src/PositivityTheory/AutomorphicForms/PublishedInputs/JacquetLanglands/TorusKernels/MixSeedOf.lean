@@ -22,8 +22,9 @@ import PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusK
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.RealArchimedeanBounds.DRepsP, PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.ValNatCastLe, PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.ValuationDetCongruenceSubgroupEqOne, PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.PfGTerm, PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.MixSeedOf
 
-@[expose] public noncomputable section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.RealArchimedeanBounds.DRepsP
+@[expose] public section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.RealArchimedeanBounds.DRepsP
 
+noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Base UpperTheory.V.Sd UpperTheory.V.Sd.Wc
@@ -171,7 +172,7 @@ theorem ex (c : Pl F → ℕ) (W : List (Pl F)) : ∃ (ι : Type) (_ : Fintype �
         (Matrix.GeneralLinearGroup.scalar (Fin 2) (atFin w (unif w)) * (aff (atFin w (unif w)) 0)⁻¹)
         (fun u => aff (atFin w (unif w)) ((u : w.adicCompletionIntegers F) : w.adicCompletion F))) ?_ ?_ ?_⟩
       · intro V _ _ ρ x hx
-        rw [(uopSum F w V ρ (c w) x hx).2 S hS, if_pos hc, Fintype.sum_option, add_comm, ← Finset.sum_coe_sort S]
+        rw [(uopSum F w V ρ (c w) x hx).2 S hS, ite_eq_left hc, Fintype.sum_option, add_comm, ← Finset.sum_coe_sort S]
         rfl
       · intro j
         cases j with
@@ -181,7 +182,7 @@ theorem ex (c : Pl F → ℕ) (W : List (Pl F)) : ∃ (ι : Type) (_ : Fintype �
     · refine ⟨S × ι, inferInstance, _, step hb (fun u : S => aff (atFin w (unif w))
         ((u : w.adicCompletionIntegers F) : w.adicCompletion F)) ?_ (fun _ => det_aff _ _) (fun _ u => ⟨u, rfl⟩)⟩
       intro V _ _ ρ x hx
-      rw [(uopSum F w V ρ (c w) x hx).2 S hS, if_neg hc, add_zero, ← Finset.sum_coe_sort S]
+      rw [(uopSum F w V ρ (c w) x hx).2 S hS, ite_eq_right hc, add_zero, ← Finset.sum_coe_sort S]
 
 end UpperTheory.Esk.DeterminantRepresentatives
 
@@ -191,15 +192,15 @@ theorem UpperTheory.Esk.dReps : UpperTheory.Esk.DReps := by
   obtain ⟨ι, _, a, ha⟩ := ex c W
   exact ⟨Fintype.card ι, a ∘ (Fintype.equivFin ι).symm, reindex _ ha⟩
 end -- clump:auto
+end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.ValNatCastLe
 
+noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial
 open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Base UpperTheory.V.Sd UpperTheory.V.Sd.Wc
 open scoped Matrix NNReal
-
-@[expose] public noncomputable section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.ValNatCastLe
 
 namespace UpperTheory.Esk.adelicTermLemmas
 
@@ -247,7 +248,7 @@ theorem nz_prod {F : Type} [Field F] [NumberField F] {l : ℕ} [Fact l.Prime] {�
       rw [List.count_cons]
       by_cases h : D.pl v = w
       · subst h
-        rw [if_pos rfl]
+        rw [ite_eq_left rfl]
         simp [mul_add, pow_add]
         try ring
       · have h' : ¬ (w == D.pl v) = true := by
@@ -283,6 +284,14 @@ theorem local_cong (ν : Valuation ℂ ℝ≥0) (hG : GCh) (τ δ U : ℂ) (m : 
 
 end UpperTheory.Esk.adelicTermLemmas
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+
+open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial
+open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Base UpperTheory.V.Sd UpperTheory.V.Sd.Wc
+open scoped Matrix NNReal
 
 @[expose] public noncomputable section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.ValuationDetCongruenceSubgroupEqOne
 

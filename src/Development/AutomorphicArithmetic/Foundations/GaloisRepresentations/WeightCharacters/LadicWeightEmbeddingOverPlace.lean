@@ -532,7 +532,7 @@ theorem UpperTheory.Gal.Wt.famEx_of : NeatLev → EllC → Twist → TwistBd →
   rw [famOf_apply, hv, hnM]
   have e : (F q₀).1 (b g i) g - ∑ q, pev (P q) (φ (ℓ g)) * delta ν ((φ (c q))⁻¹ * φ (ℓ g)) * (F q).1 (b g i) g =
       ∑ q, ((if q = q₀ then 1 else 0) - pev (P q) (φ (ℓ g)) * delta ν (φ ((c q)⁻¹ * ℓ g))) * (F q).1 (b g i) g := by
-    simp only [sub_mul, Finset.sum_sub_distrib, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true, hδ]
+    simp only [sub_mul, Finset.sum_sub_distrib, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true, hδ]
 
   rw [e, map_sum]
   refine IsUltrametricDist.norm_sum_le_of_forall_le_of_nonneg hε.le fun q _ => ?_
@@ -542,14 +542,14 @@ theorem UpperTheory.Gal.Wt.famEx_of : NeatLev → EllC → Twist → TwistBd →
   by_cases hq : q = q₀
   · subst hq
     have hb3 := hb2 _ hε' h1
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
     have e2 : 1 - pev (P q) (φ (ℓ g)) * delta ν (φ ((c q)⁻¹ * ℓ g)) =
         -((pev (P q) (φ (ℓ g)) - 1) * delta ν (φ ((c q)⁻¹ * ℓ g)) + (delta ν (φ ((c q)⁻¹ * ℓ g)) - 1)) := by ring
     rw [e2, map_neg, norm_neg, map_add (f := _)]
     refine (IsUltrametricDist.norm_add_le_max _ _).trans (max_le ?_ hb3)
     rw [map_mul, norm_mul]
     exact (mul_le_mul h2 hb1 (norm_nonneg _) hε').trans_eq (mul_one _)
-  · rw [if_neg hq, zero_sub, map_neg, norm_neg, map_mul, norm_mul]
+  · rw [ite_eq_right hq, zero_sub, map_neg, norm_neg, map_mul, norm_mul]
     exact (mul_le_mul (h3 q hq) hb1 (norm_nonneg _) hε').trans_eq (mul_one _)
 end -- clump:auto
 
@@ -1060,7 +1060,7 @@ private theorem tor_entry_mem_expLe_one_expGe_zero (h : ExpBasic) (a k : ℕ) (A
     by_cases hl : (l:ℕ) < k
     · convert (hmon ((A : Matrix (Fin a) (Fin a) ℂ) i l * (B : Matrix (Fin a) (Fin a) ℂ) l j) 1).1 using 1
       funext z
-      simp only [hl, if_true, zpow_one]
+      simp only [hl, ite_true, zpow_one]
       ring
     · convert (hmono 0 1 (by norm_num)).1
         (hconst ((A : Matrix (Fin a) (Fin a) ℂ) i l * (B : Matrix (Fin a) (Fin a) ℂ) l j)).1 using 1
@@ -1071,7 +1071,7 @@ private theorem tor_entry_mem_expLe_one_expGe_zero (h : ExpBasic) (a k : ℕ) (A
     · convert (hmono 0 1 (by norm_num)).2
         (hmon ((A : Matrix (Fin a) (Fin a) ℂ) i l * (B : Matrix (Fin a) (Fin a) ℂ) l j) 1).2 using 1
       funext z
-      simp only [hl, if_true, zpow_one]
+      simp only [hl, ite_true, zpow_one]
       ring
     · convert (hconst ((A : Matrix (Fin a) (Fin a) ℂ) i l * (B : Matrix (Fin a) (Fin a) ℂ) l j)).2 using 1
       funext z
@@ -1482,13 +1482,14 @@ end UpperTheory.Gal.Wt
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
+section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.TwistBd
+@[expose] public section
+
+noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.DefU GlobalTheory.Branching
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.TwistBd
 open UpperTheory.Gal.Gen (IsLevel fixedBy)
 
 namespace UpperTheory.Gal.Wt
@@ -1506,7 +1507,7 @@ private theorem isOpen_subgroupOf {E : Type} [Field E] [NumberField E] [IsCMFiel
 theorem twistBd_of : Twist → TwistBd := by
   intro hT E _ _ _ l _ ι a C hC ℓ hℓ W f X b hb
   classical
-  obtain ⟨C₀, hC₀, hf⟩ := UpperTheory.Gal.Gen.levelEx_holds E a W f
+  obtain ⟨C₀, hC₀, hf⟩ := _root_.UpperTheory.Gal.Gen.levelEx_pf E a W f
   have hHo := isOpen_subgroupOf hC hC₀
   haveI : CompactSpace C := isCompact_iff_compactSpace.1 hC.compact
   haveI : Finite (C ⧸ C₀.subgroupOf C) := Subgroup.quotient_finite_of_isOpen _ hHo
@@ -1536,7 +1537,15 @@ theorem twistBd_of : Twist → TwistBd := by
 
 end UpperTheory.Gal.Wt
 
+end
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
+open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
+open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.DefU GlobalTheory.Branching
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.TwistOf
 open UpperTheory.Gal.Gen (IsLevel fixedBy)

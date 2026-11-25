@@ -228,7 +228,7 @@ theorem det_gram_sum_elim {F : Type} [Field F] [ValuativeRel F] [TopologicalSpac
     simp [HermSp.Dl, hZ]
   have hD0 : H.Dl f f' r = Z.adjugate (Fin.last r) (Fin.last r) := by
     rw [adjugate_last]
-    simp only [HermSp.Dl, Nat.le_succ, dif_pos]
+    simp only [HermSp.Dl, Nat.le_succ, dite_eq_left]
     rfl
   set c : E →+* E := (M.L.cj : E →+* E) with hc
   have hg : H.gram (Sum.elim f f') = Matrix.fromBlocks
@@ -684,8 +684,10 @@ end -- clump:auto
 open NumberField MeasureTheory Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.TermLoc Formalism.L2.SG.RowsConc Formalism.L2.SG.NGCut Formalism.L2.SG.NGAnalytic Formalism.FourierDecayAlt GlobalTheory.Unfold GlobalTheory.LocOver GlobalTheory.GenMass
 open scoped Classical ENNReal
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.GlobalLatticesCountEqProdLocalCountsBadPlaces
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.GlobalLatticesCountEqProdLocalCountsBadPlaces
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
+
+noncomputable section
 
 namespace GlobalTheory.GenMass.Fibre
 
@@ -812,8 +814,8 @@ theorem fibre : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPair (lo
       have hLp : ∀ p, Lp p ∈ locSet G G' p (y p) := by
         intro p
         by_cases h : p ∈ P
-        · simp only [Lp, dif_pos h]; exact hg ⟨p, h⟩ (Set.mem_univ _)
-        · simp only [Lp, dif_neg h]; exact (single p h).exists.choose_spec
+        · simp only [Lp, dite_eq_left h]; exact hg ⟨p, h⟩ (Set.mem_univ _)
+        · simp only [Lp, dite_eq_right h]; exact (single p h).exists.choose_spec
       have hlat : ∀ p, (Lp p).FG ∧ Submodule.span (D.s.atP p).Ep (Lp p : Set (Vp D p)) = ⊤ :=
         fun p => _root_.GlobalTheory.GenMass.Fibre.termLat D Z FP p (y p) (tm FP G G' p (Lp p)) (hLp p).1
       have hfin' : {p | Lp p ≠ lattice₂ D Z.M p Λ₀}.Finite := by
@@ -827,7 +829,7 @@ theorem fibre : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPair (lo
       show lattice₂ D Z.M q Λ = g q
       rw [hΛp q]
       show (if h : (q : PlF D) ∈ P then g ⟨q, h⟩ else (single q h).exists.choose) = g q
-      rw [dif_pos q.2]
+      rw [dite_eq_left q.2]
   have e1 := hinj.encard_image
   rw [himg, Set.encard_pi_eq_prod_encard] at e1
   rw [← e1]
@@ -836,9 +838,9 @@ theorem fibre : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPair (lo
 
 end GlobalTheory.GenMass.Fibre
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.GlobalLatticesCountEqProdLocalCountsBadPlacesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.globalLattices_count_eq_prod_localCounts_badPlaces : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPair (locH Z p) D.R.rS) (u u' : D.what₂.Word) (F G : LFlag (D.sp.Y 0) D.R.rS (((D.mem u).A.T : ℕ) : D.host.E)) (F' G' : LFlag (D.sp.Y 0) D.R.rS (((D.mem u').A.T : ℕ) : D.host.E)) (P : Finset (PlF D)) (d0 : Dat Z FP), 4 * D.R.rS + 7 ≤ D.R.k → BaseOK (Tu D u) (Tu D u') F F' P d0 → StdOff Z P F G F' G' → ∀ y : Dat Z FP, (∀ p, p ∉ P → LocNG.Datum.Rel (d0 p) (y p)) → {p | y p ≠ d0 p}.Finite → ((globSet G G' y).encard : ℝ≥0∞) = ∏ p ∈ P, ((locSet G G' p (y p)).encard : ℝ≥0∞) := by
   first | exact @GlobalTheory.GenMass.Fibre.fibre

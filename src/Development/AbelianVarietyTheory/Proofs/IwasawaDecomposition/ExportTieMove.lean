@@ -59,16 +59,16 @@ import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PlaceM
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RatCopyIff, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExtremalVectorMemLowestKType, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HeckeTieMoveOfPin, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsExtremalVectorOfRealSideBaseChange, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RingRelationTransferIdentity, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsClassSystem, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SetupRelIffSameData, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SetupMove, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LiftSetupOverExtendedDataIntegralFormsEq, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TieMove, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExpTiedCopy, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsScalarScale, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LamCopy, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExportTieMove
 
-section -- clump: shared namespace opens
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RatCopyIff
+@[expose] public section
+
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links IsDedekindDomain NumberField Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.ExportSeries GlobalTheory.SeriesTie GlobalTheory.TwInputs GlobalTheory.TwInputs.Move
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RatCopyIff
 open Formalism.MainNotions.IntegralHeckeForms (TwOK ClsQ HkIdx V0 Fm0 FullRk SgJ BasisOf)
 open Formalism.L2.Host (embLL0 CharFrame)
 open GlobalTheory.TwSys GlobalTheory.TwAll GlobalTheory.SupLaw GlobalTheory.LiftLeaf
 open scoped TensorProduct
-
 
 namespace GlobalTheory.TwInputs.Move.RatUp
 
@@ -197,7 +197,6 @@ theorem datum_dn {s g P} (d : (setupUp r ρ).IsDatum ((i)) ((j)) b s g P) : ρ.I
     have c := (le_of_eq a) ((by exact (d.mem :)) : ((by exact (P :))) ∈ _)
     exact (by exact (c :))⟩
 
-
 omit h in
 variable (r) in
 def rdUp (rd : Rd ρ D.nexp i j b) : Rd (setupUp r ρ) (overD D r).nexp ((i)) ((j)) b := (rd)
@@ -248,14 +247,19 @@ theorem rat_copy_iff {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : �
 
 end GlobalTheory.TwInputs.Move.RatUp
 
+end
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links IsDedekindDomain NumberField Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.ExportSeries GlobalTheory.SeriesTie GlobalTheory.TwInputs GlobalTheory.TwInputs.Move
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExtremalVectorMemLowestKType
 open Formalism.MainNotions.IntegralHeckeForms (TwOK ClsQ HkIdx V0 Fm0 FullRk SgJ BasisOf)
 open Formalism.L2.Host (embLL0 CharFrame)
 open GlobalTheory.TwSys GlobalTheory.TwAll GlobalTheory.SupLaw GlobalTheory.LiftLeaf
 open scoped TensorProduct
-
 
 noncomputable section
 
@@ -311,8 +315,6 @@ theorem extremalVector_mem_lowestKType (X : RealSide D) {j : Fin D.R.m}
     X.geo.v₀ j (sg0 D X.A3.A) τ ∈ lowT (model X j) τ :=
   (hv.1 τ).2.1
 
-
-
 theorem harm_move (h : CopyTw D D' ι e) {ρ : Setup D.ntw} {ρ' : Setup D'.ntw} (hs : SameSetup ρ ρ') (i : D.ntw.Tw)
     (i' : D'.ntw.Tw) (hi : HEq i i') (j : Fin D.R.m) (b : Bool) (P : PolF D (Wc D j).rank (Vc D j).rank)
     (P' : PolF D' (Wc D' (h.cm j)).rank (Vc D' (h.cm j)).rank) (hP : HEq P P') (x : GLR D (Vc D j).rank)
@@ -355,7 +357,6 @@ theorem VV_le_span (h : CopyTw D D' ι e) (j : Fin D.R.m) :
   refine (le_of_eq (baseChangeSpace_holds _ _ ι _ _ (FWT.lamV D j)).2.symm).trans (Submodule.span_mono ?_)
   rintro _ ⟨P, hP, rfl⟩
   exact ⟨P, hP, HEq.rfl⟩
-
 
 theorem scale_fwd (h : CopyTw D D' ι e) {X : RealSide D} {X' : RealSide D'} (m : RealMove X X' ι) {ρ : Setup D.ntw}
     {ρ' : Setup D'.ntw} (hs : SameSetup ρ ρ')
@@ -429,7 +430,6 @@ theorem scale_fwd (h : CopyTw D D' ι e) {X : RealSide D} {X' : RealSide D'} (m 
       ring
   intro F'
   exact key F' (VV_le_span h j F'.2) F'.2
-
 
 theorem scale_bwd (h : CopyTw D D' ι e) {X : RealSide D} {X' : RealSide D'} (m : RealMove X X' ι) {ρ : Setup D.ntw}
     {ρ' : Setup D'.ntw} (hs : SameSetup ρ ρ')
@@ -586,7 +586,6 @@ open Formalism.L2.Host (embLL0 CharFrame)
 open GlobalTheory.TwSys GlobalTheory.TwAll GlobalTheory.SupLaw GlobalTheory.LiftLeaf
 open scoped TensorProduct
 
-
 namespace GlobalTheory.TwInputs.Move
 
 theorem isExtremalVector_of_realSideBaseChange : ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : ↥D'.LL0 ≃+* ↥D.LL0} (h : CopyTw D D' ι e) {X : RealSide D} {X' : RealSide D'} (m : RealMove X X' ι), (∀ j, FWT.IsChosenExtremalVector X.R.toRealDat j (sg0 D X.A3.A) (X.geo.v₀ j _)) →
@@ -603,7 +602,6 @@ open Formalism.MainNotions.IntegralHeckeForms (TwOK ClsQ HkIdx V0 Fm0 FullRk SgJ
 open Formalism.L2.Host (embLL0 CharFrame)
 open GlobalTheory.TwSys GlobalTheory.TwAll GlobalTheory.SupLaw GlobalTheory.LiftLeaf
 open scoped TensorProduct
-
 
 noncomputable section
 
@@ -807,7 +805,6 @@ open Formalism.L2.Host (embLL0 CharFrame)
 open GlobalTheory.TwSys GlobalTheory.TwAll GlobalTheory.SupLaw GlobalTheory.LiftLeaf
 open scoped TensorProduct
 
-
 namespace GlobalTheory.TwInputs.Move
 
 theorem setup_move : ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : ↥D'.LL0 ≃+* ↥D.LL0} (h : CopyTw D D' ι e) {X : RealSide D} {X' : RealSide D'} (m : RealMove X X' ι) (ρ : Setup D.ntw), ρ.Good → RealPin X.R X.cG ρ →
@@ -823,7 +820,6 @@ open Formalism.MainNotions.IntegralHeckeForms (TwOK ClsQ HkIdx V0 Fm0 FullRk SgJ
 open Formalism.L2.Host (embLL0 CharFrame)
 open GlobalTheory.TwSys GlobalTheory.TwAll GlobalTheory.SupLaw GlobalTheory.LiftLeaf
 open scoped TensorProduct
-
 
 noncomputable section
 
@@ -865,18 +861,9 @@ theorem vecAt_up {S T : HSp D} (B : Base S T) (Q φ) :
   dsimp only [ExportSeries.Base.locFn, baseUp, twistUp]
   exact vec_up r B (B.de.Q ∪ Q) (B.locFn Q φ)
 
-private theorem series_eq {S T : HSp D} (B : Base S T) :
-    @series (overD D r) S T (baseUp r B).F = @series D S T B.F := by
-  funext ω f g
-  refine LinearMap.ext fun P => funext fun x => ?_
-  delta series thetaKO
-  refine congrArg (fun v : WO S T → ℂ => ω (g, x) v 0) ?_
-  dsimp only [Frame.fock, pureTensorO, aPlusAll, aPlus, crea, Datum.dRho, baseUp]
-  rfl
-
 theorem series_up {S T : HSp D} (B : Base S T) (ω : PairRep S T) (Q φ h) :
     series (baseUp r B).F ω ((baseUp r B).vecAt Q φ) h = series B.F ω (B.vecAt Q φ) h := by
-  rw [vecAt_up r B, series_eq r B]
+  rw [vecAt_up r B, GlobalTheory.TwInputs.Move.RatUp.series_up r B]
 
 theorem theta_up {S T : HSp D} (B : Base S T) (ω : PairRep S T) (h : GA D S) :
     (baseUp r B).theta ((ω)) ((h)) = (B.theta ω h) :=
@@ -889,7 +876,7 @@ theorem vecFlat_up {S T : HSp D} (B : Base S T) (ψ : Twist D Circle) :
 theorem gen_up {S T : HSp D} (B : Base S T) (ω : PairRep S T) (ψ : Twist D Circle) :
     (baseUp r B).gen ((ω)) (twistUp r ψ) = (B.gen ω ψ) := by
   delta ExportSeries.Base.gen
-  rw [vecFlat_up r B, series_eq r B]
+  rw [vecFlat_up r B, GlobalTheory.TwInputs.Move.RatUp.series_up r B]
   rfl
 
 theorem genSet_up {S T : HSp D} (B : Base S T) (ω : PairRep S T) (ψ : Twist D Circle) (h P) :
@@ -911,13 +898,13 @@ theorem xiCoef_up {S T : HSp D} (B : Base S T) {C : Type} [AddCommGroup C] [Fint
     (P : PolF D T.rank S.rank) :
     (baseUp r B).xiCoef ((ω)) (univUp r u) ((Q)) ((Φ)) ((h)) ((P)) = (B.xiCoef ω u Q Φ h P) := by
   delta ExportSeries.Base.xiCoef ExportSeries.Base.xi
-  rw [vecFam_up r B, series_eq r B]
+  rw [vecFam_up r B, GlobalTheory.TwInputs.Move.RatUp.series_up r B]
   rfl
 
 theorem classSum_up {S T : HSp D} (B : Base S T) (ω : PairRep S T) (ψ : Twist D Circle) {I : Type} [Fintype I] (h : I → GA D S) :
     (baseUp r B).classSum (I := I) ω (twistUp r ψ) h = B.classSum ω ψ h := by
   delta ExportSeries.Base.classSum
-  rw [vecFlat_up r B, series_eq r B]
+  rw [vecFlat_up r B, GlobalTheory.TwInputs.Move.RatUp.series_up r B]
   dsimp only [ExportSeries.Base.levJ, baseUp, twistUp]
   rfl
 
@@ -955,18 +942,6 @@ section Setup
 
 variable (ρ : Setup D.ntw) (i : D.ntw.Tw) (j : Fin D.R.m) (b : Bool)
 
-theorem liftSetupOverExtendedData_theta_eq : (setupUp r ρ).theta ((i)) ((j)) b = (ρ.theta i j b) := by
-  funext h
-  delta Setup.theta
-  dsimp only [setupUp]
-  exact congrArg DFunLike.coe (theta_up r (ρ.B i j b) (ρ.om i j b 1) h)
-
-theorem liftSetupOverExtendedData_gens_eq : (setupUp r ρ).gens ((i)) ((j)) b = (ρ.gens i j b) := by
-  funext k Q ψ h P
-  delta Setup.gens Setup.tw
-  dsimp only [setupUp]
-  exact genSet_up r (ρ.B i j b) (ρ.om i j b 1) (ρ.tw i b k Q ψ) h P
-
 theorem liftSetupOverExtendedData_classSum_eq : (setupUp r ρ).sum ((i)) ((j)) b = (ρ.sum i j b) := by
   funext k Q ψ
   delta Setup.sum Setup.tw
@@ -978,20 +953,6 @@ private theorem univOf_up (Q : Finset (Pl D.host.E)) (M : ℕ) :
       univUp r (univOf D.nexp i Q M ρ.rc) := by
   dsimp only [setupUp, univOf, univUp, coord, Recip.pull, Recip.sym, resOf, IsResAt]
   rfl
-
-theorem liftSetupOverExtendedData_xi_eq : (setupUp r ρ).xi ((i)) ((j)) b (overD D r).nexp = (ρ.xi i j b D.nexp) := by
-  funext Q M h P
-  let Q₀ := admissibleConjugatePairPlaces (overD D r).ntw i Q M
-  let u := univOf D.nexp i Q₀ M ρ.rc
-  let ω := ρ.om i j b 1
-  let Φ := ExportSeries.Base.univFam u (ρ.β j)
-  have atFam := xiCoef_up r (ρ.B i j b) ω u (half (ρ.ch i) Q₀) Φ h P
-  delta Setup.xi
-  rw [univOf_up r ρ i Q₀ M]
-  dsimp only [setupUp, ω, Φ, u, Q₀, univUp, ExportSeries.Base.univFam,
-    admissibleConjugatePairPlaces, Formalism.MainNotions.NAdm.AdmQ,
-    Formalism.MainNotions.NAdm.TWSet] at atFam ⊢
-  exact atFam
 
 private theorem twistOf_up (ρ : Setup D.ntw) (i : D.ntw.Tw) (b : Bool) (k : ℕ) (Q : Finset (Pl D.host.E))
     (ψ : G D.host.E D.nd.Om →* (D.ntw.Ok i k)ˣ) :
@@ -1047,19 +1008,18 @@ def cellUp {hρ : ρ.Good} (hρ' : (setupUp r ρ).Good) {rd : Rd ρ D.nexp i j b
   U_eq := t.U_eq
   psiU_eq := t.psiU_eq
   dat := by rewrite [liftSetupOverExtendedData_isDatum_eq ρ i j b hc]; exact t.dat
-  dat_onto := by rewrite [liftSetupOverExtendedData_isDatum_eq ρ i j b hc, liftSetupOverExtendedData_theta_eq r ρ i j b]; exact t.dat_onto
+  dat_onto := by rewrite [liftSetupOverExtendedData_isDatum_eq ρ i j b hc, GlobalTheory.TwInputs.Move.RatUp.se_theta r ρ i j b]; exact t.dat_onto
   lev_iff := t.lev_iff
-  th_eq := by rewrite [liftSetupOverExtendedData_theta_eq r ρ i j b]; exact t.th_eq
-  thPsi_iff := by rewrite [liftSetupOverExtendedData_gens_eq r ρ i j b]; exact t.thPsi_iff
-  thU_eq := by rewrite [liftSetupOverExtendedData_xi_eq r ρ i j b]; exact t.thU_eq
-  thU_off := by rewrite [liftSetupOverExtendedData_xi_eq r ρ i j b]; exact t.thU_off
+  th_eq := by rewrite [GlobalTheory.TwInputs.Move.RatUp.se_theta r ρ i j b]; exact t.th_eq
+  thPsi_iff := by rewrite [GlobalTheory.TwInputs.Move.RatUp.se_gens r ρ i j b]; exact t.thPsi_iff
+  thU_eq := by rewrite [GlobalTheory.TwInputs.Move.RatUp.se_xi r ρ i j b]; exact t.thU_eq
+  thU_off := by rewrite [GlobalTheory.TwInputs.Move.RatUp.se_xi r ρ i j b]; exact t.thU_off
   rdV_inj := t.rdV_inj
   mtLat_iff := by rewrite [liftSetupOverExtendedData_integralForms_eq ρ i j b hc]; exact t.mtLat_iff
   thP_eq := by rewrite [liftSetupOverExtendedData_classSum_eq r ρ i j b]; exact t.thP_eq
 
 theorem cellUp_rdV {hρ : ρ.Good} (hρ' : (setupUp r ρ).Good) {rd : Rd ρ D.nexp i j b} (t : CellTie hρ D.nexp rd) :
     HEq t.rdV (cellUp r hc hρ' t).rdV := HEq.rfl
-
 
 end Cell
 
@@ -1075,7 +1035,6 @@ open Formalism.MainNotions.IntegralHeckeForms (TwOK ClsQ HkIdx V0 Fm0 FullRk SgJ
 open Formalism.L2.Host (embLL0 CharFrame)
 open GlobalTheory.TwSys GlobalTheory.TwAll GlobalTheory.SupLaw GlobalTheory.LiftLeaf
 open scoped TensorProduct
-
 
 noncomputable section
 
@@ -1112,11 +1071,12 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExpTiedCopy
-@[expose] public noncomputable section
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX NumberField IsDedekindDomain GlobalTheory.HeightCounting GlobalTheory.TwInputs.Move GlobalTheory.HeightCounting.SideCopy
 open Formalism.L2.DIV Formalism.L2.Theta
 
+noncomputable section
 
 namespace GlobalTheory.HeightCounting.ExpCopy
 
@@ -1154,8 +1114,6 @@ end
 theorem infG_eta {D : D7} {cf : CharFrame D} (hcs : CharSide D cf) (t : D.what₂.Tau) :
     D.naut.infG D.naut.etaT (Formalism.L2.Host.embPsi D.host (D.eTau t)) = {(((1 / 2 : ℚ)) : ℂ)} :=
   (hcs.infG D.naut.etaT (fun _ => 1 / 2) (by rw [hcs.etaT]; exact ⟨fun _ => 1, fun _ => by norm_num, cf.isEta.inf⟩) (D.eTau t)).1
-
-
 
 open Classical in
 theorem core (D : D7) (r : Rest D) (X : NExpTied D) (hpl : HEq D.naut.plGw (overD D r).naut.plGw)
@@ -1236,8 +1194,6 @@ theorem core (D : D7) (r : Rest D) (X : NExpTied D) (hpl : HEq D.naut.plGw (over
       (rhoW_hw := hhw)
       (rhoW_wt := hwt), HEq.refl X.tauG, fun i j b k Q ψ h1 h2 hA => ⟨HEq.rfl, HEq.rfl, fun _ _ _ _ _ hR => hR⟩⟩
 
-
-
 theorem expTied_copy : ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : ↥D'.LL0 ≃+* ↥D.LL0}, CopyAll D D' ι e → ∀ {cf : CharFrame D} {cf' : CharFrame D'}, SameFrame cf cf' → CharSide D cf → CharSide D' cf' → ∀ X : NExpTied D, ∃ X' : NExpTied D', (TauTrue X → TauTrue X') ∧ ∀ (i : D.ntw.Tw) (i' : D'.ntw.Tw), HEq i i' → ∀ (j : ℕ) (b : Bool) (k : ℕ) (Q : Finset (PlE D.host)) (Q' : Finset (PlE D'.host)), HEq Q Q' → ∀ (ψ : G D.host.E D.nd.Om →* (D.ntw.Ok i k)ˣ) (ψ' : G D'.host.E D'.nd.Om →* (D'.ntw.Ok i' k)ˣ), HEq ψ ψ' → ∀ (h1 : 1 ≤ j) (h2 : j ≤ D.R.m) (h2' : j ≤ D'.R.m) (hA' : NX.AdmTw D' i' k Q' ψ'), ∃ hA : NX.AdmTw D i k Q ψ, HEq (X.mtV i j b k Q ψ h1 h2 hA).QP (X'.mtV i' j b k Q' ψ' h1 h2' hA').QP ∧ HEq (X.mtV i j b k Q ψ h1 h2 hA).DP (X'.mtV i' j b k Q' ψ' h1 h2' hA').DP ∧ ∀ (ε : FractionRing (D.ntw.Ok i k) →+* ℂ) (ε' : FractionRing (D'.ntw.Ok i' k) →+* ℂ), HEq ε ε' → ∀ (V V' : Type) [aV : AddCommGroup V] [mV : Module ℂ V] [aV' : AddCommGroup V'] [mV' : Module ℂ V'], V = V' → HEq aV aV' → HEq mV mV' → ∀ (r : D.nexp.MtV i j b k Q ψ → Formalism.AUTREP.GAf D.host.E D.R.nV → V) (r' : D'.nexp.MtV i' j b k Q' ψ' → Formalism.AUTREP.GAf D'.host.E D'.R.nV → V'), HEq r r' → GlobalTheory.HeightCounting.Reads X i j b k Q ψ h1 h2 hA ε V r → GlobalTheory.HeightCounting.Reads X' i' j b k Q' ψ' h1 h2' hA' ε' V' r' := by
   intro D D' ι e h cf cf' _ hcs hcs' X
   obtain ⟨r, rfl⟩ := h.cp.exists_rest
@@ -1268,6 +1224,7 @@ theorem expTied_copy : ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {
 
 end GlobalTheory.HeightCounting.ExpCopy
 
+end
 end -- clump:auto
 end -- clump:auto
 
@@ -1275,9 +1232,6 @@ end -- clump:auto
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links IsDedekindDomain NumberField GlobalTheory.SeriesTie GlobalTheory.TwInputs GlobalTheory.HeightCounting
 open scoped TensorProduct
-
-
-
 
 namespace GlobalTheory.SerVec
 
@@ -1394,10 +1348,7 @@ end -- clump:auto
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2 Formalism.L2.Host Formalism.IndefR.NX NumberField IsDedekindDomain GlobalTheory.HeightCounting GlobalTheory.TwInputs.Move GlobalTheory.HeightCounting.SideCopy
 open Formalism.L2.DIV Formalism.L2.Theta
 
-
 namespace GlobalTheory.HeightCounting.SideCopy.LamCopy
-
-
 
 theorem lam_copy : ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : ↥D'.LL0 ≃+* ↥D.LL0}, CopyAll D D' ι e → ∀ {cf : CharFrame D} {cf' : CharFrame D'}, SameFrame cf cf' → (∃ Z : GlobalTheory.LamTie.LamDat D, Z.Ok ∧ Z.Teich ∧ Z.C = cf ∧ Z.q0 = AbsolutelyIrreducibleSpan.q0 D ∧ GlobalTheory.LamTie.IsLamTieFull D.ntw Z) → ∃ Z : GlobalTheory.LamTie.LamDat D', Z.Ok ∧ Z.Teich ∧ Z.C = cf' ∧ Z.q0 = AbsolutelyIrreducibleSpan.q0 D' ∧ GlobalTheory.LamTie.IsLamTieFull D'.ntw Z := by
   rintro D D' ι e h cf cf' ⟨f1, f2, f3, f4⟩ ⟨⟨C, q, w0, c, chi⟩, hOk, hT, rfl, hq, hF⟩
@@ -1429,14 +1380,15 @@ theorem lam_copy : ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : 
 end GlobalTheory.HeightCounting.SideCopy.LamCopy
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExportTieMove
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExportTieMove
+
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links IsDedekindDomain NumberField Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.ExportSeries GlobalTheory.SeriesTie GlobalTheory.TwInputs GlobalTheory.TwInputs.Move
 open Formalism.MainNotions.IntegralHeckeForms (TwOK ClsQ HkIdx V0 Fm0 FullRk SgJ BasisOf)
 open Formalism.L2.Host (embLL0 CharFrame)
 open GlobalTheory.TwSys GlobalTheory.TwAll GlobalTheory.SupLaw GlobalTheory.LiftLeaf
 open scoped TensorProduct
-
 
 open Formalism.L2 (NExpTied)
 open Formalism.AUTREP (GAf)
@@ -1536,6 +1488,7 @@ theorem series_move (h : CopyAll D D' ι e) {X : RealSide D} {X' : RealSide D'} 
 
 end GlobalTheory.HeightCounting.SerCarry
 
+end
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RatCopyIff", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SameSetup\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsBasisAtTransport\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExtremalVectorMemLowestKType", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SameSetup\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RatCopyIff\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.StarMulSelfOfPair\nimport Formalism.LocalToGlobal.Columns.CoefficientsModP.BaseCh\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\n\n"}

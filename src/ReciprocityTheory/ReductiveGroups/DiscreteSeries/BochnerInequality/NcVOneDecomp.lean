@@ -31,24 +31,17 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.BigCasA, ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.CrossOpEigGap, ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.NcVOneDecomp
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.BigCasA
 
+noncomputable section
 
 open Finset
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.BigCasA
 
 namespace ReciprocityTheory.ChartRestriction.DS.BigCasimir
 
 open ReciprocityTheory.ChartRestriction.DS
 
 variable {n : ℕ}
-
-section AlgGen
-
-variable {X : Type*} [AddCommGroup X] [Module ℂ X] {ε : Fin n → Bool}
-
-end AlgGen
 
 section Slots
 
@@ -126,8 +119,13 @@ end Slots
 
 end ReciprocityTheory.ChartRestriction.DS.BigCasimir
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.CrossOpEigGap
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.CrossOpEigGap
+
+noncomputable section
+
+open Finset
 
 namespace ReciprocityTheory.ChartRestriction.DS
 
@@ -220,7 +218,7 @@ theorem crossOp_eig_gap (hE : IsGlRep E) (hU : IsInfUnitary ε E) (hV : IsKIrrHW
       · exact absurd (h1.symm.trans h2) hrs
       all_goals ring
     simp only [e, Finset.sum_add_distrib, Finset.sum_sub_distrib, ← Finset.mul_sum,
-      Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     ring
   have hcas : casValK ε μ - casValK ε (lowK ε lam) =
       2 * ((lowK ε lam + rhoC ε) r - (lowK ε lam + rhoC ε) s) + 2 := by
@@ -281,8 +279,12 @@ end OneBAux
 
 end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.NcVOneDecomp
+
+
+open Finset
 
 namespace ReciprocityTheory.ChartRestriction.DS
 

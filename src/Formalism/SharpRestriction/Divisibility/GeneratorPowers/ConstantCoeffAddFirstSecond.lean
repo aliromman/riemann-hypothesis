@@ -196,10 +196,11 @@ theorem fixTw_of [StarRing (𝓞 E)] [Algebra ℚ S] (C : ChartAt Xo c y) (T U :
 end Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ConstantCoeffAddFirstSecond
+@[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ConstantCoeffAddFirstSecond
 
 set_option autoImplicit false
 
+noncomputable section
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2c
 
@@ -376,8 +377,8 @@ private lemma mkX_lemma_10 {ι : Type} [Fintype ι] [DecidableEq ι] (m : ℕ) (
     have htr : Formalism.L2.Pj.psTrunc m (MvPowerSeries.X s : MvPowerSeries ι S) = MvPolynomial.X s := by
       unfold Formalism.L2.Pj.psTrunc
       rw [Finset.sum_eq_single_of_mem _ hmem
-        (fun b _ hb => by rw [MvPowerSeries.coeff_X, if_neg hb, map_zero])]
-      rw [MvPowerSeries.coeff_X, if_pos rfl]
+        (fun b _ hb => by rw [MvPowerSeries.coeff_X, ite_eq_right hb, map_zero])]
+      rw [MvPowerSeries.coeff_X, ite_eq_left rfl]
       rfl
     rw [htr, sub_self]
     exact Ideal.zero_mem _

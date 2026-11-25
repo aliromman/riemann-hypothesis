@@ -845,18 +845,11 @@ theorem unrBare : ∀ (l : ℕ) [Fact (Nat.Prime l)] (F Ω : Type) [inst : Field
 end UpperTheory.Reformulated.B.RootEquality
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.DegreeCountCohomology.UnrBare
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.DegreeCountCohomology.UnrBare
 
+noncomputable section
 
 namespace UpperTheory.V.Pa
-
-section Abstract
-
-variable {R G M : Type} [CommRing R] [Group G] [AddCommGroup M] [Module R M] (ρ : Representation R G M)
-
-variable [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G] [Finite M]
-
-end Abstract
 
 theorem unrBare : ∀ (l : ℕ) [Fact l.Prime] (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω]
     [IsAlgClosure F Ω] (A : ValuationSubring Ω) (v : IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers F))
@@ -866,6 +859,7 @@ theorem unrBare : ∀ (l : ℕ) [Fact l.Prime] (F Ω : Type) [Field F] [NumberFi
   _root_.UpperTheory.Reformulated.B.RootEquality.unrBare
 
 end UpperTheory.V.Pa
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.DegreeCountCohomology.UnrLoc

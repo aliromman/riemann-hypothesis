@@ -50,20 +50,15 @@ import Mathlib.Topology.Sheaves.Init
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.Divisors.IsFracOfAdjoinEqTop, Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardAffineOpenRingPolynomialEquiv
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsFracOfAdjoinEqTop
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsFracOfAdjoinEqTop
 
+noncomputable section
 
 namespace GlobalTheory.PD.Model
 
 open GlobalTheory.PD
 
 variable (k : Type) [Field k] (d : ℕ)
-
-section Bundle
-
-variable (k : Type) [Field k] {F : Type} [Field F] [Algebra k F] {d : ℕ} (x : Fin (d + 1) → F)
-
-end Bundle
 
 section Cover
 
@@ -130,11 +125,8 @@ def chartEquiv (hP : IsPd k x) (i : Fin (d + 1)) : MvPolynomial (Fin d) k ≃ₐ
 
 end Cover
 
-section Extra
-
-end Extra
-
 end GlobalTheory.PD.Model
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardAffineOpenRingPolynomialEquiv

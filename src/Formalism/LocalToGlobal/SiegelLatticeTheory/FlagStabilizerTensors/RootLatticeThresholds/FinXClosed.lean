@@ -23,8 +23,10 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedVolumeStatements.LevelS
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.PairTiesPf, Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.FinXHolds, Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.FinXClosed
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.PairTiesPf
+section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.PairTiesPf
+@[expose] public section
 
+noncomputable section
 
 open scoped Classical
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.TermOp Formalism.L2.SG.PackageTie2
@@ -447,7 +449,7 @@ theorem representative_s0_eq (q : RP Y u u') :
   have hT := Th_move hn₁ hn₂ hm₁ hm₂ hf₁ hz₁ hf₂ hz₂ (lift_F q.l1) (lift_frame q.l1) hL₂ hsF (hs_frame q.l1) hβ
     (beta_Xsp q.l1 q.l2) (τ := 1) (fun x hx => hx) (fun x _ => by simp)
   unfold s0T
-  rw [if_pos ⟨hl, hl'⟩, E1, hB]
+  rw [ite_eq_left ⟨hl, hl'⟩, E1, hB]
   unfold Lat.s0
   exact congrArg (fun q : ℕ => D.R.k - q) ((congrArg (fun M : Submodule D.host.E (VS D).V => Module.finrank D.host.E M)
     hT).trans (LinearEquiv.finrank_map_eq n₁ _))
@@ -526,6 +528,8 @@ theorem pairTies_of (hι : IotaRowC) : Formalism.L2.SG.TermTieOf.PairTiesAll := 
 
 end Formalism.L2.SG.Pf.FinXP
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.FinXHolds

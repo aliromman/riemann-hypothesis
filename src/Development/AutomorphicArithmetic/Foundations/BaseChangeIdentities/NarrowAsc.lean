@@ -15,8 +15,10 @@ import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensor
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.DiscreteSpectrumUnitarity.UsedAsc, Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.NarrowAsc
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.DiscreteSpectrumUnitarity.UsedAsc
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.DiscreteSpectrumUnitarity.UsedAsc
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.L2.Host
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec
@@ -45,20 +47,12 @@ theorem hasSpehComp (h3 : Clause3Asc) (hF : GlobalTheory.Published.AutomorphicFo
     rw [← e']
     exact hm'
 
-section Pair
-
-end Pair
-
-section Local
-
-open GlobalTheory.DefiniteBC GlobalTheory.BcSpeh GlobalTheory.BcSpehProof
-
-end Local
-
 end Re.Asc
 
 end PositivityTheory.Rg.Rs
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.NarrowAsc

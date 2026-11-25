@@ -16,12 +16,14 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.TiledBoundaries.MemSpanMap, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.TiledBoundaries.NstatementOf, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.TBNFinal
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.TiledBoundaries.MemSpanMap
+section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.TiledBoundaries.MemSpanMap
+@[expose] public section
 
 namespace ReciprocityTheory.ChartRestriction.G.I2.TiledBoundaries
 
 open ReciprocityTheory.ChartRestriction.G.I2 MeasureTheory MeasureTheory.Measure Complex Module Set Submodule
 
+noncomputable section
 
 variable {E : Type} [Field E] [NumberField E]
 
@@ -238,7 +240,7 @@ theorem stepK : StepK := by
   have hf : ∀ c ∈ T, f c ∈ K ∧ ∀ k, π (c k - f c k) ∈ X.L := by
     intro c hc
     have h := hT c hc
-    simp only [f, dif_pos h]
+    simp only [f, dite_eq_left h]
     exact Classical.choose_spec (hK.2 c h).exists
   have hcard : T.card ≤ K.card := by
     apply Finset.card_le_card_of_injOn f
@@ -266,8 +268,10 @@ theorem stepK : StepK := by
   rw [← hTc]
   exact hcard
 
+end
 
 end ReciprocityTheory.ChartRestriction.G.I2.TiledBoundaries
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.TiledBoundaries.NstatementOf

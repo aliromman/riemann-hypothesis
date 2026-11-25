@@ -531,8 +531,9 @@ theorem exists_isDer_kType : ∀ (n : ℕ) (ε : Fin n → Bool) (μ : Fin n →
 end GlobalTheory.SmoothKType
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.KHighestEqSmulOfMinusKilled
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.KHighestEqSmulOfMinusKilled
 
+noncomputable section
 
 namespace GlobalTheory.Jet
 
@@ -620,7 +621,7 @@ theorem form_eq_zero_of_casK (V : Type) [NormedAddCommGroup V] [InnerProductSpac
           split_ifs with h
           · rw [h]
           · exact inner_zero_right _
-        simpa only [hterm, Finset.sum_ite_eq', Finset.mem_univ, if_true] using hT0
+        simpa only [hterm, Finset.sum_ite_eq', Finset.mem_univ, ite_true] using hT0
       rw [← hsup] at hP
       obtain ⟨p, hp, m, hm, hpmE⟩ := Submodule.mem_sup.mp hP
       have hmm : ⟪m, m⟫_ℂ = 0 := by
@@ -792,6 +793,7 @@ theorem kHighest_eq_smul_of_minus_killed : ∀ (V : Type) [NormedAddCommGroup V]
   exact ⟨c, sub_eq_zero.mp hz0⟩
 
 end GlobalTheory.Jet
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LowestKTypeMultiplicityOneLargeGaps

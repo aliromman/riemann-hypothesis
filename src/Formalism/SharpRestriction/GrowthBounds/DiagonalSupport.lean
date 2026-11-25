@@ -185,8 +185,9 @@ end Formalism.MainNotions.TestSideCounting
 end -- clump:auto
 
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.DualFockLinear.PairFormula
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 open MvPolynomial
 
@@ -203,9 +204,9 @@ theorem Aa_dual2 {K : Type} [Field K] {m : ℕ} (vec : Bool) (M : Matrix (Fin (m
   have hMt : IsUnit ((M⁻¹).transpose).det := by
     rw [Matrix.det_transpose, Matrix.det_nonsing_inv]; exact hM.ringInverse
   cases vec
-  · simp only [Aa, Bool.false_eq_true, if_false]
+  · simp only [Aa, Bool.false_eq_true, ite_false]
     rw [← Matrix.transpose_mul, Matrix.mul_nonsing_inv _ hMt, Matrix.transpose_one]
-  · simp only [Aa, if_true]
+  · simp only [Aa, ite_true]
     rw [← Matrix.transpose_mul, Matrix.mul_nonsing_inv _ hM, Matrix.transpose_one]
 
 section
@@ -341,6 +342,7 @@ theorem exists_gv (hS : HidaSetting p n' W Qq O Kf ι σ j w) (φ : WF p n' ≃+
 end
 
 end Formalism.MainNotions.TestSideCounting
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 
@@ -620,8 +622,9 @@ theorem restCloudB_of_two (D : Formalism.BasicNotions.D7) (CLa Ck Crk Cdeg : ℝ
 end Formalism.MainNotions.TestSideCounting
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.DualFockLinear.LogSizeBoundLe
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.DualFockLinear.LogSizeBoundLe
 
+noncomputable section
 
 namespace Formalism.MainNotions.TestSideCounting
 
@@ -652,7 +655,7 @@ theorem log_size_bound_le (p n' m : ℕ) (TT : Finset (Fin n')) (X : Fin n' → 
       if s ∈ TT then 2 * ((m + 1 : ℕ) : ℝ) ^ 2 * Real.logb p a else 0 := by
     intro s
     by_cases hs : s ∈ TT
-    · rw [if_pos hs]
+    · rw [ite_eq_left hs]
       split_ifs with hz
       · rw [Nat.cast_zero]
         exact mul_nonneg (by positivity) hlog
@@ -682,7 +685,7 @@ theorem log_size_bound_le (p n' m : ℕ) (TT : Finset (Fin n')) (X : Fin n' → 
         calc ((N0 (m + 1) : ℕ) : ℝ) * ((deF p (m + 1) (ellWt (lamAt X s)) : ℕ) : ℝ)
             ≤ ((m + 1 : ℕ) : ℝ) ^ 2 * (2 * Real.logb p a) := mul_le_mul hN0 hde (Nat.cast_nonneg _) (by positivity)
           _ = 2 * ((m + 1 : ℕ) : ℝ) ^ 2 * Real.logb p a := by ring
-    · rw [if_neg hs, if_pos (h0 s hs), Nat.cast_zero]
+    · rw [ite_eq_right hs, ite_eq_left (h0 s hs), Nat.cast_zero]
   calc _ ≤ ∑ s : Fin n', (if s ∈ TT then 2 * ((m + 1 : ℕ) : ℝ) ^ 2 * Real.logb p a else 0) :=
         Finset.sum_le_sum fun s _ => hterm s
     _ = _ := by
@@ -763,7 +766,6 @@ theorem sizeStep (C : ℝ) (hC : 2 ≤ C) : SizeStep C 4 := by
       have hbT : (bT s : ℝ) ≤ c0 := by
         have : bT s ≤ c0 := by omega
         exact_mod_cast this
-      have hcp : (0 : ℝ) ≤ cpp := Nat.cast_nonneg _
       rw [e1]
       push_cast
       push_cast at h8
@@ -773,7 +775,7 @@ theorem sizeStep (C : ℝ) (hC : 2 ≤ C) : SizeStep C 4 := by
     (fun s hs => by
       rw [ellWt_flat (by omega)]
       have := (flatDeg_bounds hm2 hapos.le hW s hs).2
-      simp only [dT, if_pos hs]
+      simp only [dT, ite_eq_left hs]
       push_cast
       push_cast at h8
       linarith)
@@ -787,6 +789,7 @@ theorem restCloudB_of_op (D : Formalism.BasicNotions.D7) (CLa Ck Crk Cdeg : ℝ)
   restCloudB_of_two D CLa Ck Crk Cdeg hop restSize
 
 end Formalism.MainNotions.TestSideCounting
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.DualFockLinear

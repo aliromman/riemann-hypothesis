@@ -19,13 +19,15 @@ import Mathlib.Topology.Sheaves.Presheaf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.InterpStatementPfF, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.InterpStatementPfG
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.InterpStatementPfF
+section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.InterpStatementPfF
+@[expose] public section
 
 namespace ReciprocityTheory.ChartRestriction.G.AR.Up.HE
 
 open ReciprocityTheory.L2DbarEstimates MeasureTheory Topology Metric Filter Complex
 open scoped ContDiff ComplexConjugate
 
+noncomputable section
 
 variable {n : ℕ}
 
@@ -80,7 +82,7 @@ theorem wdb_cut_bdd (ε : ℝ) (hε : 0 < ε) :
   · have h1 := hC y (mem_closedBall_zero_iff.mpr hy)
     rw [Real.norm_of_nonneg (Finset.sum_nonneg fun j _ => by positivity)] at h1
     exact h1.trans (le_max_left _ _)
-  · push_neg at hy
+  · push Not at hy
     have h0 : ∀ j, wdb n j (cut ε hε) y = 0 := fun j => wdb_cut_zero ε hε j (Or.inr hy)
     simp [h0]
 
@@ -93,8 +95,10 @@ theorem norm_pair_sq_le (a ξ : Fin n → ℂ) :
         pow_le_pow_left₀ (norm_nonneg _) h1 2
     _ ≤ _ := Finset.sum_mul_sq_le_sq_mul_sq _ _ _
 
+end
 
 end ReciprocityTheory.ChartRestriction.G.AR.Up.HE
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.InterpStatementPfG

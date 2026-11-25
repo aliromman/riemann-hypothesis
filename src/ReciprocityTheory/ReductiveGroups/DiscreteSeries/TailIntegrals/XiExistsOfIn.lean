@@ -1,5 +1,6 @@
 module
 
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.ReproducingKernels.OneLeGN
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.FixedUnitaryApplyFixedIndexRight
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.InductiveHeisenbergInputs
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.IntegrableUnitIndicator
@@ -32,8 +33,9 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.SphericalFunctionFixedUnitaryEqOne, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.MeasurableHaarKernelTriple, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.PlanarKernelBound, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.SlowWeightBound, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.OsOf, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.TLeftH, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiExists2, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiIntH, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.HermitianLiftIdentities, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiRNonneg, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiIntStepOf, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiExistsOfIn
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.SphericalFunctionFixedUnitaryEqOne
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.SphericalFunctionFixedUnitaryEqOne
 
+noncomputable section
 
 open Matrix MeasureTheory
 open scoped ENNReal NNReal ComplexConjugate ComplexOrder
@@ -78,7 +80,7 @@ lemma herm_re (y : Fin (2 * 0 + k + 1) → ℂ) :
     · simp [sg, h, Complex.normSq_apply, Complex.mul_re]
   rw [herm0, tW_sq, Complex.re_sum, Finset.sum_congr rfl fun i _ => hterm i,
     Finset.sum_sub_distrib]
-  simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   ring
 
 lemma phi'_eq (hk : 1 ≤ k) :
@@ -123,12 +125,12 @@ lemma phi'_dot (hk : 1 ≤ k) : star (phiV' k 0 0) ⬝ᵥ phiV' k 0 0 = 1 := by
       (if i = iW k then 1 / 2 else 0) + (if i = iK k then 1 / 2 else 0) := by
     intro i
     rcases eq_or_ne i (iW k) with rfl | h1
-    · rw [phi'_iW hk, normSq_c, if_pos rfl, if_neg hWK, add_zero]
+    · rw [phi'_iW hk, normSq_c, ite_eq_left rfl, ite_eq_right hWK, add_zero]
     · rcases eq_or_ne i (iK k) with rfl | h2
-      · rw [phi'_iK hk, Complex.normSq_neg, normSq_c, if_neg h1, if_pos rfl, zero_add]
-      · rw [phi'_zero hk i h1 h2, map_zero, if_neg h1, if_neg h2, add_zero]
+      · rw [phi'_iK hk, Complex.normSq_neg, normSq_c, ite_eq_right h1, ite_eq_left rfl, zero_add]
+      · rw [phi'_zero hk i h1 h2, map_zero, ite_eq_right h1, ite_eq_right h2, add_zero]
   rw [dot_star_self, Finset.sum_congr rfl fun i _ => hφ i, Finset.sum_add_distrib]
-  simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   norm_num
 
 private lemma sum_phi_lemma (hk : 1 ≤ k) (X : Fin (2 * 0 + k + 1) → ℂ) :
@@ -138,14 +140,14 @@ private lemma sum_phi_lemma (hk : 1 ≤ k) (X : Fin (2 * 0 + k + 1) → ℂ) :
       (if i = iW k then ((Real.sqrt 2)⁻¹ : ℂ) * X (iW k) else 0) + (if i = iK k then ((Real.sqrt 2)⁻¹ : ℂ) * X (iK k) else 0) := by
     intro i
     rcases eq_or_ne i (iW k) with rfl | h1
-    · rw [phi'_iW hk, star_c, if_pos rfl, if_neg hWK, add_zero]
+    · rw [phi'_iW hk, star_c, ite_eq_left rfl, ite_eq_right hWK, add_zero]
       simp [sg, hWK]
     · rcases eq_or_ne i (iK k) with rfl | h2
-      · rw [phi'_iK hk, star_neg, star_c, if_neg h1, if_pos rfl, zero_add]
+      · rw [phi'_iK hk, star_neg, star_c, ite_eq_right h1, ite_eq_left rfl, zero_add]
         simp [sg]
-      · rw [phi'_zero hk i h1 h2, star_zero, zero_mul, if_neg h1, if_neg h2, add_zero]
+      · rw [phi'_zero hk i h1 h2, star_zero, zero_mul, ite_eq_right h1, ite_eq_right h2, add_zero]
   rw [Finset.sum_congr rfl fun i _ => h i, Finset.sum_add_distrib]
-  simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   ring
 
 lemma phi'_iso (hk : 1 ≤ k) : herm (Hpk k 0) (phiV' k 0 0) (phiV' k 0 0) = 0 := by
@@ -275,6 +277,7 @@ lemma iso_y (hk : 1 ≤ k) {g h' : Mat k 0} (hg : g ∈ GV k 0) (hh : h' ∈ GV 
   exact inv_ne_zero (Complex.ofReal_ne_zero.mpr (Real.sqrt_ne_zero'.mpr (by norm_num))) hW
 
 end ReciprocityTheory.ChartRestriction.DS.Xi.Base0
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.MeasurableHaarKernelTriple
@@ -1133,8 +1136,9 @@ theorem xiIntH (hB2 : InductiveHeisenbergInputs) : XiIntStep := by
 end ReciprocityTheory.ChartRestriction.DS.Xi
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.HermitianLiftIdentities
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.HermitianLiftIdentities
 
+noncomputable section
 
 open Matrix
 open scoped ENNReal NNReal
@@ -1144,15 +1148,7 @@ namespace ReciprocityTheory.ChartRestriction.DS.Xi.DetB
 open Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Formalism.FourierDecayAlt.B2
 
 theorem entry_le_gN {k r : ℕ} (h : Mat k r) (m j : Fin (2 * r + k + 1)) : ‖h m j‖ ≤ gN h := by
-  unfold gN
-  apply Real.le_sqrt_of_sq_le
-  rw [← Complex.normSq_eq_norm_sq]
-  calc Complex.normSq (h m j) ≤ ∑ j', Complex.normSq (h m j') :=
-        Finset.single_le_sum (f := fun j' => Complex.normSq (h m j')) (fun _ _ => Complex.normSq_nonneg _)
-          (Finset.mem_univ j)
-    _ ≤ ∑ i, ∑ j', Complex.normSq (h i j') :=
-        Finset.single_le_sum (f := fun i => ∑ j', Complex.normSq (h i j'))
-          (fun _ _ => Finset.sum_nonneg fun _ _ => Complex.normSq_nonneg _) (Finset.mem_univ m)
+  apply _root_.ReciprocityTheory.ChartRestriction.DS.Lap.S0.DecA.gN_entry <;> assumption
 
 def cst {k r : ℕ} (H : Mat k r) (v w : Fin (2 * r + k + 1) → ℂ) : ℝ :=
   ∑ i, ∑ m, ∑ j, ‖w i‖ * ‖H i m‖ * ‖v j‖
@@ -1261,9 +1257,11 @@ theorem detH (hB2 : InductiveHeisenbergInputs) : DET := by
 
 end ReciprocityTheory.ChartRestriction.DS.Xi
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiRNonneg
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiRNonneg
 
+noncomputable section
 
 open Matrix MeasureTheory
 open scoped ENNReal NNReal
@@ -1278,9 +1276,9 @@ theorem hpk_conjT : (Hpk k r)ᴴ = Hpk k r := by
   ext i j
   simp only [conjTranspose_apply, hpk_apply]
   by_cases h : j = sigI k r i
-  · subst h; rw [if_pos (sig_sig i).symm, if_pos rfl, sgn_sig, star_sgn]
+  · subst h; rw [ite_eq_left (sig_sig i).symm, ite_eq_left rfl, sgn_sig, star_sgn]
   · have h' : ¬ i = sigI k r j := fun h2 => h (by rw [h2, sig_sig])
-    rw [if_neg h', if_neg h, star_zero]
+    rw [ite_eq_right h', ite_eq_right h, star_zero]
 
 theorem hpk_K : Hpk k r ∈ Kset k r := by
   have h2 := HermitianLiftIdentities.hpk_sq (k := k) (r := r)
@@ -1464,6 +1462,7 @@ theorem coefStepC (hB2 : InductiveHeisenbergInputs) (hT : TBoth) (hD : DET) : Co
       ring
 
 end ReciprocityTheory.ChartRestriction.DS.Xi.CB
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiIntStepOf

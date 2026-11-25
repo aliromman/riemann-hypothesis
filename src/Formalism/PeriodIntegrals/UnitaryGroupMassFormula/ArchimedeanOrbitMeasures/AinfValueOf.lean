@@ -7,8 +7,9 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.CongruenceAtSplitFro
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.ClauseUnique, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.AinfValueOf
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.ClauseUnique
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.ClauseUnique
 
+noncomputable section
 
 namespace PI.AprimeInfW
 
@@ -68,7 +69,7 @@ theorem clause_unique {D : D7} (X : HidaSetting D) (ψ : AddChar (AF X.B.I.F) �
       g • ratTup (Ainf X.B.I.F) (tupH (frameOf X u')) = y) →
       s y • ratTup (Ainf X.B.I.F) (tupH (frameOf X u')) = y := by
     intro y hy
-    simp only [s, dif_pos hy]
+    simp only [s, dite_eq_left hy]
     exact hy.choose_spec
   have hf : Measurable (K.indicator (1 : HA (Ainf X.B.I.F) X.B.I.cm.sig X.B.I.J → ENNReal)) :=
     measurable_const.indicator hK
@@ -85,6 +86,7 @@ theorem aprimeInfS_of (hV : AinfValue) (hG : GinfTest) : AprimeInfS := by
   exact (ENNReal.ofReal_eq_ofReal_iff ha'.le (ENNReal.ofReal_pos.1 hpos).le).1 e
 
 end PI.AprimeInfW
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.AinfValueOf

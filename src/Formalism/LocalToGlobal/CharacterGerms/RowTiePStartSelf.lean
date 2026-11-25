@@ -13,13 +13,12 @@ import Formalism.LocalToGlobal.CharacterGerms.RowTieCartFB
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.CharacterGerms.RowTiePAllStart, Formalism.LocalToGlobal.CharacterGerms.RowTiePStartSelf
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePAllStart
 
+noncomputable section
 
 open scoped BigOperators
 open Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePAllStart
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -45,7 +44,7 @@ theorem coeff_one_subst {dd : ℕ} (f : PS C 1 dd)
   refine finsum_eq_zero_of_forall_eq_zero fun μ => ?_
   by_cases hμ : μ.degree ≤ 1
   · rw [hf μ hμ, zero_smul]
-  · push_neg at hμ
+  · push Not at hμ
     have hX : ∀ q, (PowerSeries.X : PowerSeries C) ∣ P q := fun q => PowerSeries.X_dvd_iff.2 (hP0 q)
     have hdeg : μ.degree = ∑ s ∈ μ.support, μ s := rfl
     have h1 : (PowerSeries.X : PowerSeries C) ^ μ.degree ∣ μ.prod fun s e => P s ^ e := by
@@ -62,8 +61,14 @@ variable {C : Type} [Field C] [CharZero C] {V : VF C} {O : Type} [CommRing O] [S
 
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePStartSelf
+@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePStartSelf
+
+noncomputable section
+
+open scoped BigOperators
+open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -266,9 +271,9 @@ theorem allStartSelf_of (hLie : ProjLieSelfSt) : AllStartSelfSt := by
       rw [show a 1 = v from funext ha1]
       show linAct E (∑ c, w c • p.e c) = _
       rw [AllStart.linAct_sum]
-      exact Finset.sum_congr rfl fun c _ => by simp only [Linl, if_pos rfl, hEfix c]
+      exact Finset.sum_congr rfl fun c _ => by simp only [Linl, ite_eq_left rfl, hEfix c]
     · rw [hb n]
-      simp only [Linl, if_neg hn]
+      simp only [Linl, ite_eq_right hn]
   have hkey : ∀ n (col : Fin 2) x, ∑ j, OActLog.linM (Φ col) x j * ∑ k, OActLog.linM E j k * a n k =
       ∑ c, (Y.rawSelf p).u g c (col, x) * Linl n c := by
     intro n col x
@@ -313,7 +318,7 @@ theorem allStartSelf_of (hLie : ProjLieSelfSt) : AllStartSelfSt := by
     rfl
   · intro c
     show (if 1 = 1 then w c else b 1 c) = w c
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
 
 end Formalism.L2.FormalSeriesBounds
 

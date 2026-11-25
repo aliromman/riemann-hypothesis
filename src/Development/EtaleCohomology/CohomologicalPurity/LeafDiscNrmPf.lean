@@ -8,8 +8,9 @@ public import Development.EtaleCohomology.TateTwists.EtaleChainCochainExistsOfEv
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.CohomologicalPurity.LeafDiscPf, Development.EtaleCohomology.CohomologicalPurity.LeafDiscNrmPf
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafDiscPf
+@[expose] public section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafDiscPf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC CochainComplex.HomComplex
 
 namespace LateralTheory.CohomologicalPurity.Cl.DiscPf
@@ -63,7 +64,7 @@ def cl (K : Cx R) (n : ℤ) (P : PSh) (a : (free R).obj P ⟶ K.X n) : Cohomolog
   if ha : a ≫ K.d n (n + 1) = 0 then CohomologyClass.mk (cz P a ha) else 0
 
 theorem cl_eq {K : Cx R} {n : ℤ} (P : PSh) (a : (free R).obj P ⟶ K.X n) (ha : a ≫ K.d n (n + 1) = 0) :
-    cl K n P a = CohomologyClass.mk (cz P a ha) := dif_pos ha
+    cl K n P a = CohomologyClass.mk (cz P a ha) := dite_eq_left ha
 
 theorem cl_add {K : Cx R} {n : ℤ} (P : PSh) (a b : (free R).obj P ⟶ K.X n) (ha : a ≫ K.d n (n + 1) = 0)
     (hb : b ≫ K.d n (n + 1) = 0) : cl K n P (a + b) = cl K n P a + cl K n P b := by
@@ -153,6 +154,7 @@ theorem LeafDisc_of (hN : LeafDiscNrm) : LeafDisc := by
   abel
 
 end LateralTheory.CohomologicalPurity.Cl
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafDiscNrmPf

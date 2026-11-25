@@ -1,5 +1,6 @@
 module
 
+import Formalism.SharpRestriction.LevelLetterCocycles.NatCastEqZeroOfNotDvd
 public import Mathlib.NumberTheory.Padics.PadicVal.Basic
 public import Mathlib.RingTheory.Valuation.Basic
 public import Mathlib.Algebra.Polynomial.AlgebraMap
@@ -20,8 +21,9 @@ import Mathlib.Algebra.Order.Star.Int
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.LeValOneAddPowSub, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.SmulEqZeroOfAevalProd, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.StepIi, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.CoefStepOf, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.CoefStep, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.StepOneGG, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ExistsLiftMapEqPrimePowSmul
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.LeValOneAddPowSub
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.LeValOneAddPowSub
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.FrobeniusPowerSeries
 
@@ -34,11 +36,7 @@ theorem zero_lt_one' : (0 : WithTop ℚ) < 1 := by exact_mod_cast (zero_lt_one :
 theorem one_lt_two' : (1 : WithTop ℚ) < 1 + 1 := by exact_mod_cast (by norm_num : (1 : ℚ) < 1 + 1)
 
 theorem natCast_nonneg (n : ℕ) : 0 ≤ v (n : LL) := by
-  induction n with
-  | zero => rw [Nat.cast_zero, AddValuation.map_zero]; exact le_top
-  | succ n ih =>
-    rw [Nat.cast_succ]
-    exact AddValuation.map_le_add v ih (by rw [AddValuation.map_one])
+  apply _root_.Formalism.MainNotions.UnusedSlot80.LTE.natCast_nonneg <;> assumption
 
 theorem intCast_nonneg (z : ℤ) : 0 ≤ v (z : LL) := by
   obtain ⟨n, rfl | rfl⟩ := Int.eq_nat_or_neg z
@@ -285,6 +283,7 @@ theorem cc_assoc {LL O : Type*} [Field LL] [CommRing O] [Algebra O LL] (v : AddV
   rw [map_mul, ← hXL, hw0, hYL, mul_div_cancel₀ _ hXne]
 
 end Formalism.MainNotions.N.FrobeniusPowerSeries
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.SmulEqZeroOfAevalProd

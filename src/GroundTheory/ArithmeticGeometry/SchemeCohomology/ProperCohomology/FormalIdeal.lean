@@ -129,7 +129,7 @@ end Image
 end GroundTheory.Arith.SchemeCoh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.FormalIdeal
+@[expose] public section -- clump member: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.FormalIdeal
 
 set_option maxSynthPendingDepth 1
 
@@ -139,6 +139,7 @@ open AlgebraicGeometry CategoryTheory Opposite TopologicalSpace Limits
 
 universe u
 
+noncomputable section
 
 variable {X : Scheme.{u}}
 
@@ -325,12 +326,7 @@ theorem quotPowπ_app_eq_zero_iff {V : X.Opens} (hV : IsAffineOpen V) (n : ℕ) 
 
 end Qcoh
 
-section Coherent
-
-variable {F}
-
-end Coherent
-
+end
 
 end GroundTheory.Arith.SchemeCoh
 

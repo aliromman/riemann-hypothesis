@@ -250,8 +250,9 @@ theorem ratio_span_cotangent : ∀ (X : Scheme.{0}) (p : X ⟶ Sp ℂ) (N : ℕ)
 end GlobalTheory.EtProj.RatSpan
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsGenericForms
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsGenericForms
 
+noncomputable section
 
 open TopologicalSpace
 
@@ -341,15 +342,8 @@ theorem Lm_apply (hp : ι ≫ PSpace.str ℂ N = p) (c : Fin (N + 1) → ℂ) :
 
 end Cot
 
-section Range
-
-variable {X : Scheme.{0}} {p : X ⟶ Sp ℂ} (ι : X ⟶ PSpace ℂ N) (g₀ : MvPolynomial (Fin (N + 1)) ℂ)
-  (hg₀ : g₀ ∈ ProjSpace.grading ℂ N 1) {y : CxPts p (RingHom.id ℂ)}
-  (hy : y ∈ CxPts.ptsIn p (RingHom.id ℂ) (fOpen ι g₀))
-
-end Range
-
 end GlobalTheory.EtProj.Generic
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsFormsVanishingComplexPointsFullJets

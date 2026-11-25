@@ -58,8 +58,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ExistsRecordDat, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.OffOfNotMem, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MoveStep
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ExistsRecordDat
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ExistsRecordDat
 
+noncomputable section
 
 namespace GlobalTheory.LvT.Built.Inh
 
@@ -72,8 +73,8 @@ theorem val_tauAt {X : Fields} {Pr : Primes X} (hPr : Pr.Ok) (u : Pr.Word) (hX :
     X.emb (tauAt hPr u w P) (if s then x else star x) ∈ GlobalTheory.LvT.Inh.valO w ↔ P.1.valuation X.E x ≤ 1 := by
   rw [GlobalTheory.LvT.Inh.mem_valO_of_below (X.emb (tauAt hPr u w P)) w (pullW (tauAt hPr u w P) w) (fun _ => Iff.rfl), GlobalTheory.LvT.Inh.mem_valO]
   by_cases h : s = true
-  · rw [if_pos h, show pullW _ w = P.1 from seesP_tauAt hPr u hX (hs.1 h) P]
-  · rw [if_neg h, show pullW _ w = conjPrime₂ P.1 from seesPbar_tauAt hPr u hX hw (mt hs.2 h) P,
+  · rw [ite_eq_left h, show pullW _ w = P.1 from seesP_tauAt hPr u hX (hs.1 h) P]
+  · rw [ite_eq_right h, show pullW _ w = conjPrime₂ P.1 from seesPbar_tauAt hPr u hX hw (mt hs.2 h) P,
       GlobalTheory.CharVal.valuation_conjP, star_star]
 
 local instance starHost (B : Base) : StarRing B.host.E := B.fields.starE
@@ -113,6 +114,7 @@ theorem sees_ofOk (X : PreX B.toPre) (I : ChainIn B.fields.E B.fields.K B.fields
   exact (iff_of_eq (congrArg (fun τ => B.fields.emb τ (if Z.seenP w then x else star x) ∈ GlobalTheory.LvT.Inh.valO w) (eZ w P))).trans h2
 
 end GlobalTheory.LvT.Built.Inh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.OffOfNotMem

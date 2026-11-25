@@ -10,8 +10,6 @@ import Mathlib.Tactic.TypeStar
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.NumStandardTableEqCardMonotone
 
-set_option maxSynthPendingDepth 1
-
 namespace GroundTheory.Heights₂.Heights.RestTerms.YoungDiagramCombinatorics
 
 open MvPolynomial Finset
@@ -109,8 +107,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PHookTableauCount
 
-set_option maxSynthPendingDepth 1
-
 namespace GroundTheory.Heights₂.Heights.RestTerms
 
 open Finset
@@ -130,7 +126,7 @@ theorem vandermondeOf_succ {R : Type*} [CommRing R] {n : ℕ} (v : Fin (n + 1) �
     simp [Fin.succ_pos]
   · refine Finset.prod_congr rfl fun i _ => ?_
     rw [Fin.prod_univ_succ]
-    simp only [Fin.succ_lt_succ_iff, Fin.not_lt_zero, if_false, one_mul]
+    simp only [Fin.succ_lt_succ_iff, Fin.not_lt_zero, ite_false, one_mul]
     rw [← Finset.prod_filter, Finset.filter_lt_eq_Ioi]
 
 theorem numStandardTable_zero (m : ℕ) : numStandardTable (fun _ : Fin m => (0 : ℕ)) = 1 := by
@@ -183,7 +179,7 @@ theorem numStandardTable_hookShape_succ (h : FrobeniusDimensionFormula.Statement
     intro j
     have := j.isLt
     unfold hookShape
-    rw [Fin.val_succ, if_neg (by omega), if_pos (by omega)]
+    rw [Fin.val_succ, ite_eq_right (by omega), ite_eq_left (by omega)]
     omega
   have hsum : ∑ i, hookShape (l + 1) k l i = k := by
     rw [Fin.sum_univ_succ]

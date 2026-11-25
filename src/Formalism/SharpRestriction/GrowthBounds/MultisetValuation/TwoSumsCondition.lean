@@ -13,8 +13,9 @@ import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.IntRPsubst
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.ExistsAtPiG1EqCPowMulIntegralSeries, Formalism.SharpRestriction.GrowthBounds.MultisetValuation.TwoSumsCondition
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.ExistsAtPiG1EqCPowMulIntegralSeries
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.ExistsAtPiG1EqCPowMulIntegralSeries
 
+noncomputable section
 
 namespace Formalism.MainNotions.FormalGroupSystem.Pf
 
@@ -42,9 +43,9 @@ theorem th_wt_AA (vp : K') (hvp : vp ^ (p ^ 2 - 1) = (p : K')) {x y : Fin 2} (hx
   by_cases hd : d = Finsupp.single x 1 + Finsupp.single y p
   · have hx : d x = (p ^ 2) ^ 0 := by rw [hd]; simp [hxy.symm]
     have hy : d y = p * (p ^ 2) ^ 0 := by rw [hd]; simp [hxy]
-    rw [if_pos hd, Formalism.InvariantFactorPaths.G7.coeff_AA_of K' hp2 le_rfl hx hy]
+    rw [ite_eq_left hd, Formalism.InvariantFactorPaths.G7.coeff_AA_of K' hp2 le_rfl hx hy]
     exact ⟨0, (Rp p K' vp).zero_mem, by simp⟩
-  · rw [if_neg hd, sub_zero]
+  · rw [ite_eq_right hd, sub_zero]
     by_cases h : MvPowerSeries.coeff d (AA K' p x y) = 0
     · exact ⟨0, (Rp p K' vp).zero_mem, by rw [h]; simp⟩
     · obtain ⟨i, j, hij, hx, hy⟩ := Formalism.InvariantFactorPaths.G7.coeff_AA_ne_zero h
@@ -131,9 +132,11 @@ theorem th_map_Gser {p : ℕ} {K K2 : Type} [Field K] [Field K2] (φ : K →+* K
 
 end Formalism.MainNotions.FormalGroupSystem.Pf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.TwoSumsCondition
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.TwoSumsCondition
 
+noncomputable section
 
 namespace Formalism.MainNotions.FormalGroupSystem.Pf
 
@@ -173,7 +176,7 @@ private theorem coeff_pow_mem_of_lower_coeff_mem {K : Type} [Field K] (R : Subri
   · obtain ⟨i, hi, hli⟩ := hz
     rw [Finset.prod_eq_zero hi (by rw [hli, PowerSeries.coeff_zero_eq_constantCoeff_apply, h0])]
     exact Subring.zero_mem _
-  · push_neg at hz
+  · push Not at hz
     refine Subring.prod_mem _ fun i hi => ih _ ?_
     obtain ⟨j, hj, hji⟩ : ∃ j ∈ range k, j ≠ i := by
       by_cases h : i = 0

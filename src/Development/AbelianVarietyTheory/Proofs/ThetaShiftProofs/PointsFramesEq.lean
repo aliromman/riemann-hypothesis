@@ -72,13 +72,11 @@ import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ObjMapUniqueOfIs
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsArcGenericFibrePointsBaseChange, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsAbelianTripleIsoOfSamePointValues, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.TripleIsoRespectsLevelRatioPoints, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.PointFamiliesEqOfValuesLevelsUniversalFamily, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ThetaSumShift, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.PointsFramesEq
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsArcGenericFibrePointsBaseChange
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.ArcPts
 open scoped CategoryTheory.Obj LaurentSeries PowerSeries
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsArcGenericFibrePointsBaseChange
 
 namespace GlobalTheory.ArcBaseChange
 
@@ -334,7 +332,13 @@ theorem exists_fpts_baseChange : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
 end GlobalTheory.ArcBaseChange
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsAbelianTripleIsoOfSamePointValues
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsAbelianTripleIsoOfSamePointValues
+
+noncomputable section
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.ArcPts
+open scoped CategoryTheory.Obj LaurentSeries PowerSeries
 
 namespace GlobalTheory.FamilyIso
 
@@ -375,8 +379,8 @@ theorem inSpan_of_comp {f : X ⟶ Y} {H : LB X} {I K : Type} [Fintype I] [Fintyp
   simp only [map_sum, Finset.sum_mul]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun a _ => ?_
-  rw [Finset.sum_eq_single (e a) (fun b _ hb => by rw [if_neg (Ne.symm hb), map_zero, zero_mul]) (by simp),
-    if_pos rfl]
+  rw [Finset.sum_eq_single (e a) (fun b _ hb => by rw [ite_eq_right (Ne.symm hb), map_zero, zero_mul]) (by simp),
+    ite_eq_left rfl]
 
 theorem valF_const (c : F) : valF (𝟙 (Sp F)) ⊤ ((Scheme.ΓSpecIso (CommRingCat.of F)).inv.hom c) = c := by
   rw [valF_eq le_rfl]
@@ -550,6 +554,13 @@ theorem exists_sabMap_of_same_values : Out.Laws → Out.Laws2 → ∀ (E : Type)
 
 end GlobalTheory.FamilyIso
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.ArcPts
+open scoped CategoryTheory.Obj LaurentSeries PowerSeries
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.TripleIsoRespectsLevelRatioPoints
 
@@ -857,7 +868,7 @@ theorem points_frames_eq (L₁ : Out.Laws) (L₂ : Out.Laws2) {E : Type} [Field 
   let φ : ∀ j, (Σ α : A.X, A.Theta j α) → A.V → F := fun j i v =>
     if h : j = 0 then 0 else haveI : NeZero j := ⟨h⟩; f (A.FSum j i.1 i.2 v)
   have hf : ∀ (j : ℕ) [NeZero j] i v, φ j i v = f (A.FSum j i.1 i.2 v) := fun j _ i v =>
-    dif_neg (NeZero.ne j)
+    dite_eq_right (NeZero.ne j)
   have hg : ∀ (j : ℕ) [NeZero j] i v, φ j i v = g (A.FSum j i.1 i.2 v) := fun j _ i v =>
     (hf j i v).trans (hfg _ (fsum_mem A j _ _ i.2.2 v))
   obtain ⟨Θ₁, x₁, l₁⟩ := _root_.GlobalTheory.ArcBaseChange.exists_fpts_baseChange E H Xo.X A Xo.univ.t y Φ F f φ hA hf

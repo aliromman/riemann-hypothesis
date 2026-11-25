@@ -13,19 +13,14 @@ import GroundTheory.GlobalFields.TateThesis.DegreeOneDensity
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.GlobalFields.Artin.InflationTower, GroundTheory.GlobalFields.ComplexMultiplication.HilbertClassFieldArtin
 
-@[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.Artin.InflationTower
+@[expose] public section -- clump member: GroundTheory.GlobalFields.Artin.InflationTower
 
+noncomputable section
 
 open IsDedekindDomain NumberField
 open scoped Pointwise
 
 namespace GroundTheory.Global
-
-section Average
-
-variable {G H : Type*} [Group G] [Group H]
-
-end Average
 
 variable {K F L : Type*} [Field K] [NumberField K] [Field F] [NumberField F] [Field L]
   [NumberField L] [Algebra K F] [Algebra K L] [Algebra F L] [IsScalarTower K F L]
@@ -58,6 +53,7 @@ theorem IsArithFrobAt.restrictNormalHom {φ : Gal(L/K)} {Q : Ideal (𝓞 L)}
   exact h _
 
 end GroundTheory.Global
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.HilbertClassFieldArtin

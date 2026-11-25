@@ -8,12 +8,11 @@ import Mathlib.Algebra.Order.Star.Real
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CarrierGrids, Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.GridsRichITc
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CarrierGrids
 
+noncomputable section
 
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CarrierGrids
 
 namespace Formalism.L2.SG.Pf.CarrierSz
 
@@ -91,7 +90,7 @@ theorem richAt_ch (c : Cfg) (l N R : ℕ) (hN : 3 ≤ N) (hlen : 6 * (N : ℝ) ^
   have hmem : ∀ m, 1 ≤ m → m ≤ max 1 R → ∀ j : Fin (m + 1), Formalism.SA.C.chebPt α (α + ℓ) m j ∈ gridCh c l N R a := by
     intro m hm1 hm2 j
     unfold gridCh
-    rw [if_pos ⟨ha1, haN⟩]
+    rw [ite_eq_left ⟨ha1, haN⟩]
     refine Finset.mem_biUnion.mpr ⟨m, Finset.mem_Icc.mpr ⟨hm1, hm2⟩, Finset.mem_image.mpr ⟨j, Finset.mem_univ _, ?_⟩⟩
     rw [show α + ℓ = α + ((c.Del / 2 - c.v l) - (5 / 2 - c.v l)) / (6 * N) - 1 by rw [hℓ]; ring]
   rcases Nat.eq_zero_or_pos n with rfl | hn0
@@ -270,8 +269,12 @@ end GridsChS
 
 end Formalism.L2.SG.Pf.CarrierSz
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.GridsRichITc
+
+
+open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S
 open scoped Matrix
 
 namespace Formalism.L2.SG.Pf.CarrierT

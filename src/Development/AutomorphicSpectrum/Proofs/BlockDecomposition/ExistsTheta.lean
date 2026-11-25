@@ -17,8 +17,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartBaseChangeMapUnique, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartEmptyBaseChange, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartExtendBaseChange, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartFormsBaseChange, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartFormsBaseChangeStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartSingletonBaseChange, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KaehlerFreeConeRing, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeFormsMapInjective, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExPOfCompatibleEquiv, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinsetSystemInjectiveExtension, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinsetSystemScalarTowerExt, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MonLNegOneEMul, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MonomialFormsBasis, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PmExactnessOfExP, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsTheta
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartBaseChangeMapUnique
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartBaseChangeMapUnique
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.SurjectionOntoH4.ThetaUnique
 open CrystallineSemistableComparison.Onto GlobalTheory.CompanionTheory.SurjectionOntoH4
 
@@ -54,7 +55,7 @@ theorem poly_tau_pow (S : Finset (Fin d)) (N : ℕ) :
     ∃ (g : Gam n d) (hg : g ∈ (cone S : AddSubmonoid (Gam n d))), (∀ e, g e = N) ∧
       poly n K S (tau K n d ^ N) = mon K g hg := by
   refine ⟨N • ∑ e, oneE e, (cone S).nsmul_mem ((cone S).sum_mem fun e _ => oneE_mem S e) N, fun e => ?_, ?_⟩
-  · simp only [Pi.smul_apply, Finset.sum_apply, oneE, Pi.single_apply, Finset.sum_ite_eq, Finset.mem_univ, if_true, nsmul_eq_mul, mul_one]
+  · simp only [Pi.smul_apply, Finset.sum_apply, oneE, Pi.single_apply, Finset.sum_ite_eq, Finset.mem_univ, ite_true, nsmul_eq_mul, mul_one]
   · rw [map_pow, tau, map_prod]
     simp only [poly_X]
     rw [mon_prod, GlobalTheory.CompanionTheory.SurjectionOntoH4.Away.mon_pow]
@@ -148,6 +149,7 @@ theorem theta_unique {S T : Finset (Fin d)} (θ₁ θ₂ : R0 K n d S →ₐ[K] 
   rw [mul_sub, e₁, e₂, sub_self]
 
 end GlobalTheory.CompanionTheory.SurjectionOntoH4.ThetaUnique
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartEmptyBaseChange
@@ -340,8 +342,9 @@ theorem theta_loc : ∀ {K : Type} [Field K] {n d : ℕ} {A : Type} [CommRing A]
 end GlobalTheory.CompanionTheory.SurjectionOntoH4.ThetaLoc
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartFormsBaseChange
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartFormsBaseChange
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.SurjectionOntoH4
 open CrystallineSemistableComparison.Onto
 namespace RelBC
@@ -587,7 +590,7 @@ theorem relOm_le_span {K R₀ R : Type} [CommRing K] [CommRing R₀] [CommRing R
       by_cases hi : i = k
       · subst hi
         simpa using (hJ2 _ hk).1
-      · simp only [if_neg hi, Set.image_univ]
+      · simp only [ite_eq_right hi, Set.image_univ]
         exact hD _)
     rw [one_smul] at h3
     exact T.smul_mem g₀ h3
@@ -673,6 +676,7 @@ theorem isBaseChange_psi {K : Type} [Field K] {n d : ℕ} {A : Type} [CommRing A
     (fun v => v.2) (psi C θ hθ a) (fun _ => rfl)
 
 end GlobalTheory.CompanionTheory.SurjectionOntoH4
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartFormsBaseChangeStatement
@@ -874,8 +878,9 @@ theorem theta_one {K : Type} [Field K] {n d : ℕ} {A : Type} [CommRing A] [Alge
 end GlobalTheory.CompanionTheory.SurjectionOntoH4.ThetaOne
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KaehlerFreeConeRing
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KaehlerFreeConeRing
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.SurjectionOntoH4.FreeOm
 open CrystallineSemistableComparison.Onto GlobalTheory.CompanionTheory.SurjectionOntoH4
 
@@ -944,7 +949,7 @@ theorem exists_add_nsmul_mem {k : Fin d} {S : Finset (Fin d)} (hk : k ∈ S) (g 
       Finset.single_le_sum (f := fun j => (g (Sum.inr j)).natAbs) (fun _ _ => Nat.zero_le _) (Finset.mem_univ j)
     simp only [Pi.add_apply, Pi.smul_apply, cS_inr k S hne]
     by_cases hS : j ∈ S
-    · simp only [hS, if_true, nsmul_eq_mul, mul_one]
+    · simp only [hS, ite_true, nsmul_eq_mul, mul_one]
       omega
     · simpa [hS] using hg.2.1 j hS
   · rw [tdeg_add]
@@ -983,6 +988,7 @@ theorem free_om : ∀ {K : Type} [Field K] {n d : ℕ} (S : Finset (Fin d)),
   · exact free_of_mem hk
 
 end GlobalTheory.CompanionTheory.SurjectionOntoH4.FreeOm
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeFormsMapInjective
@@ -1125,8 +1131,9 @@ theorem exP_of_addEquiv : ∀ {ι : Type} [DecidableEq ι] (M N : Finset ι → 
 end GlobalTheory.CompanionTheory.SurjectionOntoH4
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinsetSystemInjectiveExtension
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinsetSystemInjectiveExtension
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.SurjectionOntoH4.Exc
 open CrystallineSemistableComparison.Onto GlobalTheory.CompanionTheory.SurjectionOntoH4
 
@@ -1189,9 +1196,9 @@ def contr {n : ℕ} (C : (Fin (n + 1) → ι) → W) (a : ∀ l, good' l → ι)
     (fun l => if h : good' l then b.repr (C (Fin.cons (a l h) i)) l else 0) (by
       intro l hl
       by_cases h : good' l
-      · rw [dif_pos h] at hl
+      · rw [dite_eq_left h] at hl
         exact Finset.mem_biUnion.2 ⟨a l h, Finset.mem_univ _, Finsupp.mem_support_iff.2 hl⟩
-      · rw [dif_neg h] at hl
+      · rw [dite_eq_right h] at hl
         exact absurd rfl hl))
 
 open Classical in
@@ -1206,13 +1213,13 @@ theorem contr_sup {n : ℕ} (C : (Fin (n + 1) → ι) → W) (hC : ∀ i, Sup b 
   intro l hl
   rw [contr_apply] at hl
   by_cases h : good' l
-  · rw [dif_pos h] at hl
+  · rw [dite_eq_left h] at hl
     obtain ⟨-, hT⟩ := hC _ l hl
     refine ⟨h, fun x hx => ?_⟩
     rcases mem_ent_cons (hT hx) with rfl | hx'
     · exact absurd hx (ha l h)
     · exact hx'
-  · rw [dif_neg h] at hl
+  · rw [dite_eq_right h] at hl
     exact absurd rfl hl
 
 theorem homotopy {n : ℕ} (C : (Fin (n + 1) → ι) → W) (hC : ∀ i, Sup b good' T (ent i) (C i))
@@ -1224,7 +1231,7 @@ theorem homotopy {n : ℕ} (C : (Fin (n + 1) → ι) → W) (hC : ∀ i, Sup b g
   rw [coord_sum]
   simp only [contr_apply]
   by_cases h : good' l
-  · simp only [dif_pos h]
+  · simp only [dite_eq_left h]
     have hz := congrArg (fun w => b.repr w l) (hZ (Fin.cons (a l h) i))
     rw [Fin.sum_univ_succ] at hz
 
@@ -1234,7 +1241,7 @@ theorem homotopy {n : ℕ} (C : (Fin (n + 1) → ι) → W) (hC : ∀ i, Sup b g
     neg_smul, Finset.sum_neg_distrib, map_neg, Finsupp.coe_neg, Pi.neg_apply] at hz
     rw [← sub_eq_add_neg, sub_eq_zero] at hz
     exact hz.symm
-  · simp only [dif_neg h, smul_zero, Finset.sum_const_zero]
+  · simp only [dite_eq_right h, smul_zero, Finset.sum_const_zero]
     by_contra hne
     exact h (hC i l (Ne.symm hne)).1
 
@@ -1314,6 +1321,7 @@ theorem exP_of_basis : ∀ {K : Type} [CommRing K] {ι : Type} [DecidableEq ι] 
 end Main
 
 end GlobalTheory.CompanionTheory.SurjectionOntoH4.Exc
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinsetSystemScalarTowerExt

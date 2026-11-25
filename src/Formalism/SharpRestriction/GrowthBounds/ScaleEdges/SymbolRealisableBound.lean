@@ -10,8 +10,9 @@ import Std.Tactic.BVDecide.Normalize.BitVec
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.ScaleEdges.FlatSrc, Formalism.SharpRestriction.GrowthBounds.ScaleEdges.SymbolRealisableBound
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ScaleEdges.FlatSrc
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.ScaleEdges.FlatSrc
 
+noncomputable section
 
 namespace Formalism.MainNotions.Pf14
 
@@ -26,7 +27,7 @@ theorem isFlat_flW {n' m : ℕ} (d : Fin n' → ℕ) : IsFlat (m := m) (vecE n')
   by_cases hs : Even s.val
   · simp [lamAt, vecE, flW, hs]
   · funext i
-    simp only [lamAt, vecE, flW, hs, if_false, decide_false, Bool.false_eq_true]
+    simp only [lamAt, vecE, flW, hs, ite_false, decide_false, Bool.false_eq_true]
     by_cases hi : i = Fin.last m
     · subst hi
       simp
@@ -122,6 +123,7 @@ theorem flatSrc (hEP : EdgePlane) (p n' : ℕ) [Fact p.Prime] (W Qq O Kf : Type)
       ((hΘ.2 g' hg' e' hb' F' (o + c')).mp (hFo g' hg' hrat))
 
 end Formalism.MainNotions.Pf14
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ScaleEdges.SymbolRealisableBound

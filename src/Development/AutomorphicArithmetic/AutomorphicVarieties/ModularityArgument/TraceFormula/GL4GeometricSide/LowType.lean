@@ -59,8 +59,9 @@ import Mathlib.Topology.Algebra.Star.Unitary
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GL4GeometricSide.LowTypeA, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GL4GeometricSide.LowTypeB, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GL4GeometricSide.LowType
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GL4GeometricSide.LowTypeA
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GL4GeometricSide.LowTypeA
 
+noncomputable section
 
 open Finset PositivityTheory.RgBcC.RealD PositivityTheory.Rg.Cz
 
@@ -92,7 +93,7 @@ theorem cone_root {a b : Fin n} (h : a < b) : Cone (ev a - ev b) := by
   refine ⟨fun c d => if c = a ∧ d = b then 1 else 0, fun c d hcd => ?_, fun x => ?_⟩
   · by_cases h1 : c = a ∧ d = b
     · rw [h1.1, h1.2]; exact h
-    · exact absurd (if_neg h1) hcd
+    · exact absurd (ite_eq_right h1) hcd
   · rw [sum_eq_single a, sum_eq_single b]
     · simp [ev]
     · intro d _ hd; simp [hd]
@@ -188,6 +189,7 @@ theorem cone_pairs {α : Type} (T : Finset α) (r : α → Fin n × Fin n) (hr :
   · rw [sub_self]; exact cone_zero
 
 end UpperTheory.V.Z.GSp4Splitting.Low
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GL4GeometricSide.LowTypeB
@@ -457,7 +459,7 @@ theorem UpperTheory.V.Z.GSp4Splitting.lowType :
       · have := hlam hij.le
         have : (i : ℕ) < j := hij
         omega
-      · simp only [infOf, if_true]
+      · simp only [infOf, ite_true]
         push_cast
         ring
     · by_cases h2 : τ = barE E w.embedding
@@ -467,7 +469,7 @@ theorem UpperTheory.V.Z.GSp4Splitting.lowType :
         · have := hlam hij.le
           have : (i : ℕ) < j := hij
           omega
-        · simp only [infOf, Bool.false_eq_true, if_false]
+        · simp only [infOf, Bool.false_eq_true, ite_false]
           push_cast
           ring
       · obtain ⟨l, hl, hl'⟩ := GlobalTheory.CompanionTheory.RgCz.charInt_at π hr τ

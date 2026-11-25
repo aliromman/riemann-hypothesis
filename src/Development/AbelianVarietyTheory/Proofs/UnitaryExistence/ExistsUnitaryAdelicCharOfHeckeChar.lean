@@ -52,10 +52,9 @@ import Mathlib.Tactic.Linter.Style
 
 open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Pj
 open scoped TensorProduct Matrix Topology
+open GlobalTheory.Member
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsRootNearOne
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.Member
 
 namespace GlobalTheory.Member
 
@@ -80,8 +79,6 @@ end GlobalTheory.Member
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsUnitaryAdelicCharOfHeckeChar
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.Member
 
 namespace GlobalTheory.Member
 

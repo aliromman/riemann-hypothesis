@@ -14,8 +14,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsSelfdualMeasureHermitianAdeles, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsSelfdualMeasureHermitianTuples, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerCovolume.SdEx
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsSelfdualMeasureHermitianAdeles
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsSelfdualMeasureHermitianAdeles
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SW.HermCoord
 
@@ -340,8 +341,8 @@ def hermEquiv (h2 : (2 : F) ≠ 0) (hb0 : b 0 = 1) (hσ : σ (b 1) = - b 1) (n :
     have hc : ∀ k, Continuous fun S : HermR R σ n => rc R b (S.1 p.1 p.2) k := fun k =>
       (continuous_rc R b k).comp (continuous_subtype_val.matrix_elem _ _)
     by_cases h : p.1 ≤ p.2
-    · simpa only [toX, h, if_true] using hc 0
-    · simpa only [toX, h, if_false] using hc 1
+    · simpa only [toX, h, ite_true] using hc 0
+    · simpa only [toX, h, ite_false] using hc 1
   continuous_invFun := Continuous.subtype_mk (continuous_matrix fun i j => by
     refine continuous_mk R b ?_ ?_
     · split_ifs <;> exact continuous_apply _
@@ -395,6 +396,7 @@ theorem exists_sdHerm : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Nu
   exact hμ
 
 end GlobalTheory.CompanionTheory.SW.HermCoord
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsSelfdualMeasureHermitianTuples

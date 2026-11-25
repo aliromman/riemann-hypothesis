@@ -18,12 +18,12 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TermsFiniteAtPoint.Heis
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.DdSPowLeOne, Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.FrameOpFull, Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.LoopBFrame
 
--- clump: shared namespace opens
+section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.DdSPowLeOne
+@[expose] public section
 
+noncomputable section
 
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.DdSPowLeOne
 
 namespace Formalism.L2.S.Pv.ClassCounting
 
@@ -38,7 +38,7 @@ theorem psiF_f (e f : Fin r → S.V) (U U' : Matrix (Fin r) (Fin r) E) (hff : �
     (hef : ∀ a b, S.hT (e a) (f b) = if a = b then 1 else 0) (j : Fin r) :
     psiF e f U U' (f j) = ∑ c, U' c j • f c := by
   rw [psiF_apply]
-  simp only [hff, hef, zero_smul, Finset.sum_const_zero, add_zero, ite_smul, one_smul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [hff, hef, zero_smul, Finset.sum_const_zero, add_zero, ite_smul, one_smul, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   abel
 
 theorem levi_mem (Λ : Submodule (𝓞 E) S.V) (aa : Fin r → FractionalIdeal (nonZeroDivisors (𝓞 E)) E)
@@ -132,9 +132,16 @@ end D7
 
 end Formalism.L2.S.Pv.ClassCounting
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.FrameOpFull
+section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.FrameOpFull
+@[expose] public section
+
+noncomputable section
+
+open scoped Classical
 
 namespace Formalism.L2.S.Pv.ClassCounting
 
@@ -271,7 +278,7 @@ theorem frameOpFull (D : D7) (u : D.what₂.Word) (F0 : FlagG (VS D) D.R.rS ((Tu
             ⟨c, show c.1 < j from lt_of_lt_of_le (Fin.lt_def.mp h) (Nat.lt_succ_iff.mp hi), rfl⟩)
         · subst h
           simp [hUE, hUd1]
-        · simp [hUE, hUlo c i h, if_neg h.ne']
+        · simp [hUE, hUlo c i h, ite_eq_right h.ne']
       have := hsub hx
       rw [hnL]
       exact this
@@ -290,9 +297,14 @@ theorem frameOpFull (D : D7) (u : D.what₂.Word) (F0 : FlagG (VS D) D.R.rS ((Tu
 
 end Formalism.L2.S.Pv.ClassCounting
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.LoopBFrame
+
+
+open scoped Classical
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2
   Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopsFinal
 

@@ -471,8 +471,10 @@ theorem isSA_central [Finite Q] (z : MonoidAlgebra ℂ Q) (hz : z * z = z) (hc :
 end GlobalTheory.RowLev.GroupAlgPos
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsLiftFlagGroupInv
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsLiftFlagGroupInv
+@[expose] public section
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta GlobalTheory.Mem.Th MeasureTheory IsDedekindDomain NumberField Matrix
 open scoped TensorProduct
@@ -527,7 +529,7 @@ theorem integral_act (hμ : μ.IsHaarMeasure) (h𝓕 : IsFundamentalDomain (GQ V
     rw [h1, levChi_inv hκ, mul_inv_cancel_right, actG0, dite_eq_left hk, star_mul']
     ring
   · have hk' : ¬ ∃ κ, IsLevelLift V β L g⁻¹ κ := fun ⟨κ, h⟩ => hk ⟨κ⁻¹, by simpa using isLiftFlagGroup_inv h⟩
-    simp [actG0, dif_neg hk, dif_neg hk']
+    simp [actG0, dite_eq_right hk, dite_eq_right hk']
 
 theorem ipM_gaL (hP : GlobalTheory.Published.CuspRapidDecay) (hθ : IsInfFam θ) (hμ : μ.IsHaarMeasure) (h𝓕 : IsFundamentalDomain (GQ V) 𝓕 μ)
     (eG : G ≃* G0 L.Pg L.r) (c : G → ℂ) (hc : ∀ g, c g⁻¹ = star (c g)) {X Y : MMap M}
@@ -579,6 +581,8 @@ theorem eC_inv {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : Fam
 
 end GlobalTheory.ProjectorAdjoint
 
+end
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

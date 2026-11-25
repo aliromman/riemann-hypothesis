@@ -63,8 +63,9 @@ theorem schurFock_of_steps (hB : HaarU) (hC : SchurOrth) : PI.SchurFock := by
 end PI.WSF
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SchurOrthogonality.ConstructionA
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SchurOrthogonality.ConstructionA
 
+noncomputable section
 
 namespace PI.WSF
 
@@ -234,7 +235,7 @@ theorem evaluation_at_one : EvalOne := by
     rw [Finset.sum_subset hsub (fun d _ hd => by rw [mem_support_iff, not_not] at hd; simp [hd])]
     refine Finset.sum_congr rfl fun d hd => ?_
     by_cases hw : Finsupp.weight (Formalism.GradedWeylDivisibility.rowW N N) d = ν
-    · rw [hP, coeff_weightedHomogeneousComponent, if_pos hw]
+    · rw [hP, coeff_weightedHomogeneousComponent, ite_eq_left hw]
     · have hcol : Finsupp.weight (Formalism.GradedWeylDivisibility.colW N N) d = ν := hscol (mem_support_iff.mp hd)
       have hz : (∏ v ∈ d.support, ((1 : Matrix (Fin N) (Fin N) ℂ) v.1 v.2) ^ d v) = 0 := by
         by_contra hne
@@ -245,7 +246,7 @@ theorem evaluation_at_one : EvalOne := by
     rw [evA_fock_right s, evA_fock_right P]
     refine Finset.sum_congr rfl fun m hm => ?_
     have hw : Finsupp.weight (Formalism.GradedWeylDivisibility.rowW N N) m = ν := heRow (mem_support_iff.mp hm)
-    rw [hP, coeff_weightedHomogeneousComponent, if_pos hw]
+    rw [hP, coeff_weightedHomogeneousComponent, ite_eq_left hw]
   have hfce : ∀ e : MvPolynomial (Fin N × Fin N) ℂ,
       Formalism.REAL.fockF (c • e) e = c * Formalism.REAL.fockF e e := by
     intro e
@@ -264,6 +265,7 @@ theorem evaluation_at_one : EvalOne := by
   rw [h1, mul_one]
 
 end PI.WSF
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SchurOrthogonality.ConstructionB

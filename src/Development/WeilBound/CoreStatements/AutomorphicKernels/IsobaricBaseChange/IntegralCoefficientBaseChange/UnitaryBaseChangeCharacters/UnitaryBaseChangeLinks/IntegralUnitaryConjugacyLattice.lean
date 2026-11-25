@@ -343,10 +343,10 @@ theorem exists_mul_invol_eq_of_fixed_unit {R : Type} [CommRing R] [Finite R] [Is
     have hzI := hz I
     have hτzI := hτz I
     by_cases h1 : WellOrderingRel I (tI I)
-    · have e1 : r I = x := if_pos h1
+    · have e1 : r I = x := ite_eq_left h1
       have e2 : r (tI I) = 1 := by
         simp only [r, htt]
-        rw [if_neg (asymm_of WellOrderingRel h1), if_pos h1]
+        rw [ite_eq_right (asymm_of WellOrderingRel h1), ite_eq_left h1]
       rw [e1] at hzI
       rw [e2, map_one] at hτzI
       refine ⟨?_, fun hzm => hnot I hx (by simpa using I.asIdeal.sub_mem hzm hzI)⟩
@@ -354,10 +354,10 @@ theorem exists_mul_invol_eq_of_fixed_unit {R : Type} [CommRing R] [Finite R] [Is
       rw [this]
       exact I.asIdeal.add_mem (I.asIdeal.mul_mem_right _ hzI) (I.asIdeal.mul_mem_left _ hτzI)
     · by_cases h2 : WellOrderingRel (tI I) I
-      · have e1 : r I = 1 := by simp only [r]; rw [if_neg h1, if_pos h2]
+      · have e1 : r I = 1 := by simp only [r]; rw [ite_eq_right h1, ite_eq_left h2]
         have e2 : r (tI I) = x := by
           simp only [r, htt]
-          rw [if_pos h2]
+          rw [ite_eq_left h2]
         rw [e1] at hzI
         rw [e2, hxτ] at hτzI
         refine ⟨?_, fun hzm => hnot I isUnit_one (by simpa using I.asIdeal.sub_mem hzm hzI)⟩
@@ -365,7 +365,7 @@ theorem exists_mul_invol_eq_of_fixed_unit {R : Type} [CommRing R] [Finite R] [Is
         rw [this]
         exact I.asIdeal.add_mem (I.asIdeal.mul_mem_right _ hzI) hτzI
       · have hI := hfix_of I h1 h2
-        have e1 : r I = a I := by simp only [r]; rw [if_neg h1, if_neg h2]
+        have e1 : r I = a I := by simp only [r]; rw [ite_eq_right h1, ite_eq_right h2]
         rw [e1] at hzI
         rw [hI, e1] at hτzI
         have haI := ha I hI
@@ -549,12 +549,12 @@ theorem exists_mul_conj_sub_mem_piPow_one : ∀ (L : Type) [Field L] [Valued L (
 end GlobalTheory.NormEq
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.IntegralCoefficientBaseChange.UnitaryBaseChangeCharacters.UnitaryBaseChangeLinks.IntegralUnitaryConjugacyLattice
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.IntegralCoefficientBaseChange.UnitaryBaseChangeCharacters.UnitaryBaseChangeLinks.IntegralUnitaryConjugacyLattice
 
 open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT
 open scoped Classical TensorProduct
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
+noncomputable section
 
 namespace GlobalTheory.NormEq
 

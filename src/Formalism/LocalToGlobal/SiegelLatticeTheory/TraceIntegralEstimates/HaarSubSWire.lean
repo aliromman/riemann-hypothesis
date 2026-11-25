@@ -543,8 +543,9 @@ theorem stepSubG_of_MN (hN : MeasN) (hQ : NuQSFinite) : Formalism.L2.SG.RealObj.
 end Formalism.L2.S.Pv.HaarSubS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureInverseContraction.ConjSubMulVec
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureInverseContraction.ConjSubMulVec
 
+noncomputable section
 
 open Matrix
 
@@ -606,7 +607,7 @@ theorem span_facts (k : ℕ) {v : Fin n → ℂ} (hv : v ∈ spanLt e k) :
   | mem x hx =>
     obtain ⟨d, hd, rfl⟩ := hx
     refine ⟨fun b hb => ?_, fun b => hG.ee b d, Pw_e hG d⟩
-    rw [fe hG, if_neg]
+    rw [fe hG, ite_eq_right]
     rintro rfl
     exact (not_lt.2 hb) hd
   | zero => exact ⟨fun b _ => hJ_zero ε _, fun b => hJ_zero ε _, Pw_zero⟩
@@ -770,6 +771,7 @@ theorem entry_bound (t : Fin r → ℝ) (lam : ℝ) (hlam : 1 ≤ lam) (ht1 : �
 end Tri
 
 end PI.NMeasInv.UnitaryGroupMassFormula
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureInverseContraction.MeasureContractionFormula

@@ -210,7 +210,10 @@ end GlobalTheory.TypeSum.GKCoef
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.DiscreteSeriesGKMapValuesEqGeneralisedCoefficien
+section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.DiscreteSeriesGKMapValuesEqGeneralisedCoefficien
+@[expose] public section
+
+noncomputable section
 
 open GlobalTheory.SmoothGlob GlobalTheory.LowTypeDetermined GlobalTheory.PointAtPlaceHom GlobalTheory.Mem.AutSpace GlobalTheory.TypeSum GlobalTheory.TypeSum.GrowthAtPlace Formalism.REAL
 
@@ -265,7 +268,7 @@ theorem values_eq_coef : ∀ {D : D7} (θ : D.what₂.Tau → (Ainf D.host.F ⊗
     else 0
   have rt_apply {h : Mx V.rank} (hh : h ∈ UJset ε) (F : Bd (Unit × UJset ε)) (i : Unit × UJset ε) :
       rt h F i = (wt N (i.2.1 * h) : ℂ) / wt N i.2.1 * F (i.1, ⟨i.2.1 * h, mul_mem_UJ i.2.2 hh⟩) := by
-    simp only [rt, dif_pos hh]
+    simp only [rt, dite_eq_left hh]
     rfl
   have modRep_rt : ModRep ε rt := by
     refine ⟨?_, fun a ha b hb => ?_, 1, N, fun g hg => ?_⟩
@@ -277,7 +280,7 @@ theorem values_eq_coef : ∀ {D : D7} (θ : D.what₂.Tau → (Ainf D.host.F ⊗
       simp only [mul_assoc]
       have := wt_ne N (i.2.1 * a)
       field_simp
-    · simp only [rt, dif_pos hg, one_mul]
+    · simp only [rt, dite_eq_left hg, one_mul]
       dsimp only [wcomp]
       exact LinearMap.mkContinuous_norm_le _ (wt_pos N g).le _
   have key : ∀ (w : H) (hw : IsKFin ε σ w), ∀ y ∈ UJset ε, ∀ i : Unit × UJset ε,
@@ -349,6 +352,8 @@ theorem values_eq_coef : ∀ {D : D7} (θ : D.what₂.Tau → (Ainf D.host.F ⊗
 
 end GlobalTheory.TypeSum.GKCoef
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.DiscreteSeriesGKMapValuesEqGeneralisedCoefficienStatement
@@ -914,7 +919,9 @@ end GlobalTheory.TypeSum.CoefRep
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.DiscreteSeriesCoeffSeriesOfKTypeProjections
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.DiscreteSeriesCoeffSeriesOfKTypeProjections
+
+noncomputable section
 
 namespace GlobalTheory.TypeSum.KSeries
 
@@ -955,10 +962,10 @@ def pad {α : Type} [Zero α] (q : ℕ → ℕ) (a : (i : ℕ) → Fin (q i) →
   fun p => if h : p.2 < q p.1 then a p.1 ⟨p.2, h⟩ else 0
 
 theorem pad_of_lt {α : Type} [Zero α] (q : ℕ → ℕ) (a : (i : ℕ) → Fin (q i) → α) {i r : ℕ} (h : r < q i) :
-    pad q a (i, r) = a i ⟨r, h⟩ := dif_pos h
+    pad q a (i, r) = a i ⟨r, h⟩ := dite_eq_left h
 
 theorem pad_of_ge {α : Type} [Zero α] (q : ℕ → ℕ) (a : (i : ℕ) → Fin (q i) → α) {i r : ℕ} (h : ¬ r < q i) :
-    pad q a (i, r) = 0 := dif_neg h
+    pad q a (i, r) = 0 := dite_eq_right h
 
 theorem pad_hasSum_fiber {α : Type} [AddCommMonoid α] [TopologicalSpace α] (q : ℕ → ℕ)
     (a : (i : ℕ) → Fin (q i) → α) (i : ℕ) : HasSum (fun r => pad q a (i, r)) (∑ r, a i r) := by
@@ -1069,6 +1076,7 @@ theorem hasTypeAll_of_kTypes : GlobalTheory.Published.HarishChandraModules → G
   · exact (Nat.pairEquiv.symm.summable_iff (f := fun a : ℕ × ℕ => pad q (fun i r => A₀ * c i r) a * sobNorm σ S' (pad q x' a))).2 (key S' hS')
 
 end GlobalTheory.TypeSum.KSeries
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.KProjectionLimitDiscreteSeriesCoeffs
@@ -1222,7 +1230,6 @@ end GlobalTheory.ClosureSeries
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.HasAllKTypesOfClosureDiscreteSeriesCoefficientsStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.hasAllKTypes_of_closure_discreteSeriesCoefficients : GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.CasselmanWallach →
     ∀ (n : ℕ) (ε : Fin n → Bool) (lam : Fin n → ℝ), Formalism.QuantumDeterminants.IsHCParam lam →
@@ -1556,7 +1563,6 @@ end GlobalTheory.TypeSum.FrameChange
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.MatrixCoefficientFrameChangeDiscreteSeriesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.matrix_coefficient_frame_change_discrete_series : GlobalTheory.Published.DiscreteSeriesUpqUnique → ∀ (n : ℕ) (ε : Fin n → Bool) (lam : Fin n → ℝ),
     Formalism.QuantumDeterminants.IsHCParam lam →

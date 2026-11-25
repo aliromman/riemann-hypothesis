@@ -226,18 +226,17 @@ end TwoSequences
 end GroundTheory.ProfCoh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.RealPlaces.DevissageNatural
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.RealPlaces.DevissageNatural
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open CategoryTheory MonoidalCategory Limits GroundTheory.GroupCoh
 
 universe u
-
-attribute [local instance 2000] Rep.hV2
 
 section CupNatural
 

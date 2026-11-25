@@ -21,11 +21,12 @@ import ReciprocityTheory.AdicCompleteness.IsAdicCompleteComapConstantCoeff
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsAdicTopologicalBasisOfSpanOfStrict, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsOfPowLeOfPowLeSameAdicTopology, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ImportsTer, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IdealSpanPrimeVariableBasis, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.StrictIndepPowOfRegularPair, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AinfAdicTopologicalBasisOverBreuilKisin
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsAdicTopologicalBasisOfSpanOfStrict
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsAdicTopologicalBasisOfSpanOfStrict
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BKReal GlobalTheory.Per GlobalTheory.BSP
 open scoped Formalism.Per NNReal
 
+noncomputable section
 
 namespace GlobalTheory.BSP.TopBasisCons
 
@@ -105,7 +106,7 @@ theorem Approx.eq_zero (hH : IsHausdorff I S)
     · rw [Finsupp.onFinset_sum _ (fun j => by simp)]
       have e : ∑ j ∈ F, s (if j ∈ F then h j else 0) * b j = -(0 - ∑ j ∈ F, s (h j) * b j) := by
         rw [zero_sub, neg_neg]
-        exact Finset.sum_congr rfl fun j hj => by rw [if_pos hj]
+        exact Finset.sum_congr rfl fun j hj => by rw [ite_eq_left hj]
       rw [e]
       exact neg_mem (Ideal.map_mono (Ideal.pow_le_pow_right (le_max_right n m)) hs)
   · exact Ideal.pow_le_pow_right (le_max_left n m) (hF i hi)
@@ -244,6 +245,7 @@ theorem GlobalTheory.BSP.exists_topBasis_of_span_of_strict : ∀ (S A : Type) [C
     exact (hcoef x).finite n
   · intro x n F hF
     exact (hcoef x).approx n F hF
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsOfPowLeOfPowLeSameAdicTopology

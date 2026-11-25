@@ -48,22 +48,15 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ExpSNegMulExpS, Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsGroupedOfSublist
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ExpSNegMulExpS
 
+noncomputable section
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.TB
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ExpSNegMulExpS
 
 namespace GlobalTheory.NablaExpConj
 
 variable {R : Type} [CommRing R] {d : ℕ} {O : Type} [CommRing O] [StarRing O]
-
-section Lift
-
-variable (k : Type) [CommRing k]
-
-end Lift
 
 variable (k : Type) [CommRing k] [Algebra ℚ k] [Algebra R k]
 
@@ -82,8 +75,12 @@ theorem Dof_expS (F : Fin d → PS k 2 d) (u : Fin d → k) {g : PS k 1 d}
 
 end GlobalTheory.NablaExpConj
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsGroupedOfSublist
+
+
+open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.TB
 
 namespace GlobalTheory.ExpCong
 

@@ -65,11 +65,12 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdempotentsCoarsenToLowerLevel, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdempotentsCoarsenToLowerLevelStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdempotentsUniqueForEpsilonRoot, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SharpEpsilonRootIdempotentSum, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousAlgebraUniversalProperty, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousFunctionsPeriodRingSeparation, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AcrToContInjective
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdempotentsCoarsenToLowerLevel
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdempotentsCoarsenToLowerLevel
 
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry DividedPowers GroundTheory.PAdicHodge GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.PAlg CrystallineSemistableComparison.B
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.ContUniv
 
@@ -94,9 +95,9 @@ theorem coi_fiber {R I J : Type} [CommRing R] [Fintype I] [Fintype J] [Decidable
       exact hcd ((Finset.mem_filter.1 hi).2.symm.trans (Finset.mem_filter.1 hj).2)
   refine ⟨⟨fun c => ?_, fun c d hcd => ?_⟩, ?_⟩
   · change _ * _ = _
-    rw [hmul, if_pos rfl]
+    rw [hmul, ite_eq_left rfl]
   · change _ * _ = _
-    rw [hmul, if_neg hcd]
+    rw [hmul, ite_eq_right hcd]
   · rw [Finset.sum_fiberwise]
     exact he.complete
 
@@ -154,6 +155,7 @@ theorem coi_descend (ε : Eps l) (t : PAlg l) (r : ℕ → t.A) (hr : ∀ m, r (
   rwa [h2] at h1
 
 end GlobalTheory.CompanionTheory.ContUniv
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdempotentsCoarsenToLowerLevelStatement
@@ -433,11 +435,12 @@ theorem sharp_roots_universal {l : ℕ} [Fact l.Prime] (ε : Eps l) (ρ : ℕ �
 end GlobalTheory.CompanionTheory.ContUniv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousAlgebraUniversalProperty
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousAlgebraUniversalProperty
 
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry DividedPowers GroundTheory.PAdicHodge GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.PAlg CrystallineSemistableComparison.B
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.ContUniv
 
@@ -573,7 +576,7 @@ theorem map_unique {A t : PAlg l} (ψ ψ' : A.cont ℤ_[l] ⟶ t)
       rw [Finset.sum_eq_single (PadicInt.toZModPow M z)]
       · simp
       · intro c _ hc
-        rw [if_neg hc.symm, zero_mul]
+        rw [ite_eq_right hc.symm, zero_mul]
       · simp
     rw [map_sub, this]
     exact hM _ _ (toZModPow_rep _).symm
@@ -704,6 +707,7 @@ theorem main : ∀ {l : ℕ} [Fact l.Prime] (ε : Eps l),
   rwa [h0] at this
 
 end GlobalTheory.CompanionTheory.ContUniv
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousFunctionsPeriodRingSeparation

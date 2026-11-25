@@ -18,12 +18,11 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableG, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.KernelDerivativeFarZero
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableG
 
+noncomputable section
 
 open MeasureTheory Matrix Filter Topology
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableG
 open scoped ContDiff
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveK GlobalTheory.CompanionTheory
@@ -49,11 +48,6 @@ def Iop {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] [MeasurableSpace (
   fun x => ∫ y : G n, K x y.val (φ y.val) ∂μ
 
 end Defs
-
-section ClB
-variable {L : Type} [NormedAddCommGroup L] [NormedSpace ℂ L]
-
-end ClB
 
 section Lem
 variable {L : Type} [NormedAddCommGroup L] [NormedSpace ℂ L]
@@ -83,23 +77,6 @@ theorem cl_kK (hL : LgFacts) {k : Mat n → L} (hk : ContDiffOn ℝ ∞ k (GLs n
 
 end Lem
 
-section Lem2
-variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] [CompleteSpace V]
-  [MeasurableSpace (G n)] [BorelSpace (G n)] (μ : Measure (G n)) [μ.IsHaarMeasure]
-
-end Lem2
-
-section Lem3
-variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] [CompleteSpace V]
-  [MeasurableSpace (G n)] [BorelSpace (G n)] (μ : Measure (G n)) [μ.IsHaarMeasure]
-
-end Lem3
-
-section Basic
-variable {L : Type} [NormedAddCommGroup L] [NormedSpace ℂ L]
-
-end Basic
-
 section Pairs
 
 variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] [CompleteSpace V]
@@ -122,8 +99,12 @@ end Pairs
 
 end GlobalTheory.CompanionTheory.WaveK.Word
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.KernelDerivativeFarZero
+
+
+open MeasureTheory Matrix Filter Topology
 open scoped ContDiff InnerProductSpace
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC

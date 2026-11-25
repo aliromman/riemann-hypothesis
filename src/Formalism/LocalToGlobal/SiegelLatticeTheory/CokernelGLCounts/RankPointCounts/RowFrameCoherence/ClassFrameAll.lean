@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LeviTens
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.ClassFrameOO3FrameValTrans
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.StepPtRepPfB
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SpanPreservation
@@ -27,8 +28,9 @@ import Formalism.PeriodIntegrals.ScalPairs
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.ClassFrameMoveH, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.ClassFrameSDecomp, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.OrthogonalComplementRational, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.FrameZEqLinZu, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ScalarEquivalenceGenerators.ScalarEquivOfGen, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.ScalarAgreeRatCOfScalT, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.ClassFrameAll
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.ClassFrameMoveH
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.ClassFrameMoveH
 
+noncomputable section
 
 open Matrix Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj Formalism.L2.SG.RealObj.InfCut
 
@@ -95,36 +97,36 @@ theorem tri (e : Fin r → Fin n → ℂ) (z : Fin n → ℂ) (M : Matrix (Fin n
   refine ⟨Matrix.of fun c b => (if c = b then (1 : ℂ) else 0) + l b c, ?_, ?_, ?_⟩
   · intro i j hji
     have hji' : j < i := hji
-    rw [Matrix.of_apply, if_neg (ne_of_lt hji').symm, hz j i (not_lt.2 hji'.le), add_zero]
+    rw [Matrix.of_apply, ite_eq_right (ne_of_lt hji').symm, hz j i (not_lt.2 hji'.le), add_zero]
   · intro b
-    rw [Matrix.of_apply, if_pos rfl, hz b b (lt_irrefl b), add_zero]
+    rw [Matrix.of_apply, ite_eq_left rfl, hz b b (lt_irrefl b), add_zero]
   · intro b
     have e1 : M *ᵥ fam e z b = fam e z b + (M - 1) *ᵥ fam e z b := by
       rw [sub_mulVec, one_mulVec]; abel
     rw [e1, ← hlx b, Finsupp.linearCombination_apply,
       Finsupp.sum_fintype _ _ (fun i => zero_smul ℂ (fam e z i))]
     simp only [Matrix.of_apply, add_smul, Finset.sum_add_distrib, ite_smul, one_smul, zero_smul,
-      Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
 theorem col_last (Q : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ) (hQ : Q.IsUpperTriangular) (hd : ∀ b, Q b b = 1) :
     Qᴴ *ᵥ Pi.single (Fin.last r) 1 = Pi.single (Fin.last r) 1 := by
   funext d
   simp only [mulVec, dotProduct, Pi.single_apply, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq',
-    Finset.mem_univ, if_true, conjTranspose_apply]
+    Finset.mem_univ, ite_true, conjTranspose_apply]
   by_cases h : d = Fin.last r
-  · subst h; rw [hd, star_one, if_pos rfl]
+  · subst h; rw [hd, star_one, ite_eq_left rfl]
   · have h0 : Q (Fin.last r) d = 0 := hQ (lt_of_le_of_ne (Fin.le_last d) h)
-    rw [h0, star_zero, if_neg h]
+    rw [h0, star_zero, ite_eq_right h]
 
 theorem row_last (Q : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ) (hQ : Q.IsUpperTriangular) (hd : ∀ b, Q b b = 1) :
     Pi.single (Fin.last r) 1 ᵥ* Q = Pi.single (Fin.last r) 1 := by
   funext c
   simp only [vecMul, dotProduct, Pi.single_apply, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq',
-    Finset.mem_univ, if_true]
+    Finset.mem_univ, ite_true]
   by_cases h : c = Fin.last r
-  · subst h; rw [hd, if_pos rfl]
+  · subst h; rw [hd, ite_eq_left rfl]
   · have h0 : Q (Fin.last r) c = 0 := hQ (lt_of_le_of_ne (Fin.le_last c) h)
-    rw [h0, if_neg h]
+    rw [h0, ite_eq_right h]
 
 theorem tri_adj (Z Q Q' : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ) (hQt : Q.IsUpperTriangular) (hQd : ∀ b, Q b b = 1)
     (hQt' : Q'.IsUpperTriangular) (hQd' : ∀ b, Q' b b = 1) :
@@ -156,7 +158,7 @@ theorem xPr_move (Z₂ Z Q' : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ) (G₂ G Nm
   have hc' : ∀ c, ∑ b, adjugate Z₂ b (Fin.last r) * Q' c b = adjugate Z c (Fin.last r) := fun c => by
     have h := congrFun hc c
     simp only [mulVec, dotProduct, Pi.single_apply, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq',
-      Finset.mem_univ, if_true, Matrix.mul_apply] at h
+      Finset.mem_univ, ite_true, Matrix.mul_apply] at h
     rw [← h]
     exact Finset.sum_congr rfl fun b _ => mul_comm _ _
   unfold xPr
@@ -173,7 +175,7 @@ theorem xUn_move (Z₂ Z Q : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ) (Ni Ai : Ma
     intro d
     have h := congrFun hr d
     simp only [vecMul, dotProduct, Pi.single_apply, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq',
-      Finset.mem_univ, if_true, Matrix.mul_apply, conjTranspose_apply] at h
+      Finset.mem_univ, ite_true, Matrix.mul_apply, conjTranspose_apply] at h
     rw [← h, star_sum]
     exact Finset.sum_congr rfl fun a _ => by rw [star_mul', star_star]
   unfold xUn
@@ -426,9 +428,11 @@ theorem dFrameMoveHC_holds (u u' : D.what₂.Word) (i0 i0' : ∀ _ : NumberField
 
 end Formalism.L2.SG.Pf.RowForm
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.ClassFrameSDecomp
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.ClassFrameSDecomp
 
+noncomputable section
 
 open Matrix Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj
 
@@ -441,21 +445,7 @@ variable {D : Formalism.BasicNotions.D7} (X : HidaSetting D)
 theorem frameLoc (w : D.what₂.Word) (v : NumberField.InfinitePlace X.B.I.F) :
     PI.SchurPlaces.LeviLA.Frame (X.B.I.ε v) (fun a => rv X.B.I v (X.eR a)) (fun a => rv X.B.I v (X.fR a))
       (rv X.B.I v (X.zR w)) (X.wfr w v) := by
-  let fr := Formalism.L2.SG.RealObj.InfCut.PtRepPf.frU X w v
-  exact
-    { ee := fr.ee
-      ef := fr.ef
-      ff := fr.ff
-      ez := fr.ez
-      fz := fr.fz
-      ew := fr.ew
-      fw := fr.fw
-      zw := fr.zw
-      ww := fr.ww
-      zz := fun h0 => fr.T_ne (neg_eq_zero.1 (fr.zz.symm.trans h0))
-      card := by
-        have h := fr.card
-        omega }
+  apply +allowSynthFailures _root_.PI.SchurPlaces.frameAt <;> assumption
 
 end LocalFrameDecomposition
 
@@ -491,13 +481,12 @@ theorem sDecompC_holds (w : D.what₂.Word) : SDecompC X w := by
 
 end Formalism.L2.SG.Pf.RowForm
 end -- clump:auto
+end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.OrthogonalComplementRational
 
 
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.OrthogonalComplementRational
 
 namespace Formalism.L2.SG.Pf.RowForm.ClassFrameOO2Aux
 
@@ -956,6 +945,9 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.FrameZEqLinZu
 
+
+open scoped Classical
+
 open NumberField Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Pf.RowForm.ClassFrameOO2Aux
   Formalism.L2.SG.Pf.RowForm.ClassFramePositivePartDecomposition
 
@@ -1290,6 +1282,9 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ScalarEquivalenceGenerators.ScalarEquivOfGen
 
+
+open scoped Classical
+
 namespace PI.UnitaryGroupMassFormula.ScalarEquivalenceHermitianSpace
 
 open NumberField Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.TermDef PI.ScalPairs
@@ -1312,7 +1307,11 @@ theorem tu_ne_zero (D : D7) (u : D.what₂.Word) : ((Tu D u : ℕ) : D.host.E) �
 end PI.UnitaryGroupMassFormula.ScalarEquivalenceHermitianSpace
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.ScalarAgreeRatCOfScalT
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.ScalarAgreeRatCOfScalT
+
+noncomputable section
+
+open scoped Classical
 
 open NumberField Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Pf.RowForm.ClassFrameOO2Aux
   Formalism.L2.SG.Pf.RowForm.ClassFramePositivePartDecomposition Formalism.L2.SG.Pf.RowForm.ClassFrameFirstNormalAdjugate
@@ -1343,25 +1342,25 @@ variable (s : Formalism.L2.SG.TermOp.GTerm X u u' (X.Fu u) (X.Fu u') (Y.what₂ 
 theorem firstNormal_e (h : (ZE X u u' (Mof X Y u u' s)).det ≠ 0) (a : Fin D.R.rS) :
     (VS D).hT ((X.Fu u).e a) (Formalism.L2.SG.Pf.Level.toV X (nu1E X u u' (Mof X Y u u' s))) = 0 := by
   have := firstNormal_pairing X Y u u' s h a.castSucc
-  rw [if_neg (Fin.castSucc_lt_last a).ne] at this
+  rw [ite_eq_right (Fin.castSucc_lt_last a).ne] at this
   simpa [FlagG.fvec] using this
 
 theorem firstNormal_z (h : (ZE X u u' (Mof X Y u u' s)).det ≠ 0) :
     (VS D).hT (X.Fu u).z (Formalism.L2.SG.Pf.Level.toV X (nu1E X u u' (Mof X Y u u' s))) = 1 := by
   have := firstNormal_pairing X Y u u' s h (Fin.last _)
-  rw [if_pos rfl] at this
+  rw [ite_eq_left rfl] at this
   simpa [FlagG.fvec] using this
 
 theorem secondNormal_e (h : (ZE X u u' (Mof X Y u u' s)).det ≠ 0) (b : Fin D.R.rS) :
     (VS D).hT (Formalism.L2.SG.Pf.Level.toV X (x2E X u u' (Mof X Y u u' s))) (s.frame.fl.e b) = 0 := by
   have := secondNormal_pairing X Y u u' s h b.castSucc
-  rw [if_neg (Fin.castSucc_lt_last b).ne] at this
+  rw [ite_eq_right (Fin.castSucc_lt_last b).ne] at this
   simpa [FlagG.fvec] using this
 
 theorem secondNormal_z (h : (ZE X u u' (Mof X Y u u' s)).det ≠ 0) :
     (VS D).hT (Formalism.L2.SG.Pf.Level.toV X (x2E X u u' (Mof X Y u u' s))) s.frame.fl.z = 1 := by
   have := secondNormal_pairing X Y u u' s h (Fin.last _)
-  rw [if_pos rfl] at this
+  rw [ite_eq_left rfl] at this
   simpa [FlagG.fvec] using this
 
 theorem agree_pair (s₁ s₂ : Formalism.L2.SG.TermOp.GTerm X u u' (X.Fu u) (X.Fu u') (Y.what₂ u) (Y.what₂ u'))
@@ -1494,8 +1493,7 @@ theorem scalarAgreeC_of_scalT (hS : ScalTC X Y u u' κ) : ScalarAgreeC X Y u u' 
 
 end Formalism.L2.SG.Pf.RowForm
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.RowFrameCoherence.ClassFrameAll
 

@@ -139,7 +139,6 @@ open GlobalTheory.CechPic GlobalTheory.AbDual
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.GenericPointOpenImmersion
 open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqToBase)
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompanionTheory.ValGeneric
 
@@ -199,7 +198,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HenselianAlgClosedResidue
 open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqToBase)
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompanionTheory.CommAlg.Hens
 
@@ -510,7 +508,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PicardMayerVietorisExtendStatement
 open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqToBase)
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
@@ -621,7 +618,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ValuationIntegersRankOne
 open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqToBase)
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Zarhin
 

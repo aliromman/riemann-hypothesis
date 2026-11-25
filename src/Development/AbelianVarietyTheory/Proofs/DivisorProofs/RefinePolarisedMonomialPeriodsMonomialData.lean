@@ -587,7 +587,9 @@ end -- clump:auto
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSymmetricDataComparePolarisedUpToFunction
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSymmetricDataComparePolarisedUpToFunction
+
+noncomputable section
 
 namespace GlobalTheory.HalfEx
 
@@ -642,11 +644,12 @@ theorem half_exists : ∀ (R : Type) [CommRing R] [IsDomain R] (R' : Type) [Comm
   have h : ∃ κ : (TK R').left ⟶ (TK R).left, κ ≫ jK R = jK R' ≫ spMap ρ := ⟨κ, hκ⟩
   have e := kappa_unique R R' ρ _ _ h.choose_spec hκ
   have := (hR h.choose h.choose_spec a b).choose_spec z J J' hJ hJ'
-  simp only [f, dif_pos h]
+  simp only [f, dite_eq_left h]
   rw [← e]
   exact this
 
 end GlobalTheory.HalfEx
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSymmetricDataComparePolarisedUpToFunctionStatement

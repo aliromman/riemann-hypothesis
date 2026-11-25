@@ -540,7 +540,7 @@ theorem pl_good (A : FinHolAtlas (e + 1) X) (L : LocPot X) (s : X → X → ℂ)
   congr 1
   cases hσ : σ k with
   | none =>
-    simp only [reduceCtorEq, if_false, Finset.sum_const_zero]
+    simp only [reduceCtorEq, ite_false, Finset.sum_const_zero]
     have hv0 (p : W k) : v p.1 = 0 := by
       by_contra hne
       have hp : p.1 ∈ tsupport v := subset_tsupport _ hne
@@ -552,7 +552,7 @@ theorem pl_good (A : FinHolAtlas (e + 1) X) (L : LocPot X) (s : X → X → ℂ)
       exact absurd hi (by simp)
     exact (mInt_zero_fun (B k) _ (g := v ∘ Subtype.val) hv0).symm
   | some i =>
-    simp only [Option.some.injEq, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    simp only [Option.some.injEq, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     haveI : CompactSpace (W k) :=
       isCompact_iff_compactSpace.1 (SimpleNormalCrossingSliceCharts.isClosed_divisorComponent A L s m W hSNC k).isCompact
     have hWψ' : W k ∩ ψ.source = {p ∈ ψ.source | ψ p i = 0} := by
@@ -567,13 +567,15 @@ end ReciprocityTheory.AnForm.M.PLAux
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.AnalyticForms.PotentialTheory.IsCompatChartRestrOpen
+section -- clump member: ReciprocityTheory.AnalyticForms.PotentialTheory.IsCompatChartRestrOpen
+@[expose] public section
 
 namespace ReciprocityTheory.AnForm.M.PLAux
 
 open MeasureTheory FinHolAtlas Filter Topology
 open scoped ContDiff
 
+noncomputable section
 
 variable {e : ℕ} {X : Type} [TopologicalSpace X] [T2Space X] [CompactSpace X]
 
@@ -639,7 +641,7 @@ theorem pl_exists_chart (A : FinHolAtlas (e + 1) X) (L : LocPot X) (s : X → X 
     intro hp hpW
     rw [hVdef] at hp
     have := Set.mem_iInter.1 hp.2 k
-    rw [if_neg hk] at this
+    rw [ite_eq_right hk] at this
     exact this hpW
 
 theorem pl_global : PoincareLelongStatement := by
@@ -699,8 +701,10 @@ theorem pl_global : PoincareLelongStatement := by
   refine Finset.sum_congr rfl fun k _ => ?_
   rw [hk k, Finset.mul_sum]
 
+end
 
 end ReciprocityTheory.AnForm.M.PLAux
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.AnalyticForms.PotentialTheory.PLLocalStatement

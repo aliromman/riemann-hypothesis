@@ -34,7 +34,8 @@ import Mathlib.Order.CompletePartialOrder
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PBranchChartInt, GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PBranchSheetAE, GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PHolomorphicFibreSumInt, GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PWeightedAreaFormula, GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PBranchChartIntX
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PBranchChartInt
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PBranchChartInt
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -43,6 +44,7 @@ namespace GroundTheory.Heights₂.Heights
 open MvPolynomial MeasureTheory Filter Topology Matrix ComplexSets ReciprocityTheory.AnForm.A
 open scoped ContDiff
 
+noncomputable section
 
 namespace BranchChartInt
 
@@ -175,7 +177,7 @@ theorem BranchChartInt.proof (hA : HolomorphicFibreSumInt.Statement) (hS : Branc
   have hae : ∀ᵐ t ∂(volume.restrict Δ), (g ∘ γ.toFun) t * ReciprocityTheory.AnForm.maDens (fun k => φ k ∘ γ.toFun) t =
       Complex.normSq (jacC τ t).det * H t := by
     filter_upwards [hS n d J A p γ hJ hdim hfin, ae_restrict_mem measurableSet_ball] with t hts htΔ
-    simp only [hH, dif_pos hts, Function.comp_apply]
+    simp only [hH, dite_eq_left hts, Function.comp_apply]
     rw [maDens_branch_eq γ hφ htΔ hts.choose_spec]
     ring
   have hint : IntegrableOn (fun t => Complex.normSq (jacC τ t).det * H t) Δ :=
@@ -188,8 +190,10 @@ theorem BranchChartInt.proof (hA : HolomorphicFibreSumInt.Statement) (hS : Branc
   rw [hcd, hIeq]
   exact (integral_congr_ae hae).symm
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PBranchSheetAE

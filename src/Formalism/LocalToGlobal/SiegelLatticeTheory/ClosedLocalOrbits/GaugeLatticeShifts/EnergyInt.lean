@@ -15,20 +15,15 @@ import Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.Rig
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.StepIntOf, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.EnergyInt
 
 section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.StepIntOf
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.WuDecay Formalism.L2.SG.WuDecayPf
 open scoped InnerProductSpace ComplexConjugate ENNReal NNReal Classical
 open Matrix
 
 namespace Formalism.L2.SG.RealObj.StepIntOf
-
-section Defs
-
-variable {D : D7} (X : HidaSetting D)
-
-end Defs
 
 def StIntOfLint : Prop :=
   ∀ (D : D7) (X : HidaSetting D) (u u' : D.what₂.Word) (γ : X.B.I.Ginf),
@@ -83,6 +78,7 @@ end Formalism.L2.SG.RealObj.StepIntOf.Theta
 namespace Formalism.L2.SG.RealObj.StepIntOf
 
 end Formalism.L2.SG.RealObj.StepIntOf
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

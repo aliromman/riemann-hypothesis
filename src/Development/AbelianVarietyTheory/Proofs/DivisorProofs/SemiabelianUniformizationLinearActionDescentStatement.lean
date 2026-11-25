@@ -106,8 +106,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 open GlobalTheory.Mum
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CubeBundleOfTranslate
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CubeBundleOfTranslate
 
+noncomputable section
 namespace GlobalTheory.Mum.LamTransl
 variable {S : Scheme.{0}} (G : Over S) [GrpObj G] [IsCommMonObj G]
 
@@ -149,7 +150,7 @@ theorem split_eq (k : thK) : Sum.elim (φA G a) (φB G) (splitEquiv k) = (pt3 G 
   simp only [Finset.mem_insert, Finset.mem_singleton] at h
   rcases h with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
   all_goals
-    simp (config := {decide := true}) only [split3, if_true, if_false, Finset.mem_insert, Finset.mem_singleton,
+    simp (config := {decide := true}) only [split3, ite_true, ite_false, Finset.mem_insert, Finset.mem_singleton,
       Sum.map_inl, Sum.map_inr, Sum.elim_inl, Sum.elim_inr]
   all_goals
     refine ⟨?_, trivial⟩
@@ -194,6 +195,7 @@ theorem lam_transl_iso : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMon
     (LBIso.trans (GlobalTheory.SabBaseChange.cube_isLB _ hT) hA hLam h2 (LBIso.symm h3))
 
 end GlobalTheory.Mum
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGeneratorLineBundlePullbackSpecLocalRing

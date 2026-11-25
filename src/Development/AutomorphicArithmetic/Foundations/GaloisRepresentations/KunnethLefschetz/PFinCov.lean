@@ -763,8 +763,9 @@ theorem GenUseBack_of : GenUseBack := by
 end LateralTheory.EtaleTrace.Cov
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleTrace.HomRelPf
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleTrace.HomRelPf
 
+noncomputable section
 open MvPolynomial
 
 namespace LateralTheory.EtaleTrace.Cov
@@ -819,13 +820,15 @@ theorem HomRel_of : HomRel := by
     exact hm (homogeneousComponent_eq_zero m G (by omega))
   have hc := congrArg (fun p => _root_.AddMonoidAlgebra.coeff (M := ℕ) p m) (hsum.symm.trans hGx)
   simp only [Polynomial.finsetSum_coeff, Polynomial.coeff_C_mul_X_pow, Polynomial.coeff_zero] at hc
-  rwa [Finset.sum_ite_eq, if_pos hmem] at hc
+  rwa [Finset.sum_ite_eq, ite_eq_left hmem] at hc
 
 end LateralTheory.EtaleTrace.Cov
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleTrace.JetIndepPf
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleTrace.JetIndepPf
 
+noncomputable section
 open MvPolynomial
 
 namespace LateralTheory.EtaleTrace.Cov
@@ -842,7 +845,7 @@ theorem jetIndep_chain {n : ℕ} (w : Fin n → K) (F : MvPolynomial (Fin n) k) 
     simp only [map_mul, aeval_X, Derivation.leibniz, hf, pderiv_X, Finset.smul_sum, Derivation.leibniz]
     simp [Pi.single_apply]
     simp only [apply_ite (aeval w), map_zero, add_smul, ite_smul, zero_smul, Finset.sum_add_distrib,
-      Finset.sum_ite_eq, Finset.mem_univ, if_true, mul_smul]
+      Finset.sum_ite_eq, Finset.mem_univ, ite_true, mul_smul]
 
 theorem jetIndep_pderiv {n : ℕ} (w : Fin n → K) (hw : LinearIndependent K (jet k w)) {m : ℕ}
     (F : MvPolynomial (Fin n) k) (hF : F.IsHomogeneous m) (h0 : aeval w F = 0) (j : Fin n) :
@@ -934,6 +937,7 @@ theorem JetIndep_of : JetIndep := by
     omega
 
 end LateralTheory.EtaleTrace.Cov
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleTrace.JetSpanPf

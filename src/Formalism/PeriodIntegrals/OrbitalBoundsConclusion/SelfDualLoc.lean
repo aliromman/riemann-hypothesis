@@ -31,11 +31,12 @@ theorem selfDualLoc_of_dirs (hF : FwdDir) (hB : BwdDir) : PI.SelfDualLoc := by
 end PI.SelfDualLoc.W
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SelfDualLocalBasis.Assembly
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SelfDualLocalBasis.Assembly
 
 open Matrix NumberField IsDedekindDomain
 open scoped TensorProduct
 
+noncomputable section
 
 namespace PI.SelfDualLoc.W
 
@@ -179,7 +180,7 @@ theorem bwdDir_of (hN : Nondeg) (hSp : SpanTop) (hL : LocBasis) (hD : DualBasis)
     refine hdual _ fun z hz => ?_
     obtain ⟨a, ha⟩ := hpair z hz (yd j)
     rw [hform_smul_right_self_dual_local_basis, ha]
-    simp only [hyd, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    simp only [hyd, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     exact hσint (a j)
 
   set w : Fin n → Fin n → E ⊗[F] v.adicCompletion F :=
@@ -239,7 +240,7 @@ theorem bwdDir_of (hN : Nondeg) (hSp : SpanTop) (hL : LocBasis) (hD : DualBasis)
       dsimp only
       rw [hform_incl, hyd]
       split_ifs <;> simp
-    simp only [h', mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true] at h
+    simp only [h', mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true] at h
     exact h
   rw [hyc]
   exact Submodule.sum_mem _ fun j _ => by
@@ -251,6 +252,7 @@ theorem selfDualLoc_of (hS : SigInt) (hN : Nondeg) (hSp : SpanTop) (hL : LocBasi
   selfDualLoc_of_dirs (fwdDir_of hS) (bwdDir_of hN hSp hL hD hU)
 
 end PI.SelfDualLoc.W
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SelfDualLocalBasis.Nondeg

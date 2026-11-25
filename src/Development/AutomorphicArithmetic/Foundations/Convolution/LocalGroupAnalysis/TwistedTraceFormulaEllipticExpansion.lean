@@ -217,8 +217,9 @@ theorem UpperTheory.unimodular_finite_quotientMeasure_of_cocompact :
   exact ⟨hr, ⟨RightCosetSpace.inv_eq_self_of_isMulRightInvariant ν⟩, measure_lt_top _ _⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.LocalGroupAnalysis.TwistedTraceFormulaEllipticExpansion
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.LocalGroupAnalysis.TwistedTraceFormulaEllipticExpansion
 
+noncomputable section
 
 namespace UpperTheory.ConvolutionTheory.G.DiagonalEmbedding
 
@@ -383,7 +384,7 @@ private theorem termE (hU : U2) (q1 : Q1) (q2 : Q2) (n3 : N3) (n5 : N5)
   · exact funext fun t => hj1 t
   · funext x
     rw [← hθ x, ext0]
-    exact (dif_pos (x⁻¹ * d1 δ * tw θ x).2 (t := fun h => f ⟨_, h⟩) (e := fun _ => 0)).symm
+    exact (dite_eq_left (x⁻¹ * d1 δ * tw θ x).2 (t := fun h => f ⟨_, h⟩) (e := fun _ => 0)).symm
 end
 
 private theorem norm_self {F : Type} [Field F] {n : ℕ} (γ : GL (Fin n) F) : normGL (1 : F ≃ₐ[F] F) γ = incl γ := by

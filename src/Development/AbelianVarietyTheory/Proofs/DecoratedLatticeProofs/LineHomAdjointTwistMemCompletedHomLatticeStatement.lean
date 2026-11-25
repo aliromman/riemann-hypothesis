@@ -62,7 +62,8 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Form
 open GlobalTheory.RootEx GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.SplitWeil GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Unf GlobalTheory.SeeSaw GlobalTheory.StepData GlobalTheory.SymChain GlobalTheory.LocMod GlobalTheory.MiS GlobalTheory.MiTop GlobalTheory.Fam ValuativeRel
 open scoped TensorProduct Classical
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LineHomAdjointTwistMemCompletedHomLattice
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LineHomAdjointTwistMemCompletedHomLattice
+noncomputable section
 
 
 
@@ -188,9 +189,9 @@ theorem mem_latV_of_pairH {S : HSp D} {MS : Lat S} (hS : IsSelfDualC S MS) {P : 
       ring
     simp only [h3]
     rw [Finset.sum_eq_single a]
-    · rw [if_pos rfl, map_one, one_mul]
+    · rw [ite_eq_left rfl, map_one, one_mul]
     · intro b _ hb
-      rw [if_neg (Ne.symm hb), map_zero, zero_mul]
+      rw [ite_eq_right (Ne.symm hb), map_zero, zero_mul]
     · intro h
       exact absurd (Finset.mem_univ a) h
   have key : x = ∑ i, fun a => pairH S (fun l => incA D (s' i l)) x *
@@ -270,6 +271,7 @@ theorem kap_mem_latO : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topol
     exact neg_mem h3
 
 end GlobalTheory.KapLat2
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

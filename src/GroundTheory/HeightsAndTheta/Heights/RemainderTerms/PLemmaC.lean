@@ -9,8 +9,6 @@ import Mathlib.Algebra.Order.Star.Rat
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.AltFrob
 
-set_option maxSynthPendingDepth 1
-
 namespace GroundTheory.Heights₂.Heights
 
 open Finset
@@ -158,8 +156,6 @@ end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PLemmaC
-
-set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.RestTerms
 

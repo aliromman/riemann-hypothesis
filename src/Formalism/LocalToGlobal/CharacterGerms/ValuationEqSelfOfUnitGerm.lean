@@ -13,13 +13,12 @@ import Formalism.LocalToGlobal.CharacterGerms.SubstSubst
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.CharacterGerms.LeafHolds, Formalism.LocalToGlobal.CharacterGerms.ValuationEqSelfOfUnitGerm
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.LeafHolds
 
+noncomputable section
 
 open scoped BigOperators
 open Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.LeafHolds
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -114,12 +113,17 @@ theorem leaf_holds : LeafSt := by
       exact (hk.1 ρ g a a' hkd).2.2 μ' hμ' w hne
     show MvPowerSeries.coeff μ X.hRow =
       (if ∀ w ∈ μ.support, X.OnLf g a a' w then MvPowerSeries.coeff μ X.hRow else 0)
-    rw [if_pos h1]
+    rw [ite_eq_left h1]
 
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.ValuationEqSelfOfUnitGerm
+
+
+open scoped BigOperators
+open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 

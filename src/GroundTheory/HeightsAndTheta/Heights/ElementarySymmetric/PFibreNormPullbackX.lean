@@ -17,7 +17,8 @@ import Mathlib.RingTheory.TotallySplit
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PFibreNormPullback, GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PFibreNormPullbackX
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PFibreNormPullback
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PFibreNormPullback
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -25,6 +26,7 @@ namespace GroundTheory.Heights₂.Heights.HilbertSamuel
 
 open ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.ArakelovGeometry MvPolynomial
 
+noncomputable section
 
 namespace FibreNormPullback
 
@@ -68,7 +70,7 @@ theorem norm_last_le {n : ℕ} (a : ℕ → ℂ) (ha : a 0 = 1) {B : ℝ} (hB : 
     · simp [ha]
     · intro i hi hi0
       rw [Finset.mem_range] at hi
-      rw [if_neg]
+      rw [ite_eq_right]
       omega
     · intro h; exact absurd (Finset.mem_range.mpr (Nat.succ_pos n)) h
   have hmon : p.Monic := Polynomial.monic_of_degree_le n (Polynomial.degree_le_of_natDegree_le hdeg) hlead
@@ -79,7 +81,7 @@ theorem norm_last_le {n : ℕ} (a : ℕ → ℂ) (ha : a 0 = 1) {B : ℝ} (hB : 
     · simp
     · intro i hi hin
       rw [Finset.mem_range] at hi
-      rw [if_neg]
+      rw [ite_eq_right]
       omega
     · intro h; exact absurd (Finset.mem_range.mpr (Nat.lt_succ_self n)) h
   have hsplit : p.Splits := IsAlgClosed.splits p
@@ -94,8 +96,10 @@ theorem norm_last_le {n : ℕ} (a : ℕ → ℂ) (ha : a 0 = 1) {B : ℝ} (hB : 
 
 end FibreNormPullback
 
+end
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PFibreNormPullbackX

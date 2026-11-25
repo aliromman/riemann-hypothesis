@@ -10,9 +10,9 @@ import Formalism.LocalToGlobal.TorsionIntegrality.SecondCoefficientNorms.Binomia
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.PairedSquareJets.ThetaZeroJetsCurveHolds, Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.FinalC
 
-section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.PairedSquareJets.ThetaZeroJetsCurveHolds
-@[expose] public noncomputable section
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.PairedSquareJets.ThetaZeroJetsCurveHolds
 
+noncomputable section
 open scoped BigOperators
 open Finset
 
@@ -24,18 +24,6 @@ open Formalism.G (unitBall)
 open Formalism.DworkPowerSeriesWeights (JetsIntegral jetPair)
 
 namespace GramFrameCompositionTwoFacts
-
-section Even
-
-variable {K : Type} [Field K] [CharZero K]
-
-end Even
-
-section abelian₂
-
-variable {K : Type} [Field K] [CharZero K]
-
-end abelian₂
 
 section Hom
 

@@ -50,26 +50,16 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.UnitFinCutIdeleOfNotMem, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdeleCharacterNormEulerFactorization
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.UnitFinCutIdeleOfNotMem
+section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.UnitFinCutIdeleOfNotMem
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.Doubling
 
 open scoped TensorProduct NNReal
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.UG GlobalTheory.AdelicU Filter Topology
 open GlobalTheory.LocalGlobalChar (eps ev_ind tendsto_eps_tens)
-
-section KFinite
-
-variable {G : Type} [Group G] {K : Subgroup G}
-
-theorem IsKFinite.mul {Φ Ψ : G → ℂ} (h : IsKFinite K Φ) (h' : IsKFinite K Ψ) : IsKFinite K fun g => Φ g * Ψ g := by
-  obtain ⟨W, hf, hW⟩ := isKFinite_iff.1 h
-  obtain ⟨W', hf', hW'⟩ := isKFinite_iff.1 h'
-  exact isKFinite_iff.2 ⟨W * W', Module.Finite.iff_fg.2 ((Module.Finite.iff_fg.1 hf).mul (Module.Finite.iff_fg.1 hf')),
-    fun k hk => Submodule.mul_mem_mul (hW k hk) (hW' k hk)⟩
-
-end KFinite
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
@@ -137,6 +127,8 @@ variable {σ : E →ₐ[F] E} {n : ℕ} {Q : Matrix (Fin (n + n)) (Fin (n + n)) 
 
 end GlobalTheory.Doubling
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdeleCharacterNormEulerFactorization

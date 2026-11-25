@@ -383,11 +383,12 @@ end Cxs
 end GlobalTheory.CompanionTheory.CosieveBC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MvFGExact
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MvFGExact
 
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
+noncomputable section
 
 universe w v u
 
@@ -450,12 +451,12 @@ theorem mvFG_exact (hU : Cosieve U) (hV : Cosieve V) (n : ℕ) : Function.Exact 
     refine ⟨fun t => if h : U (t.obj 0).obj then a (liftW hU t h) else
       b (liftW hV t ((t.obj 0).property.resolve_left h)), Prod.ext ?_ ?_⟩
     · funext s
-      exact dif_pos (s.obj 0).property
+      exact dite_eq_left (s.obj 0).property
     · funext s
       by_cases h : U (s.obj 0).obj
-      · refine (dif_pos h).trans ?_
+      · refine (dite_eq_left h).trans ?_
         exact hab (liftW (P := infP U V) (fun _ _ f h => ⟨hU f h.1, hV f h.2⟩) s ⟨h, (s.obj 0).property⟩)
-      · exact dif_neg h
+      · exact dite_eq_right h
   · rintro ⟨x, rfl⟩
     refine sub_eq_zero.2 ?_
     rfl
@@ -469,7 +470,7 @@ def extV (hU : Cosieve U) (hV : Cosieve V) {n : ℕ} (y : CH.Cn ((infP U V).ι �
 theorem mvG_surj (hU : Cosieve U) (hV : Cosieve V) (n : ℕ) : Function.Surjective ((mvG F U V).f n) := by
   intro y
   refine ⟨(extV F hU hV y, 0), funext fun s => ?_⟩
-  have e1 : (resU F inf_leL).pullC n (extV F hU hV y) s = y s := dif_pos (s.obj 0).property.2
+  have e1 : (resU F inf_leL).pullC n (extV F hU hV y) s = y s := dite_eq_left (s.obj 0).property.2
   have e2 : (resU F inf_leR).pullC n (0 : CH.Cn (V.ι ⋙ F) n) s = 0 := congrFun (map_zero _) s
   change (resU F inf_leL).pullC n (extV F hU hV y) s - (resU F inf_leR).pullC n (0 : CH.Cn (V.ι ⋙ F) n) s = y s
   rw [e1, e2, sub_zero]
@@ -524,6 +525,7 @@ theorem bc_sup [Fintype ι] [DecidableEq ι] [∀ i, Module.Flat R (N i)]
 end Family
 
 end GlobalTheory.CompanionTheory.CosieveBC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlatBaseChangeCohomology

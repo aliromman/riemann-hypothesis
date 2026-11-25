@@ -44,12 +44,12 @@ import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IsDomainAndIsIn
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.TjEqZeroIff, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsPthRootOfDerivationZero, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsPowEqFractionRingOfPderivEqZero, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.IsLocalRingOfAug, Development.WeilBound.CoreStatements.HodgeTatePoints.JetOfMono, Development.WeilBound.CoreStatements.HodgeTatePoints.CgTaylor, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FormalGermJetLiftStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.TjEqZeroIff
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.TjEqZeroIff
 
+noncomputable section
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AddCurve
 open ReciprocityTheory.ChartRestriction.G.Pdiv.TL
 
@@ -92,6 +92,7 @@ theorem exists_tj (p : ∀ m, JetR k κ m) (hp : ∀ m, jetTruncR k κ m (p (m +
   exact (MvPowerSeries.coeff_truncTotal _ hu).trans (hck u m (by omega)).symm
 
 end GlobalTheory.JetExpansion
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsPthRootOfDerivationZero
@@ -300,12 +301,12 @@ theorem exists_pow_eq_fractionRing_of_pderiv_eq_zero : ∀ (k : Type) [Field k] 
 end GlobalTheory.CubeFib
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.IsLocalRingOfAug
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.IsLocalRingOfAug
 
+noncomputable section
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AddCurve
 
 namespace GlobalTheory.StalkJet
@@ -348,6 +349,7 @@ theorem exists_factor {B : Over (Sp k)} (b : B.left) [Algebra k (B.left.presheaf
 
 end GlobalTheory.StalkJet
 end -- clump:auto
+end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -357,7 +359,6 @@ open scoped CategoryTheory.Obj
 
 section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.JetOfMono
 @[expose] public section
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace PositivityTheory.HtPt.Cg
 
@@ -531,7 +532,7 @@ theorem taylor [PerfectField k] (p : ℕ) [Fact p.Prime] [CharP k p] [IsIntegral
   have htop : ⊤ ≤ Z.fromSpecStalk b ⁻¹ᵁ U :=
     (Scheme.preimage_eq_top_of_closedPoint_mem _ (by rw [Scheme.fromSpecStalk_closedPoint]; exact hb)).ge
   have hv : valR (A := Z.presheaf.stalk b) (Z.fromSpecStalk b) U f = (Z.presheaf.germ U b hb).hom f := by
-    refine (dif_pos htop).trans ?_
+    refine (dite_eq_left htop).trans ?_
     have : (Z.fromSpecStalk b).appLE U ⊤ htop ≫ (Scheme.ΓSpecIso (Z.presheaf.stalk b)).hom =
         Z.presheaf.germ U b hb := by
       rw [Scheme.Hom.appLE, Scheme.fromSpecStalk_app hb]
@@ -545,7 +546,7 @@ theorem taylor [PerfectField k] (p : ℕ) [Fact p.Prime] [CharP k p] [IsIntegral
   · have e1 : valR (x m) U f = psJet m (j ((Z.presheaf.germ U b hb).hom f)) := by
       rw [← tj_eq, hj, ← hv, ← h1]
       exact (GlobalTheory.ZH.CrdCalc.valR_spMap (τ m : Z.presheaf.stalk b →+* Jet k κ m) _ U htop).2 f
-    rw [← e1, valR, dif_pos (hU m)]
+    rw [← e1, valR, dite_eq_left (hU m)]
     exact (Iso.hom_inv_id_apply (Scheme.ΓSpecIso (CommRingCat.of (Jet k κ m))) _).symm
   · apply germ_injective_of_isIntegral Z b hb
     rw [map_zero, ← Ideal.mem_bot, ← Ideal.iInf_pow_eq_bot_of_isLocalRing _ (maximalIdeal.isMaximal _).ne_top,
@@ -565,7 +566,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CgTaylor
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace PositivityTheory.HtPt.Cg
 

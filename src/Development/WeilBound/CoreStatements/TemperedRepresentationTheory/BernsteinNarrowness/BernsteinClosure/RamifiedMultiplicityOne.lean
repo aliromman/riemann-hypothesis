@@ -643,10 +643,12 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSmoothCharOfCondLE
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSmoothCharOfCondLE
 
 open ValuativeRel Matrix Topology
 open scoped TensorProduct
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SplitNarrow
 
@@ -762,7 +764,6 @@ section Fin
 open NumberField IsDedekindDomain GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open PositivityTheory.KCo PositivityTheory.ThK
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 attribute [local instance] PositivityTheory.ThK.SplitAsm.measFv PositivityTheory.ThK.SplitAsm.borelFv
 
 theorem finRam_of (hR : RamMaps) (hRN : RamNonzero) (hI : IndIrredNarrow) (hD : Dict) (hAU : ActsUniq) (hC : ChrFacts) :
@@ -817,8 +818,11 @@ theorem finRam_of_narrow :
 
 end GlobalTheory.CompanionTheory.SplitNarrow
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SoCoinvOfNarrow
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SoCoinvOfNarrow
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SoCoinvNarrow
 
@@ -1004,8 +1008,6 @@ end Local
 
 open NumberField IsDedekindDomain GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.SplitFlip
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 theorem soCoinv_of (NB : NarrowBernstein) (hD : DictSt) (hK : GlobalTheory.ThK.KFin) :
     PositivityTheory.ThKF.SoCoinv := by
   intro F E _ _ _ _ _ σ B a a' G X om om' hT φ hφ hA
@@ -1066,6 +1068,7 @@ theorem soCoinv_of_narrow :
   fun NB hK => soCoinv_of NB dictionary_statement hK
 
 end GlobalTheory.CompanionTheory.SoCoinvNarrow
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.TemperedRepresentationTheory.BernsteinNarrowness.RamifiedMultiplicityOneOfGeometricFiltration

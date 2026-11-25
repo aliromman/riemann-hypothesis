@@ -25,8 +25,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.JetHarmonics.HasFinColengthOfHasLen, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ValMulLeOfCyclicKer
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.HasFinColengthOfHasLen
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.HasFinColengthOfHasLen
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
@@ -35,14 +36,6 @@ open GlobalTheory.TorsionCompare NumberField
 open scoped TensorProduct
 
 namespace GlobalTheory.AvChartCompare
-
-section Charts
-
-variable {R : Type} [CommRing R]
-
-variable {G : Over (Sp R)} {d : ℕ}
-
-end Charts
 
 section Series
 
@@ -101,26 +94,10 @@ theorem hasLen_le_of_surjective (hv : v.Integers O) {M N : Type} [AddCommGroup M
 
 end Series
 
-section Emb
-
-variable {E : Type} [Field E] [NumberField E] {C : Type} [Field C] [CharZero C]
-  {v : Valuation C NNReal} {O : Type} [CommRing O] [Algebra O C]
-
-end Emb
-
-section Places
-
-variable {p : ℕ} [Fact p.Prime] {E : Type} [Field E] [NumberField E] [StarRing (𝓞 E)]
-  {C : Type} [Field C] [CharZero C] {v : Valuation C NNReal} {O : Type} [CommRing O]
-  [Algebra O C] [Algebra ℤ_[p] O]
-
-variable {w : AvDefs.Place p (𝓞 E)} {P : Ideal (𝓞 E)}
-
-end Places
-
 
 
 end GlobalTheory.AvChartCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ValMulLeOfCyclicKer

@@ -70,15 +70,16 @@ import Mathlib.GroupTheory.Nilpotent
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InducesPl, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsExtPointSpecializingOutsideBasicOpen, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RegularOfValuationBoundedAtPoints, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularLocalStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FractionFieldCoordinatesDlog, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RootOfMonomialQuotientIntegral, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsStripFinitelyManyPrimeFactors, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AssociatedOfHeightOneAgree, Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleCoordinateQuotientRegular, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularQuotientPrimeElement, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.UnitOfHeightOnePrimes, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.EtaleCoordinatesLogChart, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogLiftOfUnitMemMap, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogLiftPpZero, Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleCoordinatesStalkFlat, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatModPSquaredTorsion, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.EtaleCoordinatesFlatLift, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobLiftLocalization, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFrobeniusLiftStalk, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusLiftUnitTimesCoord, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalRingImageStalkMap, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SncChartEquationsDifferUnit, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.LiftedStalkMapGermAppLE, Development.WeilBound.CoreStatements.PublishedTheorems.NadelVanishingPairs.NadelVanishingLemmas.FrobeniusDecompositionAtlasModP
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InducesPl
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InducesPl
+@[expose] public section
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry NumberField IsDedekindDomain
 open scoped NNReal
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Pdiv ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD
 open Formalism.L2.Pj GlobalTheory.HTLat GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.CompHt GlobalTheory.FlatCore GlobalTheory.FlatModel GlobalTheory.Toroidal
 open GlobalTheory.ShFam GlobalTheory.ShFam.Pad GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.TrueGeo GlobalTheory.Mean4O GlobalTheory.CoverNorm GlobalTheory.VertForm
-attribute [local instance] Over.cartesianMonoidalCategory
 attribute [local instance] algPadicInt algPadicField towerPadic factPadic GlobalTheory.PadicComplexHost.isAdicComplete
 
 namespace GlobalTheory.DetHT
@@ -103,6 +104,8 @@ def RegLocSt : Prop :=
 
 end GlobalTheory.DetHT
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsExtPointSpecializingOutsideBasicOpen

@@ -62,8 +62,10 @@ import Mathlib.Topology.Sheaves.Init
 open NumberField Module Matrix Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt GlobalTheory.LoopC
 open scoped ENNReal Classical
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsFrameFixingIsometrySplitRowLattice
+section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsFrameFixingIsometrySplitRowLattice
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.LoopC.RowSplit
 
@@ -292,7 +294,7 @@ theorem exists_dual_frame (hE : Formalism.HermitianLatticesTheory.IsCMUnram E) {
 
   · simp only [map_sub, map_sum, LinearMap.sub_apply, LinearMap.sum_apply, hsmul, map_smul, h.1, hge, heg,
     smul_eq_mul, mul_zero, Finset.sum_const_zero, sub_zero, mul_ite, mul_one, Finset.sum_ite_eq,
-    Finset.sum_ite_eq', Finset.mem_univ, if_true, star_mul, hsym]
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true, star_mul, hsym]
     linear_combination (-(S.hT (g a) (g b))) * ht
 
   · simp only [map_sub, map_sum, map_smul, h.1, heg, smul_eq_mul, mul_zero, Finset.sum_const_zero, sub_zero]
@@ -582,6 +584,8 @@ theorem main : ∀ (D : D7) (u : D.what₂.Word) (F0 : Fb D u) (Λ : LatV D), Is
 
 end GlobalTheory.LoopC.RowSplit
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsFrameFixingIsometrySplitRowLatticeStatement

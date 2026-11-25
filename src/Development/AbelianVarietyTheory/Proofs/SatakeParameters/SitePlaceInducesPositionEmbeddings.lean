@@ -50,11 +50,12 @@ import Formalism.SharpRestriction.GrowthBounds.ChartedClasses.ToLEInvApply
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LamPosOfPosEmb, Development.AbelianVarietyTheory.Proofs.SatakeParameters.SitePlaceInducesPositionEmbeddings
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LamPosOfPosEmb
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LamPosOfPosEmb
 
 open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G Formalism.MainNotions.FormalGroupSystem Formalism.L2.G.Pend Formalism.MainNotions Formalism.L2.Ker Formalism.L2.PairingIndexBounds.F Formalism.L2.KerInert Formalism.UG Formalism.MainNotions.G.KAat Formalism.MainNotions.G.CmpJ Formalism.L2.G Formalism.L2.G.Cmp Formalism.L2.Forms Formalism.L2.KerInert.SecondKernelInstances GlobalTheory.TwU GlobalTheory.TwV
 open scoped TensorProduct Matrix
 
+noncomputable section
 
 namespace GlobalTheory.TwU.PlaceAbove
 
@@ -68,10 +69,10 @@ theorem posArg_eq_self (D : D7) {n : ℕ} (s : Fin n) (x : D.host.E) :
   by_cases hs : s.val % 2 = 1
   · have hodd : IsOddPos s := hs
     have hne : ¬ Even s.val := by rw [Nat.not_even_iff_odd, Nat.odd_iff]; exact hs
-    rw [if_neg hne, if_pos hodd, involution_conj]
+    rw [ite_eq_right hne, ite_eq_left hodd, involution_conj]
   · have hodd : ¬ IsOddPos s := hs
     have hev : Even s.val := by rw [Nat.even_iff]; omega
-    rw [if_pos hev, if_neg hodd]
+    rw [ite_eq_left hev, ite_eq_right hodd]
 
 end GlobalTheory.TwU.PlaceAbove
 
@@ -93,6 +94,7 @@ theorem GlobalTheory.TwU.lamPos_of_posEmb : ∀ {p : ℕ} [Fact p.Prime] (X : Sy
   show Formalism.MainNotions.TaylorLogMetric.lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D (pos ⟨v, s⟩) x) = _
   rw [hL, ← h2, h1]
   rfl
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.SitePlaceInducesPositionEmbeddings

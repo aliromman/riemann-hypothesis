@@ -326,7 +326,9 @@ theorem bounded_a : ∀ (F : Type) [Field F] [NumberField F] [MeasurableSpace (A
 end PositivityTheory.PlacePermOperatorBicommutantSpan
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussianFourierSelfDualAdelic
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussianFourierSelfDualAdelic
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SW.Core0
 
@@ -394,7 +396,7 @@ theorem fourier_coefficient_any : ∀ (F : Type) [Field F] [NumberField F], ∀ 
       by_cases hall : ∀ ω, s z ω = 0
       · exact Or.inr hall
       left
-      push_neg at hall
+      push Not at hall
       obtain ⟨ω, hω⟩ := hall
       obtain ⟨r, hr⟩ := integral_of_ne_zero (hOrth ω) hint hmem hω
       obtain ⟨r₀, hr₀⟩ := hNβ
@@ -781,6 +783,7 @@ theorem core_zero : ∀ (F : Type) [Field F] [NumberField F], IsTotallyReal F �
     exact le_of_mul_le_mul_right h2 hv0
 
 end GlobalTheory.CompanionTheory.SW.Core0
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens

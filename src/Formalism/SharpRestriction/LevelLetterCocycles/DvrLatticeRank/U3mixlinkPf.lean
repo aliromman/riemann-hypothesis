@@ -409,8 +409,10 @@ end Formalism.MainNotions.N.Ln34.LevelExpansions
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.MixLocal
+section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.MixLocal
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln34.LevelExpansions
 
@@ -655,7 +657,7 @@ theorem mix_local [IsDomain O] (hinj : Function.Injective (algebraMap O LL))
         have h0 := V₁.inj τD ζD hptD _ (hsumN o) (filC_top T₁ τD _ (fun i hi hJ => by
           have h := hd1 τD i hJ
           unfold deep at h
-          simp only [huD, Bool.false_eq_true, if_false, Set.mem_union, Set.mem_Icc] at h
+          simp only [huD, Bool.false_eq_true, ite_false, Set.mem_union, Set.mem_Icc] at h
           omega) ho)
         refine ⟨h0, ?_⟩
         rw [← V₂.sum hptU _ o _ hy2, ← hmap]
@@ -681,7 +683,7 @@ theorem mix_local [IsDomain O] (hinj : Function.Injective (algebraMap O LL))
     rwa [fildR_gap T₁ τ (η + 1) (b τ) (by have := hηb τ; omega) fun i h1 h2 hJ => by
       have h := hd1 τ i hJ
       unfold deep at h
-      simp only [hu, if_true, Set.mem_union, Set.mem_Icc] at h
+      simp only [hu, ite_true, Set.mem_union, Set.mem_Icc] at h
       omega]
   · obtain ⟨x₀, hx₀⟩ := hdn τD ζD hptD huD
     have hint := integ DU DD hyU huU' hyD huD' (δ := algebraMap O LL (rD - rU))
@@ -750,6 +752,8 @@ end Main
 
 end Formalism.MainNotions.N.Ln34.LevelExpansions
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.U3mixlinkPf

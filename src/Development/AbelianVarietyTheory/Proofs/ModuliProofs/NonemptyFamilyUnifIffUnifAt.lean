@@ -48,8 +48,9 @@ import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsIsDerivAt0NotI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.CMModuli.SymplecticBasisLevel, Development.AbelianVarietyTheory.Proofs.ModuliProofs.NonemptyFamilyUnifIffUnifAt
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.CMModuli.SymplecticBasisLevel
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.CMModuli.SymplecticBasisLevel
 
+noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.SymplecticBasisLevel
 
@@ -59,10 +60,6 @@ open scoped Matrix
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
-section Lattice
-
-end Lattice
-
 section Fibre
 
 variable {D : Datum H} {l : Level H} (Xo : Moduli D l) {g : ℕ} (ty : Fin g → (E →+* ℂ))
@@ -71,19 +68,13 @@ abbrev univG : Over Xo.X := Xo.univ.t.G
 
 end Fibre
 
-section Component
-
-variable {D : Datum H} {l : Level H} (Xo : Moduli D l) (σ : KA l →+* ℂ) {g : ℕ} (ty : Fin g → (E →+* ℂ))
-  (D' : Datum H) (u : (D'.La →+ (Fin g → ℂ)) → (Sp ℂ ⟶ Xo.X))
-  (ex : ∀ P : D'.La →+ (Fin g → ℂ), (Fin g → ℂ) → (Over.mk (u P) ⟶ univG Xo))
-
-end Component
-
 end GlobalTheory.IndefiniteRowSideFullHecke.SymplecticBasisLevel
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.NonemptyFamilyUnifIffUnifAt
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.NonemptyFamilyUnifIffUnifAt
 
+noncomputable section
 
 namespace GlobalTheory.UnifCompare
 
@@ -163,22 +154,6 @@ theorem isDerivAt0_mul {G : Over S} [GrpObj G] {y : Sp ℂ ⟶ S} {F : (Fin g �
   exact TanDeriv.snd_evAt_mul v v' t t' U h1 h2 h f
 
 end Deriv
-
-section Piece
-
-variable {D : Datum H} {l : Level H} (Xo : Moduli D l) {g : ℕ} (ty : Fin g → (E →+* ℂ))
-  (D' : Datum H) (u : (D'.La →+ (Fin g → ℂ)) → (Sp ℂ ⟶ Xo.X))
-  (ex : ∀ P : D'.La →+ (Fin g → ℂ), (Fin g → ℂ) → (Over.mk (u P) ⟶ univG Xo))
-
-variable {Xo ty D' u ex}
-
-end Piece
-
-section Main
-
-variable {D : Datum H} {l : Level H} {Xo : Moduli D l} {σ : KA l →+* ℂ} {g : ℕ} {ty : Fin g → (E →+* ℂ)}
-
-end Main
 
 end GlobalTheory.UnifCompare
 

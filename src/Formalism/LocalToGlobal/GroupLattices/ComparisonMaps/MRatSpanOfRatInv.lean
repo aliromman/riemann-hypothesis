@@ -14,8 +14,9 @@ import Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.DeterminantTwistRowA
 
 open MvPolynomial
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.HRatInvOfTriv
+@[expose] public section -- clump member: Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.HRatInvOfTriv
 
+noncomputable section
 
 namespace Formalism.L2.G.Cmp
 
@@ -41,7 +42,7 @@ theorem jdI_apply (i : G.comp) (L0 : G.P.Tup) (γ : (G.lev i).Γ) (ξ : G.P.Xsp)
   classical
   unfold Formalism.MainNotions.G.LatticeSystems.delta
   have hex : ∃ γ' : (G.lev i).Γ, (G.lev i).smul γ L0 = (G.lev i).smul γ' L0 := ⟨γ, rfl⟩
-  rw [dite_eq_left hex, if_pos rfl]
+  rw [dite_eq_left hex, ite_eq_left rfl]
   have hspec : (G.lev i).smul γ L0 = (G.lev i).smul hex.choose L0 := hex.choose_spec
   have hstab : (G.lev i).smul (γ⁻¹ * hex.choose) L0 = L0 := by
     rw [Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, ← hspec, ← Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, inv_mul_cancel,
@@ -223,6 +224,7 @@ theorem mRatSpan_inv (h2 : G.FinClasses) (hE : EquivSys G G.P.HtupW) (hA : RatAc
     | smul a y _ h1' => rw [jd_smul]; exact Submodule.smul_mem _ _ h1'
 
 end Formalism.L2.G.Cmp
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.MRatSpanOfRatInv

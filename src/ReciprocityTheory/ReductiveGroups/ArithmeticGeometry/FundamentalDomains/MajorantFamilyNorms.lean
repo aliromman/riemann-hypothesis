@@ -102,11 +102,12 @@ theorem mt_flw (hG : ∀ a b, τ (G b a) = conj (τ (G a b))) (e : Fin r → ℂ
 end ReciprocityTheory.ChartRestriction.G.FD.GramFlowTransform
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.MajorantFamilyNorms
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.MajorantFamilyNorms
 
 namespace ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms
 open Complex Matrix ReciprocityTheory.ChartRestriction.G.FD.GramDeterminantReal ReciprocityTheory.ChartRestriction.G.FD.PositiveMinorUnits ReciprocityTheory.ChartRestriction.G.FD.GramFlowTransform
 open scoped ComplexConjugate
+noncomputable section
 
 variable {E : Type} [Field E] [NumberField E] [NumberField.IsCMField E] {r : ℕ} (X : Data E r)
 
@@ -145,7 +146,7 @@ theorem famN_flow (e : X.Ψ → Fin r → ℂ) (s : X.Ψ → ℂ) (x : Frame X.�
       hermC τ.1 X.Gm (fun d => x τ d (Fin.castLE h a)) (e τ)) * e τ c
   unfold Data.flowMatV hermC
   simp only [Matrix.of_apply, sub_mul, Finset.sum_sub_distrib, ite_mul, one_mul, zero_mul,
-    Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   rw [sub_eq_add_neg]
   congr 1
   simp only [Finset.mul_sum, Finset.sum_mul, ← Finset.sum_neg_distrib]
@@ -220,6 +221,7 @@ theorem maj_flow (he : hermC τ.1 X.Gm (e τ) (e τ) = 0) (s : X.Ψ → ℂ)
 
 end Prof
 
+end
 
 end ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms
 

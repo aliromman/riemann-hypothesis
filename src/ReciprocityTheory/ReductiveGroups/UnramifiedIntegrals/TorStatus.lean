@@ -25,11 +25,9 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorClose, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorChord, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorContr, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorLift, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorTwo, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorMain, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorStatus
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorClose
 
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorClose
 
 namespace ReciprocityTheory.ChartRestriction.L1
 
@@ -139,7 +137,10 @@ theorem norm_x_sub_le_of_formalGroup (W : WeierstrassCurve C) (h1 : W.a₁ = 0) 
 end ReciprocityTheory.ChartRestriction.L1
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorChord
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorChord
+
+noncomputable section
+open scoped Classical
 
 namespace ReciprocityTheory.ChartRestriction.L1
 
@@ -265,11 +266,11 @@ theorem chord_eval_est [CompleteSpace C] {F : MvPowerSeries (Fin 2) C} (hF : For
       rcases hcases with rfl | rfl | rfl
       · rw [MvPowerSeries.coeff_zero_eq_constantCoeff_apply, hG]
         simp [h00]
-      · rw [hG, map_sub, map_sub, h10, MvPowerSeries.coeff_X, MvPowerSeries.coeff_X, if_pos rfl,
-          if_neg hne]
+      · rw [hG, map_sub, map_sub, h10, MvPowerSeries.coeff_X, MvPowerSeries.coeff_X, ite_eq_left rfl,
+          ite_eq_right hne]
         ring
-      · rw [hG, map_sub, map_sub, h01, MvPowerSeries.coeff_X, MvPowerSeries.coeff_X, if_pos rfl,
-          if_neg hne.symm]
+      · rw [hG, map_sub, map_sub, h01, MvPowerSeries.coeff_X, MvPowerSeries.coeff_X, ite_eq_left rfl,
+          ite_eq_right hne.symm]
         ring
     rw [FormalGroupPointsHom.term, hz, zero_mul, norm_zero]
     exact pow_nonneg hr0 2
@@ -289,6 +290,11 @@ theorem formalGroup_add_estimate [CompleteSpace C] (W : WeierstrassCurve C) (hW 
 
 end ReciprocityTheory.ChartRestriction.L1
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open scoped Classical
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorContr
 

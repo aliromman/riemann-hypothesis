@@ -19,8 +19,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Cha
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenRank, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenFibre, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenPf
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenRank
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenRank
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj
@@ -61,18 +62,18 @@ private lemma exists_coh_extending_of_mem_wchart (hL : L.IsLB) (φ : K → (Y �
   · intro k k' h
     have hex : ∃ k'', φ' k'' = φ k := ⟨k', h.symm⟩
     show g (φ k) = j' k'
-    simp only [g, dif_pos hex]
+    simp only [g, dite_eq_left hex]
     exact hj' _ _ (hex.choose_spec.trans h)
   · rw [memw]
     intro k
     have hy' := (memw φ' j').mp hy
     show (φ k).base y ∈ L.U (g (φ k))
     by_cases hex : ∃ k'', φ' k'' = φ k
-    · simp only [g, dif_pos hex]
+    · simp only [g, dite_eq_left hex]
       have := hy' hex.choose
       rw [hex.choose_spec] at this
       exact this
-    · simp only [g, dif_neg hex]
+    · simp only [g, dite_eq_right hex]
       exact (hcov _).choose_spec
 
 private lemma sections_eq_of_locally_rs_eq {Z : Scheme.{0}} {W : Z.Opens} (a b : Γ(Z, W))
@@ -323,6 +324,7 @@ theorem secB_rank_one (hLaws : Laws) (t s' : D.toPre.SecB 1 0) :
 end Rank
 
 end ReciprocityTheory.ChartRestriction.G.DVR.TG
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenFibre

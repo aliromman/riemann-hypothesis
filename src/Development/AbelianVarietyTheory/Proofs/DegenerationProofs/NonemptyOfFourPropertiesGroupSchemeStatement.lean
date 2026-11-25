@@ -114,7 +114,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.EndoLbIsoSymmetryHypothesisExtendNormalModelStatement
 open GlobalTheory.ZH ReciprocityTheory.ChartRestriction.G.Out Classical
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.endo_lbIso_symmetryHypothesis_extend_normalModel : (∀ (T K : Type) [CommRing T] [IsDomain T] [IsDiscreteValuationRing T] [Field K] [Algebra T K] [IsFractionRing T K] (G G' : Over (Sp T)) [GrpObj G] [GrpObj G'], IsSemiAbelian G → IsSemiAbelian G' → ∀ f : (Over.pullback (spMap (algebraMap T K))).obj G ⟶ (Over.pullback (spMap (algebraMap T K))).obj G', IsMonHom f → ∃! F : G ⟶ G', IsMonHom F ∧ (Over.pullback (spMap (algebraMap T K))).map F = f) → ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [ArithBase o Ω] (S : ThetaSys o Ω) (ρ : S.Real) (M : RatModel o Ω) (U₀ : M.Z.Opens) (Q : ZHPre ρ M U₀), S.Over₀ M U₀ → HypS Q.G Q.L.L ∧ (∀ f : (Over.pullback M.pt).obj Q.G ⟶ (Over.pullback M.pt).obj Q.G, IsMonHom f → ∃! F : Q.G ⟶ Q.G, IsMonHom F ∧ (Over.pullback M.pt).map F = f) := by
   first | exact @GlobalTheory.ZH.EndoExtend.hypS_and_endo_and_iso_extend
@@ -122,7 +121,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ThetaSystemBaseSectionValueChart
 open GlobalTheory.ZH ReciprocityTheory.ChartRestriction.G.Out Classical
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ZH.PowSec
 open GlobalTheory.Points
@@ -337,7 +335,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.BasisOriginValuesRegularAndUnit
 open GlobalTheory.ZH ReciprocityTheory.ChartRestriction.G.Out Classical
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ZH
 
@@ -393,8 +390,9 @@ theorem basis_origin_values_regular_and_unit :
 end GlobalTheory.ZH
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsOpenSetOfLinearIndependentOnFibres
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsOpenSetOfLinearIndependentOnFibres
 
+noncomputable section
 
 namespace GlobalTheory.FibreLinInd
 
@@ -562,7 +560,7 @@ theorem isOpen_setOf_linearIndependent_on_fibres :
       refine Set.mem_iInter.2 fun k => ?_
       have hk : ⊤ ≤ (a k).1.1 ⁻¹ᵁ L.U (j k) := by
         by_contra hn
-        exact ha (Matrix.det_eq_zero_of_row_eq_zero k fun i => dif_neg hn)
+        exact ha (Matrix.det_eq_zero_of_row_eq_zero k fun i => dite_eq_right hn)
       have := hk ht
       rw [← hπ k] at this
       exact this
@@ -574,9 +572,11 @@ theorem isOpen_setOf_linearIndependent_on_fibres :
 
 end GlobalTheory.FibreLinInd
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.LinearIndependentOnFibresOfClosedPoints
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.LinearIndependentOnFibresOfClosedPoints
 
+noncomputable section
 
 namespace GlobalTheory.FibreLinInd
 
@@ -617,7 +617,7 @@ theorem geometric_of_field (G Z : Scheme.{0}) (f : G ⟶ Z) [Flat f]
       refine Set.mem_iInter.2 fun k => ?_
       have hk : ⊤ ≤ (a k).1.1 ⁻¹ᵁ L.U (j k) := by
         by_contra hn
-        exact ha (Matrix.det_eq_zero_of_row_eq_zero k fun i => dif_neg hn)
+        exact ha (Matrix.det_eq_zero_of_row_eq_zero k fun i => dite_eq_right hn)
       have := hk ht
       rw [← hπ k] at this
       exact this
@@ -654,6 +654,7 @@ theorem linearIndependent_on_fibres_of_closedPoints :
 
 end GlobalTheory.FibreLinInd
 end -- clump:auto
+end -- clump:auto
 
 end -- clump: shared namespace opens
 
@@ -665,7 +666,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.ZH ReciprocityTheory.ChartRestriction.G.Out Classical
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsSectionsPowLineBundleFromLocalBasis
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ZH.PowSec
 open GlobalTheory.Points
@@ -1043,9 +1043,10 @@ end -- clump:auto
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ThetaModelRelAmpleAndPrincipalAbelianLocus
-attribute [local instance] Over.cartesianMonoidalCategory
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ThetaModelRelAmpleAndPrincipalAbelianLocus
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.ZH.AbPol
 
@@ -1305,18 +1306,20 @@ theorem relAmple_and_kTriv : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra 
 
 end GlobalTheory.ZH.AbPol
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ThetaModelRelAmpleAndPrincipalAbelianLocusStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.thetaModel_relAmple_and_principal_abelianLocus : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [ArithBase o Ω] (S : ThetaSys o Ω) (ρ : S.Real) (M : RatModel o Ω) (U₀ : M.Z.Opens) (EE : M.Lat S.J) (Q : ZHPre ρ M U₀), Laws → S.Over₀ M U₀ → Q.SecO EE → Q.Ab → ∀ W : M.Z.Opens, (W : Set M.Z) ⊆ abLocus Q.G → RelAmple ((Over.pullback W.ι).obj Q.G) (Q.L.L.pull (pullback.fst Q.G.hom W.ι)) ∧ KTriv ((Over.pullback W.ι).obj Q.G) (Q.L.L.pull (pullback.fst Q.G.hom W.ι)) := by
   first | exact @GlobalTheory.ZH.AbPol.relAmple_and_kTriv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.UnifPullbackOfUnifRing
-attribute [local instance] Over.cartesianMonoidalCategory
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.UnifPullbackOfUnifRing
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.ZH
 
@@ -1438,10 +1441,11 @@ theorem unif_pullback_of_unif_ring : (∀ (R : Type) [CommRing R] [IsDomain R] [
 
 end GlobalTheory.ZH
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyOfFourPropertiesGroupScheme
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ZH
 open GlobalTheory.Points
@@ -1496,7 +1500,6 @@ end GlobalTheory.ZH
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NonemptyOfFourPropertiesGroupSchemeStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.nonempty_of_fourProperties_groupScheme : (∀ (T K : Type) [CommRing T] [IsDomain T] [IsDiscreteValuationRing T] [Field K] [Algebra T K] [IsFractionRing T K] (G G' : Over (Sp T)) [GrpObj G] [GrpObj G'], IsSemiAbelian G → IsSemiAbelian G' → ∀ f : (Over.pullback (spMap (algebraMap T K))).obj G ⟶ (Over.pullback (spMap (algebraMap T K))).obj G', IsMonHom f → ∃! F : G ⟶ G', IsMonHom F ∧ (Over.pullback (spMap (algebraMap T K))).map F = f) → (∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] [CharZero R], IsNoetherianRing R → IsIntegrallyClosed R → IsAdicComplete (IsLocalRing.maximalIdeal R) R → ∀ (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G] (L : RigLB G) (_ : CubicalStr G L) (W : (Sp R).Opens), IsSemiAbelian G → L.IsSymmetric → HypS G L.L → (∃ E : SplitExt (Sp (IsLocalRing.ResidueField R)), E.IsGt ((Over.pullback (spMap (IsLocalRing.residue R))).obj G)) → (∃ θ : LB.Sec L.L, ∃ x ∈ nonzeroLocus θ, G.hom x = IsLocalRing.closedPoint R) → (W : Set (Sp R)).Nonempty → (W : Set (Sp R)) = abLocus G → IsProper (pullback.snd G.hom W.ι) → RelAmple ((Over.pullback W.ι).obj G) (L.L.pull (pullback.fst G.hom W.ι)) → KTriv ((Over.pullback W.ι).obj G) (L.L.pull (pullback.fst G.hom W.ι)) → ∃ (D : DegData R (IsLocalRing.maximalIdeal R)) (A : PolAV (Sp (FractionRing R))) (U : Unif (IsLocalRing.maximalIdeal R) D A G), U.LG = L ∧ ∀ y, PsiUnitOn D.toPre y W) → GlobalTheory.Published.SemistableReductionSt → ThmUSt → Laws → Laws2 → UTorsSt → ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [ArithBase o Ω] (S : ThetaSys o Ω) (ρ : S.Real) (M : RatModel o Ω) (U₀ : M.Z.Opens) (EE : M.Lat S.J) (Q : ZHPre ρ M U₀) (C : Clos ρ M U₀ EE) (ex : C.Ext), (∃ e : Q.G.left ≅ C.G.toScheme, e.hom ≫ C.G.ι ≫ C.P.hom = Q.G.hom ∧ Q.u₀ = C.u₀ ∧ HEq (Q.φ ≫ e.hom) ex.a) → S.Big → S.Over₀ M U₀ → S.IsEE M U₀ EE → Q.Sec → Q.LocTheta → Q.SecO EE → Q.Ab → Nonempty (ZHOut ρ M U₀ EE) := by
   first | exact @GlobalTheory.ZH.ZHPre.nonempty_out

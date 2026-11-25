@@ -124,7 +124,7 @@ private theorem limit_graded {O S X K : Type} [CommRing O] [CommRing S] [Algebra
     · have : p j + p k ≠ 0 := by omega
       simp [hj, hk]
     · by_cases hs : p j + p k = 0
-      · simp only [hs, hj, hk, if_true, if_false, mul_zero, hm]
+      · simp only [hs, hj, hk, ite_true, ite_false, mul_zero, hm]
         rcases lt_or_gt_of_ne hj with hj' | hj'
         · rw [h1 hj', zero_mul]
         · rw [h2 (by omega), mul_zero]
@@ -151,7 +151,7 @@ private theorem limit_graded {O S X K : Type} [CommRing O] [CommRing S] [Algebra
   have hone : L 1 = 1 := by
     have h1 : (1 : S) ∈ 𝒜 0 := SetLike.GradedOne.one_mem
     have e : (1 : B) = ⟨1, mem_gradedSub 𝒜 h1⟩ := rfl
-    rw [e, hform _ _ h1, if_pos (map_zero p)]
+    rw [e, hform _ _ h1, ite_eq_left (map_zero p)]
     rw [← e, map_one]
   refine ⟨AlgHom.ofLinearMap L hone (fun x y => hmul x.1 x.2 y.1 y.2), ?_⟩
   intro j f hf
@@ -264,8 +264,8 @@ theorem UpperTheory.V.GradeZeroInterpolatingElement.ptLimit :
   refine ⟨ξ₀, fun g i j => ?_⟩
   rw [hrep, hrep, hξ₀ (wt i j) _ (M.entry_mem g i j)]
   by_cases hij : lamW i = lamW j
-  · rw [if_pos ((hp0 i j).mpr hij), if_pos hij]
-  · rw [if_neg (fun h => hij ((hp0 i j).mp h)), if_neg hij]
+  · rw [ite_eq_left ((hp0 i j).mpr hij), ite_eq_left hij]
+  · rw [ite_eq_right (fun h => hij ((hp0 i j).mp h)), ite_eq_right hij]
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.TwoIrr
@@ -321,10 +321,10 @@ theorem UpperTheory.V.GradeZeroInterpolatingElement.twoIrr :
     obtain ⟨hm, -, -, -, -, he, -⟩ := ptIn D hD (PadicAlgCl l) r₀ hr₀
     obtain ⟨-, -, -, -, -, h6⟩ := geAlg (PadicAlgCl l) r₀ _ hm he
     have hb : ∀ g, IsBlock (r₀ g) := fun g i j hij => by
-      rw [hrt₀, twoIrr_entry, h₀, if_neg hij]
+      rw [hrt₀, twoIrr_entry, h₀, ite_eq_right hij]
     have key : ∀ i j, lamW i = lamW j → Ge r i j → Ge r₀ i j := fun i j hij hg => by
       obtain ⟨g, hg⟩ := (hge i j).1 hg
-      exact (hge₀ i j).2 ⟨g, by rw [h₀, if_pos hij]; exact hg⟩
+      exact (hge₀ i j).2 ⟨g, by rw [h₀, ite_eq_left hij]; exact hg⟩
     exact hNE r₀ hr₀ hb (h6 (key 0 2 (by decide) h02) (key 2 0 (by decide) h20) hb)
 
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.PtLimit", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.EntryMem\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.SInternal\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.SpanMono\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\n\n"}

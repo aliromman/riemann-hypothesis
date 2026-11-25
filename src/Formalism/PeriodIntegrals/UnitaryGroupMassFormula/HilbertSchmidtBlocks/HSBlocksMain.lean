@@ -8,12 +8,11 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HilbertSchmidtBlocks.Change, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HilbertSchmidtBlocks.HSBlocksMain
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HilbertSchmidtBlocks.Change
 
+noncomputable section
 
 open scoped Classical ComplexConjugate
-
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HilbertSchmidtBlocks.Change
 
 namespace NormHilbertSchmidtBlocks
 
@@ -37,7 +36,7 @@ theorem sum_inner_change {E F ι κ : Type*} [NormedAddCommGroup E] [InnerProduc
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Finset.sum_comm]
   simp only [← Finset.sum_mul, he, orthonormal_iff_ite.mp b.orthonormal, ite_mul, one_mul, zero_mul,
-    Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
 theorem parseval_single {C' V' : Type*} [Fintype C'] [NormedAddCommGroup V']
     [InnerProductSpace ℂ V'] [FiniteDimensional ℂ V']
@@ -68,8 +67,12 @@ theorem parseval_single {C' V' : Type*} [Fintype C'] [NormedAddCommGroup V']
 
 end NormHilbertSchmidtBlocks
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HilbertSchmidtBlocks.HSBlocksMain
+
+
+open scoped Classical ComplexConjugate
 
 namespace NormHilbertSchmidtBlocks
 

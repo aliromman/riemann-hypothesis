@@ -13,8 +13,9 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.GramMatrixExists, Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.BiextensionRelation
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.GramMatrixExists
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.GramMatrixExists
 
+noncomputable section
 open scoped BigOperators
 
 namespace Formalism.L2.Th1.D
@@ -125,7 +126,7 @@ theorem gram_matrix_exists : GramExists := by
       simp only [h3]
       rw [OrbitCoverLemmas.blk_gram σ _ h2 hlam]
       simp
-    · rw [if_neg (fun h' => h h'.2)]
+    · rw [ite_eq_right (fun h' => h h'.2)]
       refine Finset.sum_eq_zero fun k _ => Finset.sum_eq_zero fun y _ => ?_
       by_cases hy : y = e
       · have : ¬ y = e' := fun h' => h (hy ▸ h')
@@ -133,6 +134,7 @@ theorem gram_matrix_exists : GramExists := by
       · simp [hy]
 
 end Formalism.L2.Th1.D
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.BiextensionRelation

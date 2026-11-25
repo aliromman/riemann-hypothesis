@@ -1,5 +1,6 @@
 module
 
+import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.OtherStart
 public import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.FactorizationBoundMonoLattices
 public import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.DensityNumericalFacts
 public import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.LocalHypothesisOfGlobal
@@ -382,8 +383,8 @@ theorem existsIO' : ExistsIO := by
       else 1 := by
     intro s
     by_cases h : s ∈ TT
-    · rw [dif_pos h]
-      have hf : f s = i ⟨s, h⟩ := by simp only [f, dif_pos h]
+    · rw [dite_eq_left h]
+      have hf : f s = i ⟨s, h⟩ := by simp only [f, dite_eq_left h]
       rw [hf]
       have hc : ψ.comp (MvPolynomial.rename (fun v : Bool × α => (s, v))) =
           MvPolynomial.rename (fun v : Bool × α => (((⟨s, h⟩ : TT), v.1), v.2)) := by
@@ -392,16 +393,16 @@ theorem existsIO' : ExistsIO := by
         simp [ψ, h]
       exact congrArg (fun F : MvPolynomial (Bool × α) K →ₐ[K] MvPolynomial ((TT × Bool) × α) K =>
         F (i ⟨s, h⟩ (P s))) hc
-    · rw [dif_neg h]
+    · rw [dite_eq_right h]
       have hf : f s = (MvPolynomial.aeval (fun _ : α => (0 : MvPolynomial (Bool × α) K))).toLinearMap := by
-        simp only [f, dif_neg h]
+        simp only [f, dite_eq_right h]
       rw [hf, hP s h]
       simp
   rw [Finset.prod_congr rfl fun s _ => key s]
-  rw [← Finset.prod_subset (Finset.subset_univ TT) (fun s _ hs => dif_neg hs)]
+  rw [← Finset.prod_subset (Finset.subset_univ TT) (fun s _ hs => dite_eq_right hs)]
   rw [← Finset.prod_coe_sort TT]
   refine Finset.prod_congr rfl fun s _ => ?_
-  rw [dif_pos s.2]
+  rw [dite_eq_left s.2]
 
 theorem existsPR' : ExistsPR := by
   intro K _ S α _ _ TT pr
@@ -529,8 +530,9 @@ end Formalism.MainNotions.flipOneThree.Pf
 end -- clump:auto
 
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.OddTops
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.flipOneThree.Pf
 
@@ -585,18 +587,7 @@ theorem segNext_spec (TT : Finset (Fin n')) (j : Fin (numSeg TT)) :
 
 theorem other_even (TT : Finset (Fin n')) (h2 : 2 ≤ numSeg TT) (j : Fin (numSeg TT)) :
     ∃ e ∈ TT, Even e.val ∧ e ≠ segStart TT j := by
-  have hj := j.isLt
-  let j' : Fin (numSeg TT) := if j.val = 0 then ⟨1, by omega⟩ else ⟨0, by omega⟩
-  have hne : j' ≠ j := by
-    intro h
-    have hv : j'.val = j.val := congrArg Fin.val h
-    by_cases h0 : j.val = 0
-    · have e : j'.val = 1 := by simp [j', h0]
-      omega
-    · have e : j'.val = 0 := by simp [j', h0]
-      omega
-  refine ⟨segStart TT j', (segStart_spec TT j').1, (segStart_spec TT j').2, fun h => hne ?_⟩
-  exact (evenTops_mono TT).injective h
+  apply _root_.Formalism.MainNotions.ColumnSystems.Pf.other_start <;> assumption
 
 theorem segG_eq (TT : Finset (Fin n')) (h2 : 2 ≤ numSeg TT) (j : Fin (numSeg TT)) :
     segG TT j = cdist (segStart TT j) (segNext TT j) ∧ 0 < segG TT j ∧ segG TT j < n' := by
@@ -604,7 +595,7 @@ theorem segG_eq (TT : Finset (Fin n')) (h2 : 2 ≤ numSeg TT) (j : Fin (numSeg T
   have h := (next_min TT j e he hev hne).1
   have e1 : segG TT j = cdist (segStart TT j) (segNext TT j) := by
     unfold segG
-    rw [if_neg (by omega)]
+    rw [ite_eq_right (by omega)]
   refine ⟨e1, by omega, ?_⟩
   rw [e1]
   exact Nat.mod_lt _ (segStart TT j).pos
@@ -731,6 +722,7 @@ theorem restOddTops : RestOddTops := by
 
 end Formalism.MainNotions.flipOneThree.Pf
 
+end
 end -- clump:auto
 end -- clump:auto
 
@@ -778,8 +770,10 @@ end Formalism.MainNotions.flipOneThree.Pf
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.DensAbs
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.DensAbs
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.flipOneThree.Pf
 
@@ -793,7 +787,6 @@ theorem dens_abs (N : ℕ) (hN : 1 ≤ N) (x1 x2 wa wb e : ℝ) (h1 : 0 ≤ x1) 
   have hu0 : 0 ≤ u := div_nonneg he hwa.le
   have hv0 : 0 ≤ v := div_nonneg he hwb.le
   have hN1 : (1 : ℝ) ≤ N := by exact_mod_cast hN
-  have hs' : (N : ℝ) * x1 + N * x2 + N * u + N * v ≤ 1 / 2 := by nlinarith
   have hp1 : 0 ≤ (N : ℝ) * u := by positivity
   have hp2 : 0 ≤ (N : ℝ) * v := by positivity
   have hp3 : 0 ≤ (N : ℝ) * x1 := by positivity
@@ -844,7 +837,6 @@ theorem dens_abs (N : ℕ) (hN : 1 ≤ N) (x1 x2 wa wb e : ℝ) (h1 : 0 ≤ x1) 
   have hCD : (1 - N * x1) * (1 - N * x2) ≤ (1 - x1) ^ N * (1 - x2) ^ N :=
     mul_le_mul hc hd (by linarith) (le_trans (by linarith) hc)
   have key : (1 + u) ^ N * (1 + v) ^ N ≤ 2 * ((1 - x1) ^ N * (1 - x2) ^ N) := by
-    have hγδ : 0 ≤ (1 - N * x1) * (1 - N * x2) := by nlinarith
     calc (1 + u) ^ N * (1 + v) ^ N
         ≤ (1 + u) ^ N * (1 + v) ^ N *
             (2 * ((1 - N * u) * (1 - N * v) * ((1 - N * x1) * (1 - N * x2)))) :=
@@ -875,14 +867,14 @@ theorem Nexp_le (N Y La : ℝ) (hN : 2 ≤ N) (hY : 1 ≤ Y) (hLa : 8 * Real.log
     rw [← Real.exp_add]; exact Real.exp_le_exp.mpr (by linarith)
   have h4 : N ^ 2 * (1 + 2 * L / 3) ≤ Real.exp (La / 3) :=
     le_trans (mul_le_mul h1 h2 (by linarith) (Real.exp_pos _).le) h3
-  have h5 : N ^ 2 * 1.46 ≤ Real.exp (La / 3) :=
-    le_trans (mul_le_mul_of_nonneg_left (by linarith) (sq_nonneg N)) h4
   have hpos : 0 < Real.exp (La / 3) := Real.exp_pos _
   rw [show -La / 3 = -(La / 3) by ring, Real.exp_neg, ← div_eq_mul_inv, div_le_iff₀ hpos]
   nlinarith
 
 end Formalism.MainNotions.flipOneThree.Pf
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.ThresholdDensityFacts
@@ -1126,8 +1118,10 @@ end Formalism.MainNotions.flipOneThree.Pf
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.ThresholdFixedWeightFacts
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.ThresholdFixedWeightFacts
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.flipOneThree.Pf
 
@@ -1202,7 +1196,6 @@ theorem cb_of {K : Cst} {CH : ℝ} {X : Dat} (B : Base K CH X) : CBoundI 4 X.p X
   have h1 : (0 : ℝ) ≤ (X.TT.card : ℝ) * ((X.m : ℝ) + 1) * Real.logb X.p X.a := by positivity
   have h2 : (0 : ℝ) ≤ (X.TT.card : ℝ) * X.ccl := by positivity
   have h4 : (0 : ℝ) ≤ (X.n' : ℝ) * X.ccl := by positivity
-  have h5 : (0 : ℝ) ≤ (X.cStar : ℝ) := by positivity
   linarith
 
 theorem D0nn_of {K : Cst} (hK : K.Pos) {CH : ℝ} {X : Dat} (B : Base K CH X) : 0 ≤ X.D0 K := by
@@ -1210,7 +1203,6 @@ theorem D0nn_of {K : Cst} (hK : K.Pos) {CH : ℝ} {X : Dat} (B : Base K CH X) : 
   rw [D0_eq_numSeg_mul_add]
   have hCA : 0 < K.CA := hK.2.2.1
   have hk : 0 ≤ X.k := by linarith [B.hk5]
-  have hlg : 0 ≤ lgA X.p X.a X.m := by linarith
   positivity
 
 theorem small_depth_le_large_depth (K : Cst) (X : Dat) : X.D0 K ≤ X.D1 K := by
@@ -1277,10 +1269,8 @@ theorem logl_of {K : Cst} (hK : K.Pos) {CH : ℝ} (hCH : K.TM ≤ CH) {X : Dat} 
   have hT : K.TLP ≤ CH := le_trans (le_max_left _ _) hCH
   have h108 : (108 : ℝ) ≤ CH := le_trans (le_trans (le_max_left _ _) (le_max_left _ _)) hT
   have hYbC : CH ≤ X.Yb := h.2.2.2.2.2.2.2.2.2.2.2.2.2.1
-  have hk5 : (5 : ℝ) ≤ (X.m : ℝ) + 1 := B.hk5
   have hN2 : (2 : ℝ) ≤ (X.TT.card : ℝ) := B.hN2
   have hLa' : 1 ≤ LaI K.C₀ X.N₁ (X.a : ℝ) := le_trans B.hLa1 l1
-  have hl : 0 ≤ Real.log (X.a : ℝ) := by linarith [B.hlog1]
   refine le_trans ?_ h16
   have e1 : (1 : ℝ) ≤ X.Yb / 2 * X.TT.card * LaI K.C₀ X.N₁ (X.a : ℝ) :=
     one_le_mul_of_one_le_of_one_le (one_le_mul_of_one_le_of_one_le (by linarith) (by linarith)) hLa'
@@ -1377,6 +1367,8 @@ theorem threshold_mean_kappa_facts (K : Cst) (hK : K.Pos) : TransportedAlt K (fu
 
 end Formalism.MainNotions.flipOneThree.Pf
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.TheoremIOfLatticeFunctorComparison

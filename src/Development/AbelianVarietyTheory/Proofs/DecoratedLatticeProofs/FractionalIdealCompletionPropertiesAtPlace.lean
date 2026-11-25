@@ -62,7 +62,6 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Unf GlobalTheory.Spl
 open scoped TensorProduct nonZeroDivisors
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FractionalIdealCompletionLocallyPrincipalStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.fractionalIdealCompletion_locally_principal : ∀ (D : D7) (v : Pl D) (𝔞 : FI D), 𝔞 ≠ 0 → ∃ x : D.host.E, x ≠ 0 ∧ ∀ s, s ∈ idV 𝔞 v ↔ incA D x⁻¹ * s ∈ intAt D (· = v) ∧ s ∈ idAt D (· = v) := by
   first | exact @GlobalTheory.IdVGen.idV_gen
@@ -109,8 +108,10 @@ theorem _root_.GlobalTheory.T.inverseDifferentCompletion_iff_characterDual : ∀
   first | exact @GlobalTheory.SeeSaw.DiffDual.idV_dI_iff
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MemScaledLatticeCompletionIffPolarisationInverse
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MemScaledLatticeCompletionIffPolarisationInverse
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.SeeSaw.LatAt
 
@@ -140,7 +141,7 @@ theorem good_indP (v : Pl D) : Good v (GlobalTheory.SelfDualAt.indP (D := D) (·
     split_ifs
     · exact one_mem _
     · exact zero_mem _
-  · rw [GlobalTheory.SelfDualAt.evalV_indP, if_neg hw]
+  · rw [GlobalTheory.SelfDualAt.evalV_indP, ite_eq_right hw]
 
 theorem indicatorAdele_mul_self (v : Pl D) :
     GlobalTheory.SelfDualAt.indP (D := D) (· = v) * GlobalTheory.SelfDualAt.indP (D := D) (· = v) = GlobalTheory.SelfDualAt.indP (D := D) (· = v) := by
@@ -253,6 +254,8 @@ end GlobalTheory.SeeSaw.LatAt
 theorem GlobalTheory.SeeSaw.mem_latA_iff_mul_inv : ∀ (D : D7) (v : Pl D) (S : HSp D) (L : Lat S) (y : Fin S.rank → AE D), y ∈ latA S L (· = v) ↔ (∀ i, y i ∈ idAt D (· = v)) ∧ ∀ s ∈ idV D.host.AA⁻¹ v, s • y ∈ latV S L (· = v) :=
   fun _ v S L y => ⟨GlobalTheory.SeeSaw.LatAt.mem_latA_fwd S L v y, fun h => GlobalTheory.SeeSaw.LatAt.mem_latA_bwd S L v y h.1 h.2⟩
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MemScaledLatticeCompletionIffPolarisationInverseStatement

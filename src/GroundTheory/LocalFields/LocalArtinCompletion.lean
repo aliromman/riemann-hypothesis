@@ -53,8 +53,9 @@ end GroundTheory.LocalField
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.LocalFields.LocalArtinCompletion
+@[expose] public section -- clump member: GroundTheory.LocalFields.LocalArtinCompletion
 
+noncomputable section
 
 namespace GroundTheory.LocalField
 
@@ -119,12 +120,6 @@ theorem continuous_artinCoord (H : openFiniteIndex Kˣ) : Continuous (artinCoord
   exact continuous_of_discreteTopology.comp (continuous_restrictAb _ _)
 
 end Coord
-
-section Completion
-
-
-
-end Completion
 
 end GroundTheory.LocalField
 

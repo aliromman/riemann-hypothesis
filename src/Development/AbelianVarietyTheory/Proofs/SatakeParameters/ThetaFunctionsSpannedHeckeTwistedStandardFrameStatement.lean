@@ -631,8 +631,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.MemSpanTranslatesOfFixedLattice
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.MemSpanTranslatesOfFixedLattice
 
+noncomputable section
 
 namespace GlobalTheory.FourierSpan
 
@@ -697,7 +698,7 @@ theorem mem_span_translates_of_fixed {G V : Type} [AddCommGroup G] [AddCommGroup
       have := L'.sub_mem t.2 (hLL' htr)
       simpa using this
     refine ⟨⟨r, hr⟩, ?_⟩
-    simp only [φ, dif_pos hrL']
+    simp only [φ, dite_eq_left hrL']
     rw [QuotientAddGroup.eq, AddSubgroup.mem_addSubgroupOf, AddSubgroup.coe_add, AddSubgroup.coe_neg]
     convert htr using 1
     simp only
@@ -822,6 +823,7 @@ theorem mem_span_translates_of_fixed {G V : Type} [AddCommGroup G] [AddCommGroup
   refine Submodule.smul_mem _ _ (Submodule.sum_mem _ fun q _ => Submodule.subset_span ?_)
   exact ⟨_, hL'X (q.out).2, g q, gW q, gL q, gP q, rfl⟩
 end GlobalTheory.FourierSpan
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

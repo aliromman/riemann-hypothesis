@@ -83,8 +83,9 @@ def LatOK {n : ℕ} (bad M : ℕ) (Λ : GenLat E n) : Prop :=
 end GlobalTheory.IndefiniteRowSideFullHecke.BlockProductLattices
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.BlockHarmLevOfBlockHarm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.BlockHarmLevOfBlockHarm
 
+noncomputable section
 
 namespace GlobalTheory.ShortLawsCompare
 
@@ -209,7 +210,7 @@ theorem _root_.GlobalTheory.ShortLawsCompare.unimod_std [IsCMField E] (n : ℕ) 
       · simp [hij]
     have hc := h _ hsingle
     simp only [Pi.single_apply, mul_ite, mul_zero, Finset.sum_ite_eq',
-      Finset.mem_univ, if_true] at hc
+      Finset.mem_univ, ite_true] at hc
     obtain ⟨b, hb⟩ := hc
     obtain ⟨a, ha⟩ := complexConj_coe_mem_range_algebraMap b
     refine ⟨a, ?_⟩
@@ -359,12 +360,6 @@ theorem _root_.GlobalTheory.ShortLawsCompare.isBeta_mul {n : ℕ} {Λ : _root_.F
   exact hnorm σ
 
 end Beta
-
-section Level
-
-variable {Xo : Moduli Dw l} {c : Coeff l}
-
-end Level
 
 section Objects
 

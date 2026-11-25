@@ -44,12 +44,13 @@ import Mathlib.Algebra.Order.Star.Real
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetCongruenceRefinement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetEmptyPlacesLattice, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetUnitIdealIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanFundamentalDomainIntegers, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticePointCountScaling, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ScalingMeasureProductArchimedean, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeCosetScaledRiemannSum, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsFurtherSide, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HaarMeasureLocalBall, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocallyConstantBoxApproximation, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Equidistribution
 
-section -- clump: shared namespace opens
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetCongruenceRefinement
+@[expose] public section
+
+noncomputable section
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter GlobalTheory.CompanionTheory.Equi
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetCongruenceRefinement
 
 namespace GlobalTheory.CompanionTheory.Equi.CosetStep
 
@@ -73,7 +74,7 @@ theorem exists_pow_mul (v : HeightOneSpectrum (𝓞 F)) {D : Ideal (𝓞 F)} (hD
     rcases Nat.eq_zero_or_pos (Nat.find hex) with h0 | hpos
     · simp [h0]
     · have h1 := Nat.find_min hex (Nat.sub_lt hpos Nat.one_pos)
-      push_neg at h1
+      push Not at h1
       have e : Nat.find hex - 1 + 1 = Nat.find hex := by omega
       rwa [e] at h1
   obtain ⟨B, hB⟩ := Ideal.dvd_iff_le.mpr hle
@@ -361,7 +362,14 @@ theorem coset_step : ∀ (F : Type) [Field F] [NumberField F] (ι : Type) (S : F
 
 end GlobalTheory.CompanionTheory.Equi.CosetStep
 
+end
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter GlobalTheory.CompanionTheory.Equi
+open scoped Classical
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetEmptyPlacesLattice
 
@@ -1244,10 +1252,13 @@ theorem measure_translate_ballV : ∀ (F : Type) [Field F] [NumberField F] (v : 
 end GlobalTheory.CompanionTheory.Equi.BallVol
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocallyConstantBoxApproximation
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocallyConstantBoxApproximation
+@[expose] public section
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter GlobalTheory.CompanionTheory.Equi
 open scoped Classical
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Equi.LocApprox
 
@@ -1361,8 +1372,8 @@ theorem pointwise (v : HeightOneSpectrum (𝓞 F)) (ι : Type) [Fintype ι] (k :
       by_cases hne : c' = c
       · subst hne
         simp [boxInd, hcy]
-      · rw [if_neg hne]
-        refine if_neg fun h' => hne (hdisj c' hc' c hc fun i => ?_)
+      · rw [ite_eq_right hne]
+        refine ite_eq_right fun h' => hne (hdisj c' hc' c hc fun i => ?_)
         simpa using add_mem_ball v k (hcy i) (neg_mem_ball v k (h' i))
     have s1 : ∑ c' ∈ C, ψ c' * boxInd v k c' y = ψ c := by
       rw [Finset.sum_congr rfl fun c' hc' => by rw [key c' hc']]
@@ -1374,7 +1385,7 @@ theorem pointwise (v : HeightOneSpectrum (𝓞 F)) (ι : Type) [Fintype ι] (k :
     exact hunif y c hcy
   · have hz : ∀ c ∈ C, boxInd v k c y = 0 := by
       intro c hc
-      exact if_neg fun h' => h ⟨c, hc, h'⟩
+      exact ite_eq_right fun h' => h ⟨c, hc, h'⟩
     have hy : ψ y = 0 := by
       by_contra h0
       exact h (hcov y h0)
@@ -1403,7 +1414,7 @@ theorem boxInd_eq (v : HeightOneSpectrum (𝓞 F)) {ι : Type} (k : ℕ) (c : ι
   · rw [Set.indicator_of_mem ((mem_boxS v k c y).2 h)]
     simp [boxInd, h]
   · rw [Set.indicator_of_notMem (fun h' => h ((mem_boxS v k c y).1 h'))]
-    exact if_neg h
+    exact ite_eq_right h
 
 theorem real_boxS {v : HeightOneSpectrum (𝓞 F)} {lam : Measure (Fv F v)} (hstd : IsStdV v lam)
     {ι : Type} [Fintype ι] (k : ℕ) (c : ι → Fv F v) :
@@ -1505,9 +1516,13 @@ theorem loc_approx : ∀ (F : Type) [Field F] [NumberField F] (v : HeightOneSpec
   exact hb.trans (mul_le_mul_of_nonneg_left hcard hδ.le)
 
 end GlobalTheory.CompanionTheory.Equi.LocApprox
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Equidistribution
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Equidistribution
+
+noncomputable section
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter
 open scoped Classical
@@ -1609,7 +1624,7 @@ theorem indicator_box {ι : Type} {A A' : Set (ι → F)} {v : HeightOneSpectrum
     · have hA' : x ∉ A' := fun e => hA ((h x).2 e).1
       simp [Set.indicator, hA, hA']
   · have hA' : x ∉ A' := fun e => hb ((h x).2 e).2
-    have hz : boxInd v k c (yV v x) = 0 := by simp only [boxInd, yV]; rw [if_neg hb]
+    have hz : boxInd v k c (yV v x) = 0 := by simp only [boxInd, yV]; rw [ite_eq_right hb]
     simp [Set.indicator, hA', hz]
 
 theorem est {ι : Type} (θ : ℝ →+* Ainf F) {S : Finset (HeightOneSpectrum (𝓞 F))} {v : HeightOneSpectrum (𝓞 F)} (hv : v ∉ S)
@@ -1755,6 +1770,7 @@ theorem equi : PositivityTheory.Rg.Mass.Equi := by
 
 end GlobalTheory.CompanionTheory.Equi
 
+end
 
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetCongruenceRefinement", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetOff\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Presheaf\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.IsEulerProd\n\n"}
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetEmptyPlacesLattice", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetOff\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.IsEulerProd\n\n"}

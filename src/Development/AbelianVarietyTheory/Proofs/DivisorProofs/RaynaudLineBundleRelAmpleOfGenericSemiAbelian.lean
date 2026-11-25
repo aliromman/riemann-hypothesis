@@ -786,7 +786,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMemBasicOpenOfMemBasicOpenNormCoeff
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMemBasicOpenOfMemBasicOpenNormCoeff
+
+noncomputable section
 
 namespace GlobalTheory.NormalDescent
 
@@ -864,7 +866,7 @@ theorem coeff_prod_X_sub_C_mem {R : Type} [CommRing R] (P : Ideal R) [P.IsPrime]
     intro a ha
     simp [Ideal.Quotient.eq_zero_iff_mem.mpr (hs a ha)]
   rw [Multiset.map_congr rfl hX, Multiset.map_const', Multiset.prod_replicate, coeff_X_pow,
-    if_neg hi.ne]
+    ite_eq_right hi.ne]
 
 end Algebra
 
@@ -1069,6 +1071,7 @@ theorem exists_mem_basicOpen_of_mem_basicOpen_normCoeff : ∀ {X Y : Scheme.{0}}
 end Geometry
 
 end GlobalTheory.NormalDescent
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ReversedCharpolyCoeffInDomainMul

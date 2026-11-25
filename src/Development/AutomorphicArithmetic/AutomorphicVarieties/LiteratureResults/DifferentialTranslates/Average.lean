@@ -52,19 +52,14 @@ theorem avgMem : AvgMem := by
 end UpperTheory.V.Lit.Dr
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.DifferentialTranslates.Average
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.DifferentialTranslates.Average
 
+noncomputable section
 
 open Matrix
 open scoped ContDiff
 
 namespace UpperTheory.V.Lit.Dr
-
-section
-
-variable {Γ V S : Type} [Group Γ] [NormedAddCommGroup V] [NormedSpace ℝ V] {d : ℕ} {G : Geo Γ V S d} {u : S → V → ℝ}
-
-end
 
 theorem average : Average := by
   intro Γ V S _ _ _ d G u hu q

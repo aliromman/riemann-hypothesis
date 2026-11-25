@@ -56,8 +56,10 @@ import Mathlib.Tactic.ENatToNat
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteStabOfReps, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoefLatLeTranslateSplitPlacesPrimeToLStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TwistedThetaGeneratorEqClassSumIntegralForm
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteStabOfReps
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteStabOfReps
+@[expose] public section
 
+noncomputable section
 
 open Formalism.IndefR.Bridge
 
@@ -182,14 +184,14 @@ theorem kernel_traceForm (hfin : ∀ x, Finite (stab ι J x)) {θ : Hf → P →
     intro γ hγ
     rw [Set.Finite.coe_toFinset]
     by_contra hn
-    exact hγ (if_neg hn)
+    exact hγ (ite_eq_right hn)
   have hc : hL.toFinset.card = Nat.card (stab ι J x) := by
     rw [Nat.card_congr (linkEquiv ι J h0), Nat.card_coe_set_eq, Set.ncard_eq_toFinset_card _ hL]
   unfold traceForm
   rw [map_finsum (θ x) hf]
   simp only [hterm]
   rw [finsum_eq_sum_of_support_subset _ hsub,
-    Finset.sum_congr rfl (fun γ hγ => if_pos ((Set.Finite.mem_toFinset hL).1 hγ)),
+    Finset.sum_congr rfl (fun γ hγ => ite_eq_left ((Set.Finite.mem_toFinset hL).1 hγ)),
     Finset.sum_const, hc, Nat.cast_smul_eq_nsmul]
 
 theorem classSum_traceForm [CharZero C] (hfin : ∀ x, Finite (stab ι J x)) {θ : Hf → P →ₛₗ[e] W}
@@ -242,6 +244,8 @@ theorem finite_stab_of_reps {I : Type} {y : I → Hf} (hy : IsReps ι J y) (hfin
 
 end GlobalTheory.ClassTrace
 
+end
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

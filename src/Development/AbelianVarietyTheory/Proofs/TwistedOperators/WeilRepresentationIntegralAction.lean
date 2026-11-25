@@ -50,8 +50,9 @@ public import Development.WeilBound.ThetaLifts.LeviDeterminants.GrowSplit
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsClosedAdelicLatticeClosure, Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilRepresentationIntegralAction
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsClosedAdelicLatticeClosure
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsClosedAdelicLatticeClosure
 
+noncomputable section
 
 namespace GlobalTheory.LatHatClosed
 
@@ -70,25 +71,8 @@ theorem isCompact_integralFinite :
   rw [RestrictedProduct.range_structureMap] at h
   exact h
 
-def intAd : AddSubgroup (AF F) where
-  carrier := {a | evI F a = 0 ∧ ∀ v, evFin F v a ∈ v.adicCompletionIntegers F}
-  zero_mem' := ⟨show InfiniteAdeleRing.ringEquiv_mixedSpace F (0 : InfiniteAdeleRing F) = 0 from map_zero _,
-    fun v => by rw [map_zero]; exact zero_mem _⟩
-  add_mem' := by
-    rintro a b ⟨ha, ha'⟩ ⟨hb, hb'⟩
-    refine ⟨?_, fun v => ?_⟩
-    · simp only [evI] at ha hb ⊢
-      rw [show (a + b).1 = a.1 + b.1 from rfl, map_add (f := _), ha, hb, add_zero]
-    · rw [map_add (evFin F v)]
-      exact add_mem (ha' v) (hb' v)
-  neg_mem' := by
-    rintro a ⟨ha, ha'⟩
-    refine ⟨?_, fun v => ?_⟩
-    · simp only [evI] at ha ⊢
-      rw [show (-a).1 = -a.1 from rfl, map_neg, ha, neg_zero]
-    · rw [map_neg]; exact neg_mem (ha' v)
-
 end GlobalTheory.LatHatClosed
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilRepresentationIntegralAction

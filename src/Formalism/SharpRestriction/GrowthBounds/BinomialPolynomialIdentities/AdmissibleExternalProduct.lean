@@ -15,12 +15,10 @@ import Formalism.SharpRestriction.GrowthBounds.RootWeights.WeightConditionFromIn
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissibleExternalProductOfHyps, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.DisjointRestrictSupportOfDisjoint, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.DominantOfIsHighestWeightVectorPolynomial, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.IsotypicSumInfStandardWordsOutsideEqBot, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.RenameMulRenameMemSpanProductBasis, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissibleExternalProduct
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissibleExternalProductOfHyps
 
 
 open MvPolynomial Finset
-
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissibleExternalProductOfHyps
 
 namespace Formalism.MainNotions.G.ColumnFamilies
 
@@ -122,6 +120,9 @@ end Formalism.MainNotions.G.ColumnFamilies
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.DisjointRestrictSupportOfDisjoint
+
+
+open MvPolynomial Finset
 
 namespace Formalism.MainNotions.G.ColumnFamilies
 
@@ -276,7 +277,11 @@ end Formalism.MainNotions.G.ColumnFamilies
 end -- clump:auto
 
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.DominantOfIsHighestWeightVectorPolynomial
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
+
+open MvPolynomial Finset
 
 namespace Formalism.MainNotions.G.ColumnFamilies
 
@@ -309,10 +314,10 @@ theorem glOperatorDerivation_lie_relation (he : Function.Injective e) (a b c d :
   simp only [glOperatorDerivation_apply]
   by_cases hl : l ∈ S
   · by_cases hv : LL.vec l = true
-    · simp only [glOpsE_X, hl, hv, if_true, eq_comm (a := b) (b := c), eq_comm (a := d) (b := a)]
+    · simp only [glOpsE_X, hl, hv, ite_true, eq_comm (a := b) (b := c), eq_comm (a := d) (b := a)]
       by_cases h1 : x = e d <;> by_cases h2 : x = e b <;> by_cases h3 : c = b <;> by_cases h4 : a = d <;>
         simp_all [glOpsE_X, he.eq_iff]
-    · simp only [glOpsE_X, hl, hv, if_true, if_false, Bool.false_eq_true]
+    · simp only [glOpsE_X, hl, hv, ite_true, ite_false, Bool.false_eq_true]
       by_cases h1 : x = e c <;> by_cases h2 : x = e a <;> by_cases h3 : b = c <;> by_cases h4 : d = a <;>
         simp_all [glOpsE_X, he.eq_iff]
   · simp [glOpsE_X, hl]
@@ -344,9 +349,9 @@ theorem glOperatorDerivation_lie_eq_zero_of_disjoint (hd : (∀ l, l ∈ S → l
   rcases hd with hd | hd
   · by_cases hS : l ∈ S
     · have hT := hd l hS
-      simp only [glOpsE_X, hS, hT, if_true, if_false, map_zero]
+      simp only [glOpsE_X, hS, hT, ite_true, ite_false, map_zero]
       split_ifs <;> simp [glOpsE_X, hT]
-    · simp only [glOpsE_X, hS, if_false, map_zero]
+    · simp only [glOpsE_X, hS, ite_false, map_zero]
       split_ifs <;> simp [glOpsE_X, hS]
   · have hd' : ∀ a a', e' a' ≠ e a := fun a a' h => hd a a' h.symm
     simp only [glOpsE_X]
@@ -390,17 +395,17 @@ theorem multidegreeProj_glOperatorsEmbedded_comm (d : Fin N → ℕ) (a b : Fin 
 
     rw [polProj_monomial, glOperatorsEmbedded_apply, map_sum]
     by_cases h : ∀ i, multideg mm i = d i
-    · rw [if_pos h, glOperatorsEmbedded_apply]
+    · rw [ite_eq_left h, glOperatorsEmbedded_apply]
       refine Finset.sum_congr rfl fun l _ => ?_
       split_ifs
-      · rw [polProj_step, if_pos h]
-      · rw [map_neg, polProj_step, if_pos h]
+      · rw [polProj_step, ite_eq_left h]
+      · rw [map_neg, polProj_step, ite_eq_left h]
       · rw [map_zero]
-    · rw [if_neg h, map_zero]
+    · rw [ite_eq_right h, map_zero]
       refine Finset.sum_eq_zero fun l _ => ?_
       split_ifs
-      · rw [polProj_step, if_neg h]
-      · rw [map_neg, polProj_step, if_neg h, neg_zero]
+      · rw [polProj_step, ite_eq_right h]
+      · rw [map_neg, polProj_step, ite_eq_right h, neg_zero]
       · rw [map_zero]
   | add p q hp hq => rw [map_add (f := _), map_add (f := _), map_add (f := _), map_add (f := _), hp, hq]
 
@@ -596,9 +601,14 @@ theorem polynomialProjectors_commute_disjoint : ProjectorsCommuteDisjoint := by
 end Formalism.MainNotions.G.ColumnFamilies
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.IsotypicSumInfStandardWordsOutsideEqBot
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
+
+open MvPolynomial Finset
 
 namespace Formalism.MainNotions.G.ColumnFamilies
 
@@ -616,16 +626,16 @@ theorem coeff_multidegreeProj_of_multidegree_eq (d : ι → ℕ) (H : MvPolynomi
   rw [map_sum, MvPolynomial.coeff_sum]
   simp only [polProj_monomial]
   rw [Finset.sum_eq_single m]
-  · rw [if_pos h]
-    erw [MvPolynomial.coeff_monomial, if_pos rfl]
+  · rw [ite_eq_left h]
+    erw [MvPolynomial.coeff_monomial, ite_eq_left rfl]
   · intro b _ hbm
     split_ifs
-    · erw [MvPolynomial.coeff_monomial, if_neg hbm]
+    · erw [MvPolynomial.coeff_monomial, ite_eq_right hbm]
     · simp
   · intro hm
     rw [MvPolynomial.mem_support_iff, not_not] at hm
-    rw [if_pos h, hm]
-    erw [MvPolynomial.coeff_monomial, if_pos rfl]
+    rw [ite_eq_left h, hm]
+    erw [MvPolynomial.coeff_monomial, ite_eq_left rfl]
 
 theorem eq_zero_of_multidegreeProj_eq_zero (H : MvPolynomial (ι × Fin r) K) (h : ∀ d, polProj K d H = 0) : H = 0 := by
   ext m
@@ -849,9 +859,13 @@ theorem restLowTan_of (D : Formalism.BasicNotions.D7) (hE4 : TypeSumsByEvaluatio
 end Formalism.MainNotions.G.ColumnFamilies
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.RenameMulRenameMemSpanProductBasis
 @[expose] public noncomputable section
+
+
+open MvPolynomial Finset
 
 namespace Formalism.MainNotions.G.ColumnFamilies
 
@@ -1040,8 +1054,6 @@ theorem span_productBasis_eq_multihomogeneous (R : Type) [CommRing R] (N r K : �
 end Formalism.MainNotions.G.ColumnFamilies
 end -- clump:auto
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissibleExternalProduct
 

@@ -60,14 +60,14 @@ theorem UpperTheory.Reformulated.B.ExistsCoordinate.exists_coord :
     exact ⟨a * c - b * e * H.d, a * e + b * c, by push_cast; linear_combination (b * e : E) * hsq⟩
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DualBasisTraceLogNorm
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Matrix GlobalTheory GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DualBasisTraceLogNorm
 open scoped ComplexOrder
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.RelDual
 
@@ -492,10 +492,10 @@ theorem orth_of_dual (H : Host E) {f : ℕ} (B : Module.Basis (Fin f) (Kf H) E) 
       rfl
   constructor
   · intro e
-    rw [if_pos (heq.2 e)] at hs
+    rw [ite_eq_left (heq.2 e)] at hs
     exact hem (hs.trans (map_one em).symm)
   · intro e
-    rw [if_neg (fun x => e (heq.1 x))] at hs
+    rw [ite_eq_right (fun x => e (heq.1 x))] at hs
     exact hem (hs.trans (map_zero em).symm)
 
 theorem trace_dual_mem (H : Host E) {f : ℕ} (B : Module.Basis (Fin f) (Kf H) E) (b : Fin f → 𝓞 E)
@@ -594,8 +594,15 @@ theorem relative_dual : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
 
 end GlobalTheory.CompanionTheory.Ar.RelDual
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.EigenLocalBasisLogNorm
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.EigenLocalBasisLogNorm
+
+noncomputable section
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open Matrix GlobalTheory GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
 open scoped ComplexOrder
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl.EigSubLat
@@ -647,8 +654,8 @@ theorem eigProj_eq_sum [CharZero K] (hcard : Nat.card (E →+* K) = Module.finra
     rw [← Finset.sum_smul]
     by_cases h : τ = σ
     · subst h
-      rw [(hb τ rfl).1 rfl, one_smul, if_pos rfl]
-    · rw [if_neg h]
+      rw [(hb τ rfl).1 rfl, one_smul, ite_eq_left rfl]
+    · rw [ite_eq_right h]
       by_cases hr : σ (r : E) = τ (r : E)
       · rw [(hb τ hr).2 (Ne.symm h), zero_smul]
       · rw [eigProj_eq_zero ρ τ r (σ (r : E)) hr hu, smul_zero]
@@ -815,6 +822,13 @@ theorem eigSub_span : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
 
 end GlobalTheory.CompanionTheory.Ar.Fl.EigSubLat
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open Matrix GlobalTheory GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ExistsLocalBasisCmOrder
 open scoped ComplexOrder

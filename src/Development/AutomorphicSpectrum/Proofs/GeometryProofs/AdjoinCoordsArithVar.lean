@@ -25,11 +25,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LiftGenericPointOverIsoOpen, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectivePointCoordsExist, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectivePointImageReduced, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SegreProductAffineChart, Development.AutomorphicSpectrum.Proofs.GeometryProofs.StandardSmoothBasicOpen, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AdjoinCoordsArithVar
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LiftGenericPointOverIsoOpen
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite MvPolynomial
-
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LiftGenericPointOverIsoOpen
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace valR)
 open ReciprocityTheory.ChartRestriction.G.Geo.ResK
 open GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TuplePoint GlobalTheory.CompanionTheory.Ar.SncRes
@@ -82,6 +80,8 @@ end GlobalTheory.CompanionTheory.Ar.Coords
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectivePointCoordsExist
+
+open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite MvPolynomial
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace valR)
 open ReciprocityTheory.ChartRestriction.G.Geo.ResK
 open GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TuplePoint GlobalTheory.CompanionTheory.Ar.SncRes
@@ -91,7 +91,7 @@ namespace GlobalTheory.CompanionTheory.Ar.TupleCoords
 private theorem valR_eq_valMap {A : Type} [CommRing A] {X : Scheme} (x : Sp A ⟶ X)
     (U : X.Opens) (h : ⊤ ≤ (TopologicalSpace.Opens.map x.base).obj U) (f : X.presheaf.obj (op U)) :
     valR x U f = (GlobalTheory.Points.valMap x U h).hom f := by
-  simp only [valR, dif_pos h, GlobalTheory.Points.valMap, CommRingCat.hom_comp, RingHom.comp_apply]
+  simp only [valR, dite_eq_left h, GlobalTheory.Points.valMap, CommRingCat.hom_comp, RingHom.comp_apply]
 
 theorem exists_tuple_eq_point : ∀ (Ω : Type) [Field Ω] [CharZero Ω] (r : ℕ) (p : Sp Ω ⟶ PSpace ℚ r),
     ∃ (x' : Fin (r + 1) → Ω) (hx' : x' ≠ 0), p = point ℚ x' hx' := by
@@ -132,6 +132,8 @@ end GlobalTheory.CompanionTheory.Ar.TupleCoords
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectivePointImageReduced
+
+open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite MvPolynomial
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace valR)
 open ReciprocityTheory.ChartRestriction.G.Geo.ResK
 open GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TuplePoint GlobalTheory.CompanionTheory.Ar.SncRes
@@ -169,12 +171,14 @@ theorem closure_reduced_dominant : ∀ (Ω : Type) [Field Ω] [CharZero Ω] (N :
 end GlobalTheory.CompanionTheory.Ar.SncRes
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SegreProductAffineChart
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SegreProductAffineChart
+
+noncomputable section
+
+open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite MvPolynomial
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace valR)
 open ReciprocityTheory.ChartRestriction.G.Geo.ResK
 open GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TuplePoint GlobalTheory.CompanionTheory.Ar.SncRes
-
-attribute [local instance] MvPolynomial.gradedAlgebra
 
 namespace GlobalTheory.CompanionTheory.Ar.SncRes.ProdChart
 
@@ -315,6 +319,11 @@ theorem prod_chart (Ω : Type) [Field Ω] [CharZero Ω] (N r : ℕ) (Z : Scheme.
 
 end GlobalTheory.CompanionTheory.Ar.SncRes.ProdChart
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite MvPolynomial
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.StandardSmoothBasicOpen
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace valR)
@@ -359,7 +368,7 @@ theorem smoothOfRelativeDimension_basicOpen_of_away : ∀ (Ω : Type) [Field Ω]
     apply Subtype.ext
     rw [hg]
     show (valMap ζ W h).hom σ = valR ζ W σ
-    simp only [valR, valMap, dif_pos h]
+    simp only [valR, valMap, dite_eq_left h]
     rfl
   let ψ : Γ(Z, Z.basicOpen σ) ≃+* Localization.Away g₀ :=
     IsLocalization.ringEquivOfRingEquiv (M := Submonoid.powers σ) (T := Submonoid.powers g₀) _ _ (valEquiv ζ W h A hA)

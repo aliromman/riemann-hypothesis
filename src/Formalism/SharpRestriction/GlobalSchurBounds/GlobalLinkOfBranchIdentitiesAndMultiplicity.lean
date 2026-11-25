@@ -240,8 +240,9 @@ theorem colValOfTiedS_of_fin
 end Formalism.L2.GlobalTheoryTheory.ColValS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.ColMemOfIsLocBasis
+@[expose] public section -- clump member: Formalism.LocalToGlobal.GlobalTheory.ColMemOfIsLocBasis
 
+noncomputable section
 
 open NumberField Matrix
 
@@ -290,7 +291,7 @@ theorem den_of_isLocBasis {L : Submodule (𝓞 K) (Fin n → K)} (hfg : L.FG) {Y
   let t : (Fin n → K) → ℕ := fun g => if h : g ∈ S then (ht g h).choose else 1
   have htS : ∀ g ∈ S, ¬ l ∣ t g ∧ ∀ a, (t g : K) * ((((Y⁻¹ : GL (Fin n) K) : Matrix (Fin n) (Fin n) K) *ᵥ g) a) ∈
       (algebraMap (𝓞 K) K).range := fun g hg => by
-    simp only [t, dif_pos hg]; exact (ht g hg).choose_spec
+    simp only [t, dite_eq_left hg]; exact (ht g hg).choose_spec
   refine ⟨∏ g ∈ S, t g, ?_, fun x hx => ?_⟩
   · rw [Prime.dvd_finsetProd_iff hl.out.prime]
     rintro ⟨g, hg, hdvd⟩
@@ -467,6 +468,7 @@ theorem basis_change (w : D.what₂.places.Pl) {n : ℕ} (lam : D.what₂.Tau �
   rw [hM]
 
 end Formalism.L2.GlobalTheoryTheory.ColValS
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.NatInvMemIntW

@@ -25,8 +25,9 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.PsiM
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.ProdOfFnSmul, ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.ChainHSlice, ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.TopContDiffOn
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.ProdOfFnSmul
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.ProdOfFnSmul
 
+noncomputable section
 
 open Finset Matrix
 
@@ -59,7 +60,7 @@ lemma capEntry_ad (E : Fin n → Fin n → 𝒰) (P Q : Matrix (Fin n) (Fin n) �
       ∑ c, ∑ d, (P c a * Q b d) • capEntry E x c d := by
   simp only [capEntry, smul_add, Finset.sum_add_distrib]
   congr 1
-  simp only [smul_ite, smul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+  simp only [smul_ite, smul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   rw [← Finset.sum_smul]
   have h : ∑ c, P c a * Q b c = (Q * P) b a := by
     rw [Matrix.mul_apply]
@@ -67,7 +68,7 @@ lemma capEntry_ad (E : Fin n → Fin n → 𝒰) (P Q : Matrix (Fin n) (Fin n) �
   rw [h, hQP, Matrix.one_apply]
   by_cases hab : a = b
   · subst hab; simp
-  · rw [if_neg (Ne.symm hab), if_neg hab, zero_smul]
+  · rw [ite_eq_right (Ne.symm hab), ite_eq_right hab, zero_smul]
 
 lemma coef_det (P : Matrix (Fin n) (Fin n) ℂ) (c : Fin n → Fin n) :
     ∑ σ : Equiv.Perm (Fin n), ((Equiv.Perm.sign σ : ℤˣ) : ℤ) • ∏ j, P (c j) (σ j) = (P.submatrix c id).det := by
@@ -160,6 +161,7 @@ theorem capelliC_ad (E : Fin n → Fin n → 𝒰) (hE : GlRelR E) (P Q : Matrix
         rw [← Matrix.det_mul, hPQ, Matrix.det_one, one_smul]
 
 end ReciprocityTheory.ChartRestriction.DS.S7.CapAd
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

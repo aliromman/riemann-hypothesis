@@ -50,20 +50,13 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.TensorLatticeUnitPart, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitSumTensorDualOfWachMonoidal
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.TensorLatticeUnitPart
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.TensorLatticeUnitPart
 
+noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.TensorLatticeUnitPart
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc TensorProduct
-
-section Bilinear
-
-variable {O : Type} [CommRing O] (R : Type) [CommRing R] [Algebra O R]
-  {M M' M'' : Type} [AddCommGroup M] [AddCommGroup M'] [AddCommGroup M'']
-  [Module O M] [Module O M'] [Module O M'']
-
-end Bilinear
 
 section Generic
 
@@ -89,22 +82,16 @@ variable (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P) (H : LocHW
 
 end GlobalTheory.IndefiniteRowSideFullHecke.TensorLatticeUnitPart
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitSumTensorDualOfWachMonoidal
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitSumTensorDualOfWachMonoidal
 
+noncomputable section
 
 namespace GlobalTheory.Cmp.WachMonoidal
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc TensorProduct Module
 open GlobalTheory.IndefiniteRowSideFullHecke
-
-section Ext
-
-variable {O : Type} [CommRing O] (R : Type) [CommRing R] [Algebra O R]
-  {M M' M'' : Type} [AddCommGroup M] [AddCommGroup M'] [AddCommGroup M'']
-  [Module O M] [Module O M'] [Module O M'']
-
-end Ext
 
 section Crys
 

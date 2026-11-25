@@ -66,8 +66,9 @@ theorem order_on_component : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : S
 end GlobalTheory.CompanionTheory.Ar.Flat.COrder
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FiniteConstantAllHolds
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FiniteConstantAllHolds
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.FinAll
 
@@ -137,7 +138,7 @@ theorem mem_or_inv_mem {F : Type} [Field F] {O : Type} [CommRing O] (β : O →+
   · right
     apply (h _).1
     rw [map_inv₀, norm_inv]
-    push_neg at hx
+    push Not at hx
     exact inv_le_one_of_one_le₀ hx.le
 
 theorem exists_frac {F : Type} [Field F] {O : Type} [CommRing O] [IsDomain O] (β : O →+* F)

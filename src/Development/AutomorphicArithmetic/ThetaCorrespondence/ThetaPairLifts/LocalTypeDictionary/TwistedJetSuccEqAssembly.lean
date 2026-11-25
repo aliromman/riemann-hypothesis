@@ -93,15 +93,15 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdelicUnitar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAtOfSteps, Development.AbelianVarietyTheory.Proofs.TwistedOperators.JetsOfOrthogonalSum, Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqSmulBrStdOfEquivariant, Development.AbelianVarietyTheory.Proofs.TwistedOperators.EquivariantGLOfEquivariantUnitaryCoefficientSpac, Development.AbelianVarietyTheory.Proofs.TwistedOperators.EquivariantGLOfEquivariantUnitaryCoefficientSpacStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnitaryEquivEqSmul, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsOrthogonalSummandEmbeddingHom, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsRealModelSq, Development.AutomorphicArithmetic.LocalEmbeddings.JetsTest, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.PairingOfPointsExpansion, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.TwistedJetSuccEqAssembly
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAtOfSteps
+section -- clump member: Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAtOfSteps
+@[expose] public section
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
 open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.StdFrames
 
 namespace GlobalTheory.RowClaim.StepsModel
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
 
 variable {D : D7} {T : Type}
 
@@ -136,17 +136,19 @@ theorem exists_isTermVol {L : LevCh D T} {sc : Consts} {G : GridData L sc} {W : 
 
 end GlobalTheory.RowClaim.StepsModel
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.JetsOfOrthogonalSum
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.JetsOfOrthogonalSum
+@[expose] public section
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
 open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.StdFrames GlobalTheory.RowClaim
 
 namespace GlobalTheory.RowClaim.JetsAssembly
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
 
 variable {D : D7} {T : Type}
 
@@ -178,12 +180,15 @@ theorem jetsAt_of_one (ch : Choice R) (hL : R.toLevCh.Is A.μ0) (h : JetsOne ch)
 
 end GlobalTheory.RowClaim.JetsAssembly
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqSmulBrStdOfEquivariant
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqSmulBrStdOfEquivariant
 
 open MvPolynomial Formalism.BasicNotions Formalism.L2.DIV
 
+noncomputable section
 
 namespace GlobalTheory.BranchMultOne
 
@@ -244,14 +249,14 @@ theorem partCoord_bVV {n : ℕ} (lam : ι → DomWeight n) (τ₀ : ι) (j j' : 
     rw [Finset.sum_eq_single (j' τ₀)]
     · rw [← hj]; simp
     · intro l _ hl
-      rw [if_neg, zero_smul]
+      rw [ite_eq_right, zero_smul]
       intro e
       apply hl
       have := congrFun e τ₀
       simpa using this.symm
     · simp
   · refine Finset.sum_eq_zero fun l _ => ?_
-    rw [if_neg, zero_smul]
+    rw [ite_eq_right, zero_smul]
     intro e
     apply hc
     intro τ h
@@ -301,15 +306,15 @@ theorem partCoord_rhoK {n : ℕ} (lam : ι → DomWeight n) (τ₀ : ι) (j : VV
     have hc : ∀ l, ((∀ τ, τ ≠ τ₀ → Function.update j' τ₀ l τ = j τ) ↔ (∀ τ, τ ≠ τ₀ → j' τ = j τ)) := fun l =>
       forall_congr' fun τ => imp_congr_right fun h => by rw [Function.update_of_ne h]
     by_cases h : ∀ τ, τ ≠ τ₀ → j' τ = j τ
-    · rw [if_pos h]
+    · rw [ite_eq_left h]
       have e : ∀ l, (if (∀ τ, τ ≠ τ₀ → Function.update j' τ₀ l τ = j τ) then
           bSq (lam τ₀) (Function.update j' τ₀ l τ₀) else 0) = bSq (lam τ₀) l := fun l => by
-        rw [if_pos ((hc l).2 h), Function.update_self]
+        rw [ite_eq_left ((hc l).2 h), Function.update_self]
       simp only [e]
       exact (bSq (lam τ₀)).sum_repr _
-    · rw [if_neg h, map_zero]
+    · rw [ite_eq_right h, map_zero]
       refine Finset.sum_eq_zero fun l _ => ?_
-      rw [if_neg (fun h' => h ((hc l).1 h')), smul_zero]
+      rw [ite_eq_right (fun h' => h ((hc l).1 h')), smul_zero]
   exact LinearMap.congr_fun key v
 
 def factorIncl {n : ℕ} (lam : ι → DomWeight n) (τ₀ : ι) (i : VVIdx lam) : nablaSq ℂ n (lam τ₀) →ₗ[ℂ] VV ℂ lam :=
@@ -360,7 +365,7 @@ theorem eq_mul_prod_of_slices {X : ι → Type} (m : ∀ τ, X τ → ℂ) (M : 
     have := hc (ω τ)
     rw [Function.update_eq_self, hτ, mul_zero] at this
     rw [this, zero_mul]
-  push_neg at hz
+  push Not at hz
   choose xs hxs using hz
   have hP : (∏ τ, m τ (xs τ)) ≠ 0 := Finset.prod_ne_zero_iff.2 fun τ _ => hxs τ
   have hp : ∀ (ω : ∀ τ, X τ) (a : ι) (y : X a),
@@ -529,6 +534,7 @@ theorem eq_smul_brStd_of_equivariant : ∀ {ι : Type} [Fintype ι] {N n : ℕ} 
   exact this
 
 end GlobalTheory.BranchMultOne
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.EquivariantGLOfEquivariantUnitaryCoefficientSpac
@@ -907,10 +913,10 @@ private theorem isBlock_embGL' {n N : ℕ} (hN : N = n + 1) (g : GL (Fin n) ℂ)
   · rw [GlobalTheory.Branching.embGL_apply, dite_eq_left ⟨a.2, b.2⟩]
     rfl
   · rw [GlobalTheory.Branching.embGL_apply, dite_eq_right (fun h => absurd h.2 (lt_irrefl _)),
-      if_neg (fun h => (ne_of_lt a.2) (congrArg Fin.val h))]
+      ite_eq_right (fun h => (ne_of_lt a.2) (congrArg Fin.val h))]
   · rw [GlobalTheory.Branching.embGL_apply, dite_eq_right (fun h => absurd h.1 (lt_irrefl _)),
-      if_neg (fun h => (ne_of_lt a.2) (congrArg Fin.val h).symm)]
-  · rw [GlobalTheory.Branching.embGL_apply, dite_eq_right (fun h => absurd h.1 (lt_irrefl _)), if_pos rfl]
+      ite_eq_right (fun h => (ne_of_lt a.2) (congrArg Fin.val h).symm)]
+  · rw [GlobalTheory.Branching.embGL_apply, dite_eq_right (fun h => absurd h.1 (lt_irrefl _)), ite_eq_left rfl]
 
 variable {θ : InfFam D} (hθ : IsInfFam θ) (N : Std G U)
 include hθ
@@ -1478,13 +1484,6 @@ theorem twistedJet_succ_eq_assembly : _root_.GlobalTheory.FunPr.ThetaLocalInputs
     jetsAt_of_one ch s.core.lev (H D large₂ e hx Γ Pl0 T A Ks R F s ch i j)⟩
 end GlobalTheory.RowClaim.JetsAssembly
 end
-end
-
-section
-open GlobalTheory.RowClaim
-
-theorem _root_.GlobalTheory.T.twisted_jets_assemble : _root_.GlobalTheory.FunPr.ThetaLocalInputs → SumOKK → StepJets := by
-  first | exact @_root_.GlobalTheory.RowClaim.JetsAssembly.twistedJet_succ_eq_assembly
 end
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAtOfSteps", "h": "module\n\npublic import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.StepUnfold\nimport Development.AbelianVarietyTheory.Definitions.Divisors.NatCastSmulMemHatL\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousReGLSymm\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

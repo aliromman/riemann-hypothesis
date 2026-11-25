@@ -72,8 +72,9 @@ import Development.WeilBound.CoreStatements.VolumeEquality.DegPushTestA
 -- Members: Development.WeilBound.CoreStatements.VolumeEquality.DegPushAsm, Development.WeilBound.CoreStatements.VolumeEquality.DegPushCentre, Development.WeilBound.CoreStatements.VolumeEquality.DegPushJoin, Development.WeilBound.CoreStatements.VolumeEquality.DegPushLat, Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsCuspDataForTorusInvariant, Development.AutomorphicSpectrum.Proofs.MetricProofs.GenericDegreeEqGeometricDegree, Development.WeilBound.CoreStatements.VolumeEquality.DegPushMass, Development.WeilBound.CoreStatements.VolumeEquality.DegPushMuLinkA, Development.WeilBound.CoreStatements.VolumeEquality.DegPushMuLink, Development.WeilBound.CoreStatements.VolumeEquality.DegPush, Development.WeilBound.CoreStatements.VolumeEquality.VolEqOfIsFullIntersectionSystem, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.GoodTowerIntersectionExtra
 
 section -- clump member: Development.WeilBound.CoreStatements.VolumeEquality.DegPushAsm
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace SheetDecomposition
 
@@ -192,11 +193,12 @@ theorem degPush_of (hEq : NumEq) (hPF : GeoPF) (hFib : FibNum) (hTr : TrdegU) (h
   have hr' : Top.testDeg (Fin (Fintype.card (CMType H))) (D.p + D.q) D.p = Top.testDeg (CMType H) (D.p + D.q) D.p := by
     rw [hr]
   simp only [hr']
-  rw [if_neg (div_ne_zero htd.ne' hU0)]
+  rw [ite_eq_right (div_ne_zero htd.ne' hU0)]
   field_simp
   linear_combination -key
 
 end SheetDecomposition
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 
@@ -492,8 +494,9 @@ end SheetDecomposition
 end -- clump:auto
 
 section -- clump member: Development.WeilBound.CoreStatements.VolumeEquality.DegPushLat
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace SheetDecomposition
 
@@ -580,7 +583,7 @@ theorem lat_core (𝔐 : HodgeCpt Y S y) (ψ : Ω₀ →+* Ω) (j : Li₀ →+ �
     rfl
   · have hnot : ¬ ∃ p ∈ S, InFibre 𝔐.ξ p q := fun ⟨p, hp, hf⟩ => hq p (𝔐.S_prime p hp) hf
     have hV : 𝔐.V s q = 𝔐.M.eigLat 𝔐.ρ ((ψ.comp cst₀).comp (labelEmb c s)) q := by
-      simp only [HodgeCpt.V, Lat.patch, if_neg hnot, HodgeCpt.dR, HodgeCpt.emb, hcst]
+      simp only [HodgeCpt.V, Lat.patch, ite_eq_right hnot, HodgeCpt.dR, HodgeCpt.emb, hcst]
     rw [hV, eigLat_eq_pull c 𝔐.m cst₀ hg 𝔐.tie.gen hd hact 𝔐.act (isIntegrallyClosed_regAt Y.normal hg)
       (isIntegrallyClosed_regAt 𝔐.normal 𝔐.tie.gen) hj s q hq]
     simp only [Lat.pull]
@@ -688,6 +691,7 @@ theorem coordLat : CoordLat := by
     hd hs hact hj hb₀⟩
 
 end SheetDecomposition
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 
@@ -1172,8 +1176,9 @@ end SheetDecomposition
 end -- clump:auto
 
 section -- clump member: Development.WeilBound.CoreStatements.VolumeEquality.DegPushMuLink
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace SheetDecomposition
 
@@ -1226,7 +1231,7 @@ theorem mu_rootLat (τ : CMType H) (m : Fin D.q) : Fl.rootLat (τ, muRev D.p D.q
     rw [dite_eq_right h0]
     congr 1
     exact Fin.ext (by simp only [muRev]; omega)
-  have h2 : HodgeCpt.rootSgn D (τ, muRev D.p D.q m) = -1 := if_neg h0
+  have h2 : HodgeCpt.rootSgn D (τ, muRev D.p D.q m) = -1 := ite_eq_right h0
   unfold HodgeCpt.Flag.rootLat
   rw [h1, h2]
 
@@ -1328,6 +1333,7 @@ theorem muLink : ChartVal → Centre → CoordLat → MuLink := by
   exact mu_alg k1 k2 k3 ((map_ne_zero _).2 n1)
 
 end SheetDecomposition
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

@@ -27,64 +27,13 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.DataN
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsConjOfTraceEqResiduallyAbsIrreducibleDVR
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsLocalHomOfNatCast
 public import Formalism.LocalToGlobal.NormalizedHeckeFactors.TwoPowS0EqTwoPartModulus
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
 import Formalism.SharpRestriction.LevelLetterCocycles.CommutingEndomorphismPreservesInvariants
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.RingTheory.PicardGroup
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Data.Nat.Choose.Multinomial
 import Formalism.ConjugateSelfDual.Statement
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import ReciprocityTheory.GaloisValuations.GlobalA
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.Topology.Connected.Separation
-import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemZpowersOfTameGen, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConductorRootSubOneLengthLeTameValue, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsUnitReprOne, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NlenLeLenN, Development.AbelianVarietyTheory.Proofs.FoundationProofs.CompatibleCoboundaries, Development.AbelianVarietyTheory.Proofs.FoundationProofs.LocalCoefficientChangeCompareIntegral, Development.AbelianVarietyTheory.Proofs.FoundationProofs.SelGLengthConj, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SPiTopEqSTLoc, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TraceRankRPartEqTraceBaseChangeTriple, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TwistedRhoConjLatTpsi, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SameCharEqOne, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PsiAtPsiAt
@@ -427,19 +376,14 @@ end GlobalTheory.CondTieChoice
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsUnitReprOne
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsUnitReprOne
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.BlochKatoReduction
 open scoped ENNReal nonZeroDivisors
 
 namespace GlobalTheory.SelBaseChange
-
-section Coord
-
-variable {R R' : Type} [CommRing R] [IsDomain R] [CommRing R'] [IsDomain R'] [Algebra R R']
-
-end Coord
 
 section Coh
 
@@ -545,9 +489,12 @@ end Main
 
 end GlobalTheory.SelBaseChange
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NlenLeLenN
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NlenLeLenN
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations GlobalTheory.PtCore
 open GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions GlobalTheory.SelBaseChange GlobalTheory.BlochKatoBaseChangeLe
@@ -677,7 +624,7 @@ theorem nlen_le_lenN {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRi
   · intro h1
     have h2 : Module.length O A ≠ ⊤ := fun h3 => h1 (by
       rw [(top_le_iff.1 (h3 ▸ h) : Module.length O A' = ⊤), ENat.toENNReal_top, ENNReal.top_div_of_ne_top (ENNReal.natCast_ne_top _)])
-    rw [if_neg h2]
+    rw [ite_eq_right h2]
     exact WithTop.coe_ne_top
   · intro q hq
     split_ifs at hq with h2
@@ -809,13 +756,17 @@ theorem sT_le_sLen : ∀ (D : D7) (i : D.ntw.Tw) (s : D.ntw.Sig i) (k : ℕ) (Q 
 
 end GlobalTheory.SelTwistLe
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.CompatibleCoboundaries
+section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.CompatibleCoboundaries
+@[expose] public section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions
 open scoped TensorProduct
 
+noncomputable section
 
 namespace GlobalTheory.SelmerLevel
 
@@ -853,16 +804,6 @@ def Compat (N : Submodule O A) (N' : Submodule O' A') : Prop := ∀ x, x ∈ N' 
 variable {S}
 
 variable (S)
-
-section Coh
-
-variable [TopologicalSpace A] [DiscreteTopology A] [IsTopologicalAddGroup A] [ContinuousConstSMul O A]
-  [TopologicalSpace A'] [DiscreteTopology A'] [IsTopologicalAddGroup A'] [ContinuousConstSMul O' A']
-  {Γ : Type} [Group Γ] [TopologicalSpace Γ] {ρ : Representation O Γ A} {ρ' : Representation O' Γ A'}
-  (he : ∀ a g m, S.p a (ρ' g m) = ρ g (S.p a m))
-include he
-
-end Coh
 
 end Comp
 
@@ -915,26 +856,10 @@ open Formalism.MainNotions.BlochKatoReduction
 
 end Frac
 
-section Len
-
-variable {O O' : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [CommRing O'] [IsDomain O']
-  [IsDiscreteValuationRing O'] [Algebra O O'] [FaithfulSMul O O'] [Module.Finite O O']
-  {ι : Type} [Fintype ι] {b : Module.Basis ι O O'}
-
-end Len
-
-section Main
-
-open Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen Formalism.GaloisCohomology
-
-variable {D : D7} {N : NData D.R D.host D.what₂} {X : NTw D.R D.host D.what₂ D.LL0 N} (bkP : BKPh X)
-  (i : X.Tw) (s : X.Sig i)
-
-
-end Main
-
 end GlobalTheory.SelmerLevel
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.LocalCoefficientChangeCompareIntegral
@@ -1402,8 +1327,10 @@ theorem selG_length_conj : ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω
 end GlobalTheory.SelConj
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SPiTopEqSTLoc
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SPiTopEqSTLoc
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N
 open GlobalTheory.IndefiniteRowSideFullHecke GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions GlobalTheory.TwistedSelmerCompare
@@ -1451,7 +1378,7 @@ theorem selT_eq_selG (a : D.nd.Loc) (s : D.ntw.Sig (D.ntw.twOf a)) (ψ : Formali
   rw [hS]
   by_cases hv : v ∈ placesOver D.host.E (D.nd.l a)
   · have hv' : v ∈ placesOver D.host.E (D.ntw.l (D.ntw.twOf a)) := by rw [hl]; exact hv
-    refine (if_pos hv').trans (Eq.trans ?_ (if_pos hv).symm)
+    refine (ite_eq_left hv').trans (Eq.trans ?_ (ite_eq_left hv).symm)
     unfold condL Br.LlG
     rw [dite_eq_left hv, dite_eq_left hv']
     have := IsAlgClosure.isAlgClosed D.host.E (K := D.nd.Om)
@@ -1461,7 +1388,7 @@ theorem selT_eq_selG (a : D.nd.Loc) (s : D.ntw.Sig (D.ntw.twOf a)) (ψ : Formali
     ext g i j
     simp [latTpsi, twistM, mapM, hψ v hv g.1 g.2]
   · have hv' : v ∉ placesOver D.host.E (D.ntw.l (D.ntw.twOf a)) := by rw [hl]; exact hv
-    exact (if_neg hv').trans (if_neg hv).symm
+    exact (ite_eq_right hv').trans (ite_eq_right hv).symm
 
 theorem nlen_congr {O : Type} [CommRing O] (l : ℕ) (M N : Type) [AddCommGroup M] [Module O M]
     [AddCommGroup N] [Module O N] (h : Module.length O M = Module.length O N) :
@@ -1482,6 +1409,8 @@ theorem sPiTop_eq_sTLoc (a : D.nd.Loc) (π : D.nd.X a)
 
 end GlobalTheory.ConjLatticeSelmer
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TraceRankRPartEqTraceBaseChangeTriple
@@ -1626,8 +1555,10 @@ theorem twistedRho_conj_latTpsi : GlobalTheory.TwSys.Cheb → ∀ (D : D7) (a : 
 end GlobalTheory.PtCore
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SameCharEqOne
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SameCharEqOne
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations GlobalTheory.PtCore
 
@@ -1675,14 +1606,14 @@ theorem sel_at (hC : GlobalTheory.TwSys.Cheb) (D : D7) (hT : TriplesGood D) (hG 
     unfold Br.sFin
     rw [lt_top_iff_ne_top]
     intro h4
-    exact h3 (by simp only [GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions.sPiTop, GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions.nlen, h4, if_true])
+    exact h3 (by simp only [GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions.sPiTop, GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions.nlen, h4, ite_true])
   · by_cases h4 : Module.length (D.nd.O a) ↥(Br.selPi D.loc D.nbr a ρ π) = ⊤
     · have h5 : BlochKatoReduction.Gen.sLen (BlochKatoReduction.bk0 D) _ s k (D.nd.Q a) ψ = ⊤ := by
         by_contra hne
-        exact h1 hne (by simp only [GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions.sPiTop, GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions.nlen, h4, if_true])
+        exact h1 hne (by simp only [GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions.sPiTop, GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions.nlen, h4, ite_true])
       rw [h5]
       exact le_top
-    · exact h2 _ (by simp only [GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions.sPiTop, GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions.nlen, h4, if_false, Br.sPi])
+    · exact h2 _ (by simp only [GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions.sPiTop, GlobalTheory.IndefiniteRowSideFullHecke.LatticeConditions.nlen, h4, ite_false, Br.sPi])
 
 theorem selCore : GlobalTheory.TwSys.Cheb → ∀ (D : D7) (C : NChoice D), NChTie D C → TriplesGood D → GoodPtRow D →
     ResAbsIrr D → SameTwist D C →
@@ -1696,6 +1627,8 @@ theorem selCore : GlobalTheory.TwSys.Cheb → ∀ (D : D7) (C : NChoice D), NChT
 
 end GlobalTheory.PtSel
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PsiAtPsiAt

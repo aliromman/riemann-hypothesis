@@ -357,8 +357,9 @@ end Ctx
 end Formalism.MainNotions.Pf14
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ScaleEdges.MultidegreeBoundLeA
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.ScaleEdges.MultidegreeBoundLeA
 
+noncomputable section
 
 open Finset Classical
 
@@ -405,7 +406,6 @@ theorem multidegree_bound_le_a (C k r N Q c' Y a N₁ : ℝ) (hC : 30 ≤ C) (hk
   have a5 : 30 * k * r * Q ^ 2 * c' ≤ C * k ^ 3 * r ^ 2 * N * Q ^ 5 * c' := mul_le_mul_of_nonneg_right a4 hc
   have a6 : 30 * k * r * Q ^ 2 * c' ≤ C * k ^ 3 * r ^ 2 * N * Q ^ 5 * c' * Y :=
     le_trans a5 (le_mul_of_one_le_right (by positivity) hY)
-  have e : 15 * c' * (2 * (r * k)) * Q ^ 2 = 30 * k * r * Q ^ 2 * c' := by ring
   linarith
 
 theorem spdeg {C : ℝ} (hC : 30 ≤ C) {p n' m r : ℕ} [Fact p.Prime] [NeZero n'] {TT : Finset (Fin n')} {L₁ L₂ : ℕ}
@@ -500,9 +500,11 @@ theorem spdeg {C : ℝ} (hC : 30 ≤ C) {p n' m r : ℕ} [Fact p.Prime] [NeZero 
 
 end Formalism.MainNotions.Pf14
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ScaleEdges.SymbolRealisableIffGeneralRank
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.ScaleEdges.SymbolRealisableIffGeneralRank
 
+noncomputable section
 
 open MvPolynomial Finset Classical
 
@@ -602,7 +604,6 @@ theorem sources_realisable_holds (D : Formalism.BasicNotions.D7) (CLa Ck Crk Cde
     _ _ hk hrk F hF
   let _ : Algebra (WF p n') O := algOfIdent j φ
   rw [symbol_realisable_iff_general_rank]
-  have hB := hyps_basic (C := C) (by linarith) H
   have hTT := hF.1
   have hGn : goodG' r de h x ≤ n' := by have := H.2.2.1.2.2.2; omega
   have hkr : orbitWindowCount r de h x + 2 * r ≤ (m + 1) - r := H.2.2.2.2.2.2.2.1

@@ -793,7 +793,8 @@ theorem LocalCoefficient.proof (h₁ : LeftTermSupport.Statement.{u})
 end GroundTheory.Heights₂.Heights.NumbersDVR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.LtNatCastOfAddOneLe
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.LtNatCastOfAddOneLe
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -801,6 +802,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial
 
+noncomputable section
 
 universe u
 
@@ -874,10 +876,12 @@ theorem TautologicalCase.proof (h3 : IntNumAddFirst.Statement.{u}) (h5 : Minimal
   by_cases hW : ratDiv P f g W = 0
   · simp [hW]
   · beta_reduce
-    rw [if_pos (hD.vertical W hW), hadd W hW]
+    rw [ite_eq_left (hD.vertical W hW), hadd W hW]
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PDivisorIdealCycle
@@ -1251,7 +1255,8 @@ theorem VNumCut.proof (h : CutByForm.Statement.{u}) : VNumCut.Statement.{u} := b
 end GroundTheory.Heights₂.Heights.NumbersDVR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PVertCutEff
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PVertCutEff
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1259,6 +1264,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial
 
+noncomputable section
 
 universe u
 
@@ -1277,12 +1283,12 @@ theorem exists_form_pair_left {P H : Ideal (MRing ι R)} [hP : P.IsPrime]
   set u' := weightedHomogeneousComponent (blockWeight ι) e u with hu'
   have hc := hPm _ h (e + bf)
   rw [map_sub, weightedHomogeneousComponent_mul_form hf, weightedHomogeneousComponent_mul_form hg,
-    if_pos le_add_self, add_tsub_cancel_right, ← hu'] at hc
+    ite_eq_left le_add_self, add_tsub_cancel_right, ← hu'] at hc
   by_cases hle : bg ≤ e + bf
-  · rw [if_pos hle] at hc
+  · rw [ite_eq_left hle] at hc
     exact ⟨u', _, e, e + bf - bg, weightedHomogeneousComponent_isWeightedHomogeneous _ _,
       weightedHomogeneousComponent_isWeightedHomogeneous _ _, tsub_add_cancel_of_le hle, he, hc⟩
-  · rw [if_neg hle, sub_zero] at hc
+  · rw [ite_eq_right hle, sub_zero] at hc
     exact ((hP.mem_or_mem hc).elim (fun h' => he (hPH h')) hfP).elim
 
 end Helpers
@@ -1379,8 +1385,10 @@ theorem VertCutEff.proof (h1 : VNumCut.Statement.{u}) (h2 : DivisorIdealCycle.St
   refine finsum_congr fun U => ?_
   ring
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.RatDiv

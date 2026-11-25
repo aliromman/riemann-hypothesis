@@ -20,19 +20,13 @@ public import Formalism.SharpRestriction.GrowthBounds.TensorLatticeBounds.Exists
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.SpanImageEq, Formalism.SharpRestriction.GrowthBounds.ChartComparison.ComparisonZeroWeightBase, Formalism.SharpRestriction.GrowthBounds.ChartComparison.AlgebraMapUnitZpow, Formalism.SharpRestriction.GrowthBounds.ChartComparison.KerLabelsMu, Formalism.SharpRestriction.GrowthBounds.ChartComparison.HtupWLeHtupJ, Formalism.SharpRestriction.GrowthBounds.ChartComparison
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.SpanImageEq
+@[expose] public section -- clump member: Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.SpanImageEq
 
+noncomputable section
 
 namespace Formalism.L2.G.Cmp
 
 open Formalism.MainNotions.G Formalism.BasicNotions NumberField
-
-section Gen
-
-variable {p : ℕ} {O Kf : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Field Kf] [Algebra O Kf]
-  (P : Places p O Kf) (α : Type) {LL : Type} [Field LL] (e : LL →+* Kf) (Mi : Submodule O (FnP P α))
-
-end Gen
 
 variable {D : D7} (c : LatCmp D) (Tw : TwForms D) (u : D.what₂.Word) (w : D.what₂.places.Pl)
   (h : GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w)) {Fl : Fills (D.gat u w h)} (Lv : Levels Fl)
@@ -48,11 +42,14 @@ def DescUp (c : LatCmp D) (u : D.what₂.Word) (w : D.what₂.places.Pl)
 
 end Formalism.L2.G.Cmp
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ChartComparison.ComparisonZeroWeightBase
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.ChartComparison.ComparisonZeroWeightBase
+@[expose] public section
 
 open Formalism.MainNotions.G Formalism.BasicNotions NumberField
 
+noncomputable section
 
 namespace Formalism.MainNotions.G.CmpJ
 
@@ -147,7 +144,7 @@ def chainMu (S : CmpUpMu c Tw u μ w h Lv) : Chain Lv where
 
 theorem chainMu_Kz (S : CmpUpMu c Tw u μ w h Lv) (j : ℕ) (hj : j < D.R.m) :
     (chainMu S).Kz j = extK (S.cmp j) (S.cmp (j + 1)) ((Tw.fm u μ).lat j).b (S.li j hj.le) (KLxMu Tw u μ j) :=
-  dif_pos hj
+  dite_eq_left hj
 
 theorem chainMu_apply (S : CmpUpMu c Tw u μ w h Lv) (j : ℕ) (hj : j < D.R.m) (x : ((Tw.fm u μ).lat j).V) :
     (chainMu S).Kz j (S.cmp j x) = S.cmp (j + 1) (KLxMu Tw u μ j x) := by
@@ -338,6 +335,8 @@ end Val
 
 end Formalism.MainNotions.G.CmpJ
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ChartComparison.AlgebraMapUnitZpow

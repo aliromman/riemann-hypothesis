@@ -11,17 +11,16 @@ import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.TypeStar
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.IntegrableOfDecayVG
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SmoothMatrixMaps.TmAContDiffMulLeft
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.IntegrVGA
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SmoothMatrixMaps.TmETmapSmooth, ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SmoothMatrixMaps.TMapSpec
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SmoothMatrixMaps.TmETmapSmooth
 
 
 open Matrix MeasureTheory
 open scoped ContDiff InnerProductSpace
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SmoothMatrixMaps.TmETmapSmooth
 
 namespace ReciprocityTheory.ChartRestriction.DS.Lap
 
@@ -182,24 +181,21 @@ end L2
 end ReciprocityTheory.ChartRestriction.DS.Lap
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SmoothMatrixMaps.TMapSpec
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SmoothMatrixMaps.TMapSpec
+
+noncomputable section
+
+open Matrix MeasureTheory
+open scoped ContDiff InnerProductSpace
 
 namespace ReciprocityTheory.ChartRestriction.DS.Lap
 
 open ReciprocityTheory.ChartRestriction.DS
 
 theorem tmG_card (n : ℕ) (ε : Fin n → Bool) : ∃ s : Bool, Fintype.card (S7.SgIxV ε s) = S7.q0 ε := by
-  by_cases hpq : pOf ε ≤ qOf ε
-  · refine ⟨true, ?_⟩
-    rw [Fintype.card_subtype]
-    show _ = min (pOf ε) (qOf ε)
-    rw [min_eq_left hpq]
-    rfl
-  · refine ⟨false, ?_⟩
-    rw [Fintype.card_subtype]
-    show _ = min (pOf ε) (qOf ε)
-    rw [min_eq_right (le_of_not_ge hpq)]
-    rfl
+  first
+    | exact _root_.ReciprocityTheory.ChartRestriction.DS.S7.exists_signVG
+    | apply _root_.ReciprocityTheory.ChartRestriction.DS.S7.exists_signVG <;> first | assumption | rfl | infer_instance
 
 theorem tMap_spec : TMapStatement := by
   intro k r ε lam h H _ _ _ σ D E V T μ ι hσ hD _ _ _ hμ hcoef hp hq hgap hHC hGap x₁ x₀ w hx₀ f hf

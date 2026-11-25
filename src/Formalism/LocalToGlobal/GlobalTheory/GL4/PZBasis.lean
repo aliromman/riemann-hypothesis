@@ -19,10 +19,12 @@ import Formalism.LocalToGlobal.Columns.PolyFnLemmas
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.GlobalTheory.GL4.KronDetScalar, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StandardSlopeBound.Inhabit, Formalism.LocalToGlobal.GlobalTheory.GL4.PZBasis
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.KronDetScalar
+section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.KronDetScalar
+@[expose] public section
 
 open scoped Matrix
 
+noncomputable section
 
 namespace Formalism.L2.GlobalTheoryTheory.TraceIntegrality
 
@@ -75,9 +77,9 @@ theorem kronDet_scalar (τ : ι) (t : ℝˣ) :
     funext σ
     by_cases hσ : σ = τ
     · subst hσ
-      rw [Pi.mulSingle_eq_same, if_pos rfl, brpSc_coe]
-    · rw [Pi.mulSingle_eq_of_ne hσ, if_neg hσ, one_smul]; rfl
-  rw [h, kron_smul, kron_one, Finset.prod_ite_eq' Finset.univ τ, if_pos (Finset.mem_univ τ), Matrix.det_smul, Matrix.det_one, mul_one,
+      rw [Pi.mulSingle_eq_same, ite_eq_left rfl, brpSc_coe]
+    · rw [Pi.mulSingle_eq_of_ne hσ, ite_eq_right hσ, one_smul]; rfl
+  rw [h, kron_smul, kron_one, Finset.prod_ite_eq' Finset.univ τ, ite_eq_left (Finset.mem_univ τ), Matrix.det_smul, Matrix.det_one, mul_one,
     zpow_natCast]
 
 theorem log_kron (A : ∀ τ, Matrix (Fin (r τ)) (Fin (r τ)) ℝ) (hA : ∀ τ, (A τ).det ≠ 0) (hr : ∀ τ, 0 < r τ) :
@@ -111,6 +113,8 @@ end Kron
 
 end Formalism.L2.GlobalTheoryTheory.TraceIntegrality
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StandardSlopeBound.Inhabit
@@ -134,11 +138,12 @@ theorem muStd_exists (N : ℕ) (ν : Fin N → ℕ) (hν : Antitone ν) : ∃ μ
 end PI.SlopeSteps
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.PZBasis
+@[expose] public section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.PZBasis
 
 open Module MvPolynomial
 open scoped Matrix TensorProduct
 
+noncomputable section
 
 namespace Formalism.L2.GlobalTheoryTheory.TraceIntegrality
 
@@ -194,9 +199,9 @@ theorem li_semilin_gen {K F V M ι κ : Type} [Field K] [Field F] [AddCommGroup 
     exact (linearIndependent_iff'.1 hb) T _ h2
   calc g a = ∑ a' ∈ s, g a' * σ (f (v a')) := by
         rw [Finset.sum_eq_single a]
-        · rw [hf a, if_pos rfl, map_one, mul_one]
+        · rw [hf a, ite_eq_left rfl, map_one, mul_one]
         · intro a' _ hne
-          rw [hf a', if_neg hne, map_zero, mul_zero]
+          rw [hf a', ite_eq_right hne, map_zero, mul_zero]
         · intro h
           exact absurd ha h
     _ = ∑ a' ∈ s, g a' * σ (∑ i ∈ T, b.repr (v a') i * f (b i)) :=
@@ -441,6 +446,7 @@ theorem colSlopeEq_of_Q (D : D7) (h3 : QSlope D) : ColSlopeEq D := colSlopeEq_of
 
 end Formalism.L2.GlobalTheoryTheory.TraceIntegrality
 
+end
 
 -- clump-header: {"m": "Formalism.LocalToGlobal.GlobalTheory.GL4.KronDetScalar", "h": "module\n\npublic import Formalism.LocalToGlobal.Columns.BrpAevalScaleMonomial\npublic import Formalism.LocalToGlobal.GlobalTheory.GL4.PDetAll\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.LocalToGlobal.Columns.AlgebraMapMemMaximalIdealPowIff\n\n"}
 -- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StandardSlopeBound.Inhabit", "h": "module\n\npublic import Formalism.PeriodIntegrals.HookBound\npublic import Formalism.GradedWeylDivisibility.DualWeylDominanceOf\npublic import Formalism.LocalToGlobal.Columns.CoefficientsModP.WeTransposeWordTransposeWord\nimport Mathlib.Algebra.AffineMonoid.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

@@ -43,8 +43,9 @@ import Mathlib.Tactic.NormNum.RealSqrt
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PeriodisationBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SchwartzLatticeSumBoundedAltBis
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PeriodisationBound
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PeriodisationBound
 
+noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology Pointwise
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
@@ -66,7 +67,7 @@ theorem maj_add_le (θ : InfFam D) (K K₀ : Set (Mx D ρ p)) (N : ℕ) (R : ℝ
       have e : g - (k + -w) = g + w - k := by abel
       rw [e]; exact h0
     unfold GlobalTheory.Unf.maj
-    rw [if_pos hb, if_pos hb']
+    rw [ite_eq_left hb, ite_eq_left hb']
     have h0 := GlobalTheory.Unf.realSize_nonneg θ g
     have h1 := GlobalTheory.Unf.realSize_nonneg θ (g + w)
     have h2 : 1 + GlobalTheory.Unf.realSize θ g ≤ (1 + R) * (1 + GlobalTheory.Unf.realSize θ (g + w)) := by
@@ -81,7 +82,7 @@ theorem maj_add_le (θ : InfFam D) (K K₀ : Set (Mx D ρ p)) (N : ℕ) (R : ℝ
       exact pow_le_pow_left₀ (by linarith) h2 N
     rw [← div_eq_mul_inv, inv_eq_one_div, div_le_div_iff₀ hp hq, one_mul]
     exact h5
-  · have h0 : GlobalTheory.Unf.maj θ K N (g + w) = 0 := by unfold GlobalTheory.Unf.maj; rw [if_neg hb]
+  · have h0 : GlobalTheory.Unf.maj θ K N (g + w) = 0 := by unfold GlobalTheory.Unf.maj; rw [ite_eq_right hb]
     rw [h0]
     exact mul_nonneg (by positivity) (GlobalTheory.Unf.maj_nonneg θ _ N g)
 
@@ -145,6 +146,7 @@ theorem periodisation_bound : ∀ {D : D7} {ρ p : ℕ} (θ : InfFam D), IsInfFa
   exact tsum_comp_le_tsum_of_inj hg (fun _ => GlobalTheory.Unf.maj_nonneg θ _ N _) he
 
 end GlobalTheory.CompanionTheory.FJE
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SchwartzLatticeSumBoundedAltBis

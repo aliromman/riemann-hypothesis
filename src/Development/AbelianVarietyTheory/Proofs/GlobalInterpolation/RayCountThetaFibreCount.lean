@@ -495,11 +495,13 @@ theorem plane_lattice_short_basis : ∀ e₁ e₂ : ℂ, ((starRingEnd ℂ) e₁
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RayClassPartialZetaContinuation
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RayClassPartialZetaContinuation
+@[expose] public section
 
 open NumberField IsDedekindDomain GlobalTheory.Mem Complex
 open scoped ComplexOrder
 
+noncomputable section
 
 namespace GlobalTheory.Mem.PartialZeta
 
@@ -518,7 +520,7 @@ theorem normSq_eq [_root_.NumberField.IsTotallyComplex K] (h2 : Module.finrank �
   haveI : Subsingleton (InfinitePlace K) := ⟨place_unique h2⟩
   have hprod := InfinitePlace.prod_eq_abs_norm (x : K)
   rw [Fintype.prod_subsingleton _ (InfinitePlace.mk φ), InfinitePlace.apply,
-    InfinitePlace.mult, if_neg (InfinitePlace.not_isReal_iff_isComplex.2
+    InfinitePlace.mult, ite_eq_right (InfinitePlace.not_isReal_iff_isComplex.2
       (IsTotallyComplex.isComplex _))] at hprod
   rw [hprod, Ideal.absNorm_span_singleton, Nat.cast_natAbs, Int.cast_abs,
     ← Algebra.coe_norm_int]
@@ -686,6 +688,8 @@ theorem gen_bij {M : ℕ} (hM : Ideal.span {(M : 𝓞 K)} ≠ ⊤) (D : RayData 
 
 end GlobalTheory.Mem.PartialZeta
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RayClassIdealCountEqNcardShiftedBinaryForm

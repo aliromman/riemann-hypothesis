@@ -327,7 +327,7 @@ theorem joint_eigen_mem_iSup {ι κ M : Type} [AddCommGroup M] [Module ℂ M]
       obtain ⟨y, hy, z, hz, rfl⟩ := h
       obtain ⟨i, hi⟩ : ∃ i, χ k0 i ≠ ψ i := by
         by_contra h'
-        push_neg at h'
+        push Not at h'
         exact hne k0 (funext h')
       have hw : (op i : M → M) z - χ k0 i • z ∈ ⨆ k ∈ s, E k :=
         Submodule.sub_mem _ (hstab s i z hz) (Submodule.smul_mem _ _ hz)
@@ -448,7 +448,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues Polynomial
 open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx
 open scoped TensorProduct InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Hk3 (Core Good IsSF SchurAll TwoSided FixAll EEc Wcc eH IsLab HoweUnram SphOp hyp)
 open GlobalTheory.StdFrame (StdPsi)
 attribute [local instance] Formalism.IndefR.principalLevelFrame.instCMHostI
@@ -1502,7 +1501,7 @@ theorem exBL_isLinked_prmR_alt : GlobalTheory.Published.GreenCuspidal → Global
   intro hG hCov hHM hCW hW hD hH hC hA hWb hRF hL N p hp hN hS hM
   have hz := _root_.GlobalTheory.Mem.Top.Bl.ze_u_prm_of_extension_with_law ⟨hCov, hHM, hCW, hH, hC⟩ hL N SExt.none hN
   subst hp
-  refine _root_.GlobalTheory.T.eta_size_recursion_alt hA hWb hRF hL _ ?_ ?_ ?_
+  refine _root_.GlobalTheory.Mem.Top.Bl.exBL_isLinked_alt hA hWb hRF hL _ ?_ ?_ ?_
   · exact witExE_of_witMv _ (GlobalTheory.T.witnesses_pass_along_set_division _ hS)
   · exact GlobalTheory.Fc.EvP.of_all fun _ K _ q => hz K q
   · exact _root_.GlobalTheory.Mem.R3.SelAll.bwit_exists_alt hG hCov hHM hCW hW hD hH hC hA hRF hL N _ rfl hN hM

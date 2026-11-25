@@ -7,8 +7,10 @@ public import Formalism.LocalToGlobal.Divisibility.RecBridge
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.Divisibility.HookProducts.AbsPhFSubLeOfLe, Formalism.SharpRestriction.Divisibility.HookProducts.Compl3Record
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.HookProducts.AbsPhFSubLeOfLe
+section -- clump member: Formalism.SharpRestriction.Divisibility.HookProducts.AbsPhFSubLeOfLe
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.DIV.HookProducts.RBCompl3
 
@@ -90,9 +92,6 @@ theorem nuRow_le (D : D7) (L : SizeData₂ D) (u : D.what₂.Word) (j : ℕ) (τ
   have hN2 : r + 1 ≤ D.R.N j := le_trans (by omega : r + 1 ≤ D.R.k) (Nat.le_add_right _ _)
   have hN1' : (r : ℝ) + 1 ≤ (D.R.N (j - 1) : ℝ) := by exact_mod_cast hN1
   have hN2' : (r : ℝ) + 1 ≤ (D.R.N j : ℝ) := by exact_mod_cast hN2
-  have hs : 0 ≤ ((D.R.N (j - 1) : ℝ) + D.R.N j - 1 - 2 * (r : ℝ)) / 2 := by
-    apply div_nonneg _ (by norm_num)
-    linarith
   linarith [h1.2]
 
 theorem abs_kerPlace_sub_le (D : D7) (L : SizeData₂ D) (u u' : D.what₂.Word) (i : ℕ) (hi : i < D.R.m)
@@ -120,7 +119,7 @@ theorem abs_kerPlace_sub_le (D : D7) (L : SizeData₂ D) (u u' : D.what₂.Word)
       rw [hS, Finset.mem_range] at hr
       simpa using hr
     by_cases hmid : 1 ≤ r ∧ r + 1 < D.R.k
-    · rw [if_pos hmid]
+    · rw [ite_eq_left hmid]
       obtain ⟨n1, hn1, he1⟩ := nuRow_nat D u i hi τ r hrN
       obtain ⟨n2, hn2, he2⟩ := nuRow_nat D u' i hi τ r hrN
       have hy1 : (1 : ℝ) ≤ DV.nuRow D u (i + 1) τ r := by rw [he1]; exact_mod_cast hn1
@@ -139,7 +138,7 @@ theorem abs_kerPlace_sub_le (D : D7) (L : SizeData₂ D) (u u' : D.what₂.Word)
       have hBe : B = L.Sc * Real.log M + L.Sc * |L.logOm| := by rw [hB]; ring
       rw [hBe, abs_le]
       constructor <;> linarith [hA.1, hA.2, hC.1, hC.2]
-    · rw [if_neg hmid, nuRow_eq_of_not_mid D u u' (i + 1) τ r hmid]
+    · rw [ite_eq_right hmid, nuRow_eq_of_not_mid D u u' (i + 1) τ r hmid]
       simp
   calc |∑ r ∈ S, ((phF (DV.nuRow D u (i + 1) τ r) - phF (DV.nuRow D u' (i + 1) τ r)) -
         (DV.nuRow D u (i + 1) τ r - DV.nuRow D u' (i + 1) τ r) * L.logOm)|
@@ -161,10 +160,13 @@ theorem abs_kerPlace_sub_le (D : D7) (L : SizeData₂ D) (u u' : D.what₂.Word)
 
 end Formalism.MainNotions.DIV.HookProducts.RBCompl3
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.HookProducts.Compl3Record
+@[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.HookProducts.Compl3Record
 
+noncomputable section
 
 namespace Formalism.MainNotions.DIV.HookProducts.RBCompl3
 
@@ -295,7 +297,6 @@ theorem sc_add_wj_le (D : D7) (L : SizeData₂ D) (S : SizesAt L) (i : ℕ) (hi 
         _ = 2 * L.sc.x ^ 5 := by ring
     have hq : szNst L * L.sc.x ^ L.sc.eps * L.LaG * L.sc.b' / D.R.k ≤ 2 * L.sc.x ^ 5 * (L.sc.x * L.sc.b) := by
       rw [div_le_iff₀ (by linarith)]
-      have h0 : 0 ≤ szNst L * L.sc.x ^ L.sc.eps * L.LaG := by positivity
       calc szNst L * L.sc.x ^ L.sc.eps * L.LaG * L.sc.b' ≤ 2 * L.sc.x ^ 5 * (L.sc.x * L.sc.b) :=
             mul_le_mul hP hb' hb'0 (by positivity)
         _ ≤ 2 * L.sc.x ^ 5 * (L.sc.x * L.sc.b) * D.R.k := le_mul_of_one_le_right (by positivity) hk1
@@ -381,7 +382,6 @@ theorem compl3_record (D : D7) (L : SizeData₂ D) (Z : DivX D) (Csz : ℝ) (P :
   unfold Formalism.L2.DIV.Compl3
   intro u u'
   have hx1 : 1 < L.sc.x := L.sc.one_lt_alt
-  have hx0 : 0 < L.sc.x := by linarith
   have heps : 0 < L.sc.eps := L.sc.eps_pos
   have hL1 : 1 ≤ L.sc.L := Real.one_le_rpow hx1.le heps.le
   have hb1 : 1 ≤ L.sc.b := Real.one_le_exp (by linarith)
@@ -397,10 +397,8 @@ theorem compl3_record (D : D7) (L : SizeData₂ D) (Z : DivX D) (Csz : ℝ) (P :
   have hkSc := kSc_le_b D L S
   have hQ0 : 0 ≤ Real.log (6 * L.sc.x ^ 6 * L.sc.b) + |L.logOm| :=
     add_nonneg (Real.log_nonneg hM1) (abs_nonneg _)
-  have hK0 : 0 ≤ 14 + 6 / L.sc.eps := by positivity
   have hQ : Real.log (6 * L.sc.x ^ 6 * L.sc.b) + |L.logOm| ≤ (14 + 6 / L.sc.eps) * L.sc.L := by
     have e1 : 6 * (L.sc.L / L.sc.eps) = 6 / L.sc.eps * L.sc.L := by ring
-    have e2 : (14 + 6 / L.sc.eps) * L.sc.L = 14 * L.sc.L + 6 / L.sc.eps * L.sc.L := by ring
     linarith
   have hm1 : (1 : ℝ) ≤ D.R.m := by
     have := D.R.two_le_m
@@ -408,7 +406,6 @@ theorem compl3_record (D : D7) (L : SizeData₂ D) (Z : DivX D) (Csz : ℝ) (P :
   have hf0 : (0 : ℝ) ≤ D.R.f := Nat.cast_nonneg _
   have hm0 : (0 : ℝ) ≤ D.R.m := Nat.cast_nonneg _
   have hb0 : 0 ≤ L.sc.b := by linarith
-  have hL0 : 0 ≤ L.sc.L := by linarith
   have h1 : (D.R.k : ℝ) * (L.Sc * (Real.log (6 * L.sc.x ^ 6 * L.sc.b) + |L.logOm|)) ≤
       L.sc.b * ((14 + 6 / L.sc.eps) * L.sc.L) := by
     rw [← mul_assoc]
@@ -450,6 +447,7 @@ theorem rbCompl3 {eps : ℝ} (Fm : Formalism.MainNotions.FamP eps) :
 
 end Formalism.MainNotions.DIV.HookProducts.RBCompl3
 
+end
 
 -- clump-header: {"m": "Formalism.SharpRestriction.Divisibility.HookProducts.AbsPhFSubLeOfLe", "h": "module\n\npublic import Formalism.LocalRingCardinality.DataDIVDefs\npublic import Formalism.LocalRingCardinality.CoeNeZeroOfNotMem\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Formalism.SharpRestriction.Divisibility.HookProducts.Compl3Record", "h": "module\n\npublic import Formalism.LocalToGlobal.Divisibility.RecBridge\npublic import Formalism.LocalRingCardinality.CoeNeZeroOfNotMem\npublic import Formalism.SharpRestriction.Divisibility.HookProducts.AbsPhFSubLeOfLe\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

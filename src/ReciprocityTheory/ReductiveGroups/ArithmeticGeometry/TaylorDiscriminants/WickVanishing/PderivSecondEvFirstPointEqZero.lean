@@ -53,8 +53,9 @@ import Mathlib.Tactic.Polynomial.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.LogPoinc, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.PderivSecondEvFirstPointEqZero
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.LogPoinc
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.LogPoinc
 
+noncomputable section
 
 open MvPowerSeries
 
@@ -91,14 +92,14 @@ theorem pderiv_prim (ω : τ → MvPowerSeries τ k)
     · subst hw
       have h1 : n w = m w + 1 := by simp [hn]
       have h2 : n - Finsupp.single w 1 = m := by rw [hn]; exact add_tsub_cancel_right _ _
-      rw [if_neg (by omega), h2, h1]
+      rw [ite_eq_right (by omega), h2, h1]
       push_cast
       ring
     · have h1 : n w = m w := by simp [hn, hw]
       by_cases hm : m w = 0
-      · rw [if_pos (by rw [h1, hm]), h1, hm]
+      · rw [ite_eq_left (by rw [h1, hm]), h1, hm]
         simp
-      · rw [if_neg (by rw [h1]; exact hm), h1]
+      · rw [ite_eq_right (by rw [h1]; exact hm), h1]
         have hle : Finsupp.single w 1 ≤ m := Finsupp.single_le_iff.mpr (Nat.one_le_iff_ne_zero.mpr hm)
         have hc := congrArg (coeff (m - Finsupp.single w 1)) (hω w v)
         rw [coeff_pderiv, coeff_pderiv] at hc
@@ -129,9 +130,11 @@ theorem pderiv_prim (ω : τ → MvPowerSeries τ k)
 
 end ReciprocityTheory.ChartRestriction.G.TB.LogPf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.PderivSecondEvFirstPointEqZero
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.PderivSecondEvFirstPointEqZero
 
+noncomputable section
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
@@ -179,12 +182,12 @@ theorem d_evY (h : PS k 1 d) (b : Fin d) :
     | exact MvPowerSeries.constantCoeff_X _
   rw [pderiv_ev hcz, Fintype.sum_eq_single ((0 : Fin 1), b)]
   · show ev _ (pderiv (R := k) ((0 : Fin 1), b) h) * pderiv (R := k) ((1 : Fin 2), b) (X ((1 : Fin 2), b)) = _
-    rw [hXd, if_pos rfl, mul_one]
+    rw [hXd, ite_eq_left rfl, mul_one]
   · rintro ⟨j, i⟩ hne
     have hj : j = 0 := Subsingleton.elim _ _
     subst hj
     show ev _ _ * pderiv (R := k) ((1 : Fin 2), b) (X ((1 : Fin 2), i)) = 0
-    rw [hXd, if_neg, mul_zero]
+    rw [hXd, ite_eq_right, mul_zero]
     intro heq
     apply hne
     rw [(Prod.mk.inj heq).2]
@@ -206,12 +209,12 @@ theorem d_evX (h : PS k 1 d) (a : Fin d) :
     | exact MvPowerSeries.constantCoeff_X _
   rw [pderiv_ev hcz, Fintype.sum_eq_single ((0 : Fin 1), a)]
   · show ev _ (pderiv (R := k) ((0 : Fin 1), a) h) * pderiv (R := k) ((0 : Fin 2), a) (X ((0 : Fin 2), a)) = _
-    rw [hXd, if_pos rfl, mul_one]
+    rw [hXd, ite_eq_left rfl, mul_one]
   · rintro ⟨j, i⟩ hne
     have hj : j = 0 := Subsingleton.elim _ _
     subst hj
     show ev _ _ * pderiv (R := k) ((0 : Fin 2), a) (X ((0 : Fin 2), i)) = 0
-    rw [hXd, if_neg, mul_zero]
+    rw [hXd, ite_eq_right, mul_zero]
     intro heq
     apply hne
     rw [(Prod.mk.inj heq).2]
@@ -236,7 +239,7 @@ theorem pderiv_first_ev_second_point_eq_zero (h : PS k 1 d) (a : Fin d) : pderiv
   have hj : j = 0 := Subsingleton.elim _ _
   subst hj
   show ev _ _ * pderiv (R := k) ((0 : Fin 2), a) (X ((1 : Fin 2), i)) = 0
-  rw [hXd, if_neg, mul_zero]
+  rw [hXd, ite_eq_right, mul_zero]
   intro heq
   exact absurd (Prod.mk.inj heq).1 (by decide)
 
@@ -260,7 +263,7 @@ theorem pderiv_second_ev_first_point_eq_zero (h : PS k 1 d) (b : Fin d) : pderiv
   have hj : j = 0 := Subsingleton.elim _ _
   subst hj
   show ev _ _ * pderiv (R := k) ((1 : Fin 2), b) (X ((0 : Fin 2), i)) = 0
-  rw [hXd, if_neg, mul_zero]
+  rw [hXd, ite_eq_right, mul_zero]
   intro heq
   exact absurd (Prod.mk.inj heq).1 (by decide)
 

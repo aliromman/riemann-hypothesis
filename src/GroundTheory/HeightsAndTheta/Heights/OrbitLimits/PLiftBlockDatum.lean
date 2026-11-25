@@ -15,7 +15,8 @@ import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ArithModel
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.OrbitLimits.LiftBlockGraph, GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PLiftBlockDatum
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.OrbitLimits.LiftBlockGraph
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.OrbitLimits.LiftBlockGraph
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -24,6 +25,7 @@ namespace GroundTheory.Heights₂.Heights.Targets
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.ArakelovGeometry ReciprocityTheory.ChartRestriction.G.AI.I4
 open GroundTheory.Heights₂.Heights.HilbertSamuel
 
+noncomputable section
 
 namespace LiftBlockGraph
 
@@ -126,7 +128,7 @@ theorem isMultiHomog_rename_none [DecidableEq K] {ι' : Type} [Fintype ι'] {g :
     rw [Fintype.sum_equiv (Fintype.equivFin ι').symm (fun i => m0 ⟨(), (Fintype.equivFin ι').symm i⟩)
       (fun j => m0 ⟨(), j⟩) (fun _ => rfl)]
     have := hg m0 hm0 ()
-    simp only [blockDeg, if_true]
+    simp only [blockDeg, ite_true]
     rw [← this]
   | some k =>
     have hterm : ∀ i, (Finsupp.mapDomain φ m0) ⟨some k, i⟩ = 0 := by
@@ -168,8 +170,10 @@ theorem isMultiHomogIdeal_top : IsMultiHomogIdeal (⊤ : Ideal (MRing ι)) :=
 
 end LiftBlockGraph
 
+end
 
 end GroundTheory.Heights₂.Heights.Targets
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PLiftBlockDatum

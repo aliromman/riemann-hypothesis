@@ -1019,7 +1019,8 @@ theorem PlueckerKernel.proof (h₁ : PlueckerNormSq.Statement) (h₂ : PlueckerU
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PPlueckerNormSq
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PPlueckerNormSq
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1027,6 +1028,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open Matrix Finset
 
+noncomputable section
 
 namespace PlueckerNormSqAlt
 
@@ -1037,7 +1039,7 @@ theorem onePipe_mul_conjTranspose {j m : ℕ} (Z : Matrix (Fin j) (Fin m) ℂ) :
     Fin.append_right, Matrix.add_apply]
   congr 1
   simp only [Matrix.one_apply, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ,
-    if_true]
+    ite_true]
   by_cases hab : a = b
   · subst hab; simp
   · simp [hab, Ne.symm hab]
@@ -1061,8 +1063,10 @@ theorem PlueckerNormSq.proof (h : CauchyBinet.Statement) : PlueckerNormSq.Statem
   push_cast
   rfl
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PPlueckerUnitBound
@@ -1149,7 +1153,8 @@ theorem RootsOfUnityDense.proof : RootsOfUnityDense.Statement := by
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PThetaCharIntegral
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PThetaCharIntegral
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1157,6 +1162,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open Real MeasureTheory
 
+noncomputable section
 
 namespace KThetaCharIntegral
 
@@ -1200,11 +1206,13 @@ theorem ThetaCharIntegral.proof : ThetaCharIntegral.Statement := by
       by_contra h
       push Not at h
       exact hm (funext h)
-    rw [if_neg hm]
-    exact Finset.prod_eq_zero (Finset.mem_univ i) (if_neg hi)
+    rw [ite_eq_right hm]
+    exact Finset.prod_eq_zero (Finset.mem_univ i) (ite_eq_right hi)
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PThetaConstants

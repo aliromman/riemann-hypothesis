@@ -236,7 +236,9 @@ theorem exists_root_approx : ∀ (l : ℕ) [Fact l.Prime] (y y' : Formalism.Per.
 end GlobalTheory.TiltRootApprox
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ISupPowEqPowISupNonneg
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ISupPowEqPowISupNonneg
+
+noncomputable section
 
 open scoped Formalism.Per
 
@@ -411,12 +413,12 @@ theorem lead_target : ∀ (l : ℕ) [Fact l.Prime] (x : Formalism.Per.Acris l) (
     rw [WittVector.coeff_add_of_disjoint]
     · by_cases hn : n = m
       · subst hn
-        rw [hbc, if_pos rfl, zero_add, WittVector.teichmuller_mul_pow_coeff, hym]
-      · rw [hbc, if_neg hn, WittVector.teichmuller_mul_pow_coeff_of_ne _ hn, add_zero]
+        rw [hbc, ite_eq_left rfl, zero_add, WittVector.teichmuller_mul_pow_coeff, hym]
+      · rw [hbc, ite_eq_right hn, WittVector.teichmuller_mul_pow_coeff_of_ne _ hn, add_zero]
     · intro n'
       by_cases hn : n' = m
       · left
-        rw [hbc, if_pos hn]
+        rw [hbc, ite_eq_left hn]
       · right
         exact WittVector.teichmuller_mul_pow_coeff_of_ne _ hn
   refine ⟨y, j, by omega, hnorm, fun ρ hρ => ?_⟩
@@ -434,26 +436,27 @@ theorem lead_target : ∀ (l : ℕ) [Fact l.Prime] (x : Formalism.Per.Acris l) (
     intro n
     by_cases hn : n = m
     · have : (1 : ℝ) / (l : ℝ) ^ n ≠ 0 := by positivity
-      simp only [d, hbc, if_pos hn, untilt_zero, ZeroMemClass.coe_zero, norm_zero, Real.zero_rpow this]
-    · simp only [d, hbc, if_neg hn, hcc]
+      simp only [d, hbc, ite_eq_left hn, untilt_zero, ZeroMemClass.coe_zero, norm_zero, Real.zero_rpow this]
+    · simp only [d, hbc, ite_eq_right hn, hcc]
   have hbn : gC l ρ (algebraMap (Formalism.Per.Ainf l) (Formalism.Per.Acris l) b) < ρ ^ j * (c * ρ ^ k) := by
     rw [e5, gA]
     simp_rw [hbd]
     refine lt_of_lt_of_le (hlt ρ hρ d (fun n => ?_) (fun n => ?_) (by simp [d])) (le_of_eq ?_)
     · by_cases hn : n = m
       · simp [d, hn]
-      · simp only [d, if_neg hn]
+      · simp only [d, ite_eq_right hn]
         positivity
     · by_cases hn : n = m
-      · simp only [d, if_pos hn]
+      · simp only [d, ite_eq_left hn]
         positivity
-      · simp only [d, if_neg hn, le_refl]
+      · simp only [d, ite_eq_right hn, le_refl]
     · rw [zpow_add₀ hρ0.ne', zpow_natCast]
       ring
   rw [hsplit, hx ρ hρI]
   exact lt_of_le_of_lt (e2 _ _) (max_lt hbn (hzb ρ hρI))
 
 end GlobalTheory.PMon.Gauss
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -732,7 +735,7 @@ theorem orbit_class_trivial : ∀ (o : ℕ) (p : ℝ) (f : ℕ → ℝ → ℝ),
   have hg : ∀ r ∈ Set.Ioc (0 : ℝ) 1, ∀ i, 0 < f i r → g r = i % o := by
     intro r hr i hi
     have h : ∃ i, 0 < f i r := ⟨i, hi⟩
-    simp only [g, dif_pos h]
+    simp only [g, dite_eq_left h]
     exact hcl _ _ r hr (Classical.choose_spec h) hi
   have gcont : ContinuousOn g (Set.Ioc (0 : ℝ) 1) := by
     intro r hr
@@ -802,7 +805,10 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RootCancelPowEqSelfAcrisGaussNorm
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RootCancelPowEqSelfAcrisGaussNorm
+@[expose] public section
+
+noncomputable section
 
 open scoped Formalism.Per
 
@@ -913,7 +919,7 @@ theorem root_cancel_pow_eq_self : ∀ (l : ℕ) [Fact l.Prime] (h s : ℕ), s < 
     apply hmod1 i
     apply hz_eq
     rw [hzsucc]; exact hfix
-  push_neg at hA
+  push Not at hA
 
   have h10 : (1 : Formalism.Per.Acris l) ≠ 0 := fun h1 => hw' (by rw [← one_mul w', h1, zero_mul])
   have hrad := fun r (hr : r ∈ Set.Ioc (0 : ℝ) 1) => rootCancel_radius l hr.1 hr.2
@@ -1028,6 +1034,8 @@ theorem root_cancel_pow_eq_self : ∀ (l : ℕ) [Fact l.Prime] (h s : ℕ), s < 
 
 end GlobalTheory.PMon.Gauss
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

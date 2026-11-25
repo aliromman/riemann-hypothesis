@@ -53,14 +53,14 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaTraceOrthogonality, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaTraceOrthogonalityStatement
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaTraceOrthogonality
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open GlobalTheory.ThetaTrace GlobalTheory.HeckeFrCompare GlobalTheory.PlaceInt
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.HkIntegral
 
 namespace GlobalTheory.TraceOrth
@@ -669,6 +669,7 @@ theorem thetaTrace_orthogonality : ∀ (E : Type) [Field E] [NumberField E] [IsC
 end GlobalTheory.TraceOrth
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaTraceOrthogonalityStatement
 
@@ -676,7 +677,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open GlobalTheory.ThetaTrace GlobalTheory.HeckeFrCompare GlobalTheory.PlaceInt
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.HkIntegral
 
 

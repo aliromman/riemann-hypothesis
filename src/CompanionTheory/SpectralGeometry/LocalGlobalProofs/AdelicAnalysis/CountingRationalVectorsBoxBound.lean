@@ -293,7 +293,9 @@ theorem nu : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E
 end CompanionTheory.PlacePermOperatorBicommutantSpan
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.UnitaryTransitiveOnIsotropicVectors
+@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.UnitaryTransitiveOnIsotropicVectors
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SW.WittIso
 
@@ -340,7 +342,7 @@ theorem exists_hE_ne_zero (hdet : J.det ≠ 0) {x : Fin M → E} (hx : x ≠ 0) 
     funext j
     have h := hcon (Pi.single j 1)
     simp only [hE_eq_sum, Pi.single_apply, mul_ite, mul_one, mul_zero,
-      Finset.sum_ite_eq', Finset.mem_univ, if_true] at h
+      Finset.sum_ite_eq', Finset.mem_univ, ite_true] at h
     simpa [Matrix.vecMul, dotProduct] using h
   have h0 := Matrix.eq_zero_of_vecMul_eq_zero hdet hu
   apply hx
@@ -396,6 +398,7 @@ theorem transitive_isotropic : ∀ (F E : Type) [Field F] [NumberField F] [Field
   exact ⟨g, hg, by simpa using hgX 0⟩
 
 end GlobalTheory.CompanionTheory.SW.WittIso
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

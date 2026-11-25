@@ -573,8 +573,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitCocycleLiftMinimalGenerators
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitCocycleLiftMinimalGenerators
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CechDR MainStatements.Hodge GlobalTheory.CompanionTheory.FewEq
@@ -599,7 +600,7 @@ theorem not_le_hyperplane {R : Type} [CommRing R] [IsLocalRing R] (I : Ideal R) 
   have hsum : ∑ i, z i * t i = p := by
     have h1 : ∑ i, z i * t i = -(e l * ∑ i, x i * t i) + (1 + S) * t l := by
       simp only [z, add_mul, Finset.sum_add_distrib, ite_mul, zero_mul,
-        Finset.sum_ite_eq', Finset.mem_univ, if_true, Finset.mul_sum, neg_mul, Finset.sum_neg_distrib]
+        Finset.sum_ite_eq', Finset.mem_univ, ite_true, Finset.mul_sum, neg_mul, Finset.sum_neg_distrib]
       congr 1
       · congr 1
         exact Finset.sum_congr rfl fun i _ => by ring
@@ -612,7 +613,7 @@ theorem not_le_hyperplane {R : Type} [CommRing R] [IsLocalRing R] (I : Ideal R) 
   have hzm := hz z (hsum ▸ hp)
   have hxm : ∀ i, i ≠ l → x i ∈ IsLocalRing.maximalIdeal R := fun i hi => by
     have := hzm i
-    simp only [z, if_neg hi, add_zero, neg_mem_iff] at this
+    simp only [z, ite_eq_right hi, add_zero, neg_mem_iff] at this
     exact (Ideal.unit_mul_mem_iff_mem _ hl).1 (by rwa [mul_comm])
   have hS : S - x l * e l ∈ IsLocalRing.maximalIdeal R := by
     have : S - x l * e l = ∑ j ∈ Finset.univ.erase l, x j * e j := by
@@ -623,7 +624,7 @@ theorem not_le_hyperplane {R : Type} [CommRing R] [IsLocalRing R] (I : Ideal R) 
     rw [this]
     exact Ideal.sum_mem _ fun j hj => Ideal.mul_mem_right _ _ (hxm j (Finset.ne_of_mem_erase hj))
   have h3 := hzm l
-  simp only [z, if_true] at h3
+  simp only [z, ite_true] at h3
   have h4 : (1 : R) ∈ IsLocalRing.maximalIdeal R := by
     have : (1 : R) = (-(x l * e l) + (1 + S)) - (S - x l * e l) := by ring
     rw [this]
@@ -716,6 +717,7 @@ theorem exists_correction : ∀ (R : Type) [CommRing R] [IsLocalRing R] (X : Sch
     simpa only [map_mul, map_sub, map_one, hrs] using this
 
 end GlobalTheory.CompanionTheory.FewEq
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitCocycleLiftModuloMaximal
@@ -845,8 +847,9 @@ end GlobalTheory.CompanionTheory.FewEq.Cochain
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FewEquationsStatement
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FewEquationsStatement
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CechDR MainStatements.Hodge GlobalTheory.CompanionTheory.FewEq
@@ -890,10 +893,10 @@ theorem fewEq : FewEqSt := by
     · rw [Ideal.span_le]
       rintro _ ⟨i, rfl⟩
       by_cases h : i.1 < r
-      · simp only [h, dif_pos]
+      · simp only [h, dite_eq_left]
         rw [← ht]
         exact Ideal.subset_span ⟨_, rfl⟩
-      · simp only [h, dif_neg, not_false_eq_true]
+      · simp only [h, dite_eq_right, not_false_eq_true]
         exact zero_mem _
     · rw [← ht, Ideal.span_le]
       rintro _ ⟨i, rfl⟩

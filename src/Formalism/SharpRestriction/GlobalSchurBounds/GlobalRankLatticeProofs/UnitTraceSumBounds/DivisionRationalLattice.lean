@@ -36,8 +36,9 @@ import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PositiveDefiniteness.PositiveDefiniteSecond, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PositiveDefiniteness.SplittingOfExtension, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.DefPosDef, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PowerBoundedIntegrality.EvalIntMapEqZero, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PowerBoundedIntegrality.Imports, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.PowBddInt, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CompactTensorDensity.TensCpctDenOf, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.TensCpctDen, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitKronecker.EqZeroOfMulVec, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitKronecker.IntRootProp, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitKronecker.PosDefFormNeZero, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.UnitKron, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdicFiniteOrder.Assembly, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.FinOrdAd, Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.LemmaOneSevenOfFiniteOrder, Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.DivisionRationalLattice
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PositiveDefiniteness.PositiveDefiniteSecond
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PositiveDefiniteness.PositiveDefiniteSecond
 
+noncomputable section
 
 namespace PI.DefPosDefWork
 
@@ -109,7 +110,7 @@ theorem posDef_of_points {E : Type} [Field E] (φ : E →+* ℂ) {k : ℕ} (N : 
       rw [hv] at e
       rw [e]
       exact add_nonneg (hreal' _) (hreal' _)
-    · push_neg at hreal
+    · push Not at hreal
       obtain ⟨t, ht⟩ := hreal
       refine re_nonneg_of_rat N (φ t) ht (fun α β => ?_)
       have h1 := hpt (fun i => (α i : E) + (β i : E) * t)
@@ -186,6 +187,7 @@ theorem positive_definite_second : Step2 := by
       linarith
 
 end PI.DefPosDefWork
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PositiveDefiniteness.SplittingOfExtension

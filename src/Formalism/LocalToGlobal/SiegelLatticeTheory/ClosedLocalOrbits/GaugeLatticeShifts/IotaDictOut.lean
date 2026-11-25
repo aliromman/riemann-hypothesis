@@ -13,8 +13,9 @@ import Mathlib.RingTheory.PiTensorProduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.BridgeRA, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.IotaDictOut
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.BridgeRA
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.BridgeRA
 
+noncomputable section
 
 open scoped Classical ComplexConjugate TensorProduct
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Matrix Formalism.L2.SG.TermOp Formalism.L2.SG.HidaSetting
@@ -150,7 +151,7 @@ theorem hat_NgX (A : X.B.I.Gf) {u : D.what₂.Word} {Λ : Submodule (𝓞 D.host
 
       rw [← hs, map_sum]
       simp only [map_smul, smul_eq_mul, Formalism.L2.SG.Pf.hT_f_e X, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq',
-        Finset.mem_univ, if_true]
+        Finset.mem_univ, ite_true]
     choose c hc hcF using fun b => cF_mem X b
     set N1 : ℕ := ∏ b, c b with hN1
     have hN1c : Nat.Coprime N1 X.B.g := Nat.Coprime.prod_left fun b _ => hc b
@@ -199,17 +200,7 @@ theorem hat_NgX (A : X.B.I.Gf) {u : D.what₂.Word} {Λ : Submodule (𝓞 D.host
 
 theorem orth_of_eX {x : (VS D).V} {u : D.what₂.Word} (h : ∀ a, (VS D).hT (X.eX a) x = 0) :
     x ∈ orth (VS D) (Xsp (lf D (X.Fu u))) := by
-  have e : Xsp (lf D (X.Fu u)) = Submodule.span D.host.E (Set.range X.eX) := by
-    show Submodule.span D.host.E (Set.range (X.Fu u).e) = _
-    rw [X.Fu_e u]
-  rw [e]
-  refine (Submodule.mem_iInf _).2 fun v => (Submodule.mem_iInf _).2 fun hv => ?_
-  show (VS D).hT v x = 0
-  induction hv using Submodule.span_induction with
-  | mem v hv => obtain ⟨a, rfl⟩ := hv; exact h a
-  | zero => simp
-  | add v w _ _ hv hw => simp [hv, hw]
-  | smul c v _ hv => simp [hv]
+  apply _root_.Formalism.L2.SG.Pf.Vanish2.orth_of_e <;> assumption
 
 end Formalism.L2.SG.Pf.BridgeRA
 
@@ -303,7 +294,7 @@ theorem iotaBridgeRAC_holds : IotaBridgeRAC := by
     intro a
 
     rw [hx, map_sub, map_smul, map_sum]
-    simp only [map_smul, smul_eq_mul, X.ef, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true, hs]
+    simp only [map_smul, smul_eq_mul, X.ef, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true, hs]
     ring
   have hxL : x ∈ Lrep Λ (lf D (X.Fu u)) := ⟨hxΛ, orth_of_eX X hxo⟩
   have hβx := hat_NgX X A hlat hfixE hfixF hTF (hRT x hxL)
@@ -330,6 +321,7 @@ theorem iotaBridgeRAC_holds : IotaBridgeRAC := by
   exact sub_mem (mem_mL_of_Kset X hK _ hm2) hm2
 
 end Formalism.L2.SG.Pf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.IotaDictOut

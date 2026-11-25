@@ -65,16 +65,9 @@ import Formalism.HermitianLattices.HermitianLatticesProofs.IsomAct
 open NumberField Matrix GlobalTheory.Mass Formalism.HermitianLatticesTheory
 open scoped ENNReal Classical
 
-section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.CardHermitianLatticesGluedSubspaceComplement
-@[expose] public section
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.CardHermitianLatticesGluedSubspaceComplement
 
 namespace GlobalTheory.Mass.Glue
-
-section
-
-variable {K V : Type} [Field K] [StarRing K] [AddCommGroup V] [Module K V]
-
-end
 
 open NumberField Matrix in
 open scoped ENNReal Classical in
@@ -317,7 +310,6 @@ theorem _root_.GlobalTheory.Mass.Glue.main : ∀ (K V : Type) [Field K] [NumberF
     exact this
 
 end GlobalTheory.Mass.Glue
-end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.OrbitStabilizerMassSubspaceCyclicDiscriminantLe

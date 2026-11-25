@@ -174,8 +174,9 @@ theorem injL_holds : InjL := by
 end UpperTheory.Gal.KunnethLefschetz
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.KunLHolds
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.KunLHolds
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC LateralTheory.EtaleTrace UpperTheory.Gal.KunnethLefschetz
 open scoped TensorProduct DirectSum
 
@@ -227,7 +228,8 @@ theorem UpperTheory.Gal.KunnethLefschetz.kunL_holds :
       obtain rfl : b = n - a := by omega
       have ha : a ≠ 2 * (d : ℤ) := by omega
       simp only [LinearMap.coe_comp, LinearEquiv.coe_coe, Function.comp_apply, he,
-        DirectSum.toModule_lof, dif_neg ha, LinearMap.zero_apply]
+        DirectSum.toModule_lof, dite_eq_right ha, LinearMap.zero_apply]
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.LowLHolds
@@ -1277,8 +1279,9 @@ theorem qProj_holds : QProj := by
 end UpperTheory.Gal.KunnethLefschetz
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.PSlice
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.PSlice
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC LateralTheory.EtaleTrace
 
 namespace UpperTheory.Gal.KunnethLefschetz
@@ -1295,7 +1298,7 @@ theorem slice_holds : Slice := by
     simpa [map_natCast] using h2
   have hunit : IsUnit ((l : Γ(S k, ⊤))) := by
     simpa [map_natCast] using hunitX.map (y.1.appTop).hom
-  simp only [GysQ.diag, GysQ.pt, GysQ.cls, dif_pos hdiag, dif_pos hy]
+  simp only [GysQ.diag, GysQ.pt, GysQ.cls, dite_eq_left hdiag, dite_eq_left hy]
   rw [G.nat hy hdiag (slice y) y.1
     (by rw [slice, ← Category.assoc, pullback.lift_fst, Category.id_comp]) hpb]
   congr 1
@@ -1303,6 +1306,7 @@ theorem slice_holds : Slice := by
   | exact hR.one_nat y.1 hunitX
 
 end UpperTheory.Gal.KunnethLefschetz
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.PTopPart
@@ -1621,8 +1625,9 @@ theorem twBij_holds : TwBij := by
 end UpperTheory.Gal.KunnethLefschetz
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.SwapSymmetry
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.SwapSymmetry
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC LateralTheory.EtaleTrace UpperTheory.Gal.KunnethLefschetz
 open scoped TensorProduct DirectSum
 
@@ -1649,11 +1654,12 @@ theorem UpperTheory.Gal.KunnethLefschetz.swap_holds :
       cupV l (pullback p p) h (pb l f n x) (G.diag d p) = G.g hpair h x := by
     intro f hf
     have hd : G.diag d p = G.g hpair (show (0 : ℤ) + 2 * d = 2 * d by simp) (oneV l X) := by
-      simp only [GysQ.diag, GysQ.cls, dif_pos hpair]
+      simp only [GysQ.diag, GysQ.cls, dite_eq_left hpair]
     rw [hd, ← G.proj hpair (show n + 0 = n by simp) h (show (0 : ℤ) + 2 * d = 2 * d by simp) h,
       ← pb_comp_apply, hf, pb_self, hu]
   rw [key _ (by simp), hR.comm (pullback p p) (2 * d) n w h' h,
     key _ (by simp), Int.negOnePow_even _ ⟨d * n, by ring⟩, one_smul]
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtMain

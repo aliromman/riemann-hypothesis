@@ -79,7 +79,9 @@ theorem tm_archEmbed_mulVec_vec (E : Type) [Field E] [NumberField E] [IsCMField 
 end GlobalTheory.CompanionTheory.Ar.Cusp.Dict
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.ArchimedeanUnitaryRepresentation
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.ArchimedeanUnitaryRepresentation
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.Dict.TmBasic
 
@@ -111,7 +113,7 @@ theorem tm_basic : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (Ψ : 
     have hm := mem_archUnitary.1 a.2 (plc F τ)
     simp only [LatEmb.tm, tauMat, LatEmb.gr]
     by_cases h0 : (plc F τ).embedding = embOf (F.σ τ)
-    · rw [if_pos h0]
+    · rw [ite_eq_left h0]
       rw [gramAt, h0] at hm
       have e : ((a.1 (plc F τ) : GL (Fin (j + j')) ℂ) : Matrix (Fin (j + j')) (Fin (j + j')) ℂ)ᴴ =
           (((a.1 (plc F τ) : GL (Fin (j + j')) ℂ) : Matrix (Fin (j + j')) (Fin (j + j')) ℂ).map
@@ -121,7 +123,7 @@ theorem tm_basic : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (Ψ : 
       exact hm
     · have h' : (plc F τ).embedding = ComplexEmbedding.conjugate (embOf (F.σ τ)) :=
         (InfinitePlace.embedding_mk_eq (embOf (F.σ τ))).resolve_left h0
-      rw [if_neg h0]
+      rw [ite_eq_right h0]
       apply conj_unitary
       have e : gramAt C.h (Pi.basisFun E (Fin (j + j'))) (plc F τ) =
           ((gram C.h.toSesq (Pi.basisFun E (Fin (j + j')))).map (embOf (F.σ τ))).map (starRingEnd ℂ) := by
@@ -140,6 +142,7 @@ theorem tm_basic : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (Ψ : 
     · exact hc.matrix_map Complex.continuous_conj
 
 end GlobalTheory.CompanionTheory.Ar.Cusp.Dict.TmBasic
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens
@@ -211,7 +214,9 @@ theorem continuous_moebBall_zero (Ψ : Type) [Fintype Ψ] (j j' n : ℕ) (q : Ψ
 end GlobalTheory.CompanionTheory.Ar.Cusp.Dict
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsMajorantOfPositiveFrame
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsMajorantOfPositiveFrame
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.Dict.TauMaj
 
@@ -307,19 +312,19 @@ theorem vecAt_of_ne (x : Λ) {τ : Ψ} (h : (plc F τ).embedding ≠ embOf (F.σ
 
 theorem tm_of_eq (a : C.Arch) {τ : Ψ} (h : (plc F τ).embedding = embOf (F.σ τ)) :
     C.tm a τ = ((a : InfinitePlace E → GL (Fin (j + j')) ℂ) (plc F τ) : Matrix (Fin (j + j')) (Fin (j + j')) ℂ) := by
-  rw [LatEmb.tm, tauMat, if_pos h]
+  rw [LatEmb.tm, tauMat, ite_eq_left h]
 
 theorem tm_of_ne (a : C.Arch) {τ : Ψ} (h : (plc F τ).embedding ≠ embOf (F.σ τ)) :
     C.tm a τ = cj ((a : InfinitePlace E → GL (Fin (j + j')) ℂ) (plc F τ) : Matrix (Fin (j + j')) (Fin (j + j')) ℂ) := by
-  rw [LatEmb.tm, tauMat, if_neg h]
+  rw [LatEmb.tm, tauMat, ite_eq_right h]
 
 theorem atPlc_of_eq (Pt : Ψ → Matrix (Fin (j + j')) (Fin (j + j')) ℂ) {τ : Ψ}
     (h : (plc F τ).embedding = embOf (F.σ τ)) : atPlc F Pt τ = Pt τ := by
-  rw [atPlc]; exact if_pos h
+  rw [atPlc]; exact ite_eq_left h
 
 theorem atPlc_of_ne (Pt : Ψ → Matrix (Fin (j + j')) (Fin (j + j')) ℂ) {τ : Ψ}
     (h : (plc F τ).embedding ≠ embOf (F.σ τ)) : atPlc F Pt τ = cj (Pt τ) := by
-  rw [atPlc]; exact if_neg h
+  rw [atPlc]; exact ite_eq_right h
 
 def majOf (Pt : Ψ → Matrix (Fin (j + j')) (Fin (j + j')) ℂ) (hP : ∀ τ, (Pt τ).PosDef)
     (hS : ∀ τ, Pt τ * (C.gr τ)⁻¹ * Pt τ = C.gr τ) : Majorant C.h (Pi.basisFun E (Fin (j + j'))) where
@@ -404,6 +409,7 @@ theorem exists_majorant : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
   exact ⟨majOf C Pt hP hS, majOf_len C Pt hP hS, majOf_stab C Pt hP hS⟩
 
 end GlobalTheory.CompanionTheory.Ar.Cusp.Dict.TauMaj
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

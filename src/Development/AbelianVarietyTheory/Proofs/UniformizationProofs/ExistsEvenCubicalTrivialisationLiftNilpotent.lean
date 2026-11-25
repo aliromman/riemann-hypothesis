@@ -62,8 +62,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.IsNilpotentOfRd, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.EvSurjective, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsEvenCubicalTrivialisationLiftNilpotent
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.IsNilpotentOfRd
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.IsNilpotentOfRd
 
+noncomputable section
 
 open AddMonoidAlgebra
 
@@ -112,7 +113,7 @@ theorem avg_mv_inr (f : W →+ X × Y) (φ : W →+ Y) (h : ∀ w, f w = (0, φ 
   induction u using AddMonoidAlgebra.induction_linear with
   | zero => simp
   | add a b ha hb => simp only [map_add (f := _), ha, hb]
-  | single p r => rw [mv_single, avg_single, h, mv_single, if_pos rfl]
+  | single p r => rw [mv_single, avg_single, h, mv_single, ite_eq_left rfl]
 
 theorem avg_mv_one (f : X →+ X × Y) (h : ∀ a, (f a).1 = a) (u : A[X]) :
     avg (mv f u) = single 0 (u.coeff 0) := by
@@ -362,6 +363,7 @@ theorem eq_one_of_del {g : (A[X])ˣ} {J : Ideal A} (hJ : IsNilpotent J) (h : g �
   exact hn g (ind n)
 
 end GlobalTheory.CubeLift
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

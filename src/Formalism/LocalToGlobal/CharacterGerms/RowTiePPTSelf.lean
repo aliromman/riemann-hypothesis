@@ -17,13 +17,11 @@ import Formalism.LocalToGlobal.CharacterGerms.ValNonnegLeadingCoeffOfMemTySet
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.CharacterGerms.RowTiePIndAr, Formalism.LocalToGlobal.CharacterGerms.RowTiePPTSelf
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePIndAr
 
 
 open scoped BigOperators
 open Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePIndAr
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -607,7 +605,12 @@ end IndAr
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePPTSelf
+@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePPTSelf
+
+noncomputable section
+
+open scoped BigOperators
+open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -690,9 +693,9 @@ theorem ptSelf_of (hEx : PTExSelfSt) (hAvg : PTAvgSelfSt) (hStab : HStabSelfSt) 
     rw [coeff_alongCv_low le_rfl hγ0 (FBChart.self_chart_log_constantCoeff (Y := Y) (p := p) i), map_sum] at h1
     simp only [PowerSeries.coeff_smul, c1, hx0, smul_eq_mul] at h1
     rw [← h1, Finset.sum_eq_single i]
-    · rw [FBChart.rawSelf_lin (Y := Y) (p := p) i _ (hdeg i), MvPowerSeries.coeff_X, if_pos rfl, one_mul]
+    · rw [FBChart.rawSelf_lin (Y := Y) (p := p) i _ (hdeg i), MvPowerSeries.coeff_X, ite_eq_left rfl, one_mul]
     · intro j _ hji
-      rw [FBChart.rawSelf_lin (Y := Y) (p := p) i _ (hdeg j), MvPowerSeries.coeff_X, if_neg, zero_mul]
+      rw [FBChart.rawSelf_lin (Y := Y) (p := p) i _ (hdeg j), MvPowerSeries.coeff_X, ite_eq_right, zero_mul]
       intro h
       exact hji (Finsupp.single_left_injective one_ne_zero h)
     · intro h
@@ -749,7 +752,7 @@ theorem ptSelf_of (hEx : PTExSelfSt) (hAvg : PTAvgSelfSt) (hStab : HStabSelfSt) 
           exact key q
         · have h4 : PowerSeries.coeff m (lam q - PowerSeries.C (x 0 (Sum.inr q)) * PowerSeries.X) =
               PowerSeries.coeff m (lam q) := by
-            rw [map_sub, ← pow_one (PowerSeries.X : PowerSeries C), PowerSeries.coeff_C_mul_X_pow, if_neg hm,
+            rw [map_sub, ← pow_one (PowerSeries.X : PowerSeries C), PowerSeries.coeff_C_mul_X_pow, ite_eq_right hm,
               sub_zero]
           rw [h4]
           exact (hlam q).2 m
@@ -803,11 +806,11 @@ theorem ptAvgSelf_of (hAct : OActSelfSt) (hLim : LimSelfSt) : PTAvgSelfSt := by
   · funext n
     simp only [Pi.mul_apply, Nat.cast_zero, add_zero]
     by_cases hn : X.tyC g n = a
-    · rw [if_pos hn, one_mul]
-    · rw [if_neg hn, zero_mul, hx0 n hn]
+    · rw [ite_eq_left hn, one_mul]
+    · rw [ite_eq_right hn, zero_mul, hx0 n hn]
   · intro i n hn
     simp only [Pi.mul_apply]
-    rw [if_neg hn, zero_mul]
+    rw [ite_eq_right hn, zero_mul]
 
 theorem ptSelf_of_act (hEx : PTExSelfSt) (hAct : OActSelfSt) (hLim : LimSelfSt) (hStab : HStabSelfSt) : PTSelfSt :=
   ptSelf_of hEx (ptAvgSelf_of hAct hLim) hStab

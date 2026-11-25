@@ -27,13 +27,14 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsGrpPullbackDescen
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HodgeTateWeilLocal, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicWittLattices.PTransDeep
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HodgeTateWeilLocal
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HodgeTateWeilLocal
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.AV GlobalTheory.AV.AbVar GlobalTheory.PDivGroup GlobalTheory.Dieu GlobalTheory.UPel.HT GlobalTheory.LKTrip GlobalTheory.LKMid GlobalTheory.LKGeo GlobalTheory.LKRes
 open ReciprocityTheory.DiscreteGroups.LocalClassField GlobalTheory.UPel.HT.HeckeAd
 
+noncomputable section
 
 namespace GlobalTheory.UPel.HT.HeckeAd.TateTranslAt
 
@@ -172,7 +173,7 @@ theorem exists_tateIsoO_of_given {p : ℕ} [Fact p.Prime] (D : Datum p) {R : Typ
   let ev' : ℕ → D.La → (Over.mk x ⟶ A') := fun n y =>
     if 0 < n ∧ n.Coprime p then I.ev (n * k) (h (n * k) y) ≫ ψ else 1
   have hev' : ∀ n, 0 < n → n.Coprime p → ∀ y, ev' n y = I.ev (n * k) (h (n * k) y) ≫ ψ :=
-    fun n hn hnp y => if_pos ⟨hn, hnp⟩
+    fun n hn hnp y => ite_eq_left ⟨hn, hnp⟩
   refine ⟨⟨fun n => I.ζ n ^ u n, ?_, ?_, ev', ?_, ?_, ?_, ?_, ?_, ?_⟩, fun y => ?_, hev'⟩
   · intro n hn hnp
     exact (I.ζ_prim n hn hnp).zpow_of_gcd_eq_one (u n) (Int.isCoprime_iff_gcd_eq_one.1 (hsim n hn hnp).1)
@@ -254,6 +255,7 @@ end GlobalTheory.UPel.HT.HeckeAd.TateTranslAt
 namespace GlobalTheory.UPel.HT.HeckeAd
 
 end GlobalTheory.UPel.HT.HeckeAd
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicWittLattices.PTransDeep

@@ -19,12 +19,10 @@ import ReciprocityTheory.DualLattices.UpSmith
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.DualLattices.ExistsFromRowsMulVecIff, ReciprocityTheory.DualLattices.DualLenStatement, ReciprocityTheory.DualLattices.MatEquivApply
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.ExistsFromRowsMulVecIff
 
 
 open Matrix
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.ExistsFromRowsMulVecIff
 
 namespace ReciprocityTheory.PGsh.Up
 
@@ -149,7 +147,11 @@ lemma cok_kill [IsDomain R] {Ht Bt : Matrix (Fin g) (Ix g) R} {E : Matrix (Ix g)
 end ReciprocityTheory.PGsh.Up
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.DualLenStatement
+@[expose] public section -- clump member: ReciprocityTheory.DualLattices.DualLenStatement
+
+noncomputable section
+
+open Matrix
 
 namespace ReciprocityTheory.PGsh.Up
 
@@ -242,7 +244,7 @@ theorem lenIdB_of (hPL : DualLenStatement) : LenIdBStatement := by
     c₁ hc₁
   haveI : IsDomain R := Function.Injective.isDomain _ hv.hom_inj
   obtain ⟨φ⟩ := hd
-  have hP : εL i * εL i = εL i := by rw [hLo, if_pos rfl]
+  have hP : εL i * εL i = εL i := by rw [hLo, ite_eq_left rfl]
   set U := matU (εL i) φ with hU
   set V := matV (εL i) φ with hV
   have hVU : V * U = 1 := matV_matU (εL i) hP φ
@@ -331,8 +333,13 @@ theorem lenIdB_of (hPL : DualLenStatement) : LenIdBStatement := by
 
 end ReciprocityTheory.PGsh.Up
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.MatEquivApply
+@[expose] public section -- clump member: ReciprocityTheory.DualLattices.MatEquivApply
+
+noncomputable section
+
+open Matrix
 
 namespace ReciprocityTheory.PGsh.Up
 
@@ -352,9 +359,9 @@ lemma matEquiv_apply {d : ℕ} (P : Matrix (Fin d) (Fin d) R) (hP : IsUnit P.det
 lemma sum_val_eq {n : ℕ} (j : ℕ) (f : Fin n → R) :
     ∑ k : Fin n, (if (k : ℕ) = j then f k else 0) = if h : j < n then f ⟨j, h⟩ else 0 := by
   split_ifs with h
-  · rw [Fintype.sum_eq_single ⟨j, h⟩ (fun k hk => if_neg fun h' => hk (Fin.ext h'))]
-    exact if_pos rfl
-  · exact Finset.sum_eq_zero fun k _ => if_neg fun (h' : (k : ℕ) = j) => h (h' ▸ k.isLt)
+  · rw [Fintype.sum_eq_single ⟨j, h⟩ (fun k hk => ite_eq_right fun h' => hk (Fin.ext h'))]
+    exact ite_eq_left rfl
+  · exact Finset.sum_eq_zero fun k _ => ite_eq_right fun (h' : (k : ℕ) = j) => h (h' ▸ k.isLt)
 
 lemma hasLen_pi {C : Type} [Field C] (v : Valuation C NNReal) [Algebra R C] {d : ℕ} (a : Fin d → R) :
     HasLen v R ((Fin d → R) ⧸ Submodule.pi Set.univ (fun j => (Ideal.span {a j} : Submodule R R)))
@@ -466,8 +473,8 @@ theorem dualLen_fin {C : Type} [Field C] {v : Valuation C NNReal} [Algebra R C]
     simp only [Matrix.mulVec, dotProduct, Matrix.transpose_apply, hD, ite_mul, zero_mul]
     refine Finset.sum_congr rfl fun j _ => ?_
     by_cases h : (k : ℕ) = (j : ℕ)
-    · rw [if_pos h, if_pos h.symm]
-    · rw [if_neg h, if_neg (Ne.symm h)]
+    · rw [ite_eq_left h, ite_eq_left h.symm]
+    · rw [ite_eq_right h, ite_eq_right (Ne.symm h)]
   have hdiv : ∀ j : Fin d, (j : ℕ) < n ∧ ∃ b, a j * b = c := by
     intro j
     obtain ⟨t, ht⟩ := hkill (P⁻¹ *ᵥ Pi.single j 1)

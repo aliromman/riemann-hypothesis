@@ -13,20 +13,15 @@ import ReciprocityTheory.Automorphisms.PlaceA
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalRingCardinality.SpanPowerMembership.NDLocI, Formalism.LocalToGlobal.NumberFieldFamilies.NPartCBase
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalRingCardinality.SpanPowerMembership.NDLocI
+@[expose] public section -- clump member: Formalism.LocalRingCardinality.SpanPowerMembership.NDLocI
 
+noncomputable section
 
 namespace Formalism.BasicNotions.Examples₂
 
 open NumberField IsDedekindDomain IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc LB
 
 namespace TwB
-
-section Settings
-
-variable (F : Type) [Field F] [NumberField F]
-
-end Settings
 
 section OneLL
 
@@ -42,6 +37,7 @@ end OneLL
 end TwB
 
 end Formalism.BasicNotions.Examples₂
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.NumberFieldFamilies.NPartCBase

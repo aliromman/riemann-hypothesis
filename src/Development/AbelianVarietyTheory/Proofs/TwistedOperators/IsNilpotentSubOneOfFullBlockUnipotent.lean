@@ -1,5 +1,6 @@
 module
 
+import Development.WeilBound.CoreStatements.AbelianHeightsDuality.PublishedTheoremStatements.BridgesAut
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FactTypePrime
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ColLieApply
 public import Mathlib.NumberTheory.NumberField.Basic
@@ -377,16 +378,7 @@ theorem isClass_of_isChar {G : Type} [Group G] {χ : G → ℂ} (h : IsChar χ) 
   rw [← hV, ← hV, FDRep.char_conj]
 
 theorem wh_one_zero (ψ : AddChar (ZMod g) ℂ) : wh ψ (fun _ : Gn g 0 => (1 : ℂ)) = 1 := by
-  haveI : Subsingleton (Gn g 0) := ⟨fun a b => Units.ext (Subsingleton.elim _ _)⟩
-  unfold wh tr
-  rw [Fintype.sum_subsingleton _ 1, eU, coeff_eDat, mul_one]
-  have hU : ∀ u : Gn g 0, IsUniUp u.val := fun u a => a.elim0
-  have hc : Nat.card {u : GG g 0 // IsUniUp u.val} = 1 := by
-    haveI : Nonempty {u : GG g 0 // IsUniUp u.val} := ⟨⟨1, hU 1⟩⟩
-    exact Nat.card_unique
-  unfold eps
-  rw [if_pos (hU 1), hc]
-  simp
+  first | exact _root_.GlobalTheory.GreenSeries.wh_zero_one | exact @_root_.GlobalTheory.GreenSeries.wh_zero_one | apply _root_.GlobalTheory.GreenSeries.wh_zero_one <;> assumption
 
 theorem wh_const_mul (ψ : AddChar (ZMod g) ℂ) {n : ℕ} (c : ℂ) (χ : Gn g n → ℂ) :
     wh ψ (fun x => c * χ x) = c * wh ψ χ := by
@@ -591,13 +583,14 @@ theorem finrank_eq_card_mul_and_trace_eq_zero_of_free_values :
 end GlobalTheory
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GoodProjectorCoeffEqProdAtTwoTypePrimes
+@[expose] public section
+
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S IsDedekindDomain NumberField
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues
 open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Cx Formalism.IndefR.Links
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GoodProjectorCoeffEqProdAtTwoTypePrimes
 open Formalism.IndefR.Datum (InfFam)
 open GlobalTheory.DefFree GlobalTheory.DefLift Polynomial
 open scoped TensorProduct
@@ -610,9 +603,9 @@ theorem monicOf_injective {g N : ℕ} [Fact g.Prime] :
   funext i
   have key := congrArg (fun p : (ZMod g)[X] => p.coeff (i : ℕ)) h
   simp only [Formalism.CyclotomicNorms.monicOf, Polynomial.coeff_add, Polynomial.coeff_X_pow, Polynomial.finsetSum_coeff,
-    Polynomial.coeff_C_mul_X_pow, Nat.ne_of_lt i.isLt, if_false, zero_add] at key
-  rwa [Finset.sum_eq_single i (fun j _ hj => if_neg (fun e => hj (Fin.ext e.symm))) (by simp), if_pos rfl,
-    Finset.sum_eq_single i (fun j _ hj => if_neg (fun e => hj (Fin.ext e.symm))) (by simp), if_pos rfl] at key
+    Polynomial.coeff_C_mul_X_pow, Nat.ne_of_lt i.isLt, ite_false, zero_add] at key
+  rwa [Finset.sum_eq_single i (fun j _ hj => ite_eq_right (fun e => hj (Fin.ext e.symm))) (by simp), ite_eq_left rfl,
+    Finset.sum_eq_single i (fun j _ hj => ite_eq_right (fun e => hj (Fin.ext e.symm))) (by simp), ite_eq_left rfl] at key
 
 
 open Classical in
@@ -698,7 +691,15 @@ theorem goodProjector_coeff_eq_prod_at_two_typePrimes : ∀ (D : D7) (τ : ∀ k
 
 end GlobalTheory.GoodProjProd
 
+end
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S IsDedekindDomain NumberField
+open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues
+open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Cx Formalism.IndefR.Links
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsDefiniteSelfDualOfBaseFramePosDef
 open Formalism.IndefR.Datum (InfFam)
@@ -878,8 +879,8 @@ theorem range_sum_eq_eig {G M : Type} [Group G] [Fintype G] [AddCommGroup M] [Mo
       simp only [LinearMap.sum_apply, LinearMap.smul_apply, Finset.sum_smul]
       refine Finset.sum_congr rfl fun g _ => ?_
       by_cases hg : g ∈ P
-      · rw [if_pos hg, ← h1 ⟨g, hg⟩, mul_smul, ← hx ⟨g, hg⟩]
-      · rw [if_neg hg, h0 g hg, zero_smul, zero_smul]
+      · rw [ite_eq_left hg, ← h1 ⟨g, hg⟩, mul_smul, ← hx ⟨g, hg⟩]
+      · rw [ite_eq_right hg, h0 g hg, zero_smul, zero_smul]
     have hne : (∑ g : G, if g ∈ P then k else 0) ≠ 0 := by
       rw [← Finset.sum_filter, Finset.sum_const, nsmul_eq_mul]
       refine mul_ne_zero ?_ hk
@@ -915,14 +916,14 @@ theorem tens_e_mul {g N : ℕ} [Fact g.Prime] {ι : Type} [Fintype ι] (L : ι �
   rw [← Finset.prod_mul_distrib]
   refine Finset.prod_congr rfl fun v _ => ?_
   have := GlobalTheory.BadShare.Basic.chi_ne (L v) (γ v)
-  simp only [GlobalTheory.BadShare.Lev.e, GlobalTheory.BadShare.eps, if_pos (h v)]
+  simp only [GlobalTheory.BadShare.Lev.e, GlobalTheory.BadShare.eps, ite_eq_left (h v)]
   field_simp
 
 theorem tens_e_zero {g N : ℕ} [Fact g.Prime] {ι : Type} [Fintype ι] (L : ι → GlobalTheory.BadShare.Lev g N)
     (γ : ι → GlobalTheory.BadShare.GG g N) (h : ¬ ∀ v, (L v).Mem (γ v)) :
     GlobalTheory.BadShare.tens (fun v => (L v).e) γ = 0 := by
   obtain ⟨v, hv⟩ := not_forall.1 h
-  exact Finset.prod_eq_zero (Finset.mem_univ v) (by simp only [GlobalTheory.BadShare.Lev.e, GlobalTheory.BadShare.eps, if_neg hv])
+  exact Finset.prod_eq_zero (Finset.mem_univ v) (by simp only [GlobalTheory.BadShare.Lev.e, GlobalTheory.BadShare.eps, ite_eq_right hv])
 
 theorem prod_card_ne {g N : ℕ} [Fact g.Prime] {ι : Type} [Fintype ι] (L : ι → GlobalTheory.BadShare.Lev g N) :
     (∏ v, (Nat.card {u // (L v).Mem u} : ℂ)⁻¹) ≠ 0 := by
@@ -1148,7 +1149,15 @@ theorem typePrime_large_and_ok : ∀ (D : D7) (L : SizeData₂ D), ParameterChoi
 end GlobalTheory.TypePrimeSize
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsNilpotentSubOneOfFullBlockUnipotent
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsNilpotentSubOneOfFullBlockUnipotent
+
+noncomputable section
+
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S IsDedekindDomain NumberField
+open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues
+open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Cx Formalism.IndefR.Links
 open Formalism.IndefR.Datum (InfFam)
 open GlobalTheory.DefLift GlobalTheory.IndefiniteRowSideFullHecke.DegreeClassification Polynomial
 open scoped TensorProduct
@@ -1166,12 +1175,12 @@ theorem central_tens2 {G G' : Type} [Group G] [Fintype G] [Group G'] [Fintype G'
   have key : ∀ {H : Type} [Group H] [Fintype H] {a : H → ℂ}, (∀ x, conv a x = conv x a) → ∀ u v, a (u * v) = a (v * u) := by
     intro H _ _ a ha u v
     have := congrFun (ha fun y => if y = v⁻¹ then 1 else 0) u
-    simp only [conv, mul_ite, mul_one, mul_zero, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true,
+    simp only [conv, mul_ite, mul_one, mul_zero, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true,
       inv_inv] at this
     rw [← this, Finset.sum_eq_single (u * v)]
     · simp
     · intro y _ hy
-      rw [if_neg]
+      rw [ite_eq_right]
       intro e
       exact hy (by rw [inv_mul_eq_iff_eq_mul] at e; rw [e, inv_mul_cancel_right])
     · simp
@@ -1554,6 +1563,7 @@ theorem goodVectorsDefinite (hG : GlobalTheory.Published.GreenCuspidal) : GoodVe
 
 end GlobalTheory.DefFree
 
+end
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.CardMulFinrankSubgroupEigenspaceOfTraceVanishes", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FactTypePrime\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.CardMulFinrankSubgroupEigenspaceOfTraceVanishesStatement", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FactTypePrime\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CardMulFinrankSubgroupEigenspaceOfTraceVanishes\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ColLieApply\nimport Formalism.LocalToGlobal.IndefiniteForms.IndefSide\nimport Formalism.LocalToGlobal.IndefiniteReal.LinksDefs\nimport Formalism.LocalToGlobal.IndefiniteReal.PartsOrth\n\n"}

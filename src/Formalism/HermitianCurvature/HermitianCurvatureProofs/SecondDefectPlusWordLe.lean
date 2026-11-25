@@ -8,13 +8,14 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.SecondDefect
 -- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.CWConsPlus, Formalism.HermitianCurvature.HermitianCurvatureProofs.SecondDefectPlusWordLe
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CWConsPlus
-@[expose] public noncomputable section
+@[expose] public section
 
 namespace Formalism.FourierDecayAlt.P.PBL
 
 open Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Wd
 open scoped ComplexConjugate
 
+noncomputable section
 
 section cs
 
@@ -44,7 +45,7 @@ theorem cW_cons_plus (P : M.Par) (l0 : ℕ) (y : ℝ) (w : List C.Letter) (E : I
         else Fr.xs (fun Y => M.sgn P l0 * M.xC P ρ Y) (D.positionted w) (fun a => E a.succ) (y : ℂ)) := by
   unfold Top.cW
   rw [PBF.positioned_cons]
-  simp only [Fr.cs, if_true]
+  simp only [Fr.cs, ite_true]
   simp only [cs_upL, xs_upL, show qw (M.qC P) ((D.positionted w).map PBF.upL) = qw (M.qC P) (D.positionted w) from
     funext fun Y => PBF.qw_map_reindex _ Fin.succ _ Y]
 
@@ -57,7 +58,7 @@ theorem cW_plusW (P : M.Par) (l0 : ℕ) (a : List C.Letter) (e : Ix (Fin a.lengt
   | [] => by simp [topRprod, KB.plusW, KB.firstSt]
   | y :: ys => by
     have h := cW_cons_plus P l0 y (KB.plusW ys a) (Fin.cons (0 : Fin 2) (KB.firstSt ys e)) ρ
-    simp only [Fin.cons_zero, Fin.cons_succ, if_true] at h
+    simp only [Fin.cons_zero, Fin.cons_succ, ite_true] at h
     show Top.cW P l0 ((true, y) :: KB.plusW ys a) (Fin.cons (0 : Fin 2) (KB.firstSt ys e)) ρ = _
     rw [h, cW_plusW P l0 a e ρ ys]
     simp only [topRprod, topR]
@@ -65,6 +66,7 @@ theorem cW_plusW (P : M.Par) (l0 : ℕ) (a : List C.Letter) (e : Ix (Fin a.lengt
 
 end cs
 
+end
 
 end Formalism.FourierDecayAlt.P.PBL
 end -- clump:auto

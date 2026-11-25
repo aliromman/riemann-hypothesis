@@ -62,8 +62,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyKa
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsInvariantOfSplitZerosTorsion
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsInvariantOfSplitZerosTorsion
 
+noncomputable section
 
 namespace GlobalTheory
 
@@ -118,7 +119,7 @@ theorem exists_ker_int_matrix_four_of_torsion_lift {G G' : Type} [CommGroup G] [
         simp only [Fin.prod_univ_four, Fin.sum_univ_four, zpow_add]
       rw [h4, h3]
       split_ifs <;> simp
-    simp only [h2, Finset.prod_ite_eq', Finset.mem_univ, if_true] at h1
+    simp only [h2, Finset.prod_ite_eq', Finset.mem_univ, ite_true] at h1
     obtain ⟨q, rfl⟩ := hm
     rw [pow_mul, h1, one_pow]
   choose a ha using fun I r => hψ.2 ⟨(e I).1 r, htor I r⟩
@@ -213,6 +214,7 @@ theorem exists_kaVal_of_split :
   exact ⟨_, z, ch, b, b', t, t', hJ.unit, lam, lam', hz, hJ.unit_spec, hb, hb', ht, ht', rfl⟩
 
 end GlobalTheory
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsInvariantOfSplitZerosTorsionStatement

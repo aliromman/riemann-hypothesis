@@ -92,20 +92,15 @@ end GlobalTheory.TraitChartForm
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.PsiUnitOnOfNeUniv
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.PsiUnitOnOfNeUniv
 
+noncomputable section
 
 namespace GlobalTheory.DvrDataCompare
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-
-section Ext
-
-variable {V : Type} [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]
-
-end Ext
 
 section Move
 
@@ -157,6 +152,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Da
   {Xo : Moduli D l} {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F} {Y : Model Xo c β}
 
 end GlobalTheory.DvrDataCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLinearUniformisationBaseChangeCompleteDvr

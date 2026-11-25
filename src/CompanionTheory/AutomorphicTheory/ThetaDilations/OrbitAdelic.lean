@@ -16,9 +16,10 @@ import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsUniqueI
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology GlobalTheory.CompanionTheory.SW.Core
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.IwasawaDecompositionAdelicSL2
+@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.IwasawaDecompositionAdelicSL2
 open scoped ENNReal NNReal MatrixGroups Classical
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SW.Iwasawa
 
@@ -58,19 +59,19 @@ theorem sub_at (x y : A F) (v : HeightOneSpectrum (𝓞 F)) : (x - y) v = x v - 
 theorem one_at (v : HeightOneSpectrum (𝓞 F)) : (1 : A F) v = 1 := rfl
 
 theorem idem_int {b : F} {v : HeightOneSpectrum (𝓞 F)} (h : IntAt b v) : idem b v = 1 :=
-  if_pos h
+  ite_eq_left h
 theorem idem_not {b : F} {v : HeightOneSpectrum (𝓞 F)} (h : ¬ IntAt b v) : idem b v = 0 :=
-  if_neg h
+  ite_eq_right h
 theorem scale_int {b : F} {v : HeightOneSpectrum (𝓞 F)} (h : IntAt b v) : scale b v = 1 :=
-  if_pos h
+  ite_eq_left h
 theorem scale_not {b : F} {v : HeightOneSpectrum (𝓞 F)} (h : ¬ IntAt b v) :
     scale b v = (algebraMap F (A F) b v)⁻¹ :=
-  if_neg h
+  ite_eq_right h
 theorem scaleInv_int {b : F} {v : HeightOneSpectrum (𝓞 F)} (h : IntAt b v) : scaleInv b v = 1 :=
-  if_pos h
+  ite_eq_left h
 theorem scaleInv_not {b : F} {v : HeightOneSpectrum (𝓞 F)} (h : ¬ IntAt b v) :
     scaleInv b v = algebraMap F (A F) b v :=
-  if_neg h
+  ite_eq_right h
 
 theorem ne_zero_of_not_int {b : F} {v : HeightOneSpectrum (𝓞 F)} (h : ¬ IntAt b v) :
     algebraMap F (A F) b v ≠ 0 := fun h0 =>
@@ -185,6 +186,7 @@ theorem iwasawa_w_n : ∀ (F : Type) [Field F] [NumberField F], ∀ b : F,
   · exact w_n_eq _ (idem b) (scaleUnit b) (kMat b) rfl rfl rfl rfl (scale_combo b)
 
 end GlobalTheory.CompanionTheory.SW.Iwasawa
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.ThetaDilations.OrbitAdelic

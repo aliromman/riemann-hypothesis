@@ -59,9 +59,9 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.FundamentalEquivalence.Fundam
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.S Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes MeasureTheory IsDedekindDomain NumberField Matrix Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.AutomorphicEvaluation Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.RowDict Formalism.L2.SG.RowsJoinPinned GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Unf GlobalTheory.Core.Rk GlobalTheory.Core.Mi
 open scoped TensorProduct InnerProductSpace Classical
+open Formalism.L2.SG.AdBridge GlobalTheory.BesselChar
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsLeviPreimageOfFixIsotropicFrames
-open Formalism.L2.SG.AdBridge GlobalTheory.BesselChar
 
 
 namespace GlobalTheory.MixModel.HypDec
@@ -102,13 +102,11 @@ end GlobalTheory.MixModel.HypDec
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsLeviPreimageOfFixIsotropicFramesStatement
-open Formalism.L2.SG.AdBridge GlobalTheory.BesselChar
 
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsOrthogonalComplementPreimageOfFixLine
-open Formalism.L2.SG.AdBridge GlobalTheory.BesselChar
 
 namespace GlobalTheory.LineFix
 
@@ -174,8 +172,6 @@ end GlobalTheory.LineFix
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsOrthogonalComplementPreimageOfFixLineStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.L2.SG.AdBridge GlobalTheory.BesselChar
 
 
 theorem _root_.GlobalTheory.T.exists_orthogonalComplement_preimage_of_fix_line : ∀ {D : D7} {S₀ A L : HSp D} (o : OrthDec S₀ A L) (ζ : Fin L.rank → D.host.E), IsLineVec L ζ → ∀ (b : GA D S₀), (mt S₀ b *ᵥ (fun k => incA D (vecB o ζ k)) = fun k => incA D (vecB o ζ k)) → ∃ a : GA D A, o.emb (a, 1) = b := by
@@ -183,7 +179,6 @@ theorem _root_.GlobalTheory.T.exists_orthogonalComplement_preimage_of_fix_line :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.RangeBesselAnisotropicEmbeddingEqSecondModelSubg
-open Formalism.L2.SG.AdBridge GlobalTheory.BesselChar
 
 
 namespace GlobalTheory.Core.SBesLevi

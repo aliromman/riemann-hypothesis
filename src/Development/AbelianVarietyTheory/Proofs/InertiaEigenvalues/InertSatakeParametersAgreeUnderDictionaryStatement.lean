@@ -114,13 +114,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSatakeParameterOfUnramifiedInertDefiniteUn, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AntidiagTransportCompMemSphericalHecke, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AntidiagTransportCompMemSphericalHeckeStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCanonicalInertTensorCompletionEquiv, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCanonicalInertTensorCompletionEquivStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FixedByUnitaryIntegralPointsOfLevelFixed, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CosetSumTransferAlongSurjectionPreimage, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CosetSumTransferAlongSurjectionPreimageStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IntegralFrameConjUnitaryIntegralIffGLIntegral, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalComponentMemMaxCompactGLIffMemMaxCompact, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TrivOutsidePlaceMemDefiniteUnitaryLocalPoints, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertHeckeOperatorThroughFrameEvalFinitePoints, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SatakeTransformInvariantUnderFieldAutomorphism, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsLiftSatakeVectorLocalHeckeEigen, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertFrameConjExtendsAndFrameMapSurjective, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertSatakeHeckeEigenvaluesAlgebraicAutomorphic, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SatakeParameterNeZeroOfSameTransform, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertSatakeParametersAgreeUnderDictionary, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertSatakeParametersAgreeUnderDictionaryStatement
 
--- clump: shared namespace opens
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSatakeParameterOfUnramifiedInertDefiniteUn
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host GlobalTheory.HeightCounting NumberField IsDedekindDomain GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.FormDict GlobalTheory.DefiniteBC
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSatakeParameterOfUnramifiedInertDefiniteUn
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
+noncomputable section
 
 namespace GlobalTheory.InertSatakeGiven
 
@@ -153,13 +152,19 @@ theorem exists_hasSatAt : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L]
 
 end GlobalTheory.InertSatakeGiven
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AntidiagTransportCompMemSphericalHecke
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+section -- clump: shared namespace opens
+
+open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host GlobalTheory.HeightCounting NumberField IsDedekindDomain GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.FormDict GlobalTheory.DefiniteBC
 open scoped TensorProduct
 open Classical
 
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AntidiagTransportCompMemSphericalHecke
+
+noncomputable section
 
 namespace GlobalTheory.SatInd
 
@@ -188,20 +193,17 @@ theorem guMap_comp_mem_hecke : ∀ {K : Type} [Field K] [Valued K (WithZero (Mul
 
 end GlobalTheory.SatInd
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AntidiagTransportCompMemSphericalHeckeStatement
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open scoped TensorProduct
-open Classical
 
 theorem _root_.GlobalTheory.T.antidiagTransport_comp_mem_sphericalHecke : ∀ {K : Type} [Field K] [Valued K (WithZero (Multiplicative ℤ))] (g : K ≃+* K) {σ σ' : K →+* K} (hg : ∀ x, g (σ x) = σ' (g x)), (∀ x, x ∈ Formalism.UG.intL K ↔ g x ∈ Formalism.UG.intL K) → ∀ (n : ℕ) (h : Formalism.UG.GU σ' n → ℂ), h ∈ Formalism.UG.Hecke ℂ (Formalism.UG.KU σ' n) → (fun y => h (GlobalTheory.SatInd.guMap g hg n y)) ∈ Formalism.UG.Hecke ℂ (Formalism.UG.KU σ n) := by
   first | exact @GlobalTheory.SatInd.guMap_comp_mem_hecke
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCanonicalInertTensorCompletionEquiv
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open scoped TensorProduct
-open Classical
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCanonicalInertTensorCompletionEquiv
+@[expose] public section
+noncomputable section
 
 namespace GlobalTheory.InertTransferCanon
 
@@ -273,20 +275,18 @@ theorem exists_canonical_equiv : ∀ (L : Type) [Field L] [NumberField L] [IsCMF
 
 end GlobalTheory.InertTransferCanon
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCanonicalInertTensorCompletionEquivStatement
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open scoped TensorProduct
-open Classical
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FixedByUnitaryIntegralPointsOfLevelFixed
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open scoped TensorProduct
-open Classical
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FixedByUnitaryIntegralPointsOfLevelFixed
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.UnramDict
 
@@ -355,12 +355,11 @@ theorem fixed_of_mem_KU : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L]
 
 end GlobalTheory.UnramDict
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CosetSumTransferAlongSurjectionPreimage
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open scoped TensorProduct
-open Classical
 
 namespace GlobalTheory
 
@@ -413,7 +412,7 @@ theorem cosetSum_transfer_surj {G H V : Type} [Group G] [Group H] [AddCommGroup 
   have hval : ∀ d, F (f d) = a d.out • β (t d) := by
     intro d
     have hc : ∃ x : G, (x : G ⧸ U0) = f d ∧ x ∈ T := ⟨t d, rfl, (t d).2⟩
-    simp only [hF, dif_pos hc]
+    simp only [hF, dite_eq_left hc]
     obtain ⟨hU, k, hk, hkk⟩ := key (t d) ⟨hc.choose, hc.choose_spec.2⟩ hc.choose_spec.1.symm
     rw [hkk, ha _ k hk, ht]
     congr 1
@@ -426,7 +425,7 @@ theorem cosetSum_transfer_surj {G H V : Type} [Group G] [Group H] [AddCommGroup 
     rw [Function.mem_support] at hc
     have hc' : ∃ x : G, (x : G ⧸ U0) = c ∧ x ∈ T := by
       by_contra hn
-      exact hc (by simp only [hF, dif_neg hn])
+      exact hc (by simp only [hF, dite_eq_right hn])
     obtain ⟨x, rfl, hx⟩ := hc'
     obtain ⟨h1, h2⟩ := hcover ⟨x, hx⟩
     refine Finset.mem_coe.2 (Finset.mem_image.2 ⟨_, ?_, h1⟩)
@@ -450,17 +449,12 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CosetSumTransferAlongSurjectionPreimageStatement
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open scoped TensorProduct
-open Classical
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IntegralFrameConjUnitaryIntegralIffGLIntegral
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open scoped TensorProduct
-open Classical
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IntegralFrameConjUnitaryIntegralIffGLIntegral
 
+noncomputable section
 
 namespace GlobalTheory.KUTransfer
 
@@ -487,12 +481,12 @@ theorem ku_iff : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ
 
 end GlobalTheory.KUTransfer
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalComponentMemMaxCompactGLIffMemMaxCompact
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open scoped TensorProduct
-open Classical
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalComponentMemMaxCompactGLIffMemMaxCompact
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.LocInteg
 
@@ -530,13 +524,14 @@ theorem cLoc_mem_KGL_iff : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L
 
 end GlobalTheory.LocInteg
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TrivOutsidePlaceMemDefiniteUnitaryLocalPoints
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open scoped TensorProduct
-open Classical
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TrivOutsidePlaceMemDefiniteUnitaryLocalPoints
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.LocMemTransfer
 
@@ -566,13 +561,14 @@ theorem mem_locU : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : �
 
 end GlobalTheory.LocMemTransfer
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertHeckeOperatorThroughFrameEvalFinitePoints
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open scoped TensorProduct
-open Classical
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertHeckeOperatorThroughFrameEvalFinitePoints
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.InertTransfer
 
@@ -692,13 +688,13 @@ theorem heckeVec_frame_eval : ∀ (L : Type) [Field L] [NumberField L] [IsCMFiel
 
 end GlobalTheory.InertTransfer
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SatakeTransformInvariantUnderFieldAutomorphism
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open scoped TensorProduct
-open Classical
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SatakeTransformInvariantUnderFieldAutomorphism
 
+noncomputable section
 
 namespace GlobalTheory.SatInvAuto
 
@@ -864,10 +860,18 @@ theorem satU_guMap_self : ∀ {K : Type} [Field K] [Valued K (WithZero (Multipli
 
 end GlobalTheory.SatInvAuto
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsLiftSatakeVectorLocalHeckeEigen
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+end -- clump: shared namespace opens
 
+-- clump: shared namespace opens
+
+open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host GlobalTheory.HeightCounting NumberField IsDedekindDomain GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.FormDict GlobalTheory.DefiniteBC
+
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsLiftSatakeVectorLocalHeckeEigen
+@[expose] public section
+
+noncomputable section
 
 open scoped TensorProduct
 
@@ -918,10 +922,13 @@ theorem GlobalTheory.InertHeckeTransfer.exists_lift_eigen : ∀ (L : Type) [Fiel
   obtain ⟨g, rfl⟩ := F.onto z hz
   rw [Pi.sub_apply, Pi.smul_apply, htr g, heig0, hφ', Pi.smul_apply, map_smul, smul_eq_mul, sub_self]
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertFrameConjExtendsAndFrameMapSurjective
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertFrameConjExtendsAndFrameMapSurjective
+@[expose] public section
+noncomputable section
 
 namespace GlobalTheory.InertFrameConj
 
@@ -1107,10 +1114,11 @@ theorem GlobalTheory.InertFrameConj.conj_and_surjective : ∀ (L : Type) [Field 
   refine ⟨P.symm g, Subtype.ext ?_⟩
   rw [hp, ← hP, P.apply_symm_apply]
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertSatakeHeckeEigenvaluesAlgebraicAutomorphic
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem GlobalTheory.InertHeckeCmp.satU_eq : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (F : FinIso L n) (π : NG.AutRep L n) (U : Submodule ℂ (UA L n → ℂ)), Dict F π U → ∀ (v : HeightOneSpectrum (𝓞 (maximalRealSubfield L))) (w : HeightOneSpectrum (𝓞 L)), NG.OverPl w v → ∀ (Dv : InertDatum L n v w) (α : Fin (n / 2) → ℂ), NG.SatAt π Dv α → ∀ α0 : Fin (n / 2) → ℂˣ, HasSatAt U w Dv.σw Dv.ϖ (Formalism.UG.qV (maximalRealSubfield L) v) α0 → ∀ h ∈ Formalism.UG.Hecke ℂ (Formalism.UG.KU Dv.σw n), Formalism.UG.SatU Dv.ϖ (Formalism.UG.qV (maximalRealSubfield L) v) h α = Formalism.UG.SatU Dv.ϖ (Formalism.UG.qV (maximalRealSubfield L) v) h (fun i => (α0 i : ℂ)) := by
   intro L _ _ _ n F π U hD v w hw Dv α hα α0 hα0 h hh
@@ -1127,9 +1135,9 @@ theorem GlobalTheory.InertHeckeCmp.satU_eq : ∀ (L : Type) [Field L] [NumberFie
   exact sub_eq_zero.1 ((smul_eq_zero.1 e1).resolve_right hφ0)
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SatakeParameterNeZeroOfSameTransform
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SatakeParameterNeZeroOfSameTransform
 
+noncomputable section
 
 namespace GlobalTheory.SatNonzero
 
@@ -1178,14 +1186,14 @@ theorem quad (α : Fin m → ℂ) (j k : Fin m) :
       (α j + (α j)⁻¹) * (α k + (α k)⁻¹) + if j = k then 2 * (1 - α j * (α j)⁻¹) else 0 := by
   by_cases hjk : j = k
   · subst hjk
-    rw [if_pos rfl, add_neg_cancel, mon_zero,
+    rw [ite_eq_left rfl, add_neg_cancel, mon_zero,
       mon_add _ _ _ (fun i => mul_self_nonneg _), mon_add _ _ _ (fun i => mul_self_nonneg _), mon_e, mon_ne]
     ring
   · have h0 : ∀ i, (Pi.single j (1 : ℤ) : Fin m → ℤ) i * (Pi.single k (1 : ℤ) : Fin m → ℤ) i = 0 := fun i => by
       by_cases hi : i = j
       · subst hi; rw [Pi.single_eq_of_ne hjk, mul_zero]
       · rw [Pi.single_eq_of_ne hi, zero_mul]
-    rw [if_neg hjk, add_zero,
+    rw [ite_eq_right hjk, add_zero,
       mon_add _ _ _ (fun i => by rw [h0 i]),
       mon_add _ _ _ (fun i => by rw [Pi.neg_apply, mul_neg, h0 i, neg_zero]),
       mon_add _ _ _ (fun i => by rw [Pi.neg_apply, mul_neg, mul_comm, h0 i, neg_zero]),
@@ -1228,7 +1236,7 @@ theorem laurentCoeffEval_squareSymmetricCoeffs (α : Fin m → ℂ) (c₀ A : �
       A ^ 2 * (∑ k, (α k + (α k)⁻¹)) ^ 2 + 2 * A ^ 2 * ∑ k, (1 - α k * (α k)⁻¹) := by
     rw [pow_two (∑ k, (α k + (α k)⁻¹)), Finset.sum_mul_sum, Finset.mul_sum, Finset.mul_sum, ← Finset.sum_add_distrib]
     refine Finset.sum_congr rfl fun j _ => ?_
-    simp only [mul_add, Finset.sum_add_distrib, mul_ite, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true,
+    simp only [mul_add, Finset.sum_add_distrib, mul_ite, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true,
       Finset.mul_sum]
     ring
   have h2 : ∑ k, (2 * c₀ * A * α k + 2 * c₀ * A * (α k)⁻¹) = 2 * c₀ * A * ∑ k, (α k + (α k)⁻¹) := by
@@ -1303,22 +1311,22 @@ theorem eq_lin (s : (Fin m → ℤ) →₀ ℂ) (h : ∀ κ, s κ ≠ 0 → κ =
     simp
   by_cases h1 : ∃ k, κ = Pi.single k 1
   · obtain ⟨j, rfl⟩ := h1
-    simp only [if_neg (Ne.symm h0), zero_add, hinj, fun k => (single_ne_neg_single j k).symm, if_false, add_zero,
-      Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    simp only [ite_eq_right (Ne.symm h0), zero_add, hinj, fun k => (single_ne_neg_single j k).symm, ite_false, add_zero,
+      Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   by_cases h2 : ∃ k, κ = -Pi.single k 1
   · obtain ⟨j, rfl⟩ := h2
-    simp only [if_neg (Ne.symm h0), zero_add, hinj', single_ne_neg_single, if_false, zero_add,
-      Finset.sum_ite_eq', Finset.mem_univ, if_true]
-  push_neg at h1 h2
+    simp only [ite_eq_right (Ne.symm h0), zero_add, hinj', single_ne_neg_single, ite_false, zero_add,
+      Finset.sum_ite_eq', Finset.mem_univ, ite_true]
+  push Not at h1 h2
   have hs : s κ = 0 := by
     by_contra hc
     rcases h κ hc with e | ⟨k, e | e⟩
     · exact h0 e
     · exact h1 k e
     · exact h2 k e
-  rw [hs, if_neg (Ne.symm h0), zero_add]
+  rw [hs, ite_eq_right (Ne.symm h0), zero_add]
   refine (Finset.sum_eq_zero fun k _ => ?_).symm
-  rw [if_neg (fun e => h1 k e.symm), if_neg (fun e => h2 k e.symm), add_zero]
+  rw [ite_eq_right (fun e => h1 k e.symm), ite_eq_right (fun e => h2 k e.symm), add_zero]
 
 theorem satU_ne_zero : ∀ (K : Type) [Field K] [Valued K (WithZero (Multiplicative ℤ))] [CompleteSpace K] (ϖ : K)
     (σ : K →+* K) (q n : ℕ), Formalism.UG.IsUnramInv ϖ σ q → ∀ (α : Fin (n / 2) → ℂ) (β : Fin (n / 2) → ℂˣ),
@@ -1416,9 +1424,9 @@ theorem satU_ne_zero : ∀ (K : Type) [Field K] [Valued K (WithZero (Multiplicat
 
 end GlobalTheory.SatNonzero
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertSatakeParametersAgreeUnderDictionary
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.InertDict
 
@@ -1446,7 +1454,6 @@ end GlobalTheory.InertDict
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertSatakeParametersAgreeUnderDictionaryStatement
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSatakeParameterOfUnramifiedInertDefiniteUn", "h": "module\n\npublic import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary\npublic import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ContinuousMapPFin\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DefiniteUnitarySphericalIffHasSatakeInert\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NStageTrivialCharacterCoeffEqAlt\nimport Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.FinIso\nimport Formalism.AlgebraicWeights.IsAlgWeight\nimport ReciprocityTheory.Automorphisms.PlaceA\n\n"}

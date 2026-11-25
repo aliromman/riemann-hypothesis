@@ -693,8 +693,10 @@ end GlobalTheory.WachFrame
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusMatrixCofactorEqQPowFrame
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusMatrixCofactorEqQPowFrame
+@[expose] public section
 
+noncomputable section
 
 open NumberField PowerSeries Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.CohomologicalDescent Formalism.CohomologicalDescent.HeightDescentMinors Formalism.CohomologicalDescent.FrobeniusPeriodChange IsLocalRing GlobalTheory.WachPlace
 
@@ -748,7 +750,7 @@ theorem exists_inv {n : ℕ} (T : LocLat G Qp LL O) (b : Module.Basis (Fin n) (L
     have e1 : ∑ m, (∑ j, c k j * PA m j - if m = k then W.Q ^ h * (letE i : LetA O f) else 0) •
         (b m : W.DD T) = 0 := by
       simp only [sub_smul, Finset.sum_sub_distrib, ite_smul, zero_smul, Finset.sum_ite_eq', Finset.mem_univ,
-        if_true, Finset.sum_smul, mul_smul]
+        ite_true, Finset.sum_smul, mul_smul]
       rw [← hc k, sub_eq_zero, Finset.sum_comm]
       refine Finset.sum_congr rfl fun j _ => ?_
       rw [hφ, Finset.smul_sum]
@@ -803,6 +805,8 @@ theorem frame_height : ∀ (loc : LocTheory) (locA : ∀ (l : ℕ) [Fact l.Prime
 
 end GlobalTheory.WachPlace.FrameHeight
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsContinuousCrystallineMatrixRepOfIntertwinesDet
@@ -940,10 +944,11 @@ end GlobalTheory.WachPlace.FullRankSum
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RankReducedLetterMatrixEqRankModMaximal
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RankReducedLetterMatrixEqRankModMaximal
 
 open NumberField PowerSeries Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.CohomologicalDescent Formalism.CohomologicalDescent.HeightDescentMinors Formalism.CohomologicalDescent.FrobeniusPeriodChange IsLocalRing GlobalTheory.WachPlace
 
+noncomputable section
 
 namespace GlobalTheory.WachRank
 
@@ -969,7 +974,7 @@ theorem mat_identity {S M M' : Type} [CommRing S] [AddCommGroup M] [Module S M] 
 
   simp only [hv, hv', hY, map_sum, map_smul, Finset.sum_apply', Finsupp.smul_apply,
   Module.Basis.repr_self, Finsupp.single_apply, smul_eq_mul, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq',
-  Finset.mem_univ, if_true] at h
+  Finset.mem_univ, ite_true] at h
   simp only [Matrix.mul_apply]
   rw [Finset.sum_congr rfl (fun m _ => mul_comm (G' r m) (X m k)), ← h]
   exact Finset.sum_congr rfl fun m _ => mul_comm _ _
@@ -1245,6 +1250,7 @@ theorem main : ∀ (loc : LocTheory) (locA : ∀ (l : ℕ) [Fact l.Prime], LocAi
     (one_not_mem_map (Z := ℤ_[l]) (C := WCb l) _ (maximalIdeal.isMaximal ↥(OL LL)).ne_top) b b' g A e e' a hT hT' hmap ha i
 
 end GlobalTheory.WachRank
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WachModuleMapMatrixCompMul

@@ -67,10 +67,11 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GreenCuspidalCharacterCoxeterTorusInvEqAtInverse, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GreenCuspidalCharacterCoxeterTorusInvEqAtInverseStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypeCharacterConjugateInverse
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GreenCuspidalCharacterCoxeterTorusInvEqAtInverse
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GreenCuspidalCharacterCoxeterTorusInvEqAtInverse
 
 open Polynomial
 
+noncomputable section
 
 namespace GlobalTheory.CuspInv
 
@@ -176,7 +177,7 @@ theorem cuspChar_inv : ∀ (p : ℕ) [Fact p.Prime] (K : Type) [Field K] (ι : T
     Finset.card_bijective _ inv_involutive.bijective hmem
   unfold LevelCuspCharacters.cuspChar
   by_cases H : ∃ (φ : (ZMod p)[X]) (n : ℕ), Irreducible φ ∧ h.charpoly = φ ^ n
-  · rw [if_pos H, if_pos (powIrr_of_inv h h' hh H)]
+  · rw [ite_eq_left H, ite_eq_left (powIrr_of_inv h h' hh H)]
     congr 1
     refine Finset.sum_bijective _ inv_involutive.bijective (by convert hmem) ?_
     intro z _
@@ -184,9 +185,10 @@ theorem cuspChar_inv : ∀ (p : ℕ) [Fact p.Prime] (K : Type) [Field K] (ι : T
     congr 2
     funext i
     congr 3
-  · rw [if_neg H, if_neg (fun H' => H (powIrr_of_inv h' h hh' H'))]
+  · rw [ite_eq_right H, ite_eq_right (fun H' => H (powIrr_of_inv h' h hh' H'))]
 
 end GlobalTheory.CuspInv
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GreenCuspidalCharacterCoxeterTorusInvEqAtInverseStatement
@@ -259,10 +261,10 @@ theorem typeChar_conj_inv : ∀ (p : ℕ) [Fact p.Prime] (K : Type) [Field K] (r
     rw [h]
     generalize y⁻¹ * x * y = z
     by_cases hz : (z : Matrix (Fin r) (Fin r) (ZMod p)).BlockTriangular s.1
-    · rw [if_pos hz, if_pos (blockTriangular_inv z hz)]
+    · rw [ite_eq_left hz, ite_eq_left (blockTriangular_inv z hz)]
       refine Finset.prod_congr rfl fun c _ => ?_
       exact GlobalTheory.T.greenCuspidalCharacterCoxeterTorus_inv_eq_at_inverse p K _ (s.2 c) _ _ (toSquareBlock_mul_inv z hz c.1)
-    · rw [if_neg hz, if_neg fun h' => hz (by simpa using blockTriangular_inv z⁻¹ h')]
+    · rw [ite_eq_right hz, ite_eq_right fun h' => hz (by simpa using blockTriangular_inv z⁻¹ h')]
 
 end GlobalTheory.TypeCharacterConjugateInverse
 

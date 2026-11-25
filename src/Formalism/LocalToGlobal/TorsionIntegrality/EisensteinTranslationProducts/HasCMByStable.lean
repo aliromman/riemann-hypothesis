@@ -11,8 +11,9 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.SigmaScale, Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.HasCMByStable
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.SigmaScale
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.SigmaScale
 
+noncomputable section
 open scoped BigOperators
 open Formalism.L2.Th1.CM (cW wpNum wpDen uSer)
 
@@ -102,7 +103,7 @@ theorem pOf_scale {K : Type} [Field K] (g2 g3 lam : K) :
 theorem cc_wpDen {K : Type} [Field K] (g2 g3 : K) : constantCoeff (wpDen g2 g3) = 1 := by
   rw [← coeff_zero_eq_constantCoeff_apply]
   unfold wpDen
-  rw [coeff_mk, if_pos rfl]
+  rw [coeff_mk, ite_eq_left rfl]
 
 theorem rescale_inv {K : Type} [Field K] (lam : K) {f : PowerSeries K}
     (hf : constantCoeff f ≠ 0) : rescale lam f⁻¹ = (rescale lam f)⁻¹ := by
@@ -227,6 +228,7 @@ theorem series_map : SeriesMap := fun _ _ _ _ _ _ φ g2 g3 s P =>
     Scale.uSer_map φ g2 g3, Formalism.L2.Th1.B.Map.map_sigma φ P, Formalism.L2.Th1.B.Map.map_sgStar φ s P⟩
 
 end Formalism.L2.Th1.F
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.HasCMByStable

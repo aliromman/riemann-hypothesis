@@ -19,13 +19,15 @@ import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.FamilyLeCoords
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.APrimeA, ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.APrimeB, ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.APrimeLoc
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.APrimeA
+section -- clump member: ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.APrimeA
+@[expose] public section
 
 namespace ReciprocityTheory.L2DbarEstimates.Y
 
 open MeasureTheory Filter Topology WeightedAtlas Metric
 open scoped ContDiff ENNReal
 
+noncomputable section
 
 def apraW (d : ℕ) (ε τ : ℝ) (t : ℝ) : ℝ≥0∞ :=
   if t < ε then ENNReal.ofReal ((max (t ^ 2) τ) ^ (-(d : ℝ))) else 0
@@ -59,7 +61,7 @@ lemma apra_slice (d k : ℕ) (hMVd : MVStatement d) (ε τ : ℝ) (u : V d × V 
   refine lintegral_congr fun x => ?_
   by_cases hx : ‖x‖ < ε
   · have hx' : x ∈ ball (0 : V d) ε := mem_ball_zero_iff.mpr hx
-    simp only [apraW, if_pos hx, Set.indicator_of_mem hx']
+    simp only [apraW, ite_eq_left hx, Set.indicator_of_mem hx']
     rw [ENNReal.ofReal_mul (by positivity)]
   · have hx' : x ∉ ball (0 : V d) ε := fun h => hx (mem_ball_zero_iff.mp h)
     simp [apraW, hx]
@@ -109,7 +111,7 @@ lemma apra_blow (d : ℕ) (hd : 1 ≤ d) (hMVI : MVIntStatement d) (ε : ℝ) (h
       have hpos : 0 < ‖x‖ := norm_pos_iff.mpr hx0
       obtain ⟨n, hn⟩ := exists_nat_one_div_lt (pow_pos hpos 2)
       refine le_trans ?_ (le_iSup _ n)
-      simp only [hf, hg, apraW, if_pos hx]
+      simp only [hf, hg, apraW, ite_eq_left hx]
       rw [max_eq_left hn.le, ENNReal.ofReal_rpow_of_pos hpos, ← Real.rpow_natCast,
         ← Real.rpow_mul hpos.le]
       apply le_of_eq
@@ -211,8 +213,10 @@ theorem ap_prod_blowup (d k : ℕ) (hd : 1 ≤ d) (hMVd : MVStatement d) (hMVk :
           ∫⁻ x : V d, apraW d ε τ ‖x‖ := lintegral_mul_const_le _ _
     _ ≤ _ := setLIntegral_mono' measurableSet_ball hslice
 
+end
 
 end ReciprocityTheory.L2DbarEstimates.Y
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.APrimeB

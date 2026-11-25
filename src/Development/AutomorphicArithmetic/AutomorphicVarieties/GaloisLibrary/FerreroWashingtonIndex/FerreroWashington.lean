@@ -1,5 +1,6 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.QuadraticExtensions.IneChar
 public import Mathlib.Algebra.Field.ZMod
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.FerreroWashingtonIndex.CardTors
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.Mk0IdMapCongr
@@ -279,26 +280,11 @@ private theorem iC_one {Ω : Type} [Field Ω] (A : ValuationSubring Ω) {m : ℕ
 
 private theorem iC_pow {Ω : Type} [Field Ω] (A : ValuationSubring Ω) {η : Ω} (h1 : A.valuation η = 1)
     (h : A.valuation (η - 1) < 1) (i : ℕ) : A.valuation (1 - η ^ i) < 1 := by
-  induction i with
-  | zero => simp
-  | succ i ih =>
-    have e : 1 - η ^ (i + 1) = η * (1 - η ^ i) - (η - 1) := by ring
-    rw [e]
-    refine A.valuation.map_sub_lt ?_ h
-    rw [map_mul, h1, one_mul]; exact ih
+  apply _root_.power_bounds_of_between <;> assumption
 
 private theorem iC_eta {Ω : Type} [Field Ω] (A : ValuationSubring Ω) {m : ℕ} (hm : m ≠ 0)
     (hv : ¬ A.valuation (m : Ω) < 1) {η : Ω} (hη : η ^ m = 1) (h : A.valuation (η - 1) < 1) : η = 1 := by
-  by_contra hne
-  apply hv
-  have hs : ∑ i ∈ Finset.range m, η ^ i = 0 := by
-    have := mul_geom_sum η m
-    rw [hη, sub_self] at this
-    exact (mul_eq_zero.1 this).resolve_left (sub_ne_zero.2 hne)
-  have e : (m : Ω) = ∑ i ∈ Finset.range m, (1 - η ^ i) := by
-    rw [Finset.sum_sub_distrib, hs]; simp
-  rw [e]
-  exact A.valuation.map_sum_lt one_ne_zero fun i _ => iC_pow A (iC_one A hm hη) h i
+  apply _root_.root_of_unity_eq_one_of_close_residue <;> assumption
 
 private theorem iC_ine (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω]
     (l : ℕ) [hl : Fact l.Prime] (A : ValuationSubring Ω) (hA : ¬ A.valuation (l : Ω) < 1) (g : G F Ω)
@@ -1265,7 +1251,7 @@ theorem UpperTheory.V.FW.stickH :
     have hdiv := Nat.div_add_mod (c * ((c : ZMod M)⁻¹ * t).val) M
     rw [hmod] at hdiv
     simp only [sub_mul, Finset.sum_sub_distrib, mul_assoc, ← Finset.mul_sum, ite_mul, one_mul,
-      zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true, Units.val_one, Units.val_neg,
+      zero_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true, Units.val_one, Units.val_neg,
       neg_one_mul, hu, hneg, gc]
     generalize c * ((c : ZMod M)⁻¹ * t).val / M = q at hdiv ⊢
     have hz : (M : ℤ) * q + ((t : ZMod M).val : ℤ) = c * (((c : ZMod M)⁻¹ * t).val : ℤ) := by

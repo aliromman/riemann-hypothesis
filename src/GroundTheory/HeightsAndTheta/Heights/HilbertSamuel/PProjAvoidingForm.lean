@@ -14,7 +14,8 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.Pro
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ExistsHomogeneousComponentNeZero, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PProjAvoidingForm
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ExistsHomogeneousComponentNeZero
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ExistsHomogeneousComponentNeZero
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -24,6 +25,7 @@ namespace ProjAvoidingForm
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.ArakelovGeometry
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -161,7 +163,7 @@ theorem exists_segre_prod (m : ℕ) (e : (Σ k, ι k) → ℕ) (he : ∀ k, ∑ 
       by_cases h : i = c k
       · subst h
         have := hc k
-        simp only [t, if_true]
+        simp only [t, ite_true]
         omega
       · simp [t, h]
     obtain ⟨M, hM, hMe⟩ := ih (fun p => e p - t p) fun k => by
@@ -190,7 +192,7 @@ theorem exists_segre_form {f : MRing ι} {df : K → ℕ} (hf : IsMultiHomog f d
     obtain ⟨M, hM, hMe⟩ := exists_segre_prod (∑ k, df k)
       (fun p => μ p + if p.2 = c p.1 then ∑ k', df k' - df p.1 else 0) fun k => by
         rw [Finset.sum_add_distrib, hf μ hμ k]
-        simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true]
+        simp only [Finset.sum_ite_eq', Finset.mem_univ, ite_true]
         have := hle k
         omega
     refine ⟨M, hM, ?_⟩
@@ -301,13 +303,15 @@ theorem key_relation {D : ℕ} (y : (Σ k, ι k) → Ω) (w : Fin (D + 1) → Ω
   · rw [map_mul, map_pow, aeval_aeval_eq]
   · rw [map_zero]
 
+end
 
 end ProjAvoidingForm
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PProjAvoidingForm
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PProjAvoidingForm
 
 set_option maxSynthPendingDepth 1
 
@@ -315,6 +319,7 @@ namespace GroundTheory.Heights₂.Heights.HilbertSamuel
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.ArakelovGeometry ProjAvoidingForm
 
+noncomputable section
 
 theorem ProjAvoidingForm.constantCoeff_homogeneousComponent {σ : Type} {G : MvPolynomial σ ℚ} {d : ℕ}
     (hd : 0 < d) : constantCoeff (homogeneousComponent d G) = 0 := by
@@ -431,8 +436,8 @@ theorem ProjAvoidingForm.proof (hSeg : SegreArith.Statement) : ProjAvoidingForm.
       simp only [← hxdef] at hrel
       rw [hℓ0, Finset.sum_range_succ, Finset.sum_eq_zero fun k hk => by
         rw [Finset.mem_range] at hk
-        rw [if_pos (by omega), aeval_zero, constantCoeff_homogeneousComponent (by omega), map_zero, mul_zero],
-        zero_add, if_pos (by omega), one_mul, Nat.sub_self, aeval_zero, homogeneousComponent_zero, constantCoeff_C] at hrel
+        rw [ite_eq_left (by omega), aeval_zero, constantCoeff_homogeneousComponent (by omega), map_zero, mul_zero],
+        zero_add, ite_eq_left (by omega), one_mul, Nat.sub_self, aeval_zero, homogeneousComponent_zero, constantCoeff_C] at hrel
       have htop : AddMonoidAlgebra.coeff (g (minpoly R₀ (coneMap ℚ x (X p))).natDegree) 0 = 1 := by
         have h1 := congrArg (fun q => _root_.AddMonoidAlgebra.coeff (M := ℕ) q 0) (hg (minpoly R₀ (coneMap ℚ x (X p))).natDegree)
         simp only [coeff_coneMap, homogeneousComponent_zero, aeval_C] at h1
@@ -482,7 +487,7 @@ theorem ProjAvoidingForm.proof (hSeg : SegreArith.Statement) : ProjAvoidingForm.
     have hFu : aeval (segreCoords z) (qmap F) = 0 := by
       rw [aeval_qmap, ← eval_segreSub, hFeq, map_mul, eval_mul, hfz, zero_mul]
     rw [Finset.sum_eq_single 0 (fun k _ hk => by rw [hFu, zero_pow hk]; simp) (by simp)] at hrel
-    simp only [mul_zero, zero_le, if_true, pow_zero, one_mul, Nat.sub_zero] at hrel
+    simp only [mul_zero, zero_le, ite_true, pow_zero, one_mul, Nat.sub_zero] at hrel
     have hℓu : (fun j => aeval (segreCoords z) (ℓq j)) = fun j => (t / N) * ζ j := funext fun j => by
       have := hLz z j
       rw [ht j] at this
@@ -501,6 +506,7 @@ theorem ProjAvoidingForm.proof (hSeg : SegreArith.Statement) : ProjAvoidingForm.
     · exact pow_ne_zero _ (div_ne_zero ht0 hNC) h
     · exact hG1 h
 
+end
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
 

@@ -796,8 +796,9 @@ theorem finG_stab' {D : Dat Δ} {V : Type} [AddCommGroup V] [Module ℂ V] {ch :
 end UpperTheory.V.Z.Sym.Glob
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.IntegralStabilizers.FinGTest
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.IntegralStabilizers.FinGTest
 
+noncomputable section
 
 namespace UpperTheory.V.Z.Sym.Glob
 
@@ -911,10 +912,10 @@ theorem finG_fGv_inv (hD : D.Ok) {t : Dat.Par F} (ht : D.Cone t) (v : Pl F) (u :
     D.fGv t v (u * y) = D.fGv t v y ∧ D.fGv t v (y * theta _ u) = D.fGv t v y := by
   by_cases hv : v ∈ D.Sg
   · rw [finG_Jv_of_mem hv] at hu
-    simp only [Dat.fGv, hv, if_true]
+    simp only [Dat.fGv, hv, ite_true]
     exact (hD.sig v hv).G_inv (t v) (ht v hv) u hu y
   · rw [finG_Jv_of_not_mem hv] at hu
-    simp only [Dat.fGv, hv, if_false]
+    simp only [Dat.fGv, hv, ite_false]
     have hθ : theta _ u ∈ KU (Ov v) (cv v Δ) := (finG_theta_mem_KU u).mpr hu
     constructor
     · rw [Subgroup.mul_mem_cancel_left _ hu]
@@ -1023,6 +1024,7 @@ theorem finG_test (hD : D.Ok) {V : Type} [AddCommGroup V] [Module ℂ V] {ch : F
       exact QuotientGroup.eq.mpr (hmemU _ hq)
 
 end UpperTheory.V.Z.Sym.Glob
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.ScalarTuples.FinG

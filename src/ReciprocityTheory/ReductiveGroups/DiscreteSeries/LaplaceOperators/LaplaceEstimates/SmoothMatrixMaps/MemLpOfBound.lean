@@ -14,13 +14,12 @@ import Mathlib.Algebra.Order.Star.Real
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SmoothMatrixMaps.FrobTranslateLe, ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SmoothMatrixMaps.MemLpOfBound
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SmoothMatrixMaps.FrobTranslateLe
 
+noncomputable section
 
 open Matrix MeasureTheory
 open scoped InnerProductSpace
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SmoothMatrixMaps.FrobTranslateLe
 
 namespace ReciprocityTheory.ChartRestriction.DS.Lap
 
@@ -34,15 +33,9 @@ variable {n : ℕ}
 theorem frob_eq (g : Matrix (Fin n) (Fin n) ℂ) : frob g = Real.sqrt (Formalism.REAL.hs g) := rfl
 
 theorem frob_mul_le (A B : Matrix (Fin n) (Fin n) ℂ) : frob (A * B) ≤ frob A * frob B := by
-  let _ : NormedAddCommGroup (Matrix (Fin n) (Fin n) ℂ) := Matrix.frobeniusNormedAddCommGroup
-  have hf : ∀ A : Matrix (Fin n) (Fin n) ℂ, frob A = ‖A‖ := by
-    intro A
-    rw [Matrix.frobenius_norm_def, frob, Real.sqrt_eq_rpow]
-    congr 1
-    refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-    rw [Real.rpow_two]
-  rw [hf, hf, hf]
-  exact Matrix.frobenius_norm_mul A B
+  first
+    | exact _root_.ReciprocityTheory.ChartRestriction.DS.Lap.S0.DecDeriv.frob_mul_le
+    | apply _root_.ReciprocityTheory.ChartRestriction.DS.Lap.S0.DecDeriv.frob_mul_le <;> first | assumption | rfl | infer_instance
 
 theorem entry_le_frob (g : Matrix (Fin n) (Fin n) ℂ) (i j : Fin n) : ‖g i j‖ ≤ frob g := by
   rw [frob]
@@ -275,8 +268,13 @@ theorem tMapD_bound {σ : Mat k r → (H →L[ℂ] H)} {x₀ : Mat k r} {w : H} 
 end TDAux
 end ReciprocityTheory.ChartRestriction.DS.Lap
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceEstimates.SmoothMatrixMaps.MemLpOfBound
+
+
+open Matrix MeasureTheory
+open scoped InnerProductSpace
 
 namespace ReciprocityTheory.ChartRestriction.DS.Lap
 

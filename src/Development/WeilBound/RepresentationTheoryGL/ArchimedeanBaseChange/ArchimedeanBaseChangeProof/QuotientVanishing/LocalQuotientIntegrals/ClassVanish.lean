@@ -30,8 +30,9 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurableSdot
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousCornerGL, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EnormOfRealToRealLe, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EqZeroOfRight, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralProdSubgroup, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LogSizeNonneg, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwConjCentMul, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.IsCompactEntryBall, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.ClassVanish
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousCornerGL
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousCornerGL
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory
 open PositivityTheory.Rg.BcB PositivityTheory.Rg.Tf.Loc
@@ -208,10 +209,10 @@ theorem embInf_eq_cornerGL (v : InfinitePlace E) (y : GL (Fin n) ℂ) : embInf n
   · rw [cV_embInf]
     by_cases h : w = v
     · subst h
-      rw [if_pos rfl, map_cornerGL_of_hom (sV w) (cV w) (RingHom.id ℂ) (fun x => by rw [cV_sV, Pi.single_eq_same]; rfl) y]
+      rw [ite_eq_left rfl, map_cornerGL_of_hom (sV w) (cV w) (RingHom.id ℂ) (fun x => by rw [cV_sV, Pi.single_eq_same]; rfl) y]
       ext i j
       rfl
-    · rw [if_neg h, map_cornerGL_of_zero (sV v) (cV w) (fun x => by rw [cV_sV, Pi.single_eq_of_ne h]) y]
+    · rw [ite_eq_right h, map_cornerGL_of_zero (sV v) (cV w) (fun x => by rw [cV_sV, Pi.single_eq_of_ne h]) y]
   · rw [GlobalTheory.CompanionTheory.SplitTwo.map_pFin_embInf, map_cornerGL_of_zero (sV v) (pFin E) (fun x => rfl) y]
 
 theorem continuous_embInf (v : InfinitePlace E) : Continuous (embInf (E := E) n v) := by
@@ -222,7 +223,7 @@ theorem continuous_embInf (v : InfinitePlace E) : Continuous (embInf (E := E) n 
 theorem cV_embInf_self (v : InfinitePlace E) (y : GL (Fin n) ℂ) :
     GeneralLinearGroup.map (cV v) (embInf n v y) = y := by
   classical
-  rw [cV_embInf, if_pos rfl]
+  rw [cV_embInf, ite_eq_left rfl]
 
 theorem embInf_comm (v : InfinitePlace E) (y : GL (Fin n) ℂ) (k : GA E n)
     (hk : k ∈ (GeneralLinearGroup.map (n := Fin n) (cV (E := E) v)).ker) : embInf n v y * k = k * embInf n v y := by
@@ -233,7 +234,7 @@ theorem embInf_comm (v : InfinitePlace E) (y : GL (Fin n) ℂ) (k : GA E n)
     by_cases h : w = v
     · subst h
       rw [hk']; simp
-    · rw [if_neg h]; simp
+    · rw [ite_eq_right h]; simp
   · rw [map_mul, map_mul, GlobalTheory.CompanionTheory.SplitTwo.map_pFin_embInf]; simp
 
 theorem cV_thetaA (v : InfinitePlace E) (g : GA E n) :
@@ -246,8 +247,8 @@ theorem thetaA_embInf (v : InfinitePlace E) (y : GL (Fin n) ℂ) :
   refine ga_ext' (fun w => ?_) ?_
   · rw [cV_thetaA, cV_embInf, cV_embInf]
     by_cases h : w = v
-    · rw [if_pos h, if_pos h]
-    · rw [if_neg h, if_neg h, thetaR_one']
+    · rw [ite_eq_left h, ite_eq_left h]
+    · rw [ite_eq_right h, ite_eq_right h, thetaR_one']
   · rw [GlobalTheory.CompanionTheory.SplitTwo.map_pFin_embInf, map_thetaR (pFin E) (conjAd E) (conjFin (IsCMField.complexConj E).toRingEquiv) (fun _ => rfl),
       GlobalTheory.CompanionTheory.SplitTwo.map_pFin_embInf, thetaR_one']
 
@@ -316,6 +317,7 @@ theorem splitAt : PositivityTheory.Rg.BcB.D4.SplitAt := by
 end Concrete
 
 end GlobalTheory.CompanionTheory.SplitInf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EnormOfRealToRealLe
@@ -903,8 +905,10 @@ end GlobalTheory.CompanionTheory.NonEll
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralProdSubgroup
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralProdSubgroup
+@[expose] public section
 
+noncomputable section
 
 open MeasureTheory
 open scoped ENNReal
@@ -1000,13 +1004,15 @@ theorem quotProd_holds : PositivityTheory.Rg.BcB.D4.QuotProd := by
       simp only [this, Pi.zero_apply]
       rw [integral_mul_const, hq, zero_mul]
     · exact integral_undef hi
-  · simp only [quotIntegral, dif_neg hex]
+  · simp only [quotIntegral, dite_eq_right hex]
 
 theorem quotProd_of_normEq : PositivityTheory.Rg.BcB.D4.NormEq → PositivityTheory.Rg.BcB.D4.QuotProd :=
   fun _ => quotProd_holds
 
 end GlobalTheory.CompanionTheory.QuotProduct
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LogSizeNonneg
@@ -1392,8 +1398,10 @@ end GlobalTheory.CompanionTheory.ChiGamGlobal
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.IsCompactEntryBall
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.IsCompactEntryBall
+@[expose] public section
 
+noncomputable section
 
 open Matrix Polynomial PositivityTheory.Rg.BcB PositivityTheory.Rg.Tf.Loc
 open scoped Pointwise
@@ -1499,7 +1507,7 @@ theorem diag_proper (lam : Fin n → ℂ) (hl : Function.Injective lam)
       simp only [G, h1, hp]
       rw [Matrix.mul_apply]
       simp only [Matrix.mul_diagonal, mul_ite, mul_one, mul_zero, ite_mul, zero_mul,
-        Finset.sum_ite_eq', Finset.mem_univ, if_true]
+        Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     rw [← h2]
     exact ((norm_le_pi_norm _ b).trans ((norm_le_pi_norm _ a).trans (norm_le_pi_norm _ i))).trans (hB _ hy)
 
@@ -1693,6 +1701,8 @@ theorem main : PositivityTheory.Rg.BcB.D4.LocProper := by
 
 end PositivityTheory.Rg.BcB.CV.LocP
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.ClassVanish

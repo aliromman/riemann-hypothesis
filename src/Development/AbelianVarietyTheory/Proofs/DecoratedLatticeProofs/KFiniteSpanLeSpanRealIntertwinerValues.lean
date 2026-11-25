@@ -56,10 +56,11 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.InclTprodUpdate
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsRealIntertwinerNeZeroKFiniteTensor, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.KFiniteSpanLeSpanRealIntertwinerValues
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsRealIntertwinerNeZeroKFiniteTensor
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsRealIntertwinerNeZeroKFiniteTensor
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.S Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
 
+noncomputable section
 
 namespace GlobalTheory.Chain.IoLift.ItNe
 
@@ -71,7 +72,7 @@ theorem exists_ne_zero_inclK : GlobalTheory.Published.HarishChandraModules → �
   intro hHC D V W S S' M M' θ ω pt It hIt h'
   apply Classical.byContradiction
   intro hcon
-  push_neg at hcon
+  push Not at hcon
   apply hIt.ne
   have key : ∀ φ (w : ∀ τ, M.H τ) (s : Finset D.what₂.Tau) (v : M'.Vec),
       (∀ τ ∉ s, (v τ : M'.H τ) ∈ GlobalTheory.IndefiniteRowSideFullHecke.KTypeExtension.kFin M' τ) →
@@ -132,6 +133,7 @@ theorem exists_ne_zero_inclK : GlobalTheory.Published.HarishChandraModules → �
   | add a b ha hb => rw [map_add (f := _), ha, hb, add_zero]
 
 end GlobalTheory.Chain.IoLift.ItNe
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.KFiniteSpanLeSpanRealIntertwinerValues

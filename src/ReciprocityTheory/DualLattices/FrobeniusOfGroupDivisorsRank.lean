@@ -37,12 +37,11 @@ import Mathlib.RingTheory.TotallySplit
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.DualLattices.EigenLiftsFrobenius, ReciprocityTheory.DualLattices.AvgFZero, ReciprocityTheory.DualLattices.EqZeroOfIsoZero, ReciprocityTheory.DualLattices.ProdPowUnitVectorVal, ReciprocityTheory.DualLattices.FormMonomialUnitVector, ReciprocityTheory.DualLattices.FrobeniusBlock, ReciprocityTheory.DualLattices.MonomialsSpanOfProdEq, ReciprocityTheory.DualLattices.RankMapLeRank, ReciprocityTheory.DualLattices.RankEqRankOfPermAndZero, ReciprocityTheory.DualLattices.ThetaQSurj, ReciprocityTheory.DualLattices.SumX, ReciprocityTheory.DualLattices.FrobeniusOfGroupDivisorsRank
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: ReciprocityTheory.DualLattices.EigenLiftsFrobenius
 
+noncomputable section
 
 open Matrix
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.EigenLiftsFrobenius
 
 namespace ReciprocityTheory.PGsh.Up
 
@@ -140,8 +139,8 @@ theorem frob_of (h1 : LiftMonomialDeterminantStatement) (h2 : FrobeniusBlockStat
   have hc : ∀ j, D.κ j = i → ∀ k, algebraMap R C (c j k) = linX D (fun y => xL D j y ^ p) k := by
     intro j hj k
     by_cases hk : D.κ k = U.φ i
-    · simp only [c, if_pos hk, linX, hr j, Function.comp_apply]
-    · simp only [c, if_neg hk, map_zero]
+    · simp only [c, ite_eq_left hk, linX, hr j, Function.comp_apply]
+    · simp only [c, ite_eq_right hk, map_zero]
       exact (h2a j k (by rw [hj]; exact hk)).symm
   have hcard : Fintype.card {j // D.κ j = i} = Fintype.card {l // D.κ l = U.φ i} := by
     rw [Fintype.card_subtype, Fintype.card_subtype, D.card_phi i]
@@ -213,8 +212,12 @@ theorem frob_of (h1 : LiftMonomialDeterminantStatement) (h2 : FrobeniusBlockStat
 
 end ReciprocityTheory.PGsh.Up
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.AvgFZero
+
+
+open Matrix
 
 namespace ReciprocityTheory.PGsh.Up
 
@@ -588,7 +591,11 @@ end Lift1
 end ReciprocityTheory.PGsh.Up
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.EqZeroOfIsoZero
+@[expose] public section -- clump member: ReciprocityTheory.DualLattices.EqZeroOfIsoZero
+
+noncomputable section
+
+open Matrix
 
 namespace ReciprocityTheory.PGsh.Up
 
@@ -617,9 +624,9 @@ private lemma row_decomp {H : HodgeTateDatum p g v R O σ cp} (U : UnramData p g
   have hb : bt2 H U * U.εT i = U.εL i * H.Bt * U.εT i := by
     unfold bt2
     rw [Matrix.sum_mul, Finset.sum_eq_single i]
-    · rw [Matrix.mul_assoc, U.εT_orth, if_pos rfl]
+    · rw [Matrix.mul_assoc, U.εT_orth, ite_eq_left rfl]
     · intro x _ hx
-      rw [Matrix.mul_assoc, U.εT_orth, if_neg hx, Matrix.mul_zero]
+      rw [Matrix.mul_assoc, U.εT_orth, ite_eq_right hx, Matrix.mul_zero]
     · intro h
       exact absurd (Finset.mem_univ i) h
   have key : ∑ k, c k • (fromRows H.Ht (bt2 H U) * U.εT i) k =
@@ -702,8 +709,13 @@ end LiftR
 
 end ReciprocityTheory.PGsh.Up
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.ProdPowUnitVectorVal
+@[expose] public section -- clump member: ReciprocityTheory.DualLattices.ProdPowUnitVectorVal
+
+noncomputable section
+
+open Matrix
 
 namespace ReciprocityTheory.PGsh.Up.UnitVectorPowers
 
@@ -733,7 +745,7 @@ theorem unitVector_val (l j : Ix g) : ((e1 (p := p) l) j).val = if j = l then 1 
 theorem prod_pow_unitVector_val {M : Type} [CommMonoid M] (f : Ix g → M) (l : Ix g) :
     ∏ j, f j ^ ((e1 (p := p) l) j).val = f l := by
   simp only [unitVector_val]
-  rw [Finset.prod_eq_single l (fun j _ hj => by rw [if_neg hj, pow_zero]) (by simp), if_pos rfl,
+  rw [Finset.prod_eq_single l (fun j _ hj => by rw [ite_eq_right hj, pow_zero]) (by simp), ite_eq_left rfl,
     pow_one]
 
 theorem liftScalePow_unitVector (D : Lifts H U X) (l : Ix g) : epow D (e1 (p := p) l) = D.ε l := by
@@ -857,8 +869,13 @@ theorem bR_off (hv : v.Integers R) (hp1 : v (algebraMap R C (p : R)) < 1) (D : L
 
 end ReciprocityTheory.PGsh.Up.UnitVectorPowers
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.FormMonomialUnitVector
+@[expose] public section -- clump member: ReciprocityTheory.DualLattices.FormMonomialUnitVector
+
+noncomputable section
+
+open Matrix
 
 namespace ReciprocityTheory.PGsh.Up.UnitVectorPowers
 
@@ -937,7 +954,7 @@ theorem res_bR (hv : v.Integers R) (hp1 : v (algebraMap R C (p : R)) < 1) (D : L
     rw [lam_p, MuR_map hv D]
     simp only [Matrix.mulVec, dotProduct, Matrix.of_apply, c, Finset.mul_sum, mul_ite, mul_zero]
     rw [Finset.sum_comm]
-    simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true, formMonomial_unitVector]
+    simp only [Finset.sum_ite_eq', Finset.mem_univ, ite_true, formMonomial_unitVector]
     exact Finset.sum_congr rfl fun _ _ => mul_comm _ _
   have hinv := Matrix.nonsing_inv_mul _ hdet
   have hinj : (fun α => IsLocalRing.residue R (bR hv D j α)) = c := by
@@ -951,7 +968,7 @@ theorem res_bR (hv : v.Integers R) (hp1 : v (algebraMap R C (p : R)) < 1) (D : L
   rw [Finset.sum_eq_single l]
   · simp
   · intro b _ hb
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h
     have h2 := congrFun h l
     simp [e1, Ne.symm hb] at h2
@@ -1010,8 +1027,12 @@ end Res
 
 end ReciprocityTheory.PGsh.Up.UnitVectorPowers
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.FrobeniusBlock
+
+
+open Matrix
 
 namespace ReciprocityTheory.PGsh.Up
 
@@ -1078,6 +1099,9 @@ end ReciprocityTheory.PGsh.Up
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.MonomialsSpanOfProdEq
+
+
+open Matrix
 
 namespace ReciprocityTheory.PGsh.Up
 
@@ -1213,7 +1237,11 @@ theorem monomials_span_of_prod_eq : EigenLiftsBasisStatement := by
 end ReciprocityTheory.PGsh.Up
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.RankMapLeRank
+@[expose] public section -- clump member: ReciprocityTheory.DualLattices.RankMapLeRank
+
+noncomputable section
+
+open Matrix
 
 namespace ReciprocityTheory.PGsh.Up.RankA
 
@@ -1274,7 +1302,7 @@ lemma sum_finrank {ι m : Type} [Fintype ι] [DecidableEq ι] [Fintype m] [Decid
       left_inv := fun x => hsum' x
       right_inv := fun y => by
         ext i : 1; apply Subtype.ext
-        simp only [Matrix.mulVec_sum, hmem, Finset.sum_ite_eq, Finset.mem_univ, if_true] }
+        simp only [Matrix.mulVec_sum, hmem, Finset.sum_ite_eq, Finset.mem_univ, ite_true] }
   have h1 := E.finrank_eq
   rw [Module.finrank_fintype_fun_eq_card, Module.finrank_pi_fintype] at h1
   exact h1.symm
@@ -1295,8 +1323,13 @@ lemma free_range_idem [IsLocalRing S] {ι : Type} [Fintype ι] [DecidableEq ι] 
 
 end ReciprocityTheory.PGsh.Up.RankA
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.RankEqRankOfPermAndZero
+@[expose] public section -- clump member: ReciprocityTheory.DualLattices.RankEqRankOfPermAndZero
+
+noncomputable section
+
+open Matrix
 
 namespace ReciprocityTheory.PGsh.Up
 
@@ -1384,9 +1417,9 @@ private lemma εT_eig_left {H : HodgeTateDatum p g v R O σ cp} (U : UnramData p
           rw [Finset.mul_sum]
           exact Finset.sum_congr rfl fun i _ => U.εT_eig a i
   rw [hsum, Finset.mul_sum, Finset.sum_eq_single j]
-  · rw [Matrix.mul_smul, U.εT_orth, if_pos rfl]
+  · rw [Matrix.mul_smul, U.εT_orth, ite_eq_left rfl]
   · intro b _ hb
-    rw [Matrix.mul_smul, U.εT_orth, if_neg (Ne.symm hb), smul_zero]
+    rw [Matrix.mul_smul, U.εT_orth, ite_eq_right (Ne.symm hb), smul_zero]
   · intro h
     exact absurd (Finset.mem_univ j) h
 
@@ -1516,7 +1549,7 @@ theorem rank_eq_rank_of_perm_and_zero : EigenRankStatement := by
   classical
   haveI : IsLocalRing R := isLocal_of_integers hS.integers
   haveI : CharP (IsLocalRing.ResidueField R) p := charP_res hS
-  have hidem : ∀ i, U.εT i * U.εT i = U.εT i := fun i => by rw [U.εT_orth, if_pos rfl]
+  have hidem : ∀ i, U.εT i * U.εT i = U.εT i := fun i => by rw [U.εT_orth, ite_eq_left rfl]
   haveI hfree : ∀ i, Module.Free R (LinearMap.range (U.εT i).mulVecLin) :=
     fun i => (RankA.free_range_idem _ (hidem i)).1
   haveI hfin : ∀ i, Module.Finite R (LinearMap.range (U.εT i).mulVecLin) :=
@@ -1562,8 +1595,13 @@ theorem rank_eq_rank_of_perm_and_zero : EigenRankStatement := by
 
 end ReciprocityTheory.PGsh.Up
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.ThetaQSurj
+@[expose] public section -- clump member: ReciprocityTheory.DualLattices.ThetaQSurj
+
+noncomputable section
+
+open Matrix
 
 namespace ReciprocityTheory.PGsh.Up
 
@@ -1589,7 +1627,7 @@ lemma theta_kill (U : UnramData p g v R O σ cp H) {τ σ' : Fin U.m} (h : σ' �
   obtain ⟨x, hx⟩ := LinearMap.mem_range.1 ((U.rank τ).some.symm (Pi.single s 1)).2
   have hb : bvec U τ s = U.εL τ *ᵥ x := hx.symm
   show ((U.εL σ')ᵀ *ᵥ μ) ⬝ᵥ bvec U τ s = 0
-  rw [hb, mulVec_transpose, dotProduct_mulVec, vecMul_vecMul, U.εL_orth, if_neg h,
+  rw [hb, mulVec_transpose, dotProduct_mulVec, vecMul_vecMul, U.εL_orth, ite_eq_right h,
     vecMul_zero, zero_dotProduct]
 
 lemma theta_surj (U : UnramData p g v R O σ cp H) (τ : Fin U.m) :
@@ -1613,7 +1651,7 @@ lemma theta_surj (U : UnramData p g v R O σ cp H) (τ : Fin U.m) :
       (U.rank τ).some.symm (Pi.single s 1) := by
     apply Subtype.ext
     show U.εL τ *ᵥ bvec U τ s = bvec U τ s
-    rw [hb, mulVec_mulVec, U.εL_orth, if_pos rfl]
+    rw [hb, mulVec_mulVec, U.εL_orth, ite_eq_left rfl]
   simp only [LinearMap.comp_apply, hfix, LinearEquiv.coe_coe, LinearEquiv.apply_symm_apply]
   simp [Pi.single_apply]
 
@@ -1652,8 +1690,12 @@ end F3c
 
 end ReciprocityTheory.PGsh.Up
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.SumX
+
+
+open Matrix
 
 namespace ReciprocityTheory.PGsh.Up
 
@@ -1749,8 +1791,6 @@ theorem u7F3 : FrobeniusLengthBoundStatement := by
 
 end ReciprocityTheory.PGsh.Up
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: ReciprocityTheory.DualLattices.FrobeniusOfGroupDivisorsRank
 

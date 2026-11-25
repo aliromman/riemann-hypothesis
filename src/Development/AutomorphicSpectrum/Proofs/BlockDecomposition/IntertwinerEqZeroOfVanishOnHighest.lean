@@ -16,12 +16,12 @@ import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.Archim
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsHighestWeightInInvariantSubmodule, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntertwinerEqZeroOfVanishOnHighest
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsHighestWeightInInvariantSubmodule
+
+noncomputable section
 
 open Matrix Finset
 open scoped InnerProductSpace
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsHighestWeightInInvariantSubmodule
 
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
 
@@ -74,7 +74,7 @@ theorem diag_commute (hg : Formalism.REAL.GlRel G) (i j : Fin n) : Commute (G i 
   · subst hij
     exact Commute.refl _
   · have h' : ¬ j = i := fun h => hij h.symm
-    rw [if_neg hij, if_neg h', sub_zero] at h
+    rw [ite_eq_right hij, ite_eq_right h', sub_zero] at h
     exact sub_eq_zero.1 h
 
 theorem diagOn_commute (hg : Formalism.REAL.GlRel G) (hst : ∀ a b, ∀ w ∈ N, G a b w ∈ N) (i j : Fin n) :
@@ -145,8 +145,12 @@ theorem exists_highest_of_stable : ∀ {n : ℕ} (H : Type) [NormedAddCommGroup 
 
 end GlobalTheory.CompanionTheory.RealCountG.HwStable
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntertwinerEqZeroOfVanishOnHighest
+
+open Matrix Finset
+open scoped InnerProductSpace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
 
 namespace GlobalTheory.CompanionTheory.RealCountG

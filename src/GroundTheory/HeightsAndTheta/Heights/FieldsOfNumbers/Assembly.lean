@@ -333,7 +333,7 @@ end GroundTheory.Heights₂.Heights.FieldNumbers
 end -- clump:auto
 
 section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PHilbIrrelevantZero
-@[expose] public noncomputable section
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -341,6 +341,7 @@ namespace GroundTheory.Heights₂.Heights.FieldNumbers
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR
 
+noncomputable section
 
 universe u
 
@@ -391,13 +392,14 @@ theorem HilbIrrelevantZero.proof : HilbIrrelevantZero.Statement.{u} := by
   filter_upwards [Filter.eventually_ge_atTop (1 : K → ℤ)] with m hm
   have hpos : ∀ k, 0 ≤ m k := fun k => le_trans zero_le_one (hm k)
   unfold hilbFn
-  rw [if_pos hpos, gradedPiece_eq_bot_of_not_isRelevant hI (m := fun k => (m k).toNat)]
+  rw [ite_eq_left hpos, gradedPiece_eq_bot_of_not_isRelevant hI (m := fun k => (m k).toNat)]
   · simp
   · intro k
     have := hm k
     simp only [Pi.one_apply] at this
     omega
 
+end
 
 end GroundTheory.Heights₂.Heights.FieldNumbers
 end -- clump:auto
@@ -748,7 +750,8 @@ end GroundTheory.Heights₂.Heights.FieldNumbers
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PMixedDiffConst
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PMixedDiffConst
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -756,6 +759,7 @@ namespace GroundTheory.Heights₂.Heights.FieldNumbers
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR Filter
 
+noncomputable section
 
 universe u
 
@@ -894,7 +898,7 @@ theorem MixedDiffConst.proof (h1 : HilbDegreeBound.Statement.{u})
       refine ⟨AddMonoidAlgebra.coeff ((List.ofFn bs).foldr polyStep p) 0, fun hlt => by omega, ?_⟩
       rw [totalDegree_eq_zero_iff_eq_C] at hq0
       filter_upwards [hE] with m hm
-      rw [mixedDiff, hm, hq0, eval_C, coeff_C, if_pos rfl]
+      rw [mixedDiff, hm, hq0, eval_C, coeff_C, ite_eq_left rfl]
   constructor
   · intro bs
     obtain ⟨c, -, hc⟩ := key n bs le_rfl
@@ -915,8 +919,10 @@ theorem MixedDiffConst.proof (h1 : HilbDegreeBound.Statement.{u})
     rw [hc0 hr] at hm
     exact_mod_cast hm
 
+end
 
 end GroundTheory.Heights₂.Heights.FieldNumbers
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PMultEqualsCoeff
@@ -1066,15 +1072,15 @@ theorem MultEqualsCoeff.proof (h1 : PrimeFiltration.Statement.{u})
     · rcases (hcase j).resolve_left (not_not.mpr hr) with hlt | ⟨hmin, heq⟩
       · rw [hn] at hlt
         have hnt : ¬ top (Q j) := fun ht => lt_irrefl _ (ht.2.2 ▸ hlt)
-        simp only [val, if_neg hnt]
+        simp only [val, ite_eq_right hnt]
         obtain ⟨d, hd, hdn⟩ := exists_nat_of_nonneg_of_lt
           (relDim_nonneg_of_card_le (Q j) (h3 F K ι (Q j) ⟨hpr, hhom, hr⟩)) hlt
         exact (h2 F K ι (Q j) hhom hr d hd).2 n hdn bs
       · have ht : top (Q j) := ⟨hmin, hr, heq.trans hn⟩
-        simp only [val, if_pos ht]
+        simp only [val, ite_eq_left ht]
         exact (h2 F K ι (Q j) hhom hr n (heq.trans hn)).1 bs
     · have hnt : ¬ top (Q j) := fun ht => hr ht.2.1
-      simp only [val, if_neg hnt]
+      simp only [val, ite_eq_right hnt]
       filter_upwards [foldr_diffStep_eventuallyEq
         (hilbFn_eventually_zero_of_not_relevant (Q j) hr) (List.ofFn bs)] with m hm
       unfold mixedDiff
@@ -1126,7 +1132,8 @@ theorem MultEqualsCoeff.proof (h1 : PrimeFiltration.Statement.{u})
 end GroundTheory.Heights₂.Heights.FieldNumbers
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PPrimeFiltration
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PPrimeFiltration
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1134,6 +1141,7 @@ namespace GroundTheory.Heights₂.Heights.FieldNumbers
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR
 
+noncomputable section
 
 universe u
 
@@ -1561,11 +1569,11 @@ theorem filtration (h1 : HilbExactDivide.Statement.{u}) (J : Ideal (MRing ι F))
     congr 1
     · by_cases hle : J.colon (Ideal.span {s}) ≤ W
       · have heq : J.colon (Ideal.span {s}) = W := le_antisymm hle (hW.2 ⟨hQp, hJQ⟩ hle)
-        rw [if_pos heq]
+        rw [ite_eq_left heq]
         simp only [heq]
         rw [multAt_self]
         rfl
-      · rw [if_neg (fun h => hle h.le), multAt_eq_zero hle]
+      · rw [ite_eq_right (fun h => hle h.le), multAt_eq_zero hle]
         rfl
     · by_cases hJ'W : J ⊔ Ideal.span {s} ≤ W
       · have hW' : W ∈ Ideal.minimalPrimes (J ⊔ Ideal.span {s}) :=
@@ -1591,11 +1599,14 @@ theorem proof (h1 : HilbExactDivide.Statement.{u}) : PrimeFiltration.Statement.{
 
 end PrimeFiltration
 
+end
 
 end GroundTheory.Heights₂.Heights.FieldNumbers
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PRelevantPrimeDimGe
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PRelevantPrimeDimGe
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1603,6 +1614,7 @@ namespace GroundTheory.Heights₂.Heights.FieldNumbers
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR
 
+noncomputable section
 
 universe u
 
@@ -1645,10 +1657,10 @@ theorem RelevantPrimeDimGe.proof : RelevantPrimeDimGe.Statement.{u} := by
       rw [hsum, map_sum, rename_monomial]
       rw [Finset.sum_eq_single α]
       · rw [weightedHomogeneousComponent_of_mem (isWeightedHomogeneous_monomial _ _ _ (hw α)),
-          if_pos rfl]
+          ite_eq_left rfl]
       · intro β _ hβ
         rw [weightedHomogeneousComponent_of_mem (isWeightedHomogeneous_monomial _ _ _ (hw β)),
-          if_neg]
+          ite_eq_right]
         exact fun h => hβ (DFunLike.coe_injective h).symm
       · intro hα
         rw [notMem_support_iff.mp hα]
@@ -1667,8 +1679,10 @@ theorem RelevantPrimeDimGe.proof : RelevantPrimeDimGe.Statement.{u} := by
     Cardinal.natCast_le_toENat.mpr h1
   exact_mod_cast h2
 
+end
 
 end GroundTheory.Heights₂.Heights.FieldNumbers
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PRenameHilbFn

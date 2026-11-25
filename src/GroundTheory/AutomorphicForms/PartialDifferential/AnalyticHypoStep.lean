@@ -174,13 +174,14 @@ theorem hsD_pderiv_le {f : 𝔼 → ℂ} (hf : ContDiff ℝ ∞ f) (α : Fin n �
 end GroundTheory.Automorphic.Sobolev
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.PartialDifferential.AnalyticHypoStep
+@[expose] public section -- clump member: GroundTheory.AutomorphicForms.PartialDifferential.AnalyticHypoStep
 
 namespace GroundTheory.Automorphic.Sobolev
 
 open MeasureTheory Finset
 open scoped ContDiff
 
+noncomputable section
 
 variable {n : ℕ}
 
@@ -227,7 +228,7 @@ theorem coefTerm_le {B L Ma : ℝ} (hB : 0 ≤ B) (hL : 1 ≤ L) (hMa : 0 ≤ Ma
 theorem sum_filter_antidiagonal_pow_le {r : ℝ} (hr0 : 0 ≤ r) (hr : r ≤ 1 / 2) (k : ℕ) :
     ∑ ij ∈ (antidiagonal k).filter (fun ij ↦ 0 < ij.1), r ^ ij.1 ≤ 2 * r := by
   rw [Finset.sum_filter, Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk, Finset.sum_range_succ']
-  simp only [lt_self_iff_false, if_false, add_zero, Nat.succ_pos, if_true]
+  simp only [lt_self_iff_false, ite_false, add_zero, Nat.succ_pos, ite_true]
   have h1r : 0 < 1 - r := by linarith
   have hg : ∑ i ∈ range k, r ^ i ≤ 1 / (1 - r) := by
     rw [le_div_iff₀ h1r, geom_sum_mul_neg]
@@ -918,6 +919,7 @@ theorem weighted_derivative_bound {m : ℕ} (hm : 1 ≤ m) {A : Finset (Fin n �
           have hLP : L ^ P = L * L ^ (P - 1) := by rw [← pow_succ', Nat.sub_add_cancel hP1]
           rw [hLP, hT]; ring
 
+end
 
 end GroundTheory.Automorphic.Sobolev
 

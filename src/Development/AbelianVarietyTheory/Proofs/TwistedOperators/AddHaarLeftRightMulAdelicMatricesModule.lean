@@ -137,8 +137,9 @@ theorem finiteIntegers_compact_secondCountable_t2 : ∀ (F : Type) [Field F] [Nu
 end GlobalTheory.ModuLR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsOpenEmbeddingFiniteAdeleOfSPartAndIntegralPart
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsOpenEmbeddingFiniteAdeleOfSPartAndIntegralPart
 
+noncomputable section
 
 namespace GlobalTheory.ModuLR
 
@@ -159,7 +160,7 @@ def jSP : SPart F S × OPart F S →
     rw [eventually_principal]
     intro v hv
     have hv' : v ∉ S := hv
-    simp only [dif_neg hv']
+    simp only [dite_eq_right hv']
     exact (p.2 ⟨v, hv'⟩).2⟩
 
 def jSPinv : Πʳ v : HeightOneSpectrum (𝓞 F), [v.adicCompletion F, (v.adicCompletionIntegers F : Set (v.adicCompletion F))]_[𝓟 ((S : Set (HeightOneSpectrum (𝓞 F)))ᶜ)] →
@@ -213,6 +214,7 @@ theorem isOpenEmbedding_jS : IsOpenEmbedding (jS F S) := by
     (jSPHomeo F S).isOpenEmbedding
 
 end GlobalTheory.ModuLR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsOpenEmbeddingFiniteAdeleOfSPartAndIntegralPartStatement

@@ -18,12 +18,12 @@ import Development.AutomorphicSpectrum.Proofs.GlobalProofs.MemFormsOnOfMemSpan
 
 open NumberField Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
 open scoped TensorProduct
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdaptedBasisConjugateZeroEntries
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Published GlobalTheory.Published.AutFin GlobalTheory.StdPar GlobalTheory.ThK.SmoothLev GlobalTheory.CompanionTheory.Hypotheses₂.ConstFin GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart
 open GlobalTheory.UAut GlobalTheory.AdelicU GlobalTheory.SiegelSet
 
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdaptedBasisConjugateZeroEntries
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart.UnipOne
 
@@ -135,14 +135,14 @@ theorem conj_frame {n m l d : ℕ} (hnm : 2 * m ≤ n) (hld : l + d ≤ m) (P Pi
       rw [← hPw, Matrix.mulVec_mulVec] at h1
       have h2 : ((R * P) *ᵥ w) i = ∑ c, (R * P) i c * w c := rfl
       rw [h2, Finset.sum_eq_single b] at h1
-      · rw [hR, if_pos (by show b.val + (n - 1 - b.val) + 1 = n; omega), one_mul] at h1
+      · rw [hR, ite_eq_left (by show b.val + (n - 1 - b.val) + 1 = n; omega), one_mul] at h1
         exact h1
       · intro c _ hc
         have : c.val + i.val + 1 ≠ n := by
           have : i.val = n - 1 - b.val := rfl
           intro h
           exact hc (Fin.ext (by omega))
-        rw [hR, if_neg this, zero_mul]
+        rw [hR, ite_eq_right this, zero_mul]
       · simp
     set y := N₀ *ᵥ w with hy
     have hysupp : ∀ i : Fin n, y i ≠ 0 → i.val < l + d := by
@@ -208,10 +208,10 @@ theorem frame_pairing {F E : Type} [Field F] [NumberField F] [Field E] [NumberFi
   have hi := i.2
   have hb := b.2
   by_cases h1 : b.val < r
-  · rw [col X ⟨b.val, h1⟩ (hC.colX b ⟨b.val, h1⟩ rfl), hW.xx, if_neg (by omega)]
+  · rw [col X ⟨b.val, h1⟩ (hC.colX b ⟨b.val, h1⟩ rfl), hW.xx, ite_eq_right (by omega)]
     rfl
   · by_cases h2 : b.val + r < n
-    · rw [if_neg (by omega)]
+    · rw [ite_eq_right (by omega)]
       exact congrFun (hC.perpX b (by omega) h2) i
     · let j : Fin r := ⟨n - 1 - b.val, by omega⟩
       have hj : j.val = n - 1 - b.val := rfl
@@ -298,11 +298,9 @@ theorem oneP_mem_unip : ∀ (D : D7) (θ : D.what₂.Tau → (Ainf D.host.F ⊗[
 
 end GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart.UnipOne
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdaptedBasisConjugateZeroEntriesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.Published GlobalTheory.Published.AutFin GlobalTheory.StdPar GlobalTheory.ThK.SmoothLev GlobalTheory.CompanionTheory.Hypotheses₂.ConstFin GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart
-open GlobalTheory.UAut GlobalTheory.AdelicU GlobalTheory.SiegelSet
 
 
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdaptedBasisConjugateZeroEntries", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBlockEmb\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsConstAlongSingleton\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousOneP\npublic import Development.AutomorphicSpectrum.Proofs.GlobalProofs.MemUnipOfArchFrame\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.MatrixExponential\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.OfIsSmoothModerate\nimport Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HarishChandraFinite\nimport Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDimensionalOfSlices\nimport Development.AutomorphicSpectrum.Proofs.GlobalProofs.MemFormsOnOfMemSpan\n\n"}

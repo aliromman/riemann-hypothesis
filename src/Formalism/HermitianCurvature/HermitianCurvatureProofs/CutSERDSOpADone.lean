@@ -25,10 +25,11 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.WeylCellConjTranspo
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSERDSAGrp, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSERDSALoc, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSERDSARad, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSERDSOpADone
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSERDSAGrp
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSERDSAGrp
 
 open Matrix
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutMP
 
@@ -236,7 +237,7 @@ theorem rdsag_todaV {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace �
   have hfun : (fun c' => gaugeF P.k P.r c' • J (Q.wCell P.k P.r (Fin.last P.r) c' * g)) =
       fun c' => Q.resG P.k P.r (Fin.last P.r) J c' g := funext hgauge
   rw [hfun] at e3
-  simp only [dMul, Q.crd, Q.cmp, if_true]
+  simp only [dMul, Q.crd, Q.cmp, ite_true]
   rw [← e3]
   have hres : Q.resG P.k P.r (Fin.last P.r) (capAv P.k P.r y J) c g =
       gaugeF P.k P.r c • capAv P.k P.r y J (Q.wCell P.k P.r (Fin.last P.r) c * g) := by
@@ -275,10 +276,12 @@ theorem spectral_group_action : RDSAGrp := by
 
 end Formalism.FourierDecayAlt.P.CutSE
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSERDSALoc
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutSE
 
@@ -295,13 +298,13 @@ theorem rds_vABm_loc (Y : ℂ) : ∀ (i : ℕ) (f₁ f₂ : (Fin r → ℂ) → 
   | i + 1, f₁, f₂, h, c, hc => by
     have ih := rds_vABm_loc Y i f₁ f₂ h
     by_cases hi : i < r
-    · simp only [CutMP.vABm, dif_pos hi]
+    · simp only [CutMP.vABm, dite_eq_left hi]
       refine ⟨?_, ?_⟩
       · simp only [Pi.sub_apply, Pi.smul_apply, cbOp]
         rw [(ih c hc).1, (ih c hc).2, _root_.Formalism.FourierDecayAlt.P.CutMP.TVG.pbOp_locO _ (fun c' hc' => (ih c' hc').1) hc]
       · simp only [cbiOp]
         rw [(ih c hc).1]
-    · simp only [CutMP.vABm, dif_neg hi]
+    · simp only [CutMP.vABm, dite_eq_right hi]
       exact ih c hc
 
 end loc
@@ -319,7 +322,7 @@ theorem spectral_action_locality : RDSALoc := by
     intro l g₁ g₂ hg c hc
     have hev : g₁ =ᶠ[nhds c] g₂ := Filter.eventuallyEq_of_mem (hopen.mem_nhds hc) hg
     unfold pOp Formalism.QuantumDeterminants.wirt
-    rw [if_pos hc, if_pos hc, hev.fderiv_eq]
+    rw [ite_eq_left hc, ite_eq_left hc, hev.fderiv_eq]
   have hA : ∀ i : ℕ, ∀ g₁ g₂ : (Fin r → ℂ) → E, (∀ c ∈ OmX r, g₁ c = g₂ c) → ∀ c ∈ OmX r,
       (Q.vAB r y i).1 g₁ c = (Q.vAB r y i).1 g₂ c ∧ (Q.vAB r y i).2 g₁ c = (Q.vAB r y i).2 g₂ c := by
     intro i
@@ -347,13 +350,15 @@ theorem spectral_action_locality : RDSALoc := by
 end Formalism.FourierDecayAlt.P.CutSE
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSERDSARad
-@[expose] public noncomputable section
+@[expose] public section
 
 open MeasureTheory
 open scoped Matrix
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutSE
 
@@ -456,7 +461,7 @@ theorem rds_vab_ind (hL : IsActualLevel X L) (Y : ℂ) : ∀ i : ℕ, i ≤ r �
           sub_eq_add_neg]
       rw [e, Submodule.coe_sub, Submodule.coe_add, Submodule.coe_smul, rds_op_coe, rds_op_coe, hA, hB]
       funext c g
-      simp only [crd, Q.cmp, Q.vAB, dif_pos h, if_true, Pi.sub_apply, Pi.add_apply, Pi.smul_apply]
+      simp only [crd, Q.cmp, Q.vAB, dite_eq_left h, ite_true, Pi.sub_apply, Pi.add_apply, Pi.smul_apply]
       rfl
     · have e : ((L.ci ⟨i, h⟩ * rdsVp L Y i 0 0).1 Φ : RadSp k r z z' π π') =
           X.op ⟨i, h⟩ 2 ((rdsVp L Y i 0 0).1 Φ) := by
@@ -464,7 +469,7 @@ theorem rds_vab_ind (hL : IsActualLevel X L) (Y : ℂ) : ∀ i : ℕ, i ≤ r �
         rfl
       rw [e, rds_op_coe, hA]
       funext c g
-      simp only [crd, Q.cmp, Q.vAB, dif_pos h]
+      simp only [crd, Q.cmp, Q.vAB, dite_eq_left h]
       rfl
 
 theorem rds_vabm_ind (hL : IsActualLevel X L) (Y : ℂ) : ∀ i : ℕ, i ≤ r → ∀ Φ : RadSp k r z z' π π',
@@ -503,7 +508,7 @@ theorem rds_vabm_ind (hL : IsActualLevel X L) (Y : ℂ) : ∀ i : ℕ, i ≤ r �
           Module.algebraMap_end_apply, sub_eq_add_neg]
       rw [e, Submodule.coe_sub, Submodule.coe_sub, Submodule.coe_smul, rds_op_coe, rds_op_coe, hA, hB]
       funext c g
-      simp only [crd, Q.cmp, CutMP.vABm, dif_pos h, if_true, Pi.sub_apply, Pi.smul_apply]
+      simp only [crd, Q.cmp, CutMP.vABm, dite_eq_left h, ite_true, Pi.sub_apply, Pi.smul_apply]
       rfl
     · have e : ((L.cbi ⟨i, h⟩ * rdsVvp L Y i 0 0).1 Φ : RadSp k r z z' π π') =
           X.op ⟨i, h⟩ 5 ((rdsVvp L Y i 0 0).1 Φ) := by
@@ -511,7 +516,7 @@ theorem rds_vabm_ind (hL : IsActualLevel X L) (Y : ℂ) : ∀ i : ℕ, i ≤ r �
         rfl
       rw [e, rds_op_coe, hA]
       funext c g
-      simp only [crd, Q.cmp, CutMP.vABm, dif_pos h]
+      simp only [crd, Q.cmp, CutMP.vABm, dite_eq_left h]
       rfl
 
 theorem rds_cprod (hL : IsActualLevel X L) : ∀ (ls : List (Fin r)) (Φ : RadSp k r z z' π π'),
@@ -565,6 +570,7 @@ theorem spectral_radial_action : RDSARad := by
       (rds_vabm_ind X L hL y P.r le_rfl Φ).1]
 
 end Formalism.FourierDecayAlt.P.CutSE
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

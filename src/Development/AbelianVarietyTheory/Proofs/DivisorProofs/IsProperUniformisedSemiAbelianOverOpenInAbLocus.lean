@@ -70,11 +70,13 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.Uniformization.IsEllipticCurveTwoAdic, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsProperUniformisedSemiAbelianOverOpenInAbLocus
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Uniformization.IsEllipticCurveTwoAdic
+section -- clump member: Development.AbelianVarietyTheory.Definitions.Uniformization.IsEllipticCurveTwoAdic
+@[expose] public section
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
+noncomputable section
 namespace GlobalTheory.UU.SettingConsistentExample
 
 theorem exists_even_one {S : Scheme.{0}} {G H : Over S} [GrpObj G] [IsCommMonObj G] [GrpObj H] (P : CP G)
@@ -107,18 +109,12 @@ theorem ab_even (P : CP G) : ∃ σ : CubTriv P.c (TQ.abelian G hG X).i, σ.Even
 
 end Generic
 
-section Thick
-variable {R : Type} [CommRing R] [IsDomain R] (I : Ideal R) (e : ℕ) (G : Over (Spec (CommRingCat.of R))) [GrpObj G]
-
-
-
-
-end Thick
-
 variable {V : Type} [CommRing V] [IsDomain V] [IsLocalRing V] {A : PolAV (Spec (CommRingCat.of (FractionRing V)))}
   {G : Over (Spec (CommRingCat.of V))} [GrpObj G] [IsCommMonObj G]
 
 end GlobalTheory.UU.SettingConsistentExample
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsProperUniformisedSemiAbelianOverOpenInAbLocus

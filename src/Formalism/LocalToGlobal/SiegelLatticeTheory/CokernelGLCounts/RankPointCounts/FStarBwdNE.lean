@@ -10,12 +10,11 @@ import Mathlib.RingTheory.PiTensorProduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBwdND, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBwdNE
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBwdND
 
+noncomputable section
 
 open NumberField Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBwdND
 
 namespace Formalism.L2.SG.Pf.FrameGlobalPatching.FStar.BwdNA
 
@@ -72,11 +71,11 @@ theorem stepD (X : Submodule E S.V) (hXiso : ∀ x ∈ X, ∀ y ∈ X, S.hT x y 
       simp only [LinearMap.map_smulₛₗ, LinearMap.smul_apply, starRingEnd_apply, smul_eq_mul,
         LinearMap.add_apply, LinearMap.comp_apply]
       rw [Finset.sum_eq_single k']
-      · rw [hsw S (b k') (bs k'), hbs k' k', if_pos rfl, star_one, mul_one, star_mul, star_neg, star_add,
+      · rw [hsw S (b k') (bs k'), hbs k' k', ite_eq_left rfl, star_one, mul_one, star_mul, star_neg, star_add,
           ← hsw S (B₀ (b k')) v, ← hsw S (b k') (B₀ v)]
         ring
       · intro k _ hk
-        rw [hsw S (b k') (bs k), hbs k' k, if_neg (Ne.symm hk), star_zero, mul_zero]
+        rw [hsw S (b k') (bs k), hbs k' k, ite_eq_right (Ne.symm hk), star_zero, mul_zero]
       · simp
     rw [key]
     rfl
@@ -131,8 +130,12 @@ theorem stepD (X : Submodule E S.V) (hXiso : ∀ x ∈ X, ∀ y ∈ X, S.hT x y 
 
 end Formalism.L2.SG.Pf.FrameGlobalPatching.FStar.BwdNA
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBwdNE
+
+
+open NumberField Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat
 
 namespace Formalism.L2.SG.Pf.FrameGlobalPatching.FStar.BwdNA
 

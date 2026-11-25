@@ -29,12 +29,11 @@ import Mathlib.Tactic.Lemma
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BigCellConjugation.Monomial, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaussianUniqueness.MulMApply, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaussianUniqueness.GaussUniqMain, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PhiDerivative.StarinvDeriv, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SwPhiDeriv, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PhiBigCellForm.BigCellEqW0BMulTM, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SandwichChart.ChartZeroEqOneOfLongWeylSq, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SandwichChart.SideAUnrealifyRL, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SandwichChart.SideBUnrealifyRL, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SandwichChart.UnrealifyRL, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SwSandwichOf, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.JacConstSandwich
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BigCellConjugation.Monomial
 
+noncomputable section
 
 open Matrix
-
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BigCellConjugation.Monomial
 
 namespace PI.SwBig.BigCellGProof
 
@@ -48,16 +47,16 @@ theorem bigCell_one_apply (k r : ℕ) (c : Fin r → ℂ) (i j : Fin (2 * r + k 
   unfold bigCell rhoB tv esI
   rcases lt_or_ge j.val r with h1 | h1
   · have ho : j.val < r ∨ r + k < j.val := Or.inl h1
-    rw [dite_eq_left h1, if_pos ho, dite_eq_left h1]
+    rw [dite_eq_left h1, ite_eq_left ho, dite_eq_left h1]
   · rcases le_or_gt j.val (r + k) with h2 | h2
     · have ho : ¬ (j.val < r ∨ r + k < j.val) := by omega
-      rw [dite_eq_right (show ¬ (j.val < r) by omega), dite_eq_left h2, if_neg ho, dite_eq_right (show ¬ (j.val < r) by omega), dite_eq_left h2]
+      rw [dite_eq_right (show ¬ (j.val < r) by omega), dite_eq_left h2, ite_eq_right ho, dite_eq_right (show ¬ (j.val < r) by omega), dite_eq_left h2]
       by_cases hij : i = j
       · subst hij
-        rw [dite_eq_left ⟨h1, h2⟩, if_pos rfl, Matrix.one_apply, if_pos rfl]
-      · rw [if_neg hij]
+        rw [dite_eq_left ⟨h1, h2⟩, ite_eq_left rfl, Matrix.one_apply, ite_eq_left rfl]
+      · rw [ite_eq_right hij]
         split_ifs with hi
-        · rw [Matrix.one_apply, if_neg]
+        · rw [Matrix.one_apply, ite_eq_right]
           intro h
           apply hij
           apply Fin.ext
@@ -66,11 +65,11 @@ theorem bigCell_one_apply (k r : ℕ) (c : Fin r → ℂ) (i j : Fin (2 * r + k 
           omega
         · rfl
     · have ho : j.val < r ∨ r + k < j.val := Or.inr h2
-      rw [dite_eq_right (show ¬ (j.val < r) by omega), dite_eq_right (show ¬ (j.val ≤ r + k) by omega), if_pos ho,
+      rw [dite_eq_right (show ¬ (j.val < r) by omega), dite_eq_right (show ¬ (j.val ≤ r + k) by omega), ite_eq_left ho,
         dite_eq_right (show ¬ (j.val < r) by omega), dite_eq_right (show ¬ (j.val ≤ r + k) by omega)]
       by_cases hi : i.val = 2 * r + k - j.val
-      · rw [if_pos hi, if_pos (Fin.ext hi)]
-      · rw [if_neg hi, if_neg (fun h => hi (congrArg Fin.val h))]
+      · rw [ite_eq_left hi, ite_eq_left (Fin.ext hi)]
+      · rw [ite_eq_right hi, ite_eq_right (fun h => hi (congrArg Fin.val h))]
 
 theorem Hpk_rhoB (k r : ℕ) (i j : Fin (2 * r + k + 1)) :
     Hpk k r (rhoB k r i) (rhoB k r j) = Hpk k r i j := by
@@ -94,7 +93,7 @@ theorem tv_Hpk_tv (k r : ℕ) (c : Fin r → ℂ) (hc : ∀ a, c a ≠ 0) (i j :
     unfold Hpk at hz
     split_ifs at hz <;> first | tauto
   rcases key with ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2, rfl⟩
-  · have hH : Hpk k r i j = 1 := by unfold Hpk; rw [if_pos ⟨h1, h2⟩]
+  · have hH : Hpk k r i j = 1 := by unfold Hpk; rw [ite_eq_left ⟨h1, h2⟩]
     have hti : tv k r c i = c ⟨i.val, h1⟩ := by unfold tv; rw [dite_eq_left h1]
     have htj : tv k r c j = (star (c ⟨i.val, h1⟩))⁻¹ := by
       have e : (⟨2 * r + k - j.val, by omega⟩ : Fin r) = ⟨i.val, h1⟩ :=
@@ -102,7 +101,7 @@ theorem tv_Hpk_tv (k r : ℕ) (c : Fin r → ℂ) (hc : ∀ a, c a ≠ 0) (i j :
       unfold tv
       rw [dite_eq_right (show ¬ (j.val < r) by omega), dite_eq_right (show ¬ (j.val ≤ r + k) by omega), e]
     rw [hti, htj, hH, mul_one, mul_inv_cancel₀ (star_ne_zero.mpr (hc _))]
-  · have hH : Hpk k r i j = 1 := by unfold Hpk; rw [if_neg (by omega), if_pos ⟨h1, h2⟩]
+  · have hH : Hpk k r i j = 1 := by unfold Hpk; rw [ite_eq_right (by omega), ite_eq_left ⟨h1, h2⟩]
     have htj : tv k r c j = c ⟨j.val, h1⟩ := by unfold tv; rw [dite_eq_left h1]
     have hti : tv k r c i = (star (c ⟨j.val, h1⟩))⁻¹ := by
       have e : (⟨2 * r + k - i.val, by omega⟩ : Fin r) = ⟨j.val, h1⟩ :=
@@ -131,8 +130,12 @@ theorem bigCellG : BigCellG := by
 
 end PI.SwBig.BigCellGProof
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaussianUniqueness.MulMApply
+
+
+open Matrix
 
 namespace PI.SwBig.GU
 
@@ -225,7 +228,11 @@ def Supp (A : Mat k r) (R : ℕ → ℕ → Prop) : Prop := ∀ x y, A x y ≠ 0
 end PI.SwBig.GU
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaussianUniqueness.GaussUniqMain
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaussianUniqueness.GaussUniqMain
+
+noncomputable section
+
+open Matrix
 
 namespace PI.SwBig.GU
 
@@ -252,7 +259,7 @@ theorem UWb_col {m : Mat k r} (hm : m ∈ UWb k r) (x y : Fin (2 * r + k + 1)) (
       by_contra h2
       apply hy
       unfold lv
-      rw [if_neg h1, if_pos (show y.val ≤ r + k by omega)]
+      rw [ite_eq_right h1, ite_eq_left (show y.val ≤ r + k by omega)]
     have hyl := y.isLt
     have hlt : 2 * r + k - y.val < r := by omega
     have e : PI.SwBig.esI k r ⟨2 * r + k - y.val, hlt⟩ = y :=
@@ -562,7 +569,7 @@ theorem gaussUniq_main : GaussUniq := by
     have hl : lv k r (PI.SwBig.eI k r a) ≠ r := by
       have e4 : lv k r (PI.SwBig.eI k r a) = a.val := by
         unfold lv
-        rw [if_pos (show (PI.SwBig.eI k r a).val < r from a.isLt)]
+        rw [ite_eq_left (show (PI.SwBig.eI k r a).val < r from a.isLt)]
         rfl
       omega
     rw [M_mul_apply, M_mul_apply, hs, UWb_col hm₁ _ _ hl, UWb_col hm₂ _ _ hl, hf₁, hf₂,
@@ -590,8 +597,12 @@ theorem gaussUniq_main : GaussUniq := by
 
 end PI.SwBig.GU
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PhiDerivative.StarinvDeriv
+
+
+open Matrix
 
 namespace PI.SwBig.PhiDerivW
 
@@ -701,8 +712,6 @@ theorem main (hW : LongWeylElementSquare) :
 
 end PI.SwBig.PhiDerivW
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SwPhiDeriv
 
@@ -936,13 +945,11 @@ theorem chartBwd : ChartBwdOf := by
 end PI.SwSandwichOfWork
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SandwichChart.SideAUnrealifyRL
 
 
 open Matrix Filter Topology Classical
 open scoped ENNReal NNReal
-
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SandwichChart.SideAUnrealifyRL
 
 namespace PI.SwSandwichOfWork
 
@@ -1055,6 +1062,10 @@ end PI.SwSandwichOfWork
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SandwichChart.SideBUnrealifyRL
+
+
+open Matrix Filter Topology Classical
+open scoped ENNReal NNReal
 
 namespace PI.SwSandwichOfWork
 
@@ -1220,7 +1231,12 @@ theorem sideB : SideB := by
 end PI.SwSandwichOfWork
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SandwichChart.UnrealifyRL
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SandwichChart.UnrealifyRL
+
+noncomputable section
+
+open Matrix Filter Topology Classical
+open scoped ENNReal NNReal
 
 namespace PI.SwSandwichOfWork
 
@@ -1262,18 +1278,7 @@ theorem Log_sgI_val (i : Fin (2 * r + k + 1)) : ((sgI k r i).val = r + k ↔ i.v
   split_ifs <;> simp_all <;> omega
 
 theorem hpk_sq : Hpk k r * Hpk k r = 1 := by
-  ext i j
-  rw [Matrix.mul_apply, Finset.sum_eq_single (sgI k r i)]
-  · rw [Log_Hpk_eq, Log_Hpk_eq, if_pos rfl, Log_sgI_sgI, Matrix.one_apply]
-    have hv := (Log_sgI_val (k := k) (r := r) i)
-    by_cases h : j = i
-    · subst h
-      by_cases h2 : j.val = r + k
-      · rw [if_pos h2, if_pos rfl, if_pos (hv.2 h2), if_pos rfl]; norm_num
-      · rw [if_neg h2, if_pos rfl, if_neg (fun h' => h2 (hv.1 h')), if_pos rfl]; norm_num
-    · rw [if_neg h, if_neg (Ne.symm h), mul_zero]
-  · intro l _ hl; rw [Log_Hpk_eq, if_neg hl, zero_mul]
-  · simp
+  apply _root_.PI.SwBig.GU.Hpk_sq <;> assumption
 
 theorem logG : LogG := by
   intro k r
@@ -1320,8 +1325,7 @@ theorem logG : LogG := by
 
 end PI.SwSandwichOfWork
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SwSandwichOf
 

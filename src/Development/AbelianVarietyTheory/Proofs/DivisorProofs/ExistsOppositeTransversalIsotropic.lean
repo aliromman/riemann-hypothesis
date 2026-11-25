@@ -63,7 +63,7 @@ import Mathlib.GroupTheory.Nilpotent
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsConjInvariantTraceGeneratorLocal, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOneModMaximalMemOtherMaximalsOverNat, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOppositeSubmoduleImprovedModPrimeOfNeConj, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOppositeSubmoduleImprovedModPrimeOfOrthogo, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRankOneChangeImprovesImageRealPrime, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsVectorMapsIntoIdealOfNotOntoMod, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteMaximalIdealsContainingNatCast, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsotropicImageNotOntoModConjIdeal, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SupSmulTopEqTopOfForallMaximalOverNat, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOppositeTransversalIsotropic
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LowDat GlobalTheory.LowFilt
@@ -589,7 +589,13 @@ theorem exists_improves_of_real {E : Type} [Field E] [NumberField E] [IsCMField 
 end GlobalTheory.LowFilt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsVectorMapsIntoIdealOfNotOntoMod
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsVectorMapsIntoIdealOfNotOntoMod
+
+noncomputable section
+
+open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LowDat GlobalTheory.LowFilt
 
 namespace GlobalTheory.LowFilt
 
@@ -646,7 +652,7 @@ theorem exists_ker_vec_of_not_onto_mod {O P X : Type} [CommRing O] [IsDomain O] 
     exact sub_mem (Submodule.mem_sup_left ⟨v, rfl⟩) (Submodule.mem_sup_right ht)
   rw [← LinearMap.injective_iff_surjective_of_finrank_eq_finrank
     (by rw [finrank_quot_tensor, finrank_quot_tensor, hr]), injective_iff_map_eq_zero] at hns
-  push_neg at hns
+  push Not at hns
   obtain ⟨t, ht, ht0⟩ := hns
   obtain ⟨v, rfl⟩ := one_tmul_surjective I t
   rw [LinearMap.baseChange_tmul, one_tmul_eq_zero_iff] at ht
@@ -677,6 +683,12 @@ theorem IsOpp.exists_ker_vec : ∀ {E : Type} [Field E] [NumberField E] [IsCMFie
 
 end GlobalTheory.LowFilt
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LowDat GlobalTheory.LowFilt
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteMaximalIdealsContainingNatCast
 

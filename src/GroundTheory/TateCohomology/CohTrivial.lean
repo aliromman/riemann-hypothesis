@@ -70,12 +70,6 @@ theorem tateAcyclic_cohTrivial_of_isZero_of_shift (P : Rep.{u} k G → Prop)
 
 end Shift
 
-section Field
-
-variable {k G : Type u} [Field k] [Group G] [Fintype G] {p : ℕ} [Fact p.Prime] [CharP k p]
-
-end Field
-
 end GroundTheory.GroupCoh
 end -- clump:auto
 
@@ -401,12 +395,6 @@ open CategoryTheory groupHomology TensorProduct Finsupp
 
 universe u
 
-section General
-
-variable {k G : Type u} [CommRing k] [Group G] (A : Rep k G) [A.IsTrivial]
-
-end General
-
 section Tate
 
 variable {k G : Type u} [CommRing k] [Group G] [Fintype G] (A : Rep k G)
@@ -417,22 +405,6 @@ noncomputable def tateNegTwoIsoH1 : tateCohomology A (-2) ≅ H1 A :=
 variable [A.IsTrivial]
 
 end Tate
-
-section Int
-
-variable (G : Type) [Group G]
-
-variable [Fintype G]
-
-end Int
-
-section ULiftInt
-
-variable (G : Type u) [Group G]
-
-variable [Fintype G]
-
-end ULiftInt
 
 end GroundTheory.GroupCoh
 end -- clump:auto

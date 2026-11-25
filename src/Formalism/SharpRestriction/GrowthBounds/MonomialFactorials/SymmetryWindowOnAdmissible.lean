@@ -31,8 +31,10 @@ end Formalism.MainNotions.G.SymmetricFormBlocks
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.RestLjjFinProved
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.RestLjjFinProved
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.G.SymmetricFormBlocks
 
@@ -56,7 +58,7 @@ theorem mem_xiMons_of (n : ℕ) (m : Formalism.GM.M.BVar N r G.T.t →₀ ℕ)
     rw [Finset.sum_eq_single c]
     · simp
     · intro d _ hd
-      rw [Finsupp.single_apply, if_neg]
+      rw [Finsupp.single_apply, ite_eq_right]
       intro h
       exact hd (xiVar_inj G h)
     · intro h; exact absurd (Finset.mem_univ c) h
@@ -65,7 +67,7 @@ theorem mem_xiMons_of (n : ℕ) (m : Formalism.GM.M.BVar N r G.T.t →₀ ℕ)
       exact hv (hsupp v (Finsupp.mem_support_iff.2 hne))
     rw [h0]
     refine Finset.sum_eq_zero fun c _ => ?_
-    rw [Finsupp.single_apply, if_neg]
+    rw [Finsupp.single_apply, ite_eq_right]
     intro h
     exact hv ⟨c, h.symm⟩
 
@@ -142,6 +144,8 @@ theorem restLjjFin_proved (C0 CE1 CE2 : ℝ) (X : flipOneThree.Inst) : RestLjjFi
 
 end Formalism.MainNotions.G.SymmetricFormBlocks
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.SymmetryWindowLevelDimOnAdmissible
@@ -171,8 +175,10 @@ end Formalism.MainNotions.G.SymmetricFormBlocks
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.LiRenameMon
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.LiRenameMon
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.G.SymmetricFormBlocks
 
@@ -204,7 +210,7 @@ theorem decode_gen (M : Finset (σ →₀ ℕ)) (hM : ∀ β ∈ M, ∀ x, β (e
   by_cases h : γ = β
   · subst h
     simp
-  · rw [if_neg h, if_neg (fun h' => h (Subtype.ext h'.symm))]
+  · rw [ite_eq_right h, ite_eq_right (fun h' => h (Subtype.ext h'.symm))]
     exact zero_smul K y
 
 include he in
@@ -240,6 +246,8 @@ end LI
 
 end Formalism.MainNotions.G.SymmetricFormBlocks
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.LvlDimGen
@@ -309,8 +317,10 @@ end Formalism.MainNotions.G.SymmetricFormBlocks
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.LvlDimCondition
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.LvlDimCondition
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.G.SymmetricFormBlocks
 
@@ -327,7 +337,7 @@ theorem preF_ne_zero (j : Fin G.T.t → ℕ) (jp : ℕ) : preF (p := p) (r := r)
     intro h0
     rw [h0, zero_sub] at hs2
     have hmem : s ∈ (-(monomial s (1 : ℚ_[p]))).support := by
-      rw [support_neg, support_monomial, if_neg one_ne_zero]
+      rw [support_neg, support_monomial, ite_eq_right one_ne_zero]
       exact Finset.mem_singleton_self s
     exact (hs2 s hmem).2 hs1
   have e : preF (p := p) (r := r) G j jp =
@@ -387,6 +397,8 @@ theorem lvlDimCondition : RestLvlDim C0 CE1 CE2 X := by
 
 end Formalism.MainNotions.G.SymmetricFormBlocks
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.SymmetryWindowOnAdmissible

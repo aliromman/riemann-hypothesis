@@ -17,9 +17,9 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.MainNotions.ModuliIntegralCharts.H1 GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.BasicOpenEqBotOfField
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.BasicOpenEqBotOfField
 
+noncomputable section
 
 namespace PositivityTheory.HtPt.Cf
 
@@ -159,6 +159,7 @@ theorem pow_fns : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Ho
   infer_instance
 
 end PositivityTheory.HtPt.Cf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.PowFnsOfAbelianGenericStatement

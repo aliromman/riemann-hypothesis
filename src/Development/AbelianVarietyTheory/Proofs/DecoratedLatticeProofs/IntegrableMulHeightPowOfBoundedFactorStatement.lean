@@ -95,7 +95,6 @@ theorem GlobalTheory.realZeta_integrable_mul_heightPow : ∀ {G : Type} [Measura
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IntegrableMulHeightPowOfBoundedFactorStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

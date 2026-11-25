@@ -64,7 +64,7 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsDualFamilyInSelfDualLattice, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsInnerLatticeImageFrameQuotient, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsTotallyIsotropicDualFamilyInLattice, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsUnitaryFrameDual, Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitaryImageStandardLatticeEqSelfDualLattice, Development.AbelianVarietyTheory.Proofs.FlagMeasures.SelfDualLatticeFrameEqStandardTranslate, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsDatumOfTwoCongruentFrames
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open ValuativeRel Formalism.MainNotions.S Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG GlobalTheory.LocOver
 open scoped Classical
@@ -548,10 +548,10 @@ theorem isotropic_dual : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalS
     · intro a b
       dsimp only
       rcases lt_trichotomy a b with h | rfl | h
-      · rw [if_pos h, if_neg (not_lt.2 h.le), if_neg h.ne', map_zero, add_zero]
-      · rw [if_neg (lt_irrefl a), if_pos rfl]
+      · rw [ite_eq_left h, ite_eq_right (not_lt.2 h.le), ite_eq_right h.ne', map_zero, add_zero]
+      · rw [ite_eq_right (lt_irrefl a), ite_eq_left rfl]
         exact hxe a
-      · rw [if_neg (not_lt.2 h.le), if_neg h.ne', if_pos h, map_neg, ← H.h_herm (y b) (y a),
+      · rw [ite_eq_right (not_lt.2 h.le), ite_eq_right h.ne', ite_eq_left h, map_neg, ← H.h_herm (y b) (y a),
           zero_add]
   have he : ∀ k : Fin r, Fr.f k.castSucc ∈ Λ := fun k => hFr.1.1 k.castSucc
   have hEf : ∀ (k : Fin r) b, H.h (Fr.f k.castSucc) (Fr.f b) = 0 := fun k b =>
@@ -571,13 +571,20 @@ theorem isotropic_dual : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalS
       add_zero, hyf]
   · simp only [H.h_add_left, h_add_right, h_sum_left, h_sum_right, H.h_smul_left, h_smul_right,
       hyE, hEy, hEf, mul_zero, mul_ite, mul_one, Finset.sum_const_zero, add_zero,
-      Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     linear_combination hm a b
 
 end GlobalTheory.IsotropicDual
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsUnitaryFrameDual
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsUnitaryFrameDual
+
+noncomputable section
+
+open ValuativeRel Formalism.MainNotions.S Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG GlobalTheory.LocOver
+open scoped Classical
 
 namespace GlobalTheory.UnipFrame
 
@@ -680,7 +687,7 @@ lemma ey (a b : Fin r) : H.h (Fr.f b.castSucc) (y a) = if b = a then 1 else 0 :=
 
 include hy1 in
 lemma yz (a : Fin r) : H.h (y a) (Fr.f (Fin.last r)) = 0 := by
-  rw [hy1, if_neg (Fin.castSucc_lt_last a).ne']
+  rw [hy1, ite_eq_right (Fin.castSucc_lt_last a).ne']
 
 lemma Nl_e (b : Fin r) : Nl Fr y (Fr.f b.castSucc) = 0 := by
   rw [Nl_apply, prF_e]; simp [e_e, HermSp.h_zero_left]
@@ -843,6 +850,12 @@ theorem exists_unitary_frame_dual {F : Type} [Field F] [ValuativeRel F] [Topolog
 
 end GlobalTheory.UnipFrame
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open ValuativeRel Formalism.MainNotions.S Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG GlobalTheory.LocOver
+open scoped Classical
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitaryImageStandardLatticeEqSelfDualLattice
 

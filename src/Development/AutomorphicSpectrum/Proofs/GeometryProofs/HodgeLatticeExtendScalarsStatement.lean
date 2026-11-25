@@ -15,10 +15,10 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeLatticeExtendScalars
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeLatticeExtendScalars
 open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint.EvalExists
 
 theorem mem_span_basis_iff {J A C X : Type} [Fintype J] [CommRing A] [Field C] [Algebra A C]
@@ -514,6 +514,7 @@ theorem exists_eval : ∀ (E : Type) [Field E] [NumberField E] (Ω Vs : Type) [F
     · rw [hfam]; exact f2
 
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint.EvalExists
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeLatticeExtendScalarsStatement

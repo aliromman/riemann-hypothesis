@@ -17,8 +17,9 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwLev
 
 open ValuativeRel Matrix GlobalTheory.SmGL GlobalTheory.SplitWeil UpperTheory.V.Hi UpperTheory.V.AlgebraTools
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwFactBlock
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwFactBlock
 
+noncomputable section
 
 namespace UpperTheory.V.AlgebraTools.FactBlock
 
@@ -100,7 +101,7 @@ private theorem levi_mem {α : Type} {m : α → Type} [Fintype α] [LinearOrder
       split_ifs
       · exact h2 a c h
       · simp
-    · rw [levi_entry, if_pos rfl]
+    · rw [levi_entry, ite_eq_left rfl]
       exact h3 a
   refine mem_of_good (key p hp) ?_
   rw [← map_inv, ← map_inv]
@@ -280,7 +281,7 @@ private theorem pos_mono (h : (j : ℕ) = i + 1) (σ : Equiv.Perm (Fin n)) (hσ 
     (hb : ∀ a, bl i j (σ a) = bl i j a) (t : Fin n → kˣ) (ht : Dom t) :
     (FF C h).Pos (pm k n σ * diagT k (Fin n) t) := by
   refine ⟨(mem_Mf C h _).2 fun a c hac => ?_, ?_, ?_⟩
-  · rw [Units.val_mul, val_diagT, mul_diagonal, pm_apply, if_neg, zero_mul]
+  · rw [Units.val_mul, val_diagT, mul_diagonal, pm_apply, ite_eq_right, zero_mul]
     rintro rfl
     exact hac (hb c)
   · refine conj_mem _ σ (fun a => t (σ a)) (fun g hg a c hac => ?_) (by rw [pm_diag, hσ])
@@ -393,6 +394,7 @@ theorem UpperTheory.V.AlgebraTools.factBlock :
       rfl
     rw [← e, inv_inv] at this
     exact this
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwBernDom

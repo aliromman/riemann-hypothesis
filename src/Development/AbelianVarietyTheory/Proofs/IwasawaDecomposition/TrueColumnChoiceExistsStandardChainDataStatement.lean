@@ -281,8 +281,10 @@ theorem _root_.GlobalTheory.T.tupleChain_forms_rational_iff_frame_values : ∀ {
   exact @GlobalTheory.Mem.Col2.TwP.ptEmb_iff_rat
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TupleIntegralFormsRowPlaceByPlace
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TupleIntegralFormsRowPlaceByPlace
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.Mem.Col2.TwLat
 
@@ -291,7 +293,7 @@ open GlobalTheory.Mem.Col2.RowTie
 theorem natW_shW' {N : ℕ} (l : DomWeight N) (c : ℤ) : (GlobalTheory.Mem.Col2.shW l c).natW = l.natW := by
   funext i
   have hN : 0 < N := lt_of_le_of_lt (Nat.zero_le _) i.2
-  simp only [DomWeight.natW, DomWeight.detShift, dif_pos hN, GlobalTheory.Mem.Col2.shW]
+  simp only [DomWeight.natW, DomWeight.detShift, dite_eq_left hN, GlobalTheory.Mem.Col2.shW]
   congr 1
   ring
 
@@ -388,6 +390,8 @@ theorem tw_lat_at : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.
 
 end GlobalTheory.Mem.Col2.TC
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TupleIntegralFormsRowPlaceByPlaceStatement

@@ -51,8 +51,9 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.MulSmulIdemMem
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.CompConstMulMemHolSub, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FramePointsOverComponentOpenSet
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.CompConstMulMemHolSub
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.CompConstMulMemHolSub
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj GlobalTheory.CompRat
 
@@ -78,18 +79,20 @@ theorem rdU_mul_apply' {E : Type} [Field E] [NumberField E] [IsCMField E] {H : R
     (f f' : Rul Xo c) (k : U.Comp) (x : Frame (U.X k).Ψ r) :
     rdU U (f * f') k x = rdU U f k x * rdU U f' k x := by
   by_cases h : x ∈ (U.X k).dom
-  · have e1 : ∀ g : Rul Xo c, rdU U g k x = toC (evR Xo c g (U.un k ⟨x, h⟩)) := fun g => dif_pos h
+  · have e1 : ∀ g : Rul Xo c, rdU U g k x = toC (evR Xo c g (U.un k ⟨x, h⟩)) := fun g => dite_eq_left h
     rw [e1, e1, e1]
     exact evalAt_mul (K := c.F) (fun S _ _ => FrPt Xo c S) (fun φ y z => FrMap φ y z) f f' (U.un k ⟨x, h⟩)
   · rw [rdU_mem_offZero U _ k x h, rdU_mem_offZero U f k x h, zero_mul]
 
 end GlobalTheory.CompRat
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FramePointsOverComponentOpenSet
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FramePointsOverComponentOpenSet
 
 
 
+noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.FlatTw GlobalTheory.IndefiniteRowSideFullHecke.ComponentMassSum
 
@@ -106,7 +109,7 @@ theorem framesOn_of_mem : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
   have hA : AllTest Xo c := (GlobalTheory.Reg.evLaws_genFr_atlas E H Dw l Xo c).1.test
   haveI : IsReduced (CAt σ) := inferInstanceAs (IsReduced ℂ)
   have e1 : ∀ (g : Rul Xo c) (x : Frame ((U σ).X k).Ψ r) (h : x ∈ ((U σ).X k).dom),
-      rdU (U σ) g k x = toC (evR Xo c g ((U σ).un k ⟨x, h⟩)) := fun g x h => dif_pos h
+      rdU (U σ) g k x = toC (evR Xo c g ((U σ).un k ⟨x, h⟩)) := fun g x h => dite_eq_left h
   have h1 : rdU (U σ) (GlobalTheory.FlatLine.idem Z) k y = 1 := by
     rw [e1 _ _ hy, GlobalTheory.FlatLine.evR_idem hZ (hA _ _)]
     rfl

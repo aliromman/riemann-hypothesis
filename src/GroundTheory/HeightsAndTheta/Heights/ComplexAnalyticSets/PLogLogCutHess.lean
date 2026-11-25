@@ -13,7 +13,8 @@ import Mathlib.Analysis.InnerProductSpace.Calculus
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PLogLogCutHessConst, GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PLogLogCutHessDeriv, GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PLogLogCutHess
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PLogLogCutHessConst
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PLogLogCutHessConst
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -21,6 +22,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open MvPolynomial Filter Topology ReciprocityTheory.AnForm ReciprocityTheory.AnForm.A
 
+noncomputable section
 
 theorem hessC_of_eventually_const {D : ℕ} {φ : (Fin D → ℂ) → ℝ} {y : Fin D → ℂ} {c : ℝ}
     (h : φ =ᶠ[𝓝 y] fun _ => c) : hessC φ y = 0 ∧ hessC (fun z => φ z ^ 2 / 2) y = 0 := by
@@ -88,10 +90,12 @@ theorem logLogCut_eventually_step {m : ℕ} (Q : MvPolynomial (Fin m) ℂ) (k : 
   filter_upwards [(continuousAt_normSq_eval Q y).preimage_mem_nhds (Ioo_mem_nhds h0 h1)] with z hz
   have hz : ‖eval z Q‖ ^ 2 ∈ Set.Ioo (0 : ℝ) 1 := hz
   unfold logLogCut
-  rw [if_neg hz.1.ne', if_neg (not_le.2 hz.2)]
+  rw [ite_eq_right hz.1.ne', ite_eq_right (not_le.2 hz.2)]
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PLogLogCutHessDeriv
@@ -229,7 +233,7 @@ theorem logLogStep_deriv2_bound :
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PLogLogCutHess
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PLogLogCutHess
 
 set_option maxSynthPendingDepth 1
 
@@ -237,6 +241,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open MvPolynomial Filter Topology ReciprocityTheory.AnForm ReciprocityTheory.AnForm.A
 
+noncomputable section
 
 theorem tubeWeight_nonneg {m : ℕ} (Q : MvPolynomial (Fin m) ℂ) (y : Fin m → ℂ) : 0 ≤ tubeWeight Q y := by
   unfold tubeWeight
@@ -266,7 +271,7 @@ theorem LogLogCutHess.proof (hC : HessCCompPluri.Statement) : LogLogCutHess.Stat
     have e1 : logAbsSq Q y ≤ -Real.exp (((k : ℝ) + 1) / 2) := (Real.log_le_iff_le_exp hw0).2 (not_lt.1 h2)
     have e2 : 1 ≤ Real.exp (((k : ℝ) + 1) / 2) := Real.one_le_exp (by positivity)
     linarith
-  have htw : tubeWeight Q y = (logAbsSq Q y ^ 2)⁻¹ := if_pos hLy
+  have htw : tubeWeight Q y = (logAbsSq Q y ^ 2)⁻¹ := ite_eq_left hLy
   have hg : AnalyticAt ℂ (fun z => eval z Q) y := AnalyticOnNhd.eval_mvPolynomial Q y (Set.mem_univ y)
   have hgy : eval y Q ≠ 0 := by
     intro h
@@ -298,6 +303,7 @@ theorem LogLogCutHess.proof (hC : HessCCompPluri.Statement) : LogLogCutHess.Stat
   · rw [htw, ← div_eq_mul_inv, div_div]; exact hF2
   · rw [htw, ← div_eq_mul_inv, div_div]; exact hH2
 
+end
 
 end GroundTheory.Heights₂.Heights
 

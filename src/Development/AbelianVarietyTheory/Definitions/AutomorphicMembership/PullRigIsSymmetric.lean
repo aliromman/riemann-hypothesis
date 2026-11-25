@@ -10,8 +10,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Cha
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.UniformisationCharts.PowerGroupDatum, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.RestrictLineBundleSymmetryUnitsEquivIsoApply, Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PullRigIsSymmetric
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.UniformisationCharts.PowerGroupDatum
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.UniformisationCharts.PowerGroupDatum
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj
   AlgebraicGeometry
@@ -31,15 +32,6 @@ structure PowerDatum (j : ℕ) (G' G : Over S) [GrpObj G'] [GrpObj G] where
   bij : ∀ T : Over S, Function.Bijective (fun (x : T ⟶ G') (i : Fin j) => x ≫ pr i)
 
 attribute [instance] PowerDatum.isMonHom
-
-section Power
-
-variable (G : Over S)
-
-variable [GrpObj G]
-
-
-end Power
 
 section Symm
 
@@ -69,9 +61,11 @@ end PowerDatum
 
 end GlobalTheory.IndefiniteRowSideFullHecke.PowerGroupDatum
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.RestrictLineBundleSymmetryUnitsEquivIsoApply
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.RestrictLineBundleSymmetryUnitsEquivIsoApply
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj
   AlgebraicGeometry
@@ -338,24 +332,8 @@ theorem isNormSymm_iff (L : RigLB G) (sy : SymGen L.L (ι[G]).left) :
 
 end GroupNorm
 
-section Pow
-
-variable {S : Scheme.{0}}
-
-variable {G' G : Over S} [GrpObj G'] [GrpObj G] {j : ℕ}
-
-variable [IsCommMonObj G'] [IsCommMonObj G]
-
-end Pow
-
-section Clauses
-
-variable {S : Scheme.{0}} {G' G : Over S} [GrpObj G'] [IsCommMonObj G'] [GrpObj G]
-  [IsCommMonObj G] {j : ℕ}
-
-end Clauses
-
 end GlobalTheory.BoxCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PullRigIsSymmetric

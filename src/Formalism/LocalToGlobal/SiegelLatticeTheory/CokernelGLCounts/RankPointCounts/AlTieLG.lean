@@ -24,12 +24,11 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.AdeleApproximation.A
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.AlTieEta, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.AlTieLG
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.AlTieEta
 
+noncomputable section
 
 open scoped Classical TensorProduct
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.AlTieEta
 
 namespace Formalism.L2.SG.Pf.AlTieEta
 
@@ -256,7 +255,7 @@ theorem t_factor_product_of_eta (hη : EtaF X) (u : D.what₂.Word) : Formalism.
     refine (Formalism.L2.SG.TypedSets.finite_over X.B.I.F ((D.mem u).A.T) (D.mem u).A.T_prime.ne_zero).subset ?_
     intro v hv
     by_contra hc
-    exact (Function.mem_mulSupport.1 hv) (if_neg hc)
+    exact (Function.mem_mulSupport.1 hv) (ite_eq_right hc)
   have hfh : f = h ∘ maxEquiv X := by
     funext v
     show _ = if (((D.mem u).A.T : ℕ) : 𝓞 D.host.F) ∈ (plEquiv X v).asIdeal then
@@ -277,8 +276,13 @@ theorem fieldDict_of_eta (hη : EtaF X) (u u' : D.what₂.Word) : Formalism.L2.S
 
 end Formalism.L2.SG.Pf.AlTieEta
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.AlTieLG
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.AlTieLG
+
+noncomputable section
+
+open scoped Classical TensorProduct
 
 namespace Formalism.L2.SG.Pf.AlTieLG
 
@@ -905,8 +909,8 @@ theorem etaLoc_of_tied (hL : Formalism.L2.SG.Pf.LocCP.LocTied D) (p : PlF D) :
       exact h4
   unfold Formalism.HermitianLattices.Ext.L3.etaF
   by_cases hp : (p.asIdeal.map (algebraMap (𝓞 D.host.F) (𝓞 D.host.E))).IsPrime
-  · rw [if_pos (h1.2 hp), if_pos hp]
-  · rw [if_neg (mt h1.1 hp), if_neg hp]
+  · rw [ite_eq_left (h1.2 hp), ite_eq_left hp]
+  · rw [ite_eq_right (mt h1.1 hp), ite_eq_right hp]
 
 end Final
 

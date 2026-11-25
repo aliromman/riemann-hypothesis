@@ -32,8 +32,10 @@ end Formalism.MainNotions.flipOneThree.Pf
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.TauP
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.TauP
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.flipOneThree.Pf
 
@@ -69,7 +71,7 @@ private theorem isWeightedHomogeneous_colW_adjugate_genY {R : Type} [CommRing R]
     by_cases hp : p = a
     · subst hp; simp [Matrix.updateRow_apply, hs]; exact isWeightedHomogeneous_one _ _
     · have hsp : s p ≠ i := fun h => hp (s.injective (h.trans hs.symm))
-      simp only [Matrix.updateRow_apply, hsp, hp, if_false, genY, Matrix.of_apply]
+      simp only [Matrix.updateRow_apply, hsp, hp, ite_false, genY, Matrix.of_apply]
       have := isWeightedHomogeneous_X R (colW r r) (s p, p)
       simpa [colW] using this
   · obtain ⟨p, hp⟩ : ∃ p, s p = i := ⟨s.symm i, by simp⟩
@@ -515,6 +517,8 @@ theorem tauP : TauP := by
 
 end Formalism.MainNotions.flipOneThree.Pf
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor

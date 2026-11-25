@@ -877,11 +877,13 @@ end GlobalTheory.ThetaLiftBound
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MixedModelTermsRationalUnipotentInvariant
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MixedModelTermsRationalUnipotentInvariant
 open scoped ENNReal
 
 
 
+
+noncomputable section
 
 namespace GlobalTheory.UnipMixed
 
@@ -889,16 +891,7 @@ variable {D : D7}
 
 theorem mt_mul_frame (V : HSp D) {r : ℕ} (C : Matrix (Fin V.rank) (Fin r) D.host.E) (g : GA D V) (hg : g ∈ NI V C) :
     mt V g * C.map (incA D) = C.map (incA D) := by
-  induction hg using Subgroup.closure_induction with
-  | mem g hg =>
-    obtain ⟨h, -, -⟩ := hg
-    have h' : (mt V g - 1 : Matrix (Fin V.rank) (Fin V.rank) (AE D)) * (C.map (incA D) : Matrix (Fin V.rank) (Fin r) (AE D)) = 0 := h
-    rwa [Matrix.sub_mul, Matrix.one_mul, sub_eq_zero] at h'
-  | one => rw [GlobalTheory.AdelicLatMove.mt_one, Matrix.one_mul]
-  | mul g h _ _ hg hh => rw [GlobalTheory.AdelicLatMove.mt_mul, Matrix.mul_assoc, hh, hg]
-  | inv g _ hg =>
-    conv_lhs => rw [← hg]
-    rw [← Matrix.mul_assoc, ← GlobalTheory.AdelicLatMove.mt_mul, inv_mul_cancel, GlobalTheory.AdelicLatMove.mt_one, Matrix.one_mul]
+  apply _root_.GlobalTheory.FrameStab.mt_mul_frame <;> assumption
 
 theorem symplOH_isoPart_eq_zero (V W : HSp D) {r : ℕ} (C : Matrix (Fin V.rank) (Fin r) D.host.E) (t : Mx D W.rank r)
     (δ : WO V W) (hδ : δ * C.map (incA D) = 0) : symplOH V W (isoPart V W C t) δ = 0 := by
@@ -965,6 +958,7 @@ theorem res_heisO_unip : ∀ (D : D7) (V V' W : HSp D) (r : ℕ) (C C' : Matrix 
   exact heisO_add_rat V W C hω.std hf X₀ δ hδ t
 
 end GlobalTheory.UnipMixed
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MixedModelTermsRationalUnipotentInvariantStatement

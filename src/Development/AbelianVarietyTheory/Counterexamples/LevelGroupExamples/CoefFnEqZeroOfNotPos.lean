@@ -75,18 +75,13 @@ end General
 end GlobalTheory.ReadingIndependence
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.LevelGroupExamples.CoefFnEqZeroOfNotPos
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Counterexamples.LevelGroupExamples.CoefFnEqZeroOfNotPos
 
+noncomputable section
 
 namespace GlobalTheory.ReadingTieCheck
 
 open NumberField ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj.FJ Formalism.L2.Pj.QAt MeasureTheory GlobalTheory.TorusFourier GlobalTheory.MaxCuspKilled
-
-section Free
-
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r ρ : ℕ}
-
-end Free
 
 section Record
 

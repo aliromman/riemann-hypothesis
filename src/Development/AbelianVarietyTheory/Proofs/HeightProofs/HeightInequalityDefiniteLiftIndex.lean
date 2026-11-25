@@ -119,11 +119,12 @@ import Formalism.LocalToGlobal.ProjectiveLattices.HalfOneAddSqrtNegIsIntegral
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.HeightProofs.WeightZZeroEqTwoSmulSubSelf, Development.AbelianVarietyTheory.Proofs.HeightProofs.ChosenFormsRestrictBasisFunctionField, Development.AbelianVarietyTheory.Proofs.HeightProofs.PnContinuous, Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsReadingDensKNrmTieU, Development.AbelianVarietyTheory.Proofs.HeightProofs.OrdTiesOfPins, Development.AbelianVarietyTheory.Proofs.HeightProofs.HeightInequalityDefiniteLiftIndex
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.WeightZZeroEqTwoSmulSubSelf
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.WeightZZeroEqTwoSmulSubSelf
 
 
 
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.T0
 
@@ -159,7 +160,7 @@ theorem exists_nat_comb {ι : Type} [Finite ι] {Ω : ι → Type} [∀ Z, Field
     have h1 := congrArg (fun q => _root_.AddMonoidAlgebra.coeff (M := ℕ) q (k : ℕ)) h0
     simp only [p, Polynomial.finsetSum_coeff, Polynomial.coeff_monomial, Finsupp.single_apply,
       Polynomial.coeff_zero] at h1
-    rw [Finset.sum_eq_single k (fun b _ hb => if_neg fun e => hb (Fin.ext e)) (by simp), if_pos rfl] at h1
+    rw [Finset.sum_eq_single k (fun b _ hb => ite_eq_right fun e => hb (Fin.ext e)) (by simp), ite_eq_left rfl] at h1
     exact hk h1
   have hfin : ∀ Z, {t : ℕ | (p Z).IsRoot (t : Ω Z)}.Finite := fun Z =>
     Set.Finite.preimage (f := fun t : ℕ => (t : Ω Z)) Nat.cast_injective.injOn (Polynomial.finite_setOf_isRoot (hp Z))
@@ -362,6 +363,7 @@ end Transfer
 
 end GlobalTheory.HeightDefinite
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ChosenFormsRestrictBasisFunctionField
 
@@ -491,10 +493,11 @@ theorem chosenForms_restrict_basis_functionField : ∀ (D : D7) (T : Top D) (h :
 end GlobalTheory.HeightDefinite.Basis
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.PnContinuous
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.PnContinuous
 
 open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.FrameNorm GlobalTheory.Reg
 
+noncomputable section
 
 namespace GlobalTheory.HeightDefinite.Generic
 
@@ -585,7 +588,7 @@ theorem pn_frBor (hd : Dom a n) (hg : g ∈ sec Xo c a n) {σ : c.F →+* ℂ}
   · have hσ' : Formalism.L2.PjFree.GoodEmb c ((starRingEnd ℂ).comp σ) := by
       have := Formalism.L2.PjFree.goodEmb_goodOf c σ
       unfold Formalism.L2.PjFree.goodOf at this
-      rwa [if_neg hσ] at this
+      rwa [ite_eq_right hσ] at this
     have hL := (_root_.GlobalTheory.Reg.evLaws_genFr_atlas E H Dw l Xo c).1
     obtain ⟨z, hz⟩ := hL.bc _ _ (conjAlg σ) y
     obtain ⟨z', hz'⟩ := hL.bc _ _ (conjAlg σ) y'
@@ -687,6 +690,7 @@ theorem supC_le_iSup_generic : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
 
 end GlobalTheory.HeightDefinite.Generic
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsReadingDensKNrmTieU
 
@@ -724,7 +728,7 @@ theorem supPTGe_of_fnPin : ∀ (D : D7) (T : Core D) (h : LawsCore T) (j : ℕ) 
       F.1 hFc g hg h1 h0 sg).2
     change cutN T.C T.Ns j ka sg ⟨g, hg'⟩ ≤ _
     unfold cutN
-    rw [if_pos hj]
+    rw [ite_eq_left hj]
     exact h4
 
 theorem exists_frame {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E}
@@ -740,11 +744,11 @@ theorem exists_frame {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Rec
     (fun σ => Formalism.L2.PjFree.Unf.ofPj (U σ)) hU xR fn hx hfn
   have hg := goodEmb_goodOf c σ
   by_cases hσ : GoodEmb c σ
-  · have e : goodOf c σ = σ := if_pos hσ
+  · have e : goodOf c σ = σ := ite_eq_left hσ
     rw [e]
     obtain ⟨k, x, t, ht⟩ := (hU σ hσ).2.2.1 y
     exact ⟨k, x, fun a n hd f hf => h2 σ hσ k x t y ht a n hd f hf⟩
-  · have e : goodOf c σ = (starRingEnd ℂ).comp σ := if_neg hσ
+  · have e : goodOf c σ = (starRingEnd ℂ).comp σ := ite_eq_right hσ
     rw [e] at hg ⊢
     obtain ⟨y', hy'⟩ := GlobalTheory.Frames.FramedBaseChange.exists_frMap GlobalTheory.lawsFieldsSeparately.2.1 E H Dw l Xo c _ _
       (GlobalTheory.FrameNorm.conjAlg σ) y
@@ -899,11 +903,12 @@ end GlobalTheory.HeightDefinite.Ties
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.HeightInequalityDefiniteLiftIndex
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.HeightInequalityDefiniteLiftIndex
 
 
 
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.Gaps.EtaleWeightGaps Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
@@ -990,10 +995,10 @@ theorem eq_of_wtZ_eq {Q : Par D} (hp : Q.PinHost) {w w' : WeightFamilies.Wt D j}
 theorem exists_wsize {Q : Par D} (hp : Q.PinHost) (w w' : WeightFamilies.Wt D j) :
     ∃ s : WTZ D.host.E → ℝ, s (wtZ (wtA w) w.n) = w.size ∧ s (wtZ (wtA w') w'.n) = w'.size := by
   classical
-  refine ⟨fun u => if u = wtZ (wtA w) w.n then w.size else w'.size, if_pos rfl, ?_⟩
+  refine ⟨fun u => if u = wtZ (wtA w) w.n then w.size else w'.size, ite_eq_left rfl, ?_⟩
   by_cases e : wtZ (wtA w') w'.n = wtZ (wtA w) w.n
-  · exact (if_pos e).trans (by rw [eq_of_wtZ_eq hp e])
-  · exact if_neg e
+  · exact (ite_eq_left e).trans (by rw [eq_of_wtZ_eq hp e])
+  · exact ite_eq_right e
 
 end Weights
 

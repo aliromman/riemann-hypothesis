@@ -19,8 +19,9 @@ import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.PolCountableAn
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsLieNormSqBaseChange, Development.WeilBound.CoreStatements.SesquilinearFractions.DualMapCompAlgebraMap, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmImageUniqueLattice, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmPackEigenPeriod
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsLieNormSqBaseChange
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsLieNormSqBaseChange
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -104,27 +105,8 @@ variable {ex : ℂ → (Over.mk (spMap s) ⟶ P.A)} {Λ : Submodule ℤ ℂ}
 
 end Analytic
 
-section Arithmetic
-
-variable {K : Type} [Field K] [NumberField K]
-
-end Arithmetic
-
-section Data
-
-variable (d : ℕ) (K : Type) [Field K] [NumberField K] {M : Type} [Field M] [NumberField M]
-
-variable {d K}
-
-end Data
-
-section Main
-
-variable {d : ℕ} {K : Type} [Field K] [NumberField K]
-
-end Main
-
 end GlobalTheory.CMPeriodCompare
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

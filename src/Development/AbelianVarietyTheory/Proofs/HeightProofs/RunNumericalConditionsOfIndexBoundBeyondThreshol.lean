@@ -151,8 +151,9 @@ theorem pageRun_sq_le_rd_and_eight_le_rank : ∀ (D : D7) (B : WeightFamilies.Pr
 end GlobalTheory.FinalJoin
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ThreeLeDFOfPageRun
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ThreeLeDFOfPageRun
 
+noncomputable section
 
 namespace GlobalTheory.FinalJoin
 
@@ -179,7 +180,7 @@ theorem three_le_DF_of_SetC {D : D7} {B : WeightFamilies.Prov D} {P : ModuliInte
   have h2 := two_T_sq_le_last h τ i hi1
   have h3 := hL.2.1 τ i
   have hn : ¬ i.1 + 1 < (D.R.sigW j).1 := by omega
-  rw [if_neg hn] at h3
+  rw [ite_eq_right hn] at h3
   unfold gapZ at h3
   rw [dite_eq_right hn] at h3
   have hTp : (0 : ℤ) < (Tp D j T : ℤ) := by unfold Tp; positivity
@@ -208,6 +209,7 @@ theorem three_le_DF_of_pageRun : ∀ (D : D7) (B : WeightFamilies.Prov D) (P : M
   fun _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ h => three_le_DF_of_SetC h.hyp.2.1
 
 end GlobalTheory.FinalJoin
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.RunNumericalConditionsOfIndexBoundBeyondThreshol

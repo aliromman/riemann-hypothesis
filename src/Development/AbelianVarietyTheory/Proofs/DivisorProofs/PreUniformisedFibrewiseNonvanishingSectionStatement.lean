@@ -148,9 +148,11 @@ theorem _root_.GlobalTheory.T.exists_nonzero_expansionTerm_completeDVR : ∀ (V 
   first | exact @GlobalTheory.ExpansionNonzero.exists_term_ne_zero
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNonzeroSectionPreUniformisedCompleteNormal
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNonzeroSectionPreUniformisedCompleteNormal
+@[expose] public section
 open GlobalTheory.Mum
 
+noncomputable section
 namespace GlobalTheory.Mum.ModelSection
 open GlobalTheory.UU GlobalTheory.TwistLoc
 
@@ -158,7 +160,7 @@ theorem isUnit_gc {K : Type} [Field K] {Z : Scheme.{0}} (q : Z ⟶ Spec (CommRin
     IsUnit (gc q z c) := by
   have h1 : gc q z (1 : K) = 1 := by
     unfold gc gs
-    exact (dif_pos trivial).trans ((congrArg _ ((congrArg _ (map_one _)).trans (map_one _))).trans (map_one _))
+    exact (dite_eq_left trivial).trans ((congrArg _ ((congrArg _ (map_one _)).trans (map_one _))).trans (map_one _))
   exact IsUnit.of_mul_eq_one (gc q z c⁻¹) (by rw [← gc_mul, mul_inv_cancel₀ hc, h1])
 
 theorem exists_ne_zero {R : Type} [CommRing R] [IsDomain R] {I : Ideal R} {D : DegPre R}
@@ -201,6 +203,8 @@ theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R 
   fun _ _ _ _ _ _ _ _ _ _ U => exists_ne_zero U
 
 end GlobalTheory.Mum.ModelSection
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTranslatedThetaCoefficientSection
@@ -425,8 +429,10 @@ end -- clump:auto
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoefficientDataOfNonzeroSection
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoefficientDataOfNonzeroSection
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.Mum
 
 theorem integral_of_sqPow_bdd (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegrallyClosed R]
@@ -539,16 +545,18 @@ theorem exists_coefData_of_ne_zero : ∀ (R : Type) [CommRing R] [IsDomain R] [I
   refine ⟨σ, f, g, q, hq0, hf, fun α => ?_, ?_, fun α hα => ⟨c α, hcm α hα, H₁ α, ?_⟩⟩
   · by_cases h0 : α = 0
     · subst h0
-      simp only [g, dif_pos rfl]
+      simp only [g, dite_eq_left rfl]
       exact _root_.GlobalTheory.PsiRing.secIsMul_of_mult R D th (f 0) q hq
-    · simp only [g, dif_neg h0]
+    · simp only [g, dite_eq_right h0]
       exact _root_.GlobalTheory.PsiRing.secIsMul_of_coef R D α (ga α) th (f α) (G₁ α) (b α) (c α) q (hb α) (hG₁ α) (hbc α)
-  · simp only [g, dif_pos rfl]
+  · simp only [g, dite_eq_left rfl]
     exact hth
-  · simp only [g, dif_neg hα]
+  · simp only [g, dite_eq_right hα]
     exact _root_.GlobalTheory.PsiRing.secIsMul_of_coef R D α (ga α) th (G₁ α) (H₁ α) (c α) 1 (c α) (hG₁ α) (hH₁ α) (_root_.mul_one _).symm
 
 end GlobalTheory.Mum
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSettingOfEvenOn

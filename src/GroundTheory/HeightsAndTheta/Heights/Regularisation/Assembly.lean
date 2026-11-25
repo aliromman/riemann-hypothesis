@@ -316,7 +316,8 @@ theorem MatrixDetDeriv.proof : MatrixDetDeriv.Statement := by
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.Regularisation.PExpExtension
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.Regularisation.PExpExtension
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -324,6 +325,7 @@ namespace GroundTheory.Heights₂.Heights.Regular
 
 open Metric Filter Topology Matrix
 
+noncomputable section
 
 namespace ExpQuad
 
@@ -420,7 +422,7 @@ theorem tau_shifted_periodic (j : Fin a) (w : Fin n → ℂ) (hw : w ∈ logCove
     · simp [cusp_ne P hij, hij]
   simp only [PeriodPolydisc.tau0, P.periodic j w hw]
   rw [Finset.sum_congr rfl (fun i _ => key i), Finset.sum_add_distrib, Finset.sum_pi_single']
-  simp only [Finset.mem_univ, if_true]
+  simp only [Finset.mem_univ, ite_true]
   abel
 
 def phi (w : Fin n → ℂ) : ℂ := 2 * Real.pi * Complex.I * qf (P.tau0 w) v
@@ -491,7 +493,7 @@ theorem logLift_mem {z : Fin n → ℂ} (hz : z ∈ puncturedChart P.a_le (ball 
     have h0 : z (Fin.castLE P.a_le i) ≠ 0 := hz.2 i
     exact Real.log_neg (norm_pos_iff.mpr h0) (norm_lt_one_of_mem_ball hz.1 _)
   · have : ¬ k.val < a := not_lt.mpr hk
-    simp only [logLift, this, if_false]
+    simp only [logLift, this, ite_false]
     exact norm_lt_one_of_mem_ball hz.1 k
 
 theorem expCover_mem {w : Fin n → ℂ} (hw : w ∈ logCover P.a_le) :
@@ -501,9 +503,9 @@ theorem expCover_mem {w : Fin n → ℂ} (hw : w ∈ logCover P.a_le) :
     · have hk' : Fin.castLE P.a_le ⟨k.val, hk⟩ = k := Fin.ext rfl
       have h1 := hw.1 ⟨k.val, hk⟩
       rw [hk'] at h1
-      simp only [expCover, hk, if_true, Complex.norm_exp]
+      simp only [expCover, hk, ite_true, Complex.norm_exp]
       exact (Real.exp_lt_exp.mpr h1).trans_eq Real.exp_zero
-    · simp only [expCover, hk, if_false]
+    · simp only [expCover, hk, ite_false]
       exact hw.2 k (not_lt.mp hk)
   · show expCover a w (Fin.castLE P.a_le j) ≠ 0
     rw [expCover_castLE P]
@@ -667,8 +669,10 @@ theorem ExpQuadMonomial.proof (hE : RiemannExtensionSlices.Statement)
     congr 2
     exact_mod_cast (Int.toNat_of_nonneg (hk i)).symm
 
+end
 
 end GroundTheory.Heights₂.Heights.Regular
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.Regularisation.PImTauBounds
@@ -974,7 +978,8 @@ theorem ImTauBounds.proof (h0 : Tau0Holomorphic.Statement) (h1 : KernelPositive.
 end GroundTheory.Heights₂.Heights.Regular
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.Regularisation.PKernelPositive
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.Regularisation.PKernelPositive
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -982,6 +987,7 @@ namespace GroundTheory.Heights₂.Heights.Regular
 
 open Metric Filter Topology Matrix
 
+noncomputable section
 
 namespace KernelPositive
 
@@ -1038,9 +1044,9 @@ theorem pos_of_punctured {n a g : ℕ} (P : PeriodPolydisc n a g)
   have hw : logLift a z ∈ logCover P.a_le := by
     refine ⟨fun i => ?_, fun k hk => ?_⟩
     · have hi : (Fin.castLE P.a_le i).val < a := i.isLt
-      simp only [logLift, if_pos hi, Complex.log_re]
+      simp only [logLift, ite_eq_left hi, Complex.log_re]
       exact Real.log_neg (norm_pos_iff.mpr (hz0 _)) (hzk _)
-    · simp only [logLift, if_neg (not_lt.mpr hk)]
+    · simp only [logLift, ite_eq_right (not_lt.mpr hk)]
       exact hzk k
   have hexp : expCover a (logLift a z) = z := by
     funext k
@@ -1101,8 +1107,10 @@ theorem kernelPositive_statement : KernelPositive.Statement := open KernelPositi
   have := im_pos_of_punctured hG hpos
   simpa only [hL0] using this
 
+end
 
 end GroundTheory.Heights₂.Heights.Regular
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.Regularisation.Assembly

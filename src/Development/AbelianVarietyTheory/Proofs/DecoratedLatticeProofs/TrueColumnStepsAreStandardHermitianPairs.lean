@@ -67,10 +67,12 @@ import Formalism.SharpRestriction.Divisibility.ProductZerothFirstParts
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IntMemInverseHalfDifferent, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.StandardPairAlongChain, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.TrueColumnStepsAreStandardHermitianPairs
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IntMemInverseHalfDifferent
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IntMemInverseHalfDifferent
+@[expose] public section
 
 open NumberField Formalism.BasicNotions GlobalTheory.Mem GlobalTheory.Mem.Col2
 
+noncomputable section
 
 namespace GlobalTheory.Mem.Col2.DgenNe
 
@@ -107,7 +109,7 @@ theorem dgen_ne_zero : ∀ {R : Ranks} (H : Host R) (cD : Tau R → ℂ), Th.IsD
   let e : Tau R → H.E →+* M := fun σ => (embT H σ).codRestrict M (hemb σ)
   have hlift : ∀ σ (x : H.E), Formalism.MainNotions.TaylorLogMetric.liftM M (embT H σ x) = e σ x := by
     intro σ x
-    simp only [Formalism.MainNotions.TaylorLogMetric.liftM, dif_pos (hemb σ x)]
+    simp only [Formalism.MainNotions.TaylorLogMetric.liftM, dite_eq_left (hemb σ x)]
     rfl
   let f : Tau R → (𝓞 H.E →* M) := fun σ => ((e σ).comp (algebraMap (𝓞 H.E) H.E)).toMonoidHom
   have hf : Function.Injective f := by
@@ -169,6 +171,8 @@ theorem dgen_ne_zero : ∀ {R : Ranks} (H : Host R) (cD : Tau R → ℂ), Th.IsD
 
 end GlobalTheory.Mem.Col2.DgenNe
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.StandardPairAlongChain

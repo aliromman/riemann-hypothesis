@@ -67,8 +67,9 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.KchMul
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsOverLaOfNotCharZero, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModulipointLiftToFinerLevelCompleteDVR
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsOverLaOfNotCharZero
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsOverLaOfNotCharZero
 
+noncomputable section
 
 open NumberField IsDedekindDomain IsLocalRing
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi
@@ -193,17 +194,10 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : D
 
 variable {Xo : Moduli Dw l} {c : Coeff l} [StarRing (𝓞 E)]
 
-section Local
-
-variable {T : CDVR} {io : c.F →+* T.Fr} {y : IntFr Xo c T io}
-
-variable {la : HeightOneSpectrum (𝓞 c.F)} {e : ℕ}
-
-end Local
-
 variable (Xo c)
 
 end GlobalTheory.LocalDepthCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModulipointLiftToFinerLevelCompleteDVR

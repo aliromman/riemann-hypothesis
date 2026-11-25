@@ -102,8 +102,9 @@ def IsFrame (Y : Model Xo c β) (τ : E →+* ℂ) {R : Type} [CommRing R] (φ :
 end GlobalTheory.IndefiniteRowSideFullHecke.RamifiedPlacesSplitEigen
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.DeterminantSectionRule
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.DeterminantSectionRule
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -163,17 +164,17 @@ theorem comb_one {x : Sp R ⟶ S} {n : ℕ} {v : Fin n → (FramedFlatCoordinate
       have : epsScaleR (1 : R) = RingHom.id _ := by
         refine RingHom.ext fun x => ?_
         ext <;> simp [epsScaleR]
-      simp only [if_true, Matrix.one_apply_eq, this, spMap_id]
+      simp only [ite_true, Matrix.one_apply_eq, this, spMap_id]
       exact (Category.id_comp _).symm
     · have : epsScaleR (0 : R) = (algebraMap R (DualNumber R)).comp (TrivSqZeroExt.fstHom R R R).toRingHom := by
         refine RingHom.ext fun x => ?_
         ext <;> simp [epsScaleR, TrivSqZeroExt.algebraMap_eq_inl]
-      simp only [if_neg hk, Matrix.one_apply_ne (Ne.symm hk), this, spMap_comp]
+      simp only [ite_eq_right hk, Matrix.one_apply_ne (Ne.symm hk), this, spMap_comp]
       refine Eq.trans ?_ (Category.assoc _ _ _).symm
       refine Eq.trans ?_ (congrArg (spMap (algebraMap R (DualNumber R)) ≫ ·) (hv k)).symm
       let D : FramedFlatCoordinates.epsAt x ⟶ Over.mk x := Over.homMk (spMap (algebraMap R (DualNumber R))) rfl
       exact (congrArg CommaMorphism.left (MonObj.comp_one D)).symm
-  · rw [List.ofFn_eq_map, List.prod_map_eq_pow_single i _ (fun a h _ => if_neg h)]
+  · rw [List.ofFn_eq_map, List.prod_map_eq_pow_single i _ (fun a h _ => ite_eq_right h)]
     simp
 
 end Tangent

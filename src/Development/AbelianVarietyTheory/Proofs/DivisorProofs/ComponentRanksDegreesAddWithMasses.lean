@@ -134,12 +134,13 @@ theorem deg_scale : ∀ (K V : Type) [Field K] [NumberField K] [_root_.NumberFie
 end GlobalTheory.NormScale
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComponentRanksDegreesAddWithMasses
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComponentRanksDegreesAddWithMasses
 
 open NumberField IsDedekindDomain MeasureTheory ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.FlatTw GlobalTheory.IndefiniteRowSideFullHecke.ComponentMassSum
 
 set_option synthInstance.maxHeartbeats 400000
 
+noncomputable section
 
 section CompAddsInsts
 
@@ -365,7 +366,7 @@ theorem hasGram_normRes (h : HasGram (normOn U (xiR D) V dict Z G)) : HasGram (n
     refine GlobalTheory.HSApp.hasGram_of_injective h LinearMap.id (fun _ _ h => h) (fun v => (k v.embedding)⁻¹)
       (fun v => inv_pos.2 (hkpos v)) fun v x => ?_
     rw [LinearMap.id_apply, hk, ← mul_assoc, inv_mul_cancel₀ (hkpos v).ne', one_mul]
-  · push_neg at h0
+  · push Not at h0
     refine GlobalTheory.HSApp.hasGram_of_injective h LinearMap.id (fun _ _ h => h) (fun _ => 1) (fun _ => one_pos)
       fun v x => ?_
     rw [h0 x, LinearMap.id_apply, one_mul, normRes_zero, normOn_zero]

@@ -24,13 +24,11 @@ import Formalism.LocalToGlobal.ProjectiveLattices.SubConstMemOrig
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.ProofRowTieValsCg, Formalism.LocalToGlobal.CharacterGerms.LinearCoeffSubstChainRule, Formalism.LocalToGlobal.CharacterGerms.RowTieValBr, Formalism.LocalToGlobal.CharacterGerms.CoordinateChangeComp1IntertwinesAction, Formalism.LocalToGlobal.CharacterGerms.LinearCoeffExponentialEqIte, Formalism.SharpRestriction.GrowthBounds.ProofRowTieValsE
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ProofRowTieValsCg
 
 
 open scoped BigOperators
 open Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ProofRowTieValsCg
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -238,7 +236,12 @@ end VS
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.LinearCoeffSubstChainRule
+@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.LinearCoeffSubstChainRule
+
+noncomputable section
+
+open scoped BigOperators
+open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -278,7 +281,7 @@ theorem linear_coeff_subst_chain_rule {σ : Type} [Fintype σ] {A : σ → MvPow
         have hij : i = j := by
           by_contra hne
           have := congrArg (fun d => d i) hab
-          simp only [Finsupp.add_apply, Finsupp.single_apply, Ne.symm hne, if_false] at this
+          simp only [Finsupp.add_apply, Finsupp.single_apply, Ne.symm hne, ite_false] at this
           omega
         subst hij
         ext t
@@ -288,7 +291,7 @@ theorem linear_coeff_subst_chain_rule {σ : Type} [Fintype σ] {A : σ → MvPow
           simp only [Finsupp.add_apply, Finsupp.single_eq_same] at this
           simp only [Finsupp.coe_zero, Pi.zero_apply]
           omega
-        · simp only [Finsupp.add_apply, Finsupp.single_apply, Ne.symm ht, if_false] at this
+        · simp only [Finsupp.add_apply, Finsupp.single_apply, Ne.symm ht, ite_false] at this
           simp only [Finsupp.coe_zero, Pi.zero_apply]
           omega
       rw [hb, MvPowerSeries.coeff_zero_eq_constantCoeff_apply, hR, mul_zero]
@@ -331,7 +334,7 @@ theorem linear_coeff_subst_chain_rule {σ : Type} [Fintype σ] {A : σ → MvPow
     apply hd
     by_cases h0 : d = 0
     · subst h0
-      rw [Finsupp.prod_zero_index, MvPowerSeries.coeff_one, if_neg (Finsupp.single_ne_zero.mpr one_ne_zero),
+      rw [Finsupp.prod_zero_index, MvPowerSeries.coeff_one, ite_eq_right (Finsupp.single_ne_zero.mpr one_ne_zero),
         smul_zero]
     · rw [(hprod d h0).2 (fun k h => hne k h.symm), smul_zero]
   rw [finsum_eq_sum_of_support_subset _ hsupp,
@@ -346,7 +349,7 @@ theorem linear_coeff_X_eq_ite {σ : Type} (m j : σ) : lin1 (MvPowerSeries.X m :
   by_cases h : m = j
   · subst h
     simp
-  · rw [if_neg h, if_neg]
+  · rw [ite_eq_right h, ite_eq_right]
     intro h'
     exact h ((Finsupp.single_left_inj one_ne_zero).mp h').symm
 
@@ -374,7 +377,7 @@ theorem lin_of_add (f : MvPowerSeries (Fin dd) C) (h0 : MvPowerSeries.constantCo
       rw [map_add (f := _), MvPowerSeries.pderiv_X_of_ne (fun hh => by simpa using (Prod.ext_iff.1 hh).1), zero_add]
       by_cases hm : m = i
       · subst hm
-        rw [MvPowerSeries.pderiv_X_self, one_mul, subst_subst cS cK, if_pos rfl]
+        rw [MvPowerSeries.pderiv_X_self, one_mul, subst_subst cS cK, ite_eq_left rfl]
         have : (fun s : Fin dd => MvPowerSeries.subst K
             (MvPowerSeries.X ((0 : Fin 2), s) + MvPowerSeries.X ((1 : Fin 2), s) : PS C 2 dd)) = MvPowerSeries.X := by
           funext s
@@ -383,7 +386,7 @@ theorem lin_of_add (f : MvPowerSeries (Fin dd) C) (h0 : MvPowerSeries.constantCo
           rw [add_zero]
         rw [this, MvPowerSeries.subst_self]
         rfl
-      · rw [MvPowerSeries.pderiv_X_of_ne (fun hh => hm (Prod.ext_iff.1 hh).2), zero_mul, subst_zero' cK, if_neg hm]
+      · rw [MvPowerSeries.pderiv_X_of_ne (fun hh => hm (Prod.ext_iff.1 hh).2), zero_mul, subst_zero' cK, ite_eq_right hm]
     have h2 : ∀ m, MvPowerSeries.subst K (MvPowerSeries.pderiv (R := C) ((1 : Fin 2), i)
         (MvPowerSeries.X ((0 : Fin 2), m) : PS C 2 dd) *
         MvPowerSeries.subst (fun m : Fin dd => (MvPowerSeries.X ((0 : Fin 2), m) : PS C 2 dd))
@@ -397,14 +400,14 @@ theorem lin_of_add (f : MvPowerSeries (Fin dd) C) (h0 : MvPowerSeries.constantCo
       intro m
       by_cases hm : m = i
       · subst hm
-        rw [MvPowerSeries.pderiv_X_self, one_mul, subst_subst (fun _ => cc_X _) cK, if_pos rfl]
+        rw [MvPowerSeries.pderiv_X_self, one_mul, subst_subst (fun _ => cc_X _) cK, ite_eq_left rfl]
         have : (fun s : Fin dd => MvPowerSeries.subst K (MvPowerSeries.X ((1 : Fin 2), s) : PS C 2 dd)) = fun _ => 0 := by
           funext s
           rw [subst_X cK]
           rfl
         rw [this, subst_zeroPt]
         rfl
-      · rw [MvPowerSeries.pderiv_X_of_ne (fun hh => hm (Prod.ext_iff.1 hh).2), zero_mul, subst_zero' cK, if_neg hm]
+      · rw [MvPowerSeries.pderiv_X_of_ne (fun hh => hm (Prod.ext_iff.1 hh).2), zero_mul, subst_zero' cK, ite_eq_right hm]
     rw [Finset.sum_congr rfl fun m _ => h1 m, Finset.sum_congr rfl fun m _ => h2 m,
       Finset.sum_congr rfl fun m _ => h3 m, Finset.sum_const_zero, zero_add, Finset.sum_ite_eq', Finset.sum_ite_eq'] at h
     simpa using h
@@ -417,7 +420,7 @@ theorem lin_of_add (f : MvPowerSeries (Fin dd) C) (h0 : MvPowerSeries.constantCo
     rw [MvPowerSeries.coeff_zero_eq_constantCoeff_apply, h0]
     symm
     refine Finset.sum_eq_zero fun j _ => ?_
-    rw [if_neg (fun h => by simpa using congrArg (fun x => x j) h), mul_zero]
+    rw [ite_eq_right (fun h => by simpa using congrArg (fun x => x j) h), mul_zero]
   · obtain ⟨i, hi⟩ : ∃ i, μ i ≠ 0 := by
       by_contra hcon
       simp only [not_exists, not_not] at hcon
@@ -430,15 +433,15 @@ theorem lin_of_add (f : MvPowerSeries (Fin dd) C) (h0 : MvPowerSeries.constantCo
     by_cases hν : ν = 0
     · subst hν
       rw [zero_add, Finset.sum_eq_single i]
-      · rw [if_pos rfl, mul_one, linear_coeff_eq_coeff_single]
+      · rw [ite_eq_left rfl, mul_one, linear_coeff_eq_coeff_single]
       · intro j _ hj
-        rw [if_neg fun h => hj (Finsupp.single_left_injective one_ne_zero h).symm, mul_zero]
+        rw [ite_eq_right fun h => hj (Finsupp.single_left_injective one_ne_zero h).symm, mul_zero]
       · intro h; exact absurd (Finset.mem_univ _) h
-    · rw [if_neg hν] at hc
+    · rw [ite_eq_right hν] at hc
       rw [(mul_eq_zero.1 hc).resolve_right hne]
       symm
       refine Finset.sum_eq_zero fun j _ => ?_
-      rw [if_neg, mul_zero]
+      rw [ite_eq_right, mul_zero]
       intro h
       have hd := congrArg Finsupp.degree h
       rw [map_add (f := _), Finsupp.degree_single, Finsupp.degree_single] at hd
@@ -448,8 +451,13 @@ end VP
 
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieValBr
+
+
+open scoped BigOperators
+open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -470,6 +478,10 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.CoordinateChangeComp1IntertwinesAction
+
+
+open scoped BigOperators
+open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -498,7 +510,12 @@ variable {C : Type} [Field C] [CharZero C] {V : VF C} {O : Type} [CommRing O] [S
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.LinearCoeffExponentialEqIte
+@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.LinearCoeffExponentialEqIte
+
+noncomputable section
+
+open scoped BigOperators
+open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -578,7 +595,7 @@ theorem linear_coeff_exponential_eq_ite (m j : Fin dd) : lin1 (e Y m) j = if m =
   beta_reduce at h
   rw [linear_coeff_subst_chain_rule (cc_e Y), linear_coeff_X_eq_ite] at h
   have h' : ∑ k, lin1 (e Y k) j * lin1 (l Y m) k = lin1 (e Y m) j := by
-    simp only [linear_coeff_logarithm_eq_ite, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    simp only [linear_coeff_logarithm_eq_ite, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   rw [h'] at h
   convert h
 
@@ -594,13 +611,13 @@ theorem linear_coeff_formal_law_at_X (m j : Fin dd) :
       MvPowerSeries.coeff (Finsupp.single ((0 : Fin 1), j) 1) (ε m) := by
   unfold PhiAt
   rw [linear_coeff_subst_chain_rule (cc_mapAt hε (cc_exAt Y fun _ => cc_X _))]
-  simp only [linear_coeff_logarithm_eq_ite, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+  simp only [linear_coeff_logarithm_eq_ite, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   rw [exAt_X]
   unfold mapAt
   rw [linear_coeff_subst_chain_rule (A := fun q : Fin 1 × Fin dd => e Y q.2) (fun q => cc_e Y q.2), Finset.sum_eq_single ((0 : Fin 1), j)]
-  · rw [linear_coeff_exponential_eq_ite, if_pos rfl, one_mul, linear_coeff_eq_coeff_single]
+  · rw [linear_coeff_exponential_eq_ite, ite_eq_left rfl, one_mul, linear_coeff_eq_coeff_single]
   · intro q _ hq
-    rw [linear_coeff_exponential_eq_ite, if_neg, zero_mul]
+    rw [linear_coeff_exponential_eq_ite, ite_eq_right, zero_mul]
     intro h
     apply hq
     obtain ⟨q1, q2⟩ := q
@@ -646,8 +663,14 @@ theorem endoLog_holds {C : Type} [Field C] [CharZero C] {V : VF C} {O : Type} [C
 
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ProofRowTieValsE
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.ProofRowTieValsE
+
+noncomputable section
+
+open scoped BigOperators
+open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -836,7 +859,7 @@ theorem kill_self (hs : SelfSep Y p) (o : Orb) (φ : Pt C 1 dd) (hφ : ∀ i, Mv
       rw [← Finset.mul_sum, ← Finset.mul_sum, this]
       split_ifs <;> simp
     rw [Finset.sum_congr rfl fun c'' _ => h8 c'', Finset.sum_ite_eq'] at h7
-    simp only [Finset.mem_univ, if_true] at h7
+    simp only [Finset.mem_univ, ite_true] at h7
     exact (mul_eq_zero.1 h7).resolve_right hne
   rw [hb]
   exact Finset.sum_eq_zero fun c _ => by rw [hb0 c, zero_smul]
@@ -853,10 +876,10 @@ theorem diagG (o : Orb) (r s : Fin 2) (w : WVO (IS I0)) :
   by_cases h : o' = o
   · subst h
     show _ = (if o' = o' then _ else _) • _
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
     exact (hG o').lin r s c
   · show _ = (if o' = o then _ else _) • _
-    rw [if_neg h, zero_smul]
+    rw [ite_eq_right h, zero_smul]
     exact kill_self Y p hs o (γ o r s) ((hG o).endo r s).cc ((hG o).comm r s) ((hG o).img r s) o' c h
 
 theorem diagG' (o : Orb) (r s : Fin 2) (w : WVO (IS I0)) :
@@ -865,10 +888,10 @@ theorem diagG' (o : Orb) (r s : Fin 2) (w : WVO (IS I0)) :
   by_cases h : o' = o
   · subst h
     show _ = (if o' = o' then _ else _) • _
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
     exact (hG o').lin' r s c
   · show _ = (if o' = o then _ else _) • _
-    rw [if_neg h, zero_smul]
+    rw [ite_eq_right h, zero_smul]
     exact kill_self Y p hs o (γ' o r s) ((hG o).endo' r s).cc ((hG o).comm' r s) ((hG o).img' r s) o' c h
 
 theorem GK.mulG (o : Orb) (r s : Fin 2) {κ : WVO (IS I0) → C} (h : GK Y p κ) : GK Y p (lamG Y p o r s * κ) :=
@@ -888,7 +911,7 @@ theorem kCol_eq (col : Fin 2) : kCol Y p col = ∑ s : Orb × Fin 2, lamG Y p s.
   rw [Finset.sum_eq_single (w.1, w.2.1)]
   · simp
   · intro b _ hb
-    rw [if_neg (Ne.symm hb), mul_zero]
+    rw [ite_eq_right (Ne.symm hb), mul_zero]
   · intro h
     exact absurd (Finset.mem_univ _) h
 
@@ -899,13 +922,13 @@ theorem ind_eq (s : Orb × Fin 2) : (ind s : WVO (IS I0) → C) = ∑ r, lamG' Y
   show (if (w.1, w.2.1) = (o, g) then (1 : C) else 0) =
     ∑ r, (if w.1 = o then (p w.1).gm (tyW Y p w + (p w.1).hd) r (1 - g) else 0) * (p w.1).gm (tyW Y p w) r w.2.1
   by_cases h : w.1 = o
-  · simp only [if_pos h]
+  · simp only [ite_eq_left h]
     rw [(p w.1).gm_hyp]
     by_cases hg : w.2.1 = g
-    · rw [if_pos (Prod.ext h hg), if_neg ((fin_two_ne_one_sub g w.2.1).1 hg)]
-    · rw [if_neg fun e => hg (Prod.mk.inj e).2, if_pos (not_not.1 fun e => hg ((fin_two_ne_one_sub g w.2.1).2 e))]
-  · simp only [if_neg h, zero_mul, Finset.sum_const_zero]
-    rw [if_neg fun e => h (Prod.mk.inj e).1]
+    · rw [ite_eq_left (Prod.ext h hg), ite_eq_right ((fin_two_ne_one_sub g w.2.1).1 hg)]
+    · rw [ite_eq_right fun e => hg (Prod.mk.inj e).2, ite_eq_left (not_not.1 fun e => hg ((fin_two_ne_one_sub g w.2.1).2 e))]
+  · simp only [ite_eq_right h, zero_mul, Finset.sum_const_zero]
+    rw [ite_eq_right fun e => h (Prod.mk.inj e).1]
 
 theorem gram_eq (o o' : Orb) (g g' : Fin 2) (μ : WVO (IS I0) → C) :
     ∑ col, lamG' Y p o col g * (lamG Y p o' col g' * (μ * ind (o', g'))) =
@@ -921,21 +944,21 @@ theorem gram_eq (o o' : Orb) (g g' : Fin 2) (μ : WVO (IS I0) → C) :
           ((p w.1).gm (tyW Y p w + (p w.1).hd) col g * (p w.1).gm (tyW Y p w) col g') * (μ w * ind (o', g') w) := by
         intro col
         unfold lamG' lamG
-        rw [if_pos h2, if_pos h1]
+        rw [ite_eq_left h2, ite_eq_left h1]
         ring
       rw [Finset.sum_congr rfl fun col _ => e col, ← Finset.sum_mul, (p w.1).gm_hyp]
       by_cases hg : g = g'
-      · rw [if_pos hg, zero_mul, if_neg fun h => (fin_two_ne_one_sub g g').1 hg.symm (Prod.mk.inj h).2.symm]
+      · rw [ite_eq_left hg, zero_mul, ite_eq_right fun h => (fin_two_ne_one_sub g g').1 hg.symm (Prod.mk.inj h).2.symm]
         rfl
-      · rw [if_neg hg, one_mul, if_pos (Prod.ext ho (not_not.1 fun e => hg ((fin_two_ne_one_sub g g').2 fun e' => e e'.symm).symm))]
+      · rw [ite_eq_right hg, one_mul, ite_eq_left (Prod.ext ho (not_not.1 fun e => hg ((fin_two_ne_one_sub g g').2 fun e' => e e'.symm).symm))]
         rfl
     · have e : ∀ col, lamG' Y p o col g w * (lamG Y p o' col g' w * (μ w * ind (o', g') w)) = 0 := by
         intro col
         unfold lamG'
-        rw [if_neg fun h => ho (h1.symm.trans h), zero_mul]
-      rw [Finset.sum_eq_zero fun col _ => e col, if_neg fun h => ho (Prod.mk.inj h).1]
+        rw [ite_eq_right fun h => ho (h1.symm.trans h), zero_mul]
+      rw [Finset.sum_eq_zero fun col _ => e col, ite_eq_right fun h => ho (Prod.mk.inj h).1]
       rfl
-  · have e : (ind (o', g') : WVO (IS I0) → C) w = 0 := if_neg hw
+  · have e : (ind (o', g') : WVO (IS I0) → C) w = 0 := ite_eq_right hw
     simp only [e, mul_zero, Finset.sum_const_zero]
     split_ifs
     · rw [Pi.mul_apply, e, mul_zero]
@@ -978,16 +1001,16 @@ theorem toAllS_expPtS (o : Orb) (g col : Fin 2) (i : Fin dd) :
       congr 1
       rw [Pi.mul_apply]
       unfold lamG ind
-      rw [if_pos rfl, if_pos rfl, mul_one]
+      rw [ite_eq_left rfl, ite_eq_left rfl, mul_one]
       rfl
     · intro g' _ hg'
       refine Finset.sum_eq_zero fun c _ => ?_
-      have : (ind (o, g) : WVO (IS I0) → C) ⟨o, ⟨g', c⟩⟩ = 0 := if_neg fun h => hg' (Prod.mk.inj h).2
+      have : (ind (o, g) : WVO (IS I0) → C) ⟨o, ⟨g', c⟩⟩ = 0 := ite_eq_right fun h => hg' (Prod.mk.inj h).2
       rw [Pi.mul_apply, this, mul_zero, zero_mul, zero_smul]
     · intro h; exact absurd (Finset.mem_univ _) h
   · intro o' _ ho'
     refine Finset.sum_eq_zero fun x _ => ?_
-    have : (ind (o, g) : WVO (IS I0) → C) ⟨o', x⟩ = 0 := if_neg fun h => ho' (Prod.mk.inj h).1
+    have : (ind (o, g) : WVO (IS I0) → C) ⟨o', x⟩ = 0 := ite_eq_right fun h => ho' (Prod.mk.inj h).1
     rw [Pi.mul_apply, this, mul_zero, zero_mul, zero_smul]
   · intro h; exact absurd (Finset.mem_univ _) h
 

@@ -14,13 +14,11 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.MlabNotMemYset, Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.SubstitutedExponentApplyLabel, Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.OmegaValue
 
--- clump: shared namespace opens
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.MlabNotMemYset
+@[expose] public noncomputable section
 
 
 open MvPolynomial Finset
-
-section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.MlabNotMemYset
-@[expose] public noncomputable section
 
 namespace Formalism.MainNotions.PlaneGram
 
@@ -143,7 +141,11 @@ end Formalism.MainNotions.PlaneGram
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.SubstitutedExponentApplyLabel
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.SubstitutedExponentApplyLabel
+
+noncomputable section
+
+open MvPolynomial Finset
 
 namespace Formalism.MainNotions.PlaneGram
 
@@ -225,8 +227,8 @@ theorem coeff_digitPart_eIn (p : ℕ) {ζ : D.EM} (hζ : D.LabLowE p ζ) (G : Mv
       MvPolynomial (D.ML × Fin D.r) K).coeff (eIn D.outP ζ) = if α = D.collapseExponent p ζ then G.coeff α else 0 := by
     intro α _
     split_ifs with h1 h2 h2
-    · rw [MvPolynomial.coeff_monomial, if_pos ((D.class_iff p hζ α).2 h2).2]
-    · rw [MvPolynomial.coeff_monomial, if_neg]
+    · rw [MvPolynomial.coeff_monomial, ite_eq_left ((D.class_iff p hζ α).2 h2).2]
+    · rw [MvPolynomial.coeff_monomial, ite_eq_right]
       intro h3
       exact h2 ((D.class_iff p hζ α).1 ⟨h1, h3⟩)
     · exact absurd ((D.class_iff p hζ α).2 h2).1 h1
@@ -414,7 +416,7 @@ theorem value_monomial {C0 : ℝ} (hD : DVRHyp v p) (h1 : 1 ≤ C0) (hV : D.Vali
     intro ζ' hb
     have hl := (hζ.good_exponent_same_block D hb).1
     have c1 : A.coeff ζ' = Q0.coeff (eIn D.outP ζ') := by
-      rw [hA, coeff_hcomp, if_pos hb.1]
+      rw [hA, coeff_hcomp, ite_eq_left hb.1]
       conv_lhs => rw [← eOut_add_eIn D.outP ζ', D.output_exponent_same_block hb]
       rw [coeff_monomial_mul, one_mul]
     have c2 : (D.GM F (D.tpE ζ)).coeff (D.collapseExponent p ζ') =
@@ -464,15 +466,19 @@ theorem value_monomial {C0 : ℝ} (hD : DVRHyp v p) (h1 : 1 ≤ C0) (hV : D.Vali
     (vge_sum v _ _ fun ζ' h => hterm ζ' (hs2 ζ' h) _ ?_)
   have := support_monomial_subset h
   rw [Finset.mem_singleton] at this
-  rw [this, coeff_monomial, if_pos rfl]
+  rw [this, coeff_monomial, ite_eq_left rfl]
   exact vge_mono v (by linarith) (vge_one v)
 
 end TwistData
 
 end Formalism.MainNotions.PlaneGram
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.OmegaValue
+
+
+open MvPolynomial Finset
 
 namespace Formalism.MainNotions.PlaneGram
 

@@ -22,8 +22,9 @@ import Aesop.Main
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.ExistsLatticeNormGePow, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.DifferentiableSetIntegralFz, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.LocFin2OfX, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.AnnihilatorDuality, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.PsiVTrPairAddLeft, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.LocFin2
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.ExistsLatticeNormGePow
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.ExistsLatticeNormGePow
 
+noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.SwLocFin.LatticeCovolumeGrowth
 
@@ -318,7 +319,7 @@ theorem convP : ConvP := by
     intro b _
     by_cases hb : nM v b.1 ≤ R₀
     · exact Or.inl hb
-    · push_neg at hb
+    · push Not at hb
       obtain ⟨j, hj1, hj2⟩ := exists_nat_pow_near (x := nM v b.1 / R₀) (y := q) ((one_le_div hR₀).2 hb.le) hq1
       refine Or.inr (Set.mem_iUnion.2 ⟨j, ?_, ?_⟩)
       · rw [mul_comm]; exact (le_div_iff₀ hR₀).1 hj1
@@ -367,6 +368,7 @@ theorem convP : ConvP := by
     exact mul_le_mul_of_nonneg_left (hC b) (hH0 b)
 
 end PositivityTheory.SiegelWeilFormula.SwLocFin
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.DifferentiableSetIntegralFz
@@ -574,8 +576,9 @@ theorem locFin2_of_X (h : LocFinX) : LocFin2 := by
 end PositivityTheory.SiegelWeilFormula.SwLocFin
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.AnnihilatorDuality
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.AnnihilatorDuality
 
+noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.SwLocFin.DualA
 
@@ -598,9 +601,9 @@ theorem setIntegral_char_subgroup {G : Type*} [AddCommGroup G] [MeasurableSpace 
       simp only [Set.indicator]
       by_cases hx : x ∈ Λ
       · have : x + x0 ∈ Λ := Λ.add_mem hx hx0
-        simp only [SetLike.mem_coe, hx, this, if_true, hχ, mul_comm]
+        simp only [SetLike.mem_coe, hx, this, ite_true, hχ, mul_comm]
       · have : x + x0 ∉ Λ := fun h' => hx (by simpa using Λ.sub_mem h' hx0)
-        simp only [SetLike.mem_coe, hx, this, if_false, mul_zero]
+        simp only [SetLike.mem_coe, hx, this, ite_false, mul_zero]
     have key : ∫ x in (Λ : Set G), χ x ∂ν = χ x0 * ∫ x in (Λ : Set G), χ x ∂ν := by
       calc ∫ x in (Λ : Set G), χ x ∂ν = ∫ x, (Λ : Set G).indicator χ x ∂ν := (integral_indicator hΛ).symm
         _ = ∫ x, (Λ : Set G).indicator χ (x + x0) ∂ν := (integral_add_right_eq_self _ x0).symm
@@ -930,9 +933,11 @@ end Cont
 
 end PositivityTheory.SiegelWeilFormula.SwLocFin.DualA
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.PsiVTrPairAddLeft
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.PsiVTrPairAddLeft
 
+noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.SwLocFin.DualA
 
@@ -1009,10 +1014,10 @@ theorem setIntegral_uu (h : Hyp σ M J n ψ v μv νv lam L₁ L₂ Φv g T) (R 
           (fun b => psiV F ψ v (trPair (Fv F v) b.1 (gramR (Fv F v) σ J Y - T.1)))
           (fun b b' => psiV_trPair_add_left ψ _ b b')]
         by_cases hP : ∀ b ∈ Λ, psiV F ψ v (trPair (Fv F v) b.1 (gramR (Fv F v) σ J Y - T.1)) = 1
-        · rw [if_pos hP, Set.indicator_of_mem (show Y ∈ setP σ J ψ v (Λ : Set (HermR (Fv F v) σ n)) T from
+        · rw [ite_eq_left hP, Set.indicator_of_mem (show Y ∈ setP σ J ψ v (Λ : Set (HermR (Fv F v) σ n)) T from
             fun b hb => hP b hb)]
           ring
-        · rw [if_neg hP, Set.indicator_of_notMem (show Y ∉ setP σ J ψ v (Λ : Set (HermR (Fv F v) σ n)) T from
+        · rw [ite_eq_right hP, Set.indicator_of_notMem (show Y ∉ setP σ J ψ v (Λ : Set (HermR (Fv F v) σ n)) T from
             fun h' => hP fun b hb => h' b hb)]
           ring
     _ = ((νv.real (Λ : Set (HermR (Fv F v) σ n)) : ℝ) : ℂ) *
@@ -1074,9 +1079,9 @@ theorem vol_mul_vol_perp (h : Hyp σ M J n ψ v μv νv lam L₁ L₂ Φv g T) (
     rw [e1, setIntegral_char_subgroup νv Λ hΛm (fun x => psiV F ψ v (trPair (Fv F v) x.1 y.1))
       (fun b b' => psiV_trPair_add_left ψ y.1 b b')]
     by_cases hy : ∀ x ∈ Λ, psiV F ψ v (trPair (Fv F v) x.1 y.1) = 1
-    · rw [if_pos hy, Set.indicator_of_mem (show y ∈ perpH σ ψ v (Λ : Set (HermR (Fv F v) σ n)) from
+    · rw [ite_eq_left hy, Set.indicator_of_mem (show y ∈ perpH σ ψ v (Λ : Set (HermR (Fv F v) σ n)) from
         fun b hb => hy b hb)]
-    · rw [if_neg hy, Set.indicator_of_notMem (show y ∉ perpH σ ψ v (Λ : Set (HermR (Fv F v) σ n)) from
+    · rw [ite_eq_right hy, Set.indicator_of_notMem (show y ∉ perpH σ ψ v (Λ : Set (HermR (Fv F v) σ n)) from
         fun h' => hy fun b hb => h' b hb)]
   have hint : Integrable (fun y => ∫ x, Φ0 x * psiV F ψ v (pairHerm (Fv F v) σ n x y) ∂νv) νv := by
     rw [hhat]
@@ -1182,6 +1187,7 @@ theorem dualP : DualP := by
     _ < ε := half_lt_self hε
 
 end PositivityTheory.SiegelWeilFormula.SwLocFin
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalCharacterIntegrals.LocFin2

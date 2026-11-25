@@ -83,21 +83,18 @@ theorem transport {V : Type} [AddCommGroup V] [Module ℂ V] [DecidableEq V] (T 
     rw [map_sub] at h
     simpa using h
 
-alias main := _root_.GlobalTheory.TransportLemma.transport
-
 end GlobalTheory.TransportLemma
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelThetaAdmissibleLattices
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelThetaAdmissibleLattices
 
+noncomputable section
 
 namespace GlobalTheory.TwU.KerMove
 
 open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions Formalism.L2.Ker Formalism.L2.PairingIndexBounds.F Formalism.L2.Th1.H Formalism.L2.PairingIndexBounds.Mv
 open Formalism.L2.KerInert Formalism.L2.KerInert.PullbackComparison Formalism.L2.KerInert.RepComb
 open scoped TensorProduct
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Abs
 

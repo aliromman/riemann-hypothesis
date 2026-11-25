@@ -434,7 +434,8 @@ end Loc
 end GroundTheory.Heights₂.Heights.Kleiman
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.TwistSplitCech
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.TwistSplitCech
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -442,6 +443,7 @@ namespace GroundTheory.Heights₂.Heights.Kleiman
 
 open MvPolynomial Pointwise AddMonoidAlgebra
 
+noncomputable section
 
 universe u w
 
@@ -556,12 +558,12 @@ def Fmap (i : ℕ) (t : Cech.Cochain (fun K : Chart x => ↥(((G.twist (B.pow n)
 theorem Fmap_pos (i : ℕ) (t : Cech.Cochain (fun K : Chart x => ↥(((G.twist (B.pow n)).twist (twistSys S x c)).sub K)) i)
     (J : Cech.Idx (Finset.univ : Finset (Fin (N + 1))) i) (h : J.1.1 ⊆ support x) :
     Fmap η M₀ n c hG hB i t J = ιfun η M₀ n c hG hB (downI J h).1 (t (downI J h)) :=
-  dif_pos h
+  dite_eq_left h
 
 theorem Fmap_neg (i : ℕ) (t : Cech.Cochain (fun K : Chart x => ↥(((G.twist (B.pow n)).twist (twistSys S x c)).sub K)) i)
     (J : Cech.Idx (Finset.univ : Finset (Fin (N + 1))) i) (h : ¬ J.1.1 ⊆ support x) :
     Fmap η M₀ n c hG hB i t J = 0 :=
-  dif_neg h
+  dite_eq_right h
 
 theorem Fmap_add (i : ℕ) (t t' : Cech.Cochain (fun K : Chart x => ↥(((G.twist (B.pow n)).twist (twistSys S x c)).sub K)) i) :
     Fmap η M₀ n c hG hB i (t + t') = Fmap η M₀ n c hG hB i t + Fmap η M₀ n c hG hB i t' := by
@@ -713,8 +715,10 @@ theorem G_bdry (i : ℕ) (s : Cech.Cochain (locSys (MvPolynomial (Fin (r + 1)) S
 
 end Split
 
+end
 
 end GroundTheory.Heights₂.Heights.Kleiman
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PTwistSplit

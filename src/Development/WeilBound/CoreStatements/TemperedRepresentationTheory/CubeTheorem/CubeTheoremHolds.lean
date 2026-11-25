@@ -37,14 +37,13 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAdditiveSwapOfTri
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CubeOfIsLocallyNoetherian, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CubeTheoremOfPerfect, Development.WeilBound.CoreStatements.TemperedRepresentationTheory.CubeTheorem.CubeTheoremHolds
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CubeOfIsLocallyNoetherian
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CubeOfIsLocallyNoetherian
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbDual GlobalTheory.AbLaw GlobalTheory.AbLaw.CubeGen
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CubeModel
 
@@ -69,9 +68,11 @@ theorem prod_pts {T : Over S} (a b c : T ⟶ A) (h : a = 1 ∨ b = 1 ∨ c = 1) 
 
 end GlobalTheory.CubeModel
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CubeTheoremOfPerfect
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CubeTheoremOfPerfect
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.CubePerf
 
@@ -79,7 +80,6 @@ open AlgebraicGeometry CategoryTheory CategoryTheory.Limits MonoidalCategory Car
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct
 open GlobalTheory.ZM GlobalTheory.AbLaw GlobalTheory.AbLaw.CubeGen GlobalTheory.Biadditive GlobalTheory.CubeNoeth GlobalTheory.CubeModel
-attribute [local instance] Over.cartesianMonoidalCategory
 
 variable {S : Scheme.{0}} {A : Over S} [GrpObj A]
 
@@ -182,6 +182,7 @@ theorem cubeTheorem_of_perfAll : GlobalTheory.SpreadingModels.PerfAll → Global
   cube hP hA L hL T a b c
 
 end GlobalTheory.CompanionTheory.CubePerf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.TemperedRepresentationTheory.CubeTheorem.CubeTheoremHolds

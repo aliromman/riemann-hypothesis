@@ -35,10 +35,10 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DvrEigenTangentExtension
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DvrEigenTangentExtension
 open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.EigLin
 
@@ -125,11 +125,12 @@ theorem mem_span_iff : ∀ (V K : Type) [CommRing V] [IsDomain V] [IsDiscreteVal
 
 end GlobalTheory.CompanionTheory.Ar.Flat.EigLin
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DvrSpecializationLieLattice
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DvrSpecializationLieLattice
 open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
@@ -191,9 +192,9 @@ theorem fibAt_lat_eq_stdLat : ∀ (X : Scheme.{0}) (G : Over X) [GrpObj G] (Ω :
 
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiabelianExtensionOverDvr
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
@@ -269,15 +270,15 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiabelianPullbackTangentMap
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiabelianPullbackTangentMap
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 theorem exists_cart_to_model : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (K : Type) [Field K] (y : Sp K ⟶ Xo.XF c) (tK : SAB H (Sp K)) (m : SABMap tK Xo.univ.t (under y)),
@@ -305,6 +306,7 @@ theorem exists_cart_to_model : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
 
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
+end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -313,7 +315,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DvrSpecializationEigenFrame
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint.IntFrameSpan

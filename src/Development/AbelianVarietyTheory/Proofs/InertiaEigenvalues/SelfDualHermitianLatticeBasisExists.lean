@@ -53,8 +53,9 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUnitNorm, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SelfDualHermitianLatticeBasisExists
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUnitNorm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUnitNorm
 
+noncomputable section
 
 namespace GlobalTheory.UnitPairNorm
 
@@ -325,7 +326,7 @@ theorem main_ind (c : E ≃+* E) (hcc : ∀ x, c (c x) = x)
       refine Fin.cases ?_ (fun i => ?_) i <;> refine Fin.cases ?_ (fun j => ?_) j
       · simp [hee]
       · simp only [Fin.cons_zero, Fin.cons_succ]
-        rw [hsym (v' j) e, hv'e, map_zero, if_neg (Fin.succ_ne_zero j).symm]
+        rw [hsym (v' j) e, hv'e, map_zero, ite_eq_right (Fin.succ_ne_zero j).symm]
       · simp [hv'e]
       · simp [hv'o]
     · rw [Fin.range_cons, Submodule.span_insert, hv'sp]
@@ -347,6 +348,7 @@ theorem main : ∀ (K : GlobalTheory.UnitLemma.UQ), (∀ (u : (GlobalTheory.Unit
     L hfg hsp (fun y _ => hdual y)
 
 end GlobalTheory.UnitPairNorm
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SelfDualHermitianLatticeBasisExists

@@ -1179,7 +1179,9 @@ theorem GlobalTheory.PolFan.linearOn_and_isFine_of_linearOn_baseFun (E : Type) [
   · exact isFine_of_additive M hp ((hsplit (fun _ => 1) fun _ => zero_le_one).2 M hM)
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolFanExtensionConeTransfer
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolFanExtensionConeTransfer
+
+noncomputable section
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan
 
@@ -1368,9 +1370,9 @@ def extFun (H : Host E) (q : ℕ) (φ : InvFun (𝓞 E)) : InvFun (𝓞 E) where
   toFun n B := if IsDomT H q n B then φ.toFun n B else (InvFun.minVal (𝓞 E)).toFun n B
   inv n m r hr B := by
     by_cases h : IsDomT H q m B
-    · rw [if_pos ((isDomT_comp_iff hr B).2 h), if_pos h]
+    · rw [ite_eq_left ((isDomT_comp_iff hr B).2 h), ite_eq_left h]
       exact φ.inv n m r hr B
-    · rw [if_neg (mt (isDomT_comp_iff hr B).1 h), if_neg h]
+    · rw [ite_eq_right (mt (isDomT_comp_iff hr B).1 h), ite_eq_right h]
       exact (InvFun.minVal _).inv n m r hr B
   zero B := by
     split_ifs
@@ -1380,10 +1382,10 @@ def extFun (H : Host E) (q : ℕ) (φ : InvFun (𝓞 E)) : InvFun (𝓞 E) where
 variable {φ : InvFun (𝓞 E)}
 
 theorem extFun_of {B : (Fin n → 𝓞 E) → (Fin n → 𝓞 E) → ℝ} (h : IsDomT H q n B) :
-    (extFun H q φ).toFun n B = φ.toFun n B := if_pos h
+    (extFun H q φ).toFun n B = φ.toFun n B := ite_eq_left h
 
 theorem extFun_of_not {B : (Fin n → 𝓞 E) → (Fin n → 𝓞 E) → ℝ} (h : ¬ IsDomT H q n B) :
-    (extFun H q φ).toFun n B = (InvFun.minVal (𝓞 E)).toFun n B := if_neg h
+    (extFun H q φ).toFun n B = (InvFun.minVal (𝓞 E)).toFun n B := ite_eq_right h
 
 end Dom
 
@@ -1609,6 +1611,7 @@ theorem exists_extension : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
   · exact (isCone_extFun_iff hX γ).1 hγ
 
 end GlobalTheory.PolFan.OffDom
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFineInvariantFan

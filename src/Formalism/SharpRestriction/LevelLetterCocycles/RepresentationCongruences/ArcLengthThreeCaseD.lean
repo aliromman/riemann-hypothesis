@@ -84,8 +84,9 @@ theorem arc_length_three_constant_term [NeZero n] [Fintype (K →ₐ[Qp] LL)] [I
 end Formalism.MainNotions.N.FrobeniusPowerSeries
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.IsDistPow
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.IsDistPow
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.FrobeniusPowerSeries
 
@@ -221,7 +222,7 @@ theorem ArcLengthThreeDescent.Kc_le (l b₁ y η : ℕ) [hl : Fact l.Prime] (hy 
   have hl1 : (1 : ℝ) < (l : ℝ) := by exact_mod_cast (by omega : 1 < l)
   have hl0 : 0 < l := by omega
   unfold ArcLengthThreeDescent.Kc
-  rw [if_neg (not_lt.2 hge)]
+  rw [ite_eq_right (not_lt.2 hge)]
   set a := (b₁ + l - 1) / l with ha
   have ha_le : a ≤ y + η := by
     have h2 : a < y + η + 1 := by
@@ -366,9 +367,11 @@ theorem ArcLengthThreeDescent.split [IsDomain O] [IsDiscreteValuationRing O] [Is
 
 end Formalism.MainNotions.N.FrobeniusPowerSeries
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcLengthThreeDescent
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcLengthThreeDescent
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.FrobeniusPowerSeries
 
@@ -486,7 +489,7 @@ theorem arc_length_three_descent [NeZero n] [Fintype (K →ₐ[Qp] LL)] [IsDomai
   have hth2 : size (c - 1) ≤ b + η := hth.2
   have hh : ((arcOf b w S η up size).h : ℕ) = Formalism.MainNotions.TruncatedSeriesCountingBounds.hB b w S η size := rfl
   have hhB : Formalism.MainNotions.TruncatedSeriesCountingBounds.hB b w S η size = b + η + S := by
-    unfold Formalism.MainNotions.TruncatedSeriesCountingBounds.hB; rw [if_pos ⟨c - 1, hth⟩]
+    unfold Formalism.MainNotions.TruncatedSeriesCountingBounds.hB; rw [ite_eq_left ⟨c - 1, hth⟩]
   rw [hh]
   have hp1 : (1 : ℝ) < PD.p := by exact_mod_cast (by omega : 1 < PD.p)
   have hlog0 : 0 ≤ Real.logb PD.p (2 * (Formalism.MainNotions.TruncatedSeriesCountingBounds.hB b w S η size : ℝ)) := by
@@ -499,7 +502,7 @@ theorem arc_length_three_descent [NeZero n] [Fintype (K →ₐ[Qp] LL)] [IsDomai
   have hη0 : (0 : ℝ) ≤ η := Nat.cast_nonneg _
   by_cases hlt : size (c - 1) < PD.p * (size (c - 2) + S)
   · have hK0 : ArcLengthThreeDescent.Kc PD.p (size (c - 1)) (size (c - 2) + S) = 0 := by
-      unfold ArcLengthThreeDescent.Kc; rw [if_pos hlt]
+      unfold ArcLengthThreeDescent.Kc; rw [ite_eq_left hlt]
     have hbd : 0 ≤ bandI PD.p b w S η size Cb := by unfold bandI; split_ifs <;> norm_num
     rw [hK0, Nat.cast_zero]
     exact mul_nonneg (by linarith) hbd
@@ -515,7 +518,7 @@ theorem arc_length_three_descent [NeZero n] [Fintype (K →ₐ[Qp] LL)] [IsDomai
     have hC2 : (size (c - 1) : ℝ) ≤ b + η := by exact_mod_cast hth2
     have hband : bandI PD.p b w S η size Cb = 1 := by
       unfold bandI
-      rw [if_pos]
+      rw [ite_eq_left]
       refine ⟨c - 2, hnth, Or.inl (by rwa [show c - 2 + 1 = c - 1 by ring]), ?_⟩
       have hp0 : (0 : ℝ) < PD.p := by linarith
       have hbl : (0 : ℝ) ≤ (b : ℝ) / PD.p := by positivity
@@ -541,6 +544,7 @@ theorem arc_length_three_descent [NeZero n] [Fintype (K →ₐ[Qp] LL)] [IsDomai
     linarith
 
 end Formalism.MainNotions.N.FrobeniusPowerSeries
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcLengthThreeCaseD

@@ -160,10 +160,11 @@ theorem exists_local_lift : ∀ (N n : ℕ) (hn : n ≤ N) (ν : Fin N → ℕ) 
 end GlobalTheory.CompactHowe
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridRowRealParameterSuccAllPlusLowestWeights
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridRowRealParameterSuccAllPlusLowestWeights
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.S Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum GlobalTheory.Chain GlobalTheory.CompactHowe Matrix
 
+noncomputable section
 
 namespace GlobalTheory.ColParam
 
@@ -462,7 +463,7 @@ theorem colPar : ∀ (D : D7) (j : ℕ) (hj : j < D.R.m) (τ : D.what₂.Tau) (n
   have hν : ∀ (b : Fin (n + (D.R.t + 1))) (h : (b : ℕ) < n), (ν b : ℝ) = z ⟨b, h⟩ + ((b : ℕ) : ℝ) + e - n - s := by
     intro b h
     have : ((ν b : ℕ) : ℤ) = z ⟨b, h⟩ + (b : ℕ) + e - n - s := by
-      simp only [ν, dif_pos h]
+      simp only [ν, dite_eq_left h]
       exact Int.toNat_of_nonneg (hpos ⟨b, h⟩)
     have : ((ν b : ℕ) : ℝ) = ((z ⟨b, h⟩ + (b : ℕ) + e - n - s : ℤ) : ℝ) := by exact_mod_cast this
     rw [this]; push_cast; ring
@@ -493,7 +494,7 @@ theorem colPar : ∀ (D : D7) (j : ℕ) (hj : j < D.R.m) (τ : D.what₂.Tau) (n
   · intro b
     rw [GlobalTheory.LastStepParam.lowK_allPos, hshape b]
     by_cases hb : (b : ℕ) < n
-    · rw [dif_pos hb, hz, hν b hb]
+    · rw [dite_eq_left hb, hz, hν b hb]
       push_cast
       linarith [hpR, htR]
     · have h0 : ν b = 0 := by simp only [ν]; rw [dite_eq_right hb]
@@ -503,11 +504,11 @@ theorem colPar : ∀ (D : D7) (j : ℕ) (hj : j < D.R.m) (τ : D.what₂.Tau) (n
 
 end GlobalTheory.ColParam
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridRowRealParameterSuccAllPlusLowestWeightsStatement
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.S Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum GlobalTheory.Chain GlobalTheory.CompactHowe Matrix
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.gridRowRealParameter_succ_allPlus_lowestWeights : ∀ (D : D7) (j : ℕ) (hj : j < D.R.m) (τ : D.what₂.Tau) (n N : ℕ) (lam : Fin n → ℝ) (ε : Fin n → Bool) (lam' : Fin N → ℝ) (ε' : Fin N → Bool), Formalism.L2.Theta.IsEnum (GlobalTheory.Grid.parXp D j τ) lam ε → Formalism.L2.Theta.IsEnum (GlobalTheory.Grid.parXp D (j + 1) τ) lam' ε' → ε = Formalism.MainNotions.S.allPos n ∧ ε' = Formalism.MainNotions.S.allPos N ∧ ∃ x₁ x₃ : ℤ, (x₁ : ℚ) = -(D.hc τ).e ⟨j, hj⟩ + (n : ℚ) / 2 ∧ (x₃ : ℚ) = -((N : ℚ) / 2 + -(D.hc τ).e ⟨j, hj⟩) ∧ ∃ (hn : n ≤ N) (ν : Fin N → ℕ), Antitone ν ∧ (∀ b : Fin N, n ≤ (b : ℕ) → ν b = 0) ∧ (∀ a, Formalism.QuantumDeterminants.lowK (Formalism.MainNotions.S.allPos n) lam a = -(x₃ : ℝ) + ν (Fin.castLE hn a)) ∧ ∀ b, Formalism.QuantumDeterminants.lowK (Formalism.MainNotions.S.allPos N) lam' b = (x₁ : ℝ) + ν b := by
   first | exact @GlobalTheory.ColParam.colPar

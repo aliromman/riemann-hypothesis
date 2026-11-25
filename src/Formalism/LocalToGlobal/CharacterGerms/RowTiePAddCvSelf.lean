@@ -20,8 +20,9 @@ theorem germIAll_holds : GermIAllSt := fun _ _ _ _ _ _ _ _ Y => germI_holds Y
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePAddCvSelf
+@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePAddCvSelf
 
+noncomputable section
 
 open scoped BigOperators
 open Classical
@@ -39,7 +40,7 @@ theorem coeff_rename_zero {σ τ : Type} [Finite σ] (φ : σ → τ) (F : MvPow
     MvPowerSeries.hasSubst_of_constantCoeff_zero (fun a => by simp)
   rw [MvPowerSeries.coeff_subst hA]
   refine finsum_eq_zero_of_forall_eq_zero fun d => ?_
-  rw [prod_X_rename, MvPowerSeries.coeff_monomial, if_neg, smul_zero]
+  rw [prod_X_rename, MvPowerSeries.coeff_monomial, ite_eq_right, smul_zero]
   intro h
   apply hs
   rw [h, Finsupp.mapDomain_notin_range]
@@ -181,7 +182,7 @@ theorem coeff_inCol_sg (c : Fin 2) (v : Fin 2 × Fin dd → C) (μ : Fin 2 × Fi
       exact hc' hq.2.1.symm
     · intro h
       exact absurd (Finset.mem_univ c) h
-  · push_neg at hr
+  · push Not at hr
     obtain ⟨x0, hx0, hx0c⟩ := hr
     rw [coeff_rename_zero (fun x : Fin dd => (c, x)) _ μ x0 hx0 (fun a ha => hx0c (by rw [← ha]))]
     symm
@@ -191,7 +192,7 @@ theorem coeff_inCol_sg (c : Fin 2) (v : Fin 2 × Fin dd → C) (μ : Fin 2 × Fi
     have hne : (μ.mapDomain (fun x => ((0 : Fin 2), x)) + Finsupp.single ((1 : Fin 2), x) 1 : Fin 2 × (Fin 2 × Fin dd) →₀ ℕ)
         ((0 : Fin 2), x0) ≠ 0 := by
       rw [Finsupp.add_apply, Finsupp.mapDomain_apply_of_injective (fun a b h => (Prod.ext_iff.1 h).2), Finsupp.single_apply,
-        if_neg (by simp)]
+        ite_eq_right (by simp)]
       simpa using hx0
     rw [coeff_rename_zero (fun q : Fin 2 × Fin dd => (q.1, (c, q.2))) _ _ ((0 : Fin 2), x0) hne, mul_zero]
     intro q hq

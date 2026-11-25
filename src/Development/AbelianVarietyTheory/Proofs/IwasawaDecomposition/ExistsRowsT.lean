@@ -506,8 +506,9 @@ end GlobalTheory.Mem.Top.Bl.TieModel
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsEquivFormsTie
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsEquivFormsTie
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Col Formalism.L2.DIV GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Col2.TC GlobalTheory.Mem.R3
 open scoped ComplexOrder Matrix
@@ -532,15 +533,7 @@ abbrev HPm : Matrix (Fin (dimP W Ch sel mu P hX)) (Fin (dimP W Ch sel mu P hX)) 
 theorem ipK_zOf (x y : Fin (dimP W Ch sel mu P hX) → X.K) :
     ipK W Ch sel mu P hX (zOf W Ch sel mu P hX x) (zOf W Ch sel mu P hX y) =
       (csdK W Ch sel mu hX).csum (formK W Ch sel mu P hX x).1 (formK W Ch sel mu P hX y).1 := by
-  have e : ∀ x, (fun c => (zOf W Ch sel mu P hX x).1 ((mtildeKGSD W Ch sel mu).outSec.rep c)) =
-      ((formK W Ch sel mu P hX x).1 : _ → _) := by
-    intro x
-    funext c
-    rw [zOf_val, ← GSD.resOf_apply _ (mtildeKOk W Ch sel mu hX) (mtildeKGSD W Ch sel mu).outSec]
-    show (((resK W Ch sel mu hX) ((resK W Ch sel mu hX).symm (formK W Ch sel mu P hX x))).1 : _ → _) c = _
-    rw [LinearEquiv.apply_symm_apply]
-  unfold ipK GSD.ip GSD.ipOf
-  rw [e, e]
+  apply _root_.GlobalTheory.Mem.CsumForm.ipK_zOf_eq <;> assumption
 
 theorem ipLev_zOf (x y : Fin (dimP W Ch sel mu P hX) → X.K) :
     ipLev W Ch sel mu P hX (zOf W Ch sel mu P hX x) (zOf W Ch sel mu P hX y) =
@@ -570,6 +563,7 @@ variable {B : Base} {px : PreX B.toPre} (I : TC B px)
 end TC
 
 end GlobalTheory.Mem.ColTie
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

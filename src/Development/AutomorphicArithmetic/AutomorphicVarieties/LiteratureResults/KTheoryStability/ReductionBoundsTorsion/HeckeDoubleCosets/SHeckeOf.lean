@@ -514,8 +514,10 @@ end PositivityTheory.KB.AffineStabilizerVanishing
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.HeckeDoubleCosets.Affine
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.HeckeDoubleCosets.Affine
+@[expose] public section
 
+noncomputable section
 
 open NumberField NumberField.InfinitePlace Matrix UpperTheory.V.KT UpperTheory.V.KL
 
@@ -588,7 +590,7 @@ theorem aff_conj {K : Type} [Field K] (n r : ℕ) (i : Fin r) (h : GL (Fin n) K)
     simp only [vecMul, dotProduct, vecMulVec_apply, Pi.zero_apply]
     rw [Finset.sum_eq_single (Fin.natAdd n i)]
     · rw [h2]; ring
-    · intro c _ hc; rw [he, Pi.single_apply, if_neg hc]; ring
+    · intro c _ hc; rw [he, Pi.single_apply, ite_eq_right hc]; ring
     · simp
   have h4 : S *ᵥ e = e := by
     funext a
@@ -742,7 +744,7 @@ theorem aff_blk_top {K : Type} [Field K] (n r : ℕ) (i : Fin r) (h : GL (Fin n)
     have := congrArg Fin.val hh
     simp only [Fin.val_castAdd, Fin.val_natAdd] at this
     omega
-  rw [Matrix.add_apply, vecMulVec_apply, Pi.single_apply, if_neg hne, mul_zero, add_zero, aff_stab_top]
+  rw [Matrix.add_apply, vecMulVec_apply, Pi.single_apply, ite_eq_right hne, mul_zero, add_zero, aff_stab_top]
 
 theorem aff_blk_low {K : Type} [Field K] (n r : ℕ) (i : Fin r) (h : GL (Fin n) K) (y : Fin (n + r) → K)
     (a : Fin r) (b : Fin (n + r)) :
@@ -803,7 +805,7 @@ theorem pStabVan : PStabVan := by
         finSumFinEquiv_symm_apply_castAdd, finSumFinEquiv_symm_apply_natAdd]
       show (f x : Matrix (Fin (n + r)) (Fin (n + r)) (𝓞 L)) (Fin.natAdd n a) (Fin.castAdd r b) = 0
       apply aff_alg_inj
-      rw [map_zero, ← PositivityTheory.KB.AffineStabilizerVanishing.toK_coe, hM, aff_blk_low, Matrix.one_apply, if_neg]
+      rw [map_zero, ← PositivityTheory.KB.AffineStabilizerVanishing.toK_coe, hM, aff_blk_low, Matrix.one_apply, ite_eq_right]
       intro hh
       have := congrArg Fin.val hh
       simp only [Fin.val_castAdd, Fin.val_natAdd] at this
@@ -816,7 +818,7 @@ theorem pStabVan : PStabVan := by
       rw [← PositivityTheory.KB.AffineStabilizerVanishing.toK_coe, hM, aff_blk_low, Matrix.one_apply, Matrix.one_apply]
       by_cases hab : a = b
       · subst hab; simp
-      · rw [if_neg hab, if_neg (fun hh => hab (Fin.ext (by
+      · rw [ite_eq_right hab, ite_eq_right (fun hh => hab (Fin.ext (by
         have := congrArg Fin.val hh; simp only [Fin.val_natAdd] at this; omega))), map_zero]
   have key : ∀ h : H, q * toK L (n + r) (c * stab (𝓞 L) n (n + r) (Nat.le_add_right n r) ((h : Gm L n) * 1)) =
       toK L (n + r) γ • ((toK L (n + r)).comp f h • G⁻¹) := by
@@ -848,6 +850,8 @@ theorem pStabVan : PStabVan := by
 
 end PositivityTheory.KB.AffineStabilizerVanishing
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.HeckeDoubleCosets.KeyGenAlt

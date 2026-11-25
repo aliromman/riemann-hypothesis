@@ -8,8 +8,9 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilStabilizerVolume.TensTop, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilStabilizerVolume.TopoAF
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilStabilizerVolume.TensTop
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilStabilizerVolume.TensTop
 
+noncomputable section
 
 namespace PI.VolStabW
 
@@ -30,14 +31,6 @@ variable [LocallyCompactSpace R] [T2Space R]
 
 end Gen
 
-section CM
-
-variable {F E : Type} [Field F] [Field E] [Algebra F E]
-
-variable (R : Type) [CommRing R] [Algebra F R]
-
-end CM
-
 section Arch
 
 variable (F : Type) [Field F] [NumberField F]
@@ -50,21 +43,8 @@ instance secondCountable_Ainf : SecondCountableTopology (InfiniteAdeleRing F) :=
 
 end Arch
 
-section Glue
-
-variable {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] [Algebra F R]
-
-end Glue
-
-section GlueTop
-
-variable {F E : Type} [Field F] [Field E] [Algebra F E] [FiniteDimensional F E]
-variable (R : Type) [CommRing R] [Algebra F R] [TopologicalSpace R] [IsTopologicalRing R]
-  [LocallyCompactSpace R] [T2Space R]
-
-end GlueTop
-
 end PI.VolStabW
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilStabilizerVolume.TopoAF

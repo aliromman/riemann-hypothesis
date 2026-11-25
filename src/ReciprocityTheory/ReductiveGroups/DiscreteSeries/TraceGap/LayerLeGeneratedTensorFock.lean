@@ -19,12 +19,11 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.MemTensorFockOf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.WKTensFockGenSub, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.LayerLeGeneratedTensorFock
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.WKTensFockGenSub
 
+noncomputable section
 
 open Finset Matrix
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.WKTensFockGenSub
 
 namespace ReciprocityTheory.ChartRestriction.DS.TRGap
 
@@ -47,8 +46,8 @@ theorem ff_cmFock_nonphys {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Kset ε) 
       have : adMat ε kᴴ z (j, b) = 0 := by
         unfold adMat
         by_cases h1 : IsPhys ε z
-        · rw [if_pos h1, if_neg (show ¬IsPhys ε (j, b) from hjb)]
-        · rw [if_neg h1, if_neg hz]
+        · rw [ite_eq_left h1, ite_eq_right (show ¬IsPhys ε (j, b) from hjb)]
+        · rw [ite_eq_right h1, ite_eq_right hz]
       rw [this, star_zero, zero_smul]
     · simp
   have h1 : ff ε kᴴ (ff ε k f) = f := by
@@ -151,8 +150,12 @@ theorem kType_clause {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 
 end ReciprocityTheory.ChartRestriction.DS.TRGap
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.LayerLeGeneratedTensorFock
+
+
+open Finset Matrix
 
 namespace ReciprocityTheory.ChartRestriction.DS.TRGap
 

@@ -945,8 +945,9 @@ end Support
 end UpperTheory.HilbertEisensteinWeightOne.PoissonSummationAdelic
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.PoissonSummationHolds
+@[expose] public section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.PoissonSummationHolds
 
+noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V.Af UpperTheory.V.Base
@@ -1014,10 +1015,10 @@ theorem phi_eq {c : HeightOneSpectrum (𝓞 F) → ℕ} (hc : {w | c w ≠ 0}.Fi
   have h1 := mem_nId_iff hc (pFin F (x 1) - 1)
   simp only [map_sub, map_one] at h1
   by_cases a : (x 0).2 ∈ idealFiniteAdeles (nId c) <;> by_cases b : (x 1).2 - 1 ∈ idealFiniteAdeles (nId c)
-  · rw [if_pos fun w => ⟨h0.2 a w, h1.2 b w⟩, if_pos a, if_pos b, mul_one]
-  · rw [if_neg (fun h => b (h1.1 fun w => (h w).2)), if_neg b, mul_zero]
-  · rw [if_neg (fun h => a (h0.1 fun w => (h w).1)), if_neg a, zero_mul]
-  · rw [if_neg (fun h => a (h0.1 fun w => (h w).1)), if_neg a, zero_mul]
+  · rw [ite_eq_left fun w => ⟨h0.2 a w, h1.2 b w⟩, ite_eq_left a, ite_eq_left b, mul_one]
+  · rw [ite_eq_right (fun h => b (h1.1 fun w => (h w).2)), ite_eq_right b, mul_zero]
+  · rw [ite_eq_right (fun h => a (h0.1 fun w => (h w).1)), ite_eq_right a, zero_mul]
+  · rw [ite_eq_right (fun h => a (h0.1 fun w => (h w).1)), ite_eq_right a, zero_mul]
 
 def cst (c : HeightOneSpectrum (𝓞 F) → ℕ) : ℂ :=
   (-Complex.I) ^ Fintype.card (InfinitePlace F) *
@@ -1044,17 +1045,17 @@ theorem fourier_phi {c : HeightOneSpectrum (𝓞 F) → ℕ} (hc : {w | c w ≠ 
   rw [show pFin F (y 1) = (y 1).2 from rfl]
   by_cases a : (y 0).2 ∈ idealFiniteAdeles (traceDualIdeal F (nId c)) <;>
     by_cases b : (y 1).2 ∈ idealFiniteAdeles (traceDualIdeal F (nId c))
-  · rw [if_pos fun w => ⟨h0.2 a w, h1.2 b w⟩]
-    simp only [Set.indicator_apply, SetLike.mem_coe, a, b, if_true, Pi.one_apply]
+  · rw [ite_eq_left fun w => ⟨h0.2 a w, h1.2 b w⟩]
+    simp only [Set.indicator_apply, SetLike.mem_coe, a, b, ite_true, Pi.one_apply]
     ring
-  · rw [if_neg (fun h => b (h1.1 fun w => (h w).2))]
-    simp only [Set.indicator_apply, SetLike.mem_coe, a, b, if_true, if_false, Pi.one_apply]
+  · rw [ite_eq_right (fun h => b (h1.1 fun w => (h w).2))]
+    simp only [Set.indicator_apply, SetLike.mem_coe, a, b, ite_true, ite_false, Pi.one_apply]
     ring
-  · rw [if_neg (fun h => a (h0.1 fun w => (h w).1))]
-    simp only [Set.indicator_apply, SetLike.mem_coe, a, b, if_true, if_false, Pi.one_apply]
+  · rw [ite_eq_right (fun h => a (h0.1 fun w => (h w).1))]
+    simp only [Set.indicator_apply, SetLike.mem_coe, a, b, ite_true, ite_false, Pi.one_apply]
     ring
-  · rw [if_neg (fun h => a (h0.1 fun w => (h w).1))]
-    simp only [Set.indicator_apply, SetLike.mem_coe, a, b, if_false, Pi.one_apply]
+  · rw [ite_eq_right (fun h => a (h0.1 fun w => (h w).1))]
+    simp only [Set.indicator_apply, SetLike.mem_coe, a, b, ite_false, Pi.one_apply]
     ring
 
 theorem rowA_zero : rowA (0 : Fin 2 → F) = 0 := by
@@ -1114,6 +1115,7 @@ theorem UpperTheory.HilbertEisensteinWeightOne.poisson_summation_holds : SPois :
     change ∑' ξ : Fin 2 → F, Phi c ((fun i ↦ algebraMap F (Ad F) (ξ i)) ᵥ* (h : Matrix (Fin 2) (Fin 2) (Ad F))) = _
     rw [E, tsum_mul_left, absD, Complex.ofReal_inv]
     ring
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

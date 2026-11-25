@@ -11,13 +11,13 @@ import Development.AutomorphicSpectrum.Proofs.GlobalProofs.MemFormsOnOfMemSpan
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.GelfandEigenvalueCasimirScalar, Development.AutomorphicSpectrum.Proofs.GlobalProofs.GelfandEigenvalueCasimirScalarStatement
 
--- clump: shared namespace opens
+section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.GelfandEigenvalueCasimirScalar
+@[expose] public section
+
+noncomputable section
 
 open NumberField Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
 open scoped TensorProduct
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.GelfandEigenvalueCasimirScalar
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Published GlobalTheory.Published.AutFin GlobalTheory.StdPar GlobalTheory.ThK.SmoothLev GlobalTheory.CompanionTheory.Hypotheses₂.ConstFin GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart
 open GlobalTheory.UAut GlobalTheory.AdelicU GlobalTheory.SiegelSet
 
@@ -45,13 +45,13 @@ private theorem commutator_eq_of_glRel {M : Type*} [AddCommGroup M] [Module ℂ 
     congr 1
     · by_cases h' : b = c
       · subst h'
-        rw [if_pos rfl, Matrix.single_mul_single_same, mul_one]
-      · rw [if_neg h']
+        rw [ite_eq_left rfl, Matrix.single_mul_single_same, mul_one]
+      · rw [ite_eq_right h']
         simp [Matrix.single_mul_single_of_ne, h']
     · by_cases h' : d = a
       · subst h'
-        rw [if_pos rfl, Matrix.single_mul_single_same, mul_one]
-      · rw [if_neg h']
+        rw [ite_eq_left rfl, Matrix.single_mul_single_same, mul_one]
+      · rw [ite_eq_right h']
         simp [Matrix.single_mul_single_of_ne, h']
   have key1 : ∀ (Z : Matrix (Fin n) (Fin n) ℂ) (c d : Fin n),
       L Z * L (Matrix.single c d 1) - L (Matrix.single c d 1) * L Z =
@@ -94,10 +94,14 @@ theorem glRel_derEnd_family : ∀ (D : D7) (θ : D.what₂.Tau → (Ainf D.host.
 
 end GlobalTheory.CompanionTheory.DerGlRel
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.GelfandEigenvalueCasimirScalarStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+
+open NumberField Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
+open scoped TensorProduct
 open GlobalTheory.Published GlobalTheory.Published.AutFin GlobalTheory.StdPar GlobalTheory.ThK.SmoothLev GlobalTheory.CompanionTheory.Hypotheses₂.ConstFin GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart
 open GlobalTheory.UAut GlobalTheory.AdelicU GlobalTheory.SiegelSet
 

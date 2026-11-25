@@ -624,13 +624,15 @@ theorem kSub (n : ℕ) (M : Type*) [TopologicalSpace M] [T2Space M]
 end ReciprocityTheory.L2DbarEstimates.F
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.L2DbarEstimates.Localization.LeviZCoordChart
+section -- clump member: ReciprocityTheory.L2DbarEstimates.Localization.LeviZCoordChart
+@[expose] public section
 
 namespace ReciprocityTheory.L2DbarEstimates.F
 
 open MeasureTheory Filter Topology Set
 open scoped ENNReal InnerProductSpace ComplexConjugate ContDiff
 
+noncomputable section
 
 private theorem coe_symm_apply_of_isChart_val {M : Type*} [TopologicalSpace M] (n : ℕ) (z : M → V n)
     (e e' : OpenPartialHomeomorph M (V n)) (he : IsChart n z e) (he' : IsChart n z e')
@@ -733,7 +735,7 @@ private theorem wdb_sum_mul_conj_eq_coord (n : ℕ) (k : Fin n) (p : V n) :
   rw [hF.fderiv]
   simp [bas, PiLp.single_apply]
   simp only [apply_ite (starRingEnd ℂ), map_zero, mul_ite, mul_zero, Complex.conj_I,
-    Finset.sum_add_distrib, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    Finset.sum_add_distrib, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   linear_combination ((starRingEnd ℂ (p.ofLp k) - p.ofLp k) / 2) * Complex.I_sq
 
 theorem leviNormSq (n : ℕ) (M : Type*) [TopologicalSpace M] [T2Space M]
@@ -788,8 +790,10 @@ theorem leviNormSq (n : ℕ) (M : Type*) [TopologicalSpace M] [T2Space M]
       simp [Ne.symm hkj]
     · simp
 
+end
 
 end ReciprocityTheory.L2DbarEstimates.F
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.L2DbarEstimates.Localization.Locality
@@ -1466,13 +1470,15 @@ theorem sbarDbar (n : ℕ) (M : Type*) [TopologicalSpace M] [T2Space M]
 end ReciprocityTheory.L2DbarEstimates.F
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.L2DbarEstimates.Localization.ShellCeilEq
+section -- clump member: ReciprocityTheory.L2DbarEstimates.Localization.ShellCeilEq
+@[expose] public section
 
 namespace ReciprocityTheory.L2DbarEstimates.F
 
 open MeasureTheory Filter Topology Set
 open scoped ENNReal InnerProductSpace ComplexConjugate ContDiff
 
+noncomputable section
 
 lemma shell_mem (a t : ℝ) (ht : a + 1 < t) :
     a + 1 + (⌈t - a - 2⌉₊ : ℝ) < t ∧ t ≤ a + 2 + (⌈t - a - 2⌉₊ : ℝ) := by
@@ -1602,14 +1608,14 @@ theorem shell (n : ℕ) (M : Type*) [TopologicalSpace M] [T2Space M]
         simp only [hg]
         gcongr
         linarith [hχ0 (e x)]
-      · push_neg at hx
+      · push Not at hx
         have hxS : x ∈ S ⌈e x - a - 2⌉₊ := shell_mem a (e x) hx
         refine le_trans ?_ (le_add_left (ENNReal.le_tsum ⌈e x - a - 2⌉₊))
         rw [Set.indicator_of_mem hxS, ← ENNReal.ofReal_mul (Real.exp_pos _).le]
         apply ENNReal.ofReal_le_ofReal
         have hRx : Real.log (1 + C ⌈e x - a - 2⌉₊) + ⌈e x - a - 2⌉₊ ≤ χ (e x) := by
           have := hχR (e x) hx.le
-          simp only [hR, if_pos hx] at this
+          simp only [hR, ite_eq_left hx] at this
           exact this
         simp only [hg]
         rw [show -(ph x + χ (e x) - ψ x) = -(χ (e x)) + (-ph x + ψ x) by ring, Real.exp_add]
@@ -1643,8 +1649,10 @@ theorem shell (n : ℕ) (M : Type*) [TopologicalSpace M] [T2Space M]
         rw [← ENNReal.ofReal_tsum_of_nonneg (fun k => (Real.exp_pos _).le) Real.summable_exp_neg_nat]
         exact ENNReal.ofReal_lt_top
 
+end
 
 end ReciprocityTheory.L2DbarEstimates.F
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.L2DbarEstimates.Localization.TestIneq

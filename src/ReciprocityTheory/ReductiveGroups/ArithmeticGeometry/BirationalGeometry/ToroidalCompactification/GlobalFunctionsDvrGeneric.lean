@@ -116,28 +116,15 @@ theorem appTop_fst_injective [IsDiscreteValuationRing V] {X : Scheme.{0}} (p : X
 end ReciprocityTheory.ChartRestriction.G.Geo.Tor.GlobalFunctionsDvrOpen
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.GlobalFunctionsDvrGeneric
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.GlobalFunctionsDvrGeneric
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 
 namespace ReciprocityTheory.ChartRestriction.G.Geo.Tor.GlobalFunctionsDvrGeneric
 
 open ReciprocityTheory.ChartRestriction.G.Out
-
-theorem powObj_props {S : Scheme.{0}} (G : Over S) [Smooth G.hom] [IsSeparated G.hom] [QuasiCompact G.hom] :
-    ∀ n : ℕ, Smooth (powObj G n).hom ∧ IsSeparated (powObj G n).hom ∧ QuasiCompact (powObj G n).hom := by
-  intro n
-  induction n with
-  | zero =>
-    change Smooth (𝟙 S) ∧ IsSeparated (𝟙 S) ∧ QuasiCompact (𝟙 S)
-    exact ⟨inferInstance, inferInstance, inferInstance⟩
-  | succ n ih =>
-    obtain ⟨hsmooth, hsep, hqc⟩ := ih
-    change Smooth (G ⊗ powObj G n).hom ∧ IsSeparated (G ⊗ powObj G n).hom ∧
-      QuasiCompact (G ⊗ powObj G n).hom
-    rw [Over.tensorObj_hom, pullback.condition]
-    exact ⟨inferInstance, inferInstance, inferInstance⟩
 
 variable {V : Type} [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]
 

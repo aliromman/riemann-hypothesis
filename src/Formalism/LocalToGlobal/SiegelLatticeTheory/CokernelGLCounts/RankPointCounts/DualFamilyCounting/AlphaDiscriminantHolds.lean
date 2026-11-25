@@ -337,10 +337,11 @@ theorem discOnto_of_solve (hU : UDModel) (hS : SolveOnto) : DiscOnto :=
 end Formalism.L2.SG.Pf.discriminantNormShapes
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.EntOfMapEqZero
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.EntOfMapEqZero
 
 open NumberField Matrix
 
+noncomputable section
 
 namespace Formalism.L2.SG.Pf.discriminantNormShapes
 
@@ -413,7 +414,7 @@ private theorem exists_add_conj_sub_one_mem_extP (hK : Formalism.HermitianLattic
     have e2 : b * a - 1 = -c := by linear_combination hbc
     rw [e1, e2, map_neg]
     exact (extP K 𝔭).neg_mem (Ideal.mem_map_of_mem _ hc)
-  · push_neg at h
+  · push Not at h
     have h1 : (1 : 𝓞 K) ∈ extP K 𝔭 := by
       apply BallB.mem_of_unram hK
       intro θ
@@ -568,6 +569,7 @@ theorem exists_solve_quot (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) {
   exact Ideal.Quotient.eq_zero_iff_mem.2 (hZ' i j)
 
 end Formalism.L2.SG.Pf.discriminantNormShapes
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -852,8 +854,9 @@ theorem discOnto_of_shape (hU : UDModel) (hS : NormShape) : DiscOnto := discOnto
 end Formalism.L2.SG.Pf.discriminantNormShapes
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.DiscriminantNormShapesTer
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.DiscriminantNormShapesTer
 
+noncomputable section
 
 namespace Formalism.L2.SG.Pf.discriminantNormShapes
 
@@ -894,7 +897,7 @@ theorem gQ_mul_diagQ {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) (k : ℕ) 
   funext j
   by_cases h : a j ∈ 𝔭
   · simp [h]
-  · rw [dite_eq_right h, if_neg h, sub_zero]
+  · rw [dite_eq_right h, ite_eq_right h, sub_zero]
     exact (exists_inv_unit (K := K) h𝔭 h k).choose_spec
 
 theorem diag_comm {R : Type*} [CommRing R] {n : Type*} [Fintype n] [DecidableEq n] (d d' : n → R) :
@@ -1062,6 +1065,7 @@ theorem discOnto_of_uDModel (hU : UDModel) : DiscOnto :=
   discOnto_of_shape hU norm_shape_holds
 
 end Formalism.L2.SG.Pf.discriminantNormShapes
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.FibreCountingDataFurther

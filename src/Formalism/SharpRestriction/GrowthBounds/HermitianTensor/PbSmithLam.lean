@@ -16,8 +16,10 @@ import Mathlib.Order.Interval.Finset.Box
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.GrowthOfBasic, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.PbSmithLam
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.GrowthOfBasic
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.GrowthOfBasic
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.flipOneThree.Pf
 
@@ -172,7 +174,7 @@ theorem pb_abs {O K V : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing
       rw [← hvec_single k, hBy, hs]
       congr 1
       rw [Finset.sum_eq_single (g.symm i)]
-      · rw [hfg, if_pos rfl]; ring
+      · rw [hfg, ite_eq_left rfl]; ring
       · intro i' _ hi'
         have : S.f i' ≠ i := fun h => hi' (S.f.injective (h.trans (hfg i).symm))
         simp [this]
@@ -230,17 +232,19 @@ theorem pb_abs {O K V : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing
   · rw [LinearMap.map_smul, smul_eq_mul, mul_left_comm, hdiag i a']
     by_cases h : a' = i
     · subst h
-      rw [if_pos rfl, if_pos rfl, ← map_mul, ← map_pow, (hmu a').1]
+      rw [ite_eq_left rfl, ite_eq_left rfl, ← map_mul, ← map_pow, (hmu a').1]
       congr 1
       have hm := (hmu a').2
       obtain ⟨r, hr⟩ : ∃ r, r = 2 * ((mm a' + 1) / 2) - mm a' := ⟨_, rfl⟩
       rw [← hr, ← hπ, ← pow_mul, show 2 * ((mm a' + 1) / 2) = mm a' + r by omega, pow_add]
       rw [show (↑(uu a')⁻¹ : O) * w ^ r * (↑(uu a') * w ^ mm a') =
         (↑(uu a')⁻¹ * ↑(uu a')) * (w ^ mm a' * w ^ r) by ring, Units.inv_mul, one_mul]
-    · rw [if_neg h, if_neg h, map_zero, mul_zero]
+    · rw [ite_eq_right h, ite_eq_right h, map_zero, mul_zero]
 
 end Formalism.MainNotions.flipOneThree.Pf
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.PbSmithLam

@@ -44,8 +44,10 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.MapRestrictIntH, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.MeasurableSetLatHLoc, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.AlgebraMapMemIntE, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.EvalVSingleVSame, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.TrPairGramFE, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.TupSplit, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.SelfDualMeasureLatticeOne, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.TendstoUH, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.FactorCore
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.MapRestrictIntH
+section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.MapRestrictIntH
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.GFac.HS
 
@@ -186,8 +188,8 @@ theorem map_restrict_intH (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) {d : ℕ} 
     fun v => if h : v ∈ S then s ⟨v, h⟩ else Set.univ
   have hA' : ∀ v, MeasurableSet (A' v) := fun v => by
     by_cases h : v ∈ S
-    · simp only [A', dif_pos h]; exact hs _
-    · simp only [A', dif_neg h]; exact MeasurableSet.univ
+    · simp only [A', dite_eq_left h]; exact hs _
+    · simp only [A', dite_eq_right h]; exact MeasurableSet.univ
   have key := coordHerm_box σ hCM b lam hlam lf hlf h1 n S A' hA'
   have hset : (fun y (v : S) => hV σ v.1 y) ⁻¹' Set.univ.pi s ∩ intHR σ b n S =
       ({y | (∀ v ∈ S, hermV σ v y ∈ A' v) ∧ ∀ v, v ∉ S → hermV σ v y ∈ latH σ b v n} : Set (HermR (Af F) σ n)) := by
@@ -195,15 +197,17 @@ theorem map_restrict_intH (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) {d : ℕ} 
     change (∀ v : S, v ∈ Set.univ → hV σ v.1 y ∈ s v) ∧ (∀ v, v ∉ S → hV σ v y ∈ (latH σ b v n : Set (HermR (Fv F v) σ n))) ↔
       (∀ v ∈ S, hV σ v y ∈ A' v) ∧ ∀ v, v ∉ S → hV σ v y ∈ (latH σ b v n : Set (HermR (Fv F v) σ n))
     refine and_congr ⟨fun h v hv => ?_, fun h v _ => ?_⟩ Iff.rfl
-    · simpa only [A', dif_pos hv] using h ⟨v, hv⟩ (Set.mem_univ _)
+    · simpa only [A', dite_eq_left hv] using h ⟨v, hv⟩ (Set.mem_univ _)
     · have := h v.1 v.2
-      simpa only [A', dif_pos v.2] using this
+      simpa only [A', dite_eq_left v.2] using this
   rw [hset, key, ← Finset.prod_coe_sort S]
   refine Finset.prod_congr rfl fun v _ => ?_
-  simp only [A', dif_pos v.2]
+  simp only [A', dite_eq_left v.2]
 
 end PositivityTheory.SiegelWeilFormula.GFac.HS
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.MeasurableSetLatHLoc
@@ -551,8 +555,10 @@ end PositivityTheory.SiegelWeilFormula.GFac
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.EvalVSingleVSame
+section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.EvalVSingleVSame
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.GFac
 
@@ -616,12 +622,12 @@ theorem psi_split (ψ : AddChar (AF F) ℂ) (hψ : IsCharAF F ψ) :
 
     rw [hr, map_sub, map_sum]
     by_cases hv : v ∈ S
-    · rw [if_pos hv, Finset.sum_eq_single v]
+    · rw [ite_eq_left hv, Finset.sum_eq_single v]
       · rw [evalV_singleV_same, sub_self]
       · intro w _ hw
         exact evalV_singleV_ne (Ne.symm hw) _
       · intro h; exact absurd hv h
-    · rw [if_neg hv, Finset.sum_eq_zero, sub_zero]
+    · rw [ite_eq_right hv, Finset.sum_eq_zero, sub_zero]
       intro w hw
       exact evalV_singleV_ne (by rintro rfl; exact hv hw) _
   have hmem : algebraMap F (Af F) ξ * r ∈ GroundTheory.Global.finiteInvDifferent F := by
@@ -629,9 +635,9 @@ theorem psi_split (ψ : AddChar (AF F) ℂ) (hψ : IsCharAF F ψ) :
     have e1 : (algebraMap F (Af F) ξ * r) v = algebraMap F (Fv F v) ξ * evalV F v r := rfl
     rw [e1, hrv v]
     by_cases hv : v ∈ S
-    · rw [if_pos hv, mul_zero]
+    · rw [ite_eq_left hv, mul_zero]
       exact zero_mem _
-    · rw [if_neg hv]
+    · rw [ite_eq_right hv]
       have hξv : algebraMap F (Fv F v) ξ ∈ v.adicCompletionIntegers F := by
         by_contra h
         exact hv (hS (hfin.mem_toFinset.2 h))
@@ -654,6 +660,8 @@ theorem psi_split (ψ : AddChar (AF F) ℂ) (hψ : IsCharAF F ψ) :
 
 end PositivityTheory.SiegelWeilFormula.GFac
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.TrPairGramFE
@@ -758,8 +766,10 @@ end PositivityTheory.SiegelWeilFormula.GFac
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.TupSplit
+section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.TupSplit
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.GFac
 
@@ -839,19 +849,19 @@ theorem tup_split (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) (ψ : AddChar (AF 
       fun v => if h : v ∈ S then s ⟨v, h⟩ else Set.univ
     have hA' : ∀ v, MeasurableSet (A' v) := fun v => by
       by_cases h : v ∈ S
-      · simp only [A', dif_pos h]; exact hs _
-      · simp only [A', dif_neg h]; exact MeasurableSet.univ
+      · simp only [A', dite_eq_left h]; exact hs _
+      · simp only [A', dite_eq_right h]; exact MeasurableSet.univ
     have key := GlobalTheory.CompanionTheory.SW.WBox.coordW_box F E σ hCM d bs lam hlam lf hlf h1 n M S A' hA'
     have hset : ρ ⁻¹' Set.univ.pi s ∩ A = {X | (∀ v ∈ S, projV v X ∈ A' v) ∧ ∀ v, v ∉ S → projV v X ∈ latV bs v} := by
       ext X
       simp only [Set.mem_inter_iff, Set.mem_preimage, Set.mem_pi, Set.mem_univ, forall_true_left, hA, Set.mem_setOf_eq]
       refine and_congr_left fun _ => ⟨fun h v hv => ?_, fun h v => ?_⟩
-      · simpa only [A', dif_pos hv] using h ⟨v, hv⟩
+      · simpa only [A', dite_eq_left hv] using h ⟨v, hv⟩
       · have := h v.1 v.2
-        simpa only [A', dif_pos v.2] using this
+        simpa only [A', dite_eq_left v.2] using this
     rw [hset, key, ← Finset.prod_coe_sort S]
     refine Finset.prod_congr rfl fun v _ => ?_
-    simp only [A', dif_pos v.2]
+    simp only [A', dite_eq_left v.2]
 
   have hgc : ∀ v : S, AEStronglyMeasurable (g v.1) (GlobalTheory.CompanionTheory.SW.coordW (Fv F v.1) bs (lam v.1) n M) := by
     intro v
@@ -924,10 +934,14 @@ theorem tup_split (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) (ψ : AddChar (AF 
 
 end PositivityTheory.SiegelWeilFormula.GFac
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.SelfDualMeasureLatticeOne
+section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.SelfDualMeasureLatticeOne
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.GFac
 
@@ -1125,7 +1139,7 @@ theorem jt_split (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) (M n d : ℕ) (J : 
       ring
     · rw [Set.indicator_of_notMem hY]
       have hY' : ¬ ∀ v, v ∉ S → projV v (projFin Y) ∈ latV bs v := hY
-      push_neg at hY'
+      push Not at hY'
       obtain ⟨v, hvS, hYv⟩ := hY'
       have hsupp : (Function.mulSupport fun w => Φv w (projV w (projFin Y))).Finite := by
         refine (hfinp.union (Filter.eventually_cofinite.1 (hlat (projFin Y)))).subset ?_
@@ -1199,6 +1213,8 @@ theorem whI_split (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) (M n d : ℕ) (J :
 
 end PositivityTheory.SiegelWeilFormula.GFac
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerGlobalFactors.TendstoUH

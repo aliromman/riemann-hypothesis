@@ -39,8 +39,9 @@ def SubgroupFreenessStatement : Prop :=
 end ReciprocityTheory.PGsh.L2
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.DualLattices.HasColengthEqPowMulPow
+@[expose] public section -- clump member: ReciprocityTheory.DualLattices.HasColengthEqPowMulPow
 
+noncomputable section
 
 open Matrix Finset
 
@@ -150,7 +151,7 @@ theorem hasColength_eq_pow_mul_pow (hv : v.Integers R) (AA : HopfOrder (C := C) 
       simp only [Fintype.sum_prod_type, Matrix.blockDiagonal_apply, Matrix.kroneckerMap_apply,
         Matrix.one_apply, ite_mul, zero_mul, mul_ite, mul_zero, one_mul]
       conv_rhs => rw [Finset.sum_eq_single j (fun b _ hb => by simp [hb]) (by simp)]
-      simp only [if_true, Finset.sum_ite_eq, Finset.mem_univ]
+      simp only [ite_true, Finset.sum_ite_eq, Finset.mem_univ]
       rw [mul_comm]
       rfl
     have hq : ∀ q : N ⧸ K, v (β * (h3mm K β f q.out)ᵀ).det = v β.det := by
@@ -165,6 +166,7 @@ theorem hasColength_eq_pow_mul_pow (hv : v.Integers R) (AA : HopfOrder (C := C) 
   rw [h1, ← h2, hdetΦ, hK]
 
 end ReciprocityTheory.PGsh.L2
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: ReciprocityTheory.DualLattices.ImportsBis

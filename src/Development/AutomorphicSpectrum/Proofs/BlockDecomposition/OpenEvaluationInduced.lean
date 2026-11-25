@@ -23,7 +23,7 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinvariantUnipotentCharacterTrivial, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralMulVecChangeModulus, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsOpenRightInvarianceOrbitCoefficient, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousOnRowM, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusCharactersProductOne, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OpenCellDoubleCosetUniqueness, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SupportCompactModParabolicOffClosed, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedCoinvariantLeviAction, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentFactorizationCharacterTrivial, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeylConjParabolicProj, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OpenEvaluationInduced
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
 open scoped TensorProduct
@@ -180,7 +180,15 @@ end GlobalTheory.CompanionTheory.BZPhiPG
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousOnRowM
+end -- clump: shared namespace opens
+
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousOnRowM
+@[expose] public section
+
+noncomputable section
+
+open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
+open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.BZPhiPG.Chart
 
@@ -225,7 +233,7 @@ def rowB {ι : Type} [Fintype ι] [DecidableEq ι] (ρ : ι → k) (c j : ι) : 
 
 theorem rowB_val {ι : Type} [Fintype ι] [DecidableEq ι] (ρ : ι → k) (c j : ι) (hc : ρ c ≠ 0) :
     (rowB ρ c j).val = rowM ρ c j := by
-  rw [rowB, dif_pos (rowM_det_ne ρ c j hc)]
+  rw [rowB, dite_eq_left (rowM_det_ne ρ c j hc)]
   rfl
 
 end Alg
@@ -348,7 +356,7 @@ theorem chart :
   classical
   intro k _ _ _ _ i t p₀ h₀
   have hp' : ¬ _ := fun h => h₀ ((Cl_iff i t p₀).2 h)
-  push_neg at hp'
+  push Not at hp'
   obtain ⟨c, hcs, hc⟩ := hp'
   have hj : (piPerm i t (Fin.last ((i + 1) + t))).val < i + 1 := by rw [piPerm_last_val]; omega
   set j := piPerm i t (Fin.last ((i + 1) + t)) with hjdef
@@ -388,17 +396,24 @@ theorem chart :
     intro p hp
     obtain ⟨hM, -⟩ := key p hp
     show ((μ p : Mir k ((i + 1) + t)) : GL _ k) = W p
-    simp only [μ, dif_pos hM]
+    simp only [μ, dite_eq_left hM]
   · intro p hp
     obtain ⟨hM, h, hh, d, e⟩ := key p hp
     refine ⟨h, hh, d, ?_⟩
-    have hμ : μ p = ⟨W p, hM⟩ := dif_pos hM
+    have hμ : μ p = ⟨W p, hM⟩ := dite_eq_left hM
     rw [hμ]
     exact e
 
 end GlobalTheory.CompanionTheory.BZPhiPG.Chart
 
+end
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
+open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusCharactersProductOne
 

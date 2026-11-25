@@ -193,13 +193,12 @@ theorem fund_index {V : Type} [AddCommGroup V] [MeasurableSpace V] [MeasurableAd
 end Formalism.L2.SG.NGCut.SplitEmbedding
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IdealCovol
 
+noncomputable section
 
 open scoped Classical Pointwise
 open MeasureTheory NumberField NumberField.mixedEmbedding
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IdealCovol
 
 namespace Formalism.L2.SG.NGCut.SplitEmbedding
 
@@ -219,11 +218,11 @@ theorem idealCovol (K : Type) [Field K] [NumberField K] [IsEmpty {w : InfinitePl
     intro a; funext i
     simp only [phiMap, mixedEmbedding_apply_isComplex]
     by_cases hi : cj i
-    · rw [if_pos hi]
+    · rw [ite_eq_left hi]
       rcases hφ i with h | h
       · exact absurd h hi
       · rw [h, ComplexEmbedding.conjugate_coe_eq]
-    · rw [if_neg hi]
+    · rw [ite_eq_right hi]
       have : φ i = (σ i).1.embedding := not_not.1 hi
       rw [this]
   set emb : K →+ mixedSpace K := (mixedEmbedding K).toAddMonoidHom
@@ -311,8 +310,13 @@ theorem idealCovol (K : Type) [Field K] [NumberField K] [IsEmpty {w : InfinitePl
 
 end Formalism.L2.SG.NGCut.SplitEmbedding
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.MeasurablePhiInv
+
+
+open scoped Classical Pointwise
+open MeasureTheory NumberField NumberField.mixedEmbedding
 
 namespace Formalism.L2.SG.NGCut.SplitEmbedding
 

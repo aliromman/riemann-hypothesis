@@ -87,8 +87,9 @@ def nEq (hinv : X0⁻¹ * X0 = 1) (hxs : ∀ b, InW X (xs b)) (hM : M + Mᴴ = -
 end Formalism.L2.SG.Pf.NcReal.JX.NOf.Ex
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.InvMulOfUnitri
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.InvMulOfUnitri
 
+noncomputable section
 
 open NumberField Formalism.BasicNotions Matrix
 open scoped BigOperators
@@ -148,10 +149,10 @@ theorem dictEx_holds : DictEx := by
           have : (i : ℕ) < j + 1 := hi
           exact Fin.le_def.2 (by omega)
         rcases hbi.lt_or_eq with hlt | heq
-        · rw [h0 b i hlt, if_neg (ne_of_gt hlt), sub_zero, zero_smul]
+        · rw [h0 b i hlt, ite_eq_right (ne_of_gt hlt), sub_zero, zero_smul]
           exact Submodule.zero_mem _
         · subst heq
-          rw [h1, if_pos rfl, sub_self, zero_smul]
+          rw [h1, ite_eq_left rfl, sub_self, zero_smul]
           exact Submodule.zero_mem _
     · simp
     · intro a b _ _ ha hb
@@ -233,6 +234,7 @@ theorem dictEx_holds : DictEx := by
     rw [hXq, hA, ← Matrix.mul_assoc, hinv, Matrix.one_mul]
 
 end Formalism.L2.SG.Pf.NcReal.JX.NOf.Ex
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -933,13 +935,12 @@ theorem nofib_of_fibQ (hF : FibQ) : NOfib := by
 end Formalism.L2.SG.Pf.NcReal.JX.NOf
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.MemClRow
 
+noncomputable section
 
 open scoped Classical
 open MeasureTheory NumberField Formalism.BasicNotions Matrix
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.MemClRow
 
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
 
@@ -999,34 +1000,18 @@ theorem im_inj {t t' : D.host.E} (ht : D.host.conj t = -t) (ht' : D.host.conj t'
   exact sub_eq_zero.mp ((map_eq_zero_iff _ (RingHom.injective _)).mp h0)
 
 theorem aaLb_inW {b : Fin D.R.rS} {y : (VS D).V} (hy : y ∈ aaLb X b) : InW X y := by
-  have hL : ∀ l ∈ X.Lb, InW X l := by
-    intro l hl
-    have hp := Alg.pW_inW (X := X) l
-    have he : pW X l = l := by
-      have h1 := Level.prV_Lb (X := X) l hl
-      rw [Level.prV_apply] at h1
-      simpa only [pW] using h1
-    rwa [he] at hp
-  simp only [aaLb, SetLike.mem_coe] at hy
-  induction hy using Submodule.span_induction with
-  | mem x hx =>
-    obtain ⟨c, -, l, hl, rfl⟩ := hx
-    intro d
-    exact ⟨by rw [map_smul, ((hL l hl) d).1, smul_zero], by rw [map_smul, ((hL l hl) d).2, smul_zero]⟩
-  | zero => intro d; exact ⟨map_zero _, map_zero _⟩
-  | add x z _ _ hx hz =>
-    intro d
-    exact ⟨by rw [map_add (f := _), (hx d).1, (hz d).1, add_zero], by rw [map_add (f := _), (hx d).2, (hz d).2, add_zero]⟩
-  | smul o x _ hx =>
-    intro d
-    refine ⟨?_, ?_⟩
-    · rw [← algebraMap_smul D.host.E o x, map_smul, (hx d).1, smul_zero]
-    · rw [← algebraMap_smul D.host.E o x, map_smul, (hx d).2, smul_zero]
+  apply _root_.Formalism.L2.SG.Pf.NcReal.JX.NOf.Onto.aaLb_inW <;> assumption
 
 end Formalism.L2.SG.Pf.NcReal.JX.NOf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.StarEqConj
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.StarEqConj
+
+noncomputable section
+
+open scoped Classical
+open MeasureTheory NumberField Formalism.BasicNotions Matrix
 
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
 
@@ -1039,10 +1024,7 @@ theorem star_eq_conj' (t : D.host.E) : star t = D.host.conj t := by
   rw [Formalism.BasicNotions.Examples₂.emb_star, Formalism.BasicNotions.Examples₂.emb_conj]
 
 theorem theta_spec : IsIntegral ℤ (theta D) ∧ theta D + D.host.conj (theta D) = 1 := by
-  have h := thetaEx_holds D
-  unfold theta
-  rw [dite_eq_left h]
-  exact h.choose_spec
+  apply _root_.Formalism.L2.SG.Pf.NcReal.JX.NOf.Onto.theta_spec <;> assumption
 
 theorem entry_rel {X0 : Matrix (Fin D.R.rS) (Fin D.R.rS) D.host.E} {xs : Fin D.R.rS → (VS D).V}
     {M : Matrix (Fin D.R.rS) (Fin D.R.rS) D.host.E} (hok : DataOK X X0 xs M) (b a : Fin D.R.rS) :
@@ -1111,8 +1093,14 @@ theorem imblk {X0 : Matrix (Fin D.R.rS) (Fin D.R.rS) D.host.E} {xs : Fin D.R.rS 
 
 end Formalism.L2.SG.Pf.NcReal.JX.NOf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.ThetaIntMem
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.ThetaIntMem
+
+noncomputable section
+
+open scoped Classical
+open MeasureTheory NumberField Formalism.BasicNotions Matrix
 
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
 
@@ -1132,10 +1120,7 @@ theorem theta_int_mem {I : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.h
     exact (I : Submodule (𝓞 D.host.E) D.host.E).zero_mem
 
 theorem inW_sub {X : HidaSetting D} {x y : (VS D).V} (hx : InW X x) (hy : InW X y) : InW X (x - y) := by
-  intro c
-  obtain ⟨h1, h2⟩ := hx c
-  obtain ⟨h3, h4⟩ := hy c
-  exact ⟨by rw [map_sub, h1, h3, sub_zero], by rw [map_sub, h2, h4, sub_zero]⟩
+  apply _root_.Formalism.L2.SG.Pf.NcReal.JX.NOf.Ex.inW_sub <;> assumption
 
 theorem xblk {X : HidaSetting D} (u : D.what₂.Word) (X0 : Matrix (Fin D.R.rS) (Fin D.R.rS) D.host.E)
     (xs : Fin D.R.rS → (VS D).V) (M : Matrix (Fin D.R.rS) (Fin D.R.rS) D.host.E)
@@ -1227,8 +1212,7 @@ theorem fibQ_holds : FibQ := by
 
 end Formalism.L2.SG.Pf.NcReal.JX.NOf
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.NOfibFibC
 

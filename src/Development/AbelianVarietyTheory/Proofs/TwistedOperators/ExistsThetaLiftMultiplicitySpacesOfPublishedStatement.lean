@@ -106,13 +106,13 @@ theorem _root_.GlobalTheory.T.thetaLift_lowerTower_vanishing : GlobalTheory.Publ
   first | exact @GlobalTheory.LowVanishObj.lowVanish_obj
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaChainLiftsAreCuspForms
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaChainLiftsAreCuspForms
+@[expose] public section
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum MeasureTheory NumberField Matrix
 open GlobalTheory.IndefiniteRowSideFullHecke.AdjointIsotropicDecomposition
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.LiftCuspObj
 
@@ -264,6 +264,8 @@ theorem liftCusp : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.P
 
 end GlobalTheory.LiftCuspObj
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaChainLiftsAreCuspFormsStatement
@@ -274,8 +276,10 @@ theorem _root_.GlobalTheory.T.thetaChainLifts_areCuspForms : GlobalTheory.Publis
   first | exact @GlobalTheory.LiftCuspObj.liftCusp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsThetaLiftMultiplicitySpacesOfHyp
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsThetaLiftMultiplicitySpacesOfHyp
+@[expose] public section
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
 open Matrix MeasureTheory GlobalTheory.Chain GlobalTheory.Chain.RealIt
@@ -283,8 +287,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.KTypeExtension (kFin KVec KMap maxC
 open scoped TensorProduct InnerProductSpace Classical
 
 namespace GlobalTheory.Chain.IoLift
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators GlobalTheory.IndefiniteRowSideFullHecke.BarMatrix GlobalTheory.PointAtPlaceHom
 
@@ -434,6 +436,8 @@ theorem ioPair_onObjects : GlobalTheory.Published.DiscreteSeriesCover → Global
 
 end GlobalTheory.Chain.IoLift
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsThetaLiftMultiplicitySpacesOfPublishedStatement

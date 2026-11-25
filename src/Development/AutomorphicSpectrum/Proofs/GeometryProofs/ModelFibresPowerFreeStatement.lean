@@ -277,7 +277,6 @@ theorem _root_.GlobalTheory.T.geometric_power_free_functorial : ∀ (E : Type) [
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CgUnif
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace PositivityTheory.HtPt.Cg
 
@@ -329,7 +328,6 @@ end PositivityTheory.HtPt.Cg
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.PelUniformisedGeometricFree
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompanionTheory.Ar.Unif
 
@@ -340,15 +338,14 @@ end GlobalTheory.CompanionTheory.Ar.Unif
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.PelUniformisedGeometricFreeStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.pel_uniformised_geometric_free : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (t : SAB H (Sp R)) (_ : PELUnif (IsLocalRing.maximalIdeal R) t), GeomPF t (spMap (IsLocalRing.residue R)) := by
   first | exact @GlobalTheory.CompanionTheory.Ar.Unif.geomPF_closedPoint
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ModelFibresPowerFree
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ModelFibresPowerFree
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.ModelFib
 
@@ -592,9 +589,9 @@ theorem model_fibPF : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
 
 end GlobalTheory.CompanionTheory.Ar.ModelFib
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ModelFibresPowerFreeStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.model_fibres_power_free : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (O : Type) [CommRing O] [IsNoetherianRing O] (β : O →+* c.F) (Y : Model Xo c β), Dense (Set.range Y.j) → Y.SplitFibres → Y.N3 → ∀ (p : ℕ), p.Prime → ∀ z : Y.X, (p : Y.X.residueField z) = 0 → FibPF Y.t z := by
   first | exact @GlobalTheory.CompanionTheory.Ar.ModelFib.model_fibPF

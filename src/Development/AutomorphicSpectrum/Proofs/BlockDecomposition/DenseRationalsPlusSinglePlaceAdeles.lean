@@ -25,8 +25,9 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianPlaneStrongApprox, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsSupported, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeakApproximationIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DenseRationalsPlusSinglePlaceAdeles
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianPlaneStrongApprox
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianPlaneStrongApprox
 
+noncomputable section
 
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes IsDedekindDomain NumberField GlobalTheory.Published
 open scoped TensorProduct Quaternion
@@ -44,39 +45,8 @@ variable {F}
 
 end Places
 
-section Quat
-
-variable {F : Type} [Field F]
-
-variable {d β : F} {R : Type} [CommRing R] [Algebra F R]
-
-section Top
-
-variable [TopologicalSpace R]
-
-end Top
-
-end Quat
-
-section QuatAlg
-
-variable {F : Type} [Field F] {d β : F} {R : Type} [CommRing R] [Algebra F R]
-
-end QuatAlg
-
-section Adelic
-
-variable {F : Type} [Field F] [NumberField F] {d β : F}
-
-end Adelic
-
-section Two
-
-variable {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E]
-
-end Two
-
 end GlobalTheory.CompanionTheory.PlaneSA
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsSupported
@@ -112,8 +82,9 @@ theorem UpperTheory.Reformulated.B.Qo8.exists_supported :
       (p.isMaximal.eq_of_le v.isPrime.ne_top hle').symm)
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeakApproximationIntegral
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeakApproximationIntegral
 
+noncomputable section
 
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes IsDedekindDomain NumberField GlobalTheory.Published GlobalTheory.CompanionTheory.PlaneSA Topology NumberField.mixedEmbedding
 open scoped NNReal
@@ -314,8 +285,8 @@ theorem exists_approx_core (s : Pl F) (T₁ : Finset (InfinitePlace F))
   obtain ⟨r, hr, hball⟩ := exists_radius (F := F) cI
     (fun w => if w ∈ T₁ then OI w else Set.univ) (fun w => by
       by_cases h : w ∈ T₁
-      · simpa only [if_pos h] using hOI w h
-      · simp only [if_neg h]
+      · simpa only [ite_eq_left h] using hOI w h
+      · simp only [ite_eq_right h]
         exact Filter.univ_mem)
 
   obtain ⟨d, hd0, hd⟩ := exists_scale (F := F) T₂
@@ -365,7 +336,7 @@ theorem exists_approx_core (s : Pl F) (T₁ : Finset (InfinitePlace F))
         _ < r / R * R := mul_lt_mul_of_pos_right h1 hR
         _ = r := by field_simp
     have := hball w _ hlt
-    simp only [if_pos hw] at this
+    simp only [ite_eq_left hw] at this
     rw [hcompI]
     exact this
   · obtain ⟨o, ho, heq⟩ := hOv v (h₂ v hv)
@@ -376,6 +347,7 @@ theorem exists_approx_core (s : Pl F) (T₁ : Finset (InfinitePlace F))
     exact neg_mem ((hd v o ho).2 hvT)
 
 end GlobalTheory.CompanionTheory.PlaneSA.Additive
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DenseRationalsPlusSinglePlaceAdeles

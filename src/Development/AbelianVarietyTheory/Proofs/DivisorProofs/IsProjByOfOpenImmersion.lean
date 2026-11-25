@@ -938,8 +938,9 @@ theorem GlobalTheory.AmpleGen.nv_mix_pair_of_nv : ∀ (K : Type) [Field K] [IsAl
 end Target
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.PrimitiveGermFrames
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.PrimitiveGermFrames
 
+noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.PrimitiveGermFrames
 
@@ -948,23 +949,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 variable {X₀ : Scheme.{0}} {S : Type} [CommRing S]
 
-section Group
-
-variable (G : Over X₀) [GrpObj G] [IsCommMonObj G]
-
-variable (x : Sp S ⟶ X₀) {d : ℕ}
-
-
-variable {G x}
-
-end Group
-
-section Germ
-
-variable {G : Over X₀} [GrpObj G] {x : Sp S ⟶ X₀} {d : ℕ}
-
-end Germ
-
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
 abbrev PrimIso (t : SAB H X₀) : Type :=
@@ -972,9 +956,11 @@ abbrev PrimIso (t : SAB H X₀) : Type :=
 
 end GlobalTheory.IndefiniteRowSideFullHecke.PrimitiveGermFrames
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsGermGIffExistsFrame
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsGermGIffExistsFrame
 
+noncomputable section
 
 namespace GlobalTheory.GermSectionCompare
 
@@ -1071,25 +1057,8 @@ theorem isGen_divEquiv (φ : K → (X ⟶ X)) (ε : K → ℤ) (w : LB.Iso L (LB
 
 end General
 
-section Jets
-
-variable {S : Type} [CommRing S] {d : ℕ}
-
-end Jets
-
-section Compare
-
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {X₀ : Scheme.{0}} (t : SAB H X₀)
-
-variable {S : Type} [CommRing S] (x : Sp S ⟶ X₀) {d : ℕ}
-
-variable {t x}
-
-variable {j : JetPts t.G x d} (act : 𝓞 E → Germ.Pt S 1 d) (e : FrameFam t.G x t.PP.L j) (w : PrimIso t)
-
-end Compare
-
 end GlobalTheory.GermSectionCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechNonvanishingLineBundleInvMixOneZero
@@ -1328,12 +1297,13 @@ theorem ampleVanishing : GlobalTheory.Published.AmpleVanishing := by
 end GlobalTheory.AmpleGen
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FirstCohomologyVanishesOfIsRelAcyclic
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FirstCohomologyVanishesOfIsRelAcyclic
 
 open CategoryTheory AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G.Semi
 open GlobalTheory.AbLaw
 
+noncomputable section
 
 namespace GlobalTheory.ExactCoboundaryTriple
 
@@ -1407,7 +1377,7 @@ theorem coboundary_of_exact {κ : Type} [LinearOrder κ] (W : κ → X.Opens)
       SecOnR.restrict f M (le_inf (hle (by simp)) (hle (by simp))) (Φ k l) := by
     intro k l hkl
     have hn : ({k, l} : Finset κ).Nonempty := by simp
-    simp only [x, dif_pos hn]
+    simp only [x, dite_eq_left hn]
     exact hcongr (by simp [hkl.le]) (by simp [hkl.le]) _ _
   have hE := (cechComplex_exactAt_succ_iff (secCube f M W) 0).1 hW
   have hd : Cube.d (secCube f M W) (0 + 2) (fun s => x s.1) = 0 := by
@@ -1548,6 +1518,7 @@ theorem firstCohomologyVanishes_of_isRelAcyclic (R : Type) [CommRing R] (X : Sch
         (SecOn.chart_restrict hM (c b) (hV b) inf_le_right (Ψ b))))
 
 end GlobalTheory.ExactCoboundaryTriple
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

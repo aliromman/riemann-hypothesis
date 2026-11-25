@@ -362,9 +362,11 @@ theorem pos_iff_lt_card {N : ℕ} {e : Fin N → ℤ} (he : Antitone e) (i : Fin
 end GlobalTheory.PositiveIffLtCard
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CartanDecompositionDominanceOrder
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CartanDecompositionDominanceOrder
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.Doubling GlobalTheory.GLDoubling GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection GlobalTheory.ZonalCellDecomposition GlobalTheory.SatakeBound GlobalTheory.ParHecke
+
+noncomputable section
 
 namespace GlobalTheory.ZonalInduct
 
@@ -384,10 +386,10 @@ theorem psum_succ {N : ℕ} (ν : Fin N → ℤ) (i : Fin N) : psum ν (i + 1) =
 
 theorem pot_lt {N : ℕ} {μ ν : Fin N → ℤ} (h : ∀ j, psum μ j ≤ psum ν j) (hne : μ ≠ ν) : pot μ < pot ν := by
   obtain ⟨i, hi⟩ : ∃ i, μ i ≠ ν i := by
-    by_contra h'; push_neg at h'; exact hne (funext h')
+    by_contra h'; push Not at h'; exact hne (funext h')
   have hiN := i.isLt
   have : ∃ j ∈ Finset.range (N + 1), psum μ j < psum ν j := by
-    by_contra h'; push_neg at h'
+    by_contra h'; push Not at h'
     have e1 : psum μ i = psum ν i := le_antisymm (h _) (h' _ (Finset.mem_range.2 (by omega)))
     have e2 : psum μ (i + 1) = psum ν (i + 1) := le_antisymm (h _) (h' _ (Finset.mem_range.2 (by omega)))
     rw [psum_succ, psum_succ, e1] at e2
@@ -491,7 +493,7 @@ theorem vanish_dominant {N : ℕ} {ϖ : kˣ} {c : ℕ → ℂ} {h : GL (Fin N) k
   by_cases hzero : ∀ i, e i = 0
   · have : e = fun _ => 0 := funext hzero
     rw [this, torusElt_zero', h1]
-  push_neg at hzero
+  push Not at hzero
   obtain ⟨i₀, hi₀⟩ := hzero
   have hi₀pos : 0 < e i₀ := lt_of_le_of_ne (he i₀) (Ne.symm hi₀)
   obtain ⟨n₀, hn₀⟩ : ∃ n₀, n₀ = (Finset.univ.filter fun j => 0 < e j).card := ⟨_, rfl⟩
@@ -515,7 +517,7 @@ theorem vanish_dominant {N : ℕ} {ϖ : kˣ} {c : ℕ → ℂ} {h : GL (Fin N) k
     apply pot_lt
     · intro j; unfold psum
       exact Finset.sum_le_sum fun i _ => by simp only [hμdef, hind]; split_ifs <;> omega
-    · intro hh; have := congrFun hh i₀; simp only [hμdef, hind, if_pos hi₀pos] at this; omega
+    · intro hh; have := congrFun hh i₀; simp only [hμdef, hind, ite_eq_left hi₀pos] at this; omega
   have hμv := IH μ hμa hμ0 hμlt
   have hTe : torusElt k (Fin N) ϖ e = torusElt k (Fin N) ϖ μ * torusElt k (Fin N) ϖ (indic s) := by
     rw [← torusElt_add']; congr 1; funext i; exact (hμe i).symm
@@ -553,8 +555,8 @@ theorem vanish_dominant {N : ℕ} {ϖ : kˣ} {c : ℕ → ℂ} {h : GL (Fin N) k
       if h (torusElt k (Fin N) ϖ μ * g) = h (torusElt k (Fin N) ϖ e) then h (torusElt k (Fin N) ϖ e) else 0 := by
     intro g hg
     rcases hterm g hg with h0 | h0
-    · rw [h0, if_neg (Ne.symm hx)]
-    · rw [if_pos h0]; exact h0
+    · rw [h0, ite_eq_right (Ne.symm hx)]
+    · rw [ite_eq_left h0]; exact h0
   rw [Finset.sum_congr rfl hite, Finset.sum_ite, Finset.sum_const_zero, add_zero, Finset.sum_const,
     nsmul_eq_mul] at hsum
   have hcard : (R.filter fun g => h (torusElt k (Fin N) ϖ μ * g) = h (torusElt k (Fin N) ϖ e)).card ≠ 0 :=
@@ -581,6 +583,7 @@ theorem zonal_vanish : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpa
     omega
 
 end GlobalTheory.ZonalInduct
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsBorelSphericalFunction

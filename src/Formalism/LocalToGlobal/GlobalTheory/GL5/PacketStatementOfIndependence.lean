@@ -80,10 +80,11 @@ end Formalism.L2.GlobalTheoryTheory.GenusMassVolumes
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.GmapLeLocS
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.GmapLeLocS
 
 open NumberField PI.UJClassFin PI.UJClassMass Formalism.HermitianLatticesTheory PI.UnitaryGroupMassFormula.UJClassFin
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.UJClassMass
 
@@ -201,7 +202,7 @@ theorem glob_stab {F : Type} [Field F] [Algebra F E] (b : Module.Basis (Fin M) E
       linear_combination hj
     show (algebraMap (𝓞 E) E s) * ∑ j, Y i0 j * x j = _
     simp only [Finset.mul_sum, ← mul_assoc, hsplit, add_mul, Finset.sum_add_distrib, Matrix.one_apply,
-      mul_ite, mul_one, mul_zero, ite_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true,
+      mul_ite, mul_one, mul_zero, ite_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true,
       Algebra.smul_def, map_natCast]
     rw [add_comm]
     congr 1
@@ -216,7 +217,7 @@ theorem glob_stab {F : Type} [Field F] [Algebra F E] (b : Module.Basis (Fin M) E
     congr 1
     simp only [Finset.sum_apply, Pi.single_apply]
     rw [Finset.sum_comm]
-    simp only [Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    simp only [Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   rw [hvec]
   exact add_mem_crdOf b L0 (algebraMap_smul_mem_crdOf b L0 s hx)
     (sum_mem_crdOf b L0 _ _ fun i _ => sum_mem_crdOf b L0 _ _ fun j _ =>
@@ -225,6 +226,7 @@ theorem glob_stab {F : Type} [Field F] [Algebra F E] (b : Module.Basis (Fin M) E
 end Glob
 
 end PI.UnitaryGroupMassFormula.UJClassMass
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.LatticesCloseLocally

@@ -85,12 +85,13 @@ theorem succ_le_ringKrullDim_of_algebraicIndependent {σ : Type} [Finite σ]
 end ReciprocityTheory.ChartRestriction.G.Geo
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterGoodG
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterGoodG
 
 namespace ReciprocityTheory.ChartRestriction.G.Geo
 
 open MvPolynomial
 
+noncomputable section
 
 attribute [local instance] MvPolynomial.weightedGradedAlgebra
 
@@ -186,7 +187,7 @@ theorem algebraicIndependent_sumElim (P : Ideal (MRing ι)) (hP : P.IsPrime) (hH
       (hHd (mem_support_iff.mp hn0)).symm) s
   ext n
   have := congrArg (AddMonoidAlgebra.coeff · n) (key (Finsupp.weight (sWt k0 r) n))
-  rw [coeff_weightedHomogeneousComponent, if_pos rfl] at this
+  rw [coeff_weightedHomogeneousComponent, ite_eq_left rfl] at this
   simpa using this
 
 theorem forms_not_algebraicIndependent (P : Ideal (MRing ι)) (e : ℕ) (hP : IsArithVar P (e + 1))
@@ -211,6 +212,7 @@ theorem forms_not_algebraicIndependent (P : Ideal (MRing ι)) (e : ℕ) (hP : Is
     omega
   omega
 
+end
 
 end ReciprocityTheory.ChartRestriction.G.Geo
 

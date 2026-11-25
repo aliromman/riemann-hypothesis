@@ -727,8 +727,9 @@ theorem _root_.GlobalTheory.quadratic_exists_integral_generator_common_denominat
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeCharInfTrivialOfTrivAtDegOne
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeCharInfTrivialOfTrivAtDegOne
 
+noncomputable section
 open NumberField IsDedekindDomain HeckeValGen GlobalTheory.HeckeSplit NumberField.mixedEmbedding
 namespace GlobalTheory.HeckeInfTriv
 
@@ -919,7 +920,7 @@ theorem inf_trivial_of_trivAt_degOne : ∀ (F E : Type) [Field F] [NumberField F
     refine (pi_norm_le_iff_of_nonneg (le_max_right _ _)).2 fun i => ?_
     have hy' : y' (τ i) = y i := by
       have h : ∃ j, τ j = τ i := ⟨i, rfl⟩
-      simp only [y', dif_pos h]
+      simp only [y', dite_eq_left h]
       rw [hτinj h.choose_spec]
     rw [Pi.sub_apply, Real.norm_eq_abs, ← hy']
     exact (hbC (τ i)).trans (le_max_left _ _)

@@ -59,8 +59,9 @@ variable {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host D.host.E} {Dw : 
 end GlobalTheory.Member.Inhab
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CmHostRootComplexEqPmSqrt
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CmHostRootComplexEqPmSqrt
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.BasicNotions Formalism.L2.Pj GlobalTheory.Toroidal
@@ -173,7 +174,7 @@ def UnfFam.U (u : UnfFam Xo c N ξ) (σ : c.F →+* ℂ) : Formalism.L2.PjFree.U
   if h : Formalism.L2.PjFree.GoodEmb c σ then u.good σ h else noUnf Xo c σ N
 
 theorem UnfFam.U_eq (u : UnfFam Xo c N ξ) {σ : c.F →+* ℂ} (h : Formalism.L2.PjFree.GoodEmb c σ) : u.U σ = u.good σ h :=
-  dif_pos h
+  dite_eq_left h
 
 theorem UnfFam.isEmpty_comp (u : UnfFam Xo c N ξ) {σ : c.F →+* ℂ} (h : ¬ Formalism.L2.PjFree.GoodEmb c σ) :
     IsEmpty (u.U σ).Comp := by
@@ -228,7 +229,7 @@ theorem Amb.im_neg_xi_neg (A : Amb D) (τ : D.host.E →+* ℂ) (hτ : τ (A.H.r
     (τ (-D.host.xi0)).im < 0 := by
   rw [A.rt_eq, A.cmHost_rootComplex_eq_pm_sqrt] at hτ
   have h := xi0_embedding_im_pos D τ ((mem_cm_type_iff D τ).2 hτ)
-  rw [if_pos (GlobalTheory.Member.Inhab.sqrt_im_pos D), Int.cast_one, one_mul] at h
+  rw [ite_eq_left (GlobalTheory.Member.Inhab.sqrt_im_pos D), Int.cast_one, one_mul] at h
   simpa using h
 
 theorem norm_embedding_xi_zero (D : D7) (τ : D.host.E →+* ℂ) : ‖τ D.host.xi0‖ = xiR D := by

@@ -13,8 +13,9 @@ import Mathlib.Tactic.TypeStar
 
 open MvPolynomial
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.ActAllMemIntSpanAtG
+@[expose] public section -- clump member: Formalism.LocalToGlobal.GlobalTheory.ActAllMemIntSpanAtG
 
+noncomputable section
 
 namespace Formalism.L2.GlobalTheoryTheory.ColValS
 
@@ -65,12 +66,6 @@ theorem zpow_mem_intW (u : (intW Pl w)ˣ) (z : ℤ) : ((u : intW Pl w) : LL) ^ z
     exact pow_mem (u⁻¹ : (intW Pl w)ˣ).1.2 m
 
 end IntW
-
-section Row
-
-variable {K : Type} [CommRing K]
-
-end Row
 
 section WO
 
@@ -274,6 +269,7 @@ theorem actAll_mem_intSpanAtG (k : Tau → Matrix (Fin n) (Fin n) (intW Pl w))
 end Span
 
 end Formalism.L2.GlobalTheoryTheory.ColValS
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.MemIffOfLocBasisG

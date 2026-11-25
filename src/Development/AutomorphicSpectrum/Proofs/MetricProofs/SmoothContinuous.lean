@@ -129,11 +129,12 @@ theorem isLiftSys_of_top {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintyp
 end GlobalTheory.CompanionTheory.Ar.PB.Cj.ResTop
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.SmoothContinuous
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.SmoothContinuous
 
 open MvPolynomial Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I4 GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights.LowerBoundFree
 open scoped ComplexOrder Classical
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.PB.Cj
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
@@ -166,7 +167,7 @@ theorem clampT_le {T : ℝ} (t : ℝ) : clampT T t ≤ T := by
   · exact le_rfl
 
 theorem clampT_eq {T t : ℝ} (h0 : 0 < t) (h1 : t ≤ T) : clampT T t = t := by
-  unfold clampT; rw [if_pos ⟨h0, h1⟩]
+  unfold clampT; rw [ite_eq_left ⟨h0, h1⟩]
 
 def avgSys {e : ℕ} {σ : Type} (S : AnSys e σ) (c : S.X → S.X) (C T : ℝ)
     (hreg : ∀ a, IsRegFamily S.A S.Θ S.L S.s (S.th a) (S.ph a)

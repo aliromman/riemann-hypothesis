@@ -401,15 +401,7 @@ theorem UpperTheory.V.Pa.phSep :
   exact hne0 (hy Φ hmem)
 end -- clump:auto
 
-section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SelmerScaling.LiftsSub
-@[expose] public section
-
-section
-variable {l : ℕ} [Fact l.Prime] (F : GFrame l) {n : ℕ} {A R : Type} [CommRing A] [CommRing R] [Algebra A R] (t : A)
-  (ρ : F.G₀ → Matrix (Fin n) (Fin n) R) (w wi : F.Vl → Matrix (Fin n) (Fin n) R)
-  (V : Submodule A (Matrix (Fin n) (Fin n) R))
-
-end
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SelmerScaling.LiftsSub
 
 private theorem C_smul_mem_w2 {n : ℕ} {A X : Type} [CommRing A] [CommRing X] [Algebra A X] {e a : ℕ}
     (c : X) (M : Matrix (Fin n) (Fin n) (DD X e)) (hM : M ∈ W2 n A X e a) :
@@ -548,7 +540,6 @@ theorem UpperTheory.V.Pa.liftsSub :
     funext j γ
     simp
 end -- clump:auto
-end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SelmerScaling.LinAlg
 
@@ -674,7 +665,7 @@ theorem UpperTheory.V.Pa.linAlg :
     rw [← hrow a ha i]
     refine Finset.sum_congr rfl fun j _ => ?_
     simp only [Pi.basisFun_apply, Pi.single_apply, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq',
-      Finset.mem_univ, if_true, hXκ]
+      Finset.mem_univ, ite_true, hXκ]
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SelmerScaling.AlCSmul

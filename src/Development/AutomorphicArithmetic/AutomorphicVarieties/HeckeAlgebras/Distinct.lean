@@ -102,13 +102,12 @@ theorem UpperTheory.V.Hi.piAx :
     exact ⟨s, fun v _ => hs v, a, fun v _ => ha v, b, fun v _ => hb v, funext e⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.Distinct
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.Distinct
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial ValuativeRel
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace UpperTheory.V.Hi
 

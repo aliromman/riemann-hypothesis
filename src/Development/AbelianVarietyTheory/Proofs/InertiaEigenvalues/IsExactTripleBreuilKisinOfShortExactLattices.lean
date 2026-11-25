@@ -330,8 +330,9 @@ theorem homW_exact_middle : ∀ {l : ℕ} [Fact l.Prime] {a : ℕ} [NeZero a] {e
 end GlobalTheory.BKReal.SESExact
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsExactTripleBreuilKisinOfShortExactLattices
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsExactTripleBreuilKisinOfShortExactLattices
 
+noncomputable section
 
 namespace GlobalTheory.BKExact
 
@@ -504,7 +505,7 @@ theorem isExactTriple_of_isSESLat_gen {l : ℕ} [Fact l.Prime] {a : ℕ} [NeZero
         have := congrFun (hW (Pi.single j 1)) i
         rw [homW_apply, homW_apply, Matrix.mulVec_mulVec] at this
         simp only [Matrix.mulVec, dotProduct, Pi.single_apply, mul_ite, mul_one, mul_zero,
-          Finset.sum_ite_eq', Finset.mem_univ, if_true, Pi.zero_apply] at this
+          Finset.sum_ite_eq', Finset.mem_univ, ite_true, Pi.zero_apply] at this
         rw [Matrix.map_mul]
         exact this
       have hz : Ht * Ft = 0 := Matrix.map_injective hφ (hM.trans (Matrix.map_zero _ (map_zero φ)).symm)

@@ -235,7 +235,9 @@ theorem hypS_of_baseChange : ∀ (K Ω : Type) [Field K] [IsAlgClosed K] [CharZe
 end GlobalTheory.SymDescentAlgClosed
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsThetaPtOfMap
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsThetaPtOfMap
+
+noncomputable section
 
 namespace GlobalTheory.Mum.ThetaDown
 
@@ -264,7 +266,7 @@ theorem isThetaPt_of_map : ∀ (B : Scheme.{0}) [IsLocallyNoetherian B] (P : Pol
   · have e : w = w₀ := funext fun i => j.injective (by rw [hc, hz, map_zero, MulZeroClass.mul_zero])
     subst e
     exact hw₀
-  · push_neg at hz
+  · push Not at hz
     obtain ⟨i₀, hi₀⟩ := hz
     have hd : j (w i₀ / w₀ i₀) = c := by
       rw [map_div₀, hc, mul_div_assoc, div_self ((map_ne_zero j).2 hi₀), _root_.mul_one]
@@ -275,6 +277,7 @@ theorem isThetaPt_of_map : ∀ (B : Scheme.{0}) [IsLocallyNoetherian B] (P : Pol
     rw [e i]
 
 end GlobalTheory.Mum.ThetaDown
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens

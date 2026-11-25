@@ -476,10 +476,11 @@ end -- clump:auto
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenericFlagFieldChange
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenericFlagFieldChange
 
 open AlgebraicGeometry CategoryTheory GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.FlagBun
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.FlagBun.GenericColumns
 
@@ -546,7 +547,7 @@ theorem genU_gen (Ω : Type) [Field Ω] {S : Type} (r : S → ℕ) (q : GenIx r)
     genU Ω r q.1 q.2.1.1 q.2.1.2 =
       algebraMap (MvPolynomial (GenIx r) Ω) (GenField Ω r) (MvPolynomial.X q) := by
   obtain ⟨s, ⟨⟨l, k⟩, h⟩⟩ := q
-  exact dif_pos h
+  exact dite_eq_left h
 
 theorem algebraicIndependent_gen (Ω : Type) [Field Ω] {S : Type} (r : S → ℕ) :
     AlgebraicIndependent Ω (fun q : GenIx r =>
@@ -608,6 +609,7 @@ theorem isGenericFlag_columns : ∀ (Ω₀ Ω : Type) [Field Ω₀] [Field Ω] (
     exact hdeg
 
 end GlobalTheory.CompanionTheory.Ar.FlagBun.GenericColumns
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptGoodReductionDegree

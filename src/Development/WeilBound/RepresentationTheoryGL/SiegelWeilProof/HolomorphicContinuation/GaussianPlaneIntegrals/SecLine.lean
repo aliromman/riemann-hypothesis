@@ -141,8 +141,9 @@ lemma integrable_poly_gauss (N : ℕ) {β : ℝ} (hβ : 0 < β) :
 end PositivityTheory.Rg.Sw.FFTSteps.SecondLineEstimates
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GaussianPlaneIntegrals.SecLineB
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GaussianPlaneIntegrals.SecLineB
 
+noncomputable section
 
 open MeasureTheory MvPolynomial
 
@@ -154,7 +155,7 @@ lemma continuous_evX (P : PX m n) : Continuous (fun x : Fin m → Fin n → ℂ 
   unfold evX
   refine (MvPolynomial.continuous_eval P).comp (continuous_pi fun k => ?_)
   by_cases h : k.2.2
-  · simp only [h, if_true]
+  · simp only [h, ite_true]
     exact continuous_star.comp ((continuous_apply k.2.1).comp (continuous_apply k.1))
   · simp only [h]
     exact (continuous_apply k.2.1).comp (continuous_apply k.1)
@@ -255,6 +256,7 @@ lemma trace_im (ε : Fin m → Bool) (b : Matrix (Fin n) (Fin n) ℂ) (hb : b.Is
   exact Complex.conj_eq_iff_im.1 this
 
 end PositivityTheory.Rg.Sw.FFTSteps.SecondLineEstimates
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GaussianPlaneIntegrals.SecLine

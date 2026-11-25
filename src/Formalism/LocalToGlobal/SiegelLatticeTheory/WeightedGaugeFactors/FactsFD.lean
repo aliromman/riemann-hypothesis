@@ -26,23 +26,14 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedVolumeStatements.CoefWe
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalRingCardinality.SpanPowerMembership.SignSplitEquivInl, Formalism.SharpRestriction.CuspSpanNormBounds.DiscreteSeriesExistence.ExistsG, Formalism.LocalToGlobal.SiegelLatticeTheory.WeightedGaugeFactors.FactsFD
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalRingCardinality.SpanPowerMembership.SignSplitEquivInl
+@[expose] public section -- clump member: Formalism.LocalRingCardinality.SpanPowerMembership.SignSplitEquivInl
 
+noncomputable section
 
 namespace Formalism.BasicNotions.Examples₂.CD
 
 open MeasureTheory Matrix Formalism.REAL Formalism.UG.P Topology
 open scoped ENNReal NNReal
-
-section One
-
-variable {n P Q : ℕ} (ε : Fin n → Bool) (e : Fin P ⊕ Fin Q ≃ Fin n)
-  (h1 : ∀ i, ε (e (Sum.inl i)) = true) (h2 : ∀ j, ε (e (Sum.inr j)) = false)
-
-
-
-
-end One
 
 def nT {n : ℕ} (ε : Fin n → Bool) : ℕ := Fintype.card {i // ε i = true}
 def nF {n : ℕ} (ε : Fin n → Bool) : ℕ := Fintype.card {i // ¬ ε i = true}
@@ -62,6 +53,7 @@ theorem sign_split_equiv_inr {n : ℕ} (ε : Fin n → Bool) (j) : ε (e0 ε (Su
 variable (C : CDHaar)
 
 end Formalism.BasicNotions.Examples₂.CD
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.SharpRestriction.CuspSpanNormBounds.DiscreteSeriesExistence.ExistsG

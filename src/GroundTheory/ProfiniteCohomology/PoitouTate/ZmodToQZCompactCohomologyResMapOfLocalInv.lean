@@ -25,18 +25,17 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.ProfiniteCohomology.PoitouTate.General, GroundTheory.ProfiniteCohomology.PoitouTate.Primary, GroundTheory.ProfiniteCohomology.RestrictedRamification.FiniteCompact, GroundTheory.ProfiniteCohomology.PoitouTate.ZmodToQZCompactCohomologyResMapOfLocalInv
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.General
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.General
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open CategoryTheory MonoidalCategory
 
 universe u
-
-attribute [local instance 2000] Rep.hV2
 
 variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
   {ι : Type u} {Hv : ι → Type u} [∀ v, Group (Hv v)] [∀ v, TopologicalSpace (Hv v)]
@@ -268,19 +267,19 @@ end PoitouTateHypotheses
 
 end GroundTheory.ProfCoh
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.Primary
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.Primary
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open CategoryTheory MonoidalCategory
 
 universe u
-
-attribute [local instance 2000] Rep.hV2
 
 section Dual
 
@@ -452,16 +451,6 @@ variable {N : ℕ} [NeZero N] (D : Rep.{u} (ULift.{u} ℤ) G) [IsDiscreteRep D]
   (tp : ∀ p, compactCohomologyRes φ (Dp p) 3 →+ ZMod (p ^ N.factorization p))
   (jp : ∀ p, Dp p ⟶ D)
 
-end Primary
-
-section Primary
-
-variable {N : ℕ} [NeZero N] (D : Rep.{u} (ULift.{u} ℤ) G) [IsDiscreteRep D]
-  (t : compactCohomologyRes φ D 3 →+ ZMod N)
-  (Dp : ℕ → Rep.{u} (ULift.{u} ℤ) G) [∀ p, IsDiscreteRep (Dp p)]
-  (tp : ∀ p, compactCohomologyRes φ (Dp p) 3 →+ ZMod (p ^ N.factorization p))
-  (jp : ∀ p, Dp p ⟶ D)
-
 theorem bijective_compactDualityMap_of_primePow (hD : Nonempty (D ≃+ ZMod N))
     (hDp : ∀ p ∈ N.primeFactors, Nonempty (Dp p ≃+ ZMod (p ^ N.factorization p)))
     (hjp : ∀ p ∈ N.primeFactors, Function.Injective (jp p).hom)
@@ -524,6 +513,7 @@ end Primary
 
 end GroundTheory.ProfCoh
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.FiniteCompact
 
@@ -580,16 +570,15 @@ theorem finite_compactCohomologyRes_gs_of_finite
 end GroundTheory.ProfCoh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.ZmodToQZCompactCohomologyResMapOfLocalInv
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.ZmodToQZCompactCohomologyResMapOfLocalInv
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open IsDedekindDomain NumberField CategoryTheory MonoidalCategory GroundTheory.Global
-
-attribute [local instance 2000] Rep.hV2
 
 theorem natCast_mem_of_natCard_mem {R : Type*} [CommRing R] {P : Ideal R} (hP : P.IsPrime)
     {A : Type*} [AddCommGroup A] [Finite A] {n : ℕ} (hA : ∀ a : A, n • a = 0)

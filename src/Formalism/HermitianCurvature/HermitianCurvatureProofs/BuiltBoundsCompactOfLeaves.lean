@@ -30,13 +30,14 @@ import Std.Tactic.BVDecide.Normalize.BitVec
 -- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftLocalBuiltPlaces, Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftLocalPositiveCompactSupport, Formalism.HermitianCurvature.HermitianCurvatureProofs.ThresholdsPositive, Formalism.HermitianCurvature.HermitianCurvatureProofs.BlockKWave, Formalism.HermitianCurvature.HermitianCurvatureProofs.BlockKWaveC, Formalism.HermitianCurvature.HermitianCurvatureProofs.WaveLocalBuiltPlaces, Formalism.HermitianCurvature.HermitianCurvatureProofs.WaveLocalPositiveCompactSupport, Formalism.HermitianCurvature.HermitianCurvatureProofs.BuiltBoundsCompactOfLeaves
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftLocalBuiltPlaces
-@[expose] public noncomputable section
+@[expose] public section
 
 namespace Formalism.FourierDecayAlt.P.LiftDegreeLemmas
 
 open Formalism.FourierDecayAlt Formalism.QuantumDeterminants NumberField Formalism.FourierDecayAlt.P.PBL
 open scoped ComplexConjugate ComplexOrder
 
+noncomputable section
 
 open Classical
 
@@ -95,7 +96,7 @@ theorem thr_lift (hCc : 28 * Real.exp 1 ≤ Cc) (hB : KB.IsLeadingFormSetting Cb
   rw [hdec] at h
   refine ⟨lamLift_nonneg hB b s v, ?_⟩
   show lamLift S b s v ≤ (if b + s ≤ S.G.r + 1 then _ else _)
-  rw [if_pos hbs]
+  rw [ite_eq_left hbs]
   unfold lamLift
   exact h
 
@@ -134,6 +135,7 @@ theorem norm_u (S : C.HidaSetting E Wp Wq) (hg : (0 : ℝ) < S.g) (b s K : ℕ) 
 
 end consts
 
+end
 
 end Formalism.FourierDecayAlt.P.LiftDegreeLemmas
 end -- clump:auto
@@ -453,7 +455,7 @@ theorem supA_pos (hB : KB.IsLeadingFormSetting Cb Cc S p f χ A₀) (v : Fin S.f
   refine lt_of_lt_of_le hcore (PBL.core_le_supA hB v one y ?_)
   cases one
   · simpa using hyI
-  · simp only [if_true]
+  · simp only [ite_true]
     rw [← PBL.ntop_eq_N']
     exact hy1
 
@@ -943,13 +945,13 @@ theorem liftLocB_of_cpt (hDL : KB.DegLift) : P5.ThmPActualCpt → LiftLocB := by
   · intro b s v
     beta_reduce
     by_cases h : 1 ≤ b ∧ 1 ≤ s ∧ b + s ≤ S.G.r + 1
-    · rw [if_pos h]; exact (hΛ0 b s h.1 h.2.1 h.2.2 v).1
-    · rw [if_neg h]
+    · rw [ite_eq_left h]; exact (hΛ0 b s h.1 h.2.1 h.2.2 v).1
+    · rw [ite_eq_right h]
   · intro b s hb hs hbs v
     beta_reduce
-    rw [if_pos ⟨hb, hs, hbs⟩]; exact (hΛ0 b s hb hs hbs v).2
+    rw [ite_eq_left ⟨hb, hs, hbs⟩]; exact (hΛ0 b s hb hs hbs v).2
   · intro F hF v b s hb hs hbs
-    have h : (if 1 ≤ b ∧ 1 ≤ s ∧ b + s ≤ S.G.r + 1 then Λ0 b s v else 0) = Λ0 b s v := if_pos ⟨hb, hs, hbs⟩
+    have h : (if 1 ≤ b ∧ 1 ≤ s ∧ b + s ≤ S.G.r + 1 then Λ0 b s v else 0) = Λ0 b s v := ite_eq_left ⟨hb, hs, hbs⟩
     simp only [h]
     exact hl F hF v b s hb hs hbs
 

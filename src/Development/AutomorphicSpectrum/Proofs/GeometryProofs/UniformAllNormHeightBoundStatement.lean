@@ -476,18 +476,16 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BoundStatementHolds
 
+noncomputable section
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open NumberField IsDedekindDomain
 open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct NNReal
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Pdiv ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BoundStatementHolds
 open Formalism.L2.Pj GlobalTheory.HTLat GlobalTheory.HTLat.OmegaRank GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.CompHt GlobalTheory.FlatCore GlobalTheory.LineNorm
 open GlobalTheory.EigenSplit
-attribute [local instance] Over.cartesianMonoidalCategory
 attribute [local instance] algPadicInt algPadicField towerPadic factPadic GlobalTheory.PadicComplexHost.isAdicComplete
 
 namespace GlobalTheory.FlatModel.BoundProof
@@ -552,10 +550,17 @@ namespace GlobalTheory.FlatModel
 
 end GlobalTheory.FlatModel
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsBLieEqSmul
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsBLieEqSmul
+
+noncomputable section
+
+open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
+open NumberField IsDedekindDomain
+open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct NNReal
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Pdiv ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD
 open Formalism.L2.Pj GlobalTheory.HTLat GlobalTheory.HTLat.OmegaRank GlobalTheory.AllWt GlobalTheory.CompHt GlobalTheory.EigenSplit
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompanionTheory.Ar.Plug.LowHeightBounds
 
@@ -1048,8 +1053,7 @@ end Main
 
 end GlobalTheory.CompanionTheory.Ar.Plug.LowHeightBounds
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -1071,8 +1075,9 @@ end -- clump:auto
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.UniformAllNormHeightBound
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.UniformAllNormHeightBound
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Plug.SlopeVol
 
@@ -1222,7 +1227,7 @@ theorem clear_integral {r : ℕ} (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (hH
     obtain ⟨v, hv', hle⟩ := hHT p la hp hpl w hw
     have h1 := hle u f ((GlobalTheory.AllWt.cuspOn_le U Z _).trans (GlobalTheory.AllWt.cuspW_le_secZ _) hf)
     have h2 := hv p la hp hpl v hv'
-    rw [if_pos hpS] at h2
+    rw [ite_eq_left hpS] at h2
     have h3 := h2.trans h1
     have hvp : 0 ≤ vLa la (p : c.F) := vLa_natCast_nonneg la hp.ne_zero
     have h4 : (2 * ((vLa la (p : c.F) : ℝ) * exTwo E p * GlobalTheory.CovHt.l1 u)) ≤ (vLa la ((clearN E S u : ℕ) : c.F) : ℝ) := by
@@ -1245,7 +1250,7 @@ theorem clear_integral {r : ℕ} (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (hH
   · have hpm : p ∉ GlobalTheory.CompHt.htPrimes l Bd := by rw [hS]; exact hpS
     rw [GlobalTheory.CompHt.mixVals_of_not_mem hp hpm hpl] at hw
     have h2 := hv p la hp hpl w hw
-    rw [if_neg hpS] at h2
+    rw [ite_eq_right hpS] at h2
     have h3 : (0 : EReal) ≤ w f := by simpa using h2
     refine add_nonneg ?_ h3
     exact_mod_cast hvN
@@ -1403,6 +1408,7 @@ theorem slope_sub_cost_le_compVolSlope : GlobalTheory.CompanionTheory.Ar.Pub.Nef
 
 end GlobalTheory.CompanionTheory.Ar.Plug.SlopeVolM
 
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.UniformAllNormHeightBoundStatement

@@ -74,8 +74,9 @@ theorem pb_eq_of_tie : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T0 : T
 end GlobalTheory.LevelPrimes
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsNormalisedTupleDataOverCoefficientField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsNormalisedTupleDataOverCoefficientField
 
+noncomputable section
 
 namespace GlobalTheory.PinsOverField
 
@@ -204,7 +205,7 @@ theorem exists_BIs (hL : R.toLevCh.Is A.μ0) (hF : R.IsFam) (M : IntermediateFie
   classical
   refine ⟨fun cc => if h : cc ≠ ⊥ ∧ cc ⊔ Ideal.span {((bad : ℕ) : 𝓞 D.host.E)} = ⊤ then
     ⟨_, GlobalTheory.Mem.BVal.mem_of_primes _ M _ key cc h.1 h.2⟩ else 0, fun cc h0 h1 => ?_⟩
-  simp only [dif_pos (And.intro h0 h1)]
+  simp only [dite_eq_left (And.intro h0 h1)]
   rfl
 
 

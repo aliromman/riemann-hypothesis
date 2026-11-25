@@ -9,8 +9,9 @@ public import Formalism.FormalDegreeBessel.StatementRP
 
 open Matrix
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelLiftBasics.SplitInvInjective
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelLiftBasics.SplitInvInjective
 
+noncomputable section
 
 namespace PI.QnLevBasicsW
 
@@ -75,7 +76,7 @@ theorem ιLev_eq (g : Matrix (Fin (2 * r' + k + 1)) (Fin (2 * r' + k + 1)) ℂ) 
   · have hb := b.isLt
     have ha := a'.isLt
     have h1 : ¬(i ≤ ((split k i r').symm (Sum.inr b)).val ∧ ((split k i r').symm (Sum.inr b)).val < 2 * r' + k + 1 + i) := by rw [split_symm_inr]; split_ifs <;> omega
-    rw [dite_eq_right h1, fromBlocks_apply₂₁, Matrix.zero_apply, if_neg]
+    rw [dite_eq_right h1, fromBlocks_apply₂₁, Matrix.zero_apply, ite_eq_right]
     intro e
     exact Sum.inr_ne_inl ((split k i r').symm.injective e)
   · have hb := b.isLt
@@ -86,7 +87,7 @@ theorem ιLev_eq (g : Matrix (Fin (2 * r' + k + 1)) (Fin (2 * r' + k + 1)) ℂ) 
       simp
     · have hne : (split k i r').symm (Sum.inr b) ≠ (split k i r').symm (Sum.inr b') :=
         fun h => e (Sum.inr_injective ((split k i r').symm.injective h))
-      rw [if_neg hne, if_neg e]
+      rw [ite_eq_right hne, ite_eq_right e]
 
 theorem liftVec_eq (v : Fin (2 * r' + k + 1) → ℂ) :
     liftVec k i r' v = (Sum.elim v 0) ∘ (split k i r') := by
@@ -172,9 +173,11 @@ theorem herm_lift (v w : Fin (2 * r' + k + 1) → ℂ) :
 
 end PI.QnLevBasicsW
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelLiftBasics.LevelGroupUnitaryHermitian
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelLiftBasics.LevelGroupUnitaryHermitian
 
+noncomputable section
 
 namespace PI.QnLevBasicsW
 
@@ -248,7 +251,7 @@ theorem col_fix (g : Matrix (Fin (2 * r' + k + 1)) (Fin (2 * r' + k + 1)) ℂ) (
     by_cases hp : i ≤ p.val ∧ p.val < 2 * r' + k + 1 + i
     · rw [ιLev_apply_in_out g p q hp hq]
       simp only [bvec, Pi.single_apply]
-      rw [if_neg]
+      rw [ite_eq_right]
       intro e
       rw [e] at hp
       exact hq hp
@@ -356,7 +359,7 @@ theorem level_group_ellipticity : LevEll := by
         (eI k (i + r') (Fin.castAdd r' a)).val < 2 * r' + k + 1 + i) := by
       simp only [eI, Fin.val_mk, Fin.coe_castAdd]; omega
     split_ifs with h
-    · rw [ιLev_apply_out g _ _ hp, if_neg]
+    · rw [ιLev_apply_out g _ _ hp, ite_eq_right]
       intro e
       have := congrArg Fin.val e
       simp only [eI, Fin.val_mk, Fin.coe_castAdd] at this

@@ -1,5 +1,6 @@
 module
 
+import Formalism.SharpRestriction.LevelLetterCocycles.UniversalGeneralOfRestriction
 public import Formalism.WeaklyAdmissibleFiltrations.Statement
 import Mathlib.RingTheory.SimpleRing.Principal
 public import Mathlib.RingTheory.Flat.Basic
@@ -60,14 +61,7 @@ theorem lvBasis_φ_letter (ρ : Representation LL G V) {τ₀ τ₁ : K₀ →�
   rw [lvBasis_φ_mul, hx.2 c', map_smul, ← h, AlgHom.comp_apply]
 
 theorem lvBasis_φ_inj : Function.Injective (φVB PD (LL := LL) (V := V)) := by
-  have hfun : ⇑(Formalism.WeaklyAdmissibleFiltrations.φVB PD (LL := LL) (V := V)) = ⇑(LinearMap.lTensor V PD.φ.toLinearMap) := by
-    funext x
-    induction x using TensorProduct.induction_on with
-    | zero => simp
-    | tmul v b => simp [Formalism.WeaklyAdmissibleFiltrations.φVB]
-    | add x y hx hy => simp only [map_add (f := _), hx, hy]
-  rw [hfun]
-  exact Module.Flat.lTensor_preserves_injective_linearMap _ PD.φ_inj
+  apply _root_.Formalism.MainNotions.UnusedSlot80.UnivF.φVB_inj <;> assumption
 
 theorem lvBasis_φpow_inj (k : ℕ) : Function.Injective ((φVB PD (LL := LL) (V := V)) ^ k) := by
   first

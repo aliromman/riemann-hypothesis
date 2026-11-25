@@ -73,8 +73,9 @@ theorem UpperTheory.Gal.Seam.sigC_eq :
     exact GroundTheory.PAdicHodge.galCp_coe (GaloisFrobeniusFixed.toBot g) a
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.CrystallineTowers.SpecOf
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.CrystallineTowers.SpecOf
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry
 
@@ -344,7 +345,7 @@ theorem coord_pull (e : IsoFam K) (he : IsoNat e) {M M' : CrystallineSemistableC
   rw [LinearEquiv.apply_symm_apply] at hnat
   simp only [LinearMap.comp_apply, LinearMap.sum_apply, LinearMap.smul_apply,
     Module.Basis.coord_apply, Module.Basis.repr_self, Finsupp.single_apply, smul_eq_mul, mul_ite, mul_one, mul_zero,
-    Finset.sum_ite_eq, Finset.mem_univ, if_true, LinearMap.toMatrix_apply]
+    Finset.sum_ite_eq, Finset.mem_univ, ite_true, LinearMap.toMatrix_apply]
   rw [hB j0, hB', hnat]
   rfl
 

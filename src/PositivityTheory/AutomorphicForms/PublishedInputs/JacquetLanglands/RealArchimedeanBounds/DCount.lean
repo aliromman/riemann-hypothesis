@@ -1007,7 +1007,15 @@ theorem dProd : AMem → AMono → ARow → DProd := by
 end UpperTheory.Esk
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.RealArchimedeanBounds.DetR
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.RealArchimedeanBounds.DetR
+
+noncomputable section
+
+open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N
+open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Base UpperTheory.V.Sd UpperTheory.V.Sd.Wc
+open scoped Matrix NNReal
 
 namespace UpperTheory.Esk
 
@@ -1056,7 +1064,7 @@ theorem dCnt : DScale → DBox → DEntry → DCnt := by
     ((N : F) * gg γ h 1 0, (N : F) * gg γ h 0 0, (N : F) * gg γ h 1 1, (N : F) * gg γ h 0 1) else 0
   have hinj : Set.InjOn f {γ : PG F | γ • ω = ω ∧ Near δ z (γ • z)} := by
     intro γ1 h1 γ2 h2 he
-    simp only [f, dif_pos h1.1, dif_pos h2.1, Prod.mk.injEq] at he
+    simp only [f, dite_eq_left h1.1, dite_eq_left h2.1, Prod.mk.injEq] at he
     obtain ⟨e1, e2, e3, e4⟩ := he
     have hN' : (N : F) ≠ 0 := Nat.cast_ne_zero.2 hN
     have hgeq : gg γ1 h1.1 = gg γ2 h2.1 := by
@@ -1074,7 +1082,7 @@ theorem dCnt : DScale → DBox → DEntry → DCnt := by
         box ((N : ℝ) * max B 0 * C * |(z v0).1.im|) := by
     rintro _ ⟨γ, ⟨hgω, hnear⟩, rfl⟩
     obtain ⟨hgγ, hint, hdet⟩ := hgg γ hgω
-    simp only [f, dif_pos hgω]
+    simp only [f, dite_eq_left hgω]
     generalize gg γ hgω = g at hgγ hint hdet ⊢
     have hE' : ∀ v, |(mkDat cc χ).r v g 1 0| ≤ B ∧ |(mkDat cc χ).r v g 0 0| ≤ B ∧ |(mkDat cc χ).r v g 1 1| ≤ B ∧
         |(mkDat cc χ).r v g 0 1| ≤ B * |(z v).1.im| := by
@@ -1125,6 +1133,14 @@ theorem dCnt : DScale → DBox → DEntry → DCnt := by
     (by positivity) hX).trans_eq (by ring))
 end UpperTheory.Esk -- clump:auto
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+
+open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N
+open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Base UpperTheory.V.Sd UpperTheory.V.Sd.Wc
+open scoped Matrix NNReal
 
 @[expose] public noncomputable section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.RealArchimedeanBounds.JFSa
 

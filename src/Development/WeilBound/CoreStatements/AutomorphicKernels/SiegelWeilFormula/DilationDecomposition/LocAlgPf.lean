@@ -19,13 +19,16 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeil
 public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalWeilOperators.GoodAwayEx
 public import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.GaussLaw
 import Mathlib.Tactic.Linter.Style
+import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.InGBlocks
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BruhatCellParabolicUnipotentFactorization, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FourierInjectiveMatrixSpace, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HolomorphicParameterIntegralGaussianBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IteratedDerivEqOfEqOnRealSegment, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IteratedDerivGaussianExponentialAtZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IteratedDerivIntegralGaussianExponential, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ParabolicDecompositionUpperHalfSpace, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.DilationDecomposition.LocAlgPf
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BruhatCellParabolicUnipotentFactorization
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BruhatCellParabolicUnipotentFactorization
 
 open scoped Matrix
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.DCell
 
@@ -38,18 +41,7 @@ theorem JJ_mul_self : JJ n * JJ n = -1 := by
   simp
 
 theorem rows_rel (g : M2 n) (h : InG g) : g * JJ n * gᴴ = JJ n := by
-  have hinv : (-(JJ n) * gᴴ * JJ n) * g = 1 := by
-    have h' : gᴴ * JJ n * g = JJ n := h
-    calc (-(JJ n) * gᴴ * JJ n) * g = -(JJ n * (gᴴ * JJ n * g)) := by
-          simp only [Matrix.mul_assoc, Matrix.neg_mul]
-      _ = 1 := by rw [h', JJ_mul_self, neg_neg]
-  have h2 : g * (-(JJ n) * gᴴ * JJ n) = 1 := mul_eq_one_comm.mp hinv
-  calc g * JJ n * gᴴ = g * JJ n * gᴴ * (-(JJ n * JJ n)) := by
-        rw [JJ_mul_self, neg_neg, Matrix.mul_one]
-    _ = -((g * (-(JJ n) * gᴴ * JJ n)) * JJ n) * (-1) * (-1) * (-1) := by
-        simp only [Matrix.mul_assoc, Matrix.neg_mul, Matrix.mul_neg, Matrix.mul_one, neg_neg]
-    _ = JJ n := by
-        rw [h2]; simp
+  apply _root_.PositivityTheory.Rg.Sw.AbsSt.IwaPf.inG_rows <;> assumption
 
 theorem block_rel (g : M2 n) (h : InG g) :
     g.toBlocks₂₁ * g.toBlocks₂₂ᴴ = g.toBlocks₂₂ * g.toBlocks₂₁ᴴ := by
@@ -105,6 +97,7 @@ theorem main : ∀ (n : ℕ) (y : PositivityTheory.Rg.Sw.GR n), ((PositivityTheo
   simp [← hC, ← hDd, this]
 
 end GlobalTheory.CompanionTheory.DCell
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FourierInjectiveMatrixSpace
@@ -339,7 +332,9 @@ theorem iteratedDeriv_zero_eq_of_eq_on_real_points (f g : ℂ → ℂ) (ρ : ℝ
 end GlobalTheory.CompanionTheory.ComplexAnalysis
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IteratedDerivGaussianExponentialAtZero
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IteratedDerivGaussianExponentialAtZero
+
+noncomputable section
 
 open MvPolynomial
 
@@ -382,7 +377,7 @@ theorem hasDerivAt_eval {σ : Type*} [Fintype σ] (x : ℂ → σ → ℂ) (x' :
       by_cases h : k = i
       · subst h
         simp
-      · rw [MvPolynomial.pderiv_X_of_ne (Ne.symm h), map_zero, if_neg h]
+      · rw [MvPolynomial.pderiv_X_of_ne (Ne.symm h), map_zero, ite_eq_right h]
     have hf : (fun w => MvPolynomial.eval (x w) (p * MvPolynomial.X i)) =
         fun w => MvPolynomial.eval (x w) p * x w i := by
       funext w
@@ -397,7 +392,7 @@ theorem hasDerivAt_eval {σ : Type*} [Fintype σ] (x : ℂ → σ → ℂ) (x' :
       rw [MvPolynomial.pderiv_mul, map_add (f := _), map_mul, map_mul, MvPolynomial.eval_X, hX k]
       split_ifs <;> ring
     rw [Finset.sum_congr rfl (fun k _ => hs k), Finset.sum_add_distrib, ← Finset.sum_mul, ← Finset.sum_mul]
-    simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    simp only [Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     ring
 
 theorem pt_mul (X : Fin n → ℝ) (v : Fin m → Fin n → ℂ) (z : ℂ) (a : Fin m) (j : Fin n) :
@@ -539,6 +534,7 @@ theorem main : ∀ (m n : ℕ) (X : Fin n → ℝ) (v : Fin m → Fin n → ℂ)
   rw [GlobalTheory.CompanionTheory.DilFam.iteratedDeriv_Fam, GlobalTheory.CompanionTheory.DilFam.Fam_zero]
 
 end GlobalTheory.CompanionTheory.DilFam
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IteratedDerivIntegralGaussianExponential

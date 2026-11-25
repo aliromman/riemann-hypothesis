@@ -29,8 +29,9 @@ def ReducedBasisStatement : Prop :=
 end ReciprocityTheory.ChartRestriction.G.H1
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.SpanFlag
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.SpanFlag
 
+noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.G.H1.RB
 
@@ -158,7 +159,7 @@ lemma exists_b [FiniteDimensional ℝ E] {d : ℕ} (u : Fin d → E) (hu : Linea
     · have hx0 : 0 < phi u k x := by rw [hx]; exact hb0
       have hx1 : phi u k x ≤ 1 := by rw [hx]; exact hb1
       exact hbmin x ⟨⟨hxX, hxV, hx0, hx1, hxd⟩, hx.trans hbphi⟩
-    · push_neg at hxd
+    · push Not at hxd
       have hlt : ‖b‖ ^ 2 < ‖x‖ ^ 2 := lt_of_le_of_lt hbd hxd
       by_contra! hc
       nlinarith [norm_nonneg b, norm_nonneg x]
@@ -224,6 +225,7 @@ lemma span_flag {d : ℕ} (u : Fin d → E) (hu : LinearIndependent ℝ u) (X : 
       ((span ℤ (Set.range b)).smul_mem q (subset_span ⟨_, rfl⟩))
 
 end ReciprocityTheory.ChartRestriction.G.H1.RB
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.ReducedBasis

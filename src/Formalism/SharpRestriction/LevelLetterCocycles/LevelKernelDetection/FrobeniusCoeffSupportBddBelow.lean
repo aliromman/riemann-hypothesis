@@ -11,8 +11,9 @@ import Mathlib.Data.Nat.Cast.SetInterval
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PrimitiveRootPowPrime, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfLvExp, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.FrobeniusCoeffSupportBddBelow
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PrimitiveRootPowPrime
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PrimitiveRootPowPrime
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln03.Pf
 
@@ -24,7 +25,7 @@ theorem convolution_one {R M : Type} [CommRing R] [AddCommGroup M] [Module R M] 
   rw [finsum_eq_single _ 0]
   · simp
   · intro j hj
-    rw [PowerSeries.coeff_one, if_neg hj, zero_smul]
+    rw [PowerSeries.coeff_one, ite_eq_right hj, zero_smul]
 
 variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp] [Field K₀] [Field K]
     [Algebra Qp K₀] [Algebra Qp K] [Algebra K₀ K] [IsScalarTower Qp K₀ K]
@@ -146,6 +147,7 @@ theorem phiIt_levB (Lb : LevB W) (T : LocLat G Qp LL O)
   exact h
 
 end Formalism.MainNotions.N.Ln03.Pf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfLvExp

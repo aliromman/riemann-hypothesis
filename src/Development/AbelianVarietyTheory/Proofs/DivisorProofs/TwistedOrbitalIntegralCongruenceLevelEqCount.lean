@@ -132,11 +132,12 @@ theorem conj_mem_congSet_iff : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
 end GlobalTheory.KapOrb
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryCommutingOfMemNormOneTorus
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryCommutingOfMemNormOneTorus
 
 open NumberField GlobalTheory.UnitaryBC IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep Formalism.UG GlobalTheory.BCT GlobalTheory.KapLat GlobalTheory.KapOrb
 open scoped Classical
 
+noncomputable section
 namespace GlobalTheory.KapOrb
 
 theorem exists_unitary_of_torus : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (w : Pl E) (K : GlobalTheory.UnitLemma.UQ) (e : K.E ≃+* w.adicCompletion E) (B : GlobalTheory.UnitLemma.InvAlg K) (u x : B.A) (n : ℕ) (γ : GLw n w) (ψ : B.A ≃+ (Fin n → w.adicCompletion E)), IsModelMap w e B u x γ ψ → ∀ s ∈ B.T, ∃ h : GLw n w, h ∈ UL n w ∧ h * γ = γ * h ∧ ∀ y, ψ ((s : B.A) * y) = h.val *ᵥ ψ y := by
@@ -189,7 +190,7 @@ theorem exists_unitary_of_torus : ∀ (E : Type) [Field E] [NumberField E] [IsCM
       rw [Finset.sum_congr rfl (fun k _ => mul_comm (cj w (h.val k i)) (h.val k j)), hp]
       by_cases hij : i = j
       · subst hij; simp [Pi.single_apply]
-      · rw [if_neg hij, Finset.sum_eq_zero]
+      · rw [ite_eq_right hij, Finset.sum_eq_zero]
         intro k _
         by_cases hk : k = j
         · subst hk; simp [Ne.symm hij]
@@ -205,6 +206,7 @@ theorem exists_unitary_of_torus : ∀ (E : Type) [Field E] [NumberField E] [IsCM
     rw [hmv, hLm]
 
 end GlobalTheory.KapOrb
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeEqIntegralCoords
@@ -532,8 +534,9 @@ theorem exists_unitary_pullLat_eq : ∀ (E : Type) [Field E] [NumberField E] [Is
 end GlobalTheory.KapOrb.SelfDualPull
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemCompactPartCentralizerIffTorusIntegralUnits
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemCompactPartCentralizerIffTorusIntegralUnits
 
+noncomputable section
 
 namespace GlobalTheory.KapOrb.CptInt
 
@@ -562,7 +565,7 @@ theorem continuous_cj (w : Pl E) : Continuous (cj w) := by
 
 theorem isClosed_UL (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) :
     IsClosed ((UL n w : Subgroup (GLw n w)) : Set (GLw n w)) := by
-  unfold UL; rw [if_neg hw]
+  unfold UL; rw [ite_eq_right hw]
   have : ((UJ (cj w) (1 : Matrix (Fin n) (Fin n) (w.adicCompletion E)) : Subgroup _) : Set (GLw n w)) =
       (fun g : GLw n w => cT (cj w) (g : Matrix (Fin n) (Fin n) (w.adicCompletion E)) * 1 *
         (g : Matrix (Fin n) (Fin n) (w.adicCompletion E))) ⁻¹' {1} := rfl
@@ -700,6 +703,7 @@ theorem mem_cptPart_iff_torusOf_mem_intUnits : ∀ (E : Type) [Field E] [NumberF
     exact Subgroup.subset_closure ⟨hh, (key h hh).2 hi⟩
 
 end GlobalTheory.KapOrb.CptInt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrbitalIntegralEqWeightedLatticeOrbitCount
@@ -933,8 +937,9 @@ theorem pullLat_mul_eq_mulLat : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
 end GlobalTheory.KapOrb
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullbackLatticeSelfDualOfUnitary
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullbackLatticeSelfDualOfUnitary
 
+noncomputable section
 
 namespace GlobalTheory.KapOrb.SDual
 
@@ -979,7 +984,7 @@ theorem pullLat_selfDual : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
   have hMu : Formalism.UG.cT (cj w) M * 1 * M = 1 := by
     have h := hgi
     unfold UL at h
-    rw [if_neg hw] at h
+    rw [ite_eq_right hw] at h
     exact h
   have hMg : M * g.val = 1 := by rw [hMdef]; exact Units.inv_mul g
   have hgM : g.val * M = 1 := by rw [hMdef]; exact Units.mul_inv g
@@ -1026,7 +1031,7 @@ theorem pullLat_selfDual : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
     funext j
     rw [Finset.sum_apply]
     simp only [hφs, z, hpre, Pi.smul_apply, Pi.single_apply, smul_eq_mul, mul_ite, mul_one, mul_zero,
-      Finset.sum_ite_eq, Finset.mem_univ, if_true]
+      Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     exact (ha j).symm
   have hsd : ∀ y, (∀ i, φ y i ∈ w.adicCompletionIntegers E) ↔
       ∀ z' ∈ pullLat w B ψ g, B.herm x y z' ∈ (algebraMap K.O K.E).range := by
@@ -1076,9 +1081,11 @@ theorem pullLat_selfDual : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
 
 end GlobalTheory.KapOrb.SDual
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullbackLatticeStableIffPrincipalCongruence
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullbackLatticeStableIffPrincipalCongruence
 
+noncomputable section
 
 namespace GlobalTheory.KapCong
 
@@ -1192,7 +1199,7 @@ theorem pullLat_stable_iff_cong : ∀ (E : Type) [Field E] [NumberField E] [IsCM
     refine ⟨?_, fun i j => by simpa [Matrix.sub_apply] using H i j⟩
     have hγ' : g⁻¹ * γ * g ∈ UL n w := mul_mem (mul_mem (inv_mem hg) hγ) hg
     unfold UL at hγ'
-    rw [if_neg hns] at hγ'
+    rw [ite_eq_right hns] at hγ'
     have hU : cT (cj w) (g⁻¹ * γ * g : GLw n w).val * 1 * (g⁻¹ * γ * g : GLw n w).val = 1 := hγ'
     rw [Matrix.mul_one] at hU
     have hinv : ((g⁻¹ * γ * g)⁻¹ : GLw n w).val = cT (cj w) (g⁻¹ * γ * g : GLw n w).val :=
@@ -1214,6 +1221,7 @@ theorem pullLat_stable_iff_cong : ∀ (E : Type) [Field E] [NumberField E] [IsCM
     simpa [Matrix.sub_apply] using H.2 i j
 
 end GlobalTheory.KapCong
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullbackOfTranslatedStandardLatticeMulIntegralGL
@@ -1394,12 +1402,12 @@ theorem twOrb_congruence_eq_N : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
         rw [hc]
         exact _root_.GlobalTheory.KapOrb.conj_mem_congSet_iff E w n k _ _ (Subgroup.mem_subgroupOf.1 kk.2)
       by_cases h : g.1⁻¹ * γ * g.1 ∈ congSet w n k
-      · rw [if_pos (hm.2 h), if_pos h]; rfl
-      · rw [if_neg (fun h' => h (hm.1 h')), if_neg h]
+      · rw [ite_eq_left (hm.2 h), ite_eq_left h]; rfl
+      · rw [ite_eq_right (fun h' => h (hm.1 h')), ite_eq_right h]
     rw [hfun, GlobalTheory.TwOrbGood.avg_const]
     by_cases h : g.1⁻¹ * γ * g.1 ∈ congSet w n k
-    · rw [if_pos h, if_pos ((hiff g).2 h)]
-    · rw [if_neg h, if_neg (fun h' => h ((hiff g).1 h'))]
+    · rw [ite_eq_left h, ite_eq_left ((hiff g).2 h)]
+    · rw [ite_eq_right h, ite_eq_right (fun h' => h ((hiff g).1 h'))]
   have hmul : ∀ h ∈ twCent (MonoidHom.id (UL n w)) δ, ∀ h' ∈ twCent (MonoidHom.id (UL n w)) δ,
       τ (h * h') = τ h * τ h' := by
     intro h hh h' hh'

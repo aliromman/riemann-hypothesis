@@ -10,11 +10,10 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.ScalePairMulMulEq, Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.StdDataCmProof
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.ScalePairMulMulEq
 
+noncomputable section
 open scoped BigOperators ComplexConjugate
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.ScalePairMulMulEq
 
 namespace Formalism.L2.Th1.H
 
@@ -34,8 +33,8 @@ theorem semiChar_scale (L : PeriodPair) (c : ℂ) (hc : c ≠ 0) (ω : ℂ) :
     rw [mul_div_assoc, mul_mem_scale]
   unfold Formalism.L2.Th1.F.semiChar
   by_cases h2 : ω / 2 ∈ L.lattice
-  · rw [if_pos h2, if_pos (h.mpr h2)]
-  · rw [if_neg h2, if_neg (fun h3 => h2 (h.mp h3))]
+  · rw [ite_eq_left h2, ite_eq_left (h.mpr h2)]
+  · rw [ite_eq_right h2, ite_eq_right (fun h3 => h2 (h.mp h3))]
 
 theorem th0Char_scale (L : PeriodPair) (c : ℂ) (hc : c ≠ 0) (ω₀ ω : ℂ) :
     Formalism.L2.Th1.F.thetaZeroCharacter (scalePair L c hc) (c * ω₀) (c * ω) = Formalism.L2.Th1.F.thetaZeroCharacter L ω₀ ω := by
@@ -67,8 +66,11 @@ theorem CmStdCharScale_proof : CmStdCharScale := by
 
 end Formalism.L2.Th1.H
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.StdDataCmProof
+
+open scoped BigOperators ComplexConjugate
 
 namespace Formalism.L2.Th1.H.CmData
 

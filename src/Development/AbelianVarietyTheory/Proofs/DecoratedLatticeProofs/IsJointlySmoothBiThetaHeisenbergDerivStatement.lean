@@ -98,7 +98,6 @@ end GlobalTheory.BiDeriv
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsJointlySmoothBiThetaHeisenbergDerivStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

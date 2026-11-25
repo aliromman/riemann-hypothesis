@@ -23,11 +23,12 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.PhiBoundPartsOfRadi
 -- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutHLMinusPosOfParts, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutHLAsm, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutHLMinusZeroOfParts, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutHLPlusZeroOfParts, Formalism.HermitianCurvature.HermitianCurvatureProofs.Hpart1SingleEs, Formalism.HermitianCurvature.HermitianCurvatureProofs.HeadLetterOfMinusPos, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutHLFinal
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutHLMinusPosOfParts
-@[expose] public noncomputable section
+@[expose] public section
 
 open Matrix Filter Topology
 open scoped ComplexConjugate
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutHL.MPos
 
@@ -163,7 +164,7 @@ theorem _root_.Formalism.FourierDecayAlt.P.minus_positive_of_parts : MinusPosOfP
       D.vLet k r z z' n hn (false, Y) e Φ g = ((starRingEnd ℂ) (Dmin k r z z' g ⟨n, by omega⟩))⁻¹ •
         C3.AAvop k r (n - e) (by omega) ((Y : ℂ) - ((2 * r + k : ℕ) : ℂ) / 2) Φ g := by
     intro n hn e g hne
-    simp only [D.vLet, if_neg hne]
+    simp only [D.vLet, ite_eq_right hne]
     rfl
   set ℓ : ℂ := (Y : ℂ) - ((2 * r + k : ℕ) : ℂ) / 2 with hℓ
   set x := x0 k r (m + 1) hj Z τ γ with hxd
@@ -275,27 +276,27 @@ theorem _root_.Formalism.FourierDecayAlt.P.minus_positive_of_parts : MinusPosOfP
     intro a q
     rw [hN ⟨↑a, by omega⟩ q (by simp)]
     by_cases h : r + k < ↑q ∧ 2 * r + k - ↑q < m + 1
-    · rw [dif_pos h, if_pos ⟨h.1, by omega⟩]
-      simp only [C3.Zb, dif_pos a.2, dif_pos h.2, hWd]
+    · rw [dite_eq_left h, ite_eq_left ⟨h.1, by omega⟩]
+      simp only [C3.Zb, dite_eq_left a.2, dite_eq_left h.2, hWd]
       rfl
-    · rw [dif_neg h]
+    · rw [dite_eq_right h]
       split_ifs with h'
       · have hb : 2 * r + k - ↑q = m + 1 := by omega
-        simp only [C3.Zb, dif_pos a.2, hb, lt_irrefl, dif_neg (not_false), star_zero]
+        simp only [C3.Zb, dite_eq_left a.2, hb, lt_irrefl, dite_eq_right (not_false), star_zero]
       · rfl
   have hy2 : ∀ q : Fin (2 * r + k + 1),
       PBG.y0 x ⟨m + 1, by omega⟩ q = if ↑q = 2 * r + k - (m + 1) then d else 0 := by
     intro q
     rw [hN ⟨m + 1, by omega⟩ q (by simp)]
     by_cases hq : (q : ℕ) = 2 * r + k - (m + 1)
-    · rw [if_pos hq, if_pos ⟨by omega, by omega⟩]
+    · rw [ite_eq_left hq, ite_eq_left ⟨by omega, by omega⟩]
       have hb : 2 * r + k - ↑q = m + 1 := by omega
       simp [C3.Zb, hb, hdd]
-    · rw [if_neg hq]
+    · rw [ite_eq_right hq]
       split_ifs with h'
       · have hb : 2 * r + k - ↑q < m + 1 := by omega
-        simp only [C3.Zb, lt_irrefl, dif_neg (not_false)]
-        rw [if_neg (by omega), star_zero]
+        simp only [C3.Zb, lt_irrefl, dite_eq_right (not_false)]
+        rw [ite_eq_right (by omega), star_zero]
       · rfl
   have hWne : W.det ≠ 0 := by rw [hWdet]; exact (map_ne_zero _).mpr hZ
   have hdne : d ≠ 0 := (map_ne_zero _).mpr hτ
@@ -310,6 +311,7 @@ theorem _root_.Formalism.FourierDecayAlt.P.minus_positive_of_parts : MinusPosOfP
   module
 
 end Formalism.FourierDecayAlt.P.CutHL.MPos
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 
@@ -330,8 +332,9 @@ section -- clump: shared namespace opens
 open Matrix
 open scoped ComplexConjugate
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutHLMinusZeroOfParts
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutHLMinusZeroOfParts
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutHLMZ
 
@@ -352,7 +355,7 @@ theorem qminorOp_zero (a b : Fin 0 → Fin (2 * r + k + 1)) (u : ℂ) (f : Q.Mx 
 
 theorem AAvop_zero (h : 0 ≤ r) (ell : ℂ) (f : Q.Mx k r → E) (g : Q.Mx k r) : C3.AAvop k r 0 h ell f g = f g := by
   unfold C3.AAvop
-  rw [Fintype.sum_unique, if_pos (Subsingleton.strictMono _), Matrix.det_isEmpty, one_smul, qminorOp_zero]
+  rw [Fintype.sum_unique, ite_eq_left (Subsingleton.strictMono _), Matrix.det_isEmpty, one_smul, qminorOp_zero]
 
 theorem qminorOp_one (a b : Fin 1 → Fin (2 * r + k + 1)) (u : ℂ) (f : Q.Mx k r → E) (g : Q.Mx k r) :
     qminorOp (EabH (Hpk k r)) a b u f g =
@@ -375,14 +378,14 @@ theorem AAvop_one (h : 1 ≤ r) (x : Q.Mx k r) (w : ℂ)
     rw [Matrix.det_unique]
     exact hnf (c 0)
   rw [Finset.sum_eq_single (fun _ => esI k r ⟨0, by omega⟩)]
-  · rw [if_pos (Subsingleton.strictMono _), hent, if_pos (by simp [esI]),
-      qminorOp_one, if_pos (by simp [C3.sR, esI])]
+  · rw [ite_eq_left (Subsingleton.strictMono _), hent, ite_eq_left (by simp [esI]),
+      qminorOp_one, ite_eq_left (by simp [C3.sR, esI])]
     simp only [C3.sR, Q.EH] at *
     rw [show ell + ((1 : ℕ) : ℂ) - 1 = ell by push_cast; ring]
     rfl
   · intro c _ hc
     split_ifs with hm
-    · rw [hent, if_neg, zero_smul]
+    · rw [hent, ite_eq_right, zero_smul]
       intro h0
       apply hc
       funext l
@@ -418,8 +421,8 @@ theorem minus_zero_of_parts : CutHL.MinusZeroOfParts := by
       rw [hnfy ⟨0, by omega⟩ p (by simp)]
       have hp := p.isLt
       by_cases hq : p.val = 2 * r + k
-      · rw [if_pos (by omega), if_pos hq, hq, Nat.sub_self]; simp [C3.Zb]
-      · rw [if_neg (by omega), if_neg hq])
+      · rw [ite_eq_left (by omega), ite_eq_left hq, hq, Nat.sub_self]; simp [C3.Zb]
+      · rw [ite_eq_right (by omega), ite_eq_right hq])
     ((Y : ℂ) - ((2 * r + k : ℕ) : ℂ) / 2) Φ
   have hu : ((Y : ℂ) - ((2 * r + k : ℕ) : ℂ) / 2) = (Y : ℂ) - levelZeroKernel k r 0 := by
     unfold levelZeroKernel; rw [Nat.sub_zero]; push_cast; ring
@@ -431,9 +434,11 @@ theorem minus_zero_of_parts : CutHL.MinusZeroOfParts := by
 
 end Formalism.FourierDecayAlt.P
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutHLPlusZeroOfParts
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutHLPlusZeroOfParts
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutHLPZ
 
@@ -454,7 +459,7 @@ theorem qminorOp_zero (a b : Fin 0 → Fin (2 * r + k + 1)) (u : ℂ) (f : Q.Mx 
 
 theorem AAop_zero (h : 0 ≤ r) (u : ℂ) (f : Q.Mx k r → E) (g : Q.Mx k r) : C3.AAop k r 0 h u f g = f g := by
   unfold C3.AAop
-  rw [Fintype.sum_unique, if_pos (Subsingleton.strictMono _), Matrix.det_isEmpty, one_smul, qminorOp_zero]
+  rw [Fintype.sum_unique, ite_eq_left (Subsingleton.strictMono _), Matrix.det_isEmpty, one_smul, qminorOp_zero]
 
 theorem qminorOp_one (a b : Fin 1 → Fin (2 * r + k + 1)) (u : ℂ) (f : Q.Mx k r → E) (g : Q.Mx k r) :
     qminorOp (EabH (Hpk k r)) a b u f g =
@@ -477,12 +482,12 @@ theorem AAop_one (h : 1 ≤ r) (x : Q.Mx k r) (τ : ℂ)
     rw [Matrix.det_unique]
     exact hnf (c 0)
   rw [Finset.sum_eq_single (fun _ => eI k r ⟨0, by omega⟩)]
-  · rw [if_pos (Subsingleton.strictMono _), hent, if_pos (by simp [eI]),
-      qminorOp_one, if_pos (by simp [C3.xR, eI])]
+  · rw [ite_eq_left (Subsingleton.strictMono _), hent, ite_eq_left (by simp [eI]),
+      qminorOp_one, ite_eq_left (by simp [C3.xR, eI])]
     simp [C3.xR, eI, Q.EH]
   · intro c _ hc
     split_ifs with hm
-    · rw [hent, if_neg, zero_smul]
+    · rw [hent, ite_eq_right, zero_smul]
       intro h0
       apply hc
       funext l
@@ -516,8 +521,8 @@ theorem plus_zero_of_parts : CutHL.PlusZeroOfParts := by
   have hA := AAop_one (k := k) (r := r) (E := E) hj (x0 k r 0 hj Z τ γ) τ (fun p => by
       rw [hnf ⟨0, by omega⟩ p (by simp)]
       by_cases hp : p.val = 0
-      · rw [if_pos (by omega), if_pos hp, hp]; simp [C3.Zb]
-      · rw [if_neg (by omega), if_neg hp])
+      · rw [ite_eq_left (by omega), ite_eq_left hp, hp]; simp [C3.Zb]
+      · rw [ite_eq_right (by omega), ite_eq_right hp])
     ((Y : ℂ) + ((2 * r + k : ℕ) : ℂ) / 2) Φ
   have hu : ((Y : ℂ) + ((2 * r + k : ℕ) : ℂ) / 2) = (Y : ℂ) + levelZeroKernel k r 0 := by
     unfold levelZeroKernel; rw [Nat.sub_zero]; push_cast; ring
@@ -527,6 +532,7 @@ theorem plus_zero_of_parts : CutHL.PlusZeroOfParts := by
   rw [PBG.letter_plus_component_zero, hD1, hu, hA, ← hT', smul_smul, inv_mul_cancel₀ hτ, one_smul, smul_zero, sub_zero]
 
 end Formalism.FourierDecayAlt.P
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.Hpart1SingleEs

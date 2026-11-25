@@ -76,7 +76,7 @@ theorem up_idx (P : M.Par) {j l : ℕ} (hl : l ∈ Finset.Icc 1 (P.k - 1)) {π �
   have h2 : l - 1 + 1 = l := by omega
   by_contra hne
   have hne' : ¬ l = j := fun e => hne e.symm
-  simp only [h2, if_true, hne', if_false] at h1 h3
+  simp only [h2, ite_true, hne', ite_false] at h1 h3
   omega
 
 theorem up_det (P : M.Par) {j : ℕ} {σ σ' ρ : M.Ty P} (h : M.Up P j σ σ') (h' : M.Up P j σ ρ) : σ' = ρ := by
@@ -122,7 +122,7 @@ theorem algebraic_shift_holds : AlgSS := by
       intro σ σ' h
       by_cases hσ : σ' = ρ
       · subst hσ; simp [h]
-      · rw [Pi.single_eq_of_ne hσ, if_neg]
+      · rw [Pi.single_eq_of_ne hσ, ite_eq_right]
         intro h'
         exact hσ (up_det P h h'))
     calc d.κ (Pi.single ρ 1) * (d.SS j * d.κ fun σ => M.xEx P {j} σ Y) * d.κ (Pi.single π 1)
@@ -139,18 +139,20 @@ theorem algebraic_shift_holds : AlgSS := by
             simp [hn, hjl]
   have hQ : d.QQ Y 1 0 = d.L.GG * d.x Y * d.L.l0 Y + d.weightedSumBis Y := rfl
   rw [hQ, mul_add, add_mul, t1, zero_add, Q.NFData.weightedSumBis, Finset.mul_sum, Finset.sum_mul,
-    Finset.sum_congr rfl t2, Finset.sum_ite_eq', if_pos hl]
+    Finset.sum_congr rfl t2, Finset.sum_ite_eq', ite_eq_left hl]
 
 end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Rep.Core.TC.PR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRAsm
+section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRAsm
+@[expose] public section
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt NumberField
 open scoped ComplexConjugate Matrix
 
 namespace Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Rep.Core.TC.PR
 
+noncomputable section
 
 open Asm in
 theorem polynomial_radial_base_holds : PolynomialRadialAtSectionOfPhaseInvariance := by
@@ -185,7 +187,7 @@ theorem polynomial_radial_base_holds : PolynomialRadialAtSectionOfPhaseInvarianc
   have hLine := Gauge.GC.gauge_kappa_line_holds Wp Wq P Bs X d hGT Qr hKP ζ₁ hζ₁
   obtain ⟨Eπ, hEπF, hEπQ, hEπn, hEπsp⟩ := hLine π
   obtain ⟨Eρ, hEρF, hEρQ, hEρn, hEρsp⟩ := hLine ρ
-  have hQQr : ∀ σ, (Qr σ).comp (Qr σ) = Qr σ := fun σ => by rw [hKP.1 σ σ, if_pos rfl]
+  have hQQr : ∀ σ, (Qr σ).comp (Qr σ) = Qr σ := fun σ => by rw [hKP.1 σ σ, ite_eq_left rfl]
 
   have hval : ∀ (Ψ : Q.RadSp P.k P.r Bs.z Bs.z' Bs.π Bs.π') (c : Fin P.r → ℂ), c ∈ OmX P.r →
       ∀ ζ ∈ Gauge.GC.Ann P, (Ψ : Q.Fn P.k P.r (Wq →L[ℂ] Wp)) c (NF.muZ P.k P.r Bs.μsec ζ) ∈
@@ -376,8 +378,10 @@ theorem polynomial_radial_base_holds : PolynomialRadialAtSectionOfPhaseInvarianc
   rw [mul_left_comm, hq']
   linear_combination (-(q.eval ((Real.sqrt (Complex.normSq ζ - P.TT) : ℝ) : ℂ) * x)) * hinv
 
+end
 
 end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Rep.Core.TC.PR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRCPCoreAsm
@@ -1045,13 +1049,15 @@ theorem fibre_stability_holds : FibStable := by
 end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Rep.Core.TC.PR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRKapLine
+section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRKapLine
+@[expose] public section
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt NumberField
 open scoped ComplexConjugate Matrix
 
 namespace Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Rep.Core.TC.PR
 
+noncomputable section
 
 theorem kappa_line_holds : KapLine := by
   intro Wp Wq _ _ _ _ _ _ P Bs hμs hk X d hA Pr hPr
@@ -1134,7 +1140,7 @@ theorem kappa_line_holds : KapLine := by
   have hfix : ∀ σ, (Pr σ ν).comp (Xf.comp (Qs σ)) = Xf.comp (Qs σ) := by
     intro σ
     have hE : (Xf.comp (Qs σ)).comp (Qs σ) = Xf.comp (Qs σ) := by
-      rw [ContinuousLinearMap.comp_assoc, hK.1 σ σ, if_pos rfl]
+      rw [ContinuousLinearMap.comp_assoc, hK.1 σ σ, ite_eq_left rfl]
     have hEeig := (Gauge.GC.lie_eigenvalue_holds Wp Wq P Bs X d hH Qs hK ζ hζT _ hFr' σ _ (hfib σ)).1 hE
     ext v
     rw [ContinuousLinearMap.comp_apply]
@@ -1154,12 +1160,14 @@ theorem kappa_line_holds : KapLine := by
   rw [ContinuousLinearMap.comp_finsetSum, Finset.sum_eq_single ρ]
   · exact hfix ρ
   · intro σ _ hσ
-    rw [← hfix σ, ← ContinuousLinearMap.comp_assoc, hPP ρ σ, if_neg (Ne.symm hσ), ContinuousLinearMap.zero_comp]
+    rw [← hfix σ, ← ContinuousLinearMap.comp_assoc, hPP ρ σ, ite_eq_right (Ne.symm hσ), ContinuousLinearMap.zero_comp]
   · intro h
     exact absurd (Finset.mem_univ ρ) h
 
+end
 
 end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Rep.Core.TC.PR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRPHRotRadSp
@@ -1580,12 +1588,14 @@ theorem tht_adapted (Bs : B.RealPlaceData (n + 1) r Wp Wq) {ζ : ℂ}
 end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Rep.Core.TC.PR.TW
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRTWNe
+section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRTWNe
+@[expose] public section
 
 open Matrix Finset Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 
 namespace Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Rep.Core.TC.PR
 
+noncomputable section
 
 open Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.Qr Formalism.FourierDecayAlt.P
 
@@ -1697,12 +1707,12 @@ theorem core (hAlg : TW.TWNeAlg) {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerPr
     by_cases hj : j = i₀
     · subst hj
       have e : ((i₀ : Fin n) : ℕ) + 1 = l := by rw [hi₀]; show l - 1 + 1 = l; omega
-      rw [Function.update_self, if_pos e]
+      rw [Function.update_self, ite_eq_left e]
       push_cast
       rw [hlabπ i₀]
       ring
     · have e : ¬ ((j : ℕ) + 1 = l) := fun h => hj (Fin.ext (by rw [hi₀]; show (j : ℕ) = l - 1; omega))
-      rw [Function.update_of_ne hj, if_neg e, hlabπ j]
+      rw [Function.update_of_ne hj, ite_eq_right e, hlabπ j]
       ring
   obtain ⟨hbπ, hbπ', hcpπ⟩ := TW.labels2 hOK π L L' hL2 hL2' Mπ hlabπ
   obtain ⟨hbρ, hbρ', hcpρ⟩ := TW.labels2 hOK ρ L L' hL2 hL2' _ hlabρ
@@ -1783,8 +1793,10 @@ theorem tWNe_of_alg (hAlg : TW.TWNeAlg) : TWNe := by
 
 theorem word_nonvanishing_holds : TWNe := tWNe_of_alg TW.word_nonvanishing_algebraic
 
+end
 
 end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Rep.Core.TC.PR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRRest

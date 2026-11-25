@@ -939,8 +939,9 @@ theorem preimage_dense : ∀ (Ψ : Type) [Fintype Ψ] [DecidableEq Ψ] (N : ℕ)
 end GlobalTheory.CompanionTheory.Ar.CoverDense
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.NumberFieldPointHeight
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.NumberFieldPointHeight
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Ht.PointCurve
 
@@ -1025,7 +1026,7 @@ theorem multAt_map (e : ∀ k, ι k ≃ Fin (n k + 1)) (J V : Ideal (MRing ι)) 
   unfold multAt
   by_cases hV : V.IsPrime
   · have hV' : (V.map (ren e)).IsPrime := (isPrime_map_ringEquiv_iff (ren e) V).2 hV
-    rw [dif_pos hV, dif_pos hV']
+    rw [dite_eq_left hV, dite_eq_left hV']
     exact congrArg ENat.toNat (length_localizedModule_quotient_map (ren e) J V)
   · have hV' : ¬ (V.map (ren e)).IsPrime := fun h' => hV ((isPrime_map_ringEquiv_iff (ren e) V).1 h')
     rw [dite_eq_right hV, dite_eq_right hV']
@@ -1053,7 +1054,7 @@ theorem geoNum_map (e : ∀ k, ι k ≃ Fin (n k + 1)) (V : Ideal (MRing ι)) (h
     (b : Fin 0 → K → ℤ) (b' : Fin 0 → K → ℤ) :
     geoNum (ι := blockIdx n) 0 (V.map (ren e)) b' = geoNum 0 V b := by
   have hV' := (isRelevant_map_iff e V).2 hV
-  simp only [geoNum, dif_pos hV, dif_pos hV']
+  simp only [geoNum, dite_eq_left hV, dite_eq_left hV']
   have hc : ∀ k, (X ⟨k, e k (hV k).choose⟩ : MRing (blockIdx n)) ∉ V.map (ren e) := fun k hm => by
     rw [← ren_X] at hm
     exact (hV k).choose_spec ((mem_map_ringEquiv_iff (ren e) V _).1 hm)
@@ -1297,7 +1298,7 @@ theorem recR_map (e : ∀ k, ι k ≃ Fin (n k + 1)) {x : Cone n (AlgebraicClosu
     exact ⟨V, hV, rfl⟩
   have hnh := hver _ hV'
   have hnh' : ¬ IsHorizontal V := fun h => hnh ((isHorizontal_map_iff e V).2 h)
-  rw [if_neg hnh, if_neg hnh', hsup, multAt_map, charOf_map,
+  rw [ite_eq_right hnh, ite_eq_right hnh', hsup, multAt_map, charOf_map,
     geoNum_map e V hV.2 (fun c c' h1 h2 => (hdeh _ hV' c c' h1 h2).2)]
 
 end Recursion
@@ -1430,6 +1431,7 @@ theorem pointCurve_height : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k,
     linarith
 
 end GlobalTheory.CompanionTheory.Ar.Ht
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerI6OfReference

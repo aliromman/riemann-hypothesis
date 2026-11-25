@@ -282,8 +282,9 @@ theorem chart_change : ∀ (k : Type) [CommRing k] (Y : Scheme.{0}) (p : Y ⟶ S
 end GlobalTheory.ShFam.Hor.LogCh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsComplexPointDerivationSeparatingParamsChar
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsComplexPointDerivationSeparatingParamsChar
 
+noncomputable section
 
 namespace GlobalTheory.PtDerivSep
 
@@ -411,7 +412,7 @@ theorem exists_der_of_rsp {k R : Type} [Field k] [CommRing R] [IsLocalRing R] [I
       simp only [D0, h1, Module.Basis.repr_self]
     change ∑ i, l i * D0 (f i) ≠ 0
     simp only [hfi]
-    rw [Finset.sum_eq_single j (fun i _ hi => by rw [Finsupp.single_apply, if_neg hi, map_zero, mul_zero])
+    rw [Finset.sum_eq_single j (fun i _ hi => by rw [Finsupp.single_apply, ite_eq_right hi, map_zero, mul_zero])
       (fun h => (h (Finset.mem_univ j)).elim), Finsupp.single_eq_same, map_one, _root_.mul_one]
     exact hj
 
@@ -459,6 +460,7 @@ theorem exists_ptDer_sep : ∀ (k : Type) [Field k] [CharZero k] (Y : Scheme.{0}
   simp only [AddMonoidHom.comp_apply, RingHom.toAddMonoidHom_eq_coe, AddMonoidHom.coe_coe, map_mul, h2, hψ]
 
 end GlobalTheory.PtDerivSep
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsComplexPointDerivationSeparatingParamsCharStatement

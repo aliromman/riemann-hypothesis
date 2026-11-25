@@ -407,10 +407,11 @@ theorem GlobalTheory.LagVac.exists_vacuum : ∀ {k : Type} [Field k] [ValuativeR
     rwa [map_zero, schr_zero_vec] at h
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzBruhatVectorIrreducibleTranslationsChara
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzBruhatVectorIrreducibleTranslationsChara
 
 open ValuativeRel Matrix
 
+noncomputable section
 namespace GlobalTheory.IrredSBVec
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -462,7 +463,7 @@ theorem sb_irreducible_vec : ∀ {k : Type} [Field k] [ValuativeRel k] [Topologi
       have := (one_lt_inv₀ (zero_lt_iff.2 hv0)).2 hw1
       exact absurd h' (not_le.2 this)
     have := mt (hcond w⁻¹).1 hno
-    push_neg at this
+    push Not at this
     obtain ⟨y, -, hy⟩ := this
     intro he
     apply hy
@@ -516,6 +517,7 @@ theorem sb_irreducible_vec : ∀ {k : Type} [Field k] [ValuativeRel k] [Topologi
     exact (mem' _).1 this
 
 end GlobalTheory.IrredSBVec
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

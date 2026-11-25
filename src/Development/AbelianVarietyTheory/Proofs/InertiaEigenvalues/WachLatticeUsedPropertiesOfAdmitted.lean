@@ -657,8 +657,9 @@ theorem rankOne_of_senOp : ∀ {l : ℕ} [Fact l.Prime] {P : LocPrime l} (AI : L
 end GlobalTheory.WachRankOne
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LinesAtOfLatticeAtLevels
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LinesAtOfLatticeAtLevels
 
+noncomputable section
 
 namespace GlobalTheory.SenOperator
 
@@ -992,7 +993,7 @@ theorem spanIsLines_of_coeff (j : M →ₗ[F] M') (ex : N → ℤ → M) (hex : 
     exact ⟨⟨m, fun k hk => show j (f k) = 0 by rw [hm k hk, map_zero]⟩, fun k => ⟨f k, h k, rfl⟩⟩
   · rintro ⟨⟨m, hm⟩, h⟩
     choose f hf hfy using h
-    refine ⟨fun k => if k < m then 0 else f k, (hG _).2 ⟨⟨m, fun k hk => if_pos hk⟩, fun k => ?_⟩, ?_⟩
+    refine ⟨fun k => if k < m then 0 else f k, (hG _).2 ⟨⟨m, fun k hk => ite_eq_left hk⟩, fun k => ?_⟩, ?_⟩
     · split_ifs
       · exact zero_mem _
       · exact hf k
@@ -1038,6 +1039,7 @@ theorem senOp_of_record : ∀ (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA
   fun D HW F Cm l _ _ _ hA => senOp_of_lines (Cm l) hA (linesAt_of_record D HW F Cm l hA)
 
 end GlobalTheory.SenOperator
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachLatticeUsedPropertiesOfAdmitted

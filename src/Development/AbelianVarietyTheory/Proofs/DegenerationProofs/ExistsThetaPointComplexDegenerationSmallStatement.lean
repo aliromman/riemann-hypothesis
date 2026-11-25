@@ -119,9 +119,9 @@ section -- clump: shared namespace opens
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open scoped CategoryTheory.Obj BigOperators
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.CubNFrame
-open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 namespace GlobalTheory.Ex.Arch.Wp
 
 variable {O : Type} [CommRing O] [StarRing O] {N : NumD ℂ} {B : AnArc O}
@@ -211,10 +211,10 @@ theorem wp_eq : WpSt := by
 end GlobalTheory.Ex.Arch.Wp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.DifferentiableQuot
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.DifferentiableQuot
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.Ex.Arch.FibPrim
 open GlobalTheory.CubeValues GlobalTheory.SymmetricSemicharacter GlobalTheory.FrameValue
 
@@ -368,10 +368,11 @@ theorem fibPrim : FibPrimSt := by
 theorem fibPrim_of_laws : Laws → FibPrimSt := fun _ => fibPrim
 
 end GlobalTheory.Ex.Arch.FibPrim
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsLogFrame
-open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 
 namespace GlobalTheory.Ex.Arch
 
@@ -534,10 +535,10 @@ theorem dict_of_val : BrActSt → ValSt → DictSt := by
 end GlobalTheory.Ex.Arch
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsSymPmaps
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsSymPmaps
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.Ex.Arch.FibSym
 open GlobalTheory.FrameValue GlobalTheory.TorusExt GlobalTheory.DegPull
 
@@ -621,12 +622,14 @@ theorem fibSymSt : Laws → FibSymSt := by
   simp
 
 end GlobalTheory.Ex.Arch.FibSym
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.FibLieOfLaws
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.FibLieOfLaws
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.Ex.Arch
 
 
@@ -657,10 +660,11 @@ theorem fibLie_of_laws : Laws → FibLieSt := by
   exact he.finrank_eigenSub act ρ hρ hn
 
 end GlobalTheory.Ex.Arch
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsPtNsmul
-open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 
 namespace GlobalTheory.Ex.Arch
 
@@ -769,7 +773,6 @@ end GlobalTheory.Ex.Arch
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ObjStOfTripleReframe
-open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 namespace GlobalTheory.Ex.Arch
 
 theorem int_eq_of_exp_div_eq {m n : ℤ} (h : ∀ k : ℕ, 0 < k →
@@ -833,7 +836,6 @@ end GlobalTheory.Ex.Arch
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.PeriodConstantPartEqZeroInjective
-open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 
 namespace GlobalTheory.Ex.Arch
 
@@ -919,7 +921,6 @@ end GlobalTheory.Ex.Arch
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Reframe
-open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 
 namespace GlobalTheory.Ex.Arch
 
@@ -1105,10 +1106,12 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TraceEqSumFinrank
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TraceEqSumFinrank
+@[expose] public section
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
+noncomputable section
 
 namespace GlobalTheory.Ex.Arch
 
@@ -1163,23 +1166,26 @@ theorem typeSt : TypeSt := by
         if φ (H.rt : E) = H.rt0 then D.p else D.q := by
       have h3 := hB (φ.comp (algebraMap (𝓞 E) E))
       by_cases hφ : φ (H.rt : E) = H.rt0
-      · rw [if_pos hφ]; exact h3.trans (if_pos hφ)
-      · rw [if_neg hφ]; exact h3.trans (if_neg hφ)
+      · rw [ite_eq_left hφ]; exact h3.trans (ite_eq_left hφ)
+      · rw [ite_eq_right hφ]; exact h3.trans (ite_eq_right hφ)
     rw [← h2]
     push_cast
     ring
-  exact ⟨g, ty, h, fun φ => ⟨fun hφ => (hc φ).trans (if_pos hφ), fun hφ => (hc φ).trans (if_neg hφ)⟩, hh⟩
+  exact ⟨g, ty, h, fun φ => ⟨fun hφ => (hc φ).trans (ite_eq_left hφ), fun hφ => (hc φ).trans (ite_eq_right hφ)⟩, hh⟩
 
 end GlobalTheory.Ex.Arch
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TripleStOfLaws
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TripleStOfLaws
+@[expose] public section
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open scoped CategoryTheory.Obj BigOperators
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
-attribute [local instance] Over.cartesianMonoidalCategory
+noncomputable section
 namespace GlobalTheory.Ex.Arch
 
 theorem tripleSt_of_laws : Laws → ThetaUnifAV → TripleSt := by
@@ -1219,6 +1225,8 @@ theorem tripleSt_of_laws : Laws → ThetaUnifAV → TripleSt := by
   rwa [hP', hP', e.apply_symm_apply, e.apply_symm_apply] at this
 
 end GlobalTheory.Ex.Arch
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TxStOfPtSt
@@ -1437,7 +1445,6 @@ open scoped CategoryTheory.Obj BigOperators
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.VFCorr
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 
 namespace GlobalTheory.ActValues
@@ -1524,10 +1531,11 @@ theorem brAct : Laws → BrActSt := by
 end GlobalTheory.ActValues
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.VFEqGenValMul
-attribute [local instance] Over.cartesianMonoidalCategory
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.VFEqGenValMul
+@[expose] public section
 open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 
+noncomputable section
 namespace GlobalTheory.Ex.Arch.FibCube
 open GlobalTheory.FrameValue GlobalTheory.TorusExt
 
@@ -1625,11 +1633,14 @@ theorem fibCubeSt : Laws → FibCubeSt := by
   field_simp
 
 end GlobalTheory.Ex.Arch
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsThetaPointComplexDegenerationSmall
-attribute [local instance] Over.cartesianMonoidalCategory
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsThetaPointComplexDegenerationSmall
+@[expose] public section
 open GlobalTheory GlobalTheory.Ex
+noncomputable section
 namespace GlobalTheory.Ex.Arch
 
 theorem isThetaPt_classical (hL : Laws) (hL2 : Laws2) (hT : ThetaUnifAV) (P : PolAV (Sp ℂ))
@@ -1799,10 +1810,11 @@ theorem exists_full_of_small : HV → Laws6 → GlobalTheory.LN.UDvrSt → Globa
     _root_.GlobalTheory.Ex.Arch.typeSt (_root_.GlobalTheory.Ex.Arch.objSt_of_triple_reframe hL (_root_.GlobalTheory.Ex.Arch.tripleSt_of_laws hL hT) (_root_.GlobalTheory.Ex.Arch.reframe hT)) _root_.GlobalTheory.Ex.Arch.theta_sum_appellHumbert (_root_.GlobalTheory.Ex.Arch.txSt_of_ptSt _root_.GlobalTheory.Ex.Arch.ptSt)
 
 end GlobalTheory.Ex.Arch
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsThetaPointComplexDegenerationSmallStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.Ex
 
 theorem _root_.GlobalTheory.T.exists_thetaPoint_complexDegeneration_small : HV → Laws6 → GlobalTheory.LN.UDvrSt → GlobalTheory.LN.HomExtSt → ThetaPtDeterminesSt → EndDeterminedOnTorsionSt → ThetaUnifAV → AllD fun {_} _ _ _ {H} D => ∀ (R : Type) [CommRing R] [IsDomain R] [Algebra (FractionRing R) ℂ] (A : ArcF D R ℂ), A.ρ = H.rt0 → ∀ (k : ℕ) (β : A.N.Form k), A.Bal β → ∀ (m : ℕ) (hm : m ^ 2 ∣ k), Odd m → ∃ ε : ℝ, 0 < ε ∧ ∀ u : ℂˣ, ‖(u : ℂ)‖ < ε → (∀ x, Summable fun χ => ‖(A.N.twist β u).txT m (A.N.twQ β u hm (A.q _ x)) χ‖) ∧ ∃ o : Full D ℂ, o.ρ = H.rt0 ∧ o.I.ζ (m ^ 2) = A.I.ζ (m ^ 2) ∧ o.Theta m fun x => (A.N.twist β u).tx m (A.N.twQ β u hm (A.q _ x)) := by

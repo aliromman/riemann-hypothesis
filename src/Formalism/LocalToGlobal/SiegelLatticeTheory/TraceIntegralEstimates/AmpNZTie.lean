@@ -28,31 +28,18 @@ import Formalism.PeriodIntegrals.ExplicitFormulaCounts.WeylForK
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.PeriodG, Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.AmpNZTie
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.PeriodG
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.PeriodG
 
 open MeasureTheory Matrix
 open scoped InnerProductSpace
 
+noncomputable section
 
 namespace Formalism.L2.S.Pv.PeriodG
 
 open Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.MainNotions.CayleySignature Formalism.L2.SG.BesselSplit
 
 variable {k r : ℕ}
-
-section Period
-
-variable {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
-  {Vp : Type} [NormedAddCommGroup Vp] [InnerProductSpace ℂ Vp] [FiniteDimensional ℂ Vp]
-
-end Period
-
-section Period2
-
-variable {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
-  {Vp : Type} [NormedAddCommGroup Vp] [InnerProductSpace ℂ Vp] [FiniteDimensional ℂ Vp]
-
-end Period2
 
 theorem thrStar_le {n : ℕ} (ε : Fin n → Bool) :
     ReciprocityTheory.ChartRestriction.DS.thrStar ε ≤ (n : ℝ) ^ 3 + 16 * (n : ℝ) ^ 2 + 16 * (n : ℝ) + 8 := by
@@ -109,6 +96,7 @@ theorem exponent_ok (k r : ℕ) {h : ℝ} (hok : Formalism.FourierDecayAlt.Three
       mul_le_mul_of_nonneg_left hx2 (by positivity : (0 : ℝ) ≤ x)]
 
 end Formalism.L2.S.Pv.PeriodG
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.AmpNZTie

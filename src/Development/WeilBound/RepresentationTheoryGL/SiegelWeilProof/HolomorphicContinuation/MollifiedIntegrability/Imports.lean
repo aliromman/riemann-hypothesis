@@ -1056,12 +1056,11 @@ theorem densOf3 : Gauss → ClsGain → Integr → Dens := dens_of algA intG der
 end PositivityTheory.Rg.Sw.WR.D
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.GWickB
 
+noncomputable section
 
 open MeasureTheory Matrix MvPolynomial
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.GWickB
 
 namespace PositivityTheory.Rg.Sw.WR.G
 
@@ -1072,7 +1071,7 @@ variable {m n : ℕ}
 theorem gramX_apply (ε : Fin m → Bool) (x : Fin m → Fin n → ℂ) (i j : Fin n) :
     gramX ε x i j = ∑ a, sgn ε a * star (x a i) * x a j := by
 
-  simp only [gramX, Qp, Qb, map_sub, map_sum, map_mul, evX, eval_X, if_true, Bool.false_eq_true, if_false]
+  simp only [gramX, Qp, Qb, map_sub, map_sum, map_mul, evX, eval_X, ite_true, Bool.false_eq_true, ite_false]
   rw [Finset.sum_filter, Finset.sum_filter, ← Finset.sum_sub_distrib]
   refine Finset.sum_congr rfl fun a _ => ?_
   cases h : ε a <;> simp [sgn, h]
@@ -1138,8 +1137,12 @@ theorem exp_phiP (ε : Fin m → Bool) (c t : ℝ) (b : Matrix (Fin n) (Fin n) �
 
 end PositivityTheory.Rg.Sw.WR.G
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.GWickA
+
+
+open MeasureTheory Matrix MvPolynomial
 
 namespace PositivityTheory.Rg.Sw.WR.G
 
@@ -1203,7 +1206,11 @@ theorem hasFDerivAt_evX (P : PX m n) (x : Fin m → Fin n → ℂ) : HasFDerivAt
 end PositivityTheory.Rg.Sw.WR.G
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.EvXPderivPhiP
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.EvXPderivPhiP
+
+noncomputable section
+
+open MeasureTheory Matrix MvPolynomial
 open scoped ComplexOrder
 
 namespace PositivityTheory.Rg.Sw.WR.G
@@ -1262,10 +1269,10 @@ theorem dEv_wirt (P : PX m n) (x : Fin m → Fin n → ℂ) (a : Fin m) (j : Fin
   simp only [dEv, ContinuousLinearMap.coe_sum', ContinuousLinearMap.coe_smul', Finset.sum_apply, Pi.smul_apply,
     smul_eq_mul, Finset.mul_sum, ← Finset.sum_sub_distrib]
   rw [Finset.sum_eq_single (a, j, false)]
-  · have := crd_wirt a j (a, j, false); simp only [if_true] at this
+  · have := crd_wirt a j (a, j, false); simp only [ite_true] at this
     rw [← this]; ring
   · intro k _ hk
-    have := crd_wirt a j k; rw [if_neg hk] at this
+    have := crd_wirt a j k; rw [ite_eq_right hk] at this
     calc _ = evX (pderiv k P) x * (crd k (fun a' i' => if a' = a ∧ i' = j then (1 : ℂ) else 0) -
           Complex.I * crd k (fun a' i' => if a' = a ∧ i' = j then Complex.I else 0)) := by ring
       _ = 0 := by rw [this, mul_zero]
@@ -1290,8 +1297,13 @@ theorem evX_pderiv_phiP (ε : Fin m → Bool) (c t : ℝ) (b : Matrix (Fin n) (F
 
 end PositivityTheory.Rg.Sw.WR.G
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.GWickC
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.GWickC
+
+noncomputable section
+
+open MeasureTheory Matrix MvPolynomial
 
 namespace PositivityTheory.Rg.Sw.WR.G
 
@@ -1368,8 +1380,8 @@ theorem wick_of (hI : IntegP) : Wick := by
       refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun j _ => ?_
       ring
     rw [h2]
-    simp only [h1, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true, neg_neg]
-    simp only [evX, map_mul, eval_X, if_true]
+    simp only [h1, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true, neg_neg]
+    simp only [evX, map_mul, eval_X, ite_true]
     ring
   rw [hsec]
   simp_rw [key]
@@ -1383,8 +1395,7 @@ theorem wick_of (hI : IntegP) : Wick := by
 
 end PositivityTheory.Rg.Sw.WR.G
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.MollifiedIntegrability.ImportsAlt
 

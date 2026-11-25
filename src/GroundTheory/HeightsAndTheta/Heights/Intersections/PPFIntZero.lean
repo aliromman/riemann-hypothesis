@@ -17,10 +17,11 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.I
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.Intersections.PFIntZeroMixed, GroundTheory.HeightsAndTheta.Heights.Intersections.PPFIntZero
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.Intersections.PFIntZeroMixed
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.Intersections.PFIntZeroMixed
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.Heights₂.Heights.Inter
 
@@ -43,9 +44,9 @@ theorem sum_neg_one_pow_superset_eq_zero (p : Finset (Fin D) → Prop) [Decidabl
   rw [Finset.card_insert_of_notMem haT]
   have hD : D - T.card = (D - (T.card + 1)) + 1 := by omega
   by_cases h : p T
-  · rw [if_pos h, if_pos ((hp T).mpr h), hD, pow_succ]
+  · rw [ite_eq_left h, ite_eq_left ((hp T).mpr h), hD, pow_succ]
     ring
-  · rw [if_neg h, if_neg fun h' => h ((hp T).mp h')]
+  · rw [ite_eq_right h, ite_eq_right fun h' => h ((hp T).mp h')]
     ring
 
 theorem mixedDisc_eq_zero_of_cols (B : Fin D → Matrix (Fin D) (Fin D) ℂ) (S C : Finset (Fin D))
@@ -137,6 +138,7 @@ theorem mixedDisc_eq_zero_of_ker (A : Fin D → Matrix (Fin D) (Fin D) ℂ) (V :
   exact (mul_eq_zero.mp h).resolve_right hP.ne_zero
 
 end GroundTheory.Heights₂.Heights.Inter
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.Intersections.PPFIntZero

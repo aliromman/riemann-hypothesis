@@ -105,6 +105,7 @@ import Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisen
 import Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinHalfPlane.SchwartzBruhatMajorants.ContinuousOnThetaCFunLtr
 import Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinHalfPlane.SchwartzBruhatMajorants.SgOneHd
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoAF
+import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.ArithmeticGapBounds.SGapOf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EisensteinHalfHolds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EisensteinScalingLaw, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdentityTubeHolds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalGlobalDictionary, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.Iwa, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SectionLawHolds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TransferOfSectionAndWallLaws, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentConvergenceOfParabolic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanLocalGlobalDictionary, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConstantMultiplierGood, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExtensionLaw, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GeneralLinearTopologicalGroup, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeightLipschitzHolds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ParabolicLawOfBlockDet, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SiegelInductionFromGallery, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StagedEstimateHolds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WallLawOfSectionLaw, Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinHalfPlane.SchwartzBruhatMajorants.SiegelMultOf
@@ -580,8 +581,9 @@ theorem transfer : SecLaw → WallLaw → Transfer := by
 end GlobalTheory.CompanionTheory.RgTransfer
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentConvergenceOfParabolic
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentConvergenceOfParabolic
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.RgEis.UnitaryConv
 
@@ -592,15 +594,7 @@ variable {G : Type} [Group G]
 theorem cos_mk_eq_iff {P Γ : Subgroup G} (a b : Γ) :
     (Quotient.mk (QuotientGroup.rightRel (P.subgroupOf Γ)) a : Cos P Γ) = Quotient.mk _ b ↔
       (b : G) * (a : G)⁻¹ ∈ P := by
-  constructor
-  · intro h
-    have h1 : b * a⁻¹ ∈ P.subgroupOf Γ := QuotientGroup.rightRel_apply.mp (Quotient.exact h)
-    simpa using Subgroup.mem_subgroupOf.mp h1
-  · intro h
-    apply Quotient.sound
-    apply QuotientGroup.rightRel_apply.mpr
-    apply Subgroup.mem_subgroupOf.mpr
-    simpa using h
+  apply _root_.PositivityTheory.KB.SpectralGap.UnfoldA.mk_eq_iff <;> assumption
 
 theorem cos_eq_of_rep {P Γ : Subgroup G} {q q' : Cos P Γ} (h : rep q' * (rep q)⁻¹ ∈ P) : q = q' := by
   have h' := (cos_mk_eq_iff (P := P) (Γ := Γ) (Quotient.out q) (Quotient.out q')).mpr h
@@ -698,6 +692,7 @@ theorem convU_of_parLaw : ParLaw → ConvU := by
       (hconv Set.univ y hu.2.2 hGu (hRu y (lt_of_le_of_lt (le_max_right _ _) hy)))
 
 end GlobalTheory.CompanionTheory.RgEis.UnitaryConv
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanLocalGlobalDictionary
@@ -933,8 +928,9 @@ theorem cmGood : StdGood → Dict → DictInf → CMGood := by
 end GlobalTheory.CompanionTheory.RgEisCM
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExtensionLaw
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExtensionLaw
 
+noncomputable section
 
 open PositivityTheory.RgEis
 
@@ -945,18 +941,7 @@ variable {G : Type} [Group G]
 theorem ext_mul {K P : Subgroup G} {f : G → ℝ} (hadd : ∀ p ∈ P, ∀ q ∈ P, f (p * q) = f p + f q)
     (hfK : ∀ p ∈ P, p ∈ K → f p = 0) {p k : G} (hp : p ∈ P) (hk : k ∈ K) :
     PositivityTheory.RgEis.ext K P f (p * k) = f p := by
-  have hex : ∃ c : K, p * k * (c : G)⁻¹ ∈ P := ⟨⟨k, hk⟩, by simpa using hp⟩
-  rw [PositivityTheory.RgEis.ext, dite_eq_left hex]
-  have hcP : p * k * (hex.choose : G)⁻¹ ∈ P := hex.choose_spec
-  have hq : p⁻¹ * (p * k * (hex.choose : G)⁻¹) ∈ P := P.mul_mem (P.inv_mem hp) hcP
-  have hqK : p⁻¹ * (p * k * (hex.choose : G)⁻¹) ∈ K := by
-    have he : p⁻¹ * (p * k * (hex.choose : G)⁻¹) = k * (hex.choose : G)⁻¹ := by group
-    rw [he]
-    exact K.mul_mem hk (K.inv_mem hex.choose.2)
-  have h0 := hfK _ hq hqK
-  have hsplit := hadd p hp _ hq
-  rw [mul_inv_cancel_left] at hsplit
-  rw [hsplit, h0, add_zero]
+  apply _root_.GlobalTheory.CompanionTheory.SiegelFrame.ext_mul <;> assumption
 
 theorem extLaw : ExtLaw := by
   intro G _ _ _ _ Γ K P f hK hP hIwa hadd hfc hfK hfΓ
@@ -995,6 +980,7 @@ theorem extLaw : ExtLaw := by
       exact (hfc.preimage_isClosed_of_isClosed hP hC).mul_right_of_isCompact hK
 
 end GlobalTheory.CompanionTheory.RgEisExt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GeneralLinearTopologicalGroup
@@ -1505,8 +1491,9 @@ theorem stage : PiLocalization₂ := by
 end GlobalTheory.CompanionTheory.RgEis
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WallLawOfSectionLaw
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WallLawOfSectionLaw
 
+noncomputable section
 
 open Filter Topology PositivityTheory.RgEis
 
@@ -1536,12 +1523,7 @@ def cosMul {G : Type} [Group G] (P Γ : Subgroup G) (γ : Γ) : Cos P Γ ≃ Cos
 
 theorem rep_mk {G : Type} [Group G] {P Γ : Subgroup G} (x : Γ) :
     ∃ δ : G, δ ∈ Γ ∧ δ ∈ P ∧ rep (Quotient.mk _ x : Cos P Γ) = δ * x := by
-  have h : QuotientGroup.rightRel (P.subgroupOf Γ) (Quotient.out (Quotient.mk _ x : Cos P Γ)) x :=
-    Quotient.mk_out (s := QuotientGroup.rightRel (P.subgroupOf Γ)) x
-  rw [QuotientGroup.rightRel_apply] at h
-  refine ⟨((x * (Quotient.out (Quotient.mk _ x : Cos P Γ))⁻¹)⁻¹ : Γ), Subtype.property _, ?_, ?_⟩
-  · exact (Subgroup.mem_subgroupOf.mp (inv_mem h))
-  · simp [rep]
+  apply _root_.GlobalTheory.CompanionTheory.RgEis.UnitaryConv.rep_mk <;> assumption
 
 theorem tsum_rep_mul {G : Type} [Group G] {X : Type} [AddCommMonoid X] [TopologicalSpace X]
     {P Γ : Subgroup G} (F : G → X) (hF : ∀ δ ∈ Γ, δ ∈ P → ∀ x, F (δ * x) = F x) {γ : G} (hγ : γ ∈ Γ) (g : G) :
@@ -1727,6 +1709,7 @@ theorem wallLaw_of_secLaw : SecLaw → WallLaw := by
         _ ≤ _ := bound_left hA hB' hp hq (norm_nonneg _)
 
 end GlobalTheory.CompanionTheory.RgEis
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinHalfPlane.SchwartzBruhatMajorants.SiegelMultOf

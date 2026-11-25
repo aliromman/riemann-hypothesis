@@ -59,8 +59,9 @@ theorem nilpotent_part {R : Type*} [Ring R] {f s : R} (v : Rˣ) (hv : IsNilpoten
 end GlobalTheory.WeilDeligne.FrobSemisimpleUnique
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CharpolyEqOfIsNilpotentSub
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CharpolyEqOfIsNilpotentSub
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Polynomial Module
 
@@ -114,7 +115,7 @@ theorem eq_of_exp_smul_eq {N N' : Matrix n n K} (hN : IsNilpotent N) (hN' : IsNi
     rw [hP N (pow_eq_zero_of_le (by omega) hm), hP N' (pow_eq_zero_of_le (by omega) hm'), H]
   have := congrArg (fun p : K[X] => p.coeff 1) hPP
   simpa only [P, finsetSum_coeff, coeff_monomial_apply, Finset.sum_ite_eq',
-    Finset.mem_range, show 1 < m + m' + 2 by omega, if_true, Nat.factorial_one,
+    Finset.mem_range, show 1 < m + m' + 2 by omega, ite_true, Nat.factorial_one,
     Nat.cast_one, inv_one, one_mul, pow_one] using this
 
 end Exp

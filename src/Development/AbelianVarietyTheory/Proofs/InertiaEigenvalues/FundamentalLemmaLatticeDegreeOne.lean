@@ -379,12 +379,10 @@ theorem _root_.GlobalTheory.PMonE.OrthBasis.exists_orthBasis : ∀ (l : ℕ) [Fa
 end GlobalTheory.PMonE.OrthBasis
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsNonzeroFrobVectorResidueZero
 
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations GlobalTheory.Pst GlobalTheory.PMon TensorProduct
 open scoped Formalism.Per
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsNonzeroFrobVectorResidueZero
 
 namespace GlobalTheory.PMonII
 
@@ -531,6 +529,9 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSecondKindMatrixMooreDetNeZero
 @[expose] public section
+
+open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations GlobalTheory.Pst GlobalTheory.PMon TensorProduct
+open scoped Formalism.Per
 
 noncomputable section
 namespace GlobalTheory.SecondKind
@@ -870,7 +871,12 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MooreDeterminantEqUnramifiedMulPeriod
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MooreDeterminantEqUnramifiedMulPeriod
+
+noncomputable section
+
+open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations GlobalTheory.Pst GlobalTheory.PMon TensorProduct
+open scoped Formalism.Per
 
 namespace GlobalTheory.PMon
 
@@ -890,7 +896,7 @@ theorem phiB_moore_det {l : ℕ} [Fact l.Prime] (P : LocPrime l) (n : ℕ) (a : 
     by_cases hi : i = Fin.last n
     · subst hi
       simp [ha]
-    · rw [if_neg hi, one_mul, Fin.val_add_one, if_neg hi]
+    · rw [ite_eq_right hi, one_mul, Fin.val_add_one, ite_eq_right hi]
   rw [h1, h2, Matrix.det_mul, Matrix.det_diagonal, Matrix.det_permute, sign_finRotate]
   simp [Finset.prod_ite_eq']
   ring
@@ -944,8 +950,14 @@ theorem mooreDeterminant_eq_unramified_mul_period_alt : ∀ (l : ℕ) [Fact l.Pr
 
 end GlobalTheory.PMon
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FundamentalLemmaLatticeDegreeOne
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FundamentalLemmaLatticeDegreeOne
+
+noncomputable section
+
+open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations GlobalTheory.Pst GlobalTheory.PMon TensorProduct
+open scoped Formalism.Per
 
 namespace GlobalTheory.PMon.FLOne
 
@@ -1156,8 +1168,8 @@ theorem flAt_one : FLAt 1 := by
     intro i j
     rw [hUm, Matrix.mul_diagonal]
     by_cases hj : j = x2
-    · subst hj; rw [if_pos rfl, mul_comm]; exact tz_inv_mem T (hAU1 i)
-    · rw [if_neg hj, mul_one]; exact hAU0 i j
+    · subst hj; rw [ite_eq_left rfl, mul_comm]; exact tz_inv_mem T (hAU1 i)
+    · rw [ite_eq_right hj, mul_one]; exact hAU0 i j
   have hUmdet : Um.det = kd P κ * U0.det := by
     have hdι : (A.map P.ιB).det = P.ιB A.det := ((P.ιB : P.R.B →+* P.R.BdR).map_det A).symm
     have hDxd : Dx.det = tz P (-1) := by
@@ -1215,8 +1227,8 @@ theorem flAt_one : FLAt 1 := by
     intro i j
     rw [hWm, Matrix.diagonal_mul]
     by_cases hi : i = y2
-    · subst hi; rw [if_pos rfl]; exact tz_inv_mem T (hX1 j)
-    · rw [if_neg hi, one_mul]; exact hX0 i j
+    · subst hi; rw [ite_eq_left rfl]; exact tz_inv_mem T (hX1 j)
+    · rw [ite_eq_right hi, one_mul]; exact hX0 i j
   have hVUm : V.det * Um.det = 1 := by rw [← det_mul, hVU, det_one]
   have ht : tz P (-1) * tz P 1 = 1 := by rw [← tz_add]; simp [tz_zero]
   have hWmdet : Wm.det = kd P κ' * V.det := by

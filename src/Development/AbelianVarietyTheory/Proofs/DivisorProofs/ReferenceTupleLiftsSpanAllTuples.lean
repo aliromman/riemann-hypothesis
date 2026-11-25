@@ -187,8 +187,9 @@ end Guard
 end GlobalTheory.LiftSpan
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ReferenceTupleLiftsSpanAllTuples
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ReferenceTupleLiftsSpanAllTuples
 
+noncomputable section
 
 namespace GlobalTheory.LiftSpanClauses
 
@@ -311,7 +312,7 @@ theorem exists_retie_core {F : Face D A} (hR : GlobalTheory.Hk3.Core R F) (hP : 
       ⟨hact, (GlobalTheory.FieldBC.actLev_and_actBC _ _ _ _ _ _ _ O.hle _ _ hact).1⟩,
       hP.bad, hP.reps, hP.ep, hP.io, hP.w, hP.cov, hP.cxi, hP.model₂⟩, rfl, hc1⟩
   have hx : ∃ y, Place R i (tup t) (h t) c1 y x := ⟨y, hy⟩
-  refine (dif_pos hx).trans ?_
+  refine (dite_eq_left hx).trans ?_
   have h5 := h0 t (hx.choose - y) fun k => by
     rw [map_sub, Pi.sub_apply, hx.choose_spec k, hy k, sub_self]
   rw [map_sub] at h5

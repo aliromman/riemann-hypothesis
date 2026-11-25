@@ -351,7 +351,7 @@ end CP
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.FubiniStudyChern
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.FubiniStudyChern
 
 set_option maxSynthPendingDepth 1
 
@@ -360,6 +360,7 @@ namespace GroundTheory.Heights₂.Heights
 open scoped ContDiff ComplexConjugate Matrix ComplexOrder
 open Topology Set
 
+noncomputable section
 
 variable {N : ℕ}
 
@@ -461,13 +462,13 @@ theorem chernCoeff_apply (i : Fin (N + 1)) (z : Fin N → ℂ) (j k : Fin N) :
   rw [hconj, Matrix.one_apply]
   by_cases h : j = k
   · subst h
-    simp only [Pi.single_eq_same, if_true]
+    simp only [Pi.single_eq_same, ite_true]
     push_cast
     field_simp
     ring_nf
     all_goals (try simp only [Complex.I_sq])
     all_goals ring
-  · simp only [Pi.single_apply, if_neg (Ne.symm h), if_neg h]
+  · simp only [Pi.single_apply, ite_eq_right (Ne.symm h), ite_eq_right h]
     push_cast
     field_simp
     ring_nf
@@ -543,6 +544,7 @@ lemma fsVolumeDensity_pos (i : Fin (N + 1)) (z : Fin N → ℂ) : 0 < fsVolumeDe
 
 end CP
 
+end
 
 end GroundTheory.Heights₂.Heights
 

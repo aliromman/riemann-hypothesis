@@ -304,7 +304,7 @@ end Transport
 end GroundTheory.ProfCoh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseTransportGS
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseTransportGS
 
 set_option maxSynthPendingDepth 1
 
@@ -314,8 +314,7 @@ open IsDedekindDomain NumberField CategoryTheory MonoidalCategory
 
 universe u
 
-
-attribute [local instance 2000] Rep.hV2
+noncomputable section
 
 section ZModRes
 
@@ -438,6 +437,7 @@ end ZMod
 
 end Mackey
 
+end
 
 end GroundTheory.ProfCoh
 

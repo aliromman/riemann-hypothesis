@@ -26,8 +26,9 @@ import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.FlowTwoT
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.CoeffTwoPSeries, Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.NotInKernelOfMultiplierTorsion, Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.TwoTorsionKernelUniqueHolds, Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.ThetaZeroTwoComplexMult, Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.FinalL, Formalism.LocalToGlobal.TorsionIntegrality.UniformGaussModels.OrthogonalGaussModels.IntegralOperatorTwoOrthogonal
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.CoeffTwoPSeries
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.CoeffTwoPSeries
 
+noncomputable section
 open scoped BigOperators
 
 namespace Formalism.L2.Th1.B.KSum
@@ -36,7 +37,7 @@ open Formalism.L2.Th1.F (MulStable IsKerReps taylor0 pSeries)
 
 theorem coeff_two_pSeries (L : PeriodPair) :
     PowerSeries.coeff 2 (pSeries L) = L.g₂ / 20 := by
-  rw [_root_.Formalism.L2.Th1.F.weierstrass_p_series_coeff L 2, if_neg (by norm_num)]
+  rw [_root_.Formalism.L2.Th1.F.weierstrass_p_series_coeff L 2, ite_eq_right (by norm_num)]
   first
     | (simp only [PeriodPair.g₂]; push_cast; ring)
 
@@ -84,6 +85,7 @@ theorem kappa_sum_holds : KappaSum := by
   linear_combination -h4
 
 end Formalism.L2.Th1.B.KSum
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.NotInKernelOfMultiplierTorsion

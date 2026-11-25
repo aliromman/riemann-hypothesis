@@ -39,8 +39,9 @@ import Mathlib.RingTheory.MvPolynomial
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.BlockP, ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.SplitA, ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.SplitB, ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.SplitC, ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.SplitD, ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.SpBlkSurj, ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.BranchModel, ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.UCharOf, ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.Weyl
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.BlockP
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.BlockP
 
+noncomputable section
 
 open Finset
 
@@ -96,7 +97,7 @@ theorem bp_wden {K : Type*} [Field K] {n : ℕ} (ε : Fin n → Bool) (t : Fin n
   have hother : ∀ (b b' : Bool), b ≠ b' → ∀ (r : Fin (cnt ε b)) (s : Fin (cnt ε b')),
       (if blk ε b r < blk ε b' s ∧ ε (blk ε b r) = ε (blk ε b' s) then t (blk ε b r) - t (blk ε b' s) else 1) = 1 := by
     intro b b' hbb r s
-    rw [if_neg]
+    rw [ite_eq_right]
     rintro ⟨_, h⟩
     rw [hmem b r, hmem b' s] at h
     exact hbb h
@@ -219,6 +220,7 @@ theorem blockComb : BlockCombStatement := by
   exact ⟨bp_wden ε t, bp_num ε a t, bp_rho ε⟩
 
 end ReciprocityTheory.ChartRestriction.TR.Weyl
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.SplitA
@@ -802,8 +804,9 @@ theorem kCharGT_of (hU : UCharStatement) : KCharGTStatement := by
 end ReciprocityTheory.ChartRestriction.TR.Weyl
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.BranchModel
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.BranchModel
 
+noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.DS.HW
 
@@ -867,7 +870,7 @@ theorem highest_weight_model_equiv (N : ℕ) (Λ : Fin N → ℝ) (H : Type) [No
     have h2 := hν ⟨N - 1, by omega⟩
     have h3 : ν ⟨N - 1, by omega⟩ ≤ ν a := hanti (by rw [Fin.le_def]; simp; omega)
     have h3' : (ν ⟨N - 1, by omega⟩ : ℤ) ≤ ν a := by exact_mod_cast h3
-    simp only [DomWeight.natW, DomWeight.detShift, c, dif_pos hN, lam]
+    simp only [DomWeight.natW, DomWeight.detShift, c, dite_eq_left hN, lam]
     omega
   have hlast : ∀ h : 0 < N, lam.natW ⟨N - 1, by omega⟩ = 0 := by
     intro h; simp [DomWeight.natW, DomWeight.detShift, h, lam]
@@ -983,7 +986,7 @@ theorem highest_weight_model_equiv (N : ℕ) (Λ : Fin N → ℝ) (H : Type) [No
     by_cases hN : 0 < N
     · have hds : lam.detShift = (c : ℤ) - K := by
         have h1 := hν ⟨N - 1, by omega⟩
-        simp only [DomWeight.detShift, c, dif_pos hN, lam]
+        simp only [DomWeight.detShift, c, dite_eq_left hN, lam]
         omega
       rw [detPow, hds, _root_.zpow_sub, zpow_natCast, zpow_natCast, Units.val_mul, Units.val_inv_eq_inv_val,
         Units.val_pow_eq_pow_val, Units.val_pow_eq_pow_val, hu, mul_assoc, inv_mul_cancel₀ hdK, mul_one]
@@ -1005,6 +1008,7 @@ end SlopeTestRemainingChoices
 open Formalism.BasicNotions PI.UpqRep
 
 end ReciprocityTheory.ChartRestriction.DS.HW
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

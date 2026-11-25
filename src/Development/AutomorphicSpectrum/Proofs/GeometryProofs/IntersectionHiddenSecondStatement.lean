@@ -13,10 +13,10 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionHiddenSecond
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionHiddenSecond
 open GlobalTheory.CompanionTheory.Ar.Flat.DegZ
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.DegZ
 
@@ -78,6 +78,7 @@ theorem isHBasis_map : ∀ (E : Type) [Field E] [NumberField E] [StarRing (𝓞 
   exact key
 
 end GlobalTheory.CompanionTheory.Ar.Flat.DegZ
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionHiddenSecondStatement

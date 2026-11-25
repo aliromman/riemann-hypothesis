@@ -520,10 +520,12 @@ theorem UpperTheory.V.ZK.sTors :
   exact ⟨C, fun L _ _ hL E hE m hm => (h L hL E (4 * E + 6) m hE (by omega) le_rfl hm).2⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ClassCounting.FProd
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ClassCounting.FProd
+@[expose] public section
 
 open NumberField IsDedekindDomain UpperTheory.V UpperTheory.V.KL UpperTheory.V.ZK
 
+noncomputable section
 
 namespace UpperTheory.V.ZK.Coc
 
@@ -690,8 +692,10 @@ theorem UpperTheory.V.ZK.sCoc : UpperTheory.V.ZK.SCoc := by
     have a1 : 2 * (s : ℕ) % 2 = 0 := by omega
     have a2 : ¬(2 * (s : ℕ) + 1) % 2 = 0 := by omega
     have a3 : 2 * (s : ℕ) / 2 = s := by omega
-    simp only [a1, a2, a3, if_true, if_false, Fin.eta]
+    simp only [a1, a2, a3, ite_true, ite_false, Fin.eta]
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ClassCounting.PiRepApply
@@ -964,7 +968,7 @@ theorem UpperTheory.V.K.primeLe :
   · subst h2
     have := Module.finrank_pos (R := ℚ) (M := L)
     omega
-  · rw [if_neg h2] at hζ
+  · rw [ite_eq_right h2] at hζ
     have hdeg := minpoly.natDegree_le (A := ℚ) ζ
     rw [← Polynomial.cyclotomic_eq_minpoly_rat hζ hp.pos, Polynomial.natDegree_cyclotomic,
       Nat.totient_prime hp] at hdeg
@@ -1507,8 +1511,10 @@ namespace LateralTheory.Fin.SFewOf
 end LateralTheory.Fin.SFewOf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CyclotomicDiscriminants.SLayerCut
+section -- clump member: Development.EtaleCohomology.CyclotomicDiscriminants.SLayerCut
+@[expose] public section
 
+noncomputable section
 
 open NumberField NumberField.InfinitePlace Polynomial UpperTheory.V UpperTheory.V.LDataCardLeFinrank UpperTheory.V.Tower
 
@@ -1588,7 +1594,7 @@ theorem goal_of : UpperTheory.V.ZK.SLayer := by
     by_cases h2 : l = 2
     · omega
     · obtain ⟨z, hz⟩ := hμ
-      rw [if_neg h2] at hz
+      rw [ite_eq_right h2] at hz
       have h1 := IsPrimitiveRoot.lcm_totient_le_finrank (K := ℚ) hz hz
         (Polynomial.cyclotomic.irreducible_rat (by rw [Nat.lcm_self]; exact hp.pos))
       rw [Nat.lcm_self, Nat.totient_prime hp] at h1
@@ -1601,7 +1607,7 @@ theorem goal_of : UpperTheory.V.ZK.SLayer := by
   · unfold Base.qExp at hq
     split_ifs at hq <;> omega
   · unfold Base.qExp at hq
-    rwa [if_pos h2] at hq
+    rwa [ite_eq_left h2] at hq
   · have := (q1 _).1 h
     omega
   · have h1 := IsTotallyComplex.finrank L'
@@ -1613,6 +1619,8 @@ theorem goal_of : UpperTheory.V.ZK.SLayer := by
 
 end LateralTheory.Q.SLayerCut
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.EtaleCohomology.CyclotomicDiscriminants.FinSLayer

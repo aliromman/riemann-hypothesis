@@ -76,17 +76,15 @@ import Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigi
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.AdmissibleVectors, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.CosetIntegralMeasure, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.DminNonneg, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.KsecOf, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.KuOf, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.LApply, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.LevelScalarAction, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.LocalUnramifiedOf, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.PRSPole, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.PsiDeterminantFlag, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.QuadraticTransferFirst, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.RhoSigmaFinite, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.RowsCompactSum, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.SphericalIntegralStep, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.TableDegreeOneUnipotent, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.ThetaDecayingFunction, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.VectorMeasureTranspose, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.RsPoleOfInputs
 
--- clump: shared namespace opens
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.AdmissibleVectors
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
 open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
 open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
 open scoped ENNReal ComplexConjugate
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.AdmissibleVectors
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -185,11 +183,19 @@ theorem sum_wt_mul_massS_le_inv_pow_mul_total_mass : Q1 → Q2 → N2 → N3 →
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.CosetIntegralMeasure
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.CosetIntegralMeasure
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -263,11 +269,19 @@ theorem coset_integration_of : N0 → N1 → N3 → CosetIntegralParabolic := by
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.DminNonneg
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.DminNonneg
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -350,11 +364,19 @@ theorem kir_of : jumpWindows.S2 → jumpWindows.G0 → jumpWindows.G2a → jumpW
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.KsecOf
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.KsecOf
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -385,11 +407,19 @@ theorem ksec_of : jumpWindows.G2c → jumpWindows.G5 → CuspDecayShortRowColumn
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.KuOf
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.KuOf
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -417,11 +447,19 @@ theorem ku_of : jumpWindows.G5 → D0 → KU := by
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.LApply
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.LApply
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -527,11 +565,19 @@ theorem ky_of : W0 → KY := by
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.LevelScalarAction
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.LevelScalarAction
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -585,11 +631,19 @@ theorem global_level_of : jumpWindows.G0 → jumpWindows.G1 → jumpWindows.Almo
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.LocalUnramifiedOf
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.LocalUnramifiedOf
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -669,11 +723,19 @@ end PK7
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.PRSPole
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.PRSPole
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -735,10 +797,10 @@ theorem rspole_of : GlobalTheory.Published.JacquetShalikaBound → jumpWindows.G
       have hx' : ∀ g, x g = φ₁.1 g := congrFun hx
       refine (hYm x).2 ⟨fun t g => by rw [hx', hx']; exact hπ φ₁ hφ₁ t g, fun h => ?_⟩
       by_cases he : π = π'
-      · have e0 : φ'' = 0 := if_pos he
+      · have e0 : φ'' = 0 := ite_eq_left he
         rw [e0]
         simp
-      · have e1 : φ'' = φ' := if_neg he
+      · have e1 : φ'' = φ' := ite_eq_right he
         have hO := hORT E k μ hk b hb π π' hπ hπ' he φ₁ hφ₁ φ₀' hφ₀' h h'
         rw [e1]
         simp only [hx', hφ'e]
@@ -753,18 +815,26 @@ theorem rspole_of : GlobalTheory.Published.JacquetShalikaBound → jumpWindows.G
     refine ⟨Z, ZS, max 1 σ₀, hZd, hZSd.differentiableOn, fun σ _ => hZS0 σ, fun s hs => ?_, fun hne => hZ1 ?_⟩
     · rw [hZe s (lt_of_le_of_lt (le_max_left _ _) hs), hZSe s (lt_of_le_of_lt (le_max_right _ _) hs), mul_assoc]
     · have hne' : π ≠ π' := fun e => hne (by rw [e])
-      have e1 : φ'' = φ' := if_neg hne'
+      have e1 : φ'' = φ' := ite_eq_right hne'
       have hz := hYz φ hφY ψ S U η s hcut
       rw [e1] at hz
       exact hz
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.PsiDeterminantFlag
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.PsiDeterminantFlag
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -877,11 +947,19 @@ theorem mean_convergence_of : jumpWindows.G0 → D0 → P2 → C0 → C2 → D1 
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.QuadraticTransferFirst
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.QuadraticTransferFirst
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -978,11 +1056,19 @@ theorem isUnit_last_join : Q1 := by
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.RhoSigmaFinite
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.RhoSigmaFinite
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -1063,11 +1149,19 @@ theorem unipotent_integral_of : Q1 → Q2 → N0 → N3 → CosetIntegralParabol
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.RowsCompactSum
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.RowsCompactSum
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -1186,11 +1280,19 @@ theorem rows_compact_of_bound : D0 → N0 → H0 → ThetaSeriesBound → K1 →
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.SphericalIntegralStep
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.SphericalIntegralStep
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -1317,16 +1419,23 @@ theorem spherical_function_of : jumpWindows.G0 → jumpWindows.G5 → C0 → K7 
     have h2 := right_ne_zero_of_mul hg
     by_contra hA
     apply h2
-    rw [sphericalWhittaker, if_neg hA]
+    rw [sphericalWhittaker, ite_eq_right hA]
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.TableDegreeOneUnipotent
-@[expose] public noncomputable section
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -1385,12 +1494,19 @@ theorem unitaryGroupGeometricSide_of_quotient_identities : U1 → P1 → U2 := b
 
 end PositivityTheory.AdelicQuotientData
 
+end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.ThetaDecayingFunction
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.ThetaDecayingFunction
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -1514,11 +1630,19 @@ theorem theta_decaying_of_bound : D0 → N0 → H0 → ThetaSeriesBound → Thet
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.VectorMeasureTranspose
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.VectorMeasureTranspose
+@[expose] public section
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -1565,11 +1689,18 @@ theorem linear_change_variables_of : D0 → AdelicLinearChange := by
 
 end PositivityTheory.AdelicQuotientData
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.RsPoleOfInputs
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.RsPoleOfInputs
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+noncomputable section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS
+open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
+open scoped ENNReal ComplexConjugate
 
 namespace PositivityTheory.AdelicQuotientData
 
@@ -1639,6 +1770,7 @@ theorem rsPole_of_inputs (eJS2G0 : jumpWindows.G0) (eCAUCHY : CAUCHY) (eJS2S1 : 
 
 end PositivityTheory.AdelicQuotientData
 
+end
 
 -- clump-header: {"m": "Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.AdmissibleVectors", "h": "module\n\npublic import Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.ColumnConjugationMeasure\nimport GroundTheory.GlobalFields.TateThesis.IdeleMeasure\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.CosetIntegralMeasure", "h": "module\n\npublic import Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.ColumnConjugationMeasure\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

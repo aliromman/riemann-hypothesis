@@ -56,15 +56,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnitaryGl1UnitValuation, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsPairingSingleNe
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnitaryGl1UnitValuation
+section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnitaryGl1UnitValuation
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.Hk3.LatModel
 open Classical
-
-section Abstract
-variable {W G : Type} [AddCommGroup W] [Group G]
-
-end Abstract
 
 section Concrete
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
@@ -75,6 +72,8 @@ theorem v_two {ϖ : L} {σ : L →+* L} {q : ℕ} (h : Formalism.UG.IsUnramInv �
 end Concrete
 
 end GlobalTheory.Hk3.LatModel
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsPairingSingleNe

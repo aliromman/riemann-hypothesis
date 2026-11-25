@@ -233,7 +233,10 @@ section -- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host Formalism.L2.NT Formalism.L2.TwC GlobalTheory.HeightCounting NumberField IsDedekindDomain Polynomial GlobalTheory.GalChar Neutral.B1 ReciprocityTheory.Neutral.Bridge.HCFR GlobalTheory.HeckeGal
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCoefficientFieldLowerBounds
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCoefficientFieldLowerBounds
+@[expose] public section
+
+noncomputable section
 
 namespace GlobalTheory.CoeffFieldLower
 
@@ -278,13 +281,15 @@ theorem exists_low : ∀ (D : D7), ∃ c0 : Big D, ∀ (l : ℕ) [Fact l.Prime] 
       have hmem : w ∈ (placesOver_finite' D.host.E l (Fact.out : l.Prime).ne_zero).toFinset := by simpa using hw
       exact le_iSup₂ (f := fun w (_ : w ∈ (placesOver_finite' D.host.E l (Fact.out : l.Prime).ne_zero).toFinset) =>
         (bridgeLow D l w).1) w hmem
-    have e : bridgeLow D l w = (Classical.choose_spec hex).choose := dif_pos hw
+    have e : bridgeLow D l w = (Classical.choose_spec hex).choose := dite_eq_left hw
     have hL' : (Classical.choose_spec hex).choose.1 ≤ K0.1 := e ▸ hL
     obtain ⟨Bw, hBj, -⟩ := hspec.2 K0 hL'
     exact ⟨Bw, fun x => by rw [hBj]; exact hspec.1 x⟩
 
 end GlobalTheory.CoeffFieldLower
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIntegersToCompletedUnramifiedCompositum
@@ -441,7 +446,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsTwistRingsCharactersClassGroups
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsTwistRingsCharactersClassGroups
+
+noncomputable section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host Formalism.L2.NT Formalism.L2.TwC GlobalTheory.HeightCounting NumberField IsDedekindDomain Polynomial
 
@@ -895,7 +902,7 @@ theorem exists_ringSpec (hA : GlobalTheory.Published.GlobalArtinReciprocity) : �
         intro x
         cases b
         · rw [sideIso_false]
-          simp only [Bool.false_eq_true, if_false]
+          simp only [Bool.false_eq_true, ite_false]
           rw [hf', Complex.conj_conj]
         · exact hf s x
       ringSpec_sidedEmbedding_fixedField := fun s b x y h => by

@@ -80,8 +80,9 @@ end Cross
 end Formalism.L2.SG.Pf.Coef.SplitCoefficientComponents
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CondXG
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CondXG
 
+noncomputable section
 
 open Matrix
 
@@ -117,10 +118,10 @@ theorem zzrel_G (hs : M.split = some g) {X X' L P : Matrix (Fin (r + 1)) (Fin (r
     intro Y
     ext a b
     by_cases hab : a = Fin.last r ∧ b = Fin.last r
-    · simp only [Matrix.map_apply, hZ, hπ1, map_sub, Prod.fst_sub, AlgEquiv.apply_symm_apply, if_pos hab,
+    · simp only [Matrix.map_apply, hZ, hπ1, map_sub, Prod.fst_sub, AlgEquiv.apply_symm_apply, ite_eq_left hab,
         Matrix.add_apply, Matrix.smul_apply, Ec, Matrix.of_apply, smul_eq_mul, mul_one]
       ring
-    · simp only [Matrix.map_apply, hZ, hπ1, AlgEquiv.apply_symm_apply, if_neg hab,
+    · simp only [Matrix.map_apply, hZ, hπ1, AlgEquiv.apply_symm_apply, ite_eq_right hab,
         sub_zero, Matrix.add_apply, Matrix.smul_apply, Ec, Matrix.of_apply, smul_eq_mul,
         mul_zero, add_zero]
       ring
@@ -129,11 +130,11 @@ theorem zzrel_G (hs : M.split = some g) {X X' L P : Matrix (Fin (r + 1)) (Fin (r
     intro Y
     ext a b
     by_cases hab : a = Fin.last r ∧ b = Fin.last r
-    · simp only [Matrix.map_apply, hZ, hπ2, map_sub, Prod.snd_sub, AlgEquiv.apply_symm_apply, if_pos hab,
+    · simp only [Matrix.map_apply, hZ, hπ2, map_sub, Prod.snd_sub, AlgEquiv.apply_symm_apply, ite_eq_left hab,
         Matrix.sub_apply, Matrix.neg_apply, Matrix.smul_apply, Matrix.transpose_apply, Ec, Matrix.of_apply,
         smul_eq_mul, mul_one]
       ring
-    · simp only [Matrix.map_apply, hZ, hπ2, AlgEquiv.apply_symm_apply, if_neg hab,
+    · simp only [Matrix.map_apply, hZ, hπ2, AlgEquiv.apply_symm_apply, ite_eq_right hab,
         sub_zero, Matrix.sub_apply, Matrix.neg_apply, Matrix.smul_apply,
         Matrix.transpose_apply, Ec, Matrix.of_apply, smul_eq_mul, mul_zero]
       ring
@@ -143,7 +144,7 @@ theorem zzrel_G (hs : M.split = some g) {X X' L P : Matrix (Fin (r + 1)) (Fin (r
     simp only [Matrix.mul_apply, Matrix.map_apply, Ec, Matrix.of_apply]
     rw [Finset.sum_eq_single (Fin.last r)]
     · rw [Finset.sum_eq_single (Fin.last r)]
-      · simp only [and_self, if_true, mul_one, hL, hP]
+      · simp only [and_self, ite_true, mul_one, hL, hP]
         split_ifs <;> simp_all
       · intro k _ hk
         simp [hk]
@@ -204,7 +205,7 @@ theorem condM_G {L P : Matrix (Fin (r + 1)) (Fin (r + 1)) E}
   simp only [cjT, cornerM, Matrix.mul_apply, Matrix.of_apply, Matrix.transpose_apply, Matrix.map_apply]
   rw [Finset.sum_eq_single (Fin.last r)]
   · rw [Finset.sum_eq_single (Fin.last r)]
-    · simp only [and_self, if_true, hm]
+    · simp only [and_self, ite_true, hm]
       split_ifs <;> simp_all
     · intro k _ hk
       simp [hk]
@@ -225,7 +226,7 @@ theorem condU_G {L P : Matrix (Fin (r + 1)) (Fin (r + 1)) E}
   simp only [cjT, cornerM, Matrix.mul_apply, Matrix.of_apply, Matrix.transpose_apply, Matrix.map_apply]
   rw [Finset.sum_eq_single (Fin.last r)]
   · rw [Finset.sum_eq_single (Fin.last r)]
-    · simp only [and_self, if_true, hm]
+    · simp only [and_self, ite_true, hm]
       split_ifs <;> simp_all
     · intro k _ hk
       simp [hk]
@@ -235,6 +236,7 @@ theorem condU_G {L P : Matrix (Fin (r + 1)) (Fin (r + 1)) E}
   · simp
 
 end Formalism.L2.SG.Pf.Coef.SplitCoefficientComponents
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.GaCongG
@@ -375,8 +377,9 @@ theorem gaCong_G (hA : ∀ q, Agree δ M q) (p : PlF D) (g : Loc.SplitG (M p).L)
 end Formalism.L2.SG.Pf.Coef.SplitCoefficientComponents
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CrossOfComp
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CrossOfComp
 
+noncomputable section
 
 open Matrix ValuativeRel
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.CntLocal Formalism.L2.SG.Pf.PCount
@@ -429,11 +432,11 @@ theorem gaPlusTh_of (hLO : LiftOrb) (M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp
   unfold clsOf at hne heq
   by_cases h1 : (∀ a b, Y a b ∈ (M p).R) ∧ IsUnit Y.det
   swap
-  · exact absurd (dif_neg h1) hne
+  · exact absurd (dite_eq_right h1) hne
   rw [dite_eq_left h1] at heq
   by_cases h2 : (∀ a b, Y' a b ∈ (M p).R) ∧ IsUnit Y'.det
   swap
-  · rw [dif_neg h2] at heq; exact absurd heq (by simp)
+  · rw [dite_eq_right h2] at heq; exact absurd heq (by simp)
   rw [dite_eq_left h2] at heq
   set ZZ : (M p).Mat (D.R.rS + 1) := ⟨Matrix.of fun a b => ⟨Y a b, h1.1 a b⟩, h1.2⟩ with hZZ
   set ZZ' : (M p).Mat (D.R.rS + 1) := ⟨Matrix.of fun a b => ⟨Y' a b, h2.1 a b⟩, h2.2⟩ with hZZ'
@@ -485,9 +488,11 @@ theorem gaPlusTh_of (hLO : LiftOrb) (M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp
 
 end Formalism.L2.SG.Pf.Coef.SplitCoefficientComponents
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LiftOrbOf
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LiftOrbOf
 
+noncomputable section
 
 open Matrix
 
@@ -658,23 +663,25 @@ theorem liftOrb_of (hSR : SRLift) : LiftOrb := by
   · have h1 : Matrix.vecMul e ρ₀ = e := by
       funext j
       simp only [Matrix.vecMul, dotProduct, he, Pi.single_apply, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq',
-        Finset.mem_univ, if_true]
+        Finset.mem_univ, ite_true]
       rw [hρl]
     have h2 : Matrix.vecMul e ρ₀⁻¹ = e := by
       conv_lhs => rw [← h1]
       rw [Matrix.vecMul_vecMul, Matrix.mul_nonsing_inv _ hρu, Matrix.vecMul_one]
     have := congrFun h2 j
     simp only [Matrix.vecMul, dotProduct, he, Pi.single_apply, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq',
-      Finset.mem_univ, if_true] at this
+      Finset.mem_univ, ite_true] at this
     rw [this]
   · calc Z'.Z = Z'.Z * ρ₀ * ρ₀⁻¹ := by rw [Matrix.mul_assoc, Matrix.mul_nonsing_inv _ hρu, Matrix.mul_one]
       _ = l * Z.Z * ρ₀⁻¹ := by rw [hZρ]
 
 end Formalism.L2.SG.Pf.Coef.SplitCoefficientComponents
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.SRLiftGen
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.SRLiftGen
 
+noncomputable section
 
 namespace Formalism.L2.SG.Pf.SRL
 
@@ -839,9 +846,9 @@ theorem exists_local (m : Ideal R) [hm : m.IsMaximal] (A : Matrix (Fin (n + 1)) 
   let G : Matrix (Fin (n + 1)) (Fin (n + 1)) R := fun i j => if j = Fin.last n then 0 else g j i
   refine ⟨G, fun j => ?_, fun i => by simp [G], ?_⟩
   · by_cases hj : j = Fin.last n
-    · simp only [G, hj, if_true]
+    · simp only [G, hj, ite_true]
       exact K.zero_mem
-    · simp only [G, hj, if_false]
+    · simp only [G, hj, ite_false]
       exact hgK j
   · intro hmem
     apply hdet
@@ -853,8 +860,8 @@ theorem exists_local (m : Ideal R) [hm : m.IsMaximal] (A : Matrix (Fin (n + 1)) 
       congr 1
       by_cases hj : j = Fin.last n
       · subst hj
-        rw [hHlast i, show G i (Fin.last n) = 0 from if_pos rfl, map_zero]
-      · rw [show G i j = g j i from if_neg hj]
+        rw [hHlast i, show G i (Fin.last n) = 0 from ite_eq_left rfl, map_zero]
+      · rw [show G i j = g j i from ite_eq_right hj]
         exact congrFun (hgr j) i
     calc (Ab + Hb).det = Ideal.Quotient.mk m (A + G).det := e.symm
       _ = 0 := Ideal.Quotient.eq_zero_iff_mem.2 hmem
@@ -931,6 +938,7 @@ theorem srLift_of_finite (hfin : {m : Ideal R | m.IsMaximal}.Finite) (A : Matrix
 end Semilocal
 
 end Formalism.L2.SG.Pf.SRL
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.SRLiftM

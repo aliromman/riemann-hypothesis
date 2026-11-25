@@ -14,13 +14,12 @@ import Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlice
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.SliceShift, Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.CompShift
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.SliceShift
 
+noncomputable section
 
 open MeasureTheory NumberField IsDedekindDomain GlobalTheory.CuspRep GlobalTheory.CompanionTheory.CTFin
 open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction UpperTheory.V.Cm
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.SliceShift
 
 namespace UpperTheory.ConvolutionTheory.BW
 
@@ -45,19 +44,12 @@ private theorem aV_zero : aV E r s 0 = 1 := by
   rw [aV, zt_zero]
   exact map_one _
 
-private theorem ct_rt {n : ℕ} (h g : GA E n) (φ : Sm E n) :
-    AutomorphicForm.constantTerm r (rt E n h φ).1 g = AutomorphicForm.constantTerm r φ.1 (g * h) := by
-  unfold AutomorphicForm.constantTerm
-  refine integral_congr_ae (.of_forall fun X => ?_)
-  show φ.1 (_ * g * h) = φ.1 (_ * (g * h))
-  rw [mul_assoc]
-
 private theorem shift (f : GA E r → ℂ) (t v : ℝ) (φ : Sm E (r + s)) (m : GA E s) :
     slice f t (rt E (r + s) (aV E r s v) φ).1 m = slice f (t + v) φ.1 m := by
   unfold slice
   refine integral_congr_ae (.of_forall fun y => ?_)
   show AutomorphicForm.constantTerm r (rt E (r + s) (aV E r s v) φ).1 _ * _ = AutomorphicForm.constantTerm r φ.1 _ * _
-  rw [ct_rt, aV, ← map_mul]
+  rw [SliceClasses.ct_rt r, aV, ← map_mul]
   congr 3
   refine Prod.ext ?_ (mul_one _)
   show zt E r t * _ * zt E r v = zt E r (t + v) * _
@@ -115,7 +107,7 @@ private theorem height_aV (hr : 0 < r) : ∃ H : ℝ, 0 ≤ H ∧ ∀ v : ℝ, |
     refine congrArg _ (Prod.ext ?_ ?_)
     · refine congrArg (diagUnits r) (funext fun i => ?_)
       refine posIdele_eq (Real.rpow_pos_of_pos (Real.exp_pos _) _) _ ?_
-      simp only [hρd, Fin.val_castAdd, i.2, if_true]
+      simp only [hρd, Fin.val_castAdd, i.2, ite_true]
       rw [← Real.exp_mul]
     · symm
       refine Units.ext (Matrix.ext fun i j => ?_)
@@ -250,8 +242,13 @@ theorem UpperTheory.ConvolutionTheory.BW.sliceShift :
     simpa [Complex.real_smul] using hbig h hh
   exact hO.trans_isLittleO (Asymptotics.isLittleO_pow_id (by norm_num))
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.CompShift
+
+
+open MeasureTheory NumberField IsDedekindDomain GlobalTheory.CuspRep GlobalTheory.CompanionTheory.CTFin
+open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction UpperTheory.V.Cm
 
 namespace UpperTheory.ConvolutionTheory.BW
 

@@ -14,13 +14,11 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.FderivFsum, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.IteratedDerivativeColumnCaseInt, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.CayleyK, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.Cayley
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.FderivFsum
 
 
 open Matrix Filter Topology
 open scoped ContDiff
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.FderivFsum
 
 namespace PositivityTheory.Rg.Sw.LVs.CK
 
@@ -64,6 +62,10 @@ end PositivityTheory.Rg.Sw.LVs.CK
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.IteratedDerivativeColumnCaseInt
+
+
+open Matrix Filter Topology
+open scoped ContDiff
 
 namespace PositivityTheory.Rg.Sw.LVs.CK
 
@@ -133,7 +135,12 @@ theorem iterated_derivative_column_case_int (t : ℤ) (M : ℕ) (e : Equiv.Perm 
 end PositivityTheory.Rg.Sw.LVs.CK
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.CayleyK
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.CayleyK
+
+noncomputable section
+
+open Matrix Filter Topology
+open scoped ContDiff
 
 namespace PositivityTheory.Rg.Sw.LVs.CK
 
@@ -160,7 +167,7 @@ theorem rec_step (t : ℤ) (N : ℕ) : detD (H (N + 1) t) = ((t : ℂ) + N) * de
     intro e
     simp only [Equiv.Perm.decomposeFin_symm_apply_succ, Equiv.swap_self, Equiv.refl_apply]
     exact iterated_derivative_corner_case_int t e
-  simp only [h0, if_true, one_mul, Fin.succ_ne_zero, if_false]
+  simp only [h0, ite_true, one_mul, Fin.succ_ne_zero, ite_false]
   cases N with
   | zero => simp
   | succ M =>
@@ -186,8 +193,7 @@ theorem kappaFin : KappaFin := fun N t => CK.capelli_determinant_integer_rising 
 
 end PositivityTheory.Rg.Sw.LVs
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.Cayley
 

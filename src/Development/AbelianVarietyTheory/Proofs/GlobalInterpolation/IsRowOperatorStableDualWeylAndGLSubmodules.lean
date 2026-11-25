@@ -109,8 +109,9 @@ theorem perm_stable : ∀ (k : Type) [Field k] (N : ℕ) (lam : DomWeight N) (M 
 end GlobalTheory.AlcPerm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RowPolarizationMemOfIsGLSchemeSubmodule
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RowPolarizationMemOfIsGLSchemeSubmodule
 
+noncomputable section
 
 namespace GlobalTheory.Alc
 
@@ -185,7 +186,7 @@ theorem polyOfMv_sqAct_transv (k : Type) [CommRing k] (N : ℕ) (lam : DomWeight
     simp only [hg, polyOfMv, eval₂Hom_C, eval₂Hom_X', Polynomial.coe_mapRingHom, Polynomial.map_add (f := _), add_mul,
       Finset.sum_add_distrib, apply_ite (Polynomial.map (C : k →+* MvPolynomial (Fin N × Fin N) k)), ite_mul,
       Polynomial.map_one, Polynomial.map_zero, Polynomial.map_X, one_mul, zero_mul, Finset.sum_ite_eq,
-      Finset.mem_univ, if_true, ite_and]
+      Finset.mem_univ, ite_true, ite_and]
     obtain ⟨v1, v2⟩ := v
     by_cases hb : v1 = b
     · subst hb; simp
@@ -206,6 +207,7 @@ theorem rowE_mem_of_isGLSubmodule : ∀ (k : Type) [Field k] (N : ℕ) (lam : Do
   exact h1
 
 end GlobalTheory.Alc
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

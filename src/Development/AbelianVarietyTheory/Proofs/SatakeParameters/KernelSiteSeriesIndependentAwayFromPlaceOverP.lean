@@ -864,11 +864,12 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions F
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.PrimeNotStable
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.PrimeNotStable
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.L2.G Formalism.L2.G.Cmp Formalism.L2.Forms Formalism.UG Formalism.L2.DIV Formalism.L2.G.Pend Formalism.L2.PairingIndexBounds.F Formalism.MainNotions.G.KAat GlobalTheory.TwV GlobalTheory.TwV.Xc TensorProduct
 open scoped WithZero
 
+noncomputable section
 
 namespace GlobalTheory.XcSplit
 
@@ -907,7 +908,7 @@ theorem approx {F E K : Type} [Field F] [Field E] [Algebra F E] [Field K] [Algeb
       · have : Valued.v w = 0 := by
           rw [hu, Valuation.map_zero] at hw; exact le_antisymm hw zero_le'
         rw [this, zero_mul]; exact hr0
-      · rw [if_neg hu] at hz
+      · rw [ite_eq_right hu] at hz
         have hu0 : (0 : ℤᵐ⁰) < Valued.v u := by rw [pos_iff_ne_zero]; simpa using hu
         calc Valued.v w * Valued.v z ≤ Valued.v u * Valued.v z := by gcongr
           _ < Valued.v u * Valued.v (r * u⁻¹) := mul_lt_mul_of_pos_left hz hu0
@@ -1097,6 +1098,7 @@ theorem prime_not_stable : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
   exact (ne_of_lt h2a) h3.symm
 
 end GlobalTheory.XcSplit
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelSiteAwayOfPositivePair

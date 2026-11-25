@@ -56,14 +56,14 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactUnitaryCasimirInverseTopDegreeBound, Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactUnitaryCasimirInverseTopDegreeBoundStatement, Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactUnitaryCasimirPowPairingModerateGrowthBou, Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsFiniteRealSpanningCompactLieAlgebra, Development.AbelianVarietyTheory.Proofs.HeightProofs.FinrankCompactUnitaryPolyFunDegLELe, Development.AbelianVarietyTheory.Proofs.HeightProofs.IntegralNormSqReproducingKernelLeFinrank, Development.AbelianVarietyTheory.Proofs.HeightProofs.IntegralNormSqReproducingKernelLeFinrankStatement, Development.AbelianVarietyTheory.Proofs.HeightProofs.KFourierCoefficientRapidDecay, Development.AbelianVarietyTheory.Proofs.HeightProofs.KFourierCoefficientRapidDecayStatement
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Matrix
 open Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped TensorProduct
+open GlobalTheory.KFourier MeasureTheory
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactUnitaryCasimirInverseTopDegreeBound
-open GlobalTheory.KFourier MeasureTheory
 
 
 namespace GlobalTheory.KFourier
@@ -358,8 +358,6 @@ end GlobalTheory.KFourier
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactUnitaryCasimirInverseTopDegreeBoundStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 
 theorem _root_.GlobalTheory.T.compactUnitaryCasimir_inverse_topDegree_bound : ∀ {n : ℕ} (ε : Fin n → Bool) {r : ℕ} (X : Fin r → Mx n), (∀ j, inK ε (X j)) → ∀ (i : ℕ) (l : ℝ), 0 < l → (∀ p ∈ polyV ε i, (∀ q ∈ lowV ε i, ∫ k, q k * p k ∂(muK ε) = 0) → l * ∫ k, ‖p k‖ ^ 2 ∂(muK ε) ≤ ∑ j, ∫ k, ‖rder ε [X j] p k‖ ^ 2 ∂(muK ε)) → ∀ (M : ℕ) (e : KG ε → ℂ), e ∈ polyV ε i → (∀ q ∈ lowV ε i, ∫ k, q k * e k ∂(muK ε) = 0) → ∃ s ∈ polyV ε i, (fun φ : KG ε → ℂ => ∑ j, rder ε [X j, X j] φ)^[M] s = e ∧ ∫ k, ‖s k‖ ^ 2 ∂(muK ε) ≤ (l ^ (2 * M))⁻¹ * ∫ k, ‖e k‖ ^ 2 ∂(muK ε) := by
@@ -367,7 +365,6 @@ theorem _root_.GlobalTheory.T.compactUnitaryCasimir_inverse_topDegree_bound : �
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactUnitaryCasimirPowPairingModerateGrowthBou
-open GlobalTheory.KFourier MeasureTheory
 
 
 namespace GlobalTheory.KFourier.CasimirMove
@@ -552,7 +549,6 @@ end GlobalTheory.KFourier.CasimirMove
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsFiniteRealSpanningCompactLieAlgebra
-open GlobalTheory.KFourier MeasureTheory
 
 namespace GlobalTheory.KSpan
 
@@ -593,7 +589,6 @@ end GlobalTheory.KSpan
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.FinrankCompactUnitaryPolyFunDegLELe
-open GlobalTheory.KFourier MeasureTheory
 
 namespace GlobalTheory.KFourier
 
@@ -631,7 +626,6 @@ end GlobalTheory.KFourier
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.IntegralNormSqReproducingKernelLeFinrank
-open GlobalTheory.KFourier MeasureTheory
 
 
 namespace GlobalTheory.KFourier
@@ -784,16 +778,24 @@ end GlobalTheory.KFourier
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.IntegralNormSqReproducingKernelLeFinrankStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 
 theorem _root_.GlobalTheory.T.integral_normSq_reproducingKernel_le_finrank : ∀ {n : ℕ} (ε : Fin n → Bool) (i : ℕ) (e : KG ε → ℂ), IsKer ε i e → ∫ k, ‖e k‖ ^ 2 ∂(muK ε) ≤ (Module.finrank ℂ (polyV ε i) : ℝ) := by
   first | exact @GlobalTheory.KFourier.integral_norm_sq_ker_le
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.KFourierCoefficientRapidDecay
+end -- clump: shared namespace opens
 
+-- clump: shared namespace opens
+
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Matrix
+open Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
+open scoped TensorProduct
+
+section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.KFourierCoefficientRapidDecay
+@[expose] public section
+
+noncomputable section
 namespace GlobalTheory.KFourier
 open MeasureTheory
 
@@ -815,9 +817,9 @@ theorem kFourier_coeff_decay : ∀ {n : ℕ} (ε : Fin n → Bool) (N : ℕ) (F 
     have hsm : Summable (fun i : ℕ => ((i + 1 : ℕ) : ℝ) ^ ((n : ℝ) ^ 2 - α * M)) :=
       (summable_nat_add_iff 1).mpr (Real.summable_nat_rpow.mpr hp)
     refine Summable.of_nonneg_of_le (fun i => ?_) (fun i => ?_) (hsm.mul_left (|C| * (c ^ M)⁻¹ * 2 ^ (n ^ 2)))
-    · simp only [Nat.add_one_ne_zero, if_false, B]
+    · simp only [Nat.add_one_ne_zero, ite_false, B]
       exact mul_nonneg (mul_nonneg (abs_nonneg _) (hlnn _ (Nat.cast_nonneg _))) (by positivity)
-    · simp only [Nat.add_one_ne_zero, if_false, B]
+    · simp only [Nat.add_one_ne_zero, ite_false, B]
       set x : ℝ := ((i + 1 : ℕ) : ℝ) with hx
       have hx1 : 1 ≤ x := by simp [hx]
       have hx0 : 0 < x := by linarith
@@ -840,7 +842,7 @@ theorem kFourier_coeff_decay : ∀ {n : ℕ} (ε : Fin n → Bool) (N : ℕ) (F 
   · intro i y hy
     have hy0 : 0 ≤ (1 + hs y) ^ N := pow_nonneg (by linarith [_root_.GlobalTheory.TypeSum.hs_nonneg y]) _
     rcases Nat.eq_zero_or_pos i with rfl | hi
-    · simp only [if_true]
+    · simp only [ite_true]
       have h := hC0 0 (e 0) (he 0).1 y hy
       simp only [Function.iterate_zero, id] at h
       have hk := GlobalTheory.T.integral_normSq_reproducingKernel_le_finrank ε 0 (e 0) (he 0)
@@ -850,7 +852,7 @@ theorem kFourier_coeff_decay : ∀ {n : ℕ} (ε : Fin n → Bool) (N : ℕ) (F 
               (Real.sqrt_nonneg _) (mul_nonneg (abs_nonneg _) hy0)
         _ = _ := by ring
     · have hi0 : i ≠ 0 := hi.ne'
-      simp only [hi0, if_false]
+      simp only [hi0, ite_false]
       have hl : 0 < c * (i : ℝ) ^ α := mul_pos hc (Real.rpow_pos_of_pos (by exact_mod_cast hi) _)
       obtain ⟨s, hsP, hse, hsn⟩ := GlobalTheory.T.compactUnitaryCasimir_inverse_topDegree_bound ε X hX i (c * (i : ℝ) ^ α) hl
         (fun p hp hq => hgap i hi p hp hq) M (e i) (he i).1
@@ -878,10 +880,11 @@ theorem kFourier_coeff_decay : ∀ {n : ℕ} (ε : Fin n → Bool) (N : ℕ) (F 
         _ = _ := by simp only [B]; ring
 
 end GlobalTheory.KFourier
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.KFourierCoefficientRapidDecayStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

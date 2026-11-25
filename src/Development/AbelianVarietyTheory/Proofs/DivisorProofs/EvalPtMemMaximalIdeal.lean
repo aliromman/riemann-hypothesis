@@ -117,8 +117,9 @@ theorem mem_barComp_of_specializes : ∀ (E : Type) [Field E] [NumberField E] [I
 end GlobalTheory.CompHS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EigenframeBaseChangeLocalRings
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EigenframeBaseChangeLocalRings
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj GlobalTheory GlobalTheory.ArcQ GlobalTheory.ArcCM GlobalTheory.Toroidal GlobalTheory.ShFam GlobalTheory.CuspFrom
@@ -143,21 +144,12 @@ theorem FrameBC.at (hbc : FrameBC Z) {R R' : Type} [CommRing R] [IsLocalRing R] 
   subst hx
   exact hbc R R' φ x f ψ
 
-section Cpt
-
-variable {C : FlagCpt Z e}
-
-end Cpt
-
-section Core
-
-end Core
-
 end GlobalTheory.CuspFrom.Vanish
 
 namespace GlobalTheory.CuspFrom
 
 end GlobalTheory.CuspFrom
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLieEigenspaceFrameLocalRingBaseChange

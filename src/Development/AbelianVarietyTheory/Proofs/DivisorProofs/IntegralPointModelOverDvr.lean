@@ -68,12 +68,13 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IntegralPointPullbackComparison, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralPointModelOverDvr
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IntegralPointPullbackComparison
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IntegralPointPullbackComparison
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsLocalRing TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R Formalism.L2.Pj
 open GlobalTheory.Toroidal GlobalTheory.Models GlobalTheory.LN GlobalTheory.ShFam GlobalTheory.LocM GlobalTheory.TorRef
 
+noncomputable section
 
 namespace GlobalTheory.TriplesAlong
 
@@ -124,7 +125,7 @@ theorem isOpenImmersion_j (W : ValuationSubring ℂ) (Y : Model Xo c (c.V W).sub
   by_cases h : ∃ p : ℕ, p.Prime ∧ (p : ℂ) ∈ W.nonunits
   · obtain ⟨p, hp, hW⟩ := h
     exact GlobalTheory.LocM.BaseMdl.isOpenImmersion_j hp hW Y
-  · push_neg at h
+  · push Not at h
     have hbij : Function.Bijective (c.V W).subtype :=
       ⟨Subtype.val_injective, fun x => ⟨⟨x, mem_V_of_forall W h x⟩, rfl⟩⟩
     have h1 : IsIso (CommRingCat.ofHom (c.V W).subtype) :=
@@ -143,6 +144,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
 end GlobalTheory.TriplesAlong
 
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralPointModelOverDvr

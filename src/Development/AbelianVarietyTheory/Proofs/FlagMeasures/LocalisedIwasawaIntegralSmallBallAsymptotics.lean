@@ -374,9 +374,10 @@ theorem gau_sandwich : ∀ (n : ℕ) (ε : Fin n → Bool) (SN SM MainNotions : 
 end GlobalTheory.IwSand
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TendstoRescaledMeasureGaugeUnitBody
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TendstoRescaledMeasureGaugeUnitBody
 open scoped Pointwise
 
+noncomputable section
 
 namespace GlobalTheory.IwConst.VagBody
 
@@ -395,14 +396,14 @@ theorem integral_squeeze {X : Type} [MeasurableSpace X] (ν : Measure X) (φ : X
     intro x
     by_cases hx : x ∈ A
     · rw [Set.indicator_of_mem hx, hA1 x hx]
-    · simp only [Set.indicator, hx, if_false]
+    · simp only [Set.indicator, hx, ite_false]
       exact h0 x
   have hi : ∀ x, φ x ≤ B.indicator (fun _ => (1:ℝ)) x := by
     intro x
     by_cases hx : x ∈ B
     · rw [Set.indicator_of_mem hx]
       exact h1 x
-    · simp only [Set.indicator, hx, if_false]
+    · simp only [Set.indicator, hx, ite_false]
       exact le_of_eq (hB0 x hx)
   have iB : Integrable (B.indicator fun _ => (1:ℝ)) ν :=
     (integrable_indicator_iff hB).2 (integrableOn_const hB')
@@ -488,7 +489,7 @@ theorem exists_cutoff (ρ : V → ℝ) (hc : Continuous ρ) {s t : ℝ} (hst : s
   · intro x hx
     have h1 : (t - ρ x) / (t - s) ≤ 0 := by
       rw [div_le_iff₀ hpos]
-      push_neg at hx
+      push Not at hx
       linarith
     show max 0 (min 1 ((t - ρ x) / (t - s))) = 0
     exact max_eq_left (le_trans (min_le_right _ _) h1)
@@ -574,6 +575,7 @@ theorem tendsto_body : ∀ (α V : Type) [MeasurableSpace α] [NormedAddCommGrou
     ENNReal.ofReal_toReal (measure_ne_top _ _), div_eq_mul_inv, ENNReal.ofReal_inv_of_pos hp, mul_comm]
 
 end GlobalTheory.IwConst.VagBody
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.VagueLimitRescaledMeasuresProd
@@ -1024,7 +1026,7 @@ theorem localised_iwasawa_asymptotics : ∀ (n : ℕ) (ε : Fin n → Bool) (a :
         crd EK (uMat x.2.2 - 1)) ≤ (1 + η) * r :=
       hγη.trans (mul_le_mul_of_nonneg_left hσ hη1.le)
     simp only [Set.indicator_apply, Set.mem_ofPred_eq]
-    rw [if_pos ⟨⟨hu, hm, hk⟩, hγ⟩, Pi.one_apply, mul_one]
+    rw [ite_eq_left ⟨⟨hu, hm, hk⟩, hγ⟩, Pi.one_apply, mul_one]
     exact (h₃ x.2.1 hxM (lt_of_lt_of_le hm htt₃)).1
 
 end GlobalTheory.IwConst

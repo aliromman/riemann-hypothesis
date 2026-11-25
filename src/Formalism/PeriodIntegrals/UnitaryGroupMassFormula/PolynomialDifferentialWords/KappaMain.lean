@@ -14,8 +14,9 @@ import Mathlib.Tactic.Lemma
 
 open MvPolynomial Finsupp
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialDifferentialWords.KappaCoeff
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialDifferentialWords.KappaCoeff
 
+noncomputable section
 
 namespace PI.OpWords
 
@@ -121,7 +122,7 @@ lemma eq_sum_mono (F : ↥(homogeneousSubmodule (Fin k) K d)) :
   rw [Submodule.coe_sum]
   conv_lhs => rw [(F : MvPolynomial (Fin k) K).as_sum]
   refine Finset.sum_congr rfl fun g hg => ?_
-  rw [Submodule.coe_smul, mono_val, if_pos (degree_of_coeff_ne F (MvPolynomial.mem_support_iff.1 hg)),
+  rw [Submodule.coe_smul, mono_val, ite_eq_left (degree_of_coeff_ne F (MvPolynomial.mem_support_iff.1 hg)),
     smul_monomial, smul_eq_mul, mul_one]
 
 lemma prodFact_fintype (g : Fin k →₀ ℕ) :
@@ -196,6 +197,7 @@ lemma weight_wxi (m g : Fin k →₀ ℕ) : Finsupp.weight (wxi k) (Finsupp.sumE
   simp [Finsupp.weight_apply, Finsupp.sum_fintype, wxi, Fintype.sum_sum_type, Finsupp.degree_eq_sum]
 
 end PI.OpWords
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialDifferentialWords.KappaMain

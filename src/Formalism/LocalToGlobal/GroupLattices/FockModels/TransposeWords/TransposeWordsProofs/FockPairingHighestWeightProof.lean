@@ -13,10 +13,11 @@ import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LHwrowLemmas
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylDominanceOf, Formalism.LocalToGlobal.GroupLattices.FockModels.TransposeWords.TransposeWordsProofs.FockPairingHighestWeightProof
 
-@[expose] public noncomputable section -- clump member: Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylDominanceOf
+@[expose] public section -- clump member: Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylDominanceOf
 
 open MvPolynomial Finset
 
+noncomputable section
 
 namespace Formalism.GradedWeylDivisibility
 
@@ -33,31 +34,17 @@ theorem sum_fin_filter_lt_eq_range {N : ℕ} (G : ℕ → ℕ) (k : ℕ) :
 
 theorem rowNu_partial_sum {r n : ℕ} (ν : Fin n → ℕ) (hnr : n ≤ r) (k : ℕ) :
     (∑ a : Fin r with a.val < k, rowNu (r := r) ν a) = ∑ t : Fin n with t.val < k, ν t := by
-  obtain ⟨G, hG⟩ : ∃ G : ℕ → ℕ, G = fun i => if h : i < n then ν ⟨i, h⟩ else 0 := ⟨_, rfl⟩
-  have h1 : (∑ a : Fin r with a.val < k, rowNu (r := r) ν a) =
-      ∑ a : Fin r with a.val < k, G a.val :=
-    Finset.sum_congr rfl fun a _ => by subst hG; rfl
-  have h2 : (∑ t : Fin n with t.val < k, ν t) = ∑ t : Fin n with t.val < k, G t.val :=
-    Finset.sum_congr rfl fun t _ => by subst hG; simp [t.isLt]
-  rw [h1, h2, sum_fin_filter_lt_eq_range, sum_fin_filter_lt_eq_range]
-  symm
-  apply Finset.sum_subset
-  · intro i hi
-    simp only [Finset.mem_range] at hi ⊢
-    omega
-  · intro i hi hi'
-    simp only [Finset.mem_range] at hi hi'
-    have hin : ¬ i < n := by omega
-    rw [hG]
-    simp [hin]
+  apply _root_.Formalism.GradedWeylDivisibility.rowNuSum <;> assumption
 
 end Formalism.GradedWeylDivisibility
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GroupLattices.FockModels.TransposeWords.TransposeWordsProofs.FockPairingHighestWeightProof
+@[expose] public section -- clump member: Formalism.LocalToGlobal.GroupLattices.FockModels.TransposeWords.TransposeWordsProofs.FockPairingHighestWeightProof
 
 open MvPolynomial
 
+noncomputable section
 
 namespace Formalism.L2.G.Model.TS
 
@@ -143,7 +130,7 @@ theorem fock_pairing_highest_weight_proof : FockPairingHighestWeight := by
   have h1 : fockR (hw K hn ν) F = fockR (hw K hn ν) G := by
     unfold fockR FockPairing.pair FockPairing.weight
     refine Finset.sum_congr rfl fun m hm => ?_
-    rw [hGdef, coeff_weightedHomogeneousComponent, if_pos (hHW (mem_support_iff.mp hm))]
+    rw [hGdef, coeff_weightedHomogeneousComponent, ite_eq_left (hHW (mem_support_iff.mp hm))]
   have h2 : fockR (hw K hn ν) G = c * fockR (hw K hn ν) (hw K hn ν) := by
     rw [hc]
     unfold fockR FockPairing.pair FockPairing.weight
@@ -168,7 +155,7 @@ theorem fock_pairing_highest_weight_proof : FockPairingHighestWeight := by
     exact one_ne_zero eH
   have hcoef : AddMonoidAlgebra.coeff F (lhwline_mnu hn ν) = c * AddMonoidAlgebra.coeff (hw K hn ν) (lhwline_mnu hn ν) := by
     have e : AddMonoidAlgebra.coeff F (lhwline_mnu hn ν) = AddMonoidAlgebra.coeff G (lhwline_mnu hn ν) := by
-      rw [hGdef, coeff_weightedHomogeneousComponent, if_pos (hHW (mem_support_iff.mp hDmem))]
+      rw [hGdef, coeff_weightedHomogeneousComponent, ite_eq_left (hHW (mem_support_iff.mp hDmem))]
     rw [e, hc, MvPolynomial.coeff_smul, smul_eq_mul]
   have hevF : eval (idFrame K r n) F = c := by
     rw [eF, hcoef, mul_assoc, ← eH, hev1, mul_one]

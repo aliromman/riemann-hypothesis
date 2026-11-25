@@ -321,10 +321,11 @@ theorem Tbound (n m : ℕ) (hn : 1 ≤ n) (z : Fin n → ℂ) (hz : ∀ i, ‖z 
 end Formalism.HermitianLattices.Ext.PrimesInProgressions.T2
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.JacobiCharacterSums.RootNorm
+@[expose] public section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.JacobiCharacterSums.RootNorm
 
 open Finset Complex Filter Topology
 
+noncomputable section
 
 namespace Formalism.HermitianLattices.Ext.PrimesInProgressions.T2
 
@@ -388,11 +389,11 @@ theorem rootAvg (N : ℕ) (j : ℕ) (hj : 1 ≤ j) (hjN : j < N) (y : ℂ) (hy :
   rw [Finset.sum_congr rfl (fun k _ => hterm k), ← Finset.sum_div, Finset.sum_comm]
   simp_rw [← Finset.mul_sum, hS]
   rw [Finset.sum_eq_single (N - j)]
-  · rw [if_pos (by rw [Nat.add_sub_cancel' hjN.le, Nat.mod_self]), Nat.add_sub_cancel' hjN.le]
+  · rw [ite_eq_left (by rw [Nat.add_sub_cancel' hjN.le, Nat.mod_self]), Nat.add_sub_cancel' hjN.le]
     ring
   · intro m hm hne
     rw [Finset.mem_range] at hm
-    rw [if_neg, mul_zero]
+    rw [ite_eq_right, mul_zero]
     by_cases hlt : j + m < N
     · rw [Nat.mod_eq_of_lt hlt]
       omega
@@ -466,6 +467,7 @@ theorem avgLimit {n : ℕ} (y : Fin n → ℂ) (hy : ∀ i, ‖y i‖ ≠ 1) (j 
   exact hle
 
 end Formalism.HermitianLattices.Ext.PrimesInProgressions.T2
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.JacobiCharacterSums.Turan2Main

@@ -12,12 +12,11 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.PolynomialLevels.PlMonPsiExpPAdd, Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.ProdRangeZmod
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.PolynomialLevels.PlMonPsiExpPAdd
 
+noncomputable section
 
 open MvPolynomial Finset Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.PolynomialLevels.PlMonPsiExpPAdd
 
 namespace Formalism.MainNotions.NormalSetCounting
 
@@ -59,7 +58,7 @@ theorem psiExpP_apply {L₁ N₁ : ℕ} (hV : Fr.Valid L₁ N₁) (hr : 1 ≤ r)
   rw [Finsupp.sum_apply, Finsupp.sum_eq_single (x, a')]
   · rw [Finsupp.single_eq_same]
   · intro v _ hv
-    rw [Finsupp.single_apply, if_neg]
+    rw [Finsupp.single_apply, ite_eq_right]
     intro h
     obtain ⟨e1, e2⟩ := plVar_inj hk hV hr hJ hnL h
     exact hv (Prod.ext e1 e2)
@@ -88,8 +87,13 @@ end LevP
 
 end Formalism.MainNotions.NormalSetCounting
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.ProdRangeZmod
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.ProdRangeZmod
+
+noncomputable section
+
+open MvPolynomial Finset Classical
 
 namespace Formalism.MainNotions.PairMembershipBlocks
 
@@ -118,7 +122,7 @@ theorem seg_PsiP (p : ℕ) {n' r K m : ℕ} [NeZero n'] [NeZero r] (O : Type) [C
   | mem x hx =>
     obtain ⟨⟨y, a⟩, hy, rfl⟩ := hx
     have hy' : y ∈ Fr.letters (segZ j) := hy
-    simp only [plEmb, phSeg, chi, rename_X, aeval_X, map_pow, map_X, if_pos hy']
+    simp only [plEmb, phSeg, chi, rename_X, aeval_X, map_pow, map_X, ite_eq_left hy']
     rcases hsp y hy' with ⟨l, rfl, hml⟩ | ⟨mm, rfl, hml⟩ | ⟨mm, rfl, hml⟩
     · rw [hml]
       simp only [SignedChainData.ph, PsiP, aeval_X]

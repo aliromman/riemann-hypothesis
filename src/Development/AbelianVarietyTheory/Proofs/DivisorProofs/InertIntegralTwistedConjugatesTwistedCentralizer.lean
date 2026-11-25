@@ -1477,11 +1477,12 @@ theorem _root_.GlobalTheory.TwIntegral.integral_twConj_mem_cent_mul : ∀ (F E :
 end GlobalTheory.TwIntegral
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertIntegralTwistedConjugatesTwistedCentralizer
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertIntegralTwistedConjugatesTwistedCentralizer
 
 open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT
 open scoped Classical TensorProduct
 
+noncomputable section
 namespace GlobalTheory.InertUniq
 
 section Fixed
@@ -1588,9 +1589,9 @@ theorem eq_twCent_mul_KGL : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
   have hcs : cj w = starRingEnd (w.adicCompletion E) := RingHom.ext fun _ => rfl
   have hth : ∀ h : GLw n w, (thL n w h).val = GlobalTheory.Tw.theta h.val := by
     intro h
-    rw [thL, if_neg hs, hcs, thetaGL_val]
+    rw [thL, ite_eq_right hs, hcs, thetaGL_val]
   have hnr : (nrmL n w y).val = GlobalTheory.Tw.nrm y.val := by
-    rw [nrmL, if_neg hs, Units.val_mul, hcs, thetaGL_val]; rfl
+    rw [nrmL, ite_eq_right hs, Units.val_mul, hcs, thetaGL_val]; rfl
 
   have hmem (O : Subring (w.adicCompletion E)) (h : GLw n w) :
       h ∈ GLint (Fin n) O ↔

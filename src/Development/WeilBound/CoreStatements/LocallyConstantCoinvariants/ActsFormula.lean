@@ -156,16 +156,15 @@ theorem exists_eq_mul_apply_zero : ∀ (k : Type) [Field k] [ValuativeRel k] [To
 end GlobalTheory.CompanionTheory.WeilCoinv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.ActsFormula
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.ActsFormula
 
 set_option linter.unusedSectionVars false
 
+noncomputable section
 
 namespace PositivityTheory.KCo
 
 open NumberField IsDedekindDomain GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.SplitFlip Matrix
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {v : Pl F}
   {t : E →ₐ[F] Fv F v} {sec : Fv F v × Fv F v → AE F E} {α β κ : Type} [Fintype α] [DecidableEq α] [Fintype β] [DecidableEq β]

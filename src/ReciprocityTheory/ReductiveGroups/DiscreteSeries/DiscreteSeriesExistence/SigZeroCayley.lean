@@ -9,12 +9,11 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SigZeroCayleyA, ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SigZeroCayley
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SigZeroCayleyA
 
+noncomputable section
 
 open Finset Matrix
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SigZeroCayleyA
 
 namespace ReciprocityTheory.ChartRestriction.DS
 
@@ -29,7 +28,7 @@ theorem szcMk_mul_apply (τ : Fin n → Fin n) (d o : Fin n → ℂ) (M : Matrix
     (i j : Fin n) : (szcMk τ d o * M) i j = d i * M i j + o i * M (τ i) j := by
   rw [Matrix.mul_apply]
   simp only [szcMk, add_mul, Finset.sum_add_distrib, ite_mul, zero_mul, Finset.sum_ite_eq',
-    Finset.mem_univ, if_true]
+    Finset.mem_univ, ite_true]
 
 theorem szcMk_mul (τ : Fin n → Fin n) (hτ : ∀ i, τ (τ i) = i) (d o d' o' : Fin n → ℂ) :
     szcMk τ d o * szcMk τ d' o' =
@@ -76,11 +75,11 @@ theorem szcTau_val (k r : ℕ) (i : Fin (2 * r + k + 1)) :
 
 theorem szc_tau_pos {k r : ℕ} {i : Fin (2 * r + k + 1)} (h : i.val < r ∨ r + k < i.val) :
     (szcTau k r i).val = 2 * r + k - i.val := by
-  rw [szcTau_val, if_pos h]
+  rw [szcTau_val, ite_eq_left h]
 
 theorem szc_tau_neg {k r : ℕ} {i : Fin (2 * r + k + 1)} (h : ¬ (i.val < r ∨ r + k < i.val)) :
     szcTau k r i = i := by
-  unfold szcTau; rw [if_neg h]
+  unfold szcTau; rw [ite_eq_right h]
 
 theorem szcTau_tau (k r : ℕ) (i : Fin (2 * r + k + 1)) : szcTau k r (szcTau k r i) = i := by
   have := i.isLt
@@ -259,8 +258,12 @@ end Cayley48
 
 end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SigZeroCayley
+
+
+open Finset Matrix
 
 namespace ReciprocityTheory.ChartRestriction.DS
 

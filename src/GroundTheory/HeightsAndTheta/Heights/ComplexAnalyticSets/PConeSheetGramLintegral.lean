@@ -75,7 +75,7 @@ theorem aemeasurable_coneTerm {e n : ℕ} {U D : Set (Fin e → ℂ)} {v : (Fin 
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PConeSheetGramLintegral
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PConeSheetGramLintegral
 
 set_option maxSynthPendingDepth 1
 
@@ -85,6 +85,7 @@ open MvPolynomial MeasureTheory Matrix Filter Topology Set ComplexSets
 
 open scoped ENNReal
 
+noncomputable section
 
 theorem IsSheetAt.eventuallyEq {n d : ℕ} {J : Ideal (MvPolynomial (Fin n) ℂ)}
     {A : Matrix (Fin d) (Fin n) ℂ} {x : Fin n → ℂ} {γ s : (Fin d → ℂ) → Fin n → ℂ}
@@ -134,7 +135,7 @@ theorem ConeSheetGramLintegral.proof (hPar : ConeSliceSheetParam.Statement)
     have hex : ∃ γ, IsSheetAt (J ⊔ Ideal.span {linForm ℓ - 1}) A (s k j y) γ := ⟨s k j, hsh j⟩
     have hch : sheetThrough (J ⊔ Ideal.span {linForm ℓ - 1}) A (s k j y) =ᶠ[𝓝 y] s k j := by
       have h1 : sheetThrough (J ⊔ Ideal.span {linForm ℓ - 1}) A (s k j y) = hex.choose := by
-        simp only [sheetThrough, dif_pos hex]
+        simp only [sheetThrough, dite_eq_left hex]
       have h2 := hex.choose_spec.eventuallyEq (hsh j)
       rw [hAy] at h2
       rw [h1]
@@ -182,6 +183,7 @@ theorem ConeSheetGramLintegral.proof (hPar : ConeSliceSheetParam.Statement)
   rw [hLHS, hMap]
   exact congrArg _ hRHS.symm
 
+end
 
 end GroundTheory.Heights₂.Heights
 

@@ -717,11 +717,12 @@ theorem lim_conj_transfer (μW μN : Measure (Mt k r)) [SigmaFinite μW] [SigmaF
 end PI.BICNZ
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanCoefficientNonzero.LimRightLimit
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanCoefficientNonzero.LimRightLimit
 
 open MeasureTheory Set
 open scoped InnerProductSpace ENNReal
 
+noncomputable section
 
 namespace PI.BICNZ
 
@@ -731,11 +732,7 @@ variable {k r : ℕ}
 
 theorem lim_chi_zero {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
     [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] (D : RealPlaceData k r Wp Wq) {t : ℝ} (ht : t ≤ 0) : D.χ t = 0 := by
-  apply image_eq_zero_of_notMem_tsupport
-  intro hm
-  have := D.χ_supp hm
-  simp only [Set.mem_Ioo] at this
-  linarith [this.1]
+  apply _root_.PI.BICNZ.chi_eq_zero <;> assumption
 
 theorem lim_chi_hcs {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
     [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] (D : RealPlaceData k r Wp Wq) : HasCompactSupport D.χ :=
@@ -883,6 +880,7 @@ theorem lim_rightLimit : RightLimit := by
   exact key
 
 end PI.BICNZ
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.BetaInfCoefNZ

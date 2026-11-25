@@ -26,8 +26,10 @@ import Mathlib.Algebra.Order.Star.Int
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.GroupLattices.TrivialTransfer.ProGTransfer, Formalism.LocalToGlobal.GlobalTheory.GL5.LevelsProGOfSplitAlgebra, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalEndomorphisms.AlgebraMapMemRange, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalEndomorphisms.LocalEndHomeoOf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalEndomorphisms.Assembly, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalEndomorphisms.IntVal, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.LocalEnd, Formalism.LocalToGlobal.GlobalTheory.GL5.LocalEndomorphismContinuous
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GroupLattices.TrivialTransfer.ProGTransfer
+section -- clump member: Formalism.LocalToGlobal.GroupLattices.TrivialTransfer.ProGTransfer
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix Formalism.UG Formalism.BasicNotions
 open scoped TensorProduct
@@ -38,17 +40,10 @@ def IwProG : Prop :=
   ∀ (F : Type) [Field F] [NumberField F] (k : ℕ) (v : HeightOneSpectrum (𝓞 F)) (g : ℕ), g.Prime → (g : 𝓞 F) ∈ v.asIdeal →
     IsProGrp g (iwU F k v)
 
-section Level
-
-variable {R : Ranks} {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E]
-    [StarRing E] [Algebra F E] {sp : Spaces R F E} {gp : Fin 2 → ℕ}
-    {ι' : Type} [Fintype ι'] {hc : ι' → HCParam R} {C : ColumnChain R ι' hc} {A : ColumnsAtT R C}
-    {clsLat : ∀ i, C.cls i → Submodule (𝓞 E) (sp.X i).V}
-
-end Level
-
 end Formalism.L2.G.Triv
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL5.LevelsProGOfSplitAlgebra

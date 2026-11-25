@@ -68,23 +68,15 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.CoboundaryOfDualCoboundaries, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoCardLen, Development.AbelianVarietyTheory.Proofs.FoundationProofs.LocalCharacterH1FiniteLevels
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.CoboundaryOfDualCoboundaries
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.CoboundaryOfDualCoboundaries
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.MainNotions.V
 
 namespace GlobalTheory.OrdLoc.Dcmp
 
 open ReciprocityTheory.Gal (H0 H1 H2 Z2 B1 B2 ContAction charRep twDual cup20 TDual)
-
-section Abstract
-
-variable {n : ℕ} [NeZero n] {G : Type} [Group G] [TopologicalSpace G] {R : Type} [CommRing R] [Finite R]
-  [Algebra (ZMod n) R] [TopologicalSpace R] [DiscreteTopology R]
-
-
-
-end Abstract
 
 open NumberField IsDedekindDomain in
 private lemma span_prime_isMaximal_ratRingOfIntegers {l : ℕ} [hl : Fact l.Prime] :
@@ -125,6 +117,7 @@ theorem _root_.GlobalTheory.OrdLoc.Dcmp.locDeg_rat {l : ℕ} [Fact l.Prime] {v :
 variable {l : ℕ} [Fact l.Prime] {A : ValuationSubring (AlgebraicClosure ℚ)}
 
 end GlobalTheory.OrdLoc.Dcmp
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoCardLen

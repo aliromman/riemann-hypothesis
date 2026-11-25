@@ -84,8 +84,9 @@ theorem ckExt_proof : CkExt := by
 end Formalism.FourierDecayAlt.P.CutSH.SFG
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSH_SFG_PtGV
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSH_SFG_PtGV
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutSH.SFG
 
@@ -104,7 +105,7 @@ private theorem mMap_mem_GV_of_isUnit_det_of_mem_GV {k j ρ : ℕ} (Z : Matrix (
     rw [Finset.sum_eq_single b.rev]
     · simp [Fin.rev_rev, Fin.rev_inj, eq_comm]
     · intro c _ hc
-      rw [if_neg (fun h => hc ((hr c b).2 h))]
+      rw [ite_eq_right (fun h => hc ((hr c b).2 h))]
       simp
     · simp
   have hwh : (G.wMat j).conjTranspose = G.wMat j := by
@@ -145,6 +146,7 @@ theorem point_mem_unitary_group : PtGV := by
     (mc_GV e ht hγ)) (radial_embedding_mem_unitary_group e xx.2)
 
 end Formalism.FourierDecayAlt.P.CutSH.SFG
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGAsm
@@ -462,13 +464,14 @@ theorem parameter_smooth : ParamSmooth := by
 end Formalism.FourierDecayAlt.P.CutSH.SFG
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGRadProper
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGRadProper
 
 open Matrix MeasureTheory
 open scoped ComplexConjugate
 
 set_option linter.unusedVariables false
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutSH.SFG.RP
 
@@ -687,7 +690,7 @@ theorem rad_main (t : ℂ) (γ : B.Mat k ρ) (x x' : U.RC k 1 ρ) {R δ : ℝ} (
         linarith
   · intro i j
     have h := eV i (U.eB k 1 ρ (Sum.inl (Sum.inr j)))
-    simp only [rn_VV, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true] at h
+    simp only [rn_VV, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true] at h
     rw [← h]
     calc _ ≤ ‖P (U.eB k 1 ρ (Sum.inl (Sum.inr i))) (U.eB k 1 ρ (Sum.inl (Sum.inr j)))‖ +
           ‖cy x i * P (U.eB k 1 ρ (Sum.inr 0)) (U.eB k 1 ρ (Sum.inl (Sum.inr j)))‖ := norm_add_le _ _
@@ -761,12 +764,14 @@ theorem radial_proper : RadProper := by
 
 end Formalism.FourierDecayAlt.P.CutSH.SFG
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSH_SFG_PtSmooth
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSH_SFG_PtSmooth
 
 open MeasureTheory
 open scoped ComplexConjugate ContDiff Matrix
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutSH.SFG
 
@@ -841,9 +846,9 @@ theorem point_smooth : PtSmooth := by
       unfold ell
       refine ContDiff.sum fun a _ => ?_
       by_cases h : a.val + 1 < m
-      · simp only [dif_pos h]
+      · simp only [dite_eq_left h]
         exact hE _ _
-      · simp only [dif_neg h, Matrix.mulVec, dotProduct]
+      · simp only [dite_eq_right h, Matrix.mulVec, dotProduct]
         exact ContDiff.sum fun b _ => (hE _ _).mul contDiff_const
     unfold psi
     have hre : ContDiff ℝ ∞ (fun x : U.RC k 1 ρ => (((cStd * ell k m z (rn1 e x)).re : ℝ) : ℂ)) :=
@@ -851,6 +856,7 @@ theorem point_smooth : PtSmooth := by
     exact Complex.contDiff_exp.comp (contDiff_const.mul hre)
 
 end Formalism.FourierDecayAlt.P.CutSH.SFG
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSliceFamGood

@@ -64,10 +64,11 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsAbsIrrCharMapRingHom, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GoodCharactersExtendedDataEqMapSmallerData
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsAbsIrrCharMapRingHom
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsAbsIrrCharMapRingHom
 
 open Formalism.L2.DIV
 
+noncomputable section
 
 namespace GlobalTheory.AbsIrrMap
 
@@ -94,7 +95,7 @@ theorem isAbsIrrChar_map : ∀ {K K' G : Type} [Field K] [Field K'] [CharZero K]
       invertibleOfNonzero (Nat.cast_ne_zero.mpr Nat.card_pos.ne')
     have hcard : ((Nat.card G : ℕ) : A) ≠ 0 := Nat.cast_ne_zero.mpr Nat.card_pos.ne'
     have ho := Representation.char_orthonormal ρ ρ
-    rw [if_pos ⟨Representation.Equiv.refl ρ⟩] at ho
+    rw [ite_eq_left ⟨Representation.Equiv.refl ρ⟩] at ho
     have hsum : ∑ g, ρ.character g * ρ.character g⁻¹ = (Nat.card G : A) := by
       field_simp at ho
       simpa using ho
@@ -104,6 +105,7 @@ theorem isAbsIrrChar_map : ∀ {K K' G : Type} [Field K] [Field K'] [CharZero K]
   · rw [hch, hρ, hψ]
 
 end GlobalTheory.AbsIrrMap
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GoodCharactersExtendedDataEqMapSmallerData
@@ -154,7 +156,7 @@ theorem eq_of_idemOf_eq {K G : Type} [Field K] [CharZero K] [Group G] [Fintype G
     rw [Finset.mul_sum]
     rw [Finset.sum_congr rfl fun χ' hχ' =>
       chiIdem_mul (hX χ hχX) (hX χ' (Finset.mem_sdiff.1 hχ').1)]
-    rw [Finset.sum_ite_eq, if_pos hmem]
+    rw [Finset.sum_ite_eq, ite_eq_left hmem]
   rw [h0, mul_zero] at hprod
   have hc := congrArg (fun a : MonoidAlgebra K G => a.coeff 1) hprod
   simp only [coeff_chiIdem, inv_one] at hc

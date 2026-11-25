@@ -59,12 +59,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsToStkAUnit
-attribute [local instance] Over.cartesianMonoidalCategory
 open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.ZH Classical
-attribute [local instance] SplitExt.free SplitExt.finite MvPolynomial.gradedAlgebra
 
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsToStkAUnit
+@[expose] public section
+
+noncomputable section
 namespace GlobalTheory.ZH.IntegralSum
 open GlobalTheory.FormalValue Filter Topology ReciprocityTheory.ChartRestriction.G.DVR GlobalTheory.UT
 
@@ -165,7 +165,7 @@ theorem exists_coef_secLin {R : Type} [CommRing R] [IsDomain R] (D : DegPre R) (
         (ht : ⊤ ≤ x ⁻¹ᵁ U) (a : Γ(X, U)ˣ) :
         toStkA z (valF x U a.val) = (gm x z U a).val := by
       have hz : x z ∈ U := ht trivial
-      rw [valF, dif_pos ht, gm, dif_pos hz]
+      rw [valF, dite_eq_left ht, gm, dite_eq_left hz]
       show ((Sp F).presheaf.germ ⊤ z trivial).hom ((Scheme.ΓSpecIso (CommRingCat.of F)).inv.hom
           ((Scheme.ΓSpecIso (CommRingCat.of F)).hom.hom _)) = _
       rw [Iso.hom_inv_id_apply]
@@ -184,13 +184,14 @@ theorem exists_coef_secLin {R : Type} [CommRing R] [IsDomain R] (D : DegPre R) (
   ring
 
 end GlobalTheory.ZH.IntegralSum
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TorusCoordUnitAndSectionEqExpansion
-attribute [local instance] Over.cartesianMonoidalCategory
-open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.ZH Classical
-attribute [local instance] SplitExt.free SplitExt.finite MvPolynomial.gradedAlgebra
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TorusCoordUnitAndSectionEqExpansion
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.ZH.IntegralSum
 open GlobalTheory.FormalValue Filter Topology ReciprocityTheory.ChartRestriction.G.DVR GlobalTheory.UT
 
@@ -287,10 +288,11 @@ theorem gtN_zero_and_parAt : GlobalTheory.UT.LL → ∀ (o Ω : Type) [CommRing 
   fun _ _ _ _ _ _ _ _ _ _ _ _ u c g a hc ha h => ⟨gtN_zero u c g hc h, fun k _ => parAt u c g a hc ha h k⟩
 
 end GlobalTheory.ZH.IntegralSum
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TorusCoordUnitAndSectionEqExpansionStatement
-open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.ZH Classical
 attribute [local instance] SplitExt.free SplitExt.finite MvPolynomial.gradedAlgebra
 
 

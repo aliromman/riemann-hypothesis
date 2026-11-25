@@ -58,8 +58,9 @@ import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.EllipsoidStA
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.CMModuli.ExponentialDifferential, Development.AbelianVarietyTheory.Proofs.ModuliProofs.KeyFormulaIffClauses, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaKeyRuleValueClassicalNormalForm
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.CMModuli.ExponentialDifferential
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.CMModuli.ExponentialDifferential
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -158,20 +159,13 @@ end Unif
 
 def e (x : ℂ) : ℂ := Complex.exp (2 * π * Complex.I * x)
 
-def Siegel (g : ℕ) : Type :=
-  {τ : Matrix (Fin g) (Fin g) ℂ // τ.IsSymm ∧ (τ.map Complex.im).PosDef}
-
-def thetaTerm {g : ℕ} (a b : Fin g → ℝ) (z : Fin g → ℂ) (τ : Matrix (Fin g) (Fin g) ℂ) (l : Fin g → ℤ) : ℂ :=
-  e ((∑ i, ∑ j, ((l i : ℂ) + a i) * τ i j * ((l j : ℂ) + a j)) / 2 + ∑ i, ((l i : ℂ) + a i) * (z i + b i))
-
-def theta {g : ℕ} (a b : Fin g → ℝ) (z : Fin g → ℂ) (τ : Siegel g) : ℂ :=
-  ∑' l : Fin g → ℤ, thetaTerm a b z τ.1 l
-
 end GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPointMorphisms
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.KeyFormulaIffClauses
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.KeyFormulaIffClauses
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -194,10 +188,6 @@ include h
 end Same
 
 end Unif
-
-section Analytic
-
-end Analytic
 
 section Principal
 
@@ -236,6 +226,7 @@ variable (κ : RuleIn)
 end Clauses
 
 end GlobalTheory.KeyFormulaCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaKeyRuleValueClassicalNormalForm

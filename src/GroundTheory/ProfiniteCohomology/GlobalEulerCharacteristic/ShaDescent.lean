@@ -10,7 +10,8 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.ProfiniteCohomology.PoitouTate.PoitouTateInfinite.DescentMaps, GroundTheory.ProfiniteCohomology.GlobalEulerCharacteristic.ShaDescent
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.PoitouTateInfinite.DescentMaps
+section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.PoitouTateInfinite.DescentMaps
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -20,6 +21,7 @@ open CategoryTheory
 
 universe u
 
+noncomputable section
 
 section Square
 
@@ -69,20 +71,10 @@ theorem cohomologyMap_cohomologyMapAlong_apply (φ : H →* G) (hφ : Continuous
 
 end Square
 
-section Descend
-
-variable {k H G Q Q' : Type u} [CommRing k] [Group H] [Group G] [Group Q] [Group Q'] [TopologicalSpace H]
-  [TopologicalSpace G] [TopologicalSpace Q] [TopologicalSpace Q']
-  (π : G →ₜ* Q) (hπ : Function.Surjective π) (A : Rep.{u} k G) (hA : ∀ g, π g = 1 → A.ρ g = 1)
-
-variable {D : Rep.{u} k G} {DQ : Rep.{u} k Q}
-
-variable {DQ' : Rep.{u} k Q'}
-
-end Descend
-
+end
 
 end GroundTheory.ProfCoh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.GlobalEulerCharacteristic.ShaDescent

@@ -15,8 +15,9 @@ import Formalism.LocalToGlobal.Columns.RecLevelCls
 open NumberField IsDedekindDomain Matrix
 open scoped TensorProduct
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.Columns.QdfFrameRatio
+@[expose] public section -- clump member: Formalism.LocalToGlobal.Columns.QdfFrameRatio
 
+noncomputable section
 
 namespace Formalism.L2.Col
 
@@ -46,14 +47,8 @@ def qdRatio (p p' : DecoF E n ST SG Q) (γ : Sp E n ≃ₗ[E] Sp E n) (hN : p'.d
 
 end QFr
 
-section QEmpty
-
-variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E]
-variable (hc : Formalism.BasicNotions.CMData F E) (n : ℕ) {K : Type} [Field K]
-
-end QEmpty
-
 end Formalism.L2.Col
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.Columns.TwQOrb

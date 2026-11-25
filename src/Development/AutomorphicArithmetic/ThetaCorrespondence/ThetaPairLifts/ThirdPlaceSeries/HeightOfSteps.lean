@@ -670,8 +670,9 @@ theorem exists_isHTFrameCp {T : CDVR} {io : c.F →+* T.Fr} (y₀ : IntFr Xo c T
 end GlobalTheory.CompHt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumAbsExOfLe
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumAbsExOfLe
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry NumberField IsDedekindDomain
 open scoped TensorProduct NNReal
@@ -961,7 +962,7 @@ theorem exists_frBor [IsGalois ℚ E] {T : CDVR} {io : c.F →+* T.Fr} {y₀ : I
   have heig := fun j => (hx τ j).isEig hP (z.eig τ j)
   have hlow : v 1 ≤ v (g τ i i) := by
     have := IsLatBasis.diag_le hv (g' := 1) (hg τ) (fun i j hij => Matrix.one_apply_ne hij.ne) (hb τ) i (by
-      simp only [Matrix.one_apply, ite_smul, one_smul, zero_smul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+      simp only [Matrix.one_apply, ite_smul, one_smul, zero_smul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
       exact wRec_le_htLat P τ ⟨⟨x τ i, heig i⟩, rfl⟩)
     rwa [Matrix.one_apply_eq] at this
   have hp1 : 0 < p - 1 := Nat.sub_pos_of_lt hp.one_lt
@@ -1050,6 +1051,7 @@ theorem htCmp [IsGalois ℚ E] : HTCmp Xo c := by
   exact ⟨_, ⟨q, hq, inst, T, io, e, y₀, k, y, ho, hy, h, rfl⟩, fun u f hf => val_le hy h ho u hf⟩
 
 end GlobalTheory.CovHt.FrameCmp
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.CoverHeightComparison

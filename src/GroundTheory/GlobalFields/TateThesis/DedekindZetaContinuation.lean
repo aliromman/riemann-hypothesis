@@ -15,11 +15,13 @@ import Mathlib.Analysis.Complex.RemovableSingularity
 
 open NumberField InfinitePlace IsDedekindDomain MeasureTheory Complex Topology Filter Set
 
-@[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.TateThesis.DedekindContinuation
+section -- clump member: GroundTheory.GlobalFields.TateThesis.DedekindContinuation
+@[expose] public section
 open scoped NumberField.AdeleRing Real
 
 namespace GroundTheory.Global
 
+noncomputable section
 
 variable {K : Type*} [Field K] [NumberField K]
 
@@ -47,10 +49,10 @@ theorem gammaFactor_one (s : ℂ) :
     simp
   rw [gammaFactor, Finset.prod_congr rfl fun w _ ↦ h w, prod_eq_prod_mul_prod]
   have h1 : ∀ w : {w : InfinitePlace K // IsReal w},
-      (if w.1.IsReal then Gammaℝ s else Gammaℂ s) = Gammaℝ s := fun w ↦ if_pos w.2
+      (if w.1.IsReal then Gammaℝ s else Gammaℂ s) = Gammaℝ s := fun w ↦ ite_eq_left w.2
   have h2 : ∀ w : {w : InfinitePlace K // IsComplex w},
       (if w.1.IsReal then Gammaℝ s else Gammaℂ s) = Gammaℂ s := fun w ↦
-    if_neg (not_isReal_iff_isComplex.2 w.2)
+    ite_eq_right (not_isReal_iff_isComplex.2 w.2)
   simp only [h1, h2, Finset.prod_const, Finset.card_univ]
 
 end HeckeCharacter
@@ -192,8 +194,10 @@ theorem tendsto_mul_completedDedekindZeta_zero :
   have h := tendsto_mul_completedDedekindZeta_zero_volume K
   rwa [normOneClassMeasure_univ_toReal_eq] at h
 
+end
 
 end GroundTheory.Global
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.TateThesis.DedekindZetaContinuation

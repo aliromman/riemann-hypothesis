@@ -12,12 +12,11 @@ import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.SlackBoundReal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.OldestFar, Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.FortyEightBoundArith
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.OldestFar
 
+noncomputable section
 
 open MvPolynomial Finset Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.OldestFar
 
 namespace Formalism.MainNotions.PairMembershipBlocks.Ar
 
@@ -174,9 +173,6 @@ theorem oldest_far (hV : Fr.Valid L₁ N₁) (hr : 1 ≤ r) (j : ℤ) (i : ℕ) 
   classical
   have hfg := first_gap hV hr j
   have hcard : r ≤ (Fr.LLset j).card := (hV.2.2.2.2.2.2.1 j).1
-  have hsep' : Fr.fr (j - 1) (r - 1) < Fr.fr j 0 := by
-    have h := hV.2.2.2.1 (j - 1)
-    rwa [sub_add_cancel] at h
   dsimp only [Frames.oldest]
   apply lt_sort_getD_of_le_card_filter_gt _ _ r hr
   have hsub : (Finset.range r).image (llPos Fr j) ⊆
@@ -263,8 +259,13 @@ end Deg
 
 end Formalism.MainNotions.PairMembershipBlocks.Ar
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.FortyEightBoundArith
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.FortyEightBoundArith
+
+noncomputable section
+
+open MvPolynomial Finset Classical
 
 namespace Formalism.MainNotions.PairMembershipBlocks
 
@@ -371,7 +372,7 @@ theorem arithCondition_of_one_le (C CLa : ℝ) (hC : 1 ≤ C) : RestArithStep C 
     have hG2 : G2d F (flatDeg lam0) E' (posOf n' (posTL F (⟨jj - 1, Sum.inr m'⟩ : TL J Dt.nL r))) ≤
         flatDeg lam0 (posOf n' (posTL F (⟨jj - 1, Sum.inr m'⟩ : TL J Dt.nL r))) := by
       unfold G2d
-      rw [if_pos htop]
+      rw [ite_eq_left htop]
       exact Nat.sub_le _ _
     have hfd := (flatDeg_bounds (by have := hB.m_ge; omega) ha0 h5 _ (hTT ▸ htop)).2
     have s1 := hs (r - 1)

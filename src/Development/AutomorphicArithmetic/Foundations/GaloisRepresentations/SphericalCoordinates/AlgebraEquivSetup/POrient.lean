@@ -245,8 +245,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.AlgebraEquivSetup.POrient
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.AlgebraEquivSetup.POrient
 
+noncomputable section
 
 open NumberField Matrix GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen GlobalTheory.LKTrip GlobalTheory.LKGeo UpperTheory.Gal.W2.Seed
 open scoped TensorProduct
@@ -383,7 +384,7 @@ private theorem orient_core (hT : TraceType) (hS : HdSign) (A : Arith E) (n : �
     subst hτv
     have hω := (hT E A).2.2.2
     rcases InfinitePlace.embedding_mk_eq (τ : E →+* ℂ) with he | he
-    · rw [he, if_pos τ.2, gram_diag, hJτ, Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_smul]
+    · rw [he, ite_eq_left τ.2, gram_diag, hJτ, Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_smul]
       have hf : (-Complex.I • fun i => τ.1 (A.hd n i : E) * dv A n τ.1 i) =
           fun i => (((|(τ.1 (A.hd n i : E)).re| : ℝ)) : ℂ) := by
         funext i
@@ -395,7 +396,7 @@ private theorem orient_core (hT : TraceType) (hS : HdSign) (A : Arith E) (n : �
         intro h
         rw [ComplexEmbedding.conjugate_coe_eq, τ.2] at h
         exact hω (Complex.conj_eq_iff_im.mp h)
-      rw [he, if_neg hc, gram_diag, evM_conj, hJτ, Matrix.diagonal_map (map_zero _),
+      rw [he, ite_eq_right hc, gram_diag, evM_conj, hJτ, Matrix.diagonal_map (map_zero _),
         Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_smul]
       have hf : (Complex.I • fun i => (ComplexEmbedding.conjugate (τ : E →+* ℂ)) (A.hd n i : E) *
           (starRingEnd ℂ) (dv A n τ.1 i)) = fun i => (((|(τ.1 (A.hd n i : E)).re| : ℝ)) : ℂ) := by

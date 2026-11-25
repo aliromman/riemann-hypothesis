@@ -717,8 +717,9 @@ theorem UpperTheory.window_linear_entry_estimate :
     simp only [eOf, hd, map_smul, map_sub]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ConjugateRepresentations.ConjugateCuspidalReps.ExAlgRepCusp
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ConjugateRepresentations.ConjugateCuspidalReps.ExAlgRepCusp
 
+noncomputable section
 
 open NumberField Matrix GlobalTheory.CuspRep GlobalTheory.GKCoh UpperTheory.V.WeylC UpperTheory.V.Af
 
@@ -752,7 +753,7 @@ private theorem ex_tens {E : Type} [Field E] [NumberField E] [_root_.NumberField
     funext i j
     change r (eOf (fun y => piK fun t => F t y) τ i j) = _
     rw [eOf_piK hreg (fun t => map_one _), Finset.sum_eq_single τ (fun t _ ht => by
-      rw [hder, eOf_fac, if_neg ht, map_zero, map_zero]) (by simp), hder, eOf_fac, if_pos rfl]
+      rw [hder, eOf_fac, ite_eq_right ht, map_zero, map_zero]) (by simp), hder, eOf_fac, ite_eq_left rfl]
     rfl
   rw [h1, ← map_qdet, qdet_shift, hν, map_smul, map_one]
   simp only [sub_eq_add_neg]
@@ -775,9 +776,11 @@ theorem exAlgRepCusp : ExAlgRepCusp := by
 
 end UpperTheory.V.Cj.R
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ConjugateRepresentations.ConjugateCuspidalReps.MapInfChar
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ConjugateRepresentations.ConjugateCuspidalReps.MapInfChar
 
+noncomputable section
 
 open NumberField Matrix GlobalTheory.CuspRep GlobalTheory.GKCoh UpperTheory.V.WeylC UpperTheory.V.Af UpperTheory.V.Lit.Bor
 
@@ -831,7 +834,7 @@ private theorem eF_coord (t τ : E →+* ℂ) (k l i j : Fin a) :
     rw [Matrix.single_apply, apply_ite (coord t), map_zero]
   rw [eF, h2, h2]
   by_cases h3 : i = k ∧ j = l
-  · simp only [h3, and_self, and_true, if_true]
+  · simp only [h3, and_self, and_true, ite_true]
     exact coord_hol τ t
   · simp [h3]
 
@@ -852,7 +855,7 @@ private theorem eF_det (t τ : E →+* ℂ) (i j : Fin a) :
   rw [eF, h2, h2]
   by_cases h3 : i = j
   · have h4 := coord_hol τ t
-    simp only [h3, and_true, if_true]
+    simp only [h3, and_true, ite_true]
     split_ifs at h4 ⊢ <;> linear_combination -h4
   · simp [h3]
 
@@ -1027,6 +1030,7 @@ theorem conjAlgMat : ConjAlgMat := by
 theorem conjAlgRep : ConjAlgRep := conjAlgRep_of conjAlgMat
 
 end UpperTheory.V.Cj.R
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

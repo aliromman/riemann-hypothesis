@@ -22,7 +22,8 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.L
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ResSymMeasure, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ResSymGram
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ResSymMeasure
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ResSymMeasure
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -33,6 +34,7 @@ namespace ResSym
 open MvPolynomial MeasureTheory ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.ArakelovGeometry ReciprocityTheory.AnForm.M
 open scoped ENNReal
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -116,9 +118,9 @@ theorem measurable_normPt : Measurable (normPt : (J → ℂ) → J → ℂ) := b
   have hG : Measurable G := by
     refine measurable_from_prod_countable_left fun k => ?_
     by_cases hk : k < Fintype.card J
-    · simp only [G, hk, dif_pos]
+    · simp only [G, hk, dite_eq_left]
       exact ((measurable_pi_apply _).inv).smul measurable_id
-    · simp only [G, hk, dif_neg, not_false_eq_true]
+    · simp only [G, hk, dite_eq_right, not_false_eq_true]
       exact measurable_id
   have : (normPt : (J → ℂ) → J → ℂ) = G ∘ fun z => (z, idx z) := by
     funext z
@@ -375,10 +377,12 @@ theorem dV_pos_of_isOpen (d : HSMDatum D Ω κ) {S : Set d.R.X} (hS : IsOpen S) 
 
 end Resolution
 
+end
 
 end ResSym
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ResSymGram

@@ -43,7 +43,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Formalism.IndefR.Mult MeasureTheory NumberField Matrix
 open scoped TensorProduct Topology InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.CuspNbhd
 
@@ -72,12 +71,13 @@ theorem real_mul_level_mem_nhds : ∀ (D : D7) (V : HSp D) (U : Subgroup (GA D V
 end GlobalTheory.CompanionTheory.CuspNbhd
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ArchimedeanNeighbourhoodExpSurjective
+section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ArchimedeanNeighbourhoodExpSurjective
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta MeasureTheory Matrix
 open scoped TensorProduct Topology InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.HCCusp.RealLog
 
@@ -116,14 +116,17 @@ theorem exists_small_log : ∀ (D : D7) (θ : GlobalTheory.Mem.Th.InfF D), IsInf
 
 end GlobalTheory.CompanionTheory.HCCusp.RealLog
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CuspTranslateBoundedByDerivative
+section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CuspTranslateBoundedByDerivative
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta MeasureTheory Matrix
 open scoped TensorProduct Topology InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.HCCusp.Transl
 
@@ -272,6 +275,8 @@ theorem GlobalTheory.CompanionTheory.HCCusp.norm_Rcusp_expInf_sub_le : ∀ (D : 
     (GlobalTheory.Cusp.memL2_of_cusp_form (μ := μ) hP hθ hψf) hψf.1.cont hd
   exact this
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteCoefficientSpaceAnnihilatingPolynomial
@@ -463,12 +468,12 @@ theorem finiteDimensional_of_compact_coercive :
 end GlobalTheory.CompanionTheory.Glob
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDimensionalOfEmbedding
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDimensionalOfEmbedding
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Formalism.IndefR.Mult MeasureTheory NumberField Matrix
 open scoped TensorProduct Topology InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.CuspFin
 
@@ -519,6 +524,7 @@ theorem finiteDimensional_of_coercive (hP : GlobalTheory.Published.CuspDecayBoun
 
 end GlobalTheory.CompanionTheory.CuspFin
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.SkewOfCommute
 @[expose] public section
@@ -564,7 +570,6 @@ end -- clump:auto
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta MeasureTheory Matrix
 open scoped TensorProduct Topology InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 attribute [local instance 100] LieRing.ofAssociativeRing
 
 noncomputable section

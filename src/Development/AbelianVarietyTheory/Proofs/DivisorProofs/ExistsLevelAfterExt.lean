@@ -64,16 +64,12 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.IsProperToroidalMod
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDomainLiftPolarizedVariety, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLevelAfterExt
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDomainLiftPolarizedVariety
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDomainLiftPolarizedVariety
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.SiegPt
-
-section Algebra
-
-open Polynomial IsLocalRing
-
-end Algebra
 
 section Level
 
@@ -177,18 +173,10 @@ theorem exists_level {O C : Type} [CommRing O] [IsDomain O] [ValuationRing O] [F
 
 end Level
 
-section Main
-
-open CategoryTheory AlgebraicGeometry Limits NumberField IsLocalRing
-open MonoidalCategory CartesianMonoidalCategory
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open GlobalTheory GlobalTheory.SiegelTor GlobalTheory.ZM GlobalTheory.CM GlobalTheory.Models
-open scoped CategoryTheory.Obj
-
-end Main
-
 end GlobalTheory.SiegPt
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLevelAfterExt

@@ -27,12 +27,14 @@ import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Separation.CompletelyRegular
+import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.Vanish
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.MinkowskiSubmoduleShortVector, Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.KsetInvMem, Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.LatticeVectorsBoundedBelow, Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.T7, Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.ThirdEstimateOfFirstTwo, Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.ReductionTauOf, Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.ReductionTheoryOfLattice, Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.T8m, Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.ReductionTau, Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.ReductionTau, Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.IUnfold
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.MinkowskiSubmoduleShortVector
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.MinkowskiSubmoduleShortVector
 
+noncomputable section
 
 open NumberField Matrix Module MeasureTheory
 open scoped ComplexOrder Classical
@@ -307,11 +309,12 @@ theorem minkowski_submodule_short_vector (h1 : LatticeFinitelyGenerated) (h2 : E
     have := Finset.single_le_sum (f := cj) (fun j _ => hcj j) (Finset.mem_range.2 (Nat.lt_succ_of_le hjn))
     linarith
   have hcs : cj s.j = (h8m _ hd).choose * t8K I s.j ^ ((2 : ℝ) / ((2 * I.f * s.j : ℕ) : ℝ)) := by
-    simp only [cj, dif_pos hd]
+    simp only [cj, dite_eq_left hd]
   rw [← hcs]
   exact mul_le_mul_of_nonneg_right hle (sq_nonneg _)
 
 end Formalism.L2.SG.Pf.Tau
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.KsetInvMem
@@ -690,8 +693,9 @@ namespace Formalism.L2.SG.Pf
 end Formalism.L2.SG.Pf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.IUnfold
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.IUnfold
 
+noncomputable section
 
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting
 open scoped InnerProductSpace TensorProduct Classical ENNReal NNReal
@@ -1206,15 +1210,7 @@ section Close
 
 theorem psiR_norm {n r : ℕ} (ε : Fin n → Bool) (gg : ℕ) (e f : Fin r → Fin n → ℂ) (z : Fin n → ℂ)
     (g : Matrix (Fin n) (Fin n) ℂ) : ‖psiR ε gg e f z g‖ = 1 := by
-  unfold psiR
-  rw [Complex.norm_exp]
-  have him : ((∑ a, (rootCoord ε e f z g a + star (rootCoord ε e f z g a))) / (gg : ℂ)).im = 0 := by
-    simp [Complex.div_im, Complex.im_sum]
-  have hre : (2 * (Real.pi : ℂ) * Complex.I *
-      ((∑ a, (rootCoord ε e f z g a + star (rootCoord ε e f z g a))) / (gg : ℂ))).re = 0 := by
-    rw [Complex.mul_re, him]
-    simp
-  rw [hre, Real.exp_zero]
+  apply _root_.Formalism.L2.SG.TermOp.Vanish.psiR_norm1 <;> assumption
 
 variable {D : D7} (X : HidaSetting D) (u : D.what₂.Word)
 
@@ -1340,7 +1336,7 @@ theorem normPow_holds (I : AutInst) : NormPow I := by
     push_cast
     have h4 : (0 : ℝ) ≤ 4 * (I.n : ℝ) ^ 2 := by positivity
     nlinarith
-  · push_neg at hq
+  · push Not at hq
     have h1 : normI I g = 1 := by
       unfold normI
       refine Finset.prod_eq_one fun v _ => opn_eq_one_of_definite hn (I.ε v) (fun a => ?_) (g v)

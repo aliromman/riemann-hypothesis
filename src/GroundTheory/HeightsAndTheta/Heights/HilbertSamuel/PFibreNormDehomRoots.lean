@@ -31,7 +31,8 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PCharpolyRootLift, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PFibreNormDehomRoots
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PCharpolyRootLift
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PCharpolyRootLift
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -39,6 +40,7 @@ namespace GroundTheory.Heights₂.Heights.HilbertSamuel
 
 open MvPolynomial
 
+noncomputable section
 
 namespace CharpolyRootLift
 
@@ -80,20 +82,20 @@ theorem coeff_sum_C_mul_X_pow_sub {R : Type*} [CommRing R] (n : ℕ) (b : ℕ �
   simp only [Polynomial.finsetSum_coeff, Polynomial.coeff_C_mul, Polynomial.coeff_X_pow]
   split_ifs with hk
   · rw [Finset.sum_eq_single (n - k)]
-    · rw [if_pos (by omega), mul_one]
+    · rw [ite_eq_left (by omega), mul_one]
     · intro i hi hne
-      rw [if_neg (by simp at hi; omega), mul_zero]
+      rw [ite_eq_right (by simp at hi; omega), mul_zero]
     · intro h; simp only [Finset.mem_range, not_lt] at h; omega
   · refine Finset.sum_eq_zero fun i hi => ?_
-    rw [if_neg (by simp at hi; omega), mul_zero]
+    rw [ite_eq_right (by simp at hi; omega), mul_zero]
 
 theorem natDegree_sum_C_mul_X_pow_sub {R : Type*} [CommRing R] [Nontrivial R] (n : ℕ) (b : ℕ → R) (hb : b 0 = 1) :
     (∑ i ∈ Finset.range (n + 1), Polynomial.C (b i) * Polynomial.X ^ (n - i)).natDegree = n := by
   refine Polynomial.natDegree_eq_of_le_of_coeff_ne_zero ?_ ?_
   · rw [Polynomial.natDegree_le_iff_coeff_eq_zero]
     intro N hN
-    rw [coeff_sum_C_mul_X_pow_sub, if_neg (by exact_mod_cast not_le.2 hN)]
-  · rw [coeff_sum_C_mul_X_pow_sub, if_pos le_rfl, Nat.sub_self, hb]
+    rw [coeff_sum_C_mul_X_pow_sub, ite_eq_right (by exact_mod_cast not_le.2 hN)]
+  · rw [coeff_sum_C_mul_X_pow_sub, ite_eq_left le_rfl, Nat.sub_self, hb]
     exact one_ne_zero
 
 theorem scaleRoots_sum_C_mul_X_pow_sub {R : Type*} [CommRing R] [Nontrivial R] (n : ℕ) (b : ℕ → R) (hb : b 0 = 1)
@@ -343,8 +345,10 @@ theorem CharpolyRootLift.proof : CharpolyRootLift.Statement := by
         algebraMap (Algebra.adjoin A {v}) _ ⟨v, Algebra.self_mem_adjoin_singleton A v⟩ := rfl
     rw [h1, hg, hψ0v]
 
+end
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PFibreNormDehomRoots

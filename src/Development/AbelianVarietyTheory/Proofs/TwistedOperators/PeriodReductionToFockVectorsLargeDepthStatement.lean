@@ -886,8 +886,10 @@ theorem _root_.GlobalTheory.T.movedFiniteDatum_eq_heisenbergCombination_vacuum :
   first | exact @GlobalTheory.MovedComb.movedVec_eq_comb
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MovedVectorsAreCombinationsOfVacuaOfLargeDepth
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MovedVectorsAreCombinationsOfVacuaOfLargeDepth
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.RowVal
 
@@ -915,10 +917,12 @@ theorem movedAt_big : Big fun ch => MovedAt ch := by
     have hz1 := ((hd1 d hd).2 i).2.2
     rw [GlobalTheory.T.movedFiniteDatum_eq_heisenbergCombination_vacuum large₂ F hS ch hIs t (.chi i D.R.m) (show DefPair D.R.m (Pair.chi (i : ℕ) D.R.m : Pair T) from ⟨i.2, rfl⟩) (d.2 i) ((c d).2 i) hz1 hvec ((hC d hd).2 i),
       hκ' i, comb_smul_heis]
-    simp only [dif_pos i.2, combR]
+    simp only [dite_eq_left i.2, combR]
 
 end GlobalTheory.RowVal
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.PeriodReductionToFockVectorsLargeDepth

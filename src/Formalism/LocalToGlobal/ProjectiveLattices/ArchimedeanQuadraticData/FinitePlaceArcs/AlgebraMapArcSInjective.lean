@@ -29,13 +29,7 @@ theorem algebraMap_arcS_injective (Dw : Datum H) (K₁ : Type) [Field K₁] :
 
 theorem arcNum_algebraMap {K₁ : Type} [Field K₁] (P : MvPolynomial (ArcLt Dw) (LaurentSeries K₁)) :
     arcNum (algebraMap _ (ArcS Dw K₁) P) = P := by
-  unfold arcNum
-  split
-  · rename_i h
-    first
-      | exact algebraMap_arcS_injective Dw K₁ h.choose_spec
-  · rename_i h
-    exact absurd ⟨P, rfl⟩ h
+  apply _root_.Formalism.L2.Pj.QAt.LinOfPoly.arcNum_map <;> assumption
 
 theorem zpow_bound {α : Type} (r : ℝ) (hr0 : 0 < r) (hr1 : r < 1) (o vth : ℤ) (N d m : ℕ) (s : Finset α)
     (e : α → ℕ) (v : α → ℤ)

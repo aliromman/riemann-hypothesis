@@ -399,7 +399,7 @@ theorem exists_coset (M q : ℕ) (hM : 0 < M) (hq : q.Prime) (hqM : Nat.Coprime 
     set c : ZMod q := ((m 1 0 : ℤ) : ZMod q) with hc
     set d : ZMod q := ((m 1 1 : ℤ) : ZMod q) with hd
     have hac : a ≠ 0 ∨ c ≠ 0 := by
-      by_contra hcon; push_neg at hcon
+      by_contra hcon; push Not at hcon
       exact hdiv ⟨(hz _).mpr hcon.1, (hz _).mpr hcon.2⟩
     obtain ⟨t, ht1, ht2⟩ : ∃ t : ZMod q, b = a * t * (M : ZMod q) ∧ d = c * t * (M : ZMod q) := by
       rcases hac with ha0 | hc0
@@ -445,7 +445,7 @@ theorem reps_distinct (M q : ℕ) (hq : q.Prime) (hqM : Nat.Coprime q M) (σ : S
   have e11 := E 1 1
   unfold reps at e00 e01 e10 e11
   by_cases hi : (i : ℕ) < q <;> by_cases hk : (k : ℕ) < q <;>
-    simp only [hi, hk, if_true, if_false] at e00 e01 e10 e11 <;>
+    simp only [hi, hk, ite_true, ite_false] at e00 e01 e10 e11 <;>
     simp [Matrix.mul_apply, Fin.sum_univ_two] at e00 e01 e10 e11
   ·
     have hdv : (q : ℤ) ∣ ((i : ℕ) - (k : ℕ) : ℤ) * M := ⟨(g : Matrix (Fin 2) (Fin 2) ℤ) 0 1, by
@@ -595,7 +595,9 @@ theorem gauss_extension_unique : ∀ {F : Type} [Field F] [CharZero F] [IsAlgClo
 end GlobalTheory.BertiniNoether
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.NonLthPowerReductionAlmostAllPrimes
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.NonLthPowerReductionAlmostAllPrimes
+
+noncomputable section
 
 namespace GlobalTheory.LthPowRed
 
@@ -763,7 +765,7 @@ theorem core {F K L : Type} [Field F] [IsAlgClosed F] [Field K] [Field L] [Algeb
   obtain ⟨d, hd⟩ := IsAlgClosed.exists_pow_nat_eq c hl.pos
   have hcval : V.valuation c = 1 := by
     rw [val_eq_one_iff, ValuationSubring.mem_nonunits_iff_or]
-    push_neg
+    push Not
     exact ⟨hcV, hc0, hciV⟩
   have hcW : W'.valuation (algebraMap F L c) = 1 :=
     (val_eq_one_iff_of_mem_iff (algebraMap F L) hFL c).2 hcval
@@ -857,6 +859,7 @@ theorem not_valuation_lt_one : ∀ {F : Type} [Field F] [CharZero F] [IsAlgClose
 
 end GlobalTheory.LthPowRed
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.TowerGaloisActionPreservesGammaLevel
 
@@ -927,7 +930,9 @@ theorem exists_root_of_unity_close_of_pow_close : ∀ {Ω K : Type} [Field Ω] [
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KroneckerRatioReducesToConstModValuation
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KroneckerRatioReducesToConstModValuation
+
+noncomputable section
 
 namespace GlobalTheory.KronRatio
 
@@ -1015,7 +1020,7 @@ theorem kronecker_ratio_reduces_to_const : ∀ {Ω : Type} [Field Ω] [Algebra �
   have hF : ∀ σ : SL(2, ℤ), X.sl (ofSL σ) (f : X.K) = F (red σ) := by
     intro σ
     have h : ∃ σ', red σ' = red σ := ⟨σ, rfl⟩
-    have e : F (red σ) = X.sl (ofSL h.choose) (f : X.K) := dif_pos h
+    have e : F (red σ) = X.sl (ofSL h.choose) (f : X.K) := dite_eq_left h
     have hσ' : red h.choose = red σ := h.choose_spec
     have hγ : σ * h.choose⁻¹ ∈ CongruenceSubgroup.Gamma M := by
       have : σ * h.choose⁻¹ ∈ red.ker := by
@@ -1084,6 +1089,7 @@ theorem kronecker_ratio_reduces_to_const : ∀ {Ω : Type} [Field Ω] [Algebra �
   rwa [sub_add_cancel] at h5
 
 end GlobalTheory.KZ
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.EichlerShimuraKummerModularUnit

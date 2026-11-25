@@ -584,9 +584,11 @@ open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.ZH ReciprocityTheory.ChartRestriction.G.Out Classical
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ThetaModelCoordinatesLocalBasis
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ThetaModelCoordinatesLocalBasis
+@[expose] public section
 attribute [local instance] Over.cartesianMonoidalCategory
 
+noncomputable section
 namespace GlobalTheory.ZH.SecCoord
 open GlobalTheory.Points Matrix
 
@@ -882,7 +884,7 @@ theorem secO : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [ArithBa
       calc _ = ∑ i, (u : K) * (c i * valR g' _ ((GlobalTheory.secPull (T' i) F').f jO)) :=
           Finset.sum_congr rfl fun i _ => by rw [hv i, mul_left_comm]
         _ = 0 := by rw [← Finset.mul_sum]; exact mul_eq_zero_of_right _ h3
-    · exact Finset.sum_eq_zero fun i _ => mul_eq_zero_of_right _ (dif_neg hj)
+    · exact Finset.sum_eq_zero fun i _ => mul_eq_zero_of_right _ (dite_eq_right hj)
   · intro hab
     have := hAb.2 W hab
     have hp : IsProper (Z.G.hom ∣_ W) := by
@@ -902,6 +904,8 @@ theorem secO : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [ArithBa
       (ha.pull_of_isOpenImmersion F')
 
 end GlobalTheory.ZH.SecCoord
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ThetaModelCoordinatesLocalBasisStatement

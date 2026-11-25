@@ -26,8 +26,9 @@ import Mathlib.Tactic.Lemma
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.CasPsB, ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.CasLPsM, ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.LholClmEventually
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.CasPsB
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.CasPsB
 
+noncomputable section
 
 open Finset MeasureTheory Matrix
 open scoped ContDiff
@@ -93,14 +94,14 @@ theorem contDiff_lead' (i : ℕ) {m : ℕ∞ω} : ContDiff ℂ m (fun z : 𝕄 =
         ∑ σ : Equiv.Perm (Fin i), ((Equiv.Perm.sign σ : ℤ) : ℂ) *
           ∏ j, z (Fin.castLE h (σ j)) (Fin.castLE h j) := by
       funext z
-      simp only [lead, dif_pos h, Matrix.det_apply']
+      simp only [lead, dite_eq_left h, Matrix.det_apply']
       rfl
     rw [e]
     exact ContDiff.sum fun σ _ => contDiff_const.mul
       (contDiff_prod fun j _ => contDiff_apply_apply ℂ _ _)
   · have e : (fun z : 𝕄 => lead i z) = fun _ => 0 := by
       funext z
-      simp only [lead, dif_neg h]
+      simp only [lead, dite_eq_right h]
     rw [e]
     exact contDiff_const
 
@@ -342,6 +343,7 @@ theorem sum_FY' (T : KType ε Λ) (μ : Fin n → ℤ) (lam : Fin n → ℝ) (h�
 end CasPsB
 
 end ReciprocityTheory.ChartRestriction.DS.S7
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

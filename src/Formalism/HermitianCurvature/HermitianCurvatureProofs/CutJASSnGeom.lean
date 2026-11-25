@@ -927,7 +927,8 @@ theorem geometry_boundedness_at_zero : GeomBd0 := by
 end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Geom
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.GeometryEquivarianceEmbedding
+section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.GeometryEquivarianceEmbedding
+@[expose] public section
 
 namespace Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Geom
 
@@ -935,6 +936,7 @@ open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Fo
 open PI.UnitaryGroupMassFormula.GsFr PI.UnitaryGroupMassFormula.DLm.Gram
 open Matrix
 
+noncomputable section
 
 namespace S3
 
@@ -983,7 +985,7 @@ private lemma mem_xsp_of_apply_eq_zero_of_le {w : Fin (2 * r + k + 1) → ℂ} (
         by_cases ha : a = ⟨i.val, hi⟩
         · subst ha
           have : i = eI k r ⟨i.val, hi⟩ := Fin.ext rfl
-          rw [if_pos this, if_pos rfl, mul_one, ← this]
+          rw [ite_eq_left this, ite_eq_left rfl, mul_one, ← this]
         · have hne : i ≠ eI k r a := by
             intro h'
             apply ha
@@ -992,7 +994,7 @@ private lemma mem_xsp_of_apply_eq_zero_of_le {w : Fin (2 * r + k + 1) → ℂ} (
             simp only [eI] at this
             simp only
             omega
-          rw [if_neg hne, if_neg ha, mul_zero]
+          rw [ite_eq_right hne, ite_eq_right ha, mul_zero]
       rw [Finset.sum_congr rfl (fun a _ => hsum a), Finset.sum_ite_eq']
       simp
     · rw [h i (by omega)]
@@ -1004,7 +1006,7 @@ private lemma mem_xsp_of_apply_eq_zero_of_le {w : Fin (2 * r + k + 1) → ℂ} (
         have := congrArg Fin.val h'
         simp only [eI] at this
         omega
-      rw [if_neg hne, mul_zero]
+      rw [ite_eq_right hne, mul_zero]
   rw [hw]
   exact Submodule.sum_mem _ fun a _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨a, rfl⟩)
 
@@ -1253,8 +1255,10 @@ theorem geometry_equivariance_embedding : GeomEqvIo := by
         rw [Matrix.mul_assoc, Matrix.mul_nonsing_inv _ (Wz'.unit h' hh'), Matrix.mul_one]
     _ = h * ioG z z' y * h'⁻¹ := by rw [hm]
 
+end
 
 end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Geom
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.GeometryEquivarianceFirstVector

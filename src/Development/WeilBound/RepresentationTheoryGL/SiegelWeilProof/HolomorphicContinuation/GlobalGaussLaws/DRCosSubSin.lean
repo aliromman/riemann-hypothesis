@@ -12,16 +12,15 @@ public import Mathlib.Analysis.Complex.Basic
 public import Mathlib.Analysis.Complex.Exponential
 public import Mathlib.Analysis.Complex.Trigonometric
 public import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.DRConjTranspose
+import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.GaussB
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.ExistsCircleDetNe, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.DRCosSubSin
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.ExistsCircleDetNe
 
 
 open Matrix Complex
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.ExistsCircleDetNe
 
 namespace PositivityTheory.Rg.Sw.Glob.VacU
 
@@ -193,7 +192,11 @@ theorem unitary_diag (W : Matrix (Fin n) (Fin n) ℂ) (hW : Wᴴ * W = 1) :
 end PositivityTheory.Rg.Sw.Glob.VacU
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.DRCosSubSin
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.DRCosSubSin
+
+noncomputable section
+
+open Matrix Complex
 
 namespace PositivityTheory.Rg.Sw.Glob.VacG
 
@@ -203,18 +206,7 @@ variable {n : ℕ}
 
 theorem inK_blocks (k : M2 n) (hk : InK k) :
     k.toBlocks₂₁ = -k.toBlocks₁₂ ∧ k.toBlocks₂₂ = k.toBlocks₁₁ := by
-  unfold InK InG at hk
-  obtain ⟨hG, hU⟩ := hk
-  have hU' : k * kᴴ = 1 := mul_eq_one_comm.mp hU
-  have hc : JJ n * k = k * JJ n := by
-    calc JJ n * k = (k * kᴴ) * JJ n * k := by rw [hU', Matrix.one_mul]
-      _ = k * (kᴴ * JJ n * k) := by simp only [Matrix.mul_assoc]
-      _ = k * JJ n := by rw [hG]
-  rw [← fromBlocks_toBlocks k] at hc
-  unfold JJ at hc
-  rw [fromBlocks_multiply, fromBlocks_multiply, fromBlocks_inj] at hc
-  simp at hc
-  exact ⟨hc.1, hc.2.1⟩
+  apply _root_.PositivityTheory.Rg.Sw.Glob.GaussH.inK_blocks <;> assumption
 
 theorem mM_unitary (u : Matrix (Fin n) (Fin n) ℂ) (hu : uᴴ * u = 1) : mM u = fromBlocks u 0 0 u := by
   rw [mM, Matrix.inv_eq_right_inv hu]

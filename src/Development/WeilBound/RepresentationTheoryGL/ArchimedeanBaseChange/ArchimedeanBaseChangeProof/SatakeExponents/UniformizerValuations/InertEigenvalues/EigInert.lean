@@ -19,14 +19,14 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.EqOfHasValueAtInfin
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.AdmissibleTransport, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.HeckeSumP, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.IndexUA, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.EigInert
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.AdmissibleTransport
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.AdmissibleTransport
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC GlobalTheory.BCT
 open scoped Classical
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace PositivityTheory.Rg.BcB.F.Eig.GluingInclusion
 
@@ -390,10 +390,14 @@ theorem eigInertOf : EigInertOf := by
 
 end PositivityTheory.Rg.BcB.F.Eig
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.HeckeSumP
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.HeckeSumP
+@[expose] public section
 
+noncomputable section
 
 open GlobalTheory.PRep GlobalTheory.BCT
 open scoped Classical
@@ -567,7 +571,7 @@ theorem levOp_eq (ρ : Representation ℂ G V) (K J : Subgroup G) (t : G) [Finty
     obtain ⟨k, hk, hout⟩ := out_iota J t r
     have hmem : ∃ x ∈ J, ∃ z ∈ J, (iota J t r).out = x * t * z := ⟨r.out, (r.out).2, k, hk, hout⟩
     beta_reduce
-    rw [if_pos hmem, one_smul, LinearMap.comp_id, hout, map_mul, map_mul, Module.End.mul_apply,
+    rw [ite_eq_left hmem, one_smul, LinearMap.comp_id, hout, map_mul, map_mul, Module.End.mul_apply,
       Module.End.mul_apply, fix_apply y hk]
   · intro q hq
     rw [Function.mem_support] at hq
@@ -631,10 +635,13 @@ theorem heckeSum : HeckeSum := by
 
 end PositivityTheory.Rg.BcB.F.Eig
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.IndexUA
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.IndexUA
 
+noncomputable section
 
 open Matrix Formalism.UG GlobalTheory.BCT GlobalTheory.BorelUMod GlobalTheory.LGrp
 
@@ -670,17 +677,7 @@ theorem wexp_anti {n : ℕ} {l : Fin (n / 2) → ℤ} (hl : Cone l) {i j : Fin n
     | exact neg_nonpos.2 (hP' _).le
 
 theorem wexp_rev {n : ℕ} (l : Fin (n / 2) → ℤ) (i : Fin n) : wexp n l i.rev = -wexp n l i := by
-  have hr : (i.rev : ℕ) = n - (i + 1) := Fin.val_rev i
-  have hl' : ∀ a b : ℕ, ∀ (ha : a < n / 2) (hb : b < n / 2), a = b → l ⟨a, ha⟩ = l ⟨b, hb⟩ := by
-    rintro a b ha hb rfl
-    rfl
-  delta wexp
-  split_ifs
-  all_goals first
-    | omega
-    | exact hl' _ _ _ _ (by omega)
-    | exact congrArg Neg.neg (hl' _ _ _ _ (by omega))
-    | (rw [neg_neg]; exact hl' _ _ _ _ (by omega))
+  apply _root_.PositivityTheory.Rg.BcB.F.Eig.GluingInclusion.wexp_rev <;> assumption
 
 theorem wexp_castLE {n : ℕ} (l : Fin (n / 2) → ℤ) (i : Fin (n / 2)) :
     wexp n l (Fin.castLE (Nat.div_le_self n 2) i) = l i := by
@@ -1077,6 +1074,7 @@ theorem indexU : IndexU := by
     Int.toNat_natCast]
 
 end PositivityTheory.Rg.BcB.F.Eig
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.EigInert

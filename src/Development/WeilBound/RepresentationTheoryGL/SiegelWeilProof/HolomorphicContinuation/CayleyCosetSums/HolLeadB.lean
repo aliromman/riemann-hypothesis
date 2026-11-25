@@ -79,12 +79,10 @@ import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicC
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.DetNeZeroOfInG, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.CauchyRiemannDerivativeEq, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.HolomorphicSectionLoweringInvariant, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.CauchyRiemannFacts, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.CRSecB, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.ExistsMulConjTransposeEqOfPosDef, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.CrLem, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.SphericalSectionConjugationSwap, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.HolLeadB
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.DetNeZeroOfInG
 
 
 open Matrix Filter Topology
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.DetNeZeroOfInG
 open scoped ComplexOrder
 
 namespace PositivityTheory.Rg.Sw.HSt.CR
@@ -112,7 +110,11 @@ theorem mR_toGR (x : M2 n) (hx : InG x) : mR (toGR x hx) = x := rfl
 end PositivityTheory.Rg.Sw.HSt.CR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.CauchyRiemannDerivativeEq
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.CauchyRiemannDerivativeEq
+
+noncomputable section
+
+open Matrix Filter Topology
 open scoped ComplexOrder
 
 namespace PositivityTheory.Rg.Sw.HSt.CR
@@ -161,7 +163,7 @@ theorem crLem_of (hsec : LocSec) (hfib : Fib) (ha : CauchyRiemannFacts) : CRLem 
   have hH : ∀ y : GR n, φ y = F0 m 0 e y * H (zOfE (mR y)) := by
     intro y
     have hex : ∃ y' : GR n, zOfE (mR y') = zOfE (mR y) := ⟨y, rfl⟩
-    simp only [hHdef, dif_pos hex]
+    simp only [hHdef, dite_eq_left hex]
     have hz : zOfE (mR hex.choose) = zOfE (mR y) := hex.choose_spec
     have hk := hfib n hex.choose y hz
     have hkK : (hex.choose⁻¹ * y) ∈ AbsSt.KR n := hk
@@ -295,8 +297,12 @@ theorem crLem_of (hsec : LocSec) (hfib : Fib) (ha : CauchyRiemannFacts) : CRLem 
 
 end PositivityTheory.Rg.Sw.HSt.CR
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.HolomorphicSectionLoweringInvariant
+
+
+open Matrix Filter Topology
 
 namespace PositivityTheory.Rg.Sw.HSt.CR
 
@@ -382,6 +388,9 @@ end PositivityTheory.Rg.Sw.HSt.CR
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.CauchyRiemannFacts
+
+
+open Matrix Filter Topology
 
 namespace PositivityTheory.Rg.Sw.HSt.CR
 
@@ -494,8 +503,6 @@ theorem cra2 : CauchyRiemannFacts := by
 
 end PositivityTheory.Rg.Sw.HSt.CR
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.CRSecB
 

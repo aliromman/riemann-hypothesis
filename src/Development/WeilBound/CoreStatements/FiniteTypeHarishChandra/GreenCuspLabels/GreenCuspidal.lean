@@ -74,12 +74,13 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GreenCuspidalC
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.GreenCuspLabels.GreenCuspidal
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.GreenCuspLabels.GreenCuspidal
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.GreenCuspLabels.GreenCuspidal
 
 open Polynomial CategoryTheory
 open Formalism.IrreducibleCountingLemmas.TYPES hiding zIdem IsCuspidal rootsBar
 open ReciprocityTheory.Ty.Fin GlobalTheory.GLq GlobalTheory.CompanionTheory.TyFin.CuspIff GlobalTheory.CompanionTheory.TyFin.CuspLabel
 
+noncomputable section
 
 namespace PositivityTheory.GreenCharacters
 
@@ -139,7 +140,7 @@ theorem rad_iff {d a : ℕ} (had : a ≤ d) (M : Mt g d) :
           intro e
           subst e
           exact hi hj
-        rw [if_neg hne]
+        rw [ite_eq_right hne]
         exact hP i j hj (not_lt.mp hi)
       · left
         have hi' : (i : ℕ) - a < d - a := by omega
@@ -157,7 +158,7 @@ theorem rad_iff {d a : ℕ} (had : a ≤ d) (M : Mt g d) :
     refine ⟨?_, ?_, ?_⟩
     · intro i j hj hi
       rcases hM i j with h | h
-      · rw [h, if_neg]
+      · rw [h, ite_eq_right]
         intro e
         subst e
         omega

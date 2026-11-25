@@ -1,5 +1,6 @@
 module
 
+import all Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SeparableMatrixStability.AmFin
 public import Mathlib.Algebra.Field.Defs
 public import Mathlib.Data.Matrix.Mul
 public import Mathlib.LinearAlgebra.Span.Defs
@@ -755,22 +756,7 @@ end -- clump:auto
 
 private theorem char_of_padic {l : ℕ} [Fact l.Prime] {K : Type} [Field K] [Finite K] (f : ℤ_[l] →+* K) :
     (l : K) = 0 := by
-  obtain ⟨p, hchar⟩ := CharP.exists K
-  have hp : p.Prime := CharP.char_is_prime K p
-  have hpl : p = l := by
-    by_contra hne
-    have hunit : IsUnit (p : ℤ_[l]) := by
-      by_contra hnu
-      have hlt : ‖((p : ℤ) : ℤ_[l])‖ < 1 := by
-        rw [Int.cast_natCast]
-        exact PadicInt.mem_nonunits.mp hnu
-      rw [PadicInt.norm_int_lt_one_iff_dvd, Int.natCast_dvd_natCast] at hlt
-      exact hne ((Nat.prime_dvd_prime_iff_eq (Fact.out) hp).mp hlt).symm
-    have h := hunit.map f
-    rw [map_natCast, CharP.cast_eq_zero] at h
-    exact not_isUnit_zero h
-  subst hpl
-  exact CharP.cast_eq_zero K p
+  apply _root_.l_zero <;> assumption
 
 private theorem closed_of_comb {A G ι : Type} [CommRing A] [IsDomain A] [IsLocalRing A] [IsNoetherianRing A]
     [TopologicalSpace G] [Fintype ι] (ρ : ι → G → A) (hρ : ∀ a, AdicCont (maximalIdeal A) (ρ a))
@@ -1244,9 +1230,9 @@ theorem UpperTheory.V.Pa.Det.flagBasis :
     refine Infinite.of_injective (fun m : ℕ => ι (PowerSeries.X ^ m)) ?_
     intro m k hmk
     have h := congrArg (fun p => PowerSeries.coeff (R := K) m p) (hιi hmk)
-    simp only [PowerSeries.coeff_X_pow, if_true] at h
+    simp only [PowerSeries.coeff_X_pow, ite_true] at h
     by_contra hne
-    rw [if_neg hne] at h
+    rw [ite_eq_right hne] at h
     exact one_ne_zero h
   have hev' : ∀ g, mat (pushRep ι r) g ∈ Ev (FractionRing (PowerSeries K)) (FractionRing (PowerSeries K)) n a := by
     intro g

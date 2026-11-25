@@ -25,12 +25,10 @@ import Formalism.SharpRestriction.GlobalSchurBounds.ShortIntervalPrimes
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDifferenceConeTermEq, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HighDifferenceVanishesNegativeInteger, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ConeSeriesDerivativeGrowthBound, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ConeSeriesRealDerivativeFormula, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ShintaniValuesNegativeIntegersRational, Development.AutomorphicSpectrum.Proofs.GlobalProofs.SizePowerLeInverseSquareProduct, Development.AutomorphicSpectrum.Proofs.GlobalProofs.SummableInverseSquareProduct, Development.AutomorphicSpectrum.Proofs.GlobalProofs.WeightSumAsFiniteDifferences
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDifferenceConeTermEq
 
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDifferenceConeTermEq
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
@@ -60,6 +58,9 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.HighDifferenceVanishesNegativeInteger
 
+
+open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
+
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
 theorem coneTerm_differentiable_in_s_alt {ι : Type} [Fintype ι] {r : ℕ} {a : ι → Fin r → ℝ} {b : ι → ℝ}
@@ -88,6 +89,9 @@ end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ConeSeriesDerivativeGrowthBound
+
+
+open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
@@ -207,7 +211,11 @@ theorem baseBound : ∀ (ι : Type) [Fintype ι] (r : ℕ) (a : ι → Fin r →
 end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ConeSeriesRealDerivativeFormula
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ConeSeriesRealDerivativeFormula
+
+noncomputable section
+
+open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.DerivDLR
 
@@ -221,7 +229,7 @@ lemma linF_line (a : ι → Fin r → ℝ) (b : ι → ℝ) (j : ι) (x : Fin r 
     by_cases hk : k = i
     · subst hk; simp; ring
     · simp [hk]
-  simp only [linF, h, Finset.sum_add_distrib, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [linF, h, Finset.sum_add_distrib, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   ring
 
 lemma linF_pos (a : ι → Fin r → ℝ) (b : ι → ℝ) (ha : ∀ j i, 0 < a j i) (hb : ∀ j, 0 < b j)
@@ -323,8 +331,7 @@ theorem hasDerivAt_DLR_Fr (ι : Type) [Fintype ι] [DecidableEq ι] (r : ℕ) (a
 
 end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.DerivDLR
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 -- clump: shared namespace opens
 

@@ -630,7 +630,8 @@ end SphereMean
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.SphereMean
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.SphereMean
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -638,6 +639,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open MeasureTheory Measure Set Real
 
+noncomputable section
 
 namespace SphereMean
 
@@ -730,7 +732,7 @@ theorem sphereMeanLinear : SphereMeanLinear.Statement := by
   have hon : Orthonormal ℂ (({0} : Set (Fin (m + 1))).domRestrict fun _ => p') := by
     rw [orthonormal_iff_ite]
     intro i j
-    rw [Subsingleton.elim i j, if_pos rfl,
+    rw [Subsingleton.elim i j, ite_eq_left rfl,
       show (({0} : Set (Fin (m + 1))).domRestrict fun _ => p') j = p' from rfl,
       inner_self_eq_norm_sq_to_K, hp']
     simp
@@ -770,8 +772,10 @@ theorem sphereMeanLinear : SphereMeanLinear.Statement := by
   rw [setAverage_log_fst_normalized m]
   simp
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.OfLeaves

@@ -980,8 +980,9 @@ theorem UpperTheory.iwahori_doubleCoset_torus_mul_of_strictAnti :
   group
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.ExistsIdempotentHeckeOperatorWithRegularSupport
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.ExistsIdempotentHeckeOperatorWithRegularSupport
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix GlobalTheory.UPel.HT GlobalTheory.LKTrip GlobalTheory.LKGeo
 open UpperTheory.Gal.CertificateRingHomMap (GUf Plc comp cj GLw)
@@ -1110,8 +1111,6 @@ private theorem cen_ex {E : Type} [Field E] [NumberField E] [IsCMField E] {A : A
       ∀ v, S.L.actG (F.j d) v = c • v := by
   first
     | (obtain ⟨y, -, -, h1, -, h2, h3⟩ := UpperTheory.exists_levelSubgroup_central_scalar_of_pos E A n p S F c hc; exact ⟨_, h2, h1, h3⟩)
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem auxFn : ExistsIdempotentHeckeOperatorWithRegularSupport := by
   intro E _ _ _ A n p _ S F x U w₀ Up V hn hsc hgen hoff hq r W hA N hrN hst L hw Ty hTy

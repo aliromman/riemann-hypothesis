@@ -668,23 +668,23 @@ private theorem blkPart_mul (c : Fin d → ℕ) {M N : Matrix (Fin d) (Fin d) L}
   change (if c i = c j then (M * N) i j else 0) =
     ∑ k, (if c i = c k then M i k else 0) * (if c k = c j then N k j else 0)
   by_cases h : c i = c j
-  · rw [if_pos h, Matrix.mul_apply]
+  · rw [ite_eq_left h, Matrix.mul_apply]
     refine Finset.sum_congr rfl fun k _ => ?_
     by_cases h1 : c i = c k
     · have h2 : c k = c j := h1.symm.trans h
-      rw [if_pos h1, if_pos h2]
-    · rw [if_neg h1, zero_mul]
+      rw [ite_eq_left h1, ite_eq_left h2]
+    · rw [ite_eq_right h1, zero_mul]
       rcases lt_or_gt_of_ne h1 with h3 | h3
       · have h4 : c j < c k := h ▸ h3
         rw [hN h4, mul_zero]
       · rw [hM h3, zero_mul]
-  · rw [if_neg h]
+  · rw [ite_eq_right h]
     symm
     refine Finset.sum_eq_zero fun k _ => ?_
     by_cases h1 : c i = c k
     · have h2 : ¬ c k = c j := fun e => h (h1.trans e)
-      rw [if_neg h2, mul_zero]
-    · rw [if_neg h1, zero_mul]
+      rw [ite_eq_right h2, mul_zero]
+    · rw [ite_eq_right h1, zero_mul]
 
 private theorem blkTri_pow (c : Fin d → ℕ) {M : Matrix (Fin d) (Fin d) L}
     (hM : M.BlockTriangular c) (n : ℕ) : (M ^ n).BlockTriangular c := by
@@ -999,8 +999,9 @@ theorem UpperTheory.Gal.Mod.liesOp :
 end -- clump:auto
 
 section -- clump member: Development.EtaleCohomology.EtaleTrace.LTransferCut
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
 open scoped TensorProduct
 
@@ -1036,13 +1037,9 @@ def LLoc : Prop := ∀ {Y X : Scheme.{0}} (a : Y ⟶ X), IsFinite a → Etale a 
 def LTau : Prop := ∀ (R : Type) [CommRing R] {Y X : Scheme.{0}} (a : Y ⟶ X), IsFinite a → Etale a →
   ∃ τ : fr R X ⟶ fr R Y, IsTr R a τ
 
-section Glue
-variable (l : ℕ) [Fact l.Prime]
-
-end Glue
-
 end LateralTheory.EtaleTrace.Tr
 
+end
 end -- clump:auto
 end -- clump:auto
 

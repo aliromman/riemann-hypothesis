@@ -743,12 +743,6 @@ theorem two_ne_zero_and_three_ne_zero_of_five_le_ringChar {k : Type*} [Field k]
   · have := Nat.le_of_dvd (by norm_num) ((ringChar.spec k 3).mp (by exact_mod_cast h3))
     omega
 
-section NumberField
-
-variable {L : Type*} [Field L] [NumberField L] (v : HeightOneSpectrum (𝓞 L))
-
-end NumberField
-
 end GroundTheory.Global
 end -- clump:auto
 
@@ -953,12 +947,14 @@ end E0
 end GroundTheory.Global
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.TorsionReduction
+section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.TorsionReduction
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Global
 
+noncomputable section
 
 open IsLocalRing GroundTheory.Arith.Abelian
 
@@ -1087,27 +1083,10 @@ theorem eq_of_reductionHom_eq_of_nsmul {n : ℕ} (hn : (n : ResidueField 𝒪) �
 
 end Good
 
-section Localization
-
-open IsDedekindDomain
-
-variable {R : Type*} [CommRing R] [IsDedekindDomain R] {F : Type*} [Field F] [Algebra R F]
-  [IsFractionRing R F] (v : HeightOneSpectrum R)
-
-end Localization
-
-section NumberField
-
-open NumberField IsDedekindDomain
-
-variable {F : Type*} [Field F] [NumberField F] (𝔮 : HeightOneSpectrum (𝓞 F))
-  (W : WeierstrassCurve (𝔮.valuationSubringAtPrime F)) [W.IsElliptic] [DecidableEq F]
-  [DecidableEq (ResidueField (𝔮.valuationSubringAtPrime F))]
-
-end NumberField
-
+end
 
 end GroundTheory.Global
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.MainTheoremFrobenius
@@ -1381,13 +1360,15 @@ end Elliptic
 end GroundTheory.Global
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.MainTheoremModels
+section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.MainTheoremModels
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Global
 namespace Elliptic
 
+noncomputable section
 
 open NumberField Module IntermediateField WeierstrassCurve GroundTheory.Arith.Abelian
 
@@ -1405,17 +1386,17 @@ theorem ofJ_map [DecidableEq F] [DecidableEq F'] (f : F →+* F') (j : F) :
     exact f.injective.eq_iff.symm
   unfold ofJ
   by_cases a : j = 0
-  · rw [if_pos a, if_pos (hj0.1 a)]
+  · rw [ite_eq_left a, ite_eq_left (hj0.1 a)]
     by_cases b : (3 : F) = 0
-    · rw [if_pos b, if_pos (h3.1 b)]
+    · rw [ite_eq_left b, ite_eq_left (h3.1 b)]
       ext <;> simp [ofJ1728]
-    · rw [if_neg b, if_neg (mt h3.2 b)]
+    · rw [ite_eq_right b, ite_eq_right (mt h3.2 b)]
       ext <;> simp [ofJ0]
-  · rw [if_neg a, if_neg (mt hj0.2 a)]
+  · rw [ite_eq_right a, ite_eq_right (mt hj0.2 a)]
     by_cases b : j = 1728
-    · rw [if_pos b, if_pos (hj1728.1 b)]
+    · rw [ite_eq_left b, ite_eq_left (hj1728.1 b)]
       ext <;> simp [ofJ1728]
-    · rw [if_neg b, if_neg (mt hj1728.2 b)]
+    · rw [ite_eq_right b, ite_eq_right (mt hj1728.2 b)]
       ext <;> simp [ofJNe0Or1728, map_ofNat]
 
 theorem toShortNF_map (W : WeierstrassCurve F) [Invertible (2 : F)] [Invertible (3 : F)]
@@ -1537,9 +1518,11 @@ theorem exists_shortModels_isogenous (M : IntermediateField K ℂ) [FiniteDimens
 
 end Models
 
+end
 
 end Elliptic
 end GroundTheory.Global
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.MainTheoremLevel

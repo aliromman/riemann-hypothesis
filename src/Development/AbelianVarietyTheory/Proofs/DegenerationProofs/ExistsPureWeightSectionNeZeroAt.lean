@@ -62,9 +62,9 @@ open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.ZH
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsSecOfUnitAt
-@[expose] public noncomputable section
-attribute [local instance] SplitExt.free SplitExt.finite MvPolynomial.gradedAlgebra
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.TwistNoBasePoint
 
@@ -160,9 +160,9 @@ theorem exists_sec_twist :
 end GlobalTheory.TwistNoBasePoint
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsPureWeightSectionNeZeroAt
-attribute [local instance] SplitExt.free SplitExt.finite MvPolynomial.gradedAlgebra
 
 namespace GlobalTheory.ZH
 

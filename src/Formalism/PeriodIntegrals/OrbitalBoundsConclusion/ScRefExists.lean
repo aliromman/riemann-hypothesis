@@ -578,7 +578,14 @@ variable {I}
 end PI.ScRefExists.WB
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.WeilBasisExistence
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.WeilBasisExistence
+
+noncomputable section
+
+open NumberField Formalism.MainNotions.S
+open PI.ScRefExists.Sk
 
 namespace PI.ScRefExists.WB
 
@@ -641,7 +648,7 @@ theorem weil_basis_existence : WBasis := by
     rw [hG_symm, hef]
     by_cases h : b = a
     · subst h; simp
-    · rw [if_neg h, if_neg (Ne.symm h), star_zero]
+    · rw [ite_eq_right h, ite_eq_right (Ne.symm h), star_zero]
   let φ : (Fin I.n → I.E) →ₗ[I.E] (Fin r → I.E) × (Fin r → I.E) :=
     { toFun := fun x => (fun a => hG I (e a) x, fun a => hG I (f a) x)
       map_add' := fun x y => by
@@ -757,8 +764,7 @@ theorem weil_basis_existence : WBasis := by
 
 end PI.ScRefExists.WB
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.ScRefExists
 

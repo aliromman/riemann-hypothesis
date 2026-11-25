@@ -680,8 +680,9 @@ theorem lowest_fixed : ∀ (n : ℕ) (ε : Fin n → Bool) (abelian₂ : Fin n �
 end GlobalTheory.Dec.LowFix
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.KTypeExtendsHolomorphicComplexifiedK
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.KTypeExtendsHolomorphicComplexifiedK
 
+noncomputable section
 
 namespace GlobalTheory.Dec.TauExt
 
@@ -794,7 +795,7 @@ theorem tauExists : TauExists := by
     if h : k ∈ Kset ε then ((σ (k.map star)).comp S.subtypeL).codRestrict S
       fun v => hst _ (conj_mem h) _ v.2 else 0
   have hπ : ∀ k ∈ Kset ε, ∀ v : S, (π k v : H) = σ (k.map star) v := fun k hk v => by
-    simp only [π, dif_pos hk]; rfl
+    simp only [π, dite_eq_left hk]; rfl
   have hπ1 : π 1 = 1 := by
     ext v
     rw [hπ 1 one_mem_K, conj_one, h1]; rfl

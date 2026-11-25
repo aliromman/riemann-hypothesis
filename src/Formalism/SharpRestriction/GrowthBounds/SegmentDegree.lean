@@ -77,8 +77,9 @@ def AdmissibleSmallRatio : Prop :=
 end Formalism.InvariantFactorPaths.BranchingDimensions
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.ThetaLogCoordinates.ResidueClassEstimates.VandermondeRankEstimates.AdmissibleSmallRatio
+@[expose] public section -- clump member: Formalism.ThetaLogCoordinates.ResidueClassEstimates.VandermondeRankEstimates.AdmissibleSmallRatio
 
+noncomputable section
 
 open scoped BigOperators
 open Finset
@@ -131,12 +132,6 @@ theorem admissibleSmallRatio : AdmissibleSmallRatio := by
   have hP0 : (0:ℝ) < p := by linarith
   have hk' : (1:ℝ) ≤ k := by exact_mod_cast hk
   have hNs' : (1:ℝ) ≤ Ns := by exact_mod_cast hNs
-  have hY0 : (0:ℝ) < Y := by linarith
-  have hk0 : (0:ℝ) < k := by linarith
-  have hNs0 : (0:ℝ) < Ns := by linarith
-  have hR : (0:ℝ) < (p:ℝ)^R := pow_pos hP0 _
-  have hR' : (0:ℝ) < (p:ℝ)^R' := pow_pos hP0 _
-  have hD1 : (0:ℝ) < (p:ℝ)^D1 := pow_pos hP0 _
   have hL : (0:ℝ) < (p:ℝ)^L1 := pow_pos hP0 _
   have hT : (0:ℝ) < Qn * (p:ℝ)^R' / (p:ℝ)^R := by positivity
   have sA : be / (Qn * (p:ℝ)^R' / (p:ℝ)^R) ≤
@@ -170,9 +165,11 @@ theorem admissibleSmallRatio : AdmissibleSmallRatio := by
 
 end Formalism.InvariantFactorPaths.BranchingDimensions
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.SegmentDegree.BetaRatioBound
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.SegmentDegree.BetaRatioBound
 
+noncomputable section
 
 namespace Formalism.MainNotions.SelectionLemmas.Pf
 
@@ -238,8 +235,6 @@ theorem beta_ratio_bound : BetaRatioBound 1088 := by
       have b2 := (TE.c_bounds hX h41 j x hx1).2.2
       refine le_trans b1 ?_
       rw [pow_add]
-      have hq1 : (0 : ℝ) < (p : ℝ) ^ X.F.dist j x := by positivity
-      have hq2 : (0 : ℝ) < (p : ℝ) ^ X.Rj p K j := by positivity
       rw [div_mul_div_comm, mul_one, mul_comm ((p : ℝ) ^ X.Rj p K j)]
       exact div_le_div_of_nonneg_right b2 (by positivity)
     refine le_trans (Finset.sum_le_sum h1) ?_
@@ -317,6 +312,7 @@ theorem beta_ratio_bound : BetaRatioBound 1088 := by
   linarith
 
 end Formalism.MainNotions.SelectionLemmas.Pf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.SegmentDegree.LamSatRestrict
@@ -564,8 +560,9 @@ theorem restMemB_of (D : Formalism.BasicNotions.D7) (hAdm : AdmB D) (C₀ : ℝ)
 end Formalism.MainNotions.SelectionLemmas.Pf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.SegmentDegree.M0LeBwOfIsW
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.SegmentDegree.M0LeBwOfIsW
 
+noncomputable section
 
 open MvPolynomial
 
@@ -606,7 +603,7 @@ theorem m0_le_Bw_of_isW (hX : X.Hyp p K) (hLa : 1088 ≤ X.CLa) (hk : 1088 ≤ X
   have hpos : (0 : ℝ) < (X.Bdeg p K j (X.restr j b) x : ℝ) := by linarith
   have hpos' : 0 < X.Bdeg p K j (X.restr j b) x := by exact_mod_cast hpos
   unfold Dat.Bdeg at hpos'
-  rw [if_pos hW] at hpos'
+  rw [ite_eq_left hW] at hpos'
   omega
 
 theorem mem_degAt_ext {R : Type} [CommRing R] (j : ℤ) {n : ℕ} {bb : Fin (segN X.F j) → ℕ}
@@ -668,7 +665,7 @@ theorem restMemC_of (D : Formalism.BasicNotions.D7) (hAdm : AdmB D) : RestMemC 1
         have hlt : segE X.F j i < X.F.fr j 0 := by omega
         have hdd := hPATH.degs i hlt
         unfold Dat.Bdeg at hdd
-        rw [if_pos hW] at hdd
+        rw [ite_eq_left hW] at hdd
         have hm0 := m0_le_Bw_of_isW hX hLa hk j b hb.2.2 _ hx hW
         have hBw := hb.2.1 _ hx hW
         have e1 : X.discPowerMonomialDegree p K j b (segE X.F j i) = X.m0 K +
@@ -692,7 +689,7 @@ theorem restMemC_of (D : Formalism.BasicNotions.D7) (hAdm : AdmB D) : RestMemC 1
         · have hlt := (segE_lt_fr_iff X.F hV hr j i).mpr hi2
           have hdd := hPATH.degs i hlt
           unfold Dat.Bdeg at hdd
-          rw [if_neg hnW, mem_restr_late j b _ hlate] at hdd
+          rw [ite_eq_right hnW, mem_restr_late j b _ hlate] at hdd
           have e2 : X.memdMu j q.1.2.2 (segE X.F j i) = 0 := mem_dMu_off j _ _ fun a => by
             have := kfr_le X.F hV j (Nat.zero_le a.val) a.isLt
             omega
@@ -800,9 +797,11 @@ theorem restMem_of (D : Formalism.BasicNotions.D7) (hAdm : AdmB D) : RestMem 108
 
 end Formalism.MainNotions.SelectionLemmas.Pf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.SegmentDegree.BfamAtWLetterEq
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.SegmentDegree.BfamAtWLetterEq
 
+noncomputable section
 
 open MvPolynomial
 
@@ -856,10 +855,10 @@ theorem bfam_at_w_letter_eq {L₁ N₁ : ℕ} (hV : X.F.Valid L₁ N₁) (la : F
     exact ⟨⟨hle0, by linarith⟩, (hV.2.2.2.2.1 (j - 1) i hi).1⟩
   have hW : X.F.IsW j (X.F.fr (j - 1) i) := hleR
   unfold Dat.bfam
-  rw [if_pos hmem, if_pos hW, Finset.sum_eq_single ⟨i, hi⟩]
+  rw [ite_eq_left hmem, ite_eq_left hW, Finset.sum_eq_single ⟨i, hi⟩]
   · simp
   · intro b _ hb
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h
     apply hb
     ext
@@ -887,7 +886,6 @@ theorem lamd_Bw_pos {p n' r K : ℕ} [NeZero n'] [NeZero r] [NeZero K] {X : Dat 
     unfold Dat.k
     push_cast
     have hr' : (2 : ℝ) ≤ r := by exact_mod_cast hr
-    have hK' : (0 : ℝ) ≤ K := Nat.cast_nonneg _
     nlinarith
   have hPr : (0 : ℝ) < ((p ^ (X.F.dist j y + X.Rj p K j) : ℕ) : ℝ) := by exact_mod_cast hPpos
   have hreal : ((r + K + r + 2 : ℕ) : ℝ) * ((p ^ (X.F.dist j y + X.Rj p K j) : ℕ) : ℝ) ≤
@@ -895,7 +893,6 @@ theorem lamd_Bw_pos {p n' r K : ℕ} [NeZero n'] [NeZero r] [NeZero K] {X : Dat 
     have e1 : ((p ^ (X.F.dist j y + X.Rj p K j) : ℕ) : ℝ) = (p : ℝ) ^ (X.F.dist j y + X.Rj p K j) := by
       push_cast; rfl
     rw [e1] at hPr ⊢
-    have hk0 : (0 : ℝ) ≤ (Dat.k (r := r) K) ^ 2 := sq_nonneg _
     calc ((r + K + r + 2 : ℕ) : ℝ) * (p : ℝ) ^ (X.F.dist j y + X.Rj p K j)
         ≤ 36 / 5 * (Dat.k (r := r) K) ^ 2 * (p : ℝ) ^ (X.F.dist j y + X.Rj p K j) :=
           mul_le_mul_of_nonneg_right hk2 hPr.le
@@ -947,9 +944,9 @@ theorem restLamDeg : RestLamDeg 1088 := by
         rw [Finset.sum_comm]
         refine Finset.sum_congr rfl fun x _ => ?_
         by_cases h : posOf n' x = posOf n' x0
-        · simp only [h, if_true]
+        · simp only [h, ite_true]
           exact hdeg j x
-        · simp only [h, if_false, Finset.sum_const_zero]
+        · simp only [h, ite_false, Finset.sum_const_zero]
       rw [hWs]
       obtain ⟨hl1, hl2, hl3, hl4⟩ := sum_late_mem hx0
       obtain ⟨hs1, hs2⟩ := hlaS (posOf n' x0)
@@ -991,10 +988,10 @@ theorem restLamDeg : RestLamDeg 1088 := by
               X.bfam p K la e (j1.val : ℤ) (X.F.fr ((j1.val : ℤ) - 1) i0) := by
             rw [Finset.sum_eq_single j1]
             · rw [Finset.sum_eq_single (X.F.fr ((j1.val : ℤ) - 1) i0)]
-              · rw [if_pos hx1p]
+              · rw [ite_eq_left hx1p]
               · intro x hx hne
                 obtain ⟨hxl, hxW⟩ := Finset.mem_filter.mp hx
-                rw [if_neg]
+                rw [ite_eq_right]
                 intro h
                 exact hne (hG.U2 j1 j1 x hxl hxW _ hx1l hx1W (h.trans hx1p.symm)).2
               · intro h
@@ -1002,7 +999,7 @@ theorem restLamDeg : RestLamDeg 1088 := by
             · intro j _ hne
               refine Finset.sum_eq_zero fun x hx => ?_
               obtain ⟨hxl, hxW⟩ := Finset.mem_filter.mp hx
-              rw [if_neg]
+              rw [ite_eq_right]
               intro h
               exact hne (hG.U2 j j1 x hxl hxW _ hx1l hx1W (h.trans hx1p.symm)).1
             · intro h; exact absurd (Finset.mem_univ _) h
@@ -1031,18 +1028,18 @@ theorem restLamDeg : RestLamDeg 1088 := by
               if posOf n' x = posOf n' x0 then X.bfam p K la e (j.val : ℤ) x else 0) = 0 := by
             refine Finset.sum_eq_zero fun j _ => Finset.sum_eq_zero fun x hx => ?_
             obtain ⟨hxl, hxW⟩ := Finset.mem_filter.mp hx
-            rw [if_neg]
+            rw [ite_eq_right]
             intro h
             obtain ⟨⟨i, hi, hxi⟩, -⟩ := hG.LK j j0 x hxl hxW x0 hx0 h
             exact h0 (hxi ▸ fr_zero_le hV (j0.val : ℤ) i hi)
           rw [hz, mul_zero, add_zero]
           unfold Dat.bfam
-          rw [if_pos hl1, if_neg hl2, if_neg h0]
+          rw [ite_eq_left hl1, ite_eq_right hl2, ite_eq_right h0]
       rw [hkey, hPnz]
       omega
     · have ha : X.a' p K t = 0 := by
         unfold Dat.a' Dat.d
-        rw [if_neg ht]
+        rw [ite_eq_right ht]
         omega
       have h1 : ∑ c, la t c = 0 := by
         have := (hlaS t).1
@@ -1053,12 +1050,13 @@ theorem restLamDeg : RestLamDeg 1088 := by
         refine Finset.sum_eq_zero fun j _ => ?_
         rw [lam_img_apply X p K j (m j) (hok j) t c]
         refine Finset.sum_eq_zero fun x hx => ?_
-        rw [if_neg]
+        rw [ite_eq_right]
         intro h
         exact ht (h ▸ (mem_letters_bounds hx).2.2)
       rw [h1, h2, ha]
 
 end Formalism.MainNotions.SelectionLemmas.Pf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.SegmentDegree

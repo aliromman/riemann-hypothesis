@@ -225,11 +225,12 @@ theorem xiL_stab (hH : IsHerm H) {A B Λ : AddSubgroup V} (hA : IsSemiChar H A �
 end GlobalTheory.KerLaw
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThCLeftStab
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThCLeftStab
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.HermitianLatticesTheory Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker Formalism.L2.Th1.H NumberField IsDedekindDomain Classical
 open GlobalTheory.MomT GlobalTheory.MomT.CocInt GlobalTheory.ThetaMove
 
+noncomputable section
 
 namespace GlobalTheory.KerLaw
 
@@ -530,7 +531,7 @@ theorem core (hconj : ∀ τ x, X.embC A.σ₀ τ (star x) = starRingEnd ℂ (X.
     rw [← map_add (f := _)]
     refine (onV_emb A hδ Ξ _).trans ((hΞ x y ⟨(c : X.E)⁻¹ • y, fun P hP => per_loc A (hAA P hP) ?_, ?_⟩).trans (onV_emb A hδ Ξ x).symm)
     · have := (mem_tw _ _ _ _).1 hy P
-      rwa [expS, if_pos hP, zpow_one] at this
+      rwa [expS, ite_eq_left hP, zpow_one] at this
     · change (c : 𝓞 X.E) • (c : X.E)⁻¹ • y = y
       rw [← algebraMap_smul X.E (c : 𝓞 X.E), map_natCast, smul_smul, mul_inv_cancel₀ hcE, one_smul]
 

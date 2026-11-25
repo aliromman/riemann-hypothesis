@@ -32,12 +32,11 @@ import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModVanish
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModKronSer, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModQExpEq, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModKronPt, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModQuadInt, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModPrincNorm, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModFrobCong
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModKronSer
 
+noncomputable section
 open scoped BigOperators Classical UpperHalfPlane MatrixGroups CongruenceSubgroup Manifold
 open ModularForm EisensteinSeries ModularFormClass UpperHalfPlane Formalism.L2.Th1.CM
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModKronSer
 
 namespace ReciprocityTheory.ChartRestriction.L1
 
@@ -142,15 +141,15 @@ theorem ks_xp_xp {R : Type*} [CommRing R] {k : ℕ} (hk : k ≠ 0) (f : PowerSer
   have hk0 : 0 < k := Nat.pos_of_ne_zero hk
   by_cases h1 : k ∣ n
   · obtain ⟨m, rfl⟩ := h1
-    rw [if_pos (dvd_mul_right k m), Nat.mul_div_cancel_left m hk0]
+    rw [ite_eq_left (dvd_mul_right k m), Nat.mul_div_cancel_left m hk0]
     by_cases h2 : k ∣ m
     · obtain ⟨j, rfl⟩ := h2
-      rw [if_pos (dvd_mul_right k j), if_pos ⟨j, by ring⟩, Nat.mul_div_cancel_left j hk0,
+      rw [ite_eq_left (dvd_mul_right k j), ite_eq_left ⟨j, by ring⟩, Nat.mul_div_cancel_left j hk0,
         show k * (k * j) = k ^ 2 * j by ring, Nat.mul_div_cancel_left j (by positivity)]
-    · rw [if_neg h2, if_neg]
+    · rw [ite_eq_right h2, ite_eq_right]
       rintro ⟨j, hj⟩
       exact h2 ⟨j, Nat.eq_of_mul_eq_mul_left hk0 (by rw [hj]; ring)⟩
-  · rw [if_neg h1, if_neg]
+  · rw [ite_eq_right h1, ite_eq_right]
     exact fun h => h1 (dvd_trans (dvd_pow_self k two_ne_zero) h)
 
 theorem Tm_prime {p : ℕ} (hp : p.Prime) :
@@ -260,8 +259,12 @@ theorem kronSer {p : ℕ} (hp : p.Prime) :
 
 end ReciprocityTheory.ChartRestriction.L1
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModQExpEq
+
+open scoped BigOperators Classical UpperHalfPlane MatrixGroups CongruenceSubgroup Manifold
+open ModularForm EisensteinSeries ModularFormClass UpperHalfPlane Formalism.L2.Th1.CM
 
 namespace ReciprocityTheory.ChartRestriction.L1
 
@@ -313,6 +316,9 @@ end ReciprocityTheory.ChartRestriction.L1
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModKronPt
+
+open scoped BigOperators Classical UpperHalfPlane MatrixGroups CongruenceSubgroup Manifold
+open ModularForm EisensteinSeries ModularFormClass UpperHalfPlane Formalism.L2.Th1.CM
 
 namespace ReciprocityTheory.ChartRestriction.L1
 
@@ -419,8 +425,6 @@ theorem kronPt {p : ℕ} (hp : p.Prime) {τ : ℍ} (h : Gm p τ = 0) :
 
 end ReciprocityTheory.ChartRestriction.L1
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 -- clump: shared namespace opens
 

@@ -31,8 +31,9 @@ theorem one_mul_mem {a b : E} (ha : a ∈ (1 : Submodule (𝓞 E) E)) (hb : b �
 end PI.UnitaryGroupMassFormula.IdCellInSW
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdentityCellTrace.TermIdIffInSOf
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdentityCellTrace.TermIdIffInSOf
 
+noncomputable section
 
 open scoped Classical
 
@@ -47,8 +48,6 @@ variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {r : �
 theorem e_mem_X (G : FlagG S r T) (a : Fin r) : G.e a ∈ G.X := Submodule.subset_span ⟨a, rfl⟩
 
 end Flag
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 def TraceOne (D : D7) : Prop := ∃ θ : 𝓞 D.host.E, (θ : D.host.E) + star (θ : D.host.E) = 1
 

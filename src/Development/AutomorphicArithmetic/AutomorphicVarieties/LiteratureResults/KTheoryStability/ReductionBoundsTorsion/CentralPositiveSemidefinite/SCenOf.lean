@@ -1,5 +1,6 @@
 module
 
+import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.IteratedHeckeBounds.HkIterContOn
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CentralPositiveSemidefinite.TSpan
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.SBridgeAlt
 public import Mathlib.NumberTheory.NumberField.InfinitePlace.Basic
@@ -686,8 +687,10 @@ end PositivityTheory.KB.CentralizerFixed
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CentralPositiveSemidefinite.RealSmulPosSemidef
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CentralPositiveSemidefinite.RealSmulPosSemidef
+@[expose] public section
 
+noncomputable section
 
 open NumberField NumberField.InfinitePlace Matrix MeasureTheory UpperTheory.V.KT UpperTheory.V.KL
 
@@ -709,15 +712,7 @@ theorem real_smul_posSemidef {n : ℕ} {M : Matrix (Fin n) (Fin n) ℂ} (h : M.P
 
 open ComplexOrder in
 theorem pos_convex (L : Type) [Field L] [NumberField L] (N : ℕ) : Convex ℝ (Pos L N) := by
-  intro x hx y hy a b ha hb hab w
-  have e : mat (a • x + b • y) w = a • mat x w + b • mat y w := by simp
-  change (mat (a • x + b • y) w).PosDef
-  rw [e]
-  rcases ha.lt_or_eq with ha' | ha'
-  · exact (real_smul_posDef (hx w) ha').add_posSemidef (real_smul_posSemidef (hy w).posSemidef hb)
-  · have hb1 : b = 1 := by linarith
-    rw [← ha', hb1, zero_smul, zero_add, one_smul]
-    exact hy w
+  apply _root_.PositivityTheory.KB.JoinReconstruction.pos_convex <;> assumption
 
 theorem simplex_meas (q : ℕ) :
     MeasurableSet {t : Fin q → ℝ | (∀ j, 0 ≤ t j) ∧ ∑ j, t j ≤ 1} := by
@@ -763,6 +758,8 @@ theorem tSimp : TSimp := by
 
 end PositivityTheory.KB.CentralizerFixed
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CentralPositiveSemidefinite.SCenOf

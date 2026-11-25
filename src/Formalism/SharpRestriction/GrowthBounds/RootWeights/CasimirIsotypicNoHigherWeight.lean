@@ -14,8 +14,9 @@ import Formalism.SharpRestriction.GrowthBounds.RootWeights.CrAevalStable
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.RootWeights.CrCCommApply, Formalism.SharpRestriction.GrowthBounds.RootWeights.CasimirIsotypicNoHigherWeight
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.CrCCommApply
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.CrCCommApply
 
+noncomputable section
 
 open Finset
 
@@ -78,7 +79,7 @@ theorem cr_C_wt (E : GLOps n K V) (hR : SatisfiesGLRelations E) (mu : Fin n → 
       (2 : K) • E b a (E a b x) + ((mu a : K) - (mu b : K)) • x := by
     intro a b
     rw [v2rep_comm E hR a b b a x]
-    simp only [if_true, hx' a, hx' b, sub_smul, two_smul]
+    simp only [ite_true, hx' a, hx' b, sub_smul, two_smul]
     abel
   rw [e0, _root_.UpperTheory.Reformulated.B.DoubleSumDiagonalOffDiagonal.main, Finset.sum_congr rfl fun a _ => e1 a]
   have e3 : ∀ a b : Fin n, (if a < b then E a b (E b a x) + E b a (E a b x) else 0) =
@@ -120,9 +121,11 @@ theorem cr_C_weightSp (E : GLOps n K V) (hR : SatisfiesGLRelations E) (mu : Fin 
 
 end Formalism.MainNotions.G.GLWeightTheory
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.CasimirIsotypicNoHigherWeight
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.CasimirIsotypicNoHigherWeight
 
+noncomputable section
 
 open Finset Polynomial
 
@@ -259,7 +262,6 @@ theorem cr_Pos_zero_or {β : Fin n → ℤ} (h : β ∈ cr_Pos n) : β = 0 ∨ 0
     have e : (∑ i : Fin n, ((i : ℕ) : ℤ) * rootW a b i) = ((a : ℕ) : ℤ) - ((b : ℕ) : ℤ) := by
       simp [rootW, mul_sub, Finset.sum_sub_distrib, Pi.single_apply]
     rw [e]
-    have hab' : (a : ℕ) < (b : ℕ) := hab
     omega
   | zero => left; rfl
   | add x y _ _ hx hy =>

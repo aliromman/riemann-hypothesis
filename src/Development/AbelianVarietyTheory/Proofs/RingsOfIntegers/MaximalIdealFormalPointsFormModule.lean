@@ -52,27 +52,13 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.JetHarmonics.AddCharMemValuationSubring, Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.MaximalIdealFormalPointsFormModule
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.AddCharMemValuationSubring
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.AddCharMemValuationSubring
 
+noncomputable section
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.TB
 
 namespace GlobalTheory.FourierChainCompare
-
-section Duality
-
-variable {A B K : Type} [AddCommGroup A] [AddCommGroup B] [Field K]
-
-variable [Fintype A] [Fintype B]
-
-
-end Duality
-
-section Fourier
-
-variable {A B K : Type} [AddCommGroup A] [AddCommGroup B] [Field K] [Fintype A] [Fintype B]
-
-end Fourier
 
 section Chain
 
@@ -110,6 +96,7 @@ theorem act_zero {O : Type} [CommRing O] {G : FGLaw R d} (A : OAct O G) : A.act 
 end Chain
 
 end GlobalTheory.FourierChainCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.MaximalIdealFormalPointsFormModule

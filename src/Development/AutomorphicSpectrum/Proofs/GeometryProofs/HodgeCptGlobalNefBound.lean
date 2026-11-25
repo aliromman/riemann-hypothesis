@@ -461,8 +461,9 @@ theorem _root_.GlobalTheory.T.curve_family_formal_germ : ∀ (E : Type) [Field E
   first | exact @GlobalTheory.CompanionTheory.Relay.curve_family_formal_germ
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveLieEigenDegree
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveLieEigenDegree
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Conj.TopH2
 
@@ -620,6 +621,7 @@ theorem lieLat_conjData : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
 
 end GlobalTheory.CompanionTheory.Ar.Conj.TopH2
 end -- clump:auto
+end -- clump:auto
 
 end -- clump: shared namespace opens
 
@@ -692,12 +694,10 @@ theorem m2Curve_holds : CurveSemiAbelianConjecture := by
 end GlobalTheory.CompanionTheory.Ar.Conj.CurveDegreeNonneg
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.M2ModelEstablished
 
 open AlgebraicGeometry CategoryTheory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
-
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.M2ModelEstablished
 
 namespace GlobalTheory.CompanionTheory.Ar.Conj
 
@@ -706,7 +706,12 @@ theorem m2Model_holds : RootLineDeRhamModel := _root_.GlobalTheory.CompanionTheo
 end GlobalTheory.CompanionTheory.Ar.Conj
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootLinesUnramifiedPrimes
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootLinesUnramifiedPrimes
+
+noncomputable section
+
+open AlgebraicGeometry CategoryTheory NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
 
 namespace GlobalTheory.CompanionTheory.Ar.Conj.HcptTie
 
@@ -905,14 +910,14 @@ theorem drTie_of_hodgeCpt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     exact h1
   · rw [Fintype.card_sum] at hcard
     omega
-  · have hidx : HodgeCpt.rootIdx D (τ, i) = ⟨.inl τ, ⟨i, h⟩⟩ := dif_pos h
-    have hsgn : HodgeCpt.rootSgn D (τ, i) = 1 := if_pos h
+  · have hidx : HodgeCpt.rootIdx D (τ, i) = ⟨.inl τ, ⟨i, h⟩⟩ := dite_eq_left h
+    have hsgn : HodgeCpt.rootSgn D (τ, i) = 1 := ite_eq_left h
     have h1 := hroot (τ, i)
     rw [hidx, hsgn] at h1
     exact deg_one (hG _) h1 fun q hq => gr_congr (hV _ q hq) _ _
   · have hn : ¬ (i : ℕ) < D.p := not_lt.2 hj
-    have hidx : HodgeCpt.rootIdx D (τ, i) = ⟨.inr τ, ⟨D.p + D.q - 1 - i, by have := i.2; show _ < D.q; omega⟩⟩ := dif_neg hn
-    have hsgn : HodgeCpt.rootSgn D (τ, i) = -1 := if_neg hn
+    have hidx : HodgeCpt.rootIdx D (τ, i) = ⟨.inr τ, ⟨D.p + D.q - 1 - i, by have := i.2; show _ < D.q; omega⟩⟩ := dite_eq_right hn
+    have hsgn : HodgeCpt.rootSgn D (τ, i) = -1 := ite_eq_right hn
     have h1 := hroot (τ, i)
     rw [hidx, hsgn] at h1
     rw [gr_cast]
@@ -920,8 +925,12 @@ theorem drTie_of_hodgeCpt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
 
 end GlobalTheory.CompanionTheory.Ar.Conj.HcptTie
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptGlobalNefBound
+
+open AlgebraicGeometry CategoryTheory NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
 
 namespace GlobalTheory.CompanionTheory.Ar.Conj
 

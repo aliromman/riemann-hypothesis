@@ -481,7 +481,7 @@ theorem entries_mem_of_eq_mul {K L : Type} [Field K] [Field L] [Algebra K L] {n 
       intro i k hik
       by_cases h' : (i : ℕ) < m ∨ (k : ℕ) < m
       · exact ih i k h'
-      · push_neg at h'
+      · push Not at h'
         rcases le_or_gt i k with hle | hlt
         · have hi : (i : ℕ) = m := by have := Fin.le_def.1 hle; omega
           refine ⟨?_, hw i k hi hle⟩
@@ -573,10 +573,11 @@ theorem _root_.GlobalTheory.T.root_origin_generic_frame : ∀ (E : Type) [Field 
   first | exact @GlobalTheory.CompanionTheory.Ar.GenEx.genFrame_exists
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerComponentsCompatibleLaws
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerComponentsCompatibleLaws
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped Matrix
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Rec.ReadEx
 
@@ -698,7 +699,7 @@ theorem exists_change {K V : Type} [Field K] [AddCommGroup V] [Module K V] {r : 
       exact Finset.sum_comm
     have e2 : ∑ m, ((∑ j, P k j * Q j m) - (1 : Matrix (Fin r) (Fin r) K) k m) • c m = 0 := by
       simp only [sub_smul, Finset.sum_sub_distrib, e1, Matrix.one_apply, ite_smul, one_smul, zero_smul,
-        Finset.sum_ite_eq, Finset.mem_univ, if_true, sub_self]
+        Finset.sum_ite_eq, Finset.mem_univ, ite_true, sub_self]
     have e3 := Fintype.linearIndependent_iff.1 hc _ e2 m
     simpa [Matrix.mul_apply, sub_eq_zero] using e3
   refine ⟨Matrix.of P, ?_, fun k => (hP k).symm⟩

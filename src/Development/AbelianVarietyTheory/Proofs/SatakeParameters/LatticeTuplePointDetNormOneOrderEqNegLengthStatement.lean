@@ -229,8 +229,9 @@ end GlobalTheory.TwV.Xc
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeTuplePointDetNormOneOrderEqNegLength
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.TwV.Xc.PtOrd
 
 theorem det_reGL' {R : Type} [CommRing R] {a b : ℕ} (e : Fin a ≃ Fin b) (x : GL (Fin a) R) :
@@ -326,7 +327,7 @@ theorem cpAt_y_succ (i : ℕ) (hi : i + 1 ≤ D.R.m) (La : (sysAt Ch std vp unif
           (basesAt Ch std vp unif eO eO_spec dG dG_spec om (i + 1) La.2) x ∧
           x ∈ Formalism.UG.UPts (sigD D) (gramN D (i + 1) hi) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) := by
   show (chAt Ch std vp unif eO eO_spec dG dG_spec om I A0 J0 Lb0 Uloc0 (i + 1) La).y = _
-  simp only [chAt, dif_pos hi]
+  simp only [chAt, dite_eq_left hi]
 
 end GlobalTheory.TwV.Xc.PtOrd
 end
@@ -351,6 +352,7 @@ theorem latticeTuplePoint_det_normOne_order_eq_neg_length : Sites (fun {D L hT G
     exact congrArg _ (PtOrd.phiA_det_eps _ _ _ _ (let hG := (H.core i hj ((I.at' i hj).st.eC.symm La.1).1).good; ⟨_, hG.isPt_sec _ _, Subgroup.mul_mem _ (hG.yG_mem _) (hG.sec _).2⟩) _ v)
 
 end GlobalTheory.TwV.Xc
+end
 end -- clump:auto
 end -- clump:auto
 

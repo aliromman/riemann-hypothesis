@@ -294,11 +294,9 @@ theorem algEst : PositivityTheory.RgBcC.AlgEst := by
 end GlobalTheory.CompanionTheory.SkewWords
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartPartialEqRightWord
 
 open MeasureTheory Matrix Finset
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartPartialEqRightWord
 open scoped ContDiff
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.SobGL
@@ -383,6 +381,8 @@ end GlobalTheory.CompanionTheory.SobGL.Chart
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeftTranslateRightDerivative
+
+open MeasureTheory Matrix Finset
 open scoped ContDiff
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.SobGL
@@ -455,11 +455,14 @@ theorem Rw_left (n : ℕ) (V : Type) [NormedAddCommGroup V] [NormedSpace ℂ V] 
 end GlobalTheory.CompanionTheory.SobGL.LeftTr
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PoincareValueBoundOnCube
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PoincareValueBoundOnCube
+
+noncomputable section
+
+open MeasureTheory Matrix Finset
 open scoped ContDiff ENNReal
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.SobGL
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 namespace GlobalTheory.CompanionTheory.SobCube
 
@@ -780,8 +783,11 @@ theorem sobolev_cube : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (ε : ℝ),
 
 end GlobalTheory.CompanionTheory.SobCube
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SobolevInequalityOnGroup
+
+open MeasureTheory Matrix Finset
 open scoped ContDiff
 namespace GlobalTheory.CompanionTheory.SobGL
 open PositivityTheory.RgTw (Mat G)
@@ -935,8 +941,6 @@ theorem sobG : PositivityTheory.RgBcC.SobG := by
 
 end GlobalTheory.CompanionTheory.SobGL
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.WaveFinal
 

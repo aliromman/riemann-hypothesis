@@ -115,11 +115,10 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
 open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.IndefR.Links
 open scoped TensorProduct InnerProductSpace
+open GlobalTheory.DownLift
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitaryRepresentativesExistVector
 @[expose] public section
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 namespace GlobalTheory.UnitaryToGl
 
@@ -216,7 +215,7 @@ theorem gder_single_X (p : D.what₂.Tau → ℕ) (τ : D.what₂.Tau) (c : Fin 
   rw [gder_X]
   by_cases hσ : σ = τ
   · subst hσ
-    simp only [if_true]
+    simp only [ite_true]
     by_cases hd : d = c
     · subst hd
       by_cases hi : (i : ℕ) < p σ <;> simp [ex, hi, Matrix.single_apply]
@@ -413,7 +412,7 @@ theorem sop_eq (w : GlobalTheory.ExportSeries.Weight D n) (τ : D.what₂.Tau) (
       · intro i _ hij
         by_cases hi : (i : ℕ) < w.p σ <;> simp [T, hi, hij]
       · simp
-    · rw [if_neg hσ, neg_zero]
+    · rw [ite_eq_right hσ, neg_zero]
       refine Finset.sum_eq_zero fun i _ => ?_
       by_cases hi : (i : ℕ) < w.p τ <;> simp [T, hi, Ne.symm hσ]
   have hA : GlobalTheory.LowestKType.sop (m := m) w τ a b = ∑ i : Fin m,
@@ -441,7 +440,7 @@ theorem sop_eq (w : GlobalTheory.ExportSeries.Weight D n) (τ : D.what₂.Tau) (
   · simp [T, hi, GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.raiO, GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.lowO, GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.sgn]
     by_cases hab : a = b
     · subst hab
-      simp only [if_true, Pi.single_eq_same, mul_one, LinearMap.smul_apply, Module.End.one_apply]
+      simp only [ite_true, Pi.single_eq_same, mul_one, LinearMap.smul_apply, Module.End.one_apply]
       module
     · simp [hab]
 
@@ -490,24 +489,24 @@ theorem subst_comp_gder (p : D.what₂.Tau → ℕ) (τ : D.what₂.Tau) (g : Gl
     by_cases hσ : σ = τ
     · subst hσ
       rw [gder_X, hS]
-      simp only [if_true]
+      simp only [ite_true]
       by_cases hi : (i : ℕ) < p σ
-      · rw [if_pos hi, if_pos hi, map_neg, linS, lin, ← hgi]
+      · rw [ite_eq_left hi, ite_eq_left hi, map_neg, linS, lin, ← hgi]
         have h1 : ∀ d, GlobalTheory.ExportSeries.fockSubst (m := m) p g (X (σ, i, d)) = ∑ b, C (gi d b) * X (σ, i, b) := by
-          intro d; rw [hS, if_pos hi, hgi]
+          intro d; rw [hS, ite_eq_left hi, hgi]
         have h2 : ∀ b, gder (m := m) p σ Z' (X (σ, i, b)) = -∑ e, C (Z' b e) * X (σ, i, e) := by
-          intro b; rw [gder_X]; simp only [if_true]; rw [if_pos hi]
+          intro b; rw [gder_X]; simp only [ite_true]; rw [ite_eq_left hi]
         have key : ∀ b, ∑ d, Z c d * gi d b = ∑ d, gi c d * Z' d b := fun b => congrFun (congrFun e1 c) b
         have d1 := dsum (Z c) gi (fun b => X (σ, i, b))
         have d2 := dsum (gi c) Z' (fun b => X (σ, i, b))
         simp only [h1, h2, mul_neg, Finset.sum_neg_distrib] at d1 d2 ⊢
         rw [d1, d2]
         simp only [key]
-      · rw [if_neg hi, if_neg hi, linS, lin, ← hg0]
+      · rw [ite_eq_right hi, ite_eq_right hi, linS, lin, ← hg0]
         have h1 : ∀ d, GlobalTheory.ExportSeries.fockSubst (m := m) p g (X (σ, i, d)) = ∑ b, C (g0 b d) * X (σ, i, b) := by
-          intro d; rw [hS, if_neg hi, hg0]
+          intro d; rw [hS, ite_eq_right hi, hg0]
         have h2 : ∀ b, gder (m := m) p σ Z' (X (σ, i, b)) = ∑ e, C (Z' e b) * X (σ, i, e) := by
-          intro b; rw [gder_X]; simp only [if_true]; rw [if_neg hi]
+          intro b; rw [gder_X]; simp only [ite_true]; rw [ite_eq_right hi]
         have key : ∀ e, ∑ d, Z d c * g0 e d = ∑ b, g0 b c * Z' e b := by
           intro e
           have := congrFun (congrFun e2 e) c
@@ -520,8 +519,8 @@ theorem subst_comp_gder (p : D.what₂.Tau → ℕ) (τ : D.what₂.Tau) (g : Gl
         rw [d1, d2]
         simp only [key]
     · have h0 : ∀ b, gder (m := m) p τ Z' (X (σ, i, b)) = 0 := by
-        intro b; rw [gder_X]; exact if_neg hσ
-      rw [gder_X, if_neg hσ, map_zero, hS]
+        intro b; rw [gder_X]; exact ite_eq_right hσ
+      rw [gder_X, ite_eq_right hσ, map_zero, hS]
       split_ifs <;> simp only [lin, h0, mul_zero, Finset.sum_const_zero]
   refine LinearMap.ext fun P => ?_
   change GlobalTheory.ExportSeries.fockSubst (m := m) p g (gder p τ Z P) = gder p τ Z' (GlobalTheory.ExportSeries.fockSubst (m := m) p g P)
@@ -742,8 +741,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitaryRepresentativesExistVectorStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ScalarWeightSum", "h": "module\n\npublic import Mathlib.Algebra.Module.Submodule.Defs\npublic import Mathlib.Analysis.Complex.Norm\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.CStarAlgebra.Classes\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.Analysis.Calculus.Deriv.Add\npublic import Mathlib.Analysis.Calculus.Deriv.Mul\npublic import Mathlib.Analysis.Complex.Exponential\npublic import Mathlib.Analysis.Complex.RealDeriv\npublic import Mathlib.Analysis.Complex.Trigonometric\npublic import Mathlib.Analysis.SpecialFunctions.ExpDeriv\npublic import Mathlib.LinearAlgebra.Dual.Lemmas\n\n"}

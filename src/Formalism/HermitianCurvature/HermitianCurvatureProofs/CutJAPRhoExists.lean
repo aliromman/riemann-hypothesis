@@ -21,11 +21,12 @@ import Mathlib.Algebra.AffineMonoid.UniqueSums
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoAssembly, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoCapSmooth, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoEigOrth, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoLagrange, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoExists
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoAssembly
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoAssembly
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Filter Topology
 open scoped Matrix
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutMP.JA.PRhoCut
 
@@ -220,7 +221,7 @@ theorem rho_projection_assembly : Assembly := by
       constructor
       · intro i hi
         simp only [SSn.prWv, SSn.wbP, Pi.add_apply, Pi.smul_apply, hz i hi, smul_eq_mul, mul_zero, add_zero]
-        rw [if_neg (by omega)]
+        rw [ite_eq_right (by omega)]
       · unfold SSn.prWv
         rw [Qx8.herm_add_left', Qx8.herm_smul_left', hzzT]
         have hT0 : ((Tz P.k P.r Bs.z : ℝ) : ℂ) ≠ 0 := by exact_mod_cast hT.ne'
@@ -249,7 +250,7 @@ theorem rho_projection_assembly : Assembly := by
     rw [hLag Wp Bs.z (c • b) Bs.π hz hT hπ he1 he2 he3 (Fr a) hfe (C (Fr a)) hCv ρ]
     show PrDef P Bs.z Bs.π ρ a = _
     unfold PrDef
-    rw [if_pos ha]
+    rw [ite_eq_left ha]
     exact sp_congr (K_smul hc0 _ _).symm
   ·
     intro h hh ρ a
@@ -268,17 +269,17 @@ theorem rho_projection_assembly : Assembly := by
         rw [nrmW_smul]; exact mul_pos (Complex.normSq_pos.2 hc) ha
       show PrDef P Bs.z Bs.π ρ (c • a) = PrDef P Bs.z Bs.π ρ a
       unfold PrDef
-      rw [if_pos hpos, if_pos ha]
+      rw [ite_eq_left hpos, ite_eq_left ha]
       exact sp_congr (by rw [SSn.Geom.prWv_eq, SSn.Geom.prW_smul, ← SSn.Geom.prWv_eq]; exact K_smul hc _ _)
     · intro ρ x y
       show inner ℂ (PrDef P Bs.z Bs.π ρ a x) y = inner ℂ x (PrDef P Bs.z Bs.π ρ a y)
       unfold PrDef
-      rw [if_pos ha]
+      rw [ite_eq_left ha]
       exact Submodule.inner_starProjection_left_eq_right _ x y
     · intro ρ ρ'
       show (PrDef P Bs.z Bs.π ρ a).comp (PrDef P Bs.z Bs.π ρ' a) = if ρ = ρ' then PrDef P Bs.z Bs.π ρ a else 0
       unfold PrDef
-      rw [if_pos ha, if_pos ha]
+      rw [ite_eq_left ha, ite_eq_left ha]
       split_ifs with hρ
       · subst hρ
         ext x
@@ -298,10 +299,11 @@ theorem rho_projection_assembly : Assembly := by
     · intro ρ x
       show PrDef P Bs.z Bs.π ρ a x = x ↔ _
       unfold PrDef
-      rw [if_pos ha, Submodule.starProjection_eq_self_iff, mem_K hrep hcont]
+      rw [ite_eq_left ha, Submodule.starProjection_eq_self_iff, mem_K hrep hcont]
       exact Iff.rfl
 
 end Formalism.FourierDecayAlt.P.CutMP.JA.PRhoCut
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoCapSmooth
@@ -549,10 +551,11 @@ theorem eigenvector_orthogonality_holds : EigOrth := by
 end Formalism.FourierDecayAlt.P.CutMP.JA.PRhoCut
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoLagrange
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoLagrange
 
 open Matrix Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutMP.JA.PRhoCut
 
@@ -618,7 +621,7 @@ theorem generic (P : M.Par) : ∃ Y : ℂ, ∀ (ρ : M.Ty P) (σ : M.Ty (Qx8.P2 
   refine Finset.prod_eq_zero (Finset.mem_univ ρ) ?_
   rw [Polynomial.eval_prod]
   refine Finset.prod_eq_zero (Finset.mem_univ σ) ?_
-  rw [if_neg hne, Polynomial.eval_sub, eval_qP, eval_qP, hEq, sub_self]
+  rw [ite_eq_right hne, Polynomial.eval_sub, eval_qP, eval_qP, hEq, sub_self]
 
 end LagrangeInterpolation
 
@@ -689,6 +692,7 @@ theorem lagrange_annihilation : Lagrange := by
     rw [map_add (f := _), map_add (f := _), hx, hy]
 
 end Formalism.FourierDecayAlt.P.CutMP.JA.PRhoCut
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoExists

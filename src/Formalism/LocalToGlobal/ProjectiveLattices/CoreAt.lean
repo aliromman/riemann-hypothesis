@@ -10,8 +10,9 @@ import Formalism.LocalToGlobal.ProjectiveLattices.HostRank
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.ProjectiveLattices.CoreExists, Formalism.LocalToGlobal.ProjectiveLattices.CoreAt
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.CoreExists
+@[expose] public section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.CoreExists
 
+noncomputable section
 
 namespace Formalism.L2.Pj
 
@@ -21,17 +22,6 @@ open MeasureTheory
 open scoped TensorProduct
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-def parameterOfRecord (D : D7) (hF : OFull D) (hz : OZeta D)
-    (hDat : ∀ j, InR D j → ∃ hI : DatInt D j, DatLaws D j hI) (hN : N1ab) : Par D where
-  H := hostOf D (unramBridge D.host.E (cmUnram_conj D))
-  l := levelG D (hU := unramBridge D.host.E (cmUnram_conj D))
-  c := coeffFieldOfRecord D (hU := unramBridge D.host.E (cmUnram_conj D)) hz
-  Dw := datumAtLift D (unramBridge D.host.E (cmUnram_conj D)) hDat
-  Xo := fun j => Classical.choice (hN D.host.E (hostOf D (unramBridge D.host.E (cmUnram_conj D)))
-    (datumAtLift D (unramBridge D.host.E (cmUnram_conj D)) hDat j) (levelG D (hU := unramBridge D.host.E (cmUnram_conj D)))
-    (datumAtLift_pq_pos D (unramBridge D.host.E (cmUnram_conj D)) hDat j))
-  eO := eOf D hF
 
 variable {D : D7}
 
@@ -154,6 +144,7 @@ theorem datHolds (D : D7) : ∀ j, InR D j → ∃ hI : DatInt D j, DatLaws D j 
     { unimod := efW_unimod_holds D j _, rank := latW_rank D j hj, dom := datDom_holds D j hj _ }⟩
 
 end Formalism.L2.Pj
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.CoreAt

@@ -161,21 +161,16 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ThetaScaledThreeValue
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ThetaScaledThreeValue
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Formalism.L2.Pj GlobalTheory.RayEv
 
+noncomputable section
 
 namespace GlobalTheory.RayRosEx.ThetaPull
-
-section Jets
-
-variable {S : Type} [CommRing S] {ρ : Type}
-
-end Jets
 
 section Vals
 
@@ -191,6 +186,7 @@ theorem val_comp_stalkMap {X Y Z W : Scheme.{0}} {L : LB X} {K : Type} [Fintype 
 end Vals
 
 end GlobalTheory.RayRosEx.ThetaPull
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

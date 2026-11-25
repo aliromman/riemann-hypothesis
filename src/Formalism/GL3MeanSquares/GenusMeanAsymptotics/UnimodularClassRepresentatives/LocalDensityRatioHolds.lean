@@ -942,8 +942,9 @@ theorem relIndex_hermL (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF 
 end Formalism.HermitianLattices.Ext.L3.D2
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.RelIndexEqOfMap
+@[expose] public section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.RelIndexEqOfMap
 
+noncomputable section
 
 namespace Formalism.HermitianLattices.Ext.L3.D2
 
@@ -1096,7 +1097,7 @@ theorem relIndex_endL (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF :
     rw [LinearMap.toMatrix_apply b b, hba j, map_smul, h2, map_smul, Finsupp.smul_apply, map_sum,
     Finsupp.finsetSum_apply]
     simp only [map_smul, Basis.repr_self, Finsupp.smul_apply, Finsupp.single_apply, smul_eq_mul, mul_ite,
-      mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     field_simp [heK i, hc0K]
   let φA : (V →ₗ[K] V) →+ Matrix (Fin (finrank K V)) (Fin (finrank K V)) K :=
     (LinearMap.toMatrix a a).toLinearMap.toAddMonoidHom
@@ -1157,6 +1158,7 @@ theorem relIndex_nSub (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF :
   exact ⟨h1, h3.trans (relIndex_endL hK hF hA₀ hB₀ h𝔭 h2)⟩
 
 end Formalism.HermitianLattices.Ext.L3.D2
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.SurjectiveOfNondegenerate

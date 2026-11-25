@@ -17,13 +17,14 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.MeasurableAl, Development.AutomorphicArithmetic.UnipotentInvariants.ExistsEquivRowSelectionUnitsIsotropicVectors, Development.AutomorphicArithmetic.UnipotentInvariants.ExistsUnipotentInvariantSetUniqueRowScaling, Development.AutomorphicArithmetic.UnipotentInvariants.IntegralTsumRowSectionEqZeroOfConstantTermEqZero, Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.RatGl
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.MeasurableAl
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.MeasurableAl
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
 open Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Published GroundTheory.Global GroundTheory.Automorphic.GJMatrix
 open UpperTheory.ConvolutionTheory.R2 UpperTheory.ConvolutionTheory.R2.Ff UpperTheory.ConvolutionTheory.RankTwoDescent
 open scoped Classical
 
+noncomputable section
 
 namespace UpperTheory.ConvolutionTheory.RankTwoDescent.TorCoPf
 
@@ -209,8 +210,8 @@ private theorem pI_mD (t : (A E)ˣ) (h : G1 E) (v : InfinitePlace E) :
     exact mul_le_mul_iff_of_pos_left (norm_pos_iff.2 hs)
   unfold pI
   by_cases hc : ‖(h 1 1).1 v‖ ≤ ‖(h 1 0).1 v‖
-  · rw [if_pos hc, if_pos (key.2 hc), e']
-  · rw [if_neg hc, if_neg (fun x => hc (key.1 x)), e']
+  · rw [ite_eq_left hc, ite_eq_left (key.2 hc), e']
+  · rw [ite_eq_right hc, ite_eq_right (fun x => hc (key.1 x)), e']
 
 private theorem pF_mD (t : (A E)ˣ) (h : G1 E) (w : HeightOneSpectrum (𝓞 E)) :
     pF (mD t * h) w = ((t⁻¹ : (A E)ˣ) : A E).2 w * pF h w := by
@@ -229,8 +230,8 @@ private theorem pF_mD (t : (A E)ˣ) (h : G1 E) (w : HeightOneSpectrum (𝓞 E)) 
       exact mul_le_mul_right x _
   unfold pF
   by_cases hc : Valued.v ((h 1 1).2 w) ≤ Valued.v ((h 1 0).2 w)
-  · rw [if_pos hc, if_pos (key.2 hc), e']
-  · rw [if_neg hc, if_neg (fun x => hc (key.1 x)), e']
+  · rw [ite_eq_left hc, ite_eq_left (key.2 hc), e']
+  · rw [ite_eq_right hc, ite_eq_right (fun x => hc (key.1 x)), e']
 
 private theorem al_mD (t : (A E)ˣ) (h : G1 E) : al (mD t * h) = t * al h := by
   apply Units.ext
@@ -247,6 +248,7 @@ theorem UpperTheory.ConvolutionTheory.RankTwoDescent.torCo :
     TorCo := by
   intro E _ _
   exact ⟨al, measurable_al, al_nU, al_mD⟩
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

@@ -13,13 +13,13 @@ import Mathlib.RingTheory.PiTensorProduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.NumberFieldFamilies.ThetaCOB, Formalism.LocalToGlobal.NumberFieldFamilies.ThetaCW
 
--- clump: shared namespace opens
+section -- clump member: Formalism.LocalToGlobal.NumberFieldFamilies.ThetaCOB
+@[expose] public section
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open scoped TensorProduct ContDiff
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.NumberFieldFamilies.ThetaCOB
 
 namespace Formalism.L2.Fam.ThC
 
@@ -162,7 +162,7 @@ theorem real_eq_sqrt_sign_sqrt (l : ℝ) (hl : l ≠ 0) : (l : ℂ) = star ((Rea
     ((Real.sqrt |l| : ℝ) : ℂ) := by
   rw [Complex.star_def, Complex.conj_ofReal]
   conv_lhs => rw [← sqrt_abs_mul_sign_sqrt_abs l hl]
-  by_cases hp : 0 < l <;> simp only [hp, decide_true, decide_false, if_true, if_false, Bool.false_eq_true] <;> push_cast <;> ring
+  by_cases hp : 0 < l <;> simp only [hp, decide_true, decide_false, ite_true, ite_false, Bool.false_eq_true] <;> push_cast <;> ring
 
 end Gen
 
@@ -347,9 +347,15 @@ theorem cpt_bas_ex (V : HSp D) (hV : V.SigOK) (τ : D.what₂.Tau) :
 
 end Formalism.L2.Fam.ThC
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.NumberFieldFamilies.ThetaCW
+
+
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
+open scoped TensorProduct ContDiff
 
 namespace Formalism.L2.Fam.ThC
 

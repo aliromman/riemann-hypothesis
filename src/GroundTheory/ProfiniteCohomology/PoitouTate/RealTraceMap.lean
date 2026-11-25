@@ -12,16 +12,15 @@ import GroundTheory.ProfiniteCohomology.TorsionDualFinite
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.ProfiniteCohomology.PoitouTate.RealTrace, GroundTheory.ProfiniteCohomology.PoitouTate.RealTraceMap
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.RealTrace
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.RealTrace
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open IsDedekindDomain NumberField CategoryTheory GroundTheory.Global
-
-attribute [local instance 2000] Rep.hV2
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 
@@ -139,17 +138,17 @@ theorem gsSumInvReal_eq_zero_of [Fintype S] (ξ : ptTLocal (gsFinFamily S ιs) (
 
 end GroundTheory.ProfCoh
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.RealTraceMap
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.PoitouTate.RealTraceMap
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.ProfCoh
 
 open IsDedekindDomain NumberField CategoryTheory GroundTheory.Global
-
-attribute [local instance 2000] Rep.hV2
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 

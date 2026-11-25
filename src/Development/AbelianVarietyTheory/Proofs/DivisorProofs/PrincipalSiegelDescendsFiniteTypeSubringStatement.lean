@@ -967,10 +967,11 @@ theorem kerAlong_of_pull : ∀ {S S' : Scheme.{0}} (f : S' ⟶ S) (A : Over S') 
 end GlobalTheory.PrincSubring
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KernelConditionIffE8BundleKGroupTrivial
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KernelConditionIffE8BundleKGroupTrivial
 open GlobalTheory.PrincSubring
 open GlobalTheory.CechPic GlobalTheory.PrincipalIntegral GlobalTheory.KTrivSpread
 
+noncomputable section
 
 namespace GlobalTheory.PrincSubring
 
@@ -1055,7 +1056,7 @@ theorem kernelAlong_of_trivAlong {S' : Scheme.{0}} (g : S' ⟶ S) (u₀ : Fin n)
     exact (congrArg _ h).trans (map_zero _)⟩
   have := hmon u₀
   have h := hy u₀
-  rw [if_pos rfl, h1, MonObj.one_comp] at h
+  rw [ite_eq_left rfl, h1, MonObj.one_comp] at h
   exact h.symm
 
 end Calc
@@ -1099,6 +1100,7 @@ theorem kerAlong_iff_trivAlong : ∀ {S : Scheme.{0}} (h : ℕ) (A : Over S) [Gr
     exact kernelAlong_of_trivAlong hadd hsym hmon huniv hL hLW g 0 hK T a ha x ((tr T x).2 hx)
 
 end GlobalTheory.PrincSubring
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NoetherianSubringPrimeContractionOrDvr

@@ -51,12 +51,11 @@ import Mathlib.Tactic.Lemma
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsStrictFaceOfSmoothConePolyhedralFan, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsSmoothAdmissibleFanOfCellMultOneCMField
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsStrictFaceOfSmoothConePolyhedralFan
 
+noncomputable section
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsStrictFaceOfSmoothConePolyhedralFan
 
 namespace GlobalTheory.PolFan.FaceStrict
 
@@ -230,7 +229,7 @@ theorem isStrict_face_of_isCone : ∀ (O : Type) [CommRing O] [IsDedekindDomain 
     exact ⟨by linarith, by exact_mod_cast e2⟩
   refine ⟨K * N, K • ℓ + h, Nat.mul_pos (by omega) hN, fun j => ?_, fun β hβ hp => ?_, fun β hβ hp he => ?_⟩
   · have hs : s j ∉ T := by simp [hT]
-    simp only [LinearMap.add_apply, LinearMap.smul_apply, hγh, if_neg hs, nsmul_eq_mul, add_zero]
+    simp only [LinearMap.add_apply, LinearMap.smul_apply, hγh, ite_eq_right hs, nsmul_eq_mul, add_zero]
     push_cast
     rw [h1]
     ring
@@ -249,7 +248,7 @@ theorem isStrict_face_of_isCone : ∀ (O : Type) [CommRing O] [IsDedekindDomain 
       have hz := (Finset.sum_eq_zero_iff_of_nonneg fun i _ => by split_ifs <;> simp).1 e.symm
       intro i hi
       have := hz i (Finset.mem_univ _)
-      rw [if_pos hi, nsmul_eq_mul, mul_one] at this
+      rw [ite_eq_left hi, nsmul_eq_mul, mul_one] at this
       exact_mod_cast this
     refine ⟨k, fun j => c (s j), hk, ?_⟩
     rw [hc]
@@ -260,8 +259,13 @@ theorem isStrict_face_of_isCone : ∀ (O : Type) [CommRing O] [IsDedekindDomain 
 
 end GlobalTheory.PolFan.FaceStrict
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsSmoothAdmissibleFanOfCellMultOneCMField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsSmoothAdmissibleFanOfCellMultOneCMField
+
+noncomputable section
+
+open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan
 
 namespace GlobalTheory.PolFan.SmoothEnd
 
@@ -590,7 +594,7 @@ theorem ray_of_mem_cone : ∀ (O : Type) [CommRing O] (bar : O → O) (φ : InvF
 
     rw [map_nsmul, map_sum] at this
     simp only [map_nsmul, hψ', nsmul_eq_mul, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ,
-      if_true] at this
+      ite_true] at this
     exact this
   have hψface : ∀ l i', a j i' ≠ 0 → 0 ≤ ψ l ⟨γ' i', hγ'.mem i'⟩ := by
     intro l i' hai'

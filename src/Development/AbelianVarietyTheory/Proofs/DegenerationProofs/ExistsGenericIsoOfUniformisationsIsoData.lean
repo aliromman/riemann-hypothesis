@@ -67,9 +67,9 @@ open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCate
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExpandsGOfGenericRel
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExpandsGOfGenericRel
 
+noncomputable section
 
 namespace GlobalTheory.GenericIso
 
@@ -209,10 +209,11 @@ theorem expandsG_of_genericRel : GlobalFnsSt → ∀ (R : Type) [CommRing R] [Is
 
 end GlobalTheory
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsGenericIsoOfUniformisationsIsoData
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsGenericIsoOfUniformisationsIsoData
 
+noncomputable section
 
 namespace GlobalTheory.GenericIso
 

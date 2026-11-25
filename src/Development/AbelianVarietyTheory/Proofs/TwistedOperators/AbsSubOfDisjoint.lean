@@ -68,11 +68,9 @@ import Mathlib.RingTheory.MvPolynomial.EulerIdentity
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SumRowDegreeEqOfHarmonicHighestCasimir, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ColumnDegrees, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsEqMulMinorPoly, Development.AbelianVarietyTheory.Proofs.TwistedOperators.FnShapeOfJointShape, Development.AbelianVarietyTheory.Proofs.TwistedOperators.LengthAddLeOfDisjoint, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RowColWeightsAgree, Development.AbelianVarietyTheory.Proofs.TwistedOperators.AbsSubOfDisjoint
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SumRowDegreeEqOfHarmonicHighestCasimir
 
 open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.JointHarm
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SumRowDegreeEqOfHarmonicHighestCasimir
 
 namespace GlobalTheory.HarmRowDegree
 
@@ -141,12 +139,12 @@ private theorem sum_filter_not_lt_eq_sum_range_sub (n i : ℕ) (G : ℕ → ℤ)
     have hj' := Finset.mem_range.mp hj
     have e1 : ¬ (n - 1 - j < i) := by omega
     have e2 : n - 1 - (n - 1 - j) = j := by omega
-    rw [if_pos e1, e2]
+    rw [ite_eq_left e1, e2]
   · intro j hj hj'
     have h1 := Finset.mem_range.mp hj
     have h2 : ¬ j < n - i := fun h => hj' (Finset.mem_range.mpr h)
     have e1 : n - 1 - j < i := by omega
-    rw [if_neg (not_not.mpr e1)]
+    rw [ite_eq_right (not_not.mpr e1)]
 
 theorem sum_filter_pad_rev' {n q : ℕ} (b : Fin q → ℕ) (hb : ∀ i : Fin q, n ≤ i → b i = 0)
     (i : ℕ) :
@@ -351,7 +349,11 @@ theorem sum_row_degree_eq : ∀ (σ : Type) [Fintype σ] [DecidableEq σ] (k l n
 end GlobalTheory.HarmRowDegree
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ColumnDegrees
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ColumnDegrees
+
+noncomputable section
+
+open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.JointHarm
 
 namespace GlobalTheory.JointHarm.ColumnDegree
 
@@ -407,7 +409,7 @@ theorem harmonic_rowOp {σ I I' J : Type} [Fintype J] (z : I × J → σ) (y : I
       X (z (a, k)) * pderiv (z (i, t)) (pderiv (y (j, t)) (pderiv (z (b, k)) Q)) +
         (if i = a ∧ t = k then pderiv (y (j, t)) (pderiv (z (b, k)) Q) else 0) := by
     intro t k
-    rw [pderiv_X_mul', if_neg (fun h => hzy _ _ h.symm), add_zero, pderiv_X_mul']
+    rw [pderiv_X_mul', ite_eq_right (fun h => hzy _ _ h.symm), add_zero, pderiv_X_mul']
     congr 1
     simp only [hz.eq_iff, Prod.mk.injEq]
   have hA : ∑ t, ∑ k, X (z (a, k)) * pderiv (z (i, t)) (pderiv (y (j, t)) (pderiv (z (b, k)) Q))
@@ -425,7 +427,7 @@ theorem harmonic_rowOp {σ I I' J : Type} [Fintype J] (z : I × J → σ) (y : I
   have hB : ∑ t, ∑ k, (if i = a ∧ t = k then pderiv (y (j, t)) (pderiv (z (b, k)) Q) else 0)
       = 0 := by
     by_cases hia : i = a
-    · simp only [hia, true_and, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    · simp only [hia, true_and, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
       rw [← hQ b j]
       exact Finset.sum_congr rfl fun t _ => pderiv_swap _ _ _
     · simp [hia]
@@ -463,7 +465,7 @@ theorem commute_euler {σ : Type} {k n : ℕ} (z : Fin k × Fin n → σ) (hz : 
   show (∑ i, rowOp ℂ z i i) * rowOp ℂ z a b = rowOp ℂ z a b * ∑ i, rowOp ℂ z i i
   rw [← sub_eq_zero, Finset.sum_mul, Finset.mul_sum, ← Finset.sum_sub_distrib]
   simp only [rowOp_lie z hz, Finset.sum_sub_distrib, Finset.sum_ite_eq, Finset.sum_ite_eq',
-    Finset.mem_univ, if_true, sub_self]
+    Finset.mem_univ, ite_true, sub_self]
 
 theorem weight_nat {σ : Type} {k n : ℕ} (z : Fin k × Fin n → σ) (v : MvPolynomial σ ℂ)
     (hv : v ≠ 0) (a : Fin k → ℤ) (ha : ∀ i, rowOp ℂ z i i v = (a i : ℂ) • v) :
@@ -704,8 +706,11 @@ theorem column_degrees (σ : Type) [Fintype σ] [DecidableEq σ] (k l n : ℕ)
 
 end GlobalTheory.JointHarm.ColumnDegree
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsEqMulMinorPoly
+
+open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.JointHarm
 
 namespace GlobalTheory.JointHarm
 
@@ -805,6 +810,8 @@ end GlobalTheory.JointHarm
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FnShapeOfJointShape
+
+open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.JointHarm
 
 namespace GlobalTheory.JointHarm.ListShape
 
@@ -920,6 +927,8 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LengthAddLeOfDisjoint
 
+open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.JointHarm
+
 namespace GlobalTheory.JointHarm
 
 theorem exists_length_of_antitone {α : ℕ → ℕ} (hα : Antitone α) {m : ℕ}
@@ -1032,7 +1041,11 @@ theorem jointShape_of_fnShape (p q r s : ℕ) (μ : Ix p q → ℚ) (μ' : Ix r 
 end GlobalTheory.JointHarm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RowColWeightsAgree
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RowColWeightsAgree
+
+noncomputable section
+
+open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.JointHarm
 
 namespace GlobalTheory.JointHarm.BlockWeights
 
@@ -1052,14 +1065,14 @@ theorem sum_range_extZero {p : ℕ} (a : Fin p → ℕ) (i : ℕ) :
         simp only [Finset.mem_filter, Finset.mem_univ, true_and, Finset.mem_insert, Fin.ext_iff]
         omega
       rw [hset, Finset.sum_insert (by simp), add_comm]
-      simp only [extZero, dif_pos h]
+      simp only [extZero, dite_eq_left h]
     · have hset : Finset.univ.filter (fun b : Fin p => (b : ℕ) < n + 1) =
           Finset.univ.filter (fun b : Fin p => (b : ℕ) < n) := by
         ext b
         simp only [Finset.mem_filter, Finset.mem_univ, true_and]
         omega
       rw [hset]
-      simp only [extZero, dif_neg h, add_zero]
+      simp only [extZero, dite_eq_right h, add_zero]
 
 theorem partial_sum_le {σ : Type} [DecidableEq σ] {p r : ℕ} (z : Fin p × Fin r → σ)
     (hz : Function.Injective z) (P : MvPolynomial σ ℂ) (a : Fin p → ℕ) (a' : Fin r → ℕ)
@@ -1151,9 +1164,9 @@ theorem row_col_weights_agree : ∀ (σ : Type) [DecidableEq σ] (p r : ℕ) (z 
   · intro i j hij
     unfold extZero
     by_cases hj : j < p
-    · rw [dif_pos hj, dif_pos (lt_of_le_of_lt hij hj)]
+    · rw [dite_eq_left hj, dite_eq_left (lt_of_le_of_lt hij hj)]
       exact hanti (Fin.mk_le_mk.mpr hij)
-    · rw [dif_neg hj]
+    · rw [dite_eq_right hj]
       exact Nat.zero_le _
   · intro i hi
     by_cases hp : p ≤ i
@@ -1168,10 +1181,11 @@ theorem row_col_weights_agree : ∀ (σ : Type) [DecidableEq σ] (p r : ℕ) (z 
 
 end GlobalTheory.JointHarm.BlockWeights
 end -- clump:auto
+end -- clump:auto
 
-end -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.AbsSubOfDisjoint
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.AbsSubOfDisjoint
+noncomputable section
 
 open MvPolynomial GlobalTheory.Capelli Formalism.BasicNotions.TH GlobalTheory.FockAlg
 
@@ -1293,7 +1307,7 @@ theorem IsSide.homog_of_type [DecidableEq σ] {H : Type} [NormedAddCommGroup H]
   obtain ⟨W, hfin, hPW, hst, hμ⟩ := ht
   have kc : ∀ a b : Ix p q, sameBlock a b → IsKC (Eab a b) := by
     intro a b hab c d hcd
-    rw [Eab, Matrix.single_apply, if_neg]
+    rw [Eab, Matrix.single_apply, ite_eq_right]
     rintro ⟨rfl, rfl⟩
     exact hcd hab
   let W₁ := W ⊓ (harmSub (zA e) (zB e) ⊓ harmSub (zC e) (zD e))

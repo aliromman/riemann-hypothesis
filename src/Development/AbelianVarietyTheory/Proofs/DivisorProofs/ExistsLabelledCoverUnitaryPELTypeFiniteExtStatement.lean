@@ -1077,7 +1077,9 @@ end Rec
 end GlobalTheory.Mum.Recog
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisEquivariantTorsionValuesUltrametric
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisEquivariantTorsionValuesUltrametric
+
+noncomputable section
 
 namespace GlobalTheory.Mum.Recog
 
@@ -1124,7 +1126,7 @@ theorem recognition_core : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing
   let fW : ∀ k, QkPt DW.toPre C k → (TFK (R := W) C ⟶ A'.A) := fun k q =>
     if hk : 1 ≤ k then ε (lab k ((Equiv.ofBijective _ (tr_bij hWp cC em hBW hk)).symm q)) else 1
   have hfW : ∀ k (hk : 1 ≤ k) p, fW k (tr hWp cC em hBW p) = ε (lab k p) := fun k hk p => by
-    simp only [fW, dif_pos hk, Equiv.ofBijective_symm_apply_apply]
+    simp only [fW, dite_eq_left hk, Equiv.ofBijective_symm_apply_apply]
   have GW : GoodLab DW.toPre A' C fW := (goodLab_move hWp cC em hBW hfib lab fW fun k hk p => by
     rw [hfW k hk p]; exact (hε _ _).1 rfl).1 Glab
   obtain ⟨f', G'', hf'⟩ := exists_goodLab bW hG' U' C
@@ -1240,6 +1242,7 @@ theorem recognition_core : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing
     exact isPullGtF_pullGt e hGF cI _
 
 end GlobalTheory.Mum.Recog
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisEquivariantTorsionValuesUltrametricStatement

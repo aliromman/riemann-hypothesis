@@ -171,15 +171,14 @@ theorem exists_isModel {ψ : AddChar R ℂ} {O : Subring R} {u : Rˣ} (h : GoodC
 end GlobalTheory.CompanionTheory.SchrModel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.Vaceigen
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.Vaceigen
 
+noncomputable section
 
 namespace PositivityTheory.ThK
 
 open scoped Matrix GlobalTheory.VacAny
 open NumberField IsDedekindDomain GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.LatVac
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace Vac
 

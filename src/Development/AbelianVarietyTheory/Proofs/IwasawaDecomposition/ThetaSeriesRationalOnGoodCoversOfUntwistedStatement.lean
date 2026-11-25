@@ -99,12 +99,11 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsAdeleUnitCongrOne, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIntUnitRoot, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdelicCompletionIntegersLeIntAE, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFieldElementRelativeApproxCompletions, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsGlobalApprox, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsPrincipalRoot, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RationalFormsDetTwistMulRational, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ThetaSeriesRationalOnGoodCoversOfUntwisted, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ThetaSeriesRationalOnGoodCoversOfUntwistedStatement
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsAdeleUnitCongrOne
 
+noncomputable section
 open NumberField IsDedekindDomain
 open scoped TensorProduct
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsAdeleUnitCongrOne
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links
   Formalism.IndefR.Datum Formalism.IndefR.FWT Formalism.L2.Pj GlobalTheory.CoverRead GlobalTheory.IndefiniteRowSideFullHecke.RationalRayLevels
 
@@ -253,17 +252,17 @@ theorem exists_adele_unit_congr_one : ∀ (D : D7) (m : ℕ), Odd m → ∀ (z y
   let dg : ∀ v : HeightOneSpectrum (𝓞 D.host.F), v.adicCompletion D.host.F :=
     fun v => if P v then (-(k : v.adicCompletion D.host.F) * evalV D.host.F v (T yv))⁻¹ else 1
   have heg : ∀ v, eg v ∈ v.adicCompletionIntegers D.host.F := fun v => by
-    by_cases hv : P v <;> simp only [eg, hv, if_true, if_false] <;> [exact one_mem _; exact zero_mem _]
+    by_cases hv : P v <;> simp only [eg, hv, ite_true, ite_false] <;> [exact one_mem _; exact zero_mem _]
   have hfg : ∀ v, fg v ∈ v.adicCompletionIntegers D.host.F := fun v => by
-    by_cases hv : P v <;> simp only [fg, hv, if_true, if_false]
+    by_cases hv : P v <;> simp only [fg, hv, ite_true, ite_false]
     · exact zero_mem _
     · exact mem_of_val (by rw [map_inv₀, hMone v hv, inv_one])
   have hcg : ∀ v, cg v ∈ v.adicCompletionIntegers D.host.F := fun v => by
-    by_cases hv : P v <;> simp only [cg, hv, if_true, if_false]
+    by_cases hv : P v <;> simp only [cg, hv, ite_true, ite_false]
     · exact mem_of_val (hunit v hv).le
     · exact one_mem _
   have hdg : ∀ v, dg v ∈ v.adicCompletionIntegers D.host.F := fun v => by
-    by_cases hv : P v <;> simp only [dg, hv, if_true, if_false]
+    by_cases hv : P v <;> simp only [dg, hv, ite_true, ite_false]
     · exact mem_of_val (by rw [map_inv₀, hunit v hv, inv_one])
     · exact one_mem _
   set e := mkAf eg heg
@@ -272,16 +271,16 @@ theorem exists_adele_unit_congr_one : ∀ (D : D7) (m : ℕ), Odd m → ∀ (z y
   set d := mkAf dg hdg
   have hcd : c * d = 1 := GlobalTheory.SplitHeckeLabel.af_ext fun v => by
     rw [map_mul, map_one, evalV_mkAf, evalV_mkAf]
-    by_cases hv : P v <;> simp only [cg, dg, hv, if_true, if_false, mul_one]
+    by_cases hv : P v <;> simp only [cg, dg, hv, ite_true, ite_false, mul_one]
     refine mul_inv_cancel₀ fun h0 => ?_
     have := hunit v hv; rw [h0, map_zero] at this; exact zero_ne_one this
   have hef : e + (M : Af D.host.F) * f = 1 := GlobalTheory.SplitHeckeLabel.af_ext fun v => by
     rw [map_add (f := _), map_mul, map_one, map_natCast, evalV_mkAf, evalV_mkAf]
-    by_cases hv : P v <;> simp only [eg, fg, hv, if_true, if_false, mul_zero, add_zero, zero_add]
+    by_cases hv : P v <;> simp only [eg, fg, hv, ite_true, ite_false, mul_zero, add_zero, zero_add]
     exact mul_inv_cancel₀ (hMne v hv)
   have hce : c = e * (-(k : Af D.host.F) * T yv) + (M : Af D.host.F) * f := GlobalTheory.SplitHeckeLabel.af_ext fun v => by
     rw [map_add (f := _), map_mul, map_mul, map_mul, map_neg, map_natCast, map_natCast, evalV_mkAf, evalV_mkAf, evalV_mkAf]
-    by_cases hv : P v <;> simp only [eg, fg, cg, hv, if_true, if_false, mul_zero, add_zero, zero_add, one_mul, zero_mul]
+    by_cases hv : P v <;> simp only [eg, fg, cg, hv, ite_true, ite_false, mul_zero, add_zero, zero_add, one_mul, zero_mul]
     exact (mul_inv_cancel₀ (hMne v hv)).symm
   have E1 : ι e + (M : Af D.host.F ⊗[D.host.F] D.host.E) * ι f = 1 := by
     have := congrArg ι hef; rwa [map_add, map_mul, map_natCast, map_one] at this
@@ -312,8 +311,12 @@ theorem exists_adele_unit_congr_one : ∀ (D : D7) (m : ℕ), Odd m → ∀ (z y
 
 end GlobalTheory.UnitRootCong
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIntUnitRoot
+
+open NumberField IsDedekindDomain
+open scoped TensorProduct
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links
   Formalism.IndefR.Datum Formalism.IndefR.FWT Formalism.L2.Pj GlobalTheory.CoverRead GlobalTheory.IndefiniteRowSideFullHecke.RationalRayLevels
 
@@ -430,6 +433,9 @@ end GlobalTheory.IntegralHilbertNinety
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdelicCompletionIntegersLeIntAE
+
+open NumberField IsDedekindDomain
+open scoped TensorProduct
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links
   Formalism.IndefR.Datum Formalism.IndefR.FWT Formalism.L2.Pj GlobalTheory.CoverRead GlobalTheory.IndefiniteRowSideFullHecke.RationalRayLevels
 
@@ -642,8 +648,6 @@ theorem dd_mul_right : ∀ (D : D7) (V : HSp D) (M pd : ℕ) (k : Type) [Field k
 
 end GlobalTheory.TwistRat.Right
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFieldElementRelativeApproxCompletions
 

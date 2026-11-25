@@ -592,16 +592,14 @@ theorem torsVal_eq_unit_mul : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
 end GlobalTheory.CompanionTheory.Ar.Sl.Reg
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorsionPointValuationRingLift
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorsionPointValuationRingLift
 open GlobalTheory.CompanionTheory.Ar.Sl.Reg
 open scoped CategoryTheory.Obj
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Sl.Reg
 
 section Helpers
-
-attribute [local instance] Over.cartesianMonoidalCategory
-
 
 open ReciprocityTheory.ChartRestriction.G.Out in
 theorem exists_root_through {V : Type} [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]
@@ -815,6 +813,7 @@ theorem exists_torsion_point_reducing_to : ∀ (L : Type) [Field L] [NumberField
   exact ⟨N, O, ρ, y, hN1, hy, hyw.trans (hyl _), hρL⟩
 
 end GlobalTheory.CompanionTheory.Ar.Sl.Reg
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SectionDivisibleByDenominator

@@ -137,10 +137,12 @@ theorem exists_mem_U_finM : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok
 end GlobalTheory.AdForm.LevLift
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsTrivialCharLevelEltRationalAtTwistPrimes
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsTrivialCharLevelEltRationalAtTwistPrimes
+@[expose] public section
 
 open Formalism.L2.DIV Formalism.L2.Col Formalism.UG GlobalTheory.Mem.Col2.AdT GlobalTheory.Mem.Col2.TC
 
+noncomputable section
 
 namespace GlobalTheory.Mem.Col2.AdT.LevelAll
 
@@ -306,7 +308,7 @@ theorem exists_level_elt_all : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I
         simp [Ne.symm h]
   obtain ⟨w, hw⟩ : ∃ w : S.U, w = ((Finset.univ : Finset (SBof I a)).toList.map zf).prod := ⟨_, rfl⟩
   have hwP : ∀ P : SBof I a, cP P.1 (ι w) = cP P.1 (ι (zf P)) := fun P => by
-    rw [hw, hlistP _ (Finset.nodup_toList _) P, if_pos (Finset.mem_toList.2 (Finset.mem_univ _))]
+    rw [hw, hlistP _ (Finset.nodup_toList _) P, ite_eq_left (Finset.mem_toList.2 (Finset.mem_univ _))]
   have hchiw : S.chi w = 1 := by
     rw [hw, map_list_prod]
     refine List.prod_eq_one fun x hx => ?_
@@ -337,6 +339,8 @@ theorem exists_level_elt_all : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I
 
 end GlobalTheory.Mem.Col2.AdT.LevelAll
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HalfMatrixMoveDeepCongruenceBound

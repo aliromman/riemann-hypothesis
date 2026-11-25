@@ -6,8 +6,9 @@ public import Formalism.SharpRestriction.GrowthBounds.FormalGroupSystem
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.JpSubstExpand, Formalism.SharpRestriction.GrowthBounds.MultisetValuation.EnInParamKProd
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.JpSubstExpand
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.JpSubstExpand
 
+noncomputable section
 
 namespace Formalism.MainNotions.FormalGroupSystem.Pf.Gen
 
@@ -122,7 +123,7 @@ theorem eq_atP {R Pl : Type} [CommRing R] {ι : Pl → Type} [Fintype Pl] [Decid
     · obtain ⟨m, rfl⟩ := h
       rw [coeff_atP_single, coeff_resP, ← h2]
       exact hn.symm
-    · push_neg at h
+    · push Not at h
       exact (coeff_atP_eq_zero v _ n h).symm
   · have hsupp := (mem_SuppOn.mp hf) n hn
     have hn' : n = eqv.symm (Pi.single v (eqv n v)) := by
@@ -188,9 +189,11 @@ theorem jp_subst_expand {K A σ τ : Type} [CommRing K] [CommRing A] [Algebra K 
 
 end Formalism.MainNotions.FormalGroupSystem.Pf.Gen
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.EnInParamKProd
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.EnInParamKProd
 
+noncomputable section
 
 namespace Formalism.MainNotions.FormalGroupSystem.Pf
 
@@ -207,7 +210,6 @@ def en_L : PowerSeries K1 := PowerSeries.map (algebraMap (K0 p) K1) (logF p)
 
 theorem en_logF_zero : PowerSeries.constantCoeff (logF p) = 0 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, logF, PowerSeries.coeff_mk]
-  have hp : 0 < p := (Fact.out : p.Prime).pos
   simp
 
 theorem en_logF_one : PowerSeries.coeff 1 (logF p) = 1 := by
@@ -217,7 +219,7 @@ theorem en_logF_one : PowerSeries.coeff 1 (logF p) = 1 := by
   have h1 : (1 : ℕ) ≠ p ^ (2 * 1) := by
     have : 1 < p ^ (2 * 1) := Nat.one_lt_pow (by norm_num) hp
     omega
-  rw [if_neg h1]
+  rw [ite_eq_right h1]
   simp
 
 theorem en_L_zero : PowerSeries.constantCoeff (en_L p K1) = 0 := by

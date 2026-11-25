@@ -14,10 +14,11 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.HodgeTatePoints.GdDual, Development.WeilBound.CoreStatements.HodgeTatePoints.TorusExtensionPairCorrectionEqValueQuotient, Development.WeilBound.CoreStatements.HodgeTatePoints.GdChart
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.GdDual
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.GdDual
 
 open Module NumberField GlobalTheory.CompanionTheory.Ar.HT
 
+noncomputable section
 
 namespace PositivityTheory.HtPt.Gd
 
@@ -126,7 +127,7 @@ private theorem htPoint_exists_smul_mem_T (hv : v.Integers O) (P : HTPoint C O c
         simp at ha
       have hle : v a⁻¹ ≤ 1 := by
         rw [map_inv₀]
-        push_neg at ha
+        push Not at ha
         exact inv_le_one_of_one_le₀ ha.le
       obtain ⟨s, hs⟩ := hv.exists_of_le_one hle
       exact ⟨s, by rw [hs]; exact inv_ne_zero ha0, 1, by rw [hs, map_one, inv_mul_cancel₀ ha0]⟩
@@ -277,6 +278,7 @@ theorem exists_alt_bis (hv : v.Integers O) (hc : ∀ x, c (c x) = x) (P : HTPoin
     exact hℓ y hy
 
 end PositivityTheory.HtPt.Gd
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.TorusExtensionPairCorrectionEqValueQuotient

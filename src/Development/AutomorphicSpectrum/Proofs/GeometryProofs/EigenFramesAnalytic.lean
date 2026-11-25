@@ -131,10 +131,11 @@ theorem genPt_specializes_of_isDomain : ∀ (X : Scheme.{0}) (Ω : Type) [Field 
 end GlobalTheory.CompanionTheory.Ar.LocFrames
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ComponentComplexPointTangents
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ComponentComplexPointTangents
 
 set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.LocFrames.EigValue
 
@@ -154,7 +155,7 @@ theorem coef_eq {R U : Type} [CommRing R] [AddCommGroup U] [Module R U] {n : ℕ
   funext l
   have h0 : ∑ m, (c m - (Pi.single i 1 : Fin n → R) m) • x m = 0 := by
     simp only [sub_smul, Finset.sum_sub_distrib, ← h, Pi.single_apply, ite_smul, one_smul, zero_smul,
-      Finset.sum_ite_eq', Finset.mem_univ, if_true, sub_self]
+      Finset.sum_ite_eq', Finset.mem_univ, ite_true, sub_self]
   exact sub_eq_zero.1 (Fintype.linearIndependent_iff.1 hx _ h0 l)
 
 variable {A Ω T F V N : Type} [CommRing A] [Field Ω] [CommRing T] [AddCommGroup F] [Module A F]
@@ -364,6 +365,7 @@ theorem isEigFrame_value : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
 end Point
 
 end GlobalTheory.CompanionTheory.Ar.LocFrames.EigValue
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeFrameOpenCondition
@@ -699,8 +701,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Definitions.GlobalGeometry.UnitAtOfIsLineGenOn
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Definitions.GlobalGeometry.UnitAtOfIsLineGenOn
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.GenModel
 
@@ -723,13 +726,8 @@ theorem ιMulti_ne_zero {r : ℕ} {e : Fin r → E} (h : LinearIndependent Ω e)
 
 end General
 
-section Int
-
-open CptModel
-
-end Int
-
 end GlobalTheory.CompanionTheory.Ar.Flat.GenModel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.PairFramesOnSet

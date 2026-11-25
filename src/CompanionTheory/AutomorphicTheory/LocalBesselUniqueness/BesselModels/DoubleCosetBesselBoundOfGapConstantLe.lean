@@ -33,11 +33,13 @@ import Formalism.SharpRestriction.CuspSpanNormBounds.FamilyDoubleCosetBesselBoun
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.DDFormC, CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.JacquetFunctionalNormalization, CompanionTheory.SpectralGeometry.LocalGlobalProofs.WeylGroupActions.TorusMovesCharacter, CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.FinalC, CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.DoubleCosetBesselBoundOfGapConstantLe
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.DDFormC
+section -- clump member: CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.DDFormC
+@[expose] public section
 
 open MeasureTheory Matrix
 open scoped InnerProductSpace ENNReal ComplexConjugate
 
+noncomputable section
 
 
 namespace Formalism.FourierDecayAlt.P.DDSmoothness
@@ -70,7 +72,7 @@ theorem discrete_form_one_side : CompanionTheory.D.Upq.BesselFunctionalConstruct
     refine l2_norm_scaling _ _ (l v) _ _ hNv (hae.mono fun g hg => ?_)
     rw [hid _ (PI.UnitaryGroupMassFormula.CapelliEig.smooth_right_action k r ε lam H σ hσ x (hsm x hx) _ hg) v hv]
     simp only [ContinuousLinearMap.smulRight_apply, innerSL_apply_apply]
-  · push_neg at hnz
+  · push Not at hnz
     refine ⟨fun _ => 0, bessel_zero, fun x hx v hv => ⟨hBC1 x (hsm x hx) v (Or.inl hv), ?_⟩,
       fun x _ _ v _ => by simp⟩
     show be z c π σ μW μN x v = _
@@ -81,6 +83,8 @@ end GC
 
 end Formalism.FourierDecayAlt.P.DDSmoothness
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.JacquetFunctionalNormalization
@@ -102,11 +106,12 @@ end CompanionTheory.D.Upq.BesselFunctionalConstruction
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.WeylGroupActions.TorusMovesCharacter
+@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.WeylGroupActions.TorusMovesCharacter
 
 open Formalism.FourierDecayAlt Formalism.FourierDecayAlt.ThreeDimData Matrix MeasureTheory Finset
 open scoped InnerProductSpace ENNReal
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Bes
 
@@ -148,26 +153,26 @@ theorem torusDiag_ne (k : ℕ) {r : ℕ} {c : Fin r → ℂ} (hc : ∀ a, c a �
 theorem torusDiag_mid (k : ℕ) {r : ℕ} (c : Fin r → ℂ) (i : Fin (2 * r + k + 1))
     (h1 : r ≤ i.val) (h2 : i.val ≤ r + k) : torusDiag k c i = 1 := by
   unfold torusDiag
-  rw [if_pos h2, torusTail_ge c h1]
+  rw [ite_eq_left h2, torusTail_ge c h1]
 
 theorem torusDiag_tau (k : ℕ) {r : ℕ} {c : Fin r → ℂ} (hc : ∀ a, c a ≠ 0)
     (i : Fin (2 * r + k + 1)) : star (torusDiag k c i) * torusDiag k c (tau k r i) = 1 := by
   have hi := i.isLt
   by_cases h1 : i.val < r
   · have e : (tau k r i).val = 2 * r + k - i.val := by
-      unfold tau; simp only; rw [if_pos (Or.inl h1)]
+      unfold tau; simp only; rw [ite_eq_left (Or.inl h1)]
     unfold torusDiag
-    rw [if_pos (by omega), if_neg (by omega), e,
+    rw [ite_eq_left (by omega), ite_eq_right (by omega), e,
       show 2 * r + k - (2 * r + k - i.val) = i.val by omega]
     exact mul_inv_cancel₀ (star_ne_zero.2 (torusTail_ne hc _))
   · by_cases h2 : r + k < i.val
     · have e : (tau k r i).val = 2 * r + k - i.val := by
-        unfold tau; simp only; rw [if_pos (Or.inr h2)]
+        unfold tau; simp only; rw [ite_eq_left (Or.inr h2)]
       unfold torusDiag
-      rw [if_neg (by omega), if_pos (by omega), e, star_inv₀, star_star]
+      rw [ite_eq_right (by omega), ite_eq_left (by omega), e, star_inv₀, star_star]
       exact inv_mul_cancel₀ (torusTail_ne hc _)
     · have e : (tau k r i).val = i.val := by
-        unfold tau; simp only; rw [if_neg (by omega)]
+        unfold tau; simp only; rw [ite_eq_right (by omega)]
       rw [torusDiag_mid k c i (by omega) (by omega),
         torusDiag_mid k c (tau k r i) (by omega) (by omega)]
       simp
@@ -237,7 +242,7 @@ theorem torus_moves_character :
     have ha := a.isLt
     have he : torusDiag k c (eI k r a) = c a * torusTail c (a.val + 1) := by
       unfold torusDiag
-      rw [if_pos (by simp only [eI]; omega)]
+      rw [ite_eq_left (by simp only [eI]; omega)]
       exact torusTail_succ c a
     beta_reduce
     rw [one_mul, torus_diagonal_inv hd]
@@ -245,7 +250,7 @@ theorem torus_moves_character :
     split_ifs with h
     · have he' : torusDiag k c (eI k r ⟨a.val + 1, h⟩) = torusTail c (a.val + 1) := by
         unfold torusDiag
-        rw [if_pos (by simp only [eI]; omega)]
+        rw [ite_eq_left (by simp only [eI]; omega)]
         rfl
       rw [Matrix.mul_diagonal, Matrix.diagonal_mul, he, he']
       have := torusTail_ne hc (a.val + 1)
@@ -260,6 +265,7 @@ theorem torus_moves_character :
         torusTail_ge c (by omega), mul_one]
 
 end GlobalTheory.CompanionTheory.Bes
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.FinalC

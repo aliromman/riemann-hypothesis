@@ -22,10 +22,11 @@ import Mathlib.RingTheory.HopfAlgebra.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.HarderNarasimhan.HarderNarasimhanProofs.SlopeIneq, Formalism.HarderNarasimhan.HarderNarasimhanProofs.SlopeIneqMean
 
-@[expose] public noncomputable section -- clump member: Formalism.HarderNarasimhan.HarderNarasimhanProofs.SlopeIneq
+@[expose] public section -- clump member: Formalism.HarderNarasimhan.HarderNarasimhanProofs.SlopeIneq
 
 open Module Submodule
 
+noncomputable section
 
 namespace Formalism.HN
 
@@ -173,7 +174,7 @@ theorem norm_starProjection_le {G : Type*} [AddCommGroup G] (α : G →+ E) (β 
       have h2 := norm_nonneg (α g)
       exact norm_eq_zero.mp (le_antisymm (by nlinarith) h2)
     rw [hb g, ha, map_zero, map_zero, norm_zero, norm_zero, mul_zero]
-  push_neg at hC
+  push Not at hC
   have hw : α g - (span ℝ (α '' S))ᗮ.starProjection (α g) ∈ span ℝ (α '' S) := by
     first
     | (have hd := Submodule.starProjection_add_starProjection_orthogonal
@@ -521,6 +522,7 @@ theorem slopeIneq_of (hmV : MuChar.{uR, uV, uE}) (hmW : MuChar.{uR, uW, uF})
 theorem slope_inequality_general : SlopeIneq := slopeIneq_of slope_characterization slope_characterization real_saturation_property saturation_basic_properties saturation_basic_properties
 
 end Formalism.HN
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HarderNarasimhan.HarderNarasimhanProofs.SlopeIneqMean

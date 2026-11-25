@@ -52,8 +52,9 @@ import Mathlib.Algebra.Order.Star.Int
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.WeylCharacterRegularity.ExistsTens, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TWeylC
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.WeylCharacterRegularity.ExistsTens
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.WeylCharacterRegularity.ExistsTens
 
+noncomputable section
 
 open NumberField Matrix GlobalTheory.CuspRep GlobalTheory.GKCoh Topology
 
@@ -93,14 +94,15 @@ theorem exists_tens [_root_.NumberField.IsTotallyComplex E] (P : Weyl.Pre a) (hP
     funext i j
     have h2 : eOf ρ τ i j = r (eOf (fun y => piK fun t : E →+* ℂ => fac P N t y) τ i j) := rfl
     rw [h2, eOf_piK (fun τ => isReg_fac P N τ) (fun τ => map_one _), Finset.sum_eq_single τ]
-    · rw [eOf_fac, if_pos rfl]; rfl
+    · rw [eOf_fac, ite_eq_left rfl]; rfl
     · intro t _ ht
-      rw [eOf_fac, if_neg ht, map_zero]
+      rw [eOf_fac, ite_eq_right ht, map_zero]
     · simp
   rw [h1, ← map_qdet, qdet_shift, hν, map_smul, map_one]
   simp only [sub_eq_add_neg]
 
 end UpperTheory.V.WeylC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TWeylC

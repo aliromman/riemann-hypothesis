@@ -88,10 +88,11 @@ theorem HeightComparison.proof (hV : CurveDivVertical.Statement) : HeightCompari
 end GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.HeightsSet
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.Counterexample.Objects
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.Counterexample.Objects
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.Heights₂.Heights.LowerBoundFree
 
@@ -101,11 +102,6 @@ open scoped Matrix ComplexOrder
 namespace Line
 
 end Line
-
-section FS
-
-
-end FS
 
 section Reg
 
@@ -123,21 +119,15 @@ structure WeightReg (ι : K → Type) [∀ k, Fintype (ι k)] where
 
 end Reg
 
-section Heights
-
-variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
-  {II : IntersectionSystem} {Ψ : Type} [Fintype Ψ] {Ω : Type} [Field Ω] [Algebra ℚ Ω]
-  {E : Ψ → Type} [∀ τ, AddCommGroup (E τ)] [∀ τ, Module Ω (E τ)]
-
-end Heights
-
 end GroundTheory.Heights₂.Heights.LowerBoundFree
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.Counterexample
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.Counterexample
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.Heights₂.Heights.LowerBoundFree
 
@@ -176,20 +166,8 @@ theorem inter_constLine_eq [Nonempty K] (I : Ideal (MRing ι) → (n : ℕ) → 
 
 end Curve
 
-section Point
-
-end Point
-
-section Shift
-
-
-end Shift
-
-section Main
-
-end Main
-
 end GroundTheory.Heights₂.Heights.LowerBoundFree
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PShiftSectionSeparation

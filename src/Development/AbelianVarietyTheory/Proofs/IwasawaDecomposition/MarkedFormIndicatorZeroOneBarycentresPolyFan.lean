@@ -48,12 +48,10 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsMarkedBalancedIntFormPullbackIffSplitSurjectio, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MarkedFormIndicatorZeroOneBarycentresPolyFan
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsMarkedBalancedIntFormPullbackIffSplitSurjectio
 
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolFan.Mark
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsMarkedBalancedIntFormPullbackIffSplitSurjectio
 
 namespace GlobalTheory.PolFan.Mark.SplitPull
 
@@ -166,7 +164,11 @@ theorem isMarked_pull_iff : ∀ (O : Type) [CommRing O] (bar : O → O) (ψ lab 
 end GlobalTheory.PolFan.Mark.SplitPull
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MarkedFormIndicatorZeroOneBarycentresPolyFan
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MarkedFormIndicatorZeroOneBarycentresPolyFan
+
+noncomputable section
+
+open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolFan.Mark
 
 namespace GlobalTheory.PolFan.Mark
 
@@ -238,7 +240,7 @@ theorem exists_markFun_props : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
   · rw [ev]
     split_ifs <;> simp
   · obtain ⟨β₀, h0, hc0⟩ := _root_.GlobalTheory.PolFan.Mark.exists_isMarked_inRCone E H q ψ lab i hD hψ hlab X hX m v hv β hβ hp hc hl
-    exact ⟨β₀, h0.1, h0.2.1, by rw [ev, if_pos h0], hc0⟩
+    exact ⟨β₀, h0.1, h0.2.1, by rw [ev, ite_eq_left h0], hc0⟩
 
 end GlobalTheory.PolFan.Mark
 

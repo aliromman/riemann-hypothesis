@@ -115,7 +115,7 @@ theorem classGroup_nthPower_of_codim_one_mod : ∀ (k A : Type) [Field k] [IsAlg
   have hI0 : (I : Ideal A) ≠ ⊥ := nonZeroDivisors.coe_ne_zero I
   by_cases hex : ∃ P₀ : Ideal A, P₀.IsMaximal ∧ P₀ ≠ ⊥
   swap
-  · push_neg at hex
+  · push Not at hex
     have htop : (I : Ideal A) = ⊤ := by
       by_contra h
       obtain ⟨M, hM, hIM⟩ := Ideal.exists_le_maximal _ h
@@ -304,21 +304,6 @@ open Polynomial
 
 namespace GlobalTheory.CurveCompletionG
 
-alias residue_exists := _root_.GlobalTheory.CurveCompletion.residue_exists
-alias pow_le_span_sup := _root_.GlobalTheory.CurveCompletion.pow_le_span_sup
-alias pow_not_mem := _root_.GlobalTheory.CurveCompletion.pow_not_mem
-alias aeval_mem_of_dvd := _root_.GlobalTheory.CurveCompletion.aeval_mem_of_dvd
-alias dvd_of_aeval_mem := _root_.GlobalTheory.CurveCompletion.dvd_of_aeval_mem
-alias aeval_mem_iff := _root_.GlobalTheory.CurveCompletion.aeval_mem_iff
-alias coe_dvd_iff := _root_.GlobalTheory.CurveCompletion.coe_dvd_iff
-alias eq_of_forall_dvd := _root_.GlobalTheory.CurveCompletion.eq_of_forall_dvd
-noncomputable abbrev approx := @_root_.GlobalTheory.CurveCompletion.approx
-alias approx_spec := _root_.GlobalTheory.CurveCompletion.approx_spec
-noncomputable abbrev ser := @_root_.GlobalTheory.CurveCompletion.ser
-alias ser_sub_approx := _root_.GlobalTheory.CurveCompletion.ser_sub_approx
-alias mem_iff_dvd := _root_.GlobalTheory.CurveCompletion.mem_iff_dvd
-alias ser_eq := _root_.GlobalTheory.CurveCompletion.ser_eq
-noncomputable abbrev serHom := @_root_.GlobalTheory.CurveCompletion.serHom
 alias exists_completion_embedding := _root_.GlobalTheory.CurveCompletion.exists_completion_embedding
 
 end GlobalTheory.CurveCompletionG
@@ -785,10 +770,10 @@ theorem hasse_mul (l : ℕ) (φ ψ : PowerSeries R) :
   set g : R[X] := PowerSeries.trunc M ψ
   have hf : ∀ m < M, PowerSeries.coeff m φ = PowerSeries.coeff m (f : PowerSeries R) := by
     intro m hm
-    rw [Polynomial.coeff_coe, PowerSeries.coeff_trunc, if_pos hm]
+    rw [Polynomial.coeff_coe, PowerSeries.coeff_trunc, ite_eq_left hm]
   have hg : ∀ m < M, PowerSeries.coeff m ψ = PowerSeries.coeff m (g : PowerSeries R) := by
     intro m hm
-    rw [Polynomial.coeff_coe, PowerSeries.coeff_trunc, if_pos hm]
+    rw [Polynomial.coeff_coe, PowerSeries.coeff_trunc, ite_eq_left hm]
   have hpoly : hasse l ((f : PowerSeries R) * (g : PowerSeries R)) =
       ∑ p ∈ Finset.range (l + 1), hasse p (f : PowerSeries R) * hasse (l - p) (g : PowerSeries R) := by
     rw [← Polynomial.coe_mul, hasse_coe, hasseDeriv_mul,

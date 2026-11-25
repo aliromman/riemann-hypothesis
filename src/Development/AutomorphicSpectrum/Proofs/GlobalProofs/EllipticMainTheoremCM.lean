@@ -48,8 +48,10 @@ theorem abelianization_eq_of_forall_abRestrict_eq :
 end GlobalTheory.CompanionTheory.GaloisAb
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsDiagMulRayMulUnif
+section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsDiagMulRayMulUnif
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 ReciprocityTheory.Neutral.Bridge.HCFR
 
@@ -170,7 +172,7 @@ theorem exists_approx {𝔮 : Ideal (𝓞 K)} (h𝔮 : 𝔮 ≠ ⊥) {x : 𝓞 K
       simp
     change 0 < _ * t' _ at h
     rw [e] at h
-    simpa only [t', dif_pos hw] using h
+    simpa only [t', dite_eq_left hw] using h
   by_cases hk : k = 0
   · subst hk
     refine ⟨1, fun v hv => absurd (h2 v hv).symm ?_, fun w hw => absurd (h3 w hw) (by simp)⟩
@@ -223,6 +225,8 @@ theorem exists_diag_mul_ray_mul_unif : ∀ (K : Type) [Field K] [NumberField K] 
 
 end GlobalTheory.RayGen
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArtinMapAbelianUnique

@@ -198,8 +198,9 @@ theorem exists_finite_dvr_residueField_ringHom :
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsFiniteExtPelUnif
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsFiniteExtPelUnif
 
+noncomputable section
 
 namespace GlobalTheory.ChartCharacters
 
@@ -255,12 +256,6 @@ open NumberField IsLocalRing Formalism.L2.Pj ReciprocityTheory.ChartRestriction.
 open ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF ReciprocityTheory.ChartRestriction.G.Pdiv.AvDefs GlobalTheory.CharDepth
 
 open Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds GlobalTheory.RowLaw
-
-section Map
-
-variable {O C : Type} [CommRing O] [CommRing C] (φ : O →+* C) {dd : ℕ}
-
-end Map
 
 end GlobalTheory.ChartCharacters
 

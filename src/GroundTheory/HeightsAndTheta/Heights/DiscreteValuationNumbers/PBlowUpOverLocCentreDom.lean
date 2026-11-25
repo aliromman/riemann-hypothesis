@@ -13,7 +13,8 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PBlowUpValuationCentre, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PBlowUpOverLocCentreDom
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PBlowUpValuationCentre
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PBlowUpValuationCentre
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -21,6 +22,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial
 
+noncomputable section
 
 universe u
 
@@ -74,11 +76,11 @@ theorem eval₂_blockVar_component (g : R →+* κ) (c : (Σ k, ι k) → κ) (F
     rw [eval₂_blockVar_of_isMultiHomog g c hd, coeff_monomial]
     by_cases h : Finsupp.weight (blockWeight ι) d = b
     · subst h
-      rw [hd.weightedHomogeneousComponent_same, eval₂_blockVar_of_isMultiHomog g c hd, if_pos rfl]
+      rw [hd.weightedHomogeneousComponent_same, eval₂_blockVar_of_isMultiHomog g c hd, ite_eq_left rfl]
     · have h0 : weightedHomogeneousComponent (blockWeight ι) b (monomial d r : MRing ι R) = 0 := by
         rw [weightedHomogeneousComponent_of_mem (p := (monomial d r : MRing ι R))
-          (n := Finsupp.weight (blockWeight ι) d) hd, if_neg (Ne.symm h)]
-      rw [h0, if_neg (fun h' => h (Finsupp.equivFunOnFinite.symm.injective h')), eval₂_zero, map_zero]
+          (n := Finsupp.weight (blockWeight ι) d) hd, ite_eq_right (Ne.symm h)]
+      rw [h0, ite_eq_right (fun h' => h (Finsupp.equivFunOnFinite.symm.injective h')), eval₂_zero, map_zero]
   | add p q hp hq =>
     rw [map_add (f := _), eval₂_add, hp, hq, eval₂_add, MvPolynomial.coeff_add, map_add (f := _)]
 
@@ -279,8 +281,10 @@ theorem exists_blowUp_centre (P W : Ideal (MRing ι O)) [P.IsPrime] (hPh : IsMul
 
 end Centre
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PBlowUpOverLocCentreDom

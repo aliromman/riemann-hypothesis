@@ -40,7 +40,7 @@ import Mathlib.Topology.Sheaves.Presheaf
 -- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.TendstoLevelNormOfRegularization, Formalism.HermitianCurvature.HermitianCurvatureProofs.IntegralFormulaPassesToLimits, Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftOfLocal, Formalism.HermitianCurvature.HermitianCurvatureProofs.LocalNormNonneg, Formalism.HermitianCurvature.HermitianCurvatureProofs.LocSupStep, Formalism.HermitianCurvature.HermitianCurvatureProofs.ImageProdLoc, Formalism.HermitianCurvature.HermitianCurvatureProofs.GermStep, Formalism.HermitianCurvature.HermitianCurvatureProofs.PBCFinal, Formalism.HermitianCurvature.HermitianCurvatureProofs.TopOfLocal, Formalism.HermitianCurvature.HermitianCurvatureProofs.BuiltBoundsCompactOfParts
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.TendstoLevelNormOfRegularization
-@[expose] public noncomputable section
+@[expose] public section
 
 open Formalism.FourierDecayAlt
 
@@ -49,6 +49,7 @@ namespace Formalism.FourierDecayAlt.P.PBB
 open Finset Filter Topology NumberField MeasureTheory
 open scoped ComplexConjugate
 
+noncomputable section
 open Classical
 
 theorem integrable_decay3 : Integrable (fun c : ℂ => ((1 + ‖c‖) ^ 3)⁻¹) := by
@@ -154,9 +155,9 @@ theorem tendsto_gram (ε : ℝ) (hε : 0 < ε) (k : ℕ) (hk : k ≤ S.G.r + 1) 
       ∏ v : Fin S.f, ((√(C.nLoc S.G.k S.G.r S.fr (S.pd v).G (C.loc (S.σ v) h)) *
         √(C.nLoc S.G.k S.G.r S.fr (S.pd v).G (C.loc (S.σ v) h')) : ℝ) : ℂ) *
           RR n v ε k (w'.1 v) (C.loc (S.σ v) h) (C.loc (S.σ v) h') :=
-    funext fun n => by rw [gram_withRR, if_pos hk]; rfl
+    funext fun n => by rw [gram_withRR, ite_eq_left hk]; rfl
   have e2 : S.gram ε k w'.1 h h' = ∏ v, S.gramLoc v ε k (w'.1 v) (C.loc (S.σ v) h) (C.loc (S.σ v) h') := by
-    simp only [C.HidaSetting.gram, if_pos hk]
+    simp only [C.HidaSetting.gram, ite_eq_left hk]
   rw [e1, e2]
   exact tendsto_finsetProd _ fun v _ => tendsto_gramLoc' S RR hconv v ε hε k (w'.1 v) ⟨w', rfl⟩ _ _
 
@@ -235,6 +236,7 @@ theorem tendsto_Nhat (hInt : ∀ n, KB.IntAll (KB.withRR S (RR n)))
 
 end limB2
 
+end
 
 end Formalism.FourierDecayAlt.P.PBB
 end -- clump:auto
@@ -284,7 +286,7 @@ theorem integral_formula_passes_to_limits : Formalism.FourierDecayAlt.KB.LimitIn
     intro A x
     exact ((continuous_apply x).comp (continuous_apply A)).tendsto a |>.comp hlim
   let θ' : Finset (Fin S.f) → S.W → ℝ := fun A w' => if h : w' ∈ B then a A ⟨w', h⟩ else 0
-  have hθ' : ∀ A w' (h : w' ∈ B), θ' A w' = a A ⟨w', h⟩ := fun A w' h => dif_pos h
+  have hθ' : ∀ A w' (h : w' ∈ B), θ' A w' = a A ⟨w', h⟩ := fun A w' h => dite_eq_left h
   refine ⟨θ', ?_, ?_⟩
   · intro A
     refine ⟨?_, ?_, ?_⟩
@@ -326,7 +328,8 @@ theorem integral_formula_passes_to_limits : Formalism.FourierDecayAlt.KB.LimitIn
 end Formalism.FourierDecayAlt.P
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftOfLocal
+section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftOfLocal
+@[expose] public section
 
 open Finset NumberField
 open scoped ComplexConjugate ComplexOrder
@@ -335,6 +338,7 @@ namespace Formalism.FourierDecayAlt.P.PBA
 
 open Formalism.FourierDecayAlt
 
+noncomputable section
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {Wp Wq : InfinitePlace E → Type}
   [∀ x, NormedAddCommGroup (Wp x)] [∀ x, InnerProductSpace ℂ (Wp x)] [∀ x, NormedAddCommGroup (Wq x)]
@@ -404,8 +408,8 @@ theorem liftOfLoc_statement : KB.LiftOfLoc := by
     (by
       intro v _
       by_cases hv : v ∈ A
-      · simp only [if_pos hv]; exact hu2 v hv
-      · simp only [if_neg hv, one_mul]
+      · simp only [ite_eq_left hv]; exact hu2 v hv
+      · simp only [ite_eq_right hv, one_mul]
         exact blockPSD_pull (Y.image (lpt S v s t) ∪ Y.image (lpt S v s t')) (KB.gN S v ε i (w.1 v))
           (gN_psd S hpos v hε hi w _) Y (lpt S v s t) (lpt S v s t')
           (fun h hh => Finset.mem_union_left _ (Finset.mem_image_of_mem _ hh))
@@ -471,8 +475,10 @@ theorem liftOfLoc_statement : KB.LiftOfLoc := by
     _ ≤ _ := hmain
     _ = _ := by ring
 
+end
 
 end Formalism.FourierDecayAlt.P.PBA
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.LocalNormNonneg
@@ -602,10 +608,10 @@ theorem gram_psd {S : C.HidaSetting E Wp Wq} (hP : C.ThmPPos S) {ε : ℝ} (hε 
         (fun h hh => Finset.mem_image_of_mem _ hh)
     refine Jx7.psd_congr ?_ (Jx7.psd_prod univ _ this)
     intro x _ y _
-    simp only [C.HidaSetting.gram, hk, if_true]
+    simp only [C.HidaSetting.gram, hk, ite_true]
   · refine Jx7.psd_congr ?_ (Jx7.psd_zero (F := Y))
     intro x _ y _
-    simp only [C.HidaSetting.gram, hk, if_false]
+    simp only [C.HidaSetting.gram, hk, ite_false]
 
 theorem local_norm_nonneg_alt {S : C.HidaSetting E Wp Wq} (hP : C.ThmPPos S) {ε : ℝ} (hε : 0 < ε) (k : ℕ) (w : S.W)
     (Y : Finset (TB.Pt E)) (κ : TB.Pt E → TB.Pt E → ℂ) (hκ : TB.PSDOn Y κ) : 0 ≤ S.base.N0 ε k w Y κ := by
@@ -1068,13 +1074,15 @@ theorem germ_global (S : C.HidaSetting E Wp Wq) (hpos : C.ThmPPos S) (hI : KB.In
 end Formalism.FourierDecayAlt.P.PBC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.GermStep
+section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.GermStep
+@[expose] public section
 
 namespace Formalism.FourierDecayAlt.P.PBC
 
 open Formalism.FourierDecayAlt Finset Filter Topology MeasureTheory NumberField
 open scoped ComplexConjugate ComplexOrder
 
+noncomputable section
 
 open Classical
 
@@ -1214,7 +1222,7 @@ theorem germ_step (S : C.HidaSetting E Wp Wq) (hpos : C.ThmPPos S) (hI : KB.IntA
   rw [(hmix N').2] at hH
   have hN : ∑ z ∈ Ss, Nz Y κ D z = ∑ z ∈ Ss, (KB.NstV S ε (b + n - 1) n w' Y κ z z).re :=
     Finset.sum_congr rfl fun z hz => by
-      simp only [Nz, if_pos (hgood z hz)]
+      simp only [Nz, ite_eq_left (hgood z hz)]
       rw [nstV_eq]
       rfl
   rw [hN] at hH
@@ -1224,8 +1232,10 @@ theorem germ_step (S : C.HidaSetting E Wp Wq) (hpos : C.ThmPPos S) (hI : KB.IntA
   rw [e3]
   ring
 
+end
 
 end Formalism.FourierDecayAlt.P.PBC
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.PBCFinal
@@ -1331,7 +1341,7 @@ theorem nst_eq_nstV (S : C.HidaSetting E Wp Wq) (ε : ℝ) (i s : ℕ) (hi : i �
     (Y : Finset (TB.Pt E)) (κ : TB.Pt E → TB.Pt E → ℂ) (t : E) :
     S.base.Nst ε i s w Y κ t t = KB.NstV S ε i s w Y κ (embV S t) (embV S t) := by
   unfold TB.Data.Nst KB.NstV
-  simp only [C.HidaSetting.base, C.HidaSetting.mkData, C.HidaSetting.gram, if_pos hi, TB.join, C.loc, List.map_append,
+  simp only [C.HidaSetting.base, C.HidaSetting.mkData, C.HidaSetting.gram, ite_eq_left hi, TB.join, C.loc, List.map_append,
     List.map_cons, List.map_nil]
   rfl
 
@@ -1365,7 +1375,7 @@ theorem sumFormConcrete_of (S : C.HidaSetting E Wp Wq) (hg1 : 0 < S.G.g1) (hg2 :
     refine ⟨this.1, this.2.trans (le_of_eq ?_)⟩
     show (if b + s ≤ S.G.r + 1 then J.thrS S.G S.CA S.de S.de' S.T S.T' S.l b (s + 1) (S.pl v)
       else 2 * J.thrP S.G S.CA S.de S.de' S.T S.T' S.l b (S.pl v)) = _
-    rw [if_pos hbs]; rfl
+    rw [ite_eq_left hbs]; rfl
   have hΛ0 : ∀ b s, 1 ≤ b → 1 ≤ s → b + s ≤ S.G.r + 1 → ∀ v, 0 ≤ Λ b s v :=
     fun b s hb hs hbs v => (hΛ b s hb hs hbs v).1
   have hvol : ∀ b n, 0 ≤ S.base.vol b n := by
@@ -1470,7 +1480,8 @@ end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.TopOfLocal
+section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.TopOfLocal
+@[expose] public section
 
 open Finset NumberField
 open scoped ComplexConjugate ComplexOrder
@@ -1479,6 +1490,7 @@ namespace Formalism.FourierDecayAlt.P.PBA
 
 open Formalism.FourierDecayAlt
 
+noncomputable section
 
 theorem top_of_local : KB.TopOfLoc := by
   intro E _ _ _ Wp Wq _ _ _ _ S Λ' hpos _ hloc ε hε s hs2 hsr w _ hcnt
@@ -1516,11 +1528,11 @@ theorem top_of_local : KB.TopOfLoc := by
         (fun h hh => mem_image_of_mem _ hh)
       refine Jx8.psd_congr ?_ h1
       intro x _ y _
-      simp only [A, if_pos hv]
+      simp only [A, ite_eq_left hv]
       rfl
     · refine Jx8.psd_congr ?_ (Jx8.zero_psd Y)
       intro x _ y _
-      simp only [A, if_neg hv, sub_self]
+      simp only [A, ite_eq_right hv, sub_self]
   have hle := BaseGramNonnegativity.sum_re_nonneg Y κ _ hκ (Jx7.psd_prod_dom univ G A hG hAG)
   have hprod : ∀ h h', ∏ v, A v h h' =
       (∏ v ∈ B, (c v : ℂ)) * ∏ v, (if v ∈ B then M v h h' else G v h h') := by
@@ -1568,8 +1580,10 @@ theorem top_of_local : KB.TopOfLoc := by
   simp only [mul_sub, sum_sub_distrib, Complex.sub_re] at hle
   linarith
 
+end
 
 end Formalism.FourierDecayAlt.P.PBA
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.BuiltBoundsCompactOfParts
@@ -1778,16 +1792,16 @@ theorem core (hW : WaveLocB) (hL : LiftLocB) (hTL : PBL.TopLocB) (hDT : KB.DegTo
   have hX0 : ∀ i v, 0 ≤ X i v := by
     intro i v
     by_cases hi : 1 ≤ i ∧ i ≤ S.G.r + 1
-    · simp only [hXdef, if_pos hi]; exact (hXt0 i hi.1 hi.2 v).1
-    · simp only [hXdef, if_neg hi, le_refl]
+    · simp only [hXdef, ite_eq_left hi]; exact (hXt0 i hi.1 hi.2 v).1
+    · simp only [hXdef, ite_eq_right hi, le_refl]
   have hXt : JC.HidaCurvatureBarriers S X := by
     intro i hi1 hi2 v
-    simp only [hXdef, if_pos (And.intro hi1 hi2)]
+    simp only [hXdef, ite_eq_left (And.intro hi1 hi2)]
     exact hXt0 i hi1 hi2 v
   have hXl : ∀ F : ∀ v : Fin S.f, ℝ → B.Mat S.G.k S.G.r → (Wq (S.pl v) →L[ℂ] Wp (S.pl v)),
       (∀ v ε, 0 < ε → KB.CptCoef (p v).T.base (F v ε)) → ∀ v, KB.WaveLoc (PBL.setC S p F) v fun i => X i v := by
     intro F hF v i hi1 hi2
-    have hXi : X i v = X0 i v := by rw [hXdef]; exact if_pos ⟨hi1, hi2⟩
+    have hXi : X i v = X0 i v := by rw [hXdef]; exact ite_eq_left ⟨hi1, hi2⟩
     simp only [hXi]
     exact hXl0 F hF v i hi1 hi2
   obtain ⟨Λ, hΛ0, hΛs, hΛl⟩ := h3 E Wp Wq S p f χ A₀ (PBJoint.built_setting_to_model_place le3 hB)

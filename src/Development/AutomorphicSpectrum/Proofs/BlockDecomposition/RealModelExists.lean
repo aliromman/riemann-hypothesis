@@ -1129,7 +1129,7 @@ end GlobalTheory.CompanionTheory.GLK.Pair
 
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open Matrix Finset MeasureTheory
 open scoped ContDiff ComplexConjugate InnerProductSpace
@@ -1260,7 +1260,15 @@ theorem DR_lie (n : ℕ) : (∀ X Y : Mat n, DR (X + Y) = DR X + DR Y) ∧
 end GlobalTheory.CompanionTheory.ModelS.LieAct
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RealModelExists
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RealModelExists
+
+noncomputable section
+
+open Matrix Finset MeasureTheory
+open scoped ContDiff ComplexConjugate InnerProductSpace
+open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD
 open PositivityTheory.RgTw (Mat)
 open GlobalTheory.CompanionTheory.GLK (e1 e2 f1)
 
@@ -1534,24 +1542,24 @@ theorem modelEx_main : ModelEx := by
     have := (evaluation_raising_lowering lev F v.1 hFe hF1 (hWE _ v.2) a b hl).1
     have h0 := (hder a b hl).1
     show (e1 DR a b v.1).1 1 = 0
-    rw [this, h0, if_neg hne, zero_mul]
+    rw [this, h0, ite_eq_right hne, zero_mul]
   · intro a v
     have := (evaluation_raising_lowering lev F v.1 hFe hF1 (hWE _ v.2) a a le_rfl).1
     have h0 := (hder a a le_rfl).1
     show (e1 DR a a v.1).1 1 = _ * v.1.1 1
-    rw [this, h0, if_pos rfl]
+    rw [this, h0, ite_eq_left rfl]
   · intro a b v hl hne
     have := (evaluation_raising_lowering lev F v.1 hFe hF1 (hWE _ v.2) a b hl).2
     have h0 := (hder a b hl).2
     show (-(e2 DR b a v.1)).1 1 = 0
     simp only [e2, neg_neg, LinearMap.neg_apply]
-    rw [this, h0, if_neg hne, zero_mul]
+    rw [this, h0, ite_eq_right hne, zero_mul]
   · intro a v
     have := (evaluation_raising_lowering lev F v.1 hFe hF1 (hWE _ v.2) a a le_rfl).2
     have h0 := (hder a a le_rfl).2
     show (-(e2 DR a a v.1)).1 1 = _ * v.1.1 1
     simp only [e2, neg_neg, LinearMap.neg_apply]
-    rw [this, h0, if_pos rfl]
+    rw [this, h0, ite_eq_left rfl]
   · intro S fdS stS ev0 w hw
     haveI := fdS
     have hS := _root_.GlobalTheory.CompanionTheory.ModelS.Sep.main n (S.map (cyc F).subtype) inferInstance (by

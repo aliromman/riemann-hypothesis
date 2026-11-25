@@ -93,12 +93,13 @@ theorem relIndex_ne_zero_of_isOpen {H : Type} [Group H] [TopologicalSpace H] [Is
 end GlobalTheory.CompanionTheory.SplitConvHecke
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConstantTermConvolutionHecke
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConstantTermConvolutionHecke
 
 open NumberField IsDedekindDomain Matrix Polynomial Filter
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT PositivityTheory.Rg.BcN.F2
 open scoped Classical TensorProduct
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.ConvMat
 
@@ -201,7 +202,7 @@ theorem finite_out {G H : Type} [Group G] [Group H] [TopologicalSpace G] [IsTopo
   refine ⟨hfin.toFinset.image pick, fun z hz => ?_⟩
   refine Finset.mem_image.2 ⟨((θ z : G) : G ⧸ K'), hfin.mem_toFinset.2 ⟨_, hz, rfl⟩, ?_⟩
   have hx : ∃ z', θ z' ∈ C ∧ ((θ z' : G) : G ⧸ K') = ((θ z : G) : G ⧸ K') := ⟨z, hz, rfl⟩
-  simp only [pick, dif_pos hx]
+  simp only [pick, dite_eq_left hx]
   exact QuotientGroup.eq.2 (hθ _ _ (QuotientGroup.eq.1 hx.choose_spec.2))
 
 end Generic

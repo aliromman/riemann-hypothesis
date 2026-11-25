@@ -73,9 +73,10 @@ theorem latAtV_selfDual_inert : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
 end GlobalTheory.InertLatSelfDual
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertPlaceSchwartzBruhatVacuumConditionEqSmul
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertPlaceSchwartzBruhatVacuumConditionEqSmul
 open scoped TensorProduct Matrix GlobalTheory.VacAny
 
+noncomputable section
 namespace GlobalTheory.VacUniqInert
 
 theorem eq_smul_of_eigen {K κ : Type} [Field K] [Fintype κ] [Invertible (2 : K)] (ψ₀ : AddChar K ℂ) {ι : Type}
@@ -102,7 +103,7 @@ theorem eq_smul_of_eigen {K κ : Type} [Field K] [Fintype κ] [Invertible (2 : K
     field_simp
     refine mul_left_cancel₀ hA ?_
     linear_combination η X₀ * e1 - f X₀ * e2
-  · push_neg at hu
+  · push Not at hu
     obtain ⟨i, hi0, hne1⟩ := hu
     have key : ∀ g : (κ → K) → ℂ, schr ψ₀ (L i) g = c i • g → ∀ Y, ψ₀ (Y ⬝ᵥ (L i).2) * g Y = c i * g Y := by
       intro g hg Y

@@ -117,8 +117,9 @@ theorem dpb_abs (t θ α ι N C : Module.End ℝ V) (E : W →ₗ[ℝ] V) (P : V
 end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.DetPbC
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.DetPbC
 
+noncomputable section
 
 open Finset Matrix
 
@@ -162,7 +163,7 @@ theorem dpbP_E {ε : Fin n → Bool} (w : PCoord ε → ℂ) : dpbP ε (dpbE ε 
   funext ab
   obtain ⟨⟨a, b⟩, hab, hne⟩ := ab
   have h1 : ¬ (a < b ∧ ε b ≠ ε a) := fun h => absurd h.1 (not_lt.mpr hab.le)
-  simp only [dpbP, dpbE, LinearMap.coe_mk, AddHom.coe_mk, pmat, dif_pos (And.intro hab hne), dif_neg h1,
+  simp only [dpbP, dpbE, LinearMap.coe_mk, AddHom.coe_mk, pmat, dite_eq_left (And.intro hab hne), dite_eq_right h1,
     star_star]
   rw [Complex.real_smul]
   push_cast
@@ -181,18 +182,18 @@ theorem dpbE_P {ε : Fin n → Bool} (W : Matrix (Fin n) (Fin n) ℂ) :
   by_cases hε : ε a = ε b
   · have h1 : ¬ (b < a ∧ ε a ≠ ε b) := fun h => h.2 hε
     have h2 : ¬ (a < b ∧ ε b ≠ ε a) := fun h => h.2 hε.symm
-    rw [dif_neg h1, dif_neg h2, if_pos hε, if_pos hε.symm]
+    rw [dite_eq_right h1, dite_eq_right h2, ite_eq_left hε, ite_eq_left hε.symm]
     simp
-  · rw [if_neg hε, if_neg (Ne.symm hε)]
+  · rw [ite_eq_right hε, ite_eq_right (Ne.symm hε)]
     rcases lt_trichotomy a b with h | h | h
     · have h1 : ¬ (b < a ∧ ε a ≠ ε b) := fun h' => absurd h'.1 (not_lt.mpr h.le)
-      rw [dif_neg h1, dif_pos (And.intro h (Ne.symm hε))]
+      rw [dite_eq_right h1, dite_eq_left (And.intro h (Ne.symm hε))]
       simp only [Complex.real_smul]
       push_cast
       simp only [star_add, star_mul', star_star, star_div₀, star_one, star_ofNat, star_neg]
       ring
     · exact absurd (h ▸ rfl) hε
-    · rw [dif_pos (And.intro h hε)]
+    · rw [dite_eq_left (And.intro h hε)]
       simp only [star_neg, Complex.real_smul]
       push_cast
       ring
@@ -209,14 +210,14 @@ theorem dpb_shc_neg (u : ℝ) : shc (-u) = shc u := by
   unfold shc
   by_cases h : u = 0
   · simp [h]
-  · rw [if_neg (neg_ne_zero.mpr h), if_neg h, Real.sinh_neg, neg_div_neg_eq]
+  · rw [ite_eq_right (neg_ne_zero.mpr h), ite_eq_right h, Real.sinh_neg, neg_div_neg_eq]
 
 theorem dpb_shc_fac : (fun u : ℝ => u * ((shc u - 1) / u)) = fun u => shc u - 1 := by
   funext u
   unfold shc
   by_cases h : u = 0
   · simp [h]
-  · rw [if_neg h]
+  · rw [ite_eq_right h]
     field_simp
 
 theorem dpb_theta_ad {J Y : Matrix (Fin n) (Fin n) ℂ} (hJ : J * J = 1) (hY : J * Y * J = -Y)
@@ -312,6 +313,7 @@ theorem dpb_det {ε : Fin n → Bool} {U : Matrix (Fin n) (Fin n) ℂ} {x : Fin 
 
 end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.ShcAdC
 
@@ -349,8 +351,9 @@ theorem detPb {ε : Fin n → Bool} (y : PCoord ε → ℂ) :
 end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.DetPPos
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.DetPPos
 
+noncomputable section
 
 open Finset Matrix
 
@@ -429,10 +432,7 @@ theorem shc_pos (u : ℝ) : 0 < shc u := by
     · exact div_pos (Real.sinh_pos_iff.2 hu) hu
 
 theorem shc_neg (u : ℝ) : shc (-u) = shc u := by
-  unfold shc
-  by_cases h : u = 0
-  · simp [h]
-  · rw [if_neg (neg_ne_zero.2 h), if_neg h, Real.sinh_neg, neg_div_neg_eq]
+  apply _root_.ReciprocityTheory.ChartRestriction.DS.dpb_shc_neg <;> assumption
 
 section U
 variable {ε : Fin n → Bool} (y : PCoord ε → ℂ)
@@ -566,7 +566,7 @@ theorem pmat_smul' (c : ℝ) (v : PCoord ε → ℂ) : pmat (c • v) = c • pm
 
 theorem pmat_apply_coord (v : PCoord ε → ℂ) (ab : PCoord ε) : pmat v ab.1.1 ab.1.2 = v ab := by
   obtain ⟨⟨a, b⟩, h⟩ := ab
-  simp only [pmat, dif_pos h]
+  simp only [pmat, dite_eq_left h]
 
 theorem pmat_ne_zero (v : PCoord ε → ℂ) (hv : v ≠ 0) : pmat v ≠ 0 := by
   intro h
@@ -772,6 +772,7 @@ end P
 end PolarJacobianDeterminant
 
 end ReciprocityTheory.ChartRestriction.DS
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

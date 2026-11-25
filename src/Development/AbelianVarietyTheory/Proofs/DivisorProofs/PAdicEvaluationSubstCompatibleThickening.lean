@@ -125,8 +125,9 @@ theorem add_mul_le_of_pow_le : ∀ (p L m : ℕ), 2 ≤ p → ∃ M0 : ℕ, ∀ 
 end GlobalTheory.VSubArith
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MvPowerSeriesEvalTruncSubstEqSum
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MvPowerSeriesEvalTruncSubstEqSum
 
+noncomputable section
 
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 
@@ -143,11 +144,12 @@ theorem eval_trunc'_eq_sum {R σ : Type} [CommRing R] [Fintype σ] [DecidableEq 
     · exact absurd rfl hm
   rw [MvPolynomial.eval_eq, Finset.sum_subset hsub]
   · refine Finset.sum_congr rfl fun m hm => ?_
-    rw [coeff_trunc', if_pos (Finset.mem_Iic.mp hm)]
+    rw [coeff_trunc', ite_eq_left (Finset.mem_Iic.mp hm)]
   · intro m _ hm
     rw [MvPolynomial.notMem_support_iff.mp hm, zero_mul]
 
 end GlobalTheory.DivSub
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MvPowerSeriesEvalTruncSubstEqSumStatement

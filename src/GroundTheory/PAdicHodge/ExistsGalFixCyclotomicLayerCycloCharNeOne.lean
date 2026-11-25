@@ -18,7 +18,8 @@ import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.PAdicHodge.TateNormalizedTrace, GroundTheory.PAdicHodge.ExistsGalFixCyclotomicLayerCycloCharNeOne
 
-@[expose] public noncomputable section -- clump member: GroundTheory.PAdicHodge.TateNormalizedTrace
+section -- clump member: GroundTheory.PAdicHodge.TateNormalizedTrace
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -26,6 +27,7 @@ namespace GroundTheory.PAdicHodge
 
 open IntermediateField Module Set
 
+noncomputable section
 
 variable {p : ℕ} [Fact p.Prime] (K : IntermediateField ℚ_[p] (PadicAlgCl p))
   [FiniteDimensional ℚ_[p] K]
@@ -93,7 +95,7 @@ theorem exists_norm_tateTrace_le :
   · calc ‖tateTrace K n x‖ ≤ c * ‖x‖ := hc n hn x hx
       _ ≤ c * (1 + ∑ n ∈ Finset.range (stableIndex K), c' n) * ‖x‖ := by
         nlinarith [mul_nonneg (mul_nonneg hc0 hs) (norm_nonneg x)]
-  · push_neg at hn
+  · push Not at hn
     have hle : c' n ≤ ∑ n ∈ Finset.range (stableIndex K), c' n :=
       Finset.single_le_sum (fun n _ => hc'0 n) (Finset.mem_range.2 hn)
     rw [← tateTrace_tateTrace_of_le K hn.le x]
@@ -175,8 +177,10 @@ variable {K}
 
 end Gamma
 
+end
 
 end GroundTheory.PAdicHodge
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.PAdicHodge.ExistsGalFixCyclotomicLayerCycloCharNeOne

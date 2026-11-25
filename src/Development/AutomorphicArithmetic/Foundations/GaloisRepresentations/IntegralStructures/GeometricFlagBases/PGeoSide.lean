@@ -454,7 +454,7 @@ theorem UpperTheory.Gal.crystallineComparison.ptIdBC_of :
     intro x' e
     have hx : (x' ≫ h) ≫ f = β ≫ Spec.map (CommRingCat.ofHom σ) := by
       rw [Category.assoc, hp.w, ← Category.assoc, e]
-    simp only [Λ, dif_pos hx]
+    simp only [Λ, dite_eq_left hx]
     apply hp.hom_ext
     · exact hp.lift_fst _ _ _
     · rw [hp.lift_snd, e]
@@ -1438,8 +1438,9 @@ theorem heckeCl : HeckeCl := by
 end UpperTheory.Gal.crystallineComparison.Br
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.ExistsLin
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.ExistsLin
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC CrystallineSemistableComparison
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N UpperTheory.Gal.Int.Geo UpperTheory.Gal.Seam UpperTheory.Gal.crystallineComparison UpperTheory.Ru.crystallineComparison
@@ -1718,7 +1719,7 @@ theorem UpperTheory.Ru.crystallineComparison.geoLoc :
   obtain ⟨Tk, hTk⟩ : ∃ Tk : ∀ i : Fin N, ℕ → End ℚ_[l] (Fin (d i) → ℚ_[l]), ∀ (i : Fin N) (k : Fin (n + 1)),
       Tk i k = (β i).equivFun.toLinearMap ∘ₗ A k i ∘ₗ (β i).equivFun.symm.toLinearMap :=
     ⟨fun i k => if h : k ≤ n then (β i).equivFun.toLinearMap ∘ₗ A ⟨k, Nat.lt_succ_of_le h⟩ i ∘ₗ (β i).equivFun.symm.toLinearMap else 0,
-      fun i k => dif_pos (Nat.le_of_lt_succ k.2)⟩
+      fun i k => dite_eq_left (Nat.le_of_lt_succ k.2)⟩
   have hTv : ∀ (i : Fin N) (k : Fin (n + 1)) v, Tk i k ((β i).equivFun v) = (β i).equivFun (A k i v) := fun i k v => by
     rw [hTk]
     simp
@@ -1748,6 +1749,7 @@ theorem UpperTheory.Ru.crystallineComparison.geoLoc :
       rw [h2] at h1
       exact h1
     · exact Module.End.mem_eigenspace_iff.1 ((Submodule.mem_iInf _).1 (b₀ i).2 (γ ⟨j, hk⟩))
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.PGeoSide

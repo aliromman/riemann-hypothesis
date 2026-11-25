@@ -497,7 +497,8 @@ theorem _root_.GlobalTheory.T.nat_coprime_of_congr_mul_one_sub_mod_level : ∀ (
   first | exact @GlobalTheory.TorusCop.natCoprime_of_zmod_mul_one_sub
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.OrthProjHyperbolicNegativeSpanFixesBasisAndIdemp
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.OrthProjHyperbolicNegativeSpanFixesBasisAndIdemp
+noncomputable section
 
 namespace GlobalTheory.ScalW
 
@@ -548,11 +549,11 @@ theorem divN_zero' : divN X.B.I (D.mem u).A.T 0 = 0 := by
 
 theorem prj_eV (b : Fin D.R.rS) : prj X u (eV X b) = eV X b := by
   simp only [prj, hA_fV_eV, hA_eV_eV, hA_zV_eV, divN_zero', ite_smul, one_smul, zero_smul,
-    Finset.sum_ite_eq, Finset.mem_univ, if_true, Finset.sum_const_zero, add_zero, sub_zero]
+    Finset.sum_ite_eq, Finset.mem_univ, ite_true, Finset.sum_const_zero, add_zero, sub_zero]
 
 theorem prj_fV (b : Fin D.R.rS) : prj X u (fV X b) = fV X b := by
   simp only [prj, hA_fV_fV, hA_eV_fV, hA_zV_fV, divN_zero', ite_smul, one_smul, zero_smul,
-    Finset.sum_ite_eq', Finset.mem_univ, if_true, Finset.sum_const_zero, zero_add, sub_zero]
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true, Finset.sum_const_zero, zero_add, sub_zero]
 
 theorem prj_zV : prj X u (zV X u) = zV X u := by
   have hT : ((D.mem u).A.T : ℕ) ≠ 0 := (D.mem u).A.T_prime.ne_zero
@@ -580,6 +581,7 @@ theorem prj_fix_idem : ∀ (D : D7) (X : HidaSetting D) (u : D.what₂.Word),
   fun _ X u => ⟨fun a => ⟨prj_eV X u a, prj_fV X u a⟩, prj_zV X u, prj_prj X u⟩
 
 end GlobalTheory.ScalW
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.OrthProjHyperbolicNegativeSpanFixesBasisAndIdempStatement
@@ -1161,7 +1163,7 @@ theorem gram_frame_int : ∀ (I : AutInst) (β : GL (Fin I.n) (I.E ⊗[I.F] Form
         simp only [Matrix.mulVec, dotProduct, hc, this, Pi.single_apply, Matrix.one_apply]
       rw [e]
       simp only [dotProduct, Function.comp_apply, Pi.single_apply, mul_ite, mul_one, mul_zero,
-        Finset.sum_ite_eq', Finset.mem_univ, if_true]
+        Finset.sum_ite_eq', Finset.mem_univ, ite_true]
       exact Formalism.L2.SG.Pf.unitaryCongruence.sigA_mem I (hz' j)
     have := (hβ _).1 hx i
     rwa [Matrix.mulVec_mulVec, hB, Units.inv_mul, Matrix.one_mulVec] at this

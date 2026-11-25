@@ -41,7 +41,7 @@ theorem eigenvectors_sum_zero_eq_zero {ι κ A : Type} [DecidableEq ι] [AddComm
         exact absurd (hall b hb) hba
       rw [← h1]
       exact hsum
-    · push_neg at hall
+    · push Not at hall
       obtain ⟨b, hb, hba⟩ := hall
       have hfb : f b ≠ f a := fun h => hba (hf h)
       obtain ⟨k, hk⟩ : ∃ k, f b k ≠ f a k := Function.ne_iff.mp hfb
@@ -149,10 +149,11 @@ theorem mem_span_isAdW_of_kills {n : ℕ} {A : Type} [AddCommGroup A] [Module �
 end GlobalTheory.CompanionTheory.PresRho
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CasimirEqOfSingularWeightVector
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CasimirEqOfSingularWeightVector
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 open GroundTheory.Automorphic.HarishChandra
 
@@ -175,7 +176,7 @@ theorem cas_mul_sub_mem_Jp (y : U n) (τ : Fin n → ℂ)
       have hval : e (a, b) * e (b, a) * y -
           ((if a = b then τ a ^ 2 else 0) + (if a < b then τ a - τ b else 0)) • y =
           e (b, a) * (e (a, b) * y) + (e (a, a) * y - τ a • y) - (e (b, b) * y - τ b • y) := by
-        rw [if_neg h.ne, if_pos h, hcomm, zero_add, sub_smul]
+        rw [ite_eq_right h.ne, ite_eq_left h, hcomm, zero_add, sub_smul]
         simp only [add_mul, sub_mul, mul_assoc]
         abel
       rw [hval]
@@ -184,7 +185,7 @@ theorem cas_mul_sub_mem_Jp (y : U n) (τ : Fin n → ℂ)
       have hval : e (a, a) * e (a, a) * y -
           ((if a = a then τ a ^ 2 else 0) + (if a < a then τ a - τ a else 0)) • y =
           e (a, a) * (e (a, a) * y - τ a • y) + τ a • (e (a, a) * y - τ a • y) := by
-        simp only [if_true, lt_irrefl, if_false, add_zero, mul_sub, mul_smul_comm, smul_sub,
+        simp only [ite_true, lt_irrefl, ite_false, add_zero, mul_sub, mul_smul_comm, smul_sub,
           smul_smul, mul_assoc, pow_two]
         abel
       rw [hval]
@@ -192,13 +193,13 @@ theorem cas_mul_sub_mem_Jp (y : U n) (τ : Fin n → ℂ)
     · have hval : e (a, b) * e (b, a) * y -
           ((if a = b then τ a ^ 2 else 0) + (if a < b then τ a - τ b else 0)) • y =
           e (a, b) * (e (b, a) * y) := by
-        rw [if_neg h.ne', if_neg h.not_gt]
+        rw [ite_eq_right h.ne', ite_eq_right h.not_gt]
         simp [mul_assoc]
       rw [hval]
       exact mul_mem_Jp _ (hu _ h)
   have hsum : casC τ = ∑ a, ∑ b : Fin n,
       ((if a = b then τ a ^ 2 else 0) + (if a < b then τ a - τ b else 0)) := by
-    simp only [casC, Finset.sum_add_distrib, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    simp only [casC, Finset.sum_add_distrib, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   have hval : Formalism.REAL.Cas (fun a b : Fin n => e (a, b)) * y - casC τ • y =
       ∑ a, ∑ b : Fin n, (e (a, b) * e (b, a) * y -
         ((if a = b then τ a ^ 2 else 0) + (if a < b then τ a - τ b else 0)) • y) := by
@@ -251,6 +252,7 @@ theorem casC_rho_add_eq (μ : Fin n → ℤ) (x : U n) (hw : IsAdW μ x)
   rwa [smul_smul, inv_mul_cancel₀ hc, one_smul] at this
 
 end GlobalTheory.CompanionTheory.PresRho
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CasimirEqOfSingularWeightVectorStatement
@@ -324,7 +326,7 @@ theorem sum_wt_mul (m : Fin n × Fin n →₀ ℕ) (f : Fin n → ℤ) :
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun a _ => ?_
   simp only [rootAt, mul_sub, sub_mul, mul_ite, ite_mul, mul_one, mul_zero, zero_mul,
-    Finset.sum_sub_distrib, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    Finset.sum_sub_distrib, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
 theorem lt_of_step {f : Fin n → ℤ} (h : ∀ i j : Fin n, (j : ℕ) = i + 1 → f j < f i) :
     ∀ (d : ℕ) (i j : Fin n), (j : ℕ) = i + d + 1 → f j < f i := by
@@ -519,10 +521,11 @@ theorem mem_sqSpan_of_mem_lowSpan_of_mem_Jp : ∀ {n : ℕ} (x : U n), x ∈ low
 end GlobalTheory.CompanionTheory.PresRho.LowMeet
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NatOfSimpleLoweringNilpotent
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NatOfSimpleLoweringNilpotent
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 open GroundTheory.Automorphic.HarishChandra
 
@@ -537,7 +540,7 @@ theorem e_upper_mul_pow_succ_eq {i j : Fin n} (hij : (j : ℕ) = i + 1) (m : ℕ
   have hne : i ≠ j := fun h => by rw [h] at hij; omega
   have hxy : e (i, j) * e (j, i) = e (j, i) * e (i, j) + (e (i, i) - e (j, j)) := by
     have := e_mul_sub_mul (i, j) (j, i)
-    simp only [if_true] at this
+    simp only [ite_true] at this
     rw [← this]; abel
   have hh : ∀ p : ℕ, (e (i, i) - e (j, j)) * e (j, i) ^ p =
       e (j, i) ^ p * (e (i, i) - e (j, j)) - (2 * (p : ℂ)) • e (j, i) ^ p := by
@@ -618,6 +621,7 @@ theorem natural_of_primitive {n : ℕ} (μ : Fin n → ℤ) (x : U n) (i j : Fin
   exact_mod_cast this
 
 end GlobalTheory.CompanionTheory.PresRho
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SimpleLoweringPowMemIdeal
@@ -992,8 +996,9 @@ theorem pres_rho : ∀ {n : ℕ} {A Z : Type} [AddCommGroup A] [Module ℂ A] [A
 end GlobalTheory.CompanionTheory.PresRho
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SpinTensorHighestWeight
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SpinTensorHighestWeight
 
+noncomputable section
 
 open Matrix Finset
 open scoped InnerProductSpace ComplexOrder
@@ -1237,7 +1242,7 @@ theorem exists_spin_map : ∀ {n : ℕ} {ι : Type} [Fintype ι] [DecidableEq ι
     intro d hd
     rw [LinearMap.mem_ker] at hd ⊢
     let coef : List (Fin n × Fin n) → ℂ := fun l => if h : ∀ p ∈ l, p.2 < p.1 then d ⟨l, h⟩ else 0
-    have hcoef : ∀ t : Lw n, coef t.1 = d t := fun t => dif_pos t.2
+    have hcoef : ∀ t : Lw n, coef t.1 = d t := fun t => dite_eq_left t.2
     have key := _root_.GlobalTheory.CompanionTheory.PresRho.pres_rho (tw S) (tw E) hwS hwE q hq0
       (fun a => by
         simp only [tw, LinearMap.neg_apply, hSapp, hqd a]

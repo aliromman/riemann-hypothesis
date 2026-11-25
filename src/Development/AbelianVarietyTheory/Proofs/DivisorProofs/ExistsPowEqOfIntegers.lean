@@ -767,8 +767,9 @@ theorem _root_.GlobalTheory.T.natCast_smul_mem_augIdealSq_sup_map_mulP : ∀ (p 
   exact sub_mem (Ideal.mem_sup_right hmap) (Ideal.mem_sup_left hdiff)
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PDivGroupMulPUnitFibreEqLevelOne
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PDivGroupMulPUnitFibreEqLevelOne
 
+noncomputable section
 
 open TensorProduct Coalgebra Bialgebra GlobalTheory.PDiv
 
@@ -841,12 +842,6 @@ theorem _root_.GlobalTheory.PDivGroup.kerIdeal_mulP (n : ℕ) :
     _root_.GlobalTheory.PDiv.kerIdeal_comp_of_surjective _ (G.res_surjective n)]
 
 end PDivGroup
-
-section TensorQuot
-
-variable {R k M : Type} [CommRing R] [CommRing k] [Algebra R k] [AddCommGroup M] [Module R M]
-
-end TensorQuot
 
 namespace PDivGroup
 
@@ -957,6 +952,7 @@ theorem _root_.GlobalTheory.fibre_statement : ∀ (p : ℕ) (R k : Type) [CommRi
     exact hL ha
 
 end GlobalTheory
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDerivationsDualToFamilyOfNilpotentAug
@@ -1346,7 +1342,7 @@ theorem truncMono_eq_zero {p : ℕ} [Fact p.Prime] {k A : Type} [Field k] [CommR
       rw [coeff_C]
       by_cases hm : m = 0
       · subst hm; simp
-      · rw [if_neg (Ne.symm hm)]; exact hc m hm
+      · rw [ite_eq_right (Ne.symm hm)]; exact hc m hm
     rw [hFC, aeval_C] at hF
     have h0 : AddMonoidAlgebra.coeff F 0 = 0 := Subtype.ext (by simpa using hF)
     rw [hFC, h0, C_0]
@@ -1439,7 +1435,7 @@ theorem truncMono_linearIndependent : ∀ (p : ℕ) [Fact p.Prime] (k A : Type) 
     obtain ⟨a, _, ha⟩ := Finset.exists_ne_zero_of_sum_ne_zero hm
     have hm' : toF a = m := by
       by_contra h
-      exact ha (if_neg h)
+      exact ha (ite_eq_right h)
     subst hm'
     refine ⟨fun i => by simp [toF], ?_⟩
     apply Finset.sum_le_sum
@@ -1497,7 +1493,7 @@ theorem square_presentation_counital_comul_of_finrank (p : ℕ) [Fact p.Prime] (
     have hBtop : B ≠ ⊤ := by
       intro h
       have h1 := hE ⟨0, hd⟩ ⟨0, hd⟩
-      rw [hEB _ _ (h ▸ Algebra.mem_top), if_pos rfl] at h1
+      rw [hEB _ _ (h ▸ Algebra.mem_top), ite_eq_left rfl] at h1
       exact zero_ne_one h1
     have hlt : Module.finrank k B < n := by
       rw [← hn]

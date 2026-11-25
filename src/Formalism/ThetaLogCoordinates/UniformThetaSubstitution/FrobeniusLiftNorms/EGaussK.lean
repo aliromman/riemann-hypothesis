@@ -19,13 +19,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.EGauss, Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.EKernel, Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.EGaussK
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.EGauss
 
+noncomputable section
 
 open scoped BigOperators
 open Finset
-
-@[expose] public noncomputable section -- clump member: Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.EGauss
 
 namespace Formalism.InvariantFactorPaths.G7
 
@@ -180,7 +179,7 @@ theorem struct (TT : Finset (ZMod (2 * ν))) (colN : ZMod (2 * ν) → ℕ)
     intro s
     unfold alG
     by_cases hs : s ∈ TT
-    · rw [if_pos hs, Finset.card_filter]
+    · rw [ite_eq_left hs, Finset.card_filter]
       refine Finset.sum_congr rfl fun c _ => ?_
       simp only [top, hs, true_and]
     · simp [top, hs]
@@ -267,18 +266,19 @@ theorem struct (TT : Finset (ZMod (2 * ν))) (colN : ZMod (2 * ν) → ℕ)
 
 end Struct
 
-section Reduce
-
-end Reduce
-
 end EGauss
 
 open EGauss
 
 end Formalism.InvariantFactorPaths.G7
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.EKernel
+
+
+open scoped BigOperators
+open Finset
 
 namespace Formalism.InvariantFactorPaths.G7
 
@@ -362,7 +362,12 @@ open DeterminantJetScaling
 end Formalism.InvariantFactorPaths.G7
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.EGaussK
+@[expose] public section -- clump member: Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.EGaussK
+
+noncomputable section
+
+open scoped BigOperators
+open Finset
 
 namespace Formalism.InvariantFactorPaths.G7
 
@@ -444,7 +449,7 @@ theorem reduce (K₁ : Type) [NormedField K₁] [IsUltrametricDist K₁] [CharZe
     have h : alN e x.1 = 0 := by
       rw [hal]
       unfold alG
-      rw [if_neg hx]
+      rw [ite_eq_right hx]
     unfold alN at h
     exact (Finset.sum_eq_zero_iff.1 h) x.2 (Finset.mem_univ _)
   · intro n

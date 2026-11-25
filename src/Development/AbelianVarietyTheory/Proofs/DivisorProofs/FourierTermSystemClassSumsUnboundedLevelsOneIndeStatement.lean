@@ -364,8 +364,9 @@ theorem _root_.GlobalTheory.GSep.div_lam_and_lam_mem_HH : ∀ (I : Type) (X₁ :
   exact (_root_.GlobalTheory.GSep.mem_HH_iff_yy_zero I 𝔗.X₂ z₂ 𝔗.act₂ x₂ hx₂ V' ev₂ X (fun k => io (t k)) δ (𝔪₂ ev₂ hext) (𝔗.lam a)).2 hyy
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsClassSumFunctionsThetaMembers
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsClassSumFunctionsThetaMembers
 
+noncomputable section
 namespace GlobalTheory.GSep.ClassSumFun
 
 section SumILemmas
@@ -601,7 +602,7 @@ theorem exists_classSum_fun : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z�
     have key := sumI_comp hinj (fun mu hmu => ?_) hsum
     · simp only [hfam, hin, ite_true] at key
       exact key
-    · rw [hfam, if_neg]
+    · rw [hfam, ite_eq_right]
       intro hd
       apply hmu
       have h1 := (hcong _ _ 0 (hsub _ _ _ _ (hA mu) hκ)).1 ((hint _).1 hd)
@@ -613,6 +614,7 @@ theorem exists_classSum_fun : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z�
         _ = mu := by abel
 
 end GlobalTheory.GSep.ClassSumFun
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDeeperPointIntegralClosureStalk
@@ -1130,8 +1132,9 @@ theorem exists_gMem_injective : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (
 end GlobalTheory.GSep
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FourierTermSystemClassSumsUnboundedLevelsOneInde
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FourierTermSystemClassSumsUnboundedLevelsOneInde
 
+noncomputable section
 namespace GlobalTheory.GSep.DeepSums
 
 theorem congMod_of_nsmul {X : Type} [AddCommGroup X] [Module.Free ℤ X] {L d : ℕ} (hd : 0 < d) {x y : X}
@@ -1300,7 +1303,7 @@ theorem classSums_deeper : ∀ (O : Type) [CommRing O] (bar : O → O) (q : ℕ)
       rw [hkk₀]
       rfl
     · have := congrFun (hKlin y c (fun _ => x)) 0
-      simp only [kk, hy, dif_neg, not_false_eq_true, one_apply]
+      simp only [kk, hy, dite_eq_right, not_false_eq_true, one_apply]
       exact this
   choose aκ haκ using (hyy y₀).2.1
   have hper : ∀ κ κ' c, (∀ v, CongMod L₂ (κ v) (κ' v)) → Fv (aκ κ) c = Fv (aκ κ') c := by
@@ -1457,6 +1460,7 @@ theorem classSums_deeper : ∀ (O : Type) [CommRing O] (bar : O → O) (q : ℕ)
       rw [hf₂per _ _ _ ((hint₂ y₀ _).2 (yy_sub_zero (M₂ y₀) (hga _ _ (haκ κ)) (haκ _) ⟨0, by rw [smul_zero, add_zero]⟩))]
 
 end GlobalTheory.GSep.DeepSums
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens

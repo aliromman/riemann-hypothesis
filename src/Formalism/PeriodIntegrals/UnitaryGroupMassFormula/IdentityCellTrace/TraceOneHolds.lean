@@ -7,8 +7,9 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdentityCellTrac
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdentityCellTrace.TraceOneHolds
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdentityCellTrace.TraceOneHolds
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdentityCellTrace.TraceOneHolds
 
+noncomputable section
 
 open NumberField Formalism.BasicNotions
 
@@ -35,7 +36,7 @@ theorem traceOne_holds (D : D7) : TraceOne D := by
       have hne : P ≠ ⊥ :=
         Ring.ne_bot_of_isMaximal_of_not_isField hP (NumberField.RingOfIntegers.not_isField D.host.E)
       have h := D.host.der.unramEF P hP.isPrime hne
-      push_neg at h
+      push Not at h
       obtain ⟨x, hx⟩ := h
       refine ⟨x, D.host.conj • x, ?_, ?_⟩
       · rw [← hc]

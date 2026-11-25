@@ -47,7 +47,6 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGLCharpolyEq
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.CompanionEll
 
@@ -74,12 +73,10 @@ end GlobalTheory.CompanionEll
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGLCharpolyEqStatement
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryConjIffExistsCentralizerNorm
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.UnitaryConj
 
@@ -130,7 +127,6 @@ end GlobalTheory.UnitaryConj
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryConjIffExistsCentralizerNormStatement
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 end -- clump:auto
 
@@ -139,9 +135,9 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LandherrStandardDefiniteHermitianCmField
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LandherrStandardDefiniteHermitianCmField
 
+noncomputable section
 
 namespace GlobalTheory.LandherrStd
 
@@ -345,15 +341,15 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E →
 
 end GlobalTheory.LandherrStd
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LandherrStandardDefiniteHermitianCmFieldStatement
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SesquilinearDetOrdSignOnKernelConjGL
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SesquilinearDetOrdSignOnKernelConjGL
 
+noncomputable section
 namespace GlobalTheory.UnitaryClasses.SgnConj
 
 variable {K : Type} [Field K]
@@ -493,9 +489,9 @@ theorem sgnOn_conj : ∀ (K : Type) [Field K] [Valued K (WithZero (Multiplicativ
 
 end GlobalTheory.UnitaryClasses.SgnConj
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SesquilinearDetOrdSignOnKernelConjGLStatement
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 end -- clump:auto
 
@@ -514,7 +510,6 @@ theorem _root_.GlobalTheory.T.isConjSelfReciprocal_of_dvd_elliptic_polynomial : 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjTransposeMulPosDef
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.UnitaryClasses
 
@@ -533,9 +528,9 @@ theorem posDef_cT_inv_mul_inv (E : Type) [Field E] [NumberField E] [IsCMField E]
 end GlobalTheory.UnitaryClasses
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNormSolutionFields
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNormSolutionFields
 
+noncomputable section
 namespace GlobalTheory.NormAssemble
 
 open GlobalTheory.IndefiniteRowSideFullHecke.SelfReciprocalLocalField
@@ -660,10 +655,11 @@ theorem exists_norm_of_factors : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
 
 end GlobalTheory.NormAssemble
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GlobalNormOfLocalNorms
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GlobalNormOfLocalNorms
 
+noncomputable section
 
 namespace GlobalTheory.HasseFld
 
@@ -735,9 +731,10 @@ theorem hasse_norm : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r :
 
 end GlobalTheory.HasseFld
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InvolutionFixesPolynomialImage
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InvolutionFixesPolynomialImage
+noncomputable section
 
 namespace GlobalTheory.NormHasseFixed
 
@@ -815,16 +812,16 @@ theorem invol_mk_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (n 
 
 end GlobalTheory.NormHasseFixed
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.IntegralCoefficientBaseChange.UnitaryBaseChangeCharacters.UnitaryBaseChangeLinks.InvolutionFixesPolynomialImage
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 theorem _root_.GlobalTheory.T.involution_fixes_polynomial_image : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ) (γ : GL (Fin n) E), γ ∈ UE E n → γ.val.charpoly ∈ Ell E n → ∀ m : E[X], cT (IsCMField.complexConj E).toRingEquiv.toRingHom (aeval γ.val m) = aeval γ.val m → ∀ (r : ℕ) (Q : GlobalTheory.IndefiniteRowSideFullHecke.SelfReciprocalLocalField.SelfRecip E r), Q.1 ∣ γ.val.charpoly → GlobalTheory.IndefiniteRowSideFullHecke.SelfReciprocalLocalField.invol Q (AdjoinRoot.mk Q.1 m : GlobalTheory.IndefiniteRowSideFullHecke.SelfReciprocalLocalField.Fld Q) = (AdjoinRoot.mk Q.1 m : GlobalTheory.IndefiniteRowSideFullHecke.SelfReciprocalLocalField.Fld Q) := by
   first | exact @GlobalTheory.NormHasseFixed.invol_mk_eq
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalNormAtSplitPlace
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalNormAtSplitPlace
 
+noncomputable section
 
 namespace GlobalTheory.LocalNormSplit
 
@@ -995,10 +992,11 @@ theorem exists_norm_of_split : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
 
 end GlobalTheory.LocalNormSplit
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TotallyPositiveRealPlaces
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TotallyPositiveRealPlaces
 
+noncomputable section
 
 namespace GlobalTheory.RealPlaceNorms
 
@@ -1128,9 +1126,9 @@ theorem exists_norm_at_infinite : ∀ (E : Type) [Field E] [NumberField E] [IsCM
 
 end GlobalTheory.RealPlaceNorms
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.IntegralCoefficientBaseChange.UnitaryBaseChangeCharacters.UnitaryBaseChangeLinks.NonsplitPlaceNormCentraliser
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.NormHasseCent
 
@@ -1179,7 +1177,6 @@ end -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT GlobalTheory.UnitaryClasses
 open scoped Classical TensorProduct
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 end -- clump:auto
 
 -- clump: shared namespace opens
@@ -1187,9 +1184,9 @@ end -- clump:auto
 open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT
 open scoped Classical TensorProduct
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.IntegralCoefficientBaseChange.UnitaryBaseChangeCharacters.UnitaryBaseChangeLinks.UnitaryConjugacySignProduct
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.IntegralCoefficientBaseChange.UnitaryBaseChangeCharacters.UnitaryBaseChangeLinks.UnitaryConjugacySignProduct
 
+noncomputable section
 
 namespace GlobalTheory.UnitaryClasses
 
@@ -1202,7 +1199,7 @@ theorem part1 (hU : Unr E) {n : ℕ} {S : Set (Pl E)} (hS : IsSection S) {P : E[
   have hγ' : h⁻¹ * γ.1 * h ∈ UE E n := hh ▸ γ'.2
   obtain ⟨c, hc1, hc2⟩ := _root_.GlobalTheory.NormHasseCent.main E hU n γ.1 h γ.2 (h1 ▸ hP) hγ' (fun w hw => by
     obtain ⟨g, hg⟩ := hloc w (mem_S hS hw)
-    have hUL : UL n w = UJ (cj w) 1 := by unfold UL; rw [if_neg hw]
+    have hUL : UL n w = UJ (cj w) 1 := by unfold UL; rw [ite_eq_right hw]
     refine (_root_.GlobalTheory.UnitaryConj.main _ (cj w) n _ _).1 ⟨g.1, hUL ▸ g.2, ?_⟩
     have := congrArg Subtype.val hg
     simp only [Subgroup.coe_mul, Subgroup.coe_inv, locPt_val hU] at this
@@ -1217,8 +1214,8 @@ theorem part2 (hU : Unr E) {n : ℕ} {S : Set (Pl E)} (hS : IsSection S) (γ : U
   apply finprod_mem_congr rfl
   intro w _
   by_cases hw : IsSplitAt w
-  · rw [if_pos hw]; unfold kapSign; rw [if_pos hw]
-  · rw [if_neg hw, kapSign_eq w hw, locPt_val hU]
+  · rw [ite_eq_left hw]; unfold kapSign; rw [ite_eq_left hw]
+  · rw [ite_eq_right hw, kapSign_eq w hw, locPt_val hU]
     unfold sgnOn
     have hA := aeval_map_mat w γ.1.val P₁
     have := _root_.GlobalTheory.UnitaryClasses.BaseChangeSign.main E hU w hw n 1 (aeval γ.1.val P₁)
@@ -1240,10 +1237,10 @@ theorem part3 (hU : Unr E) {n : ℕ} {S : Set (Pl E)} (hS : IsSection S) {P : E[
   choose k hk using hk
   have hinvol : ∀ w : Pl E, ∀ x, cj w (cj w x) = x := fun w => (GlobalTheory.ConjAtPlace.main E hU w).2.1
   have hval : ∀ w : Pl E, ∀ x, Valued.v (cj w x) = Valued.v x := fun w => (GlobalTheory.ConjAtPlace.main E hU w).2.2.1
-  have hUL : ∀ w : Pl E, ¬ IsSplitAt w → UL n w = UJ (cj w) 1 := fun w hw => by unfold UL; rw [if_neg hw]
+  have hUL : ∀ w : Pl E, ¬ IsSplitAt w → UL n w = UJ (cj w) 1 := fun w hw => by unfold UL; rw [ite_eq_right hw]
   have hyU : ∀ w : Pl E, ¬ IsSplitAt w → cT (cj w) (y w).1.val * 1 * (y w).1.val = 1 := fun w hw => by
     have h3 : ∀ z : GLw n w, z ∈ UL n w → cT (cj w) z.val * 1 * z.val = 1 := by
-      intro z hz; unfold UL at hz; rw [if_neg hw] at hz; exact hz
+      intro z hz; unfold UL at hz; rw [ite_eq_right hw] at hz; exact hz
     exact h3 _ (y w).2
   obtain ⟨H', hH'h, hH'i, hH'p, hH'l⟩ := _root_.GlobalTheory.UnitaryClasses.ExistForm.main E hU S hS n γ₀ (hγ₀ ▸ hP)
     (fun w => cT (cj w) ((k w)⁻¹).val * ((k w)⁻¹).val)
@@ -1256,8 +1253,8 @@ theorem part3 (hU : Unr E) {n : ℕ} {S : Set (Pl E)} (hS : IsSection S) {P : E[
       apply finprod_mem_congr rfl
       intro w _
       by_cases hw : IsSplitAt w
-      · rw [if_pos hw]; unfold kapSign; rw [if_pos hw]
-      · rw [if_neg hw, kapSign_eq w hw, hk w, _root_.GlobalTheory.UnitaryClasses.SgnConj.sgnOn_conj _ (cj w) (hval w)]
+      · rw [ite_eq_left hw]; unfold kapSign; rw [ite_eq_left hw]
+      · rw [ite_eq_right hw, kapSign_eq w hw, hk w, _root_.GlobalTheory.UnitaryClasses.SgnConj.sgnOn_conj _ (cj w) (hval w)]
         rfl)
   obtain ⟨h, hh⟩ := _root_.GlobalTheory.LandherrStd.main E hU n H' hH'h hH'p (fun w hw => by
     obtain ⟨c, -, hc⟩ := hH'l w hw
@@ -1277,7 +1274,7 @@ theorem part3 (hU : Unr E) {n : ℕ} {S : Set (Pl E)} (hS : IsSection S) {P : E[
         rw [Matrix.coe_units_inv]
         exact Matrix.charpoly_units_conj h γ₀.val
       obtain ⟨h', hh'⟩ := _root_.GlobalTheory.SepConj.conj_of_charpoly_eq_of_separable _ n (y w).1 _ hb.symm ((hy w) ▸ hsep w)
-      have hmem : h' ∈ UL n w := by unfold UL; rw [if_pos hw]; trivial
+      have hmem : h' ∈ UL n w := by unfold UL; rw [ite_eq_left hw]; trivial
       exact ⟨⟨h', hmem⟩, Subtype.ext (by simpa using hh')⟩
     · obtain ⟨c, hc1, hc2⟩ := hH'l w hw
       have hg : (k w)⁻¹ * c * (GeneralLinearGroup.map (algebraMap E (w.adicCompletion E)) h)⁻¹ ∈ UL n w := by
@@ -1302,9 +1299,9 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E →
 
 end GlobalTheory.UnitaryClasses
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.IntegralCoefficientBaseChange.UnitaryBaseChangeCharacters.UnitaryBaseChangeLinks.UnitaryConjugacySignProductStatement
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsConjGLOfCharpolyEqOfSeparableStatement", "h": "module\n\npublic import Mathlib.FieldTheory.Separable\npublic import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsConjGLOfCharpolyEqOfSeparable\nimport Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsContinuousPadic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.CTUnitsLeft\n\n"}
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGLCharpolyEq", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.SimpleTwistedTraceFormulaStable\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.CTUnitsLeft\n\n"}

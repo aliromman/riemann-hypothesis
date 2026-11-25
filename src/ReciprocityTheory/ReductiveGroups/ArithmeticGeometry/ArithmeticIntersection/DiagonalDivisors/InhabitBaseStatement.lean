@@ -11,8 +11,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.I
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.DiagonalDivisors.ModelsSt, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.DiagonalDivisors.InhabitBaseStatement
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.DiagonalDivisors.ModelsSt
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.DiagonalDivisors.ModelsSt
 
+noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.G.AI.T
 
@@ -51,19 +52,13 @@ def diagSec (a : Fin 2 → Φ) : Φ := a 1 - a 0
 
 end Defs
 
-section Statements
-
-variable {o : Type*} {Ω : Type*} [CommRing o] [Field Ω] [Algebra o Ω] {ι κ : Type*} [Fintype κ]
-  {E : Type*} [AddCommGroup E] [Module Ω E] {x : ι → Ω}
-  {Φ : Type*} [Field Φ] [Algebra Ω Φ] [Algebra o Φ] [IsScalarTower o Ω Φ]
-
-end Statements
-
 end ReciprocityTheory.ChartRestriction.G.AI.T
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.DiagonalDivisors.InhabitBaseStatement
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.DiagonalDivisors.InhabitBaseStatement
 
+noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.G.AI.T
 
@@ -151,17 +146,6 @@ def toZCycle {α : Type*} (z : α →₀ ℕ) : α →₀ ℤ :=
   Finsupp.mapRange (fun n : ℕ => (n : ℤ)) (by simp) z
 
 end Models
-
-section Degrees
-
-end Degrees
-
-section Diagonal
-
-variable {ι ν κ : Type u} [Fintype ι] [Fintype ν] [Fintype κ]
-
-
-end Diagonal
 
 end ReciprocityTheory.ChartRestriction.G.AI.T
 

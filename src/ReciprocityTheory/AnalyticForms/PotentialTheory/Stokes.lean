@@ -20,7 +20,8 @@ import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PartsAlg
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.AnalyticForms.PotentialTheory.StokesD, ReciprocityTheory.AnalyticForms.PotentialTheory.Stokes
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.AnalyticForms.PotentialTheory.StokesD
+section -- clump member: ReciprocityTheory.AnalyticForms.PotentialTheory.StokesD
+@[expose] public section
 
 namespace ReciprocityTheory.AnForm.M
 
@@ -28,6 +29,7 @@ open MeasureTheory FinHolAtlas Filter Topology Set
 open ReciprocityTheory.AnForm.A
 open scoped ContDiff
 
+noncomputable section
 
 section Leibniz
 
@@ -399,12 +401,14 @@ theorem st_massIndep_of (hP : PartsStatement) : MassIndepStatement := by
           · simp [hi, Finset.mem_insert]
         have hstep := st_mass_step hP A (fun i => if i ∈ s then Φ i + LocPot.ofFun (u i) else Φ i)
           hpot a (u a) (hu a)
-        simp only [ha, if_false] at hstep
+        simp only [ha, ite_false] at hstep
         rw [hupd, hstep, ih]
     simpa using key Finset.univ
 
+end
 
 end ReciprocityTheory.AnForm.M
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.AnalyticForms.PotentialTheory.Stokes

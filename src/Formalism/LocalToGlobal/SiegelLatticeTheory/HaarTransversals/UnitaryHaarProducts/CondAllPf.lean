@@ -1,5 +1,6 @@
 module
 
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.PsiCondAll
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.CondStd
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.DiffProd
 public import Mathlib.Algebra.AffineMonoid.Basic
@@ -22,8 +23,9 @@ theorem condAll_of_locTrDual (hL : Formalism.L2.SG.Pf.CondStd.LocTrDual) : Forma
 end Formalism.L2.SG.Pf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.LocTrDual
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.LocTrDual
 
+noncomputable section
 
 open NumberField IsDedekindDomain IsDedekindDomain.HeightOneSpectrum Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open scoped nonZeroDivisors WithZero
@@ -155,25 +157,7 @@ theorem mul_diff_int (y : F)
     (hy : ∀ z : 𝓞 F, ∃ n : ℤ, Algebra.trace ℚ F (y * algebraMap (𝓞 F) F z) = n)
     (d : 𝓞 F) (hd : d ∈ differentIdeal ℤ (𝓞 F)) :
     ∃ c : 𝓞 F, algebraMap (𝓞 F) F c = y * algebraMap (𝓞 F) F d := by
-  have hJ : FractionalIdeal.dual ℤ ℚ (1 : FractionalIdeal (𝓞 F)⁰ F) ≠ 0 :=
-    FractionalIdeal.dual_ne_zero ℤ ℚ one_ne_zero
-
-  have hyJ : y ∈ FractionalIdeal.dual ℤ ℚ (1 : FractionalIdeal (𝓞 F)⁰ F) := by
-    rw [FractionalIdeal.mem_dual (A := ℤ) (K := ℚ) (one_ne_zero : (1 : FractionalIdeal (𝓞 F)⁰ F) ≠ 0)]
-    intro a ha
-    rw [FractionalIdeal.mem_one_iff] at ha
-    obtain ⟨z, rfl⟩ := ha
-    obtain ⟨n, hn⟩ := hy z
-    rw [Algebra.traceForm_apply, hn]
-    exact RingHom.mem_range.mpr ⟨n, by simp⟩
-  have hd' : algebraMap (𝓞 F) F d ∈
-      ((differentIdeal ℤ (𝓞 F) : Ideal (𝓞 F)) : FractionalIdeal (𝓞 F)⁰ F) :=
-    (FractionalIdeal.mem_coeIdeal _).mpr ⟨d, hd, rfl⟩
-  rw [diff_coe_lemma] at hd'
-  have hm := FractionalIdeal.mul_mem_mul hyJ hd'
-  rw [mul_inv_cancel₀ hJ, FractionalIdeal.mem_one_iff] at hm
-  obtain ⟨c, hc⟩ := hm
-  exact ⟨c, hc⟩
+  apply _root_.PsiCondAllPf.mul_diff_int <;> assumption
 
 theorem fwd (x : Fv F v)
     (hP : ∀ y ∈ v.adicCompletionIntegers F, ∀ q : F,
@@ -269,6 +253,7 @@ theorem local_trace_duality : Formalism.L2.SG.Pf.CondStd.LocTrDual := by
   exact ⟨fwd v x, fun h y hy q hq => bwd v x h y hy q hq⟩
 
 end Formalism.L2.SG.Pf.LocTr
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.CondAllPf

@@ -495,8 +495,9 @@ theorem dense_pow {L : Type*} [Field L] [NumberField L] [_root_.NumberField.IsTo
 end PositivityTheory.KB.SpectralGap.WordTransvectionCongruences
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.ArithmeticGapBounds.IntegralTransvectionMemSlIntegersConjugateZero
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.ArithmeticGapBounds.IntegralTransvectionMemSlIntegersConjugateZero
 
+noncomputable section
 
 open NumberField Matrix
 
@@ -555,7 +556,7 @@ theorem mem_parahoricTimesPrincipalCongruence_iff (π : 𝓞 L) (hπ : (π : L) 
   · obtain ⟨rfl, rfl⟩ := hab
     simp [h, hi', hj]
     field_simp
-  · simp only [hab, if_false, add_zero]
+  · simp only [hab, ite_false, add_zero]
     split_ifs <;> simp_all
 
 theorem comm_mem {G : Subgroup (SpecialLinearGroup (Fin N) L)} {i j k : Fin N} (hik : i ≠ k) (hkj : k ≠ j)
@@ -697,6 +698,7 @@ theorem dens_holds : Dens := by
   rw [dense_iff_closure_eq, ← Subgroup.topologicalClosure_coe, htop, Subgroup.coe_top]
 
 end PositivityTheory.KB.SpectralGap
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.ArithmeticGapBounds.PAEConst

@@ -29,8 +29,10 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.ThetaLifts.Reductions.LocalPoly, Development.WeilBound.ThetaLifts.Reductions.TensJoin, Development.WeilBound.ThetaLifts.Reductions.JoinTriOf
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.Reductions.LocalPoly
+section -- clump member: Development.WeilBound.ThetaLifts.Reductions.LocalPoly
+@[expose] public section
 
+noncomputable section
 
 open ReciprocityTheory.ThetaSummability.Real ReciprocityTheory.ChartRestriction.G.ThK.Real FockH1Action MvPolynomial Matrix
 open scoped InnerProductSpace
@@ -82,7 +84,7 @@ theorem local_poly (act : Mat r s →ₗ[ℂ] Module.End ℂ M) (hL : IsLie act)
     if h : sameBlock a b then (ρ a b).restrict (kSt_cycK ρ f a b h) else 0
   have hρV : ∀ a b, sameBlock a b → ∀ v : V, ((ρV a b v : V) : A) = ρ a b v := by
     intro a b h v
-    simp only [ρV, dif_pos h]
+    simp only [ρV, dite_eq_left h]
     rfl
   let ιV : V →ₗ[ℂ] M := ι ∘ₗ V.subtype
   have hιV : ∀ a b, sameBlock a b → ∀ v, ιV (ρV a b v) = act (Eab a b) (ιV v) := by
@@ -281,6 +283,8 @@ theorem two_data (D : RealData) (h : D.Hyp) :
 
 end PositivityTheory.ThKR.Join
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.Reductions.TensJoin

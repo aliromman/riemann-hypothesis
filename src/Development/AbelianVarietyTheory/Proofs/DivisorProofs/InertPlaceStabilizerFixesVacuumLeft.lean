@@ -86,11 +86,13 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilRepresentationL
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBasisWithDualBasisInHermitianLatticeAwayPl, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPrimeToPlaceDenominatorUnramifiedTrace, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ImportsBisSide, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MatrixAdelicDecompositionAtFinitePlace, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SkewSelfDualLatticeLocalisedAtPlace, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TraceHermitianTensorIntegralOfCharTrivial, Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertPlaceTensorLatticeSelfDualSupportedAt, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzBruhatMatrixCoefficientCompactSupportFin, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LagrangianInvariantLinearFormLocalExistence, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLagrangianInvariantFormInertVacuum, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeisenbergInvariantFormCompLocalWeilOperator, Development.AbelianVarietyTheory.Proofs.DivisorProofs.InvOfHeisInv, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilVacuumNotMemAugmentationInertPlace, Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertPlaceLatticeStabilizerVacuumScalarEqOne, Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertPlaceStabilizerFixesVacuumLeft
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBasisWithDualBasisInHermitianLatticeAwayPl
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBasisWithDualBasisInHermitianLatticeAwayPl
+@[expose] public section
 
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open scoped TensorProduct Matrix GlobalTheory.VacAny
 
+noncomputable section
 namespace GlobalTheory.HermLocDualBasis
 variable (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (v : Pl (F := F))
 
@@ -184,9 +186,11 @@ theorem GlobalTheory.HermLocDualBasis.exists_locDualBasis : ∀ (F E : Type) [Fi
     rw [← e1]
     exact hc
   rw [form_smul_left, ← AlgHom.commutes σ, ← form_smul_right, ← hc', form_sum_right]
-  simp only [hdual, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+  simp only [hdual, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   exact (c k).2.map (σ.toRingHom.toIntAlgHom)
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPrimeToPlaceDenominatorUnramifiedTrace
@@ -263,8 +267,9 @@ section -- clump: shared namespace opens
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open scoped TensorProduct Matrix GlobalTheory.VacAny
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MatrixAdelicDecompositionAtFinitePlace
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MatrixAdelicDecompositionAtFinitePlace
 
+noncomputable section
 
 namespace GlobalTheory.LatPtDecomp
 
@@ -323,7 +328,7 @@ theorem core {n d : ℕ} (X : Spc F E n) (Y : Spc F E d) (hX : X.L.IsFullLattice
       simp only [Matrix.vecMulVec_apply, Pi.smul_apply, Pi.single_apply, Matrix.single_apply]
       by_cases h1 : a = i <;> by_cases h2 : b = j
       · subst h1 h2
-        simp only [if_true, and_self]
+        simp only [ite_true, and_self]
         rw [Algebra.smul_def (A := E) ((N * N' : ℤ) : F), map_intCast]
         simp only [zsmul_eq_mul, mul_one]; push_cast; ring
       all_goals simp [h1, h2, eq_comm (a := i), eq_comm (a := j)]
@@ -384,6 +389,7 @@ theorem decomp : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFie
 
 end GlobalTheory.LatPtDecomp
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SkewSelfDualLatticeLocalisedAtPlace
 
@@ -432,7 +438,7 @@ theorem GlobalTheory.SkewLocDual.exists_smul_mem_of_integral : ∀ (F E : Type) 
   choose! T hT using fun y (hy : y ∈ S) => hu y (hgen y hy)
   have ht : (∏ y ∈ S, T y) ∉ v.asIdeal := by
     rw [Ideal.IsPrime.prod_mem_iff]
-    push_neg
+    push Not
     exact fun y hy => (hT y hy).1
   have key : ∀ y ∈ Y.L,
       IsIntegral ℤ (algebraMap F E ((∏ y ∈ S, T y : 𝓞 F) : F) * form σ Y.J u y) := by
@@ -671,9 +677,11 @@ theorem latAtV_selfDual : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
 end GlobalTheory.InertDual
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzBruhatMatrixCoefficientCompactSupportFin
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzBruhatMatrixCoefficientCompactSupportFin
+@[expose] public section
 open MeasureTheory
 
+noncomputable section
 
 namespace GlobalTheory.SchrSuppFin
 
@@ -703,7 +711,7 @@ theorem exists_nhds_translate_eq {V : Type} [AddCommGroup V] [TopologicalSpace V
     rw [show x + (z - x) = z by abel] at e1
     rw [show x + (z + u - x) = z + u by abel] at e2
     rw [e1, e2]
-  · push_neg at hz
+  · push Not at hz
     have h1 : z ∉ tsupport f := fun h => by
       obtain ⟨x, hx, hzx⟩ := Set.mem_iUnion₂.mp (ht h)
       exact hz x hx hzx
@@ -795,6 +803,8 @@ theorem support_compact : ∀ {F : Type} [Field F] [NumberField F] (v : Pl (F :=
 
 end GlobalTheory.SchrSuppFin
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LagrangianInvariantLinearFormLocalExistence
@@ -1226,8 +1236,10 @@ theorem heisInv_comp : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
 end GlobalTheory.InertVacEquiv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InvOfHeisInv
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InvOfHeisInv
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.InertVacLag
 
 theorem inv_of_heisInv : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E)
@@ -1274,7 +1286,7 @@ theorem inv_of_heisInv : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
   obtain ⟨φ₀, hφ₀, hline⟩ := _root_.GlobalTheory.InertLagUniq.exists_test F E σ a' (a + a') G.V' G.W G.M' B.ψ v (hT.base.inert v w hin).2.2 m C hC
   by_cases hz : ∀ f ∈ SB (Fin a' × Fin (a + a') → Fv F v), l f = 0
   · rw [hz φ₁ hφ₁, hz φ hφ]
-  push_neg at hz
+  push Not at hz
   have hl0 : l φ₀ ≠ 0 := fun h => by
     obtain ⟨f, hf, hne⟩ := hz; exact hne (hline l hl h f hf)
   let c : UA σ G.V'.J → ℂ := fun g => l (Sop g φ₀) / l φ₀
@@ -1299,6 +1311,8 @@ theorem inv_of_heisInv : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
   rw [hlaw g hg φ hφ φ₁ hφ₁ hA, hc, one_mul]
 
 end GlobalTheory.InertVacLag
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilVacuumNotMemAugmentationInertPlace

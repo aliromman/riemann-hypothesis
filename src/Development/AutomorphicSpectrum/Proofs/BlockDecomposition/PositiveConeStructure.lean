@@ -73,7 +73,7 @@ import Mathlib.Topology.Algebra.Star.Unitary
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactGroupDisintegration, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactGroupDisintegrationStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureCongruenceInvariant, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureCongruenceInvariantStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureDensityFormula, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureLocallyFinite, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeMeasureLocallyFiniteStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CongruenceActionDeterminantStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothCholeskyFactor, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothCholeskyFactorStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositiveConeStructure
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open MeasureTheory Matrix Topology Filter
 open scoped ContDiff ENNReal ComplexOrder Pointwise
@@ -173,7 +173,6 @@ end -- clump:auto
 open PositivityTheory.RgTw (Mat G hb)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.ConeHaar
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem _root_.GlobalTheory.T.compact_group_disintegration : ∀ {Γ K X : Type} [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [T2Space Γ] [LocallyCompactSpace Γ] [SecondCountableTopology Γ] [MeasurableSpace Γ] [BorelSpace Γ] [Group K] [TopologicalSpace K] [IsTopologicalGroup K] [T2Space K] [CompactSpace K] [SecondCountableTopology K] [MeasurableSpace K] [BorelSpace K] (e : K →* Γ) (_ : Continuous e) [MeasurableSpace X] (ρ : Measure X) [SFinite ρ] (s : X → Γ) (_ : Measurable s) (_ : ρ ≠ 0) (_ : ∀ g : Γ, ∃ a : X → X, Measurable a ∧ Measure.map a ρ = ρ ∧ ∀ᵐ x ∂ρ, ∃ k, g * s x = s (a x) * e k) (_ : ∀ A : Set Γ, IsCompact A → ρ (s ⁻¹' (A * Set.range e)) < ⊤) (μ : Measure Γ) [μ.IsHaarMeasure], ∃ c : ℝ, 0 < c ∧ ∀ F : Γ → ℂ, Continuous F → HasCompactSupport F → (∀ y k, F (y * e k) = F y) → ∫ y, F y ∂μ = c * ∫ x, F (s x) ∂ρ := by
   first | exact @GlobalTheory.CompanionTheory.ConeHaar.leftInvariant_of_section
@@ -436,7 +435,6 @@ end -- clump:auto
 open PositivityTheory.RgTw (Mat G hb)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.ConeHaar
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem _root_.GlobalTheory.T.congruence_action_determinant : ∀ (n : ℕ) (g : Mat n), g.det ≠ 0 → ∃ T : (Fin n × Fin n → ℝ) →ₗ[ℝ] (Fin n × Fin n → ℝ), (∀ v, hOf (T v) = g * hOf v * gᴴ) ∧ LinearMap.det T = ‖g.det‖ ^ (2 * n) := by
   first | exact @GlobalTheory.CompanionTheory.ConeLin.cone_lin
@@ -650,11 +648,17 @@ end -- clump:auto
 open PositivityTheory.RgTw (Mat G hb)
 open PositivityTheory.RgBcC
 open GlobalTheory.CompanionTheory.ConeHaar
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositiveConeStructure
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositiveConeStructure
+
+noncomputable section
+
+open MeasureTheory Matrix Topology Filter
+open scoped ContDiff ENNReal ComplexOrder Pointwise
 
 namespace GlobalTheory.CompanionTheory.ConeHaar
 
@@ -788,7 +792,7 @@ def sec (σ₀ : Mat n → Mat n) (hσ : ∀ P : Mat n, P.PosDef → σ₀ P * (
 
 theorem sec_val (σ₀ : Mat n → Mat n) (hσ : ∀ P : Mat n, P.PosDef → σ₀ P * (σ₀ P)ᴴ = P)
     {v : Fin n × Fin n → ℝ} (h : v ∈ cone n) : (sec σ₀ hσ v).val = σ₀ (hOf v) := by
-  simp only [sec, dif_pos h]
+  simp only [sec, dite_eq_left h]
   rfl
 
 theorem measurable_sec (σ₀ : Mat n → Mat n) (hc : ContinuousOn σ₀ {P | P.PosDef})

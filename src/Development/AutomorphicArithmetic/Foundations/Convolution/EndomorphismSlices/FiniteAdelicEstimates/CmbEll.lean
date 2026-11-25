@@ -17,8 +17,9 @@ import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSli
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.CmbEllOf, Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.FiniteAdelicEstimates.CmbEll
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.CmbEllOf
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.CmbEllOf
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT GlobalTheory.LFun
@@ -77,7 +78,7 @@ theorem cmbEll_of (hT : CmbTest) (hS : SeenFam) (hSl : PositionTest) (hL : LefL)
   obtain ⟨hln, -, hsl⟩ := hSl E a b S Z L hZ
   have h3 := G3.g3 E hU a b S hSec l₁ l₂ _ htest (by
     obtain ⟨w, hw, hw'⟩ := hreg
-    exact ⟨w, (hZ w hw).1, by rw [fam, if_pos hw]; exact hw'⟩)
+    exact ⟨w, (hZ w hw).1, by rw [fam, ite_eq_left hw]; exact hw'⟩)
   have one : ∀ j ∈ C.s, ellSum2 μ₁ μ₂ (trM (C.t j).Φ A.tw) =
       A.blk.vol⁻¹ * c * 2 ^ ((a + b) * Fintype.card (InfinitePlace E)) * (C.t j).val (chi l₁) (chi l₂) *
         geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) := fun j hj => by
@@ -101,6 +102,7 @@ theorem cmbEll_of (hT : CmbTest) (hS : SeenFam) (hSl : PositionTest) (hL : LefL)
   ring
 
 end UpperTheory.Zero.ConvolutionTheory.EB
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.FiniteAdelicEstimates.CmbEll

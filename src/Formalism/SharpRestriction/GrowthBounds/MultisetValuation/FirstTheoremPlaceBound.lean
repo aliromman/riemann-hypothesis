@@ -26,8 +26,9 @@ import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.AllPlacesOfRest
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.EaApplyDScale, Formalism.SharpRestriction.GrowthBounds.MultisetValuation.EaDegreeMapDomain, Formalism.SharpRestriction.GrowthBounds.MultisetValuation.RationalLowerBounds, Formalism.SharpRestriction.GrowthBounds.MultisetValuation.NmNEqZero, Formalism.SharpRestriction.GrowthBounds.MultisetValuation.NmPinvOfPlace, Formalism.SharpRestriction.GrowthBounds.MultisetValuation.NmRestNormOfPlace, Formalism.SharpRestriction.GrowthBounds.MultisetValuation.ThRestGcVOf, Formalism.SharpRestriction.GrowthBounds.MultisetValuation.FirstTheoremPlaceBound
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.EaApplyDScale
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.EaApplyDScale
 
+noncomputable section
 
 namespace Formalism.MainNotions.FormalGroupSystem.Pf
 
@@ -118,9 +119,9 @@ theorem ea_Exp_eq (v : X.Pl) (j i : ℕ) (I : X.ColCh j)
   unfold Sys.colExp
   have hv : ((ea_e X v).symm s').val = s'.val := rfl
   by_cases hodd : s'.val % 2 = 0
-  · rw [if_pos hodd, if_neg (by unfold IsOddPos; rw [hv]; omega)]
+  · rw [ite_eq_left hodd, ite_eq_right (by unfold IsOddPos; rw [hv]; omega)]
     rfl
-  · rw [if_neg hodd, if_pos (by unfold IsOddPos; rw [hv]; omega)]
+  · rw [ite_eq_right hodd, ite_eq_left (by unfold IsOddPos; rw [hv]; omega)]
 
 theorem ea_brScale : ea_BrScale X := by
   intro v j i K' _ F I n
@@ -153,9 +154,9 @@ theorem ea_brScale : ea_BrScale X := by
       unfold Sys.colExp
       have hv : ((ea_e X v).symm s').val = s'.val := rfl
       by_cases hodd : s'.val % 2 = 0
-      · rw [if_pos hodd, if_neg (by unfold IsOddPos; rw [hv]; omega)]
+      · rw [ite_eq_left hodd, ite_eq_right (by unfold IsOddPos; rw [hv]; omega)]
         rfl
-      · rw [if_neg hodd, if_pos (by unfold IsOddPos; rw [hv]; omega)]
+      · rw [ite_eq_right hodd, ite_eq_left (by unfold IsOddPos; rw [hv]; omega)]
   · left
     push Not at h
     obtain ⟨s, c, hc, h0⟩ := h
@@ -168,9 +169,11 @@ theorem ea_brScale : ea_BrScale X := by
 
 end Formalism.MainNotions.FormalGroupSystem.Pf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.EaDegreeMapDomain
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.EaDegreeMapDomain
 
+noncomputable section
 
 namespace Formalism.MainNotions.FormalGroupSystem.Pf
 
@@ -236,8 +239,8 @@ theorem ea_resV_C (c : R) : resV f (MvPowerSeries.C c : MvPowerSeries ι R) = Mv
     · rintro rfl
       exact Finsupp.mapDomain_zero
   by_cases hn : n = 0
-  · rw [if_pos (h.2 hn), if_pos hn]
-  · rw [if_neg (mt h.1 hn), if_neg hn]
+  · rw [ite_eq_left (h.2 hn), ite_eq_left hn]
+  · rw [ite_eq_right (mt h.1 hn), ite_eq_right hn]
 
 def ea_resHom : MvPowerSeries ι R →+* MvPowerSeries κ R where
   toFun := resV f
@@ -316,8 +319,8 @@ theorem ea_res_sSA (K' : Type) [Field K'] (v : X.Pl) (j : ℕ) (s : Fin (X.G.P.n
     rw [hs]
     exact (Finsupp.mapDomain_injective (ea_eps_inj X v j)).eq_iff
   by_cases h : n = Finsupp.single (ea_e X v s - 2 * (l : ZMod _), (a, b)) ((p ^ 2) ^ l)
-  · rw [if_pos (hiff.2 h), if_pos h]
-  · rw [if_neg (mt hiff.1 h), if_neg h]
+  · rw [ite_eq_left (hiff.2 h), ite_eq_left h]
+  · rw [ite_eq_right (mt hiff.1 h), ite_eq_right h]
 
 theorem ea_res_hhA (K' : Type) [Field K'] (v : X.Pl) (j : ℕ) (u : Fin (X.G.P.n' v) → K') :
     resV (ea_eps X v j) (X.hhA K' j v u) = Formalism.InvariantFactorPaths.G7.hhS p fun s => u ((ea_e X v).symm s) := by
@@ -343,6 +346,7 @@ theorem ea_brClass : ea_BrClass X := by
     rw [ea_resHom_apply, ea_coeff_resV]
 
 end Formalism.MainNotions.FormalGroupSystem.Pf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.RationalLowerBounds
@@ -585,8 +589,9 @@ theorem nm_v_add (h : nm_Hyp R p) {x y : K} (hx : x ≠ 0) (hy : y ≠ 0) (hxy :
 end Formalism.MainNotions.FormalGroupSystem.Pf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.NmNEqZero
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.NmNEqZero
 
+noncomputable section
 
 namespace Formalism.MainNotions.FormalGroupSystem.Pf
 
@@ -671,7 +676,6 @@ theorem nm_extG {K : Type} [Field K] (N : AbsoluteValue K ℝ) (hna : ∀ x y, N
     ∃ (K' : Type) (_ : NormedField K') (_ : Algebra K K'), IsUltrametricDist K' ∧ IsAlgClosed K' ∧
       ∀ x, ‖algebraMap K K' x‖ = N x := by
   let nK : NormedField K := N.toNormedField
-  have hnorm : ∀ x : K, ‖x‖ = N x := fun _ => rfl
   have hnatK : ∀ n : ℕ, N (n : K) ≤ 1 := by
     intro n
     induction n with
@@ -712,6 +716,7 @@ theorem nm_extG {K : Type} [Field K] (N : AbsoluteValue K ℝ) (hna : ∀ x y, N
     rfl
 
 end Formalism.MainNotions.FormalGroupSystem.Pf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.NmPinvOfPlace

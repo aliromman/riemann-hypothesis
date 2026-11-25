@@ -50,11 +50,22 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockCoe
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RealLowestKTypeOfExtremalVectorCase
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoeffSpaceLevelFixesFockVectors
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBasisVec
-public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IndexSumOfRank
-public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InjectiveOfInnerEq
-public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InnerNeSpherical
+public import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.LengthCommensurableSpanSpanOfDetNeZero
+public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelCharacterEmbeddingCompat
+public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaPairCharactersAtLevel
+public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsLengthEqAndCardEqPowOfIsFiniteLength
+public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FrameMapAdjointTranslateInvEqMulFrameMatrix
+public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PrimeIdempotentOfIdempotentSumPlaceSplit
+public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SchrodingerImagesOrthogonalDisjointSplitSupport
+public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GramMulInv
+public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsPrimeIdemOfInert
+public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsSphericalDoubleCosetLabelIffDecreasing
+public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IdempotentMulAddOneSubInverse
+public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NsmulProjectionXColumnsMemSelfDualLattice
+public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TendstoOneOfSummable
+public import Mathlib.Combinatorics.Enumerative.DoubleCounting
+public import ReciprocityTheory.ResidueCardinality.ArtinOntoB
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ThetaIPEqStarL2
-public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TrivAtOne
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnderEqOfConj
 import Development.AbelianVarietyTheory.Definitions.Foundations.OfInfProjInfMulOfFinProjFin
 import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.UnifModGrowthOfIsUnifModerate
@@ -215,7 +226,6 @@ end GlobalTheory.TransSum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DoubleCosetHeckeSumPreservesPrincipalFormsStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 
 end -- clump:auto
@@ -250,7 +260,6 @@ end GlobalTheory.LocalRepsFin
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFiniteLocalDoubleCosetRepresentativesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 
 end -- clump:auto

@@ -727,8 +727,9 @@ open MeasureTheory Filter Topology
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactAverageContinuousOnUniformModerateGrowth
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactAverageContinuousOnUniformModerateGrowth
 
+noncomputable section
 open MeasureTheory Filter Topology
 
 namespace GlobalTheory.KAvgGrowth
@@ -752,7 +753,7 @@ theorem continuousOn_and_umg_kAvg : ∀ (n : ℕ) (ε : Fin n → Bool) (f : Glo
     have := congrArg Subtype.val (B.sum_repr ⟨Z, hZ'⟩)
     rw [Submodule.coe_sum] at this
     simp only [Submodule.coe_smul] at this
-    simp only [c, dif_pos hZ]
+    simp only [c, dite_eq_left hZ]
     exact this.symm
   have hli : LinearIndependent ℝ b :=
     B.linearIndependent.map' (GlobalTheory.LowTypeDetermined.lie (Jm ε)).subtype (Submodule.ker_subtype _)
@@ -792,7 +793,7 @@ theorem continuousOn_and_umg_kAvg : ∀ (n : ℕ) (ε : Fin n → Bool) (f : Glo
     have e1 : (fun k : ↥(KG ε) => c i ((toMK k)⁻¹ * X * toMK k)) =
         fun k => B.repr ⟨(toMK k)⁻¹ * X * toMK k, hX' k⟩ i := by
       funext k
-      simp only [c, dif_pos (had k X hX)]
+      simp only [c, dite_eq_left (had k X hX)]
     rw [e1]
     have hm : Continuous fun k : ↥(KG ε) => (⟨(toMK k)⁻¹ * X * toMK k, hX' k⟩ : GlobalTheory.LowTypeDetermined.lie (Jm ε)) :=
       ((hinvc.matrix_mul continuous_const).matrix_mul (continuous_toMK ε)).subtype_mk _
@@ -855,9 +856,9 @@ theorem continuousOn_and_umg_kAvg : ∀ (n : ℕ) (ε : Fin n → Bool) (f : Glo
 
 end GlobalTheory.KAvgGrowth
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactAverageContinuousOnUniformModerateGrowthStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

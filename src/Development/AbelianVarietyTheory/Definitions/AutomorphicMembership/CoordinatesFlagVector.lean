@@ -12,8 +12,10 @@ import Formalism.FlagUnipotentLattices.MemOfOrthogonalAnisotropic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.SemilocalFrames.SymmetricFlagBasisVectorsApplyCentre, Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CoordinatesFlagVector
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.SemilocalFrames.SymmetricFlagBasisVectorsApplyCentre
+section -- clump member: Development.AbelianVarietyTheory.Definitions.SemilocalFrames.SymmetricFlagBasisVectorsApplyCentre
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.SA
 
@@ -40,12 +42,6 @@ def IsPairMap (F F' F'' : FlagD H r) (Λ : Submodule R V) (g : R) (β : V ≃ₗ
 
 
 
-section Pair
-
-variable {F F' F'' : FlagD H r} {Λ : Submodule R V} {g : R} {β : V ≃ₗ[K] V}
-
-end Pair
-
 namespace FlagExample
 
 open NumberField Formalism.BasicNotions.Examples₂
@@ -58,6 +54,8 @@ end FlagExample
 
 end GlobalTheory.SA
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CoordinatesFlagVector

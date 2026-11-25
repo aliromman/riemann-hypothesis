@@ -118,9 +118,10 @@ theorem blockUnipotent_props : ∀ (k : Type) [Field k] [ValuativeRel k] [Topolo
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.VerticalPairPowerSumVanish
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.VerticalPairPowerSumVanish
 open scoped Pointwise
 
+noncomputable section
 namespace GlobalTheory.CentreCpt
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {N : ℕ}
@@ -197,7 +198,7 @@ theorem exists_compact_center_mul : ∀ (k : Type) [Field k] [ValuativeRel k] [T
     calc vdet k N (z * i) = vdet k N (z * i) * vdet k N κ := by rw [hvκ, mul_one]
       _ = 1 := by rw [← map_mul, mul_assoc, hzc]
   have hex : ∃ z ∈ Subgroup.center (GL (Fin N) k), vdet k N (z * i) = 1 := ⟨z, hz, hzi⟩
-  have hfi : f i = hex.choose * i := dif_pos hex
+  have hfi : f i = hex.choose * i := dite_eq_left hex
   obtain ⟨hzc', hv'⟩ := hex.choose_spec
   set zi := hex.choose
   set w := z * zi⁻¹ with hw
@@ -217,6 +218,7 @@ theorem exists_compact_center_mul : ∀ (k : Type) [Field k] [ValuativeRel k] [T
   simp only [mul_assoc]
 
 end GlobalTheory.CentreCpt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FundamentalIdealFrobeniusPowers
@@ -518,11 +520,11 @@ theorem isCuspFn_cutCoef : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologica
     have hd : ValuativeRel.valuation k ((g * (h⁻¹ * u X * h) : GL (Fin N) k) : Matrix (Fin N) (Fin N) k).det = 1 := by
       simp only [Units.val_mul, Matrix.det_mul, hud X, map_mul, hg, one_mul, mul_one]
       rw [← map_mul, ← Matrix.det_mul, ← Units.val_mul, inv_mul_cancel, Units.val_one, Matrix.det_one, map_one]
-    rw [hf, if_pos hd]
+    rw [hf, ite_eq_left hd]
     simp only [LinearMap.comp_apply, map_mul, Module.End.mul_apply]
   · have : (fun X => f (g * (h⁻¹ * u X * h))) = fun _ => 0 := by
       funext X
-      rw [hf, if_neg]
+      rw [hf, ite_eq_right]
       intro hd
       apply hg
       simp only [Units.val_mul, Matrix.det_mul, hud X, map_mul, mul_one] at hd
@@ -534,8 +536,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.TypeSliceAlt
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.TypeSliceAlt
 
+noncomputable section
 
 open MeasureTheory Matrix GlobalTheory.PRep GlobalTheory.SmGL
 
@@ -963,8 +966,8 @@ theorem typeSlice : TypeSlice := by
     refine hc.integrable_of_hasCompactSupport (HasCompactSupport.intro hD fun X hX => ?_)
     exact image_eq_zero_of_notMem_tsupport fun hm => hX (hDX X hm)
   let e : GL (Fin n) k → ℂ := fun g => if hg : g ∈ J then (((χ ⟨g, hg⟩)⁻¹ : ℂˣ) : ℂ) else 0
-  have he1 : ∀ g (hg : g ∈ J), e g = (((χ ⟨g, hg⟩)⁻¹ : ℂˣ) : ℂ) := fun g hg => dif_pos hg
-  have he0 : ∀ g, g ∉ J → e g = 0 := fun g hg => dif_neg hg
+  have he1 : ∀ g (hg : g ∈ J), e g = (((χ ⟨g, hg⟩)⁻¹ : ℂˣ) : ℂ) := fun g hg => dite_eq_left hg
+  have he0 : ∀ g, g ∉ J → e g = 0 := fun g hg => dite_eq_right hg
   have hne : ∫ X, e (1 * U X * 1) ∂μ ≠ 0 := by
     let W : Set (Fin a → Fin b → k) := U ⁻¹' (J : Set (GL (Fin n) k))
     have hWo : IsOpen W := hJo.preimage hUc
@@ -1056,12 +1059,12 @@ theorem typeSlice : TypeSlice := by
   have hterm : ∀ q : GL (Fin n) k ⧸ K₂, f q.out * l (σ.ρ q.out v) = ((‖c q.out‖ ^ 2 : ℝ) : ℂ) := by
     intro q
     by_cases hd : ValuativeRel.valuation k ((q.out : GL (Fin n) k) : Matrix (Fin n) (Fin n) k).det = 1
-    · have hcq : c q.out = l (σ.ρ q.out v) := if_pos hd
+    · have hcq : c q.out = l (σ.ρ q.out v) := ite_eq_left hd
       simp only [f]
       rw [hcq, Complex.conj_mul']
       push_cast
       rfl
-    · have hcq : c q.out = 0 := if_neg hd
+    · have hcq : c q.out = 0 := ite_eq_right hd
       simp only [f]
       rw [hcq]
       simp
@@ -1085,6 +1088,7 @@ theorem typeSlice : TypeSlice := by
   exact hl1 (by rw [← h4, ← h3, h2])
 
 end UpperTheory.Gal.Spc
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.AdmCusp

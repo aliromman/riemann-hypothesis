@@ -119,14 +119,14 @@ end RestBoundEq
 end GroundTheory.Heights₂.Heights.RestTerms
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.FlagIntegralRealTransferOfSyzygy
-
-set_option maxSynthPendingDepth 1
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.FlagIntegralRealTransferOfSyzygy
+@[expose] public section
 
 namespace GroundTheory.Heights₂.Heights.RestTerms
 
 open MvPolynomial Finset
 
+noncomputable section
 
 namespace RestBoundEq
 
@@ -224,16 +224,16 @@ theorem syzygy_term_zero (hA : RestBound.Statement) (f r a : ℕ) (c : SmallBloc
             restTerm f (r + a) Q k σ (smallPowerSum f r a c (k - 1) τ') : ℚ) : ℝ) = 0 := by
         intro n hn
         have hn1 : n + 1 ≠ 1 := by omega
-        simp only [e₁, e₂, hn1, false_and, if_false, sub_self]
+        simp only [e₁, e₂, hn1, false_and, ite_false, sub_self]
       rw [tsum_eq_single 0 h0]
       by_cases hστ : σ = τ ∧ k = m
       · obtain ⟨rfl, rfl⟩ := hστ
-        simp only [e₁, e₂, zero_add, and_self, if_true, zero_add, one_mul]
+        simp only [e₁, e₂, zero_add, and_self, ite_true, zero_add, one_mul]
         push_cast
         ring
       · have hne : ¬ (0 + 1 = 1 ∧ σ = τ ∧ k = m) := fun h => hστ h.2
-        rw [if_neg hστ]
-        simp only [e₁, e₂, if_neg hne]
+        rw [ite_eq_right hστ]
+        simp only [e₁, e₂, ite_eq_right hne]
         push_cast
         ring
     rw [restPrimeModel, restPrimeModel, ← mul_sub, ← sum_sub_distrib]
@@ -250,8 +250,8 @@ theorem syzygy_term_zero (hA : RestBound.Statement) (f r a : ℕ) (c : SmallBloc
     rw [sum_congr rfl hσ]
     simp only [ite_and]
     rw [Fintype.sum_eq_single τ (fun σ hσ => by simp [hσ])]
-    simp only [if_true]
-    rw [Finset.sum_ite_eq', if_pos (Finset.mem_Icc.2 ⟨hm2, hmN⟩)]
+    simp only [ite_true]
+    rw [Finset.sum_ite_eq', ite_eq_left (Finset.mem_Icc.2 ⟨hm2, hmN⟩)]
 
   have hlin : ∀ t : ℚ, restTerm f (r + a) (Qt t) m τ (smallPowerSum f r a c (m - 1) τ') =
       restTerm f (r + a) Q₀ m τ (smallPowerSum f r a c (m - 1) τ') +
@@ -340,18 +340,20 @@ theorem flagIntegralReal_transfer_of_syzygy (f N j k : ℕ) (h : N = j + k) (F :
 
 end RestBoundEq
 
+end
 
 end GroundTheory.Heights₂.Heights.RestTerms
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvAtTop
-
-set_option maxSynthPendingDepth 1
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvAtTop
+@[expose] public section
 
 namespace GroundTheory.Heights₂.Heights.RestTerms
 
 open MvPolynomial Finset Coinv
 
+noncomputable section
 
 theorem CoinvAtTop.proof (h1 : CoinvPolynomialReduction.Statement)
     (h2 : CoinvIdealComponent.Statement) (h3 : CoinvStaircaseComponent.Statement) :
@@ -369,18 +371,20 @@ theorem CoinvAtTop.proof (h1 : CoinvPolynomialReduction.Statement)
   rw [Finset.mem_Icc] at hm
   exact Ideal.mul_mem_right _ _ (bps_mem_psumIdeal b hm.1 hm.2)
 
+end
 
 end GroundTheory.Heights₂.Heights.RestTerms
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.StaircaseIsHomogeneous
-
-set_option maxSynthPendingDepth 1
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.StaircaseIsHomogeneous
+@[expose] public section
 
 namespace GroundTheory.Heights₂.Heights.RestTerms
 
 open MvPolynomial Finset
 
+noncomputable section
 
 theorem CoinvAtTop.closed : CoinvAtTop.Statement :=
   CoinvAtTop.proof
@@ -412,7 +416,7 @@ theorem eval_top (f j k : ℕ) (L : IndefiniteRowSideFullHecke.RestTerms.Roots f
     HomogeneousComponentMul.proof ℝ f (j + k) _ hc D
   have hJ : (G - C c * s).IsHomogeneous D := hG.sub ((staircase_isHomogeneous f j k).C_mul c)
   have hcomp : homogeneousComponent D (G - C c * s) = G - C c * s := by
-    rw [homogeneousComponent_of_mem ((mem_homogeneousSubmodule _ _).mpr hJ), if_pos rfl]
+    rw [homogeneousComponent_of_mem ((mem_homogeneousSubmodule _ _).mpr hJ), ite_eq_left rfl]
   have e1 := hcomp.symm.trans hEq
   have e2 : G - C c * s = homogeneousComponent D
       (∑ m ∈ Finset.Icc 1 (j + k), ∑ b : Fin f, Coinv.bps ℝ f (j + k) m b * Q m b) := by
@@ -466,18 +470,19 @@ theorem FlagIntegralProportional.intersectionNumber_baseChange : IndefiniteRowSi
   rw [h1, h2]
   field_simp
 
+end
 
 end GroundTheory.Heights₂.Heights.RestTerms
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.RestAt
-
-set_option maxSynthPendingDepth 1
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.RestAt
 
 namespace GroundTheory.Heights₂.Heights.RestTerms
 
 open MvPolynomial Finset
 
+noncomputable section
 
 namespace RestBoundEq
 
@@ -600,6 +605,7 @@ theorem RestBound.imp : RestBound.Statement → IndefiniteRowSideFullHecke.RestT
       (rootRingToReal_degreePolynomial_last f k j) (by unfold IndefiniteRowSideFullHecke.RestTerms.nDim; ring)
       I hI vol hvol P B₀ hB₀ σ Q hQ
 
+end
 
 end GroundTheory.Heights₂.Heights.RestTerms
 

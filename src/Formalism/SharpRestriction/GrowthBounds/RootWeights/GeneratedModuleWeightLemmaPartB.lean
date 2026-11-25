@@ -14,8 +14,9 @@ import Mathlib.Tactic.TypeStar
 -- Members: Formalism.SharpRestriction.GrowthBounds.RootWeights.LaurentDegreesSubstitutionSubset, Formalism.SharpRestriction.GrowthBounds.RootWeights.GeneratedModuleWeightLemmaPartB
 
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.LaurentDegreesSubstitutionSubset
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 open MvPolynomial Finset
 
@@ -144,7 +145,7 @@ theorem twist_exponents_are_weight_entries : TwistExponentsAreWeightEntries := b
       LaurentPolynomial.T (w j) := by
     intro w
     rw [Finset.prod_eq_single j (fun a _ ha => by simp [D, ha]) (fun h => absurd (Finset.mem_univ j) h)]
-    simp only [D, if_pos rfl]
+    simp only [D, ite_eq_left rfl]
     rcases w j with k | k
     · rw [Int.ofNat_eq_coe, zpow_natCast, Units.val_pow_eq_pow_val]
       simp only [u, LaurentPolynomial.T_pow, mul_one]
@@ -183,6 +184,7 @@ theorem twist_exponents_are_weight_entries : TwistExponentsAreWeightEntries := b
   exact support_laurent_C_mul_T_of_ne_zero _ (MvPolynomial.mem_support_iff.mp hm) _
 
 end Formalism.MainNotions.G.GLWeightTheory
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

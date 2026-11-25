@@ -994,9 +994,10 @@ theorem isWeaklyRegular_of_finZ : Out.Laws → ∀ (K : Type) [Field K] [IsAlgCl
 end GlobalTheory.KeyKa
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KoszulSectionsExactAlgClosedPolarisedAV
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KoszulSectionsExactAlgClosedPolarisedAV
 open GlobalTheory
 
+noncomputable section
 namespace GlobalTheory.KosField
 
 theorem mem_iSup_range_iff {R M N J : Type} [Ring R] [AddCommGroup M] [AddCommGroup N] [Module R M] [Module R N]
@@ -1104,7 +1105,7 @@ theorem mulPw_restrict (s : LB.Sec (pw L n)) (h : W ≤ V) (x : SecOn (pw L l) V
     mulPw s l l' W (SecOn.restrict _ h x) = SecOn.restrict _ h (mulPw s l l' V x) := by
   by_cases e : l' = l + n
   · exact co_ext fun k => by simp only [co_mulPw s e, co_restrict, map_mul, rs_rs]
-  · simp only [mulPw, dif_neg e, LinearMap.zero_apply, map_zero]
+  · simp only [mulPw, dite_eq_right e, LinearMap.zero_apply, map_zero]
 
 theorem mulPw_comm (s s' : LB.Sec (pw L n)) {l'' : ℤ} (h : l' = l + n) (h' : l'' = l' + n)
     (x : SecOn (pw L l) V) :
@@ -1405,6 +1406,7 @@ theorem koszul_sections_exact_field : Out.Laws → ∀ (K : Type) [Field K] [IsA
     omega
 
 end GlobalTheory
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KoszulSectionsExactAlgClosedPolarisedAVStatement

@@ -92,10 +92,11 @@ import Mathlib.Topology.Algebra.Group.Units
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHeisenbergSubgroupFourierJacobiCommutator, Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsUnimodularBlockUpperTriangularSymmetricLevelsStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.QuotientIntegralWhittakerTwist, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RootExchangeHeisenbergVariableSign, Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegralMulOfSupport
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHeisenbergSubgroupFourierJacobiCommutator
-@[expose] public noncomputable section
+@[expose] public section
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.RootEx GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage
 
+noncomputable section
 namespace GlobalTheory.RootEx.HeisenbergSubgroup
 
 section
@@ -221,12 +222,12 @@ theorem mem_N_of_val {g : GL (n ⊕ Fin c) k} {β : n → k} {t : k} (hg : g.val
   · simp [Matrix.one_apply]
   · simp only [lev, Sum.elim_inl, Sum.elim_inr] at hrs
     simp only [Matrix.fromBlocks_apply₁₂, ExchangeSupport.colM, Matrix.of_apply]
-    rw [if_neg (by omega)]
+    rw [ite_eq_right (by omega)]
     simp
   · simp
   · simp only [lev, Sum.elim_inr] at hrs
     simp only [Matrix.fromBlocks_apply₂₂, Matrix.add_apply, zM, Matrix.of_apply]
-    rw [if_neg (by omega)]
+    rw [ite_eq_right (by omega)]
     simp [Matrix.one_apply]
 
 private theorem eMat_mem_N_succ (u : n → k) : rowE c p u ∈ N k n c (p + 1) := by
@@ -239,7 +240,7 @@ private theorem eMat_mem_N_succ (u : n → k) : rowE c p u ∈ N k n c (p + 1) :
   · simp
   · simp only [lev, Sum.elim_inl, Sum.elim_inr] at hrs
     simp only [Matrix.fromBlocks_apply₂₁, ExchangeSupport.rowM, Matrix.of_apply]
-    rw [if_neg (by omega)]
+    rw [ite_eq_right (by omega)]
     simp
   · simp [Matrix.one_apply]
 
@@ -275,6 +276,7 @@ theorem heisenberg_subgroup : ∀ (k : Type) [Field k] (n : Type) [Fintype n] [D
     simp only [add_zero, zero_add, dotProduct_zero, zero_dotProduct]
 
 end GlobalTheory.RootEx.HeisenbergSubgroup
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

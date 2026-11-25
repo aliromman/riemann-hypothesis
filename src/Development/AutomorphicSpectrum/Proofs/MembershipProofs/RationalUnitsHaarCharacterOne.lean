@@ -121,11 +121,12 @@ theorem UpperTheory.Reformulated.B.Qo7.eq_zero_of_orth :
   simpa using congrFun heq x
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MembershipProofs.RationalUnitsHaarCharacterOne
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MembershipProofs.RationalUnitsHaarCharacterOne
 
 open Matrix NumberField IsDedekindDomain GlobalTheory.WeilM MeasureTheory
 open scoped TensorProduct Pointwise Classical
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.ThetaAvg
 
@@ -499,7 +500,7 @@ theorem exists_avg {F : Type} [Field F] {A : Type} [CommRing A] [Algebra F A] {�
       obtain ⟨c, hc'⟩ := hann ((-x + y) i) fun a => by
         have h1 := hxy _ ⟨Pi.single i a, rfl⟩
         simp only [Pi.single_apply, apply_ite (algebraMap F A), map_zero, mul_ite, mul_zero, Finset.sum_ite_eq',
-          Finset.mem_univ, if_true] at h1
+          Finset.mem_univ, ite_true] at h1
         rw [Pi.add_apply, Pi.neg_apply, add_mul, neg_mul, AddChar.map_add_eq_mul, AddChar.map_neg_eq_inv, h1]
         exact inv_mul_cancel₀ (norm_ne_zero_iff.mp (by rw [hψ]; exact one_ne_zero))
       exact ⟨c, hc'.symm⟩

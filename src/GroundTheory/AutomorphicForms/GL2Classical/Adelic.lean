@@ -12,13 +12,15 @@ import GroundTheory.GlobalFields.Adele.Discrete
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.AutomorphicForms.StrongApproximationSLDoubleCoset, GroundTheory.AutomorphicForms.GL2Classical.ExistsIntOfMemIntegralFiniteAdeles, GroundTheory.AutomorphicForms.GL2Classical.Adelic
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.StrongApproximationSLDoubleCoset
+section -- clump member: GroundTheory.AutomorphicForms.StrongApproximationSLDoubleCoset
+@[expose] public section
 
 open NumberField IsDedekindDomain Topology Filter Set Matrix
 open scoped RestrictedProduct
 
 namespace GroundTheory.Automorphic
 
+noncomputable section
 
 namespace AdelicGLn
 
@@ -38,7 +40,7 @@ theorem det_diagonalGL {R : Type*} [CommRing R] (d : Fin n → Rˣ) :
 
 theorem det_diagonalGL_mulSingle {R : Type*} [CommRing R] (hn : 0 < n) (a : Rˣ) :
     Matrix.GeneralLinearGroup.det (diagonalGL (Pi.mulSingle (⟨0, hn⟩ : Fin n) a)) = a := by
-  rw [det_diagonalGL, Finset.prod_pi_mulSingle', if_pos (Finset.mem_univ _)]
+  rw [det_diagonalGL, Finset.prod_pi_mulSingle', ite_eq_left (Finset.mem_univ _)]
 
 theorem exists_eq_finiteDiagonal_mul_mul (hn : 0 < n) {U : Subgroup (FiniteAdelicGL K n)}
     (hU : IsOpen (U : Set (FiniteAdelicGL K n))) {g g' : FiniteAdelicGL K n}
@@ -128,8 +130,10 @@ theorem det_mem_of_forall_mem {R : Type*} [CommRing R] (T : Subring R) {M : Matr
 
 end AdelicGLn
 
+end
 
 end GroundTheory.Automorphic
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.GL2Classical.ExistsIntOfMemIntegralFiniteAdeles

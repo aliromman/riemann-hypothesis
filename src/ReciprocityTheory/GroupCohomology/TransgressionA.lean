@@ -220,7 +220,7 @@ theorem groupSection_holds : GroupSectionStatement.{u} := by
 end ReciprocityTheory.Coh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.GroupCohomology.TransgressionA
+@[expose] public section -- clump member: ReciprocityTheory.GroupCohomology.TransgressionA
 
 namespace ReciprocityTheory.Coh.InflationTransgression
 
@@ -228,6 +228,7 @@ open ReciprocityTheory.Gal ReciprocityTheory.Coh
 
 universe u
 
+noncomputable section
 
 variable {R : Type u} [CommRing R] {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
@@ -264,10 +265,10 @@ theorem exists_cont_select {X : Type u} [TopologicalSpace X] [CompactSpace X] [T
       · intro x hx z hz
         by_cases hza : z ∈ C a
         · dsimp only
-          rw [if_pos hza]
+          rw [ite_eq_left hza]
           exact hCs a hza
         · dsimp only
-          rw [if_neg hza]
+          rw [ite_eq_right hza]
           rcases Finset.mem_insert.1 hx with rfl | hx'
           · exact absurd hz hza
           · exact hψ x hx' z hz
@@ -446,6 +447,7 @@ theorem inflD_of_zero (hz : ∀ n : N, y n = 0) :
 
 end
 
+end
 
 end ReciprocityTheory.Coh.InflationTransgression
 

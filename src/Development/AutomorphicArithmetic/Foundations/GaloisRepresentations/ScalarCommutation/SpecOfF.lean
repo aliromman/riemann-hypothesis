@@ -206,8 +206,9 @@ theorem clsMove : ClsMove := by
 end UpperTheory.Gal.Spc
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.CommOfOpen
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.CommOfOpen
 
+noncomputable section
 
 open Formalism.UG GlobalTheory.LKDef
 
@@ -374,7 +375,7 @@ private theorem abs_main (hK : IsCommensurated K₁) :
   classical
   let T : (H₁ → ℂ) → Module.End ℂ (HeckeTraceForms.forms ι (K₁.prod K₂) ξ) := fun f =>
     if h : f ∈ Hecke ℂ K₁ then act ι K₁ K₂ ξ hK h else 0
-  have hT : ∀ f (h : f ∈ Hecke ℂ K₁), T f = act ι K₁ K₂ ξ hK h := fun f h => dif_pos h
+  have hT : ∀ f (h : f ∈ Hecke ℂ K₁), T f = act ι K₁ K₂ ξ hK h := fun f h => dite_eq_left h
   have hTa : ∀ f (h : f ∈ Hecke ℂ K₁) Φ, (T f Φ : H₁ × H₂ → V) = hActK K₁ f Φ := fun f h Φ => by rw [hT f h]; rfl
   refine ⟨T, ?_, fun f hf => ⟨hTa f hf, ?_, fun f' hf' => ⟨?_, fun c => ?_⟩⟩⟩
   · apply LinearMap.ext
@@ -386,7 +387,7 @@ private theorem abs_main (hK : IsCommensurated K₁) :
   · have hI := act_isHecke (ι := ι) (K₂ := K₂) (ξ := ξ) hK hf
     have hex : ∃ T', HeckeTraceForms.IsHecke ι (K₁.prod K₂) ξ
         (fun h => f h.1 * Set.indicator (K₂ : Set H₂) (1 : H₂ → ℂ) h.2) T' := ⟨_, hI⟩
-    rw [HeckeTraceForms.heckeTrace, dif_pos hex, hT f hf]
+    rw [HeckeTraceForms.heckeTrace, dite_eq_left hex, hT f hf]
     congr 1
     apply LinearMap.ext
     intro Φ
@@ -444,6 +445,7 @@ theorem UpperTheory.Gal.Spc.opAlg :
   intro p _ G Lv V _ _ ξ B
   exact UpperTheory.Gal.Spc.abs_main B.emb Lv.K.toSubgroup (UpperTheory.Gal.LocalSmoothExtension.Kp G) (ξ.comp (GlobalTheory.LKCx.grp G B.β).subtype)
     (UpperTheory.Gal.Spc.comm_of_open _ Lv.K.isOpen Lv.compact)
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.CuspIdeal

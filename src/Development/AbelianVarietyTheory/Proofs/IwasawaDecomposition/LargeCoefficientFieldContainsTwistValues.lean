@@ -459,7 +459,10 @@ theorem transp : ∀ (B0 : Base) (px0 : PreX B0.toPre) (I0 : Col2.ColIn B0 px0),
 end GlobalTheory.Mem.HFld.Transp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFiniteColumnConfigurationsWitnesses
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFiniteColumnConfigurationsWitnesses
+@[expose] public section
+
+noncomputable section
 
 namespace GlobalTheory.Mem.HFld
 
@@ -564,7 +567,7 @@ theorem qC_subset {B : Base} {px : PreX B.toPre} (I : Col2.ColIn B px) (h : I.Ok
     · obtain ⟨v, hv, rfl⟩ := Finset.mem_image.1 hQ'
       rw [Set.Finite.mem_toFinset] at hv
       unfold qBound
-      rw [if_pos (hr ▸ hfin)]
+      rw [ite_eq_left (hr ▸ hfin)]
       exact ⟨v, hr ▸ hv, h.sel_ok v⟩
     · simp at hQ'
   · simp
@@ -642,6 +645,8 @@ theorem exists_finite_cfg : ∀ (P : Pre) (f : Top.Fr P) (F F₀ : IntermediateF
 
 end GlobalTheory.Mem.HFld
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCoefficientFieldContainsHeckeEigenvalues

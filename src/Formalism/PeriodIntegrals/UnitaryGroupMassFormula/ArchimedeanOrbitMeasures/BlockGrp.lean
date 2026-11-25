@@ -19,8 +19,9 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasure
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.BlockEmb, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.GaugeVolU, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.BlockEx, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.GrpTop, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.BlockGrp
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.BlockEmb
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.BlockEmb
 
+noncomputable section
 
 namespace PI.AprimeInfG
 
@@ -106,13 +107,12 @@ private theorem emb0_smul (e : Fin k ≃ S) (c : ℂ) (X : Matrix (Fin k) (Fin k
 theorem continuous_embed (e : Fin k ≃ S) : Continuous (emb0 e) := by
   refine continuous_matrix fun i j => ?_
   by_cases h : i ∈ S ∧ j ∈ S
-  · simp only [emb0, dif_pos h]
+  · simp only [emb0, dite_eq_left h]
     exact continuous_id.matrix_elem _ _
-  · simp only [emb0, dif_neg h]
+  · simp only [emb0, dite_eq_right h]
     exact continuous_const
 
 
-set_option backward.isDefEq.respectTransparency false in
 theorem exp_embed (e : Fin k ≃ S) (X : Matrix (Fin k) (Fin k) ℂ) :
     NormedSpace.exp (emb0 e X) = emb0 e (NormedSpace.exp X) + (1 - emb0 e 1) := by
   letI : NormedRing (Matrix (Fin k) (Fin k) ℂ) := Matrix.linftyOpNormedRing
@@ -174,6 +174,7 @@ theorem sum_norm_sq_embed (e : Fin k ≃ S) (X : Matrix (Fin k) (Fin k) ℂ) :
     simp [emb0_apply_of_left_not_mem e X hi]
 
 end PI.AprimeInfG
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.GaugeVolU
@@ -280,8 +281,9 @@ theorem grpStd_of_exp_block (hE : ExpProdU) (hBH : BlockHaarV) : GrpStd :=
 end PI.AprimeInfW
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.BlockGrp
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.BlockGrp
 
+noncomputable section
 
 namespace PI.AprimeInfW
 
@@ -403,7 +405,7 @@ theorem std_row (ε : Fin n → Bool) (u : UstdSub ε S) (i : Fin n) (hi : i ∉
       _ = (V : Matrix (Fin n) (Fin n) ℂ) := by rw [hJ, hJJ, Matrix.one_mul]
   have hcol := (u⁻¹).2 i hi j
   change (V : Matrix (Fin n) (Fin n) ℂ) j i = _ at hcol
-  rw [← hW, if_neg hji] at hcol
+  rw [← hW, ite_eq_right hji] at hcol
   simp only [Formalism.REAL.Jm, Matrix.mul_diagonal, Matrix.diagonal_mul, Matrix.conjTranspose_apply] at hcol
   have hd : ∀ a : Fin n, (if ε a = true then (1 : ℂ) else -1) ≠ 0 := fun a => by split_ifs <;> norm_num
   have := (mul_eq_zero.1 hcol).resolve_right (hd i)
@@ -558,7 +560,7 @@ theorem blockHaarV_of (hU : UkChart) (hG : GaugeVolUD) : BlockHaarV := by
       rw [PI.AprimeInfW.lie_entry] at h
       have ha : ((e a : S) : Fin n) ∈ S := (e a).2
       have hb : ((e b : S) : Fin n) ∈ S := (e b).2
-      simp only [hε _ ha, hε _ hb, if_true, mul_one, one_mul] at h
+      simp only [hε _ ha, hε _ hb, ite_true, mul_one, one_mul] at h
       simpa [resB, Matrix.conjTranspose_apply] using h
     rw [f2 _ hl, embed_restrict e M hM.2]
   · rw [hL₁]

@@ -15,12 +15,10 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.NormRepresentationLift.
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBwdBetaT, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBwdBetaK
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBwdBetaT
 
 
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBwdBetaT
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermDef Formalism.L2.SG.DataCut Formalism.L2.SG.LsDatumB
   Formalism.L2.SG.TermLoc Formalism.L2.SG.Pf.PCount Formalism.L2.SG.Pf.FrameGlobalPatching Formalism.L2.SG.Saturated
 
@@ -252,7 +250,11 @@ theorem betaCore_of₂ (h : BetaCore₂ Zd u u' F0 what₂) : BetaCore Zd u u' F
 end Formalism.L2.SG.Pf.FrameGlobalPatching.FStar
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBwdBetaK
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBwdBetaK
+
+noncomputable section
+
+open scoped Classical
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermDef Formalism.L2.SG.DataCut Formalism.L2.SG.LsDatumB
   Formalism.L2.SG.TermLoc Formalism.L2.SG.Pf.PCount Formalism.L2.SG.Pf.FrameGlobalPatching Formalism.L2.SG.Saturated Formalism.L2.SG.Pf.ScalarFramePf
 
@@ -364,7 +366,7 @@ theorem Gom_orth (F : LFlag (D.sp.Y 0) D.R.rS T) (F' : LFlag (D.sp.Y 0) D.R.rS T
     rcases eq_or_ne b (Fin.last _) with hb | hb
     · subst hb
       simp
-    · rw [if_neg (Ne.symm hb), if_neg hb, smul_zero]
+    · rw [ite_eq_right (Ne.symm hb), ite_eq_right hb, smul_zero]
   unfold orth Xsp
   simp only [Submodule.mem_iInf, LinearMap.mem_ker]
   intro x hx
@@ -373,7 +375,7 @@ theorem Gom_orth (F : LFlag (D.sp.Y 0) D.R.rS T) (F' : LFlag (D.sp.Y 0) D.R.rS T
   | mem y hy =>
     obtain ⟨i, rfl⟩ := hy
     rw [← fvec_cs' F' i, PI.NRL.herm_eq, om_pair,
-      if_neg (Fin.castSucc_lt_last i).ne, star_zero]
+      ite_eq_right (Fin.castSucc_lt_last i).ne, star_zero]
   | zero => simp
   | add y z _ _ hy hz => simp [map_add (f := _), hy, hz]
   | smul a y _ hy => simp [hy]

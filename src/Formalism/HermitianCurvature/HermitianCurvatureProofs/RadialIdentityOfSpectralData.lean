@@ -138,19 +138,14 @@ theorem radial_wave_function_field : RDWaveFF := by
 end Formalism.FourierDecayAlt.P.CutSE
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSERDWaveRad
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSERDWaveRad
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutSE
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.Wd Formalism.FourierDecayAlt.P5
 open scoped ComplexConjugate
-
-section PairSub
-
-variable {V : Type*} [AddCommGroup V] [Module ℂ V]
-
-end PairSub
 
 theorem radial_wave_radial : RDWaveRad := by
   intro Wp Wq _ _ _ _ _ _ P z z' π π' X μ L st l0 hr s hD Wv Wv' hW hW'
@@ -232,6 +227,7 @@ theorem radial_wave_radial : RDWaveRad := by
       (comm_xt_of_fsv_smul_endomorphism X Wv' (-s) ⟨0, hr⟩ hW2 (star Y) b a)).smul_right _
 
 end Formalism.FourierDecayAlt.P.CutSE
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.RadialOperatorLocality

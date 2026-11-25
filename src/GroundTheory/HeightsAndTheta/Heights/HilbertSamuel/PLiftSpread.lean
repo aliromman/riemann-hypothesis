@@ -11,7 +11,8 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PLiftSpreadRead, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PLiftSpread
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PLiftSpreadRead
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PLiftSpreadRead
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -19,6 +20,7 @@ namespace GroundTheory.Heights₂.Heights.HilbertSamuel
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.ArakelovGeometry
 
+noncomputable section
 
 namespace GenRead
 
@@ -88,10 +90,10 @@ theorem exists_sections_of_generatedV {n : K → ℤ} (hg : KH.GeneratedV ℚ (K
     · obtain ⟨c', j⟩ := p
       by_cases h : c' = c
       · subst h
-        simp only [if_true]
+        simp only [ite_true]
         have := ChartLatQCech.val_mul_mem_chartRingQ hc (hu (ZeroCocycleSection.chartCell c') j)
         simpa only [Pi.neg_apply, neg_neg] using this
-      · simp only [h, if_false]
+      · simp only [h, ite_false]
         exact zero_mem _
     · let f : LocalizedModule (KH.cellMon ℚ (ZeroCocycleSection.chartCell c).1)
           (MRingOver ℚ ι ⧸ KH.genIdeal y) →+* Ω := evLHom hT
@@ -102,7 +104,7 @@ theorem exists_sections_of_generatedV {n : K → ℤ} (hg : KH.GeneratedV ℚ (K
           f (u (ZeroCocycleSection.chartCell c) j *
             z (ZeroCocycleSection.chartCell c) j (ZeroCocycleSection.chartCell c)) := by
         intro j
-        rw [if_pos rfl, map_mul]
+        rw [ite_eq_left rfl, map_mul]
         show ChartLatQCech.val y _ (u (ZeroCocycleSection.chartCell c) j) * (∏ k, y ⟨k, c k⟩ ^ n k) *
             (ChartLatQCech.val y _ (z (ZeroCocycleSection.chartCell c) j (ZeroCocycleSection.chartCell c)) *
               ∏ k, y ⟨k, c k⟩ ^ (-n k)) =
@@ -122,8 +124,10 @@ theorem exists_sections_of_generatedV {n : K → ℤ} (hg : KH.GeneratedV ℚ (K
 
 end GenRead
 
+end
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PLiftSpread

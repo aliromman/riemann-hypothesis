@@ -47,15 +47,15 @@ import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HighestWeightAntitoneOfFiniteDimensionalStable
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsDualLieFamily, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsInvariantExtending, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteWeightsInvariantHom, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProdPairSumsEqSumPowersetScore, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ScoreRigidityPermEqOne, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ScoreTZeroEqLevelCount, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VandermondeSquares, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeylDenominatorProduct, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HarmonicWeightsCoefficient, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteDimensionalOfHom, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TraceFactorTensorDecomp, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedTraceWeylCharacter, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedTraceWeylCharacterStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagonalMemUnitary
+-- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsDualLieFamily, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsInvariantExtending, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteWeightsInvariantHom, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProdPairSumsEqSumPowersetScore, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ScoreRigidityPermEqOne, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ScoreTZeroEqLevelCount, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VandermondeSquares, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeylDenominatorProduct, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HarmonicWeightsCoefficient, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteDimensionalOfHom, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TraceFactorTensorDecomp, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedTraceWeylCharacter, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagonalMemUnitary
 
 section -- clump: shared namespace opens
 
 open Matrix Finset
 open scoped InnerProductSpace
+open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsDualLieFamily
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
 
 namespace GlobalTheory.CompanionTheory.RealCountG
 
@@ -91,7 +91,6 @@ end GlobalTheory.CompanionTheory.RealCountG
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsInvariantExtending
-open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
 
 namespace GlobalTheory.CompanionTheory.RealCountG.ExtMulti
 
@@ -302,7 +301,14 @@ theorem exists_inv_multi : ∀ {n : ℕ} (V : Type) [NormedAddCommGroup V] [Inne
 end GlobalTheory.CompanionTheory.RealCountG.ExtMulti
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteWeightsInvariantHom
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteWeightsInvariantHom
+
+noncomputable section
+
+open Matrix Finset
+open scoped InnerProductSpace
 
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
 open GlobalTheory.CompanionTheory.RealCount.InjHw
@@ -331,11 +337,11 @@ theorem sum_single_dual (w : E.V →L[ℂ] ℂ) (a b : Fin n) (c : ℂ) :
   rw [Finset.sum_eq_single a, Finset.sum_eq_single b]
   · simp
   · intro y _ hy
-    rw [Matrix.single_apply, if_neg (fun hh => hy hh.2.symm), zero_smul]
+    rw [Matrix.single_apply, ite_eq_right (fun hh => hy hh.2.symm), zero_smul]
   · simp
   · intro x _ hx
     refine Finset.sum_eq_zero fun y _ => ?_
-    rw [Matrix.single_apply, if_neg (fun hh => hx hh.1.symm), zero_smul]
+    rw [Matrix.single_apply, ite_eq_right (fun hh => hx hh.1.symm), zero_smul]
   · simp
 
 theorem dual_entry_mem (hG : IsDualFam E G) (R : Submodule ℂ (E.V →L[ℂ] ℂ))
@@ -383,7 +389,7 @@ theorem dual_weight (hG : IsDualFam E G) (μ : Fin n → ℤ) {v : E.V →L[ℂ]
           simp
         · simp [hc, Ne.symm hc]
       · rw [Matrix.diagonal_apply_ne _ hij, Matrix.smul_apply, Matrix.single_apply,
-          if_neg (fun hh => hij (hh.1.symm.trans hh.2)), smul_zero]
+          ite_eq_right (fun hh => hij (hh.1.symm.trans hh.2)), smul_zero]
     show NormedSpace.exp _ = _
     rw [e, Matrix.exp_diagonal]
     congr 1
@@ -393,7 +399,7 @@ theorem dual_weight (hG : IsDualFam E G) (μ : Fin n → ℤ) {v : E.V →L[ℂ]
       fun s : ℝ => Complex.exp ((s : ℂ) * (Complex.I * ((μ a : ℝ) : ℂ))) • v := by
     funext s
     rw [hv _ _ (hk s), Finset.prod_eq_single a]
-    · simp only [if_true]
+    · simp only [ite_true]
       rw [← Complex.exp_int_mul]
       congr 2
       push_cast
@@ -560,8 +566,7 @@ end Main
 
 end GlobalTheory.CompanionTheory.RealCountG.InjG
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProdPairSumsEqSumPowersetScore
 
@@ -615,9 +620,9 @@ theorem pair_sum (v : Fin n → ℤ) (T : Finset (Fin n × Fin n)) (hT : T ⊆ p
       = ∑ p ∈ prs n \ T, (if p ∈ T then v p.1 else v p.2)
         + ∑ p ∈ T, (if p ∈ T then v p.1 else v p.2) := (Finset.sum_sdiff hT).symm
   have h3 : ∑ p ∈ prs n \ T, (if p ∈ T then v p.1 else v p.2) = ∑ p ∈ prs n \ T, v p.2 :=
-    Finset.sum_congr rfl fun p hp => if_neg (Finset.mem_sdiff.1 hp).2
+    Finset.sum_congr rfl fun p hp => ite_eq_right (Finset.mem_sdiff.1 hp).2
   have h4 : ∑ p ∈ T, (if p ∈ T then v p.1 else v p.2) = ∑ p ∈ T, v p.1 :=
-    Finset.sum_congr rfl fun p hp => if_pos hp
+    Finset.sum_congr rfl fun p hp => ite_eq_left hp
   rw [h1, h2, h3, h4, add_comm]
 
 theorem pair_le (v : Fin n → ℤ) (T : Finset (Fin n × Fin n)) (hT : T ⊆ prs n) :
@@ -637,10 +642,10 @@ theorem tZero_term (lev : Fin n → ℕ) (hlev : Monotone lev) (v : Fin n → �
   have hlt : p.1 < p.2 := (Finset.mem_filter.1 hp).2
   by_cases h : lev p.1 < lev p.2
   · have hm : p ∈ tZero lev := Finset.mem_filter.2 ⟨hp, h⟩
-    rw [if_pos hm, max_eq_left (h1 _ _ h)]
+    rw [ite_eq_left hm, max_eq_left (h1 _ _ h)]
   · have he : lev p.1 = lev p.2 := le_antisymm (hlev hlt.le) (not_lt.1 h)
     have hm : p ∉ tZero lev := fun hm => h (Finset.mem_filter.1 hm).2
-    rw [if_neg hm, max_eq_right (h2 _ _ hlt he)]
+    rw [ite_eq_right hm, max_eq_right (h2 _ _ hlt he)]
 
 theorem tZero_eq (lev : Fin n → ℕ) (hlev : Monotone lev) (v : Fin n → ℤ)
     (h1 : ∀ a b, lev a < lev b → v b ≤ v a) (h2 : ∀ a b, a < b → lev a = lev b → v a ≤ v b) :
@@ -881,7 +886,7 @@ theorem tournament_unique : ∀ {n : ℕ} (lev : Fin n → ℕ), Monotone lev �
     have hpp := hT hp
     have hlt : p.1 < p.2 := (Finset.mem_filter.1 hpp).2
     have h := hterm p hpp
-    rw [if_pos hp] at h
+    rw [ite_eq_left hp] at h
     refine Finset.mem_filter.2 ⟨hpp, ?_⟩
     by_contra hc
     have he : lev p.1 = lev p.2 := le_antisymm (hlev hlt.le) (not_lt.1 hc)
@@ -892,7 +897,7 @@ theorem tournament_unique : ∀ {n : ℕ} (lev : Fin n → ℕ), Monotone lev �
     obtain ⟨hpp, hlt⟩ := Finset.mem_filter.1 hp
     by_contra hc
     have h := hterm p hpp
-    rw [if_neg hc] at h
+    rw [ite_eq_right hc] at h
     have h1 := rk_lt_of_lev hlt
     have h2 := le_max_left (rk lev p.1) (rk lev p.2)
     omega
@@ -1080,12 +1085,11 @@ theorem prod_one_add_div_mul_prod_pow {n : ℕ} (z : Fin n → ℂ) (hz : ∀ a,
 end GlobalTheory.CompanionTheory.CoefId
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HarmonicWeightsCoefficient
 
+noncomputable section
 open Matrix Finset
 open scoped InnerProductSpace
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HarmonicWeightsCoefficient
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
 
 namespace GlobalTheory.CompanionTheory.CoefId
@@ -1321,10 +1325,10 @@ theorem main_coef {n : ℕ} (lam : Fin n → ℤ) (hl : Antitone lam) (F : Finse
     split_ifs with h <;> simp [h]
   rw [hLf, hRf] at key
   by_cases hmem : μ ∈ F
-  · rw [if_pos hmem, Finset.sum_singleton, Finset.sum_singleton] at key
+  · rw [ite_eq_left hmem, Finset.sum_singleton, Finset.sum_singleton] at key
     simp only [Equiv.Perm.sign_one, Units.val_one, Int.cast_one, mul_one] at key
     exact ⟨hmem, key⟩
-  · rw [if_neg hmem, Finset.sum_empty, Finset.sum_singleton] at key
+  · rw [ite_eq_right hmem, Finset.sum_empty, Finset.sum_singleton] at key
     exact absurd key.symm (by simpa using pow_ne_zero n (two_ne_zero (α := ℂ)))
 
 end GlobalTheory.CompanionTheory.CoefId
@@ -1339,8 +1343,12 @@ theorem coef_harm : ∀ {n : ℕ} (lam : Fin n → ℤ), Antitone lam → ∀ (F
 
 end GlobalTheory.CompanionTheory.CoefId
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteDimensionalOfHom
+
+open Matrix Finset
+open scoped InnerProductSpace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount
 
 namespace GlobalTheory.CompanionTheory.HomTrace
@@ -1399,6 +1407,9 @@ end GlobalTheory.CompanionTheory.HomTrace
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TraceFactorTensorDecomp
+
+open Matrix Finset
+open scoped InnerProductSpace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
 
 namespace GlobalTheory.CompanionTheory.HomTrace
@@ -1446,8 +1457,6 @@ theorem trace_of_block_sandwich : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] 
 
 end GlobalTheory.CompanionTheory.HomTrace
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedTraceWeylCharacter
 
@@ -1506,17 +1515,13 @@ theorem trace_dualT_inv (lam : Fin n → ℤ) (E : KMod n) (T : E.V →L[ℂ] E.
 end GlobalTheory.CompanionTheory.RealCountG.LefDual
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagonalMemUnitary
+
+noncomputable section
 
 open Matrix Finset
 open scoped InnerProductSpace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
-
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedTraceWeylCharacterStatement
-
-end -- clump:auto
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagonalMemUnitary
 
 namespace GlobalTheory.CompanionTheory.RealCountG
 
@@ -1707,5 +1712,4 @@ end GlobalTheory.CompanionTheory.RealCountG
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteDimensionalOfHom", "h": "module\n\npublic import Mathlib.Basic.Complex.Basic\npublic import Mathlib.LinearAlgebra.Trace\nimport Mathlib.Algebra.Module.StablyFree.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.LinearAlgebra.Matrix.FiniteDimensional\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Coalgebra.IsFrobenius\nimport Mathlib.RingTheory.HopfAlgebra.Basic\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsCliff\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.IsMultZero\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.IsCoreMod\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLoc\n\n"}
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TraceFactorTensorDecomp", "h": "module\n\npublic import Mathlib.Basic.Complex.Basic\npublic import Mathlib.LinearAlgebra.Trace\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteDimensionalOfHom\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsCliff\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WtRInjective\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.IsMultZero\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.IsCoreMod\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLoc\n\n"}
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedTraceWeylCharacter", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.IsCoreMod\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsCliff\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualWeightsDominated\n\n"}
--- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedTraceWeylCharacterStatement", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.IsCoreMod\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedTraceWeylCharacter\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsCliff\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WtRInjective\n\n"}
--- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagonalMemUnitary", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.HighestVectorsRegularLine\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WtRInjective\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsCliff\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.IsCoreMod\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CliffordHighestWeightVector\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualOperatorCommutesLie\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualWeightTraceFormula\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualWeightsDominated\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsDualLieFamily\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsInvariantExtending\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteWeightsInvariantHom\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HarmonicOfNormBoundStatement\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HarmonicWeightsCoefficient\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ParthasarathyRaoVaradarajan\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RangeStable\npublic import Mathlib.Basic.Complex.Basic\npublic import Mathlib.LinearAlgebra.Trace\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TraceFactorTensorDecomp\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedTraceWeylCharacterStatement\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HighestWeightAntitoneOfFiniteDimensionalStable\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InvariantIntertwinesDual\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagonalMemUnitary", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.HighestVectorsRegularLine\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WtRInjective\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsCliff\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.IsCoreMod\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CliffordHighestWeightVector\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualOperatorCommutesLie\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualWeightTraceFormula\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualWeightsDominated\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsDualLieFamily\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsInvariantExtending\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteWeightsInvariantHom\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HarmonicOfNormBoundStatement\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HarmonicWeightsCoefficient\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ParthasarathyRaoVaradarajan\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RangeStable\npublic import Mathlib.Basic.Complex.Basic\npublic import Mathlib.LinearAlgebra.Trace\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TraceFactorTensorDecomp\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HighestWeightAntitoneOfFiniteDimensionalStable\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InvariantIntertwinesDual\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

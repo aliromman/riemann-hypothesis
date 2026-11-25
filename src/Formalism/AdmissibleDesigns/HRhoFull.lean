@@ -22,10 +22,12 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.AdmissibleDesigns.FirstBlockColumnCondition, Formalism.AdmissibleDesigns.RankFfNormAt, Formalism.AdmissibleDesigns.InvariantsMapEquivariant, Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.JointCondH0W, Formalism.AdmissibleDesigns.BkLocCol, Formalism.AdmissibleDesigns.ToH1Cocycles, Formalism.AdmissibleDesigns.SelFSOfNormAt, Formalism.AdmissibleDesigns.HRhoFull
 
-@[expose] public noncomputable section -- clump member: Formalism.AdmissibleDesigns.FirstBlockColumnCondition
+section -- clump member: Formalism.AdmissibleDesigns.FirstBlockColumnCondition
+@[expose] public section
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core] [hH0Fin : Fact Formalism.MainNotions.N.K.H0.FinCore]
 
+noncomputable section
 
 open Finset Classical Formalism.BasicNotions
 
@@ -74,7 +76,7 @@ theorem first_block_column_condition (l : Col i dc) :
     exact Finset.disjoint_left.mp dc.disj hw hwc
   simp only [FS, QS.Fall, Fin.cases_zero]
   unfold FirstBlockLocalConditions
-  simp only [KHf.Fρ, if_neg hnot]
+  simp only [KHf.Fρ, ite_eq_right hnot]
 
 
 
@@ -109,6 +111,8 @@ end Rho
 
 end Formalism.MainNotions.N.K.StB
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.AdmissibleDesigns.RankFfNormAt

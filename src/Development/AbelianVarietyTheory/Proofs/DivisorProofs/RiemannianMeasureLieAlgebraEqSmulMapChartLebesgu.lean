@@ -73,11 +73,12 @@ import Mathlib.Tactic.Polynomial.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.ThetaMetrics.NormDetStrongContragredientDomRestrictAnnihilato, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SkewFamilyEqOfStrictLowerOfDiagIm, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SkewFamilyInnerReEqStrictLowerAddDiagIm, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecialUnitaryLieAlgebraEntriesOrthonormalFrame, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RiemannianMeasureLieAlgebraEqSmulMapChartLebesgu
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.ThetaMetrics.NormDetStrongContragredientDomRestrictAnnihilato
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.ThetaMetrics.NormDetStrongContragredientDomRestrictAnnihilato
 
 open Module Matrix
 open scoped InnerProductSpace ComplexOrder
 
+noncomputable section
 
 namespace GlobalTheory
 
@@ -85,7 +86,6 @@ variable {𝕜 : Type*} [RCLike 𝕜]
 variable {V W X : Type*} [NormedAddCommGroup V] [InnerProductSpace 𝕜 V]
   [NormedAddCommGroup W] [InnerProductSpace 𝕜 W] [NormedAddCommGroup X] [InnerProductSpace 𝕜 X]
 variable {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ]
-
 
 variable (𝕜) in
 def gramVol (v : ι → V) : ℝ := √(RCLike.re (gram 𝕜 v).det)
@@ -106,22 +106,6 @@ theorem gramVol_eq_of_sq {v : ι → V} {r : ℝ} (hr : 0 ≤ r) (h : (r : 𝕜)
 
 theorem gramVol_of_orthonormal {v : ι → V} (hv : Orthonormal 𝕜 v) : gramVol 𝕜 v = 1 :=
   gramVol_eq_of_sq zero_le_one (by simp [gram_eq_one_iff_orthonormal.mpr hv])
-
-theorem gramVol_of_pairwise_orthogonal {v : ι → V}
-    (hv : Pairwise fun i j => ⟪v i, v j⟫_𝕜 = 0) : gramVol 𝕜 v = ∏ i, ‖v i‖ := by
-  refine gramVol_eq_of_sq (Finset.prod_nonneg fun _ _ => norm_nonneg _) ?_
-  have : gram 𝕜 v = diagonal fun i => ((‖v i‖ : 𝕜) ^ 2) := by
-    ext i j
-    by_cases h : i = j
-    · subst h; simp [inner_self_eq_norm_sq_to_K]
-    · simp [h, hv h]
-  rw [this, det_diagonal]
-  push_cast
-  rw [Finset.prod_pow]
-
-@[simp] theorem gramVol_unique [Unique ι] (v : ι → V) : gramVol 𝕜 v = ‖v default‖ := by
-  rw [gramVol_of_pairwise_orthogonal (Subsingleton.pairwise), Fintype.prod_unique]
-
 
 omit [DecidableEq ι] [Fintype κ] [DecidableEq κ] in
 theorem gram_sum_smul (v : ι → V) (Y : Matrix ι κ 𝕜) :
@@ -164,11 +148,10 @@ open InnerProductSpace
 
 variable [FiniteDimensional 𝕜 V] [FiniteDimensional 𝕜 W] [FiniteDimensional 𝕜 X]
 
-
-
 end Dual
 
 end GlobalTheory
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SkewFamilyEqOfStrictLowerOfDiagIm
@@ -367,11 +350,12 @@ theorem entries_of_mem {E : Type} [Field E] [NumberField E] [IsCMField E] {r : �
 end GlobalTheory.SUVol.FrameSkew
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RiemannianMeasureLieAlgebraEqSmulMapChartLebesgu
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RiemannianMeasureLieAlgebraEqSmulMapChartLebesgu
 
 open NumberField MeasureTheory Matrix Filter Topology GlobalTheory.SUVol GlobalTheory.RiemConst ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.AR.Inst ReciprocityTheory.ChartRestriction.G.AR.Up ReciprocityTheory.L2DbarEstimates
 open scoped ENNReal
 
+noncomputable section
 namespace GlobalTheory.RiemConst.Jac
 
 theorem addHaar_eq_gram {ι ι' F G : Type} [Fintype ι] [DecidableEq ι] [Fintype ι']
@@ -532,10 +516,10 @@ theorem riemLie_eq_smul_map (E : Type) [Field E] [NumberField E] [IsCMField E] (
     rw [hT0]
     have key := _root_.GlobalTheory.skewFamily_eq_of_strictLower_of_diagIm s hs (fun p => frameL x (D w) p) (fun p => Y.1 p) (hskw w).1 (hskw w).2 hY.1 hY.2
       (fun τ a b hab => by
-        simp only [frameL_apply, (hD w).2.1 τ a b hab, nmat, dif_pos hab, w, PiLp.toLp_apply, Equiv.symm_apply_apply])
+        simp only [frameL_apply, (hD w).2.1 τ a b hab, nmat, dite_eq_left hab, w, PiLp.toLp_apply, Equiv.symm_apply_apply])
       (fun τ a ha => by
         simp only [frameL_apply, (hD w).2.2 τ a, Complex.mul_im, Complex.I_re, Complex.I_im, Complex.ofReal_re,
-          Complex.ofReal_im, zero_mul, one_mul, zero_add, angles, dif_pos (show (a : ℕ) < r - 1 by omega), w])
+          Complex.ofReal_im, zero_mul, one_mul, zero_add, angles, dite_eq_left (show (a : ℕ) < r - 1 by omega), w])
     ext p
     exact congrFun key p
   let T : ChartSp X ≃ₗ[ℝ] S := LinearEquiv.ofBijective T0 ⟨hT0inj, hT0surj⟩
@@ -551,7 +535,7 @@ theorem riemLie_eq_smul_map (E : Type) [Field E] [NumberField E] [IsCMField E] (
         v.1 (Fintype.equivFin (Ent X) q) := by
       intro v q
       rw [frameL_apply, (hD v).2.1 _ _ _ q.2.2]
-      simp only [nmat, dif_pos q.2.2]
+      simp only [nmat, dite_eq_left q.2.2]
     have hdg : ∀ (v : ChartSp X) τ a, (frameL x (D v) (τ, a, a)).im = angles (v.2 τ) a := by
       intro v τ a
       rw [frameL_apply, (hD v).2.2]; simp

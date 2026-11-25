@@ -184,8 +184,9 @@ theorem exp_mem_UJ {n : ℕ} {ε : Fin n → Bool} {X : Matrix (Fin n) (Fin n) �
 end PI.UnitaryGroupMassFormula.DSIC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CapCoefGen
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CapCoefGen
 
+noncomputable section
 
 open Matrix
 
@@ -351,11 +352,11 @@ theorem top_cf (hσ : IsURepOn (UJset ε) σ) (hQP : Q * P = 1) (hPQ : P * Q = 1
   unfold Formalism.QuantumDeterminants.Top Formalism.REAL.Tm
   rw [eabH_cf hσ hQP hPQ a T x f hf c d hg, hf g hg]
   by_cases hcd : c = d
-  · rw [if_pos hcd, if_pos hcd, LinearMap.add_apply, Submodule.coe_add, map_add (f := _), inner_add_right, add_smul,
+  · rw [ite_eq_left hcd, ite_eq_left hcd, LinearMap.add_apply, Submodule.coe_add, map_add (f := _), inner_add_right, add_smul,
       Algebra.algebraMap_eq_smul_one, LinearMap.smul_apply, Module.End.one_apply, Submodule.coe_smul, map_smul,
       inner_smul_right, smul_smul]
     rfl
-  · rw [if_neg hcd, if_neg hcd, zero_add, zero_add]
+  · rw [ite_eq_right hcd, ite_eq_right hcd, zero_add, zero_add]
     rfl
 
 theorem foldr_cf (hσ : IsURepOn (UJset ε) σ) (hQP : Q * P = 1) (hPQ : P * Q = 1) (a : H) (T : E) :
@@ -448,6 +449,7 @@ theorem capelliH_cf_rect {N m : ℕ} {ε : Fin N → Bool} {σ : Matrix (Fin N) 
 end Rect
 
 end Formalism.L2.SG.Pf.CapCoef
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.WeightedGaugeFactors.FactsCC

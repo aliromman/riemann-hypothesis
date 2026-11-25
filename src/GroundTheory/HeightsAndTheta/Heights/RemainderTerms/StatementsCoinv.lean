@@ -188,14 +188,13 @@ theorem exists_reduction (b : Fin f) (k : Fin n) :
 end GroundTheory.Heights₂.Heights.RestTerms.Coinv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.StatementsCoinv
-
-set_option maxSynthPendingDepth 1
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.RemainderTerms.StatementsCoinv
 
 namespace GroundTheory.Heights₂.Heights.RestTerms
 
 open MvPolynomial Finset
 
+noncomputable section
 
 namespace Coinv
 
@@ -289,6 +288,7 @@ def RestPolynomialHomogeneousDecomposition.Statement : Prop :=
     IsPowerSumDecomposition f (r + a) (restPolynomial f r a c) Q ∧
     ∀ k τ, (Q k τ).IsHomogeneous (topDegree f (r + a) + 1 - k)
 
+end
 
 end GroundTheory.Heights₂.Heights.RestTerms
 

@@ -33,10 +33,11 @@ def PartialsContinuousDifferentiable : Prop :=
 end PI.UnitaryGroupMassFormula.JCC.Ck
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.JacobianCommutation.PCkPartials
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.JacobianCommutation.PCkPartials
 
 open Filter Topology Asymptotics
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.JCC.Ck
 
@@ -64,8 +65,8 @@ theorem psum_succ (y h : Fin d → ℝ) (i : Fin d) :
   · have hne : l.val ≠ i.val := fun e => hl (Fin.ext e)
     rw [Pi.single_eq_of_ne hl, mul_zero, add_zero]
     by_cases hlt : l.val < i.val
-    · rw [if_pos hlt, if_pos (by omega)]
-    · rw [if_neg hlt, if_neg (by omega)]
+    · rw [ite_eq_left hlt, ite_eq_left (by omega)]
+    · rw [ite_eq_right hlt, ite_eq_right (by omega)]
 
 theorem psum_seg_norm (y h : Fin d → ℝ) (i : Fin d) {s : ℝ} (hs : |s| ≤ |h i|) :
     ‖psum y h i.val + s • Pi.single i (1 : ℝ) - y‖ ≤ ‖h‖ := by
@@ -78,7 +79,7 @@ theorem psum_seg_norm (y h : Fin d → ℝ) (i : Fin d) {s : ℝ} (hs : |s| ≤ 
   rw [hv l]
   by_cases hl : l = i
   · subst hl
-    rw [if_neg (lt_irrefl _), Pi.single_eq_same, zero_add, mul_one, Real.norm_eq_abs]
+    rw [ite_eq_right (lt_irrefl _), Pi.single_eq_same, zero_add, mul_one, Real.norm_eq_abs]
     exact hs.trans (by simpa [Real.norm_eq_abs] using norm_le_pi_norm h l)
   · rw [Pi.single_eq_of_ne hl, mul_zero, add_zero]
     split_ifs

@@ -306,8 +306,9 @@ theorem top_le_zero (hN : IntegralIndexStatement) {K : Type} [Field K] [NumberFi
 end ReciprocityTheory.MultiplicativeHeights.SemiPt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.SemistableReduction.SemiDegN
+@[expose] public section -- clump member: ReciprocityTheory.SemistableReduction.SemiDegN
 
+noncomputable section
 
 namespace ReciprocityTheory.MultiplicativeHeights.SemiPt
 
@@ -334,7 +335,7 @@ theorem mid_le_zero (hN : IntegralIndexStatement) (hA : AbsDetStatement) {K : Ty
       Sm.h z z = ∑ a, S.c (z a) * g a * z a := by
     intro z hz
     simp only [HermForm.h, hSm, midForm, midG, Matrix.diagonal_apply, mul_ite, mul_zero, ite_mul,
-      zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+      zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     refine Finset.sum_congr rfl fun a _ => ?_
     split_ifs with h
     · rfl
@@ -423,9 +424,11 @@ theorem mid_le_zero (hN : IntegralIndexStatement) (hA : AbsDetStatement) {K : Ty
 
 end ReciprocityTheory.MultiplicativeHeights.SemiPt
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.SemistableReduction.SemiDegQ
+@[expose] public section -- clump member: ReciprocityTheory.SemistableReduction.SemiDegQ
 
+noncomputable section
 
 namespace ReciprocityTheory.MultiplicativeHeights.SemiPt
 
@@ -450,7 +453,7 @@ theorem exists_at {K : Type} [Field K] [NumberField K] {r : ℕ} (Lp : Submodule
     simp [this]
   refine ⟨projGe K r j (a • Pi.single j 1), ⟨_, ⟨hav, hcut⟩, rfl⟩, ?_⟩
   show (if (j : ℕ) ≤ j then (a • (Pi.single j 1 : Fin r → K)) j else 0) ≠ 0
-  rw [if_pos le_rfl]
+  rw [ite_eq_left le_rfl]
   simpa using ha
 
 theorem pair_int {K : Type} [Field K] [NumberField K] {r : ℕ} (S : HermForm K r) (m : ℕ)
@@ -465,10 +468,10 @@ theorem pair_int {K : Type} [Field K] [NumberField K] {r : ℕ} (S : HermForm K 
   have hj' := j.isLt
   have e1 : projGe K r j x j = x j := by
     show (if (j : ℕ) ≤ j then x j else 0) = x j
-    rw [if_pos le_rfl]
+    rw [ite_eq_left le_rfl]
   have e2 : projGe K r (Fin.rev j) y (Fin.rev j) = y (Fin.rev j) := by
     show (if ((Fin.rev j : Fin r) : ℕ) ≤ (Fin.rev j : Fin r) then y (Fin.rev j) else 0) = _
-    rw [if_pos le_rfl]
+    rw [ite_eq_left le_rfl]
   rw [e1, e2]
   have h := hint x hxL y hyL
   rw [formM_witt, Finset.sum_eq_single j] at h
@@ -504,7 +507,7 @@ theorem mid_int {K : Type} [Field K] [NumberField K] {r : ℕ} (S : HermForm K r
   convert h using 1
   rw [formM_witt]
   simp only [HermForm.h, midForm, midG, Matrix.diagonal_apply, mul_ite, mul_zero, ite_mul,
-    zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   refine Finset.sum_congr rfl fun a _ => ?_
   have ha := a.isLt
   show (if m ≤ (a : ℕ) ∧ (a : ℕ) + m < r then
@@ -512,10 +515,10 @@ theorem mid_int {K : Type} [Field K] [NumberField K] {r : ℕ} (S : HermForm K r
       else 0) = _
   by_cases hmid : m ≤ (a : ℕ) ∧ (a : ℕ) + m < r
   · have ho : ¬ ((a : ℕ) < m ∨ r ≤ (a : ℕ) + m) := by omega
-    simp only [if_pos hmid, if_pos hmid.1]
+    simp only [ite_eq_left hmid, ite_eq_left hmid.1]
     rw [wVal_mid r m g a ho, wPart_mid r m a ho]
     ring
-  · rw [if_neg hmid]
+  · rw [ite_eq_right hmid]
     by_cases hlt : (a : ℕ) < m
     · have ho : (a : ℕ) < m ∨ r ≤ (a : ℕ) + m := Or.inl hlt
       rw [wPart_outer r m a ho]
@@ -526,9 +529,11 @@ theorem mid_int {K : Type} [Field K] [NumberField K] {r : ℕ} (S : HermForm K r
 
 end ReciprocityTheory.MultiplicativeHeights.SemiPt
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.SemistableReduction.SemiDegW
+@[expose] public section -- clump member: ReciprocityTheory.SemistableReduction.SemiDegW
 
+noncomputable section
 
 namespace ReciprocityTheory.MultiplicativeHeights.SemiPt
 
@@ -627,7 +632,7 @@ theorem adapted_semistable (hB : LatDegBasisStatement) (hN : IntegralIndexStatem
     have hδj : ∀ σ, δ σ (Fin.rev p) = dd (Fin.rev p) := fun σ => by
       show adMet r m g dd σ (Fin.rev p) = _
       unfold adMet
-      rw [if_pos hj]
+      rw [ite_eq_left hj]
     have hδp : ∀ σ, δ σ p = (dd (Fin.rev p))⁻¹ := fun σ => by
       have h1 : ¬ (p : ℕ) < m := by omega
       simp [hδdef, adMet, h1, hp]
@@ -673,6 +678,7 @@ theorem adapted_semistable (hB : LatDegBasisStatement) (hN : IntegralIndexStatem
   exact this B hB k b hb
 
 end ReciprocityTheory.MultiplicativeHeights.SemiPt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.SemistableReduction.SemiDegZA

@@ -68,8 +68,9 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open IsDedekindDomain NumberField MeasureTheory Matrix GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.StdFrames GlobalTheory.RowClaim
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.RowUnf GlobalTheory.RowChain GlobalTheory.SeeSaw GlobalTheory.RowVal GlobalTheory.RowReal
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.BplusEqCoef
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.BplusEqCoef
 
+noncomputable section
 
 namespace GlobalTheory.RowVal
 
@@ -86,7 +87,7 @@ theorem nu_top_eq {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridDat
   have h2 := hM'.top
   unfold Vol.IsAt at h1 h2
   have hz : Node.neg D.R.m (Node.top 0) = 0 := rfl
-  rw [if_pos hz] at h1 h2
+  rw [ite_eq_left hz] at h1 h2
   haveI := h1.1.1
   haveI := h2.1.1
   have e := Measure.isMulLeftInvariant_eq_smul (M.ν (.top 0)) (M'.ν (.top 0))
@@ -134,6 +135,7 @@ theorem bplus_indep : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G :
     GlobalTheory.Mem.TrueRecord.coef_left hψ hι G.besTop hN'.1 hN'.2.1 hN'.2.2 hF' (GlobalTheory.UnitaryEmbeddingProperties.unitaryEmbedding_rational d _ hγ) r1 r2]
 
 end GlobalTheory.RowVal
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LiftTOppTens

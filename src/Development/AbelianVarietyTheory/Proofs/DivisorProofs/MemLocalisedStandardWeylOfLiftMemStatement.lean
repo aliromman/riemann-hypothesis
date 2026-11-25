@@ -142,8 +142,9 @@ theorem exists_weyl_basis : ∀ (n : ℕ) (ν : Fin n → ℕ), Antitone ν → 
 end GlobalTheory.WeylBasis
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemWeylLatticeAddIffDetPowMul
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemWeylLatticeAddIffDetPowMul
 
+noncomputable section
 
 open Formalism.GradedWeylDivisibility MvPolynomial
 open GlobalTheory.FrameRead
@@ -177,9 +178,9 @@ theorem rowGen_detPol (n : ℕ) (a b : Fin n) :
   rw [h1]
   by_cases hab : a = b
   · subst hab
-    rw [Matrix.det_updateRow_add, Matrix.det_updateRow_smul, Matrix.updateRow_eq_self, if_pos rfl]
+    rw [Matrix.det_updateRow_add, Matrix.det_updateRow_smul, Matrix.updateRow_eq_self, ite_eq_left rfl]
     ring
-  · rw [Matrix.det_updateRow_add_smul_self A (Ne.symm hab), if_neg hab]
+  · rw [Matrix.det_updateRow_add_smul_self A (Ne.symm hab), ite_eq_right hab]
     ring
 
 theorem rowDiv_det_mul_zero (n : ℕ) (a b : Fin n) (g : MvPolynomial (Fin n × Fin n) R) :
@@ -213,7 +214,7 @@ theorem hw_add_one (n : ℕ) (ν : Fin n → ℕ) :
         = ν s.castSucc - nuNext ν s.castSucc := by
       intro s
       have hs : s.castSucc.val + 1 < m + 1 := by have := s.2; simp
-      simp only [nuNext, dif_pos hs]
+      simp only [nuNext, dite_eq_left hs]
       omega
     have h2 : ∀ μ : Fin (m + 1) → ℕ, nuNext μ (Fin.last m) = 0 := by
       intro μ
@@ -296,6 +297,7 @@ theorem mem_weyl_add (R : Type) [CommRing R] (n k : ℕ) (ν : Fin n → ℕ) (f
 
 end GlobalTheory.WeylShift
 end -- clump:auto
+end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -305,8 +307,9 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.Ind
 open Formalism.CohomologicalDescent.DepthNonnegative Formalism.CohomologicalDescent.LD Formalism.GradedWeylDivisibility MvPolynomial
 open GlobalTheory.FrameRead
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemLocalisedStandardWeylOfLiftMem
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemLocalisedStandardWeylOfLiftMem
 
+noncomputable section
 
 namespace GlobalTheory.FrameRead.DelStd
 
@@ -324,7 +327,7 @@ theorem res_eq {ι : Type} {n : ℕ} {lam : ι → DomWeight n} {lamW : ι → �
   have h2 := h τ ⟨n - 1, by omega⟩
   have h3 : (lam τ).w ⟨n - 1, by omega⟩ ≤ (lam τ).w a := (lam τ).anti (by
     rw [Fin.le_def]; have := a.2; simp only; omega)
-  simp only [res, DomWeight.natW, DomWeight.detShift, hn, dif_pos] at *
+  simp only [res, DomWeight.natW, DomWeight.detShift, hn, dite_eq_left] at *
   omega
 
 theorem linInd_map {σ P : Type} [Fintype P] (K : Type) [Field K] [CharZero K] (b : P → MvPolynomial σ ℤ)
@@ -489,6 +492,7 @@ theorem mem_localization_standardWeylLattice : ∀ (K : Type) [Field K] [NumberF
   · exact map_map_int (algebraMap (𝓞 K) K) _
 
 end GlobalTheory.FrameRead.DelStd
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemLocalisedStandardWeylOfLiftMemStatement

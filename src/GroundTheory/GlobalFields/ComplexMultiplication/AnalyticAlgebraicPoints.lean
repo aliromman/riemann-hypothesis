@@ -15,10 +15,11 @@ import GroundTheory.GlobalFields.ComplexMultiplication.EllipticRational
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.GlobalFields.ComplexMultiplication.AnalyticAlgebraicGerm, GroundTheory.GlobalFields.ComplexMultiplication.AnalyticAlgebraicPoints
 
-@[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.AnalyticAlgebraicGerm
+@[expose] public section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.AnalyticAlgebraicGerm
 
 open Filter Topology Set
 
+noncomputable section
 
 namespace GroundTheory.Global
 namespace Elliptic
@@ -122,7 +123,7 @@ def germ (f : ℂ → ℂ) : MeroField :=
   if h : Meromorphic f then Ideal.Quotient.mk meroNull ⟨f, h⟩ else 0
 
 theorem germ_of {f : ℂ → ℂ} (hf : Meromorphic f) : germ f = Ideal.Quotient.mk meroNull ⟨f, hf⟩ :=
-  dif_pos hf
+  dite_eq_left hf
 
 theorem germ_surjective (u : MeroField) : ∃ f : ℂ → ℂ, Meromorphic f ∧ germ f = u := by
   obtain ⟨⟨f, hf⟩, rfl⟩ := Ideal.Quotient.mk_surjective u
@@ -312,6 +313,7 @@ theorem exists_eq_algebraMap_of_germDeriv_eq_zero {u : MeroField} (hu : germDeri
 
 end Elliptic
 end GroundTheory.Global
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.AnalyticAlgebraicPoints

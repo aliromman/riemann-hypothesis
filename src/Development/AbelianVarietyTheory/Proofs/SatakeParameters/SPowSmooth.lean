@@ -772,11 +772,12 @@ end -- clump:auto
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.GenericModelComplexSmooth
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.GenericModelComplexSmooth
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen
 
 open scoped CategoryTheory.Obj
 
+noncomputable section
 
 namespace GlobalTheory.UPel.HT.Gen.CxSmooth
 
@@ -877,7 +878,7 @@ theorem card_torsion_of_gTateIso (G : GDatum) {k : Type} [Field k] {Q : Type} [G
         rw [hrep, map_add (f := _), map_nsmul, Finsupp.add_apply, Finsupp.smul_apply, map_sum]
         simp only [map_zsmul, Module.Basis.repr_self, Finset.sum_apply', Finsupp.smul_apply,
           Finsupp.single_apply, smul_eq_mul, nsmul_eq_mul]
-        simp only [mul_ite, _root_.mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+        simp only [mul_ite, _root_.mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
         linear_combination hy i
       rw [e1, I.add, (I.ker ℓ hℓ _).2 ⟨_, rfl⟩, _root_.mul_one]
   rw [← Nat.card_congr (Equiv.ofBijective F hF), Nat.card_fun, Nat.card_zmod, Nat.card_fin]
@@ -929,6 +930,7 @@ theorem genModel_smooth : ∀ (G : GDatum) (gb : GBase G ℂ) (N : ℕ), 3 ≤ N
   exact genericModel_complex_smooth D gb N hN hNp X
 
 end GlobalTheory.UPel.HT.Gen.CxSmooth
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.SPowSmooth

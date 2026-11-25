@@ -69,19 +69,13 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZ
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsOrthonormalHermitianOfDiagPosIsSquare, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsUnitNormOfSelfDualHermitianLattice, Development.AbelianVarietyTheory.Proofs.FoundationProofs.HermitianLatticeNormOneOfNormOneModPrime, Development.AbelianVarietyTheory.Proofs.FoundationProofs.SelfDualHermitianLatticeExistsNormOneMod, Development.AbelianVarietyTheory.Proofs.FoundationProofs.StandardPairLatticeLocallyOrthonormalBasis
 
-section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsOrthonormalHermitianOfDiagPosIsSquare
-@[expose] public section
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsOrthonormalHermitianOfDiagPosIsSquare
 
 open NumberField
 open scoped Matrix ComplexConjugate
 open ReciprocityTheory.ChartRestriction.G.FD
 
 namespace GlobalTheory.SqDet
-
-section
-variable {K : Type} [Field K] [NumberField K] {d : ℕ} {θ : K}
-
-end
 
 open NumberField in
 open scoped Matrix ComplexConjugate in
@@ -165,7 +159,7 @@ private theorem exists_orthonormal_mem_span_of_diagonal_square_prod {K V : Type}
     intro i j
     have hij : i = j := Fin.ext (by have := i.2; have := j.2; omega)
     subst hij
-    simp only [map_smul, map_smulₛₗ, LinearMap.smul_apply, smul_eq_mul, hv, if_true, map_ratCast,
+    simp only [map_smul, map_smulₛₗ, LinearMap.smul_apply, smul_eq_mul, hv, ite_true, map_ratCast,
       hs]
     push_cast
     field_simp
@@ -184,7 +178,7 @@ private theorem exists_orthonormal_mem_span_of_diagonal_square_prod {K V : Type}
     have hv11 := hv 1 1
     have hv01 := hv 0 1
     have hv10 := hv 1 0
-    simp only [if_true, h01, h01.symm, if_false] at hv00 hv11 hv01 hv10
+    simp only [ite_true, h01, h01.symm, ite_false] at hv00 hv11 hv01 hv10
     have hvs : ∀ (i : Fin r) (j : Fin (r + 2)), j = 0 ∨ j = 1 →
         h (v i.succ.succ) (v j) = 0 ∧ h (v j) (v i.succ.succ) = 0 := by
       intro i j hj
@@ -300,7 +294,6 @@ theorem _root_.GlobalTheory.SqDet.exists_orthonormal_of_diag_pos_isSquare :
   exact ⟨e, he⟩
 
 end GlobalTheory.SqDet
-end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsUnitNormOfSelfDualHermitianLattice
@@ -1045,7 +1038,7 @@ theorem exists_orthonormal (D : D7) (N N' : ℕ) (hev : Even (N * N')) :
         by_cases hk : k = k'
         · subst hk; simp [ha]
         · rw [← hh₁, hw k k' hk]; simp [hk]
-      · rw [Matrix.single_apply_of_ne _ _ _ _ _ hij, if_neg (by tauto)]; simp)
+      · rw [Matrix.single_apply_of_ne _ _ _ _ _ hij, ite_eq_right (by tauto)]; simp)
     (by
       rw [← ε.prod_comp (fun t => a (ε.symm t).1.1)]
       simp only [Equiv.symm_apply_apply, Fintype.prod_prod_type, Finset.prod_const, Finset.card_univ,

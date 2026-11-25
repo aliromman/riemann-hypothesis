@@ -17,6 +17,7 @@ import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
 import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.DerivativeVacuumDilationsAlt
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousOnIteratedDerivFamily
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.ContDiffMatrixMul, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.DerivCurveOfHasFDerivAt, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.KerInt, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.IntegralRestrictC, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.Nonzero, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.SmoothPf, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.SmoothTop
@@ -140,13 +141,11 @@ theorem rC_congr {F F' : M2 n → ℂ} {O : Set (M2 n)} (hO : IsOpen O) {x : M2 
 end PositivityTheory.Rg.Sw.HSt.MI
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.KerInt
+@[expose] public noncomputable section
 
 
 open MeasureTheory Matrix Set Filter Topology
-
-section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.KerInt
-@[expose] public noncomputable section
 open scoped ContDiff
 
 namespace PositivityTheory.Rg.Sw.HSt.Conv
@@ -250,7 +249,11 @@ end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.IntegralRestrictC
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
+
+open MeasureTheory Matrix Set Filter Topology
 open scoped NNReal
 
 namespace PositivityTheory.Rg.Sw.HSt.Conv
@@ -258,8 +261,6 @@ namespace PositivityTheory.Rg.Sw.HSt.Conv
 open PositivityTheory.Rg.Sw PositivityTheory.Rg.Sw.AbsSt PositivityTheory.Rg.Sw.HSt PositivityTheory.Rg.Sw.HSt.GRH
 
 variable {n : ℕ}
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem hLoc_pos' (g : GR n) : 0 < hLoc g := Vac.hLoc_pos detU1 g
 
@@ -505,8 +506,12 @@ end Glob
 end PositivityTheory.Rg.Sw.HSt.Conv
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.Nonzero
+
+
+open MeasureTheory Matrix Set Filter Topology
 open scoped ContDiff
 
 namespace PositivityTheory.Rg.Sw.HSt.Conv
@@ -677,7 +682,11 @@ theorem exists_bump (m : ℕ) (e : ℤ) (ν : Measure (GR n)) [ν.IsHaarMeasure]
 end PositivityTheory.Rg.Sw.HSt.Conv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.SmoothPf
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.SmoothPf
+
+noncomputable section
+
+open MeasureTheory Matrix Set Filter Topology
 open scoped NNReal ContDiff
 
 namespace PositivityTheory.Rg.Sw.HSt.Conv
@@ -685,8 +694,6 @@ namespace PositivityTheory.Rg.Sw.HSt.Conv
 open PositivityTheory.Rg.Sw PositivityTheory.Rg.Sw.AbsSt PositivityTheory.Rg.Sw.HSt PositivityTheory.Rg.Sw.HSt.GRH PositivityTheory.Rg.Sw.HSt.MI
 
 variable {n : ℕ}
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem integral_restrict_of_zero (ν : Measure (GR n)) {C : Set (GR n)} (_hCm : MeasurableSet C) {F : GR n → ℂ}
     (hF : ∀ u ∉ C, F u = 0) : ∫ u, F u ∂ν = ∫ u, F u ∂(ν.restrict C) :=
@@ -792,8 +799,13 @@ theorem holInt (ν : Measure (GR n)) [ν.IsHaarMeasure] {C : Set (GR n)} (hC : I
 
 end PositivityTheory.Rg.Sw.HSt.Conv
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.SmoothTop
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.SmoothTop
+
+noncomputable section
+
+open MeasureTheory Matrix Set Filter Topology
 open scoped NNReal ContDiff
 
 namespace PositivityTheory.Rg.Sw.HSt.Conv
@@ -812,53 +824,7 @@ private theorem taylor_cont_lemma {X : Type} [TopologicalSpace X] {U : Set ℂ} 
     (Φ : X → ℂ → ℂ) (hc : ContinuousOn (fun p : X × ℂ => Φ p.1 p.2) (univ ×ˢ U))
     (hd : ∀ x, DifferentiableOn ℂ (Φ x) U) :
     ContinuousOn (fun p : X × ℂ => deriv (Φ p.1) p.2) (univ ×ˢ U) := by
-  rintro ⟨x₀, z₀⟩ ⟨-, hz₀⟩
-  obtain ⟨ε, εpos, hε⟩ := Metric.isOpen_iff.1 hU z₀ hz₀
-  have rpos : 0 < ε / 2 := by positivity
-  have hsub : Metric.closedBall z₀ (ε / 2) ⊆ U :=
-    (Metric.closedBall_subset_ball (by linarith)).trans hε
-  set S : Set (X × ℂ) := (univ : Set X) ×ˢ Metric.ball z₀ (ε / 2) with hSdef
-  set K : X × ℂ → ℂ := fun p =>
-    (2 * Real.pi * Complex.I : ℂ)⁻¹ • ∮ w in C(z₀, ε / 2), ((w - p.2) ^ 2)⁻¹ • Φ p.1 w with hKdef
-  have heq : ∀ p ∈ S, deriv (Φ p.1) p.2 = K p := fun p hp =>
-    (Complex.two_pi_I_inv_smul_circleIntegral_sub_sq_inv_smul_of_differentiable hU hsub (hd p.1)
-      hp.2).symm
-  have hS : IsOpen S := isOpen_univ.prod Metric.isOpen_ball
-  have hmem : (x₀, z₀) ∈ S := ⟨trivial, Metric.mem_ball_self rpos⟩
-  have hK : ContinuousOn K S := by
-    rw [continuousOn_iff_continuous_restrict]
-    have hsph : ∀ θ : ℝ, circleMap z₀ (ε / 2) θ ∈ U := fun θ =>
-      hsub (Metric.sphere_subset_closedBall (circleMap_mem_sphere z₀ rpos.le θ))
-    have h3 : Continuous (fun q : S × ℝ => Φ q.1.1.1 (circleMap z₀ (ε / 2) q.2)) := by
-      have := hc.comp_continuous (f := fun q : S × ℝ => (q.1.1.1, circleMap z₀ (ε / 2) q.2))
-        (by fun_prop) (fun q => ⟨trivial, hsph q.2⟩)
-      exact this
-    have h2 : Continuous (fun q : S × ℝ => ((circleMap z₀ (ε / 2) q.2 - q.1.1.2) ^ 2)⁻¹) := by
-      refine Continuous.fun_inv₀ (by fun_prop) ?_
-      intro q h
-      have hq : q.1.1.2 ∈ Metric.ball z₀ (ε / 2) := q.1.2.2
-      have h0 : circleMap z₀ (ε / 2) q.2 = q.1.1.2 := sub_eq_zero.mp (pow_eq_zero_iff two_ne_zero |>.mp h)
-      have hs := circleMap_mem_sphere z₀ rpos.le q.2
-      rw [h0] at hs
-      rw [Metric.mem_sphere] at hs
-      rw [Metric.mem_ball] at hq
-      linarith
-    have h1 : Continuous (fun q : S × ℝ => deriv (circleMap z₀ (ε / 2)) q.2) := by
-      simp only [deriv_circleMap]
-      fun_prop
-    have hI := intervalIntegral.continuous_parametric_intervalIntegral_of_continuous'
-      (μ := MeasureTheory.volume)
-      (f := fun (q : S) (θ : ℝ) => deriv (circleMap z₀ (ε / 2)) θ •
-        ((circleMap z₀ (ε / 2) θ - q.1.2) ^ 2)⁻¹ • Φ q.1.1 (circleMap z₀ (ε / 2) θ))
-      (h1.smul (h2.smul h3)) 0 (2 * Real.pi)
-    have hI2 := (continuous_const (y := (2 * Real.pi * Complex.I : ℂ)⁻¹)).mul hI
-    convert hI2 using 1
-    ext x
-    rfl
-  have hat : ContinuousAt (fun p : X × ℂ => deriv (Φ p.1) p.2) (x₀, z₀) := by
-    refine (hK.continuousAt (hS.mem_nhds hmem)).congr ?_
-    filter_upwards [hS.mem_nhds hmem] with p hp using (heq p hp).symm
-  exact hat.continuousWithinAt
+  apply _root_.GlobalTheory.CompanionTheory.HolFamily.continuousOn_deriv_family <;> assumption
 
 omit [IsTopologicalGroup G] [LocallyCompactSpace G] [T2Space G] [SecondCountableTopology G] in
 theorem taylor_cont (hD : HD m n e G Pp Γ ι s₀ Ht f U d Ê t) : ∀ r : ℕ,

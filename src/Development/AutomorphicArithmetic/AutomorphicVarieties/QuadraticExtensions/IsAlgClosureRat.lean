@@ -651,21 +651,21 @@ private theorem embQ_fl (l : ℕ) [hl : Fact l.Prime] (T : Type) [AddCommGroup T
       map_zero' := by
         funext i
         by_cases h : (i : ℕ) < d
-        · simp only [h, dif_pos, hzero, Pi.zero_apply]
-        · simp only [h, dif_neg, not_false_eq_true, Pi.zero_apply]
+        · simp only [h, dite_eq_left, hzero, Pi.zero_apply]
+        · simp only [h, dite_eq_right, not_false_eq_true, Pi.zero_apply]
       map_add' := by
         intro s t
         funext i
         by_cases h : (i : ℕ) < d
-        · simp only [h, dif_pos, hadd, Pi.add_apply]
-        · simp only [h, dif_neg, not_false_eq_true, Pi.add_apply, add_zero] }
+        · simp only [h, dite_eq_left, hadd, Pi.add_apply]
+        · simp only [h, dite_eq_right, not_false_eq_true, Pi.add_apply, add_zero] }
   refine ⟨g, ?_⟩
   intro s t hst
   have key : E.toFun s = E.toFun t := by
     funext j
     have := congr_fun hst (Fin.castLE hd j)
     simp only [g, AddMonoidHom.coe_mk, ZeroHom.coe_mk, Fin.coe_castLE, Fin.eta] at this
-    rwa [dif_pos j.isLt, dif_pos j.isLt] at this
+    rwa [dite_eq_left j.isLt, dite_eq_left j.isLt] at this
   calc s = E.invFun (E.toFun s) := (E.left_inv s).symm
     _ = E.invFun (E.toFun t) := by rw [key]
     _ = t := E.left_inv t
@@ -991,24 +991,7 @@ end -- clump:auto
 
 private theorem not_lt_one_of_coprime {Ω : Type} [Field Ω] (A : ValuationSubring Ω) {p m : ℕ} (h : p.Coprime m)
     (hp : A.valuation (p : Ω) < 1) : ¬ A.valuation (m : Ω) < 1 := by
-  intro hm
-  have hz : ∀ z : ℤ, A.valuation (z : Ω) ≤ 1 := fun z => A.valuation_le_one ⟨(z : Ω), intCast_mem A z⟩
-  have h1 : ((p : ℤ) * Nat.gcdA p m + (m : ℤ) * Nat.gcdB p m : ℤ) = 1 := by
-    rw [← Nat.gcd_eq_gcd_ab, Nat.Coprime.gcd_eq_one h]
-    rfl
-  have hcast : (p : Ω) * (Nat.gcdA p m : Ω) + (m : Ω) * (Nat.gcdB p m : Ω) = 1 := by
-    have := congrArg (Int.cast : ℤ → Ω) h1
-    push_cast at this
-    exact this
-  have ha : A.valuation ((p : Ω) * (Nat.gcdA p m : Ω)) < 1 := by
-    rw [map_mul]
-    exact lt_of_le_of_lt (mul_le_of_le_one_right' (hz _)) hp
-  have hb : A.valuation ((m : Ω) * (Nat.gcdB p m : Ω)) < 1 := by
-    rw [map_mul]
-    exact lt_of_le_of_lt (mul_le_of_le_one_right' (hz _)) hm
-  have := lt_of_le_of_lt (A.valuation.map_add _ _) (max_lt ha hb)
-  rw [hcast, map_one] at this
-  exact lt_irrefl _ this
+  apply _root_.not_valuation_lt_one_of_coprime_of_lt_one <;> assumption
 
 theorem UpperTheory.V.Two.ineTwo :
     ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (M : AbF) (p : ℕ) (A : ValuationSubring Ω), p.Coprime (2 * M.m) → A.valuation (p : Ω) < 1 → Ine (F := ℚ) A ≤ cycU 2 (abU Ω (withI M)) := by
@@ -1453,7 +1436,7 @@ theorem UpperTheory.V.Two.orbTwo :
     calc _ ≤ (abU Ω M).index * ((cycZ ℚ Ω 2).ker ⊔ Dec A₀).index := hle
       _ ≤ M.deg * c := by rw [hi]; exact Nat.mul_le_mul_left _ hKDle
       _ = c * M.deg := Nat.mul_comm _ _
-  · push_neg at hex
+  · push Not at hex
     exact ⟨∅, by simp, by simp, fun A hA => absurd hA (not_lt.mpr (hex A))⟩
 end -- clump:auto
 
@@ -1653,8 +1636,9 @@ theorem UpperTheory.V.Two.shaTwo :
     _ = _ := add_comm _ _
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.QuadraticExtensions.IsAlgClosureRat
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.QuadraticExtensions.IsAlgClosureRat
 
+noncomputable section
 
 namespace UpperTheory.V.Two
 
@@ -1729,7 +1713,7 @@ theorem towerFixed (hFW : Published.FerreroWashington) (l : ℕ) [hl : Fact l.Pr
       Tower.GenLE ℤ_[l] (Tower.XX l L) R ∧ Tower.IsTower l L R := by
   have hμ : ∀ (L : Type) [Field L] [NumberField L], IsAbField A L → HasMuQ l L := fun L _ _ hL => by
     unfold HasMuQ
-    rw [if_neg h2]
+    rw [ite_eq_right h2]
     exact hasMuQ.1 l A L hA hL
   obtain ⟨r, hr⟩ := abRk hFW l A hμ
   refine ⟨max 1 r, fun L _ _ hL => ?_⟩
@@ -1771,6 +1755,7 @@ theorem fixedIn (hFW : Published.FerreroWashington) (hA : TowerBound) : Win.Fixe
 
 end UpperTheory.V.Two
 
+end
 
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.QuadraticExtensions.AbExists", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.StmtFields\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.CMFieldExponentialBounds.ExistsNumberFieldIsAbFieldFinrankEqDeg\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.GaloisCohomologyLength.LevelInertiaLeLevelDec\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.Mk0IdMapCongr\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.QuadraticExtensions.ModulusAdjoinISqrtNegPrimes\n\n"}
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.QuadraticExtensions.AbField", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.QuadraticExtensions.ModulusAdjoinISqrtNegPrimes\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

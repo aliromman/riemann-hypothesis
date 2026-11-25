@@ -10,11 +10,12 @@ import Mathlib.Tactic.TypeStar
 -- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.BasePointInChart, Formalism.HermitianCurvature.HermitianCurvatureProofs.DifferentiableAtOfPuncturedSmooth
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.BasePointInChart
-@[expose] public noncomputable section
+@[expose] public section
 
 open Matrix MeasureTheory
 open scoped ComplexConjugate
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.PBP
 
@@ -189,7 +190,7 @@ theorem operators_at_base_point {n ρ : ℕ} (hn : 1 + ρ = n) {c : Fin ρ → �
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
   · show pOp _ f _ = _
     unfold pOp
-    rw [if_pos hmem, h0]
+    rw [ite_eq_left hmem, h0]
     unfold wirt dz
     rw [hd, hd]
   · show cOp _ f _ = _
@@ -198,7 +199,7 @@ theorem operators_at_base_point {n ρ : ℕ} (hn : 1 + ρ = n) {c : Fin ρ → �
     simp only [ciOp, h0]
   · show pbOp _ f _ = _
     unfold pbOp
-    rw [if_pos hmem, h0]
+    rw [ite_eq_left hmem, h0]
     unfold wirtBar dzb
     rw [hd, hd]
     rfl
@@ -214,11 +215,13 @@ end read0
 end Formalism.FourierDecayAlt.P.PBP
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.DifferentiableAtOfPuncturedSmooth
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.DifferentiableAtOfPuncturedSmooth
 
 open scoped ContDiff ComplexConjugate
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.LevelPointCoordinates
 
@@ -299,7 +302,7 @@ def opP (κ : ℂ) : Module.End ℂ (V1 E) where
     ext τ
     by_cases hτ : τ = 0
     · simp [off0, hτ]
-    · simp only [off0, hτ, if_false, Submodule.coe_add, Pi.add_apply]
+    · simp only [off0, hτ, ite_false, Submodule.coe_add, Pi.add_apply]
       rw [dz_add f.2 g.2 hτ]
       simp only [smul_add]
       abel
@@ -307,7 +310,7 @@ def opP (κ : ℂ) : Module.End ℂ (V1 E) where
     ext τ
     by_cases hτ : τ = 0
     · simp [off0, hτ]
-    · simp only [off0, hτ, if_false, SetLike.val_smul, Pi.smul_apply, RingHom.id_apply]
+    · simp only [off0, hτ, ite_false, SetLike.val_smul, Pi.smul_apply, RingHom.id_apply]
       rw [dz_smul f.2 c hτ]
       simp only [smul_add, smul_comm τ c, smul_comm κ c]
 
@@ -318,7 +321,7 @@ def opPb (κ : ℂ) : Module.End ℂ (V1 E) where
     ext τ
     by_cases hτ : τ = 0
     · simp [off0, hτ]
-    · simp only [off0, hτ, if_false, Submodule.coe_add, Pi.add_apply]
+    · simp only [off0, hτ, ite_false, Submodule.coe_add, Pi.add_apply]
       rw [dzb_add f.2 g.2 hτ]
       simp only [smul_add]
       abel
@@ -326,7 +329,7 @@ def opPb (κ : ℂ) : Module.End ℂ (V1 E) where
     ext τ
     by_cases hτ : τ = 0
     · simp [off0, hτ]
-    · simp only [off0, hτ, if_false, SetLike.val_smul, Pi.smul_apply, RingHom.id_apply]
+    · simp only [off0, hτ, ite_false, SetLike.val_smul, Pi.smul_apply, RingHom.id_apply]
       rw [dzb_smul f.2 c hτ]
       simp only [smul_add, smul_comm (conj τ) c, smul_comm κ c]
 

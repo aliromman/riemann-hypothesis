@@ -155,8 +155,9 @@ theorem volumeIndependence_iff (D : D7) :
 end GlobalTheory.VolIndepCompare
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IsFundamentalDomainMap
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IsFundamentalDomainMap
 
+noncomputable section
 
 namespace GlobalTheory.VolumeIndep
 
@@ -191,8 +192,6 @@ theorem isFundamentalDomain_map {G H : Type} [Group G] [Group H] [MeasurableSpac
       fun γ y => by
         show φ (φ.symm γ * y) = γ * φ y
         rw [map_mul, φ.apply_symm_apply]
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
@@ -298,6 +297,7 @@ theorem volumeIndependence (D : D7) : VolumeIndependence D :=
   ⟨latticeIndependence D, isometryTransport D, volumeInvariance D⟩
 
 end GlobalTheory.VolumeIndep
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.VolIndep

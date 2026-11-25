@@ -247,21 +247,21 @@ theorem colDerM_single (t : T) (k l : κ) :
   · rw [colDerM_X_xVar, colDer_X_xVar]
     by_cases ht : t' = t
     · by_cases hj : j = l
-      · subst hj; rw [if_pos ht, if_pos ⟨ht, rfl⟩, ← xForm_single]
+      · subst hj; rw [ite_eq_left ht, ite_eq_left ⟨ht, rfl⟩, ← xForm_single]
         congr 1; ext i; simp [single_apply, Pi.single_apply, eq_comm]
-      · rw [if_pos ht, if_neg (fun h => hj h.2)]
+      · rw [ite_eq_left ht, ite_eq_right (fun h => hj h.2)]
         have : (single l k (1 : R)) j = 0 := by ext i; simp [Ne.symm hj]
         rw [this, map_zero]
-    · rw [if_neg ht, if_neg (fun h => ht h.1)]
+    · rw [ite_eq_right ht, ite_eq_right (fun h => ht h.1)]
   · rw [colDerM_X_yVar, colDer_X_yVar]
     by_cases ht : t' = t
     · by_cases hj : j = k
-      · subst hj; rw [if_pos ht, if_pos ⟨ht, rfl⟩, ← yForm_single]
+      · subst hj; rw [ite_eq_left ht, ite_eq_left ⟨ht, rfl⟩, ← yForm_single]
         congr 2; ext i; simp [single_apply, Pi.single_apply, eq_comm]
-      · rw [if_pos ht, if_neg (fun h => hj h.2)]
+      · rw [ite_eq_left ht, ite_eq_right (fun h => hj h.2)]
         have : (fun r => single l k (1 : R) r j) = 0 := by ext i; simp [Ne.symm hj]
         rw [this, map_zero, neg_zero]
-    · rw [if_neg ht, if_neg (fun h => ht h.1)]
+    · rw [ite_eq_right ht, ite_eq_right (fun h => ht h.1)]
 
 end ColDerLin
 
@@ -569,10 +569,12 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open MeasureTheory IsDedekindDomain NumberField Matrix Complex
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.FD GlobalTheory GlobalTheory.ThFr GlobalTheory.Ker GlobalTheory.AdSpan
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ReversedMinorProductMemHarmonicRowHighest
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ReversedMinorProductMemHarmonicRowHighest
+@[expose] public section
 open GlobalTheory.SW hiding Level
 open scoped TensorProduct ComplexConjugate Classical ComplexOrder
 
+noncomputable section
 
 namespace GlobalTheory.RenamedMinors
 
@@ -724,7 +726,7 @@ theorem GlobalTheory.RenamedMinors.renamed_delta_mem_rowHighest : ∀ (D : D7) (
   · change phi C _ ∈ _
     rw [hκ, ← MvPolynomial.smul_eq_C_mul]
     refine Submodule.smul_mem _ κ (Harm.minorProd_mem_rowHighest _ _ fun t a b => ?_)
-    rw [single_dotProduct, one_mul, Pi.single_apply, if_neg]
+    rw [single_dotProduct, one_mul, Pi.single_apply, ite_eq_right]
     intro h
     have h' := congrArg Fin.val h
     simp only [Fin.coe_castLE] at h'
@@ -738,6 +740,8 @@ theorem GlobalTheory.RenamedMinors.renamed_delta_mem_rowHighest : ∀ (D : D7) (
     have hinj : Function.Injective (phi C) := C.toH_bijective.1.comp (MvPolynomial.rename_injective _ hf)
     exact (map_ne_zero_iff (phi C) hinj).2 (GlobalTheory.FockDelta.delta_ne_zero _ _ _ _ (fun _ => by omega) hn)
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ReversedMinorProductMemHarmonicRowHighestStatement
@@ -825,10 +829,12 @@ end GlobalTheory.Ker.RealColAct
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.StableFockSpanContainsRowHighestPolynomials
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.StableFockSpanContainsRowHighestPolynomials
+@[expose] public section
 open GlobalTheory.SW hiding Level
 open scoped TensorProduct ComplexConjugate Classical ComplexOrder
 
+noncomputable section
 
 namespace GlobalTheory.AdSpan.StableFock
 
@@ -841,7 +847,7 @@ theorem revB_isB : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (B₀ : C.Bas), C.Is
     show sgn C.X.p0 ((revPos C.X.p0 a : Fin T.rank) : ℕ) = _
     unfold revPos
     split_ifs with h
-    · simp only [sgn, if_pos h.1, if_pos (show C.X.p0 - 1 - (a : ℕ) < C.X.p0 by omega)]
+    · simp only [sgn, ite_eq_left h.1, ite_eq_left (show C.X.p0 - 1 - (a : ℕ) < C.X.p0 by omega)]
     · rfl
   have hD : (sgnM C.X).submatrix σ σ = sgnM C.X := by
     unfold sgnM
@@ -1012,12 +1018,13 @@ theorem fockSpan_rowHighest : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (om : GA 
 
 end GlobalTheory.AdSpan.StableFock
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.StableFockSpanContainsRowHighestPolynomialsStatement
 open GlobalTheory.SW hiding Level
 open scoped TensorProduct ComplexConjugate Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsRealPointStandardSourceUnitaryComponents", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsWeakOfDatum\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsArchimedeanLiftUnitaryGroupProduct\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.IsSmoothVector\nimport Development.AbelianVarietyTheory.Proofs.TwistedOperators.RevPosRevPos\n\n"}

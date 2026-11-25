@@ -23,8 +23,9 @@ namespace GlobalTheory.MemN
 end GlobalTheory.MemN
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.TeichmullerInertiaLabelCondition
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.TeichmullerInertiaLabelCondition
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.CyclotomicNorms Polynomial TensorProduct Module
 
@@ -419,7 +420,7 @@ open Classical in
 def lab (τ : Fbar g →* ℂ) (γ : G E Ω) (x : WD h) : (ZMod g)[X] :=
   if H : TeichmullerInertiaLabelCondition A w τ γ then (existsUnique_lab H x).choose else 1
 
-theorem lab_of_not (H : ¬ TeichmullerInertiaLabelCondition A w τ γ) (x : WD h) : lab τ γ x = 1 := dif_neg H
+theorem lab_of_not (H : ¬ TeichmullerInertiaLabelCondition A w τ γ) (x : WD h) : lab τ γ x = 1 := dite_eq_right H
 
 theorem lab_monic (τ : Fbar g →* ℂ) (γ : G E Ω) (x : WD h) : (lab τ γ x).Monic := by
   unfold lab

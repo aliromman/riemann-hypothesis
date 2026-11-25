@@ -47,23 +47,18 @@ namespace GlobalTheory.FinNear
 end GlobalTheory.FinNear
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AffineFinsetInf
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AffineFinsetInf
 
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
+noncomputable section
 
 open CategoryTheory
 
 namespace GlobalTheory.CompanionTheory.RelInjAbs
 
 open CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Onto
-
-section Cxs
-
-variable {R : Type} [CommRing R]
-
-end Cxs
 
 section Abs
 
@@ -126,6 +121,7 @@ theorem inU_finset_inf (hs : SiteLaws) (i : W ⟶ Z) {κ : Type} (V : κ → Z.O
     simp
 
 end GlobalTheory.CompanionTheory.RelInjZ
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CupMemRelS

@@ -8,23 +8,15 @@ import Formalism.SharpRestriction.GrowthBounds.ScaleEdges.DvdOfAdd
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.TwistedSubstitution.MemAtDZeroIff, Formalism.SharpRestriction.GrowthBounds.TwistedSubstitution.WordLossNonneg
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.TwistedSubstitution.MemAtDZeroIff
 
+noncomputable section
 
 open MvPolynomial Finset Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.TwistedSubstitution.MemAtDZeroIff
 
 namespace Formalism.MainNotions.TestSideWords
 
 open Formalism.MainNotions.G Formalism.GradedWeylDivisibility Formalism.MainNotions.SourceCleaning Formalism.MainNotions.Pf14 Formalism.MainNotions.PlaneGramData Formalism.MainNotions.TestSideCounting
-
-section TieD
-
-variable {n' r : ℕ} [NeZero n'] (Fr : Frames n' r) (p : ℕ) (deg : Fin n' → ℕ) (Y : ℝ) (k : ℕ) (mS : ℕ)
-  {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] {J : ℕ} (K : ℕ) [NeZero K]
-
-end TieD
 
 section Mono
 
@@ -117,8 +109,12 @@ end LeMono
 
 end Formalism.MainNotions.TestSideWords
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.TwistedSubstitution.WordLossNonneg
+
+
+open MvPolynomial Finset Classical
 
 namespace Formalism.MainNotions.TestSideWords
 

@@ -33,8 +33,9 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AlphaBetaAdjointExact, Development.WeilBound.CoreStatements.HodgeTatePoints.CgSplit, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FamilyGivesConjugateLieData
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AlphaBetaAdjointExact
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AlphaBetaAdjointExact
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Conj.Isotropy
 
@@ -135,7 +136,7 @@ theorem composition_assoc_frobenius_point {V : Pt R 1 d} {p n : ℕ} (hp : p ≠
 theorem lin_tau {p : ℕ} (hp : p ≠ 1) : lin (ptPow R d p 0 : Pt R 1 d) 1 = 0 := by
   ext i j
   simp only [lin, ptPow, Matrix.zero_apply]
-  rw [coeff_X_pow, if_neg]
+  rw [coeff_X_pow, ite_eq_right]
   intro h
   rcases (Finsupp.single_eq_single_iff _ _ _ _).1 h with ⟨_, h⟩ | ⟨h, _⟩
   · exact hp h.symm
@@ -333,6 +334,7 @@ theorem beta_comp_alpha : ∀ (R : Type) [CommRing R] (p : ℕ) [Fact p.Prime] [
   rfl
 
 end GlobalTheory.CompanionTheory.Ar.Conj.Isotropy
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CgSplit

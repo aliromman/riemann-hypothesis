@@ -135,10 +135,11 @@ theorem jordan_transitivity : JordanTransitive := by
 end Formalism.CyclotomicNorms
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.CyclotomicNorms.NonsquarefreeBounds.RestrictionOfBlocksAndJordan
+@[expose] public section -- clump member: Formalism.CyclotomicNorms.NonsquarefreeBounds.RestrictionOfBlocksAndJordan
 
 open Finset Module
 
+noncomputable section
 
 namespace Formalism.CyclotomicNorms
 
@@ -342,7 +343,7 @@ theorem restriction_of_blocks_and_jordan (hB : BlocksCycle) (hJ : JordanTransiti
       have hmem : ρ g' (e i) ∈ W.map (ρ (g' * g)) :=
         Submodule.mem_map.mpr ⟨w, hw, by rw [map_mul ρ g' g, Module.End.mul_apply, hwe]⟩
       exact hj (g' * g) (hI _ (htr W hW (g' * g)) _ hmem j hne)
-    · push_neg at hi
+    · push Not at hi
       rw [(hY x).mp hx i hi, zero_smul]
       exact Y.zero_mem
   have hWY : W ≤ Y := by
@@ -568,6 +569,7 @@ theorem restriction_of_blocks_and_jordan (hB : BlocksCycle) (hJ : JordanTransiti
       (by rw [hg₁]; exact hkc) (by rw [hg₁]; exact hks)).2 hsolv
 
 end Formalism.CyclotomicNorms
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.CyclotomicNorms.IrreducibilityOfGoodTuple

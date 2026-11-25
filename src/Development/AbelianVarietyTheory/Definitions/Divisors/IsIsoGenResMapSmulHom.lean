@@ -188,10 +188,11 @@ theorem isVB_X₁_of_shortExact : ∀ (X : Scheme.{0}) (S : ShortComplex X.Modul
 end GlobalTheory.VB
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsIsoGenResMapSmulHom
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsIsoGenResMapSmulHom
 
 set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry TopologicalSpace TensorProduct IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
@@ -202,12 +203,6 @@ open GlobalTheory.VB (IsVB IsFrame IsSubbundle Chart det)
 open GlobalTheory.Twist (resM resM_resM resM_smul app_resM)
 
 namespace GlobalTheory.Vert
-
-section Dim
-
-attribute [local instance low] specializationOrder
-
-end Dim
 
 variable {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
 

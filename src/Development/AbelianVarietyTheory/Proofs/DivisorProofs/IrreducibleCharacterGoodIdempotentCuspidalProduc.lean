@@ -83,10 +83,11 @@ import Mathlib.Tactic.Polynomial.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSimpleLabelOfSeriesIdempotentPair, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMonotoneBlocksSameHarishChandraCharacter, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CuspidalPiTensorNoBlockUnipotentFixed, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasCuspidalFactorAtBlockLeviPiTensor, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeviPiTensorRepresentationIsIrreducible, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIrrRepHarishChandraDistinctCuspidalLabels, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SquarefreeLabelIsCuspidalParabolicProductCharact, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IrreducibleCharacterGoodIdempotentCuspidalProduc
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSimpleLabelOfSeriesIdempotentPair
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSimpleLabelOfSeriesIdempotentPair
 
 open CategoryTheory Polynomial Formalism.IrreducibleCountingLemmas.TYPES Formalism.BasicNotions Formalism.L2.DIV
 
+noncomputable section
 
 namespace GlobalTheory.SeriesIdem
 
@@ -97,7 +98,7 @@ theorem zIdem_pair_ne_zero {G : Type} [Group G] [Fintype G] (τ W : FDRep ℂ G)
   haveI := invertibleOfNonzero hcard
   have ho := FDRep.char_orthonormal W τ
   by_contra hn
-  rw [if_neg hn] at ho
+  rw [ite_eq_right hn] at ho
   apply h
   have hs : ∑ g, W.character g * τ.character g⁻¹ = 0 := by
     rcases mul_eq_zero.mp ho with h0 | h0
@@ -156,12 +157,13 @@ theorem GlobalTheory.SeriesIdem.exists_simple_of_eSerO_pair : ∀ (g : ℕ) [Fac
     rw [hsplit]
     refine Finset.sum_eq_zero fun z _ => ?_
     by_cases hP : ∃ τ : FDRep ℂ (GL (Fin r) (ZMod g)), Simple τ ∧ zIdem τ = z ∧ HasLabelO O τ f
-    · simp only [hF, finsum_eq_if, if_pos hP]
+    · simp only [hF, finsum_eq_if, ite_eq_left hP]
       exact hz z hP
-    · simp only [hF, finsum_eq_if, if_neg hP]
+    · simp only [hF, finsum_eq_if, ite_eq_right hP]
       simp
   · rw [finsum_of_infinite_support hfin]
     simp
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMonotoneBlocksSameHarishChandraCharacter
@@ -300,8 +302,9 @@ theorem exists_monotone_same_trace : ∀ (K : Type) [Field K] [Fintype K] [Decid
 end GlobalTheory.HCSort
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CuspidalPiTensorNoBlockUnipotentFixed
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CuspidalPiTensorNoBlockUnipotentFixed
 
+noncomputable section
 
 namespace GlobalTheory.HcIrr
 
@@ -314,11 +317,11 @@ variable {K : Type} [Field K] [Fintype K] [DecidableEq K] {ι : Type} [Fintype �
 theorem unip_diag_mul (b : ι → Fin s) {g h : GL ι K} (hg : g ∈ unip K b) (hh : h ∈ unip K b)
     (i j : ι) (hij : b i = b j) : ((g * h : GL ι K) : Matrix ι ι K) i j = if i = j then 1 else 0 := by
   rw [Units.val_mul, Matrix.mul_apply, Finset.sum_eq_single i]
-  · rw [hg.2 i i rfl, if_pos rfl, one_mul, hh.2 i j hij]
+  · rw [hg.2 i i rfl, ite_eq_left rfl, one_mul, hh.2 i j hij]
   · intro k _ hki
     rcases lt_trichotomy (b k) (b i) with hlt | heq | hgt
     · rw [hg.1.1 i k hlt, zero_mul]
-    · rw [hg.2 i k heq.symm, if_neg (Ne.symm hki), zero_mul]
+    · rw [hg.2 i k heq.symm, ite_eq_right (Ne.symm hki), zero_mul]
     · rw [hh.1.1 k j (by rw [← hij]; exact hgt), mul_zero]
   · intro h; exact absurd (Finset.mem_univ i) h
 
@@ -327,11 +330,11 @@ theorem unip_diag_inv (b : ι → Fin s) {g : GL ι K} (hg : g ∈ unip K b)
   have h1 : ((g⁻¹ * g : GL ι K) : Matrix ι ι K) i j = if i = j then 1 else 0 := by
     rw [inv_mul_cancel, Units.val_one, Matrix.one_apply]
   rw [Units.val_mul, Matrix.mul_apply, Finset.sum_eq_single j] at h1
-  · rwa [hg.2 j j rfl, if_pos rfl, mul_one] at h1
+  · rwa [hg.2 j j rfl, ite_eq_left rfl, mul_one] at h1
   · intro k _ hkj
     rcases lt_trichotomy (b k) (b i) with hlt | heq | hgt
     · rw [hg.1.2 i k hlt, zero_mul]
-    · rw [hg.2 k j (heq.trans hij), if_neg hkj, mul_zero]
+    · rw [hg.2 k j (heq.trans hij), ite_eq_right hkj, mul_zero]
     · rw [hg.1.1 k j (by rw [← hij]; exact hgt), mul_zero]
   · intro h; exact absurd (Finset.mem_univ j) h
 
@@ -414,6 +417,7 @@ theorem cuspidal_tensor_no_unip_fixed : ∀ (K : Type) [Field K] [Fintype K] [De
   · exact absurd (blockExt_out b c u' x z hin) hxz
 
 end GlobalTheory.HcIrr
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasCuspidalFactorAtBlockLeviPiTensor
@@ -942,10 +946,11 @@ theorem isCuspProdChar_of_squarefree : ∀ (K : Type) [Field K] [Fintype K] [Dec
 end GlobalTheory.SqfreeCuspProd
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IrreducibleCharacterGoodIdempotentCuspidalProduc
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IrreducibleCharacterGoodIdempotentCuspidalProduc
 
 open CategoryTheory Polynomial Formalism.IrreducibleCountingLemmas.TYPES Formalism.BasicNotions Formalism.L2.DIV
 
+noncomputable section
 namespace GlobalTheory.GoodFactor
 
 open Formalism.L2.NT
@@ -963,9 +968,9 @@ theorem isChar_prod [DecidableEq ι] {ψ : ∀ i, G i → ℂ} (h : ∀ i, IsCha
     simp only [Mf, Matrix.of_apply, Pi.one_apply, map_one, Units.val_one, Matrix.one_apply]
     by_cases hpq : p = q
     · subst hpq; simp
-    · rw [if_neg hpq]
+    · rw [ite_eq_right hpq]
       obtain ⟨i, hi⟩ := Function.ne_iff.1 hpq
-      exact Finset.prod_eq_zero (Finset.mem_univ i) (if_neg hi)
+      exact Finset.prod_eq_zero (Finset.mem_univ i) (ite_eq_right hi)
   have hMm : ∀ g h, Mf (g * h) = Mf g * Mf h := by
     intro g h
     ext p q
@@ -1035,7 +1040,7 @@ theorem eq_of_sum_ne_zero {χ ψ : H → ℂ} (hχ : IsIrrChar χ) (hψ : IsIrrC
   by_cases hi : Nonempty (V ≅ W)
   · obtain ⟨i⟩ := hi
     exact FDRep.char_iso i
-  · rw [if_neg hi] at ho
+  · rw [ite_eq_right hi] at ho
     exact absurd ((mul_eq_zero.mp ho).resolve_left (inv_ne_zero hc)) h
 
 theorem sum_single (e : MonoidAlgebra ℂ H) : ∑ g : H, MonoidAlgebra.single g (e.coeff g) = e := by
@@ -1104,17 +1109,17 @@ theorem exists_factor [DecidableEq ι] {χ : (∀ i, G i) → ℂ} (hχ : IsIrrC
       MonoidAlgebra.coeff_single, Finsupp.single_apply] at h
     rw [h]
     by_cases ht : t = 1
-    · rw [if_pos ht.symm, if_pos ht]
-    · rw [if_neg (Ne.symm ht), if_neg ht]
+    · rw [ite_eq_left ht.symm, ite_eq_left ht]
+    · rw [ite_eq_right (Ne.symm ht), ite_eq_right ht]
   have hdelta : ∀ x : (∀ i, G i), ∑ p ∈ Fintype.piFinset Z, ∏ i, (p i).coeff (x i) = if x = 1 then 1 else 0 := by
     intro x
     rw [← Finset.prod_univ_sum Z (fun i z => z.coeff (x i))]
     simp only [hone]
     by_cases hx : x = 1
     · subst hx; simp
-    · rw [if_neg hx]
+    · rw [ite_eq_right hx]
       obtain ⟨i, hi⟩ := Function.ne_iff.1 hx
-      exact Finset.prod_eq_zero (Finset.mem_univ i) (if_neg hi)
+      exact Finset.prod_eq_zero (Finset.mem_univ i) (ite_eq_right hi)
   have hkey : χ 1 = ∑ p ∈ Fintype.piFinset Z, ∑ x, χ x * ∏ i, (p i).coeff (x i) := by
     rw [Finset.sum_comm]
     simp only [← Finset.mul_sum, hdelta]

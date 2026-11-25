@@ -17,10 +17,12 @@ import Mathlib.CategoryTheory.Countable
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ChartLoc, Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ChartC
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ChartLoc
+section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ChartLoc
+@[expose] public section
 
 set_option linter.unusedVariables false
 
+noncomputable section
 
 open MeasureTheory Matrix Formalism.BasicNotions Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.MainNotions.BigCellDensity
 open scoped ComplexConjugate
@@ -57,11 +59,11 @@ theorem locChart (k r : ℕ) (hk : 1 ≤ k) (z z' : Fin (2 * r + k + 1) → ℂ)
     simp only [Formalism.FourierDecayAlt.C2.monoP, Matrix.of_apply]
     by_cases hai : a = w i
     · have hia : i = w a := by rw [hai, wPt_invol]
-      rw [if_pos hai, if_pos hia]
+      rw [ite_eq_left hai, ite_eq_left hia]
       simp only [d, star_mul', star_pow, star_neg, star_one]
       rw [← hia]
     · have hia : ¬ i = w a := fun h => hai (by rw [h, wPt_invol])
-      rw [if_neg hai, if_neg hia, mul_zero, star_zero]
+      rw [ite_eq_right hai, ite_eq_right hia, mul_zero, star_zero]
   have hset : Formalism.FourierDecayAlt.C6.Rset g₀⁻¹ = Formalism.MainNotions.S.Rset (k0 + 1) r g₀ := by
     ext x
     simp only [Formalism.FourierDecayAlt.C6.Rset, Formalism.MainNotions.S.Rset, Set.mem_setOf_eq, Matrix.nonsing_inv_nonsing_inv _ hu]
@@ -76,6 +78,8 @@ theorem locChart (k r : ℕ) (hk : 1 ≤ k) (z z' : Fin (2 * r + k + 1) → ℂ)
 
 end Formalism.L2.S.Pv.Chart
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ChartC

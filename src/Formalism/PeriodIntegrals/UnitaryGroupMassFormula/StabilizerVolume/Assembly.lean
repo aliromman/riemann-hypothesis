@@ -61,6 +61,7 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.SWeqOm
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.SdDual
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TensAll
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoNuFin
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.PushSupp
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.EventuallyStruct, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.ExChar, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.ExFDStabFin, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.PosTest, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.RestrProdAlt, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.SdTestInf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoFibInv, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoMuInv, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.Unfold, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.LintFibre, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnfoldAbsAlt, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnfoldMain, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnimodStab, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnfoldFin, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.VolStabFromSWOf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.Assembly
@@ -274,8 +275,9 @@ theorem exFDStab_holds : ExFDStab := exFDStab_of scha_holds discHF_holds
 end PI.VolStabS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.PosTest
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.PosTest
 
+noncomputable section
 
 namespace PI.VolStabS
 
@@ -318,7 +320,7 @@ theorem posTest_of (hN : TestNear) : PosTest := by
   have hs : ∀ y, (∃ g : HA (AF F) σ J, g • ratTup (AF F) X0 = y) →
       s y • ratTup (AF F) X0 = y := by
     intro y h
-    simp only [s, dif_pos h]
+    simp only [s, dite_eq_left h]
     exact h.choose_spec
   have hf : Measurable (U.indicator (1 : HA (AF F) σ J → ENNReal)) :=
     measurable_one.indicator hUo.measurableSet
@@ -348,6 +350,7 @@ theorem posTest_of (hN : TestNear) : PosTest := by
 theorem posTest_holds : PosTest := posTest_of testNear_holds
 
 end PI.VolStabS
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.RestrProdAlt
@@ -521,8 +524,9 @@ theorem sdTestInf_holds : SdTestInf := by
 end PI.VolStabS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoFibInv
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoFibInv
 
+noncomputable section
 
 namespace PI.VolStabS.TopoFibInv
 
@@ -578,15 +582,7 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E] [FiniteDimensional F E]
 
 theorem gramR_smul (h : HA R σ J) (X : Fin a → Fin M → R ⊗[F] E) :
     gramR R σ J (h • X) = gramR R σ J X := by
-  have hg : Formalism.UG.cT (sigR R σ) ((HA.mat R σ J h : GL (Fin M) (R ⊗[F] E)) :
-      Matrix (Fin M) (Fin M) _) * JR R J *
-      ((HA.mat R σ J h : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) _) = JR R J := h.2
-  funext x y
-  change hR R σ J (((HA.mat R σ J h : GL (Fin M) (R ⊗[F] E)) :
-      Matrix (Fin M) (Fin M) _) *ᵥ X x) (((HA.mat R σ J h : GL (Fin M) (R ⊗[F] E)) :
-      Matrix (Fin M) (Fin M) _) *ᵥ X y) = hR R σ J (X x) (X y)
-  rw [hR, TopoGram.hform_mulVec, hg]
-  rfl
+  apply _root_.PI.AprimeInfW.gramR_smul <;> assumption
 
 theorem linIndep_mulVec {A : Type} [CommRing A] (G : GL (Fin M) A) (X : Fin a → Fin M → A) :
     LinearIndependent A (fun x => (G : Matrix (Fin M) (Fin M) A) *ᵥ X x) ↔ LinearIndependent A X := by
@@ -659,6 +655,7 @@ theorem nuInv_of_steps (hD : DetAdm) (hC : CompG) (hP : FibPin) (hMI : MuInvInf)
   nuInv_of_loc gramPres_holds (pullLoc_of hC (fibInvInf_of hP hMI) (fibInvV_of hP hMV)) hD
 
 end PI.VolStabS
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoMuInv
@@ -889,8 +886,9 @@ end Abs2
 end PI.VolStabS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnfoldAbsAlt
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnfoldAbsAlt
 
+noncomputable section
 
 namespace PI.VolStabS
 
@@ -990,7 +988,7 @@ theorem unfold_abs {Γ H : Subgroup G} [Countable Γ]
 
   let s : Y → G := fun y => if h : ∃ g : G, g • y0 = y then h.choose else 1
   have hs : ∀ y, (∃ g : G, g • y0 = y) → s y • y0 = y := fun y h => by
-    simp only [s, dif_pos h]
+    simp only [s, dite_eq_left h]
     exact h.choose_spec
   have hsk : ∀ y, (∃ g : G, g • y0 = y) → ∀ k : H, Φ ((s y * (k : G)) • y0) = Φ y := by
     intro y hy k
@@ -1136,6 +1134,7 @@ theorem unfold_abs {Γ H : Subgroup G} [Countable Γ]
 end Abs3
 
 end PI.VolStabS
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnfoldMain
@@ -1294,8 +1293,9 @@ end Of
 end PI.VolStabS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnimodStab
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnimodStab
 
+noncomputable section
 
 namespace PI.VolStabS
 
@@ -1419,7 +1419,7 @@ theorem unimodStab_holds : UnimodStab := by
   have hs : ∀ y, (∃ g : HA (AF F) σ J, g • ratTup (F := F) (AF F) X0 = y) →
       s y • ratTup (F := F) (AF F) X0 = y := by
     intro y h
-    simp only [s, dif_pos h]
+    simp only [s, dite_eq_left h]
     exact h.choose_spec
   exact us_rightInv_of_compat μ (stabT (AF F) σ J X0).subtype μ' νX s
     (fun f hf => hC.2 f hf s hs)
@@ -1452,6 +1452,7 @@ theorem invInv_holds : InvInv := fun F E _ _ _ _ _ σ hσ M J hJ hSWa1 hSWc1 a h
 end Spec
 
 end PI.VolStabS
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.UnfoldFin

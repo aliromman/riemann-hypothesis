@@ -180,8 +180,10 @@ end PositivityTheory.KB.LocalOverlapAverage
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CompactLocalSets.Assemble
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CompactLocalSets.Assemble
+@[expose] public section
 
+noncomputable section
 
 open NumberField Matrix MeasureTheory UpperTheory.V.KT UpperTheory.V.KL
 open scoped ENNReal NNReal
@@ -330,7 +332,7 @@ theorem sLoc_of_parts (hA : AvgS) (hS : SimpBd) (hU : Unfold) (hDi : Discr) (hO 
     rw [actEq_apply]
     show _ = actL (h j) ((if b j = true then e (x j) else one L N : ↑(Pos L N)) : HS L N)
     by_cases hb : b j = true
-    · simp only [hb, if_true, hcoe _ (hrP (hx j))]
+    · simp only [hb, ite_true, hcoe _ (hrP (hx j))]
     · simp only [hb]
       rfl
   have hev := hA (Gm L N) (Gp L N) ↑(Pos L N) (HS L N) (emb L N) k (intP ω) (nrm μ B) e
@@ -371,6 +373,8 @@ theorem sLoc_of_parts (hA : AvgS) (hS : SimpBd) (hU : Unfold) (hDi : Discr) (hO 
 
 end PositivityTheory.KB.LocalOverlapAverage
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CompactLocalSets.DiscrHolds
@@ -517,8 +521,10 @@ end PositivityTheory.KB.LocalOverlapAverage
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CompactLocalSets.Overlap
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CompactLocalSets.Overlap
+@[expose] public section
 
+noncomputable section
 
 open MeasureTheory
 open scoped ENNReal Pointwise
@@ -569,7 +575,7 @@ theorem overlapG_holds : OverlapG := by
         _ = ∑' γ : Γ, (K * K⁻¹).indicator (fun _ => (1 : ℝ≥0∞)) (γ : G) :=
             (Equiv.mulRight γ₀⁻¹).tsum_eq (fun γ : Γ => (K * K⁻¹).indicator (fun _ => (1 : ℝ≥0∞)) (γ : G))
         _ ≤ _ := hsum
-    · push_neg at hS
+    · push Not at hS
       calc ∑' γ : Γ, K.indicator (fun _ => (1 : ℝ≥0∞)) (γ • x) = ∑' _γ : Γ, (0 : ℝ≥0∞) :=
             tsum_congr fun γ => Set.indicator_of_notMem (hS γ) _
         _ ≤ _ := by simp
@@ -597,10 +603,13 @@ theorem overlapG_holds : OverlapG := by
 
 end PositivityTheory.KB.LocalOverlapAverage
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CompactLocalSets.SimpBdM
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CompactLocalSets.SimpBdM
 
+noncomputable section
 
 open MeasureTheory Set
 open scoped ENNReal NNReal
@@ -857,7 +866,7 @@ private theorem exists_ne_zero_smul_mem_of_mem_span' (μ : Measure V) [μ.IsAddH
   have hw : Continuous fun y : Fin (q + 1) → V => fun j => if b j then y j else y₀ := by
     refine continuous_pi fun j => ?_
     by_cases h : b j = true
-    · simp only [h, if_true]
+    · simp only [h, ite_true]
       exact continuous_apply j
     · simp only [h]
       exact continuous_const
@@ -865,7 +874,7 @@ private theorem exists_ne_zero_smul_mem_of_mem_span' (μ : Measure V) [μ.IsAddH
       (fun j => if b j then y j else y₀) ∈ Set.univ.pi fun _ : Fin (q + 1) => B := by
     intro y hy j _
     by_cases h : b j = true
-    · simp only [h, if_true]
+    · simp only [h, ite_true]
       exact hy j (Set.mem_univ j)
     · simp only [h]
       exact hy₀
@@ -1003,6 +1012,7 @@ theorem main (μ : Measure V) [μ.IsAddHaarMeasure] (q : ℕ) (A : Fin (q + 1) �
   ring
 
 end PositivityTheory.KB.LocalOverlapAverage.SimpM
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CompactLocalSets.SimpBd

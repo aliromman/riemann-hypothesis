@@ -16,8 +16,9 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCou
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.SignTransposeTwisted, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IsLoOfIntLow
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.SignTransposeTwisted
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.SignTransposeTwisted
 
+noncomputable section
 
 namespace Formalism.L2.SG.Pf.TupGlobApprox
 
@@ -77,11 +78,11 @@ theorem sign_transpose_twisted (s e : K) (cf : Fin (r + 1) → K) (Z : Matrix (F
   have hs := sgn_sq' (R := K) r
   by_cases hij : i = Fin.last r ∧ j = Fin.last r
   · obtain ⟨rfl, rfl⟩ := hij
-    rw [if_pos ⟨rfl, rfl⟩]
+    rw [ite_eq_left ⟨rfl, rfl⟩]
     simp only [Fin.val_last, Nat.sub_self, pow_zero]
     ring
   · have hji : ¬ (j = Fin.last r ∧ i = Fin.last r) := fun h => hij ⟨h.2, h.1⟩
-    rw [if_neg hij, if_neg hji]
+    rw [ite_eq_right hij, ite_eq_right hji]
     linear_combination (s * cf i * cf j * Z i j * (-1 : K) ^ (r - j.val)) * hs i
 
 theorem theta_move (cf cfi : Fin (r + 1) → K) (A : Matrix (Fin (r + 1)) (Fin (r + 1)) K) :
@@ -216,6 +217,7 @@ end Typed
 end Place
 
 end Formalism.L2.SG.Pf.TupGlobApprox
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IsLoOfIntLow

@@ -513,7 +513,7 @@ theorem UpperTheory.exists_unit_residue_logarithm_of_roots_of_unity :
   have key : ∀ (a : Cˣ) (y : v.valuationSubring), (y : C) = ((a : C) ^ N - 1) / ϖ → abelian₂ a = ρ y := by
     intro a y hy
     have hm : ((a : C) ^ N - 1) / ϖ ∈ v.valuationSubring := hy ▸ y.2
-    simp only [abelian₂, dif_pos hm]
+    simp only [abelian₂, dite_eq_left hm]
     congr 1
     exact Subtype.ext hy.symm
   have hϖm : ϖ ∈ v.valuationSubring := by
@@ -1039,7 +1039,10 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.ParDual
+section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.ParDual
+@[expose] public section
+
+noncomputable section
 
 namespace UpperTheory.Zero.LLC.ParameterDuality
 
@@ -1214,7 +1217,7 @@ private theorem rad_iff {a b n : ℕ} (hn : a + b = n) (M : Mt g n) :
         have := congrFun (congrFun h3 ⟨i - a, hi'⟩) ⟨j - a, hj'⟩
         have e1 : a + ((i : ℕ) - a) = i := by omega
         have e2 : a + ((j : ℕ) - a) = j := by omega
-        simp only [br, entN, e1, e2, i.2, j.2, and_self, dif_pos, Units.val_one] at this
+        simp only [br, entN, e1, e2, i.2, j.2, and_self, dite_eq_left, Units.val_one] at this
         rw [this, Matrix.one_apply, Matrix.one_apply]
         simp only [Fin.ext_iff]
         congr 1
@@ -1239,7 +1242,7 @@ private theorem rad_iff {a b n : ℕ} (hn : a + b = n) (M : Mt g n) :
         have := h _ _ hc
         simp only at this
         omega
-      simp only [tl, entN, hi, hj, and_self, dif_pos, Units.val_one, hh, Matrix.one_apply, Fin.ext_iff]
+      simp only [tl, entN, hi, hj, and_self, dite_eq_left, Units.val_one, hh, Matrix.one_apply, Fin.ext_iff]
     · ext i j
       have hi : a + (i : ℕ) < n := by omega
       have hj : a + (j : ℕ) < n := by omega
@@ -1248,7 +1251,7 @@ private theorem rad_iff {a b n : ℕ} (hn : a + b = n) (M : Mt g n) :
         have := h _ _ hc
         simp only at this
         omega
-      simp only [br, entN, hi, hj, and_self, dif_pos, Units.val_one, hh, Matrix.one_apply, Fin.ext_iff]
+      simp only [br, entN, hi, hj, and_self, dite_eq_left, Units.val_one, hh, Matrix.one_apply, Fin.ext_iff]
       simp
 
 private theorem rad_inv {a b n : ℕ} (hn : a + b = n) {x : Gn g n}
@@ -1410,6 +1413,8 @@ theorem UpperTheory.Zero.LLC.parDual :
     rw [h3, Multiset.map_map]
     simp [Finset.prod]
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.DiscreteGroups.GlobalIrreducibility.DzTypeCut
@@ -1461,7 +1466,9 @@ theorem lDepth : LDepth := by
 end DiscreteGroups.sglob.DzType
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.CuspEx
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.CuspEx
+
+noncomputable section
 
 open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.GLq
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
@@ -1621,8 +1628,8 @@ theorem cuspEx : CuspEx := by
   haveI : Nonempty (WD h) := ⟨WD.lpZero (h := h)⟩
   choose! J hJ using junkEx E Ω A w h
   let r : IrrGL (k := w.adicCompletion E) → WD h := fun x => if GoodCusp x then r₀ x else (J x.1).lpTw (e x)
-  have rg : ∀ x, GoodCusp x → r x = r₀ x := fun x hx => if_pos hx
-  have rb : ∀ x, ¬ GoodCusp x → r x = (J x.1).lpTw (e x) := fun x hx => if_neg hx
+  have rg : ∀ x, GoodCusp x → r x = r₀ x := fun x hx => ite_eq_left hx
+  have rb : ∀ x, ¬ GoodCusp x → r x = (J x.1).lpTw (e x) := fun x hx => ite_eq_right hx
   have two : ∀ x : IrrGL (k := w.adicCompletion E), x.IsCusp → ¬ GoodCusp x → 2 ≤ x.1 := by
     intro x hx hb
     have h0 := hx.1
@@ -1713,6 +1720,7 @@ theorem cuspEx : CuspEx := by
 
 end UpperTheory.Zero.LLC
 
+end
 
 -- clump-header: {"m": "Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.ExponentMulAbsPow", "h": "module\n\npublic import Development.AutomorphicArithmetic.Foundations.LocalLanglands.RecTTransport\nimport Development.AbelianVarietyTheory.Definitions.Divisors.EqOfHasValueAtInfinite\npublic import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.ClBasic\npublic import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.WDBasic\npublic import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.GenericIrreducibility.NormEqOneOfIsUnitarisableU\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.CharZeroAdicCompletion\npublic import GroundTheory.LocalFields.LocalZetaChar\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Ring.IsFormallyReal\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Development.AutomorphicArithmetic.WhittakerHecke.CardResidueFieldAdicCompletionIntegersEqAbsNorm", "h": "module\n\npublic import Formalism.ConjugateSelfDual.Statement\npublic import Mathlib.RingTheory.DedekindDomain.AdicValuation.Completion\npublic import Development.DiscreteGroups.GlobalIrreducibility.DzApprox\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsNotCongPow\nimport Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LabelDatum\nimport Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NonemptyEquivOfRangeEq\nimport Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HasExponentZeroIff\nimport ReciprocityTheory.GaloisValuations.GlobalA\n\n"}

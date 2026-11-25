@@ -156,8 +156,9 @@ theorem EE_basic : ∀ {l : ℕ} {O : Type} [CommRing O] [IsDomain O] [IsDiscret
 end GlobalTheory.NB.LT
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoprimeVal
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoprimeVal
 
+noncomputable section
 
 open PowerSeries GlobalTheory.CycFr IsLocalRing
 
@@ -266,7 +267,7 @@ theorem assoc_l {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsDomain O] (�
       rw [hcoe, Polynomial.coeToPowerSeries.ringHom_apply, Polynomial.coeff_coe]
       simpa [Polynomial.coeff_one_add_X_pow]
     rw [map_sub] at hc'
-    simp only [coeff_one, one_ne_zero, if_false, sub_zero, hp] at hc'
+    simp only [coeff_one, one_ne_zero, ite_false, sub_zero, hp] at hc'
     exact hc'
   rw [h1, map_prod] at h
   rw [h]
@@ -402,6 +403,7 @@ theorem exists_roots : ∀ {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsD
 
 end GlobalTheory.CycRoots
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsAdicCompletionExtension
 
@@ -475,8 +477,9 @@ theorem exists_EE_extension {l : ℕ} {O : Type} [CommRing O] (ψ : O⟦X⟧ →
 end GlobalTheory.NB.LT
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsConstOfLvlInvariant
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsConstOfLvlInvariant
 
+noncomputable section
 
 open PowerSeries GlobalTheory.CycFr
 
@@ -641,7 +644,7 @@ theorem lvlPoly_distinguished {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [
   rw [h1, Polynomial.natDegree_X_pow] at h2
   have h3 := congrArg (fun p => _root_.AddMonoidAlgebra.coeff (M := ℕ) p n) h1
   rw [← h2] at hn
-  simp only [Polynomial.coeff_map, Polynomial.coeff_X_pow, hn.ne, if_false] at h3
+  simp only [Polynomial.coeff_map, Polynomial.coeff_X_pow, hn.ne, ite_false] at h3
   exact (IsLocalRing.residue_eq_zero_iff _).1 h3
 
 end GlobalTheory.CycFr.LvlInv
@@ -708,6 +711,7 @@ theorem exists_const_of_lvl_invariant {l : ℕ} [Fact l.Prime] {O : Type} [CommR
   exact hq
 
 end GlobalTheory.CycFr
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsRootMulPowApprox
@@ -815,8 +819,9 @@ theorem exists_root_mul_pow_approx :
 end GlobalTheory.PadicUnitGen
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LvlPolyDistinguished
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LvlPolyDistinguished
 
+noncomputable section
 
 open PowerSeries GlobalTheory.CycFr
 
@@ -872,7 +877,7 @@ theorem lvlPoly_distinguished [hl : Fact l.Prime] [IsLocalRing R] (h : ¬ IsUnit
       Polynomial.natDegree_X_pow]
   have h3 := congrArg (fun p => _root_.AddMonoidAlgebra.coeff (M := ℕ) p n) h1
   rw [h2] at hn
-  simp only [Polynomial.coeff_map, Polynomial.coeff_X_pow, hn.ne, if_false] at h3
+  simp only [Polynomial.coeff_map, Polynomial.coeff_X_pow, hn.ne, ite_false] at h3
   exact (IsLocalRing.residue_eq_zero_iff _).1 h3
 
 theorem lvlPoly_separable {K : Type} [Field K] [CharZero K] [hl : Fact l.Prime] (k : ℕ) :
@@ -916,23 +921,17 @@ theorem lvl_dvd_of_dvd_sq {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsDo
 
 end GlobalTheory.CycFr.Red
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AssociatedRootSubOnePow
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AssociatedRootSubOnePow
 
+noncomputable section
 
 open PowerSeries GlobalTheory.NB
 
 namespace GlobalTheory.CycFr
 
 variable {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsDomain O] [CharZero O] [Algebra ℤ_[l] O]
-
-section Descent
-
-variable {Δ : Subgroup ℤ_[l]ˣ} {j : O⟦X⟧ →ₐ[O] O⟦X⟧} (hinj : Function.Injective j)
-  (hr : ∀ a, (∃ b, j b = a) ↔ ∀ δ ∈ Δ, act O (δ : ℤ_[l]) a = a)
-include hinj hr
-
-end Descent
 
 open PowerSeries in
 variable {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsDomain O] [CharZero O] [Algebra ℤ_[l] O] in
@@ -984,15 +983,6 @@ theorem _root_.GlobalTheory.CycFr.prime_X_sub_C [IsLocalRing O]
   · have h := map_dvd σ hd
     rw [hXσ, hσC, X_dvd_iff, constantCoeff_C] at h
     exact h
-
-section Fields
-
-variable {Δ : Subgroup ℤ_[l]ˣ} {j : O⟦X⟧ →ₐ[O] O⟦X⟧} (hinj : Function.Injective j)
-  (hr : ∀ a, (∃ b, j b = a) ↔ ∀ δ ∈ Δ, act O (δ : ℤ_[l]) a = a) {s : ℕ}
-  (hξ : Associated (j X) (X ^ s)) {E : O⟦X⟧} (hE : Associated (j E) (lvl l O 0))
-include hinj hr hξ hE
-
-end Fields
 
 open PowerSeries in
 variable {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsDomain O] [CharZero O] [Algebra ℤ_[l] O] in

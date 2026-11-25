@@ -215,10 +215,11 @@ theorem isField_or_exists_idempotent_of_isQA {E : Type} [CommRing E] (σ : E →
 end GlobalTheory.SgAlg
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.WittFreeTuplesSplitQuadraticEtale
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.WittFreeTuplesSplitQuadraticEtale
 
 open GlobalTheory.SgAlg Matrix Module
 
+noncomputable section
 
 namespace GlobalTheory.SgAlg.WittSplit
 
@@ -231,7 +232,7 @@ theorem exists_not_mem_both (U U' : Submodule K V) (h : finrank K U = finrank K 
   · have hUU : U = U' := Submodule.eq_of_le_of_finrank_eq h1 h
     subst hUU
     obtain ⟨v, hv⟩ : ∃ v, v ∉ U := by
-      by_contra hc; push_neg at hc; exact hU (eq_top_iff.2 fun x _ => hc x)
+      by_contra hc; push Not at hc; exact hU (eq_top_iff.2 fun x _ => hc x)
     exact ⟨v, hv, hv⟩
   by_cases h2 : U' ≤ U
   · exact absurd (Submodule.eq_of_le_of_finrank_eq h2 h.symm ▸ le_rfl) h1
@@ -519,6 +520,7 @@ theorem witt_split : ∀ {E : Type} [CommRing E] (σ : E →+* E), IsQA σ →
   exact witt_of_field σ hQA.1 e he2 he1 (Ideal.Quotient.mk I) s hs1 hs2 J hJ X X' hX hX' hG
 
 end GlobalTheory.SgAlg.WittSplit
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.WittFreeTuplesFin
@@ -1581,8 +1583,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralWittTheoremModUniformizerPow
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralWittTheoremModUniformizerPow
 
+noncomputable section
 
 namespace GlobalTheory.Hk3.IntWittMod
 
@@ -1661,17 +1664,17 @@ theorem indepMod_sub {ϖ : L} {ι : Type} [Fintype ι] {n : ℕ} {z : ι → Fin
   let d' : ι → L := fun j => if hj : p j then d ⟨j, hj⟩ else 0
   have h1 : ∀ j, d' j ∈ Formalism.UG.intL L := by
     intro j; by_cases hj : p j
-    · simp only [d', dif_pos hj]; exact hd _
-    · simp only [d', dif_neg hj]; exact (Formalism.UG.intL L).zero_mem
+    · simp only [d', dite_eq_left hj]; exact hd _
+    · simp only [d', dite_eq_right hj]; exact (Formalism.UG.intL L).zero_mem
   have h2 : ∀ r, ∑ j, d' j * z j r = ∑ j : {i // p i}, d j * z j.1 r := by
     intro r
     rw [← Fintype.sum_subtype_add_sum_subtype p (fun j => d' j * z j r)]
     have a1 : ∑ j : {i // ¬ p i}, d' j.1 * z j.1 r = 0 :=
-      Finset.sum_eq_zero fun j _ => by simp [d', dif_neg j.2]
+      Finset.sum_eq_zero fun j _ => by simp [d', dite_eq_right j.2]
     rw [a1, add_zero]
-    exact Finset.sum_congr rfl fun j _ => by simp [d', dif_pos j.2]
+    exact Finset.sum_congr rfl fun j _ => by simp [d', dite_eq_left j.2]
   have := hz d' h1 (fun r => by rw [h2]; exact hs r) i.1
-  simpa [d', dif_pos i.2] using this
+  simpa [d', dite_eq_left i.2] using this
 
 end GlobalTheory.Hk3.IntWittMod
 
@@ -1725,7 +1728,7 @@ theorem witt_mod_pow : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicat
       by_cases hki : k < a i
       · rw [min_eq_right (Nat.succ_le_of_lt hki)]
         exact hgc ⟨i, hki⟩ r
-      · push_neg at hki
+      · push Not at hki
         rw [min_eq_left (by omega)]
         have h2 := hc i r
         rw [min_eq_left hki] at h2
@@ -1747,6 +1750,7 @@ theorem witt_mod_pow : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicat
 
 end GlobalTheory.Hk3.IntWittMod
 
+end
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsLimitDvdUniformizerPowCauchy", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DvdPowZeroIff\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsFieldOrExistsSwappedIdempotentOfQuadraticEtale", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Foundations.InFrameStabilizer\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

@@ -147,8 +147,9 @@ theorem main : ∀ (C O : Type) [NontriviallyNormedField C] [IsUltrametricDist C
 end GlobalTheory.UnitBallVal
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.PrincipalSiegelOfGenericPrincipalSpecialAmple
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.PrincipalSiegelOfGenericPrincipalSpecialAmple
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -323,7 +324,7 @@ theorem kernel_of_kTriv (u₀ : Fin n) (hK : Out.KTriv G L) (T : Over S) (x : T 
   have := hmon u₀
   have e : j ≫ x = j ≫ 1 := by
     have h := hy u₀
-    rw [if_pos rfl, h1, MonObj.one_comp] at h
+    rw [ite_eq_left rfl, h1, MonObj.one_comp] at h
     rw [← h, MonObj.comp_one]
   exact congrArg (fun q => q.left) e
 

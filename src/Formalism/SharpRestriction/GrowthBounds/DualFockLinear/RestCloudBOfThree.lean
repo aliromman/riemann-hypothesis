@@ -313,8 +313,9 @@ theorem restCloudB_of_rho (D : Formalism.BasicNotions.D7) (CLa Ck Crk Cdeg : ℝ
 end Formalism.MainNotions.TestSideCounting
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.DualFockLinear.RestCloudBOfTop
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.DualFockLinear.RestCloudBOfTop
 
+noncomputable section
 
 namespace Formalism.MainNotions.TestSideCounting
 
@@ -360,7 +361,7 @@ theorem specW_rest {n' m : ℕ} (TT : Finset (Fin n')) (lam0 : Fin n' → Fin (m
   funext s
   by_cases h : s ∈ TT
   · simp [specW, h]
-  · simp only [specW, if_neg h, restW_off TT lam0 s h]
+  · simp only [specW, ite_eq_right h, restW_off TT lam0 s h]
 
 theorem card_lt_le (m r : ℕ) : (Finset.univ.filter fun a : Fin (m + 1) => a.val < r).card ≤ r := by
   calc (Finset.univ.filter fun a : Fin (m + 1) => a.val < r).card ≤ (Finset.range r).card := by
@@ -457,9 +458,11 @@ theorem restCloudB_of_top (D : Formalism.BasicNotions.D7) (CLa Ck Crk Cdeg : ℝ
 
 end Formalism.MainNotions.TestSideCounting
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.DualFockLinear.RhoTopStepOfPair
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.DualFockLinear.RhoTopStepOfPair
 
+noncomputable section
 
 namespace Formalism.MainNotions.TestSideCounting
 
@@ -470,7 +473,7 @@ theorem topW_lam {n' m : ℕ} (TT : Finset (Fin n')) (lam0 : Fin n' → Fin (m +
   funext s
   by_cases hs : s ∈ TT
   · have := congrFun (lambda_zero_eq_product TT lam0) s
-    simp only [topW, if_pos hs, Pi.add_apply] at this ⊢
+    simp only [topW, ite_eq_left hs, Pi.add_apply] at this ⊢
     exact this
   · funext i
     simp [topW, hs, flW, dT]
@@ -498,14 +501,14 @@ theorem ordMax_top {n' m : ℕ} (hm : 2 ≤ m) {TT : Finset (Fin n')} {aT bT : F
       have e0 : restW TT lam0 s 0 = lam0 s 0 - (dT TT lam0 s : ℤ) := by
         unfold restW flW
         simp
-      simp only [topW, if_pos hs]
+      simp only [topW, ite_eq_left hs]
       rw [e0, e1]
       obtain ⟨_, elast, hc⟩ := (hb s).1 hs
       obtain ⟨_, _, hb0, hbc⟩ := hw s hs
       have h01 : lam0 s 1 ≤ lam0 s 0 := hdom s (Fin.zero_le _)
       have hc1 := abs_le.1 (hc 1 (by omega) (by omega))
       unfold dT flatDeg
-      rw [if_pos hs, Int.toNat_of_nonneg (by omega), elast]
+      rw [ite_eq_left hs, Int.toNat_of_nonneg (by omega), elast]
       omega
     · simp [topW, hs]
   unfold ordMax
@@ -564,6 +567,7 @@ theorem restCloudB_of_pair (D : Formalism.BasicNotions.D7) (CLa Ck Crk Cdeg : �
   restCloudB_of_top D CLa Ck Crk Cdeg (restRhoTop_of_pair D CLa Ck Crk Cdeg h)
 
 end Formalism.MainNotions.TestSideCounting
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.DualFockLinear.RestCloudBOfThree

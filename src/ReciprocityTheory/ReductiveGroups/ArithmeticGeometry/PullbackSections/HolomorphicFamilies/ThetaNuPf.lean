@@ -44,10 +44,11 @@ def RegularSectionNonneg : Prop :=
 end ReciprocityTheory.ChartRestriction.G.DVR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenIff
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenIff
 
 set_option linter.overlappingInstances false
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj
@@ -55,10 +56,6 @@ open scoped CategoryTheory.Obj
 namespace ReciprocityTheory.ChartRestriction.G.DVR.TG
 
 open ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor IsLocalRing QForm SectionScalarValuation
-
-section Scale
-
-end Scale
 
 section Integral
 
@@ -121,6 +118,7 @@ theorem integral_exp [IsDiscreteValuationRing R] (hI : I = maximalIdeal R) (U : 
 end Integral
 
 end ReciprocityTheory.ChartRestriction.G.DVR.TG
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.ExpansionNonnegRegular

@@ -9,12 +9,10 @@ import Development.AbelianVarietyTheory.PublishedTheorems.SiegelWeil₂.SiegelWe
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianBlockSolutionExists, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SameSpanTransferMatrices, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SpanRangeComplementTransform, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EisensteinBruhatDecomposition
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianBlockSolutionExists
 
 open scoped Matrix
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions.EC
-
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianBlockSolutionExists
 
 namespace GlobalTheory.CompanionTheory.BruhatCell
 
@@ -155,6 +153,9 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SameSpanTransferMatrices
 
+open scoped Matrix
+open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions.EC
+
 namespace GlobalTheory.CompanionTheory.BruhatCoeffs
 
 theorem exists_coeff_matrices_of_span_eq {K : Type} [Field K] {n r : ℕ}
@@ -203,7 +204,11 @@ theorem exists_coeff_matrices_of_span_eq {K : Type} [Field K] {n r : ℕ}
 end GlobalTheory.CompanionTheory.BruhatCoeffs
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SpanRangeComplementTransform
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SpanRangeComplementTransform
+
+noncomputable section
+open scoped Matrix
+open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions.EC
 
 namespace GlobalTheory.CompanionTheory.BruhatCell
 
@@ -239,14 +244,14 @@ theorem span_range_eId_mul {n r : ℕ} (hr : r ≤ n) {c : Matrix (Fin r) (Fin n
     rintro _ ⟨i, rfl⟩
     rw [row i]
     by_cases hi : (i : ℕ) < r
-    · rw [if_pos hi, h.2 i hi]
+    · rw [ite_eq_left hi, h.2 i hi]
       exact Submodule.subset_span ⟨_, rfl⟩
-    · rw [if_neg hi]
+    · rw [ite_eq_right hi]
       exact Submodule.zero_mem _
   · rw [Submodule.span_le]
     rintro _ ⟨j, rfl⟩
     refine Submodule.subset_span ⟨⟨j, j.2.trans_le hr⟩, ?_⟩
-    rw [row, if_pos j.2, h.2 ⟨j, j.2.trans_le hr⟩ j.2]
+    rw [row, ite_eq_left j.2, h.2 ⟨j, j.2.trans_le hr⟩ j.2]
 
 theorem span_range_lowerLeft : ∀ {K : Type} [Field K] {n r : ℕ}, r ≤ n →
     ∀ (c : Matrix (Fin r) (Fin n) K) (a p : Matrix (Fin n) (Fin n) K), IsCompl c a → IsUnit p.det →
@@ -261,8 +266,12 @@ theorem span_range_lowerLeft : ∀ {K : Type} [Field K] {n r : ℕ}, r ≤ n →
 
 end GlobalTheory.CompanionTheory.BruhatCell
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EisensteinBruhatDecomposition
+
+open scoped Matrix
+open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions.EC
 
 namespace GlobalTheory.CompanionTheory.BruhatCell
 

@@ -61,10 +61,12 @@ import Development.AutomorphicArithmetic.FrobeniusLocalisation.LocStab
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.FlatOnModelExistsRulSections, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.KappaIntegralBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsEigFrameOfFrPt, Development.AutomorphicSpectrum.Proofs.GeometryProofs.NormLeOneIffLogValuation, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.LineFunctionPlaceValuation, Development.AbelianVarietyTheory.Definitions.Foundations.NotFlatExistsOfIsEmpty, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.UnfSectionNormBoundAtHeight, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PadicEmbeddingsConjugateOfUnits, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FiniteNormLocalBound, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.FrameRatioConstantRational, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.LineFunctionModelRatio, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameFunctionFiniteNorm, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GeometricComponentAlgClosed, Development.WeilBound.CoreStatements.ComplexPeriods.ComplexPointPeriods.PeriodPos, Development.WeilBound.CoreStatements.ComplexPeriods.ComplexPointPeriods.PeriodIn, Development.AutomorphicSpectrum.Proofs.GeometryProofs.KroneckerCharacterFrameBound, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ExistsConstSectionKroneckerChar
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.FlatOnModelExistsRulSections
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.FlatOnModelExistsRulSections
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Br
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Br.CvRule
 
@@ -119,7 +121,7 @@ theorem exOf_add_detE (τ : GlobalTheory.AllWt.Psi H) (i : Formalism.L2.Pj.Ix D)
     rw [hex]
     simp only [detE, Formalism.L2.Pj.ex]
     by_cases h : σ (H.rt : E) = H.rt0
-    · have hm : D.mult σ = D.p := by rw [Datum.mult, if_pos h]
+    · have hm : D.mult σ = D.p := by rw [Datum.mult, ite_eq_left h]
       have hi : (i : ℕ) < D.p := hm ▸ i.2
       have hw := GlobalTheory.AllWt.wtOf_big (GlobalTheory.FlatLine.flatWt D τ) 0 ⟨σ, h⟩ i hi
       simp only at hw
@@ -132,7 +134,7 @@ theorem exOf_add_detE (τ : GlobalTheory.AllWt.Psi H) (i : Formalism.L2.Pj.Ix D)
       · rw [f0 _ _ fun h' => e (congrArg Subtype.val h')]
         simp [e, hc]
     · have h' := GlobalTheory.AllWt.conj_mem h
-      have hm : D.mult σ = D.q := by rw [Datum.mult, if_neg h]
+      have hm : D.mult σ = D.q := by rw [Datum.mult, ite_eq_right h]
       have hi : (i : ℕ) < D.q := hm ▸ i.2
       have hw := GlobalTheory.AllWt.wtOf_small (GlobalTheory.FlatLine.flatWt D τ) 0 ⟨conjEmb σ, h'⟩ i hi
       simp only [GlobalTheory.AllWt.conjEmb_conjEmb] at hw
@@ -177,7 +179,7 @@ theorem exists_flat_sec : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
   have hl := hf.1
   obtain ⟨s, s', e, -, hss₀, hsE₀, hs'E₀, -, hval⟩ :=
     _root_.GlobalTheory.CompanionTheory.Ar.Flat.exists_flat_rule E H D l Xo c (Z : Set (Xo.XF c)) τ.1 O β Y Z' φ hτ hC hl hf
-  have hp : D.mult τ.1 = D.p := by rw [Datum.mult, if_pos hτ]
+  have hp : D.mult τ.1 = D.p := by rw [Datum.mult, ite_eq_left hτ]
   have hq : D.mult (ComplexEmbedding.conjugate τ.1) = D.q := conj_mult hτ
   have red : ∀ p : Formalism.L2.Pj.TRing c.F, IsReduced p.R := fun p => (Ideal.isRadical_iff_quotient_reduced _).1 p.rad
   have hss : ∀ p z, s p z * s' p z = e p z := fun p z => congrFun (congrFun hss₀ p) z
@@ -300,6 +302,7 @@ theorem exists_flat_sec : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
 
 end GlobalTheory.CompanionTheory.Ar.Br
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.KappaIntegralBound
 
@@ -414,7 +417,9 @@ theorem goal1 :
 end Bl.KappaIntegralBound
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsEigFrameOfFrPt
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsEigFrameOfFrPt
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.RuleVal
 
@@ -558,7 +563,7 @@ theorem mult_conj (τ : E →+* ℂ) (h : τ (H.rt : E) = H.rt0) : D.mult (Compl
     simp at hre
     exact H.d_prime.ne_zero hre
   unfold Datum.mult
-  rw [if_neg]
+  rw [ite_eq_right]
   rw [ComplexEmbedding.conjugate_coe_eq, h]
   intro h2
   exact hi (by have := congrArg Complex.im h2; simp at this; linarith)
@@ -650,8 +655,11 @@ end Frames
 
 end GlobalTheory.CompanionTheory.Ar.Flat.RuleVal
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.NormLeOneIffLogValuation
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.NormLeOneIffLogValuation
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.RuleVal
 
@@ -760,7 +768,7 @@ theorem GlobalTheory.CompanionTheory.Ar.Flat.nval_flat_rule : ∀ (E : Type) [Fi
   have hI : Formalism.L2.Pj.Integral T io y.1 := y.2.2
   obtain ⟨G, t', m1, m2, ⟨ub, htan, heig, hbas, hlift⟩, -⟩ := hI
   obtain ⟨m, hm⟩ := RuleVal.exists_cast hy.symm m1
-  have hp : D.mult τ = D.p := if_pos hτ
+  have hp : D.mult τ = D.p := ite_eq_left hτ
   have hq : D.mult (ComplexEmbedding.conjugate τ) = D.q := RuleVal.mult_conj τ hτ
   obtain ⟨v, hv⟩ := RuleVal.exists_vecs y.1 hy τ hp
   obtain ⟨w, hw⟩ := RuleVal.exists_vecs y.1 hy (ComplexEmbedding.conjugate τ) hq
@@ -804,6 +812,7 @@ theorem GlobalTheory.CompanionTheory.Ar.Flat.nval_flat_rule : ∀ (E : Type) [Fi
     rw [hev, Formalism.L2.Pj.nval_of_ne hne, ← hval, h1, hlog _ hne]
     congr 1
     field_simp [hρ.ne]
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.LineFunctionPlaceValuation
@@ -897,10 +906,12 @@ theorem sum_flatWt (τ : Psi H) :
 end GlobalTheory.FlatLine.Model
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.UnfSectionNormBoundAtHeight
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.UnfSectionNormBoundAtHeight
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Br
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Br.FlatNorm
 
@@ -915,7 +926,7 @@ theorem exists_test (f : Rul Xo c) {S : Type} [CommRing S] [Algebra c.F S] (y : 
     ∃ (p : TRing c.F) (ψ : p.R →ₐ[c.F] S) (y₀ : FrPt Xo c p.R), FrMap ψ y₀ y ∧ evR Xo c f y = ψ (f p y₀) := by
   refine ⟨h.choose, h.choose_spec.choose, h.choose_spec.choose_spec.choose, h.choose_spec.choose_spec.choose_spec, ?_⟩
   unfold evR evalAt
-  rw [dif_pos h]
+  rw [dite_eq_left h]
 
 theorem exists_gram_det (hσ : GoodEmb c σ) (hU : IsUnf U) {k : U.Comp} (x : (U.X k).dom)
     (hx : (U.X k).IsOrtho x.1) (y : FrPt Xo c (CAt σ)) (t : Ix Dw → (CAt σ)ˣ) (ht : FrBor t (U.un k x) y)
@@ -958,7 +969,7 @@ theorem exists_gram_det (hσ : GoodEmb c σ) (hU : IsUnf U) {k : U.Comp} (x : (U
       · rw [Pi.single_eq_of_ne (fun hh => hab (eq_of_heq (Sigma.mk.inj (W.e.symm.injective hh)).2))]
         simp
     simp only [hf, Matrix.mul_smul, Matrix.mul_one, Matrix.smul_apply, Matrix.mul_apply,
-      Matrix.conjTranspose_apply, mul_ite, ite_mul, mul_zero, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true,
+      Matrix.conjTranspose_apply, mul_ite, ite_mul, mul_zero, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true,
       smul_eq_mul, Finset.mul_sum, hκ]
     refine Finset.sum_congr rfl fun j _ => ?_
     push_cast
@@ -1018,7 +1029,7 @@ theorem homN_eq_exp_hodge : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     have h := GlobalTheory.AllWt.conj_not_mem τ
     have h' : ¬ (ComplexEmbedding.conjugate τ.1) (H.rt : E) = H.rt0 := h
     unfold Datum.mult
-    rw [if_neg h']
+    rw [ite_eq_right h']
   let ψ' : p.R →+* ℂ := (ψ : p.R →+* CAt σ)
   let yF : Sp ℂ ⟶ Xo.XF c := GlobalTheory.AllWt.ptF (S := CAt σ) (U.un k ⟨y, hy⟩)
   have hβ : ψ'.comp (algebraMap c.F p.R) = σ := RingHom.ext fun a => ψ.commutes a
@@ -1075,7 +1086,7 @@ theorem homN_eq_exp_hodge : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
         (by show D.q - 1 - (j : ℕ) + (j : ℕ) + 1 = (U.X k).p0; rw [hp0]; omega)
       rw [← inv_eq_iff_eq_inv.2 h, Real.sqrt_inv, Real.sqrt_sq (norm_nonneg _)]
   have hrd : rdU U s k y = φ ℂ yF v w := by
-    simp only [rdU, LinearMap.coe_mk, AddHom.coe_mk, hy, dif_pos]
+    simp only [rdU, LinearMap.coe_mk, AddHom.coe_mk, hy, dite_eq_left]
     rw [hval]
     exact hread'
   have hL : GlobalTheory.AllWt.lieFacZ D x (GlobalTheory.AllWt.wtOf D (GlobalTheory.FlatLine.flatWt D τ) 0) =
@@ -1096,6 +1107,7 @@ theorem homN_eq_exp_hodge : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
   ring
 
 end GlobalTheory.CompanionTheory.Ar.Br
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PadicEmbeddingsConjugateOfUnits

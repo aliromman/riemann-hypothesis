@@ -135,8 +135,10 @@ theorem exists_isLocLevel : ∀ (D : D7) (v : FinPl D) (φ : SplitProj D v) (PP 
 end GlobalTheory.StepVec
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LevelDatumValueEqProdLocalResidueValues
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LevelDatumValueEqProdLocalResidueValues
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.StepVec
 
@@ -195,7 +197,7 @@ theorem omegaG_eq_prod_gLoc : ∀ (D : D7) (a b : ℕ) (L : Formalism.L2.DIV.Lev
           (fun PP => Formalism.L2.DIV.upperLeftBlock L.hr (g PP)) ∈ L.P.H) := by
       rintro ⟨h1, g, hg1, hg2, hg3⟩
       exact hall fun PP => ⟨h1 PP.1 PP.2, g PP, hg1 PP, hg2 PP, (hmem _).1 hg3 PP⟩
-    push_neg at hall
+    push Not at hall
     obtain ⟨PP, hPP⟩ := hall
     rw [omegaG, dite_eq_right hG]
     refine (Finset.prod_eq_zero (Finset.mem_univ PP) ?_).symm
@@ -205,6 +207,8 @@ theorem omegaG_eq_prod_gLoc : ∀ (D : D7) (a b : ℕ) (L : Formalism.L2.DIV.Lev
 
 end GlobalTheory.StepVec
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LocalLevelDatumEqFunctionOfResidueReduction
@@ -398,11 +402,11 @@ theorem prod_locFn_half : ∀ (D : D7) (S T : HSp D) (βS : GL (Fin S.rank) (EAf
       intro i j
       rw [frMapO_smul, Matrix.smul_apply, smul_eq_mul]
       exact (Formalism.L2.Herm.intAf D.host.F D.host.E).mul_mem hi (hN i j)
-    rw [if_pos ⟨hhalfPP PP hPP, hN'⟩]
+    rw [ite_eq_left ⟨hhalfPP PP hPP, hN'⟩]
     congr 1
     funext i j
     have hmem : (frMapO S T βS βT (es PP • t)) i j ∈ Formalism.L2.Herm.intAf D.host.F D.host.E := hN' i j
-    simp only [redM, dif_pos (hN i j), dif_pos hmem]
+    simp only [redM, dite_eq_left (hN i j), dite_eq_left hmem]
     have heq : (⟨(frMapO S T βS βT (es PP • t)) i j, hmem⟩ : Formalism.L2.Herm.intAf D.host.F D.host.E) =
         ⟨toEAf D (es PP), hi⟩ * ⟨(frMapO S T βS βT t) i j, hN i j⟩ := by
       apply Subtype.ext
@@ -425,13 +429,12 @@ theorem prod_locFn_half : ∀ (D : D7) (S T : HSp D) (βS : GL (Fin S.rank) (EAf
       exact Subring.sum_mem _ fun PP hPP => hc PP hPP i j
     obtain ⟨PP, hPP, hni⟩ := hex
     symm
-    exact Finset.prod_eq_zero hPP (if_neg fun h => hni h.2)
+    exact Finset.prod_eq_zero hPP (ite_eq_right fun h => hni h.2)
 
 end GlobalTheory.StepVec
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitHalfResidueReductionFunctionEqFrameLocal
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.StepVec.HalfCmp
 
@@ -476,8 +479,8 @@ theorem GlobalTheory.StepVec.onHalf_viaRed_eq_locFn : ∀ (D : D7) (v : FinPl D)
   unfold onHalf locFn
   by_cases hh : IsHalf e t
   swap
-  · rw [if_neg hh, if_neg (fun h => hh h.1)]
-  rw [if_pos hh, h1]
+  · rw [ite_eq_right hh, ite_eq_right (fun h => hh h.1)]
+  rw [ite_eq_left hh, h1]
   have hfix : ∀ i j, toEAf D e * N i j = N i j := by
     intro i j
     have : toEAf D e • N = N := by
@@ -500,14 +503,14 @@ theorem GlobalTheory.StepVec.onHalf_viaRed_eq_locFn : ∀ (D : D7) (v : FinPl D)
       exact (hr.2.2.2 (N i j) (h i j)).1
   unfold viaRed
   by_cases hI : IsIntM N
-  · rw [dite_eq_left (hiff.2 hI), if_pos ⟨hh, hI⟩]
+  · rw [dite_eq_left (hiff.2 hI), ite_eq_left ⟨hh, hI⟩]
     congr 1
     ext i j
     obtain ⟨hm, hm'⟩ := hr.2.2.2 (N i j) (hI i j)
     simp only [Matrix.of_apply, Matrix.map_apply]
     unfold redM
     rw [dite_eq_left (hI i j), ← hm']
-  · rw [dite_eq_right (fun h => hI (hiff.1 h)), if_neg (fun h => hI h.2)]
+  · rw [dite_eq_right (fun h => hI (hiff.1 h)), ite_eq_right (fun h => hI h.2)]
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitHalfResidueReductionFunctionEqFrameLocalStatement
@@ -546,7 +549,7 @@ theorem omegaQ_one_eq_prod_qLoc : ∀ (D : D7) (a b r : ℕ) (Q : Finset (Formal
     refine Finset.prod_congr rfl fun PP _ => ?_
     rw [zpow_one, qLoc, dite_eq_left (h PP.1 PP.2)]
   · rw [dite_eq_right h]
-    push_neg at h
+    push Not at h
     obtain ⟨PP, hPP, hn⟩ := h
     refine (Finset.prod_eq_zero hPP ?_).symm
     rw [qLoc, dite_eq_right]
@@ -558,8 +561,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaChainStepVectorLocalPureTensor
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaChainStepVectorLocalPureTensor
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting GlobalTheory.PlaceTensor
 open scoped TensorProduct ComplexOrder
@@ -620,7 +624,7 @@ theorem stepVecLocal : ∀ D : D7, StepVecLocal D := by
     have h1 : (fun y => localNewformFunction (vP i) J lam mu (rowsTB ht y)) = viaRed (rP i) (ω i.1) := by
       funext y
       rw [_root_.GlobalTheory.StepVec.locDatum_eq_viaRed D (vP i) (φP i) i.1 (rP i) (hrP i) _ _ t ht LS _ _ J lam hJ mu (χ i.1) hmu y]
-      simp only [ω, dif_pos hi]
+      simp only [ω, dite_eq_left hi]
     rw [h1]
     exact GlobalTheory.T.splitHalf_residueReduction_function_eq_frameLocal D (vP i) (φP i) (es i.1) i.1 (rP i) (hφ i) (hpr i) (hrP i) S T βS βT (ω i.1)
   have hcmpQ : ∀ (i : ↥s) (hi : i.1 ∈ Q) (mu : (Fv D.host.F (vP i))ˣ →* ℂˣ), LiftsChar (φP i) i.1 mu (ξ i.1)⁻¹ →
@@ -630,7 +634,7 @@ theorem stepVecLocal : ∀ D : D7, StepVecLocal D := by
     have h1 : phiQ (vP i) LS.r mu = viaRed (b := T.rank) (a := S.rank) (rP i) (ω i.1) := by
       funext y
       rw [GlobalTheory.T.thetaTwistDatum_eq_function_of_residueReduction D (vP i) (φP i) i.1 (rP i) (hrP i) _ _ LS.r mu (ξ i.1) hmu y]
-      simp only [ω, dif_neg hn]
+      simp only [ω, dite_eq_right hn]
     rw [h1]
     exact GlobalTheory.T.splitHalf_residueReduction_function_eq_frameLocal D (vP i) (φP i) (es i.1) i.1 (rP i) (hφ i) (hpr i) (hrP i) S T βS βT (ω i.1)
 
@@ -667,10 +671,10 @@ theorem stepVecLocal : ∀ D : D7, StepVecLocal D := by
       intro i
       have h : ∃ j, vP j = vP i := ⟨i, rfl⟩
       show (if h : ∃ j, vP j = vP i then xθ h.choose else f₀) = xθ i
-      rw [dif_pos h, hinj h.choose_spec]
+      rw [dite_eq_left h, hinj h.choose_spec]
     refine ⟨x, ⟨fun τ => rfl, fun v hv => ?_⟩, ?_⟩
     · show (if h : ∃ i, vP i = v then xθ h.choose else f₀) = f₀
-      refine dif_neg ?_
+      refine dite_eq_right ?_
       rintro ⟨i, rfl⟩
       exact hv i.1 i.2 (hunder i)
     · intro v φ e' he' mu
@@ -711,9 +715,9 @@ theorem stepVecLocal : ∀ D : D7, StepVecLocal D := by
         ← Finset.prod_coe_sort LS.Pg fun PP => ω PP (y PP)]
       congr 1
       · refine Finset.prod_congr rfl fun PP _ => ?_
-        simp only [ω, dif_pos PP.2]
+        simp only [ω, dite_eq_left PP.2]
       · refine Finset.prod_congr rfl fun PP hq => ?_
-        simp only [ω, dif_neg fun h => Finset.disjoint_left.1 hdisj h hq]
+        simp only [ω, dite_eq_right fun h => Finset.disjoint_left.1 hdisj h hq]
     rw [← hsumes] at hth
     refine GlobalTheory.T.thetaFunction_splitProductDatum_isPureTensor D ψ θ S T sS sT ΛS ΛT f₀ μ 𝓕 hB hC ↥s Finset.univ vP (fun i => es i.1) (fun i _ => hsplit i)
       hinj.injOn Φ (fun i _ => hsb i) x f _ (fun i _ => hθ i) hoff ?_ ?_ hth
@@ -724,14 +728,15 @@ theorem stepVecLocal : ∀ D : D7, StepVecLocal D := by
       show (if _ then _ else _) = ∏ i : ↥s, Φ i (es i.1 • t')
       rw [h2, ← h]
       by_cases hI : IsIntM (frMapO S T βS βT t')
-      · rw [if_pos ⟨ht', hI⟩, if_pos hI]
+      · rw [ite_eq_left ⟨ht', hI⟩, ite_eq_left hI]
         exact hprod _
-      · rw [if_neg fun h => hI h.2, if_neg hI]
+      · rw [ite_eq_right fun h => hI h.2, ite_eq_right hI]
     · intro t' ht'
-      exact if_neg fun h => ht' h.1
+      exact ite_eq_right fun h => ht' h.1
 
 end GlobalTheory.StepVec
 
+end
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsIsLocalLevelAtPrimeOfLevelDatum", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsRedMap\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Proofs.TwistedOperators.RestrictedTensorBasePointNormSq\n\n"}
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.LevelDatumValueEqProdLocalResidueValues", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsRedMap\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Proofs.TwistedOperators.RestrictedTensorBasePointNormSq\n\n"}

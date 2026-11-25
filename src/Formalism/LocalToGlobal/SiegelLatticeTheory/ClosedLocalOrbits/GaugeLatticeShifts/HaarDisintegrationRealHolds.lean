@@ -1,5 +1,6 @@
 module
 
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.RankOneEmbeddings
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.JacobianCoordinates
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.HermitianZZEqNeg
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.JacLocOfHpk
@@ -46,8 +47,9 @@ theorem haar_disintegration_of_local (h5 : JacobianCoordinates.P5) (hJ : Jacobia
 end Formalism.L2.SG.RealObj.InfCut.UnitaryIsometries
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.HpkExHolds
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.HpkExHolds
 
+noncomputable section
 
 open MeasureTheory
 open scoped ENNReal NNReal
@@ -61,11 +63,7 @@ variable {k r : ℕ}
 alias meas_invM := _root_.Formalism.FourierDecayAlt.P.B2x1.invM_meas
 
 theorem meas_mulM : Measurable (mulM : Mt k r × Mt k r → Mt k r) := by
-  unfold mulM
-  have hc : Continuous (fun p : Mt k r × Mt k r => (Matrix.of p.1 * Matrix.of p.2 : Mat k r)) :=
-    Continuous.matrix_mul continuous_fst continuous_snd
-  exact Measurable.of_eval fun i => Measurable.of_eval fun j =>
-    ((continuous_apply j).comp ((continuous_apply i).comp hc)).measurable
+  apply _root_.Formalism.FourierDecayAlt.P.RankOneEmbeddings.In.mulM_meas <;> assumption
 
 def Cm (g : Mt k r) (p : SS k r) : Mt k r := mulM (mulM (mulM (mulM (p.1.1, p.1.2), g), p.2.2), p.2.1)
 
@@ -191,6 +189,7 @@ theorem hpkEx_holds : HpkEx := by
   rw [lintegral_const_mul' _ _ hκt, ← mul_assoc, ← mul_assoc, ENNReal.div_mul_cancel hκ0 hκt]
 
 end Formalism.L2.SG.RealObj.InfCut.JacobianCoordinates.JL
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.LocalJacobianOfDoubleCoset

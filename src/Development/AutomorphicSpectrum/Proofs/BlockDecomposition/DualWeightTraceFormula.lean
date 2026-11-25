@@ -424,8 +424,9 @@ end GlobalTheory.CompanionTheory.GelfAct
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LineInverse
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LineInverse
 
+noncomputable section
 
 open Matrix Filter Topology
 open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.RmHol
@@ -520,43 +521,34 @@ theorem xu_glRel : ∀ (n : ℕ) (lam : Fin n → ℤ), HolRm lam → Formalism.
   have hsq : (Matrix.single a b (1:ℂ) : Mat n) * Matrix.single a b 1 =
       (if b = a then (1:ℂ) else 0) • Matrix.single a b 1 := by
     by_cases h : b = a
-    · subst h; rw [if_pos rfl, one_smul, Matrix.single_mul_single_same, one_mul]
-    · rw [if_neg h, zero_smul, Matrix.single_mul_single_of_ne _ _ _ _ h]
+    · subst h; rw [ite_eq_left rfl, one_smul, Matrix.single_mul_single_same, one_mul]
+    · rw [ite_eq_right h, zero_smul, Matrix.single_mul_single_of_ne _ _ _ _ h]
   have key := comm_XA hD (Matrix.single c d (1:ℂ)) hsq
   have hEB : XA lam ((Matrix.single a b (1:ℂ) : Mat n) * Matrix.single c d 1) =
       if b = c then XA lam (Matrix.single a d 1) else 0 := by
     by_cases h : b = c
-    · subst h; rw [if_pos rfl, Matrix.single_mul_single_same, one_mul]
-    · rw [if_neg h, Matrix.single_mul_single_of_ne _ _ _ _ h, XA_zero]
+    · subst h; rw [ite_eq_left rfl, Matrix.single_mul_single_same, one_mul]
+    · rw [ite_eq_right h, Matrix.single_mul_single_of_ne _ _ _ _ h, XA_zero]
   have hBE : XA lam ((Matrix.single c d (1:ℂ) : Mat n) * Matrix.single a b 1) =
       if d = a then XA lam (Matrix.single c b 1) else 0 := by
     by_cases h : d = a
-    · subst h; rw [if_pos rfl, Matrix.single_mul_single_same, one_mul]
-    · rw [if_neg h, Matrix.single_mul_single_of_ne _ _ _ _ h, XA_zero]
+    · subst h; rw [ite_eq_left rfl, Matrix.single_mul_single_same, one_mul]
+    · rw [ite_eq_right h, Matrix.single_mul_single_of_ne _ _ _ _ h, XA_zero]
   simp only [Xu]
   rw [key, hEB, hBE]
 
 end GlobalTheory.CompanionTheory.RmHol
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableUnitary
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableUnitary
 
+noncomputable section
 
 open MeasureTheory Matrix
 open scoped ComplexConjugate Kronecker InnerProductSpace
 
 namespace GlobalTheory.CompanionTheory.CxAvg
-
-section Abstract
-
-variable {K E : Type*} [Group K] [TopologicalSpace K] [IsTopologicalGroup K] [CompactSpace K]
-  [SecondCountableTopology K] [MeasurableSpace K] [BorelSpace K]
-  [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDimensional ℂ E] [CompleteSpace E]
-  (μ : Measure K) [μ.IsHaarMeasure] (F : K →* (E →L[ℂ] E))
-
-variable {F}
-
-end Abstract
 
 section Concrete
 
@@ -592,6 +584,7 @@ theorem continuous_Rm (lam : Fin n → ℤ) :
 end Concrete
 
 end GlobalTheory.CompanionTheory.CxAvg
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsHighestWeightHermitianDerivation
@@ -927,13 +920,11 @@ theorem rmModel : ∀ {n : ℕ} (ν : Fin n → ℤ), Antitone ν → ∃ (L : T
 end GlobalTheory.CompanionTheory.RmModel
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HighestWeightIntegralOfUnitary
 
 
 open Matrix Finset
 open scoped InnerProductSpace
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HighestWeightIntegralOfUnitary
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
 
 namespace GlobalTheory.CompanionTheory.RealCountG.Isotypic
@@ -1117,7 +1108,12 @@ theorem exists_isotypic_projection {n : ℕ} (H : Type) [NormedAddCommGroup H] [
 end GlobalTheory.CompanionTheory.RealCountG.Isotypic
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HighestWeightOfUnitaryDerivative
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HighestWeightOfUnitaryDerivative
+
+noncomputable section
+
+open Matrix Finset
+open scoped InnerProductSpace
 
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG GlobalTheory.CompanionTheory.RealCount.InjHw
 
@@ -1146,7 +1142,7 @@ theorem expU_two_pi (a : Fin n) (hX : (Matrix.single a a Complex.I)ᴴ = -(Matri
         simp
       · simp [hc, Ne.symm hc]
     · rw [Matrix.diagonal_apply_ne _ hij, Matrix.smul_apply, Matrix.single_apply,
-        if_neg (fun hh => hij (hh.1.symm.trans hh.2)), smul_zero]
+        ite_eq_right (fun hh => hij (hh.1.symm.trans hh.2)), smul_zero]
   rw [e, Matrix.exp_diagonal, ← Matrix.diagonal_one]
   congr 1
   funext c
@@ -1253,8 +1249,13 @@ theorem weight_integral : ∀ {n : ℕ} (H : Type) [NormedAddCommGroup H] [Inner
 
 end GlobalTheory.CompanionTheory.RealCountG.WtInt
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualWeightTraceFormula
+
+
+open Matrix Finset
+open scoped InnerProductSpace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD GlobalTheory.CompanionTheory.RealCount GlobalTheory.CompanionTheory.RealCountG
 
 namespace GlobalTheory.CompanionTheory.RealCountG.CharDec

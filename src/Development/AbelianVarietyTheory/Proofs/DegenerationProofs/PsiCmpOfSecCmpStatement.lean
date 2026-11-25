@@ -55,13 +55,14 @@ import Development.AbelianVarietyTheory.Definitions.Degenerations.ExistsUniquePa
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.PsiCmpOfSecCmp
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 open GlobalTheory.LN
 open GlobalTheory.PsiRing
 
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.PsiCmpOfSecCmp
+@[expose] public section
+
+noncomputable section
 
 namespace GlobalTheory.PsiBaseChange
 
@@ -181,13 +182,11 @@ theorem psiCmp_of_secCmp : ∀ (R V : Type) [CommRing R] [IsDomain R] [CommRing 
   rw [pw, Fintype.prod_unique, Fintype.prod_unique, Category.assoc]
 
 end GlobalTheory
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.PsiCmpOfSecCmpStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UU
-open GlobalTheory.LN
-open GlobalTheory.PsiRing
 
 theorem _root_.GlobalTheory.T.psiCmp_of_secCmp' : ∀ (R V : Type) [CommRing R] [IsDomain R] [CommRing V] [IsDomain V] (φ : R →+* V) (D : DegPre R) (D' : DegPre V) (β : D'.P.A.left ⟶ D.P.A.left) (v : LB.Iso D'.P.L (D.P.L.pull β)) (xe : D'.X ≃+ D.X), IsGrpPullback D'.P.A D.P.A (spMap φ) β → v.IsGen → (∀ x, (D'.c x).left ≫ β = spMap φ ≫ (D.c (xe x)).left) → RigCmp φ D D' β v → ∀ (f : ∀ α, SecBT D (𝟙_ _) 1 α) (f' : ∀ α, SecBT D' (𝟙_ _) 1 α), SecCmp D D' β v xe f f' → PsiRel D (𝟙_ _) f → PsiRel D' (𝟙_ _) f' → (∃ j, (f' 0).f j ≠ 0) → ∀ gam : (TK V).left ⟶ (TK R).left, gam ≫ jK R = jK V ≫ spMap φ → PsiCmp D D' β v xe gam := by
   first | exact @GlobalTheory.psiCmp_of_secCmp

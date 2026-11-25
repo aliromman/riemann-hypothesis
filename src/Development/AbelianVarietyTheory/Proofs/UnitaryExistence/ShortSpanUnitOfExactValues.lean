@@ -51,8 +51,9 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.GeometricLiftsOf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.ShortRuleRepresentationChange, Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ShortSpanUnitOfExactValues
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.ShortRuleRepresentationChange
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.ShortRuleRepresentationChange
 
+noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.RamifiedCoverPairIsomorphism
 
@@ -81,13 +82,6 @@ def ramPart (E : Type) [Field E] [NumberField E] : ℕ := 2 * (discr E).natAbs
 def reps (n : ℕ) (s : ℕ+) : Set (Lat E n) :=
   {Λ | Λ.InGenus ∧ Λ.StdAt (ramPart E * Δ.a.l₂.M * s)}
 
-def IsPairIso {n : ℕ} (γ : (Fin n → E) ≃ₗ[E] (Fin n → E)) (Λ Λ' : Lat E n) : Prop :=
-  IsUnitary γ ∧ (Λ.map γ).L = Λ'.L ∧
-    ∀ x ∈ Λ.L, ∃ k : ℕ, k.Coprime Δ.a.l₂.M ∧ k • (γ x - x) ∈ mulStd E n Δ.a.l₂.M
-
-def MeetsAllClasses {n : ℕ} (T : Set (Lat E n)) : Prop :=
-  T ⊆ reps Δ n 1 ∧ ∀ Λ ∈ reps Δ n 1, ∃ Λ' ∈ T, ∃ γ, IsPairIso Δ γ Λ Λ'
-
 def IsSeriesData {n : ℕ} (Λ : Lat E n) (N : ℕ) (β : c.F) (a : (E →+* ℂ) × ℕ → ℕ)
     (P : MvPolynomial (LtN Dw n) c.F) : Prop :=
   Λ ∈ reps Δ n 1 ∧ Λ.Admissible Δ.a.l₂.M N ∧ IsBeLat Dw c Λ β ∧ P ∈ harmLat Dw c a Λ
@@ -106,6 +100,7 @@ def ShortInCusp (hK : ReflexLe Dw c) (nV : ℕ)
 
 
 end GlobalTheory.IndefiniteRowSideFullHecke.RamifiedCoverPairIsomorphism
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ShortSpanUnitOfExactValues

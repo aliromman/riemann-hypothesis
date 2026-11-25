@@ -580,11 +580,12 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsFamilyExponentialLocally
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsFamilyExponentialLocally
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl GlobalTheory.CompanionTheory.Ar.Flat Filter Topology Metric
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.ExpLoc
 
@@ -943,7 +944,7 @@ theorem famExp_of_inverse (M : LieModel G (𝟙 (Sp R)) (Fin g → R)) (hρ : 0 
   have hexa : ∀ b ∈ ball b₀ ρ, (∀ z w, ex b (z + w) = ex b z * ex b w) ∧
       ∀ z ∈ ball (0 : Fin g → ℂ) ρ, ex b z = Ψ b (Λ (b, z)) := by
     intro b hb
-    simp only [ex, dif_pos hb]
+    simp only [ex, dite_eq_left hb]
     exact (hext b hb).choose_spec.1
   have hBo : IsOpen (ball b₀ ρ ×ˢ ball (0 : Fin g → ℂ) ρ) := isOpen_ball.prod isOpen_ball
   have hΛd : DifferentiableOn ℂ Λ (ball b₀ ρ ×ˢ ball (0 : Fin g → ℂ) ρ) := fun p hp =>

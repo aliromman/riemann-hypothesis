@@ -23,8 +23,9 @@ theorem volURatio : VolURatio := by
 end PI.RhsWLim.W
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeightedLimitGauge.ConstPair
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeightedLimitGauge.ConstPair
 
+noncomputable section
 
 open MeasureTheory Filter Topology Matrix
 open scoped ENNReal
@@ -59,7 +60,7 @@ theorem sgn_wLast : HU.sgn k r (wI k r (Fin.last k)) = -1 := by
 theorem hpk_mulVec_wLast (v : Fin (2 * r + k + 1) → ℂ) :
     (Hpk k r *ᵥ v) (wI k r (Fin.last k)) = -v (wI k r (Fin.last k)) := by
   simp only [Matrix.mulVec, dotProduct, HU.hpk_row, tau_wLast, sgn_wLast, ite_mul, zero_mul,
-    Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   ring
 
 theorem herm_wLast (v : Fin (2 * r + k + 1) → ℂ) (s : ℝ) :

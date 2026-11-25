@@ -425,29 +425,29 @@ theorem merged_word_succ_lt (G : GridData) (hga : 0 < G.ga) (hvb : 1 ≤ G.v G.k
   have hg : (0 : ℚ) < G.ga := by exact_mod_cast hga
   unfold mergedDecreasingWordPiZeroDZero
   rcases lt_trichotomy p G.m with h | rfl | h
-  · rw [if_pos (by omega : p + 1 ≤ G.m), if_pos h.le, G.a_eq_succ_add p]; linarith
-  · rw [if_neg (by omega), if_pos (by omega), if_pos (by omega), if_pos le_rfl,
+  · rw [ite_eq_left (by omega : p + 1 ≤ G.m), ite_eq_left h.le, G.a_eq_succ_add p]; linarith
+  · rw [ite_eq_right (by omega), ite_eq_left (by omega), ite_eq_left (by omega), ite_eq_left le_rfl,
       show (G.m + 1 - G.m + 3) / 2 = 2 by omega, G.a_m]
     linarith
-  · rw [if_neg (show ¬ p + 1 ≤ G.m by omega), if_neg (show ¬ p ≤ G.m by omega)]
+  · rw [ite_eq_right (show ¬ p + 1 ≤ G.m by omega), ite_eq_right (show ¬ p ≤ G.m by omega)]
     rcases lt_trichotomy p (G.m + 2 * (G.k - 1)) with h' | h' | h'
-    · rw [if_pos (show p + 1 ≤ G.m + 2 * (G.k - 1) by omega), if_pos h'.le]
+    · rw [ite_eq_left (show p + 1 ≤ G.m + 2 * (G.k - 1) by omega), ite_eq_left h'.le]
       by_cases hj : (p - G.m) % 2 = 1
-      · rw [if_neg (show ¬ (p + 1 - G.m) % 2 = 1 by omega), if_pos hj, show (p + 1 - G.m + 2) / 2 = (p - G.m + 3) / 2 by omega, vHalf]
+      · rw [ite_eq_right (show ¬ (p + 1 - G.m) % 2 = 1 by omega), ite_eq_left hj, show (p + 1 - G.m + 2) / 2 = (p - G.m + 3) / 2 by omega, vHalf]
         linarith
-      · rw [if_pos (show (p + 1 - G.m) % 2 = 1 by omega), if_neg hj, show (p + 1 - G.m + 3) / 2 = (p - G.m + 2) / 2 + 1 by omega, vHalf]
+      · rw [ite_eq_left (show (p + 1 - G.m) % 2 = 1 by omega), ite_eq_right hj, show (p + 1 - G.m + 3) / 2 = (p - G.m + 2) / 2 + 1 by omega, vHalf]
         have := G.v_anti ((p - G.m + 2) / 2) ((p - G.m + 2) / 2 + 1) (by omega) (by omega) (by omega)
         have : ((G.v ((p - G.m + 2) / 2 + 1) : ℤ) : ℚ) + 1 ≤ (G.v ((p - G.m + 2) / 2) : ℚ) := by
           exact_mod_cast this
         linarith
     · subst h'
-      rw [if_neg (show ¬ G.m + 2 * (G.k - 1) + 1 ≤ G.m + 2 * (G.k - 1) by omega), if_pos le_rfl,
-        if_neg (show ¬ (G.m + 2 * (G.k - 1) - G.m) % 2 = 1 by omega),
+      rw [ite_eq_right (show ¬ G.m + 2 * (G.k - 1) + 1 ≤ G.m + 2 * (G.k - 1) by omega), ite_eq_left le_rfl,
+        ite_eq_right (show ¬ (G.m + 2 * (G.k - 1) - G.m) % 2 = 1 by omega),
         show G.m + 2 * (G.k - 1) + 1 - G.m - 2 * (G.k - 1) = 1 by omega,
         show (G.m + 2 * (G.k - 1) - G.m + 2) / 2 = G.k by omega, vHalf]
       have : (1 : ℚ) ≤ (G.v G.k : ℚ) + (G.b 1 : ℚ) := by exact_mod_cast hvb
       linarith
-    · rw [if_neg (show ¬ p + 1 ≤ G.m + 2 * (G.k - 1) by omega), if_neg (show ¬ p ≤ G.m + 2 * (G.k - 1) by omega),
+    · rw [ite_eq_right (show ¬ p + 1 ≤ G.m + 2 * (G.k - 1) by omega), ite_eq_right (show ¬ p ≤ G.m + 2 * (G.k - 1) by omega),
         show p + 1 - G.m - 2 * (G.k - 1) = (p - G.m - 2 * (G.k - 1)) + 1 by omega]
       have := G.b_mono (p - G.m - 2 * (G.k - 1)) (p - G.m - 2 * (G.k - 1) + 1) (by omega) (by omega) (by omega)
       have : ((G.b (p - G.m - 2 * (G.k - 1)) : ℤ) : ℚ) < (G.b (p - G.m - 2 * (G.k - 1) + 1) : ℚ) := by
@@ -479,9 +479,9 @@ theorem exists_pos_of_mem_lam (G : GridData) {x : ℚ × Bool} (hx : x ∈ G.lam
     · simp [h]; omega
   · obtain ⟨i, hi2, hik, hv⟩ := mem_cloudHalf.1 hc
     refine ⟨G.m + 2 * i - 2, by omega, ?_, ?_⟩
-    · rw [hv, mergedDecreasingWordPiZeroDZero, if_neg (show ¬ G.m + 2 * i - 2 ≤ G.m by omega),
-        if_pos (show G.m + 2 * i - 2 ≤ G.m + 2 * (G.k - 1) by omega),
-        if_neg (show ¬ (G.m + 2 * i - 2 - G.m) % 2 = 1 by omega),
+    · rw [hv, mergedDecreasingWordPiZeroDZero, ite_eq_right (show ¬ G.m + 2 * i - 2 ≤ G.m by omega),
+        ite_eq_left (show G.m + 2 * i - 2 ≤ G.m + 2 * (G.k - 1) by omega),
+        ite_eq_right (show ¬ (G.m + 2 * i - 2 - G.m) % 2 = 1 by omega),
         show (G.m + 2 * i - 2 - G.m + 2) / 2 = i by omega]
     · rw [hs, mergedDecreasingWordParity]; simp; omega
 
@@ -491,14 +491,14 @@ theorem exists_position_of_mem_D0 (G : GridData) {x : ℚ × Bool} (hx : x ∈ G
   rcases mem_discrete_parameter_iff.1 hx with ⟨hc, hs⟩ | ⟨l, hl1, hlm, rfl⟩
   · obtain ⟨i, hi2, hik, hv⟩ := mem_cloud.1 hc
     refine ⟨G.m + 2 * i - 3, by omega, ?_, ?_⟩
-    · rw [hv, mergedDecreasingWordPiZeroDZero, if_neg (show ¬ G.m + 2 * i - 3 ≤ G.m by omega),
-        if_pos (show G.m + 2 * i - 3 ≤ G.m + 2 * (G.k - 1) by omega),
-        if_pos (show (G.m + 2 * i - 3 - G.m) % 2 = 1 by omega),
+    · rw [hv, mergedDecreasingWordPiZeroDZero, ite_eq_right (show ¬ G.m + 2 * i - 3 ≤ G.m by omega),
+        ite_eq_left (show G.m + 2 * i - 3 ≤ G.m + 2 * (G.k - 1) by omega),
+        ite_eq_left (show (G.m + 2 * i - 3 - G.m) % 2 = 1 by omega),
         show (G.m + 2 * i - 3 - G.m + 3) / 2 = i by omega]
     · rw [hs, mergedDecreasingWordParity]; simp; omega
   · refine ⟨G.m + 2 * (G.k - 1) + l, by omega, ?_, ?_⟩
-    · rw [mergedDecreasingWordPiZeroDZero, if_neg (show ¬ G.m + 2 * (G.k - 1) + l ≤ G.m by omega),
-        if_neg (show ¬ G.m + 2 * (G.k - 1) + l ≤ G.m + 2 * (G.k - 1) by omega),
+    · rw [mergedDecreasingWordPiZeroDZero, ite_eq_right (show ¬ G.m + 2 * (G.k - 1) + l ≤ G.m by omega),
+        ite_eq_right (show ¬ G.m + 2 * (G.k - 1) + l ≤ G.m + 2 * (G.k - 1) by omega),
         show G.m + 2 * (G.k - 1) + l - G.m - 2 * (G.k - 1) = l by omega]
     · simp only [mergedDecreasingWordParity, Nat.even_iff]
       by_cases h : (l - 1) % 2 = 0
@@ -791,11 +791,6 @@ theorem b_abs_of_gaps {H : ℝ} (hH : 0 ≤ H) (hb : ∀ l, 1 ≤ l → l < G.m 
   · have := b_sep_of_gaps hH hb hl' hlm' hl hlm h
     exact le_abs.2 (Or.inl (by linarith))
 
-theorem b_one_le {l : ℕ} (hl : 1 ≤ l) (hlm : l ≤ G.m) : G.b 1 ≤ G.b l := by
-  rcases hl.eq_or_lt with rfl | h
-  · exact le_rfl
-  · exact (G.b_mono 1 l le_rfl h hlm).le
-
 theorem a_real (i : ℕ) : ((G.a i : ℚ) : ℝ) = (G.v 2 : ℝ) + 1 / 2 + ((G.m : ℝ) + 1 - i) * G.ga := by
   simp only [GridData.a]; push_cast; ring
 
@@ -879,7 +874,7 @@ theorem two_le_sub_of_mem_parD0_of_lt {H : ℝ} (hH : 2 ≤ H) (hv : ∀ i, 2 �
   have cl : ∀ i l, 2 ≤ i → i ≤ G.k → 1 ≤ l → l ≤ G.m → (2 : ℝ) ≤ (G.v i : ℝ) + G.b l := by
     intro i l hi hik hl hlm
     have h1 := (v_le_v_two (G := G) hi hik).1
-    have h2 := b_one_le (G := G) hl hlm
+    have h2 := GlobalTheory.WordSep.b_ge (G := G) hl hlm
     have : (2 : ℤ) ≤ G.v i + G.b l := by omega
     exact_mod_cast this
   rcases mem_discrete_parameter_iff.1 hx with ⟨hx1, -⟩ | ⟨l, hl, hlm, rfl⟩ <;>
@@ -993,13 +988,7 @@ open Formalism.L2.Theta
 namespace GlobalTheory.SignedHC.GridData
 
 theorem v_bounds_of_mem (G : GridData) {i : ℕ} (h2 : 2 ≤ i) (hk : i ≤ G.k) : G.v G.k ≤ G.v i ∧ G.v i ≤ G.v 2 := by
-  constructor
-  · rcases eq_or_lt_of_le hk with h | h
-    · rw [h]
-    · exact le_of_lt (G.v_anti i G.k h2 h le_rfl)
-  · rcases eq_or_lt_of_le h2 with h | h
-    · rw [← h]
-    · exact le_of_lt (G.v_anti 2 i le_rfl h hk)
+  apply _root_.GlobalTheory.SignedHC.GridData.v_le_v_two <;> assumption
 
 theorem b_bounds_of_mem (G : GridData) {l : ℕ} (h1 : 1 ≤ l) (hm : l ≤ G.m) : G.b 1 ≤ G.b l ∧ G.b l ≤ G.b G.m := by
   constructor
@@ -1162,7 +1151,7 @@ theorem realInputPar : Ev fun {D} _ _ {sc} _ _ _ => ∀ (τ : D.what₂.Tau) (ε
   have hD : dualPar (parB (Ptw D) 0 τ) = (GlobalTheory.ChiGrid.num D 1 τ).parD0 := by
     rw [← GlobalTheory.SignedHC.GridData.parD_zero_zero, parB, ← parV_zero D 1 (Nat.zero_le _) τ, _root_.Formalism.IndefR.Mult.dualPar_dualPar]
     show GlobalTheory.SignedHC.shift (if Odd (0 + 0) then -(1 / 2) else 0) _ = _
-    rw [if_neg (by decide), shift_zero_lemma_2]
+    rw [ite_eq_right (by decide), shift_zero_lemma_2]
   have hm' : IsEnum (GlobalTheory.ChiGrid.num D 1 τ).parD0 mu ε' := hD ▸ hmu
   have hr : D.R.r = D.R.k + D.R.m - 1 := rfl
   have h2m := D.R.two_le_m
@@ -1186,7 +1175,6 @@ end -- clump:auto
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelPlusSubgroup (coefPlus Cols SizeRows)
 open GlobalTheory.ChainFr GlobalTheory.SepRows GlobalTheory.SepPer Matrix
 open scoped TensorProduct InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.CardMinusSignsHalfOfEven", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Foundations.StrictInterlaceIffDescEnum\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.BitVec\n\n"}

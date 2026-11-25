@@ -61,11 +61,12 @@ import Formalism.LocalRingCardinality.ConjSqrtMinusD
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThetaPullbackSecondGroupRationalPointEqDetSmul, Development.AbelianVarietyTheory.Proofs.FoundationProofs.OddEqOfEven
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThetaPullbackSecondGroupRationalPointEqDetSmul
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThetaPullbackSecondGroupRationalPointEqDetSmul
 
 open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.RatEqui
 open scoped BigOperators
 
+noncomputable section
 
 namespace GlobalTheory.RatEqui.Col
 
@@ -144,7 +145,7 @@ theorem halfP_revS (hN : Even N) : halfP D N * revS D N = revS D N - revS D N * 
   · subst h
     obtain ⟨k, hk⟩ := hN
     have hj := j.2
-    simp only [Fin.rev_rev, if_true, Fin.lt_def, Fin.val_rev]
+    simp only [Fin.rev_rev, ite_true, Fin.lt_def, Fin.val_rev]
     split_ifs with h1 h2 h2
     · omega
     · simp
@@ -279,6 +280,7 @@ theorem GlobalTheory.RatEqui.pull_right_eq_det_smul : ∀ (D : D7) (cc : Ideal (
       Matrix.det_neg, Fintype.card_fin, hN'.neg_one_pow, one_mul]
   have := norm_div_prod _ _ k hw hconj
   rwa [← hk] at this
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.OddEqOfEven

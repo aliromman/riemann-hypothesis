@@ -27,7 +27,8 @@ import Mathlib.MeasureTheory.Integral.Pi
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PolydiscMean, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PPolydiscSubmean
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PolydiscMean
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PolydiscMean
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -35,6 +36,7 @@ namespace GroundTheory.Heights₂.Heights.HilbertSamuel
 
 open MeasureTheory Set Metric Real
 
+noncomputable section
 
 theorem measurePreserving_circle_smul {D : ℕ} (u : Circle) :
     MeasurePreserving (fun z : Fin D → ℂ => (u : ℂ) • z) := by
@@ -189,13 +191,13 @@ theorem integral_closedBall_gauss (c ρ : ℝ) (hρ : 0 ≤ ρ) :
   rw [h1]
   by_cases hc : c = 0
   · subst hc
-    simp only [if_true]
+    simp only [ite_true]
     have : ∫ y in (0 : ℝ)..ρ, y * Real.exp (-0 * y ^ 2) = ρ ^ 2 / 2 := by
       simp
     rw [this]
     simp [nsmul_eq_mul]
     ring
-  · simp only [hc, if_false]
+  · simp only [hc, ite_false]
     have hd : ∀ y ∈ uIcc 0 ρ, HasDerivAt (fun y : ℝ => -Real.exp (-c * y ^ 2) / (2 * c))
         (y * Real.exp (-c * y ^ 2)) y := by
       intro y _
@@ -210,11 +212,13 @@ theorem integral_closedBall_gauss (c ρ : ℝ) (hρ : 0 ≤ ρ) :
     field_simp
     ring
 
+end
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PPolydiscSubmean
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PPolydiscSubmean
 
 set_option maxSynthPendingDepth 1
 
@@ -222,6 +226,7 @@ namespace GroundTheory.Heights₂.Heights.HilbertSamuel
 
 open MeasureTheory Set Metric Real
 
+noncomputable section
 
 theorem integral_polydisc_gauss (D n : ℕ) (lam : Fin D → ℝ) (R : ℝ) (hn : 0 < n) (hR : 0 < R) :
     ∫ z in closedBall (0 : Fin D → ℂ) (R / Real.sqrt n),
@@ -247,10 +252,10 @@ theorem integral_polydisc_gauss (D n : ℕ) (lam : Fin D → ℝ) (R : ℝ) (hn 
     intro j
     rw [integral_closedBall_gauss _ _ hρ.le, gaussDiscMass]
     by_cases hl : lam j = 0
-    · rw [if_pos (by simp [hl]), if_pos hl, hsq]
+    · rw [ite_eq_left (by simp [hl]), ite_eq_left hl, hsq]
       ring
     · have hnl : (n : ℝ) * lam j ≠ 0 := mul_ne_zero hn' hl
-      rw [if_neg hnl, if_neg hl, hsq]
+      rw [ite_eq_right hnl, ite_eq_right hl, hsq]
       have e : -((n : ℝ) * lam j) * (R ^ 2 / n) = -lam j * R ^ 2 := by
         field_simp
       rw [e]
@@ -277,6 +282,7 @@ theorem PolydiscSubmean.proof : PolydiscSubmean.Statement := by
   rw [integral_polydisc_gauss D n lam R hn hR, ← mul_assoc] at h
   exact h
 
+end
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
 

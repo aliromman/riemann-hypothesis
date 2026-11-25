@@ -11,12 +11,14 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.CharacterGerms.ScaledSecondIntegral, Formalism.LocalToGlobal.CharacterGerms.Interface
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.ScaledSecondIntegral
+section -- clump member: Formalism.LocalToGlobal.CharacterGerms.ScaledSecondIntegral
+@[expose] public section
 
 namespace Formalism.L2.FormalSeriesBounds
 
 open Finset
 
+noncomputable section
 
 variable {C : Type*} [Field C] {V : VF C} {d : ℕ} {I J : Type*}
 
@@ -121,16 +123,16 @@ theorem boundS : ∀ (i s : ℕ) (x : ℕ → I ⊕ J → C), x ∈ X.Ty → (�
       funext m
       simp only [Pi.sub_apply, Pi.zero_apply, Vpow]
       rcases lt_or_eq_of_le (Nat.lt_succ_iff.mp hj) with h | h
-      · rw [if_pos h, hz j h]
+      · rw [ite_eq_left h, hz j h]
         simp
       · subst h
-        rw [if_neg (lt_irrefl _), Nat.sub_self, X.lift_zero, sub_self]
+        rw [ite_eq_right (lt_irrefl _), Nat.sub_self, X.lift_zero, sub_self]
     have h1 := ih (s + 1) _ hx' hz' n
     have h2 := X.bound0 (i + 1) _ hL n
     have hsplit : x (s + (i + 1)) n =
         (x - Vpow s (X.lift (x s))) (s + 1 + i) n + X.lift (x s) (i + 1) n := by
       simp only [Pi.sub_apply, Vpow]
-      rw [if_neg (by omega), show s + 1 + i - s = i + 1 by omega, show s + 1 + i = s + (i + 1) by omega]
+      rw [ite_eq_right (by omega), show s + 1 + i - s = i + 1 by omega, show s + 1 + i = s + (i + 1) by omega]
       ring
     rw [hsplit]
     exact (h1.mono (by push_cast; linarith)).add h2
@@ -168,7 +170,7 @@ theorem Good.bound [DecidableEq I] [Fintype I] {a : ZMod d} {u : I → C} {x : �
       ℕ → I ⊕ J → C) (1 + i) n =
       (V.l : C) * x (i + 2) n := by
     simp only [Pi.sub_apply, Fs, const0]
-    rw [if_neg (by omega), sub_zero, show 1 + i + 1 = i + 2 by omega]
+    rw [ite_eq_right (by omega), sub_zero, show 1 + i + 1 = i + 2 by omega]
   rw [he] at hb
   exact hb.of_l_mul.mono (by linarith)
 
@@ -213,8 +215,10 @@ theorem c0'_comb {ι : Type*} (s : Finset ι) (x : ι → ℕ → I ⊕ J → C)
 
 end Cart
 
+end
 
 end Formalism.L2.FormalSeriesBounds
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.Interface

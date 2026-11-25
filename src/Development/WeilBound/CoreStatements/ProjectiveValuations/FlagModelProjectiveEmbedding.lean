@@ -22,8 +22,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.ProjectiveValuations.InitSpanEqOfTri, Development.WeilBound.CoreStatements.ProjectiveValuations.FlagModelProjectiveEmbedding
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.ProjectiveValuations.InitSpanEqOfTri
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.ProjectiveValuations.InitSpanEqOfTri
 
+noncomputable section
 
 namespace DifferentiableLines.FlagIso
 
@@ -34,7 +35,6 @@ open GlobalTheory.FlagMod.LowRank (ECh Proj str pm)
 open MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G.PullbackSections (TanM tv mkT tanM_ext tv_mem actR)
 open GlobalTheory GlobalTheory.CompHS Matrix
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem initSpan_eq_of_tri {R N : Type} [CommRing R] [AddCommGroup N] [Module R N] {m : ℕ} {v v' : Fin m → N}
     {B : Matrix (Fin m) (Fin m) R} (hB : B.BlockTriangular id) (hu : ∀ i, IsUnit (B i i))
@@ -266,9 +266,11 @@ theorem exists_local (X : FlagCover Y) (y : X.YY) :
 
 end DifferentiableLines.FlagIso
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.ProjectiveValuations.FlagModelProjectiveEmbedding
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.ProjectiveValuations.FlagModelProjectiveEmbedding
 
+noncomputable section
 
 namespace DifferentiableLines.FlagIso
 
@@ -278,7 +280,6 @@ open CategoryTheory TopologicalSpace Limits NumberField ReciprocityTheory.ChartR
 open GlobalTheory.FlagMod.LowRank (ECh Proj str pm)
 open MonoidalCategory CartesianMonoidalCategory MonObj
 open GlobalTheory GlobalTheory.CompHS
-attribute [local instance] Over.cartesianMonoidalCategory
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
   {Xo : Moduli Dw l} {c : Coeff l} {Y : Model Xo c (RingHom.id c.F)} {S : Type} [CommRing S]

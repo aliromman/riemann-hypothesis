@@ -24,12 +24,10 @@ import Formalism.SharpRestriction.GrowthBounds.RootWeights.TraceProjectionIsInvP
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.RootWeights.HighestWeightLatticeOfFirstPart, Formalism.SharpRestriction.GrowthBounds.RootWeights.GlOperatorMemIntegralEnveloping, Formalism.SharpRestriction.GrowthBounds.RootWeights.ExistsScalarMultipleMemDelta, Formalism.SharpRestriction.GrowthBounds.RootWeights.LoweringSpanLowerDividedPowerMem, Formalism.SharpRestriction.GrowthBounds.RootWeights.LoweringSpanHighestComponentIntegral, Formalism.SharpRestriction.GrowthBounds.RootWeights.LinfAdjointLeEllWtHighest
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.HighestWeightLatticeOfFirstPart
 
 
 open Finset
-
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.HighestWeightLatticeOfFirstPart
 
 namespace Formalism.MainNotions.G.GLWeightTheory
 
@@ -54,6 +52,9 @@ end -- clump:auto
 
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.GlOperatorMemIntegralEnveloping
 @[expose] public noncomputable section
+
+
+open Finset
 
 namespace Formalism.MainNotions.G.GLWeightTheory
 
@@ -239,6 +240,9 @@ end -- clump:auto
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.ExistsScalarMultipleMemDelta
 @[expose] public noncomputable section
 
+
+open Finset
+
 namespace Formalism.MainNotions.G.GLWeightTheory
 
 open Formalism.MainNotions.G Formalism.MainNotions.CovariantDegrees
@@ -350,7 +354,11 @@ end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.LoweringSpanLowerDividedPowerMem
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
+
+open Finset
 
 namespace Formalism.MainNotions.G.GLWeightTheory
 
@@ -508,13 +516,13 @@ theorem raising_dividedPower_loweringSpan [CharZero (KK O)] {E : GLOps n (KK O) 
       · have hda : d ≠ a := fun e => hcase ⟨hbc.symm, e⟩
         subst hbc
         refine key (E a d) ?_ ?_ ?_ ?_
-        · rw [if_pos rfl, if_neg hda, sub_zero] at hr
+        · rw [ite_eq_left rfl, ite_eq_right hda, sub_zero] at hr
           rw [← hr]; abel
         · have := hE.1 a d b d
-          rw [if_neg (ne_of_lt hdc), if_neg hda, sub_zero] at this
+          rw [ite_eq_right (ne_of_lt hdc), ite_eq_right hda, sub_zero] at this
           exact sub_eq_zero.1 this
         · have := hE.1 a b a d
-          rw [if_neg (ne_of_gt hab), if_neg hda, sub_zero] at this
+          rw [ite_eq_right (ne_of_gt hab), ite_eq_right hda, sub_zero] at this
           exact sub_eq_zero.1 this
         · intro j y hy
           rw [dividedPower_eq_divPowE]
@@ -529,13 +537,13 @@ theorem raising_dividedPower_loweringSpan [CharZero (KK O)] {E : GLOps n (KK O) 
       · by_cases hda : d = a
         · subst hda
           refine key (-E c b) ?_ ?_ ?_ ?_
-          · rw [if_neg hbc, if_pos rfl, zero_sub] at hr
+          · rw [ite_eq_right hbc, ite_eq_left rfl, zero_sub] at hr
             rw [← hr]; abel
           · have := hE.1 c b c d
-            rw [if_neg hbc, if_neg (ne_of_lt hdc), sub_zero] at this
+            rw [ite_eq_right hbc, ite_eq_right (ne_of_lt hdc), sub_zero] at this
             rw [neg_mul, mul_neg, sub_eq_zero.1 this]
           · have := hE.1 d b c b
-            rw [if_neg hbc, if_neg (ne_of_gt hab), sub_zero] at this
+            rw [ite_eq_right hbc, ite_eq_right (ne_of_gt hab), sub_zero] at this
             rw [neg_mul, mul_neg, sub_eq_zero.1 this]
           · intro j y hy
             rw [dividedPower_neg_sign, LinearMap.smul_apply, dividedPower_eq_divPowE]
@@ -549,7 +557,7 @@ theorem raising_dividedPower_loweringSpan [CharZero (KK O)] {E : GLOps n (KK O) 
               have : (0 : ℤ) ≤ (j : ℤ) := by positivity
               nlinarith
         · refine key 0 ?_ (by simp) (by simp) ?_
-          · rw [if_neg hbc, if_neg hda, sub_zero] at hr
+          · rw [ite_eq_right hbc, ite_eq_right hda, sub_zero] at hr
             rw [add_zero]; exact sub_eq_zero.1 hr
           · intro j y hy
             rcases Nat.eq_zero_or_pos j with rfl | hj
@@ -563,6 +571,12 @@ end hw
 end Formalism.MainNotions.G.GLWeightTheory
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open Finset
 
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.LoweringSpanHighestComponentIntegral
 @[expose] public noncomputable section

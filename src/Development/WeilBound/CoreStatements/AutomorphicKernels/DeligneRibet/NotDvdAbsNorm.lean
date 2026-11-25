@@ -840,12 +840,11 @@ theorem rayRel_mono_powMod_anti (F : Type) [Field F] [NumberField F] :
 end GlobalTheory.CompanionTheory.RayFacts
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.DeligneRibet.WeightedSummability.WeightedSummable
 
+noncomputable section
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.DeligneRibet.WeightedSummability.WeightedSummable
 
 namespace PositivityTheory.PfDR.h_smooth
 
@@ -905,7 +904,7 @@ theorem smoothed_of
     intro I hI
     refine ⟨?_, ?_⟩
     · rw [Ne, Ideal.mul_eq_bot]
-      push_neg
+      push Not
       exact ⟨h𝔠ne, hI.1⟩
     · rw [sup_comm, Ideal.sup_mul_eq_of_coprime_left (by rw [sup_comm]; exact h𝔠f), sup_comm]
       exact hI.2
@@ -954,12 +953,12 @@ theorem smoothed_of
       · have e : f ∘ m = fun I' => ((Ideal.absNorm 𝔠 : ℕ) : ℂ) ^ (-s) * ((Ideal.absNorm I'.1 : ℕ) : ℂ) ^ (-s) := by
           funext I'
           simp only [Function.comp, f, m]
-          rw [if_pos Ideal.mul_le_left, map_mul, Nat.cast_mul, Complex.natCast_mul_natCast_cpow]
+          rw [ite_eq_left Ideal.mul_le_left, map_mul, Nat.cast_mul, Complex.natCast_mul_natCast_cpow]
         rw [e]
         exact hB.mul_left _
       · intro I hI
         simp only [f]
-        rw [if_neg]
+        rw [ite_eq_right]
         intro hle
         apply hI
         obtain ⟨I', hI'⟩ := Ideal.dvd_iff_le.2 hle
@@ -997,8 +996,12 @@ theorem smoothed_of
 
 end PositivityTheory.PfDR.h_smooth
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.DeligneRibet.NotDvdAbsNorm
+
+
+open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
 namespace PositivityTheory.PfDRL
 

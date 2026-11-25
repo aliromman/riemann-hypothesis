@@ -20,8 +20,9 @@ import Formalism.LocalToGlobal.CharacterGerms.CharacteristicFromRanks
 -- Members: Formalism.SharpRestriction.GrowthBounds.FittingIdeal.DetMulMemFitt0, Formalism.LocalToGlobal.CharacterGerms.PlugUP
 
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.FittingIdeal.DetMulMemFitt0
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 open Matrix
 
@@ -65,13 +66,13 @@ theorem Em_mulVec {m h : ℕ} (w : Fin h → R) (j : Fin m) :
   · rw [Finset.sum_eq_single ⟨j, hj⟩]
     · simp
     · intro b _ hb
-      rw [if_neg (fun e => hb (Fin.ext e)), zero_mul]
+      rw [ite_eq_right (fun e => hb (Fin.ext e)), zero_mul]
     · intro hn
       exact absurd (Finset.mem_univ _) hn
   · apply Finset.sum_eq_zero
     intro b _
     have := b.isLt
-    rw [if_neg (by omega), zero_mul]
+    rw [ite_eq_right (by omega), zero_mul]
 
 theorem Em_castLE {m h : ℕ} (hmh : m ≤ h) : (Em R m h).submatrix id (Fin.castLE hmh) = 1 := by
   ext j k
@@ -79,7 +80,7 @@ theorem Em_castLE {m h : ℕ} (hmh : m ≤ h) : (Em R m h).submatrix id (Fin.cas
   by_cases hjk : j = k
   · subst hjk
     simp
-  · rw [if_neg (fun e => hjk (Fin.ext e.symm)), if_neg hjk]
+  · rw [ite_eq_right (fun e => hjk (Fin.ext e.symm)), ite_eq_right hjk]
 
 end general
 
@@ -224,7 +225,7 @@ theorem fitt_ge (hv : v.Integers R) {m h : ℕ} (α : Matrix (Fin m) (Fin h) R) 
       Matrix.det_mul, Matrix.det_diagonal]
     simp only [map_mul, map_prod]
     rw [hv.one_of_isUnit (Matrix.isUnit_nonsing_inv_det P hP), one_mul, hx']
-  · push_neg at hmh
+  · push Not at hmh
     refine ⟨0, Ideal.zero_mem _, ?_⟩
     rw [map_zero, map_zero, ← hx']
     symm
@@ -253,6 +254,7 @@ theorem fitt_le (hv : v.Integers R) {m h : ℕ} (α : Matrix (Fin m) (Fin h) R) 
     _ = _ := by rw [one_mul, mul_one]
 
 end Formalism.MainNotions.G.ValuationFitting
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

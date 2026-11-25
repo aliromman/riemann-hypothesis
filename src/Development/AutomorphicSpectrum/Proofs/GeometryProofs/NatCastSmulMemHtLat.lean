@@ -33,11 +33,12 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.exists_character_section : ∀
   first | exact @PositivityTheory.UnitarySelfGeneration.ht_char_section
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.NatCastSmulMemHtLat
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.NatCastSmulMemHtLat
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.BT
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.HTTie
 
 section val
@@ -117,7 +118,7 @@ theorem exists_alt [IsCommMonObj G] (hw : GenWeil G L ξ N e) (h : Γ'.IsTorsion
     if hg : g ^ N = 1 then Units.map kk.toMonoidHom (χ (tors_pt k h hk g hg).choose) else 1
   have hφ : ∀ g t, g ^ N = 1 → g.left = ptG k i t → φ g = Units.map kk.toMonoidHom (χ t) := by
     intro g t hg et
-    simp only [φ, dif_pos hg]
+    simp only [φ, dite_eq_left hg]
     rw [tors_inj k h ((tors_pt k h hk g hg).choose_spec.symm.trans et)]
   obtain ⟨y, hy, hye⟩ := hw.perfect φ (fun g g' hg hg' => by
     obtain ⟨t, ht⟩ := tors_pt k h hk g hg

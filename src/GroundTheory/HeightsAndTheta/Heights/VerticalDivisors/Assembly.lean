@@ -802,7 +802,8 @@ theorem SecAlgField.proof (h₁ : SecAlgFinite.Statement) (h₂ : GenSecDomain.S
 end GroundTheory.Heights₂.Heights.Vertical
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.PSecAlgFinite
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.PSecAlgFinite
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -810,6 +811,7 @@ namespace GroundTheory.Heights₂.Heights.Vertical
 
 open MvPolynomial
 
+noncomputable section
 
 namespace SecAlgFinite
 
@@ -894,7 +896,7 @@ theorem coord_integral (h1 : IncidenceNull.Statement) (Q : Ideal (MvPolynomial (
 
         simp only [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, map_sum, map_mul, hφ, aeval_X,
         Sum.elim_inr, Sum.elim_inl, h0, sub_mul, Finset.sum_sub_distrib, ite_mul, one_mul,
-        zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+        zero_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
         rw [sub_eq_zero]
         conv_rhs => rw [← mul_one (x m), ← ht, Finset.mul_sum]
         exact Finset.sum_congr rfl fun j _ => by ring
@@ -952,8 +954,10 @@ theorem SecAlgFinite.proof (h1 : IncidenceNull.Statement) : SecAlgFinite.Stateme
   rw [htop, Algebra.top_toSubmodule] at hfg
   exact ⟨hfg⟩
 
+end
 
 end GroundTheory.Heights₂.Heights.Vertical
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.PSecBLinInj
@@ -1350,7 +1354,8 @@ theorem SpecLength.proof (h1 : SpecChart.Statement) (h2 : FiniteOrd.Statement)
 end GroundTheory.Heights₂.Heights.Vertical
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.PSpecResidue
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.PSpecResidue
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1358,6 +1363,7 @@ namespace GroundTheory.Heights₂.Heights.Vertical
 
 open MvPolynomial NumberField IsDedekindDomain
 
+noncomputable section
 
 theorem SpecResidue.proof (hCSD : ChowSecDegree.Statement) (hCNF : ChowNormForm.Statement)
     (hDim : SpecCompDim.Statement) (hExist : ChowFormExists.Statement)
@@ -1379,67 +1385,17 @@ theorem SpecResidue.proof (hCSD : ChowSecDegree.Statement) (hCNF : ChowNormForm.
   have hρ : Function.Surjective ρ := Ideal.algebraMap_residueField_surjective _
   let Ψ : MvPolynomial (Fin n) R →+* MvPolynomial (Fin n) E := MvPolynomial.map ρ
   have hΨ : Function.Surjective Ψ := MvPolynomial.map_surjective _ hρ
-  have hcomp : ρ.comp ι = (algebraMap k E).comp (algebraMap (𝓞 K) k) := by
-    ext a
-    exact (Ideal.ResidueField.map_algebraMap _ _ _ _ a).symm
-  have hmm : ∀ {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (φ₁ : A →+* B) (φ₂ : B →+* C),
-      (MvPolynomial.map φ₂).comp (MvPolynomial.map φ₁) =
-        (MvPolynomial.map (φ₂.comp φ₁) : MvPolynomial (Fin n) A →+* MvPolynomial (Fin n) C) :=
-    fun φ₁ φ₂ ↦ RingHom.ext fun p ↦ MvPolynomial.map_map _ _ p
-
-  have hJW : integralModel I ⊔ Ideal.map C v.asIdeal ≤ W := hW.1.1.2
   let WR : Ideal (MvPolynomial (Fin n) R) := W.map (MvPolynomial.map ι)
   let S := secIdeal (modelR e I v) (parY e n v)
   let QE := (reduceMod v W).map (MvPolynomial.map (algebraMap k E))
   let T := secIdeal QE (parYκ e n v)
-  have hWR : WR.map Ψ = QE := by
-    simp only [WR, QE, reduceMod, Ideal.map_map, Ψ, hmm, hcomp]
-    rfl
-  have hM : (modelR e I v).map Ψ ≤ QE := by
-    rw [← hWR]
-    exact Ideal.map_mono (Ideal.map_mono (le_sup_left.trans hJW))
-  have hA : (Ideal.span (Set.range (secForm (parY e n v)))).map Ψ =
-      Ideal.span (Set.range (secForm (parYκ e n v))) := by
-    rw [Ideal.map_span, ← Set.range_comp]
-    congr 2
-    funext i
-    simp [Ψ, secForm, linForm, parYκ, ρ]
-    rfl
-  have hB : (Ideal.span {chartForm (parY e n v) - 1}).map Ψ =
-      Ideal.span {chartForm (parYκ e n v) - 1} := by
-    rw [Ideal.map_span, Set.image_singleton]
-    congr 2
-    simp [Ψ, chartForm, linForm, parYκ, ρ]
-    rfl
-  have hT : (S ⊔ WR).map Ψ = T := by
-    simp only [S, T, secIdeal, Ideal.map_sup, hA, hB, hWR]
-    apply le_antisymm
-    · exact sup_le (sup_le (sup_le (hM.trans (le_sup_left.trans le_sup_left))
-        (le_sup_right.trans le_sup_left)) le_sup_right) (le_sup_left.trans le_sup_left)
-    · exact sup_le (sup_le le_sup_right (le_sup_right.trans (le_sup_left.trans le_sup_left)))
-        (le_sup_right.trans le_sup_left)
-  have hkerΨ : RingHom.ker Ψ ≤ WR := by
-    have h1 : ι = (algebraMap (MvPolynomial (Par e n) (𝓞 K)) R).comp C :=
-      IsScalarTower.algebraMap_eq _ _ _
-    have hmax : IsLocalRing.maximalIdeal R = v.asIdeal.map ι := by
-      rw [h1, ← Ideal.map_map]
-      exact Localization.AtPrime.map_eq_maximalIdeal.symm
-    rw [MvPolynomial.ker_map, Ideal.ker_algebraMap_residueField, hmax, Ideal.map_map,
-      ← MvPolynomial.map_comp_C, ← Ideal.map_map]
-    exact Ideal.map_mono (le_sup_right.trans hJW)
-
   let Φ : MvPolynomial (Fin n) R →ₐ[R] SecAlg QE (parYκ e n v) :=
     { toRingHom := (Ideal.Quotient.mk T).comp Ψ
       commutes' := fun r ↦ by
         simp [Ψ, ρ]
         rfl }
   have hΦ : Function.Surjective Φ := Ideal.Quotient.mk_surjective.comp hΨ
-  have hker : RingHom.ker Φ = S ⊔ WR := by
-    have : RingHom.ker Φ = T.comap Ψ := by
-      ext x
-      simp [Φ, RingHom.mem_ker, Ideal.Quotient.eq_zero_iff_mem]
-    rw [this, ← hT, Ideal.comap_map_of_surjective _ hΨ, ← RingHom.ker_eq_comap_bot]
-    exact sup_eq_left.mpr (hkerΨ.trans le_sup_right)
+  have hker : RingHom.ker Φ = S ⊔ WR := SecIdealOfPrime.ker_specResidue_map I v hW.1.1.2
   have hsec : secIdealOf e I v W = WR.map (Ideal.Quotient.mkₐ R S) := rfl
   let eq : (SecB e I v ⧸ secIdealOf e I v W) ≃ₐ[R] SecAlg QE (parYκ e n v) :=
     ((Ideal.quotientEquivAlgOfEq R hsec).trans (DoubleQuot.quotQuotEquivQuotSupₐ R S WR)).trans
@@ -1447,8 +1403,10 @@ theorem SpecResidue.proof (hCSD : ChowSecDegree.Statement) (hCNF : ChowNormForm.
   rw [eq.toLinearEquiv.length_eq, Module.length_eq_of_surjective hρ, Module.length_eq_finrank,
     hdeg]
 
+end
 
 end GroundTheory.Heights₂.Heights.Vertical
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.PVertSpec

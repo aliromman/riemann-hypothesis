@@ -104,11 +104,12 @@ end Places
 end Formalism.L2.Geo.ExtensionFiltration.ExtInvMu
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.Columns.MaxSlopeSummandOfFock
+@[expose] public section -- clump member: Formalism.LocalToGlobal.Columns.MaxSlopeSummandOfFock
 
 open NumberField IsDedekindDomain Module MvPolynomial
 open scoped Matrix ComplexOrder
 
+noncomputable section
 
 namespace Formalism.L2.Col
 
@@ -147,30 +148,20 @@ theorem mean_over_places_comap (φ : E →+* K) (G : InfinitePlace E → ℝ) :
 
 end Places
 
-section Cols
-
-variable {X : Fields} {Pr : Primes X} {R : Ranks} (W : Wts X Pr.Word R) (Ch : Chars X Pr R.m)
-
-end Cols
-
 end Formalism.L2.Col
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.Columns.MultiFactorialEqTripleProd
+@[expose] public section -- clump member: Formalism.LocalToGlobal.Columns.MultiFactorialEqTripleProd
 
 open NumberField IsDedekindDomain Module MvPolynomial
 open scoped Matrix ComplexOrder
 
+noncomputable section
 
 namespace Formalism.L2.Col
 
 open Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.GlobalTheoryTheory.HLatOps Formalism.HermitianLatticesTheory Formalism.HN Formalism.L2.Forms
-
-section Main
-
-variable (K : Type) [Field K] [NumberField K] [StarRing K] [_root_.NumberField.IsTotallyComplex K] {ι : Type} [Fintype ι] {n : ℕ} (lam : ι → DomWeight n)
-
-end Main
 
 section Mono
 
@@ -191,15 +182,8 @@ variable {ι : Type} [Fintype ι] {n : ℕ}
 
 end Mono
 
-section Gen
-
-open Formalism.HermitianLattices.TraceIntegrality
-
-variable (K : Type) [Field K] [NumberField K] [StarRing K] [_root_.NumberField.IsTotallyComplex K] {ι : Type} [Fintype ι]
-
-end Gen
-
 end Formalism.L2.Col
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.FockNExtCNu
@@ -334,11 +318,12 @@ end Formalism.L2.GlobalTheoryTheory.TraceIntegrality
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.Columns.MaxSlopeOrthogonalNegLog
+@[expose] public section -- clump member: Formalism.LocalToGlobal.Columns.MaxSlopeOrthogonalNegLog
 
 open NumberField IsDedekindDomain Module
 open scoped Matrix ComplexOrder
 
+noncomputable section
 
 namespace Formalism.L2.Col
 
@@ -413,13 +398,8 @@ theorem max_slope_line_neg_log (b : Basis ι K V) (X : InfinitePlace K → Matri
 
 end F3
 
-section F3b
-
-variable {K : Type} [Field K] [NumberField K] [StarRing K] [_root_.NumberField.IsTotallyComplex K]
-
-end F3b
-
 end Formalism.L2.Col
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.MuMaxLeMon
@@ -822,11 +802,12 @@ end Formalism.L2.GlobalTheoryTheory.TraceIntegrality
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.Columns.BrpColLatOneSpan
+@[expose] public section -- clump member: Formalism.LocalToGlobal.Columns.BrpColLatOneSpan
 
 open NumberField IsDedekindDomain Module
 open scoped Matrix
 
+noncomputable section
 
 namespace Formalism.L2.Col
 
@@ -866,17 +847,6 @@ section LocDel
 
 variable (K : Type) [Field K] [NumberField K] [StarRing K] {n : ℕ}
 
-def brpRhoEquiv (lam : DomWeight n) (B : GL (Fin n) K) : VV K (oneW lam) ≃ₗ[K] VV K (oneW lam) :=
-  LinearEquiv.ofLinear (rhoK (oneW lam) (fun _ => B)) (rhoK (oneW lam) (fun _ => B⁻¹))
-    (by
-      rw [← Module.End.mul_eq_comp, ← map_mul]
-      have : ((fun _ : Unit => B) * fun _ => B⁻¹) = 1 := by funext; simp
-      rw [this, map_one]; rfl)
-    (by
-      rw [← Module.End.mul_eq_comp, ← map_mul]
-      have : ((fun _ : Unit => B⁻¹) * fun _ => B) = 1 := by funext; simp
-      rw [this, map_one]; rfl)
-
 def brpMatEquiv (B : GL (Fin n) K) : (Fin n → K) ≃ₗ[K] (Fin n → K) :=
   LinearEquiv.ofLinear (Matrix.mulVecLin (B : Matrix (Fin n) (Fin n) K)) (Matrix.mulVecLin ((B⁻¹ : GL (Fin n) K) : Matrix (Fin n) (Fin n) K))
     (by rw [← Matrix.mulVecLin_mul]; simp)
@@ -907,10 +877,6 @@ theorem brp_lidx_colLat (M : Submodule (𝓞 K) (Fin n → K)) (w : HeightOneSpe
     rfl
 
 end LocDel
-
-section Sum
-
-end Sum
 
 section Weyl
 
@@ -948,6 +914,7 @@ theorem brp_lcvInf_std (n : ℕ) :
 end Weyl
 
 end Formalism.L2.Col
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.Columns.TwistedLocalisationComparable
@@ -1352,8 +1319,10 @@ end -- clump:auto
 open Module NumberField IsDedekindDomain MvPolynomial
 open scoped Matrix
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.CfMemTwId
+section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.CfMemTwId
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.L2.GlobalTheoryTheory.TraceIntegrality
 
@@ -1381,17 +1350,17 @@ theorem cf_mem_twId (c : (D.mem u).C.cls 0) (y : Fin (D.R.N 0) → (D.sp.X 0).V)
   have hγ : ∀ c' τ, LocBasis D w' (CV.Q c' τ) (CV.eQ c' τ) (γ c' τ) := by
     intro c' τ
     by_cases h : c' = c
-    · simp only [γ, if_pos h]
+    · simp only [γ, ite_eq_left h]
       rw [h]
       exact hLB τ
-    · simp only [γ, if_neg h]
+    · simp only [γ, ite_eq_right h]
       exact Classical.choose_spec (exists_locBasis w' (CV.Q c' τ) (CV.Q_good c' τ) (CV.eQ c' τ))
   have hxL : x ∈ ((D.fm u).lat 0).L := by
     obtain ⟨x', hx', rfl⟩ := hx
     exact prjC_mem CV c hx'
   have hxW : x ∈ locW D.what₂.places w' ((D.fm u).lat 0).L := Submodule.subset_span hxL
   have hP := (CV.fin w' γ hγ x).1 hxW c
-  simp only [γ, if_pos rfl] at hP
+  simp only [γ, ite_eq_left rfl] at hP
   set F : Pol D.what₂.LL D.what₂.Tau (D.R.N 0) := ((coE CV (hTV0 D u) x c : VV D.what₂.LL ((D.fm u).lam 0)) :
     Pol D.what₂.LL D.what₂.Tau (D.R.N 0)) with hF
   have hFco : F = CV.co x c := coE_coe CV (hTV0 D u) x c
@@ -1434,6 +1403,8 @@ end Int2
 
 end Formalism.L2.GlobalTheoryTheory.TraceIntegrality
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.NfAllSelfEq

@@ -14,22 +14,16 @@ import Mathlib.Algebra.Order.Star.Real
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: CompanionTheory.AutomorphicTheory.BesselSmoothness.BesselSmoothOf, CompanionTheory.AutomorphicTheory.BesselWaveGrids.CoefFacts
 
-section -- clump member: CompanionTheory.AutomorphicTheory.BesselSmoothness.BesselSmoothOf
-@[expose] public noncomputable section
+@[expose] public section -- clump member: CompanionTheory.AutomorphicTheory.BesselSmoothness.BesselSmoothOf
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Matrix
 open scoped ContDiff
 
+noncomputable section
 
 namespace CompanionTheory.JfS
 
 def NN (k r : ℕ) : ℕ := 2 * (2 * r + k + 1) * (2 * r * (2 * r + k + 1) + 1)
-
-section flat
-
-variable {V E : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] [NormedAddCommGroup E] [NormedSpace ℂ E] {n : ℕ}
-
-end flat
 
 end CompanionTheory.JfS
 end -- clump:auto

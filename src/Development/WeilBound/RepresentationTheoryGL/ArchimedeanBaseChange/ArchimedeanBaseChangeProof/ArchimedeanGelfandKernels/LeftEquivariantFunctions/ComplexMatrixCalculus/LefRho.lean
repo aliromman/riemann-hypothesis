@@ -112,8 +112,9 @@ theorem frCont' (hF : MatrixFrechetDerivativeAtZeroLaws) (hA : Avg) : FrCont := 
 end PositivityTheory.RgBcC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.HaarGramPositivity.GramStrictPos
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.HaarGramPositivity.GramStrictPos
 
+noncomputable section
 
 open MeasureTheory Matrix
 open scoped InnerProductSpace ComplexConjugate
@@ -121,8 +122,6 @@ open scoped InnerProductSpace ComplexConjugate
 namespace PositivityTheory.RgBcC.CxeAvg
 
 open PositivityTheory.RgTw (Mat)
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
@@ -189,6 +188,7 @@ theorem avg_of (hF : MatrixFrechetDerivativeAtZeroLaws) : Avg := by
   · intro U hU hc; exact gram_comm hF lam U hU hc
 
 end PositivityTheory.RgBcC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.Fr0Laws

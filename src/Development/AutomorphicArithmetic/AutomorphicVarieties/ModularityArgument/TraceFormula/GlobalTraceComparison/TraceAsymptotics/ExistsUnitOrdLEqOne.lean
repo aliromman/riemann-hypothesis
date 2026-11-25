@@ -918,8 +918,9 @@ theorem UpperTheory.Reformulated.B.trace_eq_twisted_trace_of_fixed.trc_eq :
   exact (h4 v v.2).symm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.DcosTr
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.DcosTr
 
+noncomputable section
 
 open GlobalTheory.PRep GlobalTheory.BCT UpperTheory.V.Hi UpperTheory.V.AlgebraTools
 
@@ -1030,12 +1031,12 @@ private theorem levOp_eq (ρ : Representation ℂ G V) (K I : Subgroup G) (x : G
   have h2 : (∑ᶠ q : G ⧸ I, f q.out • (ρ q.out ∘ₗ LinearMap.id)) = ∑ q ∈ hx'.toFinset, ρ q.out := by
     rw [finsum_eq_sum_of_support_subset (s := hx'.toFinset)]
     · refine Finset.sum_congr rfl fun q hq => ?_
-      rw [hf, if_pos ((hmem q).1 (hx'.mem_toFinset.1 hq)), one_smul]
+      rw [hf, ite_eq_left ((hmem q).1 (hx'.mem_toFinset.1 hq)), one_smul]
       rfl
     · intro q hq
       rw [Finset.mem_coe, hx'.mem_toFinset, hmem]
       by_contra hn
-      exact hq (by show f q.out • _ = 0; rw [hf, if_neg hn, zero_smul])
+      exact hq (by show f q.out • _ = 0; rw [hf, ite_eq_right hn, zero_smul])
   unfold levOp
   rw [h2, h1, LinearMap.smul_apply, LinearMap.sum_apply]
 
@@ -1181,6 +1182,7 @@ theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.dcosTr :
   refine mul_ne_zero (inv_ne_zero (Nat.cast_ne_zero.2 ?_)) hne
   haveI := GlobalTheory.TwTrLevel.finite_quot (KGL w n) (KGL w n) I hKc hKo hIo le_rfl
   exact Subgroup.index_ne_zero_of_finite
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.TraceAsymptotics.ExistsUnitOrdLEqOne

@@ -126,8 +126,9 @@ theorem blockE_of_isBlockSum (D : D7) (i : D.nd.Loc)
 end GlobalTheory.BlockEnl
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AmbientJumpBlockOfAdmissibleDecomposition
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AmbientJumpBlockOfAdmissibleDecomposition
 
+noncomputable section
 
 namespace GlobalTheory.AmbBlockDecomp
 
@@ -141,7 +142,7 @@ theorem sum_ind_block (t : ℕ) (a : ℤ) :
     rw [Finset.sum_eq_single (n + 1)]
     · simp
     · intro b _ hb
-      rw [if_neg]
+      rw [ite_eq_right]
       omega
     · intro hn
       exfalso
@@ -151,7 +152,7 @@ theorem sum_ind_block (t : ℕ) (a : ℤ) :
   · apply Finset.sum_eq_zero
     intro c hc
     rw [Finset.mem_Icc] at hc
-    rw [if_neg]
+    rw [ite_eq_right]
     omega
 
 theorem main : ∀ (D : D7) (i : D.nd.Loc) (r : D.nd.X i → (GE D.nd →* GL (Fin D.R.nV) (D.nd.O i)))

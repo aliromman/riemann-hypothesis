@@ -465,14 +465,12 @@ end Formalism.IndefR.Fin
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.ExistsNatIntFMat
 
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta IsDedekindDomain NumberField Matrix
 open Formalism.IndefR.Datum
 open scoped TensorProduct
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.ExistsNatIntFMat
 
 
 
@@ -596,7 +594,14 @@ end Formalism.IndefR.Fin.PDB
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.PlaceDualBIv
+section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.PlaceDualBIv
+@[expose] public section
+
+noncomputable section
+
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta IsDedekindDomain NumberField Matrix
+open Formalism.IndefR.Datum
+open scoped TensorProduct
 
 set_option synthInstance.maxHeartbeats 160000
 
@@ -759,7 +764,7 @@ lemma exists_finset_half_decomp {S T : HSp D} {ΛS : Submodule (𝓞 D.host.E) (
   refine ⟨(RL.filter G).image pick, fun u hu hhalf => ?_⟩
   obtain ⟨ρ, hρ, Z, hZ, hEq⟩ := hRL (c' • u) (hup u hu)
   have hG : G ρ := ⟨u, hu, hhalf, Z, hZ, hEq⟩
-  have hpick : pick ρ = hG.choose := dif_pos hG
+  have hpick : pick ρ = hG.choose := dite_eq_left hG
   obtain ⟨hu₀, hh₀, Z₀, hZ₀, hEq₀⟩ := hG.choose_spec
   have hZZ : ∀ i j, IntF ((Z - Z₀) i j) := fun i j => by
     rw [Matrix.sub_apply, sub_eq_add_neg]; exact intF_add (hZ i j) (intF_neg (hZ₀ i j))
@@ -785,9 +790,9 @@ theorem placeLatDualIv (D : D7) : PlaceLatDualIv D := by
 
 end Formalism.IndefR.Fin.PDB
 
+end
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.PlaceDualASt
 

@@ -482,12 +482,10 @@ theorem KerPTh_of (hE : ExpSeriesEntire) (hS : LatGaussSummable) (hN : FormNorm)
 end Formalism.L2.Th1.H
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.UnfoldingIntegral
 
 open scoped BigOperators ComplexConjugate
 open MeasureTheory
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.UnfoldingIntegral
 open scoped Pointwise
 
 namespace Formalism.L2.Th1.H
@@ -595,7 +593,11 @@ theorem unfoldingIntegral : UnfoldIntegral := by
 end Formalism.L2.Th1.H
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.DiagIntegrable
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.DiagIntegrable
+
+noncomputable section
+open scoped BigOperators ComplexConjugate
+open MeasureTheory
 
 namespace Formalism.L2.Th1.H
 
@@ -760,11 +762,11 @@ theorem const_value {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] [Finit
     (fun y => ∫ z in D', α y * opU H y (fun v => kerP H α Λ v z) z * (wt H z : ℂ) ∂μ)
     (fun y hy hyΛ => by
       have := hdiag y (hS₂.1 y hy)
-      rw [if_neg hyΛ] at this
+      rw [ite_eq_right hyΛ] at this
       exact this)
   rw [hsum]
   have := hdiag y₀ (hS₂.1 y₀ hy₀)
-  rw [if_pos hy₀Λ] at this
+  rw [ite_eq_left hy₀Λ] at this
   rw [this]
 
 end UC

@@ -400,8 +400,9 @@ end -- clump: shared namespace opens
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open scoped TensorProduct Matrix
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertPlaceLatticeStabilizerScalesDoubledVacuum
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertPlaceLatticeStabilizerScalesDoubledVacuum
 
+noncomputable section
 namespace GlobalTheory.DblVacEigen
 
 open MeasureTheory
@@ -500,7 +501,7 @@ theorem eigen_box : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Number
     have h0 : boxFun (tens (evFin F v) (G.M.vac v) r) (fun x => star (tens (evFin F v) (G.M.vac v) r x)) = 0 := by
       funext x; simp [boxFun, tens, hr0]
     rw [h0, map_zero, smul_zero]
-  push_neg at hr0
+  push Not at hr0
   obtain ⟨x₀, hx₀⟩ := hr0
   obtain ⟨hvSB, hv0, θ, hθ, hvac⟩ := hT.geo.hM.vac v
   have hψ1 : ∀ t, ‖B.ψ t‖ = 1 := GlobalTheory.StdCharFromIsStd.norm_psi hT.base.std
@@ -602,7 +603,7 @@ theorem eigen_box : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Number
     have h : ∃ γ ∈ latDbl G.V G.W v, GlobalTheory.LatVac.locCo dd v γ = l := AddSubgroup.mem_map.mp hl
     have key := _root_.GlobalTheory.DblVacEigen.local_identity_of_tens_eigen v dd B.ψ h.choose f R _ (at_of_mem_latDbl _ _ _ h.choose_spec.1) hRinv
       (Sum.elim x₀ x₀) hRx (hf _ h.choose_spec.1) ξ
-    simp only [χ, dif_pos h]
+    simp only [χ, dite_eq_left h]
     rw [h.choose_spec.2] at key
     exact key
   have hloc1 := loc vd (fun γ hγ => hSt ▸ hSeig γ hγ)
@@ -615,6 +616,7 @@ theorem eigen_box : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Number
   simp [tens, mul_assoc]
 
 end GlobalTheory.DblVacEigen
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

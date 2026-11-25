@@ -289,16 +289,16 @@ theorem UpperTheory.isAffCover_prod_cechOpen :
       have e1 : (w' : Finset κ → DR ℂ Z'.functionField) t.1 =
           sortSign τ t.1 • φ ((w : Finset ι → DR ℂ Z.functionField) (Finset.image τ t.1)) := by
         show pullC τ φ (w : Finset ι → DR ℂ Z.functionField) t.1 = _
-        simp only [pullC, LinearMap.coe_mk, AddHom.coe_mk, if_pos hinj]
-      rw [e1, show x' t = _ from dif_pos hinj]
+        simp only [pullC, LinearMap.coe_mk, AddHom.coe_mk, ite_eq_left hinj]
+      rw [e1, show x' t = _ from dite_eq_left hinj]
       refine Eq.trans ?_ (map_zsmul (formGermI p' a _ _ hinst') (sortSign τ t.1) _).symm
       rw [hw ⟨_, hcard t hinj⟩, gm_pos hinst hU a hne]
       congr 1
       exact (T.genericGerm_differentialForm_pullback_dominant Z Z' p p' hinst hinst' f hf ψ φ hDR hψ a _ _ _ _ _ _ (hle t.1) _).symm
     · have e1 : (w' : Finset κ → DR ℂ Z'.functionField) t.1 = 0 := by
         show pullC τ φ (w : Finset ι → DR ℂ Z.functionField) t.1 = _
-        simp only [pullC, LinearMap.coe_mk, AddHom.coe_mk, if_neg hinj]
-      rw [e1, show x' t = 0 from dif_neg hinj]
+        simp only [pullC, LinearMap.coe_mk, AddHom.coe_mk, ite_eq_right hinj]
+      rw [e1, show x' t = 0 from dite_eq_right hinj]
       exact (map_zero (formGermI p' a _ _ hinst')).symm
   obtain ⟨eY, -, -, hdY⟩ := cube_exists d' p' hinst' hU' a b
   have hker : x' ∈ ((cechCube ℂ (Omega p' a) ⊤ U').d (b + 1)).ker := hdY x' w' hgm
@@ -310,9 +310,9 @@ theorem UpperTheory.isAffCover_prod_cechOpen :
       obtain ⟨s, hsc⟩ := s
       simp only at hs
       subst hs
-      exact dif_pos hinj
+      exact dite_eq_left hinj
     · intro t hinj
-      exact dif_neg hinj
+      exact dite_eq_right hinj
     · rw [hz]
       rfl
   rw [← hR, cmp_class d' p' hinst' hU' a b ⟨x', hker⟩ w' hgm, ← hz, cmp_class d p hinst hU a b x w hw]
@@ -570,10 +570,11 @@ theorem UpperTheory.functionField_of_finite_etale_cover :
     exact congrArg (· • _) (UpperTheory.Cb.germ_comap_eq_algebraMap_germ_of_finite_etale Z Y p p' c hg V hV hη hη' b')
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.GenericGermInjectivity.GermInjRangePre
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.GenericGermInjectivity.GermInjRangePre
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential GlobalTheory GlobalTheory.PD GlobalTheory.CechDR GlobalTheory.HodgeCoh ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
+noncomputable section
 
 namespace UpperTheory.GenericCoverClass
 
@@ -640,7 +641,7 @@ theorem gp_pos (hc : c ≫ p = p') (hinst' : inst' = ffAlg p')
     gp p' hc hinst' hU' a s =
       (formGermI p' a (pre_affine hU' h) (pre_generic hU' s) hinst') ∘ₗ
         up hc a (cechOpen ⊤ U s) :=
-  dif_pos h
+  dite_eq_left h
 
 theorem germ_inj_range_pre (d : ℕ) [SmoothOfRelativeDimension d p'] (hinst' : inst' = ffAlg p')
     (hU' : IsAffCover p' (fun i => c ⁻¹ᵁ U i) B') (a : ℕ) (s : Finset ι) (hs : s.Nonempty)
@@ -720,7 +721,7 @@ theorem cmp_trace (d : ℕ) (Z : Scheme.{0}) [IsIntegral Z] (p : Z ⟶ Sp ℂ) [
       obtain rfl : s = t := Subtype.ext (by simpa using e)
       have h1 : sortSign (id : ι → ι) s.1 = 1 := by
         refine Finset.prod_eq_one fun x _ => Finset.prod_eq_one fun y _ => ?_
-        exact if_neg fun h => lt_asymm h.1 h.2
+        exact ite_eq_right fun h => lt_asymm h.1 h.2
       rw [h1, one_smul]
       rfl) (fun t h => absurd Function.injective_id.injOn h)
   have hback : cechHEquivCoh ℂ hU.cover (cover_biInf hU)
@@ -766,6 +767,7 @@ theorem cmp_trace (d : ℕ) (Z : Scheme.{0}) [IsIntegral Z] (p : Z ⟶ Sp ℂ) [
 end Main
 
 end UpperTheory.GenericCoverClass
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.ExistsHodgeCohomologyEquivCechDifferentials

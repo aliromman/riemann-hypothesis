@@ -1,5 +1,6 @@
 module
 
+import Formalism.SharpRestriction.GrowthBounds.ProjectionOfIsotypicDecomposition
 public import Formalism.SharpRestriction.GrowthBounds.ObjPol
 public import Mathlib.NumberTheory.Padics.PadicVal.Basic
 public import Formalism.SharpRestriction.GrowthBounds.CovariantDegrees
@@ -37,12 +38,11 @@ import Mathlib.Topology.Sheaves.Presheaf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.RootWeights.DividedPowerPadicValuationBound, Formalism.SharpRestriction.GrowthBounds.RootWeights.DividedPowerMonomialExpansion, Formalism.SharpRestriction.GrowthBounds.RootWeights.DividedPowersPreserveZero, Formalism.SharpRestriction.GrowthBounds.RootWeights.IntegralGeneratorsPreserveLattice, Formalism.SharpRestriction.GrowthBounds.RootWeights.MultidegreePartFinitelyGenerated, Formalism.SharpRestriction.GrowthBounds.RootWeights.PolynomialIsotypicLatticeOfParts, Formalism.SharpRestriction.GrowthBounds.RootWeights.IntegralPolynomialsEnvelopingStable
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.DividedPowerPadicValuationBound
 
+noncomputable section
 
 open MvPolynomial Finset
-
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.DividedPowerPadicValuationBound
 
 namespace Formalism.MainNotions.G.GLWeightTheory
 
@@ -86,13 +86,13 @@ theorem sum_single_apply_section {ι : Type} {n : ℕ} (g : ι → ι × Fin n) 
   · rw [Finset.sum_eq_single v.1]
     · rw [← hv, Finsupp.single_eq_same]
     · intro l _ hl
-      rw [Finsupp.single_apply, if_neg]
+      rw [Finsupp.single_apply, ite_eq_right]
       exact fun h => hl (key l h).1
     · intro hnot
       simp only [Finsupp.mem_support_iff, not_not] at hnot
       simp [hnot]
   · refine Finset.sum_eq_zero fun l _ => ?_
-    rw [Finsupp.single_apply, if_neg]
+    rw [Finsupp.single_apply, ite_eq_right]
     exact fun h => hv (key l h).2
 
 theorem exponent_factorial_eq_prod {ι : Type} [Fintype ι] {n : ℕ} (m : ι × Fin n →₀ ℕ) :
@@ -116,7 +116,7 @@ theorem divided_power_padic_valuation_bound {ι : Type} [Fintype ι] {n : ℕ} (
   swap
   ·
     left
-    push_neg at hall
+    push Not at hall
     obtain ⟨l, hl, hlt⟩ := hall
     apply Finset.prod_eq_zero hl
     have := hz l
@@ -196,8 +196,12 @@ theorem divided_power_padic_valuation_bound {ι : Type} [Fintype ι] {n : ℕ} (
 
 end Formalism.MainNotions.G.GLWeightTheory
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.DividedPowerMonomialExpansion
+
+
+open MvPolynomial Finset
 
 namespace Formalism.MainNotions.G.GLWeightTheory
 
@@ -277,6 +281,9 @@ end -- clump:auto
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.DividedPowersPreserveZero
 @[expose] public noncomputable section
 
+
+open MvPolynomial Finset
+
 namespace Formalism.MainNotions.G.GLWeightTheory
 
 open Formalism.MainNotions.G Formalism.MainNotions.CovariantDegrees
@@ -328,7 +335,11 @@ end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.IntegralGeneratorsPreserveLattice
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
+
+open MvPolynomial Finset
 
 namespace Formalism.MainNotions.G.GLWeightTheory
 
@@ -517,19 +528,19 @@ theorem letter_polarization_commute (LL : Letters ι) (S : Set ι) (a b : Fin n)
   unfold letterPolarization
   by_cases h1 : l ∈ S
   · by_cases h2 : l' ∈ S
-    · rw [if_pos h1, if_pos h2]
+    · rw [ite_eq_left h1, ite_eq_left h2]
       by_cases v1 : LL.vec l = true <;> by_cases v2 : LL.vec l' = true
-      · rw [if_pos v1, if_pos v2]
+      · rw [ite_eq_left v1, ite_eq_left v2]
         exact hc _ _ _ _
-      · rw [if_pos v1, if_neg v2]
+      · rw [ite_eq_left v1, ite_eq_right v2]
         exact (hc _ _ _ _).neg_right
-      · rw [if_neg v1, if_pos v2]
+      · rw [ite_eq_right v1, ite_eq_left v2]
         exact (hc _ _ _ _).neg_left
-      · rw [if_neg v1, if_neg v2]
+      · rw [ite_eq_right v1, ite_eq_right v2]
         exact (hc _ _ _ _).neg_left.neg_right
-    · rw [if_neg h2]
+    · rw [ite_eq_right h2]
       exact Commute.zero_right _
-  · rw [if_neg h1]
+  · rw [ite_eq_right h1]
     exact Commute.zero_left _
 
 theorem divided_powers_preserve_letter (p : ℕ) [Fact p.Prime] (Q : MvPolynomial (ι × Fin n) K → Prop) (hQ : MonomialGradedLattice p Q)
@@ -631,7 +642,7 @@ theorem char_zero_stability_of_closure {p : ℕ} (hp : p.Prime) {O : Type} [Comm
       · intro m m' c z hmc _
         rw [hiff] at hmc ⊢
         obtain ⟨o, ho⟩ := hmc m
-        rw [MvPolynomial.coeff_monomial, if_pos rfl] at ho
+        rw [MvPolynomial.coeff_monomial, ite_eq_left rfl] at ho
         intro m''
         rw [MvPolynomial.coeff_monomial]
         split_ifs
@@ -645,8 +656,13 @@ theorem char_zero_stability_of_closure {p : ℕ} (hp : p.Prime) {O : Type} [Comm
 end Formalism.MainNotions.G.GLWeightTheory
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.MultidegreePartFinitelyGenerated
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.MultidegreePartFinitelyGenerated
+
+noncomputable section
+
+open MvPolynomial Finset
 
 namespace Formalism.MainNotions.G.GLWeightTheory
 
@@ -662,14 +678,7 @@ def fockLattice {p : ℕ} (hV : ValuationProperties p O) (σ : Type) : Submodule
 
 theorem multidegree_monomials_finite {ι : Type} [Fintype ι] {n : ℕ} (d : ι → ℕ) :
     {m : ι × Fin n →₀ ℕ | ∀ i, multideg m i = d i}.Finite := by
-  classical
-  refine (Set.finite_Iic (Finsupp.equivFunOnFinite.symm (fun x : ι × Fin n => d x.1))).subset ?_
-  intro m hm
-  rw [Set.mem_Iic, Finsupp.le_def]
-  rintro ⟨i, c⟩
-  simp only [Finsupp.coe_equivFunOnFinite_symm]
-  rw [← hm i]
-  exact Finset.single_le_sum (f := fun c' => m (i, c')) (fun _ _ => Nat.zero_le _) (Finset.mem_univ c)
+  apply _root_.Formalism.MainNotions.G.Joints.isoPol_finite_set <;> assumption
 
 theorem multidegree_part_finitely_generated {p : ℕ} (hp0 : (p : KK O) ≠ 0) {ι : Type} [Fintype ι] {n : ℕ}
     (L : Submodule O (MvPolynomial (ι × Fin n) (KK O))) (d : ι → ℕ) (N : ℕ)
@@ -794,12 +803,17 @@ theorem fock_lattice_finite_spanning_holds {p : ℕ} (hp : p.Prime) (S0 : Unifor
     have hle' : (padicValNat p (expFact m) : ℚ) ≤
         ((∑ m ∈ (multidegree_monomials_finite (ι := ι) (n := n) d).toFinset, padicValNat p (expFact m) : ℕ) : ℚ) := by
       exact_mod_cast hle
-    have hnn : (0 : ℚ) ≤ padicValNat p (expFact m) := by positivity
     linarith
   · exact multidegree_part_spans _ d hmono
 
 end Formalism.MainNotions.G.GLWeightTheory
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open MvPolynomial Finset
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RootWeights.PolynomialIsotypicLatticeOfParts
 

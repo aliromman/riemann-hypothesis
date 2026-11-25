@@ -18,10 +18,11 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagBasisChangeIntegral, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagChartGenericField, Development.AutomorphicSpectrum.Proofs.GeometryProofs.MinorRatioRegularOfInvertible, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagFramesGenericModelLeft
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagBasisChangeIntegral
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagBasisChangeIntegral
 
 open AlgebraicGeometry CategoryTheory GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.FlagBun
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.FlagBun.Adapted
 
@@ -320,11 +321,12 @@ theorem exists_adapted : ∀ (K : Type) [Field K] (R : Subring K) [IsLocalRing R
     show flagStep K (fun a j => (p a j : K)) i = flagStep K g i
     by_cases hi : i ≤ r
     · exact hfl i hi
-    · push_neg at hi
+    · push Not at hi
       rw [flagStep_of_le _ hi.le, flagStep_of_le g hi.le]
       exact hfl r le_rfl
 
 end GlobalTheory.CompanionTheory.Ar.FlagBun.Adapted
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagChartGenericField

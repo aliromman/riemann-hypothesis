@@ -37,8 +37,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BrauerNesbittExistsEquivOfCharpolyEqHypotheses, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BrauerNesbittSemisimpleMatrixRepresentations, Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.CharPolyRootsConstruction, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SemisimplificationUniqueUpToConj, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteLengthOfFiniteDimensional, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SameSSModRepLatRepIff, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdmissibleModuleIffLatticeQuotients
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BrauerNesbittExistsEquivOfCharpolyEqHypotheses
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.CharpolyIso
 
@@ -162,11 +163,11 @@ theorem nonempty_linear_equiv_of_charpoly_eq (n : ℕ) : ∀ (V W : Type) [AddCo
       haveI : Subsingleton W :=
         Module.finrank_zero_iff.1 (finrank_eq_zero_of_hom (fun a => (h a).symm) h₂ h₁)
       exact ⟨LinearEquiv.ofSubsingleton V W⟩
-    · push_neg at h₂
+    · push Not at h₂
       obtain ⟨f, hf⟩ := h₂
       obtain ⟨e⟩ := step W V (by omega) (fun a => (h a).symm) f hf
       exact ⟨e.symm⟩
-  · push_neg at h₁
+  · push Not at h₁
     obtain ⟨f, hf⟩ := h₁
     exact step V W hn h f hf
 
@@ -209,6 +210,7 @@ theorem exists_equiv_of_charpoly_eq' : ∀ {k Γ V W : Type} [Field k] [Monoid �
 
 end GlobalTheory.CharpolyIso
 
+end
 end -- clump:auto
 end -- clump:auto
 
@@ -274,8 +276,10 @@ theorem main : ∀ {k G : Type} [Field k] [Group G] (n : ℕ) (ρ σ : G →* Ma
 end GlobalTheory.BrauerNesbittMatrix
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.CharPolyRootsConstruction
+section -- clump member: Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.CharPolyRootsConstruction
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.CharPolyRootsConstruction
 
@@ -326,17 +330,10 @@ def HidaSetting : Prop :=
 
 end HidaSetting
 
-section Enlarge
-
-variable (N : NData R H what₂) (i : N.Loc) (N₁ : NData R H what₂) (i₁ : N₁.Loc)
-  (σ : N.Om ≃ₐ[H.E] N₁.Om) (φ : N.O i →+* N₁.O i₁) (β : N.X i ≃ N₁.X i₁)
-
-variable {N i N₁ i₁}
-
-end Enlarge
-
 end GlobalTheory.IndefiniteRowSideFullHecke.CharPolyRootsConstruction
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SemisimplificationUniqueUpToConj
@@ -408,10 +405,12 @@ theorem brauerNesbitt_abstract_of_matrix : (∀ (Γ k : Type) [Group Γ] [Field 
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteLengthOfFiniteDimensional
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteLengthOfFiniteDimensional
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Polynomial
 
+noncomputable section
 namespace GlobalTheory.ConsCompare
 
 section Factors
@@ -517,25 +516,9 @@ theorem sameSS_of_charpoly_eq (hBN : GlobalTheory.ConstituentsCompare.BrauerNesb
 
 end Factors
 
-section Distinct
-open Matrix
-
-end Distinct
-
-section BaseChange
-open GlobalTheory.IndefiniteRowSideFullHecke.CongruenceModuleMatrices GlobalTheory.SpanRing
-
-variable {Γ X A B : Type} [Group Γ] [CommRing A] [CommRing B] {n r t : ℕ}
-
-variable [Algebra A B]
-
-variable [IsDomain A] [IsDomain B]
-
-variable [IsLocalRing A] [IsLocalRing B]
-
-end BaseChange
-
 end GlobalTheory.ConsCompare
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SameSSModRepLatRepIff

@@ -20,8 +20,9 @@ import Mathlib.Topology.UniformSpace.Uniformizable
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.GlobalFields.Artin.ConductorOneDim, GroundTheory.GlobalFields.TateThesis.RootNumberLocalPlace
 
-@[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.Artin.ConductorOneDim
+@[expose] public section -- clump member: GroundTheory.GlobalFields.Artin.ConductorOneDim
 
+noncomputable section
 
 open IsDedekindDomain NumberField GroundTheory.LocalField Module
 
@@ -30,14 +31,6 @@ open scoped GroundTheory.Global.SemiLocal Pointwise
 namespace GroundTheory.Global
 
 open IdeleGroup
-
-section LocalConductor
-
-variable {k M : Type*} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-  [Field M] [ValuativeRel M] [TopologicalSpace M] [IsNonarchimedeanLocalField M]
-  [Algebra k M] [ValuativeExtension k M] [FiniteDimensional k M] [IsGalois k M]
-
-end LocalConductor
 
 section Units
 
@@ -58,14 +51,8 @@ theorem unitFiltrationUnits_eq_unitsLevel (v : HeightOneSpectrum (𝓞 K)) (n : 
 
 end Units
 
-section OneDim
-
-variable {K L : Type*} [Field K] [NumberField K] [Field L] [NumberField L] [Algebra K L]
-  [IsGalois K L] (χ : Gal(L/K) →* ℂˣ)
-
-end OneDim
-
 end GroundTheory.Global
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.GlobalFields.TateThesis.RootNumberLocalPlace

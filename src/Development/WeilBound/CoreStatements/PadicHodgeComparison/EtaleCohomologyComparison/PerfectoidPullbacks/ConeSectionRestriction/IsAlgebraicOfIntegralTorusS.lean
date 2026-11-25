@@ -1029,17 +1029,17 @@ end -- clump:auto
 
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor CrystallineSemistableComparison.Pb
-attribute [local instance] MvPolynomial.gradedAlgebra
 
 alias _root_.GlobalTheory.T.torus_coordinate_isUnit := _root_.GlobalTheory.CompanionTheory.GeoUnit.tV_isUnit
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorusMonomialMemRange
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorusMonomialMemRange
 
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor CrystallineSemistableComparison.Pb
 attribute [local instance] MvPolynomial.gradedAlgebra
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.GeoTpow
 
@@ -1098,7 +1098,7 @@ theorem exists_shift {n : ℕ} (S : Finset (Fin n)) (v : Fin n → ℤ) (h : ∀
   by_cases hj : j ∈ S
   · have h1 : (v j).natAbs ≤ ∑ j, (v j).natAbs :=
       Finset.single_le_sum (f := fun j => (v j).natAbs) (fun _ _ => Nat.zero_le _) (Finset.mem_univ j)
-    simp only [hj, if_true]
+    simp only [hj, ite_true]
     omega
   · simpa [hj] using h j hj
 
@@ -1217,6 +1217,7 @@ theorem tpow_mem_range {K : Type} [Field K] {X : Scheme.{0}} {N d e : ℕ} (i : 
   rw [this, tpow, hU]
 
 end GlobalTheory.CompanionTheory.GeoTpow
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorusMonomialMemRangeStatement

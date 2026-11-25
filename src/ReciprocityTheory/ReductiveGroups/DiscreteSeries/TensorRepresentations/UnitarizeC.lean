@@ -12,12 +12,10 @@ import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.UnitarizeB, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.UnitarizeC
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.UnitarizeB
 
 
 open Finset MeasureTheory
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.UnitarizeB
 
 namespace ReciprocityTheory.ChartRestriction.DS.UnitB
 
@@ -124,7 +122,11 @@ end Rep
 end ReciprocityTheory.ChartRestriction.DS.UnitB
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.UnitarizeC
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.UnitarizeC
+
+noncomputable section
+
+open Finset MeasureTheory
 open scoped Matrix
 
 namespace ReciprocityTheory.ChartRestriction.DS.UnitB
@@ -228,7 +230,7 @@ theorem mx_apply_tensF {M : Type*} [AddCommGroup M] [Module ℂ M] (dual : Bool)
     rw [Finset.sum_eq_single c]
     · simp
     · intro a _ ha
-      rw [if_neg (Ne.symm ha)]
+      rw [ite_eq_right (Ne.symm ha)]
       simp
     · intro h
       exact absurd (Finset.mem_univ c) h
@@ -239,7 +241,7 @@ theorem mx_apply_tensF {M : Type*} [AddCommGroup M] [Module ℂ M] (dual : Bool)
     rw [Finset.sum_eq_single c]
     · simp
     · intro b _ hb
-      rw [if_neg (Ne.symm hb)]
+      rw [ite_eq_right (Ne.symm hb)]
       simp
     · intro h
       exact absurd (Finset.mem_univ c) h

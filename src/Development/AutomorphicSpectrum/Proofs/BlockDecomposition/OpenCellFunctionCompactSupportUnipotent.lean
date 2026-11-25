@@ -19,18 +19,14 @@ import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.Mirabol
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CellHeightLocalReduction, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OpenCellFunctionCompactSupportUnipotent
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CellHeightLocalReduction
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CellHeightLocalReduction
+@[expose] public section
 
+noncomputable section
 
 open GlobalTheory.PRep GlobalTheory.SmGL Matrix Topology Pointwise
 
 namespace GlobalTheory.WhitHered.CellLoc
-
-section Alg
-
-variable {k : Type} [Field k] {N : ℕ}
-
-end Alg
 
 section Main
 
@@ -50,6 +46,8 @@ end Main
 
 end GlobalTheory.WhitHered.CellLoc
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OpenCellFunctionCompactSupportUnipotent

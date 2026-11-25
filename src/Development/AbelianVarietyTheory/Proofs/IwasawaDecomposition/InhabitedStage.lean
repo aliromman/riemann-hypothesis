@@ -186,8 +186,10 @@ theorem GAtP₂ : ∀ (p d : ℕ), p.Prime → ∃ G : GAtP p, G.d = d ∧ G.Fin
 end GlobalTheory.PrescribedRank
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsAllLifts
+section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsAllLifts
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.Mem.GJModel
 
@@ -241,7 +243,7 @@ theorem exists_inert {R : Ranks} (H : Host R) :
     have := Nat.le_of_mem_primeFactors h
     omega
   unfold Host.cls primeClass
-  rw [if_neg hs, if_neg (by omega), if_neg (by omega), if_neg (by rw [hj]; norm_num)]
+  rw [ite_eq_right hs, ite_eq_right (by omega), ite_eq_right (by omega), ite_eq_right (by rw [hj]; norm_num)]
   split_ifs
   · exact Or.inl rfl
   · exact Or.inr rfl
@@ -272,6 +274,8 @@ def gxOne (B : Base) : GlobalExtra B.LL (Tau B.R) :=
 
 end GlobalTheory.Mem.GJModel
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InhabitedStage

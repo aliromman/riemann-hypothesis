@@ -13,7 +13,8 @@ import Mathlib.RingTheory.HopfAlgebra.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ProjectiveSpaceIncrementHyp, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ColonSpanSingletonEqOfNotMem, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PHilbertIncrement
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ProjectiveSpaceIncrementHyp
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ProjectiveSpaceIncrementHyp
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -21,32 +22,9 @@ namespace GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.HilbertSamu
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR
 
+noncomputable section
 
 universe u
-
-section Objects
-
-variable {K : Type*} [DecidableEq K] (ι : K → Type*) {F : Type*} [Field F]
-variable {M : Type*} [AddCommGroup M] [Module (MRing ι F) M] [Module F M]
-  [IsScalarTower F (MRing ι F) M]
-
-
-variable {ι}
-
-end Objects
-
-section Support
-
-variable {S : Type*} [CommRing S] (M : Type*) [AddCommGroup M] [Module S M]
-
-end Support
-
-section Cycle
-
-variable {K : Type*} [Fintype K] [DecidableEq K] (ι : K → Type*) (F : Type*) [Field F]
-variable (M : Type*) [AddCommGroup M] [Module (MRing ι F) M]
-
-end Cycle
 
 section Statements
 
@@ -62,14 +40,10 @@ def HilbertIncrement.Statement : Prop :=
 
 end Statements
 
-section Examples
-
-variable {K : Type*} [DecidableEq K] (ι : K → Type*) (F : Type*) [Field F]
-
-end Examples
-
+end
 
 end GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.HilbertSamuel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ColonSpanSingletonEqOfNotMem

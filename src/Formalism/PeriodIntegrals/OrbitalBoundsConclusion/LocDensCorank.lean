@@ -27,8 +27,9 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.Develop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.IndepOf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.CardCount, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.FlbHZeroRight, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.FlatBasisOf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DensGFR, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.FrIcFree, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.ResidueFieldCount, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDensityCorank.FieldCountHolds, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.EulerFactorTwo, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDensityCorank.CongruenceDensity, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDensityCorank.LocDensCorankOfCounts, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.LocDensCorank
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.IndepOf
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.IndepOf
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula
 
@@ -169,7 +170,7 @@ theorem sat_of (hR : RedData ϖ k r n b Λ) (hϖ : Irreducible ϖ)
       exact hdu.smul_left_cancel.mp h0
     rw [hx0]
     exact zero_mem _
-  push_neg at hall
+  push Not at hall
   obtain ⟨a0, ha0⟩ := hall
   obtain ⟨j, z, hz, hzeq, a1, ha1⟩ :=
     minpow hR hϖ o3 (fun a => ((h a : M.L.O) : E)) (fun a => (h a).2) a0 ha0
@@ -200,7 +201,7 @@ theorem sat_of (hR : RedData ϖ k r n b Λ) (hϖ : Irreducible ϖ)
     have h3 := Submodule.smul_mem (Submodule.span M.L.O (Set.range v)) (⟨_, hmem⟩ : M.L.O)
       (Submodule.subset_span ⟨a, rfl⟩)
     rwa [Subring.smul_def] at h3
-  · push_neg at hjm
+  · push Not at hjm
     rw [show m = j + ((m - j - 1) + 1) by omega, pow_add, mul_smul] at key
     have e1 := (hϖu.pow j).smul_left_cancel.mp key
     have hzs : ∑ a, z a • v a = algebraMap F E (ϖ : F) •
@@ -231,6 +232,7 @@ theorem prim_iff (hR : RedData ϖ k r n b Λ) (H : Loc.HermSp M V) (hϖ : Irredu
 end FC
 
 end PI.UnitaryGroupMassFormula.CntFormula
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.CardCount
@@ -388,8 +390,9 @@ end Herm
 end PI.UnitaryGroupMassFormula.CntFormula
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.FlatBasisOf
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.FlatBasisOf
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula
 
@@ -523,7 +526,7 @@ theorem flb_main {F E : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [C
     intro y hy
     obtain ⟨c, hcO, rfl⟩ := hexpb y hy
     rw [flb_h_sum_right]
-    simp only [hdb, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    simp only [hdb, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     exact flb_cj_mem M.L (hcO k)
   obtain ⟨c', hc'O, hc'⟩ := hexpb d hdΛ
   have hz : ∑ m', (G⁻¹ k m' - c' m') • b m' = 0 := by
@@ -547,6 +550,7 @@ theorem flatBasis_of (h1 : FLocO) : FLatBasis := by
   exact (map_ne_zero_iff _ (algebraMap F E).injective).mpr hcF
 
 end PI.UnitaryGroupMassFormula.CntFormula
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DensGFR

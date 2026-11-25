@@ -1,5 +1,6 @@
 module
 
+import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.RkMultVOfNotJump
 public import Formalism.SharpRestriction.LevelLetterCocycles.DeltaInvariantLattices
 public import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.LiftPfA
 public import Formalism.SharpRestriction.LevelLetterCocycles.LocalizationQuotientSeparatedDvd
@@ -862,8 +863,10 @@ theorem onegen_pf : Formalism.MainNotions.N.Ln34.OneGenStep := by
 end Formalism.MainNotions.N.Ln34.OneGenPf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.QuotPf
+section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.QuotPf
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln34
 
@@ -883,12 +886,7 @@ variable {G : Type} [Group G] {Qp K₀ K : Type} [Field Qp] [Field K₀] [Field 
 
 theorem qpf_filV_succ_le (a : ℤ) :
     FilV PD (LL := LL) (V := V) (a + 1) ≤ FilV PD (LL := LL) (V := V) a := by
-  have h : (PD.Fil (a + 1)).restrictScalars Qp ≤ (PD.Fil a).restrictScalars Qp := fun x hx => PD.Fil_anti a hx
-  intro x hx
-  rw [FilV, LinearMap.mem_range] at hx ⊢
-  obtain ⟨y, rfl⟩ := hx
-  refine ⟨AlgebraTensorModule.map (LinearMap.id : V →ₗ[LL] V) (Submodule.inclusion h) y, ?_⟩
-  rw [← LinearMap.comp_apply, ← AlgebraTensorModule.map_comp, LinearMap.id_comp, Submodule.subtype_comp_inclusion]
+  apply _root_.Formalism.MainNotions.N.Pv.LocalLengthBound.rk_filV_succ <;> assumption
 
 theorem qpf_fildR_succ_le (τ : K →ₐ[Qp] LL) (a : ℤ) :
     FildR PD ρ τ (a + 1) ≤ FildR PD ρ τ a := by
@@ -956,6 +954,8 @@ theorem quotient_jumps_subset (D : D7) (h8 : adm8 D) (h11 : adm11 D) : quotR D :
 
 end Formalism.MainNotions.N.Ln34
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.U3uplinkPfOf
@@ -1404,8 +1404,10 @@ end Formalism.MainNotions.N.Ln34
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.NormAHolds
+section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.NormAHolds
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln34
 
@@ -1453,7 +1455,7 @@ theorem normA_holds {l : ℕ} [Fact l.Prime] (P : LocPrime l) (K LL : FinExt l) 
         simp only [Set.mem_Icc] at h2
         omega
       unfold IsJumpV at hnj
-      push_neg at hnj
+      push Not at hnj
       unfold multV
       rw [hnj, sub_self]
 
@@ -1463,6 +1465,8 @@ theorem normR_holds (D : D7) : normR D := by
 
 end Formalism.MainNotions.N.Ln34
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.MainPf

@@ -14,12 +14,10 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.KerJoin
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.KerSideCut, Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.JoinSI
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.KerSideCut
 
 
 open scoped InnerProductSpace
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.KerSideCut
 open MeasureTheory Formalism.BasicNotions Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.PackageTie2
   Formalism.L2.SG.RowDict Formalism.L2.SG.ColDict Formalism.L2.SG.ProjRows Formalism.L2.SG.KerJoinS Formalism.IndefR.Cx Formalism.L2.Indef
 
@@ -87,7 +85,11 @@ end Read
 end Formalism.L2.SG.KerSideCut
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.JoinSI
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.JoinSI
+
+noncomputable section
+
+open scoped InnerProductSpace
 open MeasureTheory Formalism.BasicNotions Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.PackageTie2
   Formalism.L2.SG.RowDict Formalism.L2.SG.ColDict Formalism.L2.SG.KerJoinS Formalism.L2.SG.KerSideCut Formalism.IndefR.Cx Formalism.L2.Indef
 
@@ -194,7 +196,7 @@ theorem twist_of_mk {K : Type} [Field K] (σ : K →+* ℂ) (v : NumberField.Inf
   subst h
   have hs : Formalism.IndefR.Links.sgAt σ (NumberField.InfinitePlace.mk σ) = σ := by
     unfold Formalism.IndefR.Links.sgAt
-    exact if_pos rfl
+    exact ite_eq_left rfl
   unfold Formalism.IndefR.Links.twAt
   rw [hs]
   split_ifs with h1

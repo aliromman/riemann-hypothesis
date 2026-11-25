@@ -23,8 +23,9 @@ import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.DifferentIdeal.SumEmbDualBasisComplex, Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.DifferentIdeal.FractionalIdealDualFamily, Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.DifferentIdeal.LiftMOneExt, Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.DifferentIdeal.MapMulLeftDenSpanImageEqMapNum, Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.DifferentIdeal.CoeIdealDifferentNeZero, Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.PeriodRelations.NormSum, Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.PeriodRelations.Period
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.DifferentIdeal.SumEmbDualBasisComplex
+@[expose] public section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.DifferentIdeal.SumEmbDualBasisComplex
 
+noncomputable section
 
 namespace Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5
 
@@ -87,7 +88,7 @@ theorem sum_emb_dualBasis_complex (K E : Type) [Field K] [Field E] [NumberField 
   have h := hLI (fun i' => (∑ j, emb i' (e j) * emb k (((Algebra.traceForm K E).dualBasis (traceForm_nondegenerate K E) e) j)) - if i' = k then 1 else 0) (by
     funext x
     simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Pi.zero_apply, sub_mul,
-      Finset.sum_sub_distrib, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      Finset.sum_sub_distrib, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     rw [sub_eq_zero, hexp x]
     exact Finset.sum_congr rfl fun _ _ => mul_comm _ _) i
   rwa [sub_eq_zero] at h
@@ -109,6 +110,7 @@ theorem sum_emb_dualBasis (K E : Type) [Field K] [Field E] [NumberField K] [Numb
   split_ifs <;> simp
 
 end Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.DifferentIdeal.FractionalIdealDualFamily

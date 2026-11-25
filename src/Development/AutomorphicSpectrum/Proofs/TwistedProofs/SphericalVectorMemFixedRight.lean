@@ -25,8 +25,10 @@ import Formalism.SatakeDualWeyl.KpqSubgroupCompact
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Definitions.TwistedFlags.OneMemOffK, Development.AutomorphicSpectrum.Definitions.TwistedFlags.BlockDoubleCosetFunctionsExist, Development.AutomorphicSpectrum.Proofs.TwistedProofs.SphericalVectorMemFixedRight
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Definitions.TwistedFlags.OneMemOffK
+section -- clump member: Development.AutomorphicSpectrum.Definitions.TwistedFlags.OneMemOffK
+@[expose] public section
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.Indef Formalism.DivisionValues Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
@@ -37,8 +39,6 @@ open GlobalTheory.AdelicScalar (l2)
 open scoped InnerProductSpace GlobalTheory.AdelicU GlobalTheory.Doubling
 
 namespace GlobalTheory.CompanionTheory.Ipf.Loc
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
@@ -54,10 +54,14 @@ end Real
 
 end GlobalTheory.CompanionTheory.Ipf.Loc
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Definitions.TwistedFlags.BlockDoubleCosetFunctionsExist
+section -- clump member: Development.AutomorphicSpectrum.Definitions.TwistedFlags.BlockDoubleCosetFunctionsExist
+@[expose] public section
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.Indef Formalism.DivisionValues Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
@@ -75,20 +79,10 @@ abbrev Cv : Type := v.adicCompletion K
 
 end Local
 
-section Adelic
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-open GlobalTheory.FinZeta (projV embV Kv Gv)
-open GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting (SplitProj IsIdemOf IsProjAt rdA grpCo frCo)
-open GlobalTheory.CompanionTheory.Ipf.Loc (FPl)
-
-variable {D : D7}
-
-end Adelic
-
 end GlobalTheory.CompanionTheory.Ipf.Val
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.TwistedProofs.SphericalVectorMemFixedRight

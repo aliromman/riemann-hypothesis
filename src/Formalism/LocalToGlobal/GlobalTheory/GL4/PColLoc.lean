@@ -12,11 +12,13 @@ import Mathlib.RingTheory.PicardGroup
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.GlobalTheory.GL4.PTenFrames, Formalism.LocalToGlobal.GlobalTheory.GL4.PColLoc
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.PTenFrames
+section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.PTenFrames
+@[expose] public section
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix
 
+noncomputable section
 
 namespace Formalism.L2.GlobalTheoryTheory.TraceIntegrality
 
@@ -49,7 +51,7 @@ theorem famOf_sumBasis (coE : V ≃ₗ[K] (Cl → W)) (BK : Basis J0 K W) (φ : 
   simp only [famOf]
   rw [Fintype.sum_prod_type]
   simp only [Matrix.blockDiagonal_apply, ite_smul, zero_smul]
-  simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
   rw [hφ, hs, map_sum]
   simp only [Pi.single_smul, map_smul, sumBasis_apply]
@@ -181,6 +183,8 @@ end Sum
 
 end Formalism.L2.GlobalTheoryTheory.TraceIntegrality
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL4.PColLoc

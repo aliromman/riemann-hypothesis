@@ -553,9 +553,10 @@ theorem UpperTheory.Gal.Ord.art :
   simp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.ExistsStalkFactor
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.ExistsStalkFactor
 open scoped CategoryTheory.Obj
 
+noncomputable section
 
 namespace UpperTheory.Gal.Ord.CntStalk
 
@@ -919,7 +920,7 @@ theorem UpperTheory.Gal.Ord.cnt :
     rw [← spOver_comp, Category.assoc]
     rfl
   · left
-    push_neg at hlt
+    push Not at hlt
     have hLle : L ≤ p ^ f := by
       rw [hL] at hlt
       exact_mod_cast hlt
@@ -957,6 +958,7 @@ theorem UpperTheory.Gal.Ord.cnt :
     refine ⟨inferInstance, hwP, hpw, ?_⟩
     show M = _
     rw [hMpow, hjn, hm, Nat.one_mul, hq]
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.FrobNNat

@@ -120,10 +120,11 @@ end Parabolic
 end GroundTheory.Automorphic
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.FiniteLengthLeviBlock
+@[expose] public section -- clump member: GroundTheory.AutomorphicForms.FiniteLengthLeviBlock
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -301,7 +302,7 @@ def blockExtend (a : Set.range δ) (ε : Fin (blockSize δ a) → ℕ) : Fin n �
 theorem restrictFun_blockExtend_self (a : Set.range δ) (ε : Fin (blockSize δ a) → ℕ) :
     restrictFun δ (blockExtend δ a ε) a = ε := by
   funext k
-  simp only [restrictFun, blockExtend, dif_pos (fiberFin δ a k).2]
+  simp only [restrictFun, blockExtend, dite_eq_left (fiberFin δ a k).2]
   congr 1
   rw [Equiv.symm_apply_eq]
 
@@ -348,11 +349,13 @@ end Parabolic
 
 end GroundTheory.Automorphic
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.FiniteLengthLevi
+@[expose] public section -- clump member: GroundTheory.AutomorphicForms.FiniteLengthLevi
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -722,7 +725,7 @@ theorem not_surjective_of_blockEmb {δ : Fin n → ℕ} {X : Type*} [AddCommGrou
     intro z hz f
     apply Subtype.ext
     show P (blockEmb F δ a z) f.1 = ω z • f.1
-    rw [show ω z = (hcent z hz).choose from dif_pos hz]
+    rw [show ω z = (hcent z hz).choose from dite_eq_left hz]
     exact (hcent z hz).choose_spec f.1
   have hρ : IsSmooth (C.toRepresentation.comp (blockEmb F δ a)) :=
     isSmooth_comp_of_continuous (isSmooth_toRepresentation_of_isSmooth hP C) _
@@ -783,6 +786,7 @@ end Main
 end Parabolic
 
 end GroundTheory.Automorphic
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.FiniteLengthCuspidal
@@ -887,10 +891,11 @@ end Parabolic
 end GroundTheory.Automorphic
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.FiniteLengthLeviJacquet
+@[expose] public section -- clump member: GroundTheory.AutomorphicForms.FiniteLengthLeviJacquet
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.Automorphic
 
@@ -945,7 +950,7 @@ theorem mk_mk_apply_of_mem_leviUnipotent (h : Refines β γ) (hγδ : Refines γ
       split_ifs
       · exact huP hij
       · rfl
-    · rw [leviProj_apply, if_pos (hγδ.eq_of_eq hij)]
+    · rw [leviProj_apply, ite_eq_left (hγδ.eq_of_eq hij)]
       exact hu1 i j hij
   have hn' := leviProj_inv_mul_mem p
   set n' : levi F n β := (h.leviIncl F m)⁻¹ * (u : levi F n β)
@@ -1204,6 +1209,7 @@ end Embedding
 end Parabolic
 
 end GroundTheory.Automorphic
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.FiniteLengthSeries

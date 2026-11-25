@@ -1,5 +1,6 @@
 module
 
+import Formalism.SharpRestriction.GrowthBounds.ScaleEdges.EdgePlane
 public import Formalism.SharpRestriction.GrowthBounds.UnramifiedQuadraticSetting
 public import Mathlib.LinearAlgebra.FreeModule.PID
 public import Mathlib.RingTheory.Localization.Module
@@ -19,8 +20,9 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.IsLatticeBetween, Formalism.SharpRestriction.GrowthBounds.MultisetValuation.SmulMemLatOf, Formalism.SharpRestriction.GrowthBounds.MultisetValuation.SmulPsiGUp
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.IsLatticeBetween
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.IsLatticeBetween
 
+noncomputable section
 
 namespace Formalism.MainNotions.FormalGroupSystem.Pf.Cnt
 
@@ -68,19 +70,7 @@ theorem psi_apply (g : Matrix (Fin n) (Fin n) Qq) (w : Fin n → W) :
 
 theorem mem_colSpan (G : Matrix (Fin n) (Fin n) Qq) (x : Fin n → Qq) :
     x ∈ colSpan W G ↔ ∃ y : Fin n → W, x = G.mulVec (fun c => algebraMap W Qq (y c)) := by
-  unfold colSpan
-  rw [Submodule.mem_span_range_iff_exists_fun]
-  constructor
-  · rintro ⟨y, rfl⟩
-    refine ⟨y, ?_⟩
-    funext i
-    simp only [Finset.sum_apply, Matrix.mulVec, dotProduct, Algebra.smul_def]
-    exact Finset.sum_congr rfl fun c _ => mul_comm _ _
-  · rintro ⟨y, rfl⟩
-    refine ⟨y, ?_⟩
-    funext i
-    simp only [Finset.sum_apply, Matrix.mulVec, dotProduct, Algebra.smul_def]
-    exact Finset.sum_congr rfl fun c _ => mul_comm _ _
+  apply _root_.Formalism.MainNotions.Pf14.mem_colSpan <;> assumption
 
 theorem range_psi (g : Matrix (Fin n) (Fin n) Qq) : LinearMap.range (psi (W := W) g) = colSpan W g := by
   ext x
@@ -154,6 +144,7 @@ theorem isLattice_between [IsDomain W] [IsPrincipalIdealRing W] [IsFractionRing 
       Submodule.map_comap_eq, range_psi, inf_eq_right.2 h1]
 
 end Formalism.MainNotions.FormalGroupSystem.Pf.Cnt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.SmulMemLatOf
@@ -316,8 +307,9 @@ theorem down_card (p n' i : ℕ) (h : Res (p : W) F) (hq : Nat.card F = p ^ n') 
 end Formalism.MainNotions.FormalGroupSystem.Pf.Cnt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.SmulPsiGUp
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.MultisetValuation.SmulPsiGUp
 
+noncomputable section
 
 namespace Formalism.MainNotions.FormalGroupSystem.Pf.Cnt
 
@@ -480,7 +472,7 @@ theorem core (p n' : ℕ) (h : Res (p : W) F) (hq : Nat.card F = p ^ n') (N g i 
   have hcardF : Fintype.card F = p ^ n' := by rw [← Nat.card_eq_fintype_card, hq]
   by_cases hx : ∀ y ∈ colSpan W gA, x.mulVec y ∈ colSpan W gB
   swap
-  · push_neg at hx
+  · push Not at hx
     obtain ⟨y0, hy0, hxy0⟩ := hx
     have hL : Nat.card {B1 : Submodule W (Fin (N + g) → Qq) // IsEdge p n' i ⟨B1, colSpan W gB⟩ ∧
         ∀ y ∈ colSpan W gA, x.mulVec y ∈ B1} = 0 :=

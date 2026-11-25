@@ -29,12 +29,14 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.IdealCycleValues.OfIdealCycleNe, Development.WeilBound.CoreStatements.IdealCycleValues.FlatColon, Development.WeilBound.CoreStatements.IdealCycleValues.IsModelOverRamifiedBaseChange, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ModelDescentIntegralClosure
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.IdealCycleValues.OfIdealCycleNe
+section -- clump member: Development.WeilBound.CoreStatements.IdealCycleValues.OfIdealCycleNe
+@[expose] public section
 
 namespace BaseChangeColon.BC
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR
 
+noncomputable section
 
 theorem dim_mono {A : Type} [CommRing A] {I I' : Ideal A} (h : I ≤ I') :
     ringKrullDim (A ⧸ I') ≤ ringKrullDim (A ⧸ I) :=
@@ -53,7 +55,7 @@ omit [Fintype K] [DecidableEq K] [∀ k, Fintype (ι k)] in
 theorem of_idealCycle_ne {R : Type} [CommRing R] {J W : Ideal (MRing ι R)} (h : idealCycle J W ≠ 0) :
     W ∈ J.minimalPrimes ∧ IsRelevant W := by
   by_contra h'
-  exact h (dif_neg h')
+  exact h (dite_eq_right h')
 
 omit [Fintype K] [DecidableEq K] [∀ k, Fintype (ι k)] in
 theorem cycEval_eq_zero {R : Type} [CommRing R] {J : Ideal (MRing ι R)} {n : Ideal (MRing ι R) → ℤ}
@@ -171,9 +173,9 @@ theorem NN_add (hϖ : Irreducible ϖ) {d : ℕ} {J : Ideal (MRing ι O)} (hJ : I
       by_cases hIW : I ≤ W
       · have h2 : W ∈ I.minimalPrimes :=
           ⟨⟨hW.1.1.1, hIW⟩, fun Q hQ hQW => hW.1.2 ⟨hQ.1, hI.trans hQ.2⟩ hQW⟩
-        exact dif_pos ⟨h2, hW.2⟩
+        exact dite_eq_left ⟨h2, hW.2⟩
       · rw [multAt_zero hIW]
-        exact dif_neg fun h => hIW h.1.1.2
+        exact dite_eq_right fun h => hIW h.1.1.2
     have h2 : multAt J W ≠ ⊤ := ReciprocityTheory.ChartRestriction.G.AI.I1.locLen_ne_top hW.1
     have h3 := FiltrationStepLength.full O K ι J W x
     rw [h1 J le_rfl, h1 _ le_sup_left, h1 _ (le_colon J x), h3]
@@ -225,8 +227,10 @@ theorem NN_pow (hϖ : Irreducible ϖ) {d : ℕ} {J : Ideal (MRing ι O)} (hJ : I
     cycEval_eq_zero fun W hW => absurd (top_le_iff.1 hW.1.2) hW.1.1.ne_top
   rw [h e le_rfl, h1, h2, add_zero]
 
+end
 
 end BaseChangeColon.BC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.IdealCycleValues.FlatColon

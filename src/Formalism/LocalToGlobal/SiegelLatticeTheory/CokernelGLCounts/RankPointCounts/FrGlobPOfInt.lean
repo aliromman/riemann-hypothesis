@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.LatDict
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarIsomG
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarOmPart
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBwdBetaS
@@ -44,12 +45,10 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TermAttractorConstant.G
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBetaRatA, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBetaRat, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.ScalarFrameIotaA, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.ScalarFrameIota, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.ScalarFramePfM, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLprExistA, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLprExistB, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLprPfD, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLprExist, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLprClose, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FrGlobPOfInt
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBetaRatA
 
 
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBetaRatA
 open Matrix Formalism.MainNotions.S Formalism.MainNotions.S.Lat
 
 namespace Formalism.L2.SG.Pf.FrameGlobalPatching.FStar.BRat
@@ -207,7 +206,11 @@ theorem key_X {TA TB : E} (A : FlagG S r TA) (B : FlagG S r TB) (hdet : (Zhat A 
 end Formalism.L2.SG.Pf.FrameGlobalPatching.FStar.BRat
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBetaRat
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarBetaRat
+
+noncomputable section
+
+open scoped Classical
 open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermDef Formalism.L2.SG.DataCut
   Formalism.L2.SG.LsDatumB Formalism.L2.SG.TermLoc Formalism.L2.SG.Pf.PCount Formalism.L2.SG.Pf.FrameGlobalPatching Formalism.L2.SG.Saturated
   Formalism.L2.SG.Pf.ScalarFramePf
@@ -271,7 +274,7 @@ theorem betaRat_holds : BetaRat Zd u u' F0 what₂ := by
     intro a b
     by_cases hab : a ≠ Fin.last D.R.rS ∨ b ≠ Fin.last D.R.rS
     · exact (FsLA.gram_fvec_zero F₃ a b hab).trans (FsLA.gram_fvec_zero F0 a b hab).symm
-    · push_neg at hab
+    · push Not at hab
       rw [hab.1, hab.2]
       exact (FsLA.gram_fvec_last F₃).trans (FsLA.gram_fvec_last F0).symm
   have k2 : ∀ a b, (VS D).hT (h a) (F₂.fvec b) = (VS D).hT (f a) (g b) := by
@@ -287,7 +290,7 @@ theorem betaRat_holds : BetaRat Zd u u' F0 what₂ := by
     intro a b
     by_cases hab : a ≠ Fin.last D.R.rS ∨ b ≠ Fin.last D.R.rS
     · exact (FsLA.gram_fvec_zero F₂ a b hab).trans (h1g a b hab).symm
-    · push_neg at hab
+    · push Not at hab
       rw [hab.1, hab.2]
       exact (FsLA.gram_fvec_last F₂).trans h2g.symm
   have hGr : FsLA.gram (VS D) uu' uu' = FsLA.gram (VS D) uu uu := by
@@ -403,8 +406,13 @@ theorem betaRat_holds : BetaRat Zd u u' F0 what₂ := by
 
 end Formalism.L2.SG.Pf.FrameGlobalPatching.FStar
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.ScalarFrameIotaA
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.ScalarFrameIotaA
+
+noncomputable section
+
+open scoped Classical
 
 namespace Formalism.L2.SG.Pf.ScalarFrameIota
 
@@ -481,7 +489,7 @@ theorem proj_exists (Λ : Submodule (𝓞 E) S.V) (hL : Submodule.IsFullLattice 
     rw [PI.UnitaryGroupMassFormula.BetaModX.Iota.herm'', h2]
     by_cases hab : a = b
     · subst hab; simp
-    · rw [if_neg (Ne.symm hab), if_neg hab, star_zero]
+    · rw [ite_eq_right (Ne.symm hab), ite_eq_right hab, star_zero]
   refine ⟨u, fun l hl => ⟨?_, ?_⟩⟩
   ·
     refine Λ.sub_mem hl ?_
@@ -505,7 +513,7 @@ theorem proj_exists (Λ : Submodule (𝓞 E) S.V) (hL : Submodule.IsFullLattice 
 
     rw [map_sub, map_sum]
     simp only [LinearMap.map_smul, smul_eq_mul, hdual, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq',
-      Finset.mem_univ, if_true, sub_self]
+      Finset.mem_univ, ite_true, sub_self]
 
 end Proj
 
@@ -534,8 +542,12 @@ end D7
 
 end Formalism.L2.SG.Pf.ScalarFrameIota
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.ScalarFrameIota
+
+
+open scoped Classical
 
 namespace Formalism.L2.SG.Pf.ScalarFrameIota
 
@@ -818,6 +830,9 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.ScalarFramePfM
 
+
+open scoped Classical
+
 namespace Formalism.L2.SG.Pf.ScalarFramePf
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc ValuativeRel
@@ -998,7 +1013,11 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions.S
 end Formalism.L2.SG.Pf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLprExistA
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLprExistA
+
+noncomputable section
+
+open scoped Classical
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc ValuativeRel
   Formalism.L2.SG.Pf.ScalarFramePf
 
@@ -1030,16 +1049,7 @@ theorem LprExistA_iso_span {s : Set (VS D).V} (h : ∀ x ∈ s, ∀ y ∈ s, (VS
 
 theorem LprExistA_orth_span {s : Set (VS D).V} {x : (VS D).V} (h : ∀ v ∈ s, (VS D).hT v x = 0) :
     ∀ v ∈ Submodule.span D.host.E s, (VS D).hT v x = 0 := by
-  intro v hv
-  have hle : Submodule.span D.host.E s ≤ LinearMap.ker ((VS D).hT.flip x) := by
-    rw [Submodule.span_le]
-    intro v' hv'
-    show (VS D).hT.flip x v' = 0
-    rw [LinearMap.flip_apply]
-    exact h v' hv'
-  have := hle hv
-  rw [LinearMap.mem_ker, LinearMap.flip_apply] at this
-  exact this
+  apply _root_.Formalism.L2.SG.Pf.LatDict.hT_left_span <;> assumption
 
 theorem gfacts_move {Λ : Submodule (𝓞 D.host.E) (VS D).V} {f g1 g2 g2' : Fin (D.R.rS + 1) → (VS D).V}
     {β : (VS D).V ≃ₗ[D.host.E] (VS D).V} (hG : GFacts Λ f g1 g2' β)
@@ -1160,6 +1170,12 @@ end Loc
 
 end Formalism.L2.SG.Pf.FrameGlobalPatching.FStar.LprEx
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open scoped Classical
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLprExistB
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.TermDef

@@ -123,19 +123,13 @@ theorem _root_.GlobalTheory.T.charZero_stalk_compactFlagSpaceOverComponent : ∀
   exact charZero_of_injective_ringHom f.injective
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.RegularityFirstClauseBot
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.RegularityFirstClauseBot
 
+noncomputable section
 
 namespace GlobalTheory.TrivialValuationTest
 
 open Formalism.L2.Pj Formalism.L2.PjFree NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
-section Ring
-
-variable {V F : Type} [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [Field F] [Algebra V F]
-  [IsFractionRing V F]
-
-end Ring
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
   {Xo : Moduli Dw l} {c : Coeff l}
@@ -146,6 +140,7 @@ def powerSeriesCDVR (K : Type) [Field K] [CharZero K] : CDVR where
   ch0 := algebraRat.charZero _
 
 end GlobalTheory.TrivialValuationTest
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -259,7 +254,7 @@ theorem exists_dvr (hv : ∃ x : K, v x ≠ 0 ∧ v x < 1) :
       have := (WithZero.log_le_log ((v.ne_zero_iff).2 hy') one_ne_zero).2 ((v.mem_valuationSubring_iff _).1 y.2)
       rwa [WithZero.log_one] at this
     have hm0 : m ≤ 0 := by
-      by_contra h; push_neg at h
+      by_contra h; push Not at h
       have : (0 : ℤ) < d * m := mul_pos hdz h
       omega
     set n := (-m).toNat with hn
@@ -690,8 +685,10 @@ end Forms
 end GlobalTheory.IndefiniteRowSideFullHecke.TraceFormDualSystem
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.FunctionalValuesNonempty
+section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.FunctionalValuesNonempty
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.LeastExponentCompare
 
@@ -761,14 +758,10 @@ theorem functionalValues_nonempty (h : IsConj cj) (b : SymB cj Y) : (functionalV
   obtain ⟨l, hi, hp⟩ := GlobalTheory.PointStepCompare.exists_admissible E (isBalancedSpace (Y := Y) h)
   exact ⟨l b, l, ⟨hi, hp⟩, rfl⟩
 
-section Host
-
-open Formalism.BasicNotions
-
-end Host
-
 end GlobalTheory.LeastExponentCompare
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.JetSurvey.PhiCOfNoIntegralForm
@@ -866,19 +859,6 @@ theorem period_minimum_phi_pos : _root_.GlobalTheory.CovTop.PublishedHodgeBundle
 end GlobalTheory.PeriodMinPos
 end
 end
-
-section
-open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory Formalism.L2.Pj Formalism.BasicNotions
-open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
-open GlobalTheory GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.HermTools GlobalTheory.Adelic GlobalTheory.CompHS GlobalTheory.CovTop GlobalTheory.BigTop
-open GlobalTheory.FlagMod (FlagCover)
-open GlobalTheory.FlagTan (dimFlag)
-open GlobalTheory.HSApp
-
-theorem _root_.GlobalTheory.T.minimal_period_pos : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} (T : Formalism.L2.Pj.CDVR) (io : c.F →+* T.Fr) (y : IntFr Xo c T io) (φ : ℝ), GlobalTheory.SlopeRec.HasPhi y φ → ∀ (G : SAB H (Sp T.V)) (t' : SAB H (Sp T.Fr)) (_ : letI := io.toAlgebra; SABMap t' Xo.univ.t y.1.x) (_ : SABMap t' G (spMap (algebraMap T.V T.Fr))), (IsLocalRing.closedPoint T.V : Sp T.V) ∉ abLocus G.G → 0 < φ := by
-  first | exact @_root_.GlobalTheory.PeriodMinPos.period_minimum_phi_pos
-end
 end -- clump:auto
 end -- clump:auto
 
@@ -929,7 +909,7 @@ theorem degree_valuation_phi_pos (hP : _root_.GlobalTheory.CovTop.PublishedHodge
       exact (IsLocalRing.mem_maximalIdeal _).1 (hf a ((IsLocalRing.mem_maximalIdeal _).2 h)) ha⟩
     exact IsLocalRing.comap_closedPoint f
   have hpos : 0 < φT := by
-    refine _root_.GlobalTheory.T.minimal_period_pos hP T' _ y' φT hφT G t' m1 m2 fun hab => hy ?_
+    refine _root_.GlobalTheory.PeriodMinPos.period_minimum_phi_pos hP T' _ y' φT hφT G t' m1 m2 fun hab => hy ?_
     have h := _root_.GlobalTheory.AbInterior.mem_interior_of_mem_abLocus TF.Y _ _ G m3 _ hab
     have e1 : (spMap j) (IsLocalRing.closedPoint T'.V) = IsLocalRing.closedPoint T.V := hcl j hjloc
     have e2 : (Spec.map (CommRingCat.ofHom g)) (IsLocalRing.closedPoint T.V) =
@@ -960,15 +940,6 @@ end GlobalTheory.DegVal
 end
 end
 
-section
-open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory Formalism.L2.Pj Formalism.BasicNotions
-open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
-open GlobalTheory GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.HermTools GlobalTheory.Adelic GlobalTheory.CompHS GlobalTheory.CovTop GlobalTheory.BigTop
-open GlobalTheory.FlagMod (FlagCover)
-open GlobalTheory.FlagTan (dimFlag)
-open GlobalTheory.HSApp
-end
 end -- clump:auto
 end -- clump:auto
 

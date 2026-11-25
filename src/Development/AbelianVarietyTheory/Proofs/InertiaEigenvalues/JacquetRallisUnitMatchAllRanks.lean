@@ -200,10 +200,11 @@ theorem exists_isGen [Unram F E] (r : ℕ) (p : Fin r → F)
 end GlobalTheory.JR.EtExist
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsEtaleHermitianPairIsGenCompanion
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsEtaleHermitianPairIsGenCompanion
 
 open Polynomial Matrix MeasureTheory Filter Topology
 
+noncomputable section
 
 namespace GlobalTheory.JR
 
@@ -237,14 +238,14 @@ theorem charpoly_companion {k : Type} [Field k] {r : ℕ} (p : Fin r → k) :
     rw [Algebra.leftMulMatrix_eq_repr_mul, hb, ← pow_succ']
     simp only [companion, Matrix.of_apply]
     by_cases hj : (j : ℕ) + 1 = r
-    · rw [if_pos hj, hj, hroot, ← b.equivFun_symm_apply, ← b.equivFun_apply, LinearEquiv.apply_symm_apply]
-    · rw [if_neg hj]
+    · rw [ite_eq_left hj, hj, hroot, ← b.equivFun_symm_apply, ← b.equivFun_apply, LinearEquiv.apply_symm_apply]
+    · rw [ite_eq_right hj]
       have hlt' : (j : ℕ) + 1 < r := lt_of_le_of_ne j.2 hj
       have : AdjoinRoot.root P ^ ((j : ℕ) + 1) = b ⟨(j : ℕ) + 1, hlt'⟩ := by rw [hb]
       rw [this, b.repr_self, Finsupp.single_apply]
       by_cases hi : (i : ℕ) = (j : ℕ) + 1
-      · rw [if_pos hi, if_pos (Fin.ext hi.symm)]
-      · rw [if_neg hi, if_neg (fun h => hi (congrArg Fin.val h).symm)]
+      · rw [ite_eq_left hi, ite_eq_left (Fin.ext hi.symm)]
+      · rw [ite_eq_right hi, ite_eq_right (fun h => hi (congrArg Fin.val h).symm)]
   have hP0 : P ≠ 0 := hm.ne_zero
   haveI : Module.Finite k (AdjoinRoot P) := pb.finite
   rw [hmat, Algebra.leftMulMatrix_apply, LinearMap.charpoly_toMatrix, ← LinearMap.charpoly_toMatrix _ pb.basis,
@@ -260,6 +261,7 @@ theorem exists_et_isGen_companion : ∀ (F E : Type) [NontriviallyNormedField F]
   exact EtExist.exists_isGen F E r p hs
 
 end GlobalTheory.JR
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens
@@ -546,8 +548,9 @@ theorem _root_.GlobalTheory.JR.TorusCutOff.exists_unitary_cutoff : ∀ (F E : Ty
 end GlobalTheory.JR.TorusCutOff
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MapIsIsomSelfDualMeasureKerLEqPiHaar
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MapIsIsomSelfDualMeasureKerLEqPiHaar
 
+noncomputable section
 
 namespace GlobalTheory.JR.MeasTransport
 
@@ -581,7 +584,7 @@ theorem trForm_sepLeft [hU : Unram F E] (r : ℕ) (c : Fin r → E) (h : ∀ b, 
   by_contra hc
   obtain ⟨i, hi⟩ : ∃ i, c i ≠ 0 := by
     by_contra h'
-    push_neg at h'
+    push Not at h'
     exact hc (funext h')
   have h1 := h (Pi.single i (star (c i))⁻¹)
   rw [trForm_apply, dotProduct_single, Pi.star_apply, mul_inv_cancel₀ (star_ne_zero.mpr hi),
@@ -732,6 +735,7 @@ theorem map_isIsom_eq_pi : ∀ (F E : Type) [NontriviallyNormedField F] [Nontriv
   exact (huniq _ (map_selfDual A ψ hx μ hμ)).trans (huniq _ (pi_selfDual ψ hψ r M)).symm
 
 end GlobalTheory.JR.MeasTransport
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FourierDescendedFunctionEqPartialFourier
@@ -1256,14 +1260,15 @@ theorem fourierMatch_of_weilField : WeilField → ∀ r, FourierMatch r := fun h
 end GlobalTheory.JR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.JacquetRallisUnitMatchSizeOne
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.JacquetRallisUnitMatchSizeOne
 
+noncomputable section
 
 namespace GlobalTheory.JR.SizeOne
 
 theorem eta_one' {F : Type} [NormedField F] : eta (1 : F) = 1 := by
   unfold eta
-  rw [if_pos ⟨1, by simp⟩]
+  rw [ite_eq_left ⟨1, by simp⟩]
 
 theorem unitMatch_zero : UnitMatch 0 := by
   intro F E _ _ _ _ _ M a _
@@ -1283,6 +1288,7 @@ theorem unitMatch_zero : UnitMatch 0 := by
   · exact Prod.ext (Subsingleton.elim _ _) (Prod.ext (Subsingleton.elim _ _) rfl)
 
 end GlobalTheory.JR.SizeOne
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.JacquetRallisUnitMatchOfWeilRepQuadratic

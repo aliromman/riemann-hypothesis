@@ -171,8 +171,9 @@ end Main
 end GlobalTheory.Mem.ColAd.Nbhd
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsRationalAtPrimesUnitaryCongruentOne
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsRationalAtPrimesUnitaryCongruentOne
 
+noncomputable section
 
 namespace GlobalTheory.SeeSaw.TwLev.GlueApprox
 
@@ -335,11 +336,11 @@ theorem glue_approx {Q : Finset (HeightOneSpectrum (𝓞 E))} (hQ : ∀ P ∈ Q,
     ext i j
     show σ (G j i) = G' i j
     exact (PtExist.sig_glue hc Q _ _ _).trans (by rw [← PtExist.inv_apply hz]; rfl)
-  have hgQ : g ∈ RatAt Q := fun P i j => ⟨CM P.1 i j, (hG P.1 i j).trans (if_pos P.2)⟩
+  have hgQ : g ∈ RatAt Q := fun P i j => ⟨CM P.1 i j, (hG P.1 i j).trans (ite_eq_left P.2)⟩
   have hgP : ∀ P ∈ Q, ColAd.locM P g = (CM P).map (algebraMap E _) := fun P hP =>
-    Matrix.ext fun i j => (hG P i j).trans (if_pos hP)
+    Matrix.ext fun i j => (hG P i j).trans (ite_eq_left hP)
   have hgw : ∀ w, w ∉ Q → conjPrime₂ w ∉ Q → ColAd.locM w g = ColAd.locM w z := fun w h h' =>
-    Matrix.ext fun i j => (hG w i j).trans (by rw [if_neg h, if_neg h']; rfl)
+    Matrix.ext fun i j => (hG w i j).trans (by rw [ite_eq_right h, ite_eq_right h']; rfl)
   have hu : z⁻¹ * g ∈ UAd hc n := mul_mem (inv_mem hz) hg
   have key : ∀ P ∈ Q, ColAd.Sm Valued.v (vm P) (ColAd.locM P (z⁻¹ * g) - 1) ∧
       ColAd.Sm Valued.v (vm P) (ColAd.locM P (z⁻¹ * g)⁻¹ - 1) := by
@@ -397,6 +398,7 @@ theorem exists_ratAt_congOne : ∀ {F E : Type} [Field F] [NumberField F] [Field
   exact (mem_rInt_iff F E _).1 (y i j).2 w
 
 end GlobalTheory.SeeSaw.TwLev.GlueApprox
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LevelReadingRationalAtTwistExtendsIntegralUnitar

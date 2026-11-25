@@ -16,8 +16,9 @@ import Mathlib.Topology.Separation.CompletelyRegular
 
 open Matrix MeasureTheory
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.IntegrableSliceAppendSingle
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.IntegrableSliceAppendSingle
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.PBH
 
@@ -48,11 +49,11 @@ theorem integrable_slice_append_single {k r : ℕ} {E : Type} [NormedAddCommGrou
     intro a
     rw [hspec a, Dx2.SL.partner_append 1 c h a.val (by have := a.isLt; omega)]
     by_cases h1 : a.val < D.ptSize h
-    · rw [if_pos h1]
+    · rw [ite_eq_left h1]
       have e : Fin.cast hP a = Fin.castAdd (0 + 1) ⟨a.val, h1⟩ := Fin.ext rfl
       rw [e, Dx2.SL.blockPerm_castAdd]
       exact hspec' ⟨a.val, h1⟩
-    · rw [if_neg h1]
+    · rw [ite_eq_right h1]
       have e : Fin.cast hP a = Fin.natAdd (D.ptSize h) ⟨a.val - D.ptSize h, by have := a.isLt; omega⟩ :=
         Fin.ext (by simp; omega)
       rw [e, Dx2.SL.blockPerm_natAdd]
@@ -64,10 +65,10 @@ theorem integrable_slice_append_single {k r : ℕ} {E : Type} [NormedAddCommGrou
     simp only [D.ptDiag]
     rw [Dx2.SL.scal_append 1 c h a.val (by have := a.isLt; omega)]
     by_cases h1 : a.val < D.ptSize h
-    · rw [if_pos h1]
+    · rw [ite_eq_left h1]
       have e : Fin.cast hP a = Fin.castAdd (0 + 1) ⟨a.val, h1⟩ := Fin.ext rfl
       rw [e, Dx2.SL.dP, Fin.addCases_left]; rfl
-    · rw [if_neg h1]
+    · rw [ite_eq_right h1]
       have e : Fin.cast hP a = Fin.natAdd (D.ptSize h) ⟨a.val - D.ptSize h, by have := a.isLt; omega⟩ :=
         Fin.ext (by simp; omega)
       rw [e, Dx2.SL.dP, Fin.addCases_right]
@@ -93,6 +94,7 @@ theorem integrable_slice_append_single {k r : ℕ} {E : Type} [NormedAddCommGrou
   simpa only [Dx2.SL.castV_castV, Dx2.SL.castF_castF] using h2
 
 end Formalism.FourierDecayAlt.P.PBH
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.AsmCastMCastM

@@ -488,11 +488,12 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuaternionNormOneTraceOpenFiniteAdeleRing
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuaternionNormOneTraceOpenFiniteAdeleRing
 
 open NumberField IsDedekindDomain GlobalTheory.QSA
 open scoped Quaternion Topology RestrictedProduct
 
+noncomputable section
 
 namespace GlobalTheory.QSA.FinAdele
 
@@ -674,13 +675,13 @@ theorem _root_.GlobalTheory.QSA.FinAdele.traceOpen_finiteAdele : ∀ (F : Type) 
       ⟨fun v => if v ∈ J then (hOne v).some else 0, Filter.eventually_cofinite.2 (hJ.subset
         fun v hv => by
           by_contra hvJ
-          exact hv (by simp only [if_neg hvJ]; exact zero_mem _))⟩
+          exact hv (by simp only [ite_eq_right hvJ]; exact zero_mem _))⟩
     refine ⟨t₀, Set.mem_iInter₂.2 fun v hv => ?_, fun v hv => ?_⟩
     · show (if v ∈ J then (hOne v).some else 0) ∈ O v
-      rw [if_pos hv]
+      rw [ite_eq_left hv]
       exact (hOne v).some_mem
     · show (if v ∈ J then (hOne v).some else 0) ∈ v.adicCompletionIntegers F
-      rw [if_neg hv]
+      rw [ite_eq_right hv]
       exact zero_mem _
   · rintro t ⟨htJ, htA⟩
     rw [Set.mem_iInter₂] at htJ
@@ -738,6 +739,7 @@ theorem _root_.GlobalTheory.QSA.FinAdele.traceOpen_finiteAdele : ∀ (F : Type) 
       rfl
 
 end GlobalTheory.QSA.FinAdele
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuaternionNormOneTraceOpenPi

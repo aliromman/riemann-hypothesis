@@ -543,8 +543,9 @@ theorem hasDatum_of_isSum : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [I
 end GlobalTheory.SumDatum
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantPDivGroupOmegaTrivialHodgeTateBasis
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantPDivGroupOmegaTrivialHodgeTateBasis
 
+noncomputable section
 
 open CategoryTheory GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup Coalgebra Bialgebra WithConv
 
@@ -759,12 +760,12 @@ theorem level_indep (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClosed C
     simp only [f, AddMonoidHom.comp_apply, LinearMap.toAddMonoidHom_coe, Module.Basis.coord_apply,
       Module.Basis.repr_self, RingHom.toAddMonoidHom_eq_coe, AddMonoidHom.coe_coe]
     by_cases hi : i' = i
-    · subst hi; rw [Finsupp.single_eq_same, map_one, hg1, if_pos rfl]
-    · rw [Finsupp.single_eq_of_ne (Ne.symm hi), map_zero, map_zero, if_neg hi]
+    · subst hi; rw [Finsupp.single_eq_same, map_one, hg1, ite_eq_left rfl]
+    · rw [Finsupp.single_eq_of_ne (Ne.symm hi), map_zero, map_zero, ite_eq_right hi]
   have h2 := congrArg Dl hc
 
   rw [map_sum, map_zero] at h2
-  simp only [map_smul, hDl, smul_ite, smul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true] at h2
+  simp only [map_smul, hDl, smul_ite, smul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true] at h2
   rw [← Ideal.mem_span_singleton, ← Ideal.Quotient.eq_zero_iff_mem]
   rw [Algebra.smul_def, mul_one] at h2
   exact h2
@@ -823,6 +824,7 @@ theorem omega_const : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgCl
       G.dual.pow_smul_cot n, neg_zero]
 
 end GlobalTheory.ConstHT
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLocalRingOfIntegers
@@ -939,8 +941,9 @@ end -- clump:auto
 
 open CategoryTheory Opposite Matrix GlobalTheory GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToLinTransposeDot
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToLinTransposeDot
 
+noncomputable section
 
 namespace GlobalTheory.DualDatumDot
 
@@ -1050,7 +1053,7 @@ theorem hasDatum_dual : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlg
 
     rw [map_sum, map_sum]
     simp only [map_smul, ← hs, hj, Pi.single_apply, smul_eq_mul, mul_ite, mul_one, mul_zero,
-      Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
   let Φ : G.omega →ₗ[O] (Fin G.height → O) :=
     LinearMap.pi fun i => lie (D.Fil.mkQ (Pi.single i 1))
@@ -1158,6 +1161,7 @@ theorem hasDatum_dual : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlg
     rw [toLin'_transpose_dot]
 
 end GlobalTheory.DualDatum
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PDivisibleGroupDatumOfConnectedDualConnected

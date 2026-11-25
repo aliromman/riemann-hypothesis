@@ -19,8 +19,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AdjointRelationGeneratorCorr, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGaugeUnit, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGaugeUnitStatement
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AdjointRelationGeneratorCorr
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AdjointRelationGeneratorCorr
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.WAxis
 
@@ -29,8 +30,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open Formalism.MainNotions.ModuliIntegralCharts.H1 Formalism.MainNotions.ModuliIntegralCharts.H1.GermD Formalism.MainNotions.ModuliIntegralCharts.H1.GermFun Formalism.MainNotions.ModuliIntegralCharts.H1.FBIdSy Formalism.MainNotions.ModuliIntegralCharts.H1.FBIdJet
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS Pt ev pt comp1)
 open scoped CategoryTheory.Obj
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 section Alg
 
@@ -253,9 +252,11 @@ theorem adAxes : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Hos
 
 end GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.WAxis
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGaugeUnit
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGaugeUnit
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.UAxis
 
@@ -264,7 +265,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.AdTr
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS Pt ev pt comp1)
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 section Prod
 
@@ -524,6 +524,7 @@ theorem unit_one_on_axes : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
     exact e
 
 end GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.UAxis
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGaugeUnitStatement

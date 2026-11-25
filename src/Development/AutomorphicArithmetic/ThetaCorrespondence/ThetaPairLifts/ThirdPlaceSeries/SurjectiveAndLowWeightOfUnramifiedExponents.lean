@@ -137,8 +137,9 @@ end Real
 end GlobalTheory.OnCoord
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankInfRangeAddInfKer
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankInfRangeAddInfKer
 
+noncomputable section
 
 open NumberField IsDedekindDomain Module
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx Formalism.IndefR.FWT
@@ -184,8 +185,6 @@ theorem finrank_eq_of_bij {K M N : Type} [Field K] [AddCommGroup M] [Module K M]
 end GlobalTheory.BadOnRec
 
 namespace GlobalTheory.BadOnRec
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 local instance runAlgBad {D : D7} {J : CoreJ D} [inst : Algebra J.Q.c.F D.what₂.LL] (r : RealIndexBound.RunData J) :
     Algebra r.full.J.Q.c.F D.what₂.LL := inst
@@ -233,6 +232,7 @@ end General
 
 end GlobalTheory.BadOnRec
 
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.BadStOfBadW

@@ -8,8 +8,9 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLe
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.TensVdApply, ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.DualLowestKTypeOfStandard, ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.K2Vd
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.TensVdApply
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.TensVdApply
 
+noncomputable section
 
 open Finset
 
@@ -62,7 +63,7 @@ theorem twT_tens (ε : Fin n → Bool) (E : Fin n → Fin n → Module.End ℂ M
   simp only [Fin.rev_inj]
   by_cases hc : c = a
   · subst hc
-    simp only [if_true]
+    simp only [ite_true]
     unfold sg; split_ifs <;> module
   · simp [hc]
 
@@ -125,15 +126,7 @@ theorem qOf_tw (ε : Fin n → Bool) : qOf (ε ∘ Fin.rev) = qOf ε := by
 
 theorem gapLap_tw {ε : Fin n → Bool} {lam : Fin n → ℝ} {h : ℝ} (hg : GapLap ε lam h) :
     GapLap (ε ∘ Fin.rev) (fun a => -lam (Fin.rev a)) h := by
-  obtain ⟨h1, h2, h3⟩ := hg
-  refine ⟨fun a b hab => ?_, fun a b hab => ?_, ?_⟩
-  · have := h1 (Fin.rev_lt_rev.2 hab)
-    simp only; linarith
-  · have := h2 (Fin.rev a) (Fin.rev b) hab
-    rw [abs_sub_comm] at this
-    simp only; rwa [neg_sub_neg]
-  · have e : hNeed (ε ∘ Fin.rev) = hNeed ε := by unfold hNeed; rw [pOf_tw, qOf_tw]
-    rw [e]; exact h3
+  apply _root_.ReciprocityTheory.ChartRestriction.DS.Lap.LemK.DualRepresentationReversal.gapLap_rev <;> assumption
 
 theorem root_rev (a b x : Fin n) : root (Fin.rev b) (Fin.rev a) x = -root a b (Fin.rev x) := by
   have e : ∀ i j : Fin n, (j = Fin.rev i ↔ Fin.rev j = i) := fun i j => by
@@ -166,6 +159,7 @@ theorem cone_rev {β : Fin n → ℝ} (h : InRootCone (fun a => -β (Fin.rev a))
 end Wt
 
 end ReciprocityTheory.ChartRestriction.DS.Lap.LemK.TwistedDualLemmas
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.DualLowestKTypeOfStandard

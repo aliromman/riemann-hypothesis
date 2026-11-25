@@ -97,10 +97,11 @@ theorem exists_frob_mat (hm : ∀ m : Ideal W.EE, m.IsMaximal → m.map E.ioE.to
 end GlobalTheory.WachTensor
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsBaseChangeSpan
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsBaseChangeSpan
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc TensorProduct GlobalTheory.NL Formalism.MainNotions.DeltaInvariantLattices GlobalTheory.WachTensor
 
+noncomputable section
 
 namespace GlobalTheory.NL.BaseField
 
@@ -276,7 +277,7 @@ theorem io_mem (hO : Function.Injective (algebraMap O LL)) (hd : Descends E') (h
     rw [← e, ← ioE_γE E hO, hg, map_one]
     rfl
   · intro i
-    rw [Finset.sum_eq_single (i - 1) (fun j _ hj => by simp [hj]) (by simp), if_pos rfl, map_one, one_mul,
+    rw [Finset.sum_eq_single (i - 1) (fun j _ hj => by simp [hj]) (by simp), ite_eq_left rfl, map_one, one_mul,
       ← ioE_φE E hO, W.φE_ext]
     exact congrArg _ (congrArg _ (φA_letE W i).symm)
 
@@ -452,6 +453,7 @@ theorem N_eq (T : LocLat G Qp LL O) (T' : LocLat G' Qp LL O) (e : ↥T'.L.T ≃�
 end Generic
 
 end GlobalTheory.NL.BaseField
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitSumTensorDualOfCrys

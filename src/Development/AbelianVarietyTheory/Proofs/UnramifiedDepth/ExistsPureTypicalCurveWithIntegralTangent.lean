@@ -65,18 +65,21 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.AdjointEndPairMemGaugedCurveLogarithmsStatement, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PowExponentPartMemGaugedCurveLogarithms, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsPureTypicalCurveWithIntegralTangent
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.AdjointEndPairMemGaugedCurveLogarithmsStatement
 
 open scoped BigOperators
 open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.AdjointEndPairMemGaugedCurveLogarithmsStatement
 
 theorem _root_.GlobalTheory.T.adjointEndPair_mem_gaugedCurveLogarithms : ∀ (C : Type) [Field C] (V : VF C) (d : ℕ) [NeZero d] (I : Fin 2 → Type) [∀ g, Fintype (I g)] (κ : Type) [Fintype κ] (X : RawChart C d I κ), RLaw X V → ∀ g (M M' : Matrix κ κ C) (s : JJ I g → C), IsEnd X V M M' → (∀ q, V.Ge 0 (s q)) → (∀ q, M'.mulVec (X.u (1 - g) q) = s q • X.u (1 - g) q) → ∀ a ∈ Cv X V g, ((fun i => ∑ j, M i j • a.1 j, fun q => s q • a.2 q) : ((κ → PowerSeries C) × (JJ I g → PowerSeries C))) ∈ Cv X V g := by
   first | exact @GlobalTheory.RowLaw.CvEnd.end_mem_Cv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PowExponentPartMemGaugedCurveLogarithms
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PowExponentPartMemGaugedCurveLogarithms
+
+open scoped BigOperators
+open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
+
+noncomputable section
 
 namespace GlobalTheory.RowLaw.TypPart
 
@@ -167,7 +170,7 @@ theorem filt_congr {P Q : ℕ → Prop} (h : ∀ m, P m ↔ Q m) (f : PowerSerie
 
 theorem filt_true {P : ℕ → Prop} (h : ∀ m, P m) (f : PowerSeries C) : filt P f = f := by
   ext m
-  rw [coeff_filt, if_pos (h m)]
+  rw [coeff_filt, ite_eq_left (h m)]
 
 def Good (l n m : ℕ) : Prop := ∀ p < n, p.Prime → p ≠ l → ¬ p ∣ m
 
@@ -177,10 +180,10 @@ theorem coeff_filt_good {l : ℕ} (hl : l.Prime) (hl2 : l ≠ 2) (f : PowerSerie
   unfold typ
   by_cases hm : ∃ s, l ^ s = m
   · obtain ⟨s, rfl⟩ := hm
-    rw [coeff_tyS_pow hl.two_le, if_pos]
+    rw [coeff_tyS_pow hl.two_le, ite_eq_left]
     intro p _ hp hpl hd
     exact hpl ((Nat.prime_dvd_prime_iff_eq hp hl).1 (hp.dvd_of_dvd_pow hd))
-  · rw [coeff_tyS_of_ne _ m (fun s hs => hm ⟨s, hs⟩), if_neg]
+  · rw [coeff_tyS_of_ne _ m (fun s hs => hm ⟨s, hs⟩), ite_eq_right]
     intro hg
     rcases Nat.eq_zero_or_pos m with rfl | hpos
     · exact hg 2 (by omega) Nat.prime_two (Ne.symm hl2) (dvd_zero 2)
@@ -268,8 +271,14 @@ theorem GlobalTheory.RowLaw.typ_mem_Cv : ∀ (C : Type) [Field C] (V : VF C) (d 
   · exact coeff_filt_good V.l_prime hX.odd _ m n hn
   · exact coeff_filt_good V.l_prime hX.odd _ m n hn
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsPureTypicalCurveWithIntegralTangent
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsPureTypicalCurveWithIntegralTangent
+
+noncomputable section
+
+open scoped BigOperators
+open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.RowLaw.PureTypical
 
@@ -404,8 +413,8 @@ theorem exists_start (hR : RLaw X V) (hP : HasProj X V) (g : Fin 2) (w : I g →
   have hlg1 : ∀ i j, MvPowerSeries.coeff (Finsupp.single j 1) (X.lg i) = if j = i then 1 else 0 := fun i j => by
     rw [hR.lin i _ (by rw [Finsupp.degree_single]), MvPowerSeries.coeff_X]
     by_cases hji : j = i
-    · rw [hji, if_pos rfl, if_pos rfl]
-    · rw [if_neg hji, if_neg]
+    · rw [hji, ite_eq_left rfl, ite_eq_left rfl]
+    · rw [ite_eq_right hji, ite_eq_right]
       intro h
       exact hji (Finsupp.single_left_injective one_ne_zero h)
   have h0 : ((fun i => alongCv γ (X.lg i), fun q => 0 - alongCv γ (X.sg (X.u (1 - g) q))) :
@@ -576,13 +585,13 @@ theorem exists_pure_typical : ∀ (C : Type) [Field C] (V : VF C) (d : ℕ) [NeZ
     cases n with
     | inl c =>
       have hn' : X.ty g c ≠ a + i := hn
-      simp only [Sum.elim_inl, hb', if_neg hn']
+      simp only [Sum.elim_inl, hb', ite_eq_right hn']
     | inr q =>
       have hn' : X.ty (1 - g) q ≠ a + i := hn
-      simp only [Sum.elim_inr, he', if_neg hn', zero_add]
+      simp only [Sum.elim_inr, he', ite_eq_right hn', zero_add]
       refine Finset.sum_eq_zero fun c _ => ?_
       split_ifs with hc
-      · simp only [hb', hc, if_neg hn', mul_zero]
+      · simp only [hb', hc, ite_eq_right hn', mul_zero]
       · rfl
 
 end GlobalTheory.RowLaw

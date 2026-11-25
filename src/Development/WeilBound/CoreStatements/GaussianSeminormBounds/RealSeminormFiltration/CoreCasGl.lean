@@ -16,13 +16,11 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockDegreeOne.ExistsMon
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCasA, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCasC, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCas, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCasGl
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCasA
 
 
 open Matrix
 open scoped InnerProductSpace
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCasA
 
 namespace PositivityTheory.KReal
 
@@ -226,6 +224,10 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCasC
 
+
+open Matrix
+open scoped InnerProductSpace
+
 namespace PositivityTheory.KReal
 
 section SlopeTestRemainingChoices
@@ -415,7 +417,13 @@ end PositivityTheory.KReal
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCas
+section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCas
+@[expose] public section
+
+noncomputable section
+
+open Matrix
+open scoped InnerProductSpace
 
 namespace PositivityTheory.KReal
 
@@ -503,7 +511,7 @@ theorem cas_bound {K I : Type} [Fintype K] [Fintype I] [DecidableEq I] (σ : K �
                 rw [List.getElem_set, List.getElem_ofFn, List.getElem_ofFn]
                 by_cases hm : (s : ℕ) = m
                 · subst hm; simp
-                · rw [if_neg hm, Function.update_of_ne]
+                · rw [ite_eq_right hm, Function.update_of_ne]
                   intro h; exact hm (by rw [← h])
             rw [e1]
             exact (List.set_perm_cons_eraseIdx (by simpa using s.2) i).trans
@@ -559,12 +567,13 @@ theorem cas_bound {K I : Type} [Fintype K] [Fintype I] [DecidableEq I] (σ : K �
 
 end PositivityTheory.KReal
 
+end
+end -- clump:auto
 end -- clump:auto
 
-end -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCasGl
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCasGl
-
+noncomputable section
 
 open ReciprocityTheory.ThetaSummability.Real ReciprocityTheory.ChartRestriction.G.ThK.Real FockH1Action MvPolynomial Matrix
 open scoped InnerProductSpace
@@ -615,13 +624,13 @@ theorem Eab_mul_apply (a b e f : Ix r s) (Z : Mat r s) :
     (Eab a b * Z) e f = if e = a then Z b f else 0 := by
   by_cases h : e = a
   · subst h; simp [Eab]
-  · rw [if_neg h]; exact Matrix.single_mul_apply_of_ne _ _ _ _ _ h _
+  · rw [ite_eq_right h]; exact Matrix.single_mul_apply_of_ne _ _ _ _ _ h _
 
 theorem mul_Eab_apply (a b e f : Ix r s) (Z : Mat r s) :
     (Z * Eab a b) e f = if f = b then Z e a else 0 := by
   by_cases h : f = b
   · subst h; simp [Eab]
-  · rw [if_neg h]; exact Matrix.mul_single_apply_of_ne _ _ _ _ _ h _
+  · rw [ite_eq_right h]; exact Matrix.mul_single_apply_of_ne _ _ _ _ _ h _
 
 theorem Eab_apply (a b e f : Ix r s) : (Eab a b : Mat r s) e f = if a = e ∧ b = f then 1 else 0 := by
   simp [Eab, Matrix.single_apply]
@@ -641,10 +650,10 @@ theorem pc_ad {a b : Ix r s} (h : sameBlock a b) {Z : Mat r s} (hZ : IsPC Z) :
   rw [_root_.PI.FockOneDegW.Core.side_sb] at h hef
   rw [Matrix.sub_apply, Eab_mul_apply, mul_Eab_apply]
   by_cases h1 : e = a <;> by_cases h2 : f = b
-  · rw [if_pos h1, if_pos h2, hb b f (by rw [← h2]), hb e a (by rw [h1]), sub_zero]
-  · rw [if_pos h1, if_neg h2, hb b f (by rw [← h, ← h1, hef]), sub_zero]
-  · rw [if_neg h1, if_pos h2, hb e a (by rw [hef, h2, ← h]), sub_zero]
-  · rw [if_neg h1, if_neg h2, sub_zero]
+  · rw [ite_eq_left h1, ite_eq_left h2, hb b f (by rw [← h2]), hb e a (by rw [h1]), sub_zero]
+  · rw [ite_eq_left h1, ite_eq_right h2, hb b f (by rw [← h, ← h1, hef]), sub_zero]
+  · rw [ite_eq_right h1, ite_eq_left h2, hb e a (by rw [hef, h2, ← h]), sub_zero]
+  · rw [ite_eq_right h1, ite_eq_right h2, sub_zero]
 
 theorem kc_mul {Z W : Mat r s} (hZ : IsPC Z) (hW : IsPC W) : IsKC (Z * W) := by
   intro a b hab
@@ -796,6 +805,7 @@ theorem cas_bound_gl {r s : ℕ} {M : Type} [AddCommGroup M] [Module ℂ M] (act
 
 end PositivityTheory.KReal
 
+end
 
 -- clump-header: {"m": "Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCasA", "h": "module\n\npublic import Mathlib.Analysis.CStarAlgebra.Module.Constructions\npublic import Mathlib.Analysis.InnerProductSpace.PiL2\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\npublic import Mathlib.Analysis.InnerProductSpace.Spectrum\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCasC", "h": "module\n\npublic import Mathlib.Analysis.CStarAlgebra.Module.Constructions\npublic import Mathlib.CategoryTheory.Category.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

@@ -1,5 +1,6 @@
 module
 
+import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CcGASmoothAndRderMem
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsMapInfFinEquivEqProd
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemLpLiftL2DiscreteQuotientOnCompact
@@ -353,15 +354,7 @@ namespace GlobalTheory.HSAbs
 
 theorem coeFn_finsum {X : Type} [MeasurableSpace X] {ν : Measure X} {κ : Type} (s : Finset κ)
     (f : κ → Lp ℂ 2 ν) : (⇑(∑ i ∈ s, f i) : X → ℂ) =ᵐ[ν] fun x => ∑ i ∈ s, f i x := by
-  classical
-  induction s using Finset.induction_on with
-  | empty =>
-    simp only [Finset.sum_empty]
-    exact Lp.coeFn_zero ℂ 2 ν
-  | @insert a s ha ih =>
-    rw [Finset.sum_insert ha]
-    filter_upwards [Lp.coeFn_add (f a) (∑ i ∈ s, f i), ih] with x h1 h2
-    rw [h1, Pi.add_apply, h2, Finset.sum_insert ha]
+  apply _root_.GlobalTheory.CompanionTheory.OpEx.coeFn_sum_ae <;> assumption
 
 theorem pointwise {X : Type} [MeasurableSpace X] {ν : Measure X}
     {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]

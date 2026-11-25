@@ -987,7 +987,6 @@ theorem GlobalTheory.TypeSum.CoefClos.eq_coef_of_closure : GlobalTheory.Publishe
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.EqMatrixCoeffOfLocallyUniformLimitKFiniteStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

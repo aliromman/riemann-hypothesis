@@ -21,8 +21,9 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.DistinguishedUnitIdeals.DistinguishedOrderProofs.DescentEstimateDownUp, Formalism.DistinguishedUnitIdeals.DistinguishedOrderProofs.BaseGamC, Formalism.DistinguishedUnitIdeals.FinalE, Formalism.DistinguishedUnitIdeals.DistinguishedOrderProofs.ThmEFull
 
-@[expose] public noncomputable section -- clump member: Formalism.DistinguishedUnitIdeals.DistinguishedOrderProofs.DescentEstimateDownUp
+@[expose] public section -- clump member: Formalism.DistinguishedUnitIdeals.DistinguishedOrderProofs.DescentEstimateDownUp
 
+noncomputable section
 
 namespace Formalism.ExponentWindows
 
@@ -256,7 +257,7 @@ theorem extF_mem_of_levelCond {ϖ : O} (hϖ : Irreducible ϖ) {r : ℕ} (φ : (F
     obtain ⟨N, z, hz⟩ := h
     have e := congrArg (extF φ) hz
     simp only [map_smul, map_sub, extF_cst, smul_eq_mul] at e
-    rw [if_neg (by decide)]
+    rw [ite_eq_right (by decide)]
     apply mem_span_pow_of_uniformizer_mul O ϖ hϖ dd q hq _ (N + k)
     rw [Ideal.mem_span_singleton]
     exact ⟨extF φ z + PowerSeries.C (ϖ ^ N) * R * PowerSeries.C (φ d), by
@@ -265,7 +266,7 @@ theorem extF_mem_of_levelCond {ϖ : O} (hϖ : Irreducible ϖ) {r : ℕ} (φ : (F
     obtain ⟨N, c, z, hc, hz⟩ := h
     have e := congrArg (extF φ) hz
     simp only [map_smul, map_sub, map_add (f := _), extF_cst, smul_eq_mul] at e
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
     have hH : q ^ H = q ^ (H - bb) * q ^ bb := by rw [← pow_add, Nat.sub_add_cancel (hkb rfl)]
     apply mem_span_pow_of_uniformizer_mul O ϖ hϖ dd q hq _ (N + k)
     rw [Ideal.mem_span_singleton]
@@ -276,7 +277,7 @@ theorem extF_mem_of_levelCond {ϖ : O} (hϖ : Irreducible ϖ) {r : ℕ} (φ : (F
     obtain ⟨N, c, z, hc, hz⟩ := h
     have e := congrArg (extF φ) hz
     simp only [map_smul, map_sub, map_add (f := _), extF_cst, smul_eq_mul] at e
-    rw [if_neg (by decide)]
+    rw [ite_eq_right (by decide)]
     apply mem_span_pow_of_uniformizer_mul O ϖ hϖ dd q hq _ (N + k)
     rw [Ideal.mem_span_singleton]
     exact ⟨extF φ c + q ^ bb * extF φ z + PowerSeries.C (ϖ ^ N) * R * PowerSeries.C (φ d), by
@@ -464,7 +465,7 @@ theorem descent_estimate_down : MD := by
         by_cases h : s = s₁
         · subst h; rw [hk₁]; decide
         · rw [hthin s (Finset.mem_range.1 hs) h]; decide
-      rw [if_neg this, pow_zero]
+      rw [ite_eq_right this, pow_zero]
     rw [hB, one_mul] at hw
     have hw1 : PowerSeries.C (ϖ ^ k) * w - PowerSeries.C (φ d) ∈ Ideal.span {p s₁} :=
       Ideal.span_singleton_le_span_singleton.mpr (dvd_pow_self _ hb) hw
@@ -493,12 +494,12 @@ theorem descent_estimate_down_up : MDU := by
     have hB : ∏ s ∈ Finset.range ell, p s ^ (if kind s = Kind.up then b s else 0) =
         p s₀ ^ b s₀ := by
       rw [Finset.prod_eq_single_of_mem s₀ (Finset.mem_range.2 hs₀) (fun s hs hne => ?_)]
-      · rw [if_pos hk₀]
+      · rw [ite_eq_left hk₀]
       · have : kind s ≠ Kind.up := by
           by_cases h : s = s₁
           · subst h; rw [hk₁]; decide
           · rw [hthin s (Finset.mem_range.1 hs) hne h]; decide
-        rw [if_neg this, pow_zero]
+        rw [ite_eq_right this, pow_zero]
     rw [hB] at hw
     exact dvd_of_down_up hϖ h01 hb (hP.1 s₀ hs₀) (hP.1 s₁ hs₁) (φ d) k w hw
   · rintro ⟨lam, ν, hν, rfl⟩
@@ -507,6 +508,7 @@ theorem descent_estimate_down_up : MDU := by
 end Words
 
 end Formalism.ExponentWindows
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.DistinguishedUnitIdeals.DistinguishedOrderProofs.BaseGamC

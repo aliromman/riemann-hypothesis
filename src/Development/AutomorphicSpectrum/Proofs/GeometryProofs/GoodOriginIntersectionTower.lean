@@ -1018,11 +1018,12 @@ end LevelTowerAlt.Comparison₂
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PlurisubharmonicCones.LeviShift
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PlurisubharmonicCones.LeviShift
 
 open MeasureTheory Filter Topology ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P GlobalTheory.CompanionTheory.Ar.PB
 open scoped ContDiff
 
+noncomputable section
 
 namespace LevelTowerAlt.Comparison₂
 
@@ -1083,7 +1084,7 @@ theorem term_zero (A : FinHolAtlas e X) (Θ : Fin e → LocPot X) (L : LocPot X)
       have hc j := chartMeasure_integrable_integral A hP.some _ hpot hu2 j hg1.measurable
         (mIntegrableCont A _ hpot _ hg1)
       rw [hμ, integral_finsetSum_measure fun j _ => (hc j).1]
-      simp only [mInt, dif_pos hP, integralWith]
+      simp only [mInt, dite_eq_left hP, integralWith]
       refine Finset.sum_congr rfl fun j _ => ?_
       rw [(hc j).2]
       exact integral_congr_ae (Filter.Eventually.of_forall fun y => by ring)
@@ -1258,6 +1259,7 @@ theorem weak_zero (A : FinHolAtlas e X) (Θ L : LocPot X) (s : X → X → ℂ) 
 
 end LevelTowerAlt.Comparison₂
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PlurisubharmonicCones.OneSlot
 
@@ -1338,10 +1340,11 @@ theorem one_coord₂ (hBr : ResBridgeStatement) (hG : GoodProjExistsStatement) {
 end LevelTowerAlt.Comparison₂
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PlurisubharmonicCones.SmoothLogSub
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PlurisubharmonicCones.SmoothLogSub
 
 open Filter Topology ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cmp
 
+noncomputable section
 
 namespace LevelTowerAlt.Comparison₂
 
@@ -1482,7 +1485,7 @@ theorem replace_gen {II : IntersectionSystem} (hII : IsFullIntersectionSystem II
       by_cases h1 : i.succAbove k < i
       · simp [h1, hν]
       · by_cases h2 : q (i.succAbove k)
-        · simp only [h1, h2, not_false_eq_true, and_self, if_true, if_false]
+        · simp only [h1, h2, not_false_eq_true, and_self, ite_true, ite_false]
           exact _root_.RootFieldNumerics.Ii.combLine_single _ _
         · simp [h1, h2, hν]
     have hterm : ∀ u : Fin e → Option (Option σ), Tendsto (fun t => (∏ k, (μ k (u k) : ℝ)) *
@@ -1516,7 +1519,7 @@ theorem replace_gen {II : IntersectionSystem} (hII : IsFullIntersectionSystem II
         exacts [hc t h1 _, h2, hc t h1 _]
     have hiff : ∀ k : Fin e, i.succAbove k ≤ i ↔ i.succAbove k < i := fun k =>
       ⟨fun h => lt_of_le_of_ne h (Fin.succAbove_ne i k), le_of_lt⟩
-    simp only [lt_irrefl, le_refl, hi, if_true, if_false, hiff, hq i hi, ← hμ] at s₁ s₂
+    simp only [lt_irrefl, le_refl, hi, ite_true, ite_false, hiff, hq i hi, ← hμ] at s₁ s₂
     rw [s₁, s₂]
     have e₁ := ii_comb_snoc hII hP (l t) hl μ (some none)
     have e₂ := ii_comb_snoc hII hP (l t) hl μ none
@@ -1543,6 +1546,7 @@ theorem replace : Replace := by
     refine Fin.addCases (fun k => ?_) (fun k => ?_) k <;> simp
 
 end LevelTowerAlt.Comparison₂
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -1603,22 +1607,14 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.StokesLimitIffPosOfResK
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.StokesLimitIffPosOfResK
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.StokesCompare
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology MeasureTheory
 open GroundTheory.Heights₂.Heights.LowerBoundFree
-
-section Clauses
-
-variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
-  {II : IntersectionSystem} {Ψ : Type} [Fintype Ψ] {Ω : Type} [Field Ω] [Algebra ℚ Ω]
-  {E : Ψ → Type} [∀ τ, AddCommGroup (E τ)] [∀ τ, Module Ω (E τ)]
-  {D : ComponentData II Ψ K ι Ω E} {O Lt : Type} [CommRing O] [AddCommGroup Lt] [Module O Lt]
-
-end Clauses
 
 section Mass
 
@@ -1643,6 +1639,7 @@ theorem degMu_nonneg (X : ComponentSetting D O Lt) : 0 ≤ degMu X.H := by
 end Mass
 
 end GlobalTheory.CompanionTheory.StokesCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GoodOriginIntersectionTower

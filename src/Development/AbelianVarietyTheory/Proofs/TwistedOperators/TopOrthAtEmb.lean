@@ -67,8 +67,9 @@ import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.WeilDatumD
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.IndefR Formalism.IndefR.Links GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.ChiGrid GlobalTheory.Unf GlobalTheory.FunObj GlobalTheory.RowUnf GlobalTheory.RowChain
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WittRankZeroEmbeddingMemLatticeCongruenceIff
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WittRankZeroEmbeddingMemLatticeCongruenceIff
 
+noncomputable section
 namespace GlobalTheory.RowVolZero
 
 theorem transport_haar_eq {G H : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
@@ -229,8 +230,8 @@ theorem vol_rankZero : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G 
   have hneg : Node.neg D.R.m (.grid D.R.m (j + 1)) = 0 := by
     show (D.R.m - (j + 1)) / 2 = 0
     omega
-  rw [Vol.IsAt, if_pos hneg] at hg0
-  rw [Vol.IsAt, if_pos (show Node.neg D.R.m (.top (j + 1)) = 0 from rfl)] at ht0
+  rw [Vol.IsAt, ite_eq_left hneg] at hg0
+  rw [Vol.IsAt, ite_eq_left (show Node.neg D.R.m (.top (j + 1)) = 0 from rfl)] at ht0
   obtain ⟨hgm, hgf⟩ := hg0
   obtain ⟨htm, htf⟩ := ht0
   obtain ⟨_, _, _, _, _, _, _⟩ := GlobalTheory.Mem.AdelicGroupTop.adelic_unitary_topology D (G.V (.grid D.R.m (j + 1)))
@@ -269,6 +270,7 @@ theorem vol_rankZero : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G 
     (fun y hy => d.wittDecomp_anisotropicEmbedding_mem_rationalPoints hy) _ _ hmeas _ hgf _ htf f hf
 
 end GlobalTheory.RowVolZero
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TopOrthAtEmb

@@ -60,7 +60,7 @@ def IsAdapted (O : Subring R) : Prop :=
 end GroundTheory.Automorphic
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.AdelicUnitaryGroups.LatticeCompact
+@[expose] public section -- clump member: GroundTheory.AutomorphicForms.AdelicUnitaryGroups.LatticeCompact
 
 set_option linter.unusedSectionVars false
 
@@ -68,6 +68,7 @@ namespace GroundTheory.Automorphic
 
 open Module Matrix TensorProduct Topology
 
+noncomputable section
 
 attribute [local instance] tensorTopology finite_of_isQuadraticExtension isModuleTopology_tensor
   isTopologicalRing_tensor
@@ -106,16 +107,7 @@ theorem continuous_unitaryMat_mulVec :
     (Units.continuous_val.comp continuous_subtype_val).comp continuous_fst
   exact h1.matrix_mulVec continuous_snd
 
-section NumberField
-
-open NumberField IsDedekindDomain
-
-variable {K : Type*} [Field K] [NumberField K] {E : Type*} [CommRing E] [Algebra K E]
-  [Algebra.IsQuadraticExtension K E] {H : Matrix ι ι E} (b : Basis κ K E)
-  (v : HeightOneSpectrum (𝓞 K))
-
-end NumberField
-
+end
 
 end GroundTheory.Automorphic
 

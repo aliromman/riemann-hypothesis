@@ -57,13 +57,12 @@ theorem tau_tau (x : GG p) : tau p (tau p x) = x := by
 end Formalism.L2.SG.Pf.CountAt
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.TauSecondValue
 
+noncomputable section
 
 open scoped Classical
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.Pf.ProdE Formalism.L2.SG.Pf.ProdEP2Cut
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.TauSecondValue
 
 namespace Formalism.L2.SG.Pf.CountAt
 
@@ -113,7 +112,7 @@ theorem phi_smul (δ : ∀ p : PlF D, (D.s.atP p).Fp) (T T' : ℕ) (w : Point D.
     refine Formalism.L2.SG.Pf.FibQ.corner_fix p (fun a b h => (hx.1 a b).1 h) (fun a => (hx.1 a a).2 rfl)
       (fun a b h => (hu a b).1 h) (fun a => (hu a a).2 rfl) (fun a b h => ?_)
     simp only [Formalism.L2.SG.Pf.LocOrbSumPf.shM, Matrix.of_apply]
-    rw [if_neg h]
+    rw [ite_eq_right h]
   simp only [phi, smul_def, tau_second_value]
   show ((x.1 : GLp p) : MP p) * Z * ((x.2.unop : GLp p) : MP p) * Formalism.L2.SG.LsDatumB.sgnP p +
       Formalism.L2.SG.Pf.LocOrbSumPf.shM δ T T' p w =
@@ -135,8 +134,13 @@ theorem phi_inj (δ : ∀ p : PlF D, (D.s.atP p).Fp) (T T' : ℕ) (w : Point D.h
 
 end Formalism.L2.SG.Pf.CountAt
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.BaseAt
+
+
+open scoped Classical
+open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.Pf.ProdE Formalism.L2.SG.Pf.ProdEP2Cut
 
 namespace Formalism.L2.SG.Pf.CountAt
 

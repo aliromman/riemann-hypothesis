@@ -488,8 +488,10 @@ end GlobalTheory.Survey.PeriodBoundOfPlaceBound
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MemNonzeroPlacesOfResidueChar
+section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MemNonzeroPlacesOfResidueChar
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.Mem.Top.Bl.Model3
 
@@ -545,11 +547,13 @@ theorem type_mem (t : RowsT K w Z Wt p0) (v : B.places.Pl) (i : Fin 2) (hv : B.p
   have hm : 0 < B.R.m := by have := B.R.two_le_m; omega
   have z := fk_zero t v h ⟨0, hm⟩
   unfold FK at z
-  rw [if_pos ⟨i, hv⟩] at z
+  rw [ite_eq_left ⟨i, hv⟩] at z
   exact fTypeG_ne t.r.Y.kap 1 le_rfl hm z
 
 end GlobalTheory.Mem.Top.Bl.Model3
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TwistedAtAtMem

@@ -163,8 +163,9 @@ theorem eq_one_of_fix : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Nu
 end GlobalTheory.HL.StabFix
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitriangularStabilizerPointMatrixBlockDiagonal
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitriangularStabilizerPointMatrixBlockDiagonal
 
+noncomputable section
 
 namespace GlobalTheory.PointStab
 
@@ -191,10 +192,10 @@ theorem ptEntry_monomial {K : Type} [Field K] (bs : List (K × ℕ)) (hbs : ∀ 
     simp only [Formalism.L2.SG.RealObj.blkOf, ptEntry]
     by_cases h1 : a < m
     · have h2 : m - 1 - a < m := by omega
-      simp only [h1, h2, if_true]
+      simp only [h1, h2, ite_true]
       refine ⟨by omega, by omega, trivial, ht0, fun b hb => ?_⟩
       by_cases h3 : b < m
-      · simp only [h3, if_true, and_self]
+      · simp only [h3, ite_true, and_self]
         refine ⟨fun _ => le_refl _, fun _ => by omega, ?_⟩
         have : a + b + 1 = m ↔ b = m - 1 - a := by omega
         simp [this]
@@ -204,7 +205,7 @@ theorem ptEntry_monomial {K : Type} [Field K] (bs : List (K × ℕ)) (hbs : ∀ 
     · obtain ⟨e1, e2, e3, e0, e4⟩ := h (a - m) (by omega)
       have h2 : ¬ σ (a - m) + m < m := by omega
       have h4 : m ≤ a := by omega
-      simp only [h1, h2, if_false, Nat.add_sub_cancel, e2, e3]
+      simp only [h1, h2, ite_false, Nat.add_sub_cancel, e2, e3]
       refine ⟨by omega, by omega, trivial, e0, fun b hb => ?_⟩
       by_cases h3 : b < m
       · have h5 : ¬ m ≤ b := by omega
@@ -214,7 +215,7 @@ theorem ptEntry_monomial {K : Type} [Field K] (bs : List (K × ℕ)) (hbs : ∀ 
       · obtain ⟨f1, f2, f3⟩ := e4 (b - m) (by omega)
         have h5 : m ≤ b := by omega
         have h6 : b = σ (a - m) + m ↔ b - m = σ (a - m) := by omega
-        simp only [h3, h5, h4, if_false, h6, f3, and_self]
+        simp only [h3, h5, h4, ite_false, h6, f3, and_self]
         refine ⟨fun hab => ?_, fun hab => ?_, by simp⟩
         · have := f1 (by omega); omega
         · have := f2 (by omega); omega
@@ -332,6 +333,7 @@ theorem stab_blockDiag : ∀ {K : Type} [Field K] (sig : K →+* K), (∀ x, sig
     rw [e, Matrix.mul_assoc, hUs, Matrix.mul_one]
 
 end GlobalTheory.PointStab
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

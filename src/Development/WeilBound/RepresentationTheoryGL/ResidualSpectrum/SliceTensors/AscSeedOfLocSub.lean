@@ -98,13 +98,13 @@ end GlobalTheory.CompanionTheory.BZSeg
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.ResidualSpectrumHilbertSum.ResidualSpectrumTensors.LocalComponentGL
+section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.ResidualSpectrumHilbertSum.ResidualSpectrumTensors.LocalComponentGL
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Formalism.L2.Host
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CuspRep.CuspidalL2GL
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace PositivityTheory.RSHS.LocalComponentGL
 
@@ -135,6 +135,8 @@ theorem generic_unitarisable {a : ℕ} {π : CuspSub E a} (hu : π.IsUnitary) (h
 
 end PositivityTheory.RSHS.LocalComponentGL
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.IwasawaCompletion.SpehCosocleUc
@@ -206,13 +208,13 @@ end PositivityTheory.Rg.Rs.C3.UC
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.IwasawaCompletion.CharZeroCompletion
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.IwasawaCompletion.CharZeroCompletion
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.L2.Host
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace PositivityTheory.Rg.Rs.C3
 
@@ -250,6 +252,8 @@ theorem clause3Asc_holds (hL : LocSub) (hD : LocDual) : Clause3Asc :=
 
 end PositivityTheory.Rg.Rs.C3
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.AscAllOfRest

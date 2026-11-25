@@ -99,8 +99,9 @@ import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.WeightsBelow
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsShortThetaFamilyWithBlockPolynomialRules, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.LogTwoMulCountLeMulSize, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.SumLeFinsumOfSurjectsOntoFinsetStatement, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.IntegralityBoundOfFamilyContainingScaledThetaRul, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.IntegralityBoundOfFamilyContainingScaledThetaRulStatement, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.LowerBoundAtFramesFamilyWithScaledThetaRules, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsAdmissibleThetaLatticeGenerators
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsShortThetaFamilyWithBlockPolynomialRules
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsShortThetaFamilyWithBlockPolynomialRules
 
+noncomputable section
 
 namespace GlobalTheory.BlockTh
 
@@ -224,7 +225,7 @@ theorem theta_family_block : Formalism.MainNotions.ModuliIntegralCharts.H1.Chart
       have hs : (recB h.toLawsCore).supN j w σ (v q) = T.Ns j w σ (f q) := by
         change cutN T.C T.Ns j w σ (v q) = _
         dsimp only [cutN]
-        rw [if_pos hj]
+        rw [ite_eq_left hj]
       rw [hs]
       have h2 : ((Formalism.MainNotions.WeightAlgebra.DF w : ℕ) : ℝ) = Formalism.MainNotions.WeightAlgebra.absA w := by
         dsimp only [Formalism.MainNotions.WeightAlgebra.DF, Formalism.MainNotions.WeightAlgebra.degP, Formalism.MainNotions.WeightAlgebra.absA]
@@ -284,6 +285,7 @@ theorem theta_family_block : Formalism.MainNotions.ModuliIntegralCharts.H1.Chart
         linarith
 
 end GlobalTheory.BlockTh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.LogTwoMulCountLeMulSize
@@ -415,7 +417,7 @@ theorem i2iAt_of_containsTh : ChartIndepSt2 → ∀ (E : Type) [Field E] [Number
     rw [e, map_smulₛₗ]
     show σ s * rdU (U σ) (f q) k (FD.rmul x b) = _
     congr 1
-    exact dif_pos hbd
+    exact dite_eq_left hbd
   have hkey : (Real.pi⁻¹) ^ P₁.totalDegree * Pr.Jbound n ≤ ∑ j, recNrm (U σ) xR a n (wR j) k x ^ 2 := by
     have hl := lieFac_sq Dw xR hxR a _ hdeg
     have hL : (0 : ℝ) ≤ ((2 * Real.pi * xR)⁻¹) ^ P₁.totalDegree := by positivity

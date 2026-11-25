@@ -278,10 +278,11 @@ theorem isHW_πR (hz : inWb k r z) (hT : 0 < Tz k r z) (hB : IsFrameOf k r [z] B
 end CompanionTheory.D.Inhab.TypeExists
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.KhwExists
+@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.KhwExists
 
 open scoped InnerProductSpace
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.KHighestExists
 
@@ -364,7 +365,7 @@ theorem khwExists : CompanionTheory.D.DSIC.KHWExists := by
   · intro a
     have h := hw.1 (σ.symm a)
     simp only [Equiv.apply_symm_apply] at h
-    simp only [LinearMap.sub_apply, LinearMap.smul_apply, Module.End.one_apply, h, if_true, s, ← sub_smul]
+    simp only [LinearMap.sub_apply, LinearMap.smul_apply, Module.End.one_apply, h, ite_true, s, ← sub_smul]
     congr 1
     push_cast
     ring

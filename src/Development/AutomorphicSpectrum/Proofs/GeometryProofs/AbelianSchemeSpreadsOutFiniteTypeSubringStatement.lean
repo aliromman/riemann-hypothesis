@@ -15,10 +15,10 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeDescen
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianSchemeSpreadsOutFiniteTypeSubring
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianSchemeSpreadsOutFiniteTypeSubring
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Approx
 
@@ -45,6 +45,7 @@ theorem abelianScheme_descends_to_fg_subring : ∀ (R : Type) [CommRing R] (A : 
   GlobalTheory.AbelianLimit.abelianScheme_descends_to_fg_subring_anyDim
 
 end GlobalTheory.CompanionTheory.Ar.Approx
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianSchemeSpreadsOutFiniteTypeSubringStatement

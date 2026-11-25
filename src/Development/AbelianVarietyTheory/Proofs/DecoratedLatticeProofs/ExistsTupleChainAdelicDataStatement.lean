@@ -147,23 +147,12 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TameOnBaseCharacter
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TameOnBaseCharacter
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.MuLift
-
-section Ring
-
-end Ring
-
-section General
-
-open NumberField Formalism.L2.DIV
-open scoped TensorProduct
-
-variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-
-end General
 
 section Adelic
 
@@ -193,6 +182,8 @@ open scoped TensorProduct ComplexConjugate
 
 end GlobalTheory.MuLift
 
+end
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

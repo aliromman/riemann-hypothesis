@@ -15,10 +15,11 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdjointInverseTranslate
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdjointInverseTranslate.OperatorModel, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.AAInvTrans
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdjointInverseTranslate.OperatorModel
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdjointInverseTranslate.OperatorModel
 
 open Matrix Finset
 
+noncomputable section
 
 namespace AAInvW
 
@@ -110,10 +111,10 @@ lemma mRel_top (hH : HInvol H) {G : Matrix (Fin n) (Fin n) ℂ → E} {ψ : mSub
   refine ⟨?_, ?_⟩
   · by_cases hab : a = b
     · exact smooth_local n H E _ _
-        (fun x _ => by simp only [Formalism.QuantumDeterminants.Top, if_pos hab]; exact add_comm _ _)
+        (fun x _ => by simp only [Formalism.QuantumDeterminants.Top, ite_eq_left hab]; exact add_comm _ _)
         (smooth_linear' n H E _ _ v hE hs)
     · exact smooth_local n H E _ _
-        (fun x _ => by simp only [Formalism.QuantumDeterminants.Top, if_neg hab, zero_add]) hE
+        (fun x _ => by simp only [Formalism.QuantumDeterminants.Top, ite_eq_right hab, zero_add]) hE
   · intro y hy
     have h1 : EabH H a b G y = EabH H a b (mExt ψ.1) y :=
       eab_h_local n H E _ _ a b y hH (fun x hx => by rw [hv x hx, mExt_pos hx]) hy
@@ -193,6 +194,7 @@ theorem operator_model : OpModel := by
       exact mE_rho hH s hs a b
 
 end AAInvW
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.AAInvTrans

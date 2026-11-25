@@ -9,12 +9,11 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCou
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CornerRight, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.UnipotentMatrixMapSecondComponent
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CornerRight
 
+noncomputable section
 
 open Matrix
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CornerRight
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.CntLocal Formalism.L2.SG.Pf.PCount
 
 namespace Formalism.L2.SG.Pf.Coef.SplitCoefficientComponents
@@ -30,9 +29,9 @@ theorem corner_left (L : Matrix (Fin (r + 1)) (Fin (r + 1)) K) (hL : ∀ i, L i 
     (hcj : cj 1 = 1) (g : K) : L * cornerM (r := r) g * cjT cj L = cornerM g := by
   ext i j
   simp only [Matrix.mul_apply, cornerM, Matrix.of_apply, cjT, Matrix.transpose_apply, Matrix.map_apply]
-  simp only [mul_ite, mul_zero, ite_and, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [mul_ite, mul_zero, ite_and, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   rw [Finset.sum_eq_single (Fin.last r)]
-  · simp only [if_true]
+  · simp only [ite_true]
     rw [hL i, hL j]
     by_cases hi : i = Fin.last r <;> by_cases hj : j = Fin.last r <;> simp [hi, hj, hcj]
   · intro b _ hb; simp [hb]
@@ -42,9 +41,9 @@ theorem corner_right (P : Matrix (Fin (r + 1)) (Fin (r + 1)) K) (hP : ∀ j, P (
     (hcj : cj 1 = 1) (g : K) : cjT cj P * cornerM (r := r) g * P = cornerM g := by
   ext i j
   simp only [Matrix.mul_apply, cornerM, Matrix.of_apply, cjT, Matrix.transpose_apply, Matrix.map_apply]
-  simp only [mul_ite, mul_zero, ite_and, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [mul_ite, mul_zero, ite_and, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   rw [hP i]
-  simp only [ite_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [ite_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   rw [hP j]
   by_cases hi : i = Fin.last r <;> by_cases hj : j = Fin.last r <;> simp [hi, hj, hcj]
 
@@ -58,8 +57,8 @@ theorem gDiag_corner (p : PlF D) (T : D.host.E) :
   ext a b
   simp only [gDiag, cornerM, Matrix.of_apply]
   by_cases h : a = Fin.last D.R.rS ∧ b = Fin.last D.R.rS
-  · rw [if_pos h, if_pos h, h.1, h.2]
-  · rw [if_neg h, if_neg h, map_zero, mul_zero]
+  · rw [ite_eq_left h, ite_eq_left h, h.1, h.2]
+  · rw [ite_eq_right h, ite_eq_right h, map_zero, mul_zero]
 
 theorem gaCong_L (hA : ∀ q, Agree δ M q) (p : PlF D) (hs : (M p).split = none) (T T' : D.host.E) (Z Z' : MatZ D)
     (L P : Matrix (Fin (D.R.rS + 1)) (Fin (D.R.rS + 1)) (D.s.atP p).Ep)
@@ -102,8 +101,12 @@ theorem gaCong_L (hA : ∀ q, Agree δ M q) (p : PlF D) (hs : (M p).split = none
 
 end Formalism.L2.SG.Pf.Coef.SplitCoefficientComponents
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.UnipotentMatrixMapSecondComponent
+
+
+open Matrix
 
 namespace Formalism.L2.SG.Pf.Coef.SplitCoefficientComponents
 

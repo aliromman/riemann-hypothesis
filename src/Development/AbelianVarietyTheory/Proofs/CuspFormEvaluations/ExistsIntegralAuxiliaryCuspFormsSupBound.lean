@@ -74,8 +74,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsAuxiliaryWeightsAtRunWeights, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.NoBaseComponentShortPolynomialGenerator, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsIntegralThetaCombinationNonzeroOnComponent, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsIntegralAuxiliaryCuspFormsSupBound
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsAuxiliaryWeightsAtRunWeights
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsAuxiliaryWeightsAtRunWeights
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.DIV.Cons Formalism.MainNotions.Gaps Formalism.L2.Pj GlobalTheory.RunIn
 
@@ -202,12 +203,12 @@ theorem exists_auxiliaryWeights_at_runWeights : ∀ (D : D7) (B : WeightFamilies
       (hFP τ) (hgP τ) ?_ ?_
     · intro i hi
       have hl := hLP τ i
-      rw [if_pos hi] at hl
+      rw [ite_eq_left hi] at hl
       exact hl
     · intro i hi
       have hn : ¬ (i.1 + 1 < (D.R.sigW j).1) := by omega
       have hl := hLP τ i
-      rw [if_neg hn] at hl
+      rw [ite_eq_right hn] at hl
       unfold gapZ at hl
       rw [dite_eq_right hn] at hl
       have hk := le_mul_fdiv_sub_of_sq_le (ka.aP τ i) (((WeightFamilies.dimY D j : ℤ) + 2) * nW + 2 * D.R.r) Tn
@@ -223,12 +224,12 @@ theorem exists_auxiliaryWeights_at_runWeights : ∀ (D : D7) (B : WeightFamilies
       (hFM τ) (hgM τ) ?_ ?_
     · intro i hi
       have hl := hLM τ i
-      rw [if_pos hi] at hl
+      rw [ite_eq_left hi] at hl
       exact hl
     · intro i hi
       have hn : ¬ (i.1 + 1 < (D.R.sigW j).2) := by omega
       have hl := hLM τ i
-      rw [if_neg hn] at hl
+      rw [ite_eq_right hn] at hl
       unfold gapZ at hl
       rw [dite_eq_right hn] at hl
       have hk := le_mul_fdiv_sub_of_sq_le (ka.aM τ i) 0 Tn (WeightFamilies.dimY D j) (by positivity) h40z
@@ -261,6 +262,7 @@ theorem exists_auxiliaryWeights_at_runWeights : ∀ (D : D7) (B : WeightFamilies
     omega
 
 end GlobalTheory.AuxiliaryWeightsExistence
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.NoBaseComponentShortPolynomialGenerator
@@ -337,8 +339,9 @@ theorem noBase : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartIndepSt2 →
 end GlobalTheory.NoBase
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsIntegralThetaCombinationNonzeroOnComponent
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsIntegralThetaCombinationNonzeroOnComponent
 
+noncomputable section
 
 namespace GlobalTheory.ThetaComb
 
@@ -480,7 +483,7 @@ theorem exists_integral_theta_nonzero_on_components : Formalism.MainNotions.Modu
     exact Submodule.subset_span (hfth (e.symm i))
   have hsupF : ∀ σ i, Real.log ((recB h.toLawsCore).supN j w σ (Fc i)) ≤ 400 * Zb D large₂ * w.size := by
     intro σ i
-    simp only [Formalism.L2.Pj.cutN, if_pos hj]
+    simp only [Formalism.L2.Pj.cutN, ite_eq_left hj]
     exact hsupb σ (e.symm i)
   obtain ⟨th, hth, hρ, hsup⟩ := exists_mem_Mlat_ne_zero (recPJ h j hj) hinj EX w hInt _ Fc hmem
     (400 * Zb D large₂ * w.size) hb hsupF T.σ₀
@@ -497,9 +500,11 @@ theorem exists_integral_theta_nonzero_on_components : Formalism.MainNotions.Modu
 
 end GlobalTheory.ThetaComb
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsIntegralAuxiliaryCuspFormsSupBound
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsIntegralAuxiliaryCuspFormsSupBound
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.DIV.Cons Formalism.MainNotions.Gaps Formalism.L2.Pj GlobalTheory.RunIn ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
@@ -520,7 +525,7 @@ theorem auxiliaryWeights_last_entry_pos {D : D7} {B : WeightFamilies.Prov D} {P 
     intro τ i hi
     have hg := hLP τ i
     have hlt : ¬ (i.1 + 1 < (D.R.sigW j).1) := by omega
-    simp only [gapZ, hlt, dif_neg, if_neg, not_false_eq_true] at hg
+    simp only [gapZ, hlt, dite_eq_right, ite_eq_right, not_false_eq_true] at hg
     have ha : 2 * (Tn : ℝ) ^ 2 ≤ (ka.aP τ i : ℝ) := by
       have := h6 τ i hi
       linarith

@@ -10,13 +10,11 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarP
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabNDenseFin, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.AdelicHermitianHyperbolicEAnisotropicEqZero
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabNDenseFin
 
 
 open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting
 open scoped Classical TensorProduct
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabNDenseFin
 
 namespace Formalism.L2.SG.Pf.SlabNDensePf
 
@@ -228,7 +226,12 @@ end Star
 end Formalism.L2.SG.Pf.SlabNDensePf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.AdelicHermitianHyperbolicEAnisotropicEqZero
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.AdelicHermitianHyperbolicEAnisotropicEqZero
+
+noncomputable section
+
+open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting
+open scoped Classical TensorProduct
 
 namespace Formalism.L2.SG.Pf.SlabNDensePf
 
@@ -307,7 +310,7 @@ theorem Bf'_mulVec_supp (S : Set (Fin D.R.rS)) {y : VA X.B.I}
     obtain ⟨b, hb, rfl⟩ := hx
     intro k hk
     show (Bf' X *ᵥ incl X.B.I (bv X (Sum.inl b))) k = 0
-    rw [Bf'_incl, Pi.single_apply, if_neg]
+    rw [Bf'_incl, Pi.single_apply, ite_eq_right]
     rintro rfl
     exact hk ⟨b, hb, rfl⟩
   | zero => intro k _; simp

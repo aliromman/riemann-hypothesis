@@ -23,8 +23,9 @@ def GramStdND : Prop :=
 end Formalism.L2.SG.Pf.RescaleCore
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.Rescale
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.Rescale
 
+noncomputable section
 
 open MeasureTheory NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.SG.Sub Matrix
 
@@ -69,7 +70,7 @@ theorem standard_gram_nondegenerate : Formalism.L2.SG.Pf.RescaleCore.GramStdND :
     have h := hrow (Fin.castAdd r (Fin.castSucc a))
     rw [hsum, tE] at h
     simp only [hee, zero_mul, Finset.sum_const_zero, zero_add, hez, hef, ite_mul, one_mul,
-      Finset.sum_ite_eq, Finset.mem_univ, if_true] at h
+      Finset.sum_ite_eq, Finset.mem_univ, ite_true] at h
     exact h
   have hze : ∀ b, hE σ J P.z (P.e b) = 0 := fun b => by rw [hE_swap σ J hσ hJ, hez, map_zero]
   have hzf : ∀ b, hE σ J P.z (P.f b) = 0 := fun b => by rw [hE_swap σ J hσ hJ, hfz, map_zero]
@@ -90,7 +91,7 @@ theorem standard_gram_nondegenerate : Formalism.L2.SG.Pf.RescaleCore.GramStdND :
     have h := hrow (Fin.natAdd (r + 1) a)
     rw [hsum, tF] at h
     simp only [hfe, hfz', hff, zero_mul, Finset.sum_const_zero, add_zero, ite_mul, one_mul, zero_mul,
-      Finset.sum_ite_eq', Finset.mem_univ, if_true] at h
+      Finset.sum_ite_eq', Finset.mem_univ, ite_true] at h
     exact h
   apply hv0
   funext i

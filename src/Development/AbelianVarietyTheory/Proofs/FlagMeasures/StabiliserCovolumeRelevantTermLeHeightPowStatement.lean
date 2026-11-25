@@ -194,10 +194,13 @@ theorem zx_mul : ∀ (D : D7) (X : HidaSetting D) (u u' : D.what₂.Word) (g γ 
 end GlobalTheory.ZxMul
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FrameMatrixMemUnipotentStabilizerFrameGram
+section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FrameMatrixMemUnipotentStabilizerFrameGram
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopTieOf
 open Matrix
+
+noncomputable section
 
 open scoped Classical
 
@@ -314,7 +317,7 @@ theorem exists_isUpUni_isMatOn {e : Fin r → Fin n → ℂ} {z : Fin n → ℂ}
       have e1 : ∑ x : Fin r, (1 : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ) (Fin.castSucc x) (Fin.castSucc a) • e x
           = e a := by
         simp only [Matrix.one_apply, Fin.castSucc_inj, ite_smul, one_smul, zero_smul,
-          Finset.sum_ite_eq', Finset.mem_univ, if_true]
+          Finset.sum_ite_eq', Finset.mem_univ, ite_true]
       rw [e1, ← hcae a, Matrix.sub_mulVec, Matrix.one_mulVec, add_sub_cancel]
 
 end GlobalTheory.FrameStab
@@ -338,9 +341,14 @@ theorem frameMat_mem_stabU : ∀ (D : D7) (X : HidaSetting D) (u u' : D.what₂.
 
 end GlobalTheory.FrameStab
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.MeasurePreservingAffine
+section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.MeasurePreservingAffine
+@[expose] public section
+
+noncomputable section
 
 open MeasureTheory Matrix Formalism.MainNotions.S GlobalTheory.LoopV
 open scoped Classical
@@ -371,14 +379,14 @@ theorem ofRoots_eq (R : Finset (Fin N × Fin N)) (hR : ∀ q ∈ R, q.1 < q.2) (
   · rw [dite_eq_left h, Matrix.one_apply_ne (hR _ h).ne, zero_add, Finset.sum_eq_single ⟨(i, j), h⟩]
     · simp
     · intro q _ hq
-      rw [if_neg]
+      rw [ite_eq_right]
       intro h'
       exact hq (Subtype.ext h')
     · intro h'
       exact absurd (Finset.mem_univ _) h'
   · rw [dite_eq_right h, Finset.sum_eq_zero, add_zero, Matrix.one_apply]
     intro q _
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h'
     apply h
     rw [← h']
@@ -440,14 +448,15 @@ theorem measurePreserving_mul_pi {ι : Type*} [Fintype ι] (R : Finset (Fin N ×
 
 end GlobalTheory.LoopVol
 
+end
+end -- clump:auto
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalBesselFrameRealPlaceLinearIndependent
 
+noncomputable section
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopTieOf
 open Matrix
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalBesselFrameRealPlaceLinearIndependent
 
 namespace GlobalTheory.RationalFrame
 
@@ -501,13 +510,19 @@ theorem frame_linearIndependent (D : D7) (X : HidaSetting D) (u : D.what₂.Word
   refine Fin.lastCases hlast (fun j => ?_) i
   have h := congrArg (hJ (X.B.I.ε v) (rv X.B.I v (X.fR j))) hg
   rw [hJ_lin, hfz] at h
-  simp only [hfe, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true, add_zero] at h
+  simp only [hfe, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true, add_zero] at h
   unfold hJ at h
   simp only [mulVec_zero, dotProduct_zero] at h
   exact h
 
 end GlobalTheory.RationalFrame
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopTieOf
+open Matrix
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalFrameGramEmbedEqRealFrameGram
 
@@ -612,13 +627,16 @@ theorem ratCoord_eq_matOn : ∀ (D : D7) (X : HidaSetting D) (u' : D.what₂.Wor
     unfold Formalism.L2.SG.RealObj.frm Formalism.L2.SG.RealObj.famSc Formalism.L2.SG.RealObj.fam
     simp only [Fin.snoc_last, Complex.ofReal_one, one_pow, inv_one, one_smul]
     exact (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X _ _ _).trans (by rw [(X.zu_orth u' _).2]; simp)
-  simp only [hfe, hfz, mul_ite, mul_one, mul_zero, add_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [hfe, hfz, mul_ite, mul_one, mul_zero, add_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   congr 1
 
 end GlobalTheory.LoopVol
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RealBesselSubgroupActsFrameUpperUnitriangular
+section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RealBesselSubgroupActsFrameUpperUnitriangular
+@[expose] public section
+
+noncomputable section
 
 namespace GlobalTheory.LoopAct
 
@@ -652,14 +670,14 @@ theorem exists_upUni_of_inS {r n : ℕ} (e : Fin r → Fin n → ℂ) (z : Fin n
     constructor
     · intro hji
       have hne : i ≠ j := fun h => (lt_irrefl j) (h ▸ hji)
-      simp only [hne, if_false, zero_add]
+      simp only [hne, ite_false, zero_add]
       split_ifs with h
       · apply hD0
         simp only [Set.mem_setOf_eq, not_lt]
         exact le_of_lt hji
       · rfl
     · rintro rfl
-      simp only [if_true]
+      simp only [ite_true]
       split_ifs with h
       · rw [hD0 i ⟨i.1, h⟩ (by simp)]
         ring
@@ -669,7 +687,7 @@ theorem exists_upUni_of_inS {r n : ℕ} (e : Fin r → Fin n → ℂ) (z : Fin n
       rw [Matrix.sub_mulVec, Matrix.one_mulVec, sub_add_cancel]
     rw [hg1, hDs b]
     simp only [add_smul, Finset.sum_add_distrib, ite_smul, one_smul, zero_smul, Finset.sum_ite_eq',
-      Finset.mem_univ, if_true]
+      Finset.mem_univ, ite_true]
     rw [add_comm, Fin.sum_univ_castSucc]
     simp [hf]
 
@@ -686,6 +704,8 @@ theorem sinfU_frame_upUni : ∀ (D : D7) (X : HidaSetting D) (u : D.what₂.Word
 
 end GlobalTheory.LoopAct
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RealPointRationalIsometryActsFrameMatrix
@@ -1213,24 +1233,24 @@ theorem fwd {K : Type*} [Zero K] : ∀ (bs : List (K × ℕ)) (i j a b : ℕ), F
     · by_cases hb : b < s
       · simp [blkOf, ha, hb]
       · exfalso
-        rw [if_neg (show ¬ (j < s ∧ b < s) by omega)] at h2
+        rw [ite_eq_right (show ¬ (j < s ∧ b < s) by omega)] at h2
         by_cases hj : s ≤ j
-        · rw [if_neg (show ¬ (s ≤ i ∧ s ≤ a) by omega)] at h1
+        · rw [ite_eq_right (show ¬ (s ≤ i ∧ s ≤ a) by omega)] at h1
           by_cases hi : i < s
           · omega
-          · rw [if_neg (show ¬ (i < s ∧ a < s) by omega)] at h1; exact h1 rfl
-        · rw [if_neg (show ¬ (s ≤ j ∧ s ≤ b) by omega)] at h2; exact h2 rfl
+          · rw [ite_eq_right (show ¬ (i < s ∧ a < s) by omega)] at h1; exact h1 rfl
+        · rw [ite_eq_right (show ¬ (s ≤ j ∧ s ≤ b) by omega)] at h2; exact h2 rfl
     · have hb : ¬ b < s := by omega
-      rw [if_neg (show ¬ (i < s ∧ a < s) by omega)] at h1
-      rw [if_neg (show ¬ (j < s ∧ b < s) by omega)] at h2
+      rw [ite_eq_right (show ¬ (i < s ∧ a < s) by omega)] at h1
+      rw [ite_eq_right (show ¬ (j < s ∧ b < s) by omega)] at h2
       by_cases hi : s ≤ i
       · by_cases hj : s ≤ j
-        · rw [if_pos ⟨hi, by omega⟩] at h1
-          rw [if_pos ⟨hj, by omega⟩] at h2
+        · rw [ite_eq_left ⟨hi, by omega⟩] at h1
+          rw [ite_eq_left ⟨hj, by omega⟩] at h2
           have := fwd bs (i - s) (j - s) (a - s) (b - s) h1 h2 (by omega) (by omega)
           simp [blkOf, ha, hb, this]
-        · rw [if_neg (show ¬ (s ≤ j ∧ s ≤ b) by omega)] at h2; exact absurd rfl h2
-      · rw [if_neg (show ¬ (s ≤ i ∧ s ≤ a) by omega)] at h1; exact absurd rfl h1
+        · rw [ite_eq_right (show ¬ (s ≤ j ∧ s ≤ b) by omega)] at h2; exact absurd rfl h2
+      · rw [ite_eq_right (show ¬ (s ≤ i ∧ s ≤ a) by omega)] at h1; exact absurd rfl h1
 
 open Formalism.L2.SG.RealObj in
 theorem bwd {K : Type*} [Zero K] : ∀ (bs : List (K × ℕ)), (∀ p ∈ bs, p.1 ≠ 0) → ∀ (a b : ℕ), a < b →
@@ -1245,8 +1265,8 @@ theorem bwd {K : Type*} [Zero K] : ∀ (bs : List (K × ℕ)), (∀ p ∈ bs, p.
         by_contra hb
         simp [blkOf, ha, hb] at hbl
       refine ⟨s - 1 - a, s - 1 - b, by omega, by omega, ?_, ?_⟩
-      · rw [Formalism.MainNotions.S.ptEntry, if_pos ⟨by omega, ha⟩, if_pos (by omega)]; exact ht
-      · rw [Formalism.MainNotions.S.ptEntry, if_pos ⟨by omega, hb⟩, if_pos (by omega)]; exact ht
+      · rw [Formalism.MainNotions.S.ptEntry, ite_eq_left ⟨by omega, ha⟩, ite_eq_left (by omega)]; exact ht
+      · rw [Formalism.MainNotions.S.ptEntry, ite_eq_left ⟨by omega, hb⟩, ite_eq_left (by omega)]; exact ht
     · have hb : ¬ b < s := by omega
       have hbl' : blkOf bs (a - s) = blkOf bs (b - s) := by
         simpa [blkOf, ha, hb] using hbl
@@ -1561,7 +1581,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.StabiliserCovolumeRelevantTermLeHeightPowStatement
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopTieOf
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.LeadMinorGramMatrixConstDoubleCoset", "h": "module\n\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.TermDef\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.TermDefPf\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

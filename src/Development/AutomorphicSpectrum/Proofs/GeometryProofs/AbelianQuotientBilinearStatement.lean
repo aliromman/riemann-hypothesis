@@ -45,7 +45,9 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientDifferentialMatrix, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGaugeTransform, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGermPowerSeries, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SubstitutionBilinearFormTransform, Development.AutomorphicSpectrum.Proofs.GeometryProofs.UnitTrivialOnBothAxes, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientBilinear, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientBilinearStatement
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientDifferentialMatrix
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientDifferentialMatrix
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.FrGauge
 
@@ -54,8 +56,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS Pt ev pt comp1)
 open Formalism.MainNotions.ModuliIntegralCharts.H1.LinEig
 open scoped CategoryTheory.Obj
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace Lin
 
@@ -94,7 +94,7 @@ theorem tanPt_add (F : Germ.FGLaw S d)
     rw [Finset.sum_eq_single (i, p.2)]
     · simp
     · intro b _ hb
-      rw [MvPolynomial.coeff_X, if_neg (fun h => hb (Finsupp.single_left_injective one_ne_zero h).symm), zero_mul]
+      rw [MvPolynomial.coeff_X, ite_eq_right (fun h => hb (Finsupp.single_left_injective one_ne_zero h).symm), zero_mul]
     · intro h; exact absurd (Finset.mem_univ _) h
   have hL : (tanV ψv : Jet S (Fin 2 × Fin d) (0 + 1) →ₐ[S] DualNumber S).comp
       (jetSubstP 1 fun p : Fin 1 × Fin d => psTrunc 1 (F.F p.2)) =
@@ -107,7 +107,7 @@ theorem tanPt_add (F : Germ.FGLaw S d)
         (Finsupp.single s 1) =
         if s.2 = p.2 then 1 else 0 := by
       intro s
-      rw [MvPolynomial.coeff_sub, MvPolynomial.coeff_C, if_neg (Finsupp.single_ne_zero.2 one_ne_zero).symm,
+      rw [MvPolynomial.coeff_sub, MvPolynomial.coeff_C, ite_eq_right (Finsupp.single_ne_zero.2 one_ne_zero).symm,
         sub_zero, coeff_psTrunc' 1 _ _ (by simp), law_coeff]
     simp only [hco, ite_mul, _root_.one_mul, zero_mul, Fintype.sum_prod_type, Fin.sum_univ_two]
     simp [ψv, Finset.sum_ite_eq']
@@ -292,7 +292,7 @@ theorem linQ_eq_diff (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Hos
     congr 1
     funext q
     rw [Finset.sum_eq_single ((0 : Fin 1), l)]
-    · rw [MvPolynomial.coeff_sub, MvPolynomial.coeff_C, if_neg (Finsupp.single_ne_zero.2 one_ne_zero).symm,
+    · rw [MvPolynomial.coeff_sub, MvPolynomial.coeff_C, ite_eq_right (Finsupp.single_ne_zero.2 one_ne_zero).symm,
         sub_zero, coeff_psTrunc' 1 _ _ (by simp)]
       simp [linQ]
     · rintro ⟨a, b⟩ _ hb
@@ -320,8 +320,11 @@ theorem linQ_eq_diff (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Hos
 
 end GlobalTheory.CompanionTheory.Ar.Flat.FrGauge
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGaugeTransform
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGaugeTransform
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.Lamex
 
@@ -329,8 +332,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl Formalism.L2.Pj GlobalTheory.CompanionTheory.Ar.Flat.FrGauge
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS Pt ev pt comp1)
 open scoped CategoryTheory.Obj
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 section Alg
 
@@ -744,6 +745,7 @@ theorem exists_lam : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
 
 end GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.Lamex
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGermPowerSeries
 
@@ -751,7 +753,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl Formalism.L2.Pj GlobalTheory.CompanionTheory.Ar.Flat.FrGauge
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS Pt ev pt comp1)
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 
@@ -897,7 +898,9 @@ end GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.ChartMap
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SubstitutionBilinearFormTransform
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SubstitutionBilinearFormTransform
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.BilQ
 
@@ -906,7 +909,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS Pt ev pt comp1)
 open ReciprocityTheory.ChartRestriction.G.TB.WickVanishing (eXv eZ)
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 variable {R : Type} [CommRing R] {d d' : ℕ}
 
@@ -974,11 +976,11 @@ theorem coeff_xz_rename (P Q : PS R 1 d) (a b : Fin d) :
         apply hne'
         have hv1 := DFunLike.congr_fun huv ((1 : Fin 2), b)
         have hu0 := DFunLike.congr_fun huv ((0 : Fin 2), a)
-        simp only [Finsupp.add_apply, Finsupp.single_apply, hne, hne.symm, if_true, if_false, hu, hv] at hv1 hu0
+        simp only [Finsupp.add_apply, Finsupp.single_apply, hne, hne.symm, ite_true, ite_false, hu, hv] at hv1 hu0
         have hrest : ∀ t, t ≠ ((0 : Fin 2), a) → t ≠ ((1 : Fin 2), b) → u t = 0 ∧ v t = 0 := by
           intro t h0 h1
           have ht := DFunLike.congr_fun huv t
-          simp only [Finsupp.add_apply, Finsupp.single_apply, Ne.symm h0, Ne.symm h1, if_false] at ht
+          simp only [Finsupp.add_apply, Finsupp.single_apply, Ne.symm h0, Ne.symm h1, ite_false] at ht
           omega
         refine Prod.ext (Finsupp.ext fun t => ?_) (Finsupp.ext fun t => ?_)
         · by_cases h0 : t = ((0 : Fin 2), a)
@@ -1130,7 +1132,7 @@ theorem bil_subQ {Qs : Fin d' → PS R 1 d} (hQ : ∀ i, MvPowerSeries.constantC
     rw [e] at hdeg
     simp at hdeg
   have key := ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.coeff_subst_xz (f - 1) h0 h1 _ (const_side hQ) _ hdeg
-  rw [MvPowerSeries.subst_sub hσ, subst_one' hσ, map_sub, MvPowerSeries.coeff_one, if_neg hn, sub_zero] at key
+  rw [MvPowerSeries.subst_sub hσ, subst_one' hσ, map_sub, MvPowerSeries.coeff_one, ite_eq_right hn, sub_zero] at key
   show MvPowerSeries.coeff _ (subQ Qs f) = _
   refine key.trans ?_
   simp only [Matrix.mul_apply, Matrix.transpose_apply, Finset.sum_mul]
@@ -1145,7 +1147,7 @@ theorem bil_subQ {Qs : Fin d' → PS R 1 d} (hQ : ∀ i, MvPowerSeries.constantC
     eval_first_point_eq_rename _
   have e1 : ev (n := 2) ![pt R d ((1 : Fin 2), m).1] (Qs ((1 : Fin 2), m).2) = MvPowerSeries.rename (eZ d) (Qs m) :=
     eval_second_point_eq_rename _
-  rw [map_sub, MvPowerSeries.coeff_one, if_neg hl, sub_zero, e0, e1, coeff_xz_rename]
+  rw [map_sub, MvPowerSeries.coeff_one, ite_eq_right hl, sub_zero, e0, e1, coeff_xz_rename]
   show _ = linQ Qs l a * bil f 1 1 l m * linQ Qs m b
   simp only [linQ, bil]
   ring
@@ -1157,8 +1159,11 @@ theorem bil_axOne_subQ : ∀ (R : Type) [CommRing R] (d d' : ℕ) (Qs : Fin d' �
 
 end GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.BilQ
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.UnitTrivialOnBothAxes
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.UnitTrivialOnBothAxes
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.FibUnit
 
@@ -1166,8 +1171,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl Formalism.L2.Pj GlobalTheory.CompanionTheory.Ar.Flat.FrGauge
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS Pt ev pt comp1)
 open scoped CategoryTheory.Obj
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 abbrev pb {A C : Scheme.{0}} (f : A ⟶ C) : Γ(C, ⊤)ˣ →* Γ(A, ⊤)ˣ := Units.map f.appTop.hom.toMonoidHom
 
@@ -1402,16 +1405,16 @@ theorem unit_eq_one_of_axes : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
 
 end GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.FibUnit
 end -- clump:auto
+end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientBilinear
+
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientBilinear
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl Formalism.L2.Pj GlobalTheory.CompanionTheory.Ar.Flat.FrGauge
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS Pt ev pt comp1)
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.FrGauge
 
@@ -1450,8 +1453,11 @@ theorem frame_gauge : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
 
 end GlobalTheory.CompanionTheory.Ar.Flat.FrGauge
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientBilinearStatement
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory

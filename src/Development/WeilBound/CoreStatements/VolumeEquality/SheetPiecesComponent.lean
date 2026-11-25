@@ -137,11 +137,12 @@ theorem sheet_not_flat {P : Ideal (MRing J)} (hP : IsArithVar P (n + 1))
 end GlobalTheory.CompanionTheory.Ar.Cusp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.SheetCoverOfArithmeticVariety
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.SheetCoverOfArithmeticVariety
 
 open NumberField Matrix MeasureTheory Filter Topology GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GroundTheory.Heights₂.Heights.FiniteCovolume
 open scoped ENNReal InnerProductSpace
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp
 variable {K : Type} [Fintype K] {J : K → Type} [∀ k, Fintype (J k)] {n : ℕ}
@@ -383,9 +384,9 @@ theorem sheet_local : ∀ (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintyp
   set c : K → (Fin n → ℂ) → ℂ := fun k y' => if k = k0 then (ψ y')⁻¹ else 1 with hcdef
   have hca : ∀ k, AnalyticAt ℂ (c k) (sheetProj Ψ γ t) := fun k => by
     by_cases hk : k = k0
-    · simp only [hcdef, hk, if_true]
+    · simp only [hcdef, hk, ite_true]
       exact hψa.inv hψ0
-    · simp only [hcdef, hk, if_false]
+    · simp only [hcdef, hk, ite_false]
       exact analyticAt_const
   have hcne : ∀ k y', ψ y' ≠ 0 → c k y' ≠ 0 := fun k y' h => by
     by_cases hk : k = k0
@@ -642,6 +643,7 @@ theorem ptsIntegral_sheets : ∀ (K : Type) [Fintype K] (J : K → Type) [∀ k,
     exact ⟨m, t, ⟨⟨htO, hty⟩, htB⟩, hw'⟩
 
 end GlobalTheory.CompanionTheory.Ar.Cusp
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.VolumeEquality.ContDiffAtBallPot

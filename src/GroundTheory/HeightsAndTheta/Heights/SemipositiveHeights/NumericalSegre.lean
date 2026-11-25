@@ -80,7 +80,8 @@ import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PSemilocalFiniteRank
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagBundleDim, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagBundleSectionForms, GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PSplitRelDeg, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagLineDegree, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagLineSectionSplit, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagLineSection, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSpanBundleDim, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSpanBundleTrdegGe, GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSpanBundleTrdegLe, GroundTheory.HeightsAndTheta.Heights.SemipositiveHeights.NumericalSegre
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagBundleDim
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagBundleDim
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -88,6 +89,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo
 
+noncomputable section
 
 theorem FlagBundleDim.proof (hspan : TwistedDualGensSpan.Statement)
     (hdim : SpanBundleDim.Statement) : FlagBundleDim.Statement := by
@@ -172,7 +174,7 @@ theorem FlagBundleDim.proof (hspan : TwistedDualGensSpan.Statement)
       rw [hsum]
       · refine Finset.sum_congr rfl fun j _ => ?_
         have hj : ((ι' j : Fin N) : ℕ) < i := by rw [hval]; exact j.isLt
-        simp only [truncCoord, hj, if_true, hG, Function.comp_apply, Pi.basisFun_apply]
+        simp only [truncCoord, hj, ite_true, hG, Function.comp_apply, Pi.basisFun_apply]
         rw [LinearMap.comp_apply, Matrix.mulVecLin_apply, Matrix.mulVec_single_one]
         rfl
       · intro j hj
@@ -187,11 +189,14 @@ theorem FlagBundleDim.proof (hspan : TwistedDualGensSpan.Statement)
     (fun l m => by rw [hGH]; exact hφ.sections c hyc l _ (hvl _)) Φ (t ∘ ι')
     (ht.comp ι' hinj)
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagBundleSectionForms
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagBundleSectionForms
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -199,6 +204,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo FlagBundleSectionForms
 
+noncomputable section
 
 theorem FlagBundleSectionForms.proof : FlagBundleSectionForms.Statement := by
   intro F _ Ω _ _ K _ _ ι _ y e hP _ N E _ _ B w b hfl M a φ hφ Φ _ _ t ht i
@@ -234,23 +240,8 @@ theorem FlagBundleSectionForms.proof : FlagBundleSectionForms.Statement := by
     refine Finset.sum_congr rfl fun l _ => Finset.sum_congr rfl fun j _ => ?_
     simp only [chartPow, Pi.neg_apply]
     ring
-  obtain ⟨n, U, hUh, hUe⟩ : ∃ (n : ℕ) (U : Fin M → MRing (bundleIdx ι M) F),
-      (∀ l, IsMultiHomog (U l) (liftNat fun _ => n)) ∧
-      ∀ l, eval₂ ((algebraMap Ω Φ).comp (algebraMap F Ω)) (projCoord y w φ (truncCoord t ((i : ℕ) + 1)))
-        (U l) = algebraMap Ω Φ (u l * segreVec y c ^ n) := by
-    have h := fun l => chartRing_forms y w φ (truncCoord t ((i : ℕ) + 1)) c hsc (hu l)
-    choose n U hU hUe using h
-    refine ⟨∑ l, n l, fun l => U l * chartMono M c (fun _ => ∑ l, n l - n l), fun l => ?_, fun l => ?_⟩
-    · have hle : n l ≤ ∑ l, n l := Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ l)
-      have hd : liftNat (K := K) (fun _ => ∑ l, n l) =
-          liftNat (fun _ => n l) + liftNat (fun _ => ∑ l, n l - n l) := by
-        funext o; cases o <;> simp [liftNat]; omega
-      rw [hd]
-      exact (hU l).mul (chartMono_homog M c _)
-    · have hle : n l ≤ ∑ l, n l := Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ l)
-      rw [eval₂_mul, hUe, eval_chartMono, ← map_mul]
-      congr 1
-      rw [Finset.prod_pow, mul_assoc, ← segreVec, ← pow_add, Nat.add_sub_cancel' hle]
+  obtain ⟨n, U, hUh, hUe⟩ :=
+    FlagBundleChartSection.chartRing_forms_fin y w φ (truncCoord t ((i : ℕ) + 1)) c hsc hu
   let α : K → ℕ := fun k => (|a k| + |b i k| - a k).toNat
   let β : K → ℕ := fun k => (|a k| + |b i k| + n - b i k).toNat
   have hid : segreVec y c ^ n * ∏ k, y ⟨k, c k⟩ ^ α k =
@@ -320,8 +311,10 @@ theorem FlagBundleSectionForms.proof : FlagBundleSectionForms.Statement := by
   · exact (mul_ne_zero (ht.ne_zero i) hg0) (hf ▸ eval_eq_zero_of_mem_projIdeal y w φ _ hmem)
   · exact hg0 (eval_eq_zero_of_mem_projIdeal y w φ _ hmem)
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PSplitRelDeg

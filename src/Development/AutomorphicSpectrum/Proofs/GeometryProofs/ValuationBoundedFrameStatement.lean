@@ -506,8 +506,9 @@ theorem exists_colength_one (k A : Type) [Field k] [CommRing A] [Algebra k A] [F
 end GlobalTheory.CompanionTheory.Ar.Flat.StepIdeal
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ModuleBasisLatticeBundleFree
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ModuleBasisLatticeBundleFree
 
+noncomputable section
 
 open scoped TensorProduct
 
@@ -565,7 +566,7 @@ theorem freeAt_of_basis_lattice (K : Type) [Field K] (C : ACurve K) (V : Type) [
     rw [map_sum, LinearMap.sum_apply]
     refine Finset.sum_congr rfl fun j _ => ?_
     dsimp only
-    rw [if_pos rfl, map_zsmul, Int.cast_smul_eq_zsmul]
+    rw [ite_eq_left rfl, map_zsmul, Int.cast_smul_eq_zsmul]
     rfl
   refine ⟨x, fun l s => ∑ j, algebraMap k K (l (1 ⊗ₜ[ℤ] b j)) • B.coord (s, j), ?_, ?_, ?_, ?_⟩
   · intro s
@@ -618,6 +619,7 @@ theorem freeAt_of_basis_lattice (K : Type) [Field K] (C : ACurve K) (V : Type) [
       rw [act_tmul, map_one, one_smul]⟩
 
 end GlobalTheory.CompanionTheory.Ar.Flat.DegCurve
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SplitHermitianGeneratorsExist

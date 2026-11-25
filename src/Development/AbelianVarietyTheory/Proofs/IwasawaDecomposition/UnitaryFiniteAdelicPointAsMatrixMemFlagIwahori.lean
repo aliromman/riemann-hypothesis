@@ -50,12 +50,13 @@ import Formalism.LocalToGlobal.IndefiniteReal.RecTie
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DecoRawMulLevelIwahoriReduction, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnitaryFiniteAdelicPointAsMatrixMemFlagIwahori
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DecoRawMulLevelIwahoriReduction
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DecoRawMulLevelIwahoriReduction
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Col Formalism.L2.DIV Formalism.L2.Forms GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.TopStep Matrix
 open Formalism.L2.Theta GlobalTheory.Mem.Th Filter Topology MeasureTheory
 open GlobalTheory.Mem.ColAd GlobalTheory.Mem.Chr GlobalTheory.Mem.Col2.TC
 
+noncomputable section
 
 open Formalism.UG Formalism.MainNotions
 
@@ -78,14 +79,6 @@ theorem decoRaw_mul_levelIwahori_reduction (g z : GL (Fin n) (AfE F E)) (hz : z 
 
 end Gen
 
-section Top
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-variable {D : D7} (V : HSp D) {n : ℕ} (hn : V.rank = n) [NeZero n]
-
-end Top
-
 end GlobalTheory.Mem.ColAd.LevGrp
 
 namespace GlobalTheory.Mem.Col2.TC
@@ -93,6 +86,7 @@ namespace GlobalTheory.Mem.Col2.TC
 open GlobalTheory.Mem.ColAd.LevGrp
 
 end GlobalTheory.Mem.Col2.TC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnitaryFiniteAdelicPointAsMatrixMemFlagIwahori

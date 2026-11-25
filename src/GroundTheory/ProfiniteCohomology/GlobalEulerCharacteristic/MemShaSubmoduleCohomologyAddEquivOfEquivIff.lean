@@ -182,7 +182,8 @@ theorem mem_ptSha_iff_cohomologyMap_eq_zero (hK : Odd ℓ ∨ IsTotallyComplex K
 end GroundTheory.ProfCoh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.GlobalEulerCharacteristic.KummerShaOpen
+section -- clump member: GroundTheory.ProfiniteCohomology.GlobalEulerCharacteristic.KummerShaOpen
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -190,8 +191,7 @@ namespace GroundTheory.ProfCoh
 
 open CategoryTheory NumberField IsDedekindDomain GroundTheory.Global
 
-
-attribute [local instance 2000] Rep.hV2
+noncomputable section
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 
@@ -370,8 +370,10 @@ theorem mem_ptSha_mackey_iff_exists_kummerModN {ℓ : ℕ} [NeZero ℓ] (hℓ : 
       (gsKummer_shortExact S ℓ hℓS) 1 x))))
   exact ⟨fun h => Subtype.ext h, fun h => congrArg Subtype.val h⟩
 
+end
 
 end GroundTheory.ProfCoh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.GlobalEulerCharacteristic.ShaTwist
@@ -590,7 +592,7 @@ end Descent
 end GroundTheory.ProfCoh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.GlobalEulerCharacteristic.MemShaSubmoduleCohomologyAddEquivOfEquivIff
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.GlobalEulerCharacteristic.MemShaSubmoduleCohomologyAddEquivOfEquivIff
 
 set_option maxSynthPendingDepth 1
 
@@ -600,6 +602,7 @@ open CategoryTheory NumberField IsDedekindDomain GroundTheory.Global Representat
 
 universe u
 
+noncomputable section
 
 section Scalars
 
@@ -625,18 +628,7 @@ theorem mem_shaSubmodule_cohomologyAddEquivOfEquiv_iff (n : ℕ) (x : cohomology
 
 end Scalars
 
-section Card
-
-variable {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
-  {ι : Type} {Hv : ι → Type} [∀ v, Group (Hv v)] [∀ v, TopologicalSpace (Hv v)]
-  [∀ v, IsTopologicalGroup (Hv v)] (φ : ∀ v, Hv v →ₜ* G) (ℓ : ℕ) [Fact ℓ.Prime]
-  (M : Rep.{0} (ULift.{0} ℤ) G) [IsDiscreteRep M] (hM : ∀ m : M, ℓ • m = 0)
-
-end Card
-
 section KummerZMod
-
-attribute [local instance 2000] Rep.hV2
 
 variable {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] (N : Subgroup G)
   {T O : Rep.{0} (ULift.{0} ℤ) G} [IsDiscreteRep T] [IsDiscreteRep O] {ℓ : ℕ} {f : T ⟶ O}
@@ -702,8 +694,6 @@ theorem mem_shaSubmodule_iff_mem_range_kummerModNZMod {ι : Type} {Hv : ι → T
 end KummerZMod
 
 section GS
-
-attribute [local instance 2000] Rep.hV2
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 
@@ -771,6 +761,7 @@ theorem finrank_shaSubmodule_two_eq_finrank_invariants (hℓS : ∀ v ∉ S, ((�
 
 end GS
 
+end
 
 end GroundTheory.ProfCoh
 

@@ -77,8 +77,9 @@ import Mathlib.Algebra.Ring.IsFormallyReal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DensGSC, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DoubleSumEqDotProduct, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.GramIff, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SplitDensity.CardFibreCompl, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SplitDensity.FiberCardHolds, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SplitDensity.PhiXFinrankRange, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDensityCorank.ResidueEqZeroIff
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DensGSC
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DensGSC
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula
 
@@ -115,13 +116,6 @@ theorem latBasis_exists (F : Type) [Field F] [ValuativeRel F] [TopologicalSpace 
     refine Submodule.sum_mem _ fun k _ => ?_
     have := S.smul_mem (⟨b.repr v k, h k⟩ : 𝒪[F]) (show b k ∈ S by rw [hb]; exact (b0 k).2)
     exact this
-
-section Herm
-
-variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
-variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
-
-end Herm
 
 section Coord
 
@@ -181,9 +175,11 @@ end Coord
 
 end PI.UnitaryGroupMassFormula.CntFormula
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DoubleSumEqDotProduct
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DoubleSumEqDotProduct
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula
 
@@ -267,7 +263,7 @@ theorem tau_zero (e : E ≃ₐ[F] F × F) {V : Type} [AddCommGroup V] [Module E 
 theorem one_sum {n : ℕ} (u w : Fin n → F) :
     ∑ k, ∑ l, u k * (((1 : Matrix (Fin n) (Fin n) 𝒪[F]) k l : 𝒪[F]) : F) * w l = u ⬝ᵥ w := by
   simp only [Matrix.one_apply, apply_ite (fun z : 𝒪[F] => (z : F)), OneMemClass.coe_one, ZeroMemClass.coe_zero,
-    mul_ite, ite_mul, mul_one, mul_zero, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true, dotProduct]
+    mul_ite, ite_mul, mul_one, mul_zero, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true, dotProduct]
 
 theorem coord_of_basis (M : Loc.Model F E) (hl : IsNonarchimedeanLocalField F)
     (e : E ≃ₐ[F] F × F) (he : ∀ x, e (M.L.cj x) = (e x).swap)
@@ -458,6 +454,7 @@ theorem adapted_coords_self_dual : CoordData := by
 end Main
 
 end PI.UnitaryGroupMassFormula.CntFormula
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.GramIff
@@ -985,8 +982,9 @@ theorem densExactSplit_of (hF : FiberCard) : DensExactSplit := by
 end PI.DensSplitW
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDensityCorank.ResidueEqZeroIff
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDensityCorank.ResidueEqZeroIff
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.LocDensCorank
 
@@ -1113,9 +1111,9 @@ theorem diag_red (F E : Type) [Field F] [ValuativeRel F] [TopologicalSpace F] [C
   rw [Matrix.of_apply, Matrix.diagonal_apply, Matrix.diagonal_apply]
   by_cases h : i = j
   · subst h
-    rw [if_pos rfl, if_pos rfl, AlgEquiv.commutes]
+    rw [ite_eq_left rfl, ite_eq_left rfl, AlgEquiv.commutes]
     exact hc _
-  · rw [if_neg (fun h' => h ((Fintype.equivFin ι).symm.injective h').symm), if_neg h, map_zero]
+  · rw [ite_eq_right (fun h' => h ((Fintype.equivFin ι).symm.injective h').symm), ite_eq_right h, map_zero]
     exact h0
 
 theorem residue_eq_zero_iff' (F : Type) [Field F] [ValuativeRel F] [TopologicalSpace F]
@@ -1171,9 +1169,9 @@ theorem dens_diag_split (F E : Type) [Field F] [ValuativeRel F] [TopologicalSpac
     rw [Matrix.diagonal_apply, Matrix.diagonal_apply]
     by_cases h : i = j
     · subst h
-      rw [if_pos rfl]
+      rw [ite_eq_left rfl]
       exact (hcjfix _ (by rw [AlgEquiv.commutes]; rfl)).symm
-    · rw [if_neg (Ne.symm h), if_neg h]
+    · rw [ite_eq_right (Ne.symm h), ite_eq_right h]
       exact (hcjfix 0 (by rw [map_zero]; rfl)).symm
   have hcnt := count_split_gen F E M hl e hes hO V H Λ π Ph hπ ϖ hϖ ι _ hdiagO hdiagH
   rw [diag_red F E e ι a] at hcnt

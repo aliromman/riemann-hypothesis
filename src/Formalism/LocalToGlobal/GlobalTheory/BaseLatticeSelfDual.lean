@@ -9,25 +9,14 @@ import Mathlib.Tactic.Lemma
 -- Members: Formalism.HermitianLattices.HermitianLatticesProofs.MajDual, Formalism.LocalToGlobal.GlobalTheory.BaseLatticeSelfDual
 
 section -- clump member: Formalism.HermitianLattices.HermitianLatticesProofs.MajDual
-@[expose] public noncomputable section
+@[expose] public section
 
 open NumberField
 open scoped nonZeroDivisors
 
+noncomputable section
 
 namespace Formalism.HermitianLatticesTheory
-
-section
-variable {K V ι : Type} [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V]
-  [Fintype ι] [DecidableEq ι]
-
-end
-
-section
-variable {K V ι : Type} [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V]
-  [Fintype ι] [DecidableEq ι]
-
-end
 
 section
 variable {K V : Type} [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V]
@@ -38,21 +27,8 @@ lemma majDual_star_int (r : RingOfIntegers K) : IsIntegral ℤ (star (r : K)) :=
 
 end
 
-section
-variable {K V : Type} [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V]
-  [Module (RingOfIntegers K) V] [IsScalarTower (RingOfIntegers K) K V]
-
-end
-
-section
-variable {K V ι : Type} [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V]
-  [Fintype ι] [DecidableEq ι]
-
-variable [Module (RingOfIntegers K) V] [IsScalarTower (RingOfIntegers K) K V]
-
-end
-
 end Formalism.HermitianLatticesTheory
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

@@ -8,8 +8,9 @@ import Mathlib.Topology.UniformSpace.Uniformizable
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.DensInfLoc, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.DensInfCV, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.DensInfTop
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.DensInfLoc
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.DensInfLoc
 
+noncomputable section
 
 namespace PI.VolStabS
 
@@ -91,10 +92,11 @@ theorem linDens_holds : LinDens := by
   congr 1
   funext y
   by_cases hy : y ∈ S
-  · simp only [Q, Set.indicator, Set.mem_preimage, hy, if_true, ← hψ y]
+  · simp only [Q, Set.indicator, Set.mem_preimage, hy, ite_true, ← hψ y]
   · simp [Q, Set.indicator, hy]
 
 end PI.VolStabS
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.DensInfCV

@@ -10,11 +10,10 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.CayleyIdentity, Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.CayleyGaussianIntegral
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.CayleyIdentity
 
+noncomputable section
 open scoped BigOperators ComplexConjugate
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.CayleyIdentity
 
 namespace Formalism.L2.Th1.H
 
@@ -135,7 +134,7 @@ theorem form_of_diag {n : Type*} [Fintype n] [DecidableEq n] (H : Sesq V) (b : M
   rw [Module.Basis.equivFun_symm_apply]
 
   simp only [map_sum, map_smul, hL, smul_smul, LinearMap.sum_apply, LinearMap.smul_apply, map_smulₛₗ, hb, smul_eq_mul, mul_ite, mul_one, mul_zero,
-  Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   refine Finset.sum_congr rfl fun i _ => ?_
   have h := Complex.mul_conj (w i)
   rw [Complex.normSq_eq_norm_sq] at h
@@ -146,8 +145,11 @@ end Diag
 
 end Formalism.L2.Th1.H
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.CayleyGaussianIntegral
+
+open scoped BigOperators ComplexConjugate
 open MeasureTheory
 
 namespace Formalism.L2.Th1.H

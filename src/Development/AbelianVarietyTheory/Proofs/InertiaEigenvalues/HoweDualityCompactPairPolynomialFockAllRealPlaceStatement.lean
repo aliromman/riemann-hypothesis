@@ -90,15 +90,15 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemOfRaisingOperatorsJointHarmonics, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CommonEigenvector, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsHighestWeightKTypeMap, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSourceHighestWeightFockStableSubspace, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockInnerProductPosDefCompactMatrixUnitAdjoint, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockTargetMatrixUnitCompactTotalDegreeLe, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockTargetMatrixUnitCompactTotalDegreeLeStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsIrreducibleOfAnisotropicFormHighestWeight, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsIrreducibleOfAnisotropicFormHighestWeightStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitaryBasisGeneralLinearSeries, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HoweDualityCompactPairPolynomialFockAllRealPlace, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HoweDualityCompactPairPolynomialFockAllRealPlaceStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemOfRaisingOperatorsJointHarmonics
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemOfRaisingOperatorsJointHarmonics
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
 open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.IndefR.Links
 open scoped TensorProduct InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.DownLift
 
+noncomputable section
 namespace GlobalTheory.RaiseGen
 
 open MvPolynomial GlobalTheory.FockIsotypic
@@ -302,6 +302,7 @@ theorem mem_of_raise : ∀ (D : D7) (n m : ℕ) (w : GlobalTheory.ExportSeries.W
 
 end GlobalTheory.RaiseGen
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CommonEigenvector
 
@@ -372,11 +373,11 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
 open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.IndefR.Links
 open scoped TensorProduct InnerProductSpace
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsHighestWeightKTypeMap
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.DownLift
 
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsHighestWeightKTypeMap
+
+noncomputable section
 
 namespace GlobalTheory.KHwExist
 
@@ -404,8 +405,8 @@ theorem pol_X (τ : D.what₂.Tau) (a b : Fin m) (t : D.what₂.Tau) (i : Fin m)
   simp only [pderiv_X, Pi.single_apply, Prod.mk.injEq, mul_ite, mul_one, mul_zero]
   by_cases h : t = τ ∧ i = b
   · obtain ⟨rfl, rfl⟩ := h; simp
-  · rw [if_neg h]
-    refine Finset.sum_eq_zero fun k _ => if_neg ?_
+  · rw [ite_eq_right h]
+    refine Finset.sum_eq_zero fun k _ => ite_eq_right ?_
     rintro ⟨rfl, rfl, rfl⟩; exact h ⟨rfl, rfl⟩
 
 theorem pol_comm (τ' τ : D.what₂.Tau) (c a b : Fin m) :
@@ -417,28 +418,28 @@ theorem pol_comm (τ' τ : D.what₂.Tau) (c a b : Fin m) :
   rw [Derivation.commutator_apply, Derivation.smul_apply, pol_X, pol_X]
   by_cases h1 : t = τ ∧ i = b <;> by_cases h2 : t = τ' ∧ i = c
   · obtain ⟨rfl, rfl⟩ := h1; obtain ⟨rfl, rfl⟩ := h2
-    simp only [pol_X, and_self, if_true, true_and]
+    simp only [pol_X, and_self, ite_true, true_and]
     by_cases hai : a = i
     · subst hai; simp
     · simp [hai, Ne.symm hai]
-  · rw [if_pos h1, if_neg h2, map_zero, sub_zero, pol_X]
+  · rw [ite_eq_left h1, ite_eq_right h2, map_zero, sub_zero, pol_X]
     obtain ⟨rfl, rfl⟩ := h1
     by_cases h3 : t = τ' ∧ a = c
     · obtain ⟨rfl, rfl⟩ := h3
-      simp only [and_self, if_true]
+      simp only [and_self, ite_true]
       have : i ≠ a := fun e => h2 ⟨rfl, e⟩
       simp [Ne.symm this]
-    · rw [if_neg h3]
+    · rw [ite_eq_right h3]
       by_cases h4 : t = τ'
       · subst h4
         have : c ≠ a := fun e => h3 ⟨rfl, e.symm⟩
         have : c ≠ i := fun e => h2 ⟨rfl, e.symm⟩
         simp [*]
       · simp [Ne.symm h4]
-  · rw [if_neg h1, if_pos h2, map_zero, zero_sub, pol_X]
+  · rw [ite_eq_right h1, ite_eq_left h2, map_zero, zero_sub, pol_X]
     obtain ⟨rfl, rfl⟩ := h2
-    rw [if_neg h1, neg_zero, smul_zero]
-  · rw [if_neg h1, if_neg h2, map_zero, map_zero, sub_zero, smul_zero]
+    rw [ite_eq_right h1, neg_zero, smul_zero]
+  · rw [ite_eq_right h1, ite_eq_right h2, map_zero, map_zero, sub_zero, smul_zero]
 
 end GlobalTheory.KHwExist
 
@@ -470,7 +471,7 @@ theorem kop_neg (w : GlobalTheory.ExportSeries.Weight D n) (τ : D.what₂.Tau) 
     Module.End.one_apply]
   by_cases hab : a = b
   · subst hab
-    simp only [if_true, Finset.sum_const, Finset.card_univ, Fintype.card_fin, ← Nat.cast_smul_eq_nsmul ℂ]
+    simp only [ite_true, Finset.sum_const, Finset.card_univ, Fintype.card_fin, ← Nat.cast_smul_eq_nsmul ℂ]
     module
   · simp [hab, Ne.symm hab]
 
@@ -513,7 +514,7 @@ theorem kop_diag (w : GlobalTheory.ExportSeries.Weight D n) (τ : D.what₂.Tau)
       (if (c : ℕ) < w.p τ then (n : ℂ) / 2 else -((n : ℂ) / 2)) • 1 := by
   by_cases hc : (c : ℕ) < w.p τ
   · rw [kop_pos w τ c c hc hc]; simp [hc]
-  · rw [kop_neg w τ c c hc hc]; simp only [hc, if_false, if_true, neg_smul, one_smul]; abel
+  · rw [kop_neg w τ c c hc hc]; simp only [hc, ite_false, ite_true, neg_smul, one_smul]; abel
 
 theorem kop_diag_commute (w : GlobalTheory.ExportSeries.Weight D n) (τ τ' : D.what₂.Tau) (c c' : Fin m) :
     kop w τ c c * kop w τ' c' c' = kop w τ' c' c' * kop w τ c c := by
@@ -533,10 +534,10 @@ theorem kop_comm (w : GlobalTheory.ExportSeries.Weight D n) (τ' τ : D.what₂.
   rw [kop_diag, k1]
   by_cases ha : (a : ℕ) < w.p τ
   · have hb := hC'.1 ha
-    rw [kop_pos w τ a b ha hb, if_neg hab, zero_smul, add_zero, polE_comm]
+    rw [kop_pos w τ a b ha hb, ite_eq_right hab, zero_smul, add_zero, polE_comm]
     by_cases hc : (c : ℕ) < w.p τ'
-    · rw [if_pos hc, one_smul]
-    · rw [if_neg hc]
+    · rw [ite_eq_left hc, one_smul]
+    · rw [ite_eq_right hc]
       by_cases ht : τ' = τ
       · subst ht
         have h1 : c ≠ a := fun e => hc (e ▸ ha)
@@ -544,17 +545,17 @@ theorem kop_comm (w : GlobalTheory.ExportSeries.Weight D n) (τ' τ : D.what₂.
         simp [h1, h2]
       · simp [ht]
   · have hb : ¬ (b : ℕ) < w.p τ := fun h => ha (hC'.2 h)
-    rw [kop_neg w τ a b ha hb, if_neg hab, zero_smul, sub_zero, mul_neg, neg_mul, sub_neg_eq_add,
+    rw [kop_neg w τ a b ha hb, ite_eq_right hab, zero_smul, sub_zero, mul_neg, neg_mul, sub_neg_eq_add,
       neg_add_eq_sub, ← neg_sub, polE_comm, smul_neg, smul_neg, smul_smul]
     by_cases hc : (c : ℕ) < w.p τ'
-    · rw [if_pos hc]
+    · rw [ite_eq_left hc]
       by_cases ht : τ' = τ
       · subst ht
         have h1 : c ≠ a := fun e => ha (e ▸ hc)
         have h2 : c ≠ b := fun e => hb (e ▸ hc)
         simp [h1, h2]
       · simp [ht]
-    · rw [if_neg hc]
+    · rw [ite_eq_right hc]
       congr 2
       split_ifs <;> ring
 
@@ -664,15 +665,14 @@ theorem exists_kHwMap : ∀ (D : D7) (n m : ℕ) (w : GlobalTheory.ExportSeries.
 
 end GlobalTheory.KHwExist
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSourceHighestWeightFockStableSubspace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSourceHighestWeightFockStableSubspace
 
+noncomputable section
 
 namespace GlobalTheory.NHwExist
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.LowestKType GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators MvPolynomial
 
 variable {D : D7} {n m : ℕ}
@@ -793,7 +793,7 @@ lemma sop_off_mono (w : GlobalTheory.ExportSeries.Weight D n) (τ : D.what₂.Ta
   rw [sop_eq, LinearMap.sum_apply] at hβ
   obtain ⟨i, -, hi⟩ := Finset.mem_biUnion.1 (support_sum hβ)
   rw [LinearMap.add_apply] at hi
-  simp only [hab, if_false, LinearMap.zero_apply, add_zero] at hi
+  simp only [hab, ite_false, LinearMap.zero_apply, add_zero] at hi
   by_cases hp : (i : ℕ) < w.p τ
   · rw [term_lt w τ a b i hp, mono1, support_monomial] at hi
     split_ifs at hi with h0
@@ -963,11 +963,10 @@ theorem GlobalTheory.exists_nHw_of_fockS_stable : ∀ (D : D7) (n m : ℕ) (w : 
   obtain ⟨Q, hQV, hα0Q, hpure⟩ := purify w V hst _ P le_rfl hPV α0 hα0
   exact key (B - ht w α0).toNat Q hQV hpure α0 hα0Q (Int.self_le_toNat _)
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockInnerProductPosDefCompactMatrixUnitAdjoint
 @[expose] public section
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 noncomputable section
 
@@ -998,7 +997,7 @@ theorem fct_add_single (α : σ →₀ ℕ) (v : σ) : fct (α + Finsupp.single 
   have : ∀ u ∈ (insert v α.support).erase v,
       ((α + Finsupp.single v 1 : σ →₀ ℕ) u).factorial = (α u).factorial := by
     intro u hu
-    rw [Finsupp.add_apply, Finsupp.single_apply, if_neg (Finset.ne_of_mem_erase hu).symm, add_zero]
+    rw [Finsupp.add_apply, Finsupp.single_apply, ite_eq_right (Finset.ne_of_mem_erase hu).symm, add_zero]
   rw [Finset.prod_congr rfl this, Finsupp.add_apply, Finsupp.single_eq_same, Nat.factorial_succ]
   ring
 
@@ -1084,7 +1083,7 @@ variable {σ : Type} [DecidableEq σ]
 theorem form_monomial (γ δ : σ →₀ ℕ) (c d : ℂ) :
     form (monomial γ c) (monomial δ d) = if γ = δ then (fct δ : ℂ) * (star c * d) else 0 := by
   rw [form_eq _ _ {δ} support_monomial_subset, Finset.sum_singleton, coeff_monomial, coeff_monomial,
-    if_pos rfl]
+    ite_eq_left rfl]
   split_ifs <;> simp
 
 theorem form_X_mul (v : σ) (P Q : MvPolynomial σ ℂ) : form (X v * P) Q = form P (pderiv v Q) := by
@@ -1094,7 +1093,7 @@ theorem form_X_mul (v : σ) (P Q : MvPolynomial σ ℂ) : form (X v * P) Q = for
     | monomial δ d =>
       rw [X, monomial_mul, pderiv_monomial, form_monomial, form_monomial, one_mul]
       by_cases hv : δ v = 0
-      · rw [hv, if_neg]
+      · rw [hv, ite_eq_right]
         · simp
         · intro h
           have := congrArg (fun f : σ →₀ ℕ => f v) h
@@ -1125,8 +1124,6 @@ noncomputable section
 namespace GlobalTheory.LowestKType
 
 open MvPolynomial GlobalTheory.FockMonoForm GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} {n m : ℕ}
 
@@ -1193,7 +1190,7 @@ theorem fadj_half (a b : Fin m) :
   intro P Q
   by_cases h : a = b
   · subst h
-    simp only [if_true, LinearMap.smul_apply, Module.End.one_apply, LinearMap.map_smulₛₗ₂, map_smul]
+    simp only [ite_true, LinearMap.smul_apply, Module.End.one_apply, LinearMap.map_smulₛₗ₂, map_smul]
     simp [map_ofNat]
   · simp [h, Ne.symm h]
 
@@ -1212,10 +1209,9 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockTargetMatrixUnitCompactTotalDegreeLe
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockTargetMatrixUnitCompactTotalDegreeLe
 
+noncomputable section
 
 namespace GlobalTheory.LowestKType.DegBound
 
@@ -1273,14 +1269,14 @@ theorem kop_totalDegree_le (D : D7) (n m : ℕ) (w : GlobalTheory.ExportSeries.W
   · obtain ⟨rfl, rfl⟩ := hil
     refine Submodule.smul_mem _ _ (Submodule.sum_mem _ fun j _ => Submodule.add_mem _ ?_ ?_)
     · intro Q
-      simp only [GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.raiO, GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.lowO, GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.sgn, if_true, one_smul]
+      simp only [GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.raiO, GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.lowO, GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.sgn, ite_true, one_smul]
       unfold Cpt at hab
       by_cases hi : (i : ℕ) < w.p τ
       · have hl : (l : ℕ) < w.p τ := hab.1 hi
-        simp only [hi, hl, decide_true, if_true, Module.End.mul_apply, LinearMap.mulLeft_apply]
+        simp only [hi, hl, decide_true, ite_true, Module.End.mul_apply, LinearMap.mulLeft_apply]
         exact deg_X_mul_pderiv _ _ _
       · have hl : ¬ (l : ℕ) < w.p τ := fun h => hi (hab.2 h)
-        simp only [hi, hl, decide_false, Bool.false_eq_true, if_false, Module.End.mul_apply,
+        simp only [hi, hl, decide_false, Bool.false_eq_true, ite_false, Module.End.mul_apply,
           LinearMap.mulLeft_apply, LinearMap.neg_apply,
           MvPolynomial.totalDegree_neg]
         exact deg_pderiv_X_mul _ _ _
@@ -1297,10 +1293,9 @@ theorem kop_totalDegree_le (D : D7) (n m : ℕ) (w : GlobalTheory.ExportSeries.W
 
 end GlobalTheory.LowestKType
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockTargetMatrixUnitCompactTotalDegreeLeStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 end -- clump:auto
 
@@ -1374,16 +1369,13 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
 open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.IndefR.Links
 open scoped TensorProduct InnerProductSpace
+open GlobalTheory.DownLift
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsIrreducibleOfAnisotropicFormHighestWeightStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitaryBasisGeneralLinearSeries
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 namespace GlobalTheory.LowestKType
 
@@ -1536,8 +1528,6 @@ end GlobalTheory.LowestKType
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HoweDualityCompactPairPolynomialFockAllRealPlace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 namespace GlobalTheory.HoweCompactAlg
 
 theorem mem_of_equivariant : ∀ (D : D7) (n m : ℕ) (w : GlobalTheory.ExportSeries.Weight D n) (BS : GlobalTheory.ExportSeries.GLR D n) (K : Type) [Group K] (r : K →* GlobalTheory.ExportSeries.GLR D n), (∀ (k : K) (τ : D.what₂.Tau), ((GlobalTheory.ExportSeries.inBasis BS (r k) τ : GL (Fin n) ℂ) : Matrix (Fin n) (Fin n) ℂ) ∈ Matrix.unitaryGroup (Fin n) ℂ) → (∀ g : GlobalTheory.ExportSeries.GLR D n, (∀ τ, ((GlobalTheory.ExportSeries.inBasis BS g τ : GL (Fin n) ℂ) : Matrix (Fin n) (Fin n) ℂ) ∈ Matrix.unitaryGroup (Fin n) ℂ) → ∃ k, r k = g) → ∀ (W : Type) [AddCommGroup W] [Module ℂ W] [FiniteDimensional ℂ W] (ρ : K →* Module.End ℂ W), (∀ U : Submodule ℂ W, (∀ k, U.map (ρ k) ≤ U) → U = ⊥ ∨ U = ⊤) → ∀ M : Submodule ℂ (W →ₗ[ℂ] PolF D m n), (∀ ψ ∈ M, ∀ (k : K) (w' : W), ψ (ρ k w') = GlobalTheory.ExportSeries.fockGL m w BS (r k) (ψ w')) → (∀ ψ ∈ M, ∀ (τ : D.what₂.Tau) (Z : Matrix (Fin m) (Fin m) ℂ), GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.fockT τ (fun _ : Fin n => true) (fun j : Fin m => decide ((j : ℕ) < w.p τ)) Z ∘ₗ ψ ∈ M) → M ≠ ⊥ → ∀ φ : W →ₗ[ℂ] PolF D m n, (∀ (k : K) (w' : W), φ (ρ k w') = GlobalTheory.ExportSeries.fockGL m w BS (r k) (φ w')) → φ ∈ M := by
@@ -1571,8 +1561,6 @@ end GlobalTheory.HoweCompactAlg
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HoweDualityCompactPairPolynomialFockAllRealPlaceStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemOfRaisingOperatorsJointHarmonics", "h": "module\n\npublic import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.RaisingLoweringOperators\npublic import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TranslateMemCoefLatFn\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FisSelfReNonneg\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsJointHarmonicOfLoweringStableSubmodule\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FockPolynomialSubstitutionCommuteTargetGlAction\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.LinearAlgebra.Matrix.FiniteDimensional\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport ReciprocityTheory.DualLattices.FischerSmulRight\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ParamsEx\n\n"}

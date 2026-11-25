@@ -291,8 +291,9 @@ theorem GlobalTheory.HSShort.colCoeff_mem : ∀ (F A : Type) [Field F] [NumberFi
   · rw [zero_smul]; exact zero_mem _
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetIsMultiHomogeneous
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetIsMultiHomogeneous
 
+noncomputable section
 
 namespace GlobalTheory.HSShort.DetHom
 
@@ -308,7 +309,7 @@ theorem mh_C (r : R) : IsMultiHomogeneous (0 : Fin B → ℕ) (C r : MvPolynomia
   intro s hs b
   rw [mem_support_iff, coeff_C] at hs
   have : (0 : Fin B × Fin n →₀ ℕ) = s := by
-    by_contra h; exact hs (if_neg h)
+    by_contra h; exact hs (ite_eq_right h)
   subst this; simp
 
 theorem mh_X (i : Fin B) (j : Fin n) :
@@ -317,7 +318,7 @@ theorem mh_X (i : Fin B) (j : Fin n) :
   intro s hs b
   rw [mem_support_iff, coeff_X'] at hs
   have : Finsupp.single (i, j) 1 = s := by
-    by_contra h; exact hs (if_neg h)
+    by_contra h; exact hs (ite_eq_right h)
   subst this
   by_cases hb : b = i
   · subst hb; simp [Finsupp.single_apply]
@@ -410,6 +411,7 @@ theorem GlobalTheory.HSShort.det_isMultiHomogeneous : ∀ (F A : Type) [Field F]
     rw [Finset.sum_comm]
     exact Finset.sum_congr rfl fun k _ => sum_cnt (col k).β
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlternatingMapDetFiltrationWithSymbols
 
@@ -453,9 +455,9 @@ theorem det_filtration_symbols : ∀ (E A' : Type) [Field E] [AddCommGroup A'] [
     refine ⟨fun k => if h : k ∈ Set.range ix then ((Classical.choose h).1 : ℕ) else r, ?_, ?_⟩
     · intro q
       have h : ix q ∈ Set.range ix := ⟨q, rfl⟩
-      simp only [dif_pos h]
+      simp only [dite_eq_left h]
       rw [ix.injective (Classical.choose_spec h)]
-    · intro k hk; simp only [dif_neg hk]
+    · intro k hk; simp only [dite_eq_right hk]
   have hβle : ∀ k, β k ≤ r := by
     intro k
     by_cases hk : k ∈ Set.range ix
@@ -538,9 +540,9 @@ theorem det_filtration_symbols : ∀ (E A' : Type) [Field E] [AddCommGroup A'] [
     · intro q
       have h : ix q ∈ Set.range ix := ⟨q, rfl⟩
       funext j
-      simp only [Matrix.of_apply, dif_pos h]
+      simp only [Matrix.of_apply, dite_eq_left h]
       rw [ix.injective (Classical.choose_spec (Set.mem_range.1 h))]
-    · intro k hk; funext j; simp only [Matrix.of_apply, dif_neg hk]
+    · intro k hk; funext j; simp only [Matrix.of_apply, dite_eq_right hk]
   have hNL : ∀ j, Fintype.linearCombination E z (N j) = v j := by
     intro j
     by_cases hj : j ∈ Set.range ix
@@ -550,7 +552,7 @@ theorem det_filtration_symbols : ∀ (E A' : Type) [Field E] [AddCommGroup A'] [
     intro i j hij
     by_cases hi : i ∈ Set.range ix
     · obtain ⟨q, rfl⟩ := hi; rw [hNix]; exact hcol0 q j (by rw [hβix] at hij; exact hij)
-    · rw [hNout i hi, Pi.single_apply, if_neg]; rintro rfl; exact lt_irrefl _ hij
+    · rw [hNout i hi, Pi.single_apply, ite_eq_right]; rintro rfl; exact lt_irrefl _ hij
   have hdet : N.det = ∏ a : Fin r,
       (Matrix.of fun i i' : I a => sym a ⟨v (ix ⟨a, i'⟩), hv ⟨a, i'⟩⟩ i).det := by
     rw [hBT.det]
@@ -1066,8 +1068,9 @@ theorem log_eval_sub_le_blockSphereMean : ∀ (B N : ℕ) (a : Fin B → ℕ) (A
 end GlobalTheory.LelongBlocksMulti
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MultiformHeightLowerBound
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MultiformHeightLowerBound
 
+noncomputable section
 
 open NumberField MvPolynomial ReciprocityTheory.MultiplicativeHeights ReciprocityTheory.GeometryOfNumbersTheory
 open GlobalTheory GlobalTheory.ChowHt GlobalTheory.Adelic GlobalTheory.HermTools GlobalTheory.HilbertSamuel GlobalTheory.HSChoice GlobalTheory.HSShort
@@ -1130,7 +1133,7 @@ theorem norm_eval_le {B N : ℕ} {a : Fin B → ℕ} {A : Matrix (Fin N) (Fin N)
       have := congrFun hz q.2
       simp only [Pi.zero_apply] at this
       simp [h0, this]
-    · simp only [p, if_neg h0]
+    · simp only [p, ite_eq_right h0]
       rw [← mul_assoc, ← Complex.ofReal_inv, ← Complex.ofReal_mul, mul_inv_cancel₀ h0, Complex.ofReal_one, one_mul]
   have hval : ‖eval u h‖ = (∏ i, r i ^ a i) * ‖eval p h‖ := by
     rw [hup, eval_blockScale_multi hh (fun i => ((r i : ℝ) : ℂ)) p, norm_mul, norm_prod]
@@ -1217,6 +1220,7 @@ theorem htLow : HtLow := by
   nlinarith [mul_le_mul_of_nonneg_left hHle hdeg0]
 
 end GlobalTheory.HtLowProof
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens
@@ -1351,8 +1355,9 @@ theorem pow_dvd_of_specialisations (F : Type) [Field F] [CharZero F] (D N δ b :
 end GlobalTheory.HSShortDiv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SlopeLowerBoundTopLatticeOffHypersurface
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SlopeLowerBoundTopLatticeOffHypersurface
 
+noncomputable section
 
 namespace GlobalTheory.HSShort.SlopeTop
 
@@ -1372,7 +1377,7 @@ theorem mh_pow {R : Type*} [CommSemiring R] {B n : ℕ} {a : Fin B → ℕ} {p :
     intro s hs b
     have : s = 0 := by
       rw [pow_zero, mem_support_iff, coeff_one] at hs
-      by_contra h; exact hs (if_neg (Ne.symm h))
+      by_contra h; exact hs (ite_eq_right (Ne.symm h))
     simp [this]
   | succ k ih =>
     rw [pow_succ]

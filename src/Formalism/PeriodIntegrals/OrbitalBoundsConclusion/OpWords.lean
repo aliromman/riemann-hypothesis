@@ -198,10 +198,11 @@ theorem opWords_of (hI : KappaInj) (hL : KappaLeft) (hR : KappaRight) (hB : Kapp
 end PI.OpWords
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialDifferentialWords.IsWeightedHomogeneousPairingLeft
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialDifferentialWords.IsWeightedHomogeneousPairingLeft
 
 open MvPolynomial
 
+noncomputable section
 
 namespace PI.OpWords.WeightedHomogeneousPolynomialDifferentialWords
 
@@ -225,7 +226,7 @@ theorem homog_of_mul {σ : Type} (w : σ → ℕ) {s g : MvPolynomial σ K} {n :
         have hw : Finsupp.weight w x.2 = j := by
           rw [← hsum, map_add (f := _), hx0] at hd
           omega
-        rw [if_pos hw]
+        rw [ite_eq_left hw]
     · symm
       refine Finset.sum_eq_zero fun x hx => ?_
       rw [coeff_weightedHomogeneousComponent]
@@ -236,7 +237,7 @@ theorem homog_of_mul {σ : Type} (w : σ → ℕ) {s g : MvPolynomial σ K} {n :
         have hw : Finsupp.weight w x.2 ≠ j := by
           rw [← hsum, map_add (f := _), hx0] at hd
           omega
-        rw [if_neg hw, mul_zero]
+        rw [ite_eq_right hw, mul_zero]
   intro m hm
   by_contra hne
   have hc : weightedHomogeneousComponent w (Finsupp.weight w m) g ≠ 0 := by
@@ -349,7 +350,7 @@ theorem chi_psi_dvd (i0 : Fin k) (f : Pol K k) :
     · simp [chiF, psiF]
     · by_cases hj : j = i0
       · subst hj
-        simp only [chiF, psiF, Sum.elim_inr, if_true]
+        simp only [chiF, psiF, Sum.elim_inr, ite_true]
         have e : X (Sum.inl j) * X (Sum.inr j) - -tp K j = tt K k := by
           rw [sub_neg_eq_add, tp, tt, ← Finset.add_sum_erase _ _ (Finset.mem_univ j)]
         rw [e]
@@ -386,9 +387,9 @@ theorem psi_zero (i0 : Fin k) (f : Pol K k)
       = p (Sum.inl i0) * ∑ j ∈ Finset.univ.erase i0, p (Sum.inl j) * p (Sum.inr j) := by
     rw [Finset.mul_sum]
     refine Finset.sum_congr rfl fun i hi => ?_
-    rw [if_neg (Finset.ne_of_mem_erase hi)]
+    rw [ite_eq_right (Finset.ne_of_mem_erase hi)]
     ring
-  rw [← Finset.add_sum_erase _ _ (Finset.mem_univ i0), h3, if_pos rfl]
+  rw [← Finset.add_sum_erase _ _ (Finset.mem_univ i0), h3, ite_eq_left rfl]
   ring
 
 theorem dvd_pow_mul (i0 : Fin k) (d : ℕ) (f : Pol K k) (hf : f ∈ Bihom K k d)
@@ -463,11 +464,13 @@ theorem divT : PI.OpWords.DivT := by
 end PI.OpWords.WeightedHomogeneousPolynomialDifferentialWords
 
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialDifferentialWords.PairingPowMemSymbolRange
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialDifferentialWords.PairingPowMemSymbolRange
 
 open MvPolynomial Finsupp
 
+noncomputable section
 
 namespace PI.OpWords
 
@@ -569,12 +572,12 @@ theorem bihom_le_Sc : ∀ c, c ≤ d → Bihom K k c ≤ Sc K k d c := by
       ext i
       rcases i with i | i
       · simp only [Finsupp.coe_add, Finsupp.coe_tsub, Pi.add_apply, Pi.sub_apply, single_apply,
-          Sum.inl.injEq, reduceCtorEq, if_false]
+          Sum.inl.injEq, reduceCtorEq, ite_false]
         split_ifs with h
         · subst h; omega
         · omega
       · simp only [Finsupp.coe_add, Finsupp.coe_tsub, Pi.add_apply, Pi.sub_apply, single_apply,
-          Sum.inr.injEq, reduceCtorEq, if_false]
+          Sum.inr.injEq, reduceCtorEq, ite_false]
         split_ifs with h
         · subst h; omega
         · omega
@@ -625,6 +628,7 @@ theorem pairingPowMemSymbolRange : Surj := by
   exact (mem_Sc K k d c g).1 (bihom_le_Sc K k d c hc hg)
 
 end PI.OpWords
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialDifferentialWords.Assemble
@@ -772,10 +776,11 @@ theorem expFormula (a b : Fin k) (hab : a ≠ b) (s : K) (g : Pol K k) : ExpForm
 end PI.OpWords
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialDifferentialWords.VanishMain
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialDifferentialWords.VanishMain
 
 open MvPolynomial
 
+noncomputable section
 
 namespace PI.OpWords
 
@@ -867,17 +872,17 @@ lemma vanish_at {d c : ℕ} (W : Submodule K (Pol K k)) (hW : W ≤ Bihom K k d)
       by_cases h : j = i0 <;> simp [shiftPt, rop_apply, pderiv_X, h] <;> ring
     obtain ⟨s, hs⟩ : ∃ s : K, s = -(p (Sum.inl b) / p (Sum.inl i0)) := ⟨_, rfl⟩
     have hq0 : shiftPt i0 b s p (Sum.inl i0) = p (Sum.inl i0) := by
-      rw [hshl, if_neg hib, mul_zero, add_zero]
+      rw [hshl, ite_eq_right hib, mul_zero, add_zero]
     have hqb : shiftPt i0 b s p (Sum.inl b) = 0 := by
-      rw [hshl, if_pos rfl, hs, neg_mul, div_mul_cancel₀ _ hp0]
+      rw [hshl, ite_eq_left rfl, hs, neg_mul, div_mul_cancel₀ _ hp0]
       ring
     have hqj : ∀ j, j ≠ b → shiftPt i0 b s p (Sum.inl j) = p (Sum.inl j) := by
       intro j hj
-      rw [hshl, if_neg hj, mul_zero, add_zero]
+      rw [hshl, ite_eq_right hj, mul_zero, add_zero]
     have hquad : ∑ i, shiftPt i0 b s p (Sum.inl i) * shiftPt i0 b s p (Sum.inr i) = 0 := by
       simp only [hshl, hshr, add_mul, mul_sub, Finset.sum_add_distrib,
         Finset.sum_sub_distrib, mul_ite, ite_mul, mul_zero, zero_mul, Finset.sum_ite_eq',
-        Finset.mem_univ, if_true, hib, if_false, hq]
+        Finset.mem_univ, ite_true, hib, ite_false, hq]
       ring
     have ihq : ∀ g ∈ W, eval (shiftPt i0 b s p) g = 0 := by
       refine ih _ (by rw [hq0]; exact hp0) ?_ hquad
@@ -906,7 +911,7 @@ theorem vanishingOnQuadric : Vanish := by
   by_cases h : ∃ i0, p (Sum.inl i0) ≠ 0
   · obtain ⟨i0, hi0⟩ := h
     exact vanish_at W hW hst hwt hcd i0 Finset.univ p hi0 (fun b _ _ => Finset.mem_univ b) hp f hf
-  · push_neg at h
+  · push Not at h
     apply eval_eq_zero_of_support
     intro m hm
     have hsum := xdeg_of_bihom (hW hf) hm
@@ -918,6 +923,7 @@ theorem vanishingOnQuadric : Vanish := by
     exact ⟨Sum.inl a, ha, h a⟩
 
 end PI.OpWords
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.OpWords

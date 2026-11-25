@@ -13,12 +13,10 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.PrismaticDieudonnePerfd, Development.AbelianVarietyTheory.Definitions.Divisors.PrismaticDieudonnePerfdIff
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.PrismaticDieudonnePerfd
 
 
 open CategoryTheory WittVector Ideal
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.PrismaticDieudonnePerfd
 
 namespace GlobalTheory.Published
 
@@ -45,7 +43,11 @@ def CycPerfd.Over {p : ℕ} [Fact p.Prime] (S S' : CycPerfd p) [Algebra S.R S'.R
 end GlobalTheory.Published
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.PrismaticDieudonnePerfdIff
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.PrismaticDieudonnePerfdIff
+
+noncomputable section
+
+open CategoryTheory WittVector Ideal
 
 namespace GlobalTheory.PerfdLat
 
@@ -225,12 +227,6 @@ def piMap {A B : Type} [CommRing A] [CommRing B] (σ : A →+* B) (ι : Type) : 
   toFun x i := σ (x i)
   map_add' x y := funext fun i => map_add σ (x i) (y i)
   map_smul' a x := funext fun i => map_mul σ a (x i)
-
-section Quot
-
-variable {R X : Type} [CommRing R] [AddCommGroup X] [Module R X]
-
-end Quot
 
 variable {p : ℕ} [Fact p.Prime]
 

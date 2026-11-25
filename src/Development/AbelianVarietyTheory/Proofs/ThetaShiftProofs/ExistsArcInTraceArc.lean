@@ -696,8 +696,9 @@ end Data
 end GlobalTheory.ArcOfModel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsArcInTraceArc
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsArcInTraceArc
 
+noncomputable section
 
 namespace GlobalTheory.ArcOfModel
 
@@ -985,14 +986,6 @@ theorem exists_arcIn (hL : Laws) (hL₂ : Laws2) {E : Type} [Field E] [NumberFie
   obtain ⟨σ⟩ := nonempty_secFn d hθ
   exact ⟨a, ⟨⟨d, fun _ _ => rfl⟩, σ⟩, rfl, rfl, HEq.rfl, HEq.rfl, HEq.rfl, HEq.rfl, HEq.rfl,
     fun v => qkExt_fracPt d _ _, fun v => qkExt_fracPt d _ _⟩
-
-section Toric
-
-open HostModel ToricData ToricDict Out.Inh Out.InhTate
-
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} (l : Geo.Tor.Level H)
-
-end Toric
 
 end GlobalTheory.ArcOfModel
 

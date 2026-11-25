@@ -243,7 +243,7 @@ theorem isHCParam_sub {N : ℕ} {lam : Fin N → ℝ} (s : Fin N) (hl : Formalis
       push_cast
       linarith
     · refine ⟨m, ?_⟩
-      simp only [Pi.sub_apply, Pi.single_apply, if_neg ha]
+      simp only [Pi.sub_apply, Pi.single_apply, ite_eq_right ha]
       linarith
 
 theorem gap_sub {N : ℕ} (ε : Fin N → Bool) (lam : Fin N → ℝ) (s : Fin N) {h : ℝ}
@@ -271,9 +271,9 @@ theorem fdegHC_le {N : ℕ} (lam : Fin N → ℝ) (s : Fin N) (hw : ∀ a c, a <
     · subst ha
       have e1 : lam' a = lam a - 1 := by simp [hlam']
       have e2 : lam' b = lam b := by simp [hlam', hne.symm]
-      rw [if_pos rfl, e1, e2, abs_of_pos (by linarith), abs_of_pos (by linarith)]
+      rw [ite_eq_left rfl, e1, e2, abs_of_pos (by linarith), abs_of_pos (by linarith)]
       linarith
-    · rw [if_neg ha, one_mul]
+    · rw [ite_eq_right ha, one_mul]
       by_cases hb : b = s
       · subst hb
         have e1 : lam' a = lam a := by simp [hlam', ha]
@@ -545,7 +545,7 @@ theorem one_le_hsn {m : ℕ} {ε : Fin m → Bool} (hm : 1 ≤ m) (g : UJ ε) : 
   have h : (umat g)ᴴ * Jm ε * umat g = Jm ε := g.2
   have h2 := congrFun (congrFun h a) a
   simp only [Jm, Matrix.diagonal_apply_eq] at h2
-  simp only [Matrix.mul_apply, Matrix.diagonal_apply, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true, Matrix.conjTranspose_apply] at h2
+  simp only [Matrix.mul_apply, Matrix.diagonal_apply, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true, Matrix.conjTranspose_apply] at h2
   have hn : (1 : ℝ) ≤ ∑ l, ‖umat g l a‖ ^ 2 := by
     have e1 : ‖((if ε a = true then 1 else -1 : ℂ))‖ = 1 := by split_ifs <;> simp
     rw [← e1, ← h2]
@@ -1389,7 +1389,6 @@ theorem intBounds_of (hE : EmbLaws) (hBo : Boost) (hP : PowInt) (hD : DecPow) : 
       mul_le_mul_of_nonneg_right hcb (mul_nonneg hvol hcr)
     _ = _ := by ring
 
-theorem intBounds_main : EmbLaws → Boost → PowInt → DecPow → IntBounds := intBounds_of
 
 end GlobalTheory.SepReal
 end -- clump:auto
@@ -1469,7 +1468,7 @@ theorem UpperTheory.Lit.Branch.realInputE :
   intro hPL hEM
   unfold ProjLarge at hPL
   unfold EigMap at hEM
-  obtain ⟨C1, hC1, hIB⟩ := _root_.GlobalTheory.SepReal.intBounds_main _root_.GlobalTheory.SepReal.embLaws (_root_.GlobalTheory.SepReal.boost_of_embLaws _root_.GlobalTheory.SepReal.embLaws)
+  obtain ⟨C1, hC1, hIB⟩ := _root_.GlobalTheory.SepReal.intBounds_of _root_.GlobalTheory.SepReal.embLaws (_root_.GlobalTheory.SepReal.boost_of_embLaws _root_.GlobalTheory.SepReal.embLaws)
     (_root_.GlobalTheory.SepReal.powInt_of_volBall _root_.GlobalTheory.SepReal.volBall) _root_.GlobalTheory.SepReal.decPow 10 (by norm_num)
   obtain ⟨C3, hC3, hDB⟩ := _root_.GlobalTheory.SepReal.DerInt.derBounds_of _root_.GlobalTheory.SepReal.embLaws (_root_.GlobalTheory.SepReal.powInt_of_volBall _root_.GlobalTheory.SepReal.volBall)
     _root_.GlobalTheory.SepReal.decPow _root_.GlobalTheory.SepReal.lieBound 10 (by norm_num)

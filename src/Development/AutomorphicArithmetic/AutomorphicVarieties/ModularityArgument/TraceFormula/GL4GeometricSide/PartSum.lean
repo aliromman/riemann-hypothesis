@@ -1072,10 +1072,11 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GL4GeometricSide.PartSum
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GL4GeometricSide.PartSum
 
 open UpperTheory.V.Z.GSp4Splitting PositivityTheory.RgBcC PositivityTheory.RgBcC.RealD PositivityTheory.Rg.BcB.Desc
 
+noncomputable section
 
 namespace UpperTheory.V.Z.GSp4Splitting.LowRankIsomorphism
 
@@ -1113,7 +1114,7 @@ private theorem domLE_of {ν m : Fin n → ℝ} (h : inCone (fun a => (a : ℕ))
     · omega
     · simp
   · have hs := part_sum c (m - ν) hQ univ
-    simp only [Pi.sub_apply, mem_univ, if_true, sub_self, mul_zero, Finset.sum_const_zero,
+    simp only [Pi.sub_apply, mem_univ, ite_true, sub_self, mul_zero, Finset.sum_const_zero,
       Finset.sum_sub_distrib] at hs
     linarith
 

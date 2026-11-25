@@ -19,8 +19,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.Divisibility.GeneratorPowers.HarmInvB, Formalism.SharpRestriction.Divisibility.GeneratorPowers.HarmInvC, Formalism.SharpRestriction.Divisibility.GeneratorPowers.HarmInvPf
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.HarmInvB
+@[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.HarmInvB
 
+noncomputable section
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.HarmInvB
 
@@ -48,8 +49,8 @@ theorem logOf_props (G : FGLaw S d) :
     · simp [Finsupp.degree_single, MvPowerSeries.coeff_zero_eq_constantCoeff_apply, hc]
     · intro w _ hw
       have h0 : (Finsupp.single ((0 : Fin 1), j) 1 : Fin 1 × Fin d →₀ ℕ) w = 0 := by
-        rw [Finsupp.single_apply, if_neg (Ne.symm hw)]
-      rw [if_pos h0]
+        rw [Finsupp.single_apply, ite_eq_right (Ne.symm hw)]
+      rw [ite_eq_left h0]
     · intro h
       exact absurd (Finset.mem_univ _) h
   · funext i
@@ -253,6 +254,7 @@ theorem quad_form (cc : Fin d → Fin d → S) (u : Lt1 Dw → Fin d → S) (t :
   ring
 
 end Formalism.MainNotions.ModuliIntegralCharts.H1.HarmInvB
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.HarmInvC

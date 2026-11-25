@@ -195,13 +195,14 @@ theorem point_of_local_subring : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ
 end GlobalTheory.CompanionTheory.Ar.ChartPoint
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.MemPtsOverOfMemMcPts
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.MemPtsOverOfMemMcPts
 
 open NumberField IsDedekindDomain MeasureTheory Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.AR.Up ReciprocityTheory.ChartRestriction.G.AR.Inst Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec
 open scoped Matrix
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Rec.OS
 
@@ -254,43 +255,13 @@ theorem hasVal_zero_of {a : K → ℤ} {s : Ω} {w : 𝕜} (h : Small.HasVal y a
 
 end Vals
 
-section Coef
-
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E}
-
-end Coef
-
-section Fin
-
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
-  {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
-
-end Fin
-
-section Arch
-
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
-  {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
-
-end Arch
-
-section ArchD
-
-variable {D : D7} {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host D.host.E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l}
-  {c : Coeff l}
-
-end ArchD
-
-section Emb
-
-end Emb
-
 end GlobalTheory.CompanionTheory.Ar.Rec.OS
 
 namespace GlobalTheory.CompanionTheory.Ar.Rec
 
 
 end GlobalTheory.CompanionTheory.Ar.Rec
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.OneMemChartLatNm
@@ -500,11 +471,12 @@ theorem hasVal_twist : ∀ (K : Type) [Fintype K] (J : K → Type) [∀ k, Finty
 end GlobalTheory.CompanionTheory.Ar.ChartTwist
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootModelFlagCompare
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootModelFlagCompare
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField TensorProduct Filter Topology Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Ht.CloseGen
 
@@ -628,7 +600,7 @@ theorem coeff_mem {F : Type} [Field F] (A : Subring F) (hfrac : ∀ a : F, ∃ d
     · intro l _ hl
       simp [hl]
     · simp
-  rw [if_pos trivial, hs, add_zero] at e
+  rw [ite_eq_left trivial, hs, add_zero] at e
   have : d * ((g x : A) : F) = d * (n * C) := by rw [e]; ring
   exact (mul_left_cancel₀ hd0 this).symm
 

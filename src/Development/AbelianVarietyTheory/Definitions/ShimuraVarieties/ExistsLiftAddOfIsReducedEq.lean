@@ -61,11 +61,12 @@ import Mathlib.Tactic.TypeStar
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.IrrelevantLeMapLinearGradedMap
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.IrrelevantLeMapLinearGradedMap
 open HomogeneousIdeal
 
 universe u
 
+noncomputable section
 
 namespace GlobalTheory
 
@@ -101,8 +102,6 @@ theorem exists_specOver_nhds (T : Over (Spec (.of R))) {t : T.left} {V : T.left.
 end SpecOver
 
 namespace WeierstrassCurve
-
-attribute [local instance] MvPolynomial.gradedAlgebra
 
 variable {R : Type u} [CommRing R] (W : WeierstrassCurve R)
 
@@ -428,6 +427,7 @@ end Reduced
 end WeierstrassCurve
 
 end GlobalTheory
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.ExistsLiftAddOfIsReducedEq

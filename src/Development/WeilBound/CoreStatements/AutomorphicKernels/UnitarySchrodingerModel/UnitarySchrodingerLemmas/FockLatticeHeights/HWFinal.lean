@@ -33,6 +33,7 @@ import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.WeilSie
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BlockMatrixTwoByTwoFinStandardSkewMap
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.CmTypeRestrictRealSubfieldInfinitePlaceBijective
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.EqZeroOfAeFundamentalDomain
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.EventuallyLocalLatticeCompletionEqCoordinateLatt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegrablePowerNormCompact, Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.BlockMulVec.BotVBlk4MulVec, Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.AlgebraMapEventually.LstdStd, Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.BlockHeightDeterminants.HWInfA, Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.BlockHeightDeterminants.CompAtDet, Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.FockLatticeHeights.HWGlue, Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.FockLatticeHeights.HeightWNOfFin, Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.FockLatticeHeights.HWFinal
@@ -115,14 +116,14 @@ attribute [local instance] finite_FE isTopologicalRing_Ev t2Space_Fv_tensor loca
 end GlobalTheory.LocTateInt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.BlockMulVec.BotVBlk4MulVec
+section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.BlockMulVec.BotVBlk4MulVec
+@[expose] public section
 
+noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace PositivityTheory.PfSWUS.SwsHwfin
 
@@ -321,10 +322,14 @@ theorem hwFin : PositivityTheory.PfSWUS.SwFockk.HWFin := by
 
 end PositivityTheory.PfSWUS.SwsHwfin
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.AlgebraMapEventually.LstdStd
+section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.AlgebraMapEventually.LstdStd
+@[expose] public section
 
+noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum
@@ -354,54 +359,8 @@ theorem eventually_algebraMap_mem (c : F) :
 
 theorem eventually_mem_intLoc_iff {d : ℕ} (bs : Module.Basis (Fin d) F E) :
     ∀ᶠ v in Filter.cofinite, ∀ z : HeckeCharacterZeroLocus.SiegelWeilU.Fv F v ⊗[F] E, z ∈ GlobalTheory.AdelicU.intLoc F E v ↔
-      ∀ k, (Algebra.TensorProduct.basis (HeckeCharacterZeroLocus.SiegelWeilU.Fv F v) bs).repr z k ∈ v.adicCompletionIntegers F := by
-  classical
-  have hint : ∀ y : E, ∃ m : ℤ, m ≠ 0 ∧ IsIntegral ℤ ((m : F) • y) := fun y => by
-    obtain ⟨m, hm, hi⟩ := ((IsFractionRing.isAlgebraic_iff ℤ ℚ E).2
-      (Algebra.IsAlgebraic.isAlgebraic y)).exists_integral_multiple
-    exact ⟨m, hm, by rwa [Int.cast_smul_eq_zsmul]⟩
-  choose m hm hmi using hint
-  let b := RingOfIntegers.basis E
-  have h1 : ∀ᶠ v in Filter.cofinite, ∀ i k, algebraMap F (HeckeCharacterZeroLocus.SiegelWeilU.Fv F v)
-      (bs.repr ((b i : 𝓞 E) : E) k) ∈ v.adicCompletionIntegers F :=
-    Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun k => eventually_algebraMap_mem _
-  have h2 : ∀ᶠ v in Filter.cofinite, ∀ k, algebraMap F (HeckeCharacterZeroLocus.SiegelWeilU.Fv F v) ((m (bs k) : F))⁻¹ ∈
-      v.adicCompletionIntegers F :=
-    Filter.eventually_all.2 fun k => eventually_algebraMap_mem _
-  filter_upwards [h1, h2] with v hv1 hv2 z
-  set B := Algebra.TensorProduct.basis (HeckeCharacterZeroLocus.SiegelWeilU.Fv F v) bs
-  constructor
-  · intro hz
-    refine GlobalTheory.AdelicU.intLoc_induction (p := fun y => ∀ k, B.repr y k ∈ v.adicCompletionIntegers F)
-      ?_ ?_ ?_ ?_ hz
-    · intro a ha x k
-      rw [Algebra.TensorProduct.basis_repr_tmul, Finsupp.smul_apply, Finsupp.mapRange_apply, smul_eq_mul]
-      refine mul_mem ha ?_
-      have hx : (x : E) = ∑ i, (b.repr x i) • ((b i : 𝓞 E) : E) := by
-        conv_lhs => rw [← b.sum_repr x]
-
-        simp only [map_sum, map_zsmul, RingOfIntegers.coe_eq_algebraMap]
-
-      rw [hx, map_sum, Finsupp.coe_finsetSum, Finset.sum_apply, map_sum]
-      refine Subring.sum_mem _ fun i _ => ?_
-      rw [map_zsmul, Finsupp.smul_apply, map_zsmul]
-      exact zsmul_mem (hv1 i k) _
-    · intro k; simp
-    · intro y z hy hz k; rw [map_add (f := _), Finsupp.add_apply]; exact add_mem (hy k) (hz k)
-    · intro y hy k; rw [map_neg, Finsupp.neg_apply]; exact neg_mem (hy k)
-  · intro hz
-    rw [← B.sum_repr z]
-    refine Subring.sum_mem _ fun k _ => ?_
-    have hm0 : ((m (bs k) : ℤ) : F) ≠ 0 := by exact_mod_cast hm (bs k)
-    have e : B.repr z k • B k = (algebraMap F (HeckeCharacterZeroLocus.SiegelWeilU.Fv F v) ((m (bs k) : F))⁻¹ * B.repr z k) ⊗ₜ[F]
-        ((⟨(m (bs k) : F) • bs k, hmi (bs k)⟩ : 𝓞 E) : E) := by
-      rw [Algebra.TensorProduct.basis_apply, TensorProduct.smul_tmul', smul_eq_mul, mul_one, ← Algebra.smul_def,
-        TensorProduct.smul_tmul]
-      congr 1
-      change bs k = ((m (bs k) : F))⁻¹ • ((m (bs k) : F) • bs k)
-      rw [smul_smul, inv_mul_cancel₀ hm0, one_smul]
-    rw [e]
-    exact GlobalTheory.AdelicU.tmul_mem_intLoc (E := E) (mul_mem (hv2 k) (hz k)) (⟨(m (bs k) : F) • bs k, hmi (bs k)⟩ : 𝓞 E)
+      ∀ k, (Algebra.TensorProduct.basis (HeckeCharacterZeroLocus.SiegelWeilU.Fv F v) bs).repr z k ∈ v.adicCompletionIntegers F :=
+  _root_.GlobalTheory.AdelicU.Cofinite.eventually_mem_intLoc_iff_repr bs
 
 theorem lstdStd : LstdStd := by
   intro F E _ _ _ _ _ n
@@ -414,19 +373,19 @@ theorem lstdStd : LstdStd := by
 
 end PositivityTheory.PfSWUS.SwsLstd
 
+end
+end -- clump:auto
 end -- clump:auto
 
-section -- clump: shared namespace opens
+section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.BlockHeightDeterminants.HWInfA
+@[expose] public section
 
+noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.BlockHeightDeterminants.HWInfA
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace PositivityTheory.PfSWUS.SwsHeight
 
@@ -499,12 +458,19 @@ theorem local_det {n : ℕ} (α ai β β0 : Matrix (Fin n) (Fin n) ℂ) (U : Mat
 
 end PositivityTheory.PfSWUS.SwsHeight
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.BlockHeightDeterminants.CompAtDet
-open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
+section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.BlockHeightDeterminants.CompAtDet
+@[expose] public section
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+noncomputable section
+
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
+open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 
 namespace PositivityTheory.PfSWUS.SwsHeight
 
@@ -562,12 +528,19 @@ theorem hwInf : PositivityTheory.PfSWUS.SwFockk.HWInf := by
 
 end PositivityTheory.PfSWUS.SwsHeight
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.FockLatticeHeights.HWGlue
-open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
+section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.FockLatticeHeights.HWGlue
+@[expose] public section
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+noncomputable section
+
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
+open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 
 namespace PositivityTheory.PfSWUS.SwFockk
 
@@ -601,9 +574,9 @@ theorem heightWN_of (hF : HWFin) (hI : HWInf) (hL : LstdStd) : PositivityTheory.
 
 end PositivityTheory.PfSWUS.SwFockk
 
+end
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.UnitarySchrodingerLemmas.FockLatticeHeights.HeightWNOfFin
 

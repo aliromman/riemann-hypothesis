@@ -16,8 +16,9 @@ import Mathlib.RingTheory.SimpleRing.Principal
 
 open NumberField Module
 
-@[expose] public noncomputable section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.ConjOMemConjIdeal
+@[expose] public section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.ConjOMemConjIdeal
 
+noncomputable section
 
 namespace Formalism.HermitianLattices.Ext.L3.BallB
 
@@ -139,7 +140,7 @@ theorem step_ge (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) {h : V →�
       have hx' : ∀ k, k ≠ i₀ → x' k ∈ A := by
         intro k hk
         have : x' k = x k - c k • x i₀ := by
-          simp only [x', e, if_neg hk, neg_smul, algebraMap_smul]
+          simp only [x', e, ite_eq_right hk, neg_smul, algebraMap_smul]
           abel
         rw [this]; exact hc k
       have hup : ∀ a : 𝓞 K, b.det (Function.update x' i₀ (a • x i₀)) =
@@ -157,6 +158,7 @@ theorem step_ge (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) {h : V →�
   | add a _ c _ ha hc => rw [add_mul]; exact Ideal.add_mem _ ha hc
 
 end Formalism.HermitianLattices.Ext.L3.BallB
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.AbsNormDiscrIdealOfLe

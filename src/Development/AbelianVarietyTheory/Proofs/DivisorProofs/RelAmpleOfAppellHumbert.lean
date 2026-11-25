@@ -551,27 +551,17 @@ open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCate
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.CMModuli.LocalFramePowerSections
+section -- clump member: Development.AbelianVarietyTheory.BlockTheory.CMModuli.LocalFramePowerSections
+@[expose] public section
+noncomputable section
 namespace GlobalTheory.IndefiniteRowSideFullHecke.LocalFramePowerSections
 
 abbrev PowSec {X Y : Scheme.{0}} (L : LB X) (φ : Y ⟶ X) (N : ℕ) : Type :=
   LB.Sec (LB.LinComb L (K := Fin 1) (fun _ => φ) (fun _ => (N : ℤ)))
 
-section Frames
-
-variable {S : Scheme.{0}} (G : Over S) [GrpObj G] [IsCommMonObj G] (L : RigLB G)
-
-
-end Frames
-
-section Data
-
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Datum H} {l : Level H}
-  (Xo : Moduli D l) {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F}
-
-end Data
-
 end GlobalTheory.IndefiniteRowSideFullHecke.LocalFramePowerSections
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsAmpleFramesIff

@@ -106,21 +106,20 @@ theorem main : ∀ {X : AlgebraicGeometry.Scheme} {Ω : Type} [inst : Field Ω]
 end UpperTheory.Reformulated.B.RegularUnitPoints
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptAwayFromPrimes
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptAwayFromPrimes
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
 
 set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.HodgeChar0
 
 section Weil
 
 open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.CommutatorPairing
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 variable {S : Scheme.{0}} {A : Over S} [GrpObj A] {L : LB A.left} {k : ℤ}
 
@@ -277,8 +276,6 @@ theorem mem_iSup_of_dual {I : Type} [Fintype I] [DecidableEq I] (V : I → Submo
 end Linear
 
 section HT
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {G : Over X} [GrpObj G] {ξ : Spec (CommRingCat.of Ω) ⟶ X}
   {E : Type} [AddCommGroup E] [Module Ω E]

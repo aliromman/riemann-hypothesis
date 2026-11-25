@@ -71,12 +71,10 @@ import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MemLocLatOver
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AdelicLatticeFrameConditionCharacterLocal, Development.AbelianVarietyTheory.Proofs.FlagMeasures.TrivialOnDualQuotientIffMemLocalUnitary, Development.AbelianVarietyTheory.Proofs.FlagMeasures.AdelicFrameLevelConjFormLevelWithCharacters, Development.AbelianVarietyTheory.Proofs.FlagMeasures.TransportFrameAlongUnitaryAdelic, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsAdelicCorrectionLevelCharacter
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AdelicLatticeFrameConditionCharacterLocal
 
 open Formalism.BasicNotions Formalism.UG Formalism.L2.Forms NumberField IsDedekindDomain Matrix GlobalTheory.St.G
 open scoped TensorProduct
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AdelicLatticeFrameConditionCharacterLocal
 open Formalism.UG.P
 
 namespace GlobalTheory.St.G.InkLoc
@@ -482,6 +480,9 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TrivialOnDualQuotientIffMemLocalUnitary
 
+open Formalism.BasicNotions Formalism.UG Formalism.L2.Forms NumberField IsDedekindDomain Matrix GlobalTheory.St.G
+open scoped TensorProduct
+
 namespace GlobalTheory.St.G.FunFix
 
 section Abstract
@@ -698,7 +699,12 @@ theorem trivial_iff_mem_Uloc : ∀ (F E : Type) [Field F] [NumberField F] [Field
 end GlobalTheory.St.G.FunFix
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AdelicFrameLevelConjFormLevelWithCharacters
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AdelicFrameLevelConjFormLevelWithCharacters
+
+noncomputable section
+
+open Formalism.BasicNotions Formalism.UG Formalism.L2.Forms NumberField IsDedekindDomain Matrix GlobalTheory.St.G
+open scoped TensorProduct
 
 namespace GlobalTheory.St.G.LvlZero
 
@@ -788,12 +794,12 @@ theorem level_conj_frame : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
   have hf_g : ∀ i v (h : (gp i : 𝓞 F) ∈ v.asIdeal), hf v = κl i v h := by
     intro i v h
     obtain rfl | rfl : i = 0 ∨ i = 1 := by fin_cases i <;> simp
-    · simp only [hf, dif_pos h]
+    · simp only [hf, dite_eq_left h]
     · have h0 : (gp 0 : 𝓞 F) ∉ v.asIdeal := fun h0 => not_both_mem (hgp 0) (hgp 1) hne v h0 h
-      simp only [hf, dif_neg h0, dif_pos h]
+      simp only [hf, dite_eq_right h0, dite_eq_left h]
   have hf_one : ∀ v, (gp 0 : 𝓞 F) ∉ v.asIdeal → (gp 1 : 𝓞 F) ∉ v.asIdeal → hf v = 1 := by
     intro v h0 h1
-    simp only [hf, dif_neg h0, dif_neg h1]
+    simp only [hf, dite_eq_right h0, dite_eq_right h1]
   have hf_lev : ∀ v, hf v ∈ levelVL cm.sig J v S.Lb := by
     intro v
     by_cases h0 : (gp 0 : 𝓞 F) ∈ v.asIdeal
@@ -945,6 +951,12 @@ theorem level_conj_frame : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
 
 end GlobalTheory.St.G.LvlZero
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open Formalism.BasicNotions Formalism.UG Formalism.L2.Forms NumberField IsDedekindDomain Matrix GlobalTheory.St.G
+open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TransportFrameAlongUnitaryAdelic
 

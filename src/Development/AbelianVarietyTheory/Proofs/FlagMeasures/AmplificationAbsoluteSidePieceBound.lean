@@ -88,7 +88,9 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.OffBlockEntriesBoundedNormalFormPairOfFlags, Development.AbelianVarietyTheory.Proofs.FlagMeasures.RadicalCoordinatesBoundedMajorantLengths, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ThreeBoxesVolumeProductLeExplicitPower, Development.AbelianVarietyTheory.Proofs.FlagMeasures.TwoFlagsGramNumberNormalFormEqGramProjection, Development.AbelianVarietyTheory.Proofs.FlagMeasures.VolumeGramConditionCodimTwoThree, Development.AbelianVarietyTheory.Proofs.FlagMeasures.FibreGramNumberNullAndCutoffIntegralBound, Development.AbelianVarietyTheory.Proofs.FlagMeasures.FibreVolumeTwoFlagsGeneralPosition, Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplificationAbsoluteSidePieceBound
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.OffBlockEntriesBoundedNormalFormPairOfFlags
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.OffBlockEntriesBoundedNormalFormPairOfFlags
+
+noncomputable section
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp GlobalTheory.Amp.NfComp
 open scoped InnerProductSpace ENNReal
@@ -162,7 +164,7 @@ theorem offBlock_le : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ)) (g�
     (fun i j h => Matrix.one_apply_ne h.ne) (fun i => by simp [hU, upperOff, upper])
     (fun i j h => by
       simp only [hU, upperOff, upper]
-      rw [dite_eq_right (not_lt.2 h.le), if_neg h.ne'])
+      rw [dite_eq_right (not_lt.2 h.le), ite_eq_right h.ne'])
     (fun i j hi hj => hZ0 i j ⟨fun _ => not_lt.2 hj, fun _ => hi⟩) ⟨c.val, hcl⟩ b
     (fun c' hc' => by
       by_contra h
@@ -206,9 +208,12 @@ theorem offBlock_le : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ)) (g�
 
 end GlobalTheory.Amp.NfOff
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RadicalCoordinatesBoundedMajorantLengths
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
 open scoped InnerProductSpace ENNReal
@@ -661,7 +666,7 @@ theorem radical_coords_le : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ
     rw [e, eucl_neg]
     exact (eucl_comp_le (wI k r) (fun j j' h => (Rad.wI_inj j j').1 h) _).trans (hEbd b)
   · have e : q.2.1 p = skewM q.2.1 q.2.2 p.1.1 p.1.2 := by
-      simp only [skewM, dif_pos p.2]
+      simp only [skewM, dite_eq_left p.2]
     rw [e]
     exact hskew _ _
   · have e : skewM q.2.1 q.2.2 b b = (q.2.2 b : ℂ) * Complex.I := by
@@ -671,6 +676,7 @@ theorem radical_coords_le : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ
     exact this
 
 end GlobalTheory.Amp.RadBound
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 
@@ -718,7 +724,9 @@ end GlobalTheory.Amp
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TwoFlagsGramNumberNormalFormEqGramProjection
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp GlobalTheory.Amp.Rad
 open scoped InnerProductSpace ENNReal
@@ -854,10 +862,10 @@ theorem rS_u (u : Matrix (Fin r) (Fin r) ℂ) (v : Fin (2 * r + k + 1) → ℂ) 
     Fin.ext (by have := b.2; simp only [esI]; omega)
   have h1 : ∀ b, uEmb k r u (esI k r a) (eI k r b) = 0 := fun b => by
     have := b.2
-    unfold uEmb; rw [dite_eq_right (by simp only [esI]; omega), dite_eq_right (by simp only [eI]; omega), if_neg (esI_ne_eI _ _)]
+    unfold uEmb; rw [dite_eq_right (by simp only [esI]; omega), dite_eq_right (by simp only [eI]; omega), ite_eq_right (esI_ne_eI _ _)]
   have h2 : ∀ b, uEmb k r u (esI k r a) (wI k r b) = 0 := fun b => by
     have := b.2
-    unfold uEmb; rw [dite_eq_right (by simp only [esI]; omega), dite_eq_right (by simp only [wI]; omega), if_neg (esI_ne_wI _ _)]
+    unfold uEmb; rw [dite_eq_right (by simp only [esI]; omega), dite_eq_right (by simp only [wI]; omega), ite_eq_right (esI_ne_wI _ _)]
   have h3 : ∀ b, uEmb k r u (esI k r a) (esI k r b) = star (u⁻¹ b a) := fun b => by
     have := b.2
     unfold uEmb; rw [dite_eq_right (by simp only [esI]; omega), dite_eq_left (by simp only [esI]; omega)]
@@ -1102,7 +1110,7 @@ theorem mem_pos (p : Fin (2 * r + k + 1) → ℂ) : p ∈ LinearMap.ker (Matrix.
     refine ⟨funext fun a => ?_, ?_⟩
     · have := congrFun h (esI k r a); rwa [GlobalTheory.Amp.NCoord.H_es] at this
     · have := congrFun h (wI k r (Fin.last k)); rw [H_w] at this
-      simp only [sg, if_true] at this
+      simp only [sg, ite_true] at this
       show p _ = 0
       linear_combination (-1 / 2 : ℂ) * this
   · rintro ⟨h1, h2⟩
@@ -1191,6 +1199,7 @@ theorem Yv_normal : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ)) (g₀
   field_simp
 
 end GlobalTheory.Amp.NormGram
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

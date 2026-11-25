@@ -20,8 +20,10 @@ import Mathlib.RingTheory.TotallySplit
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.EqOneOfCoprimeTorsionTwoPrimes, Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.GroupActionMulSingleEqDilation
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.EqOneOfCoprimeTorsionTwoPrimes
+section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.EqOneOfCoprimeTorsionTwoPrimes
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0
 
@@ -179,7 +181,7 @@ theorem torsion_reduction_trivial (S : StepLevel F E σ J T f bad) (G : GLoc F E
     refine ⟨fun hqp => ?_, ?_⟩
     · have h1 := hInJ.1 p q (by
         unfold blkOf
-        rw [if_pos (lt_of_lt_of_le q.2 ha), if_pos (lt_of_lt_of_le p.2 ha)]
+        rw [ite_eq_left (lt_of_lt_of_le q.2 ha), ite_eq_left (lt_of_lt_of_le p.2 ha)]
         exact hqp)
       rw [hred] at h1
       exact h1
@@ -365,7 +367,7 @@ theorem multi_diamond_conj_mem (S : StepLevel F E σ J T f bad) {P : Type} (pl :
   · obtain ⟨p, rfl⟩ := hw
     simp only [map_mul, map_inv]
     exact local_diamond_conj_mem S (pl p) (hpl p) (h.2 p) _ (hκ'.2 (pl p))
-  · push_neg at hw
+  · push Not at hw
     simpa [map_mul, map_inv, h.1 w hw] using hκ'.2 w
 
 theorem multi_diamond_mem_level (S : StepLevel F E σ J T f bad) {P : Type} (pl : P → HeightOneSpectrum (𝓞 F))
@@ -376,7 +378,7 @@ theorem multi_diamond_mem_level (S : StepLevel F E σ J T f bad) {P : Type} (pl 
   by_cases hw : ∃ p, w = pl p
   · obtain ⟨p, rfl⟩ := hw
     exact local_diamond_mem_level S (pl p) (hpl p) (h.2 p) (hk p)
-  · push_neg at hw
+  · push Not at hw
     rw [h.1 w hw]; exact (S.Uloc w).one_mem
 
 theorem multi_diamond_multiplier_congr (S : StepLevel F E σ J T f bad) (hT : T.Prime) {P : Type} (pl : P → HeightOneSpectrum (𝓞 F))
@@ -420,7 +422,7 @@ theorem level_places_prime_to_type (A : AtTTied u) (v : (D.mem u).A.vT) : (A.eV 
 theorem rank_zero_le_type_level : D.R.N 0 ≤ aOf D.R 0 := by
   have := D.R.two_le_m
   unfold aOf Ranks.N
-  rw [if_pos (by omega)]
+  rw [ite_eq_left (by omega)]
   simp
 
 theorem fixed_class_mem_level_general (K : ClsTied u 0 (Nat.zero_le _)) (G : GLoc D.host.F D.host.E (sigD D) D.host.g)
@@ -478,7 +480,7 @@ theorem rank_zero_le_weight : D.R.N 0 ≤ D.R.k := by
   have h := rank_zero_le_type_level (D := D)
   have e : aOf D.R 0 = D.R.k := by
     unfold aOf
-    rw [if_pos (by have := D.R.two_le_m; omega)]
+    rw [ite_eq_left (by have := D.R.two_le_m; omega)]
     simp
   omega
 
@@ -550,6 +552,8 @@ theorem dilation_commute_distinct (Tf : Forms0 D u) (v v' : (D.mem u).A.vT) (hvv
 
 end Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.GroupActionMulSingleEqDilation

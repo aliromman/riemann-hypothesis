@@ -78,8 +78,9 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.ToSpanSingletonCons
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.H2EqZeroOfIsInitial, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilPairingAdjointEndomorphism, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilPairingExistsOfCubeTheorem, Development.AbelianVarietyTheory.Statements.EllipticCurveLevels.BaseChangeMapRingAct, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothOfRelativeDimensionDual
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.H2EqZeroOfIsInitial
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.H2EqZeroOfIsInitial
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj DividedPowers
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.DeRham GlobalTheory.AbDual
@@ -111,22 +112,15 @@ theorem dual_unique {B' : Over S} [GrpObj B'] {P' : LB (A ⊗ B').left} (h : IsD
 
 end Dual
 
-section Crystal
-
-variable {R R₀ : Type} [CommRing R] [CommRing R₀] {I : Ideal R} {κ : DividedPowers I} {π : R →+* R₀}
-
-end Crystal
-
 end GlobalTheory.Published.AbelianDualCrystal.Test
 end -- clump:auto
+end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilPairingAdjointEndomorphism
 
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilPairingAdjointEndomorphism
 open GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.CurveRootGeometry GlobalTheory.TwoSeq GlobalTheory.DeRham GlobalTheory.AbDual GlobalTheory.ConjSeq GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.BadPt
 open GlobalTheory.Cris (dp0)
 attribute [local instance] Over.cartesianMonoidalCategory
@@ -137,6 +131,10 @@ end GlobalTheory.WeilAdjoint
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilPairingExistsOfCubeTheorem
+
+
+open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.DeRham GlobalTheory.AbDual GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.BadPt GlobalTheory.CartierDual WithConv
 
 namespace GlobalTheory.WeilHom
@@ -291,7 +289,12 @@ end Geo
 end GlobalTheory.WeilHom
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.EllipticCurveLevels.BaseChangeMapRingAct
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Statements.EllipticCurveLevels.BaseChangeMapRingAct
+
+noncomputable section
+
+open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open ReciprocityTheory.ChartRestriction.G.Out (RingAct)
 open GlobalTheory.DeRham (spOver)
 open GlobalTheory.AbDual GlobalTheory.PDiv GlobalTheory.PDivGroup
@@ -350,16 +353,6 @@ theorem IsPairRed.polBundle {P : LB (A ⊗ B).left} {P₀ : LB (A₀ ⊗ B₀).l
 
 end Functor
 
-section Consequences
-
-variable {p : ℕ} [Fact p.Prime] {R R₀ : Type} [CommRing R] [CommRing R₀] [Algebra R R₀]
-
-end Consequences
-
-section Base
-
-end Base
-
 section Elliptic
 
 open GlobalTheory.WeierstrassCurve (ellPolAV)
@@ -382,8 +375,7 @@ end Elliptic
 
 end GlobalTheory.SerreTateDef
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothOfRelativeDimensionDual
 

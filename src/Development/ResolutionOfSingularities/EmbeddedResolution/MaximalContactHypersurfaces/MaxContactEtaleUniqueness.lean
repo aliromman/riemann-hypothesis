@@ -342,12 +342,13 @@ end FunctorialResolution.EmbeddedResolution
 end -- clump:auto
 
 section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.MaximalContactHypersurfaces.MaxContactCommonCharts
-@[expose] public noncomputable section
+@[expose] public section
 
 universe u
 
 open CategoryTheory Opposite AlgebraicGeometry TopologicalSpace
 
+noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
@@ -487,8 +488,8 @@ theorem exists_common_charts_of_isMaxContactHypersurface (A : X.IdealSheafData) 
       ∃ γ : ℕ → Option (Fin n'),
         (∀ i : ℕ, i < N.length → γ i = a' (i + 1)) ∧
         (∀ i : ℕ, ¬ i < N.length → γ i = none) :=
-    ⟨fun i => if i < N.length then a' (i + 1) else none, fun i hi => if_pos hi,
-      fun i hi => if_neg hi⟩
+    ⟨fun i => if i < N.length then a' (i + 1) else none, fun i hi => ite_eq_left hi,
+      fun i hi => ite_eq_right hi⟩
   have hγinj : LabelingInjective γ N.length := by
     intro i i' hi hi' j hj hj'
     rw [hγval i hi] at hj
@@ -678,6 +679,7 @@ theorem exists_common_charts_of_isMaxContactHypersurface (A : X.IdealSheafData) 
 end
 
 end FunctorialResolution.EmbeddedResolution
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

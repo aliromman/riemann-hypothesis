@@ -65,10 +65,11 @@ import Formalism.LocalRingCardinality.Params
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightIrreducible.BCRowGenMonomial, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightIrreducible.ConstructionB
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightIrreducible.BCRowGenMonomial
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightIrreducible.BCRowGenMonomial
 
 open MvPolynomial Formalism.GradedWeylDivisibility Formalism.REAL
 
+noncomputable section
 
 namespace PI.WHw
 
@@ -238,8 +239,8 @@ theorem bC_graded {r n : ℕ} (M : Submodule ℂ (MvPolynomial (Fin r × Fin n) 
         rw [hw]
         exact e a (Finset.mem_univ a)
     by_cases e1 : Finsupp.weight (rowW r n) m = μ
-    · rw [if_pos e1, if_pos (hiff.mp e1)]
-    · rw [if_neg e1, if_neg (fun h' => e1 (hiff.mpr h'))]
+    · rw [ite_eq_left e1, ite_eq_left (hiff.mp e1)]
+    · rw [ite_eq_right e1, ite_eq_right (fun h' => e1 (hiff.mpr h'))]
   rw [e]
   exact hhM
 
@@ -249,6 +250,7 @@ theorem bC_exists_killed {r n : ℕ}
   GlobalTheory.Branching.exists_killed_of_rowDivClosed M hM hne
 
 end PI.WHw
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightIrreducible.ConstructionB

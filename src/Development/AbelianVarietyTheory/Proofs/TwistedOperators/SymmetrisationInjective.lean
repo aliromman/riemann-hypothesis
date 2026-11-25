@@ -57,10 +57,11 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.DegreeSingleAdd, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ProdPLinIsHomogeneous, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ProdXEqMonomial, Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymmetrisationEquivariant, Development.AbelianVarietyTheory.Proofs.TwistedOperators.UgMemSpanListProd, Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymmetrisationInjective
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.DegreeSingleAdd
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.DegreeSingleAdd
 
 open MvPolynomial TensorProduct
 
+noncomputable section
 
 namespace GlobalTheory.InducedPBW
 
@@ -383,11 +384,11 @@ lemma defect_e (i : ι) (J : ι →₀ ℕ) (hJ : ∀ j ∈ J.support, i ≤ j) 
     suffices h : defect c δ (zv J v) (e j) (e i) = 0 by rw [h, smul_zero]
     rcases lt_trichotomy i j with h | rfl | h
     · rw [defect_apply, comm_high hce hf i J hJ _ fun k hk => by
-        rw [hce, if_neg (hk.trans_lt h).ne]]
+        rw [hce, ite_eq_right (hk.trans_lt h).ne]]
       abel
     · simp [defect_apply]
     · rw [defect_swap, defect_apply, comm_high hce hf j J (fun k hk => h.le.trans (hJ k hk)) _
-        fun k hk => by rw [hce, if_neg (hk.trans_lt h).ne]]
+        fun k hk => by rw [hce, ite_eq_right (hk.trans_lt h).ne]]
       abel
 
 omit hce hf [LinearOrder ι] in
@@ -490,6 +491,7 @@ theorem exists_rep (hce : ∀ i j, c i (e j) = if i = j then 1 else 0)
 end General
 
 end GlobalTheory.InducedPBW
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -612,8 +614,9 @@ end GlobalTheory.InducedPBW.Onto
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ProdXEqMonomial
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.InducedPBW.Symbol
 
@@ -781,7 +784,7 @@ private lemma sum_unitP_apply (x : Mat p q) (c d : Ix p q) :
 
 private lemma isKC_sub_sum_unitP (x : Mat p q) : IsKC (x - ∑ ab : PIx p q, x ab.1.1 ab.1.2 • unitP ab) := by
   intro c d h
-  rw [Matrix.sub_apply, sum_unitP_apply, if_neg h, sub_self]
+  rw [Matrix.sub_apply, sum_unitP_apply, ite_eq_right h, sub_self]
 
 theorem mixed_mem (v : V) (l : List (Mat p q)) : ∀ a : List (PIx p q),
     cls act v (prodU (a.map unitP) * prodU l) -
@@ -851,6 +854,7 @@ theorem symbolCongr (p q : ℕ) (V : Type) [AddCommGroup V] [Module ℂ V]
   exact h
 
 end GlobalTheory.InducedPBW
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 
@@ -1137,10 +1141,11 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymmetrisationInjective
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymmetrisationInjective
 
 open Formalism.BasicNotions.TH Formalism.MainNotions.SchurIrreducible MvPolynomial TensorProduct
 
+noncomputable section
 
 namespace GlobalTheory.InducedPBW.Injective
 
@@ -1309,7 +1314,7 @@ lemma eq_zero_of_mem {k : ℕ} {z : MvPolynomial (PIx p q) ℂ ⊗[ℂ] V} (h1 :
     have hm : (monomial α (1 : ℂ)) ∈ homogeneousSubmodule (PIx p q) ℂ α.degree :=
       (mem_homogeneousSubmodule _ _).mpr (isHomogeneous_monomial 1 rfl)
     simp only [SetLike.mem_coe, LinearMap.mem_ker, zv, TensorProduct.mk_apply,
-      LinearMap.rTensor_tmul, homogeneousComponent_of_mem hm, if_neg (Nat.ne_of_gt hα),
+      LinearMap.rTensor_tmul, homogeneousComponent_of_mem hm, ite_eq_right (Nat.ne_of_gt hα),
       TensorProduct.zero_tmul]
   have h3 := hkill h2
   rw [LinearMap.mem_ker, hfix] at h3

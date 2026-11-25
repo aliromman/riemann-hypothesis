@@ -25,12 +25,14 @@ import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescen
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.LastCoordinateSlices, Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.SmoothLocalChart, Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.PresentedLocalChart, Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.EtaleCoverClosedEmbedding, Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.PresentedSelectionCompatibility
 
-@[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.LastCoordinateSlices
+section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.LastCoordinateSlices
+@[expose] public section
 
 universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace
 
+noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
@@ -276,7 +278,7 @@ private theorem sliceAtLastCoord_appTop_lagrangeSection (k : Type u) [Field k] (
     exact Finset.prod_congr rfl fun l _ => (map_sub _ _ _).symm
   rw [hprod, ← map_mul]
   by_cases hji : j = i
-  · rw [if_pos hji, ← hji]
+  · rw [ite_eq_left hji, ← hji]
     have hne : (∏ l ∈ Finset.univ.erase j, (e j - e l)) ≠ 0 := by
       rw [Finset.prod_ne_zero_iff]
       intro l hl
@@ -285,7 +287,7 @@ private theorem sliceAtLastCoord_appTop_lagrangeSection (k : Type u) [Field k] (
   · have hz : (∏ l ∈ Finset.univ.erase j, (e i - e l)) = 0 :=
       Finset.prod_eq_zero (Finset.mem_erase.mpr ⟨fun hc => hji hc.symm, Finset.mem_univ i⟩)
         (sub_self (e i))
-    rw [if_neg hji, hz, mul_zero, map_zero]
+    rw [ite_eq_right hji, hz, mul_zero, map_zero]
 
 private theorem sliceAtLastCoord_appTop_sum_mul_lagrangeSection (k : Type u) [Field k] (M : ℕ) {ι : Type u}
     [Fintype ι] [DecidableEq ι] (e : ι → k) (he : Function.Injective e)
@@ -299,7 +301,7 @@ private theorem sliceAtLastCoord_appTop_sum_mul_lagrangeSection (k : Type u) [Fi
     simp
   · intro j _ hj
     simp only [map_mul, sliceAtLastCoord_appTop_lagrangeSection k M e he i j]
-    rw [if_neg hj, mul_zero]
+    rw [ite_eq_right hj, mul_zero]
 
 private theorem coproduct_globalSections_ext (k : Type u) [Field k] {ι : Type u} (A : ι → Scheme.{u})
     (q : (∐ A) ⟶ Spec (CommRingCat.of k))
@@ -606,6 +608,8 @@ theorem hasSmoothCoordCodim_coproductSliceMapReindexed (hsm : AffineSpaceIsSmoot
 
 end FunctorialResolution.EmbeddedResolution
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.SmoothLocalChart

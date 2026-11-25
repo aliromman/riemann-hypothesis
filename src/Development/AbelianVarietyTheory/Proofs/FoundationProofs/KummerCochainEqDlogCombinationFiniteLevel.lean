@@ -767,7 +767,9 @@ theorem exists_ext : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebr
 end GlobalTheory.DerExt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDlogDerivationsGluedTowerLevels
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDlogDerivationsGluedTowerLevels
+
+noncomputable section
 
 namespace GlobalTheory.LevGlue
 
@@ -828,7 +830,7 @@ theorem glue_fam (T : Tower p Ω) (F : ℕ → Ω → Ω) (hF : ∀ m, GlobalThe
   have hG : ∀ m, ∀ x ∈ Lev T (m + 1), IsInt (p := p) (F (M x) x - F m x) := by
     intro m x hx
     have h : ∃ m, x ∈ Lev T (m + 1) := ⟨m, hx⟩
-    have hM : M x = Classical.choose h := dif_pos h
+    have hM : M x = Classical.choose h := dite_eq_left h
     have ha := Classical.choose_spec h
     rw [hM]
     have h1 := hc _ (max m (Classical.choose h)) (le_max_right _ _) x ha
@@ -887,6 +889,7 @@ theorem glue : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra (O0 
   · exact int_congr (int_add (hdq k _ (qq_mem_Lev T _)) v.2.2.2) (by ring)
 
 end GlobalTheory.LevGlue
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDlogDerivationsTowerLevelModIntegral

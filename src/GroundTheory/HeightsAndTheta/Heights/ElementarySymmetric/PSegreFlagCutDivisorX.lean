@@ -222,7 +222,8 @@ theorem SegreFlagCutDivisor.proof (hSpec : SegreFlagCutSpecialize.Statement)
 end GroundTheory.Heights₂.Heights.NumbersDVR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSegreFlagCutPreimage
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSegreFlagCutPreimage
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -230,6 +231,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo GenericProjClosureDivisor SegreFlagCutChartSection
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -432,11 +434,11 @@ theorem core {Φ : Type} [Field Φ] [Algebra O Φ] (P Q : (Σ o, bundleIdx (bund
     intro v
     rw [hΛ]
     rcases v with ⟨_ | _ | k, j⟩
-    · simp only [Λ₁, substPhi, if_neg (show (none : Option (Option K)) ≠ some none by simp)]
+    · simp only [Λ₁, substPhi, ite_eq_right (show (none : Option (Option K)) ≠ some none by simp)]
       exact isWeightedHomogeneous_X O _ _
-    · simp only [Λ₁, substPhi, if_pos rfl]
+    · simp only [Λ₁, substPhi, ite_eq_left rfl]
       exact hL j
-    · simp only [Λ₁, substPhi, if_neg (show some (some k) ≠ some none by simp)]
+    · simp only [Λ₁, substPhi, ite_eq_right (show some (some k) ≠ some none by simp)]
       exact isWeightedHomogeneous_X O _ _
 
   have hform : ∀ (b : Option (Option K) → ℕ) (q : MRing (bundleIdx (bundleIdx ι M) M') O),
@@ -633,11 +635,14 @@ theorem SegreFlagCutPreimage.proof : SegreFlagCutPreimage.Statement := by
       change _ * genVal w _ (φ i) = genVal w _ (φ i₀) * _
       ring
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSegreFlagCutSpecialize
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSegreFlagCutSpecialize
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -645,6 +650,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo
 
+noncomputable section
 
 section Ring
 
@@ -732,16 +738,16 @@ theorem SegreFlagCutSpecialize.proof : SegreFlagCutSpecialize.Statement := by
     simp only [Function.comp_apply, flagCoordRing]
     rcases lt_trichotomy (j : ℕ) k with h | h | h
     · have hkj : kk ≠ j := fun h' => by rw [← h'] at h; exact lt_irrefl _ h
-      rw [if_pos (by omega), if_pos h]
+      rw [ite_eq_left (by omega), ite_eq_left h]
       simp only [MvPolynomial.algebraMap_eq]
       refine hs.trans ?_
-      rw [if_neg hkj, sub_zero]
+      rw [ite_eq_right hkj, sub_zero]
     · have hkj : kk = j := Fin.ext h.symm
-      rw [if_pos (by omega), if_neg (by omega)]
+      rw [ite_eq_left (by omega), ite_eq_right (by omega)]
       simp only [MvPolynomial.algebraMap_eq]
       refine hs.trans ?_
-      rw [if_pos hkj, hkj, sub_self]
-    · rw [if_neg (by omega), if_neg (by omega), map_zero]
+      rw [ite_eq_left hkj, hkj, sub_self]
+    · rw [ite_eq_right (by omega), ite_eq_right (by omega), map_zero]
   let cA : ℕ → (Σ o, bundleIdx (bundleIdx ι M) M' o) → (MvPolynomial (Fin N) Ω) :=
     fun j => pairCoordRing y w φ φ' (flagCoordRing w e X j)
   have hcoord : ∀ j : ℕ, flagClosurePt y w e φ φ' t j = fun p => ev (cA j p) := by
@@ -805,8 +811,10 @@ theorem SegreFlagCutSpecialize.proof : SegreFlagCutSpecialize.Statement := by
       hev (by rw [hsh, map_mul])
     rw [val, ← vsub, hs', map_mul, hsubτ, zero_mul, map_zero]
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PSegreFlagCutDivisorX

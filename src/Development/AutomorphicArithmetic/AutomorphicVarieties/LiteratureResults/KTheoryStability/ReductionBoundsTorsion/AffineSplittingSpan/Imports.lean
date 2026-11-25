@@ -563,8 +563,10 @@ end PositivityTheory.KB.SplitAffineSpectral.NormTraceLemmas
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.CoreRec
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.CoreRec
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.KB.SplitAffineSpectral.NormTraceLemmas
 
@@ -589,15 +591,10 @@ def GoodS (pr : P →* Q) {p q : ℕ} (x : Bi P Q (p + 2) (q + 2)) : Prop :=
 def GoodT (pr : P →* Q) {q : ℕ} (x : Bi P Q 1 (q + 2)) : Prop :=
   ∃ b : (Fin (q + 2) → Q) → ℝ, QC b ∧ ∃ e : Bi P Q 1 (q + 1), PInv pr e ∧ dh e = 0 ∧ x = Wtop pr b + dv e
 
-section Rec
-
-variable (pr : P →* Q) (s : Q →* P) (hs : ∀ g, pr (s g) = g)
-include hs
-
-end Rec
-
 end PositivityTheory.KB.SplitAffineSpectral.NormTraceLemmas
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.RowExact

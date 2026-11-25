@@ -104,13 +104,12 @@ end ModFam
 end GlobalTheory.SgGlob
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PrimInIffSubsingleton
 
+noncomputable section
 
 open NumberField Matrix GlobalTheory.SgAlg GlobalTheory.SgGlob IsDedekindDomain
 open scoped nonZeroDivisors
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PrimInIffSubsingleton
 
 namespace GlobalTheory.IntTerm
 
@@ -142,25 +141,16 @@ def Move (σ : E →+* E) {n r : ℕ} (J : Matrix (Fin n) (Fin n) E) (Λ : Submo
 
 end Defs
 
-section Field
-
-variable {σ : E →+* E} {n r : ℕ} {J s Y : Matrix (Fin n) (Fin n) E} {P P' : Matrix (Fin n) (Fin (r + 1)) E}
-  {u v A Z : Matrix (Fin (r + 1)) (Fin (r + 1)) E}
-
-end Field
-
-section Lattice
-
-variable [NumberField E] {σ : E →+* E} {n r g : ℕ} {J s : Matrix (Fin n) (Fin n) E}
-  {P P' A B C : Matrix (Fin n) (Fin (r + 1)) E} {u v : Matrix (Fin (r + 1)) (Fin (r + 1)) E}
-  {Λ Λ' Λ'' M : Submodule (𝓞 E) (Fin n → E)} {T T' : E}
-
-end Lattice
-
 end GlobalTheory.IntTerm
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.GqPtOfNeZeroIff
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.GqPtOfNeZeroIff
+
+noncomputable section
+
+open NumberField Matrix GlobalTheory.SgAlg GlobalTheory.SgGlob IsDedekindDomain
+open scoped nonZeroDivisors
 
 namespace GlobalTheory.IntTerm
 
@@ -214,12 +204,6 @@ end Term
 
 end Basic
 
-section Examples
-
-variable {E : Type} [Field E] [NumberField E]
-
-end Examples
-
 section Spaces
 
 open Formalism.BasicNotions
@@ -237,18 +221,6 @@ theorem hT_eq_sum (V : HSpace E) (x y : V.V) :
   RingHom.id_apply, HSpace.gram, starRingEnd_apply, mul_comm]
 
 end Spaces
-
-section Record
-
-open Formalism.BasicNotions
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-variable (D : D7)
-
-variable {D} {u u' : D.what₂.Word}
-
-end Record
 
 end GlobalTheory.IntTerm
 

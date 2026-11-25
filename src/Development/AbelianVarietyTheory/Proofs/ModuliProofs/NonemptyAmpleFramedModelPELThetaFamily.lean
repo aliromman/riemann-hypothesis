@@ -368,9 +368,10 @@ open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.ZH ReciprocityTheory.ChartRestriction.G.Out Classical
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.EqOfValFGeneric
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.EqOfValFGeneric
 attribute [local instance] Over.cartesianMonoidalCategory
 
+noncomputable section
 
 namespace GlobalTheory.AmpModel
 
@@ -551,9 +552,9 @@ theorem valF_pullOn {σ : ∀ j, Γ(X, V ⊓ (powAlong L k (𝟙 X)).U j)} (hσ 
   · exact Points.valR_appLE g F _ h _
   · have h' : ¬ ⊤ ≤ (g ≫ F) ⁻¹ᵁ (V ⊓ (powAlong L k (𝟙 X)).U j) := fun h' =>
       h fun y hy => Set.mem_iInter.2 fun a => Set.mem_iInter.1 (h' hy).2 a
-    have e : valF (g ≫ F) _ (σ j) = 0 := dif_neg h'
+    have e : valF (g ≫ F) _ (σ j) = 0 := dite_eq_right h'
     rw [e]
-    exact dif_neg h
+    exact dite_eq_right h
 
 end Sections
 
@@ -718,6 +719,7 @@ theorem rel_of_genVal (hU₀ : (U₀ : Set M.Z).Nonempty) (k : ℤ) {I : Type} [
 end Generic
 
 end GlobalTheory.AmpModel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsAmpFramesExponents

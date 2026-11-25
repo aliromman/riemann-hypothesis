@@ -158,10 +158,10 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionHiddenFirst
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionHiddenFirst
 open GlobalTheory.CompanionTheory.Ar.Flat.DegZ
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.DegZ.IsoMap
 
@@ -271,11 +271,12 @@ theorem isIso_map : ∀ (R S : Type) [CommRing R] [CommRing S] (f : R →+* S) (
 
 end GlobalTheory.CompanionTheory.Ar.Flat.DegZ
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FibreCurveGermPowers
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FibreCurveGermPowers
 open GlobalTheory.CompanionTheory.Ar.Flat.DegZ
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.DegZ.GermFam
 
@@ -538,6 +539,7 @@ theorem germ_family : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
     fun i => ⟨mi i, φ' i, ψ' i, lam' i, he i, rfl, rfl, rfl⟩⟩
 
 end GlobalTheory.CompanionTheory.Ar.Flat.DegZ.GermFam
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FibreCurveGermPowersStatement

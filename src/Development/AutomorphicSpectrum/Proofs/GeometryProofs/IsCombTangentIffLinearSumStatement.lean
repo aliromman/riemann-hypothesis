@@ -14,11 +14,11 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeAt
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsCombTangentIffLinearSum
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsCombTangentIffLinearSum
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
@@ -57,10 +57,9 @@ theorem isComb_lieModel_pt_iff : ∀ (S : Scheme.{0}) (R : Type) [CommRing R] (G
 
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsCombTangentIffLinearSumStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 theorem _root_.GlobalTheory.T.is_comb_tangent_iff_linear_sum : ∀ (S : Scheme.{0}) (R : Type) [CommRing R] (G : Over S) [GrpObj G] [IsCommMonObj G] (x : Sp R ⟶ S) (Em : Type)
     [AddCommGroup Em] [Module R Em] (M : LieModel G x Em) (n : ℕ) (b : Fin n → Em) (cf : Fin n → R) (e : Em),

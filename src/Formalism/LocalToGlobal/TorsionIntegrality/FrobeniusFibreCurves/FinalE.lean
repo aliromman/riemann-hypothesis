@@ -1212,8 +1212,9 @@ theorem CubeE_of (hB : BeESim) (hD : CocycleDiffExpEquiv) : CubeE := by
 end Formalism.L2.Th1.B.BeE
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.ConstantCoeffQuotientXSq
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.ConstantCoeffQuotientXSq
 
+noncomputable section
 
 namespace Formalism.L2.Th1.B.SAdd
 
@@ -1230,8 +1231,8 @@ theorem eq_X_sq_mul_quotient {w : PowerSeries K} (h0 : constantCoeff w = 0) (h1 
   ext n
   rw [coeff_X_pow_mul']
   by_cases h : 2 ≤ n
-  · rw [if_pos h, divByXSq, coeff_mk, Nat.sub_add_cancel h]
-  · rw [if_neg h]
+  · rw [ite_eq_left h, divByXSq, coeff_mk, Nat.sub_add_cancel h]
+  · rw [ite_eq_right h]
     have : n = 0 ∨ n = 1 := by omega
     rcases this with rfl | rfl
     · rw [coeff_zero_eq_constantCoeff_apply, h0]
@@ -1461,6 +1462,7 @@ theorem weierstrass_addition_holds : WAdd := by
       (at1 0 (sW w) * at1 1 (dz (sW w)) + at1 1 (sW w) * at1 0 (dz (sW w))))) * H
 
 end Formalism.L2.Th1.B.SAdd
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.DivLaw

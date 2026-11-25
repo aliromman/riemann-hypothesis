@@ -77,12 +77,13 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.JetRingMorphismUniqueness, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MaximalIsotropicLiftModIdeal, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemSmulTopOfForallMem
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.JetRingMorphismUniqueness
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.JetRingMorphismUniqueness
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.Cris GlobalTheory.DeRham GlobalTheory.RealMult GlobalTheory.LatVal GlobalTheory.LatJet GlobalTheory.AbDual GlobalTheory.CechPic GlobalTheory.AbLaw GlobalTheory.Published GlobalTheory.CatCoh
 
+noncomputable section
 
 namespace GlobalTheory.JetIsotropic
 
@@ -119,34 +120,8 @@ theorem corrForm_antisymm (C : CupSquare κ t (A ⊗ A)) {P : LB (A ⊗ A).left}
 
 end Gen
 
-section Jet
-
-variable {R : Type} [CommRing R] {I : Type} [Fintype I] {n : ℕ}
-
-end Jet
-
-section Diag
-
-variable {R : Type} [CommRing R] {A : Over (Sp R)} [GrpObj A]
-
-end Diag
-
-section Props
-
-variable {F : Type} [Field F] [NumberField F] {𝔠 : FracId F} {R : Type} [CommRing R] [IsDomain R] [CharZero R]
-  {I : Type} [Fintype I]
-
-end Props
-
-section BC
-
-variable {R R' : Type} [CommRing R] [CommRing R'] [Algebra R R'] {I : Ideal R} {I' : Ideal R'} {S S' : Scheme.{0}}
-  {κ : DividedPowers I} {t : S ⟶ Sp R} {A : Over S} [GrpObj A] {κ' : DividedPowers I'} {t' : S' ⟶ Sp R'}
-  {A' : Over S'} [GrpObj A'] {b : S' ⟶ S} {φ : A'.left ⟶ A.left}
-
-end BC
-
 end GlobalTheory.JetIsotropic
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MaximalIsotropicLiftModIdeal

@@ -63,8 +63,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto GlobalTheory.KeyCl GlobalTheory.Ex GlobalTheory.MBLow GlobalTheory.SecJet
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValRPowIso
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValRPowIso
 
+noncomputable section
 
 namespace GlobalTheory.MBLow.BaseChRig
 
@@ -73,7 +74,7 @@ theorem valR_spMap {A B : Type} [CommRing A] [CommRing B] (f : A →+* B) {X : S
     valR (spMap f ≫ x) U s = f (valR x U s) := by
   have hU' : ⊤ ≤ (spMap f ≫ x) ⁻¹ᵁ U := fun q _ => hU (Set.mem_univ _)
   unfold valR
-  rw [dif_pos hU, dif_pos hU']
+  rw [dite_eq_left hU, dite_eq_left hU']
   have e : (spMap f ≫ x).appLE U ⊤ hU' = x.appLE U ⊤ hU ≫ (spMap f).appTop := by
     rw [Scheme.Hom.appTop, Scheme.Hom.app_eq_appLE]
     exact (Scheme.Hom.appLE_comp_appLE _ _ _ _ _ _ _).symm
@@ -81,6 +82,7 @@ theorem valR_spMap {A B : Type} [CommRing A] [CommRing B] (f : A →+* B) {X : S
   exact congrArg (fun φ => φ.hom ((x.appLE U ⊤ hU).hom s)) (Scheme.ΓSpecIso_naturality (CommRingCat.ofHom f))
 
 end GlobalTheory.MBLow.BaseChRig
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SectionValueEqAtFirstOrderOfTangents

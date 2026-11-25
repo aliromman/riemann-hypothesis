@@ -11,10 +11,11 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BorderMinorRotation.Ski
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BorderSignIdentity.SkipOneEqSuccAbove, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.QmBorderES
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BorderSignIdentity.SkipOneEqSuccAbove
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BorderSignIdentity.SkipOneEqSuccAbove
 
 open Finset Formalism.REAL
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.QmBorderES
 
@@ -53,22 +54,13 @@ theorem rowPart (hR : PI.ExpLastRow) {A : Type} [Ring A] [Algebra ℂ A] {n t : 
     (hG : GlRel E) (e : Fin n) (f : Fin t → Fin n) (b : Fin (t + 1) → Fin n) (he : ∀ x, b x ≠ e) (u : ℂ) :
     qminor E (PI.bE e f) b u = ∑ x : Fin (t + 1), (((-1 : ℤ) ^ (x : ℕ) : ℤ) : A) *
       (qminor E f (b ∘ x.succAbove) (u - 1) * E e (b x)) := by
-  have h1 : (PI.bS f e ∘ Fin.castSucc) = f := by funext j; simp [PI.bS]
-  have h2 : PI.bS f e (Fin.last t) = e := by simp [PI.bS]
-  rw [qminor_bE_eq, hR A n t E hG (PI.bS f e) b u, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun x _ => ?_
-  rw [h1, h2, Tm_of_ne E u (he x).symm, ← mul_assoc, ← Int.cast_mul, pow_add, ← mul_assoc ((-1 : ℤ) ^ t),
-    neg_one_pow_mul_self, one_mul]
+  apply _root_.PI.UnitaryGroupMassFormula.QmBorderFull.Four.rowPart <;> assumption
 
 theorem colPart (hF : PI.ExpFirstRow) {A : Type} [Ring A] [Algebra ℂ A] {n t : ℕ} (E : Fin n → Fin n → A)
     (hG : GlRel E) (e : Fin n) (f : Fin t → Fin n) (b : Fin (t + 1) → Fin n) (he : ∀ x, b x ≠ e) (u : ℂ) :
     qminor E (PI.bS f e) b u = ∑ x : Fin (t + 1), (((-1 : ℤ) ^ (t + (x : ℕ)) : ℤ) : A) *
       (E e (b x) * qminor E f (b ∘ x.succAbove) u) := by
-  have h1 : (PI.bE e f ∘ Fin.succ) = f := by funext j; simp [PI.bE]
-  have h2 : PI.bE e f 0 = e := by simp [PI.bE]
-  rw [qminor_bS_eq, hF A n t E hG (PI.bE e f) b u, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun x _ => ?_
-  rw [h1, h2, Tm_of_ne E (u - (t : ℂ)) (he x).symm, ← mul_assoc, ← Int.cast_mul, pow_add]
+  apply _root_.PI.UnitaryGroupMassFormula.QmBorderFull.Four.colPart <;> assumption
 
 theorem comp_skip {n t : ℕ} (v : Fin (t + 1) → Fin n) (w : Fin (t + 1)) :
     (v ∘ PI.skip1 w : Fin t → Fin n) = v ∘ w.succAbove := by
@@ -139,6 +131,7 @@ theorem qmBorderES_of (h1 : PI.QmColExp) (h2 : PI.QmRowExp) : PI.QmBorderES :=
   ⟨borderE_of h1.1 h2.2, borderS_of h1.2 h2.1⟩
 
 end PI.UnitaryGroupMassFormula.QmBorderES
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.QmBorderES

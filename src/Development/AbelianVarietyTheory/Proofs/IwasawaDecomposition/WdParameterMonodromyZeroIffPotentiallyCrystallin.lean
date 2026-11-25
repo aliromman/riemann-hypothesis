@@ -57,8 +57,9 @@ import Mathlib.RingTheory.PicardGroup
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsSstResToOfIsPst, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.WdParameterMonodromyZeroIffPotentiallyCrystallin
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsSstResToOfIsPst
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations Polynomial TensorProduct Module GlobalTheory.Pst
 
@@ -89,15 +90,7 @@ variable (P : LocPrime l) (LL : Type) [Field LL] [Algebra ℚ_[l] LL]
 
 theorem mulV_smul (q : ℚ_[l]) (c : ↥(MaximalUnramifiedExtension l)) (x : V ⊗[ℚ_[l]] Bst P) :
     mulV P LL V (q • c) x = q • mulV P LL V c x := by
-  induction x using TensorProduct.induction_on with
-  | zero => simp
-  | tmul v b =>
-    rw [mulV_tmul, mulV_tmul, ← tmul_smul, ← smul_mul_assoc]
-    congr 2
-    rw [Polynomial.algebraMap_apply, Polynomial.algebraMap_apply, smul_C]
-    congr 1
-    exact map_smul (IsScalarTower.toAlgHom ℚ_[l] ↥(MaximalUnramifiedExtension l) P.R.B) q c
-  | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy, smul_add]
+  apply _root_.GlobalTheory.Pst.mulV_padic_smul <;> assumption
 
 def comb (K' : FinExt l) {n : ℕ} (b : Fin n → V ⊗[ℚ_[l]] Bst P) :
     (Fin n → ↥(K0 K')) →ₗ[ℚ_[l]] V ⊗[ℚ_[l]] Bst P where
@@ -190,6 +183,7 @@ theorem isSst_resTo_of_isPst (l : ℕ) [Fact l.Prime] (P : LocPrime l) (K LL : F
   exact Nat.eq_of_mul_eq_mul_left finrank_pos h1
 
 end GlobalTheory.PstSst
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

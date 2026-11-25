@@ -16,8 +16,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- Members: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.IsCompactSub, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.LevIdem
 
 section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.IsCompactSub
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.BCT PositivityTheory.Rg.BcB.E PositivityTheory.RgBcC PositivityTheory.Rg.BcB.CG PositivityTheory.Rg.BcB.G8
@@ -54,11 +55,11 @@ theorem fp_ind (hev : ∀ x : Gf E a b, ∀ᶠ i : Slot S in cofinite, i.cp a b 
       rw [hi.1.1, Set.indicator_of_mem (show i.cp a b y ∈ (K2 a b i.pl : Set (GLw a i.pl × GLw b i.pl)) from hi.2),
         hi.1.2])
   by_cases hy : y ∈ levelSub hmul L
-  · rw [if_pos hy]
+  · rw [ite_eq_left hy]
     refine finprod_congr fun i => ?_
     exact Set.indicator_of_mem (show i.cp a b y ∈ (L i : Set (GLw a i.pl × GLw b i.pl)) from
       (mem_levelSub hmul L y).1 hy i) _
-  · rw [if_neg hy]
+  · rw [ite_eq_right hy]
     obtain ⟨i, hi⟩ := not_forall.1 (fun h => hy ((mem_levelSub hmul L y).2 h))
     exact finprod_eq_zero _ i
       (Set.indicator_of_notMem (show i.cp a b y ∉ (L i : Set (GLw a i.pl × GLw b i.pl)) from hi) _) hfin
@@ -109,10 +110,10 @@ theorem index_eq (h2 : HintProd) (hcont : ∀ i : Slot S, Continuous (i.cp a b))
     have := fp_ind hmul hev L (fun _ => 1) (hLe.mono fun i hi => ⟨hi, rfl⟩) x
     rw [finprod_one] at this
     by_cases hx : x ∈ levelSub hmul L
-    · rw [if_pos hx] at this
+    · rw [ite_eq_left hx] at this
       rw [Set.indicator_of_mem (show x ∈ ((levelSub hmul L : Subgroup (Gf E a b)) : Set (Gf E a b)) from hx)]
       exact this
-    · rw [if_neg hx] at this
+    · rw [ite_eq_right hx] at this
       rw [Set.indicator_of_notMem (show x ∉ ((levelSub hmul L : Subgroup (Gf E a b)) : Set (Gf E a b)) from hx)]
       exact this
   have hp' : hint ((Kf E a).prod (Kf E b)) (((levelSub hmul L : Subgroup (Gf E a b)) : Set (Gf E a b)).indicator 1) =
@@ -197,20 +198,20 @@ theorem levs_out {a : ℕ} {w : Pl E} (hw : w ∉ d.T ∪ d.S₀ ∪ d.Bad) :
     d.lev a w = K2 a (n - a) w ∧ d.lev₂ a w = K2 a (n - a) w := by
   simp only [Finset.mem_union, not_or] at hw
   have h' : w ∉ d.S₀ ∪ d.Bad := by simp [hw.1.2, hw.2]
-  exact ⟨by simp only [LocData.lev, if_neg hw.1.1, if_neg h'], by simp only [LocData.lev₂, if_neg h']⟩
+  exact ⟨by simp only [LocData.lev, ite_eq_right hw.1.1, ite_eq_right h'], by simp only [LocData.lev₂, ite_eq_right h']⟩
 
 theorem lev_spec (hd : d.Ok) {a : ℕ} (ha : a ≤ n) (w : Pl E) :
     (IsOpen (d.lev a w : Set (GLw a w × GLw (n - a) w)) ∧ d.lev a w ≤ K2 a (n - a) w) ∧
       ∃ A B, d.lev a w = Subgroup.prod A B := by
   by_cases hT : w ∈ d.T
-  · simp only [LocData.lev, if_pos hT]
+  · simp only [LocData.lev, ite_eq_left hT]
     exact ⟨⟨LocComm.isOpen_iwahori_pair _ _ _, LocComm.iwahori_pair_le_maximal_pair _ _ _⟩, _, _, rfl⟩
   · by_cases hSB : w ∈ d.S₀ ∪ d.Bad
     · obtain ⟨L₁, L₂, e, h1, h2⟩ := hd.L a ha w hSB
-      simp only [LocData.lev, if_neg hT, if_pos hSB, e]
+      simp only [LocData.lev, ite_eq_right hT, ite_eq_left hSB, e]
       refine ⟨⟨?_, Subgroup.prod_mono h1.2.1 h2.2.1⟩, _, _, rfl⟩
       rw [Subgroup.coe_prod]; exact h1.1.prod h2.1
-    · simp only [LocData.lev, if_neg hT, if_neg hSB]
+    · simp only [LocData.lev, ite_eq_right hT, ite_eq_right hSB]
       exact ⟨⟨(GlobalTheory.BCT.StTw2Add.isOpen_isCompact_KK a (n - a) w).1, le_rfl⟩, _, _, rfl⟩
 
 theorem lev₂_spec (hd : d.Ok) {a : ℕ} (ha : a ≤ n) (w : Pl E) :
@@ -218,10 +219,10 @@ theorem lev₂_spec (hd : d.Ok) {a : ℕ} (ha : a ≤ n) (w : Pl E) :
       ∃ A B, d.lev₂ a w = Subgroup.prod A B := by
   by_cases hSB : w ∈ d.S₀ ∪ d.Bad
   · obtain ⟨L₁, L₂, e, h1, h2⟩ := hd.L a ha w hSB
-    simp only [LocData.lev₂, if_pos hSB, e]
+    simp only [LocData.lev₂, ite_eq_left hSB, e]
     refine ⟨⟨?_, Subgroup.prod_mono h1.2.1 h2.2.1⟩, _, _, rfl⟩
     rw [Subgroup.coe_prod]; exact h1.1.prod h2.1
-  · simp only [LocData.lev₂, if_neg hSB]
+  · simp only [LocData.lev₂, ite_eq_right hSB]
     exact ⟨⟨(GlobalTheory.BCT.StTw2Add.isOpen_isCompact_KK a (n - a) w).1, le_rfl⟩, _, _, rfl⟩
 
 theorem position_spec (hd : d.Ok) {S : Set (Pl E)} {a : ℕ} (ha : a ≤ n) (i : Slot S) :
@@ -325,9 +326,9 @@ theorem main (h2 : HintProd) (h3 : Slots) {S : Set (Pl E)} (a : ℕ) (ha : a ≤
       exact finprod_congr fun i => by rw [hsfI i]
     rw [ef, ← hidx]
     by_cases hh : h ∈ levelSub hmul (sL d S a)
-    · rw [if_pos hh, if_pos ⟨rfl, hh⟩, hvol, mul_inv, mul_assoc, inv_mul_cancel₀ (Nat.cast_ne_zero.2 hidx0), mul_one]
-    · rw [if_neg hh, if_neg (fun h' => hh h'.2), mul_zero]
-  · rw [if_neg (fun h' => hxy h'.1)]
+    · rw [ite_eq_left hh, ite_eq_left ⟨rfl, hh⟩, hvol, mul_inv, mul_assoc, inv_mul_cancel₀ (Nat.cast_ne_zero.2 hidx0), mul_one]
+    · rw [ite_eq_right hh, ite_eq_right (fun h' => hh h'.2), mul_zero]
+  · rw [ite_eq_right (fun h' => hxy h'.1)]
     obtain ⟨w, hw⟩ := Function.ne_iff.1 hxy
     have hsame : ∀ i : Slot S, i.pl ∉ d.P → sf ((d.eL a).ent d.P x y) (d.eL a).t i =
         sf (fun w => idem (d.lev a w)) (fun w => idem (d.lev₂ a w)) i := by
@@ -361,11 +362,13 @@ end Lev6
 
 end PositivityTheory.Rg.BcB.F
 
+end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.LevIdem
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.LevIdem
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.BCT PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.G8
@@ -402,11 +405,12 @@ theorem levIdem (h3 : Slots) : LevIdem := by
   refine ⟨((ν.real (Lev6.lvS d S a) : ℝ) : ℂ)⁻¹, inv_mul_cancel₀ hne, fun x y h => ?_⟩
   rw [hf x y h]
   by_cases hc : x = y ∧ h ∈ Lev6.lvS d S a
-  · rw [if_pos hc, if_pos ⟨hc.1, (hm h).2 hc.2⟩]
-  · rw [if_neg hc, if_neg (fun h' => hc ⟨h'.1, (hm h).1 h'.2⟩)]
+  · rw [ite_eq_left hc, ite_eq_left ⟨hc.1, (hm h).2 hc.2⟩]
+  · rw [ite_eq_right hc, ite_eq_right (fun h' => hc ⟨h'.1, (hm h).1 h'.2⟩)]
 
 end PositivityTheory.Rg.BcB.F
 
+end
 
 -- clump-header: {"m": "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.IsCompactSub", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FrameL\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.PFinConv\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharpolyNrmLTwConj\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinsumOutOfLe\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.PLocComm\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.RStabApply\nimport GroundTheory.GlobalFields.LocalFieldAtPlace\nimport GroundTheory.LocalFields.PadicLogSeries\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
 -- clump-header: {"m": "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.LevIdem", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.LevIdem\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.IsCompactSub\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.RStabApply\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

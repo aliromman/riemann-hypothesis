@@ -339,8 +339,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.JacquetProUnipotentRadicalFixedVectorsLift
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.JacquetProUnipotentRadicalFixedVectorsLift
 
+noncomputable section
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL ValuativeRel Matrix Topology Filter
 
@@ -420,7 +421,7 @@ theorem jMinus_contract (e : (Σ a, m a) ≃ n) : ∀ U ∈ 𝓝 (1 : GL n k), �
     · subst h
       rw [leviEmb_apply_same]
       simp [S, T, Matrix.scalar_apply, diagonal_pow, diagonal_apply, inv_pow]
-    · rw [leviEmb_apply_ne k e _ h, if_neg fun h' => h (congrArg Sigma.fst (e.injective h'))]
+    · rw [leviEmb_apply_ne k e _ h, ite_eq_right fun h' => h (congrArg Sigma.fst (e.injective h'))]
   have hcomm : ∀ x (d : Levi k m), d * S x = S x * d := fun x d => funext fun a => Units.ext
     ((Matrix.scalar_commute _ (fun _ => Commute.all _ _) _).eq).symm
   let F : Filter (kˣ × jMinus k e) := (comap (fun x : kˣ => (x : k)) (𝓝 0)) ×ˢ ⊤
@@ -493,6 +494,7 @@ theorem GlobalTheory.LocGL.ProRadOnto.exists_proRad_fixed_mk_eq : ∀ (k : Type)
       obtain ⟨t, ht, h⟩ := ProRadOnto.jMinus_contract e U hU
       exact ⟨t, fun d _ => ht d, h⟩) y hy
   exact ⟨v, hv, h⟩
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FixedNeBotOfIsSubquotient

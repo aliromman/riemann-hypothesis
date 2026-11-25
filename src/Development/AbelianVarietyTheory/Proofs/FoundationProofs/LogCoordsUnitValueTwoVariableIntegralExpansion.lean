@@ -93,11 +93,12 @@ theorem deriv_pow (J : Ideal (On p n)) (D : Derivation (O0 p) (On p n) (On p n �
 end GlobalTheory.K5.DlogCoef
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.LogCoordsUnitValueTwoVariableIntegralExpansion
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.LogCoordsUnitValueTwoVariableIntegralExpansion
 
 open scoped MatrixGroups
 open GlobalTheory.KZ GlobalTheory.Glue GlobalTheory.K5 GlobalTheory.KummerEisensteinGalois
 
+noncomputable section
 
 namespace GlobalTheory.Glue.SiegLoc
 
@@ -302,7 +303,7 @@ theorem psi_part {T : GlobalTheory.K5.Tower p Ω} {n : ℕ} {ψ : O0 p →+* Ω}
     exact this
   have hpos : (0 : ℤ) < (p : ℤ) ^ n := pow_pos (by exact_mod_cast hp.out.pos) n
   have hs := hψ.sub (EvTwist.contr ((p : ℤ) ^ n) hpos B) B (fun _ => rfl) (fun r hr => by
-    rw [hBc, hc, EvTwist.part_coeff, if_neg]
+    rw [hBc, hc, EvTwist.part_coeff, ite_eq_right]
     intro h
     apply hr
     have := Int.emod_add_mul_ediv (r + i) ((p ^ n : ℕ) : ℤ)

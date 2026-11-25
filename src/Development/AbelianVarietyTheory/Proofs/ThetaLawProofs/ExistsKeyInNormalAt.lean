@@ -51,12 +51,12 @@ import Development.AbelianVarietyTheory.Definitions.KeyFormula.KaRuleK
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Statements.FundamentalDomains.IsLocalModelOfIntegral, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsKeyInNormalAt
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Statements.FundamentalDomains.IsLocalModelOfIntegral
+
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Statements.FundamentalDomains.IsLocalModelOfIntegral
 
 namespace GlobalTheory.KeyPow.Test
 
@@ -85,7 +85,7 @@ theorem exists_isRig {A : Over (Sp ℂ)} [GrpObj A] {L : LB A.left} {g : ℕ} (u
   have hk : ∀ (j) (hj : ⊤ ≤ (L.pull (eSec A)).U j),
       valAt' (𝟙 (Sp ℂ)) ((L.pull (eSec A)).U j) (k _ (c j)) = u.fr (j PUnit.unit) 0 := fun j hj => by
     refine (valAt'_constFn (𝟙 _) (𝟙 _) (Category.id_comp _) ((L.pull (eSec A)).U j) (c j) (fun y hy => hj hy)).trans ?_
-    simp only [c, dif_pos hj, Units.val_mk0]
+    simp only [c, dite_eq_left hj, Units.val_mk0]
   refine ⟨⟨fun j => Units.map (k ((L.pull (eSec A)).U j)).toMonoidHom (c j)⟩, fun i j => Units.ext (fn_point_ext _ _ _ fun hV => ?_),
     fun j hj => (hk j hj).symm⟩
   have hi : ⊤ ≤ (L.pull (eSec A)).U i := hV.trans inf_le_left
@@ -132,8 +132,12 @@ theorem isLieBasis_of_isDiff (P : Out.PolAV (Sp ℂ)) (u : HolUnif P.A P.L P.g)
 
 end GlobalTheory.KeyPow.Test
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsKeyInNormalAt
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyPow GlobalTheory.KeyKa
 

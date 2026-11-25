@@ -555,7 +555,7 @@ theorem finprod_le_prod_of_le {α : Type*} {f b : α → ℝ} (S : Finset α) (h
   · set c : α → ℝ := fun a => if a ∈ S then b a else 1 with hc
     have hcs : Function.mulSupport c ⊆ (S : Set α) := fun a ha => by
       by_contra h
-      exact ha (by simp only [hc]; exact if_neg fun h' => h (Finset.mem_coe.2 h'))
+      exact ha (by simp only [hc]; exact ite_eq_right fun h' => h (Finset.mem_coe.2 h'))
     have hcf : (Function.mulSupport c).Finite := S.finite_toSet.subset hcs
     have hle : ∏ᶠ a, f a ≤ ∏ᶠ a, c a :=
       finprod_le_finprod_of_nonneg hf hcf h0 fun a => by
@@ -566,7 +566,7 @@ theorem finprod_le_prod_of_le {α : Type*} {f b : α → ℝ} (S : Finset α) (h
     rw [finprod_eq_prod_of_mulSupport_subset c hcs] at hle
     refine hle.trans (le_of_eq (Finset.prod_congr rfl fun a ha => ?_))
     simp only [hc]
-    rw [if_pos ha]
+    rw [ite_eq_left ha]
   · rw [finprod_of_infinite_mulSupport hf]
     exact hone
 
@@ -702,9 +702,12 @@ end GlobalTheory.CompanionTheory.RedCov.Simple
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ReductionTheoryLowerBound
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ReductionTheoryLowerBound
+@[expose] public section
 
 set_option linter.unusedSectionVars false
+
+noncomputable section
 
 open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RedCov
 open Formalism.UG (cT)
@@ -734,7 +737,7 @@ theorem adelicNorm_rId [IsTotallyReal F] {N : ℕ} (c : ℝ) (y : Fin N → AF F
     GroundTheory.Automorphic.Reduction.adelicNorm (rId F c • y) =
       Real.exp (Module.finrank ℚ F * c) * GroundTheory.Automorphic.Reduction.adelicNorm y := by
   have hm : ∀ w : InfinitePlace F, w.mult = 1 := fun w => by
-    rw [InfinitePlace.mult, if_pos (IsTotallyReal.isReal w)]
+    rw [InfinitePlace.mult, ite_eq_left (IsTotallyReal.isReal w)]
   have hw : ∀ w : InfinitePlace F, ‖(rId F c).1 w‖ = Real.exp c := fun w => norm_evInf_rId w c
   have hv : ∀ v, GroundTheory.Automorphic.Reduction.finComp v (rId F c • y) = GroundTheory.Automorphic.Reduction.finComp v y := fun v => by
     rw [GroundTheory.Automorphic.Reduction.finComp_smul, rId_snd]
@@ -1031,6 +1034,8 @@ theorem simple_bound : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
 
 end GlobalTheory.CompanionTheory.RedCov.Simple
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryAdelicIwasawa

@@ -52,7 +52,9 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ModuliProofs.PsiGenOnInteriorOfPsiUnitOn, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorsionLabelsUniformisedDominatingTrait, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorsionLabelsUniformisedDominatingTraitStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.PsiGenOnInteriorOfPsiUnitOn
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.PsiGenOnInteriorOfPsiUnitOn
+
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory
   CartesianMonoidalCategory MonObj NumberField
@@ -63,13 +65,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.IndefiniteRowSideFullHecke
 
 variable {R : Type} [CommRing R] [IsDomain R]
-
-section Act
-
-variable {O : Type} [CommRing O] [StarRing O] {D : DegPre R} [Module O D.X]
-variable {F : Type} [Field F] [Algebra (FractionRing R) F]
-
-end Act
 
 section Ext
 
@@ -90,19 +85,8 @@ theorem qkExt_unique {f : F →+* F'} {p : QkPt D F k} {q q' : QkPt D F' k} (h :
 
 end Ext
 
-section Through
-
-variable {O : Type} [CommRing O] [StarRing O] {D : DegPre R} [Module O D.X]
-
-end Through
-
-section Unit
-
-variable (D : DegPre R) (χ : D.X)
-
-end Unit
-
 end GlobalTheory.DegActCompare
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

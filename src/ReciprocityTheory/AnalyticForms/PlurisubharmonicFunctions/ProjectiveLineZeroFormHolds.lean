@@ -285,7 +285,8 @@ theorem greenMixed_thm : GreenMixedStatement := by
 end ReciprocityTheory.AnForm.A
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.HasCompactSupportCompHypInclAt
+section -- clump member: ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.HasCompactSupportCompHypInclAt
+@[expose] public section
 
 namespace ReciprocityTheory.AnForm.A
 
@@ -293,6 +294,7 @@ open MeasureTheory Filter Topology
 
 open scoped ContDiff
 
+noncomputable section
 
 variable {n : ℕ}
 
@@ -392,7 +394,7 @@ theorem fTerm_props (i : Fin (n + 1)) {h : (Fin (n + 1) → ℂ) → ℝ} (hh : 
       field_simp
     have e' : fTerm i h i i = fun z =>
         (Real.pi / 2) * (1 / ((n : ℝ) + 1)) * (Real.log ‖z i‖ * ddcCoordDens i h z) := funext e
-    rw [e', if_pos ⟨rfl, rfl⟩, integral_const_mul, hG.2]
+    rw [e', ite_eq_left ⟨rfl, rfl⟩, integral_const_mul, hG.2]
     exact ⟨hG.1.const_mul _, rfl⟩
   · have hne : (j, k) ≠ (i, i) := fun h' => hjk ⟨(Prod.mk.inj h').1, (Prod.mk.inj h').2⟩
     have hm := greenMixed_thm n i j k h hh hhc hne
@@ -401,7 +403,7 @@ theorem fTerm_props (i : Fin (n + 1)) {h : (Fin (n + 1) → ℂ) → ℝ} (hh : 
         (Real.log ‖z i‖ : ℂ) * (hessC h z j k * M)) := by
       simpa [mul_assoc] using hm.1.mul_const M
     refine ⟨Complex.reCLM.integrable_comp hi, ?_⟩
-    rw [if_neg hjk]
+    rw [ite_eq_right hjk]
     have := Complex.reCLM.integral_comp_comm hi
     simp only [Complex.reCLM_apply] at this
     simp only [fTerm]
@@ -540,8 +542,10 @@ theorem unit_part {U : Set (Fin (n + 1) → ℂ)} {v : (Fin (n + 1) → ℂ) →
   rw [h5]
   exact setIntegral_eq_zero_of_forall_eq_zero fun z hz => by rw [hzero z hz, mul_zero]
 
+end
 
 end ReciprocityTheory.AnForm.A
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.ProjectiveLineZeroFormHolds

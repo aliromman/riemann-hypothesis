@@ -447,8 +447,9 @@ end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RamificationTwoAndConjugationAtQAndD
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RamificationTwoAndConjugationAtQAndD
 
+noncomputable section
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.MainNotions.N Module
 open Formalism.NG (KO annih)
@@ -658,9 +659,9 @@ theorem basis_repr_left_eq_pairing {ι : Type} [Fintype ι] [DecidableEq ι] (P 
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [map_smul, LinearMap.smul_apply, smul_eq_mul]
   rw [h, Finset.sum_eq_single i]
-  · rw [hδ, if_pos rfl, mul_one]
+  · rw [hδ, ite_eq_left rfl, mul_one]
   · intro j _ hj
-    rw [hδ, if_neg hj, mul_zero]
+    rw [hδ, ite_eq_right hj, mul_zero]
   · intro hi
     exact absurd (Finset.mem_univ i) hi
 
@@ -674,9 +675,9 @@ theorem basis_repr_right_eq_pairing {ι : Type} [Fintype ι] [DecidableEq ι] (P
     refine Finset.sum_congr rfl fun k _ => ?_
     rw [map_smul, smul_eq_mul]
   rw [h, Finset.sum_eq_single j]
-  · rw [hδ, if_pos rfl, mul_one]
+  · rw [hδ, ite_eq_left rfl, mul_one]
   · intro k _ hk
-    rw [hδ, if_neg (Ne.symm hk), mul_zero]
+    rw [hδ, ite_eq_right (Ne.symm hk), mul_zero]
   · intro hj
     exact absurd (Finset.mem_univ j) hj
 

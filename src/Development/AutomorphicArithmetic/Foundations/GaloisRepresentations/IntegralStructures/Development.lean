@@ -1069,11 +1069,13 @@ theorem iota_trc {Γ : Type} [Group Γ] {l : ℕ} [Fact l.Prime] {a : ℕ} (ι :
 end GlobalTheory.FrobOps
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.FrobOpsIdx
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.FrobOpsIdx
 
 open NumberField IsDedekindDomain Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.Published GlobalTheory.AboveL GlobalTheory.CongL
+
+noncomputable section
 
 namespace GlobalTheory.FrobOpsIdx
 open Polynomial
@@ -1097,7 +1099,7 @@ theorem frobOpsIdx : SphOps → ∀ (E Ω : Type) [Field E] [NumberField E] [IsC
       GlobalTheory.LFun.HasSatGL j.1.1 σ.ρ B → zz j σ = ((UpperTheory.V.Af.algSat a (normV j.1.1) B).map (· ^ j.1.2.2.2)).sum := by
     intro j σ B hB
     have h : ∃ B, GlobalTheory.LFun.HasSatGL j.1.1 σ.ρ B := ⟨B, hB⟩
-    simp only [zz, dif_pos h]
+    simp only [zz, dite_eq_left h]
     rw [show h.choose = B from h.choose_spec.unique hB]
   let T : LocOps l ι Kw J :=
     { pl := fun j => j.1.1
@@ -1156,6 +1158,7 @@ theorem frobOpsIdx : SphOps → ∀ (E Ω : Type) [Field E] [NumberField E] [IsC
 
 end GlobalTheory.FrobOpsIdx
 end -- clump:auto
+end -- clump:auto
 
 section -- clump: shared namespace opens
 
@@ -1199,7 +1202,7 @@ theorem exists_trace_limit : ∀ (l : ℕ) [Fact l.Prime] (Γ : Type) [Group Γ]
   have hcont : ∀ i, Continuous (trc (ρ i)) := fun i =>
     (Units.continuous_val.comp (hρ i)).matrix_trace
   have hLc : IsComplete (L : Set (PadicAlgCl l)) := by
-    haveI : FiniteDimensional ℚ_[l] L.toSubalgebra.toSubmodule := hL
+    have : FiniteDimensional ℚ_[l] L.toSubalgebra.toSubmodule := hL
     exact Submodule.complete_of_finiteDimensional L.toSubalgebra.toSubmodule
   have conv : ∀ A : Set I, PolyApprox θ (η '' A) → ∀ ε > 0, ∃ F : Finset I, (↑F ⊆ A) ∧
       ∃ c : I → PadicAlgCl l, ∀ P : MvPolynomial J ℤ,
@@ -1208,7 +1211,7 @@ theorem exists_trace_limit : ∀ (l : ℕ) [Fact l.Prime] (Γ : Type) [Group Γ]
     obtain ⟨s, c, hs, hc⟩ := hA ε hε
     rcases s.eq_empty_or_nonempty with rfl | ⟨f0, hf0⟩
     · exact ⟨∅, by simp, fun _ => 0, fun P => le_of_eq_of_le (by simp only [Finset.sum_empty]; rfl) (hc P)⟩
-    haveI : Nonempty I := ⟨(hs hf0).choose⟩
+    have : Nonempty I := ⟨(hs hf0).choose⟩
     have hex : ∀ f ∈ s, ∃ i, i ∈ A ∧ η i = f := fun f hf => hs hf
     choose! k hkA hk using hex
     refine ⟨s.image k, ?_, fun i => c (η i), fun P => ?_⟩
@@ -1254,7 +1257,7 @@ theorem exists_trace_limit : ∀ (l : ℕ) [Fact l.Prime] (Γ : Type) [Group Γ]
       _ ≤ ε + r := (norm_add_le _ _).trans (add_le_add h1 h2.le)
   have hlim : ∀ g : Γ, ∃ v ∈ L, Filter.Tendsto θ (Filter.comap x (𝓝 g) ⊓ B) (𝓝 v) := by
     intro g
-    haveI := hne g
+    have := hne g
     have hcau : Cauchy (Filter.map θ (Filter.comap x (𝓝 g) ⊓ B)) := by
       refine Metric.cauchy_iff.2 ⟨inferInstance, fun e he => ?_⟩
       obtain ⟨F, -, c, hc⟩ := conv Set.univ (by rw [Set.image_univ]; exact hθ) (e / 5) (by positivity)
@@ -1289,7 +1292,7 @@ theorem exists_trace_limit : ∀ (l : ℕ) [Fact l.Prime] (Γ : Type) [Group Γ]
     have hmem : (fun g => (g, t g)) ∈ closure (Set.univ.pi fun _ : Γ => Z) := by
       rw [closure_pi_set]
       intro g _
-      haveI := hne g
+      have := hne g
       refine mem_closure_of_tendsto ((Filter.tendsto_comap.mono_left inf_le_left).prodMk_nhds (htlim g)) ?_
       filter_upwards [Filter.mem_inf_of_right (hDF F)] with j hj
       exact ⟨j, hj, rfl⟩

@@ -306,11 +306,9 @@ theorem eigen_of_gen_eigen (C : Type) [Field C] (V : VF C) (O : Type) [CommRing 
 end GlobalTheory.GenEigen
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsIntegralCharacterGeneralizedEigen
 
 open scoped BigOperators
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsIntegralCharacterGeneralizedEigen
 open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.GenChar
@@ -421,6 +419,8 @@ end GlobalTheory.GenChar
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.RingHomEqOfCongruentIntegralUnramified
+
+open scoped BigOperators
 open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.CongruentCharacters
@@ -527,6 +527,8 @@ end GlobalTheory.CongruentCharacters
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.LimitIdempotentRangeLeSumEigenspaces
+
+open scoped BigOperators
 open Formalism.L2.FormalSeriesBounds
 
 namespace GlobalTheory.IdemRange
@@ -750,7 +752,11 @@ theorem limit_idempotent_range : ∀ (C : Type) [Field C] [IsAlgClosed C] (V : V
 end GlobalTheory.IdemRange
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.GaugeAdjointEndPairElementaryBlock
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.GaugeAdjointEndPairElementaryBlock
+
+noncomputable section
+
+open scoped BigOperators
 open Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw GlobalTheory.RowVal ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.RowLaw.EndBlock
@@ -823,14 +829,14 @@ theorem hAt_zero_left (hh : ∀ e : Fin 2 × κ →₀ ℕ, (∀ s ∈ e.support
   refine eq_zero_of_van (Van.subst {s : Fin 2 × κ | s.1 = 0} (cc_pair (fun _ => map_zero _) hb) ?_ hh)
   intro s hs ν _
   have h0 : s.1 = 0 := hs
-  rw [if_pos h0, map_zero]
+  rw [ite_eq_left h0, map_zero]
 
 theorem hAt_zero_right (hh : ∀ e : Fin 2 × κ →₀ ℕ, (∀ s ∈ e.support, s.1 ≠ 1) → coeff e X.h = 0) {τ : Type}
     {a : κ → MvPowerSeries τ C} (ha : ∀ i, constantCoeff (a i) = 0) : hAt X a (fun _ => 0) = 0 := by
   refine eq_zero_of_van (Van.subst {s : Fin 2 × κ | s.1 = 1} (cc_pair ha (fun _ => map_zero _)) ?_ hh)
   intro s hs ν _
   have h1 : s.1 = 1 := hs
-  rw [if_neg (by rw [h1]; decide), map_zero]
+  rw [ite_eq_right (by rw [h1]; decide), map_zero]
 
 theorem cc_hAt (hh : ∀ e : Fin 2 × κ →₀ ℕ, (∀ s ∈ e.support, s.1 ≠ 0) → coeff e X.h = 0) {τ : Type}
     {a b : κ → MvPowerSeries τ C} (ha : ∀ i, constantCoeff (a i) = 0) (hb : ∀ i, constantCoeff (b i) = 0) :
@@ -877,7 +883,7 @@ theorem matrixEnd_block (hlg : ∀ x, Z.lg x = inCol x.1 (X.lg x.2)) (hex : ∀ 
     · intro t _ ht
       simp [ht]
     · simp
-  · simp only [Matrix.of_apply, hc, false_and, if_false, zero_smul, Finset.sum_const_zero]
+  · simp only [Matrix.of_apply, hc, false_and, ite_false, zero_smul, Finset.sum_const_zero]
     exact subst_zero' (hex0 i)
 
 theorem hAt_square (hh : Z.h = ∑ col, hCol col X.h) {τ : Type} {a b : Fin 2 × Fin dd → MvPowerSeries τ C}
@@ -930,18 +936,18 @@ theorem isEnd_block_raw [CharZero C] (V : VF C) (hlg : ∀ x, Z.lg x = inCol x.1
     subst_sub hB, subst_hAt X (cc_endP X hlg0 hex0 M (hg _ 0)) (hg _ 1) hb,
     subst_hAt X (hg _ 0) (cc_endP X hlg0 hex0 M' (hg _ 1)) hb] at h1
   simp only [subst_endP X hlg0 _ (hg _ _) hb] at h1
-  simp only [gp, subst_X hB, if_true, one_ne_zero, if_false] at h1
+  simp only [gp, subst_X hB, ite_true, one_ne_zero, ite_false] at h1
   rw [hAt_square X Z hh (cc_endP Z hZ hZ' _ (hg _ 0)) (hg _ 1),
     hAt_square X Z hh (hg _ 0) (cc_endP Z hZ hZ' _ (hg _ 1)),
     Finset.sum_eq_single r, Finset.sum_eq_single s]
-  · simp only [matrixEnd_block X Z hlg hex hlg0 hex0 _ _ _ (hg _ _), if_true]
+  · simp only [matrixEnd_block X Z hlg hex hlg0 hex0 _ _ _ (hg _ _), ite_true]
     exact h1
   · intro t _ ht
-    simp only [matrixEnd_block X Z hlg hex hlg0 hex0 _ _ _ (hg _ _), if_neg ht]
+    simp only [matrixEnd_block X Z hlg hex hlg0 hex0 _ _ _ (hg _ _), ite_eq_right ht]
     exact hAt_zero_right X (hax 1) (fun _ => hg _ _ _)
   · simp
   · intro t _ ht
-    simp only [matrixEnd_block X Z hlg hex hlg0 hex0 _ _ _ (hg _ _), if_neg ht]
+    simp only [matrixEnd_block X Z hlg hex hlg0 hex0 _ _ _ (hg _ _), ite_eq_right ht]
     exact hAt_zero_left X (hax 0) (fun _ => hg _ _ _)
   · simp
 
@@ -978,6 +984,11 @@ theorem isEnd_block : ∀ (C : Type) [Field C] [CharZero C] (V : VF C) (O : Type
 
 end GlobalTheory.RowLaw.EndBlock
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open scoped BigOperators
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.IsGaugeAdjointIntegralEndPairAdd
 open Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds GlobalTheory.RowLaw GlobalTheory.RowVal MvPowerSeries
@@ -1297,7 +1308,7 @@ theorem blk_mulVec (r s : Fin 2) (M : Matrix κ κ C) (v : Fin 2 × κ → C) (x
     (blk r s M).mulVec v x = if x.1 = r then M.mulVec (fun j => v (s, j)) x.2 else 0 := by
   simp only [Matrix.mulVec, dotProduct, blk, Matrix.of_apply, Fintype.sum_prod_type]
   by_cases h : x.1 = r
-  · simp only [h, true_and, if_true]
+  · simp only [h, true_and, ite_true]
     rw [Finset.sum_eq_single s]
     · simp
     · intro b _ hb
@@ -1469,10 +1480,10 @@ theorem hasProj_self : ∀ (C : Type) [Field C] [CharZero C] (V : VF C) (O : Typ
   have i2 : IsEnd (Y.rawSelf p) V (blks fun s r => M' r s) (blks M) :=
     isEnd_blks Y p (fun s r => M' r s) M fun r s => e2 s r
   refine hasProj_of _ _ _ i1 i2 (fun c => ?_) (fun c => ?_) (fun c => ?_) (fun c => ?_) ?_ ?_
-  · rw [k0, if_neg (by decide), one_smul]
-  · rw [k1, if_neg (by decide), one_smul]
-  · rw [k0, if_pos rfl, zero_smul]
-  · rw [k1, if_pos rfl, zero_smul]
+  · rw [k0, ite_eq_right (by decide), one_smul]
+  · rw [k1, ite_eq_right (by decide), one_smul]
+  · rw [k0, ite_eq_left rfl, zero_smul]
+  · rw [k1, ite_eq_left rfl, zero_smul]
   · intro v
     refine ⟨fun c => ∑ s, b (fun j => v (s, j)) c * p.gm (p.ty0 c + p.hd) s 1, ?_⟩
     funext x

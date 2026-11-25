@@ -11,7 +11,8 @@ import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.LocalDensities.Statements, GroundTheory.HeightsAndTheta.Heights.LocalDensities.PHermitianDetMono
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.LocalDensities.Statements
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.LocalDensities.Statements
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -20,17 +21,16 @@ namespace GroundTheory.Heights₂.Heights.FourB
 open ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M MeasureTheory
 open scoped ComplexOrder ContDiff
 
+noncomputable section
 
 def HermitianDetMono.Statement : Prop :=
   ∀ (n : ℕ) (A B : Matrix (Fin n) (Fin n) ℂ), B.PosSemidef → (A - B).PosSemidef →
     B.det.re ≤ A.det.re
 
-section Examples
-
-end Examples
-
+end
 
 end GroundTheory.Heights₂.Heights.FourB
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.LocalDensities.PHermitianDetMono

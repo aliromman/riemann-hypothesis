@@ -16,13 +16,11 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.KinstSecond
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.JacAll, ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.CorePInvInUJ, ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.PolarRight, ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.PolarHaar
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.JacAll
 
 
 open Finset Matrix MeasureTheory
 open scoped InnerProductSpace
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.JacAll
 
 namespace ReciprocityTheory.ChartRestriction.DS
 
@@ -152,6 +150,10 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.CorePInvInUJ
 
+
+open Finset Matrix MeasureTheory
+open scoped InnerProductSpace
+
 namespace ReciprocityTheory.ChartRestriction.DS
 
 open ReciprocityTheory.ChartRestriction.DS.S7
@@ -209,7 +211,12 @@ theorem coreP {ε : Fin n → Bool} {g : Matrix (Fin n) (Fin n) ℂ} (hg : inUJ 
 end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.PolarRight
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.PolarRight
+
+noncomputable section
+
+open Finset Matrix MeasureTheory
+open scoped InnerProductSpace
 
 namespace ReciprocityTheory.ChartRestriction.DS
 
@@ -247,7 +254,7 @@ theorem rmulPR_polarPR {ε : Fin n → Bool} {G : Matrix (Fin n) (Fin n) ℂ} (h
     funext ab
     have h1 : plog (NormedSpace.exp (pmat z) * G) = pmat w := by
       rw [← hkw, plog_polarM]
-    simp only [actR, h1, pmat, dif_pos ab.2]
+    simp only [actR, h1, pmat, dite_eq_left ab.2]
   refine ⟨k', fun k => ?_⟩
   rw [hw]
   simp only [rmulPR, polarPR, polarM] at hkw ⊢
@@ -296,7 +303,7 @@ theorem muPolar_mul_right (ε : Fin n → Bool) (g : UJ ε) :
   by_cases h : Function.Injective (intMuCD_eM ε) ∧
       ∀ s, MeasurableSet s → NullMeasurableSet (intMuCD_eM ε '' s) (muPolarMat ε)
   swap
-  · simp only [Measure.comap, dif_neg h, Measure.map_zero]
+  · simp only [Measure.comap, dite_eq_right h, Measure.map_zero]
   haveI : BorelSpace (UJ ε) := ⟨rfl⟩
   have hRm : Measurable (fun x : UJ ε => x * g) := (continuous_mul_const g).measurable
   have hG : inUJ ε (toM g) := g.2
@@ -327,8 +334,13 @@ theorem muPolar_mul_right (ε : Fin n → Bool) (g : UJ ε) :
 
 end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.PolarHaar
+
+
+open Finset Matrix MeasureTheory
+open scoped InnerProductSpace
 
 namespace ReciprocityTheory.ChartRestriction.DS
 

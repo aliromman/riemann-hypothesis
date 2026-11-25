@@ -88,8 +88,9 @@ theorem mulVec_eq_prod_smul {n : ℕ} {κ : Type} [Fintype κ] [DecidableEq κ] 
 end GlobalTheory.MulVecProduct
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AlgebraicWeightDominantIsoExists
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AlgebraicWeightDominantIsoExists
 
+noncomputable section
 
 namespace GlobalTheory.WtClass
 open Matrix Formalism.L2.NG ReciprocityTheory.Aut Formalism.AUTREP NumberField GlobalTheory.AlgWtHW Filter Topology
@@ -244,7 +245,7 @@ theorem eq_zero_of_LU {f : (ι → GL (Fin n) ℂ) → ℂ} (hf : Continuous f)
     Filter.eventually_all.2 fun τ => PI.UnitaryGroupMassFormula.HwConjInf.dense_LU (g τ).val
   have hval : ∀ x τ, (M x τ).det ≠ 0 → (c x τ).val = M x τ := by
     intro x τ hx
-    simp only [c, dif_pos hx]
+    simp only [c, dite_eq_left hx]
     rfl
   have hc : Tendsto c (𝓝[≠] 0) (𝓝 g) := by
     refine tendsto_pi_nhds.2 fun τ => ?_
@@ -423,11 +424,11 @@ theorem ptOf_single (τ : ι) (B : GL (Fin n) ℂ) : upt (ptOf emb (Pi.mulSingle
   · rw [ptOf_conj emb hinj hcm]
     have h2 : ComplexEmbedding.conjugate (emb t) ≠ emb τ := fun e => hcm τ t e.symm
     by_cases h : t = τ
-    · subst h; simp only [tauPt, if_neg h2, if_true, Pi.mulSingle_eq_same]
+    · subst h; simp only [tauPt, ite_eq_right h2, ite_true, Pi.mulSingle_eq_same]
     · have h1 : ComplexEmbedding.conjugate (emb t) ≠ ComplexEmbedding.conjugate (emb τ) := fun e => h (hinj (by
         have := congrArg ComplexEmbedding.conjugate e
         rwa [conj_conj, conj_conj] at this))
-      simp only [tauPt, if_neg h2, if_neg h1, Pi.mulSingle_eq_of_ne h, inv_one, Units.val_one, Matrix.transpose_one]
+      simp only [tauPt, ite_eq_right h2, ite_eq_right h1, Pi.mulSingle_eq_of_ne h, inv_one, Units.val_one, Matrix.transpose_one]
 
 theorem ptOf_rat (γ₀ : GL (Fin n) L) (h : γ₀ ∈ GQ0 L n) : ptOf emb (mtwEmb emb γ₀) = ratPt γ₀.val := by
   funext σ
@@ -538,6 +539,7 @@ theorem exists_equiv_VV : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L]
 
 end GlobalTheory.WtClass
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AlgebraicWeightDominantIsoExistsStatement
 
@@ -546,7 +548,6 @@ open Formalism.MainNotions.IntegralHeckeForms (TwOK)
 open Formalism.AUTREP (GAf)
 open GlobalTheory.FormInner (frameEquiv)
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MulVecEqProdSmul", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsPolyRep\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}

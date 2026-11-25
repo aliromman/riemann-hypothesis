@@ -1,5 +1,6 @@
 module
 
+import all ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.Numerics
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.CasValK
 public import Mathlib.Analysis.InnerProductSpace.JointEigenspace
 public import Mathlib.Analysis.InnerProductSpace.Spectrum
@@ -17,12 +18,10 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.LayerSpan, ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.WeightBound
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.LayerSpan
 
 
 open Finset
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.LayerSpan
 
 namespace ReciprocityTheory.ChartRestriction.DS
 
@@ -155,7 +154,11 @@ end Unitary
 end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.WeightBound
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.WeightBound
+
+noncomputable section
+
+open Finset
 
 namespace ReciprocityTheory.ChartRestriction.DS
 
@@ -211,12 +214,7 @@ theorem sqrt_nsq_add_le (x y : Fin n → ℝ) : √(nsq (x + y)) ≤ √(nsq x) 
 
 theorem sqrt_nsq_sum_le {ι : Type*} (s : Finset ι) (f : ι → Fin n → ℝ) :
     √(nsq (∑ i ∈ s, f i)) ≤ ∑ i ∈ s, √(nsq (f i)) := by
-  classical
-  refine Finset.induction_on s ?_ ?_
-  · simp [nsq, dot]
-  · intro a s ha ih
-    rw [Finset.sum_insert ha, Finset.sum_insert ha]
-    exact (sqrt_nsq_add_le _ _).trans (add_le_add le_rfl ih)
+  apply _root_.ReciprocityTheory.ChartRestriction.DS.sqrt_nsq_sum_le <;> assumption
 
 theorem sqrt_nsq_add_ncSum_le {j : ℕ} {ω : Fin n → ℝ} (hω : IsNCSum ε j ω)
     (x : Fin n → ℝ) :

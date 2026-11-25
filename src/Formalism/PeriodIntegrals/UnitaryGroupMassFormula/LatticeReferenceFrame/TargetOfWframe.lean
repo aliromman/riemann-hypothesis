@@ -13,12 +13,15 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReference
 public import Mathlib.RingTheory.DedekindDomain.Factorization
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.Linter.HaveILetI
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.StarMemAp
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.GWGlue, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.HGNsmulRight, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.HypsNonvacuous, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.GlueHoldsVar, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.IdemAd, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.IdemLoc, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.IdemTen, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.IdemMain, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.LocGlob, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.SpanSmulInto, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.LocalAssemblyPrincipal, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.ThetaSeriesExistence, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.TargetOfWframe
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.GWGlue
+section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.GWGlue
+@[expose] public section
 
+noncomputable section
 
 open NumberField Formalism.MainNotions.S IsDedekindDomain
 open scoped TensorProduct
@@ -32,13 +35,7 @@ section Lemmas
 variable (I : Formalism.MainNotions.S.AutInst)
 
 theorem hG_add_left (x y z : Fin I.n → I.E) : hG I (x + y) z = hG I x z + hG I y z := by
-  unfold hG Formalism.UG.hform
-  rw [← Finset.sum_add_distrib]
-  refine Finset.sum_congr rfl (fun i _ => ?_)
-  rw [← Finset.sum_add_distrib]
-  refine Finset.sum_congr rfl (fun j _ => ?_)
-  simp only [Pi.add_apply, map_add (f := _)]
-  ring
+  apply _root_.PI.ScRefExists.WF.hG_add_left <;> assumption
 
 theorem hG_add_right (x y z : Fin I.n → I.E) : hG I x (y + z) = hG I x y + hG I x z := by
   unfold hG Formalism.UG.hform
@@ -309,6 +306,8 @@ theorem globW_of (h1 : GWpp) (h2 : GWcrt) : GlobW := by
 
 end PI.ScRefExists.GWG
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -1166,12 +1165,10 @@ theorem idemLift : PI.ScRefExists.Sk.IdemLift :=
 end PI.ScRefExists.Id
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.LocGlob
 
 
 open NumberField Formalism.MainNotions.S IsDedekindDomain
-
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.LocGlob
 open scoped TensorProduct nonZeroDivisors
 
 namespace PI.ScRefExists.LG
@@ -1272,6 +1269,9 @@ end PI.ScRefExists.LG
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.SpanSmulInto
+
+
+open NumberField Formalism.MainNotions.S IsDedekindDomain
 
 namespace PI.ScRefExists.PPA
 
@@ -1469,7 +1469,11 @@ theorem span_part (p m r k : ℕ) (θ : 𝓞 I.E) (e f : Fin r → Fin I.n → I
 end PI.ScRefExists.PPA
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.LocalAssemblyPrincipal
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.LocalAssemblyPrincipal
+
+noncomputable section
+
+open NumberField Formalism.MainNotions.S IsDedekindDomain
 
 namespace PI.ScRefExists.PPA
 
@@ -1588,10 +1592,10 @@ theorem local_assembly_principal : PPAssemble := by
     rw [hG_symm (I := I) (wd (Fin.last k)) (w (Fin.last k)), hl1, star_one]
   have hl3 : ∀ i : Fin k, hG I (wd (Fin.last k)) (w i.castSucc) = 0 := by
     intro i
-    rw [hwd, if_neg (Fin.castSucc_ne_last i).symm]
+    rw [hwd, ite_eq_right (Fin.castSucc_ne_last i).symm]
   have hl4 : ∀ i : Fin k, hG I (w (Fin.last k)) (wd i.castSucc) = 0 := by
     intro i
-    rw [hG_symm (I := I) (wd i.castSucc) (w (Fin.last k)), hwd, if_neg (Fin.castSucc_ne_last i), star_zero]
+    rw [hG_symm (I := I) (wd i.castSucc) (w (Fin.last k)), hwd, ite_eq_right (Fin.castSucc_ne_last i), star_zero]
   unfold Concl
   refine ⟨z, fun i => (T : I.E) • w i.castSucc, fun i => (T : I.E) • wd i.castSucc, hz,
     fun i => ⟨hTw _, hTwd _⟩, ?_, ?_, ?_, ?_, ?_, ?_⟩
@@ -1657,13 +1661,13 @@ theorem local_assembly_principal : PPAssemble := by
       ring
     rw [h]
     by_cases hij : i = j
-    · rw [if_pos hij, mul_one]
+    · rw [ite_eq_left hij, mul_one]
       apply GE_of_QA (I := I) p m
         (isInt_mul I (isInt_coe I θ) (isInt_sub I ⟨(T : 𝓞 I.E) ^ 2, by push_cast; rfl⟩ (isInt_one I)))
       have h2 : (θ : I.E) * ((T : I.E) ^ 2 - 1) = -(θ : I.E) * (1 - (T : I.E) ^ 2) := by ring
       rw [h2]
       exact QA_mul (I := I) p _ (neg_mem (int_mem_Ap (I := I) p θ)) hT1
-    · rw [if_neg hij]
+    · rw [ite_eq_right hij]
       exact ⟨0, by simp⟩
   · exact span_part (I := I) p m r k θ e f M T w wd hMp hM0 hTp hTE hθ1 hθ2 hθ3 hw hspan _
       (fun a => Or.inl (Or.inl (Or.inl (Or.inl ⟨a, rfl⟩))))
@@ -1674,8 +1678,12 @@ theorem local_assembly_principal : PPAssemble := by
 
 end PI.ScRefExists.PPA
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.ThetaSeriesExistence
+
+
+open NumberField Formalism.MainNotions.S IsDedekindDomain
 
 namespace PI.ScRefExists.TH
 
@@ -1811,8 +1819,6 @@ theorem theta_series_existence : PI.ScRefExists.Sk.ThetaEx := by
 
 end PI.ScRefExists.TH
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.TargetOfWframe
 

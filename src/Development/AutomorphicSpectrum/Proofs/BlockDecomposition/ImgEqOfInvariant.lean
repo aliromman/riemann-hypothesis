@@ -40,10 +40,11 @@ theorem UpperTheory.Reformulated.B.AevalIntertwining.aeval_intertwine :
       map_smul, hpow]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ImgEqOfInvariant
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ImgEqOfInvariant
 
 open Polynomial Matrix PositivityTheory.Rg.BcB
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.PairParam
 
@@ -111,10 +112,10 @@ theorem exists_signs (ι : A → A) (hι : ∀ a, ι (ι a) = a) :
       constructor
       · rintro ⟨j, ⟨rfl, h⟩ | ⟨rfl, h⟩⟩
         · by_contra hc
-          simp only [e, hc, if_false] at h
+          simp only [e, hc, ite_false] at h
           split_ifs at h
         · by_contra hc
-          simp only [e, hc, if_false] at h
+          simp only [e, hc, ite_false] at h
           split_ifs at h
       · intro ha
         have hna := hI a ha

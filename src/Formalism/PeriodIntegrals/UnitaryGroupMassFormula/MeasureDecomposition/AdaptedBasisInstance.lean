@@ -11,12 +11,11 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureDecomposition.InstAdapt, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureDecomposition.AdaptedBasisInstance
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureDecomposition.InstAdapt
 
+noncomputable section
 
 open Matrix
-
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureDecomposition.InstAdapt
 
 namespace PI.ScMuExists.UnitaryGroupMassFormula
 
@@ -108,11 +107,11 @@ theorem inst_qfamily {n : ℕ} (ε : Fin n → Bool) (Q : Matrix (Fin n) (Fin n)
     · have hsr := inst_sign_real (μ i) hμ
       have hc : star (s i) * (μ i : ℂ) * s i =
           (((Real.sqrt |μ i|)⁻¹ * μ i * (Real.sqrt |μ i|)⁻¹ : ℝ) : ℂ) := by
-        simp only [hsdef, hμ, if_false, Complex.star_def, Complex.conj_ofReal]
+        simp only [hsdef, hμ, ite_false, Complex.star_def, Complex.conj_ofReal]
         first
           | (push_cast; ring)
       simp only [Pi.star_apply]
-      rw [hc, hsr, if_neg hμ]
+      rw [hc, hsr, ite_eq_right hμ]
       split_ifs <;> simp
   · rw [← Matrix.mul_assoc, ← Matrix.mul_assoc, hQQ]
   · intro x hx
@@ -139,7 +138,7 @@ theorem inst_qfamily {n : ℕ} (ε : Fin n → Bool) (Q : Matrix (Fin n) (Fin n)
       by_cases hμ : μ i = 0
       · simp [hμ]
       · have hpos : 0 < Real.sqrt |μ i| := Real.sqrt_pos.mpr (abs_pos.mpr hμ)
-        simp only [hsdef, hμ, if_false]
+        simp only [hsdef, hμ, ite_false]
         rw [← mul_assoc, ← Complex.ofReal_mul, inv_mul_cancel₀ hpos.ne', Complex.ofReal_one, one_mul]
     have hsplit : z = (fun i => if μ i = 0 then 0 else z i) + w2 := by
       funext i
@@ -165,8 +164,13 @@ theorem inst_qfamily {n : ℕ} (ε : Fin n → Bool) (Q : Matrix (Fin n) (Fin n)
 
 end PI.ScMuExists.UnitaryGroupMassFormula
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureDecomposition.AdaptedBasisInstance
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureDecomposition.AdaptedBasisInstance
+
+noncomputable section
+
+open Matrix
 
 namespace PI.ScMuExists.UnitaryGroupMassFormula
 
@@ -265,7 +269,7 @@ theorem adapted_basis_instance : InstAdaptBasis := by
     intro M k
     funext r
     simp only [Matrix.mulVec, dotProduct, Pi.single_apply, mul_ite, mul_one, mul_zero,
-      Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   refine ⟨A, ε', Finset.univ.filter (fun k => (e k).isLeft = true), ?_, ?_, ?_⟩
   · ext k k'
     rw [inst_gram_entry]
@@ -276,15 +280,15 @@ theorem adapted_basis_instance : InstAdaptBasis := by
       have hkk : k = k' ↔ (j : Fin n) = j' := by
         rw [← e.apply_eq_iff_eq, hk, hk', Sum.inl.injEq, Subtype.ext_iff]
       by_cases h : (j : Fin n) = j'
-      · rw [if_pos h, if_pos (hkk.mpr h), if_neg j.2]
+      · rw [ite_eq_left h, ite_eq_left (hkk.mpr h), ite_eq_right j.2]
         by_cases hp : 0 < l1 j <;> simp [hp]
-      · rw [if_neg h, if_neg (fun h' => h (hkk.mp h'))]
-    · rw [← inst_gram_entry W1 J W2 (j : Fin n) j', hcross, Matrix.zero_apply, if_neg]
+      · rw [ite_eq_right h, ite_eq_right (fun h' => h (hkk.mp h'))]
+    · rw [← inst_gram_entry W1 J W2 (j : Fin n) j', hcross, Matrix.zero_apply, ite_eq_right]
       intro h
       subst h
       rw [hk] at hk'
       exact Sum.inl_ne_inr hk'
-    · rw [← inst_gram_entry W2 J W1 (j : Fin n) j', hcross', Matrix.zero_apply, if_neg]
+    · rw [← inst_gram_entry W2 J W1 (j : Fin n) j', hcross', Matrix.zero_apply, ite_eq_right]
       intro h
       subst h
       rw [hk] at hk'
@@ -293,9 +297,9 @@ theorem adapted_basis_instance : InstAdaptBasis := by
       have hkk : k = k' ↔ (j : Fin n) = j' := by
         rw [← e.apply_eq_iff_eq, hk, hk', Sum.inr.injEq, Subtype.ext_iff]
       by_cases h : (j : Fin n) = j'
-      · rw [if_pos h, if_pos (hkk.mpr h), if_neg j.2]
+      · rw [ite_eq_left h, ite_eq_left (hkk.mpr h), ite_eq_right j.2]
         by_cases hp : 0 < l2 j <;> simp [hp]
-      · rw [if_neg h, if_neg (fun h' => h (hkk.mp h'))]
+      · rw [ite_eq_right h, ite_eq_right (fun h' => h (hkk.mp h'))]
   · intro i hi
     simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hi
     rcases hk : e i with j | j

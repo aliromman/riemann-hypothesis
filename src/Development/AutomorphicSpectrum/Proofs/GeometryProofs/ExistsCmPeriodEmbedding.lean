@@ -180,7 +180,8 @@ theorem family_pure_periods_span : ∀ (E : Type) [Field E] [NumberField E] [IsC
 end PositivityTheory.Xgf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmPeriodAlgebraic
+section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmPeriodAlgebraic
+@[expose] public section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
@@ -188,6 +189,7 @@ open scoped CategoryTheory.Obj
 open Matrix GlobalTheory GlobalTheory.CM GlobalTheory.CM.PeriodModel GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
 open scoped ComplexOrder
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Fl.CMGiven
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
@@ -277,7 +279,7 @@ theorem exists_pack_given : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
   choose h hh _ using fun b => _root_.GlobalTheory.CM.exists_kForm E H (FU.Di i) (ε b)
   have htw : 2 * (1 - (((Z true).ω : (Z true).M) : ℂ)) - 1 = sgnRt H false := by
     have := (Z true).hω
-    simp only [sgnRt, Bool.false_eq_true, if_false, if_true] at this ⊢
+    simp only [sgnRt, Bool.false_eq_true, ite_false, ite_true] at this ⊢
     linear_combination -this
   obtain ⟨ε₁, hε₁⟩ := exists_sign (H := H) htw (sgnRt_sq false)
   obtain ⟨h₁, hh₁, -⟩ := _root_.GlobalTheory.CM.exists_kForm E H (FU.Di i) ε₁
@@ -377,6 +379,8 @@ theorem exists_pack_given : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     exact congrArg (fun q => _ ≫ φ₃ b ≫ q) (Over.w (ψ₂ b a)).symm
 
 end GlobalTheory.CompanionTheory.Ar.Fl.CMGiven
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsCmPeriodEmbedding

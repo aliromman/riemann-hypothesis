@@ -796,13 +796,14 @@ end Dedekind
 end GlobalTheory.TupleNorm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.MfCoords
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.MfCoords
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.XR
 open scoped CategoryTheory.Obj
 open GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TuplePoint
 
+noncomputable section
 
 namespace PositivityTheory.HtPt.Mf
 
@@ -825,7 +826,7 @@ theorem genMap_germ_eq (ξ : Sp Ω ⟶ X) (q : Cpt ξ) {U : X.Opens} (hq : q.1 �
     rw [Scheme.germ_stalkClosedPointTo, Iso.trans_hom, ← Category.assoc]
     congr 1
   have e4 := congrArg (fun φ => φ.hom s) (e5.trans e6)
-  simp only [valR, dif_pos hle]
+  simp only [valR, dite_eq_left hle]
   exact e4
 
 theorem exists_point {o : Type} [CommRing o] [Algebra o Ω] {n : ℕ} (y : Sp Ω ⟶ PSpace o n)
@@ -835,7 +836,7 @@ theorem exists_point {o : Type} [CommRing o] [Algebra o Ω] {n : ℕ} (y : Sp Ω
   have hle : ⊤ ≤ y ⁻¹ᵁ chart o n i := (Scheme.preimage_eq_top_of_closedPoint_mem y hi).ge
   let t : Fin (n + 1) → Ω := fun j => valR y (chart o n i) (ratio o n i j)
   have hti : t i = 1 := by
-    simp only [t, ratio, GlobalTheory.ProjSpace.ratioOn_self, valR, dif_pos hle, map_one]
+    simp only [t, ratio, GlobalTheory.ProjSpace.ratioOn_self, valR, dite_eq_left hle, map_one]
   have ht : t ≠ 0 := fun h0 => one_ne_zero (hti.symm.trans (congrFun h0 i))
   refine ⟨t, ht, GlobalTheory.TuplePoint.eq_point hy (i := i) (by rw [hti]; exact one_ne_zero) hle (fun j => ?_)⟩
   rw [hti, div_one]
@@ -884,7 +885,7 @@ private theorem valR_point_chart_aeval_ratio {o : Type} [CommRing o] [Algebra o 
   have htop : ⊤ ≤ point o t ht ⁻¹ᵁ chart o n c := by
     have h1 := valR_point_ratio (L := Ω) (o := o) (t := t) (ht := ht) hc c
     by_contra hne
-    simp only [valR, dif_neg hne] at h1
+    simp only [valR, dite_eq_right hne] at h1
     rw [div_self hc] at h1
     exact zero_ne_one h1
   induction P using MvPolynomial.induction_on with
@@ -1175,7 +1176,7 @@ theorem genMap_point_mem {o : Type} [CommRing o] [Algebra o Ω] {n : ℕ} {t : F
     rw [genMap_germ_eq _ q hi b]
     have hb : valR (point o t ht) (chart o n i) b ∈
         Set.range (valMap (point o t ht) (chart o n i) hle).hom :=
-      ⟨b, by simp [valR, dif_pos hle, valMap]⟩
+      ⟨b, by simp [valR, dite_eq_left hle, valMap]⟩
     rw [GlobalTheory.TuplePoint.range_valMap_point hle] at hb
     exact hb
   have hunit : IsUnit (algebraMap Γ(PSpace o n, chart o n i) ((PSpace o n).presheaf.stalk q.1) s) :=

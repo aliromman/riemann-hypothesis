@@ -352,20 +352,7 @@ theorem norm_prod_sub_one_le (c : ℝ) (M : Multiset ℂ) (h : ∀ z ∈ M, ‖z
     nlinarith
 
 theorem norm_inv_one_sub_sub_one_le {y : ℂ} (hy : ‖y‖ ≤ 1 / 2) : ‖(1 - y)⁻¹ - 1‖ ≤ 2 * ‖y‖ := by
-  have h1 : 1 / 2 ≤ ‖1 - y‖ := by
-    have := norm_sub_norm_le (1 : ℂ) y
-    rw [norm_one] at this
-    linarith
-  have hne : (1 - y) ≠ 0 := by
-    intro h0
-    rw [h0, norm_zero] at h1
-    norm_num at h1
-  have hm : (1 - y) * (1 - y)⁻¹ = 1 := mul_inv_cancel₀ hne
-  have e : (1 - y)⁻¹ - 1 = y * (1 - y)⁻¹ := by linear_combination hm
-  rw [e, norm_mul, norm_inv]
-  have hpos : 0 < ‖1 - y‖ := by linarith
-  rw [mul_inv_le_iff₀ hpos]
-  nlinarith [norm_nonneg y]
+  first | exact _root_.GlobalTheory.GLZetaBound.norm_inv_one_sub_sub_one_le | exact @_root_.GlobalTheory.GLZetaBound.norm_inv_one_sub_sub_one_le | apply _root_.GlobalTheory.GLZetaBound.norm_inv_one_sub_sub_one_le <;> assumption
 
 theorem one_add_pow_sub_one_le {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) (n : ℕ) :
     (1 + c) ^ n - 1 ≤ (2 ^ n - 1) * c := by

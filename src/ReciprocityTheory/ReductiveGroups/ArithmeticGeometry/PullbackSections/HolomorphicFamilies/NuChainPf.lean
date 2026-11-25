@@ -110,8 +110,9 @@ theorem eq_zero_of_app_fst_open {V : Type} [CommRing V] [IsDomain V] [IsDiscrete
 end ReciprocityTheory.ChartRestriction.G.DVR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.NuExtB
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.NuExtB
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory
   CartesianMonoidalCategory MonObj
@@ -132,7 +133,7 @@ theorem snd_app_eq_zero {X T S : Scheme.{0}} (p : X ⟶ S) (t : T ⟶ S) (W : X.
   refine TopCat.Presheaf.section_ext (CategoryTheory.Limits.pullback t p).sheaf _ _ _ fun y hy => ?_
   have hy' : CategoryTheory.Limits.pullback.snd t p y ∈ W := hy
   have := h y hy'
-  simp only [gs, dif_pos hy'] at this
+  simp only [gs, dite_eq_left hy'] at this
   erw [this]
   exact (map_zero _).symm
 
@@ -232,9 +233,11 @@ theorem secB_dvd_of_vge {V : Type} [CommRing V] [IsDomain V] [IsDiscreteValuatio
 
 end ReciprocityTheory.ChartRestriction.G.DVR
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.NuExtPf
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.NuExtPf
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 
@@ -257,7 +260,7 @@ def SecBDvdSt : Prop :=
 
 theorem isUnit_gs_pow {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f y ∈ U) (u : Γ(X, U)ˣ) (k : ℕ) :
     IsUnit (gs f y U (u.val ^ k)) := by
-  simp only [gs, dif_pos h]
+  simp only [gs, dite_eq_left h]
   exact ((u.isUnit.pow k).map _).map _
 
 theorem dvd_of_eq_sum {P : Scheme.{0}} {x : P} {W : P.Opens} (hmem : x ∈ W) {κ : Type} {S : Finset κ}
@@ -268,7 +271,7 @@ theorem dvd_of_eq_sum {P : Scheme.{0}} {x : P} {W : P.Opens} (hmem : x ∈ W) {�
   rw [gs_fsum (𝟙 P) x W hx]
   refine Finset.dvd_sum fun i hi => ?_
   have hm : gs (𝟙 P) x W (a i * b i) = gs (𝟙 P) x W (a i) * gs (𝟙 P) x W (b i) := by
-    simp only [gs, dif_pos hx, map_mul]
+    simp only [gs, dite_eq_left hx, map_mul]
   rw [hm]
   exact (h i hi).mul_right _
 
@@ -365,6 +368,7 @@ theorem nuExt_of (hB : SecBDvdSt) : NuExtSt := by
 
 end ReciprocityTheory.ChartRestriction.G.DVR
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.NuExtDone
 
@@ -377,8 +381,9 @@ theorem nuExt : NuExtSt :=
 end ReciprocityTheory.ChartRestriction.G.DVR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenVal
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ThetaGenVal
 
+noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.G.DVR.TG
 
@@ -422,7 +427,7 @@ def vK (hϖ : Irreducible ϖ) : AddValuation (FractionRing V) (WithTop ℚ) :=
       · simp [hy]
       by_cases hxy : x + y = 0
       · simp [hxy]
-      simp only [hx, hy, hxy, if_false]
+      simp only [hx, hy, hxy, ite_false]
       have hπ : algebraMap V (FractionRing V) ϖ ≠ 0 :=
         (map_ne_zero_iff _ (IsFractionRing.injective V (FractionRing V))).mpr hϖ.ne_zero
       have key : ∀ {a b : FractionRing V}, a ≠ 0 → b ≠ 0 → a + b ≠ 0 → valE hϖ a ≤ valE hϖ b →
@@ -464,7 +469,7 @@ def vK (hϖ : Irreducible ϖ) : AddValuation (FractionRing V) (WithTop ℚ) :=
       by_cases hy : y = 0
       · simp [hy]
       have hxy : x * y ≠ 0 := mul_ne_zero hx hy
-      simp only [hx, hy, hxy, if_false]
+      simp only [hx, hy, hxy, ite_false]
       rw [hasVal_unique hϖ (hasVal_valE hϖ hxy) (hasVal_mul (hasVal_valE hϖ hx) (hasVal_valE hϖ hy) hϖ)]
       push_cast
       rfl)
@@ -479,10 +484,11 @@ lemma valOver_vK (hϖ : Irreducible ϖ) : ValOver ϖ (FractionRing V) (vK hϖ) :
     refine mul_ne_zero (zpow_ne_zero _ hπ) ?_
     exact (map_ne_zero_iff _ (IsFractionRing.injective V (FractionRing V))).mpr u.ne_zero
   change vK hϖ c = _
-  simp only [vK, AddValuation.of_apply, if_neg hc0]
+  simp only [vK, AddValuation.of_apply, ite_eq_right hc0]
   rw [hasVal_unique hϖ (hasVal_valE hϖ hc0) hc]
 
 end ReciprocityTheory.ChartRestriction.G.DVR.TG
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.NuChainPf

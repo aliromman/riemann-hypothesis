@@ -138,8 +138,9 @@ theorem exists_inCell_genericPoint : ∀ (F : Type) [Field F] (X Y : Var F) (ι 
 end GlobalTheory.FlagCell2.GenericCell
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlagCellPointsExistsUniqueUnitriangular
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlagCellPointsExistsUniqueUnitriangular
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry MvPolynomial MeasureTheory Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -152,7 +153,7 @@ namespace GlobalTheory.FlagCell2
 
 theorem det_upU {K : Type} [Field K] {s : ℕ} (y : Low s → K) : (upU y).det = 1 := by
   have hb : (upU y).BlockTriangular id := fun a b (hab : b < a) => by
-    simp only [upU, Matrix.of_apply, dif_neg (not_lt.2 hab.le), if_neg (ne_of_gt hab)]
+    simp only [upU, Matrix.of_apply, dite_eq_right (not_lt.2 hab.le), ite_eq_right (ne_of_gt hab)]
   rw [Matrix.det_of_upperTriangular hb]
   exact Finset.prod_eq_one fun a _ => by simp [upU]
 
@@ -197,6 +198,7 @@ theorem cell_points_existsUnique : ∀ (F : Type) [Field F] (X Y : Var F) (ι : 
     (fun s y y' b hb h => upU_unique_of_lower Y.Fn s y y' b hb h)
 
 end GlobalTheory.FlagCell2
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

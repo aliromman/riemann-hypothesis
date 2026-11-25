@@ -20,7 +20,8 @@ import GroundTheory.ProfiniteCohomology.RestrictedRamification.FiniteOpen
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseLocalDual, GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseReverse, GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseSwap, GroundTheory.ProfiniteCohomology.RestrictedRamification.BijectiveGsCompactZmodDualityMap, GroundTheory.ProfiniteCohomology.RestrictedRamification.BijectiveGsLocalInvRootsOfPlaces
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseLocalDual
+section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseLocalDual
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -28,8 +29,7 @@ namespace GroundTheory.ProfCoh
 
 open IsDedekindDomain NumberField CategoryTheory MonoidalCategory GroundTheory.Global
 
-
-attribute [local instance 2000] Rep.hV2
+noncomputable section
 
 section CompLinear
 
@@ -198,8 +198,10 @@ theorem bijective_gsLocalPairing_one (v : S) :
   refine (congrArg Neg.neg (gsLocalInvRoots_cupPairing S ιs n v _ ξ η)).trans ?_
   exact neg_apply_bilin_eq _ _ _ _ _
 
+end
 
 end GroundTheory.ProfCoh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseReverse
@@ -994,8 +996,6 @@ namespace GroundTheory.ProfCoh
 open CategoryTheory MonoidalCategory
 
 universe u
-
-attribute [local instance 2000] Rep.hV2
 
 variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
   {ι : Type u} {H : ι → Type u} [∀ v, Group (H v)] [∀ v, TopologicalSpace (H v)]

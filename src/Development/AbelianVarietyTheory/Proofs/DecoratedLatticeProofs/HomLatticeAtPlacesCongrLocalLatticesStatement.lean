@@ -58,8 +58,10 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Un
 open scoped TensorProduct
 open GlobalTheory.LocMod GlobalTheory.SplitWeil ValuativeRel
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HomLatticeAtPlacesCongrLocalLattices
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HomLatticeAtPlacesCongrLocalLattices
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.FinPl.LatCong
 
@@ -168,7 +170,7 @@ theorem latV_le_of_local (S : HSp D) (N M : Lat S) (hN : Submodule.IsLattice D.h
           split_ifs
           · rw [mul_one]; exact hα w
           · rw [mul_zero]; exact zero_mem _
-        · rw [map_mul, evalV_indQ, if_neg (by rwa [Finset.mem_singleton]), mul_zero]
+        · rw [map_mul, evalV_indQ, ite_eq_right (by rwa [Finset.mem_singleton]), mul_zero]
       exact latV_mono' S M (fun w hw => hw ▸ hv) (h v hv h1)
     · have h0 : α * indQ D {v} = 0 := by
         apply RestrictedProduct.ext
@@ -196,7 +198,7 @@ theorem latV_le_of_local (S : HSp D) (N M : Lat S) (hN : Submodule.IsLattice D.h
     refine AddSubgroup.subset_closure ⟨((d : D.host.F))⁻¹ • β, fun w => ?_, fun w hw => ?_,
       1, rfl, d • x, hNM x hx, ?_⟩
     · by_cases hw : w ∈ B
-      · rw [hsm, hβB, if_pos hw, mul_zero]
+      · rw [hsm, hβB, ite_eq_left hw, mul_zero]
         exact zero_mem _
       · have hwv : ((d : 𝓞 D.host.F)) ∉ w.asIdeal := hB w hw
         have hval : Valued.v (algebraMap D.host.F (w.adicCompletion D.host.F) (d : D.host.F)) = 1 := by
@@ -206,7 +208,7 @@ theorem latV_le_of_local (S : HSp D) (N M : Lat S) (hN : Submodule.IsLattice D.h
             map_intCast (algebraMap (𝓞 D.host.F) D.host.F) _
           exact h2.trans (h4 ▸ h1)
         have hαw := hα w
-        have e1 : evalV D.host.F w β = evalV D.host.F w α := by rw [hβB, if_neg hw]
+        have e1 : evalV D.host.F w β = evalV D.host.F w α := by rw [hβB, ite_eq_right hw]
         rewrite [map_smul, e1]
         rw [HeightOneSpectrum.mem_adicCompletionIntegers] at hαw ⊢
         rw [Algebra.smul_def, map_mul, map_inv₀, map_inv₀, hval, inv_one, one_mul]
@@ -244,6 +246,8 @@ theorem latO_congr : ∀ (D : D7) (S T : HSp D) (N M : Lat S) (N' M' : Lat T), I
 
 end GlobalTheory.FinPl.LatCong
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HomLatticeAtPlacesCongrLocalLatticesStatement

@@ -14,8 +14,9 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGivenS
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.LocalThetaKernels.LocrepSB, Development.WeilBound.CoreStatements.LocalThetaKernels.LocrepAd
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.LocalThetaKernels.LocrepSB
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.LocalThetaKernels.LocrepSB
 
+noncomputable section
 
 namespace PositivityTheory.ThKH.Locrep
 
@@ -152,7 +153,7 @@ theorem mem_span_Pm (h : ∀ y, ev (ι y) = y) (hev : Continuous ev) (hι : Cont
     have hsupp : Function.support (φv v) ⊆ {k | F k = v} := by
       intro k hk
       by_contra hne
-      exact hk (if_neg hne)
+      exact hk (ite_eq_right hne)
     have hL : {k | F k = v} ⊆ ev '' tsupport g := by
       intro k hk
       by_contra hc
@@ -174,8 +175,8 @@ theorem mem_span_Pm (h : ∀ y, ev (ι y) = y) (hev : Continuous ev) (hι : Cont
       show g x = g (put ev ι x (ev x))
       rw [put_self]
     by_cases hmem : F (ev x) ∈ Vs
-    · rw [if_pos hmem, ← hgx]
-    · rw [if_neg hmem]
+    · rw [ite_eq_left hmem, ← hgx]
+    · rw [ite_eq_right hmem]
       have h0 : F (ev x) = 0 := by
         by_contra hne
         apply hmem
@@ -191,6 +192,7 @@ theorem mem_span_Pm (h : ∀ y, ev (ι y) = y) (hev : Continuous ev) (hι : Cont
   rwa [← hsum] at hmem
 
 end PositivityTheory.ThKH.Locrep
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.LocalThetaKernels.LocrepAd

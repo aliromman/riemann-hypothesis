@@ -89,8 +89,10 @@ end GlobalTheory.CompanionTheory.SwapRoot
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ReflectionRootDiagonalConj
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ReflectionRootDiagonalConj
+@[expose] public section
 
+noncomputable section
 
 open GlobalTheory.PRep Formalism.UG GlobalTheory.LFun PositivityTheory.SphericalProduct GlobalTheory.CompanionTheory.SwapRoot Matrix
 
@@ -112,22 +114,22 @@ theorem blockM_mul_diag (a : ℕ) (h : 2 * (a + 2) ≤ n) (X Y X' Y' : Matrix (F
     by_cases heI : ∃ r, e = cI n a h r
     · obtain ⟨r, rfl⟩ := heI
       rw [blockM_cI, blockM_cI]; exact hI p r
-    · push_neg at heI
+    · push Not at heI
       have hb : ∀ r, cI n a h p ≠ cJ n a h r := cI_ne_cJ a h p
       rw [blockM_out a h _ _ (Or.inr heI) (Or.inl hb), blockM_out a h _ _ (Or.inr heI) (Or.inl hb)]
       have hne : cI n a h p ≠ e := fun hh => heI p hh.symm
       simp [hne]
-  · push_neg at hbI
+  · push Not at hbI
     by_cases hbJ : ∃ p, b = cJ n a h p
     · obtain ⟨p, rfl⟩ := hbJ
       by_cases heJ : ∃ r, e = cJ n a h r
       · obtain ⟨r, rfl⟩ := heJ
         rw [blockM_cJ, blockM_cJ]; exact hJ p r
-      · push_neg at heJ
+      · push Not at heJ
         rw [blockM_out a h _ _ (Or.inl hbI) (Or.inr heJ), blockM_out a h _ _ (Or.inl hbI) (Or.inr heJ)]
         have hne : cJ n a h p ≠ e := fun hh => heJ p hh.symm
         simp [hne]
-    · push_neg at hbJ
+    · push Not at hbJ
       rw [blockM_out a h _ _ (Or.inl hbI) (Or.inl hbJ), blockM_out a h _ _ (Or.inl hbI) (Or.inl hbJ)]
       by_cases hbe : b = e
       · subst hbe
@@ -324,6 +326,8 @@ theorem torus_step : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicativ
 
 end GlobalTheory.CompanionTheory.SwapRoot.Torus
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.UnitaryRootEmbedding
@@ -525,7 +529,7 @@ private theorem cJJ {n a : ℕ} (L : Type) [Field L] (h : 2 * (a + 2) ≤ n) :
 private theorem cIJ {n a : ℕ} (L : Type) [Field L] (h : 2 * (a + 2) ≤ n) :
     (cM L (cI n a h)).transpose * cM L (cJ n a h) = 0 := by
   ext p q
-  rw [cM_tr_mul, if_neg]
+  rw [cM_tr_mul, ite_eq_right]
   · rfl
   · have := p.isLt
     simp only [cI, cJ, Fin.ext_iff]
@@ -534,7 +538,7 @@ private theorem cIJ {n a : ℕ} (L : Type) [Field L] (h : 2 * (a + 2) ≤ n) :
 private theorem cJI {n a : ℕ} (L : Type) [Field L] (h : 2 * (a + 2) ≤ n) :
     (cM L (cJ n a h)).transpose * cM L (cI n a h) = 0 := by
   ext p q
-  rw [cM_tr_mul, if_neg]
+  rw [cM_tr_mul, ite_eq_right]
   · rfl
   · have := q.isLt
     simp only [cI, cJ, Fin.ext_iff]
@@ -1012,7 +1016,7 @@ private theorem up_U {n : ℕ} {L : Type} [Field L] {A A1 B B1 : Fin n} (hA : (A
       rintro ⟨rfl, rfl⟩
       simp only [Fin.lt_def] at hij
       omega
-    rw [hU, Matrix.one_apply_ne n0, if_neg n1, if_neg n2]
+    rw [hU, Matrix.one_apply_ne n0, ite_eq_right n1, ite_eq_right n2]
     simp
   · have n1 : ¬ (i = A ∧ i = A1) := by
       rintro ⟨rfl, e⟩
@@ -1022,7 +1026,7 @@ private theorem up_U {n : ℕ} {L : Type} [Field L] {A A1 B B1 : Fin n} (hA : (A
       rintro ⟨rfl, e⟩
       rw [← e] at hB
       omega
-    rw [hU, Matrix.one_apply_eq, if_neg n1, if_neg n2]
+    rw [hU, Matrix.one_apply_eq, ite_eq_right n1, ite_eq_right n2]
     simp
 
 private theorem row_U {n : ℕ} {L : Type} [Field L] {A A1 B B1 : Fin n} (hAB : A ≠ B)
@@ -1051,7 +1055,7 @@ private theorem unit_entry {n : ℕ} {L : Type} [Field L] (σ : L →+* L) {A A1
   have e := congrFun (congrFun hW A1) B1
   have r0 : antiJ L n A1 B1 = 0 := by
     show (if (A1 : ℕ) + B1 + 1 = n then (1 : L) else 0) = 0
-    rw [if_neg]
+    rw [ite_eq_right]
     omega
   rw [r0, Matrix.mul_apply] at e
   simp only [mul_J] at e
@@ -1093,9 +1097,9 @@ private theorem conj_up {n : ℕ} {L : Type} [Field L] {A A1 B B1 : Fin n} (hA :
     rw [Matrix.mul_apply]
     simp only [r1, hS]
     rw [Finset.sum_eq_single (pm A A1 B B1 j)]
-    · rw [pm_invol hA hB hAB, if_pos rfl, mul_one]
+    · rw [pm_invol hA hB hAB, ite_eq_left rfl, mul_one]
     · intro k _ hk
-      rw [if_neg, mul_zero]
+      rw [ite_eq_right, mul_zero]
       intro e
       apply hk
       rw [← e, pm_invol hA hB hAB]
@@ -1503,8 +1507,9 @@ end GlobalTheory.CompanionTheory.SwapFactor
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitarySwapReduction
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitarySwapReduction
 
+noncomputable section
 
 open GlobalTheory.PRep Formalism.UG GlobalTheory.LFun PositivityTheory.SphericalProduct Matrix
 
@@ -1715,7 +1720,7 @@ theorem swapStepU : PositivityTheory.SphericalProduct.SwapStepU := by
     · have hk : s * u x ∈ KU σ n := mul_mem (step_sR_mem_KU hU _ h) (step_uR_mem_KU hU _ h x hx)
       have := hK 1 _ hk
       rw [one_mul] at this
-      rw [this, sphFn, if_pos hx, mul_one]
+      rw [this, sphFn, ite_eq_left hx, mul_one]
     · have hx0 : x ≠ 0 := fun e => hx (by simp [e])
       obtain ⟨b, hb, hbc, e⟩ := step_factor hU i.val h χ i j rfl hij.symm x hx0
       have hx1 : Valued.v x⁻¹ ≤ 1 := by
@@ -1726,7 +1731,7 @@ theorem swapStepU : PositivityTheory.SphericalProduct.SwapStepU := by
       have e1 : s * u x = b * (s * u x⁻¹ * s) := e
       have e2 := hK 1 _ hk
       rw [one_mul] at e2
-      rw [e1, (f v₀).2 b _ hb, e2, hbc, sphFn, if_neg hx, mul_comm]
+      rw [e1, (f v₀).2 b _ hb, e2, hbc, sphFn, ite_eq_right hx, mul_comm]
   have hne : f' v₀ ≠ 0 := by
     intro h0
     have e : T v₀ 1 = 0 := congrFun (congrArg Subtype.val h0) 1
@@ -1757,6 +1762,7 @@ theorem swapStepU : PositivityTheory.SphericalProduct.SwapStepU := by
 
 end GlobalTheory.CompanionTheory.SwapRoot
 
+end
 
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousUnitaryRootMap", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConjTransposeAntidiagFixed\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Definitions.Foundations.NormEulerPolySubOneLe\nimport Development.AbelianVarietyTheory.Definitions.Foundations.SmoothPartStable\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IwahoriFactorisation.StrictDominance.UnitaryExtremality.IsStrictDom\n\n"}
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ReflectionRootDiagonalConj", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConjTransposeAntidiagFixed\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IwahoriFactorisation.StrictDominance.UnitaryExtremality.IsStrictDom\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

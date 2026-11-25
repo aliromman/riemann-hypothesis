@@ -518,10 +518,11 @@ theorem sqrt_discr_mul_finprod_different (F : Type) [Field F] [NumberField F] :
 end GlobalTheory.CompanionTheory.SW.SelfDual
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.LocalFieldSelfdualMeasureExists
+@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.LocalFieldSelfdualMeasureExists
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SW.LocInv
 
@@ -637,12 +638,12 @@ theorem setIntegral_fourier_mul_char {ψ : AddChar K Circle} (hψ : Continuous �
     · have ht : IsTrivialOn (ψ.mulShift (x + z)) (addCharConductor ψ - k) := by
         rw [isTrivialOn_mulShift_iff_mem hψ hψ1]
         simpa using hxz
-      rw [if_pos ht, Set.indicator_of_mem (show x + z ∈ (valBall K k : Set K) from hxz),
+      rw [ite_eq_left ht, Set.indicator_of_mem (show x + z ∈ (valBall K k : Set K) from hxz),
         add_sub_cancel_right, mul_comm]
     · have ht : ¬ IsTrivialOn (ψ.mulShift (x + z)) (addCharConductor ψ - k) := by
         rw [isTrivialOn_mulShift_iff_mem hψ hψ1]
         simpa using hxz
-      rw [if_neg ht, Set.indicator_of_notMem (show x + z ∉ (valBall K k : Set K) from hxz),
+      rw [ite_eq_right ht, Set.indicator_of_notMem (show x + z ∉ (valBall K k : Set K) from hxz),
         mul_zero]
   rw [hB, integral_integral_swap hG]
   simp only [hinner]
@@ -691,6 +692,7 @@ open scoped TensorProduct ENNReal NNReal Matrix
 theorem GlobalTheory.CompanionTheory.SW.selfDual_selfDualMeasure : ∀ (K : Type) [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K] [MeasurableSpace K] [BorelSpace K] (ψ : AddChar K Circle), Continuous ψ → ψ ≠ 1 → SelfDual (GroundTheory.LocalField.selfDualMeasure ψ) (fun s t => ((ψ (s * t) : Circle) : ℂ)) := by
   intro K _ _ _ _ _ _ ψ hψ hψ1
   exact ⟨inferInstance, fun Φ hΦ hc hI z => GlobalTheory.CompanionTheory.SW.LocInv.inversion hψ hψ1 hΦ hc hI z⟩
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

@@ -418,7 +418,9 @@ theorem _root_.GlobalTheory.T.descendedBundle_kernel_killed_primeToP : ∀ (p : 
   first | (exact @GlobalTheory.UPel.HT.ES.KerPowDescent.kernel_primePower_descent)
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBimultiplicativeWeilPairingTorsionAxes
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBimultiplicativeWeilPairingTorsionAxes
+
+noncomputable section
 
 namespace GlobalTheory.TorsionCommPairing
 
@@ -490,7 +492,7 @@ theorem exists_pairing : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsCommMon
   have he : ∀ g g' : Over.mk x ⟶ A, ∀ hg : g ^ c = 1, ∀ hg' : g' ^ c = 1,
       Out.WeilIs (G2 A) (Hecke.lbPow P c) 1 (lift g 1 : Over.mk x ⟶ G2 A) (lift 1 g') (unitOn (e g g')) := by
     intro g g' hg hg'
-    simp only [e, dif_pos (And.intro hg hg')]
+    simp only [e, dite_eq_left (And.intro hg hg')]
     exact (ex g g' hg hg').choose_spec
   have hmulc : ∀ g₁ g₂ : Over.mk x ⟶ A, g₁ ^ c = 1 → g₂ ^ c = 1 → (g₁ * g₂) ^ c = 1 := by
     intro g₁ g₂ h₁ h₂
@@ -512,6 +514,7 @@ theorem exists_pairing : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsCommMon
     exact CommutatorPairing.weilIs_unique hG hAA hQ (he _ _ hg (hmulc g₁ g₂ h₁ h₂)) hm
 
 end GlobalTheory.TorsionCommPairing
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBimultiplicativeWeilPairingTorsionAxesStatement

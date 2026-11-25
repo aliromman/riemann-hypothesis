@@ -669,8 +669,9 @@ theorem halfOne_of (hH : HbFacts) (hF : FrameDer) (hO : ∀ n, IsOpen (cone n)) 
 end PositivityTheory.RgBcC.LfSt.Kchain.KcHalf1
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.GLMatrixDerivatives.KcDual
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.GLMatrixDerivatives.KcDual
 
+noncomputable section
 
 open Matrix Finset
 
@@ -678,8 +679,6 @@ namespace PositivityTheory.RgBcC.LfSt.Kchain.KcDual
 
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.LfSt PositivityTheory.RgBcC.LfSt.Kchain
 open PositivityTheory.RgTw (Mat hb)
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
@@ -690,7 +689,7 @@ theorem trace_hOf_mul (hH : HbFacts) (u u' : Fin n × Fin n → ℝ) :
     Matrix.trace_smul, horth, smul_eq_mul, mul_ite, mul_one, mul_zero]
   refine Finset.sum_congr rfl fun p _ => ?_
   rw [Finset.sum_ite_eq']
-  simp only [Finset.mem_univ, if_true]
+  simp only [Finset.mem_univ, ite_true]
   push_cast
   ring
 
@@ -749,9 +748,11 @@ theorem dualSum (hH : HbFacts) : DualSum := by
 
 end PositivityTheory.RgBcC.LfSt.Kchain.KcDual
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.GLMatrixDerivatives.Kchain
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.GLMatrixDerivatives.Kchain
 
+noncomputable section
 
 open Matrix Finset
 open scoped ContDiff
@@ -760,8 +761,6 @@ namespace PositivityTheory.RgBcC.LfSt.Kchain
 
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.LfSt
 open PositivityTheory.RgTw (Mat hb)
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
@@ -821,6 +820,7 @@ theorem kChain_of (hS : KcSmooth) (hC : ConeGL) (h1 : HalfOne) (h2 : HalfTwo) : 
       zero_mul, zero_mul, smul_zero]
 
 end PositivityTheory.RgBcC.LfSt.Kchain
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.GLMatrixDerivatives.KchainTop

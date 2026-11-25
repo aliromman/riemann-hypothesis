@@ -67,8 +67,9 @@ import Mathlib.RingTheory.PowerSeries.Inverse
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUniqueSum, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FreeAndInvariantsGen, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ValOfPowAssociated, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachLatticeDeltaInvariantBasis, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachModuleDescentToTameSubextension
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUniqueSum
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUniqueSum
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations GlobalTheory.Cyc PowerSeries
 
@@ -181,11 +182,11 @@ theorem exists_sum (h : σ X = w * X ^ s) (hs : 0 < s) (hw : IsUnit w) (b : R⟦
     · rw [Nat.sub_add_cancel hn, Finset.sum_eq_zero, add_zero]
       intro k _
       have := k.2
-      rw [if_neg (by omega), zero_mul]
+      rw [ite_eq_right (by omega), zero_mul]
     · rw [zero_add, Finset.sum_eq_single ⟨n, by omega⟩]
       · simp
       · intro k _ hk
-        rw [if_neg (fun e => hk (Fin.ext e.symm)), zero_mul]
+        rw [ite_eq_right (fun e => hk (Fin.ext e.symm)), zero_mul]
       · simp
   have hG : ∀ b k, σ (G b k) = σ X * σ (G (T b) k) + C (coeff k b) := by
     intro b k
@@ -289,6 +290,7 @@ theorem invariants_param : ∀ (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] 
   simp
 
 end GlobalTheory.Cyc
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FreeAndInvariantsGen

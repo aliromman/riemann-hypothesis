@@ -16,7 +16,8 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.I
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualGeomDegCharts, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualEnergyCharts
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualGeomDegCharts
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualGeomDegCharts
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -25,6 +26,7 @@ namespace GroundTheory.Heights₂.Heights
 open ReciprocityTheory.ChartRestriction.G.Geo MeasureTheory Filter Topology Matrix NumberField
 open scoped ComplexOrder
 
+noncomputable section
 
 namespace DualGeometricDegreeCharts
 
@@ -76,9 +78,9 @@ theorem eq_planePt (b : Module.Basis T ℤ (dualLattice F))
     funext ⟨τ, j⟩
     by_cases hτ : τ = σ
     · subst hτ
-      rw [if_pos rfl]
+      rw [ite_eq_left rfl]
       rfl
-    · rw [if_neg hτ]
+    · rw [ite_eq_right hτ]
       exact hσ τ hτ j
   have h1 := (dualRecover b hb).injective hW
   funext ⟨u, t⟩
@@ -97,7 +99,7 @@ theorem h_planePt (b : Module.Basis T ℤ (dualLattice F))
     simp
   · intro τ _ hτ
     rw [recover_planePt]
-    simp only [hτ, if_false]
+    simp only [hτ, ite_false]
     show (star (0 : Fin (D + 1) → ℂ) ⬝ᵥ (F.metric τ *ᵥ (0 : Fin (D + 1) → ℂ))).re = 0
     simp
   · simp
@@ -301,8 +303,10 @@ theorem DualGeomDegCharts.proof (hInt : ChartDensityIntegrable.Statement) : Dual
   rw [dite_eq_left hex]
   exact hE
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualEnergyCharts

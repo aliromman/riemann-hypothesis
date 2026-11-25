@@ -384,8 +384,9 @@ section -- clump: shared namespace opens
 open NumberField IsDedekindDomain MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.SG.Sub Formalism.L2.SG.Measures
 open scoped TensorProduct ENNReal
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExtendFreeTupleGramHermitianFrame
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExtendFreeTupleGramHermitianFrame
 
+noncomputable section
 
 namespace GlobalTheory.FrameExtend
 
@@ -527,7 +528,7 @@ theorem extend_frame : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
     simp only [gramE, tupH, Fin.append_left, Fin.append_right, F0]
     refine Fin.lastCases ?_ (fun a => ?_) i
     · rw [Fin.snoc_last, ← hE_swap hinv hJ.1 P.z (P.f b), hfz, map_zero]
-      exact (if_neg (Fin.castSucc_ne_last b).symm).symm
+      exact (ite_eq_right (Fin.castSucc_ne_last b).symm).symm
     · rw [Fin.snoc_castSucc, hef]
       simp only [Fin.castSucc_inj]
   funext i j
@@ -545,6 +546,7 @@ theorem extend_frame : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
     simp [gramE, tupH, Fin.append_right, hff0]
 
 end GlobalTheory.FrameExtend
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsSmulLocalWittFreeTupleGram

@@ -78,56 +78,18 @@ def CutPassage3S : Prop :=
 end Formalism.IndefR.CxPass
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.PassageBaseSymmetricLevels
+@[expose] public section -- clump member: Formalism.LocalToGlobal.GlobalTheory.PassageBaseSymmetricLevels
 
 set_option linter.style.haveILetI false
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder
 
+noncomputable section
 
 namespace Formalism.L2.GlobalTheoryTheory.DivPassage2
 
 open Formalism.L2.Indef Formalism.L2.GlobalTheoryTheory.DivPassage
-
-section Chars
-
-variable {K : Type} [Field K] {Γ : Type} [Group Γ] [Finite Γ]
-
-end Chars
-
-section TP
-
-variable {K : Type} [Field K] {Γ : Type} [Group Γ] [Finite Γ] {n : ℕ}
-
-variable [NumberField K]
-
-end TP
-
-section Norms
-
-open Formalism.HermitianLatticesTheory
-
-variable {K : Type} [Field K] [NumberField K] [StarRing K] {n : ℕ} (X : InfinitePlace K → Matrix (Fin n) (Fin n) ℂ)
-
-end Norms
-
-section Adj
-
-open Formalism.HermitianLatticesTheory
-
-variable {K : Type} [Field K] [NumberField K] [StarRing K] {Γ : Type} [Group Γ] [Finite Γ] {n : ℕ}
-  (X : InfinitePlace K → Matrix (Fin n) (Fin n) ℂ)
-
-end Adj
-
-section Lat
-
-open Formalism.HermitianLatticesTheory
-
-variable {K : Type} [Field K] [NumberField K] [StarRing K] {D0 D1 : ℕ} (A : LevelAmb K D0 D1)
-
-end Lat
 
 section Gen
 
@@ -150,13 +112,8 @@ theorem rows_gen (hL : A.LatG) {D : ℕ} (ι : Matrix (Fin A.Dg) (Fin D) K) (P :
 
 end Gen
 
-section Triv
-
-variable {K : Type} [Field K] [NumberField K] [StarRing K]
-
-end Triv
-
 end Formalism.L2.GlobalTheoryTheory.DivPassage2
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.CxPassA
@@ -556,10 +513,11 @@ theorem core_of (hC : CharFacts) (hK : KeyZero) (hS : Schur) (hP : IdemP) : Core
 end Formalism.IndefR.LatticeTransfer
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.FinrankIntSelf
+@[expose] public section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.FinrankIntSelf
 
 open Module NumberField
 
+noncomputable section
 
 namespace Formalism.IndefR.LatticeTransfer
 
@@ -577,7 +535,7 @@ lemma charOf_conj {T : Type} [AddCommGroup T] [Module K T] (τ : Representation 
       inv_mul_cancel, map_one, one_mul]
   · have h0 : LinearMap.trace K T = 0 := by
       first
-      | (rw [LinearMap.trace, dif_neg]; rintro ⟨_, ⟨b⟩⟩; exact hf (Module.Finite.of_basis b))
+      | (rw [LinearMap.trace, dite_eq_right]; rintro ⟨_, ⟨b⟩⟩; exact hf (Module.Finite.of_basis b))
     simp [h0]
 
 lemma eS_mul_rho {T V : Type} [AddCommGroup T] [Module K T] [AddCommGroup V] [Module K V]
@@ -854,6 +812,7 @@ theorem idemP_of (h : CharFacts) : IdemP := by
     exact A.smul_mem _ (hA _ _ ha)
 
 end Formalism.IndefR.LatticeTransfer
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.AllPartsTransferHolds

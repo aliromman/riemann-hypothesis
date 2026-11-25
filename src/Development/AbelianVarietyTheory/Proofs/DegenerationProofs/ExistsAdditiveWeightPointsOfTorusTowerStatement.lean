@@ -71,12 +71,13 @@ import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SquareOfCubi
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.HasWtGenPullIff
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 open GlobalTheory.LN
 
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.HasWtGenPullIff
+@[expose] public section
+
+noncomputable section
 namespace GlobalTheory.WeightPoint
 
 section Sum
@@ -284,13 +285,14 @@ theorem exists_rep (hP : PicardZeroDegenerationCondition) {R A : Type} [CommRing
     exacts [rfl, congrArg (Q.q.left ≫ ·) (Category.id_comp b).symm]
 
 end GlobalTheory.WeightPoint
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsAdditiveWeightPointsOfTorusTower
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UU
-open GlobalTheory.LN
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsAdditiveWeightPointsOfTorusTower
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.WeightPoint
 
 theorem w_of_isCPPullback {S S' : Scheme.{0}} {B' : Over S'} {B : Over S} [GrpObj B'] [IsCommMonObj B'] [GrpObj B]
@@ -372,12 +374,11 @@ theorem exists_weightPoints : Laws → Laws2 → Ega → ∀ (R : Type) [CommRin
   exact ⟨c, fun χ χ' => repWt_unique a hK (hc _) fun e => repWt_add a (hc χ e) (hc χ' e), hc⟩
 
 end GlobalTheory.WeightPoint
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsAdditiveWeightPointsOfTorusTowerStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UU
-open GlobalTheory.LN
 
 theorem _root_.GlobalTheory.T.exists_additive_weightPoints_of_torusTower : Laws → Laws2 → Ega → ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (I : Ideal R), admitted R I → ∀ (G : Over (Spec (CommRingCat.of R))) [GrpObj G] [IsCommMonObj G] (P : CP G) (X : Type) [AddCommGroup X] (T : TowerR I P X) (a : T.Alg), KTriv a.B a.M.L.L → ∃ c : X → (𝟙_ _ ⟶ a.B), (∀ χ χ', c (χ + χ') = c χ * c χ') ∧ ∀ χ e, a.RepWt (c χ) χ e := by
   first | exact @GlobalTheory.WeightPoint.exists_weightPoints

@@ -53,11 +53,12 @@ import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.WeilSie
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PureCIsSchwartzBruhat, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorizableSiegelWeilFiniteSet
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PureCIsSchwartzBruhat
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PureCIsSchwartzBruhat
 
 open NumberField IsDedekindDomain MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published.SiegelOneVector GlobalTheory.CompanionTheory.Hypotheses₂.OneV
 open scoped TensorProduct ENNReal
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.PureSB
 
@@ -135,21 +136,12 @@ theorem isCompact_box (S : Finset (HeightOneSpectrum (𝓞 F))) (C : ∀ v : Hei
 
 end Box
 
-section Main
-
-variable {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E]
-
-variable {d M : ℕ} (b : Module.Basis (Fin d) F E) (S : Finset (HeightOneSpectrum (𝓞 F)))
-  (A : ∀ v : HeightOneSpectrum (𝓞 F), Set (Fin 1 → Fin M → Fv F v ⊗[F] E))
-
-
-end Main
-
 end GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.PureSB
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef
 
 end GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorizableSiegelWeilFiniteSet

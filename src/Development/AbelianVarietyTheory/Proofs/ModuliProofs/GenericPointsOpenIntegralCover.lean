@@ -539,11 +539,14 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsAmpleCechLineBundleDisjointUnionPushforward
+section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsAmpleCechLineBundleDisjointUnionPushforward
+@[expose] public section
 
 open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Out
 open GlobalTheory.ModelSum
+
+noncomputable section
 
 namespace GlobalTheory.ModelSum.UnionAmple
 
@@ -628,7 +631,7 @@ theorem mem_wchart {X : Scheme.{0}} (L : LB X) (J : Fin 1 → L.ι) (x : X) :
 theorem gs_zero' {X Y : Scheme.{0}} (r : Y ⟶ X) (z : Y) (U : X.Opens) : gs r z U 0 = 0 := by
   by_cases h : r z ∈ U
   · rw [gs_eq r z U h, map_zero, map_zero]
-  · exact dif_neg h
+  · exact dite_eq_right h
 
 theorem Part.exists_local [IsOpenImmersion f] (h : Part f A C e) {d : ℕ} (s : H0 A d) (J : Fin 1 → C.ι) :
     ∃ t : Γ(Z, LB.wchart C (fun _ : Fin 1 => 𝟙 Z) J),
@@ -643,7 +646,7 @@ theorem Part.exists_local [IsOpenImmersion f] (h : Part f A C e) {d : ℕ} (s : 
       obtain ⟨y, rfl⟩ := h.sub i x hx'
       exact ⟨y, (mem_wchart A _ y).2 ((h.mem i y).1 hx'), rfl⟩
     refine ⟨(Z.presheaf.map (homOfLE le).op).hom ((f.appIso _).inv.hom (s.f fun _ => i)), fun i' y hi' hy => ?_,
-      fun x hx => dif_neg fun hx' => hx ?_⟩
+      fun x hx => dite_eq_right fun hx' => hx ?_⟩
     · obtain rfl : i' = i := h.inj (hi'.trans hi.symm)
       have hm : f y ∈ LB.wchart C (fun _ : Fin 1 => 𝟙 Z) J :=
         (mem_wchart C J _).2 (hi ▸ (h.mem i' y).2 hy)
@@ -770,6 +773,8 @@ theorem sumLB_isLB_ampleFam : ∀ (Z Z₁ Z₂ : Scheme.{0}) (f₁ : Z₁ ⟶ Z)
 
 end GlobalTheory.ModelSum.UnionAmple
 
+end
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

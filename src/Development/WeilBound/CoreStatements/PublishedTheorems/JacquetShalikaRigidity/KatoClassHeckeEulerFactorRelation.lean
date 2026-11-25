@@ -60,15 +60,15 @@ theorem UpperTheory.Reformulated.B.CountingPairs.main :
   ring
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralVecSmul
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralVecSmul
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
 open GlobalTheory.CuspGeneric GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.jumpWindows PositivityTheory.RgJS PositivityTheory.AdelicQuotientData
 open GroundTheory.Automorphic GroundTheory.Automorphic.FourierWhittaker GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.Spherical
 open scoped ENNReal ComplexConjugate
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.CompanionTheory.UnipotentNormalizer
 
@@ -236,7 +236,7 @@ theorem colS_eq (l : Fin k → ℤ) (c : Fin k) : colS l c = ∑ i : Fin k, if i
   rw [Finset.sum_eq_single c]
   · simp only [le_refl, and_true, Fin.val_fin_lt]
   · intro b _ hb
-    rw [if_neg]
+    rw [ite_eq_right]
     rintro ⟨-, h1, h2⟩
     have h1' : (c : ℕ) ≤ b := h1
     have h2' : (b : ℕ) ≤ c := h2
@@ -295,6 +295,8 @@ theorem main : PositivityTheory.AdelicQuotientData.D0 → PositivityTheory.jumpW
 
 end GlobalTheory.CompanionTheory.UnipotentNormalizer
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.KatoClassHeckeEulerFactorRelation

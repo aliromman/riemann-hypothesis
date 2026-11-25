@@ -104,11 +104,12 @@ theorem absPow_eq_zpow (s : ℂ) (x : kˣ) :
 end GlobalTheory.MellinPoly
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.GenValAddSegL
+@[expose] public section
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.Doubling GlobalTheory.GLDoubling GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection GlobalTheory.ZonalCellDecomposition GlobalTheory.SatakeBound GlobalTheory.ParHecke
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.GenValAddSegL
+noncomputable section
 
 namespace GlobalTheory.ParHecke.StringEig
 
@@ -149,7 +150,7 @@ theorem genVal_add_segL : ∀ (k : Type) [Field k] [ValuativeRel k] [Topological
     simp only [hF, genVal, esymm_eq_zero_of_lt _ (hBc ▸ hj), mul_zero]
   have hFk : ∀ j, n₀ < j → F j = 0 := by
     intro j hj
-    simp only [hF, if_neg (show ¬ j ≤ n₀ by omega), zero_mul]
+    simp only [hF, ite_eq_right (show ¬ j ≤ n₀ by omega), zero_mul]
   have hR : ∑ j ∈ Finset.range (N + 1), F j = ∑ j ∈ Finset.range (n₀ + 1), F j := by
     rw [Finset.sum_subset (Finset.range_mono (show N + 1 ≤ N + n₀ + 1 by omega))
         (fun j _ hn => hFa j (by simp at hn; omega)),
@@ -159,7 +160,7 @@ theorem genVal_add_segL : ∀ (k : Type) [Field k] [ValuativeRel k] [Topological
   refine Finset.sum_congr rfl fun j hj => ?_
   have hjk : j ≤ n₀ := Nat.lt_succ_iff.1 (Finset.mem_range.1 hj)
   rw [esymm_map_mul_C, esymm_string Q s zS hs hsQ t]
-  simp only [hF, if_pos hjk, genVal]
+  simp only [hF, ite_eq_left hjk, genVal]
   by_cases hjN : j ≤ N
   · by_cases hat : n₀ - j ≤ t
     · have hsI : s ^ (r * n₀ + n₀ * (N + t - n₀)) * s ^ (-(((n₀ - j : ℕ) : ℤ) * ((t : ℤ) - ((n₀ - j : ℕ) : ℤ)))) =
@@ -185,9 +186,13 @@ theorem genVal_add_segL : ∀ (k : Type) [Field k] [ValuativeRel k] [Topological
 
 end GlobalTheory.ParHecke.StringEig
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CardSubspacesContainingRangeQVandermonde
+
+open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.Doubling GlobalTheory.GLDoubling GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection GlobalTheory.ZonalCellDecomposition GlobalTheory.SatakeBound GlobalTheory.ParHecke
 
 namespace GlobalTheory.RangeKerCount
 
@@ -232,7 +237,7 @@ theorem card_above_range_eq_sum : ∀ (κ : Type) [Field κ] [Finite κ] (U U' :
     Finset.sum_subset (Finset.range_mono (by omega)) fun n _ hn => by
       rw [Finset.mem_range] at hn
       simp only [hg]
-      rw [if_neg (by omega), zero_mul]
+      rw [ite_eq_right (by omega), zero_mul]
   have h3 : ∑ n ∈ Finset.range (Module.finrank κ U + 1), g n =
       ∑ n ∈ Finset.range (e + Module.finrank κ U + 1), g n :=
     Finset.sum_subset (Finset.range_mono (by omega)) fun n _ hn => by
@@ -243,13 +248,18 @@ theorem card_above_range_eq_sum : ∀ (κ : Type) [Field κ] [Finite κ] (U U' :
   refine Finset.sum_congr rfl fun n hn => ?_
   rw [Finset.mem_range] at hn
   simp only [hg]
-  rw [if_pos (by omega), show e + 1 - 1 - n = e - n by omega, show e - (e - n) = n by omega]
+  rw [ite_eq_left (by omega), show e + 1 - 1 - n = e - n by omega, show e - (e - n) = n by omega]
   ring
 
 end GlobalTheory.RangeKerCount
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SumIntegralIndicatorCosetsKernelSubspaces
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SumIntegralIndicatorCosetsKernelSubspaces
+@[expose] public section
+
+noncomputable section
+
+open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.Doubling GlobalTheory.GLDoubling GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection GlobalTheory.ZonalCellDecomposition GlobalTheory.SatakeBound GlobalTheory.ParHecke
 
 namespace GlobalTheory.ParHecke.CosetSub
 
@@ -362,9 +372,9 @@ theorem int_mul_torus_iff {ϖ : kˣ} (hϖ : valuation k (ϖ : k) = uniformizer k
   rw [mul_diagonal, mul_diagonal]
   by_cases h : j ∈ s
   · have := div_mem_iff hϖ (M i j)
-    simp only [indic, h, Pi.neg_apply, if_true, _root_.zpow_neg, zpow_one, mul_one, map_apply, Matrix.zero_apply]
+    simp only [indic, h, Pi.neg_apply, ite_true, _root_.zpow_neg, zpow_one, mul_one, map_apply, Matrix.zero_apply]
     exact this
-  · simp only [indic, h, Pi.neg_apply, if_false, neg_zero, zpow_zero, mul_one, mul_zero, map_apply, Matrix.zero_apply, iff_true]
+  · simp only [indic, h, Pi.neg_apply, ite_false, neg_zero, zpow_zero, mul_one, mul_zero, map_apply, Matrix.zero_apply, iff_true]
     exact (M i j).2
 
 omit [DecidableEq D] [TopologicalSpace k] [IsNonarchimedeanLocalField k] in
@@ -483,7 +493,7 @@ theorem sum_intInd_cosets : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologic
   constructor
   · intro hy
     refine Finset.sum_eq_zero fun g hgR => ?_
-    rw [ParHecke.intInd, if_neg]
+    rw [ParHecke.intInd, ite_eq_right]
     intro h
     apply hy
     have e : g = incG (κ ⟨g, hgR⟩) * g₀ * κ' ⟨g, hgR⟩ := hg ⟨g, hgR⟩
@@ -516,15 +526,24 @@ theorem sum_intInd_cosets : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologic
 
 end GlobalTheory.ParHecke.CosetSub
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SumIntegralIndicatorCosetsKernelSubspacesStatement
+
+open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.Doubling GlobalTheory.GLDoubling GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection GlobalTheory.ZonalCellDecomposition GlobalTheory.SatakeBound GlobalTheory.ParHecke
 
 theorem _root_.GlobalTheory.T.sum_integralIndicator_cosets_kernel_subspaces : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (D D' : Type) [Fintype D] [DecidableEq D] [Fintype D'] [DecidableEq D'] (ϖ : kˣ), valuation k (ϖ : k) = uniformizer k → ∀ (s : Finset D) RK, IsRepsK (torusElt k D ϖ (-indic s)) RK → ∀ y : Matrix D' D k, ((¬ ∀ i j, y i j ∈ 𝒪[k]) → ∑ g ∈ RK, intInd (y * g.1) = 0) ∧ ∀ y₀ : Matrix D' D 𝒪[k], y = y₀.map (algebraMap 𝒪[k] k) → ∑ g ∈ RK, intInd (y * g.1) = (Nat.card {U : Submodule 𝓀[k] (D → 𝓀[k]) // U ≤ LinearMap.ker (y₀.map (IsLocalRing.residue 𝒪[k])).mulVecLin ∧ Module.finrank 𝓀[k] U = s.card} : ℂ) := by
   first | exact @GlobalTheory.ParHecke.CosetSub.sum_intInd_cosets
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SumIntegralIndicatorCosetsSubspacesContaining
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SumIntegralIndicatorCosetsSubspacesContaining
+@[expose] public section
+
+noncomputable section
+
+open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.Doubling GlobalTheory.GLDoubling GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection GlobalTheory.ZonalCellDecomposition GlobalTheory.SatakeBound GlobalTheory.ParHecke
 
 namespace GlobalTheory.ParHecke.CosetSubL
 
@@ -610,9 +629,9 @@ theorem torus_inv_mul_int_iff {ϖ : kˣ} (hϖ : valuation k (ϖ : k) = uniformiz
   rw [diagonal_mul, diagonal_mul]
   by_cases h : i ∈ s
   · have := inv_mul_mem_iff hϖ (M i j)
-    simp only [indic, h, Pi.neg_apply, if_true, _root_.zpow_neg, zpow_one, one_mul, map_apply, Matrix.zero_apply]
+    simp only [indic, h, Pi.neg_apply, ite_true, _root_.zpow_neg, zpow_one, one_mul, map_apply, Matrix.zero_apply]
     exact this
-  · simp only [indic, h, Pi.neg_apply, if_false, neg_zero, zpow_zero, one_mul, zero_mul, map_apply, Matrix.zero_apply, iff_true]
+  · simp only [indic, h, Pi.neg_apply, ite_false, neg_zero, zpow_zero, one_mul, zero_mul, map_apply, Matrix.zero_apply, iff_true]
     exact (M i j).2
 
 omit [DecidableEq n] [TopologicalSpace k] [IsNonarchimedeanLocalField k] in
@@ -732,7 +751,7 @@ theorem GlobalTheory.ParHecke.CosetSubL.sum_intInd_cosets_up : ∀ (k : Type) [F
   constructor
   · intro hy
     refine Finset.sum_eq_zero fun g hgR => ?_
-    rw [ParHecke.intInd, if_neg]
+    rw [ParHecke.intInd, ite_eq_right]
     intro h
     apply hy
     have hgi : ∀ i j, g.1 i j ∈ 𝒪[k] := by
@@ -767,7 +786,13 @@ theorem GlobalTheory.ParHecke.CosetSubL.sum_intInd_cosets_up : ∀ (k : Type) [F
     simp only [ParHecke.intInd]
     rw [Finset.sum_boole]
 
+end
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.Doubling GlobalTheory.GLDoubling GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection GlobalTheory.ZonalCellDecomposition GlobalTheory.SatakeBound GlobalTheory.ParHecke
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SumIntegralIndicatorCosetsSubspacesContainingStatement
 
@@ -1182,7 +1207,9 @@ theorem torusRight : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace
 end GlobalTheory.TorusRightScalar
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CardFilterParahoricCosetsEqSchurCount
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CardFilterParahoricCosetsEqSchurCount
+
+noncomputable section
 
 namespace GlobalTheory.ParHeckeTarget
 
@@ -1359,7 +1386,7 @@ theorem card_filter_eq : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalS
     fun j hj => by
       have hY : (c * j)⁻¹ ∈ parahoric k A D' := inv_mem (mul_mem hc hj)
       have h := (hRK.2 _ (inv_mem (lowerDiagonalBlockAsGL_mem_integralGeneralLinear hY))).exists
-      simp only [pick, dif_pos h]; exact h.choose_spec
+      simp only [pick, dite_eq_left h]; exact h.choose_spec
   have uniq : ∀ j ∈ parahoric k A D', ∀ g ∈ RK, g⁻¹ * ((lowerDiagonalBlockAsGL ((c * j)⁻¹))⁻¹ * T) ∈ KO k D' → pick j = g :=
     fun j hj g hg h => (hRK.2 _ (inv_mem (lowerDiagonalBlockAsGL_mem_integralGeneralLinear (inv_mem (mul_mem hc hj))))).unique (spec j hj) ⟨hg, h⟩
   apply Finset.card_nbij pick
@@ -1432,6 +1459,7 @@ theorem card_filter_eq : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalS
 
 end GlobalTheory.ParHeckeTarget
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CardFilterParahoricCosetsEqSchurCountStatement
 open Classical
@@ -1440,7 +1468,9 @@ theorem _root_.GlobalTheory.T.card_filter_parahoric_cosets_eq_schur_count : ∀ 
   exact @GlobalTheory.ParHeckeTarget.card_filter_eq
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ParahoricHeckeSumTermAtCoset
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ParahoricHeckeSumTermAtCoset
+
+noncomputable section
 
 namespace GlobalTheory.ParHeckeTarget
 
@@ -1497,7 +1527,7 @@ open Classical in
 theorem coset_term : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (A D D' : Type) [Fintype A] [DecidableEq A] [Fintype D] [DecidableEq D] [Fintype D'] [DecidableEq D'] (ϖ : kˣ), valuation k (ϖ : k) = uniformizer k → ∀ (ξ : kˣ →* ℂˣ), IsTame ξ → ∀ (s : Finset D') (j : GL (A ⊕ D') k), j ∈ parahoric k A D' → ∀ d : kˣ, (d : k) = j.1.toBlocks₂₂.det → ∀ x : Matrix (A ⊕ D') (A ⊕ D) k, (InSupp (((j * mtor ϖ (indic s))⁻¹).1 * x) → ((ξ d * (ξ (GeneralLinearGroup.det j))⁻¹ : ℂˣ) : ℂ) * datum ξ (((j * mtor ϖ (indic s))⁻¹).1 * x) = datum ξ x) ∧ (¬ InSupp (((j * mtor ϖ (indic s))⁻¹).1 * x) → datum ξ (((j * mtor ϖ (indic s))⁻¹).1 * x) = 0) := by
   intro k _ _ _ _ A D D' _ _ _ _ _ _ ϖ hϖ ξ hξ s j hj d hd x
   set y := ((j * mtor ϖ (indic s))⁻¹).1 * x with hydef
-  refine ⟨fun hW => ?_, fun hW => by simp only [datum, dif_neg hW]⟩
+  refine ⟨fun hW => ?_, fun hW => by simp only [datum, dite_eq_right hW]⟩
   set T := torusElt k D' ϖ (indic s) with hT
   have hg0 : (mtor (A := A) ϖ (indic s)).val = fromBlocks (1 : Matrix A A k) 0 0 T.val := by
     rw [mtor_eq_dg, val_dg]
@@ -1522,7 +1552,7 @@ theorem coset_term : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace
     show valuation k (x.toBlocks₁₁.det - y.toBlocks₁₁.det * j.val.toBlocks₁₁.det) < 1
     rw [mul_comm (y.toBlocks₁₁.det)]
     exact hc
-  simp only [datum, dif_pos hs, dif_pos hW]
+  simp only [datum, dite_eq_left hs, dite_eq_left hW]
   rw [t1, t2, ← Units.val_mul]
   congr 1
   simp only [map_mul]
@@ -1530,8 +1560,11 @@ theorem coset_term : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace
 
 end GlobalTheory.ParHeckeTarget
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SumRepsDatumEq
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SumRepsDatumEq
+
+noncomputable section
 
 open Classical
 
@@ -1555,10 +1588,11 @@ theorem sum_reps_datum_eq : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologic
     Finset.sum_const, Finset.sum_const]
   by_cases hx : InSupp x
   · rw [GlobalTheory.T.card_filter_parahoric_cosets_eq_schur_count k A D D' ϖ hϖ s R d hR RK hRK x hx]
-  · have h0 : datum ξ x = 0 := by simp only [datum, dif_neg hx]
+  · have h0 : datum ξ x = 0 := by simp only [datum, dite_eq_right hx]
     simp [h0]
 
 end GlobalTheory.ParHeckeTarget
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LowerBlockParameterTransferInvariantPairing

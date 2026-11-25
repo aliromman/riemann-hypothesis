@@ -575,8 +575,10 @@ end -- clump:auto
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SeeSawDoubleStepFiniteIntegralCollapseTwistPlace
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SeeSawDoubleStepFiniteIntegralCollapseTwistPlace
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.DStepCell
 
@@ -683,7 +685,7 @@ theorem cell_collapse : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : 
       obtain ⟨r, hr, -, y, hy, κ, hκ, k, hk, e⟩ := hB q.1 q.2 q₂ hq₂
       have e' : F q.1 = F y := funext fun q₂ => by rw [e, ← mul_assoc, hA3 k hk, hA2 κ hκ, hA1 r hr]
       exact ⟨_, by rw [e']; exact hinner ⟨y, hy⟩⟩
-    · push_neg at hq
+    · push Not at hq
       refine ⟨0, ?_⟩
       have e : (fun g : GfC (c.V (j + 1 + 1)) => F q.1 g.1) = 0 := funext fun g => hq g.1
       rw [e]
@@ -692,7 +694,7 @@ theorem cell_collapse : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : 
   have hfo_spec : ∀ y (hy : y ∈ GfC (c.V (j + 1))), IsQuotIntL1 (c.ρB (j + 1 + 1) σ (idx_step h)) (c.μf (j + 1 + 1))
       (fun g => F y g.1) (fo y) := by
     intro y hy
-    have e : fo y = (hex ⟨y, hy⟩).choose := dif_pos hy
+    have e : fo y = (hex ⟨y, hy⟩).choose := dite_eq_left hy
     rw [e]
     exact (hex ⟨y, hy⟩).choose_spec
   have hleft : ∀ r ∈ jacGrp (c.jac j (σ + 1) h).d, r ∈ GfC (c.V (j + 1)) → ∀ g ∈ GfC (c.V (j + 1)), fo (r * g) = fo g := by
@@ -747,6 +749,8 @@ theorem cell_collapse : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : 
 
 end GlobalTheory.DStepCell
 
+end
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens

@@ -9,8 +9,9 @@ public import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.ThresholdLow
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PolynomialDimension.MultinomialDepth.DvdPowOfNotPowSuccDvd, Formalism.PolynomialDimension.MultinomialKLog, Formalism.SharpRestriction.GrowthBounds.BinomialRatio.ExtendedStatementOfParts
 
-@[expose] public noncomputable section -- clump member: Formalism.PolynomialDimension.MultinomialDepth.DvdPowOfNotPowSuccDvd
+@[expose] public section -- clump member: Formalism.PolynomialDimension.MultinomialDepth.DvdPowOfNotPowSuccDvd
 
+noncomputable section
 
 open scoped BigOperators TensorProduct
 open Finset
@@ -42,13 +43,8 @@ theorem share_product_bound : ShareProd := by
   push_cast
   exact one_sub_sum_mul_prod_le_prod Finset.univ κ (fun j => (n j : ℝ)) (fun j => (d j : ℝ)) hκ (fun j => Nat.cast_nonneg _) h
 
-section Partner
-
-variable {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
-
-end Partner
-
 end Formalism.CountingSumsFrames
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PolynomialDimension.MultinomialKLog

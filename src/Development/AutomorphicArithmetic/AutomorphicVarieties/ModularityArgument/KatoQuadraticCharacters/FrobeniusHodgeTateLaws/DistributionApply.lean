@@ -95,28 +95,28 @@ theorem UpperTheory.exists_integral_powerSeries_of_bounded_distribution :
   obtain ⟨L, hLO, hL⟩ := GlobalTheory.AmiceDist.amice l c μ
     (fun r x => by
       by_cases hr : r = 0
-      · simp only [μ, if_pos hr]
+      · simp only [μ, ite_eq_left hr]
         exact sum_mem (fun x' _ => hO 1 le_rfl x')
-      · simp only [μ, if_neg hr]
+      · simp only [μ, ite_eq_right hr]
         exact hO r (Nat.one_le_iff_ne_zero.2 hr) x)
     (fun r x => by
       have hr1 : r + 1 ≠ 0 := by omega
-      simp only [μ, if_neg hr1]
+      simp only [μ, ite_eq_right hr1]
       by_cases hr : r = 0
       · subst hr
-        simp only [if_true]
+        simp only [ite_true]
         have hf : Finset.univ.filter (fun x' : ZMod (l ^ (0 + 1)) =>
             ZMod.castHom (pow_dvd_pow l (Nat.le_succ 0)) (ZMod (l ^ 0)) x' = x) = Finset.univ :=
           Finset.filter_true_of_mem
             (fun x' _ => (show ∀ a b : ZMod 1, a = b from fun a b => Subsingleton.elim a b) _ _)
         rw [hf]
-      · simp only [if_neg hr]
+      · simp only [ite_eq_right hr]
         exact hsum r (Nat.one_le_iff_ne_zero.2 hr) x)
   refine ⟨L, hLO, fun r hr z hz => ?_⟩
   have h1 := hL r hr z hz
   have h2 : ∑ x, μ r x * z ^ x.val = ν r (fun x => z ^ x.val) := by
     have hr0 : r ≠ 0 := by omega
-    simp only [μ, if_neg hr0]
+    simp only [μ, ite_eq_right hr0]
     have h3 : (fun x : ZMod (l ^ r) => z ^ x.val) = ∑ x, z ^ x.val • Pi.single x (1 : Qbar l) := by
       funext y
       simp [Finset.sum_apply, Pi.single_apply]
@@ -334,12 +334,12 @@ theorem UpperTheory.restriction_to_units_congr_of_measure :
   exact hL (ξ ^ k) (by rw [← pow_mul, mul_comm, pow_mul, hξ.pow_eq_one, one_pow])
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.FrobeniusHodgeTateLaws.ExistsFiniteExtEisensteinUnitFunctionalMem
+@[expose] public section
 
+noncomputable section
 
 open Formalism.ConjugateSelfDual UpperTheory.V.HV GlobalTheory.Ord2 GlobalTheory.KZ GlobalTheory.EisM
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.FrobeniusHodgeTateLaws.ExistsFiniteExtEisensteinUnitFunctionalMem
 
 namespace UpperTheory.V.Z.Kato.Joint.M3
 
@@ -410,7 +410,7 @@ theorem neg_inv_unit {N : ℕ} {y : ZMod N} (h : IsUnit y) : (-y)⁻¹ = -y⁻¹
 theorem sym_par (ι : Qbar l ≃+* ℂ) {s : ℂ} (hs : s * s = 1) {N : ℕ} (g : ZMod N → Qbar l) (y : ZMod N) :
     sym ι s g (-y) = s * sym ι s g y := by
   by_cases hy : IsUnit y
-  · simp only [sym, if_pos hy, if_pos hy.neg, neg_neg]
+  · simp only [sym, ite_eq_left hy, ite_eq_left hy.neg, neg_neg]
     linear_combination (-ι (g (-y)⁻¹) / 2) * hs
   · simp [sym, hy]
 
@@ -446,10 +446,10 @@ theorem eisensteinUnitFunctional_compat_succ {ι : Qbar l ≃+* ℂ} {e : ℕ} {
     intro y
     unfold sym
     by_cases hy : l ∣ y
-    · rw [if_neg (by rw [unit_iff (M := M + 1) (by omega)]; exact not_not.2 hy),
-        if_neg (by rw [unit_iff hM]; exact not_not.2 hy)]
+    · rw [ite_eq_right (by rw [unit_iff (M := M + 1) (by omega)]; exact not_not.2 hy),
+        ite_eq_right (by rw [unit_iff hM]; exact not_not.2 hy)]
     · have h1 : IsUnit (y : ZMod (l ^ (M + 1))) := (unit_iff (M := M + 1) (by omega) y).2 hy
-      rw [if_pos h1, if_pos ((unit_iff hM y).2 hy), hg, hg, hinv _ h1, hinv _ h1.neg, map_neg, map_natCast]
+      rw [ite_eq_left h1, ite_eq_left ((unit_iff hM y).2 hy), hg, hg, hinv _ h1, hinv _ h1.neg, map_neg, map_natCast]
   rw [eisensteinUnitFunctional_apply, eisensteinUnitFunctional_apply, H.compat M hM (sym ι s g) (sym ι s g') (sym_par ι hs g) hsym]
 
 theorem norm_nat {a : ℕ} (ha : ¬ l ∣ a) : ‖(a : Qbar l)‖ = 1 := by
@@ -470,7 +470,7 @@ theorem sgn_cases {s : ℂ} (hs : s * s = 1) : s = 1 ∨ s = -1 := mul_self_eq_o
 theorem symm_sym (ι : Qbar l ≃+* ℂ) (s : ℂ) {N : ℕ} (g : ZMod N → Qbar l) {y : ZMod N} (hy : IsUnit y) :
     ι.symm (sym ι s g y) = (g y⁻¹ + ι.symm s * g (-y⁻¹)) / 2 := by
   unfold sym
-  rw [if_pos hy, neg_inv_unit hy, map_div₀, map_add (f := _), map_mul, RingEquiv.symm_apply_apply,
+  rw [ite_eq_left hy, neg_inv_unit hy, map_div₀, map_add (f := _), map_mul, RingEquiv.symm_apply_apply,
     RingEquiv.symm_apply_apply, map_ofNat]
 
 theorem eisensteinUnitFunctional_bounded {ι : Qbar l ≃+* ℂ} {e : ℕ} {s : ℂ} {u w : ℤ → ℂ} {ψ : DirichletCharacter ℂ l} {α : ℂ} {B : ℕ} {c : ℕ → ℂ} {v : ℂ}
@@ -512,7 +512,7 @@ theorem exists_finiteExt_eisensteinUnitFunctional_mem {ι : Qbar l ≃+* ℂ} {e
       rw [← one_add_one_eq_two]
       exact E.add_mem E.one_mem E.one_mem
     exact E.div_mem (E.add_mem (hg _) (E.mul_mem hs' (hg _))) h2
-  · simp only [sym, if_neg hy, map_zero]
+  · simp only [sym, ite_eq_right hy, map_zero]
     exact E.zero_mem
 
 theorem sym_char (ι : Qbar l ≃+* ℂ) (s : ℂ) {N : ℕ} (χ : DirichletCharacter (Qbar l) N) (y : ZMod N) :
@@ -567,9 +567,15 @@ theorem eisensteinUnitFunctional_interpolation {ι : Qbar l ≃+* ℂ} {e : ℕ}
 
 end UpperTheory.V.Z.Kato.Joint.M3
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.FrobeniusHodgeTateLaws.DistributionApply
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.FrobeniusHodgeTateLaws.DistributionApply
+
+noncomputable section
+
+open Formalism.ConjugateSelfDual UpperTheory.V.HV GlobalTheory.Ord2 GlobalTheory.KZ GlobalTheory.EisM
 
 namespace UpperTheory.V.Z.Kato.Joint.M3
 
@@ -678,7 +684,7 @@ private theorem riem0 {ι : Qbar l ≃+* ℂ} {e : ℕ} {s : ℂ} {u w : ℤ →
     simp only [hTd, map_mul, map_pow, map_div₀, map_natCast, ← hφ, ← hφ', Int.cast_natCast, Nat.cast_mul, Int.cast_mul, div_pow,
       mul_pow]
     ring
-  simp only [Pi.smul_apply, smul_eq_mul, if_neg h1, if_neg h3]
+  simp only [Pi.smul_apply, smul_eq_mul, ite_eq_right h1, ite_eq_right h3]
   refine ⟨by rw [key, hX]; exact h2, ?_⟩
   rw [mul_left_comm, key, hX]
   refine le_trans (le_of_eq ?_) h4
@@ -771,6 +777,7 @@ theorem UpperTheory.V.Z.Kato.Joint.meas3 :
       rw [mul_assoc (β i), ← mul_sub, norm_mul, mul_assoc ‖β i‖]
       exact mul_le_mul_of_nonneg_left (hC r hr1 _ (ht i)) (norm_nonneg _)
 
+end
 
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.IntegralPowerSeriesBounds.ExistsIntegralPowerSeriesOfBoundedDistribution", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Foundations.HTLawAt\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.NormSubOnePowThreeLe\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Development.AbelianVarietyTheory.Definitions.Foundations.ExpUpper\n\n"}
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.IntegralPowerSeriesBounds.GaussSumTwistCongrOfMeasure", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Foundations.HTLawAt\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\nimport Development.AbelianVarietyTheory.Definitions.Foundations.ExpUpper\n\n"}

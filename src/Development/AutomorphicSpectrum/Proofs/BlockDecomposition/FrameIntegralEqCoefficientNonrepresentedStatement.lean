@@ -123,13 +123,11 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OfHermEBijectiv
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GramMapContinuousHermitian, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianCoordinatesTracePairing, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianScalarSequenceTendsZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositiveOnSubspaceOpen, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositivityPullsBackToSubspace, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositivityPullsBackToSubspaceStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchrodingerIntertwinerScalar, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicFourierMemSchwartzTotallyReal, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TamagawaAdelicHaarEqMapProductMeasure, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.HalfMulTwoAF, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.FourierInversion, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FourierInversionSchwartzAdelic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TamagawaFourierIntegrable, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FrameIntegralEqCoefficientNonrepresented, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FrameIntegralEqCoefficientNonrepresentedStatement
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GramMapContinuousHermitian
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC
-
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GramMapContinuousHermitian
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 
 noncomputable section
@@ -152,7 +150,12 @@ end GlobalTheory.CompanionTheory.WeilSiegel.NoFrame.Gram
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianCoordinatesTracePairing
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianCoordinatesTracePairing
+
+noncomputable section
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 
 namespace GlobalTheory.CompanionTheory.HermCoord
@@ -278,7 +281,7 @@ theorem exists_dual (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) (r : ℕ) 
     · have := hd i i
       rw [tB_apply, this]; simp
     · intro j _ hj
-      rw [tB_apply, hd, if_neg hj, mul_zero]
+      rw [tB_apply, hd, ite_eq_right hj, mul_zero]
     · simp
   refine ⟨_, fun i => (b i).1, fun i => (b' i).1, fun i => (b i).2, fun i => (b' i).2, ?_, ?_, ?_⟩
   · intro i j
@@ -575,8 +578,13 @@ end Target
 
 end GlobalTheory.CompanionTheory.HermCoord
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianScalarSequenceTendsZero
+
+open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory
+open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 
 noncomputable section
@@ -689,8 +697,6 @@ theorem exists_herm_seq : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ r : 
 end GlobalTheory.CompanionTheory.WeilSiegel.NoFrame.Path
 end -- clump:auto
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PositiveOnSubspaceOpen
 

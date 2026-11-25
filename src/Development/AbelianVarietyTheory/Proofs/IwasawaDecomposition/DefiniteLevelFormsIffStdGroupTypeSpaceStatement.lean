@@ -324,7 +324,6 @@ end GlobalTheory.MtInType
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DefiniteLevelFormsIffStdGroupTypeSpaceStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

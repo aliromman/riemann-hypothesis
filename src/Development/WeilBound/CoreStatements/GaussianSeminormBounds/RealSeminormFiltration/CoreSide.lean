@@ -30,13 +30,13 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockRaisingLowering.Blo
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreGen, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreRoot, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreSupp, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreStar, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreSide
 
--- clump: shared namespace opens
+section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreGen
+@[expose] public section
 
+noncomputable section
 
 open ReciprocityTheory.ThetaSummability.Real ReciprocityTheory.ChartRestriction.G.ThK.Real FockH1Action MvPolynomial Matrix
 open scoped InnerProductSpace
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreGen
 
 namespace PositivityTheory.KReal
 
@@ -169,7 +169,7 @@ theorem exists_gen (c : ℂ) (c0 : ℚ) (hc : c = c0) (La : Ix r s → ℚ)
           epsB b a * fockInner x (fockAct2 p q r s (Eab a b) z) := adj2 p q r s b a x z
       have h2 := hz.2 _ (show units (fockAct2 p q r s) b a x ∈ U ⊓ V from
         ⟨hUK b a hba x hx.1, hVK b a hba x hx.2⟩)
-      rw [epsB, if_pos hba, one_mul] at h1
+      rw [epsB, ite_eq_left hba, one_mul] at h1
       exact h1.symm.trans h2
     obtain ⟨ν, g, hgZ, hg0, hgw⟩ := hwExist2 Z hne hZK
     have hg1 := (mem_polChi_iff_hw c c0 hc g).1 hgZ.1.2
@@ -191,9 +191,17 @@ theorem exists_gen (c : ℂ) (c0 : ℚ) (hc : c = c0) (La : Ix r s → ℚ)
 
 end PositivityTheory.KReal
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreRoot
+section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreRoot
+@[expose] public section
+
+noncomputable section
+
+open ReciprocityTheory.ThetaSummability.Real ReciprocityTheory.ChartRestriction.G.ThK.Real FockH1Action MvPolynomial Matrix
+open scoped InnerProductSpace
 
 namespace PositivityTheory.KReal
 
@@ -266,17 +274,17 @@ theorem root_of_hw {p q r s : ℕ} (c : ℂ) (c0 : ℚ) (hc : c = c0) (La : Ix r
         by_cases h1 : x = c1
         · subst h1
           have h2 : ¬ d1 = x := fun h => hc1d1 h.symm
-          simp only [if_true, h2, if_false, hc1d1]
+          simp only [ite_true, h2, ite_false, hc1d1]
           push_cast
           module
         · by_cases h2 : d1 = x
           · subst h2
             have h3 : ¬ d1 = c1 := fun h => hc1d1 h.symm
-            simp only [h1, if_true, if_false]
+            simp only [h1, ite_true, ite_false]
             push_cast
             module
           · have h3 : ¬ x = d1 := fun h => h2 h.symm
-            simp only [h1, h2, h3, if_false]
+            simp only [h1, h2, h3, ite_false]
             push_cast
             module
       · have hsb := PI.FockOneDegW.Core.posC_sb a b hab
@@ -307,7 +315,7 @@ theorem root_of_hw {p q r s : ℕ} (c : ℂ) (c0 : ℚ) (hc : c = c0) (La : Ix r
       Submodule.mem_inf.2 ⟨Submodule.mem_inf.2 ⟨hK1 _ hlg, hK2⟩, hJ⟩
     have hEq := hU _ (shapeOf p q r s _ _ _ hJH hne)
     exact ⟨c1, d1, hcd, fun x => congrFun hEq x⟩
-  · push_neg at hex
+  · push Not at hex
     exfalso
     have hJ : g ∈ jHarm p q r s :=
       (mem_jHarm_iff g).2 ⟨hgH, fun c' d' h' => hex (c', d') h'⟩
@@ -326,9 +334,17 @@ theorem root_of_hw {p q r s : ℕ} (c : ℂ) (c0 : ℚ) (hc : c = c0) (La : Ix r
 
 end PositivityTheory.KReal
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreSupp
+section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreSupp
+@[expose] public section
+
+noncomputable section
+
+open ReciprocityTheory.ThetaSummability.Real ReciprocityTheory.ChartRestriction.G.ThK.Real FockH1Action MvPolynomial Matrix
+open scoped InnerProductSpace
 
 namespace PositivityTheory.KReal
 
@@ -401,7 +417,7 @@ private theorem exists_mem_support_mul_weight_eq_of_weight_zero (w : σ → ℕ)
     have h2 := mem_support_iff.mp hy
     rw [hc0] at h2
     by_contra hne
-    exact h2 (if_neg hne)
+    exact h2 (ite_eq_right hne)
   refine ⟨γ, ?_, hwγ⟩
   have hsplit : D * g = D * g0 + D * (g - g0) := by ring
   have hrest : ∀ δ ∈ (D * (g - g0)).support, b + 1 ≤ Finsupp.weight w δ := by
@@ -412,9 +428,9 @@ private theorem exists_mem_support_mul_weight_eq_of_weight_zero (w : σ → ℕ)
       first | rw [eq_sub_iff_add_eq, ← MvPolynomial.coeff_add, sub_add_cancel]
     rw [mem_support_iff, hsub, hc0] at hδ
     by_cases hδb : Finsupp.weight w δ = b
-    · rw [if_pos hδb, sub_self] at hδ
+    · rw [ite_eq_left hδb, sub_self] at hδ
       exact absurd rfl hδ
-    · rw [if_neg hδb, sub_zero] at hδ
+    · rw [ite_eq_right hδb, sub_zero] at hδ
       have h3 := hg δ (mem_support_iff.mpr hδ)
       omega
   rw [mem_support_iff, hsplit, MvPolynomial.coeff_add]
@@ -438,29 +454,29 @@ theorem supp_gen_pos {N : ℕ} (pos : κ → Bool) (ρ : Fin N → κ) (hρ : �
     apply Finset.sum_nonpos
     intro c _
     by_cases hc : pos c = true
-    · rw [if_pos hc, hz c hc]
+    · rw [ite_eq_left hc, hz c hc]
       simp
-    · rw [if_neg hc]
+    · rw [ite_eq_right hc]
       simp
   by_contra! hk
   let w : σ → ℕ := fun y => if ∃ c, pos c = false ∧ v c = y then 1 else 0
   have hwu : ∀ j c, w (u j c) = 0 := by
     intro j c
     simp only [w]
-    rw [if_neg]
+    rw [ite_eq_right]
     rintro ⟨c', _, hc'⟩
     exact huv j c c' hc'.symm
   have hwpos : ∀ c, pos c = true → w (v c) = 0 := by
     intro c hc
     simp only [w]
-    rw [if_neg]
+    rw [ite_eq_right]
     rintro ⟨c', hc', h'⟩
     rw [hv h', hc] at hc'
     exact absurd hc' (by decide)
   have hwneg : ∀ c, ¬ pos c = true → w (v c) = 1 := by
     intro c hc
     simp only [w]
-    rw [if_pos]
+    rw [ite_eq_left]
     exact ⟨c, by simpa using hc, rfl⟩
   have hsw : ∀ y, Finsupp.weight w (Finsupp.single y 1) = w y := by
     intro y
@@ -598,7 +614,7 @@ theorem supp_gR (hg : IsHW (fockAct2 p q r s) ν g) {c d : Ix r s} (h : posC c d
     unfold PI.FJM.rai2
     refine Finset.sum_congr rfl (fun a _ => ?_)
     unfold omE
-    rw [if_neg (fun hh => hcd (Prod.ext_iff.mp hh).2), add_zero]
+    rw [ite_eq_right (fun hh => hcd (Prod.ext_iff.mp hh).2), add_zero]
   rw [← e]
   exact h0
 
@@ -686,9 +702,17 @@ theorem supp2 {p q r s : ℕ} {ν : Ix r s → ℚ} {g : Pol p q r s} (hg : IsHW
 
 end PositivityTheory.KReal
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreStar
+section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreStar
+@[expose] public section
+
+noncomputable section
+
+open ReciprocityTheory.ThetaSummability.Real ReciprocityTheory.ChartRestriction.G.ThK.Real FockH1Action MvPolynomial Matrix
+open scoped InnerProductSpace
 
 namespace PositivityTheory.KReal
 
@@ -788,7 +812,7 @@ theorem star_th {p q r s : ℕ} (c τ : ℂ) (c0 τ0 : ℚ) (hc : c = c0) (hτ :
         refine th_small c c0 hc e ?_ (low_homog a b hg)
         rw [← hd]; push_cast; linarith
     refine ⟨_, second_action_add_lowering hab hg, ?_⟩
-    rw [map_add (f := _), hlow, add_zero, thAct_mk, twAct_apply, star_trace, if_neg hne]
+    rw [map_add (f := _), hlow, add_zero, thAct_mk, twAct_apply, star_trace, ite_eq_right hne]
     simp
   obtain ⟨y, hy, rfl⟩ := th_next c c0 hc d0 hd hx1
   let D : Module.End ℂ (Pol p q r s) := casK (units (twAct p q r s τ)) - (t : ℂ) • 1
@@ -829,9 +853,9 @@ theorem star_th {p q r s : ℕ} (c τ : ℂ) (c0 τ0 : ℚ) (hc : c = c0) (hτ :
     have hK := hwK_of_hwSub.1 hw.2
     have hKT : HwK (units (twAct p q r s τ)) (fun x => ν x + τ0) g := by
       refine ⟨fun a => ?_, fun a b h => ?_⟩
-      · rw [star_tw, hK.1 a, if_pos rfl, hτ, ← add_smul]
+      · rw [star_tw, hK.1 a, ite_eq_left rfl, hτ, ← add_smul]
         push_cast; rfl
-      · rw [star_tw, hK.2 a b h, if_neg (PI.FockOneDegW.Core.posC_ne a b h)]
+      · rw [star_tw, hK.2 a b h, ite_eq_right (PI.FockOneDegW.Core.posC_ne a b h)]
         simp
     have h1 : D g = 0 := hgU.2
     rw [hD, cas_hw hgl hKT, ← sub_smul, smul_eq_zero] at h1
@@ -849,9 +873,16 @@ theorem star_th {p q r s : ℕ} (c τ : ℂ) (c0 τ0 : ℚ) (hc : c = c0) (hτ :
 
 end PositivityTheory.KReal
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreSide
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreSide
+
+noncomputable section
+
+open ReciprocityTheory.ThetaSummability.Real ReciprocityTheory.ChartRestriction.G.ThK.Real FockH1Action MvPolynomial Matrix
+open scoped InnerProductSpace
 
 namespace PositivityTheory.KReal
 
@@ -982,7 +1013,7 @@ theorem side_of {p q r s : ℕ} (c τ : ℂ) (c0 τ0 : ℚ) (hc : c = c0) (hτ :
     sd_rhoA p q r s τ d0, ι, f, sd_rhoA_adj τ τ0 hτ d0, sd_rhoA_gl τ d0, ⟨?_, ?_⟩, ?_, ?_, ?_⟩
   · intro a
     apply Subtype.ext
-    rw [sd_rhoA_coe τ d0 (sd_sb_refl a), sd_fvTw_apply, sd_trace_Eab, if_pos rfl]
+    rw [sd_rhoA_coe τ d0 (sd_sb_refl a), sd_fvTw_apply, sd_trace_Eab, ite_eq_left rfl]
     have h1 : fvAct2 p q r s (Eab a a) (f : FV p q r s) = ((La a : ℚ) : ℂ) • (f : FV p q r s) :=
       hhw.1 a
     rw [h1, Submodule.coe_smul, hτ]
@@ -991,7 +1022,7 @@ theorem side_of {p q r s : ℕ} (c τ : ℂ) (c0 τ0 : ℚ) (hc : c = c0) (hτ :
   · intro a b hab
     by_cases hs : sameBlock a b
     · apply Subtype.ext
-      rw [sd_rhoA_coe τ d0 hs, sd_fvTw_apply, sd_trace_Eab, if_neg (hne a b hab)]
+      rw [sd_rhoA_coe τ d0 hs, sd_fvTw_apply, sd_trace_Eab, ite_eq_right (hne a b hab)]
       have h1 : fvAct2 p q r s (Eab a b) (f : FV p q r s) = 0 := hhw.2 a b hab
       rw [h1]
       simp
@@ -1023,6 +1054,7 @@ theorem side_of {p q r s : ℕ} (c τ : ℂ) (c0 τ0 : ℚ) (hc : c = c0) (hτ :
 
 end PositivityTheory.KReal
 
+end
 
 -- clump-header: {"m": "Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreGen", "h": "module\n\npublic import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreDefs\npublic import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreHarm\npublic import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreSplit\npublic import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.FockJointMult\npublic import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.FockOneDeg\nimport Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreLie\nimport Formalism.PeriodIntegrals.FockDegreeTwoParts\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockHarmonicSplitting.MinusPartOfMem\nimport Formalism.PeriodIntegrals.OrbitalBoundsConclusion.FockRaiseLow\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockHarmonicSplitting.ConjTransposeOneKronecker\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockJointMultiplicity.MinDeg\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Etale.Weakly\nimport Mathlib.RingTheory.Finiteness.ModuleFinitePresentation\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreRoot", "h": "module\n\npublic import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreDefs\npublic import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreHarm\nimport Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreLie\npublic import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreSplit\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockDegreeOne.ExistsMonomialWeight\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockDegreeOne.FockOperatorsKernel\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockDegreeOne.HighestWeightExists\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockJointMultiplicity.CauchyFin\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockJointMultiplicity.FockJointMultOfCauchy\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockJointMultiplicity.MinDeg\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Rat\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}

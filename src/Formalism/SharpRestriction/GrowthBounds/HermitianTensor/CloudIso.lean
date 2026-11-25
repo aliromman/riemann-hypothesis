@@ -1,5 +1,7 @@
 module
 
+
+import Formalism.SharpRestriction.GrowthBounds.ScaleEdges.EdgeLatticeMulOfWeightSum
 public import Mathlib.RingTheory.DiscreteValuationRing.Basic
 public import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.CloudIsoDef
 public import Formalism.SharpRestriction.GrowthBounds.ProjectionLemmaBaseLevel
@@ -14,7 +16,6 @@ import Formalism.SharpRestriction.GrowthBounds.LatticeSystems
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.TotallySplit
 import Formalism.PolynomialDimension.WeylDim
-
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.LatRetract, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.CloudIso
 
@@ -178,8 +179,9 @@ end LatRetract
 end Formalism.MainNotions.flipOneThree.Pf.KP
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.CloudIso
+@[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.CloudIso
 
+noncomputable section
 
 namespace Formalism.MainNotions.flipOneThree.Pf
 
@@ -187,11 +189,7 @@ open Formalism.MainNotions.G Formalism.MainNotions.flipOneThree Formalism.Counti
 
 theorem nuOf_add {m : ℕ} (lam mu : Fin (m + 1) → ℤ) (h1 : Antitone lam) (h2 : Antitone mu) :
     nuOf (lam + mu) = nuOf lam + nuOf mu := by
-  funext t
-  have a1 : lam (Fin.last m) ≤ lam t := h1 (Fin.le_last t)
-  have a2 : mu (Fin.last m) ≤ mu t := h2 (Fin.le_last t)
-  simp only [nuOf, Pi.add_apply]
-  omega
+  apply _root_.Formalism.MainNotions.Pf14.nuOf_add <;> assumption
 
 section One
 
@@ -375,6 +373,7 @@ theorem cloudIso (hCD : CartanDomain) (hCO : CartanOnto) : CloudIsoP := by
 
 end Formalism.MainNotions.flipOneThree.Pf
 
+end
 
 -- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.LatRetract", "h": "module\n\npublic import Mathlib.RingTheory.DiscreteValuationRing.Basic\nimport Mathlib.Algebra.Module.StablyFree.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.HermitianTensor.CloudIso", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.CloudIsoDef\npublic import Formalism.SharpRestriction.GrowthBounds.ProjectionLemmaBaseLevel\npublic import Formalism.GradedWeylDivisibility.FinalD\npublic import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.LatRetract\npublic import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.OneMemDualWeyl\npublic import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.TensorKP\nimport Formalism.SharpRestriction.GrowthBounds.LatticeSystems\npublic import Lemmata.DualWeylPullback.DualWeylPull\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Etale.Weakly\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.PolynomialDimension.WeylDim\n\n"}

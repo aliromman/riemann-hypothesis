@@ -117,11 +117,12 @@ theorem rat_of_real (D : Formalism.BasicNotions.D7) (x : D.host.K)
 end GlobalTheory.RationalOfReal
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ImaginaryQuadraticFieldStructure
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ImaginaryQuadraticFieldStructure
 
 open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.GalTheta
 open scoped BigOperators
 
+noncomputable section
 
 namespace GlobalTheory.FourCopies
 
@@ -277,7 +278,7 @@ theorem exists_onB_four : ∀ (D : D7) (N N' : ℕ), ∃ (m r : ℕ) (b : Fin r 
       simp only [this]
       split_ifs <;> simp
     · have : l ≠ l' := fun h => hi (by rw [h])
-      rw [if_neg this, show hYY D (v (e l).1) (v (e l').1) = 0 from ho _ _ hi, mul_zero]
+      rw [ite_eq_right this, show hYY D (v (e l).1) (v (e l').1) = 0 from ho _ _ hi, mul_zero]
   · set W := Submodule.span D.host.K (Set.range fun l => blocks D (A (e l).1 (e l).2) (v (e l).1)) with hW
     have hb : ∀ i j, blocks D (A i j) (v i) ∈ W := fun i j =>
       Submodule.subset_span ⟨e.symm (i, j), by simp only [Equiv.apply_symm_apply]⟩

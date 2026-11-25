@@ -34,8 +34,9 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCou
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.IdCellOffCHoldsOfVol, Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.NGLeaves, Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.NuQPinExistsHolds
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.IdCellOffCHoldsOfVol
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.IdCellOffCHoldsOfVol
 
+noncomputable section
 
 open Matrix Formalism.L2.SG.HidaSetting
 
@@ -108,7 +109,7 @@ theorem conj_core (hgi : gi * g = 1) (hgi' : g * gi = 1)
     intro a w hw
     refine hJ_span_zero ε (F a) _ ?_ w hw
     rintro _ ⟨b, hb, rfl⟩
-    rw [hFE, if_neg]
+    rw [hFE, ite_eq_right]
     intro h; subst h; simp at hb
 
   have hgF : ∀ (a : Fin r) (w : Fin n → ℂ), w ∈ spanLt E (a.1 + 1) → hJ ε (g *ᵥ F a) w = hJ ε (F a) w := by
@@ -152,22 +153,22 @@ theorem conj_core (hgi : gi * g = 1) (hgi' : g * gi = 1)
         set N' := nxt E Z' a with hN'
         have hxa : g *ᵥ N' - N ∈ spanLt E (a.1 + 1) := by
           by_cases h : a.1 + 1 < r
-          · simp only [hN, hN', nxt, dif_pos h]
+          · simp only [hN, hN', nxt, dite_eq_left h]
             exact hEg ⟨a.1 + 1, h⟩
-          · simp only [hN, hN', nxt, dif_neg h]
+          · simp only [hN, hN', nxt, dite_eq_right h]
             have : a.1 + 1 = r := by omega
             rw [this]; exact hZ
         have hsN : s *ᵥ N - N ∈ spanLt E (a.1 + 1) := by
           by_cases h : a.1 + 1 < r
-          · simp only [hN, nxt, dif_pos h]
+          · simp only [hN, nxt, dite_eq_left h]
             exact hsE' ⟨a.1 + 1, h⟩
-          · simp only [hN, nxt, dif_neg h]
+          · simp only [hN, nxt, dite_eq_right h]
             have : a.1 + 1 = r := by omega
             rw [this]; exact hsZ'
         have hFN : hJ ε (F a) N' = hJ ε (F a) N := by
           by_cases h : a.1 + 1 < r
-          · simp only [hN, hN', nxt, dif_pos h]
-          · simp only [hN, hN', nxt, dif_neg h]
+          · simp only [hN, hN', nxt, dite_eq_left h]
+          · simp only [hN, hN', nxt, dite_eq_right h]
             rw [hFZ, hFZ']
         have e1 : (gi * s * g) *ᵥ N' = gi *ᵥ (s *ᵥ (g *ᵥ N')) := by
           rw [← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec]
@@ -529,7 +530,7 @@ theorem idOffLift_all {D : D7} (X : HidaSetting D) (u u' : D.what₂.Word)
     · show hJ ε (rvc X v (X.fY a')) _ = 0
       rw [hexp]
       simp_rw [hfe]
-      simp only [mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true, sub_self]
+      simp only [mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true, sub_self]
     · show hJ ε (rvc X v (X.zu u)) _ = 0
       rw [hexp, hyZ b]
       simp [hze]
@@ -672,13 +673,12 @@ theorem idCellOffC_holds_of_vol (hV : VolPosC) : IdCellOffC :=
 
 end Formalism.L2.SG.Pf
 end -- clump:auto
+end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.NGLeaves
 
 
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.NGLeaves
 
 namespace Formalism.L2.SG.NGLeaves
 
@@ -705,7 +705,11 @@ theorem nondegenerate_gram_tuple : NondegenerateGramTuple := by
 end Formalism.L2.SG.NGLeaves
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.NuQPinExistsHolds
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.NuQPinExistsHolds
+
+noncomputable section
+
+open scoped Classical
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.FourierDecayAlt Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full
 open Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.SpectralTiesReal
 
@@ -806,11 +810,11 @@ theorem exists_typ {D : D7} (X : HidaSetting D) :
   by_cases h : q p
   · have : (typ p).1 = true := by
       simp [typ, Equiv.sumCompl_symm_apply_of_pos h, Equiv.boolProdEquivSum]
-    rw [this, if_pos rfl]
+    rw [this, ite_eq_left rfl]
     exact_mod_cast h
   · have : (typ p).1 = false := by
       simp [typ, Equiv.sumCompl_symm_apply_of_neg h, Equiv.boolProdEquivSum]
-    rw [this, if_neg (by simp)]
+    rw [this, ite_eq_right (by simp)]
     exact_mod_cast (hneg p).1 h
 
 theorem linkAll_of (hKpp : KppVolAll) : LinkAll := by

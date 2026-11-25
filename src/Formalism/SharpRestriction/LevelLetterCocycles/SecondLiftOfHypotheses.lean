@@ -19,12 +19,10 @@ import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.CoboundaryMemInvariantCocycles, Formalism.SharpRestriction.LevelLetterCocycles.ExistsLinearLiftOfFree, Formalism.SharpRestriction.LevelLetterCocycles.FiltrationQuotientFiniteDimensional, Formalism.SharpRestriction.LevelLetterCocycles.LevelMembershipPackage, Formalism.SharpRestriction.LevelLetterCocycles.SecondLiftAtSituation, Formalism.SharpRestriction.LevelLetterCocycles.SecondLiftOfHypotheses
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.CoboundaryMemInvariantCocycles
 
 
 open Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.CoboundaryMemInvariantCocycles
 
 namespace Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt.Step2C
 
@@ -158,6 +156,9 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.ExistsLinearLiftOfFree
 
+
+open Classical
+
 namespace Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt.Step2T
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc
@@ -257,7 +258,12 @@ end Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt.Step2T
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.FiltrationQuotientFiniteDimensional
+section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.FiltrationQuotientFiniteDimensional
+@[expose] public section
+
+noncomputable section
+
+open Classical
 
 namespace Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt.Step2E
 
@@ -505,26 +511,26 @@ theorem passage_to_quotient [NeZero n] (hK : Sh.LemK W) (hD : Sh.FilDim W) (hR :
       refine ⟨k + 1, fun j => if j ≤ k then Fl j else C, by simp only [List.length_cons]; omega,
         ?_, ?_, ?_, ?_, ?_⟩
       · show (if 0 ≤ k then Fl 0 else C) = F₁
-        rw [if_pos (Nat.zero_le k)]
+        rw [ite_eq_left (Nat.zero_le k)]
         exact h0
       · show (if k + 1 ≤ k then Fl (k + 1) else C) ≤ F₁
-        rw [if_neg (by omega)]
+        rw [ite_eq_right (by omega)]
         exact inf_le_left.trans hFl
       · intro i hi
         show PStep lenO m cc (if i ≤ k then Fl i else C) (if i + 1 ≤ k then Fl (i + 1) else C) True
         by_cases hik : i < k
-        · rw [if_pos hik.le, if_pos (show i + 1 ≤ k by omega)]
+        · rw [ite_eq_left hik.le, ite_eq_left (show i + 1 ≤ k by omega)]
           exact hstep i hik
         · have hik' : i = k := by omega
-          rw [if_pos (by omega), if_neg (by omega), hik']
+          rw [ite_eq_left (by omega), ite_eq_right (by omega), hik']
           exact hnew
       · intro h0m
         show (if k + 1 ≤ k then Fl (k + 1) else C) = F₁
-        rw [if_neg (by omega), hC h0m, hm0 h0m]
+        rw [ite_eq_right (by omega), hC h0m, hm0 h0m]
       · intro c hc f hf
         have hf' : (f : FF) ∈ C := by
           have h : (f : FF) ∈ (if k + 1 ≤ k then Fl (k + 1) else C) := hf
-          rwa [if_neg (by omega)] at h
+          rwa [ite_eq_right (by omega)] at h
         rcases List.mem_cons.mp hc with hca | hc'
         · obtain ⟨g, hg0, hgf⟩ := Submodule.mem_map.mp (Submodule.mem_inf.mp hf').2
           have hgeq : g = f := Subtype.ext hgf
@@ -547,9 +553,14 @@ theorem passage_to_quotient [NeZero n] (hK : Sh.LemK W) (hD : Sh.FilDim W) (hR :
 
 end Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt.Step2E
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelMembershipPackage
+
+
+open Classical
 
 namespace Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt.Step2K
 
@@ -616,7 +627,12 @@ end Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt.Step2K
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.SecondLiftAtSituation
+section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.SecondLiftAtSituation
+@[expose] public section
+
+noncomputable section
+
+open Classical
 
 namespace Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt
 
@@ -707,7 +723,7 @@ theorem second_lift_at_situation [NeZero n] (W : LocWach PD LL O v n) (hZ : TToo
     exact (W.N T₂).smul_mem _ this
   have hMi : ∀ c ∈ evens n d, MiW d b S η c = b c + S := fun c hc => by simp [MiW, hev c hc]
   have hMiU : ∀ c ∈ evens n d, MiW d b S η (c + 1) = η := fun c hc => by
-    simp only [MiW]; rw [if_neg (succ_not_mem_evens hn hc)]
+    simp only [MiW]; rw [ite_eq_right (succ_not_mem_evens hn hc)]
   have hhi : ∀ c ∈ evens n d, hiW d b S η c = η := fun c hc => by simp [hiW, hev c hc]
 
   obtain ⟨hX1, hX2⟩ := hX
@@ -997,9 +1013,9 @@ theorem second_lift_at_situation [NeZero n] (W : LocWach PD LL O v n) (hZ : TToo
 
 end Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt
 
+end
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.SecondLiftOfHypotheses
 

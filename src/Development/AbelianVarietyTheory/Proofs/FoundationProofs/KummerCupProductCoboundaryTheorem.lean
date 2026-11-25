@@ -327,8 +327,9 @@ theorem hilbert90_locallyConstant_cocycle :
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ZmodCocycleEqCoboundaryOfUnitTwistedCocycle
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ZmodCocycleEqCoboundaryOfUnitTwistedCocycle
 
+noncomputable section
 
 open IntermediateField
 
@@ -406,7 +407,7 @@ theorem zmod_cocycle_eq_coboundary_of_unit_twisted_cocycle : ∀ (K Ω : Type) [
     intro g
     obtain ⟨i, hi, hi'⟩ := hζ.eq_pow_of_pow_eq_one (hw_pow g)
     have hex : ∃ j : ZMod N, ζ ^ j.val = w g := ⟨(i : ZMod N), by rw [ZMod.val_cast_of_lt hi, hi']⟩
-    simp only [η, E, dif_pos hex]
+    simp only [η, E, dite_eq_left hex]
     exact hex.choose_spec
   refine ⟨η, hw_lc.comp E, ?_⟩
   intro g h
@@ -419,6 +420,7 @@ theorem zmod_cocycle_eq_coboundary_of_unit_twisted_cocycle : ∀ (K Ω : Type) [
   linear_combination -hinj
 
 end GlobalTheory.Hilbert90CupCoboundary
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.CupKummerCoboundaryOfNorms

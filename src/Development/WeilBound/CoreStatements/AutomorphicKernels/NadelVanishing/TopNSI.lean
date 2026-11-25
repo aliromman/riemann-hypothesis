@@ -52,6 +52,7 @@ import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.IsFinite
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PowMulIntersectionLeOfNefClassOnClosed
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IsProjOverIffIsProperAndExistsIsAmpleLB
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDivisorNonKltAtPointsNotContainingCentre
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDivisorNonKltLocusFibre, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CartierDivToWeilQDivisorAddOfEffective, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEffectiveQDivisorOffPointAmpleClass, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsOpenKawamataLogTerminalLocusLogCanonicalLocus, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOpenKltOffIsolatedLcCentre, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsolatedLcCentreOfZeroLcThreshold, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDivisorNonKltPointsNumericallyMultiple, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AngehrnSiuCutLowerCentreDimension, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAmpleEffectiveKltInductionStart, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLogCanonicalCutAngehrnSiuInduction, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsolatedNonKltDivisorOfPrincipalisation, Development.WeilBound.CoreStatements.AutomorphicKernels.NadelVanishing.TopIsolated, Development.WeilBound.CoreStatements.AutomorphicKernels.NadelVanishing.TopNadel, Development.WeilBound.CoreStatements.AutomorphicKernels.NadelVanishing.TopNSI
@@ -316,18 +317,7 @@ variable {X : Scheme.{0}} [IsIntegral X]
 
 theorem generatesAt_add_vanishesAt {D : CartierDiv X} {x : X} {f u : X.functionField}
     (hf : D.GeneratesAt x f) (hu : D.VanishesAt x u) : D.GeneratesAt x (f + u) := by
-  obtain ⟨e, he⟩ := D.exists_isEqn x
-  rw [he.generatesAt_iff] at hf ⊢
-  rw [he.vanishesAt_iff] at hu
-  obtain ⟨a, ha, hae⟩ := hf
-  obtain ⟨b, hb, hbe⟩ := hu
-  refine ⟨a + b, ?_, by rw [map_add (f := _), hae, hbe, add_mul]⟩
-  by_contra hn
-  have h1 : a + b ∈ IsLocalRing.maximalIdeal _ := (IsLocalRing.mem_maximalIdeal _).2 hn
-  have h2 : a ∈ IsLocalRing.maximalIdeal _ := by
-    have := Ideal.sub_mem _ h1 hb
-    simpa using this
-  exact (IsLocalRing.mem_maximalIdeal _).1 h2 ha
+  apply _root_.GlobalTheory.Cartier.CommonEqn.generatesAt_add <;> assumption
 
 variable [IsLocallyNoetherian X]
 
@@ -763,7 +753,7 @@ theorem exists_lcCut_induction : GlobalTheory.Published.Principalisation → ∀
         topologicalKrullDim (closure ({z} : Set X)) ≤ j
     · refine ⟨j, lam, μ, m', D₁, le_rfl, hm', hD₁, hμ, ?_, hnum, hlc, hnk, hall⟩
       rw [hsj]; linarith
-    push_neg at hall
+    push Not at hall
     obtain ⟨z, hzx, hzk, hzd⟩ := hall
     have hq : IsQCart (qWeil D₁ m') := ⟨m', D₁, hm', hD₁, rfl⟩
     obtain ⟨w, hwz, hw⟩ := _root_.GlobalTheory.PairStep.Centre.exists_isNkltCentre X p n hP hn Δ (qWeil D₁ m') z hq (hklt z) hzk

@@ -909,7 +909,8 @@ end GroundTheory.ProfCoh
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.HighDivisor
+section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.HighDivisor
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -917,6 +918,7 @@ namespace GroundTheory.ProfCoh
 
 open CategoryTheory Limits
 
+noncomputable section
 
 section Primary
 
@@ -1187,9 +1189,9 @@ theorem mem_divFun_ite (T : Finset I) (f : divFun φ QZ) :
     apply hi
     simp only [hc, ite_self]
   · by_cases hi : i ∈ T
-    · simp only [hi, if_true]
+    · simp only [hi, ite_true]
       exact ⟨IsLocallyConstant.const 0, fun _ _ => rfl⟩
-    · simp only [hi, if_false]
+    · simp only [hi, ite_false]
       exact f.2.2 i
 
 def divFunOutside (T : Finset I) : divFunRep φ QZ ⟶ divFunRep φ QZ :=
@@ -1356,11 +1358,14 @@ theorem eq_zero_of_pow_nsmul_cohomology_divFunRep [T2Space G] [∀ i, Topologica
 
 end Family
 
+end
 
 end GroundTheory.ProfCoh
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.EqZeroOfPowNsmulCohomologySUnitsOfOdd
+section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.EqZeroOfPowNsmulCohomologySUnitsOfOdd
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1368,6 +1373,7 @@ namespace GroundTheory.ProfCoh
 
 open CategoryTheory Limits NumberField IsDedekindDomain GroundTheory.Global
 
+noncomputable section
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 
@@ -1427,12 +1433,6 @@ noncomputable def sUnitsInflPrimaryEquiv {r : ℕ} (hr : 4 ≤ r) :
   AddEquiv.ofBijective _
     ((isIsoModCoprime_sUnitsInfl K S hℓ hS hr).bijective_primaryComponentMap hℓ (isTorsion_cohomology _ (by omega)))
 
-section Odd
-
-
-
-end Odd
-
 section Real
 
 variable (ι : LocalEmbeddings K)
@@ -1469,8 +1469,10 @@ theorem sUnitsRealPrimaryEquiv_apply {r : ℕ} (hr : 4 ≤ r)
 
 end Real
 
+end
 
 end GroundTheory.ProfCoh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.RealPlaces.VanishingUnits

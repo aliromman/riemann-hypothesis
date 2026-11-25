@@ -151,8 +151,9 @@ theorem volume_projection_zeroSet_null (Ψ : (((k : K) → ι k) → ℂ) →ₗ
 end ReciprocityTheory.ChartRestriction.G.Geo
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeP
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeP
 
+noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.G.Geo
 
@@ -211,7 +212,7 @@ theorem exists_monic_rel (Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e 
       have hsdeg : (s.sum fun _ e => e) ≤ d := (le_totalDegree hs).trans hf
       by_cases hall : ∀ i, s i < r i
       · exact Submodule.subset_span (Finset.mem_coe.2 (Finset.mem_image_of_mem _ (memT s hall)))
-      · push_neg at hall
+      · push Not at hall
         obtain ⟨i, hi⟩ := hall
         obtain ⟨s', hsplit⟩ : ∃ s', s = s' + Finsupp.single i (r i) :=
           ⟨s - Finsupp.single i (r i), (tsub_add_cancel_of_le (Finsupp.single_le_iff.2 hi)).symm⟩
@@ -268,9 +269,11 @@ theorem exists_monic_rel (Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e 
 
 end ReciprocityTheory.ChartRestriction.G.Geo
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeQ
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeQ
 
+noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.G.Geo
 
@@ -480,11 +483,11 @@ theorem normPoly_of (hM : PCMinContractStatement) : NormPolyStatement := by
     rw [hSdef, Finset.sum_filter]
     refine Finset.sum_congr rfl fun j _ => ?_
     by_cases hj : k0 ≤ j
-    · rw [if_pos hj]
+    · rw [ite_eq_left hj]
       rw [show j = k0 + (j - k0) from (Nat.add_sub_cancel' hj).symm]
       rw [Nat.add_sub_cancel_left, pow_add]
       ring
-    · rw [if_neg hj, hlt j (not_le.mp hj), map_zero, zero_mul]
+    · rw [ite_eq_right hj, hlt j (not_le.mp hj), map_zero, zero_mul]
   have hH := eval_eq_zero_of_mul hM hP (u := f' ^ k0) (fun h' => hf'P (hPp.mem_of_pow_mem _ h'))
     hmul
   set T : Set (Fin (e + 1) → ℂ) :=
@@ -522,6 +525,7 @@ theorem normPoly_of (hM : PCMinContractStatement) : NormPolyStatement := by
   exact ⟨homogeneousComponent m (c k0), m, hm0, hmh, fun z hz hfz => hmT _ ⟨z, hz, hfz, rfl⟩⟩
 
 end ReciprocityTheory.ChartRestriction.G.Geo
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeA

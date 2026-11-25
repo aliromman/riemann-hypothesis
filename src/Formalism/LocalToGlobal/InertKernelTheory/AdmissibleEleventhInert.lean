@@ -142,8 +142,9 @@ end W
 end Formalism.MainNotions.J
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.AdmissibleParameterJoins.GandSv
+@[expose] public section -- clump member: Formalism.SharpRestriction.AdmissibleParameterJoins.GandSv
 
+noncomputable section
 
 namespace Formalism.MainNotions.J
 
@@ -220,7 +221,7 @@ theorem be_ab (i0 : K0 p →+* ℂ_[p]) (be : MvPowerSeries (Fin 2) (K0 p)) (ep 
       fin_cases i
       · simp [h]
       · simp
-    rw [if_pos e1, h, zero_add, Nat.choose_zero_right, Nat.cast_one, one_mul]
+    rw [ite_eq_left e1, h, zero_add, Nat.choose_zero_right, Nat.cast_one, one_mul]
     split_ifs with h2
     · have : n 1 = 0 := by rw [h2]; simp
       rw [this, hψ0]; ring
@@ -230,7 +231,7 @@ theorem be_ab (i0 : K0 p →+* ℂ_[p]) (be : MvPowerSeries (Fin 2) (K0 p)) (ep 
       fin_cases i
       · simp
       · simp [h]
-    rw [if_pos e1, h, add_zero, Nat.choose_self, Nat.cast_one, one_mul]
+    rw [ite_eq_left e1, h, add_zero, Nat.choose_self, Nat.cast_one, one_mul]
     split_ifs with h2
     · have : n 0 = 0 := by rw [h2]; simp
       rw [this, hψ0]; ring
@@ -243,6 +244,7 @@ variable {D : D7} {Gt : GatTies D} {Tw : TwForms D} {u : D.what₂.Word} {w : D.
     {T : Formalism.MainNotions.TaylorLogMetric.Tor D} {e : Formalism.MainNotions.TaylorLogMetric.FamE D} {X : Sys (D.what₂.places.resChar w)} {Y : Pend X}
 
 end Formalism.MainNotions.J
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.BeProp

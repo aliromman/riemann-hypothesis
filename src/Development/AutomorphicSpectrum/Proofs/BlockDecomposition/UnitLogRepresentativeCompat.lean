@@ -13,10 +13,11 @@ import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomology
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CechDOneZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitLogRepresentativeCompat
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CechDOneZero
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CechDOneZero
 
 set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
@@ -34,13 +35,8 @@ theorem cech_d_one_zero : CH.d (CH.modF A) 0 (one0 A) = 0 := by
   rw [Fin.sum_univ_two, map_one, map_one]
   simp
 
-section Res
-
-variable {C : Type 1} [Category.{0} C] (A : C ⥤ CommAlgCat.{0} R) {U V : ObjectProperty C}
-
-end Res
-
 end GlobalTheory.CompanionTheory.ConeCech
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitLogRepresentativeCompat

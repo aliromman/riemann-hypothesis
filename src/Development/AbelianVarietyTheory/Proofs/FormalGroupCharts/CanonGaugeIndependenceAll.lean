@@ -80,8 +80,9 @@ end GlobalTheory
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.SecondOrderMonomial
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.TB
 
@@ -115,7 +116,7 @@ theorem dpolyOf_monomial (m : ι →₀ ℕ) (a : k) (f : PS k 1 d) :
     DpolyOf F u (MvPolynomial.monomial m a) f = C a * DmonOf F u m f := by
   classical
   rw [GE.dpolyOf_eq_sum_of_subset F u _ {m} MvPolynomial.support_monomial_subset,
-    Finset.sum_singleton, MvPolynomial.coeff_monomial, if_pos rfl]
+    Finset.sum_singleton, MvPolynomial.coeff_monomial, ite_eq_left rfl]
 
 theorem secondOrder_add (c : ι → ι → k) (P Q : MvPolynomial ι k) :
     secondOrder k c (P + Q) = secondOrder k c P + secondOrder k c Q := by
@@ -167,6 +168,7 @@ theorem halfSt : GE.HalfSt := by
       (fun p => constantCoeff (G2.T F u p.1 A) * G2.ev2 c p.2)).sum)) * h2
 
 end GlobalTheory.HalfIdentity
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

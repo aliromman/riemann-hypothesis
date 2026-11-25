@@ -70,9 +70,11 @@ import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FiniteCosetsHeck
 
 open NumberField IsDedekindDomain ReciprocityTheory.Aut Formalism.AUTREP Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2 Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Rows Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Lev GlobalTheory.TypeRec GlobalTheory.TypeVec
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RowsAtLevelsFixedPrincipalCongruenceTypePlaces
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RowsAtLevelsFixedPrincipalCongruenceTypePlaces
+@[expose] public section
 attribute [local instance] GlobalTheory.TypeRec.factG
 
+noncomputable section
 
 namespace GlobalTheory.RowLevConj
 
@@ -385,7 +387,7 @@ theorem rows_fixed : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : T
       intro i i' hij
       exfalso
       unfold blkOf at hij
-      rw [if_pos (hr i), if_pos (hr i')] at hij
+      rw [ite_eq_left (hr i), ite_eq_left (hr i')] at hij
       exact lt_irrefl 0 hij
     · exact absurd hP (Finset.notMem_empty PP)
     · generalize hγ : GlobalTheory.GoodTypes.facHom D k v (GlobalTheory.GLp.red (D.host.g k) D.R.r y) = γ
@@ -438,6 +440,8 @@ end Main
 
 end GlobalTheory.RowLevConj
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RowsAtLevelsFixedPrincipalCongruenceTypePlacesStatement

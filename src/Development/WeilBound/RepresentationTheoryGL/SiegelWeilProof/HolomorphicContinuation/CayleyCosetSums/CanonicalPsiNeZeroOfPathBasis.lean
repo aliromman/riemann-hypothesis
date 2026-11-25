@@ -50,8 +50,9 @@ theorem hasDerivAt_det_add {ι : Type} [Fintype ι] [DecidableEq ι] (A X : Matr
 end PositivityTheory.Rg.Sw.HSt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.CanonicalPsiNeZeroOfPathBasis
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.CanonicalPsiNeZeroOfPathBasis
 
+noncomputable section
 
 open MeasureTheory Matrix
 open scoped ContDiff
@@ -110,7 +111,7 @@ private theorem det_one_add_of_support_blkA_blkB (j : ℕ) (P' : Matrix (Fin n) 
   · intro a b hab
     have hab' : (b : ℕ) < a := hab
     have hne : a ≠ b := fun h => by subst h; omega
-    simp only [Matrix.add_apply, Matrix.one_apply, hne, if_false, zero_add]
+    simp only [Matrix.add_apply, Matrix.one_apply, hne, ite_false, zero_add]
     by_contra h
     obtain ⟨h1, h2⟩ := hP a b h
     simp [blkA, blkB] at h1 h2
@@ -129,7 +130,7 @@ private theorem det_one_add_of_support_blkB_blkA (j : ℕ) (S' : Matrix (Fin n) 
   · intro a b hab
     have hab' : (a : ℕ) < b := hab
     have hne : a ≠ b := fun h => by subst h; omega
-    simp only [Matrix.add_apply, Matrix.one_apply, hne, if_false, zero_add]
+    simp only [Matrix.add_apply, Matrix.one_apply, hne, ite_false, zero_add]
     by_contra h
     obtain ⟨h1, h2⟩ := hS a b h
     simp [blkA, blkB] at h1 h2

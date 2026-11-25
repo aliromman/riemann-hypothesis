@@ -93,10 +93,11 @@ theorem cls_eq_of_generators : ∀ {O K V : Type} [inst : CommRing O] [inst_1 : 
 end GlobalTheory.ClassResidueGenerators
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.CoeffMonicPolySum
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.CoeffMonicPolySum
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal Polynomial NumberField IsDedekindDomain GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.RowTie GlobalTheory.SplitRead
 
+noncomputable section
 
 namespace GlobalTheory.PtLocalEig
 
@@ -223,11 +224,11 @@ theorem descent : ∀ {K C : Type} [Field K] [Field C] (φ : K →+* C) {ι : Ty
 
 theorem coeff_monic_poly_sum {R : Type} [Semiring R] (n k : ℕ) (hk1 : 1 ≤ k) (hk2 : k ≤ n) (c : ℕ → R) :
     (X ^ n + ∑ k' ∈ Finset.Icc 1 n, C (c k') * X ^ (n - k')).coeff (n - k) = c k := by
-  rw [coeff_add, coeff_X_pow, if_neg (by omega), zero_add, finsetSum_coeff]
+  rw [coeff_add, coeff_X_pow, ite_eq_right (by omega), zero_add, finsetSum_coeff]
   rw [Finset.sum_eq_single k]
-  · rw [coeff_C_mul_X_pow, if_pos rfl]
+  · rw [coeff_C_mul_X_pow, ite_eq_left rfl]
   · intro b hb hbk
-    rw [coeff_C_mul_X_pow, if_neg]
+    rw [coeff_C_mul_X_pow, ite_eq_right]
     rw [Finset.mem_Icc] at hb
     omega
   · intro hk

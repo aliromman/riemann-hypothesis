@@ -84,10 +84,9 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
 open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.IndefR.Links
 open scoped TensorProduct InnerProductSpace
+open GlobalTheory.DownLift
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsHeisenbergCombinationProjectsOntoVacuum
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 namespace GlobalTheory.VacDensity
 
@@ -294,7 +293,7 @@ theorem GlobalTheory.VacDensity.proj : ∀ (D : D7) (ψ : AddChar (AF D.host.F) 
       fun w hw => ?_).resolve_right hg0
     by_cases hA : ∀ u ∈ U', u.map (infPart D) = 0 → ψ (symplO S T u w) = 1
     · exact hfo _ (hWst ⟨w, hw, hA⟩ g hgW)
-    · push_neg at hA
+    · push Not at hA
       obtain ⟨u, hu, h0, hne1⟩ := hA
       have hwg : IsThetaFunO ψ S T (heisO ψ S T w g) := laws.1 w g hgT
       have e1 : GlobalTheory.RawLift.thetaIP vol.μ vol.𝓕 f (heisO ψ S T w g) =
@@ -319,10 +318,9 @@ theorem GlobalTheory.VacDensity.proj : ∀ (D : D7) (ψ : AddChar (AF D.host.F) 
     simp [P]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.L2OHeisOEq
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.L2OHeisOEq
 
+noncomputable section
 
 namespace GlobalTheory.HeisTranslateBound
 
@@ -365,10 +363,9 @@ theorem GlobalTheory.HeisTranslateBound.sobO_finsupp_sum_le : ∀ (D : D7) (ψ :
   refine Finset.sum_le_sum fun u hu => ?_
   rw [sobO_smul, sobO_heisO_eq hψ hθ hμ hh (hc u hu)]
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ThetaFunctionFixedFinitePartSobolevLimitFockVect
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 namespace GlobalTheory.FinLikeClosure
 
@@ -465,8 +462,6 @@ end GlobalTheory.FinLikeClosure
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ThetaLiftGenerationAtRealPlaces
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 namespace GlobalTheory.GenReal
 

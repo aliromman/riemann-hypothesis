@@ -207,10 +207,11 @@ theorem exists_comap_prime {E K : Type} [Field E] [NumberField E] [Field K] [Num
 end GlobalTheory.ComapPrimeExistence
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.CharacterValueAtT
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.CharacterValueAtT
 
 open NumberField IsDedekindDomain WithZero
 
+noncomputable section
 
 namespace GlobalTheory.CharVal
 
@@ -978,7 +979,7 @@ theorem muAtT_unit (hZ : Z.Ok) (ht : Z.Ch.Tied Z.sig0 (fun j τ => (Z.W.row τ).
   unfold muAtT
   by_cases hP : P.1 ∈ Z.Pr.vGs
   · refine key _ _ (val_q_vG hZ.fields hZ.primes hP) ?_
-    rw [if_pos hP]
+    rw [ite_eq_left hP]
     have h1 := hc i.1 i.2 P hP (Units.mk0 _ (Proof.NormalFormAtPrime.qOf_ne_zero P.1)) rfl
     have h2 : Z.sig0 ((cst.muq (i.1 + 1) P * ((qVal (mu : Chr Z.X.F Z.X.E Z.X.K) P.1 : Z.X.Kˣ) : Z.X.K))⁻¹) =
         (((m0 i).locK P.1 (Units.mk0 _ (Proof.NormalFormAtPrime.qOf_ne_zero P.1)) : ℂˣ) : ℂ) := by
@@ -992,7 +993,7 @@ theorem muAtT_unit (hZ : Z.Ok) (ht : Z.Ch.Tied Z.sig0 (fun j τ => (Z.W.row τ).
     have hd := Proof.NormalFormAtPrime.degOne_of_split hZ.fields.rankE hgood.1 hgood.2.1 (P := P.1) (e ▸ hsel v)
     refine key _ _ (val_natCast_of_notMem_sq (Ideal.absNorm_mem _) hd.2) ?_
     have hg : ∀ k, ((Z.Pr.g k : ℕ) : 𝓞 Z.X.E) ∉ P.1.asIdeal := fun k h => hG k v ((natCast_mem_sel hsel v _).1 (e ▸ h)) hv
-    rw [if_neg hP, muqT, dite_eq_left i.2, Units.val_mul, Units.val_inv_eq_inv_val, Units.val_inv_eq_inv_val, map_mul, map_inv₀, map_inv₀,
+    rw [ite_eq_right hP, muqT, dite_eq_left i.2, Units.val_mul, Units.val_inv_eq_inv_val, Units.val_inv_eq_inv_val, map_mul, map_inv₀, map_inv₀,
       hq, muVal_unit hZ ht i hg hTP hw]
     simp
 
@@ -1044,7 +1045,7 @@ theorem muOff_vpLat (hZ : Z.Ok) (ht : Z.Ch.Tied Z.sig0 (fun j τ => (Z.W.row τ)
   have hε2 : (ε : ℚ) * ε = 1 := by rcases hε with ⟨-, rfl⟩ | ⟨-, rfl⟩ <;> norm_num
   have hoff : muOff sel (rowSG Z.Pr sel mu) (mUof Z.Ch mu i.1) (vpLat P) = ((mUof Z.Ch mu i.1 (sel v₀) : Z.X.Kˣ) : Z.X.K) ^ ε := by
     unfold muOff
-    rw [finprod_eq_single _ v₀, if_neg hno, hord, Units.val_zpow_eq_zpow_val]
+    rw [finprod_eq_single _ v₀, ite_eq_right hno, hord, Units.val_zpow_eq_zpow_val]
     intro v hv
     split_ifs
     · rfl

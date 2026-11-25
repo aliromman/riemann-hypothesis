@@ -9,13 +9,13 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.BlkUInvVal, Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.IntegralMem, Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.CornerBlockIndex
 
--- clump: shared namespace opens
+section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.BlkUInvVal
+@[expose] public section
 
+noncomputable section
 
 open MeasureTheory Matrix GlobalTheory.CuspGeneric Topology
 open scoped ContDiff
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.BlkUInvVal
 
 namespace PositivityTheory.jumpWindows.CornerBlockIndex
 
@@ -81,7 +81,7 @@ theorem lastE_eq {R : Type} [CommRing R] (hm : m + 1 < a) (y : UnipotentBlockCol
   rw [Finset.sum_eq_single (t0 hm)]
   · simp [t0, ix, mm]
   · intro t _ ht
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h1
     apply ht
     obtain ⟨⟨i, k⟩, h1', h2', h3'⟩ := t
@@ -93,7 +93,15 @@ theorem lastE_eq {R : Type} [CommRing R] (hm : m + 1 < a) (y : UnipotentBlockCol
 
 end PositivityTheory.jumpWindows.CornerBlockIndex
 
+end
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open MeasureTheory Matrix GlobalTheory.CuspGeneric Topology
+open scoped ContDiff
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.IntegralMem
 

@@ -13,8 +13,9 @@ import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicC
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.ClmCircleIntegral, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.LamCont, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.RootsBound, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.TopTheta, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.VacCore, Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.CompactUnitaryT2Space
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.ClmCircleIntegral
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.ClmCircleIntegral
 
+noncomputable section
 
 open MeasureTheory Set Filter Topology Metric Complex Real
 
@@ -45,7 +46,7 @@ theorem banachHol : BanachHol := by
     convert K.continuous using 1
     funext z
     show Φ z = K z
-    simp only [Φ, dif_pos z.2, Subtype.coe_eta]
+    simp only [Φ, dite_eq_left z.2, Subtype.coe_eta]
   refine ⟨Φ, ?_, hΦ⟩
   intro w hw
   apply DifferentiableAt.differentiableWithinAt
@@ -123,6 +124,7 @@ theorem dslopeFam : DslopeFam := by
   exact (hcont (z₀, x₀) ⟨hz₀, mem_of_mem_nhds hKn⟩).mono_of_mem_nhdsWithin hmem
 
 end PositivityTheory.Rg.Sw.AbsSt
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

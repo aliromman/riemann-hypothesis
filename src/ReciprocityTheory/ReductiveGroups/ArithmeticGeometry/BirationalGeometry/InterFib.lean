@@ -16,8 +16,9 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterFibA, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterFib
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterFibA
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterFibA
 
+noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.G.Geo
 
@@ -47,7 +48,7 @@ theorem fibSys_finite {W : Type*} [Fintype W] (r : W → ℕ) (H : W → MvPolyn
       have e : monomial u a = a • monomial u (1 : ℂ) := by rw [smul_monomial, smul_eq_mul, mul_one]
       rw [e, hMdef]
       exact Submodule.smul_mem _ a (Submodule.subset_span ⟨u, (hB u).mpr hall, rfl⟩)
-    · push_neg at hall
+    · push Not at hall
       obtain ⟨i, hi⟩ := hall
       have hle : Finsupp.single i (r i) ≤ u := Finsupp.single_le_iff.mpr hi
       obtain ⟨u', hu'⟩ : ∃ u', u = u' + Finsupp.single i (r i) :=
@@ -159,6 +160,7 @@ theorem fibSys_finite {W : Type*} [Fintype W] (r : W → ℕ) (H : W → MvPolyn
   omega
 
 end ReciprocityTheory.ChartRestriction.G.Geo
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterFib

@@ -534,8 +534,9 @@ theorem lintegral_cone [IsIntegral Z] (hE : Emb p s) (hφ : φ.IsCInf) (hF : IsF
 end ChowFormHeightComparison₂.CF.C
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.MemMinimalPrimesOfMemSupport
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.MemMinimalPrimesOfMemSupport
 
+noncomputable section
 
 open MvPolynomial MeasureTheory GroundTheory.Heights₂.Heights
 
@@ -555,7 +556,7 @@ theorem coneBall_subset (h : HermNorm n) {J : Ideal (MvPolynomial (Fin n) ℂ)} 
     have hmem : W ∈ (fundCycle J).support := by
       rw [Finsupp.mem_support_iff]
       unfold fundCycle
-      rw [Finsupp.onFinset_apply, if_pos ⟨hWmin, hrel⟩, localMult_eq_one_of_isRadical hJ hWmin]
+      rw [Finsupp.onFinset_apply, ite_eq_left ⟨hWmin, hrel⟩, localMult_eq_one_of_isRadical hJ hWmin]
       exact one_ne_zero
     exact Set.mem_biUnion hmem ⟨hy1, fun q hq => (RingHom.mem_ker).1 (hWle hq)⟩
   · left
@@ -668,6 +669,7 @@ theorem cone_side {K : Type} [Field K] [NumberField K] {e : ℕ} {I : Ideal (MvP
     exact hqW
 
 end ChowFormHeightComparison₂.CF.C
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.IntegralOfLintegral

@@ -108,12 +108,6 @@ theorem isZero_groupCohomology_galois {n : ℕ} (hn : n ≠ 0) :
 
 end Vanishing
 
-section Integral
-
-variable (K L : Type) [Field K] [Field L] [Algebra K L] [FiniteDimensional K L] [IsGalois K L]
-
-end Integral
-
 end GroundTheory.ProfCoh
 end -- clump:auto
 
@@ -261,12 +255,6 @@ theorem subsingleton_cohomology_one_galUnits : Subsingleton (cohomology (galUnit
   ModuleCat.subsingleton_of_isZero isZero_cohomology_one_galUnits
 
 end Hilbert90
-
-section SeparableClosure
-
-variable (K) (Ksep : Type u) [Field Ksep] [Algebra K Ksep] [IsSepClosure K Ksep]
-
-end SeparableClosure
 
 end GroundTheory.ProfCoh
 

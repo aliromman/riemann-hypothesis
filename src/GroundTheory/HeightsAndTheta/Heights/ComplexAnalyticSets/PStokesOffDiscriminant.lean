@@ -18,7 +18,8 @@ import ReciprocityTheory.AnalyticForms.AnalyticCharts.Osgood
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StokesOffDiscriminantWindow, GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PStokesOffDiscriminant
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StokesOffDiscriminantWindow
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StokesOffDiscriminantWindow
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -27,6 +28,7 @@ namespace GroundTheory.Heights₂.Heights
 open MvPolynomial MeasureTheory Filter Topology Matrix ComplexSets
 open scoped ContDiff
 
+noncomputable section
 
 namespace StokesOffDiscriminant
 
@@ -79,7 +81,7 @@ theorem sheetTerm_window {J : Ideal (MvPolynomial (Fin n) ℂ)} {A : Matrix (Fin
       have hyV : y ∈ V := hxy ▸ hAV
       have hx' : x = s y := by rw [← hxy, hxs]
       have hex : ∃ s', IsSheetAt J A x s' := ⟨s, hsx⟩
-      rw [dite_eq_left hex, if_pos ⟨hyV, hx'⟩, h1 x _ hxy hex.choose_spec hsx, ← hx']
+      rw [dite_eq_left hex, ite_eq_left ⟨hyV, hx'⟩, h1 x _ hxy hex.choose_spec hsx, ← hx']
     · have h0 : (if h : ∃ s', IsSheetAt J A x s' then H x h.choose else 0) = 0 := by
         split_ifs with hex
         · exact h2 x _ hxZ hxy hxW hex.choose_spec
@@ -115,7 +117,7 @@ theorem sheetSum_window {J : Ideal (MvPolynomial (Fin n) ℂ)} {A : Matrix (Fin 
     sheetSum J A H y = V.indicator (fun y => H (s y) s) y := by
   rw [sheetSum_eq_finsum, finsum_congr h]
   by_cases hyV : y ∈ V
-  · rw [Set.indicator_of_mem hyV, finsum_eq_single _ (s y) fun x hx => if_neg fun hc => hx hc.2]
+  · rw [Set.indicator_of_mem hyV, finsum_eq_single _ (s y) fun x hx => ite_eq_right fun hc => hx hc.2]
     simp [hyV]
   · rw [Set.indicator_of_notMem hyV]
     simp [hyV]
@@ -345,8 +347,10 @@ theorem window_stokes {J : Ideal (MvPolynomial (Fin n) ℂ)} {A : Matrix (Fin (D
 
 end StokesOffDiscriminant
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PStokesOffDiscriminant

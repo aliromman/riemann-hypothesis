@@ -11,10 +11,11 @@ import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.RhoLowerBoundOf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PolynomialDimension.MultinomialDepth.PairingAdjointLaplacianHolds, Formalism.PolynomialDimension.FinalHar, Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.HarProjEqZeroIff, Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.SingleWeightOfModelIdentification
 
-@[expose] public noncomputable section -- clump member: Formalism.PolynomialDimension.MultinomialDepth.PairingAdjointLaplacianHolds
+@[expose] public section -- clump member: Formalism.PolynomialDimension.MultinomialDepth.PairingAdjointLaplacianHolds
 
 set_option linter.unusedSimpArgs false
 
+noncomputable section
 
 open scoped BigOperators
 open Finset MvPolynomial
@@ -101,25 +102,8 @@ theorem slTwoCommutator_holds : SlTwo := by
       map_one, map_zero, map_natCast]
   ring
 
-section Gen2
-
-variable {K : Type} [Field K] {k : ℕ}
-
-end Gen2
-
-section Fis
-
-variable {K : Type} [Field K] {k : ℕ}
-
-end Fis
-
-section Can
-
-variable {K : Type} [Field K] {k : ℕ}
-
-end Can
-
 end Formalism.CountingSumsFrames
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PolynomialDimension.FinalHar
@@ -131,8 +115,10 @@ theorem levelProj : Formalism.CountingSumsFrames.LevelProj := Formalism.Counting
 end Formalism.CountingSumsFrames.Top
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.HarProjEqZeroIff
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.HarProjEqZeroIff
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.flipOneThree.Pf
 
@@ -260,10 +246,10 @@ theorem oneTop_abs (K : Type) [Field K] [CharZero K] (k P Q p : ℕ) (hk : 1 ≤
     if hj : j ≤ min P Q then E j hj ∘ₗ s j else 0
   have hpr : ∀ j (hj : j ≤ min P Q) x, pr j x = β j (Dc j hj x) := by
     intro j hj x
-    simp only [pr, dif_pos hj, LinearMap.comp_apply]
+    simp only [pr, dite_eq_left hj, LinearMap.comp_apply]
   have hio : ∀ j (hj : j ≤ min P Q) f, io j (β j f) = E j hj f := by
     intro j hj f
-    simp only [io, dif_pos hj, LinearMap.comp_apply]
+    simp only [io, dite_eq_left hj, LinearMap.comp_apply]
     exact hEβ j hj f
   have hterm : ∀ j (hj : j ≤ min P Q) x,
       ((α (io j (pr j x)) : Formalism.CountingSumsFrames.PolAB K k P Q) : Formalism.CountingSumsFrames.PolXY K k) =
@@ -312,6 +298,8 @@ theorem oneTop_abs (K : Type) [Field K] [CharZero K] (k P Q p : ℕ) (hk : 1 ≤
 
 end Formalism.MainNotions.flipOneThree.Pf
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.SingleWeightOfModelIdentification

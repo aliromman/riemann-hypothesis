@@ -18,8 +18,9 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLattic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPf, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPfLeviAlg, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPfLeviPos, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPfLeviWFin, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPfSratZ, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPfLeviGlue, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPfFinal
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPf
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPf
 
+noncomputable section
 
 open scoped Classical ComplexConjugate ENNReal NNReal
 open MeasureTheory
@@ -158,13 +159,13 @@ theorem countC_of_leviFin (hL : LeviFinC) : CountC := by
             i0.1.1.mem'
     · intro i hi
       have hei : e i = (i.1.1.lam', (hex i hi).choose) := by
-        simp only [e, dif_pos (hex i hi)]
+        simp only [e, dite_eq_left (hex i hi)]
       refine ⟨?_, ?_⟩
       · rw [hei]
         exact Finset.mem_biUnion.2 ⟨i.1.1.lam', i.1.1.mem', Finset.mem_image.2 ⟨_, (hex i hi).choose_spec.1, rfl⟩⟩
       intro j hj hij
       have hej : e j = (j.1.1.lam', (hex j hj).choose) := by
-        simp only [e, dif_pos (hex j hj)]
+        simp only [e, dite_eq_left (hex j hj)]
       rw [hei, hej] at hij
       have hl' : i.1.1.lam' = j.1.1.lam' := congrArg Prod.fst hij
       have hf : (hex i hi).choose = (hex j hj).choose := congrArg Prod.snd hij
@@ -221,9 +222,11 @@ theorem countC_of_leviFin (hL : LeviFinC) : CountC := by
 
 end Formalism.L2.SG.Pf.SlabCount
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPfLeviAlg
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPfLeviAlg
 
+noncomputable section
 
 open scoped Classical
 
@@ -565,13 +568,13 @@ theorem leviStabFinC_of (hWF : LeviWFinC) (hZ : SratZC) : LeviStabFinC := by
   · intro τ hτ
     obtain ⟨g, hg, rfl⟩ := Finset.mem_image.1 hτ
     have hg' : ∃ σ : G, Φ σ = g := hfin.mem_toFinset.1 hg
-    simp only [ch, dif_pos hg']
+    simp only [ch, dite_eq_left hg']
     exact hg'.choose.2
   · intro σ s hs hσ hS hgσ
     have hσG : σ ∈ G := ⟨hσ, hgσ, s, hs, hS⟩
     have hg' : ∃ ρ : G, Φ ρ = Φ ⟨σ, hσG⟩ := ⟨_, rfl⟩
     refine ⟨ch (Φ ⟨σ, hσG⟩), Finset.mem_image.2 ⟨_, hfin.mem_toFinset.2 ⟨_, rfl⟩, rfl⟩, ?_⟩
-    simp only [ch, dif_pos hg']
+    simp only [ch, dite_eq_left hg']
     have hτ := hg'.choose_spec
     intro x hx
     rw [LeviAlg.xsp_eq] at hx ⊢
@@ -580,9 +583,11 @@ theorem leviStabFinC_of (hWF : LeviWFinC) (hZ : SratZC) : LeviStabFinC := by
 
 end Formalism.L2.SG.Pf.SlabCount
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPfLeviPos
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPfLeviPos
 
+noncomputable section
 
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting
 open scoped InnerProductSpace ComplexConjugate
@@ -655,7 +660,7 @@ theorem wu_pos (ι : X.B.I.F →+* ℝ) (x : Fin X.B.I.n → X.B.I.E) (hx0 : x �
     simp only [nv]
     split_ifs with hj
     · rw [hJ_sub_left, hJ_sub_right, hJ_sub_right]
-      simp only [HidaSetting.eR, HidaSetting.fR, hJ_crd, X.ee, X.ff, X.ef, hT_f_e, if_true, map_zero, map_one]
+      simp only [HidaSetting.eR, HidaSetting.fR, hJ_crd, X.ee, X.ff, X.ef, hT_f_e, ite_true, map_zero, map_one]
       norm_num
     · simp only [HidaSetting.zR, hJ_crd, X.zu_norm, map_neg, map_natCast]
       simp only [Complex.neg_re, Complex.natCast_re, Left.neg_neg_iff]
@@ -739,6 +744,7 @@ theorem levi_totally_positive_definite : LeviPosC := by
   exact nsmul_pos (trace_pos_of_totPos hTR a hpos) (by rw [X.B.I.cm.deg2]; norm_num)
 
 end Formalism.L2.SG.Pf.SlabCount
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SlabCountPfLeviWFin

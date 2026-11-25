@@ -78,24 +78,12 @@ end General
 variable {k G : Type u} [CommRing k] [TopologicalSpace k] [Group G] [TopologicalSpace G]
   [IsTopologicalGroup G] [LocallyCompactSpace G]
 
-section Invariant
-
-variable (X : TopRep.{u} k G)
-
-end Invariant
-
 variable (X : TopRep.{u} k G) [DiscreteTopology X] [IsDiscreteRep (underlyingRep X)]
 
 
 
 
 
-
-section Discrete
-
-variable [DiscreteTopology k]
-
-end Discrete
 
 end GroundTheory.ProfCoh
 

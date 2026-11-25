@@ -44,8 +44,9 @@ theorem UpperTheory.Reformulated.B.StarRingEndRootEqNeg.rt0_conj_neg_ne_zero :
       (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E), (starRingEnd ℂ : ℂ → ℂ) H.rt0 = -H.rt0 := @_root_.GlobalTheory.CompanionTheory.Ar.HodgeBasic.rt0_conj_neg_ne_zero
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeGramComplexConjugate
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeGramComplexConjugate
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
@@ -55,8 +56,6 @@ open scoped CategoryTheory.Obj
 namespace GlobalTheory.CompanionTheory.Ar.GramConj
 
 open GlobalTheory.ArchMetricCompare (cj cjPt cjUnif cj_isAH cj_val isIso_of_cj carry carry_isAH)
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 variable {A A' : Over (Sp ℂ)} [GrpObj A] [GrpObj A'] {ψ : A'.left ⟶ A.left} {M : LB A.left} {M' : LB A'.left} {g : ℕ}
 
@@ -113,12 +112,14 @@ theorem isHodgeGram_conj : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] (L : LB 
 
 end GlobalTheory.CompanionTheory.Ar.GramConj
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LogPeriodsConjugateExists
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LogPeriodsConjugateExists
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.LogPer
 
@@ -137,7 +138,7 @@ theorem expCover_add_single (h : a ≤ n) (w : Fin n → ℂ) (i : Fin a) :
   by_cases hk : k = Fin.castLE h i
   · subst hk
     have hi : (Fin.castLE h i).val < a := i.2
-    simp only [expCover, Pi.add_apply, Pi.single_eq_same, if_pos hi, Complex.exp_add,
+    simp only [expCover, Pi.add_apply, Pi.single_eq_same, ite_eq_left hi, Complex.exp_add,
       Complex.exp_two_pi_mul_I]
     exact mul_one _
   · simp [expCover, hk]
@@ -145,7 +146,7 @@ theorem expCover_add_single (h : a ≤ n) (w : Fin n → ℂ) (i : Fin a) :
 theorem exists_mem_logCover (h : a ≤ n) : ∃ w : Fin n → ℂ, w ∈ logCover h := by
   refine ⟨fun k => if k.val < a then -1 else 0, fun i => ?_, fun k hk => ?_⟩
   · have hi : (Fin.castLE h i).val < a := i.2
-    simp only [if_pos hi]
+    simp only [ite_eq_left hi]
     simp
   · simp [not_lt.2 hk]
 
@@ -177,6 +178,7 @@ theorem exists_conj_logPeriods : ∀ (n a g : ℕ) (Λ : Type) [AddCommGroup Λ]
   exact ⟨ConjPeriods.conj L' (T_bijective L'), fun _ _ => rfl, fun _ => rfl⟩
 
 end GlobalTheory.CompanionTheory.Ar.Flat.LogPer
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.BoundaryChartLogPeriodFamily

@@ -15,10 +15,10 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeLatticeGermEigen
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeLatticeGermEigen
 open GlobalTheory.CompanionTheory.Ar.Flat.DegZ
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.DegZ.Frame
 
@@ -161,6 +161,7 @@ theorem exists_basis_frame : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     exact (hA j).symm
 
 end GlobalTheory.CompanionTheory.Ar.Flat.DegZ.Frame
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeLatticeGermEigenStatement

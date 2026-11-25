@@ -369,10 +369,11 @@ theorem exists_integral_model_rep : ∀ {R : Ranks} {H : Host R} {what₂ : Rows
 end GlobalTheory.IntegralModelOverCoeff
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SideEigenRationality
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SideEigenRationality
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX GlobalTheory.HeightCounting NumberField IsDedekindDomain Polynomial GlobalTheory.CoefDuty
 
+noncomputable section
 
 namespace GlobalTheory.LargeO
 
@@ -417,7 +418,7 @@ theorem exists_bigOk (D : D7) (l : ℕ) [Fact l.Prime] (Q : Finset (PlE D.host))
   intro c hc K hK ρ hcont hss hchar
   refine hSc c K (fun z hz => hK z (Finset.mem_biUnion.2 ⟨c, hE.mem_toFinset.2 hc, hz⟩)) ρ hcont hss ?_
   intro σ hσ
-  simp only [p, dif_pos hσ]
+  simp only [p, dite_eq_left hσ]
   obtain ⟨hg, B, hB, hF⟩ := Classical.choose_spec hσ
   exact hchar _ hg B σ hB hF
 
@@ -439,7 +440,7 @@ theorem charpoly_pt : ∀ (D : D7) (i : D.nd.Loc) (x : D.nd.X i) (ρ : G D.host.
   refine Finset.sum_congr rfl fun k hk => ?_
   obtain ⟨hk1, hk2⟩ := Finset.mem_Icc.1 hk
   have hg : GenAt D (D.nd.l i) (D.nd.Q i) v k := ⟨hv.1, hv.2.1, hv.2.2.1, hv.2.2.2, hk1, hk2⟩
-  simp only [ptSys, if_pos hg, Polynomial.map_mul, Polynomial.map_C, Polynomial.map_pow, Polynomial.map_X, map_mul,
+  simp only [ptSys, ite_eq_left hg, Polynomial.map_mul, Polynomial.map_C, Polynomial.map_pow, Polynomial.map_X, map_mul,
     map_pow, map_neg, map_one, map_natCast, Polynomial.map_neg, Polynomial.map_one, Polynomial.map_natCast]
 
 theorem model_of_conj : ∀ {R : Ranks} {H : Host R} {what₂ : Rows.Data R} (N : NData R H what₂) (A : NAut N) (i : N.Loc)
@@ -465,6 +466,7 @@ theorem model_of_conj : ∀ {R : Ranks} {H : Host R} {what₂ : Rows.Data R} (N 
   group
 
 end GlobalTheory.LargeO
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SideEigenUnitary
@@ -567,7 +569,7 @@ theorem evO_hypO_alt : HeckeStdPlain → ∀ (D : D7) (cf : CharFrame D) (jE : D
     exact hz
   have hOk' := bigOk_cast (L.X.nd.w_l i) hOk
   obtain ⟨K, hK, -, -⟩ := _root_.GlobalTheory.Proof.CoefField.coefField_range (withLoc L).nd (withLoc L).naut i
-  have hcont := (_root_.GlobalTheory.T.contains_after_localization_alt D cf jE A M C tp.tup big L hB' i).1
+  have hcont := (_root_.GlobalTheory.CoefDuty.MemberO.member_duties_alt D cf jE A M C tp.tup big L hB' i).1
   have hKbig : ∀ z ∈ big (L.X.nd.w i), (qCast (L.X.nd.w_l i) (A.pl.ι (L.X.nd.w i))).symm z ∈ K := by
     intro z hz
     obtain ⟨y, hy⟩ := hcont z hz
@@ -1052,7 +1054,7 @@ theorem etaJ_join : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type)
   have hj1 : 1 ≤ (i : ℕ) + 1 := Nat.le_add_left _ _
   have hj2 : (i : ℕ) + 1 ≤ D.R.m := Nat.lt_of_lt_of_le i.2 hm
   by_cases h : D.plEq w ∈ S0.Tw
-  · rw [if_pos h]
+  · rw [ite_eq_left h]
     have hne : D.what₂.muAt w ≠ D.what₂.mu0 := by
       rw [hTup.muAt w, ← hTup.mu0]
       exact fun e => (hTw _).1 h (hTup.inj e)
@@ -1063,7 +1065,7 @@ theorem etaJ_join : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type)
     rw [_root_.GlobalTheory.EtaJoinSum.sum_etaLoc_eq_etaRat D M Tn ((i : ℕ) + 1) w hj1 hj2 hne hH (hLat _ w hj1 hj2 hne) (htw ▸ hZ)
       (fun i' _ => hSpec i'), htw]
     exact hE w
-  · rw [if_neg h]
+  · rw [ite_eq_right h]
     refine etaJ_eq_zero_of_untwisted D _ w hj1 hj2 ?_
     rw [hTup.muAt w, ← hTup.mu0]
     congr 1
@@ -1259,10 +1261,12 @@ theorem specPr_all : ∀ (D : D7) (M : MtFam D), HeckeTied D M → HeckeRational
 end GlobalTheory.EtaJoin.SpecAll
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HeckeStableLocalLatticeOfIntegral
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HeckeStableLocalLatticeOfIntegral
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 NumberField IsDedekindDomain Polynomial GlobalTheory.EtaJoin GlobalTheory.CoefDuty
 
+noncomputable section
 
 namespace GlobalTheory.LatStab
 
@@ -1280,7 +1284,7 @@ theorem latStable_of_latInt : ∀ (D : D7) (M : MtFam D) (B : NLocBase D M) (j :
   have hf : ∀ g ∈ (D.what₂.MtLat (D.what₂.muTw w) j).gen, D.what₂.jMt (D.what₂.muTw w) j (f g) = g := by
     intro g hg
     have h := hI.1 g hg
-    simp only [f, dif_pos h]
+    simp only [f, dite_eq_left h]
     exact h.choose_spec
   have key : ∀ y ∈ genSet D (D.what₂.muTw w) j, B.hK j w v k (B.iV j w y) ∈ latLoc B j w := by
     intro y hy
@@ -1311,6 +1315,8 @@ theorem latStable_of_latInt : ∀ (D : D7) (M : MtFam D) (B : NLocBase D M) (j :
 
 end GlobalTheory.LatStab
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HeckeStableLocalLatticeOfRationalIntegrality
@@ -1517,7 +1523,7 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 section
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX NumberField IsDedekindDomain GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3 GlobalTheory.Mem.R3.Rw GlobalTheory.HeightCounting GlobalTheory.HeightCounting.Up
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.TypeRec.factG
+attribute [local instance] GlobalTheory.TypeRec.factG
 noncomputable section
 namespace GlobalTheory.EtaMem
 open GlobalTheory.CoefDuty GlobalTheory.HeightCounting.Up

@@ -10,8 +10,10 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.ThetaLifts.EigenvalueEndgame.CuspidalAverages.LeSuccIff, Development.WeilBound.ThetaLifts.EigenvalueEndgame.CuspidalAverages.ColOpSingle
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.EigenvalueEndgame.CuspidalAverages.LeSuccIff
+section -- clump member: Development.WeilBound.ThetaLifts.EigenvalueEndgame.CuspidalAverages.LeSuccIff
+@[expose] public section
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -141,7 +143,7 @@ theorem piv_eq (h : IsUnif ϖ) (a : Fin n) (i : Fin d) (e e' : Fin n → Fin d �
     · intro hY
       refine ⟨fun x y => (hY x y).mono h (by rw [he]; split_ifs <;> omega), ?_⟩
       have := hY a i
-      rw [he, if_pos ⟨rfl, rfl⟩] at this
+      rw [he, ite_eq_left ⟨rfl, rfl⟩] at this
       exact ((le_succ_iff h).1 this).2
     · rintro ⟨hY, hn⟩ x y
       rw [he]
@@ -167,7 +169,7 @@ theorem move (h : IsUnif ϖ) (l : (Matrix (Fin n) (Fin d) k → ℂ) →ₗ[ℂ]
       l (fun Y => (Piv ϖ a i e).indicator 1 (Y + t • δ Y)) = l ((Piv ϖ a i e).indicator 1)) :
     l ((Piv ϖ a i e').indicator 1) = (GlobalTheory.SplitWeil.resCard k : ℂ) * l ((Piv ϖ a i e).indicator 1) := by
   set w := e' x₀ y₀ - e' a i with hw
-  have hai : e a i = e' a i := by rw [he, if_neg hne, add_zero]
+  have hai : e a i = e' a i := by rw [he, ite_eq_right hne, add_zero]
   have ht : ∀ ρ, Le ϖ 0 ρ → Le ϖ w (-(ρ * (ϖ : k) ^ w)) := fun ρ hρ => by
     have := (le_mul_iff (val_zpow w)).2 hρ
     rw [zero_add] at this
@@ -205,7 +207,7 @@ theorem move (h : IsUnif ϖ) (l : (Matrix (Fin n) (Fin d) k → ℂ) →ₗ[ℂ]
       refine ⟨⟨this, hp⟩, ?_⟩
       rw [← le_mul_iff h5, hent h6, add_comm 1]
       have := hZ x₀ y₀
-      rwa [he, if_pos ⟨rfl, rfl⟩] at this
+      rwa [he, ite_eq_left ⟨rfl, rfl⟩] at this
     · rintro ⟨⟨hY, hp⟩, h7⟩
       obtain ⟨h5, h6⟩ := hd _ hp
       rw [← le_mul_iff h5, hent h6, add_comm 1] at h7
@@ -218,10 +220,13 @@ theorem move (h : IsUnif ϖ) (l : (Matrix (Fin n) (Fin d) k → ℂ) →ₗ[ℂ]
 
 end PositivityTheory.ThKEnd.Cusp.LocB
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.EigenvalueEndgame.CuspidalAverages.ColOpSingle
+@[expose] public section -- clump member: Development.WeilBound.ThetaLifts.EigenvalueEndgame.CuspidalAverages.ColOpSingle
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -253,7 +258,7 @@ theorem what₂ (h : IsUnif ϖ) (hl : LeftLaw ξ l) (a : Fin n) (i : Fin d) (p :
       by_cases hx : x = a' <;> by_cases hy : y = i <;> simp [ex, hx, hy, ha, hT1]
     · intro Y hY x y
       by_cases hx : x = a'
-      · simp only [Matrix.of_apply, if_pos hx]
+      · simp only [Matrix.of_apply, ite_eq_left hx]
         refine (hY a y).mono h ?_
         by_cases hy : y = i <;> simp [ex, hx, hy, hT1, hb]
       · simpa [hx] using Le.zero _
@@ -294,7 +299,7 @@ theorem cols (h : IsUnif ϖ) (hψ : ∀ x, Le ϖ c x → ψ x = 1) (hl : ColLaw 
       by_cases hx : x = a <;> by_cases hy : y = j <;> simp [ex, hx, hy, hj, hU1]
     · intro Y hY x y
       by_cases hy : y = j
-      · simp only [Matrix.of_apply, if_pos hy]
+      · simp only [Matrix.of_apply, ite_eq_left hy]
         refine (hY x i₀).mono h ?_
         have := hb j
         by_cases hx : x = a <;> simp [ex, hx, hy, hU1]
@@ -333,7 +338,7 @@ theorem scale (h : IsUnif ϖ) (hl : LeftLaw ξ l) (a : Fin n) (i : Fin d) (p : �
       rw [Function.update_self, mul_comm, ← le_mul_iff hv]
       by_cases hy : y = i <;> simp [ex, hy]
     · by_cases hy : y = i <;> simp [ex, hy, hx]
-  · simp only [ex, Matrix.diagonal_mul, Function.update_self, map_mul, true_or, if_true]
+  · simp only [ex, Matrix.diagonal_mul, Function.update_self, map_mul, true_or, ite_true]
     rw [zpow_add_one₀ (u_pos ϖ).ne', mul_comm, mul_left_inj' (u_pos ϖ).ne']
 
 theorem trace (h : IsUnif ϖ) (hi : i₀ ≠ i₁) (a : Fin n) (p : ℤ) (β γ γ' : Fin d → ℤ) (h1 : ∀ y, y ≠ i₁ → γ' y = γ y)
@@ -527,15 +532,16 @@ theorem locTwo_of (H : LocSupp) : LocTwo := by
   refine Set.indicator_eq_indicator (forall₂_congr fun a b => ?_) rfl
   rw [torus, Matrix.mul_diagonal, ← le_zero_iff (ϖ := ϖ)]
   by_cases h0 : b = i₀
-  · simp only [if_pos h0, Finset.mem_univ, if_true]
+  · simp only [ite_eq_left h0, Finset.mem_univ, ite_true]
     rw [← le_mul_iff (e := -(m : ℤ)) (val_zpow m), neg_add_cancel, zpow_natCast]
   · by_cases h1 : b = i₁
-    · simp only [if_neg h0, bs, if_pos h1]
+    · simp only [ite_eq_right h0, bs, ite_eq_left h1]
       rw [← le_mul_iff (e := (m : ℤ)) (val_zpow (-m)), add_neg_cancel, zpow_neg, zpow_natCast]
     · simp [h0, h1, bs]
 
 end PositivityTheory.ThKEnd.Cusp
 
+end
 
 -- clump-header: {"m": "Development.WeilBound.ThetaLifts.EigenvalueEndgame.CuspidalAverages.LeSuccIff", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.RankEqCardIffExistsFrameMatrixFirstColumnBlock\nimport Development.AbelianVarietyTheory.Definitions.Foundations.SecondCountableAndT2LocalField\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
 -- clump-header: {"m": "Development.WeilBound.ThetaLifts.EigenvalueEndgame.CuspidalAverages.ColOpSingle", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.EigenvalueEndgame.CuspidalAverages.LeSuccIff\npublic import Development.WeilBound.ThetaLifts.EigenvalueEndgame.CuspidalAverages.KeyThree\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}

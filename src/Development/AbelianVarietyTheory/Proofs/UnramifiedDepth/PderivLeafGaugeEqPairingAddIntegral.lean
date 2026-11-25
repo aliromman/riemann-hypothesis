@@ -80,10 +80,11 @@ theorem subst_eq_of_coeff_eq_of_killed :
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PderivLeafGaugeEqPairingAddIntegral
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PderivLeafGaugeEqPairingAddIntegral
 
 open Formalism.L2.FormalSeriesBounds Formalism.IncomingBounds GlobalTheory.MainTerm Classical
 
+noncomputable section
 
 namespace GlobalTheory.GaugeDeriv
 
@@ -181,7 +182,7 @@ theorem hPullW_toLeaf (G : ∀ g, Cart V d (I g) (J g)) (g : Fin 2) (a a' : ZMod
   · intro μ hμ
     rw [show MvPowerSeries.coeff μ (toLeaf G g a a' F) = toLeaf G g a a' F μ from rfl]
     unfold toLeaf
-    exact if_pos hμ
+    exact ite_eq_left hμ
 
 theorem odd_val_sub {d : ℕ} [NeZero d] (a : ZMod d) {i : ℕ} (hi : Odd i) (hid : i < d) :
     Odd (a + (i : ZMod d) - a).val := by

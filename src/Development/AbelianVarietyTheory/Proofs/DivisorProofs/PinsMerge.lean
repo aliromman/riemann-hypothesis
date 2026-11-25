@@ -257,10 +257,11 @@ theorem isThClsD_ddBC_iff : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
 end GlobalTheory.ClassSumFieldChange
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoeffRoots
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoeffRoots
 
 set_option synthInstance.maxHeartbeats 200000
 
+noncomputable section
 
 namespace GlobalTheory.OneMapAll
 
@@ -421,11 +422,12 @@ theorem thAdIs_thAdOf (hV : R.models_HV) {J' : Subgroup (Bridge.Gf (Vc D i))} (h
   intro y x hy
   have hx : ∃ y, Place R i t h c0' y x := ⟨y, hy⟩
   have e := place_unique R i t h c0' hV hJ hr hx.choose_spec hy
-  exact (dif_pos hx).trans (congrArg (fun y => onQ (Wc D i) (R.thF i t y v₀)) e)
+  exact (dite_eq_left hx).trans (congrArg (fun y => onQ (Wc D i) (R.thF i t y v₀)) e)
 
 end Forms
 
 end GlobalTheory.OneMapAll
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PinsMerge

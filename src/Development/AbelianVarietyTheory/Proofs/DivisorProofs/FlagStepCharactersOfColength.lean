@@ -55,8 +55,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChartCharacterIsLogarithm, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlagStepCharactersOfColength
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChartCharacterIsLogarithm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChartCharacterIsLogarithm
 
+noncomputable section
 
 namespace GlobalTheory.CharLogOfChar
 
@@ -113,8 +114,8 @@ theorem pderiv_of_mul (g : MvPowerSeries (Fin d) C)
   have hZ : HasSubst Z := hasSubst_of_constantCoeff_zero fun s => by cases s <;> simp [Z]
   have hd := congrArg (fun f => subst Z (pderiv (Sum.inr i) f)) h
   simp only [Derivation.leibniz, pderiv_subst hS, pderiv_subst hL, pderiv_subst hR, map_add (f := _), pderiv_X,
-    Pi.single_apply, reduceCtorEq, if_false, Sum.inr.injEq, zero_add, mul_ite, mul_one, mul_zero,
-    Finset.sum_ite_eq', Finset.mem_univ, if_true, Finset.sum_const_zero, add_zero,
+    Pi.single_apply, reduceCtorEq, ite_false, Sum.inr.injEq, zero_add, mul_ite, mul_one, mul_zero,
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true, Finset.sum_const_zero, add_zero,
     smul_eq_mul] at hd
   rw [subst_mul hZ, subst_comp_subst_apply hS hZ, subst_comp_subst_apply hL hZ,
     subst_comp_subst_apply hR hZ] at hd
@@ -156,7 +157,7 @@ theorem coeff_single_expOf (G : LogFGL v d) (a i : Fin d) :
   classical
   have h := congrArg (coeff (Finsupp.single i 1)) ((expOf_twoSided_unique C v d G).2.1 a)
   rw [coeff_single_subst G.lg_const] at h
-  simp only [G.lg_lin, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true] at h
+  simp only [G.lg_lin, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true] at h
   rw [h, ← cc_pderiv, pderiv_X, Pi.single_apply]
   split_ifs <;> simp
 
@@ -293,6 +294,7 @@ theorem isCharLog_dl : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
       GlobalTheory.LawLog.subst_oneVar _ GlobalTheory.LawLog.cc_twoVars _ (hp _ 1), ← MvPowerSeries.subst_mul GlobalTheory.LawLog.hs_twoVars, hm']
 
 end GlobalTheory.CharLogOfChar
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlagStepCharactersOfColength

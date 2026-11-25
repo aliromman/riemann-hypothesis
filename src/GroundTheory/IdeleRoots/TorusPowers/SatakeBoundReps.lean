@@ -8,10 +8,11 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.IdeleRoots.TorusPowers.SatakeBoundGroup, GroundTheory.IdeleRoots.TorusPowers.SatakeBoundReps
 
-@[expose] public noncomputable section -- clump member: GroundTheory.IdeleRoots.TorusPowers.SatakeBoundGroup
+@[expose] public section -- clump member: GroundTheory.IdeleRoots.TorusPowers.SatakeBoundGroup
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.BlockD
 
@@ -36,24 +37,6 @@ theorem lamS_comp_of_mem_iff {N : ℕ} {A B : Finset (Fin N)} {σ : Equiv.Perm (
   funext x
   simp only [Function.comp_apply, lamS, hσ]
 
-section Values
-
-variable {n : ℕ} {ω : GL (Fin n) F → ℂ}
-  (hR : ∀ g, ∀ k ∈ integralGL F n, ω (g * k) = ω g)
-  (hL : ∀ g, ∀ k ∈ integralGL F n, ω (k * g) = ω g)
-include hR hL
-
-end Values
-
-section ValuesCons
-
-variable {N : ℕ} {ω : GL (Fin (N + 1)) F → ℂ}
-  (hR : ∀ g, ∀ k ∈ integralGL F (N + 1), ω (g * k) = ω g)
-  (hL : ∀ g, ∀ k ∈ integralGL F (N + 1), ω (k * g) = ω g)
-include hR hL
-
-end ValuesCons
-
 variable {n : ℕ} [MeasurableSpace (GL (Fin n) F)] [BorelSpace (GL (Fin n) F)]
 
 
@@ -61,21 +44,17 @@ end SatakeBound
 
 end GroundTheory.BlockD
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.IdeleRoots.TorusPowers.SatakeBoundReps
+@[expose] public section -- clump member: GroundTheory.IdeleRoots.TorusPowers.SatakeBoundReps
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.BlockD
 
 namespace SatakeBound
-
-section Group
-
-variable {G : Type} [Group G] {K : Subgroup G} {α : G} {R : Finset G}
-
-end Group
 
 open GroundTheory.Automorphic GroundTheory.Automorphic.Spherical GLnLocal Iwasawa Finset Matrix
 open scoped ValuativeRel

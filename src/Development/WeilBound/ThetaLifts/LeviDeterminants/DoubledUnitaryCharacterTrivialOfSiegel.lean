@@ -16,15 +16,15 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledUnitaryChara
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CmAlgebraSplitInvolution, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.HermitianDarbouxSplitProduct, Development.WeilBound.ThetaLifts.LeviDeterminants.DoubledUnitaryCharacterTrivialOfSiegel
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CmAlgebraSplitInvolution
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CmAlgebraSplitInvolution
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
 open Formalism.IndefR.Mult IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.CompanionTheory.Ar.RT
 open scoped TensorProduct ComplexConjugate GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
 open Matrix
 open scoped NNReal
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.RT.ArchRing
 
@@ -34,6 +34,7 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 
 
 end GlobalTheory.CompanionTheory.Ar.RT.ArchRing
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.HermitianDarbouxSplitProduct

@@ -312,19 +312,16 @@ theorem asmH_of (hF : FarId) (hS : SmoothX) (hT : TopHol) (hR : RcCongr) (hE : E
 end PositivityTheory.Rg.Sw.HSt
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.DirSeries
 
+noncomputable section
 
 open MeasureTheory Matrix Set Filter Topology
 open scoped NNReal
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.DirSeries
-
 namespace PositivityTheory.Rg.Sw.HSt.FarP
 
 open PositivityTheory.Rg.Sw PositivityTheory.Rg.Sw.LVs PositivityTheory.Rg.Sw.AbsSt PositivityTheory.Rg.Sw.HSt
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {m n : ℕ} {e : ℤ} {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
   {Pp Γ : Subgroup G} {ι : GR n →* G} {s₀ : ℂ} {Ht : G → ℝ≥0} {f : G → ℂ} {U : Set ℂ} {d : Polynomial ℂ}
@@ -412,6 +409,13 @@ theorem dirSeries (hC : CurveGR) (hF : FzDer) (h : HD m n e G Pp Γ ι s₀ Ht f
 
 end PositivityTheory.Rg.Sw.HSt.FarP
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+
+open MeasureTheory Matrix Set Filter Topology
+open scoped NNReal
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.IsUnitOfInG
 
@@ -720,7 +724,14 @@ theorem topSeries (hS : SecFz) (h : HD m n e G Pp Γ ι s₀ Ht f U d Ê t) [Mea
 end PositivityTheory.Rg.Sw.HSt.FarP
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.FarIdOf
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.FarIdOf
+
+noncomputable section
+
+open MeasureTheory Matrix Set Filter Topology
+open scoped NNReal
 
 namespace PositivityTheory.Rg.Sw.HSt
 
@@ -734,7 +745,7 @@ theorem farId_of (hC : CurveGR) (hF : FzDer) : FarId := by
       deriv (fun (s : ℝ) => F (x * NormedSpace.exp ((s : ℂ) • if true = true then dir1 (lowQ Q) else dir2 (lowQ Q)))) 0 +
         Complex.I * deriv (fun (s : ℝ) => F (x * NormedSpace.exp ((s : ℂ) • if false = true then dir1 (lowQ Q) else dir2 (lowQ Q)))) 0 := by
     intro F x
-    simp only [rC, dir1, dir2, if_true]
+    simp only [rC, dir1, dir2, ite_true]
     rfl
   choose y₀ C hyC using fun q : GlobalTheory.Eis.Cosets Pp Γ => FarP.termSplit hS hD z (↑(Quotient.out q) * g)
   have d1 := FarP.dirSeries hC hF hD hz (lowQ Q) true g y y₀ C hyC
@@ -783,11 +794,11 @@ theorem farId_of (hC : CurveGR) (hF : FzDer) : FarId := by
 
 end PositivityTheory.Rg.Sw.HSt
 end -- clump:auto
+end -- clump:auto
 
-end -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.ReConjMulLe
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.ReConjMulLe
-
+noncomputable section
 
 open MeasureTheory Matrix Set Filter Topology
 open scoped ContDiff
@@ -796,8 +807,6 @@ namespace PositivityTheory.Rg.Sw.HSt.FL
 
 open PositivityTheory.Rg.Sw PositivityTheory.Rg.Sw.LVs PositivityTheory.Rg.Sw.AbsSt PositivityTheory.Rg.Sw.HSt
 open PositivityTheory.Rg.Sw.LVs.II (cE cE_hasDerivAt0 cE_add cE_zero cE_continuous mulL mulL_apply)
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
@@ -899,9 +908,11 @@ theorem fz_deriv {X x : M2 n} (hX : IsLie X) (hx : InG x) (m : ℕ) (e : ℤ) (w
 
 end PositivityTheory.Rg.Sw.HSt.FL
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.FzDer
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.FzDer
 
+noncomputable section
 
 open MeasureTheory Matrix Set Filter Topology
 open scoped ContDiff
@@ -910,8 +921,6 @@ namespace PositivityTheory.Rg.Sw.HSt
 
 open PositivityTheory.Rg.Sw PositivityTheory.Rg.Sw.LVs PositivityTheory.Rg.Sw.AbsSt PositivityTheory.Rg.Sw.HSt.FL
 open PositivityTheory.Rg.Sw.LVs.II (cE)
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem fzDer : FzDer := by
   intro n m e w Z b
@@ -946,6 +955,7 @@ theorem fzDer : FzDer := by
 
 end PositivityTheory.Rg.Sw.HSt
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.FarId
 
@@ -956,8 +966,9 @@ theorem farId : FarId := farId_of curveGR fzDer
 end PositivityTheory.Rg.Sw.HSt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.TopHolPf
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.TopHolPf
 
+noncomputable section
 
 open MeasureTheory Matrix Set Filter Topology
 open scoped NNReal
@@ -967,8 +978,6 @@ namespace PositivityTheory.Rg.Sw.HSt
 open PositivityTheory.Rg.Sw PositivityTheory.Rg.Sw.LVs PositivityTheory.SiegelWeilFormula PositivityTheory.Rg.Sw.AbsSt
 
 variable {n : ℕ}
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem lift_mR (φ : GR n → ℂ) (w : GR n) : lift φ (mR w) = φ w := by
   have h : IsUnit (mR w) ∧ InG (mR w) := ⟨⟨w.1, rfl⟩, w.2⟩
@@ -1173,6 +1182,7 @@ theorem rcCongr : RcCongr := by
   rw [e1, e2]
 
 end PositivityTheory.Rg.Sw.HSt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.AsmH

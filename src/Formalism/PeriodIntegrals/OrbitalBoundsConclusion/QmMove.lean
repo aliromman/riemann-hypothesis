@@ -143,10 +143,11 @@ theorem icomm {A : Type*} [Ring A] (z : ℤ) (x : A) : (z : A) * x = x * (z : A)
 end PI.UnitaryGroupMassFormula.QmMove
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CovariantVectorMove.SumPermsSignSquared
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CovariantVectorMove.SumPermsSignSquared
 
 open Finset Formalism.REAL
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.QmMove
 
@@ -218,7 +219,7 @@ theorem stepV (hy : ∀ a b c, E a b * y c - y c * E a b = if a = c then -y b el
       Fv E y a b w (p + 1) τ σ q = Fv E y a b w p τ σ q := by
     intro τ σ q h1 h2
     have e1 : ((q : ℕ) < p + 1) ↔ ((q : ℕ) < p) := by omega
-    simp only [Fv, if_neg h1, if_neg h2, e1]
+    simp only [Fv, ite_eq_right h1, ite_eq_right h2, e1]
   have htk : ∀ τ σ, (List.ofFn (Fv E y a b w p (τ * s) σ)).take p =
       (List.ofFn (Fv E y a b w p τ σ)).take p :=
     fun τ σ => take_ofFn_congr _ _ p (fun k hk => hoff τ σ k (by omega) (by omega))
@@ -248,8 +249,8 @@ theorem stepV (hy : ∀ a b c, E a b * y c - y c * E a b = if a = c then -y b el
       (fun k h1 h2 => (hoff2 τ σ k h1 h2).trans (hoff τ σ k h1 h2).symm), htk, hdr]
     congr 1
     congr 2
-    simp only [Fv, Equiv.Perm.mul_apply, hsp, hsp1, if_true, if_neg n1, if_pos n2, if_neg n3, n4,
-      if_neg n1.symm]
+    simp only [Fv, Equiv.Perm.mul_apply, hsp, hsp1, ite_true, ite_eq_right n1, ite_eq_left n2, ite_eq_right n3, n4,
+      ite_eq_right n1.symm]
     exact midV E y hy _ _ (by push_cast; ring) _ _ _
 
 theorem Pv_zero (τ : Equiv.Perm (Fin (m + 1))) :
@@ -263,7 +264,7 @@ theorem Pv_zero (τ : Equiv.Perm (Fin (m + 1))) :
       fun k : Fin m => Tm E (w - (k : ℂ)) (a (σ k)) (b (τ k.succ)) := by
     funext k
     simp only [Fv, Fin.val_succ]
-    rw [if_neg (by omega), if_neg (by omega), Nat.add_sub_cancel, extN_lt] <;> rfl
+    rw [ite_eq_right (by omega), ite_eq_right (by omega), Nat.add_sub_cancel, extN_lt] <;> rfl
   rw [hf, hg, ← mul_assoc, ← mul_assoc, icomm]
 
 theorem Pv_last (τ : Equiv.Perm (Fin (m + 1))) :
@@ -277,7 +278,7 @@ theorem Pv_last (τ : Equiv.Perm (Fin (m + 1))) :
       fun k : Fin m => Tm E (w - 1 - (k : ℂ)) (a (σ k)) (b (τ k.castSucc)) := by
     funext k
     simp only [Fv, Fin.val_castSucc]
-    rw [if_neg (by have := k.isLt; omega), if_pos k.isLt, extN_lt] <;> rfl
+    rw [ite_eq_right (by have := k.isLt; omega), ite_eq_left k.isLt, extN_lt] <;> rfl
   rw [hf, hg]
   exact (mul_assoc _ _ _).symm
 
@@ -333,6 +334,7 @@ theorem move_operator_vector : PI.MoveVec := by
     _ = _ := by rw [mul_assoc, ← h2, ← mul_assoc, hsq, one_mul]
 
 end PI.UnitaryGroupMassFormula.QmMove
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.QmMove

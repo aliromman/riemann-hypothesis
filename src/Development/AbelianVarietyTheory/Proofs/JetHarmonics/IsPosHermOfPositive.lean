@@ -68,8 +68,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Non
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.JetHarmonics.SumPosOfTensorPos, Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsPosHermOfPositive
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.SumPosOfTensorPos
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.SumPosOfTensorPos
 
+noncomputable section
 
 namespace GlobalTheory.PointStepCompare
 
@@ -220,7 +221,7 @@ theorem exists_traceDual : ∀ (E : Type) [Field E] [NumberField E], ∃ (N : �
       intro s
       have := h3 (ω.coord s) (α * ω s)
       simp only [Module.Basis.coord_apply, Module.Basis.repr_self, Finsupp.single_apply, ite_smul,
-        one_smul, zero_smul, Finset.sum_ite_eq', Finset.mem_univ, if_true] at this
+        one_smul, zero_smul, Finset.sum_ite_eq', Finset.mem_univ, ite_true] at this
       rw [← this, mul_comm (θ s), mul_assoc]
 
     rw [mul_sub, map_sub, Finset.mul_sum, map_sum, mul_comm α (_ : 𝓞 E), ← nsmul_eq_mul, map_nsmul,
@@ -228,6 +229,7 @@ theorem exists_traceDual : ∀ (E : Type) [Field E] [NumberField E], ∃ (N : �
     simp only [h4, Matrix.trace, Matrix.diag, Algebra.leftMulMatrix_eq_repr_mul, Finset.mul_sum, sub_self]
 
 end GlobalTheory.PointStepCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsPosHermOfPositive

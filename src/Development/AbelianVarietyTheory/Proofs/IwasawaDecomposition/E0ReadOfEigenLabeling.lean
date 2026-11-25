@@ -51,18 +51,14 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FunKilled
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.UnitaryRealisationReadingOfIdempotentActsViaLeve, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.E0ReadOfEigenLabeling
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.UnitaryRealisationReadingOfIdempotentActsViaLeve
+section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.UnitaryRealisationReadingOfIdempotentActsViaLeve
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.NRows.Model
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N GlobalTheory.RowCopy
-
-section Read
-variable {D : D7} {cf : Formalism.L2.Host.CharFrame D} {nch : NChoice D} {tp : Formalism.L2.Host.TupTied D cf nch}
-  (X : GlobalTheory.NJoin.RealAt D cf nch tp)
-
-end Read
 
 theorem unitaryRealisationReading_of_idempotent_acts_via_levelGroup {D : D7} {cf : Formalism.L2.Host.CharFrame D} {nch : NChoice D} {tp : Formalism.L2.Host.TupTied D cf nch}
     (X : GlobalTheory.NJoin.RealAt D cf nch tp)
@@ -89,6 +85,8 @@ theorem unitaryRealisationReading_of_idempotent_acts_via_levelGroup {D : D7} {cf
 
 end GlobalTheory.NRows.Model
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.E0ReadOfEigenLabeling

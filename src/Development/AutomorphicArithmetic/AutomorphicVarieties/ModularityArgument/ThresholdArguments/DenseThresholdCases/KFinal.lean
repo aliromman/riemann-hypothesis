@@ -93,8 +93,9 @@ import Aesop.Main
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.MeanLatticeCounts.CountableLatS, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddSpanRank.RankSpanLe, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.TensorPrimeModuli.SBStarOf, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddSpanRank.SBStarOddOf, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddWeightCycles.AevApply, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddWeightCycles.Weights, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddWeightCycles.SWtOddOf, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PrincipalPrimes.ExistsPrincipal, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PrincipalPrimes.SPrimeOf, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PermutationSigns.SInvOf, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.SInv, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.IteratedHeckeBounds.LemBound, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.IteratedHeckeBounds.LemLz, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.IteratedHeckeBounds.LemForm, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.SurjectivityCase.SSurjOf, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.FinalOdd, Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.TorsionIntegers.Bridge, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.KFinal
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.MeanLatticeCounts.CountableLatS
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.MeanLatticeCounts.CountableLatS
 
+noncomputable section
 
 open NumberField Matrix MeasureTheory UpperTheory.V.KT UpperTheory.V.KL
 open scoped Pointwise
@@ -292,7 +293,7 @@ theorem sMean_of : SMean := by
   have hωb : ∀ z : Gp L N, ωb (actL z (one L N).1) = M.compContinuousLinearMap (actL z⁻¹) := by
     intro z
     have hx : ∃ x : Gp L N, actL x (one L N).1 = actL z (one L N).1 := ⟨z, rfl⟩
-    simp only [ωb, dif_pos hx]
+    simp only [ωb, dite_eq_left hx]
     have hy : actL hx.choose (one L N).1 = actL z (one L N).1 := hx.choose_spec
     generalize hx.choose = y at hy ⊢
     have hs1 : actL (y⁻¹ * z) (one L N).1 = (one L N).1 := by
@@ -316,6 +317,7 @@ theorem sMean_of : SMean := by
     simp [actL_one]
 
 end PositivityTheory.KB
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddSpanRank.RankSpanLe
@@ -521,8 +523,10 @@ end PositivityTheory.KB
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddWeightCycles.AevApply
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddWeightCycles.AevApply
+@[expose] public section
 
+noncomputable section
 
 open NumberField Matrix MeasureTheory UpperTheory.V.KT UpperTheory.V.KL
 
@@ -647,7 +651,7 @@ theorem swtOdd (hE : SEv) (hS : SStokes) (hF : FFT) (hG : AGood) (hWP : WPad) (h
           if ncyc x.1 = 1 then c x * Aev N x z else 0 := by
         intro x
         by_cases h : ncyc x.1 = 1
-        · simp only [h, true_and, if_true, ite_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ]
+        · simp only [h, true_and, ite_true, ite_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ]
           rw [Aev_comb hS hG hWI _ _ _ _ (hrw x h) z]
           ring
         · simp [h]
@@ -673,10 +677,14 @@ theorem swtOdd (hE : SEv) (hS : SStokes) (hF : FFT) (hG : AGood) (hWP : WPad) (h
 
 end PositivityTheory.KB.BlockEvaluationBounds
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddWeightCycles.Weights
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddWeightCycles.Weights
+@[expose] public section
 
+noncomputable section
 
 open NumberField Matrix MeasureTheory UpperTheory.V.KT UpperTheory.V.KL
 
@@ -691,7 +699,7 @@ variable {L : Type} [Field L] [NumberField L]
 theorem tmC_relabel {N q : ℕ} (ρ c : Equiv.Perm (Fin q)) (w0 : InfinitePlace L) (Y : Fin q → HS L N) :
     tmC (c⁻¹ * ρ * c) (fun _ => w0) Y = tmC ρ (fun _ => w0) (Y ∘ ⇑c⁻¹) := by
   unfold tmC
-  rw [if_pos (fun _ => rfl), if_pos (fun _ => rfl)]
+  rw [ite_eq_left (fun _ => rfl), ite_eq_left (fun _ => rfl)]
   simp only [ContinuousMultilinearMap.sum_apply, ContinuousMultilinearMap.compContinuousLinearMap_apply,
     ContinuousMultilinearMap.mkPiAlgebra_apply, LinearMap.coe_toContinuousLinearMap', Function.comp_apply]
   refine Fintype.sum_equiv (Equiv.arrowCongr c (Equiv.refl _)) _ _ (fun a => ?_)
@@ -701,7 +709,7 @@ theorem tmC_relabel {N q : ℕ} (ρ c : Equiv.Perm (Fin q)) (w0 : InfinitePlace 
 theorem tmC_inv_star {N q : ℕ} (ρ : Equiv.Perm (Fin q)) (w0 : InfinitePlace L) (Y : Fin q → HS L N) :
     tmC ρ⁻¹ (fun _ => w0) Y = star (tmC ρ (fun _ => w0) Y) := by
   unfold tmC
-  rw [if_pos (fun _ => rfl), if_pos (fun _ => rfl)]
+  rw [ite_eq_left (fun _ => rfl), ite_eq_left (fun _ => rfl)]
   simp only [ContinuousMultilinearMap.sum_apply, ContinuousMultilinearMap.compContinuousLinearMap_apply,
     ContinuousMultilinearMap.mkPiAlgebra_apply, LinearMap.coe_toContinuousLinearMap', star_sum, star_prod]
   refine Fintype.sum_equiv (Equiv.arrowCongr ρ (Equiv.refl _)) _ _ (fun b => ?_)
@@ -866,13 +874,15 @@ theorem wOneOdd : WOneOdd := by
     rw [zero_smul]
     have h0 : tmR (N := N) σ w ε = 0 := by
       ext v
-      simp only [tmR, tmC, if_neg hw, ContinuousLinearMap.compContinuousMultilinearMap_coe, Function.comp_apply,
+      simp only [tmR, tmC, ite_eq_right hw, ContinuousLinearMap.compContinuousMultilinearMap_coe, Function.comp_apply,
         ContinuousMultilinearMap.zero_apply, map_zero]
     simp only [AT]
     rw [h0, map_zero]
 
 end PositivityTheory.KB.BlockEvaluationBounds
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddWeightCycles.SWtOddOf

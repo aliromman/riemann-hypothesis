@@ -1045,8 +1045,9 @@ theorem modulus_all_extensions : PI.LevelKSplit.W.CD.ModVAll :=
 end PI.LevelKSplit.W.MVA
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelSplitting.NCAsmV
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelSplitting.NCAsmV
 
+noncomputable section
 
 namespace PI.LevelKSplit.W.NCA
 
@@ -1169,7 +1170,7 @@ theorem h_e_pXv (H : D.Hyp) (b : Fin r) (v : n → A) : D.h (D.e b) (D.pXv v) = 
 
   rw [← Dat.hL_apply, Dat.pXv, LinearMap.sum_apply, map_sum]
   simp only [LinearMap.smulRight_apply, map_smul, smul_eq_mul, Dat.hL_apply, H.ef, mul_ite, mul_one,
-    mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    mul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
 theorem h_f_pX (H : D.Hyp) (b : Fin r) (v : n → A) : D.h (D.f b) (D.pX v) = D.h (D.f b) v := by
   have hfe : ∀ a, D.h (D.f b) (D.e a) = if b = a then 1 else 0 := by
@@ -1177,11 +1178,11 @@ theorem h_f_pX (H : D.Hyp) (b : Fin r) (v : n → A) : D.h (D.f b) (D.pX v) = D.
     rw [Dat.h_symm H (D.e a) (D.f b), H.ef]
     by_cases hab : a = b
     · subst hab; simp
-    · rw [if_neg hab, if_neg (Ne.symm hab), map_zero]
+    · rw [ite_eq_right hab, ite_eq_right (Ne.symm hab), map_zero]
 
   rw [← Dat.hL_apply, Dat.pX, LinearMap.sum_apply, map_sum]
   simp only [LinearMap.smulRight_apply, map_smul, smul_eq_mul, Dat.hL_apply, hfe, mul_ite, mul_one,
-    mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    mul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
 theorem h_f_pXv (H : D.Hyp) (b : Fin r) (v : n → A) : D.h (D.f b) (D.pXv v) = 0 := by
 
@@ -1316,6 +1317,7 @@ theorem wp_map (hσσ : ∀ x, σ (σ x) = x) (hJ : IsHermND σ J) (hP : P.IsStd
 end Af
 
 end PI.LevelKSplit.W.NCA
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SemidirectVolume.SubgroupLocallyCompactHolds

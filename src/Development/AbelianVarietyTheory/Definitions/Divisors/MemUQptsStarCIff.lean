@@ -7,8 +7,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIntMulIntegral, Development.AbelianVarietyTheory.Definitions.Divisors.MemUQptsStarCIff
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIntMulIntegral
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIntMulIntegral
 
+noncomputable section
 
 open NumberField Matrix Polynomial
 
@@ -27,19 +28,8 @@ theorem Datum.EF_swap (x y : D.La) : D.EF y x = - D.EF x y := by
 
 def Datum.Kq : Subfield D.F := (IntermediateField.adjoin ℚ {(D.ω : D.F)}).toSubfield
 
-section Places
-
-variable {F : Type} [Field F] [NumberField F] (Kq : Subfield F) (u : Kq →+* ℚ_[p])
-
-end Places
-
-section Examples
-
-variable {p : ℕ} [Fact p.Prime] (D : Datum p)
-
-end Examples
-
 end GlobalTheory.UPel.HT
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.MemUQptsStarCIff

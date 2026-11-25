@@ -242,11 +242,12 @@ theorem measure_eq_of_moments : ∀ (q : ℕ) [Fact q.Prime] (κ : Type) [Fintyp
 end GlobalTheory.MomN
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MomentMeasureNormLeOneIffLatticeIntegral
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MomentMeasureNormLeOneIffLatticeIntegral
 
 open GlobalTheory.MomN Formalism.L2.Ker.JMB
 open scoped ComplexConjugate
 
+noncomputable section
 namespace GlobalTheory.MomN.Bridge
 
 variable {g : ℕ}
@@ -454,7 +455,7 @@ theorem norm_le_one_iff_latInt : ∀ (q : ℕ) [Fact q.Prime] (ι : ℂ ≃+* �
       · simp [GlobalTheory.MomOne.zc]
     · intro i
       rw [Finset.sum_eq_single i (fun j _ hj => by simp [Ne.symm hj]) (by simp)]
-      simp only [if_true]
+      simp only [ite_true]
       rw [smul_smul, div_eq_mul_inv, mul_comm]
 
 end GlobalTheory.MomN

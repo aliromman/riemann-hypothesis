@@ -14,12 +14,10 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.PairedSquareJets.ConstantCoeffCMulSqSum, Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.GramFrameComposition.GramFrameCompositionMvExpFact
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.PairedSquareJets.ConstantCoeffCMulSqSum
 
 open scoped BigOperators
 open Finset
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.PairedSquareJets.ConstantCoeffCMulSqSum
 
 namespace Formalism.L2.Th1.G
 
@@ -58,7 +56,11 @@ open PairedSquareConstantCoefficients
 end Formalism.L2.Th1.G
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.GramFrameComposition.GramFrameCompositionMvExpFact
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.GramFrameComposition.GramFrameCompositionMvExpFact
+
+noncomputable section
+open scoped BigOperators
+open Finset
 
 namespace Formalism.L2.Th1.GD
 
@@ -172,7 +174,7 @@ theorem pair_row {H : Type} [Fintype H] [DecidableEq H] {N0 N1 : ℕ} (u : H →
     simp
   · rintro ⟨a', ⟨⟨b', h'⟩, p'⟩⟩ _ hne
     obtain ⟨a, ⟨⟨b, h⟩, p⟩⟩ := x
-    rw [if_neg]
+    rw [ite_eq_right]
     · simp
     rintro ⟨rfl, rfl, rfl, hb⟩
     apply hne

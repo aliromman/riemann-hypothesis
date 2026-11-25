@@ -25,7 +25,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.IntegralModelFacts
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace PositivityTheory.Xgn.IntegralModelFacts
 

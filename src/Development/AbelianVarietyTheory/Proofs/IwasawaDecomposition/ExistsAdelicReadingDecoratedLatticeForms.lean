@@ -76,8 +76,9 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Form
 open scoped TensorProduct InnerProductSpace
 open Formalism.IndefR.RecTie Formalism.IndefR.Lev Formalism.L2.Rows GlobalTheory.Mem GlobalTheory.Mem.R3 GlobalTheory.Mem.Col2
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSmulPrIso
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSmulPrIso
 
+noncomputable section
 
 namespace GlobalTheory.PrIsoScale
 
@@ -135,7 +136,7 @@ theorem pSum_indep {ι κ : T → Type} [∀ τ, Fintype (ι τ)] [∀ τ, Finty
           simp only [Finset.mem_univ, true_implies]
           by_cases h : g = g'
           · subst h; simp
-          · rw [if_neg h, if_neg]
+          · rw [ite_eq_right h, ite_eq_right]
             intro h'
             exact h (funext fun τ => (h' τ).symm)
   simp_rw [hχ φ, hχ ψ]
@@ -152,7 +153,7 @@ theorem pSum_indep {ι κ : T → Type} [∀ τ, Fintype (ι τ)] [∀ τ, Finty
         ring
     _ = ∑ g, starRingEnd ℂ (φ (t' g)) * ψ (t' g) := by
         refine Finset.sum_congr rfl fun g _ => ?_
-        simp only [horth, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+        simp only [horth, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
 end Alg
 
@@ -335,6 +336,7 @@ theorem exists_smul_prIso (D : D7) (θ : InfFam D) (MX : DSModel D.sp.X' (parB (
   rw [e3, hcc, hμr, ← mul_assoc, ← Complex.ofReal_mul, inv_mul_cancel₀ hr0.ne', Complex.ofReal_one, one_mul]
 
 end GlobalTheory.PrIsoScale
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAdelicReadingDecoratedLatticeForms

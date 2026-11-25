@@ -13,6 +13,7 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FinGLMemOfPo
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroup
 import ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.AntitoneOfMemInterl
+import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.PTranslAd
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousCoordinate, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousOfRightInvariant, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CountIsInvInvariant, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsConjEqSign, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsEigenbasis, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsScalarOfCentral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HaarSplit, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsCompactOfBounded, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsRegEllIffMemEll, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemRatCentTwConj, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NontrivialFiniteAdeles, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormaliserUnconj, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OrbitPreimageEq, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableGL, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableUnits, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwConjugateEquivalence, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.GlobalCharacterOfHolds, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.PTermOf, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.PWeylAt, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.GlobalCharacterOfFiniteInputs
@@ -243,8 +244,10 @@ theorem qIndep : PositivityTheory.Rg.BcB.G8.QIndep := by
 end GlobalTheory.CompanionTheory.QuotNorm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsConjEqSign
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsConjEqSign
+@[expose] public section
 
+noncomputable section
 
 open NumberField Matrix
 open GlobalTheory.CuspRep GlobalTheory.BCT
@@ -258,12 +261,12 @@ theorem phi_transpose (n : ℕ) (R : Type) [CommRing R] :
   simp only [Matrix.transpose_apply, Matrix.smul_apply, GlobalTheory.Tw.Phi, Matrix.of_apply, smul_eq_mul]
   by_cases h : (i : ℕ) + j + 1 = n
   · have h' : (j : ℕ) + i + 1 = n := by omega
-    rw [if_pos h, if_pos h', ← pow_add]
+    rw [ite_eq_left h, ite_eq_left h', ← pow_add]
     have e : n + 1 + (i : ℕ) = j + 2 * ((i : ℕ) + 1) := by omega
     rw [e, pow_add, pow_mul]
     simp
   · have h' : ¬ (j : ℕ) + i + 1 = n := by omega
-    rw [if_neg h, if_neg h']
+    rw [ite_eq_right h, ite_eq_right h']
     simp
 
 theorem phi_map (n : ℕ) {R : Type} [CommRing R] (c : R →+* R) : (GlobalTheory.Tw.Phi n R).map c = GlobalTheory.Tw.Phi n R := by
@@ -356,6 +359,8 @@ theorem translEx : TranslEx := by
     rw [this, one_smul]
 
 end GlobalTheory.CompanionTheory.LocalThetaTranslation
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsEigenbasis
@@ -526,8 +531,10 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsScalarOfCentral
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsScalarOfCentral
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host
@@ -561,51 +568,12 @@ theorem Phi_map {R S : Type} [CommRing R] [CommRing S] (f : R →+* S) (n : ℕ)
   split_ifs <;> simp
 
 theorem translAd : TranslAd := by
-  intro E _ _ _ n u hu g
-
-  have hz : ∀ h : GL (Fin n) E, ((PhiU n E)⁻¹ * u) * h = h * ((PhiU n E)⁻¹ * u) := by
-    intro h
-    have hinv : thetaE E n (thetaE E n h) = h :=
-      thetaR_thetaR (conjE E) (fun x => IsCMField.complexConj_apply_apply E x) n h
-    have h1 := hu.1 (thetaE E n h)
-    rw [hinv] at h1
-    have h2 : thE E n (thetaE E n h) = PhiU n E * h * (PhiU n E)⁻¹ := by
-      have := thetaGL_eq n E (IsCMField.complexConj E).toRingEquiv.toRingHom (thetaE E n h)
-      rw [show thetaR (IsCMField.complexConj E).toRingEquiv.toRingHom n (thetaE E n h) = h from hinv] at this
-      exact this
-    rw [h2] at h1
-    have h3 : h * (PhiU n E)⁻¹ * u = (PhiU n E)⁻¹ * u * h := by
-      have h4 : PhiU n E * h * (PhiU n E)⁻¹ * u = u * h := by rw [h1]; group
-      calc h * (PhiU n E)⁻¹ * u = (PhiU n E)⁻¹ * (PhiU n E * h * (PhiU n E)⁻¹ * u) := by group
-        _ = (PhiU n E)⁻¹ * u * h := by rw [h4]; group
-    rw [← h3, mul_assoc h]
-  obtain ⟨c, hc⟩ := exists_scalar_of_central _ hz
-
-  set w : GA E n := ratGL E n ((PhiU n E)⁻¹ * u) with hw
-  have hwc : ∀ t : GA E n, w * t = t * w := by
-    intro t
-    apply Units.ext
-    have hval : w.val = Matrix.scalar (Fin n) (algebraMap E (Ad E) c) := by
-      have : w.val = (((PhiU n E)⁻¹ * u : GL (Fin n) E).val).map (algebraMap E (Ad E)) := rfl
-      rw [this, hc]
-      ext i j
-      by_cases hij : i = j <;> simp [Matrix.scalar_apply, hij]
-    rw [Units.val_mul, Units.val_mul, hval]
-    exact Matrix.scalar_commute _ (fun r' => Commute.all _ _) _
-  have hP : ratGL E n (PhiU n E) = PhiU n (Ad E) := by
-    apply Units.ext
-    rw [phiU_val, ← Phi_map (algebraMap E (Ad E)) n, ← phiU_val]
-    rfl
-  have hr : ratGL E n u = PhiU n (Ad E) * w := by
-    rw [hw, map_mul, map_inv, hP, mul_inv_cancel_left]
-  rw [thetaGL_eq, hr]
-  have h5 : w * thetaA E n g * w⁻¹ = thetaA E n g := by rw [hwc]; group
-  calc PhiU n (Ad E) * thetaR (conjAd E) n g * (PhiU n (Ad E))⁻¹
-      = PhiU n (Ad E) * (w * thetaA E n g * w⁻¹) * (PhiU n (Ad E))⁻¹ := by rw [h5]
-    _ = PhiU n (Ad E) * w * thetaA E n g * (PhiU n (Ad E) * w)⁻¹ := by group
+  exact @_root_.PositivityTheory.Rg.BcB.G8.translAd_holds
 
 end GlobalTheory.CompanionTheory.TranslAdele
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HaarSplit
@@ -1179,8 +1147,10 @@ theorem ellProperOf : EllProperOf := by
 end GlobalTheory.CompanionTheory.EllProp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableGL
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableGL
+@[expose] public section
 
+noncomputable section
 
 open Matrix MeasureTheory Polynomial
 open PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.G8 PositivityTheory.Rg.Tf.Loc
@@ -1199,10 +1169,7 @@ theorem tw_eq (x d : GL (Fin n) ℂ) : PositivityTheory.RgTw.tw x d = twConj (θ
   simp only [PositivityTheory.RgTw.tw, twConj, h]
 
 theorem theta_theta (g : GL (Fin n) ℂ) : θ n (θ n g) = g := by
-  apply Units.ext
-  show (((g.val.map (starRingEnd ℂ))ᵀ).map (starRingEnd ℂ))ᵀ = g.val
-  ext i j
-  simp
+  apply _root_.GlobalTheory.CompanionTheory.DiagProperProof.th_th <;> assumption
 
 theorem twConj_twConj (g x d : GL (Fin n) ℂ) :
     twConj (θ n) x (twConj (θ n) g d) = twConj (θ n) (g * x) d := by
@@ -1291,6 +1258,8 @@ theorem GlobalTheory.CompanionTheory.LefPair.lefPairOf : LefPairOf := by
       lefOne_eval hD hW ν₁ l₁ v₁ f₁ h₁ d₁ e₁, lefOne_eval hD hW ν₂ l₂ v₂ f₂ h₂ d₂ e₂]
     ring
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableUnits
@@ -1441,15 +1410,15 @@ end GlobalTheory.CompanionTheory.ClassBij
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.GlobalCharacterOfHolds
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Polynomial Filter
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host
 open GlobalTheory.BCT
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.GlobalCharacterOfHolds
 
 namespace PositivityTheory.Rg.BcB.G8
 
@@ -1482,18 +1451,26 @@ theorem global_character_of_holds : GlobalCharacterOfInputs := by
     rw [hg₁, hg₂, hO E a b μ₁ μ₂ _ _ g₁ _ g₂ (hA E hU a b S u₁ u₂ hu₁ hu₂ ψ φ₁ φ₂ hψ hφ₁ hφ₂ _ _)]
   rw [finsum_eq_if]
   by_cases h : pol x₁ ∈ Ell E a ∧ pol x₂ ∈ Ell E b
-  · rw [if_pos (hiff.2 h), if_pos h, horb]
+  · rw [ite_eq_left (hiff.2 h), ite_eq_left h, horb]
     have ht := hc S hS u₁ u₂ hu₁ hu₂ l₁ l₂ val ψ φ₁ φ₂ hL hφ₁ hφ₂ (x₁.rep * u₁) (x₂.rep * u₂)
       (hr₁.1 (hiff.2 h).1) (hr₂.1 (hiff.2 h).2)
     simp only [mul_inv_cancel_right] at ht
     exact ht
-  · rw [if_neg (mt hiff.1 h), if_neg h, mul_zero]
+  · rw [ite_eq_right (mt hiff.1 h), ite_eq_right h, mul_zero]
 
 end PositivityTheory.Rg.BcB.G8
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.PTermOf
+
+
+open NumberField IsDedekindDomain Matrix MeasureTheory Polynomial Filter
+open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host
+open GlobalTheory.BCT
+open scoped Classical
 
 namespace PositivityTheory.Rg.BcB.G8
 
@@ -1630,8 +1607,6 @@ theorem termOf_holds : TermOf := by
 end PositivityTheory.Rg.BcB.G8
 
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.PWeylAt
 

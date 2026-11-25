@@ -245,8 +245,9 @@ section -- clump: shared namespace opens
 open Finset Classical
 
 section -- clump member: Formalism.WachLatticeTwists.RamifiedBlockRings.RamifiedBlockProofs.ExistsSigma
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.RepresentationBoundsCohomology.ringDataObjects
 
@@ -331,7 +332,7 @@ theorem exists_sigma (hj : Function.Injective (algebraMap O O')) (hX : DistinctE
     let α' : ℕ → O := fun i => if h : i < t then b i h else 0
     have hα' : ∀ i, i < t → algebraMap O O' (α' i) = (D'.rr i : D'.X' → O') y' := by
       intro i hi
-      simp only [α', dif_pos hi]
+      simp only [α', dite_eq_left hi]
       exact hb i hi
     have hPinj : Function.Injective
         (Polynomial.map ((algebraMap O' (FractionRing O')).comp (algebraMap O O'))) :=
@@ -422,6 +423,7 @@ theorem bcR'_mem (hD : RingDef O T r π χ₁ ε g₀ eB e₁ s D)
 end
 
 end Formalism.RepresentationBoundsCohomology.ringDataObjects
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

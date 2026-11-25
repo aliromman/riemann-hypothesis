@@ -31,18 +31,13 @@ theorem linkEtaTw_of_plain {eps : ℝ} (Fm : Formalism.MainNotions.FamP eps) (hP
 end Formalism.L2
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverStdL
+@[expose] public section -- clump member: Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverStdL
 
+noncomputable section
 
 open NumberField IsDedekindDomain ReciprocityTheory.Aut Formalism.BasicNotions
 
 namespace Formalism.L2
-
-section Rfl
-
-variable {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ} {W : Type} [AddCommGroup W] [Module ℂ W]
-
-end Rfl
 
 theorem heckeStdPlain_of_statement (h : ReciprocityTheory.ChartRestriction.L3H.HeckeStdStatement) : HeckeStdPlain := by
   intro L _ _ _ n a J χ B hJo hB s ϖ k hs hu hk1 hk2
@@ -55,6 +50,7 @@ theorem linkEtaTw_of_statement {eps : ℝ} (Fm : Formalism.MainNotions.FamP eps)
   linkEtaTw_of_plain Fm (heckeStdPlain_of_statement h) hfam
 
 end Formalism.L2
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverMain

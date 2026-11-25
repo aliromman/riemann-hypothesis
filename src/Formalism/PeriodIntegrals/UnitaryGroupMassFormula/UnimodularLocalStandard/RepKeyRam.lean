@@ -47,8 +47,9 @@ end Helpers
 end PI.UnitaryGroupMassFormula.UnimodLocStd
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepPrimPair
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepPrimPair
 
+noncomputable section
 open scoped ComplexConjugate
 
 namespace PI.UnitaryGroupMassFormula.UnimodLocStd
@@ -160,7 +161,7 @@ theorem rep_prim_pair (a : ℕ) (b c : ℤ) (d : ℕ) (ha : 0 < a) (hd : 0 < d) 
     have : ((l : ℂ)⁻¹ • xt) ∈ dualLat (stdH L m) Λ := hall
     rw [hΛ] at this
     exact this
-  push_neg at hnd
+  push Not at hnd
   obtain ⟨yv, hyv, hyk⟩ := hnd
   have hxtd : xt ∈ dualLat (stdH L m) Λ := by rw [hΛ]; exact hxtΛ
   obtain ⟨c₂, hc₂⟩ := hxtd yv hyv
@@ -176,6 +177,7 @@ theorem rep_prim_pair (a : ℕ) (b c : ℤ) (d : ℕ) (ha : 0 < a) (hd : 0 < d) 
   field_simp
 
 end PI.UnitaryGroupMassFormula.UnimodLocStd
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepRepModl

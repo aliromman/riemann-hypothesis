@@ -339,10 +339,12 @@ theorem hessC_row_square : ∀ (d : ℕ) (f : (Fin (d + 1) → ℂ) → ℝ) (α
 end GlobalTheory.CompanionTheory.Ar.PB.FibN
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.MixedDiscriminantLinearFunctional
+section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.MixedDiscriminantLinearFunctional
+@[expose] public section
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.FibN.MdiscPoly
 
+noncomputable section
 
 lemma exists_perm_of_sum_single {d : ℕ} {τ τ' : Fin d → Option (Fin 3)}
     (h : ∑ t, Finsupp.single (τ t) (1 : ℕ) = ∑ t, Finsupp.single (τ' t) (1 : ℕ)) :
@@ -386,7 +388,7 @@ theorem exists_functional : ∀ (d : ℕ) (T : Fin 3 → Matrix (Fin d) (Fin d) 
       (d.factorial : ℂ) * Λ (fun t => M (h.choose t)) else 0, fun τ => ?_⟩
     have h : ∃ τ' : Fin d → Option (Fin 3),
         ∑ t, Finsupp.single (τ' t) (1 : ℕ) = ∑ t, Finsupp.single (τ t) (1 : ℕ) := ⟨τ, rfl⟩
-    simp only [dif_pos h]
+    simp only [dite_eq_left h]
     obtain ⟨π, hπ⟩ := exists_perm_of_sum_single h.choose_spec
     have e : (fun t => M (h.choose t)) = (fun t => M (τ t)) ∘ π :=
       funext fun t => by simp only [Function.comp_apply, hπ]
@@ -420,8 +422,10 @@ theorem exists_functional : ∀ (d : ℕ) (T : Fin 3 → Matrix (Fin d) (Fin d) 
   simp only [RingHom.id_apply]
   ring
 
+end
 
 end GlobalTheory.CompanionTheory.Ar.PB.FibN.MdiscPoly
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.MixedDiscriminantOneRowExpansion
@@ -600,10 +604,10 @@ theorem prod_fin_ite_lt {R : Type*} [CommMonoid R] (a b : R) (m N : ℕ) (h : m 
   rw [Fin.prod_univ_eq_prod_range (fun i => if i < m then a else b) (m + j),
     Finset.prod_range_add]
   have h1 : (∏ x ∈ Finset.range m, (if x < m then a else b)) = a ^ m := by
-    rw [Finset.prod_congr rfl (fun x hx => if_pos (Finset.mem_range.mp hx))]
+    rw [Finset.prod_congr rfl (fun x hx => ite_eq_left (Finset.mem_range.mp hx))]
     simp
   have h2 : (∏ x ∈ Finset.range j, (if m + x < m then a else b)) = b ^ j := by
-    rw [Finset.prod_congr rfl (fun x _ => if_neg (by omega))]
+    rw [Finset.prod_congr rfl (fun x _ => ite_eq_right (by omega))]
     simp
   rw [h1, h2, Nat.add_sub_cancel_left]
 
@@ -1366,11 +1370,12 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.xi_potential_hessian_decomposi
   all_goals ring
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.LogSineMongeAmpereNormalized
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.LogSineMongeAmpereNormalized
 open ReciprocityTheory.ChartRestriction.G.AI GroundTheory.Heights₂.Heights.Inter
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.FibN
 
+noncomputable section
 
 theorem densW (d k i : ℕ) (hi : i < k) (hkd : 2 * k ≤ d + 2) (T : Fin 3 → Matrix (Fin d) (Fin d) ℂ)
     (H : Matrix (Fin d) (Fin d) ℂ) (L : MvPolynomial (Option (Fin 3)) ℝ →ₗ[ℝ] ℂ)
@@ -1494,7 +1499,7 @@ theorem fibre_integral_normal : GroundTheory.Heights₂.Heights.Inter.FibreLocal
           simp only [DiagonalFibreFubini.wordCoef]
           split_ifs <;> rfl
         by_cases hr : (r : ℕ) < 2 * k
-        · simp only [hr, if_true, hcoef, hf, Fin.cons_zero]
+        · simp only [hr, ite_true, hcoef, hf, Fin.cons_zero]
           simp
         · simp [hr]
     simp_rw [hpt]
@@ -1532,6 +1537,7 @@ theorem fibre_integral_normal : GroundTheory.Heights₂.Heights.Inter.FibreLocal
     _ = _ := by
         rw [← hp]; ring
 
+end
 
 end GlobalTheory.CompanionTheory.Ar.PB.FibN
 

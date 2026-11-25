@@ -576,8 +576,9 @@ theorem smooth_locSub_closure : ∀ {Ω K : Type} [Field Ω] [Field K] [Algebra 
 end GlobalTheory.CompanionTheory.Ar.FlagBun.Sm.Cell
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LuDecompositionOfMinors
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LuDecompositionOfMinors
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.FlagBun.Sm.Cell
 
@@ -607,15 +608,15 @@ theorem exists_lu_of_leading_minors {F : Type} [Field F] {r : ℕ} (Y : Matrix (
       (fun _ _ => Finset.mem_univ _) (fun j _ hj => ?_) (fun b _ => ?_)
     · have hjk : ¬ (j : ℕ) < (k : ℕ) + 1 := fun hlt =>
         hj ⟨⟨j, hlt⟩, by simp, by ext; simp⟩
-      simp only [C, dif_neg hjk, mul_zero]
+      simp only [C, dite_eq_right hjk, mul_zero]
     · have hb : ((Fin.castLE k.2 b : Fin r) : ℕ) < (k : ℕ) + 1 := b.2
-      simp only [C, dif_pos hb]
+      simp only [C, dite_eq_left hb]
       rfl
   refine ⟨C, Y * C, fun l k hkl => ?_, fun l k hlk => ?_, fun l => ?_, rfl⟩
   · have hn : ¬ (l : ℕ) < (k : ℕ) + 1 := by
       have : (k : ℕ) < l := hkl
       omega
-    simp only [C, dif_neg hn]
+    simp only [C, dite_eq_right hn]
   · have hlt : (l : ℕ) < (k : ℕ) + 1 := by
       have : (l : ℕ) < k := hlk
       omega
@@ -634,6 +635,7 @@ theorem exists_lu_of_leading_minors {F : Type} [Field F] {r : ℕ} (Y : Matrix (
     exact h1
 
 end GlobalTheory.CompanionTheory.Ar.FlagBun.Sm.Cell
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.NormalizedMinorExtends

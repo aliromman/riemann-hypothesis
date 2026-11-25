@@ -36,9 +36,9 @@ theorem _root_.GlobalTheory.T.hodge_lattice_dvr_degree : ∀ (E : Type) [Field E
   first | exact @GlobalTheory.CompanionTheory.Ar.Flat.germ_degZero
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.EigenLinePAdicBound
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.EigenLinePAdicBound
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CptHodge
 

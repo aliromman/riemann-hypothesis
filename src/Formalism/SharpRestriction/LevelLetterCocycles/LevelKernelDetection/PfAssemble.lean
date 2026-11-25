@@ -495,8 +495,9 @@ theorem locReg_holds {T : LocLat G Qp LL O} {C : Coord W (baseIdOf hR) T} {c : Z
 end Formalism.MainNotions.N.Ln03.Pf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfLvDelta
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfLvDelta
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln03.Pf
 
@@ -512,12 +513,7 @@ theorem grdB_zero' (τ : Ks ≃ₐ[LL] Ks) (a : LLˣ) : grdB τ a 0 = 0 := by
   simp
 
 theorem grdB_one' (τ : Ks ≃ₐ[LL] Ks) (a : LLˣ) : grdB τ a 1 = 1 := by
-  ext n
-  show algebraMap LL Ks ((a ^ n : LLˣ) : LL) * τ ((1 : HahnSeries ℤ Ks).coeff n) = (1 : HahnSeries ℤ Ks).coeff n
-  by_cases h : n = 0
-  · subst h
-    simp
-  · simp [HahnSeries.coeff_one, h]
+  apply _root_.Formalism.MainNotions.N.Ln03.Pf.Pf_LvEquiv_grdB_one <;> assumption
 
 theorem grdB_mul' (τ : Ks ≃ₐ[LL] Ks) (a : LLˣ) (x y : HahnSeries ℤ Ks) :
     grdB τ a (x * y) = grdB τ a x * grdB τ a y := by
@@ -621,6 +617,7 @@ theorem loclInv_holds (hR : Ring9 W) (uZ : ℤ_[PD.p]ˣ) (ιZ : ℤ_[PD.p] →+*
   rw [graded_semilinear_holds, hΔ s j (y k), SlopeTestRemainingChoices.grd_cst]
 
 end Formalism.MainNotions.N.Ln03.Pf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfLvGam
@@ -963,8 +960,9 @@ theorem mapHyp_holds (hR : Ring9 W) (uZ : ℤ_[PD.p]ˣ) (ιZ : ℤ_[PD.p] →+* 
 end Formalism.MainNotions.N.Ln03.Pf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfMapLoc
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfMapLoc
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln03.Pf
 
@@ -981,16 +979,7 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     {Lb : LevB W} {hR : Ring9 W} {uZ : ℤ_[PD.p]ˣ} {ιZ : ℤ_[PD.p] →+* O}
 
 theorem Pf_MapLoc_ιV_inj (T : LocLat G Qp LL O) : Function.Injective (ιV PD (LL := LL) (V := T.V)) := by
-  have h : ∀ y, ιV PD (LL := LL) (V := T.V) y =
-      ((PD.ι.toLinearMap.restrictScalars Qp).lTensor T.V) y := fun y => by
-    induction y using TensorProduct.induction_on with
-    | zero => simp
-    | tmul x b => simp [ιV]
-    | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
-  have hi : Function.Injective (PD.ι.toLinearMap.restrictScalars Qp) := PD.ι_inj
-  intro a b hab
-  rw [h, h] at hab
-  exact Module.Flat.lTensor_preserves_injective_linearMap _ hi hab
+  apply _root_.Formalism.MainNotions.N.Ln03.Pf.Pf_LvExp_ιV_inj <;> assumption
 
 theorem Pf_MapLoc_ιV_map {T₁ T₂ : LocLat G Qp LL O} (F : LatHom T₁.L T₂.L) (y : T₁.V ⊗[Qp] B) :
     AlgebraTensorModule.map F.f (LinearMap.id : BdR →ₗ[Qp] BdR) (ιV PD (LL := LL) (V := T₁.V) y) =
@@ -1121,9 +1110,11 @@ end ThetaShiftProofs
 
 end Formalism.MainNotions.N.Ln03.Pf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfMapLocL
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfMapLocL
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln03.Pf
 
@@ -1255,17 +1246,7 @@ theorem mapLocL_lamOf_coe {T : LocLat G Qp LL O} (C : Coord W (baseIdOf hR) T) (
     {r : ℕ} (e : Fin r → C.V) (k : Fin r) (hk : C.t (c - (ell : ZMod n)) (e k) ∈ W.N T) :
     ((lamOf C c ell e k : Dc W T c) : T.V ⊗[Qp] B) =
       ((φVB PD (LL := LL) (V := T.V)) ^ ell) (W.cmp T ⟨C.t (c - (ell : ZMod n)) (e k), hk⟩) := by
-  have h1 : W.cmp T ⟨C.t (c - (ell : ZMod n)) (e k), hk⟩ ∈ DcrisL PD T.ρ (W.emb (c - (ell : ZMod n))) := by
-    have h0 := W.cmp_letter T (c - (ell : ZMod n)) ⟨_, hk⟩
-    have hx : ((letE (c - (ell : ZMod n)) : LetA O n) • (⟨C.t (c - (ell : ZMod n)) (e k), hk⟩ : ↥(W.N T))) =
-        ⟨C.t (c - (ell : ZMod n)) (e k), hk⟩ := Subtype.ext (C.t_letter _ _)
-    rwa [hx] at h0
-  have h' : ((φVB PD (LL := LL) (V := T.V)) ^ ell) (W.cmp T ⟨C.t (c - (ell : ZMod n)) (e k), hk⟩) ∈
-      DcrisL PD T.ρ (W.emb c) := by
-    have h2 := Formalism.MainNotions.UnusedSlot80.ArcF.φVB_pow_letter W T (c - (ell : ZMod n)) h1 ell
-    rwa [sub_add_cancel] at h2
-  unfold lamOf
-  rw [dite_eq_left hk, dite_eq_left h']
+  apply _root_.Formalism.MainNotions.N.Ln03.Pf.lambda_coe_eq_frobenius_pow <;> assumption
 
 end Helpers
 
@@ -1355,6 +1336,7 @@ theorem prLIs_holds (hC : CoordHom C₁ C₂ F) {r₁ r₂ : ℕ}
 end ThetaShiftProofs
 
 end Formalism.MainNotions.N.Ln03.Pf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfAssemble

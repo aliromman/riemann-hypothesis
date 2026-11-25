@@ -188,12 +188,13 @@ theorem _root_.GlobalTheory.T.blkF_properStep_injective_blockDiag :
       (genU Ω (rk Ψ p q) (.inr τ)) (genU Ω (rk Ψ p q) (.inl τ))
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptBaseChangeCompatible
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptBaseChangeCompatible
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.PB GlobalTheory.CompanionTheory.Ar.PB.FMX GlobalTheory.CompanionTheory.Ar.FlagBun
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.HcptFlat
 
 theorem pull_eq {X X' : Scheme.{0}} {Ω Ω' : Type} [Field Ω] [Field Ω'] {ξ : Sp Ω ⟶ X} (ξ' : Sp Ω' ⟶ X') (f : X' ⟶ X)
@@ -467,7 +468,7 @@ theorem flat_dual (hφ : φ.Flat) (hφi : ∀ a, (φ a : Ω') = i a) (hj : IsExt
         exact Submodule.subset_span ⟨_, hm, rfl⟩)
       rw [hev] at h2
       simp only [LinearMap.smul_apply, hBb, smul_eq_mul, mul_ite, mul_zero, apply_ite i, map_zero,
-        Finset.sum_ite_eq', Finset.mem_univ, if_true] at h2
+        Finset.sum_ite_eq', Finset.mem_univ, ite_true] at h2
       rw [_root_.mul_one, map_natCast] at h2
       rw [mul_comm]
       exact h2
@@ -885,6 +886,7 @@ theorem hodgeCpt_pull_smooth : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
 
 end GlobalTheory.CompanionTheory.Ar.HcptFlat
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.DetT
 
@@ -909,13 +911,13 @@ theorem UpperTheory.Reformulated.B.Ygb2.main :
   ring
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptFrameChangeDeterminant
+
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory NumberField Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.PB GlobalTheory.CompanionTheory.Ar.PB.FMX GlobalTheory.CompanionTheory.Ar.FlagBun
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptFrameChangeDeterminant
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.FMX.Graph
 
@@ -1083,18 +1085,18 @@ theorem exists_blkF_of_not_full (K₀ : Type) (t : StepIx Ψ p q) (ht : (t.2 : �
     refine ⟨(τ, ⟨j, by omega⟩), ?_⟩
     have hP : IsProperStep (p + q) p (⟨j, by omega⟩ : Fin (p + q)) := ⟨ht, by simp only; omega⟩
     unfold blkF
-    rw [if_pos hP]
+    rw [ite_eq_left hP]
     unfold stepOf
-    simp only [dif_pos hj]
+    simp only [dite_eq_left hj]
   · simp only [Sum.elim_inr] at ht hj
     refine ⟨(τ, ⟨p + j, by omega⟩), ?_⟩
     have hP : IsProperStep (p + q) p (⟨p + j, by omega⟩ : Fin (p + q)) :=
       ⟨by simp only; omega, by simp only; omega⟩
     unfold blkF
-    rw [if_pos hP]
+    rw [ite_eq_left hP]
     unfold stepOf
     have hn : ¬ (p + (j : ℕ) < p) := by omega
-    simp only [dif_neg hn]
+    simp only [dite_eq_right hn]
     congr 2
     exact congrArg (fun z => (⟨.inr τ, z⟩ : StepIx Ψ p q)) (Fin.ext (by simp))
 
@@ -1176,6 +1178,13 @@ theorem coordTie_base : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
 
 end GlobalTheory.CompanionTheory.Ar.PB.FMX.Graph
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open AlgebraicGeometry CategoryTheory NumberField Matrix
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.PB GlobalTheory.CompanionTheory.Ar.PB.FMX GlobalTheory.CompanionTheory.Ar.FlagBun
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.HodgeCptFrameDegreeFormula
 

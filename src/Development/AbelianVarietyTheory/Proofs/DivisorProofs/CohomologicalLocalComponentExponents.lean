@@ -69,11 +69,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugateSymplecticCharacterExists, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CohomologicalLocalComponentExponents
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugateSymplecticCharacterExists
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugateSymplecticCharacterExists
 
 open scoped TensorProduct
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.CuspRep
 
+noncomputable section
 
 namespace GlobalTheory.HalfCsd
 
@@ -119,7 +120,7 @@ theorem eta_infDiag {F E : Type} [Field F] [NumberField F] [Field E] [NumberFiel
     ← InfinitePlace.embedding_of_isReal_apply hw, Complex.ofReal_re]
   split_ifs with h
   · rw [GlobalTheory.HilbertRecip.hs_eq_neg_one_iff.2 ?_]
-    · exact Units.ext (congrArg (fun z : Circle => (z : ℂ)) (if_neg (by decide) :
+    · exact Units.ext (congrArg (fun z : Circle => (z : ℂ)) (ite_eq_right (by decide) :
         (if (-1 : ℤˣ) = 1 then (1 : Circle) else -1) = -1))
     · rintro ⟨x, y, hxy⟩
       have h4 := hneg w
@@ -311,7 +312,7 @@ theorem expo_half (H : HChar E) (hH : (CG.ofChar H).IsCsd)
     · rw [h, ComplexEmbedding.conjugate_coe_eq, RingHom.comp_apply, ha, Complex.conj_ofReal, Complex.ofReal_re]
   have h2 : H.inf (upF _ a) = -1 := by
     rw [hs, ← (IsCMField.equivInfinitePlace E).prod_comp, Finset.prod_eq_single (InfinitePlace.mk τ)
-      (fun w _ hw => by rw [etaInf, hre, if_neg (h1 w hw).le.not_gt]) (by simp), etaInf, hre, if_pos h0]
+      (fun w _ hw => by rw [etaInf, hre, ite_eq_right (h1 w hw).le.not_gt]) (by simp), etaInf, hre, ite_eq_left h0]
   let r : Cinf E := fun w => (Real.log |ρ w| : ℝ)
   have hr : dchi H r = 0 := by
     have h := ((CG.thetaInv_one_iff H).1 ((CG.isCsd_ofChar H).1 hH)).2 r
@@ -354,9 +355,11 @@ theorem exists_unitary_csd_half : ∀ (E : Type) [Field E] [NumberField E] [IsCM
 
 end GlobalTheory.HalfCsd
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CohomologicalLocalComponentExponents
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CohomologicalLocalComponentExponents
 
+noncomputable section
 
 namespace GlobalTheory.TempSat
 
@@ -467,14 +470,14 @@ theorem map_eq_zero_of_equivariant (e : (Σ a, m a) ≃ n) {ρ : Representation 
       · simp [a, b, Ne.symm a, Ne.symm b]
   have hc₀ : c (parInd e ρ g₀ v) = 1 := by
     have a1 : RowMax L j₀ g₀ := fun j => by
-      rw [hg₁, hg₁ j₀, if_pos (Or.inr rfl)]
+      rw [hg₁, hg₁ j₀, ite_eq_left (Or.inr rfl)]
       split_ifs <;> simp
     have a2 : ¬ RowMax L j₀ (g₀ * s) := fun h => by
       have := h L
-      rw [hs, hs, hg₁, hg₁, if_pos (Or.inl rfl), if_pos (Or.inr rfl), Pi.mulSingle_eq_of_ne hne.symm,
+      rw [hs, hs, hg₁, hg₁, ite_eq_left (Or.inl rfl), ite_eq_left (Or.inr rfl), Pi.mulSingle_eq_of_ne hne.symm,
         Pi.mulSingle_eq_same] at this
       exact hϖ1.not_ge (by simpa using this)
-    simp only [c, parInd_apply, one_mul, hv, hK g₀ hg₀, a1, a2, not_false_eq_true, and_self, if_true, if_neg ht]
+    simp only [c, parInd_apply, one_mul, hv, hK g₀ hg₀, a1, a2, not_false_eq_true, and_self, ite_true, ite_eq_right ht]
   have hN : 0 < ∑ u ∈ S, c u :=
     Finset.sum_pos' (fun _ _ => Nat.zero_le _) ⟨_, (hS _).2 ⟨g₀, hg₀, rfl⟩, by rw [hc₀]; exact one_pos⟩
   have hF2 : ∑ u ∈ S, u = ((∑ u ∈ S, c u : ℕ) : ℂ) • f₀ := by

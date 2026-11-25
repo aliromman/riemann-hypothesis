@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ResidueEqZeroIff
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LatAtLattice
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsConjReferenceChartIndex
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteChart
@@ -82,8 +83,9 @@ theorem _root_.GlobalTheory.T.exists_conj_referenceChartIndex : ∀ {B : Base} {
   first | exact @GlobalTheory.Mem.Col2.TC.ChTw.Match.IdxMatch.idx_match
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsReferenceClassMatchingCouplingCoset
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsReferenceClassMatchingCouplingCoset
 
+noncomputable section
 
 namespace GlobalTheory.Mem.Col2.TC.ChTw.Match
 
@@ -141,7 +143,7 @@ theorem coset_match : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → �
         (extTo (QE I.sel (I.tup I.mu0 : Chr B.fields.F B.fields.E B.fields.K)) r.1.1).deco.1.N := by
       rw [ysAt_ys_of_eq _ _ _ hl]
       refine ⟨y, (mem_locLat _ _ _ _).2 fun P => ?_, rfl⟩
-      rw [if_pos (hGs P), _root_.zpow_neg_one, inv_inv]
+      rw [ite_eq_left (hGs P), _root_.zpow_neg_one, inv_inv]
       exact hy P.1 (hGs P)
     let q0 : PtAt B.R I.sel (I.tup I.mu0) (I.cst I.mu0) u i := ⟨(extTo _ r.1.1, Y0), hY0⟩
     have hbar : MemChart.bar q0 = MemChart.bar r := by
@@ -216,6 +218,7 @@ theorem coset_match : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → �
 
 end GlobalTheory.Mem.Col2.TC.ChTw.Match
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsReferenceClassMatchingCouplingCosetStatement
 
@@ -229,9 +232,10 @@ theorem _root_.GlobalTheory.T.exists_reference_class_matching_coupling_coset : �
   first | exact @GlobalTheory.Mem.Col2.TC.ChTw.Match.coset_match
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUnitaryAdelicLiftTypePrimeReductions
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUnitaryAdelicLiftTypePrimeReductions
 open scoped TensorProduct
 
+noncomputable section
 
 namespace GlobalTheory.Mem.Col2.TC.ChTw.Match.UnitaryLift
 
@@ -266,7 +270,7 @@ omit [StarRing E] in
 theorem frOf_apply {n : ℕ} {M : Matrix (Fin n) (Fin n) (𝓞 E)} (h : IsUnit (matE M).det) (v : Sp E n) :
     frOf M v = matE M *ᵥ v := by
   classical
-  rw [frOf, dif_pos h]
+  rw [frOf, dite_eq_left h]
   rfl
 
 omit [StarRing E] in
@@ -319,7 +323,7 @@ theorem exists_lift (hc : CMData F E) (n : ℕ) (Q : Finset (HeightOneSpectrum (
   let M : HeightOneSpectrum (𝓞 E) → Matrix (Fin n) (Fin n) (𝓞 E) := fun P =>
     if h : P ∈ Q then (x ⟨P, h⟩ : Matrix (Fin n) (Fin n) (𝓞 E ⧸ P.asIdeal)).map (lift P) else 1
   have hM : ∀ (P : Q) r j, M P.1 r j = lift P.1 ((x P).1 r j) := fun P r j => by
-    simp only [M, dif_pos P.2]
+    simp only [M, dite_eq_left P.2]
     rfl
   have hdet : ∀ P ∈ Q, (M P).det ∉ P.asIdeal := by
     intro P hP hmem
@@ -472,13 +476,15 @@ theorem exists_unitary_lift : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.
 
 end GlobalTheory.Mem.Col2.TC.ChTw.Match
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUnitaryAdelicLiftTypePrimeReductionsStatement
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalConditionsConjUnitaryKeepsStdLattice
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalConditionsConjUnitaryKeepsStdLattice
 
+noncomputable section
 namespace GlobalTheory.Mem.Col2.TC.ChTw.Match
 
 section Res
@@ -493,34 +499,11 @@ theorem hasRes_val_le {P : HeightOneSpectrum (𝓞 E)} {a : P.adicCompletion E} 
 
 theorem hasRes_add {P : HeightOneSpectrum (𝓞 E)} {a b : P.adicCompletion E} {c d : 𝓞 E ⧸ P.asIdeal}
     (ha : HasRes P a c) (hb : HasRes P b d) : HasRes P (a + b) (c + d) := by
-  obtain ⟨r, rfl, hr⟩ := ha
-  obtain ⟨s, rfl, hs⟩ := hb
-  refine ⟨r + s, map_add _ _ _, ?_⟩
-  have e : a + b - algebraMap E (P.adicCompletion E) (algebraMap (𝓞 E) E (r + s)) =
-      (a - algebraMap E (P.adicCompletion E) (algebraMap (𝓞 E) E r)) +
-        (b - algebraMap E (P.adicCompletion E) (algebraMap (𝓞 E) E s)) := by
-    rw [map_add (f := _), map_add (f := _)]; ring
-  rw [e]
-  exact (Valuation.map_add _ _ _).trans_lt (max_lt hr hs)
+  first | exact _root_.GlobalTheory.Mem.Col2.LevRead.hasRes_add | exact @_root_.GlobalTheory.Mem.Col2.LevRead.hasRes_add | apply _root_.GlobalTheory.Mem.Col2.LevRead.hasRes_add <;> assumption
 
 theorem hasRes_mul {P : HeightOneSpectrum (𝓞 E)} {a b : P.adicCompletion E} {c d : 𝓞 E ⧸ P.asIdeal}
     (ha : HasRes P a c) (hb : HasRes P b d) : HasRes P (a * b) (c * d) := by
-  have hb1 := hasRes_val_le hb
-  obtain ⟨r, rfl, hr⟩ := ha
-  obtain ⟨s, rfl, hs⟩ := hb
-  refine ⟨r * s, map_mul _ _ _, ?_⟩
-
-  have e : a * b - algebraMap E (P.adicCompletion E) (algebraMap (𝓞 E) E (r * s)) =
-      (a - algebraMap E (P.adicCompletion E) (algebraMap (𝓞 E) E r)) * b +
-        algebraMap E (P.adicCompletion E) (algebraMap (𝓞 E) E r) *
-          (b - algebraMap E (P.adicCompletion E) (algebraMap (𝓞 E) E s)) := by
-    rw [map_mul, map_mul]; ring
-  rw [e]
-  refine (Valuation.map_add _ _ _).trans_lt (max_lt ?_ ?_)
-  · rw [Valuation.map_mul]
-    exact (mul_le_of_le_one_right' hb1).trans_lt hr
-  · rw [Valuation.map_mul]
-    exact (mul_le_of_le_one_left' (GlobalTheory.Mem.Dil.val_le_one P r)).trans_lt hs
+  first | exact _root_.GlobalTheory.Mem.Col2.LevRead.hasRes_mul | exact @_root_.GlobalTheory.Mem.Col2.LevRead.hasRes_mul | apply _root_.GlobalTheory.Mem.Col2.LevRead.hasRes_mul <;> assumption
 
 theorem hasRes_zero (P : HeightOneSpectrum (𝓞 E)) : HasRes P (0 : P.adicCompletion E) 0 := ⟨0, map_zero _, by simp⟩
 
@@ -742,6 +725,7 @@ end GlobalTheory.Mem.Col2.TC.ChTw.Match
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalConditionsConjUnitaryKeepsStdLatticeStatement
 
@@ -765,8 +749,9 @@ theorem _root_.GlobalTheory.T.localMove_classRep_iff_localConditions : ∀ {B : 
   exact @GlobalTheory.Mem.Col2.TC.ChTw.Match.locMv_iff
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TwistLocalConditionConjIffFrameChangeTrivial
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TwistLocalConditionConjIffFrameChangeTrivial
 
+noncomputable section
 namespace GlobalTheory.Mem.Col2.TC.ChTw.Match
 
 variable {B : Base} {X : PreX B.toPre}
@@ -817,8 +802,8 @@ theorem locCQ_conj_iff_eq_one : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), 
       rw [MonoidHom.map_mul, MonoidHom.map_mul, MonoidHom.map_inv, htv, hsv, inv_one, one_mul, one_mul]
     have entry := bc_prV_entry w _ hm r j
     split_ifs with hrj
-    · exact GlobalTheory.Mem.Col2.FullDt.adAt_eq_one_of_prV P.1 (by rw [hvw, entry, if_pos hrj])
-    · exact GlobalTheory.Mem.Col2.TilX.adAt_eq_zero_of_prV P.1 _ (by rw [hvw, entry, if_neg hrj])
+    · exact GlobalTheory.Mem.Col2.FullDt.adAt_eq_one_of_prV P.1 (by rw [hvw, entry, ite_eq_left hrj])
+    · exact GlobalTheory.Mem.Col2.TilX.adAt_eq_zero_of_prV P.1 _ (by rw [hvw, entry, ite_eq_right hrj])
   constructor
   · intro hL
     funext P
@@ -842,6 +827,7 @@ theorem locCQ_conj_iff_eq_one : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), 
     simp [Pi.single_apply]
 
 end GlobalTheory.Mem.Col2.TC.ChTw.Match
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TwistLocalConditionConjIffFrameChangeTrivialStatement

@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.TransportedWeylLatticeHermitianDuality
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.Skeleton
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.ModLatticeAbsoluteValue
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.PositiveWeightHolds
@@ -46,8 +47,9 @@ import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.ScalRelRepFree
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.LatticeSubOrthogonalHolds, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.BetaModXOfIota, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.BetaModX, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaIndependence.YliftLeOrth, Formalism.PeriodIntegrals.ExplicitFormulaCounts.BetaIndep, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.DCRelEquiv, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MirabolicBound.CardNonzero, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MirabolicBound.CharSumOne, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MirabolicBound.RowExists, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MirabolicBound.MirabolicBound, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.ScalarPairDr, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WhittakerFunctionalDual.StableOfIrreducible, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnipotentCardinality.UniMatUpper, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ScalarConvolutionTrace.ConvScalarOfLitOf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ScalarConvolutionTrace.IntertwinerRankLeOne, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ScalarConvolutionTrace.RepresentationDimensionPos, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.GGConvScalar, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.GGGenRatio, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MatrixCoefficientBound.GgMatrixBoundOfLitOf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MatrixCoefficientBound.JointEigenvectorExists, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MatrixCoefficientBound.GammaMatrixInverse, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MatrixCoefficientBound.MatrixCoefficientEquation, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MatrixCoefficientBound.ProdFormula, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MatrixCoefficientBound.SpectrumPositiveSemidefinite, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.GGMatBound, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.TermCarrierStable, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedVolumeStatements.GenericRatioOfBoundHolds
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.LatticeSubOrthogonalHolds
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.LatticeSubOrthogonalHolds
 
+noncomputable section
 
 open scoped Classical
 
@@ -80,26 +82,7 @@ theorem mem_localization_of_smul_mem' (p : Ideal (𝓞 E)) [p.IsPrime] (L : Subm
 
 theorem mem_of_locP (N : Submodule (𝓞 E) V) (x : V)
     (h : ∀ P : HeightOneSpectrum (𝓞 E), x ∈ (haveI := P.isPrime; Formalism.HermitianLatticesTheory.localization₂ P.asIdeal N)) : x ∈ N := by
-
-  let I : Ideal (𝓞 E) := Submodule.comap (LinearMap.toSpanSingleton (𝓞 E) V x) N
-  have hmem : ∀ r : 𝓞 E, r ∈ I ↔ r • x ∈ N := fun r => by
-    show (LinearMap.toSpanSingleton (𝓞 E) V x) r ∈ N ↔ r • x ∈ N
-    rw [LinearMap.toSpanSingleton_apply]
-  by_contra hx
-  have hIt : I ≠ ⊤ := by
-    intro hI
-    apply hx
-    have h1 : (1 : 𝓞 E) ∈ I := by rw [hI]; exact Submodule.mem_top
-    have h2 := (hmem 1).1 h1
-    rwa [one_smul] at h2
-  obtain ⟨M, hM, hIM⟩ := Ideal.exists_le_maximal I hIt
-  have hMb : M ≠ ⊥ := by
-    intro hb
-    rw [hb] at hM
-    exact NumberField.RingOfIntegers.not_isField E (Ring.isField_iff_maximal_bot.mpr hM)
-  obtain ⟨s, hs, hsx⟩ : ∃ s ∈ M.primeCompl, s • x ∈ N :=
-    h ⟨M, hM.isPrime, hMb⟩
-  exact hs (hIM ((hmem s).2 hsx))
+  apply _root_.GlobalTheory.TransDual.mem_of_forall_locP <;> assumption
 
 end Loc
 
@@ -182,6 +165,7 @@ theorem lattice_sub_orthogonal_holds : XLamSub := by
 end D7
 
 end PI.UnitaryGroupMassFormula.BetaModX
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.BetaModXOfIota
@@ -396,12 +380,14 @@ theorem stepOf : StepOf := by
 end PI.GGMirBoundW
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MirabolicBound.CharSumOne
+section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MirabolicBound.CharSumOne
+@[expose] public section
 
 namespace PI.GGMirBoundW
 
 open Finset Matrix
 
+noncomputable section
 
 open Classical
 
@@ -438,7 +424,7 @@ theorem charSum {F : Type} [Field F] [Fintype F] (ψ₀ : AddChar F ℂ) (hψ : 
   · obtain ⟨i, hi⟩ : ∃ i, ν i ≠ 0 := by
       by_contra! h
       exact hν (funext h)
-    exact Finset.prod_eq_zero (Finset.mem_univ i) (if_neg hi)
+    exact Finset.prod_eq_zero (Finset.mem_univ i) (ite_eq_right hi)
 
 theorem charOrth : CharOrth := by
   intro F _ _ m ψ₀ hψ r s
@@ -486,8 +472,10 @@ theorem sepLemma : SepLemma := by
   have key : ∑ j, g (s, j) • f (s, j) = 0 := (smul_eq_zero.mp h1).resolve_left hN
   exact (Fintype.linearIndependent_iff.mp (hind s)) (fun j => g (s, j)) key i
 
+end
 
 end PI.GGMirBoundW
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MirabolicBound.RowExists
@@ -713,10 +701,11 @@ theorem cardUni : CardUni := by
 end PI.GGCardUniWork
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ScalarConvolutionTrace.ConvScalarOfLitOf
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ScalarConvolutionTrace.ConvScalarOfLitOf
 
 open Finset
 
+noncomputable section
 
 open Classical
 
@@ -731,7 +720,7 @@ theorem convScalar_of (h1 : RepGamConj) (h2 : RepGamComm) (h3 : QIdem) (h4 : Gen
   have hu : IsUni k (1 : GL (Fin k) F) :=
     ⟨fun i => by simp, fun i j hij => by simp [Matrix.one_apply_ne (ne_of_gt hij)]⟩
   have hpsi1 : psiNat ψ₀ (1 : GL (Fin k) F) = 1 := by
-    simp only [psiNat, if_pos hu, psiU]
+    simp only [psiNat, ite_eq_left hu, psiU]
     have hs : superdiag k ((1 : GL (Fin k) F) : Matrix (Fin k) (Fin k) F) = 0 := by
       unfold superdiag
       refine Finset.sum_eq_zero fun i _ => Finset.sum_eq_zero fun j _ => ?_
@@ -788,11 +777,13 @@ theorem convScalarOfLit_of (h1 : RepGamConj) (h2 : RepGamComm) (h3 : QIdem) (h4 
 
 end PI.GGConvScalarW
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ScalarConvolutionTrace.IntertwinerRankLeOne
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ScalarConvolutionTrace.IntertwinerRankLeOne
 
 open Finset
 
+noncomputable section
 
 open Classical
 
@@ -817,10 +808,10 @@ theorem whit_sgn_projQ (ψ₀ : AddChar F ℂ) (π : Representation ℂ (GL (Fin
     intro x
     rw [pi_sgn_mul]
     by_cases hx : IsUni k x
-    · rw [hℓ _ (isUni_sgn_conj hx), ← mul_assoc, if_pos hx]
+    · rw [hℓ _ (isUni_sgn_conj hx), ← mul_assoc, ite_eq_left hx]
       unfold psiNat
-      rw [if_pos hx, mul_comm (psiU ψ₀ x), psiU_sgn_conj]
-    · unfold psiNat; rw [if_neg hx, if_neg hx, zero_mul, zero_mul]
+      rw [ite_eq_left hx, mul_comm (psiU ψ₀ x), psiU_sgn_conj]
+    · unfold psiNat; rw [ite_eq_right hx, ite_eq_right hx, zero_mul, zero_mul]
   unfold projQ
 
   simp only [LinearMap.smul_apply, LinearMap.sum_apply, map_smul, map_sum, smul_eq_mul]
@@ -874,11 +865,12 @@ theorem intertwiner_rank_le_one : RankLeOne := by
       rw [Submodule.mem_span_singleton]
       exact ⟨c, hc.symm⟩
     exact (Submodule.finrank_mono hle).trans (finrank_span_singleton hne).le
-  · push_neg at h
+  · push Not at h
     rw [(Submodule.eq_bot_iff _).2 h, finrank_bot]
     omega
 
 end PI.GGConvScalarW
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ScalarConvolutionTrace.RepresentationDimensionPos

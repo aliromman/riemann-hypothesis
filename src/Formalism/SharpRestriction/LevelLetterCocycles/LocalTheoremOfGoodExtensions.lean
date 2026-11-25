@@ -10,34 +10,14 @@ import Mathlib.Algebra.Order.Star.Real
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.LiftingTheoremOfExplicit, Formalism.PadicSubsetSums.StableGradedCounts.LiftingTheExponent, Formalism.SharpRestriction.LevelLetterCocycles.LocalTheoremOfGoodExtensions
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LiftingTheoremOfExplicit
+section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LiftingTheoremOfExplicit
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.ElementDenominator
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc Module
-
-section Orbit
-
-variable {G LL : Type} [Group G] [Field LL] (I : Subgroup G) [hI : I.Normal] (Fr : G)
-
-end Orbit
-
-section Iner
-
-variable {G : Type} [Group G] {Qp K₀ K K₀' K' : Type} [Field Qp] [Field K₀] [Field K]
-    [Field K₀'] [Field K']
-    [Algebra Qp K₀] [Algebra Qp K] [Algebra K₀ K] [IsScalarTower Qp K₀ K]
-    [Algebra Qp K₀'] [Algebra Qp K'] [Algebra K₀' K'] [IsScalarTower Qp K₀' K']
-    {B BdR : Type} [CommRing B] [CommRing BdR] [Algebra Qp B] [Algebra K₀ B] [IsScalarTower Qp K₀ B]
-    [Algebra K₀' B] [IsScalarTower Qp K₀' B]
-    [Algebra Qp BdR] [Algebra K₀ BdR] [Algebra K BdR] [IsScalarTower Qp K BdR]
-    [IsScalarTower K₀ K BdR] [IsScalarTower Qp K₀ BdR]
-    [Algebra K₀' BdR] [Algebra K' BdR] [IsScalarTower Qp K' BdR]
-    [IsScalarTower K₀' K' BdR] [IsScalarTower Qp K₀' BdR]
-    (PC : PotCrysData G Qp K₀ K K₀' K' B BdR)
-
-end Iner
 
 section PartII
 
@@ -157,6 +137,8 @@ end PartI
 
 end Formalism.MainNotions.ElementDenominator
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PadicSubsetSums.StableGradedCounts.LiftingTheExponent

@@ -11,12 +11,13 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoverRestrictionBaseChange, Development.WeilBound.CoreStatements.PadicHodgeComparison.GoodCoverEigenspaces.CubeCechEquivalences.CechCubeBaseChange.CechHEquivCohOnCechCubeMapOver
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoverRestrictionBaseChange
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoverRestrictionBaseChange
 
 open CategoryTheory
 
 universe v v' u u'
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.AltCech
 
@@ -33,7 +34,7 @@ theorem sortSign_insert (τ : κ → ι) {s : Finset κ} {x : κ} (hx : x ∉ s)
     sortSign τ (insert x s) = sortSign τ s * invSign τ s x := by
   unfold sortSign invSign
   rw [Finset.prod_insert hx]
-  simp only [Finset.prod_insert hx, Finset.prod_mul_distrib, lt_irrefl, false_and, if_false,
+  simp only [Finset.prod_insert hx, Finset.prod_mul_distrib, lt_irrefl, false_and, ite_false,
     one_mul]
   ring
 
@@ -95,9 +96,9 @@ theorem injOn_erase_swap (τ : κ → ι) {t : Finset κ} {a b : κ} (hab : a �
     (by rw [val, val, e])
   by_cases h1 : u = a <;> by_cases h2 : w = a
   · rw [h1, h2]
-  · simp only [h1, h2, if_true, if_false] at this
+  · simp only [h1, h2, ite_true, ite_false] at this
     exact absurd this.symm hw.2
-  · simp only [h1, h2, if_true, if_false] at this
+  · simp only [h1, h2, ite_true, ite_false] at this
     exact absurd this hu.2
   · simpa [h1, h2] using this
 
@@ -151,11 +152,11 @@ def total : (∀ s, A.obj s) →ₛₗ[σ] ∀ t, B.obj t where
 
 theorem total_of_inj (X : ∀ s, A.obj s) {t : Finset κ} (h : Set.InjOn τ (t : Set κ)) :
     P.total X t = sortSign τ t • P.app t (X (t.image τ)) :=
-  if_pos (Finset.card_image_iff.2 h)
+  ite_eq_left (Finset.card_image_iff.2 h)
 
 theorem total_of_not (X : ∀ s, A.obj s) {t : Finset κ} (h : ¬ Set.InjOn τ (t : Set κ)) :
     P.total X t = 0 :=
-  if_neg fun e => h (Finset.card_image_iff.1 e)
+  ite_eq_right fun e => h (Finset.card_image_iff.1 e)
 
 theorem totalD_total (X : ∀ s, A.obj s) (t : Finset κ) :
     Cube.totalD B (P.total X) t = P.total (Cube.totalD A X) t := by
@@ -474,9 +475,11 @@ end Main
 
 end GlobalTheory.CompanionTheory.AltCech
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.GoodCoverEigenspaces.CubeCechEquivalences.CechCubeBaseChange.CechHEquivCohOnCechCubeMapOver
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.GoodCoverEigenspaces.CubeCechEquivalences.CechCubeBaseChange.CechHEquivCohOnCechCubeMapOver
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry Opposite ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.PD GlobalTheory.HodgeCoh GlobalTheory.CechDR
 
@@ -484,7 +487,7 @@ namespace PositivityTheory.AutomorphicGaloisHodgeTate.G8.HBC
 
 theorem sortSign_id' {ι : Type} [LinearOrder ι] (t : Finset ι) : sortSign (id : ι → ι) t = 1 := by
   unfold sortSign
-  refine Finset.prod_eq_one fun a _ ↦ Finset.prod_eq_one fun b _ ↦ if_neg ?_
+  refine Finset.prod_eq_one fun a _ ↦ Finset.prod_eq_one fun b _ ↦ ite_eq_right ?_
   rintro ⟨h₁, h₂⟩
   exact lt_asymm h₁ h₂
 
@@ -530,6 +533,7 @@ theorem cech_holds : P_cech := by
 
 end PositivityTheory.AutomorphicGaloisHodgeTate.G8.HBC
 
+end
 
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoverRestrictionBaseChange", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.SortSign\npublic import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.CechModulesFunctorShortExactOfAcyclic\npublic import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.HigherDirectImagesVanishOfIsAffineHom\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Development.AbelianVarietyTheory.Definitions.GaloisGeometry.CoeEqAlgebraMapZeroEquiv\n\n"}
 -- clump-header: {"m": "Development.WeilBound.CoreStatements.PadicHodgeComparison.GoodCoverEigenspaces.CubeCechEquivalences.CechCubeBaseChange.CechHEquivCohOnCechCubeMapOver", "h": "module\n\npublic import Development.WeilBound.CoreStatements.PadicHodgeComparison.GoodCoverEigenspaces.CubeCechEquivalences.CechCubeBaseChange.BcSumSingle\npublic import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.SortSign\npublic import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.CechModulesFunctorShortExactOfAcyclic\npublic import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.HigherDirectImagesVanishOfIsAffineHom\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoverRestrictionBaseChange\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

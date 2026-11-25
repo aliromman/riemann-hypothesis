@@ -103,12 +103,11 @@ end -- clump:auto
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker Formalism.MainNotions
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ThetaLiftGeometry.AmbientLatticeAvoidance
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ThetaLiftGeometry.AmbientLatticeAvoidance
 
+noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.AmbientLatticeAvoidance
-
-def reix (E : Type) [Field E] (n n' : ℕ) : Sp E n →ₗ[E] Sp E n' := LinearMap.pi fun l : Fin n' => atNL E n l.1
 
 section Concrete
 
@@ -135,24 +134,6 @@ variable (abelian₂ : HeightOneSpectrum (𝓞 X.E) → Submodule (𝓞 X.E) (Sp
 
 end Concrete
 
-section Global
-
-variable {D : D7} {X : Fields} (s : Seam D X)
-
-def ambE (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) (χ : TaylorLogMetric.IdE D → ℂ) (e : TaylorLogMetric.FamE D) (dgen : D.what₂.Tau → ℂ) : Amb X where
-  σ₀ := s.σ₀
-  δ := δ
-  d := D.host.d
-  sc := (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc δ))⁻¹
-  AA := Submodule.span (𝓞 X.E)
-    {r | ∃ c ∈ cc, ∃ t ∈ D.host.AA0, r = s.iE.symm ((((c : 𝓞 D.host.K) : D.host.K) : D.host.E) * t)}
-  cD τ := dgen (s.iT τ)
-  e a b N N' z := e a b (s.lat N) (s.lat N') fun τ => z (s.iT.symm τ)
-  chiF a b N N' := Base.chiFac χ a b (s.lat N) (s.lat N')
-
-
-end Global
-
 section Chain
 
 variable {D : D7} {X : Fields} (s : Seam D X) {Pr : Primes X} (Ch : Chars X Pr D.R.m)
@@ -166,6 +147,7 @@ variable {D : D7} {X : Fields} (s : Seam D X) {Pr : Primes X} (Ch : Chars X Pr D
 end Chain
 
 end GlobalTheory.IndefiniteRowSideFullHecke.AmbientLatticeAvoidance
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.StabCardOfStabTie

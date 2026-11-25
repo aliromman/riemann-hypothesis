@@ -14,14 +14,13 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIdealWeight
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IwahoriFactorisation.TwistedConjugationNorms.HilbertNinetyNorms.OrdLEqNegLog
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IwahoriFactorisation.TwistedConjugationNorms.HilbertNinetyNorms.OrdLEqNegLog
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IwahoriFactorisation.TwistedConjugationNorms.HilbertNinetyNorms.OrdLEqNegLog
 
+noncomputable section
 
 open NumberField IsDedekindDomain Polynomial Matrix
 open GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG GlobalTheory.CuspRep
 open scoped Classical
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace PositivityTheory.Rg.Bc.ArchbcB.B.M4
 
@@ -68,7 +67,7 @@ theorem thL_diagT (w : Pl E) (hw : ¬ IsSplitAt w) (a : ℕ) (d : Fin a → (w.a
       GlobalTheory.SmGL.diagT (w.adicCompletion E) (Fin a) (fun i => (cjU w (d i.rev))⁻¹) := by
   have hth : ∀ g : GLw a w,
       thL a w g = PhiU a _ * invT a _ (GeneralLinearGroup.map (cj w) g) * (PhiU a _)⁻¹ := by
-    intro g; simp only [thL, if_neg hw]; rfl
+    intro g; simp only [thL, ite_eq_right hw]; rfl
   rw [hth, mul_inv_eq_iff_eq_mul]
   apply Units.ext
   have h1 : ((invT a _ (GeneralLinearGroup.map (cj w) (GlobalTheory.SmGL.diagT (w.adicCompletion E) (Fin a) d)) : GLw a w) :
@@ -133,7 +132,7 @@ theorem nv_rev {a : ℕ} (y : Fin a → ℤ) (i : Fin a) : nv y i.rev = -nv y i 
   simp [nv]
 
 theorem nrmL_eq (w : Pl E) (hw : ¬ IsSplitAt w) (a : ℕ) (g : GLw a w) : nrmL a w g = g * thL a w g := by
-  simp only [nrmL, thL, if_neg hw]
+  simp only [nrmL, thL, ite_eq_right hw]
 
 theorem ex_tw (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompletion E)ˣ) (hϖ : IsUnifAt ϖ) (a : ℕ)
     (y : Fin a → ℤ) (u : Fin a → w.adicCompletion E) (hu0 : ∀ i, u i ≠ 0) (hu : ∀ i, ordL (u i) = nv y i)
@@ -180,11 +179,11 @@ theorem ex_tw (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicComplet
   have key : ∀ i, P i * τ i * (cjU w (P i.rev * τ i.rev))⁻¹ = U i := by
     intro i
     rcases lt_trichotomy i i.rev with h | h | h
-    · have e1 : τ i = c i := by simp only [τ, dif_pos h]
+    · have e1 : τ i = c i := by simp only [τ, dite_eq_left h]
       have e2 : τ i.rev = 1 := by
         have hn : ¬ i.rev < i.rev.rev := by rw [Fin.rev_rev]; exact not_lt.2 h.le
         have hn' : ¬ i.rev.rev = i.rev := by rw [Fin.rev_rev]; exact h.ne
-        simp only [τ, dif_neg hn, dif_neg hn']
+        simp only [τ, dite_eq_right hn, dite_eq_right hn']
       rw [e1, e2, mul_one, hcP, hcdef]
       apply Units.ext
       simp only [Units.val_mul, Units.val_inv_eq_inv_val]
@@ -192,7 +191,7 @@ theorem ex_tw (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicComplet
     · have hi : i.rev = i := h.symm
       obtain ⟨hZv, hZ⟩ := Classical.choose_spec (hmid i hi)
       have hn : ¬ i < i.rev := by rw [hi]; exact lt_irrefl i
-      have e1 : τ i = Classical.choose (hmid i hi) := by simp only [τ, dif_neg hn, dif_pos hi]
+      have e1 : τ i = Classical.choose (hmid i hi) := by simp only [τ, dite_eq_right hn, dite_eq_left hi]
       have hc : c i = U i := by simp only [hcdef, hi, mul_inv_cancel_right]
       have hU' : U i = Classical.choose (hmid i hi) * (cjU w (Classical.choose (hmid i hi)))⁻¹ := by
         rw [← hc]; exact eq_mul_inv_of_mul_eq hZ
@@ -202,9 +201,9 @@ theorem ex_tw (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicComplet
       field_simp
     · have hn : ¬ i < i.rev := not_lt.2 h.le
       have hn' : ¬ i.rev = i := h.ne
-      have e1 : τ i = 1 := by simp only [τ, dif_neg hn, dif_neg hn']
+      have e1 : τ i = 1 := by simp only [τ, dite_eq_right hn, dite_eq_right hn']
       have hp : i.rev < i.rev.rev := by rw [Fin.rev_rev]; exact h
-      have e2 : τ i.rev = c i.rev := by simp only [τ, dif_pos hp]
+      have e2 : τ i.rev = c i.rev := by simp only [τ, dite_eq_left hp]
       have h3 := hUr i.rev
       rw [Fin.rev_rev] at h3
       rw [e1, e2, mul_one, hcdef]
@@ -230,7 +229,7 @@ theorem ext_pf (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicComple
   obtain ⟨τ, hτ, hN⟩ := ex_tw hU w hw ϖ hϖ a y u hu0 huv hpair
   refine ⟨tdiag ϖ y * GlobalTheory.SmGL.diagT (w.adicCompletion E) (Fin a) τ, ?_, ?_⟩
   · unfold dcos
-    rw [if_pos ⟨1, one_mem _, _, _root_.GlobalTheory.CompanionTheory.DiagCoset.diagT_mem_iwGL w a τ hτ, by rw [one_mul]⟩]
+    rw [ite_eq_left ⟨1, one_mem _, _, _root_.GlobalTheory.CompanionTheory.DiagCoset.diagT_mem_iwGL w a τ hτ, by rw [one_mul]⟩]
     exact one_ne_zero
   · rw [hN, charpoly_diagonal, hQu]
 

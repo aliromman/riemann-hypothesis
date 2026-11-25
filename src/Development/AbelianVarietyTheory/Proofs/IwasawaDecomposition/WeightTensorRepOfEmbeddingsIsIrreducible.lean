@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.Columns.CoefColLemmas
 public import Formalism.LocalToGlobal.Divisibility.CoefMod
 public import Development.AbelianVarietyTheory.PublishedTheorems.PublishedFoundations.FiniteIntertwining
 public import Formalism.LocalToGlobal.Divisibility.CoefModLemmas
@@ -241,7 +242,7 @@ theorem eq_bot_or_eq_top : ∀ (K : Type) [Field K] (ι : Type) [Fintype ι] (n 
       · intro a S ha ih
         obtain ⟨T, hTW, hT⟩ := exists_elem lam H W hW a (i a) (j a)
         have h1 := hTW _ ih
-        rw [hT, if_pos (by simp [ha])] at h1
+        rw [hT, ite_eq_left (by simp [ha])] at h1
         convert h1 using 2
         funext τ
         by_cases h : τ = a
@@ -308,7 +309,7 @@ theorem GlobalTheory.cmType_family_extend : ∀ (L : Type) [Field L] [NumberFiel
   have v1 : ∀ τ, cmExtend emb g (emb τ) = g τ := by
     intro τ
     have h : ∃ τ', emb τ = emb τ' := ⟨τ, rfl⟩
-    simp only [cmExtend, dif_pos h]
+    simp only [cmExtend, dite_eq_left h]
     rw [hd.1 h.choose_spec.symm]
   have v2 : ∀ τ, cmExtend emb g ((emb τ).comp (IsCMField.complexConj L : L →+* L)) = tinv (g τ) := by
     intro τ
@@ -316,11 +317,11 @@ theorem GlobalTheory.cmType_family_extend : ∀ (L : Type) [Field L] [NumberFiel
       rintro ⟨τ', h⟩
       exact hd.2 τ' τ h.symm
     have h' : ∃ τ', (emb τ).comp (IsCMField.complexConj L : L →+* L) = (emb τ').comp (IsCMField.complexConj L : L →+* L) := ⟨τ, rfl⟩
-    simp only [cmExtend, dif_neg h, dif_pos h']
+    simp only [cmExtend, dite_eq_right h, dite_eq_left h']
     rw [hinj2 _ _ h'.choose_spec.symm]
   have v3 : ∀ σ, (¬ ∃ τ, σ = emb τ) → (¬ ∃ τ, σ = (emb τ).comp (IsCMField.complexConj L : L →+* L)) → cmExtend emb g σ = 1 := by
     intro σ h h'
-    simp only [cmExtend, dif_neg h, dif_neg h']
+    simp only [cmExtend, dite_eq_right h, dite_eq_right h']
   refine ⟨cmExtend emb g, ?_, v1⟩
   intro σ
   by_cases h : ∃ τ, σ = emb τ
@@ -624,26 +625,17 @@ theorem GlobalTheory.NablaDensity.endo_eq_sum_sqAct : ∀ (k : Type) [Field k] [
   rfl
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NontrivialWeylCoefficientSpace
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NontrivialWeylCoefficientSpace
 
+noncomputable section
 
 namespace GlobalTheory.CoeffSpace
 
 theorem nontrivial_VV : ∀ (K : Type) [Field K] (ι : Type) [Fintype ι] (n : ℕ) (lam : ι → DomWeight n), Nontrivial (Formalism.L2.DIV.VV K lam) := by
-  intro K _ ι _ n lam
-  have hanti : ∀ τ, Antitone (lam τ).natW := fun τ i j hij =>
-    Int.toNat_le_toNat (by have := (lam τ).anti hij; omega)
-  have hmem : (∏ τ, Formalism.GradedWeylDivisibility.blockEmb K τ (Formalism.BasicNotions.extremal K n (lam τ))) ∈ Formalism.L2.DIV.VV K lam :=
-    Submodule.subset_span ⟨fun τ => Formalism.BasicNotions.extremal K n (lam τ),
-      fun τ => Formalism.GradedWeylDivisibility.hwMem K n n le_rfl _ (hanti τ), rfl⟩
-  refine ⟨⟨⟨_, hmem⟩, 0, fun h => ?_⟩⟩
-  have h0 : (∏ τ, Formalism.GradedWeylDivisibility.blockEmb K τ (Formalism.BasicNotions.extremal K n (lam τ))) = 0 := congrArg Subtype.val h
-  rw [Finset.prod_eq_zero_iff] at h0
-  obtain ⟨τ, _, h⟩ := h0
-  have hinj : Function.Injective (fun v : Fin n × Fin n => (τ, v)) := fun a b hab => (Prod.mk.inj hab).2
-  exact Formalism.GradedWeylDivisibility.hwNe K n n le_rfl _ (MvPolynomial.rename_injective _ hinj (h.trans (map_zero _).symm))
+  first | exact _root_.Formalism.L2.Col.VV_nontrivial | exact @_root_.Formalism.L2.Col.VV_nontrivial | apply _root_.Formalism.L2.Col.VV_nontrivial <;> assumption
 
 end GlobalTheory.CoeffSpace
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.WeightActionMatrixCoeffPolynomialInEntries

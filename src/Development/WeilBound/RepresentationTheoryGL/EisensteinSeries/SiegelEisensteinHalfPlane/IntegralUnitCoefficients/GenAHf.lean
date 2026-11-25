@@ -132,13 +132,12 @@ theorem caseB (hS : LocRedSplit) (σ : R →+* R) (hσ : ∀ a, σ (σ a) = a) (
 end PositivityTheory.Rg.Sw.Glob.GenFinLocAH
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinHalfPlane.IntegralUnitCoefficients.CompFinSigR
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinHalfPlane.IntegralUnitCoefficients.CompFinSigR
 
+noncomputable section
 
 open scoped Matrix TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta GlobalTheory.AdelicU GlobalTheory.StdUnn IsDedekindDomain NumberField
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace PositivityTheory.Rg.Sw.Glob.GenFinLocHf
 
@@ -283,6 +282,7 @@ theorem locSub (hF : LocRedField) (hS : LocRedSplit) {S : Type} [CommRing S] {n 
     exact unit_sub O _ hδ
 
 end PositivityTheory.Rg.Sw.Glob.GenFinLocHf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.GenFinLocE
@@ -445,13 +445,12 @@ theorem orbit (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) (hfix : ∀ x, �
 end PositivityTheory.Rg.Sw.Glob.GenFinLocAH
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinHalfPlane.IntegralUnitCoefficients.IsIntUnit
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinHalfPlane.IntegralUnitCoefficients.IsIntUnit
 
+noncomputable section
 
 open scoped Matrix TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta GlobalTheory.AdelicU GlobalTheory.StdUnn IsDedekindDomain NumberField
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace PositivityTheory.Rg.Sw.Glob.GenFinLocHf
 
@@ -484,17 +483,15 @@ theorem locFin_of (hF : LocRedField) (hS : LocRedSplit) : LocFin := by
 
 end PositivityTheory.Rg.Sw.Glob.GenFinLocHf
 end -- clump:auto
+end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.GenFin
 
+noncomputable section
 
 open scoped Matrix TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta
 open GlobalTheory.AdelicU GlobalTheory.StdUnn IsDedekindDomain
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.GenFin
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace PositivityTheory.Rg.Sw.Glob.GenFinH
 
@@ -543,8 +540,14 @@ theorem kInFin_of (hU : UnitD) (hL : LocFin) (hGL : GlueLevi) (hGW : GlueW) (hUA
 
 end PositivityTheory.Rg.Sw.Glob
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.GenGlue
+
+
+open scoped Matrix TensorProduct
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta
+open GlobalTheory.AdelicU GlobalTheory.StdUnn IsDedekindDomain
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
@@ -680,16 +683,13 @@ theorem glueW : GlueW := by
 end PositivityTheory.Rg.Sw.Glob
 end -- clump:auto
 
-end -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.GenTop
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.GenTop
-
+noncomputable section
 
 open scoped Matrix TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR.Datum
 open GlobalTheory.AdelicU GlobalTheory.StdUnn
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace PositivityTheory.Rg.Sw.Glob.GenTopH
 
@@ -729,9 +729,11 @@ theorem genA_of : UnitD → PIn → KInInf → KInFin → GenA := by
 
 end PositivityTheory.Rg.Sw.Glob
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.MaxSurjInj
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.MaxSurjInj
 
+noncomputable section
 
 open Matrix GlobalTheory.StdUnn
 
@@ -858,9 +860,9 @@ theorem locRedSplit : LocRedSplit := by
     have := congrFun hu j
     rw [vecMul_mix] at this
     by_cases h : j ∈ I
-    · rw [if_pos h] at this
+    · rw [ite_eq_left h] at this
       exact ⟨fun _ => this, fun h' => absurd h h'⟩
-    · rw [if_neg h] at this
+    · rw [ite_eq_right h] at this
       exact ⟨fun h' => absurd h' h, fun _ => this⟩
   have hC0 : u ᵥ* C = 0 := hInjC u (fun i hi => (hmix i).1 hi)
   have hD0 : u ᵥ* D = 0 := by
@@ -872,6 +874,7 @@ theorem locRedSplit : LocRedSplit := by
   exact hu0 (lower_inj g u hC0 hD0)
 
 end PositivityTheory.Rg.Sw.Glob
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.PIn
@@ -892,15 +895,14 @@ theorem pIn : PIn := by
 end PositivityTheory.Rg.Sw.Glob
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.SiegelParabolicUnnMatrixBlockUpperTriangular
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.SiegelParabolicUnnMatrixBlockUpperTriangular
 
+noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.StdUnn GlobalTheory.StdUnn.Model
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace PositivityTheory.Rg.Sw.Glob.GlobalGaussBlockRelations
 
@@ -1045,6 +1047,7 @@ theorem unitD : UnitD := by
     (Subgroup.subset_closure (Or.inr (Or.inl ⟨_, _, hm'⟩)))) (Subgroup.subset_closure (Or.inr (Or.inr ⟨_, hv⟩)))
 
 end PositivityTheory.Rg.Sw.Glob
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinHalfPlane.IntegralUnitCoefficients.GenAHf

@@ -64,13 +64,14 @@ lemma posDef_of_bound {n q k : ℕ} (A : Matrix (Fin q) (Fin n) ℂ) (B : Matrix
 end ReciprocityTheory.ChartRestriction.G.FD.OrthonormalChartBounds
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.SignTypeCancelIdentity
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.SignTypeCancelIdentity
 
 namespace ReciprocityTheory.ChartRestriction.G.FD.OrthonormalChartBounds
 
 open NumberField Complex Matrix ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.FD.FrameDegreeData
 open scoped ComplexConjugate ComplexOrder
 
+noncomputable section
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} (X : Data E r)
 
@@ -133,13 +134,13 @@ lemma det_lowBlock (Z : X.Coord) (τ : X.Ψ) : (X.lowBlock Z τ).det = 1 := by
   rw [Matrix.det_of_lowerTriangular]
   · apply Finset.prod_eq_one
     intro a _
-    simp only [Data.lowBlock, Matrix.of_apply, if_true]
+    simp only [Data.lowBlock, Matrix.of_apply, ite_true]
     rw [dite_eq_right (by omega)]
     simp
   · intro a b hab
     have hab' : a < b := hab
     simp only [Data.lowBlock, Matrix.of_apply]
-    rw [if_neg (ne_of_lt hab'), dite_eq_right]
+    rw [ite_eq_right (ne_of_lt hab'), dite_eq_right]
     · simp
     · intro hh
       have : (a : ℕ) < b := hab'
@@ -149,7 +150,7 @@ lemma psgn_add (p0 k : ℕ) : psgn p0 (p0 + k) = (-1) ^ k := by
   induction k with
   | zero => simp [psgn_eq_one le_rfl]
   | succ k ih =>
-    rw [← add_assoc, psgn_succ, ih, sgn, if_neg (by omega), pow_succ]
+    rw [← add_assoc, psgn_succ, ih, sgn, ite_eq_right (by omega), pow_succ]
 
 lemma signType_cancel_identity (k : ℕ) (D : ℂ) (hD : 0 < D.re) : 0 < (-1 : ℝ) ^ k * (((-1 : ℂ) ^ k) * D).re := by
   have h1 : ((-1 : ℂ) ^ k) = (((-1 : ℝ) ^ k : ℝ) : ℂ) := by push_cast; rfl
@@ -253,6 +254,7 @@ theorem xZ_mem_dom {x : Frame X.Ψ r} (hx : x ∈ X.dom) (ho : X.IsOrtho x) {Z :
       have := X.p0_le
       exact minor_gt X ho hZ τ ((i : ℕ) - X.p0) (by omega) i (by omega)
 
+end
 
 end ReciprocityTheory.ChartRestriction.G.FD.OrthonormalChartBounds
 

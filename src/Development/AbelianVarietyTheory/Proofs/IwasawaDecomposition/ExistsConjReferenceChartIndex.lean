@@ -85,11 +85,12 @@ theorem n1Arg_conj_eq {F : Type} [Field F] {n c : ℕ} {ρ r : (Fin (n + c) → 
 end GlobalTheory.Proof.level_eq_parahoric_category
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DoubleCosetRepsConjugateLevelGroups
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DoubleCosetRepsConjugateLevelGroups
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.L2.DIV Formalism.L2.Col
 open Classical
 
+noncomputable section
 
 namespace GlobalTheory.Mem.Col2.IdxEx.LocMatch
 
@@ -138,7 +139,7 @@ theorem inX_mem_lamYat_iff {X : Fields} {Pr : Primes X} {R : Ranks} (j : ℕ) {P
     (hP : P ∈ Pr.vGs) (x : Sp X.E (R.N j)) :
     Loc.inX X.E (R.N j) (cOf R j) x ∈ lamYat (Pr := Pr) (R := R) j P ↔ x ∈ stdAt X.E (R.N j) P := by
   unfold lamYat
-  rw [if_pos hP]
+  rw [ite_eq_left hP]
   exact ⟨fun hx => by simpa only [GlobalTheory.CongLevel.resX_inX] using GlobalTheory.CongLevel.resX_mem P _ _ _ _ hx,
     GlobalTheory.CongLevel.inX_mem_lamY P _ _ _ x⟩
 
@@ -147,7 +148,7 @@ theorem lamRow_tup {X : Fields} {Pr : Primes X} {R : Ranks} (Ch : Chars X Pr R.m
     (f : HomE X.E (R.N j + cOf R j) (R.N j + cOf R j)) :
     lamRow Ch mu true j P f = lamRow Ch mu' true j P f := by
   unfold lamRow
-  simp only [if_pos hP, if_true]
+  simp only [ite_eq_left hP, ite_true]
 
 end GlobalTheory.Mem.Col2.IdxEx.LocMatch
 
@@ -240,7 +241,7 @@ theorem loc_match : ∀ {X : Fields} {Pr : Primes X} {R : Ranks} (Ch : Chars X P
       have h3 := mul_mem (mul_mem hst h2) (inv_mem hst)
       rw [show r * h' * κ * ((r * h' * κ)⁻¹ * r₁ * (r * h' * κ)⁻¹⁻¹) * (r * h' * κ)⁻¹ = r₁ by group] at h3
       unfold lamYat at h3
-      rw [if_pos hP] at h3
+      rw [ite_eq_left hP] at h3
       exact h3
     have hq := GlobalTheory.TopStep.qOf_ne_zero (P := w.1) (E := X.E)
     have hia := GlobalTheory.Mem.LevFin.intAt_n1Arg_G hq r₁ hr₁s
@@ -269,6 +270,7 @@ theorem loc_match : ∀ {X : Fields} {Pr : Primes X} {R : Ranks} (Ch : Chars X P
     linear_combination -e3
 
 end GlobalTheory.Mem.Col2.IdxEx.LocMatch
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsConjReferenceChartIndex

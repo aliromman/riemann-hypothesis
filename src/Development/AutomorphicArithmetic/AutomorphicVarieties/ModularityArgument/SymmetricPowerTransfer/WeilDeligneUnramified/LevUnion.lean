@@ -774,7 +774,14 @@ theorem UpperTheory.V.Z.Sym.So.outG :
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.FiniteOrbits.RepsEx
+end -- clump: shared namespace opens
+
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.FiniteOrbits.RepsEx
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain ValuativeRel GlobalTheory.CuspRep GlobalTheory.PRep GlobalTheory.UnitaryBC GlobalTheory.SmGL Formalism.BasicNotions UpperTheory.V.Hi UpperTheory.V.AlgebraTools
 open UpperTheory.V.W (Plc Lp)
 open UpperTheory.V.Z.Sym UpperTheory.V.Z.Sym.Loc UpperTheory.V.Z.Sym.Glob UpperTheory.V.Z.Sym.Sig UpperTheory.V.Z.Sym.So UpperTheory.V.Z.Sym.Dict UpperTheory.V.Z.Sym.Dict.Br
 
@@ -794,22 +801,22 @@ private theorem trim {F : Type} [Field F] [NumberField F] {Δ : F} (D : Dat Δ) 
     intro v hv h
     apply hv
     show (if P v then 1 else y.1 v) ∈ KD ((cv v) Δ) (Ov v)
-    rw [if_pos h]
+    rw [ite_eq_left h]
     exact one_mem _
   · show ∀ᶠ v in Filter.cofinite, (if P v then y.1 v else 1) ∈ KD ((cv v) Δ) (Ov v)
     refine Filter.Eventually.of_forall fun v => ?_
     by_cases h : P v
-    · rw [if_pos h]
+    · rw [ite_eq_left h]
       exact h.1
-    · rw [if_neg h]
+    · rw [ite_eq_right h]
       exact one_mem _
   · simp only [Dat.U2, RPG.box, Subgroup.mem_iInf, Subgroup.mem_comap]
     intro v
     show (if P v then y.1 v else 1) ∈ D.J2v v
     by_cases h : P v
-    · rw [if_pos h, Dat.J2v, if_neg h.2]
+    · rw [ite_eq_left h, Dat.J2v, ite_eq_right h.2]
       exact h.1
-    · rw [if_neg h]
+    · rw [ite_eq_right h]
       exact one_mem _
   · refine Subtype.ext (funext fun v => ?_)
     show (if P v then 1 else y.1 v) * (if P v then y.1 v else 1) = y.1 v
@@ -823,7 +830,7 @@ private theorem trim {F : Type} [Field F] [NumberField F] {Δ : F} (D : Dat Δ) 
     intro v hv h
     apply hv
     show (if P v then 1 else y.1 v) = 1
-    rw [if_pos h]
+    rw [ite_eq_left h]
 
 theorem UpperTheory.V.Z.Sym.So.repsEx :
     UpperTheory.V.Z.Sym.So.RepsEx := by
@@ -835,19 +842,24 @@ theorem UpperTheory.V.Z.Sym.So.repsEx :
   · intro y' hy'
     obtain ⟨y, hy, rfl⟩ := Finset.mem_image.mp hy'
     obtain ⟨w, -, -, ht, hfin⟩ := (trim A.dat y (hY y hy)).choose_spec
-    simp only [f, dif_pos (hY y hy)]
+    simp only [f, dite_eq_left (hY y hy)]
     exact ⟨ht, hfin⟩
   · intro g
     obtain ⟨γ, s, hs, y, hy, u, hu, rfl⟩ := hdec g
     obtain ⟨w, hw, hty, -, -⟩ := (trim A.dat y (hY y hy)).choose_spec
     refine ⟨γ, s, hs, f y, Finset.mem_image_of_mem f hy, w * u, mul_mem hw hu, ?_⟩
-    simp only [f, dif_pos (hY y hy)]
+    simp only [f, dite_eq_left (hY y hy)]
     conv_lhs => rw [← hty]
     simp only [mul_assoc]
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.FiniteOrbits.SaNormal
+
+
+open NumberField IsDedekindDomain ValuativeRel GlobalTheory.CuspRep GlobalTheory.PRep GlobalTheory.UnitaryBC GlobalTheory.SmGL Formalism.BasicNotions UpperTheory.V.Hi UpperTheory.V.AlgebraTools
 open UpperTheory.V.W (Plc Lp)
 open UpperTheory.V.Z.Sym UpperTheory.V.Z.Sym.Loc UpperTheory.V.Z.Sym.Glob UpperTheory.V.Z.Sym.Sig UpperTheory.V.Z.Sym.So UpperTheory.V.Z.Sym.Dict UpperTheory.V.Z.Sym.Dict.Br
 
@@ -977,7 +989,12 @@ theorem UpperTheory.V.Z.Sym.So.kRes :
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.FiniteOrbits.TwoUnder
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.FiniteOrbits.TwoUnder
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain ValuativeRel GlobalTheory.CuspRep GlobalTheory.PRep GlobalTheory.UnitaryBC GlobalTheory.SmGL Formalism.BasicNotions UpperTheory.V.Hi UpperTheory.V.AlgebraTools
 open UpperTheory.V.W (Plc Lp)
 open UpperTheory.V.Z.Sym UpperTheory.V.Z.Sym.Loc UpperTheory.V.Z.Sym.Glob UpperTheory.V.Z.Sym.Sig UpperTheory.V.Z.Sym.So UpperTheory.V.Z.Sym.Dict UpperTheory.V.Z.Sym.Dict.Br
 
@@ -991,7 +1008,7 @@ private theorem exSec {W P : Type} {X : P → Type} (f : W → P) (S : Set W) (i
     obtain rfl := inj hw' hw he
     rfl
   have hex : ∃ w', ∃ hw' : w' ∈ S, f w' = f w := ⟨w, hw, rfl⟩
-  simp only [dif_pos hex]
+  simp only [dite_eq_left hex]
   exact key _ _ _
 
 variable {L : Type} [Field L] [NumberField L] [IsCMField L]
@@ -1091,9 +1108,9 @@ theorem UpperTheory.V.Z.Sym.So.fitEx :
       (fun w hw => (a w).comp (iu T w (hP.split w hw))) (fun _ => 1)
     exact ⟨b, fun w hw h => hb w hw⟩
 
+end
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.ScalarTuples.ThetaTheta
 
@@ -1179,8 +1196,9 @@ theorem UpperTheory.V.Z.Sym.Glob.baseG :
   exact ⟨B, s, ⟨hι, rfl, rfl, rfl, fun γ => rfl, fun g v => rfl, htr⟩, rfl, rfl⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.WeilDeligneUnramified.LevUnion
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.WeilDeligneUnramified.LevUnion
 
+noncomputable section
 
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.CuspRep GlobalTheory.PRep GlobalTheory.UnitaryBC GlobalTheory.SmGL Formalism.BasicNotions UpperTheory.V.Hi UpperTheory.V.AlgebraTools
 open UpperTheory.V.W (Plc Lp)
@@ -1324,7 +1342,7 @@ theorem UpperTheory.V.Z.Sym.W.specOutS : UpperTheory.V.Z.Sym.W.SpecOutS := by
   have hPS : Places ((S₀ ∪ S₁ : Finset (Plc L)) : Set (Plc L)) := by rwa [Finset.coe_union]
   generalize S₀ ∪ S₁ = S at hS hPS
   have hV : ∃ V : ∀ w : Plc L, Lev (Kw w), (∀ w ∈ S₀, V w = deep c w) ∧ ∀ w ∈ S₁, V w = iw w :=
-    ⟨fun w => if w ∈ S₁ then iw w else deep c w, fun w hw => if_neg (Finset.disjoint_left.1 hd hw), fun w hw => if_pos hw⟩
+    ⟨fun w => if w ∈ S₁ then iw w else deep c w, fun w hw => ite_eq_right (Finset.disjoint_left.1 hd hw), fun w hw => ite_eq_left hw⟩
   refine hV.elim fun V v => ?_
   have hF := fitEx L B hB T S V hPS fun w hw => (hT w hw).imp fun w' h => ⟨(hS w').2 (.inl h.1), h.2⟩
   refine hF.1.elim fun A hA => (hF.2 a).elim fun b hb => ?_
@@ -1344,6 +1362,7 @@ theorem UpperTheory.V.Z.Sym.W.specOutS : UpperTheory.V.Z.Sym.W.SpecOutS := by
       hm.2.1 w (u.2.2 le_rfl w (hPS.split w (hs1 hw)) (hf w hw)) y hy)
     (hm.2.2 U u.1) φ' q.1 q.2.1 q.2.2
 
+end
 
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.FiniteOrbits.CongEx", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.HodgeTateFromSandwich\npublic import Development.AbelianVarietyTheory.Definitions.Foundations.GLintEqKOAndPrincEqKOne\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AutomorphicFormGLContinuous\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.KLevTop\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.GlobalRationalGL.IntegralConjugation.UaFacts\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.BlochKatoSelmerVanishes\n\n"}
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.FiniteOrbits.CongLev", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.HodgeTateFromSandwich\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.FiniteOrbits.LocalLevelOutsideSigma\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.SignatureIntegrality.LevelTorusLeTorus\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.SignatureIntegrality.SignatureTorusFixedPoints.BdMul\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.Valuation.Integral\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\n\n"}

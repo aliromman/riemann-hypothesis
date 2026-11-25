@@ -85,7 +85,8 @@ theorem diam_normalises_lev : ∀ (N l : ℕ) (d : ZMod N) (σ : SL(2, ℤ)), Is
 end GlobalTheory.HeckeFamilyMatrices
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.EichlerIntegralChangeOfVariablesIntMatrixSlash
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.EichlerIntegralChangeOfVariablesIntMatrixSlash
+noncomputable section
 namespace GlobalTheory.EichlerChangeGL
 open GlobalTheory.EichlerChange
 
@@ -120,7 +121,7 @@ lemma slash_toGL (k : ℤ) (g : Matrix (Fin 2) (Fin 2) ℤ) (h : 0 < g.det) (f :
     (f ∣[k] toGL g) τ = f (toGL g • τ) * ((g.det : ℤ) : ℂ) ^ (k - 1) *
       (((g 1 0 : ℤ) : ℂ) * τ + ((g 1 1 : ℤ) : ℂ)) ^ (-k) := by
   have hpos := toGL_det_pos g h
-  rw [ModularForm.slash_apply, σ, if_pos hpos, abs_of_pos hpos, toGL_det g h.ne', denom_toGL g h.ne']
+  rw [ModularForm.slash_apply, σ, ite_eq_left hpos, abs_of_pos hpos, toGL_det g h.ne', denom_toGL g h.ne']
   simp
 
 lemma eichler_I (w : ℕ) (h : ℍ → ℂ) : eichler w h UpperHalfPlane.I = 0 := by
@@ -212,6 +213,7 @@ theorem polySlash_eichler_toGL_smul : ∀ (k : ℕ), 2 ≤ k → ∀ (f : ℍ �
   linear_combination hconst
 
 end GlobalTheory.EichlerChangeGL
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.EichlerIntegralFromIFinsetSum
@@ -555,8 +557,9 @@ theorem polySlash_matrix_mul : ∀ (w : ℕ) (A B : Matrix (Fin 2) (Fin 2) ℤ) 
 end GlobalTheory.HeckeFamilyMatrices.SlashAction
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PeriodMapEquivariant
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PeriodMapEquivariant
 
+noncomputable section
 
 namespace GlobalTheory.HeckeFamilyMatrices.HeckeEqv
 
@@ -601,7 +604,7 @@ theorem hecke_eqv (Γ : Subgroup SL(2, ℤ)) (k : ℕ) (hk2 : 2 ≤ k) (f : Modu
   obtain ⟨hex⟩ : Nonempty (∃ π : Equiv.Perm ι, ∀ i, ∃ γ' : Γ, δ i * mat γ = mat γ' * δ (π i)) := ⟨hπ γ⟩
   have e2 : hk Γ w δ (per Γ w ⇑f) γ =
       ∑ i, slP w (δ (hex.choose i)) (per Γ w ⇑f (hex.choose_spec i).choose) := by
-    simp only [hk, LinearMap.pi_apply, dif_pos hex, LinearMap.sum_apply, LinearMap.comp_apply,
+    simp only [hk, LinearMap.pi_apply, dite_eq_left hex, LinearMap.sum_apply, LinearMap.comp_apply,
       LinearMap.proj_apply]
   have e1 : per Γ w (hkF (k : ℤ) δ ⇑f) γ =
       ∑ i, (slP w (δ i * mat γ) (F (toGL (δ i * mat γ) • UpperHalfPlane.I)) - slP w (mat γ) (c i)) := by

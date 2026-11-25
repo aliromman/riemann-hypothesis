@@ -352,7 +352,7 @@ theorem germ_sum {E : Type} [Field E] [NumberField E] [IsCMField E] {Wp Wq : Inf
   · unfold mainD
     rw [one_mul, ← Finset.sum_neg_distrib]
     refine Finset.sum_congr rfl fun z hzm => ?_
-    simp only [btOf, if_neg (hz z hzm), coJ, ptJ, smul_smul, neg_smul, one_mul]
+    simp only [btOf, ite_eq_right (hz z hzm), coJ, ptJ, smul_smul, neg_smul, one_mul]
 
 end
 
@@ -626,13 +626,14 @@ end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.RhypNodes
-@[expose] public noncomputable section
+@[expose] public section
 
 namespace Formalism.FourierDecayAlt.P.PBL
 
 open Formalism.FourierDecayAlt Formalism.QuantumDeterminants NumberField
 open scoped ComplexConjugate ComplexOrder
 
+noncomputable section
 
 open Classical
 
@@ -687,12 +688,12 @@ theorem rhyp_nodes (hTR : TopRatio) (hB : KB.IsLeadingFormSetting Cb Cc S p f χ
           (false = true ∧ grid b₀ (n b₀) ∈ S.grid1 v ∧ ∀ x ∈ a, PBD.Sep (true, grid b₀ (n b₀)) x) :=
         Or.inl ⟨rfl, a.length + K - (b₀ : ℕ), by have := b₀.isLt; omega, by omega, hmem b₀ (n b₀)⟩
       obtain ⟨h1, h2⟩ := node_far hB v a ha (grid b₀ (n b₀)) false hy x hx
-      simp only [Bool.false_eq_true, if_false] at h1 h2
+      simp only [Bool.false_eq_true, ite_false] at h1 h2
       unfold PBD.nodeOf at h1 h2
       by_cases hx1 : x.1 = true
-      · rw [if_pos hx1] at h1
+      · rw [ite_eq_left hx1] at h1
         exact ⟨h1, fun h => absurd h (by simp [hx1])⟩
-      · rw [if_neg hx1] at h1 h2
+      · rw [ite_eq_right hx1] at h1 h2
         rw [sub_add_cancel] at h2
         exact ⟨h2, fun _ => h1⟩
   have := hTR Cb Cc E Wp Wq S p f χ A₀ hB hC v (KB.plusW ys₂ a) (grid b₀ (n b₀)) hc hgr hl hfar
@@ -701,6 +702,7 @@ theorem rhyp_nodes (hTR : TopRatio) (hB : KB.IsLeadingFormSetting Cb Cc S p f χ
 
 end asm
 
+end
 
 end Formalism.FourierDecayAlt.P.PBL
 end -- clump:auto
@@ -866,12 +868,13 @@ end Formalism.FourierDecayAlt.P.PBL
 end -- clump:auto
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.OneAddPowLeExp
-@[expose] public noncomputable section
+@[expose] public section
 
 namespace Formalism.FourierDecayAlt.P.PBL
 
 open Formalism.FourierDecayAlt NumberField Finset
 
+noncomputable section
 
 open Classical
 
@@ -965,7 +968,7 @@ theorem phiL_bound (b : Bool) (pt y D : ℝ) (hD : 2 ≤ D) (hd : D + 2 ≤ |y -
       (if b then (y + 1 - pt) / (y - pt) else (pt - y - 1) / (pt - y - 2)) ≤ 1 + 1 / D := by
   have hD0 : 0 < D := by linarith
   cases b
-  · simp only [Bool.false_eq_true, if_false]
+  · simp only [Bool.false_eq_true, ite_false]
     rcases le_or_gt 0 (y - pt) with h | h
     · rw [abs_of_nonneg h] at hd
       have h1 : pt - y - 2 < 0 := by linarith
@@ -984,7 +987,7 @@ theorem phiL_bound (b : Bool) (pt y D : ℝ) (hD : 2 ≤ D) (hd : D + 2 ≤ |y -
         rw [e1]
         have : 1 ≤ (pt - y - 2) / D := by rw [le_div_iff₀ hD0]; linarith
         linarith
-  · simp only [if_true]
+  · simp only [ite_true]
     rcases le_or_gt 0 (y - pt) with h | h
     · rw [abs_of_nonneg h] at hd
       have h1 : 0 < y - pt := by linarith
@@ -1005,17 +1008,20 @@ theorem phiL_bound (b : Bool) (pt y D : ℝ) (hD : 2 ≤ D) (hd : D + 2 ≤ |y -
 
 end xs
 
+end
 
 end Formalism.FourierDecayAlt.P.PBL
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.TopRatioAlt
+section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.TopRatioAlt
+@[expose] public section
 
 namespace Formalism.FourierDecayAlt.P.PBL
 
 open Formalism.FourierDecayAlt NumberField Finset
 
+noncomputable section
 
 open Classical
 
@@ -1074,8 +1080,8 @@ theorem topRatio : TopRatio := by
     have hz := hfar (w.get j) (List.get_mem _ _)
     simp only [Complex.ofReal_re]
     by_cases h1 : (w.get j).1 = true
-    · rw [if_pos h1]; exact hz.1
-    · rw [if_neg h1]; exact ⟨hz.1, hz.2 (by simpa using h1)⟩
+    · rw [ite_eq_left h1]; exact hz.1
+    · rw [ite_eq_right h1]; exact ⟨hz.1, hz.2 (by simpa using h1)⟩
   have hqw : 0 < Wd.qw q' wr y := by
     have := (le_div_iff₀ hqy).1 hLQ
     have : 0 < Real.exp (-(1 / 2)) * q' y := mul_pos (Real.exp_pos _) hqy
@@ -1094,12 +1100,12 @@ theorem topRatio : TopRatio := by
     refine Finset.prod_congr rfl fun j _ => ?_
     simp only [Function.comp_apply, hrf]
     by_cases he : e j = 0
-    · simp only [he, if_true]
+    · simp only [he, ite_true]
       unfold Fr.phiL
       by_cases hb : (w.get j).1 = true
-      · simp only [hb, if_true]; push_cast; ring
-      · simp only [hb, Bool.false_eq_true, if_false]; push_cast; ring
-    · simp only [he, if_false, Complex.ofReal_one]
+      · simp only [hb, ite_true]; push_cast; ring
+      · simp only [hb, Bool.false_eq_true, ite_false]; push_cast; ring
+    · simp only [he, ite_false, Complex.ofReal_one]
   set x0r : ℝ := (-1 : ℝ) ^ (S.G.k - (S.l + 1)) * I.xpoly S.G.k (M.rho (D.parOf S v) ρ) (y + 1) with hx0r
   have hx0 : M.sgn (D.parOf S v) (S.l + 1) * M.xC (D.parOf S v) ρ ((y : ℂ) + 1) = ((x0r : ℝ) : ℂ) := by
     simp only [hx0r, M.sgn, M.xC, I.xpoly, D.parOf]
@@ -1113,9 +1119,9 @@ theorem topRatio : TopRatio := by
     intro j
     simp only [hrf]
     by_cases he : e j = 0
-    · simp only [he, if_true]
+    · simp only [he, ite_true]
       exact phiL_bound (w.get j).1 (w.get j).2 y _ hD2 (by linarith [(hfar (w.get j) (List.get_mem _ _)).1])
-    · simp only [he, if_false]
+    · simp only [he, ite_false]
       exact ⟨one_pos, by have : (0 : ℝ) ≤ 1 / ((S.Ntop : ℝ) ^ 2 - 1) := by positivity
                          linarith⟩
   have hF0 : 0 < ∏ j, rf j := Finset.prod_pos fun j _ => (hrf j).1
@@ -1255,9 +1261,11 @@ theorem topRatio : TopRatio := by
   exact final_cmp |S.P v y| x0r F (q' y) (S.T * S.T') _ E1 (Wd.qw q' wr y) (abs_nonneg _) hx0pos hF0 hqy hTT
     hsA hE1pos hE1sq (by rw [sq_abs]; exact hP2) hx0sq hF2 hqw2
 
+end
 
 end Formalism.FourierDecayAlt.P.PBL
 
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.UniformDecayOfPlace

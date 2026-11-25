@@ -32,10 +32,11 @@ import GroundTheory.GlobalFields.CompletionAtPlace.Integers
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.SmallFSing, Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.IdeleInt, Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ConeVal, Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ExistsVol
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.SmallFSing
+@[expose] public section -- clump member: Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.SmallFSing
 
 set_option linter.unusedSectionVars false
 
+noncomputable section
 
 open Matrix MeasureTheory ValuativeRel Topology GlobalTheory.SplitFlip GlobalTheory.SplitWeil PositivityTheory.ThK.SplitLoc
 
@@ -147,10 +148,10 @@ theorem gdet_low (y : Matrix (Fin a') (Fin a) k) : gdet (low y) = 1 := Units.ext
   rw [det_submatrix_equiv_self, det_fromBlocks_zero₁₂]; simp)
 
 theorem rad_AB (j : Fin a') : rad ϖ c (eA a a') (finSumFinEquiv (Sum.inr j)) = (ϖ : k) ^ c :=
-  if_neg fun ⟨_, h⟩ => by simpa using finSumFinEquiv.injective h
+  ite_eq_right fun ⟨_, h⟩ => by simpa using finSumFinEquiv.injective h
 
 theorem rad_BA (j : Fin a) : rad ϖ c (eB a a') (finSumFinEquiv (Sum.inl j)) = (ϖ : k) ^ c :=
-  if_neg fun ⟨_, h⟩ => by simpa using finSumFinEquiv.injective h
+  ite_eq_right fun ⟨_, h⟩ => by simpa using finSumFinEquiv.injective h
 
 theorem low_X (y : Matrix (Fin a') (Fin a) k) : ∀ i (j : Fin a ⊕ Fin a'), (X0 k finSumFinEquiv * (invT (low y)).1 : Matrix (Fin a) (Fin (a + a')) k) i (finSumFinEquiv j) =
     fromBlocks (1 : Matrix (Fin a) (Fin a) k) 0 (-y) (1 : Matrix (Fin a') (Fin a') k) j (Sum.inl i) := fun i j => by
@@ -272,11 +273,13 @@ theorem omB_std {e : Fin n → Fin d} {g : GL (Fin n) k} (hg : g ∈ KO k (Fin n
 
 end PositivityTheory.ThKG.Std
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.IdeleInt
+@[expose] public section -- clump member: Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.IdeleInt
 
 set_option linter.unusedSectionVars false
 
+noncomputable section
 
 namespace PositivityTheory.ThKG.Std
 
@@ -284,8 +287,6 @@ open NumberField IsDedekindDomain GlobalTheory.WeilM GlobalTheory.AdelicU Global
 open PositivityTheory.KCo PositivityTheory.ThK.SplitDict PositivityTheory.ThKG.Loc MeasureTheory ValuativeRel Topology GlobalTheory.ThK
 open GlobalTheory.Doubling (absE)
 open scoped TensorProduct
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {v : Pl F}
   {t : E →ₐ[F] Fv F v} {sec : Fv F v × Fv F v → AE F E}
@@ -460,10 +461,12 @@ theorem idele_int (hσ : IsCMExt F E σ) [SecondCountableTopology (Fv F v)] [Mea
 
 end PositivityTheory.ThKG.Std
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ConeVal
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.ThKG.Std
 
@@ -471,8 +474,6 @@ open NumberField IsDedekindDomain GlobalTheory.WeilM GlobalTheory.AdelicU Global
 open PositivityTheory.KCo PositivityTheory.ThK.SplitDict PositivityTheory.ThKG.Loc MeasureTheory ValuativeRel Topology GlobalTheory.ThK
 open GlobalTheory.Doubling (absE)
 open scoped TensorProduct
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {v : Pl F}
   {t : E →ₐ[F] Fv F v} {sec : Fv F v × Fv F v → AE F E}
@@ -500,7 +501,7 @@ theorem lin_uniq {M : Model σ X W} (hm : IsVol m) (hB : B.IsGood σ) (hu : PsiU
   refine (ev_model hm hB.std hu g g he hl L L' id id ∅ (fun z => by simp [o, x]) (fun _ h => by simp at h)
     (fun p _ => Or.inl ⟨p.1, p.2, rfl⟩) hφ y).trans ?_
   have : ∀ Z : Fin n × Fin d → Fv F v, tm (cut ∅ Z) = 0 := fun Z => by ext i j; simp [tm, cut]
-  simp only [this, zero_add, x, wt, Finset.notMem_empty, if_false]
+  simp only [this, zero_add, x, wt, Finset.notMem_empty, ite_false]
   rw [integral_const_mul, integral_fintype_prod_eq_prod (fun _ : Fin n × Fin d => ind (1 : Fv F v))]
   simp [int_ind_one hm]
 
@@ -666,9 +667,11 @@ theorem cone_val {β : ℕ} {X : Spc F E (β + 2)} {X₁ : Spc F E β} {M : Mode
 end PositivityTheory.ThKG.Std
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ExistsVol
+@[expose] public section -- clump member: Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ExistsVol
 
+noncomputable section
 
 namespace PositivityTheory.ThKG.Std
 
@@ -676,8 +679,6 @@ open NumberField IsDedekindDomain GlobalTheory.WeilM GlobalTheory.AdelicU Global
 open PositivityTheory.KCo PositivityTheory.ThK.SplitDict PositivityTheory.ThKG.Loc MeasureTheory ValuativeRel Topology GlobalTheory.ThK
 open GlobalTheory.Doubling (absE)
 open scoped TensorProduct
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {v : Pl F}
   {t : E →ₐ[F] Fv F v} {sec : Fv F v × Fv F v → AE F E}

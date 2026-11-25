@@ -435,15 +435,14 @@ end PI.UnitaryDimensionFormula
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.IdxDMatP
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.IdxDMatP
 
+noncomputable section
 
 open scoped Classical TensorProduct
 open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.TermOp
 
 namespace PI.UnitaryDimensionFormula
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem mat_idem_mul {Rg : Type} [Ring Rg] (E a b : Rg) (hE : E * E = E) (hc : ∀ x : Rg, E * x = x * E) :
     (E * a + (1 - E)) * (E * b + (1 - E)) = E * (a * b) + (1 - E) := by
@@ -601,6 +600,7 @@ theorem idxDMat_of (hJ : IdxDJacE) : IdxDMat := by
 
 end PI.UnitaryDimensionFormula
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.IdxDChk
 
@@ -703,16 +703,15 @@ theorem frGram : FrGram := by
 end PI.UnitaryDimensionFormula
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.IdxDcvFrame
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.IdxDcvFrame
 
+noncomputable section
 
 open scoped Classical TensorProduct
 open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.TermOp
   Formalism.L2.SG.Pf.unitaryCongruence PI.UnitaryDimensionFormula.NormCutK
 
 namespace PI.UnitaryDimensionFormula.FrameX
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} (X : HidaSetting D)
 
@@ -836,8 +835,6 @@ theorem rel_fz (u : D.what₂.Word) (a : Fin D.R.rS) : hA X.B.I (incl X.B.I (X.f
 end PI.UnitaryDimensionFormula.FrameX
 
 namespace PI.UnitaryDimensionFormula.FrameX
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} (X : HidaSetting D)
 
@@ -1000,8 +997,6 @@ end PI.UnitaryDimensionFormula.FrameX
 
 namespace PI.UnitaryDimensionFormula.FrameX
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 open PI.UnitaryDimensionFormula
 
 variable {D : D7} {X : HidaSetting D}
@@ -1126,17 +1121,17 @@ theorem to_ew (hE : EgProp X.B.I.F X.B.g e) {c : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F
 
 end PI.UnitaryDimensionFormula.FrameX
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.IdxDcvFrameAsm
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.IdxDcvFrameAsm
 
+noncomputable section
 
 open scoped Classical TensorProduct
 open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.TermOp
   Formalism.L2.SG.Pf.unitaryCongruence PI.UnitaryDimensionFormula.NormCutK PI.UnitaryDimensionFormula.FrameX
 
 namespace PI.UnitaryDimensionFormula
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem idxDFrame_of (hS : IdxDSig) (hJ : IdxDJacE) (hG : FrGram) : IdxDFrame := by
   intro D X u e hE
@@ -1194,7 +1189,7 @@ theorem idxDFrame_of (hS : IdxDSig) (hJ : IdxDJacE) (hG : FrGram) : IdxDFrame :=
     have hs : ∀ (F : Fin D.R.k → X.B.I.E ⊗[X.B.I.F] Af X.B.I.F),
         ∑ l, M i l * (F l - if l = j then eps else 0) = ∑ l, M i l * F l - M i j := fun F => by
       simp only [mul_sub, Finset.sum_sub_distrib, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ,
-        if_true, hMe]
+        ite_true, hMe]
     rw [hs, hMG] at h2
     rw [hs] at h1
     refine to_ew hE (hA_int X.B.I (Submodule.sum_mem _ fun l _ =>
@@ -1209,17 +1204,17 @@ theorem idxDFrame : IdxDFrame := idxDFrame_of idxDSig idxDJacE frGram
 
 end PI.UnitaryDimensionFormula
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.IdxKHom
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.IdxKHom
 
+noncomputable section
 
 open scoped Classical
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.TermOp
   Formalism.L2.SG.Full Formalism.MainNotions.S.Cnt
 
 namespace PI.UnitaryDimensionFormula
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem cj_good {D : D7} {X : HidaSetting D} (u : D.what₂.Word) (s : Hfin X u) (hs : cj X u s ∈ X.B.I.Kset) :
     NormCutK.Good X (cj X u s) := by
@@ -1241,6 +1236,7 @@ theorem idxHom : IdxHom := by
 
 end PI.UnitaryDimensionFormula
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.IndexGeFull
 
@@ -1251,15 +1247,14 @@ theorem indexGe : IndexGe := indexGe_of uniSub idxHom (idxSurj_of_frame idxDFram
 end PI.UnitaryDimensionFormula
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.StabBoundHolds
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.StabBoundHolds
 
+noncomputable section
 
 open scoped Classical
 open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.TermOp
 
 namespace PI.UnitaryDimensionFormula.StabB
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} (X : HidaSetting D)
 
@@ -1509,8 +1504,6 @@ end PI.UnitaryDimensionFormula.StabB
 
 namespace PI.UnitaryDimensionFormula
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 open StabB
 
 theorem stabBound_holds : StabBound := by
@@ -1573,6 +1566,7 @@ theorem stabBound_holds : StabBound := by
   exact ⟨hγ, h, h', hh, hh', κ, hκ, he⟩
 
 end PI.UnitaryDimensionFormula
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.UnitaryDimensionFormula

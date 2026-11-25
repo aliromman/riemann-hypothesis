@@ -53,20 +53,13 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.SetConstantsGoodEmbeddingRecursion, Development.AbelianVarietyTheory.Proofs.GenericRegularity.PageHypothesesAtCusp
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.SetConstantsGoodEmbeddingRecursion
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.SetConstantsGoodEmbeddingRecursion
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.Gaps.EtaleWeightGaps Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.BigRec
 
+noncomputable section
 
 namespace GlobalTheory.BigRec
-
-section Inst
-
-variable {D : D7} {T : Top D}
-
-variable (h : LawsP T) {j : ℕ} (hj : InR D j)
-
-end Inst
 
 
 
@@ -76,6 +69,7 @@ theorem bigAt_record : ∀ (D : D7) (T : Top D) (h : LawsP T) (j : ℕ) (hj : In
   exact ⟨hN, _root_.GlobalTheory.BigTrdeg.trdeg_ratios_record D T h j hj hG ka wL wF G c large₂ CK C1 A1 h0 Tn nP nW hS hN hE hc hcg⟩
 
 end GlobalTheory.BigRec
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GenericRegularity.PageHypothesesAtCusp

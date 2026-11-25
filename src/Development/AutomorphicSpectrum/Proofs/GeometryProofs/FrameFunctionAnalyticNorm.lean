@@ -29,8 +29,9 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.EigenLatticeVectorB
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Definitions.GlobalGeometry.NotIsLineFnZero, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.IsDomainAway, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicFamilyOfHoms, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicChartNearPoint, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameFunctionAnalyticNorm
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Definitions.GlobalGeometry.NotIsLineFnZero
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Definitions.GlobalGeometry.NotIsLineFnZero
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl.FlatModel
 
@@ -63,7 +64,7 @@ theorem isComb_one {S : Scheme.{0}} {R : Type} [CommRing R] {G : Over S} [GrpObj
   · by_cases h : i = j
     · have h1 : epsMul (1 : R) = RingHom.id _ := by ext z <;> simp [epsMul]
       simp [h, Matrix.one_apply, h1, spMap]
-    · simp only [h, Matrix.one_apply, if_false]
+    · simp only [h, Matrix.one_apply, ite_false]
       exact (epsMul_zero_comp (hv j)).symm
   · induction n with
     | zero => exact i.elim0
@@ -71,11 +72,12 @@ theorem isComb_one {S : Scheme.{0}} {R : Type} [CommRing R] {G : Over S} [GrpObj
       rw [List.ofFn_succ, List.prod_cons]
       refine Fin.cases ?_ (fun i => ?_) i
       · simp [List.prod_eq_one, (Fin.succ_ne_zero _).symm]
-      · simp only [Fin.succ_ne_zero, if_false, _root_.one_mul, Fin.succ_inj]
+      · simp only [Fin.succ_ne_zero, ite_false, _root_.one_mul, Fin.succ_inj]
         exact ih (v := fun j => v j.succ) (fun j => hv _) i
 
 
 end GlobalTheory.CompanionTheory.Ar.Fl.FlatModel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.IsDomainAway
@@ -156,8 +158,9 @@ end -- clump:auto
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl GlobalTheory.CompanionTheory.Ar.Flat Filter Topology Metric
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicFamilyOfHoms
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicFamilyOfHoms
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.ChartRing
 
@@ -182,9 +185,9 @@ theorem anChart_span {k A : Type} [Field k] [CommRing A] [Algebra k A] (D : ℕ)
   have pt : ∀ ψ : A →+* ℂ, ψ.comp (algebraMap k A) = σ → ∀ p, ψ (algebraMap P.Ring A p) = ev (fun i => ψ (P.val i)) p := fun ψ hψ p => by
     rw [P.algebraMap_apply, aeval_def, ← coe_eval₂Hom, map_eval₂Hom, hψ]
   let q : I → MvPolynomial I k := fun i => if h : i ∈ Set.range P.map then P.relation h.choose else X i
-  have q₁ : ∀ j, q (P.map j) = P.relation j := fun j => (dif_pos ⟨j, rfl⟩).trans
+  have q₁ : ∀ j, q (P.map j) = P.relation j := fun j => (dite_eq_left ⟨j, rfl⟩).trans
     (congrArg _ (P.map_inj (⟨j, rfl⟩ : P.map j ∈ Set.range P.map).choose_spec))
-  have q₂ : ∀ i : {i : I // i ∉ Set.range P.map}, q i = X i.1 := fun i => dif_neg i.2
+  have q₂ : ∀ i : {i : I // i ∉ Set.range P.map}, q i = X i.1 := fun i => dite_eq_right i.2
   let Φ : (I → ℂ) → I → ℂ := fun x i => eval x (map σ (q i))
   have Φe : ∀ x i, Φ x i = ev x (q i) := fun x i => MvPolynomial.eval_map _ _ _
   let x₀ : I → ℂ := fun i => ψ₀ (P.val i)
@@ -221,7 +224,7 @@ theorem anChart_span {k A : Type} [Field k] [CommRing A] [Algebra k A] (D : ℕ)
   let em : (Fin D → ℂ) →L[ℂ] (I → ℂ) := ContinuousLinearMap.pi fun i =>
     if h : i ∈ Set.range P.map then 0 else ContinuousLinearMap.proj (e.symm ⟨i, h⟩)
   have m₁ : ∀ b j, em b (P.map j) = 0 := fun b j => by simp [em]
-  have m₂ : ∀ b i, em b (e i) = b i := fun b i => by simp only [em, ContinuousLinearMap.pi_apply, dif_neg (e i).2]; simp
+  have m₂ : ∀ b i, em b (e i) = b i := fun b i => by simp only [em, ContinuousLinearMap.pi_apply, dite_eq_right (e i).2]; simp
   have lf : ∀ x : I → ℂ, (∀ j, ev x (P.relation j) = 0) → ∃ ψ : A →+* ℂ, ∀ p, ψ (algebraMap P.Ring A p) = ev x p := fun x hx =>
     ⟨(algebraMap P.Ring A).liftOfSurjective P.algebraMap_surjective ⟨ev x, by
       show P.ker ≤ _
@@ -235,7 +238,7 @@ theorem anChart_span {k A : Type} [Field k] [CommRing A] [Algebra k A] (D : ℕ)
   let n := Fintype.equivFin I
   refine ⟨_, fun j => P.val (n.symm j), fun i => P.val (e i), em ⁻¹' O, ε, fun b => if h : em b ∈ O then Ψ _ (rel b h) else ψ₀, ε0,
     oO.preimage em.continuous, fun b hb => ?_, fun a => ?_, fun ψ hψ hg => ?_, ?_⟩
-  · simp only [dif_pos (show em b ∈ O from hb)]
+  · simp only [dite_eq_left (show em b ∈ O from hb)]
     refine ⟨RingHom.ext fun r => ?_, fun i => ?_⟩
     · rw [RingHom.comp_apply, IsScalarTower.algebraMap_apply k P.Ring A, hΨ]; exact eval₂Hom_C _ _ _
     · rw [show P.val (e i) = algebraMap P.Ring A (X (e i).1) by simp, hΨ, ← q₂, ← Φe,
@@ -245,7 +248,7 @@ theorem anChart_span {k A : Type} [Field k] [CommRing A] [Algebra k A] (D : ℕ)
     · have c₁ : ContDiffAt ℂ 1 T.symm (em b) := interior_subset hb.2
       have c₂ : DifferentiableAt ℂ (fun x : I → ℂ => eval x (map σ p)) (T.symm (em b)) := (hasFDerivAt_eval _ _).differentiableAt
       exact (c₂.comp b ((c₁.differentiableAt one_ne_zero).comp b em.differentiableAt)).differentiableWithinAt
-    · simp only [dif_pos (show em b ∈ O from hb)]; rw [hΨ, MvPolynomial.eval_map]; rfl
+    · simp only [dite_eq_left (show em b ∈ O from hb)]; rw [hΨ, MvPolynomial.eval_map]; rfl
   · have hx := hε (show (fun i => ψ (P.val i)) ∈ Metric.ball x₀ ε from (dist_pi_lt_iff ε0).2 fun i => by
       simpa [dist_eq_norm] using hg (n i))
     have e₁ : em (fun i => ψ (P.val (e i))) = Φ fun i => ψ (P.val i) := funext fun i => by
@@ -257,7 +260,7 @@ theorem anChart_span {k A : Type} [Field k] [CommRing A] [Algebra k A] (D : ℕ)
         rw [m₂, Φe, q₂]
         simp only [ev, eval₂Hom_X']
     have mB : em (fun i => ψ (P.val (e i))) ∈ O := by rw [e₁]; exact hx.2
-    refine ⟨mB, (dif_pos mB).trans (RingHom.ext fun a => ?_)⟩
+    refine ⟨mB, (dite_eq_left mB).trans (RingHom.ext fun a => ?_)⟩
     obtain ⟨p, rfl⟩ := P.algebraMap_surjective a
     rw [hΨ, pt ψ hψ, e₁, show T.symm (Φ fun i => ψ (P.val i)) = _ from T.left_inv hx.1]
   · rw [eq_top_iff, ← P.basisKaehler.span_eq]
@@ -366,6 +369,7 @@ theorem exists_polydisc_chart : ∀ (k A : Type) [Field k] [CommRing A] [IsDomai
     exact hq0 (hv q fun z hz => by rw [hw, map_mul, ha z hz, zero_mul])
 
 end GlobalTheory.CompanionTheory.ChartRing
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicChartNearPoint

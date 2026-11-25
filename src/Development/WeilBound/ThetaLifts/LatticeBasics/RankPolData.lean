@@ -32,13 +32,14 @@ import Mathlib.RingTheory.PiTensorProduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CountableCompactOpen, Development.WeilBound.ThetaLifts.LatticeBasics.HermAbs, Development.WeilBound.ThetaLifts.LatticeBasics.FinOrbit, Development.WeilBound.ThetaLifts.LatticeBasics.RankPolData
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CountableCompactOpen
+section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.CountableCompactOpen
+@[expose] public section
 
 open NumberField IsDedekindDomain MeasureTheory Filter Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun
 open scoped TensorProduct
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.CompanionTheory.Ar.RT.Inj
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.RT.Inj.Rank
 
 theorem countable_compactOpen (X : Type) [TopologicalSpace X] [SecondCountableTopology X] :
@@ -60,6 +61,8 @@ theorem rank_SB_le (X : Type) [TopologicalSpace X] [SecondCountableTopology X] :
   exact Cardinal.le_aleph0_iff_set_countable.2 ((countable_compactOpen X).image _)
 
 end GlobalTheory.CompanionTheory.Ar.RT.Inj.Rank
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.LatticeBasics.HermAbs

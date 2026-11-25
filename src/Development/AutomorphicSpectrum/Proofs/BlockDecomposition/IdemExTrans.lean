@@ -236,8 +236,9 @@ theorem exists_unitary_off_S : (∀ (D : D7) (S : Finset (Pl D)) (e : AE D), IsI
 end GlobalTheory.CompanionTheory.WittS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EvalVSum
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EvalVSum
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.RgEisUnif.EIdemP
 
@@ -262,14 +263,15 @@ theorem evalV_sum (S : Finset (Pl F)) (u : Pl F) :
     unfold singleV
     by_cases huv : u = v
     · subst huv
-      rw [if_pos rfl]
+      rw [ite_eq_left rfl]
       exact RestrictedProduct.single_eq_same _ _ _
-    · rw [if_neg huv]
+    · rw [ite_eq_right huv]
       exact RestrictedProduct.single_eq_of_ne _ _ huv
   simp only [hs]
   rw [Finset.sum_ite_eq]
 
 end GlobalTheory.CompanionTheory.RgEisUnif.EIdemP
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

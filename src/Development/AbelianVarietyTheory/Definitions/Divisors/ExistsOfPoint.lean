@@ -24,32 +24,15 @@ import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.LocGenOfTr
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.JetHarmonics.HasTrivialKernelIff, Development.AbelianVarietyTheory.Definitions.Divisors.ExistsOfPoint
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.HasTrivialKernelIff
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.HasTrivialKernelIff
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.KerPow
 
 namespace GlobalTheory.TwistCompare
-
-section Basis
-
-variable {A : Type} [CommRing A] {X Y Y' : Scheme.{0}} {L : LB X} {K K' : Type} [Fintype K] [Fintype K']
-
-end Basis
-
-section Hyp
-
-variable {S : Scheme.{0}} (B : Over S) [GrpObj B] [IsCommMonObj B]
-
-end Hyp
-
-section Conclusion
-
-variable {R : Type} [CommRing R] [IsDomain R] (D : Out.DegPre R)
-
-end Conclusion
 
 theorem cube : Out.CubeSt :=
   GlobalTheory.AbLaw.Cube.cube_of_gen GlobalTheory.laws_without_cohomology.1 (GlobalTheory.AbLaw.exists_gen_theta
@@ -74,6 +57,7 @@ theorem exists_degPre {R : Type} [CommRing R] [IsDomain R] [IsLocalRing R] [IsNo
     (1 : ℤ), rfl, zpow_one c⟩
 
 end GlobalTheory.TwistCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsOfPoint

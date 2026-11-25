@@ -6,7 +6,8 @@ public import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.IsClosedC
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.ProjDegreeEqFinrankAdjoin, GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.ImportsAlt
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.ProjDegreeEqFinrankAdjoin
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.ProjDegreeEqFinrankAdjoin
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -14,6 +15,7 @@ namespace GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.ComplexSets
 
 open MvPolynomial
 
+noncomputable section
 
 namespace Objects
 
@@ -41,16 +43,12 @@ theorem orthoRows_eq (d n : ℕ) :
     GroundTheory.Heights₂.Heights.ComplexSets.orthoRows d n = unitaryRows d n :=
   rfl
 
-section Degree
-
-variable (J : Ideal (MvPolynomial (Fin n) ℂ)) [J.IsPrime]
-
-end Degree
-
 end Objects
 
+end
 
 end GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.ComplexSets
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.ImportsAlt

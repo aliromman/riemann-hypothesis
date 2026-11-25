@@ -59,7 +59,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FinitePartIntegralUnitOfUnitResidue
 open Formalism.IndefR.Links (PolF)
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.ExportSeries
 
@@ -106,7 +105,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PlaceIdempotentFiniteAdeleZeroElsewhere
 open Formalism.IndefR.Links (PolF)
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.ExportSeries
 
@@ -136,7 +134,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TameTwistFamilySpecializationGood
 open Formalism.IndefR.Links (PolF)
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
@@ -227,7 +224,7 @@ theorem spec_good (D : D7) (C A : Type) [AddCommGroup C] [CommGroup A] (u : Univ
   · intro PP hPP x h1 hx v hv
     show χ (u.delQ Q x) = (u.spec Q χ).res PP v
     rw [show (u.spec Q χ).res PP = χ.comp ((AddMonoidHom.toMultiplicative (AddMonoidHom.single (fun _ : ↥Q => C) ⟨PP, hPP⟩)).comp
-      (u.kap PP)) from dif_pos hPP, MonoidHom.comp_apply]
+      (u.kap PP)) from dite_eq_left hPP, MonoidHom.comp_apply]
     have hfu := finUnit_of_res PP (h.1.isIdemAt hPP) x h1 hx v hv
     refine congrArg χ ?_
     ext ⟨P', hP'⟩

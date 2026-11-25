@@ -55,8 +55,10 @@ import Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstima
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContDiffOnOfFderivFamily, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClosedDerivativeSystemSmooth, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClosedDerivativeSystemSmoothStatement
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContDiffOnOfFderivFamily
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContDiffOnOfFderivFamily
+@[expose] public section
 
+noncomputable section
 
 open PositivityTheory.jumpWindows
 open scoped ContDiff
@@ -106,14 +108,10 @@ end Norm
 
 end Chart
 
-section Orbit
-
-variable {ι : Type} [Fintype ι] {a : ℕ} {X : Type} [NormedAddCommGroup X] [NormedSpace ℂ X]
-
-end Orbit
-
 end GlobalTheory.CompanionTheory.SmoothVectors
 
+end
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

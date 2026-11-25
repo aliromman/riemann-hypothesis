@@ -9,10 +9,11 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.ProjectiveLattices.GenSpecRel, Formalism.LocalToGlobal.ProjectiveLattices.GenSpecV
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.GenSpecRel
+@[expose] public section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.GenSpecRel
 
 set_option autoImplicit false
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj
@@ -41,18 +42,8 @@ variable {tk g}
 
 end Corr
 
-section Count
-
-variable {S S' : Scheme.{0}} {G : Over S} [GrpObj G] {G' : Over S'} [GrpObj G'] {f : S' ⟶ S} {F : G'.left ⟶ G.left}
-  (hc : ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsGrpPullback G' G f F) {k : Type} [CommRing k] {tk : Spec (CommRingCat.of k) ⟶ S'}
-  {g : Spec (CommRingCat.of k) ⟶ S} (hg : tk ≫ f = g)
-
-
-
-
-end Count
-
 end Formalism.L2.Pj.GSR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.GenSpecV

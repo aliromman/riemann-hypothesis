@@ -13,8 +13,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.
 -- Members: Development.WeilBound.CoreStatements.HodgeTatePoints.CbAlpha, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AlphaEquivariantFrobenius
 
 section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CbAlpha
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.HtPt.Cb
 
@@ -45,7 +46,7 @@ theorem Lz_fst {φ : Pt R 1 d} (hφ : Z φ) (j : Fin d) (f : PS R 2 d) :
   simp only [Lz]
   rw [d2 (Z_comp1 hφ (Z_pt 0)) (Z_pt 1)]
   simp only [dcomp_ne (show (0 : Fin 2) ≠ 1 by decide), dpt, mul_zero, Finset.sum_const_zero,
-    zero_add, Prod.mk.injEq, true_and, mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    zero_add, Prod.mk.injEq, true_and, mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   rw [ev2 hb (Z_comp1 hφ (Z_pt 0)) (Z_pt 1), ev2 hφ' (Z_pt 0) Z_zero, ep_comp1 φ hb (Z_pt 0),
     ep_pt hb, ep_pt hb, ep_pt hφ', ep_zero hφ']
   simp [germCompOne_identityPoint_left]
@@ -56,7 +57,7 @@ theorem Lz_snd {ψ : Pt R 1 d} (hψ : Z ψ) (j : Fin d) (f : PS R 2 d) :
   have h01 : ((0 : Fin 2) = 1) ↔ False := by decide
   simp only [Lz]
   rw [d2 (Z_pt 0) (Z_comp1 hψ (Z_pt 1))]
-  simp only [dpt, dcomp_eq, Prod.mk.injEq, h01, false_and, if_false, mul_zero,
+  simp only [dpt, dcomp_eq, Prod.mk.injEq, h01, false_and, ite_false, mul_zero,
     Finset.sum_const_zero, zero_add, evsum hb, evm hb]
   refine Finset.sum_congr rfl fun c _ => ?_
   rw [ev2 hb (Z_pt 0) (Z_comp1 hψ (Z_pt 1)), ev1 hb (Z_pt 1), ep_comp1 ψ hb (Z_pt 1)]
@@ -130,7 +131,7 @@ private theorem Lz_ev_ptPow_pt {R : Type} [CommRing R] {d : ℕ} (p : ℕ) [Fact
   simp only [Lz]
   rw [d2 (Z_ptPow p 0) (Z_pt 1)]
   simp only [hp0, dpt, mul_zero, Finset.sum_const_zero, zero_add, Prod.mk.injEq, true_and,
-    mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   rw [ev2 hb (Z_ptPow p 0) (Z_pt 1), ev2 hq (Z_pt 0) Z_zero, ep_ptPow p hb, ep_pt hb, ep_pt hq,
     ep_zero hq]
   congr 1
@@ -221,6 +222,7 @@ theorem alpha_act : ∀ (R : Type) [CommRing R] (p : ℕ) [Fact p.Prime] [CharP 
   · simp [alpha, rhoH, Matrix.mulVec_mulVec, m2, Matrix.sub_mulVec]
 
 end PositivityTheory.HtPt.Cb
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

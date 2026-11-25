@@ -32,11 +32,12 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCou
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: CompanionTheory.AutomorphicTheory.UniformLocalFormulas.MeasConjM, CompanionTheory.AutomorphicTheory.UniformLocalFormulas.CovarianceFormula
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.UniformLocalFormulas.MeasConjM
+@[expose] public section -- clump member: CompanionTheory.AutomorphicTheory.UniformLocalFormulas.MeasConjM
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.FourierDecayAlt Formalism.FourierDecayAlt.P WlocSk.NB
 open scoped ENNReal Kronecker
 
+noncomputable section
 
 namespace Formalism.MainStatements.RowRest
 
@@ -137,7 +138,7 @@ theorem aDil_e (t : ℝ) (a : Fin r) :
   unfold B.aDil bvec
   rw [Matrix.diagonal_mulVec_single, ← Pi.single_smul']
   have : (eI k r a).val < r := a.isLt
-  rw [if_pos this]
+  rw [ite_eq_left this]
   simp [eI]
 
 theorem aDil_f (t : ℝ) (a : Fin r) :
@@ -148,7 +149,7 @@ theorem aDil_f (t : ℝ) (a : Fin r) :
   have h1 : ¬ (esI k r a).val < r := by simp only [esI]; omega
   have h2 : ¬ (esI k r a).val ≤ r + k := by simp only [esI]; omega
   have h3 : (esI k r a).val - (r + k) = r - a.val := by simp only [esI]; omega
-  rw [if_neg h1, if_neg h2, h3]
+  rw [ite_eq_right h1, ite_eq_right h2, h3]
   simp
 
 theorem conj_levi {d : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ} (hd : d ∈ UH (Hpk k r)) {t : ℝ} (ht : 0 < t)
@@ -175,6 +176,7 @@ theorem conj_levi {d : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ} (
     (Formalism.MainNotions.BridgeCSB.haarLieN k r 1 one_ne_zero ENNReal.one_ne_top)) t ht
 
 end Formalism.MainStatements.RowRest
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: CompanionTheory.AutomorphicTheory.UniformLocalFormulas.CovarianceFormula

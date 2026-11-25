@@ -383,8 +383,9 @@ theorem lat_eq_iff : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (w :
 end GlobalTheory.TwOrbLat
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedCentralizerEqMapNormOneTorus
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedCentralizerEqMapNormOneTorus
 
+noncomputable section
 
 namespace GlobalTheory.TwOrbCent
 
@@ -599,7 +600,7 @@ theorem twCent_eq_map : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   intro E _ _ _ w hw K e he a B hP β ε hε hβ b δ hG
   have hth : thL a w = thetaGL a (cj w) := by
     unfold thL
-    rw [if_neg hw]
+    rw [ite_eq_right hw]
   rw [hth]
   have hs := sf_crd e b (cj w) he _ (β : B.A) hG
   ext g
@@ -647,8 +648,10 @@ theorem twCent_eq_map : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
 
 end GlobalTheory.TwOrbCent
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedConjIntegralIffLatticeUnimodular
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedConjIntegralIffLatticeUnimodular
+noncomputable section
 
 namespace GlobalTheory.TwOrbUnimod
 
@@ -826,7 +829,7 @@ theorem twist_integral_iff_unimodular : ∀ (E : Type) [Field E] [NumberField E]
     rfl
   have step1 : q⁻¹ * δ * thL a w q ∈ GlobalTheory.LFun.KGL w (n := a) ↔ Yg ∈ GlobalTheory.LFun.KGL w (n := a) := by
     have hth : thL a w q = PhiU a F * invT a F (GeneralLinearGroup.map c q) * (PhiU a F)⁻¹ := by
-      simp only [GlobalTheory.BCT.thL, if_neg hw]
+      simp only [GlobalTheory.BCT.thL, ite_eq_right hw]
       rfl
     have hP : PhiU a F ∈ GlobalTheory.LFun.KGL w (n := a) := PhiU_mem _
     rw [hth, show q⁻¹ * δ * (PhiU a F * invT a F (GeneralLinearGroup.map c q) * (PhiU a F)⁻¹) =
@@ -905,9 +908,11 @@ theorem twist_integral_iff_unimodular : ∀ (E : Type) [Field E] [NumberField E]
 end GlobalTheory.TwOrbUnimod
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralUnitGLEqHermitianLatticeCo
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralUnitGLEqHermitianLatticeCo
 
+noncomputable section
 
 namespace GlobalTheory.TwOrbLat
 
@@ -1036,8 +1041,8 @@ theorem GlobalTheory.TwOrbLat.twOrb_unit_eq_orbSum : ∀ (E : Type) [Field E] [N
       rw [one_mul] at this
       simp only [Set.indicator_apply, SetLike.mem_coe, Pi.one_apply]
       by_cases h : P y
-      · rw [if_pos h, if_pos ((this.2 h))]
-      · rw [if_neg h, if_neg (fun h' => h (this.1 h'))]
+      · rw [ite_eq_left h, ite_eq_left ((this.2 h))]
+      · rw [ite_eq_right h, ite_eq_right (fun h' => h (this.1 h'))]
     unfold GlobalTheory.TwOrbConj.summand
     rw [hconst, avg_const, hRel]
     split_ifs <;> simp
@@ -1104,6 +1109,7 @@ theorem GlobalTheory.TwOrbLat.twOrb_unit_eq_orbSum : ∀ (E : Type) [Field E] [N
   rw [hs2, stabLat_mulLat]
   push_cast
   simp
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralUnitGLEqHermitianLatticeCoStatement

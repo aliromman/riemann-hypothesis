@@ -10,8 +10,10 @@ import Formalism.SharpRestriction.LevelLetterCocycles.SecondPropositionEveryLoca
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.MapEqOfProdEq, Formalism.SharpRestriction.LevelLetterCocycles.GoodCongruenceDataOf
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.MapEqOfProdEq
+section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.MapEqOfProdEq
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.RepresentationBoundsCohomology
 
@@ -65,18 +67,6 @@ theorem eG_mulVec (M : Matrix (Fin (r + t)) (Fin (r + t)) K)
 
 end GlobalTheory
 
-section Pts
-
-variable {O Y : Type} [CommRing O] [IsDomain O] (t : ℕ) (P : Y → O[X])
-
-end Pts
-
-section EE
-
-variable {A : Type} [CommRing A] {d : Type} [Fintype d] [DecidableEq d]
-
-end EE
-
 section Gen2
 
 variable {r t : ℕ} {A : Type} [CommRing A]
@@ -103,7 +93,7 @@ theorem diag_conj (M : Matrix (Fin (r + t)) (Fin (r + t)) A)
   by_cases hab : a = b
   · subst hab
     split_ifs <;> simp_all
-  · rw [if_neg hab]
+  · rw [ite_eq_right hab]
     by_cases ha : blkG r t a = 0
     · simp [ha]
     · by_cases hb : blkG r t b = 0
@@ -115,10 +105,13 @@ end Gen2
 
 end Formalism.MainNotions.N.RepresentationBoundsCohomology
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.GoodCongruenceDataOf
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.GoodCongruenceDataOf
 
+noncomputable section
 
 open Formalism.BasicNotions
 
@@ -191,7 +184,7 @@ theorem e_of_diag (β : Fin R.nV → N.O i) (u : Fin R.nV → KK N i) :
   refine (eG_mulVec _ (fun a b h => ?_) u).trans ?_
   · have hab : a ≠ b := fun hab => h (by rw [hab])
     show toK N i (if a = b then (if blk R a = 0 then (0 : N.O i) else β a) else 0) = 0
-    rw [if_neg hab, map_zero]
+    rw [ite_eq_right hab, map_zero]
   · congr 1
     · have h0 : ∀ a b : Fin R.r, ((Matrix.diagonal (fun a => if blk R a = 0 then (0 : N.O i) else β a)).map (toK N i)) (Fin.castAdd R.t a) (Fin.castAdd R.t b) = 0 := by
         intro a b
@@ -200,8 +193,8 @@ theorem e_of_diag (β : Fin R.nV → N.O i) (u : Fin R.nV → KK N i) :
         have hblk : blk R (Fin.castAdd R.t a) = 0 := by simp [blkG]
         by_cases hab : a = b
         · subst hab
-          rw [if_pos rfl, if_pos hblk, map_zero]
-        · rw [if_neg (fun h => hab (Fin.castAdd_injective _ _ h)), map_zero]
+          rw [ite_eq_left rfl, ite_eq_left hblk, map_zero]
+        · rw [ite_eq_right (fun h => hab (Fin.castAdd_injective _ _ h)), map_zero]
       funext a
       simp only [Matrix.mulVec, dotProduct, Pi.zero_apply]
       exact Finset.sum_eq_zero fun b _ => by
@@ -212,10 +205,11 @@ theorem e_of_diag (β : Fin R.nV → N.O i) (u : Fin R.nV → KK N i) :
       have hblk : blk R (Fin.natAdd R.r c) ≠ 0 := by simp [blkG, Fin.ext_iff]
       show toK N i (if Fin.natAdd R.r c = Fin.natAdd R.r c then
         (if blk R (Fin.natAdd R.r c) = 0 then (0 : N.O i) else β (Fin.natAdd R.r c)) else 0) * _ = _
-      rw [if_pos rfl, if_neg hblk]
+      rw [ite_eq_left rfl, ite_eq_right hblk]
 
 end Formalism.MainNotions.N.RepresentationBoundsCohomology
 
+end
 
 -- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.MapEqOfProdEq", "h": "module\n\npublic import Mathlib.Data.Matrix.Mul\npublic import Mathlib.LinearAlgebra.DFinsupp\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Formalism.WachLatticeTwists.RamifiedBlockRings.Statement\n\n"}
 -- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.GoodCongruenceDataOf", "h": "module\n\npublic import Formalism.SharpRestriction.LevelLetterCocycles.MapEqOfProdEq\npublic import Formalism.SharpRestriction.LevelLetterCocycles.QuotientHomNonvanishingBound\npublic import Formalism.WachLatticeTwists.RamifiedBlockRings.Statement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\npublic import Formalism.WachLatticeTwists.RamifiedBlockRings.RightIdealImageOfSurjective\nimport Formalism.SharpRestriction.LevelLetterCocycles.SecondPropositionEveryLocalisation\n\n"}

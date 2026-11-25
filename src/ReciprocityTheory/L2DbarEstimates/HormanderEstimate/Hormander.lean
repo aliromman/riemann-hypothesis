@@ -18,13 +18,14 @@ public import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
 -- Members: ReciprocityTheory.L2DbarEstimates.HormanderEstimate.GmSingleIsTestForm, ReciprocityTheory.L2DbarEstimates.HormanderEstimate.Hormander
 
 section -- clump member: ReciprocityTheory.L2DbarEstimates.HormanderEstimate.GmSingleIsTestForm
-@[expose] public noncomputable section
+@[expose] public section
 
 namespace ReciprocityTheory.L2DbarEstimates.F
 
 open MeasureTheory Filter Topology Set
 open scoped ENNReal InnerProductSpace ComplexConjugate ContDiff
 
+noncomputable section
 
 section helpers
 
@@ -460,7 +461,7 @@ theorem gm_tstar_single (n : ℕ) (z : M → V n) (ph : M → ℝ) (φ : M → �
     · subst hk
       have hE : (Real.exp (-ph y) : ℂ) * (Real.exp (ph y) : ℂ) = 1 := by
         rw [← Complex.ofReal_mul, ← Real.exp_add, neg_add_cancel, Real.exp_zero, Complex.ofReal_one]
-      simp only [gmSingle, PiLp.single_apply, if_true, ← mul_assoc, hE,
+      simp only [gmSingle, PiLp.single_apply, ite_true, ← mul_assoc, hE,
         one_mul]
     · simp [gmSingle, hk]
   have hd : ∀ k, d n z k (fun y => (Real.exp (-ph y) : ℂ) * gmSingle ph φ j y k) x =
@@ -469,13 +470,13 @@ theorem gm_tstar_single (n : ℕ) (z : M → V n) (ph : M → ℝ) (φ : M → �
     rw [hfun k]
     by_cases hk : k = j
     · subst hk
-      simp only [if_true]
+      simp only [ite_true]
       exact d_conj_eq_conj_db φ k x
-    · simp only [hk, if_false]
+    · simp only [hk, ite_false]
       apply d_eq_zero_of_not_mem_tsupport
       first
         | simp
-  simp only [tstar, hd, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [tstar, hd, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
 theorem gm_ipV_single (n : ℕ) (z : M → V n) (ph : M → ℝ) (F0 φ : M → ℂ) (j : Fin n) :
     ipV n z (dbarF n z F0) (gmSingle ph φ j) ph = conj (∫ x, db n z j F0 x * φ x ∂vol n z) := by
@@ -566,6 +567,7 @@ theorem locL2_sub_weightedL2 (n : ℕ) (z : M → V n) (hz : IsLocalHomeomorph z
 
 end loc
 
+end
 
 end ReciprocityTheory.L2DbarEstimates.F
 end -- clump:auto

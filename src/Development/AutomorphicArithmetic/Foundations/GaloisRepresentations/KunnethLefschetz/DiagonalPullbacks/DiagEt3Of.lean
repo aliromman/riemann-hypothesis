@@ -962,8 +962,9 @@ theorem UpperTheory.Gal.KunnethLefschetz.Di.geoM_holds :
     · rw [Model.genMap_q, Model.genMap_q]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.PolynomialChartSpans.EtaleChart
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.PolynomialChartSpans.EtaleChart
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry MvPolynomial CrystallineSemistableComparison CrystallineSemistableComparison.Onto
 
@@ -1163,8 +1164,8 @@ private theorem etale_chart {A E B : Type} [CommRing A] [CommRing E] [CommRing B
   have gXj : g (X j) = ψ (s j) := by rw [hgd, eval₂Hom_X', Function.update_self]
   have σC : ∀ x, σ (MvPolynomial.C x) = MvPolynomial.C x := fun x => by rw [hσd, eval₂Hom_C]
   have σX : ∀ k, k ≠ j → σ (X k) = X k * X j := fun k hk => by
-    rw [hσd, eval₂Hom_X', if_neg hk]
-  have σXj : σ (X j) = X j := by rw [hσd, eval₂Hom_X', if_pos rfl]
+    rw [hσd, eval₂Hom_X', ite_eq_right hk]
+  have σXj : σ (X j) = X j := by rw [hσd, eval₂Hom_X', ite_eq_left rfl]
   have mem1 : (X j - 1 : MvPolynomial (Fin D) E) ∈ RingHom.ker f := by
     rw [ker]; exact Ideal.subset_span (Set.mem_insert _ _)
   have mem2 : ∀ k, (MvPolynomial.C (s k) - MvPolynomial.C (s j) * X k : MvPolynomial (Fin D) E) ∈
@@ -1436,6 +1437,7 @@ theorem blowE : BlowE := by
     exact h1
 
 end UpperTheory.Gal.KunnethLefschetz.G
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.DiagonalPullbacks.DiagEt3Of

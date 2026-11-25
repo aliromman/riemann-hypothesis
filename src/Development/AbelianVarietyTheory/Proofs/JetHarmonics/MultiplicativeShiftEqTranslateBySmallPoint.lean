@@ -131,8 +131,9 @@ theorem ode_unique : ∀ (q : ℕ) [Fact q.Prime] (P₁ P₂ : MvPolynomial (Fin
 end GlobalTheory.MomOne
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.MultiplicativeShiftEqTranslateBySmallPoint
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.MultiplicativeShiftEqTranslateBySmallPoint
 
+noncomputable section
 namespace GlobalTheory.MomOne.SmallTranslate
 variable {q : ℕ} [Fact q.Prime]
 
@@ -213,7 +214,7 @@ lemma one_add_X_mul_derivative_logS : (1 + X) * derivative (logS : ℂ_[q]⟦X�
   have hc : ∀ n, coeff n (derivative (logS : ℂ_[q]⟦X⟧)) = (-1) ^ n := by
     intro n
     have hk : ((n : ℂ_[q]) + 1) ≠ 0 := by exact_mod_cast Nat.succ_ne_zero n
-    rw [coeff_derivative, logS, coeff_mk, if_neg (Nat.succ_ne_zero n)]
+    rw [coeff_derivative, logS, coeff_mk, ite_eq_right (Nat.succ_ne_zero n)]
     push_cast
     field_simp
     ring
@@ -221,7 +222,7 @@ lemma one_add_X_mul_derivative_logS : (1 + X) * derivative (logS : ℂ_[q]⟦X�
   rw [add_mul, one_mul, map_add (f := _)]
   cases n with
   | zero => rw [coeff_zero_X_mul, hc]; simp
-  | succ n => rw [coeff_succ_X_mul, hc, hc, coeff_one, if_neg (Nat.succ_ne_zero n)]; ring
+  | succ n => rw [coeff_succ_X_mul, hc, hc, coeff_one, ite_eq_right (Nat.succ_ne_zero n)]; ring
 
 lemma constantCoeff_chart (ω : ℂ_[q]) : constantCoeff (C ω * logS : ℂ_[q]⟦X⟧) = 0 := by
   rw [map_mul, ← coeff_zero_eq_constantCoeff_apply logS, logS, coeff_mk]; simp

@@ -14,8 +14,9 @@ public import Formalism.FormalGroupWitt.Statement
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.FormalGroupWitt.FormalGroupWittProofs.CoeffExpandEqZero, Formalism.FormalGroupWitt.FormalGroupWittProofs.CoeffV, Formalism.FormalGroupWitt.FormalGroupWittProofs.FunctionalEquationSubstVector, Formalism.FormalGroupWitt.FormalGroupWittProofs.FunctionalEquationHomVector, Formalism.FormalGroupWitt.WeightInvariance
 
-@[expose] public noncomputable section -- clump member: Formalism.FormalGroupWitt.FormalGroupWittProofs.CoeffExpandEqZero
+@[expose] public section -- clump member: Formalism.FormalGroupWitt.FormalGroupWittProofs.CoeffExpandEqZero
 
+noncomputable section
 
 universe u v w
 
@@ -45,7 +46,7 @@ theorem coeff_expand_eq_zero {R : Type*} [CommRing R] {τ : Type*} (q : ℕ) (hq
         omega
       · exact h
     nlinarith
-  · push_neg at hdiv
+  · push Not at hdiv
     obtain ⟨i, hi⟩ := hdiv
     exact MvPowerSeries.coeff_expand_of_not_dvd q hq φ hi
 
@@ -72,9 +73,11 @@ theorem low_coeff_vector : Formalism.FG.LowCoeffV.{u, v, w} := by
 
 end Formalism.FG
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.FormalGroupWitt.FormalGroupWittProofs.CoeffV
+@[expose] public section -- clump member: Formalism.FormalGroupWitt.FormalGroupWittProofs.CoeffV
 
+noncomputable section
 
 universe u v w
 
@@ -203,7 +206,7 @@ theorem main : Formalism.FG.CoeffBoundV.{u, v, w} := by
                   (MvPowerSeries.expand q hq (MvPowerSeries.map σ (f l)))‖ * ‖(p : K)‖ ^ K0 := by
                   field_simp
               _ ≤ 1 := h12
-    · push_neg at hdiv
+    · push Not at hdiv
       obtain ⟨i, hi⟩ := hdiv
       refine ⟨0, fun i => by simp, ?_⟩
       have hz : ∀ l, MvPowerSeries.coeff n (MvPowerSeries.expand q hq (MvPowerSeries.map σ (f l))) = 0 :=
@@ -217,6 +220,7 @@ theorem main : Formalism.FG.CoeffBoundV.{u, v, w} := by
 end Formalism.FG.CoefficientBoundsFormalGroupWitt
 
 alias Formalism.FG.coeff_bound_vector := _root_.Formalism.FG.CoefficientBoundsFormalGroupWitt.main
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.FormalGroupWitt.FormalGroupWittProofs.FunctionalEquationSubstVector

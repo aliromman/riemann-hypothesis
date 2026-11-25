@@ -9,10 +9,11 @@ import Formalism.RealPlaceAnalysis.RealPlaceTaylor.KoszulLowersPower
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnimodularLattice.FrameC, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnimodularLattice.Transf, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.NUnimodLoc
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnimodularLattice.FrameC
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnimodularLattice.FrameC
 
 open Matrix
 
+noncomputable section
 
 namespace PI.NUnimodLoc.UnitaryGroupMassFormula.FC
 
@@ -143,7 +144,7 @@ lemma mem_spanLt_iff {a : ℕ} (ha : a ≤ r) (v : Fin (2 * r + k + 1) → ℂ) 
       have hb' : b.val < a := hb
       have hfb : e b = fcol k r e f wf z0 ⟨b.val, by omega⟩ := by simp [fcol, b.isLt]
       show (Qm k r ε e f wf z0 *ᵥ e b) i = 0
-      rw [hfb, qm_mulVec_fcol hF, Pi.single_apply, if_neg]
+      rw [hfb, qm_mulVec_fcol hF, Pi.single_apply, ite_eq_right]
       intro h
       rw [Fin.ext_iff] at h
       simp only at h
@@ -267,6 +268,7 @@ theorem frame_conjugation_unimodular : FrameConj := by
   exact ⟨Pm k r e f wf z0, Qm k r ε e f wf z0, qm_mul_pm hF, pm_mul_qm hF, fun g => frame_conj_iff hF hc hz g⟩
 
 end PI.NUnimodLoc.UnitaryGroupMassFormula.FC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnimodularLattice.Transf

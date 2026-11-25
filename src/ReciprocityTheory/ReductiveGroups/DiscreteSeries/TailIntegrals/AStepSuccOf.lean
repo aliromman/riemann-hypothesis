@@ -1,5 +1,6 @@
 module
 
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.GaNonneg
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.HeisenbergFactsOfInductiveInput
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.Phi2
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.FixOfPerp
@@ -18,14 +19,13 @@ import Mathlib.Algebra.Order.Star.Real
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.ExponentShiftEqLevelExponent, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.HpkNegMp, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.InnerCLe, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.AStepFin, ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.AStepSuccOf
 
-section -- clump: shared namespace opens
+section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.ExponentShiftEqLevelExponent
+@[expose] public section
 
+noncomputable section
 
 open Matrix MeasureTheory
 open scoped ENNReal NNReal ComplexConjugate
-
-section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.ExponentShiftEqLevelExponent
-@[expose] public noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.DS.Xi.StepA
 
@@ -85,14 +85,14 @@ theorem sum_levelExponents_shifted : ∑ l : Fin (r' + 1), s0 k (1 + r') (sc r' 
   rw [Fin.sum_univ_castSucc]
   have h1 : ∀ i : Fin r', s0 k (1 + r') (sc r' (Fin.castSucc i)) = 2 := fun i => by
     have := i.isLt
-    exact if_pos (by simp only [sc, Fin.val_castSucc]; omega)
+    exact ite_eq_left (by simp only [sc, Fin.val_castSucc]; omega)
   have h2 : s0 k (1 + r') (sc r' (Fin.last r')) = k := by
-    exact if_neg (by simp only [sc, Fin.val_last]; omega)
+    exact ite_eq_right (by simp only [sc, Fin.val_last]; omega)
   simp only [h1, h2, Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
   ring
 
 theorem levelExponent_first_eq_two : s0 k (1 + r') 0 = 2 := by
-  exact if_pos (by simp)
+  exact ite_eq_left (by simp)
 
 theorem exponentShift_eq_levelExponent (hk : 1 ≤ k) (l : Fin (1 + r' + 1)) : s0N (1 + r') (k - 1) l = s0 k (1 + r') l := by
   unfold s0N s0
@@ -111,9 +111,9 @@ theorem th_ident (s : Fin (1 + r' + 1) → ℝ) (aw : ℝ) (x : HPar k r') (hG0 
   have hPsi : 0 ≤ Psi k r' s x := Finset.prod_nonneg fun l _ => Real.rpow_nonneg (div_nonneg (hGl _) hG0.le) _
   rw [← ENNReal.ofReal_mul hPsi, ← ENNReal.ofReal_prod_of_nonneg (fun l _ => Real.rpow_nonneg (hGl l) _)]
   congr 1
-  rw [Fin.prod_univ_succ, if_pos rfl]
+  rw [Fin.prod_univ_succ, ite_eq_left rfl]
   have e : ∀ i : Fin (1 + r'), Fin.succ i = sc r' (Fin.cast (by omega) i) := fun i => Fin.ext (by simp [sc])
-  simp only [e, sc_ne_zero, if_false]
+  simp only [e, sc_ne_zero, ite_false]
   rw [Fin.prod_congr' (fun j => Ga k (1 + r') (sc r' j) (Yx k r' x) ^ (-s (sc r' j) / 2)) (by omega : 1 + r' = r' + 1)]
   unfold Psi Dx
   have hP : ∏ l : Fin (r' + 1), (Ga k (1 + r') (sc r' l) (Yx k r' x) / Ga k (1 + r') 0 (Yx k r' x)) ^ (-s (sc r' l) / 2)
@@ -134,8 +134,14 @@ end fin
 end ReciprocityTheory.ChartRestriction.DS.Xi.StepA
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.HpkNegMp
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.HpkNegMp
+
+noncomputable section
+
+open Matrix MeasureTheory
+open scoped ENNReal NNReal ComplexConjugate
 
 namespace ReciprocityTheory.ChartRestriction.DS.Xi.StepA
 
@@ -144,18 +150,7 @@ open Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Formalism.Fourier
 namespace ThFin
 
 theorem ga_nn (k r : ℕ) (l : Fin (r + 1)) (Y : Fin (r + 1) → Fin (2 * r + k + 1) → ℂ) : 0 ≤ Ga k r l Y := by
-  unfold Ga
-  open scoped ComplexOrder in
-  have key : ∀ {m : ℕ} (W : Fin m → Fin (2 * r + k + 1) → ℂ),
-      0 ≤ (Matrix.of fun a b => star (W a) ⬝ᵥ W b).det.re := by
-    intro m W
-    have h : (Matrix.of fun a b => star (W a) ⬝ᵥ W b) =
-        (Matrix.of fun i a => W a i)ᴴ * Matrix.of fun i a => W a i := by
-      ext a b
-      simp [Matrix.mul_apply, dotProduct, Matrix.conjTranspose_apply]
-    rw [h]
-    exact (Complex.nonneg_iff.mp (Matrix.posSemidef_conjTranspose_mul_self _).det_nonneg).1
-  exact key _
+  apply ReciprocityTheory.ChartRestriction.DS.Xi.XI.ga_nonneg <;> assumption
 
 theorem dot_unit {n : ℕ} {U : Matrix (Fin n) (Fin n) ℂ} (hU : Uᴴ * U = 1) (u v : Fin n → ℂ) :
     star (U *ᵥ u) ⬝ᵥ (U *ᵥ v) = star u ⬝ᵥ v := by
@@ -330,9 +325,14 @@ theorem th_fin (hB2 : InductiveHeisenbergInputs) (hF : FormulaF) (hCH : CH) (k r
 
 end ReciprocityTheory.ChartRestriction.DS.Xi.StepA
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.InnerCLe
 @[expose] public noncomputable section
+
+
+open Matrix MeasureTheory
+open scoped ENNReal NNReal ComplexConjugate
 
 namespace ReciprocityTheory.ChartRestriction.DS.Xi.StepA
 
@@ -496,10 +496,9 @@ end ReciprocityTheory.ChartRestriction.DS.Xi.StepA
 end -- clump:auto
 end -- clump:auto
 
-end -- clump: shared namespace opens
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.AStepFin
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.AStepFin
-
+noncomputable section
 
 set_option linter.unusedTactic false
 set_option linter.unreachableTactic false
@@ -574,11 +573,11 @@ theorem aStep_fin (hB2 : InductiveHeisenbergInputs) (hIW : IW) (hT : TLeft) (hF 
   have hCHc : CHCond (1 + r') fun l =>
       (if l = 0 then aw + 2 - ∑ l' : Fin (r' + 1), s (sc r' l') else s l) - s0N (1 + r') (k - 1) l := by
     refine chcond_of _ (fun l => s0 k (1 + r') l - s l) (fun l => by linarith [(hs l).1]) ?_ ?_
-    · simp only [if_pos rfl]
+    · simp only [ite_eq_left rfl]
       rw [sum_erase0, exponentShift_eq_levelExponent k r' hk, levelExponent_first_eq_two, Finset.sum_sub_distrib, sum_levelExponents_shifted, haw, sum_sc r' s]
       push_cast; ring
     · intro l hl0
-      simp only [if_neg hl0]
+      simp only [ite_eq_right hl0]
       rw [exponentShift_eq_levelExponent k r' hk]; ring
   have hTh : ∫⁻ x, ENNReal.ofReal (Psi k r' s x) * ENNReal.ofReal (Dx k r' x ^ (-(aw + 2))) < ⊤ := by
     refine lt_of_le_of_lt (le_of_eq (lintegral_congr fun x => ?_)) (th_fin hB2 hF hCH k r' hk _ hCHc)
@@ -619,6 +618,7 @@ theorem aStep_fin (hB2 : InductiveHeisenbergInputs) (hIW : IW) (hT : TLeft) (hF 
     _ < ⊤ := ENNReal.mul_lt_top (ENNReal.mul_lt_top ENNReal.ofReal_lt_top hJ1) (ENNReal.mul_lt_top hK1 hTh)
 
 end ReciprocityTheory.ChartRestriction.DS.Xi.StepA
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.AStepSuccOf

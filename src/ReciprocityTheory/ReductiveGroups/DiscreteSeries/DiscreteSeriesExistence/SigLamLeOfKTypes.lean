@@ -8,8 +8,9 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.CvAEquivariantA, ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SigLamLeOfKTypes
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.CvAEquivariantA
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.CvAEquivariantA
 
+noncomputable section
 
 open Finset Matrix MeasureTheory Topology
 open scoped ContDiff
@@ -145,17 +146,17 @@ theorem exists_cvA_idA (hσ : IsURepOn (UJset ε) σ)
   haveI hisoF : ∀ S, FiniteDimensional ℂ (iso S) := by
     intro S
     by_cases h : ∃ μ, Formalism.MainNotions.S.IsKTypeOf ε σ μ S
-    · have e : iso S = sSup {S' | Formalism.MainNotions.S.IsKTypeOf ε σ h.choose S'} := dif_pos h
+    · have e : iso S = sSup {S' | Formalism.MainNotions.S.IsKTypeOf ε σ h.choose S'} := dite_eq_left h
       rw [e]
       exact hadm _
-    · have e : iso S = ⊥ := dif_neg h
+    · have e : iso S = ⊥ := dite_eq_right h
       rw [e]
       infer_instance
   let W2 := t.sup iso
   have hS_le : ∀ S ∈ t, S ≤ iso S ∧ ∀ α (hα : AdmA ε U α), S.map (T α hα) ≤ iso S := by
     intro S hS
     have h : ∃ μ, Formalism.MainNotions.S.IsKTypeOf ε σ μ S := hts hS
-    simp only [iso, dif_pos h]
+    simp only [iso, dite_eq_left h]
     exact ⟨le_sSup h.choose_spec, fun α hα => map_le_isoA (T α hα) (hTK α hα) h.choose_spec⟩
   have hWW2 : W ≤ W2 :=
     hWt.trans (Finset.sup_le fun S hS => (hS_le S hS).1.trans (Finset.le_sup (f := iso) hS))
@@ -198,6 +199,7 @@ theorem exists_cvA_idA (hσ : IsURepOn (UJset ε) σ)
   exact LinearMap.congr_fun hext ⟨w, hw⟩
 
 end ReciprocityTheory.ChartRestriction.DS
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SigLamLeOfKTypes

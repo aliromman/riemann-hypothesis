@@ -54,11 +54,9 @@ import Formalism.LocalToGlobal.ProjectiveLattices.SubConstMemOrig
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Counterexamples.UpperHalfSurvey.ValOfKindIndep, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.AdmissibleRowsValueEqRowGauge
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.UpperHalfSurvey.ValOfKindIndep
 
 open scoped BigOperators
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.UpperHalfSurvey.ValOfKindIndep
 open Classical
 
 namespace GlobalTheory.RowValueCheck
@@ -139,7 +137,11 @@ theorem valOf_eq (hL : Fin 2 → ZMod d → ZMod d → MvPowerSeries (WV I) C) {
 end GlobalTheory.RowValueCheck
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.AdmissibleRowsValueEqRowGauge
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.AdmissibleRowsValueEqRowGauge
+
+noncomputable section
+
+open scoped BigOperators
 open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw GlobalTheory.RowVal ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 namespace GlobalTheory.RowVal
@@ -168,7 +170,7 @@ theorem valOf_eq_hRow : ∀ (C : Type) [Field C] (V : VF C) (d : ℕ) [NeZero d]
       have h1 : ∀ w, μ w ≠ 0 → X.OnLf g a a' w := fun w hw => by
         obtain ⟨ν, hν, hν'⟩ := hμ w hw
         exact hl ν hν w hν'
-      exact if_pos fun w hw => h1 w (Finsupp.mem_support_iff.1 hw)
+      exact ite_eq_left fun w hw => h1 w (Finsupp.mem_support_iff.1 hw)
   have hA := Agree.prod (S := S) Finset.univ (fun ρ =>
     Agree.mul (F := rowCopy ρ (gr ρ)) (F' := rowCopy ρ (gr ρ)) (fun _ _ => rfl)
       (agree_rowCopy S ρ _ _ (key ρ)).exp)

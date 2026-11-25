@@ -10,8 +10,9 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCou
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CountCos, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.PairOfU, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.SecondValueMul
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CountCos
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CountCos
 
+noncomputable section
 
 namespace Formalism.L2.SG.Pf.Coef
 
@@ -188,7 +189,7 @@ theorem va_of_lowW (g : Formalism.DoubleCosetMeasures.lowW E (Formalism.MainNoti
   · simp [Matrix.submatrix_apply, mk]
   · have hne : eA a i ≠ eA a j := (eA a).injective.ne (ne_of_lt hij)
     have hlt : eA a i < eA a j := (eA_lt a).2 hij
-    simp only [Matrix.submatrix_apply, mk, hne, if_false]
+    simp only [Matrix.submatrix_apply, mk, hne, ite_false]
     rw [dite_eq_right]
     intro hp
     exact absurd hp.1 (not_lt.2 hlt.le)
@@ -196,7 +197,7 @@ theorem va_of_lowW (g : Formalism.DoubleCosetMeasures.lowW E (Formalism.MainNoti
     have hs : sbA a (eA a i) (eA a j) = true := by
       simp only [sbA, eA_val]
       exact hsb
-    simp only [Matrix.submatrix_apply, mk, hne, if_false]
+    simp only [Matrix.submatrix_apply, mk, hne, ite_false]
     rw [dite_eq_right]
     intro hp
     have h2 : sbA a (eA a i) (eA a j) = false := hp.2
@@ -461,6 +462,7 @@ theorem cellCos_finite_iff (O : Set (Matrix (Fin (m + 1)) (Fin (m + 1)) E))
 end Main
 
 end Formalism.L2.SG.Pf.Coef
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

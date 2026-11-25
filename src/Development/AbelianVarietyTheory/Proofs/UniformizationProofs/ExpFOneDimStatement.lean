@@ -58,15 +58,16 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExpFOneDim
-@[expose] public noncomputable section
+@[expose] public section
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
+noncomputable section
 namespace GlobalTheory.UU.OneDim
 
 theorem gs_zero {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) : gs f y U 0 = 0 := by
   by_cases h : f y ∈ U
   · rw [gs_eq f y U h, map_zero, map_zero]
-  · exact dif_neg h
+  · exact dite_eq_right h
 
 def zeroSec {Y : Scheme.{0}} (M : LB Y) : LB.Sec M :=
   ⟨fun _ => 0, fun i j => by rw [map_zero, map_zero, mul_zero]⟩
@@ -165,6 +166,7 @@ theorem expF_one_dim : Laws → Laws2 → (AllPre fun {V} _ _ _ {D} {A} {G} _ _ 
   exact ⟨c, fun α j => by rw [e]⟩
 
 end GlobalTheory.UU.OneDim
+end
 end -- clump:auto
 end -- clump:auto
 

@@ -23,8 +23,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.JetHarmonics.PsJetTwistedSeriesOfLeOne, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGermSubstitution, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGaugeRelation, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGaugeRelationStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.PsJetTwistedSeriesOfLeOne
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.PsJetTwistedSeriesOfLeOne
 
+noncomputable section
 
 namespace GlobalTheory.FrameTwistCompare
 
@@ -34,8 +35,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS Pt ev pt comp1 FGLaw 
 open ReciprocityTheory.ChartRestriction.G.TB (dLin)
 open ReciprocityTheory.ChartRestriction.G.TB.LogPf (CZ)
 open Formalism.MainNotions.ModuliIntegralCharts.H1 Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 section Series
 
@@ -158,9 +157,11 @@ end Clauses
 
 end GlobalTheory.FrameTwistCompare
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGermSubstitution
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGermSubstitution
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.FrGauge
 
@@ -168,8 +169,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl Formalism.L2.Pj
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS Pt ev pt comp1)
 open scoped CategoryTheory.Obj
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem actComm_aug_subst {R : Type} [CommRing R] {κ κ' : Type} (m : ℕ) (φ : κ → MvPolynomial κ' R) :
     (jetAug : Jet R κ' m →ₐ[R] R).comp (jetSubstP m φ) = jetAug := by
@@ -247,6 +246,7 @@ theorem substitution_action_commutes : ∀ (E : Type) [Field E] [NumberField E] 
 
 end GlobalTheory.CompanionTheory.Ar.Flat.FrGauge
 end -- clump:auto
+end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -256,7 +256,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianQuotientGaugeRelation
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS Pt ev pt comp1)
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 

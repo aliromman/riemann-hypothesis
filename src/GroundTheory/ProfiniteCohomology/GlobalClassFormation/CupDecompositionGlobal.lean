@@ -21,7 +21,7 @@ namespace GroundTheory.ProfCoh
 
 open CategoryTheory Limits
 
-attribute [local instance 2000] Rep.hV2 Submodule.module Submodule.Quotient.module
+attribute [local instance 2000] Submodule.module Submodule.Quotient.module
 
 section CyclicChar
 
@@ -105,7 +105,7 @@ open CategoryTheory Limits groupCohomology IntermediateField GroundTheory.Global
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 
-attribute [local instance 2000] Rep.hV2 Submodule.module Submodule.Quotient.module
+attribute [local instance 2000] Submodule.module Submodule.Quotient.module
 
 noncomputable section
 

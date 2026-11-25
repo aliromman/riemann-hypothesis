@@ -9,8 +9,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Cha
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpUniqTan, Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpUniqBC
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpUniqTan
+@[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpUniqTan
 
+noncomputable section
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpUniqTan
 
@@ -91,7 +92,7 @@ theorem eq_zero_of_tan {κ : Type} [Fintype κ] [DecidableEq κ] (p : Jet R κ (
     have h := ht ℓ
 
     simp only [map_sum, map_mul, AlgHom.commutes, jetTan_alt, mul_ite, mul_zero, Finset.sum_ite_eq',
-    Finset.mem_univ, if_true] at h
+    Finset.mem_univ, ite_true] at h
     first
       | (rw [← Algebra.smul_def] at h; simpa using congrArg TrivSqZeroExt.snd h)
   simp only [ha, map_zero, zero_mul, Finset.sum_const_zero]
@@ -193,6 +194,7 @@ theorem trivT [Algebra ℚ R] {d : ℕ} (δ : ∀ m, sp (R₀ := R) (Jet R (Fin 
 end Univ
 
 end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpUniqTan
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpUniqBC

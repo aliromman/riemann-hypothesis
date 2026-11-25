@@ -7,16 +7,16 @@ public import Mathlib.NumberTheory.NumberField.Basic
 public import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.IdealsOfNormEqIndexSet
 public import Formalism.HermitianLattices.HermitianLatticesProofs.ThetaSummable
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.Skeleton
+import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.ReHermitianCombinationNonpos
+import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.HQTracePos, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MapEqOfIff, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MinkFix, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.ModLatticeAbsoluteValue
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.HQTracePos
 
 
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.HQTracePos
 
 open NumberField Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat
 
@@ -122,7 +122,11 @@ end Q2
 end PI.UnitaryGroupMassFormula.BetaModX
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MapEqOfIff
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MapEqOfIff
+
+noncomputable section
+
+open scoped Classical
 
 open NumberField Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat
 
@@ -134,14 +138,7 @@ variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {r : �
 
 theorem map_eq_of_iff (γ : S.V ≃ₗ[E] S.V) {U : Submodule E S.V} (h : ∀ v, γ v ∈ U ↔ v ∈ U) :
     U.map (γ : S.V →ₗ[E] S.V) = U := by
-  ext v
-  simp only [Submodule.mem_map, LinearEquiv.coe_coe]
-  constructor
-  · rintro ⟨w, hw, rfl⟩
-    exact (h w).2 hw
-  · intro hv
-    refine ⟨γ.symm v, (h _).1 ?_, by simp⟩
-    simpa using hv
+  apply _root_.Formalism.L2.SG.Pf.map_eq_of_iff <;> assumption
 
 theorem orth_iff {T' : E} (F' : LFlag S r T') (γ : S.V ≃ₗ[E] S.V) (hiso : ∀ x y, S.hT (γ x) (γ y) = S.hT x y)
     (hX : ∀ v, γ v ∈ Xsp F' ↔ v ∈ Xsp F') (v : S.V) : γ v ∈ Uo F' ↔ v ∈ Uo F' := by
@@ -306,8 +303,12 @@ end Q3
 
 end PI.UnitaryGroupMassFormula.BetaModX
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MinkFix
+
+
+open scoped Classical
 
 open NumberField Module
 
@@ -378,7 +379,11 @@ end Q4
 end PI.UnitaryGroupMassFormula.BetaModX
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.ModLatticeAbsoluteValue
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.ModLatticeAbsoluteValue
+
+noncomputable section
+
+open scoped Classical
 
 open NumberField Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat
 
@@ -389,22 +394,7 @@ section MX
 variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {r : ℕ}
 
 theorem xsp_le_orth {T' : E} (F' : LFlag S r T') : Xsp F' ≤ orth S (Xsp F') := by
-  intro v hv
-  rw [mem_orth']
-  intro x hx
-  induction hx using Submodule.span_induction with
-  | mem y hy =>
-    obtain ⟨a, rfl⟩ := hy
-    induction hv using Submodule.span_induction with
-    | mem y' hy' =>
-      obtain ⟨b, rfl⟩ := hy'
-      exact F'.fl.e_iso a b
-    | zero => simp
-    | add y y' _ _ h1 h2 => simp [h1, h2]
-    | smul c y _ h1 => simp [h1]
-  | zero => simp
-  | add y y' _ _ h1 h2 => simp [h1, h2]
-  | smul c y _ h1 => simp [h1]
+  apply _root_.Formalism.MainNotions.LatticeGluingRadicals.c_X_iso <;> assumption
 
 theorem mod_lattice_absolute_value : ModXAbs := by
   intro E _ _ _ S r T' g F' Λ γ hτ hT hg hΛ hpos hA hXγ hz hcong v hv

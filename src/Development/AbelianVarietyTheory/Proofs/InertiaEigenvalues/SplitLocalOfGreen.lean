@@ -89,11 +89,11 @@ import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.Valuati
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIrreducibleDetTwistOfStdTraceTwoBlock, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIrreducibleHarishChandraOfStdTraceNeZero, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsStandardTypeVectorOfParabolicTypeVector, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.StdParabolicTwistedTraceSumNeZeroOfVector, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ThetaLabelRootOfHarishChandraConstituent, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SplitLocalOfGreen
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIrreducibleDetTwistOfStdTraceTwoBlock
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIrreducibleDetTwistOfStdTraceTwoBlock
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.SplitRead GlobalTheory.PendOf GlobalTheory.LevelType
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
+noncomputable section
 
 namespace GlobalTheory.LevelType.RestrictionTwo
 
@@ -114,7 +114,7 @@ theorem stdBlock_iff (a : ℕ) (y : Gn p (a + 1)) :
       have hi : (i : ℕ) < a + 1 := by omega
       have hj : (j : ℕ) < a + 1 := by omega
       have := h ⟨i, hi⟩ ⟨j, hj⟩ (by first | omega | simp)
-      simp only [tl, entN, hi, hj, and_self, dif_pos, Matrix.one_apply, Fin.ext_iff] at this ⊢
+      simp only [tl, entN, hi, hj, and_self, dite_eq_left, Matrix.one_apply, Fin.ext_iff] at this ⊢
       exact this
   · rintro ⟨h1, h2⟩ i j hij
     have hj : (j : ℕ) < a := by omega
@@ -122,11 +122,11 @@ theorem stdBlock_iff (a : ℕ) (y : Gn p (a + 1)) :
     · have := congrFun (congrFun h2 ⟨i, hi⟩) ⟨j, hj⟩
       have hi' : (i : ℕ) < a + 1 := by omega
       have hj' : (j : ℕ) < a + 1 := by omega
-      simp only [tl, entN, hi', hj', and_self, dif_pos, Matrix.one_apply, Fin.ext_iff] at this
+      simp only [tl, entN, hi', hj', and_self, dite_eq_left, Matrix.one_apply, Fin.ext_iff] at this
       simp only [Fin.ext_iff]
       exact this
     · have hne : i ≠ j := fun e => by rw [e] at hi; omega
-      rw [if_neg hne]
+      rw [ite_eq_right hne]
       exact h1 i j hj (by omega)
 
 theorem det_eq_of_stdBlock (a : ℕ) (y : Gn p (a + 1)) (h : StdBlock a y) :
@@ -141,7 +141,7 @@ theorem br_eq_iff (a : ℕ) (y : Gn p (a + 1)) (h : InPar a (y : Mt p (a + 1))) 
   have hu : IsUnit (br a 1 (y : Mt p (a + 1))) :=
     (Matrix.isUnit_iff_isUnit_det _).2 (Ne.isUnit (right_ne_zero_of_mul h0))
   have hv : ((toG (br a 1 (y : Mt p (a + 1))) : Gn p 1) : Mt p 1) = br a 1 (y : Mt p (a + 1)) := by
-    unfold toG; rw [dif_pos hu]; exact IsUnit.unit_spec hu
+    unfold toG; rw [dite_eq_left hu]; exact IsUnit.unit_spec hu
   constructor
   · intro e; apply Units.ext; rw [hv, e]
   · intro e; rw [e, hv]
@@ -156,7 +156,7 @@ theorem sum_res_eq (a : ℕ) (θ : (ZMod p)ˣ →* ℂˣ) (α : Gn p (a + 1) →
   refine Finset.sum_congr rfl fun y _ => ?_
   by_cases hs : StdBlock a y
   · obtain ⟨h1, h2⟩ := (stdBlock_iff a y).1 hs
-    rw [if_pos hs]
+    rw [ite_eq_left hs]
     have e : ∀ x : Gn p 1, ((θ⁻¹ (Matrix.GeneralLinearGroup.det x) : ℂˣ) : ℂ) * (((p : ℂ) ^ (a * 1))⁻¹ *
         if InPar a (y : Mt p (a + 1)) ∧ tl a (y : Mt p (a + 1)) = ((1 : Gn p a) : Mt p a) ∧
           br a 1 (y : Mt p (a + 1)) = (x : Mt p 1) then α y else 0) =
@@ -164,15 +164,15 @@ theorem sum_res_eq (a : ℕ) (θ : (ZMod p)ˣ →* ℂˣ) (α : Gn p (a + 1) →
           ((p : ℂ) ^ a)⁻¹ * ((((θ (Matrix.GeneralLinearGroup.det y))⁻¹ : ℂˣ) : ℂ) * α y) else 0 := by
       intro x
       by_cases hx : x = toG (br a 1 (y : Mt p (a + 1)))
-      · rw [if_pos ⟨h1, by rw [h2, Units.val_one], (br_eq_iff a y h1 x).2 hx⟩, if_pos hx, det_eq_of_stdBlock a y hs, ← hx,
+      · rw [ite_eq_left ⟨h1, by rw [h2, Units.val_one], (br_eq_iff a y h1 x).2 hx⟩, ite_eq_left hx, det_eq_of_stdBlock a y hs, ← hx,
           MonoidHom.inv_apply, Nat.mul_one]
         ring
-      · rw [if_neg (fun h => hx ((br_eq_iff a y h1 x).1 h.2.2)), if_neg hx, mul_zero, mul_zero]
+      · rw [ite_eq_right (fun h => hx ((br_eq_iff a y h1 x).1 h.2.2)), ite_eq_right hx, mul_zero, mul_zero]
     rw [Finset.sum_congr rfl fun x _ => e x, Finset.sum_ite_eq']
     simp
-  · rw [if_neg hs, mul_zero]
+  · rw [ite_eq_right hs, mul_zero]
     refine Finset.sum_eq_zero fun x _ => ?_
-    rw [if_neg, mul_zero, mul_zero]
+    rw [ite_eq_right, mul_zero, mul_zero]
     rintro ⟨h1, h2, -⟩
     exact hs ((stdBlock_iff a y).2 ⟨h1, by rw [h2, Units.val_one]⟩)
 
@@ -189,9 +189,11 @@ theorem exists_irr_hc_of_stdTrace_ne_zero : ∀ (p : ℕ) [Fact p.Prime] (a : �
 
 end GlobalTheory.LevelType.RestrictionTwo
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIrreducibleHarishChandraOfStdTraceNeZero
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIrreducibleHarishChandraOfStdTraceNeZero
 
+noncomputable section
 
 namespace GlobalTheory.GLq.StdRes
 
@@ -206,7 +208,7 @@ theorem stdBlock_iff (a c : ℕ) (x : Gn p (a + 1 + c)) :
   constructor
   · intro h
     refine ⟨fun i j hj hi => ?_, ?_, fun i j hj => ?_⟩
-    · rw [h i j (by omega), if_neg]
+    · rw [h i j (by omega), ite_eq_right]
       intro e; subst e; omega
     · ext i j
       simp only [br, entN]
@@ -223,7 +225,7 @@ theorem stdBlock_iff (a c : ℕ) (x : Gn p (a + 1 + c)) :
       rw [dite_eq_left (by omega)] at this
       simpa [Fin.ext_iff] using this
     · by_cases hj : (j : ℕ) < a + 1
-      · rw [h1 i j hj (by omega), if_neg]
+      · rw [h1 i j hj (by omega), ite_eq_right]
         intro e; subst e; omega
       · have := congrFun (congrFun h2 ⟨(i : ℕ) - (a + 1), by omega⟩) ⟨(j : ℕ) - (a + 1), by omega⟩
         simp only [br, entN] at this
@@ -271,7 +273,7 @@ theorem stdTrace_eq (a c : ℕ) (θ : (ZMod p)ˣ →* ℂˣ) (ψ : Gn p (a + 1 +
     refine Finset.sum_congr rfl fun y _ => ?_
     unfold res
     by_cases hy : StdBlock a y
-    · rw [if_pos hy, mul_left_comm, mul_inv_cancel_left₀ hp0, Finset.mul_sum]
+    · rw [ite_eq_left hy, mul_left_comm, mul_inv_cancel_left₀ hp0, Finset.mul_sum]
       refine Finset.sum_congr rfl fun x _ => ?_
       simp only [hy, true_and, mul_ite, mul_zero]
     · simp [hy]
@@ -295,15 +297,15 @@ theorem stdTrace_eq (a c : ℕ) (θ : (ZMod p)ˣ →* ℂˣ) (ψ : Gn p (a + 1 +
           Matrix.GeneralLinearGroup.det (toG (tl (a + 1) (x : Mt p (a + 1 + c)))) := by
         rw [LabelDet.det_par (a + 1) c x hx.1, hx.2, LabelDet.toG_one, map_one, mul_one]
       by_cases h : StdBlock a x
-      · rw [if_pos h, if_pos ⟨hs.1 h, hx.1, hy0.symm, by simpa using hx.2⟩, hd]
-      · rw [if_neg h, if_neg (fun e => h (hs.2 e.1))]
+      · rw [ite_eq_left h, ite_eq_left ⟨hs.1 h, hx.1, hy0.symm, by simpa using hx.2⟩, hd]
+      · rw [ite_eq_right h, ite_eq_right (fun e => h (hs.2 e.1))]
     · intro y _ hne
-      rw [if_neg]
+      rw [ite_eq_right]
       rintro ⟨-, -, h, -⟩
       exact hne (Units.ext (h.symm.trans hy0.symm))
     · intro h; exact absurd (Finset.mem_univ _) h
-  · rw [if_neg (fun h => hx ⟨((stdBlock_iff a c x).1 h).1, ((stdBlock_iff a c x).1 h).2.1⟩), eq_comm]
-    refine Finset.sum_eq_zero fun y _ => if_neg ?_
+  · rw [ite_eq_right (fun h => hx ⟨((stdBlock_iff a c x).1 h).1, ((stdBlock_iff a c x).1 h).2.1⟩), eq_comm]
+    refine Finset.sum_eq_zero fun y _ => ite_eq_right ?_
     rintro ⟨-, h1, -, h3⟩
     exact hx ⟨h1, by simpa using h3⟩
 
@@ -345,7 +347,7 @@ theorem ip_self {G : Type} [Group G] [Fintype G] {α : G → ℂ} (hα : IsIrr �
   haveI := hs
   haveI : Invertible (Nat.card G : ℂ) := invertibleOfNonzero (Nat.cast_ne_zero.2 Nat.card_pos.ne')
   have := FDRep.char_orthonormal V V
-  rw [if_pos ⟨CategoryTheory.Iso.refl _⟩] at this
+  rw [ite_eq_left ⟨CategoryTheory.Iso.refl _⟩] at this
   unfold ip
   rw [Fintype.card_eq_nat_card]
   simpa [hV] using this
@@ -377,7 +379,7 @@ theorem exists_irr_hc_of_stdTrace_ne_zero : ∀ (p : ℕ) [Fact p.Prime] (r a c 
       refine Finset.sum_congr rfl fun y _ => ?_
       rw [hL]
       by_cases hy : StdBlock a y
-      · simp only [hy, if_true]
+      · simp only [hy, ite_true]
         rw [List.sum_map_mul_left]
       · simp [hy]
     rw [e1, sum_list_comm, List.sum_eq_zero, mul_zero]
@@ -429,14 +431,15 @@ theorem exists_irr_hc_of_stdTrace_ne_zero : ∀ (p : ℕ) [Fact p.Prime] (r a c 
 
 end GlobalTheory.LevelType
 end -- clump:auto
+end -- clump:auto
 
 -- clump: shared namespace opens
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.SplitRead GlobalTheory.PendOf GlobalTheory.LevelType
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsStandardTypeVectorOfParabolicTypeVector
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsStandardTypeVectorOfParabolicTypeVector
 
+noncomputable section
 namespace GlobalTheory.LevelType
 open Matrix
 
@@ -474,7 +477,7 @@ theorem exists_stdVec_of_parVec : ∀ (p : ℕ) [Fact p.Prime] (r : ℕ) (α : T
       rw [hyv, hx _ _ (fun h => hij ⟨hlo i h.1, hhi j h.2⟩)]
       simp
     have hyP : y ∈ parab (ZMod p) e := mem_parab.2 fun i j hji => by
-      rw [hyij i j (fun h => absurd (h.1.trans h.2) (not_le.2 hji)), if_neg]
+      rw [hyij i j (fun h => absurd (h.1.trans h.2) (not_le.2 hji)), ite_eq_right]
       rintro rfl
       exact lt_irrefl _ hji
     have hlev : ∀ b, b ≠ a → leviProj (ZMod p) e ⟨y, hyP⟩ b = 1 := by
@@ -492,10 +495,12 @@ theorem exists_stdVec_of_parVec : ∀ (p : ℕ) [Fact p.Prime] (r : ℕ) (α : T
 
 end GlobalTheory.LevelType
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.StdParabolicTwistedTraceSumNeZeroOfVector
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.StdParabolicTwistedTraceSumNeZeroOfVector
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.LevelType
 
@@ -506,10 +511,10 @@ theorem StdBlock.mul {p r : ℕ} {a : ℕ} {x y : GL (Fin r) (ZMod p)} (hx : Std
   by_cases hi : i.val ≤ a
   · have hj : ¬ a ≤ j.val := fun h => hij ⟨hi, h⟩
     have : ∀ k, y.val k j = if k = j then 1 else 0 := fun k => hy k j (fun h => hj h.2)
-    simp only [this, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    simp only [this, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     exact hx i j hij
   · have : ∀ k, x.val i k = if i = k then 1 else 0 := fun k => hx i k (fun h => hi h.1)
-    simp only [this, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    simp only [this, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     exact hy i j hij
 
 theorem stdBlock_one {p r : ℕ} (a : ℕ) : StdBlock a (1 : GL (Fin r) (ZMod p)) := by
@@ -570,11 +575,13 @@ theorem stdTrace_ne_zero : ∀ (p : ℕ) [Fact p.Prime] (r a : ℕ) (θ : (ZMod 
 
 end GlobalTheory.LevelType
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ThetaLabelRootOfHarishChandraConstituent
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ThetaLabelRootOfHarishChandraConstituent
 
+noncomputable section
 
 namespace GlobalTheory.GLq.DetSplit
 
@@ -670,10 +677,11 @@ theorem root_of_constituent : ∀ (p : ℕ) [Fact p.Prime] (L : GlobalTheory.GLq
 
 end GlobalTheory.GLq.DetSplit
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SplitLocalOfGreen
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SplitLocalOfGreen
 
+noncomputable section
 
 namespace GlobalTheory.BlockTypeSplit
 
@@ -774,6 +782,7 @@ theorem exists_hasLabel {p : ℕ} [Fact p.Prime] (t : Formalism.CyclotomicNorms.
 
 end GlobalTheory.BlockTypeSplit
 
+end
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIrreducibleDetTwistOfStdTraceTwoBlock", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIsLiftOfMemKO\npublic import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LabelDatum\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsContinuousPadic\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DetCharacterIrreducibleLabel\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIrrHarishChandraInductionThetaInvDet\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsReadingLaws\nimport Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.CoeffRingsHaveRootsOfUnity\n\n"}
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIrreducibleHarishChandraOfStdTraceNeZero", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIsLiftOfMemKO\npublic import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LabelDatum\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DetCharacterIrreducibleLabel\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HarishChandraFrobeniusReciprocity\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HarishChandraInductionCharacterRestrictionDecomp\nimport Mathlib.Algebra.Category.ModuleCat.Algebra\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.Quiver.ReflQuiver\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}

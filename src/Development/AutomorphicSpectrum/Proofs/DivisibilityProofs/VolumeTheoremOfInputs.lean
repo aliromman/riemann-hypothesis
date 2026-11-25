@@ -1139,8 +1139,9 @@ theorem vert_deg : ResExistsStatement → ∀ (K : Type) [Fintype K] (ι : K →
 end GlobalTheory.CompanionTheory.Ar.PB
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.RealisationHeightIndependence
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.RealisationHeightIndependence
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.CoeffWord
 
@@ -1229,8 +1230,8 @@ theorem abs_sub_le_telescope (II : IntersectionSystem) (hII : IsFullIntersection
         have hne' : ((τ i.castSucc : Fin (D + 1)) : ℕ) ≠ k := fun e => hne (Fin.ext e)
         simp only [Function.comp, Fin.snoc_castSucc, E, X]
         by_cases h1 : ((τ i.castSucc : Fin (D + 1)) : ℕ) < k
-        · rw [if_pos h1, if_pos (by omega)]
-        · rw [if_neg h1, if_neg (by omega)]
+        · rw [ite_eq_left h1, ite_eq_left (by omega)]
+        · rw [ite_eq_right h1, ite_eq_right (by omega)]
     rw [← hsym P _ (X k) τ hP (hX k), ← hsym P _ (X (k + 1)) τ hP (hX (k + 1)), e1, e2]
     refine h kk E fun i => ⟨τ i.castSucc, ?_⟩
     simp only [E, X]
@@ -1492,6 +1493,7 @@ theorem abs_num_sub_num_le : Inputs → ∀ (D : ℕ) (σ : Type) [Fintype σ] (
   ring
 
 end GlobalTheory.CompanionTheory.Ar.PB
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.Coefficients

@@ -149,8 +149,9 @@ theorem contact_inter_rcone_spanned : ∀ (O : Type) [CommRing O] [IsDedekindDom
 end GlobalTheory.CompanionTheory.Ar.Fan
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.ExistsFiniteBelowModTwo
+@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.ExistsFiniteBelowModTwo
 
+noncomputable section
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
 
@@ -291,13 +292,14 @@ theorem finite_isMin2 : ∀ (X : Type) [AddCommGroup X] [Module.Finite ℤ X] [M
           Finset.single_le_sum (f := fun g => ∑ j, P j g g)
             (fun g _ => Finset.sum_nonneg fun j _ => hnn j g) (hG.mem_toFinset.mpr hy'G)
     refine Set.mem_iUnion.mpr ⟨S, ?_⟩
-    rw [if_pos hpos]
+    rw [ite_eq_left hpos]
     show Q S y y ≤ S.card * C
     rw [hQ]
     calc ∑ i ∈ S, P i y y ≤ ∑ i ∈ S, C := Finset.sum_le_sum fun i hi => (heq i hi).trans (hbound i)
       _ = S.card * C := by rw [Finset.sum_const, nsmul_eq_mul]
 
 end GlobalTheory.CompanionTheory.Ar.Fan
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.IntEqZeroOfForallTwoPowDvd
@@ -438,12 +440,10 @@ theorem exists_rcone_cover_contact : ∀ (O : Type) [CommRing O] [IsDedekindDoma
 end GlobalTheory.CompanionTheory.Ar.Fan
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.IsPosDefAddAndMemPsdCone
 
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
-
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.IsPosDefAddAndMemPsdCone
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan
 
@@ -523,7 +523,11 @@ theorem isPosDef_add_and_mem_psdCone (O : Type) [CommRing O] [IsDedekindDomain O
 end GlobalTheory.CompanionTheory.Ar.Fan
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.MemRationalConeOfPerturbation
+@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.MemRationalConeOfPerturbation
+
+noncomputable section
+
+open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan
 
@@ -544,7 +548,7 @@ theorem exists_indep_rep (v : ι → V) (n : ℕ) : ∀ (t : ι → ℝ), (∀ i
   by_cases hli : LinearIndepOn ℝ v (S : Set ι)
   · exact ⟨S, t, hli, ht, hSt, rfl⟩
   rw [linearIndepOn_finset_iff] at hli
-  push_neg at hli
+  push Not at hli
   obtain ⟨f, hf0, i₀, hi₀, hfi₀⟩ := hli
   obtain ⟨g, hg0, hgS, hgpos⟩ : ∃ g : ι → ℝ, (∑ i, g i • v i = 0) ∧ (∀ i, i ∉ S → g i = 0) ∧ 0 < g i₀ := by
     refine ⟨fun i => if i ∈ S then f i * f i₀ else 0, ?_, fun i hi => by simp [hi], ?_⟩
@@ -557,7 +561,7 @@ theorem exists_indep_rep (v : ι → V) (n : ℕ) : ∀ (t : ι → ℝ), (∀ i
         rw [Finset.smul_sum]
         exact Finset.sum_congr rfl fun i _ => by rw [smul_smul, mul_comm]
       rw [h2, hf0, smul_zero]
-    · simp only [hi₀, if_true]
+    · simp only [hi₀, ite_true]
       exact mul_self_pos.mpr hfi₀
   have hP : (S.filter (fun i => 0 < g i)).Nonempty := ⟨i₀, by simp [hi₀, hgpos]⟩
   obtain ⟨j, hjP, hjmin⟩ := Finset.exists_min_image _ (fun i => t i / g i) hP
@@ -699,6 +703,12 @@ theorem rcone_closed_seg (X : Type) [AddCommGroup X] [Module.Finite ℤ X] (m : 
 
 end GlobalTheory.CompanionTheory.Ar.Fan
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+
+open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.ContactSetSpansOfPosDef
 

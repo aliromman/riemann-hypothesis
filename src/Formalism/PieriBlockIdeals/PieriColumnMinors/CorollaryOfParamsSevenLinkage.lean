@@ -78,38 +78,11 @@ end SF09
 end Formalism.CohomologicalDescent.Down7
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PieriBlockIdeals.StatementDown
+@[expose] public section -- clump member: Formalism.PieriBlockIdeals.StatementDown
 
+noncomputable section
 
 namespace Formalism.CohomologicalDescent.Down
-
-section SLD
-
-open MvPolynomial
-open Formalism.GradedWeylDivisibility Formalism.CohomologicalDescent.LD
-
-end SLD
-
-section SLD2
-
-open MvPolynomial
-open Formalism.GradedWeylDivisibility Formalism.CohomologicalDescent.LD
-
-end SLD2
-
-section SF06
-
-open CategoryTheory CategoryTheory.Limits
-open Formalism.CohomologicalDescent Formalism.CohomologicalDescent.LD Formalism.CohomologicalDescent.UnitNormBounds
-
-end SF06
-
-section SF07
-
-open TensorProduct MvPolynomial CategoryTheory CategoryTheory.Limits
-open Formalism.UG Formalism.RankGapBounds.FormsTensorLocalization Formalism.GradedWeylDivisibility Formalism.CohomologicalDescent.LD Formalism.CohomologicalDescent.UnitNormBounds Formalism.CohomologicalDescent.DepthNonnegative
-
-end SF07
 
 section SF09
 
@@ -125,6 +98,7 @@ def InclWReal : Prop :=
 end SF09
 
 end Formalism.CohomologicalDescent.Down
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PieriBlockIdeals.LemmaDGradedOfPieriReal
@@ -484,8 +458,8 @@ theorem lca_swap {q n : ℕ} {lam2 tau : Fin q → ℕ} {κ : ℕ → Fin q → 
   refine ⟨by rw [hc']; unfold cseq; omega, ?_⟩
   obtain ⟨κ', hκ'⟩ : ∃ κ' : ℕ → Fin q → ℕ,
       ∀ l, κ' l = if l = j.val + 1 then κ j.val + Pi.single (ρ j') 1 else κ l := ⟨_, fun _ => rfl⟩
-  have k1 : κ' (j.val + 1) = κ j.val + Pi.single (ρ j') 1 := by rw [hκ', if_pos rfl]
-  have k2 : ∀ l, l ≠ j.val + 1 → κ' l = κ l := fun l h => by rw [hκ', if_neg h]
+  have k1 : κ' (j.val + 1) = κ j.val + Pi.single (ρ j') 1 := by rw [hκ', ite_eq_left rfl]
+  have k2 : ∀ l, l ≠ j.val + 1 → κ' l = κ l := fun l h => by rw [hκ', ite_eq_right h]
   have anti : Antitone (κ j.val + Pi.single (ρ j') 1) := by
     intro a b hab
     by_cases hb : b = ρ j'
@@ -942,7 +916,7 @@ theorem Fs_div_mem {V P R : Type} [AddCommGroup V] [Module ℚ V] [DecidableEq P
   have hcomm : ∀ a b : R × P, Commute (S.f a) (S.f b) := by
     intro a b
     have h := S.comm (Sum.inr a.1) (Sum.inl a.2) (Sum.inr b.1) (Sum.inl b.2)
-    simp only [reduceCtorEq, if_false, sub_zero] at h
+    simp only [reduceCtorEq, ite_false, sub_zero] at h
     exact sub_eq_zero.mp h
   intro x hx
   exact lrd_core S.f hcomm L hL m.1 x hx
@@ -950,10 +924,11 @@ theorem Fs_div_mem {V P R : Type} [AddCommGroup V] [Module ℚ V] [DecidableEq P
 end Formalism.CohomologicalDescent.LR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PieriBlockIdeals.PieriColumnMinors.LriEVPowCoe
+@[expose] public section -- clump member: Formalism.PieriBlockIdeals.PieriColumnMinors.LriEVPowCoe
 
 open MvPolynomial
 
+noncomputable section
 
 namespace Formalism.CohomologicalDescent.LR
 
@@ -1087,7 +1062,7 @@ theorem dominant_xi {p q : ℕ} (ξ : Fin (p + q) → ℤ) (hξ : Antitone ξ) (
     0 ≤ xiOf ξ (Pi.single (Sum.inl α) 1 - Pi.single (Sum.inr b) 1) := by
   show 0 ≤ ∑ a, ξ (idx p q a) * ((Pi.single (Sum.inl α) 1 - Pi.single (Sum.inr b) 1 : Fin p ⊕ Fin q → ℤ) a)
   simp only [Pi.sub_apply, mul_sub, Finset.sum_sub_distrib, Pi.single_apply, mul_ite, mul_one, mul_zero,
-    Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   refine sub_nonneg.mpr (hξ ?_)
   show Fin.castAdd q α ≤ Fin.natAdd p b
   rw [Fin.le_def]
@@ -1096,11 +1071,13 @@ theorem dominant_xi {p q : ℕ} (ξ : Fin (p + q) → ℤ) (hξ : Antitone ξ) (
 
 end Formalism.CohomologicalDescent.LR
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PieriBlockIdeals.PieriColumnMinors.LrjTransposeLift
+@[expose] public section -- clump member: Formalism.PieriBlockIdeals.PieriColumnMinors.LrjTransposeLift
 
 open MvPolynomial
 
+noncomputable section
 
 namespace Formalism.CohomologicalDescent.LR
 
@@ -1229,7 +1206,7 @@ theorem expL_real (hC : CoeffWord) (l : ℕ) (hl : l.Prime) (p q w : ℕ) (lam2 
     intro α
     have h1 := ((mem_orthogonal_frame_iff p q w lam2 _).1 huW).2 α α
     have h2 := ((mem_wt p q w lam2 _ _).1 hwt) (Sum.inl α)
-    rw [if_pos rfl, h2] at h1
+    rw [ite_eq_left rfl, h2] at h1
     have h3 := smul_left_injective ℚ hu0' h1
     exact_mod_cast h3
   let μ2 : Fin q → ℕ := fun b => μN (Fin.natAdd p b)
@@ -1290,6 +1267,7 @@ theorem expL_real (hC : CoeffWord) (l : ℕ) (hl : l.Prime) (p q w : ℕ) (lam2 
     exact (mem_MW p q w lam2 yd).2 (by rw [hyd]; exact hdL)
 
 end Formalism.CohomologicalDescent.LR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PieriBlockIdeals.PieriColumnMinors.RealOfSkeleton

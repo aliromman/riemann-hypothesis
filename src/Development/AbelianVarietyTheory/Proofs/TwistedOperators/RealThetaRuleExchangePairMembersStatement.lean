@@ -50,8 +50,9 @@ open MeasureTheory Matrix GlobalTheory.Chain GlobalTheory.ChainFr GlobalTheory.G
 open scoped TensorProduct InnerProductSpace
 open GlobalTheory.PairLift
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealThetaRuleExchangePairMembers
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealThetaRuleExchangePairMembers
 
+noncomputable section
 
 local notation "FP" => Formalism.BasicNotions.TH.Pol
 
@@ -151,9 +152,9 @@ theorem fock_inner_sum {T0 : GrpData (p * r + q * s) (p * s + q * r)} {T1 : GrpD
   simp only [map_sum, map_smul, sum_inner, inner_sum, inner_smul_left, inner_smul_right, F.fockIP]
   refine Finset.sum_congr rfl fun i hi => ?_
   rw [Finset.sum_eq_single i]
-  · simp only [if_true]; simp [mul_assoc, mul_left_comm]
+  · simp only [ite_true]; simp [mul_assoc, mul_left_comm]
   · intro j hj hji
-    rw [if_neg (fun h => hji (hm hj hi h))]
+    rw [ite_eq_right (fun h => hji (hm hj hi h))]
     simp
   · intro hi'; exact absurd hi hi'
 
@@ -266,6 +267,7 @@ theorem swap_rule : ∀ (X : ProvA) (p q r s : ℕ) (lam : Ix p q → ℚ) (lam'
       (intw_tr (X.fock p q (r - i) (s - i)) (X.fock (r - i) (s - i) p q) _ _ f hf))
 
 end GlobalTheory.SwapRule
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealThetaRuleExchangePairMembersStatement

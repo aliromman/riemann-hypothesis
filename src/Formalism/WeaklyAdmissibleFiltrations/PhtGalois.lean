@@ -11,8 +11,9 @@ import Mathlib.Tactic.Lemma
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.WeaklyAdmissibleFiltrations.CrystallineStableLifts.ExistsPeriodRingDataHolds, Formalism.WeaklyAdmissibleFiltrations.CrystallineStableLifts.WachCol, Formalism.WeaklyAdmissibleFiltrations.PhtGalois
 
-@[expose] public noncomputable section -- clump member: Formalism.WeaklyAdmissibleFiltrations.CrystallineStableLifts.ExistsPeriodRingDataHolds
+@[expose] public section -- clump member: Formalism.WeaklyAdmissibleFiltrations.CrystallineStableLifts.ExistsPeriodRingDataHolds
 
+noncomputable section
 
 namespace Formalism.WeaklyAdmissibleFiltrations
 
@@ -47,7 +48,7 @@ lemma lpScale_coeff (c : ℚˣ) (f : LaurentPolynomial ℚ) (m : ℤ) :
       AddMonoidAlgebra.coeff_smul_apply, T_apply, smul_eq_mul, smul_eq_mul]
     by_cases h : n = m
     · subst h
-      simp only [if_true]
+      simp only [ite_true]
       ring
     · simp [h]
 
@@ -83,8 +84,8 @@ lemma lpTwo_fix (f : LaurentPolynomial ℚ) (h : lpScaleE lpTwo f = f) :
   refine LaurentPolynomial.ext fun a => ?_
   rw [← C_eq_algebraMap, C_apply]
   by_cases ha : a = 0
-  · rw [if_pos ha, ha]
-  · rw [if_neg ha]
+  · rw [ite_eq_left ha, ha]
+  · rw [ite_eq_right ha]
     have h' := congrArg (fun g : LaurentPolynomial ℚ => g.coeff a) h
     simp only [lpScaleE_coeff, lpTwo_zpow] at h'
     have h2 : (2 : ℚ) ^ a ≠ 1 := fun h1 => ha ((zpow_eq_one_iff_right₀ (by norm_num) (by norm_num)).mp h1)
@@ -106,7 +107,7 @@ lemma lpFil_mul (a b : ℤ) (x y : LaurentPolynomial ℚ) (hx : x ∈ lpFil a) (
   rw [AddMonoidAlgebra.coeff_mul]
   simp only [Finsupp.sum]
   refine Finset.sum_eq_zero fun i hi => Finset.sum_eq_zero fun j hj => ?_
-  rw [if_neg]
+  rw [ite_eq_right]
   intro hij
   have hi' : ¬ i < a := fun h => (Finsupp.mem_support_iff.mp hi) (hx i h)
   have hj' : ¬ j < b := fun h => (Finsupp.mem_support_iff.mp hj) (hy j h)
@@ -149,7 +150,7 @@ theorem existsPeriodRingData_holds : ExPD := by
     ι_comm := fun _ _ => rfl
     Fil := lpFil
     Fil_anti := fun a f hf m hm => hf m (by omega)
-    one_mem := fun m hm => by rw [← T_zero, T_apply, if_neg (by omega)]
+    one_mem := fun m hm => by rw [← T_zero, T_apply, ite_eq_right (by omega)]
     Fil_mul := lpFil_mul
     Fil_exh := fun x => by
       refine ⟨-(∑ i ∈ x.coeff.support, |i|), fun m hm => ?_⟩
@@ -178,14 +179,15 @@ theorem existsPeriodRingData_holds : ExPD := by
       · subst h
         norm_num
       · simp [h]
-    mem_filtration_one := fun m hm => by rw [AlgHom.id_apply, T_apply, if_neg (by omega)]
+    mem_filtration_one := fun m hm => by rw [AlgHom.id_apply, T_apply, ite_eq_right (by omega)]
     not_mem_filtration_two := fun h => by
       have h1 := h 1 (by norm_num)
-      rw [AlgHom.id_apply, T_apply, if_pos rfl] at h1
+      rw [AlgHom.id_apply, T_apply, ite_eq_left rfl] at h1
       exact one_ne_zero h1
     fund := fun b hb _ => ⟨b.coeff 0, lpTwo_fix b hb⟩ }⟩
 
 end Formalism.WeaklyAdmissibleFiltrations
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.WeaklyAdmissibleFiltrations.CrystallineStableLifts.WachCol

@@ -73,8 +73,9 @@ section -- clump: shared namespace opens
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.LatVal Neutral.B1
 open scoped nonZeroDivisors
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdeleClassIdentityComponentIffArtinKernel
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdeleClassIdentityComponentIffArtinKernel
 
+noncomputable section
 
 namespace GlobalTheory.ArtinKernel
 
@@ -93,7 +94,7 @@ theorem eq_one_of_mem_connectedComponent_one (y : GlobalTheory.HeckeGal.Gab K Ω
     rw [← e] at h
     exact hx h
   rw [Subgroup.mem_sInf] at hx'
-  push_neg at hx'
+  push Not at hx'
   obtain ⟨M, ⟨hMo, hNM⟩, hxM⟩ := hx'
   let V : Subgroup (GlobalTheory.HeckeGal.Gab K Ω) := M.map (QuotientGroup.mk' N)
   have hVo : IsOpen (V : Set (GlobalTheory.HeckeGal.Gab K Ω)) := by
@@ -161,6 +162,7 @@ theorem idele_class_mem_identity_component_iff :
   fun h s => mk_mem_connectedComponent_iff h s
 
 end GlobalTheory.ArtinKernel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertiaRestrictFiniteAbelianUnramifiedEqOne

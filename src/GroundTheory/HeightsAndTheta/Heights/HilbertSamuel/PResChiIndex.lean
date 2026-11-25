@@ -17,7 +17,8 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.L
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ResChiIndexLattice, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PResChiIndex
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ResChiIndexLattice
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ResChiIndexLattice
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -25,6 +26,7 @@ namespace GroundTheory.Heights₂.Heights.HilbertSamuel
 
 namespace ResChiIndex
 
+noncomputable section
 
 open Module
 
@@ -39,7 +41,7 @@ theorem basis_det_eq {N : Type*} [AddCommGroup N] [Module ℤ N] {r : ℕ} (b : 
 
   rw [Matrix.transpose_apply, Basis.toMatrix_apply, hv i, map_sum]
   simp only [map_zsmul, Basis.repr_self, Finsupp.coe_finsetSum, Finset.sum_apply, Finsupp.smul_apply,
-    Finsupp.single_apply, smul_eq_mul, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    Finsupp.single_apply, smul_eq_mul, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
 theorem log_relIndex_sub {r : ℕ} {e e' : Fin r → Ω} (he : LinearIndependent ℤ e) (he' : LinearIndependent ℤ e')
     (T : Matrix (Fin r) (Fin r) ℚ) (hT : ∀ k, e' k = ∑ l, (T k l : Ω) * e l) (hdet : T.det ≠ 0) :
@@ -127,10 +129,12 @@ theorem log_relIndex_sub {r : ℕ} {e e' : Fin r → Ω} (he : LinearIndependent
   rw [abs_mul, abs_of_nonneg (by positivity : (0 : ℝ) ≤ (c : ℝ) ^ r), Real.log_mul hcr (abs_ne_zero.2 hTr)]
   ring
 
+end
 
 end ResChiIndex
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PResChiIndex

@@ -21,6 +21,7 @@ import Formalism.RealPlaceAnalysis.RealPlaceTaylor.ComplexifiedDerivativeCommuta
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.FormalDegreeBessel.StatementWR
 import Formalism.RealPlaceAnalysis.StatementA
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.IndexEmbeddingBijective
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.AdUnitBCtMulVec, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.AdUnitBLie, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.SmoothVec, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.SpecAbstract, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.Vanish, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.RadialDecompositionOfParts
@@ -159,11 +160,12 @@ theorem ad_hpart_conj {g : Mx k r} (hg : gᴴ * Hpk k r * g = Hpk k r) (hgi : g 
 end Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.AdUnitBLie
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.AdUnitBLie
 
 open Matrix Finset Filter Topology
 open scoped ContDiff
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors
 
@@ -304,11 +306,11 @@ private theorem herm_bvec_eq_zero_of_inWb {w : Fin (2 * r + k + 1) → ℂ} (hw 
   intro i _
   by_cases hi : i.val < r ∨ r + k < i.val
   · simp [hw i hi]
-  · push_neg at hi
+  · push Not at hi
     have h0 : Hpk k r i j = 0 := by
       unfold Hpk
-      rw [if_neg (by omega), if_neg (by omega),
-        if_neg (by rintro ⟨_, _, h⟩; have := congrArg Fin.val h; omega)]
+      rw [ite_eq_right (by omega), ite_eq_right (by omega),
+        ite_eq_right (by rintro ⟨_, _, h⟩; have := congrArg Fin.val h; omega)]
     simp [h0]
 
 theorem ad_unitB_lie {g : Mx k r} {m : ℕ} {Bs : Fin m → Fin (2 * r + k + 1) → ℂ}
@@ -408,12 +410,14 @@ theorem left_ad (hz : inWb k r z) (hz' : inWb k r z') (hD : IsDom k r z z' (Fin.
 
 end Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.SmoothVec
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.SmoothVec
 
 open Matrix Finset Filter Topology
 open scoped ContDiff
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors
 
@@ -623,65 +627,26 @@ theorem sv_herm_bvec (p : Fin (2 * r + k + 1)) (w : Fin (2 * r + k + 1) → ℂ)
 
 theorem sv_herm_out {w : Fin (2 * r + k + 1) → ℂ} (hw : inWb k r w) {p : Fin (2 * r + k + 1)}
     (hp : p.val < r ∨ r + k < p.val) : herm (Hpk k r) (bvec p) w = 0 := by
-  rw [sv_herm_bvec]
-  refine Finset.sum_eq_zero fun i _ => ?_
-  by_cases hi : i.val < r ∨ r + k < i.val
-  · rw [hw i hi, star_zero, zero_mul]
-  · have h0 : Hpk k r i p = 0 := by
-      simp only [Hpk, Fin.ext_iff]
-      split_ifs <;> first | rfl | (exfalso; omega)
-    rw [h0, mul_zero]
+  apply _root_.Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.herm_bvec_eq_zero_of_inWb <;> assumption
 
 theorem sv_herm_swap (v w : Fin (2 * r + k + 1) → ℂ) :
     herm (Hpk k r) v w = star (herm (Hpk k r) w v) := by
-  have hsym : ∀ i j, Hpk k r i j = Hpk k r j i := by
-    intro i j
-    simp only [Hpk, Fin.ext_iff]
-    split_ifs <;> first | rfl | (exfalso; omega)
-  have hreal : ∀ i j, star (Hpk k r i j) = Hpk k r i j := by
-    intro i j
-    simp only [Hpk]
-    split_ifs <;> simp
-  simp only [herm, dotProduct, Matrix.mulVec, Pi.star_apply, star_sum, star_mul', star_star, hreal]
-  simp_rw [Finset.mul_sum]
-  rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  rw [hsym]
-  ring
+  apply _root_.ReciprocityTheory.ChartRestriction.DS.Xi.FormulaFAux.herm_symm <;> assumption
 
 theorem sv_unitB_mulVec {m : ℕ} (Bs : Fin m → Fin (2 * r + k + 1) → ℂ) (a b : Fin m)
     (v : Fin (2 * r + k + 1) → ℂ) : unitB (Hpk k r) Bs a b *ᵥ v = herm (Hpk k r) v (Bs b) • Bs a := by
-  ext p
-  simp only [Matrix.mulVec, dotProduct, unitB, Matrix.of_apply, sv_herm_bvec, Pi.smul_apply, smul_eq_mul]
-  unfold herm
-  simp only [dotProduct, Matrix.mulVec, Finset.mul_sum, Finset.sum_mul]
-  rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  rw [Pi.star_apply]
-  ring
+  apply _root_.Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.ad_unitB_mulVec <;> assumption
 
 theorem sv_unitB_adj {m : ℕ} (Bs : Fin m → Fin (2 * r + k + 1) → ℂ) (a b : Fin m)
     (v : Fin (2 * r + k + 1) → ℂ) :
     (unitB (Hpk k r) Bs a b)ᴴ *ᵥ (Hpk k r *ᵥ v) =
       herm (Hpk k r) v (Bs a) • fun p => star (herm (Hpk k r) (bvec p) (Bs b)) := by
-  ext p
-  simp only [Matrix.mulVec, dotProduct, Matrix.conjTranspose_apply, unitB, Matrix.of_apply, star_mul',
-    Pi.smul_apply, smul_eq_mul]
-  unfold herm
-  simp only [dotProduct, Matrix.mulVec, Finset.sum_mul, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun x _ => Finset.sum_congr rfl fun i _ => ?_
-  rw [Pi.star_apply]
-  ring
+  apply _root_.Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.ad_unitB_ct_mulVec <;> assumption
 
 theorem sv_unitB_kill {m : ℕ} (Bs : Fin m → Fin (2 * r + k + 1) → ℂ) (a b : Fin m)
     {v : Fin (2 * r + k + 1) → ℂ} (ha : herm (Hpk k r) v (Bs a) = 0) (hb : herm (Hpk k r) v (Bs b) = 0) :
     hpart1 (Hpk k r) (unitB (Hpk k r) Bs a b) *ᵥ v = 0 ∧ hpart2 (Hpk k r) (unitB (Hpk k r) Bs a b) *ᵥ v = 0 := by
-  have e1 : unitB (Hpk k r) Bs a b *ᵥ v = 0 := by rw [sv_unitB_mulVec, hb, zero_smul]
-  have e2 : (Hpk k r * (unitB (Hpk k r) Bs a b)ᴴ * Hpk k r) *ᵥ v = 0 := by
-    rw [← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec, sv_unitB_adj, ha, zero_smul, Matrix.mulVec_zero]
-  unfold hpart1 hpart2
-  rw [Qx2.hpk_inv, Matrix.smul_mulVec, Matrix.smul_mulVec, Matrix.sub_mulVec, Matrix.add_mulVec, e1, e2]
-  simp only [sub_self, add_zero, smul_zero, and_self]
+  apply _root_.Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.ad_unitB_kill <;> assumption
 
 theorem sv_unitB_lie {z : Fin (2 * r + k + 1) → ℂ} {m : ℕ} {Bs : Fin m → Fin (2 * r + k + 1) → ℂ}
     (hBs : IsFrameOf k r [z] Bs) (a b : Fin m) :
@@ -769,14 +734,16 @@ end Cap
 
 end Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors
 end -- clump:auto
+end -- clump:auto
 
 -- clump: shared namespace opens
 
 open Matrix Finset
 open scoped ContDiff
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.SpecAbstract
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.SpecAbstract
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors
 
@@ -888,7 +855,7 @@ theorem spec_abstract {Wp Wq : Type*} [NormedAddCommGroup Wp] [NormedSpace ℂ W
     refine Submodule.iSup_induction (S g) (motive := fun v => J g v = ∑ σ, dec σ g v)
       (htop g hg v) ?_ ?_ ?_
     · intro τ w hw
-      simp only [hkey _ g hg τ w hw, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      simp only [hkey _ g hg τ w hw, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     · simp
     · intro x y hx hy
       simp only [map_add (f := _), hx, hy, Finset.sum_add_distrib]
@@ -911,13 +878,14 @@ theorem spec_abstract {Wp Wq : Type*} [NormedAddCommGroup Wp] [NormedSpace ℂ W
     · intro τ w hw
       by_cases hστ : σ = τ
       · subst hστ
-        exact ⟨w, hw, by rw [hkey σ g hg σ w hw, if_pos rfl]⟩
-      · exact ⟨0, zero_mem _, by rw [hkey σ g hg τ w hw, if_neg hστ, map_zero]⟩
+        exact ⟨w, hw, by rw [hkey σ g hg σ w hw, ite_eq_left rfl]⟩
+      · exact ⟨0, zero_mem _, by rw [hkey σ g hg τ w hw, ite_eq_right hστ, map_zero]⟩
     · exact ⟨0, zero_mem _, by rw [map_zero, map_zero]⟩
     · rintro x y ⟨w₁, hw₁, h₁⟩ ⟨w₂, hw₂, h₂⟩
       exact ⟨w₁ + w₂, add_mem hw₁ hw₂, by rw [map_add (f := _), map_add (f := _), h₁, h₂]⟩
 
 end Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.Vanish

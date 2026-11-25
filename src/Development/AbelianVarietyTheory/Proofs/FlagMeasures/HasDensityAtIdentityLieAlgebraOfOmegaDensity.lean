@@ -114,11 +114,12 @@ theorem mat_mul {P Q : ℕ} (g h : UpqT P Q) : (g * h).mat = g.mat * h.mat := rf
 end GlobalTheory.HaarDensityUpq
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.HasDensityAtIdentityLieAlgebraOfOmegaDensity
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.HasDensityAtIdentityLieAlgebraOfOmegaDensity
 
 open MeasureTheory Matrix Filter Topology Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
 open scoped InnerProductSpace ENNReal
 
+noncomputable section
 
 namespace GlobalTheory.OmegaFrobenius
 
@@ -145,8 +146,8 @@ theorem inner_realify {n : ℕ} (X Y : Matrix (Fin n) (Fin n) ℂ) :
     ⟪realify n X, realify n Y⟫_ℝ = (Xᴴ * Y).trace.re := by
   show ⟪WithLp.toLp 2 (realifyFun X), WithLp.toLp 2 (realifyFun Y)⟫_ℝ = _
   simp only [PiLp.inner_apply, Fintype.sum_prod_type, Fintype.sum_bool, realifyFun, Matrix.trace, Matrix.diag_apply,
-    Matrix.mul_apply, Matrix.conjTranspose_apply, Complex.re_sum, RCLike.inner_apply, conj_trivial, if_true,
-    Bool.false_eq_true, if_false, Complex.mul_re, Complex.star_def, Complex.conj_re, Complex.conj_im]
+    Matrix.mul_apply, Matrix.conjTranspose_apply, Complex.re_sum, RCLike.inner_apply, conj_trivial, ite_true,
+    Bool.false_eq_true, ite_false, Complex.mul_re, Complex.star_def, Complex.conj_re, Complex.conj_im]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   ring

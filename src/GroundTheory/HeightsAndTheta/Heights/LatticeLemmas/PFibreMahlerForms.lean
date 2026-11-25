@@ -61,7 +61,7 @@ theorem span_fibreVec_eq_top (h : HermitianMetric K E) (σ : K →+* ℂ) {ι : 
 end GroundTheory.Heights₂.Heights.LatticeLemmas
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.LatticeLemmas.PFibreMahlerForms
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.LatticeLemmas.PFibreMahlerForms
 
 set_option maxSynthPendingDepth 1
 
@@ -69,20 +69,9 @@ namespace GroundTheory.Heights₂.Heights
 
 open MvPolynomial NumberField TensorProduct ComplexAt
 
+noncomputable section
 
 namespace FibreMahlerForms
-
-section Dual
-
-variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V] {ι : Type*} [Fintype ι]
-
-end Dual
-
-section Mahler
-
-variable {d : ℕ}
-
-end Mahler
 
 section Fibre
 
@@ -103,6 +92,7 @@ end Fibre
 end FibreMahlerForms
 
 
+end
 
 end GroundTheory.Heights₂.Heights
 

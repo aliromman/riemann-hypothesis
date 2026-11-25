@@ -9,8 +9,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.VolumeEquality.DegPushFibA, Development.WeilBound.CoreStatements.VolumeEquality.DegPushFib
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.VolumeEquality.DegPushFibA
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.VolumeEquality.DegPushFibA
 
+noncomputable section
 
 namespace SheetDecomposition.Fib
 
@@ -131,13 +132,13 @@ theorem plPt_row (u : ∀ s, Matrix (Fin (r s)) (Fin (r s)) Ω) (h1 : ∀ s m, u
   unfold plPt
   rw [Matrix.det_of_isLowerTriangular]
   · rw [Fin.prod_univ_castSucc, Finset.prod_eq_one, one_mul]
-    · simp only [Matrix.of_apply, rowIx, if_true]
+    · simp only [Matrix.of_apply, rowIx, ite_true]
       rfl
     · intro a _
-      simp only [Matrix.of_apply, rowIx, if_neg (Fin.castSucc_lt_last a).ne, h1]
+      simp only [Matrix.of_apply, rowIx, ite_eq_right (Fin.castSucc_lt_last a).ne, h1]
   · intro a b hab
     have hab' : a < b := hab
-    simp only [Matrix.of_apply, rowIx, if_neg (hab'.trans_le (Fin.le_last b)).ne]
+    simp only [Matrix.of_apply, rowIx, ite_eq_right (hab'.trans_le (Fin.le_last b)).ne]
     exact h0 _ _ _ hab'
 
 theorem plPt_ne (u : ∀ s, Matrix (Fin (r s)) (Fin (r s)) Ω) (h1 : ∀ s m, u s m m = 1)
@@ -187,6 +188,7 @@ theorem trdeg_eq [Fintype S] (u : ∀ s, Matrix (Fin (r s)) (Fin (r s)) Ω) {d :
   exact (Nat.cast_card).symm
 
 end SheetDecomposition.Fib
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.VolumeEquality.DegPushFib

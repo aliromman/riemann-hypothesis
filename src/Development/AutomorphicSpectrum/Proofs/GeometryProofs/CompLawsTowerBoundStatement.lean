@@ -75,8 +75,9 @@ theorem frame_of_geoRead {P : Prop} : P → ∀ (E : Type) [Field E] [NumberFiel
 end GlobalTheory.CompanionTheory.Ar.Plug.RdGeo
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompLawsTowerBound
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompLawsTowerBound
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Plug.TraceRuleSec
 
 theorem trace_mem {K L : Type} [Field K] [Field L] (R : Subring K) (φ : K →+* L)
@@ -250,13 +251,13 @@ theorem exists_section_of_trace : _root_.GlobalTheory.CompanionTheory.Ar.Top.Giv
   classical
   obtain ⟨hL, -, -, -⟩ := GlobalTheory.Reg.evLaws_genFr_atlas E H Dw l Xo c
   let bb : ∀ Z' : Comp Xo c, Om Z' := fun Z' => if hZ : Z' = Z then hZ ▸ trOf Rd u s else 0
-  have hbb : bb Z = trOf Rd u s := dif_pos rfl
+  have hbb : bb Z = trOf Rd u s := dite_eq_left rfl
   obtain ⟨g, hg, hgv⟩ := GlobalTheory.SecGlueInt.exists_secZ_of_regular E H Dw l Xo c h (GlobalTheory.AllWt.exOf Dw u 0) bb (fun C => by
     by_cases hZ : C.Z = Z
     · subst hZ
       rw [hbb]
       exact TraceRuleSec.chart_reg hG E H Dw l Xo c r U h e hC Y T o B b Fr C Rd hgeo u s hs
-    · have : bb C.Z = 0 := dif_neg hZ
+    · have : bb C.Z = 0 := dite_eq_right hZ
       rw [this, mul_zero]
       exact zero_mem _)
   have hm := GlobalTheory.FlatLine.idem_mul_mem Z hg
@@ -268,6 +269,7 @@ theorem exists_section_of_trace : _root_.GlobalTheory.CompanionTheory.Ar.Top.Giv
   rw [h4, h3, one_mul, hgv Z, hbb]
 
 end GlobalTheory.CompanionTheory.Ar.Plug
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

@@ -41,19 +41,18 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorusExtensionAbelianQuotient, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsAbelianPartExtension
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorusExtensionAbelianQuotient
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorusExtensionAbelianQuotient
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField Filter Topology Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
 open GlobalTheory.CechPic
 open scoped CategoryTheory.Obj
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.AbB
 
 open GlobalTheory GlobalTheory.UU GlobalTheory.UU.PackageDescent GlobalTheory.BiextTriv GlobalTheory.GeneratorLaw GlobalTheory.TorusUnit GlobalTheory.CompanionTheory.TorusPic
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem pic_inj_field : ∀ (k : Type) [Field k] (G : Over (Sp k)) [GrpObj G] [IsCommMonObj G], IsSemiAbelian G → ∀ (T : TorusExtension G) (Y : Over (Sp k)), Smooth Y.hom → GeometricallyConnected Y.hom → ∀ (y₀ : 𝟙_ (Over (Sp k)) ⟶ Y) (c : Pic (T.B ⊗ Y).left), pull (lift (fst G Y ≫ T.q) (snd G Y)).left c = 0 → pull (lift (𝟙 T.B) (toUnit T.B ≫ y₀)).left c = 0 → c = 0 := by
   intro k _ G _ _ hG T Y hYs hYc y₀ c h₁ h₂
@@ -594,6 +593,7 @@ theorem exists_triple : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   · simpa using hfin
 
 end GlobalTheory.CompanionTheory.Ar.AbB
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsAbelianPartExtension

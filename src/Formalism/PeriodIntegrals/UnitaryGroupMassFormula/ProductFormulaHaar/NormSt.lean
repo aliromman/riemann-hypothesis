@@ -137,8 +137,9 @@ theorem card_quotient_eq_absNorm : CardStep := by
 end PI.ProdFormulaE
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ProductFormulaHaar.ModFIotaFinitePlace
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ProductFormulaHaar.ModFIotaFinitePlace
 
+noncomputable section
 
 open MeasureTheory ValuativeRel IsDedekindDomain NumberField
 
@@ -189,12 +190,6 @@ theorem modF_iota (hI : IndexFormula) (hC : CardStep) (hd : DenseRange ι)
 
 end Local
 
-section Global
-
-variable {F : Type} [Field F] [NumberField F]
-
-end Global
-
 section LocAt
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
@@ -215,6 +210,7 @@ theorem modF_iota_finitePlace {F : Type} [Field F] [NumberField F] (p : HeightOn
   rw [modF_iota p ι hI hC hd hv z, FinitePlace.mk_apply, FinitePlace.norm_embedding]
 
 end PI.ProdFormulaE
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ProductFormulaHaar.NormIndex

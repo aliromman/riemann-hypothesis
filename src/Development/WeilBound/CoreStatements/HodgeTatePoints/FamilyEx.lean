@@ -120,7 +120,6 @@ theorem _root_.GlobalTheory.T.tangent_power_free_conj_injective : ∀ (E : Type)
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.IsMapOfCancel
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace PositivityTheory.HtPt.Cf
 
@@ -237,7 +236,6 @@ end PositivityTheory.HtPt.Cf
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.FamilyEx
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace PositivityTheory.HtPt.Cf
 

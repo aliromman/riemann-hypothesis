@@ -39,13 +39,13 @@ import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsGenOfIsV
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ActGeneratorZero, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.CompListProd, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.EqMulInversePow, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsGermSystem, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsGermSystemStatement
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ActGeneratorZero
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ActGeneratorZero
 
+noncomputable section
 namespace PositivityTheory.Xgn.GermSystem
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.MainNotions.ModuliIntegralCharts.H1 GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 section Gen
 open PositivityTheory.HtPt.Cd
@@ -296,15 +296,16 @@ end Gen
 
 end PositivityTheory.Xgn.GermSystem
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.CompListProd
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 namespace PositivityTheory.Xgn.GermSystem.Bc
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.MainNotions.ModuliIntegralCharts.H1 GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open Formalism.MainNotions.ModuliIntegralCharts.H1.GermD Formalism.MainNotions.ModuliIntegralCharts.H1.JetTr
 
 section
@@ -529,6 +530,7 @@ end
 end PositivityTheory.Xgn.GermSystem.Bc
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -538,7 +540,6 @@ open scoped CategoryTheory.Obj
 
 section -- clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.EqMulInversePow
 @[expose] public section
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 namespace PositivityTheory.Xgn.GermSystem
@@ -933,7 +934,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsGermSystem
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat
 
@@ -944,7 +944,6 @@ end GlobalTheory.CompanionTheory.Ar.Flat
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsGermSystemStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_germ_system : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) [StarRing (𝓞 E)], (∀ a : 𝓞 E, star a = H.bar a) → ∀ (X : Scheme.{0}) (t : SAB H X) (Ω : Type) [Field Ω] [CharZero Ω] (ξ : Sp Ω ⟶ X) [IsLocallyNoetherian X], PowFns t → IsCptGen ξ → ∃ (d : ℕ) (M : LieModel t.G ξ (Fin d → Ω)), Nonempty (GermSys t ξ M) := by
   first | exact @GlobalTheory.CompanionTheory.Ar.Flat.germSys_exists

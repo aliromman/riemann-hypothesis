@@ -65,8 +65,9 @@ import ReciprocityTheory.DualLattices.IsLocalOfIntegers
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.HodgeTatePoints.RcProj, Development.WeilBound.CoreStatements.HodgeTatePoints.ProdIccFin
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.RcProj
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.RcProj
 
+noncomputable section
 
 namespace PositivityTheory.HtPt.Rc
 
@@ -171,7 +172,7 @@ lemma sum_projL [CharZero C] [IsDomain R] (σ : MulChar F R)
 
   simp only [← Finset.sum_mul, ← map_sum, h]
   rw [Finset.sum_eq_single 1 (fun a _ ha => by simp [ha]) (by simp)]
-  rw [if_pos rfl, map_natCast, Units.val_one, one_smul, ← mul_assoc,
+  rw [ite_eq_left rfl, map_natCast, Units.val_one, one_smul, ← mul_assoc,
     inv_mul_cancel₀ (Nat.cast_ne_zero.2 Fintype.card_ne_zero), one_mul]
 
 lemma projL_funLeft (χ : MulChar F R) (φ : X →ₗ[F] N) (g : N → C) :
@@ -188,6 +189,7 @@ lemma eig_pull (χ : MulChar F R) (φ : X →ₗ[F] N) (M : Submodule R (N → C
 end Gen
 
 end PositivityTheory.HtPt.Rc
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.ProdIccFin

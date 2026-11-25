@@ -621,8 +621,9 @@ theorem exists_unitNorm_pair : ∀ (F E : Type) [Field F] [NumberField F] [Field
 end GlobalTheory.PlaneNorm.FieldCase
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorCMIsFieldOrNormSurjective
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorCMIsFieldOrNormSurjective
 
+noncomputable section
 
 namespace GlobalTheory.NormDichotomy
 
@@ -706,7 +707,7 @@ theorem unit_or_norm : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
     rw [map_add (f := _), map_mul, map_sub, map_one, hst, hσε]
     linear_combination (ι k ^ 2 + 1 - 2 * ι k) * he0
   · left
-    push_neg at hsq
+    push Not at hsq
     intro a ha
     obtain ⟨u, v, rfl⟩ := hdec a
     have hn : u * u - c * (v * v) ≠ 0 := by
@@ -725,6 +726,7 @@ theorem unit_or_norm : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
     rw [← mul_assoc, hN, ← map_mul, mul_inv_cancel₀ hn, map_one]
 
 end GlobalTheory.NormDichotomy
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalUnitNormVectorIsotropicHermitian

@@ -204,13 +204,13 @@ end PositivityTheory.Rg.Rs.SliceClasses
 
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.EContJoin
+@[expose] public section
 
+noncomputable section
 
 open NumberField MeasureTheory GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.CompanionTheory.CTFin
 open GroundTheory.Automorphic GroundTheory.Automorphic.AutomorphicForm
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.EContJoin
 
 namespace PositivityTheory.Rg.Rs.SliceClasses
 
@@ -339,9 +339,9 @@ theorem E_cont_join {n : ℕ} {S : Finset ℕ} (q : ℕ) :
     Continuous fun b : {x : PPos n S // ¬ IsTop q x} → Ad E => (parGL (joinPos (r := q) 0 b) : GA E n) := by
   refine continuous_parGL.comp (continuous_pi fun x => ?_)
   by_cases hx : IsTop q x
-  · simp only [joinPos, dif_pos hx]
+  · simp only [joinPos, dite_eq_left hx]
     exact continuous_const
-  · simp only [joinPos, dif_neg hx]
+  · simp only [joinPos, dite_eq_right hx]
     exact continuous_apply _
 
 theorem E_pos_top {N p q : ℕ} (hpq : p < q) (x : PPos N {p, q}) (hx : ¬ IsTop q x) :
@@ -375,7 +375,15 @@ theorem E_exp_iff (hD : Dict) {N r : ℕ} (φ : Sm E N) (hφ : IsAutForm φ) (h0
 
 end PositivityTheory.Rg.Rs.SliceClasses
 
+end
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open NumberField MeasureTheory GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.CompanionTheory.CTFin
+open GroundTheory.Automorphic GroundTheory.Automorphic.AutomorphicForm
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.ConstantTermZeroEq
 

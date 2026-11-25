@@ -12,12 +12,12 @@ import Mathlib.Algebra.Order.Star.Int
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitPowerSeriesCoefficients.SolvableEquivalenceOfBaseChange, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitJetDegreeBound.JetTdegEqDegree
 
--- clump: shared namespace opens
+section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitPowerSeriesCoefficients.SolvableEquivalenceOfBaseChange
+@[expose] public section
 
+noncomputable section
 
 open Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitPowerSeriesCoefficients.SolvableEquivalenceOfBaseChange
 
 namespace PI.OrbShared.Tri
 
@@ -34,7 +34,7 @@ variable {c : K} {a : σ → MvPowerSeries σ K}
 
 theorem IsTri.constantCoeff (ha : IsTri c a) (v : σ) : constantCoeff (a v) = 0 := by
   have h := ha v 0 (by simp)
-  rw [← coeff_zero_eq_constantCoeff_apply, h, if_neg (Ne.symm (Finsupp.single_ne_zero.mpr one_ne_zero))]
+  rw [← coeff_zero_eq_constantCoeff_apply, h, ite_eq_right (Ne.symm (Finsupp.single_ne_zero.mpr one_ne_zero))]
 
 theorem IsTri.hasSubst (ha : IsTri c a) : HasSubst a :=
   hasSubst_of_constantCoeff_zero fun v => ha.constantCoeff v
@@ -138,26 +138,26 @@ theorem coeff_subst_tri (ha : IsTri c a) (F : MvPowerSeries σ K) (e : σ →₀
     change coeff d F * coeff e (P a d) = _
     rcases lt_trichotomy d.degree e.degree with hlt | heq | hgt
     · have hne : d ≠ e := fun h => by rw [h] at hlt; exact lt_irrefl _ hlt
-      rw [if_neg hne, if_pos hlt, zero_add]
-    · rw [if_neg (show ¬ d.degree < e.degree by rw [heq]; exact lt_irrefl _), add_zero,
+      rw [ite_eq_right hne, ite_eq_left hlt, zero_add]
+    · rw [ite_eq_right (show ¬ d.degree < e.degree by rw [heq]; exact lt_irrefl _), add_zero,
         coeff_P_of_le ha d e heq.ge]
       by_cases hde : d = e
       · subst hde; simp [mul_comm]
-      · rw [if_neg hde, if_neg (Ne.symm hde), mul_zero]
+      · rw [ite_eq_right hde, ite_eq_right (Ne.symm hde), mul_zero]
     · have hne : d ≠ e := fun h => by rw [h] at hgt; exact lt_irrefl _ hgt
-      rw [if_neg hne, if_neg (not_lt.mpr hgt.le), coeff_P_of_le ha d e hgt.le, if_neg (Ne.symm hne)]
+      rw [ite_eq_right hne, ite_eq_right (not_lt.mpr hgt.le), coeff_P_of_le ha d e hgt.le, ite_eq_right (Ne.symm hne)]
       simp
   simp_rw [hterm]
   rw [finsum_add_distrib]
-  · rw [finsum_eq_single _ e (fun d hd => if_neg hd), if_pos rfl]
+  · rw [finsum_eq_single _ e (fun d hd => ite_eq_right hd), ite_eq_left rfl]
   · apply Set.Finite.subset (Set.finite_singleton e)
     intro d hd
     by_contra h
-    exact hd (if_neg h)
+    exact hd (ite_eq_right h)
   · apply Set.Finite.subset (Finsupp.finite_of_degree_lt e.degree)
     intro d hd
     by_contra h
-    exact hd (if_neg h)
+    exact hd (ite_eq_right h)
 
 theorem vanish_of_subst (hc : c ≠ 0) (ha : IsTri c a) (F : MvPowerSeries σ K) (n : ℕ)
     (h : ∀ m : σ →₀ ℕ, m.degree < n → coeff m (subst a F) = 0) :
@@ -199,7 +199,7 @@ theorem triangular_solution_stable (G : MvPowerSeries σ K) :
     · rw [hk]
     · have hlt : m.degree < k := by omega
       show (if m.degree = k then _ else solvable_equivalence_of_base_change c a G k m) = _
-      rw [if_neg hk, ih m hlt]
+      rw [ite_eq_right hk, ih m hlt]
 
 theorem subst_sol (hc : c ≠ 0) (ha : IsTri c a) (G : MvPowerSeries σ K) : subst a (sol c a G) = G := by
   ext m
@@ -214,13 +214,19 @@ theorem subst_sol (hc : c ≠ 0) (ha : IsTri c a) (G : MvPowerSeries σ K) : sub
     · rfl
   rw [hS, hsol, solvable_equivalence_of_base_change.eq_2]
   beta_reduce
-  rw [if_pos rfl, ← mul_assoc, mul_inv_cancel₀ (pow_ne_zero _ hc), one_mul, sub_add_cancel]
+  rw [ite_eq_left rfl, ← mul_assoc, mul_inv_cancel₀ (pow_ne_zero _ hc), one_mul, sub_add_cancel]
 
 end PI.OrbShared.Tri
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitJetDegreeBound.JetTdegEqDegree
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitJetDegreeBound.JetTdegEqDegree
+
+noncomputable section
+
+open Classical
 
 namespace PI.OrbJet.AU
 
@@ -237,7 +243,7 @@ theorem cc_log (D : D7) (p : ℕ) [Fact p.Prime] {β : Type} (v : Pl D × β) :
     constantCoeff (logPl D p v) = 0 := by
   show (logPl D p v) 0 = 0
   unfold logPl
-  refine Finset.sum_eq_zero fun e _ => if_neg fun h => ?_
+  refine Finset.sum_eq_zero fun e _ => ite_eq_right fun h => ?_
   exact pow_ne_zero e (pow_ne_zero 2 (Fact.out : p.Prime).ne_zero) (Finsupp.single_eq_zero.mp h.symm)
 
 theorem degree_single' {σ : Type*} (v : σ) (k : ℕ) : (Finsupp.single v k).degree = k := by
@@ -254,7 +260,7 @@ theorem jet_lin (l d : ℕ) [Fact l.Prime] {β : Type*} (w : ZMod d × β) (n : 
   rw [Finset.sum_eq_single 0]
   · simp
   · intro e _ he
-    rw [if_neg]
+    rw [ite_eq_right]
     rintro rfl
     rw [degree_single'] at hn
     have h2 : 1 < l ^ 2 := by nlinarith
@@ -276,7 +282,7 @@ theorem log_lin (D : D7) (p : ℕ) [Fact p.Prime] {β : Type} (v : Pl D × β) (
       | simpa [backPl] using posPl_zero D p v.1
     simp [h0]
   · intro e _ he
-    rw [if_neg]
+    rw [ite_eq_right]
     rintro rfl
     rw [degree_single'] at hn
     have h2 : 1 < p ^ 2 := by nlinarith
@@ -349,12 +355,13 @@ theorem rename_jet (D : D7) (p : ℕ) [Fact p.Prime] {β : Type} (r : Pl D) (w :
       exact ⟨n, by simpa using hn⟩
     · symm
       unfold logPl
-      refine Finset.sum_eq_zero fun e _ => if_neg ?_
+      refine Finset.sum_eq_zero fun e _ => ite_eq_right ?_
       rw [hidx]
       exact fun h => hm ⟨_, h.symm⟩
 
 end PI.OrbJet.AU
 
+end
 
 -- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitPowerSeriesCoefficients.SolvableEquivalenceOfBaseChange", "h": "module\n\npublic import Mathlib.RingTheory.MvPowerSeries.Substitution\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.Order.CompletePartialOrder\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Presheaf\n\n"}
 -- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitJetDegreeBound.JetTdegEqDegree", "h": "module\n\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitPowerSeriesCoefficients.OrbEmb\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitPowerSeriesCoefficients.SolvableEquivalenceOfBaseChange\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitPowerSeriesCoefficients.JetRen\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

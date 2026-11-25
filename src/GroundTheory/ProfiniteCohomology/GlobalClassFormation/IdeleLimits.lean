@@ -798,7 +798,7 @@ theorem placeProj_idelesCohomologySum (n : ℕ) (ξ : ⨁ v : Place K, cohomolog
       rw [placeEmbed_comp_placeProj, cohomologyMap_id, DirectSum.of_eq_same]
       rfl
     · rw [placeEmbed_comp_placeProj_of_ne h, cohomologyMap_zero]
-      simp only [DirectSum.of_apply, dif_neg h]
+      simp only [DirectSum.of_apply, dite_eq_right h]
       rfl
   | add ξ η hξ hη => rw [map_add (f := _), map_add (f := _), hξ, hη, DirectSum.add_apply]
 
@@ -958,7 +958,8 @@ end GroundTheory.ProfCoh
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.GlobalClassFormation.IdeleLimits.Assembly
+section -- clump member: GroundTheory.ProfiniteCohomology.GlobalClassFormation.IdeleLimits.Assembly
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -966,6 +967,7 @@ namespace GroundTheory.ProfCoh
 
 open CategoryTheory NumberField GroundTheory.Global FiniteSubfield IdeleLimit DirectSum
 
+noncomputable section
 
 variable {K : FiniteSubfield} (n : ℕ)
 
@@ -1134,10 +1136,10 @@ theorem limitCohomologyHom_surjective : Function.Surjective (limitCohomologyHom 
   rw [levelSum_apply, ← idelesCohomologyEquiv_symm_apply hn, AddEquiv.symm_apply_apply]
   by_cases hv : v ∈ ζ.support
   · have : ξ v = (D.e v r).symm (D.lt v (hpr v hv) (z v)) := by
-      simp only [ξ, DFinsupp.mk_apply, dif_pos hv]
+      simp only [ξ, DFinsupp.mk_apply, dite_eq_left hv]
     rw [this, AddEquiv.apply_symm_apply, T.infl_compat, hz]
   · have : ξ v = 0 := by
-      simp only [ξ, DFinsupp.mk_apply, dif_neg hv]
+      simp only [ξ, DFinsupp.mk_apply, dite_eq_right hv]
     rw [this, map_zero, map_zero, DFinsupp.notMem_support_iff.1 hv]
 
 def limitCohomologyEquiv : cohomology (limitRep K) n ≃+ ⨁ v : Place K.1, T.T v :=
@@ -1151,8 +1153,10 @@ theorem limitCohomologyEquiv_levelInfl (p : GLevel K) (y : cohomology (ideleRep 
   change limitCohomologyHom D T hn _ v = _
   rw [limitCohomologyHom_levelInfl, levelSum_apply]
 
+end
 
 end GroundTheory.ProfCoh
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: GroundTheory.ProfiniteCohomology.GlobalClassFormation.IdeleLimits.Places

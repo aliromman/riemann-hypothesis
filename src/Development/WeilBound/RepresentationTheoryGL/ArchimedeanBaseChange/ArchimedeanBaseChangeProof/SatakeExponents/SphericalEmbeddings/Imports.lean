@@ -919,15 +919,14 @@ theorem sphEmb : SphEmb k :=
 end PositivityTheory.Rg.BcB.N3.Pse
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.SphericalEmbeddings.GaloisFixedAdelicMatricesDescend
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.SphericalEmbeddings.GaloisFixedAdelicMatricesDescend
 
+noncomputable section
 
 open NumberField IsDedekindDomain
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil ValuativeRel
 
 namespace PositivityTheory.Rg.BcB.N3.Pee
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem extremeSph_of (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
     (hC : SphConst k) (hS : SphEmb k) (hU : UniqSub k) : ExtremeSph k := by
@@ -964,9 +963,11 @@ theorem galois_fixed_adelic_matrices_descend (hE : ∀ (k : Type) [Field k] [Val
 
 end PositivityTheory.Rg.BcB.N3.Pee
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.SphericalEmbeddings.InjectiveOfIrred
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.SphericalEmbeddings.InjectiveOfIrred
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL GlobalTheory.LFun
@@ -975,8 +976,6 @@ open GlobalTheory.CuspRep Formalism.UG Formalism.BasicNotions GlobalTheory.Unita
 namespace PositivityTheory.Rg.BcB.N3.Psl
 
 open PositivityTheory.Rg.BcB.N3
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 variable {G V : Type} [Group G] [TopologicalSpace G] [AddCommGroup V] [Module ℂ V]
 
@@ -1049,6 +1048,7 @@ theorem satLink : SatLink := by
   exact ⟨fun i => (hB i).1, B, hB, hsatX'.unique hsatX⟩
 
 end PositivityTheory.Rg.BcB.N3.Psl
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.SphericalEmbeddings.UniqSub

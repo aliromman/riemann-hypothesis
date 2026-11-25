@@ -16,6 +16,7 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeil
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUniqueSelfDualHaarMeasureInfiniteAdeles
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.HermitianForms.IndicatorInSchrodingerSpan, Development.AutomorphicSpectrum.Proofs.HermitianForms.ExistsSdWSdHerm, Development.AutomorphicSpectrum.Proofs.HermitianForms.BijectiveLinearCombinationOfRankAtStalk, Development.AutomorphicSpectrum.Proofs.HermitianForms.HasCoordOfFiniteDimensional, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerLowRank.AnalyticAtUpdateZero, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerLowRank.WhitGenLowOf
@@ -347,20 +348,7 @@ theorem trace_tmul [FiniteDimensional F E] (c : R) (e : E) :
 
 theorem trace_nondeg [FiniteDimensional F E] [Algebra.IsSeparable F E] (z : R ⊗[F] E)
     (h : ∀ w, Algebra.trace R (R ⊗[F] E) (z * w) = 0) : z = 0 := by
-  classical
-  let b := Module.finBasis F E
-  let b' := (Algebra.traceForm F E).dualBasis (traceForm_nondegenerate F E) b
-  have key : ∀ (k) (z : R ⊗[F] E), (Algebra.TensorProduct.basis R b').repr z k =
-      Algebra.trace R (R ⊗[F] E) (z * (1 : R) ⊗ₜ[F] b k) := by
-    intro k z
-    induction z using TensorProduct.induction_on with
-    | zero => simp
-    | add x y hx hy => simp only [map_add (f := _), Finsupp.add_apply, hx, hy, add_mul]
-    | tmul a e =>
-      rw [Algebra.TensorProduct.tmul_mul_tmul, trace_tmul, Algebra.TensorProduct.basis_repr_tmul]
-      simp [b', LinearMap.BilinForm.dualBasis_repr_apply, Algebra.traceForm_apply]
-  refine (Algebra.TensorProduct.basis R b').ext_elem fun k => ?_
-  rw [key, h]; simp
+  apply _root_.GlobalTheory.GaugeEx.SdInf.trace_nondeg <;> assumption
 
 theorem trace_sigR [FiniteDimensional F E] (z : R ⊗[F] E) :
     Algebra.trace R (R ⊗[F] E) (sigR R σ z) = Algebra.trace R (R ⊗[F] E) z := by
@@ -654,11 +642,12 @@ theorem exists_selfDual : ∀ (V : Type) [AddCommGroup V] [TopologicalSpace V] [
 end GlobalTheory.CompanionTheory.SelfDualReal
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.HermitianForms.HasCoordOfFiniteDimensional
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.HermitianForms.HasCoordOfFiniteDimensional
 
 open NumberField IsDedekindDomain MeasureTheory HeckeCharacterZeroLocus.SiegelWeilU
 open scoped TensorProduct
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SelfDualInf
 
@@ -822,36 +811,7 @@ theorem trace_sigR (hσ : ∀ x, σ (σ x) = x) (z : R ⊗[F] E) :
 
 theorem trace_nondeg [Algebra.IsSeparable F E] (z : R ⊗[F] E)
     (h : ∀ u, Algebra.trace R (R ⊗[F] E) (z * u) = 0) : z = 0 := by
-  classical
-  let b := Module.finBasis F E
-  let B := Algebra.traceForm F E
-  have hB : B.Nondegenerate := traceForm_nondegenerate F E
-  let b' := B.dualBasis hB b
-  let c := Algebra.TensorProduct.basis R b
-  have hz : z = ∑ i, c.repr z i ⊗ₜ[F] b i := by
-    conv_lhs => rw [← c.sum_repr z]
-    refine Finset.sum_congr rfl fun i _ => ?_
-    simp [c, TensorProduct.smul_tmul']
-  have hc : ∀ j, c.repr z j = 0 := by
-    intro j
-    have h1 := h ((1 : R) ⊗ₜ[F] b' j)
-
-    rw [hz, Finset.sum_mul, map_sum] at h1
-    simp only [Algebra.TensorProduct.tmul_mul_tmul, mul_one, trace_tmul] at h1
-    rw [Finset.sum_eq_single j] at h1
-    · have h2 : Algebra.trace F E (b j * b' j) = 1 := by
-        have := LinearMap.BilinForm.apply_dualBasis_right hB (Algebra.traceForm_isSymm F) b j j
-        simpa [B, b', Algebra.traceForm_apply] using this
-      rw [h2, map_one, mul_one] at h1
-      exact h1
-    · intro i _ hij
-      have h2 : Algebra.trace F E (b i * b' j) = 0 := by
-        have := LinearMap.BilinForm.apply_dualBasis_right hB (Algebra.traceForm_isSymm F) b i j
-        simpa [B, b', Algebra.traceForm_apply, hij] using this
-      rw [h2, map_zero, mul_zero]
-    · simp
-  rw [← c.sum_repr z]
-  simp [hc]
+  apply _root_.GlobalTheory.GaugeEx.SdInf.trace_nondeg <;> assumption
 
 end Alg
 
@@ -1109,9 +1069,12 @@ theorem exists_sdW_sdHerm : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
 
 end GlobalTheory.CompanionTheory.SelfDualInf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerLowRank.AnalyticAtUpdateZero
+section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerLowRank.AnalyticAtUpdateZero
+@[expose] public section
 
+noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.Gen.WL
 
@@ -1124,14 +1087,14 @@ theorem det_mul_eq_zero_of_lt {R : Type*} [CommRing R] {M n : ℕ} (h : M < n)
   have he : e * eᵀ = 1 := by
     ext i j
     simp only [e, Matrix.mul_apply, Matrix.transpose_apply, Matrix.of_apply, Matrix.one_apply, ite_mul, one_mul,
-      zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true, Fin.castLE_inj, eq_comm (a := j)]
+      zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true, Fin.castLE_inj, eq_comm (a := j)]
   have : X * Y = (X * e) * (eᵀ * Y) := by
     rw [Matrix.mul_assoc, ← Matrix.mul_assoc e, he, Matrix.one_mul]
   rw [this, Matrix.det_mul, Matrix.det_eq_zero_of_column_eq_zero (A := X * e) ⟨M, h⟩, zero_mul]
   intro a
   simp only [Matrix.mul_apply, e, Matrix.of_apply]
   refine Finset.sum_eq_zero fun i _ => ?_
-  rw [if_neg, mul_zero]
+  rw [ite_eq_right, mul_zero]
   intro hh
   have := congrArg Fin.val hh
   simp at this
@@ -1179,14 +1142,14 @@ theorem count (c d M n : ℕ) (hd : 1 ≤ d) (h : M < n) :
   | zero =>
     rw [Nat.add_zero, Finset.sum_range_succ, Finset.sum_eq_zero fun i hi => by
       have := Finset.mem_range.1 hi
-      rw [if_pos (by omega)]]
-    rw [if_neg (by omega), if_pos (by omega)]
+      rw [ite_eq_left (by omega)]]
+    rw [ite_eq_right (by omega), ite_eq_left (by omega)]
     have : M + 1 - M = 1 := by omega
     rw [this, mul_one]
     omega
   | succ r ih =>
     rw [show M + 1 + (r + 1) = M + 1 + r + 1 by ring, Finset.sum_range_succ, add_right_comm, ih]
-    rw [if_neg (by omega), if_neg (by omega)]
+    rw [ite_eq_right (by omega), ite_eq_right (by omega)]
     have : M + 1 + r + 1 - M = (M + 1 + r - M) + 1 := by omega
     rw [this, Nat.mul_succ]
     ring
@@ -1200,8 +1163,8 @@ theorem analyticAt_update_zero {G A : ℂ → ℂ} {s₀ c : ℂ} {K N : ℕ} (h
   filter_upwards [eventually_nhdsWithin_iff.1 h] with z hz
   by_cases hzs : z = s₀
   · subst hzs
-    rw [if_pos rfl, sub_self, zero_pow (by omega), zero_mul, mul_zero]
-  · rw [if_neg hzs]
+    rw [ite_eq_left rfl, sub_self, zero_pow (by omega), zero_mul, mul_zero]
+  · rw [ite_eq_right hzs]
     have hx : z - s₀ ≠ 0 := sub_ne_zero.2 hzs
     have h1 := hz hzs
     have hN : (z - s₀) ^ N = (z - s₀) ^ K * (z - s₀) ^ (N - K) := by
@@ -1220,10 +1183,13 @@ theorem hasProd_split' {α : Type} (f : α → ℂ) (S : Finset α) (D : ℂ)
 
 end PositivityTheory.SiegelWeilFormula.Gen.WL
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerLowRank.WhitGenLowOf
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerLowRank.WhitGenLowOf
 
+noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.Gen.WL
 
@@ -1388,17 +1354,18 @@ theorem whitGenLowOf : WhitGenLowOf := by
     by_cases hx : x = s₀
     · subst hx
       filter_upwards [self_mem_nhdsWithin] with z hz
-      exact (if_neg hz).symm
+      exact (ite_eq_right hz).symm
     · filter_upwards [nhdsWithin_le_nhds (eventually_ne_nhds hx)] with z hz
-      exact (if_neg hz).symm
+      exact (ite_eq_right hz).symm
   · show (if z = s₀ then 0 else G z) = _
-    rw [if_neg (hne z hz)]
+    rw [ite_eq_right (hne z hz)]
     exact hright z hz
 
 end PositivityTheory.SiegelWeilFormula.Gen.WL
 
 alias PositivityTheory.SiegelWeilFormula.Gen.whitGenLowOf := _root_.PositivityTheory.SiegelWeilFormula.Gen.WL.whitGenLowOf
 
+end
 
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.HermitianForms.IndicatorInSchrodingerSpan", "h": "module\n\npublic import Formalism.UnipotentAdelicQuotients.SWXSDefs\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSelfDualOfDualSubgroups\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.Order.CompletePartialOrder\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.HermitianForms.ExistsSdWSdHerm", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.FourierMatch\npublic import Formalism.UnipotentAdelicQuotients.SWXSDefs\npublic import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.AdditiveCharConductorExists\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSmallDualLattices\npublic import CompanionTheory.SpectralGeometry.LocalGlobalProofs.HermitianCharacters.SelfDualLatticeFiltrationCharacter\npublic import Development.AutomorphicSpectrum.Proofs.HermitianForms.IndicatorInSchrodingerSpan\npublic import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Tjcosets\npublic import Mathlib.Topology.Algebra.Valued.LocallyCompact\nimport Mathlib.Algebra.Module.StablyFree.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Connected.Separation\nimport Mathlib.Topology.MetricSpace.Ultra.TotallySeparated\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}

@@ -21,7 +21,8 @@ import Mathlib.Algebra.Ring.IsFormallyReal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.ProfiniteCohomology.RestrictedRamification.ClassFieldGSUnram, GroundTheory.ProfiniteCohomology.RestrictedRamification.ClassFieldGS, GroundTheory.ProfiniteCohomology.RestrictedRamification.ClassFieldGSFull
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.ClassFieldGSUnram
+section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.ClassFieldGSUnram
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -29,6 +30,7 @@ namespace GroundTheory.ProfCoh
 
 open NumberField IsDedekindDomain GroundTheory.Global GroundTheory.Global.IdeleGroup GroundTheory.Global.SemiLocal Function
 
+noncomputable section
 
 variable {K : Type*} [Field K] [NumberField K] (S : Set (HeightOneSpectrum (𝓞 K)))
 
@@ -118,12 +120,12 @@ theorem exists_modulus_congruenceSubgroup_le (hS : S.Finite) {n : ℕ} (hn : n �
   let a : HeightOneSpectrum (𝓞 K) → ℕ := fun v ↦ if v ∈ S then k v else 0
   have ha : (support a).Finite := hS.subset fun v hv ↦ by
     by_contra h
-    exact hv (if_neg h)
+    exact hv (ite_eq_right h)
   let 𝔪 : Modulus K := ⟨∏ᶠ w, w.asIdeal ^ a w, finprod_asIdeal_pow_ne_bot a, Set.univ⟩
   have hexp : ∀ v, 𝔪.exponent v = a v := fun v ↦ by
     simpa [Modulus.exponent, 𝔪, FiniteMultiplicity.of_prime_left v.prime
       (finprod_asIdeal_pow_ne_bot a)] using multiplicity_finprod_asIdeal_pow_eq ha v
-  refine ⟨𝔪, fun v hv ↦ by rw [hexp]; exact if_neg hv, fun x hx ↦ ?_⟩
+  refine ⟨𝔪, fun v hv ↦ by rw [hexp]; exact ite_eq_right hv, fun x hx ↦ ?_⟩
   obtain ⟨hf, hr⟩ := (Modulus.mem_congruenceSubgroup _).1 hx
   set T := hS.toFinset
   set p : IdeleGroup K := ∏ u ∈ T, finiteEmbedding u (finiteProj u x) with hp
@@ -131,15 +133,15 @@ theorem exists_modulus_congruenceSubgroup_le (hS : S.Finite) {n : ℕ} (hn : n �
     refine Subgroup.prod_mem _ fun u hu ↦ ?_
     have hu' : u ∈ S := hS.mem_toFinset.1 hu
     have hmem := hf u
-    rw [hexp u, show a u = k u from if_pos hu'] at hmem
+    rw [hexp u, show a u = k u from ite_eq_left hu'] at hmem
     obtain ⟨z, hz⟩ := hk u hmem
     exact ⟨finiteEmbedding u z, by rw [powMonoidHom_apply, ← map_pow, ← powMonoidHom_apply, hz]⟩
   have hrest : p⁻¹ * x ∈ unitsOutsidePos S := by
     refine mem_unitsOutsidePos.2 ⟨mem_unitsOutside.2 ⟨fun v hv ↦ ?_, fun v hv ↦ ?_⟩, fun w ↦ ?_⟩
-    · rw [map_mul, map_inv, hp, finiteProj_prod_finiteEmbedding, if_pos (hS.mem_toFinset.2 hv),
+    · rw [map_mul, map_inv, hp, finiteProj_prod_finiteEmbedding, ite_eq_left (hS.mem_toFinset.2 hv),
         inv_mul_cancel]
     · rw [map_mul, map_inv, hp, finiteProj_prod_finiteEmbedding,
-        if_neg (fun h ↦ hv (hS.mem_toFinset.1 h)), inv_one, one_mul]
+        ite_eq_right (fun h ↦ hv (hS.mem_toFinset.1 h)), inv_one, one_mul]
       exact unitsLevel_antitone v (Nat.zero_le _) (hf v)
     · rw [map_mul, map_inv, hp, infiniteProj_prod_finiteEmbedding, inv_one, one_mul]
       exact hr w (Set.mem_univ _)
@@ -192,8 +194,10 @@ theorem isUnramifiedOutside_of_range_ideleClassNorm {Ω : Type*} [Field Ω] [Alg
   rw [Modulus.exponent_conductor] at h1
   exact (localConductorExponent_eq_zero_iff E v w.1).1 h1
 
+end
 
 end GroundTheory.ProfCoh
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.ClassFieldGS
@@ -479,7 +483,7 @@ end GroundTheory.ProfCoh
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.ClassFieldGSFull
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.ClassFieldGSFull
 
 set_option maxSynthPendingDepth 1
 
@@ -487,6 +491,7 @@ namespace GroundTheory.ProfCoh
 
 open NumberField IsDedekindDomain GroundTheory.Global GroundTheory.Global.IdeleGroup GroundTheory.LocalField Function
 
+noncomputable section
 
 universe u
 
@@ -536,7 +541,9 @@ theorem precompPos_surjective (h : Odd n ∨ IsTotallyComplex K) : Surjective (p
   have hle : sIdeleSubgroup S ≤ (ψ.comp (SIdeleClassGroupPos.mk S)).ker := by
     refine sup_le ?_ fun u hu ↦ ?_
     · rintro _ ⟨a, rfl⟩
-      rw [MonoidHom.mem_ker, MonoidHom.comp_apply, SIdeleClassGroupPos.mk_diagonal, map_one]
+      have h1 : SIdeleClassGroupPos.mk S (diagonal K a) = 1 :=
+        (QuotientGroup.eq_one_iff _).2 (Subgroup.mem_sup_left (MonoidHom.mem_range.2 ⟨a, rfl⟩))
+      rw [MonoidHom.mem_ker, MonoidHom.comp_apply, h1, map_one]
     · rw [MonoidHom.mem_ker, MonoidHom.comp_apply]
       rcases h with hn | hK
       · refine eq_one_of_sq_eq_one_of_odd hn ?_ (zmod_pow_eq_one _)
@@ -578,6 +585,7 @@ theorem charEquiv_mk_eq [IsAlgClosure K Ω] (hS : S.Finite) [NeZero n] (h : Odd 
 
 variable (S n)
 
+end
 
 end GroundTheory.ProfCoh
 

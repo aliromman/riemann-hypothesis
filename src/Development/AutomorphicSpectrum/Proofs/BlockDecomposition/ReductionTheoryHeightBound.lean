@@ -638,11 +638,12 @@ end GlobalTheory.CompanionTheory.RedCov.Mahler
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ReductionTheoryHeightBound
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ReductionTheoryHeightBound
 
 set_option linter.unusedSectionVars false
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RedCov
 open Formalism.UG (cT)
@@ -720,7 +721,7 @@ theorem exists_isotropic_le
   by_cases h : ∃ v : Fin n → E, v ≠ 0 ∧ hgt σ J g v < ε
   · obtain ⟨v, hv, hlt⟩ := h
     exact ⟨v, hv, hS g v hv hlt, hlt.le.trans (le_max_left _ _)⟩
-  · push_neg at h
+  · push Not at h
     obtain ⟨γ, hγ, hγC⟩ := hC g h
     obtain ⟨v, hv, hvi, hs⟩ := exists_sends hγ hx hi
     refine ⟨v, hv, hvi, ?_⟩

@@ -29,8 +29,9 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLattic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IntPFmat, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IotaMemO, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IntMTranspose, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LmatUp, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LocUSubOne, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.TypedSplit, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.OneDir, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.TupFunHolds
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IntPFmat
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IntPFmat
 
+noncomputable section
 
 open scoped Classical
 
@@ -122,9 +123,9 @@ theorem cong_at (Λ : Submodule (𝓞 D.host.E) (VS D).V) {T T' : D.host.E} (G :
     rw [Matrix.sub_apply, Matrix.mul_apply, Finset.sum_eq_single (Fin.last D.R.rS)]
     · rw [(hNU _ _).2 rfl, one_mul, Matrix.one_apply]
       by_cases hb : Fin.last D.R.rS = b
-      · rw [(hMU _ _).2 hb, if_pos hb, sub_self]
+      · rw [(hMU _ _).2 hb, ite_eq_left hb, sub_self]
       · have hlt : b < Fin.last D.R.rS := lt_of_le_of_ne (Fin.le_last b) (Ne.symm hb)
-        rw [(hMU _ _).1 hlt, if_neg hb, sub_self]
+        rw [(hMU _ _).1 hlt, ite_eq_right hb, sub_self]
     · intro c _ hc
       have hlt : c < Fin.last D.R.rS := lt_of_le_of_ne (Fin.le_last c) hc
       rw [(hNU _ _).1 hlt, zero_mul]
@@ -139,13 +140,14 @@ theorem cong_at (Λ : Submodule (𝓞 D.host.E) (VS D).V) {T T' : D.host.E} (G :
   have hcoef := coef_intP_g P hC hP hg hYLg hYX d
   have hYd : G.fl.coefX Y d = (fmat D G n * fmat D G₁ m - 1) d.castSucc b := by
     rw [hYsum, coefX_finset_sum _ _ _ (fun d' => Submodule.smul_mem _ _ (e_mem_X _ d'))]
-    simp only [coefX_smul_e, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    simp only [coefX_smul_e, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   rw [hYd] at hcoef
   exact hcoef
 
 end Cong
 
 end Formalism.L2.SG.Pf.FibQ
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IotaMemO
@@ -206,13 +208,11 @@ end Bridge
 end Formalism.L2.SG.Pf.FibQ
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IntMTranspose
 
 
 open scoped Classical Matrix
 open ValuativeRel
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.IntMTranspose
 
 namespace Formalism.L2.SG.Pf.FibQ
 
@@ -274,7 +274,12 @@ end Cong
 end Formalism.L2.SG.Pf.FibQ
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LmatUp
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LmatUp
+
+noncomputable section
+
+open scoped Classical Matrix
+open ValuativeRel
 
 namespace Formalism.L2.SG.Pf.FibQ
 
@@ -344,7 +349,7 @@ theorem modeG (hs : (Z.M p).split = some g) (u u' : D.what₂.Word)
   obtain ⟨hL0, hL1⟩ := lmat_low Z p g hl0low.1 hl0low.2 hM0 hM1
   obtain ⟨hR0, hR1⟩ := lmat_up Z p g hl0low.1 hl0low.2 hM0 hM1
   have hcorner := corner_fix p hL0 hL1 hR0 hR1 (C := Cm) (fun a b h => by
-    simp only [hCm, Matrix.of_apply]; rw [if_neg h])
+    simp only [hCm, Matrix.of_apply]; rw [ite_eq_right h])
   have hmain : Formalism.L2.SG.CntLocal.ZZP (M := Z.M) Z.δ u u' p Z₂ =
       lmat Z p g K⁻¹ Ml * Formalism.L2.SG.CntLocal.ZZP (M := Z.M) Z.δ u u' p Z₁ * lmat Z p g Ml K⁻¹ := by
     rw [hZZ, hZZ, hY, emap_mul, Matrix.mul_sub, Matrix.sub_mul, hcorner]
@@ -398,8 +403,13 @@ end ModeG3
 
 end Formalism.L2.SG.Pf.FibQ
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LocUSubOne
+
+
+open scoped Classical Matrix
+open ValuativeRel
 
 namespace Formalism.L2.SG.Pf.FibQ
 
@@ -436,6 +446,10 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.TypedSplit
 
+
+open scoped Classical Matrix
+open ValuativeRel
+
 namespace Formalism.L2.SG.Pf.FibQ
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups PI.PairValDefs PI.NRCW IsDedekindDomain
@@ -463,7 +477,12 @@ end OneDir
 end Formalism.L2.SG.Pf.FibQ
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.OneDir
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.OneDir
+
+noncomputable section
+
+open scoped Classical Matrix
+open ValuativeRel
 
 namespace Formalism.L2.SG.Pf.FibQ
 
@@ -483,9 +502,9 @@ theorem nm_last (Λ : Submodule (𝓞 D.host.E) (VS D).V) {T T' : D.host.E} (G :
   rw [Matrix.sub_apply, Matrix.mul_apply, Finset.sum_eq_single (Fin.last D.R.rS)]
   · rw [(hNU _ _).2 rfl, one_mul, Matrix.one_apply]
     by_cases hb : Fin.last D.R.rS = b
-    · rw [(hMU _ _).2 hb, if_pos hb, sub_self]
+    · rw [(hMU _ _).2 hb, ite_eq_left hb, sub_self]
     · have hlt : b < Fin.last D.R.rS := lt_of_le_of_ne (Fin.le_last b) (Ne.symm hb)
-      rw [(hMU _ _).1 hlt, if_neg hb, sub_self]
+      rw [(hMU _ _).1 hlt, ite_eq_right hb, sub_self]
   · intro c _ hc
     have hlt : c < Fin.last D.R.rS := lt_of_le_of_ne (Fin.le_last c) hc
     rw [(hNU _ _).1 hlt, zero_mul]
@@ -562,8 +581,13 @@ end OneDir2
 
 end Formalism.L2.SG.Pf.FibQ
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.TupFunHolds
+
+
+open scoped Classical Matrix
+open ValuativeRel
 
 namespace Formalism.L2.SG.Pf.FibQ
 

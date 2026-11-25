@@ -33,12 +33,11 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.Bochn
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.BochnerG2.BochIneq, ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SchSharp, ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.BochnerG2.KhwEqZeroSharp, ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.BochnerG2.LayerBound, ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.BochnerG2.CasimirGapAtNoncompactWeight
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.BochnerG2.BochIneq
 
+noncomputable section
 
 open Finset
-
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.BochnerG2.BochIneq
 
 namespace ReciprocityTheory.ChartRestriction.DS.G2
 variable {n : ℕ}
@@ -64,10 +63,10 @@ theorem bochner_ineq (hE : IsGlRep E) (hU : IsInfUnitary ε E) (hV : IsKIrrHW ε
     rw [ReciprocityTheory.ChartRestriction.DS.casimirK_mAct_apply, PiLp.smul_apply]
     have hm := hP' κ
     by_cases hκ : ∀ i, ε (κ i).1 ≠ ε (κ i).2
-    · rw [if_pos hκ] at hm
+    · rw [ite_eq_left hκ] at hm
       have hm' : P κ ∈ V := hm
       exact ReciprocityTheory.ChartRestriction.DS.casimirK_irr hE hV _ hm'
-    · rw [if_neg hκ] at hm
+    · rw [ite_eq_right hκ] at hm
       have hz : P κ = 0 := (Submodule.mem_bot ℂ).1 hm
       rw [hz, map_zero, smul_zero]
 
@@ -97,8 +96,12 @@ end Boch
 
 end ReciprocityTheory.ChartRestriction.DS.G2
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SchSharp
+
+
+open Finset
 
 namespace ReciprocityTheory.ChartRestriction.DS
 
@@ -152,6 +155,9 @@ end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.BochnerG2.KhwEqZeroSharp
+
+
+open Finset
 
 namespace ReciprocityTheory.ChartRestriction.DS.G2
 variable {n : ℕ}
@@ -264,6 +270,9 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.BochnerG2.LayerBound
 
+
+open Finset
+
 namespace ReciprocityTheory.ChartRestriction.DS.G2
 variable {n : ℕ}
 
@@ -301,7 +310,11 @@ end LayerBound
 end ReciprocityTheory.ChartRestriction.DS.G2
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.BochnerG2.CasimirGapAtNoncompactWeight
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.BochnerG2.CasimirGapAtNoncompactWeight
+
+noncomputable section
+
+open Finset
 
 namespace ReciprocityTheory.ChartRestriction.DS.G2
 variable {n : ℕ}
@@ -345,7 +358,7 @@ theorem casimir_gap_at_noncompact_weight (hE : IsGlRep E) (hU : IsInfUnitary ε 
       rw [hweq]
       exact hw₀
     exact hne (khw_weight_eq_of_irr hE hV hwV hw0 hμ)
-  · push_neg at hall
+  · push Not at hall
     obtain ⟨j, hj⟩ := hall
     obtain ⟨h1, h2, h3⟩ := (hws j).2 hj
     exact ⟨(j : ℕ), h1, h2, h3⟩

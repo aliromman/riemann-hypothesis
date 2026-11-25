@@ -45,10 +45,9 @@ section -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
+open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AdaptedBasisSpansEigenspace
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
@@ -96,8 +95,6 @@ end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.BasisOfSubmoduleIffUniqueCoords
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
@@ -131,8 +128,6 @@ end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.BasisOfSubmoduleIffUniqueCoordsStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 theorem _root_.GlobalTheory.T.basis_of_submodule_iff_unique_coords : ∀ (K W : Type) [Field K] [AddCommGroup W] [Module K W] (S : Submodule K W) (n : ℕ) (b : Fin n → W),
     (LinearIndependent K b ∧ Submodule.span K (Set.range b) = S) ↔
@@ -141,8 +136,6 @@ theorem _root_.GlobalTheory.T.basis_of_submodule_iff_unique_coords : ∀ (K W : 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmConjugationCompatComplexConj
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
@@ -158,8 +151,6 @@ end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmIntegersRegularAtComponent
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
@@ -172,10 +163,9 @@ theorem integers_mem_regAt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CpEmbeddingFactorsThroughComplex
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CpEmbeddingFactorsThroughComplex
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 theorem exists_emb_through_coeff : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (l : Level H) (c : Coeff l) (p : Nat.Primes)
@@ -197,10 +187,9 @@ theorem exists_emb_through_coeff : ∀ (E : Type) [Field E] [NumberField E] [IsC
 
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CpIntegersValuationRing
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
@@ -229,10 +218,9 @@ theorem ocp_integers : ∀ p : Nat.Primes, (NormedField.valuation (K := ℂ_[p])
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DvrPointComponentEigenReduction
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DvrPointComponentEigenReduction
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint.PointVal
 
@@ -402,10 +390,9 @@ theorem point_val : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
 
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.DvrPointEigenFrameReduction
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
@@ -444,8 +431,6 @@ end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeLatticeStableUnderAction
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
@@ -495,8 +480,6 @@ end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IotaMultiLinearCombinationDet
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
@@ -508,15 +491,12 @@ end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IotaMultiLinearCombinationDetStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.NumberFieldEmbeddingsIntoCpIntegral
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.NumberFieldEmbeddingsIntoCpIntegral
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 theorem embeddings_padicComplex : ∀ (E : Type) [Field E] [NumberField E] (p : Nat.Primes),
@@ -532,6 +512,7 @@ theorem embeddings_padicComplex : ∀ (E : Type) [Field E] [NumberField E] (p : 
     exact NumberField.Embeddings.card E ℂ_[p]
 
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens
@@ -646,10 +627,10 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ReduceLatticeActionToResidue
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ReduceLatticeActionToResidue
 open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 section EvalRank
@@ -759,9 +740,9 @@ theorem finrank_eigSp_eval : ∀ (E : Type) [Field E] [NumberField E] (Ω Vs C :
 
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ResidueHodgeLatticeAdaptedBasis
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
@@ -855,10 +836,10 @@ theorem det_evaluated_frame : ∀ (E : Type) [Field E] [NumberField E] (C A : Ty
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SpecializeHodgeLatticeEigenFrame
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SpecializeHodgeLatticeEigenFrame
 open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint.EvalProj
 
 theorem ev_eigProj : ∀ (E : Type) [Field E] [NumberField E] (Ω Vs C : Type) [Field Ω] [AddCommGroup Vs] [Module Ω Vs] [Field C]
@@ -885,9 +866,9 @@ theorem ev_eigProj : ∀ (E : Type) [Field E] [NumberField E] (Ω Vs C : Type) [
 
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint.EvalProj
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SpecializeHodgeLatticeEigenbasis
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
@@ -950,7 +931,6 @@ end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TiedActionComposeResidueMap
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint.TiedMap
@@ -1009,9 +989,9 @@ theorem tied_map_comp : ∀ (E : Type) [Field E] [NumberField E] (Ω Vs K C : Ty
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint.TiedMap
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.EigenLinePAdicFrame
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.EigenLinePAdicFrame
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Flat.CPoint
 
 theorem inc_eq : ∀ (E Ωf : Type) [Field E] [NumberField E] [Field Ωf] (σ σ₂ : E →+* Ωf), (∀ b : 𝓞 E, σ (b : E) = σ₂ (b : E)) → σ = σ₂ := by
@@ -1315,6 +1295,7 @@ theorem value_at_point : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
   rw [hjφ, norm_mul, norm_mul, hε1, _root_.one_mul, Real.log_mul (norm_ne_zero_iff.2 hx0) (norm_ne_zero_iff.2 hgm0), hlog]
 
 end GlobalTheory.CompanionTheory.Ar.Flat.CPoint
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.EigenLinePAdicFrameStatement

@@ -100,8 +100,10 @@ end PositivityTheory.ThKEnd.Orth
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.EigenvalueEndgame.OrthogonalDecomposition.LocDecompOf
+section -- clump member: Development.WeilBound.ThetaLifts.EigenvalueEndgame.OrthogonalDecomposition.LocDecompOf
+@[expose] public section
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -113,8 +115,6 @@ open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.Inde
 
 open PositivityTheory.ThKEst GlobalTheory.SplitFlip PositivityTheory.KCo
 open scoped Classical
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
 
@@ -285,10 +285,14 @@ theorem locDecomp_of (hB : ThetaBasic) (hE : EpsOf) (hU : PositivityTheory.ThKF.
 
 end PositivityTheory.ThKEnd.Orth
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.EigenvalueEndgame.OrthogonalDecomposition.PairLocOf
+section -- clump member: Development.WeilBound.ThetaLifts.EigenvalueEndgame.OrthogonalDecomposition.PairLocOf
+@[expose] public section
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -300,8 +304,6 @@ open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.Inde
 
 open PositivityTheory.ThKEst GlobalTheory.SplitFlip PositivityTheory.KCo
 open scoped Classical
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
 
@@ -434,6 +436,8 @@ theorem pairLoc_of (hB : ThetaBasic) (hE : EpsOf) (hV : FinVolU) (hU : Positivit
 
 end PositivityTheory.ThKEnd.Orth
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.EigenvalueEndgame.OrthogonalDecomposition.SigThConstOf

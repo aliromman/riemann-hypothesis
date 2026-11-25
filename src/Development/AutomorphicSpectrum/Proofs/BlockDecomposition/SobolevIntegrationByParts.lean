@@ -123,8 +123,9 @@ theorem weight_ibp : RCalc → LgFacts → ∀ {n : ℕ} [MeasurableSpace (G n)]
 end GlobalTheory.CompanionTheory.WeightIbp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SobolevIntegrationByParts
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SobolevIntegrationByParts
 
+noncomputable section
 
 open MeasureTheory Matrix Finset Filter Topology
 open scoped ContDiff ComplexConjugate InnerProductSpace ZeroAtInfty
@@ -306,7 +307,7 @@ theorem integrable_pair {a b : G n → V} (ha : MemLp a 2 μ) (hb : MemLp b 2 μ
 theorem inner_cls {a b : Mat n → V} (ha : MemLp (fun y : G n => a y.val) 2 μ)
     (hb : MemLp (fun y : G n => b y.val) 2 μ) :
     ⟪cls μ a, cls μ b⟫_ℂ = ∫ y : G n, ⟪a y.val, b y.val⟫_ℂ ∂μ := by
-  simp only [cls, dif_pos ha, dif_pos hb]
+  simp only [cls, dite_eq_left ha, dite_eq_left hb]
   rw [L2.inner_def]
   refine integral_congr_ae ?_
   filter_upwards [ha.coeFn_toLp, hb.coeFn_toLp] with y h1 h2

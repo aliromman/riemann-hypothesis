@@ -25,12 +25,10 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCou
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitShiftSplitting.AlgGUNS, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitShiftSplitting.ScaleCh, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitShiftSplitting.ZzScale, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitShiftSplitting.SecondProjConjAlgebra, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.FGInvariant, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.ScCApplyInlInl, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.ScCMulInv, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.VecMulScCInr, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.ScPhiSymmApply, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.GamConIff, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.CardThetaGCScale, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.ScaleFinal
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitShiftSplitting.AlgGUNS
 
 
 open ValuativeRel Formalism.MainNotions.S.Loc Formalism.L2.SG.LsDatumA Formalism.L2.SG.LocalCountModules.LocCntCommon Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitShiftSplitting.AlgGUNS
 
 namespace Formalism.L2.SG.LocalCountModules.AlgGSplit
 
@@ -126,6 +124,9 @@ end Formalism.L2.SG.LocalCountModules.AlgGSplit
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitShiftSplitting.ScaleCh
+
+
+open ValuativeRel Formalism.MainNotions.S.Loc Formalism.L2.SG.LsDatumA Formalism.L2.SG.LocalCountModules.LocCntCommon Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 
 namespace Formalism.L2.SG.LocalCountModules.AlgGSplit
 
@@ -239,7 +240,11 @@ theorem head_mul_dlast {K : Type} [CommRing K] (A : Matrix (Fin (r + 1)) (Fin (r
 end Formalism.L2.SG.LocalCountModules.AlgGSplit
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitShiftSplitting.ZzScale
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitShiftSplitting.ZzScale
+
+noncomputable section
+
+open ValuativeRel Formalism.MainNotions.S.Loc Formalism.L2.SG.LsDatumA Formalism.L2.SG.LocalCountModules.LocCntCommon Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 
 namespace Formalism.L2.SG.LocalCountModules.AlgGSplit
 
@@ -267,32 +272,36 @@ theorem zz_scale (Zh : Matrix (Fin (r + 1)) (Fin (r + 1)) E) (T T' : F)
   apply g.e.injective
   by_cases ha : a = Fin.last r <;> by_cases hb : b = Fin.last r
   · subst ha; subst hb
-    simp only [and_self, if_true] at hZab ⊢
+    simp only [and_self, ite_true] at hZab ⊢
     push_cast
     rw [map_sub, map_mul, map_add (f := _), map_mul, hZab]
     simp only [map_sub, AlgEquiv.apply_symm_apply, he1, he2, hcc, hα, map_mul]
     ext <;> simp <;> field_simp <;> ring
-  · simp only [ha, hb, and_false, if_false, if_true] at hZab ⊢
+  · simp only [ha, hb, and_false, ite_false, ite_true] at hZab ⊢
     push_cast
     simp only [sub_zero, add_zero] at hZab ⊢
     rw [map_mul, map_mul, hZab]
     simp only [AlgEquiv.apply_symm_apply, he2, hα, map_mul]
     ext <;> simp <;> field_simp
-  · simp only [ha, hb, false_and, if_false, if_true] at hZab ⊢
+  · simp only [ha, hb, false_and, ite_false, ite_true] at hZab ⊢
     push_cast
     simp only [sub_zero, add_zero, one_mul] at hZab ⊢
     rw [map_mul, hZab]
     simp only [AlgEquiv.apply_symm_apply, he1, hα, map_mul]
     ext <;> simp <;> field_simp
-  · simp only [ha, hb, and_false, if_false] at hZab ⊢
+  · simp only [ha, hb, and_false, ite_false] at hZab ⊢
     push_cast
     simp only [sub_zero, add_zero, one_mul, mul_one] at hZab ⊢
     rw [hZab]
 
 end Formalism.L2.SG.LocalCountModules.AlgGSplit
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitShiftSplitting.SecondProjConjAlgebra
+
+
+open ValuativeRel Formalism.MainNotions.S.Loc Formalism.L2.SG.LsDatumA Formalism.L2.SG.LocalCountModules.LocCntCommon Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 
 namespace Formalism.L2.SG.LocalCountModules.AlgGSplit
 
@@ -437,14 +446,10 @@ theorem scaleChoice_holds : ScaleChoiceP := by
 end Formalism.L2.SG.LocalCountModules.AlgGSplit
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.FGInvariant
 
 
 open Formalism.L2.SG.LocalCountModules.LocCntCommon
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.FGInvariant
 
 namespace Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 
@@ -504,7 +509,11 @@ end ScaleA3
 end Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.ScCApplyInlInl
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.ScCApplyInlInl
+
+noncomputable section
+
+open Formalism.L2.SG.LocalCountModules.LocCntCommon
 
 namespace Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 
@@ -529,7 +538,7 @@ theorem scC_apply_inr_inr (α β : E) (a b : Fin (r + 1)) :
 theorem scC_left_inl (α β : E) (G : Matrix (Ix r) (Ix r) E) (a : Fin (r + 1)) (j : Ix r) :
     ((scC r α β).transpose * G) (Sum.inl a) j = G (Sum.inl a) j := by
   simp only [Matrix.mul_apply, Matrix.transpose_apply, Fintype.sum_sum_type, scC_apply_inl_inl, scC_apply_inr_inl,
-    zero_mul, Finset.sum_const_zero, add_zero, ite_mul, one_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    zero_mul, Finset.sum_const_zero, add_zero, ite_mul, one_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
 theorem scC_left_inr (α β : E) (G : Matrix (Ix r) (Ix r) E) (a : Fin (r + 1)) (j : Ix r) :
     ((scC r α β).transpose * G) (Sum.inr a) j =
@@ -545,7 +554,7 @@ theorem scC_right_inl (α β : E) (X : Matrix (Ix r) (Ix r) E) (i : Ix r) (b : F
     (X * (scC r α β).map cj) i (Sum.inl b) = X i (Sum.inl b) := by
   simp only [Matrix.mul_apply, Matrix.map_apply, Fintype.sum_sum_type, scC_apply_inl_inl, scC_apply_inr_inl, map_zero,
     mul_zero, Finset.sum_const_zero, add_zero, apply_ite cj, map_one, mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ,
-    if_true]
+    ite_true]
 
 theorem scC_right_inr (α β : E) (X : Matrix (Ix r) (Ix r) E) (i : Ix r) (b : Fin (r + 1)) :
     (X * (scC r α β).map cj) i (Sum.inr b) =
@@ -579,8 +588,12 @@ end ScaleA
 
 end Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.ScCMulInv
+
+
+open Formalism.L2.SG.LocalCountModules.LocCntCommon
 
 namespace Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 
@@ -627,6 +640,9 @@ end Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.VecMulScCInr
+
+
+open Formalism.L2.SG.LocalCountModules.LocCntCommon
 
 namespace Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 
@@ -721,7 +737,11 @@ end ScaleA4
 end Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.ScPhiSymmApply
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.ScPhiSymmApply
+
+noncomputable section
+
+open Formalism.L2.SG.LocalCountModules.LocCntCommon
 
 namespace Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 
@@ -801,7 +821,7 @@ theorem lamStarC_scale (h : ScHyp O cj qi T T' α) (Zh : Matrix (Fin (r + 1)) (F
   rw [dlast, Matrix.diagonal_mul]
   by_cases hb : b = Fin.last r
   · subst hb
-    simp only [if_true, map_mul, h.cjcj]
+    simp only [ite_true, map_mul, h.cjcj]
     linear_combination (cj (Zh⁻¹ (Fin.last r) (Fin.last r)) * y (Fin.last r)) * h.αn
   · simp [hb]
 
@@ -809,8 +829,13 @@ end ScaleA5
 
 end Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.GamConIff
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.GamConIff
+
+noncomputable section
+
+open Formalism.L2.SG.LocalCountModules.LocCntCommon
 
 namespace Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 
@@ -833,7 +858,7 @@ theorem phi_comb (h : ScHyp O cj qi T T' α) (q : E) (hq : q * qi = 1) (Y : Ix r
   rw [phi_inl, phi_inr]
   by_cases hb : b = Fin.last r
   · subst hb
-    simp only [if_true, map_mul, map_sub, map_one, h.qic]
+    simp only [ite_true, map_mul, map_sub, map_one, h.qic]
     linear_combination ((Y (Sum.inl (Fin.last r)) : E) * (cj α - 1)) * hq
   · simp [hb]
 
@@ -889,15 +914,20 @@ theorem gamCon_iff (h : ScHyp O cj qi T T' α) (hqO : q ∈ O) (Y Y' Y'' : Ix r 
       apply Subtype.ext
       rw [← phi_inl h, hy]
   · refine forall_congr' fun a => ?_
-    rw [phi_inl, phi_inr, if_neg (hne a), if_neg (hne a), map_one, mul_one, add_zero]
+    rw [phi_inl, phi_inr, ite_eq_right (hne a), ite_eq_right (hne a), map_one, mul_one, add_zero]
   · rw [coe_sub_eq_mul_iff_sub_eq_smul q hqO, coe_sub_eq_mul_iff_sub_eq_smul q hqO, ← map_sub, ← map_smul, (scPhi h).injective.eq_iff]
 
 end ScaleA6
 
 end Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.CardThetaGCScale
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.CardThetaGCScale
+
+noncomputable section
+
+open Formalism.L2.SG.LocalCountModules.LocCntCommon
 
 namespace Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 
@@ -921,7 +951,7 @@ theorem gamTup_scale (h : ScHyp O cj qi T T' α) (hq : q * qi = 1) (Zh : Matrix 
     funext (phi_comb h q hq Y)
   have hl : (fun a => ((scPhi h Y' (Sum.inl a) : O) : E)) = fun a => (Y' (Sum.inl a) : E) := funext (phi_inl h Y')
   have hz := phi_comb h q hq Y' (Fin.last r)
-  simp only [if_true] at hz
+  simp only [ite_true] at hz
   simp only [scTr, scBar_mk, psiD, Prod.mk.injEq]
   refine ⟨trivial, trivial, ⟨phi_inl h Y _, ?_⟩, ?_, hz⟩
   · rw [hc, lamStarC_scale h Zh]
@@ -1004,8 +1034,7 @@ end ScaleA7
 
 end Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.ScaleFinal
 

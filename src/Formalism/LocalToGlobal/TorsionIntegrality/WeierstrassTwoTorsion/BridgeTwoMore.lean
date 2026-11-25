@@ -159,12 +159,13 @@ theorem flow_unique_integral : FlowUniqueZ.{u} := by
 end Formalism.L2.Th1.A
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.WeierstrassSubstitution.DivisionLogarithm
+@[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.WeierstrassSubstitution.DivisionLogarithm
 
 open PowerSeries
 
 universe u v
 
+noncomputable section
 
 namespace Formalism.L2.Th1.A
 
@@ -184,13 +185,8 @@ theorem division_spec : DivSpec.{u, v} := by
     subst h2
     rfl
 
-section Double
-
-variable {A : Type u} [CommRing A]
-
-end Double
-
 end Formalism.L2.Th1.A
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.FlowDouble

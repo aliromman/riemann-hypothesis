@@ -209,13 +209,11 @@ theorem limSelf_holds : LimSelfSt := by
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePPTEx
 
 
 open scoped BigOperators
 open Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePPTEx
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -247,7 +245,12 @@ end RawChart
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePTyp
+@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePTyp
+
+noncomputable section
+
+open scoped BigOperators
+open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -364,11 +367,11 @@ theorem typ_gen {N : Type} (M : Set (ℕ → N → C))
         rw [← pow_mul, ← pow_mul, mul_comm]
       rw [Finset.sum_congr rfl e]
       by_cases hn : p ∣ n
-      · rw [if_pos hn]
+      · rw [ite_eq_left hn]
         obtain ⟨t, rfl⟩ := hn
         rw [pow_mul, hζ.pow_eq_one, one_pow]
         simp
-      · rw [if_neg hn]
+      · rw [ite_eq_right hn]
         have hcop : n.Coprime p := (Nat.coprime_comm.trans (Nat.Prime.coprime_iff_not_dvd hp)).mpr hn
         exact (hζ.pow_of_coprime n hcop).geom_sum_eq_zero hp.one_lt
     refine hlim (fun k => G ^ Nat.totient (V.l ^ (k + 1))) _ (fun k => hpow _ hGM _) ?_
@@ -379,7 +382,7 @@ theorem typ_gen {N : Type} (M : Set (ℕ → N → C))
     show V.Ge K ((if p ∣ n then (1 : C) else 0) - (G ^ Nat.totient (V.l ^ (k + 1))) n x)
     rw [Pi.pow_apply, Pi.pow_apply, hGv]
     by_cases hn : p ∣ n
-    · rw [if_pos hn, if_pos hn]
+    · rw [ite_eq_left hn, ite_eq_left hn]
       have hcop : p.Coprime (V.l ^ (k + 1)) :=
         Nat.Coprime.pow_right _ ((Nat.coprime_primes hp V.l_prime).mpr hpl)
       have hmod := Nat.ModEq.pow_totient hcop
@@ -390,7 +393,7 @@ theorem typ_gen {N : Type} (M : Set (ℕ → N → C))
       have : (1 : C) - (p : C) ^ Nat.totient (V.l ^ (k + 1)) = -((p : C) ^ Nat.totient (V.l ^ (k + 1)) - 1) := by ring
       rw [this]
       exact hge.neg.mono (by simpa using hk0 k hk)
-    · rw [if_neg hn, if_neg hn, zero_pow hφ.ne', sub_zero]
+    · rw [ite_eq_right hn, ite_eq_right hn, zero_pow hφ.ne', sub_zero]
       exact VF.Ge.zero K
 
   set S : ℕ → Finset ℕ := fun P => (Finset.range (P + 1)).filter fun p => p.Prime ∧ p ≠ V.l with hS
@@ -410,17 +413,17 @@ theorem typ_gen {N : Type} (M : Set (ℕ → N → C))
     simp [sub_eq_add_neg]
   rw [hTv]
   by_cases hpow' : ∃ s, V.l ^ s = n
-  · rw [if_pos hpow']
+  · rw [ite_eq_left hpow']
     obtain ⟨s, rfl⟩ := hpow'
     have : ∏ p ∈ S P, (1 - if p ∣ V.l ^ s then (1 : C) else 0) = 1 := by
       apply Finset.prod_eq_one
       intro p hp
       have hp' := (Finset.mem_filter.mp hp).2
       have hnd : ¬ p ∣ V.l ^ s := fun h => hp'.2 ((Nat.prime_dvd_prime_iff_eq hp'.1 V.l_prime).mp (hp'.1.dvd_of_dvd_pow h))
-      rw [if_neg hnd, sub_zero]
+      rw [ite_eq_right hnd, sub_zero]
     rw [this, sub_self]
     exact VF.Ge.zero K
-  · rw [if_neg hpow']
+  · rw [ite_eq_right hpow']
     have hex : ∃ p ∈ S P, p ∣ n := by
       by_cases hn0 : n = 0
       · subst hn0
@@ -435,15 +438,21 @@ theorem typ_gen {N : Type} (M : Set (ℕ → N → C))
         have hqle : q ≤ n := Nat.le_of_dvd (Nat.pos_of_ne_zero hn0) hqn
         exact hne q (Finset.mem_filter.mpr ⟨Finset.mem_range.mpr (by omega), hq, hql⟩) hqn
     obtain ⟨p, hpS, hpn⟩ := hex
-    rw [Finset.prod_eq_zero hpS (by rw [if_pos hpn, sub_self]), sub_zero]
+    rw [Finset.prod_eq_zero hpS (by rw [ite_eq_left hpn, sub_self]), sub_zero]
     exact VF.Ge.zero K
 
 end TypAr
 
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePPTSelfEx
+@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePPTSelfEx
+
+noncomputable section
+
+open scoped BigOperators
+open Classical
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -479,10 +488,10 @@ theorem ptExSelf_of_start (hS : AllStartSelfSt) : PTExSelfSt := by
   refine ⟨_, X.typ_link V g hL ?_, ?_⟩
   · intro n k hn
     simp only [Pi.mul_apply]
-    rw [if_neg hn, zero_mul]
+    rw [ite_eq_right hn, zero_mul]
   · intro c
     simp only [Pi.mul_apply, pow_zero]
-    rw [if_pos ⟨0, pow_zero _⟩, one_mul, hL01 c]
+    rw [ite_eq_left ⟨0, pow_zero _⟩, one_mul, hL01 c]
 
 theorem ptSelf_of_start (hS : AllStartSelfSt) (hAct : OActSelfSt) (hStab : HStabSelfSt) : PTSelfSt :=
   ptSelf_of_act (ptExSelf_of_start hS) hAct limSelf_holds hStab

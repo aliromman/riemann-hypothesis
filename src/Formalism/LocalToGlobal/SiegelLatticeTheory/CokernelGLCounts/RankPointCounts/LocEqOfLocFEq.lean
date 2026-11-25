@@ -304,8 +304,9 @@ end -- clump:auto
 alias latLocGlob := _root_.PI.LatLocGlob.Proof.latLocGlob_core
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LocEqOfLocFEq
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LocEqOfLocFEq
 
+noncomputable section
 
 open scoped Classical
 open NumberField IsDedekindDomain IsDedekindDomain.HeightOneSpectrum Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc
@@ -445,7 +446,7 @@ theorem latPatch_holds : Formalism.L2.SG.Pf.FrameGlobalPatching.LatPatch := by
   let M : Ideal (𝓞 D.host.E) → Set (VS D).V := fun P =>
     if hP : P.IsMaximal then PI.LatLocGlob.loc P (Λ' (plOf P hP)) else ∅
   have hMP : ∀ P (hP : P.IsMaximal), M P = PI.LatLocGlob.loc P (Λ' (plOf P hP)) := fun P hP => by
-    simp only [M, dif_pos hP]
+    simp only [M, dite_eq_left hP]
   have hexc : {P : Ideal (𝓞 D.host.E) | P.IsMaximal ∧ M P ≠ PI.LatLocGlob.loc P Λ₀}.Finite := by
     refine (hfin.biUnion fun p _ => finite_over p).subset ?_
     rintro P ⟨hPm, hne⟩

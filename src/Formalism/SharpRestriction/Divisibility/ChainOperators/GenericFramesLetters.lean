@@ -682,10 +682,11 @@ theorem reorder (R : Type) [CommRing R] (ν : YoungDiagram) (N : ℕ) {K : ℕ} 
 end PI.MSC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinorSpanComplement.ExistsCoeffNeZeroOfMemSpan
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinorSpanComplement.ExistsCoeffNeZeroOfMemSpan
 
 open MvPolynomial
 
+noncomputable section
 
 namespace PI.MSC
 
@@ -753,9 +754,9 @@ theorem monomial_mem_sup (O : MonomialOrder σ) {ι : Type*} (c : ι → MvPolyn
         have hne : d ≠ O.degree (c i) := by
           intro hdeq
           apply hd'
-          rw [hdeq, hq, MvPolynomial.coeff_sub, MvPolynomial.coeff_monomial, if_pos rfl, hlc1, sub_self]
+          rw [hdeq, hq, MvPolynomial.coeff_sub, MvPolynomial.coeff_monomial, ite_eq_left rfl, hlc1, sub_self]
         have hci : (c i).coeff d ≠ 0 := by
-          rw [hq, MvPolynomial.coeff_sub, MvPolynomial.coeff_monomial, if_neg (Ne.symm hne),
+          rw [hq, MvPolynomial.coeff_sub, MvPolynomial.coeff_monomial, ite_eq_right (Ne.symm hne),
             sub_zero] at hd'
           exact hd'
         have hle := MonomialOrder.le_degree (m := O) (MvPolynomial.mem_support_iff.mpr hci)
@@ -806,6 +807,7 @@ theorem isCompl_map_rename (O : MonomialOrder σ) {τ : Type*} {φ : σ → τ}
     · exact Submodule.mem_sup_right ((MvPolynomial.monomial_mem_restrictSupport R).mpr (Or.inl hd))
 
 end PI.MSC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinorSpanComplement.RenameInitMinor

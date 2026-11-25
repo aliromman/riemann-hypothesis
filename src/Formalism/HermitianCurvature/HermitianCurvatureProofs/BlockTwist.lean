@@ -127,21 +127,18 @@ end TwistedTransfer
 end Formalism.FourierDecayAlt.P5
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.BlockTwist
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.BlockTwist
 
 open Matrix
 open scoped ComplexConjugate
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P5
 
 open Formalism.FourierDecayAlt.Wd Formalism.YangianSpanCharacter.T
 
 namespace TwistedTransfer
-
-section Ring
-
-end Ring
 
 section Frame
 

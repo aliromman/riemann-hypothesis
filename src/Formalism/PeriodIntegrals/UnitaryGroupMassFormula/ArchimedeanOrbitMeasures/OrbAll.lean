@@ -16,8 +16,9 @@ import Mathlib.Topology.Algebra.ProperAction.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.KerMeasHolds, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.OrbRepOf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.OrbAll
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.KerMeasHolds
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.KerMeasHolds
 
+noncomputable section
 
 namespace PI.AprimeInfK
 
@@ -104,10 +105,11 @@ theorem kerMeas_holds : KerMeas := by
   have h1 : ∀ y, ¬ (∃ g : GI X, g • x0 = y) → sect X u' y = 1 := by
     intro y hy
     unfold sect
-    exact dif_neg hy
+    exact dite_eq_right hy
   exact PI.AprimeInfK.ker_meas (G := GI X) x0 hc ν (sect X u') hs h1
 
 end PI.AprimeInfW
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.OrbRepOf

@@ -69,8 +69,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FourierPairingCharIndicatorDualLatticeCosets, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.GluedLatticeDatumMainPartMemSchwartzBruhat, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.DoubleUnfoldingStepAtGluedFinitePlace
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FourierPairingCharIndicatorDualLatticeCosets
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FourierPairingCharIndicatorDualLatticeCosets
 
+noncomputable section
 
 open MeasureTheory ValuativeRel Matrix IsLocalRing GlobalTheory.LatPair GlobalTheory.SplitWeil GlobalTheory.FinPl
 open GlobalTheory.IndefiniteRowSideFullHecke.AppendedVectorData (cosetInd mainDatum InDual Lifts)
@@ -152,8 +153,8 @@ theorem dualInd_add (L : Submodule 𝒪[k] (n → k)) (η ξ : n → k) (hξ : I
     dualInd L (η + ξ) = dualInd L η := by
   unfold dualInd
   by_cases h : InDual L η
-  · rw [if_pos (inDual_add h hξ), if_pos h]
-  · rw [if_neg h, if_neg]
+  · rw [ite_eq_left (inDual_add h hξ), ite_eq_left h]
+  · rw [ite_eq_right h, ite_eq_right]
     intro h'
     apply h
     simpa using inDual_sub h' hξ
@@ -163,7 +164,7 @@ theorem dualInd_supp (q : Unif k) (L : Submodule 𝒪[k] (n → k)) (η : n → 
   unfold dualInd at h
   by_cases hd : InDual L η
   · exact inDual_smul hd q.1
-  · exact absurd (if_neg hd) h
+  · exact absurd (ite_eq_right hd) h
 
 theorem cosetInd_add (q : Unif k) (L : Submodule 𝒪[k] (n → k)) (f : Module.Dual 𝓀[k] (Red L)) (η ξ : n → k)
     (hξ : InDual L ξ) : cosetInd q L f (η + ξ) = cosetInd q L f η := by
@@ -180,8 +181,8 @@ theorem cosetInd_add (q : Unif k) (L : Submodule 𝒪[k] (n → k)) (f : Module.
       have h := inDual_add hd hξ
       rwa [show η - q.inv • F + ξ = η + ξ - q.inv • F by abel] at h
   by_cases h : ∃ F : n → k, Lifts L F f ∧ InDual L (η - q.inv • F)
-  · rw [if_pos (e.2 h), if_pos h]
-  · rw [if_neg (fun h' => h (e.1 h')), if_neg h]
+  · rw [ite_eq_left (e.2 h), ite_eq_left h]
+  · rw [ite_eq_right (fun h' => h (e.1 h')), ite_eq_right h]
 
 theorem inDual_of_lifts {L : Submodule 𝒪[k] (n → k)} {F : n → k} {f : Module.Dual 𝓀[k] (Red L)} (h : Lifts L F f) :
     InDual L F := by
@@ -204,7 +205,7 @@ theorem cosetInd_supp (q : Unif k) (L : Submodule 𝒪[k] (n → k)) (f : Module
       rw [smul_sub, hq, sub_add_cancel]
     rw [h3]
     exact inDual_add (inDual_smul hd q.1) (inDual_of_lifts hF)
-  · exact absurd (if_neg hc) h
+  · exact absurd (ite_eq_right hc) h
 
 theorem inner_add (χ : AddChar k Circle) (hχ : HasConductor χ 1) {e : k} (he : e = 1 ∨ e = -1)
     [MeasurableSpace k] (μ : Measure (n → k)) (L : Submodule 𝒪[k] (n → k)) {a : (n → k) → ℂ}
@@ -268,6 +269,7 @@ theorem fpair_charInd_dualInd_add_cosets : ∀ (k : Type) [Field k] [ValuativeRe
 
 end GlobalTheory.FinPl.Comm.DualCosets
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.GluedLatticeDatumMainPartMemSchwartzBruhat
 
@@ -291,13 +293,13 @@ theorem mainDatum_mem_SB (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace
 end GlobalTheory.FinPl.Comm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.DoubleUnfoldingStepAtGluedFinitePlace
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.DoubleUnfoldingStepAtGluedFinitePlace
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Unf GlobalTheory.LatPair GlobalTheory.SplitWeil ValuativeRel IsLocalRing
 open scoped TensorProduct Pointwise
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.IndefiniteRowSideFullHecke.AppendedVectorData (lastKer lastPair cosetInd InDual mainDatum)
 open GlobalTheory.FinPl.Comm (fpair)
 
@@ -515,8 +517,8 @@ theorem vertexGlued (D : D7) : VertexGlued D := by
   let ε : 𝓀[k]ˣ := if e = 1 then 1 else -1
   have hεe : (e = 1 ∧ ε = 1) ∨ (e = -1 ∧ ε = -1) := by
     by_cases h1 : e = 1
-    · exact Or.inl ⟨h1, if_pos h1⟩
-    · exact Or.inr ⟨he.resolve_left h1, if_neg h1⟩
+    · exact Or.inl ⟨h1, ite_eq_left h1⟩
+    · exact Or.inr ⟨he.resolve_left h1, ite_eq_right h1⟩
   refine ⟨ε, ?_, ?_⟩
   · rcases hεe with ⟨-, h⟩ | ⟨-, h⟩
     · exact Or.inl h

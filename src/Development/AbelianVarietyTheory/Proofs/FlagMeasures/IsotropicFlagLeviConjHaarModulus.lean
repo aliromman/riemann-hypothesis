@@ -1413,8 +1413,9 @@ theorem perp_modulus : ∀ (n : ℕ) (ε : Fin n → Bool) (V V' : Submodule ℂ
 end GlobalTheory.PerpModulus
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsotropicFlagLeviConjHaarModulus
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsotropicFlagLeviConjHaarModulus
 
+noncomputable section
 
 namespace GlobalTheory.FlagModulus
 
@@ -1508,7 +1509,7 @@ def dblFlag (W : Fin (a + 1) → Submodule ℂ (Fin n → ℂ)) (s : ℕ) : Subm
 
 variable {j : Fin a → ℕ} {W : Fin (a + 1) → Submodule ℂ (Fin n → ℂ)}
 
-theorem dblFlag_le {s : ℕ} (hs : s ≤ a) : dblFlag ε W s = natFlag W s := by rw [dblFlag, if_pos hs]
+theorem dblFlag_le {s : ℕ} (hs : s ≤ a) : dblFlag ε W s = natFlag W s := by rw [dblFlag, ite_eq_left hs]
 
 theorem dblFlag_fin (i : Fin (a + 1)) : dblFlag ε W i = W i := by
   rw [dblFlag_le (Nat.lt_succ_iff.mp i.isLt)]
@@ -1527,7 +1528,7 @@ theorem dblFlag_last : dblFlag ε W a = W (Fin.last a) := by
   rwa [Fin.val_last] at h
 
 theorem dblFlag_sub {s : ℕ} (hs : s ≤ a) : dblFlag ε W (2 * a + 1 - s) = perpJ ε (dblFlag ε W s) := by
-  rw [dblFlag_le hs, dblFlag, if_neg (by omega), show 2 * a + 1 - (2 * a + 1 - s) = s by omega]
+  rw [dblFlag_le hs, dblFlag, ite_eq_right (by omega), show 2 * a + 1 - (2 * a + 1 - s) = s by omega]
 
 theorem dblFlag_dual {s : ℕ} (hs : s ≤ 2 * a + 1) :
     dblFlag ε W (2 * a + 1 - s) = perpJ ε (dblFlag ε W s) := by
@@ -1568,11 +1569,11 @@ theorem dblFlag_mono (hW : IsIsoFlag ε j W) : Monotone (dblFlag ε W) := by
   by_cases ht : t ≤ a
   · rw [dblFlag_le (hst.trans ht), dblFlag_le ht]
     exact nm hst
-  · have et : dblFlag ε W t = perpJ ε (natFlag W (2 * a + 1 - t)) := by rw [dblFlag, if_neg ht]
+  · have et : dblFlag ε W t = perpJ ε (natFlag W (2 * a + 1 - t)) := by rw [dblFlag, ite_eq_right ht]
     by_cases hs : s ≤ a
     · rw [dblFlag_le hs, et]
       exact (nm hs).trans (iso.trans (anti (nm (by omega))))
-    · have es : dblFlag ε W s = perpJ ε (natFlag W (2 * a + 1 - s)) := by rw [dblFlag, if_neg hs]
+    · have es : dblFlag ε W s = perpJ ε (natFlag W (2 * a + 1 - s)) := by rw [dblFlag, ite_eq_right hs]
       rw [es, et]
       exact anti (nm (by omega))
 
@@ -1598,7 +1599,7 @@ theorem dblFlag_keeps (m : UJ ε) (hm : ∀ i, ∀ y ∈ W i, uMat m *ᵥ y ∈ 
   by_cases hs : s ≤ a
   · rw [dblFlag_le hs] at hy ⊢
     exact hm _ y hy
-  · have e : dblFlag ε W s = perpJ ε (natFlag W (2 * a + 1 - s)) := by rw [dblFlag, if_neg hs]
+  · have e : dblFlag ε W s = perpJ ε (natFlag W (2 * a + 1 - s)) := by rw [dblFlag, ite_eq_right hs]
     rw [e, mem_perpJ] at hy ⊢
     intro x hx
     have h1 := GlobalTheory.FlagLeviGroup.form_inv m⁻¹ x y

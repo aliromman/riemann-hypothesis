@@ -211,15 +211,16 @@ theorem XX_pow_mem_of_QQ_pow_mul_mem_map_phi : ∀ (l : ℕ) [Fact l.Prime] (O :
         (phi_mem_span l O ϖ (hdvd _ hlu) (m + 1) (Nat.le_add_left 1 m) (ih _ (hz j)))
   obtain ⟨a, b, hab⟩ := Ideal.mem_span_pair.1 (main c _ (Ideal.mul_mem_left _ _ (hc _)))
   have h := congrArg (PowerSeries.coeff c) hab
-  rw [map_add (f := _), PowerSeries.coeff_mul_C, PowerSeries.coeff_mul_X_pow', if_neg (by omega),
-    PowerSeries.coeff_X_pow, if_pos rfl, add_zero] at h
+  rw [map_add (f := _), PowerSeries.coeff_mul_C, PowerSeries.coeff_mul_X_pow', ite_eq_right (by omega),
+    PowerSeries.coeff_X_pow, ite_eq_left rfl, add_zero] at h
   exact hϖ.not_isUnit (IsUnit.of_mul_eq_one_right _ h)
 
 end GlobalTheory.Cyc
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CokernelCrystallineSurjectionKilledByXPow
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CokernelCrystallineSurjectionKilledByXPow
 
+noncomputable section
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc TensorProduct GlobalTheory.NL Formalism.MainNotions.DeltaInvariantLattices
 
@@ -257,7 +258,7 @@ theorem indep_of_commensurable {κ : Type} [Fintype κ] (q : A) (hq : ∀ a, a *
     ext k i
     have e : ∑ i, ((M' * M) k i - ((q ^ (m + m')) • (1 : Matrix κ κ A)) k i) • b i = 0 := by
       simp only [sub_smul, Finset.sum_sub_distrib, Matrix.smul_apply, Matrix.one_apply, smul_eq_mul,
-        mul_ite, mul_one, mul_zero, ite_smul, zero_smul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+        mul_ite, mul_one, mul_zero, ite_smul, zero_smul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
       rw [sub_eq_zero, pow_add, mul_smul, hM', Finset.smul_sum]
       simp only [Matrix.mul_apply, Finset.sum_smul]
       rw [Finset.sum_comm]
@@ -640,6 +641,7 @@ theorem GlobalTheory.NL.CokerKill.X_pow_kills_coker : ∀ (D : Formalism.BasicNo
     (fun hJ => _root_.GlobalTheory.NL.Heights.heights_from_jumps D.loc D.locA D.locT HW F Cm l K s LL hG T₂ M h c2 fun τ i hτ a ha =>
       hJ τ i hτ a ((hj τ a).2 (Or.inr ha)))
     (_root_.GlobalTheory.NL.CokerFin.coker_killed D HW F Cm l K s LL hG T₀ T₁ T₂ ι π c0 c1 c2 hses)
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsLetterBasis

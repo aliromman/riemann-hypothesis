@@ -406,11 +406,12 @@ theorem convolution_hasDerivAt : ∀ (B : RowsAut) (A : (InfinitePlace B.I.F →
 end GlobalTheory.ConvDeriv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsContinuousRowRepresentativesLowestKType
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsContinuousRowRepresentativesLowestKType
 
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeterminants GlobalTheory.Count GlobalTheory.Dec GlobalTheory.Deep
 open scoped InnerProductSpace ContDiff
 
+noncomputable section
 
 namespace GlobalTheory.SmoothRepsType
 
@@ -494,7 +495,7 @@ theorem repsExist : ∀ (B : RowsAut) (d : InfinitePlace B.I.F → ℝ), IsDSDat
   have hFr : ∀ u f, IsContRep B (T u) f → Fr u = f := by
     intro u f hf
     have h : ∃ f, IsContRep B (T u) f := ⟨f, hf⟩
-    have : Fr u = h.choose := dif_pos h
+    have : Fr u = h.choose := dite_eq_left h
     rw [this]
     exact huniq _ _ _ h.choose_spec hf
   refine ⟨Fr, fun P u hu => ?_⟩

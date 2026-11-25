@@ -68,8 +68,9 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open IsDedekindDomain NumberField MeasureTheory Matrix GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.StdFrames GlobalTheory.RowClaim
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.RowUnf GlobalTheory.RowChain GlobalTheory.SeeSaw GlobalTheory.RowVal GlobalTheory.RowReal GlobalTheory.FinPl
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridBasePointCarriesLatticeToMovedLattice
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridBasePointCarriesLatticeToMovedLattice
 
+noncomputable section
 
 open scoped nonZeroDivisors
 
@@ -115,7 +116,7 @@ theorem lat_moves_at_place : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Const
   simp only [Fin.coe_cast, topRank_eq G t w (Nat.zero_le _), map_mul, map_inv] at hY
   have hrow := S.row t ht w hw 0 h0
   unfold GlobalTheory.FunObj.IsSumFrame at hrow
-  simp only [if_true] at hrow
+  simp only [ite_true] at hrow
   have hΛ : G.Λ (.grid D.R.m 0) = (G.rowDec 0 h0).lat (G.Λ (.top 0)) (stairId (G.pl.stA sc) (G.pl.stAbar sc) (D.R.m - 1 - 0)) :=
     G.sp.colLat D.R.m h0 le_rfl
   have hR : GlobalTheory.RowShape.rowN G 0 = (G.rowDec 0 h0).lat (G.Λ (.top 0)) (GlobalTheory.RowShape.rowId D 0) := by
@@ -238,6 +239,7 @@ theorem lat_moves_at_place : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Const
     exact ((mul_inv_cancel₀ hq).symm ▸ (one_mul _)).symm
 
 end GlobalTheory.BaseMoveAt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridBasePointTrivialOffTensorPlacesStatement
@@ -380,7 +382,7 @@ theorem GlobalTheory.RowShape.latV_grid_iff_rowN_zero : ∀ {D : D7} {T : Type} 
       GlobalTheory.RowShape.rowId D 0 p * ((G.pl.modul sc : Ideal (𝓞 D.host.E)) : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E) ^ (p.1 + 1) *
         (((G.pl.modulBar sc : Ideal (𝓞 D.host.E)) : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E) ^ (D.R.m - 1 - 0 - p.1))⁻¹ := by
     intro p
-    simp only [stairId, GlobalTheory.RowShape.rowId, GlobalTheory.RowShape.tiltSc, if_neg hodd, FractionalIdeal.spanSingleton_one,
+    simp only [stairId, GlobalTheory.RowShape.rowId, GlobalTheory.RowShape.tiltSc, ite_eq_right hodd, FractionalIdeal.spanSingleton_one,
       Places.stA, Places.stAbar, mul_pow, inv_pow, mul_inv, inv_inv, one_mul]
     ac_rfl
   have hA : ∀ x ∈ G.Λ (.grid D.R.m 0),
@@ -464,7 +466,7 @@ theorem moves0_of_selfDual : Big fun {D} {Γ} _ _ {Pl0 T} {A} {Ks} _ _ _ {R} ch 
     refine GlobalTheory.T.normOneHomothety_carries_selfDual_of_splitComponent D _ p _ _ _ 1 (b 0) hΛ hN (GlobalTheory.Core.Mi.LatMatch.normOneAt_one _) fun x => ?_
     rw [map_one, one_smul]
     exact key x
-  · push_neg at hv
+  · push Not at hv
     have hv0 : v ∉ ch.G.pl.S0 := fun h0 => hv (ch.G.pl.w v)
       (Finset.mem_union_left _ (by simpa [Places.W0] using ⟨v, h0, rfl⟩)) (ch.G.pl.under_w h0)
     intro y hy
@@ -478,7 +480,6 @@ end GlobalTheory.RowShape
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridRowZeroBasePointCarriesLatticeStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.gridRow_zero_basePoint_carriesLattice : Big fun {D} {Γ} _ _ {Pl0 T} {A} {Ks} _ _ _ {R} ch => ∀ (t : T) (b : Pts ch.G), IsBase t ch.S.B b → GlobalTheory.FinPl.Moves _ (b 0) (ch.G.Λ (.grid D.R.m 0)) (GlobalTheory.RowShape.rowN ch.G 0) fun _ => True := by
   first | exact @GlobalTheory.RowShape.moves0

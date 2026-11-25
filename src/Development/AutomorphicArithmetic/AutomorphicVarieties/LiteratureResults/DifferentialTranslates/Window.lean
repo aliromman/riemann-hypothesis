@@ -141,8 +141,9 @@ theorem windowOne : WindowOne := by
 end UpperTheory.V.Lit.Dr
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.DifferentialTranslates.Window
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.DifferentialTranslates.Window
 
+noncomputable section
 
 namespace UpperTheory.V.Lit.Dr
 
@@ -207,7 +208,7 @@ theorem window : Window := by
       exact hrr _ _
     refine ⟨δ * h.1, ?_⟩
     beta_reduce
-    rw [h1, if_pos h2, mul_inv_rev, map_mul]
+    rw [h1, ite_eq_left h2, mul_inv_rev, map_mul]
     exact hh
   · obtain ⟨δ, hδ⟩ := hr s
     obtain ⟨N, hN, hfin⟩ := (hW (r s)).2.2 () _ (G.maps δ⁻¹ p hp)

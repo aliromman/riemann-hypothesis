@@ -237,8 +237,9 @@ theorem exists_local_components : ∀ (F E : Type) [Field F] [NumberField F] [Fi
 end GlobalTheory.GaugeEx.LocComp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HermitianQuadraticFormOrbitRationalVectorEq
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HermitianQuadraticFormOrbitRationalVectorEq
 
+noncomputable section
 
 namespace GlobalTheory.GaugeEx.OrbitQuadric
 
@@ -258,18 +259,8 @@ theorem hform_eq_dot {A : Type} [CommRing A] (s : A →+* A) (G : Matrix (Fin M)
 private theorem hform_mulVec_mulVec_of_cT_mul_mul_eq {A : Type} [CommRing A] (s : A →+* A)
     (G g : Matrix (Fin M) (Fin M) A) (hg : Formalism.UG.cT s g * G * g = G) (x y : Fin M → A) :
     Formalism.UG.hform s G (g *ᵥ x) (g *ᵥ y) = Formalism.UG.hform s G x y := by
-  have hc : Formalism.UG.cT s g = (g.map s)ᵀ := by
-    unfold Formalism.UG.cT
-    first
-      | rfl
-  rw [hc] at hg
-  have hs : (fun i => s ((g *ᵥ x) i)) = (g.map s) *ᵥ (fun i => s (x i)) := by
-    funext i
-    exact RingHom.map_mulVec s g x i
-  rw [hform_eq_dot, hform_eq_dot, hs, Matrix.mulVec_mulVec,
-    ← Matrix.vecMul_transpose (g.map s) (fun i => s (x i)),
-    ← Matrix.dotProduct_mulVec (fun i => s (x i)) (g.map s)ᵀ ((G * g) *ᵥ y),
-    Matrix.mulVec_mulVec, ← Matrix.mul_assoc, hg]
+  intros
+  apply _root_.GlobalTheory.GaugeEx.FibProp.form_mulVec <;> assumption
 
 theorem hR_act (k : HA R σ J) (x y : Fin M → R ⊗[F] E) :
     hR R σ J ((HA.mat R σ J k).1 *ᵥ x) ((HA.mat R σ J k).1 *ᵥ y) = hR R σ J x y := by
@@ -312,6 +303,7 @@ theorem qR_orbit : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberF
   rw [h3, one_mul]
 
 end GlobalTheory.GaugeEx.OrbitQuadric
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -397,14 +389,14 @@ theorem abstract_change {ι X Z : Type} [Countable ι] {Y : ι → Type} [Measur
     rw [this]
     exact MeasurableSet.iInter fun v => MeasurableSet.iInter fun _ => hq v (hA v)
   let gv : ∀ v, Y v → ℝ≥0∞ := fun v => if v ∈ S then fv v else (A v).indicator 1
-  have hgS : ∀ v ∈ S, gv v = fv v := fun v hv => if_pos hv
+  have hgS : ∀ v ∈ S, gv v = fv v := fun v hv => ite_eq_left hv
   have hgT : ∀ v ∈ T, gv v = (A v).indicator 1 := fun v hv =>
-    if_neg (fun h => Finset.disjoint_left.mp hd h hv)
+    ite_eq_right (fun h => Finset.disjoint_left.mp hd h hv)
   have hgm : ∀ v, Measurable (gv v) := by
     intro v
     by_cases hv : v ∈ S
     · rw [hgS v hv]; exact hfv v
-    · have : gv v = (A v).indicator 1 := if_neg hv
+    · have : gv v = (A v).indicator 1 := ite_eq_right hv
       rw [this]; exact measurable_one.indicator (hA v)
   have h1 := H fi gv hfi hgm
   have hset : {x | ∀ v ∉ S ∪ T, q v x ∈ L v} = {x | ∀ v ∉ S ∪ T, q v x ∈ A v} := by
@@ -956,11 +948,12 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnitaryStabilizerMeasureIndependentOfPath
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnitaryStabilizerMeasureIndependentOfPath
 
 open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.GaugeEx
 open scoped TensorProduct NNReal ENNReal Matrix
 
+noncomputable section
 
 namespace GlobalTheory.GaugeSquare
 
@@ -1266,7 +1259,7 @@ theorem exists_sec (R : Type) [CommRing R] [Algebra F R] {M : ℕ} (J : Matrix (
   classical
   refine ⟨fun y => if h : ∃ g : HA R σ J, g • ratTup (F := F) R x = y then h.choose else 1, ?_⟩
   intro y hy
-  simp only [dif_pos hy]
+  simp only [dite_eq_left hy]
   exact hy.choose_spec
 
 theorem meas_avg [FiniteDimensional F E] {M N : ℕ} {J : Matrix (Fin N) (Fin N) E}

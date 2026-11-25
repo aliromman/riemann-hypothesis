@@ -18,8 +18,9 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountNonIntegrality.Val
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountNonIntegrality.NotIntAllOfLoc, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountNonIntegrality.Reduce, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CoefNotInt
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountNonIntegrality.NotIntAllOfLoc
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountNonIntegrality.NotIntAllOfLoc
 
+noncomputable section
 
 namespace PI.CntNotIntW
 
@@ -66,9 +67,9 @@ theorem zzplus_mem (M : Loc.Model F E) (g : Loc.SplitG M.L) (hs : M.split = some
   simp only [Matrix.of_apply]
   by_cases hcc : c
   · have hcc' : b = Fin.last r ∧ a = Fin.last r := hcs.2 hcc
-    rw [if_pos hcc]
-    rw [if_pos hcc] at hs1 hs3
-    rw [if_pos hcc'] at hs2
+    rw [ite_eq_left hcc]
+    rw [ite_eq_left hcc] at hs1 hs3
+    rw [ite_eq_left hcc'] at hs2
     refine mem_R_split M g hs _ s1 (k - s2) ?_ ?_
     · rw [map_sub, AlgEquiv.apply_symm_apply, AlgEquiv.apply_symm_apply]
       ext
@@ -85,11 +86,11 @@ theorem zzplus_mem (M : Loc.Model F E) (g : Loc.SplitG M.L) (hs : M.split = some
       push_cast
       apply mul_left_cancel₀ hq
       linear_combination hs1 + hs2 - hs3 - hk
-  · rw [if_neg hcc, sub_zero]
+  · rw [ite_eq_right hcc, sub_zero]
     have hcc' : ¬ (b = Fin.last r ∧ a = Fin.last r) := fun h' => hcc (hcs.1 h')
-    rw [if_neg hcc, add_zero] at hs1
-    rw [if_neg hcc, add_zero] at hs3
-    rw [if_neg hcc', add_zero] at hs2
+    rw [ite_eq_right hcc, add_zero] at hs1
+    rw [ite_eq_right hcc, add_zero] at hs3
+    rw [ite_eq_right hcc', add_zero] at hs2
     refine mem_R_split M g hs _ s1 (-s2) ?_ ?_
     · rw [AlgEquiv.apply_symm_apply]
       ext
@@ -144,6 +145,7 @@ theorem tt_mod_q (D : Formalism.BasicNotions.D7) (δ : ∀ p : PlF D, (D.s.atP p
 
 end PI.CntNotIntW
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountNonIntegrality.Reduce
 
@@ -168,8 +170,9 @@ theorem nu_eq_zero_of_empty {D : Formalism.BasicNotions.D7} {T : D.host.E} (T' :
 end PI.CntNotIntW
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CoefNotInt
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.CoefNotInt
 
+noncomputable section
 
 namespace PI.CntNotIntW
 
@@ -306,14 +309,14 @@ theorem normGR_of (h1 : FrIntG) (h2 : CongGR) : NormGR := by
   · obtain ⟨rfl, rfl⟩ := hc
     have h1' : xa = 1 := by rw [hxa, frFac_last, map_one]; rfl
     have h2' : xb = 1 := by rw [hxb, frFac_last, map_one]; rfl
-    simp only [and_self, if_true] at hs1 hs2 hs3 ⊢
+    simp only [and_self, ite_true] at hs1 hs2 hs3 ⊢
     rw [h1', h2']
     refine ⟨⟨s1, ?_⟩, ⟨s2, ?_⟩, ⟨s3, ?_⟩⟩
     · linear_combination hs1
     · linear_combination hs2
     · linear_combination hs3
   · have hc' : ¬ (b = Fin.last D.R.rS ∧ a = Fin.last D.R.rS) := fun h' => hc ⟨h'.2, h'.1⟩
-    simp only [hc, if_false, add_zero] at hs1 hs2 hs3 ⊢
+    simp only [hc, ite_false, add_zero] at hs1 hs2 hs3 ⊢
     refine ⟨⟨⟨xb, ib⟩ * ⟨xa, ia⟩ * s1, ?_⟩, ⟨⟨xb, ib⟩ * ⟨xa, ia⟩ * s2, ?_⟩, ⟨⟨xb, ib⟩ * ⟨xa, ia⟩ * s3, ?_⟩⟩
     · push_cast; linear_combination (xb * xa) * hs1
     · push_cast; linear_combination (xb * xa) * hs2

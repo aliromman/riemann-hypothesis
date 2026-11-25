@@ -75,8 +75,9 @@ theorem monomial_mem_exceptional_ideal {K : Type} [Field K] {n d : ℕ} (S : Fin
 end GlobalTheory.CompanionTheory.SurjectionOntoH4
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MonomialFormInRelativeImage
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MonomialFormInRelativeImage
 
+noncomputable section
 open CrystallineSemistableComparison.Onto GlobalTheory.CompanionTheory.SurjectionOntoH4 GlobalTheory.CompanionTheory.SurjectionOntoH4.LaurentD
 
 namespace GlobalTheory.CompanionTheory.SurjectionOntoH4.RelSup
@@ -113,7 +114,7 @@ theorem sub_count_nonneg {a : ℕ} {f : Fin a → E n d} (hf : Function.Injectiv
     obtain ⟨i, rfl⟩ := h
     rw [count_self hf]
     omega
-  · push_neg at h
+  · push Not at h
     rw [count_none h]
     omega
 
@@ -215,7 +216,7 @@ theorem case_empty {a : ℕ} (g : Gam n d) (D : {D : Finset (E n d) // D.card = 
   by_cases h : ∃ i k, enumD D i = Sum.inr k
   · obtain ⟨i, k, hk⟩ := h
     exact Or.inr ⟨i, k, Or.inl rfl, by rw [hk]⟩
-  · push_neg at h
+  · push Not at h
     left
     rw [tdeg_sub, tdeg_sum]
     have h0 : ∀ i, tdeg (oneE (enumD D i) : Gam n d) = 0 := by
@@ -261,7 +262,7 @@ theorem term_chart {S : Finset (Fin d)} {k : Fin d} (hk : k ∈ S) {a : ℕ} (g 
     by_cases h : ∃ i, f i = Sum.inr k
     · obtain ⟨i, hi⟩ := h
       exact Or.inr ⟨i, k, Or.inr hk, by rw [hi]; simp [wv]⟩
-    · push_neg at h
+    · push Not at h
       left
       rw [ht, count_none h, sub_zero]
       exact hg.2
@@ -288,9 +289,9 @@ theorem dl_eq (k : Fin d) (e : E n d) : (dl e : Ω[Lr K n d⁄K]) = lam K (wv k 
     rfl
   · by_cases h : j = k
     · subst h
-      simp only [wv, eps, if_true, add_zero]
+      simp only [wv, eps, ite_true, add_zero]
       rfl
-    · simp only [wv, eps, if_neg h, if_true]
+    · simp only [wv, eps, ite_eq_right h, ite_true]
       rw [← lam_add]
       have h2 : ratE k j + oneE (Sum.inr k) = (oneE (Sum.inr j) : Gam n d) := by simp [ratE]
       rw [h2]
@@ -313,7 +314,7 @@ theorem expand {R M X : Type} [CommRing R] [AddCommGroup M] [Module R M] {a : �
       (exteriorPower.ιMulti R a (M := M)).map_coord_zero i (by simp [Finset.piecewise, hi, he])
     rw [h2, smul_zero]
     exact Q.zero_mem
-  · push_neg at h0
+  · push Not at h0
     have h2 : s.piecewise (fun i => F (f i)) m' = fun i => F (if i ∈ s then f i else x₀) := by
       funext i
       by_cases hi : i ∈ s

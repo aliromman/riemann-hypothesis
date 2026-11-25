@@ -267,8 +267,9 @@ section -- clump: shared namespace opens
 open Module NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Col Matrix
 open scoped ComplexOrder
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RowLevelPrincipalFirstBlockIndexEqCard
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RowLevelPrincipalFirstBlockIndexEqCard
 
+noncomputable section
 
 namespace GlobalTheory.RowLevIndex
 
@@ -419,16 +420,16 @@ theorem range_blkMap : (blkMap Ch sel mu P).range = P.grp := by
       · have e2 := rowTy_inL Ch sel mu P ⟨w.1, hw⟩
         change rowTy Ch sel mu P w = _ at e2
         rw [e2]
-        have hh : h w = diagEmb _ (r_le_X' R) (p ⟨w.1, hw⟩) := dif_pos hw
+        have hh : h w = diagEmb _ (r_le_X' R) (p ⟨w.1, hw⟩) := dite_eq_left hw
         rw [hh]
         exact mem_HPar.mpr ⟨diagEmb_mem_blockUT _ _ _, by
           rw [GlobalTheory.RowLevIndex.firstDiagonalBlock_of_diagonal_embedding _ _ (p ⟨w.1, hw⟩) _ _ rfl]; exact hp ⟨w.1, hw⟩ (Set.mem_univ _)⟩
-      · have hh : h w = 1 := dif_neg hw
+      · have hh : h w = 1 := dite_eq_right hw
         rw [hh]
         exact Subgroup.one_mem _
     refine ⟨((1 : UF X.E (R.N R.m - 1)), ⟨h, hmem⟩), ?_⟩
     funext v
-    exact GlobalTheory.RowLevIndex.firstDiagonalBlock_of_diagonal_embedding _ _ (p v) _ _ (dif_pos v.2)
+    exact GlobalTheory.RowLevIndex.firstDiagonalBlock_of_diagonal_embedding _ _ (p v) _ _ (dite_eq_left v.2)
 
 end Rows2
 
@@ -438,6 +439,7 @@ theorem index_eq : ∀ {X : Fields} {Pr : Primes X} {R : Ranks} (W : Formalism.L
   rw [range_incl, Subgroup.index_ker, range_blkMap]
 
 end GlobalTheory.RowLevIndex
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ClassSumPrincipalLevelEqCardMulClassSum

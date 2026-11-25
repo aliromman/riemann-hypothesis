@@ -1,5 +1,6 @@
 module
 
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.GelfandPsA
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.Calculus.ContDiff.Defs
 public import Mathlib.MeasureTheory.Integral.Bochner.Basic
@@ -143,8 +144,9 @@ theorem contDiffOn_param {E' E : Type} [NormedAddCommGroup E'] [NormedSpace ℂ 
 end ReciprocityTheory.ChartRestriction.DS.S7.GelfandGB
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.GelfandGA
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.GelfandGA
 
+noncomputable section
 
 open Finset MeasureTheory Matrix
 open scoped ComplexOrder ContDiff ENNReal
@@ -207,18 +209,8 @@ lemma opPow_contDiffOn {U : Set (Matrix (Fin n) (Fin n) ℂ)} (hU : IsOpen U)
     {F : Matrix (Fin n) (Fin n) ℂ → E} (hF : ContDiffOn ℂ ∞ F U)
     (Y : Fin n → Fin n → Matrix (Fin n) (Fin n) ℂ) :
     ∀ j a b, ContDiffOn ℂ ∞ (opPow (fun a b => Lhol (Y a b)) j a b F) U := by
-  intro j
-  induction j with
-  | zero =>
-    intro a b
-    simp only [opPow]
-    split_ifs
-    · exact hF
-    · exact contDiffOn_const
-  | succ k ih =>
-    intro a b
-    simp only [opPow, Finset.sum_fn]
-    exact ContDiffOn.sum fun c _ => lhol_contDiffOn hU (ih c b) (Y a c)
+  intros
+  apply _root_.ReciprocityTheory.ChartRestriction.DS.S7.GPs.sm_opPow <;> assumption
 
 end GelfandGA
 

@@ -366,24 +366,17 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.AdicBaseIffDomainAdicNormalPair
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.AdicBaseIffDomainAdicNormalPair
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
 
+noncomputable section
 
 namespace GlobalTheory.DegCompare
 
 open GlobalTheory.PsiInPull GlobalTheory.PsiInPow
-
-section Generic
-
-variable {X Y Z : Scheme.{0}} (f : Z ⟶ Y) (z : Z)
-
-variable {L : LB X} {K : Type} [Fintype K] (φ : K → (Y ⟶ X)) (ε : K → ℤ)
-
-end Generic
 
 variable {R : Type} [CommRing R] [IsDomain R]
 
@@ -405,6 +398,7 @@ theorem val_tau_symm (a b : D.X) : val (D.tau a b) r z J = val (D.tau b a) r z J
 end Values
 
 end GlobalTheory.DegCompare
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

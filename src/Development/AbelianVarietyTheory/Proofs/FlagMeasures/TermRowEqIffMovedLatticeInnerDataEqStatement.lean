@@ -1038,7 +1038,7 @@ theorem iotaCompat_iff_graph : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u 
         rw [Formalism.L2.SG.Pf.Act.frame_mapLF hγ1, Formalism.L2.SG.Pf.Act.frame_mapLF hγ0]
         show t.lin _ = t.lin (t₀.lin.symm (t₀.lin _))
         rw [LinearEquiv.symm_apply_apply]
-      exact GlobalTheory.T.identificationCompat_passes_to_local_congruence D (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D) u u' (X.Fu u) t₀.lam hrow t₀.frame t.frame hPD0 hPD1 _ hβ hβΛ hfr hI p gβ hgβ hs
+      exact _root_.GlobalTheory.IotaLoc.iota_typed D (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D) u u' (X.Fu u) t₀.lam hrow t₀.frame t.frame hPD0 hPD1 _ hβ hβΛ hfr hI p gβ hgβ hs
         x' hx' x hx hx'p hxp
   · intro h
     exact _root_.GlobalTheory.IotaLocConv.iotaCompat_of_local D X Y u u' t₀ t hl hl' (fun p _ => (hloc p).1 (h p))
